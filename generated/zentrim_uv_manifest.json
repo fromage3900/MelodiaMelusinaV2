@@ -1,0 +1,857 @@
+{
+  "generated_at": "2026-08-27T02:50:47.746850+00:00",
+  "tool": "Tools/generate_zentrim_contact_sheet.py",
+  "zen_kits": 19,
+  "trim_palette": {
+    "zone_0": [
+      20,
+      20,
+      22
+    ],
+    "zone_1": [
+      242,
+      107,
+      45
+    ],
+    "zone_2": [
+      45,
+      165,
+      242
+    ],
+    "zone_3": [
+      242,
+      198,
+      56
+    ],
+    "zone_4": [
+      158,
+      96,
+      216
+    ],
+    "zone_5": [
+      89,
+      209,
+      114
+    ],
+    "zone_6": [
+      242,
+      140,
+      183
+    ]
+  },
+  "trim_groups_by_arch": {
+    "GB_ZEN_ROJI_STEP": [
+      {
+        "id": "path_slab",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor"
+      },
+      {
+        "id": "edge_stone",
+        "role": "TRIM_EDGE",
+        "ue_material_slot": "M_Trim_Edge",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Raised roji edge stones"
+      }
+    ],
+    "GB_ZEN_TORII_GATE": [
+      {
+        "id": "hashira",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "gate"
+      },
+      {
+        "id": "nuki",
+        "role": "TRIM_BEAM",
+        "ue_material_slot": "M_Trim_Beam",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04
+      },
+      {
+        "id": "kasagi",
+        "role": "TRIM_LINTEL",
+        "ue_material_slot": "M_Trim_Lintel",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "gate"
+      }
+    ],
+    "GB_ZEN_TSUKUBAI": [
+      {
+        "id": "basin",
+        "role": "TRIM_BASIN",
+        "ue_material_slot": "M_Trim_Basin",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "basin",
+        "notes": "Recess bowl - UE trim sheet basin band"
+      },
+      {
+        "id": "flagstone",
+        "role": "TRIM_FLAGSTONE",
+        "ue_material_slot": "M_Trim_Flagstone",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04
+      },
+      {
+        "id": "pad",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor"
+      }
+    ],
+    "GB_ZEN_ENGAWA": [
+      {
+        "id": "deck",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor"
+      },
+      {
+        "id": "post",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04
+      },
+      {
+        "id": "rail",
+        "role": "TRIM_RAIL",
+        "ue_material_slot": "M_Trim_Rail",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "engawa_edge"
+      }
+    ],
+    "GB_ZEN_BAMBOO_FENCE": [
+      {
+        "id": "bamboo_post",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04
+      },
+      {
+        "id": "bamboo_rail",
+        "role": "TRIM_RAIL",
+        "ue_material_slot": "M_Trim_Rail",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Horizontal bamboo rails"
+      }
+    ],
+    "GB_ZEN_TOBIISHI": [
+      {
+        "id": "stepping_stone",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Scattered tobi-ishi stones"
+      },
+      {
+        "id": "path_bed",
+        "role": "TRIM_EDGE",
+        "ue_material_slot": "M_Trim_Edge",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor"
+      }
+    ],
+    "GB_ZEN_KARESANSUI": [
+      {
+        "id": "sand_bed",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Raked gravel plane"
+      },
+      {
+        "id": "border_stone",
+        "role": "TRIM_EDGE",
+        "ue_material_slot": "M_Trim_Edge",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Ishigumi border collar"
+      },
+      {
+        "id": "rake_groove",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Rake",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Parallel rake grooves"
+      }
+    ],
+    "GB_ZEN_MACHIAI": [
+      {
+        "id": "post",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04
+      },
+      {
+        "id": "roof",
+        "role": "TRIM_BEAM",
+        "ue_material_slot": "M_Trim_Beam",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor"
+      },
+      {
+        "id": "bench",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Bench",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Machiai waiting bench"
+      }
+    ],
+    "GB_ZEN_STONE_BRIDGE": [
+      {
+        "id": "deck",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "deck",
+        "notes": "Bridge deck slab"
+      },
+      {
+        "id": "rail",
+        "role": "TRIM_RAIL",
+        "ue_material_slot": "M_Trim_Rail",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Low stone bridge rail"
+      },
+      {
+        "id": "abutment",
+        "role": "TRIM_EDGE",
+        "ue_material_slot": "M_Trim_Edge",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Bank abutment blocks"
+      }
+    ],
+    "GB_ZEN_CHERRY_ALLEE": [
+      {
+        "id": "trunk_base",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Trunk",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Cherry trunk bases along path"
+      },
+      {
+        "id": "blossom_canopy",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Blossom",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "canopy",
+        "notes": "Canopy blossom trim zone"
+      },
+      {
+        "id": "petal_scatter",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Petal",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Fallen petal scatter strip"
+      }
+    ],
+    "GB_ZEN_WATER_EDGE": [
+      {
+        "id": "stream_bed",
+        "role": "TRIM_BASIN",
+        "ue_material_slot": "M_Trim_Basin",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Depressed stream channel"
+      },
+      {
+        "id": "stream_bank",
+        "role": "TRIM_EDGE",
+        "ue_material_slot": "M_Trim_Edge",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Raised stream banks"
+      },
+      {
+        "id": "stepping_stone",
+        "role": "TRIM_FLAGSTONE",
+        "ue_material_slot": "M_Trim_Flagstone",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Bridge landing stepping stones"
+      }
+    ],
+    "GB_ZEN_SANDO": [
+      {
+        "id": "paving",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Shrine approach paving"
+      },
+      {
+        "id": "edge_stone",
+        "role": "TRIM_EDGE",
+        "ue_material_slot": "M_Trim_Edge",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Path border stones"
+      },
+      {
+        "id": "toro_post",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Stone lantern posts along sando"
+      },
+      {
+        "id": "toro_base",
+        "role": "TRIM_FLAGSTONE",
+        "ue_material_slot": "M_Trim_Flagstone",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Lantern plinth bases"
+      }
+    ],
+    "GB_ZEN_KAIRO": [
+      {
+        "id": "floor",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Cloister walkway slab"
+      },
+      {
+        "id": "column",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Courtyard-facing column row"
+      },
+      {
+        "id": "beam",
+        "role": "TRIM_BEAM",
+        "ue_material_slot": "M_Trim_Beam",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Horizontal tie beam"
+      },
+      {
+        "id": "noki_eave",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Roof eave overhang volume"
+      },
+      {
+        "id": "wall_panel",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Panel_Recess",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Garden-side low wall"
+      }
+    ],
+    "GB_ZEN_HAIDEN": [
+      {
+        "id": "haijo_floor",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Raised worship floor"
+      },
+      {
+        "id": "genkan_step",
+        "role": "TRIM_STEP",
+        "ue_material_slot": "M_Trim_Step",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Entry genkan steps"
+      },
+      {
+        "id": "post",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Haiden corner and front posts"
+      },
+      {
+        "id": "ranma",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Ranma",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Transom panel above threshold"
+      },
+      {
+        "id": "noki",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Roof eave overhang"
+      }
+    ],
+    "GB_ZEN_GOJU_PAGODA": [
+      {
+        "id": "plinth",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Stone plinth base"
+      },
+      {
+        "id": "tier_core",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Pagoda story core volume"
+      },
+      {
+        "id": "tier_roof",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Flared eave slab per tier"
+      },
+      {
+        "id": "sorin",
+        "role": "TRIM_SPIRE",
+        "ue_material_slot": "M_Trim_Sorin",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Finial spire (s\u014drin)"
+      }
+    ],
+    "GB_ZEN_TAHOTO": [
+      {
+        "id": "plinth",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Stone plinth"
+      },
+      {
+        "id": "mokoshi_base",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Panel_Recess",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Square mokoshi skirt story"
+      },
+      {
+        "id": "drum_body",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Round drum body (greybox)"
+      },
+      {
+        "id": "roof_lower",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Lower roof slab"
+      },
+      {
+        "id": "roof_upper",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Upper roof slab"
+      },
+      {
+        "id": "sorin",
+        "role": "TRIM_SPIRE",
+        "ue_material_slot": "M_Trim_Sorin",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Finial spire"
+      }
+    ],
+    "GB_ZEN_LANTERN": [
+      {
+        "id": "kiso",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Stone plinth base"
+      },
+      {
+        "id": "sao",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Lantern shaft post"
+      },
+      {
+        "id": "hibukuro",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Panel_Recess",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Fire chamber body"
+      },
+      {
+        "id": "kasa",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Roof cap slab"
+      },
+      {
+        "id": "hoju",
+        "role": "TRIM_SPIRE",
+        "ue_material_slot": "M_Trim_Sorin",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Jewel finial"
+      }
+    ],
+    "GB_ZEN_HONDEN": [
+      {
+        "id": "sanctum_floor",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Floor",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "floor",
+        "notes": "Raised sacred platform"
+      },
+      {
+        "id": "sanctuary_wall",
+        "role": "TRIM_PANEL_RECESS",
+        "ue_material_slot": "M_Trim_Panel_Recess",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Enclosed moya walls"
+      },
+      {
+        "id": "engawa_margin",
+        "role": "TRIM_FLOOR",
+        "ue_material_slot": "M_Trim_Engawa",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Veranda margin strip"
+      },
+      {
+        "id": "threshold",
+        "role": "TRIM_FRAME",
+        "ue_material_slot": "M_Trim_Frame",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Entry threshold from haiden"
+      },
+      {
+        "id": "noki_eave",
+        "role": "TRIM_EAVE",
+        "ue_material_slot": "M_Trim_Eave",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Deep roof eave"
+      }
+    ],
+    "GB_ZEN_SAKURA_TORII": [
+      {
+        "id": "hashira",
+        "role": "TRIM_COLUMN",
+        "ue_material_slot": "M_Trim_Column",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "gate"
+      },
+      {
+        "id": "nuki",
+        "role": "TRIM_BEAM",
+        "ue_material_slot": "M_Trim_Beam",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04
+      },
+      {
+        "id": "kasagi",
+        "role": "TRIM_LINTEL",
+        "ue_material_slot": "M_Trim_Lintel",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "snap_bind": "gate"
+      },
+      {
+        "id": "blossom_band",
+        "role": "TRIM_BLOSSOM",
+        "ue_material_slot": "M_Trim_Blossom",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Sakura blossom band on kasagi"
+      },
+      {
+        "id": "petal_accent",
+        "role": "TRIM_PETAL",
+        "ue_material_slot": "M_Trim_Petal",
+        "trim_mode": "RECESS",
+        "recess_depth": 0.04,
+        "notes": "Petal accent strips on hashira"
+      }
+    ]
+  },
+  "uv_specs_by_arch": {
+    "GB_ZEN_ROJI_STEP": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_TORII_GATE": {
+      "uv_unwrap_mode": "BOX",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.5,
+      "uv_scale": 0.5,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "WOOD",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_TSUKUBAI": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_ENGAWA": {
+      "uv_unwrap_mode": "BOX",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.5,
+      "uv_scale": 0.5,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "WOOD",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_BAMBOO_FENCE": {
+      "uv_unwrap_mode": "BOX",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.5,
+      "uv_scale": 0.5,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "WOOD",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_TOBIISHI": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_KARESANSUI": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_MACHIAI": {
+      "uv_unwrap_mode": "BOX",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.5,
+      "uv_scale": 0.5,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "WOOD",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_STONE_BRIDGE": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_CHERRY_ALLEE": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_WATER_EDGE": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_SANDO": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_KAIRO": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_HAIDEN": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_GOJU_PAGODA": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_TAHOTO": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_LANTERN": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_HONDEN": {
+      "uv_unwrap_mode": "TRIM_SHEET",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.88,
+      "uv_scale": 1.0,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "STONE",
+      "unit_size": 2.0
+    },
+    "GB_ZEN_SAKURA_TORII": {
+      "uv_unwrap_mode": "BOX",
+      "trim_sheet_atlas_cols": 4,
+      "trim_sheet_body_scale": 0.5,
+      "uv_scale": 0.5,
+      "gb_trim_mode": "RECESS",
+      "gb_trim_recess": 0.04,
+      "gb_bake_trim_colors": true,
+      "material": "WOOD",
+      "unit_size": 2.0
+    }
+  },
+  "notes": {
+    "uv_modes": "BOX for ZEN_WOOD (engawa/bamboo/machiai), TRIM_SHEET 4 cols for stone (sando/kairo/goju) \u2014 see uv_workflow.zen_module_uv_defaults",
+    "bake": "SURREAL_TRIM CORNER BYTE_COLOR + surreal_trim_zone FACE FLOAT via trim_color_bake.bake_trim_vertex_colors, gated by gb_bake_trim_colors",
+    "export": "FBX sidecar *.snap.json via snap_export.write_sidecar_json, UE slot per trim_group ue_material_slot",
+    "contact_sheet": "generated\\zentrim_contact_sheet.png"
+  }
+}

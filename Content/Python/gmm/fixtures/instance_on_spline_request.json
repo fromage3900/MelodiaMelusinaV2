@@ -1,0 +1,21 @@
+{
+  "format": "gmm_spline_instance_request_v1",
+  "schema_version": 1,
+  "schema_minor": 0,
+  "asset_id": "example_spline_dressing",
+  "style_id": "MELODIA_STAGE",
+  "spline_id": "GardenSpline",
+  "mesh_role": "ornament",
+  "mesh_asset": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Cube_1m",
+  "spacing_cm": 250.0,
+  "seed": 1337,
+  "scale_range": [0.8, 1.2],
+  "rotation_mode": "spline_frame",
+  "light_policy": "none",
+  "expected_instance_count": 0,
+  "expected_bounds_cm": [0, 0, 0],
+  "provenance": {
+    "producer": "gmm",
+    "source": "authored_spline_fixture"
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_integration_map_overhaul_contract",
+  "contract_id": "melodia_integration_map_overhaul",
+  "status": "offline_contract_ready_live_map_proof_pending",
+  "proof_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "map_role": "disposable_deterministic_save_load_and_fixture_proof_map",
+  "player_route": {
+    "maps": [
+      "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "/Game/EnvSandbox/Environments/L_KaleidoNave"
+    ],
+    "owner_controlled": true,
+    "must_not_be_modified_by_this_lane": true,
+    "proof_boundary": "This contract never treats the proof map as player-route evidence."
+  },
+  "inventory": {
+    "before_state": "Saved/Audit/integration_map_inventory.json",
+    "accepted_shapes": [
+      "class_counts",
+      "actor_records"
+    ],
+    "evidence_limit": "A class-count snapshot classifies legacy placements but cannot prove actor labels, effective WorldSettings, possession, or graph reachability.",
+    "classification_rules": [
+      {
+        "category": "keep",
+        "class_names": [
+          "StaticMeshActor",
+          "DirectionalLight",
+          "InstancedFoliageActor",
+          "AtmosphericFog",
+          "BP_Sky_Sphere_C",
+          "SkyLight",
+          "SphereReflectionCapture",
+          "PostProcessVolume",
+          "NavMeshBoundsVolume",
+          "RecastNavMesh"
+        ],
+        "reason": "World-support placement is not a replacement for the Melodia gameplay kit."
+      },
+      {
+        "category": "keep_singleton",
+        "class_names": [
+          "PlayerStart"
+        ],
+        "expected_count": 1,
+        "reason": "The proof fixture needs one deterministic spawn marker."
+      },
+      {
+        "category": "retain_debug",
+        "class_names": [
+          "GroupActor",
+          "TextRenderActor"
+        ],
+        "reason": "Retain only as disposable organization/debug presentation; they are not gameplay authority."
+      },
+      {
+        "category": "retain_stock_authority",
+        "class_names": [
+          "BP_BattleController_C"
+        ],
+        "reason": "Retain the stock battle/session/result execution authority while replacing stock gameplay placements around it."
+      },
+      {
+        "category": "replace",
+        "class_names": [
+          "BP_PlayerSpawnLocation_C",
+          "BP_InteractionDetector_C",
+          "BP_EnemySpawnLocation_C",
+          "BP_Camera_C",
+          "BP_WeakEnemyExplorePawn_C",
+          "BP_InteractionBattle_C",
+          "BP_PermanentBattle_C",
+          "BP_AverageEnemyExplorePawn_C",
+          "BP_NPC_C",
+          "BP_SavePoint_C",
+          "BP_Shrine_C",
+          "BP_LockedChest_C",
+          "BP_Shop_C",
+          "BP_Chest_C",
+          "BP_QuestNPC_C",
+          "BP_Forge_C",
+          "BP_QuestLogic_C"
+        ],
+        "reason": "These are stock proof-map gameplay placements; retire their placement in favor of the Melodia fixture kit without deleting stock parent systems."
+      }
+    ],
+    "singleton_expectations": [
+      {
+        "class_name": "PlayerStart",
+        "min_count": 1,
+        "max_count": 1
+      },
+      {
+        "class_name": "BP_BattleController_C",
+        "min_count": 0,
+        "max_count": 1
+      }
+    ]
+  },
+  "authority_requirements": [
+    {
+      "id": "effective_game_mode",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+      "must_be_unique": true,
+      "evidence": "live WorldSettings readback",
+      "offline_status": "not_observable_from_class_counts"
+    },
+    {
+      "id": "player_controller",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGPlayerController",
+      "must_be_unique": true,
+      "evidence": "live world actor and possession readback",
+      "offline_status": "not_observable_from_class_counts"
+    },
+    {
+      "id": "player_pawn",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+      "must_be_unique": true,
+      "evidence": "live world actor and controller possession readback",
+      "offline_status": "not_observable_from_class_counts"
+    },
+    {
+      "id": "stock_battle_controller",
+      "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
+      "must_be_unique": true,
+      "evidence": "live stock battle/session/result contract readback",
+      "offline_status": "class-count candidate only"
+    }
+  ],
+  "fixture_kit": [
+    {
+      "id": "game_mode",
+      "role": "authority",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+      "fixture_spec": null,
+      "parent_contract": "GameModeBase; effective map override remains live-only"
+    },
+    {
+      "id": "player_controller",
+      "role": "authority_adapter",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGPlayerController",
+      "fixture_spec": null,
+      "parent_contract": "live parent, input, possession, and stock handoff readback required"
+    },
+    {
+      "id": "player_pawn",
+      "role": "single_player_pawn",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+      "fixture_spec": null,
+      "parent_contract": "live parent, traversal component, and possession readback required"
+    },
+    {
+      "id": "encounter",
+      "role": "encounter_trigger",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEncounter_FirstDream",
+      "fixture_spec": "specs/blueprints/fixtures/repeatable_first_dream_encounter.v1.json",
+      "parent_contract": "BP_MelodiaEncounter_Base -> native encounter trigger -> stock battle bridge"
+    },
+    {
+      "id": "enemy",
+      "role": "stock_enemy_adapter",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaEnemy_SingleStock",
+      "fixture_spec": "specs/blueprints/fixtures/single_stock_enemy.v1.json",
+      "parent_contract": "BP_MelodiaEnemy_Base -> stock unit/session; Melody Slime data contract is separate"
+    },
+    {
+      "id": "traversal_gate",
+      "role": "traversal_gate_proof",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTraversalGate_HoverFixture",
+      "fixture_spec": "specs/blueprints/fixtures/hover_gate_with_dungeon_lock.v1.json",
+      "parent_contract": "AActor presentation -> UMelodiaTraversalComponent"
+    },
+    {
+      "id": "portal",
+      "role": "locked_route_portal",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPortal_LockedTraversal",
+      "fixture_spec": "specs/blueprints/fixtures/locked_traversal_portal.v1.json",
+      "parent_contract": "BP_MelodiaPortal_Base -> UMelodiaTravelSubsystem"
+    },
+    {
+      "id": "state_anchor",
+      "role": "progress_persistence_anchor",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaStateAnchor_FirstDreamProgress",
+      "fixture_spec": "specs/blueprints/fixtures/first_dream_progress_anchor.v1.json",
+      "parent_contract": "AActor presentation -> UMelodiaNarrativeSubsystem and canonical save"
+    },
+    {
+      "id": "world_challenge",
+      "role": "optional_resonance_challenge",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaWorldChallenge_FirstResonance",
+      "fixture_spec": "specs/blueprints/fixtures/first_resonance_world_challenge.v1.json",
+      "parent_contract": "AActor presentation -> canonical narrative challenge transaction"
+    },
+    {
+      "id": "puzzle_relay",
+      "role": "puzzle_water_chain_source",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPuzzleRelay_FirstResonance",
+      "fixture_spec": "specs/blueprints/fixtures/first_resonance_puzzle_relay.v1.json",
+      "parent_contract": "AMelodiaPuzzleRelayVolume; event source only, no quest/save authority"
+    },
+    {
+      "id": "interaction_prompt",
+      "role": "interaction_prompt_source",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaInteraction_DreamAnchor",
+      "fixture_spec": "specs/blueprints/fixtures/dream_anchor_interaction.v1.json",
+      "parent_contract": "AMelodiaExplorationInteractionVolume; prompt presentation only"
+    },
+    {
+      "id": "moving_platform",
+      "role": "traversal_platform",
+      "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaMovingPlatform_Base",
+      "fixture_spec": "specs/blueprints/fixtures/moving_platform_route.v1.json",
+      "parent_contract": "AMelodiaMovingPlatform; motion only, water route state remains subsystem-owned"
+    }
+  ],
+  "readiness_levels": {
+    "L0": "Inventory source and intended role recorded.",
+    "L1": "Parent, fixture, authority, and forbidden-ownership contract validated offline.",
+    "L2": "Live parent/CDO/interfaces/components/graphs and pin defaults read back.",
+    "L3": "Disposable fixture reaches the real map path with deterministic reset.",
+    "L4": "Compile, save, disk-mtime, re-export/readback, PIE, and fresh evidence ledger row pass."
+  },
+  "current_audits": [
+    {
+      "path": "Saved/Audit/integration_map_inventory.json",
+      "evidence_kind": "before_class_count_snapshot",
+      "claim_limit": "No actor labels, transform, WorldSettings, possession, or placement proof."
+    },
+    {
+      "path": "Saved/Audit/melusina_spatial_puzzle_audit.json",
+      "evidence_kind": "asset_existence_audit",
+      "claim_limit": "Does not prove map placement, graph binding, pin defaults, save, or runtime."
+    },
+    {
+      "path": "Saved/Audit/_puzzle_water_nodes.json",
+      "evidence_kind": "node_id_snapshot",
+      "claim_limit": "Node IDs are not a saved graph export or post-save equality proof."
+    },
+    {
+      "path": "Saved/Audit/melody_slime_datatables.json",
+      "evidence_kind": "source_row_inventory",
+      "claim_limit": "JSON rows and a candidate struct do not prove imported DataTable assets or battle presentation."
+    }
+  ],
+  "live_proof_requirements": [
+    "Fresh actor inventory from MelodiaIntegrationMap with labels, class paths, transforms, and sublevel fields.",
+    "Exactly one effective Melodia GameMode, PlayerController, possessed Melusina pawn, and stock battle controller.",
+    "Every fixture parent/CDO/component/graph and every puzzle/water/narrative pin default read back from the live editor.",
+    "Compile each touched Blueprint, save it, verify disk mtime changed, then re-export and compare the expected postcondition.",
+    "Map inventory after placement diffed against this before-state; no claim of placement is valid from this contract alone.",
+    "PIE route and save/reload/idempotency evidence recorded separately; static checks never close those gates."
+  ],
+  "offline_blockers": [
+    "Current inventory is class-count-only, so actor placement and authority uniqueness are unobservable offline.",
+    "No imported DT_MelodySlime_* DataTable assets are present in the source-row audit; only JSON rows and a candidate row header exist.",
+    "Puzzle pin defaults and the puzzle-to-water-to-narrative graph save/readback are editor-owned.",
+    "BP_MelodySlimeBattle path and its live encounter reference require asset-registry/graph readback.",
+    "No live compile, save-mtime, map diff, or PIE evidence is produced by this contract."
+  ],
+  "forbidden_claims": [
+    "map placement",
+    "effective WorldSettings override",
+    "PIE route proof",
+    "packaged route proof",
+    "imported DataTable proof",
+    "Blueprint compile or save proof from static files"
+  ]
+}

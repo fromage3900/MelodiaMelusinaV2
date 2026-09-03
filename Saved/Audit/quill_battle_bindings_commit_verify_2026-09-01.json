@@ -1,0 +1,51 @@
+{
+  "schema": "melodia.audit.quill_battle_bindings_commit_verify.v1",
+  "generated": "2026-09-01T04:30:00Z",
+  "mode": "spec_crosscheck",
+  "source_commit_spec": "quill_battle_id_bindings_commit_spec_2026-08-31.json",
+  "source_resolution": "quill_battle_bindings_empty_id_resolution_2026-09-01.json",
+  "findings": {
+    "script_existence": [
+      {
+        "script": "MelodiaQuillP0Playthrough.qsc",
+        "commit_spec_path": "Content/Quill/MelodiaQuillP0Playthrough.qsc",
+        "actual_path": "Content/MelodiaIntegration/Narrative/MelodiaQuillP0Playthrough.qsc",
+        "path_matches": false,
+        "exists_on_disk": true
+      },
+      {
+        "script": "MelodiaQuillSmoke.qsc",
+        "commit_spec_path": "Content/Quill/MelodiaQuillSmoke.qsc",
+        "actual_path": "Content/MelodiaIntegration/Narrative/MelodiaQuillSmoke.qsc",
+        "path_matches": false,
+        "exists_on_disk": true
+      }
+    ],
+    "empty_bindings_from_resolution": [
+      {
+        "script": "MelodiaQuillP0Playthrough.qsc",
+        "proposed_battle_id": "encounter.first_dream",
+        "on_allowlist": true,
+        "commit_spec_agreement": "AGREED — same proposed ID"
+      },
+      {
+        "script": "MelodiaQuillSmoke.qsc",
+        "proposed_battle_id": "encounter.smoke.bloom",
+        "on_allowlist": false,
+        "commit_spec_agreement": "AGREED — same proposed ID, both flag allowlist addition needed"
+      }
+    ],
+    "allowlist_action": {
+      "add": "encounter.smoke.bloom",
+      "already_present": "encounter.first_dream"
+    }
+  },
+  "discrepancies": [
+    {
+      "issue": "Commit spec references Content/Quill/ but actual files are in Content/MelodiaIntegration/Narrative/",
+      "severity": "LOW — both specs agree on proposed battle IDs, paths are editor-bound corrections"
+    }
+  ],
+  "status": "CROSSCHECK_COMPLETE",
+  "verdict": "CONSISTENT — both specs agree on proposed battle_id bindings. Script paths differ between spec (Content/Quill/) and actual (Content/MelodiaIntegration/Narrative/), but this is a minor path discrepancy that doesn't affect the binding logic."
+}

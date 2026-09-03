@@ -1,0 +1,2 @@
+@echo off
+"C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" "C:\EnvironmentPortfolio\BS_GodFile\BS_GodFile.uproject" -run=pythonscript -script="C:\EnvironmentPortfolio\BS_GodFile\Content\Python\create_tp_melusina_mpc.py"

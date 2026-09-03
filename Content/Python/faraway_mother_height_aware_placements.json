@@ -1,0 +1,101 @@
+{
+  "schema": "melodia.faraway_mother.height_aware_placements.v1",
+  "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "terrain": "/Game/EnvSandbox/Meshes/Terrain/SM_FarawayMother_FabricRidge",
+  "raycast": {
+    "method": "KismetSystemLibrary.line_trace_single (TRACE_TYPE_QUERY1, complex=false)",
+    "start_z": 5000,
+    "end_z": -1000,
+    "fallback_z": 35,
+    "contract": "No LandscapeGrassType, no Landscape. Collision on Nanite static mesh only."
+  },
+  "placements": [
+    {
+      "mesh": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_RosetteMedallion",
+      "label": "FM_Ridge_Rosette_Crest",
+      "xy": [-900, 180],
+      "yaw": 15,
+      "scale": 3.0,
+      "z_offset": 8,
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedLoom",
+      "role": "ridge crest — gold brocade highlight, reads from valley"
+    },
+    {
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA",
+      "label": "FM_Valley_Arch_Entrance",
+      "xy": [100, -40],
+      "yaw": 90,
+      "scale": 1.2,
+      "z_offset": 2,
+      "mi": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
+      "role": "valley entrance — NightSkyVelvet arch, player passes through"
+    },
+    {
+      "mesh": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_ColumnCapital",
+      "label": "FM_Shoulder_Capital",
+      "xy": [600, 220],
+      "yaw": -20,
+      "scale": 2.5,
+      "z_offset": 5,
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall",
+      "role": "shoulder fold — silk flow capital, moon-haze foreground"
+    },
+    {
+      "mesh": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_PendantFinial",
+      "label": "FM_Heart_Finial_Gate",
+      "xy": [20, 0],
+      "yaw": 0,
+      "scale": 4.0,
+      "z_offset": 12,
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FinalDreamweaver",
+      "role": "heart gate — rhythm checkpoint, iridescence, at torso valley center"
+    },
+    {
+      "mesh": "/Game/EnvSandbox/Meshes/Ornament/SM_Orn_RoseWindow_8Petal",
+      "label": "FM_Torso_RoseWindow",
+      "xy": [800, -180],
+      "yaw": 35,
+      "scale": 2.0,
+      "z_offset": 6,
+      "mi": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil",
+      "role": "torso depression — lace veil rose window, translucent edge lighting"
+    }
+  ],
+  "moon_haze": {
+    "ExponentialHeightFog": {
+      "label": "FM_MoonHaze_Fog",
+      "fog_density": 0.04,
+      "fog_height_falloff": 0.15,
+      "fog_max_opacity": 0.85,
+      "fog_inscattering_color": [0.7, 0.75, 0.9],
+      "directional_inscattering_color": [0.63, 0.675, 0.9],
+      "volumetric_fog": true,
+      "volumetric_fog_extinction_scale": 1.5,
+      "location": [0, 0, 350]
+    },
+    "PostProcessVolume": {
+      "label": "FM_MoonHaze_PPV",
+      "b_unbound": true,
+      "location": [0, 0, 0],
+      "pp_tint": [0.15, 0.2, 0.35]
+    },
+    "VolumeBox": {
+      "label": "FM_MoonHaze_VolumeBox",
+      "mesh": "/Engine/BasicShapes/Cube",
+      "location": [0, 0, 450],
+      "extent": [4000, 2600, 900],
+      "collision": "NoCollision",
+      "cast_shadow": false,
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FrostBloom"
+    }
+  },
+  "copernicus_mis": [
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedLoom",
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall",
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FinalDreamweaver",
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FrostBloom"
+  ],
+  "editor_script": "Content/Python/faraway_mother_prototype_build.py",
+  "heightmap_manifest": "Saved/Audit/faraway_mother/fabric_ridge_terrain/manifest.json",
+  "notes": "All Z resolved at spawn-time via raycast. No Landscape. Rerun is idempotent (skips existing labels)."
+}

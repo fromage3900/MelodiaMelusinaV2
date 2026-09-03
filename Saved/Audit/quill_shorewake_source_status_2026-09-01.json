@@ -1,0 +1,37 @@
+{
+  "schema": "melodia.audit.quill_shorewake_source.v1",
+  "generated": "2026-09-01T04:00:00Z",
+  "mode": "disk_scan_only",
+  "source": "disk scan of Content/MelodiaIntegration/Narrative/ + Content/MelodiaIntegration/Config/",
+  "findings": {
+    "shorewake_qsc": {
+      "path": "Content/MelodiaIntegration/Narrative/Shorewake/MelodiaQuillShorewake.qsc",
+      "exists_on_disk": true,
+      "parent_folder": "Shorewake/",
+      "sibling_qsc_count": 12,
+      "total_qsc_in_narrative": 13
+    },
+    "allowlist_config": {
+      "path": "Content/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig.uasset",
+      "exists_on_disk": true,
+      "note": "Cannot read config contents from disk scan — requires editor or uasset parser. Allowlist entries from compile spec assumed valid until live verification."
+    },
+    "allowlist_entries_referenced": [
+      "quest.shorewake.initiation",
+      "flag.quest.shorewake_completed",
+      "flag.sea_above.starskiff_ready",
+      "reward.shorewake_weave"
+    ]
+  },
+  "cross_reference": {
+    "spec": "quill_shorewake_compile_spec_2026-08-31.json",
+    "qsc_status": "EXISTS — pre_compile_checks item 1 PASSED",
+    "allowlist_status": "UNVERIFIED_ON_DISK — requires editor open to read DA_MelodiaIntegrationConfig.uasset"
+  },
+  "guardrails": [
+    "No .qsc edits made",
+    "No .uasset writes",
+    "Allowlist verification deferred to live editor session"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

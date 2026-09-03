@@ -1,0 +1,185 @@
+{
+  "schema": "melodia_currency_registry.v1",
+  "generated_from": "/Game/Melodia/Data/DA_MelodiaCurrencyRegistry",
+  "generator": "Content/Python/export_melodia_currency_registry.py",
+  "authority_note": "The UE DataAsset is canonical (Decision 055). This file is its text mirror, read by gmm/game/tokens.py, Tools/wardrobe_draft_lint.py, pytest, CI and the melodia MCP server so none of them needs a running editor. Re-export after every registry edit; the melodia_economy_registry_export_fresh CI gate fails if this file is older than the .uasset.",
+  "registry_schema_version": 1,
+  "kinds": {
+    "Shard": "Integer, uncapped, GrantId-idempotent. The seven elemental shards.",
+    "Premium": "Integer, uncapped, GrantId-idempotent, refundable after a failed purchase.",
+    "Resource": "Float, clamped to max_value. Regenerating; not idempotent when granted without a GrantId."
+  },
+  "currencies": [
+    {
+      "currency_id": "Forte",
+      "display_name": "Forte Shard",
+      "description": "Burn element energy - fuels attack skills",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 0,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Forte"
+    },
+    {
+      "currency_id": "Tide",
+      "display_name": "Tide Shard",
+      "description": "Tide element energy - fuels healing and flow",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 1,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Tide"
+    },
+    {
+      "currency_id": "Gale",
+      "display_name": "Gale Shard",
+      "description": "Gale element energy",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 2,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Gale"
+    },
+    {
+      "currency_id": "Stone",
+      "display_name": "Stone Shard",
+      "description": "Stone element energy",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 3,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Stone"
+    },
+    {
+      "currency_id": "Radiant",
+      "display_name": "Radiant Shard",
+      "description": "Radiant element energy - fuels light magic",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 4,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Radiant"
+    },
+    {
+      "currency_id": "Umbral",
+      "display_name": "Umbral Shard",
+      "description": "Umbral element energy",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 5,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Umbral"
+    },
+    {
+      "currency_id": "Arcane",
+      "display_name": "Arcane Shard",
+      "description": "Arcane element energy - fuels mystic arts",
+      "kind": "Shard",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": false,
+      "counts_toward_total_collected": true,
+      "sort_order": 6,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": true,
+      "legacy_element": "Arcane"
+    },
+    {
+      "currency_id": "Golden",
+      "display_name": "Golden Token",
+      "description": "Premium currency. Spent on wardrobe pulls and cosmetics; refundable when a purchase fails downstream.",
+      "kind": "Premium",
+      "default_value": 0.0,
+      "max_value": 0.0,
+      "refundable": true,
+      "counts_toward_total_collected": false,
+      "sort_order": 100,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": false,
+      "legacy_element": "Forte"
+    },
+    {
+      "currency_id": "Mana",
+      "display_name": "Mana",
+      "description": "Regenerating cast resource. Clamped to max_value; granted without a GrantId because regeneration is genuinely repeatable.",
+      "kind": "Resource",
+      "default_value": 50.0,
+      "max_value": 100.0,
+      "refundable": false,
+      "counts_toward_total_collected": false,
+      "sort_order": 200,
+      "accent_color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "has_legacy_element": false,
+      "legacy_element": "Forte"
+    }
+  ]
+}

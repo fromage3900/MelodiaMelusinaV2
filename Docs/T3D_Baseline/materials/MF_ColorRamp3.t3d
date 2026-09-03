@@ -1,0 +1,254 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_ColorRamp3" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_ColorRamp3EditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MF_ColorRamp3EditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDivide Name="MaterialExpressionDivide_0" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionDivide Name="MaterialExpressionDivide_1" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPower Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPower Name="MaterialExpressionPower_1" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionPower Name="MaterialExpressionPower_2" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_2" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSubtract Name="MaterialExpressionSubtract_1" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_1'"
+   End Object
+   Begin Object Name="MF_ColorRamp3EditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MF_ColorRamp3EditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_1'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_2'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_3'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_4'","/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_5'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_0'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_1'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_0'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_0'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_1'","/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_2'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_1'","/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_2'"))
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=1087F3DE4328E1BD14DA34A8F523E6E6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_0'"
+      R=4.000000
+      MaterialExpressionEditorX=-1040
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=723FC3B04458D14F682841BAD90E804A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_1" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_1'"
+      R=1.000000
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=720
+      MaterialExpressionGuid=87B5270B4DD4540B95CAE18AC699A9F5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionDivide_0" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_3'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=9EDFD0024D1A5AD6435BDE8B71EAF166
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionDivide_1" ExportPath="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_0'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=440
+      MaterialExpressionGuid=15D60C10409CBC7D5448F2B5F685478A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_0'"
+      InputName="RampLow"
+      Id=9888C72C443E00F2579DD291CCADF350
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionGuid=95FF53354329641628948F94C3776C2D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_1'"
+      InputName="RampMid"
+      Id=BAB3880A4F69B652FD96BC953C1125B2
+      SortPriority=1
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=D28BC2A84C4C5C75F532DAA4CACE4492
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_2'"
+      InputName="RampHigh"
+      Id=F0F07B5145940F476DBE0EA46BC7761A
+      SortPriority=2
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=4E29D9124A97BCED8EFE1A91F906CA24
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_3" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_3'"
+      InputName="RampPosMid"
+      Id=D02E96D240B90ACD2BF20D8456917B23
+      SortPriority=3
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=39B2645F423BCD3546CA0D9AB7BEA95F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_4" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_4'"
+      InputName="Mask"
+      Id=C141EA4849D49347636C78A557F28F5D
+      SortPriority=4
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=1A722BA44C3A5057FEA56B8C6DF3F4A7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_5" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_5'"
+      InputName="RampContrast"
+      Id=93E81A3349CE0D1C2421F18A7EA6861F
+      SortPriority=5
+      MaterialExpressionEditorX=-1100
+      MaterialExpressionEditorY=600
+      MaterialExpressionGuid=93F1B62A4800307AE1130FA19472F71B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionOutput_0'"
+      OutputName="Color"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_1'")
+      Id=A3575DC94E97AC84D167708066752825
+      MaterialExpressionEditorX=140
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=E8797DC84FBD78F4EFAD18AAEAECAA86
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_1'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_1'")
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=122B321F4AAB389D21888DB83503B423
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionLinearInterpolate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_2'")
+      Alpha=(Expression="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_2'")
+      MaterialExpressionEditorX=-40
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=226387F84EAADEB93C6D949D25663B74
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_5'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_0'")
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=620
+      MaterialExpressionGuid=360FECC8496712CD6CE391A9CA696360
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionPower_0" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_0'"
+      Base=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_0'")
+      Exponent=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionAdd_0'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=61B9555548DECD63C752EC9031B77671
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionPower_1" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_1'"
+      Base=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_1'")
+      Exponent=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=51B35C054A17F3689821CCB9F825F375
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionPower_2" ExportPath="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_2'"
+      Base=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_2'")
+      Exponent=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=1C8576F84915B3408681D391417C2143
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_4'")
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=A1ACED5D43F9E5211EE5B380C3DD152C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_0'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=BF8B0F5A464FC17D2534B092434C4850
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_2" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSaturate_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionDivide'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionDivide_1'")
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=440
+      MaterialExpressionGuid=0D495E8B42A03679182706852D6B06FF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionScalarParameter_0'"
+      DefaultValue=1.000000
+      ParameterName="RampSharpness"
+      ExpressionGUID=707BF21547AC3DA0BBEC598C8965E319
+      Group="ColorRamp"
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=930157E245439FA6AEC10487B7B9378A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_0" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionConstant_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_3'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=B8B6D7114295334C5B4E86A9D7B0B94E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   Begin Object Name="MaterialExpressionSubtract_1" ExportPath="/Script/Engine.MaterialExpressionSubtract'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionSubtract_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionPower'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionPower_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MaterialExpressionFunctionInput_3'")
+      MaterialExpressionEditorX=-560
+      MaterialExpressionEditorY=440
+      MaterialExpressionGuid=CF55D1AA44CBF79DBDD3CFA2ADE55EB7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3'"
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_ColorRamp3.MF_ColorRamp3:MF_ColorRamp3EditorOnlyData'"
+   StateId=8601B2754CEA8EE15EDEDB847FB99748
+   CombinedInputTypes=15
+End Object

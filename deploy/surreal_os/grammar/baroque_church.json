@@ -1,0 +1,15 @@
+{
+  "id": "BAROQUE_CHURCH",
+  "label": "Baroque Church",
+  "description": "Ornate west facade, ogee portal, vault nave, niche chapel, balustrade choir, crossing dome",
+  "style": "baroque",
+  "modules": [
+    {"arch_type": "BAROQUE_FACADE", "overrides": {"baroque_facade_bays": 5, "baroque_facade_height": 16.0, "baroque_order": "CORINTHIAN", "baroque_ornament_density": 0.78, "material_choice": "MARBLE"}},
+    {"arch_type": "CUSPED_ARCH", "overrides": {"gothic_width": 2.6, "gb_height": 4.5, "gb_trim_mode": "RECESS", "material_choice": "MARBLE"}},
+    {"arch_type": "BAROQUE_VAULT", "overrides": {"baroque_vault_span": 10.0, "baroque_vault_rise": 4.0, "baroque_vault_style": "BARREL", "material_choice": "MARBLE"}},
+    {"arch_type": "BALCONY", "overrides": {"balcony_width": 2.8, "balcony_depth": 0.9, "balcony_baluster_count": 11, "material_choice": "MARBLE"}},
+    {"arch_type": "BAROQUE_BALUSTRADE", "overrides": {"baroque_balustrade_length": 8.0, "baroque_balustrade_posts": 13, "material_choice": "MARBLE"}},
+    {"arch_type": "PILLAR", "overrides": {"pillar_radius": 0.4, "pillar_height": 5.5, "pillar_flutes": 24, "material_choice": "MARBLE"}},
+    {"arch_type": "DOME", "overrides": {"dome_radius": 2.6, "dome_rib_count": 14, "dome_spire": 0.9, "material_choice": "GOLD"}}
+  ]
+}

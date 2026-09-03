@@ -1,0 +1,33 @@
+{
+  "id": "nikki_fiora_quarter",
+  "family": "NikkiFlorawish",
+  "verticality": 0.62,
+  "symmetry": 0.55,
+  "ornament_density": 0.78,
+  "structural_logic": 0.6,
+  "organic_growth": 0.66,
+  "cosmic_influence": 0.18,
+  "sacred_sequence": [
+    "townhouse_frame",
+    "pavilion_threshold",
+    "spire_silhouette",
+    "ruin_echo"
+  ],
+  "compose_style": "NIKKI_FLORA_QUARTER",
+  "default_graph": "NIKKI_FLORA_QUARTER",
+  "grammar_id": "NIKKI_FLORA_QUARTER",
+  "surreal_transform": "axis_compression",
+  "compose_roles": {
+    "large": "MEL_nikki_quarter",
+    "medium": "MEL_nikki_quarter",
+    "small": "MEL_nikki_quarter",
+    "gate": "MEL_nikki_quarter"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "AUTO",
+    "unit_size": 1.0
+  }
+}

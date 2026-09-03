@@ -1,0 +1,4 @@
+Begin Object Class=/Script/Engine.ToonProfile Name="TP_Character" ExportPath="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Character.TP_Character'"
+   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),SpecularIndirectRamp=(EditorCurveData=()))
+   Guid=EDD29B05484C3D721841C1AE747E8A06
+End Object

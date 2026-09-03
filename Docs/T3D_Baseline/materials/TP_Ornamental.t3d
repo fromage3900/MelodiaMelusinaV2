@@ -1,0 +1,4 @@
+Begin Object Class=/Script/Engine.ToonProfile Name="TP_Ornamental" ExportPath="/Script/Engine.ToonProfile'/Game/EnvSandbox/Materials/ToonProfiles/TP_Ornamental.TP_Ornamental'"
+   Settings=(DiffuseRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),SpecularRamp=(ColorCurves[0]=(),ColorCurves[1]=(),ColorCurves[2]=()),ShadowHatchingPatternDistributionRamp=(EditorCurveData=()),SpecularIndirectRamp=(EditorCurveData=()))
+   Guid=8380867246A0A09FB7955494A0734A03
+End Object

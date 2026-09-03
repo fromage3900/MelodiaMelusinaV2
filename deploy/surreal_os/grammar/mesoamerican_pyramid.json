@@ -1,0 +1,14 @@
+{
+  "id": "MESOAMERICAN_PYRAMID",
+  "label": "Mesoamerican Pyramid Courtyard",
+  "description": "Stepped retaining tiers, ceremonial stair block, upper platform, colonnade, stone portal, sacred pool",
+  "style": "mesoamerican",
+  "modules": [
+    {"arch_type": "RETAINING_WALL", "overrides": {"wall_segments": 4, "retaining_steps": 5, "retaining_batter": 0.1, "wall_thickness": 0.65, "unit_size": 1.2, "material_choice": "STONE"}},
+    {"arch_type": "GREYBOX_STAIR_BLOCK", "overrides": {"gb_steps": 12, "gb_rise": 0.22, "gb_run": 0.32, "gb_width": 2.4, "material_choice": "STONE", "unit_size": 2.0}},
+    {"arch_type": "RETAINING_WALL", "overrides": {"wall_segments": 3, "retaining_steps": 3, "retaining_batter": 0.08, "wall_thickness": 0.55, "unit_size": 1.2, "material_choice": "STONE"}},
+    {"arch_type": "GB_ROMANESQUE_ARCADE", "overrides": {"gb_width": 3.2, "gb_height": 4.0, "gb_trim_mode": "RECESS", "unit_size": 3.2, "material_choice": "STONE"}},
+    {"arch_type": "ARCHWAY_ADV", "overrides": {"archway_style": "ROUND", "archway_width": 2.4, "archway_height": 2.6, "archway_depth": 0.55, "material_choice": "STONE"}},
+    {"arch_type": "PUBLIC_FOUNTAIN", "overrides": {"fountain_radius": 1.5, "fountain_tiers": 2, "material_choice": "STONE"}}
+  ]
+}

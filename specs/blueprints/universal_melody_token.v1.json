@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "universal_melody_token",
+  "status": "cpp_ready_blueprint_materialization_pending",
+  "owner": "Melodia economy",
+  "readiness": "cpp_ready",
+  "summary": "The single Blueprint that serves every Melody token, present and future. Heart/Star/Swirl/Water are INSTANCE values, not subclasses. Do not author a per-variant Blueprint.",
+  "decisions": ["054", "055"],
+  "blueprint": {
+    "asset_path": "/Game/Melodia/Blueprints/BP_MelodyToken_Universal",
+    "parent_class": "AMelodiaTokenPickup",
+    "parent_header": "Source/BS_GodFile/MelodiaIntegration/MelodiaTokenPresentation.h",
+    "components": {
+      "CollectionVolume": "USphereComponent, radius 90, Pawn overlap only. Root.",
+      "TokenMesh": "UStaticMeshComponent, /Game/EnvSandbox/SM_MelodyToken, scale 0.35. Material driven by VariantId.",
+      "Rotation": "URotatingMovementComponent, yaw 60 deg/s"
+    },
+    "exposed_instance_properties": [
+      {
+        "name": "VariantId",
+        "type": "FName",
+        "role": "Token catalog variant key. Drives CurrencyId, Amount and material. This is the ONLY field a designer normally sets.",
+        "examples": ["heart", "star", "swirl", "water"]
+      },
+      {
+        "name": "Element",
+        "display_name": "Currency Id",
+        "type": "FName",
+        "role": "Any currency id from the currency registry. Used directly when VariantId is unset or unresolvable. Named 'Element' because placed instances serialise it under that name.",
+        "note": "NOT limited to the seven legacy elements. Golden, Mana, and currencies invented later are all placeable."
+      },
+      {
+        "name": "Amount",
+        "type": "int32",
+        "role": "Quantity granted. Overridden by the catalog row's Value when VariantId resolves."
+      },
+      {
+        "name": "GrantId",
+        "type": "FName",
+        "role": "Stable identity for durable idempotency. Auto-derived from the actor path when bAutoGenerateGrantId is true.",
+        "edit_scope": "EditInstanceOnly"
+      },
+      {
+        "name": "bAutoGenerateGrantId",
+        "type": "bool",
+        "default": true,
+        "role": "Derive GrantId from level + actor name when unset, so a forgotten GrantId is not a silently dead pickup."
+      },
+      {
+        "name": "bCollectOnOverlap",
+        "type": "bool",
+        "default": true
+      },
+      {
+        "name": "TokenCatalog",
+        "type": "TSoftObjectPtr<UMelodiaTokenCatalog>",
+        "default": "/Game/Melodia/Data/DA_MelodiaTokenCatalog"
+      }
+    ],
+    "blueprint_owned_events": [
+      {
+        "name": "OnCollectedPresentation",
+        "kind": "BlueprintImplementableEvent",
+        "role": "VFX, SFX and collection flourish. Fires ONLY after the wallet accepts the grant, so a Blueprint can never celebrate a rejected transaction.",
+        "rule": "C++ owns the transaction; the Blueprint owns the show."
+      }
+    ]
+  },
+  "companion_widget": {
+    "asset_path": "/Game/Melodia/UI/WBP_MelodiaWallet_Universal",
+    "parent_class": "UMelodiaWalletHUDWidget",
+    "binds": {
+      "CurrencyContainer": "UPanelWidget, BindWidgetOptional. Filled with one row per registry currency."
+    },
+    "events": {
+      "OnCurrencyRowsRebuilt": "Receives UMelodiaCurrencyRegistry::GetSortedCurrencies() on every accepted transaction. Build one row per entry."
+    },
+    "note": "This widget binds NONE of the legacy TXT_* fields. That is why a currency added in data reaches the HUD with no UI work."
+  },
+  "authority": {
+    "wallet": "UMelodiaTokenWalletSubsystem (Plugins/MelodiaCore) — sole balance authority. The pickup holds no balance state.",
+    "currencies": "UMelodiaCurrencyRegistry at /Game/Melodia/Data/DA_MelodiaCurrencyRegistry",
+    "variants": "UMelodiaTokenCatalog at /Game/Melodia/Data/DA_MelodiaTokenCatalog",
+    "text_mirrors": [
+      "specs/economy/melodia_currency_registry.v1.json",
+      "specs/economy/melodia_token_catalog.v1.json"
+    ]
+  },
+  "invariants": [
+    "One Blueprint for all tokens. A per-variant child Blueprint is a defect, not a shortcut.",
+    "Collection is refused unless the resolved currency exists in the registry — a typo cannot mint currency.",
+    "A non-None GrantId already consumed is rejected, and that rejection survives a process restart.",
+    "The pickup disappears only after the wallet ACCEPTS the grant, never optimistically.",
+    "Adding a currency or a token variant is a data row plus a re-export. It is never a C++ change."
+  ],
+  "acceptance": {
+    "data_driven_proof": "Add a currency row WITHOUT recompiling, then in PIE run: melodia.Wallet.Grant <NewCurrency> 5 x. Acceptance proves currencies are genuinely data.",
+    "idempotency_proof": "melodia.Wallet.Grant Forte 5 test_id twice — the second must be REJECTED. Repeat across a full save/exit/relaunch/load cycle.",
+    "universality_proof": "Place two instances of BP_MelodyToken_Universal with VariantId heart and swirl. They must show different materials and grant Forte and Arcane respectively."
+  },
+  "materialization": {
+    "status": "cpp_ready_blueprint_materialization_pending",
+    "blocked_on": "Editor session to create the two assets; all C++ seams and data mirrors are in place.",
+    "author_scripts": [
+      "Content/Python/author_melodia_currency_registry.py",
+      "Content/Python/export_melodia_currency_registry.py"
+    ]
+  }
+}

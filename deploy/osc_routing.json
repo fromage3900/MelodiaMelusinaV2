@@ -1,0 +1,342 @@
+{
+  "version": "1.1",
+  "generated": "2026-09-02",
+  "branch": "feature/touchdesigner-mcp-integration",
+  "description": "OSC routing schema for TouchDesigner \u2194 Blender \u2194 Unreal Engine bridge. All agents reference this schema. Port 9000 is SINGLE source of truth for TD\u2194UE (TD CHOP bass/mid/treble + UE beat_pulse/beat_phase). Do NOT create second channel on 9870.",
+  "routes": {
+    "audio": {
+      "melusina_pitch": {
+        "path": "/melusina/pitch",
+        "type": "float",
+        "range": [
+          60,
+          2000
+        ],
+        "unit": "Hz",
+        "description": "VoiceSynth fundamental frequency \u2192 UE shader warp amount"
+      },
+      "melusina_amplitude": {
+        "path": "/melusina/amp",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "unit": "linear",
+        "description": "VoiceSynth RMS amplitude \u2192 UE particle spawn rate"
+      },
+      "melusina_formants": {
+        "path": "/melusina/formants",
+        "type": "float_array",
+        "size": 5,
+        "description": "VoiceSynth formant analysis \u2192 TD particle color palette"
+      },
+      "melusina_spectral_centroid": {
+        "path": "/melusina/centroid",
+        "type": "float",
+        "range": [
+          0,
+          20000
+        ],
+        "unit": "Hz",
+        "description": "Spectral centroid \u2192 TD particle brightness"
+      }
+    },
+    "material": {
+      "toon_params": {
+        "path": "/material/toon",
+        "type": "float_array",
+        "size": 12,
+        "description": "TD \u2192 UE Substrate Toon parameter group (12 floats, MPC-mapped): [0]bloom_intensity\u2192Magical.BloomIntensity, [1]bloom_threshold\u2192PP, [2]sparkle_pulse\u2192SakuraDream.SparklePulse, [3]dream_intensity\u2192SakuraDream.DreamIntensity, [4]wind_strength\u2192SakuraDream.WindStrength, [5]global_opacity\u2192SakuraDream.GlobalOpacity, [6]shadow_tint_r\u2192PP, [7]shadow_tint_b\u2192PP, [8]magical_transform\u2192Magical.MagicalTransform, [9]saturation\u2192PP, [10]diffuse_wrap\u2192Material, [11]sparkle_visibility\u2192SakuraDream.SparkleVisibility"
+      },
+      "style_preset": {
+        "path": "/material/preset",
+        "type": "int",
+        "range": [
+          0,
+          4
+        ],
+        "description": "Style preset selector: 0=Nikki, 1=Madoka, 2=Celestial, 3=Itto, 4=Sakura"
+      },
+      "fabric_specular": {
+        "path": "/material/fabric",
+        "type": "float_array",
+        "size": 4,
+        "description": "Fabric material params: [roughness, anisotropy, clearcoat, sheen_weight] for satin/velvet rendering"
+      }
+    },
+    "time": {
+      "day_night_cycle": {
+        "path": "/time/cycle",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Day/night cycle position: 0=dawn, 0.25=noon, 0.5=dusk, 0.75=midnight"
+      },
+      "beat_sync": {
+        "path": "/time/beat",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Music beat synchronization phase (normalized to beat duration)"
+      },
+      "time_of_day_seconds": {
+        "path": "/time/tod",
+        "type": "float",
+        "description": "Absolute time of day in seconds (0-86400)"
+      }
+    },
+    "camera": {
+      "ue_camera_transform": {
+        "path": "/ue/camera",
+        "type": "float_array",
+        "size": 16,
+        "description": "UE camera world matrix (4x4, column-major)"
+      },
+      "td_camera_transform": {
+        "path": "/td/camera",
+        "type": "float_array",
+        "size": 16,
+        "description": "TD camera world matrix (4x4, column-major)"
+      },
+      "blender_camera_transform": {
+        "path": "/blender/camera",
+        "type": "float_array",
+        "size": 16,
+        "description": "Blender camera Z-up world matrix (4x4, column-major)"
+      }
+    },
+    "battle": {
+      "phase": {
+        "path": "/battle/phase",
+        "type": "string",
+        "description": "Current battle phase: Awaiting\u2192RhythmExecution\u2192EnemyTurn\u2192Victory|Defeat|Fled"
+      },
+      "grade": {
+        "path": "/battle/grade",
+        "type": "string",
+        "description": "Rhythm hit result: perfect|great|good|miss \u2014 drives VFX intensity in TD"
+      },
+      "combo": {
+        "path": "/battle/combo",
+        "type": "int",
+        "range": [
+          0,
+          999
+        ],
+        "description": "Current combo count \u2014 particle density multiplier in TD"
+      },
+      "damage": {
+        "path": "/battle/damage",
+        "type": "float_array",
+        "size": 2,
+        "description": "[player_damage_dealt, enemy_hp_remaining] \u2014 drives screen shake VFX"
+      },
+      "enemy_broken": {
+        "path": "/battle/enemy_broken",
+        "type": "int",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Enemy toughness broken (0/1) \u2014 triggers wish burst in TD"
+      },
+      "ult_gauge": {
+        "path": "/battle/ult_gauge",
+        "type": "float",
+        "range": [
+          0,
+          100
+        ],
+        "description": "Ultimate gauge 0-100 \u2014 drives glow intensity in TD"
+      },
+      "encounter": {
+        "path": "/battle/encounter",
+        "type": "string",
+        "description": "Enemy ID + BPM + element when encounter starts"
+      },
+      "result": {
+        "path": "/battle/result",
+        "type": "string",
+        "description": "Battle result: victory|defeat|fled \u2014 triggers finale VFX in TD"
+      }
+    },
+    "rhythm": {
+      "beat": {
+        "path": "/rhythm/beat",
+        "type": "int",
+        "description": "Current beat number from MelodiaRhythmClock.tick()"
+      },
+      "beat_progress": {
+        "path": "/rhythm/beat_progress",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Normalized progress within current beat (0.0-1.0)"
+      },
+      "beat_pulse": {
+        "path": "/rhythm/beat_pulse",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Continuous beat-synced pulse from UMelodiaRhythmReactivitySubsystem \u2014 decays from 1.0 at 6x DeltaTime on each beat. Drives TD bloom overlay opacity."
+      },
+      "beat_phase": {
+        "path": "/rhythm/beat_phase",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Continuous normalized position within current beat (0.0-1.0), streamed every tick from UMelodiaRhythmReactivitySubsystem::Publish(). Identical to beat_progress but firehose-rate (every frame, not just per-beat)."
+      },
+      "measure": {
+        "path": "/rhythm/measure",
+        "type": "int",
+        "description": "Current measure number (increments every 4 beats)"
+      },
+      "bpm": {
+        "path": "/rhythm/bpm",
+        "type": "float",
+        "range": [
+          60,
+          200
+        ],
+        "description": "Current BPM (per-enemy, ranges 80-200)"
+      }
+    },
+    "niagara": {
+      "sparkle_rate": {
+        "path": "/niagara/sparkle/rate",
+        "type": "float",
+        "range": [
+          0,
+          2
+        ],
+        "description": "Sakura sparkle particle spawn rate multiplier"
+      },
+      "sparkle_color": {
+        "path": "/niagara/sparkle/color",
+        "type": "float_array",
+        "size": 3,
+        "description": "Sparkle particle RGB color override"
+      },
+      "mote_rate": {
+        "path": "/niagara/mote/rate",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Lantern mote spawn rate"
+      },
+      "burst_trigger": {
+        "path": "/niagara/burst",
+        "type": "int",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Wish burst trigger (0\u21921 edge fires burst)"
+      },
+      "wind": {
+        "path": "/niagara/wind",
+        "type": "float_array",
+        "size": 3,
+        "description": "Wind direction vector affecting all Niagara systems"
+      }
+    },
+    "geometry": {
+      "mesh_count": {
+        "path": "/blender/mesh/count",
+        "type": "int",
+        "description": "Number of generated meshes in current export batch"
+      },
+      "vertex_count": {
+        "path": "/blender/mesh/vertices",
+        "type": "int",
+        "description": "Total vertex count for generated geometry"
+      }
+    },
+    "melodia_audio": {
+      "bass": {
+        "path": "/melodia/audio/bass",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "TD CHOP bass RMS 20-250Hz (audiofilter low-pass + analyze RMS + math gain 2x + lag 0.1/0.35) \u2192 UE MPC_Melodia_Palette.Bass \u2192 flower petal scale 1.0+0.15*bass. Sent from TD oscoutCHOP on port 9000 via /project1/melodia_audio/osc_out."
+      },
+      "mid": {
+        "path": "/melodia/audio/mid",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "TD CHOP mid RMS 250-2000Hz (band-pass + RMS + lag) \u2192 UE MPC Mid \u2192 flower hue shift / stem sway (mid*0.01). Port 9000."
+      },
+      "treble": {
+        "path": "/melodia/audio/treble",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "TD CHOP treble RMS 2k-20kHz (high-pass + RMS + lag) \u2192 UE MPC Treble \u2192 emissive sparkle 0.6*treble. Port 9000."
+      },
+      "beat_pulse": {
+        "path": "/melodia/audio/beat/pulse",
+        "alias": "/rhythm/beat_pulse",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Continuous beat envelope from UMelodiaRhythmReactivitySubsystem::Publish() (NotifyBeat sets 1.0, decays 6*DT). UE\u2192TD on port 9000. Alias of /rhythm/beat_pulse. Drives flower bloom via lag_beat_pulse 0.05. Also available as /rhythm/beat_pulse from C++."
+      },
+      "beat_phase": {
+        "path": "/melodia/audio/beat/phase",
+        "alias": "/rhythm/beat_phase",
+        "type": "float",
+        "range": [
+          0,
+          1
+        ],
+        "description": "Normalized position within current beat 0..1 from UMelodiaRhythmReactivitySubsystem. UE\u2192TD on port 9000. Alias of /rhythm/beat_phase. Drives stem sin(phase*2PI)*0.02. Complemented by TD-side selectCHOP sel_beat_phase."
+      }
+    }
+  },
+  "spout_streams": {
+    "TD_NikkiPreview": {
+      "direction": "TD_to_UE",
+      "resolution": "1920x1080",
+      "format": "RGBA8",
+      "fps": 60,
+      "description": "TD composited Nikki-style preview with bloom, color grade, and particles"
+    },
+    "UE_RenderTarget": {
+      "direction": "UE_to_TD",
+      "resolution": "variable",
+      "format": "RGBA16F",
+      "fps": 60,
+      "description": "UE render target for real-time feedback to TD"
+    },
+    "Blender_Viewport": {
+      "direction": "Blender_to_TD",
+      "resolution": "variable",
+      "format": "RGBA8",
+      "fps": 30,
+      "description": "Blender viewport capture for live geometry preview in TD"
+    }
+  }
+}

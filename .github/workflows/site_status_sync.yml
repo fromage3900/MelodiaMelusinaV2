@@ -1,0 +1,63 @@
+name: Sync portfolio status from gate ledger
+
+# Keeps the public portfolio honest by regenerating its status blob from the
+# game repo's real gate ledger (Saved/gate_ledger.json). Runs on every game
+# push to main and nightly. The generator never invents progress.
+#
+# TWO ways this fires:
+#   1. TOKEN-FREE (default, works today): run `.\deploy\sync_site_to_github.ps1`
+#      locally — it regenerates the status and ships it inside the normal site
+#      deploy (uses your existing git credentials, no PAT needed).
+#   2. SECRET-BASED (optional): this Action also runs on push or schedule and
+#      pushes the blob to my-site using secrets.SITE_SYNC_TOKEN.
+#      Requires a fine-grained PAT with write to fromage3900/my-site, stored as
+#      the SITE_SYNC_TOKEN repo secret on fromage3900/MelodiaMelusinaV2.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Saved/gate_ledger.json'
+      - 'Tools/sync_site_status.py'
+  schedule:
+    - cron: '17 6 * * *'   # daily, off the :00 to avoid the crowd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout game repo
+        uses: actions/checkout@v4
+        with:
+          path: game
+
+      - name: Generate status blob into the site checkout
+        run: python game/Tools/sync_site_status.py --out game/_site_status.json
+
+      - name: Checkout site repo
+        uses: actions/checkout@v4
+        with:
+          repository: fromage3900/my-site
+          path: site
+          token: ${{ secrets.SITE_SYNC_TOKEN }}
+
+      - name: Stage generated status
+        run: |
+          mkdir -p site/public/melodia/status
+          cp game/_site_status.json site/public/melodia/status/sync_status.json
+
+      - name: Commit & push if changed
+        working-directory: site
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no status change"
+          else
+            git config user.name "Melodia Sync"
+            git config user.email "sync@melodia.local"
+            git commit -m "chore(site): sync status from gate ledger"
+            git push
+          fi

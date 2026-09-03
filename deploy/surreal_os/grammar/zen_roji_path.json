@@ -1,0 +1,14 @@
+{
+  "id": "ZEN_ROJI_PATH",
+  "label": "Zen Roji Path",
+  "description": "Torii, tobi-ishi, roji steps, tsukubai basin, stone lantern",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_TORII_GATE", "overrides": {"torii_width": 3.6, "torii_height": 4.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_TOBIISHI", "overrides": {"gb_length": 4.5, "gb_width": 1.6, "gb_trim_mode": "RECESS", "unit_size": 2.0}},
+    {"arch_type": "GB_ZEN_ROJI_STEP", "overrides": {"gb_length": 5.0, "gb_width": 1.8, "gb_trim_mode": "RECESS", "unit_size": 2.0}},
+    {"arch_type": "GB_ZEN_ROJI_STEP", "overrides": {"gb_length": 4.0, "gb_width": 1.8, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_TSUKUBAI", "overrides": {"gb_width": 1.6, "gb_depth": 1.6, "gb_height": 0.45, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.4, "zen_lantern_style": "KASUGA", "gb_trim_mode": "RECESS"}}
+  ]
+}

@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Melodia Traveling Folio — Three.js Prototype</title>
+  <style>
+    :root {
+      --ivory: #f7f4ef;
+      --ivory-hi: #fcfbf8;
+      --plum: #2e2438;
+      --plum-deep: #1c1426;
+      --gold: #c9a86a;
+      --lavender: #c2bae0;
+      --sakura: #e7c9ce;
+      --astral: #26365e;
+      --muted: #828a98;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--plum);
+      background: linear-gradient(145deg, #efeae1, #e8e4f2 55%, #e5eaf5);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button, select { font: inherit; }
+    .shell { max-width: 1500px; margin: 0 auto; padding: 20px; }
+    .masthead { display: flex; gap: 16px; justify-content: space-between; align-items: end; flex-wrap: wrap; margin-bottom: 16px; }
+    .eyebrow { color: #6e6080; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 700; }
+    h1 { margin: 4px 0; font-family: Georgia, serif; font-size: clamp(28px, 4vw, 48px); font-weight: 500; }
+    .sub { max-width: 820px; color: #5a6170; line-height: 1.55; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .controls select, .controls button {
+      min-height: 42px; border-radius: 999px; border: 1px solid rgba(46,36,56,.18); background: rgba(252,251,248,.82); color: var(--plum); padding: 0 14px;
+    }
+    .controls button { cursor: pointer; }
+    .controls button:hover { border-color: var(--gold); }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .7fr); gap: 14px; }
+    .stage-wrap { overflow: hidden; border-radius: 24px; border: 1px solid rgba(46,36,56,.14); background: radial-gradient(circle at 50% 20%, rgba(194,186,224,.3), rgba(28,20,38,.96)); box-shadow: 0 18px 50px rgba(36,27,46,.14); }
+    #stage { width: 100%; min-height: 650px; position: relative; }
+    canvas { display: block; width: 100%; height: 100%; }
+    .hud { position: absolute; left: 16px; bottom: 16px; right: 16px; display: flex; gap: 8px; flex-wrap: wrap; pointer-events: none; }
+    .chip { background: rgba(28,20,38,.72); color: var(--ivory); border: 1px solid rgba(221,199,155,.3); padding: 7px 10px; border-radius: 999px; font-size: 12px; backdrop-filter: blur(8px); }
+    .side { display: grid; gap: 12px; align-content: start; }
+    .card { border: 1px solid rgba(46,36,56,.14); border-radius: 20px; padding: 16px; background: rgba(252,251,248,.82); box-shadow: 0 12px 34px rgba(36,27,46,.08); }
+    .card h2 { font-family: Georgia, serif; font-weight: 500; margin: 4px 0 8px; }
+    .card p { margin: 0; line-height: 1.55; color: #5a6170; }
+    .label { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: #6e6080; font-weight: 700; }
+    .status { margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: rgba(232,228,242,.68); color: #463a54; font-size: 13px; line-height: 1.45; }
+    .post { border-left: 3px solid var(--gold); padding-left: 12px; margin-top: 12px; }
+    .post strong { display: block; font-family: Georgia, serif; font-size: 18px; }
+    .post span { display: block; margin-top: 4px; color: #5a6170; line-height: 1.45; }
+    .intent { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; white-space: pre-wrap; color: #3c414b; }
+    .tiny { margin-top: 10px; color: #828a98; font-size: 12px; line-height: 1.45; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } #stage { min-height: 520px; } }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <div class="eyebrow">Melodia UI laboratory · prototype only</div>
+        <h1>The Traveling Folio</h1>
+        <div class="sub">A diegetic 3D menu experiment that doubles as a live turntable for tracked Melodia repository meshes. UI objects emit intents; they never become a second gameplay authority.</div>
+      </div>
+      <div class="controls" aria-label="Viewer controls">
+        <select id="modelSelect" aria-label="Repository model"></select>
+        <button id="loadModel" type="button">Load model</button>
+        <button id="focusFolio" type="button">Folio</button>
+        <button id="focusModel" type="button">Model</button>
+        <button id="resetView" type="button">Reset</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="stage-wrap">
+        <div id="stage" aria-label="Interactive Three.js scene">
+          <div class="hud">
+            <div class="chip">Drag: orbit</div>
+            <div class="chip">Wheel/pinch: zoom</div>
+            <div class="chip">Tap parcel / thread / page: emit UI intent</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="card">
+          <div class="label">Selected surface</div>
+          <h2 id="surfaceTitle">Traveling Folio</h2>
+          <p id="surfaceCopy">A physical menu shell made from book, score, dress pattern, chart table and correspondence archive.</p>
+          <div id="surfaceStatus" class="status">Ready.</div>
+        </section>
+
+        <section class="card">
+          <div class="label">Starskiff post</div>
+          <div id="postCard" class="post">
+            <strong>Loading local mailbox…</strong>
+            <span>This fixture is offline and dev-only.</span>
+          </div>
+          <div class="tiny">Opening a parcel only emits a claim intent. A future UE implementation must route that through the existing canonical reward authority.</div>
+        </section>
+
+        <section class="card">
+          <div class="label">Last emitted UI intent</div>
+          <div id="intentLog" class="intent">{ "intent": "ui.folio.ready" }</div>
+        </section>
+
+        <section class="card">
+          <div class="label">Model source</div>
+          <p id="modelMeta">Choose a verified tracked model from the manifest.</p>
+          <div id="modelStatus" class="status">No repository model loaded yet.</div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+    import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    const stage = document.getElementById('stage');
+    const select = document.getElementById('modelSelect');
+    const surfaceTitle = document.getElementById('surfaceTitle');
+    const surfaceCopy = document.getElementById('surfaceCopy');
+    const surfaceStatus = document.getElementById('surfaceStatus');
+    const postCard = document.getElementById('postCard');
+    const intentLog = document.getElementById('intentLog');
+    const modelMeta = document.getElementById('modelMeta');
+    const modelStatus = document.getElementById('modelStatus');
+
+    const state = { manifest: [], mailbox: [], modelRoot: null, parcelOpen: false };
+    const emitIntent = (intent, payload = {}) => {
+      intentLog.textContent = JSON.stringify({ intent, ...payload }, null, 2);
+    };
+
+    const details = {
+      folio: ['Traveling Folio', 'The root 3D menu shell. It presents chapter history, wardrobe, correspondence and world memory without owning any of that state.'],
+      chapter: ['Chapter Score', 'A chapter page can hold illustrations, completion marks, marginalia and persistent journey history.'],
+      wardrobe: ['Resonant Weave Pattern', 'A dressmaker-style surface for silhouette, traversal capability and Convergence interpretation.'],
+      parcel: ['Starskiff Parcel', 'A physical presentation of a Gift entry. Opening it emits a request; canonical reward code must decide whether anything is granted.'],
+      thread: ['Golden Thread', 'A cozy “new content” affordance. Follow the thread instead of covering the interface in red exclamation marks.']
+    };
+    const showSurface = (kind, status = '') => {
+      const d = details[kind] || details.folio;
+      surfaceTitle.textContent = d[0];
+      surfaceCopy.textContent = d[1];
+      surfaceStatus.textContent = status || `Selected: ${kind}`;
+    };
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x1c1426, 8, 26);
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
+    camera.position.set(7.5, 6.1, 10.8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setClearColor(0x000000, 0);
+    stage.prepend(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 4;
+    controls.maxDistance = 22;
+    controls.maxPolarAngle = Math.PI * 0.48;
+    controls.target.set(0, 0.3, 0);
+
+    scene.add(new THREE.HemisphereLight(0xfcfbf8, 0x26365e, 2.6));
+    const key = new THREE.DirectionalLight(0xffefd1, 3.6);
+    key.position.set(-5, 9, 5); key.castShadow = true; scene.add(key);
+    const rim = new THREE.PointLight(0xc2bae0, 28, 18); rim.position.set(6, 4, -4); scene.add(rim);
+
+    const world = new THREE.Group();
+    scene.add(world);
+
+    const table = new THREE.Mesh(new THREE.CylinderGeometry(8.7, 9.1, .5, 80), new THREE.MeshStandardMaterial({ color: 0x241b2e, roughness: .72, metalness: .08 }));
+    table.position.y = -1.15; table.receiveShadow = true; world.add(table);
+
+    const clickable = [];
+    function mark(object, kind) { object.userData.uiKind = kind; clickable.push(object); return object; }
+    function box(w, h, d, material, x, y, z, ry = 0, kind = null) {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, d, h), material);
+      mesh.position.set(x, y, z); mesh.rotation.y = ry; mesh.castShadow = true; mesh.receiveShadow = true;
+      if (kind) mark(mesh, kind); world.add(mesh); return mesh;
+    }
+
+    const coverMat = new THREE.MeshStandardMaterial({ color: 0x463a54, roughness: .58, metalness: .08 });
+    const pageMat = new THREE.MeshPhysicalMaterial({ color: 0xf7f4ef, roughness: .84, clearcoat: .08, side: THREE.DoubleSide });
+    box(3.5, 4.7, .2, coverMat, -1.85, -.67, .2, -.05, 'folio');
+    box(3.5, 4.7, .2, coverMat,  1.85, -.67, .2,  .05, 'folio');
+    box(3.3, 4.45, .1, pageMat, -1.72, -.49, .17, -.045, 'chapter');
+    box(3.3, 4.45, .1, pageMat,  1.72, -.49, .17,  .045, 'wardrobe');
+    const spine = new THREE.Mesh(new THREE.BoxGeometry(.22, .2, 4.5), new THREE.MeshStandardMaterial({ color: 0xc9a86a, roughness: .35, metalness: .45 }));
+    spine.position.set(0, -.57, .2); world.add(spine);
+
+    const parcelGroup = new THREE.Group(); parcelGroup.position.set(2.6, .12, -1.1); world.add(parcelGroup);
+    const parcel = mark(new THREE.Mesh(new THREE.BoxGeometry(1.25, .55, .92), new THREE.MeshStandardMaterial({ color: 0xd8c7a9, roughness: .8 })), 'parcel');
+    parcel.castShadow = true; parcelGroup.add(parcel);
+    const ribbon = new THREE.Mesh(new THREE.BoxGeometry(.17, .59, .96), new THREE.MeshStandardMaterial({ color: 0xc2bae0, roughness: .5 })); parcelGroup.add(ribbon);
+    const seal = mark(new THREE.Mesh(new THREE.CylinderGeometry(.17, .17, .08, 24), new THREE.MeshStandardMaterial({ color: 0xc9a86a, metalness: .55, roughness: .3 })), 'parcel');
+    seal.rotation.x = Math.PI / 2; seal.position.z = .5; parcelGroup.add(seal);
+
+    const threadCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-3.4, -.25, 1.8), new THREE.Vector3(-2.3, .04, 1.1), new THREE.Vector3(-.6, .18, .65), new THREE.Vector3(1.2, .35, -.05), new THREE.Vector3(2.55, .42, -.9)
+    ]);
+    const thread = mark(new THREE.Mesh(new THREE.TubeGeometry(threadCurve, 100, .04, 10, false), new THREE.MeshStandardMaterial({ color: 0xd9bc80, emissive: 0x70501e, emissiveIntensity: 1.25, roughness: .35 })), 'thread');
+    world.add(thread);
+
+    const modelPedestal = new THREE.Group(); modelPedestal.position.set(5.4, -.86, .15); world.add(modelPedestal);
+    const pedestal = new THREE.Mesh(new THREE.CylinderGeometry(1.55, 1.7, .34, 48), new THREE.MeshStandardMaterial({ color: 0x2e2438, roughness: .5, metalness: .16 }));
+    pedestal.receiveShadow = true; modelPedestal.add(pedestal);
+    const halo = new THREE.Mesh(new THREE.TorusGeometry(1.75, .025, 8, 80), new THREE.MeshBasicMaterial({ color: 0xc9a86a })); halo.rotation.x = Math.PI / 2; halo.position.y = .2; modelPedestal.add(halo);
+
+    function applyFallbackMaterial(root) {
+      root.traverse((o) => {
+        if (!o.isMesh) return;
+        o.castShadow = true; o.receiveShadow = true;
+        if (!o.material || Array.isArray(o.material)) {
+          o.material = new THREE.MeshStandardMaterial({ color: 0xc2bae0, roughness: .62, metalness: .04 });
+        } else if (!o.material.map) {
+          o.material = new THREE.MeshStandardMaterial({ color: 0xd7cee9, roughness: .65, metalness: .02 });
+        }
+      });
+    }
+
+    function fitModel(root) {
+      root.updateMatrixWorld(true);
+      const box3 = new THREE.Box3().setFromObject(root);
+      const size = box3.getSize(new THREE.Vector3());
+      const center = box3.getCenter(new THREE.Vector3());
+      if (!Number.isFinite(size.length()) || size.length() === 0) throw new Error('Model bounds are empty.');
+      root.position.sub(center);
+      const largest = Math.max(size.x, size.y, size.z);
+      root.scale.setScalar(3.0 / Math.max(largest, .0001));
+      root.rotation.y = Math.PI * .16;
+      root.position.y = .3;
+    }
+
+    async function loadRepositoryModel(entry) {
+      modelStatus.textContent = `Loading ${entry.label}…`;
+      modelMeta.textContent = `${entry.source_path} · ${entry.format.toUpperCase()}`;
+      if (state.modelRoot) { modelPedestal.remove(state.modelRoot); state.modelRoot = null; }
+      try {
+        let root;
+        if (entry.format === 'obj') root = await new OBJLoader().loadAsync(entry.path);
+        else if (entry.format === 'fbx') root = await new FBXLoader().loadAsync(entry.path);
+        else if (entry.format === 'glb' || entry.format === 'gltf') root = (await new GLTFLoader().loadAsync(entry.path)).scene;
+        else throw new Error(`Unsupported model format: ${entry.format}`);
+        applyFallbackMaterial(root); fitModel(root); modelPedestal.add(root); state.modelRoot = root;
+        modelStatus.textContent = `Loaded ${entry.label}. Auto-centered and normalized for UI inspection.`;
+        emitIntent('ui.model.loaded', { model_id: entry.id, source_path: entry.source_path });
+      } catch (error) {
+        console.error(error);
+        modelStatus.textContent = `Could not load this binary from the local web server. If it is Git LFS-backed, hydrate LFS first. ${error.message}`;
+        emitIntent('ui.model.load_failed', { model_id: entry.id, source_path: entry.source_path });
+      }
+    }
+
+    async function loadFixtures() {
+      try {
+        const [models, mailbox] = await Promise.all([
+          fetch('./models.json').then(r => { if (!r.ok) throw new Error('models.json'); return r.json(); }),
+          fetch('./mailbox.json').then(r => { if (!r.ok) throw new Error('mailbox.json'); return r.json(); })
+        ]);
+        state.manifest = models.models || [];
+        state.mailbox = mailbox.entries || [];
+        for (const model of state.manifest) {
+          const opt = document.createElement('option'); opt.value = model.id; opt.textContent = model.label; select.appendChild(opt);
+        }
+        const post = state.mailbox[0];
+        if (post) postCard.innerHTML = `<strong>${post.title}</strong><span>${post.sender_label}: ${post.body}</span>`;
+        if (state.manifest[0]) loadRepositoryModel(state.manifest[0]);
+      } catch (error) {
+        modelStatus.textContent = `Fixture load failed: ${error.message}. Serve the repository over HTTP instead of opening file:// directly.`;
+      }
+    }
+
+    const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2();
+    renderer.domElement.addEventListener('pointerup', (event) => {
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hit = raycaster.intersectObjects(clickable, false)[0];
+      if (!hit) return;
+      const kind = hit.object.userData.uiKind;
+      showSurface(kind);
+      if (kind === 'parcel') {
+        state.parcelOpen = !state.parcelOpen;
+        parcelGroup.position.y = state.parcelOpen ? .48 : .12;
+        seal.visible = !state.parcelOpen;
+        const post = state.mailbox[0];
+        emitIntent(state.parcelOpen ? 'ui.post.open_requested' : 'ui.post.closed', post ? { entry_id: post.entry_id, reward_ids: post.reward_ids } : {});
+      } else if (kind === 'thread') {
+        emitIntent('ui.thread.follow_requested', { target: 'post.unread' });
+      } else {
+        emitIntent(`ui.folio.${kind}.selected`);
+      }
+    });
+
+    document.getElementById('loadModel').addEventListener('click', () => {
+      const entry = state.manifest.find(m => m.id === select.value); if (entry) loadRepositoryModel(entry);
+    });
+    document.getElementById('focusFolio').addEventListener('click', () => { controls.target.set(0, 0, .2); camera.position.set(5.8, 5.4, 8.8); showSurface('folio'); });
+    document.getElementById('focusModel').addEventListener('click', () => { controls.target.set(5.4, .6, .15); camera.position.set(9.2, 3.3, 7.0); emitIntent('ui.model.focus'); });
+    document.getElementById('resetView').addEventListener('click', () => { controls.target.set(0, .3, 0); camera.position.set(7.5, 6.1, 10.8); emitIntent('ui.camera.reset'); });
+
+    function resize() {
+      const rect = stage.getBoundingClientRect();
+      const height = Math.max(520, Math.min(760, window.innerHeight * .72));
+      stage.style.height = `${height}px`;
+      renderer.setSize(rect.width, height, false);
+      camera.aspect = rect.width / height; camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize); resize();
+
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      thread.material.emissiveIntensity = 1.1 + Math.sin(t * 2.2) * .28;
+      halo.rotation.z = t * .12;
+      if (state.modelRoot) state.modelRoot.rotation.y += .0025;
+      controls.update(); renderer.render(scene, camera);
+    }
+    animate();
+    loadFixtures();
+  </script>
+</body>
+</html>

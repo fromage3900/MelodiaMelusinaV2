@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/wardrobe_t3d_pipeline.v1.json",
+  "title": "Melodia Wardrobe T3D Pipeline v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "operations", "transport", "safety"],
+  "properties": {
+    "schema": {"const": "melodia.wardrobe_t3d_pipeline.v1"},
+    "operations": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "validate_wardrobe_nodes",
+          "inject_wardrobe_node",
+          "validate_wardrobe_catalog",
+          "wire_wardrobe_battle_gate"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "transport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["livelink_port", "osc_in_port", "osc_out_port", "monolith_endpoint"],
+      "properties": {
+        "livelink_port": {"const": 9876},
+        "osc_in_port": {"const": 8000},
+        "osc_out_port": {"const": 9000},
+        "monolith_endpoint": {"type": "string", "minLength": 1}
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dry_run_default", "require_expected_fingerprint", "compile_zero_errors", "assert_graph_match", "battle_gate_default"],
+      "properties": {
+        "dry_run_default": {"const": true},
+        "require_expected_fingerprint": {"const": true},
+        "compile_zero_errors": {"const": true},
+        "assert_graph_match": {"const": true},
+        "battle_gate_default": {"const": false}
+      }
+    }
+  }
+}

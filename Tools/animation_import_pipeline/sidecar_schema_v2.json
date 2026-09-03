@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Melusina Universal Animation Library v2 manifest",
+  "type": "object",
+  "required": [
+    "schema_version", "clip_id", "clip_name", "source_type", "source_file",
+    "source_name", "provenance", "license",
+    "canonical_rig", "canonical_skeleton", "target_skeleton", "target_mesh",
+    "retarget_profile", "fps", "units", "frame_start", "frame_end", "loop",
+    "root_motion", "context", "consumer", "animation_only", "one_clip_per_file", "status", "foot_contact_audit"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "clip_id": {"type": "string", "pattern": "^LIB_[A-Z0-9_]+$"},
+    "clip_name": {"type": "string", "minLength": 1},
+    "source_type": {"enum": ["cascadeur", "blender", "quaternius", "rokoko", "foreign", "ue_source"]},
+    "source_file": {"type": "string", "minLength": 1},
+    "source_name": {"type": "string", "minLength": 1},
+    "provenance": {"type": "string", "minLength": 1},
+    "license": {"type": "string", "minLength": 1},
+    "canonical_rig": {"const": "SK_Source_Melusina"},
+    "canonical_skeleton": {"const": "/Game/Melodia/Mocap/Source/SK_Source_Melusina"},
+    "target_skeleton": {"const": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
+    "target_mesh": {"const": "/Game/Melodia/Characters/Melusina/SK_Melusina"},
+    "retarget_profile": {"const": "RTG_Source_to_Melusina"},
+    "fps": {"const": 30},
+    "units": {"const": "cm"},
+    "frame_start": {"type": "integer", "minimum": 0},
+    "frame_end": {"type": "integer", "minimum": 0},
+    "loop": {"type": "boolean"},
+    "root_motion": {"enum": ["in_place", "root"]},
+    "context": {"enum": ["locomotion", "battle", "cinematic", "additive", "emote", "dialogue", "exploration"]},
+    "consumer": {"enum": ["blendspace", "state_machine", "montage", "additive_layer", "pose_search"]},
+    "animation_only": {"const": true},
+    "one_clip_per_file": {"const": true},
+    "status": {"enum": ["canonical", "manual_required", "blocked", "legacy", "promoted"]},
+    "notify_contract": {"type": "array"},
+    "promotion_target": {"type": "string"},
+    "promotion_targets": {"type": "array", "items": {"type": "string"}},
+    "speed_evidence": {
+      "type": "object",
+      "properties": {
+        "mode": {"enum": ["root_track", "static_pose"]},
+        "speed_cm_s": {"type": ["number", "null"]},
+        "status": {"type": "string"},
+        "method": {"type": "string"},
+        "evidence_report": {"type": "string"}
+      }
+    },
+    "foot_contact_audit": {
+      "type": "object",
+      "required": ["status", "required_for_promotion"],
+      "properties": {
+        "status": {"type": "string"},
+        "required_for_promotion": {"type": "boolean"}
+      }
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"enum": ["canonical", "promoted"]}}}, "then": {"properties": {"canonical_rig": {"const": "SK_Source_Melusina"}}}}
+  ]
+}

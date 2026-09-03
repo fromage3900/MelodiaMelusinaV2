@@ -1,0 +1,64 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Saved/Audit/ppv_canonical_state_2026-08-31.json",
+  "target": "/Game/EnvSandbox/Blueprints/PPV_NikkiDream",
+  "mode": "spec_only",
+  "note": "PPV drift fix \u2014 updates actor label, blendable weights, and replaces surface-domain MI.",
+  "drift_summary": {
+    "label_mismatch": {
+      "current": "PPV_Dreamprint_Candidate",
+      "canonical": "PPV_NikkiDream",
+      "severity": "high"
+    },
+    "weight_drift": [
+      {
+        "slot": "grade",
+        "current": 0.18,
+        "canonical": 0.69,
+        "delta": -0.51
+      },
+      {
+        "slot": "outline",
+        "current": 0.57,
+        "canonical": 1.0,
+        "delta": -0.43
+      }
+    ],
+    "surface_domain_drop": {
+      "asset": "MI_StarryNight_VanGogh",
+      "current_domain": "MD_SURFACE",
+      "required_domain": "MD_POST_PROCESS",
+      "fix": "swap to MI_StarryNight_Hero"
+    }
+  },
+  "operations": [
+    {
+      "op": "set_property",
+      "property": "ActorLabel",
+      "value": "PPV_NikkiDream"
+    },
+    {
+      "op": "set_blendable_weight",
+      "blendable": "MI_MeluColorGrade_PortfolioHero",
+      "weight": 0.69
+    },
+    {
+      "op": "set_blendable_weight",
+      "blendable": "MI_MelodiaInk_PortfolioHero",
+      "weight": 1.0
+    },
+    {
+      "op": "replace_blendable",
+      "old": "MI_StarryNight_VanGogh",
+      "new": "MI_StarryNight_Hero",
+      "weight": 1.0
+    }
+  ],
+  "t3d_fragment": "Begin Object Name=\"PPV_NikkiDream\" Class=/Script/Engine.PostProcessVolume\n   ActorLabel=\"PPV_NikkiDream\"\n   Settings=(Blendables=((MaterialInterface=MaterialInstanceConstant\"/Game/EnvSandbox/Materials/Instances/Hero/MI_MeluColorGrade_PortfolioHero\",BlendWeight=0.69),(MaterialInterface=MaterialInstanceConstant\"/Game/EnvSandbox/Materials/Instances/Hero/MI_MelodiaInk_PortfolioHero\",BlendWeight=1.0),(MaterialInterface=MaterialInstanceConstant\"/Game/EnvSandbox/Materials/Instances/Hero/MI_StarryNight_Hero\",BlendWeight=1.0)))\nEnd Object",
+  "safety": {
+    "requires_live_monolith": true,
+    "never_hand_edit_uasset": true
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

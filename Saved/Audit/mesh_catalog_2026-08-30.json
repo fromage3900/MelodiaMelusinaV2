@@ -1,0 +1,145 @@
+{
+  "generated": "2026-08-30T22:45:00Z",
+  "tool": "melodia-mesh-catalog (offline + Monolith reads, read-only)",
+  "editor_session": "PID 54700, 2026-08-30 15:00:50 — 22:27 UTC, Monolith 0.20.3, UE 5.8 CL 55116800",
+  "baseline": {
+    "verify_baseline": "39 clean | 16 drifted (M_Master_Toon_* material masters, other lanes) | 0 failed | 55 total",
+    "git_head": "2b1fcbf9 refactor: rewrite arch_toon_create.py for Cathedral + Atlantis MI generation (main)",
+    "feature_branch_ahead": 103,
+    "branch": "feature/p0-phase1-allowlist-quill-trigger tip 47db00f4"
+  },
+  "registry": {
+    "get_mesh_catalog_stats": {
+      "total_meshes": 722,
+      "categories": {
+        "Greybox_Kit": 113,
+        "_PROJECT.MelusinasHouse": 112,
+        "Melodia._PROJECT": 81,
+        "EnvSandbox.Greybox_Kit": 80,
+        "EnvSandbox.Library": 60,
+        "Library.Migrated": 56,
+        "EnvSandbox.Meshes": 40,
+        "ArtOfShader.Global": 26,
+        "UltraDynamicSky.Meshes": 25,
+        "_ThirdParty.UltraDynamicSky": 25,
+        "_PROJECT.assets": 24,
+        "_PROJECT.houseassets": 18,
+        "_PROJECT.Tools": 17,
+        "Game": 9,
+        "_PROJECT.Art": 8,
+        "_PROJECT.VFX": 7,
+        "Melodia.Meshes": 4,
+        "SurrealRocks.StaticMeshes": 4,
+        "_PROJECT.Meshes": 4,
+        "Melodia.Enemies": 3,
+        "EnvSandbox": 2,
+        "EnvSandbox.Textures": 2,
+        "ArtOfShader.Common": 1,
+        "RVTDecals.Meshes": 1
+      },
+      "size_distribution": { "tiny": 279, "huge": 172, "medium": 102, "large": 98, "small": 71 }
+    },
+    "validate_naming_conventions": {
+      "/Game/EnvSandbox": { "scanned": 622, "passed": 472, "violations": 150, "truncated": true },
+      "/Game/EnvSandbox/Meshes": { "scanned": 100, "passed": 40, "violations": 60, "truncated": true },
+      "note": "Truncated at max_results 150/60 — true violation count higher. See Docs/Art/MESH_NAMING_CONVENTION_2026-08-30.md for full bucket breakdown."
+    }
+  },
+  "disk": {
+    "EnvSandbox_SM_uasset": 246,
+    "EnvSandbox_dirs": 2964,
+    "buckets": {
+      "Content/EnvSandbox/Meshes/Atlantis": 333,
+      "Content/EnvSandbox/Meshes/Environment": 706,
+      "Content/EnvSandbox/Meshes/Cathedral": 41,
+      "Content/EnvSandbox/Meshes/Celestial": 9,
+      "Content/EnvSandbox/Meshes/Ornament": 15,
+      "Content/EnvSandbox/Greybox_Kit": 78,
+      "Content/EnvSandbox/Library": 52,
+      "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes": 23,
+      "Content/Greybox_Kit (root)": 670,
+      "Content/Library (root)": 364,
+      "Content/Melodia (SM_*)": 103
+    },
+    "gitignore": "Content/EnvSandbox/* at .gitignore:183 — only 33 VFX paths force-tracked; disk moves there need registry verification, not git status",
+    "red_line": "Content/_PROJECT/ ~190 meshes — no writes, catalog-only"
+  },
+  "archive_moves_done_2026_08_30": {
+    "source_cruft": [
+      "EnvSandbox/VFX/Deep/Nested/Path/Test/NSM_Stress_Deep_1785813487.uasset (18 KB, test leftover)",
+      "EnvSandbox/VFX/_deprecated/ENV_SakuraVFX.uasset (1 KB)",
+      "EnvSandbox/VFX/_Quarantine_2026-08-01/NS_SakuraPetals_v1.uasset (306 KB)",
+      "EnvSandbox/VFX/_Quarantine_2026-08-15/TextureDuplicates/AlphasSparkles/T_Alpha_water_globule_flipbook.uasset (373 KB)",
+      "EnvSandbox/VFX/_Recovery_2026-08-01/NE_RibbonLeaderTemplate.uasset (205 KB)",
+      "EnvSandbox/VFX/_Recovery_2026-08-01/NE_RibbonReceiverTemplate.uasset (160 KB)",
+      "EnvSandbox/VFX/_Recovery_2026-08-01/NS_MagicTrail_PreRibbonUpgrade.uasset (795 KB)",
+      "EnvSandbox/VFX/_Recovery_2026-08-01/PreDefaultMaterialCleanup/NS_Uni_DustShafts.uasset (726 KB)",
+      "EnvSandbox/VFX/_Recovery_2026-08-01/PreDefaultMaterialCleanup/NS_Uni_PollenSparkle.uasset (376 KB)"
+    ],
+    "destination": "EnvSandbox/VFX/_Archive_2026-08-30/{Deprecated,Quarantine_2026-08-01,Quarantine_2026-08-15/TextureDuplicates/AlphasSparkles,Recovery_2026-08-01/PreDefaultMaterialCleanup,StressTest}",
+    "empty_dirs_removed": ["Deep/Nested/Path/Test (+ parents Deep/Nested/Path, Deep/Nested, Deep)", "_deprecated", "_Quarantine_2026-08-01", "_Quarantine_2026-08-15", "_Recovery_2026-08-01", "_Showcase"],
+    "top_level_after": ["Candidates", "Curves", "EffectTypes", "Functions", "Materials", "Modules", "MPC", "Systems", "Templates", "_Archive_2026-08-30"],
+    "proven_zero_refs": "project_query find_references ×9 all {depends_on:[], referenced_by:[]}",
+    "registry_verify": "find_references /Game/EnvSandbox/VFX/_Archive_2026-08-30/Recovery_2026-08-01/NS_MagicTrail_PreRibbonUpgrade -> success, search NSM_Stress_Deep -> /Game/EnvSandbox/VFX/_Archive_2026-08-30/StressTest/NSM_Stress_Deep_1785813487",
+    "method": "Filesystem move (zero refs → no redirector) + empty-dir cleanup; gitignored path so no git commit required"
+  },
+  "proposed_renames": [
+    {
+      "id": "atlantis_bulk",
+      "find": "BldgLgPalace_A_KB3D_ATL_BldgLgPalace_A_",
+      "replace": "SM_ATL_Palace_",
+      "scope": "/Game/EnvSandbox/Meshes/Atlantis",
+      "count": 333,
+      "collisions": 0,
+      "example": "BldgLgPalace_A_KB3D_ATL_BldgLgPalace_A_TreeC -> SM_ATL_Palace_TreeC",
+      "script": "Content/Python/org_atlantis_rename_2026-08-30.py (AssetRegistry.get_assets_by_path + EditorAssetLibrary.rename_asset loop + save_directory unattended=true)",
+      "status": "staged, not executed — editor contention 2026-08-30 21:59-22:09 (concurrent PBR_Auto save wave, 4:47 min) and editor closure at 22:27",
+      "verify": "validate_naming_conventions on /Game/EnvSandbox/Meshes/Atlantis should drop from 60 violations toward 0; get_asset_details on SM_ATL_Palace_TreeC should resolve"
+    },
+    {
+      "id": "violin",
+      "asset": "/Game/EnvSandbox/Meshes/Environment/violin",
+      "fix": "add_prefix SM_ -> SM_violin",
+      "status": "ready"
+    },
+    {
+      "id": "kenney_mis",
+      "scope": "/Game/EnvSandbox/Materials/Instances/Kenney/RetroFantasyKit",
+      "count": 10,
+      "assets": ["water", "tree", "roof", "planks", "fence", "details", "cobblestonePainted", "cobblestoneAlternative", "cobblestone", "barrel"],
+      "fix": "add_prefix MI_",
+      "status": "ready"
+    },
+    {
+      "id": "orphan_test_mi",
+      "asset": "/Game/EnvSandbox/Materials/Instances/Environment/TEST_MI_Orphan_ZenTrimCracked",
+      "fix": "move to VFX/_Archive_2026-08-30 style archive or delete with sign-off (name already indicates orphan/test)",
+      "status": "requires_owner_checkbox"
+    }
+  ],
+  "proposed_moves_requires_signoff": [
+    {
+      "id": "greybox_kit_consolidation",
+      "from": "/Game/Greybox_Kit (root, 670 files on disk, 113 StaticMesh in registry)",
+      "to": "/Game/EnvSandbox/Greybox_Kit (80 registry)",
+      "note": "Duplicate-bucket pair. 1000+ asset moves with redirector churn — proposal + per-asset find_references census, not an inline bulk move on a live editor with concurrent PBR lane.",
+      "risk": "High churn, potential level references; verify with find_references sample before any move"
+    },
+    {
+      "id": "library_consolidation",
+      "from": "/Game/Library (root, 364 files) + /Game/Library/Migrated (56 registry)",
+      "to": "/Game/EnvSandbox/Library (60 registry)",
+      "note": "Same duplicate-bucket pattern as Greybox_Kit.",
+      "risk": "High churn"
+    },
+    {
+      "id": "vendor_textures_T_prefix",
+      "scope": "RetroTexturesFantasy ~100 + KB3D Atlantis ~30 + MelodyToken ~15 + Brick/Marble/Voronoi/SDF ~20",
+      "fix": "add_prefix T_ via batch_rename_assets",
+      "count": "~170",
+      "note": "Safe (Texture2D without T_) but large dirty-package count; chunk and save unattended.",
+      "risk": "Medium churn, low reference risk"
+    }
+  ],
+  "blocked_on_editor_closed": "All live rename/move verification (get_asset_details, find_references after, validate_naming_conventions rerun) and save_directory require a live editor + Monolith 9316. Editor closed 22:27 — no crash. Reopen single instance and run staged script."
+}

@@ -1,0 +1,36 @@
+{
+  "id": "zen_pagoda_spire_v1",
+  "family": "Zen",
+  "verticality": 0.98,
+  "symmetry": 0.82,
+  "ornament_density": 0.58,
+  "structural_logic": 0.92,
+  "organic_growth": 0.3,
+  "cosmic_influence": 0.35,
+  "sacred_sequence": [
+    "torii_frame",
+    "sando_approach",
+    "goju_pagoda_tower",
+    "tahoto_treasure_tower",
+    "honden_sanctuary",
+    "stone_lantern_post"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_PAGODA_SPIRE",
+  "grammar_id": "ZEN_PAGODA_SPIRE",
+  "surreal_transform": "vertical_stretch",
+  "torii_variant": "standard",
+  "compose_roles": {
+    "gate": "_lib_GB_ZEN_TORII_GATE",
+    "corner_tower": "_lib_GB_ZEN_GOJU_PAGODA",
+    "monument": "_lib_GB_ZEN_TAHOTO",
+    "sacred": "_lib_GB_ZEN_HONDEN"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "STONE",
+    "unit_size": 2.0
+  }
+}

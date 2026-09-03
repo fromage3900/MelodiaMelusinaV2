@@ -1,0 +1,222 @@
+{
+  "schema": "melodia.gaea_pie_capture_plan.v1",
+  "generated": "2026-09-02",
+  "project": "BS_GodFile (UE 5.8)",
+  "scope": "OFFLINE capture-readiness prep ONLY — no editor run, no PIE, no localhost:9316 touched this pass.",
+  "editor_lock": "held by another agent — capture_pending_this_run",
+  "gate_key": "gaeA_live_pie",
+  "evidence_standard": "PIE labeled overlay + assertion JSON + Saved/gate_ledger.json row + SHA-256 of new MIs/textures (per FARAWAY_MOTHER_LOD_ILLUSION_WORKPLAN_2026-09-02.md 'Evidence Per Phase').",
+  "terrain_runtime_policy": "MeshTerrain only — classic Landscape NOT used for new Gaea builds. No new landscapes created (user rule).",
+
+  "inventory": {
+    "source_authoring_trees": {
+      "note": "Raw Gaea 2.2.3.2 node exports preserved as importable staging (node *_Out.uasset + source .exr/.r16/.png). NOT standalone levels — they feed the built WP setups below.",
+      "glacier_aurora": {
+        "terrain_id": "AuroraGlacier",
+        "dir": "Content/Gaea/Glacier (161 files)",
+        "heightmap": "H_GroundTexture_Out.r16",
+        "ue_namespace": "/Game/Gaea/Glacier",
+        "manifest": "Saved/Audit/gaea_texture_manifest_glacier.json",
+        "layers": ["Base", "Snow", "Water", "Rock"],
+        "setup_contract": "Docs/WorldGen/GAEA_SETUP_AURORA_GLACIER_2026-08-25.json (status: native_graph_provenance_locked_export_pending)"
+      },
+      "volcanic_mountains": {
+        "terrain_id": "VolcanicCrater",
+        "dir": "Content/Gaea/Mountains (113 files)",
+        "heightmap": "H_GroundTexture_Out.uasset (+ Crater_Out, Erosion2 chains)",
+        "ue_namespace": "/Game/Gaea/Mountains"
+      },
+      "hills": {
+        "terrain_id": "GaeaHills",
+        "dir": "Content/Gaea/Hills (30 files)",
+        "ue_namespace": "/Game/Gaea/Hills"
+      },
+      "shared_textures": {
+        "dir": "Content/Gaea/Textures",
+        "assets": [
+          "W_Gaea_Mountains_Mask1.uasset",
+          "W_Gaea_Mountains_Mask2.uasset",
+          "W_Gaea_Mountains_Mask3.uasset",
+          "T_Gaea_Hills_ColorErosion.uasset",
+          "T_Gaea_Hills_Combine.uasset",
+          "T_Gaea_Hills_SatMap.uasset",
+          "T_Gaea_Mountains_SuperColor.uasset"
+        ]
+      },
+      "seaabove_tile": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/T_Gaea_SeaAbove_SuperColor.uasset"
+    },
+
+    "built_wp_terrain_levels": {
+      "note": "QUALIFYING CAPTURE LEVELS — each has an isolated WP .umap, a placed Nanite 1025 mesh, a Substrate terrain MI, and HLOD layers, verified on disk 2026-09-02 (Docs/WorldGen/GAEA_TERRAIN_EVALUATION_AND_SELECTION_2026-09-02.md plus Saved/Audit/gaea_setups_highres_20260827 and gaea_setups_normals_smoke_20260901 four_setup_build_report.json).",
+      "cadence_crystal_ridge": {
+        "terrain_id": "CadenceCrystalRidge",
+        "gaea_reference": "Creative - Stylized Mountain.terrain",
+        "musical_binding": "toccata_spires_toccata — crystalline ridge",
+        "extent_m": [4000, 4000], "height_m": [0, 900],
+        "level_path": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/CadenceCrystalRidge/L_Gaea_CadenceCrystalRidge_WP.umap",
+        "mesh": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/CadenceCrystalRidge/SM_Gaea_CadenceCrystalRidge_1025.uasset",
+        "material": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/CadenceCrystalRidge/MI_Gaea_CadenceCrystalRidge_Substrate.uasset",
+        "hlod_layers": ["L_Gaea_CadenceCrystalRidge_WP_HLODLayer_Instanced", "L_Gaea_CadenceCrystalRidge_WP_HLODLayer_Merged"]
+      },
+      "sakura_terrace": {
+        "terrain_id": "SakuraTerrace",
+        "gaea_reference": "Directional Erosion.terrain",
+        "musical_binding": "waltz_garden_waltz / petal_cantata — pleated terraces",
+        "extent_m": [4000, 4000], "height_m": [0, 650],
+        "level_path": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/L_Gaea_SakuraTerrace_WP.umap",
+        "level_classic": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/L_Gaea_SakuraTerrace.umap",
+        "mesh": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/SM_Gaea_SakuraTerrace_1025.uasset",
+        "mesh_source": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/SM_Gaea_SakuraTerrace_Source.uasset",
+        "material": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/MI_Gaea_SakuraTerrace_Substrate.uasset",
+        "hlod_layers": ["L_Gaea_SakuraTerrace_WP_HLODLayer_Instanced", "L_Gaea_SakuraTerrace_WP_HLODLayer_Merged"]
+      },
+      "liquid_cathedral": {
+        "terrain_id": "LiquidCathedral",
+        "gaea_reference": "Canyon River with Sea.terrain",
+        "musical_binding": "cathedral_wide_crystalline / liquid_cathedral — basin",
+        "extent_m": [5000, 3000], "height_m": [0, 420],
+        "level_path": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/L_Gaea_LiquidCathedral_WP.umap",
+        "mesh": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/SM_Gaea_LiquidCathedral_1025.uasset",
+        "material": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/MI_Gaea_LiquidCathedral_Substrate.uasset",
+        "hlod_layers": ["L_Gaea_LiquidCathedral_WP_HLODLayer_Instanced", "L_Gaea_LiquidCathedral_WP_HLODLayer_Merged"]
+      },
+      "fugue_grotto": {
+        "terrain_id": "FugueGrotto",
+        "gaea_reference": "Collapsed Gullies.terrain",
+        "musical_binding": "fugue_maze_fugue — gully maze",
+        "extent_m": [4000, 4000], "height_m": [0, 520],
+        "level_path": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/FugueGrotto/L_Gaea_FugueGrotto_WP.umap",
+        "mesh": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/FugueGrotto/SM_Gaea_FugueGrotto_1025.uasset",
+        "material": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/FugueGrotto/MI_Gaea_FugueGrotto_Substrate.uasset",
+        "hlod_layers": ["L_Gaea_FugueGrotto_WP_HLODLayer_Instanced", "L_Gaea_FugueGrotto_WP_HLODLayer_Merged"]
+      }
+    },
+
+    "integrated_host_levels": {
+      "LV_SeaAbove_Prototype": {
+        "umap": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype.umap",
+        "gaea_terrain": "LiquidCathedral (canonical, unchanged per GAEA_TERRAIN_EVALUATION_AND_SELECTION_2026-09-02.md SeaAbove note)",
+        "mesh": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/SM_SeaAbove_LiquidCathedral_257.uasset",
+        "material": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/MI_SeaAbove_LiquidCathedral_Substrate.uasset (36/36 params from MI_Gaea_LiquidCathedral_Substrate)",
+        "material_canonical": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/MI_SeaAbove_CanonicalLandscape_Substrate.uasset"
+      },
+      "LV_FarawayMother_Prototype": {
+        "umap": "Content/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype.umap",
+        "gaea_terrain": "SakuraTerrace — FM_FabricTerrain_SakuraTerrace (StaticMeshActor Nanite)",
+        "mesh": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/SM_Gaea_SakuraTerrace_1025.uasset",
+        "material": "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/MI_Gaea_SakuraTerrace_Substrate.uasset"
+      },
+      "ZenForestTest": {
+        "umap": "Content/ZenForestTest.umap (63 MB, only mature level)",
+        "gaea_terrain": "VolcanicCrater + AuroraGlacier landscape imports (source = Content/Gaea/Mountains + Content/Gaea/Glacier), per FARAWAY_MOTHER_LOD_ILLUSION_WORKPLAN_2026-09-02.md 1.1 and WORK_DONE_2026-09-02.md",
+        "note": "13 landscape MIs in use; primary Gaea material chain parent = M_Master_Toon_Landscape_HeightBlend."
+      }
+    },
+
+    "material_chain": {
+      "parent_master": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.uasset",
+      "gaea_substrate_mis": [
+        "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/CadenceCrystalRidge/MI_Gaea_CadenceCrystalRidge_Substrate.uasset",
+        "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/MI_Gaea_SakuraTerrace_Substrate.uasset",
+        "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/MI_Gaea_LiquidCathedral_Substrate.uasset",
+        "Content/_PROJECT/ResonantWorld/Offline/GaeaSetups/FugueGrotto/MI_Gaea_FugueGrotto_Substrate.uasset"
+      ],
+      "landscape_master_sdf": "Content/EnvSandbox/Materials/Masters/SDF/M_HybridLandscape_MooaToonSDF.uasset",
+      "landscape_mi_sdf": "Content/EnvSandbox/Materials/Instances/SDF/MI_HybridLandscape_MooaToonSDF.uasset",
+      "substrate_apply_evidence": "Saved/Audit/gaea_substrate_material_apply.json",
+      "toolchain_evidence": "Saved/Audit/gaea_toolchain_20260825.json (Gaea 2.2.3.2 + Gaea2Unreal 7447d4e plugin verified)"
+    }
+  },
+
+  "capture_plan": {
+    "note": "3 locked camera hero frames per qualifying terrain level. Each frame is a locked view intent a future PIE/MRQ run executes immediately (CinematicCamera spawn at specified FOV/intent, or the existing build_faraway_mother_capture_rig.py precedent which defines 3 locked CineCameras). Save paths Saved/Audit/gaea_{level}_frame{1..3}.mp4.",
+    "render_defaults": {
+      "width": 1920, "height": 1080, "fps": 30, "duration_s": 8,
+      "aa": "TSR",
+      "overlay": "GDCanvas label text '<level> | <terrain_id> | <frame_id> | <musical_binding>'"
+    },
+    "frames": {
+      "cadencecrystalridge": [
+        {"frame_id": "frame1", "slot": "wide_establish", "intent": "Full 4000x4000m crystalline range establishing vista; elevated camera at south extent looking toward range center.", "fov": 60, "target_height_scale": 0.5},
+        {"frame_id": "frame2", "slot": "close_ridge", "intent": "100-300m from a primary CrystalRidge spike; close crystalline detail (iridescence/bloom read).", "fov": 45, "target_height_scale": 0.7},
+        {"frame_id": "frame3", "slot": "valley_pass", "intent": "Low camera on the ridge valley floor; spine silhouette + walkable pass.", "fov": 50, "target_height_scale": 0.1}
+      ],
+      "sakuarterrace": [
+        {"frame_id": "frame1", "slot": "wide_pleats", "intent": "Establishing silhouette showing Directional-Erosion pleated terraces (fabric-mountain language).", "fov": 60, "target_height_scale": 0.5},
+        {"frame_id": "frame2", "slot": "close_terrace", "intent": "Close blind on a single terrace fold (fabric pleat read at LOD0/1).", "fov": 45, "target_height_scale": 0.6},
+        {"frame_id": "frame3", "slot": "valley_floor_lod0", "intent": "Valley floor walkable lane (maternal shelter read) — match 'valley floor LOD0' hero from workplan.", "fov": 50, "target_height_scale": 0.1}
+      ],
+      "liquidcathedral": [
+        {"frame_id": "frame1", "slot": "wide_basin", "intent": "Establishing 5000x3000 canyon+sea basin; water-terrain separation reviewed.", "fov": 60, "target_height_scale": 0.5},
+        {"frame_id": "frame2", "slot": "canyon_close", "intent": "Close on canyon wall / cathedral-moat read of the water channel.", "fov": 45, "target_height_scale": 0.6},
+        {"frame_id": "frame3", "slot": "shoreline", "intent": "Shoreline water-terrain contact — validates water_is_separate_from_terrain read.", "fov": 50, "target_height_scale": 0.15}
+      ],
+      "fuguegrotto": [
+        {"frame_id": "frame1", "slot": "wide_maze", "intent": "Establishing 4000x4000 gullies/collapsed-gully maze.", "fov": 60, "target_height_scale": 0.5},
+        {"frame_id": "frame2", "slot": "grotto_entrance", "intent": "Close on a grotto entrance / route opening.", "fov": 45, "target_height_scale": 0.55},
+        {"frame_id": "frame3", "slot": "gully_interior", "intent": "Inside a gullied gully lane; route-exclusion legibility check.", "fov": 50, "target_height_scale": 0.2}
+      ]
+    },
+    "save_paths": {
+      "pattern": "Saved/Audit/gaea_<level_slug>_frame<N>.mp4",
+      "resolved": [
+        "Saved/Audit/gaea_cadencecrystalridge_frame1.mp4",
+        "Saved/Audit/gaea_cadencecrystalridge_frame2.mp4",
+        "Saved/Audit/gaea_cadencecrystalridge_frame3.mp4",
+        "Saved/Audit/gaea_sakuarterrace_frame1.mp4",
+        "Saved/Audit/gaea_sakuarterrace_frame2.mp4",
+        "Saved/Audit/gaea_sakuarterrace_frame3.mp4",
+        "Saved/Audit/gaea_liquidcathedral_frame1.mp4",
+        "Saved/Audit/gaea_liquidcathedral_frame2.mp4",
+        "Saved/Audit/gaea_liquidcathedral_frame3.mp4",
+        "Saved/Audit/gaea_fuguegrotto_frame1.mp4",
+        "Saved/Audit/gaea_fuguegrotto_frame2.mp4",
+        "Saved/Audit/gaea_fuguegrotto_frame3.mp4"
+      ]
+    },
+    "assertion_json_shape": {
+      "per_level_path": "Saved/Audit/gaea_<level_slug>_frames.json",
+      "schema": "melodia.gaea_pie_frames_assertion.v1",
+      "fields": {
+        "level": "string",
+        "umap": "string",
+        "terrain_id": "string",
+        "musical_binding": "string",
+        "gate_key": "gaeA_live_pie",
+        "render": {"width": 1920, "height": 1080, "fps": 30, "duration_s": 8},
+        "frames": [
+          {
+            "frame_id": "frameN",
+            "slot": "<slot>",
+            "mp4_path": "Saved/Audit/gaea_<level>_frameN.mp4",
+            "mp4_sha256": "<captured>",
+            "resolution": "1920x1080",
+            "size_bytes": "<captured>",
+            "label_overlay_text": "<level> | <terrain_id> | <frameN> | <musical_binding>",
+            "assert": ["file_exists", "size_bytes>0", "sha256_locked", "label_overlay_present"]
+          }
+        ],
+        "asserts": ["all_frames_captured", "no_blueprint_runtime_error", "no_accessed_none", "terrain_collision_trace_hits"],
+        "live_errors_expected_zero": ["Blueprint Runtime Error", "Accessed None", "Ensure", "Fatal"]
+      }
+    }
+  },
+
+  "prerequisites": {
+    "terrain_runtime_meshtrain_only": true,
+    "no_new_landscape_created": true,
+    "gaea_toolchain_verified": true,
+    "gaea_texture_manifest_glacier_present": true,
+    "all_four_wp_umap_present": true,
+    "all_four_sm_1025_present": true,
+    "all_four_mi_substrate_present": true,
+    "parent_master_present": true,
+    "substrate_apply_evidence_present": true,
+    "editor_pie_run_this_pass": false,
+    "localhost_9316_touched_this_pass": false,
+    "git_commit_performed_this_pass": false,
+    "note": "All offline prerequisites met. The only open items are editor-bound (PIE capture + SHA-256 of captured MP4s), which require the editor lock to free."
+  },
+
+  "ready_for_capture": "READY — when the editor lock on localhost:9316 frees, issue the 12 locked frames above immediately. Capture_pending_this_run by design; no gate pass claimed."
+}

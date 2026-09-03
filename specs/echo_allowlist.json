@@ -1,0 +1,62 @@
+{
+  "allowlist": {
+    "encounters": [
+      "melodia_smoke_encounter",
+      "Encounter_CrystalShard"
+    ],
+    "quests": [
+      "melodia_q_echo_01",
+      "melodia_q_echo_02",
+      "melodia_q_echo_03",
+      "melodia_smoke_quest",
+      "quest.first_dream",
+      "quest.wardrobe.equip_outfit",
+      "quest.companion.choral_sheep",
+      "quest.cutscene.sea_above",
+      "quest.shorewake.initiation"
+    ],
+    "flags": [
+      "melodia_q_echo_0N_complete",
+      "melodia_smoke_complete",
+      "melodia_battle_won",
+      "flag.first_dream.quest.completed",
+      "flag.p0.playthrough.completed",
+      "flag.p0.playthrough.attempted",
+      "flag.p0.playthrough.fled",
+      "flag.wardrobe.outfit_equipped",
+      "flag.wardrobe.equip_completed",
+      "flag.melusina.sorrow_seam_restored",
+      "flag.companion.choral_sheep_recruited",
+      "flag.companion.choral_sheep_completed",
+      "flag.cutscene.sea_above_witnessed",
+      "flag.sea_above.membrane_pulse_active",
+      "flag.cutscene.sea_above_completed",
+      "flag.quest.shorewake_completed",
+      "flag.sea_above.starskiff_ready"
+    ],
+    "travel": [
+      "L_KaleidoNave",
+      "L_MelusinaMorning",
+      "melodia_integration_map",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype"
+    ],
+    "rewards": [
+      "melodia_reward_dawn_veil",
+      "melodia_reward_dreamweave_shawl",
+      "melodia_reward_solstice_drum",
+      "melodia_reward_star_charm",
+      "melodia_reward_tuning_fork",
+      "melodia_smoke_reward",
+      "reward.first_resonance_echo",
+      "reward.wardrobe.first_outfit",
+      "reward.companion.choral_sheep",
+      "reward.cutscene.sea_above_memory",
+      "reward.shorewake_weave"
+    ],
+    "social_stats": [
+      "melodia_harmony",
+      "melodia_elegance",
+      "melodia_resonance"
+    ]
+  }
+}

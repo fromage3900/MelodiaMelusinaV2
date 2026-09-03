@@ -1,0 +1,210 @@
+/*
+  Melodia Lookbook — Infinity Nikki-style outfit browser + paper-doll + lore.
+  Extends melodia-game-ui.css and melodia-magical-girl.css patterns.
+*/
+
+/* ---- Outfit Browser Grid (Infinity Nikki "10 glam → 10 outfit cards") ---- */
+.outfit-browser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.outfit-browser-grid .outfit-card {
+  border: 2px solid var(--nikki-cyan, #00e5ff);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--bg-card, #1a1a2e);
+  cursor: pointer;
+  position: relative;
+}
+
+.outfit-browser-grid .outfit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.outfit-browser-grid .outfit-card .outfit-render {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.outfit-browser-grid .outfit-card .outfit-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--nikki-pearl, #faf0e6);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.outfit-browser-grid .outfit-card .outfit-rarity {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+/* Rarity color coding */
+.outfit-browser-grid .outfit-card .outfit-rarity.Common { background: var(--common-color, #64b5f6); }
+.outfit-browser-grid .outfit-card .outfit-rarity.Uncommon { background: var(--uncommon-color, #90caf9); }
+.outfit-browser-grid .outfit-card .outfit-rarity.Rare { background: var(--rare-color, #bbdefb); }
+.outfit-browser-grid .outfit-card .outfit-rarity.Epic { background: var(--epic-color, #ef9a9a); }
+.outfit-browser-grid .outfit-card .outfit-rarity.Legendary { background: var(--legendary-color, #ffe082); }
+.outfit-browser-grid .outfit-card .outfit-rarity.Grandmaster { background: var(--grandmaster-color, #ffd54f); }
+
+/* ---- Paper-Doll Style (Melodia brainstorm: gothic baroque) ---- */
+.paper-doll-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  background: var(--bg-main, #0d0d17);
+  min-height: 400px;
+}
+
+.paper-doll-base {
+  position: absolute;
+  width: 300px;
+  height: 450px;
+  background: url('../textures/melusina-base-body.png') no-repeat center/contain;
+  pointer-events: none;
+}
+
+.paper-doll-outfit-piece {
+  position: absolute;
+  pointer-events: all;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.paper-doll-outfit-piece:hover {
+  opacity: 0.7;
+}
+
+/* ---- Lore Entries ---- */
+.lore-entry {
+  padding: 16px;
+  border-top: 1px solid var(--nikki-cyan, #00e5ff);
+  border-bottom: 1px solid var(--nikki-cyan, #00e5ff);
+  margin-top: 16px;
+  background: var(--bg-card, #1a1a2e);
+}
+
+.lore-entry .lore-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--nikki-pearl, #faf0e6);
+  margin-bottom: 8px;
+}
+
+.lore-entry .lore-text {
+  font-size: 0.85rem;
+  color: var(--text-primary, #e0e0e0);
+  line-height: 1.5;
+}
+
+/* ---- Resonance Quiz ---- */
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  background: var(--bg-card, #1a1a2e);
+  border-radius: 8px;
+}
+
+.quiz-question {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--nikki-cyan, #00e5ff);
+}
+
+.quiz-question label {
+  display: block;
+  margin: 8px 0;
+  color: var(--text-primary, #e0e0e0);
+}
+
+.quiz-question input[type=radio] {
+  margin-right: 4px;
+}
+
+.quiz-result {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--bg-main, #0d0d17);
+  border-radius: 4px;
+  display: none;
+}
+
+.quiz-result.shown {
+  display: block;
+}
+
+/* ---- Shareable Result Cards ---- */
+.share-card {
+  padding: 12px;
+  margin: 8px 0;
+  background: var(--bg-main, #0d0d17);
+  border-radius: 6px;
+  color: var(--text-primary, #e0e0e2);
+  font-size: 0.85rem;
+}
+
+/* ---- OOTD Bot Style (Daily auto-post) ---- */
+.ootd-post {
+  padding: 16px;
+  border: 1px solid var(--nikki-cyan, #00e5ff);
+  border-radius: 8px;
+  margin: 16px 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0d0d17 100%);
+}
+
+.ootd-render {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* ---- TikTok Transitions (4s glam loop + beat-synced outfit cuts) ---- */
+.tiktok-transition {
+  display: none; /* default hidden, triggered via JS */
+  animation: tiktok-fade 0.4s ease;
+}
+
+@keyframes tiktok-fade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.0); }
+}
+
+/* ---- Wallpaper Packs (1080x1920 per season/outfit) ---- */
+.wallpaper-preview {
+  width: 100%;
+  height: 1920px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* ---- Integration with existing Melodia CSS classes ---- */
+/* .nikki-outfit-board already defined in melodia-game-ui.css */
+.outfit-card { /* overrides/niches .nikki-outfit-board */ }
+.spec-badge { /* already defined */ }
+/* .game-ui-phase-switch already defined */ .game-ui-phase-switch { /* can filter outfit categories */ }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .outfit-browser-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .paper-doll-base { width: 200px; height: 300px; }
+}

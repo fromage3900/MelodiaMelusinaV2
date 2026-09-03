@@ -1,0 +1,285 @@
+{
+  "version": "surreal_arch_world_v1",
+  "name": "NikkiFlorawishSanctuary",
+  "style": "Nikki",
+  "branch": "feature/touchdesigner-mcp-integration",
+  "osc_routes": {
+    "camera": "/blender/camera",
+    "geometry": "/blender/mesh/count"
+  },
+  "meshes": [
+    {
+      "name": "nikki_dome",
+      "triangles": 512,
+      "vertices": 482,
+      "materials": [
+        "MI_Nikki_Gold"
+      ]
+    },
+    {
+      "name": "nikki_floor",
+      "triangles": 34,
+      "vertices": 64,
+      "materials": [
+        "MI_Nikki_Terracotta"
+      ]
+    },
+    {
+      "name": "nikki_fragment_00",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Lavender"
+      ]
+    },
+    {
+      "name": "nikki_fragment_01",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Lavender"
+      ]
+    },
+    {
+      "name": "nikki_fragment_02",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Lavender"
+      ]
+    },
+    {
+      "name": "nikki_island",
+      "triangles": 50,
+      "vertices": 96,
+      "materials": [
+        "MI_Nikki_Terracotta"
+      ]
+    },
+    {
+      "name": "nikki_lantern_00",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_01",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_02",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_03",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_04",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_05",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_06",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_lantern_07",
+      "triangles": 96,
+      "vertices": 86,
+      "materials": [
+        "MI_Nikki_Pink"
+      ]
+    },
+    {
+      "name": "nikki_pillar_00",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_01",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_02",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_03",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_04",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_05",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_06",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_pillar_07",
+      "triangles": 18,
+      "vertices": 32,
+      "materials": [
+        "MI_Nikki_Ivory"
+      ]
+    },
+    {
+      "name": "nikki_spire",
+      "triangles": 17,
+      "vertices": 17,
+      "materials": [
+        "MI_Nikki_Gold"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "MI_Nikki_Gold",
+      "preset": "Nikki",
+      "base_color": [
+        0.9599999785423279,
+        0.8399999737739563,
+        0.6299999952316284,
+        1.0
+      ],
+      "metallic": 0.6000000238418579,
+      "roughness": 0.30000001192092896
+    },
+    {
+      "name": "MI_Nikki_Ivory",
+      "preset": "Nikki",
+      "base_color": [
+        0.9599999785423279,
+        0.949999988079071,
+        0.9300000071525574,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.6000000238418579
+    },
+    {
+      "name": "MI_Nikki_Lavender",
+      "preset": "Nikki",
+      "base_color": [
+        0.8199999928474426,
+        0.75,
+        0.9100000262260437,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.6000000238418579
+    },
+    {
+      "name": "MI_Nikki_Pink",
+      "preset": "Nikki",
+      "base_color": [
+        0.9399999976158142,
+        0.75,
+        0.8199999928474426,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.30000001192092896
+    },
+    {
+      "name": "MI_Nikki_Sage",
+      "preset": "Nikki",
+      "base_color": [
+        0.6600000262260437,
+        0.8500000238418579,
+        0.6600000262260437,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.6000000238418579
+    },
+    {
+      "name": "MI_Nikki_Sky",
+      "preset": "Nikki",
+      "base_color": [
+        0.7099999785423279,
+        0.8500000238418579,
+        0.9100000262260437,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.6000000238418579
+    },
+    {
+      "name": "MI_Nikki_Terracotta",
+      "preset": "Nikki",
+      "base_color": [
+        0.9100000262260437,
+        0.7799999713897705,
+        0.7200000286102295,
+        1.0
+      ],
+      "metallic": 0.0,
+      "roughness": 0.6000000238418579
+    }
+  ],
+  "total_triangles": 1579,
+  "mesh_count": 23,
+  "material_count": 7
+}

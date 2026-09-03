@@ -1,0 +1,98 @@
+[
+  {
+    "model": "qwen3.8-27b",
+    "task_id": "anim_melusina_locomotion_physics",
+    "subsystem": "Animation",
+    "fixture_file": "qwen3.8-27b_anim_melusina_locomotion_physics.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen3.8-27b",
+    "task_id": "audio_metasound_harmonic_synth",
+    "subsystem": "Audio",
+    "fixture_file": "qwen3.8-27b_audio_metasound_harmonic_synth.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen3.8-27b",
+    "task_id": "ui_melodia_rhythm_hud",
+    "subsystem": "UI",
+    "fixture_file": "qwen3.8-27b_ui_melodia_rhythm_hud.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen3.8-27b",
+    "task_id": "gameplay_procedural_spell_logic",
+    "subsystem": "GameplayLogic",
+    "fixture_file": "qwen3.8-27b_gameplay_procedural_spell_logic.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen2.5-coder:7b",
+    "task_id": "anim_melusina_locomotion_physics",
+    "subsystem": "Animation",
+    "fixture_file": "qwen2.5-coder_7b_anim_melusina_locomotion_physics.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen2.5-coder:7b",
+    "task_id": "audio_metasound_harmonic_synth",
+    "subsystem": "Audio",
+    "fixture_file": "qwen2.5-coder_7b_audio_metasound_harmonic_synth.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen2.5-coder:7b",
+    "task_id": "ui_melodia_rhythm_hud",
+    "subsystem": "UI",
+    "fixture_file": "qwen2.5-coder_7b_ui_melodia_rhythm_hud.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "qwen2.5-coder:7b",
+    "task_id": "gameplay_procedural_spell_logic",
+    "subsystem": "GameplayLogic",
+    "fixture_file": "qwen2.5-coder_7b_gameplay_procedural_spell_logic.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "muse-glimmer-30b",
+    "task_id": "anim_melusina_locomotion_physics",
+    "subsystem": "Animation",
+    "fixture_file": "muse-glimmer-30b_anim_melusina_locomotion_physics.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "muse-glimmer-30b",
+    "task_id": "audio_metasound_harmonic_synth",
+    "subsystem": "Audio",
+    "fixture_file": "muse-glimmer-30b_audio_metasound_harmonic_synth.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "muse-glimmer-30b",
+    "task_id": "ui_melodia_rhythm_hud",
+    "subsystem": "UI",
+    "fixture_file": "muse-glimmer-30b_ui_melodia_rhythm_hud.json",
+    "score": 100.0,
+    "success": true
+  },
+  {
+    "model": "muse-glimmer-30b",
+    "task_id": "gameplay_procedural_spell_logic",
+    "subsystem": "GameplayLogic",
+    "fixture_file": "muse-glimmer-30b_gameplay_procedural_spell_logic.json",
+    "score": 100.0,
+    "success": true
+  }
+]

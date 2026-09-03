@@ -1,0 +1,44 @@
+{
+  "format": "melodia_mesh_terrain_source",
+  "schema_version": 1,
+  "source": {
+    "kind": "public_dem",
+    "tool": "Open Topo Data / ASTER GDEM",
+    "dataset": "aster30m",
+    "url": "https://api.opentopodata.org/v1/aster30m",
+    "anchor_name": "Petal Cantata / Yoshino region",
+    "center_lat": 34.384,
+    "center_lon": 135.857,
+    "vertical_scale": 1.0
+  },
+  "geometry": {
+    "units": "meters",
+    "coordinate_system": "local ENU around source anchor",
+    "width_m": 12000.0,
+    "depth_m": 12000.0,
+    "samples_x": 129,
+    "samples_y": 129,
+    "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Blender/MelodiaStudio/OfflineWorldGen/PetalCantata_3900/source/PetalCantata_Yoshino_ASTER_12km_129.obj",
+    "sha256": "8042fe736e349f93399000222a5240de3ebe0e30500382101e30ad73fe0f534b",
+    "vertex_count": 16641,
+    "triangle_count": 32768,
+    "elevation_min_m": 138.0,
+    "elevation_max_m": 1060.0
+  },
+  "unreal": {
+    "engine": "5.8",
+    "target": "Mesh Terrain",
+    "import_scale_cm_per_meter": 100.0,
+    "required_plugins": [
+      "MeshPartition",
+      "MeshTerrainMode",
+      "PCGMeshPartitionInterop"
+    ],
+    "classic_landscape_used": false
+  },
+  "validation": {
+    "metric_extent_matches_source": true,
+    "elevation_samples_complete": true,
+    "placeholder_terrain": false
+  }
+}

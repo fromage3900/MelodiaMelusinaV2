@@ -1,0 +1,388 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Impressionist_Temporal" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_Impressionist_TemporalEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MF_Impressionist_TemporalEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_2" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComment_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComment_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_8'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_1" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSine Name="MaterialExpressionSine_2" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTime Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTime Name="MaterialExpressionTime_1" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTime Name="MaterialExpressionTime_2" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_1" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionWorldPosition Name="MaterialExpressionWorldPosition_2" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_2'"
+   End Object
+   Begin Object Name="MF_Impressionist_TemporalEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MF_Impressionist_TemporalEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComment_2'","/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComment_3'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_1'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_1'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_4'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_5'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_2'","/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_2'","/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_8'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_6'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_7'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_2'","/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_2'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_8'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_2'"))
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=3B5466344790DB15DC13588A54F015E0
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_4'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_3'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=04BE1DE24601E6D9BDA31AADBAB0B23A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_2" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_7'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_6'")
+      MaterialExpressionEditorX=-360
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=DC55F9054E2CE30CFDC7E398F963C4C6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComment_2'"
+      Text="Temporal Shimmer ~ living canvas"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=5F6D91DC45D37404E75569AF7E9241E9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_3" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComment_3'"
+      Text="✦ Temporal"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-980
+      MaterialExpressionEditorY=130
+      MaterialExpressionGuid=85BC500549B23650C0808480DC85E761
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=ED36DFEA467B41610DC89C80BF21162B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_1" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=8C8725104F26AAC236C3F7B46354CC43
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_2" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      R=True
+      G=True
+      MaterialExpressionEditorX=-720
+      MaterialExpressionGuid=B5374D874B2451742BFF17A313DC7D58
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_0'"
+      OutputName="TemporalShimmer"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_2'")
+      Id=87BC09674CEA805C0FD8DE99ADA01B37
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=365874A943D9834D99FD2B982807C6CB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_5'")
+      Id=6B895A99470F579849CE9AAF278966F3
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=E537AE2F40CD020C780D148405EF679A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionFunctionOutput_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_8'")
+      Id=527229164423687A3B5B7BBAD112ACA3
+      MaterialExpressionEditorX=180
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=CA761B0749F1B2A8DA568D9E3236B2C6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=2B92788C4E1351C2D0F21BA5C561CC3C
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=DC1184444657B5A30FB75A84B5443D08
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=1A20028548BC4BF083B220983381FE4E
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=E9458DEE457E779CFED87EB75C50C1BE
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_4'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=6C633141464145D384BD75B7B847943B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_5" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_5'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=8E35FF654F4DEA78B71FEA9594C14DB4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_6" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_6'"
+      A=(Expression="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_8'")
+      MaterialExpressionEditorX=-720
+      MaterialExpressionEditorY=160
+      MaterialExpressionGuid=944FF9D044BF3CC0478D23AB94B798D9
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_7" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_7'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionComponentMask_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_6'")
+      MaterialExpressionEditorX=-540
+      MaterialExpressionEditorY=40
+      MaterialExpressionGuid=7FC60C89411A0EF91758E886E5F032C7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_8" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionMultiply_8'"
+      A=(Expression="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_7'")
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=B5E19C6147A0F771FB8D8FB0707FE547
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_0'"
+      DefaultValue=1.500000
+      ParameterName="NoiseScale"
+      ExpressionGUID=5EB5095D472B5C2DC61730B930C2B57D
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=260
+      MaterialExpressionGuid=6831DBCB4760C19DA5676A998867818D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_1'"
+      DefaultValue=0.120000
+      ParameterName="TemporalStrength"
+      ExpressionGUID=4D3AAC8A48529F07C917038C1162933E
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=3B7D8D2E4D92935C4B494497222CBB1B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_2'"
+      DefaultValue=0.150000
+      ParameterName="WindSpeed"
+      ExpressionGUID=0D5985F042817068733179BB16011E66
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=460
+      MaterialExpressionGuid=A457016344F655F2F8CC1FB735BBB350
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_3'"
+      DefaultValue=1.500000
+      ParameterName="NoiseScale"
+      ExpressionGUID=7B9D83434019F20515BD00B73DCBD0F1
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=260
+      MaterialExpressionGuid=B3B7AF724420FB7DA60459913BD849BF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_4'"
+      DefaultValue=0.120000
+      ParameterName="TemporalStrength"
+      ExpressionGUID=C04AFE814EF375905BF6F7AA337CC64D
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=C8FFFE064BF80225770733B74EEFCC5B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_5'"
+      DefaultValue=0.150000
+      ParameterName="WindSpeed"
+      ExpressionGUID=93EB8A514CF6EC53A1329CA5A7CED35A
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=460
+      MaterialExpressionGuid=965E34F54905F17E1168799634018B5B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_6'"
+      DefaultValue=1.500000
+      ParameterName="NoiseScale"
+      ExpressionGUID=F9D282B9477C98EDB3329F8CAC98576C
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=260
+      MaterialExpressionGuid=CA56A39B4E4AAFD0E1FF0CB4E539FB26
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_7'"
+      DefaultValue=0.120000
+      ParameterName="TemporalStrength"
+      ExpressionGUID=E8B4AEA4487CAD09A68D5D8DD261A8E3
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=459CA5C5492EDEFC254946A2790D5320
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_8" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionScalarParameter_8'"
+      DefaultValue=0.150000
+      ParameterName="WindSpeed"
+      ExpressionGUID=F49E6D784BA2C6224C2A18A37FC58796
+      Group="Temporal"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=460
+      MaterialExpressionGuid=055DFFC24BC826C5F8D19F902A31EF22
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_0" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_0'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=EF22FCAD4E312CC500941799276EC1BF
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_1" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_1'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=70EF7C6742AEEA284832B7A5F3F6E40A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionSine_2" ExportPath="/Script/Engine.MaterialExpressionSine'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionSine_2'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionAdd_2'")
+      MaterialExpressionEditorX=-180
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=F55E9BC24F571E72554F85A99902D7F2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionTime_0" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_0'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=D7DF137D446485BA6280A29F71825AC5
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionTime_1" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_1'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=7321C09A42947DC2CDAB9E8C7ED75793
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionTime_2" ExportPath="/Script/Engine.MaterialExpressionTime'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionTime_2'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=140
+      MaterialExpressionGuid=54DE13E84F2EF66ED634F0BEB4A1BC14
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_0" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_0'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=0AF181914E33F15C4CBED5986E475A50
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_1" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_1'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=18DA45EA4692198EA6BDD6BB0D76CA4B
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   Begin Object Name="MaterialExpressionWorldPosition_2" ExportPath="/Script/Engine.MaterialExpressionWorldPosition'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MaterialExpressionWorldPosition_2'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=E5894DCC4D6BF952EAFA23BD22F75CDB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal'"
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Impressionist_Temporal.MF_Impressionist_Temporal:MF_Impressionist_TemporalEditorOnlyData'"
+   StateId=3B24C4C440A43B15B1560CAA3456D057
+   CombinedInputTypes=15
+End Object

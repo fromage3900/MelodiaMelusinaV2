@@ -1,0 +1,75 @@
+{
+  "report_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/loom_batch05_wfb_pie_gate.json",
+  "schema": "melodia.world_field_bus.pie_gate.v1",
+  "timestamp": "2026-09-02T09:58:38-0400",
+  "single_writer_pass": true,
+  "aliases_present": true,
+  "chladni_present": true,
+  "probe_verdict": "SCAFFOLD - World Field Bus Resonance/Tension published from cymatics; VegetationGrowth reads Tension for scatter on VDM folds. Build + PIE next window.",
+  "checks": [
+    {
+      "name": "audio_writer_single_owner_of_audio_namespace",
+      "verdict": "PASS",
+      "detail": "UMelodiaAudioReactivePresentationSubsystem.cpp TickPresentation is the ONLY class writing the audio-reactivity namespace (GlobalReactivity, Bass, Mid, Treble, BeatPhase, BeatPulse, BeatIntensity, BassIntensity, MidIntensity, BeatTracker) to MPC_Melodia_Palette via UKismetMaterialLibrary::SetScalarParameterValue (lines 307-326). MPC path /Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette loaded at line 25/181."
+    },
+    {
+      "name": "umelodiacymantics_subsystem_read_only",
+      "verdict": "PASS",
+      "detail": "UMelodiaCymaticsSubsystem.h line 51 declares IsReadOnlyByContract() const { return true; }. .cpp RefreshFromMPC uses only GetScalarParameterValue (reads BeatPulse/BassIntensity, lines 58-59) and UWorldFieldBus::PublishResonance (publish to world field bus, line 71). No SetScalarParameterValue/SetVectorParameterValue call exists in MelodiaCymaticsSubsystem.cpp — it does NOT write MPC."
+    },
+    {
+      "name": "cymantics_writer_subsystem_read_only_from_palette",
+      "verdict": "PASS",
+      "detail": "UMelodiaCymaticsWriterSubsystem.cpp reads MPC_Melodia_Palette (SourcePalette) via GetScalarParameterValue (lines 69-72) and writes only to the separate MPC_Cymatics_Driver (DriverCollection, lines 88-99). It never writes MPC_Melodia_Palette."
+    },
+    {
+      "name": "aliases_bassintensity_present",
+      "verdict": "PASS",
+      "detail": "Audio writer publishes BassIntensity at line 324 as alias of Bass (value = BattleIntensity when battle active)."
+    },
+    {
+      "name": "aliases_midintensity_present",
+      "verdict": "PASS",
+      "detail": "Audio writer publishes MidIntensity at line 325 as alias of Mid (value = ImpactPulse)."
+    },
+    {
+      "name": "aliases_beattracker_present",
+      "verdict": "PASS",
+      "detail": "Audio writer publishes BeatTracker at line 326 as alias of BeatPulse (value = BeatPulseValue)."
+    },
+    {
+      "name": "chladni_formula_present",
+      "verdict": "PASS",
+      "detail": "Chladni standing-wave formula present in UMelodiaCymaticsSubsystem.cpp SampleCymaticAmplitude (lines 76-81): amp = cos(n*pi*u)cos(m*pi*v) - cos(m*pi*u)cos(n*pi*v), with A=cos(ModeN*PiU)*cos(ModeM*PiV), B=cos(ModeM*PiU)*cos(ModeN*PiV), return (A-B)*max(BeatPulse,0.15)."
+    },
+    {
+      "name": "probe_cymatic_to_resonance",
+      "verdict": "PASS",
+      "detail": "world_field_bus_probe_2026-09-02.json check 'cymatic_to_resonance' = true."
+    },
+    {
+      "name": "probe_amplitude_to_tension",
+      "verdict": "PASS",
+      "detail": "world_field_bus_probe_2026-09-02.json check 'amplitude_to_tension' = true."
+    },
+    {
+      "name": "probe_beat_passthrough",
+      "verdict": "PASS",
+      "detail": "world_field_bus_probe_2026-09-02.json check 'beat_passthrough' = true."
+    },
+    {
+      "name": "probe_vegetation_reads_tension",
+      "verdict": "PASS",
+      "detail": "world_field_bus_probe_2026-09-02.json check 'vegetation_reads_tension' = true."
+    },
+    {
+      "name": "probe_seed_deterministic",
+      "verdict": "PASS",
+      "detail": "world_field_bus_probe_2026-09-02.json check 'seed_deterministic' = true. All 5 probe checks true; verdict SCAFFOLD."
+    }
+  ],
+  "caveats": [
+    "Other classes (UMelodiaQuantumDrawSubsystem.cpp lines 403-413 writes Quantum* params; UMelodiaTraversalComponent.cpp lines 992-1003 writes PlayerProximity/ProximityGlow/UnderwaterDepth/WaterLevelZ) also write DISJOINT param namespaces to the SAME MPC_Melodia_Palette asset, but none write the audio-reactivity names (Bass/Mid/Treble/Beat*/BassIntensity/MidIntensity/BeatTracker). Single-writer ownership for the World Field Bus AUDIO namespace is preserved; the full MPC asset is co-owned across independent namespaces.",
+    "MelodiaNeuralHeroMaterialSubsystem.cpp loads MPC_Melodia_Palette but its header (line 22) confirms it writes its own MID only and does NOT write the MPC; verified it contains no SetScalar/SetVector targeting the palette MPC."
+  ]
+}

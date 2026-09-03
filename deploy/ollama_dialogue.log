@@ -1,0 +1,143 @@
+[23:38:14] start (cap 30, have 0)
+[23:38:46] written: SirDefeatConsole_001.md
+[23:39:10] written: SirDefeatConsole_002.md
+[23:39:35] written: SirEntry_003.md
+[23:39:52] written: SirExitVictory_004.md
+[23:40:11] written: BedWhisper_005.md
+[23:40:45] written: BossBark_006.md
+[23:41:21] written: SirEntry_007.md
+[23:41:51] written: SirExitVictory_008.md
+[23:42:10] written: SirEntry_009.md
+[23:42:20] written: SirExitVictory_010.md
+[23:42:41] written: SirExitVictory_011.md
+[23:43:15] written: SirDefeatConsole_012.md
+[23:44:01] written: BedWhisper_013.md
+[23:44:45] written: SirExitVictory_014.md
+[23:45:34] written: SirDefeatConsole_015.md
+[23:46:20] written: SirEntry_016.md
+[23:47:23] written: BossBark_017.md
+[23:47:51] written: SirEntry_018.md
+[23:48:37] written: SirEntry_019.md
+[23:49:08] written: BossBark_020.md
+[23:49:55] written: BedWhisper_021.md
+[23:50:17] written: BossBark_022.md
+[23:50:41] written: SirEntry_023.md
+[23:51:03] written: SirDefeatConsole_024.md
+[23:51:27] written: SirEntry_025.md
+[23:51:58] written: SirExitVictory_026.md
+[23:52:28] written: SirDefeatConsole_027.md
+[23:52:54] written: SirDefeatConsole_028.md
+[23:53:34] written: SirEntry_029.md
+[23:53:51] written: BedWhisper_030.md
+[23:53:55] exit
+[14:19:30] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:19:30] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:19:30] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:22:19] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:22:19] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:22:19] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:24:38] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:24:38] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:24:38] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:28:14] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:28:14] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:28:14] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:29:49] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:29:49] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:29:49] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:30:10] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:30:10] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:30:10] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:30:12] [DRY-RUN] Validating dialogue daemon setup (model=deepseek-r1:14b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:30:12] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:30:12] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:31:56] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:31:56] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:31:56] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:32:01] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:32:01] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:32:01] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:32:06] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:32:06] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:32:06] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:34:52] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:34:52] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:34:52] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:35:18] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:35:18] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:35:18] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:37:42] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:37:42] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:37:42] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[14:38:01] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[14:38:01] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[14:38:01] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:26:38] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:26:38] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:26:38] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:29:19] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:29:19] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:29:19] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:30:21] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:30:21] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:30:21] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:31:29] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:31:29] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:31:29] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:31:46] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:31:46] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:31:46] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:32:06] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:32:06] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:32:06] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:32:25] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:32:25] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:32:25] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:33:46] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:33:46] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:33:46] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:33:57] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:33:57] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:33:57] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:33:58] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:33:58] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:33:58] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:34:38] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:34:38] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:34:38] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:34:51] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:34:51] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:34:51] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:36:03] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:36:03] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:36:03] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:36:24] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:36:24] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:36:24] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:36:51] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:36:51] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:36:51] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:37:26] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:37:26] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:37:26] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:39:43] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:39:43] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:39:43] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[15:40:12] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[15:40:12] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon — proud, worried, a little theatrical)
+[15:40:12] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[19:52:58] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[19:52:58] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon - proud, worried, a little theatrical)
+[19:52:58] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[20:04:33] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[20:04:33] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon - proud, worried, a little theatrical)
+[20:04:33] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[20:09:21] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[20:09:21] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon - proud, worried, a little theatrical)
+[20:09:21] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[21:19:23] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[21:19:23] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon - proud, worried, a little theatrical)
+[21:19:23] [DRY-RUN] Dry run validation successful. Exiting with code 0.
+[00:15:11] [DRY-RUN] Validating dialogue daemon setup (model=qwen2.5-coder:7b, out=C:\EnvironmentPortfolio\BS_GodFile\Imports\Data\Dialogue)
+[00:15:11] [DRY-RUN] Prompt template OK for beat: SirEntry (Sir Melodious sends Melusina into the dungeon - proud, worried, a little theatrical)
+[00:15:11] [DRY-RUN] Dry run validation successful. Exiting with code 0.

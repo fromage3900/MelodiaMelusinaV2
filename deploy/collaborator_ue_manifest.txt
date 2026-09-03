@@ -1,0 +1,47 @@
+# UE-capable lightweight collaborator manifest.
+# The first field is the record type; paths are repository-relative.
+# SPARSE entries are passed to git sparse-checkout --no-cone.
+# LFS entries are passed to git lfs pull --include.
+# PLUGIN entries are required .uplugin files and must retain their exact case.
+
+# Project and source required to open/build UE 5.8.
+SPARSE /BS_GodFile.uproject
+SPARSE /Config/
+SPARSE /Source/
+SPARSE /Plugins/
+SPARSE /Content/Python/
+SPARSE /Content/Melodia/Levels/
+SPARSE /Content/Melodia/PCG/
+SPARSE /Content/Melodia/Characters/
+SPARSE /Content/MelodiaIntegration/
+SPARSE /Content/TurnBasedJRPGTemplate/Blueprints/Battle/
+SPARSE /Content/EnvSandbox/Environments/
+SPARSE /Content/EnvSandbox/PCG/
+SPARSE /Content/Characters/
+SPARSE /Docs/
+SPARSE /Tools/
+SPARSE /specs/
+SPARSE /deploy/
+
+# Tier-1 UE plugin/content hydration. This is intentionally not the full 300 GB pull.
+LFS Plugins/**
+LFS Content/Melodia/Levels/**
+LFS Content/Melodia/PCG/**
+LFS Content/Melodia/Characters/**
+LFS Content/MelodiaIntegration/**
+LFS Content/TurnBasedJRPGTemplate/Blueprints/Battle/**
+LFS Content/EnvSandbox/Environments/**
+LFS Content/EnvSandbox/PCG/**
+LFS Content/Characters/**
+
+# Enabled in-tree project plugins required by BS_GodFile.uproject.
+PLUGIN Monolith Plugins/Monolith/Monolith.uplugin
+PLUGIN MelodiaCore Plugins/MelodiaCore/MelodiaCore.uplugin
+PLUGIN QuillScript Plugins/QuillScript/Quillscript.uplugin
+PLUGIN PCGExtendedToolkit Plugins/PCGExtendedToolkit/PCGExtendedToolkit.uplugin
+PLUGIN MeshBlend Plugins/MeshBlend/MeshBlend.uplugin
+PLUGIN KawaiiPhysics Plugins/KawaiiPhysics/KawaiiPhysics.uplugin
+PLUGIN ProceduralModelingToolkit Plugins/ProceduralModelingToolkit/ProceduralModelingToolkit.uplugin
+PLUGIN ProceduralDungeon Plugins/ProceduralDungeon/ProceduralDungeon.uplugin
+PLUGIN UEBlueprintMCP Plugins/UEBlueprintMCP/UEBlueprintMCP.uplugin
+PLUGIN UnrealMCP Plugins/UnrealMCP/UnrealMCP.uplugin

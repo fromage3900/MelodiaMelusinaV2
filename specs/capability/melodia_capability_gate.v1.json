@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_capability_gate_contract",
+  "contract_id": "melodia_capability_gate",
+  "status": "offline_contract_ready_live_registry_evidence_pending",
+  "purpose": "Provide one fail-closed, deterministic decision seam for skills, traversal, portals, encounters, challenges, and persistent anchors.",
+  "authority": {
+    "canonical_lookup": "UMelodiaTraversalCapabilityRegistry -> registered read-only provider",
+    "progression_lookup": "UMelodiaNarrativeSubsystem",
+    "context_lookup": "UMelodiaInputContextSubsystem",
+    "movement_mutation": "UMelodiaTraversalComponent",
+    "battle_mutation": "UMelodiaBattleSession_or_canonical_battle_subsystem",
+    "travel_mutation": "UMelodiaTravelSubsystem",
+    "persistence_mutation": "FMelodiaNarrativeRecord_and_canonical_save_contract",
+    "blueprint_role": "request evaluation, present result, and route to the owning native authority"
+  },
+  "evaluation_input": {
+    "required_fields": [
+      "GateRequestId",
+      "PackageId",
+      "DefinitionVersion",
+      "CapabilityIds",
+      "ActiveContext",
+      "NarrativePhase",
+      "RegionId",
+      "CurrentTraversalMode",
+      "ProgressionSnapshotId",
+      "ContextSnapshotId"
+    ],
+    "optional_fields": ["TargetId", "ResourceSnapshotId", "CanonicalStateKey", "RequestedAction"],
+    "request_id_policy": "stable per attempted action; duplicate evaluation is read-only and replay-safe",
+    "preview_policy": "preview may explain a missing or blocked requirement but never grants capability or mutates state"
+  },
+  "evaluation_result": {
+    "decision": ["allowed", "blocked", "preview_only", "invalid"],
+    "block_reason": [
+      "missing_provider",
+      "unknown_capability",
+      "missing_capability",
+      "blocked_context",
+      "progression_locked",
+      "wrong_region",
+      "invalid_definition",
+      "resource_unavailable",
+      "already_consumed",
+      "authority_unavailable"
+    ],
+    "required_fields": [
+      "GateRequestId",
+      "Decision",
+      "BlockReason",
+      "ResolvedCapabilityIds",
+      "EvaluatedContext",
+      "EvaluatedProgressionPhase",
+      "EvaluationFingerprint",
+      "AuthorityRoute"
+    ],
+    "fingerprint_policy": "hash the normalized input and resolved provider/progression/context values; do not fingerprint presentation-only state",
+    "no_mutation_on_block": true
+  },
+  "re_evaluation_triggers": [
+    "on_enter",
+    "on_context_change",
+    "on_capability_provider_change",
+    "on_progression_change",
+    "on_region_change",
+    "on_load_complete",
+    "on_travel_arrival",
+    "on_runtime_reset"
+  ],
+  "content_kind_routes": {
+    "skill": "evaluate capability/context/progression, then request stock battle execution",
+    "enemy": "evaluate encounter availability; stock battle unit owns execution and defeat",
+    "encounter": "evaluate availability and lock state, then request battle authority",
+    "portal": "evaluate capability/progression/context, then request save-before-travel through UMelodiaTravelSubsystem",
+    "traversal": "evaluate capability/context, then request mode transition through UMelodiaTraversalComponent",
+    "world_challenge": "evaluate availability, then submit completion/reward intent to canonical progression",
+    "state_anchor": "evaluate canonical state and apply once through the save/narrative contract"
+  },
+  "blueprint_invariants": {
+    "allowed": [
+      "build a typed gate request",
+      "display allowed, blocked, or preview-only state",
+      "offer an authored fallback or alternate route",
+      "forward an allowed request to its named authority",
+      "re_evaluate on declared lifecycle triggers"
+    ],
+    "forbidden": [
+      "grant capability locally",
+      "mutate movement, battle, travel, reward, or save state from a gate",
+      "cache an allow decision across a context/progression/load transition",
+      "invent a second capability registry",
+      "treat a preview as an executable grant",
+      "use presentation variant selection as capability ownership"
+    ]
+  },
+  "verification_matrix": {
+    "offline": [
+      "all seven canonical content kinds reference this contract",
+      "missing-provider and unknown-capability paths are fail-closed",
+      "blocked decisions declare no-mutation behavior",
+      "evaluation fingerprint inputs are stable and presentation-independent",
+      "fixture routes declare re-evaluation and reset coverage"
+    ],
+    "live_required_before_promotion": [
+      "provider registration and Blueprint reflection are verified in a clean editor build",
+      "allowed and blocked context matrix produces the declared native route",
+      "load/travel/reset re-evaluation produces no stale grant",
+      "duplicate GateRequestId is replay-safe",
+      "each promoted Blueprint records the gate fingerprint in fresh evidence"
+    ]
+  }
+}

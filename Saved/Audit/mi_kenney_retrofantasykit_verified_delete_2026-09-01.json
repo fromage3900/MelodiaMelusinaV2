@@ -1,0 +1,35 @@
+{
+  "schema": "melodia.material.verification_spec.v1",
+  "id": "MI_Kenney_RetroFantasyKit_VerifiedDelete",
+  "generated": "2026-09-01T02:00:00Z",
+  "source": "Saved/Audit/kenney_delete_spec_2026-08-30.json + disk rescan",
+  "lane": "audit",
+  "mode": "verify_only",
+  "note": "Re-verification of Kenney deletion candidates. Prior spec was text-scan only; this confirms disk state and adds texture-level detail.",
+  "disk_state": {
+    "confirmed_present": 20,
+    "path": "Content/EnvSandbox/Materials/Instances/Kenney/RetroFantasyKit/",
+    "files": "barrel, cobblestone, cobblestoneAlternative, cobblestonePainted, details, fence, planks, roof, tree, water + MI_ prefixed duplicates"
+  },
+  "texture_targets": [
+    "Content/EnvSandbox/Textures/ImportedPacks/T_KenneyCastleKit_Albedo.uasset",
+    "Content/EnvSandbox/Textures/ImportedPacks/T_KenneyMiniForest_Albedo.uasset",
+    "Content/EnvSandbox/Textures/ImportedPacks/T_KenneyModularCave_Albedo.uasset"
+  ],
+  "verification_result": {
+    "text_scan_clean": true,
+    "disk_scan": "20 MIs + 3 textures present and accounted for",
+    "no_new_references_since_prior_spec": true,
+    "recommendation": "Safe to delete per prior spec. Owner must still run editor referencer check before git rm."
+  },
+  "git_rm_scope": {
+    "total_files": 23,
+    "commit_message": "chore: remove Kenney RetroFantasyKit MIs + textures (23 files, CC0)"
+  },
+  "guardrails": [
+    "DO NOT execute deletion without editor ref check first",
+    "Text scan does NOT cover .uasset binary content — editor get_cdo_referencers required",
+    "If any MI is referenced by a Blueprint or level, remove those references first"
+  ],
+  "status": "VERIFY_COMPLETE_PENDING_OWNER_EXEC"
+}

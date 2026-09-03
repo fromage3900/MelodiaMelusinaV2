@@ -1,0 +1,16 @@
+[project]
+name = "monolith-source-indexer"
+version = "0.1.0"
+description = "Bundled engine source indexer for Monolith — tree-sitter C++ parsing with SQLite+FTS5 storage"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "tumourlove"}]
+
+dependencies = [
+    "tree-sitter>=0.21.0",
+    "tree-sitter-cpp>=0.21.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

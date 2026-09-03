@@ -1,0 +1,14 @@
+{
+  "source_id": "MD_03_ZephyrChampion",
+  "source_type": "custom_blender",
+  "archetype": "MirageDancer",
+  "filename": "MD_03_ZephyrChampion.vrm",
+  "author": "Melodia Art Team (Blender + VRM Addon)",
+  "license": "custom",
+  "commercial_ok": true,
+  "body_type": "athletic",
+  "base_hair_color": "#DDC79B",
+  "base_eye_color": "#66D9FF",
+  "expression_presets": ["champion_pose", "wind_mastery", "confident_grin", "battle_ready"],
+  "notes": "CREATE IN BLENDER 5.1: Use VRM Addon. Athletic female, gold.300 hair, cyan.iri eyes, champion outfit with wind effects. Export VRM 1.0 with custom blendshapes for wind mastery expressions."
+}

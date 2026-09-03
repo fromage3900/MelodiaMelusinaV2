@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-09-02T12:35:00Z",
+  "phase": "D/E",
+  "idempotent": true,
+  "status": "exists_verified",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_HeroGem_Cymatic",
+  "master_resolved": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+  "master_param_counts": {"texture": 31, "scalar": 260, "vector": 50, "switch": 23, "bool": 5},
+  "master_exposed_checks": {
+    "HAS_Iridescence_texture_slot": false,
+    "HAS_OpacityMask_texture_slot": false,
+    "HAS_DetailNormal": true,
+    "HAS_TriplanarDetailMap": true,
+    "HAS_LayerB_HeightMap": true,
+    "HAS_LayerB_NormalMap": true,
+    "exposed_audio_scalars": {"DreamPulseSpeed": true, "DreamPulseAmp": true, "EmissiveMapIntensity": true, "Roughness": true, "GemstoneRoughness": true, "LayerA_ParallaxScale": true, "AudioReactAmount": true, "GlobalEmissiveBoost": false, "BeatPulse": false, "CymaticModeN": false, "CymaticModeM": false, "BassIntensity": false}
+  },
+  "textures_imported_hero": {
+    "count": 9,
+    "dir": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem",
+    "on_disk_uassets": 9,
+    "ids": ["BaseColor", "Normal", "ORM", "Height", "Emissive", "Iridescence", "Metallic", "Roughness", "Opacity"],
+    "source": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/copernicus_cymatic/MelodiaHeroGem"
+  },
+  "textures_imported_eigen": {
+    "count": 8,
+    "dir": "/Game/EnvSandbox/Textures/Eigen",
+    "on_disk_uassets": 8,
+    "ids": ["T_EigenPlate_4_3_brass_Height", "T_EigenPlate_4_3_brass_Normal", "T_EigenPlate_1_2_steel_Height", "T_EigenPlate_1_2_steel_Normal", "T_EigenPlate_1_2_glass_Height", "T_EigenPlate_1_2_glass_Normal", "T_EigenPlate_1_2_crystal_Height", "T_EigenPlate_1_2_crystal_Normal"]
+  },
+  "texture_wiring": {
+    "Albedo": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_BaseColor", "status": "wired_verified"},
+    "NormalMap": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_Normal", "status": "wired_verified"},
+    "ORM": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_ORM", "status": "wired_verified"},
+    "HeightMap": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_Height", "status": "wired_verified"},
+    "EmissiveMap": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_Emissive", "status": "wired_verified"},
+    "MetallicMap": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_Metallic", "status": "wired_verified"},
+    "RoughnessMap": {"asset": "/Game/EnvSandbox/Textures/Copernicus/MelodiaHeroGem/T_Cymatic_MelodiaHeroGem_Roughness", "status": "wired_verified"},
+    "Iridescence": {"status": "DEFERRED", "reason": "master exposes NO texture slot named Iridescence (verified via get_texture_parameter_names). Iridescence exists only as scalar+vector on master. Gem Iridescence map imported but cannot be wired to a non-existent texture slot; iridescence is driven by master scalar/vector controls instead."},
+    "OpacityMask": {"status": "DEFERRED", "reason": "master exposes NO texture slot named OpacityMask (verified). Gem Opacity map imported but non-wirable; hero gem is opaque (reflective gem), so opacity mask not required."}
+  },
+  "eigen_relief_wiring": {
+    "status": "WIRED",
+    "slots": {
+      "LayerB_HeightMap": "/Game/EnvSandbox/Textures/Eigen/T_EigenPlate_4_3_brass_Height",
+      "LayerB_NormalMap": "/Game/EnvSandbox/Textures/Eigen/T_EigenPlate_4_3_brass_Normal"
+    },
+    "outcome": "Master exposes secondary detail layer LayerB (LayerB_HeightMap + LayerB_NormalMap). Wired 4_3_brass Height+Normal as nodal-relief detail (bLayerB_Active=True). 1_2 steel/glass/crystal maps imported into Eigen library reserved for live frequency->(m,n)->plate lane."
+  },
+  "scalars_applied_verified": {
+    "DreamPulseSpeed": 0.85,
+    "DreamPulseAmp": 0.22,
+    "EmissiveMapIntensity": 1.35,
+    "Roughness": 0.18,
+    "GemstoneRoughness": 0.18,
+    "LayerA_ParallaxScale": 0.03,
+    "LayerB_ParallaxScale": 0.05,
+    "AudioReactAmount": 1.0,
+    "TextureWeight": 1.0,
+    "LayerA_TextureWeight": 1.0,
+    "NormalStrength": 1.0
+  },
+  "scalars_skipped_deviations": {
+    "GlobalEmissiveBoost": "not exposed as master material scalar (MPC/audio-driven at runtime) - skipped",
+    "BeatPulse": "not exposed as master material scalar (MPC/audio-driven at runtime) - skipped",
+    "CymaticModeN/M, BassIntensity": "no cymatic eigenmode scalars exposed on this master - not set (task allowed only if exposed)"
+  },
+  "switches_active_verified": {
+    "bLayerA_Active": true,
+    "bLayerB_Active": true,
+    "bUseEmissiveMap": true,
+    "bGemstone_Active": true,
+    "bUseSeparateMetallicMap": true,
+    "bUseSeparateRoughnessMap": true,
+    "bUseHeightToNormal": true
+  },
+  "mpc_note": "MPC_Melodia_Palette single-writer (MusicClock->UMelodiaAudioReactivePresentationSubsystem) UNCHANGED. MI_HeroGem_Cymatic is a READ-ONLY consumer of MPC_Melodia_Palette; cymatics and neural controller remain READ-ONLY consumers. No second MPC writer introduced.",
+  "readback_json": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/herogem_mi_readback_2026-09-02.json",
+  "deviations_summary": [
+    "Iridescence gem map imported but NOT wired to a texture slot - master exposes no Iridescence texture slot (verified).",
+    "Opacity gem map imported but NOT wired - master exposes no OpacityMask texture slot (verified); gem is opaque.",
+    "GlobalEmissiveBoost / BeatPulse not applied - not exposed as master scalars (MPC-driven).",
+    "No cymatic eigenmode scalars (CymaticModeN/M, BassIntensity) exposed on master - not invented/skipped.",
+    "Eigenplate relief WIRED into LayerB detail layer (4_3_brass Height+Normal) - master exposes LayerB detail slots."
+  ]
+}

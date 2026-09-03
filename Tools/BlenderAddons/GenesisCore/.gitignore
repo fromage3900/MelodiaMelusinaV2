@@ -1,0 +1,13 @@
+__pycache__
+*.pyc
+*.cache
+*.DS_Store
+test_config.json
+log.log
+*.log*
+.idea
+config_cache.json
+assets/models
+!assets/models/README.md
+assets/texture
+!assets/texture/README.md

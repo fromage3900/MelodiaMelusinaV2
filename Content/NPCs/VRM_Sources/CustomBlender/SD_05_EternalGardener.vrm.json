@@ -1,0 +1,14 @@
+{
+  "source_id": "SD_05_EternalGardener",
+  "source_type": "custom_blender",
+  "archetype": "SakuraDreamer",
+  "filename": "SD_05_EternalGardener.vrm",
+  "author": "Melodia Art Team (Blender + VRM Addon)",
+  "license": "custom",
+  "commercial_ok": true,
+  "body_type": "standard",
+  "base_hair_color": "#D6A9B0",
+  "base_eye_color": "#FF6EB4",
+  "expression_presets": ["nurturing", "gentle_wisdom", "blooming_smile", "peaceful"],
+  "notes": "CREATE IN BLENDER 5.1: Use VRM Addon. Standard female, sakura pink hair, magenta.iri eyes, eternal gardener outfit. Export VRM 1.0 with petal-fall blendshapes."
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "CW_03_AstralScribe",
+  "source_type": "vroid_hub",
+  "archetype": "CosmicWeaver",
+  "filename": "CW_03_AstralScribe.vrm",
+  "author": "VRoid Hub Creator (TODO: add name)",
+  "license": "cc_by_4_0",
+  "commercial_ok": true,
+  "license_url": "https://hub.vroid.com/characters/XXXXXXXX",
+  "hub_url": "https://hub.vroid.com/characters/XXXXXXXX",
+  "hub_model_id": "XXXXXXXX",
+  "body_type": "tall",
+  "base_hair_color": "#6E5AA6",
+  "base_eye_color": "#C2BAE0",
+  "expression_presets": ["writing", "looking_up", "gentle_smile", "concentrating"],
+  "notes": "DOWNLOAD FROM VROID HUB: Search for tall female, amethyst hair, lavender eyes, scribe outfit. Replace XXXXXXXX with actual model ID. Verify CC-BY 4.0 license."
+}

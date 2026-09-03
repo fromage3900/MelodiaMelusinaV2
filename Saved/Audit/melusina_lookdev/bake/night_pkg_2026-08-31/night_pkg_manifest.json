@@ -1,0 +1,179 @@
+{
+ "schema": "melodia.shorewake_night_pkg.v1",
+ "date": "2026-08-31",
+ "purpose": "Slotted (48-material) bake mesh + bake maps + pearl-weave/painterly kit for Substance hand-paint, then UE import",
+ "checks": [
+  {
+   "name": "obj_48_usemtl",
+   "ok": true,
+   "detail": "48 groups; first=['SW_Dress_P01', 'SW_Dress_P02', 'SW_Dress_P03'] last=['SW_Dress_P46', 'SW_Dress_P47', 'SW_Dress_P48']"
+  },
+  {
+   "name": "obj_names_p01_p48",
+   "ok": true,
+   "detail": "['SW_Dress_P01', 'SW_Dress_P48']"
+  },
+  {
+   "name": "idmap_48_panels",
+   "ok": true,
+   "detail": "slot_count=48"
+  },
+  {
+   "name": "idmap_no_zero_coverage",
+   "ok": true,
+   "detail": "zero=[]"
+  },
+  {
+   "name": "idmap_black_is_padding",
+   "ok": true,
+   "detail": "34.065%"
+  },
+  {
+   "name": "pot_T_Shorewake_ChladniWeave_N.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_Painterly_BaseColor.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_Painterly_Height.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_PearlSheen_Iridescence.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_PearlSheen_Strength.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_PearlWeave_AO.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_PearlWeave_Height.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_PearlWeave_Normal.png",
+   "ok": true,
+   "detail": "2048x2048"
+  },
+  {
+   "name": "pot_T_Shorewake_PearlWeave_Roughness.png",
+   "ok": true,
+   "detail": "2048x2048"
+  }
+ ],
+ "all_pass": true,
+ "texture_inventory": {
+  "NIGHT_PKG_contact_sheet.png": {
+   "w": 2048,
+   "h": 1576,
+   "bytes": 1754218
+  },
+  "T_DressShorewake_FoamCrest_Mask_4K.png": {
+   "w": 4096,
+   "h": 4096,
+   "bytes": 153518
+  },
+  "T_DressShorewake_Painterly_Drape_4K.png": {
+   "w": 4096,
+   "h": 4096,
+   "bytes": 2473526
+  },
+  "T_DressShorewake_PanelID_4K.png": {
+   "w": 4096,
+   "h": 4096,
+   "bytes": 217778
+  },
+  "T_DressShorewake_PanelID_legend.png": {
+   "w": 1400,
+   "h": 3162,
+   "bytes": 353410
+  },
+  "T_Shorewake_ChladniWeave_N.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 1122648
+  },
+  "T_Shorewake_Painterly_BaseColor.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 2095668
+  },
+  "T_Shorewake_Painterly_Height.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 783540
+  },
+  "T_Shorewake_PearlSheen_Iridescence.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 544266
+  },
+  "T_Shorewake_PearlSheen_Strength.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 870876
+  },
+  "T_Shorewake_PearlWeave_AO.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 927314
+  },
+  "T_Shorewake_PearlWeave_Height.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 877952
+  },
+  "T_Shorewake_PearlWeave_Normal.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 881681
+  },
+  "T_Shorewake_PearlWeave_Roughness.png": {
+   "w": 2048,
+   "h": 2048,
+   "bytes": 687547
+  }
+ },
+ "sha256": {
+  "face_uv_data.npz": "d4a6ed3e4ee7a0a90c4e75635b350d0cbd932e0c67460b88a64deb32b9bbab34",
+  "NIGHT_PKG_contact_sheet.png": "d6bb936202e324a5d2af01e7234f9d663ef26617975801ee6731a4b87a40a077",
+  "SM_ShorewakeDress_48MAT_v2_slotted.fbx": "7f38f4d661b26edce7177581f3d2a7a73f97abe5d8cb2d7e0827a0d78701a394",
+  "SM_ShorewakeDress_48MAT_v2_slotted.mtl": "5fffd66ce3a8ecb128e42246df7aceb50cbccab01f5a7a1f9f2da840bc4cb488",
+  "SM_ShorewakeDress_48MAT_v2_slotted.obj": "5687c303c595656ef08c588b71788528069047329f854b57812c11c0f8e960f8",
+  "T_DressShorewake_FoamCrest_Mask_4K.png": "62a06ca486e2dcac2c8e1089e5e35a0b107971154275601b997acc82c346d13f",
+  "T_DressShorewake_Painterly_Drape_4K.png": "b9987bc83c8d02044c21b298b3c337d2a4f0b2aabf8cf73cbc48b0df773ba993",
+  "T_DressShorewake_PanelID_4K.png": "ea6ff4eaf695383a16669357b145e6f3b10c4460ae64cde64f13a2bff7a06d10",
+  "T_DressShorewake_PanelID_legend.png": "f64ab07b5d901889f084745f2971a07ecef9175423edcb38072d34441297e792",
+  "T_Shorewake_ChladniWeave_N.png": "5fa1b20c40cbfda219301cf6c6a4c8de3823c3b52f89f7fa40765a85164a87bc",
+  "T_Shorewake_Painterly_BaseColor.png": "b88c4b5fab4781b950b879c1fe180e393521b61a9171efc59cf79f169e499060",
+  "T_Shorewake_Painterly_Height.png": "11d4e10a5569b1ad08b277a6d62da9580153efc3cb949f95f9e96da6691933f4",
+  "T_Shorewake_PearlSheen_Iridescence.png": "edd9107272b6440e4b3db410bb3274215d8d0df8dbb8e9c8e1224feb5e3d89ba",
+  "T_Shorewake_PearlSheen_Strength.png": "b4fe5df07a0dfae1f5de7e5f314c7374578d5e9d727cee000caf26d84a59226e",
+  "T_Shorewake_PearlWeave_AO.png": "270de5b01ccf25104b54c12e23d866dbbf1d171532e537ee0ea24434b67307ec",
+  "T_Shorewake_PearlWeave_Height.png": "169075d6152fdebf91848f084e9f04978d51b39862482bc76ed04b8958960b05",
+  "T_Shorewake_PearlWeave_Normal.png": "48bbbac95491732eb4a35eb9f35bb95c4afcf5e4ea94102b76ffd8703baba302",
+  "T_Shorewake_PearlWeave_Roughness.png": "303a398c83d475eac3b7c6c3091d64ede0d27702053e6b54b42a9e4c8b35fe2c"
+ },
+ "inputs": {
+  "source_blend": "Saved/Audit/melusina_lookdev/Shorewake_48MAT_frozen_snapshot.blend",
+  "bake_of_record": "bake/sbs/ (sbsbaker 4K: AO/Normal/Curv/Thick/Position)",
+  "id_map": "T_DressShorewake_PanelID_4K.png (48 flat colors, luminance-ordered)"
+ },
+ "workflows": {
+  "merged_paint": "one texture set + PanelID mask colors == per-panel control (fill layer -> black mask -> ID color extract)",
+  "per_panel_sets": "import slotted FBX; Substance creates 48 texture sets (SW_Dress_P01..P48); UE MIs already exist in /Game/Melodia/Characters/Melusina/Textures/Clothes/"
+ }
+}

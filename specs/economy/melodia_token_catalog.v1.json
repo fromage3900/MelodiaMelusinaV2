@@ -1,0 +1,79 @@
+{
+  "schema": "melodia_token_catalog.v1",
+  "generated_from": "/Game/Melodia/Data/DA_MelodiaTokenCatalog",
+  "generator": "Content/Python/export_melodia_currency_registry.py",
+  "authority_note": "The UE DataAsset is canonical (Decision 055). This file is its text mirror, read by gmm/game/tokens.py, Tools/wardrobe_draft_lint.py, pytest, CI and the melodia MCP server so none of them needs a running editor. Re-export after every registry edit; the melodia_economy_registry_export_fresh CI gate fails if this file is older than the .uasset.",
+  "tokens": [
+    {
+      "variant_id": "heart",
+      "display_name": "Forte Shard",
+      "currency_id": "Forte",
+      "element": "Forte",
+      "value": 10,
+      "rarity": "common",
+      "texture_path": "/Game/EnvSandbox/Textures/melodsytoken/Textures/T_MelodyToken_Heart_BaseColor",
+      "material_path": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Heart"
+    },
+    {
+      "variant_id": "star",
+      "display_name": "Radiant Shard",
+      "currency_id": "Radiant",
+      "element": "Radiant",
+      "value": 12,
+      "rarity": "uncommon",
+      "texture_path": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Star_BaseColor",
+      "material_path": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Star"
+    },
+    {
+      "variant_id": "swirl",
+      "display_name": "Arcane Shard",
+      "currency_id": "Arcane",
+      "element": "Arcane",
+      "value": 15,
+      "rarity": "rare",
+      "texture_path": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Swirl_BaseColor",
+      "material_path": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Swirl"
+    },
+    {
+      "variant_id": "water",
+      "display_name": "Tide Shard",
+      "currency_id": "Tide",
+      "element": "Tide",
+      "value": 12,
+      "rarity": "common",
+      "texture_path": "/Game/EnvSandbox/Textures/melodsytoken_textures/MelodyToken_Water_BaseColor",
+      "material_path": "/Game/EnvSandbox/Materials/Instances/MelodyTokens/MI_MelodyToken_Water"
+    },
+    {
+      "variant_id": "stone",
+      "display_name": "Stone Shard",
+      "currency_id": "Stone",
+      "element": "Stone",
+      "value": 11,
+      "rarity": "uncommon",
+      "texture_path": "",
+      "material_path": ""
+    },
+    {
+      "variant_id": "gale",
+      "display_name": "Gale Shard",
+      "currency_id": "Gale",
+      "element": "Gale",
+      "value": 11,
+      "rarity": "uncommon",
+      "texture_path": "",
+      "material_path": ""
+    },
+    {
+      "variant_id": "umbral",
+      "display_name": "Umbral Shard",
+      "currency_id": "Umbral",
+      "element": "Umbral",
+      "value": 13,
+      "rarity": "rare",
+      "texture_path": "",
+      "material_path": ""
+    }
+  ],
+  "extra_elemental_types": []
+}

@@ -1,0 +1,33 @@
+// Copyright 2024 Tore Lervik. All Rights Reserved.
+
+#include "/Engine/Private/SceneTextureParameters.ush"
+#include "/Engine/Private/ScreenPass.ush"
+
+SCREEN_PASS_TEXTURE_VIEWPORT(PostProcessInput_0)
+SCREEN_PASS_TEXTURE_VIEWPORT(PostProcessInput_1)
+SCREEN_PASS_TEXTURE_VIEWPORT(PostProcessInput_2)
+SCREEN_PASS_TEXTURE_VIEWPORT(PostProcessInput_3)
+SCREEN_PASS_TEXTURE_VIEWPORT(PostProcessInput_4)
+SCREEN_PASS_TEXTURE_VIEWPORT(PostProcessOutput)
+
+Texture2D PostProcessInput_0_Texture;
+Texture2D PostProcessInput_1_Texture;
+Texture2D PostProcessInput_2_Texture;
+Texture2D PostProcessInput_3_Texture;
+Texture2D PostProcessInput_4_Texture;
+
+SamplerState PostProcessInput_0_Sampler;
+SamplerState PostProcessInput_1_Sampler;
+SamplerState PostProcessInput_2_Sampler;
+SamplerState PostProcessInput_3_Sampler;
+SamplerState PostProcessInput_4_Sampler;
+
+
+SamplerState PostProcessInputSampler;
+SamplerState PostProcessInput_BilinearSampler;
+
+#define PostProcessInput_0_SharedSampler PostProcessInput_0_Sampler
+#define PostProcessInput_1_SharedSampler PostProcessInput_1_Sampler
+#define PostProcessInput_2_SharedSampler PostProcessInput_2_Sampler
+#define PostProcessInput_3_SharedSampler PostProcessInput_3_Sampler
+#define PostProcessInput_4_SharedSampler PostProcessInput_4_Sampler

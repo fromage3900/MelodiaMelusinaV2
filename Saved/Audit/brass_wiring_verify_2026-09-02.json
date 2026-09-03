@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-09-02T11:27:40.739302+00:00",
+  "imported_sea": [
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_BaseColor",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Emissive",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Height",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Iridescence",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Metallic",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Normal",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_ORM",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Opacity",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Roughness",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_BaseColor",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Emissive",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Height",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Iridescence",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Metallic",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Normal",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_ORM",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Opacity",
+    "/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Roughness"
+  ],
+  "summary": {
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_PatinaAnimated": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_FiligreeGold": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_Engraved": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_Iridescent": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_VerdigrisBloom": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Brass_HammeredPulse": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/Melodia/SeaAbove/Materials/MI_Brass_Nautilus": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    },
+    "/Game/Melodia/SeaAbove/Materials/MI_Brass_FarawayMother": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+      "wired_texture_count": "no_api"
+    }
+  }
+}

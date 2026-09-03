@@ -1,0 +1,21 @@
+{
+  "generated": "2026-08-30T23:34:33.692303",
+  "header": {
+    "exists": true,
+    "bytes": 2365
+  },
+  "cpp": {
+    "exists": true,
+    "bytes": 1137
+  },
+  "read_seam_api": {
+    "GetCurrentRhythmGradeKey": true,
+    "GetBeatPhaseNormalized": true,
+    "IsBattleActive": true,
+    "GetActiveNarrativeVisualFlags": true,
+    "IsReadOnlyByContract": true
+  },
+  "read_only_contract": true,
+  "no_simulation_state_held": false,
+  "verdict": "SCAFFOLD \u2014 Magpie simulation/visual seam; read-only, no renderer, no second writer. Build + PIE validation next window."
+}

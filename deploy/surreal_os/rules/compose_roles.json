@@ -1,0 +1,194 @@
+{
+  "styles": {
+    "WESTERN_CASTLE": {
+      "large": "_lib_KEEP",
+      "medium": "_lib_TOWN_HOUSE",
+      "small": "_lib_MARKET_STALL",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_WATCHTOWER",
+      "gate": "_lib_GATEHOUSE",
+      "monument": "_lib_OBELISK",
+      "sacred": "_lib_CHAPEL"
+    },
+    "ZEN_SHRINE": {
+      "large": "_lib_GB_ZEN_MACHIAI",
+      "medium": "_lib_GB_ZEN_KARESANSUI",
+      "small": "_lib_GB_ZEN_LANTERN",
+      "wall": "_lib_GB_ZEN_CHERRY_ALLEE",
+      "corner_tower": "_lib_GB_ZEN_GOJU_PAGODA",
+      "gate": "_lib_GB_ZEN_TORII_GATE",
+      "monument": "_lib_GB_ZEN_TAHOTO",
+      "sacred": "_lib_GB_ZEN_HONDEN"
+    },
+    "ASIAN_CITY": {
+      "large": "_lib_KR_HANOK",
+      "medium": "_lib_CN_TING_PAVILION",
+      "small": "_lib_JP_KURA_STOREHOUSE",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_CN_TIERED_PAGODA",
+      "gate": "_lib_CN_PAILOU",
+      "monument": "_lib_CN_MOON_GATE",
+      "sacred": "_lib_CN_TIERED_PAGODA"
+    },
+    "ASIAN_CITY_RECURSIVE": {
+      "large": "_lib_KR_HANOK",
+      "medium": "_lib_JP_KURA_STOREHOUSE",
+      "small": "_lib_CN_TING_PAVILION",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_CN_TIERED_PAGODA",
+      "gate": "_lib_CN_PAILOU",
+      "monument": "_lib_CN_MOON_GATE",
+      "sacred": "_lib_CN_TIERED_PAGODA"
+    },
+    "ART_NOUVEAU": {
+      "large": "_lib_BAROQUE_FACADE",
+      "medium": "_lib_BALCONY",
+      "small": "_lib_FILIGREE_PANEL",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_OGEE_ARCH",
+      "monument": "_lib_PUBLIC_FOUNTAIN",
+      "sacred": "_lib_CHAPEL"
+    },
+    "ART_DECO": {
+      "large": "_lib_TESSELLATION_TOWER",
+      "medium": "_lib_GB_BRUTALIST_PANEL_WALL",
+      "small": "_lib_FILIGREE_PANEL",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_TESSELLATION_TOWER",
+      "gate": "_lib_CUSPED_ARCH",
+      "monument": "_lib_OBELISK",
+      "sacred": "_lib_PUBLIC_FOUNTAIN"
+    },
+    "MOORISH_COURTYARD": {
+      "large": "_lib_PALAZZO",
+      "medium": "_lib_GB_ROMANESQUE_ARCADE",
+      "small": "_lib_FILIGREE_PANEL",
+      "wall": "_lib_CURVED_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_ARCHWAY_ADV",
+      "monument": "_lib_PUBLIC_FOUNTAIN",
+      "sacred": "_lib_CHAPEL"
+    },
+    "RENAISSANCE_PIAZZA": {
+      "large": "_lib_BAROQUE_FACADE",
+      "medium": "_lib_GB_ROMANESQUE_ARCADE",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_ARCHWAY_ADV",
+      "monument": "_lib_PUBLIC_FOUNTAIN",
+      "sacred": "_lib_DOME"
+    },
+    "VENETIAN_CANAL": {
+      "large": "_lib_PALAZZO",
+      "medium": "_lib_GB_VENETIAN_LOGGIA",
+      "small": "_lib_BIFORA",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_BRIDGE",
+      "monument": "_lib_PUBLIC_FOUNTAIN",
+      "sacred": "_lib_CHAPEL"
+    },
+    "GOTHIC_CLOISTER": {
+      "large": "_lib_CHAPEL",
+      "medium": "_lib_GREYBOX_CORRIDOR",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_GB_GOTHIC_PORTAL",
+      "monument": "_lib_BELL_TOWER",
+      "sacred": "_lib_CHAPEL"
+    },
+    "GOTHIC_CHAPTER_HOUSE": {
+      "large": "_lib_CHAPEL",
+      "medium": "_lib_GREYBOX_CORRIDOR",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_GB_GOTHIC_PORTAL",
+      "monument": "_lib_BELL_TOWER",
+      "sacred": "_lib_CHAPEL"
+    },
+    "GOTHIC_NAVE_CROSSING": {
+      "large": "_lib_CHAPEL",
+      "medium": "_lib_GREYBOX_CORRIDOR",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_GB_GOTHIC_PORTAL",
+      "monument": "_lib_ROSE_WINDOW",
+      "sacred": "_lib_CHAPEL"
+    },
+    "ROMANESQUE_CLOISTER": {
+      "large": "_lib_CHAPEL",
+      "medium": "_lib_GB_ROMANESQUE_ARCADE",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_GATEHOUSE",
+      "monument": "_lib_BELL_TOWER",
+      "sacred": "_lib_CHAPEL"
+    },
+    "ROMANESQUE_APSE": {
+      "large": "_lib_BELL_TOWER",
+      "medium": "_lib_GB_ROMANESQUE_ARCADE",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_GATEHOUSE",
+      "monument": "_lib_BELL_TOWER",
+      "sacred": "_lib_GB_ROMANESQUE_APSE"
+    },
+    "SCIFI_DECK": {
+      "large": "_lib_GREYBOX_PILLAR_HALL",
+      "medium": "_lib_GREYBOX_CORRIDOR",
+      "small": "_lib_GREYBOX_CATWALK",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_WATCHTOWER",
+      "gate": "_lib_GB_SCIFI_PRESSURE_DOOR",
+      "monument": "_lib_GREYBOX_ROOM",
+      "sacred": "_lib_GREYBOX_ROOM"
+    },
+    "BYZANTINE_BASILICA": {
+      "large": "_lib_BAROQUE_VAULT",
+      "medium": "_lib_GB_ROMANESQUE_ARCADE",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_CUSPED_ARCH",
+      "monument": "_lib_ROSE_WINDOW",
+      "sacred": "_lib_DOME"
+    },
+    "BAROQUE_CHURCH": {
+      "large": "_lib_BAROQUE_FACADE",
+      "medium": "_lib_BAROQUE_VAULT",
+      "small": "_lib_BAROQUE_BALUSTRADE",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_BELL_TOWER",
+      "gate": "_lib_OGEE_ARCH",
+      "monument": "_lib_BAROQUE_NICHE",
+      "sacred": "_lib_DOME"
+    },
+    "BRUTALIST_PLAZA": {
+      "large": "_lib_GREYBOX_PILLAR_HALL",
+      "medium": "_lib_GB_BRUTALIST_PANEL_WALL",
+      "small": "_lib_PILLAR",
+      "wall": "_lib_CURTAIN_WALL",
+      "corner_tower": "_lib_WATCHTOWER",
+      "gate": "_lib_GATEHOUSE",
+      "monument": "_lib_PUBLIC_FOUNTAIN",
+      "sacred": "_lib_CHAPEL"
+    }
+  },
+  "fallbacks": {
+    "ZEN_SHRINE": {
+      "large": ["_lib_ZEN_TEAHOUSE", "_lib_GB_ZEN_HAIDEN"],
+      "medium": ["_lib_ZEN_STONE_GARDEN", "_lib_GB_ZEN_MACHIAI"],
+      "small": ["_lib_ZEN_LANTERN"],
+      "monument": ["_lib_GB_ZEN_STONE_BRIDGE", "_lib_ZEN_BRIDGE"],
+      "gate": ["_lib_GB_ZEN_SAKURA_TORII", "_lib_ZEN_TORII"],
+      "corner_tower": ["_lib_GB_ZEN_TAHOTO", "_lib_ZEN_TORII"]
+    }
+  }
+}

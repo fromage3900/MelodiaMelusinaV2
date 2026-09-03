@@ -1,0 +1,14 @@
+// Fixture: rule (a) missing GENERATED_BODY.
+// A UCLASS-declared type with no GENERATED_BODY() macro. NOT compiled.
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "LintMissingGeneratedBody.generated.h"
+
+UCLASS()
+class CPPERGOTESTMOD_API ULintMissingGeneratedBody : public UActorComponent
+{
+public:
+	ULintMissingGeneratedBody();
+};

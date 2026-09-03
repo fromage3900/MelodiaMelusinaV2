@@ -1,0 +1,170 @@
+{
+  "schema": "melodia.gaea_fabric_terrain_apply.v1",
+  "selection": {
+    "picked": "SakuraTerrace",
+    "picked_mesh": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/SM_Gaea_SakuraTerrace_1025",
+    "picked_mi": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/MI_Gaea_SakuraTerrace_Substrate",
+    "picked_mi_parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
+    "target_level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+    "target_actor_label": "FM_FabricTerrain_SakuraTerrace",
+    "rationale": "Sakura Terrace Directional Erosion terraces read as pleated fabric folds; 650m gentle height supports Faraway Mother silhouette (vs 900m spiky Ridge, vs 420m basin already claimed by SeaAbove). Isolated 1025 MeshTerrain + Substrate MI verified on disk. Preserves LiquidCathedral as SeaAbove canonical.",
+    "sea_above_canonical": {
+      "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/SM_SeaAbove_LiquidCathedral_257",
+      "mi": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Terrain/MI_SeaAbove_LiquidCathedral_Substrate",
+      "source": "SakuraTerrace NOT applied to SeaAbove; SeaAbove retains LiquidCathedral"
+    }
+  },
+  "setups": {
+    "sakura_terrace": {
+      "status": "recipe_ready_reference_graph_validated_native_export_pending",
+      "mesh": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/SM_Gaea_SakuraTerrace_1025",
+      "mesh_exists": true,
+      "mi": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/MI_Gaea_SakuraTerrace_Substrate",
+      "mi_exists": true,
+      "wp_map": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/L_Gaea_SakuraTerrace_WP",
+      "extent_m": [
+        4000.0,
+        4000.0
+      ],
+      "height_range_m": [
+        0.0,
+        650.0
+      ],
+      "design_intent": "Welcoming petal route with readable terraces, shallow water, and a blossom landmark.",
+      "fabric_fit": "BEST \u2014 Directional Erosion produces pleated fabric impression, readable terraces map to silk folds, shallow waterline supports fabric mountain storytelling.",
+      "target": "LV_FarawayMother_Prototype"
+    },
+    "liquid_cathedral": {
+      "status": "recipe_ready",
+      "mesh": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/SM_Gaea_LiquidCathedral_1025",
+      "mi": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/MI_Gaea_LiquidCathedral_Substrate",
+      "wp_map": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/LiquidCathedral/L_Gaea_LiquidCathedral_WP",
+      "extent_m": [
+        5000.0,
+        3000.0
+      ],
+      "height_range_m": [
+        0.0,
+        420.0
+      ],
+      "design_intent": "Broad processional basin where water, pillars, resonance chambers make route legible.",
+      "fabric_fit": "Good secondary \u2014 basin/sea profile suits SeaAbove already canonical (SM_SeaAbove_LiquidCathedral_257), not fabric pleating.",
+      "target": "LV_SeaAbove_Prototype (canonical, already applied)",
+      "note": "Retained as SeaAbove canonical; not re-applied to Faraway to avoid dual basin conflict."
+    },
+    "cadence_crystal_ridge": {
+      "status": "recipe_ready",
+      "extent_m": [
+        4000.0,
+        4000.0
+      ],
+      "height_range_m": [
+        0.0,
+        900.0
+      ],
+      "fabric_fit": "POOR \u2014 high-contrast 900m ridge, stylized crystalline dressing, too vertical for fabric mountains."
+    },
+    "fugue_grotto": {
+      "status": "recipe_ready",
+      "extent_m": [
+        4000.0,
+        4000.0
+      ],
+      "height_range_m": [
+        0.0,
+        520.0
+      ],
+      "fabric_fit": "POOR \u2014 collapsed gullies / maze, dark dead-ends, fugue motif not fabric."
+    }
+  },
+  "copernicus": {
+    "hda": "Tools/Houdini/copernicus/copernicus_terrain_height_to_nanite.py",
+    "contract": "heightmap COP -> SOP heightfield -> Nanite mesh, vertex color height_mask, material M_Master_Toon_Landscape_HeightBlend, PCGEx scatter (no LandscapeGrassType)",
+    "fallback": "OBJ interchange fallback used for 1025 Gaea handoff (metric 4000m x 4000m, 1050625 verts, world scale 100 cm/m)"
+  },
+  "placement": {
+    "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+    "actor_label": "FM_FabricTerrain_SakuraTerrace",
+    "location": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "mesh": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/SM_Gaea_SakuraTerrace_1025",
+    "material": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/SakuraTerrace/MI_Gaea_SakuraTerrace_Substrate",
+    "material_parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
+    "collision": "Nanite mesh collision (QUERY_AND_PHYSICS), complex trace enabled for height-aware raycast",
+    "height_aware": {
+      "method": "KismetSystemLibrary.line_trace_single (TRACE_TYPE_QUERY1, complex=false, start_z 5000 -> end_z -1000)",
+      "samples": [
+        {
+          "label": "FM_Terrace_Lower",
+          "xy": [
+            0,
+            0
+          ],
+          "role": "valley floor - blossom landmark base",
+          "z_offset": 5
+        },
+        {
+          "label": "FM_Terrace_Mid",
+          "xy": [
+            900,
+            400
+          ],
+          "role": "mid terrace - pleated ridge sampling",
+          "z_offset": 8
+        },
+        {
+          "label": "FM_Terrace_Upper",
+          "xy": [
+            -1200,
+            -800
+          ],
+          "role": "upper terrace - terrace edge",
+          "z_offset": 6
+        }
+      ],
+      "contract": "No Landscape. All kitbash/PCG placements resolve Z at spawn via raycast against SM_Gaea_SakuraTerrace_1025 collision."
+    },
+    "classic_landscape_created": false,
+    "mesh_terrain_only": true
+  },
+  "verification": {
+    "editor_reachable": false,
+    "pie_map": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+    "pie_gate": [
+      "zero Blueprint Runtime Error",
+      "zero Accessed None",
+      "zero Ensure",
+      "lighting valid",
+      "terrain collision hit"
+    ],
+    "offline_checks": {
+      "mesh_uasset_exists": true,
+      "mi_uasset_exists": true,
+      "wp_map_exists": true,
+      "faraway_map_exists": true,
+      "toon_master_exists": true
+    },
+    "pie_status": "DEFERRED \u2014 editor MCP 9316 not reachable at offline time; run in live editor to complete PIE capture and ledger row"
+  },
+  "next_steps": [
+    "Open LV_FarawayMother_Prototype in live editor and run this script via Tools/editor_run.py",
+    "Confirm terrain actor FM_FabricTerrain_SakuraTerrace spawned at 0,0,0 with MI_Gaea_SakuraTerrace_Substrate",
+    "Run height-aware samples via trace and confirm hit Z within 0-650m range",
+    "PIE LV_FarawayMother_Prototype, capture 1920x1080 hero frame to Saved/Audit/gaea_fabric_terrain/PIE_FarawayMother_SakuraTerrace.png",
+    "Record gate ledger row; promote evidence to Docs/Evidence/"
+  ]
+}

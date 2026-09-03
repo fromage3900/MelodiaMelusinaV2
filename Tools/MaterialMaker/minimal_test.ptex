@@ -1,0 +1,22 @@
+{
+    "name": "minimal_test",
+    "seed_int": 0,
+    "type": "graph",
+    "nodes": [
+        {
+            "name": "Color_Red",
+            "node_position": {"x": -200, "y": 0},
+            "parameters": {"r": 1.0, "g": 0.0, "b": 0.0, "a": 1.0},
+            "type": "Color"
+        },
+        {
+            "name": "Material",
+            "node_position": {"x": 0, "y": 0},
+            "parameters": {},
+            "type": "material_static"
+        }
+    ],
+    "connections": [
+        {"from": "Color_Red", "from_port": 0, "to": "Material", "to_port": 0}
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "format": "melodia_blender_midi_environment_manifest",
+  "schema_version": 1,
+  "generator": "Content/Python/melodia_blender_offline_preview.py + Tools/midi_to_voxel/midi_voxel.py",
+  "source_midi": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\MIDI\\128BPMarpeggiomelody.mid",
+  "ticks_per_beat": 96,
+  "note_count": 192,
+  "voxel_count": 236,
+  "obj_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.obj",
+  "fbx_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.fbx",
+  "blend_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\MelodiaIntegration\\ResonantWorld\\OfflineWorldGen\\PetalCantata_3900\\MelodiaMIDIEnvironment.blend",
+  "runtime_boundary": {
+    "offline_only": true,
+    "does_not_call_unreal": true,
+    "does_not_save_portfolio_stage": true,
+    "does_not_write_gameplay_save": true
+  }
+}

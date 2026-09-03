@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "description": "Fixed Melodia Studio smoke queue — no free-form agent slices.",
+  "jobs": [
+    {
+      "id": "gn_build_all",
+      "script": "_health_check_gn_builders.py",
+      "pass": "0 FAIL; builders healthy summary exit 0"
+    },
+    {
+      "id": "addon_register",
+      "script": "_health_check_full.py",
+      "pass": "register + panels OK"
+    },
+    {
+      "id": "overhaul_kits",
+      "script": "_mcp_verify_overhaul.py",
+      "pass": "all_ok / exit 0"
+    },
+    {
+      "id": "os_genomes",
+      "script": "_mcp_verify_os.py",
+      "pass": "exit 0"
+    },
+    {
+      "id": "preset_audit",
+      "script": "_preset_audit_job.py",
+      "pass": "no orphan preset builders"
+    },
+    {
+      "id": "site_publish_dry",
+      "script": "_site_publish_dry_job.py",
+      "pass": "MELODIA_WEBSITE_ROOT resolves; site-plates.json present"
+    }
+  ]
+}

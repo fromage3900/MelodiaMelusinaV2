@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "generated": "2026-08-31",
+    "mode": "spec_only",
+    "source_audit": "wardrobe_p0_audit_2026-08-30.json",
+    "note": "Catalog shawl + trail batch materialization spec. No .uasset writes. Editor materialization pending."
+  },
+  "catalog_path": "/MelodiaWardrobe/Catalog/DA_MelodiaCosmeticCatalog",
+  "batches": {
+    "shawl": [
+      {
+        "CosmeticId": "Cos_Shawl_MelusinaArcane",
+        "Slot": "shawl",
+        "Rarity": "Common",
+        "ElementMood": "Arcane",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 2 },
+        "MaterializePriority": 1
+      },
+      {
+        "CosmeticId": "Cos_Shawl_MelusinaRadiance",
+        "Slot": "shawl",
+        "Rarity": "Common",
+        "ElementMood": "Radiant",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 2 },
+        "MaterializePriority": 2
+      },
+      {
+        "CosmeticId": "Cos_Shawl_MelusinaWinds",
+        "Slot": "shawl",
+        "Rarity": "Common",
+        "ElementMood": "Gale",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 2 },
+        "MaterializePriority": 3
+      },
+      {
+        "CosmeticId": "Cos_Shawl_MelusinaShade",
+        "Slot": "shawl",
+        "Rarity": "Refined",
+        "ElementMood": "Umbral",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 2 },
+        "MaterializePriority": 4
+      },
+      {
+        "CosmeticId": "Cos_Shawl_MelusinaRadiant",
+        "Slot": "shawl",
+        "Rarity": "Refined",
+        "ElementMood": "Radiant",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 7, "swirl": 3 },
+        "MaterializePriority": 5
+      },
+      {
+        "CosmeticId": "Cos_Shawl_Melusina",
+        "Slot": "shawl",
+        "Rarity": "Couture",
+        "ElementMood": "Forte",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 8, "swirl": 4 },
+        "MaterializePriority": 6
+      }
+    ],
+    "trail": [
+      {
+        "CosmeticId": "Cos_Trail_MelusinaArcane",
+        "Slot": "trail",
+        "Rarity": "Common",
+        "ElementMood": "Arcane",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 2 },
+        "MaterializePriority": 1
+      },
+      {
+        "CosmeticId": "Cos_Trail_MelusinaWhirlwind",
+        "Slot": "trail",
+        "Rarity": "Common",
+        "ElementMood": "Gale",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 2 },
+        "MaterializePriority": 2
+      },
+      {
+        "CosmeticId": "Cos_Trail_MelusinaWave",
+        "Slot": "trail",
+        "Rarity": "Refined",
+        "ElementMood": "Tide",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 5, "swirl": 3 },
+        "MaterializePriority": 3
+      },
+      {
+        "CosmeticId": "Cos_Trail_MelusinaTideTrail",
+        "Slot": "trail",
+        "Rarity": "Refined",
+        "ElementMood": "Tide",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 7, "swirl": 3 },
+        "MaterializePriority": 4
+      },
+      {
+        "CosmeticId": "Cos_Trail_MelusinaTide",
+        "Slot": "trail",
+        "Rarity": "Grandmaster",
+        "ElementMood": "Tide",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 8, "swirl": 4 },
+        "MaterializePriority": 5
+      },
+      {
+        "CosmeticId": "Cos_Trail_MelusinaArcaneElegance",
+        "Slot": "trail",
+        "Rarity": "Couture",
+        "ElementMood": "Arcane",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 9, "swirl": 3 },
+        "MaterializePriority": 6
+      },
+      {
+        "CosmeticId": "Cos_Trail_MelusinaShadowFury",
+        "Slot": "trail",
+        "Rarity": "Couture",
+        "ElementMood": "Umbral",
+        "Mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "TokenCost": { "heart": 9, "swirl": 3 },
+        "MaterializePriority": 7
+      }
+    ]
+  },
+  "p0_gate_impact": {
+    "wardrobe_slot_coverage": "shawl_and_trail_slots_added",
+    "note": "Shawl (6) + Trail (7) catalog entries. PIE test still required."
+  }
+}

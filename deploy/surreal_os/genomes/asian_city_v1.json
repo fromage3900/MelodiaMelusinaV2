@@ -1,0 +1,20 @@
+{
+  "id": "asian_city_v1",
+  "family": "Asian",
+  "verticality": 0.55,
+  "symmetry": 0.72,
+  "ornament_density": 0.58,
+  "structural_logic": 0.7,
+  "organic_growth": 0.45,
+  "cosmic_influence": 0.12,
+  "sacred_sequence": [],
+  "compose_style": "ASIAN_CITY",
+  "default_graph": "ASIAN_CITY",
+  "grammar_id": "ASIAN_CITY",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

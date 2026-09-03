@@ -1,0 +1,17 @@
+{
+  "format": "gmm_water_surface_request_v1",
+  "schema_version": 1,
+  "schema_minor": 0,
+  "asset_id": "sakura_shrine_pond",
+  "water_role": "pond",
+  "material_instance": "/Game/EnvSandbox/Materials/Instances/Water/MI_GrandWater_SakuraPond",
+  "authoring_mode": "water_body",
+  "spline_id": null,
+  "dimensions_cm": [1200.0, 900.0, 80.0],
+  "flow_direction": [1.0, 0.0, 0.0],
+  "flow_speed": 0.22,
+  "shoreline_profile": "soft_stone",
+  "vfx_profile": "pond_shimmer",
+  "seed": 1337,
+  "provenance": {}
+}

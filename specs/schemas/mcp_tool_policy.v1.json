@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/mcp_tool_policy.v1.json",
+  "title": "Melodia MCP Tool Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "default_decision", "approvals", "forbidden_path_tokens", "tools"],
+  "properties": {
+    "schema": {"const": "melodia.mcp_tool_policy.v1"},
+    "default_decision": {"enum": ["allow", "deny"]},
+    "approvals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["none", "editor", "owner"],
+      "properties": {
+        "none": {"type": "integer", "const": 0},
+        "editor": {"type": "integer", "const": 1},
+        "owner": {"type": "integer", "const": 2}
+      }
+    },
+    "forbidden_path_tokens": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "tools": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decision", "required_approval", "operations"],
+        "properties": {
+          "decision": {"enum": ["allow", "deny"]},
+          "required_approval": {"enum": ["none", "editor", "owner"]},
+          "operations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "reason": {"type": "string"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-07-15",
+  "branch": "feature/touchdesigner-mcp-integration",
+  "style": "Nikki (Infinity Nikki)",
+  "description": "Niagara FX library manifest for Nikki-style visual effects in Unreal Engine 5.8. Each system maps to OSC routes from TouchDesigner for audio-reactive control.",
+
+  "systems": {
+    "NS_Nikki_SparkleDrift": {
+      "class": "NiagaraSystem",
+      "path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_SparkleDrift",
+      "description": "4-point star sparkles drifting with sin-wave oscillation. Gold-to-pink color shift, additive blend, soft alpha.",
+      "emitter_count": 1,
+      "max_particles": 60,
+      "bounds": {"x": 800, "y": 800, "z": 400},
+      "osr_routes": {
+        "spawn_rate": "/niagara/sparkle/rate",
+        "particle_color": "/niagara/sparkle/color",
+        "particle_size": "/niagara/sparkle/size"
+      },
+      "material": {
+        "blend_mode": "Additive",
+        "sprite_type": "4-point star",
+        "softness": 0.85,
+        "depth_fade": true
+      },
+      "forces": {
+        "gravity": {"x": 0, "y": 0, "z": -5},
+        "drag": 0.2,
+        "curl_noise": {"strength": 15, "frequency": 0.03},
+        "wind": {"dir": [0, 1, 0], "strength": 10}
+      },
+      "color_over_life": {
+        "start": {"r": 1.0, "g": 0.84, "b": 0.63, "a": 1.0},
+        "end":   {"r": 0.94, "g": 0.75, "b": 0.82, "a": 0.0}
+      },
+      "size_over_life": {
+        "start": 0.04,
+        "mid": 0.08,
+        "end": 0.02
+      }
+    },
+
+    "NS_Nikki_FloatingMotes": {
+      "class": "NiagaraSystem",
+      "path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FloatingMotes",
+      "description": "Soft radial ambient dots drifting lazily through the environment. Warm cream-to-lavender fade, very slow motion.",
+      "emitter_count": 1,
+      "max_particles": 80,
+      "bounds": {"x": 1200, "y": 1200, "z": 600},
+      "osr_routes": {
+        "spawn_rate": "/niagara/mote/rate",
+        "particle_color": "/niagara/mote/color",
+        "particle_size": "/niagara/mote/size"
+      },
+      "material": {
+        "blend_mode": "Additive",
+        "sprite_type": "radial gradient",
+        "softness": 0.95,
+        "depth_fade": true
+      },
+      "forces": {
+        "gravity": {"x": 0, "y": 0, "z": 0},
+        "drag": 0.5,
+        "curl_noise": {"strength": 5, "frequency": 0.01},
+        "wind": {"dir": [0.3, 0.7, 0.1], "strength": 3}
+      },
+      "color_over_life": {
+        "start": {"r": 1.0, "g": 0.95, "b": 0.90, "a": 0.8},
+        "end":   {"r": 0.82, "g": 0.75, "b": 0.91, "a": 0.0}
+      },
+      "size_over_life": {
+        "start": 0.02,
+        "mid": 0.04,
+        "end": 0.01
+      }
+    },
+
+    "NS_Nikki_WishBurst": {
+      "class": "NiagaraSystem",
+      "path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_WishBurst",
+      "description": "Explosive wish-energy burst triggered on Melusina audio amplitude peak. Gold-to-hot-pink radial explosion with sparkle sub-emitter.",
+      "emitter_count": 2,
+      "max_particles": 200,
+      "bounds": {"x": 300, "y": 300, "z": 300},
+      "osr_routes": {
+        "trigger": "/niagara/burst",
+        "audio_amp": "/melusina/amp",
+        "audio_pitch": "/melusina/pitch"
+      },
+      "material": {
+        "blend_mode": "Additive",
+        "sprite_type": "multi-point radial",
+        "softness": 0.7,
+        "depth_fade": false
+      },
+      "forces": {
+        "gravity": {"x": 0, "y": 0, "z": -20},
+        "drag": 0.1,
+        "radial_force": {"strength": 500, "radius": 50}
+      },
+      "color_over_life": {
+        "start": {"r": 1.0, "g": 0.96, "b": 0.50, "a": 1.0},
+        "mid":  {"r": 1.0, "g": 0.70, "b": 0.55, "a": 0.7},
+        "end":   {"r": 0.94, "g": 0.50, "b": 0.70, "a": 0.0}
+      },
+      "size_over_life": {
+        "start": 0.01,
+        "mid": 0.08,
+        "end": 0.03
+      },
+      "sub_emitter": {
+        "system": "NS_Nikki_SparkleDrift",
+        "trigger": "on_death",
+        "count": 3
+      }
+    },
+
+    "NS_Nikki_FabricTrail": {
+      "class": "NiagaraSystem",
+      "path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FabricTrail",
+      "description": "Ribbon/streamer trail for fabric movement in wind. Satin-sheen ribbon particles following dress/cloth vertices.",
+      "emitter_count": 1,
+      "max_particles": 40,
+      "bounds": {"x": 200, "y": 200, "z": 400},
+      "osr_routes": {
+        "wind_dir": "/niagara/wind",
+        "audio_amp": "/melusina/amp"
+      },
+      "material": {
+        "blend_mode": "Translucent",
+        "sprite_type": "ribbon",
+        "softness": 0.6,
+        "depth_fade": true,
+        "anisotropic_specular": true
+      },
+      "forces": {
+        "gravity": {"x": 0, "y": 0, "z": -15},
+        "drag": 0.15,
+        "wind": {"dir": [0, 1, 0], "strength": 40}
+      },
+      "color_over_life": {
+        "start": {"r": 0.94, "g": 0.75, "b": 0.82, "a": 0.6},
+        "end":   {"r": 0.82, "g": 0.75, "b": 0.91, "a": 0.0}
+      }
+    },
+
+    "NS_Nikki_FlowerPetals": {
+      "class": "NiagaraSystem",
+      "path": "/Game/EnvSandbox/VFX/Nikki/NS_Nikki_FlowerPetals",
+      "description": "Cherry blossom / sakura petal falling particles. Pastel pink petal sprites with randomized rotation and gentle falling motion.",
+      "emitter_count": 1,
+      "max_particles": 50,
+      "bounds": {"x": 1000, "y": 1000, "z": 800},
+      "osr_routes": {
+        "spawn_rate": "/niagara/petal/rate",
+        "wind_dir": "/niagara/wind"
+      },
+      "material": {
+        "blend_mode": "Masked",
+        "sprite_type": "petal mesh",
+        "softness": 0.5,
+        "depth_fade": false
+      },
+      "forces": {
+        "gravity": {"x": 0, "y": 0, "z": -30},
+        "drag": 0.3,
+        "wind": {"dir": [0.5, 0.5, 0.1], "strength": 25},
+        "turbulence": {"strength": 0.5, "frequency": 0.1}
+      },
+      "mesh_renderer": {
+        "mesh": "/Game/EnvSandbox/Meshes/Sakura/SM_Petal_01",
+        "random_scale": {"min": 0.5, "max": 1.5},
+        "random_rotation": {"yaw": 360, "pitch": 180, "roll": 360}
+      }
+    }
+  },
+
+  "shared_parameters": {
+    "material_attributes": {
+      "bloom_contribution": 1.0,
+      "soft_particle_depth": 50.0,
+      "sort_order": "PSORT_BackToFront"
+    },
+    "performance_budget": {
+      "total_max_particles": 430,
+      "estimated_gpu_ms": 0.8,
+      "LOD_settings": {
+        "LOD0_distance": 2000,
+        "LOD1_distance": 5000,
+        "LOD1_particle_scale": 0.5
+      }
+    }
+  },
+
+  "osc_routing_table": {
+    "td_to_ue": {
+      "/niagara/sparkle/rate":    {"type": "float", "niagara_param": "User.SpawnRate",     "target": "NS_Nikki_SparkleDrift"},
+      "/niagara/sparkle/color":   {"type": "vec3",  "niagara_param": "User.ParticleColor",  "target": "NS_Nikki_SparkleDrift"},
+      "/niagara/sparkle/size":    {"type": "float", "niagara_param": "User.ParticleSize",   "target": "NS_Nikki_SparkleDrift"},
+      "/niagara/mote/rate":       {"type": "float", "niagara_param": "User.SpawnRate",     "target": "NS_Nikki_FloatingMotes"},
+      "/niagara/mote/color":      {"type": "vec3",  "niagara_param": "User.ParticleColor",  "target": "NS_Nikki_FloatingMotes"},
+      "/niagara/mote/size":       {"type": "float", "niagara_param": "User.ParticleSize",   "target": "NS_Nikki_FloatingMotes"},
+      "/niagara/burst":           {"type": "bool",  "niagara_param": "User.BurstTrigger",   "target": "NS_Nikki_WishBurst"},
+      "/niagara/petal/rate":      {"type": "float", "niagara_param": "User.SpawnRate",     "target": "NS_Nikki_FlowerPetals"},
+      "/niagara/wind":            {"type": "vec3",  "niagara_param": "User.WindDirection",  "target": "ALL"},
+      "/melusina/amp":            {"type": "float", "niagara_param": "User.AudioAmplitude", "target": "ALL"},
+      "/melusina/pitch":          {"type": "float", "niagara_param": "User.AudioPitch",     "target": "NS_Nikki_WishBurst"}
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "first_dream_progress_anchor",
+  "status": "contract_spec_only",
+  "owner": "Melodia progression integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.state_anchor.first_dream_progress",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "state_anchor",
+    "DisplayName": "First Dream Progress Anchor",
+    "Tags": [
+      "fixture",
+      "state_anchor",
+      "first_dream",
+      "replay_safe",
+      "save_load"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_available"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "open_world",
+      "state_anchor_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session"
+    ],
+    "ContextPolicy": "fail_closed_and_report_block_reason",
+    "ModeSet": [
+      "unapplied",
+      "applying",
+      "applied"
+    ],
+    "EnterPolicy": "read_canonical_state_then_apply_if_not_applied",
+    "UpdatePolicy": "do_not_reapply_committed_anchor",
+    "ExitPolicy": "retain_canonical_state_and_refresh_presentation",
+    "InterruptPolicy": "leave_canonical_state_unchanged_until_apply_commits",
+    "ResetPolicy": "reset_fixture_world_without_erasing_canonical_save_state",
+    "VariantSet": [
+      "first_dream_anchor_default",
+      "first_dream_anchor_applied"
+    ],
+    "EquippedVariantId": "first_dream_anchor_default",
+    "FallbackVariantId": "first_dream_anchor_default",
+    "AnimationProfile": "optional_anchor_activation_animation",
+    "VfxProfile": "optional_anchor_activation_vfx",
+    "AudioProfile": "optional_anchor_activation_audio",
+    "UiPresentation": "state_anchor_status_prompt",
+    "PreviewPolicy": "show_persistent_flag_and_follow_up_before_apply",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_default_variant_and_keep_state_read_valid",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "soft_anchor_glow",
+    "CanonicalStateKey": "melodia.fixture.state_anchor.first_dream_progress",
+    "IdempotencyKey": "state_anchor.first_dream_progress.apply_once",
+    "SaveWritePolicy": "narrative_subsystem_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "state_anchor_apply_twice_save_load",
+    "ExpectedEvidence": "definition_contract_compile_graph_path_apply_once_save_load_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaStateAnchor_FirstDreamProgress",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaStateAnchor_Base",
+    "runtime_authority": "UMelodiaNarrativeSubsystem_through_pending_state_anchor_adapter",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaStateAnchor_FirstDreamProgress"
+  },
+  "definition_contract": {
+    "stable_anchor_id": "anchor.first_dream.progress",
+    "persistence_key": "state_anchor.first_dream_progress.applied",
+    "apply_operations": [
+      {
+        "operation": "SetNarrativeFlag",
+        "flag_id": "first_dream.progress_anchor_applied",
+        "value": true
+      },
+      {
+        "operation": "SetQuestActive",
+        "quest_id": "quest.first_dream",
+        "active": true
+      }
+    ],
+    "apply_once_is_guarded_by_canonical_consumed_intent": true,
+    "presentation_may_replay_without_reapplying_state": true,
+    "adapter_must_use_existing_narrative_subsystem_apis": true,
+    "adapter_must_not_write_save_object_directly": true
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "read_persistent_flag",
+      "show_unapplied_preview",
+      "request_apply_operations",
+      "refresh_applied_presentation"
+    ],
+    "repeat_route": [
+      "reload_record",
+      "read_persistent_flag",
+      "replay_presentation_only",
+      "verify_no_duplicate_operation"
+    ],
+    "reset_route": [
+      "reset_fixture_world",
+      "reload_canonical_record",
+      "restore_applied_presentation"
+    ],
+    "failure_routes": [
+      "blocked_context_returns_reason",
+      "missing_adapter_leaves_record_unchanged",
+      "incompatible_save_refuses_load"
+    ]
+  },
+  "failure_routes": [
+    "blocked_context_does_not_apply_anchor",
+    "duplicate_apply_does_not_repeat_quest_or_flag_intent",
+    "reload_preserves_applied_state",
+    "presentation_replay_does_not_mutate_state",
+    "missing_definition_or_adapter_fails_closed"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_opening_state_authority_duplication",
+    "graph_export_contains_stable_key_read_apply_once_and_presentation_replay",
+    "apply_routes only through existing narrative subsystem APIs",
+    "second apply is a no-op or explicit duplicate rejection",
+    "save_load_restores_applied_state",
+    "fresh evidence envelope records first and repeated apply"
+  ],
+  "readiness_level": "L1",
+  "readiness": "L1"
+}

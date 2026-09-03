@@ -1,0 +1,93 @@
+{
+  "$schema": "melodia.production_tasks.v1",
+  "name": "melodia_production_lanes",
+  "version": "1.0",
+  "generated": "2026-08-20",
+  "purpose": "Real game work routed to local models. Every task produces an artifact the project actually needs, and acceptance is a contract check -- not a score. Replaces the synthetic MATH benchmark tasks as the measure of whether a local model is useful here.",
+  "doctrine": {
+    "the_ai_is_a_tool": "These lanes exist to produce game artifacts. A lane that scores well and ships nothing has failed.",
+    "acceptance_not_score": "A task is ACCEPTED when its artifact passes the named contract check. There is no partial credit and no percentage.",
+    "no_self_certification": "No lane records its own ledger row. Acceptance produces an artifact; a human or a gate script runs `Tools/echo_run.py record <gate> pass|fail`.",
+    "local_first": "Production lanes are local-only (see LOCAL_ONLY_CLASSES in Tools/model_router.py). Content generation must not require network or incur cloud spend.",
+    "schema_is_shown": "Every task hands the model the exact contract it will be judged against. Scoring a model on a schema it was never shown is a harness defect, not a model finding -- see the 2026-08-19 regression documented in Tools/run_math_models.py::_format_schema."
+  },
+  "tasks": [
+    {
+      "id": "wardrobe_cosmetic_record",
+      "lane": "wardrobe_catalog",
+      "pillar": "wardrobe",
+      "offline": true,
+      "description": "Emit one wardrobe cosmetic record for the Melusina V2 outfit.",
+      "artifact": "a single JSON object conforming to first_outfit.records[] in specs/wardrobe/wardrobe_catalog_source.v1.json",
+      "contract_file": "specs/wardrobe/wardrobe_catalog_source.v1.json",
+      "contract_pointer": "properties.first_outfit.properties.records.items",
+      "accepted_when": "The object validates against the record schema: cosmetic_id matches ^Cos_[A-Za-z0-9_]+$, slot is one of the five declared slots, rarity is Common, mesh matches the V2 outfit path pattern, resonant_form_id is null.",
+      "must_not": "Invent a slot outside the enum, or emit a mesh path outside /Game/Melodia/Characters/Melusina/Outfits/V2/.",
+      "feeds_gate": "wardrobe_equip_roundtrip",
+      "reference_implementation": "deploy/ollama_wardrobe_catalog_daemon.py"
+    },
+    {
+      "id": "quill_seven_verb_notification",
+      "lane": "quill_author",
+      "pillar": "narrative",
+      "offline": true,
+      "description": "Author a QuillScript notification granting a social stat for a named story intent.",
+      "artifact": "a notification string in the seven-verb contract",
+      "contract_tool": "melodia_quill_validate_notification",
+      "accepted_when": "melodia_quill_validate_notification returns is_valid_verb true, the verb is one of battle|quest|flag|travel|reward|stat|item, and the intent id is well formed.",
+      "must_not": "Emit an id that is not in the allowlist, or a verb outside the seven.",
+      "feeds_gate": "repeat_consume",
+      "note": "This is also the exact shape the music_world_key seam needs: APCGHeroMusicGraphHost::OnPatternCompleted must emit one of these into UMelodiaNarrativeSubsystem."
+    },
+    {
+      "id": "music_world_key_notification",
+      "lane": "quill_author",
+      "pillar": "world_puzzle",
+      "offline": true,
+      "description": "Author the notification that a completed Piano pattern should emit -- the music-as-key consequence.",
+      "artifact": "a flag or quest notification string in the seven-verb contract",
+      "contract_tool": "melodia_quill_validate_notification",
+      "accepted_when": "Validates as a flag: or quest: verb. Must NOT be a battle: verb -- music opens doors, it never enters the combat or damage pipeline (see PCGHeroMusic.cpp:624).",
+      "must_not": "Emit a battle: verb. That would make music a second combat authority.",
+      "feeds_gate": "music_world_key"
+    },
+    {
+      "id": "rhythm_skill_catalog_read",
+      "lane": "beatmap_author",
+      "pillar": "rhythm",
+      "offline": true,
+      "description": "Read the rhythm skill catalog and report the grade multiplier curve and song pairings.",
+      "artifact": "a structured summary of the live rhythm skill definitions",
+      "contract_tool": "melodia_rhythm_list_skills",
+      "accepted_when": "Every skill id reported exists in the tool response. Zero invented skill ids.",
+      "must_not": "Make rhythm a second combat authority, or invent a skill id.",
+      "feeds_gate": "rhythm_grade_to_result"
+    },
+    {
+      "id": "anim_state_machine_crosscheck",
+      "lane": "anim_bindings",
+      "pillar": "rhythm",
+      "offline": false,
+      "editor_required": true,
+      "description": "Cross-check the Melusina ABP state machine and pose bindings against the Monolith reading.",
+      "artifact": "a diff between the model's reading and melodia_animation_validate_state_machine",
+      "contract_tool": "melodia_animation_validate_state_machine",
+      "accepted_when": "The model's findings agree with the tool response, or any disagreement is a real, reproducible finding.",
+      "must_not": "Write a .uasset. This lane is read-only.",
+      "feeds_gate": "monolith_static",
+      "note": "Two independent readings of the same asset is the point -- disagreement is a finding, not noise."
+    },
+    {
+      "id": "asset_gate_triage",
+      "lane": "asset_qa",
+      "pillar": "support",
+      "offline": true,
+      "description": "Triage the current static_gates failure: two verify_baseline material drifts.",
+      "artifact": "a triage note naming each drifted asset, its node delta, and a recommended action (re-baseline vs revert)",
+      "context": "static_gates FAIL 2026-08-14: M_Master_Simple_Universal 32305->33784 bytes 25->26 nodes; M_Master_Toon_Landscape_HeightBlend 427468->450364 bytes 290->304 nodes. The other four sub-gates passed.",
+      "accepted_when": "Every file path named in the output exists on disk. Zero fabricated paths.",
+      "must_not": "Fabricate a file path. This is the single most common failure mode for this lane.",
+      "feeds_gate": "static_gates"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+ "schema": "melodia.garment_intake_prep.v1",
+ "seed": 20260902,
+ "source": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\GarmentIntake\\ButterflyWing_Accessory_fbx_thick.fbx",
+ "cos_id": "Cos_Accessory_Melusina_ButterflyWing",
+ "slot": "Accessory",
+ "descriptor": "ButterflyWing",
+ "verts": 818770,
+ "polys": 1582132,
+ "uv_layers": 2,
+ "material_slots": [
+  "bala_2021",
+  "daman_2028",
+  "FABRIC 2_2045",
+  "daman2_2040",
+  "bal_2035",
+  "aaa_2048",
+  "Material"
+ ],
+ "empty_slots": 0,
+ "uv_overlap_count": 11,
+ "outputs": {
+  "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\wardrobe_pipeline\\intake\\Cos_Accessory_Melusina_ButterflyWing\\Cos_Accessory_Melusina_ButterflyWing.obj",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\wardrobe_pipeline\\intake\\Cos_Accessory_Melusina_ButterflyWing\\Cos_Accessory_Melusina_ButterflyWing.fbx",
+  "obj_sha256": "59c414deb64f73ea4c8ba3ea973ee58872c7e10a6ba38efe93148199899b293f",
+  "fbx_sha256": "8a2b8df11cde5ea9db5940088197c19a3d3354ef58fa038a3a29fa01b07af4b2"
+ },
+ "cadence": "10-garment-layer (cluster via silhouette classifier next; names as slot-level here)",
+ "note": "drop-in interchange intake: ready for Substance stage + DA_MelodiaCosmeticCatalog registration"
+}

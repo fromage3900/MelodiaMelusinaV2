@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "paths": {
+    "unreal": "",
+    "blender": "",
+    "voicevox": "",
+    "material_maker": "",
+    "website": ""
+  },
+  "environment_variables": {
+    "unreal": "MELODIA_UNREAL_ROOT",
+    "blender": "MELODIA_BLENDER_ROOT",
+    "voicevox": "VOICEVOX_ROOT",
+    "material_maker": "MATERIAL_MAKER_ROOT",
+    "website": "MELODIA_WEBSITE_ROOT"
+  },
+  "defaults": {
+    "unreal": "C:/Program Files/Epic Games/UE_5.8",
+    "blender": "C:/Program Files/Blender Foundation/Blender 5.2",
+    "voicevox": "",
+    "material_maker": "",
+    "website": ""
+  },
+  "versions": {
+    "unreal": "5.8",
+    "blender": "5.2",
+    "python": "3.11",
+    "node": "20"
+  },
+  "ports": {
+    "livelink": 9876,
+    "ue_mcp": 9316,
+    "blender_mcp": 9317,
+    "voicevox": 50021,
+    "melusina_voice": 50022,
+    "ollama": 11434,
+    "quantum": 8008
+  },
+  "services": {
+    "required_for_setup": [],
+    "optional": [
+      "livelink",
+      "ue_mcp",
+      "blender_mcp",
+      "voicevox",
+      "melusina_voice",
+      "ollama",
+      "quantum"
+    ]
+  },
+  "notes": "Resolution order: command line, environment variable, paths entry, default. Empty paths are intentional and avoid machine-specific mirror roots."
+}

@@ -1,0 +1,2731 @@
+{
+  "root": "C:\\EnvironmentPortfolio",
+  "old": "G:/EnvironmentPortfolio",
+  "new": "C:/EnvironmentPortfolio",
+  "matches_count": 437,
+  "by_file": {
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CURRENT_SYSTEM_MAP.md": [
+      {
+        "line": 3,
+        "orig": "> Read-only audit snapshot. Captured 2026-06-25 from `G:/EnvironmentPortfolio/BS_GodFile`.",
+        "replaced": "> Read-only audit snapshot. Captured 2026-06-25 from `C:/EnvironmentPortfolio/BS_GodFile`."
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\generated\\musical_ornament_kitbash_catalog.json": [
+      {
+        "line": 199,
+        "orig": "\"fbx_export\": \"G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\",",
+        "replaced": "\"fbx_export\": \"C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\","
+      },
+      {
+        "line": 200,
+        "orig": "\"product_root\": \"G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\"",
+        "replaced": "\"product_root\": \"C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\generated\\renders_config.json": [
+      {
+        "line": 11,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\","
+      },
+      {
+        "line": 20,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\","
+      },
+      {
+        "line": 29,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\","
+      },
+      {
+        "line": 38,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\","
+      },
+      {
+        "line": 47,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\","
+      },
+      {
+        "line": 56,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\","
+      },
+      {
+        "line": 65,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\","
+      },
+      {
+        "line": 74,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\","
+      },
+      {
+        "line": 83,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\","
+      },
+      {
+        "line": 92,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\","
+      },
+      {
+        "line": 101,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\","
+      },
+      {
+        "line": 110,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\","
+      },
+      {
+        "line": 119,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\","
+      },
+      {
+        "line": 128,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\generated\\unreal_portfolio_intake.json": [
+      {
+        "line": 575,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\","
+      },
+      {
+        "line": 592,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\","
+      },
+      {
+        "line": 609,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\","
+      },
+      {
+        "line": 626,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\","
+      },
+      {
+        "line": 669,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\","
+      },
+      {
+        "line": 699,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\","
+      },
+      {
+        "line": 716,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\","
+      },
+      {
+        "line": 733,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\","
+      },
+      {
+        "line": 750,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\","
+      },
+      {
+        "line": 767,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\","
+      },
+      {
+        "line": 784,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\","
+      },
+      {
+        "line": 801,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\","
+      },
+      {
+        "line": 818,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\","
+      },
+      {
+        "line": 835,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\my-site-clean\\generated\\musical_ornament_kitbash_catalog.json": [
+      {
+        "line": 199,
+        "orig": "\"fbx_export\": \"G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\",",
+        "replaced": "\"fbx_export\": \"C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\","
+      },
+      {
+        "line": 200,
+        "orig": "\"product_root\": \"G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\"",
+        "replaced": "\"product_root\": \"C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\my-site-clean\\generated\\renders_config.json": [
+      {
+        "line": 11,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\","
+      },
+      {
+        "line": 20,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\","
+      },
+      {
+        "line": 29,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\","
+      },
+      {
+        "line": 38,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\","
+      },
+      {
+        "line": 47,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\","
+      },
+      {
+        "line": 56,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\","
+      },
+      {
+        "line": 65,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\","
+      },
+      {
+        "line": 74,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\","
+      },
+      {
+        "line": 83,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\","
+      },
+      {
+        "line": 92,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\","
+      },
+      {
+        "line": 101,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\","
+      },
+      {
+        "line": 110,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\","
+      },
+      {
+        "line": 119,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\","
+      },
+      {
+        "line": 128,
+        "orig": "\"path\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\",",
+        "replaced": "\"path\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\my-site-clean\\generated\\unreal_portfolio_intake.json": [
+      {
+        "line": 575,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\","
+      },
+      {
+        "line": 592,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\","
+      },
+      {
+        "line": 609,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\","
+      },
+      {
+        "line": 626,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\","
+      },
+      {
+        "line": 669,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\","
+      },
+      {
+        "line": 699,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\","
+      },
+      {
+        "line": 716,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\","
+      },
+      {
+        "line": 733,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\","
+      },
+      {
+        "line": 750,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\","
+      },
+      {
+        "line": 767,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\","
+      },
+      {
+        "line": 784,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\","
+      },
+      {
+        "line": 801,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\","
+      },
+      {
+        "line": 818,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\","
+      },
+      {
+        "line": 835,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\docs\\CURRENT_SYSTEM_MAP.md": [
+      {
+        "line": 3,
+        "orig": "> Read-only audit snapshot. Captured 2026-06-25 from `G:/EnvironmentPortfolio/BS_GodFile`.",
+        "replaced": "> Read-only audit snapshot. Captured 2026-06-25 from `C:/EnvironmentPortfolio/BS_GodFile`."
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\IMPRESSIONIST_SYSTEM.md": [
+      {
+        "line": 201,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\MATERIAL_INTEGRATION.md": [
+      {
+        "line": 136,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\"                 # or --force to refresh groups",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\"                 # or --force to refresh groups"
+      },
+      {
+        "line": 149,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\MATERIAL_LIBRARY_AUDIT.md": [
+      {
+        "line": 54,
+        "orig": "python \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\"",
+        "replaced": "python \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\""
+      },
+      {
+        "line": 90,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\MATERIAL_MIGRATION.md": [
+      {
+        "line": 212,
+        "orig": "`py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\"`",
+        "replaced": "`py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\"`"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\MATERIAL_NODE_TREE_REVIEW.md": [
+      {
+        "line": 167,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\" --force",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\" --force"
+      },
+      {
+        "line": 173,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\" --force",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\" --force"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\PROJECT_HEALTH_24H.md": [
+      {
+        "line": 4,
+        "orig": "**Repo:** `G:/EnvironmentPortfolio/BS_GodFile`",
+        "replaced": "**Repo:** `C:/EnvironmentPortfolio/BS_GodFile`"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\RELEASE_VALIDATION_REPORT.md": [
+      {
+        "line": 4,
+        "orig": "**Repo:** `G:/EnvironmentPortfolio/BS_GodFile`",
+        "replaced": "**Repo:** `C:/EnvironmentPortfolio/BS_GodFile`"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\TD_PAGE_DESIGN_SPEC_2026-07-18.md": [
+      {
+        "line": 4,
+        "orig": "Source of truth: `G:/EnvironmentPortfolio/BS_GodFile/my-site-clean/` \u2014 **do not modify**; this doc is the contract for whoever authors the new page.",
+        "replaced": "Source of truth: `C:/EnvironmentPortfolio/BS_GodFile/my-site-clean/` \u2014 **do not modify**; this doc is the contract for whoever authors the new page."
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\TOON_MIGRATION_RUNBOOK.md": [
+      {
+        "line": 87,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\UE58_REDIRECTOR_CLEANUP.md": [
+      {
+        "line": 23,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\scripts\\capture_material_previews.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_material_previews.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_material_previews.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\Gumroad\\FAB_SDF_PACK_MANIFEST.md": [
+      {
+        "line": 137,
+        "orig": "G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/",
+        "replaced": "C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/"
+      },
+      {
+        "line": 143,
+        "orig": "G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash/FBX/",
+        "replaced": "C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash/FBX/"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\MelodiaMelusina\\review_copies\\project_docs\\Gumroad\\SKU1_SCREENSHOT_CHECKLIST.md": [
+      {
+        "line": 29,
+        "orig": "G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/",
+        "replaced": "C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\breakdown_editor.py": [
+      {
+        "line": 27,
+        "orig": "PROJECT_ROOT = \"G:/EnvironmentPortfolio/BS_GodFile\"",
+        "replaced": "PROJECT_ROOT = \"C:/EnvironmentPortfolio/BS_GodFile\""
+      },
+      {
+        "line": 916,
+        "orig": "default=\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/breakdown_report.json\",",
+        "replaced": "default=\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/breakdown_report.json\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\orchestrator.py": [
+      {
+        "line": 18,
+        "orig": "PROJECT_ROOT = \"G:/EnvironmentPortfolio/BS_GodFile\"",
+        "replaced": "PROJECT_ROOT = \"C:/EnvironmentPortfolio/BS_GodFile\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\touchdesigner_validator.py": [
+      {
+        "line": 29,
+        "orig": "PROJECT_ROOT = \"G:/EnvironmentPortfolio/BS_GodFile\"",
+        "replaced": "PROJECT_ROOT = \"C:/EnvironmentPortfolio/BS_GodFile\""
+      },
+      {
+        "line": 697,
+        "orig": "default=\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/touchdesigner_validation_report.json\",",
+        "replaced": "default=\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/touchdesigner_validation_report.json\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\IMPRESSIONIST_SYSTEM.md": [
+      {
+        "line": 201,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\MATERIAL_INTEGRATION.md": [
+      {
+        "line": 136,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\"                 # or --force to refresh groups",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\"                 # or --force to refresh groups"
+      },
+      {
+        "line": 149,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\MATERIAL_LIBRARY_AUDIT.md": [
+      {
+        "line": 54,
+        "orig": "python \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\"",
+        "replaced": "python \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\""
+      },
+      {
+        "line": 90,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\MATERIAL_MIGRATION.md": [
+      {
+        "line": 212,
+        "orig": "`py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\"`",
+        "replaced": "`py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\"`"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\MATERIAL_NODE_TREE_REVIEW.md": [
+      {
+        "line": 167,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\" --force",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\" --force"
+      },
+      {
+        "line": 173,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\" --force",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\" --force"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\PROJECT_HEALTH_24H.md": [
+      {
+        "line": 4,
+        "orig": "**Repo:** `G:/EnvironmentPortfolio/BS_GodFile`",
+        "replaced": "**Repo:** `C:/EnvironmentPortfolio/BS_GodFile`"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\RELEASE_VALIDATION_REPORT.md": [
+      {
+        "line": 4,
+        "orig": "**Repo:** `G:/EnvironmentPortfolio/BS_GodFile`",
+        "replaced": "**Repo:** `C:/EnvironmentPortfolio/BS_GodFile`"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\TD_PAGE_DESIGN_SPEC_2026-07-18.md": [
+      {
+        "line": 4,
+        "orig": "Source of truth: `G:/EnvironmentPortfolio/BS_GodFile/my-site-clean/` \u2014 **do not modify**; this doc is the contract for whoever authors the new page.",
+        "replaced": "Source of truth: `C:/EnvironmentPortfolio/BS_GodFile/my-site-clean/` \u2014 **do not modify**; this doc is the contract for whoever authors the new page."
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\TOON_MIGRATION_RUNBOOK.md": [
+      {
+        "line": 87,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\UE58_REDIRECTOR_CLEANUP.md": [
+      {
+        "line": 23,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\retarget_mmd_zunzun.py": [
+      {
+        "line": 8,
+        "orig": "sys.path.append(r\"G:/EnvironmentPortfolio/BS_GodFile/Tools\")",
+        "replaced": "sys.path.append(r\"C:/EnvironmentPortfolio/BS_GodFile/Tools\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\run_headless_mocap_retarget.ps1": [
+      {
+        "line": 7,
+        "orig": "$Script = 'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py'",
+        "replaced": "$Script = 'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\safe_root_sweep.py": [
+      {
+        "line": 12,
+        "orig": "python safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out report.json",
+        "replaced": "python safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out report.json"
+      },
+      {
+        "line": 15,
+        "orig": "python safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out report.json --diffs diffs.patch",
+        "replaced": "python safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out report.json --diffs diffs.patch"
+      },
+      {
+        "line": 18,
+        "orig": "python safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --apply --backup-dir backups/",
+        "replaced": "python safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --apply --backup-dir backups/"
+      },
+      {
+        "line": 117,
+        "orig": "parser.add_argument(\"--old\", required=True, help=\"Old root to replace, e.g. 'G:/EnvironmentPortfolio'\")",
+        "replaced": "parser.add_argument(\"--old\", required=True, help=\"Old root to replace, e.g. 'C:/EnvironmentPortfolio'\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\setup_zunzun_studio.py": [
+      {
+        "line": 12,
+        "orig": "Saves: G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/ZunZun_studio.blend",
+        "replaced": "Saves: C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/ZunZun_studio.blend"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\_TouchDesigner\\grandmaster_melodia\\scripts\\build_audio.py": [
+      {
+        "line": 12,
+        "orig": "# afi.par.file = 'G:/EnvironmentPortfolio/VoiceSynthResearch/output.wav'",
+        "replaced": "# afi.par.file = 'C:/EnvironmentPortfolio/VoiceSynthResearch/output.wav'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\_github_deploy\\generated\\musical_ornament_kitbash_catalog.json": [
+      {
+        "line": 199,
+        "orig": "\"fbx_export\": \"G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\",",
+        "replaced": "\"fbx_export\": \"C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\","
+      },
+      {
+        "line": 200,
+        "orig": "\"product_root\": \"G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\"",
+        "replaced": "\"product_root\": \"C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\_github_deploy\\generated\\unreal_portfolio_intake.json": [
+      {
+        "line": 575,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190400_2048x2048.png\","
+      },
+      {
+        "line": 592,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190853_2048x2048.png\","
+      },
+      {
+        "line": 609,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_families_review.png\","
+      },
+      {
+        "line": 626,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Materials/grid_showcase_20260627_190121_2048x2048.png\","
+      },
+      {
+        "line": 669,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Breakdown/breakdown_level_Cam_Breakdown_Shader_20260708_190112_1920x1080.png\","
+      },
+      {
+        "line": 699,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_viewport_20260627_190846_1920x1080.png\","
+      },
+      {
+        "line": 716,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190109_1920x1080.png\","
+      },
+      {
+        "line": 733,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260627_190353_1920x1080.png\","
+      },
+      {
+        "line": 750,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\","
+      },
+      {
+        "line": 767,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_083145_1920x1080.png\","
+      },
+      {
+        "line": 784,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191436_1920x1080.png\","
+      },
+      {
+        "line": 801,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_Cam_Hero_Establishing_20260708_191145_1920x1080.png\","
+      },
+      {
+        "line": 818,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_190653_1920x1080.png\","
+      },
+      {
+        "line": 835,
+        "orig": "\"source_path\":  \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\",",
+        "replaced": "\"source_path\":  \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260708_191409_1920x1080.png\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\SourceControl\\UncontrolledChangelists.json": [
+      {
+        "line": 8,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/ZenForestTest.umap\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/ZenForestTest.umap\","
+      },
+      {
+        "line": 9,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/SK_Melusina_Skeleton.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/SK_Melusina_Skeleton.uasset\","
+      },
+      {
+        "line": 10,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.uasset\","
+      },
+      {
+        "line": 11,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/BP_Melusina.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/BP_Melusina.uasset\","
+      },
+      {
+        "line": 12,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle.uasset\","
+      },
+      {
+        "line": 13,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.uasset\","
+      },
+      {
+        "line": 14,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Cube_007.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Cube_007.uasset\","
+      },
+      {
+        "line": 15,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Levels/Opening/L_MelusinaMorning.umap\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Levels/Opening/L_MelusinaMorning.umap\","
+      },
+      {
+        "line": 16,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/_PROJECT/04_Materials/Masters/M_Universal_Enhanced_Crystal.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/_PROJECT/04_Materials/Masters/M_Universal_Enhanced_Crystal.uasset\","
+      },
+      {
+        "line": 17,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/MI_Universal_IridescentShell.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/MI_Universal_IridescentShell.uasset\","
+      },
+      {
+        "line": 18,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/MI_Universal_Default.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/MI_Universal_Default.uasset\","
+      },
+      {
+        "line": 19,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_bed_001.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_bed_001.uasset\","
+      },
+      {
+        "line": 20,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Cube_003.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Cube_003.uasset\","
+      },
+      {
+        "line": 21,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Lissajous_Rail2_003.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Lissajous_Rail2_003.uasset\","
+      },
+      {
+        "line": 22,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Cube_004.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_Cube_004.uasset\","
+      },
+      {
+        "line": 23,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_SM_bedframeredux.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_SM_bedframeredux.uasset\","
+      },
+      {
+        "line": 24,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_bed_001_fbm/interiorwalltrim_quartz_Roughness.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_bed_001_fbm/interiorwalltrim_quartz_Roughness.uasset\","
+      },
+      {
+        "line": 25,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_bed_001_fbm/interiorwalltrim_quartz_BaseColor.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_bed_001_fbm/interiorwalltrim_quartz_BaseColor.uasset\","
+      },
+      {
+        "line": 26,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Universal_TrimsheetBlend.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Universal_TrimsheetBlend.uasset\","
+      },
+      {
+        "line": 27,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/Stylized/MI_ZenTrim_FlowersLittle.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Instances/Environment/Stylized/MI_ZenTrim_FlowersLittle.uasset\","
+      },
+      {
+        "line": 28,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/MRQ/Presets/MRQ_Preset_Cinematic.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/MRQ/Presets/MRQ_Preset_Cinematic.uasset\","
+      },
+      {
+        "line": 29,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/MRQ/Presets/MRQ_Preset_MI_Loop_1080.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/MRQ/Presets/MRQ_Preset_MI_Loop_1080.uasset\","
+      },
+      {
+        "line": 30,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_SurrealRoof_HIP.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Greybox_Kit/SM_SurrealRoof_HIP.uasset\","
+      },
+      {
+        "line": 31,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_BaseColor.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_BaseColor.uasset\","
+      },
+      {
+        "line": 32,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Normal.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Normal.uasset\","
+      },
+      {
+        "line": 33,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Roughness.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Roughness.uasset\","
+      },
+      {
+        "line": 34,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Metallic.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Metallic.uasset\","
+      },
+      {
+        "line": 35,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Height.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/Sand/T_Sand_Height.uasset\","
+      },
+      {
+        "line": 36,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_BaseColor.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_BaseColor.uasset\","
+      },
+      {
+        "line": 37,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Normal.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Normal.uasset\","
+      },
+      {
+        "line": 38,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Roughness.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Roughness.uasset\","
+      },
+      {
+        "line": 39,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Metallic.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Metallic.uasset\","
+      },
+      {
+        "line": 40,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Height.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/GildedPea/T_GildedPea_Height.uasset\","
+      },
+      {
+        "line": 41,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_BaseColor.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_BaseColor.uasset\","
+      },
+      {
+        "line": 42,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Normal.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Normal.uasset\","
+      },
+      {
+        "line": 43,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Roughness.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Roughness.uasset\","
+      },
+      {
+        "line": 44,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Metallic.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Metallic.uasset\","
+      },
+      {
+        "line": 45,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Height.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/PrettyRock/T_PrettyRock_Height.uasset\","
+      },
+      {
+        "line": 46,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_BaseColor.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_BaseColor.uasset\","
+      },
+      {
+        "line": 47,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Normal.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Normal.uasset\","
+      },
+      {
+        "line": 48,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Roughness.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Roughness.uasset\","
+      },
+      {
+        "line": 49,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Metallic.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Metallic.uasset\","
+      },
+      {
+        "line": 50,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Height.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/PBR_Sets/SadRock/T_SadRock_Height.uasset\","
+      },
+      {
+        "line": 51,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Environments/L_FallenMoon.umap\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Environments/L_FallenMoon.umap\","
+      },
+      {
+        "line": 52,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Functions/MF_DF_ContactBlend.uasset\",",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Materials/Functions/MF_DF_ContactBlend.uasset\","
+      },
+      {
+        "line": 1660,
+        "orig": "\"G:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/_Archive/FromArtMeshesSkeletal/SK_Melusina.uasset\"",
+        "replaced": "\"C:/EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/_Archive/FromArtMeshesSkeletal/SK_Melusina.uasset\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Products\\MusicalOrnamentKitbash\\product_manifest.json": [
+      {
+        "line": 199,
+        "orig": "\"fbx_export\": \"G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\",",
+        "replaced": "\"fbx_export\": \"C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes\","
+      },
+      {
+        "line": 200,
+        "orig": "\"product_root\": \"G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\"",
+        "replaced": "\"product_root\": \"C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\pipeline\\figma\\figma_variables_update.json": [
+      {
+        "line": 41,
+        "orig": "\"value\": \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\"",
+        "replaced": "\"value\": \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\Gumroad\\FAB_SDF_PACK_MANIFEST.md": [
+      {
+        "line": 137,
+        "orig": "G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/",
+        "replaced": "C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/"
+      },
+      {
+        "line": 143,
+        "orig": "G:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash/FBX/",
+        "replaced": "C:/EnvironmentPortfolio/BS_GodFile/Products/MusicalOrnamentKitbash/FBX/"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\Gumroad\\SKU1_SCREENSHOT_CHECKLIST.md": [
+      {
+        "line": 29,
+        "orig": "G:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/",
+        "replaced": "C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/MusicalOrnamentalMeshes/"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\Handoffs\\G_ROOT_AUDIT_2026-08-06.md": [
+      {
+        "line": 8,
+        "orig": "- `.clean_repo/import.fi` \u2014 many `py \"G:/EnvironmentPortfolio/...\"` entries (huge file; contains pipeline invocations)",
+        "replaced": "- `.clean_repo/import.fi` \u2014 many `py \"C:/EnvironmentPortfolio/...\"` entries (huge file; contains pipeline invocations)"
+      },
+      {
+        "line": 10,
+        "orig": "- `deploy/mcp_git.py` \u2014 hardcoded `PROJECT_ROOT = \"G:/EnvironmentPortfolio/BS_GodFile\"`",
+        "replaced": "- `deploy/mcp_git.py` \u2014 hardcoded `PROJECT_ROOT = \"C:/EnvironmentPortfolio/BS_GodFile\"`"
+      },
+      {
+        "line": 33,
+        "orig": "Get-ChildItem -Recurse -File | Select-String -Pattern \"G:\\\\EnvironmentPortfolio|G:/EnvironmentPortfolio\" | Select-Object Path, LineNumber, Line | Out-File G_root_matches.txt -Encoding utf8",
+        "replaced": "Get-ChildItem -Recurse -File | Select-String -Pattern \"G:\\\\EnvironmentPortfolio|C:/EnvironmentPortfolio\" | Select-Object Path, LineNumber, Line | Out-File G_root_matches.txt -Encoding utf8"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\Handoffs\\G_ROOT_SWEEP_INSTRUCTIONS.md": [
+      {
+        "line": 15,
+        "orig": "python tools/safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out tools/g_root_report.json --diffs tools/diffs.patch",
+        "replaced": "python tools/safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out tools/g_root_report.json --diffs tools/diffs.patch"
+      },
+      {
+        "line": 24,
+        "orig": "python tools/safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --apply --backup-dir tools/g_root_backups",
+        "replaced": "python tools/safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --apply --backup-dir tools/g_root_backups"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\apply_compositing_texture_defaults.py": [
+      {
+        "line": 6,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_compositing_texture_defaults.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_compositing_texture_defaults.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\apply_starter_instances.py": [
+      {
+        "line": 6,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\""
+      },
+      {
+        "line": 10,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\archive_unused_instances.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/archive_unused_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/archive_unused_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_bp_melusina.py": [
+      {
+        "line": 14,
+        "orig": "REPORT_PATH = \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/BP_Melusina_audit.json\"",
+        "replaced": "REPORT_PATH = \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/BP_Melusina_audit.json\""
+      },
+      {
+        "line": 84,
+        "orig": "os.makedirs(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia\", exist_ok=True)",
+        "replaced": "os.makedirs(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia\", exist_ok=True)"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_dead_material_nodes.py": [
+      {
+        "line": 3,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_dead_material_nodes.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_dead_material_nodes.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_material_library.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_material_parameters.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_parameters.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_parameters.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_sakura_petal_niagara.py": [
+      {
+        "line": 7,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sakura_petal_niagara.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sakura_petal_niagara.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_sirmelodious_materials.py": [
+      {
+        "line": 4,
+        "orig": "exec(open(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sirmelodious_materials.py').read())",
+        "replaced": "exec(open(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sirmelodious_materials.py').read())"
+      },
+      {
+        "line": 17,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/sirmelodious_material_audit.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/sirmelodious_material_audit.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_static_mesh_materials.py": [
+      {
+        "line": 15,
+        "orig": "REPORT_PATH = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/static_mesh_material_instance_audit.json\")",
+        "replaced": "REPORT_PATH = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/static_mesh_material_instance_audit.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\audit_zenforest_niagara.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\build_melodia_sdf_batch.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_melodia_sdf_batch.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_melodia_sdf_batch.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\capture_distance_field_lab.py": [
+      {
+        "line": 2,
+        "orig": "sys.path.append('G:/EnvironmentPortfolio/BS_GodFile/Content/Python')",
+        "replaced": "sys.path.append('C:/EnvironmentPortfolio/BS_GodFile/Content/Python')"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\capture_distance_field_lab_distances.py": [
+      {
+        "line": 2,
+        "orig": "sys.path.append('G:/EnvironmentPortfolio/BS_GodFile/Content/Python')",
+        "replaced": "sys.path.append('C:/EnvironmentPortfolio/BS_GodFile/Content/Python')"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\capture_material_previews.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_material_previews.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_material_previews.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\capture_scene_metadata.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_scene_metadata.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_scene_metadata.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\convert_masters_to_substrate_toon.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\""
+      },
+      {
+        "line": 11,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\diag_retarget_skeleton.py": [
+      {
+        "line": 47,
+        "orig": "with open(r'G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/skeleton_diag.json', 'w') as f:",
+        "replaced": "with open(r'C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/skeleton_diag.json', 'w') as f:"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\ensure_portfolio_instances.py": [
+      {
+        "line": 8,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/ensure_portfolio_instances.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/ensure_portfolio_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\execute_zenforest_niagara_mcp.py": [
+      {
+        "line": 9,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\export_screenshot.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\""
+      },
+      {
+        "line": 5,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\" --width 1920 --height 1080",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\" --width 1920 --height 1080"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\fix_migration_redirectors.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\fix_obvious_worldgrid_materials.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\fix_sirmelodious_materials.py": [
+      {
+        "line": 7,
+        "orig": "exec(open(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_sirmelodious_materials.py').read())",
+        "replaced": "exec(open(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_sirmelodious_materials.py').read())"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\fix_zenforest_niagara_renderer_materials.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\github_deployer.py": [
+      {
+        "line": 23,
+        "orig": "GITHUB_REPO_DIR = Path(\"G:/EnvironmentPortfolio/_github_deploy\")  # Worktree of my-site repo",
+        "replaced": "GITHUB_REPO_DIR = Path(\"C:/EnvironmentPortfolio/_github_deploy\")  # Worktree of my-site repo"
+      },
+      {
+        "line": 89,
+        "orig": "_log(f\"GitHub worktree not found at {repo_path}. Expected worktree at G:/EnvironmentPortfolio/_github_deploy\")",
+        "replaced": "_log(f\"GitHub worktree not found at {repo_path}. Expected worktree at C:/EnvironmentPortfolio/_github_deploy\")"
+      },
+      {
+        "line": 90,
+        "orig": "raise RuntimeError(\"GitHub worktree not found. Run 'git worktree add _github_deploy main' from G:/EnvironmentPortfolio\")",
+        "replaced": "raise RuntimeError(\"GitHub worktree not found. Run 'git worktree add _github_deploy main' from C:/EnvironmentPortfolio\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\headless_retarget_mocap.py": [
+      {
+        "line": 5,
+        "orig": "-run=pythonscript -script='G:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py' `",
+        "replaced": "-run=pythonscript -script='C:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py' `"
+      },
+      {
+        "line": 24,
+        "orig": "REPORT = r'G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report.json'",
+        "replaced": "REPORT = r'C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report.json'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\import_melusina_hair.py": [
+      {
+        "line": 14,
+        "orig": "FBX = r\"G:/EnvironmentPortfolio/BS_GodFile/Exports/SK_MelusinaHair.fbx\"",
+        "replaced": "FBX = r\"C:/EnvironmentPortfolio/BS_GodFile/Exports/SK_MelusinaHair.fbx\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\import_melusina_updated_shirt.py": [
+      {
+        "line": 10,
+        "orig": "exec(open(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_melusina_updated_shirt.py').read())",
+        "replaced": "exec(open(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_melusina_updated_shirt.py').read())"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\import_world_manifest.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\""
+      },
+      {
+        "line": 5,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" manifest.json",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" manifest.json"
+      },
+      {
+        "line": 9,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\integrate_compositing_textures.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_compositing_textures.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_compositing_textures.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\integrate_instances_light.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_instances_light.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_instances_light.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\introspect_blueprint_api.py": [
+      {
+        "line": 9,
+        "orig": "REPORT_PATH = \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/blueprint_api_introspection.json\"",
+        "replaced": "REPORT_PATH = \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/blueprint_api_introspection.json\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\migrate_props_from_source.py": [
+      {
+        "line": 20,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/migrate_props_from_source.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/migrate_props_from_source.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\organize_universal_instances.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/organize_universal_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/organize_universal_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\package_ornament_kitbash.py": [
+      {
+        "line": 20,
+        "orig": "PROJECT_ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "PROJECT_ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\rebuild_material_instances.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/rebuild_material_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/rebuild_material_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\repair_roguelike_room_level_blueprints.py": [
+      {
+        "line": 15,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_level_blueprints.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_level_blueprints.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\repair_roguelike_room_loading.py": [
+      {
+        "line": 12,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_loading_repair.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_loading_repair.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\repair_zenforest_niagara.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\reparent_unified_instances.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/reparent_unified_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/reparent_unified_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\reset_speedtree_wind_instances.py": [
+      {
+        "line": 29,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/speedtree_wind_reset.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/speedtree_wind_reset.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\review_portfolio_masters.py": [
+      {
+        "line": 3,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/review_portfolio_masters.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/review_portfolio_masters.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\route_melodia_textures.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\""
+      },
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --dry-run",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --dry-run"
+      },
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --family Voronoi,Vein,Marble",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --family Voronoi,Vein,Marble"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_distance_field_mcp.py": [
+      {
+        "line": 14,
+        "orig": "target = sys.argv[1] if len(sys.argv) > 1 else \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_distance_field_blend_lab.py\"",
+        "replaced": "target = sys.argv[1] if len(sys.argv) > 1 else \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_distance_field_blend_lab.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_editor_integration.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_editor_integration.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_editor_integration.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_finalization_all.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_finalization_all.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_finalization_all.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_force_universal.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_full_stack_pipeline.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_full_stack_pipeline.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_full_stack_pipeline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_glide_update.py": [
+      {
+        "line": 2,
+        "orig": "sys.path.insert(0, r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python')",
+        "replaced": "sys.path.insert(0, r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python')"
+      },
+      {
+        "line": 6,
+        "orig": "script_path = r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/update_glide_melusina.py'",
+        "replaced": "script_path = r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/update_glide_melusina.py'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_master_material_loop_tick.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\""
+      },
+      {
+        "line": 9,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_material_finish_pipeline.py": [
+      {
+        "line": 15,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_material_finish_pipeline.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_material_finish_pipeline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_portfolio_capture.py": [
+      {
+        "line": 4,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_capture.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_capture.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_portfolio_sdf_texture_pipeline.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_sdf_texture_pipeline.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_sdf_texture_pipeline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_sakura_niagara_plan.py": [
+      {
+        "line": 10,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_toon_conversion_pending.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_toon_conversion_pending.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_toon_conversion_pending.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\run_wild_session.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_wild_session.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_wild_session.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_audio_outline.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_audio_outline.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_audio_outline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_fabric_type.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_fabric_type.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_fabric_type.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_impressionist_materials.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_landscape_height_blend.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_master_toon.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_toon.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_toon.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_master_universal.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\""
+      },
+      {
+        "line": 12,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_master_water.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_water.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_water.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_material_functions.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_material_functions.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_material_functions.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_niagara_library.py": [
+      {
+        "line": 10,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_niagara_library.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_niagara_library.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_portfolio_mpc.py": [
+      {
+        "line": 11,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_portfolio_mpc.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_portfolio_mpc.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_sakura_instances.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_sakura_niagara.py": [
+      {
+        "line": 14,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_sakura_scene.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sakura_scene.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sakura_scene.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_sdf_materials.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_sdf_maturation.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_maturation.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_maturation.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_storybook_outline.py": [
+      {
+        "line": 10,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\""
+      },
+      {
+        "line": 11,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\" --rebuild",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\" --rebuild"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_stylized_sdf.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_stylized_sdf.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_stylized_sdf.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_template_showcase.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_template_showcase.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_template_showcase.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_time_of_day_mpc.py": [
+      {
+        "line": 13,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\""
+      },
+      {
+        "line": 261,
+        "orig": "'py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --rebuild-master'",
+        "replaced": "'py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --rebuild-master'"
+      },
+      {
+        "line": 264,
+        "orig": "'py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --apply'",
+        "replaced": "'py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --apply'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\setup_universal_instances.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\verify_melodia_zen_smoke.py": [
+      {
+        "line": 10,
+        "orig": "REPORT_PATH = \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/ZenSmoke_verify.json\"",
+        "replaced": "REPORT_PATH = \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/ZenSmoke_verify.json\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_organize_function_columns.py": [
+      {
+        "line": 142,
+        "orig": "with open('G:/EnvironmentPortfolio/BS_GodFile/Saved/function_comment_manifest.json', 'w') as f:",
+        "replaced": "with open('C:/EnvironmentPortfolio/BS_GodFile/Saved/function_comment_manifest.json', 'w') as f:"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_check_anim_mcp.py": [
+      {
+        "line": 54,
+        "orig": "r = mcp_run(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_anim.py')",
+        "replaced": "r = mcp_run(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_anim.py')"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_check_autoimport_mcp.py": [
+      {
+        "line": 34,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_autoimport.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_autoimport.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_check_import_methods_mcp.py": [
+      {
+        "line": 18,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_import_methods.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_import_methods.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_check_skeletons_mcp.py": [
+      {
+        "line": 40,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_skeletons.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_skeletons.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_create_blendspace_mcp.py": [
+      {
+        "line": 98,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_blendspace.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_blendspace.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_create_bs2_mcp.py": [
+      {
+        "line": 56,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs2.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs2.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_create_bs3_mcp.py": [
+      {
+        "line": 74,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs3.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs3.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_create_bs4_mcp.py": [
+      {
+        "line": 63,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs4.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs4.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_create_bs5_mcp.py": [
+      {
+        "line": 47,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs5.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs5.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_create_bs6_mcp.py": [
+      {
+        "line": 48,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs6.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs6.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_deep_check_anims_mcp.py": [
+      {
+        "line": 55,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_deep_check_anims.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_deep_check_anims.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_find_melusina_anims_mcp.py": [
+      {
+        "line": 36,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_melusina_anims.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_melusina_anims.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_find_valid_anims_mcp.py": [
+      {
+        "line": 36,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_valid_anims.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_valid_anims.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_fix_skeletons2_mcp.py": [
+      {
+        "line": 72,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons2.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons2.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_fix_skeletons_mcp.py": [
+      {
+        "line": 43,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_import_missing_mocap.py": [
+      {
+        "line": 14,
+        "orig": "REPORT = r\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report_phase4.json\"",
+        "replaced": "REPORT = r\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report_phase4.json\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_mcp_runner.py": [
+      {
+        "line": 13,
+        "orig": "script_path = \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_import_missing_mocap.py\"",
+        "replaced": "script_path = \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_import_missing_mocap.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_proper_api.py": [
+      {
+        "line": 3,
+        "orig": "sys.path.insert(0, \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python\")",
+        "replaced": "sys.path.insert(0, \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_run_check.py": [
+      {
+        "line": 9,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_run_check2.py": [
+      {
+        "line": 9,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_run_skeleton.py": [
+      {
+        "line": 29,
+        "orig": "\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_set_abp_skeleton_temp.py\",",
+        "replaced": "\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_set_abp_skeleton_temp.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import2_mcp.py": [
+      {
+        "line": 40,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import2.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import2.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import3_mcp.py": [
+      {
+        "line": 75,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import3.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import3.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import4_mcp.py": [
+      {
+        "line": 73,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import4.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import4.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import5_mcp.py": [
+      {
+        "line": 66,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import5.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import5.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import6_mcp.py": [
+      {
+        "line": 47,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import6.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import6.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import7_mcp.py": [
+      {
+        "line": 50,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import7.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import7.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import8_mcp.py": [
+      {
+        "line": 60,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import8.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import8.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import9_mcp.py": [
+      {
+        "line": 72,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import9.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import9.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\_phase4_try_import_mcp.py": [
+      {
+        "line": 37,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\gmm\\ui\\figma_assets.py": [
+      {
+        "line": 3,
+        "orig": "Source: G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/Source/MelodiaGameUI/",
+        "replaced": "Source: C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/Source/MelodiaGameUI/"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\apply_compositing_texture_defaults.py": [
+      {
+        "line": 6,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_compositing_texture_defaults.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_compositing_texture_defaults.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\apply_starter_instances.py": [
+      {
+        "line": 6,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\""
+      },
+      {
+        "line": 10,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\archive_unused_instances.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/archive_unused_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/archive_unused_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_bp_melusina.py": [
+      {
+        "line": 14,
+        "orig": "REPORT_PATH = \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/BP_Melusina_audit.json\"",
+        "replaced": "REPORT_PATH = \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/BP_Melusina_audit.json\""
+      },
+      {
+        "line": 84,
+        "orig": "os.makedirs(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia\", exist_ok=True)",
+        "replaced": "os.makedirs(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia\", exist_ok=True)"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_dead_material_nodes.py": [
+      {
+        "line": 3,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_dead_material_nodes.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_dead_material_nodes.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_material_library.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_library.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_material_parameters.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_parameters.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_material_parameters.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_sakura_petal_niagara.py": [
+      {
+        "line": 7,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sakura_petal_niagara.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sakura_petal_niagara.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_sirmelodious_materials.py": [
+      {
+        "line": 4,
+        "orig": "exec(open(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sirmelodious_materials.py').read())",
+        "replaced": "exec(open(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_sirmelodious_materials.py').read())"
+      },
+      {
+        "line": 17,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/sirmelodious_material_audit.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/sirmelodious_material_audit.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_static_mesh_materials.py": [
+      {
+        "line": 15,
+        "orig": "REPORT_PATH = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/static_mesh_material_instance_audit.json\")",
+        "replaced": "REPORT_PATH = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/static_mesh_material_instance_audit.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\audit_zenforest_niagara.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\build_melodia_sdf_batch.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_melodia_sdf_batch.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_melodia_sdf_batch.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\capture_distance_field_lab.py": [
+      {
+        "line": 2,
+        "orig": "sys.path.append('G:/EnvironmentPortfolio/BS_GodFile/Content/Python')",
+        "replaced": "sys.path.append('C:/EnvironmentPortfolio/BS_GodFile/Content/Python')"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\capture_distance_field_lab_distances.py": [
+      {
+        "line": 2,
+        "orig": "sys.path.append('G:/EnvironmentPortfolio/BS_GodFile/Content/Python')",
+        "replaced": "sys.path.append('C:/EnvironmentPortfolio/BS_GodFile/Content/Python')"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\capture_material_previews.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_material_previews.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_material_previews.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\capture_scene_metadata.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_scene_metadata.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/capture_scene_metadata.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\convert_masters_to_substrate_toon.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\""
+      },
+      {
+        "line": 11,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/convert_masters_to_substrate_toon.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\diag_retarget_skeleton.py": [
+      {
+        "line": 47,
+        "orig": "with open(r'G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/skeleton_diag.json', 'w') as f:",
+        "replaced": "with open(r'C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/skeleton_diag.json', 'w') as f:"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\ensure_portfolio_instances.py": [
+      {
+        "line": 8,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/ensure_portfolio_instances.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/ensure_portfolio_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\execute_zenforest_niagara_mcp.py": [
+      {
+        "line": 9,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\export_screenshot.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\""
+      },
+      {
+        "line": 5,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\" --width 1920 --height 1080",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/export_screenshot.py\" --width 1920 --height 1080"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\fix_migration_redirectors.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_migration_redirectors.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\fix_obvious_worldgrid_materials.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\fix_sirmelodious_materials.py": [
+      {
+        "line": 7,
+        "orig": "exec(open(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_sirmelodious_materials.py').read())",
+        "replaced": "exec(open(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/fix_sirmelodious_materials.py').read())"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\fix_zenforest_niagara_renderer_materials.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\github_deployer.py": [
+      {
+        "line": 23,
+        "orig": "GITHUB_REPO_DIR = Path(\"G:/EnvironmentPortfolio/_github_deploy\")  # Worktree of my-site repo",
+        "replaced": "GITHUB_REPO_DIR = Path(\"C:/EnvironmentPortfolio/_github_deploy\")  # Worktree of my-site repo"
+      },
+      {
+        "line": 89,
+        "orig": "_log(f\"GitHub worktree not found at {repo_path}. Expected worktree at G:/EnvironmentPortfolio/_github_deploy\")",
+        "replaced": "_log(f\"GitHub worktree not found at {repo_path}. Expected worktree at C:/EnvironmentPortfolio/_github_deploy\")"
+      },
+      {
+        "line": 90,
+        "orig": "raise RuntimeError(\"GitHub worktree not found. Run 'git worktree add _github_deploy main' from G:/EnvironmentPortfolio\")",
+        "replaced": "raise RuntimeError(\"GitHub worktree not found. Run 'git worktree add _github_deploy main' from C:/EnvironmentPortfolio\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\headless_retarget_mocap.py": [
+      {
+        "line": 5,
+        "orig": "-run=pythonscript -script='G:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py' `",
+        "replaced": "-run=pythonscript -script='C:/EnvironmentPortfolio/BS_GodFile/Content/Python/headless_retarget_mocap.py' `"
+      },
+      {
+        "line": 24,
+        "orig": "REPORT = r'G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report.json'",
+        "replaced": "REPORT = r'C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report.json'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\import_melusina_hair.py": [
+      {
+        "line": 14,
+        "orig": "FBX = r\"G:/EnvironmentPortfolio/BS_GodFile/Exports/SK_MelusinaHair.fbx\"",
+        "replaced": "FBX = r\"C:/EnvironmentPortfolio/BS_GodFile/Exports/SK_MelusinaHair.fbx\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\import_melusina_updated_shirt.py": [
+      {
+        "line": 10,
+        "orig": "exec(open(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_melusina_updated_shirt.py').read())",
+        "replaced": "exec(open(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_melusina_updated_shirt.py').read())"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\import_world_manifest.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\""
+      },
+      {
+        "line": 5,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" manifest.json",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" manifest.json"
+      },
+      {
+        "line": 9,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/import_world_manifest.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\integrate_compositing_textures.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_compositing_textures.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_compositing_textures.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\integrate_instances_light.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_instances_light.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/integrate_instances_light.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\introspect_blueprint_api.py": [
+      {
+        "line": 9,
+        "orig": "REPORT_PATH = \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/blueprint_api_introspection.json\"",
+        "replaced": "REPORT_PATH = \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/blueprint_api_introspection.json\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\migrate_props_from_source.py": [
+      {
+        "line": 20,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/migrate_props_from_source.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/migrate_props_from_source.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\organize_universal_instances.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/organize_universal_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/organize_universal_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\package_ornament_kitbash.py": [
+      {
+        "line": 20,
+        "orig": "PROJECT_ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "PROJECT_ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\rebuild_material_instances.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/rebuild_material_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/rebuild_material_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\repair_roguelike_room_level_blueprints.py": [
+      {
+        "line": 15,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_level_blueprints.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_level_blueprints.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\repair_roguelike_room_loading.py": [
+      {
+        "line": 12,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_loading_repair.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/roguelike_room_loading_repair.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\repair_zenforest_niagara.py": [
+      {
+        "line": 10,
+        "orig": "ROOT = Path(\"G:/EnvironmentPortfolio/BS_GodFile\")",
+        "replaced": "ROOT = Path(\"C:/EnvironmentPortfolio/BS_GodFile\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\reparent_unified_instances.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/reparent_unified_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/reparent_unified_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\reset_speedtree_wind_instances.py": [
+      {
+        "line": 29,
+        "orig": "REPORT = Path(\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/speedtree_wind_reset.json\")",
+        "replaced": "REPORT = Path(\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/speedtree_wind_reset.json\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\review_portfolio_masters.py": [
+      {
+        "line": 3,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/review_portfolio_masters.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/review_portfolio_masters.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\route_melodia_textures.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\""
+      },
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --dry-run",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --dry-run"
+      },
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --family Voronoi,Vein,Marble",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/route_melodia_textures.py\" --family Voronoi,Vein,Marble"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_distance_field_mcp.py": [
+      {
+        "line": 14,
+        "orig": "target = sys.argv[1] if len(sys.argv) > 1 else \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_distance_field_blend_lab.py\"",
+        "replaced": "target = sys.argv[1] if len(sys.argv) > 1 else \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/build_distance_field_blend_lab.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_editor_integration.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_editor_integration.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_editor_integration.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_finalization_all.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_finalization_all.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_finalization_all.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_force_universal.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_full_stack_pipeline.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_full_stack_pipeline.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_full_stack_pipeline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_glide_update.py": [
+      {
+        "line": 2,
+        "orig": "sys.path.insert(0, r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python')",
+        "replaced": "sys.path.insert(0, r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python')"
+      },
+      {
+        "line": 6,
+        "orig": "script_path = r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/update_glide_melusina.py'",
+        "replaced": "script_path = r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/update_glide_melusina.py'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_master_material_loop_tick.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\""
+      },
+      {
+        "line": 9,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\" ^",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_master_material_loop_tick.py\" ^"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_material_finish_pipeline.py": [
+      {
+        "line": 15,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_material_finish_pipeline.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_material_finish_pipeline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_portfolio_capture.py": [
+      {
+        "line": 4,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_capture.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_capture.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_portfolio_sdf_texture_pipeline.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_sdf_texture_pipeline.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_portfolio_sdf_texture_pipeline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_sakura_niagara_plan.py": [
+      {
+        "line": 10,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_toon_conversion_pending.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_toon_conversion_pending.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_toon_conversion_pending.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\run_wild_session.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_wild_session.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_wild_session.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_audio_outline.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_audio_outline.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_audio_outline.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_fabric_type.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_fabric_type.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_fabric_type.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_impressionist_materials.py": [
+      {
+        "line": 8,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_impressionist_materials.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_landscape_height_blend.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_landscape_height_blend.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_master_toon.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_toon.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_toon.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_master_universal.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py\""
+      },
+      {
+        "line": 12,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_master_water.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_water.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_water.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_material_functions.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_material_functions.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_material_functions.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_niagara_library.py": [
+      {
+        "line": 10,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_niagara_library.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_niagara_library.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_portfolio_mpc.py": [
+      {
+        "line": 11,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_portfolio_mpc.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_portfolio_mpc.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_sakura_instances.py": [
+      {
+        "line": 4,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_master_universal.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_sakura_niagara.py": [
+      {
+        "line": 14,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_sakura_niagara_plan.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_sakura_scene.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sakura_scene.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sakura_scene.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_sdf_materials.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_materials.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_sdf_maturation.py": [
+      {
+        "line": 5,
+        "orig": "-ExecutePythonScript=\"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_maturation.py\"",
+        "replaced": "-ExecutePythonScript=\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_sdf_maturation.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_storybook_outline.py": [
+      {
+        "line": 10,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\""
+      },
+      {
+        "line": 11,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\" --rebuild",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_storybook_outline.py\" --rebuild"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_stylized_sdf.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_stylized_sdf.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_stylized_sdf.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_template_showcase.py": [
+      {
+        "line": 9,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_template_showcase.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_template_showcase.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_time_of_day_mpc.py": [
+      {
+        "line": 13,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\""
+      },
+      {
+        "line": 261,
+        "orig": "'py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --rebuild-master'",
+        "replaced": "'py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --rebuild-master'"
+      },
+      {
+        "line": 264,
+        "orig": "'py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --apply'",
+        "replaced": "'py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/setup_time_of_day_mpc.py\" --apply'"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\setup_universal_instances.py": [
+      {
+        "line": 7,
+        "orig": "py \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\"",
+        "replaced": "py \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/apply_starter_instances.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\verify_melodia_zen_smoke.py": [
+      {
+        "line": 10,
+        "orig": "REPORT_PATH = \"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/ZenSmoke_verify.json\"",
+        "replaced": "REPORT_PATH = \"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/ZenSmoke_verify.json\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_organize_function_columns.py": [
+      {
+        "line": 142,
+        "orig": "with open('G:/EnvironmentPortfolio/BS_GodFile/Saved/function_comment_manifest.json', 'w') as f:",
+        "replaced": "with open('C:/EnvironmentPortfolio/BS_GodFile/Saved/function_comment_manifest.json', 'w') as f:"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_check_anim_mcp.py": [
+      {
+        "line": 54,
+        "orig": "r = mcp_run(r'G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_anim.py')",
+        "replaced": "r = mcp_run(r'C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_anim.py')"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_check_autoimport_mcp.py": [
+      {
+        "line": 34,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_autoimport.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_autoimport.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_check_import_methods_mcp.py": [
+      {
+        "line": 18,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_import_methods.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_import_methods.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_check_skeletons_mcp.py": [
+      {
+        "line": 40,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_skeletons.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_skeletons.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_create_blendspace_mcp.py": [
+      {
+        "line": 98,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_blendspace.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_blendspace.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_create_bs2_mcp.py": [
+      {
+        "line": 56,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs2.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs2.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_create_bs3_mcp.py": [
+      {
+        "line": 74,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs3.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs3.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_create_bs4_mcp.py": [
+      {
+        "line": 63,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs4.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs4.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_create_bs5_mcp.py": [
+      {
+        "line": 47,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs5.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs5.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_create_bs6_mcp.py": [
+      {
+        "line": 48,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs6.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_create_bs6.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_deep_check_anims_mcp.py": [
+      {
+        "line": 55,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_deep_check_anims.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_deep_check_anims.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_find_melusina_anims_mcp.py": [
+      {
+        "line": 36,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_melusina_anims.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_melusina_anims.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_find_valid_anims_mcp.py": [
+      {
+        "line": 36,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_valid_anims.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_find_valid_anims.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_fix_skeletons2_mcp.py": [
+      {
+        "line": 72,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons2.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons2.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_fix_skeletons_mcp.py": [
+      {
+        "line": 43,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_fix_skeletons.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_import_missing_mocap.py": [
+      {
+        "line": 14,
+        "orig": "REPORT = r\"G:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report_phase4.json\"",
+        "replaced": "REPORT = r\"C:/EnvironmentPortfolio/BS_GodFile/Saved/Melodia/retarget_report_phase4.json\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_mcp_runner.py": [
+      {
+        "line": 13,
+        "orig": "script_path = \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_import_missing_mocap.py\"",
+        "replaced": "script_path = \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_import_missing_mocap.py\""
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_proper_api.py": [
+      {
+        "line": 3,
+        "orig": "sys.path.insert(0, \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python\")",
+        "replaced": "sys.path.insert(0, \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python\")"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_run_check.py": [
+      {
+        "line": 9,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_run_check2.py": [
+      {
+        "line": 9,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_check_props.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_run_skeleton.py": [
+      {
+        "line": 29,
+        "orig": "\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_set_abp_skeleton_temp.py\",",
+        "replaced": "\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_set_abp_skeleton_temp.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import2_mcp.py": [
+      {
+        "line": 40,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import2.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import2.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import3_mcp.py": [
+      {
+        "line": 75,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import3.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import3.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import4_mcp.py": [
+      {
+        "line": 73,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import4.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import4.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import5_mcp.py": [
+      {
+        "line": 66,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import5.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import5.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import6_mcp.py": [
+      {
+        "line": 47,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import6.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import6.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import7_mcp.py": [
+      {
+        "line": 50,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import7.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import7.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import8_mcp.py": [
+      {
+        "line": 60,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import8.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import8.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import9_mcp.py": [
+      {
+        "line": 72,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import9.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import9.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\_phase4_try_import_mcp.py": [
+      {
+        "line": 37,
+        "orig": "\"params\": {\"command\": \"G:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import.py\",",
+        "replaced": "\"params\": {\"command\": \"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/_phase4_try_import.py\","
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\CompatibilityLabs\\Snapshot_2026-08-06\\Content_Python\\gmm\\ui\\figma_assets.py": [
+      {
+        "line": 3,
+        "orig": "Source: G:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/Source/MelodiaGameUI/",
+        "replaced": "Source: C:/EnvironmentPortfolio/BS_GodFile/Content/EnvSandbox/Textures/Source/MelodiaGameUI/"
+      }
+    ],
+    "C:\\EnvironmentPortfolio\\.github\\PULL_REQUEST_TEMPLATE\\root-sweep.md": [
+      {
+        "line": 6,
+        "orig": "`G:/EnvironmentPortfolio` (or `G:\\EnvironmentPortfolio`) with",
+        "replaced": "`C:/EnvironmentPortfolio` (or `G:\\EnvironmentPortfolio`) with"
+      },
+      {
+        "line": 25,
+        "orig": "python tools/safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out tools/g_root_report.json --diffs tools/diffs.patch",
+        "replaced": "python tools/safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --out tools/g_root_report.json --diffs tools/diffs.patch"
+      },
+      {
+        "line": 32,
+        "orig": "python tools/safe_root_sweep.py --old \"G:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --apply --backup-dir tools/g_root_backups",
+        "replaced": "python tools/safe_root_sweep.py --old \"C:/EnvironmentPortfolio\" --new \"C:/EnvironmentPortfolio\" --extensions \".py,.ps1,.json,.md\" --apply --backup-dir tools/g_root_backups"
+      }
+    ]
+  }
+}

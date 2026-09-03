@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"Name": "MelodiaTokenWallet",
+	"Description": "Melodia Token Wallet Subsystem — single currency authority for gacha/shop plugins (Decision 020/029g)",
+	"Category": "Economy",
+	"Author": "Melodia Team",
+	 "VersionId": "8F1B3A2C-4D5E-6F8A-9B0C-1D2E3F4A5B6C",
+	"SupportedEngineVersions": [
+		"5.8"
+	],
+	"InstalledPlugins": []
+}

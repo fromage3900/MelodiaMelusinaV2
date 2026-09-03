@@ -1,0 +1,669 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "generated": "2026-08-31T07:37:17Z",
+  "source": "Saved/Audit/arch_toon_conversion.json (atlantis_mi_entries[104:154])",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis",
+  "mode": "spec_only",
+  "note": "Batch 4 of Atlantis MI spec. No .uasset writes.",
+  "batch": 4,
+  "previous_mis_total": 104,
+  "batch_size": 50,
+  "entries": [
+    {
+      "mesh_stem": "Atlantis_ColumnsU",
+      "mi_name": "MI_Arch_Atl_ColumnsU",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_ColumnsU",
+      "slot": "Stone_Column",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_ColumnsU\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_ColumnsV",
+      "mi_name": "MI_Arch_Atl_ColumnsV",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_ColumnsV",
+      "slot": "Stone_Column",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_ColumnsV\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_ColumnsW",
+      "mi_name": "MI_Arch_Atl_ColumnsW",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_ColumnsW",
+      "slot": "Stone_Column",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_ColumnsW\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_ColumnsX",
+      "mi_name": "MI_Arch_Atl_ColumnsX",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_ColumnsX",
+      "slot": "Stone_Column",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_ColumnsX\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_Cornice",
+      "mi_name": "MI_Arch_Atl_Cornice",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_Cornice",
+      "slot": "Stone_Cornice",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_Cornice\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DecorativeVaseA",
+      "mi_name": "MI_Arch_Atl_DecorativeVaseA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DecorativeVaseA",
+      "slot": "Stone_Planter",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DecorativeVaseA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DecorativeVaseB",
+      "mi_name": "MI_Arch_Atl_DecorativeVaseB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DecorativeVaseB",
+      "slot": "Stone_Planter",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DecorativeVaseB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DecorativeVaseC",
+      "mi_name": "MI_Arch_Atl_DecorativeVaseC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DecorativeVaseC",
+      "slot": "Stone_Planter",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DecorativeVaseC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DecorativeVaseD",
+      "mi_name": "MI_Arch_Atl_DecorativeVaseD",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DecorativeVaseD",
+      "slot": "Stone_Planter",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DecorativeVaseD\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DomeA",
+      "mi_name": "MI_Arch_Atl_DomeA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DomeA",
+      "slot": "Glass_Dome",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DomeA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.08),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\n   VectorParameterValues=((ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),(ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0)))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DomeB",
+      "mi_name": "MI_Arch_Atl_DomeB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DomeB",
+      "slot": "Glass_Dome",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DomeB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.08),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\n   VectorParameterValues=((ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),(ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0)))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DomeC",
+      "mi_name": "MI_Arch_Atl_DomeC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DomeC",
+      "slot": "Glass_Dome",
+      "preset": {
+        "roughness": 0.08,
+        "metallic": 0.0,
+        "tint": "blue",
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DomeC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.08),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\n   VectorParameterValues=((ParameterName=\"ShadowDreamTint\",ParameterValue=(R=0.541,G=0.627,B=0.839,A=1.0)),(ParameterName=\"ShadowFlowerColor\",ParameterValue=(R=0.91,G=0.627,B=0.749,A=1.0)))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_Door",
+      "mi_name": "MI_Arch_Atl_Door",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_Door",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_Door\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftA",
+      "mi_name": "MI_Arch_Atl_DoorLeftA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftA",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftB",
+      "mi_name": "MI_Arch_Atl_DoorLeftB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftB",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftC",
+      "mi_name": "MI_Arch_Atl_DoorLeftC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftC",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftD",
+      "mi_name": "MI_Arch_Atl_DoorLeftD",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftD",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftD\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftE",
+      "mi_name": "MI_Arch_Atl_DoorLeftE",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftE",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftE\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftF",
+      "mi_name": "MI_Arch_Atl_DoorLeftF",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftF",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftF\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftG",
+      "mi_name": "MI_Arch_Atl_DoorLeftG",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftG",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftG\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorLeftH",
+      "mi_name": "MI_Arch_Atl_DoorLeftH",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorLeftH",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorLeftH\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightA",
+      "mi_name": "MI_Arch_Atl_DoorRightA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightA",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightB",
+      "mi_name": "MI_Arch_Atl_DoorRightB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightB",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightC",
+      "mi_name": "MI_Arch_Atl_DoorRightC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightC",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightD",
+      "mi_name": "MI_Arch_Atl_DoorRightD",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightD",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightD\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightE",
+      "mi_name": "MI_Arch_Atl_DoorRightE",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightE",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightE\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightF",
+      "mi_name": "MI_Arch_Atl_DoorRightF",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightF",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightF\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightG",
+      "mi_name": "MI_Arch_Atl_DoorRightG",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightG",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightG\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DoorRightH",
+      "mi_name": "MI_Arch_Atl_DoorRightH",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DoorRightH",
+      "slot": "Wood_Door",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DoorRightH\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DrainA",
+      "mi_name": "MI_Arch_Atl_DrainA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DrainA",
+      "slot": "Stone_Drain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DrainA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DrainB",
+      "mi_name": "MI_Arch_Atl_DrainB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DrainB",
+      "slot": "Stone_Drain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DrainB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DrainC",
+      "mi_name": "MI_Arch_Atl_DrainC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DrainC",
+      "slot": "Stone_Drain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DrainC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DrainD",
+      "mi_name": "MI_Arch_Atl_DrainD",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DrainD",
+      "slot": "Stone_Drain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DrainD\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_DrainE",
+      "mi_name": "MI_Arch_Atl_DrainE",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_DrainE",
+      "slot": "Stone_Drain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_DrainE\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_FloorA",
+      "mi_name": "MI_Arch_Atl_FloorA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_FloorA",
+      "slot": "Stone_Floor",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_FloorA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_FloorB",
+      "mi_name": "MI_Arch_Atl_FloorB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_FloorB",
+      "slot": "Stone_Floor",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_FloorB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_FloorC",
+      "mi_name": "MI_Arch_Atl_FloorC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_FloorC",
+      "slot": "Stone_Floor",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_FloorC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_FountainA",
+      "mi_name": "MI_Arch_Atl_FountainA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_FountainA",
+      "slot": "Stone_Fountain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_FountainA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_FountainB",
+      "mi_name": "MI_Arch_Atl_FountainB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_FountainB",
+      "slot": "Stone_Fountain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_FountainB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_FountainC",
+      "mi_name": "MI_Arch_Atl_FountainC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_FountainC",
+      "slot": "Stone_Fountain",
+      "preset": {
+        "roughness": 0.85,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_FountainC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.85),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GrapesStand",
+      "mi_name": "MI_Arch_Atl_GrapesStand",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GrapesStand",
+      "slot": "Wood_Barrel",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GrapesStand\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailA",
+      "mi_name": "MI_Arch_Atl_GuardrailA",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailA",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailA\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailB",
+      "mi_name": "MI_Arch_Atl_GuardrailB",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailB",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailB\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailC",
+      "mi_name": "MI_Arch_Atl_GuardrailC",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailC",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailC\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailD",
+      "mi_name": "MI_Arch_Atl_GuardrailD",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailD",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailD\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailE",
+      "mi_name": "MI_Arch_Atl_GuardrailE",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailE",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailE\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailF",
+      "mi_name": "MI_Arch_Atl_GuardrailF",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailF",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailF\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailG",
+      "mi_name": "MI_Arch_Atl_GuardrailG",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailG",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailG\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailH",
+      "mi_name": "MI_Arch_Atl_GuardrailH",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailH",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailH\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    },
+    {
+      "mesh_stem": "Atlantis_GuardrailI",
+      "mi_name": "MI_Arch_Atl_GuardrailI",
+      "mi_path": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_Atl_GuardrailI",
+      "slot": "Metal_Guardrail",
+      "preset": {
+        "roughness": 0.7,
+        "metallic": 0.0,
+        "tint": null,
+        "shadowdream_strength": 0.55
+      },
+      "t3d": "Begin Object Class=/Script/Engine.MaterialInstanceConstant Name=\"MI_Arch_Atl_GuardrailI\"\n   Parent=Material\"/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal\"\n   ScalarParameterValues=((ParameterName=\"Roughness\",ParameterValue=0.7),(ParameterName=\"Metallic\",ParameterValue=0.0),(ParameterName=\"ShadowDreamStrength\",ParameterValue=0.55))\nEnd Object"
+    }
+  ],
+  "safety": {
+    "requires_live_editor": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record atlantis_mi_batch4 pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

@@ -1,0 +1,283 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_IridescenceSheen" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_IridescenceSheenEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MF_IridescenceSheenEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_1" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionInput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionSaturate Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_6'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_7'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_0" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_1" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_1'"
+   End Object
+   Begin Object Name="MF_IridescenceSheenEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MF_IridescenceSheenEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionInput_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_6'","/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_7'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_0'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_0'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_0'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_1'","/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_1'","/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant_0'","/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_1'","/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_3'","/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionOutput_1'"))
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionEditorX=-700
+      MaterialExpressionGuid=AC744B4B4503511B26C4378A07F254F1
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_1" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_7'")
+      MaterialExpressionEditorX=-700
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=F3491E764F16583A5881B68DDA3D27B2
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_0" ExportPath="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant_0'"
+      R=0.500000
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=538617CE4D59CBA105E7DF935FE69F5D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_0" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_0'"
+      Constant=(R=0.600000,G=0.800000,B=1.000000,A=1.000000)
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=-120
+      MaterialExpressionGuid=939DFBB949645C1221287FB61259B693
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_1" ExportPath="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_1'"
+      Constant=(R=1.000000,G=0.950000,B=0.800000,A=1.000000)
+      MaterialExpressionEditorX=-100
+      MaterialExpressionEditorY=220
+      MaterialExpressionGuid=BA1B39B048F8B9DE189390BF10E4B629
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_0'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionGuid=B456ABF94E1BA3B6022270B914F005AC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_1" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFresnel_1'"
+      MaterialExpressionEditorX=-900
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=5303AA11449BC5531D9FE28988489AF7
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionInput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionInput_0'"
+      InputName="BaseColorIn"
+      Id=42E548D14C6EC8E8417A13A578AC13F7
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=-200
+      MaterialExpressionGuid=D3BA8EA54E2BB56710D200B4A62C9907
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionOutput_0'"
+      OutputName="ColorOut"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionLinearInterpolate_0'")
+      Id=CCAF63534DB1F35699017DB3C6D49EC0
+      MaterialExpressionEditorX=300
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=D3156A8C46E77205FAF019A8606B1B77
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionOutput_1'"
+      OutputName="EmissiveOut"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_3'")
+      Id=1ED28BCF4948B6DA676098AB139735DE
+      MaterialExpressionEditorX=300
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=DE10B46D4C79D4F4C6A90CBB646B6AEC
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionFunctionInput_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_0'")
+      MaterialExpressionEditorX=-250
+      MaterialExpressionEditorY=-100
+      MaterialExpressionGuid=B61D088D4EBEDB94B8A46BB4E07BF79D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionGuid=5A9D83E9472A245E6FF78E8477A86ACA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=2C528BD14673627431DE0282061943A8
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant_0'")
+      MaterialExpressionEditorX=-250
+      MaterialExpressionEditorY=380
+      MaterialExpressionGuid=06FEF3834B7B64EB3D8D3391D72DEE31
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_3" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionConstant3Vector'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionConstant3Vector_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=50
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=68AFBB5E4908E5818D2FBEA98688E73F
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_0" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_0'")
+      MaterialExpressionEditorX=-550
+      MaterialExpressionGuid=54AAB81E41D634DC41EBFCA176685178
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionSaturate_1" ExportPath="/Script/Engine.MaterialExpressionSaturate'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionSaturate_1'"
+      Input=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionAdd_1'")
+      MaterialExpressionEditorX=-550
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=09EBC1E941DCB944CF7027ABB091CDFD
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_0'"
+      ParameterName="Iridescence"
+      ExpressionGUID=046943934EED97BF7D366380CE79F064
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionGuid=00CCA5354068ECF85EE991BE63732C02
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_1'"
+      DefaultValue=1.000000
+      ParameterName="IridescencePower"
+      ExpressionGUID=1ACF73EB4749E6FA03E17791E6F07B31
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=60
+      MaterialExpressionGuid=2F8DEAB146C00CCBF2363CAC06FECEAB
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_2'"
+      ParameterName="IridescenceBias"
+      ExpressionGUID=233A08704BAA5689010FB989FDAEB874
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=655A36D94A8D89A59C70C390EFBDD99D
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_3'"
+      ParameterName="IridescenceRoughnessAtten"
+      ExpressionGUID=F35F9D4E47841FC20FA74B911635A7D2
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=180
+      MaterialExpressionGuid=C123C4CD4D1D453B3D625F88E165488A
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_4'"
+      ParameterName="FabricSheen"
+      ExpressionGUID=28A9A7B24509502258318AB1D689182B
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=BF0322E946B7F2C7567CE48E7C6CC0F4
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_5'"
+      DefaultValue=6.000000
+      ParameterName="SheenPower"
+      ExpressionGUID=D782A927473528BB3C6707A132E6564A
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=360
+      MaterialExpressionGuid=0AF204D248A397B0819CEAA9EF0D8D62
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_6" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_6'"
+      DefaultValue=1.000000
+      ParameterName="SheenWidth"
+      ExpressionGUID=A8342FC54E4057F15295B68554F4F3D3
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=420
+      MaterialExpressionGuid=5F44DAB0491941476B7C9A8555EFAFBA
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_7" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionScalarParameter_7'"
+      ParameterName="SheenBias"
+      ExpressionGUID=7A8294E146E8227A5DB8FBA5DCB08AAA
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=480
+      MaterialExpressionGuid=29D39B58442497D53ADEEEB1B85DD367
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionStaticSwitchParameter_0" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionMultiply_2'")
+      ParameterName="bSheenUsesNormal"
+      ExpressionGUID=407719704782737085CCE1A5D0363C20
+      Group="Iridescence & Sheen"
+      MaterialExpressionEditorX=-1200
+      MaterialExpressionEditorY=550
+      MaterialExpressionGuid=1C4CA90B4A794B01A75246A6E16340C6
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   Begin Object Name="MaterialExpressionStaticSwitchParameter_1" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MaterialExpressionStaticSwitchParameter_1'"
+      ParameterName="bSheenUsesNormal"
+      ExpressionGUID=9B978ECC49505B3A7ED591A57A8825D3
+      MaterialExpressionEditorX=-100
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=291FFFE8432E429A1B422684B384EE22
+      Function="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen'"
+   End Object
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/_Scratch/MF_IridescenceSheen.MF_IridescenceSheen:MF_IridescenceSheenEditorOnlyData'"
+   StateId=D3F5CAC7418F89125B8189A29E11914A
+   CombinedInputTypes=15
+End Object

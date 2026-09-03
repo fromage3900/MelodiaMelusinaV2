@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "hover_gate_with_dungeon_lock",
+  "status": "contract_spec_only",
+  "owner": "Melodia traversal integration",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.traversal.hover_gate",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "traversal",
+    "DisplayName": "Hover Gate",
+    "Tags": [
+      "fixture",
+      "traversal",
+      "hover",
+      "context_lock",
+      "resettable"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "capability.melodia.glide"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "grounded",
+    "AllowedContexts": [
+      "open_world",
+      "dungeon_cleared",
+      "traversal_fixture"
+    ],
+    "BlockedContexts": [
+      "dungeon_uncleared",
+      "boss_stage",
+      "cutscene",
+      "menu",
+      "travel"
+    ],
+    "ContextPolicy": "re_evaluate_on_enter_and_context_change",
+    "CapabilityId": "capability.melodia.glide",
+    "CapabilityPresentationId": "hover",
+    "CapabilityQueryPolicy": "read_resonant_form_provider_then_request_native_component_mode",
+    "NativeGateConfiguration": {
+      "bRequireCapabilityProviderForGlide": true,
+      "TraversalCapabilityContextId": "active_traversal_context"
+    },
+    "ModeSet": [
+      "grounded",
+      "hover_available",
+      "hover_locked",
+      "fallback_walk"
+    ],
+    "EnterPolicy": "evaluate_context_then_request_native_glide_mode_through_component",
+    "UpdatePolicy": "re_evaluate_on_context_change_or_load",
+    "ExitPolicy": "request_native_grounded_mode_then_clear_gate_presentation",
+    "InterruptPolicy": "request_native_grounded_mode_and_refresh_locked_presentation",
+    "ResetPolicy": "return_to_grounded_and_clear_gate_presentation",
+    "VariantSet": [
+      "hover_available",
+      "hover_locked"
+    ],
+    "EquippedVariantId": "hover_available",
+    "FallbackVariantId": "hover_locked",
+    "AnimationProfile": "optional_hover_presentation",
+    "VfxProfile": "optional_hover_gate_feedback",
+    "AudioProfile": "optional_hover_gate_audio",
+    "UiPresentation": "traversal_gate_status_prompt",
+    "PreviewPolicy": "show_capability_requirement_and_block_reason",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "use_locked_variant_and_offer_ground_route",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "none",
+    "CanonicalStateKey": "melodia.fixture.traversal.hover_gate",
+    "IdempotencyKey": "traversal.hover_gate.transition_request_id",
+    "SaveWritePolicy": "read_canonical_state_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "hover_gate_context_matrix_and_reset",
+    "ExpectedEvidence": "compile_graph_path_runtime_failure_reset",
+    "ReadinessLevel": "L1"
+  },
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTraversalGate_HoverFixture",
+    "parent_template": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaTraversalGate_Base",
+    "runtime_authority": "UMelodiaTraversalComponent",
+    "definition_asset": "/Game/MelodiaIntegration/Definitions/DA_MelodiaTraversal_HoverFixture"
+  },
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "read_canonical_capability",
+      "evaluate_context",
+      "show_available_or_locked_state",
+      "observe_airborne_state",
+      "request_native_glide_mode"
+    ],
+    "reset_route": [
+      "request_native_grounded_mode",
+      "clear_gate_presentation",
+      "re_evaluate_context",
+      "refresh_presentation"
+    ],
+    "required_capability": "capability.melodia.glide",
+    "capability_presentation": "hover",
+    "native_mode": "Glide",
+    "blocked_feedback": {
+      "dungeon_uncleared": "hover_locked_dungeon_uncleared",
+      "boss_stage": "hover_locked_boss_stage"
+    },
+    "fallback_route": "grounded_walk_route",
+    "authority_invariant": "blueprint_requests_only_through_umelodia_traversal_component_and_never_mutates_movement_directly"
+  },
+  "failure_routes": [
+    "missing_capability_shows_locked_state",
+    "uncleared_dungeon_blocks_hover_and_keeps_grounded_state",
+    "grounded_request_returns_airborne_requirement_without_movement_mutation",
+    "boss_stage_interrupts_hover_and_restores_grounded_state",
+    "load_re_evaluates_context_without_duplicate_transition",
+    "duplicate_transition_request_is_replay_safe"
+  ],
+  "evidence_required": [
+    "definition_path_resolves",
+    "blueprint_compiles_without_duplicate_traversal_authority",
+    "graph_export_contains_context_recheck_and_component_request",
+    "open_world_allows_hover_request",
+    "uncleared_dungeon_blocks_hover_with_reason",
+    "boss_interrupt_restores_grounded_state",
+    "load_and_reset_are_deterministic",
+    "fresh_evidence_envelope_records_context_matrix_and_fingerprint"
+  ],
+  "readiness_level": "L1",
+  "readiness": "L1"
+}

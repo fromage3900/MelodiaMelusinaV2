@@ -1,0 +1,30 @@
+{
+  "schema": "melodia.audio.terrain.commit.verify.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Docs/Plans/AUDIO_TERRAIN_COMMIT_SPEC_2026-08-31.md",
+  "mode": "verify_only",
+  "findings": {
+    "pipeline_doc": {
+      "path": "Docs/Production/BLENDER52_AUDIO_TERRAIN_PIPELINE.md",
+      "exists": true,
+      "size_bytes": 3791,
+      "lines": 88,
+      "git_tracked": true
+    },
+    "gn_script": {
+      "path": "deploy/surreal_arch/melodia_gn/audio_terrain.py",
+      "exists": true,
+      "size_bytes": 13786,
+      "lines": 230,
+      "git_tracked": true
+    }
+  },
+  "verdict": {
+    "status": "READY",
+    "note": "Both files exist and are git-tracked. Ready for commit."
+  },
+  "safety": {
+    "no_git_executed": true
+  },
+  "status": "VERIFY_COMPLETE"
+}

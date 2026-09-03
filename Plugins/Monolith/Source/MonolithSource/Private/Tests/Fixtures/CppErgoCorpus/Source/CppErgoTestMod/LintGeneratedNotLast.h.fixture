@@ -1,0 +1,13 @@
+// Fixture: rule (b) *.generated.h not last include.
+// The .generated.h include is followed by another #include. NOT compiled.
+#pragma once
+
+#include "CoreMinimal.h"
+#include "LintGeneratedNotLast.generated.h"
+#include "Components/ActorComponent.h"
+
+UCLASS()
+class CPPERGOTESTMOD_API ULintGeneratedNotLast : public UActorComponent
+{
+	GENERATED_BODY()
+};

@@ -1,0 +1,23 @@
+{
+  "id": "art_deco_lobby_v1",
+  "family": "ArtDeco",
+  "verticality": 0.88,
+  "symmetry": 0.82,
+  "ornament_density": 0.55,
+  "structural_logic": 0.86,
+  "organic_growth": 0.22,
+  "cosmic_influence": 0.08,
+  "sacred_sequence": [],
+  "compose_style": "ART_DECO",
+  "default_graph": "ART_DECO",
+  "grammar_id": "ART_DECO",
+  "surreal_transform": "vertical_stretch",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "filigree_style": "GEOMETRIC_ARABESQUE",
+    "filigree_density": 0.7,
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

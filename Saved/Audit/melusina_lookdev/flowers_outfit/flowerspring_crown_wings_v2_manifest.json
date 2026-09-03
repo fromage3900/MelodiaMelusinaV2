@@ -1,0 +1,49 @@
+{
+ "schema": "melodia.flowerspring_crown_wings.v2",
+ "seed": 20260831,
+ "units": "meters (dress-native; head center (0,-0.02,1.52), wing anchors behind shoulder blades)",
+ "pieces": {
+  "FS_Crown_v2": {
+   "band": "lathed rounded tube R=0.105m",
+   "petals": 12,
+   "petal_build": "closed parametric shell: curl + cup + twist, 2mm stock",
+   "gems": 7,
+   "gem_build": "faceted brilliant in bezel",
+   "uv": "per-petal planar + band lathe"
+  },
+  "FS_Wings_v2": {
+   "wings": 4,
+   "fore_span_m": 0.36,
+   "hind_span_m": 0.24,
+   "membrane": "polar grid, smooth cosine scallops (no triangle teeth)",
+   "veins_per_wing": 6,
+   "vein_build": "tapered strips",
+   "rim": "9 smooth cups per wing",
+   "anchor": "behind shoulder blades, y=+0.16 (back)"
+  }
+ },
+ "fixes_vs_v1": [
+  "dress-meter units (no 0.0065 scale hack)",
+  "closed shells instead of flat single-sided quads",
+  "smooth scallop edge instead of sawtooth triangles",
+  "wings anchored on the back, not the waist",
+  "crown sized to head, not floating at collar"
+ ],
+ "results": {
+  "FS_Crown_v2": {
+   "obj": "FS_Crown_v2.obj",
+   "written": true,
+   "points": 2339,
+   "prims": 2286,
+   "errors": []
+  },
+  "FS_Wings_v2": {
+   "obj": "FS_Wings_v2.obj",
+   "written": true,
+   "points": 4812,
+   "prims": 5568,
+   "errors": []
+  }
+ },
+ "houdini": "22.0.368"
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "kind": "blueprint_fixture_contract",
+  "fixture_id": "kawaii_physics_placement_probe",
+  "status": "live_created_saved_compiles_exported_runtime_pending",
+  "purpose": "Disposable live-editor fixture proving Kawaii Physics presentation placement and reset behavior.",
+  "asset": {
+    "blueprint_path": "/Game/MelodiaIntegration/Tests/BP_KawaiiPhysicsPlacementProbe",
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "actor_parent": "Actor",
+    "tracked_required": true,
+    "production_dependency": false
+  },
+  "live_creation": {
+    "created_in_editor": true,
+    "saved_to_disk": true,
+    "confirmed_components": [
+      "PreviewMesh:SkeletalMeshComponent",
+      "PreviewCamera:CameraComponent",
+      "ResetAnchor:SceneComponent"
+    ],
+    "confirmed_mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
+    "confirmed_anim_blueprint": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "confirmed_physics_asset_override": "/Game/Melodia/Characters/Melusina/SK_Melusina_FIXED_Hair_PhysicsAsset",
+    "confirmed_variables": ["InitialTransform:Transform", "bKawaiiDebug:bool"],
+    "confirmed_custom_events": ["ResetSimulation"],
+    "pending_evidence": [
+      "map placement",
+      "PIE runtime reset result",
+      "AnimBP runtime playback result",
+      "integration-map reachability",
+      "deterministic reset runtime result"
+    ]
+  },
+  "presentation_contract": {
+    "skeletal_mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
+    "anim_blueprint": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "expected_anim_node_class": "AnimGraphNode_KawaiiPhysics",
+    "expected_simulation_root": "hair_root",
+    "physics_asset_candidates": [
+      "/Game/Melodia/Characters/Melusina/SK_Melusina_FIXED_Hair_PhysicsAsset",
+      "/Game/Melodia/Characters/Melusina/SK_Melusina_PhysicsAsset"
+    ],
+    "collision_limits_candidate": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits"
+  },
+  "production_promotion_contract": {
+    "promotion_status": "fixture_only_until_l4",
+    "root_body_policy": {
+      "required": true,
+      "expected_root_bone": "hair_root",
+      "missing_body_behavior": "fail_closed_and_use_no_physics_variant",
+      "override_must_be_verified_against_anim_blueprint": true
+    },
+    "placement_profile_fields": [
+      "ProfileId",
+      "SkeletalMesh",
+      "AnimBlueprint",
+      "PhysicsAsset",
+      "CollisionLimits",
+      "RootBone",
+      "AllowedContexts",
+      "PreviewCameraProfile",
+      "PerformanceTier"
+    ],
+    "runtime_variants": [
+      "full_physics",
+      "reduced_physics",
+      "no_physics_fallback",
+      "preview_only"
+    ],
+    "performance_tiers": ["cinematic", "gameplay", "low_end", "disabled"],
+    "map_policy": {
+      "fixture_map_must_be_disposable": true,
+      "canonical_gameplay_map_must_not_become_the_only_test_harness": true,
+      "save_reload_is_required_before_promotion": true
+    },
+    "required_failure_routes": [
+      "missing_root_body",
+      "missing_physics_asset",
+      "missing_collision_limits",
+      "anim_blueprint_mismatch",
+      "unsupported_performance_tier",
+      "map_save_or_reload_failure"
+    ]
+  },
+  "fixture_components": [
+    {
+      "name": "PreviewMesh",
+      "class": "SkeletalMeshComponent",
+      "required": true,
+      "mobility": "Movable"
+    },
+    {
+      "name": "PreviewCamera",
+      "class": "CameraComponent",
+      "required": true
+    },
+    {
+      "name": "ResetAnchor",
+      "class": "SceneComponent",
+      "required": true
+    }
+  ],
+  "controls": {
+    "reset_simulation": "ResetSimulation",
+    "frame_preview": "FramePreview",
+    "toggle_debug": "ToggleKawaiiDebug",
+    "requirements": [
+      "Reset returns the actor and preview mesh to deterministic initial transforms.",
+      "Reset does not mutate the source skeletal mesh or production AnimBP.",
+      "Debug mode is opt-in and does not remain enabled in shipping content."
+    ]
+  },
+  "forbidden_ownership": [
+    "GameMode bootstrap",
+    "save progression",
+    "travel routing",
+    "battle execution",
+    "direct OpenLevel calls"
+  ],
+  "acceptance": {
+    "required_live_evidence": [
+      "Blueprint parent, components, and defaults queried from the running editor",
+      "PreviewMesh has the specified skeletal mesh and AnimBP",
+      "AnimBP export contains AnimGraphNode_KawaiiPhysics rooted at hair_root",
+      "Physics asset and collision-limits selection is inspectable",
+      "Blueprint compiles successfully",
+      "Fixture actor is reachable from MelodiaIntegrationMap",
+      "ResetSimulation produces the same transform/state twice",
+      "No forbidden ownership or direct map routing is present"
+    ],
+    "stale_evidence_not_accepted": [
+      "Saved/Audit JSON without a fresh editor timestamp",
+      "Ignored BP_PhysicsPlacementSpawner asset",
+      "A disk-only .uasset existence check"
+    ]
+  },
+  "next_action": "Place the saved probe in the integration fixture map, run PIE, and capture deterministic ResetSimulation and AnimBP playback evidence in the same editor session."
+}

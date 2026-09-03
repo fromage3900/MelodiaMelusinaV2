@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Melodia Resonant World Chronicle",
+  "type": "object",
+  "required": ["format", "schema_version", "chronicle_version", "chronicle_id", "world", "events", "projection", "persistence", "runtime_boundary", "materialization", "ok"],
+  "properties": {
+    "format": {"const": "melodia_resonant_world_chronicle"},
+    "schema_version": {"type": "integer", "const": 1},
+    "chronicle_version": {"const": "resonant_world_chronicle_v1"},
+    "chronicle_id": {"type": "string", "minLength": 1},
+    "world": {
+      "type": "object",
+      "required": ["world_seed", "movement_id", "chunk"],
+      "properties": {
+        "world_seed": {"type": "integer"},
+        "movement_id": {"type": "string", "minLength": 1},
+        "chunk": {"type": "array", "prefixItems": [{"type": "integer"}, {"type": "integer"}], "minItems": 2, "maxItems": 2}
+      },
+      "additionalProperties": true
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["event_id", "sequence", "event_type", "intent_id", "payload", "source"],
+        "properties": {
+          "event_id": {"type": "string", "minLength": 1},
+          "sequence": {"type": "integer", "minimum": 0},
+          "event_type": {"type": "string", "enum": ["world_opened", "movement_attuned", "discovery", "score_completed", "style_voicing", "voxel_edit", "voxel_remove"]},
+          "intent_id": {"type": "string", "minLength": 1},
+          "chunk": {"type": ["array", "null"]},
+          "payload": {"type": "object"},
+          "source": {"type": "object"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "projection": {"type": "object"},
+    "source_provenance": {"type": "object"},
+    "persistence": {
+      "type": "object",
+      "required": ["storage_owner", "writes_save", "replay_key", "model", "conflict_policy"],
+      "properties": {
+        "writes_save": {"const": false},
+        "replay_key": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "runtime_boundary": {
+      "type": "object",
+      "required": ["read_model_only", "does_not_write_save", "does_not_apply_unreal", "does_not_grant_capability"],
+      "properties": {
+        "read_model_only": {"const": true},
+        "does_not_write_save": {"const": true},
+        "does_not_apply_unreal": {"const": true},
+        "does_not_grant_capability": {"const": true}
+      },
+      "additionalProperties": true
+    },
+    "materialization": {
+      "type": "object",
+      "required": ["performed", "writes_project_state"],
+      "properties": {"performed": {"const": false}, "writes_project_state": {"const": false}}
+    },
+    "validation_errors": {"type": "array", "items": {"type": "string"}},
+    "ok": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "melodia.hython_monolith_bridge.v1",
+  "generated": "2026-09-01T04:00:00Z",
+  "phase": "phase_3_hython_monolith_bridge",
+  "plan_source": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json:phase_3_hython_monolith_bridge",
+  "deliverables_expected": [
+    "hythm_monolith_bridge_report.json",
+    "cross_path_validation.py",
+    "monolith_execution_plan_parallel.py"
+  ],
+  "diagnosis": {
+    "hython": {
+      "path": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe",
+      "exists": true,
+      "version": "22.0.368",
+      "python_version": "3.13.10 (MSC v.1942 64 bit)",
+      "hou_available": true,
+      "probe": "hython -c \"import hou; print(hou.applicationVersion())\" -> (22, 0, 368)",
+      "file_size_bytes": 4359472,
+      "status": "HEALTHY",
+      "notes": "Both copernicus_cymatic_parallax.py and flipbook_aaa.py are pure numpy+PIL (no hou import). They run under hython AND system python3.11/3.14. Hython lane is confirmed; no HIP cooking required for these scripts."
+    },
+    "monolith": {
+      "uplugin_version": "0.20.3",
+      "uplugin_path": "Plugins/Monolith/Monolith.uplugin",
+      "engine_version": "++UE5+Release-5.8-CL-55116800",
+      "project_name": "BS_GodFile",
+      "configured_port": 9316,
+      "config_source": "Plugins/Monolith/Config/MonolithSettings.ini:ServerPort=9316",
+      "reachability": {
+        "tcp_connect": "OPEN (127.0.0.1:9316 LISTENING, verified via socket + netstat)",
+        "jsonrpc_mcp": "OK (POST /mcp tools/list -> 1426 tools, 24 namespaces)",
+        "monolith_status": {
+          "version": "0.20.3",
+          "server_running": true,
+          "server_port": 9316,
+          "total_actions": 1426,
+          "namespaces": 24
+        },
+        "editor_build": {
+          "live_coding": true,
+          "compiling": false,
+          "last_compile": "never (clean)"
+        },
+        "http_root": "route_handler_not_found (expected; only /mcp is served)",
+        "status": "HEALTHY"
+      },
+      "notes": "Transient connectivity issue referenced in grand_review plan is RESOLVED. Server is up, not firewalled. If future probe fails: Monolith.Restart console command or restart editor."
+    },
+    "sentinel_file": {
+      "canonical_path": "Plugins/Monolith/Saved/.monolith_running",
+      "canonical_exists": true,
+      "canonical_content": {
+        "pid": 9356,
+        "port": 9316,
+        "version": "0.20.3",
+        "started": "2026-09-01T03:49:46.035Z"
+      },
+      "project_root_path": ".monolith_running",
+      "project_root_exists": false,
+      "explanation": "GetSentinelFilePath() resolves to Plugin->GetBaseDir()/Saved/.monolith_running (MonolithCoreModule.cpp:92). Project-root check in phase spec is stale; update docs to canonical path. If editor closes uncleanly, stale sentinel remains — delete it and Monolith.Restart.",
+      "status": "HEALTHY (canonical present, root absent is expected)"
+    }
+  },
+  "hython_pipelines": {
+    "copernicus_cymatic_parallax": {
+      "path": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py",
+      "size_bytes": 51149,
+      "lines": 1087,
+      "type": "pure numpy (cymatic trig interference + tileable fBm + domain warping)",
+      "hou_dependency": false,
+      "imports": ["numpy", "PIL.Image", "argparse", "json", "pathlib"],
+      "variants": 21,
+      "variant_list": ["CymaticMarble","GildedLoom","SilkWaterfall","CavernWeave","DancingCrystals","CherryBlossomWood","GildedCoral","StarlitAbyss","FrozenFracture","SingingConstellations","FinalDreamweaver","GlitterRainbow","GlitterHolographic","GlitterGold","GlitterIridescent","GlitterCrystal","FractalCathedral","GoldenSpiralGrove","VoronoiSacredGeometry","TessellationSanctum","SpiralMonument"],
+      "maps_per_variant": 9,
+      "map_list": ["BaseColor","Normal","Roughness","Metallic","Height","ORM","Emissive","Iridescence","Opacity"],
+      "output_dir": "Saved/Audit/copernicus_cymatic/{variant}/",
+      "manifest": "Saved/Audit/copernicus_cymatic_manifest.json",
+      "cli": "hython Tools/Houdini/copernicus/copernicus_cymatic_parallax.py --variant all --size 1024x1024 --cook [--frames N]",
+      "current_manifest": "only CymaticMarble recorded (1 variant, 1 frame) — pipeline works but full 'all' run not yet executed"
+    },
+    "flipbook_aaa": {
+      "path": "Tools/Houdini/flipbook_aaa.py",
+      "size_bytes": 8672,
+      "lines": 190,
+      "type": "pure numpy+PIL pearl/silk woven flipbook (parallax shimmer)",
+      "hou_dependency": false,
+      "imports": ["numpy","PIL.Image","argparse","math","os","sys"],
+      "frames_default": 8,
+      "maps_per_frame": 5,
+      "map_list": ["BaseColor","Normal","Iridescence","Roughness","Height"],
+      "size_default": 2048,
+      "output_dir": "Content/EnvSandbox/Textures/PearlWoven_Flipbook/",
+      "filename_pattern": "T_PearlFlipbook_FrameNN_{Map}.png",
+      "cli": "hython Tools/Houdini/flipbook_aaa.py [--size 2048] [--frames 8] [--out OUT_DIR]",
+      "shimmer_model": "stable weave structure (seed 1337) + phase-shifted wash/s1/s2/s3/iri drifts so flipbook animates without popping normals"
+    }
+  },
+  "bridge_verdict": {
+    "overall": "BOTH LANES HEALTHY — bridge is GO",
+    "monolith_blocked": false,
+    "hython_blocked": false,
+    "sentinel_blocked": false,
+    "transient_issue_resolved": true,
+    "dual_path_ready": true
+  },
+  "remediation": {
+    "if_monolith_down": [
+      "1. Check Plugins/Monolith/Saved/.monolith_running exists and pid is live (tasklist | findstr <pid>)",
+      "2. In editor console: Monolith.Restart",
+      "3. If port busy: netstat -ano | findstr 9316 -> kill holder or change ServerPort in MonolithSettings.ini",
+      "4. If bMcpServerEnabled=false in MonolithSettings.ini, set true and restart editor",
+      "5. Firewall: allow 127.0.0.1:9316 (loopback should not be blocked, but verify)"
+    ],
+    "if_hython_missing": [
+      "Reinstall Houdini 22.0.368 or update path in docs; fallback is system python (both scripts are hou-free)"
+    ],
+    "sentinel_stale": "Delete Plugins/Monolith/Saved/.monolith_running and restart editor; server rewrites it on Start()"
+  },
+  "next_steps": [
+    "Run cross_path_validation.py --dry-run to baseline hython outputs",
+    "Execute monolith_execution_plan_parallel.py Phase A (material ops) against live editor",
+    "Compare outputs via cross_path_validation.py and record in gate ledger"
+  ]
+}

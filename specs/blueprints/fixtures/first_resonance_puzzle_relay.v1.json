@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "first_resonance_puzzle_relay",
+  "status": "contract_spec_only",
+  "readiness_level": "L1",
+  "owner": "Melodia integration map",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.puzzle.first_resonance_relay",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "puzzle_relay",
+    "DisplayName": "First Resonance Puzzle Relay",
+    "Tags": [
+      "fixture",
+      "puzzle",
+      "first_resonance",
+      "water",
+      "quest"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_available"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "open_world",
+      "puzzle_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session"
+    ],
+    "InterruptPolicy": "leave_canonical_state_unchanged_until_chain_commits",
+    "ResetPolicy": "reset_fixture_runtime_without_erasing_canonical_state",
+    "ContextPolicy": "fail_closed_and_report_block_reason",
+    "ModeSet": [
+      "inactive",
+      "armed",
+      "solved"
+    ],
+    "EnterPolicy": "read_canonical_puzzle_state_then_arm",
+    "UpdatePolicy": "accept_one_eligible_activation",
+    "ExitPolicy": "retain_route_and_narrative_state",
+    "VariantSet": [
+      "first_resonance_default",
+      "first_resonance_solved"
+    ],
+    "EquippedVariantId": "first_resonance_default",
+    "FallbackVariantId": "first_resonance_default",
+    "AnimationProfile": "puzzle_relay_activation",
+    "VfxProfile": "first_resonance_water_relay",
+    "AudioProfile": "first_resonance_relay_chime",
+    "UiPresentation": "puzzle_relay_state_prompt",
+    "PreviewPolicy": "show_armed_and_solved_state",
+    "EffectTogglePolicy": "presentation_only_after_authoritative_commit",
+    "UnavailableVariantPolicy": "use_default_variant_and_keep_state_valid",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "resonance_relay_idle",
+    "CanonicalStateKey": "melodia.fixture.puzzle.first_resonance",
+    "IdempotencyKey": "puzzle.first_resonance.solve_once",
+    "SaveWritePolicy": "narrative_and_water_subsystems_only",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "first_resonance_puzzle_water_quest_chain",
+    "ExpectedEvidence": "event_binding_authority_chain_compile_save_reload",
+    "ReadinessLevel": "L1"
+  },
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "content_kind": "puzzle_relay",
+  "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPuzzleRelay_FirstResonance",
+  "parent_class": "/Script/BS_GodFile.MelodiaPuzzleRelayVolume",
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaPuzzleRelay_FirstResonance",
+    "parent_template": "/Script/BS_GodFile.MelodiaPuzzleRelayVolume",
+    "runtime_authority": "AMelodiaPuzzleRelayVolume_to_water_controller_and_narrative_subsystem"
+  },
+  "authority": {
+    "event_source": "AMelodiaPuzzleRelayVolume.OnPuzzleActivated",
+    "water": "UMelodiaWaterGameplayControllerComponent",
+    "narrative": "UMelodiaNarrativeSubsystem",
+    "persistence": "canonical water and narrative save contracts",
+    "forbidden": [
+      "quest state owned by the puzzle actor",
+      "direct save-object mutation",
+      "direct water subsystem state mutation",
+      "second narrative flag path"
+    ]
+  },
+  "defaults": {
+    "PuzzleId": "first_resonance_relay",
+    "bRequireMelusina": true,
+    "bOneShot": true
+  },
+  "chain_contract": {
+    "event": "OnPuzzleActivated",
+    "route_call": "SetRouteOpen(true, first_resonance_route)",
+    "flag_call": "SetNarrativeFlag(first_resonance_solved, true)",
+    "quest_call": "CompleteQuest(quest.first_dream)",
+    "success_requires_each_previous_step": true
+  },
+  "entry_route": [
+    "read_canonical_puzzle_state",
+    "accept_one_eligible_melusina_activation",
+    "request_water_route_open",
+    "request_narrative_flag",
+    "request_quest_objective_transition"
+  ],
+  "reset_route": [
+    "reset_fixture_runtime_only",
+    "reload_water_and_narrative_state",
+    "re_read_route_flag_and_quest",
+    "restore_presentation_without_duplicate_effects"
+  ],
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "read_canonical_puzzle_state",
+      "accept_one_eligible_melusina_activation",
+      "request_water_route_open",
+      "request_narrative_flag",
+      "request_quest_objective_transition"
+    ],
+    "repeat_route": [
+      "reload_water_and_narrative_state",
+      "re_read_route_flag_and_quest",
+      "verify_duplicate_activation_no_op"
+    ],
+    "reset_route": [
+      "reset_fixture_runtime_only",
+      "reload_water_and_narrative_state",
+      "restore_presentation_without_duplicate_effects"
+    ],
+    "failure_routes": [
+      "non_melusina_activation_is_rejected",
+      "invalid_water_node_or_route_fails_closed",
+      "missing_allowlist_id_does_not_mutate_state"
+    ]
+  },
+  "failure_routes": [
+    "non_melusina_activation_is_rejected",
+    "duplicate_activation_is_rejected_or_no_op",
+    "invalid_water_node_or_route_fails_closed",
+    "missing_narrative_allowlist_id_does_not_mutate_state",
+    "save_reload_preserves_completed_puzzle_and_flag"
+  ],
+  "evidence_required": [
+    "parent and CDO defaults are read back from the live editor",
+    "one event binding is visible in the exported graph",
+    "route, flag, and quest calls use the declared authorities",
+    "compile/save/mtime/re-export checks pass",
+    "duplicate activation does not duplicate downstream effects",
+    "save/reload state is observed in the disposable map"
+  ],
+  "readiness": "L1"
+}

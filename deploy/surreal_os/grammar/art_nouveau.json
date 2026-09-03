@@ -1,0 +1,14 @@
+{
+  "id": "ART_NOUVEAU",
+  "label": "Art Nouveau Facade Walk",
+  "description": "Ogee portal, filigree panels, balcony, rail inset, baroque facade bay",
+  "style": "artnouveau",
+  "modules": [
+    {"arch_type": "OGEE_ARCH", "overrides": {"ogee_width": 2.4, "ogee_height": 4.2, "ogee_swell": 0.55, "material_choice": "AUTO"}},
+    {"arch_type": "FILIGREE_PANEL", "overrides": {"filigree_style": "ARTNOUVEAU_VINE", "filigree_width": 1.8, "filigree_height": 2.4, "filigree_density": 0.65, "material_choice": "AUTO"}},
+    {"arch_type": "BALCONY", "overrides": {"balcony_width": 2.6, "balcony_depth": 0.9, "balcony_baluster_count": 12, "material_choice": "AUTO"}},
+    {"arch_type": "FILIGREE_RAIL_INSET", "overrides": {"filigree_style": "ARTNOUVEAU_VINE", "rail_length": 2.6, "rail_height": 1.0, "filigree_density": 0.6, "material_choice": "AUTO"}},
+    {"arch_type": "BAROQUE_FACADE", "overrides": {"baroque_facade_bays": 3, "baroque_facade_height": 12.0, "baroque_ornament_density": 0.7, "material_choice": "AUTO"}},
+    {"arch_type": "FILIGREE_PANEL", "overrides": {"filigree_style": "GEOMETRIC_ARABESQUE", "filigree_width": 1.2, "filigree_height": 1.6, "filigree_density": 0.7, "material_choice": "AUTO"}}
+  ]
+}

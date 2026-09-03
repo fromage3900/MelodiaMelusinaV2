@@ -1,0 +1,58 @@
+{
+  "schema": "melodia.p0.seaabove.jellyfish.v1",
+  "generated": "2026-08-31T07:37:17Z",
+  "source": "Docs/Plans/NEXT_SESSION_PLAN_2026-08-31.md item 2 + Saved/Audit/sea_above_reef_commit_verify_2026-09-01.json",
+  "mode": "spec_only",
+  "note": "P0 Sea Above jellyfish wiring. All steps require live editor. No .uasset writes.",
+  "steps": [
+    {
+      "step": 1,
+      "action": "wire_material",
+      "target": "SK_Jelly_Bell",
+      "material": "MI_Jelly_Bell",
+      "note": "Assign MI_Jelly_Bell as Element 0 on SK_Jelly_Bell skeletal mesh"
+    },
+    {
+      "step": 2,
+      "action": "set_parallax",
+      "target": "MI_Jelly_Bell",
+      "params": {
+        "ParallaxStrength": 0.35,
+        "ParallaxScale": 0.08,
+        "ParallaxHeight": 0.12
+      },
+      "note": "Set parallax parameters on jelly MI for depth illusion"
+    },
+    {
+      "step": 3,
+      "action": "author_abp",
+      "target": "ABP_JellyBell",
+      "note": "Create AnimBP with 2-bone pulse: BellRoot + BellRim. State machine: Idle \u2192 Pulse (speed 0.5, amplitude 0.3). Use sine-wave translation on BellRim bone."
+    },
+    {
+      "step": 4,
+      "action": "assemble_bp",
+      "target": "BP_Jelly_SeaAbove",
+      "components": [
+        "SkeletalMeshComponent (SK_Jelly_Bell + ABP_JellyBell)",
+        "NiagaraComponent (jelly_trail_particles)",
+        "AudioComponent (ambient_jelly_pulse)"
+      ],
+      "note": "Assemble actor BP with skeletal mesh + ABP + particles + audio"
+    },
+    {
+      "step": 5,
+      "action": "place_in_level",
+      "target": "LV_SeaAbove_Prototype",
+      "note": "Place 3-5 BP_Jelly_SeaAbove instances in LV_SeaAbove_Prototype with scatter"
+    }
+  ],
+  "t3d_abp_stub": "Begin Object Class=/Script/Engine.AnimBlueprint Name=\"ABP_JellyBell\"\n   TargetSkeleton=SkeletalMesh\"/Game/EnvSandbox/Meshes/SeaAbove/SK_Jelly_Bell\"\nEnd Object",
+  "safety": {
+    "requires_live_editor": true,
+    "requires_monolith": true,
+    "never_hand_edit_uasset": true,
+    "gate_acceptance": "echo_run.py record jellyfish_p0_wiring pass (owner-only)"
+  },
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "melodia.audit.fabric_sheen_param.v1",
+  "generated": "2026-09-01T04:30:00Z",
+  "source": "NEXT_SESSION_PLAN_2026-08-31.md item 3 + disk scan of Content/EnvSandbox/Materials/Instances/",
+  "mode": "disk_scan_only",
+  "note": "Cannot read .uasset scalar params from disk scan. Sheen inference based on filename semantics only. Requires live editor for authoritative param read.",
+  "findings": {
+    "fabric_master": {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric.uasset",
+      "exists": true,
+      "inferred_sheen_params": "Unknown without editor — may expose SheenStrength, SheenTint, SheenRoughness"
+    },
+    "fabric_instances": {
+      "path": "Content/EnvSandbox/Materials/Instances/Environment/PBR_Auto/",
+      "total": 18,
+      "categories": {
+        "high_sheen_likely": [
+          "MI_T_Fabric_GoldThreadedEmbroidery",
+          "MI_T_Fabric_GoldEmbroidery",
+          "MI_T_Fabric_IridescentDuchessSatin_ChampagneRose",
+          "MI_T_Fabric_IridescentCelestialWeave",
+          "MI_T_Fabric_CelestialWeave",
+          "MI_T_Fabric_GildedJacquard",
+          "MI_T_Fabric_GildedBrocade"
+        ],
+        "medium_sheen_likely": [
+          "MI_T_Fabric_ChromaticJacquard_AcanthusBrocade",
+          "MI_T_Fabric_OpalescentChiffon_Plisse",
+          "MI_T_Fabric_RoyalVelvet",
+          "MI_T_Fabric_AquaticVelvet_CrushedFuzz"
+        ],
+        "low_sheen_likely": [
+          "MI_T_Fabric_BaroqueLace",
+          "MI_T_Fabric_BaroqueFiligreeLace",
+          "MI_T_Fabric_SheerSilk"
+        ],
+        "no_sheen_likely": [
+          "MI_KB3D_ATL_FabricTentBlueA",
+          "MI_KB3D_ATL_FabricSail",
+          "MI_FabricTentBlueA",
+          "MI_FabricSail"
+        ],
+        "special": [
+          "MI_Universal_HoloFabric (MI_ in Environment/, not PBR_Auto — unique case)"
+        ]
+      }
+    },
+    "fabric_mis_in_atlantis": {
+      "note": "4 Fabric MIs duplicated in Atlantis/ root (not PBR_Auto/): MI_FabricTentBlueA, MI_FabricSail + their PBR_Auto KB3D_ prefixed counterparts"
+    }
+  },
+  "recommendation": "Open M_Universal_Enhanced_Fabric in editor. Verify sheen params exist (SheenStrength, SheenTint, SheenRoughness). Then audit each of the 18 fabric MIs for sheen override values. Set sheen based on fabric category: high (gilded, iridescent, gold), medium (velvets, brocades, chiffons), low (laces, sheer silks), none (sails, structural).",
+  "guardrails": [
+    "No .uasset writes",
+    "No param edits made",
+    "Spec only — requires live editor for authoritative read"
+  ],
+  "status": "AUDIT_COMPLETE"
+}

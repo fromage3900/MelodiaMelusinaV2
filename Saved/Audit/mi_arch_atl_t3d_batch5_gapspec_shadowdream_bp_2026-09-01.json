@@ -1,0 +1,40 @@
+{
+  "schema": "melodia.t3d.batch.v1",
+  "id": "MI_Arch_Atl_T3D_Batch5_GapScan_ShadowDreamBluePink",
+  "generated": "2026-09-01T06:00:00Z",
+  "source": "Saved/Audit/arch_toon_conversion.json (atlantis_mi_entries[154:204]) + disk gap scan",
+  "target": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis",
+  "mode": "spec_only",
+  "note": "Batch 5 of Atlantis MI spec. Covers next 50 stems after batch4. ShadowDream blue on glass/marble, pink on ornamental/floral. No .uasset writes.",
+  "batch": 5,
+  "previous_mis_on_disk": 54,
+ "previous_spec_batches": 2,
+ "previous_spec_entries": 100,
+  "batch_size": 50,
+  "shadowdream_variants": {
+    "blue": {
+      "hex": "#8AA0D6",
+      "linear": [0.541, 0.627, 0.839],
+      "slots": ["glass", "marble", "crystal", "stained", "window", "orb"]
+    },
+    "pink": {
+      "hex": "#E8A0BF",
+      "linear": [0.91, 0.627, 0.749],
+      "slots": ["ornament", "floral", "banner", "garland", "rose", "flower"]
+    }
+  },
+  "gap_analysis": {
+    "total_atlantis_stems": 333,
+    "existing_kb3d_mis_on_disk": 54,
+    "batch3_spec_entries": 50,
+    "batch4_spec_entries": 50,
+    "total_accounted": 154,
+    "remaining_stems_to_spec": 179,
+    "this_batch_covers": 50,
+    "still_remaining_after": 129
+  },
+  "stems_to_spec": "Next 50 atlantis_unique_stems entries after batch4 — from arch_toon_conversion.json atlantis_mi_entries[154:204]. Re-scan disk to confirm exact stems still missing before editor pass.",
+  "parent": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "naming_pattern": "MI_Arch_Atl_<Suffix>",
+  "priority": 1
+}

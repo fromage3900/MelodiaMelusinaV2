@@ -1,0 +1,24 @@
+{
+  "id": "scifi_deck_v1",
+  "family": "Sci-Fi",
+  "verticality": 0.5,
+  "symmetry": 0.85,
+  "ornament_density": 0.3,
+  "structural_logic": 0.96,
+  "organic_growth": 0.08,
+  "cosmic_influence": 0.45,
+  "sacred_sequence": [],
+  "compose_style": "SCIFI_DECK",
+  "default_graph": "SCI_FI_DECK_EXPANSION",
+  "grammar_id": "SCI_FI_DECK_EXPANSION",
+  "surreal_transform": "recursive_interior",
+  "compose_roles": {
+    "large": "_lib_GREYBOX_ROOM",
+    "monument": "_lib_GREYBOX_CATWALK"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

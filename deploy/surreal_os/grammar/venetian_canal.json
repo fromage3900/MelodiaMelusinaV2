@@ -1,0 +1,13 @@
+{
+  "id": "VENETIAN_CANAL",
+  "label": "Venetian Canal Walk",
+  "description": "Loggia bays along canal-side corridor rhythm",
+  "style": "venetian",
+  "modules": [
+    {"arch_type": "GB_VENETIAN_LOGGIA", "overrides": {"gothic_width": 2.8, "gb_height": 4.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_CORRIDOR_OFFSET", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS", "gb_wainscot_height": 0.35}},
+    {"arch_type": "GB_VENETIAN_LOGGIA", "overrides": {"gothic_width": 2.8, "gb_height": 4.0}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 6.0, "gb_corridor_profile": "SINGLE", "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_VENETIAN_LOGGIA", "overrides": {}}
+  ]
+}

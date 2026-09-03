@@ -1,0 +1,273 @@
+{
+  "DataType": "RoguelikeBurden",
+  "SchemaVersion": 1,
+  "GeneratedFrom": "Content/Melodia/DataStuctures/DT_MelodySlime_RoomMods.json",
+  "Contract": "specs/roguelike/melodia_blessing_burden_contract.v1.json",
+  "Note": "Recovered curse/curse_effect pairs dropped by Content/Python/extend_roguelike_blessings.py. Rows carrying needs_review are NOT gameplay-ready: magnitude or rule_type could not be read from the authored text and must not be guessed.",
+  "Rows": {
+    "Burden_ModHarmonyMire": {
+      "burden_id": "Burden_ModHarmonyMire",
+      "display_name": "Tone Deaf Curse",
+      "description": "Missed notes reduce ultimate gauge by 25%",
+      "rule_type": "ultimate_gauge",
+      "magnitude": 25.0,
+      "duration_or_scope": "per_miss",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModHarmonyMire_Blessing",
+      "source_row": "ModHarmonyMire"
+    },
+    "Burden_ModMelodicFate": {
+      "burden_id": "Burden_ModMelodicFate",
+      "display_name": "Dank Echoes",
+      "description": "Reduces your toughness damage by 10%",
+      "rule_type": "toughness_damage",
+      "magnitude": 10.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodicFate_Blessing",
+      "source_row": "ModMelodicFate"
+    },
+    "Burden_ModMelodicHarmony": {
+      "burden_id": "Burden_ModMelodicHarmony",
+      "display_name": "Rhythmic Shackles",
+      "description": "Reduce ultimate gauge recharge by 20%",
+      "rule_type": "ultimate_gauge_recharge",
+      "magnitude": 20.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodicHarmony_Blessing",
+      "source_row": "ModMelodicHarmony"
+    },
+    "Burden_ModMelodicLabyrinth": {
+      "burden_id": "Burden_ModMelodicLabyrinth",
+      "display_name": "Silent Woe",
+      "description": "HP -10% per note missed.",
+      "rule_type": "hp",
+      "magnitude": 10.0,
+      "duration_or_scope": "per_miss",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodicLabyrinth_Blessing",
+      "source_row": "ModMelodicLabyrinth"
+    },
+    "Burden_ModMelodicMire": {
+      "burden_id": "Burden_ModMelodicMire",
+      "display_name": "Demonic Discordance",
+      "description": "Missed notes drain SP by 5, max 3 per turn.",
+      "rule_type": "sp",
+      "magnitude": 5.0,
+      "duration_or_scope": "turn",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodicMire_Blessing",
+      "source_row": "ModMelodicMire",
+      "needs_review": [
+        "magnitude is a bare number, unit unknown (points? percent?)"
+      ]
+    },
+    "Burden_ModMelodicPuzzle": {
+      "burden_id": "Burden_ModMelodicPuzzle",
+      "display_name": "Silent Foe",
+      "description": "Missed rhythm notes increase toughness damage taken by 5%.",
+      "rule_type": "toughness_damage_taken",
+      "magnitude": 5.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodicPuzzle_Blessing",
+      "source_row": "ModMelodicPuzzle"
+    },
+    "Burden_ModMelodicTune": {
+      "burden_id": "Burden_ModMelodicTune",
+      "display_name": "Rhythmic Retribution",
+      "description": "Take double damage until next perfect timing.",
+      "rule_type": "damage_taken",
+      "magnitude": 100.0,
+      "duration_or_scope": "until_condition",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodicTune_Blessing",
+      "source_row": "ModMelodicTune",
+      "needs_review": [
+        "magnitude inferred from 'double' (=100%); confirm intent"
+      ]
+    },
+    "Burden_ModMelodious": {
+      "burden_id": "Burden_ModMelodious",
+      "display_name": "Deafening Echoes",
+      "description": "Reduces toughness damage taken by 20%",
+      "rule_type": "toughness_damage_taken",
+      "magnitude": 20.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodious_Blessing",
+      "source_row": "ModMelodious",
+      "needs_review": [
+        "reads as a BENEFIT, not a constraint; a burden must constrain"
+      ]
+    },
+    "Burden_ModMelodiousLabyrinth": {
+      "burden_id": "Burden_ModMelodiousLabyrinth",
+      "display_name": "Deafening Echoes",
+      "description": "Decreases ultimate gauge recharge rate by 10%.",
+      "rule_type": "ultimate_gauge_recharge",
+      "magnitude": 10.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodiousLabyrinth_Blessing",
+      "source_row": "ModMelodiousLabyrinth"
+    },
+    "Burden_ModMelodyMalediction": {
+      "burden_id": "Burden_ModMelodyMalediction",
+      "display_name": "Dissonant Doom",
+      "description": "SP -20% for the rest of your run, must use wisely!",
+      "rule_type": "sp",
+      "magnitude": 20.0,
+      "duration_or_scope": "run",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodyMalediction_Blessing",
+      "source_row": "ModMelodyMalediction"
+    },
+    "Burden_ModMelodyMaze": {
+      "burden_id": "Burden_ModMelodyMaze",
+      "display_name": "Silent Sorrows",
+      "description": "Toughness damage +20%, ultimate gauge halves on fail.",
+      "rule_type": "ultimate_gauge",
+      "magnitude": 20.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodyMaze_Blessing",
+      "source_row": "ModMelodyMaze",
+      "needs_review": [
+        "compound effect: more than one rule in a single string"
+      ]
+    },
+    "Burden_ModMelodyMist": {
+      "burden_id": "Burden_ModMelodyMist",
+      "display_name": "Note Famine",
+      "description": "Reduces ultimate gauge recharge by 15%",
+      "rule_type": "ultimate_gauge_recharge",
+      "magnitude": 15.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMelodyMist_Blessing",
+      "source_row": "ModMelodyMist"
+    },
+    "Burden_ModMidiMagic": {
+      "burden_id": "Burden_ModMidiMagic",
+      "display_name": "Melodic Misfortune",
+      "description": "Reduce rhythm timing window by 10%",
+      "rule_type": "rhythm_timing_window",
+      "magnitude": 10.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMidiMagic_Blessing",
+      "source_row": "ModMidiMagic"
+    },
+    "Burden_ModMuseScore": {
+      "burden_id": "Burden_ModMuseScore",
+      "display_name": "Harsh Accord",
+      "description": "Reduces ultimate gauge recharge speed by 15%",
+      "rule_type": "ultimate_gauge_recharge",
+      "magnitude": 15.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMuseScore_Blessing",
+      "source_row": "ModMuseScore"
+    },
+    "Burden_ModMusicalHarmony": {
+      "burden_id": "Burden_ModMusicalHarmony",
+      "display_name": "Tonal Dissonance",
+      "description": "Decrease ultimate gauge recharge rate by 10%",
+      "rule_type": "ultimate_gauge_recharge",
+      "magnitude": 10.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMusicalHarmony_Blessing",
+      "source_row": "ModMusicalHarmony"
+    },
+    "Burden_ModMusicNoteBlast": {
+      "burden_id": "Burden_ModMusicNoteBlast",
+      "display_name": "Harmonic Mismatch",
+      "description": "Toughness damage +10% for out-of-tune notes",
+      "rule_type": "toughness_damage",
+      "magnitude": 10.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMusicNoteBlast_Blessing",
+      "source_row": "ModMusicNoteBlast"
+    },
+    "Burden_ModMusicPulse": {
+      "burden_id": "Burden_ModMusicPulse",
+      "display_name": "Harmonic Weakness",
+      "description": "Decrease rhythm timing window by 5%",
+      "rule_type": "rhythm_timing_window",
+      "magnitude": 5.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMusicPulse_Blessing",
+      "source_row": "ModMusicPulse"
+    },
+    "Burden_ModMysticHarmony": {
+      "burden_id": "Burden_ModMysticHarmony",
+      "display_name": "Dissonant Weakness",
+      "description": "Decreases ultimate gauge charge rate by 20%",
+      "rule_type": "ultimate_gauge_recharge",
+      "magnitude": 20.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModMysticHarmony_Blessing",
+      "source_row": "ModMysticHarmony"
+    },
+    "Burden_SheetMusicChamber": {
+      "burden_id": "Burden_SheetMusicChamber",
+      "display_name": "Harmonic Weakness",
+      "description": "toughness damage increased by 20%",
+      "rule_type": "toughness_damage",
+      "magnitude": 20.0,
+      "duration_or_scope": "room",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "SheetMusicChamber_Blessing",
+      "source_row": "SheetMusicChamber"
+    },
+    "Burden_SheetMusicHarmony": {
+      "burden_id": "Burden_SheetMusicHarmony",
+      "display_name": "Rhythmic Shackles",
+      "description": "Decrease speed by 20% for every missed note.",
+      "rule_type": "movement_speed",
+      "magnitude": 20.0,
+      "duration_or_scope": "per_miss",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "SheetMusicHarmony_Blessing",
+      "source_row": "SheetMusicHarmony"
+    },
+    "Burden_ModRhythmBlessing": {
+      "burden_id": "Burden_ModRhythmBlessing",
+      "display_name": "Discordant Beat",
+      "description": "Missed notes reduce rhythm window by 10%.",
+      "rule_type": "rhythm_timing_window",
+      "magnitude": 10.0,
+      "duration_or_scope": "per_miss",
+      "stack_policy": "unique_per_run",
+      "source_content_pack": "MelodySlime_RoomMods",
+      "paired_blessing_id": "ModRhythmBlessing_Blessing",
+      "source_row": "ModRhythmBlessing"
+    }
+  }
+}

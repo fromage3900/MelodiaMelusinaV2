@@ -1,0 +1,109 @@
+{
+  "description": "Melusina WaterFX — FLIP cache splash droplets, density, and proximity MPC bindings",
+  "version": "1.0.0",
+  "target_system": "/Game/Melodia/VFX/Melusina_WaterFX",
+  "niagara_systems": {
+    "/Game/Melodia/VFX/Melusina_WaterFX": {
+      "WaterSplashEmitter": {
+        "SpawnRate": 180.0,
+        "Lifetime": 1.2,
+        "SplashForce": 0.65,
+        "DropletDensity": 0.75,
+        "GravityScale": 0.4,
+        "DragCoefficient": 2.5,
+        "CollisionRadius": 0.02,
+        "SurfaceTension": 0.3,
+        "Viscosity": 0.15,
+        "Resolution": 80
+      },
+      "WaterSheetEmitter": {
+        "SpawnRate": 60.0,
+        "Lifetime": 0.8,
+        "SheetWidth": 0.15,
+        "SheetForce": 0.3
+      }
+    },
+    "/Game/EnvSandbox/VFX/Systems/NS_Uni_WaterMist": {
+      "WaterMist": {
+        "SpawnRate": 45.0,
+        "Lifetime": 3.5,
+        "MistOpacity": 0.35,
+        "MistScale": 1.2,
+        "DriftSpeed": 0.08,
+        "ProximitySpawnRateMultiplier": 1.0,
+        "NearProximityDistance": 120.0,
+        "FarProximityDistance": 350.0
+      }
+    }
+  },
+  "mpc_bindings": [
+    {
+      "niagara_path": "/Game/EnvSandbox/VFX/Systems/NS_Uni_WaterMist",
+      "emitter": "WaterMist",
+      "param": "ProximitySpawnRateMultiplier",
+      "mpc_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_param": "PlayerProximity"
+    },
+    {
+      "niagara_path": "/Game/Melodia/VFX/Melusina_WaterFX",
+      "emitter": "WaterSplashEmitter",
+      "param": "SplashForce",
+      "mpc_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_param": "PlayerProximity"
+    },
+    {
+      "niagara_path": "/Game/Melodia/VFX/Melusina_WaterFX",
+      "emitter": "WaterSplashEmitter",
+      "param": "DropletDensity",
+      "mpc_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_param": "WaterIntensity"
+    }
+  ],
+  "module_scripts": [
+    {
+      "niagara_path": "/Game/Melodia/VFX/Melusina_WaterFX",
+      "emitter": "WaterSplashEmitter",
+      "module_name": "DropletLifetimeDriver",
+      "stage": "ParticleUpdate",
+      "source": "float AgeNormalized = NormalizedAge;\nfloat BaseLifetime = 1.2;\nfloat AgeFactor = 1.0 - AgeNormalized * 0.3;\nParticle.Lifetime = BaseLifetime * AgeFactor;"
+    },
+    {
+      "niagara_path": "/Game/EnvSandbox/VFX/Systems/NS_Uni_WaterMist",
+      "emitter": "WaterMist",
+      "module_name": "MistDriftDriver",
+      "stage": "ParticleUpdate",
+      "source": "float AgeFactor = 1.0 + NormalizedAge * 0.5;\nParticle.Velocity += float3(DriftSpeed * AgeFactor, 0.0, DriftSpeed * 0.3 * AgeFactor);"
+    }
+  ],
+  "material_instances": {
+    "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair": {
+      "scalars": {
+        "HairDripIntensity": 0.55,
+        "SplashForce": 0.65,
+        "WaterOpacity": 0.82,
+        "WaterRoughness": 0.22,
+        "MagicalIntensity": 0.18,
+        "CausticIntensity": 0.12,
+        "DripSpeed": 0.3,
+        "DripLength": 0.12
+      }
+    }
+  },
+  "parameter_ranges": {
+    "SpawnRate": {"min": 0.0, "max": 500.0, "default": 100.0, "notes": "Particles per second"},
+    "Lifetime": {"min": 0.1, "max": 5.0, "default": 1.0, "notes": "Seconds before particle消亡"},
+    "SplashForce": {"min": 0.0, "max": 2.0, "default": 0.5, "notes": "Force multiplier on splash droplets"},
+    "DropletDensity": {"min": 0.0, "max": 1.0, "default": 0.5, "notes": "Normalized density of droplet spray"},
+    "GravityScale": {"min": 0.0, "max": 2.0, "default": 0.5, "notes": "FLIP gravity multiplier"},
+    "DragCoefficient": {"min": 0.0, "max": 10.0, "default": 2.0, "notes": "Air resistance on droplets"},
+    "CollisionRadius": {"min": 0.005, "max": 0.1, "default": 0.02, "notes": "Collision sphere radius for droplet contact"},
+    "SurfaceTension": {"min": 0.0, "max": 1.0, "default": 0.2, "notes": "FLIP surface tension strength"},
+    "Viscosity": {"min": 0.0, "max": 0.5, "default": 0.1, "notes": "FLIP fluid viscosity"},
+    "Resolution": {"min": 48, "max": 160, "default": 80, "notes": "FLIP simulation resolution (power of 2 multiples)"},
+    "ProximitySpawnRateMultiplier": {"min": 0.0, "max": 5.0, "default": 1.0, "notes": "Multiplier driven by PlayerProximity MPC"},
+    "HairDripIntensity": {"min": 0.0, "max": 1.0, "default": 0.4, "notes": "Water drip visibility on hair"},
+    "WaterOpacity": {"min": 0.0, "max": 1.0, "default": 0.85, "notes": "Water layer opacity on hair"},
+    "DripSpeed": {"min": 0.0, "max": 2.0, "default": 0.3, "notes": "Speed of drip sliding down hair"},
+    "DripLength": {"min": 0.0, "max": 0.5, "default": 0.1, "notes": "Length of water drip trails"}
+  }
+}

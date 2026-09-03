@@ -1,0 +1,63 @@
+{
+  "note": "Node/pin names probe-resolved on 2026-08-16; feed to Monolith audio_query build_metasound_from_spec in a GUI session if the Python binding path HOLDs.",
+  "type": "Source",
+  "format": "Mono",
+  "wave": "/Game/Melodia/Audio/BGM/SW_BGM_Zundamon_Sewaa_Full",
+  "outputs": [
+    "Envelope"
+  ],
+  "nodes": [
+    {
+      "name": "WavePlayer",
+      "class_name": {
+        "namespace": "UE",
+        "name": "Wave Player",
+        "variant": "Mono"
+      },
+      "inputs": {
+        "Wave Asset": "/Game/Melodia/Audio/BGM/SW_BGM_Zundamon_Sewaa_Full",
+        "Loop": true
+      }
+    },
+    {
+      "name": "EnvelopeFollower",
+      "class_name": {
+        "namespace": "UE",
+        "name": "Envelope Follower",
+        "variant": ""
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from": [
+        "WavePlayer",
+        "Out Mono"
+      ],
+      "to": [
+        "EnvelopeFollower",
+        "In"
+      ]
+    },
+    {
+      "from": [
+        "WavePlayer",
+        "Out Mono"
+      ],
+      "to": [
+        "SOURCE_OUTPUT",
+        "UE.OutputFormat.Mono.Audio:0"
+      ]
+    },
+    {
+      "from": [
+        "EnvelopeFollower",
+        "Envelope"
+      ],
+      "to": [
+        "GRAPH_OUTPUT",
+        "Envelope"
+      ]
+    }
+  ]
+}

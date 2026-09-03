@@ -1,0 +1,14 @@
+
+Binaries/*
+Build/*
+Intermediate/*
+Plugins/*/Intermediate/*
+.claude/*
+*.generated.h
+
+# Cache files for the editor to use
+DerivedDataCache/*
+
+# Ignore MacOS finder attribute file
+.DS_Store
+

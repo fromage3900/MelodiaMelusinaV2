@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_content_fixture",
+  "fixture_id": "dream_anchor_interaction",
+  "status": "contract_spec_only",
+  "readiness_level": "L1",
+  "owner": "Melodia integration map",
+  "shared_contract": "specs/blueprints/melodia_content_package.v1.json",
+  "package": {
+    "PackageId": "melodia.interaction.dream_anchor",
+    "DefinitionVersion": "1.0",
+    "ContentKind": "interaction_prompt",
+    "DisplayName": "Dream Anchor Interaction",
+    "Tags": [
+      "fixture",
+      "interaction",
+      "dream_anchor",
+      "replay_safe"
+    ],
+    "CapabilityGateContract": "specs/capability/melodia_capability_gate.v1.json",
+    "UnlockConditions": [
+      "fixture_always_available"
+    ],
+    "RequiredNarrativePhase": "first_dream",
+    "RequiredRegion": "dreamstate",
+    "RequiredTraversalState": "none",
+    "AllowedContexts": [
+      "open_world",
+      "interaction_fixture"
+    ],
+    "BlockedContexts": [
+      "cutscene",
+      "menu",
+      "travel",
+      "battle_session"
+    ],
+    "InterruptPolicy": "leave_canonical_state_unchanged",
+    "ResetPolicy": "reset_fixture_runtime_only",
+    "ContextPolicy": "fail_closed_and_report_block_reason",
+    "ModeSet": [
+      "hidden",
+      "prompted",
+      "consumed"
+    ],
+    "EnterPolicy": "read_context_then_show_prompt",
+    "UpdatePolicy": "do_not_repeat_one_shot_interaction",
+    "ExitPolicy": "restore_runtime_presentation",
+    "VariantSet": [
+      "dream_anchor_default",
+      "dream_anchor_unavailable"
+    ],
+    "EquippedVariantId": "dream_anchor_default",
+    "FallbackVariantId": "dream_anchor_default",
+    "AnimationProfile": "optional_anchor_prompt_animation",
+    "VfxProfile": "optional_anchor_prompt_vfx",
+    "AudioProfile": "optional_anchor_prompt_audio",
+    "UiPresentation": "dream_anchor_interaction_prompt",
+    "PreviewPolicy": "show_prompt_only_for_eligible_melusina",
+    "EffectTogglePolicy": "presentation_only",
+    "UnavailableVariantPolicy": "hide_prompt_and_keep_state_valid",
+    "EvolutionStage": 0,
+    "UpgradeConditions": [],
+    "EffectOverrides": [],
+    "IdlePresentation": "soft_anchor_glow",
+    "CanonicalStateKey": "melodia.fixture.interaction.dream_anchor",
+    "IdempotencyKey": "interaction.dream_anchor.touch_once",
+    "SaveWritePolicy": "none_until_canonical_adapter_is_named",
+    "MigrationVersion": 1,
+    "FixtureMap": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "FixtureRoute": "dream_anchor_prompt_and_reset",
+    "ExpectedEvidence": "parent_defaults_prompt_binding_compile_save_reset",
+    "ReadinessLevel": "L1"
+  },
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "content_kind": "interaction_prompt",
+  "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaInteraction_DreamAnchor",
+  "parent_class": "/Script/BS_GodFile.MelodiaExplorationInteractionVolume",
+  "blueprint": {
+    "planned_asset": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaInteraction_DreamAnchor",
+    "parent_template": "/Script/BS_GodFile.MelodiaExplorationInteractionVolume",
+    "runtime_authority": "AMelodiaExplorationInteractionVolume_with_prompt_widget_presentation"
+  },
+  "definition_contract": {
+    "interaction_id": "dream_anchor_touch",
+    "eligible_actor": "AMelusinaCharacter",
+    "presentation_only_until_canonical_adapter_is_named": true,
+    "adapter_must_not_write_save_object_directly": true
+  },
+  "authority": {
+    "interaction": "AMelodiaExplorationInteractionVolume",
+    "prompt": "/Game/MelodiaIntegration/UI/WBP_MelodiaInteractionPrompt",
+    "persistence": "none; interaction presentation is runtime-only until a canonical adapter is explicitly named",
+    "forbidden": [
+      "direct quest mutation",
+      "direct save-object mutation",
+      "direct travel or battle start",
+      "second prompt/input authority"
+    ]
+  },
+  "defaults": {
+    "InteractionId": "dream_anchor_touch",
+    "PromptText": "Touch the anchor",
+    "bRequireMelusina": true,
+    "bOneShot": true
+  },
+  "entry_route": [
+    "read_interaction_context",
+    "show_prompt_only_for_eligible_melusina",
+    "request_interaction",
+    "broadcast_prompt_event"
+  ],
+  "reset_route": [
+    "reset_fixture_runtime_only",
+    "re_enter_interaction_volume",
+    "restore_prompt_presentation"
+  ],
+  "deterministic_fixture": {
+    "fixture_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "entry_route": [
+      "read_interaction_context",
+      "show_prompt_only_for_eligible_melusina",
+      "request_interaction"
+    ],
+    "repeat_route": [
+      "re_enter_interaction_volume",
+      "verify_one_shot_no_op"
+    ],
+    "reset_route": [
+      "reset_fixture_runtime_only",
+      "restore_prompt_presentation"
+    ],
+    "failure_routes": [
+      "blocked_context_returns_reason",
+      "missing_prompt_asset_fails_closed"
+    ]
+  },
+  "failure_routes": [
+    "non_melusina_overlap_does_not_show_prompt",
+    "blocked_context_does_not_request_interaction",
+    "one_shot_interaction_does_not_repeat",
+    "missing_prompt_asset_fails_closed"
+  ],
+  "evidence_required": [
+    "parent and CDO defaults are read back from the live editor",
+    "prompt widget path and event binding are read back",
+    "compile/save/mtime/re-export checks pass",
+    "fixture reset is deterministic",
+    "static contract is not promoted to map placement or PIE proof"
+  ],
+  "readiness": "L1"
+}

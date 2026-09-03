@@ -1,0 +1,10 @@
+{
+  "graph_fingerprint": "exact_match",
+  "blueprint_compile": "0_errors",
+  "material_compile": "0_errors", 
+  "shader_instructions": "max_150",
+  "triangle_budget": "max_250k",
+  "pie_smoke": "0_crashes",
+  "animation_delta": "threshold_0.05",
+  "accessibility": "pass"
+}

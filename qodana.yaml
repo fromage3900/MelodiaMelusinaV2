@@ -1,0 +1,71 @@
+# Qodana Configuration for BS_GodFile (Unreal Engine 5.8)
+# https://www.jetbrains.com/help/qodana/qodana-yaml.html
+
+version: "1.0"
+
+# IDE mode — runs locally with JetBrains C++ / Unreal Engine analyzer
+ide: QDJB
+
+# Inspection profile
+profile:
+  name: qodana.recommended
+
+# Unreal C++ specific and core quality inspections
+include:
+  - name: CppMemberFunctionMayBeConst
+  - name: CppParameterMayBeConst
+  - name: CppLocalVariableMayBeConst
+  - name: CppUseNullptr
+  - name: CppUseAuto
+  - name: CppUseEnumClass
+  - name: CppUseOverride
+  - name: CppUseDefault
+  - name: CppUseDelete
+  - name: CppUseNoexcept
+  - name: CppUseNodiscard
+  - name: CppUseMaybeUnused
+  - name: CppRedundantInclude
+  - name: CppUnusedIncludeDirective
+  - name: CppMemberInitializersOrder
+  - name: CppClangTidyClangDiagnosticUnusedVariable
+  - name: CppClangTidyClangDiagnosticUnusedValue
+
+# Exclude non-source and third-party plugin paths
+exclude:
+  - name: All
+    paths:
+      - Content/
+      - Saved/
+      - Intermediate/
+      - DerivedDataCache/
+      - CompatibilityLabs/
+      - ThirdParty/
+      - _ThirdParty/
+      - Plugins/HoudiniEngine/
+      - Plugins/Claireon/
+      - Plugins/KawaiiPhysics/
+      - Plugins/PCGExtendedToolkit/
+      - Plugins/ProceduralDungeon/
+      - Plugins/ProceduralModelingToolkit/
+      - Plugins/GaeaUnrealTools/
+      - Plugins/Oceanology_Plugin/
+      - Plugins/UEBlueprintMCP/
+      - Plugins/UnrealMCP/
+      - Plugins/Monolith/
+      - Plugins/MeshBlend/
+      - Plugins/MelodiaNPR/
+      - Plugins/MelodiaTokenWallet/
+      - Plugins/QuillScript/
+      - .hermes/
+      - .jcode/
+      - .opencode/
+      - Tools/
+      - deploy/
+      - Docs/
+
+# Quality gate: Enforce clean builds and zero critical defects
+failureConditions:
+  severityThresholds:
+    critical: 0
+    high: 5
+    any: 30

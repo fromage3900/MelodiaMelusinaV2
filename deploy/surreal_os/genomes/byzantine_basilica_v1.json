@@ -1,0 +1,22 @@
+{
+  "id": "byzantine_basilica_v1",
+  "family": "Byzantine",
+  "verticality": 0.72,
+  "symmetry": 0.92,
+  "ornament_density": 0.88,
+  "structural_logic": 0.78,
+  "organic_growth": 0.12,
+  "cosmic_influence": 0.22,
+  "sacred_sequence": ["narthex", "naos", "crossing", "dome"],
+  "compose_style": "BYZANTINE_BASILICA",
+  "default_graph": "BYZANTINE_BASILICA",
+  "grammar_id": "BYZANTINE_BASILICA",
+  "surreal_transform": "vertical_stretch",
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "baroque_order": "CORINTHIAN",
+    "material_choice": "MARBLE",
+    "unit_size": 3.4
+  }
+}

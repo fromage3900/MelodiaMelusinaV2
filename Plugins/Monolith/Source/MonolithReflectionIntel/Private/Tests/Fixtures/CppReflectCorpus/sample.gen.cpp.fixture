@@ -1,0 +1,115 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// Fixture file — synthetic UHT artefact for Phase 3a tests.
+// Stored as `.gen.cpp.fixture` so UBT's source glob does NOT compile it.
+// The automation test renames + stages it into a transient dir layout
+// matching `<work>/Inc/SamplePluginA/UHT/Sample.gen.cpp` so the
+// ModuleNameFromArtefactDir() helper can resolve "SamplePluginA".
+
+#include "UObject/GeneratedCppIncludes.h"
+#include "Sample/SampleActor.h"
+
+// IWYU pragma: private, include "Sample/SampleActor.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+// ********** Begin Cross Module References ********************************************************
+COREUOBJECT_API UClass* Z_Construct_UClass_UInterface();
+ENGINE_API UClass* Z_Construct_UClass_AActor();
+SAMPLEPLUGINA_API UClass* Z_Construct_UClass_ASampleActor();
+SAMPLEPLUGINA_API UClass* Z_Construct_UClass_ASampleActor_NoRegister();
+SAMPLEPLUGINA_API UClass* Z_Construct_UClass_USampleInterface();
+SAMPLEPLUGINA_API UClass* Z_Construct_UClass_USampleInterface_NoRegister();
+UPackage* Z_Construct_UPackage__Script_SamplePluginA();
+// ********** End Cross Module References **********************************************************
+
+// ********** Begin Interface USampleInterface *****************************************************
+struct Z_Construct_UClass_USampleInterface_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/Sample/SampleActor.h" },
+	};
+#endif // WITH_METADATA
+	static UObject* (*const DependentSingletons[])();
+	static const UECodeGen_Private::FClassParams ClassParams;
+};
+UObject* (*const Z_Construct_UClass_USampleInterface_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_UInterface,
+	(UObject* (*)())Z_Construct_UPackage__Script_SamplePluginA,
+};
+// ********** End Interface USampleInterface *******************************************************
+
+// ********** Begin Class ASampleActor Function DoSomething ****************************************
+DEFINE_FUNCTION(ASampleActor::execDoSomething)
+{
+	P_FINISH;
+}
+// ********** End Class ASampleActor Function DoSomething ******************************************
+
+// ********** Begin Class ASampleActor *************************************************************
+struct Z_Construct_UClass_ASampleActor_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "Abstract", "true" },
+		{ "IsBlueprintBase", "true" },
+		{ "ModuleRelativePath", "Public/Sample/SampleActor.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Health_MetaData[] = {
+		{ "Category", "Stats" },
+		{ "ModuleRelativePath", "Public/Sample/SampleActor.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsActive_MetaData[] = {
+		{ "Category", "State" },
+		{ "ModuleRelativePath", "Public/Sample/SampleActor.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MeshComponent_MetaData[] = {
+		{ "Category", "Components" },
+		{ "EditAnywhere", "true" },
+		{ "ModuleRelativePath", "Public/Sample/SampleActor.h" },
+	};
+#endif // WITH_METADATA
+
+// ********** Begin Class ASampleActor constinit property declarations *****************************
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Health;
+	static void NewProp_bIsActive_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsActive;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+// ********** End Class ASampleActor constinit property declarations *******************************
+	static constexpr UE::CodeGen::FClassNativeFunction Funcs[] = {
+		{ .NameUTF8 = UTF8TEXT("DoSomething"), .Pointer = &ASampleActor::execDoSomething },
+	};
+	static UObject* (*const DependentSingletons[])();
+	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASampleActor_DoSomething, "DoSomething" }, // 1234567890
+	};
+	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
+	static const UECodeGen_Private::FClassParams ClassParams;
+};
+
+// ********** Begin Class ASampleActor Property Definitions ****************************************
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASampleActor_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASampleActor, Health), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Health_MetaData), NewProp_Health_MetaData) };
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASampleActor_Statics::NewProp_bIsActive = { "bIsActive", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASampleActor), &Z_Construct_UClass_ASampleActor_Statics::NewProp_bIsActive_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsActive_MetaData), NewProp_bIsActive_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASampleActor_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASampleActor, MeshComponent), nullptr, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MeshComponent_MetaData), NewProp_MeshComponent_MetaData) };
+// ********** End Class ASampleActor Property Definitions ******************************************
+
+UObject* (*const Z_Construct_UClass_ASampleActor_Statics::DependentSingletons[])() = {
+	(UObject* (*)())Z_Construct_UClass_AActor,
+	(UObject* (*)())Z_Construct_UPackage__Script_SamplePluginA,
+};
+
+const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_ASampleActor_Statics::InterfaceParams[] = {
+	{ Z_Construct_UClass_USampleInterface_NoRegister, (int32)VTABLE_OFFSET(ASampleActor, ISampleInterface), false },
+};
+
+// ********** End Class ASampleActor ***************************************************************
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

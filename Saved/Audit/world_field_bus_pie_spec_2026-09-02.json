@@ -1,0 +1,135 @@
+{
+  "schema": "melodia.world_field_bus.pie_readiness.v1",
+  "gate": "world_field_bus_pie",
+  "date": "2026-09-02",
+  "run_time": "08:07:06",
+  "mode": "OFFLINE — spec/inventory only",
+  "editor_lock": "held by another agent — capture_pending_this_run",
+  "project_root": "C:/EnvironmentPortfolio/BS_GodFile",
+  "engine": "UE 5.8",
+  "evidence_plan": {
+    "capture_json": "Saved/Audit/world_field_bus_pie_2026-09-02.json",
+    "capture_mp4": "Saved/Audit/world_field_bus_pie_2026-09-02.mp4"
+  },
+  "prereq_checklist": {
+    "single_editor_lock_obtained": false,
+    "editor_listen_9316": false,
+    "L_PCG_Hero_CrystalHarpGrove_open": false,
+    "MusicClock_running_has_musical_time_checked": false,
+    "MPC_Melodia_Palette_loaded_no_warnings": false,
+    "WorldField_offline_probe_ok": false,
+    "closed_editor_build_for_neural_seam_landed": false,
+    "capture_running_this_run": false,
+    "status": "capture_pending_this_run"
+  },
+  "contract_summary": "Single audio writer confirmed by source. BUT param-namespace is PARTIALLY MISALIGNED: the writer publishes band lanes as Bass/Mid/Treble (+GlobalReactivity) and never writes BassIntensity/MidIntensity/BeatTracker, while every read-only consumer requests BassIntensity and the neural consumer also requests BeatTracker. Only BeatPhase/BeatPulse/BeatIntensity align across writer+all consumers. PIE capture must FAIL on the missing lanes.",
+  "single_writer_contract": {
+    "audio_authority": "MusicClock -> UMelodiaMusicClockSubsystem (HasMusicalTime/GetBeatPhase(VisualTimebase)/GetTempoBPM)",
+    "sole_mpc_audio_writer": "UMelodiaAudioReactivePresentationSubsystem::TickPresentation",
+    "mpc_collection": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+    "writer_publishes_exactly": [
+      {"name": "GlobalReactivity", "source": "battle intensity"},
+      {"name": "Bass", "source": "battle intensity"},
+      {"name": "Mid", "source": "ImpactPulse"},
+      {"name": "Treble", "source": "cos^2 BeatPulseValue"},
+      {"name": "BeatPhase", "source": "clock beat phase (wraps)"},
+      {"name": "BeatPulse", "source": "cos^2 one-shot pulse on beat"},
+      {"name": "BeatIntensity", "source": "cos^2 BeatPulseValue"}
+    ],
+    "intended_contract_param_set": ["BassIntensity", "BeatIntensity", "BeatPhase", "BeatPulse", "BeatTracker"],
+    "aligned_params_writer_vs_consumers": ["BeatPhase", "BeatPulse", "BeatIntensity"],
+    "missing_lane_BassIntensity": "requested by consumers, NEVER written by the audio writer (writer uses 'Bass')",
+    "missing_lane_MidIntensity": "requested by CymaticsWriter (fallback exists), NEVER written by the audio writer (writer uses 'Mid')",
+    "missing_lane_BeatTracker": "requested by NeuralHeroMaterialSubsystem, NEVER written by the audio writer"
+  },
+  "world_field_barometer": {
+    "struct": "FWorldFieldSample (UWorldFieldBus::SampleResonanceTension / PublishResonance)",
+    "status": "SCAFFOLD — needs closed-editor Build.bat; offline probe Tools/test_world_field_bus.py",
+    "fields": [
+      {"name": "ResonanceN", "type": "int32", "default": 2, "meaning": "Chladni mode along X"},
+      {"name": "ResonanceM", "type": "int32", "default": 3, "meaning": "Chladni mode along Y"},
+      {"name": "Tension", "type": "float", "range": [0, 1], "meaning": "Chladni amplitude at plate centre"},
+      {"name": "BeatPulse", "type": "float", "range": [0, 1], "meaning": "mirror of MPC BeatPulse"},
+      {"name": "WorldPosition", "type": "FVector", "meaning": "sample position; Tension falloffs to 0 over 5km"}
+    ],
+    "publisher": "UMelodiaCymaticsSubsystem::RefreshFromMPC -> UWorldFieldBus::PublishResonance(N,M,Tension,BeatPulse)",
+    "note_no_mpc_resonance_tension_params": "No MPC-level Resonance/Tension scalar-or-vector parameter was found in source; 'WorldField.Resonance/Tension' are FWorldFieldSample struct/bus fields, not MPC params. Verify against the live MPC asset in PIE."
+  },
+  "contract_map_writer_vs_consumers": {
+    "writers": [
+      {
+        "subsystem": "UMelodiaAudioReactivePresentationSubsystem",
+        "writes": "MPC_Melodia_Palette (audio lanes) — THE sole audio writer",
+        "params": ["GlobalReactivity", "Bass", "Mid", "Treble", "BeatPhase", "BeatPulse", "BeatIntensity"],
+        "guardrail": "single-writer preserved by source; no other system calls SetScalarParameterValue on this collection"
+      },
+      {
+        "subsystem": "UMelodiaCymaticsWriterSubsystem",
+        "writes": "MPC_Cymatics_Driver (downstream, SEPARATE collection; sole writer to it)",
+        "params": ["Cymatic_BassIntensity", "Cymatic_MidIntensity", "BassIntensity"],
+        "guardrail": "does NOT write MPC_Melodia_Palette"
+      },
+      {
+        "subsystem": "UMelodiaNeuralHeroMaterialSubsystem",
+        "writes": "MPC_Hero_Material (downstream, subsystem-owned; reads audio palette READ-ONLY)",
+        "params": ["EmissiveStrength", "EmissiveTint", "SubsurfaceScatter", "Displacement", "SpecularBoost"],
+        "guardrail": "IsReadOnlyByContract=true for the audio palette"
+      }
+    ],
+    "read_only_consumers_of_mpc_melodia_palette": [
+      {
+        "subsystem": "UMelodiaCymaticsSubsystem",
+        "reads": ["BeatPulse", "BassIntensity"],
+        "guide": "drives Chladni ModeN/ModeM and publishes WorldField.Resonance/Tension; IsReadOnlyByContract=true"
+      },
+      {
+        "subsystem": "UMelodiaNeuralHeroMaterialSubsystem",
+        "reads": ["BassIntensity", "BeatIntensity", "BeatPhase", "BeatPulse", "BeatTracker"],
+        "guide": "feeds hero_material_controller.onnx (verified 7/7); writes MPC_Hero_Material"
+      },
+      {
+        "subsystem": "UMelodiaCymaticsWriterSubsystem",
+        "reads": ["BassIntensity", "BeatIntensity", "MidIntensity(fallback)"],
+        "guide": "mirrors palette to MPC_Cymatics_Driver for cymatic MIs; no palette write"
+      }
+    ],
+    "gem_material_consumer": {
+      "kind": "M_Master_Toon_Universal hero-gem MI (MelodiaHeroGem PBR)",
+      "reads": "MPC_Hero_Material lanes + WorldField.Resonance/Tension (barometer) per plan §4; read-only",
+      "note": "Material-level reads can only be proven in PIE via the param-name match table; not verifiable offline."
+    }
+  },
+  "source_alignment_findings": [
+    "Path discrepancy: NeuralHeroMaterialSubsystem loads /Game/Melodia/MPC_Melodia_Palette; presentation+cymatics load /Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette. Verify which path the real asset lives at; a wrong load path yields constant defaults.",
+    "Writer may be publishing into the wrong collection if the neural path is stale — PIE must assert both assets resolve to the same collection instance.",
+    "WorldFieldBus is SCAFFOLD; needs a closed-editor build before PIE can rely on the C++ struct fields."
+  ],
+  "capture_plan": {
+    "goal": "Prove (a) MPC param names match exactly what materials read, (b) audio bands drive the expected MPC lanes, (c) WorldField.Resonance/Tension barometer moves on a beat.",
+    "save_paths": {
+      "json": "Saved/Audit/world_field_bus_pie_2026-09-02.json",
+      "mp4": "Saved/Audit/world_field_bus_pie_2026-09-02.mp4"
+    },
+    "assertions": [
+      {
+        "id": "A_PARAM_NAME_MATCH",
+        "shape": "param-name match table: for each lane in the union {writer params} x {consumer reads}, record writer_publishes bool, consumer_reads bool, aligned bool. PASS iff all consumer-requested names are in the writer's publish set.",
+        "expected": "Currently EXPECTED FAIL on BassIntensity, MidIntensity, BeatTracker (writer publishes Bass/Mid/Treble instead)."
+      },
+      {
+        "id": "B_AUDIO_BAND_TO_LANE",
+        "shape": "amplitude response: capture concurrent time series of bass/mid/treble power (or MusicClock phase) and each MPC scalar over >=4 bars; assert monotone positive correlation of band->lane per the intended mapping.",
+        "expected": "Bass band -> Bass lane; beat onset -> BeatPulse spike; BeatPhase wraps 1->0 on beat. Re-run after writer lane alignment."
+      },
+      {
+        "id": "C_WORLDFIELD_BAROMETER",
+        "shape": "sample UWorldFieldBus::SampleResonanceTension at plate centre each frame; assert Tension>0 for a beat containing a pulse (BeatPulse>0 forces amplitude floor 0.15), and ResonanceN/M track the bass-driven mode growth.",
+        "expected": "Tension follows Chladni amp Abs(cos-...)*max(BeatPulse,0.15); ResonanceN climbs 2->clamp(2+floor(Bass*6),1,8) as bass lane rises."
+      }
+    ],
+    "run_step": {
+      "when": "after single editor lock released (owner is the current 9316 holder), open L_PCG_Hero_CrystalHarpGrove, confirm MusicClock HasMusicalTime, start PIE, drive a score, capture windowed JSON + MP4 for >=1 phrase, write to the save paths."
+    }
+  },
+  "status": "ready_spec_capture_pending"
+}

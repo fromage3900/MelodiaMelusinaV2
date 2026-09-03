@@ -1,0 +1,20 @@
+// Fixture for Monolith.Source.CppErgonomics.LintHeaderRuleTable (CLEAN case).
+// NOT compiled into any module — read as data by lint_header during the test.
+//
+// A well-formed UCLASS header: GENERATED_BODY present, parent include first,
+// CPPERGOTESTMOD_API export macro, *.generated.h LAST, class name matches the
+// file base name. lint_header MUST report zero findings on this file.
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "LintClean.generated.h"
+
+UCLASS()
+class CPPERGOTESTMOD_API ULintClean : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:
+	ULintClean();
+};

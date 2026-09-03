@@ -1,0 +1,78 @@
+{
+  "schema": "melodia.seaabove.reef.commit.verify.v1",
+  "generated": "2026-09-01T00:00:00Z",
+  "source": "Docs/Plans/SEA_ABOVE_REEF_ASSETS_COMMIT_SPEC_2026-08-31.md",
+  "mode": "disk_scan_verify",
+  "findings": {
+    "total_uassets_on_disk": 97,
+    "meshes_found": 31,
+    "materials_found": 12,
+    "textures_found": 54,
+    "volumes_found": 3,
+    "extra_assets_not_in_spec": [
+      "JELLY_Arms.uasset (skinned mesh)",
+      "JELLY_Bell.uasset (skinned mesh)",
+      "JELLY_Bell_PhysicsAsset.uasset",
+      "JELLY_Bell_Skeleton.uasset",
+      "JellyArm.uasset through JellyArm_007.uasset (7 skinned meshes)",
+      "JellyVeil.uasset (skinned mesh)",
+      "Material_001.uasset",
+      "SK_ShorewakeDress.uasset",
+      "SK_ShorewakeDress_PhysicsAsset.uasset",
+      "SK_ShorewakeDress_Skeleton.uasset",
+      "SM_Banner.uasset (not in spec list)",
+      "SM_Banner_PhysicsAsset.uasset",
+      "SM_Banner_Skeleton.uasset",
+      "SM_Shroud.uasset (not in spec list)",
+      "SM_Shroud_PhysicsAsset.uasset",
+      "SM_Shroud_Skeleton.uasset",
+      "stage_manifest.uasset",
+      "VOL_GhostFog.uasset",
+      "VOL_GodRays.uasset",
+      "VOL_NebulaVeil.uasset"
+    ],
+    "spec_listed_missing_from_disk": [
+      "MI_Jelly_Arms (spec lists MI_SeaAbove_Cloth_Shroud, MI_SeaAbove_CoralSkin_2S, MI_SeaAbove_Kelp, MI_SeaAbove_Sand, MI_SeaAbove_WetRock \u2014 but disk has MI_Jelly_Arms, MI_Jelly_Bell, MI_SeaAbove_Cloth_Banner, MI_SeaAbove_Leviathan_Bone, MI_SeaAbove_Organ_Pipe \u2014 naming mismatch)"
+    ],
+    "materials_on_disk": [
+      "MI_Jelly_Arms",
+      "MI_Jelly_Bell",
+      "MI_SeaAbove_Cloth_Banner",
+      "MI_SeaAbove_Cloth_Shroud",
+      "MI_SeaAbove_CoralSkin",
+      "MI_SeaAbove_CoralSkin_2S",
+      "MI_SeaAbove_Kelp",
+      "MI_SeaAbove_Leviathan_Bone",
+      "MI_SeaAbove_Organ_Pipe",
+      "MI_SeaAbove_Sand",
+      "MI_SeaAbove_WetRock"
+    ],
+    "spec_expected_materials": [
+      "MI_SeaAbove_Cloth_Shroud",
+      "MI_SeaAbove_CoralSkin",
+      "MI_SeaAbove_CoralSkin_2S",
+      "MI_SeaAbove_Kelp",
+      "MI_SeaAbove_Sand",
+      "MI_SeaAbove_WetRock"
+    ],
+    "additional_materials_on_disk": [
+      "MI_Jelly_Arms",
+      "MI_Jelly_Bell",
+      "MI_SeaAbove_Cloth_Banner",
+      "MI_SeaAbove_Leviathan_Bone",
+      "MI_SeaAbove_Organ_Pipe"
+    ]
+  },
+  "verdict": {
+    "status": "READY_WITH_NOTES",
+    "missing_from_spec": "21 extra uassets on disk (jellyfish, banner, shroud, volumes, SK_ShorewakeDress, stage_manifest)",
+    "naming_mismatch": "Spec lists 6 MIs but disk has 12. Additional 6 MIs are Jelly/Banner/Leviathan/Organ_Pipe themed.",
+    "lfs_tracking": "Confirmed: .gitattributes has *.uasset filter=lfs",
+    "recommendation": "Commit the entire Reef/ directory as-is. Spec was incomplete \u2014 actual content is richer than documented."
+  },
+  "safety": {
+    "no_git_executed": true,
+    "gate_acceptance": "echo_run.py record sea_above_reef_commit pass (owner-only)"
+  },
+  "status": "VERIFY_COMPLETE"
+}

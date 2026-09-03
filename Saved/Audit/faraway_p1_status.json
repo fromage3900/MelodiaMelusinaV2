@@ -1,0 +1,212 @@
+{
+  "schema": "melodia.faraway_p1_status.v1",
+  "as_of": "2026-09-01",
+  "phase": "phase_2_faraway_p1",
+  "goal": "Elevate Faraway Mother to P1 first-class",
+  "authority": {
+    "bible": "MONOLITH_LEVEL_DESIGN_BIBLE_2026-08-26.md #10",
+    "hython": "22.0.368",
+    "plan": "Saved/Audit/grand_review_expansion_plan_2026-09-01.json phase_2",
+    "coinsheet": "Saved/Audit/ue_level_building_coinsheet_2026-09-01.json"
+  },
+  "verification": {
+    "method": "on-disk, no fabrication",
+    "verified_at": "2026-09-01",
+    "verifier": "subagent muse-spark-1.2"
+  },
+  "gn_builders": {
+    "total": 16,
+    "existing_8": {
+      "file": "deploy/surreal_arch/melodia_gn/mother.py",
+      "bytes": 39723,
+      "lines": 816,
+      "builders": [
+        "MEL_mother_head_silhouette",
+        "MEL_mother_hair_cascade",
+        "MEL_mother_valley_depression",
+        "MEL_mother_fog_volume",
+        "MEL_mother_fabric_ridge",
+        "MEL_mother_shoulder_fold",
+        "MEL_mother_heart_gate",
+        "MEL_mother_moonlight_rig"
+      ],
+      "register_calls": 8,
+      "def_build_calls": 8,
+      "category_arg": "mother",
+      "status": "verified"
+    },
+    "v3_new_8": {
+      "file": "deploy/surreal_arch/melodia_gn/mother_v3.py",
+      "bytes": 29873,
+      "lines": 647,
+      "builders": [
+        "MEL_mother_walkway_straight",
+        "MEL_mother_walkway_curved",
+        "MEL_mother_frill_rock",
+        "MEL_mother_frill_arch",
+        "MEL_mother_lace_tree",
+        "MEL_mother_pearl_bush",
+        "MEL_mother_silk_vine",
+        "MEL_mother_brocade_flower"
+      ],
+      "register_calls": 8,
+      "def_build_calls": 8,
+      "category_arg": "mother",
+      "status": "verified"
+    },
+    "registry_total": 238,
+    "registry_files_with_builders": 48,
+    "taxonomy_doc_claim": 199,
+    "taxonomy_doc_status": "STALE — Docs/Production/GN_TAXONOMY_2026-08-29.md predates mother_v3 and omits mother category builders (0 hits for MEL_mother_*)",
+    "category_meta": {
+      "key": "mother",
+      "label": "Faraway Mother",
+      "icon": "MESH_MONKEY",
+      "defined_in": "deploy/surreal_arch/melodia_gn/core.py CATEGORY_META",
+      "status": "present in code, missing in taxonomy doc"
+    }
+  },
+  "hero_meshes": {
+    "required": 3,
+    "verified": 3,
+    "manifest": "Saved/Audit/faraway_mother/heroes/faraway_mother_heroes_manifest.json",
+    "schema": "melodia.faraway_mother_terrain.v1",
+    "seed": 20260829,
+    "assets": [
+      {
+        "asset": "SM_FM_MotherSilhouette",
+        "obj": "Saved/Audit/faraway_mother/heroes/SM_FM_MotherSilhouette.obj",
+        "bytes": 3356751,
+        "points": 66177,
+        "faces": 65536,
+        "staging": "far horizon card ~6-9km out, scale constant via level-scripted offset (Bible Beat E: no parallax)",
+        "verified": true
+      },
+      {
+        "asset": "SM_FM_EyeLandmark",
+        "obj": "Saved/Audit/faraway_mother/heroes/SM_FM_EyeLandmark.obj",
+        "bytes": 1923635,
+        "points": 35628,
+        "faces": 34352,
+        "staging": "Beat H reveal site — hill from ground, eye from air; 64-fold iris striations",
+        "verified": true
+      },
+      {
+        "asset": "SM_FM_Lantern",
+        "obj": "Saved/Audit/faraway_mother/heroes/SM_FM_Lantern.obj",
+        "bytes": 6209,
+        "points": 132,
+        "faces": 264,
+        "staging": "Melusina-scale foreground prop; expects translucent MI LanternGlass + warm emissive",
+        "verified": true
+      }
+    ],
+    "renders_verified": 6,
+    "renders_dir": "Saved/Audit/faraway_mother/heroes/renders/",
+    "renders": [
+      "SM_FM_MotherSilhouette_Aerial.png",
+      "SM_FM_MotherSilhouette_North.png",
+      "SM_FM_EyeLandmark_Aerial.png",
+      "SM_FM_EyeLandmark_North.png",
+      "SM_FM_Lantern_Aerial.png",
+      "SM_FM_Lantern_North.png"
+    ],
+    "ue_import": { "scale": "100x (m->cm)", "nanite": true }
+  },
+  "cloth_mountains": {
+    "asset": "SM_ClothMountains_v0.obj",
+    "path": "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj",
+    "bytes": 8795114,
+    "verified": true,
+    "manifest": "Saved/Audit/faraway_mother/cloth_mountains_v0_manifest.json",
+    "manifest_verified": true,
+    "schema": "melodia.faraway_mother_terrain.v1",
+    "seed": 20260829,
+    "tile_m": 2000.0,
+    "grid": 384,
+    "constants": {
+      "BASE_H": 140.0,
+      "PLEAT_AMP": 60.0,
+      "PLEAT_PERIOD": 88.0,
+      "SEAM_DEPTH": 90.0,
+      "SEAM_WIDTH": 26.0,
+      "MOTIF_PERIOD": 46.0,
+      "MOTIF_H": 9.0
+    },
+    "hython": "22.0.368",
+    "renders_verified": 2,
+    "renders": [
+      "Saved/Audit/faraway_mother/renders/ClothMountains_v0_Aerial.png (1263356 bytes)",
+      "Saved/Audit/faraway_mother/renders/ClothMountains_v0_North.png (1063999 bytes)"
+    ],
+    "ue_import": { "scale": "100x (m->cm)", "nanite": true, "note": "landscape-sculpture candidate; keep as hero mesh for v0" }
+  },
+  "terrain_tiles": {
+    "manifest": "Saved/Audit/faraway_mother/terrain/terrain_suite_v01_manifest.json",
+    "verified": true,
+    "count": 5,
+    "tiles": [
+      { "tile": "Hemlands", "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_Hemlands.obj", "bytes": 8796197, "points": 148225, "faces": 147456, "heightmap": "HM_FM_Hemlands.r16 385x385 r16 LE", "h_range_m": [10.86, 88.97] },
+      { "tile": "PleatedRange", "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_PleatedRange.obj", "bytes": 15790361, "points": 263169, "faces": 262144, "heightmap": "HM_FM_PleatedRange.r16 513x513", "h_range_m": [-216.78, 494.99] },
+      { "tile": "EmbroideredBasin", "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_EmbroideredBasin.obj", "bytes": 15781975, "points": 263169, "faces": 262144, "heightmap": "HM_FM_EmbroideredBasin.r16 513x513", "h_range_m": [17.59, 65.42] },
+      { "tile": "VeiledMountains", "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_VeiledMountains.obj", "bytes": 15781990, "points": 263169, "faces": 262144, "heightmap": "HM_FM_VeiledMountains.r16 513x513", "h_range_m": [100.66, 404.57] },
+      { "tile": "SeamRoad", "obj": "Saved/Audit/faraway_mother/terrain/SM_FM_SeamRoad.obj", "bytes": 15782209, "points": 263169, "faces": 262144, "heightmap": "HM_FM_SeamRoad.r16 513x513", "h_range_m": [-26.36, 212.46] },
+      { "tile": "ClothMountains_v0 (hero)", "obj": "Saved/Audit/faraway_mother/SM_ClothMountains_v0.obj", "bytes": 8795114, "grid": 384, "note": "overlap with cloth_mountains hero; 6th mesh in faraway_mother root" }
+    ],
+    "renders_verified": 10,
+    "blender": "4.5.4 LTS"
+  },
+  "fabric_textures": {
+    "required_1024": 3,
+    "verified_1024": 3,
+    "manifest": "Saved/Audit/faraway_mother/textures/textures_manifest.json",
+    "dir": "Saved/Audit/faraway_mother/textures/",
+    "entries": [
+      { "file": "T_FM_PleatDetail_N.png", "size": "1024x1024", "verified_size": [1024, 1024], "mode": "RGB", "bytes": 5361, "srgb": false, "tile_check": "pass", "verified": true },
+      { "file": "T_FM_PleatDetail_2_N.png", "size": "1024x1024", "verified_size": [1024, 1024], "mode": "RGB", "bytes": 5352, "srgb": false, "tile_check": "pass", "verified": true },
+      { "file": "T_FM_SeamMask.png", "size": "1024x1024", "verified_size": [1024, 1024], "mode": "RGB", "bytes": 55679, "srgb": false, "tile_check": "pass", "verified": true }
+    ],
+    "extended_kit": [
+      { "file": "T_FM_Embroidery_A.png", "size": "1024x1024", "verified_size": [1024, 1024], "mode": "RGBA", "bytes": 5215, "srgb": true, "tile_check": "pass" },
+      { "file": "T_FM_Embroidery_B.png", "size": "1024x1024", "verified_size": [1024, 1024], "mode": "RGBA", "bytes": 5189, "srgb": true, "tile_check": "pass" },
+      { "file": "T_FM_FabricWeave_N.png", "size": "512x512", "verified_size": [512, 512], "mode": "RGB", "bytes": 4387, "srgb": false, "tile_check": "pass" }
+    ],
+    "total_textures_verified": 6
+  },
+  "ue_suites": {
+    "dir": "Content/Textures/FarawayMother_Suites/",
+    "pngs": 47,
+    "uassets": 47,
+    "verified": true,
+    "suites": {
+      "Corset_GildedAcanthusBrocade": { "maps": ["AO","BC","H","M","N","ORM","R"], "count": 7 },
+      "Cradle_CarvedAlabasterWood": { "maps": ["AO","BC","H","M","N","ORM","R"], "count": 7 },
+      "Gown_CelestialSilkJacquard": { "maps": ["AO","BC","H","M","N","ORM","R","Sheen"], "count": 8 },
+      "Mantle_NightSkyVelvet": { "maps": ["AO","BC","H","M","N","ORM","R","Sheen"], "count": 8 },
+      "Ornament_NacreMusicBoxJewel": { "maps": ["AO","BC","H","M","N","ORM","R","Sheen"], "count": 8 },
+      "Veil_AquaticLullabyLace": { "maps": ["Alpha","AO","BC","H","M","Mask","N","ORM","R"], "count": 9 }
+    },
+    "p2_manifest": "Saved/Audit/faraway_p2_2026-08-30.json",
+    "mi_proposals": 6,
+    "mi_target": "Content/EnvSandbox/Materials/Instances/FarawayMother/P2/",
+    "status": "spec_only — PNG+uasset pairs present, MI instances not yet materialized"
+  },
+  "v3_gap": {
+    "spec": "Saved/Audit/faraway_mother_v3_asset_import_gap_spec_2026-09-01.json",
+    "status": "queued",
+    "issue": "V3 pipeline lists 12 new texture assets (walkways, frill rocks, lace trees, pearl bushes, silk vines, brocade flowers) — GN builders verified but corresponding PBR texture sets not yet on disk as distinct Content/Textures assets. GN geometry is PRESENT; V3 textures are gap.",
+    "v3_assets_expected": ["walkways (straight+curved)","frill rocks (rock+arch)","lace trees","pearl bushes","silk vines","brocade flowers"],
+    "gn_builders_present": 8,
+    "textures_present": 0
+  },
+  "p1_gate": {
+    "status": "PASS (assets verified on disk)",
+    "blocker": "taxonomy doc stale + V3 textures gap + P1_TASK_LEDGER.json not yet materialized",
+    "next_steps": [
+      "Update Docs/Production/GN_TAXONOMY_2026-08-29.md to 238 builders + mother category section",
+      "Create P1_TASK_LEDGER.json with faraway_mother P1 entry referencing this file as evidence",
+      "Generate V3 PBR sets via Copernicus or mark as P1 stretch",
+      "Materialize MI_FarawayMother_* instances per faraway_p2_2026-08-30.json proposals"
+    ]
+  }
+}

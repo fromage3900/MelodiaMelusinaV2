@@ -1,0 +1,34 @@
+{
+  "id": "zen_shrine_sakura",
+  "family": "Zen",
+  "verticality": 0.75,
+  "symmetry": 0.65,
+  "ornament_density": 0.62,
+  "structural_logic": 0.72,
+  "organic_growth": 0.68,
+  "cosmic_influence": 0.28,
+  "sacred_sequence": [
+    "sakura_torii_frame",
+    "sando_approach",
+    "cherry_canopy_path",
+    "karesansui_field"
+  ],
+  "compose_style": "ZEN_SHRINE",
+  "default_graph": "ZEN_SAKURA_WALK",
+  "grammar_id": "ZEN_SAKURA_WALK",
+  "surreal_transform": "axis_compression",
+  "torii_variant": "sakura",
+  "sakura_graph": "ZEN_SAKURA_WALK",
+  "compose_roles": {
+    "gate": "_lib_GB_ZEN_SAKURA_TORII",
+    "monument": "_lib_GB_ZEN_STONE_BRIDGE",
+    "wall": "_lib_GB_ZEN_CHERRY_ALLEE"
+  },
+  "prop_defaults": {
+    "gb_trim_mode": "RECESS",
+    "gb_bake_trim_colors": true,
+    "uv_unwrap_mode": "TRIM_SHEET",
+    "material_choice": "AUTO",
+    "unit_size": 2.0
+  }
+}

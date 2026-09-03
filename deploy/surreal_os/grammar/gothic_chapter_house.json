@@ -1,0 +1,15 @@
+{
+  "id": "GOTHIC_CHAPTER_HOUSE",
+  "label": "Gothic Chapter House",
+  "description": "Portal entry, nave corridor, window bay, buttress, transept bend, tracery screen, return aisle",
+  "style": "gothic",
+  "modules": [
+    {"arch_type": "GB_GOTHIC_PORTAL", "overrides": {"gb_door_width": 1.6, "gb_door_height": 3.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 12.0, "gb_corridor_profile": "DOUBLE", "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GB_GOTHIC_BAY", "overrides": {"gb_width": 3.2, "gb_height": 5.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GB_GOTHIC_BUTTRESS", "overrides": {"gb_height": 5.5, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GB_CORRIDOR_BEND", "overrides": {"gb_length": 8.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GB_GOTHIC_TRACERY_PANEL", "overrides": {"gb_width": 2.4, "gb_height": 4.0, "gb_trim_mode": "RECESS", "material_choice": "STONE"}},
+    {"arch_type": "GREYBOX_CORRIDOR", "overrides": {"gb_length": 8.0, "gb_corridor_profile": "DOUBLE", "gb_trim_mode": "RECESS", "material_choice": "STONE"}}
+  ]
+}

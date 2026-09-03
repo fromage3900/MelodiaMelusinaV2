@@ -1,0 +1,313 @@
+// Copyright 2024 Tore Lervik. All Rights Reserved.
+
+#include "/Engine/Private/Common.ush"
+
+float GetShadows(float2 UV, float3 Color)
+{
+	//float3 Color = GetColor(UV);
+	float ColorLuminance = Luminance(LinearToSrgb(Color));
+
+	float3 BaseColor = GetBaseColor(UV);
+	float BaseColorLuminance = Luminance(LinearToSrgb(BaseColor));
+
+	if (BaseColorLuminance == 0)
+	{
+		return 1.0; // No shadows if base color is black
+	}
+
+	return ColorLuminance * rcp(BaseColorLuminance);
+}
+
+/* Returns a factor that is 1 when both viewport and render resolution is 1440p. */
+float GetViewPortFactor()
+{
+	return View.ViewSizeAndInvSize.y / 1440.0;
+}
+
+float3 LerpColors(float3 A, float3 B, float PowFactor, float Fade)
+{
+	float InvPowFactor = rcp(PowFactor);
+	return pow(lerp(pow(A, InvPowFactor), pow(B, InvPowFactor), Fade), PowFactor);
+}
+
+float Remap(float Value, float InputMin, float InputMax, float OutputMin, float OutputMax)
+{
+	// Scale the value from the input range to 0-1
+	float NormalizedValue = (Value - InputMin) * rcp(InputMax - InputMin);
+
+	// Scale the normalized value to the output range
+	return OutputMin + NormalizedValue * (OutputMax - OutputMin);
+}
+
+float2 Calculate_Point(float Angle_Degrees)
+{
+	float Angle_Radians = radians(Angle_Degrees);
+
+	float s, c;
+	sincos(Angle_Radians, s, c);
+
+	return float2(c, s);
+}
+
+float Calculate_Angle_Degrees(float X, float Y)
+{
+	float Angle_Radians = atan2(Y, X);
+	float Angle_Degrees = degrees(Angle_Radians);
+
+	// Normalize the angle to be in the range [0, 360)
+	if (Angle_Degrees < 0)
+	{
+		Angle_Degrees += 360;
+	}
+
+	return Angle_Degrees;
+}
+
+float rgb_2_hue(float3 rgb)
+{
+	// Returns a geometric hue angle in degrees (0-360) based on RGB values.
+	// For neutral colors, hue is undefined and the function will return a quiet NaN value.
+	float hue;
+	if (rgb[0] == rgb[1] && rgb[1] == rgb[2])
+	{
+		//hue = FLT_NAN; // RGB triplets where RGB are equal have an undefined hue
+		hue = 0;
+	}
+	else
+	{
+		hue = (180. / PI) * atan2(sqrt(3.0) * (rgb[1] - rgb[2]), 2 * rgb[0] - rgb[1] - rgb[2]);
+	}
+
+	if (hue < 0.) hue = hue + 360;
+
+	return clamp(hue, 0, 360);
+}
+
+float3 CalculateProjectionWeights(float3 Input)
+{
+	float3 result = float3(1, 0, 0);
+	result = Input.g > max(Input.r, Input.b) ? float3(0, 1, 0) : result;
+	result = Input.b > max(Input.r, Input.g) ? float3(0, 0, 1) : result;
+	return result;
+}
+
+float IsLookingAtCamera(float2 UV, float3 WorldPosition)
+{
+	float3 VertexNormal = GetWorldNormal(UV);
+	float3 CameraWorldPosition = LWCHackToFloat(ResolvedView.WorldCameraOrigin);
+	float3 ViewDirection = normalize(CameraWorldPosition - WorldPosition);
+	float FacingFactor = dot(normalize(VertexNormal), ViewDirection);
+	return saturate(FacingFactor);
+}
+
+float GetNoiseValue(float2 UV, float3 WorldPosition, float TileSize)
+{
+	float3 VertexNormal = GetWorldNormal(UV);
+	int3 ProjectionSigns = sign(VertexNormal);
+	float3 AdjustedWorldPosition = WorldPosition / TileSize;
+
+	float2 XProjectionUVs = AdjustedWorldPosition.gb * float2(ProjectionSigns.r * -1, -1);
+	float2 YProjectionUVs = AdjustedWorldPosition.rb * float2(ProjectionSigns.g, -1);
+	float2 ZProjectionUVs = AdjustedWorldPosition.rg * float2(1, ProjectionSigns.b);
+
+	float3 VertexNormalWarped = abs(VertexNormal);
+	float3 ProjectionWeights = CalculateProjectionWeights(VertexNormalWarped);
+
+	float2 NoiseUv = XProjectionUVs * ProjectionWeights.r + YProjectionUVs * ProjectionWeights.g + ZProjectionUVs * ProjectionWeights.b;
+
+	return GetNoise(NoiseUv);
+}
+
+/* Returns 0-1 based on difference in hue of two colors */
+float Hue_Difference(float3 Color_A, float3 Color_B)
+{
+	float Hue_A = rgb_2_hue(Color_A);
+	float Hue_B = rgb_2_hue(Color_B);
+	float Difference = abs(Hue_A - Hue_B);
+	float DeltaHue = min(Difference, 360 - Difference);
+	return saturate(DeltaHue / 180.0);
+}
+
+float GetFadeSize(float Value)
+{
+	const float StencilStartSmall = 2.0 / 255.0;
+	const float StencilStartMedium = 65.0 / 255.0;
+	const float StencilStartLarge = 128.0 / 255.0;
+	const float StencilStartExtraLarge = 191.0 / 255.0;
+	const float StencilRange = 62.0 / 255.0;
+
+	const float StencilEndSmall = StencilStartSmall + StencilRange;
+	const float StencilEndMedium = StencilStartMedium + StencilRange;
+	const float StencilEndLarge = StencilStartLarge + StencilRange;
+	const float StencilEndExtraLarge = StencilStartExtraLarge + StencilRange;
+
+	float StepSmall = step(Value, StencilEndSmall) * step(0.0001, Value);
+	float StepMedium = step(Value, StencilEndMedium) * (1.0 - StepSmall);
+	float StepLarge = step(Value, StencilEndLarge) * (1.0 - StepSmall - StepMedium);
+	float StepExtraLarge = step(Value, StencilEndExtraLarge) * (1.0 - StepSmall - StepMedium - StepLarge);
+
+	return dot(MeshBlend_Size, float4(StepSmall, StepMedium, StepLarge, StepExtraLarge));
+
+	// if (Value == 0)
+	// {
+	// 	return 0;
+	// }
+	//
+	// if (Value <= StencilEndSmall)
+	// {
+	// 	return MeshBlend_Size.x;
+	// }
+	//
+	// if (Value <= StencilEndMedium)
+	// {
+	// 	return MeshBlend_Size.y;
+	// }
+	//
+	// if (Value <= StencilEndLarge)
+	// {
+	// 	return MeshBlend_Size.z;
+	// }
+	//
+	// if (Value <= StencilEndExtraLarge)
+	// {
+	// 	return MeshBlend_Size.w;
+	// }
+	//
+	// return 0;
+}
+
+float GetMinSizeFactor(float Value)
+{
+	const float StencilStartSmall = 2.0 / 255.0;
+	const float StencilStartMedium = 65.0 / 255.0;
+	const float StencilStartLarge = 128.0 / 255.0;
+	const float StencilStartExtraLarge = 191.0 / 255.0;
+	const float StencilRange = 62.0 / 255.0;
+
+	const float StencilEndSmall = StencilStartSmall + StencilRange;
+	const float StencilEndMedium = StencilStartMedium + StencilRange;
+	const float StencilEndLarge = StencilStartLarge + StencilRange;
+	const float StencilEndExtraLarge = StencilStartExtraLarge + StencilRange;
+
+	float StepSmall = step(Value, StencilEndSmall) * step(0.0001, Value);
+	float StepMedium = step(Value, StencilEndMedium) * (1.0 - StepSmall);
+	float StepLarge = step(Value, StencilEndLarge) * (1.0 - StepSmall - StepMedium);
+	float StepExtraLarge = step(Value, StencilEndExtraLarge) * (1.0 - StepSmall - StepMedium - StepLarge);
+
+	return dot(MeshBlend_MinSize, float4(StepSmall, StepMedium, StepLarge, StepExtraLarge));
+
+	// if (Value <= StencilEndSmall)
+	// {
+	// 	return MeshBlend_MinSize.x;
+	// }
+	//
+	// if (Value <= StencilEndMedium)
+	// {
+	// 	return MeshBlend_MinSize.y;
+	// }
+	//
+	// if (Value <= StencilEndLarge)
+	// {
+	// 	return MeshBlend_MinSize.z;
+	// }
+	//
+	// if (Value <= StencilEndExtraLarge)
+	// {
+	// 	return MeshBlend_MinSize.w;
+	// }
+	//
+	// return 0;
+}
+
+float3 GetBlendSizeColor(float Value)
+{
+	const float StencilStartSmall = 2;
+	const float StencilStartMedium = 65;
+	const float StencilStartLarge = 128;
+	const float StencilStartExtraLarge = 191;
+	const float StencilRange = 62;
+	float3 Result = float3(1, 1, 1);
+	Value *= 255.0;
+
+	if (Value >= StencilStartSmall && Value <= StencilStartSmall + StencilRange)
+	{
+		return Result * float3(0, 1, 0) * lerp(1, 0.5, ((Value - StencilStartSmall) / StencilRange));
+	}
+	else if (Value >= StencilStartMedium && Value <= StencilStartMedium + StencilRange)
+	{
+		return Result * float3(0, 1, 1) * lerp(1, 0.5, ((Value - StencilStartMedium) / StencilRange));
+	}
+	else if (Value >= StencilStartLarge && Value <= StencilStartLarge + StencilRange)
+	{
+		return Result * float3(0, 0, 1) * lerp(1, 0.5, ((Value - StencilStartLarge) / StencilRange));
+	}
+	else if (Value >= StencilStartExtraLarge && Value <= StencilStartExtraLarge + StencilRange)
+	{
+		return Result * float3(1, 0, 0) * lerp(1, 0.5, ((Value - StencilStartExtraLarge) / StencilRange));
+	}
+
+	return Result;
+}
+
+float GetMaxFade(float FadeSize, float MinSizeFactor, float DepthScaleInv, float ViewPortFactor)
+{
+	float FadeSizeMultiplied = FadeSize * 1000.0;
+	float MaxFade = FadeSizeMultiplied * MinSizeFactor * DepthScaleInv;
+	return min3(MaxFade, PostProcessOutput_Extent.y * 0.2, FadeSizeMultiplied * max(DepthScaleInv, 0.001));
+}
+
+float2 SvPositionToUV(float2 Pos)
+{
+	float2 ViewportUV = ((Pos - PostProcessOutput_ViewportMin.xy) * PostProcessOutput_ViewportSizeInverse.xy);
+	return ViewportUV * PostProcessOutput_UVViewportSize + PostProcessOutput_UVViewportMin;
+}
+
+float4 UVToSvPosition(float2 UV, float4 SvPosition)
+{
+	float2 ViewportUV = (UV - PostProcessOutput_UVViewportMin) * PostProcessOutput_UVViewportSizeInverse;
+	float2 Pos = ViewportUV * PostProcessOutput_ViewportSize + PostProcessOutput_ViewportMin.xy;
+	return float4(Pos, SvPosition.zw);
+}
+
+float3 GetWorldPosition(float4 SvPosition, float Depth)
+{
+	SvPosition.z = ConvertToDeviceZ(Depth);
+	SvPosition.z = max(SvPosition.z, 1e-18);
+	float3 TranslatedWorldPosition = SvPositionToTranslatedWorld(SvPosition);
+	float3 AbsoluteWorldPosition = TranslatedWorldPosition.xyz - LWCHackToFloat(ResolvedView.PreViewTranslation).xyz;
+	return AbsoluteWorldPosition;
+}
+
+
+float CalculateAngle(float3 A, float3 B, float3 C)
+{
+	float3 BA = normalize(A - B);
+	float3 BC = normalize(C - B);
+
+	// Compute the cross product and dot product
+	float3 CrossProd = cross(BA, BC);
+	float DotProd = dot(BA, BC);
+
+	// Compute the angle in radians using atan2
+	float ThetaRadians = atan2(length(CrossProd), DotProd);
+
+	// Convert the angle from radians to degrees
+	float ThetaDegrees = degrees(ThetaRadians);
+
+	// Clamp the angle to the range [0..1] from [60..0] degrees incline
+	return 1.0 - pow(1.0 - saturate((ThetaDegrees - 120) / 60.0), 5);
+}
+
+float FastCalculateAngle(float3 A, float3 B, float3 C)
+{
+	const float3 BA = normalize(A - B);
+	const float3 BC = normalize(C - B);
+
+	//Cos range -1 to 1
+	const float DotProd = dot(BA, BC);
+
+	//The comment for the normal function seems a little deceiving because that range is actually 120->180
+	// For angle range from 120° to 180°, we map: 
+	// cos(120°) = -0.5, cos(180°) = -1 → target range: [0..1]
+	return 1.0 - pow(1.0 - saturate((-DotProd - 0.5) / 0.5), 5.0);
+}

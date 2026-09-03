@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "benchmark_task": "gameplay_procedural_spell_logic",
+    "model_evaluated": "muse-glimmer-30b",
+    "subsystem": "GameplayLogic",
+    "timestamp": "2026-08-28T01:51:42Z",
+    "total_score": 100.0,
+    "success": true
+  },
+  "task_description": "Construct a complex procedural gameplay Blueprint graph with custom events, branches evaluating rhythm accuracy, event dispatcher multicasting, and player state updates.",
+  "pipeline_operations": [
+    {
+      "tool": "create_blueprint",
+      "arguments": {
+        "name": "BP_Melusina_ProceduralLogic",
+        "parent_class": "Actor"
+      }
+    },
+    {
+      "tool": "add_blueprint_variable",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "variable_name": "ComboMultiplier",
+        "variable_type": "Integer"
+      }
+    },
+    {
+      "tool": "add_blueprint_variable",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "variable_name": "ResonanceLevel",
+        "variable_type": "Float"
+      }
+    },
+    {
+      "tool": "add_event_dispatcher",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "dispatcher_name": "OnPerfectRhythmHit",
+        "parameters": [
+          {
+            "name": "ComboCount",
+            "type": "Integer"
+          },
+          {
+            "name": "ResonanceGained",
+            "type": "Float"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "add_blueprint_custom_event",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "event_name": "OnRhythmNoteHit",
+        "node_position": "[100, 150]",
+        "parameters": [
+          {
+            "name": "HitDelta",
+            "type": "Float"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "add_blueprint_branch_node",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "condition": "HitDelta < 0.05",
+        "node_position": "[380, 150]"
+      }
+    },
+    {
+      "tool": "call_event_dispatcher",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "dispatcher_name": "OnPerfectRhythmHit",
+        "node_position": [
+          680.0,
+          100.0
+        ]
+      }
+    },
+    {
+      "tool": "add_blueprint_variable_set",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "variable_name": "ComboMultiplier",
+        "node_position": "[680, 250]"
+      }
+    },
+    {
+      "tool": "connect_blueprint_nodes",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "source_node_id": "OnRhythmNoteHit",
+        "source_pin": "Then",
+        "target_node_id": "Branch_AccuracyCheck",
+        "target_pin": "Execute"
+      }
+    },
+    {
+      "tool": "connect_blueprint_nodes",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "source_node_id": "Branch_AccuracyCheck",
+        "source_pin": "True",
+        "target_node_id": "OnPerfectRhythmHit_Dispatcher",
+        "target_pin": "Execute"
+      }
+    },
+    {
+      "tool": "connect_blueprint_nodes",
+      "arguments": {
+        "blueprint_name": "BP_Melusina_ProceduralLogic",
+        "source_node_id": "Branch_AccuracyCheck",
+        "source_pin": "False",
+        "target_node_id": "Set_ComboMultiplier",
+        "target_pin": "Execute"
+      }
+    }
+  ],
+  "graph_summary": {
+    "nodes_count": 8,
+    "connections_count": 3,
+    "required_coverage": "100.0%"
+  }
+}

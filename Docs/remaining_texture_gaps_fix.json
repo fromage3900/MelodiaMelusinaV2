@@ -1,0 +1,172 @@
+{
+  "timestamp": "2026-07-16T02:16:41.265046+00:00",
+  "strategy": "path_drift_copy_restore_from_disk_or_git",
+  "melusina_no_stomp": true,
+  "before": {
+    "missing_texture_ref_count": 63,
+    "missing_texture_targets_count": 13,
+    "source": "Saved/Audit/mi_master_integrity_disk.json (pre-fix snapshot from sdf_parents_fix post_audit)"
+  },
+  "after": {
+    "missing_texture_ref_count": 7,
+    "missing_texture_targets_count": 4,
+    "missing_parent_like_count": 0,
+    "missing_texture_targets": [
+      "/Game/Art/Textures/Base/T_GrassBlade_BSS_diffuseOriginal",
+      "/Game/Art/Textures/Base/T_GrassBlade_BSS_normal",
+      "/Game/Art/Textures/Base/T_Leaf_BSS_diffuseOriginal",
+      "/Game/Art/Textures/Base/T_Leaf_BSS_normal"
+    ],
+    "missing_texture_refs": [
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_WitchGarden",
+        "target": "/Game/Art/Textures/Base/T_GrassBlade_BSS_diffuseOriginal"
+      },
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Environment/Magical/MI_Universal_GoldLeaf",
+        "target": "/Game/Art/Textures/Base/T_Leaf_BSS_normal"
+      },
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Environment/Magical/MI_Universal_GoldLeaf",
+        "target": "/Game/Art/Textures/Base/T_Leaf_BSS_diffuseOriginal"
+      },
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Environment/World/MI_Universal_MossStone",
+        "target": "/Game/Art/Textures/Base/T_GrassBlade_BSS_diffuseOriginal"
+      },
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Environment/World/MI_Universal_MossStone",
+        "target": "/Game/Art/Textures/Base/T_GrassBlade_BSS_normal"
+      },
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
+        "target": "/Game/Art/Textures/Base/T_GrassBlade_BSS_diffuseOriginal"
+      },
+      {
+        "source": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
+        "target": "/Game/Art/Textures/Base/T_GrassBlade_BSS_normal"
+      }
+    ],
+    "blessed_all_present": true,
+    "audit_tool": "Content/Python/audit_mi_master_integrity_disk.py"
+  },
+  "delta": {
+    "missing_texture_refs_cleared": 56
+  },
+  "fixed": [
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\Textures\\T_Bark_BSS_diffuseOriginal.uasset",
+      "dst": "Content\\Art\\Textures\\Base\\T_Bark_BSS_diffuseOriginal.uasset",
+      "note": "BSS path-drift Art/Textures/Base",
+      "ok": true,
+      "bytes": 4123615
+    },
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\Textures\\T_Bark_BSS_normal.uasset",
+      "dst": "Content\\Art\\Textures\\Base\\T_Bark_BSS_normal.uasset",
+      "note": "BSS path-drift Art/Textures/Base",
+      "ok": true,
+      "bytes": 5350352
+    },
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\Textures\\T_Cobble_BSS_diffuseOriginal.uasset",
+      "dst": "Content\\Art\\Textures\\Base\\T_Cobble_BSS_diffuseOriginal.uasset",
+      "note": "BSS path-drift Art/Textures/Base",
+      "ok": true,
+      "bytes": 9253548
+    },
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\Textures\\T_Cobble_BSS_normal.uasset",
+      "dst": "Content\\Art\\Textures\\Base\\T_Cobble_BSS_normal.uasset",
+      "note": "BSS path-drift Art/Textures/Base",
+      "ok": true,
+      "bytes": 7453622
+    },
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\Textures\\T_Concrete_BSS_diffuseOriginal.uasset",
+      "dst": "Content\\Art\\Textures\\Base\\T_Concrete_BSS_diffuseOriginal.uasset",
+      "note": "BSS path-drift Art/Textures/Base",
+      "ok": true,
+      "bytes": 939685
+    },
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\Textures\\T_Concrete_BSS_normal.uasset",
+      "dst": "Content\\Art\\Textures\\Base\\T_Concrete_BSS_normal.uasset",
+      "note": "BSS path-drift Art/Textures/Base",
+      "ok": true,
+      "bytes": 3101494
+    },
+    {
+      "src": "Content\\Textures\\sbs_-_seamless_abstract_pack_-_512x512\\512x512\\Texture_512x512_1.uasset",
+      "dst": "Content\\Textures\\sbs_-_seamless_abstract_pack_-_512x512\\512x512\\Texture_512x512.uasset",
+      "note": "abstract alias /Game/Textures/.../Texture_512x512 from _1",
+      "ok": true,
+      "bytes": 252675
+    },
+    {
+      "src": "Content\\_PROJECT\\04_Materials\\Textures\\sbs_-_seamless_abstract_pack_-_512x512\\512x512\\Texture_512x512_1.uasset",
+      "dst": "Content\\_PROJECT\\04_Materials\\Textures\\sbs_-_seamless_abstract_pack_-_512x512\\512x512\\Texture_512x512.uasset",
+      "note": "abstract alias /Game/_PROJECT/.../Texture_512x512 from _1",
+      "ok": true,
+      "bytes": 254319
+    },
+    {
+      "dst": "/Game/EnvSandbox/Materials/Functions/Textures/T_Itto_SpiralTile",
+      "src": "git checkout HEAD",
+      "bytes": 148985,
+      "ok": true,
+      "note": "restored from git"
+    },
+    {
+      "src": "Content\\UltraDynamicSky\\Textures\\Weather\\Snow_Normal.uasset",
+      "dst": "Content\\_ThirdParty\\UltraDynamicSky\\Textures\\Weather\\Snow_Normal.uasset",
+      "note": "UDS Snow_Normal path-drift to _ThirdParty",
+      "ok": true,
+      "bytes": 42500220
+    }
+  ],
+  "still_missing": [
+    {
+      "dst": "/Game/Art/Textures/Base/T_GrassBlade_BSS_diffuseOriginal",
+      "reason": "no_source_on_disk_or_git",
+      "ok": false
+    },
+    {
+      "dst": "/Game/Art/Textures/Base/T_GrassBlade_BSS_normal",
+      "reason": "no_source_on_disk_or_git",
+      "ok": false
+    },
+    {
+      "dst": "/Game/Art/Textures/Base/T_Leaf_BSS_diffuseOriginal",
+      "reason": "no_source_on_disk_or_git",
+      "ok": false
+    },
+    {
+      "dst": "/Game/Art/Textures/Base/T_Leaf_BSS_normal",
+      "reason": "no_source_on_disk_or_git",
+      "ok": false
+    }
+  ],
+  "skipped": [
+    {
+      "item": "Live UE Fix Up Redirectors",
+      "reason": "unrealMCP port 55557 closed"
+    },
+    {
+      "item": "Blender PRE_225030 / Desktop v15 locate-and-save",
+      "reason": "explicit_skip_melusina_no_stomp"
+    },
+    {
+      "item": "Commit untracked Melodia Melusina / WP maps",
+      "reason": "explicit_skip_no_commit"
+    }
+  ],
+  "notes": [
+    "BSS Bark/Cobble/Concrete copied from Content/_PROJECT/04_Materials/Textures/Textures -> Content/Art/Textures/Base",
+    "SBS abstract: aliased Texture_512x512_1.uasset as Texture_512x512.uasset at /Game/Textures/... and /Game/_PROJECT/... (unnumbered package never existed in git; MIs soft-ref the unnumbered name)",
+    "T_Itto_SpiralTile restored via git checkout HEAD to EnvSandbox/Materials/Functions/Textures",
+    "Snow_Normal copied from Content/UltraDynamicSky/Textures/Weather -> Content/_ThirdParty/UltraDynamicSky/Textures/Weather",
+    "GrassBlade/Leaf BSS: no source on disk, Melodia trees, revert tree, Desktop, or git objects"
+  ],
+  "ok": true
+}

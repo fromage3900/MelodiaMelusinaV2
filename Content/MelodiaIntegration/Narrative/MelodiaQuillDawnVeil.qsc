@@ -1,0 +1,31 @@
+@ Start
+
+? if: {melodia_dawn_granted} == on
+
+  - Dawn Chorus
+    The veil already rests with you. Morning will find you where you left it.
+
+? else:
+
+  ? if: {melodia_q_echo_03_complete} == on
+
+    - Dawn Chorus
+      You walked the cadence home without losing a single step of it. That is how light returns.
+
+    - Dawn Chorus
+      Wear this veil of the first dawn, so the road ahead always begins gently.
+
+    $ melodia_dawn_granted = on
+    $ Notify melodia:reward:melodia_reward_dawn_veil
+    $ Notify melodia:stat:reunion_dawn:melodia_harmony:1
+
+  ? else:
+
+    - Dawn Chorus
+      The first dawn is still gathering. It will break when the grove's story completes its turn.
+
+  ? endif
+
+? endif
+
+$ End

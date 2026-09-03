@@ -1,0 +1,19 @@
+# MelodiaMelusina — example jcode user config
+# Copy/merge into: %USERPROFILE%\.jcode\config.toml  (or ~/.jcode/config.toml)
+# Do not commit secrets or API keys here.
+
+[provider]
+# Set after: jcode login --provider <claude|openai|copilot|gemini|...>
+# default_provider = "openai"
+
+[features]
+swarm = true
+memory = true
+
+[agents]
+# Modest until LFS + editor contention is understood
+concurrency_cap = 6
+
+# Optional later (v2): phone/WebSocket gateway on LAN/Tailscale
+# [gateway]
+# enabled = false

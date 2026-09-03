@@ -1,0 +1,79 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MeluPaletteColors" ExportPath="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionComment_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_2" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_1" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_MeluPaletteColorsEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MF_MeluPaletteColorsEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_2" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_2'"
+      OutputName="Accent"
+      SortPriority=2
+      A=(Expression="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_2'")
+      Id=EF0993E5486FE19A8EC225BC998118F6
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=0E42C8E6408BC62E278B96ACDA90F7B3
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_1'"
+      OutputName="Secondary"
+      SortPriority=1
+      A=(Expression="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_1'")
+      Id=3831C8594333732F9E3E17AEF002CB9F
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=74A96E1B463A868BB85D50A1E1124D90
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_0'"
+      OutputName="Primary"
+      A=(Expression="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_0'")
+      Id=B06F9BC54A5784B1DF00EEA155A08974
+      MaterialExpressionGuid=001AC09744C9867089577095CA666C92
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_2" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionComment_2'"
+      Text="Melu Palette ~ pick a color, any color"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-480
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=EF1498E84C10556DC0FE319A028AC58B
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MaterialExpressionCollectionParameter_2" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_2'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=140B17C34B65870FA7FBB5B4CB036A70
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MaterialExpressionCollectionParameter_1" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_1'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
+      MaterialExpressionEditorX=-400
+      MaterialExpressionEditorY=120
+      MaterialExpressionGuid=83C4D7824190880C986E19A711595CBB
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_0'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
+      MaterialExpressionEditorX=-400
+      MaterialExpressionGuid=317ECE2A45374DA788634D93E91A0D3C
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors'"
+   End Object
+   Begin Object Name="MF_MeluPaletteColorsEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MF_MeluPaletteColorsEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_0'","/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_1'","/Script/Engine.MaterialExpressionCollectionParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionCollectionParameter_2'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionFunctionOutput_2'","/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MaterialExpressionComment_2'"))
+   End Object
+   Description="Outputs MeluPrimary, MeluSecondary and MeluAccent from MPC_Melodia_Palette. Drop this into any material for instant world color scheme."
+   bExposeToLibrary=True
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors.MF_MeluPaletteColors:MF_MeluPaletteColorsEditorOnlyData'"
+   StateId=CA977092433A7F619C828DB82E299315
+   CombinedInputTypes=15
+End Object

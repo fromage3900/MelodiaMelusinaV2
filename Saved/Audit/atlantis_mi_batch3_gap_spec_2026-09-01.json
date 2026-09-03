@@ -1,0 +1,88 @@
+{
+  "schema": "melodia.atlantis.mi.batch3.gap.v1",
+  "generated": "2026-09-01T12:00:00Z",
+  "source": "disk scan of Content/EnvSandbox/Meshes/Atlantis/ + Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/",
+  "mode": "spec_only",
+  "summary": {
+    "total_atlantis_meshes": 333,
+    "existing_atlantis_mis": 54,
+    "remaining_unassigned": 279,
+    "existing_mi_pattern": "MI_Arch_KB3D_ATL_<Material> (architecture/KB3D themed)",
+    "unassigned_pattern": "SM_ATL_Palace_<Theme><Variant> (palace prop/foliage themed)"
+  },
+  "theme_groups": {
+    "palace_structural": {
+      "prefixes": ["Arch", "Arches", "Base", "BaseColumns", "Building", "Columnade", "Columns", "Cornice", "Dome", "Floor", "Roof", "RoofTiles", "Stairs", "Steps"],
+      "mesh_count": 105,
+      "suggested_parent": "M_Master_Toon_Universal",
+      "suggested_mi_convention": "MI_Atlantis_Struct_<Stem>",
+      "priority": 1,
+      "rationale": "Core palace architecture — highest visibility, largest surface area"
+    },
+    "palace_decorative": {
+      "prefixes": ["Banner", "Basket", "Bench", "Benches", "Chair", "DecorativeVase", "Door", "DoorLeft", "DoorRight", "Drain", "Fountain", "GrapesStand", "Guardrail", "Harp", "HayStack", "Niche", "Ornaments", "Pergola", "Planter", "Planters", "Stool", "Table", "Torch", "Vase", "Vases"],
+      "mesh_count": 97,
+      "suggested_parent": "M_Master_Toon_Universal",
+      "suggested_mi_convention": "MI_Atlantis_Decor_<Stem>",
+      "priority": 2,
+      "rationale": "Decorative props and furniture — medium visibility, varied materials"
+    },
+    "palace_foliage": {
+      "prefixes": ["IvyHanging", "IvyWall", "Shrubs", "Tree", "TreeBottom", "TreeTop"],
+      "mesh_count": 76,
+      "suggested_parent": "M_Master_Toon_Universal_Alpha",
+      "suggested_mi_convention": "MI_Atlantis_Foliage_<Stem>",
+      "priority": 1,
+      "rationale": "Foliage uses alpha — needs Universal_Alpha parent for opacity"
+    },
+    "palace_props": {
+      "prefixes": ["Barrel", "BarrelRack", "Barrels"],
+      "mesh_count": 9,
+      "suggested_parent": "M_Master_Toon_Universal",
+      "suggested_mi_convention": "MI_Atlantis_Prop_<Stem>",
+      "priority": 3,
+      "rationale": "Small props — lowest count, can batch with decorative"
+    }
+  },
+  "batch_recommendation": {
+    "total_remaining": 279,
+    "batches": [
+      {
+        "batch": "palace_structural",
+        "count": 105,
+        "themes": ["Arch", "Arches", "Base", "BaseColumns", "Building", "Columnade", "Columns", "Cornice", "Dome", "Floor", "Roof", "RoofTiles", "Stairs", "Steps"],
+        "parent": "M_Master_Toon_Universal",
+        "script": "_tmp_mesh_applier_v2.py"
+      },
+      {
+        "batch": "palace_foliage",
+        "count": 76,
+        "themes": ["IvyHanging", "IvyWall", "Shrubs", "Tree", "TreeBottom", "TreeTop"],
+        "parent": "M_Master_Toon_Universal_Alpha",
+        "script": "_tmp_mesh_applier_v2.py"
+      },
+      {
+        "batch": "palace_decorative",
+        "count": 97,
+        "themes": ["Banner", "Basket", "Bench", "Benches", "Chair", "DecorativeVase", "Door", "DoorLeft", "DoorRight", "Drain", "Fountain", "GrapesStand", "Guardrail", "Harp", "HayStack", "Niche", "Ornaments", "Pergola", "Planter", "Planters", "Stool", "Table", "Torch", "Vase", "Vases"],
+        "parent": "M_Master_Toon_Universal",
+        "script": "_tmp_mesh_applier_v2.py"
+      },
+      {
+        "batch": "palace_props",
+        "count": 9,
+        "themes": ["Barrel", "BarrelRack", "Barrels"],
+        "parent": "M_Master_Toon_Universal",
+        "script": "_tmp_mesh_applier_v2.py"
+      }
+    ]
+  },
+  "guardrails": [
+    "No .uasset writes by daemon",
+    "Editor-bound execution only",
+    "Verify parent master exists before batch assignment",
+    "Foliage batch MUST use Universal_Alpha parent for opacity",
+    "Owner must run referencer check before committing"
+  ],
+  "status": "SPEC_ONLY_PENDING_OWNER_EXEC"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ZEN_SHRINE_COURTYARD",
+  "label": "Zen Shrine Courtyard",
+  "description": "Torii entry, bamboo fence, karesansui, bridge, engawa, machiai, teahouse, lantern",
+  "style": "zen",
+  "modules": [
+    {"arch_type": "GB_ZEN_TORII_GATE", "overrides": {"torii_width": 4.0, "torii_height": 4.5, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_BAMBOO_FENCE", "overrides": {"gb_length": 8.0, "zen_fence_height": 1.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_KARESANSUI", "overrides": {"gb_width": 8.0, "gb_depth": 6.0, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "ZEN_BRIDGE", "overrides": {"zen_bridge_span": 5.0, "zen_bridge_rise": 0.6}},
+    {"arch_type": "GB_ZEN_ENGAWA", "overrides": {"gb_width": 5.5, "gb_depth": 2.5, "gb_height": 0.35, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "GB_ZEN_MACHIAI", "overrides": {"gb_width": 3.2, "gb_depth": 2.4, "gb_height": 2.2, "gb_trim_mode": "RECESS"}},
+    {"arch_type": "ZEN_TEAHOUSE", "overrides": {"teahouse_depth": 4.5, "teahouse_width": 5.0}},
+    {"arch_type": "GB_ZEN_LANTERN", "overrides": {"zen_lantern_height": 1.4, "gb_trim_mode": "RECESS"}}
+  ]
+}

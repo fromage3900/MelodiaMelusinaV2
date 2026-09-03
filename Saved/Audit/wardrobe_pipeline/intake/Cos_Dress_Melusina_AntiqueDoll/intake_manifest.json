@@ -1,0 +1,43 @@
+{
+ "schema": "melodia.garment_intake_prep.v1",
+ "seed": 20260902,
+ "source": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\GarmentIntake\\AntiqueDoll_Dress_fbx_thick.fbx",
+ "cos_id": "Cos_Dress_Melusina_AntiqueDoll",
+ "slot": "Dress",
+ "descriptor": "AntiqueDoll",
+ "verts": 180895,
+ "polys": 316912,
+ "uv_layers": 2,
+ "material_slots": [
+  "46153S-A_2045",
+  "46153S-A_2021",
+  "topsfuriru_2060",
+  "himo_2036",
+  "skart2_2041",
+  "kosihimo_2063",
+  "skartfururu_2066",
+  "topstoumei_2069",
+  "ana_2072",
+  "himo_2075",
+  "anatetu_2080",
+  "Ribbon_01_2082",
+  "Ribbon_01_2084",
+  "Ribbon_10_2086",
+  "Ribbon_10_2088",
+  "Ribbon_10_2090",
+  "Ribbon_10_2092",
+  "Ribbon_07_2094",
+  "Ribbon_10_2096",
+  "Material"
+ ],
+ "empty_slots": 0,
+ "uv_overlap_count": 75,
+ "outputs": {
+  "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\wardrobe_pipeline\\intake\\Cos_Dress_Melusina_AntiqueDoll\\Cos_Dress_Melusina_AntiqueDoll.obj",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\wardrobe_pipeline\\intake\\Cos_Dress_Melusina_AntiqueDoll\\Cos_Dress_Melusina_AntiqueDoll.fbx",
+  "obj_sha256": "9978a00620ebaa9c6855ce1e9cd5706cbae9cd2ac2b727ee4c12ebd6f7c907cd",
+  "fbx_sha256": "6e02bd596cd147f7a55f0a5f3ac2296bd2cecda1a79b5dbabb7c323c143f517c"
+ },
+ "cadence": "10-garment-layer (cluster via silhouette classifier next; names as slot-level here)",
+ "note": "drop-in interchange intake: ready for Substance stage + DA_MelodiaCosmeticCatalog registration"
+}

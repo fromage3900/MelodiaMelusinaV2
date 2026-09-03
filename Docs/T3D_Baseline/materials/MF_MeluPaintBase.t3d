@@ -1,0 +1,248 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_MeluPaintBase" ExportPath="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_4" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_3" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_0" ExportPath="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureCoordinate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_2" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFunctionOutput_1'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFunctionOutput_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFresnel Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFresnel_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComponentMask Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComponentMask_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_5" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComment_5'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionComment Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComment_4'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionAdd_0'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_MeluPaintBaseEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MF_MeluPaintBaseEditorOnlyData'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_4" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_4'"
+      ParameterName="HeightMap"
+      ExpressionGUID=6429E01B43265B35A46552BDFA3AD2C4
+      Group="Paint Base"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'")
+      Texture="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
+      MaterialExpressionGuid=EBEB518242CE5EABA02CA38C1C26146C
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_3" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_3'"
+      ParameterName="CrackTexture"
+      ExpressionGUID=220F7FAE4C93C485186196B0E18E033A
+      Group="Paint Base"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'")
+      Texture="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Marble/Marble_3_-_512x512.Marble_3_-_512x512'"
+      MaterialExpressionGuid=4A36B36841A4B826D8BB21860BE43390
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_2'"
+      ParameterName="DetailTexture"
+      ExpressionGUID=09B0B57541A89078D74C998BAD24ECB6
+      Group="Paint Base"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'")
+      Texture="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
+      MaterialExpressionGuid=E41D9B144B69FB29E6E6D5A4B56A877B
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_1'"
+      ParameterName="PatternTexture"
+      ExpressionGUID=7689B5D44E71AB378F20D99AF28594E3
+      Group="Paint Base"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'")
+      Texture="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Voronoi/Voronoi_1_-_512x512.Voronoi_1_-_512x512'"
+      MaterialExpressionGuid=AB8AA3E145755B203C84A1B2872DFE2E
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_0" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_0'"
+      ParameterName="BaseTexture"
+      ExpressionGUID=FF7182B34E71AB3C465462A063AD581E
+      Group="Paint Base"
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'")
+      Texture="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Marble/Marble_1_-_512x512.Marble_1_-_512x512'"
+      MaterialExpressionGuid=24B8DFB94E019D8C45B9139EB82B153C
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_0" ExportPath="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureCoordinate_0'"
+      MaterialExpressionGuid=B629CC0949EDC37F68098A8C18637FA4
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_5" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_5'"
+      DefaultValue=0.080000
+      ParameterName="ParallaxScale"
+      ExpressionGUID=614DFCEE44E34D75117A72957582FBEF
+      Group="Paint Base"
+      MaterialExpressionGuid=0BA076E8467FDEC102C28FBACA018DC6
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_4" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_4'"
+      DefaultValue=0.300000
+      ParameterName="EdgeStrength"
+      ExpressionGUID=0D9D3EF644A5557DD53F02A41B6F88CA
+      Group="Paint Base"
+      MaterialExpressionGuid=0787082848ED5F96C3893AB897B13EA6
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_3" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_3'"
+      DefaultValue=0.250000
+      ParameterName="Layer3Strength"
+      ExpressionGUID=3B8636E04F0D5494A07735B944DD981B
+      Group="Paint Base"
+      MaterialExpressionGuid=F3375F0C476DC8D446A77D968942C8E3
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_2'"
+      DefaultValue=0.450000
+      ParameterName="Layer2Strength"
+      ExpressionGUID=F527916D484D0016D14A88AC2760DC50
+      Group="Paint Base"
+      MaterialExpressionGuid=108D9DAF4D8A334EFC9EF0A8048E14D4
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_1" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_1'"
+      DefaultValue=0.650000
+      ParameterName="Layer1Strength"
+      ExpressionGUID=5E0E31B1461CC11E341154AA2909CD48
+      Group="Paint Base"
+      MaterialExpressionGuid=6E1D9D3140EC5BB2F5667E83A6037580
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_0" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_0'"
+      DefaultValue=1.000000
+      ParameterName="UVScale"
+      ExpressionGUID=9857449141236058108C7AB6701CE84D
+      Group="Paint Base"
+      MaterialExpressionGuid=A2C254BB4924F2457C9902A4B573F18D
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComponentMask_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_5'")
+      MaterialExpressionGuid=5A2E666F4C8E1C4F99C890B6452E69D2
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_1" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionFresnel'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFresnel_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_4'")
+      MaterialExpressionGuid=0DDEF5AB41E63746602562959D2B3BF1
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_0" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureCoordinate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_0'")
+      MaterialExpressionGuid=181160B7457A2F8E9349268CEB06A6EC
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_2" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_2'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_1'")
+      B=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_3'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_3'")
+      MaterialExpressionGuid=46D468144240748CAA181A890CC2F08A
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_1" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_1'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_2'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_2'")
+      MaterialExpressionGuid=67E2BCA0401BF011975D0B8115171C0A
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_0" ExportPath="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_0'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      B=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_1'",Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      Alpha=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_1'")
+      MaterialExpressionGuid=C43E7C4F489D0405243143A2A49E8460
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_1" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFunctionOutput_1'"
+      OutputName="WPOOffset"
+      SortPriority=1
+      Id=1FB97584444E3CA1E8D1FD87BB287CBF
+      MaterialExpressionEditorX=400
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=0659BF2446A34E63E2F4C4AF669B7F0D
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionFunctionOutput_0" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFunctionOutput_0'"
+      OutputName="BaseColor"
+      Id=6FE78EB04D6B39F9BFBDEEA6BD7B04FB
+      MaterialExpressionEditorX=400
+      MaterialExpressionGuid=68E15E514259F9D582A1A3ACC0502CDF
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionFresnel_0" ExportPath="/Script/Engine.MaterialExpressionFresnel'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFresnel_0'"
+      MaterialExpressionGuid=D98BB8184798F6B46417B4BB27286066
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionComponentMask_0" ExportPath="/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComponentMask_0'"
+      Input=(Expression="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_4'",OutputIndex=1,Mask=1,MaskR=1)
+      R=True
+      MaterialExpressionGuid=09ECF1DB45EFC9653ACBAB9F5D194120
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_5" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComment_5'"
+      Text="✦ Paint Base"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=D1FBA9E846D5B96DA6E1469BDEDE514E
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionComment_4" ExportPath="/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComment_4'"
+      Text="Melu Paint Base ~ the canvas"
+      CommentColor=(R=0.550000,G=0.450000,B=0.780000,A=1.000000)
+      MaterialExpressionEditorX=-80
+      MaterialExpressionEditorY=-130
+      MaterialExpressionGuid=09146136457714603CEF57975CC71E09
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_0" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionAdd_0'"
+      A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_1'")
+      MaterialExpressionGuid=EB4C04DD4FA12309AE674C8B45A0B811
+      Function="/Script/Engine.MaterialFunction'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase'"
+   End Object
+   Begin Object Name="MF_MeluPaintBaseEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MF_MeluPaintBaseEditorOnlyData'"
+      ExpressionCollection=(Expressions=("/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFunctionOutput_0'","/Script/Engine.MaterialExpressionFunctionOutput'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFunctionOutput_1'","/Script/Engine.MaterialExpressionTextureCoordinate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureCoordinate_0'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_0'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_1'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_2'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_3'","/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionTextureSampleParameter2D_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_1'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_2'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_3'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_4'","/Script/Engine.MaterialExpressionScalarParameter'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionScalarParameter_5'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_0'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_1'","/Script/Engine.MaterialExpressionLinearInterpolate'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionLinearInterpolate_2'","/Script/Engine.MaterialExpressionFresnel'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionFresnel_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_1'","/Script/Engine.MaterialExpressionAdd'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionAdd_0'","/Script/Engine.MaterialExpressionComponentMask'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComponentMask_0'","/Script/Engine.MaterialExpressionMultiply'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionMultiply_2'","/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComment_4'","/Script/Engine.MaterialExpressionComment'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MaterialExpressionComment_5'"))
+   End Object
+   Description="Gallery-template 4-layer impressionist paint base. Outputs BaseColor (paint blend + Fresnel rim) and WPOOffset (parallax depth)."
+   bExposeToLibrary=True
+   LibraryCategoriesText(0)=NSLOCTEXT("", "789FE7354D9065A1B98467908221F788", "Melodia")
+   LibraryCategoriesText(1)=NSLOCTEXT("", "E49BF0FB46F1D738CE304AB476BC2EB0", "Impressionist")
+   EditorOnlyData="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase.MF_MeluPaintBase:MF_MeluPaintBaseEditorOnlyData'"
+   StateId=45D488184F0FB50AD76E2B9386B761CF
+   CombinedInputTypes=15
+End Object

@@ -1,0 +1,56 @@
+{
+  "schema": "melodia.wardrobe_equip_p0.v1",
+  "contract_id": "wardrobe_equip_p0_slice",
+  "status": "ready_for_playthrough",
+  "outfit_id": "MelusinaV2_ResonantWeave",
+  "display_name": "Resonant Weave (Sorrow Seam Restored)",
+  "rarity": "Uncommon",
+  "slots": {
+    "Body": {
+      "cosmetic_id": "Cos_Body_MelusinaV2",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "material_slots": ["MI_Melusina_Body_Pristine"]
+    },
+    "Shirt": {
+      "cosmetic_id": "Cos_Shirt_MelusinaV2",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt",
+      "material_slots": ["MI_Melusina_Shirt_Resonant"]
+    },
+    "Skirt": {
+      "cosmetic_id": "Cos_Skirt_MelusinaV2",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Skirt",
+      "material_slots": [
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003",
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002",
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002",
+        "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005"
+      ]
+    },
+    "Boots": {
+      "cosmetic_id": "Cos_Boots_MelusinaV2",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots",
+      "material_slots": ["MI_Melusina_Boots_Default"]
+    },
+    "Accessories": {
+      "cosmetic_id": "Cos_Accessories_MelusinaV2",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories",
+      "material_slots": ["MI_Melusina_Charm_Resonant"]
+    }
+  },
+  "resonant_form": {
+    "form_id": "form.melusina.sorrow_seam",
+    "capability_unlocked": "Glide",
+    "capability_enum_value": 0,
+    "required_flags": [
+      "flag.wardrobe.outfit_equipped",
+      "flag.melusina.sorrow_seam_restored"
+    ]
+  },
+  "traversal_impact": {
+    "can_glide": true,
+    "glide_gravity_scale": 0.25,
+    "glide_forward_speed": 750.0,
+    "glide_terminal_velocity_z": -200.0
+  },
+  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds"
+}

@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"FriendlyName": "Melodia Wardrobe",
+	"Description": "Universal outfit collection + fashion gameplay: slot-swap engine, cosmetic registry, wardrobe state, gacha. Re-host of the quarantined UMelodiaOutfitComponent algorithm (Decision 044).",
+	"Category": "Gameplay",
+	"CreatedBy": "Brennan Shepherd",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"Modules": [
+		{
+			"Name": "MelodiaWardrobe",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "MelodiaCore",
+			"Enabled": true
+		},
+		{
+			"Name": "Harmonix",
+			"Enabled": true
+		}
+	]
+}

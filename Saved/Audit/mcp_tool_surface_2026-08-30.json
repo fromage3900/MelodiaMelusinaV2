@@ -1,0 +1,8 @@
+{
+  "tool": "BakeHoudiniRegion",
+  "desc": "Bake a Houdini HDA region into UE (HDA_ENV_TerrainStamp / PathCorridor / ScatterMaskBuilder / HeroRockFamily / LOD_Collision_Batch) per MARA_P0_P3_HOUDINI_EXECUTION_PLAN. Bake-not-live-cook: production-critical results are baked, never left dependent on live HDA cooking.",
+  "guard": "dry-run by default; requires HoudiniEngine + editor + sandbox",
+  "mode": "DRY-RUN",
+  "monolith": "http://127.0.0.1:9316/mcp",
+  "status": "NOT_EXECUTED"
+}

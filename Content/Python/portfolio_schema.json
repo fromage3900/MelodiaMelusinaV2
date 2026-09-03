@@ -1,0 +1,130 @@
+{
+  "version": "1.0",
+  "required_top_level_keys": [
+    "scene",
+    "assets",
+    "materials",
+    "renders",
+    "pcg",
+    "stats",
+    "metadata"
+  ],
+  "sections": {
+    "scene": {
+      "required": [
+        "scene_name",
+        "level_path",
+        "engine",
+        "timestamp"
+      ],
+      "optional": [
+        "environment_type",
+        "lighting_setup",
+        "camera_count"
+      ]
+    },
+    "assets": {
+      "type": "array",
+      "required_fields": [
+        "asset_name",
+        "asset_type",
+        "materials"
+      ]
+    },
+    "materials": {
+      "type": "array",
+      "required_fields": [
+        "material_name",
+        "material_type",
+        "shader_family",
+        "output_maps"
+      ]
+    },
+    "renders": {
+      "required_groups": [
+        "hero",
+        "breakdown",
+        "materials",
+        "pcg"
+      ]
+    },
+    "pcg": {
+      "required_fields": [
+        "graphs"
+      ]
+    },
+    "stats": {
+      "required_fields": [
+        "triangle_count",
+        "draw_calls"
+      ]
+    },
+    "metadata": {
+      "required": [
+        "schema_version",
+        "aggregated_at",
+        "aggregated_by",
+        "sources",
+        "validation_warnings"
+      ]
+    }
+  },
+  "source_fragments": {
+    "scene_metadata": {
+      "section": "scene",
+      "secondary_section": "assets",
+      "relative_path": "Saved/Portfolio/Metadata/scene_metadata.json",
+      "fallback_relative_path": "Saved/Portfolio/SceneMetadata/scene_metadata.json"
+    },
+    "material_previews": {
+      "section": "materials",
+      "relative_path": "Saved/Portfolio/MaterialPreviews/previews_manifest.json"
+    },
+    "renders_manifest": {
+      "section": "renders",
+      "relative_path": "Saved/Portfolio/Renders/renders_manifest.json"
+    },
+    "pcg_build": {
+      "section": "pcg",
+      "relative_path": "Saved/Audit/pcg_universal_build.json"
+    },
+    "stats_manifest": {
+      "section": "stats",
+      "relative_path": "Saved/Portfolio/Stats/portfolio_stats_manifest.json"
+    }
+  },
+  "field_mappings": {
+    "scene": {
+      "scene_name": ["level_name", "world"],
+      "level_path": ["level_path"],
+      "engine": ["engine_version"],
+      "timestamp": ["timestamp", "generated_at"],
+      "environment_type": ["environment_type"],
+      "lighting_setup": ["lighting_setup"],
+      "camera_count": ["camera_count"]
+    },
+    "assets": {
+      "asset_name": ["label"],
+      "asset_type": ["class"],
+      "materials": ["materials"]
+    },
+    "materials": {
+      "material_name": ["_dict_key"],
+      "path": ["path"],
+      "label": ["label"],
+      "thumbnail": ["thumbnail"],
+      "material_type": ["material_type"],
+      "shader_family": ["shader_family"],
+      "output_maps": ["output_maps"],
+      "parent_master": ["parent_master"],
+      "status": ["status"],
+      "purpose": ["purpose"],
+      "source_module": ["source_module"]
+    }
+  },
+  "legacy_aliases": {
+    "ok": ["passed"],
+    "timestamp": ["scan_time", "generated_at"]
+  }
+}
+

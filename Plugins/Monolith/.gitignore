@@ -1,0 +1,49 @@
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+*.pdb
+*.patch_*
+__pycache__/
+*.pyc
+Docs/plans/
+Docs/TESTING.md
+Docs/TODO.md
+Docs/TODO_VFX_Issues.md
+Plans/
+
+# Private training actions — never ship in public releases
+Source/MonolithEditor/Private/MonolithTrainingActions.cpp
+Source/MonolithEditor/Public/MonolithTrainingActions.h
+
+# Internal-only docs — never ship in public releases
+Docs/ROADMAP.md
+Docs/research/
+
+# Specs ship with releases (per-module reference docs for users)
+# Docs/specs/ — UNBLOCKED 2026-04-25
+
+# CommonUI shipped M0.5 (v0.14.0, 2026-04-19) — tracked in git
+# Conditional on WITH_COMMONUI; MONOLITH_RELEASE_BUILD=1 compiles it out
+
+# Build tools and proxy binaries — local to dev machine
+Tools/
+
+# Agent training infrastructure — local to dev machine, not part of core plugin
+Scripts/vfx_training_harness.py
+Scripts/occult_training_harness.py
+Scripts/fix_occult_system.py
+Scripts/generate_calibration.py
+Scripts/monolith_client.py
+Scripts/extract_recipes.py
+Scripts/pixel_metrics.py
+Scripts/score_history.py
+Scripts/__pycache__/
+TrainingMemory/
+.claude/agent-memory/
+
+# Release housekeeping — internal planning scrolls + transient release-rite debris (never shipped)
+Docs/pcg/
+release_body*.md
+pr*.diff
+make_release*.log
