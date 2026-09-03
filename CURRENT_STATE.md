@@ -38,12 +38,24 @@ Melodia has converged from disparate exploratory prototypes into a unified, prod
 | `music_world_key` | Resonant World | ✅ PASS | 2026-09-01 |
 | `static_gates` | Material Baselines | ✅ PASS | 2026-08-29 |
 | `battle_integration_map` | Allowlist | ✅ PASS | 2026-08-28 |
-| `package_build` | Shipping Cook | ❌ FAIL | 2026-08-14 |
-| `package_launch` | Standalone Boot | ❌ FAIL | 2026-08-14 |
+| `package_build` | Shipping Cook | ✅ PASS | 2026-09-03 |
+| `package_launch` | Standalone Boot | ✅ PASS | 2026-09-03 |
 | `world_field_bus_pie` | Audio Bus Runtime | ⏳ PENDING | 2026-09-02 |
 | `gaeA_live_pie` | Gaea Terrain Runtime | ⏳ PENDING | 2026-09-02 |
 
-**PASS: 27 | FAIL: 2 | PENDING_CAPTURE: 2**
+**PASS: 29 | FAIL: 0 | PENDING_CAPTURE: 2**
+
+> Cook #3 (2026-09-03) exited 0 with 0 cook errors and 0 ensures. Archive:
+> `G:\melodia_packages\P0_Closeout_20260902\Windows\BS_GodFile.exe` (2.8 GB, .pak + IoStore .utoc).
+> Packaged boot verified outside the editor: mounted `BS_GodFile-Windows.utoc`, `LoadMap`
+> `/Game/Melodia/Levels/Menu/L_MelodiaMainMenu` in 0.349 s, 0 fatals, Narrative/UIBridge/Wardrobe
+> subsystems all initialised.
+>
+> **Caveat — the build boots but the ROUTE cannot run yet.** Three assets exist on disk but were
+> not cooked: `DA_MelodiaIntegrationConfig`, `DA_MelodiaPersonaContent`, and the music-clock
+> beat-grid MIDI `128BPMarpeggiomelody_beatgrid`. Fix is two `+DirectoriesToAlwaysCook` entries
+> (`/Game/MelodiaIntegration/Config`, `/Game/MelodiaIntegration/MIDI`) plus a re-cook. That missing
+> MIDI is also why `BeatPulse` reads zero.
 
 ---
 
@@ -103,10 +115,12 @@ This project is actively developed across three workstations:
 
 | Issue | Impact | Status |
 |---|---|---|
-| Package cook exits -1 | Shipping blocked | Needs closed-editor cold cook (30-60 min) |
-| C: disk 78 GB free / Content 88 GB | Cook may fail on disk space | Use G: (431 GB free) for cook output |
-| Shorewake 2-bone vs Melusina 465-bone | Outfit import broken | IK Retargeter or re-author needed |
-| Push blocked | No remote backup | LFS orphans from filter-repo |
+| ~~Package cook exits -1~~ | ~~Shipping blocked~~ | **RESOLVED 2026-09-03** — root cause was engine asset `MPD_Default.uasset` (`/MeshPartition/`, Editor-only module) failing to cook for Win64. Quarantined in the UE_5.8 install. **An engine update restores it and breaks packaging again.** |
+| C: disk ~85 GB free / Content 88 GB | Cook may fail on disk space | **DONE** — cook + staging both routed to G: |
+| Packaged route missing 3 configs | Build boots, route cannot run | Add `DirectoriesToAlwaysCook` for `/MelodiaIntegration/Config` + `/MIDI`, re-cook (~15 min warm) |
+| ~~Shorewake 2-bone vs Melusina 465-bone~~ | ~~Outfit import broken~~ | **RESOLVED 2026-09-03** — rebind landed (`SK_ShorewakeDress_Melusina465`). Real blocker was a missing catalog record; `Cos_ShorewakeDress` now registered (SKIRT/Rare) and equip round-trip PASSES. |
+| Shorewake renders untextured | Equips but reads flat grey | All 48 `SW_Dress_P*` MIs bind 0 texture params; `T_MelusinaC_DressShorewake_*` suite unused on disk |
+| Push blocked | No remote backup for 650+ commits | 3 LFS objects are **corrupt, not missing** — stored bytes do not hash to their OID (`Blue_Nebula_6/7/8`). Push uploads 5903/5906 then S3 rejects. G: mirror copies are corrupt too, so this predates the backup. Needs history excision or an orphan branch. |
 | 4 test failures | Not blocking P0 | Under repair |
 
 ---
@@ -117,7 +131,7 @@ This project is actively developed across three workstations:
 2. **Package cook** — cold cook on closed editor, output to G: drive
 3. **PIE captures** — world_field_bus_pie, gaeA_live_pie
 4. **Cross-machine setup** — implement the workflow in CROSS_MACHINE_WORKFLOW doc
-5. **itch.io upload** — once package_launch passes
+5. **itch.io upload** — `package_launch` now passes, but no butler/`.itch.toml`/upload script exists in either repo; needs credentials + a target page
 
 ---
 
