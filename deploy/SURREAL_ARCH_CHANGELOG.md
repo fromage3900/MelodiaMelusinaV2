@@ -69,7 +69,7 @@
 
 ## v2.121.0 — Sci-Fi industrial yard + endless tier-B loop
 
-- **Endless loop:** `cursor_surreal_tierb_loop.ps1` tick prompt retargeted to AAA genome expansion; monitored 300s cadence
+- **Endless loop:** `cursor_surreal_tierb_loop.ps1` (**ARCHIVED**) tick prompt retargeted to AAA genome expansion
 - **`scifi_industrial_yard_v1`** genome + **`SCI_FI_INDUSTRIAL_YARD`** grammar (pillar atrium, catwalk spine, bulkhead, service corridor)
 - Research preset `scifi_industrial_yard_graph` + curated playable preset; `recursive_interior` transform coverage
 - Genome catalog **25** entries
@@ -184,7 +184,7 @@
 ## v2.100.1 — Loop maintenance cadence (tick 28)
 
 - Default Cursor wake interval **300s** (was 120s) — tier B/C backlog complete
-- **`cursor_surreal_tierb_loop.ps1`** + start/stop scripts for `AGENT_LOOP_TICK_surreal_tierb`
+- **`cursor_surreal_tierb_loop.ps1`** (**ARCHIVED**) + start/stop scripts for `AGENT_LOOP_TICK_surreal_tierb`
 
 ## v2.100.0 — Dedicated Asian + Brutalist grammar graphs
 
@@ -413,7 +413,7 @@
 - **Fixes** — `is_sacred` tag dispatch, `BOULDER_PILE` in library spec, headless-safe library bake
 - **ZEN_SHRINE** compose style + Zen Roji plan spawner
 - **`export_world_ue`** operator — `surreal_arch_world_v1` JSON manifest
-- **Verify** — `_mcp_verify_world.py` + dedicated `surreal_world_loop.ps1`
+- **Verify** — `_mcp_verify_world.py` + dedicated `surreal_world_loop.ps1` (**ARCHIVED**)
 
 ## v2.67.0 — Zen modular kit expansion
 
