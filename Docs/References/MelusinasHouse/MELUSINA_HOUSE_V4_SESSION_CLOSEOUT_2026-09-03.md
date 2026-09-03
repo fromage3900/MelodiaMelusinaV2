@@ -3,7 +3,7 @@
 > Date: 2026-09-03
 > Agent: Melodia (Hermes)
 > Scope: V4 set-dressing polish/expansion, Melodia Studio GN builder port, Hermes skills, closeout
-> Commit: `66a7a280` (feat(house): v4 set-dress expansion...) on `docs/2026-09-02-grand-master-plan`
+> Branch: `docs/2026-09-02-grand-master-plan` (P: repo). Committed as "feat(house): v4 set-dress expansion, house_dress GN kit, session closeout docs". Not yet merged/pushed to main.
 
 ## 1. Set-dressing polish + expansion (Blender, headless)
 
