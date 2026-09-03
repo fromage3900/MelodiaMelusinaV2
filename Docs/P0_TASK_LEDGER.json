@@ -794,6 +794,16 @@
         "Identify the grey torso slot by elimination before tinting anything.",
         "Fix colour by binding the correct Albedo texture, not by tuning BaseTint."
       ]
+    },
+    "faraway_pcg_lane_2026-09-03T08:00": {
+      "finding": "faraway_mother_pcg_assembly.py verify_assembly() was a FALSE GREEN. It returned ok=True and listed all 3 REQUIRED_PCG_GRAPHS as 'pcg_graphs_staged' by echoing the constant unconditionally — it never touched the filesystem. None of the 3 graphs exist.",
+      "fix": "Added _graph_exists() and made pcg_graphs_staged report only graphs actually present, with a hard error when any are missing. Validation now correctly reports ok=False, staged=[].",
+      "state": {
+        "manifest": "specs/pcg/faraway_mother_pcg_manifest.v1.json — COMPLETE (76 KB): 120 points, 4 biomes (WeaveRidge/LaceCanopy/FrillValley/ResonantSeamWay), 4 World Field channels (Tension/Resonance/Moisture/FilterFlow), narrative hook challenge.mother_heart_gate -> reward.wardrobe.mother_velvet_mantle",
+        "blocker": "All 3 PCG graphs absent: PCG_Faraway_FabricRidge, PCG_Faraway_DetailProps, PCG_Faraway_WindZones under /Game/EnvSandbox/PCG/FarawayMother/. This is genuine authoring, not a wiring fix.",
+        "deliberately_not_done": "Did NOT create empty PCG graph stubs to make the paths resolve. An empty graph that scatters nothing would turn an honest failure into a second false green — the same defect just fixed."
+      },
+      "gameplay_feel_note": "Still no play session. The Faraway biome names (WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay) are garment metaphors mapped onto terrain, which is a genuinely strong Infinity-Nikki-shaped idea: the LANDSCAPE is couture. But none of it is scatterable until the 3 graphs exist, so the level is currently 11 hand-placed actors on a 4 km ridge — it reads as empty, not as a dress."
     }
   }
 }

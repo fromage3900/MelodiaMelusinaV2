@@ -26,6 +26,18 @@ REQUIRED_PCG_GRAPHS = [
 ]
 
 
+def _graph_exists(game_path: str) -> bool:
+    """True when a /Game/... PCG graph is actually present on disk.
+
+    verify_assembly used to return REQUIRED_PCG_GRAPHS verbatim as
+    "pcg_graphs_staged", so it reported all three as staged while none existed.
+    That is a false green: callers read ok=True plus a populated staged list and
+    conclude the graphs are there.
+    """
+    rel = game_path.replace("/Game/", "Content/", 1) + ".uasset"
+    return (Path(__file__).resolve().parents[2] / rel).is_file()
+
+
 @dataclass
 class AssemblyVerificationResult:
     ok: bool
@@ -93,12 +105,20 @@ def verify_assembly(manifest_path_str: str) -> AssemblyVerificationResult:
     if not narrative.get("challenge_id"):
         errors.append("Missing narrative challenge_id")
 
+    present = [g for g in REQUIRED_PCG_GRAPHS if _graph_exists(g)]
+    missing = [g for g in REQUIRED_PCG_GRAPHS if g not in present]
+    if missing:
+        errors.append(
+            "PCG graphs missing on disk (manifest is complete, the graphs are not "
+            f"authored): {missing}"
+        )
+
     return AssemblyVerificationResult(
         ok=len(errors) == 0,
         manifest_path=str(manifest_path),
         total_staged_points=total_pts,
         biomes_verified=biomes,
-        pcg_graphs_staged=REQUIRED_PCG_GRAPHS,
+        pcg_graphs_staged=present,
         world_fields_connected=world_fields,
         narrative_challenge=narrative,
         errors=errors,
