@@ -547,7 +547,7 @@ Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm
 *   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
 *   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md). Tonight prep: [`Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`](Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md).
 *   **Keep running:** surreal/world/`run_verify` production loops.
-*   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
+*   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1`, `deploy/start_surreal_*.ps1`, `deploy/start_world_loop.ps1` (all moved to `deploy/archive/deprecated-loops/`; do not start for new work).
 *   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.
 
 Full guide: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](Docs/PhoneOps/JCODE_SWARM_PIPELINE.md) · [`.jcode/README.md`](.jcode/README.md)
