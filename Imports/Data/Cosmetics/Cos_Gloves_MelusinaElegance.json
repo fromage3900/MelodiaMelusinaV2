@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Gloves_MelusinaElegance",
+  "display_name": "Melusina's Gale-Woven Gloves",
+  "slot": "gloves",
+  "rarity": "Couture",
+  "element_mood": "Gale",
+  "content_pack_id": "Pack_MoonlitSonata",
+  "token_cost": {
+    "heart": 10,
+    "swirl": 3
+  },
+  "palette": [
+    "#FFC0CB",
+    "#FF69B4",
+    "#A020F0"
+  ],
+  "flavor": "Graceful, ethereal gloves adorned with filigree and sparkling elements.",
+  "material_notes": "Gilded filigree, stained glass, aurora band.",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

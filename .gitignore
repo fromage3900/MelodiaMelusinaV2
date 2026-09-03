@@ -201,6 +201,12 @@ Imports/Animations/Cascadeur/*
 !Imports/Animations/Cascadeur/Inbox/
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
+!Imports/Data/
+Imports/Data/*
+!Imports/Data/Cosmetics/
+Imports/Data/Cosmetics/*
+!Imports/Data/Cosmetics/README.md
+!Imports/Data/Cosmetics/*.json
 Tools/*
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/

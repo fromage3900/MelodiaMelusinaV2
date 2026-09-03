@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Hat_EmeraldRadiance",
+  "display_name": "Emerald Radiance",
+  "slot": "hat",
+  "rarity": "Refined",
+  "element_mood": "Radiant",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 7,
+    "swirl": 3
+  },
+  "palette": [
+    "#00FF00",
+    "#8DBA45",
+    "#FFFFFF"
+  ],
+  "flavor": "Melusina's hat glows with a bright, radiant green light.",
+  "material_notes": "Aurora band and gilded filigree treatments.",
+  "schema": "MelodiaCosmetic-draft-v1"
+}
