@@ -804,6 +804,19 @@
         "deliberately_not_done": "Did NOT create empty PCG graph stubs to make the paths resolve. An empty graph that scatters nothing would turn an honest failure into a second false green — the same defect just fixed."
       },
       "gameplay_feel_note": "Still no play session. The Faraway biome names (WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay) are garment metaphors mapped onto terrain, which is a genuinely strong Infinity-Nikki-shaped idea: the LANDSCAPE is couture. But none of it is scatterable until the 3 graphs exist, so the level is currently 11 hand-placed actors on a 4 km ridge — it reads as empty, not as a dress."
+    },
+    "faraway_pcg_blocker_traced_2026-09-03T08:30": {
+      "conclusion": "The Faraway PCG lane is blocked on BLENDER->UE MESH EXPORT, not on PCG graphs or wiring. Do not spend further ticks on graph authoring.",
+      "chain_state": {
+        "manifest": "COMPLETE - specs/pcg/faraway_mother_pcg_manifest.v1.json, 120 fully-solved points (position/rotation/scale/tension/moisture/resonance_mode/chladni) across 4 biomes",
+        "biome_material_instances": "ALL 4 EXIST under /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/ (Gown_CelestialSilkJacquard, Veil_AquaticLullabyLace, Corset_GildedAcanthusBrocade, Mantle_NightSkyVelvet)",
+        "pcg_graphs": "NONE of the 3 exist and NO tooling creates them. Tools/PCG/build_faraway_mother_pcg_ecosystem.py only exports the manifest JSON - it has no PCGGraph asset creation.",
+        "builder_meshes": "15 distinct MEL_mother_* builders are referenced by the 120 points; only SM_FarawayMother_FabricRidge exists in Content. The other 14 were never exported.",
+        "blender_side": "GN builders DO exist: deploy/surreal_arch/melodia_gn/mother.py, mother_v3.py, mother_tapestry_wall.py"
+      },
+      "why_the_points_do_not_need_a_pcg_graph": "The manifest already carries explicit per-point transforms. Scatter is solved; a PCG graph would only be needed for runtime procedural regeneration. The level can be assembled from the manifest directly as ISM instances once meshes exist.",
+      "shortest_path": "Run the Blender GN builders to export the 14 missing MEL_mother_* meshes, import to UE, then spawn the 120 manifest points as ISM (instances only, per the doc contract - no unique StaticMeshActors, they break batching).",
+      "not_done_deliberately": "Did not spawn 120 instances of the one mesh that exists (the terrain) to make the level look populated. That would be visual nonsense and a third false green."
     }
   }
 }
