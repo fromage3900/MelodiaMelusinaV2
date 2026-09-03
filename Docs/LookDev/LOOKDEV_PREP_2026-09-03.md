@@ -43,3 +43,74 @@ buried at the old exposure. Before/after: `shirt_BEFORE.png`, `shirt_AFTER.png`.
 My earlier "does not exist" came from the stale 2026-09-01 spec plus a truncated search
 whose results were flooded by `chair` matches. Both gaps in that spec are now disproven:
 the hair mesh exists and `MI_Melusina_WaterHair` exists.
+
+---
+
+## 8. Oceanology — CORRECTION: it is not driven by a material instance at all
+
+Owner identified the actors as **OceanologyInfiniteOcean**. Reading
+`BP_OceanologyInfiniteOcean`'s CDO settles the whole lane:
+
+```
+UserOverrideMaterial : false
+Material             : None
+MaterialFar          : None
+```
+
+The ocean does **not** use an assigned material asset. Its look comes from **actor
+properties** — chiefly the `SurfaceScattering` struct — which the plugin feeds into its
+own internal material.
+
+**This is why `MI_Oceanology_Melodia_Hero` is an orphan referenced by nothing.** The
+material-instance approach was never going to work here. Any amount of MI tuning would
+have been invisible. Section 2 above stands corrected: the knob list there is right, but
+the *location* is the actor/preset, not an MI.
+
+### Current values (CDO defaults) causing "too deep and dark"
+
+| Property | Value |
+|---|---|
+| `SurfaceScattering.DeepScatteringColor` | `(0.05, 0.25, 0.30, A 0.15)` |
+| `SurfaceScattering.Absorption` | `(70, 180, 350)` |
+| `SurfaceScattering.DeepAbsorptionCoefficient` | `7` |
+| `SurfaceScattering.ScatterBoost` | `10` |
+| `GroundCaustics.MaximumDarkness` | `-4000` |
+| `Preset` / `GroupedWaterPresets.*` | **all `None`** — no preset assigned |
+
+### The fix already ships with the plugin
+
+`GroupedWaterPresets.Color` takes a `UOceanologyWaterColorPreset`. Comparing two:
+
+| | CDO default | `DA_Color_AnimeLightBlue` | **`DA_Color_LightBlue`** |
+|---|---|---|---|
+| `Absorption` | (70, 180, 350) | (70, 180, 350) | **(20, 40, 100)** |
+| `DeepScatteringColor` | (0.05, 0.25, 0.30, A .15) | (0.05, 0.25, 0.30, A .15) | **(0.21, 0.72, 0.63, A .65)** |
+
+Two things follow:
+
+1. **`DA_Color_LightBlue` is the fix** — 3.5x lower absorption (light travels much
+   further before dying) and a far brighter aqua deep-scatter colour with alpha 0.65
+   instead of 0.15.
+2. **`DA_Color_AnimeLightBlue` is a decoy** — despite the name it is byte-identical to
+   the defaults except `WaterSpecular`/`WaterFresnelSpecular` = 0. Assigning it would
+   change nothing about depth or darkness. Do not reach for it by name.
+
+### Resolved: the `Absorption` convention
+
+Section 2 flagged as unverified whether `Absorption` is an extinction *coefficient*
+(higher = darker) or a *distance* (higher = clearer). The preset comparison settles it
+empirically: the preset named **LightBlue** has the **lower** absorption. It is a
+**coefficient** — higher means darker. My "B=350 > R=70 suggests distance" guess was
+wrong, and would have sent the tuning in the wrong direction.
+
+### Applying it — blast radius is an owner call
+
+- **Per actor / per level** — set `GroupedWaterPresets.Color` on each
+  OceanologyInfiniteOcean. Contained, but must be repeated per ocean.
+- **BP CDO default** — fixes every ocean at once, but edits **plugin content**, which a
+  plugin update overwrites.
+
+Only one OceanologyInfiniteOcean is confirmed placed: the parked test fixture at Z-5000
+in `MelodiaIntegrationMap`, which `CLAUDE.md` explicitly protects. A `.umap` text scan is
+not reliable for finding the rest (umaps are compressed), so the full placement list is
+not yet established.
