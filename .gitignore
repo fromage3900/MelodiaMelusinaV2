@@ -274,6 +274,8 @@ Tools/BlenderAddons/**/*.blend1
 !Tools/melodia_website_root.py
 !Tools/populate_gn_builders_review_queue.py
 !Tools/melodia_stage_shot.py
+!Tools/create_animation_template.py
+!Tools/gn_health_check.py
 melodia-design-system/
 KitbashExport/
 /research/
