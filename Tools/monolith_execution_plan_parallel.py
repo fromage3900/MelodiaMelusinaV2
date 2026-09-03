@@ -80,7 +80,7 @@ def recipe_phase_A(variant_filter=None):
             recipes.append({
                 "tool": "material_query",
                 "action": "import_texture",
-                "params": {"source_path": str(src), "destination_path": dest, "srgb": srgb},
+                "params": {"source_file": str(src), "dest_path": dest, "srgb": srgb},
                 "phase": "A1-import",
                 "variant": v, "map": m,
             })
@@ -89,7 +89,7 @@ def recipe_phase_A(variant_filter=None):
             "action": "create_pbr_material_from_disk",
             "params": {
                 "source_folder": str(vdir),
-                "destination_path": f"{DEST_CYMA_ROOT}/{v}/M_Cymatic_{v}",
+                "material_path": f"{DEST_CYMA_ROOT}/{v}/M_Cymatic_{v}",
                 "base_color_suffix": "BaseColor",
                 "normal_suffix": "Normal",
                 "roughness_suffix": "Roughness",
@@ -103,7 +103,7 @@ def recipe_phase_A(variant_filter=None):
         recipes.append({
             "tool": "material_query",
             "action": "get_compilation_stats",
-            "params": {"material_path": f"{DEST_CYMA_ROOT}/{v}/M_Cymatic_{v}"},
+            "params": {"asset_path": f"{DEST_CYMA_ROOT}/{v}/M_Cymatic_{v}"},
             "phase": "A3-validate",
             "variant": v,
         })
@@ -115,7 +115,7 @@ def recipe_phase_A(variant_filter=None):
                     recipes.append({
                         "tool": "material_query",
                         "action": "import_texture",
-                        "params": {"source_path": str(src), "destination_path": f"{DEST_FLIPBOOK_ROOT}/T_PearlFlipbook_Frame{f:02d}_{m}", "srgb": m == "BaseColor"},
+                        "params": {"source_file": str(src), "dest_path": f"{DEST_FLIPBOOK_ROOT}/T_PearlFlipbook_Frame{f:02d}_{m}", "srgb": m == "BaseColor"},
                         "phase": "A1-import-flipbook", "frame": f, "map": m,
                     })
     else:
