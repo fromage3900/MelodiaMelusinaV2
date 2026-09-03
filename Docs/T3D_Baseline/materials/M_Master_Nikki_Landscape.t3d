@@ -971,7 +971,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki_Landscape" Expor
       ExpressionGUID=224DDEB74E2E5AB92783708BFC9ADFBE
       Group="02 | Layer Textures"
       SortPriority=1601
-      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-1900
       MaterialExpressionEditorY=280
       MaterialExpressionGuid=9F532B784C0587BDE8857DAA8B4BFF36
@@ -1019,7 +1019,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki_Landscape" Expor
       Group="02 | Layer Textures"
       SortPriority=1601
       Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape:MaterialExpressionMultiply_12'")
-      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-1900
       MaterialExpressionEditorY=280
       MaterialExpressionGuid=4313981F44DB6392765B9192098E100F
@@ -1043,7 +1043,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki_Landscape" Expor
       ExpressionGUID=BC4435494D76A6FBA23E32917DD3C88C
       Group="02 | Layer Textures"
       SortPriority=1600
-      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-820
       MaterialExpressionGuid=B4EFBD934B2D560C0A9F478C0AD6C72D
@@ -3452,6 +3452,6 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki_Landscape" Expor
    ReferencedDefaultTextures(1)="/Script/Engine.Texture2DArray'/Engine/EngineMaterials/WeightMapArrayPlaceholderTexture.WeightMapArrayPlaceholderTexture'"
    ReferencedDefaultTextures(2)="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal'"
    ReferencedDefaultTextures(3)="/Script/Engine.Texture2D'/Game/_PROJECT/04_Materials/Textures/Textures/SOIL_materialized_diffuseOriginal.SOIL_materialized_diffuseOriginal'"
-   ReferencedDefaultTextures(4)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+   ReferencedDefaultTextures(4)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
    LightingGuid=1944BC88447CF7D27D6A01A4BDB6ECDE
 End Object

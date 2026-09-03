@@ -1,17 +1,11 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-03",
+  "as_of": "2026-09-06",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
     "scope": "Close the existing First Dream loop before adding economy, song-family, HUD, dungeon, enemy, or quest breadth.",
     "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct. Historical passes apply only to their captured baselines and are not current shipping certification."
-  },
-  "current_gate_state": {
-    "verified_2026-09-03": "29/32 gates PASS (package_build + package_launch both PASS after 2026-09-02 cook #3 + packaged boot verification; new gate wardrobe_presentation_swap PASS state-tier), 2 PENDING_CAPTURE (world_field_bus_pie, gaeA_live_pie)",
-    "test_results": "108/116 tests PASS (1 fail, 3 errors under repair; 2026-09-02 count)",
-    "package_launch_evidence": "Cook #3 exit 0; 2.8GB package booted outside editor: 0 fatals, IoStore 3484-pkg mount, L_MelodiaMainMenu + main menu UI in viewport, canonical New Game slot created in packaged session. Ledger row 2026-09-03 02:32:21.",
-    "cross_machine_setup": "Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md"
   },
   "agent_work_log_2026-08-27": {
     "commit": "d242f74d",
@@ -406,12 +400,6 @@
       "contract": "Victory, Defeat, Fled, and unavailable each produce the typed result and resume or abort Quill exactly once on the current integration map.",
       "verified_evidence_2026_08_27": "2026-08-27 live PIE on MelodiaIntegrationMap, post closed-editor UBT rebuild (DLL 12:28). ROOT CAUSE of the long hold: BP_InteractionBattle (tag melodia_smoke_encounter) had enemyList=[], so MelodiaExternalJRPGBridgeSubsystem.cpp:130 rejected every battle with 'tagged battle actor has no authored enemy roster'. Fixed: one row, key BP_WeakEnemy_C, spawnChance=1.0 minLevel=1 maxLevel=1; map saved 13:07. ALL FOUR terminal outcomes then driven through the authored MelodiaQuillSmoke golden run: unavailable (abort path); victory result=victory typed=0 (SetHP(0) on BP_WeakEnemy_C); defeat result=defeat typed=1 (SetHP(0) on BP_SirMelodiousPlayerUnit_C); fled result=fled typed=2 (fleeChance=100 + BP_BattleController.Flee). Quill resumed EXACTLY ONCE on every outcome (MELUSINA_LOOP_QUILL_RESTORE then _NEXT, never twice). Atomic commit proven on victory branch in order: melodia:quest:melodia_q_echo_01, melodia:reward:melodia_smoke_reward, melodia:flag:melodia_smoke_complete:true, then Script 'MelodiaQuillSmoke' ended. Fled branch committed ONLY the flag (no quest/reward), proving the commit is branch-conditional.",
       "verified_evidence_2026_09_01": "2026-09-01 hython + UE import verification, static_gates re-run completed"
-    },
-    {
-      "id": "wardrobe_presentation_swap",
-      "status": "pass_state_tier",
-      "contract": "Equipping a catalog cosmetic changes the pawn's presented mesh through the wardrobe authority (subsystem grant -> component equip -> slot-component mesh identity), survives unequip/re-equip, and (queued tiers) preserves MI identity + scalar gains across a full process restart.",
-      "verified_evidence_2026_09_03": "STATE TIER 13/13 PASS. Ledger row 2026-09-03 04:04:21 (session skirt-swap-20260903). Pending tiers: look/value (MI identity + gain CDO diff) and restart roundtrip. Evidence: Saved/Audit/p0_real_input_run/wardrobe_skirt_swap_state_2026-09-03.json."
     }
   ],
   "bounded_historical_evidence": [
@@ -591,8 +579,8 @@
     {
       "id": "p1_cymatics_present",
       "name": "Cymatics PRESENT promotion",
-      "status": "material_wiring_offline_done",
-      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index §1. Material generation and offline ingest done; live import and build remain.",
+      "status": "draft_open",
+      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index \u00a71. Remaining: PostConfigInit module loading verification, cymatic PBR generation CLI, World Field Bus contract, ledger gate.",
       "deadline": "2026-10-01",
       "priority": 1,
       "evidence": "Saved/Audit/cymatics_present_status.json",
@@ -604,206 +592,11 @@
         "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md"
       ],
       "remaining_steps": [
-        "Verify PostConfigInit module loading and uplugin dependencies (closed-editor Build.bat -- MelodiaCymaticsSubsystem is UGameInstanceSubsystem/FTSTicker, PostConfigInit not required but verify)",
-        "Execute monolith Phase A for 22 new variants (CymaticOrchid + Faraway* + Melodia* + MoonlitMoss/PrismaticObsidian/RoyalVelvetBrocade/SingingDune/WeepingWillow) via Tools/monolith_execution_plan_parallel.py --phase A --variant <name> --execute when editor idle (dry-run 51 steps for CymaticOrchid PASS 2026-09-02)",
-        "World Field Bus cymatic publishers already in Master Index §5b-i and MelodiaCymaticsSubsystem.cpp:UWorldFieldBus::PublishResonance (ModeN/ModeM → Resonance, SampleCymaticAmplitude → Tension) -- verify in PIE",
-        "Cymatics P1 promotion gate (owner review) -- requires Build.bat and PIE probe"
-      ],
-      "completed_offline_2026_09_02": {
-        "variants": "53 (was 21), 2617 PNGs (was 1665), 22 new variants PNGs copied Saved/Audit/copernicus_cymatic/ -> Content/EnvSandbox/Textures/Copernicus/",
-        "pipeline": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py VARIANTS + BUILDERS expanded 21→53, CymaticOrchid + SingingDune added, argparse dynamic",
-        "monolith_plan": "Tools/monolith_execution_plan_parallel.py VARIANTS 21→53, DEST_CYMA_ROOT=/Game/Melodia/Cymatics, dry-run CymaticOrchid 51 steps PASS",
-        "cross_path": "Tools/cross_path_validation.py HYTHON_CYMA_VARIANTS 21→53, hython check 532 pass",
-        "master_index": "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md §1 Cymatics row 21→53 variants"
-      }
-    }
-  ],
-  "agent_work_log_2026-09-03": [
-    {
-      "timestamp": "2026-09-03T04:40:00Z",
-      "scope": "Build-lane takeover (prior agent quota-out): package_launch certification, wardrobe presentation swap state proof, MapsToCook Dreamstate removal, klein_veil loud-fail + latent-fatal fixes, cook runbook.",
-      "p0_gates_reconciled": {
-        "package_launch": "PASS - cook #3 exit 0 (MeshPartition engine-asset quarantine; NeverCook ini revert per two-domain rule); packaged boot 0 fatals; IoStore 3484-pkg container mounted; L_MelodiaMainMenu LoadMap complete 0.349s; main menu UI in viewport; canonical New Game slot created in packaged session. Ledger row 09-03 02:32:21.",
-        "wardrobe_presentation_swap": "PASS (STATE TIER) - 13/13 checks in PIE on MelodiaIntegrationMap: UMelodiaWardrobeSubsystem via PIE GameInstance, IsOwned(Cos_Skirt_MelusinaV2)=False -> GrantCosmetic accepted (fail-closed grant contract live; Skirt cosmetics carry no UnlockRewardId - root cause of prior EquipCosmetic=False), component EquipCosmetic True, IsSlotEquipped(Skirt=7) True, slot-component mesh identity == SK_Melusina_V2_Skirt, negative control UnequipSlot -> False, re-equip + identity re-verify. Committed harness Tools/run_wardrobe_skirt_swap_proof.py + Tools/skirt_proof_pie.py. Evidence: Saved/Audit/p0_real_input_run/wardrobe_skirt_swap_state_2026-09-03.json + 05_skirt_equipped.png. Ledger row 09-03 04:04:21."
-      },
-      "fixes": [
-        "Config/DefaultGame.ini: removed stale L_Melodia_Dreamstate MapsToCook (map renamed to L_KaleidoNave 2026-07-31; asset absent from disk; owner approved). Verdict: Docs/Production/DREAMSTATE_MAPSTOCOOK_REMOVAL_VERDICT_2026-09-03.md",
-        "klein_veil_import.py: loud-fail on unknown spec scalars/vectors (reflection-derived known set printed, nothing applied on abort); existing-MI path re-applies spec instead of early-returning stale; save verified by readback; two latent fatals fixed (JS 'true' literals; TextureCoordinate caught by texture-param filter).",
-        "Auto-import reimport loop on SK_ShorewakeDress_Magical.fbx terminated by moving the source to Imports/GarmentIntake/ (9 cycles observed; uasset was already on disk)."
-      ],
-      "wiring_spec_input": {
-        "master": "M_Master_Toon_Universal",
-        "missing_spec_keys_verified_live": [
-          "BassIntensity",
-          "BeatPulse",
-          "CymaticAmplitude",
-          "GlobalEmissiveBoost",
-          "GlobalSparkleIntensity",
-          "Grazing_Rim_Boost",
-          "IridescenceIntensity",
-          "POM_StepCount",
-          "Toksvig_AntiAliasing_Weight",
-          "WPO_Resonance_Scale"
-        ],
-        "audio_bus_scalars_already_present": [
-          "AudioBassGain",
-          "AudioBeatGain",
-          "AudioMidGain",
-          "AudioTrebleGain",
-          "AudioReactAmount"
-        ],
-        "decision_owed": "Remap BassIntensity->AudioBassGain, BeatPulse->AudioBeatGain in the klein_veil spec (recommended; avoids duplicate vocabulary) vs add duplicates. Remaining 8 add per Landscape-master pattern (CollectionParameter x ScalarParameter gain, multiplied)."
-      },
-      "warnings": [
-        "Reimport churn re-saved a large swath of tracked .uasset files (audio/texture packages). Working tree carries hundreds of modified .uasset - owner review; do not commit, do not checkout -- . (forbidden).",
-        "1 dirty package left in editor: MI_KleinVeil_CymaticReactive (not written this session; both klein_veil runs abort before any set/save).",
-        "Cos_ShorewakeDress not runnable: manifest in_development, SK_DressShorewake.uasset absent. SK_ShorewakeDress_Magical imported but at a mis-path under Textures/Clothes/."
-      ],
-      "handoff": "Docs/Handoffs/BUILD_TAKEOVER_HANDOFF_2026-09-03.md",
-      "commits": [
-        "eba92b76",
-        "90b7898e",
-        "15cb02c9",
-        "20ae100a",
-        "d88b07f7",
-        "6dd1b672",
-        "b137b021"
-      ],
-      "material_landscape_verification": {
-        "question": "Are all landscape material wiring complete and Gaea textures imported for LV_SeaAbove_Prototype (Glacier 5km terrain)?",
-        "gaea_textures_imported": "YES - Content/Gaea/Glacier/ carries the full export family (EXR+uasset pairs: ColorErosion, Combine, SatMap, Weathering, Flow, Snow, etc.) plus processed T_Glacier_SatMap/GroundTexture/Combine/ColorErosion and Layers/Base-Rock-Snow-Water. Hills/Mountains families also present.",
-        "landscape_actor": "UNTOUCHED per owner instruction. Assigned material is MI_Glacier_Landscape_Layered (parent M_Master_Toon_Landscape_HeightBlend) - correct Glacier terrain, owner-authored.",
-        "wiring_defect_found": "DOUBLE DISCONNECT: (1) MI texture overrides used PaintedLayer_Base/Snow/Water/Rock names that do NOT exist on the master (all 4 inert); (2) master layer slots Rock_/Grass_/Mud_/Path_Albedo+Normal+Height held stock defaults (Substance Perlin/gradient/cobblestone) - NO Gaea textures were in the render chain; terrain rendered master defaults.",
-        "fix_applied_materials_only": "MI_Glacier_Landscape_Layered: Rock_Albedo <- T_Glacier_ColorErosion, Grass_Albedo <- T_Glacier_SatMap (readback-verified, saved). 4 stale PaintedLayer_* entries removed via array rewrite.",
-        "owner_decisions_owed": "Mud_Albedo (default Cracks) and Path_Albedo (default cobblestone): owner Gaea textures GroundTexture/Combine had no confident slot mapping - Snow and Water are PROCEDURAL branches on this master (SnowStrength/SnowUpBias/Wetness, no texture slots). Confirm whether Mud/Path defaults stay authored or GroundTexture/Combine displace them.",
-        "normals_heights": "Gaea Glacier family has no normal/height companions for the albedos; master defaults (T_Neutral_Normal + Perlin) remain the authored fallback.",
-        "verified_by": "Monolith run_python reflection: master expression census (316 exprs, 15 TextureSampleParameter2D, 0 PaintedLayer_*), MI param readback before/after."
-      }
-    }
-  ],
-  "lookdev_melusina_2026-09-03": {
-    "timestamp": "2026-09-03T07:05:00-04:00",
-    "reference": "._site_aside_untracked/melusina_beauty_eevee_20260715_01.png (Blender EEVEE beauty)",
-    "capture_recipe": {
-      "tool": "monolith editor_query capture_scene_preview",
-      "why_not_pie": "PIE + take_high_res_screenshot writes an identical 38,667-byte BLACK frame on every call in a newly created level, regardless of light intensity or exposure method. capture_scene_preview renders reliably and isolates the subject.",
-      "camera": {
-        "location": [
-          0,
-          260,
-          95
-        ],
-        "rotation": [
-          -4,
-          -90,
-          0
-        ],
-        "fov": 42
-      },
-      "note": "Camera must be on +Y. From -Y the subject silhouettes."
-    },
-    "defects_found_and_fixed": [
-      {
-        "id": "melusina_slot_misassign",
-        "severity": "high",
-        "detail": "9 slots on SK_Melusina held the WRONG material instance, shifted relative to their slots from index 13 on. GLOVES_001 held frontpanel_001; SKIRT_003 held an OUTLINE shader. Sleeves rendered black/green instead of pink.",
-        "fix": "reassigned each slot to its name-matched MI",
-        "commit": "5ca59450",
-        "verified": "skirt panels, hat, skin tone and bow now match reference"
-      },
-      {
-        "id": "melusina_hair_water_material",
-        "severity": "high",
-        "detail": "All 4 slots on SK_MelusinaHair pointed at MI_GrandWater_SakuraPond1 - a WATER material on hair. Rendered mottled blue-cyan; reference is lavender/periwinkle with white streaks. This is the cyan hair visible in the first Faraway PIE capture.",
-        "fix": "created MI_Melusina_Hair on M_Master_Toon_Universal, assigned to all 4 slots",
-        "status": "improved, not matched"
-      }
-    ],
-    "open_deltas_vs_reference": [
-      {
-        "element": "hair",
-        "current": "dark mauve, too desaturated",
-        "target": "light periwinkle/lavender + white streaks",
-        "blocker": "9 MI params (BaseTint, PaletteRampLow/Mid/High, PaletteRampStrength, TextureWeight, RampSharpness) verified overridden on the MI but barely change the render. Master's default Albedo (T_Marble_7) likely dominates and PaletteRampDriver is 0. NEXT: trace the master's ramp-driver chain before tuning further."
-      },
-      {
-        "element": "hair_inner_strands",
-        "current": "solid black",
-        "target": "lavender",
-        "finding": "persists with all 4 slots on ONE MI, so it is mesh backfaces, not an outline material. Needs two-sided or backface handling on the mesh."
-      },
-      {
-        "element": "bodice",
-        "current": "grey",
-        "target": "pink/lavender with heart + scroll embroidery"
-      },
-      {
-        "element": "skirt_trim",
-        "current": "gold/yellow",
-        "target": "pink/lavender"
-      },
-      {
-        "element": "stockings",
-        "current": "black",
-        "target": "white"
-      },
-      {
-        "element": "boots",
-        "current": "purple, too dark",
-        "target": "pink"
-      }
-    ],
-    "already_matching": [
-      "skirt panels",
-      "hat",
-      "skin tone",
-      "bow silhouette"
-    ],
-    "gameplay_feel_notes": {
-      "honesty": "NOT a real play session. All runs this session were PIE captures for lookdev, not play. No combat, traversal or narrative beat was exercised, so the notes below are observations from driving the editor, not from playing.",
-      "observed": [
-        "LV_FarawayMother_Prototype had no PlayerStart - PIE dropped the pawn to z=-131,652. Anyone opening that level to 'walk around and feel it' falls through the world instantly. Fixed.",
-        "Melusina is T-posed in PIE in that level: no anim class is driving her outside the authored levels. Any feel test there reads as broken before art is even judged.",
-        "The moon-haze fog (density 0.04 + a 4000x2600x900 haze box) washes the valley out badly at player height. Reads as murk, not atmosphere."
-      ],
-      "persona_infinity_nikki_gap": [
-        "Persona's feel comes from UI snap and commitment-per-beat: every menu action lands with a sound, a wipe and a pose. Nothing in the current loop has that punctuation - actions resolve silently.",
-        "Infinity Nikki's feel comes from the outfit being READABLE in motion: silhouette, cloth response, and light catching trim. Right now Shorewake equips but binds zero textures, and Melusina's hair is one flat tone - so an outfit change would not read on screen, which is the core pillar.",
-        "Concrete next step for BOTH: make one wardrobe change produce a visible, audible, framed moment (equip -> camera beat -> material change lands). That is the smallest thing that would make this feel like the target games."
+        "Verify PostConfigInit module loading and uplugin dependencies",
+        "Add cymatic PBR generation as first-class pipeline step (copernicus_cymatic_parallax.py --cook flag)",
+        "Add cymatic patterns to World Field Bus cross-system contract",
+        "Cymatics P1 promotion gate (owner review)"
       ]
-    },
-    "iteration_2_2026-09-03T07:40": {
-      "outcome": "REVERTED — no net change to Melusina. Disk is back at 5ca59450 + b04ec94b.",
-      "what_was_tried": [
-        "Tinted MI_Melusina_SBW_MELUSINA_006/007 pink believing they were the bodice. They are the SKIN — it turned her skin pink. Caught immediately by the capture, reverted.",
-        "Remapped 7 Outline_Shader_*_0NN slots to their name-matched MI_Melusina_Outline_Shader_star_0NN (slot names use '*', asset names use 'star'). The render EXPLODED into shards.",
-        "Restored the exact prior mapping — the render stayed exploded, so the break was not the assignment itself.",
-        "git checkout of all three uncommitted assets. Disk verified clean."
-      ],
-      "learnings": [
-        "Outline_Shader_* slots are INVERTED HULL. A name-matched outline MI on them renders as expanded shards, not a silhouette. The 'obviously correct' name match is wrong here — do not redo it.",
-        "SBW_MELUSINA_006/007 = skin, NOT bodice. The grey torso garment is a different slot, still unidentified.",
-        "The bodice albedo T_Melusina_M_Melusina_BaseColor is a BLANK 4096x4096 WHITE map — it is also the skin albedo. Grey torso is a missing bake, not a tint problem.",
-        "Colour is driven by the Albedo TEXTURE, not BaseTint. MI_Melusina_Hair binds no albedo so it fell back to the master default (T_Marble_7), which is why tuning BaseTint did nothing.",
-        "ROOT CAUSE of the recurring 'saved: False': .gitattributes marks *.uasset lockable, and git-lfs sets lockable files read-only when unlocked (lfs.setlockablereadonly defaults true). Any git touch re-applies it. Either git lfs lock before editing, or clear read-only immediately before every save.",
-        "After repeated set_editor_property('materials', ...) on a skeletal mesh the editor's in-memory render state stopped matching disk — reverting assignments did not restore the render. DO NOT TRUST captures after a revert until the editor is restarted."
-      ],
-      "next_agent_must": [
-        "Restart the editor BEFORE any further Melusina capture — current in-memory state is stale/broken and disk is correct.",
-        "Do not remap Outline_Shader_* slots.",
-        "Identify the grey torso slot by elimination before tinting anything.",
-        "Fix colour by binding the correct Albedo texture, not by tuning BaseTint."
-      ]
-    },
-    "faraway_pcg_lane_2026-09-03T08:00": {
-      "finding": "faraway_mother_pcg_assembly.py verify_assembly() was a FALSE GREEN. It returned ok=True and listed all 3 REQUIRED_PCG_GRAPHS as 'pcg_graphs_staged' by echoing the constant unconditionally — it never touched the filesystem. None of the 3 graphs exist.",
-      "fix": "Added _graph_exists() and made pcg_graphs_staged report only graphs actually present, with a hard error when any are missing. Validation now correctly reports ok=False, staged=[].",
-      "state": {
-        "manifest": "specs/pcg/faraway_mother_pcg_manifest.v1.json — COMPLETE (76 KB): 120 points, 4 biomes (WeaveRidge/LaceCanopy/FrillValley/ResonantSeamWay), 4 World Field channels (Tension/Resonance/Moisture/FilterFlow), narrative hook challenge.mother_heart_gate -> reward.wardrobe.mother_velvet_mantle",
-        "blocker": "All 3 PCG graphs absent: PCG_Faraway_FabricRidge, PCG_Faraway_DetailProps, PCG_Faraway_WindZones under /Game/EnvSandbox/PCG/FarawayMother/. This is genuine authoring, not a wiring fix.",
-        "deliberately_not_done": "Did NOT create empty PCG graph stubs to make the paths resolve. An empty graph that scatters nothing would turn an honest failure into a second false green — the same defect just fixed."
-      },
-      "gameplay_feel_note": "Still no play session. The Faraway biome names (WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay) are garment metaphors mapped onto terrain, which is a genuinely strong Infinity-Nikki-shaped idea: the LANDSCAPE is couture. But none of it is scatterable until the 3 graphs exist, so the level is currently 11 hand-placed actors on a 4 km ridge — it reads as empty, not as a dress."
     }
-  }
+  ]
 }

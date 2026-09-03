@@ -897,7 +897,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       Group="02 | Textures"
       SortPriority=100
       Coordinates=(Expression="/Script/Engine.MaterialExpressionBumpOffset'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:MaterialExpressionBumpOffset_3'")
-      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-1550
       MaterialExpressionEditorY=-200
       MaterialExpressionGuid=DCB175E941AEB2F7B62CF797F3E78AE2
@@ -956,7 +956,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
       ExpressionGUID=B8AC2E17465F553CC40757A3C4541594
       Group="02 | Textures"
       SortPriority=100
-      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+      Texture="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
       MaterialExpressionEditorX=-2350
       MaterialExpressionEditorY=-820
       MaterialExpressionGuid=AA95E75146F1F44776D5A7B3BDC74CE1
@@ -3231,13 +3231,13 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Nikki" ExportPath="/Sc
    ReferencedTextureGuids(3)=8EFA798B4E6690C43F8DDD985BF58404
    EditorOnlyData="/Script/Engine.MaterialEditorOnlyData'/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki:M_Master_NikkiEditorOnlyData'"
    TextureStreamingDataVersion=1
-   TextureStreamingData(0)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="Marble_7_-_512x512",TextureReference="/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512")
+   TextureStreamingData(0)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="Marble_7_-_512x512",TextureReference="/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512")
    TextureStreamingData(1)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="Perlin_1_-_512x512",TextureReference="/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512")
    TextureStreamingData(2)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="T_Neutral_Normal",TextureReference="/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal")
    TextureStreamingData(3)=(SamplingScale=1.000000,UVChannelIndex=0,TextureName="T_Neutral_ORM",TextureReference="/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM")
    ReferencedDefaultTextures(0)="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal'"
    ReferencedDefaultTextures(1)="/Script/Engine.Texture2D'/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512'"
-   ReferencedDefaultTextures(2)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512'"
+   ReferencedDefaultTextures(2)="/Script/Engine.Texture2D'/Game/EnvSandbox/Materials/SDF/Textures/Marble/Marble_7_-_512x512.Marble_7_-_512x512'"
    ReferencedDefaultTextures(3)="/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM'"
    LightingGuid=607DDB6C438D963E35DA0AADFD72ED33
 End Object
