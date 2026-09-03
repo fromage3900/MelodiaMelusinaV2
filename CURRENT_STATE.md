@@ -152,6 +152,17 @@ Older giant research PRs are increasingly useful as **extraction archives**, not
 
 ---
 
+## ♬ Laptop workstation — 2026-09-02
+
+`LAPTOP-Q8S5OSQ2` (Acer Nitro, 16 GB RAM) is now configured as a `worker-first-16GB` node:
+- Git worktree clean, LFS hydrated (3479/3479 uassets)
+- Rider 2026.2.1, Blender 4.2.1, Epic Launcher installed
+- Two-PC workflow plan committed (`Docs/Production/TWO_PC_DEVELOPMENT_WORKFLOW_2026-09-02.md`)
+- Closeout doc: `Docs/Production/LAPTOP_ONBOARDING_CLOSEOUT_2026-09-02.md`
+- Manual handoffs still needed: VS 2022 Build Tools, UE 5.8, OpenSSH Server (all require UAC)
+
+---
+
 ## ♪ Content progression
 
 ### Closest to production truth
