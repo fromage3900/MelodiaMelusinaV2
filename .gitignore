@@ -211,6 +211,7 @@ Tools/*
 !Tools/stage_melodia_aaa_presets.py
 !Tools/run_p0_real_input_probe.py
 !Tools/run_wardrobe_skirt_swap_proof.py
+!Tools/skirt_proof_pie.py
 # Verification + injection pipeline core (AGENTS.md "Core Tools") — the gates P0 claims run on
 !Tools/mcp_client.py
 !Tools/t3d_blueprint_injector.py
