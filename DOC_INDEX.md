@@ -21,6 +21,8 @@
 | **♪ 8a** | [`Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, measured hardware profile, offload lanes, and handoff gates. |
 | **♫ 8b** | [`melusinashouseplan.md`](melusinashouseplan.md) | **Hermes-first Blender 5.2 Geometry Nodes build score for Melusina's House**, with attached pink/blue round-Baroque reference boards. |
 | **♬ 8c** | [`Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md`](Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md) | PC Music / hyperpop stem archaeology, commercial-safe sample lanes, licensing guardrails, and Melodia sound-design translation. |
+| **♪ 8d** | [`Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) | Phase-2 house asset families: roof ribbons, scallop shingles, windows/doors, Rocaille, railings, tower, grotto, drapes, crests, material attributes and builder-promotion rules. |
+| **♫ 8e** | [`Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) | Room-by-room Geometry Nodes plan for the Salon, bedroom, Wardrobe Rotunda, Listening Stair, kitchen, Blue Room, tower and gather/guide/release acoustic authoring grammar. |
 | **♫ 9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 scope + bounded evidence. |
 
 If you are an agent: **do not start by searching every old handoff.** Read the current front door first, then follow links into the system you are actually touching.
@@ -173,6 +175,8 @@ Keep the history. Read it through the current north-star docs.
 Before adding another tool, check the current research/discovery indexes.
 
 - **Current environment hero packet:** [`melusinashouseplan.md`](melusinashouseplan.md) — Blender 5.2 Geometry Nodes build plan, Borromini/Rococo shape research, Hermes execution contract, and attached references.
+- **Melusina house Phase 2 / asset families:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — compose the existing 239-builder Melodia Studio vocabulary before promoting house-specific tools.
+- **Melusina house Phase 2 / rooms + acoustics:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — room wrappers, semantic attributes and acoustic debug grammar.
 - **Current audio source crate:** [`Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md`](Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md) — official/artist-hosted stem archaeology, Splice commercial-use lane, provenance rules, and Melodia production-language notes.
 
 The rule remains:
