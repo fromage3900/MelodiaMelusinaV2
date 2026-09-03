@@ -71,6 +71,18 @@ After Smoke passes, use `-Suite Build` with Unreal closed, then run `-Suite Fast
 
 ---
 
+## ♬ Two-PC workflow
+
+If you're working across a main PC and a second machine (laptop/worker), the five-lane workflow is documented in:
+
+`Docs/Production/TWO_PC_DEVELOPMENT_WORKFLOW_2026-09-02.md`
+
+Lanes: JetBrains Gateway (remote Rider backend), VS Code Remote SSH (lightweight scripts/docs), UBA (distributed compile), Git branch handoff with LFS locks, Hermes as orchestration. The branch handoff protocol uses `collab/laptop/<task>` prefixes.
+
+See also: `Docs/Production/MASTER_INDEX.md` for the full doc navigation hub.
+
+---
+
 ## ♬ Run the tests
 
 ```powershell
