@@ -1,6 +1,6 @@
 # Tomorrow Prep — living doc
 
-**Updated:** 2026-09-03 (hourly prep pass) · Updated in place — do not fork dated copies.
+**Updated:** 2026-09-03 ~02:45 (prep pass 2) · Updated in place — do not fork dated copies.
 Scope: world building · reusable chapter structure · packaged builds · Shorewake testing.
 
 ---
@@ -40,7 +40,15 @@ All 11 P0 gates pass on latest-row-per-gate. Offline 12/12, MCP regression 38/38
 
 | Blocker | Smallest next action |
 |---|---|
-| **Repo cannot push at all.** 3 LFS pointers in history have no binary in `.git/lfs/objects`: `Blue_Nebula_8`, `Purple_Nebula_7`, `Purple_Nebula_6` (`bfeca0bc`, `6e669910`, `b5bd919a`). GitHub rejects with `GH008` after uploading 11 GB. | Source those 3 textures OR excise them from history. Owner decision — not a 2 a.m. fix. |
+| **Repo cannot push at all.** 3 LFS objects are CORRUPT, not missing: `Blue_Nebula_6/7/8`
+(`bfeca0bc`, `6e669910`, `b5bd919a`) under `Content/Melodia/_PROJECT/04_Materials/Textures/`
+`sbs_-_seamless_space_backgrounds…`. Their stored bytes do not hash to their OID, which is why
+LFS reports them "missing" — it validates by hash. Push uploads 5903/5906 then S3 rejects those 3.
+**The G: LFS mirror copies are corrupt too**, so this predates the backup. |
+Either (a) excise those 3 blobs from history (`git lfs migrate` / filter-repo — rewrites history,
+needs owner sign-off AND the other agent stopped), or (b) push a fresh orphan branch carrying only
+current content. Live assets are FINE (real binary on disk, present at 4 paths) — this is 3 stale
+pointers in history only. |
 | Packaged route can't run — 3 assets exist on disk but were not cooked: `DA_MelodiaIntegrationConfig`, `DA_MelodiaPersonaContent`, `128BPMarpeggiomelody_beatgrid` | Add `+DirectoriesToAlwaysCook` for `/Game/MelodiaIntegration/Config` and `/MIDI` (established pattern, 3 existing entries), then re-cook (~15 min warm). `DefaultGame.ini` is never-touch → needs owner sign-off. |
 | Shorewake renders grey | All 48 `SW_Dress_P*` MIs bind 0 texture params; the `T_MelusinaC_DressShorewake_*` suite is on disk unused. Bind them. |
 | `LV_FarawayMother_Prototype` renders black | Level has ZERO light/sky actors. Add a lighting rig before any capture. |
@@ -73,6 +81,10 @@ All 11 P0 gates pass on latest-row-per-gate. Offline 12/12, MCP regression 38/38
    blocks Monolith entirely (`MODAL_OPEN`). `chmod u+w` first.
 10. **A second editor writes `Saved/Logs/BS_GodFile_2.log`**, not `BS_GodFile.log`.
 11. **Editor crashed twice tonight**, both during heavy master-material save bursts.
+12. **The 27.5 GB G: LFS mirror is UNVERIFIED** — it demonstrably contains at least 3 corrupt
+    objects. Do not treat it as a trusted restore source until `git lfs fsck` has run against it.
+    Restoring a corrupt object is worse than an absent one: LFS then attempts an upload that the
+    remote rejects, instead of failing fast.
 
 ---
 
