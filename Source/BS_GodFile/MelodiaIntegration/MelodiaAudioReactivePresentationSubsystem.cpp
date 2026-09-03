@@ -133,10 +133,14 @@ namespace
 				// Project grafted parameters on M_Water_Oceanology_Melodia
 				Mid->SetScalarParameterValue(TEXT("Biolum_Intensity"), 1.0f + BeatPulse * 1.5f);
 				Mid->SetScalarParameterValue(TEXT("Toon_Weight"), 0.65f + BeatPulse * 0.15f);
-				// DeepScatteringColor base (0.05, 0.25, 0.30); ImpactPulse pulls it toward
-				// violet/emissive on impacts. Alpha untouched (0.15 absorption stays base).
+				// DeepScatteringColor base (0.205, 0.716, 0.631, A 0.65) -- must match the
+				// repaired M_Water_Oceanology_Melodia_Inst, which now carries the plugin's
+				// DA_Color_LightBlue values. The previous base here was the old dark teal
+				// (0.05, 0.25, 0.30, A 0.15); leaving it would have re-darkened the ocean
+				// every tick and silently undone the asset fix at runtime.
+				// ImpactPulse still pulls toward violet/emissive on impacts.
 				Mid->SetVectorParameterValue(TEXT("DeepScatteringColor"),
-					FLinearColor(0.05f + ImpactPulse * 0.10f, 0.25f - ImpactPulse * 0.05f, 0.30f + ImpactPulse * 0.20f, 0.15f));
+					FLinearColor(0.205079f + ImpactPulse * 0.10f, 0.715693f - ImpactPulse * 0.05f, 0.630757f + ImpactPulse * 0.20f, 0.65f));
 			}
 
 			// 2. Reflected parameter drive via Oceanology public actor interface
