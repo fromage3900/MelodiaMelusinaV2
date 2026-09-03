@@ -1,0 +1,42 @@
+{
+  "schema": "melodia.substance_stage.v1",
+  "asset": "AntiqueDoll",
+  "source_zip": "C:/Users/froma/Downloads/ANTIQUE DOLL_fbx_thick.zip",
+  "source_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/substance_staging/AntiqueDoll_preview/ANTIQUE DOLL_fbx_thick.fbx",
+  "staged_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_lookdev/substance_staging/AntiqueDoll/meshes/AntiqueDoll.fbx",
+  "fbx_sha12": "364d4ad2448f",
+  "fbx_size": 9943024,
+  "texture_count": 5,
+  "files": [
+    {
+      "file": "resources/T_AntiqueDoll_BaseColor.png",
+      "sha12": "a60cb62d42f1",
+      "size": 26107915
+    },
+    {
+      "file": "resources/T_AntiqueDoll_Normal.png",
+      "sha12": "47f69a96109c",
+      "size": 6056583
+    },
+    {
+      "file": "resources/T_AntiqueDoll_Roughness.png",
+      "sha12": "6448098ea34e",
+      "size": 3599582
+    },
+    {
+      "file": "resources/T_AntiqueDoll_Metallic.png",
+      "sha12": "b67dddba32cb",
+      "size": 83110
+    },
+    {
+      "file": "resources/T_AntiqueDoll_Height.png",
+      "sha12": "3c1e9b29c290",
+      "size": 7041268
+    }
+  ],
+  "maps_4k": true,
+  "normal_convention": "treat as OpenGL, flip G on UE export if needed",
+  "displacement_is_height": true,
+  "notes": "Hand-paint OPEN - resources staged, no auto-wire. Thick mesh.",
+  "staged_at": "2026-09-03T03:49:51.138915Z"
+}
