@@ -94,6 +94,62 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "SEA_ABOVE_MEMBRANE": {"Low Hz": 16.0, "High Hz": 700.0, "Band Width": 0.1, "Audio Gain": 6.0, "Size X M": 1800.0, "Radial Segments": 768, "Height M": 55.0, "Radius M": 900.0, "Music Influence": 0.16, "Musical Amplitude": 10.0, "Musical Freq A": 0.75, "Musical Freq B": 6.0},
         },
     },
+    # garment_loom.py - MEL_garment_loom_variation (per-layer wardrobe presets, seed 20260902)
+    "MEL_garment_loom_variation": {
+        "label": "Garment Loom Variation",
+        "preset_labels": {
+            "BODICE_STRUCTURED": "Bodice Structured",
+            "COLLAR_LACE": "Collar Lace",
+            "SHOULDER_ORNAMENT_RIGID": "Shoulder Ornament Rigid",
+            "SLEEVE_FLOW": "Sleeve Flow",
+            "UNDERSKIRT_SOFT": "Underskirt Soft",
+            "SKIRT_FULL_HERO": "Skirt Full Hero",
+            "ANTIQUE_DOLL_LAYERED": "Antique Doll Layered",
+            "BUTTERFLY_WING_MEMBRANE": "Butterfly Wing Membrane",
+        },
+        "preset_descriptions": {
+            "BODICE_STRUCTURED": "Close-fit bodice shells, restrained fold for tier-C WPO micro-swell.",
+            "COLLAR_LACE": "Structured lace collar, near-rigid for tier-A authored motion.",
+            "SHOULDER_ORNAMENT_RIGID": "Studs and trim, effectively rigid for tier-A pieces.",
+            "SLEEVE_FLOW": "Loose sleeve drape for tier-C WPO cloth.",
+            "UNDERSKIRT_SOFT": "Soft support volume under the hero skirt, tier-C.",
+            "SKIRT_FULL_HERO": "Hero sheet movement for the tier-B Chaos candidate.",
+            "ANTIQUE_DOLL_LAYERED": "Twenty-slot layered dress intake (Cos_Dress_Melusina_AntiqueDoll).",
+            "BUTTERFLY_WING_MEMBRANE": "Thin accessory membrane (Cos_Accessory_Melusina_ButterflyWing).",
+        },
+        "presets": {
+            "BODICE_STRUCTURED": {"Seed": 20260902, "Fold": 0.3, "Drape": 0.25},
+            "COLLAR_LACE": {"Seed": 20260902, "Fold": 0.2, "Drape": 0.15},
+            "SHOULDER_ORNAMENT_RIGID": {"Seed": 20260902, "Fold": 0.1, "Drape": 0.05},
+            "SLEEVE_FLOW": {"Seed": 20260902, "Fold": 0.6, "Drape": 0.8},
+            "UNDERSKIRT_SOFT": {"Seed": 20260902, "Fold": 0.5, "Drape": 0.7},
+            "SKIRT_FULL_HERO": {"Seed": 20260902, "Fold": 0.9, "Drape": 1.2},
+            "ANTIQUE_DOLL_LAYERED": {"Seed": 20260902, "Fold": 0.45, "Drape": 0.55},
+            "BUTTERFLY_WING_MEMBRANE": {"Seed": 20260902, "Fold": 0.15, "Drape": 0.35},
+        },
+    },
+    # garment_audio_drape.py - MEL_garment_audio_drape (band presets, offline bake lane)
+    "MEL_garment_audio_drape": {
+        "label": "Garment Audio Drape",
+        "preset_labels": {
+            "BASS_WEAVE": "Bass Weave",
+            "VOCAL_MID": "Vocal Mid",
+            "TREBLE_SHIMMER": "Treble Shimmer",
+            "BEAT_PULSE_WIDE": "Beat Pulse Wide",
+        },
+        "preset_descriptions": {
+            "BASS_WEAVE": "Low-band weave for skirts and veils, slow large folds.",
+            "VOCAL_MID": "Vocal-band response for bodice and sleeves.",
+            "TREBLE_SHIMMER": "High-band shimmer for ornament and lace edges.",
+            "BEAT_PULSE_WIDE": "Full-band pulse for beat-reactive bake passes.",
+        },
+        "presets": {
+            "BASS_WEAVE": {"Low Hz": 30.0, "High Hz": 250.0, "Band Width": 0.16, "Audio Gain": 2.5, "Seed": 20260902, "Fold": 1.2, "Drape": 0.5},
+            "VOCAL_MID": {"Low Hz": 300.0, "High Hz": 3400.0, "Band Width": 0.08, "Audio Gain": 1.5, "Seed": 20260902, "Fold": 2.0, "Drape": 0.25},
+            "TREBLE_SHIMMER": {"Low Hz": 6000.0, "High Hz": 16000.0, "Band Width": 0.05, "Audio Gain": 1.2, "Seed": 20260902, "Fold": 4.0, "Drape": 0.1},
+            "BEAT_PULSE_WIDE": {"Low Hz": 40.0, "High Hz": 4000.0, "Band Width": 0.2, "Audio Gain": 3.0, "Seed": 20260902, "Fold": 1.6, "Drape": 0.4},
+        },
+    },
     # water.py - MEL_water_gerstner (effects)
     "MEL_water_gerstner": {
         "label": "Gerstner Waves",

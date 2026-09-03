@@ -24,7 +24,7 @@ from pathlib import Path
 
 from .core import (
     safe_node, link_sockets, color_node, label_tree,
-    new_geometry_tree, make_group_input, make_group_output,
+    new_geometry_tree, sock,
     add_float_param, add_int_param, add_bool_param, register_builder,
 )
 
@@ -52,9 +52,8 @@ class MELODIA_PropsWardrobe(bpy.types.PropertyGroup):
 # GN: live UV unwrap (cylindrical projection via attribute math)
 # --------------------------------------------------------------------------- #
 def build_garment_uv_unwrap(group_name="MEL_garment_uv_unwrap"):
-    tree = new_geometry_tree(group_name)
-    gi = make_group_input(tree)
-    geo = gi.outputs["Geometry"]
+    tree, gin, gout = new_geometry_tree(group_name)
+    geo = gin.outputs["Geometry"]
     # Compute normalized XZ angle + Y height -> UV
     pos = safe_node(tree, "GeometryNodeInputPosition", (0, 0))
     comb = safe_node(tree, "GeometryNodeSeparateXYZ", (-180, 0))
@@ -80,12 +79,14 @@ def build_garment_uv_unwrap(group_name="MEL_garment_uv_unwrap"):
     v.operation = "ADD"
     v.inputs[0].default_value = 0.5
     link_sockets(tree, comb.outputs["Y"], v.inputs[1])
-    clamp = safe_node(tree, "ShaderNodeVectorMath" if False else "ShaderNodeMath", (360, -240))
-    clamp.operation = "CLAMP"
-    link_sockets(tree, u.outputs[0], clamp.inputs[0])
-    clamp2 = safe_node(tree, "ShaderNodeMath", (360, -320))
-    clamp2.operation = "CLAMP"
-    link_sockets(tree, v.outputs[0], clamp2.inputs[0])
+    clamp = safe_node(tree, "ShaderNodeClamp", (360, -240))
+    clamp.inputs["Min"].default_value = 0.0
+    clamp.inputs["Max"].default_value = 1.0
+    link_sockets(tree, u.outputs[0], clamp.inputs["Value"])
+    clamp2 = safe_node(tree, "ShaderNodeClamp", (360, -320))
+    clamp2.inputs["Min"].default_value = 0.0
+    clamp2.inputs["Max"].default_value = 1.0
+    link_sockets(tree, v.outputs[0], clamp2.inputs["Value"])
     comb2 = safe_node(tree, "ShaderNodeCombineXYZ", (140, -260))
     link_sockets(tree, clamp.outputs[0], comb2.inputs["X"])
     link_sockets(tree, clamp2.outputs[0], comb2.inputs["Y"])
@@ -104,20 +105,21 @@ def build_garment_uv_unwrap(group_name="MEL_garment_uv_unwrap"):
     except Exception:
         pass
     link_sockets(tree, comb2.outputs["Vector"], comp.inputs["Value"] if "Value" in comp.inputs else comp.inputs[2])
-    go = make_group_output(tree)
-    link_sockets(tree, comp.outputs["Geometry"], go.inputs["Geometry"])
-    label_tree(tree, "Live cylindrical UV projection (coherent, non-overlapping for garment shells)")
-    return tree
+    link_sockets(tree, comp.outputs["Geometry"], gout.inputs["Geometry"])
+    return label_tree(tree, group_name, [
+        {"title": "Position Input", "nodes": ("position", "separate",), "role": "attribute"},
+        {"title": "Cylindrical Project", "nodes": ("arctan", "scale", "clamp", "combine",), "role": "geometry"},
+        {"title": "Export UV", "nodes": ("store",), "role": "output"},
+    ])
 
 
 # --------------------------------------------------------------------------- #
 # GN: variation — seed-driven drape/fold displacement over a garment shell
 # --------------------------------------------------------------------------- #
 def build_garment_loom_variation(group_name="MEL_garment_loom_variation"):
-    tree = new_geometry_tree(group_name)
-    gi = make_group_input(tree)
-    geo = gi.outputs["Geometry"]
-    s = add_int_param(tree, "Seed", 20260902)
+    tree, gin, gout = new_geometry_tree(group_name)
+    geo = gin.outputs["Geometry"]
+    s = add_int_param(tree, "Seed", 20260902, 0, 99999999)
     fold = add_float_param(tree, "Fold", 0.5, 0.0, 2.0)
     drape = add_float_param(tree, "Drape", 0.5, 0.0, 2.0)
     # Blender has no white-noise-with-seed on geometry domain in older 5.x; use
@@ -127,7 +129,9 @@ def build_garment_loom_variation(group_name="MEL_garment_loom_variation"):
     try:
         noise.inputs["Scale"].default_value = 2.0
         noise.inputs["Detail"].default_value = 6.0
-        noise.inputs["W"].default_value = float(s.default_value % 100) * 0.01
+        w_sock = sock(noise, "W")  # Blender 5.2: ["W"] key lookup fails, iterate by name
+        if w_sock is not None:
+            w_sock.default_value = float(s.default_value % 100) * 0.01
     except Exception:
         pass
     link_sockets(tree, pos.outputs["Position"], noise.inputs["Vector"])
@@ -138,13 +142,13 @@ def build_garment_loom_variation(group_name="MEL_garment_loom_variation"):
     fold_f = safe_node(tree, "ShaderNodeMath", (-240, -220))
     fold_f.operation = "MULTIPLY"
     link_sockets(tree, y, fold_f.inputs[0])
-    link_sockets(tree, fold.outputs[0], fold_f.inputs[1])
+    link_sockets(tree, gin.outputs["Fold"], fold_f.inputs[1])
     nz = noise.outputs[0] if "Color" not in [o.name for o in noise.outputs] else noise.outputs["Fac"]
     n_val = noise.outputs.get("Fac") or noise.outputs[0]
     drape_f = safe_node(tree, "ShaderNodeMath", (0, -220))
     drape_f.operation = "MULTIPLY"
     link_sockets(tree, n_val, drape_f.inputs[0])
-    link_sockets(tree, drape.outputs[0], drape_f.inputs[1])
+    link_sockets(tree, gin.outputs["Drape"], drape_f.inputs[1])
     total = safe_node(tree, "ShaderNodeMath", (60, -220))
     total.operation = "ADD"
     link_sockets(tree, fold_f.outputs[0], total.inputs[0])
@@ -152,20 +156,26 @@ def build_garment_loom_variation(group_name="MEL_garment_loom_variation"):
     disp = safe_node(tree, "GeometryNodeSetPosition", (120, -120))
     link_sockets(tree, geo, disp.inputs["Geometry"])
     norm = safe_node(tree, "GeometryNodeInputNormal", (60, -320))
-    link_sockets(tree, norm.outputs["Normal"], disp.inputs["Offset"] if "Offset" in disp.inputs else None)
-    link_sockets(tree, total.outputs[0], disp.inputs["Offset"] if "Offset" in disp.inputs else disp.inputs[1])
-    go = make_group_output(tree)
-    link_sockets(tree, disp.outputs["Geometry"], go.inputs["Geometry"])
-    label_tree(tree, "Seed-driven fold+drape variation over a garment shell")
-    return tree
+    off = safe_node(tree, "ShaderNodeVectorMath", (120, -220))
+    off.operation = "SCALE"
+    link_sockets(tree, norm.outputs["Normal"], off.inputs["Vector"])
+    link_sockets(tree, total.outputs[0], off.inputs["Scale"])
+    link_sockets(tree, off.outputs["Vector"], disp.inputs["Offset"])
+    link_sockets(tree, disp.outputs["Geometry"], gout.inputs["Geometry"])
+    return label_tree(tree, group_name, [
+        {"title": "Seed Field", "nodes": ("position", "noise",), "role": "attribute"},
+        {"title": "Fold + Drape", "nodes": ("fold", "drape", "set position",), "role": "geometry"},
+    ])
 
 
 # --------------------------------------------------------------------------- #
 # register builders + panel
 # --------------------------------------------------------------------------- #
 def register():
-    register_builder(build_garment_uv_unwrap, "Garment", seedable=True)
-    register_builder(build_garment_loom_variation, "Garment", seedable=True)
+    register_builder("MEL_garment_uv_unwrap", build_garment_uv_unwrap,
+                     "Garment UV Unwrap", "Live cylindrical UV projection for garment shells", "Garment")
+    register_builder("MEL_garment_loom_variation", build_garment_loom_variation,
+                     "Garment Loom Variation", "Seed-driven fold+drape variation over a garment shell", "Garment")
     from bpy.utils import register_class
     register_class(MELODIA_PropsWardrobe)
     register_class(MELODIA_PT_wardrobe)
@@ -250,7 +260,6 @@ class MELODIA_OT_loom_modifier(bpy.types.Operator):
             m.name == "LoomUV" for m in obj.modifiers) else None
         if uv:
             uv.node_group = bpy.data.node_groups.get("MEL_garment_uv_unwrap")
-            uv["socket_1"] = 1.0 if p.live_uv else 0.0
         var = obj.modifiers.new(name="LoomVariation", type="NODE_GROUP") if not any(
             m.name == "LoomVariation" for m in obj.modifiers) else None
         if var:
