@@ -57,11 +57,18 @@ because it is what let three weeks of "P0 is closed" coexist with an unshippable
    Probe by swapping the **Albedo texture**, not `BaseTint` — tint only shows where
    texture influence is low, which is why five diagnostic tints produced no visible
    change.
-5. **Audio-reactivity is inert by design, not broken.** `Bass`/`GlobalReactivity` =
-   `BattleIntensity` (0 outside battle); `Treble`/`BeatPulse`/`BeatIntensity` are the
-   same float; `GlobalEmissiveBoost`, `GlobalSparkleIntensity`, `TimeOfDayWarmth` have
-   **no writer in `Source/`**. Decide: drive them for real, or delete them. Wired-and-
-   inert is the worst state — it invites tuning knobs that cannot move.
+5. **Audio-reactivity — CLOSED (owner, 2026-09-03).** Driven via **MPC + TouchDesigner OSC**,
+   not from `Source/`. `MelodiaMusicClockSubsystem` carries the OSC/external-clock hook that makes
+   `HasMusicalTime()` true; the pipeline is specified in
+   `Docs/Architecture/MELUSINA_T3D_LIVELINK_OSC_PIPELINE_2026-08-14.md` and
+   `Docs/Handoffs/AUDIO_REACTIVE Flower_CHOP_OSC_2026-09-02.md`.
+   My earlier "no writer in `Source/`, decide whether to delete them" framing was **wrong** — I read
+   only the C++ subsystem and concluded absence from it meant absence everywhere. The params are
+   externally driven by design. Nothing to decide and nothing to delete.
+   Practical consequence for verification: a **packaged run with no OSC source will read these as
+   flat**, so never treat a static packaged capture as evidence the reactive path is broken —
+   check it with TouchDesigner feeding the clock.
+
 6. **Retire the duplicate `MPC_Melodia_Palette`** at `/Game/_PROJECT/04_Materials/`
    (Aug-11, 17 scalars). `MF_MeluSparkle` and `MF_MeluPaletteColors` still point at it
    with empty `ParameterName`.
@@ -97,7 +104,6 @@ because it is what let three weeks of "P0 is closed" coexist with an unshippable
 ```
 now      verify cook #4 → boot the exe → walk the route      ← the only P0 that matters
 then     fresh orphan snapshot push (protect 692 commits)
-then     decide the Bass/BeatPulse question (P1 #5) — it gates all reactive lookdev
 then     Melusina albedo pass (P1 #4)
 later    Blender export for Faraway (P2), MPC retirement, stash triage
 ```

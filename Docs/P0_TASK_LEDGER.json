@@ -843,5 +843,26 @@
       "still_true": "The two texture IMPORT defects fixed in 8368f8a5 were real and independently verified via get/set of srgb + compression_settings: T_Melusina_Material_010_BaseColor and T_Melusina_skirtpanel_004_BaseColor really were TC_NORMALMAP/BC5 on colour data. That fix stands.",
       "lesson": "Measure pixels (unique-colour count + dominant RGB) before asserting a texture is blank. Thumbnails lie about pale values."
     }
+  },
+  "packaged_route_verification": {
+    "2026-09-03": {
+      "id": "packaged_route_verified_2026-09-03",
+      "ts": "2026-09-03T14:37:27",
+      "status": "PASS",
+      "claim": "Packaged build boots and loads BOTH player_route legs with zero fatals.",
+      "evidence": {
+        "archive": "G:\\melodia_packages\\P0_Route_20260903 (2.7 GB)",
+        "cook": "exit 0; 3596 packages; 0 cook errors",
+        "menu": "L_MelodiaMainMenu LoadMap 0.272s, 0 fatal",
+        "route_leg_0": "/Game/Melodia/Levels/Opening/L_MelusinaMorning LoadMap 0.364s, 0 fatal",
+        "route_leg_1": "/Game/EnvSandbox/Environments/L_KaleidoNave LoadMap 1.025s, 0 fatal",
+        "load_errors": "7 in leg 1, all benign: absent profiler DLLs (aqProf/VTune/PIX), cursor resource warning, no default SoundConcurrencyObject. Zero content load failures."
+      },
+      "method_notes": [
+        "strings-scanning the .pak/.ucas for asset names is USELESS for IoStore - the known-present L_MelodiaMainMenu also returns 0 hits because names live in a hashed name map. Do not use it as evidence either way.",
+        "Git Bash mangles a leading /Game/... argument into C:/Program Files/Git/Game/... - the first route attempt 'crashed' for that reason alone. Launch packaged builds from PowerShell."
+      ],
+      "not_claimed": "This verifies the levels LOAD packaged. It does not verify gameplay beats, input, or the golden-run checkpoints - that still needs a driven run."
+    }
   }
 }
