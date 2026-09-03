@@ -1,9 +1,11 @@
 """GN_MH_02 curved facade v2 — concave shoulder / convex entry / concave shoulder.
 
 Method (proven 5.2 nodes only): sample a 3-bay guide in Python, place wall
-module boxes along it with yaw following the tangent, join, boolean door +
-window cutters on a dedicated branch, bevel, output. Exposes Facade Wave,
-Wall Height, Wall Thickness via group interface driving stored values.
+module boxes along it with yaw following the tangent, join, weld seam verts
+(Merge by Distance 0.02), boolean door + window cutters on a dedicated
+branch, bevel, output. Wave/height/thickness are baked build params;
+only the Geometry output socket is exposed (5.2 headless cannot drive
+per-object modifier inputs, so no live group inputs).
 
 Plan: melusinashouseplan.md ss 3 (facade wave 0.65, wall 3.42 h x 0.30 t,
 door 1.15 x 2.35, widths 13.2 overall).
@@ -13,8 +15,8 @@ import math
 import os
 
 W, H, T = 13.2, 3.42, 0.30
-WAVE = 0.65
-NSEG = 24
+WAVE = 0.72
+NSEG = 32
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 sc = bpy.context.scene
@@ -122,8 +124,9 @@ for (x, y, yaw) in pts:
     bx += 120
 print(f"segments: {len(segments)}")
 
-# Join wall
+# Join wall + weld coincident seam verts (yawed modules overlap 0.02)
 join = add("GeometryNodeJoinGeometry", (bx + 100, 0))
+weld = add("GeometryNodeMergeByDistance", (bx + 250, 0))
 wall_geom = None
 if join is not None:
     for s in segments:
@@ -133,6 +136,16 @@ if join is not None:
             print(f"join link: {e}")
             break
     wall_geom = join.outputs["Geometry"]
+    if weld is not None:
+        try:
+            weld.inputs["Distance"].default_value = 0.02
+        except Exception:
+            pass
+        try:
+            links.new(wall_geom, weld.inputs["Geometry"])
+            wall_geom = weld.outputs["Geometry"]
+        except Exception as e:
+            print(f"weld link: {e}")
 else:
     wall_geom = segments[0] if segments else None
 
@@ -160,11 +173,15 @@ def cutter_box(sx, sy, sz, loc, xoff):
         return c.outputs["Mesh"]
 
 
-cutters.append(cutter_box(1.15, T * 3, 2.35, (0.0, WAVE, 2.35 / 2), 0))       # entry door
-cutters.append(cutter_box(0.8, T * 3, 0.8, (-4.4, -WAVE * 0.5, 1.8), 500))     # L1
-cutters.append(cutter_box(0.8, T * 3, 0.8, (-2.6, -WAVE * 0.1, 1.8), 1000))    # L2
-cutters.append(cutter_box(0.9, T * 3, 1.1, (2.6, -WAVE * 0.1, 1.8), 1500))     # R1
-cutters.append(cutter_box(0.8, T * 3, 0.8, (4.4, -WAVE * 0.5, 1.8), 2000))     # R2
+def bay_y(x):
+    return WAVE * math.cos(x / W * 2 * math.pi)
+
+
+cutters.append(cutter_box(1.15, T * 3, 2.35, (0.0, bay_y(0.0), 2.35 / 2), 0))   # entry door
+cutters.append(cutter_box(0.7, T * 3, 1.0, (-4.4, bay_y(-4.4), 1.7), 500))      # L1 slim
+cutters.append(cutter_box(0.7, T * 3, 1.0, (-2.6, bay_y(-2.6), 1.7), 1000))     # L2 slim
+cutters.append(cutter_box(0.8, T * 3, 1.2, (2.6, bay_y(2.6), 1.7), 1500))       # R1 tall
+cutters.append(cutter_box(0.7, T * 3, 1.0, (4.4, bay_y(4.4), 1.7), 2000))       # R2 slim
 cutters = [c for c in cutters if c is not None]
 print(f"cutters: {len(cutters)}")
 
@@ -188,7 +205,7 @@ if booln is not None and wall_geom is not None:
 bevel = add("GeometryNodeMeshBevel", (cx + 2900, 0))
 if bevel is not None and final is not None:
     try:
-        bevel.inputs["Radius"].default_value = 0.05
+        bevel.inputs["Radius"].default_value = 0.07
     except Exception as e:
         print(f"bevel: {e}")
     try:
@@ -204,6 +221,6 @@ if final is not None:
         print(f"out link: {e}")
 
 os.makedirs("Saved/MelusinasHouse", exist_ok=True)
-bpy.ops.wm.save_mainfile(filepath="Saved/MelusinasHouse/House_Facade_v2.blend")
-print("Saved: Saved/MelusinasHouse/House_Facade_v2.blend")
+bpy.ops.wm.save_mainfile(filepath="Saved/MelusinasHouse/House_Facade_v4.blend")
+print("Saved: Saved/MelusinasHouse/House_Facade_v4.blend")
 print(f"FAC: segs={len(segments)} cutters={len(cutters)} nodes={len(tree.nodes)}")

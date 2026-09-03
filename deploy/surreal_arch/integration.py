@@ -376,8 +376,10 @@ def patch_monolith(monolith):
     )
     # v2.74 stub-fill: corridor bend/T exist in surreal_greybox but were never
     # registered, so the cloister graphs could not resolve them. ZEN_BRIDGE is
-    # the garden-graph alias of the stone bridge; ZEN_TEAHOUSE is the new
-    # zen_kit teahouse above. Adapters match register_kit (t, M, p, bx) shape;
+    # the garden-graph alias of the stone bridge; ZEN_TEAHOUSE is the zen_kit
+    # adapter that delegates to the polished monolith build_zen_teahouse
+    # (deploy/surreal_architecture_gen.py:12995) with graph-prop translation.
+    # Adapters match register_kit (t, M, p, bx) shape;
     # shells builders take (tree, props, base_x) and are monolith-bound by
     # surreal_greybox.attach_all earlier in patch_monolith.
     def _build_corridor_bend(t, M, p, bx=-1400):

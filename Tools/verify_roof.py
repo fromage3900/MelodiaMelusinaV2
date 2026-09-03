@@ -1,6 +1,6 @@
 import bpy
 bpy.ops.wm.read_factory_settings(use_empty=True)
-bpy.ops.wm.open_mainfile(filepath="Saved/MelusinasHouse/House_RoofRibbon.blend")
+bpy.ops.wm.open_mainfile(filepath="Saved/MelusinasHouse/House_RoofRibbon_v2.blend")
 dg = bpy.context.evaluated_depsgraph_get()
 for name in ["Roof_Main","Roof_Wing","Roof_Porch"]:
     o = bpy.data.objects.get(name)

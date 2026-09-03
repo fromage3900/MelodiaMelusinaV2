@@ -236,6 +236,35 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # ribbon.py - MEL_allee_ribbon (effects)
+    "MEL_allee_ribbon": {
+        "label": "Allee Ribbon",
+        "preset_labels": {
+            "GARDEN_ALLEE": "Garden Allee",
+            "CEREMONY_AXIS": "Ceremony Axis",
+            "MEADOW_S": "Meadow S",
+        },
+        "preset_descriptions": {
+            "GARDEN_ALLEE": "Default cherry-allee walk: gentle S, crowned camber.",
+            "CEREMONY_AXIS": "Straight wide axis for sando-to-porch approach.",
+            "MEADOW_S": "Strong meadow curve with higher crown for runoff.",
+        },
+        "presets": {
+            "GARDEN_ALLEE": {
+                "Segments": 48, "Length": 8.0, "Path Width": 2.2,
+                "S-Curve": 1.0, "Camber": 0.08, "Thickness": 0.12,
+            },
+            "CEREMONY_AXIS": {
+                "Segments": 32, "Length": 10.0, "Path Width": 2.6,
+                "S-Curve": 0.0, "Camber": 0.05, "Thickness": 0.12,
+            },
+            "MEADOW_S": {
+                "Segments": 64, "Length": 12.0, "Path Width": 1.8,
+                "S-Curve": 1.8, "Camber": 0.12, "Thickness": 0.1,
+            },
+        },
+    },
+
     # set_dressing.py - MEL_water_them_gazebo (set_dressing)
     "MEL_water_them_gazebo": {
         "label": "Water-Themed Gazebo",

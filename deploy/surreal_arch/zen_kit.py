@@ -532,70 +532,36 @@ def build_zen_cherry_allee(tree, M, props, base_x=-1400):
 
 
 def build_zen_teahouse(tree, M, props, base_x=-1400):
-    """Tea-ceremony house - raised timber floor, post ring, tie beams, noki eave.
+    """Tea-ceremony house - delegation adapter over the polished monolith builder.
 
-    v2.74: fills the ZEN_TEAHOUSE stub referenced by the tea-garden graphs.
-    Reads teahouse_width/teahouse_depth first (graph prop names), falls back
-    to gb_width/gb_depth. Kit language matches kairo/haiden: box posts,
-    beam course, deep eave slab, rear garden wall, genkan entry step.
+    Unique authority: deploy/surreal_architecture_gen.py:12995 build_zen_teahouse
+    (engawa platform + railing posts, corner posts, tatami, irimoya curved hip
+    roof from Chebyshev level-sets with eave-flip, bezier hip ridges, hoju
+    finial, tokonoma + tokobashira, ro hearth, optional nijiriguchi/chumon).
+    This kit wrapper only translates the garden-graph prop dialect (teahouse_*
+    with gb_* fallbacks) into the monolith's prop contract and returns its
+    geometry. No geometry is authored here - reuse beats duplicate + drift.
     """
-    W = getattr(props, "teahouse_width", getattr(props, "gb_width", 4.5))
-    D = getattr(props, "teahouse_depth", getattr(props, "gb_depth", 4.0))
-    H = getattr(props, "gb_height", 2.6)
-    t = getattr(props, "gb_wall_thick", 0.14)
-    parts = []
-
-    floor = M._gb_box(tree, (W, D, t), (0, 0, 0.45 + t * 0.5), base_x, 0, "trim:floor")
-    if floor:
-        parts.append(floor)
-
-    step = M._gb_box(
-        tree, (W * 0.3, t * 2.2, 0.22), (0, D * 0.5 + t, 0.11),
-        base_x, 40, "trim:genkan_step",
+    import os as _os
+    import sys as _sys
+    _deploy = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+    if _deploy not in _sys.path:
+        _sys.path.insert(0, _deploy)
+    from types import SimpleNamespace as _NS
+    from surreal_architecture_gen import build_zen_teahouse as _orig
+    mp = _NS(
+        teahouse_width=getattr(props, "teahouse_width", getattr(props, "gb_width", 4.5)),
+        teahouse_depth=getattr(props, "teahouse_depth", getattr(props, "gb_depth", 4.0)),
+        teahouse_height=getattr(props, "teahouse_height", getattr(props, "gb_height", 2.6)),
+        teahouse_pitch_factor=getattr(props, "teahouse_pitch_factor", 0.6),
+        teahouse_engawa=getattr(props, "teahouse_engawa", True),
+        teahouse_engawa_width=getattr(props, "teahouse_engawa_width", 0.6),
+        teahouse_tokonoma=getattr(props, "teahouse_tokonoma", True),
+        teahouse_ro=getattr(props, "teahouse_ro", True),
+        teahouse_nijiriguchi=getattr(props, "teahouse_nijiriguchi", False),
+        teahouse_chumon=getattr(props, "teahouse_chumon", False),
     )
-    if step:
-        parts.append(step)
-
-    # 6-post ring: corners + mid posts on long sides
-    for i, (px, py) in enumerate((
-        (-W * 0.44, -D * 0.42), (W * 0.44, -D * 0.42),
-        (-W * 0.44, 0), (W * 0.44, 0),
-        (-W * 0.44, D * 0.42), (W * 0.44, D * 0.42),
-    )):
-        post = M._gb_box(
-            tree, (t * 1.2, t * 1.2, H * 0.72),
-            (px, py, 0.45 + H * 0.36),
-            base_x, 100 + i * 30, "trim:post",
-        )
-        if post:
-            parts.append(post)
-
-    for sy in (-1, 1):
-        beam = M._gb_box(
-            tree, (W * 0.94, t * 1.1, t * 0.9),
-            (0, sy * D * 0.42, 0.45 + H * 0.70),
-            base_x, 300 + sy * 10, "trim:tie_beam",
-        )
-        if beam:
-            parts.append(beam)
-
-    eave = M._gb_box(
-        tree, (W * 1.18, D * 1.18, t * 1.4),
-        (0, 0, 0.45 + H * 0.78),
-        base_x, 500, "trim:noki_eave",
-    )
-    if eave:
-        parts.append(eave)
-
-    wall = M._gb_box(
-        tree, (W * 0.9, t, H * 0.5),
-        (0, -D * 0.5 + t * 0.5, 0.45 + H * 0.30),
-        base_x, 600, "trim:wall_panel",
-    )
-    if wall:
-        parts.append(wall)
-
-    return M._gb_join(tree, parts, base_x + 1500, 0)
+    return _orig(tree, mp, base_x)
 
 
 def build_zen_water_edge(tree, M, props, base_x=-1400):

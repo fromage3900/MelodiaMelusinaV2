@@ -1,4 +1,6 @@
 import sys, os
+for _m in [m for m in list(sys.modules) if m == 'surreal_arch' or m.startswith('surreal_arch.')]:
+    del sys.modules[_m]
 sys.path.insert(0, os.path.join(os.getcwd(), "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS
 print("registry ids:", len(GROUP_BUILDERS))

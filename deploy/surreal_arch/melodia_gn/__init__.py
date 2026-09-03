@@ -34,6 +34,7 @@ from . import melodia_kit_v3  # noqa: F401 - Kit v3: jingle-driven tower/gate/pl
 from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/bamboo
 from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
 from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime_row physics)
+from . import music_heroes  # noqa: F401 - hero music kit (key/piano-roll/sheet-rail/room-shell/harp register here, not via terrain chain)
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
@@ -46,6 +47,7 @@ from .notation_extras import build_music_bass_clef, build_music_beam_cluster, bu
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (
     build_ribbon_curve, build_lissajous_ribbon, build_closed_ribbon, build_violin_bow,
+    build_allee_ribbon,
 )
 from .set_dressing import (
     build_water_them_structure, build_water_them_gazebo, build_water_them_arch,
