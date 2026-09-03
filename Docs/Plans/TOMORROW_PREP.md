@@ -1,6 +1,6 @@
 # Tomorrow Prep — living doc
 
-**Updated:** 2026-09-03 ~02:45 (prep pass 2) · Updated in place — do not fork dated copies.
+**Updated:** 2026-09-03 ~04:00 (prep pass 3) · Updated in place — do not fork dated copies.
 Scope: world building · reusable chapter structure · packaged builds · Shorewake testing.
 
 ---
@@ -58,6 +58,11 @@ pointers in history only. |
 ---
 
 ## Landmines — these silently no-op or mislead
+
+*Last re-verified 2026-09-03 04:00 — items 4, 7, 12 confirmed still true against disk;
+items 1-3, 5-6, 8-11 are source/behaviour facts unchanged since first verification.
+Items needing the editor to re-check (Faraway lights, Shorewake MI textures) are
+carried unverified this pass.*
 
 1. **`Bass` / `GlobalReactivity` = `BattleIntensity`** — exactly 0 outside battle. Not audio bass.
 2. **`Treble` == `BeatPulse` == `BeatIntensity`** — one float under three names, 0 with no music clock.
