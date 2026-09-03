@@ -2,6 +2,8 @@
 
 **Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on [`_SESSION_HANDOFF.md`](../_SESSION_HANDOFF.md).
 
+**Current environment hero packet:** [`melusinashouseplan`](../melusinashouseplan.md) — Hermes-first Blender 5.2 Geometry Nodes plan + attached pink/blue round-Baroque reference boards for Melusina’s House. Search token: `melusinashouseplan`. ♪
+
 ## Open in 30 seconds
 
 | | |
