@@ -136,6 +136,19 @@ if join is not None:
 else:
     wall_geom = segments[0] if segments else None
 
+# Weld coincident seam verts from the overlapped segment boxes
+weld = add("GeometryNodeMergeByDistance", (bx + 250, 0))
+if weld is not None and wall_geom is not None:
+    try:
+        weld.inputs["Distance"].default_value = 0.005
+    except Exception as e:
+        print(f"weld dist: {e}")
+    try:
+        links.new(wall_geom, weld.inputs["Geometry"])
+        wall_geom = weld.outputs["Geometry"]
+    except Exception as e:
+        print(f"weld link: {e}")
+
 # Cutters: entry door center + 3 windows per shoulder layout (7 total)
 cx = bx + 400
 cutters = []
@@ -188,7 +201,7 @@ if booln is not None and wall_geom is not None:
 bevel = add("GeometryNodeMeshBevel", (cx + 2900, 0))
 if bevel is not None and final is not None:
     try:
-        bevel.inputs["Radius"].default_value = 0.05
+        bevel.inputs["Offset"].default_value = 0.05
     except Exception as e:
         print(f"bevel: {e}")
     try:
