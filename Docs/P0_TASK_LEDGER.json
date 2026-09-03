@@ -864,5 +864,18 @@
       ],
       "not_claimed": "This verifies the levels LOAD packaged. It does not verify gameplay beats, input, or the golden-run checkpoints - that still needs a driven run."
     }
+  },
+  "melusina_lookdev_findings": {
+    "2026-09-03T14:45": {
+      "status": "HYPOTHESIS - not yet confirmed in editor",
+      "finding": "9 of Melusina's 33 material slots resolve to ONE material instance, MI_Melusina_Material_023: Metal_2__Matcap__002, Outline_005, Material_021, Outline_004, Halftone_Circles___Circles__3_Inputs__001, Material_022, Material_023, Outline_Shader_*_029, Material_024.",
+      "why_it_matters": "If a torso slot is among those 9, the grey torso cannot be fixed by tinting that MI - the same edit would simultaneously hit outline, matcap and halftone slots. That would explain why earlier tint probes produced no clean result. Confirm in editor which slot is the torso before editing.",
+      "source": "Saved/Audit/melusina_material_placeholder_audit.json (33 slots)",
+      "dead_methods_do_not_retry": [
+        "strings on .pak/.ucas - IoStore hashes the name map; known-present assets return 0 hits.",
+        "strings on a UE5.8 .uasset - name table is compressed; returns nothing even for MIs that definitely bind textures. Neither is evidence of absence."
+      ],
+      "still_true": "Colour comes from the Albedo TEXTURE, not BaseTint. SBW_MELUSINA_006/007 are SKIN. Do not remap Outline_Shader_* to *_star_* twins (inverted hull, explodes)."
+    }
   }
 }
