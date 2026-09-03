@@ -817,6 +817,18 @@
       "why_the_points_do_not_need_a_pcg_graph": "The manifest already carries explicit per-point transforms. Scatter is solved; a PCG graph would only be needed for runtime procedural regeneration. The level can be assembled from the manifest directly as ISM instances once meshes exist.",
       "shortest_path": "Run the Blender GN builders to export the 14 missing MEL_mother_* meshes, import to UE, then spawn the 120 manifest points as ISM (instances only, per the doc contract - no unique StaticMeshActors, they break batching).",
       "not_done_deliberately": "Did not spawn 120 instances of the one mesh that exists (the terrain) to make the level look populated. That would be visual nonsense and a third false green."
+    },
+    "texture_import_defect_2026-09-03T09:00": {
+      "finding": "Two of Melusina's 41 _BaseColor textures were imported as NORMAL MAPS: srgb=False, compression=TC_NORMALMAP, BC5 (two-channel normal compression) on colour data. Violates the PBR channel standard in PROJECT.md (BaseColor: sRGB=True, TC_Default, Character/World group).",
+      "affected": [
+        "T_Melusina_Material_010_BaseColor",
+        "T_Melusina_skirtpanel_004_BaseColor"
+      ],
+      "fix": "Set compression TC_DEFAULT, lod_group TEXTUREGROUP_CHARACTER, srgb True. NOTE: srgb must be set in a SECOND pass — UE forces srgb=False while compression is TC_NORMALMAP, so setting both at once silently drops the srgb change.",
+      "scope": "NOT systemic — 39 of 41 BaseColor textures are correctly configured.",
+      "separate_finding_blank_bakes": "T_Melusina_M_Melusina_BaseColor (bodice+skin) and T_Melusina_m_skirt_BaseColor are BLANK PURE WHITE 4096x4096 maps. Those are missing bakes, not import settings — no amount of material tuning recovers them. The grey torso and several flat surfaces trace to this. Needs re-baking in Blender.",
+      "editor_state": "In-memory Melusina render is STILL stale/exploded (verified iter11) while disk is correct. Did NOT restart the editor: the other agent had unsaved MI_Mother_Mantle dirty and a restart would have destroyed it. Visual verification of these two texture fixes is therefore deferred to the next clean editor session.",
+      "gameplay_feel_note": "Still no play session. Worth recording for the Infinity Nikki goal: two of the four remaining visual deltas are BLANK SOURCE TEXTURES, not tuning. The outfit cannot 'read' in motion — the core Nikki pillar — until those bakes exist. This is art production work, not engineering, and it is the honest gate on the whole lookdev lane."
     }
   }
 }
