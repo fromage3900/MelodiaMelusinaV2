@@ -668,7 +668,17 @@
     "d88b07f7",
     "6dd1b672",
     "b137b021"
-   ]
+   ],
+   "material_landscape_verification": {
+    "question": "Are all landscape material wiring complete and Gaea textures imported for LV_SeaAbove_Prototype (Glacier 5km terrain)?",
+    "gaea_textures_imported": "YES - Content/Gaea/Glacier/ carries the full export family (EXR+uasset pairs: ColorErosion, Combine, SatMap, Weathering, Flow, Snow, etc.) plus processed T_Glacier_SatMap/GroundTexture/Combine/ColorErosion and Layers/Base-Rock-Snow-Water. Hills/Mountains families also present.",
+    "landscape_actor": "UNTOUCHED per owner instruction. Assigned material is MI_Glacier_Landscape_Layered (parent M_Master_Toon_Landscape_HeightBlend) - correct Glacier terrain, owner-authored.",
+    "wiring_defect_found": "DOUBLE DISCONNECT: (1) MI texture overrides used PaintedLayer_Base/Snow/Water/Rock names that do NOT exist on the master (all 4 inert); (2) master layer slots Rock_/Grass_/Mud_/Path_Albedo+Normal+Height held stock defaults (Substance Perlin/gradient/cobblestone) - NO Gaea textures were in the render chain; terrain rendered master defaults.",
+    "fix_applied_materials_only": "MI_Glacier_Landscape_Layered: Rock_Albedo <- T_Glacier_ColorErosion, Grass_Albedo <- T_Glacier_SatMap (readback-verified, saved). 4 stale PaintedLayer_* entries removed via array rewrite.",
+    "owner_decisions_owed": "Mud_Albedo (default Cracks) and Path_Albedo (default cobblestone): owner Gaea textures GroundTexture/Combine had no confident slot mapping - Snow and Water are PROCEDURAL branches on this master (SnowStrength/SnowUpBias/Wetness, no texture slots). Confirm whether Mud/Path defaults stay authored or GroundTexture/Combine displace them.",
+    "normals_heights": "Gaea Glacier family has no normal/height companions for the albedos; master defaults (T_Neutral_Normal + Perlin) remain the authored fallback.",
+    "verified_by": "Monolith run_python reflection: master expression census (316 exprs, 15 TextureSampleParameter2D, 0 PaintedLayer_*), MI param readback before/after."
+   }
   }
  ]
 }
