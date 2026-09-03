@@ -2,7 +2,7 @@
 
 ## Queue (highest first)
 - [x] Verify COP dress-bake PNGs fresh + variant (check size/date/pixel variance)
-- [ ] Variant: AntiqueDollRose Copernicus family (dusty-rose damask + gilt, seed 20260902)
+- [x] Variant: AntiqueDollRose Copernicus family (dusty-rose damask + gilt, seed 20260902)
 - [ ] Variant: ButterflyWingTidepool Copernicus family (iridescent tidepool, distinct Chladni mode)
 - [ ] Tension-fold loom v2: MEL_garment_tension_folds builder + gn52 proof
 - [ ] XPBD feasibility verdict (MEL_garment_xpbd_drape or documented no-go)
@@ -40,6 +40,7 @@
   Normal 4829, Emission 240, Roughness 87). Scratch swept, script committed
   f6ad86cd. Gap closed: on-disk dress maps are COP, not 08-30 PIL.
 - 2026-09-03 ~02:24 run1: VERIFY COP dress-bake + variants PASS — re-read from disk: dress 4/4 1080² fresh 02:01 (sha12 9823322b/1369a5c0/3efc5109/92d17c0c, std 62.1/57.9/9.5·10.8·39.8/23.4), Rose 9/9 2048² (01:40, sha12 759d489c…) + Membrane 9/9 2048² (01:42, sha12 112d0baa…), cross-family distinct, variance gate PASS, report verify_dress_bake_2026-09-03.{md,json}.
+- 2026-09-03 ~14:28 run2: VERIFY AntiqueDollRose PASS — 9/9 2048² re-read (01:40:12–14, sha12 759d489c/34973c2d/caf41e76/4a4a541d/7a1b40b0/763abb07/7368a276/dac96b25/8209335c), cross-family BC distinct vs ButterflyWingMembrane (112d0baa), variance PASS (BC 33/42/21, Met 82.7, Rgh 45.3, Hgt 50.8, Iri 31.5), provenance note SEED drift 20260831→20260902 patch pending, reports verify_AntiqueDollRose_2026-09-03.{md,json}.
 
 ## Rules (every run)
 Seed 20260902. Offline only (editor lock belongs to the user). Never touch Content/**.
