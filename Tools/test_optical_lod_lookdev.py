@@ -101,12 +101,11 @@ class TestOpticalLODLookDev(unittest.TestCase):
         self.assertFalse(evaluate_dither_threshold(0, 0, 0.0))
         self.assertTrue(evaluate_dither_threshold(0, 0, 1.0))
 
-        # Test pipeline report — 44 after surreal fabric expansion (11 assets ×4 LODs); allow >=12
+        # Test pipeline report
         report = synthesize_material_instances(str(self.manifest_path))
         self.assertTrue(report.ok, f"Pipeline synthesis failed: {report.errors}")
-        self.assertGreaterEqual(report.total_material_instances, 12)
-        self.assertEqual(len(report.instances), report.total_material_instances)
-        self.assertEqual(report.total_material_instances % 4, 0)
+        self.assertEqual(report.total_material_instances, 12)
+        self.assertEqual(len(report.instances), 12)
 
         # Verify instance binding contents
         for inst in report.instances:
