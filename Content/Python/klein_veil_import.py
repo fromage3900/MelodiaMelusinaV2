@@ -34,7 +34,7 @@ PLACEMENTS=[
       "ray_start_z": 25000,
       "ray_end_z": -10000,
       "channel": "Visibility",
-      "complex": true,
+      "complex": True,
       "synthetic_fallback": 12088.0,
       "offset_above_surface": 35
     }
@@ -62,7 +62,7 @@ PLACEMENTS=[
       "ray_start_z": 25000,
       "ray_end_z": -10000,
       "channel": "Visibility",
-      "complex": true,
+      "complex": True,
       "synthetic_fallback": 12490.0,
       "offset_above_surface": 35
     }
@@ -92,12 +92,15 @@ def _collect_master_params(master):
     scalars=set(); vectors=set(); textures=set()
     for e in exprs:
         kind=type(e).__name__
-        if kind=="MaterialExpressionScalarParameter":
-            scalars.add(str(e.get_editor_property("parameter_name")))
-        elif kind=="MaterialExpressionVectorParameter":
-            vectors.add(str(e.get_editor_property("parameter_name")))
-        elif "Texture" in kind:
-            textures.add(str(e.get_editor_property("parameter_name")))
+        try:
+            if kind=="MaterialExpressionScalarParameter":
+                scalars.add(str(e.get_editor_property("parameter_name")))
+            elif kind=="MaterialExpressionVectorParameter":
+                vectors.add(str(e.get_editor_property("parameter_name")))
+            elif "Texture" in kind and "Parameter" in kind:
+                textures.add(str(e.get_editor_property("parameter_name")))
+        except Exception:
+            pass  # expression kind carries no parameter_name (e.g. TextureCoordinate)
     return scalars, vectors, textures
 
 def _apply_scalars(inst, known_scalars):
