@@ -123,11 +123,20 @@ pre.setInput(0, sop_import)
 
 # Bake Geometry Textures ::2.0 (H22 successor to Labs Maps Baker):
 # bakes attribs incl. curvature, UV-gap filling built in (enableuvfilling = bg fill).
-# No resolution/seed parms — res flows from input, determinism from the VEX AO seed.
+# H22 truth (probed 2026-09-03): input 0 = size_ref (IMAGE metadata for output
+# resolution — geometry here fails "Can't convert Geometry to Metadata"); input 1 =
+# low (preprocessed geometry). No resolution parms on the baker — size comes only
+# from size_ref, so constant -> resample dials it. Determinism from the VEX AO seed.
+size_const = copnet.createNode("constant", "SIZE_Const")
+size_rs = copnet.createNode("resample", "SIZE_Ref")
+size_rs.setInput(0, size_const)
+size_rs.parm("resolution1").set({size})
+size_rs.parm("resolution2").set({size})
 baker = copnet.createNode("bakegeometrytextures::2.0", "Baker_GeoTex")
 baker.parm("uvattribute").set("uv")
 baker.parm("enableuvfilling").set(1)
-baker.setInput(0, pre)
+baker.setInput(0, size_rs)
+baker.setInput(1, pre)
 
 # Curvature COP — directional LUT (defaults; replaces ad-hoc Worley mottle)
 curv = copnet.createNode("curvature", "Curvature_LUT")
@@ -143,6 +152,15 @@ for name, chan in [("BaseColor","Cd"), ("Normal","N"), ("Emission","emit"), ("Ro
     fout = copnet.createNode("file", "OUT_" + name)
     fout.parm("filename").set("$HIP/../../Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_" + name + ".png")
     fout.setInput(0, denoise)
+
+# Disk writers — /out image ROPs (H22 truth, probed 2026-09-03: file COP .cook() never
+# writes; ROP coppath must point at the PIXEL node (denoise), aov1=C, then rop.render())
+outnet = hou.node("/out")
+for name in ["BaseColor", "Normal", "Emission", "Roughness"]:
+    rop = outnet.createNode("image", "ROP_OUT_" + name)
+    rop.parm("coppath").set("/img/cop_dress_bake/Denoise_AI")
+    rop.parm("aov1").set("C")
+    rop.parm("copoutput").set("$HIP/../../Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_" + name + ".png")
 
 copnet.layoutChildren()
 hou.hipFile.save(hip)

@@ -2,19 +2,19 @@
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
   "size": "2048x2048",
-  "frames": 8,
+  "frames": 1,
   "variants": {
-    "GlitterWater": {
+    "ButterflyWingMembrane": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Normal.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Height.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_ORM.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Normal.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Height.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_ORM.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane/T_Cymatic_ButterflyWingMembrane_Opacity.png"
       ]
     }
   },
