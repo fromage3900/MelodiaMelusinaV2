@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-02  
 **Status:** CANONICAL LONG-TERM UPDATE MODEL  
-**Companion:** `MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+**Companion:** `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
 
 ---
 
