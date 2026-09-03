@@ -771,6 +771,29 @@
         "Infinity Nikki's feel comes from the outfit being READABLE in motion: silhouette, cloth response, and light catching trim. Right now Shorewake equips but binds zero textures, and Melusina's hair is one flat tone - so an outfit change would not read on screen, which is the core pillar.",
         "Concrete next step for BOTH: make one wardrobe change produce a visible, audible, framed moment (equip -> camera beat -> material change lands). That is the smallest thing that would make this feel like the target games."
       ]
+    },
+    "iteration_2_2026-09-03T07:40": {
+      "outcome": "REVERTED — no net change to Melusina. Disk is back at 5ca59450 + b04ec94b.",
+      "what_was_tried": [
+        "Tinted MI_Melusina_SBW_MELUSINA_006/007 pink believing they were the bodice. They are the SKIN — it turned her skin pink. Caught immediately by the capture, reverted.",
+        "Remapped 7 Outline_Shader_*_0NN slots to their name-matched MI_Melusina_Outline_Shader_star_0NN (slot names use '*', asset names use 'star'). The render EXPLODED into shards.",
+        "Restored the exact prior mapping — the render stayed exploded, so the break was not the assignment itself.",
+        "git checkout of all three uncommitted assets. Disk verified clean."
+      ],
+      "learnings": [
+        "Outline_Shader_* slots are INVERTED HULL. A name-matched outline MI on them renders as expanded shards, not a silhouette. The 'obviously correct' name match is wrong here — do not redo it.",
+        "SBW_MELUSINA_006/007 = skin, NOT bodice. The grey torso garment is a different slot, still unidentified.",
+        "The bodice albedo T_Melusina_M_Melusina_BaseColor is a BLANK 4096x4096 WHITE map — it is also the skin albedo. Grey torso is a missing bake, not a tint problem.",
+        "Colour is driven by the Albedo TEXTURE, not BaseTint. MI_Melusina_Hair binds no albedo so it fell back to the master default (T_Marble_7), which is why tuning BaseTint did nothing.",
+        "ROOT CAUSE of the recurring 'saved: False': .gitattributes marks *.uasset lockable, and git-lfs sets lockable files read-only when unlocked (lfs.setlockablereadonly defaults true). Any git touch re-applies it. Either git lfs lock before editing, or clear read-only immediately before every save.",
+        "After repeated set_editor_property('materials', ...) on a skeletal mesh the editor's in-memory render state stopped matching disk — reverting assignments did not restore the render. DO NOT TRUST captures after a revert until the editor is restarted."
+      ],
+      "next_agent_must": [
+        "Restart the editor BEFORE any further Melusina capture — current in-memory state is stale/broken and disk is correct.",
+        "Do not remap Outline_Shader_* slots.",
+        "Identify the grey torso slot by elimination before tinting anything.",
+        "Fix colour by binding the correct Albedo texture, not by tuning BaseTint."
+      ]
     }
   }
 }
