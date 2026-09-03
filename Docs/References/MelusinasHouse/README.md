@@ -7,6 +7,22 @@ These are the current working concept references for the **rounder pink/blue Bar
 
 They are visual targets, not measured architectural drawings. When a small pictured detail conflicts with the structural rules in `melusinashouseplan.md`, follow the plan and use the board for silhouette, mood, proportions, palette, and ornament language.
 
+## ♬ Phase-2 Geometry Nodes plans
+
+After the canonical root plan, use these two implementation packets:
+
+1. [`../../Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](../../Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — roof ribbons, scallop shingles, windows/doors, Rocaille + Melusina Loop, railings, tower, grotto, drapes, shell crests, attributes, promotion rules and build order.
+2. [`../../Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](../../Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — Resonant Salon, bedroom, Wardrobe Rotunda, Listening Stair, Crescent Balcony, kitchen, Blue Room, Listening Tower, acoustic gather/guide/release metadata and debug flow.
+
+Key implementation rule:
+
+```text
+MEL_*   = reusable Melodia Studio builder
+GN_MH_* = Melusina-house-specific scene wrapper / composition
+```
+
+Reuse the existing Melodia Studio builder catalog before adding new global builders.
+
 ## Reference order
 
 ### 1. Exterior silhouette + palette
