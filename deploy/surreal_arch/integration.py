@@ -374,6 +374,48 @@ def patch_monolith(monolith):
         builder_attr="build_zen_lantern_gb",
         material_key="STONE",
     )
+    # v2.74 stub-fill: corridor bend/T exist in surreal_greybox but were never
+    # registered, so the cloister graphs could not resolve them. ZEN_BRIDGE is
+    # the garden-graph alias of the stone bridge; ZEN_TEAHOUSE is the new
+    # zen_kit teahouse above. Adapters match register_kit (t, M, p, bx) shape;
+    # shells builders take (tree, props, base_x) and are monolith-bound by
+    # surreal_greybox.attach_all earlier in patch_monolith.
+    def _build_corridor_bend(t, M, p, bx=-1400):
+        return M.build_greybox_corridor_bend(t, p, bx)
+
+    def _build_corridor_t(t, M, p, bx=-1400):
+        return M.build_greybox_corridor_t(t, p, bx)
+
+    register_kit(
+        monolith,
+        "GB_CORRIDOR_BEND",
+        _build_corridor_bend,
+        builder_attr="build_greybox_corridor_bend_kit",
+        material_key="STONE",
+    )
+    register_kit(
+        monolith,
+        "GB_CORRIDOR_T",
+        _build_corridor_t,
+        builder_attr="build_greybox_corridor_t_kit",
+        material_key="STONE",
+    )
+    register_kit(
+        monolith,
+        "ZEN_BRIDGE",
+        zen_kit.build_zen_stone_bridge,
+        snap_fn=zen_kit.compute_zen_kit_snaps,
+        builder_attr="build_zen_stone_bridge",
+        material_key="STONE",
+    )
+    register_kit(
+        monolith,
+        "ZEN_TEAHOUSE",
+        zen_kit.build_zen_teahouse,
+        snap_fn=zen_kit.compute_zen_kit_snaps,
+        builder_attr="build_zen_teahouse",
+        material_key="WOOD",
+    )
 
     if not hasattr(monolith, "_gb_compute_snap_points_orig"):
         monolith._gb_compute_snap_points_orig = monolith._gb_compute_snap_points

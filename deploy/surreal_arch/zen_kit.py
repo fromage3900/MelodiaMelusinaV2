@@ -455,11 +455,20 @@ def build_zen_stone_bridge(tree, M, props, base_x=-1400):
 
 
 def build_zen_cherry_allee(tree, M, props, base_x=-1400):
-    """Sakura path segment - walk slab, trunk bases, blossom canopy, petal scatter."""
+    """Sakura path segment - walk slab, staggered trunks, layered canopy, petal drift.
+
+    v2.74: trunks stagger alternately off-axis with deterministic height jitter
+    so the row reads as planted trees, not a colonnade; canopy is two layered
+    slabs (low spread + high crown) per tree; petals are N small drift patches
+    along the walk whose count follows zen_petal_density instead of one slab.
+    New props: zen_canopy_spread (default 1.0), zen_petal_density (0.0-1.0, 0.6).
+    """
     L = getattr(props, "gb_length", 6.0)
     W = getattr(props, "gb_width", 2.6)
     H = getattr(props, "gb_height", 0.32)
     t = getattr(props, "gb_wall_thick", 0.1)
+    spread = getattr(props, "zen_canopy_spread", 1.0)
+    petal_density = max(0.0, min(1.0, getattr(props, "zen_petal_density", 0.6)))
     parts = []
 
     walk = M._gb_box(tree, (W * 0.55, L, t), (0, 0, t * 0.5), base_x, 0, "trim:path_slab")
@@ -468,41 +477,125 @@ def build_zen_cherry_allee(tree, M, props, base_x=-1400):
 
     n_trunks = max(3, int(L / 2.2))
     for i in range(n_trunks):
+        frac = i / max(n_trunks - 1, 1)
+        py = -L * 0.42 + frac * L * 0.84
         for sx in (-1, 1):
-            py = -L * 0.42 + (i / max(n_trunks - 1, 1)) * L * 0.84
+            # deterministic jitter from index: alternate sides lean out/in,
+            # heights vary so crowns don't form a flat ceiling
+            lean = 0.06 * ((i % 3) - 1) * sx
+            jitter_h = 1.0 + 0.08 * ((i * 2 + (1 if sx > 0 else 0)) % 3 - 1)
+            tx = sx * W * 0.42 + lean
+            trunk_h = H * 2.8 * jitter_h
             trunk = M._gb_box(
                 tree,
-                (t * 2.2, t * 2.2, H * 2.8),
-                (sx * (W * 0.42), py, H * 1.5),
+                (t * 2.2, t * 2.2, trunk_h),
+                (tx, py, H * 0.2 + trunk_h * 0.5),
                 base_x,
                 80 + i * 20 + sx,
                 "trim:trunk_base",
             )
             if trunk:
                 parts.append(trunk)
-            canopy = M._gb_box(
-                tree,
-                (W * 0.28, W * 0.28, t * 1.4),
-                (sx * (W * 0.42), py, H * 2.9),
-                base_x,
-                120 + i * 20 + sx,
-                "trim:blossom_canopy",
-            )
-            if canopy:
-                parts.append(canopy)
+            crown_z = H * 0.2 + trunk_h
+            # low spread slab + high crown slab, widths scaled by spread prop
+            for layer, (ww, tt, dz) in enumerate((
+                (W * 0.30 * spread, t * 1.4, 0.05),
+                (W * 0.20 * spread, t * 1.2, 0.28),
+            )):
+                canopy = M._gb_box(
+                    tree,
+                    (ww, ww * (1.1 + 0.15 * ((i + layer) % 2)), tt),
+                    (tx + 0.05 * ((i + layer) % 2 - 0.5) * 2, py, crown_z + dz),
+                    base_x,
+                    120 + i * 20 + sx * 2 + layer * 5,
+                    "trim:blossom_canopy",
+                )
+                if canopy:
+                    parts.append(canopy)
 
-    petal = M._gb_box(
-        tree,
-        (W * 0.5, L * 0.35, t * 0.45),
-        (W * 0.12, L * 0.22, t * 0.75),
-        base_x,
-        500,
-        "trim:petal_scatter",
-    )
-    if petal:
-        parts.append(petal)
+    n_petals = max(1, int(round(L * 0.9 * petal_density)) + 1)
+    for k in range(n_petals):
+        f = (k + 0.5) / n_petals
+        px = W * 0.12 * (1 if k % 2 == 0 else -1) * (0.4 + 0.6 * ((k * 3) % 4) / 3)
+        petal = M._gb_box(
+            tree,
+            (W * 0.16, L / max(n_petals, 1) * 0.7, t * 0.4),
+            (px, -L * 0.5 + f * L, t * 0.7),
+            base_x,
+            500 + k * 10,
+            "trim:petal_scatter",
+        )
+        if petal:
+            parts.append(petal)
 
     return M._gb_join(tree, parts, base_x + 1300, 0)
+
+
+def build_zen_teahouse(tree, M, props, base_x=-1400):
+    """Tea-ceremony house - raised timber floor, post ring, tie beams, noki eave.
+
+    v2.74: fills the ZEN_TEAHOUSE stub referenced by the tea-garden graphs.
+    Reads teahouse_width/teahouse_depth first (graph prop names), falls back
+    to gb_width/gb_depth. Kit language matches kairo/haiden: box posts,
+    beam course, deep eave slab, rear garden wall, genkan entry step.
+    """
+    W = getattr(props, "teahouse_width", getattr(props, "gb_width", 4.5))
+    D = getattr(props, "teahouse_depth", getattr(props, "gb_depth", 4.0))
+    H = getattr(props, "gb_height", 2.6)
+    t = getattr(props, "gb_wall_thick", 0.14)
+    parts = []
+
+    floor = M._gb_box(tree, (W, D, t), (0, 0, 0.45 + t * 0.5), base_x, 0, "trim:floor")
+    if floor:
+        parts.append(floor)
+
+    step = M._gb_box(
+        tree, (W * 0.3, t * 2.2, 0.22), (0, D * 0.5 + t, 0.11),
+        base_x, 40, "trim:genkan_step",
+    )
+    if step:
+        parts.append(step)
+
+    # 6-post ring: corners + mid posts on long sides
+    for i, (px, py) in enumerate((
+        (-W * 0.44, -D * 0.42), (W * 0.44, -D * 0.42),
+        (-W * 0.44, 0), (W * 0.44, 0),
+        (-W * 0.44, D * 0.42), (W * 0.44, D * 0.42),
+    )):
+        post = M._gb_box(
+            tree, (t * 1.2, t * 1.2, H * 0.72),
+            (px, py, 0.45 + H * 0.36),
+            base_x, 100 + i * 30, "trim:post",
+        )
+        if post:
+            parts.append(post)
+
+    for sy in (-1, 1):
+        beam = M._gb_box(
+            tree, (W * 0.94, t * 1.1, t * 0.9),
+            (0, sy * D * 0.42, 0.45 + H * 0.70),
+            base_x, 300 + sy * 10, "trim:tie_beam",
+        )
+        if beam:
+            parts.append(beam)
+
+    eave = M._gb_box(
+        tree, (W * 1.18, D * 1.18, t * 1.4),
+        (0, 0, 0.45 + H * 0.78),
+        base_x, 500, "trim:noki_eave",
+    )
+    if eave:
+        parts.append(eave)
+
+    wall = M._gb_box(
+        tree, (W * 0.9, t, H * 0.5),
+        (0, -D * 0.5 + t * 0.5, 0.45 + H * 0.30),
+        base_x, 600, "trim:wall_panel",
+    )
+    if wall:
+        parts.append(wall)
+
+    return M._gb_join(tree, parts, base_x + 1500, 0)
 
 
 def build_zen_water_edge(tree, M, props, base_x=-1400):
