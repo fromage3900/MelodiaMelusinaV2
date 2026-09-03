@@ -89,13 +89,15 @@ This is the central cross-reference for all production-critical documentation. E
 
 ---
 
-## 9. Deprecated / Archive
+## 9. Archived
 
-| Item | Reason |
-|------|--------|
-| `deploy/cursor_*_loop.ps1` | Deprecated for parallel coding wakes (AGENTS.md) |
-| `deploy/surreal_*_loop.ps1` | Deprecated (superseded by jcode swarm) |
-| `deploy/stop_*_loop.ps1` | Deprecated (cleanup scripts for deprecated loops) |
+All deprecated scripts have been moved to `deploy/archive/deprecated-loops/`:
+
+- `cursor_*_loop.ps1` — deprecated for parallel coding wakes (AGENTS.md)
+- `surreal_*_loop.ps1` — deprecated (superseded by jcode swarm)
+- `stop_*_loop.ps1` — deprecated (cleanup scripts for deprecated loops)
+
+Preserved for reference. Do not reactivate without owner approval.
 
 ---
 
