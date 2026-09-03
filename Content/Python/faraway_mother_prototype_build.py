@@ -66,6 +66,9 @@ MOON_HAZE = {
     "auto_exposure_max": 2.0,
 }
 
+TERRAIN_LABEL = "FM_FabricRidge_Terrain"
+
+
 def log(m):
     unreal.log(f"[FarawayMother] {m}")
 
@@ -205,49 +208,39 @@ def height_aware_place(terrain_actor):
             log(f"Skip {label} — mesh not found: {mesh_path}")
             continue
         mi = unreal.EditorAssetLibrary.load_asset(mi_path) if mi_path else None
-        # Raycast: trace from high above XY down onto terrain collision
-        start = unreal.Vector(xy[0], xy[1], 5000)
-        end = unreal.Vector(xy[0], xy[1], -1000)
-        hit_z = None
-        try:
-            # Use line trace against world collision (terrain actor has collision)
-            result = unreal.SystemLibrary.line_trace_single(
-                world,
-                start, end,
-                unreal.TraceTypeQuery.TRACE_TYPE_QUERY1,
-                False,  # trace complex?
-                [], unreal.DrawDebugTrace.NONE, unreal.HitResult(), True,
-                unreal.LinearColor(1,0,0,1), unreal.LinearColor(0,1,0,1), 5.0
+        # Height-aware placement: trace straight down onto the TERRAIN only.
+        # Ignore the moon-haze volume box / PPV (they span the trace corridor) and any
+        # FM_* ornament already placed, so an idempotent re-run cannot stack an ornament
+        # on top of a previous one.
+        les_ = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+        ignore_actors = [
+            a for a in les_.get_all_level_actors()
+            if a.get_actor_label().startswith("FM_") and a.get_actor_label() != TERRAIN_LABEL
+        ]
+        start = unreal.Vector(xy[0], xy[1], 25000)
+        end = unreal.Vector(xy[0], xy[1], -10000)
+        hit = unreal.SystemLibrary.line_trace_single(
+            world, start, end,
+            unreal.TraceTypeQuery.ECC_VISIBILITY,
+            True,                      # trace complex: terrain is Nanite, needs complex
+            ignore_actors,
+            unreal.DrawDebugTrace.NONE,
+            True,                      # ignore self
+        )
+        d = hit.to_dict()
+        if not d["blocking_hit"]:
+            raise RuntimeError(
+                f"{label}: height-aware trace found no terrain at ({xy[0]},{xy[1]}). "
+                f"Terrain actor '{TERRAIN_LABEL}' missing or has no collision."
             )
-            # line_trace_single returns bool in older API; try alternative
-            hit_z = None
-        except:
-            pass
-        # Fallback: use EditorLevelLibrary line trace or simply sample height from terrain math
-        # Since trace API varies, fallback to height sampling via terrain actor bounds estimate
-        if hit_z is None:
-            # Fallback 1: try EditorActorSubsystem trace
-            try:
-                # Use World collision query via KismetSystemLibrary
-                hit = unreal.KismetSystemLibrary.line_trace_single(
-                    world, start, end,
-                    unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, [], unreal.DrawDebugTrace.NONE, unreal.HitResult(), True
-                )
-                # hit is tuple (bool, HitResult)
-                if isinstance(hit, tuple) and len(hit) >= 2:
-                    ok, h = hit[0], hit[1]
-                    if ok and hasattr(h, "location"):
-                        hit_z = h.location.z
-                    elif ok and hasattr(h, "impact_point"):
-                        hit_z = h.impact_point.z
-                elif hasattr(hit, "location"):
-                    hit_z = hit.location.z
-            except Exception as e:
-                log(f"raycast fallback failed for {label}: {e}")
-        if hit_z is None:
-            # Last fallback: approximate Z from terrain generation formula (mid height)
-            hit_z = 35  # rough median fabric ridge height
-            log(f"{label}: raycast no hit — using fallback Z={hit_z}")
+        hit_actor = d["hit_actor"]
+        if hit_actor is None or hit_actor.get_actor_label() != TERRAIN_LABEL:
+            raise RuntimeError(
+                f"{label}: trace hit '{hit_actor.get_actor_label() if hit_actor else None}' "
+                f"instead of '{TERRAIN_LABEL}'."
+            )
+        hit_z = d["impact_point"].z
+        log(f"{label}: terrain Z={hit_z:.2f} (+{z_off} offset)")
 
         final_z = (hit_z if hit_z is not None else 0) + z_off
         loc = unreal.Vector(xy[0], xy[1], final_z)

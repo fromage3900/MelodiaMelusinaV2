@@ -138,6 +138,29 @@ VARIANTS = {
         rough_bg=0.40, rough_flake=0.01, metallic_flake=0.95,
         glow_intensity=0.8, flake_density=80, flake_size_range=(5, 18),
     ),
+    # === Rhinestone / gem-stud + glitter-water (2026-09-02, "more bling" expansion) ===
+    "RhinestoneBoucle": dict(
+        bg=(6, 8, 12), base_silk=(30, 26, 40), silk_hi=(58, 52, 74),
+        gem_core=(240, 250, 255), gem_star=(255, 255, 255), gem_facet=(210, 240, 255),
+        gold_set=(255, 210, 120), gold_shadow=(200, 160, 80),
+        glow=(255, 245, 230), sparkle_colors=[(255, 255, 255), (220, 240, 255), (255, 230, 200)],
+        rough_silk=0.62, rough_gem=0.02, rough_set=0.25, metallic_gem=1.0, metallic_set=0.9,
+        glow_intensity=0.85, gem_density=90, gem_size_range=(8, 22), sparkle_intensity=0.9,
+    ),
+    "RhinestoneShorewake": dict(
+        bg=(18, 26, 38), base_silk=(30, 52, 70), silk_hi=(54, 84, 104),
+        gem_core=(235, 248, 255), gem_star=(255, 255, 255), gem_facet=(200, 232, 255),
+        gold_set=(255, 215, 130), gold_shadow=(190, 150, 80),
+        glow=(210, 245, 255), sparkle_colors=[(255, 255, 255), (210, 240, 255), (255, 245, 210)],
+        rough_silk=0.56, rough_gem=0.015, rough_set=0.26, metallic_gem=1.0, metallic_set=0.9,
+        glow_intensity=0.9, gem_density=110, gem_size_range=(5, 16), sparkle_intensity=1.0,
+    ),
+    "GlitterWater": dict(
+        bg=(14, 22, 34), water_deep=(26, 48, 70), water_hi=(70, 120, 150),
+        flake_colors=[(255, 255, 255), (210, 240, 255), (255, 235, 200), (200, 255, 230)],
+        rough_water=0.10, rough_flake=0.02, metallic_flake=1.0,
+        glow_intensity=0.95, flake_density=140, flake_size_range=(2, 9),
+    ),
     "FractalCathedral": dict(
         stone=(45, 42, 50), gold=(220, 184, 96), glow=(180, 220, 255),
         void=(15, 12, 20), accent=(150, 50, 255),
@@ -193,6 +216,19 @@ VARIANTS = {
         pearl=(240, 235, 245), pearl_shadow=(210, 205, 225), nacre=(200, 220, 255),
         thread=(255, 215, 150), glow=(220, 240, 255),
         rough_pearl=0.12, rough_thread=0.30, glow_intensity=0.55, weave_scale=0.5,
+    ),
+    # === ShorewakeTidepool — water-coastal: foam crests + Chladni tide-weave + nacre
+    # iridescence (2026-09-02). Matches Melusina's Shorewake dress. Deep ocean-to-tide
+    # gradient, white foam lacing along the standing-wave crests, wet-sand nacre sheen.
+    "ShorewakeTidepool": dict(
+        ocean_deep=(24, 64, 84), ocean=(44, 108, 138), tide=(96, 168, 178),
+        foam=(244, 250, 255), foam_shadow=(214, 228, 240),
+        nacre=(216, 236, 255), nacre_hi=(255, 246, 220),
+        algae=(120, 190, 170), shell=(240, 224, 208),
+        glow=(200, 245, 255),
+        rough_foam=0.18, rough_tide=0.35, rough_nacre=0.08,
+        glow_intensity=0.55, tide_freq=6, foam_density=0.5,
+        chladni_modes=[(5, 7), (9, 6), (13, 11)],
     ),
     "StarlitLoom": dict(
         void=(12, 14, 28), loom_wood=(80, 60, 45), star=(255, 250, 230),
@@ -417,6 +453,27 @@ VARIANTS = {
         rough_petal=0.34, rough_node=0.14, rough_stigma=0.22, rough_leaf=0.60, rough_dew=0.06,
         glow_intensity=0.7, bloom_count=14, petal_count=5,
         chladni_modes=[(3, 2), (6, 5), (9, 8), (12, 11)],
+    ),
+    # === AntiqueDollRose — dusty-rose layered damask + gilt trim (2026-09-03, wardrobe) ===
+    # Primary Chladni mode (5,3): verified free of all 10 garment-layer + 4 water-zone
+    # modes in universal_garment_system.json (vocab check PASS, 0 collisions).
+    "AntiqueDollRose": dict(
+        rose_deep=(122, 62, 76), rose=(196, 130, 142), rose_hi=(232, 186, 196),
+        mauve_shadow=(148, 104, 116), gilt=(232, 196, 120), gilt_hi=(255, 226, 160),
+        glow=(255, 214, 170),
+        rough_rose=0.72, rough_damask=0.58, rough_gilt=0.24,
+        glow_intensity=0.4, damask_freq=6,
+        chladni_modes=[(5, 3), (10, 7), (15, 12)],
+    ),
+    # === ButterflyWingMembrane — iridescent wing membrane + vein structure (2026-09-03, wardrobe) ===
+    # Primary Chladni mode (7,4): verified free of all garment/water modes (same vocab check).
+    "ButterflyWingMembrane": dict(
+        membrane_deep=(18, 30, 52), membrane=(46, 92, 148), membrane_hi=(120, 200, 235),
+        vein_dark=(10, 16, 30), vein_edge=(200, 230, 255),
+        eyespot=(255, 170, 90), eyespot_ring=(20, 24, 44), glow=(150, 220, 255),
+        rough_membrane=0.22, rough_vein=0.45, rough_scale=0.10,
+        glow_intensity=0.55, vein_freq=9, scale_freq=42,
+        chladni_modes=[(7, 4), (12, 9), (17, 13)],
     ),
 }
 
@@ -1031,6 +1088,15 @@ def build_glitter_crystal(h, w, frame, total_frames):
     return _build_glitter_pile(h, w, frame, total_frames, "GlitterCrystal")
 
 
+def _build_rhinestone(h, w, frame, total_frames, variant_name):
+    return _build_new_variant(h, w, frame, total_frames, variant_name)
+
+
+def build_rhinestone_boucle(h, w, frame, total_frames): return _build_rhinestone(h, w, frame, total_frames, "RhinestoneBoucle")
+def build_rhinestone_shorewake(h, w, frame, total_frames): return _build_rhinestone(h, w, frame, total_frames, "RhinestoneShorewake")
+def build_glitter_water(h, w, frame, total_frames): return _build_rhinestone(h, w, frame, total_frames, "GlitterWater")
+
+
 def _build_architectural_variant(h, w, frame, total_frames, variant_name):
     """Generic architectural landscape builder — mathematical grandeur."""
     p = VARIANTS[variant_name]
@@ -1348,6 +1414,139 @@ def _build_new_variant(h, w, frame, total_frames, variant_name):
         metallic = facet * 0.15 + crystal_mask * 0.05
         emissive = mask_color(facet * smoothstep(0.5, 1.0, cym), col(p["glow"]) * p["glow_intensity"] * 0.7)
         iri = facet * 0.85 + crystal_mask * 0.4 + cym * 0.15
+    elif variant_name == "RhinestoneBoucle":
+        # Faceted gem-stud bling on a satin-dark base: chunky bicone gems with
+        # star-gleam facets, gold prong-setting ring, high sparkle emission.
+        gem_mask = np.zeros((h, w), np.float32)
+        star = np.zeros((h, w), np.float32)
+        rng = np.random.RandomState(abs(hash(variant_name)) % 10000 + frame)
+        for i in range(p["gem_density"]):
+            cx = rng.randint(0, w); cy = rng.randint(0, h)
+            size = rng.randint(*p["gem_size_range"])
+            sides = rng.choice([6, 8])            # rhinestones are faceted 6/8-cut
+            rot = rng.rand() * 2 * np.pi + phase * 0.15
+            g = crystal_shape(h, w, cx, cy, size, sides, rot)
+            gem_mask = np.clip(gem_mask + g, 0, 1)
+            star = np.clip(star + smoothstep(0.8, 0.97, g) * 0.8, 0, 1)  # crown bright facet
+        set_mask = smoothstep(0.55, 0.9, gem_mask)  # gold prong ring reads at rim
+        silk = warped_fbm(h, w, 12, 3, 0.2, SEED + 900 + frame)
+        height = gem_mask * 1.0 + set_mask * 0.35 + silk * 0.06
+        base = mix(col(p["bg"]), col(p["base_silk"]), silk)
+        base = mix(base, col(p["silk_hi"]), smoothstep(0.5, 0.8, silk))
+        base = mix(base, col(p["gem_facet"]), gem_mask * 0.9)
+        base = mix(base, col(p["gem_star"]), star)
+        base = mix(base, col(p["gold_set"]), set_mask * 0.6)
+        rough = mix(p["rough_silk"], p["rough_gem"], gem_mask)
+        rough = mix(rough, p["rough_set"], set_mask * 0.4)
+        metallic = gem_mask * p["metallic_gem"] + set_mask * p["metallic_set"] * 0.4
+        spectral = np.sin(phase * 0.5 + (np.mgrid[0:h, 0:w][1] / w) * 2 + (np.mgrid[0:h, 0:w][0] / h) * 3)
+        emissive = mask_color(star * smoothstep(0.35, 0.85, (spectral * 0.5 + 0.5)),
+                              col(p["glow"]) * p["glow_intensity"])
+        emissive = np.clip(emissive + mask_color(gem_mask * 0.3, col(p["gem_star"]) * 0.5), 0, 1)
+        iri = gem_mask * 0.9 + star * 0.5 + set_mask * 0.3
+    elif variant_name == "RhinestoneShorewake":
+        # Same bling as Boucle but on the Shorewake teal-silk water base (her dress).
+        gem_mask = np.zeros((h, w), np.float32)
+        star = np.zeros((h, w), np.float32)
+        rng = np.random.RandomState(abs(hash(variant_name)) % 10000 + frame)
+        for i in range(p["gem_density"]):
+            cx = rng.randint(0, w); cy = rng.randint(0, h)
+            size = rng.randint(*p["gem_size_range"])
+            sides = rng.choice([6, 8])
+            rot = rng.rand() * 2 * np.pi + phase * 0.18
+            g = crystal_shape(h, w, cx, cy, size, sides, rot)
+            gem_mask = np.clip(gem_mask + g, 0, 1)
+            star = np.clip(star + smoothstep(0.8, 0.97, g) * 0.85, 0, 1)
+        set_mask = smoothstep(0.55, 0.9, gem_mask)
+        silk = warped_fbm(h, w, 14, 3, 0.22, SEED + 1030 + frame)
+        tide = smoothstep(0.35, 0.7, cym)
+        height = gem_mask * 1.0 + set_mask * 0.35 + tide * 0.3 + silk * 0.06
+        base = mix(col(p["bg"]), col(p["base_silk"]), tide * 0.7 + silk * 0.3)
+        base = mix(base, col(p["silk_hi"]), smoothstep(0.55, 0.85, silk) * tide)
+        base = mix(base, col(p["gem_facet"]), gem_mask * 0.92)
+        base = mix(base, col(p["gem_star"]), star)
+        base = mix(base, col(p["gold_set"]), set_mask * 0.65)
+        rough = mix(p["rough_silk"], p["rough_gem"], gem_mask)
+        rough = mix(rough, p["rough_set"], set_mask * 0.4)
+        metallic = gem_mask * p["metallic_gem"] + set_mask * p["metallic_set"] * 0.42
+        spectral = np.sin(phase * 0.5 + (np.mgrid[0:h, 0:w][1] / w) * 2.5 + (np.mgrid[0:h, 0:w][0] / h) * 3.5)
+        emissive = mask_color(star * smoothstep(0.3, 0.85, (spectral * 0.5 + 0.5)),
+                              col(p["glow"]) * p["glow_intensity"])
+        emissive = np.clip(emissive + mask_color(gem_mask * 0.32, col(p["gem_star"]) * 0.55), 0, 1)
+        iri = gem_mask * 0.9 + star * 0.55 + tide * 0.25
+    elif variant_name == "GlitterWater":
+        # Glitter flecks scattered over flowing water — bling + wet.
+        flake_mask = np.zeros((h, w), np.float32)
+        flake_color = np.zeros((h, w, 3), np.float32)
+        rng = np.random.RandomState(abs(hash(variant_name)) % 10000 + frame)
+        for i in range(p["flake_density"]):
+            cx = rng.randint(0, w); cy = rng.randint(0, h)
+            drift_x = int(np.sin(phase * 0.5 + i * 0.7) * min(h, w) * 0.01)
+            drift_y = int(np.cos(phase * 0.4 + i * 1.1) * min(h, w) * 0.008)
+            size = rng.randint(*p["flake_size_range"])
+            sides = rng.choice([4, 5, 6, 8])
+            rot = rng.rand() * 2 * np.pi + phase * 0.1
+            g = crystal_shape(h, w, (cx + drift_x) % w, (cy + drift_y) % h, size, sides, rot)
+            flake_mask = np.clip(flake_mask + g, 0, 1)
+            c = col(p["flake_colors"][rng.randint(0, len(p["flake_colors"]))])
+            flake_color = np.clip(flake_color + mask_color(g, c), 0, 1)
+        flow = warped_fbm(h, w, 12, 4, 0.3, SEED + 700 + frame)
+        wave = (np.cos((np.mgrid[0:h, 0:w][1] / w) * 6 * np.pi + phase) * 0.5 + 0.5)
+        height = flake_mask * 0.9 + wave * 0.25 + (1 - flow) * 0.12
+        base = mix(col(p["bg"]), col(p["water_deep"]), wave)
+        base = mix(base, col(p["water_hi"]), smoothstep(0.55, 0.9, wave))
+        base = mix(base, flake_color * flake_mask[:, :, None], flake_mask[:, :, None])
+        rough = mix(p["rough_water"], 0.01, (1 - flow) * 0.3)  # calms flow = glass
+        rough = mix(rough, p["rough_flake"], flake_mask)
+        metallic = flake_mask * p["metallic_flake"]
+        emissive = mask_color(flake_mask * smoothstep(0.4, 0.9, flow),
+                              col(p["flake_colors"][0]) * p["glow_intensity"] * 0.7)
+        iri = flake_mask * 0.8 + (1 - flow) * 0.25
+    elif variant_name == "ShorewakeTidepool":
+        # Water-coastal: Chladni tide-line weave + white foam crests + nacre wet-sand sheen.
+        # Physics-accurate eigenmode lane: drive the tide relief from the exact
+        # simply-supported plate eigenmodes (chladni_eigen.PlateSpec.mode_shape), per the
+        # AUDIO_HERO plan §7 lane, NOT the heuristic freqs of the generic preamble.
+        try:
+            from chladni_eigen import PlateSpec
+        except Exception:
+            PlateSpec = None  # fall back to cymatic_chladni below
+        if PlateSpec is not None:
+            plate = PlateSpec("crystal", E=90e9, rho=2700, nu=0.24, h=0.003, Lx=0.20, Ly=0.20)
+            # Standing-wave phase crawl: sweep the eigenmode combination so the
+            # flipbook frames actually move (static mode_shape alone yields a
+            # phase-independent relief -> identical frames).
+            e1 = plate.mode_shape(2, 2, h, w)   # wide basin (nodal cross)
+            e2 = plate.mode_shape(2, 3, h, w)   # finer tide ribs
+            t = phase / (2 * np.pi)             # 0..1 across the loop
+            drift = np.clip((np.sin(phase) * 0.5 + 0.5), 0, 1)
+            # slow cross-basin exchange + a thin moving crest term on the fine ribs
+            cym = (e1 * (0.6 - drift * 0.25) + e2 * (0.35 + drift * 0.25)
+                   + warp * 0.15 + crystal_shape(h, w, 0.2*w, 0.3*h, min(h, w) * 0.02, 8,
+                                                 rotation=phase) * 0.4).astype(np.float32)
+        else:
+            cym = cymatic_chladni(h, w, freqs=p["chladni_modes"],
+                                  phases=[phase*0.5, phase*0.7+1.1, phase*0.3+1.9],
+                                  weights=[1.0, 0.6, 0.4])
+        tide = smoothstep(0.42, 0.72, cym)                     # tide bands / water depth steps
+        crest = smoothstep(0.6, 0.82, np.abs(cym - 0.5)*2)     # standing-wave crest lines
+        foam = smoothstep(0.85, 0.97, tileable_value_noise(h, w, 28, SEED+555)) * crest
+        foam = np.clip(foam * (p["foam_density"] + cym*0.5), 0, 1)
+        shell = crystal_shape(h, w, w*0.24, h*0.7, min(h,w)*0.05, 10) \
+              + crystal_shape(h, w, w*0.78, h*0.3, min(h,w)*0.04, 10)
+        height = foam * 0.5 + crest * 0.3 + tide * 0.12 + warp * 0.08
+        base = mix(col(p["ocean_deep"]), col(p["ocean"]), 1 - tide)
+        base = mix(base, col(p["tide"]), tide * 0.5)
+        base = mix(base, col(p["foam"]), foam)
+        base = mix(base, col(p["shell"]), shell * 0.8)
+        base = mix(base, col(p["nacre"]), crest * 0.4)
+        rough = mix(p["rough_tide"], p["rough_foam"], foam)
+        rough = mix(rough, p["rough_nacre"], crest * 0.5)
+        metallic = foam * 0.05 + shell * 0.1
+        emissive = mask_color(foam * smoothstep(0.4, 0.8, warp), col(p["glow"]) * p["glow_intensity"])
+        emissive += mask_color(crest * 0.35, col(p["nacre_hi"]) * 0.3)
+        emissive = np.clip(emissive, 0, 1)
+        iri = foam * 0.7 + crest * 0.6 + (1 - tide) * 0.3
     else:  # ChoirStone
         veins = smoothstep(0.65, 0.85, np.abs(cym - 0.5) * 2)
         height = veins * 0.6 + warp * 0.15 + cym * 0.1
@@ -1369,6 +1568,7 @@ def build_starlit_loom(h, w, frame, total_frames): return _build_new_variant(h, 
 def build_frost_bloom(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "FrostBloom")
 def build_choir_stone(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "ChoirStone")
 def build_crystal_cathedral(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "CrystalCathedral")
+def build_shorewake_tidepool(h, w, frame, total_frames): return _build_new_variant(h, w, frame, total_frames, "ShorewakeTidepool")
 
 # === Faraway Mother fabric mountain builders (8) ===
 def _build_faraway_variant(h, w, frame, total_frames, variant_name):
@@ -2285,6 +2485,91 @@ def build_melodia_aurora_glass(h, w, frame, total_frames):
     return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
 
 
+    iri = (band_g + band_p) * 0.6 + nodal * 0.6 + warp * 0.3
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_antique_doll_rose(h, w, frame, total_frames):
+    """Dusty-rose layered damask with gilt trim lines on Chladni nodal lines."""
+    p = VARIANTS["AntiqueDollRose"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.3 + i * 0.2) + i * 1.2 for i in range(len(modes))],
+                          weights=[1.0, 0.7, 0.5][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+    # Layered damask: diamond lattice medallions gated by the Chladni field
+    lattice = (np.sin((nx + ny) * p["damask_freq"] * 2 * np.pi) *
+               np.sin((nx - ny) * p["damask_freq"] * 2 * np.pi) * 0.5 + 0.5)
+    medallion = smoothstep(0.55, 0.85, lattice) * smoothstep(0.35, 0.7, cym)
+    medallion_core = smoothstep(0.75, 0.95, lattice) * smoothstep(0.45, 0.75, cym)
+    warp = warped_fbm(h, w, 24, 4, 0.25, SEED + 810)
+    pile = warped_fbm(h, w, 48, 3, 0.15, SEED + 811)  # dusty velvet pile variation
+    # Gilt trim: thin bright lines riding the nodal crests + lattice edges
+    gilt_line = smoothstep(0.88, 0.97, nodal)
+    gilt_edge = smoothstep(0.80, 0.95, 1.0 - np.abs(lattice - 0.5) * 2.0) * smoothstep(0.4, 0.7, cym)
+    gilt = np.clip(gilt_line + gilt_edge * 0.7, 0, 1)
+    gilt_core = smoothstep(0.93, 0.99, nodal)
+    height = np.clip(medallion * 0.35 + gilt * 0.5 + warp * 0.10 + pile * 0.05, 0, 1)
+    base = mix(col(p["rose_deep"]), col(p["rose"]), warp * 0.5 + pile * 0.3)
+    base = mix(base, col(p["mauve_shadow"]), (1 - cym) * 0.35)
+    base = mix(base, col(p["rose_hi"]), medallion * 0.75 + medallion_core * 0.4)
+    base = mix(base, col(p["gilt"]), gilt * 0.92)
+    base = mix(base, col(p["gilt_hi"]), gilt_core * 0.6)
+    base = np.clip(base, 0, 1)
+    rough = mix(p["rough_rose"], p["rough_damask"], medallion)
+    rough = mix(rough, p["rough_gilt"], gilt)
+    metallic = np.clip(gilt * 0.85, 0, 1)
+    emissive = mask_color(gilt_core * smoothstep(0.4, 0.8, cym),
+                          col(p["glow"]) * p["glow_intensity"])
+    emissive = np.clip(emissive, 0, 1)
+    iri = np.clip(medallion * 0.25 + gilt * 0.3 + pile * 0.1, 0, 1)
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
+def build_butterfly_wing_membrane(h, w, frame, total_frames):
+    """Iridescent wing membrane: branching vein lattice + shimmering scale rows."""
+    p = VARIANTS["ButterflyWingMembrane"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    modes = p["chladni_modes"]
+    cym = cymatic_chladni(h, w, freqs=modes,
+                          phases=[phase * (0.35 + i * 0.2) + i * 1.0 for i in range(len(modes))],
+                          weights=[1.0, 0.6, 0.45][:len(modes)])
+    nodal = 1.0 - np.abs(cym - 0.5) * 2.0
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = xx / w, yy / h
+    warp = warped_fbm(h, w, 12, 4, 0.3, SEED + 820)
+    # Branching veins: two warped stripe orientations (tileable — pure sin + warp)
+    v1 = np.sin((nx * 0.8 + ny * 0.6) * p["vein_freq"] * 2 * np.pi + warp * 5.0)
+    v2 = np.sin((nx * 0.6 - ny * 0.8) * p["vein_freq"] * 1.4 * 2 * np.pi - warp * 4.0 + 1.3)
+    vein = smoothstep(0.72, 0.95, np.abs(v1)) * 0.7 + smoothstep(0.78, 0.96, np.abs(v2)) * 0.5
+    vein = np.clip(vein, 0, 1)
+    midrib = smoothstep(0.85, 0.98, np.abs(v1))  # raised primary vein
+    # Scale rows: fine lattice shimmering with the Chladni field
+    scales = (np.sin(nx * p["scale_freq"] * 2 * np.pi + warp * 3.0) *
+              np.sin(ny * p["scale_freq"] * 2 * np.pi - warp * 2.0) * 0.5 + 0.5)
+    scale_row = smoothstep(0.45, 0.75, scales)
+    # Membrane gradient: deep root tones -> luminous rim, Chladni cells breathe
+    cells = smoothstep(0.4, 0.75, cym)
+    spectral = np.sin(phase * 0.5 + nx * 6.0 + ny * 9.0 + warp * 4.0) * 0.5 + 0.5
+    height = np.clip(vein * 0.5 + midrib * 0.3 + scale_row * 0.15 + cells * 0.12, 0, 1)
+    base = mix(col(p["membrane_deep"]), col(p["membrane"]), cells * 0.6 + warp * 0.3)
+    base = mix(base, col(p["membrane_hi"]), scale_row * smoothstep(0.35, 0.8, spectral) * 0.7)
+    base = mix(base, col(p["vein_dark"]), vein * 0.85)
+    base = mix(base, col(p["vein_edge"]), midrib * smoothstep(0.5, 0.9, nodal) * 0.5)
+    base = np.clip(base, 0, 1)
+    rough = mix(p["rough_membrane"], p["rough_vein"], vein)
+    rough = mix(rough, p["rough_scale"], scale_row * 0.6)
+    metallic = np.clip(vein * 0.1 + scale_row * 0.05, 0, 1)
+    emissive = mask_color(scale_row * smoothstep(0.55, 0.9, nodal),
+                          col(p["glow"]) * p["glow_intensity"] * 0.7)
+    emissive = np.clip(emissive, 0, 1)
+    iri = np.clip(0.55 + scale_row * 0.35 + nodal * 0.25 + spectral * 0.15 - vein * 0.45, 0, 1)
+    return _assemble(h, w, base, rough, metallic, height, emissive, iri, np.ones((h, w), np.float32))
+
+
 # === Main ===
 
 BUILDERS = {
@@ -2304,6 +2589,9 @@ BUILDERS = {
     "GlitterGold": build_glitter_gold,
     "GlitterIridescent": build_glitter_iridescent,
     "GlitterCrystal": build_glitter_crystal,
+    "RhinestoneBoucle": build_rhinestone_boucle,
+    "RhinestoneShorewake": build_rhinestone_shorewake,
+    "GlitterWater": build_glitter_water,
     "FractalCathedral": build_fractal_cathedral,
     "GoldenSpiralGrove": build_golden_spiral_grove,
     "VoronoiSacredGeometry": build_voronoi_sacred_geometry,
@@ -2318,6 +2606,7 @@ BUILDERS = {
     "FrostBloom": build_frost_bloom,
     "ChoirStone": build_choir_stone,
     "CrystalCathedral": build_crystal_cathedral,
+    "ShorewakeTidepool": build_shorewake_tidepool,
     "RoyalVelvetBrocade": build_royal_velvet_brocade,
     "WeepingWillow": build_weeping_willow,
     "MoonlitMoss": build_moonlit_moss,
@@ -2341,6 +2630,8 @@ BUILDERS = {
     "FarawayMoonChiffon": build_faraway_moon_chiffon,
     "FarawayLullabyFleece": build_faraway_lullaby_fleece,
     "CymaticOrchid": build_cymatic_orchid,
+    "AntiqueDollRose": build_antique_doll_rose,
+    "ButterflyWingMembrane": build_butterfly_wing_membrane,
 }
 
 def main():

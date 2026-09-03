@@ -59,8 +59,9 @@ wrangle_geo.parm("class").set(0)  # detail/point/prim/vertex — point
 wrangle_geo.parm("snippet").set("""
  // thickness: ray along -N, against self
  vector dir = -normalize(v@N);
- float t = 0;
- int hit = intersect(0, v@P, dir*10, t);
+ vector hitpos; vector hituvw;
+ int hit = intersect(0, v@P, dir, hitpos, hituvw);
+ float t = hit >= 0 ? distance(hitpos, v@P) : 1.0;
  f@thickness = hit >= 0 ? t : 1.0;
  // curvature: Laplacian of N (convex >0, concave <0)
  vector lap = 0;
@@ -77,6 +78,10 @@ wrangle_geo.setInput(0, file_sop)
 # VEX: AO — 64 rays, self-exclusion (same as dress_ao_vex.py)
 wrangle_ao = sopnet.createNode("attribwrangle", "VEX_AO_64")
 wrangle_ao.parm("class").set(0)
+# spare seed parm for chi("seed") in the snippet (H22: must exist or cook fails)
+seed_tpl = hou.IntParmTemplate("seed", "Seed", 1, default_value=({seed},), min=0, max=99999999)
+wrangle_ao.addSpareParmTuple(seed_tpl)
+wrangle_ao.parm("seed").set({seed})  # template defaults mangle large ints; explicit set sticks
 wrangle_ao.parm("snippet").set("""
  // AO: hemisphere sample 64 rays, cosine-weighted, self-exclusion
  int nsamples = 64;
@@ -84,10 +89,10 @@ wrangle_ao.parm("snippet").set("""
  // seed from SEED parm on HDA / COP
  int seed = chi("seed");
  for(int i=0;i<nsamples;i++) {{
-   vector dir = sample_direction_uniform(set(rand(seed*100+i), rand(seed*200+i), rand(seed*300+i)));
+   vector dir = sample_direction_uniform(rand(seed*7+i*131+@ptnum*17));
    dir = dir * sign(dot(dir, v@N)); // hemisphere
-   float t;
-   int hit = intersect(0, v@P + v@N*0.001, dir*5, t);
+   vector hitpos; vector hituvw;
+   int hit = intersect(0, v@P + v@N*0.001, dir, hitpos, hituvw);
    if(hit >= 0) occ += 1.0;
  }}
  f@Ao = 1.0 - occ/float(nsamples);
@@ -108,49 +113,42 @@ copnet = img.createNode("copnet", "cop_dress_bake")
 copnet.moveToGoodPosition()
 
 # SOP Import COP (replaces File COP — feeds OUT_SOP directly)
+# H22 truth: sopimport takes resolution from its input — no resolution parms exist.
 sop_import = copnet.createNode("sopimport", "SOP_Import")
 sop_import.parm("soppath").set("/obj/dress_bake/OUT_SOP")
-sop_import.parm("resolutionx").set({size})
-sop_import.parm("resolutiony").set({size})
 
-# Labs Maps Baker COP (UV bake) — true barycentric via embedded Attribute Interpolate
-labs_baker = copnet.createNode("labs::maps_baker", "Labs_Maps_Baker")
-labs_baker.parm("resolutionx").set({size})
-labs_baker.parm("resolutiony").set({size})
-# background 1.0 for AO (exact barycentric interpolation, same as bake_rasterize_ao.py note)
-labs_baker.parm("background").set(1.0)
-labs_baker.parm("seed").set({seed})
-labs_baker.setInput(0, sop_import)
+# Bake Preprocess — cage/normal prep ahead of the geometry baker
+pre = copnet.createNode("bakepreprocess", "PRE_Bake")
+pre.setInput(0, sop_import)
 
-# Attribute Interpolate COP — explicit bg 1.0 (the fix: PIL used this, COP makes it a node)
-attr_interp = copnet.createNode("attribinterpolate", "Attr_Interpolate_AO")
-attr_interp.parm("attribute").set("Ao")
-attr_interp.parm("background").set(1.0)
-attr_interp.setInput(0, labs_baker)
+# Bake Geometry Textures ::2.0 (H22 successor to Labs Maps Baker):
+# bakes attribs incl. curvature, UV-gap filling built in (enableuvfilling = bg fill).
+# No resolution/seed parms — res flows from input, determinism from the VEX AO seed.
+baker = copnet.createNode("bakegeometrytextures::2.0", "Baker_GeoTex")
+baker.parm("uvattribute").set("uv")
+baker.parm("enableuvfilling").set(1)
+baker.setInput(0, pre)
 
-# Curvature COP — directional curvature LUT (replaces ad-hoc Worley mottle)
+# Curvature COP — directional LUT (defaults; replaces ad-hoc Worley mottle)
 curv = copnet.createNode("curvature", "Curvature_LUT")
-curv.parm("curvaturename").set("convex")
-curv.setInput(0, attr_interp)
+curv.setInput(0, baker)
 
-# Denoise COP — OpenImageDenoise (2s, kills 64-ray speckle)
-denoise = copnet.createNode("denoise::oidn", "Denoise_OIDN")
-denoise.parm("strength").set(0.5)
+# Denoise COP — AI denoiser (H22 denoiseai; kills 64-ray speckle)
+denoise = copnet.createNode("denoiseai", "Denoise_AI")
 denoise.setInput(0, curv)
 
-# File Output COPs — 4K PNGs (BC7 / BC5 split handled at UE import, not COP)
+# File Output COPs — PNGs (H22 file COP takes res from input; BC7/BC5 split at UE import)
+# One shared chain per the UE-split contract (see manifest); per-channel branches = follow-up.
 for name, chan in [("BaseColor","Cd"), ("Normal","N"), ("Emission","emit"), ("Roughness","rough")]:
     fout = copnet.createNode("file", "OUT_" + name)
     fout.parm("filename").set("$HIP/../../Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_" + name + ".png")
-    fout.parm("resolutionx").set({size})
-    fout.parm("resolutiony").set({size})
-    # Channel wiring would be per-output — simplified here; real HIP needs per-output COP branches
+    fout.setInput(0, denoise)
 
 copnet.layoutChildren()
 hou.hipFile.save(hip)
 print("[Copernicus] Saved " + hip)
-print("[Copernicus] Networks: SOP dress_bake (File->VEX thickness/curvature->VEX AO 64->OUT_SOP)")
-print("[Copernicus]           COP cop_dress_bake (SOP Import->Labs Baker bg1.0->AttrInterp->Curvature->OIDN->File Outputs)")
+print("[Copernicus] Networks: SOP dress_bake (File->VEX thickness/curvature->VEX AO 64 seeded->OUT_SOP)")
+print("[Copernicus]           COP cop_dress_bake (SOP Import->Preprocess->BakeGeoTex UVfill->Curvature->DenoiseAI->File Outputs)")
 '''
 
 def build_hip_code(hip_path: Path, posed_obj: str, seed: int, size: int) -> str:
@@ -200,10 +198,10 @@ def main():
         "size": args.size,
         "hip": str(hip_path),
         "posed_obj": args.posed_obj,
-        "replaces": "Tools/Houdini/sea_above_reef/bake_rasterize_ao.py (PIL) -> COP Labs Maps Baker bg 1.0 + OIDN",
+        "replaces": "Tools/Houdini/sea_above_reef/bake_rasterize_ao.py (PIL) -> H22 COP (Preprocess + BakeGeoTex UVfill + DenoiseAI)",
         "networks": {
-            "sop": "File -> VEX thickness/curvature/convex -> VEX AO 64 rays -> OUT_SOP",
-            "cop": "SOP Import -> Labs Maps Baker (barycentric) -> Attr Interpolate bg1.0 -> Curvature -> OIDN Denoise -> File Outputs",
+            "sop": "File -> VEX thickness/curvature/convex -> VEX AO 64 rays (spare seed parm) -> OUT_SOP",
+            "cop": "SOP Import -> Bake Preprocess -> BakeGeometryTextures::2.0 (uv, UVfill) -> Curvature -> DenoiseAI -> File Outputs",
         },
         "outputs": [
             f"Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_{k}.png"

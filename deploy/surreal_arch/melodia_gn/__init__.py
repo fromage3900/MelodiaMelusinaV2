@@ -41,6 +41,8 @@ from . import planetary_terrain  # noqa: F401 - v3 deterministic planetary music
 from . import infinity_nikki_kit  # noqa: F401 - Infinity Nikki expanded wardrobe kit (bloom pavilion/nook/runway)
 from . import garment_loom  # noqa: F401 - Melodia Wardrobe garment loom (GN UV unwrap + variation + UI panel)
 from . import garment_audio_drape  # noqa: F401 - Garment audio drape (offline bake-lane fold+drape)
+from . import garment_tension_folds  # noqa: F401 - Garment tension folds (rest/deviation fold mask)
+from . import garment_xpbd_drape  # noqa: F401 - Garment XPBD drape (research-lane Cloth Dynamics wrapper)
 from . import mother  # noqa: F401 - Faraway Mother Monolith kit (8 builders)
 from . import white_current  # noqa: F401 - White Current Monolith kit (6 builders)
 from . import god_molts  # noqa: F401 - God That Molts Monolith kit (8 builders)

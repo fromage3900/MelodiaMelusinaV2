@@ -96,7 +96,8 @@ def wire_sets(rid_by_layer_channel, log):
         fill.set_name(f"START_{layer}")
         wired, skipped = [], []
         for ch in channels:
-            ct = getattr(textureset.ChannelType, ch, None)
+            canonical = {"Metal": "Metallic"}.get(ch, ch)
+            ct = getattr(textureset.ChannelType, canonical, None)
             rid = rid_by_layer_channel.get((layer, ch))
             if ct is None or rid is None:
                 skipped.append(ch)
@@ -118,7 +119,6 @@ def run_builder():
                 project.close()
             except Exception as exc:
                 step(f"pre-open close failed: {type(exc).__name__}")
-        import resource as _r  # alias safe
         settings = project.Settings(
             normal_map_format=project.NormalMapFormat.OpenGL,  # refreshed kit is OpenGL Y+
             default_texture_resolution=2048,
@@ -126,9 +126,7 @@ def run_builder():
             default_save_path=str(SPP / "ShorewakeGarment.spp"),
         )
         project.create(str(MESH), settings=settings)
-
-        from PySide6.QtCore import QTimer
-        QTimer.singleShot(1500, _wire_and_save)
+        project.execute_when_not_busy(_wire_and_save)
     except Exception:
         step("run_builder crashed: " + traceback.format_exc()[:600])
 

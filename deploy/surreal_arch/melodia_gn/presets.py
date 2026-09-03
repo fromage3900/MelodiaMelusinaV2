@@ -150,6 +150,44 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "BEAT_PULSE_WIDE": {"Low Hz": 40.0, "High Hz": 4000.0, "Band Width": 0.2, "Audio Gain": 3.0, "Seed": 20260902, "Fold": 1.6, "Drape": 0.4},
         },
     },
+    # garment_tension_folds.py - MEL_garment_tension_folds (tension-driven folds)
+    "MEL_garment_tension_folds": {
+        "label": "Garment Tension Folds",
+        "preset_labels": {
+            "PRESSED_PLEATS": "Pressed Pleats",
+            "STRETCH_CREASES": "Stretch Creases",
+            "SOFT_GATHER": "Soft Gather",
+        },
+        "preset_descriptions": {
+            "PRESSED_PLEATS": "Sharp compression folds for pleated skirts and structured gathers.",
+            "STRETCH_CREASES": "Pull creases for tension zones at seams, elbows, and bodice stress lines.",
+            "SOFT_GATHER": "Balanced soft gathering for everyday drape and veil shells.",
+        },
+        "presets": {
+            "PRESSED_PLEATS": {"Strength": 0.6, "Compress Gain": 2.5, "Stretch Gain": 0.2, "Seed": 20260902},
+            "STRETCH_CREASES": {"Strength": 0.5, "Compress Gain": 0.3, "Stretch Gain": 2.0, "Seed": 20260902},
+            "SOFT_GATHER": {"Strength": 0.35, "Compress Gain": 1.0, "Stretch Gain": 0.8, "Seed": 20260902},
+        },
+    },
+    # garment_xpbd_drape.py - MEL_garment_xpbd_drape (research-lane Cloth Dynamics wrapper)
+    "MEL_garment_xpbd_drape": {
+        "label": "Garment XPBD Drape",
+        "preset_labels": {
+            "SILK_CLOUD_DRAPE": "Silk Cloud Drape",
+            "STIFF_CANVAS_TEST": "Stiff Canvas Test",
+            "FREE_DRAPE_PREVIEW": "Free Drape Preview",
+        },
+        "preset_descriptions": {
+            "SILK_CLOUD_DRAPE": "Silk-like hero drape for single shells (low stretch, fluid bend).",
+            "STIFF_CANVAS_TEST": "Stiff comparison pass for silhouette checks.",
+            "FREE_DRAPE_PREVIEW": "Low-iteration fast preview of drape direction.",
+        },
+        "presets": {
+            "SILK_CLOUD_DRAPE": {"Pin Group": 0.0, "Stretchiness": 0.05, "Bendiness": 0.85, "Substeps": 5, "Constraint Steps": 15, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
+            "STIFF_CANVAS_TEST": {"Pin Group": 0.0, "Stretchiness": 0.0, "Bendiness": 0.05, "Substeps": 5, "Constraint Steps": 15, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
+            "FREE_DRAPE_PREVIEW": {"Pin Group": 0.0, "Stretchiness": 0.05, "Bendiness": 0.85, "Substeps": 2, "Constraint Steps": 5, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
+        },
+    },
     # water.py - MEL_water_gerstner (effects)
     "MEL_water_gerstner": {
         "label": "Gerstner Waves",

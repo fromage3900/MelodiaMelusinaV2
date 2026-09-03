@@ -1,20 +1,20 @@
 {
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
-  "size": "1024x1024",
-  "frames": 1,
+  "size": "2048x2048",
+  "frames": 8,
   "variants": {
-    "CymaticOrchid": {
+    "GlitterWater": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Normal.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Height.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_ORM.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/CymaticOrchid/T_Cymatic_CymaticOrchid_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Normal.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Height.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_ORM.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/GlitterWater/T_Cymatic_GlitterWater_Opacity.png"
       ]
     }
   },
