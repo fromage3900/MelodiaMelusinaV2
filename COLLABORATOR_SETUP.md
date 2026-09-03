@@ -374,6 +374,17 @@ git add <file>
 
 ---
 
+## 🖥️ Multi-machine development
+
+If you're setting up a second machine (laptop, workstation) for this project, see:
+
+- `Docs/Production/TWO_PC_DEVELOPMENT_WORKFLOW_2026-09-02.md` — five-lane workflow (Gateway, VS Code SSH, UBA, Git handoff, Hermes orchestration)
+- `Docs/Production/MASTER_INDEX.md` — full doc navigation hub
+
+Each workstation gets its own clone. Git/Git LFS + explicit handoff branches are shared authority. Do not edit the same binary asset from both machines at once.
+
+---
+
 ## 📊 Storage Comparison
 
 | Approach | Download Size | Time | Suitability |
