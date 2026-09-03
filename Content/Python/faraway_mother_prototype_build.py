@@ -4,6 +4,7 @@
 # Run in editor: python Tools/ue_run_python.py --file Content/Python/faraway_mother_prototype_build.py
 # or: python Tools/editor_run.py Content/Python/faraway_mother_prototype_build.py
 
+import time
 import unreal
 import pathlib
 import json
@@ -219,14 +220,29 @@ def height_aware_place(terrain_actor):
         ]
         start = unreal.Vector(xy[0], xy[1], 25000)
         end = unreal.Vector(xy[0], xy[1], -10000)
-        hit = unreal.SystemLibrary.line_trace_single(
-            world, start, end,
-            unreal.TraceTypeQuery.ECC_VISIBILITY,
-            True,                      # trace complex: terrain is Nanite, needs complex
-            ignore_actors,
-            unreal.DrawDebugTrace.NONE,
-            True,                      # ignore self
-        )
+        # line_trace_single returns None (not a HitResult) when nothing is hit, and a
+        # terrain actor spawned earlier in THIS run may not have its collision registered
+        # with the physics scene yet. Retry briefly rather than failing the whole build.
+        hit = None
+        for _attempt in range(12):
+            hit = unreal.SystemLibrary.line_trace_single(
+                world, start, end,
+                unreal.TraceTypeQuery.ECC_VISIBILITY,
+                True,                  # trace complex: terrain is Nanite, needs complex
+                ignore_actors,
+                unreal.DrawDebugTrace.NONE,
+                True,                  # ignore self
+            )
+            if hit is not None:
+                break
+            unreal.SystemLibrary.delay(world, 0.0)   # yield a tick so physics registers
+            time.sleep(0.25)
+        if hit is None:
+            raise RuntimeError(
+                f"{label}: height-aware trace returned no hit at ({xy[0]},{xy[1]}) after 12 "
+                f"attempts. Terrain '{TERRAIN_LABEL}' is missing, has no collision, or its "
+                f"physics state never registered."
+            )
         d = hit.to_dict()
         if not d["blocking_hit"]:
             raise RuntimeError(
