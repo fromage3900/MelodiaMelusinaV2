@@ -136,7 +136,7 @@ Both machines need:
         <bAllowUBAExecutor>true</bAllowUBAExecutor>
     </BuildConfiguration>
     <UnrealBuildAccelerator>
-        <bLaunchVisualizer>true</bLaunchVisualizer>
+        <!-- Visualizer is launched via: -UBAVisualizer command-line arg or UBAVisualizer.exe -->
     </UnrealBuildAccelerator>
 </Configuration>
 ```
