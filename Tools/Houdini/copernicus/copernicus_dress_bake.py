@@ -55,7 +55,7 @@ file_sop.parm("file").set("{posed_obj}")
 
 # VEX: thickness (ray inward) + curvature (Laplacian)
 wrangle_geo = sopnet.createNode("attribwrangle", "VEX_geometry_attrs")
-wrangle_geo.parm("class").set(0)  # detail/point/prim/vertex — point
+wrangle_geo.parm("class").set(2)  # point (H22 menu: 0=detail 1=prim 2=point 3=vertex)
 wrangle_geo.parm("snippet").set("""
  // thickness: ray along -N, against self
  vector dir = -normalize(v@N);
@@ -77,7 +77,7 @@ wrangle_geo.setInput(0, file_sop)
 
 # VEX: AO — 64 rays, self-exclusion (same as dress_ao_vex.py)
 wrangle_ao = sopnet.createNode("attribwrangle", "VEX_AO_64")
-wrangle_ao.parm("class").set(0)
+wrangle_ao.parm("class").set(2)  # point — per-point Ao (detail would be one value)
 # spare seed parm for chi("seed") in the snippet (H22: must exist or cook fails)
 seed_tpl = hou.IntParmTemplate("seed", "Seed", 1, default_value=({seed},), min=0, max=99999999)
 wrangle_ao.addSpareParmTuple(seed_tpl)
@@ -115,6 +115,7 @@ copnet.moveToGoodPosition()
 # SOP Import COP (replaces File COP — feeds OUT_SOP directly)
 # H22 truth: sopimport takes resolution from its input — no resolution parms exist.
 sop_import = copnet.createNode("sopimport", "SOP_Import")
+sop_import.parm("usesoppath").set(1)  # H22 truth: soppath ignored unless this is on
 sop_import.parm("soppath").set("/obj/dress_bake/OUT_SOP")
 
 # Bake Preprocess — cage/normal prep ahead of the geometry baker
@@ -123,9 +124,12 @@ pre.setInput(0, sop_import)
 
 # Bake Geometry Textures ::2.0 (H22 successor to Labs Maps Baker):
 # bakes attribs incl. curvature, UV-gap filling built in (enableuvfilling = bg fill).
-# H22 truth (probed 2026-09-03): input 0 = size_ref (IMAGE metadata for output
-# resolution — geometry here fails "Can't convert Geometry to Metadata"); input 1 =
-# low (preprocessed geometry). No resolution parms on the baker — size comes only
+# H22 Apprentice truth (hit 2026-09-03): COP file saves are capped at 1920x1080 —
+# 4096 renders cook fine but FAIL at save ("Copernicus resolution is limited").
+# Max square texture on this license: 1080. Full 4K needs a licensed host.
+APPRENTICE_MAX_SQUARE = 1080
+# H22 input truth: size_ref (input 0) takes IMAGE metadata for output resolution
+# (geometry here fails "Can't convert Geometry to Metadata"); input 1 = low.
 # from size_ref, so constant -> resample dials it. Determinism from the VEX AO seed.
 size_const = copnet.createNode("constant", "SIZE_Const")
 size_rs = copnet.createNode("resample", "SIZE_Ref")
@@ -135,32 +139,49 @@ size_rs.parm("resolution2").set({size})
 baker = copnet.createNode("bakegeometrytextures::2.0", "Baker_GeoTex")
 baker.parm("uvattribute").set("uv")
 baker.parm("enableuvfilling").set(1)
+baker.parm("tracingmode").set(2)  # Single Mesh (Low Only) — same-mesh bake, no cage/high needed
+baker.parm("bakecurvature").set(1)  # native curvature -> Emission branch
+baker.parm("bakethickness").set(1)  # native thickness -> Roughness branch
+baker.parm("attribs").set(1)  # custom float slot: Ao -> BaseColor branch
+baker.parm("doattrib1").set(1)
+baker.parm("attrib1").set("Ao")
+# H22 truth (probed 2026-09-03): custom slots take FLOAT attribs (Ao renders);
+# vector Cd is rejected ("wrong type"). SOP f@thickness/f@Ao are point floats.
 baker.setInput(0, size_rs)
 baker.setInput(1, pre)
 
-# Curvature COP — directional LUT (defaults; replaces ad-hoc Worley mottle)
-curv = copnet.createNode("curvature", "Curvature_LUT")
-curv.setInput(0, baker)
+# Per-channel branches (honest mapping, each a real baked signal):
+#   BaseColor <- custom(11): 64-ray VEX Ao | Normal <- normal(0)
+#   Emission <- curvature(5) | Roughness <- thickness(8)
+branches = {{"BaseColor": 11, "Normal": 0, "Emission": 5, "Roughness": 8}}
+branch_nodes = {{}}
+for name, idx in branches.items():
+    nl = copnet.createNode("null", "BR_" + name)
+    nl.setInput(0, baker, idx)
+    branch_nodes[name] = nl
 
-# Denoise COP — AI denoiser (H22 denoiseai; kills 64-ray speckle)
-denoise = copnet.createNode("denoiseai", "Denoise_AI")
-denoise.setInput(0, curv)
+# Denoise COP — AI denoiser on the Ao branch (kills 64-ray speckle)
+denoise = copnet.createNode("denoiseai", "Denoise_AO")
+denoise.setInput(0, branch_nodes["BaseColor"])
+branch_nodes["BaseColor"] = denoise
 
-# File Output COPs — PNGs (H22 file COP takes res from input; BC7/BC5 split at UE import)
-# One shared chain per the UE-split contract (see manifest); per-channel branches = follow-up.
-for name, chan in [("BaseColor","Cd"), ("Normal","N"), ("Emission","emit"), ("Roughness","rough")]:
+# File Output COPs — per-channel endpoints (interactive view; disk writes via ROPs)
+for name in ["BaseColor", "Normal", "Emission", "Roughness"]:
     fout = copnet.createNode("file", "OUT_" + name)
-    fout.parm("filename").set("$HIP/../../Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_" + name + ".png")
-    fout.setInput(0, denoise)
+    fout.parm("filename").set("{out_dir}/T_MelusinaC_DressShorewake_" + name + ".png")
+    fout.setInput(0, branch_nodes[name])
 
 # Disk writers — /out image ROPs (H22 truth, probed 2026-09-03: file COP .cook() never
-# writes; ROP coppath must point at the PIXEL node (denoise), aov1=C, then rop.render())
+# writes; ROP coppath points at each branch node, aov1=C, setres=1 dials true size)
 outnet = hou.node("/out")
 for name in ["BaseColor", "Normal", "Emission", "Roughness"]:
     rop = outnet.createNode("image", "ROP_OUT_" + name)
-    rop.parm("coppath").set("/img/cop_dress_bake/Denoise_AI")
+    rop.parm("coppath").set("/img/cop_dress_bake/BR_" + name)
     rop.parm("aov1").set("C")
-    rop.parm("copoutput").set("$HIP/../../Saved/Audit/melusina_lookdev/houdini_variants/T_MelusinaC_DressShorewake_" + name + ".png")
+    rop.parm("setres").set(1)  # else ROP downsamples to its own res1/res2 (1024)
+    rop.parm("res1").set({size})
+    rop.parm("res2").set({size})
+    rop.parm("copoutput").set("{out_dir}/T_MelusinaC_DressShorewake_" + name + ".png")
 
 copnet.layoutChildren()
 hou.hipFile.save(hip)
@@ -170,9 +191,11 @@ print("[Copernicus]           COP cop_dress_bake (SOP Import->Preprocess->BakeGe
 '''
 
 def build_hip_code(hip_path: Path, posed_obj: str, seed: int, size: int) -> str:
+    out_dir = str((PROJECT_ROOT / "Saved" / "Audit" / "melusina_lookdev" / "houdini_variants").as_posix())
     return HIP_BUILD_CODE.format(
         hip_path=str(hip_path).replace("\\", "/"),
         posed_obj=posed_obj.replace("\\", "/"),
+        out_dir=out_dir,
         seed=seed,
         size=size,
     )
