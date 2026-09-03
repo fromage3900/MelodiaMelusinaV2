@@ -1,5 +1,4 @@
 #include "MelodiaCymaticsSubsystem.h"
-#include "MelodiaWorldFieldBus.h"
 
 #include "Engine/Engine.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -64,11 +63,6 @@ void UMelodiaCymaticsSubsystem::RefreshFromMPC()
 	// pulse modulates the cross mode. Modes stay in [1..8] for a stable pattern.
 	ModeN = FMath::Clamp(2 + FMath::FloorToInt(Bass * 6.0f), 1, 8);
 	ModeM = FMath::Clamp(3 + FMath::FloorToInt(BeatPulse * 5.0f), 1, 8);
-
-	// Publish to WorldField.Resonance/Tension — the cymatic source bus.
-	// Tension here is Chladni amplitude at plate center (0.5,0.5).
-	const float TensionAtCenter = FMath::Abs(SampleCymaticAmplitude(0.5f, 0.5f));
-	UWorldFieldBus::PublishResonance(ModeN, ModeM, TensionAtCenter, BeatPulse);
 }
 
 float UMelodiaCymaticsSubsystem::SampleCymaticAmplitude(const float U, const float V) const

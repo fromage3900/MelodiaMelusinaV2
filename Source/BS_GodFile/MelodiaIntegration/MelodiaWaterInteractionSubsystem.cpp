@@ -3,8 +3,6 @@
 #include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
-#include "Components/BrushComponent.h"
-#include "CollisionQueryParams.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/PhysicsVolume.h"
 #include "BakedShallowWaterSimulationComponent.h"
@@ -229,102 +227,48 @@ bool UMelodiaWaterInteractionSubsystem::QueryWaterInternal(AActor* SourceActor, 
 		return true;
 	}
 
-	// Oceanology is optional: the authored physics volume supplies both the
-	// footprint and its owning water actor, without a dependency on the plugin.
-	bool bFoundOceanologyWater = false;
-	int32 BestVolumePriority = TNumericLimits<int32>::Lowest();
-	for (TActorIterator<APhysicsVolume> It(World); It; ++It)
+	// Oceanology fallback: sample active Oceanology actor in world when native Water Body is absent
+	for (TActorIterator<AActor> It(World); It; ++It)
 	{
-		APhysicsVolume* WaterVolume = *It;
-		const FObjectPropertyBase* WaterProperty = FindFProperty<FObjectPropertyBase>(WaterVolume->GetClass(), TEXT("OceanologyWater"));
-		AActor* OceanActor = WaterProperty ? Cast<AActor>(WaterProperty->GetObjectPropertyValue_InContainer(WaterVolume)) : nullptr;
-		UBrushComponent* Brush = WaterVolume->GetBrushComponent();
-		if (!IsValid(OceanActor) || OceanActor->GetWorld() != World || !IsValid(Brush))
+		AActor* OceanActor = *It;
+		if (OceanActor && OceanActor->GetClass()->GetName().Contains(TEXT("Oceanology")))
 		{
-			continue;
-		}
+			if (UFunction* WaveInfoFunc = OceanActor->FindFunction(TEXT("GetWaveInfoAtLocation")))
+			{
+				struct FGetWaveInfoParams
+				{
+					FVector Location;
+					FVector WaveOffset;
+					FVector WaterWaveOffset;
+					FVector BreakingWaveOffset;
+					float WaterDepth;
+					float WaterDepthClamped;
+					float SDFShoreline;
+					float SDFOcean;
+				};
+				FGetWaveInfoParams Params;
+				Params.Location = WorldLocation;
+				OceanActor->ProcessEvent(WaveInfoFunc, &Params);
 
-		const FBox Bounds = Brush->Bounds.GetBox();
-		if (!Bounds.IsInsideOrOnXY(WorldLocation) || Bounds.GetSize().Z <= UE_SMALL_NUMBER)
-		{
-			continue;
+				OutSample = FMelodiaWaterSample();
+				OutSample.bValid = true;
+				OutSample.bSurfaceValid = true;
+				OutSample.SurfaceLocation = Params.WaveOffset;
+				OutSample.SurfaceNormal = FVector::UpVector;
+				OutSample.DistanceToSurface = WorldLocation.Z - Params.WaveOffset.Z;
+				OutSample.bUnderwater = (WorldLocation.Z < Params.WaveOffset.Z);
+				OutSample.ImmersionDepth = OutSample.bUnderwater ? (Params.WaveOffset.Z - WorldLocation.Z) : 0.0f;
+				OutSample.Immersion = FMath::Clamp(OutSample.ImmersionDepth / 150.0f, 0.0f, 1.0f);
+				OutSample.WaterDepth = Params.WaterDepthClamped > 0.0f ? Params.WaterDepthClamped : 1000.0f;
+				OutSample.QueryProvider = EMelodiaWaterQueryProvider::Oceanology;
+				OutSample.WaterBodyId = OceanActor->GetFName();
+				OutSample.SampleTime = World->GetTimeSeconds();
+				return true;
+			}
 		}
-
-		// Project vertically through the actual brush, rather than using its AABB
-		// as water coverage. Queries above the water still need a surface sample.
-		FHitResult FootprintHit;
-		const FVector TraceStart(WorldLocation.X, WorldLocation.Y, Bounds.Max.Z + 1.0);
-		const FVector TraceEnd(WorldLocation.X, WorldLocation.Y, Bounds.Min.Z - 1.0);
-		if (!Brush->LineTraceComponent(FootprintHit, TraceStart, TraceEnd,
-			FCollisionQueryParams(SCENE_QUERY_STAT(MelodiaOceanologyFootprint), false)))
-		{
-			continue;
-		}
-
-		UFunction* WaveInfoFunc = OceanActor->FindFunction(TEXT("GetWaveInfoAtLocation"));
-		if (!WaveInfoFunc || WaveInfoFunc->NumParms != 2)
-		{
-			continue;
-		}
-		const FStructProperty* LocationProperty = FindFProperty<FStructProperty>(WaveInfoFunc, TEXT("Location"));
-		const FStructProperty* ReturnProperty = FindFProperty<FStructProperty>(WaveInfoFunc, TEXT("ReturnValue"));
-		if (!LocationProperty || LocationProperty->Struct != TBaseStructure<FVector>::Get()
-			|| !ReturnProperty || !ReturnProperty->HasAnyPropertyFlags(CPF_ReturnParm))
-		{
-			continue;
-		}
-		const FStructProperty* WaveOffsetProperty = FindFProperty<FStructProperty>(ReturnProperty->Struct, TEXT("WaveOffset"));
-		const FFloatProperty* DepthProperty = FindFProperty<FFloatProperty>(ReturnProperty->Struct, TEXT("WaterDepthClamped"));
-		const FFloatProperty* ShorelineProperty = FindFProperty<FFloatProperty>(ReturnProperty->Struct, TEXT("SDFShoreline"));
-		const FFloatProperty* OceanProperty = FindFProperty<FFloatProperty>(ReturnProperty->Struct, TEXT("SDFOcean"));
-		if (!WaveOffsetProperty || WaveOffsetProperty->Struct != TBaseStructure<FVector>::Get()
-			|| !DepthProperty || !ShorelineProperty || !OceanProperty)
-		{
-			continue;
-		}
-
-		FStructOnScope Params(WaveInfoFunc);
-		*LocationProperty->ContainerPtrToValuePtr<FVector>(Params.GetStructMemory()) = WorldLocation;
-		OceanActor->ProcessEvent(WaveInfoFunc, Params.GetStructMemory());
-		const void* WaveInfo = ReturnProperty->ContainerPtrToValuePtr<void>(Params.GetStructMemory());
-		const FVector SurfaceLocation = *WaveOffsetProperty->ContainerPtrToValuePtr<FVector>(WaveInfo);
-		const float WaterDepth = DepthProperty->GetPropertyValue_InContainer(WaveInfo);
-		const float SDFShoreline = ShorelineProperty->GetPropertyValue_InContainer(WaveInfo);
-		const float SDFOcean = OceanProperty->GetPropertyValue_InContainer(WaveInfo);
-		// Oceanology's dry/uninitialized samples have zero depth and zero masks.
-		if (SurfaceLocation.ContainsNaN() || !FMath::IsFinite(WaterDepth) || WaterDepth <= 0.0f
-			|| !FMath::IsFinite(SDFShoreline) || !FMath::IsFinite(SDFOcean)
-			|| !FMath::IsWithinInclusive(SDFShoreline, 0.0f, 1.0f) || !FMath::IsWithinInclusive(SDFOcean, 0.0f, 1.0f)
-			|| (SDFShoreline <= 0.0f && SDFOcean <= 0.0f))
-		{
-			continue;
-		}
-
-		const float Score = FMath::Abs(WorldLocation.Z - SurfaceLocation.Z);
-		if (bFoundOceanologyWater && (WaterVolume->Priority < BestVolumePriority
-			|| (WaterVolume->Priority == BestVolumePriority && Score >= BestScore)))
-		{
-			continue;
-		}
-		bFoundOceanologyWater = true;
-		BestVolumePriority = WaterVolume->Priority;
-		BestScore = Score;
-		OutSample = FMelodiaWaterSample();
-		OutSample.bValid = true;
-		OutSample.bSurfaceValid = true;
-		OutSample.SurfaceLocation = SurfaceLocation;
-		OutSample.SurfaceNormal = FVector::UpVector;
-		OutSample.DistanceToSurface = WorldLocation.Z - SurfaceLocation.Z;
-		OutSample.bUnderwater = WorldLocation.Z < SurfaceLocation.Z;
-		OutSample.ImmersionDepth = FMath::Max(0.0, SurfaceLocation.Z - WorldLocation.Z);
-		OutSample.Immersion = FMath::Clamp(OutSample.ImmersionDepth / 150.0f, 0.0f, 1.0f);
-		OutSample.WaterDepth = WaterDepth;
-		OutSample.QueryProvider = EMelodiaWaterQueryProvider::Oceanology;
-		OutSample.WaterBodyId = OceanActor->GetFName();
-		OutSample.SampleTime = World->GetTimeSeconds();
 	}
 
-	return bFoundOceanologyWater;
+	return false;
 }
 
 bool UMelodiaWaterInteractionSubsystem::QueryWaterBodyComponent(UWaterBodyComponent* WaterBodyComponent, const FVector& WorldLocation, float& OutScore, FMelodiaWaterSample& OutSample) const
