@@ -1,0 +1,117 @@
+{
+  "schema": "melodia.copernicus_family.v1",
+  "variant": "AntiqueDollRose",
+  "seed": 20260831,
+  "size": 2048,
+  "chladni_modes": [
+    [
+      5,
+      3
+    ],
+    [
+      10,
+      7
+    ],
+    [
+      15,
+      12
+    ]
+  ],
+  "palette": {
+    "rose_deep": [
+      122,
+      62,
+      76
+    ],
+    "rose": [
+      196,
+      130,
+      142
+    ],
+    "rose_hi": [
+      232,
+      186,
+      196
+    ],
+    "mauve_shadow": [
+      148,
+      104,
+      116
+    ],
+    "gilt": [
+      232,
+      196,
+      120
+    ],
+    "gilt_hi": [
+      255,
+      226,
+      160
+    ]
+  },
+  "rough": {
+    "rough_rose": 0.72,
+    "rough_damask": 0.58,
+    "rough_gilt": 0.24
+  },
+  "glow_intensity": 0.4,
+  "damask_freq": 6,
+  "source": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py:build_antique_doll_rose",
+  "vocab": "14 articles, 0 collisions, PASS",
+  "map_count": 9,
+  "files": [
+    {
+      "file": "T_Cymatic_AntiqueDollRose_BaseColor.png",
+      "sha12": "759d489cb306",
+      "size": 2832474
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Emissive.png",
+      "sha12": "34973c2df28d",
+      "size": 677990
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Height.png",
+      "sha12": "caf41e76a74e",
+      "size": 1442716
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Iridescence.png",
+      "sha12": "4a4a541d4d8d",
+      "size": 1301878
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Metallic.png",
+      "sha12": "7a1b40b0989c",
+      "size": 937736
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Normal.png",
+      "sha12": "763abb07ea17",
+      "size": 2341299
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_ORM.png",
+      "sha12": "dac96b25bbca",
+      "size": 2539348
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Opacity.png",
+      "sha12": "7368a2762f02",
+      "size": 8533
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Roughness.png",
+      "sha12": "8209335c1a94",
+      "size": 895083
+    }
+  ],
+  "verify": {
+    "BaseColor_std": 42.9,
+    "ORM_std": 84.8,
+    "Normal_std": 60.1,
+    "Height_std": 50.8,
+    "all_2048_RGB_L": true,
+    "fresh": "2026-09-03"
+  }
+}
