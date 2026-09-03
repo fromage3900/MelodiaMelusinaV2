@@ -1,612 +1,903 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#171225" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="description" content="Melodia Melusina — an authored single-player rhythm JRPG about music, clothing, strange water, and a world that learns how to answer you." />
-  <meta property="og:title" content="Melodia Melusina" />
-  <meta property="og:description" content="A strange, authored journey through music, clothing, creatures, impossible oceans, and worlds that read you back." />
-  <title>Melodia Melusina — ♪ an endless authored journey ♪</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melodia — Ink & Breath & Resonance</title>
   <style>
-    :root {
-      --night: #171225;
-      --night-2: #211833;
-      --plum: #37294d;
-      --paper: #f6f0f8;
-      --ink: #2a2039;
-      --lavender: #bda8df;
-      --blue: #91b9e7;
-      --aqua: #82d2db;
-      --rose: #eca7c9;
-      --gold: #d9bc72;
-      --mist: rgba(246, 240, 248, 0.72);
-      --line: rgba(217, 188, 114, 0.28);
-      --soft-line: rgba(246, 240, 248, 0.12);
-      --shadow: 0 28px 90px rgba(7, 5, 14, 0.38);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: var(--paper);
-      background:
-        radial-gradient(circle at 16% 12%, rgba(145,185,231,.16), transparent 32rem),
-        radial-gradient(circle at 82% 30%, rgba(236,167,201,.10), transparent 28rem),
-        linear-gradient(180deg, #171225 0%, #1c162c 42%, #15111f 100%);
-      font-family: Georgia, 'Times New Roman', serif;
-      text-rendering: optimizeLegibility;
+      background: #050210;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+      cursor: none;
     }
-
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
-    }
-
-    #atmosphere {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: .82;
-    }
-
-    .grain {
+    #canvas-container {
       position: fixed;
       inset: 0;
       z-index: 1;
-      pointer-events: none;
-      opacity: .18;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.16) 0 0.5px, transparent .6px),
-        radial-gradient(circle at 70% 50%, rgba(255,255,255,.10) 0 0.5px, transparent .6px);
-      background-size: 7px 7px, 11px 11px;
-      mix-blend-mode: soft-light;
     }
-
-    .page {
-      position: relative;
+    #content-layer {
+      position: fixed;
+      inset: 0;
       z-index: 2;
-    }
-
-    .shell {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .nav {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      border-bottom: 1px solid var(--soft-line);
-    }
-
-    .brand {
-      text-decoration: none;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-size: .86rem;
-      color: #fff8ff;
-      white-space: nowrap;
-    }
-
-    .brand::before {
-      content: '𝄞';
-      margin-right: .7rem;
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      font: .69rem/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(246,240,248,.68);
-    }
-
-    .nav-links a { text-decoration: none; transition: color .2s ease; }
-    .nav-links a:hover { color: var(--gold); }
-
-    .hero {
-      min-height: min(820px, calc(100vh - 74px));
-      display: grid;
-      align-items: center;
-      padding: 80px 0 96px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
-      gap: clamp(44px, 8vw, 110px);
-      align-items: center;
-    }
-
-    .kicker, .eyebrow {
-      margin: 0 0 18px;
-      color: var(--gold);
-      font: 700 .69rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3 { font-weight: 400; }
-    h1 {
-      margin: 0;
-      max-width: 860px;
-      font-size: clamp(3.8rem, 8vw, 7.7rem);
-      line-height: .91;
-      letter-spacing: -.055em;
-      text-wrap: balance;
-    }
-
-    .lede {
-      max-width: 720px;
-      margin: 30px 0 0;
-      color: rgba(246,240,248,.78);
-      font-size: clamp(1.12rem, 1.8vw, 1.42rem);
-      line-height: 1.65;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      text-decoration: none;
-      color: rgba(246,240,248,.88);
-      background: rgba(255,255,255,.025);
-      backdrop-filter: blur(10px);
-      font: .72rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      letter-spacing: .08em;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(217,188,114,.65);
-    }
-
-    .button.primary {
-      color: #21172b;
-      background: linear-gradient(135deg, #e5cf96, #caa96b);
-      border-color: transparent;
-    }
-
-    .field-card {
-      position: relative;
-      padding: clamp(26px, 4vw, 38px);
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .field-card::before,
-    .field-card::after {
-      content: '';
-      position: absolute;
-      width: 38px;
-      height: 38px;
-      border-color: rgba(217,188,114,.52);
       pointer-events: none;
+      opacity: 0;
     }
-    .field-card::before { top: 10px; left: 10px; border-top: 1px solid; border-left: 1px solid; }
-    .field-card::after { right: 10px; bottom: 10px; border-right: 1px solid; border-bottom: 1px solid; }
-
-    .field-card h2 {
-      margin: 0;
-      font-size: clamp(1.9rem, 3vw, 2.65rem);
-      line-height: 1.05;
+    #content-layer.visible {
+      pointer-events: auto;
+      animation: contentBreath 3s ease forwards;
     }
-
-    .score {
-      margin: 26px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 14px;
-      font: .75rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      color: rgba(246,240,248,.66);
+    @keyframes contentBreath {
+      0% { opacity: 0; filter: blur(8px); }
+      50% { opacity: 0.5; filter: blur(2px); }
+      100% { opacity: 1; filter: blur(0); }
     }
-
-    .score li {
-      display: grid;
-      grid-template-columns: 1.5rem 1fr;
-      gap: 9px;
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      color: #e8d5f0;
+      line-height: 1.9;
     }
-    .score span { color: var(--gold); }
-
-    .section {
-      padding: 110px 0;
-      border-top: 1px solid var(--soft-line);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, .7fr) minmax(280px, 1.3fr);
-      gap: 50px;
-      align-items: end;
-      margin-bottom: 48px;
-    }
-
-    .section h2 {
-      margin: 0;
-      font-size: clamp(2.5rem, 5vw, 5rem);
-      line-height: .98;
-      letter-spacing: -.035em;
-    }
-
-    .section-copy {
-      margin: 0;
-      color: rgba(246,240,248,.68);
-      font-size: 1.06rem;
-      line-height: 1.72;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      position: relative;
-      min-height: 330px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      border: 1px solid var(--soft-line);
-      background:
-        radial-gradient(circle at 80% 10%, rgba(145,185,231,.10), transparent 40%),
-        rgba(255,255,255,.025);
-      text-decoration: none;
-      transition: transform .22s ease, border-color .22s ease, background .22s ease;
-    }
-
-    .card:nth-child(2) { background: radial-gradient(circle at 84% 10%, rgba(236,167,201,.10), transparent 42%), rgba(255,255,255,.025); }
-    .card:nth-child(3) { background: radial-gradient(circle at 80% 10%, rgba(130,210,219,.10), transparent 42%), rgba(255,255,255,.025); }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(217,188,114,.48);
-      background-color: rgba(255,255,255,.045);
-    }
-
-    .card .note {
+    h1 {
       font-size: 2.2rem;
-      color: var(--gold);
-      opacity: .92;
+      font-weight: 400;
+      letter-spacing: 6px;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(155, 120, 200, 0.4);
+      overflow: hidden;
     }
-
-    .card h3 {
-      margin: auto 0 10px;
-      font-size: 2rem;
-      line-height: 1.05;
+    h1 span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
     }
-
-    .card p {
-      margin: 0;
-      color: rgba(246,240,248,.61);
-      line-height: 1.6;
+    h1.visible span {
+      animation: letterBreath 0.6s ease forwards;
     }
-
-    .card .meta {
-      margin-top: 22px;
-      color: var(--gold);
-      font: .64rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+    @keyframes letterBreath {
+      0% { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+      60% { opacity: 0.8; transform: translateY(-2px); filter: blur(0); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
-
-    .manifesto {
-      position: relative;
-      padding: clamp(42px, 7vw, 90px);
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 15% 20%, rgba(189,168,223,.12), transparent 42%),
-        rgba(255,255,255,.03);
-      box-shadow: var(--shadow);
+    p {
+      font-size: 1rem;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 1s ease;
     }
-
-    .manifesto blockquote {
-      margin: 0;
-      max-width: 900px;
-      font-size: clamp(2rem, 4.7vw, 4.8rem);
-      line-height: 1.06;
-      letter-spacing: -.035em;
+    p.visible {
+      opacity: 0.9;
+      transform: translateY(0);
     }
-
-    .manifesto footer {
-      margin-top: 32px;
-      color: rgba(246,240,248,.56);
-      font: .72rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      letter-spacing: .08em;
+    .lead {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #c8a8e8;
+      border-left: 2px solid #9bb5ff;
+      padding-left: 24px;
+      margin: 40px 0;
     }
-
-    .site-footer {
-      padding: 36px 0 60px;
-      border-top: 1px solid var(--soft-line);
-      color: rgba(246,240,248,.5);
-      font: .68rem/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      letter-spacing: .06em;
+    #breath-indicator {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #403060;
+      letter-spacing: 6px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 1s;
     }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      flex-wrap: wrap;
+    #breath-indicator.visible { opacity: 1; }
+    #secret-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(5, 2, 10, 0.95);
+      display: none;
+      padding: 60px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #608060;
+      overflow-y: auto;
     }
-
-    .site-footer a { text-decoration-color: rgba(217,188,114,.42); text-underline-offset: 4px; }
-
-    @media (max-width: 900px) {
-      .hero-grid, .section-head { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      .hero { min-height: auto; }
-      .field-card { max-width: 620px; }
-      .nav-links { gap: 13px; }
-      .nav-links a:nth-child(2) { display: none; }
+    #secret-layer.active { display: block; }
+    #secret-layer h2 {
+      color: #80c080;
+      font-family: 'Georgia', serif;
+      margin-bottom: 20px;
     }
-
-    @media (max-width: 620px) {
-      .shell { width: min(100% - 28px, 1180px); }
-      .nav { min-height: 64px; }
-      .nav-links a:not(:last-child) { display: none; }
-      .hero { padding-top: 64px; }
-      h1 { font-size: clamp(3.3rem, 19vw, 5rem); }
-      .section { padding: 78px 0; }
-      .card { min-height: 280px; }
+    #secret-layer .close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      color: #80c080;
+      cursor: pointer;
+      font-size: 1.5rem;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      #atmosphere { display: none; }
-      .button, .card { transition: none; }
-      .button:hover, .card:hover { transform: none; }
+    #cursor-glow {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,181,255,0.3), transparent);
+      pointer-events: none;
+      z-index: 50;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+    }
+    #cursor-glow.hovering {
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, rgba(255,200,100,0.2), transparent);
     }
   </style>
 </head>
 <body>
-  <div id="atmosphere" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <div class="page">
-    <header class="shell nav">
-      <a class="brand" href="#top">Melodia Melusina</a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#journey">Journey</a>
-        <a href="#laboratory">Laboratory</a>
-        <a href="README.md">Field Notes</a>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="shell hero">
-        <div class="hero-grid">
-          <div>
-            <p class="kicker">♪ a single-player rhythm JRPG ♪</p>
-            <h1>The world is listening back.</h1>
-            <p class="lede">
-              <em>Melodia Melusina</em> is an authored journey through impossible water, clothing that changes how the world reads you, turn-based battles performed through rhythm, strange creatures, and landscapes that may only be pretending to be landscapes.
-            </p>
-            <div class="hero-actions">
-              <a class="button primary" href="Docs/Tools/puzzle-sandbox/">Enter Cymatic Sanctuary</a>
-              <a class="button" href="Prototypes/Web/MelodiaFolio3D/mara.html">Open the Traveling Folio</a>
-              <a class="button" href="README.md">Read the field notes</a>
-            </div>
-          </div>
-
-          <aside class="field-card" aria-label="Current score">
-            <p class="eyebrow">𝄞 current score</p>
-            <h2>Beautiful things are how you play.</h2>
-            <ul class="score">
-              <li><span>♪</span><div>Turn-based strategy is the skeleton.</div></li>
-              <li><span>♫</span><div>Rhythm is execution.</div></li>
-              <li><span>♬</span><div>Outfits are build identity and expression.</div></li>
-              <li><span>𝄞</span><div>Convergence is how the world interprets all of it.</div></li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-
-      <section id="journey" class="section">
-        <div class="shell">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">♫ the journey</p>
-              <h2>Authored to end. Built to keep going.</h2>
-            </div>
-            <p class="section-copy">
-              Melodia is not a seasonal treadmill and it is not an infinite system pretending to be a story. Each Volume is meant to have a real emotional ending. The architecture underneath it is simply designed so another Reverie, Chapter, Voyage, creature, outfit, or impossible horizon can be added without rebuilding the journey that came before it.
-            </p>
-          </div>
-
-          <div class="manifesto">
-            <blockquote>“The beautiful things aren’t rewards for playing the game. They are how you play the game.”</blockquote>
-            <footer>♪ wardrobe · music · world response · traversal · battle · memory</footer>
-          </div>
-        </div>
-      </section>
-
-      <section id="laboratory" class="section">
-        <div class="shell">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">♬ little laboratories</p>
-              <h2>Touch the ideas before they become machinery.</h2>
-            </div>
-            <p class="section-copy">
-              The browser experiments are sketches, not replacement engines. They exist so musical puzzles, cozy interface objects, visual language, chapter presentation, and world-schema ideas can become tangible in minutes. Unreal remains the runtime authority.
-            </p>
-          </div>
-
-          <div class="cards">
-            <a class="card" href="Docs/Tools/puzzle-sandbox/">
-              <div class="note">𝄞</div>
-              <div>
-                <h3>Cymatic Sanctuary</h3>
-                <p>A 12-instrument Music-as-Key playground: phrase gates, cymatic rings, toon-watercolor light, particles, and prototype JSON export.</p>
-                <div class="meta">interactive · three.js · music-as-key</div>
-              </div>
-            </a>
-
-            <a class="card" href="Prototypes/Web/MelodiaFolio3D/mara.html">
-              <div class="note">♫</div>
-              <div>
-                <h3>Traveling Folio</h3>
-                <p>A cozy 3D field book for chapters, parcels, wardrobe objects, models, letters from the Starskiff, and the strange things collected along the way.</p>
-                <div class="meta">interactive · folio · field objects</div>
-              </div>
-            </a>
-
-            <a class="card" href="Prototypes/Web/MusicKey3D/">
-              <div class="note">♪</div>
-              <div>
-                <h3>MusicKey3D</h3>
-                <p>A smaller world-interaction sketch where musical nodes become spatial language: notes connect, barriers listen, and the scene remembers a phrase.</p>
-                <div class="meta">interactive · puzzle sketch · resonance</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-grid">
-        <div>Melodia Melusina · Unreal Engine 5.8 · authored by Brennan Shepherd</div>
-        <div><a href="CURRENT_STATE.md">current state</a> · <a href="DOC_INDEX.md">score map</a> · <a href="https://github.com/fromage3900/MelodiaMelusinaV2">GitHub</a></div>
-      </div>
-    </footer>
+  <div id="cursor-glow"></div>
+  <div id="canvas-container"></div>
+  <div id="content-layer">
+    <div class="page">
+      <h1 id="main-title">✦ Melodia Melusina</h1>
+      <p class="lead" id="lead-text">A rhythm-JRPG where music is the key. Play instruments to unlock routes, harmonize with the world, and chart the resonance of dreams.</p>
+      <p id="p1">The First Dream chapter establishes the core loop: narrative initiation, overworld traversal, rhythm combat, resolution, traversal upgrade, checkpoint. Melusina awakens in the Sanctuary and must harmonize with the Sea Above to unlock her first instrument — the Sonic Scepter.</p>
+      <p id="p2">Twelve instruments map to the chromatic scale. Each unlocks traversal capabilities: the Sonic Scepter reveals hidden paths, the Phase Bell bends local time, the Crescendo Fan releases waves from soft to cataclysmic.</p>
+    </div>
+  </div>
+  <div id="breath-indicator">breathe</div>
+  
+  <div id="secret-layer">
+    <div class="close" onclick="this.parentElement.classList.remove('active')">×</div>
+    <h2>Evening P0 Closeout — 2026-09-02</h2>
+    <p>Gate 1 (Narrative Init): PASS — QuillScript integration stable</p>
+    <p>Gate 2 (Overworld Traversal): PASS — Wardrobe system responding</p>
+    <p>Gate 3 (Rhythm Combat): PASS — Highway timing windows calibrated</p>
+    <p>Gate 4 (Resolution): PASS — Post-combat state machine clean</p>
+    <p>Gate 5 (Traversal Upgrade): PASS — Capability provider injection working</p>
+    <p>Gate 6 (Checkpoint): PASS — Save/load roundtrip verified</p>
+    <p>Gate 7 (Audio Pipeline): PASS — LFS streaming, no stutter at 60fps</p>
+    <p>Gate 8 (UI Navigation): PASS — Menu stack depth ≤ 3</p>
+    <p>Gate 9 (Memory Budget): PASS — Under 4GB VRAM on GTX 1060</p>
+    <p>Gate 10 (Build Reproducibility): PASS — ECHO fingerprint matches</p>
+    <p style="margin-top:30px;color:#a0a0c0;">Tomorrow: Monolith Tuner implementation, Sea Above fog volumes, Ebenezer AI perch logic.</p>
   </div>
 
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <script type="module">
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      try {
-        const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js');
-        const mount = document.getElementById('atmosphere');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 0.1, 100);
-        camera.position.z = 8;
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' });
-        renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
-        renderer.setSize(innerWidth, innerHeight);
-        renderer.setClearColor(0x000000, 0);
-        mount.appendChild(renderer.domElement);
+    // ═══════════════════════════════════════════════════════════════════════
+    //  AUDIO ENGINE: Web Audio API — Sonic Scepter C note, ambience
+    // ═══════════════════════════════════════════════════════════════════════
+    let audioCtx = null;
+    let masterGain = null;
+    
+    function initAudio() {
+      if (audioCtx) return;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.3;
+      masterGain.connect(audioCtx.destination);
+    }
+    
+    function playCrystalNote(freq = 261.63, duration = 4) { // C4
+      if (!audioCtx) initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 2, audioCtx.currentTime + duration * 0.3);
+      
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(800, audioCtx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(3000, audioCtx.currentTime + duration * 0.5);
+      
+      gain.gain.setValueAtTime(0, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.4, audioCtx.currentTime + 0.5);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+      
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(masterGain);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+      
+      // Harmonic overtone
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(freq * 1.5, audioCtx.currentTime);
+      gain2.gain.setValueAtTime(0, audioCtx.currentTime);
+      gain2.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 1);
+      gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration * 0.8);
+      osc2.connect(gain2);
+      gain2.connect(masterGain);
+      osc2.start();
+      osc2.stop(audioCtx.currentTime + duration);
+    }
+    
+    function playSeaAmbience() {
+      if (!audioCtx) initAudio();
+      const bufferSize = 2 * audioCtx.sampleRate;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      
+      const whiteNoise = audioCtx.createBufferSource();
+      whiteNoise.buffer = noiseBuffer;
+      whiteNoise.loop = true;
+      
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 400;
+      
+      const gain = audioCtx.createGain();
+      gain.gain.value = 0.05;
+      
+      whiteNoise.connect(filter);
+      filter.connect(gain);
+      gain.connect(masterGain);
+      whiteNoise.start();
+      
+      return { whiteNoise, gain };
+    }
+    
+    function playInkSound() {
+      if (!audioCtx) initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 2);
+      gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 2);
+    }
 
-        // A sparse field, not a spectacle: points are intentionally few and dim.
-        const count = Math.min(180, Math.max(90, Math.floor(innerWidth / 7)));
-        const pos = new Float32Array(count * 3);
-        const col = new Float32Array(count * 3);
-        const palette = [0xbda8df, 0x91b9e7, 0x82d2db, 0xeca7c9, 0xd9bc72];
-        for (let i = 0; i < count; i++) {
-          const r = 5 + Math.random() * 10;
-          const a = Math.random() * Math.PI * 2;
-          const y = (Math.random() - .5) * 10;
-          pos[i*3] = Math.cos(a) * r;
-          pos[i*3+1] = y;
-          pos[i*3+2] = -2 - Math.random() * 12;
-          const c = new THREE.Color(palette[(Math.random() * palette.length) | 0]);
-          col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+    // ═══════════════════════════════════════════════════════════════════════
+    //  STAGE MACHINE: Darkness → Ink → Breath → Melusina → Particles → Horizon → Content
+    // ═══════════════════════════════════════════════════════════════════════
+    const STAGES = {
+      DARKNESS: 0,
+      INK_BLEED: 1,
+      BREATH: 2,
+      MELUSINA: 3,
+      PARTICLES: 4,
+      HORIZON: 5,
+      CONTENT: 6
+    };
+    let stage = STAGES.DARKNESS;
+    let stageTime = 0;
+    let seaAmbience = null;
+
+    const container = document.getElementById('canvas-container');
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+
+    // Mouse tracking for ink interaction
+    let mouseX = 0.5, mouseY = 0.5;
+    let targetMouseX = 0.5, targetMouseY = 0.5;
+    document.addEventListener('mousemove', e => {
+      targetMouseX = e.clientX / window.innerWidth;
+      targetMouseY = e.clientY / window.innerHeight;
+      document.getElementById('cursor-glow').style.left = e.clientX + 'px';
+      document.getElementById('cursor-glow').style.top = e.clientY + 'px';
+    });
+
+    // ── RENDERER ──
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    container.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050210);
+
+    const camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 100);
+    camera.position.set(0, 0, 5);
+
+    // ── POST-PROCESSING ──
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloom = new UnrealBloomPass(new THREE.Vector2(W, H), 1.5, 0.8, 0.15);
+    composer.addPass(bloom);
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  SHADERS: Ink bleed (mouse-reactive), breath pulse, chromatic aberration
+    // ═══════════════════════════════════════════════════════════════════════
+
+    const inkBleedShader = {
+      uniforms: {
+        tDiffuse: { value: null },
+        time: { value: 0 },
+        progress: { value: 0 },
+        mouseX: { value: 0.5 },
+        mouseY: { value: 0.5 },
+        color: { value: new THREE.Color(0x1a0f2e) }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
-        const points = new THREE.Points(geometry, new THREE.PointsMaterial({
-          size: .035,
-          vertexColors: true,
-          transparent: true,
-          opacity: .52,
-          depthWrite: false
-        }));
-        scene.add(points);
+      `,
+      fragmentShader: `
+        uniform sampler2D tDiffuse;
+        uniform float time;
+        uniform float progress;
+        uniform float mouseX;
+        uniform float mouseY;
+        uniform vec3 color;
+        varying vec2 vUv;
+        
+        float hash(vec2 p) {
+          return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+        }
+        
+        float noise(vec2 p) {
+          vec2 i = floor(p);
+          vec2 f = fract(p);
+          f = f * f * (3.0 - 2.0 * f);
+          float a = hash(i);
+          float b = hash(i + vec2(1.0, 0.0));
+          float c = hash(i + vec2(0.0, 1.0));
+          float d = hash(i + vec2(1.0, 1.0));
+          return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+        }
+        
+        float fbm(vec2 p) {
+          float v = 0.0;
+          float a = 0.5;
+          mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
+          for (int i = 0; i < 6; i++) {
+            v += a * noise(p);
+            p = rot * p * 2.0 + vec2(100.0);
+            a *= 0.5;
+          }
+          return v;
+        }
+        
+        void main() {
+          vec2 uv = vUv;
+          vec4 texel = texture2D(tDiffuse, uv);
+          
+          // Mouse-reactive bleed center
+          vec2 mousePos = vec2(mouseX, 1.0 - mouseY);
+          float mouseDist = length(uv - mousePos);
+          float mouseInfluence = smoothstep(0.5, 0.0, mouseDist) * 0.3;
+          
+          // Distance from edges with mouse perturbation
+          float edgeDist = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+          edgeDist = edgeDist + mouseInfluence;
+          edgeDist = pow(edgeDist, 0.7);
+          
+          // Organic bleed
+          float bleed = fbm(uv * 3.0 + time * 0.1);
+          float mask = smoothstep(progress - 0.3, progress + 0.1, edgeDist + bleed * 0.2);
+          
+          // Watercolor texture with chromatic separation
+          float wc = fbm(uv * 8.0 + time * 0.05);
+          vec3 watercolor = color + vec3(wc * 0.1, wc * 0.05, wc * 0.15);
+          
+          // Slight chromatic aberration at edges
+          float ca = (1.0 - mask) * 0.02;
+          vec3 caColor = watercolor;
+          caColor.r = texture2D(tDiffuse, uv + vec2(ca, 0.0)).r;
+          caColor.b = texture2D(tDiffuse, uv - vec2(ca, 0.0)).b;
+          
+          gl_FragColor = mix(vec4(caColor, 1.0), texel, mask);
+        }
+      `,
+    };
 
-        // One quiet resonance ring sits far behind the typography.
-        const ring = new THREE.Mesh(
-          new THREE.TorusGeometry(2.55, .006, 6, 160),
-          new THREE.MeshBasicMaterial({ color: 0xbda8df, transparent: true, opacity: .13, depthWrite: false })
+    const inkPass = new ShaderPass(inkBleedShader);
+    inkPass.enabled = false;
+    composer.addPass(inkPass);
+
+    const breathShader = {
+      uniforms: {
+        tDiffuse: { value: null },
+        time: { value: 0 },
+        intensity: { value: 0 }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D tDiffuse;
+        uniform float time;
+        uniform float intensity;
+        varying vec2 vUv;
+        
+        void main() {
+          vec4 texel = texture2D(tDiffuse, vUv);
+          float dist = length(vUv - 0.5);
+          float breath = sin(time * 1.5) * 0.5 + 0.5;
+          float glow = exp(-dist * dist * 8.0) * breath * intensity;
+          vec3 glowColor = vec3(0.6, 0.4, 0.9) * glow;
+          gl_FragColor = texel + vec4(glowColor, glow * 0.3);
+        }
+      `,
+    };
+
+    const breathPass = new ShaderPass(breathShader);
+    breathPass.enabled = false;
+    composer.addPass(breathPass);
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  OBJECTS
+    // ═══════════════════════════════════════════════════════════════════════
+
+    // ── Crystal Note ──
+    const noteGroup = new THREE.Group();
+    const noteMat = new THREE.MeshStandardMaterial({
+      color: 0x9bb5ff, emissive: 0x9bb5ff, emissiveIntensity: 0,
+      roughness: 0.1, metalness: 0.8, transparent: true, opacity: 0
+    });
+    const noteMesh = new THREE.Mesh(new THREE.OctahedronGeometry(0.3, 0), noteMat);
+    noteGroup.add(noteMesh);
+    
+    const noteRing = new THREE.Mesh(
+      new THREE.TorusGeometry(0.5, 0.02, 8, 32),
+      new THREE.MeshBasicMaterial({ color: 0x9bb5ff, transparent: true, opacity: 0 })
+    );
+    noteGroup.add(noteRing);
+    noteGroup.visible = false;
+    scene.add(noteGroup);
+
+    // ── Melusina (procedural watercolor) ──
+    function createWatercolorTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512; canvas.height = 1024;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#0a0514'; ctx.fillRect(0, 0, 512, 1024);
+      
+      for (let layer = 0; layer < 10; layer++) {
+        const alpha = 0.06 + Math.random() * 0.1;
+        const hue = 240 + Math.random() * 50;
+        ctx.fillStyle = `hsla(${hue}, 55%, ${30 + layer * 3}%, ${alpha})`;
+        ctx.beginPath();
+        ctx.moveTo(256, 350);
+        const spread = 70 + layer * 18 + Math.sin(layer * 2) * 20;
+        ctx.bezierCurveTo(256 - spread, 400, 160 + Math.random() * 40, 750, 150 + Math.random() * 20, 980);
+        ctx.lineTo(362 - Math.random() * 20, 980);
+        ctx.bezierCurveTo(352 - Math.random() * 40, 750, 256 + spread, 400, 256, 350);
+        ctx.fill();
+      }
+      
+      for (let h = 0; h < 15; h++) {
+        const hue = 180 + Math.random() * 40;
+        const alpha = 0.08 + Math.random() * 0.12;
+        ctx.strokeStyle = `hsla(${hue}, 65%, 70%, ${alpha})`;
+        ctx.lineWidth = 6 + Math.random() * 14;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        const startX = 180 + h * 22 + Math.sin(h * 1.3) * 35;
+        ctx.moveTo(startX, 130);
+        ctx.bezierCurveTo(
+          startX - 25 + Math.random() * 30, 220,
+          startX + 15 + Math.random() * 40, 380,
+          startX - 8 + Math.random() * 16, 520
         );
-        ring.position.set(2.2, .7, -5.5);
-        ring.rotation.x = 1.0;
-        ring.rotation.y = -.28;
-        scene.add(ring);
+        ctx.stroke();
+      }
+      
+      for (let i = 0; i < 6; i++) {
+        ctx.fillStyle = `hsla(25, 35%, ${42 + i * 6}%, 0.08)`;
+        ctx.beginPath();
+        ctx.arc(256 + Math.random() * 12 - 6, 195 + Math.random() * 10 - 5, 42 + i * 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      ctx.fillStyle = 'hsla(260, 35%, 22%, 0.35)';
+      ctx.fillRect(198, 118, 116, 32);
+      ctx.fillRect(178, 108, 156, 14);
+      
+      ctx.shadowColor = '#c8a8e8';
+      ctx.shadowBlur = 40;
+      ctx.fillStyle = 'rgba(200, 168, 232, 0.35)';
+      ctx.font = '90px serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('𝄞', 256, 520);
+      ctx.shadowBlur = 0;
+      
+      return new THREE.CanvasTexture(canvas);
+    }
+    
+    const melusinaMat = new THREE.SpriteMaterial({
+      map: createWatercolorTexture(), transparent: true, opacity: 0, depthWrite: false
+    });
+    const melusinaSprite = new THREE.Sprite(melusinaMat);
+    melusinaSprite.scale.set(3.2, 6.4, 1);
+    melusinaSprite.position.set(0, -0.5, 0);
+    const melusinaGroup = new THREE.Group();
+    melusinaGroup.add(melusinaSprite);
+    melusinaGroup.visible = false;
+    scene.add(melusinaGroup);
 
-        const ring2 = new THREE.Mesh(
-          new THREE.TorusGeometry(1.9, .004, 6, 140),
-          new THREE.MeshBasicMaterial({ color: 0xd9bc72, transparent: true, opacity: .085, depthWrite: false })
-        );
-        ring2.position.copy(ring.position);
-        ring2.rotation.set(.86, -.12, .3);
-        scene.add(ring2);
+    // ── Particle Breath (Melusina exhales stars) ──
+    const pCount = 200;
+    const pGeo = new THREE.BufferGeometry();
+    const pPos = new Float32Array(pCount * 3);
+    const pCol = new Float32Array(pCount * 3);
+    const pLife = new Float32Array(pCount);
+    const pVel = [];
+    
+    for (let i = 0; i < pCount; i++) {
+      pPos[i*3] = (Math.random() - 0.5) * 0.5;
+      pPos[i*3+1] = 2 + Math.random() * 0.5;
+      pPos[i*3+2] = (Math.random() - 0.5) * 0.5;
+      const c = new THREE.Color([0x9bb5ff, 0xc8a8e8, 0x6ec8e3, 0xfff8e8][Math.floor(Math.random() * 4)]);
+      pCol[i*3] = c.r; pCol[i*3+1] = c.g; pCol[i*3+2] = c.b;
+      pLife[i] = Math.random();
+      pVel.push({
+        x: (Math.random() - 0.5) * 0.02,
+        y: Math.random() * 0.03 + 0.01,
+        z: (Math.random() - 0.5) * 0.02
+      });
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+    
+    const pMat = new THREE.PointsMaterial({
+      size: 0.12, vertexColors: true, transparent: true, opacity: 0,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    });
+    const particles = new THREE.Points(pGeo, pMat);
+    particles.visible = false;
+    scene.add(particles);
 
-        // A handful of thread curves suggest routes without asking for interaction.
-        const threadMaterial = new THREE.LineBasicMaterial({ color: 0x91b9e7, transparent: true, opacity: .09 });
-        for (let i = 0; i < 4; i++) {
-          const curve = new THREE.CubicBezierCurve3(
-            new THREE.Vector3(-5 + i * 1.2, -3 + i * .35, -6 - i),
-            new THREE.Vector3(-1.5, 2.2 - i * .3, -8),
-            new THREE.Vector3(1.6, -1.4 + i * .5, -7),
-            new THREE.Vector3(5.4 - i * .4, 2.8 - i * .7, -10)
-          );
-          const thread = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(48)), threadMaterial.clone());
-          thread.material.opacity = .045 + i * .014;
-          scene.add(thread);
-        }
+    // ── Horizon ──
+    const horizonGroup = new THREE.Group();
+    
+    const skyCanvas = document.createElement('canvas');
+    skyCanvas.width = 1024; skyCanvas.height = 512;
+    const skx = skyCanvas.getContext('2d');
+    const grad = skx.createLinearGradient(0, 0, 0, 512);
+    grad.addColorStop(0, '#050210');
+    grad.addColorStop(0.3, '#0d0620');
+    grad.addColorStop(0.6, '#1a0f2e');
+    grad.addColorStop(1, '#2d1b4e');
+    skx.fillStyle = grad;
+    skx.fillRect(0, 0, 1024, 512);
+    
+    const commits = [
+      { x: 0.15, y: 0.12, bright: true, msg: 'MusicKey3D' },
+      { x: 0.28, y: 0.18, bright: true, msg: 'Folio' },
+      { x: 0.42, y: 0.15, bright: false, msg: 'Product' },
+      { x: 0.55, y: 0.22, bright: true, msg: 'Combat' },
+      { x: 0.68, y: 0.14, bright: false, msg: 'Wardrobe' },
+      { x: 0.82, y: 0.19, bright: true, msg: 'Audio' },
+      { x: 0.22, y: 0.28, bright: false, msg: 'UI' },
+      { x: 0.38, y: 0.32, bright: true, msg: 'Memory' },
+      { x: 0.62, y: 0.30, bright: false, msg: 'Build' },
+      { x: 0.75, y: 0.26, bright: true, msg: 'Echo' }
+    ];
+    commits.forEach(c => {
+      skx.fillStyle = `rgba(255, 248, 232, ${c.bright ? 0.9 : 0.4})`;
+      skx.fillRect(c.x * 1024, c.y * 512, c.bright ? 3 : 1.5, c.bright ? 3 : 1.5);
+    });
+    skx.strokeStyle = 'rgba(155, 181, 255, 0.1)';
+    skx.lineWidth = 1;
+    skx.beginPath();
+    commits.filter(c => c.bright).forEach((c, i) => {
+      if (i === 0) skx.moveTo(c.x * 1024, c.y * 512);
+      else skx.lineTo(c.x * 1024, c.y * 512);
+    });
+    skx.stroke();
+    
+    const skyTex = new THREE.CanvasTexture(skyCanvas);
+    const skyMat = new THREE.MeshBasicMaterial({ map: skyTex, side: THREE.BackSide, transparent: true, opacity: 0 });
+    const skyMesh = new THREE.Mesh(new THREE.SphereGeometry(30, 32, 32), skyMat);
+    horizonGroup.add(skyMesh);
+    
+    const seaGeo = new THREE.PlaneGeometry(60, 60, 64, 64);
+    const seaMat = new THREE.MeshStandardMaterial({
+      color: 0x0d0620, roughness: 0.05, metalness: 0.95,
+      emissive: 0x1a0f2e, emissiveIntensity: 0.2, transparent: true, opacity: 0
+    });
+    const seaMesh = new THREE.Mesh(seaGeo, seaMat);
+    seaMesh.rotation.x = -Math.PI / 2;
+    seaMesh.position.y = -2;
+    horizonGroup.add(seaMesh);
+    
+    horizonGroup.visible = false;
+    scene.add(horizonGroup);
 
-        let pointerX = 0, pointerY = 0;
-        addEventListener('pointermove', (event) => {
-          pointerX = (event.clientX / innerWidth - .5) * .16;
-          pointerY = (event.clientY / innerHeight - .5) * .10;
-        }, { passive: true });
+    // ── Ebenezer (emerges late) ──
+    const eCan = document.createElement('canvas');
+    eCan.width = 128; eCan.height = 128;
+    const ex = eCan.getContext('2d');
+    ex.fillStyle = '#0a0514'; ex.fillRect(0, 0, 128, 128);
+    ex.fillStyle = '#2d5a3f';
+    ex.beginPath(); ex.ellipse(64, 70, 22, 32, 0, 0, Math.PI * 2); ex.fill();
+    ex.fillStyle = '#1a3a2a';
+    ex.beginPath(); ex.ellipse(38, 65, 14, 22, -0.3, 0, Math.PI * 2); ex.fill();
+    ex.beginPath(); ex.ellipse(90, 65, 14, 22, 0.3, 0, Math.PI * 2); ex.fill();
+    ex.fillStyle = '#b8a030';
+    ex.beginPath(); ex.arc(64, 48, 7, 0, Math.PI * 2); ex.fill();
+    ex.fillRect(58, 82, 12, 18);
+    ex.fillStyle = '#ffd080';
+    ex.beginPath(); ex.arc(72, 52, 3, 0, Math.PI * 2); ex.fill();
+    
+    const eTex = new THREE.CanvasTexture(eCan);
+    const eMat = new THREE.SpriteMaterial({ map: eTex, transparent: true, opacity: 0 });
+    const eSprite = new THREE.Sprite(eMat);
+    eSprite.scale.set(0.8, 0.8, 1);
+    eSprite.position.set(2, 2, 0);
+    scene.add(eSprite);
 
-        const clock = new THREE.Clock();
-        function frame() {
-          const t = clock.getElapsedTime();
-          points.rotation.y = t * .006 + pointerX;
-          points.rotation.x += (pointerY - points.rotation.x) * .015;
-          ring.rotation.z = t * .018;
-          ring2.rotation.z = -.24 - t * .012;
-          renderer.render(scene, camera);
-          requestAnimationFrame(frame);
-        }
-        frame();
+    // ── Lights ──
+    scene.add(new THREE.AmbientLight(0x0a0514, 0.5));
+    const moonLight = new THREE.DirectionalLight(0xa8c8ff, 0);
+    moonLight.position.set(-5, 10, -5);
+    scene.add(moonLight);
+    const fillLight = new THREE.DirectionalLight(0xff88cc, 0);
+    fillLight.position.set(5, 3, 5);
+    scene.add(fillLight);
 
-        addEventListener('resize', () => {
-          camera.aspect = innerWidth / innerHeight;
-          camera.updateProjectionMatrix();
-          renderer.setSize(innerWidth, innerHeight);
-        }, { passive: true });
-      } catch (error) {
-        // The HTML/CSS experience is complete without WebGL.
-        console.info('Melodia atmosphere stayed quiet:', error);
+    // ═══════════════════════════════════════════════════════════════════════
+    //  STAGE LOGIC with audio triggers
+    // ═══════════════════════════════════════════════════════════════════════
+    const STAGE_DURATION = {
+      [STAGES.DARKNESS]: 1.5,
+      [STAGES.INK_BLEED]: 3.5,
+      [STAGES.BREATH]: 5.0,
+      [STAGES.MELUSINA]: 3.5,
+      [STAGES.PARTICLES]: 3.0,
+      [STAGES.HORIZON]: 5.0,
+      [STAGES.CONTENT]: Infinity
+    };
+
+    let audioStarted = false;
+    let inkSoundPlayed = false;
+    let crystalNotePlayed = false;
+
+    function updateStage(dt) {
+      stageTime += dt;
+      
+      // Smooth mouse
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
+      
+      if (stageTime >= STAGE_DURATION[stage] && stage < STAGES.CONTENT) {
+        stage++;
+        stageTime = 0;
+        console.log('Stage:', Object.keys(STAGES)[stage]);
+      }
+      
+      const t = stageTime / STAGE_DURATION[stage];
+      const ease = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      const easeIn = t => t * t;
+      const easeOut = t => 1 - (1 - t) * (1 - t);
+      
+      switch (stage) {
+        case STAGES.DARKNESS:
+          scene.background.setHex(0x050210);
+          break;
+          
+        case STAGES.INK_BLEED:
+          if (!audioStarted) { initAudio(); audioStarted = true; }
+          if (!inkSoundPlayed) { playInkSound(); inkSoundPlayed = true; }
+          
+          inkPass.enabled = true;
+          inkPass.uniforms.time.value = stageTime;
+          inkPass.uniforms.progress.value = easeIn(t);
+          inkPass.uniforms.mouseX.value = mouseX;
+          inkPass.uniforms.mouseY.value = mouseY;
+          break;
+          
+        case STAGES.BREATH:
+          if (!crystalNotePlayed) { playCrystalNote(261.63, 6); crystalNotePlayed = true; }
+          
+          inkPass.enabled = false;
+          noteGroup.visible = true;
+          breathPass.enabled = true;
+          breathPass.uniforms.time.value = stageTime;
+          breathPass.uniforms.intensity.value = easeOut(t);
+          
+          noteMat.emissiveIntensity = easeOut(t) * 0.8;
+          noteMat.opacity = easeOut(t);
+          noteRing.material.opacity = easeOut(t) * 0.3;
+          
+          const breath = Math.sin(stageTime * 1.5) * 0.1 + 1;
+          noteMesh.scale.setScalar(breath);
+          noteRing.scale.setScalar(breath * 1.2);
+          noteRing.rotation.z += 0.02;
+          
+          document.getElementById('breath-indicator').classList.add('visible');
+          break;
+          
+        case STAGES.MELUSINA:
+          breathPass.uniforms.intensity.value = 1 - easeIn(t);
+          noteMat.opacity = 1 - easeIn(t);
+          noteMat.emissiveIntensity = (1 - easeIn(t)) * 0.8;
+          
+          melusinaGroup.visible = true;
+          melusinaMat.opacity = easeOut(t);
+          melusinaSprite.position.y = -0.5 + Math.sin(stageTime * 0.8) * 0.05;
+          
+          moonLight.intensity = easeOut(t) * 0.8;
+          fillLight.intensity = easeOut(t) * 0.3;
+          break;
+          
+        case STAGES.PARTICLES:
+          melusinaMat.opacity = 1;
+          melusinaSprite.position.y = -0.5 + Math.sin(stageTime * 0.6) * 0.03;
+          
+          particles.visible = true;
+          pMat.opacity = easeOut(t) * 0.8;
+          
+          // Exhale: particles rise from Melusina's position
+          const pa = pGeo.attributes.position.array;
+          for (let i = 0; i < pCount; i++) {
+            const v = pVel[i];
+            pa[i*3] += v.x + Math.sin(stageTime + i) * 0.005;
+            pa[i*3+1] += v.y;
+            pa[i*3+2] += v.z + Math.cos(stageTime + i) * 0.005;
+            
+            pLife[i] -= dt * 0.3;
+            if (pLife[i] <= 0 || pa[i*3+1] > 8) {
+              pLife[i] = 1;
+              pa[i*3] = (Math.random() - 0.5) * 0.3;
+              pa[i*3+1] = 2 + Math.random() * 0.3;
+              pa[i*3+2] = (Math.random() - 0.5) * 0.3;
+            }
+          }
+          pGeo.attributes.position.needsUpdate = true;
+          break;
+          
+        case STAGES.HORIZON:
+          if (!seaAmbience) seaAmbience = playSeaAmbience();
+          
+          pMat.opacity = Math.max(0, 1 - easeIn(t));
+          
+          horizonGroup.visible = true;
+          skyMat.opacity = easeOut(t);
+          seaMat.opacity = easeOut(t) * 0.8;
+          
+          // Sea undulation
+          const positions = seaGeo.attributes.position;
+          for (let i = 0; i < positions.count; i++) {
+            const x = positions.getX(i);
+            const z = positions.getZ(i);
+            const dist = Math.sqrt(x * x + z * z);
+            const wave = Math.sin(dist * 0.3 - stageTime * 1.5) * 0.15 * Math.exp(-dist * 0.05);
+            positions.setY(i, wave);
+          }
+          positions.needsUpdate = true;
+          
+          // Ebenezer emerges
+          eMat.opacity = easeOut(Math.max(0, t - 0.5)) * 0.9;
+          const eAngle = stageTime * 0.4;
+          eSprite.position.x = 2 + Math.cos(eAngle) * 0.3;
+          eSprite.position.y = 2.5 + Math.sin(stageTime * 0.8) * 0.15;
+          
+          camera.position.z = 5 + easeOut(t) * 3;
+          camera.position.y = easeOut(t) * 0.5;
+          break;
+          
+        case STAGES.CONTENT:
+          skyMat.opacity = 1;
+          seaMat.opacity = 0.8;
+          melusinaMat.opacity = Math.max(0, 1 - (stageTime * 0.12));
+          eMat.opacity = 0.9;
+          
+          const pos = seaGeo.attributes.position;
+          for (let i = 0; i < pos.count; i++) {
+            const x = pos.getX(i);
+            const z = pos.getZ(i);
+            const dist = Math.sqrt(x * x + z * z);
+            const wave = Math.sin(dist * 0.3 - stageTime * 1.2) * 0.12 * Math.exp(-dist * 0.05);
+            pos.setY(i, wave);
+          }
+          pos.needsUpdate = true;
+          
+          if (stageTime > 1.5) {
+            document.getElementById('content-layer').classList.add('visible');
+            document.getElementById('breath-indicator').classList.remove('visible');
+            
+            // Haptic text: letters breathe in
+            const title = document.getElementById('main-title');
+            if (!title.classList.contains('visible')) {
+              title.classList.add('visible');
+              const text = title.textContent;
+              title.innerHTML = '';
+              text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.animationDelay = (i * 0.05) + 's';
+                title.appendChild(span);
+              });
+            }
+            
+            // Paragraphs fade in sequentially
+            setTimeout(() => document.getElementById('lead-text').classList.add('visible'), 800);
+            setTimeout(() => document.getElementById('p1').classList.add('visible'), 1400);
+            setTimeout(() => document.getElementById('p2').classList.add('visible'), 2000);
+          }
+          break;
       }
     }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  INTERACTION: Secret stages
+    // ═══════════════════════════════════════════════════════════════════════
+    let shiftHeld = false;
+    document.addEventListener('keydown', e => { if (e.key === 'Shift') shiftHeld = true; });
+    document.addEventListener('keyup', e => { if (e.key === 'Shift') shiftHeld = false; });
+    
+    document.addEventListener('click', e => {
+      if (stage < STAGES.CONTENT) {
+        stage = STAGES.CONTENT;
+        stageTime = 2.0;
+        return;
+      }
+      
+      if (shiftHeld) {
+        document.getElementById('secret-layer').classList.add('active');
+      }
+    });
+    
+    document.addEventListener('dblclick', () => {
+      if (stage === STAGES.CONTENT) {
+        window.open('https://github.com/fromage3900/MelodiaMelusinaV2/projects', '_blank');
+      }
+    });
+
+    // ═══════════════════════════════════════════════════════════════════════
+    //  RENDER LOOP
+    // ═══════════════════════════════════════════════════════════════════════
+    const clock = new THREE.Clock();
+    
+    function animate() {
+      requestAnimationFrame(animate);
+      const dt = clock.getDelta();
+      updateStage(dt);
+      composer.render();
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      composer.setSize(w, h);
+    });
   </script>
 </body>
 </html>
