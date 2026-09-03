@@ -114,3 +114,36 @@ Only one OceanologyInfiniteOcean is confirmed placed: the parked test fixture at
 in `MelodiaIntegrationMap`, which `CLAUDE.md` explicitly protects. A `.umap` text scan is
 not reliable for finding the rest (umaps are compressed), so the full placement list is
 not yet established.
+
+### 8a. P0 target located: `LV_SeaAbove_Prototype`
+
+Owner scoped the ocean work to **P0 Sea Above**. Two level copies exist:
+
+- `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`
+- `/Game/LV_SeaAbove_Prototype`  (root-level duplicate)
+
+The level is World Partition, so its actors live as individual files under
+`Content/__ExternalActors__/`. Grepping those found **two Oceanology actors**, present
+under *both* level paths with identical GUID filenames:
+
+```
+__ExternalActors__/.../LV_SeaAbove_Prototype/B/X0/YQRDXBQR534T08Q6G2HZDQ.uasset   (11,870 b)
+__ExternalActors__/.../LV_SeaAbove_Prototype/C/VB/VHWRT1P58KT1SXWCO9HLIA.uasset   (31,302 b)
+```
+
+(A third file, `B/AL/YFXFMLGF2C7PE8UFCIG14M`, matches "Oceanology" but not
+"OceanologyInfinite" — likely a related volume or manager, not the ocean itself.)
+
+**Whether these actors already have a `GroupedWaterPresets.Color` assigned is NOT yet
+known.** `grep -l` matches "Oceanology" in the raw bytes of these files, but `strings`
+extracts nothing from them — not even the class name it matched on — so the name table
+is encoded or compressed. Absence of a `DA_Color_*` string in them is therefore **not**
+evidence that no preset is set. This must be read in the editor.
+
+That check is currently blocked: a modal dialog
+(`title='BS_GodFile - Unreal Editor' text='This asset editor has no docked tabs.'`)
+is holding the game thread, so Monolith cannot answer even though port 9316 is
+listening. 12 MODAL_OPEN entries are logged with no matching close.
+
+**Likely cause of the modal:** repeated `capture_scene_preview` calls open asset editor
+windows. Worth watching for during long capture loops.
