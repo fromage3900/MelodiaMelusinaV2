@@ -829,6 +829,19 @@
       "separate_finding_blank_bakes": "T_Melusina_M_Melusina_BaseColor (bodice+skin) and T_Melusina_m_skirt_BaseColor are BLANK PURE WHITE 4096x4096 maps. Those are missing bakes, not import settings — no amount of material tuning recovers them. The grey torso and several flat surfaces trace to this. Needs re-baking in Blender.",
       "editor_state": "In-memory Melusina render is STILL stale/exploded (verified iter11) while disk is correct. Did NOT restart the editor: the other agent had unsaved MI_Mother_Mantle dirty and a restart would have destroyed it. Visual verification of these two texture fixes is therefore deferred to the next clean editor session.",
       "gameplay_feel_note": "Still no play session. Worth recording for the Infinity Nikki goal: two of the four remaining visual deltas are BLANK SOURCE TEXTURES, not tuning. The outfit cannot 'read' in motion — the core Nikki pillar — until those bakes exist. This is art production work, not engineering, and it is the honest gate on the whole lookdev lane."
+    },
+    "CORRECTION_2026-09-03T09:20": {
+      "retracts": "The 'BLANK PURE WHITE 4096 map' claim recorded in texture_import_defect_2026-09-03T09:00 and in commit 8368f8a5. IT IS WRONG.",
+      "method_error": "I judged texture content by eyeballing 256px preview thumbnails instead of measuring pixels. A pale-lilac albedo reads as white at thumbnail size.",
+      "measured_truth": {
+        "T_Melusina_M_Melusina_BaseColor (bodice+skin)": "2896 unique colours, dominant RGB (233,221,231) = PALE LILAC. Not blank.",
+        "T_MelusinaC_Shirt_BaseColor": "10398 unique colours, dominant (159,112,112) = mauve. Not blank.",
+        "T_MelusinaC_DressShorewake_BaseColor": "9320 unique colours, dominant (74,117,123) = teal. Not blank.",
+        "control": "/Engine/EngineMaterials/DefaultDiffuse previews with 1135 unique colours, so preview_texture works correctly."
+      },
+      "revised_diagnosis": "The grey torso is NOT a missing bake. The albedo is genuinely a very pale lilac, which reads grey under the studio 3-point rig. This is a TUNING problem after all — lift saturation/tint toward the reference pink, or check whether the studio lighting is washing it out — not an art-production blocker.",
+      "still_true": "The two texture IMPORT defects fixed in 8368f8a5 were real and independently verified via get/set of srgb + compression_settings: T_Melusina_Material_010_BaseColor and T_Melusina_skirtpanel_004_BaseColor really were TC_NORMALMAP/BC5 on colour data. That fix stands.",
+      "lesson": "Measure pixels (unique-colour count + dominant RGB) before asserting a texture is blank. Thumbnails lie about pale values."
     }
   }
 }
