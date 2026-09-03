@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-02
 **Status:** CANONICAL — integrates all active research, plans, and workflows
-**Sources:** `melusinashouseplan.md`, `MELODIA_STUDIO_DEEP_INTAKE_2026-09-02.md`, `EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`, `TODO.md`, `GRANDMASTER_MASTER_PLAN_V2.md`
+**Sources:** `melusinashouseplan.md`, `MELODIA_STUDIO_DEEP_INTAKE_2026-09-02.md`, `EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`, `TODO.md`, `GRANDMASTER_MASTER_PLAN_V2.md`, `LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`, `BLENDER_MELODIA_COCKPIT.md`, `Tools/Moho/README.md`
 
 ---
 
@@ -53,6 +53,7 @@ Melodia Melusina is an **evergreen single-player Rhythm-JRPG** that can grow for
 | Brutalist GN | — | 4 architecture generators |
 | Monolith MCP | — | 1330+ UE editor actions |
 | Rider | 2026.2.1 | C++/Unreal IDE |
+| Moho | — | Planned: 2D animation/vector authoring |
 
 ## 5. Emerging Tech Index (PRESENT — do NOT rebuild)
 
@@ -158,6 +159,22 @@ python Tools/stage_melodia_aaa_presets.py --audio Content/Melodia/Characters/Met
 - STUDIO_LABELS for organization
 - Review Queue for visual QA
 - Solo Object isolate, Ivy (Bagapie) scatter
+
+### 9.7 Blender Melodia Cockpit
+**File:** `Docs/BLENDER_MELODIA_COCKPIT.md`  
+**Purpose:** Central command reference for Blender production pipelines
+
+| Pipeline | Import Script | UE Destination |
+|----------|---------------|----------------|
+| Ornament FBX | `Content/Python/import_ornament_fbx.py` | `/Game/EnvSandbox/Meshes/Ornament/` |
+| Musical FBX | `… --musical --prep` | `/Game/EnvSandbox/Meshes/OrnamentMusical/` |
+| Musical Kitbash | `Content/Python/package_musical_ornament_kitbash.py` | Products + web JSON |
+| Gothic 15 Kitbash | `watch_ornament_export_and_package.py --also-import` | Poll → UE import → ZIP |
+| Headless Kitbash | `run_ornament_kitbash_pipeline.ps1 -ImportFromKitbash` | Cmd import + prep + package |
+
+**Audit outputs:**
+- Gothic: `Saved/Audit/ornament_fbx_import.json`
+- Musical: `Saved/Audit/musical_ornament_fbx_import.json` / `musical_ornament_bake_manifest.json`
 
 ---
 
@@ -383,7 +400,108 @@ UPPER
 
 ---
 
-# 𝄞 Part VII — Definition of Progress
+# 𝄞 Part VII — Laptop Workstation Setup & Offload Plan
+
+## 1. Hardware Record
+
+| Component | Measurement | Consequence |
+|---|---|---|
+| Model | Acer Nitro AN515-51 | Use the measured profile, not the product family name |
+| Memory | 15.9 GB RAM; 2 x 8 GB at 2133 MHz | Worker-first; keep heavy applications in separate modes |
+| CPU | Intel Core i5-7300HQ; 4 cores / 4 threads; 2.50 GHz | Good for bounded scripts and serial asset jobs |
+| GPU | NVIDIA GeForce GTX 1050 Ti; 4 GB VRAM | Asset inspection, modest viewport; not primary renderer |
+| System drive | `C:` 14.5 GB free of 237.4 GB | Do not place UE, caches, or project clone here |
+| Work drive | `P:` 251.4 GB free of 931.5 GB | Preferred for project clone, staged jobs, outputs |
+
+## 2. Worker Role Assignment
+
+**Primary lanes (active):**
+- Blender background exports and procedural generation
+- Mesh, material, texture, animation staging outside live UE Content/
+- Offline manifests, hashes, validation reports
+- Source/docs, Rider/VS Code, deterministic tests
+- Three.js/web prototypes, asset preparation
+
+**Planned lane (scaffolded):**
+- Moho source/job staging (requires licensed Moho + automation path)
+
+## 3. Moho Scaffold
+
+**File:** `Tools/Moho/README.md` + `run_moho_worker.ps1`
+
+Moho is a planned authoring lane — the repo contains **no** Moho plugin, automation API, executable contract, or native Moho project format. The scaffold currently performs only safe staging and inventory checks; it does not launch Moho.
+
+**Next integration gate (before adding real execution):**
+1. Licensed Moho version and install path
+2. Supported command-line, scripting, or UI automation entry point
+3. Accepted source and export formats
+4. Deterministic output and failure semantics
+5. Review and Unreal handoff rules
+
+## 4. Install Order
+
+1. Windows Update + GPU driver + AC power
+2. Git + Git LFS (`git lfs install`)
+3. Clone lightweight checkout:
+   ```bash
+   GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/fromage3900/MelodiaMelusinaV2.git MelodiaMelusinaV2-Laptop
+   cd MelodiaMelusinaV2-Laptop
+   git config core.autocrlf false
+   git config core.hooksPath .githooks
+   git lfs install
+   bash deploy/collaborator_onboarding.sh lightweight .
+   ```
+4. Visual Studio C++ toolchain (import `.vsconfig`)
+5. Rider (open `BS_GodFile.uproject`)
+6. VS Code (lightweight scripts/docs)
+7. Unreal Engine 5.8 via Epic Launcher
+8. Blender 5.2.1 LTS
+
+## 5. Git Handoff Protocol
+
+**Laptop (finish task):**
+```bash
+git status --short --branch
+git add <specific-files>
+git commit -m "describe the laptop task"
+git push -u origin collab/laptop/<short-task-name>
+```
+
+**Main PC (consume):**
+```bash
+git fetch origin
+git switch main
+git pull --ff-only
+git merge --ff-only origin/collab/laptop/<short-task-name>
+```
+
+**LFS lock for binary assets:**
+```bash
+git lfs lock <path/to/asset>
+```
+
+**Machine-local state (never copy as source):** `Saved/`, `Intermediate/`, `Binaries/`, `.rider/`, `.idea/`, `DerivedDataCache/`
+
+## 6. Acceptance Checklist
+
+- [x] RAM/GPU/CPU/SSD/free-space measurements recorded
+- [x] Laptop profile selected: worker-first
+- [x] Windows/GPU driver/power setup complete
+- [x] Git + Git LFS installed
+- [x] Lightweight sparse checkout complete
+- [x] `core.hooksPath` = `.githooks`
+- [x] Rider opens `BS_GodFile.uproject`
+- [x] VS Code opens scripts/docs
+- [x] Blender 5.2.1 LTS validated (audio terrain + presets)
+- [ ] `.vsconfig` toolchain installed
+- [ ] `validate_setup.ps1 -SkipServices -CheckLfsHydration` passes
+- [ ] Closed-editor plugin build completes
+- [ ] Small `collab/laptop/...` branch pushed and consumed
+- [ ] UE 5.8 installed and launched (manual via Epic Launcher)
+
+---
+
+# ♪ Part VIII — Definition of Progress
 
 A successful session leaves:
 
@@ -398,21 +516,48 @@ A successful session leaves:
 
 ---
 
-# ♫ Part VIII — Laptop Onboarding Status
+# ♫ Part IX — Laptop Onboarding Status
 
 | Item | Status |
 |------|--------|
 | `SOUL.md` | Written at `C:\Users\brenn\AppData\Local\hermes\SOUL.md` |
 | Two-PC workflow | Committed (`9a73c4c3`) |
-| Worktree | Clean at `348ced8e` |
+| MASTER_INDEX | Committed (`d68fb4fb`) |
+| Grand Master Plan | Committed (`2acddef9`) |
+| Worktree | Clean (LFS cosmetic drift only) |
 | LFS | 3479/3479 uassets hydrated |
 | Rider | 2026.2.1 installed |
 | Blender | 5.2.1 LTS installed & validated |
 | Epic Launcher | Installed & running |
+| Python | 3.11.9 installed |
+| Git push | Succeeded (verified via GitHub) |
 | VS 2022 | ❌ Manual UAC required |
 | UE 5.8 | ❌ Install via Epic Launcher |
 | OpenSSH Server | ❌ Manual admin install |
+| C++ compiler | ❌ Blocked on VS 2022 |
 
 ---
 
 > **House rule:** make the architecture sing before decorating it with notes. ♪
+
+---
+
+## Appendix A — Branch Inventory
+
+| Branch | Commit | Content |
+|--------|--------|---------|
+| `docs/2026-09-02-melusinashouseplan` | `b700326e` | melusinashouseplan + Blender 5.2 cockpit reference |
+| `docs/2026-09-02-grand-master-plan` | `2acddef9` | Canonical integrated plan (this document) |
+| `collab/laptop/workstation-health` | `30039e8c` | Laptop art worker + Moho scaffold |
+| `collab/laptop/integration-batch-2026-09-02` | `c0c4148c` | 22-commit integration batch (onboarding, workflow, index, deprecated archival) |
+
+## Appendix B — Document Cross-Reference
+
+| Document | Relationship |
+|----------|--------------|
+| `melusinashouseplan.md` | Source for Part IV (House Build Plan) |
+| `MELODIA_STUDIO_DEEP_INTAKE_2026-09-02.md` | Source for Part III (GN Workflows) |
+| `EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md` | Source for Part II (Toolchain State) |
+| `LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md` | Source for Part VII (Laptop Setup) |
+| `BLENDER_MELODIA_COCKPIT.md` | Source for §9.7 (Cockpit Reference) |
+| `GRANDMASTER_MASTER_PLAN_V2.md` | Source for Part I (Product Vision) |
