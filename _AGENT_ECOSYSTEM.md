@@ -1,3 +1,11 @@
+# CURRENT DISCOVERY OVERRIDE — 2026-09-04
+
+This file contains historical orchestration patterns. **Current agents must read [`AGENT_START_HERE.md`](AGENT_START_HERE.md) first.** References below to `_SESSION_HANDOFF.md` or `_TASK_QUEUE.md` are historical; those scratch files were removed and must not be recreated as current authority.
+
+For laptop/remote work, use `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`. For images/reference boards, use `Docs/Art/VISUAL_REFERENCE_INDEX.md`.
+
+---
+
 # Agent Ecosystem — Solo Developer + Parallel AI Agents
 
 **Paradigm (2026-07-26):** One human developer. Multiple AI agents working in parallel on scoped tasks. No ownership boundaries. No STOP files. No sentinel runners. Direct access to everything.

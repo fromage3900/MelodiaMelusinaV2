@@ -11,6 +11,21 @@
 
 Melodia is a turn-based fantasy RPG built in Unreal Engine 5.8. Rhythm is how actions are executed. Clothing is build identity and a language the world can read. Exploration, music, creatures, water, fabric, ecology, and ornament are allowed to become mechanics instead of staying scenery.
 
+### Technical review / vertical slice
+
+If you are reviewing the project as an Unreal developer, professor, recruiter, or collaborator, **start here:**
+
+> **[MELODIA_TECHNICAL_VERTICAL_SLICE.md](MELODIA_TECHNICAL_VERTICAL_SLICE.md)** — the current 5–10 minute proof route, runtime ownership model, live/restart evidence, known boundaries, and what is intentionally frozen for closure.
+
+Then use [`CURRENT_STATE.md`](CURRENT_STATE.md) for the present-tense truth and [`TODO.md`](TODO.md) for the active production queue. Long-term strategy and research are supporting material, not prerequisites for understanding the playable slice.
+
+### Agent / multi-workstation discovery
+
+Agents and remote workstations should start at **[`AGENT_START_HERE.md`](AGENT_START_HERE.md)**. It contains the freshness rules that prevent old handoffs from overriding current source/evidence.
+
+- [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) — where committed laptop/recovery work actually lives, including work not yet on `main`.
+- [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) — canonical image/reference-board discovery and explicit missing/uncommitted-board status.
+
 The long-term idea is simple:
 
 > **Finish a real journey. Let the world keep growing after it.**
@@ -62,13 +77,14 @@ A player should be able to disappear for a year, come back, and feel welcomed ra
 
 That is much closer to the feeling I want than **CLAIM REWARD: 03:41:19 REMAINING**.
 
-Canonical strategy lives here:
+Current truth before long-term strategy:
 
-1. [`Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`](Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md) — ♪ the long-term game-as-a-place north star.
-2. [`Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`](Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md) — ♫ Reveries → Episodes → Chapters → Movements → Monolith Events → Volumes.
-3. [`Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`](Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md) — ♬ Gifts, mail, archives, Voyages, and the no-FOMO rule.
-4. [`CURRENT_STATE.md`](CURRENT_STATE.md) — what is actually real today.
-5. [`TODO.md`](TODO.md) — what we are actually doing next.
+1. [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) — professor-facing playable proof and technical boundary.
+2. [`CURRENT_STATE.md`](CURRENT_STATE.md) — what is actually real today.
+3. [`TODO.md`](TODO.md) — what we are actually doing next.
+4. [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) — bounded P0 integration scope.
+
+Long-term strategy lives under `Docs/Strategy/` and should be read **after** the current slice if deeper product context is needed.
 
 ---
 
@@ -212,17 +228,21 @@ For the shortest useful reading path:
 
 ```text
 README
-  ♪
-Endless Journey North Star
+  ↓
+MELODIA_TECHNICAL_VERTICAL_SLICE
   ↓
 CURRENT_STATE
   ↓
+_VERTICAL_SLICE_SCOPE
+  ↓
 TODO
   ↓
-SYSTEM_MAP / DATA_FLOW
+SYSTEM_MAP / DATA_FLOW (only if you need architecture detail)
   ↓
-the Chapter, tool, or system you are actually touching
+the specific Chapter, tool, evidence file, or subsystem you are touching
 ```
+
+**Do not read the research archive or dated handoffs front-to-back.** They preserve project memory; they are not the current product surface.
 
 ---
 
