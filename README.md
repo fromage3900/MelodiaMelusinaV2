@@ -19,6 +19,13 @@ If you are reviewing the project as an Unreal developer, professor, recruiter, o
 
 Then use [`CURRENT_STATE.md`](CURRENT_STATE.md) for the present-tense truth and [`TODO.md`](TODO.md) for the active production queue. Long-term strategy and research are supporting material, not prerequisites for understanding the playable slice.
 
+### Agent / multi-workstation discovery
+
+Agents and remote workstations should start at **[`AGENT_START_HERE.md`](AGENT_START_HERE.md)**. It contains the freshness rules that prevent old handoffs from overriding current source/evidence.
+
+- [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) — where committed laptop/recovery work actually lives, including work not yet on `main`.
+- [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) — canonical image/reference-board discovery and explicit missing/uncommitted-board status.
+
 The long-term idea is simple:
 
 > **Finish a real journey. Let the world keep growing after it.**
