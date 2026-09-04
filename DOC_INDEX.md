@@ -1,6 +1,6 @@
 # ♬ Melodia — Documentation Score Map
 
-**Last updated:** 2026-09-03
+**Last updated:** 2026-09-04
 
 > Front-facing docs tell the current truth. Dated handoffs keep the memory. Research is allowed to be weird. Runtime ownership is not. ♪
 
@@ -19,6 +19,9 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 | **5** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
 | **6** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Architecture detail only when needed. |
 | **7** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, and validation commands. |
+| **Agent** | [`AGENT_START_HERE.md`](AGENT_START_HERE.md) | Mandatory current discovery contract for AI/remote agents. |
+| **Laptop** | [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) | Find committed work that has not reached `main`. |
+| **Visuals** | [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) | Find canonical image boards and distinguish missing/uncommitted references. |
 
 ### Supporting context — not required reading
 
