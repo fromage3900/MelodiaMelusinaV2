@@ -62,6 +62,8 @@ Each workstation should have its **own clone**. Git/Git LFS + explicit handoff b
 
 Before opening Rider, Blender, or Unreal on either machine, run the safe sync check:
 
+**Default workstation target is `origin/main`.** If you are on an old laptop/recovery branch the check should fail with `wrong-branch`; that is intentional.
+
 ```powershell
 .\deploy\sync_workstation.ps1
 ```
