@@ -85,7 +85,8 @@ def auto_update_callback(self, context):
         return
     try:
         _AUTO_UPDATE_RUNNING = True
-        bpy.ops.surreal_arch.generate()
+        # auto_update must NEVER wipe user work: preserve-edited mode (force=False).
+        bpy.ops.surreal_arch.generate(force=False)
     except Exception:
         pass
     finally:
@@ -18202,8 +18203,27 @@ def build_fence(tree, props, base_x=-1400):
 # APPLY
 # ----------------------------------------------------------------------
 
-def apply_geometry_nodes_to_object(obj, props):
-    """Build the surreal architecture node tree on the given object."""
+def apply_geometry_nodes_to_object(obj, props, force=False):
+    """Build the surreal architecture node tree on the given object.
+
+    v2.132 fix for the "edits revert to tower" defect: the auto_update path
+    (force=False) preserves a tree the user has touched in the GN editor
+    instead of deleting it and reinitializing as a tower. Manual Generate
+    (force=True) always rebuilds.
+    Detection: addon-generated trees carry a 'surreal_arch_generated' marker
+    and are left with no selected nodes. A tree without the marker, or with
+    any selected node (any editor interaction selects), counts as user-edited.
+    """
+    existing_tree = bpy.data.node_groups.get(f"SurrealArch_{obj.name}")
+    if existing_tree is not None and not force:
+        user_edited = (not existing_tree.get("surreal_arch_generated")) or any(
+            n.select for n in existing_tree.nodes
+        )
+        if user_edited:
+            print(f"[SurrealArch] preserving user-edited tree on '{obj.name}' — "
+                  f"click Generate to rebuild deliberately")
+            return
+
     for mod in list(obj.modifiers):
         if mod.name.startswith("SurrealArch"):
             obj.modifiers.remove(mod)
@@ -18216,6 +18236,7 @@ def apply_geometry_nodes_to_object(obj, props):
     gn_mod = obj.modifiers.new(name="SurrealArch", type='NODES')
     tree = bpy.data.node_groups.new(name=old_tree_name, type='GeometryNodeTree')
     gn_mod.node_group = tree
+    tree["surreal_arch_generated"] = True  # user-edit preservation marker (v2.132)
     tree.interface.new_socket(name="Geometry", in_out='INPUT',  socket_type='NodeSocketGeometry')
     tree.interface.new_socket(name="Geometry", in_out='OUTPUT', socket_type='NodeSocketGeometry')
 
@@ -27573,6 +27594,12 @@ class SURREAL_ARCH_OT_generate(bpy.types.Operator):
     bl_label  = "Generate Geometry"
     bl_options = {'REGISTER', 'UNDO'}
 
+    force: bpy.props.BoolProperty(
+        name="Force Rebuild",
+        description="Rebuild even if the tree was edited by hand in the GN editor",
+        default=True,
+    )
+
     @classmethod
     def poll(cls, context):
         return context.active_object and context.active_object.type == 'MESH'
@@ -27585,7 +27612,7 @@ class SURREAL_ARCH_OT_generate(bpy.types.Operator):
         was_running = _AUTO_UPDATE_RUNNING
         _AUTO_UPDATE_RUNNING = True
         try:
-            apply_geometry_nodes_to_object(obj, props)
+            apply_geometry_nodes_to_object(obj, props, force=self.force)
             if props.apply_modifiers:
                 for mod in list(obj.modifiers):
                     if mod.name.startswith("SurrealArch"):
