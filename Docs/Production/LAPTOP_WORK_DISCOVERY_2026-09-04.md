@@ -120,7 +120,8 @@ This is now the preferred PC/laptop baton for current Melusina House work. It st
 
 - the isolated current house/GN code and build scripts;
 - the recovered session notes and V7 plan;
-- the latest canonical `Saved/MelusinasHouse/MelusinasHouse_V7_Base.blend` as one small Git LFS object (275,749 bytes).
+- the latest canonical `RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend` as one small Git LFS object (275,749 bytes);
+- `RawArt/MelusinasHouse/README.md` with lock/handoff rules.
 
 It deliberately excludes the broad `Exports/` and quarantine deletions and the historical house binary sweep.
 
