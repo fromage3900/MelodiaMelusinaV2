@@ -296,3 +296,48 @@ resumes that feature should know the files have been touched.
 **Not blocked by this:** the ocean asset repair, `MF_NikkiSparkle` wiring and the main-menu
 fixes are all saved and committed, and read correctly in-editor. Only the runtime
 re-darkening in PIE/packaged needs the build.
+
+---
+
+## 9. VERIFIED LIVE — audio reactivity confirmed in PIE
+
+Measured in PIE on `L_MelusinaMorning` (world `UEDPIE_0_L_MelusinaMorning`) after adding the
+clock components to `BP_MelodiaJRPGGameMode`. Two samples taken in **separate frames**:
+
+| Parameter | Sample 1 | Sample 2 |
+|---|---|---|
+| `MPC_Melodia_Palette.BeatPhase` | 0.5253 | **0.6147** |
+| `MPC_Melodia_Palette.BeatPulse` | 0.0063 | **0.1244** |
+| `MPC_Cymatics_Driver.Cymatic_BeatPulse` | 0.0063 | **0.1244** |
+| `MPC_Cymatics_Driver.Cymatic_EmissiveScale` | — | 0.3993 |
+
+**What this proves, end to end:**
+
+1. **The clock is running.** `BeatPhase` is non-zero and advances between frames, so
+   `HasMusicalTime()` is true — the GameMode component fix worked.
+2. **The beat formula is correct and live.** `cos²(0.6147 · π) = 0.1237` against a measured
+   `0.1244`. The published pulse is genuinely derived from the phase, not a stuck constant.
+3. **The MPC single-writer path works** — the palette carries real values.
+4. **The cymatics bridge lands.** `Cymatic_BeatPulse` mirrors `BeatPulse` exactly in both
+   samples, confirming the SrcInst -> DstInst ticker in `MelodiaCymaticsWriterSubsystem`.
+5. **Derived cymatic values are non-zero** (`Cymatic_EmissiveScale` 0.3993), so consumers
+   downstream of the driver receive a live signal, not a floor.
+
+### Measurement trap worth recording
+
+The first attempt sampled ten times in one Python call and returned **ten identical values**,
+which reads exactly like a frozen signal. It was not frozen — Claireon intercepts and skips
+`time.sleep` ("sleeping is disabled to prevent editor hangs"), so all ten reads happened
+within a single frame. **To sample a per-frame value, use separate tool calls**; a loop with
+sleep inside one call cannot advance the frame and will always look static.
+
+### Correct Python API names (all three of my first guesses were wrong)
+
+- `unreal.MaterialLibrary.get_scalar_parameter_value(world, collection, name)` —
+  **not** `KismetMaterialLibrary`, which does not exist in Python.
+- `unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_game_world()` for the PIE
+  world; `EditorLevelLibrary.get_editor_world()` returns None and is deprecated.
+- `MPC_Cymatics_Driver` lives at `/Game/Melodia/Cymatics/`, not under `_PROJECT/04_Materials/`.
+- `unreal.Rotator(a, b, c)` is **(roll, pitch, yaw)** — passing pitch first rolls the camera.
+- `NiagaraSystem` does not expose `emitter_handles` to Python (206/206 failed); use Monolith's
+  `niagara_query list_emitters` instead.
