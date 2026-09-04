@@ -290,6 +290,9 @@ function Invoke-SyncSuite {
     Write-Host "=== [Laptop workstation sync suite] ===" -ForegroundColor Cyan
     $syncScript = Join-Path $ProjectRoot "deploy\sync_workstation.ps1"
     Invoke-ProjectPowerShell -Name "Two-workstation Git/LFS sync check" -ScriptPath $syncScript -ScriptArguments @("-Mode", "Check", "-LfsProfile", "None")
+
+    $addonInstaller = Join-Path $ProjectRoot "deploy\install_melodia_studio.ps1"
+    Invoke-ProjectPowerShell -Name "Blender live addon provenance" -ScriptPath $addonInstaller -ScriptArguments @("-CheckOnly")
 }
 
 function Invoke-UESuite {
