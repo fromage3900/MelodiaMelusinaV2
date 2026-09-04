@@ -100,6 +100,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|Wardrobe|Clipping")
 	void ApplyBodyRegionVisibility();
 
+	/** The region-hide morphs this component currently holds collapsed. Test/
+	 *  evidence seam: the clipping proof asserts on this alongside the subsystem's
+	 *  GetHiddenBodyRegions derivation. Runtime-only; never persisted. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wardrobe|Clipping")
+	const TSet<FName>& GetAppliedBodyRegionHides() const { return AppliedBodyRegionHides; }
+
 	/**
 	 * Default meshes used when a save has no explicit cosmetic for a slot.
 	 * The Melusina V2 pawn supplies Shirt/Skirt/Boots/Accessories here; saved

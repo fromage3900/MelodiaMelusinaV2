@@ -6,6 +6,7 @@
 - [ ] Variant: ButterflyWingTidepool Copernicus family (iridescent tidepool, distinct Chladni mode)
 - [ ] Tension-fold loom v2: MEL_garment_tension_folds builder + gn52 proof
 - [ ] XPBD feasibility verdict (MEL_garment_xpbd_drape or documented no-go)
+- [x] XPBD feasibility verdict — **FEASIBLE_WITH_LIMITS** (2026-09-04 run5): `MEL_garment_xpbd_drape` builder Y (5 nodes, 10 params LINKED, 3 presets SILK/STIFF/PREVIEW), asset `Cloth Dynamics (Experimental)` 77 nodes XPBD Simulation sub-group (28 nodes, SimulationInput/Output PASS), headless depsgraph drape **VERIFIED to advance** (frame1 ce6939784e246c9b → frame20 1c28cab1406457a7, multi-frame 1→60 monotonic fall, deterministic reset) — corrects prior "bit-identical" claim (ptcache bake-ops still need editor, depsgraph `to_mesh()` export is viable). Limits: NO self-collision, single shell, Pin Group mask not yet wired, reference-only Tier B, experimental asset. Reports `verify_XPBD_2026-09-04.{md,json}`, proof `Tools/wardrobe_pipeline/gn52_proof_xpbd.py`.
 - [ ] Retopo recipe doc (quad-dominant route from dense MD triangulations)
 - [ ] CAPSTONE "something special": DAWN CHORUS gown for Melusina — first light rose-gold
       variant built ONLY from proven pieces (loom presets + one new Copernicus family +
