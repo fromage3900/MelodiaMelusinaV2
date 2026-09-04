@@ -11,13 +11,12 @@ command = "python"
 args = ["deploy/blender_mcp_adapter.py"]
 cwd = "."
 
-# Keep the already-installed filesystem server command machine-local for now,
-# but scope it to the active Codex project instead of a hard-coded Melodia path.
 [mcp_servers.filesystem]
-command = "node"
+command = "npx"
 args = [
-    'C:\Users\froma\AppData\Roaming\npm\node_modules\@modelcontextprotocol\server-filesystem\dist\index.js',
-    '.',
+    "-y",
+    "@modelcontextprotocol/server-filesystem",
+    ".",
 ]
 cwd = "."
 
