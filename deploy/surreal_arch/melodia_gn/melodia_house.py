@@ -300,7 +300,7 @@ register_builder(
     "MEL_mh6_room_shell", build_mh6_room_shell,
     "MH6 Room Shell", "Genome room shell: curved wall + cornice + SDF-filleted "
     "openings, all driven off Bounding Box extents.",
-    category="structures")
+    category="melusina_house")
 
 def _bevel(tree, loc, geom_sock, width=0.01, segments=2):
     n = safe_node(tree, "GeometryNodeMeshBevel", loc)
@@ -743,11 +743,11 @@ def _register_all():
     register_builder(
         "MEL_mh_aaa_cornice", build_mh_aaa_cornice,
         "MH AAA Cornice", "Stepped cornice/string-course ring, swept + beveled.",
-        category="structures")
+        category="melusina_house")
     register_builder(
         "MEL_mh_aaa_dentil", build_mh_aaa_dentil,
         "MH AAA Dentil Row", "Repeat Zone dentil blocks under a cornice.",
-        category="structures")
+        category="melusina_house")
     register_builder(
         "MEL_mh_aaa_scallop_uv", build_mh_aaa_scallop_uv,
         "MH AAA Scallop UV", "UV-projected scallop shingles via Sample UV Surface.",
@@ -755,7 +755,7 @@ def _register_all():
     register_builder(
         "MEL_mh_aaa_lissajous_pearl", build_mh_aaa_lissajous_pearl,
         "MH AAA Lissajous Pearl", "Lissajous pearl string driven by sine math; music-reactive.",
-        category="ornament")
+        category="melusina_house")
 
 
 _register_all()
