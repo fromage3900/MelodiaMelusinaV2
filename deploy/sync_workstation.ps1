@@ -337,6 +337,6 @@ Write-Host ""
 Write-Host "Recommended: $recommended" -ForegroundColor Yellow
 Write-Host "Report: $ReportPath" -ForegroundColor Gray
 
-$healthyStates = @("synced", "ahead")
+$healthyStates = @("synced")
 $exitCode = if ($state -in $healthyStates) { 0 } else { 1 }
 exit $exitCode
