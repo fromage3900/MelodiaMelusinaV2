@@ -98,7 +98,62 @@ V7 moves roof authority into the cell while keeping the monolith as the generato
 3. Optional overnight cron: rerun verify + hero render on the C: repo; morning
    report only (no mid-run messages).
 
-## Discipline (unchanged, restated because it is the plan's spine)
+## V5 — ADDON CONSOLIDATION (from the 2026-09-04 three-study review)
+
+Sources: overlap inventory + consolidation roadmap + rebrand study (three read-only
+subagent audits of the live addon). Key correction they produced: the addon has
+**267 registered builders across ~62 modules** (not 173), and 16 of them are dead.
+
+### Study findings (evidence-backed, file:line in subagent reports)
+
+- **Latent load break (fixed 2026-09-04):** `melusina_house.py` was missing from the
+  P: SSOT (present in C: + AppData only) while `__init__.py` imports it — fresh P:
+  clones could not import the addon. Restored, committed d2b7ce4d.
+- **16 dead builders in 9 modules:** `mother_v3.py` (8), `mother_tapestry_wall.py`
+  (1), all 7 `p4_*.py` — never imported anywhere, registrations never run.
+- **8 passthrough stubs** (7 p4_* + mother_tapestry_wall): geometry-less trees, two
+  conflicting `make_group_input`/`link_sockets` signatures held together by
+  exception-swallowing.
+- **Major parallel-authority clusters:** music/notation (46 MEL_music_* ids across
+  11 modules + 4 monolith notation builders), castle (20 MEL_castle_* vs 8 monolith
+  bmesh), greybox (THREE surfaces: monolith dispatch, MEL_greybox_*, _KIT_DISPATCH
+  kit layer), roofs (THREE inside the monolith alone: _build_curved_roof,
+  _curved_roof GN helper, build_roof_tiles), props (4 duplicated), house/city
+  (FOUR authorities), Escher (monolith GB_ESCHER_* vs MEL_escher_*).
+- **Version-ladder ambiguity:** harp ×4, waveform_wall v1/v2, pcg tags v1/v2
+  (v1s hidden but registered, identical bodies), kit_v2/v3/v4 era-named modules
+  hiding their contents.
+- **Naming chaos:** castle pieces spelled three ways (KEEP / CASTLE_KEEP /
+  MEL_castle_keep); zen lantern three ways; `set_dressing.py` registers via f-string
+  concat so ids never appear in source (breaks grep inventory); routing-only ids
+  invented in melodia_gn_route.py.
+- **Backup dir inside the addons tree:** `melodia_gn.bak_180215/` (60 files) —
+  import-shadow risk.
+- **Rebrand:** one product, three identities today (monolith bl_info, separate
+  melodia_studio panel addon with colliding name, MEL_* GN ids). Recommended:
+  keep "Melodia Studio" as single umbrella, absorb the panel addon as a "Resonant
+  World" section, one preferences entry (bl_idname melodia_studio), one N-panel tab
+  (Architecture / Music Geometry / Resonant World / Catalog & Export), operators
+  relabeled "Melodia Studio: <Verb Noun>" with legacy surreal_arch.*/mel_gn.* as
+  hidden forwarding aliases. Ship merged addon + retired stub in ONE release.
+
+### Consolidation phases (effort S/M/L, each with a gate)
+
+| Phase | Work | Effort | Gate |
+|---|---|---|---|
+| 0 | Verification harness `Tools/verify_melodia_gn.py` (per-builder eval + realize + PASS/FAIL) + md5 three-copy sync check + registry baseline JSON + contact sheet | M | Harness prints PASS for every live builder; failures = the work queue |
+| 1 | Quarantine the 8 stubs behind `role='research'`/hidden; unify call signatures; owner decides promote/keep/delete per p4 builder | S | Stubs out of catalog, harness PASS, decisions recorded |
+| 2 | Role separation: declare bmesh-monolith vs GN ownership table in ADDON_AUTHORITY; resolve polyhedra_gn straddle; index monolith greybox functions | M | No subject owned by both paths; doc table complete |
+| 3 | Module merges for coherence: instruments→music_kits/, harps→music_harps.py, notation→music_notation.py, escher→escher_extras.py, env+set_dressing merged, terrain package, core.py split (registry vs params) | L | Zero registry-name loss vs baseline; contact sheet reviewed |
+| 4 | Deprecation machinery (`deprecated_by=` alias in register_builder); delete dead v1s/stubs after one clean owner session; deletions logged in ADDON_AUTHORITY | M | Zero unreferenced builders; every name live, research-flagged, or deleted-and-logged |
+| 5 | Standing ritual: harness + sync check mandatory post-edit; `--changed-only` mode; skill update | S | Green run on fresh checkout of all three copies |
+
+### Rebrand decision needed from owner
+
+Pick one: (1) Melodia Studio umbrella [recommended, cost M], (2) Surreal Studio
+[architecture-first, M], (3) Melodia Forge [clean break, L]. Whatever the choice:
+no MEL_* id renames in v1, legacy operator aliases mandatory, one release with the
+merged addon.
 
 - P: SSOT → C: → AppData sync + md5 `3 <hash>` on every addon edit.
 - Discovery checklist before any new builder (grep both trees + GROUP_BUILDERS +
