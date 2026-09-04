@@ -34,6 +34,9 @@ Read these in this order:
 Detailed integration notes:
 `Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md`
 
+**Current next-builder roadmap:**
+`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`
+
 Visual/design plan:
 `melusinashouseplan.md`
 
@@ -97,6 +100,18 @@ After this integration pass, these live under the **Melusina House** GN Stack ca
 ```
 
 Do not begin with furniture, shaders, foliage, or Nanite.
+
+### ♫ Current next-builder batch
+
+After the Foundation Master Blender smoke, the canonical next implementation batch is:
+
+```text
+MEL_mh_roof_ribbon
+MEL_mh_opening_family
+MEL_mh_porch_stair
+```
+
+Build these one at a time. The full contracts, reuse rules, evidence gates, and later `Listening Tower → shingle distributor → Melusina Loop` sequence live in the foundation-to-shell roadmap linked above.
 
 ## 𝄞 Verification
 

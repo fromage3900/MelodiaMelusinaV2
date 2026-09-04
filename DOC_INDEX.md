@@ -19,7 +19,8 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 | **5** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
 | **6** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Architecture detail only when needed. |
 | **7** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, and validation commands. |
-| **Agent** | [`AGENT_START_HERE.md`](AGENT_START_HERE.md) | Mandatory current discovery contract for AI/remote agents. |\n| **House GN** | [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) | Live Melodia Studio builder IDs, foundation-first workflow, category/preset verification, and the correction for stale `GN_MH_*` plan aliases. |
+| **Agent** | [`AGENT_START_HERE.md`](AGENT_START_HERE.md) | Mandatory current discovery contract for AI/remote agents. |
+| **House GN** | [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) | Live Melodia Studio builder IDs, foundation-first workflow, category/preset verification, and the correction for stale `GN_MH_*` plan aliases. |
 | **Laptop** | [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) | Find committed work that has not reached `main`. |
 | **Visuals** | [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) | Find canonical image boards and distinguish missing/uncommitted references. |
 
@@ -180,7 +181,10 @@ Keep the history. Read it through the current north-star docs.
 
 Before adding another tool, check the current research/discovery indexes.
 
-- **Melusina house live builder manifest:** [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) — start here for registered `MEL_mh_*` IDs, foundation builders, GN Stack discovery and verification.\n- **Melusina house visual/design packet:** [`melusinashouseplan.md`](melusinashouseplan.md) — Blender 5.2 modeling intent, Borromini/Rococo shape research and attached references; `GN_MH_*` names inside are scene-local concepts, not registry authority.\n- **Melusina house Melodia Studio integration:** [`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md`](Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md) — builder → registry → import → category → preset → Blender smoke chain.
+- **Melusina house live builder manifest:** [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) — start here for registered `MEL_mh_*` IDs, foundation builders, GN Stack discovery and verification.
+- **Melusina house foundation → shell roadmap:** [`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`](Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md) — exact next builders (`MEL_mh_roof_ribbon`, `MEL_mh_opening_family`, `MEL_mh_porch_stair`), later tower/shingle/loop sequence, evidence gates, and agent-sized work packets.
+- **Melusina house visual/design packet:** [`melusinashouseplan.md`](melusinashouseplan.md) — Blender 5.2 modeling intent, Borromini/Rococo shape research and attached references; `GN_MH_*` names inside are scene-local concepts, not registry authority.
+- **Melusina house Melodia Studio integration:** [`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md`](Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md) — builder → registry → import → category → preset → Blender smoke chain.
 - **Melusina house Phase 2 / asset families:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — compose the existing 239-builder Melodia Studio vocabulary before promoting house-specific tools.
 - **Melusina house Phase 2 / rooms + acoustics:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — room wrappers, semantic attributes and acoustic debug grammar.
 - **Melusina house Phase 3 / furniture:** [`Docs/Plans/MELUSINAS_HOUSE_GN_FURNITURE_AND_DOMESTIC_PROPS_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_FURNITURE_AND_DOMESTIC_PROPS_2026-09-03.md) — domestic prop genome driven by `CRV_MH_MelusinaLoop`.

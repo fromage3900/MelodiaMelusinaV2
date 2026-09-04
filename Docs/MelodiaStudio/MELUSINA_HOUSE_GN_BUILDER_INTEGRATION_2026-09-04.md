@@ -2,6 +2,7 @@
 
 **Date:** 2026-09-04  
 **Canonical agent entrypoint:** `/MELUSINA_HOUSE_GN_START_HERE.md`  
+**Canonical next-work roadmap:** `/Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`  
 **Discovery tokens:** `Melusina House GN`, `MH foundation`, `MEL_mh_`, `Melodia Studio house builders`
 
 ## Why agents kept getting lost
@@ -194,16 +195,16 @@ After foundation integration, the next builder work should be:
 
 | Priority | Builder / wrapper | Why |
 |---|---|---|
-| P1 | roof ribbon | silhouette-defining; current plans exceed current live builder |
-| P1 | roof-surface shingle distributor | turn AAA scallop proof into roof-wide controlled distribution |
-| P1 | arched/round opening family | reusable visible frame + cutter pair |
-| P1 | porch/stair composition | connect foundation porch to existing stair/rail vocabulary |
-| P2 | Listening Tower shell | vertical counterweight above the new tower pad |
-| P2 | Melusina Loop curve asset | stable curve DNA for ornament/furniture |
+| P1 | `MEL_mh_roof_ribbon` | silhouette-defining; first new builder after foundation smoke |
+| P1 | `MEL_mh_opening_family` | reusable visible frame + cutter pair |
+| P1 | `MEL_mh_porch_stair` | connect foundation porch to existing stair/rail vocabulary |
+| P2 | `MEL_mh_listening_tower` | vertical counterweight above the new tower pad |
+| P2 | `MEL_mh_shingle_distributor` | turn `MEL_mh_aaa_scallop_uv` into controlled roof-wide distribution |
+| P2 | `MEL_mh_melusina_loop` | stable curve DNA for ornament/furniture |
 | P2 | Blue Room grotto shell | water-affinity architecture |
 | P3 | furniture wrappers | only after rooms are stable |
 
-Do **not** create all of these simultaneously.
+Do **not** create all of these simultaneously. The canonical batch order and acceptance gates are maintained in `MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`.
 
 ---
 
