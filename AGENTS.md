@@ -5,6 +5,31 @@
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
 
 ---
+## 🚨 CURRENT DISCOVERY AUTHORITY — 2026-09-04
+
+**Read [`AGENT_START_HERE.md`](AGENT_START_HERE.md) before using any dated plan, handoff, roadblock file, or research packet as project status.**
+
+Current front door:
+
+1. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+2. `CURRENT_STATE.md`
+3. `_VERTICAL_SLICE_SCOPE.md`
+4. `TODO.md`
+5. `Docs/Art/VISUAL_REFERENCE_INDEX.md` for visual/art work
+6. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` for multi-workstation work
+
+**Hard discovery rules:**
+- A dated doc saying “missing”, “broken”, “blocked”, or “unproven” is historical until checked against current source/evidence.
+- `_ROADBLOCKS_2026-07-31.md`, deleted `_SESSION_HANDOFF.md`, and deleted `_TASK_QUEUE.md` are not current authority.
+- “Not on `main`” does **not** mean “not committed.” Check relevant remote branches before declaring work absent.
+- `recovery/laptop-main-20260904` currently carries recovered laptop work and must be inspected for house/GN/Blender work; do not merge it wholesale because it also contains broad deletions.
+- For concept/reference work, use `Docs/Art/VISUAL_REFERENCE_INDEX.md`; do not invent image-board paths from old prose.
+- The current runtime is not “nonfunctional”: September evidence records music/challenge → wardrobe → Glide/world unlock and save → full process restart → wardrobe restore. State the proof level rather than reverting to an August snapshot.
+
+Any lower section in this file that presents a dated “current” snapshot older than 2026-09-04 is retained as historical operating context and is subordinate to `AGENT_START_HERE.md`.
+
+---
+
 ## Skills created 2026-08-30
 
 | Skill | Purpose |
@@ -26,7 +51,7 @@ Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` 
 > contracts, one-editor/unattended/no `_PROJECT`, evidence standard) prevents parallel-authority defects.
 
 
-## Current P0 authority — 2026-08-28
+## Historical P0 snapshot — 2026-08-28 (not current authority)
 
 Read [`Docs/P0_CLOSEOUT_PLAN_2026-08-28.md`](Docs/P0_CLOSEOUT_PLAN_2026-08-28.md) first. The
 [2026-08-24 convergence plan](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)
