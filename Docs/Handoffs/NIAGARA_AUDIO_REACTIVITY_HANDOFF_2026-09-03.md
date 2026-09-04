@@ -225,3 +225,74 @@ SHA-verified `abf30699`).
    wanted back, point `SourceDirectory` at a small intake folder — not `/Game/`.
 7. **Unowned work in the tree** — opencode was killed mid-flight; its `MelodiaWardrobe`
    source and `SK_MelusinaHair` / `M_Master_Toon_Universal` edits are uncommitted.
+
+---
+
+## 7. Root cause: route leg 0 has no music clock
+
+The reactive chain is complete and correct, but on `L_MelusinaMorning` — the opening level,
+the first thing a player sees — **nothing registers a music clock**, so `HasMusicalTime()` is
+false and every downstream value publishes flat.
+
+`HasMusicalTime() = !RhythmLayerDisabled && (IsHarmonixClockRunning() || IsQuartzClockRunning())`,
+and the only registrar of a Harmonix clock is `UMelodiaJRPGPresentationRhythmComponent`
+(`MelodiaJRPGPresentationRhythmComponent.cpp:34` `RegisterMusicClock`, `:45`
+`RegisterQuartzAudioComponent`) — an **actor component**, so it must be present and playing.
+
+| Check | Result |
+|---|---|
+| Levels containing the registrar | `L_KaleidoNave` yes, `MelodiaIntegrationMap` yes, `Gameplay.umap` yes — **`L_MelusinaMorning` no** |
+| `L_MelusinaMorning.umap` | 0 hits: `MelodiaJRPGPresentationRhythm`, `MusicClock`, `BP_BattleController` |
+| Its 56 WP external actors | 0 of 56: `Rhythm`, `MusicClock`, `Harmonix`, `Ambience`, `MetaSound`, `AudioComponent` |
+| **Control on that grep** | `Actor` 56/56, `Melodia` 56/56, `Component` 54/56 — the method reads these files |
+| Global GameMode `BP_MelodiaJRPGGameMode` | `Melodia` 16 hits (readable), `Rhythm` **0**, `MelusinaSwordsman` **0** |
+| C++ runtime spawn | only `MelodiaIntegrationTests.cpp:431`, transient/test-only |
+
+**Consequence on leg 0:** `BeatPulse`/`BeatPhase`/`Bass`/`Treble` all 0 → `MPC_Cymatics_Driver`
+flat → the 8 grafted masters sample zero → Niagara NPC zero → ocean `Biolum_Intensity` stays
+at its 1.0 base → OSC sends zeros to TouchDesigner. Silently, because the clock deliberately
+publishes flat rather than inventing a tempo (the removed 120 BPM fallback).
+
+The MPC convergence work is sound; on this level it simply has no signal to carry.
+
+**Fix is placement, not code.** Either place a rhythm/ambience actor in `L_MelusinaMorning`
+(`A_Ambience_Melusina_98bpm` is already tempo-authored), or attach the component to the
+GameMode/default pawn so the clock registers wherever the player is — the latter covers every
+level at once and is the more robust option.
+
+**Useful A/B:** `L_KaleidoNave` (leg 1) *does* carry the registrar, so the same route gives a
+working control against leg 0.
+
+**Limit of this claim:** level, external actors, global GameMode, project config and C++ spawn
+sites were all checked. A path not considered cannot be ruled out, but none was found.
+
+---
+
+## 8. Build state at handoff (Phase A incomplete)
+
+The ocean runtime base fix in `MelodiaAudioReactivePresentationSubsystem.cpp` is **still
+uncompiled**. Live Coding failed; the closed-editor build is blocked by unrelated
+work-in-progress from the killed opencode agent (471 insertions across 6 files that do not
+compile).
+
+Three genuine errors in that WIP were fixed while trying to get through:
+
+| File | Error | Fix |
+|---|---|---|
+| `MelodiaCaptureRenderSubsystem.cpp:13` | `SceneCaptureComponent2D.h` not found | `Components/SceneCaptureComponent2D.h` |
+| `MelodiaWardrobeComponent.cpp:438` | `GetMorphTargetIndex` not a member of `USkeletalMesh` | `FindMorphTarget(...) == nullptr` (per `SkeletalMesh.h:2757-2758`) |
+| `MelodiaCaptureRenderSubsystem.cpp:260` | checked-format-string failure | plain concatenation |
+
+`MelodiaWardrobe` now compiles and links. Remaining blocker is `C7595` in UE 5.8's
+compile-time format-string sanitizer at `MelodiaCaptureRenderSubsystem.cpp:250`; the
+accompanying "`MaterialToken` is not a member" is a cascade from it — the member *is* declared
+at line 22. Further fixes there would mean guessing the intent of an unfinished PPV-drift gate,
+so work stopped.
+
+**These three fixes are uncommitted, in the other agent's files.** They were not committed
+because those files are that agent's in-flight work. Nothing here is lost — but whoever
+resumes that feature should know the files have been touched.
+
+**Not blocked by this:** the ocean asset repair, `MF_NikkiSparkle` wiring and the main-menu
+fixes are all saved and committed, and read correctly in-editor. Only the runtime
+re-darkening in PIE/packaged needs the build.
