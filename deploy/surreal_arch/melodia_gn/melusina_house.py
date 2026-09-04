@@ -321,5 +321,5 @@ register_builder(
     build_melusina_house_round_interior,
     "Melusina House Round Interior",
     "Lower-level round-plan interior composed from greybox room shells: circular entry, music nook, kitchen, rear hall, curved stair.",
-    category="structures",
+    category="melusina_house",
 )
