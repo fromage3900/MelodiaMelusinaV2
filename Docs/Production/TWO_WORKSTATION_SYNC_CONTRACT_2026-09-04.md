@@ -17,6 +17,34 @@ local-only/vendor art expectations understood
 
 A successful `git pull` proves only the first line. It does not prove that an LFS object is hydrated, and it cannot restore art that was never committed.
 
+## Live Blender addon is a fourth state
+
+For Melusina House / Geometry Nodes work, a workstation is only truly synchronized when the live Blender 5.2 addon also matches the checkout.
+
+Older installer behavior could silently source `C:\EnvironmentPortfolio\BS_GodFile\deploy` even when you ran the installer from another clone. That is forbidden now.
+
+After Git/LFS synchronization, **close Blender completely** and run:
+
+```powershell
+.\deploy\install_melodia_studio.ps1
+```
+
+The installer now:
+
+- sources the checkout containing the installer, not a guessed C: path;
+- prints source branch + exact Git HEAD;
+- stamps the AppData live install with provenance;
+- verifies copied addon bytes against the checkout;
+- refuses to replace the addon while Blender is running.
+
+Read-only verification:
+
+```powershell
+.\deploy\install_melodia_studio.ps1 -CheckOnly
+```
+
+If this fails, Git may be synchronized while Blender is still executing stale addon code.
+
 ## One command first
 
 Run this before opening Rider, Blender, or Unreal:
