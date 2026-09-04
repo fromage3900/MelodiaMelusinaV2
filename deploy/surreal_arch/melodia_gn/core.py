@@ -670,6 +670,12 @@ STUDIO_LABELS: dict[str, dict[str, str]] = {
         "category": "Set Dressing",
         "panel_hint": "Existing water gazebo (no new Set Dressing factories).",
     },
+    "CITY_GEN": {
+        "ui_label": "Melodia City Gen",
+        "mel_tree": "MEL_city_avenue",
+        "category": "Melodia City Gen",
+        "panel_hint": "Reusable round-Baroque house cells gridded into avenues and blocks — bounding-box exact, mathematically spaced, following the Melusina house plan and image boards (REF_01/02/03).",
+    },
 }
 
 
@@ -1037,7 +1043,7 @@ def apply_universal_music_pass(tree, gin, geom, loc=(2400, 0)):
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (x + 1400, y))
     link_sockets(tree, geom, set_pos.inputs["Geometry"])
     link_sockets(tree, pulse.outputs[0], set_pos.inputs["Offset"])
-    color_node(set_pos, "universal")
+    color_node(set_pos, "attribute")
     return set_pos.outputs["Geometry"]
 
 
@@ -1154,6 +1160,7 @@ CATEGORY_META: dict[str, dict] = {
     "mother":      {"label": "Faraway Mother",       "icon": "MESH_MONKEY"},
     "white_current": {"label": "White Current",      "icon": "MOD_FLUID"},
     "god_molts":   {"label": "God That Molts",        "icon": "MOD_EXPLODE"},
+    "city_gen":    {"label": "Melodia City Gen",      "icon": "MOD_BUILD"},
 }
 
 
@@ -1164,7 +1171,12 @@ def register_builder(tree_name, builder_fn, label, description="", category="",
     hidden=True keeps the live id (RQ / blends) but omits it from GN Stack.
     role is sku | modifier | tool | factory | pcg_alias | pcg_keep.
 
-    Universal Musical Influence is auto-applied to every builder's output.
+    Universal Musical Influence is available to every builder (the params are
+    added by new_geometry_tree) and is auto-applied when a builder returns the
+    (tree, gin, gout) triple AND the tree has a resolvable output geometry to
+    thread it through. Builders that want fine control call apply_universal_music_pass
+    themselves with a real geometry socket and return `tree` only, which skips the
+    wrapper auto-apply (the explicit call is authoritative).
     """
     def _labeled_builder(*args, **kwargs):
         result = builder_fn(*args, **kwargs)
@@ -1172,9 +1184,7 @@ def register_builder(tree_name, builder_fn, label, description="", category="",
         gin = result[1] if isinstance(result, (tuple, list)) and len(result) > 1 else None
         gout = result[2] if isinstance(result, (tuple, list)) and len(result) > 2 else None
         if gin is not None and gout is not None:
-            geom = gout.inputs.get("Geometry")
-            if geom is not None:
-                apply_universal_music_pass(tree, gin, geom)
+            _auto_apply_music_pass(tree, gin, gout)
         return ensure_labeled_tree(tree, tree_name, category)
 
     GROUP_BUILDERS[tree_name] = _labeled_builder
@@ -1186,6 +1196,43 @@ def register_builder(tree_name, builder_fn, label, description="", category="",
         "hidden":      bool(hidden),
         "role":        role or "sku",
     }
+
+
+def _auto_apply_music_pass(tree, gin, gout):
+    """Thread the universal music pass onto a builder's actual output geometry.
+
+    The wrapper must NOT pass gout.inputs["Geometry"] (an INPUT socket) as the
+    warp source — linking an input socket into apply_universal_music_pass raises
+    "Same input/output direction of sockets". Instead it captures the geometry
+    that currently feeds the Group Output, runs the pass on it, and reconnects
+    the pass output to the Group Output.
+
+    If gout's Geometry input has no upstream (empty/passthrough placeholder tree),
+    there is nothing meaningful to warp — skip silently rather than emit a warning.
+    """
+    try:
+        gout_in = gout.inputs.get("Geometry")
+        if gout_in is None:
+            return
+        links = list(gout_in.links)
+        if not links:
+            return
+        # The source feeding the output is the real builder geometry.
+        src_socket = links[0].from_socket
+        if src_socket is None or not src_socket.is_output:
+            return
+        # Remove the direct src -> gout link so we can insert the pass between.
+        for lnk in links:
+            tree.links.remove(lnk)
+        warped = apply_universal_music_pass(tree, gin, src_socket, (2400, 0))
+        if warped is not None:
+            tree.links.new(warped, gout_in)
+        else:
+            # pass declined (no Music Influence socket); restore direct link
+            tree.links.new(src_socket, gout_in)
+    except Exception:
+        # Never let the auto music pass break builder construction.
+        pass
 
 
 def is_hidden_builder(tree_name: str) -> bool:

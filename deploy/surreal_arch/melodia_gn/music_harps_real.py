@@ -656,8 +656,51 @@ def build_wind_siku(group_name="MEL_wind_siku"):
 # Registry
 # ---------------------------------------------------------------------------
 
+def build_harp_string_unit(group_name="MEL_harp_string_unit"):
+    """Thin cylinder string proto along +Z with String Index attribute.
+
+    Standalone form of the _ensure_string_proto inner build, so the registry
+    id resolves to a real tree instead of a None placeholder. _ensure_string_proto
+    stays the hot path for parent trees (it reuses the data-block); this builder
+    exists so bake_all, audit, and explicit builds of the id all succeed.
+    """
+    t, gi, go = new_geometry_tree(group_name)
+    add_float_param(t, "Length M", 1.0, 0.05, 3.0)
+    add_float_param(t, "Radius M", 0.0012, 0.0002, 0.01)
+    add_int_param(t, "String Index", 0, 0, 64)
+    cyl = safe_node(t, "GeometryNodeMeshCylinder", (-300, 0))
+    try:
+        cyl.inputs["Vertices"].default_value = 8
+    except Exception:
+        pass
+    ri = sock(cyl, "Radius")
+    if ri is not None and gi.outputs.get("Radius M") is not None:
+        link_sockets(t, gi.outputs["Radius M"], ri)
+    di = sock(cyl, "Depth")
+    if di is not None:
+        link_sockets(t, gi.outputs["Length M"], di)
+    st = safe_node(t, "GeometryNodeStoreNamedAttribute", (100, 0))
+    try:
+        st.data_type = "INT"
+    except Exception:
+        pass
+    try:
+        st.inputs["Name"].default_value = "string_index"
+    except Exception:
+        pass
+    link_sockets(t, cyl.outputs["Mesh"], st.inputs["Geometry"])
+    si = sock(st, "Value") or st.inputs.get("Value_001")
+    if si is not None and gi.outputs.get("String Index") is not None:
+        link_sockets(t, gi.outputs["String Index"], si)
+    _replace_output(t, go, st.outputs["Geometry"])
+    return label_tree(t, group_name, [
+        {"title": "Proto", "nodes": ("cylinder",), "role": "geometry"},
+        {"title": "Attr", "nodes": ("store",), "role": "attribute"},
+    ])
+
+
 register_builder(
-    "MEL_harp_string_unit", lambda gn="MEL_harp_string_unit": None,
+    "MEL_harp_string_unit", build_harp_string_unit,
     "Harp String Unit", "Thin cylinder string proto with string_index attr",
     "music", hidden=True,
 )
