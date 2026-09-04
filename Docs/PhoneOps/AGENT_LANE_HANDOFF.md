@@ -1,23 +1,30 @@
-# Agent lane handoff (lightweight)
+# Agent lane handoff
 
-Shared tip-of-lane record for Claude / Codex / Kimi / OpenCode / Pi / Cursor / Hermes operators.
+Shared lightweight tip-of-lane record for Claude / Codex / Kimi / OpenCode / Pi / Cursor / Hermes operators.
 
-**Not** a project-management system. Product authority stays:
+**Current authority:** 2026-09-04
 
-- `_AGENT_WORKING_AGREEMENT.md`
-- `_TASK_QUEUE.md` / `Docs/P0_TASK_LEDGER.json` (gameplay P0)
-- `Docs/PhoneOps/BACKLOG.md` (phone Now)
-- Git (`main` + lane branches)
+This is **not** a project-management system. Read [`../../AGENT_START_HERE.md`](../../AGENT_START_HERE.md) first.
 
-Handoffs **describe** work. Git is persistent state. Evidence establishes truth ([AGENTS.md](../../AGENTS.md) Echo rules).
+Product/task authority comes from:
 
-## When to write one
+- the owner's current request;
+- `AGENT_START_HERE.md`;
+- `TODO.md` / current vertical-slice docs;
+- current Git state, including relevant non-main branches;
+- current evidence.
 
-- Starting a multi-hour / multi-machine lane
-- Handing off mid-task to another agent or the owner’s phone
-- Closing a lane that touched more than one commit
+Deleted `_TASK_QUEUE.md` and `_SESSION_HANDOFF.md` are historical scratch references and must not be recreated as authority.
 
-Skip for one-line doc typos. Prefer one short file or a block at the top of `_SESSION_HANDOFF.md` — do not invent a parallel tracker.
+## When to write a handoff
+
+Use one when:
+
+- handing a multi-hour task to another machine/agent;
+- leaving work on a non-main branch;
+- closing a lane that changed multiple files/commits.
+
+For laptop work, also make sure the branch is discoverable from `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`.
 
 ## Required fields
 
@@ -36,58 +43,31 @@ NEXT ACTION:
 DO NOT TOUCH:
 ```
 
-### Field notes
+## STATUS values
 
-| Field | Meaning |
-|-------|---------|
-| TASK | One sentence; the ask is the scope |
-| STATUS | One of the states below |
-| BRANCH | Exact branch name (`cursor/...` or `agent/<tool>/...`) |
-| START SHA / END SHA | Full or 7+ char SHAs; END blank while in progress |
-| FILES CHANGED | Paths only; no essays |
-| AUTHORITY | Doc or decision that permits the write (e.g. owner ask, Decision NNN) |
-| VALIDATION | What was run (build, fingerprint, docs-only N/A) |
-| EVIDENCE | Ledger row, PR URL, screenshot path, or `none — docs only` |
-| BLOCKER | Empty if none; otherwise what stops PROVEN |
-| NEXT ACTION | Single next step for the next operator |
-| DO NOT TOUCH | Paths/systems this lane must not edit |
+| State | Meaning |
+|---|---|
+| DESIGNED | plan/spec only |
+| IMPLEMENTED | files committed on a branch |
+| SOURCE_BUILT | relevant build/compile passed |
+| LIVE | observed in editor/PIE |
+| RESTART_PROVEN | survived full process restart/load |
+| PACKAGED_PROVEN | reproduced in packaged build |
+| BLOCKED | cannot proceed; blocker stated |
+| DEFERRED | explicitly parked |
 
-## Valid STATUS values
+Do not call probe-only or screenshot-only behavior `LIVE`/proof unless the acceptance contract actually permits it.
 
-| State | Means |
-|-------|--------|
-| DESIGNED | Spec / plan only; no product change claimed |
-| IMPLEMENTED | Code/docs landed on a branch |
-| SOURCE_BUILT | Closed-editor / CI build green for the change |
-| LIVE | Running in editor / PIE on the owner box |
-| PROVEN | Acceptance met **and** Echo/ledger or owner lock where required |
-| BLOCKED | Cannot proceed; BLOCKER filled |
-| DEFERRED | Explicitly parked; not a silent drop |
+## Identity checklist
 
-Probe-only or screenshot-only claims are not PROVEN for runtime gates.
+Before changing product files, know:
 
-## Branch naming (convention — create only when asked)
-
-```text
-agent/claude/<short-topic>
-agent/codex/<short-topic>
-agent/kimi/<short-topic>
-agent/opencode/<short-topic>
-agent/pi/<short-topic>
-```
-
-Cursor Cloud: keep `cursor/<descriptive>-ca02` (or the run’s required suffix).
-
-## Identity checklist (every agent)
-
-Before writing product files, know:
-
-1. Current branch (`git branch --show-current`)
-2. Current commit (`git rev-parse --short HEAD`)
-3. Task (owner message or TASK field)
-4. Authority (working agreement + allowlist for the paths)
-5. Handoff location (this template or session handoff pointer)
-6. Validation status (STATUS + VALIDATION/EVIDENCE)
+1. exact current branch;
+2. current SHA;
+3. owner's requested scope;
+4. current authority document;
+5. whether newer work exists on another workstation branch;
+6. strongest validation/evidence level.
 
 ## Paste template
 
@@ -95,7 +75,7 @@ Before writing product files, know:
 ## Lane handoff — YYYY-MM-DD
 
 TASK: …
-STATUS: DESIGNED | IMPLEMENTED | SOURCE_BUILT | LIVE | PROVEN | BLOCKED | DEFERRED
+STATUS: …
 BRANCH: …
 START SHA: …
 END SHA: …
@@ -109,8 +89,9 @@ NEXT ACTION: …
 DO NOT TOUCH: …
 ```
 
-## Related
+## Related current discovery
 
-- [REMOTE_WSL_AGENT_STACK_2026-08-25.md](REMOTE_WSL_AGENT_STACK_2026-08-25.md) — phone → WSL → tmux stack status
-- [MOBILE_LANES.md](MOBILE_LANES.md) — phone vs PC ownership
-- [`_SESSION_HANDOFF.md`](../../_SESSION_HANDOFF.md) — stacked session notes (prefer current tip only when editing)
+- [`../../AGENT_START_HERE.md`](../../AGENT_START_HERE.md)
+- [`../Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](../Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md)
+- [`../Art/VISUAL_REFERENCE_INDEX.md`](../Art/VISUAL_REFERENCE_INDEX.md)
+- [`../../MELODIA_TECHNICAL_VERTICAL_SLICE.md`](../../MELODIA_TECHNICAL_VERTICAL_SLICE.md)
