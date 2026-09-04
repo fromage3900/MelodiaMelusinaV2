@@ -89,3 +89,47 @@ affected paths.
 - Rollback refs: `backup/unify-histories-20260904` and tag
   `premerge/unify-histories-20260904`, both at `62b80fee`. `main`'s pre-merge tip was
   `3d3b6644`.
+
+---
+
+## Addendum — backup completed, and a divergence worth knowing about
+
+Written after the section above; it supersedes that section's "Still outstanding" claim
+that nothing had been pushed.
+
+### The push succeeded
+
+Connectivity returned (intermittently — roughly two of every three probes connect), and
+two branches reached origin:
+
+| Branch on origin | Commit | What it protects |
+|---|---|---|
+| `recovery/unify-histories-20260904` | `62b80fee` | the source branch — today's work as originally committed |
+| `recovery/main-merged-20260904` | `53216f24` | the merge result, i.e. what local `main` now points at |
+
+**68 LFS objects / 67 MB uploaded.** This is the first genuine off-machine backup of this
+work: the `G:` bundle carried LFS *pointers* only, so the binary content of every
+`.uasset` touched today existed in exactly one place until now.
+
+Note on the branch names: the pre-push hook rejects any branch not prefixed
+`feature/ fix/ docs/ cleanup/ collab/ codex/ recovery/ cursor/`, so the original
+`backup/…` name was refused. `recovery/` is the hook-sanctioned prefix for this.
+**`main` itself was not pushed** — `refs/heads/main` on origin is untouched.
+
+### Local `main` and `origin/main` are unrelated lineages
+
+This predates today's merge and is not a consequence of it:
+
+```
+origin/main   8c6b204d      628 commits not in local main
+local main    3d3b6644      704 commits not in origin/main   (tip before today's merge)
+```
+
+They are **diverged, not ahead/behind** — neither is an ancestor of the other. So
+"merged to main" in this document means **local `main` only**. Anyone reading
+`origin/main` will not see today's work; they should read
+`recovery/main-merged-20260904` instead.
+
+Reconciling those two lineages is a separate decision with real consequences and is
+deliberately **not** attempted here. It is not a merge conflict to grind through — it is
+a question about which history is authoritative, and that is the owner's call.
