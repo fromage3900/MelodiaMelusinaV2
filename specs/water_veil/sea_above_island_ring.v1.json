@@ -1,0 +1,636 @@
+{
+  "schema": "melodia.sea_above_island_ring.v1",
+  "version": "1.0.0",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "landscape": "CanonicalLandscape (one Landscape actor, never created)",
+  "sea_surface_z": 13455.0,
+  "seed": 20260903,
+  "principle": "golden radii 5k-55k, phi-scaled",
+  "height_contract": "placement height_cm = sea-sheet datum (Z=13455); editor rayscans and snaps Z = surface + clearance",
+  "notes": "No flat silhouette-card mesh exists in Content (verified: SM_Island_* measured z-ratio ~1.0). Proxy = real sea-above island tier SM_Island_A/B/C scaled up, z flattened to flat_ratio ~0.5. Material = Megascans AAA island tier MI_ForestRockFormation_01. Fog tint applied by editor lane.",
+  "total_points": 22,
+  "zone_summaries": {
+    "R5k": {
+      "count": 4,
+      "meshes": [
+        "SM_Island_A"
+      ],
+      "radii_min": 4913.5,
+      "radii_max": 5001.4
+    },
+    "R8k": {
+      "count": 4,
+      "meshes": [
+        "SM_Island_B"
+      ],
+      "radii_min": 7856.3,
+      "radii_max": 7980.9
+    },
+    "R13k": {
+      "count": 4,
+      "meshes": [
+        "SM_Island_C"
+      ],
+      "radii_min": 12715.6,
+      "radii_max": 13170.0
+    },
+    "R21k": {
+      "count": 4,
+      "meshes": [
+        "SM_Island_A"
+      ],
+      "radii_min": 20714.7,
+      "radii_max": 21526.7
+    },
+    "R34k": {
+      "count": 4,
+      "meshes": [
+        "SM_Island_B"
+      ],
+      "radii_min": 33393.6,
+      "radii_max": 34493.9
+    },
+    "FarSpire": {
+      "count": 2,
+      "meshes": [
+        "SM_Island_C"
+      ],
+      "radii_min": 54495.4,
+      "radii_max": 55065.3
+    }
+  },
+  "placements": [
+    {
+      "id": "SA_IslandRing_R5k_00",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        966.9,
+        -4835.4,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        18.32
+      ],
+      "scale": [
+        2.871,
+        2.871,
+        1.436
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 4931.1,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R5k_01",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        2586.2,
+        4273.0,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        144.82
+      ],
+      "scale": [
+        2.309,
+        2.309,
+        1.154
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 4994.7,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R5k_02",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -4799.8,
+        -1405.7,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        277.3
+      ],
+      "scale": [
+        2.512,
+        2.512,
+        1.256
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 5001.4,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R5k_03",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4409.9,
+        -2166.9,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        67.78
+      ],
+      "scale": [
+        2.841,
+        2.841,
+        1.421
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 4913.5,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R8k_00",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -2858.8,
+        7317.7,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        212.12
+      ],
+      "scale": [
+        2.795,
+        2.795,
+        1.398
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 7856.3,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R8k_01",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -2880.0,
+        -7443.1,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        344.7
+      ],
+      "scale": [
+        3.397,
+        3.397,
+        1.699
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 7980.9,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R8k_02",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        7146.0,
+        3540.3,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        123.18
+      ],
+      "scale": [
+        3.244,
+        3.244,
+        1.622
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 7974.9,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R8k_03",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -7646.2,
+        2212.4,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        258.51
+      ],
+      "scale": [
+        2.866,
+        2.866,
+        1.433
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 7959.8,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R13k_00",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.SM_Island_C",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        6855.9,
+        -11244.9,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        39.83
+      ],
+      "scale": [
+        3.492,
+        3.492,
+        1.746
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 13170.0,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R13k_01",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.SM_Island_C",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        2454.6,
+        12486.0,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        168.3
+      ],
+      "scale": [
+        3.314,
+        3.314,
+        1.657
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 12725.0,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R13k_02",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.SM_Island_C",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -10334.2,
+        -7615.1,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        299.77
+      ],
+      "scale": [
+        3.233,
+        3.233,
+        1.616
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 12836.9,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R13k_03",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.SM_Island_C",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        12643.4,
+        -1352.6,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        88.53
+      ],
+      "scale": [
+        3.172,
+        3.172,
+        1.586
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 12715.6,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R21k_00",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -13699.3,
+        15538.0,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        219.78
+      ],
+      "scale": [
+        4.308,
+        4.308,
+        2.154
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 20714.7,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R21k_01",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -409.8,
+        -21522.8,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        358.23
+      ],
+      "scale": [
+        4.571,
+        4.571,
+        2.286
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 21526.7,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R21k_02",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        14324.1,
+        15050.7,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        141.87
+      ],
+      "scale": [
+        4.105,
+        4.105,
+        2.052
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 20777.5,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R21k_03",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_A.SM_Island_A",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -20946.1,
+        -1437.0,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        276.45
+      ],
+      "scale": [
+        4.528,
+        4.528,
+        2.264
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 20995.3,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R34k_00",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        26109.6,
+        -20818.8,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        53.31
+      ],
+      "scale": [
+        4.636,
+        4.636,
+        2.318
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 33393.6,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R34k_01",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5207.6,
+        33102.7,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        185.2
+      ],
+      "scale": [
+        4.957,
+        4.957,
+        2.478
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 33509.8,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R34k_02",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -18744.6,
+        -28264.3,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        328.21
+      ],
+      "scale": [
+        5.134,
+        5.134,
+        2.567
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 33915.0,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_R34k_03",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_B.SM_Island_B",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        33475.8,
+        8319.0,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        103.77
+      ],
+      "scale": [
+        4.29,
+        4.29,
+        2.145
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 34493.9,
+      "fade_note": "fog-tint by editor lane (distance fog/PPV); card reads silhouette against horizon"
+    },
+    {
+      "id": "SA_IslandRing_FarSpire_00",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.SM_Island_C",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -47874.9,
+        26033.5,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        242.71
+      ],
+      "scale": [
+        5.951,
+        5.951,
+        9.522
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 54495.4,
+      "fade_note": "far spire silhouette; editor lane may substitute a cathedral-spire mesh (SM_Cathedral_Chapel) + fog tint"
+    },
+    {
+      "id": "SA_IslandRing_FarSpire_01",
+      "zone": "IslandRing",
+      "role": "silhouette",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Island_C.SM_Island_C",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        17901.4,
+        -52074.3,
+        13455.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        10.93
+      ],
+      "scale": [
+        6.426,
+        6.426,
+        10.281
+      ],
+      "height_cm": 0.0,
+      "clearance_cm": 0.0,
+      "radius_uu": 55065.3,
+      "fade_note": "far spire silhouette; editor lane may substitute a cathedral-spire mesh (SM_Cathedral_Chapel) + fog tint"
+    }
+  ]
+}
