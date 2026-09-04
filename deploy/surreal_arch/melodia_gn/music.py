@@ -831,7 +831,11 @@ def build_music_phrase(group_name="MEL_music_phrase"):
 
 
 def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
-    """Walkable staff railing - same tree id, implementation in music_heroes."""
+    """Walkable staff railing - back-compat alias, canonical build lives in music_heroes.
+
+    Registration for MEL_music_sheet_rail lives in music_heroes.py; do not
+    re-register here (register_builder overwrites silently, last import wins).
+    """
     from .music_heroes import build_music_sheet_rail as _impl
     return _impl(group_name)
 
@@ -853,7 +857,4 @@ register_builder("MEL_music_harmonic", build_music_harmonic, "Music Harmonic Dri
     "music", role="modifier")
 register_builder("MEL_music_phrase", build_music_phrase, "Music Phrase (Composite)",
     "Composite musical phrase - staff + note heads + harmonic + clef",
-    "music")
-register_builder("MEL_music_sheet_rail", build_music_sheet_rail, "Sheet Music Rail",
-    "Walkable staff railing: posts, five swept lines, note heads at pitch-height",
     "music")

@@ -501,7 +501,7 @@ def _wire_pipeline_and_bridges(monolith):
     if not hasattr(monolith, "_apply_geometry_nodes_orig"):
         monolith._apply_geometry_nodes_orig = monolith.apply_geometry_nodes_to_object
 
-    def _apply_geometry_nodes_patched(obj, props):
+    def _apply_geometry_nodes_patched(obj, props, **kwargs):
         from .melodia_gn_route import try_apply_melodia_gn
 
         if try_apply_melodia_gn(obj, props, monolith):
@@ -524,7 +524,7 @@ def _wire_pipeline_and_bridges(monolith):
                     pass
             run_post_generate(obj, props, monolith)
             return
-        monolith._apply_geometry_nodes_orig(obj, props)
+        monolith._apply_geometry_nodes_orig(obj, props, **kwargs)
         run_post_generate(obj, props, monolith, skip_bevel=True)
 
     monolith.apply_geometry_nodes_to_object = _apply_geometry_nodes_patched
