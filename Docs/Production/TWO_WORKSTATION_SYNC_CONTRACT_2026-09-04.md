@@ -47,6 +47,10 @@ If this fails, Git may be synchronized while Blender is still executing stale ad
 
 ## One command first
 
+By default the sync tool targets `origin/main`, not the current feature branch. A machine on any branch other than `main` reports `wrong-branch` for the normal cross-workstation check.
+
+Use `-Target Current` only when you intentionally want to verify a named feature branch.
+
 Run this before opening Rider, Blender, or Unreal:
 
 ```powershell
@@ -139,19 +143,27 @@ Never use “I committed it locally” as a handoff. The other machine cannot se
 | `lfs-error` | Git refs may match but binary hydration failed | fix LFS before opening the affected asset |
 | `lfs-unavailable` | Git LFS is missing | install/fix LFS first |
 
-## Current Melusina House handoff
+## Current Melusina House baseline
 
-The original recovered laptop branch is:
+The recovered V7 house work is now on `main` via PR #82.
 
-`recovery/laptop-main-20260904`
+Current canonical Blender source:
 
-It contains useful current house work mixed with broad historical deletions. Do not use it as the everyday shared lane.
+`RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend`
 
-Preferred review/handoff surface:
+Therefore the default workstation contract is deliberately simple:
 
-`integration/laptop-house-recovery-20260904` / draft PR #70
+```text
+PC main == origin/main == laptop main
+```
 
-That branch contains the isolated current house/GN text+code work. The latest V7 Blender base is a small LFS object on the original recovery branch and should be promoted intentionally as the canonical binary rather than copying the entire historical `Saved/MelusinasHouse/` directory.
+Do not switch to the old recovery/integration house branches for ordinary work. They are historical recovery surfaces only.
+
+Before editing the V7 source:
+
+```powershell
+git lfs lock RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend
+```
 
 ## Local-only art is not a Git failure
 

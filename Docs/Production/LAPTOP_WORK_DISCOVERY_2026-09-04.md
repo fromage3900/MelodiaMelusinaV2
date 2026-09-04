@@ -110,31 +110,23 @@ Before saying any of the following:
 
 you must compare `main` against the relevant laptop/recovery branch.
 
-## Current safe house handoff lane
+## Current synchronized house baseline
 
-**Draft PR #76** — `recover(house): current-main PC/laptop handoff with V7 base`
+The recovered V7 Melusina House payload was promoted to `main` via **PR #82**.
 
-Branch: `integration/house-handoff-current-20260904`
+Current canonical shared source:
 
-This is now the preferred PC/laptop baton for current Melusina House work. It starts from the 2026-09-04 synchronized `main` baseline and contains:
+`RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend`
 
-- the isolated current house/GN code and build scripts;
-- the recovered session notes and V7 plan;
-- the latest canonical `RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend` as one small Git LFS object (275,749 bytes);
-- `RawArt/MelusinasHouse/README.md` with lock/handoff rules.
+Normal PC/laptop work should now return to `main`.
 
-It deliberately excludes the broad `Exports/` and quarantine deletions and the historical house binary sweep.
+Old branches:
+- `recovery/laptop-main-20260904`
+- `integration/laptop-house-recovery-20260904`
+- `integration/house-handoff-20260904`
+- `integration/house-handoff-current-20260904`
 
-Use:
-
-```powershell
-git switch integration/house-handoff-current-20260904
-.\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
-```
-
-Only one workstation edits the V7 `.blend` at a time; lock it through Git LFS before editing.
-
-PR #70 and PR #72 are closed/superseded. The original `recovery/laptop-main-20260904` remains history/recovery only.
+are **recovery/history only**. Do not use them as the active workstation baton.
 
 ## Promotion policy
 
