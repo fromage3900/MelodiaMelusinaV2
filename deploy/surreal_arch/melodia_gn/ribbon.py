@@ -282,6 +282,132 @@ def build_violin_bow(group_name="MEL_violin_bow"):
     ])
 
 
+def build_allee_ribbon(group_name="MEL_allee_ribbon"):
+    """Ground allee ribbon - walkable S-curve path strip with crowned camber.
+
+    Unlike the vertical extrude-strip ribbons above, this is a plan-curve
+    ground ribbon for garden routes and cherry allees: a Grid strip bent
+    into an S in plan, crowned across its width so water runs off, given
+    body by a downward extrude. Thickness links to Offset by name -
+    never by index (ExtrudeMesh inputs[1] is Selection).
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+
+    add_int_param(tree, "Segments", 48, 8, 256)
+    add_float_param(tree, "Length", 8.0, 1.0, 30.0)
+    add_float_param(tree, "Path Width", 2.2, 0.4, 6.0)
+    add_float_param(tree, "S-Curve", 1.0, 0.0, 3.0)
+    add_float_param(tree, "Camber", 0.08, 0.0, 0.3)
+    add_float_param(tree, "Thickness", 0.12, 0.02, 0.5)
+
+    grid = safe_node(tree, "GeometryNodeMeshGrid", (bx - 700, by + 200))
+    link_sockets(tree, gin.outputs["Segments"], grid.inputs["Vertices X"])
+    grid.inputs["Vertices Y"].default_value = 3
+    grid.inputs["Size X"].default_value = 1.0
+    grid.inputs["Size Y"].default_value = 1.0
+
+    pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 700, by - 200))
+    sep = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 520, by - 200))
+    link_sockets(tree, pos.outputs["Position"], sep.inputs["Vector"])
+
+    u = safe_node(tree, "ShaderNodeMath", (bx - 340, by - 100))
+    u.operation = "ADD"
+    link_sockets(tree, sep.outputs["X"], u.inputs[0])
+    u.inputs[1].default_value = 0.5
+    v = safe_node(tree, "ShaderNodeMath", (bx - 340, by - 300))
+    v.operation = "ADD"
+    link_sockets(tree, sep.outputs["Y"], v.inputs[0])
+    v.inputs[1].default_value = 0.5
+
+    # plan S: y += S-Curve * sin(2*pi*u) * 0.5
+    twopi_u = safe_node(tree, "ShaderNodeMath", (bx - 160, by - 100))
+    twopi_u.operation = "MULTIPLY"
+    link_sockets(tree, u.outputs[0], twopi_u.inputs[0])
+    twopi_u.inputs[1].default_value = math.pi * 2.0
+    s_sin = safe_node(tree, "ShaderNodeMath", (bx + 20, by - 100))
+    s_sin.operation = "SINE"
+    link_sockets(tree, twopi_u.outputs[0], s_sin.inputs[0])
+    s_half = safe_node(tree, "ShaderNodeMath", (bx + 200, by - 100))
+    s_half.operation = "MULTIPLY"
+    link_sockets(tree, s_sin.outputs[0], s_half.inputs[0])
+    link_sockets(tree, gin.outputs["S-Curve"], s_half.inputs[1])
+    s_half2 = safe_node(tree, "ShaderNodeMath", (bx + 380, by - 100))
+    s_half2.operation = "MULTIPLY"
+    link_sockets(tree, s_half.outputs[0], s_half2.inputs[0])
+    s_half2.inputs[1].default_value = 0.5
+    y_off = safe_node(tree, "ShaderNodeMath", (bx + 560, by - 200))
+    y_off.operation = "ADD"
+    link_sockets(tree, sep.outputs["Y"], y_off.inputs[0])
+    link_sockets(tree, s_half2.outputs[0], y_off.inputs[1])
+
+    # crown: z += Camber * (1 - (2*v-1)^2)
+    vc = safe_node(tree, "ShaderNodeMath", (bx - 160, by - 400))
+    vc.operation = "MULTIPLY"
+    link_sockets(tree, v.outputs[0], vc.inputs[0])
+    vc.inputs[1].default_value = 2.0
+    vc1 = safe_node(tree, "ShaderNodeMath", (bx + 20, by - 400))
+    vc1.operation = "SUBTRACT"
+    link_sockets(tree, vc.outputs[0], vc1.inputs[0])
+    vc1.inputs[1].default_value = 1.0
+    vc2 = safe_node(tree, "ShaderNodeMath", (bx + 200, by - 400))
+    vc2.operation = "POWER"
+    link_sockets(tree, vc1.outputs[0], vc2.inputs[0])
+    vc2.inputs[1].default_value = 2.0
+    vc3 = safe_node(tree, "ShaderNodeMath", (bx + 380, by - 400))
+    vc3.operation = "SUBTRACT"
+    vc3.inputs[0].default_value = 1.0
+    link_sockets(tree, vc2.outputs[0], vc3.inputs[1])
+    crown = safe_node(tree, "ShaderNodeMath", (bx + 560, by - 400))
+    crown.operation = "MULTIPLY"
+    link_sockets(tree, vc3.outputs[0], crown.inputs[0])
+    link_sockets(tree, gin.outputs["Camber"], crown.inputs[1])
+
+    combine = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 740, by - 200))
+    link_sockets(tree, sep.outputs["X"], combine.inputs["X"])
+    link_sockets(tree, y_off.outputs[0], combine.inputs["Y"])
+    link_sockets(tree, crown.outputs[0], combine.inputs["Z"])
+    set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 920, by + 100))
+    link_sockets(tree, grid.outputs["Mesh"], set_pos.inputs["Geometry"])
+    link_sockets(tree, combine.outputs["Vector"], set_pos.inputs["Position"])
+
+    tr = safe_node(tree, "GeometryNodeTransform", (bx + 1100, by + 100))
+    link_sockets(tree, set_pos.outputs["Geometry"], tr.inputs["Geometry"])
+    scomb = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 920, by - 100))
+    link_sockets(tree, gin.outputs["Length"], scomb.inputs["X"])
+    link_sockets(tree, gin.outputs["Path Width"], scomb.inputs["Y"])
+    scomb.inputs["Z"].default_value = 1.0
+    link_sockets(tree, scomb.outputs["Vector"], tr.inputs["Scale"])
+
+    ext = safe_node(tree, "GeometryNodeExtrudeMesh", (bx + 1280, by + 100))
+    link_sockets(tree, tr.outputs["Geometry"], ext.inputs["Mesh"])
+    ext.inputs["Selection"].default_value = True
+    link_sockets(tree, gin.outputs["Thickness"], ext.inputs["Offset"])
+
+    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1460, by + 100))
+    link_sockets(tree, ext.outputs["Mesh"], shade.inputs["Mesh"])
+
+    store_w = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 1640, by + 100))
+    store_w.data_type = "FLOAT"
+    store_w.inputs["Name"].default_value = "path_width"
+    link_sockets(tree, gin.outputs["Path Width"], store_w.inputs["Value"])
+    link_sockets(tree, shade.outputs["Geometry"], store_w.inputs["Geometry"])
+    link_sockets(tree, store_w.outputs["Geometry"], gout.inputs["Geometry"])
+
+    color_node(grid, "geometry")
+    color_node(set_pos, "attribute")
+    color_node(ext, "geometry")
+    color_node(store_w, "attribute")
+
+    return label_tree(tree, group_name, [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Plan Curve", "nodes": ("sine", "combine", "set position"), "role": "curve"},
+        {"title": "Body", "nodes": ("extrude", "shade"), "role": "geometry"},
+        {"title": "Attributes", "nodes": ("store",), "role": "attribute"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
+
+
 # -- Registry --
 register_builder("MEL_ribbon_curve", build_ribbon_curve, "Ribbon Curve",
     "Sine centerline ribbon strip - width, amplitude, frequency, twist attributes.",
@@ -295,3 +421,6 @@ register_builder("MEL_closed_ribbon", build_closed_ribbon, "Closed Ribbon",
 register_builder("MEL_violin_bow", build_violin_bow, "Violin Bow",
     "Tapered bow stick with sagging horsehair ribbon and rosin-zone attribute.",
     "music")
+register_builder("MEL_allee_ribbon", build_allee_ribbon, "Allee Ribbon",
+    "Walkable S-curve ground ribbon - plan curve, crowned camber, body thickness.",
+    "effects")
