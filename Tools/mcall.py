@@ -2,15 +2,20 @@
 
 Usage: python Tools/mcall.py <tool> <key=value> [key=value ...]
 
-Values are passed through JSON.parse; use `action=find_by_type,class_name=ObjectRedirector`
-style key=value pairs to avoid PowerShell quote mangling. Lists/objects may be given
-as JSON after 'json:' prefix: asset=/Game/Foo,json:params={"a":[1,2]}
+Resolves the active checkout from this file; no workstation-specific repository
+path is allowed here.
 """
+from __future__ import annotations
+
 import json
 import re
 import sys
+from pathlib import Path
 
-sys.path.insert(0, r"C:\EnvironmentPortfolio\BS_GodFile\Tools")
+TOOLS_ROOT = Path(__file__).resolve().parent
+if str(TOOLS_ROOT) not in sys.path:
+    sys.path.insert(0, str(TOOLS_ROOT))
+
 from mcp_client import monolith  # noqa: E402
 
 
@@ -35,6 +40,7 @@ def main():
     if len(sys.argv) < 2:
         print("usage: mcall.py <tool> [key=value ...]")
         sys.exit(2)
+
     tool = sys.argv[1]
     args = {}
     for pair in sys.argv[2:]:
@@ -43,6 +49,7 @@ def main():
             continue
         key, _, val = pair.partition("=")
         args[key] = parse_value(val)
+
     result = monolith(tool, args)
     if isinstance(result, str):
         print(result)
