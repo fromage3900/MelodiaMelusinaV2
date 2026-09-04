@@ -22,7 +22,7 @@ BLENDER_EXE = os.environ.get(
 )
 MONOLITH_PATH = os.environ.get(
     "MONOLITH_PATH",
-    r"C:\Users\froma\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons\surreal_architecture_gen.py",
+    r"C:\Users\brenn\melodiamelusinav2\deploy\surreal_architecture_gen.py",
 )
 
 

@@ -361,11 +361,91 @@ def build_music_baroque_violin(group_name="MEL_music_baroque_violin"):
 
 
 # ---------------------------------------------------------------------------
-# 3. Baroque Organ - walkable facade
+# 3a. Organ Pipe Rank - standalone ET-graduated pipe builder
+# ---------------------------------------------------------------------------
+
+def build_music_organ_pipes(group_name="MEL_music_organ_pipes"):
+    """Equal-tempered pipe rank: N cylinders along X, scaled by 1/2^(i/12).
+
+    Reusable standalone (cover pipes, choruses) and nested inside
+    MEL_music_baroque_organ. Grounded: longest pipe at index 0, spacing =
+    Spread / Pipe Count, rank centered on X origin, base at Z = Base Z.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    bx, by = 0, 0
+    add_float_param(tree, "Spread", 6.5, 1.0, 12.0)
+    add_int_param(tree, "Pipe Count", 19, 7, 31)
+    add_float_param(tree, "Longest Pipe (m)", 4.2, 1.5, 7.0)
+    add_float_param(tree, "Pipe Radius", 0.12, 0.03, 0.5)
+    add_float_param(tree, "Base Z", 0.0, 0.0, 12.0)
+
+    # points along X: mesh line, offset = Spread / Pipe Count, shifted so the
+    # rank is centered
+    line = safe_node(tree, "GeometryNodeMeshLine", (bx-400, by))
+    link_sockets(tree, gin.outputs["Pipe Count"], line.inputs["Count"])
+    try:
+        line.mode = "OFFSET"
+    except Exception:
+        pass
+    spacing = _math(tree, (bx-400, by+60), "DIVIDE", gin.outputs["Spread"], gin.outputs["Pipe Count"])
+    link_sockets(tree, spacing.outputs[0] if spacing else gin.outputs["Spread"],
+                 line.inputs["Offset"] if "Offset" in line.inputs else line.inputs[0])
+    half_w = _math(tree, (bx-200, by+60), "MULTIPLY", gin.outputs["Spread"], 0.5)
+    neg = _math(tree, (bx-40, by+60), "MULTIPLY", half_w.outputs[0] if half_w else 3.25, -1.0)
+    line_tr = safe_node(tree, "GeometryNodeTransform", (bx, by))
+    link_sockets(tree, line.outputs["Mesh"], line_tr.inputs["Geometry"])
+    off2 = _combine(tree, (bx, by), neg.outputs[0] if neg else -3.25, 0.0, gin.outputs["Base Z"])
+    link_sockets(tree, off2.outputs["Vector"], line_tr.inputs["Translation"])
+
+    cyl = safe_node(tree, "GeometryNodeMeshCylinder", (bx, by-60))
+    cyl.inputs["Vertices"].default_value = 16
+    link_sockets(tree, gin.outputs["Pipe Radius"], cyl.inputs["Radius"])
+    link_sockets(tree, gin.outputs["Longest Pipe (m)"], cyl.inputs["Depth"])
+
+    # ET factor per pipe: 1/2^(i/12)
+    idx = safe_node(tree, "GeometryNodeInputIndex", (bx-200, by-140))
+    cnt = safe_node(tree, "ShaderNodeMath", (bx, by-140))
+    cnt.operation = "DIVIDE"
+    link_sockets(tree, idx.outputs["Index"], cnt.inputs[0])
+    cnt.inputs[1].default_value = 12.0
+    pow2 = safe_node(tree, "ShaderNodeMath", (bx+160, by-140))
+    pow2.operation = "POWER"
+    pow2.inputs[0].default_value = 2.0
+    link_sockets(tree, cnt.outputs[0], pow2.inputs[1])
+    inv = safe_node(tree, "ShaderNodeMath", (bx+320, by-140))
+    inv.operation = "DIVIDE"
+    inv.inputs[0].default_value = 1.0
+    link_sockets(tree, pow2.outputs[0], inv.inputs[1])
+
+    inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx+120, by))
+    link_sockets(tree, line_tr.outputs["Geometry"], inst.inputs["Points"])
+    link_sockets(tree, cyl.outputs["Mesh"], inst.inputs["Instance"])
+    sv = _combine(tree, (bx, by-80), 1.0, 1.0, inv.outputs[0] if inv else 1.0)
+    si = safe_node(tree, "GeometryNodeScaleInstances", (bx+280, by))
+    link_sockets(tree, inst.outputs["Instances"], si.inputs["Instances"] if "Instances" in si.inputs else si.inputs[0])
+    link_sockets(tree, sv.outputs["Vector"], si.inputs["Scale"] if "Scale" in si.inputs else si.inputs[1])
+
+    out_geo = si.outputs["Instances"] if "Instances" in si.outputs else si.outputs[0]
+    link_sockets(tree, out_geo, gout.inputs["Geometry"])
+    return label_tree(tree, group_name, [
+        {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
+        {"title": "Rank Points", "nodes": ("mesh line", "transform"), "role": "geometry"},
+        {"title": "ET Pipes", "nodes": ("cylinder", "instance", "scale"), "role": "instance"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
+
+
+# ---------------------------------------------------------------------------
+# 3b. Baroque Organ - walkable facade (case + rosette + nested pipe rank)
 # ---------------------------------------------------------------------------
 
 def build_music_baroque_organ(group_name="MEL_music_baroque_organ"):
-    """Baroque organ: walkable facade, ET pipes, rosette, volute pediment (spatial)."""
+    """Baroque organ: walkable facade, ET pipes, rosette, volute pediment (spatial).
+
+    Pipes are NOT built inline: this composes the reusable MEL_music_organ_pipes
+    rank as a nested group, driven by the facade's own params (reuse, not
+    duplicate). Facade = case + rosette; pipes ride the case front.
+    """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
     add_float_param(tree, "Facade Width", 6.5, 3.0, 12.0)
@@ -388,52 +468,43 @@ def build_music_baroque_organ(group_name="MEL_music_baroque_organ"):
     tr = _combine(tree, (bx-200, by+140), 0.0, 0.0, half.outputs[0] if half else 4.25)
     link_sockets(tree, tr.outputs["Vector"], case_xf.inputs["Translation"])
 
-    # Pipes - ET graduated, Mersenne-like but ET via 1/2^(n/12)
-    line = safe_node(tree, "GeometryNodeMeshLine", (bx-400, by))
-    link_sockets(tree, gin.outputs["Pipe Count"], line.inputs["Count"])
-    try:
-        line.mode = "OFFSET"
-    except Exception:
-        pass
-    spacing = _math(tree, (bx-400, by+60), "DIVIDE", gin.outputs["Facade Width"], gin.outputs["Pipe Count"])
-    link_sockets(tree, spacing.outputs[0] if spacing else gin.outputs["Facade Width"], line.inputs["Offset"] if "Offset" in line.inputs else line.inputs[0])
-    # Center
-    half_w = _math(tree, (bx-200, by+60), "MULTIPLY", gin.outputs["Facade Width"], 0.5)
-    neg = _math(tree, (bx-40, by+60), "MULTIPLY", half_w.outputs[0] if half_w else 3.25, -1.0)
-    line_tr = safe_node(tree, "GeometryNodeTransform", (bx, by))
-    link_sockets(tree, line.outputs["Mesh"], line_tr.inputs["Geometry"])
-    off = _combine(tree, (bx-40, by), neg.outputs[0] if neg else -3.25, 0.0, gin.outputs["Facade Height"])
-    # Actually pipes sit on case front, so Z = Facade Height
-    off2 = _combine(tree, (bx, by), neg.outputs[0] if neg else -3.25, gin.outputs["Depth"], gin.outputs["Facade Height"])
-    link_sockets(tree, off2.outputs["Vector"], line_tr.inputs["Translation"])
-
-    cyl = safe_node(tree, "GeometryNodeMeshCylinder", (bx, by-60))
-    cyl.inputs["Vertices"].default_value = 16
-    cyl.inputs["Radius"].default_value = 0.12
-    link_sockets(tree, gin.outputs["Longest Pipe (m)"], cyl.inputs["Depth"])
-    # ET factor per pipe: 1/2^(i/12)
-    idx = safe_node(tree, "GeometryNodeInputIndex", (bx-200, by-140))
-    cnt = safe_node(tree, "ShaderNodeMath", (bx, by-140))
-    cnt.operation = "DIVIDE"
-    link_sockets(tree, idx.outputs["Index"], cnt.inputs[0])
-    cnt.inputs[1].default_value = 12.0
-    # 2^(idx/12)
-    pow2 = safe_node(tree, "ShaderNodeMath", (bx+160, by-140))
-    pow2.operation = "POWER"
-    pow2.inputs[0].default_value = 2.0
-    link_sockets(tree, cnt.outputs[0], pow2.inputs[1])
-    # 1 / 2^(idx/12)
-    inv = safe_node(tree, "ShaderNodeMath", (bx+320, by-140))
-    inv.operation = "DIVIDE"
-    inv.inputs[0].default_value = 1.0
-    link_sockets(tree, pow2.outputs[0], inv.inputs[1])
-    inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx+120, by))
-    link_sockets(tree, line_tr.outputs["Geometry"], inst.inputs["Points"])
-    link_sockets(tree, cyl.outputs["Mesh"], inst.inputs["Instance"])
-    sv = _combine(tree, (bx, by-80), 1.0, 1.0, inv.outputs[0] if inv else 1.0)
-    si = safe_node(tree, "GeometryNodeScaleInstances", (bx+280, by))
-    link_sockets(tree, inst.outputs["Instances"], si.inputs["Instances"] if "Instances" in si.inputs else si.inputs[0])
-    link_sockets(tree, sv.outputs["Vector"], si.inputs["Scale"] if "Scale" in si.inputs else si.inputs[1])
+    # Pipes - nested reusable rank (MEL_music_organ_pipes), driven by facade params
+    if "MEL_music_organ_pipes" not in bpy.data.node_groups:
+        try:
+            build_music_organ_pipes("MEL_music_organ_pipes")
+        except Exception:
+            pass
+    pipes = safe_node(tree, "GeometryNodeGroup", (bx-200, by))
+    if pipes is not None:
+        pipes.node_tree = bpy.data.node_groups.get("MEL_music_organ_pipes")
+    pipes_geo = None
+    if pipes is not None and pipes.node_tree:
+        for src, dst in ((gin.outputs["Facade Width"], "Spread"),
+                         (gin.outputs["Pipe Count"], "Pipe Count"),
+                         (gin.outputs["Longest Pipe (m)"], "Longest Pipe (m)")):
+            if dst in pipes.inputs:
+                try:
+                    link_sockets(tree, src, pipes.inputs[dst])
+                except Exception:
+                    pass
+        if "Base Z" in pipes.inputs:
+            try:
+                pipes.inputs["Base Z"].default_value = 0.0
+            except Exception:
+                pass
+        # rank output is centered at X origin, base at Base Z; sit it on the
+        # case front at z = Facade Height
+        pipes_xf = safe_node(tree, "GeometryNodeTransform", (bx+40, by))
+        pg = None
+        for o in pipes.outputs:
+            if o.type == "GEOMETRY":
+                pg = o
+                break
+        if pg is not None:
+            link_sockets(tree, pg, pipes_xf.inputs["Geometry"])
+            poff = _combine(tree, (bx-40, by), 0.0, gin.outputs["Depth"], gin.outputs["Facade Height"])
+            link_sockets(tree, poff.outputs["Vector"], pipes_xf.inputs["Translation"])
+            pipes_geo = pipes_xf.outputs["Geometry"]
 
     # Rosette above pipes
     try:
@@ -464,7 +535,8 @@ def build_music_baroque_organ(group_name="MEL_music_baroque_organ"):
 
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx+200, by+60))
     link_sockets(tree, case_xf.outputs["Geometry"], join.inputs["Geometry"])
-    link_sockets(tree, si.outputs["Instances"] if "Instances" in si.outputs else si.outputs[0], join.inputs["Geometry"])
+    if pipes_geo is not None:
+        link_sockets(tree, pipes_geo, join.inputs["Geometry"])
     if rosette_out is not None:
         link_sockets(tree, rosette_out, join.inputs["Geometry"])
 
@@ -632,8 +704,11 @@ register_builder("MEL_music_baroque_harpsichord", build_music_baroque_harpsichor
 register_builder("MEL_music_baroque_violin", build_music_baroque_violin, "Music Baroque Violin",
     "Violin body + baroque scroll volute + tailpiece wreath - baroque lens",
     "music")
+register_builder("MEL_music_organ_pipes", build_music_organ_pipes, "Music Organ Pipe Rank (ET)",
+    "Standalone equal-tempered pipe rank: N cylinders along X scaled by 1/2^(i/12). Reusable alone or nested in the baroque organ facade.",
+    "music")
 register_builder("MEL_music_baroque_organ", build_music_baroque_organ, "Music Baroque Organ (Walkable)",
-    "Walkable baroque organ facade - ET pipes + rosette + volute pediment - spatial",
+    "Walkable baroque organ facade - case + rosette + nested MEL_music_organ_pipes ET rank - spatial",
     "music")
 register_builder("MEL_music_baroque_lute", build_music_baroque_lute, "Music Baroque Lute",
     "Vaulted bowl staves + rosette + bent neck - baroque lens, spatial",
