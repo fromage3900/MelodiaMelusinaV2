@@ -227,7 +227,7 @@ def build_city_corridors(group_name="MEL_city_corridors"):
     corridors via transforms (no new shell primitive)."""
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
-    add_int_param(tree, "Corridor Type", 0, 0, 3)  # 0 straight,1 L,2 gallery,3 dog-leg
+    add_int_param(tree, "Corridor Type", 0, 0, 4)  # 0 straight,1 L,2 gallery,3 dog-leg,4 T-junction
     add_float_param(tree, "Length", 6.0, 1.0, 30.0)
     add_float_param(tree, "Width", 2.4, 1.0, 8.0)
     add_float_param(tree, "Height", 3.2, 2.0, 8.0)
@@ -291,12 +291,26 @@ def build_city_corridors(group_name="MEL_city_corridors"):
         link_sockets(tree, dog, dog_join.inputs["Geometry"])
     dog_geo = _geo_out(dog_join)
 
+    # T-junction: the greybox junction builder (reuse, not rebuild).
+    # Size = arm length (Length), Width/Height/Thickness carried from inputs.
+    junc = _ensure_group_node(tree, "MEL_greybox_junction",
+                              build_greybox_junction, (bx - 700, by - 900))
+    _set_in(junc, "Cross Junction", False)
+    for src, dst in (("Length", "Size"), ("Width", "Width"),
+                     ("Height", "Height"), ("Wall Thickness", "Wall Thickness")):
+        if junc is not None and dst in junc.inputs and src in gin.outputs:
+            try:
+                link_sockets(tree, gin.outputs[src], junc.inputs[dst])
+            except Exception:
+                pass
+    t_geo = _geo_out(junc)
+
     # Index Switch selects type
     sw = safe_node(tree, "GeometryNodeIndexSwitch", (bx + 300, by))
     sw.data_type = "GEOMETRY"  # corridor pieces are geometry
     items = sw.index_switch_items
-    # item0 already exists; ensure 4 items
-    while len(items) < 4:
+    # item0 already exists; ensure 5 items
+    while len(items) < 5:
         items.new()
     def innode(n, idx):
         try:
@@ -308,6 +322,7 @@ def build_city_corridors(group_name="MEL_city_corridors"):
     link_sockets(tree, l_geo, innode(sw, 1))
     link_sockets(tree, g_geo, innode(sw, 2))
     link_sockets(tree, dog_geo, innode(sw, 3))
+    link_sockets(tree, t_geo, innode(sw, 4))
     link_sockets(tree, _geo_out(sw), _o)
     color_node(sw, "math")
     label_tree(tree, group_name, [
@@ -348,7 +363,8 @@ def build_city_house_cell(group_name="MEL_city_house_cell"):
     add_float_param(tree, "Roof Rise", 0.9, 0.2, 3.0)
     add_int_param(tree, "Plan Type", 0, 0, 2)  # 0 round, 1 salon, 2 courtyard
     add_bool_param(tree, "Show Interior", True)
-    add_bool_param(tree, "Tower", False)
+    add_bool_param(tree, "Show Roof", True)    # False = shell-only; roof rides
+    add_bool_param(tree, "Tower", False)       # the SurrealRoof addon system
     add_vector_param(tree, "Offset", (0.0, 0.0, 0.0))
 
     W = gin.outputs["Width"]
@@ -390,7 +406,11 @@ def build_city_house_cell(group_name="MEL_city_house_cell"):
         slab_geo = _place(tree, bx - 140, by + 80, _geo_out(sc), (0.0, 0.0, -0.06), "foundation")
         joins.append(slab_geo)
 
-    # --- roof (hip or gable prism) ---
+    # --- roof (hip or gable prism), gated by Show Roof ----------------------
+    # When Show Roof is False the cell emits shell+interior+foundation only and
+    # the roof is staged separately as a SurrealRoof_* object from the Melodia
+    # Studio curved-roof generator (_build_curved_roof in
+    # surreal_architecture_gen.py) — that system is the roof authority.
     roof = safe_node(tree, "GeometryNodeMeshCone", (bx - 700, by - 100))
     rr_node = safe_node(tree, "ShaderNodeMath", (bx - 880, by - 40))
     if rr_node is not None:
@@ -447,7 +467,19 @@ def build_city_house_cell(group_name="MEL_city_house_cell"):
         ro_z = safe_node(tree, "GeometryNodeTransform", (bx + 120, by - 100))
         link_sockets(tree, _geo_out(roof), ro_z.inputs["Geometry"])
         link_sockets(tree, _geo_out(tz), ro_z.inputs["Translation"])
-        joins.append(_geo_out(ro_z))
+        # Show Roof switch: False -> empty geometry instead of the cone
+        rswitch = safe_node(tree, "GeometryNodeSwitch", (bx + 320, by - 180))
+        roof_geo = _geo_out(ro_z)
+        if rswitch is not None:
+            try:
+                rswitch.data_type = 'GEOMETRY'
+                link_sockets(tree, gin.outputs["Show Roof"], rswitch.inputs["Switch"])
+                link_sockets(tree, roof_geo, rswitch.inputs[False] if False in rswitch.inputs else rswitch.inputs[1])
+            except Exception:
+                pass
+            roof_geo = _geo_out(rswitch)
+        if roof_geo is not None:
+            joins.append(roof_geo)
 
     # --- interior plan (nested builder), selected by Plan Type, scaled to fit the cell ---
     # Each plan shares the same interface (Interior Height/Wall Thickness/Show Interior)

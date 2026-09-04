@@ -60,6 +60,8 @@ from .set_dressing import (
 from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_env_reeds_patch, build_env_buoy_line, build_env_market_stall, build_env_campfire_ring, build_env_village_well, build_env_lantern_post, build_env_hedgerow, build_env_waterfall_pool
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
+from . import house_aaa  # noqa: F401
+from . import melusina_house_v6  # noqa: F401 - V6 room-shell genome kit - AAA hard-surface house kit (cornice/dentil/UV scallop/lissajous pearl) registers via register_builder
 from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
     build_city_house_cell, build_city_avenue, build_city_block,
     build_city_plan_round, build_city_plan_salon, build_city_plan_courtyard,
