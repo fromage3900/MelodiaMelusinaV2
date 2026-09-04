@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "EngineUtils.h" // TActorIterator (IsPPVStackCanonical PPV enumeration)
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "MelodiaCaptureRenderSubsystem.generated.h"
 
@@ -56,7 +57,15 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Melodia|Capture")
 	FIntPoint GetActiveResolution() const { return ActiveResolution; }
 
+	/** Absolute path of the last successful CaptureToFile, or empty. Evidence seam:
+	 *  probes assert on this plus the file's existence on disk. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|Capture")
+	const FString& GetLastCaptureFilePath() const { return LastCaptureFilePath; }
+
 private:
 	EMelodiaRenderSurface ActiveSurface = EMelodiaRenderSurface::Gameplay;
 	FIntPoint ActiveResolution = FIntPoint(1920, 1080);
+
+	UPROPERTY(Transient)
+	FString LastCaptureFilePath;
 };
