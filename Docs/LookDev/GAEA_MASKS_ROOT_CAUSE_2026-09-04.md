@@ -124,15 +124,20 @@ reference is not a valid pivot. The clustering of implausible long-decimal value
 an automated sweep or randomiser has run over this instance. **Worth finding that writer** —
 resetting values it will overwrite again is treating a symptom.
 
-## Version-control status — read this before assuming the work is safe
+## Version-control status
 
-`.gitignore:111` is a blanket `Content/*`. Consequently:
+The SeaAbove landscape's 74 modified `__ExternalActors__` files (17.4 MB), which carry the
+new paint, are **not** tracked — `.gitignore:111` is a blanket `Content/*` and no external
+actor for this level has ever been committed (`LV_SeaAbove_Prototype.umap` itself is
+tracked; its actors are not). So the paint-layer import lives on disk only.
 
-- `MI_Glacier_Landscape_Layered.uasset` **has never been committed**, so the Gaea material
-  work from `4af6f72e` was never actually version controlled.
-- The SeaAbove landscape's 74 modified `__ExternalActors__` files (17.4 MB) carrying the new
-  paint are likewise untracked, consistent with that level's existing state.
+Bringing 17.4 MB of landscape external actors under version control is a repo-policy
+decision and `.gitignore` is a protected file, so that is left to the owner rather than
+decided unilaterally.
 
-The small Gaea assets are force-added here. Bringing 17.4 MB of landscape external actors
-under version control is a repo-policy decision and `.gitignore` is a protected file, so
-that is left to the owner rather than decided unilaterally.
+**Correction.** An earlier revision of this document claimed
+`MI_Glacier_Landscape_Layered.uasset` "has never been committed" and that the Gaea material
+work was never version controlled. That was wrong. It, `W_Glacier_Rock` and
+`W_Glacier_Water` are all tracked on `main`, added by `82f3722c`. The check that produced
+the false claim ran against the branch currently checked out by the overnight daemon, whose
+index does not contain them — not against `main`.
