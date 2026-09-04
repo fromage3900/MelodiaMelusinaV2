@@ -53,15 +53,16 @@ Use `-Target Current` only when you intentionally want to verify a named feature
 
 ### Safe automatic return to main
 
-`-Mode Sync` may move a clean non-main checkout back to `main` only when:
+`-Mode Sync` may move a clean non-main checkout back to `main` when **either** recovery proof is true:
 
-```text
-git rev-list --count origin/main..HEAD == 0
-```
+1. `git rev-list --count origin/main..HEAD == 0` — there are no commits unique to the current branch; **or**
+2. the current branch has a same-name remote branch and local `HEAD` exactly equals `origin/<current-branch>` — any unique commits are already preserved on GitHub.
 
-That means the current branch has **zero commits not already reachable from origin/main**.
+This matters for old laptop/recovery branches whose useful changes were squash-promoted to `main`: their commit graph can remain unique even though the important work has landed.
 
-If the count is non-zero, the script refuses to switch branches and reports the number of unique commits that must be preserved/pushed/reviewed first.
+If the branch has unique commits **and** local HEAD is not fully published to its same-name remote branch, the script refuses to switch and tells you to push/preserve the branch first.
+
+No branch is deleted by this normalization. The remote recovery branch remains available for archaeology.
 
 Run this before opening Rider, Blender, or Unreal:
 
