@@ -382,31 +382,31 @@ def _register_all():
     register_builder(
         "MEL_mh_piano_walk", build_mh_piano_walk,
         "MH Piano Walk", "Instanced ivory keys along an entry walkway.",
-        category="set_dressing")
+        category="melusina_house")
     register_builder(
         "MEL_mh_sheet_rail", build_mh_sheet_rail,
         "MH Sheet Music Rail", "Walkable staff railing: posts, brass rails, floating notes.",
-        category="set_dressing")
+        category="melusina_house")
     register_builder(
         "MEL_mh_staff_rows", build_mh_staff_rows,
         "MH Staff Rows", "Five staff lines with a rising/falling note melody.",
-        category="set_dressing")
+        category="melusina_house")
     register_builder(
         "MEL_mh_xylo_fountain", build_mh_xylo_fountain,
         "MH Xylo Fountain", "Circular basin, water disc, pitched brass bars.",
-        category="set_dressing")
+        category="melusina_house")
     register_builder(
         "MEL_mh_stepping_stones", build_mh_stepping_stones,
         "MH Stepping Stones", "Flat squashed spheres leading to the staff rows.",
-        category="set_dressing")
+        category="melusina_house")
     register_builder(
         "MEL_mh_lantern_row", build_mh_lantern_row,
         "MH Lantern Row", "Posts with warm glowing orbs along a path.",
-        category="set_dressing")
+        category="melusina_house")
     register_builder(
         "MEL_mh_tree_line", build_mh_tree_line,
         "MH Tree Line", "Garden trees (trunk + canopy) for scale and framing.",
-        category="set_dressing")
+        category="melusina_house")
 
 
 _register_all()
