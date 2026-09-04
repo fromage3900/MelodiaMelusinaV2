@@ -2,6 +2,8 @@
 
 **Purpose:** Stop remote agents from losing committed work simply because it has not reached `main`.
 
+> **Front-door cleanup note:** the ahead/behind counts below are a captured discovery snapshot from before the 2026-09-04 documentation cleanup advanced `main`. Re-run the comparison before promotion. The branch contents and merge warning remain the important facts.
+
 ## Current important remote branches
 
 ### `recovery/laptop-main-20260904`
@@ -89,6 +91,22 @@ Before saying any of the following:
 - “main contains all current work”
 
 you must compare `main` against the relevant laptop/recovery branch.
+
+## Safe extraction lane
+
+**Draft recovery PR #70** — `recover(laptop): isolate current Melusina House GN work`
+
+Branch: `integration/laptop-house-recovery-20260904`
+
+This PR was cut from current `main` and copies the current house/GN code, house build scripts, recovered session notes, and V7 plan while deliberately excluding:
+
+- broad `Exports/` deletions;
+- quarantine/source-quarantine deletions;
+- bulk historical house Blender binaries;
+- unrelated Splice research;
+- recovery-branch gitignore/pre-commit changes.
+
+Use PR #70 as the preferred review surface for the recovered **text/code** work. Keep the original recovery branch as the binary/history source until the remaining Blender/LFS assets are reviewed separately.
 
 ## Promotion policy
 

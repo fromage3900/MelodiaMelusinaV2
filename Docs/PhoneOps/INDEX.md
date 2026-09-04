@@ -1,110 +1,79 @@
 # Phone Ops Index
 
-Front door for driving **MelodiaMelusinaV2** from iOS / Cursor mobile / SuperGrok.
+**Current authority:** 2026-09-04
 
-**Artist bridge (read first on phone):**
-[PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md)
-— what phone Cursor is for (Drive + git + Remote Control), not sandbox ops.
+Front door for driving **MelodiaMelusinaV2** from iOS / mobile agents / remote workstation control.
 
-**Artist bridge (read first on phone):**
-[PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md)
-— what phone Cursor is for (Drive + git + Remote Control), not sandbox ops.
+> **Do not start from the old August PhoneOps queues.** Read the current project discovery contract first.
 
-## Start here (order)
+## Start here
 
-1. [../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md](../Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md) — phone artist intent + Drive-ready protocol
-2. [HIGHEST_LEVERAGE_NOW.md](HIGHEST_LEVERAGE_NOW.md) — **RT-001…007 / PH-*** (read first)
-3. [../Handoffs/PIE_2026-08-11.md](../Handoffs/PIE_2026-08-11.md) — owner runtime truth (Kaleido triggers, UI alpha, Sir CTRL, highway)
-4. [MOBILE_LANES.md](MOBILE_LANES.md) — phone vs PC; Drive / Live Link / Polycam
-5. [SETUP.md](SETUP.md) — SuperGrok + Cursor Pro + phone/GitHub agents
-6. [REMOTE_WSL_AGENT_STACK_2026-08-25.md](REMOTE_WSL_AGENT_STACK_2026-08-25.md) — **phone → Blink/SSH → WSL/tmux agents** (cloud-readable audit; PC install needs approval)
-7. [AGENT_LANE_HANDOFF.md](AGENT_LANE_HANDOFF.md) — lane handoff fields + STATUS states (not a second PM system)
-8. [NORTH_STAR.md](NORTH_STAR.md) — **Ship Melodia** · P0 live proof · P1 sendoffs (OpenCode first; NVIDIA withdrawn)
-9. [BACKLOG.md](BACKLOG.md) — Now / Next · P0 gates + [RECRUITER_SENDOFFS…](../Career/RECRUITER_SENDOFFS_2026-08-25.md)
-10. [ENV_PACK_RESEARCH_POINTER.md](ENV_PACK_RESEARCH_POINTER.md) — cute/mystical/underwater packs
-11. [../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md](../MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md) — Polycam/Kiri → ZBrush → Rokoko
-12. [RECENT_STUDY.md](RECENT_STUDY.md) — recent main changes + Monolith/Cursor skills inventory
-13. [JCODE_SWARM_PIPELINE.md](JCODE_SWARM_PIPELINE.md) — **Implemented** jcode swarm install + Recipes A/B
-14. [SCRATCHPAD.md](SCRATCHPAD.md) — research notes (append-only)
+1. [`../../AGENT_START_HERE.md`](../../AGENT_START_HERE.md) — freshness and branch-discovery rules.
+2. [`../../MELODIA_TECHNICAL_VERTICAL_SLICE.md`](../../MELODIA_TECHNICAL_VERTICAL_SLICE.md) — what the playable slice actually proves.
+3. [`../../CURRENT_STATE.md`](../../CURRENT_STATE.md) — present-tense project state.
+4. [`../../TODO.md`](../../TODO.md) — current production queue.
+5. [`../Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](../Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) — committed laptop/recovery work not necessarily on `main`.
+6. [`../Art/VISUAL_REFERENCE_INDEX.md`](../Art/VISUAL_REFERENCE_INDEX.md) — canonical image/reference-board discovery.
+7. [`AGENT_LANE_HANDOFF.md`](AGENT_LANE_HANDOFF.md) — lightweight branch handoff format.
+8. [`REMOTE_WSL_AGENT_STACK_2026-08-25.md`](REMOTE_WSL_AGENT_STACK_2026-08-25.md) — remote stack mechanics only; historical status claims inside are subordinate to current discovery docs.
+9. [`MOBILE_LANES.md`](MOBILE_LANES.md) — phone vs PC ownership.
+10. [`JCODE_SWARM_PIPELINE.md`](JCODE_SWARM_PIPELINE.md) — jcode mechanics; use current project authority above for task selection.
 
-Harness: [`.jcode/README.md`](../../.jcode/README.md) · `.\deploy\start_jcode_swarm.ps1`
+## Current mobile interpretation
 
-Then, if you need deeper truth:
+The First Dream / Sea Above runtime is **not “still open because nothing works.”**
 
-| Doc | Why |
-|---|---|
-| [../../README.md](../../README.md) | Public V2 + Echo front door |
-| [../../CURRENT_STATE.md](../../CURRENT_STATE.md) | Implementation truth table |
-| [../../NEXT_ACTIONS.md](../../NEXT_ACTIONS.md) | Platform producer queue |
-| [../../_TASK_QUEUE.md](../../_TASK_QUEUE.md) | Gameplay P0 tracker |
-| [../../DOC_INDEX.md](../../DOC_INDEX.md) | Full doc map |
-| [../../AGENTS.md](../../AGENTS.md) | Working agreement + Echo evidence |
-| [../../PIPELINE.md](../../PIPELINE.md) | Blender ↔ UE ↔ portfolio map |
-| [../LIVEOPS_GIT_SOP_2026-08-11.md](../LIVEOPS_GIT_SOP_2026-08-11.md) | 50 MB collab / LFS |
-| [../ECHO_PIPELINE_2026-08-09.md](../ECHO_PIPELINE_2026-08-09.md) | Echo stages + ledger |
-| [../AgentMemory/Decisions.md](../AgentMemory/Decisions.md) | Locked decisions |
-| [../Production/MODEL_LANES_2026-08-12.md](../Production/MODEL_LANES_2026-08-12.md) | Model lanes + local daemon policy |
+September evidence records a functioning chain across music/challenge → reward → Wardrobe equip → Glide/world unlock, plus canonical save → full process restart → wardrobe restore. Starskiff boarding and movement have also been exercised.
 
-## How to use from phone
+What remains open is **closure quality**: deeper persistence/idempotency, current packaged proof, and professor-facing stability.
 
-### Kick a focused agent
+## Multi-workstation rule
 
-```text
-Read Docs/Handoffs/PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md.
-Drive is connected. Pull my Melodia scan/research folder, consolidate into the repo, open one draft PR. No process docs. No UE/Blender from cloud unless Remote Control is on.
-```
+Before saying “I cannot find the laptop work”:
 
-```text
-You are on MelodiaMelusinaV2 cloud. Read Docs/PhoneOps/REMOTE_WSL_AGENT_STACK_2026-08-25.md
-and Docs/PhoneOps/AGENT_LANE_HANDOFF.md. Docs only. Do not install Windows/WSL/SSH from cloud.
-Summarize READY NOW vs NEEDS APPROVAL in ≤12 bullets.
-```
+- inspect `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`;
+- compare `main` with `recovery/laptop-main-20260904`;
+- inspect relevant `collab/laptop/*` branches if needed.
 
-```text
-You are on MelodiaMelusinaV2. Read Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md
-and Docs/Handoffs/PIE_2026-08-11.md. Docs only unless I say editor is free.
-One RT-* or PH-* only. No Sakura. No Done without Echo ledger evidence.
-```
+Never merge the recovery branch wholesale: it also contains broad export/quarantine deletions.
+
+## Visual-reference rule
+
+Before saying a reference board does not exist, use `Docs/Art/VISUAL_REFERENCE_INDEX.md`.
+
+That index explicitly distinguishes committed images, text-only production sheets, branch-only sources, referenced-but-uncommitted images, and planned/missing boards.
+
+## Historical PhoneOps documents
+
+The following remain useful for mechanics/history, but they are **not current project authority**:
+
+- `PHONE_ARTIST_BRIDGE_HANDOFF_2026-08-11.md`
+- `PIE_2026-08-11.md`
+- `HIGHEST_LEVERAGE_NOW.md`
+- `NORTH_STAR.md`
+- `BACKLOG.md`
+- `RECENT_STUDY.md`
+- `SCRATCHPAD.md`
+
+Use them only after the current front door.
+
+## Safe phone workflow
+
+For a focused agent request:
 
 ```text
-Summarize CURRENT_STATE.md for phone: Implemented vs Broken vs Partial only. Max 12 bullets.
-Respect PIE_2026-08-11 over older “build-green” claims.
+Read AGENT_START_HERE.md first.
+Then read the exact current subsystem or branch-discovery document for this task.
+Do not infer current project state from dated handoffs.
+Check non-main laptop/recovery branches before declaring committed work absent.
+Make one scoped change, validate it, and report the exact branch + SHA.
 ```
 
-### Review a PR on phone
+## Red lines
 
-1. Open the agent URL / PR link from the run summary.
-2. Check: branch prefix `cursor/`, docs under `Docs/PhoneOps/` or append-only Docs, no `Content/_PROJECT/` writes.
-3. Merge only if scope matches HIGHEST_LEVERAGE / NORTH_STAR this-week focus.
-
-### Sync Grok → repo
-
-If Grok dropped files in `/artifacts` (and did not push — common 403 write):
-
-```text
-Recreate the PhoneOps/PIE/env-pack docs from the Grok share into MelodiaMelusinaV2
-on cursor/v2-game-foundation-098b (or docs branch). Reconcile with PIE_2026-08-11.
-Open/update draft PR. Do not claim runtime gates Done.
-```
-
-Share that seeded this pack: https://grok.com/share/bGVnYWN5LWNvcHk_c7761e0a-252b-44bf-b4de-4940025d6de0
-
-## Directory map (mental model)
-
-```text
-Blender surreal_os/arch  →  world.json  →  UE import/HISM
-Material masters/MIs     →  manifests   →  portfolio_package → website configs
-PCG graphs               →  EnvSandbox scatter
-MelodiaIntegration+JRPG  →  First Dream loop (runtime still OPEN)
-PhoneOps docs            →  mobile control plane
-```
-
-## Red lines (always)
-
-- Do not edit Sakura level composition (`L_SakuraPath` / human-owned art).
+- Do not edit human-owned composition without explicit owner direction.
 - Do not write into `Content/_PROJECT/`.
 - Do not publish externally without explicit approval.
-- Do not push LFS meshes from phone.
-- Prefer `EnvSandbox`, `deploy/`, `Docs/`, `Content/Python/` for agent work.
-- Do not rebuild JRPG combat authority in MelodiaCore this phase.
-- Echo `runtime` needs real input + ledger — not probe-only.
+- Do not push broad LFS/binary batches from a phone lane.
+- Do not rebuild JRPG, save, Wardrobe, traversal, rhythm, or UI authority.
+- Do not promote stale prose over current source/evidence.

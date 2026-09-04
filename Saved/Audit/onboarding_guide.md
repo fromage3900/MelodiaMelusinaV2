@@ -1,3 +1,20 @@
+# ⚠️ STALE SNAPSHOT — DO NOT BOOTSTRAP AGENTS FROM THIS FILE
+
+**Superseded for current project discovery on 2026-09-04.** This file is a Saved/Audit snapshot and preserves the 2026-09-01 interpretation. Some claims below were superseded later the same week.
+
+Current agents must start at:
+
+1. `AGENT_START_HERE.md`
+2. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+3. `CURRENT_STATE.md`
+4. `TODO.md`
+
+Important correction: later evidence records canonical save → full process restart → Wardrobe restore, and Starskiff boarding/movement exercised in PIE. Do not use older “Starskiff is only a shell” / “runtime is unproven” statements below as current truth.
+
+For laptop work use `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`. For visual boards use `Docs/Art/VISUAL_REFERENCE_INDEX.md`.
+
+---
+
 # Melodia Onboarding Guide — 2026-09-01
 
 > **Audience:** New engineers, tech artists, and designers joining BS_GodFile after P0 closeout (8/8 gates pass, 2026-09-01).
