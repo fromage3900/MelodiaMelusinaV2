@@ -1,3 +1,7 @@
+> **CURRENT 2026-09-04 DISCOVERY RULE:** Read [`AGENT_START_HERE.md`](../AGENT_START_HERE.md) before dated handoffs. Check [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](../Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) before declaring laptop work absent, and [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](../Docs/Art/VISUAL_REFERENCE_INDEX.md) before declaring a reference board missing.
+>
+> Old `_SESSION_HANDOFF.md`, `_TASK_QUEUE.md`, July roadblocks, and August “current” snapshots are historical, not task authority.
+
 # Coordinator bootstrap — MelodiaMelusinaV2 jcode swarm
 
 Paste this into the **root** jcode session after `.\deploy\start_jcode_swarm.ps1`.
