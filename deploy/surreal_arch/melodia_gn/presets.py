@@ -265,6 +265,35 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # ribbon.py - MEL_allee_ribbon (effects)
+    "MEL_allee_ribbon": {
+        "label": "Allee Ribbon",
+        "preset_labels": {
+            "GARDEN_ALLEE": "Garden Allee",
+            "CEREMONY_AXIS": "Ceremony Axis",
+            "MEADOW_S": "Meadow S",
+        },
+        "preset_descriptions": {
+            "GARDEN_ALLEE": "Default cherry-allee walk: gentle S, crowned camber.",
+            "CEREMONY_AXIS": "Straight wide axis for sando-to-porch approach.",
+            "MEADOW_S": "Strong meadow curve with higher crown for runoff.",
+        },
+        "presets": {
+            "GARDEN_ALLEE": {
+                "Segments": 48, "Length": 8.0, "Path Width": 2.2,
+                "S-Curve": 1.0, "Camber": 0.08, "Thickness": 0.12,
+            },
+            "CEREMONY_AXIS": {
+                "Segments": 32, "Length": 10.0, "Path Width": 2.6,
+                "S-Curve": 0.0, "Camber": 0.05, "Thickness": 0.12,
+            },
+            "MEADOW_S": {
+                "Segments": 64, "Length": 12.0, "Path Width": 1.8,
+                "S-Curve": 1.8, "Camber": 0.12, "Thickness": 0.1,
+            },
+        },
+    },
+
     # set_dressing.py - MEL_water_them_gazebo (set_dressing)
     "MEL_water_them_gazebo": {
         "label": "Water-Themed Gazebo",
@@ -3439,6 +3468,163 @@ def audit_presets() -> dict:
 # -----------------------------------------------------------------------------
 # Standalone entry point (for QA without bpy)
 # -----------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+# Melusina House Round Interior presets
+# -----------------------------------------------------------------------------
+
+BUILDERS_PRESETS["MEL_melusina_house_round_interior"] = {
+    "label": "Melusina House Round Interior",
+    "presets": {
+        "Default_Charming": {
+            "Interior Height": 3.1,
+            "Wall Thickness": 0.24,
+            "Show Interior": True,
+            "Include Stair": True,
+        },
+        "Compact_SeaVilla": {
+            "Interior Height": 2.8,
+            "Wall Thickness": 0.18,
+            "Show Interior": True,
+            "Include Stair": True,
+        },
+        "Grand_Salon": {
+            "Interior Height": 4.2,
+            "Wall Thickness": 0.30,
+            "Show Interior": True,
+            "Include Stair": False,
+        },
+    },
+    "preset_labels": {
+        "Default_Charming": "Default Charming",
+        "Compact_SeaVilla": "Compact Sea Villa",
+        "Grand_Salon": "Grand Salon",
+    },
+    "preset_descriptions": {
+        "Default_Charming": "The round-plan interior as specified in melusinashouseplan.md §12/§16.",
+        "Compact_SeaVilla": "Lower ceilings, slimmer walls — a cozy seaside villa read.",
+        "Grand_Salon": "Taller, thicker walls, no stair — an open grand salon interior.",
+    },
+}
+
+
+# -----------------------------------------------------------------------------
+# Melodia City Gen presets
+# -----------------------------------------------------------------------------
+
+BUILDERS_PRESETS["MEL_city_house_cell"] = {
+    "label": "City House Cell",
+    "presets": {
+        "Charming_Cottage": {"Width": 5.5, "Depth": 4.0, "Height": 3.2,
+                             "Wall Thickness": 0.24, "Roof Rise": 0.8, "Show Interior": True},
+        "Sea_Villa": {"Width": 6.5, "Depth": 5.0, "Height": 3.5,
+                      "Wall Thickness": 0.26, "Roof Rise": 1.0, "Show Interior": True},
+        "Urban_Maison": {"Width": 4.5, "Depth": 7.0, "Height": 4.2,
+                         "Wall Thickness": 0.30, "Roof Rise": 1.2, "Show Interior": False},
+    },
+    "preset_labels": {
+        "Charming_Cottage": "Charming Cottage",
+        "Sea_Villa": "Sea Villa",
+        "Urban_Maison": "Urban Maison",
+    },
+    "preset_descriptions": {
+        "Charming_Cottage": "A cozy round-Baroque cottage, slightly square.",
+        "Sea_Villa": "A wider seaside villa with a taller roof rise.",
+        "Urban_Maison": "A tall, deep street maisonette (interior hidden).",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_avenue"] = {
+    "label": "City Avenue",
+    "presets": {
+        "Lakeside_Row": {"Count": 6, "Cell Width": 6.0, "Cell Depth": 4.5,
+                         "Cell Height": 3.4, "Street Gap": 2.0},
+        "Old_Town": {"Count": 8, "Cell Width": 4.5, "Cell Depth": 6.0,
+                     "Cell Height": 4.0, "Street Gap": 1.0},
+        "Grand_Boulevard": {"Count": 10, "Cell Width": 7.0, "Cell Depth": 5.0,
+                            "Cell Height": 4.5, "Street Gap": 3.0},
+    },
+    "preset_labels": {
+        "Lakeside_Row": "Lakeside Row",
+        "Old_Town": "Old Town Street",
+        "Grand_Boulevard": "Grand Boulevard",
+    },
+    "preset_descriptions": {
+        "Lakeside_Row": "A relaxed street of six villas with wide gaps.",
+        "Old_Town": "A tight, tall older street, more units.",
+        "Grand_Boulevard": "A wide ceremonial avenue of large houses.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_block"] = {
+    "label": "City Block",
+    "presets": {
+        "District_Heart": {"Rows": 3, "Row Pitch": 6.0},
+        "Harbour_West": {"Rows": 2, "Row Pitch": 8.0},
+        "Quarter_Est": {"Rows": 4, "Row Pitch": 5.5},
+    },
+    "preset_labels": {
+        "District_Heart": "District Heart",
+        "Harbour_West": "Harbour West",
+        "Quarter_Est": "Quarter East",
+    },
+    "preset_descriptions": {
+        "District_Heart": "A three-row city block district.",
+        "Harbour_West": "A looser two-row set facing the water.",
+        "Quarter_Est": "A dense four-row grid quarter.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_plan_salon"] = {
+    "label": "Plan — Rectangular Salon",
+    "presets": {
+        "Grand_Hall": {"Interior Height": 3.8, "Wall Thickness": 0.26, "Show Interior": True},
+        "Intimate_Parlor": {"Interior Height": 3.0, "Wall Thickness": 0.20, "Show Interior": True},
+        "Open_Shell": {"Interior Height": 3.4, "Wall Thickness": 0.24, "Show Interior": False},
+    },
+    "preset_labels": {"Grand_Hall": "Grand Hall", "Intimate_Parlor": "Intimate Parlor", "Open_Shell": "Open Shell"},
+    "preset_descriptions": {
+        "Grand_Hall": "A tall, formal rectangular salon.",
+        "Intimate_Parlor": "A lower, cozy parlor read.",
+        "Open_Shell": "Exterior shell only — no interior shown.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_plan_courtyard"] = {
+    "label": "Plan — Courtyard Quad",
+    "presets": {
+        "Cloister_Quad": {"Interior Height": 3.4, "Wall Thickness": 0.24, "Show Interior": True},
+        "Walled_Garden": {"Interior Height": 3.0, "Wall Thickness": 0.30, "Show Interior": True},
+        "Open_Quad": {"Interior Height": 3.2, "Wall Thickness": 0.24, "Show Interior": False},
+    },
+    "preset_labels": {"Cloister_Quad": "Cloister Quad", "Walled_Garden": "Walled Garden", "Open_Quad": "Open Quad"},
+    "preset_descriptions": {
+        "Cloister_Quad": "Four wings around a central courtyard void.",
+        "Walled_Garden": "Thicker walls for a sheltered garden feel.",
+        "Open_Quad": "The quad massing without interior walls.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_corridors"] = {
+    "label": "Corridor Variants",
+    "presets": {
+        "Straight_Hall": {"Corridor Type": 0, "Length": 8.0, "Width": 2.4, "Height": 3.2, "Wall Thickness": 0.25},
+        "L_Elbow": {"Corridor Type": 1, "Length": 6.0, "Width": 2.4, "Height": 3.2, "Wall Thickness": 0.25},
+        "Gallery": {"Corridor Type": 2, "Length": 10.0, "Width": 4.0, "Height": 3.6, "Wall Thickness": 0.30},
+        "Dog_Leg": {"Corridor Type": 3, "Length": 8.0, "Width": 2.4, "Height": 3.2, "Wall Thickness": 0.25},
+    },
+    "preset_labels": {
+        "Straight_Hall": "Straight Hall", "L_Elbow": "L-Elbow",
+        "Gallery": "Gallery", "Dog_Leg": "Dog-Leg",
+    },
+    "preset_descriptions": {
+        "Straight_Hall": "A straight tiled corridor.",
+        "L_Elbow": "A corner turning corridor.",
+        "Gallery": "A wide arcade-like gallery hall.",
+        "Dog_Leg": "A two-run dog-leg corridor.",
+    },
+}
 
 
 def main() -> None:

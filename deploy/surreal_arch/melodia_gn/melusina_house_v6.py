@@ -282,7 +282,9 @@ def build_mh6_room_shell(group_name="MEL_mh6_room_shell"):
     _link(tree, ypush.outputs[0], disp.inputs["Y"])
     sp = safe_node(tree, "GeometryNodeSetPosition", (1640, 300))
     _link(tree, g2m.outputs["Mesh"], sp.inputs["Geometry"])
-    _link(tree, disp.outputs[0], sp.inputs["Position"])
+    # bend must OFFSET, not replace: Position= would flatten every vertex to the
+    # displacement vector (found via V0 proof 2026-09-04 — wall collapsed to a sheet).
+    _link(tree, disp.outputs[0], sp.inputs["Offset"])
 
     # ---- 6. join wall + cornice, material, out
     join = safe_node(tree, "GeometryNodeJoinGeometry", (1820, 400))
