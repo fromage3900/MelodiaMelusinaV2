@@ -107,7 +107,7 @@ function Get-LfsInclude {
             return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**"
         }
         "House" {
-            return "Docs/References/MelusinasHouse/**,Saved/MelusinasHouse/**"
+            return "Docs/References/MelusinasHouse/**,RawArt/MelusinasHouse/**"
         }
         "Gameplay" {
             return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/**"

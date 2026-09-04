@@ -45,7 +45,7 @@ Hydrate only the lane being used:
 # route maps / small core
 .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile Core
 
-# Melusina House references / tracked house source on the current branch
+# Melusina House references / canonical RawArt house source on the current branch
 .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
 
 # current gameplay / characters / route / integration
