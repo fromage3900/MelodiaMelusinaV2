@@ -2,6 +2,8 @@
 
 **Purpose:** Stop remote agents from losing committed work simply because it has not reached `main`.
 
+> **Front-door cleanup note:** the ahead/behind counts below are a captured discovery snapshot from before the 2026-09-04 documentation cleanup advanced `main`. Re-run the comparison before promotion. The branch contents and merge warning remain the important facts.
+
 ## Current important remote branches
 
 ### `recovery/laptop-main-20260904`
