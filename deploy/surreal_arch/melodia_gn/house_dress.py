@@ -17,7 +17,7 @@ import bpy
 
 from .core import (
     safe_node, link_sockets, label_tree,
-    new_geometry_tree, add_float_param, add_int_param,
+    new_geometry_tree, add_float_param, add_int_param, add_bool_param,
     register_builder,
 )
 
@@ -165,7 +165,10 @@ def _cylinder(tree, loc, radius, depth, center):
 
 
 # ═══════════════════════════════════════════════════════════════
-# 1. Piano walk
+# 1. Piano walk — delegates to the real MEL_music_piano_roll.
+#    (v1 hard-coded 16 boxes and left every param unlinked, which read as a
+#    greyed-out/uneditable tree. Reuse, don't stub: nest the music builder and
+#    drive it from this builder's params.)
 # ═══════════════════════════════════════════════════════════════
 def build_mh_piano_walk(group_name="MEL_mh_piano_walk"):
     _ensure_all_materials()
@@ -175,25 +178,43 @@ def build_mh_piano_walk(group_name="MEL_mh_piano_walk"):
     add_float_param(tree, "Key Length", 1.1, 0.3, 3.0)
     add_float_param(tree, "Key Width", 0.42, 0.15, 1.0)
     add_float_param(tree, "Key Thickness", 0.06, 0.02, 0.3)
+    add_bool_param(tree, "Use Default Seed", True)
+    add_float_param(tree, "Length", 6.0, 1.0, 40.0)
+    add_bool_param(tree, "Endless", False)
 
-    count = gin.outputs.get("Key Count")
-    length = gin.outputs.get("Key Length")
-    width = gin.outputs.get("Key Width")
-    thick = gin.outputs.get("Key Thickness")
-
-    parts = []
-    for i in range(16):  # fixed upper bound; instances trim at runtime
-        cx = bx + (i - 8) * 0.5
-        ivory = _box(tree, (bx + 120, by + i * 40), (0.4, 1.05, 0.06), (cx, 0, 0.03))
-        parts.append(_setmat(tree, (bx + 260, by + i * 40), ivory, _MATERIALS.get("MH_IvoryKey")))
-    # Use a repeat-style chain via static join; params feed scale via a math driver is complex,
-    # so we instance the built key group visually. For headless stability we join the static set
-    # and rely on params for documented spacing not wired to a loop. This keeps evaluation green.
-    joined = _join_geo(tree, (bx + 400, by), parts)
-    gout_geom = joined
-    if gout_geom is None:
-        gout_geom = gin.outputs[0]
-    link_sockets(tree, gout_geom, gout.inputs["Geometry"])
+    if "MEL_music_piano_roll" not in bpy.data.node_groups:
+        try:
+            from .music_heroes import build_music_piano_roll
+            build_music_piano_roll("MEL_music_piano_roll")
+        except Exception:
+            pass
+    roll = safe_node(tree, "GeometryNodeGroup", (bx, by))
+    if roll is not None:
+        roll.node_tree = bpy.data.node_groups.get("MEL_music_piano_roll")
+    if roll is not None and roll.node_tree:
+        for src, dst in (("Key Count", "Key Count"),
+                         ("Key Length", "Key Length"),
+                         ("Key Width", "Key Width"),
+                         ("Key Thickness", "Key Height"),
+                         ("Use Default Seed", "Use Default Seed"),
+                         ("Length", "Length"),
+                         ("Endless", "Endless")):
+            if dst in roll.inputs and src in gin.outputs:
+                try:
+                    link_sockets(tree, gin.outputs[src], roll.inputs[dst])
+                except Exception:
+                    pass
+        roll_geo = None
+        for o in roll.outputs:
+            if o.type == "GEOMETRY":
+                roll_geo = o
+                break
+        if roll_geo is not None:
+            link_sockets(tree, roll_geo, gout.inputs["Geometry"])
+            label_tree(tree, group_name)
+            return (tree, gin, gout)
+    # fallback: bare passthrough (never silently empty)
+    link_sockets(tree, gin.outputs["Geometry"], gout.inputs["Geometry"])
     label_tree(tree, group_name)
     return (tree, gin, gout)
 

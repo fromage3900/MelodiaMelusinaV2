@@ -34,7 +34,6 @@ from . import melodia_kit_v3  # noqa: F401 - Kit v3: jingle-driven tower/gate/pl
 from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/bamboo
 from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
 from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime_row physics)
-from . import music_heroes  # noqa: F401 - hero music kit (key/piano-roll/sheet-rail/room-shell/harp register here, not via terrain chain)
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
@@ -47,7 +46,6 @@ from .notation_extras import build_music_bass_clef, build_music_beam_cluster, bu
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (
     build_ribbon_curve, build_lissajous_ribbon, build_closed_ribbon, build_violin_bow,
-    build_allee_ribbon,
 )
 from .set_dressing import (
     build_water_them_structure, build_water_them_gazebo, build_water_them_arch,
@@ -59,9 +57,16 @@ from .set_dressing import (
     build_music_them_bandstand, build_music_them_stage, build_music_them_shell,
     build_music_them_recital, build_music_them_bridge, build_music_them_fountain,
 )
-from . import house_dress  # noqa: F401 - Mansion house-dress kit (piano walk/sheet rail/staff/xylo/stones/lanterns/tree line) registers via register_builder
 from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_env_reeds_patch, build_env_buoy_line, build_env_market_stall, build_env_campfire_ring, build_env_village_well, build_env_lantern_post, build_env_hedgerow, build_env_waterfall_pool
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
+from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
+from . import house_aaa  # noqa: F401
+from . import melusina_house_v6  # noqa: F401 - V6 room-shell genome kit - AAA hard-surface house kit (cornice/dentil/UV scallop/lissajous pearl) registers via register_builder
+from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
+    build_city_house_cell, build_city_avenue, build_city_block,
+    build_city_plan_round, build_city_plan_salon, build_city_plan_courtyard,
+    build_city_corridors,
+)
 from .geometry_extras import (
     build_vortex_twist, build_radial_wave, build_shell_thicken, build_edge_ring_inset,
     build_symmetry_weld, build_vertex_relax, build_attr_ramp_mix, build_attr_vector_rotate,
