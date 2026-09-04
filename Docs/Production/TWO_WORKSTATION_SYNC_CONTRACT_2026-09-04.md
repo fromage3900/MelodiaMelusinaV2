@@ -51,6 +51,19 @@ By default the sync tool targets `origin/main`, not the current feature branch. 
 
 Use `-Target Current` only when you intentionally want to verify a named feature branch.
 
+### Safe automatic return to main
+
+`-Mode Sync` may move a clean non-main checkout back to `main` when **either** recovery proof is true:
+
+1. `git rev-list --count origin/main..HEAD == 0` — there are no commits unique to the current branch; **or**
+2. the current branch has a same-name remote branch and local `HEAD` exactly equals `origin/<current-branch>` — any unique commits are already preserved on GitHub.
+
+This matters for old laptop/recovery branches whose useful changes were squash-promoted to `main`: their commit graph can remain unique even though the important work has landed.
+
+If the branch has unique commits **and** local HEAD is not fully published to its same-name remote branch, the script refuses to switch and tells you to push/preserve the branch first.
+
+No branch is deleted by this normalization. The remote recovery branch remains available for archaeology.
+
 Run this before opening Rider, Blender, or Unreal:
 
 ```powershell
