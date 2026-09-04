@@ -141,3 +141,104 @@ work was never version controlled. That was wrong. It, `W_Glacier_Rock` and
 `W_Glacier_Water` are all tracked on `main`, added by `82f3722c`. The check that produced
 the false claim ran against the branch currently checked out by the overnight daemon, whose
 index does not contain them — not against `main`.
+
+---
+
+# Addendum — why the Gaea *textures* still weren't visible (2026-09-04, later)
+
+The four causes above are real and fixed, but they explain the **masks**. The colour
+textures were still not reading, and the reason turned out to be lighting plus grading,
+not the material's Gaea wiring at all.
+
+## Cause 5 — the key light was pointing at the sky
+
+`Key_TwilightPink` (DirectionalLight) had **pitch = +30**. A directional light with
+positive pitch points *upward*; it was lighting the sky and not the terrain. The only
+downward light was `Rim_CoolBlue` at pitch −30, intensity 2.0.
+
+Set to **pitch −32, yaw 20**. With that single change the Gaea erosion and rock striations
+read immediately — see `Saved/Audit/gaea_keyfixed_nopastel.png` against
+`gaea_after_weights.png`.
+
+## Cause 6 — the Nikki pastel grade was synthesising the entire image
+
+With `bNikkiPastelGrade_Active` switched off, the terrain mean dropped from
+**(90.7, 88.1, 111.2)** to **(12.1, 19.1, 37.2)**. The grade was not tinting the albedo —
+it was supplying essentially all of the visible brightness, and the flat pale-pink wash
+everyone was looking at *was* the grade, not the terrain.
+
+`NikkiPastelStrength` was 0.6 (master default) with all three pastel ramps at 0.95–1.0,
+i.e. near-white. Measured local contrast (mean absolute Laplacian over the terrain band)
+against pastel strength:
+
+| `NikkiPastelStrength` | mean RGB | global std | local detail |
+|---|---|---|---|
+| 0.60 | (34.1, 38.4, 62.9) | 46.62 | 4.696 |
+| 0.40 | (32.5, 37.0, 61.8) | 43.27 | 4.904 |
+| 0.25 | (30.7, 35.5, 60.6) | 39.83 | **5.339** |
+| 0.15 | (29.1, 34.1, 59.6) | 36.99 | 5.741 |
+
+Set to **0.25** on the instance: +13.7% local detail over 0.6 while still reading clearly
+pastel. This is an art call, not a correctness one — the numbers are here so it can be
+moved deliberately.
+
+## Not a cause, but worth knowing: 44% of the terrain is underwater
+
+`SeaAbove_InfiniteOcean_Canopy2` sits at **z = 14,345**. Traced against the landscape
+(ignoring water actors) over a 22x22 grid, 484/484 points hit terrain:
+
+```
+terrain Z:  min -54,818   p25 -16,355   median 25,467   p75 58,628   max 69,161
+above ocean plane:  271 of 484  (56.0%)
+```
+
+So a little under half the landscape is below the ocean plane and will never be seen from
+above. Any dressing or PCG budget should be spent on the 56% that is above water. A second
+infinite ocean, `SeaAbove_InfiniteOcean_Canopy`, sits far overhead at z = 194,888 — that is
+the "sea above" conceit, not a mistake.
+
+## The read-only trap crashed the editor — and it is project-wide
+
+Repairing the Alpha master's opacity link (below) crashed the editor outright:
+
+```
+LogSavePackage: Error: Cannot remove 'M_Master_Toon_Universal_Alpha.uasset' as it is read only!
+LogWindows:    Error: appError called: Error saving ...
+               === Critical error: ===
+```
+
+**Monolith's material actions auto-save, and UE treats a failed package save as a FATAL
+error.** So any Monolith material mutation against a git-lfs `lockable` read-only asset
+does not fail gracefully — it takes the editor down. At the time **3,418 `.uasset` files
+project-wide were read-only**, and `Saved/` held **988 stranded `.tmp` files** from earlier
+failed saves, so this had been happening repeatedly and silently.
+
+Cleared the read-only bit across `Content/` and removed the stranded temps. This is a
+filesystem attribute applied by git-lfs on checkout; clearing it changes no git state. It
+will come back after any operation that re-checks-out those files, so **clear it before
+editor material work, not just before an individual save.**
+
+## Alpha master defect found while converging — `OpacityMap` is not wired
+
+`M_Master_Toon_Universal_Alpha` drives OpacityMask as:
+
+```
+OpacityMask <- StaticSwitch[bUseOpacityMap]
+                 True  <- Multiply( TextureSample(Texture=None), Scalar[OpacityStrength] )
+                 False <- Constant 1.0
+```
+
+The `OpacityMap` **TextureObjectParameter is unconnected**, and the sampler that feeds the
+mask has `Texture: None` with no `TextureObject` input. Meanwhile the instances do their
+part correctly — `MI_AtlasLeafA`, `MI_AtlasIvy` and `MI_Jelly_Bell` all set
+`bUseOpacityMap=True` and bind real opacity maps (`T_KB3D_ATL_AtlasLeafA_opacity`,
+`T_Jelly_Bell_Opacity`).
+
+**Those textures are never sampled.** A preview of `MI_AtlasLeafA` renders as a dark opaque
+plane with no leaf cutout. The fix is a one-link repair: `OpacityMap` ->
+`TextureSample.TextureObject`.
+
+(An earlier note in this session called `bUseOpacityMap` "dead/unconnected". That was
+wrong — it connects to a material *output* rather than to another expression, so it has no
+outgoing edge in the connection list and the reachability script missed it. `OpacityMap`
+being unconnected is the real defect.)
