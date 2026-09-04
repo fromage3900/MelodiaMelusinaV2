@@ -94,6 +94,100 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "SEA_ABOVE_MEMBRANE": {"Low Hz": 16.0, "High Hz": 700.0, "Band Width": 0.1, "Audio Gain": 6.0, "Size X M": 1800.0, "Radial Segments": 768, "Height M": 55.0, "Radius M": 900.0, "Music Influence": 0.16, "Musical Amplitude": 10.0, "Musical Freq A": 0.75, "Musical Freq B": 6.0},
         },
     },
+    # garment_loom.py - MEL_garment_loom_variation (per-layer wardrobe presets, seed 20260902)
+    "MEL_garment_loom_variation": {
+        "label": "Garment Loom Variation",
+        "preset_labels": {
+            "BODICE_STRUCTURED": "Bodice Structured",
+            "COLLAR_LACE": "Collar Lace",
+            "SHOULDER_ORNAMENT_RIGID": "Shoulder Ornament Rigid",
+            "SLEEVE_FLOW": "Sleeve Flow",
+            "UNDERSKIRT_SOFT": "Underskirt Soft",
+            "SKIRT_FULL_HERO": "Skirt Full Hero",
+            "ANTIQUE_DOLL_LAYERED": "Antique Doll Layered",
+            "BUTTERFLY_WING_MEMBRANE": "Butterfly Wing Membrane",
+        },
+        "preset_descriptions": {
+            "BODICE_STRUCTURED": "Close-fit bodice shells, restrained fold for tier-C WPO micro-swell.",
+            "COLLAR_LACE": "Structured lace collar, near-rigid for tier-A authored motion.",
+            "SHOULDER_ORNAMENT_RIGID": "Studs and trim, effectively rigid for tier-A pieces.",
+            "SLEEVE_FLOW": "Loose sleeve drape for tier-C WPO cloth.",
+            "UNDERSKIRT_SOFT": "Soft support volume under the hero skirt, tier-C.",
+            "SKIRT_FULL_HERO": "Hero sheet movement for the tier-B Chaos candidate.",
+            "ANTIQUE_DOLL_LAYERED": "Twenty-slot layered dress intake (Cos_Dress_Melusina_AntiqueDoll).",
+            "BUTTERFLY_WING_MEMBRANE": "Thin accessory membrane (Cos_Accessory_Melusina_ButterflyWing).",
+        },
+        "presets": {
+            "BODICE_STRUCTURED": {"Seed": 20260902, "Fold": 0.3, "Drape": 0.25},
+            "COLLAR_LACE": {"Seed": 20260902, "Fold": 0.2, "Drape": 0.15},
+            "SHOULDER_ORNAMENT_RIGID": {"Seed": 20260902, "Fold": 0.1, "Drape": 0.05},
+            "SLEEVE_FLOW": {"Seed": 20260902, "Fold": 0.6, "Drape": 0.8},
+            "UNDERSKIRT_SOFT": {"Seed": 20260902, "Fold": 0.5, "Drape": 0.7},
+            "SKIRT_FULL_HERO": {"Seed": 20260902, "Fold": 0.9, "Drape": 1.2},
+            "ANTIQUE_DOLL_LAYERED": {"Seed": 20260902, "Fold": 0.45, "Drape": 0.55},
+            "BUTTERFLY_WING_MEMBRANE": {"Seed": 20260902, "Fold": 0.15, "Drape": 0.35},
+        },
+    },
+    # garment_audio_drape.py - MEL_garment_audio_drape (band presets, offline bake lane)
+    "MEL_garment_audio_drape": {
+        "label": "Garment Audio Drape",
+        "preset_labels": {
+            "BASS_WEAVE": "Bass Weave",
+            "VOCAL_MID": "Vocal Mid",
+            "TREBLE_SHIMMER": "Treble Shimmer",
+            "BEAT_PULSE_WIDE": "Beat Pulse Wide",
+        },
+        "preset_descriptions": {
+            "BASS_WEAVE": "Low-band weave for skirts and veils, slow large folds.",
+            "VOCAL_MID": "Vocal-band response for bodice and sleeves.",
+            "TREBLE_SHIMMER": "High-band shimmer for ornament and lace edges.",
+            "BEAT_PULSE_WIDE": "Full-band pulse for beat-reactive bake passes.",
+        },
+        "presets": {
+            "BASS_WEAVE": {"Low Hz": 30.0, "High Hz": 250.0, "Band Width": 0.16, "Audio Gain": 2.5, "Seed": 20260902, "Fold": 1.2, "Drape": 0.5},
+            "VOCAL_MID": {"Low Hz": 300.0, "High Hz": 3400.0, "Band Width": 0.08, "Audio Gain": 1.5, "Seed": 20260902, "Fold": 2.0, "Drape": 0.25},
+            "TREBLE_SHIMMER": {"Low Hz": 6000.0, "High Hz": 16000.0, "Band Width": 0.05, "Audio Gain": 1.2, "Seed": 20260902, "Fold": 4.0, "Drape": 0.1},
+            "BEAT_PULSE_WIDE": {"Low Hz": 40.0, "High Hz": 4000.0, "Band Width": 0.2, "Audio Gain": 3.0, "Seed": 20260902, "Fold": 1.6, "Drape": 0.4},
+        },
+    },
+    # garment_tension_folds.py - MEL_garment_tension_folds (tension-driven folds)
+    "MEL_garment_tension_folds": {
+        "label": "Garment Tension Folds",
+        "preset_labels": {
+            "PRESSED_PLEATS": "Pressed Pleats",
+            "STRETCH_CREASES": "Stretch Creases",
+            "SOFT_GATHER": "Soft Gather",
+        },
+        "preset_descriptions": {
+            "PRESSED_PLEATS": "Sharp compression folds for pleated skirts and structured gathers.",
+            "STRETCH_CREASES": "Pull creases for tension zones at seams, elbows, and bodice stress lines.",
+            "SOFT_GATHER": "Balanced soft gathering for everyday drape and veil shells.",
+        },
+        "presets": {
+            "PRESSED_PLEATS": {"Strength": 0.6, "Compress Gain": 2.5, "Stretch Gain": 0.2, "Seed": 20260902},
+            "STRETCH_CREASES": {"Strength": 0.5, "Compress Gain": 0.3, "Stretch Gain": 2.0, "Seed": 20260902},
+            "SOFT_GATHER": {"Strength": 0.35, "Compress Gain": 1.0, "Stretch Gain": 0.8, "Seed": 20260902},
+        },
+    },
+    # garment_xpbd_drape.py - MEL_garment_xpbd_drape (research-lane Cloth Dynamics wrapper)
+    "MEL_garment_xpbd_drape": {
+        "label": "Garment XPBD Drape",
+        "preset_labels": {
+            "SILK_CLOUD_DRAPE": "Silk Cloud Drape",
+            "STIFF_CANVAS_TEST": "Stiff Canvas Test",
+            "FREE_DRAPE_PREVIEW": "Free Drape Preview",
+        },
+        "preset_descriptions": {
+            "SILK_CLOUD_DRAPE": "Silk-like hero drape for single shells (low stretch, fluid bend).",
+            "STIFF_CANVAS_TEST": "Stiff comparison pass for silhouette checks.",
+            "FREE_DRAPE_PREVIEW": "Low-iteration fast preview of drape direction.",
+        },
+        "presets": {
+            "SILK_CLOUD_DRAPE": {"Pin Group": 0.0, "Stretchiness": 0.05, "Bendiness": 0.85, "Substeps": 5, "Constraint Steps": 15, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
+            "STIFF_CANVAS_TEST": {"Pin Group": 0.0, "Stretchiness": 0.0, "Bendiness": 0.05, "Substeps": 5, "Constraint Steps": 15, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
+            "FREE_DRAPE_PREVIEW": {"Pin Group": 0.0, "Stretchiness": 0.05, "Bendiness": 0.85, "Substeps": 2, "Constraint Steps": 5, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
+        },
+    },
     # water.py - MEL_water_gerstner (effects)
     "MEL_water_gerstner": {
         "label": "Gerstner Waves",

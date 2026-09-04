@@ -4,7 +4,7 @@
 - [x] Verify COP dress-bake PNGs fresh + variant (check size/date/pixel variance)
 - [x] Variant: AntiqueDollRose Copernicus family (dusty-rose damask + gilt, seed 20260902)
 - [x] Variant: ButterflyWingTidepool Copernicus family (iridescent tidepool, distinct Chladni mode)
-- [ ] Tension-fold loom v2: MEL_garment_tension_folds builder + gn52 proof
+- [x] Tension-fold loom v2: MEL_garment_tension_folds builder + gn52 proof
 - [ ] XPBD feasibility verdict (MEL_garment_xpbd_drape or documented no-go)
 - [ ] Retopo recipe doc (quad-dominant route from dense MD triangulations)
 - [ ] CAPSTONE "something special": DAWN CHORUS gown for Melusina — first light rose-gold
@@ -42,6 +42,7 @@
 - 2026-09-03 ~02:24 run1: VERIFY COP dress-bake + variants PASS — re-read from disk: dress 4/4 1080² fresh 02:01 (sha12 9823322b/1369a5c0/3efc5109/92d17c0c, std 62.1/57.9/9.5·10.8·39.8/23.4), Rose 9/9 2048² (01:40, sha12 759d489c…) + Membrane 9/9 2048² (01:42, sha12 112d0baa…), cross-family distinct, variance gate PASS, report verify_dress_bake_2026-09-03.{md,json}.
 - 2026-09-03 ~14:28 run2: VERIFY AntiqueDollRose PASS — 9/9 2048² re-read (01:40:12–14, sha12 759d489c/34973c2d/caf41e76/4a4a541d/7a1b40b0/763abb07/7368a276/dac96b25/8209335c), cross-family BC distinct vs ButterflyWingMembrane (112d0baa), variance PASS (BC 33/42/21, Met 82.7, Rgh 45.3, Hgt 50.8, Iri 31.5), provenance note SEED drift 20260831→20260902 patch pending, reports verify_AntiqueDollRose_2026-09-03.{md,json}.
 - 2026-09-03 ~20:51 run3: VERIFY ButterflyWingMembrane PASS — 9/9 2048² re-read (01:42:34–37, sha12 112d0baace20/2345d9f5775e/be036339c82b/cd3ce132cfcf/8b434c505ded/83937ac9fa89/7368a2762f02/5d02d1567ce5/4c6a655dc77f), cross-family BC distinct vs AntiqueDollRose (759d489cb306), variance PASS (BC 29/35/37, Iri 50.1, Hgt 73.1, Met 10.3, Rgh 21.9), provenance SEED drift note, queue alias ButterflyWingTidepool fulfilled by Membrane folder, reports verify_ButterflyWingMembrane_2026-09-03.{md,json} — one item per watch.
+- 2026-09-03 ~21:55 run4: RESTORE+VERIFY Tension-fold loom v2 PASS — branch merge/unify-histories had dropped garment lane (pre-aa4dc6d9 divergence); restored 4 garment builders byte-identical from aa4dc6d9 via `git checkout aa4dc6d9 -- garment_tension_folds.py garment_loom.py garment_audio_drape.py garment_xpbd_drape.py __init__.py presets.py` (sha12 5ef6e16bebef/315dafc7ee18/b8c86d8916d5/8c045aa8a9c5/b7399bc36790/9965a97efb61). Headless Blender 5.2.1 LTS 9e2066aef7ef --factory-startup --background: gn52_proof_tension PASS (29 nodes, SCALE_OK, W_LINK_OK, PRESETS 3/3 PRESSED_PLEATS/STRETCH_CREASES/SOFT_GATHER, 8 sockets inc Music*) + gn52_proof PASS (4 builders 15/13/27/29 nodes, W_LINK_OK+TENSION_W_OK). Addon mirror already in sync (diff 0). Reports verify_TensionFolds_2026-09-03.{md,json} — one item per watch.
 
 ## Rules (every run)
 Seed 20260902. Offline only (editor lock belongs to the user). Never touch Content/**.

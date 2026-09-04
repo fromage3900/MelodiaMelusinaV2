@@ -1,0 +1,56 @@
+{
+  "schema": "melodia.wardrobe_verify.v1",
+  "variant": "TensionFolds",
+  "builder": "MEL_garment_tension_folds",
+  "label": "Garment Tension Folds",
+  "category": "Garment",
+  "seed_rule": 20260902,
+  "checked_at": "2026-09-03T21:55:33-04:00",
+  "blender": "5.2.1 LTS hash 9e2066aef7ef built 2026-08-25 02:38:20",
+  "proof_tension": {
+    "script": "Tools/wardrobe_pipeline/gn52_proof_tension.py",
+    "args": "--factory-startup --background",
+    "BUILDER_OK": "MEL_garment_tension_folds Garment Tension Folds Garment",
+    "TREE_OK": "MEL_garment_tension_folds 29 nodes",
+    "SCALE_OK": true,
+    "W_LINK_OK": true,
+    "PRESETS_OK": ["PRESSED_PLEATS", "STRETCH_CREASES", "SOFT_GATHER"],
+    "PRESET_AUDIT_OK": ["Compress Gain", "Music Influence", "Musical Amplitude", "Musical Freq A", "Musical Freq B", "Seed", "Strength", "Stretch Gain"],
+    "result": "GN52_PROOF_TENSION PASS"
+  },
+  "proof_full": {
+    "script": "Tools/wardrobe_pipeline/gn52_proof.py",
+    "args": "--factory-startup --background",
+    "BUILDER_OK": ["MEL_garment_uv_unwrap", "MEL_garment_loom_variation", "MEL_garment_audio_drape", "MEL_garment_tension_folds"],
+    "TREE_OK": {
+      "MEL_garment_uv_unwrap": "15 nodes, 6 sockets",
+      "MEL_garment_loom_variation": "13 nodes, 9 sockets",
+      "MEL_garment_audio_drape": "27 nodes, 15 sockets",
+      "MEL_garment_tension_folds": "29 nodes, 10 sockets"
+    },
+    "W_LINK_OK": true,
+    "TENSION_W_OK": true,
+    "result": "GN52_PROOF PASS"
+  },
+  "files_restored": [
+    {"file": "deploy/surreal_arch/melodia_gn/garment_tension_folds.py", "bytes": 6585, "sha12": "5ef6e16bebef", "nodes": 29, "source_commit": "aa4dc6d9"},
+    {"file": "deploy/surreal_arch/melodia_gn/garment_loom.py", "bytes": 14928, "sha12": "315dafc7ee18", "source_commit": "aa4dc6d9"},
+    {"file": "deploy/surreal_arch/melodia_gn/garment_audio_drape.py", "bytes": 7492, "sha12": "b8c86d8916d5", "source_commit": "aa4dc6d9"},
+    {"file": "deploy/surreal_arch/melodia_gn/garment_xpbd_drape.py", "bytes": 5329, "sha12": "8c045aa8a9c5", "source_commit": "aa4dc6d9"},
+    {"file": "deploy/surreal_arch/melodia_gn/__init__.py", "bytes": 7590, "sha12": "b7399bc36790", "note": "re-adds 4 garment imports"},
+    {"file": "deploy/surreal_arch/melodia_gn/presets.py", "bytes": 162424, "sha12": "9965a97efb61", "note": "re-adds garment preset families"}
+  ],
+  "builder_detail": {
+    "inputs": ["Strength", "Compress Gain", "Stretch Gain", "Seed", "Music Influence", "Musical Amplitude", "Musical Freq A", "Musical Freq B"],
+    "presets": {
+      "PRESSED_PLEATS": {"Strength": 0.6, "Compress Gain": 2.5, "Stretch Gain": 0.2, "Seed": 20260902, "desc": "Sharp compression folds for pleated skirts and structured gathers."},
+      "STRETCH_CREASES": {"Strength": 0.5, "Compress Gain": 0.3, "Stretch Gain": 2.0, "Seed": 20260902, "desc": "Pull creases for tension zones at seams, elbows, and bodice stress lines."},
+      "SOFT_GATHER": {"Strength": 0.35, "Compress Gain": 1.0, "Stretch Gain": 0.8, "Seed": 20260902, "desc": "Balanced soft gathering for everyday drape and veil shells."}
+    },
+    "chain": "Position->StoreNamedAttribute(rest_position)->TexNoise(W=Seed)->SUB 0.5->MUL2 signed s->negate*CompressGain->Clamp + s*StretchGain->Clamp ->ADD mask ->SeparateXYZ Y*6+Seed->SINE->(sin+1)*0.5 ->mask*striation*Strength ->Normal VectorMath SCALE->SetPosition ->StoreNamedAttribute(tension_fold)->Output",
+    "sections": ["Rest Capture", "Tension Field", "Fold Mask", "Detail + Displace"],
+    "vector_path": "ShaderNodeVectorMath SCALE -> GeometryNodeSetPosition.Offset"
+  },
+  "provenance": "Branch merge/unify-histories had diverged before aa4dc6d9 (2026-09-03 01:14) and dropped the garment lane (4 py + __init__ imports + presets). This run restored byte-identical files via `git checkout aa4dc6d9 -- <paths>` and headless-proved them. Addon mirror at %APPDATA%/Blender/5.2/scripts/addons/surreal_arch/melodia_gn already held the same garment py files (diff 0 after restore).",
+  "rules": "Seed 20260902, offline only, Blender --factory-startup headless, verify by re-reading bpy.data, core.sock() only, VectorMath SCALE, UE only runtime writer, hand-paint OPEN"
+}
