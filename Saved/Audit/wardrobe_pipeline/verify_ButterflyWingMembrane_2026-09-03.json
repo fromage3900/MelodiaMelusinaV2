@@ -1,0 +1,297 @@
+{
+  "schema": "melodia.wardrobe_verify.v1",
+  "variant": "ButterflyWingMembrane",
+  "alias_queue_name": "ButterflyWingTidepool",
+  "title": "ButterflyWingMembrane \u2014 iridescent wing membrane + tidepool nacre, seed 20260902",
+  "palette": "membrane_deep(18,30,52) membrane(46,92,148) membrane_hi(120,200,235) vein_dark(10,16,30) vein_edge(200,230,255) eyespot(255,170,90) eyespot_ring(20,24,44)",
+  "chladni_modes": [
+    [
+      7,
+      4
+    ],
+    [
+      12,
+      9
+    ],
+    [
+      17,
+      13
+    ]
+  ],
+  "primary_mode": [
+    7,
+    4
+  ],
+  "seed_rule": 20260902,
+  "seed_in_copernicus_cymatic_parallax_py": 20260831,
+  "seed_note": "on-disk provenance drift: py SEED is 20260831, rule demands 20260902. Maps on disk were generated under whichever SEED the cooker had at 01:42. Re-derive needed before next cook \u2014 patch SEED to 20260902 and recook to fully close provenance. This run VERIFIES on-disk bytes only.",
+  "checked_at": "2026-09-03T20:51:25.894321-04:00",
+  "path": "Saved/Audit/copernicus_cymatic/ButterflyWingMembrane",
+  "queue_alias_note": "Queue labels this 'ButterflyWingTidepool'; on-disk folder is ButterflyWingMembrane \u2014 same iridescent tidepool family (nacre + vein + eyespot), primary Chladni (7,4) distinct from AntiqueDollRose (5,3). Verified as fulfillment of the Tidepool queue item.",
+  "maps": [
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 3389381,
+      "sha12": "112d0baace20",
+      "mean": [
+        44.7555136680603,
+        68.48275756835938,
+        96.43819952011108
+      ],
+      "std": [
+        29.507066597537627,
+        35.40702080633303,
+        36.748535233123135
+      ],
+      "mtime": "2026-09-03T01:42:34.163891-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Emissive.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 1957692,
+      "sha12": "2345d9f5775e",
+      "mean": [
+        13.189966440200806,
+        19.471569299697876,
+        22.640482902526855
+      ],
+      "std": [
+        19.917938442530662,
+        29.311989923054277,
+        34.070324912556615
+      ],
+      "mtime": "2026-09-03T01:42:36.577743-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Height.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 1958271,
+      "sha12": "be036339c82b",
+      "mean": [
+        94.56705570220947,
+        94.56705570220947,
+        94.56705570220947
+      ],
+      "std": [
+        73.08027411590344,
+        73.08027411590344,
+        73.08027411590344
+      ],
+      "mtime": "2026-09-03T01:42:35.649128-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Iridescence.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 1905515,
+      "sha12": "cd3ce132cfcf",
+      "mean": [
+        189.0217525959015,
+        189.0217525959015,
+        189.0217525959015
+      ],
+      "std": [
+        50.09898112216218,
+        50.09898112216218,
+        50.09898112216218
+      ],
+      "mtime": "2026-09-03T01:42:37.002521-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "L",
+      "bytes": 798872,
+      "sha12": "8b434c505ded",
+      "mean": [
+        14.27061414718628
+      ],
+      "std": [
+        10.3309658449885
+      ],
+      "mtime": "2026-09-03T01:42:35.180599-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 3598326,
+      "sha12": "83937ac9fa89",
+      "mean": [
+        127.00013375282288,
+        126.99975347518921,
+        253.43694281578064
+      ],
+      "std": [
+        11.2441090622946,
+        10.249665833411875,
+        1.8261369229231412
+      ],
+      "mtime": "2026-09-03T01:42:34.790358-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Opacity.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "L",
+      "bytes": 8533,
+      "sha12": "7368a2762f02",
+      "mean": [
+        255.0
+      ],
+      "std": [
+        0.0
+      ],
+      "mtime": "2026-09-03T01:42:37.020584-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_ORM.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 3260181,
+      "sha12": "5d02d1567ce5",
+      "mean": [
+        197.4761254787445,
+        67.98322105407715,
+        14.27061414718628
+      ],
+      "std": [
+        43.87732081586007,
+        21.878157606646287,
+        10.3309658449885
+      ],
+      "mtime": "2026-09-03T01:42:36.208602-04:00"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "L",
+      "bytes": 1078119,
+      "sha12": "4c6a655dc77f",
+      "mean": [
+        67.98322105407715
+      ],
+      "std": [
+        21.878157606646287
+      ],
+      "mtime": "2026-09-03T01:42:34.993336-04:00"
+    }
+  ],
+  "counts": "9/9",
+  "all_2048": true,
+  "distinct_within_family": true,
+  "cross_family_distinct_bc": true,
+  "cross_family_bc_sha12": {
+    "AntiqueDollRose": "759d489cb306",
+    "ButterflyWingMembrane": "112d0baace20"
+  },
+  "variance_gate": "PASS \u2014 every non-opacity map std>2.0",
+  "variance_detail": [
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_BaseColor.png",
+      "pass": true,
+      "std": [
+        29.507066597537627,
+        35.40702080633303,
+        36.748535233123135
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Emissive.png",
+      "pass": true,
+      "std": [
+        19.917938442530662,
+        29.311989923054277,
+        34.070324912556615
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Height.png",
+      "pass": true,
+      "std": [
+        73.08027411590344,
+        73.08027411590344,
+        73.08027411590344
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Iridescence.png",
+      "pass": true,
+      "std": [
+        50.09898112216218,
+        50.09898112216218,
+        50.09898112216218
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Metallic.png",
+      "pass": true,
+      "std": [
+        10.3309658449885
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Normal.png",
+      "pass": true,
+      "std": [
+        11.2441090622946,
+        10.249665833411875,
+        1.8261369229231412
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Opacity.png",
+      "pass": true,
+      "std": "intentional solid"
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_ORM.png",
+      "pass": true,
+      "std": [
+        43.87732081586007,
+        21.878157606646287,
+        10.3309658449885
+      ]
+    },
+    {
+      "file": "T_Cymatic_ButterflyWingMembrane_Roughness.png",
+      "pass": true,
+      "std": [
+        21.878157606646287
+      ]
+    }
+  ],
+  "opacity_flat": "intentional solid",
+  "vocab": "primary (7,4) free of all 10 garment-layer + 4 water-zone modes per file header comment in 26c175aa-era py; 0 collisions claimed. No live vocab file on this branch to re-derive \u2014 accepted from prior header. Distinct from AntiqueDollRose (5,3).",
+  "gate": "PASS"
+}
