@@ -156,7 +156,7 @@ def _plan_tree(group_name, rooms_corridors):
         {"title": "Switch", "nodes": ("Switch",), "role": "math"},
         {"title": "Output", "nodes": ("Group Output",), "role": "output"},
     ])
-    return tree
+    return (tree, gin, gout)
 
 
 def build_city_plan_round(group_name="MEL_city_plan_round"):
@@ -188,7 +188,7 @@ def build_city_plan_round(group_name="MEL_city_plan_round"):
         geo = _geo_out(inner)
         if geo is not None:
             link_sockets(tree, geo, _o)
-    return tree
+    return (tree, gin, gout)
 
 
 def build_city_plan_salon(group_name="MEL_city_plan_salon"):
@@ -331,7 +331,7 @@ def build_city_corridors(group_name="MEL_city_corridors"):
         {"title": "Switch", "nodes": ("Index Switch",), "role": "math"},
         {"title": "Output", "nodes": ("Group Output",), "role": "output"},
     ])
-    return tree
+    return (tree, gin, gout)
 
 
 def build_city_house_cell(group_name="MEL_city_house_cell"):
@@ -587,7 +587,7 @@ def build_city_house_cell(group_name="MEL_city_house_cell"):
         {"title": "Interior", "nodes": ("Greybox Room",), "role": "geometry"},
         {"title": "Output", "nodes": ("Transform", "Group Output"), "role": "output"},
     ])
-    return tree
+    return (tree, gin, gout)
 
 
 def build_city_avenue(group_name="MEL_city_avenue"):
@@ -668,7 +668,7 @@ def build_city_avenue(group_name="MEL_city_avenue"):
         {"title": "Instance", "nodes": ("Instance on Points",), "role": "instance"},
         {"title": "Output", "nodes": ("Group Output",), "role": "output"},
     ])
-    return tree
+    return (tree, gin, gout)
 
 
 def build_city_block(group_name="MEL_city_block"):
@@ -711,7 +711,7 @@ def build_city_block(group_name="MEL_city_block"):
         {"title": "Instance Avenue", "nodes": ("Instance on Points",), "role": "instance"},
         {"title": "Output", "nodes": ("Group Output",), "role": "output"},
     ])
-    return tree
+    return (tree, gin, gout)
 
 
 # ---------------------------------------------------------------------------

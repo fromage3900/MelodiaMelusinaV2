@@ -1219,7 +1219,7 @@ def _auto_apply_music_pass(tree, gin, gout):
             return
         # The source feeding the output is the real builder geometry.
         src_socket = links[0].from_socket
-        if src_socket is None or src_socket.direction != 'OUTPUT':
+        if src_socket is None or not src_socket.is_output:
             return
         # Remove the direct src -> gout link so we can insert the pass between.
         for lnk in links:
