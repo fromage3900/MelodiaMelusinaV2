@@ -5,6 +5,7 @@
 #   Fast      Smoke + run_tests.ps1 -Suite Fast
 #   Contracts Smoke + run_tests.ps1 -Suite Contracts
 #   Build     closed-editor C++/plugin build + binary validation
+#   Sync      Git/LFS two-workstation sync preflight
 #   UE        NullRHI Unreal automation tests
 #   All       every lane above
 #
@@ -13,7 +14,7 @@
 # or installs anything.
 [CmdletBinding()]
 param(
-    [ValidateSet("Smoke", "Fast", "Contracts", "Build", "UE", "All")]
+    [ValidateSet("Smoke", "Fast", "Contracts", "Build", "Sync", "UE", "All")]
     [string]$Suite = "Smoke",
 
     [ValidateRange(1, 8)]
@@ -284,6 +285,16 @@ function Invoke-BuildSuite {
     Invoke-ProjectPowerShell -Name "Compiled plugin binary validation" -ScriptPath $validator -ScriptArguments @("-SkipServices", "-CheckLfsHydration", "-RequirePluginBinaries")
 }
 
+function Invoke-SyncSuite {
+    Write-Host ""
+    Write-Host "=== [Laptop workstation sync suite] ===" -ForegroundColor Cyan
+    $syncScript = Join-Path $ProjectRoot "deploy\sync_workstation.ps1"
+    Invoke-ProjectPowerShell -Name "Two-workstation Git/LFS sync check" -ScriptPath $syncScript -ScriptArguments @("-Mode", "Check", "-LfsProfile", "None")
+
+    $addonInstaller = Join-Path $ProjectRoot "deploy\install_melodia_studio.ps1"
+    Invoke-ProjectPowerShell -Name "Blender live addon provenance" -ScriptPath $addonInstaller -ScriptArguments @("-CheckOnly")
+}
+
 function Invoke-UESuite {
     Write-Host ""
     Write-Host "=== [Laptop UE NullRHI automation suite] ===" -ForegroundColor Cyan
@@ -377,6 +388,9 @@ switch ($Suite) {
     "Build" {
         Invoke-BuildSuite
     }
+    "Sync" {
+        Invoke-SyncSuite
+    }
     "UE" {
         Invoke-UESuite
     }
@@ -385,6 +399,7 @@ switch ($Suite) {
         Invoke-FastSuite
         Invoke-ContractsSuite
         Invoke-BuildSuite
+        Invoke-SyncSuite
         Invoke-UESuite
     }
 }

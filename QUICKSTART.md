@@ -60,6 +60,39 @@ The current profile is intentionally measured rather than guessed:
 
 Each workstation should have its **own clone**. Git/Git LFS + explicit handoff branches are shared authority. Do not edit the same binary asset from both machines at once.
 
+Before opening Rider, Blender, or Unreal on either machine, run the safe sync check:
+
+```powershell
+.\deploy\sync_workstation.ps1
+```
+
+To apply a safe fast-forward and hydrate only the lane you need:
+
+```powershell
+# Text/source only — no large LFS pull
+.\deploy\sync_workstation.ps1 -Mode Sync
+
+# Melusina House reference/source lane
+.\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
+
+# Current gameplay/vertical-slice binaries
+.\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile Gameplay
+```
+
+The synchronizer never resets, cleans, rebases, stashes, force-pushes, or auto-merges divergence. If one machine is ahead, push that branch before switching machines. If both sides moved, it stops and tells you to reconcile explicitly.
+
+For Blender / Melusina House work, Git sync is not the final step. Close Blender and install the **current checkout** into Blender 5.2:
+
+```powershell
+.\deploy\install_melodia_studio.ps1
+.\deploy\install_melodia_studio.ps1 -CheckOnly
+```
+
+The check compares the live AppData addon byte-for-byte and verifies that its provenance stamp names this checkout's current branch + HEAD.
+
+Current two-workstation contract: `Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md`.
+
+
 `Launch_Editor.bat` now respects `MELODIA_UNREAL_ROOT` when UE5.8 is installed somewhere other than the default Epic path.
 Run the laptop acceptance test before hydrating more binary art:
 

@@ -10,7 +10,7 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree, new_geometry_tree,
     add_float_param, add_int_param, add_bool_param,
-    make_group_input,
+    make_group_input, apply_universal_music_pass, add_music_influence_params,
 )
 
 
