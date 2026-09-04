@@ -70,6 +70,12 @@ The branch also contains broad removals under:
 
 Treat it as an extraction/recovery branch: promote named, reviewed work in isolated batches.
 
+## Reconciliation PR status
+
+- **PR #79** (`collab/laptop/integration-batch-2026-09-02`) is closed/superseded for active sync. Its branch remains historical documentation/archive only.
+- **PR #81** (`collab/laptop/main-reconciliation-2026-09-04`) is closed/superseded. The three house reference boards are already viewable on `main`, and the V7 house runtime/source baseline was promoted via PR #82.
+- Do not resurrect either PR as the active workstation baton.
+
 ## Older laptop branches
 
 ### `collab/laptop/integration-batch-2026-09-02`
