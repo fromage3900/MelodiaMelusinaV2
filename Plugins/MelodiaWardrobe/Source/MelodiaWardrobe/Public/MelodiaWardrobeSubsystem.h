@@ -113,6 +113,24 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Wardrobe")
 	EMelodiaWardrobeSlot GetSlotForCosmetic(FName CosmeticId) const;
 
+	/**
+	 * Union of HiddenBodyRegionIds across the CURRENTLY equipped set, resolved from
+	 * catalog records at call time (Nikki-translation §6 precompute tier).
+	 *
+	 * Derive-at-call-time is deliberate: the equipped map on the narrative record is
+	 * the only durable state, so this query can never drift from it the way a cached
+	 * set would after an equip/unequip or a save restore. Unknown cosmetic ids in the
+	 * equipped map contribute nothing (and warn once) -- they are a broken save, not
+	 * a reason to hide the whole body.
+	 */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wardrobe|Clipping")
+	TArray<FName> GetHiddenBodyRegions() const;
+
+	/** The clipping contract of one cosmetic's catalog record, or an empty contract
+	 *  for an unknown/unowned id. Pure lookup: the caller decides what to do with it. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wardrobe|Clipping")
+	FMelodiaCosmeticCompatibility GetCosmeticCompatibility(FName CosmeticId) const;
+
 	/** Fires on every accepted equip/unequip/grant. UI listens here. */
 	UPROPERTY(BlueprintAssignable, Category="Melodia|Wardrobe")
 	FMelodiaWardrobeChanged OnWardrobeChanged;
