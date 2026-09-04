@@ -1,5 +1,7 @@
 # Surreal Architecture — Geometry Nodes Taxonomy
 
+> **Melusina House discovery changed on 2026-09-04.** For current house work, use [`MELUSINA_HOUSE_GN_START_HERE.md`](../../MELUSINA_HOUSE_GN_START_HERE.md). The counts below are a dated taxonomy audit, not the current agent health contract. House-specific builders now have a dedicated **Melusina House** GN Stack category.
+
 **Date:** 2026-08-29  
 **Scope:** `deploy/surreal_arch/melodia_gn/`  
 **Status:** 239 builders (305 registrations, 1 duplicate `MEL_music_sheet_rail`), 268 curated presets across 89 builders, 15 categories — audited 2026-09-01 (+6 P4 stubs, +1 tapestry_wall)

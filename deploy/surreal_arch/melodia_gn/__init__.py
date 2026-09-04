@@ -61,6 +61,7 @@ from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_en
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
 from . import melodia_house  # noqa: F401 - unified house module: genome room shell (mh6) + AAA kit
+from . import melusina_house_foundation  # noqa: F401 - Melusina House foundation/pod builders
 from . import house_dress  # noqa: F401 - mh_* dressing builders (piano walk, sheet rail, lanterns...) - unified house module: genome room shell (mh6) + AAA kit (cornice/dentil/scallop/lissajous)
 from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
     build_city_house_cell, build_city_avenue, build_city_block,

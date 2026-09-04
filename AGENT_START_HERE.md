@@ -139,3 +139,27 @@ Resolve contradictions by:
 4. ask only if an owner decision is genuinely required.
 
 **Current front door = truth routing. Historical docs = memory. Runtime/source = authority.**
+
+
+---
+
+## ♬ Melusina House / Blender Geometry Nodes
+
+If the task mentions **Melusina's House**, **Geometry Nodes**, **round Baroque architecture**, **house foundation**, or any `MEL_mh_*` builder, stop broad repo discovery and open:
+
+`MELUSINA_HOUSE_GN_START_HERE.md`
+
+Then run:
+
+```powershell
+python Tools/verify_melusina_house_gn_catalog.py
+```
+
+Important naming rule:
+
+```text
+MEL_mh_* = live registered Melodia Studio builder
+GN_MH_*  = optional scene-local wrapper / historical plan alias
+```
+
+Do not infer missing implementation from a missing `GN_MH_*` name.
