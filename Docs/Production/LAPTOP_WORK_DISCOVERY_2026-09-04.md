@@ -92,6 +92,22 @@ Before saying any of the following:
 
 you must compare `main` against the relevant laptop/recovery branch.
 
+## Safe extraction lane
+
+**Draft recovery PR #70** — `recover(laptop): isolate current Melusina House GN work`
+
+Branch: `integration/laptop-house-recovery-20260904`
+
+This PR was cut from current `main` and copies the current house/GN code, house build scripts, recovered session notes, and V7 plan while deliberately excluding:
+
+- broad `Exports/` deletions;
+- quarantine/source-quarantine deletions;
+- bulk historical house Blender binaries;
+- unrelated Splice research;
+- recovery-branch gitignore/pre-commit changes.
+
+Use PR #70 as the preferred review surface for the recovered **text/code** work. Keep the original recovery branch as the binary/history source until the remaining Blender/LFS assets are reviewed separately.
+
 ## Promotion policy
 
 Use narrow promotion batches:
