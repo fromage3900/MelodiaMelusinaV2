@@ -81,6 +81,15 @@ To apply a safe fast-forward and hydrate only the lane you need:
 
 The synchronizer never resets, cleans, rebases, stashes, force-pushes, or auto-merges divergence. If one machine is ahead, push that branch before switching machines. If both sides moved, it stops and tells you to reconcile explicitly.
 
+For Blender / Melusina House work, Git sync is not the final step. Close Blender and install the **current checkout** into Blender 5.2:
+
+```powershell
+.\deploy\install_melodia_studio.ps1
+.\deploy\install_melodia_studio.ps1 -CheckOnly
+```
+
+The check compares the live AppData addon byte-for-byte and verifies that its provenance stamp names this checkout's current branch + HEAD.
+
 Current two-workstation contract: `Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md`.
 
 

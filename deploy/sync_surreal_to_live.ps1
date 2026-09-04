@@ -10,6 +10,21 @@ param(
 
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
+
+# Deterministic Blender 5.2 path: use the same current-checkout sync helper as
+# install_melodia_studio.ps1 so AppData always receives provenance + byte verification.
+# Legacy Blender versions retain the copy path below.
+if ($BlenderVersion -eq "5.2") {
+    $liveBlender = @(Get-Process blender -ErrorAction SilentlyContinue)
+    if ($liveBlender) {
+        $pids = ($liveBlender | ForEach-Object { $_.Id }) -join ", "
+        Write-Error "Blender is running (PID $pids). Close Blender before replacing the live Melodia Studio addon."
+        exit 2
+    }
+
+    python (Join-Path $PSScriptRoot "_sync_addon_to_blender_5_2.py")
+    exit $LASTEXITCODE
+}
 $deploy = Join-Path $root "deploy"
 $live = Join-Path $env:APPDATA "Blender Foundation\Blender\$BlenderVersion\scripts\addons"
 
