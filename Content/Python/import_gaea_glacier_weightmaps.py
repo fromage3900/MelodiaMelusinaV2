@@ -1,5 +1,22 @@
 """Import the Gaea Glacier weightmaps and wire them into the landscape material.
 
+THIS IS ONLY HALF THE PIPELINE -- READ FIRST
+--------------------------------------------
+Importing the weightmaps as TEXTURES (what this script does) does not make them
+visible. The master multiplies each Gaea mask by LandscapeLayerSample(<layer>),
+so an unpainted layer zeroes its mask out entirely -- a mask can subtract
+coverage but can never introduce it. The weightmaps must ALSO be imported into
+the landscape PAINT layers: see `import_gaea_landscape_paint.py`.
+
+Two claims in the docstring below were wrong and are corrected here:
+  * "The Snow weightmap IS imported regardless" -- it was not. The import
+    silently produced no asset while reporting success.
+  * "Rock -> Gaea_SlopeMask ... rock is the steep-slope layer" -- in the actual
+    graph `Gaea_SlopeMask` multiplies LandscapeLayerSample["Snow"], so this
+    binding makes the rock map gate the SNOW layer.
+
+Full analysis: `Docs/LookDev/GAEA_MASKS_ROOT_CAUSE_2026-09-04.md`.
+
 WHY THIS EXISTS
 ---------------
 `Saved/GaeaStaging/Glacier/` holds a complete Gaea export for the SeaAbove landscape.
