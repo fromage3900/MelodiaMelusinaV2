@@ -33,6 +33,8 @@ fix/<bug-description>        — bug and regression fixes
 docs/<documentation-target>  — documentation updates and whitepapers
 cleanup/<area>               — repository and pipeline hygiene
 collab/<role>/<task>         — collaborative environment art, level design, or UI
+integration/<topic>           — reviewed recovery/integration lanes shared across workstations
+recovery/<machine>/<topic>    — preserve divergent machine work before reconciliation
 ```
 
 Examples:
@@ -40,6 +42,8 @@ Examples:
 - `fix/modifier-stacking`
 - `docs/melusina-agent-harness`
 - `collab/level-design/kaleido-nave`
+- `integration/laptop-house-recovery-20260904`
+- `recovery/laptop-main-20260904`
 
 ---
 
