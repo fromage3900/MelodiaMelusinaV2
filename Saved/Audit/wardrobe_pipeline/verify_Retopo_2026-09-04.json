@@ -1,0 +1,92 @@
+{
+  "schema": "melodia.wardrobe_verify.v1",
+  "variant": "Retopo",
+  "label": "Retopo pre-intake quadriflow+voxel+smartUV",
+  "recipe": "Docs/Pipelines/MELODIA_RETOPO_RECIPE_2026-09-03.md",
+  "script": "Tools/Houdini/sea_above_reef/garment_retopo_preintake.py",
+  "script_schema": "melodia.garment_retopo_preintake.v1",
+  "seed_rule": 20260902,
+  "checked_at": "2026-09-04T03:04:00-04:00",
+  "blender": "5.2.1 LTS hash 9e2066aef7ef built 2026-08-25 02:38:20",
+  "verdict": "PASS",
+  "restored_from": "ba322abc (cleanup/integrate-batches-2026-09-03) — branch merge/unify-histories had dropped the retopo lane",
+  "files": [
+    {"file": "Docs/Pipelines/MELODIA_RETOPO_RECIPE_2026-09-03.md", "bytes": 2500, "sha12": "63ed99f3cc20", "lines": 52},
+    {"file": "Tools/Houdini/sea_above_reef/garment_retopo_preintake.py", "bytes": 8671, "sha12": "548432ab78fa", "lines": 219}
+  ],
+  "route": {
+    "import": "FBX -Y/Z or OBJ, join, transform_apply L/R/S",
+    "clean": "bmesh remove_doubles 0.0001, delete loose, recalc normals",
+    "primary": "quadriflow_remesh FACES target_faces=N seed=20260902 preserve_sharp+boundary+attributes smooth_normals",
+    "fallback": "voxel remesh size maxdim/60 iterate to [0.7N,1.3N] <=5 tries, engine=voxel_fallback",
+    "uv": "smart_project angle_limit=66 island_margin=0.02 correct_aspect",
+    "export": "FBX FACE smoothing -Y/Z + .retopo_manifest.json"
+  },
+  "why_fallback": "Quadriflow refuses non-manifold _thick meshes headless (needs manifold warning, 0.0s no-op, ~5k multi-face edges verified); voxel is intended production path for thick class",
+  "probes": [
+    {
+      "id": "AntiqueDoll",
+      "source": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/wardrobe_pipeline/intake/Cos_Dress_Melusina_AntiqueDoll/Cos_Dress_Melusina_AntiqueDoll.obj",
+      "source_verts_obj": 180895,
+      "source_mtls": 20,
+      "target_faces": 9000,
+      "outdir": "C:/Users/froma/AppData/Local/Temp/retopo_verify_20260904",
+      "out": "AntiqueDoll_retopo_verify.obj",
+      "manifest": {
+        "verts_in": 143848,
+        "polys_in": 296150,
+        "verts_out": 9168,
+        "polys_out": 9166,
+        "quad_ratio": 1.0,
+        "slots_in_count": 21,
+        "slots_out_count": 21,
+        "engine": "voxel_fallback",
+        "voxel_size": 0.050931,
+        "seconds_total": 3.5,
+        "seconds_voxel": 0.8,
+        "seconds_remesh": 0.0,
+        "fbx_sha256": "cc4d65937508837e186c54e3ace6b23519d1d08e1caf0541e9b76a424eb8f664"
+      },
+      "quadriflow_noop": true,
+      "voxel_attempts": 2,
+      "note": "21 slots includes Material.001/Material duplicate; all names preserved for Substance ID"
+    },
+    {
+      "id": "ButterflyWing",
+      "source": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/wardrobe_pipeline/intake/Cos_Accessory_Melusina_ButterflyWing/Cos_Accessory_Melusina_ButterflyWing.obj",
+      "source_verts_obj": 818770,
+      "source_mtls": 7,
+      "target_faces": 6000,
+      "outdir": "C:/Users/froma/AppData/Local/Temp/retopo_verify_20260904",
+      "out": "ButterflyWing_retopo_verify.obj",
+      "manifest": {
+        "verts_in": 777921,
+        "polys_in": 1555948,
+        "verts_out": 5950,
+        "polys_out": 5932,
+        "quad_ratio": 1.0,
+        "slots_in_count": 8,
+        "slots_out_count": 8,
+        "engine": "voxel_fallback",
+        "voxel_size": 0.065602,
+        "seconds_total": 11.1,
+        "seconds_voxel": 3.3,
+        "seconds_remesh": 0.0,
+        "fbx_sha256": "087b0c11d5d7568ce8b17db66a78961e3aa457cbaf2e88adc0f6a7662bf24875"
+      },
+      "quadriflow_noop": true,
+      "voxel_attempts": 2
+    }
+  ],
+  "quad_dominant": true,
+  "slots_preserved": true,
+  "uv": "smart_project 66deg island_margin 0.02",
+  "seed_verified": 20260902,
+  "limits": [
+    "_thick double-walled meshes are non-manifold — Quadriflow will refuse headless; voxel fallback is intended path",
+    "Voxel uniform loses sewn edge sharpness; closed single-shell source preferred for hero tailoring",
+    "Target N tolerance [0.7N,1.3N]; exact N needs second-pass decimation"
+  ],
+  "next": "garment_intake_prep.py --source <this output> --slot <Slot> --descriptor <Desc>",
+  "rules": "Seed 20260902, offline only, Blender --factory-startup headless, verify by re-reading, UE only runtime writer, hand-paint OPEN, no Content/**"
+}
