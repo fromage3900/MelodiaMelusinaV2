@@ -112,9 +112,9 @@ you must compare `main` against the relevant laptop/recovery branch.
 
 ## Current safe house handoff lane
 
-**Draft PR #72** — `recover(house): current-main PC/laptop handoff with V7 base`
+**Draft PR #76** — `recover(house): current-main PC/laptop handoff with V7 base`
 
-Branch: `integration/house-handoff-20260904`
+Branch: `integration/house-handoff-current-20260904`
 
 This is now the preferred PC/laptop baton for current Melusina House work. It starts from the 2026-09-04 synchronized `main` baseline and contains:
 
@@ -128,13 +128,13 @@ It deliberately excludes the broad `Exports/` and quarantine deletions and the h
 Use:
 
 ```powershell
-git switch integration/house-handoff-20260904
+git switch integration/house-handoff-current-20260904
 .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
 ```
 
 Only one workstation edits the V7 `.blend` at a time; lock it through Git LFS before editing.
 
-PR #70 is closed/superseded. The original `recovery/laptop-main-20260904` remains history/recovery only.
+PR #70 and PR #72 are closed/superseded. The original `recovery/laptop-main-20260904` remains history/recovery only.
 
 ## Promotion policy
 
