@@ -132,52 +132,9 @@ def _fn_output(function, key, name, x=350, y=0):
     return node, created
 
 
-TRIPLANAR_HLSL = r"""
-float3 p = WorldPosition + ProjectionOffset;
-float3 r = ProjectionRotation * (3.14159265359 / 180.0);
-float3 s = sin(r);
-float3 c = cos(r);
+from pathlib import Path
 
-// XYZ Euler rotation, matching the stable project convention used by the
-// existing Nikki material functions and the universal master's
-// MF_Triplanar_SubstanceStyle. Rotation is global to the projection so all
-// three planes remain coherent.
-p = float3(
-    p.x * (c.y * c.z) + p.y * (s.x * s.y * c.z - c.x * s.z) + p.z * (c.x * s.y * c.z + s.x * s.z),
-    p.x * (c.y * s.z) + p.y * (s.x * s.y * s.z + c.x * c.z) + p.z * (c.x * s.y * s.z - s.x * c.z),
-    p.x * (-s.y) + p.y * (s.x * c.y) + p.z * (c.x * c.y));
-
-float scale = max(abs(ProjectionScale), 0.00001);
-float3 uvp = p * scale;
-
-// Explicit axis projections: X uses YZ, Y uses XZ, Z uses XY.
-float2 uvX = uvp.yz;
-float2 uvY = uvp.xz;
-float2 uvZ = uvp.xy;
-
-float3 n = abs(normalize(WorldNormal));
-float3 w = pow(n, max(BlendSharpness, 0.01));
-w *= max(AxisWeights, float3(0.0, 0.0, 0.0));
-
-// Deterministic, texture-free breakup keeps large surfaces from reading as one
-// perfect projected sheet. Decorrelated per-axis so the transition is less
-// obviously axis-aligned than a single noise lookup.
-float breakupScale = max(abs(BreakupScale), 0.0001);
-float3 bp = uvp * breakupScale;
-float bx = 0.5 + 0.5 * sin(dot(bp, float3(1.17, -0.41, 0.23)) * 6.2831853);
-float by = 0.5 + 0.5 * sin(dot(bp, float3(-0.37, 1.09, 0.51)) * 6.2831853 + 2.0943951);
-float bz = 0.5 + 0.5 * sin(dot(bp, float3(0.43, 0.19, 1.21)) * 6.2831853 + 4.1887902);
-float3 breakup = pow(saturate(float3(bx, by, bz)), max(BreakupContrast, 0.01));
-w *= lerp(float3(1.0, 1.0, 1.0), breakup, saturate(BreakupStrength));
-
-float weightSum = max(w.x + w.y + w.z, 0.0001);
-w /= weightSum;
-
-float3 sampleX = Texture2DSample(Tex, TexSampler, uvX).rgb;
-float3 sampleY = Texture2DSample(Tex, TexSampler, uvY).rgb;
-float3 sampleZ = Texture2DSample(Tex, TexSampler, uvZ).rgb;
-return sampleX * w.x + sampleY * w.y + sampleZ * w.z;
-"""
+TRIPLANAR_HLSL = (Path(__file__).parent / 'shaders' / 'landscape_triplanar_pro.hlsl').read_text(encoding='utf-8')
 
 
 def build_function():

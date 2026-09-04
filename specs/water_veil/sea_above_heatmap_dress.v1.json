@@ -1,0 +1,3586 @@
+{
+  "schema": "melodia.sea_above_heatmap_dress.v1",
+  "version": "1.0.0",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "landscape": "CanonicalLandscape (one Landscape actor, never created)",
+  "sea_surface_z_uu": 13455.0,
+  "seed": 20260903,
+  "density_rule": "base_zone_density x path_falloff(PlayerStart->Quill->MusicKey->Dock) x slope_gate(x0.5 if >25deg, reject >40deg)",
+  "height_contract": "placements carry landscape surface height; editor raycasts and snaps Z = surface + clearance",
+  "source_heatmap": "Saved/Audit/sea_above_terrain_heatmap.json (1600 live traces)",
+  "total_points": 136,
+  "zone_summaries": {
+    "ReefGarden": {
+      "count": 84,
+      "meshes": [
+        "SM_Clutter_PebbleSet",
+        "SM_Clutter_SpiralShell",
+        "SM_Clutter_Starfish",
+        "SM_Coral_Brain",
+        "SM_Coral_Fan",
+        "SM_Coral_ReefCluster",
+        "SM_Coral_Staghorn",
+        "SM_Coral_Table",
+        "SM_Coral_TubeSponges",
+        "SM_Kelp_Mid",
+        "SM_Kelp_Tall"
+      ]
+    },
+    "AbyssFloor": {
+      "count": 40,
+      "meshes": [
+        "SM_Clutter_PebbleSet",
+        "SM_Clutter_SeaWeed",
+        "SM_DrownedOrgan",
+        "SM_RockChunk_L",
+        "SM_RockChunk_M"
+      ]
+    },
+    "CathedralHalo": {
+      "count": 12,
+      "meshes": [
+        "BP_Jelly_Cathedral",
+        "JELLY_Cathedral_Body_SERAPH_tier_0",
+        "JELLY_Cathedral_Body_SERAPH_tier_1"
+      ]
+    }
+  },
+  "placements": [
+    {
+      "id": "SA_ReefGarden_0000",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        3231.6,
+        10598.2,
+        -724.4
+      ],
+      "height_cm": -724.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        147.26
+      ],
+      "scale": [
+        1.033,
+        1.033,
+        1.033
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5324,
+      "slope_deg": 34.93
+    },
+    {
+      "id": "SA_ReefGarden_0001",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2957.3,
+        11928.8,
+        -408.1
+      ],
+      "height_cm": -408.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        22.47
+      ],
+      "scale": [
+        1.285,
+        1.285,
+        1.285
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5158,
+      "slope_deg": 31.56
+    },
+    {
+      "id": "SA_ReefGarden_0002",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2066.4,
+        12749.2,
+        -399.7
+      ],
+      "height_cm": -399.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        117.52
+      ],
+      "scale": [
+        1.058,
+        1.058,
+        1.058
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5198,
+      "slope_deg": 32.54
+    },
+    {
+      "id": "SA_ReefGarden_0003",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain.SM_Coral_Brain",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2928.8,
+        11359.9,
+        -567.0
+      ],
+      "height_cm": -567.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        179.14
+      ],
+      "scale": [
+        1.352,
+        1.352,
+        1.352
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5261,
+      "slope_deg": 33.37
+    },
+    {
+      "id": "SA_ReefGarden_0004",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table.SM_Coral_Table",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8385.2,
+        11566.1,
+        1111.1
+      ],
+      "height_cm": 1111.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        107.35
+      ],
+      "scale": [
+        1.47,
+        1.47,
+        1.47
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4192,
+      "slope_deg": 14.07
+    },
+    {
+      "id": "SA_ReefGarden_0005",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_Starfish.SM_Clutter_Starfish",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8293.1,
+        11823.8,
+        1340.5
+      ],
+      "height_cm": 1340.5,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        358.76
+      ],
+      "scale": [
+        0.802,
+        0.802,
+        0.802
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4176,
+      "slope_deg": 16.0
+    },
+    {
+      "id": "SA_ReefGarden_0006",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12650.2,
+        9881.7,
+        -499.9
+      ],
+      "height_cm": -499.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        67.53
+      ],
+      "scale": [
+        1.221,
+        1.221,
+        1.221
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3854,
+      "slope_deg": 34.23
+    },
+    {
+      "id": "SA_ReefGarden_0007",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8142.7,
+        9168.2,
+        -461.0
+      ],
+      "height_cm": -461.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        196.87
+      ],
+      "scale": [
+        1.333,
+        1.333,
+        1.333
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4613,
+      "slope_deg": 37.06
+    },
+    {
+      "id": "SA_ReefGarden_0008",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9577.2,
+        9036.2,
+        -377.0
+      ],
+      "height_cm": -377.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        12.13
+      ],
+      "scale": [
+        1.277,
+        1.277,
+        1.277
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4411,
+      "slope_deg": 38.91
+    },
+    {
+      "id": "SA_ReefGarden_0009",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2828.0,
+        10740.1,
+        -724.4
+      ],
+      "height_cm": -724.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        300.25
+      ],
+      "scale": [
+        0.74,
+        0.74,
+        0.74
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5394,
+      "slope_deg": 34.93
+    },
+    {
+      "id": "SA_ReefGarden_0010",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9583.6,
+        12646.3,
+        948.6
+      ],
+      "height_cm": 948.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        10.08
+      ],
+      "scale": [
+        1.331,
+        1.331,
+        1.331
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3892,
+      "slope_deg": 15.45
+    },
+    {
+      "id": "SA_ReefGarden_0011",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        6694.1,
+        11907.4,
+        1467.0
+      ],
+      "height_cm": 1467.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        340.63
+      ],
+      "scale": [
+        0.854,
+        0.854,
+        0.854
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.443,
+      "slope_deg": 21.99
+    },
+    {
+      "id": "SA_ReefGarden_0012",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8879.1,
+        10597.3,
+        944.7
+      ],
+      "height_cm": 944.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        333.04
+      ],
+      "scale": [
+        0.865,
+        0.865,
+        0.865
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4273,
+      "slope_deg": 21.12
+    },
+    {
+      "id": "SA_ReefGarden_0013",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        3118.2,
+        10735.6,
+        -724.4
+      ],
+      "height_cm": -724.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        353.97
+      ],
+      "scale": [
+        0.73,
+        0.73,
+        0.73
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5326,
+      "slope_deg": 34.93
+    },
+    {
+      "id": "SA_ReefGarden_0014",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11852.3,
+        10538.6,
+        -135.4
+      ],
+      "height_cm": -135.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        176.27
+      ],
+      "scale": [
+        1.452,
+        1.452,
+        1.452
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3888,
+      "slope_deg": 20.21
+    },
+    {
+      "id": "SA_ReefGarden_0015",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10634.8,
+        11867.9,
+        700.2
+      ],
+      "height_cm": 700.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        249.86
+      ],
+      "scale": [
+        1.488,
+        1.488,
+        1.488
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3875,
+      "slope_deg": 17.25
+    },
+    {
+      "id": "SA_ReefGarden_0016",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7499.0,
+        8958.8,
+        -505.1
+      ],
+      "height_cm": -505.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        144.08
+      ],
+      "scale": [
+        1.149,
+        1.149,
+        1.149
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.475,
+      "slope_deg": 36.58
+    },
+    {
+      "id": "SA_ReefGarden_0017",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11659.1,
+        11866.7,
+        407.5
+      ],
+      "height_cm": 407.5,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        212.89
+      ],
+      "scale": [
+        0.987,
+        0.987,
+        0.987
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3755,
+      "slope_deg": 23.47
+    },
+    {
+      "id": "SA_ReefGarden_0018",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7344.0,
+        10876.6,
+        975.2
+      ],
+      "height_cm": 975.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        187.44
+      ],
+      "scale": [
+        1.141,
+        1.141,
+        1.141
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4452,
+      "slope_deg": 38.22
+    },
+    {
+      "id": "SA_ReefGarden_0019",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table.SM_Coral_Table",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11878.2,
+        12185.5,
+        547.1
+      ],
+      "height_cm": 547.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        309.97
+      ],
+      "scale": [
+        0.777,
+        0.777,
+        0.777
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3693,
+      "slope_deg": 18.82
+    },
+    {
+      "id": "SA_ReefGarden_0020",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain.SM_Coral_Brain",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        6405.3,
+        12419.0,
+        1644.0
+      ],
+      "height_cm": 1644.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        279.11
+      ],
+      "scale": [
+        0.727,
+        0.727,
+        0.727
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4413,
+      "slope_deg": 25.01
+    },
+    {
+      "id": "SA_ReefGarden_0021",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9813.8,
+        12138.9,
+        901.7
+      ],
+      "height_cm": 901.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        280.2
+      ],
+      "scale": [
+        0.803,
+        0.803,
+        0.803
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3932,
+      "slope_deg": 12.22
+    },
+    {
+      "id": "SA_ReefGarden_0022",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        6309.9,
+        9641.0,
+        -236.4
+      ],
+      "height_cm": -236.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        27.78
+      ],
+      "scale": [
+        1.271,
+        1.271,
+        1.271
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4817,
+      "slope_deg": 28.51
+    },
+    {
+      "id": "SA_ReefGarden_0023",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12068.8,
+        10739.8,
+        -135.4
+      ],
+      "height_cm": -135.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        346.68
+      ],
+      "scale": [
+        0.804,
+        0.804,
+        0.804
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3836,
+      "slope_deg": 20.21
+    },
+    {
+      "id": "SA_ReefGarden_0024",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9676.6,
+        9718.1,
+        47.2
+      ],
+      "height_cm": 47.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        101.01
+      ],
+      "scale": [
+        1.361,
+        1.361,
+        1.361
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4296,
+      "slope_deg": 38.89
+    },
+    {
+      "id": "SA_ReefGarden_0025",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11399.0,
+        9555.9,
+        -283.2
+      ],
+      "height_cm": -283.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        300.25
+      ],
+      "scale": [
+        0.962,
+        0.962,
+        0.962
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4067,
+      "slope_deg": 20.52
+    },
+    {
+      "id": "SA_ReefGarden_0026",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11740.2,
+        12948.2,
+        757.4
+      ],
+      "height_cm": 757.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        252.21
+      ],
+      "scale": [
+        0.695,
+        0.695,
+        0.695
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.362,
+      "slope_deg": 21.26
+    },
+    {
+      "id": "SA_ReefGarden_0027",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9385.3,
+        12092.0,
+        1018.9
+      ],
+      "height_cm": 1018.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        22.78
+      ],
+      "scale": [
+        1.602,
+        1.602,
+        1.602
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3987,
+      "slope_deg": 12.49
+    },
+    {
+      "id": "SA_ReefGarden_0028",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_Starfish.SM_Clutter_Starfish",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7936.3,
+        8932.5,
+        -461.0
+      ],
+      "height_cm": -461.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        104.4
+      ],
+      "scale": [
+        1.302,
+        1.302,
+        1.302
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4687,
+      "slope_deg": 37.06
+    },
+    {
+      "id": "SA_ReefGarden_0029",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2191.0,
+        11570.1,
+        -1349.4
+      ],
+      "height_cm": -1349.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        330.3
+      ],
+      "scale": [
+        1.157,
+        1.157,
+        1.157
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5396,
+      "slope_deg": 38.29
+    },
+    {
+      "id": "SA_ReefGarden_0030",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11844.5,
+        10443.2,
+        -229.9
+      ],
+      "height_cm": -229.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        32.93
+      ],
+      "scale": [
+        0.927,
+        0.927,
+        0.927
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.39,
+      "slope_deg": 12.55
+    },
+    {
+      "id": "SA_ReefGarden_0031",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12874.3,
+        6205.9,
+        -1960.2
+      ],
+      "height_cm": -1960.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        148.62
+      ],
+      "scale": [
+        0.855,
+        0.855,
+        0.855
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4179,
+      "slope_deg": 27.93
+    },
+    {
+      "id": "SA_ReefGarden_0032",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        6065.5,
+        10852.5,
+        359.6
+      ],
+      "height_cm": 359.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        25.56
+      ],
+      "scale": [
+        1.257,
+        1.257,
+        1.257
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4687,
+      "slope_deg": 36.1
+    },
+    {
+      "id": "SA_ReefGarden_0033",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        5076.1,
+        12101.4,
+        1064.4
+      ],
+      "height_cm": 1064.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        155.05
+      ],
+      "scale": [
+        1.055,
+        1.055,
+        1.055
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4697,
+      "slope_deg": 39.88
+    },
+    {
+      "id": "SA_ReefGarden_0034",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        4083.2,
+        10696.4,
+        -51.3
+      ],
+      "height_cm": -51.3,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        332.68
+      ],
+      "scale": [
+        1.077,
+        1.077,
+        1.077
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5115,
+      "slope_deg": 39.47
+    },
+    {
+      "id": "SA_ReefGarden_0035",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7138.8,
+        11806.4,
+        1467.0
+      ],
+      "height_cm": 1467.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        96.02
+      ],
+      "scale": [
+        1.027,
+        1.027,
+        1.027
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4366,
+      "slope_deg": 21.99
+    },
+    {
+      "id": "SA_ReefGarden_0036",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table.SM_Coral_Table",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10278.3,
+        9477.1,
+        -43.3
+      ],
+      "height_cm": -43.3,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        66.84
+      ],
+      "scale": [
+        1.369,
+        1.369,
+        1.369
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4242,
+      "slope_deg": 29.33
+    },
+    {
+      "id": "SA_ReefGarden_0037",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12378.7,
+        10142.9,
+        -260.6
+      ],
+      "height_cm": -260.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        128.05
+      ],
+      "scale": [
+        1.484,
+        1.484,
+        1.484
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3863,
+      "slope_deg": 17.94
+    },
+    {
+      "id": "SA_ReefGarden_0038",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10573.4,
+        12761.3,
+        931.7
+      ],
+      "height_cm": 931.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        224.91
+      ],
+      "scale": [
+        1.337,
+        1.337,
+        1.337
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3766,
+      "slope_deg": 20.59
+    },
+    {
+      "id": "SA_ReefGarden_0039",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10762.2,
+        12392.3,
+        772.6
+      ],
+      "height_cm": 772.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        90.7
+      ],
+      "scale": [
+        1.546,
+        1.546,
+        1.546
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3793,
+      "slope_deg": 17.24
+    },
+    {
+      "id": "SA_ReefGarden_0040",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8763.8,
+        11331.7,
+        1111.1
+      ],
+      "height_cm": 1111.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        256.63
+      ],
+      "scale": [
+        0.882,
+        0.882,
+        0.882
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4173,
+      "slope_deg": 14.07
+    },
+    {
+      "id": "SA_ReefGarden_0041",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        6082.2,
+        11017.9,
+        359.6
+      ],
+      "height_cm": 359.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        358.94
+      ],
+      "scale": [
+        0.792,
+        0.792,
+        0.792
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4661,
+      "slope_deg": 36.1
+    },
+    {
+      "id": "SA_ReefGarden_0042",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9416.8,
+        10055.7,
+        462.1
+      ],
+      "height_cm": 462.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        4.08
+      ],
+      "scale": [
+        1.046,
+        1.046,
+        1.046
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4283,
+      "slope_deg": 39.21
+    },
+    {
+      "id": "SA_ReefGarden_0043",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12694.8,
+        10489.9,
+        -260.6
+      ],
+      "height_cm": -260.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        80.0
+      ],
+      "scale": [
+        1.483,
+        1.483,
+        1.483
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3783,
+      "slope_deg": 17.94
+    },
+    {
+      "id": "SA_ReefGarden_0044",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11708.0,
+        8627.9,
+        -1316.0
+      ],
+      "height_cm": -1316.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        105.4
+      ],
+      "scale": [
+        1.246,
+        1.246,
+        1.246
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.413,
+      "slope_deg": 36.42
+    },
+    {
+      "id": "SA_ReefGarden_0045",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        6984.2,
+        12373.6,
+        1699.2
+      ],
+      "height_cm": 1699.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        320.35
+      ],
+      "scale": [
+        1.279,
+        1.279,
+        1.279
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4321,
+      "slope_deg": 18.71
+    },
+    {
+      "id": "SA_ReefGarden_0046",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        5235.0,
+        12081.8,
+        1064.4
+      ],
+      "height_cm": 1064.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        346.6
+      ],
+      "scale": [
+        1.37,
+        1.37,
+        1.37
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4669,
+      "slope_deg": 39.88
+    },
+    {
+      "id": "SA_ReefGarden_0047",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2991.8,
+        11343.9,
+        -567.0
+      ],
+      "height_cm": -567.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        253.2
+      ],
+      "scale": [
+        1.182,
+        1.182,
+        1.182
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.525,
+      "slope_deg": 33.37
+    },
+    {
+      "id": "SA_ReefGarden_0048",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10499.7,
+        11202.3,
+        720.8
+      ],
+      "height_cm": 720.8,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        132.26
+      ],
+      "scale": [
+        1.247,
+        1.247,
+        1.247
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3978,
+      "slope_deg": 18.79
+    },
+    {
+      "id": "SA_ReefGarden_0049",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11702.8,
+        12502.6,
+        547.1
+      ],
+      "height_cm": 547.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        97.03
+      ],
+      "scale": [
+        1.096,
+        1.096,
+        1.096
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3676,
+      "slope_deg": 18.82
+    },
+    {
+      "id": "SA_ReefGarden_0050",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8501.8,
+        11434.6,
+        1111.1
+      ],
+      "height_cm": 1111.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        193.08
+      ],
+      "scale": [
+        1.274,
+        1.274,
+        1.274
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4189,
+      "slope_deg": 14.07
+    },
+    {
+      "id": "SA_ReefGarden_0051",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8462.6,
+        10762.2,
+        1014.9
+      ],
+      "height_cm": 1014.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        163.87
+      ],
+      "scale": [
+        1.072,
+        1.072,
+        1.072
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4301,
+      "slope_deg": 20.98
+    },
+    {
+      "id": "SA_ReefGarden_0052",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        5669.9,
+        12797.0,
+        1830.7
+      ],
+      "height_cm": 1830.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        226.26
+      ],
+      "scale": [
+        0.72,
+        0.72,
+        0.72
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4492,
+      "slope_deg": 30.42
+    },
+    {
+      "id": "SA_ReefGarden_0053",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain.SM_Coral_Brain",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10300.3,
+        12589.2,
+        872.6
+      ],
+      "height_cm": 872.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        248.06
+      ],
+      "scale": [
+        0.765,
+        0.765,
+        0.765
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3818,
+      "slope_deg": 15.3
+    },
+    {
+      "id": "SA_ReefGarden_0054",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn.SM_Coral_Staghorn",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8538.2,
+        12360.9,
+        1136.6
+      ],
+      "height_cm": 1136.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        239.13
+      ],
+      "scale": [
+        0.879,
+        0.879,
+        0.879
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4076,
+      "slope_deg": 20.92
+    },
+    {
+      "id": "SA_ReefGarden_0055",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7606.1,
+        12555.4,
+        1613.9
+      ],
+      "height_cm": 1613.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        95.77
+      ],
+      "scale": [
+        1.121,
+        1.121,
+        1.121
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4198,
+      "slope_deg": 22.12
+    },
+    {
+      "id": "SA_ReefGarden_0056",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2723.3,
+        12685.1,
+        -395.7
+      ],
+      "height_cm": -395.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        18.12
+      ],
+      "scale": [
+        1.152,
+        1.152,
+        1.152
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5077,
+      "slope_deg": 30.08
+    },
+    {
+      "id": "SA_ReefGarden_0057",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_Starfish.SM_Clutter_Starfish",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10853.5,
+        12710.4,
+        772.6
+      ],
+      "height_cm": 772.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        211.36
+      ],
+      "scale": [
+        1.035,
+        1.035,
+        1.035
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3743,
+      "slope_deg": 17.24
+    },
+    {
+      "id": "SA_ReefGarden_0058",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11024.6,
+        9792.9,
+        -217.1
+      ],
+      "height_cm": -217.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        25.02
+      ],
+      "scale": [
+        1.309,
+        1.309,
+        1.309
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4091,
+      "slope_deg": 19.7
+    },
+    {
+      "id": "SA_ReefGarden_0059",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        5357.2,
+        10987.5,
+        263.9
+      ],
+      "height_cm": 263.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        248.27
+      ],
+      "scale": [
+        0.864,
+        0.864,
+        0.864
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4805,
+      "slope_deg": 31.58
+    },
+    {
+      "id": "SA_ReefGarden_0060",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table.SM_Coral_Table",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11900.4,
+        12062.4,
+        407.5
+      ],
+      "height_cm": 407.5,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        94.14
+      ],
+      "scale": [
+        1.149,
+        1.149,
+        1.149
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3705,
+      "slope_deg": 23.47
+    },
+    {
+      "id": "SA_ReefGarden_0061",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9851.0,
+        9089.2,
+        -377.0
+      ],
+      "height_cm": -377.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        106.82
+      ],
+      "scale": [
+        1.358,
+        1.358,
+        1.358
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4361,
+      "slope_deg": 38.91
+    },
+    {
+      "id": "SA_ReefGarden_0062",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_Starfish.SM_Clutter_Starfish",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8444.4,
+        11067.6,
+        1111.1
+      ],
+      "height_cm": 1111.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        340.18
+      ],
+      "scale": [
+        0.79,
+        0.79,
+        0.79
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4254,
+      "slope_deg": 14.07
+    },
+    {
+      "id": "SA_ReefGarden_0063",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        8235.7,
+        10799.9,
+        1087.1
+      ],
+      "height_cm": 1087.1,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        340.14
+      ],
+      "scale": [
+        0.94,
+        0.94,
+        0.94
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4323,
+      "slope_deg": 29.93
+    },
+    {
+      "id": "SA_ReefGarden_0064",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7421.7,
+        11752.2,
+        1415.7
+      ],
+      "height_cm": 1415.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        315.4
+      ],
+      "scale": [
+        1.319,
+        1.319,
+        1.319
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4326,
+      "slope_deg": 17.89
+    },
+    {
+      "id": "SA_ReefGarden_0065",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11137.6,
+        11421.9,
+        328.2
+      ],
+      "height_cm": 328.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        215.78
+      ],
+      "scale": [
+        1.381,
+        1.381,
+        1.381
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3871,
+      "slope_deg": 32.7
+    },
+    {
+      "id": "SA_ReefGarden_0066",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table.SM_Coral_Table",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9811.7,
+        11849.4,
+        901.7
+      ],
+      "height_cm": 901.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        176.33
+      ],
+      "scale": [
+        1.501,
+        1.501,
+        1.501
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3973,
+      "slope_deg": 12.22
+    },
+    {
+      "id": "SA_ReefGarden_0067",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2478.7,
+        11547.0,
+        -999.3
+      ],
+      "height_cm": -999.3,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        198.81
+      ],
+      "scale": [
+        0.95,
+        0.95,
+        0.95
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5333,
+      "slope_deg": 38.96
+    },
+    {
+      "id": "SA_ReefGarden_0068",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        5465.6,
+        11528.4,
+        591.9
+      ],
+      "height_cm": 591.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        246.52
+      ],
+      "scale": [
+        1.196,
+        1.196,
+        1.196
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4705,
+      "slope_deg": 38.23
+    },
+    {
+      "id": "SA_ReefGarden_0069",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        9346.0,
+        10651.9,
+        944.7
+      ],
+      "height_cm": 944.7,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        328.38
+      ],
+      "scale": [
+        1.394,
+        1.394,
+        1.394
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4203,
+      "slope_deg": 21.12
+    },
+    {
+      "id": "SA_ReefGarden_0070",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SpiralShell.SM_Clutter_SpiralShell",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12121.1,
+        9740.4,
+        -370.6
+      ],
+      "height_cm": -370.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        300.85
+      ],
+      "scale": [
+        0.628,
+        0.628,
+        0.628
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3943,
+      "slope_deg": 31.5
+    },
+    {
+      "id": "SA_ReefGarden_0071",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10489.8,
+        12210.2,
+        872.6
+      ],
+      "height_cm": 872.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        202.98
+      ],
+      "scale": [
+        1.181,
+        1.181,
+        1.181
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3846,
+      "slope_deg": 15.3
+    },
+    {
+      "id": "SA_ReefGarden_0072",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        4806.9,
+        9976.4,
+        -158.2
+      ],
+      "height_cm": -158.2,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        104.71
+      ],
+      "scale": [
+        0.881,
+        0.881,
+        0.881
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5075,
+      "slope_deg": 36.3
+    },
+    {
+      "id": "SA_ReefGarden_0073",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        3144.0,
+        11323.3,
+        -567.0
+      ],
+      "height_cm": -567.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        233.71
+      ],
+      "scale": [
+        0.987,
+        0.987,
+        0.987
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5219,
+      "slope_deg": 33.37
+    },
+    {
+      "id": "SA_ReefGarden_0074",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        1826.9,
+        11372.2,
+        -1349.4
+      ],
+      "height_cm": -1349.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        184.18
+      ],
+      "scale": [
+        0.906,
+        0.906,
+        0.906
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.552,
+      "slope_deg": 38.29
+    },
+    {
+      "id": "SA_ReefGarden_0075",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        2557.2,
+        11288.0,
+        -999.3
+      ],
+      "height_cm": -999.3,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        233.05
+      ],
+      "scale": [
+        1.287,
+        1.287,
+        1.287
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.536,
+      "slope_deg": 38.96
+    },
+    {
+      "id": "SA_ReefGarden_0076",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster.SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        3075.5,
+        11343.3,
+        -567.0
+      ],
+      "height_cm": -567.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        191.88
+      ],
+      "scale": [
+        1.168,
+        1.168,
+        1.168
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5231,
+      "slope_deg": 33.37
+    },
+    {
+      "id": "SA_ReefGarden_0077",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan.SM_Coral_Fan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        11905.5,
+        11016.3,
+        -135.4
+      ],
+      "height_cm": -135.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        98.27
+      ],
+      "scale": [
+        1.418,
+        1.418,
+        1.418
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3825,
+      "slope_deg": 20.21
+    },
+    {
+      "id": "SA_ReefGarden_0078",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12043.5,
+        12884.1,
+        757.4
+      ],
+      "height_cm": 757.4,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        251.11
+      ],
+      "scale": [
+        1.507,
+        1.507,
+        1.507
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3595,
+      "slope_deg": 21.26
+    },
+    {
+      "id": "SA_ReefGarden_0079",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid.SM_Kelp_Mid",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12473.1,
+        12138.4,
+        299.0
+      ],
+      "height_cm": 299.0,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        350.97
+      ],
+      "scale": [
+        1.227,
+        1.227,
+        1.227
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3631,
+      "slope_deg": 24.06
+    },
+    {
+      "id": "SA_ReefGarden_0080",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        12932.1,
+        9952.5,
+        -508.5
+      ],
+      "height_cm": -508.5,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        148.94
+      ],
+      "scale": [
+        1.293,
+        1.293,
+        1.293
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.3809,
+      "slope_deg": 31.34
+    },
+    {
+      "id": "SA_ReefGarden_0081",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain.SM_Coral_Brain",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        7578.4,
+        11221.0,
+        1287.9
+      ],
+      "height_cm": 1287.9,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        315.37
+      ],
+      "scale": [
+        0.98,
+        0.98,
+        0.98
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4367,
+      "slope_deg": 22.13
+    },
+    {
+      "id": "SA_ReefGarden_0082",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_TubeSponges.SM_Coral_TubeSponges",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        1261.7,
+        10538.0,
+        -1837.8
+      ],
+      "height_cm": -1837.8,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        280.62
+      ],
+      "scale": [
+        1.39,
+        1.39,
+        1.39
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.5829,
+      "slope_deg": 35.37
+    },
+    {
+      "id": "SA_ReefGarden_0083",
+      "zone": "ReefGarden",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall.SM_Kelp_Tall",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "position": [
+        10764.4,
+        10442.1,
+        -91.6
+      ],
+      "height_cm": -91.6,
+      "clearance_cm": 12.0,
+      "rotation": [
+        0.0,
+        0.0,
+        335.3
+      ],
+      "scale": [
+        1.104,
+        1.104,
+        1.104
+      ],
+      "chladni_mode": "4_9",
+      "path_falloff": 0.4044,
+      "slope_deg": 30.21
+    },
+    {
+      "id": "SA_AbyssFloor_0000",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.SM_DrownedOrgan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -9804.9,
+        12220.1,
+        -5075.4
+      ],
+      "height_cm": -5075.4,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        255.99
+      ],
+      "scale": [
+        0.948,
+        0.948,
+        0.948
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5821,
+      "slope_deg": 27.39
+    },
+    {
+      "id": "SA_AbyssFloor_0001",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -9368.0,
+        12180.8,
+        -4944.1
+      ],
+      "height_cm": -4944.1,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        155.47
+      ],
+      "scale": [
+        1.186,
+        1.186,
+        1.186
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5918,
+      "slope_deg": 24.72
+    },
+    {
+      "id": "SA_AbyssFloor_0002",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        2916.8,
+        -8026.0,
+        -8745.8
+      ],
+      "height_cm": -8745.8,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        248.39
+      ],
+      "scale": [
+        1.287,
+        1.287,
+        1.287
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.592,
+      "slope_deg": 23.29
+    },
+    {
+      "id": "SA_AbyssFloor_0003",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.SM_DrownedOrgan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -11459.4,
+        -8292.9,
+        -12699.1
+      ],
+      "height_cm": -12699.1,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        147.33
+      ],
+      "scale": [
+        0.971,
+        0.971,
+        0.971
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.4326,
+      "slope_deg": 16.45
+    },
+    {
+      "id": "SA_AbyssFloor_0004",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -6016.0,
+        -9749.3,
+        -11452.2
+      ],
+      "height_cm": -11452.2,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        136.15
+      ],
+      "scale": [
+        1.542,
+        1.542,
+        1.542
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.501,
+      "slope_deg": 18.96
+    },
+    {
+      "id": "SA_AbyssFloor_0005",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -7554.9,
+        4009.9,
+        -6555.0
+      ],
+      "height_cm": -6555.0,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        290.77
+      ],
+      "scale": [
+        0.923,
+        0.923,
+        0.923
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7947,
+      "slope_deg": 16.08
+    },
+    {
+      "id": "SA_AbyssFloor_0006",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        12128.9,
+        -4645.4,
+        -5537.5
+      ],
+      "height_cm": -5537.5,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        326.38
+      ],
+      "scale": [
+        1.22,
+        1.22,
+        1.22
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.4518,
+      "slope_deg": 17.17
+    },
+    {
+      "id": "SA_AbyssFloor_0007",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -10793.8,
+        9977.9,
+        -6283.9
+      ],
+      "height_cm": -6283.9,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        104.13
+      ],
+      "scale": [
+        1.364,
+        1.364,
+        1.364
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6135,
+      "slope_deg": 16.86
+    },
+    {
+      "id": "SA_AbyssFloor_0008",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -3014.5,
+        9945.5,
+        -5207.3
+      ],
+      "height_cm": -5207.3,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        325.97
+      ],
+      "scale": [
+        1.339,
+        1.339,
+        1.339
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7144,
+      "slope_deg": 24.77
+    },
+    {
+      "id": "SA_AbyssFloor_0009",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -4122.5,
+        4403.8,
+        -6762.7
+      ],
+      "height_cm": -6762.7,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        164.96
+      ],
+      "scale": [
+        1.784,
+        1.784,
+        1.784
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.9942,
+      "slope_deg": 12.4
+    },
+    {
+      "id": "SA_AbyssFloor_0010",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -686.7,
+        -7208.5,
+        -9638.3
+      ],
+      "height_cm": -9638.3,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        245.67
+      ],
+      "scale": [
+        1.045,
+        1.045,
+        1.045
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6422,
+      "slope_deg": 17.52
+    },
+    {
+      "id": "SA_AbyssFloor_0011",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.SM_DrownedOrgan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -5951.9,
+        -7350.4,
+        -11247.3
+      ],
+      "height_cm": -11247.3,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        131.96
+      ],
+      "scale": [
+        0.871,
+        0.871,
+        0.871
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5562,
+      "slope_deg": 19.36
+    },
+    {
+      "id": "SA_AbyssFloor_0012",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -2039.8,
+        3653.9,
+        -7226.8
+      ],
+      "height_cm": -7226.8,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        37.72
+      ],
+      "scale": [
+        1.283,
+        1.283,
+        1.283
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.9142,
+      "slope_deg": 32.23
+    },
+    {
+      "id": "SA_AbyssFloor_0013",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -7663.7,
+        -12535.7,
+        -11823.8
+      ],
+      "height_cm": -11823.8,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        254.97
+      ],
+      "scale": [
+        0.96,
+        0.96,
+        0.96
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.426,
+      "slope_deg": 12.14
+    },
+    {
+      "id": "SA_AbyssFloor_0014",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.SM_DrownedOrgan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        3578.7,
+        -1693.3,
+        -7456.4
+      ],
+      "height_cm": -7456.4,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        172.08
+      ],
+      "scale": [
+        0.723,
+        0.723,
+        0.723
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7622,
+      "slope_deg": 22.13
+    },
+    {
+      "id": "SA_AbyssFloor_0015",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -1280.0,
+        -4587.9,
+        -9401.2
+      ],
+      "height_cm": -9401.2,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        109.35
+      ],
+      "scale": [
+        1.096,
+        1.096,
+        1.096
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7518,
+      "slope_deg": 18.17
+    },
+    {
+      "id": "SA_AbyssFloor_0016",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -1197.6,
+        -1184.0,
+        -8564.4
+      ],
+      "height_cm": -8564.4,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        294.13
+      ],
+      "scale": [
+        1.291,
+        1.291,
+        1.291
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.9172,
+      "slope_deg": 6.45
+    },
+    {
+      "id": "SA_AbyssFloor_0017",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -2409.8,
+        3835.1,
+        -7217.6
+      ],
+      "height_cm": -7217.6,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        77.75
+      ],
+      "scale": [
+        0.681,
+        0.681,
+        0.681
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.9274,
+      "slope_deg": 25.9
+    },
+    {
+      "id": "SA_AbyssFloor_0018",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -436.6,
+        9027.6,
+        -3583.8
+      ],
+      "height_cm": -3583.8,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        116.42
+      ],
+      "scale": [
+        0.841,
+        0.841,
+        0.841
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6684,
+      "slope_deg": 37.65
+    },
+    {
+      "id": "SA_AbyssFloor_0019",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -1888.9,
+        4461.5,
+        -6488.0
+      ],
+      "height_cm": -6488.0,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        240.59
+      ],
+      "scale": [
+        0.841,
+        0.841,
+        0.841
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.8733,
+      "slope_deg": 24.9
+    },
+    {
+      "id": "SA_AbyssFloor_0020",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -6225.8,
+        -12194.7,
+        -11837.7
+      ],
+      "height_cm": -11837.7,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        345.16
+      ],
+      "scale": [
+        1.069,
+        1.069,
+        1.069
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.448,
+      "slope_deg": 2.07
+    },
+    {
+      "id": "SA_AbyssFloor_0021",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -6602.7,
+        2004.2,
+        -7459.7
+      ],
+      "height_cm": -7459.7,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        167.95
+      ],
+      "scale": [
+        0.902,
+        0.902,
+        0.902
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7705,
+      "slope_deg": 32.03
+    },
+    {
+      "id": "SA_AbyssFloor_0022",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.SM_DrownedOrgan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -4154.8,
+        3381.6,
+        -6895.5
+      ],
+      "height_cm": -6895.5,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        72.26
+      ],
+      "scale": [
+        1.354,
+        1.354,
+        1.354
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.9449,
+      "slope_deg": 19.66
+    },
+    {
+      "id": "SA_AbyssFloor_0023",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_DrownedOrgan.SM_DrownedOrgan",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        296.7,
+        -1719.1,
+        -8571.2
+      ],
+      "height_cm": -8571.2,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        345.89
+      ],
+      "scale": [
+        1.161,
+        1.161,
+        1.161
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.9367,
+      "slope_deg": 11.46
+    },
+    {
+      "id": "SA_AbyssFloor_0024",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        6711.5,
+        -4524.4,
+        -6733.1
+      ],
+      "height_cm": -6733.1,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        297.12
+      ],
+      "scale": [
+        1.195,
+        1.195,
+        1.195
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5937,
+      "slope_deg": 12.12
+    },
+    {
+      "id": "SA_AbyssFloor_0025",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -4429.8,
+        -11920.7,
+        -11482.4
+      ],
+      "height_cm": -11482.4,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        106.36
+      ],
+      "scale": [
+        1.419,
+        1.419,
+        1.419
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.4715,
+      "slope_deg": 10.72
+    },
+    {
+      "id": "SA_AbyssFloor_0026",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_SeaWeed.SM_Clutter_SeaWeed",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        5204.0,
+        5685.3,
+        -4000.0
+      ],
+      "height_cm": -4000.0,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        319.12
+      ],
+      "scale": [
+        1.272,
+        1.272,
+        1.272
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5901,
+      "slope_deg": 32.59
+    },
+    {
+      "id": "SA_AbyssFloor_0027",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -7996.9,
+        4448.3,
+        -6485.0
+      ],
+      "height_cm": -6485.0,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        263.84
+      ],
+      "scale": [
+        1.466,
+        1.466,
+        1.466
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7862,
+      "slope_deg": 5.43
+    },
+    {
+      "id": "SA_AbyssFloor_0028",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.SM_RockChunk_L",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -6581.2,
+        12155.3,
+        -4371.6
+      ],
+      "height_cm": -4371.6,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        357.33
+      ],
+      "scale": [
+        0.689,
+        0.689,
+        0.689
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.634,
+      "slope_deg": 29.08
+    },
+    {
+      "id": "SA_AbyssFloor_0029",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        2544.9,
+        -12723.9,
+        -9968.8
+      ],
+      "height_cm": -9968.8,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        191.75
+      ],
+      "scale": [
+        1.291,
+        1.291,
+        1.291
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.4664,
+      "slope_deg": 17.28
+    },
+    {
+      "id": "SA_AbyssFloor_0030",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_M.SM_RockChunk_M",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        7636.8,
+        -610.8,
+        -5870.3
+      ],
+      "height_cm": -5870.3,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        321.38
+      ],
+      "scale": [
+        0.947,
+        0.947,
+        0.947
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5923,
+      "slope_deg": 34.02
+    },
+    {
+      "id": "SA_AbyssFloor_0031",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.SM_RockChunk_L",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -522.6,
+        -9374.1,
+        -9840.5
+      ],
+      "height_cm": -9840.5,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        340.48
+      ],
+      "scale": [
+        1.041,
+        1.041,
+        1.041
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.5657,
+      "slope_deg": 15.86
+    },
+    {
+      "id": "SA_AbyssFloor_0032",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -57.8,
+        5568.1,
+        -5402.1
+      ],
+      "height_cm": -5402.1,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        280.27
+      ],
+      "scale": [
+        1.235,
+        1.235,
+        1.235
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7509,
+      "slope_deg": 21.34
+    },
+    {
+      "id": "SA_AbyssFloor_0033",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -7120.1,
+        10730.3,
+        -4944.5
+      ],
+      "height_cm": -4944.5,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        72.86
+      ],
+      "scale": [
+        0.896,
+        0.896,
+        0.896
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6832,
+      "slope_deg": 28.94
+    },
+    {
+      "id": "SA_AbyssFloor_0034",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.SM_RockChunk_L",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -8245.3,
+        4889.4,
+        -6485.0
+      ],
+      "height_cm": -6485.0,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        292.38
+      ],
+      "scale": [
+        1.204,
+        1.204,
+        1.204
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.7821,
+      "slope_deg": 5.43
+    },
+    {
+      "id": "SA_AbyssFloor_0035",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -3551.6,
+        10674.8,
+        -4608.1
+      ],
+      "height_cm": -4608.1,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        120.74
+      ],
+      "scale": [
+        1.005,
+        1.005,
+        1.005
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6927,
+      "slope_deg": 23.94
+    },
+    {
+      "id": "SA_AbyssFloor_0036",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.SM_RockChunk_L",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        2263.2,
+        -10721.7,
+        -9382.0
+      ],
+      "height_cm": -9382.0,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        169.87
+      ],
+      "scale": [
+        0.838,
+        0.838,
+        0.838
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.518,
+      "slope_deg": 19.14
+    },
+    {
+      "id": "SA_AbyssFloor_0037",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.SM_RockChunk_L",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -3428.4,
+        5989.2,
+        -6285.4
+      ],
+      "height_cm": -6285.4,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        143.77
+      ],
+      "scale": [
+        0.953,
+        0.953,
+        0.953
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.8939,
+      "slope_deg": 17.33
+    },
+    {
+      "id": "SA_AbyssFloor_0038",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_RockChunk_L.SM_RockChunk_L",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        -310.8,
+        -7224.7,
+        -9502.6
+      ],
+      "height_cm": -9502.6,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        233.88
+      ],
+      "scale": [
+        0.955,
+        0.955,
+        0.955
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6428,
+      "slope_deg": 17.29
+    },
+    {
+      "id": "SA_AbyssFloor_0039",
+      "zone": "AbyssFloor",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Clutter_PebbleSet.SM_Clutter_PebbleSet",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "position": [
+        2557.6,
+        4241.0,
+        -6445.5
+      ],
+      "height_cm": -6445.5,
+      "clearance_cm": 10.0,
+      "rotation": [
+        0.0,
+        0.0,
+        299.1
+      ],
+      "scale": [
+        1.612,
+        1.612,
+        1.612
+      ],
+      "chladni_mode": "1_2",
+      "path_falloff": 0.6991,
+      "slope_deg": 20.37
+    },
+    {
+      "id": "SA_CathedralHalo_0_000",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/BP_Jelly_Cathedral.BP_Jelly_Cathedral",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "position": [
+        -397.2,
+        -3901.5,
+        -45298.0
+      ],
+      "height_cm": -45298.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        262.33
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_0_001",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/BP_Jelly_Cathedral.BP_Jelly_Cathedral",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "position": [
+        -687.9,
+        -59.5,
+        -45298.0
+      ],
+      "height_cm": -45298.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        127.68
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_0_002",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/BP_Jelly_Cathedral.BP_Jelly_Cathedral",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "position": [
+        1939.6,
+        1494.2,
+        -45298.0
+      ],
+      "height_cm": -45298.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        51.57
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_0_003",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/BP_Jelly_Cathedral.BP_Jelly_Cathedral",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "position": [
+        808.3,
+        -495.4,
+        -45298.0
+      ],
+      "height_cm": -45298.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        29.35
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_0_004",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/BP_Jelly_Cathedral.BP_Jelly_Cathedral",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "position": [
+        -631.1,
+        -2791.5,
+        -45298.0
+      ],
+      "height_cm": -45298.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        251.08
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_0_005",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Blueprints/BP_Jelly_Cathedral.BP_Jelly_Cathedral",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "position": [
+        -1716.9,
+        -70.1,
+        -45298.0
+      ],
+      "height_cm": -45298.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        152.86
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_1_000",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_tier_0.JELLY_Cathedral_Body_SERAPH_tier_0",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Arms.MI_Jelly_Arms",
+      "position": [
+        2080.7,
+        -2213.9,
+        -14604.0
+      ],
+      "height_cm": -14604.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        328.72
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_1_001",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_tier_1.JELLY_Cathedral_Body_SERAPH_tier_1",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Arms.MI_Jelly_Arms",
+      "position": [
+        -567.4,
+        -149.0,
+        -14604.0
+      ],
+      "height_cm": -14604.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        125.31
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_1_002",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_tier_0.JELLY_Cathedral_Body_SERAPH_tier_0",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Arms.MI_Jelly_Arms",
+      "position": [
+        243.4,
+        -2265.6,
+        -14604.0
+      ],
+      "height_cm": -14604.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        280.48
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_1_003",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_tier_1.JELLY_Cathedral_Body_SERAPH_tier_1",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Arms.MI_Jelly_Arms",
+      "position": [
+        -942.2,
+        1331.5,
+        -14604.0
+      ],
+      "height_cm": -14604.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        112.44
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_1_004",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_tier_0.JELLY_Cathedral_Body_SERAPH_tier_0",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Arms.MI_Jelly_Arms",
+      "position": [
+        1167.4,
+        1201.1,
+        -14604.0
+      ],
+      "height_cm": -14604.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        61.51
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    },
+    {
+      "id": "SA_CathedralHalo_1_005",
+      "zone": "CathedralHalo",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_tier_1.JELLY_Cathedral_Body_SERAPH_tier_1",
+      "material": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Arms.MI_Jelly_Arms",
+      "position": [
+        -1173.1,
+        1084.0,
+        -14604.0
+      ],
+      "height_cm": -14604.0,
+      "clearance_cm": 0.0,
+      "rotation": [
+        0.0,
+        0.0,
+        119.97
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "chladni_mode": "2_4",
+      "path_falloff": 1.0,
+      "slope_deg": 0.0
+    }
+  ]
+}

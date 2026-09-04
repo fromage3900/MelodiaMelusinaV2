@@ -1,0 +1,2174 @@
+{
+  "schema": "melodia.sea_above_foliage.v1",
+  "version": "1.0.0",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "landscape": "CanonicalLandscape (used, never created)",
+  "sea_surface_z_uu": 13455.0,
+  "seed": 20260903,
+  "density_rule": "island cells Z>13455; phi falloff from loop; slope gate >35deg reject",
+  "height_contract": "height_cm = landscape surface; editor raycasts and snaps Z = surface + clearance",
+  "total_points": 86,
+  "zone_summaries": {
+    "IslandFoliage": {
+      "count": 64
+    },
+    "BalconyFlora": {
+      "count": 12
+    },
+    "MooringDress": {
+      "count": 10
+    }
+  },
+  "placements": [
+    {
+      "id": "FL_Island_0000",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        115968.0,
+        -5609.4,
+        45027.0
+      ],
+      "height_cm": 45027.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        290.71
+      ],
+      "scale": [
+        1.462,
+        1.462,
+        1.462
+      ],
+      "path_falloff": 0.0449,
+      "slope_deg": 24.53
+    },
+    {
+      "id": "FL_Island_0001",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        14743.7,
+        74090.3,
+        33978.7
+      ],
+      "height_cm": 33978.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        348.17
+      ],
+      "scale": [
+        1.368,
+        1.368,
+        1.368
+      ],
+      "path_falloff": 0.086,
+      "slope_deg": 34.27
+    },
+    {
+      "id": "FL_Island_0002",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        169100.6,
+        -163473.4,
+        27845.7
+      ],
+      "height_cm": 27845.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        137.45
+      ],
+      "scale": [
+        1.455,
+        1.455,
+        1.455
+      ],
+      "path_falloff": 0.0163,
+      "slope_deg": 3.65
+    },
+    {
+      "id": "FL_Island_0003",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -136618.4,
+        203318.2,
+        29919.8
+      ],
+      "height_cm": 29919.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        321.7
+      ],
+      "scale": [
+        1.114,
+        1.114,
+        1.114
+      ],
+      "path_falloff": 0.016,
+      "slope_deg": 24.91
+    },
+    {
+      "id": "FL_Island_0004",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        223964.6,
+        -116642.2,
+        40008.5
+      ],
+      "height_cm": 40008.5,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        316.82
+      ],
+      "scale": [
+        1.588,
+        1.588,
+        1.588
+      ],
+      "path_falloff": 0.0146,
+      "slope_deg": 22.32
+    },
+    {
+      "id": "FL_Island_0005",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        15302.4,
+        132061.3,
+        61428.0
+      ],
+      "height_cm": 61428.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        10.44
+      ],
+      "scale": [
+        1.481,
+        1.481,
+        1.481
+      ],
+      "path_falloff": 0.0393,
+      "slope_deg": 11.92
+    },
+    {
+      "id": "FL_Island_0006",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -161790.7,
+        222860.2,
+        23791.0
+      ],
+      "height_cm": 23791.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        62.26
+      ],
+      "scale": [
+        1.239,
+        1.239,
+        1.239
+      ],
+      "path_falloff": 0.0134,
+      "slope_deg": 26.37
+    },
+    {
+      "id": "FL_Island_0007",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        157249.2,
+        78418.1,
+        65651.9
+      ],
+      "height_cm": 65651.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        214.01
+      ],
+      "scale": [
+        1.416,
+        1.416,
+        1.416
+      ],
+      "path_falloff": 0.025,
+      "slope_deg": 3.76
+    },
+    {
+      "id": "FL_Island_0008",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        38471.6,
+        249474.9,
+        65362.2
+      ],
+      "height_cm": 65362.2,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        247.7
+      ],
+      "scale": [
+        0.897,
+        0.897,
+        0.897
+      ],
+      "path_falloff": 0.0151,
+      "slope_deg": 10.67
+    },
+    {
+      "id": "FL_Island_0009",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        155180.1,
+        109779.2,
+        66311.9
+      ],
+      "height_cm": 66311.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        273.2
+      ],
+      "scale": [
+        1.452,
+        1.452,
+        1.452
+      ],
+      "path_falloff": 0.0223,
+      "slope_deg": 7.29
+    },
+    {
+      "id": "FL_Island_0010",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -54092.5,
+        -84815.7,
+        45668.5
+      ],
+      "height_cm": 45668.5,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        166.49
+      ],
+      "scale": [
+        0.726,
+        0.726,
+        0.726
+      ],
+      "path_falloff": 0.0552,
+      "slope_deg": 30.04
+    },
+    {
+      "id": "FL_Island_0011",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -55447.7,
+        137077.5,
+        52486.1
+      ],
+      "height_cm": 52486.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        156.78
+      ],
+      "scale": [
+        0.92,
+        0.92,
+        0.92
+      ],
+      "path_falloff": 0.0344,
+      "slope_deg": 29.63
+    },
+    {
+      "id": "FL_Island_0012",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        62354.2,
+        174383.0,
+        64838.7
+      ],
+      "height_cm": 64838.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        19.2
+      ],
+      "scale": [
+        1.591,
+        1.591,
+        1.591
+      ],
+      "path_falloff": 0.0238,
+      "slope_deg": 1.48
+    },
+    {
+      "id": "FL_Island_0013",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        158148.5,
+        -76428.6,
+        38335.1
+      ],
+      "height_cm": 38335.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        303.99
+      ],
+      "scale": [
+        1.481,
+        1.481,
+        1.481
+      ],
+      "path_falloff": 0.0251,
+      "slope_deg": 20.45
+    },
+    {
+      "id": "FL_Island_0014",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -74790.0,
+        206534.1,
+        54037.4
+      ],
+      "height_cm": 54037.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        247.59
+      ],
+      "scale": [
+        0.898,
+        0.898,
+        0.898
+      ],
+      "path_falloff": 0.0189,
+      "slope_deg": 19.52
+    },
+    {
+      "id": "FL_Island_0015",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        184740.7,
+        100194.1,
+        66576.4
+      ],
+      "height_cm": 66576.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        299.13
+      ],
+      "scale": [
+        0.929,
+        0.929,
+        0.929
+      ],
+      "path_falloff": 0.0192,
+      "slope_deg": 0.41
+    },
+    {
+      "id": "FL_Island_0016",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        78912.5,
+        -56676.2,
+        21166.3
+      ],
+      "height_cm": 21166.3,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        12.88
+      ],
+      "scale": [
+        1.048,
+        1.048,
+        1.048
+      ],
+      "path_falloff": 0.0577,
+      "slope_deg": 26.59
+    },
+    {
+      "id": "FL_Island_0017",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        67270.3,
+        74410.9,
+        53453.4
+      ],
+      "height_cm": 53453.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        119.27
+      ],
+      "scale": [
+        0.829,
+        0.829,
+        0.829
+      ],
+      "path_falloff": 0.0553,
+      "slope_deg": 23.3
+    },
+    {
+      "id": "FL_Island_0018",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        70110.4,
+        -64117.5,
+        21895.4
+      ],
+      "height_cm": 21895.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        236.79
+      ],
+      "scale": [
+        1.451,
+        1.451,
+        1.451
+      ],
+      "path_falloff": 0.0595,
+      "slope_deg": 33.01
+    },
+    {
+      "id": "FL_Island_0019",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        153007.5,
+        -70228.8,
+        41949.9
+      ],
+      "height_cm": 41949.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        115.01
+      ],
+      "scale": [
+        0.917,
+        0.917,
+        0.917
+      ],
+      "path_falloff": 0.0266,
+      "slope_deg": 24.4
+    },
+    {
+      "id": "FL_Island_0020",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        84866.9,
+        81154.7,
+        59032.7
+      ],
+      "height_cm": 59032.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        90.46
+      ],
+      "scale": [
+        1.254,
+        1.254,
+        1.254
+      ],
+      "path_falloff": 0.0443,
+      "slope_deg": 12.36
+    },
+    {
+      "id": "FL_Island_0021",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        201203.3,
+        185782.9,
+        68413.2
+      ],
+      "height_cm": 68413.2,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        353.73
+      ],
+      "scale": [
+        0.881,
+        0.881,
+        0.881
+      ],
+      "path_falloff": 0.0129,
+      "slope_deg": 8.02
+    },
+    {
+      "id": "FL_Island_0022",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        197464.4,
+        182071.3,
+        66529.4
+      ],
+      "height_cm": 66529.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        339.42
+      ],
+      "scale": [
+        0.867,
+        0.867,
+        0.867
+      ],
+      "path_falloff": 0.0133,
+      "slope_deg": 8.89
+    },
+    {
+      "id": "FL_Island_0023",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        140911.6,
+        -71209.6,
+        40239.8
+      ],
+      "height_cm": 40239.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        244.31
+      ],
+      "scale": [
+        0.988,
+        0.988,
+        0.988
+      ],
+      "path_falloff": 0.0292,
+      "slope_deg": 10.26
+    },
+    {
+      "id": "FL_Island_0024",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        142061.9,
+        76171.0,
+        65090.4
+      ],
+      "height_cm": 65090.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        296.39
+      ],
+      "scale": [
+        0.761,
+        0.761,
+        0.761
+      ],
+      "path_falloff": 0.0283,
+      "slope_deg": 4.61
+    },
+    {
+      "id": "FL_Island_0025",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        1712.0,
+        163856.0,
+        63399.1
+      ],
+      "height_cm": 63399.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        325.04
+      ],
+      "scale": [
+        1.507,
+        1.507,
+        1.507
+      ],
+      "path_falloff": 0.029,
+      "slope_deg": 1.47
+    },
+    {
+      "id": "FL_Island_0026",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        206760.2,
+        238076.8,
+        67004.0
+      ],
+      "height_cm": 67004.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        303.59
+      ],
+      "scale": [
+        0.927,
+        0.927,
+        0.927
+      ],
+      "path_falloff": 0.0105,
+      "slope_deg": 7.84
+    },
+    {
+      "id": "FL_Island_0027",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        125225.4,
+        34581.2,
+        58389.0
+      ],
+      "height_cm": 58389.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        26.47
+      ],
+      "scale": [
+        0.82,
+        0.82,
+        0.82
+      ],
+      "path_falloff": 0.0384,
+      "slope_deg": 18.79
+    },
+    {
+      "id": "FL_Island_0028",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -127177.5,
+        164433.8,
+        25069.7
+      ],
+      "height_cm": 25069.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        74.02
+      ],
+      "scale": [
+        1.282,
+        1.282,
+        1.282
+      ],
+      "path_falloff": 0.0206,
+      "slope_deg": 22.21
+    },
+    {
+      "id": "FL_Island_0029",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        95890.9,
+        -66497.9,
+        35632.2
+      ],
+      "height_cm": 35632.2,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        56.34
+      ],
+      "scale": [
+        1.489,
+        1.489,
+        1.489
+      ],
+      "path_falloff": 0.0449,
+      "slope_deg": 15.87
+    },
+    {
+      "id": "FL_Island_0030",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        119360.3,
+        -10370.9,
+        43864.0
+      ],
+      "height_cm": 43864.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        96.42
+      ],
+      "scale": [
+        0.805,
+        0.805,
+        0.805
+      ],
+      "path_falloff": 0.043,
+      "slope_deg": 19.35
+    },
+    {
+      "id": "FL_Island_0031",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        80498.8,
+        -109502.5,
+        40074.0
+      ],
+      "height_cm": 40074.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        132.19
+      ],
+      "scale": [
+        1.353,
+        1.353,
+        1.353
+      ],
+      "path_falloff": 0.0363,
+      "slope_deg": 7.37
+    },
+    {
+      "id": "FL_Island_0032",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        140912.6,
+        -159374.4,
+        29867.3
+      ],
+      "height_cm": 29867.3,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        141.07
+      ],
+      "scale": [
+        1.424,
+        1.424,
+        1.424
+      ],
+      "path_falloff": 0.0189,
+      "slope_deg": 12.95
+    },
+    {
+      "id": "FL_Island_0033",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        33142.5,
+        48896.2,
+        29222.4
+      ],
+      "height_cm": 29222.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        24.67
+      ],
+      "scale": [
+        1.525,
+        1.525,
+        1.525
+      ],
+      "path_falloff": 0.1115,
+      "slope_deg": 32.13
+    },
+    {
+      "id": "FL_Island_0034",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -54382.8,
+        185704.2,
+        57904.4
+      ],
+      "height_cm": 57904.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        134.3
+      ],
+      "scale": [
+        0.74,
+        0.74,
+        0.74
+      ],
+      "path_falloff": 0.0229,
+      "slope_deg": 18.0
+    },
+    {
+      "id": "FL_Island_0035",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        58525.4,
+        -102792.1,
+        34611.9
+      ],
+      "height_cm": 34611.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        76.37
+      ],
+      "scale": [
+        1.438,
+        1.438,
+        1.438
+      ],
+      "path_falloff": 0.0442,
+      "slope_deg": 34.2
+    },
+    {
+      "id": "FL_Island_0036",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        81547.6,
+        41050.8,
+        47556.1
+      ],
+      "height_cm": 47556.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        169.61
+      ],
+      "scale": [
+        0.871,
+        0.871,
+        0.871
+      ],
+      "path_falloff": 0.0622,
+      "slope_deg": 23.29
+    },
+    {
+      "id": "FL_Island_0037",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        138501.9,
+        -29370.7,
+        46746.6
+      ],
+      "height_cm": 46746.6,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        147.54
+      ],
+      "scale": [
+        1.496,
+        1.496,
+        1.496
+      ],
+      "path_falloff": 0.0341,
+      "slope_deg": 19.14
+    },
+    {
+      "id": "FL_Island_0038",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        166433.8,
+        -107262.1,
+        32921.1
+      ],
+      "height_cm": 32921.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        11.72
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ],
+      "path_falloff": 0.021,
+      "slope_deg": 17.86
+    },
+    {
+      "id": "FL_Island_0039",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        218031.3,
+        79790.2,
+        66973.1
+      ],
+      "height_cm": 66973.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        180.3
+      ],
+      "scale": [
+        0.937,
+        0.937,
+        0.937
+      ],
+      "path_falloff": 0.0166,
+      "slope_deg": 2.1
+    },
+    {
+      "id": "FL_Island_0040",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -53705.7,
+        179386.5,
+        58397.3
+      ],
+      "height_cm": 58397.3,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        167.32
+      ],
+      "scale": [
+        1.563,
+        1.563,
+        1.563
+      ],
+      "path_falloff": 0.024,
+      "slope_deg": 17.24
+    },
+    {
+      "id": "FL_Island_0041",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        83995.5,
+        -82807.2,
+        34111.4
+      ],
+      "height_cm": 34111.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        201.71
+      ],
+      "scale": [
+        1.481,
+        1.481,
+        1.481
+      ],
+      "path_falloff": 0.0443,
+      "slope_deg": 23.84
+    },
+    {
+      "id": "FL_Island_0042",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -39095.6,
+        160107.4,
+        60856.6
+      ],
+      "height_cm": 60856.6,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        299.77
+      ],
+      "scale": [
+        1.171,
+        1.171,
+        1.171
+      ],
+      "path_falloff": 0.0291,
+      "slope_deg": 5.91
+    },
+    {
+      "id": "FL_Island_0043",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        125064.6,
+        177366.0,
+        66019.5
+      ],
+      "height_cm": 66019.5,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        250.21
+      ],
+      "scale": [
+        1.165,
+        1.165,
+        1.165
+      ],
+      "path_falloff": 0.0185,
+      "slope_deg": 2.77
+    },
+    {
+      "id": "FL_Island_0044",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        123203.1,
+        -61256.9,
+        38364.0
+      ],
+      "height_cm": 38364.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        238.43
+      ],
+      "scale": [
+        1.262,
+        1.262,
+        1.262
+      ],
+      "path_falloff": 0.0356,
+      "slope_deg": 12.89
+    },
+    {
+      "id": "FL_Island_0045",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        197369.5,
+        172401.9,
+        66508.4
+      ],
+      "height_cm": 66508.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        345.17
+      ],
+      "scale": [
+        1.521,
+        1.521,
+        1.521
+      ],
+      "path_falloff": 0.0138,
+      "slope_deg": 1.92
+    },
+    {
+      "id": "FL_Island_0046",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        148392.6,
+        190158.3,
+        65954.6
+      ],
+      "height_cm": 65954.6,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        151.27
+      ],
+      "scale": [
+        1.542,
+        1.542,
+        1.542
+      ],
+      "path_falloff": 0.0158,
+      "slope_deg": 0.59
+    },
+    {
+      "id": "FL_Island_0047",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        28599.5,
+        164347.7,
+        64098.1
+      ],
+      "height_cm": 64098.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        89.9
+      ],
+      "scale": [
+        1.017,
+        1.017,
+        1.017
+      ],
+      "path_falloff": 0.0281,
+      "slope_deg": 1.15
+    },
+    {
+      "id": "FL_Island_0048",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        89249.2,
+        75969.4,
+        59677.0
+      ],
+      "height_cm": 59677.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        171.55
+      ],
+      "scale": [
+        1.517,
+        1.517,
+        1.517
+      ],
+      "path_falloff": 0.0443,
+      "slope_deg": 10.85
+    },
+    {
+      "id": "FL_Island_0049",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -139264.1,
+        158621.2,
+        18732.6
+      ],
+      "height_cm": 18732.6,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        97.21
+      ],
+      "scale": [
+        1.16,
+        1.16,
+        1.16
+      ],
+      "path_falloff": 0.0202,
+      "slope_deg": 31.75
+    },
+    {
+      "id": "FL_Island_0050",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -66608.5,
+        132984.2,
+        48441.0
+      ],
+      "height_cm": 48441.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        263.83
+      ],
+      "scale": [
+        1.002,
+        1.002,
+        1.002
+      ],
+      "path_falloff": 0.0341,
+      "slope_deg": 28.64
+    },
+    {
+      "id": "FL_Island_0051",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        115950.9,
+        9446.1,
+        48623.6
+      ],
+      "height_cm": 48623.6,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        283.99
+      ],
+      "scale": [
+        1.087,
+        1.087,
+        1.087
+      ],
+      "path_falloff": 0.0448,
+      "slope_deg": 27.76
+    },
+    {
+      "id": "FL_Island_0052",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        112832.3,
+        -150627.0,
+        36897.1
+      ],
+      "height_cm": 36897.1,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        151.14
+      ],
+      "scale": [
+        1.235,
+        1.235,
+        1.235
+      ],
+      "path_falloff": 0.0227,
+      "slope_deg": 3.01
+    },
+    {
+      "id": "FL_Island_0053",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -105958.8,
+        244217.5,
+        48341.2
+      ],
+      "height_cm": 48341.2,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        92.14
+      ],
+      "scale": [
+        0.971,
+        0.971,
+        0.971
+      ],
+      "path_falloff": 0.0141,
+      "slope_deg": 18.07
+    },
+    {
+      "id": "FL_Island_0054",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        94311.0,
+        -110774.7,
+        36201.7
+      ],
+      "height_cm": 36201.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        63.33
+      ],
+      "scale": [
+        1.088,
+        1.088,
+        1.088
+      ],
+      "path_falloff": 0.033,
+      "slope_deg": 24.81
+    },
+    {
+      "id": "FL_Island_0055",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        225849.0,
+        59703.2,
+        67625.6
+      ],
+      "height_cm": 67625.6,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        333.59
+      ],
+      "scale": [
+        1.275,
+        1.275,
+        1.275
+      ],
+      "path_falloff": 0.0164,
+      "slope_deg": 3.66
+    },
+    {
+      "id": "FL_Island_0056",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -7221.3,
+        58546.7,
+        16840.9
+      ],
+      "height_cm": 16840.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        119.07
+      ],
+      "scale": [
+        1.283,
+        1.283,
+        1.283
+      ],
+      "path_falloff": 0.1237,
+      "slope_deg": 30.71
+    },
+    {
+      "id": "FL_Island_0057",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -170832.5,
+        249452.9,
+        23007.5
+      ],
+      "height_cm": 23007.5,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        226.21
+      ],
+      "scale": [
+        0.872,
+        0.872,
+        0.872
+      ],
+      "path_falloff": 0.0116,
+      "slope_deg": 24.42
+    },
+    {
+      "id": "FL_Island_0058",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        94533.6,
+        52906.3,
+        54995.2
+      ],
+      "height_cm": 54995.2,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        354.24
+      ],
+      "scale": [
+        1.592,
+        1.592,
+        1.592
+      ],
+      "path_falloff": 0.0494,
+      "slope_deg": 18.51
+    },
+    {
+      "id": "FL_Island_0059",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        31805.3,
+        50293.5,
+        29222.4
+      ],
+      "height_cm": 29222.4,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        347.03
+      ],
+      "scale": [
+        0.95,
+        0.95,
+        0.95
+      ],
+      "path_falloff": 0.1111,
+      "slope_deg": 32.13
+    },
+    {
+      "id": "FL_Island_0060",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/AlexandraPalm/SM_AlexandraPalm.SM_AlexandraPalm",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        86927.3,
+        -5457.3,
+        28194.5
+      ],
+      "height_cm": 28194.5,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        82.03
+      ],
+      "scale": [
+        1.37,
+        1.37,
+        1.37
+      ],
+      "path_falloff": 0.0663,
+      "slope_deg": 32.7
+    },
+    {
+      "id": "FL_Island_0061",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        35488.9,
+        125320.0,
+        61678.9
+      ],
+      "height_cm": 61678.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        102.66
+      ],
+      "scale": [
+        1.218,
+        1.218,
+        1.218
+      ],
+      "path_falloff": 0.04,
+      "slope_deg": 11.59
+    },
+    {
+      "id": "FL_Island_0062",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        59520.0,
+        170802.7,
+        64838.7
+      ],
+      "height_cm": 64838.7,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        284.63
+      ],
+      "scale": [
+        0.769,
+        0.769,
+        0.769
+      ],
+      "path_falloff": 0.0247,
+      "slope_deg": 1.48
+    },
+    {
+      "id": "FL_Island_0063",
+      "zone": "IslandFoliage",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        228389.8,
+        -63534.3,
+        55675.9
+      ],
+      "height_cm": 55675.9,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        64.79
+      ],
+      "scale": [
+        1.448,
+        1.448,
+        1.448
+      ],
+      "path_falloff": 0.0161,
+      "slope_deg": 24.94
+    },
+    {
+      "id": "FL_Balcony_000",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.SM_Flora_Fern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4878.0,
+        7551.9,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        205.89
+      ],
+      "scale": [
+        1.021,
+        1.021,
+        1.021
+      ],
+      "path_falloff": 0.5484,
+      "slope_deg": 36.6
+    },
+    {
+      "id": "FL_Balcony_001",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.SM_Flora_Fern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4151.7,
+        5359.0,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        172.6
+      ],
+      "scale": [
+        1.364,
+        1.364,
+        1.364
+      ],
+      "path_falloff": 0.6236,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_002",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed.SM_Flora_Reed",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4528.1,
+        5383.0,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        267.82
+      ],
+      "scale": [
+        1.046,
+        1.046,
+        1.046
+      ],
+      "path_falloff": 0.6141,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_003",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed.SM_Flora_Reed",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4371.7,
+        7637.7,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        261.03
+      ],
+      "scale": [
+        1.258,
+        1.258,
+        1.258
+      ],
+      "path_falloff": 0.5588,
+      "slope_deg": 36.6
+    },
+    {
+      "id": "FL_Balcony_004",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.SM_Flora_Fern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4586.5,
+        5920.8,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        26.86
+      ],
+      "scale": [
+        1.252,
+        1.252,
+        1.252
+      ],
+      "path_falloff": 0.5977,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_005",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed.SM_Flora_Reed",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4521.0,
+        5516.9,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        55.92
+      ],
+      "scale": [
+        1.188,
+        1.188,
+        1.188
+      ],
+      "path_falloff": 0.6105,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_006",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.SM_Flora_Chime",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        4608.6,
+        5590.4,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        265.26
+      ],
+      "scale": [
+        1.187,
+        1.187,
+        1.187
+      ],
+      "path_falloff": 0.6064,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_007",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed.SM_Flora_Reed",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        5744.0,
+        6852.0,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        87.65
+      ],
+      "scale": [
+        0.975,
+        0.975,
+        0.975
+      ],
+      "path_falloff": 0.55,
+      "slope_deg": 36.6
+    },
+    {
+      "id": "FL_Balcony_008",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.SM_Flora_Fern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        3992.2,
+        6742.3,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        86.34
+      ],
+      "scale": [
+        1.232,
+        1.232,
+        1.232
+      ],
+      "path_falloff": 0.5864,
+      "slope_deg": 36.6
+    },
+    {
+      "id": "FL_Balcony_009",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.SM_Flora_Fern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        5665.6,
+        5785.0,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        345.2
+      ],
+      "scale": [
+        1.243,
+        1.243,
+        1.243
+      ],
+      "path_falloff": 0.5769,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_010",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Reed.SM_Flora_Reed",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        6099.8,
+        5677.7,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        226.33
+      ],
+      "scale": [
+        1.031,
+        1.031,
+        1.031
+      ],
+      "path_falloff": 0.5692,
+      "slope_deg": 64.34
+    },
+    {
+      "id": "FL_Balcony_011",
+      "zone": "BalconyFlora",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Fern.SM_Flora_Fern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        6100.1,
+        6541.1,
+        13655.0
+      ],
+      "height_cm": 13655.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        355.62
+      ],
+      "scale": [
+        1.268,
+        1.268,
+        1.268
+      ],
+      "path_falloff": 0.5499,
+      "slope_deg": 36.6
+    },
+    {
+      "id": "FL_Mooring_000",
+      "zone": "MooringDress",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.SM_Flora_Chime",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5215.0,
+        4463.9,
+        18441.8
+      ],
+      "height_cm": 18441.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        18.87
+      ],
+      "scale": [
+        0.886,
+        0.886,
+        0.886
+      ],
+      "path_falloff": 0.9306,
+      "slope_deg": 52.55
+    },
+    {
+      "id": "FL_Mooring_001",
+      "zone": "MooringDress",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.SM_Flora_Chime",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5627.1,
+        4784.0,
+        18441.8
+      ],
+      "height_cm": 18441.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        24.51
+      ],
+      "scale": [
+        1.449,
+        1.449,
+        1.449
+      ],
+      "path_falloff": 0.9208,
+      "slope_deg": 52.55
+    },
+    {
+      "id": "FL_Mooring_002",
+      "zone": "MooringDress",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -4648.4,
+        6433.7,
+        13605.0
+      ],
+      "height_cm": 13605.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        335.3
+      ],
+      "scale": [
+        1.194,
+        1.194,
+        1.194
+      ],
+      "path_falloff": 0.9414,
+      "slope_deg": 58.52
+    },
+    {
+      "id": "FL_Mooring_003",
+      "zone": "MooringDress",
+      "mesh": "/Game/Megascans/3D_Plants/BostonFern/SM_BostonFern.SM_BostonFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5810.6,
+        5058.7,
+        18441.8
+      ],
+      "height_cm": 18441.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        201.75
+      ],
+      "scale": [
+        1.391,
+        1.391,
+        1.391
+      ],
+      "path_falloff": 0.9222,
+      "slope_deg": 52.55
+    },
+    {
+      "id": "FL_Mooring_004",
+      "zone": "MooringDress",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -4974.1,
+        4549.8,
+        18441.8
+      ],
+      "height_cm": 18441.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        89.22
+      ],
+      "scale": [
+        1.384,
+        1.384,
+        1.384
+      ],
+      "path_falloff": 0.9485,
+      "slope_deg": 52.55
+    },
+    {
+      "id": "FL_Mooring_005",
+      "zone": "MooringDress",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5960.5,
+        5166.1,
+        18441.8
+      ],
+      "height_cm": 18441.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        184.55
+      ],
+      "scale": [
+        1.048,
+        1.048,
+        1.048
+      ],
+      "path_falloff": 0.9183,
+      "slope_deg": 52.55
+    },
+    {
+      "id": "FL_Mooring_006",
+      "zone": "MooringDress",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.SM_Flora_Chime",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5138.4,
+        7073.4,
+        13605.0
+      ],
+      "height_cm": 13605.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        67.87
+      ],
+      "scale": [
+        1.188,
+        1.188,
+        1.188
+      ],
+      "path_falloff": 0.9064,
+      "slope_deg": 58.52
+    },
+    {
+      "id": "FL_Mooring_007",
+      "zone": "MooringDress",
+      "mesh": "/Game/Megascans/3D_Plants/BeechFern/SM_BeechFern.SM_BeechFern",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -4379.4,
+        6925.2,
+        13605.0
+      ],
+      "height_cm": 13605.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        92.37
+      ],
+      "scale": [
+        1.3,
+        1.3,
+        1.3
+      ],
+      "path_falloff": 0.9019,
+      "slope_deg": 58.52
+    },
+    {
+      "id": "FL_Mooring_008",
+      "zone": "MooringDress",
+      "mesh": "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties.SM_CloverVarieties",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -4498.7,
+        4927.2,
+        18441.8
+      ],
+      "height_cm": 18441.8,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        68.44
+      ],
+      "scale": [
+        1.214,
+        1.214,
+        1.214
+      ],
+      "path_falloff": 0.9953,
+      "slope_deg": 52.55
+    },
+    {
+      "id": "FL_Mooring_009",
+      "zone": "MooringDress",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Flora_Chime.SM_Flora_Chime",
+      "material": "/Game/Megascans/3D_Assets/ForestRockFormation/MI_ForestRockFormation_01.MI_ForestRockFormation_01",
+      "position": [
+        -5660.2,
+        6604.2,
+        13605.0
+      ],
+      "height_cm": 13605.0,
+      "clearance_cm": 5.0,
+      "rotation": [
+        0.0,
+        0.0,
+        72.3
+      ],
+      "scale": [
+        0.949,
+        0.949,
+        0.949
+      ],
+      "path_falloff": 0.9267,
+      "slope_deg": 58.52
+    }
+  ]
+}
