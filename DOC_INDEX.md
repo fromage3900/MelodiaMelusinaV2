@@ -8,22 +8,27 @@
 
 ## 𝄞 Start here — in this order
 
+The repository is intentionally deep, but the **front door is small**. Do not mistake research volume for current product scope.
+
 | Order | Read this | Why |
 |:---:|---|---|
-| **♪ 1** | [`README.md`](README.md) | What Melodia is, in plain language. |
-| **♫ 2** | [`Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`](Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md) | The game-as-a-place / endless-journey north star. |
-| **♬ 3** | [`Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`](Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md) | Reveries, Episodes, Chapters, Movements, Monolith Events, Volumes. |
-| **𝄞 4** | [`Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`](Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md) | Gifts, mail, archives, Voyages, and the no-FOMO rule. |
-| **♪ 5** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can actually be claimed today. |
-| **♫ 6** | [`TODO.md`](TODO.md) | The current production score. |
-| **♬ 7** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Who owns what and how state moves. |
-| **𝄞 8** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, browser labs, package flow. |
-| **♪ 8a** | [`Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md`](Docs/Plans/LAPTOP_WORKSTATION_SETUP_AND_OFFLOAD_2026-09-02.md) | Second-machine onboarding, measured hardware profile, offload lanes, and handoff gates. |
-| **♫ 8b** | [`melusinashouseplan.md`](melusinashouseplan.md) | **Hermes-first Blender 5.2 Geometry Nodes build score for Melusina's House**, with attached pink/blue round-Baroque reference boards. |
-| **♬ 8c** | [`Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md`](Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md) | PC Music / hyperpop stem archaeology, commercial-safe sample lanes, licensing guardrails, and Melodia sound-design translation. |
-| **♫ 9** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) + [`TEST_READY.md`](TEST_READY.md) | P0 scope + bounded evidence. |
+| **1** | [`README.md`](README.md) | Project identity and one-page orientation. |
+| **2** | [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) | Professor/reviewer route: playable proof, runtime architecture, evidence levels, boundaries, and 5–10 minute demo. |
+| **3** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can honestly be claimed now. |
+| **4** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) | The bounded First Dream / Sea Above P0 scope. |
+| **5** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
+| **6** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Architecture detail only when needed. |
+| **7** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, and validation commands. |
 
-If you are an agent: **do not start by searching every old handoff.** Read the current front door first, then follow links into the system you are actually touching.
+### Supporting context — not required reading
+
+- `Docs/Strategy/` — long-term product and chapter architecture.
+- `Docs/Evidence/` — proof packets and captured verification.
+- `Docs/Plans/` — implementation plans, including Melusina House and tooling work.
+- `Docs/Research/` and `research/` — exploratory R&D; useful when a specific question needs it.
+- dated handoffs / audits — historical memory, not current authority unless explicitly referenced by a front-door document.
+
+If you are an agent or reviewer: **do not start by searching every old handoff, research packet, or experiment.** Read the seven-item front door above, then follow links into the specific system you actually need.
 
 ---
 
@@ -173,6 +178,11 @@ Keep the history. Read it through the current north-star docs.
 Before adding another tool, check the current research/discovery indexes.
 
 - **Current environment hero packet:** [`melusinashouseplan.md`](melusinashouseplan.md) — Blender 5.2 Geometry Nodes build plan, Borromini/Rococo shape research, Hermes execution contract, and attached references.
+- **Melusina house Phase 2 / asset families:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — compose the existing 239-builder Melodia Studio vocabulary before promoting house-specific tools.
+- **Melusina house Phase 2 / rooms + acoustics:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — room wrappers, semantic attributes and acoustic debug grammar.
+- **Melusina house Phase 3 / furniture:** [`Docs/Plans/MELUSINAS_HOUSE_GN_FURNITURE_AND_DOMESTIC_PROPS_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_FURNITURE_AND_DOMESTIC_PROPS_2026-09-03.md) — domestic prop genome driven by `CRV_MH_MelusinaLoop`.
+- **Melusina house Phase 3 / materials:** [`Docs/Plans/MELUSINAS_HOUSE_MATERIAL_SHADER_GENOME_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_MATERIAL_SHADER_GENOME_2026-09-03.md) — bounded Blender/Unreal material families and handoff rules.
+- **Melusina house Phase 3 / Unreal handoff:** [`Docs/Plans/MELUSINAS_HOUSE_BLENDER_TO_UNREAL_NANITE_ASSEMBLY_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_BLENDER_TO_UNREAL_NANITE_ASSEMBLY_2026-09-03.md) — export-copy, Nanite, collision, assembly and reimport proof.
 - **Current audio source crate:** [`Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md`](Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md) — official/artist-hosted stem archaeology, Splice commercial-use lane, provenance rules, and Melodia production-language notes.
 
 The rule remains:
