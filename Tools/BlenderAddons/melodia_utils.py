@@ -1,67 +1,79 @@
 # melodia_utils - shared pure-Python for all Melodia Blender addons
 # Copyright (c) 2026 fromage3900 / Melodia Project - MIT
-# C: main authority. No G: drive fallback.
+#
+# Cross-workstation rule:
+# The active checkout is authority. Drive letters are not authority.
 
 from __future__ import annotations
 
 import os
-import sys
 from pathlib import Path
 
-
-# ------------------------------------------------------------------ C main
-
-# Canonical C: authority. Environment variable may override for CI/tests,
-# but the on-disk default is C:\EnvironmentPortfolio\BS_GodFile.
-_CANONICAL_C_ROOT = Path(r"C:\EnvironmentPortfolio\BS_GodFile")
-
-# Sentinel that proves we found the repo (Content/Melodia exists).
 _SENTINEL = Path("Content") / "MelodiaIntegration" / "MIDI"
 
 
-def _is_c_authority_path(path: str | Path) -> bool:
-    """Return True only for paths resolved on the canonical C: authority."""
+def _looks_like_repo(path: Path) -> bool:
+    """Return True when path looks like the MelodiaMelusinaV2 checkout."""
     try:
-        return Path(path).expanduser().resolve().drive.lower() == "c:"
+        p = path.expanduser().resolve()
     except (OSError, RuntimeError, ValueError):
-        text = str(path).lower()
-        return text.startswith("c:\\") or text.startswith("c:/")
+        return False
+
+    return (
+        (p / "BS_GodFile.uproject").is_file()
+        and (p / "Tools").is_dir()
+        and (p / "deploy").is_dir()
+    )
+
+
+def _walk_for_repo(start: Path) -> Path | None:
+    try:
+        resolved = start.expanduser().resolve()
+    except (OSError, RuntimeError, ValueError):
+        return None
+
+    candidates = [resolved] + list(resolved.parents)
+    for candidate in candidates:
+        if _looks_like_repo(candidate):
+            return candidate
+    return None
 
 
 def repo_root() -> Path:
-    """Resolve BS_GodFile root - C: is authority.
+    """Resolve the active Melodia checkout without assuming a drive letter.
 
     Order:
-      1. $MELODIA_PROJECT_ROOT if it points at a valid repo
-      2. Canonical C: path if it exists
-      3. Walk up from this file until sentinel is found
-    Never returns a G: path.
+      1. explicit MELODIA_PROJECT_ROOT / legacy MELODIA_PROJECT_ROOT_C
+      2. checkout containing this module
+      3. current working directory's checkout
+      4. deterministic module-relative fallback
+
+    A valid laptop checkout is just as authoritative as the PC checkout.
     """
-    # 1) explicit env
     env = os.environ.get("MELODIA_PROJECT_ROOT") or os.environ.get("MELODIA_PROJECT_ROOT_C")
     if env:
-        p = Path(env).expanduser().resolve()
-        # An override must not redirect Blender to a second worktree.
-        if _is_c_authority_path(p) and ((p / _SENTINEL).is_dir() or (p / _SENTINEL).exists()):
-            return p
-        if _is_c_authority_path(p) and p.is_dir():
-            # accept if it looks like BS_GodFile even without MIDI yet
-            if (p / "Tools" / "BlenderAddons").is_dir():
-                return p
+        configured = Path(env).expanduser()
+        if _looks_like_repo(configured):
+            return configured.resolve()
+        raise RuntimeError(
+            f"MELODIA_PROJECT_ROOT points to a non-Melodia checkout: {configured}"
+        )
 
-    # 2) canonical C
-    if _CANONICAL_C_ROOT.is_dir() and (_CANONICAL_C_ROOT / "Tools" / "BlenderAddons").is_dir():
-        return _CANONICAL_C_ROOT.resolve()
+    from_module = _walk_for_repo(Path(__file__).resolve().parent)
+    if from_module is not None:
+        return from_module
 
-    # 3) walk up from this file
-    here = Path(__file__).resolve()
-    for parent in [here.parent] + list(here.parents):
-        if (parent / _SENTINEL).exists() or (parent / "Tools" / "BlenderAddons").is_dir():
-            # Heuristic: must be named BS_GodFile or contain that sentinel
-            if _is_c_authority_path(parent) and (parent.name == "BS_GodFile" or (parent / _SENTINEL).exists()):
-                return parent
-    # Fallback - the canonical path even if not yet on disk (lets callers report health)
-    return _CANONICAL_C_ROOT
+    from_cwd = _walk_for_repo(Path.cwd())
+    if from_cwd is not None:
+        return from_cwd
+
+    fallback = Path(__file__).resolve().parents[2]
+    if _looks_like_repo(fallback):
+        return fallback
+
+    raise RuntimeError(
+        "Could not resolve Melodia project root from environment, module location, or cwd."
+    )
 
 
 def studio_root() -> Path:
@@ -84,8 +96,6 @@ def presets_path() -> Path:
     return studio_root() / "midi_presets.json"
 
 
-# ------------------------------------------------------------------ health
-
 def health_check() -> dict:
     """Offline health snapshot - no bpy required."""
     root = repo_root()
@@ -93,28 +103,23 @@ def health_check() -> dict:
     voxel_dir = voxel_tool_dir()
     studio = studio_root()
 
-    # MIDI presence
     midi_ok = midi_dir.is_dir()
     midi_count = 0
     has_default = False
     if midi_ok:
-        for p in midi_dir.rglob("*.mid*"):
+        for _ in midi_dir.rglob("*.mid*"):
             midi_count += 1
         has_default = (midi_dir / "128BPMarpeggiomelody.mid").exists()
 
-    # Voxel tool
     voxel_ok = (voxel_dir / "midi_voxel_v3.py").exists()
-
-    # Presets file (optional - defaults are in code)
     presets_exists = presets_path().exists()
 
-    # Authority guard - should never be off C:
-    is_non_c_drive = not _is_c_authority_path(root)
-    is_g_drive = str(root).lower().startswith("g:\\") or str(root).lower().startswith("g:/")
+    root_text = str(root).lower()
+    drive = root.drive.lower() if root.drive else ""
+    is_non_c_drive = bool(drive and drive != "c:")
+    is_g_drive = drive == "g:" or root_text.startswith("g:/") or root_text.startswith("g:\\")
 
     issues: list[str] = []
-    if is_non_c_drive:
-        issues.append("repo_root resolved off C: - C: is authority; set MELODIA_PROJECT_ROOT=C:\\EnvironmentPortfolio\\BS_GodFile")
     if not midi_ok:
         issues.append(f"MIDI dir missing: {midi_dir}")
     elif not has_default:
@@ -124,11 +129,12 @@ def health_check() -> dict:
     if not (root / "Tools" / "BlenderAddons").is_dir():
         issues.append(f"BlenderAddons missing under {root}")
 
-    ok = not issues and not is_non_c_drive and midi_ok and voxel_ok
-
     return {
-        "ok": ok,
+        "ok": not issues,
         "repo_root": str(root),
+        "authority": "active_checkout",
+        "drive": drive,
+        # Retained for legacy callers as diagnostics only; non-C is no longer unhealthy.
         "is_g_drive": is_g_drive,
         "is_non_c_drive": is_non_c_drive,
         "midi_dir": str(midi_dir),
@@ -149,23 +155,20 @@ def discover_midi(extra_dirs: list[str | Path] | None = None) -> list[Path]:
     roots: list[Path] = [midi_content_dir(), repo_root() / "Imports" / "Audio"]
     if extra_dirs:
         roots.extend(Path(p) for p in extra_dirs)
+
     found: list[Path] = []
     seen: set[str] = set()
     for root in roots:
         if not root.is_dir():
             continue
-        for p in root.rglob("*.mid"):
-            key = os.path.normcase(str(p.resolve()))
-            if key in seen:
-                continue
-            seen.add(key)
-            found.append(p)
-        for p in root.rglob("*.midi"):
-            key = os.path.normcase(str(p.resolve()))
-            if key in seen:
-                continue
-            seen.add(key)
-            found.append(p)
+        for pattern in ("*.mid", "*.midi"):
+            for p in root.rglob(pattern):
+                key = os.path.normcase(str(p.resolve()))
+                if key in seen:
+                    continue
+                seen.add(key)
+                found.append(p)
+
     return sorted(found)
 
 
@@ -175,16 +178,21 @@ def addon_versions(addons_root: str | Path | None = None) -> list[dict]:
     out: list[dict] = []
     if not root.is_dir():
         return out
+
+    import re
+
     for child in sorted(root.iterdir()):
         init = child / "__init__.py"
         if not init.exists():
             continue
         text = init.read_text(encoding="utf-8", errors="ignore")
-        # crude parse of bl_info version tuple
-        import re
-        m = re.search(r'"version"\s*:\s*\(([^)]+)\)', text)
-        ver = m.group(1).strip() if m else "?"
-        name_m = re.search(r'"name"\s*:\s*"([^"]+)"', text)
-        name = name_m.group(1) if name_m else child.name
-        out.append({"folder": child.name, "name": name, "version": ver, "path": str(child)})
+        version_match = re.search(r'"version"\s*:\s*\(([^)]+)\)', text)
+        name_match = re.search(r'"name"\s*:\s*"([^"]+)"', text)
+        out.append({
+            "folder": child.name,
+            "name": name_match.group(1) if name_match else child.name,
+            "version": version_match.group(1).strip() if version_match else "?",
+            "path": str(child),
+        })
+
     return out
