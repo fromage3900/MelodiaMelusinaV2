@@ -29,10 +29,9 @@ table for a one-line fix; you are proposing a design where the ask was a repair.
 ---
 
 > This file is auto-loaded by Claude at session start. Read it before doing anything.
-> **Read next:** [`_SESSION_HANDOFF.md`](_SESSION_HANDOFF.md) (current state, overwritten each
-> session) · [`_DECISION_LOG.md`](_DECISION_LOG.md) (settled questions — check before
-> re-litigating) · [`_ROADBLOCKS_2026-07-31.md`](_ROADBLOCKS_2026-07-31.md) (what is actually
-> blocked, and which docs currently lie).
+> **Read next:** [`AGENT_START_HERE.md`](AGENT_START_HERE.md). It is the 2026-09-04 discovery authority.
+> Then follow the current front door into `MELODIA_TECHNICAL_VERTICAL_SLICE.md`, `CURRENT_STATE.md`, and `TODO.md`.
+> **Do not use deleted `_SESSION_HANDOFF.md` / `_TASK_QUEUE.md` or `_ROADBLOCKS_2026-07-31.md` as current status.**
 
 ## ⏱ Read dates before you trust a doc
 
