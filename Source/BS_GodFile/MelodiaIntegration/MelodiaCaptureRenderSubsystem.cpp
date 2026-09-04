@@ -7,10 +7,13 @@
 #include "Engine/TextureRenderTarget2D.h"
 #include "GameFramework/PlayerController.h"
 #include "ImageUtils.h"
+#include "Misc/FileHelper.h"
+#include "HAL/FileManager.h"
+#include "Serialization/MemoryWriter.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/Paths.h"
 #include "Misc/DateTime.h"
-#include "SceneCaptureComponent2D.h"
+#include "Components/SceneCaptureComponent2D.h"
 
 namespace
 {
@@ -19,7 +22,7 @@ namespace
 	// a fuzzy compare would blind exactly the failure mode this asserts for.
 	struct FMelodiaCanonicalBlendable
 	{
-		LPCTSTR MaterialToken;
+		const TCHAR* MaterialToken;
 		float Weight;
 	};
 
@@ -182,7 +185,13 @@ bool UMelodiaCaptureRenderSubsystem::CaptureToFile(const FString& LevelName, con
 	// FImageUtils::ExportRenderTarget2DAsPNG writes LDR sRGB bytes; the HDR
 	// RTF_RGBA16f path is preserved for downstream CaptureToRenderTarget users,
 	// while the file artifact is the standard PNG evidence format.
-	if (!FImageUtils::ExportRenderTarget2DAsPNG(Target, FilePath))
+	// ExportRenderTarget2DAsPNG takes an FArchive&, not a path (ImageUtils.h:420),
+	// so encode into a memory buffer and write that buffer to disk.
+	IFileManager::Get().MakeDirectory(*Directory, /*Tree*/ true);
+	TArray64<uint8> PngBytes;
+	FMemoryWriter64 PngWriter(PngBytes);
+	if (!FImageUtils::ExportRenderTarget2DAsPNG(Target, PngWriter)
+		|| !FFileHelper::SaveArrayToFile(PngBytes, *FilePath))
 	{
 		UE_LOG(LogTemp, Error, TEXT("[Capture] PNG export failed: %s"), *FilePath);
 		return false;
@@ -220,7 +229,9 @@ bool UMelodiaCaptureRenderSubsystem::IsPPVStackCanonical(FString& OutReason) con
 		return false;
 	}
 
-	const TArray<FWeightedBlendable>& Blendables = Found->Settings.WeightedBlendables;
+	// FWeightedBlendables is a struct wrapping the array, not the array itself;
+	// its TArray<FWeightedBlendable> member is named Array (Scene.h:691).
+	const TArray<FWeightedBlendable>& Blendables = Found->Settings.WeightedBlendables.Array;
 	if (Blendables.Num() == 0)
 	{
 		OutReason = TEXT("ppv_nikkidream_no_blendables");
@@ -247,8 +258,13 @@ bool UMelodiaCaptureRenderSubsystem::IsPPVStackCanonical(FString& OutReason) con
 				else
 				{
 					bMatched = false;
-					OutReason = FString::Printf(TEXT("weight_drift_%s_%.3f_expected_%.3f"),
-						Canonical.MaterialToken, Blendable.Weight, Canonical.Weight);
+					// Built by concatenation rather than FString::Printf: UE 5.8's
+					// consteval format-string sanitiser rejects this call site (C7595),
+					// and the same pattern below hit it too. SanitizeFloat keeps the
+					// three-decimal intent without going through the checked format.
+					OutReason = FString(TEXT("weight_drift_")) + FString(Canonical.MaterialToken)
+						+ TEXT("_") + FString::SanitizeFloat(Blendable.Weight)
+						+ TEXT("_expected_") + FString::SanitizeFloat(Canonical.Weight);
 				}
 				break;
 			}
@@ -257,7 +273,7 @@ bool UMelodiaCaptureRenderSubsystem::IsPPVStackCanonical(FString& OutReason) con
 		{
 			if (!OutReason.StartsWith(TEXT("weight_drift_")))
 			{
-				OutReason = FString::Printf(TEXT("missing_blendable_%s"), Canonical.MaterialToken);
+				OutReason = FString(TEXT("missing_blendable_")) + FString(Canonical.MaterialToken);
 			}
 			bAllMatched = false;
 		}
