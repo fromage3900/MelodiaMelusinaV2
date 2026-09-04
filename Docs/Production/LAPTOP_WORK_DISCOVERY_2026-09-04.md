@@ -110,21 +110,30 @@ Before saying any of the following:
 
 you must compare `main` against the relevant laptop/recovery branch.
 
-## Safe extraction lane
+## Current safe house handoff lane
 
-**Draft recovery PR #70** — `recover(laptop): isolate current Melusina House GN work`
+**Draft PR #72** — `recover(house): current-main PC/laptop handoff with V7 base`
 
-Branch: `integration/laptop-house-recovery-20260904`
+Branch: `integration/house-handoff-20260904`
 
-This PR was cut from current `main` and copies the current house/GN code, house build scripts, recovered session notes, and V7 plan while deliberately excluding:
+This is now the preferred PC/laptop baton for current Melusina House work. It starts from the 2026-09-04 synchronized `main` baseline and contains:
 
-- broad `Exports/` deletions;
-- quarantine/source-quarantine deletions;
-- bulk historical house Blender binaries;
-- unrelated Splice research;
-- recovery-branch gitignore/pre-commit changes.
+- the isolated current house/GN code and build scripts;
+- the recovered session notes and V7 plan;
+- the latest canonical `Saved/MelusinasHouse/MelusinasHouse_V7_Base.blend` as one small Git LFS object (275,749 bytes).
 
-Use PR #70 as the preferred review surface for the recovered **text/code** work. Keep the original recovery branch as the binary/history source until the remaining Blender/LFS assets are reviewed separately.
+It deliberately excludes the broad `Exports/` and quarantine deletions and the historical house binary sweep.
+
+Use:
+
+```powershell
+git switch integration/house-handoff-20260904
+.\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
+```
+
+Only one workstation edits the V7 `.blend` at a time; lock it through Git LFS before editing.
+
+PR #70 is closed/superseded. The original `recovery/laptop-main-20260904` remains history/recovery only.
 
 ## Promotion policy
 
