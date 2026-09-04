@@ -95,6 +95,9 @@ npm-debug.log*
 _staging/
 Products/_Staging/
 deploy/*.pid
+# Ollama daemon fleet stop-semaphores (runtime flags, never content)
+deploy/OLLAMA_*_STOP
+deploy/STOP_ALL
 *.blend1
 nul
 target_file.md
