@@ -60,6 +60,8 @@ The still-open boundary is deeper persistence/idempotency/package closure, not w
 
 ## 4. Laptop / multi-workstation discovery rule
 
+**Both workstations should use `main` as the shared baseline unless the owner explicitly assigns a feature branch.** The recovered V7 house baseline was promoted to `main` via PR #82.
+
 Before opening Blender/Rider/Unreal on either workstation, run `.\deploy\sync_workstation.ps1`. A handoff is not complete until its report says `sync_state = synced`.
 
 **Never equate “not on main” with “not committed.”**
