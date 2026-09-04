@@ -201,6 +201,16 @@ if (-not $SkipFetch) {
 
 $remoteBranchRef = "refs/remotes/$Remote/$currentBranch"
 $hasRemoteBranch = -not [string]::IsNullOrWhiteSpace($currentBranch) -and (Test-RemoteRef $remoteBranchRef)
+$currentBranchPublished = $false
+$currentRemoteHead = ""
+
+if ($hasRemoteBranch) {
+    $remoteHeadResult = Invoke-Git -Arguments @("rev-parse", "$Remote/$currentBranch") -AllowFailure
+    if ($remoteHeadResult.Code -eq 0) {
+        $currentRemoteHead = $remoteHeadResult.Text
+        $currentBranchPublished = $currentRemoteHead -eq $headBefore
+    }
+}
 
 if ($Target -eq "Main") {
     $trackingRef = "$Remote/main"
@@ -224,16 +234,26 @@ $switchedToMain = $false
 $uniqueCommitsToMain = $null
 
 # Safe normalization: when normal workstation sync targets main, a clean stale
-# branch with ZERO commits unique to origin/main can be switched back to main.
-# Any unique commit blocks the switch so unpublished work cannot disappear.
+# branch may be returned to main when its work is already recoverable.
+#
+# Safe proof A: zero commits unique to origin/main.
+# Safe proof B: same-name remote branch exists and HEAD exactly equals that remote
+#               branch, so every unique commit is already preserved on GitHub.
 if ($Target -eq "Main" -and $currentBranch -ne "main" -and -not $dirty) {
     $uniqueResult = Invoke-Git -Arguments @("rev-list", "--count", "$Remote/main..HEAD") -AllowFailure
     if ($uniqueResult.Code -eq 0 -and $uniqueResult.Text -match "^\d+$") {
         $uniqueCommitsToMain = [int]$uniqueResult.Text
     }
 
-    if ($Mode -eq "Sync" -and $uniqueCommitsToMain -eq 0) {
-        Write-Host "Current branch '$currentBranch' has no commits unique to $Remote/main; switching safely to main..." -ForegroundColor Cyan
+    $safeToReturnMain = ($uniqueCommitsToMain -eq 0) -or $currentBranchPublished
+
+    if ($Mode -eq "Sync" -and $safeToReturnMain) {
+        if ($currentBranchPublished -and $uniqueCommitsToMain -gt 0) {
+            Write-Host "Current branch '$currentBranch' has $uniqueCommitsToMain commit(s) unique to main, but HEAD is fully published at $Remote/$currentBranch; switching safely to main..." -ForegroundColor Cyan
+        } else {
+            Write-Host "Current branch '$currentBranch' has no commits unique to $Remote/main; switching safely to main..." -ForegroundColor Cyan
+        }
+
         Invoke-Git -Arguments @("switch", "main") | Out-Null
         $switchedToMain = $true
         $currentBranch = (Invoke-Git -Arguments @("branch", "--show-current")).Text
@@ -253,10 +273,12 @@ if ($dirty) {
     $recommended = "Commit the current machine's intended work to its lane branch and push it before switching machines. This script will not hide or overwrite dirty work."
 } elseif ($Target -eq "Main" -and $currentBranch -ne "main") {
     $state = "wrong-branch"
-    if ($uniqueCommitsToMain -gt 0) {
-        $recommended = "Cross-workstation baseline requires main, but '$currentBranch' has $uniqueCommitsToMain commit(s) not reachable from origin/main. Preserve/push those commits before switching branches."
+    if ($uniqueCommitsToMain -gt 0 -and -not $currentBranchPublished) {
+        $recommended = "Cross-workstation baseline requires main, but '$currentBranch' has $uniqueCommitsToMain unique commit(s) and HEAD is not fully published to $Remote/$currentBranch. Push/preserve the branch first; no automatic switch will occur."
+    } elseif ($currentBranchPublished) {
+        $recommended = "This branch is fully published at $Remote/$currentBranch. Run -Mode Sync to preserve it remotely and return this machine safely to main."
     } else {
-        $recommended = "Cross-workstation baseline requires branch 'main'. This machine is on '$currentBranch'. Run -Mode Sync for a safe automatic return when the branch has zero unique commits."
+        $recommended = "Cross-workstation baseline requires main. Run -Mode Sync for a safe automatic return when no unique local work would be lost."
     }
 } elseif ($branchDelta.Ahead -gt 0 -and $branchDelta.Behind -gt 0) {
     $state = "diverged"
@@ -333,6 +355,8 @@ $report = [ordered]@{
     target = $Target
     tracking_ref = $trackingRef
     has_same_name_remote_branch = $hasRemoteBranch
+    current_branch_published = $currentBranchPublished
+    current_remote_head = $currentRemoteHead
     head_before = $headBefore
     head_after = $headAfter
     hooks_path = $hooksPath
@@ -379,6 +403,7 @@ Write-Section "Git state" $state $stateColor
 Write-Section "Ahead / behind" "$($branchDelta.Ahead) / $($branchDelta.Behind)"
 Write-Section "vs origin/main" "$($mainDelta.Ahead) / $($mainDelta.Behind)"
 Write-Section "Dirty" ([string]$dirty)
+Write-Section "Branch published" ([string]$currentBranchPublished)
 Write-Section "Switched to main" ([string]$switchedToMain)
 if ($null -ne $uniqueCommitsToMain) { Write-Section "Unique vs main" ([string]$uniqueCommitsToMain) }
 Write-Section "LFS profile" $LfsProfile
