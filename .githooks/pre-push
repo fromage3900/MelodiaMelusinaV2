@@ -28,7 +28,7 @@ cat >"$input_file"
 
 allowed_branch() {
     case "$1" in
-        feature/*|fix/*|docs/*|cleanup/*|collab/*|codex/*|recovery/*|cursor/*) return 0 ;;
+        feature/*|fix/*|docs/*|cleanup/*|collab/*|integration/*|codex/*|recovery/*|cursor/*) return 0 ;;
         *) return 1 ;;
     esac
 }
@@ -45,7 +45,7 @@ while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
                 exit 1
             fi
             if ! allowed_branch "$branch"; then
-                printf '%s\n' "BLOCKED: branch '$branch' must start with feature/, fix/, docs/, cleanup/, collab/, codex/, recovery/, or cursor/." >&2
+                printf '%s\n' "BLOCKED: branch '$branch' must start with feature/, fix/, docs/, cleanup/, collab/, integration/, codex/, recovery/, or cursor/." >&2
                 exit 1
             fi
             ;;

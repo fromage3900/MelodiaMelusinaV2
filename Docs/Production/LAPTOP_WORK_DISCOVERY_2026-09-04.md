@@ -2,17 +2,35 @@
 
 **Purpose:** Stop remote agents from losing committed work simply because it has not reached `main`.
 
+## Two-workstation sync command
+
+Before opening Blender/Rider/Unreal on either machine:
+
+```powershell
+.\deploy\sync_workstation.ps1
+```
+
+Safe fast-forward + lane-specific hydration:
+
+```powershell
+.\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
+```
+
+Full contract: `Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md`.
+
+A machine is not considered handed off while the report says `dirty`, `ahead`, `behind`, `diverged`, or `lfs-error`.
+
 > **Front-door cleanup note:** the ahead/behind counts below are a captured discovery snapshot from before the 2026-09-04 documentation cleanup advanced `main`. Re-run the comparison before promotion. The branch contents and merge warning remain the important facts.
 
 ## Current important remote branches
 
 ### `recovery/laptop-main-20260904`
 
-At the 2026-09-04 discovery pass:
+At the latest 2026-09-04 remote comparison:
 
 - **ahead of `main`: 13 commits**
-- **behind `main`: 0**
-- status: **ahead**
+- **behind `main`: 24**
+- status: **diverged**
 - latest recovered commit: `bd870dd694403bb17c0f541289a8aba7a0794158`
 
 This is the most important current laptop recovery source.
