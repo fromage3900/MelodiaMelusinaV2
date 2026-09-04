@@ -51,6 +51,18 @@ By default the sync tool targets `origin/main`, not the current feature branch. 
 
 Use `-Target Current` only when you intentionally want to verify a named feature branch.
 
+### Safe automatic return to main
+
+`-Mode Sync` may move a clean non-main checkout back to `main` only when:
+
+```text
+git rev-list --count origin/main..HEAD == 0
+```
+
+That means the current branch has **zero commits not already reachable from origin/main**.
+
+If the count is non-zero, the script refuses to switch branches and reports the number of unique commits that must be preserved/pushed/reviewed first.
+
 Run this before opening Rider, Blender, or Unreal:
 
 ```powershell
