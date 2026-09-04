@@ -13,10 +13,15 @@
 #   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
 #   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile Gameplay
 #   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile Full
+# Explicit feature-branch check only:
+#   .\deploy\sync_workstation.ps1 -Target Current
 [CmdletBinding()]
 param(
     [ValidateSet("Check", "Sync")]
     [string]$Mode = "Check",
+
+    [ValidateSet("Main", "Current")]
+    [string]$Target = "Main",
 
     [ValidateSet("None", "Core", "House", "Gameplay", "Full")]
     [string]$LfsProfile = "None",
@@ -196,7 +201,16 @@ if (-not $SkipFetch) {
 
 $remoteBranchRef = "refs/remotes/$Remote/$currentBranch"
 $hasRemoteBranch = -not [string]::IsNullOrWhiteSpace($currentBranch) -and (Test-RemoteRef $remoteBranchRef)
-$trackingRef = if ($hasRemoteBranch) { "$Remote/$currentBranch" } else { "$Remote/main" }
+
+if ($Target -eq "Main") {
+    $trackingRef = "$Remote/main"
+} else {
+    if (-not $hasRemoteBranch) {
+        throw "Target=Current requires a same-name remote branch for '$currentBranch'. Push the branch first or use -Target Main."
+    }
+    $trackingRef = "$Remote/$currentBranch"
+}
+
 $hasTrackingRef = Test-RemoteRef "refs/remotes/$trackingRef"
 
 if (-not $hasTrackingRef) {
@@ -212,6 +226,9 @@ $recommended = ""
 if ($dirty) {
     $state = "dirty"
     $recommended = "Commit the current machine's intended work to its lane branch and push it before switching machines. This script will not hide or overwrite dirty work."
+} elseif ($Target -eq "Main" -and $currentBranch -ne "main") {
+    $state = "wrong-branch"
+    $recommended = "Cross-workstation baseline requires branch 'main'. This machine is on '$currentBranch'. Do not pull/rebase/reset it. Preserve/push any needed work, then switch to main and rerun sync."
 } elseif ($branchDelta.Ahead -gt 0 -and $branchDelta.Behind -gt 0) {
     $state = "diverged"
     $recommended = "Do not pull/rebase/reset automatically. Push the local commits to a recovery/collab branch if needed, then compare the two lines and reconcile explicitly."
@@ -252,7 +269,7 @@ if ($Mode -eq "Sync" -and $LfsProfile -ne "None") {
         $lfsPullSucceeded = $false
         $state = "lfs-unavailable"
         $recommended = "Install Git LFS before hydrating binary assets."
-    } elseif ($state -in @("dirty", "diverged", "needs-review")) {
+    } elseif ($state -in @("dirty", "diverged", "needs-review", "wrong-branch", "ahead")) {
         $lfsPullSucceeded = $false
         $recommended += " LFS hydration was skipped because Git state is not safe."
     } else {
@@ -284,6 +301,7 @@ $report = [ordered]@{
     remote = $Remote
     remote_url = $remoteUrl
     branch = $currentBranch
+    target = $Target
     tracking_ref = $trackingRef
     has_same_name_remote_branch = $hasRemoteBranch
     head_before = $headBefore
@@ -322,6 +340,7 @@ Write-Host " MELODIA TWO-WORKSTATION SYNC " -ForegroundColor Magenta
 Write-Host "==========================================" -ForegroundColor Magenta
 Write-Section "Machine" $MachineName
 Write-Section "Branch" $currentBranch
+Write-Section "Target" $Target
 Write-Section "Tracking" $trackingRef
 Write-Section "HEAD" $headAfter
 $stateColor = if ($state -eq "synced") { [ConsoleColor]::Green } elseif ($state -eq "ahead") { [ConsoleColor]::Yellow } else { [ConsoleColor]::Red }
