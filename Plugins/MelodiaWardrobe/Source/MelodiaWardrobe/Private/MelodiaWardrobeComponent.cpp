@@ -431,11 +431,13 @@ void UMelodiaWardrobeComponent::ApplyBodyRegionVisibility()
 
 	for (const FName Region : DesiredHides)
 	{
-		// Presence check, not a guess: GetMorphTargetIndex is INDEX_NONE when the
-		// body mesh has not been re-authored with this region's hide morph yet.
+		// Presence check, not a guess: FindMorphTarget returns null when the body
+		// mesh has not been re-authored with this region's hide morph yet.
 		// That is an authoring-lag condition (region declared, morph pending), so
 		// it degrades to "no collapse" -- never to a section-index hack.
-		if (BodyAsset->GetMorphTargetIndex(Region) == INDEX_NONE)
+		// (USkeletalMesh has no GetMorphTargetIndex in UE 5.8; the members are
+		// FindMorphTarget / FindMorphTargetAndIndex, SkeletalMesh.h:2757-2758.)
+		if (BodyAsset->FindMorphTarget(Region) == nullptr)
 		{
 			if (!WarnedMissingBodyRegionMorphs.Contains(Region))
 			{
