@@ -220,6 +220,31 @@ if (-not $hasTrackingRef) {
 $branchDelta = Get-AheadBehind -Left "HEAD" -Right $trackingRef
 $mainDelta = Get-AheadBehind -Left "HEAD" -Right "$Remote/main"
 
+$switchedToMain = $false
+$uniqueCommitsToMain = $null
+
+# Safe normalization: when normal workstation sync targets main, a clean stale
+# branch with ZERO commits unique to origin/main can be switched back to main.
+# Any unique commit blocks the switch so unpublished work cannot disappear.
+if ($Target -eq "Main" -and $currentBranch -ne "main" -and -not $dirty) {
+    $uniqueResult = Invoke-Git -Arguments @("rev-list", "--count", "$Remote/main..HEAD") -AllowFailure
+    if ($uniqueResult.Code -eq 0 -and $uniqueResult.Text -match "^\d+$") {
+        $uniqueCommitsToMain = [int]$uniqueResult.Text
+    }
+
+    if ($Mode -eq "Sync" -and $uniqueCommitsToMain -eq 0) {
+        Write-Host "Current branch '$currentBranch' has no commits unique to $Remote/main; switching safely to main..." -ForegroundColor Cyan
+        Invoke-Git -Arguments @("switch", "main") | Out-Null
+        $switchedToMain = $true
+        $currentBranch = (Invoke-Git -Arguments @("branch", "--show-current")).Text
+        $remoteBranchRef = "refs/remotes/$Remote/$currentBranch"
+        $hasRemoteBranch = Test-RemoteRef $remoteBranchRef
+        $trackingRef = "$Remote/main"
+        $branchDelta = Get-AheadBehind -Left "HEAD" -Right $trackingRef
+        $mainDelta = Get-AheadBehind -Left "HEAD" -Right "$Remote/main"
+    }
+}
+
 $state = "unknown"
 $recommended = ""
 
@@ -228,7 +253,11 @@ if ($dirty) {
     $recommended = "Commit the current machine's intended work to its lane branch and push it before switching machines. This script will not hide or overwrite dirty work."
 } elseif ($Target -eq "Main" -and $currentBranch -ne "main") {
     $state = "wrong-branch"
-    $recommended = "Cross-workstation baseline requires branch 'main'. This machine is on '$currentBranch'. Do not pull/rebase/reset it. Preserve/push any needed work, then switch to main and rerun sync."
+    if ($uniqueCommitsToMain -gt 0) {
+        $recommended = "Cross-workstation baseline requires main, but '$currentBranch' has $uniqueCommitsToMain commit(s) not reachable from origin/main. Preserve/push those commits before switching branches."
+    } else {
+        $recommended = "Cross-workstation baseline requires branch 'main'. This machine is on '$currentBranch'. Run -Mode Sync for a safe automatic return when the branch has zero unique commits."
+    }
 } elseif ($branchDelta.Ahead -gt 0 -and $branchDelta.Behind -gt 0) {
     $state = "diverged"
     $recommended = "Do not pull/rebase/reset automatically. Push the local commits to a recovery/collab branch if needed, then compare the two lines and reconcile explicitly."
@@ -316,6 +345,8 @@ $report = [ordered]@{
     main_behind = $mainDelta.Behind
     sync_state = $state
     recommended_action = $recommended
+    switched_to_main = $switchedToMain
+    unique_commits_to_main = $uniqueCommitsToMain
     fast_forward_applied = $fastForwardApplied
     lfs = [ordered]@{
         version = $lfsVersion.Text
@@ -348,6 +379,8 @@ Write-Section "Git state" $state $stateColor
 Write-Section "Ahead / behind" "$($branchDelta.Ahead) / $($branchDelta.Behind)"
 Write-Section "vs origin/main" "$($mainDelta.Ahead) / $($mainDelta.Behind)"
 Write-Section "Dirty" ([string]$dirty)
+Write-Section "Switched to main" ([string]$switchedToMain)
+if ($null -ne $uniqueCommitsToMain) { Write-Section "Unique vs main" ([string]$uniqueCommitsToMain) }
 Write-Section "LFS profile" $LfsProfile
 Write-Section "LFS hydrated" "$($lfsState.Hydrated) / $($lfsState.Total)"
 $lfsColor = if ($lfsState.Missing -eq 0) { [ConsoleColor]::Green } else { [ConsoleColor]::Yellow }
