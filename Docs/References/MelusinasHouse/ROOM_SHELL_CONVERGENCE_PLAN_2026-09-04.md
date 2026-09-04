@@ -12,7 +12,7 @@ shell surfaces, not two.
 | 1 | `MEL_mh6_room_shell` | `melodia_gn/melodia_house.py:59` | Genome shell: box → bevel → SDF → boolean openings → fillet → bend. Now WORKS (v0_final_verify PASS). | **PROMOTE: THE exterior shell authority** |
 | 2 | `MEL_greybox_room_kit` | `melodia_gn/polyhedra_gn.py:215` | Hollow box (outer cube minus inner void). Builds the EXTERIOR shell of every city house cell (`melodia_city_gen.py:379`) and the §16 interior rooms (`melusina_house.py:169,187`) and `MEL_music_room_shell` (`music_heroes.py:799`). | **DEMOTE: interiors/corridors only** |
 | 3 | `MEL_music_room_shell` | `melodia_gn/music_heroes.py:779` | Greybox shell + openings + dado staff band. A third shell that wraps #2. | **FOLD: keep id, re-nest onto mh6** |
-| 4 | Monolith greybox dispatch | `surreal_architecture_gen.py` `_KIT_DISPATCH` | Fourth surface, bmesh. | **LEAVE: different job (scene ops), not a GN shell** — documented, not merged |
+| 4 | Monolith `surreal_architecture_gen.py` (v2.131, 38,596 lines) | `apply_geometry_nodes_to_object:18206` dispatches a 209-id `arch_type` enum to ~274 builder functions that author GN nodes into a per-object `SurrealArch_<obj>` tree. Its room shell `_gb_rect_room_shell:4500` (slab walls + cutter boolean) serves GREYBOX_ROOM, GB_ROOM_COMPOSITE, GB_COMBAT_ROOM, GREYBOX_TOWER, GB_ELEVATOR_SHAFT, MODULAR_HOUSE. Roofs: FOUR surfaces (build_roof_tiles GN, _curved_roof GN:11967, _conical_roof_swept bmesh:14518, _build_curved_roof bmesh:36575). Extension seam exists: `kit_registration.py::register_kit` + `catalog_dispatch.py` inject builders into `_KIT_DISPATCH`/`_CATALOG_DISPATCH` without touching the file; `melodia_gn_route.py` routes monolith ids to MEL_ builders. | **CONVERGE VIA SEAMS, NOT EDITS** (see Monolith section) |
 
 ## Why mh6 is the authority
 
@@ -57,14 +57,46 @@ shell surfaces, not two.
 2. Gate: `MEL_music_room_shell` evals with dado band present, door+window
    cuts visible in slice probe, vert count same order as before.
 
-### C4 — mesh-boolean shell parity check
+### C4 — Monolith room-shell family convergence (read the file first)
+The monolith is NOT a bmesh-only surface — its 274 builders author GN nodes
+into per-object `SurrealArch_<obj>` trees (v2.132 preserves user-edited trees).
+Its room shell `_gb_rect_room_shell:4500` (floor slab + 4 wall slabs +
+cutter boolean) is a third shell construction, used by GREYBOX_ROOM,
+GB_ROOM_COMPOSITE, GB_COMBAT_ROOM, GREYBOX_TOWER, GB_ELEVATOR_SHAFT, and
+MODULAR_HOUSE's wall faces.
+1. Do NOT edit inside the 38k-line file. Converge through the sanctioned
+   seams: `kit_registration.py::register_kit` (injects a builder into
+   `_KIT_DISPATCH`/`_CATALOG_DISPATCH` with param-spec stubs) and
+   `melodia_gn_route.py` (routes monolith ids → MEL_ builders).
+2. Route the monolith's shell ids onto `MEL_mh6_room_shell` (or the
+   converged cell) via melodia_gn_route; register an mh6-backed kit builder
+   under `GREYBOX_ROOM`/`GB_ROOM_COMPOSITE` through register_kit if the
+   scene workflow needs a callable attr rather than a route.
+3. Gate: spawn GREYBOX_ROOM through the monolith's own picker/operator path,
+   realize, bbox within tolerance of the pre-convergence piece; slice probe
+   shows door/window cuts; room-graph presets (greybox_graph.py) still spawn
+   and snap.
+4. Keep the bmesh specials (pagodas, hanok, Escher, Klein bottle — ~89
+   bmesh sites) as-is: they are one-off object generators, not shells.
+
+### C5 — Roof authority (four surfaces, pick per role)
+Roofs are FOUR, not three: `build_roof_tiles` (GN, 10436), `_curved_roof`
+(GN helper, 11967), `_conical_roof_swept` (bmesh, 14518), `_build_curved_roof`
++ `_add_roof_modifier_stack` (bmesh object-level, 36575/36813 — the V6/7
+staging authority). Declare roles in ADDON_AUTHORITY: object-level roof =
+`_build_curved_roof` (kept, used by SurrealRoof_* staging); GN in-tree roof
+= exactly ONE of build_roof_tiles / _curved_roof, the other demoted or
+aliased; _conical_roof_swept stays only where pagodas/towers call it.
+No mesh changes — an ownership declaration plus grep gate.
+
+### C6 — mesh-boolean shell parity check
 Greybox shell uses mesh DIFFERENCE boolean; mh6 uses SDF. After C2/C3,
 grep confirms `MEL_greybox_room_kit` is nested ONLY by interior/corridor
 builders. `grep -rn "MEL_greybox_room_kit" melodia_gn/ | grep -v polyhedra_gn`
 must show only: `melusina_house.py` (interiors), `melodia_city_gen.py`
 (plan interiors/corridors), `music_heroes.py` — none of them as exterior.
 
-### C5 — Presets, docs, ledger
+### C7 — Presets, docs, ledger
 1. `presets.py` entries for `MEL_city_house_cell` / `MEL_music_room_shell`
    updated if param names shifted (they do not — adapter hides it).
 2. `Docs/ADDON_AUTHORITY_2026-09-03.md` — new row: "Room shell (exterior):
@@ -76,7 +108,9 @@ must show only: `melusina_house.py` (interiors), `melodia_city_gen.py`
 
 - No deletion of greybox — it stays healthy for interiors/corridors.
 - No new builders. The adapter is a wiring helper, not a fifth shell.
-- No monolith surgery — the `_KIT_DISPATCH` surface gets a doc note only.
+- No edits inside surreal_architecture_gen.py — convergence goes through
+  kit_registration / catalog_dispatch / melodia_gn_route seams only.
+- No bmesh-special rewrites (pagodas, hanok, Escher, Zen kits).
 - No param renames — the adapter absorbs name differences; downstream
   presets and stage scripts keep working.
 
