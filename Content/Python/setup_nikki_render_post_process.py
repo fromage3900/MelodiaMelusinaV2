@@ -1,6 +1,6 @@
 """Configure the canonical post-process stack: ink outline + grade + starry night.
 
-Editor-only. Covers all render test levels, gameplay levels, and L_Template.
+Editor-only. Covers gameplay certification levels plus lookdev/regression levels.
 
 Blendable stack (per-level, via PPV_NikkiDream):
   1. dreamprint_ink — ink + vine + halftone outline replacement (weight 1.0)
@@ -17,56 +17,20 @@ already has its grade overridden, a normal run leaves the existing tuning
 alone and only attaches any missing blendable materials. Pass force=True
 to explicitly reassert the canonical preset over existing tuning.
 
-NOT unconditionally idempotent on values as of 2026-08-01: if a level's
-PPV_NikkiDream already has its grade overridden (override_bloom_intensity is
-True), a normal run leaves the existing tuning alone and only attaches any
-missing blendable materials. This was a real bug -- the previous version
-silently reset every level's grade to the canonical preset on every run,
-which is how L_FallenMoon's prior tuning got clobbered without any record of
-what it was. Pass force=True to main() to explicitly reassert the canonical
-preset over existing tuning (e.g. for a level being configured for the first
-time in a way that skipped the guard, or a deliberate reset).
-
 Color-grading overrides (saturation/contrast/shadow-highlight gain) were
-REMOVED 2026-08-01: they duplicated M_Master_Toon_Universal's own "Nikki"
-parameter group (DreamSaturation/DreamContrast/PastelLift/RimIntensity/etc,
-see setup_master_universal.py), which is the project's real, already-built
-grading system and defaults to neutral (0.0) by design. Stacking a second,
-uncoordinated color grade on top of it via this PPV is what made the render
-levels look dark/muddy -- confirmed by the owner toggling the volume
-invisible and getting the correct look back. Scene-wide cohesion belongs on
-MPC_Melodia_Palette (setup_portfolio_mpc.py), which the master material
-already reads from, not on this volume. This volume now only carries what
-post-process is actually for: bloom/vignette/grain/CA as lens character,
-kept near-neutral by default.
-
-Blendable stack replaced 2026-08-18: old storybook_outline removed,
-dreamprint_ink takes over as the ink+vine+halftone outline replacement.
-Starry Night sky (MI_StarryNight_Hero) added as the third blendable,
-overlaying UDS via the M_PP_StarryNightOverlay_Candidate.
-
-2026-08-01 (later): blendables are resolved from a preference list per role.
-The explicit GameplayStandard profile instances are preferred, with the legacy
-shared MI and foliage-safe/root masters retained only as fallbacks. Per-profile
-tuning stays on instances; shared graph math stays on the authoritative masters.
+removed because they duplicated M_Master_Toon_Universal's own Nikki parameter
+group. Scene-wide cohesion belongs on MPC_Melodia_Palette; this volume carries
+post-process lens character and the configured blendables.
 """
 from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-LEVELS = (
-    "/Game/EnvSandbox/Environments/L_KaleidoNave",
-    "/Game/EnvSandbox/Environments/L_FallenMoon",
-    "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "/Game/ZenForestTest",
-    "/Game/EnvSandbox/_Template/L_Template",
-)
-# Each role lists candidate paths in preference order; the first that loads wins.
-# Instances are preferred over their master so per-level/per-shot grade tuning never
-# requires editing the shared master material (which is also what makes the master
-# safe to edit concurrently -- overrides for parameters the master later renames or
-# drops are simply ignored by the instance).
+from ppv_contract import GAMEPLAY_PPV_CERTIFICATION_LEVELS, LOOKDEV_REGRESSION_LEVELS
+
+LEVELS = GAMEPLAY_PPV_CERTIFICATION_LEVELS + LOOKDEV_REGRESSION_LEVELS
+
 BLENDABLES = (
     ("dreamprint_ink", (
         "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_PortfolioHero",
@@ -127,7 +91,6 @@ def _configure(unreal, level: str, force: bool = False) -> dict:
                 break
         else:
             missing.append({"role": role, "candidates": list(candidates)})
-    # Outline at full weight, grade restrained to 0.69, starry night at full weight.
     role_weights = {"dreamprint_ink": 1.0, "melusina_grade": 0.69, "starry_night": 1.0}
     settings.set_editor_property("weighted_blendables", unreal.WeightedBlendables(
         [unreal.WeightedBlendable(role_weights.get(role, 1.0), mat)
@@ -141,9 +104,6 @@ def _configure(unreal, level: str, force: bool = False) -> dict:
 def main(force: bool = False) -> int:
     import unreal
     results = [_configure(unreal, level, force=force) for level in LEVELS]
-    # "blendables_only" is a SUCCESS state, not a failure: it means the level already had
-    # its grade tuned, the guard correctly left that tuning alone, and only the blendable
-    # stack was refreshed. Omitting it here made a fully-successful run report ok=False.
     report = {"ok": all(r["status"] in ("configured", "blendables_only", "missing") for r in results),
               "timestamp": datetime.now(timezone.utc).isoformat(), "levels": results}
     REPORT.parent.mkdir(parents=True, exist_ok=True)
