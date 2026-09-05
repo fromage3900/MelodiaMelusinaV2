@@ -14,6 +14,7 @@
 | **P0 gates** | 8/8 active gates `pass`. |
 | **Tests** | 524/524 pass. |
 | **Packaged route** | verified, both legs, 0 fatals. |
+| **Toon master convergence** | **DONE** — `M_Master_Toon_Universal_Alpha` has zero instances; all 109 reparented onto the opaque master (`44398419`). Melusina's dress now exposes all 15 `Cymatic_*`/`Audio*` params. |
 
 **Build root cause, for the record:** `LPCTSTR MaterialToken` silently dropped a struct member in
 `MelodiaCaptureRenderSubsystem.cpp`. Two earlier `FString::Printf` rewrites blamed a UE 5.8
@@ -62,18 +63,12 @@ checked the repo off `main` onto its own branch and committed mid-operation last
 
 ## Next, in the order I would take it
 
-1. **Universal / Universal_Alpha master convergence** — analysed, not executed. The Alpha master
-   carries **none** of the 14 `Cymatic_*`/`Audio*` parameters, so its 109 instances — including
-   Melusina's `SW_Dress_P01..P48` — are structurally excluded from the audio reactivity that is
-   otherwise working. Opaque master has 2205 instances, Alpha 109: keep the opaque one, port the 8
-   Alpha-only params (`OpacityMap`/`OpacityStrength`/`bUseOpacityMap` + 5 `Cloth_*`) additively so
-   the 2205 are untouched, then reparent the 109 with per-instance `BlendMode=Masked` + `TwoSided`.
-2. **Re-export `W_Glacier_Rock` from Gaea.** Unblocks the rock layer *and* the close-range detail
+1. **Re-export `W_Glacier_Rock` from Gaea.** Unblocks the rock layer *and* the close-range detail
    texture, which is gated behind it.
-3. **PCG volume layout** — four concentric 600–800k volumes over a 250k landscape, so no zone owns
+2. **PCG volume layout** — four concentric 600–800k volumes over a 250k landscape, so no zone owns
    a style. Cheap and non-destructive to fix. `Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md`
    §4a.
-4. **Find whatever writes junk into the landscape material instance.** Resetting values it will
+3. **Find whatever writes junk into the landscape material instance.** Resetting values it will
    overwrite again is treating a symptom.
 
 ---
@@ -85,3 +80,4 @@ checked the repo off `main` onto its own branch and committed mid-operation last
 | `Content/Python/lookdev_capture.py` | Deterministic level captures via `SceneCapture2D`. `take_high_res_screenshot` needs a game viewport and silently writes nothing from an editor-only session. |
 | `Content/Python/audit_gaea_wiring.py` | Traces each Gaea mask parameter to the `LandscapeLayerSample` it gates and whether it reaches the output. |
 | `Content/Python/import_gaea_landscape_paint.py` | Imports Gaea weightmaps into landscape **paint** layers — the half of the pipeline that texture import does not cover. |
+| `Content/Python/converge_toon_universal.py` | The Universal/Universal_Alpha convergence, in three verifiable steps. Kept because the same pattern applies to any future master merge. |

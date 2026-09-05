@@ -443,8 +443,9 @@
     "live_results_widget_path": "RESOLVED in source 2026-08-28: MelodiaUIBridgeSubsystem::Initialize() backfills LiveResultsWidgetPath (cpp:131-133) the same way it backfills MelodiaBattleWidgetPath. Requires the closed-editor rebuild to take effect.",
     "universal_luxury_wbp_system": "SCAFFOLDED 2026-08-28: All 30 Melodia WBP atoms mapped from Figma Grandmaster (tokens.json, Batch N/O ornate filigrees) to /Game/Melodia/UI/ with 4-layer depth hierarchy (Void Plate, Iridescent Sheen, Champagne Gold Filigree, Active Content). T3D specs generated in specs/ui/, design token palette exported to Saved/Audit/melodia_ui_tokens_unreal.json, and system audit written to Saved/Audit/melodia_universal_wbp_system.json.",
     "editor_build": "GREEN as of 2026-09-04 (582fa914). Root cause was LPCTSTR dropping a struct member in MelodiaCaptureRenderSubsystem.cpp, not a format-string or UE 5.8 issue.",
-    "audio_reactivity": "WORKS and verified live in PIE (b1cac649). The clock now lives on the GameMode (5fea50c8) so every level reacts. Gap: M_Master_Toon_Universal_Alpha carries none of the Cymatic_*/Audio* parameters, so its 109 instances - Melusina's dress among them - are excluded until the master convergence is executed.",
-    "git_authority": "Local main carries this work; origin/main is a diverged lineage and does NOT. Read recovery/main-merged-20260904 for the off-machine copy."
+    "audio_reactivity": "WORKS and verified live in PIE (b1cac649). Clock lives on the GameMode (5fea50c8) so every level reacts. The former Alpha-master gap is CLOSED at 44398419 - all 109 instances, Melusina's dress included, now carry the Cymatic_*/Audio* parameters.",
+    "git_authority": "Local main carries this work; origin/main is a diverged lineage and does NOT. Read recovery/main-merged-20260904 for the off-machine copy.",
+    "toon_master": "ONE Toon Universal master. M_Master_Toon_Universal_Alpha is orphaned (0 instances) and must not be reparented to. Masked content uses per-instance BlendMode/TwoSided overrides."
   },
   "vendor_compatibility_track": {
     "status": "HOLD_VENDOR_INPUTS_MISSING",
@@ -653,8 +654,19 @@
       "Something rewrites MI_Glacier_Landscape_Layered: Gaea_SnowWeight found at -14.94 and Gaea_RockWeight at 6.43 AFTER both were set to 1.0 and read back as 1.0. Writer unidentified. Master Saturate clamps limit the damage and the weights were measured to make no visual difference.",
       "Look-dev captures on LV_SeaAbove_Prototype are not trustworthy: two captures with identical material state differ substantially (colour spread 25.1 vs 15.9). Ultra Dynamic Sky time-of-day is not reflected to Python and cannot be pinned or read. Pin the sky before trusting any A/B on this map.",
       "MaterialEditingLibrary parameter writes do not reach the renderer until update_material_instance() is called; read-backs succeed while the render is stale. This invalidated several measurements.",
-      "PCG volume layout: four concentric 600-800k volumes over a 250k landscape, unaddressed. See Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md section 4a.",
-      "Universal / Universal_Alpha master convergence analysed, not executed. Opaque master has 2205 instances, Alpha has 109; keep the opaque master and reparent the 109 with per-instance BlendMode=Masked + TwoSided overrides."
-    ]
+      "PCG volume layout: four concentric 600-800k volumes over a 250k landscape, unaddressed. See Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md section 4a."
+    ],
+    "toon_master_convergence": {
+      "status": "DONE",
+      "commits": [
+        "3fdb762f",
+        "44398419"
+      ],
+      "result": "M_Master_Toon_Universal_Alpha has ZERO instances. All 109 reparented onto M_Master_Toon_Universal with per-instance BlendMode=Masked + TwoSided=true overrides, which is what lets one Opaque master serve masked content.",
+      "ported": "OpacityMask chain (OpacityMap -> TextureSample.TextureObject -> * OpacityStrength -> bUseOpacityMap switch) and the MF_ClothWindDrape WPO chain behind bClothWind_Active. Both default OFF so the 2205 pre-existing opaque instances render exactly as before. Master stayed BLEND_Opaque / one-sided; 1274 -> 1280 expressions.",
+      "payoff": "SW_Dress_P01 now exposes all 15 Cymatic_*/Audio* parameters it could never see on the Alpha master. Melusina wardrobe, Atlantis foliage and the jellies are inside the audio-reactive system instead of structurally excluded.",
+      "verified": "MI_AtlasLeafA renders foliage; SW_Dress_P01 renders solid, not clipped; MI_SeaAbove_Cloth_Banner/_Shroud had bClothWind_Active switched on so they did not silently lose their wind WPO.",
+      "residual": "M_Master_Toon_Universal_Alpha is orphaned but left on disk - deleting a .uasset is owner-ask-first. Nothing should be reparented to it."
+    }
   }
 }
