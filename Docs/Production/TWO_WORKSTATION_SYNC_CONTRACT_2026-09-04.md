@@ -47,6 +47,23 @@ If this fails, Git may be synchronized while Blender is still executing stale ad
 
 ## One command first
 
+By default the sync tool targets `origin/main`, not the current feature branch. A machine on any branch other than `main` reports `wrong-branch` for the normal cross-workstation check.
+
+Use `-Target Current` only when you intentionally want to verify a named feature branch.
+
+### Safe automatic return to main
+
+`-Mode Sync` may move a clean non-main checkout back to `main` when **either** recovery proof is true:
+
+1. `git rev-list --count origin/main..HEAD == 0` — there are no commits unique to the current branch; **or**
+2. the current branch has a same-name remote branch and local `HEAD` exactly equals `origin/<current-branch>` — any unique commits are already preserved on GitHub.
+
+This matters for old laptop/recovery branches whose useful changes were squash-promoted to `main`: their commit graph can remain unique even though the important work has landed.
+
+If the branch has unique commits **and** local HEAD is not fully published to its same-name remote branch, the script refuses to switch and tells you to push/preserve the branch first.
+
+No branch is deleted by this normalization. The remote recovery branch remains available for archaeology.
+
 Run this before opening Rider, Blender, or Unreal:
 
 ```powershell
@@ -139,19 +156,27 @@ Never use “I committed it locally” as a handoff. The other machine cannot se
 | `lfs-error` | Git refs may match but binary hydration failed | fix LFS before opening the affected asset |
 | `lfs-unavailable` | Git LFS is missing | install/fix LFS first |
 
-## Current Melusina House handoff
+## Current Melusina House baseline
 
-The original recovered laptop branch is:
+The recovered V7 house work is now on `main` via PR #82.
 
-`recovery/laptop-main-20260904`
+Current canonical Blender source:
 
-It contains useful current house work mixed with broad historical deletions. Do not use it as the everyday shared lane.
+`RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend`
 
-Preferred review/handoff surface:
+Therefore the default workstation contract is deliberately simple:
 
-`integration/laptop-house-recovery-20260904` / draft PR #70
+```text
+PC main == origin/main == laptop main
+```
 
-That branch contains the isolated current house/GN text+code work. The latest V7 Blender base is a small LFS object on the original recovery branch and should be promoted intentionally as the canonical binary rather than copying the entire historical `Saved/MelusinasHouse/` directory.
+Do not switch to the old recovery/integration house branches for ordinary work. They are historical recovery surfaces only.
+
+Before editing the V7 source:
+
+```powershell
+git lfs lock RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend
+```
 
 ## Local-only art is not a Git failure
 

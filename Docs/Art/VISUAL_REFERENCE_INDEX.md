@@ -7,6 +7,20 @@
 
 ## Committed visual canon on `main`
 
+## Melusina House reference boards
+
+**Canonical folder:** `Docs/References/MelusinasHouse/`
+
+These are committed, immediately viewable working boards on `main` and should be the first stop for Melusina House visual/modeling work:
+
+- `Docs/References/MelusinasHouse/REF_01_EXTERIOR_ROUND_BAROQUE_PINK_BLUE.jpg` — exterior silhouette, pearl-pink / blue-lavender / gold palette, tower balance, shell/ornament language.
+- `Docs/References/MelusinasHouse/REF_02_GEOMETRY_NODES_BUILD_SHEET.jpg` — Geometry Nodes decomposition and procedural-vs-hero-authored breakdown.
+- `Docs/References/MelusinasHouse/REF_03_CUTAWAY_INTERIOR_FLOW.jpg` — cutaway, room flow, stair/tower relationships, interior-light rhythm.
+- `Docs/References/MelusinasHouse/README.md` — canonical usage order and interpretation notes.
+
+Important reconciliation note: old laptop PR #81 stored 130-byte Git LFS pointer forms of these JPEG paths. The pointer metadata declares the same nominal image sizes as the viewable copies already on `main`; do **not** replace the current visible working copies merely because a recovery branch shows different blob SHAs.
+
+
 ### Mara Elettra Vell + Ebenezer
 
 **Primary canonical image**
@@ -83,9 +97,10 @@ When asked for a visual reference:
 
 1. check this index;
 2. check the exact listed path;
-3. check `Docs/Art/Images/`;
-4. check relevant recovery/laptop branches;
-5. only then search dated research/handoff prose.
+3. check `Docs/References/` (especially `Docs/References/MelusinasHouse/` for house work);
+4. check `Docs/Art/Images/`;
+5. check relevant recovery/laptop branches only if the current indexes explicitly say work is stranded there;
+6. only then search dated research/handoff prose.
 
 Classify the result as one of:
 

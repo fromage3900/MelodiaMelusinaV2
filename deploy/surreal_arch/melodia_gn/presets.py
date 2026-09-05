@@ -41,6 +41,78 @@ PRESET_SOURCE = "melodia_gn.presets"
 # -----------------------------------------------------------------------------
 
 BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
+    "MEL_mh_foundation_pod": {
+        "label": "MH Foundation Pod",
+        "preset_labels": {
+            "COMPACT_DOLLHOUSE": "Compact Dollhouse Pod",
+            "SALON_CORE": "Salon Core Pod",
+            "BLUE_ROOM_BASE": "Blue Room Base",
+        },
+        "preset_descriptions": {
+            "COMPACT_DOLLHOUSE": "Small intimate rounded room mass.",
+            "SALON_CORE": "Default central oval salon footprint.",
+            "BLUE_ROOM_BASE": "Lower, broader base for the water-grotto lane.",
+        },
+        "presets": {
+            "COMPACT_DOLLHOUSE": {"Width": 3.8, "Depth": 3.2, "Foundation Height": 0.32, "Bevel": 0.05},
+            "SALON_CORE": {"Width": 5.4, "Depth": 4.8, "Foundation Height": 0.36, "Bevel": 0.06},
+            "BLUE_ROOM_BASE": {"Width": 5.0, "Depth": 4.2, "Foundation Height": 0.28, "Bevel": 0.08},
+        },
+    },
+    "MEL_mh_foundation_cluster": {
+        "label": "MH Foundation Cluster",
+        "preset_labels": {
+            "ROUND_BAROQUE_DEFAULT": "Round Baroque Default",
+            "COMPACT_DOLLHOUSE": "Compact Dollhouse",
+            "WIDE_SALON": "Wide Salon",
+        },
+        "preset_descriptions": {
+            "ROUND_BAROQUE_DEFAULT": "Current concept-board lower-house massing.",
+            "COMPACT_DOLLHOUSE": "Tighter intimate plan for fast silhouette tests.",
+            "WIDE_SALON": "Broader social heart with wider central oval.",
+        },
+        "presets": {
+            "ROUND_BAROQUE_DEFAULT": {"Center Width": 5.4, "Center Depth": 4.8, "Side Width": 3.7, "Side Depth": 3.4, "Side Spread": 4.1, "Rear Width": 4.2, "Rear Depth": 3.2, "Rear Offset": 3.8, "Foundation Height": 0.36, "Bevel": 0.06},
+            "COMPACT_DOLLHOUSE": {"Center Width": 4.6, "Center Depth": 4.0, "Side Width": 3.0, "Side Depth": 2.8, "Side Spread": 3.4, "Rear Width": 3.6, "Rear Depth": 2.8, "Rear Offset": 3.1, "Foundation Height": 0.32, "Bevel": 0.05},
+            "WIDE_SALON": {"Center Width": 6.6, "Center Depth": 5.2, "Side Width": 3.9, "Side Depth": 3.5, "Side Spread": 4.8, "Rear Width": 4.6, "Rear Depth": 3.4, "Rear Offset": 4.0, "Foundation Height": 0.38, "Bevel": 0.07},
+        },
+    },
+    "MEL_mh_foundation_porch": {
+        "label": "MH Foundation Porch",
+        "preset_labels": {
+            "CRESCENT_ENTRY": "Crescent Entry",
+            "SEA_TERRACE": "Sea Terrace",
+            "SMALL_LANDING": "Small Landing",
+        },
+        "preset_descriptions": {
+            "CRESCENT_ENTRY": "Default soft oval arrival platform.",
+            "SEA_TERRACE": "Wider, deeper porch for the water-facing side.",
+            "SMALL_LANDING": "Compact entry proof for fast blockouts.",
+        },
+        "presets": {
+            "CRESCENT_ENTRY": {"Porch Width": 5.2, "Porch Depth": 2.3, "Front Offset": 4.4, "Foundation Height": 0.28, "Bevel": 0.07},
+            "SEA_TERRACE": {"Porch Width": 6.4, "Porch Depth": 3.0, "Front Offset": 4.8, "Foundation Height": 0.30, "Bevel": 0.08},
+            "SMALL_LANDING": {"Porch Width": 3.8, "Porch Depth": 1.7, "Front Offset": 4.0, "Foundation Height": 0.24, "Bevel": 0.05},
+        },
+    },
+    "MEL_mh_foundation_master": {
+        "label": "MH Foundation Master",
+        "preset_labels": {
+            "ROUND_BAROQUE_DEFAULT": "Round Baroque Default",
+            "COMPACT_DOLLHOUSE": "Compact Dollhouse",
+            "WIDE_SALON": "Wide Salon + Tower",
+        },
+        "preset_descriptions": {
+            "ROUND_BAROQUE_DEFAULT": "Recommended first Melusina House blockout.",
+            "COMPACT_DOLLHOUSE": "Smaller, precious house footprint for intimacy checks.",
+            "WIDE_SALON": "Expanded central salon and stronger tower counterweight.",
+        },
+        "presets": {
+            "ROUND_BAROQUE_DEFAULT": {"Center Width": 5.4, "Center Depth": 4.8, "Side Width": 3.7, "Side Depth": 3.4, "Side Spread": 4.1, "Rear Width": 4.2, "Rear Depth": 3.2, "Rear Offset": 3.8, "Porch Width": 5.2, "Porch Depth": 2.3, "Porch Offset": 4.4, "Tower Radius": 1.15, "Tower X": 5.1, "Tower Y": 1.6, "Foundation Height": 0.36, "Bevel": 0.06},
+            "COMPACT_DOLLHOUSE": {"Center Width": 4.6, "Center Depth": 4.0, "Side Width": 3.0, "Side Depth": 2.8, "Side Spread": 3.4, "Rear Width": 3.6, "Rear Depth": 2.8, "Rear Offset": 3.1, "Porch Width": 4.2, "Porch Depth": 1.8, "Porch Offset": 3.8, "Tower Radius": 0.9, "Tower X": 4.2, "Tower Y": 1.4, "Foundation Height": 0.32, "Bevel": 0.05},
+            "WIDE_SALON": {"Center Width": 6.6, "Center Depth": 5.2, "Side Width": 3.9, "Side Depth": 3.5, "Side Spread": 4.8, "Rear Width": 4.6, "Rear Depth": 3.4, "Rear Offset": 4.0, "Porch Width": 6.0, "Porch Depth": 2.6, "Porch Offset": 4.8, "Tower Radius": 1.3, "Tower X": 5.7, "Tower Y": 1.8, "Foundation Height": 0.38, "Bevel": 0.07},
+        },
+    },
     "MEL_audio_spectrum_terrain": {
         "label": "Audio Spectrum Terrain",
         "preset_labels": {

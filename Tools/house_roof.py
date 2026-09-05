@@ -166,14 +166,14 @@ def build_ribbon(tree_name, vals):
 
 ROOFS = [
     ("GN_MH_03_RoofMain", "Roof_Main",
-     {"Roof Width": 9.0, "Roof Depth": 6.0, "Roof Rise": 2.55, "Eave Curl": 0.45,
-      "End Lift": 0.65, "Thickness": 0.12, "Asymmetry": 0.25}, (0, 0, 3.42)),
+     {"Roof Width": 9.0, "Roof Depth": 6.0, "Roof Rise": 2.55, "Eave Curl": 0.35,
+      "End Lift": 0.5, "Thickness": 0.12, "Asymmetry": 0.15}, (0, 0, 3.42)),
     ("GN_MH_03_RoofWing", "Roof_Wing",
-     {"Roof Width": 6.0, "Roof Depth": 4.5, "Roof Rise": 1.9, "Eave Curl": 0.4,
-      "End Lift": 0.55, "Thickness": 0.10, "Asymmetry": -0.3}, (-2.5, -1.0, 3.1)),
+     {"Roof Width": 6.0, "Roof Depth": 4.5, "Roof Rise": 1.9, "Eave Curl": 0.3,
+      "End Lift": 0.4, "Thickness": 0.10, "Asymmetry": -0.2}, (-2.5, -1.0, 3.1)),
     ("GN_MH_03_RoofPorch", "Roof_Porch",
-     {"Roof Width": 4.5, "Roof Depth": 2.4, "Roof Rise": 1.1, "Eave Curl": 0.35,
-      "End Lift": 0.45, "Thickness": 0.08, "Asymmetry": 0.15}, (1.0, 4.6, 2.9)),
+     {"Roof Width": 4.5, "Roof Depth": 2.4, "Roof Rise": 1.1, "Eave Curl": 0.25,
+      "End Lift": 0.3, "Thickness": 0.08, "Asymmetry": 0.1}, (1.0, 4.6, 2.9)),
 ]
 for tree_name, obj_name, vals, loc in ROOFS:
     tree = build_ribbon(tree_name, vals)
@@ -185,5 +185,5 @@ for tree_name, obj_name, vals, loc in ROOFS:
     o.location = loc
 
 os.makedirs("Saved/MelusinasHouse", exist_ok=True)
-bpy.ops.wm.save_mainfile(filepath="Saved/MelusinasHouse/House_RoofRibbon_v2.blend")
-print("Saved: Saved/MelusinasHouse/House_RoofRibbon_v2.blend")
+bpy.ops.wm.save_mainfile(filepath="Saved/MelusinasHouse/House_RoofRibbon.blend")
+print("Saved: Saved/MelusinasHouse/House_RoofRibbon.blend")
