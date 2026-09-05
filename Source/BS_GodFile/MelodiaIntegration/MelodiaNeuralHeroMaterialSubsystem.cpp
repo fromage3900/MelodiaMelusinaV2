@@ -58,7 +58,18 @@ void UMelodiaNeuralHeroMaterialSubsystem::RefreshFromMPC()
 	Instance->GetScalarParameterValue(TEXT("BeatIntensity"), BeatIntensity);
 	Instance->GetScalarParameterValue(TEXT("BeatPhase"), BeatPhase);
 	Instance->GetScalarParameterValue(TEXT("BeatPulse"), BeatPulse);
-	Instance->GetScalarParameterValue(TEXT("BeatTracker"), BeatTracker);
+
+	// BeatTracker is NOT a declared parameter on MPC_Melodia_Palette (verified against the
+	// asset's 51 scalars, 2026-09-05). GetScalarParameterValue on an undeclared name leaves
+	// the out-param untouched, so this field held 0 every frame and fed a permanently-zero
+	// 5th element into the inference tensor documented in RunInference.
+	//
+	// The audio writer's own comment names the intent -- "BeatTracker ... latch = current
+	// beat pulse" (MelodiaAudioReactivePresentationSubsystem.cpp) -- and it publishes that
+	// latch as BeatPulse, which IS declared. So the value was always available under the
+	// name that exists; only the lookup name was wrong. Sourcing it directly removes the
+	// dependency on an undeclared parameter rather than adding one to the collection.
+	BeatTracker = BeatPulse;
 }
 
 void UMelodiaNeuralHeroMaterialSubsystem::RunInference()
