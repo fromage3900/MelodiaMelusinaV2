@@ -1,24 +1,29 @@
 [mcp_servers.agent-bridge]
 command = "python"
-args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\agent_bridge_mcp.py']
+args = ["deploy/agent_bridge_mcp.py"]
+cwd = "."
 
 [mcp_servers.agent-bridge.tools.delegate_to_agent]
 approval_mode = "approve"
 
 [mcp_servers.blender-mcp]
 command = "python"
-args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\blender_mcp_adapter.py']
+args = ["deploy/blender_mcp_adapter.py"]
+cwd = "."
 
 [mcp_servers.filesystem]
-command = "node"
+command = "npx"
 args = [
-    'C:\Users\froma\AppData\Roaming\npm\node_modules\@modelcontextprotocol\server-filesystem\dist\index.js',
-    'C:\EnvironmentPortfolio\BS_GodFile',
+    "-y",
+    "@modelcontextprotocol/server-filesystem",
+    ".",
 ]
+cwd = "."
 
 [mcp_servers.git-mcp]
 command = "python"
-args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\mcp_git.py']
+args = ["deploy/mcp_git.py"]
+cwd = "."
 
 [mcp_servers.hermes]
 command = "npx"
@@ -31,10 +36,11 @@ args = [
 url = "http://127.0.0.1:8088/mcp"
 
 [mcp_servers.monolith]
-command = "C:/EnvironmentPortfolio/BS_GodFile/Plugins/Monolith/Binaries/monolith_proxy.exe"
+command = "Plugins/Monolith/Binaries/monolith_proxy.exe"
+cwd = "."
 
 [mcp_servers.monolith.env]
-MONOLITH_PROJECT_ROOT = "C:/EnvironmentPortfolio/BS_GodFile"
+MONOLITH_PROJECT_ROOT = "."
 MONOLITH_URL = "http://localhost:9316/mcp"
 
 [mcp_servers.monolith.tools.editor_query]
@@ -61,4 +67,5 @@ OLLAMA_HOST = "http://127.0.0.1:11434"
 
 [mcp_servers.surreal-arch-mcp]
 command = "python"
-args = ['C:\EnvironmentPortfolio\BS_GodFile\deploy\surreal_arch_mcp_adapter.py']
+args = ["deploy/surreal_arch_mcp_adapter.py"]
+cwd = "."

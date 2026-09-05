@@ -60,6 +60,8 @@ The still-open boundary is deeper persistence/idempotency/package closure, not w
 
 ## 4. Laptop / multi-workstation discovery rule
 
+Before opening Blender/Rider/Unreal on either workstation, run `.\deploy\sync_workstation.ps1`. A handoff is not complete until its report says `sync_state = synced`.
+
 **Never equate “not on main” with “not committed.”**
 
 As of 2026-09-04:
