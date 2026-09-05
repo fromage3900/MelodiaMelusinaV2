@@ -1,0 +1,160 @@
+/* Melodia Three.js FX — starfield, orrery, constellation */
+
+.melodia-three-starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.78;
+}
+
+html[data-hero="cosmic"] .melodia-three-starfield,
+.melodia-shell[data-hero="cosmic"] ~ .melodia-three-starfield,
+.melodia-shell[data-hero="cosmic"] .melodia-three-starfield {
+  opacity: 0.88;
+}
+
+.melodia-three-canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#ambient-starfield.melodia-starfield-superseded {
+  opacity: 0 !important;
+  visibility: hidden;
+}
+
+.melodia-three-orrery {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  height: clamp(280px, 42vw, 460px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary, #c9a86a) 35%, transparent);
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(60, 92, 158, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(36, 27, 46, 0.9) 0%, #0a0e22 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  touch-action: none;
+  cursor: grab;
+}
+
+.melodia-three-orrery:active {
+  cursor: grabbing;
+}
+
+.melodia-three-orrery-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.melodia-three-constellation {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary, #c9a86a) 32%, transparent);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(159, 148, 198, 0.22) 0%, transparent 50%),
+    linear-gradient(180deg, #141a30 0%, #0a0e22 100%);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+  min-height: 420px;
+}
+
+.melodia-three-constellation-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 52vw, 560px);
+}
+
+.melodia-three-constellation-hud {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.melodia-three-constellation-hud .pill,
+.melodia-three-constellation-hud .hint {
+  pointer-events: none;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e8e4f2;
+  background: rgba(8, 12, 29, 0.72);
+  border: 1px solid rgba(201, 168, 106, 0.35);
+  padding: 6px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.melodia-three-constellation-hud .cta {
+  pointer-events: auto;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #141a30;
+  background: linear-gradient(135deg, #c9a86a, #ddc79b);
+  border-radius: 999px;
+  padding: 7px 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.melodia-three-constellation-hud .cta:hover {
+  filter: brightness(1.06);
+}
+
+.melodia-three-fallback {
+  margin: 0;
+  padding: 2rem 1.25rem;
+  color: var(--color-text-secondary, #a9a7c0);
+  font-family: var(--font-body, system-ui, sans-serif);
+}
+
+.melodia-three-fallback a {
+  color: var(--color-accent-primary, #c9a86a);
+}
+
+/* Soft dream-planet peek when three FX live on index void bands */
+html[data-page="index"][data-three-starfield="live"] .dream-planet-layer {
+  opacity: 0.32 !important;
+  mix-blend-mode: screen;
+}
+
+html[data-page="index"] .band.astral.void-panel {
+  background: transparent;
+}
+
+@media (max-width: 680px) {
+  .melodia-three-constellation-stage {
+    height: 360px;
+  }
+  .melodia-three-orrery {
+    min-height: 240px;
+    height: 260px;
+  }
+  .melodia-three-constellation-hud .cta {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .melodia-three-starfield,
+  .melodia-three-orrery,
+  .melodia-three-constellation {
+    display: none !important;
+  }
+}

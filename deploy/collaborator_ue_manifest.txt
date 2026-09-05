@@ -19,6 +19,7 @@ SPARSE /Content/EnvSandbox/Environments/
 SPARSE /Content/EnvSandbox/PCG/
 SPARSE /Content/Characters/
 SPARSE /Docs/
+SPARSE /RawArt/MelusinasHouse/
 SPARSE /Tools/
 SPARSE /specs/
 SPARSE /deploy/
@@ -33,6 +34,7 @@ LFS Content/TurnBasedJRPGTemplate/Blueprints/Battle/**
 LFS Content/EnvSandbox/Environments/**
 LFS Content/EnvSandbox/PCG/**
 LFS Content/Characters/**
+LFS RawArt/MelusinasHouse/**
 
 # Enabled in-tree project plugins required by BS_GodFile.uproject.
 PLUGIN Monolith Plugins/Monolith/Monolith.uplugin

@@ -2,6 +2,8 @@
 
 **Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on [`_SESSION_HANDOFF.md`](../_SESSION_HANDOFF.md).
 
+**Melusina House GN — current builder entrypoint:** [`MELUSINA_HOUSE_GN_START_HERE.md`](../MELUSINA_HOUSE_GN_START_HERE.md) — registered `MEL_mh_*` IDs, dedicated GN Stack category, foundation-first workflow and verifier.\n\n**Visual/design packet:** [`melusinashouseplan`](../melusinashouseplan.md) — pink/blue round-Baroque modeling intent and references. Treat `GN_MH_*` names there as scene-local concepts, not registry IDs. ♪
+
 ## Open in 30 seconds
 
 | | |
@@ -18,6 +20,28 @@
 After a crash or restart: **N → BlenderMCP → Connect to MCP server** (port **9876**). Melodia Studio **Live Bridge → Start Server** is LiveLink, not MCP — different button.
 
 Agent ping: `python Tools/blender_mcp_client.py get_scene_info`
+
+## Current GN catalog health rule — 2026-09-04
+
+Historical builder counts below are evidence snapshots, **not a current pass/fail contract**.
+
+For Melusina House, health means:
+
+```text
+category "Melusina House" exists
++ MEL_mh_foundation_master is registered
++ foundation presets exist
++ GN Stack search "MH Foundation" finds the builders
++ Foundation Master constructs in Blender 5.2
+```
+
+Source-level check:
+
+```powershell
+python Tools/verify_melusina_house_gn_catalog.py
+```
+
+Do not reject a current catalog because it no longer equals an August count.
 
 ## Studio Health (2026-08-17) — musical heroes on deploy
 
@@ -50,7 +74,7 @@ Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Au
 
 **Expansion:** [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md) supersedes 08-12 for next work. Presets **42/173**, STUDIO_LABELS include music heroes + greybox Structures ids.
 
-**GN Stack smoke (expand the panel; ≥1 builder each):** Castle Kit · Musical Notation · Ornament · Magic Effects. Click **Circular Array** on a selected mesh — a Geometry Nodes modifier should appear.
+**GN Stack smoke (expand the panel; ≥1 builder each):** Melusina House · Castle Kit · Musical Notation · Ornament · Magic Effects. Click **Circular Array** on a selected mesh — a Geometry Nodes modifier should appear.
 
 **Sync & Reload:** only after `deploy\sync_surreal_to_live.ps1` when Blender was *already* open. A fresh start already loads AppData. The old operator crashed 5.2 by reloading itself; the timer fix is on disk — **restart Blender once** before using that button again.
 
@@ -152,7 +176,7 @@ Passport sidecars land in `my-site-clean/generated/passports/`.
 ## Review Queue / authoring smoke
 
 Before packaging or store screenshots:
-- Open **v22** in Blender 5.2. N-panel **Melodia Studio** must draw. **Studio Health** → `sections=12/12 section_trees=165`.
+- Open **v22** in Blender 5.2. N-panel **Melodia Studio** must draw. Treat exact historical section/tree counts as evidence only; verify the named categories/builders required by the task.
 - Expand **GN Stack** and confirm ≥1 builder in Castle Kit, Musical Notation, Ornament, and Magic Effects.
 - Click **Circular Array** (or `SHEET_MUSIC_RAIL` / `TREBLE_CLEF` / `NOTE_HEAD` / one ornament / `ARCH` / one `CASTLE_*`).
 - Confirm Review Queue Prev / Solo / Next, Solo Object, and Ivy (Bagapie) use soft visibility/local view only.

@@ -1,5 +1,5 @@
 ---
-description: First Dream P0 build -- B3/B4/B7 rhythm-battle grade + ledger evidence
+description: Current Melodia build / implementation lane
 mode: primary
 permission:
   edit: ask
@@ -8,42 +8,54 @@ permission:
 
 You are the **build** primary agent for MelodiaMelusinaV2 / `BS_GodFile` (UE 5.8).
 
-## Mission (tonight)
+## Read first — current authority
 
-Close **First Dream** gameplay P0 toward rhythm-battle grade:
+1. `AGENT_START_HERE.md`
+2. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+3. `CURRENT_STATE.md`
+4. `_VERTICAL_SLICE_SCOPE.md`
+5. `TODO.md`
 
-- **B3** rhythm cluster (`Use Skill with Rhythm` / damage latch) -- keep live wiring; prove with real play evidence
-- **B4** battle-result closure (`E_BattleResult` -> `CompleteBattle` / Quill resume exactly once)
-- **B7** grade display (`ShowRhythmGrade`)
+For visual references: `Docs/Art/VISUAL_REFERENCE_INDEX.md`.
 
-Authority order: `AGENTS.md` working agreement -> `Docs/Handoffs/CORE_GAMEPLAY_CLOSEOUT_PLAN_2026-08-11.md` -> `_VERTICAL_SLICE_SCOPE.md` / `_TASK_QUEUE.md` / `_SESSION_HANDOFF.md`.
+For laptop or remote work: `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`.
 
-Evidence standard (AGENTS.md): a gate is certified only via playtest harness / Echo ledger rows. Probe-injected rhythm is HOLD; need real keys through `BP_BattleUI::OnKeyDown` (or documented `InputKey` into focused widget). Frames without assertion JSON are not evidence.
+## Current implementation bias
 
-## Parallel coding lane
+Close and polish the existing vertical slice rather than expanding architecture.
 
-Prefer **jcode** for repo-side parallel work (`AGENTS.md` section 5): `.jcode/swarm-prompt.md`, `Docs/PhoneOps/JCODE_SWARM_PIPELINE.md`, bootstrap via `.\deploy\start_jcode_swarm.ps1`. Phone/Cursor cloud stays the PR/mobile lane (`Docs/PhoneOps/`). Do not fight a live swarm on the same write paths.
+Protect:
+- First Dream / Sea Above route;
+- rhythm interaction;
+- Wardrobe → Glide → traversal;
+- canonical save/load;
+- environment and character presentation.
 
-OpenCode in Rider is the C++/PIE gameplay lane. Muse Code (WSL) is the Meta terminal companion (`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`).
+Stabilize:
+- repeat-load/idempotency;
+- packaged proof;
+- Starskiff where already integrated;
+- UI single-writer behavior.
+
+## Discovery rules
+
+- Do not use August handoffs as current task authority.
+- Deleted `_SESSION_HANDOFF.md` / `_TASK_QUEUE.md` are not inputs.
+- Before saying work is absent, inspect relevant remote branches.
+- `recovery/laptop-main-20260904` is ahead of main with recovered house/GN/Blender work but includes broad deletions: **never merge wholesale**.
+- Never fabricate reference-board paths; use the visual index.
 
 ## Editor / MCP
 
-- One Unreal Editor only. Confirm port **9316** has a single listener before Monolith work.
-- Enable OpenCode MCP `monolith` only when UE is open (`http://127.0.0.1:9316/mcp`).
-- Never Python-load skill Blueprints under `Content/TurnBasedJRPGTemplate/Blueprints/Skills/`. Use Monolith `blueprint_query`.
-- Never `git clean -fd` / `git checkout -- .` (bulk `Content/` untracked).
+- One Unreal Editor only.
+- Use Monolith/reflection for current Blueprint evidence.
+- Never `git clean -fd` / `git checkout -- .`.
+- Never Python-load protected skill Blueprints.
 
-## Suggested start
+## Done
 
-1. `python Docs/T3D_Baseline/verify_baseline.py` (expect clean baseline)
-2. Playtest harness / Echo status when editor live
-3. PIE route Morning -> KaleidoNave; real-input A/B with `melodia.Rhythm.Disable`
-4. Ship small verifiable changes; ask before edits (permission: edit ask)
-
-## Red lines
-
-- No Sakura hero / `L_SakuraPath` art direction
-- No writes under `Content/_PROJECT/`
-- No parallel material-master regenerates / live master `.uasset` rewrites
-- No destructive deletes without human Red approval
-- Do not invent or commit API keys
+A change is done only when:
+1. intended files changed;
+2. relevant test/build/evidence ran;
+3. evidence level is stated accurately;
+4. no unrelated branch cleanup/deletion was pulled in.

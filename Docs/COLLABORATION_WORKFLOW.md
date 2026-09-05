@@ -9,11 +9,13 @@ Branch names **must** carry one of the prefixes `.githooks/pre-push:13` accepts,
 push is rejected:
 
 ```
-feature/   fix/   docs/   cleanup/   collab/   codex/   recovery/   cursor/
+feature/   fix/   docs/   cleanup/   collab/   integration/   codex/   recovery/   cursor/
 ```
 
 Use them for lanes: `collab/level-design/kaleido-nave`, `collab/material-art/toon-outline`,
 `feature/pcg-environment`, `fix/character-melusina-hair`, `docs/onboarding`.
+Use `integration/*` for reviewed cross-workstation extraction/handoff branches such as
+`integration/house-handoff-20260904`.
 
 > Superseded 2026-08-13: this file previously told collaborators to use bare lane names
 > (`gameplay`, `pcg-environment`, `materials-vfx`, `character-melusina`, `docs-onboarding`).

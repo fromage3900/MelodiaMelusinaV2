@@ -1,95 +1,188 @@
-# Master Task Ledger & Evening P0 Closeout Execution Board
+# ♪ Melodia — what we are actually doing next
 
-**Date:** 2026-09-01 (Evening Execution Ledger)
-**Project:** Melodia (BS_GodFile) — Single-Author Rhythm-JRPG
-**Overall Status:** **P0 Gameplay 10/10 Gates PASS | 524/524 Automated Tests PASS | Preflight Green**
-**Active Plan:** [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
+**Date:** 2026-09-02  
+**Phase:** close the runtime → make Chapters cheap to add → grow the journey
 
----
+> This is the production score, not the dream board. If something is beautiful but makes the core less reliable, it waits.
 
-## 1. P0 Gameplay Completion Milestones (Verified & Reconciled)
+Canonical long-term direction:
 
-| Milestone ID | Feature Domain | Acceptance Criteria | Status | Evidence Location |
-|---|---|---|:---:|---|
-| **M-01** | **QuillScript Dialogue** | NPC interaction, branching dialogue, 7-verb notification dispatch | [x] **DONE** | `Saved/gate_ledger.json` (`repeat_consume`) |
-| **M-02** | **Departure Gate** | Gate actor unlocks on narrative flag `quest.first_dream.started` | [x] **DONE** | `Saved/gate_ledger.json` (`runtime`) |
-| **M-03** | **Music-as-Key Route** | `APCGHeroMusicGraphHost` phrase match clears barrier / portal | [x] **DONE** | `Saved/gate_ledger.json` (`music_world_key`) |
-| **M-04** | **JRPG Turn-Based Core** | Turn queue, party state, HP/MP calculation, command menu | [x] **DONE** | `Saved/gate_ledger.json` (`runtime`) |
-| **M-05** | **Rhythm Highway Overlay** | Note timing accuracy (`Poor`/`Good`/`Great`/`Perfect`) scales JRPG damage | [x] **DONE** | `Saved/gate_ledger.json` (`rhythm_grade_to_result`, `rhythm_owner`) |
-| **M-06** | **Single-Writer UI Bridge** | `UMelodiaUIBridgeSubsystem` manages all HUD/battle/dialogue transitions | [x] **DONE** | `Saved/gate_ledger.json` (`hud_single_writer`) |
-| **M-07** | **Wardrobe Traversal Provider** | Outfits grant `IMelodiaTraversalCapabilityProvider` (Glide capability) | [x] **DONE** | `Saved/gate_ledger.json` (`wardrobe_gameplay_hook`) |
-| **M-08** | **Wardrobe Equip Roundtrip** | Visual mesh parts & equipped outfit state persist across save/reload | [x] **DONE** | `Saved/gate_ledger.json` (`wardrobe_equip_roundtrip`) |
-| **M-09** | **Idempotent Rewards** | Intent-ID based quest reward distribution with exactly-once delivery | [x] **DONE** | `Saved/gate_ledger.json` (`repeat_consume`) |
-| **M-10** | **Canonical Save/Load** | Full player state serialization/deserialization via `BP_JRPGSaveGame` | [x] **DONE** | `Saved/gate_ledger.json` (`save_load`) |
+- `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
+- `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`
+- `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
 
 ---
 
-## 2. Active Evening P0 Closeout & Chapter Loop Tasks (Tonight's Sequence)
+## 𝄞 NOW — close the song
 
-- [x] **Task 1: Preflight & Test Suite Verification**
-  - [x] Execute `.\run_tests.ps1` (307 GMM, 48 P0 Integration, 77 ECHO contracts) -> 100% PASS
-  - [x] Execute `Tools/test_melodia_mcp.py` -> 38/38 PASS
-  - [x] Execute `Tools/verify_p0_offline.py` -> 12/12 PASS
-  - [x] Execute `Tools/test_e2e_melusina_release.py` -> 17/17 PASS
-  - [x] Verify Monolith MCP listening on port 9316
+Golden proof:
 
-- [ ] **Task 2: Win64 Clean Standalone Packaging**
-  - [ ] Run `RunUAT.bat BuildCookRun` targeting `Development` `Win64`
-  - [ ] Maps packaged: `L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`
-  - [ ] Target output: `Saved/Packages/P0_Closeout_20260901/Windows/BS_GodFile.exe`
+```text
+Outfit
+→ Starskiff / exploration
+→ Phoenix action
+→ rhythm execution
+→ Convergence / world consequence
+→ reward / checkpoint
+→ SAVE
+→ quit process
+→ relaunch
+→ same durable state
+→ load again
+→ no duplication / no drift
+```
 
-- [ ] **Task 3: Packaged Binary Launch & Initialization Check**
-  - [ ] Boot packaged executable with `-log`
-  - [ ] Confirm clean initialization of `UMelodiaNarrativeSubsystem`, `UMelodiaUIBridgeSubsystem`, `UMelodiaWardrobeSubsystem`
-  - [ ] Verify 0 fatal errors in package log
+### Persistence / restore
 
-- [ ] **Task 4: Packaged Golden Run Verification (Universal 6-Phase Chapter Loop)**
-  - [ ] Execute `specs/p0/core_p0_dream_golden_run.v1.json` on packaged build
-  - [ ] Phase 1: Sanctuary dialogue with NPC -> departure gate opens
-  - [ ] Phase 2: Overworld traversal -> music phrase puzzle -> route unlocked
-  - [ ] Phase 3: Battle arena transition -> turn selection -> rhythm accuracy timing -> boss damage
-  - [ ] Phase 4: Boss defeat -> narrative resolution callback -> idempotent reward delivery
-  - [ ] Phase 5: Equip reward outfit -> activate Glide traversal capability -> reach gateway
-  - [ ] Phase 6: Canonical save to `BP_JRPGSaveGame` -> process reload -> verify 100% state match
+- [x] Keep the existing load-result split; do not invent another save framework.
+- [x] Reject equipped cosmetic state that contradicts owned cosmetic state before stock load mutation.
+- [ ] Re-cut / transplant runtime-persistence work from stale PR #54 onto a fresh branch from current `main`.
+- [ ] Audit `RestoreNarrativeRecord` / `RestoreNarrativeRecordFromSave` for partial mutation and duplicate rebuild side effects.
+- [ ] Add remaining intrinsic candidate validation before canonical mutation where possible.
+- [ ] Keep Wardrobe catalog / slot / authored semantic checks inside Wardrobe ownership.
+- [ ] Add repeat-load equality + idempotency tests.
+- [ ] Trace Starskiff ownership and write down **durable facts vs derived/transient state**.
+- [ ] Trace Convergence ownership the same way.
+- [ ] Extend the save schema only after those durable facts are locked.
+- [ ] Audit sync/async save writes; add stale-write protection only if a real race is proven.
+- [ ] Run full process restart proof.
+- [ ] Run packaged-build proof.
 
-- [ ] **Task 5: Evidence Ledger Freezing & Gate Sign-Off**
-  - [ ] Freeze immutable run report to `Saved/Audit/p0_golden_run_packaged_20260901.json`
-  - [ ] Reconcile `Saved/gate_ledger.json` with final package hash and PASS status
-  - [ ] Update shipping certification from HOLD to PASS
+### Hard no's while this is open
 
-- [x] **Task 6: Documentation & Production Handoff**
-  - [x] Author `Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md`
-  - [x] Author canonical pipeline SSOT `Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md` covering Cymatics, Monolith MCP, Houdini, and Emerging 3D Toolchains
-  - [x] Update front-facing docs: `README.md`, `CURRENT_STATE.md`, `TODO.md`, `QUICKSTART.md`, `DOC_INDEX.md`, `_VERTICAL_SLICE_SCOPE.md`, `_PORTFOLIO_SHIP_CHECKLIST.md`, `SYSTEM_MAP.md`, `CURRENT_SYSTEM_MAP.md`, `DATA_FLOW.md`, `TEST_READY.md`
-  - [ ] Final session submit and handoff to Chapter 2 production
+- no Phoenix rewrite;
+- no second SaveGame authority;
+- no persisted live rhythm session;
+- no raw Starskiff physics snapshot unless design actually needs it;
+- no imported Akuma / Embermere framework;
+- no remote Gifts backend before local persistence is boringly reliable.
+
+---
+
+## ♫ NEXT — make a new Chapter boring to author
+
+The project wins when a new Chapter mostly means **content**, not surgery on the engine.
+
+- [ ] Lock one canonical Chapter-package template from the existing progression schema.
+- [ ] Give each package a tier: Reverie / Episode / Chapter / Monolith Event.
+- [ ] Require the seven useful authoring questions:
+  - Narrative Question
+  - Mechanical Focus
+  - Character Focus
+  - Location
+  - Visual Signature
+  - Persistent Change
+  - Exit Image
+- [ ] Require stable IDs + idempotent intents/rewards + checkpoint/restore policy.
+- [ ] Validate the package offline.
+- [ ] Validate runtime/PIE behavior where it matters.
+- [ ] Validate restart/load for durable state.
+- [ ] Validate package/release promotion.
+
+The old P0 six-phase route stays as one great **integration song**. It is not a template every story has to obey.
 
 ---
 
-## 3. Chapter 2 & Monolith Production Roadmap (Post-P0 Horizon)
+## ♬ Volume I — the journey we can keep arranging
 
-- [x] **P1/P2-00: Faraway Mother PCG Ecosystem & Fabric Mountains Architecture**
-  - [x] Author canonical specification `Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md`
-  - [x] Implement multi-biome procedural ecosystem generator `Tools/PCG/build_faraway_mother_pcg_ecosystem.py`
-  - [x] Generate deterministic manifest `specs/pcg/faraway_mother_pcg_manifest.v1.json` (120 points across 4 biomes)
-  - [x] Implement level assembly automation and World Field Bus bridge `Content/Python/faraway_mother_pcg_assembly.py`
-  - [x] Verify complete contract test suite `Tools/test_faraway_mother_pcg.py` (24/24 contract suites PASS)
-- [x] **P1/P2-01: Perceptual LOD LookDev & Optical Deception Suite**
-  - [x] Author canonical specification `Docs/LookDev/MELODIA_PERCEPTUAL_LOD_LOOKDEV_ARCHITECTURE.md`
-  - [x] Implement multi-tier LOD texture generator with Toksvig anti-aliasing `Tools/LookDev/build_optical_lod_matrix.py`
-  - [x] Generate 51 PBR textures across 4 LOD perception tiers in `Saved/Audit/lookdev/optical_lods/` and manifest `specs/lookdev/optical_lod_manifest.v1.json`
-  - [x] Implement Material Instance parameter synthesizer `Content/Python/melodia_optical_lod_pipeline.py` producing 12 `MI_*` configs in `specs/lookdev/optical_material_instances.v1.json`
-  - [x] Author and verify contract test suite `Tools/test_optical_lod_lookdev.py` and register in `Tools/run_contract_tests.py` (25/25 contract suites PASS)
-- [ ] **C2-01: Coral Shore Sanctuary Authoring** (`L_CoralShoreSanctuary`)
-  - [ ] Instantiate Phase 1 sanctuary template with Chapter 2 QuillScript narrative asset
-  - [ ] Configure departure gate and dialogue state transitions
-- [ ] **C2-02: Sea of Memory Traversal & Underwater Music Puzzles**
-  - [ ] Implement `IMelodiaTraversalCapabilityProvider` (Swim capability)
-  - [ ] Author underwater resonance chords for `APCGHeroMusicGraphHost`
-- [ ] **C2-03: Chapter 2 Boss Battle & Harmonix Note Track**
-  - [ ] Author `DT_Chapter2_Battle_Notes` with polyphonic lane tracks
-  - [ ] Connect boss phase transitions to `UMelodiaUIBridgeSubsystem`
-- [ ] **C2-04: Chapter 2 Checkpoint & Multi-Slot Save Migration**
-  - [ ] Verify save migration from Chapter 1 save game slots to Chapter 2 state
+### Movement I — The First Answer
+
+- [ ] First Dream polish + canonical package.
+- [ ] Resonant Weave / outfit-as-gameplay proof.
+- [ ] Choral Sheep / music-creature relationship.
+- [ ] Sea Above Monolith Event.
+- [ ] Shorewake calling + Starskiff departure.
+
+### Movement II — The World Reads Back
+
+- [ ] Mara Elletra Vell owner canonization pass.
+- [ ] Seam Map / clothing-as-language package.
+- [ ] Hemlands / Pleated Range / Embroidered Basin production plan.
+- [ ] Cymatic fabric-geography integration.
+- [ ] Faraway Mother / The Blink Monolith Event.
+
+### Movement III — The Category Error
+
+- [ ] Iris Fen owner canonization pass.
+- [ ] Keep `Catalyze` narrow: material-state/world interaction, not another giant system.
+- [ ] Create the missing **God That Molts** progression package.
+- [ ] Reconcile Horizon Eater ordering after God That Molts.
+- [ ] Prototype Glasswing / Wayfold with authored spatial tricks before generalized non-Euclidean tech.
+- [ ] Horizon Eater Event integration.
+
+### Movement IV — The Shape We Choose
+
+- [ ] House of Measures chapter family.
+- [ ] Seam Oracle: silhouette × rhythm behavior × Convergence interpretation.
+- [ ] `Refuse the Measure` as constrained outfit reinterpretation, not free-form skill-editor sprawl.
+- [ ] Last Dress of the Sea world-scale systems synthesis.
+- [ ] Homecoming / `The First Time She Is Not Late`.
+
+The 50+ Chapter grid is a **score we can rearrange**, not a legal contract with ourselves.
 
 ---
-*Melodia Master Task Ledger — Maintained under strict ECHO verification discipline.*
+
+## ♪ Browser / UI / authoring playground
+
+These are fast experiments. They are allowed to be weird because they are not allowed to become runtime authority.
+
+- [x] Traveling Folio Three.js lab.
+- [x] Mara-style Folio presentation variant.
+- [x] MusicKey3D world-interaction sandbox.
+- [x] **Cymatic Sanctuary** — 12-instrument Music-as-Key tool at `Docs/Tools/puzzle-sandbox/index.html`.
+- [ ] Compare Cymatic Sanctuary against the native UE music-as-key contract and keep only useful schema ideas.
+- [ ] Export one curated Melusina / Mara / Starskiff GLB for browser presentation instead of converting the whole asset library.
+- [ ] Let Folio 3D widgets emit typed UI intents that map cleanly back to `UMelodiaUIBridgeSubsystem`.
+- [ ] Keep future mailbox/Gift UI local-fixture-first until persistence closure passes.
+
+---
+
+## ♫ Git health — keep the repo from becoming archaeology again
+
+- [ ] Refresh persistence closure from current `main`; do not merge stale PR #54 wholesale.
+- [ ] Review PR #61 as a **large Wix/site snapshot**, not a tiny Three.js patch.
+- [ ] Reconcile PR #61's shared Three.js r128 layer with the newer 0.185-era Folio/MusicKey prototypes before making it a common dependency.
+- [ ] Treat giant old research PRs (#28 / #37 and similar) as extraction sources unless specifically refreshed.
+- [ ] Keep human-owned maps/art isolated from automated mass merges.
+- [ ] Keep new work in small fresh branches with one clear reason to exist.
+
+---
+
+## 𝄞 Evergreen lane — design the door now, build the server later
+
+- [ ] Keep content / reward IDs globally stable.
+- [ ] Keep save schemas versioned and migratable.
+- [ ] Keep claimed intents / rewards exactly-once forever.
+- [ ] Let the Starskiff mailbox/archive exist first as a local presentation contract.
+- [ ] Design a remote manifest only after packaged single-player closure.
+- [ ] Default future Gifts to permanent/archiveable instead of FOMO expiry.
+- [ ] Never make combat or narrative depend on a network service.
+
+---
+
+## ♬ Toolchain rule
+
+Active core: Unreal 5.8 · Houdini · Blender 5.2 LTS · SpeedTree · existing Wardrobe/Rhythm/Starskiff pipelines.
+
+Test things when they have a Melodia-shaped problem to solve. Watch them when they do not.
+
+> **Does this make visibly better Melodia per hour without creating a more expensive maintenance problem?**
+
+That question outranks novelty.
+
+---
+
+## ♪ Definition of progress
+
+I would rather leave a session with:
+
+- one restart-safe save;
+- one repeat-load-safe reward;
+- one Chapter that reuses existing owners;
+- one old location that remembers what happened there;
+- one Monolith Event that reinterprets mechanics we already own;
+- one new Voyage an old save can enter cleanly;
+
+…than five more global systems with beautiful diagrams.
+
+> **The goal is to spend more time making journeys and less time reopening the engine underneath them.** ♫

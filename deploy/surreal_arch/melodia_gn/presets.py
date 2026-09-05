@@ -41,6 +41,78 @@ PRESET_SOURCE = "melodia_gn.presets"
 # -----------------------------------------------------------------------------
 
 BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
+    "MEL_mh_foundation_pod": {
+        "label": "MH Foundation Pod",
+        "preset_labels": {
+            "COMPACT_DOLLHOUSE": "Compact Dollhouse Pod",
+            "SALON_CORE": "Salon Core Pod",
+            "BLUE_ROOM_BASE": "Blue Room Base",
+        },
+        "preset_descriptions": {
+            "COMPACT_DOLLHOUSE": "Small intimate rounded room mass.",
+            "SALON_CORE": "Default central oval salon footprint.",
+            "BLUE_ROOM_BASE": "Lower, broader base for the water-grotto lane.",
+        },
+        "presets": {
+            "COMPACT_DOLLHOUSE": {"Width": 3.8, "Depth": 3.2, "Foundation Height": 0.32, "Bevel": 0.05},
+            "SALON_CORE": {"Width": 5.4, "Depth": 4.8, "Foundation Height": 0.36, "Bevel": 0.06},
+            "BLUE_ROOM_BASE": {"Width": 5.0, "Depth": 4.2, "Foundation Height": 0.28, "Bevel": 0.08},
+        },
+    },
+    "MEL_mh_foundation_cluster": {
+        "label": "MH Foundation Cluster",
+        "preset_labels": {
+            "ROUND_BAROQUE_DEFAULT": "Round Baroque Default",
+            "COMPACT_DOLLHOUSE": "Compact Dollhouse",
+            "WIDE_SALON": "Wide Salon",
+        },
+        "preset_descriptions": {
+            "ROUND_BAROQUE_DEFAULT": "Current concept-board lower-house massing.",
+            "COMPACT_DOLLHOUSE": "Tighter intimate plan for fast silhouette tests.",
+            "WIDE_SALON": "Broader social heart with wider central oval.",
+        },
+        "presets": {
+            "ROUND_BAROQUE_DEFAULT": {"Center Width": 5.4, "Center Depth": 4.8, "Side Width": 3.7, "Side Depth": 3.4, "Side Spread": 4.1, "Rear Width": 4.2, "Rear Depth": 3.2, "Rear Offset": 3.8, "Foundation Height": 0.36, "Bevel": 0.06},
+            "COMPACT_DOLLHOUSE": {"Center Width": 4.6, "Center Depth": 4.0, "Side Width": 3.0, "Side Depth": 2.8, "Side Spread": 3.4, "Rear Width": 3.6, "Rear Depth": 2.8, "Rear Offset": 3.1, "Foundation Height": 0.32, "Bevel": 0.05},
+            "WIDE_SALON": {"Center Width": 6.6, "Center Depth": 5.2, "Side Width": 3.9, "Side Depth": 3.5, "Side Spread": 4.8, "Rear Width": 4.6, "Rear Depth": 3.4, "Rear Offset": 4.0, "Foundation Height": 0.38, "Bevel": 0.07},
+        },
+    },
+    "MEL_mh_foundation_porch": {
+        "label": "MH Foundation Porch",
+        "preset_labels": {
+            "CRESCENT_ENTRY": "Crescent Entry",
+            "SEA_TERRACE": "Sea Terrace",
+            "SMALL_LANDING": "Small Landing",
+        },
+        "preset_descriptions": {
+            "CRESCENT_ENTRY": "Default soft oval arrival platform.",
+            "SEA_TERRACE": "Wider, deeper porch for the water-facing side.",
+            "SMALL_LANDING": "Compact entry proof for fast blockouts.",
+        },
+        "presets": {
+            "CRESCENT_ENTRY": {"Porch Width": 5.2, "Porch Depth": 2.3, "Front Offset": 4.4, "Foundation Height": 0.28, "Bevel": 0.07},
+            "SEA_TERRACE": {"Porch Width": 6.4, "Porch Depth": 3.0, "Front Offset": 4.8, "Foundation Height": 0.30, "Bevel": 0.08},
+            "SMALL_LANDING": {"Porch Width": 3.8, "Porch Depth": 1.7, "Front Offset": 4.0, "Foundation Height": 0.24, "Bevel": 0.05},
+        },
+    },
+    "MEL_mh_foundation_master": {
+        "label": "MH Foundation Master",
+        "preset_labels": {
+            "ROUND_BAROQUE_DEFAULT": "Round Baroque Default",
+            "COMPACT_DOLLHOUSE": "Compact Dollhouse",
+            "WIDE_SALON": "Wide Salon + Tower",
+        },
+        "preset_descriptions": {
+            "ROUND_BAROQUE_DEFAULT": "Recommended first Melusina House blockout.",
+            "COMPACT_DOLLHOUSE": "Smaller, precious house footprint for intimacy checks.",
+            "WIDE_SALON": "Expanded central salon and stronger tower counterweight.",
+        },
+        "presets": {
+            "ROUND_BAROQUE_DEFAULT": {"Center Width": 5.4, "Center Depth": 4.8, "Side Width": 3.7, "Side Depth": 3.4, "Side Spread": 4.1, "Rear Width": 4.2, "Rear Depth": 3.2, "Rear Offset": 3.8, "Porch Width": 5.2, "Porch Depth": 2.3, "Porch Offset": 4.4, "Tower Radius": 1.15, "Tower X": 5.1, "Tower Y": 1.6, "Foundation Height": 0.36, "Bevel": 0.06},
+            "COMPACT_DOLLHOUSE": {"Center Width": 4.6, "Center Depth": 4.0, "Side Width": 3.0, "Side Depth": 2.8, "Side Spread": 3.4, "Rear Width": 3.6, "Rear Depth": 2.8, "Rear Offset": 3.1, "Porch Width": 4.2, "Porch Depth": 1.8, "Porch Offset": 3.8, "Tower Radius": 0.9, "Tower X": 4.2, "Tower Y": 1.4, "Foundation Height": 0.32, "Bevel": 0.05},
+            "WIDE_SALON": {"Center Width": 6.6, "Center Depth": 5.2, "Side Width": 3.9, "Side Depth": 3.5, "Side Spread": 4.8, "Rear Width": 4.6, "Rear Depth": 3.4, "Rear Offset": 4.0, "Porch Width": 6.0, "Porch Depth": 2.6, "Porch Offset": 4.8, "Tower Radius": 1.3, "Tower X": 5.7, "Tower Y": 1.8, "Foundation Height": 0.38, "Bevel": 0.07},
+        },
+    },
     "MEL_audio_spectrum_terrain": {
         "label": "Audio Spectrum Terrain",
         "preset_labels": {
@@ -92,100 +164,6 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "CHORAL_CRATER": {"Low Hz": 120.0, "High Hz": 12000.0, "Band Width": 0.05, "Audio Gain": 14.0, "Size X M": 260.0, "Radial Segments": 384, "Height M": 32.0, "Radius M": 130.0},
             "HORIZON_EATER_FIELD": {"Low Hz": 18.0, "High Hz": 1200.0, "Band Width": 0.12, "Audio Gain": 18.0, "Size X M": 1200.0, "Radial Segments": 768, "Height M": 140.0, "Radius M": 600.0},
             "SEA_ABOVE_MEMBRANE": {"Low Hz": 16.0, "High Hz": 700.0, "Band Width": 0.1, "Audio Gain": 6.0, "Size X M": 1800.0, "Radial Segments": 768, "Height M": 55.0, "Radius M": 900.0, "Music Influence": 0.16, "Musical Amplitude": 10.0, "Musical Freq A": 0.75, "Musical Freq B": 6.0},
-        },
-    },
-    # garment_loom.py - MEL_garment_loom_variation (per-layer wardrobe presets, seed 20260902)
-    "MEL_garment_loom_variation": {
-        "label": "Garment Loom Variation",
-        "preset_labels": {
-            "BODICE_STRUCTURED": "Bodice Structured",
-            "COLLAR_LACE": "Collar Lace",
-            "SHOULDER_ORNAMENT_RIGID": "Shoulder Ornament Rigid",
-            "SLEEVE_FLOW": "Sleeve Flow",
-            "UNDERSKIRT_SOFT": "Underskirt Soft",
-            "SKIRT_FULL_HERO": "Skirt Full Hero",
-            "ANTIQUE_DOLL_LAYERED": "Antique Doll Layered",
-            "BUTTERFLY_WING_MEMBRANE": "Butterfly Wing Membrane",
-        },
-        "preset_descriptions": {
-            "BODICE_STRUCTURED": "Close-fit bodice shells, restrained fold for tier-C WPO micro-swell.",
-            "COLLAR_LACE": "Structured lace collar, near-rigid for tier-A authored motion.",
-            "SHOULDER_ORNAMENT_RIGID": "Studs and trim, effectively rigid for tier-A pieces.",
-            "SLEEVE_FLOW": "Loose sleeve drape for tier-C WPO cloth.",
-            "UNDERSKIRT_SOFT": "Soft support volume under the hero skirt, tier-C.",
-            "SKIRT_FULL_HERO": "Hero sheet movement for the tier-B Chaos candidate.",
-            "ANTIQUE_DOLL_LAYERED": "Twenty-slot layered dress intake (Cos_Dress_Melusina_AntiqueDoll).",
-            "BUTTERFLY_WING_MEMBRANE": "Thin accessory membrane (Cos_Accessory_Melusina_ButterflyWing).",
-        },
-        "presets": {
-            "BODICE_STRUCTURED": {"Seed": 20260902, "Fold": 0.3, "Drape": 0.25},
-            "COLLAR_LACE": {"Seed": 20260902, "Fold": 0.2, "Drape": 0.15},
-            "SHOULDER_ORNAMENT_RIGID": {"Seed": 20260902, "Fold": 0.1, "Drape": 0.05},
-            "SLEEVE_FLOW": {"Seed": 20260902, "Fold": 0.6, "Drape": 0.8},
-            "UNDERSKIRT_SOFT": {"Seed": 20260902, "Fold": 0.5, "Drape": 0.7},
-            "SKIRT_FULL_HERO": {"Seed": 20260902, "Fold": 0.9, "Drape": 1.2},
-            "ANTIQUE_DOLL_LAYERED": {"Seed": 20260902, "Fold": 0.45, "Drape": 0.55},
-            "BUTTERFLY_WING_MEMBRANE": {"Seed": 20260902, "Fold": 0.15, "Drape": 0.35},
-        },
-    },
-    # garment_audio_drape.py - MEL_garment_audio_drape (band presets, offline bake lane)
-    "MEL_garment_audio_drape": {
-        "label": "Garment Audio Drape",
-        "preset_labels": {
-            "BASS_WEAVE": "Bass Weave",
-            "VOCAL_MID": "Vocal Mid",
-            "TREBLE_SHIMMER": "Treble Shimmer",
-            "BEAT_PULSE_WIDE": "Beat Pulse Wide",
-        },
-        "preset_descriptions": {
-            "BASS_WEAVE": "Low-band weave for skirts and veils, slow large folds.",
-            "VOCAL_MID": "Vocal-band response for bodice and sleeves.",
-            "TREBLE_SHIMMER": "High-band shimmer for ornament and lace edges.",
-            "BEAT_PULSE_WIDE": "Full-band pulse for beat-reactive bake passes.",
-        },
-        "presets": {
-            "BASS_WEAVE": {"Low Hz": 30.0, "High Hz": 250.0, "Band Width": 0.16, "Audio Gain": 2.5, "Seed": 20260902, "Fold": 1.2, "Drape": 0.5},
-            "VOCAL_MID": {"Low Hz": 300.0, "High Hz": 3400.0, "Band Width": 0.08, "Audio Gain": 1.5, "Seed": 20260902, "Fold": 2.0, "Drape": 0.25},
-            "TREBLE_SHIMMER": {"Low Hz": 6000.0, "High Hz": 16000.0, "Band Width": 0.05, "Audio Gain": 1.2, "Seed": 20260902, "Fold": 4.0, "Drape": 0.1},
-            "BEAT_PULSE_WIDE": {"Low Hz": 40.0, "High Hz": 4000.0, "Band Width": 0.2, "Audio Gain": 3.0, "Seed": 20260902, "Fold": 1.6, "Drape": 0.4},
-        },
-    },
-    # garment_tension_folds.py - MEL_garment_tension_folds (tension-driven folds)
-    "MEL_garment_tension_folds": {
-        "label": "Garment Tension Folds",
-        "preset_labels": {
-            "PRESSED_PLEATS": "Pressed Pleats",
-            "STRETCH_CREASES": "Stretch Creases",
-            "SOFT_GATHER": "Soft Gather",
-        },
-        "preset_descriptions": {
-            "PRESSED_PLEATS": "Sharp compression folds for pleated skirts and structured gathers.",
-            "STRETCH_CREASES": "Pull creases for tension zones at seams, elbows, and bodice stress lines.",
-            "SOFT_GATHER": "Balanced soft gathering for everyday drape and veil shells.",
-        },
-        "presets": {
-            "PRESSED_PLEATS": {"Strength": 0.6, "Compress Gain": 2.5, "Stretch Gain": 0.2, "Seed": 20260902},
-            "STRETCH_CREASES": {"Strength": 0.5, "Compress Gain": 0.3, "Stretch Gain": 2.0, "Seed": 20260902},
-            "SOFT_GATHER": {"Strength": 0.35, "Compress Gain": 1.0, "Stretch Gain": 0.8, "Seed": 20260902},
-        },
-    },
-    # garment_xpbd_drape.py - MEL_garment_xpbd_drape (research-lane Cloth Dynamics wrapper)
-    "MEL_garment_xpbd_drape": {
-        "label": "Garment XPBD Drape",
-        "preset_labels": {
-            "SILK_CLOUD_DRAPE": "Silk Cloud Drape",
-            "STIFF_CANVAS_TEST": "Stiff Canvas Test",
-            "FREE_DRAPE_PREVIEW": "Free Drape Preview",
-        },
-        "preset_descriptions": {
-            "SILK_CLOUD_DRAPE": "Silk-like hero drape for single shells (low stretch, fluid bend).",
-            "STIFF_CANVAS_TEST": "Stiff comparison pass for silhouette checks.",
-            "FREE_DRAPE_PREVIEW": "Low-iteration fast preview of drape direction.",
-        },
-        "presets": {
-            "SILK_CLOUD_DRAPE": {"Pin Group": 0.0, "Stretchiness": 0.05, "Bendiness": 0.85, "Substeps": 5, "Constraint Steps": 15, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
-            "STIFF_CANVAS_TEST": {"Pin Group": 0.0, "Stretchiness": 0.0, "Bendiness": 0.05, "Substeps": 5, "Constraint Steps": 15, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
-            "FREE_DRAPE_PREVIEW": {"Pin Group": 0.0, "Stretchiness": 0.05, "Bendiness": 0.85, "Substeps": 2, "Constraint Steps": 5, "Mass": 1.0, "Friction": 0.5, "Collision Radius": 0.01, "Linear Damping": 1.0, "Gravity": True},
         },
     },
     # water.py - MEL_water_gerstner (effects)
@@ -326,6 +304,64 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
                 "Segments": 128, "Length": 6.0, "Ribbon Width": 0.35,
                 "Amplitude": 0.4, "Frequency": 4.0, "Twist": 1.5708,
                 "Closed Loop": True,
+            },
+        },
+    },
+
+    # ribbon.py - MEL_allee_ribbon (effects)
+    "MEL_allee_ribbon": {
+        "label": "Allee Ribbon",
+        "preset_labels": {
+            "GARDEN_ALLEE": "Garden Allee",
+            "CEREMONY_AXIS": "Ceremony Axis",
+            "MEADOW_S": "Meadow S",
+        },
+        "preset_descriptions": {
+            "GARDEN_ALLEE": "Default cherry-allee walk: gentle S, crowned camber.",
+            "CEREMONY_AXIS": "Straight wide axis for sando-to-porch approach.",
+            "MEADOW_S": "Strong meadow curve with higher crown for runoff.",
+        },
+        "presets": {
+            "GARDEN_ALLEE": {
+                "Segments": 48, "Length": 8.0, "Path Width": 2.2,
+                "S-Curve": 1.0, "Camber": 0.08, "Thickness": 0.12,
+            },
+            "CEREMONY_AXIS": {
+                "Segments": 32, "Length": 10.0, "Path Width": 2.6,
+                "S-Curve": 0.0, "Camber": 0.05, "Thickness": 0.12,
+            },
+            "MEADOW_S": {
+                "Segments": 64, "Length": 12.0, "Path Width": 1.8,
+                "S-Curve": 1.8, "Camber": 0.12, "Thickness": 0.1,
+            },
+        },
+    },
+
+    # ribbon.py - MEL_allee_ribbon (effects)
+    "MEL_allee_ribbon": {
+        "label": "Allee Ribbon",
+        "preset_labels": {
+            "GARDEN_ALLEE": "Garden Allee",
+            "CEREMONY_AXIS": "Ceremony Axis",
+            "MEADOW_S": "Meadow S",
+        },
+        "preset_descriptions": {
+            "GARDEN_ALLEE": "Default cherry-allee walk: gentle S, crowned camber.",
+            "CEREMONY_AXIS": "Straight wide axis for sando-to-porch approach.",
+            "MEADOW_S": "Strong meadow curve with higher crown for runoff.",
+        },
+        "presets": {
+            "GARDEN_ALLEE": {
+                "Segments": 48, "Length": 8.0, "Path Width": 2.2,
+                "S-Curve": 1.0, "Camber": 0.08, "Thickness": 0.12,
+            },
+            "CEREMONY_AXIS": {
+                "Segments": 32, "Length": 10.0, "Path Width": 2.6,
+                "S-Curve": 0.0, "Camber": 0.05, "Thickness": 0.12,
+            },
+            "MEADOW_S": {
+                "Segments": 64, "Length": 12.0, "Path Width": 1.8,
+                "S-Curve": 1.8, "Camber": 0.12, "Thickness": 0.1,
             },
         },
     },
@@ -3504,6 +3540,163 @@ def audit_presets() -> dict:
 # -----------------------------------------------------------------------------
 # Standalone entry point (for QA without bpy)
 # -----------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+# Melusina House Round Interior presets
+# -----------------------------------------------------------------------------
+
+BUILDERS_PRESETS["MEL_melusina_house_round_interior"] = {
+    "label": "Melusina House Round Interior",
+    "presets": {
+        "Default_Charming": {
+            "Interior Height": 3.1,
+            "Wall Thickness": 0.24,
+            "Show Interior": True,
+            "Include Stair": True,
+        },
+        "Compact_SeaVilla": {
+            "Interior Height": 2.8,
+            "Wall Thickness": 0.18,
+            "Show Interior": True,
+            "Include Stair": True,
+        },
+        "Grand_Salon": {
+            "Interior Height": 4.2,
+            "Wall Thickness": 0.30,
+            "Show Interior": True,
+            "Include Stair": False,
+        },
+    },
+    "preset_labels": {
+        "Default_Charming": "Default Charming",
+        "Compact_SeaVilla": "Compact Sea Villa",
+        "Grand_Salon": "Grand Salon",
+    },
+    "preset_descriptions": {
+        "Default_Charming": "The round-plan interior as specified in melusinashouseplan.md §12/§16.",
+        "Compact_SeaVilla": "Lower ceilings, slimmer walls — a cozy seaside villa read.",
+        "Grand_Salon": "Taller, thicker walls, no stair — an open grand salon interior.",
+    },
+}
+
+
+# -----------------------------------------------------------------------------
+# Melodia City Gen presets
+# -----------------------------------------------------------------------------
+
+BUILDERS_PRESETS["MEL_city_house_cell"] = {
+    "label": "City House Cell",
+    "presets": {
+        "Charming_Cottage": {"Width": 5.5, "Depth": 4.0, "Height": 3.2,
+                             "Wall Thickness": 0.24, "Roof Rise": 0.8, "Show Interior": True},
+        "Sea_Villa": {"Width": 6.5, "Depth": 5.0, "Height": 3.5,
+                      "Wall Thickness": 0.26, "Roof Rise": 1.0, "Show Interior": True},
+        "Urban_Maison": {"Width": 4.5, "Depth": 7.0, "Height": 4.2,
+                         "Wall Thickness": 0.30, "Roof Rise": 1.2, "Show Interior": False},
+    },
+    "preset_labels": {
+        "Charming_Cottage": "Charming Cottage",
+        "Sea_Villa": "Sea Villa",
+        "Urban_Maison": "Urban Maison",
+    },
+    "preset_descriptions": {
+        "Charming_Cottage": "A cozy round-Baroque cottage, slightly square.",
+        "Sea_Villa": "A wider seaside villa with a taller roof rise.",
+        "Urban_Maison": "A tall, deep street maisonette (interior hidden).",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_avenue"] = {
+    "label": "City Avenue",
+    "presets": {
+        "Lakeside_Row": {"Count": 6, "Cell Width": 6.0, "Cell Depth": 4.5,
+                         "Cell Height": 3.4, "Street Gap": 2.0},
+        "Old_Town": {"Count": 8, "Cell Width": 4.5, "Cell Depth": 6.0,
+                     "Cell Height": 4.0, "Street Gap": 1.0},
+        "Grand_Boulevard": {"Count": 10, "Cell Width": 7.0, "Cell Depth": 5.0,
+                            "Cell Height": 4.5, "Street Gap": 3.0},
+    },
+    "preset_labels": {
+        "Lakeside_Row": "Lakeside Row",
+        "Old_Town": "Old Town Street",
+        "Grand_Boulevard": "Grand Boulevard",
+    },
+    "preset_descriptions": {
+        "Lakeside_Row": "A relaxed street of six villas with wide gaps.",
+        "Old_Town": "A tight, tall older street, more units.",
+        "Grand_Boulevard": "A wide ceremonial avenue of large houses.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_block"] = {
+    "label": "City Block",
+    "presets": {
+        "District_Heart": {"Rows": 3, "Row Pitch": 6.0},
+        "Harbour_West": {"Rows": 2, "Row Pitch": 8.0},
+        "Quarter_Est": {"Rows": 4, "Row Pitch": 5.5},
+    },
+    "preset_labels": {
+        "District_Heart": "District Heart",
+        "Harbour_West": "Harbour West",
+        "Quarter_Est": "Quarter East",
+    },
+    "preset_descriptions": {
+        "District_Heart": "A three-row city block district.",
+        "Harbour_West": "A looser two-row set facing the water.",
+        "Quarter_Est": "A dense four-row grid quarter.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_plan_salon"] = {
+    "label": "Plan — Rectangular Salon",
+    "presets": {
+        "Grand_Hall": {"Interior Height": 3.8, "Wall Thickness": 0.26, "Show Interior": True},
+        "Intimate_Parlor": {"Interior Height": 3.0, "Wall Thickness": 0.20, "Show Interior": True},
+        "Open_Shell": {"Interior Height": 3.4, "Wall Thickness": 0.24, "Show Interior": False},
+    },
+    "preset_labels": {"Grand_Hall": "Grand Hall", "Intimate_Parlor": "Intimate Parlor", "Open_Shell": "Open Shell"},
+    "preset_descriptions": {
+        "Grand_Hall": "A tall, formal rectangular salon.",
+        "Intimate_Parlor": "A lower, cozy parlor read.",
+        "Open_Shell": "Exterior shell only — no interior shown.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_plan_courtyard"] = {
+    "label": "Plan — Courtyard Quad",
+    "presets": {
+        "Cloister_Quad": {"Interior Height": 3.4, "Wall Thickness": 0.24, "Show Interior": True},
+        "Walled_Garden": {"Interior Height": 3.0, "Wall Thickness": 0.30, "Show Interior": True},
+        "Open_Quad": {"Interior Height": 3.2, "Wall Thickness": 0.24, "Show Interior": False},
+    },
+    "preset_labels": {"Cloister_Quad": "Cloister Quad", "Walled_Garden": "Walled Garden", "Open_Quad": "Open Quad"},
+    "preset_descriptions": {
+        "Cloister_Quad": "Four wings around a central courtyard void.",
+        "Walled_Garden": "Thicker walls for a sheltered garden feel.",
+        "Open_Quad": "The quad massing without interior walls.",
+    },
+}
+
+BUILDERS_PRESETS["MEL_city_corridors"] = {
+    "label": "Corridor Variants",
+    "presets": {
+        "Straight_Hall": {"Corridor Type": 0, "Length": 8.0, "Width": 2.4, "Height": 3.2, "Wall Thickness": 0.25},
+        "L_Elbow": {"Corridor Type": 1, "Length": 6.0, "Width": 2.4, "Height": 3.2, "Wall Thickness": 0.25},
+        "Gallery": {"Corridor Type": 2, "Length": 10.0, "Width": 4.0, "Height": 3.6, "Wall Thickness": 0.30},
+        "Dog_Leg": {"Corridor Type": 3, "Length": 8.0, "Width": 2.4, "Height": 3.2, "Wall Thickness": 0.25},
+    },
+    "preset_labels": {
+        "Straight_Hall": "Straight Hall", "L_Elbow": "L-Elbow",
+        "Gallery": "Gallery", "Dog_Leg": "Dog-Leg",
+    },
+    "preset_descriptions": {
+        "Straight_Hall": "A straight tiled corridor.",
+        "L_Elbow": "A corner turning corridor.",
+        "Gallery": "A wide arcade-like gallery hall.",
+        "Dog_Leg": "A two-run dog-leg corridor.",
+    },
+}
 
 
 def main() -> None:

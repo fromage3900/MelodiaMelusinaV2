@@ -1,25 +1,19 @@
 name: Sync portfolio status from gate ledger
 
 # Keeps the public portfolio honest by regenerating its status blob from the
-# game repo's real gate ledger (Saved/gate_ledger.json). Runs on every game
-# push to main and nightly. The generator never invents progress.
+# game repo's real gate ledger (Saved/gate_ledger.json).
 #
-# TWO ways this fires:
-#   1. TOKEN-FREE (default, works today): run `.\deploy\sync_site_to_github.ps1`
-#      locally — it regenerates the status and ships it inside the normal site
-#      deploy (uses your existing git credentials, no PAT needed).
-#   2. SECRET-BASED (optional): this Action also runs on push or schedule and
-#      pushes the blob to my-site using secrets.SITE_SYNC_TOKEN.
-#      Requires a fine-grained PAT with write to fromage3900/my-site, stored as
-#      the SITE_SYNC_TOKEN repo secret on fromage3900/MelodiaMelusinaV2.
+# Token-free mode is valid: the workflow generates the blob and exits cleanly.
+# SITE_SYNC_TOKEN is optional and is only needed to push into fromage3900/my-site.
 on:
   push:
     branches: [main]
     paths:
       - 'Saved/gate_ledger.json'
       - 'Tools/sync_site_status.py'
+      - '.github/workflows/site_status_sync.yml'
   schedule:
-    - cron: '17 6 * * *'   # daily, off the :00 to avoid the crowd
+    - cron: '17 6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -28,31 +22,37 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      SITE_SYNC_TOKEN: ${{ secrets.SITE_SYNC_TOKEN }}
+
     steps:
       - name: Checkout game repo
         uses: actions/checkout@v4
         with:
           path: game
 
-      - name: Generate status blob into the site checkout
+      - name: Generate status blob
         run: python game/Tools/sync_site_status.py --out game/_site_status.json
 
       - name: Checkout site repo
+        if: ${{ env.SITE_SYNC_TOKEN != '' }}
         uses: actions/checkout@v4
         with:
           repository: fromage3900/my-site
           path: site
-          token: ${{ secrets.SITE_SYNC_TOKEN }}
+          token: ${{ env.SITE_SYNC_TOKEN }}
 
       - name: Stage generated status
+        if: ${{ env.SITE_SYNC_TOKEN != '' }}
         run: |
           mkdir -p site/public/melodia/status
           cp game/_site_status.json site/public/melodia/status/sync_status.json
 
-      - name: Commit & push if changed
+      - name: Commit and push if changed
+        if: ${{ env.SITE_SYNC_TOKEN != '' }}
         working-directory: site
         run: |
-          git add -A
+          git add -- public/melodia/status/sync_status.json
           if git diff --cached --quiet; then
             echo "no status change"
           else
@@ -61,3 +61,7 @@ jobs:
             git commit -m "chore(site): sync status from gate ledger"
             git push
           fi
+
+      - name: Explain token-free mode
+        if: ${{ env.SITE_SYNC_TOKEN == '' }}
+        run: echo "SITE_SYNC_TOKEN is not configured; generated status locally and skipped the external site push."

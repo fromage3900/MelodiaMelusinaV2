@@ -1,69 +1,213 @@
-# Melodia — Documentation Index & Authority Map
+# ♬ Melodia — Documentation Score Map
 
-**Front Door for Project Documentation**
-**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
-**Single Source of Truth Rule:** Prefer updating this index over creating unanchored status notes.
+**Last updated:** 2026-09-04
+
+> Front-facing docs tell the current truth. Dated handoffs keep the memory. Research is allowed to be weird. Runtime ownership is not. ♪
 
 ---
 
-## 1. The Core Authority Hierarchy
+## 𝄞 Start here — in this order
 
-When working on Melodia, consult these documents in order. They define the architecture, state authority, and execution priorities of the project.
+The repository is intentionally deep, but the **front door is small**. Do not mistake research volume for current product scope.
 
-| Priority | Document | Authority & Scope |
+| Order | Read this | Why |
 |:---:|---|---|
-| **1** | [**`PROJECT.md`**](../PROJECT.md) / [**`README.md`**](README.md) | **What this project is.** Melodia is a single-author Rhythm-JRPG in Unreal Engine 5.8. QuillScript and TurnBased JRPG are absolute authorities. AI/MCP tooling is supporting infrastructure. |
-| **2** | [**`Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md`**](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md) | **Active Evening Execution Plan.** The authoritative execution plan for closing out and shipping P0, validating the 6-phase reusable chapter gameplay loop, and freezing immutable evidence. |
-| **3** | [**`CURRENT_STATE.md`**](CURRENT_STATE.md) | **Canonical State Document.** 10/10 P0 gameplay gates passing, 524/524 automated tests passing, preflight status, and level/subsystem health. |
-| **4** | [**`TODO.md`**](TODO.md) | **Master Task Ledger.** Verified P0 milestones, tonight's active execution sequence, and Chapter 2 roadmap. |
-| **5** | [**`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`**](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) & [**`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`**](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) | **Architectural Blueprint.** The Two Authorities (QuillScript narrative, TurnBased JRPG state) and Four Converged Pillars (Rhythm Combat, Wardrobe Traversal, Music-as-Key, Single-Writer UI Bridge). |
-| **6** | [**`QUICKSTART.md`**](QUICKSTART.md) | **Developer Quickstart.** Setup instructions, automated test runner execution (`run_tests.ps1`), PIE gameplay walk, and Win64 packaging commands. |
-| **7** | [**`_VERTICAL_SLICE_SCOPE.md`**](_VERTICAL_SLICE_SCOPE.md) & [**`_PORTFOLIO_SHIP_CHECKLIST.md`**](_PORTFOLIO_SHIP_CHECKLIST.md) | **Scope & Shipping Criteria.** P0 vertical slice boundaries, gate verification checklist, and shipping acceptance standards. |
-| **8** | [**`SYSTEM_MAP.md`**](SYSTEM_MAP.md) & [**`DATA_FLOW.md`**](DATA_FLOW.md) | **System Architecture & Data Flow.** Complete lifecycle trace from QuillScript dialogue to traversal, rhythm combat, reward distribution, and save game persistence. |
-| **9** | [**`TEST_READY.md`**](TEST_READY.md) | **Test Verification Record.** Test suite structure, validation tiers, and benchmark verification details. |
+| **1** | [`README.md`](README.md) | Project identity and one-page orientation. |
+| **2** | [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) | Professor/reviewer route: playable proof, runtime architecture, evidence levels, boundaries, and 5–10 minute demo. |
+| **3** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can honestly be claimed now. |
+| **4** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) | The bounded First Dream / Sea Above P0 scope. |
+| **5** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
+| **6** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Architecture detail only when needed. |
+| **7** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, and validation commands. |
+| **Agent** | [`AGENT_START_HERE.md`](AGENT_START_HERE.md) | Mandatory current discovery contract for AI/remote agents. |
+| **House GN** | [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) | Live Melodia Studio builder IDs, foundation-first workflow, category/preset verification, and the correction for stale `GN_MH_*` plan aliases. |
+| **Laptop** | [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) | Find committed work that has not reached `main`. |
+| **Visuals** | [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) | Find canonical image boards and distinguish missing/uncommitted references. |
+
+### Supporting context — not required reading
+
+- `Docs/Strategy/` — long-term product and chapter architecture.
+- `Docs/Evidence/` — proof packets and captured verification.
+- `Docs/Plans/` — implementation plans, including Melusina House and tooling work.
+- `Docs/Research/` and `research/` — exploratory R&D; useful when a specific question needs it.
+- dated handoffs / audits — historical memory, not current authority unless explicitly referenced by a front-door document.
+
+If you are an agent or reviewer: **do not start by searching every old handoff, research packet, or experiment.** Read the seven-item front door above, then follow links into the specific system you actually need.
 
 ---
 
-## 2. Universal Reusable Chapter Gameplay Loop Documentation
+## ♪ Two truths that should never get mixed up
 
-Every chapter in Melodia adheres to the 6-phase universal loop. Key contracts and specifications:
+### The dream
 
-- **Loop Architecture & Invariants:** [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
-- **P0 Golden Run Contract:** `specs/p0/core_p0_dream_golden_run.v1.json`
-- **Narrative Subsystem & 7-Verb Grammar:** `Source/BS_GodFile/MelodiaIntegration/MelodiaNarrativeSubsystem.h`
-- **Wardrobe Traversal Provider Contract:** `Source/BS_GodFile/MelodiaIntegration/MelodiaTraversalCapabilityProvider.h`
-- **UI Bridge Single-Writer Contract:** `Source/BS_GodFile/MelodiaIntegration/MelodiaUIBridgeSubsystem.h`
-- **Battle & Rhythm Presentation Seam:** `Docs/Handoffs/P0_BATTLE_UI_CLOSEOUT_HANDOFF_2026-08-27.md`
+Melodia is an evergreen single-player journey. A Volume can finish emotionally, then the game can later receive more Chapters, Reveries, Gifts, Voyages, creatures, outfits, impossible places, or whole new Volumes.
 
----
+### The job today
 
-## 3. Automation, Testing & Tooling Documentation
+Close the runtime.
 
-- **Core Automated Test Runner:** `run_tests.ps1` (Executes GMM simulations, P0 integration tests, and ECHO contracts)
-- **Offline P0 Preflight Gate:** `Tools/verify_p0_offline.py`
-- **Melodia MCP Regression Suite:** `Tools/test_melodia_mcp.py`
-- **End-to-End Release & Hygiene Suite:** `Tools/test_e2e_melusina_release.py`
-- **MATH Evaluation Benchmark:** `Docs/MELUSINA_AGENT_TEST_HARNESS.md`
-- **Gate Ledger & Immutable Evidence:** `Saved/gate_ledger.json`
+P0 / First Dream + Sea Above is the current integration proof. Future scale does not excuse broken persistence, duplicate rewards, unclear ownership, or a package that cannot survive restart.
+
+**Big world, boring contracts. Both matter.**
 
 ---
 
-## 4. Environment Art, Levels & Shaders
+## ♫ Runtime authority map
 
-- **Sanctuary Level (`L_MelusinaMorning`):** Narrative start, departure gate, lighting lookdev.
-- **Overworld Journey Level (`LV_SeaAbove_Prototype`):** Recast navmesh, Starskiff docking, `APCGHeroMusicGraphHost` phrase stepping.
-- **Battle Arena (`L_KaleidoNave`):** Turn-based combat, Rhythm Highway integration, kaleidoscope shaders.
-- **Substrate Toon Shader Spine:** `Docs/T3D_Baseline/` and `MATERIAL_LOOKDEV_PIPELINE.md`.
+| Truth | Owner |
+|---|---|
+| battle turns / targets / stock action results | Phoenix / TurnBased JRPG |
+| narrative intents / flags / checkpoints / consequences | `UMelodiaNarrativeSubsystem` + QuillScript |
+| rhythm timing / note-highway execution | Melodia rhythm / `MelodiaCore` |
+| owned + equipped wardrobe state | `UMelodiaWardrobeSubsystem` |
+| cross-system interpretation | Convergence |
+| player-facing UI writes | `UMelodiaUIBridgeSubsystem` |
+| durable Melodia memory | canonical save + narrative record |
+
+Useful architecture records:
+
+- `Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`
+- `Docs/ORCHESTRA_CONTRACT_2026-08-20.md`
+- current runtime-persistence closure plan
 
 ---
 
-## 5. Credits, Provenance & Legal
+## ♬ Chapter / journey documents
 
-- **Asset Credits Ledger:** [Docs/CREDITS.md](Docs/CREDITS.md)
-- **Source Matrix:** [Docs/SOURCES_MATRIX.md](Docs/SOURCES_MATRIX.md)
-- **License Terms:** [LICENSE](LICENSE) (MIT License)
-- **Code of Conduct:** [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- **Security Policy:** [SECURITY.md](SECURITY.md)
+### Reusable contracts
+
+- `specs/progression/`
+- `Docs/Plans/REUSABLE_CHAPTER_VALIDATION_SYSTEM_2026-08-31.md`
+
+### Current major lanes
+
+- First Dream / Sea Above;
+- Shorewake + Starskiff departure;
+- Mara / Faraway Mother;
+- God That Molts — still needs a formal progression package;
+- Horizon Eater — needs ordering reconciliation after God That Molts;
+- House of Measures / Seam Oracle / Last Dress of the Sea.
+
+The 50+ Chapter Volume-I grid is an **arrangement scaffold**. It is not proof that every current title or number must survive production.
 
 ---
-*Melodia Documentation Index — Maintained under strict single-source-of-truth discipline.*
+
+## 𝄞 Browser + tool laboratories
+
+These are part of the repository on purpose. They let ideas become interactive quickly without inventing another Unreal authority.
+
+### ♪ Cymatic Sanctuary
+
+`Docs/Tools/puzzle-sandbox/index.html`
+
+12-instrument Three.js Music-as-Key sandbox with phrase gates, watercolor/toon presentation, bloom, particles, and prototype JSON export.
+
+### ♫ MusicKey3D
+
+`Prototypes/Web/MusicKey3D/`
+
+World-interaction lab for music nodes, phrase readability, barrier feedback, and Melodia's illustrative browser style.
+
+### ♬ Traveling Folio
+
+`Prototypes/Web/MelodiaFolio3D/`
+
+3D UI / Starskiff post / Thread navigation / repository-model turntable.
+
+`mara.html` is the more stylized Mara-art-direction variant.
+
+**Browser prototype rule:** emit ideas, view models, proposed schemas, and UI intents. Never quietly become gameplay authority.
+
+---
+
+## ♪ Testing / evidence
+
+Useful roots:
+
+- `run_tests.ps1`
+- `deploy/test_laptop_workstation.ps1` — staged laptop Smoke/Fast/Contracts/Build/UE acceptance runner.
+- `deploy/inspect_workstation.ps1` — local hardware/toolchain profile report.
+
+- `Tools/run_contract_tests.py`
+- `Tools/verify_p0_offline.py`
+- `Tools/test_melodia_mcp.py`
+- `Tools/test_e2e_melusina_release.py`
+- `Saved/gate_ledger.json` where it exists in the evidence environment
+
+Remember the ladder:
+
+```text
+source exists
+   ≠
+offline contract passes
+   ≠
+live runtime proven
+   ≠
+restart proven
+   ≠
+packaged build proven
+```
+
+Say which one you have.
+
+---
+
+## ♫ Git-health interpretation
+
+As of the 2026-09-02 health pass:
+
+- persistence PR #54 contains useful work but is too stale to merge wholesale; reapply it from current `main`;
+- site / Three.js PR #61 is cleanly based but broad; review it as a large Wix snapshot and reconcile Three.js versions before promotion;
+- very large older research PRs increasingly function as **archives to extract from**, not automatic merge candidates.
+
+Do not let “open PR” become synonymous with “current authority.”
+
+---
+
+## ♬ Historical documents
+
+Older docs are allowed to disagree with current strategy because they preserve how the project got here.
+
+Superseded examples include:
+
+- the old finite `~12h` loose-scope estimate;
+- the idea that every Chapter must run the same six-phase P0 loop.
+
+Keep the history. Read it through the current north-star docs.
+
+---
+
+## ♪ Toolchain / research
+
+Before adding another tool, check the current research/discovery indexes.
+
+- **Melusina house live builder manifest:** [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) — start here for registered `MEL_mh_*` IDs, foundation builders, GN Stack discovery and verification.
+- **Melusina house foundation → shell roadmap:** [`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`](Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md) — exact next builders (`MEL_mh_roof_ribbon`, `MEL_mh_opening_family`, `MEL_mh_porch_stair`), later tower/shingle/loop sequence, evidence gates, and agent-sized work packets.
+- **Melusina house visual/design packet:** [`melusinashouseplan.md`](melusinashouseplan.md) — Blender 5.2 modeling intent, Borromini/Rococo shape research and attached references; `GN_MH_*` names inside are scene-local concepts, not registry authority.
+- **Melusina house Melodia Studio integration:** [`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md`](Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md) — builder → registry → import → category → preset → Blender smoke chain.
+- **Melusina house Phase 2 / asset families:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — compose the existing 239-builder Melodia Studio vocabulary before promoting house-specific tools.
+- **Melusina house Phase 2 / rooms + acoustics:** [`Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — room wrappers, semantic attributes and acoustic debug grammar.
+- **Melusina house Phase 3 / furniture:** [`Docs/Plans/MELUSINAS_HOUSE_GN_FURNITURE_AND_DOMESTIC_PROPS_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_GN_FURNITURE_AND_DOMESTIC_PROPS_2026-09-03.md) — domestic prop genome driven by `CRV_MH_MelusinaLoop`.
+- **Melusina house Phase 3 / materials:** [`Docs/Plans/MELUSINAS_HOUSE_MATERIAL_SHADER_GENOME_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_MATERIAL_SHADER_GENOME_2026-09-03.md) — bounded Blender/Unreal material families and handoff rules.
+- **Melusina house Phase 3 / Unreal handoff:** [`Docs/Plans/MELUSINAS_HOUSE_BLENDER_TO_UNREAL_NANITE_ASSEMBLY_2026-09-03.md`](Docs/Plans/MELUSINAS_HOUSE_BLENDER_TO_UNREAL_NANITE_ASSEMBLY_2026-09-03.md) — export-copy, Nanite, collision, assembly and reimport proof.
+- **Current audio source crate:** [`Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md`](Docs/Research/PC_MUSIC_HYPERPOP_STEMS_SOURCE_CRATE_2026-09-03.md) — official/artist-hosted stem archaeology, Splice commercial-use lane, provenance rules, and Melodia production-language notes.
+
+The rule remains:
+
+> **Adopt a tool only when it makes visibly better Melodia per hour without creating a more expensive maintenance system.**
+
+Music may author geometry offline. Houdini may author impossible evidence. Browser toys may test interaction. Unreal remains the game.
+
+---
+
+## 𝄞 Legal / provenance
+
+- [`LICENSE`](LICENSE)
+- [`Docs/CREDITS.md`](Docs/CREDITS.md)
+- [`Docs/SOURCES_MATRIX.md`](Docs/SOURCES_MATRIX.md)
+- [`SECURITY.md`](SECURITY.md)
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+
+---
+
+> **Front door = current truth. Handoff = memory. Research = possibility. Runtime = authority.** ♫
