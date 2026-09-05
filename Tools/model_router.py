@@ -41,6 +41,7 @@ ENDPOINTS = {
     "openrouter": "https://openrouter.ai/api/v1",
     "tokenrouter": "https://api.tokenrouter.com/v1",
     "local": LOCAL_BASE,
+    "bedrock": os.environ.get("BEDROCK_MANTLE_URL", "https://bedrock-mantle.us-east-1.api.aws/v1"),
 }
 
 PRICES = {
@@ -75,6 +76,9 @@ PRICES = {
     "qwen3-coder:14b": (0.0, 0.0),
     "qwen3-coder:32b": (0.0, 0.0),
     "qwen3-coder-next": (0.0, 0.0),
+    # Bedrock Mantle (OpenAI-shaped, bearer token) - free tier on AWS account
+    "qwen.qwen3-coder-next": (0.0, 0.0),
+    "anthropic.claude-sonnet-5": (0.0, 0.0),
     "devstral-small": (0.0, 0.0),
     "gpt-oss:20b": (0.0, 0.0),
 }
@@ -248,6 +252,7 @@ def load_keys():
         "openrouter": os.environ.get("OPENROUTER_API_KEY", ""),
         "tokenrouter": os.environ.get("TOKENROUTER_API_KEY", ""),
         "local": os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
+        "bedrock": os.environ.get("AWS_BEARER_TOKEN_BEDROCK", ""),
     }
     if not keys["openrouter"] or not keys["tokenrouter"]:
         try:

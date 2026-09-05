@@ -1,90 +1,87 @@
-# Session Handoff
+# Session Handoff — 2026-09-05
 
-**Date:** 2026-09-05
-**Session type:** Gameplay
-**Phase:** Phase 2 (vertical slice)
+*Overwritten each session. Canonical detail lives in `CURRENT_STATE.md` §7 and
+`Docs/P0_TASK_LEDGER.json`.*
 
-### What was accomplished this session
+---
 
-- Ran a 5-iteration live-PIE test pass over `MelodiaIntegrationMap`'s 8 battle-trigger actors
-  (`BP_InteractionBattle`/`2`/`3`/`4`, `BP_PermanentBattle`/`2`/`3`, plus the shared
-  `BP_BattleController`). Found and fixed 4 real bugs (Decision 053): 3 empty-`enemyList`
-  soft-locks, 1 null-enemy-class spawn-table row (25-50% chance to try spawning nothing).
-- Root-caused and fixed a real, reproducible editor crash (Decision 054):
-  `AnimNode_SequencePlayer.cpp:92` — a Sequence Player node was being fed an `AnimMontage`
-  (`BP_SirMelodiousPlayerUnit.dieAnimation` was wrongly set to `AM_Melusina_Death`).
-- Found and fixed a second, unrelated crash-loop (Decision 055): two read-only `.uasset` files
-  were making Claireon's autosave hard-crash the editor every ~4 minutes regardless of task.
-- Fixed the actual cause of "Melusina doesn't show up in battle" (Decision 056): her battle unit
-  was rendering through the stock `SK_Mannequin` placeholder because the JRPG template's mesh/
-  AnimClass assignment is native and `Transient` (no Blueprint graph sets it). Built
-  `ABP_Melusina_Battle` (new asset, mirrors the stock battle ABP's graph, targets
-  `SK_Melusina_Skeleton`) and added a `BeginPlay` override on `BP_SirMelodiousPlayerUnit` that
-  re-points the component to `SK_Melusina_V2_Body` + `ABP_Melusina_Battle`. First pass used the
-  wrong mesh/animation (legacy `SK_Melusina` + `QuaterniusRetargeted` sequences) and produced a
-  badly broken pose; corrected to `SK_Melusina_V2_Body` + `A_Melusina_Idle_Mocap_RootX` per
-  owner direction. Live-verified: pose is now anatomically correct.
+## The headline: the project builds and plays
 
-### What is left undone (specific, verifiable)
+| | |
+|---|---|
+| **Editor build** | **GREEN** — `582fa914`. Binary dated 2026-09-04 21:47, editor runs from it. |
+| **Audio reactivity** | **WORKS**, verified live in PIE with measured values — `b1cac649`. |
+| **P0 gates** | 8/8 active gates `pass`. |
+| **Tests** | 524/524 pass. |
+| **Packaged route** | verified, both legs, 0 fatals. |
 
-- **Flipbook material bug**: a large floating black/checkered slab renders near Melusina's head
-  in battle (screenshot evidence: `Saved/Screenshots/melusina_battle_v2_mocap_fix.png00000.png`).
-  Owner confirmed this is a known, separate, Content/Materials-tier issue — not touched this
-  session.
-- **`dieAnimation` is still on a regression-prone asset**: `BP_SirMelodiousPlayerUnit.dieAnimation`
-  points at `A_Q_Melusina_Death01` (`QuaterniusRetargeted` folder — the same family implicated in
-  the idle-pose regression). No mocap-sourced death sequence exists in the project as of this
-  session. Not yet live-tested (only plays when `isDead=true`); likely shows the same broken-pose
-  class of bug the idle animation had before the fix.
-- **Wardrobe not attached to the battle unit**: she renders as the bare `SK_Melusina_V2_Body`
-  with no Shirt/Skirt/Boots/Accessories — the exploration character attaches these as four
-  additional follower `SkeletalMeshComponent`s (`WardrobeSlot_EMelodiaWardrobeSlot::*`); the
-  battle unit has no equivalent wardrobe components at all.
-- **Melody Slime DataTable + mesh task** (raised mid-session, not started): `specs/blueprints/
-  melody_slime_variant_contract.v1.json` is a data-only enemy-variant contract whose own status
-  says the source JSON rows exist but `DT_MelodySlime_Enemies`/`Skills`/`RoomMods` have never
-  been imported as DataTable assets. Owner also asked for a visual slime mesh, separately.
+**Build root cause, for the record:** `LPCTSTR MaterialToken` silently dropped a struct member in
+`MelodiaCaptureRenderSubsystem.cpp`. Two earlier `FString::Printf` rewrites blamed a UE 5.8
+consteval format sanitiser and were treating symptoms. The fix is `const TCHAR*`.
 
-### Decisions made this session
+**Audio root cause:** nothing was wrong with the subsystems — **route leg 0 simply had no music
+clock**, so nothing drove `MPC_Melodia_Palette`. The clock now lives on the GameMode
+(`5fea50c8`), so every level reacts instead of only levels with a hand-placed clock actor.
 
-- Decisions 053-056 in `_DECISION_LOG.md` — read those in full before touching battle triggers,
-  the JRPG unit animation properties, or Melusina's battle mesh again.
-- Standalone PIE net mode is disabled by default in Claireon's plugin settings
-  (`DisabledPIENetModes` on `ClaireonSettings`) and resets to disabled on every fresh editor
-  launch — it is an in-memory CDO setting, not persisted to an `.ini`. To test single-player
-  correctly, re-enable it each session: `uobject_set_property` on
-  `/Script/Claireon.Default__ClaireonSettings`, property `DisabledPIENetModes`, value
-  `("ListenServer")` (drops `"Standalone"` from the disabled set).
+---
 
-### Files modified this session
+## Read these before touching the landscape
 
-- `Content/MelodiaIntegration/Maps/MelodiaIntegrationMap.umap` — 4 battle-trigger data fixes
-  (Decision 053).
-- `Content/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit.uasset` — `dieAnimation` fix
-  (Decision 054), `BeginPlay` mesh/AnimClass override wiring (Decision 056).
-- `Content/MelodiaIntegration/Blueprints/Animations/ABP_Melusina_Battle.uasset` — **new asset**
-  (Decision 056).
-- `Content/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.uasset`,
-  `Content/EnvSandbox/Materials/Functions/MF_Triplanar_LandscapePro.uasset` — OS read-only
-  attribute cleared only, no content change (Decision 055).
+1. **Ultra Dynamic Sky is not pinned, and its time-of-day is not exposed to Python.** Two captures
+   with *identical* material state differed by a lot (terrain colour spread 25.1 vs 15.9). Any
+   before/after on `LV_SeaAbove_Prototype` has an uncontrolled lighting variable. **Pin the sky
+   first or your A/B is noise.**
+2. **`update_material_instance()` or the render is stale.** Parameter read-backs succeed while the
+   viewport still shows the old value. This invalidated several measurements last session.
+3. **Something rewrites `MI_Glacier_Landscape_Layered`.** `Gaea_SnowWeight` was found at −14.94 and
+   `Gaea_RockWeight` at 6.43 *after* both had been set to 1.0 and verified. Writer unidentified.
+   The master's `Saturate` clamps limit the damage, and the weights were measured to make no
+   visual difference at all.
+4. **`W_Glacier_Rock` is a near-black Gaea export** (peaks 31/255). The rock layer cannot read
+   until it is re-exported with correct normalisation. Nothing on the UE side fixes this.
+5. **SeaAbove `__ExternalActors__` are untracked.** That is why the key-light fix was lost twice.
+   The light actor is now force-added (`0fb76675`); the other 73 are not.
 
-### Next session MUST start with
+---
 
-1. Decide on the flipbook material fix (floating slab near Melusina's head in battle) — Content/
-   Materials-tier, ask-first per `CLAUDE.md`.
-2. Find or author a real mocap-compatible death sequence for `dieAnimation`, or accept the
-   Quaternius one and live-test it (force `isDead=true` on a live PIE unit and watch for the same
-   broken-pose class of bug Decision 056 fixed for idle).
-3. Decide whether the battle unit needs the same 4-piece wardrobe attachment the exploration
-   character has, or whether the bare V2 body is acceptable for battle presentation.
-4. Melody Slime task: import the 3 pending DataTables from source JSON per
-   `specs/blueprints/melody_slime_variant_contract.v1.json`, then the separate mesh-asset request.
+## Git
 
-### Known broken things (not blocking, but don't waste time debugging)
+- **19 commits replayed onto local `main`** via `merge-tree`/`commit-tree` — no worktree, index or
+  HEAD touched. Full record: `Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md`.
+- **Local `main` and `origin/main` are diverged lineages** (628 vs 704, neither an ancestor of the
+  other). This predates the merge. "On main" means **local** main.
+- Off-machine: `recovery/unify-histories-20260904`, `recovery/main-merged-20260904`.
+- **Do not push `main`** — the pre-push hook forbids it. Branch names must start with
+  `feature/ fix/ docs/ cleanup/ collab/ codex/ recovery/ cursor/`.
 
-- `BP_MelusinaJRPGCharacter` has a pre-existing, unrelated compiler warning —
-  `RecreatePinForVariable: 'CharacterMesh0' pin not found` — seen twice in this session's editor
-  log, not touched, not investigated.
-- `bp_sweep` and `verify_baseline` Echo gates are pre-existing known-failures per this project's
-  own `p0-loop` skill (mirror-tree duplicate short names; drifted material assets) — not this
-  session's concern, do not chase.
+**Two other agents write to this repo.** The overnight wardrobe daemon *drives git itself* — it
+checked the repo off `main` onto its own branch and committed mid-operation last session. Check
+`git status` and `git rev-parse --abbrev-ref HEAD` before assuming which branch you are on.
+
+---
+
+## Next, in the order I would take it
+
+1. **Universal / Universal_Alpha master convergence** — analysed, not executed. The Alpha master
+   carries **none** of the 14 `Cymatic_*`/`Audio*` parameters, so its 109 instances — including
+   Melusina's `SW_Dress_P01..P48` — are structurally excluded from the audio reactivity that is
+   otherwise working. Opaque master has 2205 instances, Alpha 109: keep the opaque one, port the 8
+   Alpha-only params (`OpacityMap`/`OpacityStrength`/`bUseOpacityMap` + 5 `Cloth_*`) additively so
+   the 2205 are untouched, then reparent the 109 with per-instance `BlendMode=Masked` + `TwoSided`.
+2. **Re-export `W_Glacier_Rock` from Gaea.** Unblocks the rock layer *and* the close-range detail
+   texture, which is gated behind it.
+3. **PCG volume layout** — four concentric 600–800k volumes over a 250k landscape, so no zone owns
+   a style. Cheap and non-destructive to fix. `Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md`
+   §4a.
+4. **Find whatever writes junk into the landscape material instance.** Resetting values it will
+   overwrite again is treating a symptom.
+
+---
+
+## Tools added this session
+
+| Path | Purpose |
+|---|---|
+| `Content/Python/lookdev_capture.py` | Deterministic level captures via `SceneCapture2D`. `take_high_res_screenshot` needs a game viewport and silently writes nothing from an editor-only session. |
+| `Content/Python/audit_gaea_wiring.py` | Traces each Gaea mask parameter to the `LandscapeLayerSample` it gates and whether it reaches the output. |
+| `Content/Python/import_gaea_landscape_paint.py` | Imports Gaea weightmaps into landscape **paint** layers — the half of the pipeline that texture import does not cover. |

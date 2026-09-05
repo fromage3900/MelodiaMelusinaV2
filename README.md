@@ -95,7 +95,7 @@ Every single chapter in Melodia (from Chapter 1 "First Dream" to the Final Chapt
 ## ♪ Three Active Tracks
 
 ### Track 1: Gameplay Vertical Slice — "First Dream"
-- **Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/Melodia/Maps/LV_SeaAbove_Prototype` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
+- **Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
 - **P0 Completion Gates (27/31 PASS):**
 
 | Gate | Status | Category |

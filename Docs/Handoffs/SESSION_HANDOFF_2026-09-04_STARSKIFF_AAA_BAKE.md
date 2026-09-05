@@ -2,8 +2,9 @@
 
 > **Timestamp:** 2026-09-04 21:46 EDT (session active)
 > **Lane:** asset-prep / Blender-Houdini offline bake (safe lane, no editor)
-> **Branch:** `llm/fromage/BS_GodFile/shorewake-chapter-loop`
-> **Remote for sync:** `legacy-melodia` (github.com/fromage3900/MelodiaMelusina)
+> **Branch:** `codex/game-state-2026-09-04` (handoff committed here; parallel lane
+> active — branch switched off `llm/fromage/BS_GodFile/shorewake-chapter-loop`
+> mid-session). Remote for sync: `legacy-melodia`.
 
 ---
 
