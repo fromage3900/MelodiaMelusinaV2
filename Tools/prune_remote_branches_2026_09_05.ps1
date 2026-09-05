@@ -18,7 +18,8 @@ $Keep = @(
   'fix/mh6-shell-promotion-20260904',
   'codex/game-state-2026-09-04-checkpoint',
   'codex/weapon-gallery-20260902',
-  'rnd/2026-08-30-blender52-music-gn-studio'
+  'rnd/2026-08-30-blender52-music-gn-studio',
+  'docs/2026-08-29-character-p1-p2-canon-audit'
 ) + $KeepAdditional
 
 $Candidates = @(
@@ -52,7 +53,6 @@ $Candidates = @(
   'cursor/recruiter-sendoffs-no-nvidia-ca02',
   'cursor/threejs-integration-d313',
   'cursor/zenforest-docs-batch-ca02',
-  'docs/2026-08-29-character-p1-p2-canon-audit',
   'docs/2026-08-31-mara-instrument-cymatics-plan',
   'docs/2026-09-02-endless-journey-paradigm',
   'docs/2026-09-02-grand-master-plan',
