@@ -1,0 +1,905 @@
+{
+  "/Game/EnvSandbox/Materials/Instances/MI_IridescentRock": {
+    "asset_path": "/Game/EnvSandbox/Materials/Instances/MI_IridescentRock",
+    "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+    "scalar": [
+      {
+        "name": "Roughness",
+        "value": 0.3499999940395355,
+        "is_overridden": true
+      },
+      {
+        "name": "Metallic",
+        "value": 0,
+        "is_overridden": true
+      },
+      {
+        "name": "Iridescence",
+        "value": 0,
+        "is_overridden": true
+      },
+      {
+        "name": "IridescencePower",
+        "value": 3,
+        "is_overridden": true
+      },
+      {
+        "name": "IridescenceBias",
+        "value": 0,
+        "is_overridden": true
+      },
+      {
+        "name": "IridescenceCycles",
+        "value": 3,
+        "is_overridden": true
+      },
+      {
+        "name": "IridescenceRoughnessAtten",
+        "value": 0.4000000059604645,
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowDreamStrength",
+        "value": 0.8999999761581421,
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowSoftness",
+        "value": 1.2000000476837158,
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowRampPosMid",
+        "value": 0.44999998807907104,
+        "is_overridden": true
+      },
+      {
+        "name": "InkAmount",
+        "value": 0.699999988079071,
+        "is_overridden": true
+      },
+      {
+        "name": "InkCavityPower",
+        "value": 3,
+        "is_overridden": true
+      },
+      {
+        "name": "InkAccumBias",
+        "value": 0.10000000149011612,
+        "is_overridden": true
+      },
+      {
+        "name": "DreamRimPower",
+        "value": 3.5,
+        "is_overridden": true
+      },
+      {
+        "name": "DreamRimCycles",
+        "value": 2.200000047683716,
+        "is_overridden": true
+      },
+      {
+        "name": "DreamRimStrength",
+        "value": 2.5,
+        "is_overridden": true
+      }
+    ],
+    "vector": [
+      {
+        "name": "BaseTint",
+        "value": {
+          "R": 0.14000000059604645,
+          "G": 0.12999999523162842,
+          "B": 0.18000000715255737,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "IridescenceTint",
+        "value": {
+          "R": 1,
+          "G": 1,
+          "B": 1,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowRampLow",
+        "value": {
+          "R": 0.15000000596046448,
+          "G": 0.10000000149011612,
+          "B": 0.3199999928474426,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowRampMid",
+        "value": {
+          "R": 0.44999998807907104,
+          "G": 0.25,
+          "B": 0.5,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowRampHigh",
+        "value": {
+          "R": 0.8500000238418579,
+          "G": 0.6499999761581421,
+          "B": 0.7799999713897705,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "ShadowDreamTint",
+        "value": {
+          "R": 1,
+          "G": 1,
+          "B": 1,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "InkColor",
+        "value": {
+          "R": 0.029999999329447746,
+          "G": 0.03999999910593033,
+          "B": 0.11999999731779099,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "DreamRimColor",
+        "value": {
+          "R": 1,
+          "G": 0.9200000166893005,
+          "B": 1,
+          "A": 1
+        },
+        "is_overridden": true
+      }
+    ],
+    "texture": [
+      {
+        "name": "NormalMap",
+        "value": "None",
+        "is_overridden": true
+      }
+    ],
+    "static_switch": [
+      {
+        "name": "bUseSeparateRoughnessMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseSeparateMetallicMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseHeightToNormal",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bLayerA_Active",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bLayerB_Active",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bLayerC_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bSparkleAdvanced",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bSheenUsesNormal",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "UseUDSTimeOfDay",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bNikkiHero",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bMeshBlendActivator_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bCelestial_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bFairyDust_Active",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bWeather_Active",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bElemental_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bShadowRamp_Active",
+        "value": false,
+        "is_overridden": true
+      },
+      {
+        "name": "bImpasto_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bDreamRim_Active",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bCelestialUsesDreamPalette",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bTriplanar_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bDFContactBlend_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "Use Static Value",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseEmissiveMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "DIAG_TestBool",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bGemstone_Active_LEGACY",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bStackLayer2_Active_LEGACY",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bStackLayer3_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bFaceSDF_UV1",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bGemstone_Active",
+        "value": false,
+        "is_overridden": false
+      }
+    ],
+    "total_overrides": 33
+  },
+  "/Game/EnvSandbox/Materials/Instances/Atlantis/MI_WoodPlankA": {
+    "asset_path": "/Game/EnvSandbox/Materials/Instances/Atlantis/MI_WoodPlankA",
+    "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+    "scalar": [
+      {
+        "name": "LayerA_TextureWeight",
+        "value": 1,
+        "is_overridden": true
+      },
+      {
+        "name": "TextureWeight",
+        "value": 1,
+        "is_overridden": true
+      }
+    ],
+    "vector": [],
+    "texture": [
+      {
+        "name": "Albedo",
+        "value": "/Game/EnvSandbox/Textures/Atlantis/T_KB3D_ATL_WoodPlankA_basecolor.T_KB3D_ATL_WoodPlankA_basecolor",
+        "is_overridden": true
+      },
+      {
+        "name": "HeightMap",
+        "value": "/Game/EnvSandbox/Textures/Atlantis/T_KB3D_ATL_WoodPlankA_height.T_KB3D_ATL_WoodPlankA_height",
+        "is_overridden": true
+      },
+      {
+        "name": "MetallicMap",
+        "value": "/Game/EnvSandbox/Textures/Atlantis/T_KB3D_ATL_WoodPlankA_metallic.T_KB3D_ATL_WoodPlankA_metallic",
+        "is_overridden": true
+      },
+      {
+        "name": "NormalMap",
+        "value": "/Game/EnvSandbox/Textures/Atlantis/T_KB3D_ATL_WoodPlankA_normal.T_KB3D_ATL_WoodPlankA_normal",
+        "is_overridden": true
+      },
+      {
+        "name": "RoughnessMap",
+        "value": "/Game/EnvSandbox/Textures/Atlantis/T_KB3D_ATL_WoodPlankA_roughness.T_KB3D_ATL_WoodPlankA_roughness",
+        "is_overridden": true
+      }
+    ],
+    "static_switch": [
+      {
+        "name": "bUseSeparateRoughnessMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseSeparateMetallicMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseHeightToNormal",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bLayerA_Active",
+        "value": true,
+        "is_overridden": true
+      },
+      {
+        "name": "bLayerB_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bLayerC_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bSparkleAdvanced",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bSheenUsesNormal",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "UseUDSTimeOfDay",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bNikkiHero",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bMeshBlendActivator_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bCelestial_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bFairyDust_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bWeather_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bElemental_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bShadowRamp_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bImpasto_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bDreamRim_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bCelestialUsesDreamPalette",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bTriplanar_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bDFContactBlend_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "Use Static Value",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseEmissiveMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "DIAG_TestBool",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bGemstone_Active_LEGACY",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bStackLayer2_Active_LEGACY",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bStackLayer3_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bFaceSDF_UV1",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bGemstone_Active",
+        "value": false,
+        "is_overridden": false
+      }
+    ],
+    "total_overrides": 8
+  },
+  "/Game/EnvSandbox/Materials/Instances/Water/v9/MI_WaterV9_CalmPond": {
+    "asset_path": "/Game/EnvSandbox/Materials/Instances/Water/v9/MI_WaterV9_CalmPond",
+    "parent": "/Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v9.M_Water_Master_Grand_v9",
+    "scalar": [
+      {
+        "name": "BioDensity",
+        "value": 6,
+        "is_overridden": true
+      },
+      {
+        "name": "BioFlashRate",
+        "value": 0.25,
+        "is_overridden": true
+      },
+      {
+        "name": "BioIntensity",
+        "value": 0.11999999731779099,
+        "is_overridden": true
+      },
+      {
+        "name": "FoamIntensity",
+        "value": 0.550000011920929,
+        "is_overridden": true
+      },
+      {
+        "name": "RippleSpeed",
+        "value": 0.2199999988079071,
+        "is_overridden": true
+      },
+      {
+        "name": "RippleStrength",
+        "value": 0.550000011920929,
+        "is_overridden": true
+      },
+      {
+        "name": "RippleWidth",
+        "value": 0.23999999463558197,
+        "is_overridden": true
+      },
+      {
+        "name": "WaveAmplitude",
+        "value": 0.003000000026077032,
+        "is_overridden": true
+      },
+      {
+        "name": "WaveSpeed",
+        "value": 0.11999999731779099,
+        "is_overridden": true
+      },
+      {
+        "name": "BaseTiling",
+        "value": 1.606160044670105,
+        "is_overridden": true
+      },
+      {
+        "name": "MidTiling",
+        "value": 2.0458288192749023,
+        "is_overridden": true
+      },
+      {
+        "name": "Layer2Tiling",
+        "value": 4.449787616729736,
+        "is_overridden": true
+      },
+      {
+        "name": "HighlightTiling",
+        "value": 1.2533663511276245,
+        "is_overridden": true
+      },
+      {
+        "name": "TopMaterialOpacity",
+        "value": 0.8017477989196777,
+        "is_overridden": true
+      }
+    ],
+    "vector": [
+      {
+        "name": "RippleCenterA",
+        "value": {
+          "R": 0.25,
+          "G": 0.30000001192092896,
+          "B": 0,
+          "A": 0
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "RippleCenterB",
+        "value": {
+          "R": 0.699999988079071,
+          "G": 0.550000011920929,
+          "B": 0,
+          "A": 0
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "RippleCenterC",
+        "value": {
+          "R": 0.5,
+          "G": 0.800000011920929,
+          "B": 0,
+          "A": 0
+        },
+        "is_overridden": true
+      }
+    ],
+    "texture": [],
+    "static_switch": [],
+    "total_overrides": 17
+  },
+  "/Game/EnvSandbox/Materials/Instances/Character/MI_Character_Melusina_Skin": {
+    "asset_path": "/Game/EnvSandbox/Materials/Instances/Character/MI_Character_Melusina_Skin",
+    "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_Master_Toon_Character",
+    "scalar": [
+      {
+        "name": "CharacterFaceSDFStrength",
+        "value": 0.3499999940395355,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterFaceSDFTiling",
+        "value": 1,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterHeroSheenPower",
+        "value": 5,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterHeroSheenStrength",
+        "value": 0.10000000149011612,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterMaterialID",
+        "value": 1,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterRoleBlend",
+        "value": 0.75,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterRoughness",
+        "value": 0.44999998807907104,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterRoughnessBlend",
+        "value": 0.3499999940395355,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterWindAmplitude",
+        "value": 0,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterWindSpeed",
+        "value": 0.75,
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterUVTiling",
+        "value": 1.085279941558838,
+        "is_overridden": true
+      }
+    ],
+    "vector": [
+      {
+        "name": "CharacterFaceTint",
+        "value": {
+          "R": 1,
+          "G": 0.44999998807907104,
+          "B": 0.3499999940395355,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterHeroSheenColor",
+        "value": {
+          "R": 1,
+          "G": 0.800000011920929,
+          "B": 0.699999988079071,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterRoleTint",
+        "value": {
+          "R": 1,
+          "G": 0.7200000286102295,
+          "B": 0.6200000047683716,
+          "A": 1
+        },
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterEmissiveBase",
+        "value": {
+          "R": 0.8255019783973694,
+          "G": 0.9819700121879578,
+          "B": 0.9474679827690125,
+          "A": 1
+        },
+        "is_overridden": true
+      }
+    ],
+    "texture": [
+      {
+        "name": "CharacterAlbedo",
+        "value": "/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Material_007_BaseColor.T_Melusina_Material_007_BaseColor",
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterNormal",
+        "value": "/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Material_007_Normal.T_Melusina_Material_007_Normal",
+        "is_overridden": true
+      },
+      {
+        "name": "CharacterRoughnessMap",
+        "value": "/Game/Melodia/Characters/Melusina/Textures/T_Melusina_Material_007_Roughness.T_Melusina_Material_007_Roughness",
+        "is_overridden": true
+      }
+    ],
+    "static_switch": [],
+    "total_overrides": 18
+  },
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticMarble": {
+    "asset_path": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticMarble",
+    "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal",
+    "scalar": [],
+    "vector": [],
+    "texture": [],
+    "static_switch": [
+      {
+        "name": "bUseSeparateRoughnessMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseSeparateMetallicMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseHeightToNormal",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bLayerA_Active",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bLayerB_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bLayerC_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bSparkleAdvanced",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bSheenUsesNormal",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "UseUDSTimeOfDay",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bNikkiHero",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bMeshBlendActivator_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bCelestial_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bFairyDust_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bWeather_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bElemental_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bShadowRamp_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bImpasto_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bDreamRim_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bCelestialUsesDreamPalette",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bTriplanar_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bDFContactBlend_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "Use Static Value",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bUseEmissiveMap",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "DIAG_TestBool",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bGemstone_Active_LEGACY",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bStackLayer2_Active_LEGACY",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bStackLayer3_Active",
+        "value": false,
+        "is_overridden": false
+      },
+      {
+        "name": "bFaceSDF_UV1",
+        "value": true,
+        "is_overridden": false
+      },
+      {
+        "name": "bGemstone_Active",
+        "value": false,
+        "is_overridden": false
+      }
+    ],
+    "total_overrides": 0
+  }
+}

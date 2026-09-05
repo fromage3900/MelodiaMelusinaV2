@@ -1,0 +1,75 @@
+{
+  "schema": "melodia.wardrobe_verify.v1",
+  "variant": "DAWN_CHORUS",
+  "label": "Dawn Chorus capstone — first-light rose-gold OPEN gown",
+  "garment": "Cos_Dress_Melusina_DawnChorus",
+  "seed_rule": 20260902,
+  "checked_at": "2026-09-05T02:55:00-04:00",
+  "blender": "5.2.1 LTS hash 9e2066aef7ef built 2026-08-25 02:38:20",
+  "hython": "22.0.368 at C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe",
+  "verdict": "PASS",
+  "mesh": {
+    "file": "Saved/Audit/wardrobe_pipeline/dawn_chorus/meshes/DawnChorus.fbx",
+    "size_b": 10466876,
+    "sha12": "24afebf25f84",
+    "sha256": "24afebf25f84540243304e14534eb2591f21a715a65b57dd5e64b44f713568f7",
+    "source": "Saved/Audit/wardrobe_pipeline/intake/Cos_Dress_Melusina_AntiqueDoll/Cos_Dress_Melusina_AntiqueDoll.obj (180895 verts OBJ, 20 mats)",
+    "verts": 180895,
+    "polys": 316912,
+    "material_slots": 20,
+    "uv_layers": 1,
+    "reimport": "Blender --factory-startup --background import_scene.fbx PASS — Cube was replaced; now Cos_Dress_Melusina_DawnChorus 180895v/316912 polys verified",
+    "retopo_recipe_available": "Docs/Pipelines/MELODIA_RETOPO_RECIPE_2026-09-03.md + Tools/Houdini/sea_above_reef/garment_retopo_preintake.py (voxel_fallback 0.050931 proven to 9168v/9166q quad_ratio 1.0)",
+    "staged": "OPEN — no MI auto-wire, no Content/** edit, UE remains only runtime writer"
+  },
+  "open_paint_maps": {
+    "dir_textures": "Saved/Audit/wardrobe_pipeline/dawn_chorus/textures/",
+    "dir_resources": "Saved/Audit/wardrobe_pipeline/dawn_chorus/resources/ (identical at staging)",
+    "size": 2048,
+    "generator": "Saved/Audit/wardrobe_pipeline/dawn_chorus/_gen_maps.py (numpy seed 20260902, Chladni 5,7 + 9,4, hem-weighted)",
+    "maps": [
+      {"file": "T_DawnChorus_BaseColor.png", "sha12": "8f3a4a233abc", "mean": 175.5, "std": 49.5, "note": "dawn blush(0.98,0.90,0.86) -> rose(0.93,0.66,0.58) -> deep rose-gold(0.72,0.42,0.34), gilt veins on Chladni crests + grain 0.006"},
+      {"file": "T_DawnChorus_Height.png", "sha12": "cfb643beb07e", "mean": 85.9, "std": 45.3, "note": "hem-weighted Chladni height, parallax OpenGL"},
+      {"file": "T_DawnChorus_Metallic.png", "sha12": "7c9b8f592e24", "mean": 5.4, "std": 28.0, "note": "gilt veins only, 0.9"},
+      {"file": "T_DawnChorus_Normal.png", "sha12": "de21921eadec", "mean": 169.3, "std": 59.9, "note": "Sobel from height, strength 2.0, OpenGL +Y"},
+      {"file": "T_DawnChorus_Roughness.png", "sha12": "baadfdfadec8", "mean": 119.7, "std": 8.9, "note": "satin 0.46, gilt 0.24, hem +0.06"}
+    ],
+    "mirror_ok": true,
+    "variance_gate": "PASS (all maps std > 0, BC 49.5, Height 45.3, Normal 59.9)"
+  },
+  "cop_palette_family": {
+    "name": "FirstLightDawn",
+    "path": "Saved/Audit/copernicus_cymatic/FirstLightDawn/",
+    "cooked": "2026-09-03 02:38:12-14",
+    "size": 2048,
+    "maps": 9,
+    "provision": "Houdini 22.0.368 hython COP via /out ROP coppath+rop.render, seed 20260902",
+    "hashes": {
+      "T_Cymatic_FirstLightDawn_BaseColor.png": "be00c621f2e3",
+      "T_Cymatic_FirstLightDawn_Height.png": "f95df2bb6ad0",
+      "T_Cymatic_FirstLightDawn_Normal.png": "c4ea4b26cfb1",
+      "T_Cymatic_FirstLightDawn_Roughness.png": "58dc0fc90107",
+      "T_Cymatic_FirstLightDawn_Metallic.png": "303bebd829f1",
+      "T_Cymatic_FirstLightDawn_Iridescence.png": "690d7014b642",
+      "T_Cymatic_FirstLightDawn_Emissive.png": "ee63400ce153",
+      "T_Cymatic_FirstLightDawn_ORM.png": "b355ef75cb57",
+      "T_Cymatic_FirstLightDawn_Opacity.png": "7368a2762f02"
+    },
+    "distinct_from_open_paint": "PASS — Dawn BC 8f3a4a233abc vs FirstLight BC be00c621f2e3 (open paint has tooth/grain, COP is smooth palette)",
+    "variance_gate": "PASS (Height std 21.5, Iridescence 14.4, etc)"
+  },
+  "builders": {
+    "gn52_proof": "PASS 2026-09-05 --factory-startup --background",
+    "trees": {
+      "MEL_garment_uv_unwrap": {"nodes": 15, "sockets": 6, "status": "BUILDER_OK TREE_OK"},
+      "MEL_garment_loom_variation": {"nodes": 13, "sockets": 9, "status": "BUILDER_OK TREE_OK", "presets": ["BODICE_STRUCTURED","COLLAR_LACE","SHOULDER_ORNAMENT_RIGID","SLEEVE_FLOW","UNDERSKIRT_SOFT","SKIRT_FULL_HERO","ANTIQUE_DOLL_LAYERED","BUTTERFLY_WING_MEMBRANE"]},
+      "MEL_garment_audio_drape": {"nodes": 27, "sockets": 15, "status": "BUILDER_OK TREE_OK", "presets": ["BASS_WEAVE","VOCAL_MID","TREBLE_SHIMMER","BEAT_PULSE_WIDE"]},
+      "MEL_garment_tension_folds": {"nodes": 29, "sockets": 10, "status": "BUILDER_OK TREE_OK", "presets": ["PRESSED_PLEATS","STRETCH_CREASES","SOFT_GATHER"]}
+    },
+    "W_LINK_OK": true,
+    "TENSION_W_OK": true,
+    "dawn_preset_map": "SKIRT_FULL_HERO + ANTIQUE_DOLL_LAYERED (loom) + SOFT_GATHER tension + BASS_WEAVE audio (hem-weighted Chladni)"
+  },
+  "staging_rule": "OPEN — resources/ mirrors textures/ at staging; paint from resources/, keep textures/ pristine; Height is OpenGL parallax; no auto-wire to any mesh (UE only runtime writer); Content/** untouched",
+  "done_log_ref": "Saved/Audit/wardrobe_pipeline/OVERNIGHT_STATE.md queue item CAPSTONE checked 2026-09-05"
+}

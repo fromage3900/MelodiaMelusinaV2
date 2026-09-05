@@ -347,6 +347,14 @@
 		{
 			"Name": "VRM4U",
 			"Enabled": true
+		},
+		{
+			"Name": "MultiUserClient",
+			"Enabled": true
+		},
+		{
+			"Name": "MultiServerReplication",
+			"Enabled": true
 		}
 	]
 }

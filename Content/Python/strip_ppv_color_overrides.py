@@ -16,7 +16,7 @@ live level, the actor still carries:
   override_color_gain_highlights=True  (value (1.04, 1.00, 0.98, 1.0))
 
 This script:
-  1. Discovers PPV_NikkiDream actors in the 5 live shipping levels.
+  1. Discovers PPV_NikkiDream actors in the 4 gameplay certification levels.
   2. For each one, audits which overrides are set.
   3. With --apply, strips them to engine defaults (override_*=False, value=engine-default).
   4. Reports per-level what was changed, written to
@@ -39,18 +39,14 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from ppv_contract import GAMEPLAY_PPV_CERTIFICATION_LEVELS
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 REPORT_PATH = PROJECT_ROOT / "Saved" / "Audit" / "ppv_overrides_strip.json"
 
-# 5 live shipping levels (the 4 L_Render_* from the older scripts are MISSING
-# on disk; see DEEP_INTAKE_MATERIALS_PPV_2026-08-26.md §3.3).
-SHIPPING_LEVELS = (
-    "/Game/EnvSandbox/Environments/L_KaleidoNave",
-    "/Game/EnvSandbox/Environments/L_FallenMoon",
-    "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "/Game/ZenForestTest",
-    "/Game/EnvSandbox/_Template/L_Template",
-)
+# Gameplay PPV certification surface; lookdev/regression maps are intentionally
+# excluded from shipping certification.
+SHIPPING_LEVELS = GAMEPLAY_PPV_CERTIFICATION_LEVELS
 
 # Properties to audit/strip. The 8 color-grading values are scoped to PPV actor.
 # Bloom is also a lens character, but the 2026-08-01 owner kept it (1.0) as a
@@ -153,7 +149,7 @@ def apply() -> dict:
 
 
 def apply_all() -> dict:
-    """Iterate the 5 live shipping levels, strip overrides on each, save each.
+    """Iterate gameplay certification levels, strip overrides, and save each.
 
     Skips any level that fails to load (caller can inspect the per-level
     result row). Writes a single JSON report.

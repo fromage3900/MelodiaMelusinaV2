@@ -189,6 +189,18 @@ Content/EnvSandbox/*
 !Content/EnvSandbox/Monoliths/
 !Content/EnvSandbox/Monoliths/**
 
+# World Partition one-file-per-actor mirror for the Monoliths levels above.
+# OFPA actors live under Content/__ExternalActors__/<original package path>/,
+# a separate top-level dir from Content/EnvSandbox/ -- the unignore above does
+# not cover it. Without this, any actor placed in a Monoliths level (e.g. the
+# Shorewake chapter's quill trigger, 2026-09-04) silently never reaches git.
+!Content/__ExternalActors__/
+Content/__ExternalActors__/*
+!Content/__ExternalActors__/EnvSandbox/
+Content/__ExternalActors__/EnvSandbox/*
+!Content/__ExternalActors__/EnvSandbox/Monoliths/
+!Content/__ExternalActors__/EnvSandbox/Monoliths/**
+
 # Nested site repo + deploy staging dir (mirrors, not tracked content)
 my-site-clean/
 _github_deploy/

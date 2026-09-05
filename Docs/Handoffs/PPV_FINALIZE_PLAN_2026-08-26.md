@@ -1,13 +1,13 @@
-# PPV Stack Finalization Plan — 2026-08-26
+# PPV Stack Finalization Plan — 2026-08-26 (superseded by Grandmaster Convergence)
 **Lane:** `asset_qa` + `author` (additive, no master edits, no .uasset mutation in this session)
 **Status as of 2026-08-27:** steps 1 + 2 (drift refs, dead levels) **APPLIED** in this session. Step 3 (color-override strip) awaits the live editor. See `Saved/Audit/ppv_shipping_finalize.json` for the consolidated manifest.
-**Goal:** Lock the PostProcessVolume (PPV) stack into a state that is **safe to ship**: no dead asset references, no residual color-grading scene overrides, no stale level paths, and an explicit audio contract that the runtime can rely on.
+**Goal:** Lock the PostProcessVolume (PPV) stack into a state that is **safe to ship**: no dead asset references, no residual color-grading scene overrides, no stale level paths, and an explicit audio contract that the runtime can rely on. The current authority is `Docs/Handoffs/PPV_GRANDMASTER_OUTLINE_CYMATICS_CONVERGENCE_2026-09-04.md`.
 
 ---
 
 ## 0. TL;DR
 
-Five Python scripts ship with this plan. They are all idempotent, all default to **report-only**, and all have an `--apply` flag. None of them touch the master material, the C++ source, or any existing .uasset except `Saved/Audit/*.json` reports.
+The older scripts remain idempotent, but their level taxonomy and gameplay outline target are now supplied by `Content/Python/ppv_contract.py`. Material and PPV asset writes are performed through the live editor.
 
 | Script | Reads | Writes (apply) | Read-only run | Status |
 |---|---|---|---|---|
@@ -69,7 +69,7 @@ The PPV is a consumer, not a producer, of the audio-reactive path. The contract 
 Per `apply_dream_candidate_ppv.py:34-38` (owner direction 2026-08-18):
 
 ```
-PPV_NikkiDream on each of 5 live levels:
+PPV_NikkiDream on each of 4 gameplay certification levels:
   - actor: PPV_NikkiDream
   - unbound: True
   - enabled: True
@@ -84,12 +84,15 @@ PPV_NikkiDream on each of 5 live levels:
     override_film_grain_intensity (all 0 by default per `setup_nikki_render_post_process.py:120-123`)
 ```
 
-5 live shipping levels:
-- `/Game/EnvSandbox/Environments/L_KaleidoNave`
-- `/Game/EnvSandbox/Environments/L_FallenMoon`
+Gameplay PPV certification levels:
 - `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
+- `/Game/EnvSandbox/Environments/L_KaleidoNave`
 - `/Game/ZenForestTest`
-- `/Game/EnvSandbox/_Template/L_Template`
+- `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`
+
+`LV_SeaAbove_Prototype` is also a packaged shipping map. `L_FallenMoon` and
+`_Template/L_Template` are lookdev/regression maps, not gameplay shipping
+coverage.
 
 ---
 
@@ -188,7 +191,7 @@ The audio-reactive path is **owned by C++ and one MPC**; the PPV is a passive co
 
 - [ ] `ppv_drift_fixes.json` shows `applied=4` (after `--apply`).
 - [ ] `ppv_levels_pruned.json` shows `applied=3, level_count_after=5`.
-- [ ] `ppv_overrides_strip.json` shows `levels[N].status="applied"` for all 5 live levels, with `stripped` listing the 7 properties per actor.
+- [ ] `ppv_overrides_strip.json` shows `levels[N].status="applied"` for all 4 gameplay certification levels, with `stripped` listing the 7 properties per actor.
 - [ ] `ppv_audio_bind.json` shows `beat_grid_exists=true` and `mpc_missing_audio_scalars=[]`.
 - [ ] `ppv_shipping_finalize.json` shows all 3 steps as `applied` (or `skipped_no_editor` if no live editor at run time).
 - [ ] `git diff` against `Content/Python/build_ppv_nikkidream.py`, `portfolio_scene_integration.py`, `apply_dream_candidate_ppv.py`, `revert_ppv_stack_2026_08_18.py`, `setup_nikki_render_post_process.py` is limited to:
