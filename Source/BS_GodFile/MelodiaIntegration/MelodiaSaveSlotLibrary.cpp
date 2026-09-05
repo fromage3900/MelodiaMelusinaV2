@@ -21,6 +21,39 @@ namespace
 		return UMelodiaSaveRecoverySubsystem::Get(WorldContextObject);
 	}
 
+	/**
+	 * Validate invariants that belong to the canonical record itself before the
+	 * stock JRPG load event is allowed to mutate runtime state.
+	 *
+	 * Keep this deliberately module-neutral: catalog existence, authored meshes
+	 * and cosmetic-to-slot semantics belong to MelodiaWardrobe and must not be
+	 * pulled into BS_GodFile through a reverse dependency. The persistence layer
+	 * can still prove the intrinsic invariant that an equipped persistent ID is
+	 * non-empty and is part of the same record's owned set.
+	 */
+	bool ValidateIntrinsicNarrativeRecord(const FMelodiaNarrativeRecord& Candidate, FString& OutReason)
+	{
+		for (const TPair<EMelodiaWardrobeSlot, FName>& EquippedPair : Candidate.EquippedCosmeticIds)
+		{
+			if (EquippedPair.Value.IsNone())
+			{
+				OutReason = TEXT("wardrobe_equipped_none");
+				return false;
+			}
+
+			if (!Candidate.OwnedCosmeticIds.Contains(EquippedPair.Value))
+			{
+				OutReason = FString::Printf(
+					TEXT("wardrobe_equipped_not_owned cosmetic=%s"),
+					*EquippedPair.Value.ToString());
+				return false;
+			}
+		}
+
+		OutReason.Reset();
+		return true;
+	}
+
 	/** Validate without calling RestoreNarrativeRecord, which may reset state on an incompatible version. */
 	bool HasLoadableNarrativeRecord(const UObject* JRPGSaveObject)
 	{
@@ -42,7 +75,21 @@ namespace
 		}
 
 		FMelodiaNarrativeRecord Candidate = *Source;
-		return UMelodiaNarrativeSubsystem::MigrateRecord(Candidate);
+		if (!UMelodiaNarrativeSubsystem::MigrateRecord(Candidate))
+		{
+			return false;
+		}
+
+		FString ValidationFailure;
+		if (!ValidateIntrinsicNarrativeRecord(Candidate, ValidationFailure))
+		{
+			UE_LOG(LogTemp, Warning,
+				TEXT("MELODIA_LOAD candidate rejected: %s"),
+				*ValidationFailure);
+			return false;
+		}
+
+		return true;
 	}
 
 	void EndSaveBoundary(UMelodiaSaveRecoverySubsystem* Recovery, const FString& SlotName)
@@ -69,7 +116,6 @@ bool UMelodiaSaveSlotLibrary::HasCanonicalJRPGSlot(const UObject* WorldContextOb
 
 bool UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlot(const UObject* WorldContextObject, const FString& SlotName, const int32 UserIndex)
 {
-	// Legacy bool surface: true exactly when the narrative record was restored.
 	return LoadCanonicalJRPGSlotDetailed(WorldContextObject, SlotName, UserIndex) == EMelodiaLoadSlotResult::LoadedNarrativeRestored;
 }
 
@@ -104,8 +150,6 @@ EMelodiaLoadSlotResult UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(co
 		return EMelodiaLoadSlotResult::Refused;
 	}
 
-	// Preserve the selected slot for subsequent stock saves. This is the
-	// existing BP_JRPGGameInstance variable, not a second persistence owner.
 	if (FStrProperty* SlotNameProperty = FindFProperty<FStrProperty>(GameInstance->GetClass(), TEXT("slotName")))
 	{
 		SlotNameProperty->SetPropertyValue_InContainer(GameInstance, SlotName);
@@ -115,9 +159,6 @@ EMelodiaLoadSlotResult UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(co
 		SaveProperty->SetObjectPropertyValue_InContainer(GameInstance, LoadedSave);
 	}
 
-	// The first canonical save is created before the opening map has been
-	// recorded. The stock LoadThisGame event opens currentMap, so do not feed it
-	// NAME_None; return that valid initial slot to the authored opening route.
 	FName SavedMap = NAME_None;
 	if (const FNameProperty* CurrentMapProperty = FindFProperty<FNameProperty>(LoadedSave->GetClass(), TEXT("currentMap")))
 	{
@@ -125,8 +166,6 @@ EMelodiaLoadSlotResult UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(co
 	}
 	if (SavedMap.IsNone())
 	{
-		// There is no stock load event for a fresh slot, so restore the canonical
-		// narrative record before taking the authored opening route.
 		if (!Narrative->RestoreNarrativeRecordFromSave(LoadedSave))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("MELODIA_LOAD refused canonical slot '%s': narrative restore failed."), *SlotName);
@@ -134,16 +173,6 @@ EMelodiaLoadSlotResult UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(co
 			return EMelodiaLoadSlotResult::Refused;
 		}
 
-		// Route through the single travel authority (Decision 023) so this path gets
-		// allowlist validation, spawn placement and the input-context clear on arrival.
-		//
-		// CORRECTION 2026-07-31: an earlier version of this comment claimed this was
-		// "the last direct OpenLevel call left in the project". That was wrong — it was
-		// the last one in the BS_GodFile *game module*. MelodiaCore still has seven
-		// (OrreryMainMenuGameMode x5, MelodiaSirMelodiousIntroActor, MelodiaOpeningPortal).
-		// Those cannot call this subsystem as-is: UMelodiaTravelSubsystem lives in the
-		// game module and MelodiaCore is a plugin, so reaching it would invert the
-		// dependency. See _TASK_QUEUE.md "Travel authority cannot reach MelodiaCore".
 		static const FName OpeningRoute(TEXT("/Game/Melodia/Levels/Opening/L_MelusinaMorning"));
 		UE_LOG(LogTemp, Log, TEXT("Melodia canonical load: slot '%s' has no saved map; travelling to the authored first route."), *SlotName);
 
@@ -155,14 +184,8 @@ EMelodiaLoadSlotResult UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(co
 				return EMelodiaLoadSlotResult::LoadedNarrativeRestored;
 			}
 
-			// Refused means the ID is not in DA_MelodiaIntegrationConfig->TravelLevelIds.
-			// Fall through rather than stranding the player on a dead slot, but say
-			// loudly what to fix -- a silent fallback here is how this became a bypass
-			// in the first place.
 			UE_LOG(LogTemp, Warning,
-				TEXT("MELODIA_TRAVEL refused '%s' from the canonical-load fallback. Add it to "
-					 "DA_MelodiaIntegrationConfig -> Travel Level Ids. Using a direct OpenLevel for now, "
-					 "which skips spawn placement and the input-context clear."),
+				TEXT("MELODIA_TRAVEL refused '%s' from the canonical-load fallback. Add it to DA_MelodiaIntegrationConfig -> Travel Level Ids. Using a direct OpenLevel for now, which skips spawn placement and the input-context clear."),
 				*OpeningRoute.ToString());
 		}
 		else
@@ -202,11 +225,6 @@ EMelodiaLoadSlotResult UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(co
 	SaveParameter->SetObjectPropertyValue_InContainer(Parameters, LoadedSave);
 	GameInstance->ProcessEvent(LoadThisGame, Parameters);
 
-	// This call is deliberately after the stock GameInstance event. It closes the
-	// native save boundary without replacing stock map, party, reward, or battle
-	// restoration. If the authored event already restores the record, this is an
-	// idempotent state restore; the exact Blueprint node order remains a runtime
-	// verification item rather than an assumption here.
 	const bool bNarrativeRestored = Narrative->RestoreNarrativeRecordFromSave(LoadedSave);
 	EndLoadBoundary(Recovery, SlotName);
 	return bNarrativeRestored ? EMelodiaLoadSlotResult::LoadedNarrativeRestored : EMelodiaLoadSlotResult::LoadedNarrativeDegraded;
@@ -219,10 +237,6 @@ bool UMelodiaSaveSlotLibrary::CreateCanonicalJRPGSlot(const UObject* WorldContex
 		return false;
 	}
 
-	// _VERTICAL_SLICE_SCOPE.md requires manual saving be unavailable during an active
-	// narrative battle. Enforced here rather than left to each caller: a mid-battle
-	// save cannot represent turn state, and a rule that lives only in a document gets
-	// missed. The input authority owns the answer; this just honours it.
 	if (const UMelodiaInputContextSubsystem* Input = UMelodiaInputContextSubsystem::Get(WorldContextObject))
 	{
 		if (!Input->IsSavingAllowed())
@@ -248,9 +262,6 @@ bool UMelodiaSaveSlotLibrary::CreateCanonicalJRPGSlot(const UObject* WorldContex
 		Recovery->BeginSaveBoundary(SlotName);
 	}
 
-	// This is the native New Game creation path. Reset only the Melodia narrative
-	// subsystem, then copy that canonical record into the stock save object before
-	// the stock serializer writes it. No combat or reward state is touched here.
 	Narrative->ResetNarrativeRecord();
 	USaveGame* NewSave = UGameplayStatics::CreateSaveGameObject(SaveGameClass);
 	if (!NewSave || !Narrative->SyncNarrativeRecordToSave(NewSave))
