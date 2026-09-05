@@ -1165,7 +1165,7 @@ CATEGORY_META: dict[str, dict] = {
 
 
 def register_builder(tree_name, builder_fn, label, description="", category="",
-                     hidden=False, role="sku"):
+                     hidden=False, role="sku", params=None):
     """Register a GN tree builder into the global registry.
 
     hidden=True keeps the live id (RQ / blends) but omits it from GN Stack.
@@ -1195,6 +1195,7 @@ def register_builder(tree_name, builder_fn, label, description="", category="",
         "builder":     builder_fn,
         "hidden":      bool(hidden),
         "role":        role or "sku",
+        "params":      params,   # explicit schema; None = introspect later
     }
 
 
@@ -1316,6 +1317,68 @@ def _rebuild_derived_data():
 
     TREE_CATEGORIES.clear()
     TREE_CATEGORIES.update(cats)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# Param schemas — the single param contract (absorption plan §3-P1)
+# ═══════════════════════════════════════════════════════════════════════
+
+PARAM_SCHEMAS: dict[str, list] = {}
+
+_MUSIC_PARAMS = {"Music Influence", "Musical Amplitude", "Musical Freq A",
+                 "Musical Freq B", "Music Detune"}
+
+
+def get_param_schema(tree_name):
+    """Return the param schema for a builder id (list of dicts).
+
+    Order of authority:
+      1. explicit `params=` at registration;
+      2. introspect the generated tree's interface (cached in PARAM_SCHEMAS).
+    Returns [] for geometry-input-only groups (add_geometry etc.).
+    """
+    if tree_name in PARAM_SCHEMAS:
+        return PARAM_SCHEMAS[tree_name]
+    explicit = GROUP_METADATA.get(tree_name, {}).get("params")
+    if explicit:
+        PARAM_SCHEMAS[tree_name] = list(explicit)
+        return PARAM_SCHEMAS[tree_name]
+    # introspection fallback
+    fn = GROUP_BUILDERS.get(tree_name)
+    if fn is None:
+        return []
+    schema = []
+    try:
+        res = fn()
+        tree = res[0] if isinstance(res, (tuple, list)) else res
+        for item in tree.interface.items_tree:
+            if getattr(item, "item_type", "") != "SOCKET":
+                continue
+            if getattr(item, "in_out", "") != "INPUT":
+                continue
+            name = getattr(item, "name", "")
+            stype = getattr(item, "socket_type", "")
+            if stype == "NodeSocketGeometry" or name in _MUSIC_PARAMS:
+                continue
+            entry = {"name": name, "type": stype}
+            try:
+                dv = item.default_value
+                if isinstance(dv, bool):
+                    entry["default"] = dv
+                elif isinstance(dv, (int, float)):
+                    entry["default"] = dv
+                    entry["min"] = getattr(item, "min_value", None)
+                    entry["max"] = getattr(item, "max_value", None)
+                elif hasattr(dv, "__len__"):
+                    entry["default"] = [round(float(x), 4) for x in dv][:4]
+            except Exception:
+                pass
+            schema.append(entry)
+    except Exception as exc:
+        log.warning("get_param_schema: introspection failed for '%s' — %s",
+                    tree_name, exc)
+    PARAM_SCHEMAS[tree_name] = schema
+    return schema
 
 
 def purge_stale_builders():
