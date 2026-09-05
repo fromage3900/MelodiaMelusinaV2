@@ -916,6 +916,11 @@ def add_vector_param(tree, name, default=(0.0, 0.0, 0.0), description=""):
     return make_group_input(tree, "NodeSocketVector", name, default)
 
 
+def add_string_param(tree, name, default="", description=""):
+    return make_group_input(tree, "NodeSocketString", name, default)
+
+
+
 def mesh_line_to_curve(tree, loc, mesh_sock):
     """Convert a Mesh Line / Mesh Circle into a curve for Curve-to-Mesh."""
     to_curve = safe_node(tree, "GeometryNodeMeshToCurve", loc)
