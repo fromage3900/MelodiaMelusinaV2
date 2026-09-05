@@ -1,9 +1,19 @@
 # Current State — Melodia (BS_GodFile)
 
 **Canonical State Document**
-**Last Updated:** 2026-09-01 19:45 EDT (Evening P0 Closeout & Universal Chapter Loop Status)
+**Last Updated:** 2026-09-05 (Build green · audio reactivity verified live · landscape/look-dev pass)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
-**Overall Status:** **10/10 P0 Gameplay Gates PASS | 524/524 Tests PASS | Preflight Ready for Packaged Golden Run**
+**Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals)**
+
+> **Build:** green. `UnrealEditor-BS_GodFile.dll` built 2026-09-04 21:47 and the editor is running
+> from it. The blocker was `LPCTSTR` dropping a struct member in
+> `MelodiaCaptureRenderSubsystem.cpp` — fixed at `582fa914`, not a format-string or UE-5.8
+> issue as earlier notes claimed.
+>
+> **Audio reactivity:** works, and is not theoretical — measured live in PIE at `b1cac649`.
+> The original fault was that route leg 0 had no music clock, so nothing drove the palette;
+> the clock now lives on the GameMode (`5fea50c8`) so **every** level reacts rather than only
+> those with a hand-placed clock actor.
 
 ---
 
@@ -142,6 +152,70 @@ To achieve final shipping sign-off tonight (2026-09-01), the project is executin
 4. **Stage 4 — Official Golden Run Execution:** Execute the end-to-end P0 Golden Run contract (`specs/p0/core_p0_dream_golden_run.v1.json`) through the 6-phase reusable chapter loop on the packaged build.
 5. **Stage 5 — Evidence Ledger Freezing:** Record immutable execution logs to `Saved/Audit/` and update `Saved/gate_ledger.json`.
 6. **Stage 6 — Final Sign-Off:** Publish final shipping report and hand off to Chapter 2 production.
+
+---
+
+## 7. Session 2026-09-04 → 09-05 — Build, Audio, Merge, Look-Dev
+
+### 7.1 What is now true
+
+| Area | State | Evidence |
+|---|---|---|
+| **Editor build** | **GREEN** | `582fa914`. Root cause was `LPCTSTR MaterialToken` silently dropping a struct member in `MelodiaCaptureRenderSubsystem.cpp`; corrected to `const TCHAR*`. Two earlier `FString::Printf` rewrites treated symptoms. Binary dated 2026-09-04 21:47; editor runs from it. |
+| **Audio reactivity** | **VERIFIED LIVE** | `b1cac649` — measured in PIE, not inferred. Root cause at `0bc95bfb`: route leg 0 had no music clock. Fix at `5fea50c8` puts the clock on the GameMode so every level reacts. Electric Dreams ambience + landscape beat response at `9b74f333`. |
+| **Packaged route** | verified, both legs, 0 fatals | earlier this session |
+| **P0 gates** | 8/8 active gates `pass` | `Docs/P0_TASK_LEDGER.json` |
+| **Niagara FX** | 5 dead systems repaired | `abd87eca` — they were rendering `DefaultSpriteMaterial` (the "green balls"), including `NS_Melodia_BattleBackdropPulse`. Mouse-click sparkle wired on the player controller. |
+| **Masked foliage** | repaired | `16bcff59` — `OpacityMap` on `M_Master_Toon_Universal_Alpha` was an orphan parameter; the sampler feeding the OpacityMask chain had `TextureObject` unconnected, so every pixel clipped. `MI_AtlasLeafA` rendered as an empty frame before the fix. |
+
+### 7.2 Merge to main
+
+19 commits replayed onto `main`. The planned `checkout` + cherry-pick was abandoned: the editor
+holds `.uasset` handles (`unlink … Invalid argument`, not the lfs read-only bit) and the overnight
+wardrobe daemon **drives git itself** — mid-operation it checked the repo off `main` onto its own
+branch and committed. The merge was instead replayed entirely in the object graph
+(`merge-tree --write-tree` + `commit-tree`), touching no worktree, index or HEAD.
+
+Three conflicts, each resolved deliberately and recorded in
+`Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md`.
+
+**`main` and `origin/main` are diverged lineages** (628 vs 704 commits, neither an ancestor of the
+other). This predates the merge. "Merged to main" means **local** `main`; `origin/main` does not
+carry this work. Off-machine copies live on `recovery/unify-histories-20260904` and
+`recovery/main-merged-20260904`.
+
+### 7.3 Landscape / look-dev
+
+- **Key light was pointing at the sky.** `Key_TwilightPink` sat at pitch **+30**, so the terrain
+  received no key lighting. Fixed to −32 (`c94f1746`, re-applied and this time *tracked* at
+  `0fb76675` — the first fix was lost because SeaAbove external actors are untracked).
+- **SuperColor is now bound.** The landscape had been rendering `T_Glacier_ColorErosion`, a colour
+  map from a **different Gaea project**, while `T_Gaea_SeaAbove_SuperColor` sat unreferenced
+  (`99a32308`, `e4c97d15`).
+- Gaea mask wiring audited end to end — each mask gates its own layer and reaches the output.
+  Tool: `Content/Python/audit_gaea_wiring.py`.
+
+### 7.4 Open, and honestly stated
+
+1. **`W_Glacier_Rock` is a near-black export** (peaks 31/255). The rock layer cannot read until it
+   is re-exported from Gaea with correct normalisation. Not a UE-side problem.
+2. **Something rewrites `MI_Glacier_Landscape_Layered`.** `Gaea_SnowWeight` was found at −14.94 and
+   `Gaea_RockWeight` at 6.43 *after* both had been set to 1.0 and read back as 1.0. The writer is
+   unidentified. The master's `Saturate` clamps limit the damage, and the weights were measured to
+   make no visual difference at all.
+3. **Look-dev captures on this level are not trustworthy evidence.** Two captures with identical
+   material state differ substantially (terrain colour spread 25.1 vs 15.9). Ultra Dynamic Sky's
+   time-of-day is not reflected to Python, so it cannot be pinned or read — every before/after on
+   `LV_SeaAbove_Prototype` has an uncontrolled lighting variable. **Pin the sky before trusting any
+   A/B on this map.**
+4. **Material instance writes need `update_material_instance()`** to reach the renderer. Parameter
+   read-backs succeed while the render still shows the old value; several measurements this session
+   were invalidated by this.
+5. **PCG volume layout** — four concentric 600–800k volumes over a 250k landscape, still unaddressed
+   (`Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md` §4a).
+6. **Universal / Universal_Alpha master convergence** — analysed, not executed. The Alpha master
+   carries **none** of the 14 `Cymatic_*`/`Audio*` parameters, so its 109 instances (including
+   Melusina's `SW_Dress_P01..P48`) are structurally excluded from audio reactivity.
 
 ---
 *Melodia © 2026. Authoritative State Ledger.*

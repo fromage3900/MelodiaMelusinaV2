@@ -48,17 +48,21 @@ instance; see Cause 4.
 
 ## Cause 2 — the mask/layer routing does not match the parameter names
 
-`Gaea_SlopeMask` multiplies `LandscapeLayerSample["Snow"]`, **not** rock or slope. The
-earlier import script bound the **Rock** weightmap to that slot on the reasoning that
-"rock is the steep-slope layer". Given the actual wiring, that makes the rock map gate the
-snow layer.
+The original graph called the Snow lane `Gaea_SlopeMask` and had no Rock mask lane. That
+made the semantic contract ambiguous and left the exported Rock map unused. The master
+now exposes `Gaea_SnowMask`/`Gaea_SnowWeight` for `LandscapeLayerSample["Snow"]`, keeps
+`Gaea_WaterMask` on `LandscapeLayerSample["Water"]`, and adds a normalized
+`Gaea_RockMask`/`Gaea_RockWeight` product on `LandscapeLayerSample["Rock"]` before the
+extended coverage sum. `Gaea_SlopeMask` remains reserved for a future true slope or
+procedural mask.
 
 `Gaea_WaterMask` -> `LandscapeLayerSample["Water"]` is correct.
 `Gaea_FlowMask` has no exported source and stays inert at weight 0 (unchanged, still right).
 
-**Left as-is pending a decision.** Correcting it means either re-binding the instance slot
-or renaming/rewiring the master; the master is architecture and is not something to change
-on a guess. Flagging rather than guessing.
+This semantic repair is implemented in `Content/Python/semantic_gaea_mask_wiring.py` and
+saved to `M_Master_Nikki_Landscape`; the Glacier instance now overrides the three exported
+semantic maps (`Gaea_SnowMask`, `Gaea_WaterMask`, `Gaea_RockMask`) and both new weights are
+1.0.
 
 ## Cause 3 — the weightmaps were never applied as landscape paint
 
@@ -126,119 +130,47 @@ resetting values it will overwrite again is treating a symptom.
 
 ## Version-control status
 
-The SeaAbove landscape's 74 modified `__ExternalActors__` files (17.4 MB), which carry the
-new paint, are **not** tracked — `.gitignore:111` is a blanket `Content/*` and no external
-actor for this level has ever been committed (`LV_SeaAbove_Prototype.umap` itself is
-tracked; its actors are not). So the paint-layer import lives on disk only.
+`.gitignore:111` is a blanket `Content/*`, so everything under `Content/` needs `git add -f`.
 
-Bringing 17.4 MB of landscape external actors under version control is a repo-policy
-decision and `.gitignore` is a protected file, so that is left to the owner rather than
-decided unilaterally.
+- `MI_Glacier_Landscape_Layered.uasset`, `W_Glacier_Rock` and `W_Glacier_Water` **are** tracked
+  on `main`, added by `82f3722c`.
+- The SeaAbove landscape's 74 modified `__ExternalActors__` files (17.4 MB) carrying the new
+  paint are **untracked**, as is every external actor for that level. That is why the
+  `Key_TwilightPink` rotation fix was lost twice before the actor itself was force-added at
+  `0fb76675`.
 
-**Correction.** An earlier revision of this document claimed
-`MI_Glacier_Landscape_Layered.uasset` "has never been committed" and that the Gaea material
-work was never version controlled. That was wrong. It, `W_Glacier_Rock` and
-`W_Glacier_Water` are all tracked on `main`, added by `82f3722c`. The check that produced
-the false claim ran against the branch currently checked out by the overnight daemon, whose
-index does not contain them — not against `main`.
+Bringing 17.4 MB of landscape external actors under version control is a repo-policy decision
+and `.gitignore` is protected, so it is left to the owner.
+
+**Correction.** An earlier revision of this section claimed the Gaea assets "have never been
+committed". That was wrong — the check behind it ran `git ls-files` against the branch the
+overnight daemon had checked out, whose index does not contain them, rather than against `main`.
 
 ---
 
-# Addendum — why the Gaea *textures* still weren't visible (2026-09-04, later)
+## Later findings that revise this document (2026-09-05)
 
-The four causes above are real and fixed, but they explain the **masks**. The colour
-textures were still not reading, and the reason turned out to be lighting plus grading,
-not the material's Gaea wiring at all.
+The four causes above are accurate as written, but two of them turned out **not** to be why
+the terrain looked wrong:
 
-## Cause 5 — the key light was pointing at the sky
+1. **The mask weights make no visual difference.** Snow/Rock at `(0,1)`, `(0,0)`, `(0.35,1)` and
+   `(1,1)` all render identically. The master's `Saturate` clamps (added by
+   `Content/Python/enforce_gaea_weight_contract.py`) mean out-of-range values were never doing
+   visible damage. Cause 1's *mechanism* was real; its *visual consequence* was not.
+2. **The wrong texture set was bound entirely.** The landscape was rendering
+   `T_Glacier_ColorErosion` — from a different Gaea project — while the SeaAbove-specific
+   `T_Gaea_SeaAbove_SuperColor` sat unreferenced. Bound at `99a32308`. This document audited the
+   Glacier maps end to end without ever asking whether they were the right maps.
 
-`Key_TwilightPink` (DirectionalLight) had **pitch = +30**. A directional light with
-positive pitch points *upward*; it was lighting the sky and not the terrain. The only
-downward light was `Rim_CoolBlue` at pitch −30, intensity 2.0.
+Two measurement traps that produced false conclusions here and are worth remembering:
 
-Set to **pitch −32, yaw 20**. With that single change the Gaea erosion and rock striations
-read immediately — see `Saved/Audit/gaea_keyfixed_nopastel.png` against
-`gaea_after_weights.png`.
+- `Texture2D.blueprint_get_size_x()` returns the **currently streamed mip**, not the source
+  size. It reported SuperColor as 32×32 (it is 2048-capped), which is why it was first dismissed
+  as a stub.
+- **`update_material_instance()` must be called** or parameter writes never reach the renderer.
+  A "restore" that read back correctly still rendered the previous texture.
 
-## Cause 6 — the Nikki pastel grade was synthesising the entire image
-
-With `bNikkiPastelGrade_Active` switched off, the terrain mean dropped from
-**(90.7, 88.1, 111.2)** to **(12.1, 19.1, 37.2)**. The grade was not tinting the albedo —
-it was supplying essentially all of the visible brightness, and the flat pale-pink wash
-everyone was looking at *was* the grade, not the terrain.
-
-`NikkiPastelStrength` was 0.6 (master default) with all three pastel ramps at 0.95–1.0,
-i.e. near-white. Measured local contrast (mean absolute Laplacian over the terrain band)
-against pastel strength:
-
-| `NikkiPastelStrength` | mean RGB | global std | local detail |
-|---|---|---|---|
-| 0.60 | (34.1, 38.4, 62.9) | 46.62 | 4.696 |
-| 0.40 | (32.5, 37.0, 61.8) | 43.27 | 4.904 |
-| 0.25 | (30.7, 35.5, 60.6) | 39.83 | **5.339** |
-| 0.15 | (29.1, 34.1, 59.6) | 36.99 | 5.741 |
-
-Set to **0.25** on the instance: +13.7% local detail over 0.6 while still reading clearly
-pastel. This is an art call, not a correctness one — the numbers are here so it can be
-moved deliberately.
-
-## Not a cause, but worth knowing: 44% of the terrain is underwater
-
-`SeaAbove_InfiniteOcean_Canopy2` sits at **z = 14,345**. Traced against the landscape
-(ignoring water actors) over a 22x22 grid, 484/484 points hit terrain:
-
-```
-terrain Z:  min -54,818   p25 -16,355   median 25,467   p75 58,628   max 69,161
-above ocean plane:  271 of 484  (56.0%)
-```
-
-So a little under half the landscape is below the ocean plane and will never be seen from
-above. Any dressing or PCG budget should be spent on the 56% that is above water. A second
-infinite ocean, `SeaAbove_InfiniteOcean_Canopy`, sits far overhead at z = 194,888 — that is
-the "sea above" conceit, not a mistake.
-
-## The read-only trap crashed the editor — and it is project-wide
-
-Repairing the Alpha master's opacity link (below) crashed the editor outright:
-
-```
-LogSavePackage: Error: Cannot remove 'M_Master_Toon_Universal_Alpha.uasset' as it is read only!
-LogWindows:    Error: appError called: Error saving ...
-               === Critical error: ===
-```
-
-**Monolith's material actions auto-save, and UE treats a failed package save as a FATAL
-error.** So any Monolith material mutation against a git-lfs `lockable` read-only asset
-does not fail gracefully — it takes the editor down. At the time **3,418 `.uasset` files
-project-wide were read-only**, and `Saved/` held **988 stranded `.tmp` files** from earlier
-failed saves, so this had been happening repeatedly and silently.
-
-Cleared the read-only bit across `Content/` and removed the stranded temps. This is a
-filesystem attribute applied by git-lfs on checkout; clearing it changes no git state. It
-will come back after any operation that re-checks-out those files, so **clear it before
-editor material work, not just before an individual save.**
-
-## Alpha master defect found while converging — `OpacityMap` is not wired
-
-`M_Master_Toon_Universal_Alpha` drives OpacityMask as:
-
-```
-OpacityMask <- StaticSwitch[bUseOpacityMap]
-                 True  <- Multiply( TextureSample(Texture=None), Scalar[OpacityStrength] )
-                 False <- Constant 1.0
-```
-
-The `OpacityMap` **TextureObjectParameter is unconnected**, and the sampler that feeds the
-mask has `Texture: None` with no `TextureObject` input. Meanwhile the instances do their
-part correctly — `MI_AtlasLeafA`, `MI_AtlasIvy` and `MI_Jelly_Bell` all set
-`bUseOpacityMap=True` and bind real opacity maps (`T_KB3D_ATL_AtlasLeafA_opacity`,
-`T_Jelly_Bell_Opacity`).
-
-**Those textures are never sampled.** A preview of `MI_AtlasLeafA` renders as a dark opaque
-plane with no leaf cutout. The fix is a one-link repair: `OpacityMap` ->
-`TextureSample.TextureObject`.
-
-(An earlier note in this session called `bUseOpacityMap` "dead/unconnected". That was
-wrong — it connects to a material *output* rather than to another expression, so it has no
-outgoing edge in the connection list and the reachability script missed it. `OpacityMap`
-being unconnected is the real defect.)
+**Ultra Dynamic Sky is not pinned on this level and its time-of-day is not reflected to Python.**
+Two captures with identical material state differ substantially (terrain colour spread 25.1 vs
+15.9). Every before/after in this document carries that uncontrolled variable. Pin the sky before
+trusting any A/B on `LV_SeaAbove_Prototype`.
