@@ -253,16 +253,17 @@ every phase is additive with the compat layer intact.
 
 | Gate | Status | Evidence |
 |---|---|---|
-| G1 mh6 fix → main | OPEN | — |
-| P0 baseline harness + registry_baseline.json | OPEN | — |
-| P1 kernel param-schema + presets merge | OPEN | — |
-| P2 aesthetic_fx (70) | OPEN | — |
-| P2 scifi_fx (8) | OPEN | — |
-| P2 zen/castle/asian (22) | OPEN | — |
-| P2 euro_classical (14) | OPEN | — |
-| P2 civic + experimental (34) | OPEN | — |
-| P2 core_forms (87) | OPEN | — |
-| P2 greybox + shell convergence (C1–C4) | IN PROGRESS | C1 PASS 2026-09-05 — `mh6_shell_adapter` landed (e0328da7); 3-set identity proof green; evidence `melodiamelusinav2/Saved/Audit/melusinashouse/v0_c1_identity.{json,png}`. Measured corrections: SDF dilation 2T (adapter compensates), 1e-3 unattainable → voxel tolerance + documented cornice allowance. |
+| G1 mh6 fix → main | DONE on branch (2026-09-04) | mh6 defects fixed, v0_final_verify PASS (3f1d4460); carried on `fix/mh6-shell-promotion-20260904` + C: `fix/mh6-fix-promotion-20260904`; PR-to-main still pending owner action |
+| P0 baseline harness + registry_baseline.json | DONE | f980df0a harness; 50cddcbf refresh (zero regressions in pre-existing 268) |
+| P1 kernel param-schema + presets merge | DONE | 4a2113b5 — register_builder params= kwarg, PARAM_SCHEMAS + get_param_schema |
+| P2 aesthetic_fx (70) | DONE | fcef35a1, gate 70/70 |
+| P2 scifi_fx (8) | DONE | 6f17d176, gate 7/7 (+1 routed) |
+| P2 zen/castle/asian (22) | DONE | aba93be8, gate 22/22 (surfaced live monolith defect: zen_pagoda CurveToMesh socket) |
+| P2 euro_classical (14) | DONE | 9c29414a (11 self-contained; 3 greybox-dependent deferred to shell ladder) |
+| P2 civic + experimental (34) | DONE | c0f32af3 (19) + d5047344 (15 + 2 core-form deps) |
+| P2 core_forms (87) | PARTIAL | 643510e4 batch 1 (14); remainder rides greybox/shell convergence |
+| P2 walls 15 + buildings/misc 22 + filigree 3 + materials 10 | DONE | 43a73374 + 4643699e + 7e5304d2 (families 7b/8/9) |
+| P2 greybox + shell convergence (C1–C4) | IN PROGRESS | C1 PASS 2026-09-05 — `mh6_shell_adapter` landed (e0328da7); 3-set identity proof green; evidence `melodiamelusinav2/Saved/Audit/melusinashouse/v0_c1_identity.{json,png}`. Measured corrections: SDF dilation 2T (adapter compensates), 1e-3 unattainable → voxel tolerance + documented cornice allowance. C2–C4 open. |
 | P3 single dispatch | OPEN | — |
 | P4 single UI + panel addon absorbed | OPEN | — |
 | P5 monolith retires (<500 lines) | OPEN | — |
