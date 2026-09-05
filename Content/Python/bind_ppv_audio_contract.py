@@ -4,7 +4,7 @@ This script does NOT write the MPC. That is owned by
 `UMelodiaAudioReactivePresentationSubsystem` (C++) and is non-negotiable.
 
 What this script does:
-  1. Verifies the 3 PPV blendable materials on the 5 live shipping levels
+  1. Verifies the 3 gameplay PPV blendables on the 4 certification levels
      are present, parent the right masters, and have audio parameters wired
      (InkMasterWeight, BeatPulse, BeatPhase, etc).
   2. Audits that no PPV actor overrides audio parameters (scene-wide color
@@ -34,12 +34,20 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from ppv_contract import (
+    AUDIO_PALETTE,
+    CYMATICS_DRIVER,
+    GAMEPLAY_PPV_CERTIFICATION_LEVELS,
+    GAMEPLAY_STACK,
+    NIAGARA_PALETTE,
+)
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 REPORT_PATH = PROJECT_ROOT / "Saved" / "Audit" / "ppv_audio_bind.json"
 
 # Per apply_dream_candidate_ppv.py:35-37 -- the 3 blendables on each live level
 EXPECTED_BLENDABLES = (
-    ("outline", "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard", 1.0),
+    ("outline", GAMEPLAY_STACK[0][0], GAMEPLAY_STACK[0][1]),
     ("grade",   "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_GameplayStandard", 0.69),
     ("ink",     "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_GameplayStandard", 1.0),
 )
@@ -51,20 +59,16 @@ AUDIO_SCALARS = (
 )
 AUDIO_VECTORS = ()  # ink layer has no MPC vectors; the audio scalars are sufficient
 
-# 5 live shipping levels (post-prune; see prune_ppv_dead_levels.py).
-SHIPPING_LEVELS = (
-    "/Game/EnvSandbox/Environments/L_KaleidoNave",
-    "/Game/EnvSandbox/Environments/L_FallenMoon",
-    "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "/Game/ZenForestTest",
-    "/Game/EnvSandbox/_Template/L_Template",
-)
+# Gameplay PPV certification surface. Packaged maps and lookdev maps are
+# recorded separately by ppv_contract.py.
+SHIPPING_LEVELS = GAMEPLAY_PPV_CERTIFICATION_LEVELS
 
 # Hard requirement per MelodiaMusicClockSubsystem.cpp:176
 BEAT_GRID_PATH = "/Game/MelodiaIntegration/MIDI/128BPMarpeggiomelody_beatgrid.128BPMarpeggiomelody_beatgrid"
 
-MPC_AUDIO_PATH = "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
-NPC_AUDIO_PATH = "/Game/EnvSandbox/VFX/MPC/NPC_Melodia_Palette.NPC_Melodia_Palette"
+MPC_AUDIO_PATH = AUDIO_PALETTE
+NPC_AUDIO_PATH = NIAGARA_PALETTE
+MPC_CYMATICS_PATH = CYMATICS_DRIVER
 
 
 def _exists(path: str) -> bool:

@@ -1,9 +1,7 @@
-# Unified PPV Stack + Oceanology Lookdev Integration Plan — 2026-08-28
+# Unified PPV Stack + Oceanology Lookdev Integration Plan — 2026-08-28 (superseded)
 
 **Lane:** `asset_qa` + `author` (additive; no master edits, no C++ source changes in this phase)
-**Goal:** One polished, repeatable 4-blendable post-process stack applied identically across all
-shipping levels, plus the Oceanology plugin integrated as hero-surface authority in ocean regions
-with the Nikki/bioluminescence/SDF aesthetic layered on top.
+**Goal:** One polished, repeatable gameplay PPV stack on the certification levels, plus the Oceanology plugin integrated as hero-surface authority in ocean regions with the Nikki/bioluminescence/SDF aesthetic layered on top. See the 2026-09-04 grandmaster convergence handoff for current authority.
 
 ---
 
@@ -11,7 +9,7 @@ with the Nikki/bioluminescence/SDF aesthetic layered on top.
 
 | Thread | What | Blocker | Status |
 |---|---|---|---|
-| **PPV stack** | 4-blendable PPV_NikkiDream on 5 shipping levels, color overrides stripped, audio contract verified | Ink doesn't compile (4 missing SceneTexture pins) | Plan ready; ink fix is first editor action |
+| **PPV stack** | 3-blendable gameplay PPV_NikkiDream on 4 certification levels; grandmaster outline + grade + ink | Grandmaster editor migration and runtime proof | In progress |
 | **Oceanology** | Plugin loads → MI instances under Nikki aesthetic → bioluminescence + SDF on ocean surface | .uplugin already corrected to 5.8.0; needs editor boot to confirm native load | .uplugin fixed; awaiting editor boot |
 
 ---
@@ -44,17 +42,16 @@ runtime, because the audit and the live capture disagree (see §3 below).
 
 ---
 
-## 2. The five shipping levels
+## 2. Level taxonomy
 
-```
-/Game/ZenForestTest                           ← hero reference (already correct)
-/Game/EnvSandbox/Environments/L_KaleidoNave
-/Game/EnvSandbox/Environments/L_FallenMoon
-/Game/Melodia/Levels/Opening/L_MelusinaMorning
-/Game/EnvSandbox/_Template/L_Template
-```
+Packaged shipping maps are the six entries in `Config/DefaultGame.ini`,
+including `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`.
+Gameplay PPV certification covers Morning, KaleidoNave, ZenForestTest, and Sea
+Above. FallenMoon and `_Template/L_Template` remain lookdev/regression maps.
 
-`finalize_ppv_hero_stack.py` applies the 4-blendable stack to all five idempotently. It:
+`apply_dream_candidate_ppv.py` applies the gameplay 3-blendable stack through
+the centralized contract. `finalize_ppv_hero_stack.py` is now reserved for the
+lookdev/regression maps and may include StarryNight. It:
 1. Loads each level
 2. Finds or spawns `PPV_NikkiDream` (unbound=True, enabled=True, priority=10.0)
 3. Sets WeightedBlendables to the 4 MIs at exact weights
@@ -252,11 +249,11 @@ the existing ladder.
 
 | Step | Action | Tool | Editor? |
 |---|---|---|---|
-| 2.1 | Strip color overrides on all 5 levels | `strip_ppv_color_overrides.py` | yes |
-| 2.2 | Apply 4-blendable hero stack to all 5 levels | `finalize_ppv_hero_stack.py` via Monolith | yes |
-| 2.3 | Verify audio contract (beat grid, MPC scalars, blendable weights) | `bind_ppv_audio_contract.py` | yes |
-| 2.4 | PIE on ZenForestTest: confirm 4-blendable stack renders, ink visible at 1.0 | owner eyeball | yes |
-| 2.5 | Tune ink weight by eye (0.31 → target 1.0 or whatever reads right) | owner decision | yes |
+| 2.1 | Strip color overrides on the 4 gameplay certification levels | `strip_ppv_color_overrides.py` | yes |
+| 2.2 | Apply grandmaster gameplay stack to the 4 certification levels | `apply_dream_candidate_ppv.py` via Monolith | yes |
+| 2.3 | Verify audio/cymatics contract (beat grid, MPC scalars, driver, weights) | `bind_ppv_audio_contract.py` | yes |
+| 2.4 | PIE on Sea Above: confirm deterministic outline and downstream beat/cymatics response | owner capture | yes |
+| 2.5 | Keep StarryNight hero stack confined to lookdev/cinematic regression maps | `finalize_ppv_hero_stack.py` | yes |
 
 ### Phase 3 — Oceanology integration
 
@@ -389,11 +386,11 @@ should have `BiolumOn=1` and `PatternIndex=1` (SDF notation) for the hero look.
 - [ ] M_PP_MelodiaInk compiles (0 errors, 4 SceneTexture inputs wired)
 - [ ] Material audit shows no audio-reactivity gap (ink consumes audio)
 - [ ] PPV report shows no surface-domain blendables, no label mismatch, no grade weight mismatch
-- [ ] All 5 shipping levels have PPV_NikkiDream with the 4-blendable stack
-- [ ] Color overrides stripped on all 5 levels
+- [ ] All 4 gameplay certification levels have PPV_NikkiDream with the 3-blendable gameplay stack
+- [ ] Color overrides stripped on all 4 certification levels
 - [ ] Audio contract verified (beat grid, MPC scalars, blendable weights)
 - [ ] PIE on ZenForestTest: owner confirms 4-blendable stack renders correctly
-- [ ] `ppv_shipping_hero_2026-08-27.json` shows all 5 levels applied
+- [ ] `ppv_shipping_hero_2026-08-27.json` is retained as historical lookdev evidence; current proof must identify the 4 certification levels and the grandmaster outline
 
 ### Oceanology
 - [ ] Plugin loads natively (no compatibility modal)

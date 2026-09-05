@@ -1,4 +1,4 @@
-"""Finalize PPV on all 5 shipping levels with the ZenForestTest hero stack.
+"""Finalize the cinematic/lookdev PPV stack on regression maps.
 
 Captured live state on ZenForestTest 2026-08-27 (per
 `Saved/Audit/ppv_live_state_zenforesttest_2026-08-27.json`):
@@ -12,12 +12,10 @@ Captured live state on ZenForestTest 2026-08-27 (per
       0.31 MI_MelodiaInk_PortfolioHero
     scene overrides: bloom 1.0, vignette 0, scene_fringe 0, film_grain 0
 
-This script (BUILD MODE, in-editor via Monolith) applies the same configuration
-to the 4 other shipping levels:
+This script is deliberately not the gameplay shipping author. It applies the
+StarryNight hero stack to the two lookdev/regression maps only:
 
-  /Game/EnvSandbox/Environments/L_KaleidoNave
   /Game/EnvSandbox/Environments/L_FallenMoon
-  /Game/Melodia/Levels/Opening/L_MelusinaMorning
   /Game/EnvSandbox/_Template/L_Template
 
 It is IDEMPOTENT: re-running it leaves existing PPV_NikkiDream actors
@@ -56,14 +54,10 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 REPORT_PATH = PROJECT_ROOT / "Saved" / "Audit" / "ppv_shipping_hero_2026-08-27.json"
 
-# 5 shipping levels
-SHIPPING_LEVELS = (
-    "/Game/ZenForestTest",                                                # already correct
-    "/Game/EnvSandbox/Environments/L_KaleidoNave",
-    "/Game/EnvSandbox/Environments/L_FallenMoon",
-    "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "/Game/EnvSandbox/_Template/L_Template",
-)
+from ppv_contract import LOOKDEV_REGRESSION_LEVELS
+
+# StarryNight remains cinematic/lookdev-only.
+SHIPPING_LEVELS = LOOKDEV_REGRESSION_LEVELS
 
 # Live ZenForestTest 4-blendable hero stack (captured 2026-08-27)
 HERO_BLENDABLES = (

@@ -1,10 +1,8 @@
-"""Apply the DREAM CANDIDATE stack as PPV_NikkiDream in all 9 levels.
+"""Apply the gameplay PPV stack as PPV_NikkiDream on certification levels.
 
-Per owner direction 2026-08-18: the updated dream candidate (outline
-GameplayStandard @1.0, grade GameplayStandard @0.69, ink GameplayStandard @1.0 —
-the exact composition of setup_dreamprint_ab.ensure("GameplayStandard")) IS the
-live PPV everywhere. L_Template gets a PPV_NikkiDream spawned. No grade tuning
-values are touched. Manifest: Saved/Audit/dream_candidate_ppv_apply.json
+The gameplay stack is the grandmaster outline + grade + ink. StarryNight_Hero is
+reserved for cinematic/lookdev use. Sea Above is a shipping map and a gameplay
+certification target. No grade tuning values are touched.
 """
 from __future__ import annotations
 
@@ -14,24 +12,12 @@ from pathlib import Path
 
 import unreal
 
+from ppv_contract import GAMEPLAY_PPV_CERTIFICATION_LEVELS, GAMEPLAY_STACK
+
 REPORT = Path(__file__).resolve().parents[2] / "Saved" / "Audit" / "dream_candidate_ppv_apply.json"
 
-LEVELS = (
-    "/Game/EnvSandbox/Environments/L_KaleidoNave",
-    "/Game/EnvSandbox/Environments/L_FallenMoon",
-    "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "/Game/ZenForestTest",
-    "/Game/EnvSandbox/_Template/L_Template",
-)
-
-_CAND = "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles"
-_GRADE = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles"
-
-STACK = (
-    (f"{_CAND}/MI_StorybookOutline_GameplayStandard", 1.0),
-    (f"{_GRADE}/MI_MeluColorGrade_GameplayStandard", 0.69),
-    (f"{_GRADE}/MI_MelodiaInk_GameplayStandard", 1.0),
-)
+LEVELS = GAMEPLAY_PPV_CERTIFICATION_LEVELS
+STACK = GAMEPLAY_STACK
 
 
 def main() -> dict:

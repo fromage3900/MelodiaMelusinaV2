@@ -78,7 +78,7 @@ Every chapter in Melodia (Chapter 1 "First Dream" through all subsequent chapter
 
 ### Canonical Maps & Route
 1. **`L_MelusinaMorning` (`/Game/Melodia/Levels/Opening/L_MelusinaMorning`)**: Sanctuary opening, QuillScript dialogue with Sir Melodious, departure gate.
-2. **`LV_SeaAbove_Prototype` (`/Game/Melodia/Maps/LV_SeaAbove_Prototype`)**: Overworld journey, Starskiff docking & navigation, musical stepping puzzle (`APCGHeroMusicGraphHost`).
+2. **`LV_SeaAbove_Prototype` (`/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`)**: Overworld journey, Starskiff docking & navigation, musical stepping puzzle (`APCGHeroMusicGraphHost`).
 3. **`L_KaleidoNave` (`/Game/EnvSandbox/Environments/L_KaleidoNave`)**: Gothic sci-fi cathedral battle arena, `BP_MelodySlime_Boss` encounter, Rhythm Highway execution.
 4. **`MelodiaMainMenu` (`/Game/Melodia/Maps/MelodiaMainMenu`)**: Title screen & canonical save slot loading.
 
