@@ -11,7 +11,56 @@
 
 ---
 
-## Send order
+## Live queue refresh — 2026-09-05
+
+**This section supersedes the older send-order table below for current execution.**  
+Full research + framing rules: [WEEKLY_ROLE_SCOUT_AND_SENIOR_FRAMING_PLAN_2026-09-05.md](WEEKLY_ROLE_SCOUT_AND_SENIOR_FRAMING_PLAN_2026-09-05.md)
+
+| Priority | Target | Location | Fit / action | Status |
+|---|---|---|---|---|
+| **P0-1** | **SageMesh — Synthetic Data / 3D Technical Artist (Junior / Co-op)** | Toronto hybrid | Unreal/Unity + environments + synthetic data + repeatable pipeline; recent grads/co-op welcome | **APPLY FIRST** |
+| **P0-2** | **9 Story / Brown Bag — Unreal Environment Generalist** | Toronto | UE terrain/foliage/atmosphere/modular environments | **APPLY** |
+| **P1-1** | **Hardsuit Labs — Technical Artist (Mid–Senior)** | Remote Ontario | UE5 PCG, terrain, materials, Python/tooling; strong technical fit, seniority stretch | **TARGETED STRETCH** |
+| **P1-2** | **Rockstar Toronto — Senior Technical Artist: Procedural Art** | Oakville | Python + Houdini/DCC tools + automated data pipelines; explicit 5+ year gap | **STRETCH / CAREER TARGET** |
+| **P1-3** | **Marks — Creative Technologist, CGI** | Toronto hybrid | CGI R&D + emerging tools + pipeline improvement | **OPPORTUNISTIC** |
+| **P2-1** | **Certain Affinity — Senior Material Artist** | Ontario eligible | UE5/Substance/ZBrush/PBR fit; asks for 2+ shipped AAA titles | **LOWER PRIORITY** |
+| **P2-2** | **Blue Isle — Senior Environment Artist** | Toronto office | Strong environment fundamentals; asks 5+ years | **REFERENCE / STRETCH** |
+
+### Current application links
+
+- SageMesh: https://ca.linkedin.com/jobs/view/sagemesh-is-building-its-founding-team-%E2%80%94-6-roles-at-sagemesh-4450181955 — application instructions include emailing `info@sagemesh.ca`.
+- 9 Story / Brown Bag: https://www.workopolis.com/jobsearch/viewjob/s-UYnr_qGlAwOBdJ0IHPY6Zkhlx6IS36coh9BZpYJXZ_xrY-t9qRziWcOH_WDyGf
+- Hardsuit Labs: https://www.jobs.ca/hardsuit-labs/jobs/technical-artist-mid-senior-remote-british-columbia-canada-ontario-canada-2ca08f246efc
+- Rockstar Toronto: https://www.rockstargames.com/br/careers/openings/position/7693094003
+- Marks: https://www.jobs.ca/marks/jobs/creative-technologist-cgi-toronto-on-7cf48148ffbe
+- Certain Affinity: https://ca.linkedin.com/jobs/view/senior-material-artist-at-certain-affinity-4455496307
+- Blue Isle: https://jobs.smartrecruiters.com/BlueIsleStudios/743999702007936-senior-environment-artist
+
+### Senior/stretch application rule
+
+**Do not fabricate seniority.** Never invent years, employers, dates, shipped titles, or credits.
+
+Instead:
+- apply when the task overlap is strong even if the title is senior;
+- lead with **Technical Environment Artist / Procedural Worldbuilding Artist** rather than making "student" the headline;
+- demonstrate ownership through UE5 systems, PCG/procedural worldbuilding, Python/DCC tooling, materials, terrain, debugging, documentation, optimization, and multi-workstation production;
+- if a form forces a years-of-experience number, answer truthfully;
+- do not volunteer a self-disqualifying apology for seniority;
+- let portfolio evidence carry the stretch.
+
+### Send / tracking checkboxes
+
+- [ ] SageMesh applied (date: ________ / channel: email / posting)
+- [ ] 9 Story / Brown Bag applied (date: ________)
+- [ ] Hardsuit Labs applied (date: ________)
+- [ ] Rockstar Toronto applied (date: ________)
+- [ ] Marks applied (date: ________)
+- [ ] Certain Affinity Material Artist applied (date: ________)
+- [ ] Blue Isle applied (date: ________)
+
+---
+
+## Previous queue — retained from 2026-08-25
 
 | # | Target | Location | Action | Status |
 |---|--------|----------|--------|--------|
