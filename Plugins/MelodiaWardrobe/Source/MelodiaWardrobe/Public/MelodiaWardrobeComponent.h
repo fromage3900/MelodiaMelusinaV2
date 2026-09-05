@@ -85,6 +85,28 @@ public:
 	void ApplyWardrobeState();
 
 	/**
+	 * Resolves the equipped set's clipping contract and collapses the covered body
+	 * regions on the body mesh via region-hide morph targets.
+	 *
+	 * Nikki-translation §6 precompute tier: which regions to hide comes from the
+	 * catalog's authored compatibility data (produced offline by
+	 * Tools/wardrobe_intersection_audit.py), the union is derived at call time from
+	 * the equipped map, and the only runtime bookkeeping is the set of morphs THIS
+	 * component previously set, so an unequip cleanly re-expands exactly what it
+	 * collapsed. A region whose morph does not exist on the current body mesh warns
+	 * once and does nothing -- it never touches section indices or materials, so a
+	 * missing morph degrades to "no collapse", never to a broken body.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Wardrobe|Clipping")
+	void ApplyBodyRegionVisibility();
+
+	/** The region-hide morphs this component currently holds collapsed. Test/
+	 *  evidence seam: the clipping proof asserts on this alongside the subsystem's
+	 *  GetHiddenBodyRegions derivation. Runtime-only; never persisted. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Wardrobe|Clipping")
+	const TSet<FName>& GetAppliedBodyRegionHides() const { return AppliedBodyRegionHides; }
+
+	/**
 	 * Default meshes used when a save has no explicit cosmetic for a slot.
 	 * The Melusina V2 pawn supplies Shirt/Skirt/Boots/Accessories here; saved
 	 * cosmetic selections still take precedence during BeginPlay.
@@ -126,4 +148,18 @@ private:
 
 	UPROPERTY()
 	TMap<EMelodiaWardrobeSlot, TObjectPtr<USkeletalMeshComponent>> SlotComponents;
+
+	/**
+	 * Region-hide morphs this component has currently set on the body mesh.
+	 * Runtime-only presentation bookkeeping: it mirrors what ApplyBodyRegionVisibility
+	 * last applied so a re-resolve can re-expand exactly what it collapsed. It is
+	 * never persisted and never read as state -- the equipped map stays the authority.
+	 */
+	UPROPERTY(Transient)
+	TSet<FName> AppliedBodyRegionHides;
+
+	/** Warn-once guard per missing body region morph, so a lagging morph authoring
+	 *  pass does not spam the log on every equip/unequip. */
+	UPROPERTY(Transient)
+	TSet<FName> WarnedMissingBodyRegionMorphs;
 };

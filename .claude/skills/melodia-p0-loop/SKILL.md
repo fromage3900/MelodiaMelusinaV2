@@ -26,7 +26,9 @@ directly on disk, never run raw git commands as a side effect of this loop, and 
   nodes available`. This flag is command-line-only — there is no `.ini` equivalent. Do not
   relaunch the editor yourself unless asked; verify it's already up.
 - Verify Monolith is reachable: `mcp__monolith__monolith_status`, or `GET
-  http://127.0.0.1:9316/health`.
+  http://127.0.0.1:9316/health`. **If `mcp__monolith__*` tools aren't in your tool list at all**
+  (check with a tool-discovery call, not just by trying one), you're in a Claireon-only session —
+  skip straight to Section 8, which has the equivalent moves for every technique below.
 - **One editor, one MCP surface, always.** Check `Get-Process UnrealEditor` and confirm a single
   listener on port 9316 before touching anything. Prefer the `monolith` MCP surface
   (`mcp__monolith__blueprint_query`, `mcp__monolith__editor_query`, etc.) for Blueprint work. Never
@@ -174,3 +176,94 @@ The `mcp__melodia__*` tools (`melodia_encounter_start`, `melodia_economy_*`,
 They're useful for exercising the economy/encounter contract in isolation, but they are **not**
 live PIE proof and must never be cited to close a runtime gate. Only Section 4's loop, run against
 an actual PIE session through `mcp__monolith__editor_query`, counts as proof.
+
+## 8. Claireon-only sessions (no Monolith) — the same principles, different tool calls
+
+Some sessions (launched from the Claireon panel's "Claude Code" button) have `mcp__claireon__*`
+tools and nothing else — no `mcp__monolith__*`, no `it-is-unreal`. Confirm this with a
+tool-discovery call rather than assuming; don't try to mix the two surfaces if both happen to be
+present (Section 1's "one MCP surface" rule still applies). Everything in Sections 1-7 still
+applies in principle — compile-then-CDO-then-save ordering, the verification-loop discipline,
+"synthetic isn't proof," Echo gate recording via `Tools/echo_run.py`. Only the concrete tool calls
+differ, plus a few Claireon-specific traps below, every one hit live in-session (2026-09-05,
+Shorewake chapter work).
+
+**Tool substitutions:**
+| Monolith (Section 1-4) | Claireon equivalent |
+|---|---|
+| `editor_query action=load_level` | `map_open_async(mapPath=...)` |
+| `editor_query action=start_pie` / `stop_pie` | `pie_start_async(mapPath=...)` / `pie_stop_async()` |
+| `editor_query action=pie_get_object_properties` | `uobject_inspect(object_path=<live PIE path>, property_path=...)` |
+| `set_cdo_property` / arbitrary property writes | `uobject_set_property(...)` — pass `allow_non_editable=true` for `EditConst`/no-`EditAnywhere` fields (e.g. a `SkeletalMesh`'s `Skeleton` reference); the tool warns when it did this, which is expected, not an error |
+| `pie_call_function` | No direct equivalent. Use `python_execute` + raw `unreal`: `unreal.load_object(None, <live PIE path>).call_method("FunctionName")`, or the auto-generated snake_case method if one exists (e.g. `interpreter.next()`) |
+| `pie_inject_input_action` | Doesn't exist either way (this project uses legacy input, Section 4 already covers that) — same substitutes apply: call the handler function directly, or a genuine swept move (below) |
+
+**Traps specific to Claireon, confirmed live:**
+
+- **`actor.receive_actor_begin_overlap(other)` via Python is unreliable for firing the Blueprint
+  graph** — it did not invoke the K2 `Event ActorBeginOverlap` node in testing (zero downstream
+  effects), while `actor.call_method("EventBeginPlay")` on the same Blueprint's custom event
+  correctly ran the same graph. When a direct Python call produces no observable effect, don't
+  conclude the graph is broken — retest with `call_method("<EventName>")` before trusting the
+  negative result.
+
+- **No PIE key/click injection exists at all.** For "walk into a trigger" testing, prefer a real
+  swept move over teleporting or calling the overlap handler directly:
+  `pawn.set_actor_location(target, sweep=True, teleport=False)` generates genuine
+  `BeginOverlap`/blocking-collision events along the path, same as `K2_SetActorLocation` with
+  sweep — Section 4's warning about teleport-doesn't-overlap is about the *non-swept* case only.
+  A Blueprint function taking a `Statement`/struct parameter (e.g. Quillscript's
+  `OptionSelected(Option)`) needs the actual struct object pulled via
+  `get_editor_property("Selections")[i]` — passing a plain int/dict fails with a nativize error.
+
+- **Fixture placement needs an isolation check before you trust "one clean trigger fire."** A
+  newly-placed actor with a generous overlap sphere auto-fires `ActorBeginOverlap` against
+  *every* already-nearby actor the instant its collision activates — not just the one you meant
+  to test with. In a cluttered level (exactly the kind Section 0's target maps are), check real
+  3D distance to nearby actors (filter out actors reporting `(0,0,0)` — those are non-spatial,
+  e.g. GameMode/PlayerState/subsystem visualizers, not real overlaps) before relying on a single
+  deterministic fire. A 4x-spawned side effect from this cost real time to diagnose and clean up.
+
+- **`.uasset`/`.umap` going read-only after checkout applies to Claireon saves too** (Section 2's
+  trap, same fix — clear the attribute first), but Claireon's failure mode is *silent*:
+  `save_packages(..., only_dirty=True)` can return `True` with the package still showing dirty
+  afterward, or a plain `save_loaded_asset` can return `False` with no exception. Always re-check
+  `get_dirty_map_packages()`/`get_dirty_content_packages()` (or re-`uobject_inspect` the property)
+  after every save — never trust the return value alone.
+
+- **`pie_start_async`/`map_open_async` auto-save *other* dirty packages before running** (a
+  Claireon safety guard, `ClaireonSettings.bAutoSaveBeforeDeferredActions`). This silently writes
+  someone else's in-progress work to disk earlier than they intended — it's not destructive (same
+  content, just flushed sooner), but flag it in your notes rather than let it pass silently,
+  especially in a level another session/agent has open work in.
+
+- **`EditorActorSubsystem.destroy_actor()` fails during PIE** ("The Editor is currently in a play
+  mode") while still printing success-looking output — don't trust it mid-PIE. To clean up
+  PIE-spawned actors, stop PIE; it tears down everything transient. Don't try to selectively
+  destroy live PIE actors piecemeal.
+
+- **`pie_screenshot`'s immediate response is not the real file.** It appends a frame-number
+  suffix (`yourname.png` on disk becomes `yourname.png00000.png`), and the reported `size_bytes`
+  is sampled before the async write finishes (often `0` even when the real file is fine). Read
+  the actual `...00000.png` file to verify, don't gate on the tool's own response.
+
+- **`MODAL_OPEN` log lines aren't automatically a stuck modal** — several fired this session
+  ("This asset editor has no docked tabs") with no actual blocking effect; subsequent calls kept
+  succeeding normally. A batch of shaders compiling (`LogShaderCompilers` activity in the same
+  window) produces the same symptom — slow/timed-out calls — from the outside. Check for that
+  before concluding the editor is stuck on a dialog.
+
+- **`uobject_set_property`'s `resolved_on` field can name a `TRASH_ClassName_N` (garbage-renamed)
+  object even when the write landed correctly on the real, live object.** Don't treat that field
+  as proof of corruption on its own — independently re-read the property (ideally via a second,
+  different tool, e.g. `level_list_actors`) before concluding anything broke.
+
+- **Committing in this repo needs an explicit pathspec, every time, regardless of MCP surface.**
+  This repo's git index routinely has other sessions'/agents' work sitting staged or newly
+  unignored right next to whatever you're committing. `git commit -m "..."` with no pathspec
+  commits the *entire* index; `git add <directory>` sweeps in everything under it, including
+  pre-existing untracked files you never touched. Always `git add <exact file>` +
+  `git commit -m "..." -- <exact file>`, and sanity-check `git show --stat -1 HEAD`'s file count
+  before moving on. If a commit turns out too broad, `git reset --soft HEAD~1` (undo the commit,
+  keep the index) then `git reset` (mixed, unstage everything) restores a clean slate to redo it
+  from, without touching anything outside your own change.

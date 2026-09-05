@@ -411,6 +411,10 @@ EMelodiaSkillGrade UMelodiaRhythmCombatSubsystem::RegisterLaneHit(const int32 La
 			// A judged miss inside a live session. Timing error is genuinely
 			// undefined here (there was no note to be early or late against), so
 			// it reports 0 rather than a fabricated number.
+			if (UMelodiaRhythmHUDWidget* HUD = BoundHUD.Get())
+			{
+				HUD->SetJudgment(GradeToText(EMelodiaSkillGrade::Miss));
+			}
 			OnLaneHitJudged.Broadcast(LaneIndex, EMelodiaSkillGrade::Miss, 0.0f);
 			return EMelodiaSkillGrade::Miss;
 		}
@@ -430,6 +434,10 @@ EMelodiaSkillGrade UMelodiaRhythmCombatSubsystem::RegisterLaneHit(const int32 La
 		{
 			++SessionMissCount;
 			UE_LOG(LogTemp, Verbose, TEXT("MELODIA_RHYTHM lane=%d graded Miss (no musical time)"), LaneIndex);
+			if (UMelodiaRhythmHUDWidget* HUD = BoundHUD.Get())
+			{
+				HUD->SetJudgment(GradeToText(EMelodiaSkillGrade::Miss));
+			}
 			OnLaneHitJudged.Broadcast(LaneIndex, EMelodiaSkillGrade::Miss, 0.0f);
 			return EMelodiaSkillGrade::Miss;
 		}

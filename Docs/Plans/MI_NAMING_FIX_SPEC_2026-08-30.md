@@ -1,5 +1,30 @@
 # MI Naming Fix Spec — 2026-08-30
 
+> ## ⛔ DO NOT EXECUTE — GENERATOR WAS BROKEN (verified 2026-09-03)
+>
+> The companion catalogue `Saved/Audit/mi_naming_fix_2026-08-30.json` has been **deleted**.
+> It did not contain the 114 violations this document describes. It contained **23,132**, and
+> executing it would have destroyed the project:
+>
+> | Check | Value |
+> |---|---|
+> | Violations this doc claims | 114 |
+> | Entries the JSON held | **23,132** |
+> | Entries that were even `MI_*` | 1,707 — so 21,425 were not material instances |
+> | Proposed target `MI_unknown.uasset` | **3,301 assets (14%)** |
+> | Distinct target names | **6,592 for 23,132 assets** |
+>
+> It swept every `.uasset` under `Content/` — meshes, textures, levels, blueprints — flagged
+> anything not matching `MI_<Stem>_<Variant>`, and emitted a garbage target when it could not
+> parse a stem. First entry was `Contentthtimestillnobones.uasset` → `MI_unknown.uasset`.
+> `MI_KB3D_ATL` collided 452 ways; `MI_Melodia_Figma` 339 ways.
+>
+> **Do not regenerate from this document without first fixing the generator.** A correct one
+> must (a) scope to material instances only, (b) parse the existing name rather than guessing a
+> stem, (c) refuse to emit a placeholder, and (d) hard-fail on any target name used twice.
+> Dry-run and collision-check before a single rename.
+
+
 **Source:** `Saved/Audit/mi_naming_fix_2026-08-30.json` (114 violations catalogued)
 **Convention:** `MI_<Stem>_<Rxx_TileY>` (e.g. `MI_BrickStone_Atlantis_R055_Tile4`)
 **Prerequisites:** Editor Monolith MCP or T3D rename command. No `.uasset` hand-edits.

@@ -1,0 +1,9 @@
+Re-cull: drop 2 overlapping Baroque instances; keep useful ones
+
+Deleted MI_Baroque_CathedralSurreal + MI_Baroque_FiligreeDream (unreferenced,
+overlapping). Kept MI_Baroque_EscherOrnament (signature impossible-geometry)
+and MI_Baroque_GildedFiligree (gold ornament). HELD the Show_* cull: those 10
+instances are placed in L_Template (material-showcase level), so deleting them
+would break that map - needs a decision (delete the showcase level too, or keep).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>

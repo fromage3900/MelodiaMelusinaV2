@@ -1,0 +1,235 @@
+{
+  "schema": "melodia.universal_garment.md_pattern_bridge.v1",
+  "seed": 20260902,
+  "date": "2026-09-02",
+  "goal": "Author the Marvelous Designer (MD) pattern-authoring + UV-layout + material-seam spec: turn the 10 Mesh garment layers into MD-usable pattern flats (per-layer inferred pattern-piece mapping), then transfer the verified master-family PBR textures back onto the MD-imported draped meshes. Includes a Skirt_Full hero worked example. Feeds the verified master family (M_Master_Nikki / M_Universal_Enhanced_Fabric / M_Master_Toon_Universal_Alpha); no new masters, no .uasset writes, offline only.",
+  "authority": [
+    "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md (10-layer Chladni mode grid, cloth tiers, master family)",
+    "Saved/Audit/melusina_lookdev/night_pkg_2026-08-31/garment_layers_manifest.json (48 panels -> 10 garment layers, seed 20260902)",
+    "Saved/Audit/melusina_lookdev/garment_refresh/garment_refresh_manifest.json (8-map refreshed PBR kit per layer)",
+    "Saved/Audit/melusina_lookdev/garment_refresh/cymatic/cymatic_garment_manifest.json (9-map cymatic set incl. Opacity/ORM per layer)",
+    "Saved/Audit/universal_garment/md_integration_report.json (seed 20260902; MD Enterprise OnlineAuth = GUI-only, NO headless path; native USD/FBX/OBJ/Alembic export verified)",
+    "Docs/Research/INFINITY_NIKKI_UE5_TRANSLATION_FOR_MELODIA_2026-08-30.md (cloth tiers + clipping doctrine)"
+  ],
+  "hero_layer": "M_Skirt_Full",
+  "hero_rationale": "Largest single drape target: P48, 69,145 verts, full-length zsp 1.211 to the floor (zlo -0.163), the widest flow (rmean 0.265 / rmax 0.604, w 1.112 x d 0.888). The garment piece carrying gameplay meaning (Nikki tier B, Chaos candidate). MD drape is source of truth for this plate.",
+  "per_layer_pattern_table": {
+    "M_Underskirt": {
+      "chladni_mode": "(3,5)",
+      "cloth_tier": "C",
+      "master": "M_Universal_Enhanced_Fabric",
+      "panels": ["SW_Dress_P01"],
+      "panel_count": 1,
+      "profile": "zlo 0.734 zhi 1.041 zsp 0.307 rmean 0.147 rmax 0.247 w 0.456 d 0.276 full-azimuth mid skirt/slip 13,034 verts",
+      "inferred_pattern_pieces": ["front slip panel A-line side or center", "back slip panel", "OR single wide waistband-to-hem circle-slip 2-3 gores"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "Mid slip - MD rest drape only; WPO in-engine"
+    },
+    "M_Bodice_Upper": {
+      "chladni_mode": "(1,3)",
+      "cloth_tier": "C",
+      "master": "M_Master_Nikki",
+      "panels": ["SW_Dress_P02", "SW_Dress_P46"],
+      "panel_count": 2,
+      "profile": "P02 zlo 1.135 zhi 1.366 rmean 0.159 w 0.423 23058v; P46 same zone rmean 0.155 w 0.411 1251v both full-azimuth bands at waist/bust elevation",
+      "inferred_pattern_pieces": ["upper bodice band front P46 lighter + back P02 heavy shell band", "or front-band + back-band yoke pieces meeting at princess seams"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "Bodice band - MD drape rest pose; WPO in-engine"
+    },
+    "M_Shoulder_Trim": {
+      "chladni_mode": "(4,8)",
+      "cloth_tier": "A",
+      "master": "M_Master_Toon_Universal_Alpha",
+      "panels": ["SW_Dress_P03", "SW_Dress_P04", "SW_Dress_P05", "SW_Dress_P06", "SW_Dress_P07", "SW_Dress_P08", "SW_Dress_P09", "SW_Dress_P10", "SW_Dress_P13", "SW_Dress_P14"],
+      "panel_count": 10,
+      "profile": "small shoulder/armhole-cap trims z~0.999..1.183 w~0.04 d~0.02 mirrored azimuth ~74..112 and ~96..-70 left/right symmetric pairs 168-271 verts",
+      "inferred_pattern_pieces": ["left + right armhole-cap / epaulette trims 5 small pieces per side layered cap", "treated as rigid structured lace alpha - MD pattern/layout only, no drape solve"],
+      "confidence": "inferred / needs-MD-confirmation (mirrored azimuth makes pairing evident)",
+      "md_role": "Rigid authored trim - MD pattern for cut shape; no sim"
+    },
+    "M_Sleeve": {
+      "chladni_mode": "(2,7)",
+      "cloth_tier": "C",
+      "master": "M_Universal_Enhanced_Fabric",
+      "panels": ["SW_Dress_P11", "SW_Dress_P12"],
+      "panel_count": 2,
+      "profile": "P11 zlo 0.528 zhi 1.025 rmean 0.205 rmax 0.308 w 0.109 d 0.243 301v; P12 zlo 0.731 zhi 1.029 rmean 0.180 w 0.068 d 0.202 202v both azimuth ~-109..-76 same arm quadrant overlapping spans",
+      "inferred_pattern_pieces": ["two-piece sleeve outer/back sleeve panel + under/inner sleeve panel", "or one sleeve drafted from two gores front + back sleeve with seam along the arm"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "Sleeve WPO drape - MD sim rest pose"
+    },
+    "M_Shoulder_Ornament": {
+      "chladni_mode": "(8,8)",
+      "cloth_tier": "A",
+      "master": "M_Master_Nikki",
+      "panels": ["SW_Dress_P15", "SW_Dress_P16", "SW_Dress_P17", "SW_Dress_P18", "SW_Dress_P19", "SW_Dress_P20", "SW_Dress_P21", "SW_Dress_P22", "SW_Dress_P23", "SW_Dress_P24", "SW_Dress_P25", "SW_Dress_P26", "SW_Dress_P27", "SW_Dress_P28"],
+      "panel_count": 14,
+      "profile": "14 tiny bead clusters 14 verts each z~1.03..1.13 rmean~0.06 w~0.07-0.09 decorative studs/beads on shoulder caps",
+      "inferred_pattern_pieces": ["7 mirrored bead/stud clusters per shoulder mirrored azimuth ~-127..-54", "represented in MD as applique/button stamps pinned to shoulder trim - NOT draped cloth", "or baked as detail texture and elided from the cloth sim"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "Rigid studs decorative - MD applique or omit from drape solve"
+    },
+    "M_Bodice_Side": {
+      "chladni_mode": "(2,6)",
+      "cloth_tier": "C",
+      "master": "M_Master_Nikki",
+      "panels": ["SW_Dress_P29", "SW_Dress_P45"],
+      "panel_count": 2,
+      "profile": "P29 zlo 1.017 zhi 1.139 rmean 0.067 w 0.102 d 0.026 az -130..-52 708v; P45 zlo 1.008 zhi 1.190 rmean 0.139 rmax 0.178 w 0.120 d 0.226 az -53..69 9095v the two side-shell bands",
+      "inferred_pattern_pieces": ["side torso panels left-side gore + right-side/inter-fill gore meeting bodice front at side princess seam", "or underarm side panel + side-back gore"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "Side torso - MD drape; WPO in-engine"
+    },
+    "M_Bodice_Front": {
+      "chladni_mode": "(3,4)",
+      "cloth_tier": "C",
+      "master": "M_Master_Nikki",
+      "panels": ["SW_Dress_P30", "SW_Dress_P31", "SW_Dress_P33", "SW_Dress_P34", "SW_Dress_P35", "SW_Dress_P36", "SW_Dress_P37", "SW_Dress_P38", "SW_Dress_P39", "SW_Dress_P40", "SW_Dress_P41", "SW_Dress_P42", "SW_Dress_P43", "SW_Dress_P44"],
+      "panel_count": 14,
+      "profile": "14 front chest/yoke panels all zlo~1.0 zhi~1.196 rmean 0.15-0.17 small w 0.018-0.071 d 0.014-0.035 az scattered +64..+120 right half only dense front yoke row",
+      "inferred_pattern_pieces": ["front chest/yoke assembly drafted as several seam-split panels center-front bust under-bust - 14 source panels do NOT imply 14 MD pieces, likely 4-6 true flats", "mirror across center axis for left half in MD", "candidate re-cut consolidate P33-P44 small slivers into a princess-seam front bodice"],
+      "confidence": "inferred / needs-MD-confirmation (dense small row strongly suggests a seamed yoke; exact piece count is MD-authoring discretion)",
+      "md_role": "Front bodice/yoke charmeuse - MD drape; WPO in-engine"
+    },
+    "M_Collar": {
+      "chladni_mode": "(6,6)",
+      "cloth_tier": "A",
+      "master": "M_Master_Toon_Universal_Alpha",
+      "panels": ["SW_Dress_P32"],
+      "panel_count": 1,
+      "profile": "P32 zlo 1.008 zhi 1.193 zsp 0.185 rmean 0.146 rmax 0.185 w 0.126 d 0.226 full wrap azimuth -180..180 9127 verts wrapping collar/neckline band",
+      "inferred_pattern_pieces": ["collar band drafted as one wrap-around neckline piece front band + back band", "or front collar + back collar split at shoulder-point seams", "structured lace masked alpha rigid authored"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "Structured lace neckline - MD pattern for cut shape; rigid, no drape solve"
+    },
+    "M_Bodice_Torso": {
+      "chladni_mode": "(5,7)",
+      "cloth_tier": "C",
+      "master": "M_Master_Nikki",
+      "panels": ["SW_Dress_P47"],
+      "panel_count": 1,
+      "profile": "P47 zlo 1.235 zhi 1.501 highest zone zsp 0.266 rmean 0.437 rmax 0.823 w 1.630 d 0.220 full azimuth 46134 verts huge bust/torso shell widest shoulder span",
+      "inferred_pattern_pieces": ["main torso/bodice shell drafted as two-piece front + back princess-seam bodice with bust darts", "or front bodice + back bodice + side-back panels", "widest shoulder span w 1.63 means a separate back shell carrying the shoulder yoke"],
+      "confidence": "inferred / needs-MD-confirmation (single source panel is a full shell; MD must re-cut to front/back pattern)",
+      "md_role": "Torso/bust shell - MD drape; WPO in-engine (the chest note)"
+    },
+    "M_Skirt_Full": {
+      "chladni_mode": "(7,9)",
+      "cloth_tier": "B hero / Chaos candidate",
+      "master": "M_Universal_Enhanced_Fabric",
+      "panels": ["SW_Dress_P48"],
+      "panel_count": 1,
+      "profile": "P48 zlo -0.163 zhi 1.047 zsp 1.211 full length to floor rmean 0.265 rmax 0.604 w 1.112 d 0.888 full azimuth 69145 verts full-length outer skirt mass",
+      "inferred_pattern_pieces": ["full skirt drafted from 6-8 radial gores front-center 2-4 side back-center or a flared/gathered A-line panel set", "wide hem flare rmax 0.604 vs waist rmean 0.265 favors a flared/gored cut not a straight cylinder", "hero plate MD drape is source of truth; engine Chaos handles collision", "single monolithic source panel P48 MUST be re-drafted as multiple sewable gores in MD"],
+      "confidence": "inferred / needs-MD-confirmation",
+      "md_role": "HERO - full skirt drape is the MD source of truth; Chaos collision in engine"
+    }
+  },
+  "uv_contract": {
+    "principle": "MD Unified UV Coordinates export lays each pattern piece into a shared [0,1] texture region per fabric. Preserve that region mapping through the whole round-trip so per-layer textures land on the correct panels.",
+    "source_uv_state": "SM_ShorewakeDress_48MAT_v2_slotted.obj has 31,664 UVs for 186,955 faces - sparse/overlapping per-panel islands not transfer-ready for MD; the pattern pass re-lays UVs per MD piece.",
+    "channel_policy": "Keep a single UV0 channel per draped mesh, one UV region per MD pattern piece (Unified UV coordinates). Strip/Avoid multi-channel cloth layouts.",
+    "region_to_layer_binding": "Each MD pattern region is tagged with the source garment layer name SW_Dress_Pxx -> M_Layer so texture assignment is deterministic.",
+    "draped_remap_rule": "After MD export the draped mesh inherits the MD unified UV layout. Do NOT re-unwrap in UE; swap textures only. If UVs drift re-run UV transfer from the .zpac pattern via FBX Preserve Area UV so seamless cymatic/refresh maps still tile.",
+    "seamless_invariant": "All garment_refresh and cymatic PBR maps are seamless/tiling at 2K (seed 20260902), so UV layout exactness matters only for large-patch occlusion/parallax orientation - cheap insurance for free MD re-layout.",
+    "y_flip": "Normal maps are height-derived OpenGL Y+ (flip G on UE import). Preserve this in the import pipeline.",
+    "animated_flipbook": "cymatic/animated/ FrameNN flipbook (8 frames phase 0==2pi) applies per-layer via a flipbook param; UV region must be stable across frames (single UV0)."
+  },
+  "texture_transfer_contract": {
+    "contract": "Cymatic / seasonal / refreshed PBR maps are re-applied onto MD-imported draped meshes via the verified small master family. Never a new master.",
+    "map_sources": {
+      "garment_refresh": "Saved/Audit/melusina_lookdev/garment_refresh/ T_Shorewake_Garment_M_Layer_BaseColor/Normal/Height/AO/Roughness/Metal/Iridescence/Sheen.png - 8 maps per layer. Present.",
+      "cymatic": "Saved/Audit/melusina_lookdev/garment_refresh/cymatic/ T_Cymatic_Garment_Layer_BaseColor/Normal/Height/Roughness/Metallic/Iridescence/Emissive/ORM/Opacity.png - 9 maps per layer + animated flipbook + cymatic_garment_manifest.json. Present.",
+      "seasons": "Saved/Audit/melusina_lookdev/seasons/ - present as an EMPTY directory (no per-season maps yet). Placeholder; treat as NOT yet available. Slot policy listed, no maps to bind."
+    },
+    "master_slot_map": {
+      "M_Master_Nikki": {
+        "role": "Primary garment master (bodice, torso, ornament)",
+        "BaseColor": "T_<src>_M_<Layer>_BaseColor.png",
+        "Normal": "T_<src>_M_<Layer>_Normal.png (flip G on import)",
+        "Roughness": "T_<src>_M_<Layer>_Roughness.png",
+        "Metallic_Metal": "T_<src>_M_<Layer>_Metal.png (refresh) OR cymatic _Metallic.png",
+        "Iridescence": "T_<src>_M_<Layer>_Iridescence.png",
+        "Sheen": "T_<src>_M_<Layer>_Sheen.png",
+        "Height": "T_<src>_M_<Layer>_Height.png (parallax/height lane if enabled)"
+      },
+      "M_Universal_Enhanced_Fabric": {
+        "role": "Fabric/sheer PBR master (skirt, sleeve, underskirt)",
+        "BaseColor": "T_<src>_M_<Layer>_BaseColor.png",
+        "Normal": "T_<src>_M_<Layer>_Normal.png",
+        "Roughness": "T_<src>_M_<Layer>_Roughness.png",
+        "Metallic": "T_<src>_M_<Layer>_Metal.png or _Metallic.png (cloth: near-0)",
+        "Iridescence": "T_<src>_M_<Layer>_Iridescence.png",
+        "Sheen": "T_<src>_M_<Layer>_Sheen.png",
+        "Height": "T_<src>_M_<Layer>_Height.png",
+        "AO": "T_<src>_M_<Layer>_AO.png or cymatic _ORM.png red channel"
+      },
+      "M_Master_Toon_Universal_Alpha": {
+        "role": "Masked-alpha master (lace collars, shoulder trim)",
+        "BaseColor": "T_<src>_M_<Layer>_BaseColor.png",
+        "Normal": "T_<src>_M_<Layer>_Normal.png",
+        "Roughness": "T_<src>_M_<Layer>_Roughness.png",
+        "Metallic": "T_<src>_M_<Layer>_Metal.png",
+        "Iridescence": "T_<src>_M_<Layer>_Iridescence.png",
+        "Sheen": "T_<src>_M_<Layer>_Sheen.png (lace fringe)",
+        "Opacity": "cymatic T_Cymatic_Garment_<Layer>_Opacity.png (alpha coverage / lace cutouts) - ONLY layer-specific alpha source",
+        "Height": "T_<src>_M_<Layer>_Height.png (fringe shading)"
+      }
+    },
+    "layer_to_master_assignment": {
+      "M_Bodice_Torso": "M_Master_Nikki",
+      "M_Bodice_Front": "M_Master_Nikki",
+      "M_Bodice_Side": "M_Master_Nikki",
+      "M_Bodice_Upper": "M_Master_Nikki",
+      "M_Shoulder_Ornament": "M_Master_Nikki (rigid; Metal elevated for studs)",
+      "M_Sleeve": "M_Universal_Enhanced_Fabric",
+      "M_Underskirt": "M_Universal_Enhanced_Fabric",
+      "M_Skirt_Full": "M_Universal_Enhanced_Fabric",
+      "M_Collar": "M_Master_Toon_Universal_Alpha (masked lace)",
+      "M_Shoulder_Trim": "M_Master_Toon_Universal_Alpha (masked lace)"
+    },
+    "opacity_policy": "Opaque garment layers Bodice_* Sleeve Underskirt Skirt_Full use Opacity 1.0 opaque. Only Collar and Shoulder_Trim bind Opacity from the cymatic set for lace alpha coverage. Ornament uses no alpha.",
+    "selection_rule": "Where cymatic (active sing) and garment_refresh (Moon neutral) both exist, default to garment_refresh for neutral derived maps and swap to cymatic for emissive/iridescence audio lanes. Seasonal variants (seasons/, empty today) override neutral BaseColor/Iridescence when bound.",
+    "per_mi_naming": "MI_Melusina_Shorewake_Cymatic_<Layer> per CYMATIC_GARMENT_NIKKI_PIPELINE 2026-09-02: one MI per layer on the assigned master, driven by the layer-restricted UV region mapping.",
+    "import_handedness": "Keep Unity-Forward / MD +Y up vs UE Z-up hand flips consistent across the FBX/USD import."
+  },
+  "hero_worked_example": {
+    "layer": "M_Skirt_Full",
+    "md_role": "Tier B hero plate - MD drape source of truth; Chaos collision in engine",
+    "steps": [
+      {"step": 1, "n": "Prepare source panel (offline)", "action": "Extract SW_Dress_P48 (69,145 verts, full length zsp 1.211 to floor) as its own OBJ group. Confirm vs garment_layers_manifest sha256 76fc9353...e00. Must be RE-DRAFTED into gores for MD, not imported as one flat."},
+      {"step": 2, "n": "Draft pattern flats (MD, INTERACTIVE - no headless path)", "action": "In MD GUI draft the skirt from 6-8 radial gores front-center side back-center flare panels matching rmean 0.265 waist to rmax 0.604 hem flare. Author waistband + hem allowances."},
+      {"step": 3, "n": "Assign fabric properties", "action": "Bind the skirt to a silk/sheet fabric preset (half-satin charmeuse silk, CYMATIC skirt grade). Rationalise friction/shear so it holds the Chladni (7,9) flare without sagging to the floor plane."},
+      {"step": 4, "n": "Drape on Melusina silhouette", "action": "Simulate on the bodied avatar/proxy; resolve pendant folds and the floor sweep (zlo -0.163 original). Save project .zpac to Saved/Audit/universal_garment/md_project/ as SKIRT_FULL_v1.zpac (source-of-truth MD file)."},
+      {"step": 5, "n": "Export draped mesh (verified native)", "action": "Export simulated skirt as FBX (primary libfbxsdk.dll) or USD (native USD export Omniverse plug verified). Enable Unified UV Coordinates + Preserve Area UV. Record per-piece region to M_Skirt_Full layer tag."},
+      {"step": 6, "n": "Import into UE (editor-gated)", "action": "UE Interchange FBX import or engine USD importer. Keep Unity-Forward / Y-up-to-Z-up hand flip. Do NOT re-unwrap; keep the MD unified UV layout."},
+      {"step": 7, "n": "Re-apply textures via master family", "action": "Create MI_Melusina_Shorewake_Cymatic_Skirt on M_Universal_Enhanced_Fabric. Bind T_Shorewake_Garment_M_Skirt_Full BaseColor Normal Roughness Metal Iridescence Sheen Height + AO (neutral palette). Bind cymatic T_Cymatic_Garment_M_Skirt_Full Emissive Iridescence ORM for the singing lanes. Leave Opacity opaque 1.0."},
+      {"step": 8, "n": "Bind cloth tier (editor)", "action": "Attach Chaos Cloth to the draped skirt for collision fidelity (hero tier B). Verify no clipping through Underskirt (SW_Dress_P01 zone zlo 0.734..1.041); segment depth-sort = Underskirt C/WPO under Skirt_Full B/Chaos per clipping doctrine."},
+      {"step": 9, "n": "Verify (editor LookDev)", "action": "capture_material_grid / LookDev pass on L_MaterialPreview_Studio with the Nikki 55mm lens. Gate: draped flare matches rmax ~0.604 silhouette, seams between gores invisible at 2K tile, iridescence lane reads."}
+    ],
+    "acceptance": "Draped hero skirt holds the Chladni (7,9) sheen/flare, re-textures through the verified family with no UV seams, and Chaos-collides with floor/legs without exploding vertex budget."
+  },
+  "md_integration_open_questions": [
+    "Headless gap: MD Enterprise OnlineAuth is GUI-only - no script API on disk. Is desktop UI automation cua acceptable or does the operator drive all drapes manually? Needs owner decision; pattern authoring and draping CANNOT be scripted on this install.",
+    "Gore count for Skirt_Full: manifest gives silhouette bounds only waist vs hem flare. What gore count conserves the rmax 0.604 hem and the Chladni (7,9) node density at 2K? Needs an MD test drape.",
+    "Bodice_Front dense row 14 panels: confirm whether MD should consolidate to a princess-seam front 4-6 pieces or keep the 14-sliver seam logic. Aesthetic + seam-hiding tradeoff unresolved.",
+    "UV source state 31,664 UVs / 186,955 faces on the slotted OBJ is sparse per-panel islands. Confirm MD Unified UV re-layout is acceptable vs preserving original panel UV islands for texture provenance.",
+    "Seasons/ dir is empty: what per-season variant set should land there, and which map subset overridden per season? Unspecified until owner scopes season palette.",
+    "Animated flipbook on a draped mesh: the 8-frame cymatic/animated flipbook assumes stable single-UV. Verify MD FBX/USD export does not bake per-frame UV/sim-deform coords that break flipbook phase.",
+    "Ornament (Shoulder_Ornament 14 rigid studs) and Shoulder_Trim (10 rigid cap pieces): confirm whether they ever enter MD as drape layers or stay out of the sim entirely as baked applique/detail textures.",
+    "Chaos on Skirt_Full is editor-side and engine-cost heavy. Owner to confirm hero spend vs a tier-C WPO fallback for non-hero outfit moods."
+  ],
+  "constraints_honored": [
+    "never editor .uasset writes from subagent; editor-gated steps only",
+    "never Content/**/*.uasset",
+    "no git clean/checkout -- .",
+    "no new master; verified small family only",
+    "no new landscape (height-awake, CanonicalLandscape only)",
+    "single audio writer untouched; cymatic lanes reserved, no writer added",
+    "offline only; every referenced map set verified on disk (garment_refresh, cymatic present; seasons empty)"
+  ],
+  "output_files": [
+    "C:/EnvironmentPortfolio/BS_GodFile/Docs/Art/UNIVERSAL_GARMENT_MD_PATTERN_BRIDGE_2026-09-02.md",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/universal_garment/md_pattern_bridge.json"
+  ]
+}

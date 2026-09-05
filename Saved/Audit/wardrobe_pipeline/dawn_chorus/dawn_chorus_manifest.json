@@ -1,0 +1,138 @@
+{
+  "garment": "Cos_Dress_Melusina_DawnChorus",
+  "mood": "first-light rose-gold \u2014 dawn blush to gilt hem",
+  "schema": "melodia.substance_stage.v1",
+  "seed": 20260902,
+  "staged": "2026-09-05T02:45:00-04:00",
+  "status": "OPEN (hand-paint; never auto-wire)",
+  "mesh": {
+    "file": "meshes/DawnChorus.fbx",
+    "sha12": "24afebf25f84",
+    "sha256": "24afebf25f84540243304e14534eb2591f21a715a65b57dd5e64b44f713568f7",
+    "size_b": 10466876,
+    "source": "intake/Cos_Dress_Melusina_AntiqueDoll (180895v/316912 polys, 20 slots)",
+    "verts": 180895,
+    "polys": 316912,
+    "material_slots": 20,
+    "uv_layers": 1,
+    "proved": "Blender 5.2.1 LTS 9e2066aef7ef --factory-startup re-import PASS"
+  },
+  "maps_open_paint": [
+    {
+      "file": "T_DawnChorus_BaseColor.png",
+      "sha12": "8f3a4a233abc",
+      "sha256": "8f3a4a233abcf9f63b72a6574b7c39eac9eb49955b54fbf5b4cc41e48d525695",
+      "size": 2048,
+      "mean": 175.5,
+      "std": 49.5,
+      "note": "rose-gold ramp + Chladni(5,7) gilt veins, seed 20260902"
+    },
+    {
+      "file": "T_DawnChorus_Normal.png",
+      "sha12": "de21921eadec",
+      "size": 2048,
+      "mean": 169.3,
+      "std": 59.9,
+      "sha256": "de21921eadecf86aa1a4056ae7416ea90a242345dee94bdb90b903128f1866a2"
+    },
+    {
+      "file": "T_DawnChorus_Roughness.png",
+      "sha12": "baadfdfadec8",
+      "size": 2048,
+      "mean": 119.7,
+      "std": 8.9,
+      "sha256": "baadfdfadec856c457f8f4368867f028e041bc8f025373784f4766341f176c28"
+    },
+    {
+      "file": "T_DawnChorus_Metallic.png",
+      "sha12": "7c9b8f592e24",
+      "size": 2048,
+      "mean": 5.4,
+      "std": 28.0,
+      "note": "gilt veins only",
+      "sha256": "7c9b8f592e246ed711139635074731aafab9c528c5aea47ca4a8776cc626eef5"
+    },
+    {
+      "file": "T_DawnChorus_Height.png",
+      "sha12": "cfb643beb07e",
+      "size": 2048,
+      "mean": 85.9,
+      "std": 45.3,
+      "note": "hem-weighted parallax, Chladni(5,7)",
+      "sha256": "cfb643beb07ec15cb5d51cd3d7a0e7986bb1391cf9cfbfa4c893fff165a4e480"
+    }
+  ],
+  "map_sets": [
+    "textures/ (pristine fallback)",
+    "resources/ (paint here \u2014 identical at staging)"
+  ],
+  "cop_family": {
+    "name": "FirstLightDawn",
+    "path": "Saved/Audit/copernicus_cymatic/FirstLightDawn/",
+    "cooked": "2026-09-03 02:38:12-14 at 2048",
+    "seed": 20260902,
+    "maps": 9,
+    "hashes": {
+      "BaseColor": "be00c621f2e3",
+      "Height": "f95df2bb6ad0",
+      "Normal": "c4ea4b26cfb1",
+      "Roughness": "58dc0fc90107",
+      "Metallic": "303bebd829f1",
+      "Iridescence": "690d7014b642",
+      "Emissive": "ee63400ce153",
+      "ORM": "b355ef75cb57",
+      "Opacity": "7368a2762f02"
+    },
+    "provenance": "Houdini 22.0.368 hython COP via /out ROP (coppath + rop.render), seed 20260902, Chladni modes (5,7)+mix",
+    "distinct_from_open_paint": "BC 8f3a4a233abc vs be00c621f2e3 \u2014 open paint is hand-paint tooth, COP is reference palette"
+  },
+  "proven_builders": {
+    "blender": "5.2.1 LTS 9e2066aef7ef --factory-startup",
+    "gn52_proof": "PASS 2026-09-05: 4 builders 15/13/27/29 nodes, W_LINK_OK+TENSION_W_OK",
+    "MEL_garment_loom_variation": {
+      "nodes": 13,
+      "sockets": 9,
+      "presets": [
+        "BODICE_STRUCTURED",
+        "COLLAR_LACE",
+        "SHOULDER_ORNAMENT_RIGID",
+        "SLEEVE_FLOW",
+        "UNDERSKIRT_SOFT",
+        "SKIRT_FULL_HERO",
+        "ANTIQUE_DOLL_LAYERED",
+        "BUTTERFLY_WING_MEMBRANE"
+      ],
+      "preset_for_dawn": "SKIRT_FULL_HERO + ANTIQUE_DOLL_LAYERED"
+    },
+    "MEL_garment_tension_folds": {
+      "nodes": 29,
+      "sockets": 10,
+      "presets": [
+        "PRESSED_PLEATS",
+        "STRETCH_CREASES",
+        "SOFT_GATHER"
+      ],
+      "preset_for_dawn": "SOFT_GATHER (hem-weighted)"
+    },
+    "MEL_garment_audio_drape": {
+      "nodes": 27,
+      "sockets": 15,
+      "presets": [
+        "BASS_WEAVE",
+        "VOCAL_MID",
+        "TREBLE_SHIMMER",
+        "BEAT_PULSE_WIDE"
+      ],
+      "preset_for_dawn": "BASS_WEAVE (low hem ripple growth)"
+    },
+    "MEL_garment_uv_unwrap": {
+      "nodes": 15,
+      "sockets": 6,
+      "note": "live cylindrical UV, non-overlapping for Substance"
+    },
+    "retopo_recipe": "Docs/Pipelines/MELODIA_RETOPO_RECIPE_2026-09-03.md + Tools/Houdini/sea_above_reef/garment_retopo_preintake.py (voxel_fallback path proven 2026-09-04)"
+  },
+  "generator": "_gen_maps.py (procedural OPEN bases, kept for provenance \u2014 numpy seed 20260902, Chladni(5,7)/(9,4))",
+  "hand_paint_rule": "Paint from resources/, keep textures/ pristine. Gilt veins live in BaseColor rose band \u2014 lift, don't redraw. Height is OpenGL parallax. No auto-wire to any mesh (UE stays only runtime writer).",
+  "note": "resources/ mirrors textures/ at staging by convention. Mesh is intake re-export as DawnChorus shell \u2014 apply loom/tension/audio GN in editor for variation, then Substance stage. Content/** untouched."
+}

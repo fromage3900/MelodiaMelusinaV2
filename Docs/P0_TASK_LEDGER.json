@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-06",
+  "as_of": "2026-09-05",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
@@ -441,7 +441,11 @@
     "editor_modal": "RECURRING: Editor blocked by modal dialog with empty title/text. Detected via MODAL_OPEN in Saved/Logs/BS_GodFile.log. Blocks port 9316, Monolith MCP, all echo runners, PIE testing.",
     "melodia_shader_module": "ADDED 2026-08-28: Source/MelodiaShader is a real UBT module (Runtime, PostConfigInit) holding .usf/.ush source under Shaders/. Adding or renaming it requires a closed-editor Build.bat pass; Live Coding cannot register new reflected types.",
     "live_results_widget_path": "RESOLVED in source 2026-08-28: MelodiaUIBridgeSubsystem::Initialize() backfills LiveResultsWidgetPath (cpp:131-133) the same way it backfills MelodiaBattleWidgetPath. Requires the closed-editor rebuild to take effect.",
-    "universal_luxury_wbp_system": "SCAFFOLDED 2026-08-28: All 30 Melodia WBP atoms mapped from Figma Grandmaster (tokens.json, Batch N/O ornate filigrees) to /Game/Melodia/UI/ with 4-layer depth hierarchy (Void Plate, Iridescent Sheen, Champagne Gold Filigree, Active Content). T3D specs generated in specs/ui/, design token palette exported to Saved/Audit/melodia_ui_tokens_unreal.json, and system audit written to Saved/Audit/melodia_universal_wbp_system.json."
+    "universal_luxury_wbp_system": "SCAFFOLDED 2026-08-28: All 30 Melodia WBP atoms mapped from Figma Grandmaster (tokens.json, Batch N/O ornate filigrees) to /Game/Melodia/UI/ with 4-layer depth hierarchy (Void Plate, Iridescent Sheen, Champagne Gold Filigree, Active Content). T3D specs generated in specs/ui/, design token palette exported to Saved/Audit/melodia_ui_tokens_unreal.json, and system audit written to Saved/Audit/melodia_universal_wbp_system.json.",
+    "editor_build": "GREEN as of 2026-09-04 (582fa914). Root cause was LPCTSTR dropping a struct member in MelodiaCaptureRenderSubsystem.cpp, not a format-string or UE 5.8 issue.",
+    "audio_reactivity": "WORKS and verified live in PIE (b1cac649). Clock lives on the GameMode (5fea50c8) so every level reacts. The former Alpha-master gap is CLOSED at 44398419 - all 109 instances, Melusina's dress included, now carry the Cymatic_*/Audio* parameters.",
+    "git_authority": "Local main carries this work; origin/main is a diverged lineage and does NOT. Read recovery/main-merged-20260904 for the off-machine copy.",
+    "toon_master": "ONE Toon Universal master. M_Master_Toon_Universal_Alpha is orphaned (0 instances) and must not be reparented to. Masked content uses per-instance BlendMode/TwoSided overrides."
   },
   "vendor_compatibility_track": {
     "status": "HOLD_VENDOR_INPUTS_MISSING",
@@ -580,7 +584,7 @@
       "id": "p1_cymatics_present",
       "name": "Cymatics PRESENT promotion",
       "status": "draft_open",
-      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index \u00a71. Remaining: PostConfigInit module loading verification, cymatic PBR generation CLI, World Field Bus contract, ledger gate.",
+      "contract": "Promote MelodiaCymaticsSubsystem from SCAFFOLDED to PRESENT per Master Index §1. Remaining: PostConfigInit module loading verification, cymatic PBR generation CLI, World Field Bus contract, ledger gate.",
       "deadline": "2026-10-01",
       "priority": 1,
       "evidence": "Saved/Audit/cymatics_present_status.json",
@@ -598,5 +602,71 @@
         "Cymatics P1 promotion gate (owner review)"
       ]
     }
-  ]
+  ],
+  "agent_work_log_2026-09-04_to_09-05": {
+    "session": "build green / audio reactivity verified / merge to main / landscape look-dev",
+    "editor_build": {
+      "status": "GREEN",
+      "commit": "582fa914",
+      "root_cause": "LPCTSTR MaterialToken silently dropped a struct member in MelodiaCaptureRenderSubsystem.cpp. Corrected to const TCHAR*. Two earlier FString::Printf rewrites treated symptoms and were wrong about the cause (they blamed a UE 5.8 consteval format sanitiser).",
+      "evidence": "Binaries/Win64/UnrealEditor-BS_GodFile.dll built 2026-09-04 21:47; the editor is running from it. Also fixed FImageUtils PNG export path and a nonexistent GetMorphTargetIndex call in MelodiaWardrobeComponent.cpp (now FindMorphTarget)."
+    },
+    "audio_reactivity": {
+      "status": "VERIFIED_LIVE_IN_PIE",
+      "commits": [
+        "0bc95bfb",
+        "5fea50c8",
+        "9b74f333",
+        "b1cac649"
+      ],
+      "root_cause": "Route leg 0 had no music clock, so nothing drove MPC_Melodia_Palette. The subsystems were correct; there was simply no clock in the opening level.",
+      "fix": "Clock moved onto BP_MelodiaJRPGGameMode (MelodiaAudio + MelodiaRhythmClock, bEnableQuartzFallback true, QuartzFallbackBPM 128) so EVERY level reacts rather than only levels with a hand-placed clock actor.",
+      "evidence": "b1cac649 - measured live in PIE with recorded values, not inferred.",
+      "known_gap": "M_Master_Toon_Universal_Alpha exposes NONE of the 14 Cymatic_*/Audio* parameters that M_Master_Toon_Universal carries. Its 109 instances - including Melusina's SW_Dress_P01..P48, the jellies and Atlantis foliage - are therefore structurally excluded from audio reactivity. Convergence analysed, not executed."
+    },
+    "fx": {
+      "commit": "abd87eca",
+      "note": "5 Niagara systems were rendering DefaultSpriteMaterial (the 'green balls'), including NS_Melodia_BattleBackdropPulse. Repaired and mouse-click sparkle wired on BP_MelodiaJRPGPlayerController. An earlier dead-emitter scan reported '0 dead' falsely: has_editor_property does not exist on NiagaraSystem, the exception was swallowed and 206/206 systems were skipped."
+    },
+    "materials": {
+      "commit": "16bcff59",
+      "note": "OpacityMap on M_Master_Toon_Universal_Alpha was an orphan parameter - the sampler feeding the OpacityMask chain had TextureObject unconnected, so with bUseOpacityMap=True every pixel clipped and masked foliage rendered as nothing. MI_AtlasLeafA rendered as an empty frame before the fix. Instances with bUseOpacityMap=False were never affected."
+    },
+    "landscape_lookdev": {
+      "commits": [
+        "c94f1746",
+        "0fb76675",
+        "99a32308",
+        "e4c97d15",
+        "2ebc4877"
+      ],
+      "key_light": "Key_TwilightPink was at pitch +30 - a directional light pointing at the sky, so the terrain received no key lighting. Set to -32. The first fix was LOST because SeaAbove __ExternalActors__ are untracked; the actor is now force-added so it survives.",
+      "supercolor": "The landscape was rendering T_Glacier_ColorErosion, a colour map from a DIFFERENT Gaea project, while T_Gaea_SeaAbove_SuperColor sat unreferenced. SuperColor is now bound to Albedo / Ground_Albedo / Rock_Albedo."
+    },
+    "merge_to_main": {
+      "commits_replayed": 19,
+      "method": "merge-tree --write-tree + commit-tree, entirely in the object graph. The planned checkout+cherry-pick was abandoned: the editor holds .uasset handles and the overnight wardrobe daemon drives git itself, checking the repo off main mid-operation.",
+      "divergence_warning": "local main and origin/main are DIVERGED lineages (628 vs 704, neither an ancestor of the other), predating this merge. 'Merged to main' means LOCAL main only. Off-machine copies: recovery/unify-histories-20260904 and recovery/main-merged-20260904.",
+      "record": "Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md"
+    },
+    "open_items": [
+      "W_Glacier_Rock is a near-black Gaea export (peaks 31/255). The rock layer cannot read until it is re-exported with correct normalisation. Not a UE-side problem.",
+      "Something rewrites MI_Glacier_Landscape_Layered: Gaea_SnowWeight found at -14.94 and Gaea_RockWeight at 6.43 AFTER both were set to 1.0 and read back as 1.0. Writer unidentified. Master Saturate clamps limit the damage and the weights were measured to make no visual difference.",
+      "Look-dev captures on LV_SeaAbove_Prototype are not trustworthy: two captures with identical material state differ substantially (colour spread 25.1 vs 15.9). Ultra Dynamic Sky time-of-day is not reflected to Python and cannot be pinned or read. Pin the sky before trusting any A/B on this map.",
+      "MaterialEditingLibrary parameter writes do not reach the renderer until update_material_instance() is called; read-backs succeed while the render is stale. This invalidated several measurements.",
+      "PCG volume layout: four concentric 600-800k volumes over a 250k landscape, unaddressed. See Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md section 4a."
+    ],
+    "toon_master_convergence": {
+      "status": "DONE",
+      "commits": [
+        "3fdb762f",
+        "44398419"
+      ],
+      "result": "M_Master_Toon_Universal_Alpha has ZERO instances. All 109 reparented onto M_Master_Toon_Universal with per-instance BlendMode=Masked + TwoSided=true overrides, which is what lets one Opaque master serve masked content.",
+      "ported": "OpacityMask chain (OpacityMap -> TextureSample.TextureObject -> * OpacityStrength -> bUseOpacityMap switch) and the MF_ClothWindDrape WPO chain behind bClothWind_Active. Both default OFF so the 2205 pre-existing opaque instances render exactly as before. Master stayed BLEND_Opaque / one-sided; 1274 -> 1280 expressions.",
+      "payoff": "SW_Dress_P01 now exposes all 15 Cymatic_*/Audio* parameters it could never see on the Alpha master. Melusina wardrobe, Atlantis foliage and the jellies are inside the audio-reactive system instead of structurally excluded.",
+      "verified": "MI_AtlasLeafA renders foliage; SW_Dress_P01 renders solid, not clipped; MI_SeaAbove_Cloth_Banner/_Shroud had bClothWind_Active switched on so they did not silently lose their wind WPO.",
+      "residual": "M_Master_Toon_Universal_Alpha is orphaned but left on disk - deleting a .uasset is owner-ask-first. Nothing should be reparented to it."
+    }
+  }
 }

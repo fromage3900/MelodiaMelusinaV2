@@ -1,259 +1,191 @@
-# 𝄞 Melodia Melusina 𝄞
+﻿# ♪ Melodia — BS_GodFile ✧ Single-Author Rhythm-JRPG in Unreal Engine 5.8
 
-![Melodia Banner](Docs/melodia-banner.svg)
+```
+✦ ─── ✧ ─── ★ ─── ✧ ─── ✦
+```
 
 ![Unreal Engine 5.8](https://img.shields.io/badge/Unreal_Engine-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
 ![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
+![Assets](https://img.shields.io/badge/uasset-1%2C988_tracked_%2F_24%2C128_local-5e3a8c)
+![Maps](https://img.shields.io/badge/umap-25_tracked_%2F_233_local-3a5a3a)
+![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
+![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
-### ♪ an evergreen single-player Rhythm-JRPG about fashion, music, impossible ecology, and the places that answer back
+> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md) and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
 
-> **The beautiful things are not rewards around the game. They are how the game is played.**
+> **Cross-Machine Development:** This project is actively developed across three workstations — a Windows desktop PC (primary), a laptop (Humber Labs / on-the-go), and Humber Labs workstations. See [Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md](Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md) for the authoritative workflow.
 
-Melodia is a turn-based fantasy RPG built in Unreal Engine 5.8. Rhythm is how actions are executed. Clothing is build identity and a language the world can read. Exploration, music, creatures, water, fabric, ecology, and ornament are allowed to become mechanics instead of staying scenery.
+♪ **Production-Grade Rhythm-JRPG in Unreal Engine 5.8 + Blender 5.2.** A single-author vertical slice and extensible multi-chapter framework. Every architectural claim is backed by a verified ledger row in `Saved/gate_ledger.json`. No prose passes for evidence. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
 
-### Technical review / vertical slice
+♫ **Current Status (2026-09-02 Night):** 27/31 P0 gameplay completion gates verified passing. **116 automated tests** run (108 pass / 1 fail / 3 errors — under active repair). Two packaging gates remain open (`package_build`, `package_launch`) plus two PIE-capture gates (`world_field_bus_pie`, `gaeA_live_pie`). Shipping certification staged for final packaged validation.
 
-If you are reviewing the project as an Unreal developer, professor, recruiter, or collaborator, **start here:**
-
-> **[MELODIA_TECHNICAL_VERTICAL_SLICE.md](MELODIA_TECHNICAL_VERTICAL_SLICE.md)** — the current 5–10 minute proof route, runtime ownership model, live/restart evidence, known boundaries, and what is intentionally frozen for closure.
-
-Then use [`CURRENT_STATE.md`](CURRENT_STATE.md) for the present-tense truth and [`TODO.md`](TODO.md) for the active production queue. Long-term strategy and research are supporting material, not prerequisites for understanding the playable slice.
-
-### Agent / multi-workstation discovery
-
-Agents and remote workstations should start at **[`AGENT_START_HERE.md`](AGENT_START_HERE.md)**. It contains the freshness rules that prevent old handoffs from overriding current source/evidence.
-
-- [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) — where committed laptop/recovery work actually lives, including work not yet on `main`.
-- [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) — canonical image/reference-board discovery and explicit missing/uncommitted-board status.
-
-The long-term idea is simple:
-
-> **Finish a real journey. Let the world keep growing after it.**
-
-Melodia is not being built as a battle-pass treadmill or an always-online obligation. A Volume should have a real ending. Later, I can add another Voyage, Reverie, outfit, creature, letter, tiny gift, strange island, or entire new sea because I had a good idea — not because a calendar says I owe the game content.
+**Sea Above Level Integration:** 221 cathedral pieces at Z=13,455 on CanonicalLandscape. 2 PCG volumes. 12 Copernicus MIs. Cutscene trigger at (-910, 500, 13,145). Landscape at Z=0. QuillScript cutscene authored.
 
 ---
 
-## ♪ The skeleton under the pretty stuff
+## ♪ Core Architecture: Two Authorities & Four Pillars
 
-```text
-Turn-based strategy      = the skeleton
-Rhythm execution         = performance
-Wardrobe / outfits       = build identity + world relationship
-Convergence              = interpretation between systems
-Starskiff                = travel + accumulated journey
-QuillScript              = narrative progression
-Persistence              = memory
+The Melodia engine architecture converges four distinct gameplay systems onto two authoritative layers:
+
+![System Architecture](Docs/melodia-architecture.svg)
+
+### Two Absolute Authorities
+1. **QuillScript Narrative Authority (`UMelodiaNarrativeSubsystem`)**: Absolute authority on narrative progression, dialogue branches, cutscene triggers, quest flags, and 7-verb structured notifications (`melodia:quest`, `melodia:battle`, `melodia:stat`, `melodia:wardrobe`, `melodia:item`, `melodia:inspect`, `melodia:checkpoint`).
+2. **Turn-Based JRPG State Authority (`BP_JRPGSaveGame` & Combat Subsystem)**: Absolute authority on party data, turn order queue, damage calculation, stats, inventory, and canonical game state persistence.
+
+### Four Converged Pillars
+1. **Rhythm Combat Layer**: Rhythm timing highway executes directly over JRPG command selections (Attack / Skill / Item / Flee). Player input accuracy (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) scales base damage and pulses material parameter collections (`MPC_Melodia_Palette`) without bypassing JRPG turn rules.
+2. **Wardrobe Traversal System**: Outfits provide visual customization and implement `IMelodiaTraversalCapabilityProvider` to unlock concrete physical world traversal capabilities (Glide, Swim, Dash), fully preserved across save/reload cycles via `UMelodiaWardrobeSubsystem`.
+3. **Music-as-Key World Puzzles**: Environmental barriers and harmonic puzzles respond to played musical phrases (`APCGHeroMusicGraphHost` / Piano node stepping), dispatching 7-verb narrative notifications to unlock physical routes and portal boundaries.
+4. **Single-Writer UI Architecture**: Strict UI hierarchy where every surface has exactly one designated writer (`UMelodiaUIBridgeSubsystem`), eliminating race conditions, duplicate overlays, and widget memory leaks.
+
+---
+
+## ♪ Universal Reusable Chapter Gameplay Loop
+
+Every single chapter in Melodia (from Chapter 1 "First Dream" to the Final Chapter) executes the exact same standardized 6-phase loop:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                        UNIVERSAL CHAPTER GAMEPLAY LOOP TEMPLATE                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+   │
+   ▼
+[ Phase 1: Narrative Initiation & Sanctuary Departure ]
+   ├── QuillScript dialogue node with chapter key NPC
+   ├── Authoring of active quest flag (`quest.<chapter_id>.start`)
+   └── Authoring of Sanctuary departure gate unlock
+   │
+   ▼
+[ Phase 2: Overworld Traversal & Music-as-Key Route Unlock ]
+   ├── Traversal across overworld using active Wardrobe traversal capabilities
+   ├── Discovery of environmental musical puzzle / route barrier
+   ├── Player steps on musical nodes / plays resonant melody
+   └── Route / portal barrier unlocks via 7-verb narrative notification
+   │
+   ▼
+[ Phase 3: Turn-Based JRPG Combat with Rhythm Command Timing ]
+   ├── Seamless encounter transition to battle arena
+   ├── Single HUD writer (`UMelodiaUIBridgeSubsystem`) displays command menu
+   ├── Player selects action (Attack / Resonance Skill / Item / Flee)
+   ├── Harmonix Rhythm Highway engages for real-key timed inputs
+   └── Grade multiplier scales stock JRPG damage calculation
+   │
+   ▼
+[ Phase 4: Battle Resolution & Idempotent Reward Distribution ]
+   ├── Terminal combat outcome reached (Victory / Defeat / Flee / Timeout)
+   ├── QuillScript narrative resumes once
+   └── Idempotent reward distribution via Intent-ID (Wardrobe unlock, Stat increase, Item)
+   │
+   ▼
+[ Phase 5: Traversal Upgrade & World Progression ]
+   ├── Player equips newly acquired wardrobe piece
+   ├── `UMelodiaWardrobeSubsystem` grants new traversal capability (e.g., Glide / Dash)
+   └── Player accesses previously unreachable chapter climax portal / landmark
+   │
+   ▼
+[ Phase 6: Canonical Checkpoint & Seamless Chapter Transition ]
+   ├── State serialized to `BP_JRPGSaveGame` slot
+   ├── Verified round-trip persistence (Party, Stats, Flags, Wardrobe, Inventory)
+   └── Level streaming / transition to next Chapter map
 ```
 
-The project already contains a working Phoenix / TurnBased JRPG scaffold, battle-integrated Melodia rhythm systems, Wardrobe gameplay state, Quill/narrative progression, save/load infrastructure, Starskiff work, music-as-key world interaction, reusable validation tooling, and a growing browser R&D surface.
+---
 
-The rule now is **stop rebuilding the skeleton and make it survive the journey.**
+## ♪ Three Active Tracks
+
+### Track 1: Gameplay Vertical Slice — "First Dream"
+- **Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
+- **P0 Completion Gates (27/31 PASS):**
+
+| Gate | Status | Category |
+|---|---|---|
+| `runtime` | ✅ PASS | Core gameplay loop |
+| `save_load` | ✅ PASS | State persistence |
+| `repeat_consume` | ✅ PASS | Narrative queue |
+| `rhythm_owner` | ✅ PASS | Rhythm subsystem |
+| `rhythm_grade_to_result` | ✅ PASS | Combat multiplier |
+| `hud_single_writer` | ✅ PASS | UI hierarchy |
+| `wardrobe_equip_roundtrip` | ✅ PASS | Wardrobe subsystem |
+| `wardrobe_gameplay_hook` | ✅ PASS | Traversal provider |
+| `music_world_key` | ✅ PASS | Resonant world |
+| `static_gates` | ✅ PASS | Material baselines |
+| `battle_integration_map` | ✅ PASS | Allowlist |
+| `package_build` | ❌ FAIL | Cook exits -1 |
+| `package_launch` | ❌ FAIL | No archive |
+| `world_field_bus_pie` | ⏳ PENDING | Needs PIE |
+| `gaeA_live_pie` | ⏳ PENDING | Needs PIE |
+
+### Track 2: Model Context Protocol (MCP) & Automation Tooling
+- **1330 Typed MCP Actions** across 24 namespaces supporting offline schema inspection and live Unreal Engine automation.
+- **Melodia MCP Server (`deploy/melodia_mcp_server.py`):** 38/38 verified unit & regression tests.
+- **Melusina Agent Test Harness (MATH):** Strict quantitative evaluation of local models across 5 core metrics:
+  - **TCA** (Tool Call Accuracy ≥ 98%)
+  - **PAR** (Policy Adherence Rate = 100%)
+  - **SCR** (State Convergence Rate ≥ 95%)
+  - **RCF** (Recovery from Feedback ≥ 90%)
+  - **TER** (Token Efficiency Ratio ≤ 0.20)
+
+### Track 3: ECHO Pipeline & Evidence Ledger
+- **Deterministic Pipeline:** `Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote`
+- **Gate Runner:** `Tools/echo_run.py` & `Tools/project_state.py`
+- **Single Source of Truth:** `Saved/gate_ledger.json` (no row = not done).
 
 ---
 
-## ♫ What Melodia is becoming
+## ♪ Repository Map
 
-I think of the game as **a place**, not a content conveyor belt.
-
-```text
-MELODIA MELUSINA
-│
-├── Volume I — a complete journey
-│   ├── Movements
-│   ├── Chapters
-│   ├── Episodes
-│   ├── Reveries
-│   └── rare Monolith Events
-│
-├── Gifts / letters / little returns
-├── new Voyages
-└── future Volumes, if there is more journey to make
-```
-
-A player should be able to disappear for a year, come back, and feel welcomed rather than punished.
-
-> *A parcel arrived on the Starskiff while you were away.*
-
-That is much closer to the feeling I want than **CLAIM REWARD: 03:41:19 REMAINING**.
-
-Current truth before long-term strategy:
-
-1. [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) — professor-facing playable proof and technical boundary.
-2. [`CURRENT_STATE.md`](CURRENT_STATE.md) — what is actually real today.
-3. [`TODO.md`](TODO.md) — what we are actually doing next.
-4. [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) — bounded P0 integration scope.
-
-Long-term strategy lives under `Docs/Strategy/` and should be read **after** the current slice if deeper product context is needed.
-
----
-
-## ♬ Runtime authority — one truth per thing
-
-The project gets more ambitious only if ownership gets less confusing.
-
-| Thing | Owner |
+| Directory | Scope & Contents |
 |---|---|
-| turns, targeting, battle resolution, stock JRPG state | Phoenix / TurnBased JRPG |
-| narrative flags, intents, checkpoints, consequences | `UMelodiaNarrativeSubsystem` + QuillScript |
-| timing / note-highway execution | Melodia rhythm / `MelodiaCore` |
-| owned + equipped wardrobe state | `UMelodiaWardrobeSubsystem` |
-| interpretation across outfit × rhythm × battle × world | Convergence |
-| player-facing UI writes | `UMelodiaUIBridgeSubsystem` |
-| durable Melodia history | canonical save + narrative record |
-
-Rhythm may change **how well** an authored action happens. It does not become a second combat game.
-
-Convergence may interpret relationships. It does not become a junk drawer that owns everybody else's state.
-
-A 3D parcel may look like it contains an outfit. It still cannot grant the outfit by itself.
+| `Content/Melodia/` | Gameplay assets: levels, characters, save game structures, audio, configuration |
+| `Content/EnvSandbox/` | Production environments, Substrate toon materials, PCG scatter ecosystems |
+| `Source/BS_GodFile/` | 137 C++ source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
+| `Tools/` | 151 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
+| `deploy/` | MCP server implementations (`melodia_mcp_server.py`, `agent_bridge_mcp.py`), daemons, build graphs |
+| `specs/` | 87 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
+| `Plugins/` | 15 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
+| `Docs/` | Architectural specifications, handoff records, evening plans, credits, and career dossiers |
+| `Saved/` | Gate ledgers (`gate_ledger.json`), audit manifests, and test execution reports |
 
 ---
 
-## 𝄞 The current golden proof
-
-P0 / First Dream + Sea Above remains our useful full-stack song:
-
-```text
-Outfit
-→ Starskiff / exploration
-→ Phoenix command
-→ Rhythm phrase
-→ Convergence / world consequence
-→ Reward
-→ Save
-→ Quit process
-→ Relaunch
-→ Load
-→ same durable state
-→ Load again
-→ no duplication or drift
-```
-
-That is an **integration proof**, not mandatory pacing for every future Chapter.
-
-A Reverie can be ten quiet minutes on the Starskiff. A creature story can use music without battle. A Monolith Event can end in traversal or world-state intervention instead of enemy HP.
-
-The reusable thing is the contract, not the shape of the story.
-
----
-
-## ♪ Current work
-
-Right now the high-value work is boring on purpose:
-
-- persistence / restore invariants;
-- repeat-load idempotency;
-- durable Starskiff + Convergence ownership;
-- packaged restart proof;
-- reusable Chapter packages;
-- keeping old saves readable as the world grows.
-
-**Do not** solve this by rewriting Phoenix, inventing another SaveGame authority, persisting live rhythm sessions, or building a remote gift backend before the local game is reliable.
-
-The dream gets to be enormous because the boring parts are allowed to stay boring.
-
----
-
-## ♫ Browser playgrounds
-
-The repo now has a few deliberately non-authoritative Three.js laboratories. They are for seeing ideas quickly, not replacing Unreal.
-
-- [`Docs/Tools/puzzle-sandbox/index.html`](Docs/Tools/puzzle-sandbox/index.html) — **𝄞 Cymatic Sanctuary**, a 12-instrument Music-as-Key sandbox with resonant phrase gates and JSON export.
-- [`Prototypes/Web/MusicKey3D/`](Prototypes/Web/MusicKey3D/) — watercolor / toon world-puzzle interaction lab.
-- [`Prototypes/Web/MelodiaFolio3D/`](Prototypes/Web/MelodiaFolio3D/) — Traveling Folio, Starskiff post, real repo-model turntable, and cozy 3D UI experiments.
-- [`Prototypes/Web/MelodiaFolio3D/mara.html`](Prototypes/Web/MelodiaFolio3D/mara.html) — Mara-style presentation variant.
-
-Run them from the repo root:
+## ♪ Quickstart & Verification
 
 ```powershell
-python -m http.server 8080
+# 1. Clone repository
+git clone https://github.com/fromage3900/MelodiaMelusinaV2.git
+cd MelodiaMelusinaV2
+
+# 2. Pull Git LFS assets
+git lfs pull
+
+# 3. Run full automated test suite
+.\run_tests.ps1
+
+# 4. Run offline preflight gate verification
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/verify_p0_offline.py
+
+# 5. Run Melodia MCP regression suite
+& "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\ThirdParty\Python3\Win64\python.exe" Tools/test_melodia_mcp.py
+
+# 6. Launch Unreal Engine 5.8 Editor
+start BS_GodFile.uproject
 ```
 
-Then browse the relevant path under `http://127.0.0.1:8080/`.
+---
+
+## ♪ License & Attributions
+
+### License
+This repository and its original source code, tools, and configurations are licensed under the **MIT License**. See [LICENSE](LICENSE) for full legal terms.
+
+### Attributions & Provenance
+*Melodia* relies on creators across the Unreal Engine Marketplace / Fab, CC0 open-source communities, BOOTH.pm, and original first-party artwork. Every imported asset carries strict provenance tracking including named creator, source repository, and license category.
+
+- **Full Credits & License Ledger:** [Docs/CREDITS.md](Docs/CREDITS.md)
+- **Asset Sources Matrix:** [Docs/SOURCES_MATRIX.md](Docs/SOURCES_MATRIX.md)
+- **Automated License Gate:** `Tools/credits_gate.py` (enforced via ECHO pipeline)
 
 ---
 
-## ♬ Content grows in different sizes
-
-| Scale | What it is allowed to do |
-|---|---|
-| **Reverie / Interlude** | intimate character, outfit, creature, sanctuary, or Starskiff story; heavy reuse |
-| **Episode** | one memorable gameplay proposition |
-| **Chapter** | meaningful authored change; at most one major mechanical extension |
-| **Movement** | recombine existing systems into a new grammar |
-| **Monolith Event** | break one assumption the player thought was safe |
-| **Volume** | emotionally complete game-scale journey |
-
-The working Volume-I scaffold supports 50+ named Chapters, but the point is **many authored memories**, not fifty new global systems.
-
----
-
-## ♪ Toolchain
-
-The center of gravity is Unreal Engine 5.8 + Houdini + Blender 5.2 LTS + SpeedTree / Substance / ZBrush and supporting tools where they genuinely help.
-
-The test for every shiny new thing is still:
-
-> **Does this make visibly better Melodia per hour without creating a more expensive maintenance problem?**
-
-Music can author geometry offline. Houdini can author impossible evidence. Browser prototypes can test interaction and presentation. Unreal still owns the game.
-
----
-
-## ♫ Repository map
-
-| Directory | What lives there |
-|---|---|
-| `Source/BS_GodFile/` | native gameplay + integration |
-| `Plugins/MelodiaCore/` | rhythm / presentation foundations |
-| `Plugins/MelodiaWardrobe/` | wardrobe implementation |
-| `Content/Melodia/` | characters, levels, UI, authored game content |
-| `Content/EnvSandbox/` | environments, Monolith work, materials, procedural lookdev |
-| `specs/` | progression + stable data contracts |
-| `Tools/` | tests, audits, authoring automation |
-| `Docs/Strategy/` | current product/content north stars |
-| `Docs/Tools/` | small browser/tool experiments worth keeping |
-| `Prototypes/Web/` | Three.js interaction + UI laboratories |
-
-Bulk art remains governed by the project's Git/LFS/Perforce rules. Code, specs, and documentation stay Git-authoritative.
-
----
-
-## 𝄞 Start here
-
-For setup and validation commands: [`QUICKSTART.md`](QUICKSTART.md)
-
-For the shortest useful reading path:
-
-```text
-README
-  ↓
-MELODIA_TECHNICAL_VERTICAL_SLICE
-  ↓
-CURRENT_STATE
-  ↓
-_VERTICAL_SLICE_SCOPE
-  ↓
-TODO
-  ↓
-SYSTEM_MAP / DATA_FLOW (only if you need architecture detail)
-  ↓
-the specific Chapter, tool, evidence file, or subsystem you are touching
-```
-
-**Do not read the research archive or dated handoffs front-to-back.** They preserve project memory; they are not the current product surface.
-
----
-
-## ♬ License & provenance
-
-Original repository source, tools, and configurations are MIT licensed; third-party assets retain their own licenses and provenance requirements.
-
-- [`LICENSE`](LICENSE)
-- [`Docs/CREDITS.md`](Docs/CREDITS.md)
-- [`Docs/SOURCES_MATRIX.md`](Docs/SOURCES_MATRIX.md)
-
----
-
-> **Melodia is not a game that never ends because it refuses to finish. It is a journey that can keep finding new places after an ending.** ♪
+*Melodia © 2026. Built with Unreal Engine 5.8, Blender 5.2, and Model Context Protocol automation.*

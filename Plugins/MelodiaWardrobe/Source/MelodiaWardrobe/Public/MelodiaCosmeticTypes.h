@@ -95,6 +95,50 @@ struct MELODIAWARDROBE_API FMelodiaResonantForm
 };
 
 /**
+ * Body-region clipping contract for one garment (Nikki-translation §6, precompute
+ * tier: Docs/Research/INFINITY_NIKKI_UE5_TRANSLATION_FOR_MELODIA_2026-08-30.md).
+ *
+ * A garment declares which body regions it covers. At equip time the wardrobe
+ * resolves the union across the equipped set and collapses those regions on the
+ * body mesh via AUTHORED region-hide morph targets (the body SK has ~4 material
+ * sections, so section visibility is too coarse for region hiding).
+ *
+ * Contract:
+ *  - Region ids MUST equal morph-target names on the body SK (mel_body_hide_*).
+ *  - The morph for a declared region may not exist yet (authoring lag). That is a
+ *    WARN-ONCE and no visual collapse -- never a crash, never a guessed section
+ *    index. The declaration is inert until the body mesh grows the morph.
+ *  - This struct DECLARES coverage; the wardrobe APPLIES it at equip time. Nothing
+ *    here stores runtime state and nothing caches the resolved set: the equipped
+ *    map on the narrative record stays the only durable state (Decision 043).
+ *  - Authored by Tools/wardrobe_intersection_audit.py from real garment/body
+ *    geometry penetration samples, not by hand.
+ */
+USTRUCT(BlueprintType)
+struct MELODIAWARDROBE_API FMelodiaCosmeticCompatibility
+{
+	GENERATED_BODY()
+
+	/**
+	 * Body regions this garment covers and the body should collapse beneath it.
+	 * Empty = decorative from the clipping perspective (the default and the
+	 * correct value for accessories, hair charms, and trails).
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe|Clipping")
+	TArray<FName> HiddenBodyRegionIds;
+
+	/**
+	 * Optional explicit exceptions: combos (other cosmetic ids) this garment is
+	 * KNOWN to clip against regardless of region coverage. The audit tool emits
+	 * these when two authored garments interpenetrate in bind pose. v1 is
+	 * advisory data only -- no runtime consumer reads it yet, and it must never
+	 * gate an equip on its own (a forced refusal here would strand a save).
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe|Clipping")
+	TArray<FName> KnownClipPairCosmeticIds;
+};
+
+/**
  * Grade of one garment against one style axis. A stable scale, not a taxonomy --
  * safe as an enum because adding a grade is a balance change, not content.
  */
@@ -192,6 +236,14 @@ struct MELODIAWARDROBE_API FMelodiaCosmeticRecord
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Style")
 	TArray<FMelodiaStyleScore> StyleScores;
+
+	/**
+	 * Body-region clipping contract (see FMelodiaCosmeticCompatibility). Empty by
+	 * default: most cosmetics hide nothing, and an absent declaration must never
+	 * be read as "collapse everything beneath this garment".
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe|Clipping")
+	FMelodiaCosmeticCompatibility Compatibility;
 };
 
 /** Immutable read model handed to UI. UI renders this and never computes state itself. */

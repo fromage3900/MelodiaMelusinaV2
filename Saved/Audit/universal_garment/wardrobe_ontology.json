@@ -1,0 +1,230 @@
+{
+  "schema": "melodia.universal_garment.wardrobe_ontology.v1",
+  "seed": 20260902,
+  "date": "2026-09-02",
+  "goal": "Author the wardrobe-ontology + ability mapping layer for the universal garment system: per-ability 'which physical theory the player may perceive' contracts, per-outfit wardrobe/sound/material response record framework, and the ability-family x garment-material x cymatic-water-zone manifest.",
+  "authority": [
+    "Docs/Research/INFINITY_NIKKI_UE5_TRANSLATION_FOR_MELODIA_2026-08-30.md",
+    "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md",
+    "Docs/Art/FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md",
+    "Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json"
+  ],
+  "writer_contract": {
+    "audio_writer_count": 1,
+    "sole_writer": "UMelodiaAudioReactivePresentationSubsystem",
+    "writer_mpc": "MPC_Melodia_Palette",
+    "second_mpc_writer_allowed": "MPC_Cymatics_Driver only via UMelodiaCymaticsWriterSubsystem",
+    "universal_garment_mpc_role": "READ_ONLY_CONSUMER_LANE_ONLY",
+    "never_a_second_writer": true,
+    "read_only_subscribers": [
+      "UMelodiaCymaticsSubsystem",
+      "wardrobe_material_consumers",
+      "wardrobe_sound_consumers",
+      "wardrobe_skeleton_secondary_motion"
+    ]
+  },
+  "ability_families": [
+    {
+      "id": "hemkeeper",
+      "name": "Hemkeeper / Shorewake veil",
+      "world_ontology": "the world is fabric",
+      "perceivable_theory": "tension / seam / fold interpretation",
+      "verb_family": "tension-seam-fold",
+      "keyfield": "WorldField.Tension",
+      "cymatic_meta": "Chladni nodal lattice read as weave warp/weft; seams = nodal lines",
+      "garment_layer_primary": "Skirt_Full",
+      "garment_layers": [
+        "Skirt_Full",
+        "Collar",
+        "Shoulder_Trim"
+      ],
+      "mpc_lanes_read": [
+        "BeatPulse",
+        "BassIntensity"
+      ],
+      "response_framework": {
+        "wardrobe_layers": ["veil", "mantle", "hem"],
+        "cymatic_modes": ["(7,9)", "(6,6)", "(4,8)"],
+        "mpc_consumer_lanes": ["WorldField.Tension", "WPO_FabricWind", "Chaos_HeartGate", "Emissive_Seam"]
+      }
+    },
+    {
+      "id": "shorelistener",
+      "name": "Shorelistener",
+      "world_ontology": "the world is water",
+      "perceivable_theory": "impossible-water attunement",
+      "verb_family": "tide-seam-read",
+      "keyfield": "WorldField.Moisture + Tide Seams",
+      "cymatic_meta": "droplets lean toward impossible water; foam/particles follow Tide Seam direction",
+      "garment_layer_primary": "Underskirt",
+      "garment_layers": [
+        "Underskirt",
+        "Bodice_Front",
+        "Sleeve"
+      ],
+      "mpc_lanes_read": [
+        "BeatPulse",
+        "Cymatic_ModeN",
+        "Cymatic_ModeM"
+      ],
+      "response_framework": {
+        "wardrobe_layers": ["listening_hem", "underskirt", "hair"],
+        "cymatic_modes": ["(3,5)", "(3,4)", "(2,7)"],
+        "mpc_consumer_lanes": ["WorldField.Moisture", "TideSeamDirection", "FoamPCRelativeMotion", "Niagara_DropletLean"]
+      }
+    },
+    {
+      "id": "glasswing",
+      "name": "Glasswing Courier",
+      "world_ontology": "the world is air / adjacency",
+      "perceivable_theory": "Wayfold alignment and spatial continuity",
+      "verb_family": "wayfold-align",
+      "keyfield": "WorldField.Resonance + Wayfold corridor",
+      "cymatic_meta": "spatial continuity via nodal coincidences; adjacent surfaces agree on flow",
+      "garment_layer_primary": "Shoulder_Ornament",
+      "garment_layers": [
+        "Shoulder_Ornament",
+        "Shoulder_Trim",
+        "Bodice_Side"
+      ],
+      "mpc_lanes_read": [
+        "BeatPulse",
+        "Cymatic_UVDistortion"
+      ],
+      "response_framework": {
+        "wardrobe_layers": ["wings", "trail", "ornament"],
+        "cymatic_modes": ["(8,8)", "(4,8)", "(2,6)"],
+        "mpc_consumer_lanes": ["WorldField.Resonance", "WayfoldCorridor", "TransparencyOrder", "TrailFlow"]
+      }
+    },
+    {
+      "id": "mire_apothecary",
+      "name": "Mire Apothecary",
+      "world_ontology": "the world is material state",
+      "perceivable_theory": "Catalyze / residue / membrane state changes",
+      "verb_family": "catalyze-membrane",
+      "keyfield": "WorldField.Residue + WorldField.Reaction + Catalyze",
+      "cymatic_meta": "pigment motes expose Catalyze boundaries; flakes drift along recent-molt vector",
+      "garment_layer_primary": "Bodice_Torso",
+      "garment_layers": [
+        "Bodice_Torso",
+        "Bodice_Upper",
+        "Shoulder_Trim"
+      ],
+      "mpc_lanes_read": [
+        "BassIntensity",
+        "Cymatic_ModeN"
+      ],
+      "response_framework": {
+        "wardrobe_layers": ["apothecary_robe", "membrane", "residue_patch"],
+        "cymatic_modes": ["(5,7)", "(1,3)", "(4,8)"],
+        "mpc_consumer_lanes": ["WorldField.Residue", "WorldField.Reaction", "MembraneFlex", "PigmentMigration"]
+      }
+    },
+    {
+      "id": "god_that_molts",
+      "name": "God That Molts",
+      "world_ontology": "the world is a discarded biological material in layered states",
+      "perceivable_theory": "old/fresh laminate + recent-molt vector",
+      "verb_family": "residue-reveal",
+      "keyfield": "WorldField.Residue + WorldField.Reaction + MoltReveal",
+      "cymatic_meta": "spores adhere differently to old vs fresh laminate; pigment motes expose Catalyze boundaries",
+      "garment_layer_primary": "Bodice_Front",
+      "garment_layers": [
+        "Bodice_Front",
+        "Bodice_Torso",
+        "Underskirt"
+      ],
+      "mpc_lanes_read": [
+        "BeatPulse",
+        "Cymatic_BassIntensity"
+      ],
+      "response_framework": {
+        "wardrobe_layers": ["molt_husk", "laminate", "spore_dust"],
+        "cymatic_modes": ["(3,4)", "(5,7)", "(3,5)"],
+        "mpc_consumer_lanes": ["MoltReveal", "LayerAge", "PigmentMigration", "MonolithResonance"]
+      }
+    },
+    {
+      "id": "horizon_eater",
+      "name": "Horizon Eater",
+      "world_ontology": "the world is a filter / mouth",
+      "perceivable_theory": "filter-flow direction across the horizon",
+      "verb_family": "filter-flow-align",
+      "keyfield": "WorldField.FilterFlow",
+      "cymatic_meta": "pollen, cloud wisps, birds, leaves, debris gradually agree on a kilometer-scale filter-flow direction",
+      "garment_layer_primary": "Bodice_Side",
+      "garment_layers": [
+        "Bodice_Side",
+        "Shoulder_Trim",
+        "Skirt_Full"
+      ],
+      "mpc_lanes_read": [
+        "BassIntensity",
+        "BeatPulse"
+      ],
+      "response_framework": {
+        "wardrobe_layers": ["veil", "particle_trail", "mantle"],
+        "cymatic_modes": ["(2,6)", "(4,8)", "(7,9)"],
+        "mpc_consumer_lanes": ["WorldField.FilterFlow", "ParticleConvergence", "FocalParallax", "DebrisTrail"]
+      }
+    }
+  ],
+  "garment_ontology_verb_table": [
+    {
+      "garment_piece": "Shorewake veil / Hemkeeper",
+      "world_ontology": "the world is fabric",
+      "gameplay_verb": "tension/seam/fold interpretation",
+      "ability_family": "hemkeeper"
+    },
+    {
+      "garment_piece": "Shorelistener",
+      "world_ontology": "the world is water",
+      "gameplay_verb": "Tide Seams / impossible-water attunement",
+      "ability_family": "shorelistener"
+    },
+    {
+      "garment_piece": "Glasswing Courier",
+      "world_ontology": "the world is air / adjacency",
+      "gameplay_verb": "Wayfold alignment and spatial continuity",
+      "ability_family": "glasswing"
+    },
+    {
+      "garment_piece": "Mire Apothecary",
+      "world_ontology": "the world is material state",
+      "gameplay_verb": "Catalyze / membrane state changes",
+      "ability_family": "mire_apothecary"
+    },
+    {
+      "garment_piece": "God That Molts",
+      "world_ontology": "the world is discarded biological material",
+      "gameplay_verb": "residue / recent-molt reveal",
+      "ability_family": "god_that_molts"
+    },
+    {
+      "garment_piece": "Horizon Eater",
+      "world_ontology": "the world is a filter / mouth",
+      "gameplay_verb": "filter-flow direction alignment",
+      "ability_family": "horizon_eater"
+    }
+  ],
+  "garment_materials": [
+    { "material_id": "M_Bodice_Torso", "chladni": "(5,7)", "reads_as": "chest note — lowest full-body bass", "ability_family": "mire_apothecary" },
+    { "material_id": "M_Bodice_Front", "chladni": "(3,4)", "reads_as": "front chest/yoke panels", "ability_family": "god_that_molts" },
+    { "material_id": "M_Bodice_Side", "chladni": "(2,6)", "reads_as": "side torso", "ability_family": "horizon_eater" },
+    { "material_id": "M_Bodice_Upper", "chladni": "(1,3)", "reads_as": "upper bodice band", "ability_family": "mire_apothecary" },
+    { "material_id": "M_Collar", "chladni": "(6,6)", "reads_as": "symmetric collar frame", "ability_family": "hemkeeper" },
+    { "material_id": "M_Shoulder_Trim", "chladni": "(4,8)", "reads_as": "shoulder/armhole cap trim", "ability_family": "glasswing" },
+    { "material_id": "M_Shoulder_Ornament", "chladni": "(8,8)", "reads_as": "bead-dot grid nodal", "ability_family": "glasswing" },
+    { "material_id": "M_Sleeve", "chladni": "(2,7)", "reads_as": "sleeve/arm", "ability_family": "shorelistener" },
+    { "material_id": "M_Underskirt", "chladni": "(3,5)", "reads_as": "mid skirt/slip", "ability_family": "shorelistener" },
+    { "material_id": "M_Skirt_Full", "chladni": "(7,9)", "reads_as": "the big skirt plate — full sing", "ability_family": "hemkeeper" }
+  ],
+  "cymatic_water_zones": [
+    { "zone": "lagoon_shallow", "primary_mi": "MI_Copernicus_GildedCoral", "water_theory": "shoreline birth of the tide seam", "primary_ability": "shorelistener" },
+    { "zone": "reef_wall", "primary_mi": "MI_Copernicus_CrystalCathedral", "water_theory": "vertical fold where water becomes wall", "primary_ability": "hemkeeper" },
+    { "zone": "abyssal_keel", "primary_mi": "MI_Copernicus_StarlitAbyss", "water_theory": "deep fog, leviathan keel filter-flow sink", "primary_ability": "horizon_eater" },
+    { "zone": "sky_motes", "primary_mi": "MI_Copernicus_CymaticReactive", "water_theory": "airborne jelly arms — water lifted into air (Wayfold)", "primary_ability": "glasswing" }
+  ],
+  "strongest_pairing": "hemkeeper:Skirt_Full(ansatz 'the world is fabric' -> tension/seam/fold) on the Shorewake veil, because it is the only pairing already wired end-to-end: the Heart Gate veil (Tier B Chaos) is the Hemkeeper ontology test coupling WorldField.Tension to both WPO amplitude on terrain AND Chaos release on the Veil — same field, two costs."
+}

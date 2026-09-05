@@ -1,0 +1,29 @@
+{
+  "schema": "melodia.cymatic_variant_qa.v1",
+  "variant": "PrismaticObsidian",
+  "generated": "2026-09-02T15:30:00",
+  "size": "1024x1024",
+  "frames": 1,
+  "maps": 9,
+  "maps_present": ["BaseColor","Normal","Roughness","Metallic","Height","ORM","Emissive","Iridescence","Opacity"],
+  "result": "PASS",
+  "checks": {
+    "valid_png": "9/9",
+    "size_1024": "9/9",
+    "non_blank": "9/9",
+    "gradient_spread": "all maps have meaningful min/max/std (no flat/blank channels)",
+    "normal_sanity": "Normal min 30 / max 254 (degrees), mid range sane"
+  },
+  "per_map_stats": {
+    "BaseColor":   {"min":9,   "max":255, "mean":110.7, "std":96.8},
+    "Emissive":    {"min":0,   "max":101, "mean":16.1,  "std":19.6},
+    "Height":      {"min":4,   "max":255, "mean":117.9, "std":69.1},
+    "Iridescence": {"min":0,   "max":255, "mean":85.3,  "std":109.0},
+    "Metallic":    {"min":0,   "max":140, "mean":42.4,  "std":55.7},
+    "Normal":      {"min":30,  "max":254, "mean":169.0, "std":60.2},
+    "ORM":         {"min":0,   "max":252, "mean":125.7, "std":85.0},
+    "Opacity":     {"min":191, "max":255, "mean":212.4, "std":26.1},
+    "Roughness":   {"min":36,  "max":216, "mean":151.3, "std":76.9}
+  },
+  "note": "Prior cook (13:17) was partial — only 7/9 PNGs on disk (missing Roughness + ORM). Re-cook completed all 9. PNGs live under gitignored Saved/Audit/copernicus_cymatic/; QAd evidence committed here."
+}

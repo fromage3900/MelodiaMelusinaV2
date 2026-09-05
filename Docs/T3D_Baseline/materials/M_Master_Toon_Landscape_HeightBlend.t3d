@@ -59,6 +59,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionVectorParameter Name="MaterialExpressionVectorParameter_0" ExportPath="/Script/Engine.MaterialExpressionVectorParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionVectorParameter_0'"
    End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_9" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_9'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_8" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_8'"
+   End Object
    Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_7" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_7'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_6" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_6'"
@@ -84,6 +88,10 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_22" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_22'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_19" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_11" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_11'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_10" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_10'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_1'"
    End Object
@@ -130,6 +138,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_8" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_8'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_3" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_3'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_2" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_2'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionStaticSwitchParameter Name="MaterialExpressionStaticSwitchParameter_13" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_13'"
    End Object
@@ -225,7 +235,13 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_24" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_24'"
    End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_20'"
+   End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_2'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_18'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionScalarParameter Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_15'"
    End Object
@@ -369,6 +385,14 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_2" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_2'"
    End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_19" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_19'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_18'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_17'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_15'"
+   End Object
    Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_14'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_13" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_13'"
@@ -479,7 +503,17 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    End Object
    Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerSample Name="MaterialExpressionLandscapeLayerSample_4" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerSample'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerSample_4'"
    End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerSample Name="MaterialExpressionLandscapeLayerSample_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerSample'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerSample_0'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_3" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerCoords_3'"
+   End Object
    Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerCoords_1'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerCoords Name="MaterialExpressionLandscapeLayerCoords_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerCoords_0'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_2" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerBlend_2'"
+   End Object
+   Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeLayerBlend Name="MaterialExpressionLandscapeLayerBlend_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerBlend_0'"
    End Object
    Begin Object Class=/Script/Landscape.MaterialExpressionLandscapeGrassOutput Name="MaterialExpressionLandscapeGrassOutput_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeGrassOutput'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeGrassOutput_1'"
    End Object
@@ -611,6 +645,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_1" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionCollectionParameter_1'"
    End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionCollectionParameter_0'"
+   End Object
    Begin Object Class=/Script/Engine.MaterialExpressionCameraPositionWS Name="MaterialExpressionCameraPositionWS_0" ExportPath="/Script/Engine.MaterialExpressionCameraPositionWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionCameraPositionWS_0'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_7" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_7'"
@@ -626,6 +662,8 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
    Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_31" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_31'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_30" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_30'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_3'"
    End Object
    Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_29" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_29'"
    End Object
@@ -956,6 +994,24 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionGuid=A880BD104C0BEEAA8771A7B63B6A08DF
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_9" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_9'"
+      ParameterName="PaintedLayer_Snow"
+      ExpressionGUID=9540A509479423FACE31389C5D00A971
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_17'")
+      MaterialExpressionEditorX=2960
+      MaterialExpressionEditorY=310
+      MaterialExpressionGuid=CFDBED20430C21A772A5F3A95AF90532
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_8" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_8'"
+      ParameterName="PaintedLayer_Base"
+      ExpressionGUID=FC62FD4845C10F082185E884DD2F6E59
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_17'")
+      MaterialExpressionEditorX=2960
+      MaterialExpressionEditorY=150
+      MaterialExpressionGuid=96AB932C43EBFC25F73C74A452758B9B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_7" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_7'"
       ParameterName="Rock_Height"
       ExpressionGUID=B53A7DC040B330EA8EA2FE8E5F4CDC3E
@@ -1108,6 +1164,24 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionEditorX=-2000
       MaterialExpressionEditorY=820
       MaterialExpressionGuid=03EDF491462549F6682777AA20869FDC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_11" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_11'"
+      ParameterName="PaintedLayer_Rock"
+      ExpressionGUID=F38573E048EAA87A17D009AEB9C502D3
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_17'")
+      MaterialExpressionEditorX=2960
+      MaterialExpressionEditorY=630
+      MaterialExpressionGuid=0E4CF6AA4D170EDB22486C856FC053BA
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_10" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_10'"
+      ParameterName="PaintedLayer_Water"
+      ExpressionGUID=F53D4FEA47D3287E9AFE7DB4FB49ABFC
+      Coordinates=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_17'")
+      MaterialExpressionEditorX=2960
+      MaterialExpressionEditorY=470
+      MaterialExpressionGuid=01FBF956482B8714103030851E0DFAEA
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionTextureSampleParameter2D_1" ExportPath="/Script/Engine.MaterialExpressionTextureSampleParameter2D'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionTextureSampleParameter2D_1'"
@@ -1268,7 +1342,7 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionSubstrateToonBSDF_0" ExportPath="/Script/Engine.MaterialExpressionSubstrateToonBSDF'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionSubstrateToonBSDF_0'"
-      BaseColor=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLinearInterpolate_13'")
+      BaseColor=(Expression="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_2'")
       Roughness=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_35'")
       Normal=(Expression="/Script/Engine.MaterialExpressionMaterialFunctionCall'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMaterialFunctionCall_3'",OutputIndex=5)
       EmissiveColor=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_0'")
@@ -1313,6 +1387,16 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionGuid=4F4F66564A61C314EE51718C4883B6B4
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
       Desc="LTriPro:Switch_Active"
+   End Object
+   Begin Object Name="MaterialExpressionStaticSwitchParameter_2" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_2'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerBlend_2'")
+      B=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLinearInterpolate_13'")
+      ParameterName="bUseGaeaLayers"
+      ExpressionGUID=55B0C88F495394D3A36FC08AB59C5F8F
+      MaterialExpressionEditorX=3800
+      MaterialExpressionEditorY=300
+      MaterialExpressionGuid=B7F427D9445C2034772ACBAED6955E32
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionStaticSwitchParameter_13" ExportPath="/Script/Engine.MaterialExpressionStaticSwitchParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionStaticSwitchParameter_13'"
       A=(Expression="/Script/Engine.MaterialExpressionLinearInterpolate'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLinearInterpolate_60'")
@@ -1833,6 +1917,14 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionGuid=14E8353D4116F861EF62C288022EFEE1
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
+   Begin Object Name="MaterialExpressionScalarParameter_20" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_20'"
+      ParameterName="AudioEmissiveStrength"
+      ExpressionGUID=52CD4382437D2F5D18D0E0AF09EF95FB
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=1120
+      MaterialExpressionGuid=4C67162C45939E53370F568B3987A94E
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
    Begin Object Name="MaterialExpressionScalarParameter_2" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_2'"
       DefaultValue=256.000000
       ParameterName="TriplanarTiling"
@@ -1842,6 +1934,24 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionEditorX=-2576
       MaterialExpressionEditorY=416
       MaterialExpressionGuid=3414E8114692E33407EEACB514C6B979
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_19" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_19'"
+      DefaultValue=0.350000
+      ParameterName="MoistureWetnessBoost"
+      ExpressionGUID=F47E17A446894678B325CA9D85F06827
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=820
+      MaterialExpressionGuid=B6EAA6BC409D5498EC2475828CC5CCE3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionScalarParameter_18" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_18'"
+      DefaultValue=4.000000
+      ParameterName="PaintedLayer_Tiling"
+      ExpressionGUID=841E44CA4F8356E5829F80BE75BC7D3B
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=320
+      MaterialExpressionGuid=0F76B10E41BF6D9255066D8CA39196F9
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionScalarParameter_15" ExportPath="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_15'"
@@ -2465,6 +2575,35 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionEditorX=-1200
       MaterialExpressionEditorY=820
       MaterialExpressionGuid=BA5935E34910F5BA117D1C824ABD23B2
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_19" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_19'"
+      A=(Expression="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionCollectionParameter_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_20'")
+      MaterialExpressionEditorX=2780
+      MaterialExpressionEditorY=1040
+      MaterialExpressionGuid=382C7CA0439F6E4ECB08BCA542A5EA6C
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_18" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_18'"
+      A=(Expression="/Script/Landscape.MaterialExpressionLandscapeLayerSample'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerSample_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_19'")
+      MaterialExpressionEditorX=2780
+      MaterialExpressionEditorY=740
+      MaterialExpressionGuid=127CAF3C4522A4F2B9A53684B52FDB03
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_17" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_17'"
+      B=(Expression="/Script/Engine.MaterialExpressionScalarParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionScalarParameter_18'")
+      MaterialExpressionEditorX=2780
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=BBF4C9CA47D03DF55787FA95D7917D25
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_15" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_15'"
+      MaterialExpressionEditorX=2780
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=498D8D6B46673266C1A1CEB593E6D1DA
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionMultiply_14" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_14'"
@@ -3096,10 +3235,45 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionGuid=64A7E110447DD79A416007872F24FAB3
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerSample_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerSample'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerSample_0'"
+      ParameterName="Water"
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=700
+      MaterialExpressionGuid=4BBFEFF241DFAC097BE78DA8E836F552
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_3" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerCoords_3'"
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=B1428B844AD439B43ABBA09A60FB184F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
    Begin Object Name="MaterialExpressionLandscapeLayerCoords_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerCoords_1'"
       MaterialExpressionEditorX=-2000
       MaterialExpressionEditorY=-80
       MaterialExpressionGuid=29296E584F62D6E24DC6BD8ED5C4F1D3
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerCoords_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerCoords'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerCoords_0'"
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=042F68284F564E0FF1E2EDBEE61F479B
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_2" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerBlend_2'"
+      Layers(0)=(LayerName="Base",PreviewWeight=1.000000)
+      Layers(1)=(LayerName="Snow",PreviewWeight=0.500000)
+      Layers(2)=(LayerName="Water",PreviewWeight=0.500000)
+      Layers(3)=(LayerName="Rock",PreviewWeight=0.500000)
+      MaterialExpressionEditorX=3500
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=E86F75CB43D2CC92BD03D588508B634A
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionLandscapeLayerBlend_0" ExportPath="/Script/Landscape.MaterialExpressionLandscapeLayerBlend'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeLayerBlend_0'"
+      MaterialExpressionEditorX=3500
+      MaterialExpressionEditorY=200
+      MaterialExpressionGuid=21DC90DD4BBABEE3A15B8F986916D42F
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionLandscapeGrassOutput_1" ExportPath="/Script/Landscape.MaterialExpressionLandscapeGrassOutput'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionLandscapeGrassOutput_1'"
@@ -3584,6 +3758,15 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionGuid=23B36FE74F1DFBE44CFAA99CC3A1033D
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
+   Begin Object Name="MaterialExpressionCollectionParameter_0" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionCollectionParameter_0'"
+      Collection="/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'"
+      ParameterName="BeatPulse"
+      ParameterId=31D2F22E4193DAE6417DA3A9CBF33428
+      MaterialExpressionEditorX=2600
+      MaterialExpressionEditorY=1000
+      MaterialExpressionGuid=9FF7BD9C4A22715DA3800AA880E5096F
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
    Begin Object Name="MaterialExpressionCameraPositionWS_0" ExportPath="/Script/Engine.MaterialExpressionCameraPositionWS'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionCameraPositionWS_0'"
       MaterialExpressionEditorX=-800
       MaterialExpressionEditorY=-720
@@ -3644,6 +3827,14 @@ Begin Object Class=/Script/Engine.Material Name="M_Master_Toon_Landscape_HeightB
       MaterialExpressionEditorX=820
       MaterialExpressionEditorY=1730
       MaterialExpressionGuid=5C386EE64C1DBAAFF1657EB8F15976EC
+      Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_3" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_3'"
+      A=(Expression="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_0'")
+      B=(Expression="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionMultiply_19'")
+      MaterialExpressionEditorX=3800
+      MaterialExpressionEditorY=1040
+      MaterialExpressionGuid=921AA48F426B8F2268790FB7E38FD922
       Material="/Script/Engine.Material'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend'"
    End Object
    Begin Object Name="MaterialExpressionAdd_29" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend:MaterialExpressionAdd_29'"

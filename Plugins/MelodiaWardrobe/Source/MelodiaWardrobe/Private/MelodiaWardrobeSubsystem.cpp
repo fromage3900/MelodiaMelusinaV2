@@ -407,6 +407,69 @@ EMelodiaWardrobeSlot UMelodiaWardrobeSubsystem::GetSlotForCosmetic(const FName C
 	return Record ? Record->Slot : EMelodiaWardrobeSlot::Body;
 }
 
+FMelodiaCosmeticCompatibility UMelodiaWardrobeSubsystem::GetCosmeticCompatibility(const FName CosmeticId) const
+{
+	const UMelodiaCosmeticCatalog* Catalog = GetCatalog();
+	if (!Catalog)
+	{
+		return FMelodiaCosmeticCompatibility();
+	}
+	const FMelodiaCosmeticRecord* Record = Catalog->FindById(CosmeticId);
+	return Record ? Record->Compatibility : FMelodiaCosmeticCompatibility();
+}
+
+TArray<FName> UMelodiaWardrobeSubsystem::GetHiddenBodyRegions() const
+{
+	TArray<FName> Hidden;
+	if (!Narrative)
+	{
+		return Hidden;
+	}
+
+	// Lifetime: GetNarrativeRecord() returns by value. Bind the temporary to a
+	// named const ref for the whole loop -- Find() on the bare temporary was the
+	// use-after-free that produced plausible garbage (see GetEquipped above).
+	const FMelodiaNarrativeRecord& Record = Narrative->GetNarrativeRecord();
+
+	const UMelodiaCosmeticCatalog* Catalog = GetCatalog();
+
+	TSet<FName> Seen;
+	for (const TPair<EMelodiaWardrobeSlot, FName>& Equipped : Record.EquippedCosmeticIds)
+	{
+		if (Equipped.Value.IsNone() || !Catalog)
+		{
+			continue;
+		}
+
+		const FMelodiaCosmeticRecord* Cosmetic = Catalog->FindById(Equipped.Value);
+		if (!Cosmetic)
+		{
+			// Broken save/catalog entry in the equipped map: contributes nothing and
+			// never hides the body. One line, not per-region spam.
+			UE_LOG(LogTemp, Warning,
+				TEXT("MELODIA_WARDROBE equipped cosmetic %s does not resolve in the catalog; "
+					 "its clipping contract is ignored."),
+				*Equipped.Value.ToString());
+			continue;
+		}
+
+		for (const FName RegionId : Cosmetic->Compatibility.HiddenBodyRegionIds)
+		{
+			if (!RegionId.IsNone())
+			{
+				Seen.Add(RegionId);
+			}
+		}
+	}
+
+	Hidden.Reserve(Seen.Num());
+	for (const FName RegionId : Seen)
+	{
+		Hidden.Add(RegionId);
+	}
+	return Hidden;
+}
+
 const UMelodiaCosmeticCatalog* UMelodiaWardrobeSubsystem::ResolveCatalog()
 {
 	if (CachedCatalog)

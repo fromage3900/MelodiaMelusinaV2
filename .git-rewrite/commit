@@ -1,0 +1,15 @@
+tree e1991823c9865afd60b8bdf16efde25b20c22859
+parent 0c8c10169becdc17c3ab9912ab34295963c02277
+author fromage3900 <fromage@kittymail.com> 1782063462 -0400
+committer fromage3900 <fromage@kittymail.com> 1782063462 -0400
+
+PCG Phase 2: layered biome - add sparse hero-tree canopy layer
+
+Second scatter branch on PCG_MeadowScatter: GetLandscape -> SurfaceSampler
+(0.012/m2, sparse) -> TransformPoints (yaw 0-360, scale 0.8-1.4) ->
+StaticMeshSpawner (weighted: GenericTree_001 x3, GenericTreeSkinny x2) -> Output.
+Regenerated on ZenForest: 677 instances = 667 meadow groundcover + 10 hero trees.
+Clean regen (cleanup+generate) required for density edits to take (graph caches
+compiled result).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>

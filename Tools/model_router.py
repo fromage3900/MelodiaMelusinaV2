@@ -41,6 +41,7 @@ ENDPOINTS = {
     "openrouter": "https://openrouter.ai/api/v1",
     "tokenrouter": "https://api.tokenrouter.com/v1",
     "local": LOCAL_BASE,
+    "bedrock": os.environ.get("BEDROCK_MANTLE_URL", "https://bedrock-mantle.us-east-1.api.aws/v1"),
 }
 
 PRICES = {
@@ -54,6 +55,12 @@ PRICES = {
     "nvidia/nemotron-3-ultra-550b-a55b:free": (0.0, 0.0),
     "nvidia/nemotron-3-super-120b-a12b:free": (0.0, 0.0),
     "openai/gpt-oss-20b:free": (0.0, 0.0),
+    # Free rotation 2026-09-02: opencode-go/deepseek → nous → meituan (OpenRouter free tier rotation)
+    "meituan/longcat-2.0:free": (0.0, 0.0),
+    "meituan/longcat-flash-chat:free": (0.0, 0.0),
+    "nousresearch/hermes-4-405b:free": (0.0, 0.0),
+    "nousresearch/hermes-4-70b:free": (0.0, 0.0),
+    "nousresearch/hermes-3-llama-3.1-405b:free": (0.0, 0.0),
     "mistralai/codestral-2508": (0.0000003, 0.0000009),
     # Local Ollama tags - zero API cost
     # Verified installed 2026-08-20 via `ollama list`.
@@ -69,6 +76,9 @@ PRICES = {
     "qwen3-coder:14b": (0.0, 0.0),
     "qwen3-coder:32b": (0.0, 0.0),
     "qwen3-coder-next": (0.0, 0.0),
+    # Bedrock Mantle (OpenAI-shaped, bearer token) - free tier on AWS account
+    "qwen.qwen3-coder-next": (0.0, 0.0),
+    "anthropic.claude-sonnet-5": (0.0, 0.0),
     "devstral-small": (0.0, 0.0),
     "gpt-oss:20b": (0.0, 0.0),
 }
@@ -162,14 +172,19 @@ POLICY = {
         ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
     ],
     "triage": [
-        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free 1M ctx"),
-        ("openai/gpt-oss-20b:free", "openrouter", "free code"),
+        # Free rotation 2026-09-02: deepseek (opencode-go) → nous → meituan ; local fallback last
+        ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan (switched)"),
+        ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
+        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free rotation tertiary: nvidia (prev deepseek lane)"),
+        ("openai/gpt-oss-20b:free", "openrouter", "free code fallback"),
         ("qwen3:8b", "local", "local daemon triage"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "slow but strong fallback"),
     ],
     "audit": [
-        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free heavy"),
-        ("deepseek/deepseek-v4-flash", "openrouter", "analysis"),
+        ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan"),
+        ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
+        ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free heavy fallback"),
+        ("deepseek/deepseek-v4-flash", "openrouter", "analysis (paid fallback)"),
         ("qwen3-coder:14b", "local", "local static-gate loops"),
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
@@ -237,6 +252,7 @@ def load_keys():
         "openrouter": os.environ.get("OPENROUTER_API_KEY", ""),
         "tokenrouter": os.environ.get("TOKENROUTER_API_KEY", ""),
         "local": os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
+        "bedrock": os.environ.get("AWS_BEARER_TOKEN_BEDROCK", ""),
     }
     if not keys["openrouter"] or not keys["tokenrouter"]:
         try:

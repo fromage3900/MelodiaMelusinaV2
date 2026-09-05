@@ -4,11 +4,14 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PhysicsVolume.h"
 #include "BakedShallowWaterSimulationComponent.h"
 #include "MelodiaWaterRippleMaterialBridgeComponent.h"
 #include "MelodiaWaterProfile.h"
 #include "Materials/MaterialInterface.h"
 #include "Subsystems/SubsystemCollection.h"
+#include "UObject/StructOnScope.h"
+#include "UObject/UnrealType.h"
 #include "WaterBodyActor.h"
 #include "WaterBodyComponent.h"
 #include "WaterBodyManager.h"
@@ -164,7 +167,7 @@ bool UMelodiaWaterInteractionSubsystem::GetNativeWaterLimits(FMelodiaWaterNative
 bool UMelodiaWaterInteractionSubsystem::QueryWaterInternal(AActor* SourceActor, const FVector& WorldLocation, FMelodiaWaterSample& OutSample)
 {
 	UWorld* World = GetWorld();
-	if (!World)
+	if (!World || WorldLocation.ContainsNaN())
 	{
 		return false;
 	}

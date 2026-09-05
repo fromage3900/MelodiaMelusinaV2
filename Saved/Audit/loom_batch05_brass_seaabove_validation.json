@@ -1,0 +1,82 @@
+{
+  "report_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/loom_batch05_brass_seaabove_validation.json",
+  "brass_presets": {
+    "trumpet_aurora_oxide.json": {
+      "pass": true,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/gmm/melodia/brass_presets/trumpet_aurora_oxide.json",
+      "checks": {
+        "format": true,
+        "instrument_type": true,
+        "key": true,
+        "variant": true,
+        "modifier_stacks_non_empty": true,
+        "each_stack_has_id_type_order_scope_backend_parameters": true,
+        "no_duplicate_stack_ids": true,
+        "orders_sequential_from_0": true,
+        "all_modifier_types_exist_in_source": true,
+        "modifier_types_in_framework_doc": true
+      },
+      "modifier_stack_count": 9,
+      "modifier_types": [
+        "brass_tube",
+        "brass_bell_profile",
+        "brass_valve_cylinder",
+        "brass_aged_patina",
+        "brass_tarnish_bloom",
+        "brass_mouthpiece_cup",
+        "brass_mouthpiece_shank"
+      ],
+      "orders": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "issues": [
+        "Specified check directory Content/Python/gmm/geometry/modifiers/ does not exist; modifier source is Content/Python/gmm/geometry/brass_modifiers.py. All 7 referenced types confirmed present in that file and in Brass_Structure_Framework.md (19-type table). Non-blocking path discrepancy in validation spec, not a preset defect."
+      ]
+    },
+    "tuba_deep_sea_bell.json": {
+      "pass": true,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Content/Python/gmm/melodia/brass_presets/tuba_deep_sea_bell.json",
+      "checks": {
+        "format": true,
+        "instrument_type": true,
+        "key": true,
+        "variant": true,
+        "modifier_stacks_non_empty": true,
+        "each_stack_has_id_type_order_scope_backend_parameters": true,
+        "no_duplicate_stack_ids": true,
+        "orders_sequential_from_0": true,
+        "all_modifier_types_exist_in_source": true,
+        "modifier_types_in_framework_doc": true
+      },
+      "modifier_stack_count": 11,
+      "modifier_types": [
+        "brass_tube",
+        "brass_bell_profile",
+        "brass_valve_cylinder",
+        "brass_tarnish_bloom",
+        "brass_hammer_marks",
+        "brass_wrap_formation",
+        "brass_bracing_hoop",
+        "brass_mouthpiece_cup"
+      ],
+      "orders": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "issues": [
+        "Specified check directory Content/Python/gmm/geometry/modifiers/ does not exist; modifier source is Content/Python/gmm/geometry/brass_modifiers.py. All 8 referenced types confirmed present in that file and in Brass_Structure_Framework.md (19-type table). Non-blocking path discrepancy in validation spec, not a preset defect."
+      ]
+    }
+  },
+  "sea_above": {
+    "pass": true,
+    "path": "C:/EnvironmentPortfolio/BS_GodFile/specs/pcg/sea_above_meshed_lane_height_aware_placements.v1.json",
+    "instance_count": 16,
+    "placements_count": 16,
+    "checks": {
+      "schema_matches": true,
+      "terrain_contract_valid": true,
+      "instance_count_matches_placements": true,
+      "every_placement_has_required_fields": true,
+      "every_placement_note_height_aware_or_raycast": true,
+      "owning_graph_referenced": true
+    },
+    "issues": []
+  },
+  "timestamp": "2026-09-02T09:58:07Z"
+}

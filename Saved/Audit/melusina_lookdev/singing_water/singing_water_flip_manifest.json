@@ -1,0 +1,50 @@
+{
+  "schema": "melodia.singing_water_flip.v1",
+  "engine": "Houdini (22, 0, 368)",
+  "chain": "particlefluidtank -> flipsolver -> particlefluidsurface -> convertvdb -> isooffset -> OBJ",
+  "params": {
+    "frames": 24,
+    "particlesep": 0.45,
+    "tank": {
+      "sx": 4.0,
+      "sy": 1.2,
+      "sz": 2.0
+    },
+    "seed": 20260902
+  },
+  "snapshots": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 0,
+    "22": 0,
+    "23": 0,
+    "24": 0
+  },
+  "outputs": {
+    "objs": [
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\singing_water\\FLIP_Veil_final_024.obj",
+      "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\singing_water\\FLIP_Veil_mid_012.obj"
+    ]
+  },
+  "elapsed_s": 0.2,
+  "note": "FLIP solver + particlefluidtank + particlefluidsurface PRESENT (Houdini 22). OBJ written direct from geometry. Heightfield/cymatic layering staged as next step. LiquiGen is external commercial (master index \u00a74) \u2014 not built natively."
+}

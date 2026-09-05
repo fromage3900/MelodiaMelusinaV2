@@ -1,0 +1,44 @@
+{
+  "seed": 20260902,
+  "date": "2026-09-02",
+  "method": "filesystem: per-node-type Dialog config definitions + help examples dirs in Houdini 22.0.368 install",
+  "notes": "Headless hython cannot register the SOP node-type graph (hdefereval/hou.nodeType return None and 'graphical Houdini only'). Filesystem Dialog + help-example definitions are the authoritative presence evidence.",
+  "SOP_dialog_definitions_vellum": [
+    "vellumattachconstraints",
+    "vellumbrush",
+    "vellumbrush.1",
+    "vellumbrush.2",
+    "vellumbrush.3",
+    "vellumconfiguremuscles",
+    "vellumconfiguretissue",
+    "vellumconstraintproperty",
+    "vellumconstraints",
+    "vellumconstraints_grain",
+    "vellumdrape",
+    "vellumio",
+    "vellumio-2.0",
+    "vellumpack",
+    "vellumpostprocess",
+    "vellumrefframe",
+    "vellumrestblend",
+    "vellumsolver",
+    "vellumunpack",
+    "vellumxformpieces"
+  ],
+  "DOP_dialog_definitions_vellum": [
+    "vellumconstraintproperty",
+    "vellumconstraints",
+    "vellumobject",
+    "vellumrestblend",
+    "vellumsolver",
+    "vellumsource"
+  ],
+  "SOP_help_example_node_dirs": [
+    "vellumdrape",
+    "vellumrestblend",
+    "vellumsolver"
+  ],
+  "DOP_help_example_node_dirs": [
+    "vellumsolver"
+  ]
+}

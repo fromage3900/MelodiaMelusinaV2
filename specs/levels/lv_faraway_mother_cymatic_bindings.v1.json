@@ -1,0 +1,103 @@
+{
+  "schema": "melodia.lv_faraway_mother_cymatic_bindings.v1",
+  "version": "1.0.0",
+  "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "integration_script": "Content/Python/melodia_faraway_mother_cymatic_integration.py",
+  "writer_subsystem": "UMelodiaCymaticsWriterSubsystem",
+  "reader_subsystem": "UMelodiaCymaticsSubsystem",
+  "reader_contract": "IsReadOnlyByContract()=true — never writes MPC, only SampleCymaticAmplitude / GetCymaticMode / GetBeatPulse / GetBassIntensity",
+  "writer_contract": "IsSingleWriter()=true — sole writer of MPC_Cymatics_Driver, reads MPC_Melodia_Palette (BeatPulse/BassIntensity/MidIntensity) and publishes to driver",
+  "mpc_source": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+  "mpc_driver": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+  "mpc_driver_scalars": [
+    "Cymatic_BeatPulse",
+    "Cymatic_BassIntensity",
+    "Cymatic_MidIntensity",
+    "Cymatic_EmissiveScale",
+    "Cymatic_IridescenceShift",
+    "Cymatic_UVDistortion",
+    "Cymatic_ModeN",
+    "Cymatic_ModeM",
+    "BeatPulse",
+    "BassIntensity"
+  ],
+  "material_bindings": [
+    {"mpc_scalar": "Cymatic_BeatPulse",        "material_param": "EmissiveScale",    "formula": "EmissiveScale = 0.25 + BeatPulse*1.2 + Bass*0.3", "effect": "Emissive pulsing on the beat"},
+    {"mpc_scalar": "Cymatic_BassIntensity",    "material_param": "IridescenceTint",   "formula": "shift = Bass*0.14 + BeatPulse*0.06", "effect": "Iridescence hue shift with bass"},
+    {"mpc_scalar": "Cymatic_IridescenceShift","material_param": "IridescenceTint",   "formula": "thin-film LUT lookup with shift", "effect": "Celestial silk color breathing"},
+    {"mpc_scalar": "Cymatic_UVDistortion",     "material_param": "UVDistortion",      "formula": "BeatPulse*0.08 + Mid*0.02", "effect": "Low-frequency UV warble / parallax shimmer"},
+    {"mpc_scalar": "Cymatic_EmissiveScale",    "material_param": "EmissiveScale",     "formula": "composite from above", "effect": "Marble vein glow, crystal twinkle"},
+    {"mpc_scalar": "Cymatic_ModeN",            "material_param": "ChladniModeN",      "formula": "n = clamp(2+floor(Bass*6),1,8)", "effect": "Chladni standing wave radial mode"},
+    {"mpc_scalar": "Cymatic_ModeM",            "material_param": "ChladniModeM",      "formula": "m = clamp(3+floor(BeatPulse*5),1,8)", "effect": "Chladni cross mode"}
+  ],
+  "instances": [
+    {
+      "label": "SM_Faraway_Ridge_North_CelestialSilk",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayCelestialSilk",
+      "location": [0, 280000, 3800],
+      "scale": [80, 80, 4],
+      "height_band": "ridge_high",
+      "height_tier": "3300-4200 uu",
+      "role": "North ridge — maternal shoulder silhouette, celestial jacquard Chladni(3,5)"
+    },
+    {
+      "label": "SM_Faraway_Ridge_East_CymaticMarble",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticMarble",
+      "location": [260000, 0, 3200],
+      "scale": [60, 90, 3],
+      "height_band": "ridge_mid",
+      "height_tier": "2800-3600 uu",
+      "role": "East ridge — Cymatic marble singing stone, bass nodal veins"
+    },
+    {
+      "label": "SM_Faraway_Ridge_South_CavernWeave",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave",
+      "location": [0, -260000, 2800],
+      "scale": [70, 70, 3.5],
+      "height_band": "ridge_low",
+      "height_tier": "2400-3100 uu",
+      "role": "South ridge — cavern weave rock+marble+crystal fold"
+    },
+    {
+      "label": "SM_Faraway_ValleyFloor_Center_CavernWeave",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave",
+      "location": [0, 0, -800],
+      "scale": [120, 120, 1],
+      "height_band": "valley_floor",
+      "height_tier": "-1000..-400 uu",
+      "role": "Valley floor — cavern weave compressed, high moisture"
+    },
+    {
+      "label": "SM_Faraway_ValleyBasin_CymaticMarble",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticMarble",
+      "location": [-180000, 120000, -1200],
+      "scale": [90, 90, 1.2],
+      "height_band": "valley_depression",
+      "height_tier": "-1600..-800 uu",
+      "role": "Valley basin depression — marble pooling, Chladni amplitude low"
+    },
+    {
+      "label": "SM_Faraway_ShoulderFold_CelestialSilk",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayCelestialSilk",
+      "location": [140000, 180000, 1500],
+      "scale": [50, 50, 2.5],
+      "height_band": "shoulder_fold",
+      "height_tier": "1200-2000 uu",
+      "role": "Shoulder fold mid-slope — silk iridescence breathing, transition band"
+    }
+  ],
+  "height_aware_design": {
+    "ridges_min_z": 1500,
+    "ridges_max_z": 3800,
+    "valleys_min_z": -1200,
+    "valleys_max_z": -800,
+    "separation_uu": 2300,
+    "rule": "Z > 1500 treated as fabric ridge (CelestialSilk/CymaticMarble/CavernWeave via tension), Z < -400 as valley floor. Separation > 2000 uu ensures readable silhouette.",
+    "chladni": "All instances share 3,5 harmonic base; ModeN/ModeM modulate per audio bands, creating coherent standing wave across elevation tiers."
+  },
+  "evidence_standard": {
+    "verify_offline": "python Content/Python/melodia_faraway_mother_cymatic_integration.py --check",
+    "apply_in_editor": "exec(open(r\"C:/EnvironmentPortfolio/BS_GodFile/Content/Python/melodia_faraway_mother_cymatic_integration.py\").read())  # then place_in_level()",
+    "audit": "Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h:IsReadOnlyByContract && MelodiaCymaticsWriterSubsystem.h:IsSingleWriter"
+  }
+}
