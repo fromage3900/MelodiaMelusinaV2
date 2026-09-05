@@ -1,5 +1,10 @@
 @ Start
 
+// The background box is created and shown by the interpreter, but it renders blank
+// until a script sets an image -- no .qsc called Background()/Bg() at all, which is
+// why the panel was reported "not rendering". This is that call.
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_SakuraDream.T_Melodia_Figma_Asset_Hero_SakuraDream} none 0
+
 ? if: {melodia_q_echo_01_complete} == on
 
   - Petal Priestess
