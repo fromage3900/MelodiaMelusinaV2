@@ -60,20 +60,35 @@ check_required_path() {
 
 echo "==> Key directories"
 if [ "$MODE" = "ue" ]; then
-  KEY_DIRECTORIES=(Content Docs Source Plugins Config deploy)
+  KEY_DIRECTORIES=(Content Docs Source Plugins Config deploy RawArt/MelusinasHouse Docs/References/MelusinasHouse)
 else
-  KEY_DIRECTORIES=(Content/Python Docs deploy)
+  KEY_DIRECTORIES=(Content/Python Docs deploy Tools RawArt/MelusinasHouse Docs/References/MelusinasHouse)
 fi
 for d in "${KEY_DIRECTORIES[@]}"; do
   check_required_path "$d"
 done
 
 if [ "$MODE" = "blender" ]; then
-  echo "==> Blender-only addon paths"
+  echo "==> Blender-only addon/discovery paths"
   for d in deploy/surreal_arch deploy/surreal_world deploy/surreal_os deploy/surreal_greybox; do
     check_required_path "$d"
   done
   check_required_path "deploy/surreal_architecture_gen.py"
+  check_required_path "deploy/sync_workstation.ps1"
+  check_required_path "deploy/install_melodia_studio.ps1"
+  check_required_path "AGENT_START_HERE.md"
+  check_required_path "Docs/Art/VISUAL_REFERENCE_INDEX.md"
+  check_required_path "Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md"
+  check_required_path "Docs/References/MelusinasHouse/REF_01_EXTERIOR_ROUND_BAROQUE_PINK_BLUE.jpg"
+  check_required_path "Docs/References/MelusinasHouse/REF_02_GEOMETRY_NODES_BUILD_SHEET.jpg"
+  check_required_path "Docs/References/MelusinasHouse/REF_03_CUTAWAY_INTERIOR_FLOW.jpg"
+  check_required_path "RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend"
+
+  house_blend="RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend"
+  if [ -f "$house_blend" ] && head -n 1 "$house_blend" 2>/dev/null | grep -q "git-lfs.github.com/spec"; then
+    echo "FAIL: canonical house Blender source is still an LFS pointer: $house_blend"
+    ERRORS=$((ERRORS + 1))
+  fi
 else
   MANIFEST="$PROJECT_ROOT/deploy/collaborator_ue_manifest.txt"
   check_required_path "BS_GodFile.uproject"
@@ -92,12 +107,12 @@ else
     done < <(awk 'NF && $1 !~ /^#/ { print $1, $2, $3 }' "$MANIFEST")
   fi
 
-  echo "==> Required project plugin manifests"
   echo "==> Required sparse paths"
   for sparse_path in "${SPARSE_PATHS[@]}"; do
     check_required_path "${sparse_path#/}"
   done
 
+  echo "==> Required project plugin manifests"
   for plugin_manifest in "${PLUGIN_PATHS[@]}"; do
     check_required_path "$plugin_manifest"
     plugin_root="${plugin_manifest%/*}"
