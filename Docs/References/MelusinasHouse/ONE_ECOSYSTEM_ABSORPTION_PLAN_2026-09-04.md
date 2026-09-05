@@ -262,7 +262,7 @@ every phase is additive with the compat layer intact.
 | P2 euro_classical (14) | OPEN | — |
 | P2 civic + experimental (34) | OPEN | — |
 | P2 core_forms (87) | OPEN | — |
-| P2 greybox + shell convergence (C1–C4) | OPEN | — |
+| P2 greybox + shell convergence (C1–C4) | IN PROGRESS | C1 PASS 2026-09-05 — `mh6_shell_adapter` landed (e0328da7); 3-set identity proof green; evidence `melodiamelusinav2/Saved/Audit/melusinashouse/v0_c1_identity.{json,png}`. Measured corrections: SDF dilation 2T (adapter compensates), 1e-3 unattainable → voxel tolerance + documented cornice allowance. |
 | P3 single dispatch | OPEN | — |
 | P4 single UI + panel addon absorbed | OPEN | — |
 | P5 monolith retires (<500 lines) | OPEN | — |
