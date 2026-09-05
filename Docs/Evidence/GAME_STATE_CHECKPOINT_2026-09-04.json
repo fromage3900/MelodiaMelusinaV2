@@ -1,0 +1,3020 @@
+{
+  "base": "2d84fa3e459cb4cc59a728345d20dc862028004c",
+  "checkpoint_head": "df9ca6a8a460e9ba848be9b4938ba418462efafd",
+  "files": [
+    {
+      "path": "Content/EnvSandbox/Materials/Functions/MF_Triplanar_LandscapePro.uasset",
+      "git_blob_sha256": "c63a3aeaa665eea13b4d4ce238db7f994f86bc33ad144b0876b86207b89c7474",
+      "lfs_oid": "8d6667b9d5ec75dec365c1e3cbea87971fcb56615b27f521761aaf611baf5043",
+      "lfs_bytes": 26956
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_AtlasFlowersA.uasset",
+      "git_blob_sha256": "b1004e8e7dad1894d0f3ed5b9cf46c18bd74855720fecc4e14becdae8553f939",
+      "lfs_oid": "80eca69f3c0db02f1f4e74e9f0ff8c72168e7cbec3a752a2ccc72ae096435c57",
+      "lfs_bytes": 11998
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_AtlasIvy.uasset",
+      "git_blob_sha256": "a3a1fef7b72ac26fe594135fcc979acc966a6cecb2737c66f6779f381f137efb",
+      "lfs_oid": "68fc864700a762ba847c4f739888c7f843efc10788b641fe1c2028024f10fd26",
+      "lfs_bytes": 11824
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_AtlasLeafA.uasset",
+      "git_blob_sha256": "3e3ccc3bd193b164e241b7ab31edc199d3ec38f861f9c5e1b0e9e8a2c78063e8",
+      "lfs_oid": "6b1f4545d6e42f5f363893790ffe419ed2c9807c4f5e418f0c0a8fab911acd80",
+      "lfs_bytes": 11968
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_AtlasLeafB.uasset",
+      "git_blob_sha256": "1f3d038047c8138f2f421772c6bbcfeb5c7017c6e7dbe3251e6b11063f0acc29",
+      "lfs_oid": "a7523eecafc538d3492aefd65f620da60658c19a5fd755829ca636c6398dbf11",
+      "lfs_bytes": 16755
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_AtlasPaintPatternsA.uasset",
+      "git_blob_sha256": "48a3ebcf6e52f01e08709976bf3e83ba193cc0214451274e7a2e93c427a6192c",
+      "lfs_oid": "f28bdef095389a48c2bf6e16fdad17248e1c3e45a96df3a644710a17a9043109",
+      "lfs_bytes": 11934
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_AtlasTreeA.uasset",
+      "git_blob_sha256": "324fb36e99863e20a0b07996eb953e01a9f68daf49ea65ae9920e40967875b34",
+      "lfs_oid": "5fa280b51281d25cde9444ed41bea13257d1b37e560e78436e57c38108306cd3",
+      "lfs_bytes": 11968
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneCleanA.uasset",
+      "git_blob_sha256": "2ecedd437a9420a7fed63fda348ddb20f1c749ab68f5a0d796326f0b42bef0e9",
+      "lfs_oid": "1d7ec54b443b09220a2f96e46afde0f8c9ec51ee3ac92928576a428695fc86b7",
+      "lfs_bytes": 11880
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneCleanB.uasset",
+      "git_blob_sha256": "d0b45cb6a5760f745130d3ee0ab2eb45b0447fd21b4066d12086c18b39ebe30b",
+      "lfs_oid": "2b1e6f262d56284c8cded21a00a1c3deba452468dbd76a6c085d1ca0754deba7",
+      "lfs_bytes": 11880
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneCleanBeigeA.uasset",
+      "git_blob_sha256": "f9abd7fe7c3c36c4b31c9c3f4d8f4680b9ca67274bb90206e0190fc51bb73737",
+      "lfs_oid": "7352b4341d20a841bacf080f75f89e106fb65311d69395d758374c789b7cc561",
+      "lfs_bytes": 11806
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneCleanBlueA.uasset",
+      "git_blob_sha256": "6946c97d2262e1a28af90a8f2865c3761b6fb4e56ae262a308bc4a66be5aa2c2",
+      "lfs_oid": "60985e66d0f4aa42d70d8aa1f74ddd41d9d7ca9d5010561818c0db96d41d2cba",
+      "lfs_bytes": 11796
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneCleanBlueB.uasset",
+      "git_blob_sha256": "88a5910a18b0a6a7f965592d979db26e873e732e4abd3d9fc1890783a628a631",
+      "lfs_oid": "9a934c7ebfce062ee3e491592e1bc83d15dec4634c1855b10c252c1324a50996",
+      "lfs_bytes": 11920
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneCleanTrimB.uasset",
+      "git_blob_sha256": "7938d76355e5663a1f1ffb3ceed71264953383feb36c2cdab1d70558eb1577d9",
+      "lfs_oid": "b0f5e7c1fb292e12685bbf74e1308a826919c27a9b0fd33220c2a017d51c8c29",
+      "lfs_bytes": 11920
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneDamagedA.uasset",
+      "git_blob_sha256": "ff40b81f25c08bbe1bfded006f489650812eb806b7bcfc0d6427db7fe464bf81",
+      "lfs_oid": "65770950a387afcd9c091ba80d2f9d13903208dc9c5adce751e5cd20a313e336",
+      "lfs_bytes": 11776
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneDamagedB.uasset",
+      "git_blob_sha256": "9209500022614814956ac9f9a53a95b40c54b2256e95024501433ca2fe1fd3b9",
+      "lfs_oid": "e356b1dec9d2caac35c6b63dc15019b0963c5e4ccadc16e57045b51fab06dd40",
+      "lfs_bytes": 11776
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneDamagedC.uasset",
+      "git_blob_sha256": "5bf18490fa07d4e3587f0f2a2d18536f35a4ed488fcb43b2283e7b65735854ff",
+      "lfs_oid": "c29df9f7fc24bf2ab533dbf7a8c3337a15cd8772bac5f543acac2a34af1d9fa9",
+      "lfs_bytes": 11776
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_BrickStoneTrimA.uasset",
+      "git_blob_sha256": "91510a97fc27dd2f1e82be98a56af229d4817a6adeca52f48a116cccaedb0e7e",
+      "lfs_oid": "d279a82c7454e2cce232461697e10fbe67ff23ef055bf0398d527acb44e0f22d",
+      "lfs_bytes": 11746
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_ClayRoofTilesOrangeA.uasset",
+      "git_blob_sha256": "ee4612cc165cfec65d69c3db9f39bed704f644fc21ad391bc35039d85bb3187b",
+      "lfs_oid": "d5774d9a0cd76100ba39c19e233ae46bc3e29c856bde6b474b5b3b29bfe4823d",
+      "lfs_bytes": 11787
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_CobblestoneStoneFloorA.uasset",
+      "git_blob_sha256": "688691547a73383c20457a68bfd965e3f3470cde2868ffc811f3d54cd622bc2a",
+      "lfs_oid": "fe9ae5659ff0baf25e96bdbfa284497467eebd2aa96983a02e94111d05ecf188",
+      "lfs_bytes": 11816
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_CobblestoneStoneFloorB.uasset",
+      "git_blob_sha256": "c9032e7317711648eeea97324be87cd94c71709ad2894fb4e7caa25921d72758",
+      "lfs_oid": "652181ebdaffdf081134957f4a89dc300507af088cd7264365a3ec77b821188c",
+      "lfs_bytes": 11816
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_GoldWornA.uasset",
+      "git_blob_sha256": "225238d861e18feebd8601283c5534d1d0e1217e6fb43b9a744750d48b27b0e3",
+      "lfs_oid": "00d0ddf3b7a11d7276e6f054276658efba6771574bdcbd0d38f79e23cf003fe4",
+      "lfs_bytes": 11607
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_Grass.uasset",
+      "git_blob_sha256": "c621afe04258b70cd7c3708f492f0296e54b75a83b6ba34bf65bb1249b30d02b",
+      "lfs_oid": "bcfc1a70ccc8afb759d985cf3d17fa8f59e5d08136661c22b046d6b98d8d39a4",
+      "lfs_bytes": 11918
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_HaleBale.uasset",
+      "git_blob_sha256": "48720de4dc95951f16c51208b145204c3da099d18041ee03ad08aee1c2bda76a",
+      "lfs_oid": "3ba2a92d3500ed13774188ebb01d774d8e54ac90b89542260a37030052bdf32f",
+      "lfs_bytes": 11824
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_Iron.uasset",
+      "git_blob_sha256": "d6ae5af6d671b48f360e86ccaa0f49f57fb7f77128e79ea0506f10a44a948710",
+      "lfs_oid": "a620cae690eb2468f4235469b5159bd41366b016d38b98bb2cc61a5c1b09c616",
+      "lfs_bytes": 11627
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_LeatherBrownOldA.uasset",
+      "git_blob_sha256": "0b086522b1cc7038ca7948cd8ef4ac95334a7e7910c9ceed01fb290b22bba383",
+      "lfs_oid": "202c42123f067fbfcde26472cae614e20984e324f290e8fa2939998ed9ff9d4e",
+      "lfs_bytes": 11747
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_MarbleWhiteA.uasset",
+      "git_blob_sha256": "e9a199ad02cc61ea7900bc2b14046e4c7734930de4f247bd3a58c8ae25cf1570",
+      "lfs_oid": "e0b6f173dc0d35cb34b455196f683e67a23b476095e4cbbdc968063ff40fd213",
+      "lfs_bytes": 12761
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_MetalForgedA.uasset",
+      "git_blob_sha256": "053d52ee931550e135c8d9c3b920bc8c0dcfb16ce863c4942f980ea29865a28f",
+      "lfs_oid": "308e7513415bb2d7e01e3ae7b13d9f2509647614a73ec781f96dcd6d1521edb6",
+      "lfs_bytes": 11707
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_MetalPBronze.uasset",
+      "git_blob_sha256": "10346d87fbc4b66eb7dbbd287e3b7d13f3c5cda2e4cd3f6cfcbbbf2fd6a7a661",
+      "lfs_oid": "1d529cb996b5d790cbcd38de876a3fb9b872a67200cc8e9379e1ff59dea23c6c",
+      "lfs_bytes": 11707
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_PropsBaskets.uasset",
+      "git_blob_sha256": "997714b39f881aa58c85be47339ad24a43edd470e0e1efb07af8b5b58f008eda",
+      "lfs_oid": "f32db3fb5241d28700c6cbe070a71117c335cdf01b32f275b0cf2ed8aa585390",
+      "lfs_bytes": 11707
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_PropsBenchB.uasset",
+      "git_blob_sha256": "fc473eaeb57f474e2aa13c7033e4d68e7a7e5528f148dbc8918ff3c2593cddcc",
+      "lfs_oid": "7bcd2ffc0318e22e6a12fdeb3995741ff261f3a6a805dc5b9b0b9907bd61ef0d",
+      "lfs_bytes": 11697
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_PropsHarp.uasset",
+      "git_blob_sha256": "e9c375e995e1c5662092c1d3786787773b57840e6fb12b2bcb5d2d5fc1cd545f",
+      "lfs_oid": "dbc5a767d18c72506829dca90ce29d81fe0b0197abd049f97bed28d2d126afe6",
+      "lfs_bytes": 11677
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_PropsPots.uasset",
+      "git_blob_sha256": "07e58eb91a2db5edf6d0f56445c0a39a61342696ce0289d2428467fcdce7bffb",
+      "lfs_oid": "f3d197f8fb46cc6ad4982eac9683e2b3c688bd944451b859a625b33cd204e560",
+      "lfs_bytes": 11677
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_PropsSpear.uasset",
+      "git_blob_sha256": "37b5c665d6ac129cbc4ef8dd4fe275a94d9252a8cc2b29b9386f53d5387d8456",
+      "lfs_oid": "e4b6feee52221fc99489170a268c405c9b2fefe585252bfea3f92bc69815c393",
+      "lfs_bytes": 11844
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_RopesTrimA.uasset",
+      "git_blob_sha256": "769de2933bd4de8001156179ecfda2e9493fb6f14685c3b98eacbc7e8ec4d092",
+      "lfs_oid": "7e02de687e54ffc885bee02bd300edc03991da6f5d7a6aefe714b6cbe98d3142",
+      "lfs_bytes": 11687
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_SandStonePaintedBeigeA.uasset",
+      "git_blob_sha256": "08a4451e7786c32e9166afe6f25bdd0a24c68d678680bb1630bf4b918dcba9c4",
+      "lfs_oid": "0d76eaf9dddab827ef621732da8d87384b1a22a9a25f0dd3f2a192689e53bb4f",
+      "lfs_bytes": 11816
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_SandStonePaintedRedA.uasset",
+      "git_blob_sha256": "ebe558854e1fac1e1fc8d008a2746f8ca847a282b4ee9ac2a6d18d368520f928",
+      "lfs_oid": "0df31b9b319361e4fb3816fd0d314e8af39ccd8956e8150cb7737573a4c7de19",
+      "lfs_bytes": 11796
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_SoilGroundA.uasset",
+      "git_blob_sha256": "e6b904f24ca54588c646a6d1c7b29716ff6236db01fbd24cbe20856a19db7704",
+      "lfs_oid": "c865985afc9ace2b581422d1d16d9f7b9c46e9eb7b253e00a3d9a4347336f348",
+      "lfs_bytes": 11697
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneA.uasset",
+      "git_blob_sha256": "db32be1d2cbee4b171ccc0d9517abd4c930107d16df152f64552b268e0c0edc8",
+      "lfs_oid": "0d4423dbde408888d592049b9d8d5d1744ddff0e2750dd4a7285cf12fad0df4e",
+      "lfs_bytes": 11656
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneCleanPillarsA.uasset",
+      "git_blob_sha256": "b6d71bf23367a67b8aa8f488906a3bac73fae9fe3a5205d87a3627e7a987e6e0",
+      "lfs_oid": "9f5efa8fe19f40a1f684d3e78889f4db97c3362bdcba2f9d3e3c8989561beeca",
+      "lfs_bytes": 11900
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneCleanTrimA.uasset",
+      "git_blob_sha256": "68b5c131d330f37b836de11326a09f16cbf5853adbcb04a5d015fede629757a9",
+      "lfs_oid": "87fee46113b0f1b4b406b7b04daddec6e3f3881834c42207222930e931711e65",
+      "lfs_bytes": 11870
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneCleanTrimB.uasset",
+      "git_blob_sha256": "12d59432dbd73ed05a9c8b178fd05a0dd3f26aa7190e82891c999ea2a0385048",
+      "lfs_oid": "032404df3f066afe5744b300027969cce45e32b97f97e1f7e8249a821b807fc6",
+      "lfs_bytes": 11870
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneCleanTrimD.uasset",
+      "git_blob_sha256": "2f460ca365cd12a8f93599d8be6a80ecb65b02c7f7cb936024997bd2fae59baa",
+      "lfs_oid": "02c9f10bd6bb2ba01510c2e0e1c58dff9a80dddefc708c178a3e0ec5ff0b2957",
+      "lfs_bytes": 11746
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneFloorPolishedA.uasset",
+      "git_blob_sha256": "baa8e7a5c9d14eab55448d0964d61dcc47c534efccba16206e07a6a35bddad3b",
+      "lfs_oid": "ced5f2e7ac6ea9639153f4e8c201afebf6e254373463e85e9a2b15ad39154ddc",
+      "lfs_bytes": 11786
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneFloorPolishedB.uasset",
+      "git_blob_sha256": "f2e881077f560805098f96e8abe2ca2211292f5e6daa7a58b9f44704dd2ed61a",
+      "lfs_oid": "31185355d739a69c713516f2a82e94cfa5ac6a92a66db4dca6ef434e55459ab9",
+      "lfs_bytes": 11786
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneFloorPolishedTrimA.uasset",
+      "git_blob_sha256": "f10e4012113404aadfd2ec938bb93c57c87adfbecadcf11e8af534dde753cf85",
+      "lfs_oid": "b898b5239a2197c54af1a7ccd8737c0b049e79cd87c7ce8317c8e0024b9a7bb9",
+      "lfs_bytes": 11950
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneTilePatternA.uasset",
+      "git_blob_sha256": "e1d69d9f844b03c6630c9b43f61840d6d423c7c6d4aefed39c044954eff7d2ae",
+      "lfs_oid": "cf411b2985a4290ca0a85f2861a20162f0a7d027838a617d3a6dbe196966ce00",
+      "lfs_bytes": 11766
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_TerracottaTile.uasset",
+      "git_blob_sha256": "f7dc6889f85f53d4adc8a6b374081767043d37010572feba4fd97864d760dec1",
+      "lfs_oid": "ce72fe1fb357d9db94aa572b56c50a163101b5f16195472aa6884988cfdeda83",
+      "lfs_bytes": 11727
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WaterClean.uasset",
+      "git_blob_sha256": "2b628a63bd699f4b100364d11b33b0a05e203de158e9677a5d212e8aa741ed52",
+      "lfs_oid": "56f6832dab469e6196c627207557448aa33b3d4172fed0318cde53d6498b189c",
+      "lfs_bytes": 11900
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodBrightA.uasset",
+      "git_blob_sha256": "d3a1b28631895168ce1314f5a1fe8e9b7635a4a7991303d0a218358d2abdcf36",
+      "lfs_oid": "1f2dce1cbefadf0eb4b29a28fb8e7d64996a2af94f1b7a1b9c88e6c3c2f3563c",
+      "lfs_bytes": 11697
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodBrownTrimA.uasset",
+      "git_blob_sha256": "672d273fe33b9ec5423629b8c54889a6b618dfe2d8eed93d34ec79406fa7dd6d",
+      "lfs_oid": "ec1d75116896a26ff88157b53be799bcac62f54bba8982d43eaaf2fb9a222888",
+      "lfs_bytes": 11727
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodBrownTrimB.uasset",
+      "git_blob_sha256": "10acc925a476fe3a7b5fc94723bc39fdbebf288e8abd65055fe1ce69e569e73a",
+      "lfs_oid": "35deb123fce8fbdb40a70ea319fdd5e3e1a41d8a74f289cf127bc14aa701a917",
+      "lfs_bytes": 11727
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodHeartwoodAtlas.uasset",
+      "git_blob_sha256": "3a22bfb300c36d0e32d29e8723e847aab2017217b6e14264fbb3aa4684bd732a",
+      "lfs_oid": "7261933f12fc53356a48c572f607b8eb3a6bafd04db51aef1d6524a727178c73",
+      "lfs_bytes": 11767
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodOldA.uasset",
+      "git_blob_sha256": "fe47a4e03e478872b408d86dcada9ff890734dee6f0a57a5d103f04fa08e323d",
+      "lfs_oid": "9bbe925f0d886265d4afad51de481b3458747139f2821034aaf9674988c6f0d7",
+      "lfs_bytes": 11667
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodOldVarnished.uasset",
+      "git_blob_sha256": "40fa2f0bddad42cab00766a07d71847e3db11bf7bea0fadec751cb6196bb9bed",
+      "lfs_oid": "eec36e2ca6c1cbc7f079af2ee3fc00bef8741608e130bc418f00c20f2b55750a",
+      "lfs_bytes": 11747
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_WoodOrange.uasset",
+      "git_blob_sha256": "11149d1e89310cfbc7481a47663bd99a3fe52eda5e64ec6007232bc708c86f78",
+      "lfs_oid": "ff15073bf7c5f007acd12a132381d1052457beaea8ad1cce092d33e6b3e2665c",
+      "lfs_bytes": 11687
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/BlingVol3/MI_BlingVol3_06.uasset",
+      "git_blob_sha256": "be7285dc10b777b8e5554b32e9162b5e10cc6741bfd4e9783ba011e9c3b18353",
+      "lfs_oid": "9b9ec7ce594d3d3608716240782a6631d40fbee1c9c51cfd2620d276e9613d09",
+      "lfs_bytes": 41027
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FrostBloom.uasset",
+      "git_blob_sha256": "369bcabc2b2a9112ee170da074ae2a1c174614ddbb2ae2529c84850ba9b5f2f0",
+      "lfs_oid": "5415d31e5b5b0863b864a2ae6f8ce4751b7b9c783908d5ef90e1cc90ad898921",
+      "lfs_bytes": 20625
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Instances/Environment/MI_Env_Gold_Trim.uasset",
+      "git_blob_sha256": "e3d3d6da3d1e8d57b07421ec59f658064f355f46d52f15f9b48b87778605e3f1",
+      "lfs_oid": "778499c5b35b183b79f35e6c7704118f756adf61211c1021bffd74ad875f953e",
+      "lfs_bytes": 41198
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_LF_StainedGlass.uasset",
+      "git_blob_sha256": "1efea51dde3284c223bee1b818f608498438ec11d479618252f58d75a7fdd60e",
+      "lfs_oid": "3b1deb14d1615dd2715033c500572d22b730ebeae9b15d26743a92de7b28e452",
+      "lfs_bytes": 19314
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Master_Nikki.uasset",
+      "git_blob_sha256": "e3bf90de56617ac488400aeb7d4fea37d7e179b8c0c06026af2d59c476bf35fe",
+      "lfs_oid": "8ea6e5baf2ed4e8b9dc0d44cbc6844bc02362b928aa72349ccbb5484c772b77f",
+      "lfs_bytes": 187050
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.uasset",
+      "git_blob_sha256": "f4ffbe21b97543760ec447ecb3f9b225c1a6e414aaf4d3926617cbe976e3ecde",
+      "lfs_oid": "ae9d9bc10a68beb2fd461fb00d1a04bdafc4d9aa3bb1f839f1bb6ca29e17bb53",
+      "lfs_bytes": 216946
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.uasset",
+      "git_blob_sha256": "f5a5b86f927afc6aac32abdaf516d26c1a2b5f1adb59ceae38011335b18ea5e8",
+      "lfs_oid": "4c1871e044883eb60d2a026f26cbbf2a973654b68e290c7fd0f9085419c7e537",
+      "lfs_bytes": 730845
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha.uasset",
+      "git_blob_sha256": "afb1d67600e6b0cad5c5467e7eb2de5d445e195b95797e784da06773f368d431",
+      "lfs_oid": "9ebf45c5a05aed7a38629147f6163e8cf0ce9b5bcb4e789d25629224029f0017",
+      "lfs_bytes": 709502
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v7.uasset",
+      "git_blob_sha256": "b78106d7ed7bb48168201d402a63090824a0edc71d7783c3c02a9a52b412445c",
+      "lfs_oid": "747914ba777e406c33c767cbab10010cc6f5ce03495845432f0c985c833e886b",
+      "lfs_bytes": 119221
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia.uasset",
+      "git_blob_sha256": "bd41bf5ab54c3451be57ba65be85de92b1244f028fcc85b4e54e46458d1f9a54",
+      "lfs_oid": "3f806016d858c097df563cb2500527d78b3de8edaae712cc515657091c35ea17",
+      "lfs_bytes": 57486
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia_Inst.uasset",
+      "git_blob_sha256": "f71f73cb8856c3dbb08e59f87b2c96bd7a1dcae4b00b3133418ec1601ba495c9",
+      "lfs_oid": "af604e913e62df2932f799bf68311590f0d4a572a8a90eccfd9667b2e3f6fd02",
+      "lfs_bytes": 16588
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/SDF/M_SDF_MandelbulbSlice.uasset",
+      "git_blob_sha256": "9eb7ff8e803f1598eac026b465c675f6e2501f1e8424126c171c29ca0e80a1f9",
+      "lfs_oid": "ab0d300dd6b37becfe78468f01f78c7cf92fc02d6dcd0d647b9d5955cf5f4ab7",
+      "lfs_bytes": 26247
+    },
+    {
+      "path": "Content/EnvSandbox/Materials/Masters/SDF/M_SDF_Mandelbulb_Master.uasset",
+      "git_blob_sha256": "11ad4a34482d9f8713b710f393f1cd103bc6724bcb85a0fec74f9cbc2a7f9a16",
+      "lfs_oid": "c01ab74fde1de9e89013cfbcb51189b0d6dca7f0b50073f5b4d6abe406b09d0a",
+      "lfs_bytes": 20101
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_ArchA.uasset",
+      "git_blob_sha256": "91d2010e2a3eb614136c4a95120790ed6208d09da887ffa6d762b064f30963cf",
+      "lfs_oid": "1e7416a5be1e93c95aa3309421f180392986b54b81a0501c3b93296c434621c0",
+      "lfs_bytes": 51079
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_ArchB.uasset",
+      "git_blob_sha256": "2213ba58c20e791bdfe9b1d359056e092629f00acbdbfc7009d26f95d5339867",
+      "lfs_oid": "eafe9424a324058899c3ae73c2aa5b82f442e22769c5a4416fbbd0991797b391",
+      "lfs_bytes": 43338
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_ColumnsA.uasset",
+      "git_blob_sha256": "49f18c1b8ca0f57f5908f062c07d250031608fd498542fba0e8ca21c1b2c40df",
+      "lfs_oid": "26d37a114d603d185cdb1b7cb1c8a7967b713c01a46c61c86bf1708f016e8611",
+      "lfs_bytes": 141994
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_ColumnsB.uasset",
+      "git_blob_sha256": "748bbf4abaa364308480b88a92e1d4a7c15da2cbc0a66589e8acab77feaec356",
+      "lfs_oid": "2f476863e9d41fe48c0e07b0dcdbbd47460e3514b993f595d8849aa0e4da284b",
+      "lfs_bytes": 312723
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_ShrubsA.uasset",
+      "git_blob_sha256": "e313a9769df03505c64127c9334199a8c868bdf3b3a3e618bdbd95dcebf1c936",
+      "lfs_oid": "add843b5486ccb36669a31f674398711da0b6ce46c8d1466fb102a28e96441cf",
+      "lfs_bytes": 158515
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_ShrubsC.uasset",
+      "git_blob_sha256": "b4220a7441f405a19ff24018ba5acb5d8abe9509a3871d91724ecbf96bfc4f3d",
+      "lfs_oid": "91b2be47f5bd83dff753c1009a429f52368a892d8606e94d396b029d82bc09b2",
+      "lfs_bytes": 370557
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_TreeA.uasset",
+      "git_blob_sha256": "0a81f0ab9901d1a143bd4ceb68b00a47285d631bf53a5332f0661dfc5e2dfebb",
+      "lfs_oid": "03701138c835f25cd55101970f8bcd50cb50a0ec1b94b6a6fce6c929bc2a5fd6",
+      "lfs_bytes": 755419
+    },
+    {
+      "path": "Content/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_TreeD.uasset",
+      "git_blob_sha256": "37257b5de11966b4bf7403a3f0fbf435564ffd7e64d96164cb4b2b3ee0b0c0d8",
+      "lfs_oid": "e14250c55ba47f3b7adcbce0ef6da96c212a2d23dabd47cc5047c87c0da5bdb2",
+      "lfs_bytes": 779935
+    },
+    {
+      "path": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype.umap",
+      "git_blob_sha256": "bab324eb7c4427b5fca7daec2e726b11518fa9fe68467e540f9f00a01800c1a8",
+      "lfs_oid": "1cbca7e4244ab612b54d648ca0b8a89b600e233be47c550e872c718460dbce0d",
+      "lfs_bytes": 14531
+    },
+    {
+      "path": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/M_SeaAbove_Membrane_Prototype.uasset",
+      "git_blob_sha256": "6af7384cb937cfaeb5eb6ab12f6acf3742c58c9982b16cff6367ba3767495638",
+      "lfs_oid": "5a7333d05ff27ac2c8ddfe66a5caa84b3784adc05178027f25138a85e6a0237e",
+      "lfs_bytes": 16221
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Greybox/BP_MonolithBlockoutVolume.uasset",
+      "git_blob_sha256": "b5cbf58d2dab9477c7172d2677540e1bf1ea91d1a8dbbb8ec435fe0fc88accfa",
+      "lfs_oid": "716f155bd3be0141c3d53250e0497f26c61d9ccba2e254ddaf4f74a44277d224",
+      "lfs_bytes": 32662
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_BellTreeGarden.uasset",
+      "git_blob_sha256": "d6005cf89ea50338baf2e9f9436682791835d18039be35179636996c837eccbf",
+      "lfs_oid": "9c0992eccdb84c3fdca0b816a2a3914c2eb5fd3a7933ba5350d296e080229828",
+      "lfs_bytes": 750361
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_Colonnade.uasset",
+      "git_blob_sha256": "b2dfa275598891cac561c87b3dd345ad5bf4bd5681e2f5004778d1b4f40bdc74",
+      "lfs_oid": "6d01bfefe76c079f65cff1531b43a436667cc49d414f46b6fce0a0680d05fc47",
+      "lfs_bytes": 160887
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_East_AtlantisGrove.uasset",
+      "git_blob_sha256": "99d3f25d808f7b31dfaf9f1760b5a5ef6aab98f3c257cd200003417e56234a47",
+      "lfs_oid": "958d5668d77cdae423256a68157aa6ae68b556c7b7bc788b0f8ee76ba58a7195",
+      "lfs_bytes": 945966
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_East_PhyllotaxisBiome.uasset",
+      "git_blob_sha256": "ac33d957837c712f488520a254cd13f21c44a84b2b3a6fb14a9e87276f01b65c",
+      "lfs_oid": "7883459bcf1c74f4546f40191792483f63fabe105b41706d2e5022abb0dd2885",
+      "lfs_bytes": 241676
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_East_PhyllotaxisCourtyard.uasset",
+      "git_blob_sha256": "353002cc762cec5c3cf9f1a7b6fd8ba7c60b03601718e6e3dee8d48609ccb407",
+      "lfs_oid": "406fbc02290e4ffebfb2895735390390ddc0d7c601aa3b65e782a0c3ff108be5",
+      "lfs_bytes": 241848
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_East_Scree.uasset",
+      "git_blob_sha256": "8a0698abbb47558b26a57353b448489ddcf2d6347525c3e0fade570ff17922c7",
+      "lfs_oid": "a373c54fdec994ed62b1d1397f5378a413a2229f94f096ea88d76f35727e1ada",
+      "lfs_bytes": 2955064
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_East_TerraceGarden.uasset",
+      "git_blob_sha256": "957aee15e08972a6c836414a8228a42554577dc25c41eb9d8e14bbc8349d8453",
+      "lfs_oid": "77557657a4d5c1c472c8b26d3399a0141625b4aef4757905ad7616e5b71d34fa",
+      "lfs_bytes": 945465
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_ResonanceCathedral.uasset",
+      "git_blob_sha256": "cee8307c007a19db83ff0c64bda2e65190d63584ce42d365ac8934817da45853",
+      "lfs_oid": "843df2489c9749814b058efb2f0203a0efcc1ce0acd6e0ddd8499bf9f1f871b6",
+      "lfs_bytes": 1122050
+    },
+    {
+      "path": "Content/EnvSandbox/PCG/Styles/SeaAbove/PCG_SeaAbove_XylophoneTrail.uasset",
+      "git_blob_sha256": "ba8f5fa59e77cad411f8d828faee81e40c93cfb5289c9eb0c30ca22630e4e88c",
+      "lfs_oid": "44ad7ba92eab886ffbbc39b532047fc6f19af59e03a9f2d4343f89243fcbd276",
+      "lfs_bytes": 651114
+    },
+    {
+      "path": "Content/Gaea/Glacier/Textures/M_Glacier_Landscape_Layered.uasset",
+      "git_blob_sha256": "c844426b4d789d96ca1bb4227470a12edc7b6ddbb48b538127b00c499dfa688f",
+      "lfs_oid": "570aee6bd530f054181954d646ef561e2f66aec870c011d346137df33cc87c5f",
+      "lfs_bytes": 15101
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Textures/Clothes/T_Starskiff_Hull_BaseColor.uasset",
+      "git_blob_sha256": "55367f26aaad85dfebec1d7f8872b976656b24cc79626548e48fe991ddb13c3e",
+      "lfs_oid": "d00d4c8a1b1f24df91157cd867f858ca5e884780bd9de8f6b08b97b2185ba186",
+      "lfs_bytes": 851609
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Textures/Clothes/T_Starskiff_Hull_Normal.uasset",
+      "git_blob_sha256": "339a07b837e0451a5437c78f0bfdad87fba7c126705a9c5a2eebcffdedfbe20a",
+      "lfs_oid": "67220946a011a85f88f9c6e6adb9b183b8bc7ddcb970cbfea6af9bb1ab5f93ca",
+      "lfs_bytes": 878168
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Textures/Clothes/T_Starskiff_Hull_Roughness.uasset",
+      "git_blob_sha256": "107b3dbd17799619933d776b2cb734b19f8bc1456741e22973981cef090ae2a4",
+      "lfs_oid": "55217e79868011cfcd5511edcc3a32f85976b472509628ab6e0901c08a20a874",
+      "lfs_bytes": 113053
+    },
+    {
+      "path": "Content/Melodia/Cymatics/MPC_Cymatics_Driver.uasset",
+      "git_blob_sha256": "a25d419fa15266a79b55eedada9b221dbf574db74f3dc1f96a8fcb1e75fe0fba",
+      "lfs_oid": "5a2bbbf4818681ae4ce4d5abd74baf9eed5e7a591b0cc5dfc98a435441bf847a",
+      "lfs_bytes": 3136
+    },
+    {
+      "path": "Content/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.uasset",
+      "git_blob_sha256": "a3505cbcb889b69685bae7425bf85daefe4823dc162f3fd474b2633627a25546",
+      "lfs_oid": "c52a1e6c6b9bd8d509151d374db2ca163d7fddbb6fba3d8cf8a0f03c98e4ab9d",
+      "lfs_bytes": 13012
+    },
+    {
+      "path": "Content/Python/add_sea_above_phyllotaxis_courtyard.py",
+      "git_blob_sha256": "f1ee565a819da3918ce6b7333058961b9759a1f63a6cf85c807e08c97ea6e328"
+    },
+    {
+      "path": "Content/Python/apply_dream_candidate_ppv.py",
+      "git_blob_sha256": "27f1ea685ae02278a9ff96698dddc6c412043608ab53831f185f1b1e49ebe946"
+    },
+    {
+      "path": "Content/Python/audit_phyllotaxis_cells.py",
+      "git_blob_sha256": "68d350ed457b06d302643b6d56d11bf245f88a9fc39c732d2ddf116cb92effd2"
+    },
+    {
+      "path": "Content/Python/audit_phyllotaxis_graph.py",
+      "git_blob_sha256": "ef3716afe56bdde3b6c0dd25182b085eb94071b9e910fc14e902ac54a8f7bf6a"
+    },
+    {
+      "path": "Content/Python/audit_static_mesh_terrain_alignment.py",
+      "git_blob_sha256": "397c27afc036641abdf1fdf48dc54221282a9231d173bb513e8397770da7410b"
+    },
+    {
+      "path": "Content/Python/bind_ppv_audio_contract.py",
+      "git_blob_sha256": "f69c2f5be7c986d16b10429720bf7fc45da1da67c6e8c855bbc60a344e787fa1"
+    },
+    {
+      "path": "Content/Python/expand_phyllotaxis_courtyard_graph.py",
+      "git_blob_sha256": "2e74accd226aee605ef2cae4d5e1165b5abf0d63c5638cc3bf2b01a37fdc4317"
+    },
+    {
+      "path": "Content/Python/finalize_landscape_triplanar_rnm.py",
+      "git_blob_sha256": "971a7edcbc728137b1683fd67daedada388e542ae70c1bf343fe249616037e69"
+    },
+    {
+      "path": "Content/Python/finalize_ppv_hero_stack.py",
+      "git_blob_sha256": "3969a303d4256484d342835c9b6c7b57b13aabc3ab7a9f06a47b8a7dec414085"
+    },
+    {
+      "path": "Content/Python/ground_attached_static_mesh_set.py",
+      "git_blob_sha256": "54c1b392e0a1aa1a9efa03b2aecf67a184dd0ce76e92bf533d83256249d9454f"
+    },
+    {
+      "path": "Content/Python/ground_sea_above_pcg.py",
+      "git_blob_sha256": "f23a4a926bd9222c27b6c36c0a72a7772bb6933349ca2416813d0f0a951c5452"
+    },
+    {
+      "path": "Content/Python/import_gaea_landscape_paint.py",
+      "git_blob_sha256": "cc15c1a2acedba6b80e779fcd71d17b6c561cbd9a852e8d5f606951ae73dd920"
+    },
+    {
+      "path": "Content/Python/level_arrangement_tools.py",
+      "git_blob_sha256": "fff5857b6a7b00093f87c8fd8b64b5463c2f76ef28423931064133ccdbfcf460"
+    },
+    {
+      "path": "Content/Python/ppv_contract.py",
+      "git_blob_sha256": "8a93ce44796de46293004f1e4bc62f89fff6471066881a7f0c56d5d97bb3805d"
+    },
+    {
+      "path": "Content/Python/setup_nikki_render_post_process.py",
+      "git_blob_sha256": "002a417a1fefdf23b076ad36db4aa4650a1e0130a0b9e6f55c52bf248e4f82d7"
+    },
+    {
+      "path": "Content/Python/strip_ppv_color_overrides.py",
+      "git_blob_sha256": "f782314d109be5c95adaef2e6ae6bddbcca219d31f2bcc32d40dad120bbe851c"
+    },
+    {
+      "path": "Content/Python/sweep_static_meshes_to_landscape.py",
+      "git_blob_sha256": "d2d5c3b8b500928d0598bb6f545d897d21c1576b82eb5c68c05810ffa01e4188"
+    },
+    {
+      "path": "Content/Python/verify_static_mesh_terrain_alignment.py",
+      "git_blob_sha256": "6eeb283a11bdf6cfe2954885c3906c5adce82463924806dfa63b093220aa94f4"
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/05/4VQ9EH3FCVTJ9SESV2AHZZ.uasset",
+      "git_blob_sha256": "6ffdca55a8c69b3818d58f29466bfdc0a24d0baf68b7b368e66531dd84fcf3bd",
+      "lfs_oid": "b3d7d36c138fddf0ff95a931656167e259080ae714e68146818c916f192dc04f",
+      "lfs_bytes": 1349189
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/22/ON2JH0YN82G1TGHOFMLS2U.uasset",
+      "git_blob_sha256": "a2f538c029e8d50d3493c9a3bc8346932aff41580564d7564729004d721c4922",
+      "lfs_oid": "6c8abb46b8e0aafe7f9c040b27241b2389c7709aa584d945a03b8085992ec724",
+      "lfs_bytes": 4391
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/27/LG9NW0W3JPCHON77KODH76.uasset",
+      "git_blob_sha256": "e85a0f08d67de45c7a0468780fcf5860482de754eef758d56df72485d8b78f0b",
+      "lfs_oid": "1cd94b18bbc4590c9bc497261d2302cd179129d858d4b2aa5c3d7f07519caca5",
+      "lfs_bytes": 79351
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/6N/28NO47PQ2S21S0G8XKV1KQ.uasset",
+      "git_blob_sha256": "f62d1db059f2647fd4f5d0658dc15aa008771852491f95bd66f1b5cd9af7afc3",
+      "lfs_oid": "1b407d6bfa801c2d965896435739c11b6892077c93a1cbf287d2cf2634bcde46",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/82/76TXBPK5UCGXSJL9RBWCV4.uasset",
+      "git_blob_sha256": "d11c045ad1137f7d75e45f5bf8067e7e95ba1ee81535b2bb19ed4a0c20ec6bff",
+      "lfs_oid": "fad8679901a7bb62d550562911c945907bbed82bf8cfbe7ee58ac2c04fb8f499",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/84/FATSYGDL5POWYB4FDB3P3B.uasset",
+      "git_blob_sha256": "562c6cfa3a10bb5b61a26dead797e720f587c95048beb7f2285cc16ee81b9893",
+      "lfs_oid": "3fce745bf28c3e527a3d8b27ba226c0fc6fc455f8ada92b0e6fef8c2464f1dec",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/BU/1D22Y2GC1OLEEQQC2QO2A5.uasset",
+      "git_blob_sha256": "aa1008959e287ddbe6403efad115d9ec997163d27bde01cbc4c47432f77067d3",
+      "lfs_oid": "35d328db17cc5c8c86eb0590a4e882c8a6de9db36e1fc16d1fc069477d013f5e",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/BZ/HEJJY3AKORRKLUVPI70AXW.uasset",
+      "git_blob_sha256": "8418f9b2695ec243dd8f68e4531b4daf36e88fefa4d0f736162e3d1d6bc0758a",
+      "lfs_oid": "5bacd956fb7b2bb8c4661ac9f7f11ea7289c0f5057113aadc5b5bad170138f81",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/D7/RR85VYRNPA8P2YM1CLGQM5.uasset",
+      "git_blob_sha256": "fdee357d63f3a60484fb839e82813ebba271f82b70dffc803ba23180f5af617f",
+      "lfs_oid": "1b1c6370288ab17848f2b6cee7bf98a9d38bfcdc65441c0cc29f7a7bab469457",
+      "lfs_bytes": 4479
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/EP/Y9KU6X98T6Q1XULHUNZH2I.uasset",
+      "git_blob_sha256": "08ae18be9c55e0ca3b4ec087e24f325913623a77340398e5f1c3e8557b893b2e",
+      "lfs_oid": "514f6885372a8c29a4195ea079aee32776ad6995c787508dff15154bf0360da1",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/FX/IX39B7TU111T8EW045PEYG.uasset",
+      "git_blob_sha256": "117b4205c43481deb49df3e9eef35794b13a7bebbf8630d55d83944d76f61bc5",
+      "lfs_oid": "0fcef2104fbe53bd293ea1bbe11e7e979ca2383a23bb7a5f8a958fba303d862c",
+      "lfs_bytes": 49559
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/JB/YAJMKATJI5GAATN36TAS83.uasset",
+      "git_blob_sha256": "07dcea708f9875e9321d7c8e9d9fe8e989bbae443de1bcd165e052d98c06f503",
+      "lfs_oid": "9f48130f5f3e27d10fb9c040b7e4b9482fcb4e1dcb96b318aad64fada3e991f7",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/JW/HU0GX34AS3Z1UKBE3ESYIQ.uasset",
+      "git_blob_sha256": "3432e679bc6f3937cfc9bf067895566e0c112f4cba3b4ed702647e976216335a",
+      "lfs_oid": "9098ed5a4c9cb6c5a6fc32bcd2af6b328a6673f19b1a0061ca3fa946ed3d9f16",
+      "lfs_bytes": 5036
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/LC/H9BH0OUYK2BKQZUZDFPWEJ.uasset",
+      "git_blob_sha256": "1a71bce8d619e0763a507dba347ba8e859b06ac064f2d6a95e3521a7cd3fc1d9",
+      "lfs_oid": "53d52a7eeb68e2557c857b62da4c4aea65ed4763b25327e9d28cb94c1ce70802",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/LF/CLSBB7K0Y66XVHD1GMXEXT.uasset",
+      "git_blob_sha256": "c669fd6bacb2693ae8cfae2e18cb19bb90d82dbdc59658fb4147ada99483ee40",
+      "lfs_oid": "15ebda115f9608e454f07e0aebcacbdf5d7b16337f3648803aba920143928225",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/QY/PXAUERTVNIBIWUX6ILNXMS.uasset",
+      "git_blob_sha256": "eb0bed15222d7d98636ba05ee0f15ec0a75998cd36d1ca9bf64464da87da5d4b",
+      "lfs_oid": "cd5f813d8b2b3bb00e9404f160baa0d1d38a3ba01305bdd5e53587b0252c9176",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/QZ/Z7PEOJZYS2NRRJPVIZ5P96.uasset",
+      "git_blob_sha256": "214a949da2a30b2d565d087f234621e298f6767be0f4e645960c3dd0a28e07af",
+      "lfs_oid": "189a8979e9160143094d4213d013e26eb3cc24964fbd5e7f406553e4bff77f91",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/R0/Y0TFBRPK33CJDQ18X52VWW.uasset",
+      "git_blob_sha256": "ae56f8f3aff89511b7903e2c97b4cb6a8a3375bb4d76cc686fb7799dfc3e2473",
+      "lfs_oid": "e4a8b859c190af2a73990e9e3726f13b8f8d21aa975cdf191d8622523875bd78",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/VO/44M7YY3I94RDCQCB4JLPTN.uasset",
+      "git_blob_sha256": "4b6d0fa412a0f259ac6ac71a78d8c407d18a0dbce0817b0b0353a908bb7d967c",
+      "lfs_oid": "b6db8fe176d80d0bf502cbf079ddc02a66841ceba08da02298b5af6b73447c52",
+      "lfs_bytes": 4412
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/26/2O6S7MMIM56YHFQA5VGBCT.uasset",
+      "git_blob_sha256": "9b158e9524396ce59d11f409b093d22893eb7c0e75c1b8cc811e7d2f3811d51b",
+      "lfs_oid": "a8633a095840bb55f9d826be1e3110097d471dc31e6eb1db54a2227404de96d6",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/2O/XVDMRZDOSNRMC4RZ0GUOKS.uasset",
+      "git_blob_sha256": "b1fc559be8db83466a6e908a38612936e5c1360fbc30c9b8d7a100f86b7e768e",
+      "lfs_oid": "fc9d2339362940ee77f6aff42617390923ca6f559a222954edd2cdff707a8e98",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/47/PV7QTVWBLJ5Z8UUKDA1UTJ.uasset",
+      "git_blob_sha256": "df97b1c5afa0fe3d81057a792c035a62da56ac492fe98f4fa0dc19705884e26c",
+      "lfs_oid": "5d84d3d16af1841db23ab389d19b1278e526b30447e3c6dbe31b00114ebca4f7",
+      "lfs_bytes": 4402
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/6Q/4Q7Z6SU273ICUW1961HIVS.uasset",
+      "git_blob_sha256": "2794b20f9466ecff7fdb258871cefa2232a6cf4d9388431e0d8ba4e925ef1282",
+      "lfs_oid": "b0c2baecf966164001e809dc5cd3745ef6caec7c443afab335500f280faae3b8",
+      "lfs_bytes": 29722
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/6S/99SO5PGAWSWHHQQG21PTOE.uasset",
+      "git_blob_sha256": "2d26cb85e2a84e6e91645721434195881cea75d2ef60076021a5aed838d987fd",
+      "lfs_oid": "e5423cc6c2c93108e12009fa076a6b317c651f4dc7a70c1b90134eec254cb040",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/81/AV8NJ705P8IZONFO54NBX9.uasset",
+      "git_blob_sha256": "365b97e7ad875c6f7c686e7ba43d19162c2440cb9a04f96bbc2f546ddc095f3b",
+      "lfs_oid": "d0b6b34d6366b6405877290bc03a1e77bdf2f138aec111e5a57c2c7045ac196f",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/BM/NOBA42QUDXB9YOHXJG5J6X.uasset",
+      "git_blob_sha256": "5ccf4cd967927591e3be1b505c5c58425bd83b1e2e3b874bbc6167a479189d2b",
+      "lfs_oid": "01a89ebc1225d53082491fc4dadd631b453d08d23e96c78250d630b876b1ece6",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/FU/CI6OJENND94VO3E5H9Q5VO.uasset",
+      "git_blob_sha256": "f79e7443a8a70f4a18870327a3ac4f21fb46e749534660bec5134f6f0c1ef5d7",
+      "lfs_oid": "c12a42a873f202a0d4a7e5bbf5d639d2485598d79cf46b628df73e99b3310fba",
+      "lfs_bytes": 4391
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/JL/C2EJPW6VNHUP0ILZBHKH31.uasset",
+      "git_blob_sha256": "571eed69799ae186d0c0a33dc30247443bc443b65ba0b1865efdef3dac021edc",
+      "lfs_oid": "28c8bd211c645439b11bb2657e9a3a0bf029b720506e8b854ff10738d2b713f6",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/K4/T6ME9P50MKF02BBEPRUC8Z.uasset",
+      "git_blob_sha256": "db4a144e4546d037fcdc5a736e93beb29a0bb3672e88c802ded9e298d369d7d6",
+      "lfs_oid": "1d8af53f69a5b6ec0e8ad32efea13118cf0b4d452d2a8a0a736b8362119d0831",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/OD/UG7NUELEEJAUDH50A8GYTZ.uasset",
+      "git_blob_sha256": "1ab627fe5712ebc0432f17221744dcdc88864711a3cfb027ccbd27afded88bc6",
+      "lfs_oid": "90f8c87431e0aef5537de8054817ad8169f179dcc8db823c5f59d4077224ed95",
+      "lfs_bytes": 337482
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/QJ/63HXI3S88CYT8O7ASVCVT9.uasset",
+      "git_blob_sha256": "acb5552f0116b5aba0433fb27661c7a4112a819f8dab1fe8415850655d211a40",
+      "lfs_oid": "aefb50d36b9fb89e2cac52f4b48489bf1702de4f5a78347170693101e7f757f0",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/RV/KMDH18HMQ52FVM79NVEVK1.uasset",
+      "git_blob_sha256": "62490d8cd046bfe2dba184c8ff10bd6285301ef6d7bfb78ff671d575249fbc3c",
+      "lfs_oid": "a0cb5d1225317c5f8dc26e93600dd0f37bb682879c441fcb372b8fbf6fc10cd5",
+      "lfs_bytes": 4479
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/UK/KKK1K4JSYTFIIPV6FTBJJW.uasset",
+      "git_blob_sha256": "f140cad512503b2995ff200ee8f6268109c9192eb8986d9491c5350f329b1e29",
+      "lfs_oid": "16581c2165f29fb6af837fb9bf27d7cb522ae66c8499916344495ef6315b777e",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/V2/N3U45EPJIE137UUZGC0OR7.uasset",
+      "git_blob_sha256": "43dbebdf07ef202495f463f85c72924f24039525ff98d0470a0dd7762d3fbaec",
+      "lfs_oid": "f27fec09917f0964df5b19680171c429977bf0bf2e9d4ebf7fa72b23219ecde1",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/W5/QO1Q5MKB88215T1VC2FCW8.uasset",
+      "git_blob_sha256": "9d1910055d042f5def76849d4defcd05ba20a912d57919b6865c530176c43da4",
+      "lfs_oid": "4548f93e2e281afa4eae01f19b46118e85513efe29f6cfc1dbfb9a9b18e2fd45",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/WB/30BBD81FBR6YB5083PSLUJ.uasset",
+      "git_blob_sha256": "f448fa61677fc6be40c3f457745bc68ff62538bc8aff55f8ace6ca138678dd26",
+      "lfs_oid": "95d2c8507f25f27e50edf3d866f9fb481e95de5513b14067f5ad5ac272c37a07",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/1/X7/Q4457F5BYRV6AMPY71LEV7.uasset",
+      "git_blob_sha256": "471b377c4c785edcdc6812434983a674c397853ac2c7c96f0aae3b4b2e39ff8e",
+      "lfs_oid": "a1dd68f2bf0a3706ac180aecf40896e8883c5f48083251540454d24e0127a97d",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/20/L2HZEEZ8EX3MTH51M7OIVA.uasset",
+      "git_blob_sha256": "286602d849ab172aefffe97ec43b4bdb4c02d2511f8bf3b7454ff8db1c2a65f3",
+      "lfs_oid": "345cc17ee9b5e608b1b5b8c0919d1767da701e81f7723a64576eecf0b47da7c3",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/2T/9SH7CFILEYXDPN6J64DI27.uasset",
+      "git_blob_sha256": "e3db83ea676171cbe04953460b88307847bc7762ae3c8694ce91d0904f3f9691",
+      "lfs_oid": "05ada6d5b7ebce7402003f6d289e4c8875e8dbeeded1e5294f53fedebc904ddc",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/35/56NGDM6IAUMYVMVEMRMIIL.uasset",
+      "git_blob_sha256": "c59b709f1db6f2fa9a526789210c9d44e09bd7bb6380130aec268c34295a14f3",
+      "lfs_oid": "6d52992dc9eeff69070c28edd7fe2f183bf2fca08f4224c62958233c3eec8714",
+      "lfs_bytes": 4519
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/3H/K17PYBHNNJ0MX4RDQMVMOL.uasset",
+      "git_blob_sha256": "479045b985d18958b19b2cbd69fcaa585fc702f37af065c2e5d622fe2fade54b",
+      "lfs_oid": "51f3abd953b5b87ec8493fc37c045e6c0e3624a31b895cc5e86eff71569f3592",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/4P/ALJAW3EGZL0KG69LJO4JG9.uasset",
+      "git_blob_sha256": "6bb32d74213ada4f081181ae6a9c740327019ea0e3367351db083362bfdf9cfb",
+      "lfs_oid": "9fe04323c1a00a7b38f18713d2b28fcdd5abd4814e513a20a41e0d6f09f20d84",
+      "lfs_bytes": 3806
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/67/WOD7YM91F2MM5UQXJPVFL1.uasset",
+      "git_blob_sha256": "a6dd8b0c9c4526dc2ae973a124b1e206aa0fe7260cd2031ec495145bd1c550ac",
+      "lfs_oid": "871edcd88a92950bc4e6d5d62d50eda46ad010c7f238fc7fc396592b6ba6b57b",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/9G/Q6XJQ1O9Z1JW2YJ88JO0GS.uasset",
+      "git_blob_sha256": "c5044830a7989ca877bc45d477ae2a48efa424396cd6dcc39fe306683270fded",
+      "lfs_oid": "fcfc8ca7ecebc0c3f97e8d41e3a5526d51dd6b6776ea5af366ca938f0ebbebc6",
+      "lfs_bytes": 4398
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/9Z/4FTBO4J1LWDRJUTU1NKNNF.uasset",
+      "git_blob_sha256": "e127071b28247842a1a539a0fc354cd6bbee0c823b98261b65ac26e620488060",
+      "lfs_oid": "2fdd260c55983c74d1918588a844046a2d6612cf5857c43d62798972076c8174",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/A5/KICICR7PXDMQPB98VHQGMR.uasset",
+      "git_blob_sha256": "a2a89475a3224ec47bdb393bb82a77cc858ff08f928553fa20dbd59b4ff3e853",
+      "lfs_oid": "06ad77add179ddc501a7170101c4f7d7384d3a309094da592b0618cb850a8b78",
+      "lfs_bytes": 3806
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/AV/7A5XC2GD4ZQW844T56JIRA.uasset",
+      "git_blob_sha256": "3a3453acbe98fe89c87b7e5c8c1fdd6480db6b779d87a681d40e4a927da915e1",
+      "lfs_oid": "b71bc96877f3c538233fbaa31377bd07b3c046099794c5a33d84ba5f5b7fad42",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/E2/AKGJG3IKWLQWMVIXQ2EUU7.uasset",
+      "git_blob_sha256": "04ed7b920db47e7887b69feb635a2355b15210ee4d31809ed3e2672b2a00e51e",
+      "lfs_oid": "326e698fff1e5827e5140cdebad9326c909e83c0f386c2223923d7da48082a4b",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/FM/97Z20MJ6X38OMA9VW2VSUE.uasset",
+      "git_blob_sha256": "0c63b4dbad81168d3a826640298bcd1816079b174ac88efb536d2f1f8fe53a5f",
+      "lfs_oid": "3049ac617035dd611f837578d423c50252e982a4787f22181098105a6f629df0",
+      "lfs_bytes": 4402
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/FS/MOVNVBWBCZOJASIBDDUVBD.uasset",
+      "git_blob_sha256": "46b77fc89109bd872dfabfd94f8c2bf24ab8ac8cae06ab8626d5ec8cc2bad475",
+      "lfs_oid": "fb67280e49e17dca1460ee053fe305aa369a08a8aa594aedb90bb9b081bff3b6",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/JP/5ZFE087VX4929XOJQWKH3Q.uasset",
+      "git_blob_sha256": "bf3cb57dff869e7f0a94ef237633e693ee74efc92c79289ec0809300eae2a87b",
+      "lfs_oid": "823b5c90e90a4e409a372963d78029ab3042d715bdf2fcb8d8ff2078f375dfd6",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/LP/Z02ANZ504PQ3L61KSQ6SAQ.uasset",
+      "git_blob_sha256": "8148e628bc98c4d496d0fb79cb37d36db4c22b5d8741bb35a3701877a10163d7",
+      "lfs_oid": "05cc76c7f08b6f712a43a1e4295f46566c58f91b98bbc9b0b252941ef8e139db",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/P6/9M0R62V6SNJE4YYFG1JWV6.uasset",
+      "git_blob_sha256": "5154bb43b0d68ab299a828ea728e7173d2143147fe5bad69dadc7f81415d1698",
+      "lfs_oid": "769ea36f7fed61aa24da42e330f4e312a0e241e00ace4b859756af26cfec8d6e",
+      "lfs_bytes": 29739
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/QH/M95DOY08G2ANXON4IAO4BM.uasset",
+      "git_blob_sha256": "ffce4f9d2ee4f494a08719b4799a6b81b26aec5355d4ca4fb4b94561e1947cf5",
+      "lfs_oid": "678ed1041b4ca8ebb63aabb416bb32629665c4e4cb82accbf3d17f17770c7bbe",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/YH/ZNA61K0BXX44FS2JOOLE2G.uasset",
+      "git_blob_sha256": "13bfb7b1ddf011d63e8e00d01d239e138aa762923bc03344de366789e1ebb733",
+      "lfs_oid": "1b435148b2b0614a8fcaa3a16f50f01a93555714e4ae528716ab7e34f4e8bf66",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/ZJ/HUM120GXLKKET2ZH2AC3ME.uasset",
+      "git_blob_sha256": "c5c65d09a706b41b5c1ce45558ff56c185333b2e4ac6326ffd6141680d653d77",
+      "lfs_oid": "2c53569a74db6510fd5c96bdbe0f53bcdd454d12213d3e92843e4acd23758983",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/0K/Y8EZPFCIGXXGMJBELF0FJL.uasset",
+      "git_blob_sha256": "9d4f4d44c1254ae53b47e58a3c80522790e9139d49c4bd5b8890fa429c72d9eb",
+      "lfs_oid": "94521f0107ab1cb68640ad27c440dac4826d270e6548744c2fbe897e95bf2374",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/0U/47MVF6PD0FY92939Y65138.uasset",
+      "git_blob_sha256": "43aa91672045b9e0bba4535af5ad18c59615d8cb452d9117cc3f5e14d57765e5",
+      "lfs_oid": "11b361b428dc2d138b540fdeb0a5b220091ce795224727983a470800d5189e62",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/1S/GV769O70NQCW1G7AR5CKU8.uasset",
+      "git_blob_sha256": "05c06e6cdb4d778db6211b1a97b959cadf866060214e5475ccd9f95d2bb4eb21",
+      "lfs_oid": "efdd801539e5fdf469bb2bea673233ffefb0a5e5370a08f5067522d2c479983c",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/2U/XS0ZTARNHAPCVI7S854XQ4.uasset",
+      "git_blob_sha256": "b5c5b695a78c4e35bc5ccb0cfb72bfaee4baa6b0823a95544f7c2193a910c563",
+      "lfs_oid": "e00911bc3eaa6aa972afe275d0c5c44802e36376a0b09826b6b3dc6a18850456",
+      "lfs_bytes": 4402
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/70/65O0UANPT2FUO5Z6B6PMQ1.uasset",
+      "git_blob_sha256": "1b09741510aef0a2cbd56d3a037171045e8976724b4e5bae557d685bc672a998",
+      "lfs_oid": "de651960ae924b8b055468a6482bc88c788ea2ef35dad10c52032d3a93c48d89",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/8M/QSZY2NBPAO3N9Z8PW25HJU.uasset",
+      "git_blob_sha256": "932d2d9789eb275762a31b3e67ccf41368b5048b90a247f50122911bafc0a6f4",
+      "lfs_oid": "946e91cc512b549e5d80468142d6981d6879c22c18d61ae4ad27514c5903ac3f",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/AO/3GG1UB6E8AUW4HB7JAIA7Y.uasset",
+      "git_blob_sha256": "b7a8f3ce1cd9c9bc3d402aec9d821089186d71b646a6a09f83edaadd7781f13b",
+      "lfs_oid": "c3680dd343480314c535cad77c382d8b42fef9477438ae13dfdb658d2cca6eed",
+      "lfs_bytes": 12274
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/FV/HW2M8YZ78VX2PFF4ZSSG7F.uasset",
+      "git_blob_sha256": "a217f03ba3c2ffdc0ec5872bd57599f8cf6e9c7c4778ef34369b85072cbab61b",
+      "lfs_oid": "1948d920dddca07b4169274cd7303ba171a13933c0321aa52248e4814e8e5292",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/GK/3YCEMC4JIV2X1T0BXVMULD.uasset",
+      "git_blob_sha256": "f86158543abebbb3d115ba27b29e800d8ffcbaf2b2916eae171794261c410110",
+      "lfs_oid": "ede065d713bf4b82dc419c660136f13dccbc3da3c6cb3e7e3a5b79e06d2cbf03",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/JI/VOHQDYM1VZ5C0Z80TT7XBG.uasset",
+      "git_blob_sha256": "31edf4c7942f65ce69121452e6ed1d80466df5bd8dbfd1b6075d2487332b9700",
+      "lfs_oid": "7c899a23618b81073ec89ab981adcc6a9b16f7da6c4d7eb6e5e3b2169bc7b8d1",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/PL/WLX7IQ4VDOO7QLGLA4ZW7T.uasset",
+      "git_blob_sha256": "ddf268a69d5cd4e976ec384320ce129fdfb1e13ca729da67fa3925ce8b091671",
+      "lfs_oid": "8bef96e51b1918f3f4a4db6489bc965a54994d9c847e8c3e01d81cff66e82be5",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/QS/ZC95070B1AVJOW6V204VZT.uasset",
+      "git_blob_sha256": "798ead2b55881e9a9047f2c409c792af967977b2564ccf2088b77711455dded1",
+      "lfs_oid": "85a19af13534a00580906533c6907e4527825b742f812d6713fd5a7c75be17d1",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/ST/9BS4I7T4NW6ITZ4AMP3X1Y.uasset",
+      "git_blob_sha256": "e66c1f49ce51156bf39b5044b7eab89b053a93c1f467513a061c9d42d8cb2baa",
+      "lfs_oid": "a7a8314482af11204f7a9dc61f4eab486afa646ad0aaf98c2ed578fdd2749649",
+      "lfs_bytes": 9617
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/SX/DMZ56EMPG5U6SGXB20EOEB.uasset",
+      "git_blob_sha256": "18ed10fe2bc1512df83d1bcc52e9cf52386fe7ee5e424d67aedef7742769d81e",
+      "lfs_oid": "6853554a0cfe84097ad9d634d679bb6141e884373a6677da4ad882241e99ba2d",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/TI/PM8DX6SWH27OIPCMF44RA2.uasset",
+      "git_blob_sha256": "4a078eb5ac7508d4441175220c19107cf4fbee3b2624855623c68d5b78d56166",
+      "lfs_oid": "56512514c2345be915c9b3c8cf26dd6ea33aa09b8370bd879a0c8c90df394768",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/2T/XBGFZOB0GUCFHNTP0XYA2S.uasset",
+      "git_blob_sha256": "dd61f7dd0a694365d1c083b0a5f3db1a29cff7d30ea5fbec7dd1d09b49edd6e0",
+      "lfs_oid": "8ab8bbb97dcfd8314fad44a2f9794700ca56d190f1ad90e892187cb3c5a190d5",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/8O/O889QBW9TKYNA3UZISXNKK.uasset",
+      "git_blob_sha256": "86b328e45843d36adecb096375cfd8d65fcd84e90ad2cecfb1ce9864dade9c5c",
+      "lfs_oid": "20f5f6dd8ddbfe475d84eaefdf713c650cda621e337afe71b613e70f7bea360c",
+      "lfs_bytes": 4412
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/B9/2PBC6A0SCMZ4QRVG8YSGE1.uasset",
+      "git_blob_sha256": "1d318faf4df8f1129d722f67f0fee2bc5a1d24769dcb5554a2535d5ab8e599bc",
+      "lfs_oid": "76b8df05e600bcfd72ea27c26f546db7e4e27b5f33b4d7fbc95859d89470504e",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/B9/5PSICOLDEGH1GEQ6O2HW2N.uasset",
+      "git_blob_sha256": "c1fab2d0537690b68a267c9b2eb85d3e3d57e6bdeb2d75edb55eb89030a08643",
+      "lfs_oid": "b8572e7a15fa6060f00c462a72966a2f29da5381a145e5dc2ece4d79df6b9b8e",
+      "lfs_bytes": 4509
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/DT/KASNPLJ1NL7QHF0GKSHZIG.uasset",
+      "git_blob_sha256": "bc60592e55b81aef21d6213ed97c328658bba6cfb710f139e74761e27c64b652",
+      "lfs_oid": "a0e48926b42fff4f96b3f88b1f58bbf101c84779d64c0c1f389104cc155b5be6",
+      "lfs_bytes": 179588
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/H4/PQT7OK55BJRVIFHZON401B.uasset",
+      "git_blob_sha256": "417652bbb0f2325c7ea748ebcf62552b80847063c6526cdca55f05ce8bd59b95",
+      "lfs_oid": "43f90db627fc9b2b445a509b93a9c3e27bdbe19d21a55d668ee10e2734bc3cf7",
+      "lfs_bytes": 4397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/I9/IBAN2BE6KTYTR7HONOBEPJ.uasset",
+      "git_blob_sha256": "24f03d0b37a61432f7521e29a7588145c5f1a59db7e17aaf412f00086412277a",
+      "lfs_oid": "9e93232632f8f484a4daae815db2beb3e6a9bc44d9f819298eac18b20d4662da",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/MV/Q50JL6643Q0XMMS47WYFKS.uasset",
+      "git_blob_sha256": "c45ba375ade137e45606bda27b1e080e9d62fcd3551a146ae49363a2d556a5e5",
+      "lfs_oid": "4986cd37c4977d21aa570d66398b305e26579217183175e147c9f2e63a236539",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/NS/JK8OF5OFZ1KDHTQDRDNGF5.uasset",
+      "git_blob_sha256": "4108891348bb4cea306b99cc95fcd6e95576a5b59d772e931452d3a212c33a9e",
+      "lfs_oid": "e70372cf2b1b4578b4dc1b2a6e8c955ca1f4460dcc3430bb5c702e08f2d25606",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/OD/OBY0DGSZRO154NTA9XWJTN.uasset",
+      "git_blob_sha256": "87ff759eb7d1f7fce246a4d423de8043a352ff62a640ed1de50a34a27f14f99e",
+      "lfs_oid": "e2f3e8bdce5e7304aeff74881c22a5ea559887a72d779764791a4839d87aaa1b",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/OO/JZADVIX2P4PIA8ISNZ3BQC.uasset",
+      "git_blob_sha256": "8f580992760b134dd6dcb52eac84186343c8f932d7510b0bbc60e49161995c0c",
+      "lfs_oid": "d0a15eeb0e1515a32705dda0b5b58311c385ca673559962d5a7f303bb5127f92",
+      "lfs_bytes": 9082
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/QB/L3KFRZP26MO7LLTOJ37R7N.uasset",
+      "git_blob_sha256": "6b7cf24e7c3ccfc0aa0988853c53c62da2ee1c1e8a9cd310e83f77b8cfaa18bd",
+      "lfs_oid": "7c0b589dce4116404f6c64ea7456d6a2428c52502f5c95641e16bbc3ab24bb1b",
+      "lfs_bytes": 4509
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/R7/4Z2Y0AM2YR75OKXP53RNVL.uasset",
+      "git_blob_sha256": "df8df2f5365580c7e38363e3ccd8df9150626523fa67959a5776c8fcd946fb84",
+      "lfs_oid": "208f4aabff28ccba878de83775cbbb9710c283e4bbf403a6d0ab99f241ce78f3",
+      "lfs_bytes": 5406
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/T2/FNEUCLGYREM5LHXXLONXYY.uasset",
+      "git_blob_sha256": "d49cab97b45be4d4adb1e3068ffb3beefcdc044f35cbe9c3620033a34ad504aa",
+      "lfs_oid": "030ada66f870d2f5c14756363da00b17175d0ebebe85d763ac3fd5a89ba047d0",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/UN/E9U0VAIDILRRYP3QHL3H78.uasset",
+      "git_blob_sha256": "40b8d6fa849cc5fe13b949358f79d9a63e8286c5752277fc07517bd96dbef725",
+      "lfs_oid": "4f9c5fa00561fbffb9f3ede3463f745b50c2fa6d0abdff33fd553895c1607a0f",
+      "lfs_bytes": 4619
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/VK/CN8S53FYNSAP124CG8HUWM.uasset",
+      "git_blob_sha256": "b13bdcfaef38e9a313c29b6522387377b4c843bfb09a927834a3c2056c12c658",
+      "lfs_oid": "e520960d855d3d92338a916712e9929837f6d3d2be2ef8f68f2388ebdcaa3e21",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/Y4/QUC9H80ZF78DYOIAC6JIIO.uasset",
+      "git_blob_sha256": "8a49c25d54b7b57ae717680a6685cb1cc6ac8862e3c5ff7f30cce17bea815d29",
+      "lfs_oid": "97af6f446fa2872c409fed2509a5101328a8eb2e0345253a276895fff73957a3",
+      "lfs_bytes": 29722
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/YD/G07V62PVP7OZMFFEO7XHES.uasset",
+      "git_blob_sha256": "c2cf9f4b8a7db8c56e9b323846e61c1396edd07f4df87c5ef05438c5b43498ec",
+      "lfs_oid": "abf29eaa25781ac83240b868f730237f8de223c1f002f1e225c0eb9d30f716ef",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/28/DVUESQHSRCDI60TMA1CGRN.uasset",
+      "git_blob_sha256": "3a904360e3e21b7c8ef6af822890a642ecc67f1a65a37abd3a6e6dc60d3429a1",
+      "lfs_oid": "b798053964458b0bf35839c348c72c9e894144dc69c69b387afc17d491f493fc",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/2O/4KC1T7QX0YTNMVZGID6CDA.uasset",
+      "git_blob_sha256": "041d7e945c7528db5f707ea7a41bae2c7f3dd75cecf1d5f30efd37deea621d17",
+      "lfs_oid": "d7657b1a92257600e0ef205d56548584249371d624e8d6ced90619bfac38c1f6",
+      "lfs_bytes": 3806
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/34/KXUXCK1LOXGA1YRQBUW87U.uasset",
+      "git_blob_sha256": "7dc8b21d13c2a723a6cd5d04f6f63ee5ec54c4c31a7217b047fecc7cc7457505",
+      "lfs_oid": "4fe817a6e7516f4e3905414b73eab82dcc968cebc8da22e9faef97a1dd64a344",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/3Z/J7JNFSW75NMG4RSJOL0BJF.uasset",
+      "git_blob_sha256": "6b4e7f86cd10bb4cac3faea56dc76576ccb2eb74bd3f1a77bca7f666ad909b33",
+      "lfs_oid": "2fc555547630e7c5af56ef23b94a969fcd744c7289151a50e8c469e32c52648d",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/4G/L886ANZECL6FKWJBSBCTBZ.uasset",
+      "git_blob_sha256": "c4cf7e8425491e764e74b350bf4f732f1425c86493c90f0d41030254e0646541",
+      "lfs_oid": "4484eafd719cf148efe2fe0f5bcaa0df8b23dec7125a85a28918d6fc2bc5fb85",
+      "lfs_bytes": 90199
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/82/T4BQPPW6Z12YKJCW9W1GDW.uasset",
+      "git_blob_sha256": "305391d54ffc8ba488acc3408076303a1e9c9d116242c1c38aefd11fcd591690",
+      "lfs_oid": "7ec5c65526b1a348fcf44deaaccd2822c7f3a1cf46719f92d5f8d1aff855491a",
+      "lfs_bytes": 3614
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/A6/E3DGY7Y69VPVUDQZ81GPOJ.uasset",
+      "git_blob_sha256": "11e951ee0ecbdabe3f7829e7aa5b715602dd0821407bdf4df693c8071e7d94ba",
+      "lfs_oid": "65948b0cc4af4ae706c01b83c242f31392caa3c610a5be936f90d593694fd630",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/AW/LLFDJ39KBVW7WR3OSYVKLM.uasset",
+      "git_blob_sha256": "e37f1511290cfcc40323375425e407aa8f224da292b5d319f8e371a361b58ff8",
+      "lfs_oid": "68f356c79dd00f94b31a07b550a76c126cadc843fd554067ad2801661695021c",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/C7/HBWVZXOOHOFDC8F0SRVU70.uasset",
+      "git_blob_sha256": "3b2f7990fc21aa527c12d9904f7bc1d4f56cf8d79b5349a3745ce2ceeb55a3c9",
+      "lfs_oid": "a15de0b2d6ea8819d7a2db7f1f7d49656fd0ebfb3be01349e8b3ef4d4bca98ad",
+      "lfs_bytes": 3929
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/C8/25T29K0O81QS5H61EVG0IQ.uasset",
+      "git_blob_sha256": "a943860a701f0c47db0fb7e20669a9576dd710a4dd88f32f60d0c9e4aa4d0666",
+      "lfs_oid": "15b3e7d54a6007e664ec096645a54517a465c58d02aa64ce363771b9d5b16a19",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/CU/17X05OYGK6FGW23SGIEPYR.uasset",
+      "git_blob_sha256": "15750ca4ea9ac5604a21d49030d5c1a185bdf1bc2d74ea3728db37ecba1e39d0",
+      "lfs_oid": "ff9b6dcd87f3b6880992865f0fcd201ca93d187acb87cdfa94efe73ce1e21e97",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/HI/491S2VWIX84OI51QM4RPO5.uasset",
+      "git_blob_sha256": "44d002419f26e417f0870063fbd6ca58b2c8a96340b1d151a1a6012ab0ae56ba",
+      "lfs_oid": "4a55addbb73552bdbbc16578b497f1a4a2d36753f61a1b570037600a31cc2f9f",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/ID/C8176GP48Y1LD6LNIF88P3.uasset",
+      "git_blob_sha256": "ea9540222ee94d2d225a7215bbf464eba95ebd56d337afa9f82aac43b297e2df",
+      "lfs_oid": "44f30bcd29274d32ffa943b4405a14b765760c9cea3e443507a60a41e77a68c5",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/LT/IMC7YOUAEDEQ78CDVB7Y98.uasset",
+      "git_blob_sha256": "afde8ec7b5333968c0751a26bd4398c347901b918c45cbf7020d18c080803fb4",
+      "lfs_oid": "2c606cb8515e13c8ab0b29572cf10c223f30de888f419aec7a5f513d05d6d926",
+      "lfs_bytes": 5052
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/MM/XW9N1Q2RTLGNMA11KHGD8A.uasset",
+      "git_blob_sha256": "4fcd4d2ed13acf30ca1d0fe47990e75ea50b17e739906a08e6b95eda4ff68adf",
+      "lfs_oid": "65bbe7a695218d81bf7b7298d6ec33ed69013884674680c3379190ffaec60e66",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/OA/HHAPUD663IGMAZ4PTE50XL.uasset",
+      "git_blob_sha256": "7a5056842fb7a83736e7380e7ffae65e8d07af9cd36f6006e735bd3260ae7464",
+      "lfs_oid": "ab2a1962d33c34671f1d59841cdf61694a82af5eb27fd96f670b56fc27b9537b",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/P3/A5R4TX7NQ92Z28UVBX07U1.uasset",
+      "git_blob_sha256": "2aecde10c20e7dcd638dd440861c2b5d72b56188b4ab3d3a4609df94897ab3c2",
+      "lfs_oid": "a78fe6b1e6638c84b7dc43c3fa1bc739060fb9a61d34bddb7feecd71abdba465",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/PR/6CXA032F8L0A0RD4SSYL6F.uasset",
+      "git_blob_sha256": "faf7ad1fa6a46c0c7dc1116bb20372c4fc6695d7628cd9fe95e5dd2913812437",
+      "lfs_oid": "e147be5ac94fbb5c7ba7f859f7d1b01dce8e329264bfab92ecef9a09cf5df51e",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/U9/5IHKLMHS9JQN54C3S7CWIA.uasset",
+      "git_blob_sha256": "bf3e31013aa115e8678595542d2e8926e8c9797e6b394e7e1e7994a2ef0cfabd",
+      "lfs_oid": "c0dfc66dd522a624969ded365507c13bf622d9ee75896deceed5e91dcb702c36",
+      "lfs_bytes": 12068
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/V3/HJQZWRQVBP27YLSXGLGX4B.uasset",
+      "git_blob_sha256": "472cec0b115abe419fbfc10c232d2d8e6891a416913abf5214d5a7534d4a722f",
+      "lfs_oid": "3637e363cc20fdffb9a096616c3861de3cf806b0ae3f137dca88aae67371f5d2",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/V9/YO59L7XZ6XIOCJWBK2WW9N.uasset",
+      "git_blob_sha256": "0c491b3073b6b7a340a99f2a0b7f31c097819aaef7468e5557dd9e5545cf58dd",
+      "lfs_oid": "5ed00210947badf061cdea2f22a1e6083d38f0c0e39ab55bad88d0f33dabc180",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/WU/JHCCXRZOY3WANXIG8BJDNP.uasset",
+      "git_blob_sha256": "362ac113517a9d1cdee9d3739ccab430aff89174cc609a6d2344269b7e11a124",
+      "lfs_oid": "dcc3fd8cb5dcdc3209f18bbca97a013e104f0fbd0af7605b2030407cce6f6134",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/41/85DQGJK721RHH4GZL72NG4.uasset",
+      "git_blob_sha256": "f4d00b40f82d9f3e3fd835034eda9bec880997551ea044d6df1926fe9b5536fe",
+      "lfs_oid": "78c4946f4dee4f3f7b2afe022cdbbaba2ae3005eb13b827a639782eef7284d46",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/61/35B1B6LDZTCMZEKGI872H9.uasset",
+      "git_blob_sha256": "047b56f840538b9ab6d88364d775916693507a32c51d649760d919830043db34",
+      "lfs_oid": "c42a37ccb160171dd98f3a2cd4f134dd3ebf54584277f789f0927f781ef6ab5b",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/7D/SN0ZZ1SQHMNNJE98XS03JH.uasset",
+      "git_blob_sha256": "208b75edd2ddde34077260b7ce7437bd06818927918cf6cdf179b8cd61312453",
+      "lfs_oid": "85354becea91e6abba0b4c97d63cce1a57510ab026682b1b31d7270ca0c449d9",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/8U/CCGAQPKG1GLDME7GRU05NX.uasset",
+      "git_blob_sha256": "2e6800a6469b77acf3180dac86a8ffa7505788c81835b593bb7785a48f6a6326",
+      "lfs_oid": "0f294ac35b69e1b9b563c5f2d80492e1fb297568a242ba395958c007a3ad8ac1",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/DQ/SLCKOP20XNGIX3GXGG2BEM.uasset",
+      "git_blob_sha256": "2124897322fa26f54bb578a4e9ac24bb41e7939c8c59cdb1944f3ae880777cf0",
+      "lfs_oid": "776685686c4aafa1cd04c71ee60206dd09393e55a5300c756f311f40fabca957",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/E6/9RHSRNDWYQ9E2Y9LDBQLMN.uasset",
+      "git_blob_sha256": "0ad32ae3c37ea5cecb4d400522176781bd77b443b30dc782ef0d22dc7de7a121",
+      "lfs_oid": "f2702d210484a616af48636221fe9f8537fa29c14111735b8d1d26cb0fa94012",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/E7/Y5NV82AGZMUA9GB90VMTFW.uasset",
+      "git_blob_sha256": "337491fab32e51c3eccd991309d4c1ff1d42628deef4ed8173d79cd4ac5cf375",
+      "lfs_oid": "12bfd5e40149b70861c7e815a715627a58edc01823a7c04db6bc90e483d1ce18",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/E8/N86251OWWCMSOR71N72X5D.uasset",
+      "git_blob_sha256": "c09d01fd60af8c97924ae2a1f7728c970e034563c3a2c05acaed688c0dd99569",
+      "lfs_oid": "14288d34b5043ffe21e8141101ab63c961fb4eb3dc4d7c5b27230f248210d3f6",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/K6/PX110SA2X65JZ7ETIV5BI7.uasset",
+      "git_blob_sha256": "354bcf3bd0cf790531cfd82f902bd241bebede47c8c0af37bd7ed978601cae4c",
+      "lfs_oid": "a8e493011953031e63662dae79845170dd18a34e5d073d45f8fefef14748d90a",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/K8/FNTD16X20PUHBNJKYNG8JQ.uasset",
+      "git_blob_sha256": "fe28c7be76b98175ff37d21d78dd726fd5444aae9e6f50874b66be04c6f2cf8b",
+      "lfs_oid": "eacf37d87dd99ce77bb8447e0b8ed04321e76d6c3b3258f4ddb9ae446cd31228",
+      "lfs_bytes": 4393
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/M2/3JDN88AQZ5S5VWRG9SIRY9.uasset",
+      "git_blob_sha256": "8ee8480438f44aad665bc43b15f79e9c68fa1de8ccc0fc9b4fa7bbce11d55d64",
+      "lfs_oid": "806ea9169e2467a0a40ee91dc36189e809d579dc83b199e56b828a50ff3a079e",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/N3/75XEKH95X950GBC0U2N542.uasset",
+      "git_blob_sha256": "a0020fdde1d3dd99a4f536e0c5f3e271fdad19d351f517d10a3d005f2de6e0db",
+      "lfs_oid": "ec685a454b9b9abc294d868ec06598e5c5e7074c01ff9c7cb0aafdcc6766dc9b",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/OK/6PR7G58IG3SE80GXYDM8UE.uasset",
+      "git_blob_sha256": "0efbdf74fcc629196390aea303e0d2afa6260783defe0b26745ff25ec5a6993d",
+      "lfs_oid": "4ba8ebe03decf2e5ce268da1a7d217f0a57992f2b94bdb69874b950da33dfac4",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/P1/21DEE3OI7JNXOG7RHTN0UF.uasset",
+      "git_blob_sha256": "70889f9b9315e7c5ec9c66d48184a7335ab456fe5058e7fb9a2cd1c4fec2b936",
+      "lfs_oid": "8e8b6257047ce2a74ea0ee1f3a6a1e2f84b145e956d34611613e1756ae26d75e",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/Q4/BVCCGIR4637TBY5RIUZFB8.uasset",
+      "git_blob_sha256": "776d8f7b51aebdeb2b174a75f8ac5dfa65b1070c2e0ea0267c76dcc9c6977ad6",
+      "lfs_oid": "9b8c2d659393bf461787d10f083805b8e9b1b35572fb8b295f8d65316907bb8f",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/QJ/GTPDIYCK35WODYB9XWXSQU.uasset",
+      "git_blob_sha256": "9bb0c25b72a69a9910a1b5cd17855c798b55fad9f74287d302d2a8f6b31d7afc",
+      "lfs_oid": "4808aecd6378c59dba5bb3e8d33e79c3092c3271ca952e19fc6df6fbcc3920db",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/QK/8IW1NTFMKVBAG7A0Z8E4IM.uasset",
+      "git_blob_sha256": "a90d7211e3bafee3d193d23950fdff2c8d5be3ab39da9bcc9962769f6e62e85b",
+      "lfs_oid": "ce4ca6f6df5416715b91bbfdf3a98cd9168102bf907236551e2366fe95729ae0",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/QR/3QYC7G9GKQG4FNRFEQCX3N.uasset",
+      "git_blob_sha256": "cff26957db9471bca843d95f405d70c6341045816bc7210cc91ce26590aee3ae",
+      "lfs_oid": "7698fdc50d08b0ac213a0dcd8a681f2e6a9063cce46a31446124739a571b9c97",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/SW/IOBXDCMYMI60CABM63XREL.uasset",
+      "git_blob_sha256": "ea4e2f0c087dc28b396e669676849fee85df90b8711bbf3cb10a07402c2c1de4",
+      "lfs_oid": "812a063470f9ea5798aa3fbcbd3a2bcc6780f9de38735fe61dd6fe8652a0aea9",
+      "lfs_bytes": 4519
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/TE/OSFEO243QBHSHI8XHSMCJC.uasset",
+      "git_blob_sha256": "0b3fba9b524d6d0ad0601eb6486c3d95b7b92adbab1152be5c66909a7686374a",
+      "lfs_oid": "3b4637e2257882aa1c21d29e06a0324a9aff491bcf5210c672efeb071af093a1",
+      "lfs_bytes": 174380
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/VV/PEYLRJZ2V76X84MWP7GYRJ.uasset",
+      "git_blob_sha256": "e9cc05f4a6e4165dbca70e31e48b845a7b32add2d1bad982adf9630c30f2b90e",
+      "lfs_oid": "3a751cf86e756197f1181aae47637ea6395bd6f21b7b7e2498aeb5833d957ebd",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/VW/7TAPWUS0G52DSIPQ2D4J5K.uasset",
+      "git_blob_sha256": "82b928683f3425a1cfbc7700ab8d2150a7be3accea287554b95c984f17f7e458",
+      "lfs_oid": "34ed571fa8ba65c967178125e2bf00b95f102415a438fef914ed93246c6ffd41",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/WA/SSIIA7S16K6R51FHA3ARIH.uasset",
+      "git_blob_sha256": "3d2a19e2d96c24728bc46d91b86cc3261ef922f6caeb3ba74455c669ca387664",
+      "lfs_oid": "3b80314196518af7f33a7d70bfd0583b85a862bf8e854cae0f0202009b67c6c1",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/ZI/DHX9CRL7Y0ISKOBNHINVVH.uasset",
+      "git_blob_sha256": "605b5f359614704a8000f439958d120c138191116b9c2df4e82492a1d87e5adc",
+      "lfs_oid": "c2ba8a87e1f403e9b9fa38fdcace25ae983f2995beebaccd03665c4ca729051f",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/1L/PEXYD75VXU87IZVFUD9O7J.uasset",
+      "git_blob_sha256": "2ce020d48cdceecd000c808be8c7c304909ad93e5ba0de0ad98cb069960db4cc",
+      "lfs_oid": "7a2bc09208d1584080abe8e7a246f5f8a23c1a7d04ebc4ced6b41e997e2f2676",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/2U/BNO48ICSM3691RSPDYNP9N.uasset",
+      "git_blob_sha256": "23d16f9d809501808b084713f15bea079266c96f519690952c9585bfb5ec7c30",
+      "lfs_oid": "f9d3bddc5e15fc87092372f0c367233edd9c05c4532a180f7d7fe99b4904f8f9",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/3M/0DEQBYLID4NPSECWP8Q1FY.uasset",
+      "git_blob_sha256": "2d1dc1cdfddcc5828051c659783bc021df32393333850b053f329520be4c7796",
+      "lfs_oid": "ac1a25386564252f9e0c6303c989b089735f99ebd8a810c55bb530ba01a3b7cc",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/4O/BFLN8035DH1X9MPUF28G0C.uasset",
+      "git_blob_sha256": "83066bb9a7c8ffe66b4bde69324701fa12096dd91781537dbf2df2d49707e1e5",
+      "lfs_oid": "4b433bdbe0e8d445364e72d7a62b07c7dc60fb0dcaf23539035c12bee29f8d6e",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/53/KPI9DUFFMZ79TXJ2K3S6NL.uasset",
+      "git_blob_sha256": "c8f5c26b2fd3f3610eb4ebe58ced2b4605d8867422a7c49162e25fd11b53be72",
+      "lfs_oid": "c3146ec50b1289fe28a028b6e944208871daa7694207161d716ac3ec54db601f",
+      "lfs_bytes": 335541
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/5R/QAJFILA36STJ8PS6X14ID4.uasset",
+      "git_blob_sha256": "a665119277250ba9f1c73e106c485e29b70fb7fac73527e1eaddc7591d78a033",
+      "lfs_oid": "9f4848c4a71766bb4d162045fe7bd8e2303592bce87fe49ea9e43539ff68ee7a",
+      "lfs_bytes": 4397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/7N/4QAQFBRU81WKIZE3DEE1PW.uasset",
+      "git_blob_sha256": "0cf6eaa295f1a976decfd1e936a2040460a5fc344e9f8c2e0df62a02cbbb67b4",
+      "lfs_oid": "95e4ec20f3c20ee8459835eb09cf69a6499abcadbd2419ed0019d015d919d000",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/80/6SMFGLM36QILCSD4X4RX63.uasset",
+      "git_blob_sha256": "edc11ff65895856446b4c6f763d37c5ee7e934d80c1f43c389483d4558eaa113",
+      "lfs_oid": "cd40ee8376f5c6d4f24c79c966ff7e01919eeae4a7c874a98f0eeb57b6e035a6",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/81/S1HPUO01WYRQVAM8MU3ND1.uasset",
+      "git_blob_sha256": "94c068a3374e86f07a8fffcad6e6c78a810a7e8e1ab1f467dba2a14a880146b1",
+      "lfs_oid": "21df71bed4493a8bdf870a4ae6766979290dc16d4a454a44f1b2243096adda3d",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/8M/O5XQV1JGC79I8QV3RZ1QDV.uasset",
+      "git_blob_sha256": "e55011d9ba1efc96061108a3a8cb9979efe93c13a2ee0f4b61791d8f68eca1ee",
+      "lfs_oid": "3118f1d01019066f73c4eef16fefade27c2c2fed31d37482459adf72642350a8",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/BE/5BV020C74YHN0BLAPR1T57.uasset",
+      "git_blob_sha256": "7e503898edda029417b26d109a4460b63120ee72436bc1d06a176ef201e36e59",
+      "lfs_oid": "25cc8d2876787ca891c143599dc5bdc209249bfb6074ba8a77688e1f509c8513",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/CC/P4EHA5XJE95D7D281GX9F3.uasset",
+      "git_blob_sha256": "7e645bd25d273e3a110f73e93af03aeb1a5bd8727b6ba472b562b1538085fb8e",
+      "lfs_oid": "27206ea7f4151fa6db874c0b5943bcdbdfa64e3326fc02d95ab387ad9174eec5",
+      "lfs_bytes": 5291
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/CO/QX20MZNJINQJN1V5AJC2ZL.uasset",
+      "git_blob_sha256": "71a9100a8dcc49b962bd630718ad31c6026221123e90b4e3bf784369aca56fba",
+      "lfs_oid": "8e4d78ba5b30319cf67da27d6ac356ba363cfeb563ce4e8cfc6d41dedfe02e7f",
+      "lfs_bytes": 2732
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/DO/0MJUYGOKKPH5WWYPOJCNXH.uasset",
+      "git_blob_sha256": "daa0fb64c2779dc23fa1fa21be50189bb7bbc82280b2adae259da18178f63a24",
+      "lfs_oid": "fba547e272df22e5ac6ef2dbf12f2ec82c25a706f294ab719998b33d86bc0460",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/E6/FO4XOEGB7RP18G768AW3SX.uasset",
+      "git_blob_sha256": "053b1667859cbc3df11bba96079c72a25cfe720f6a26ecc3f85d1441c57465b4",
+      "lfs_oid": "ceefd2aaa1592cd210a144e134791efc61076e92006e08812b4ad8fe3f1bc681",
+      "lfs_bytes": 4525
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/F2/KECP8MNH1NUQPKIA2WZ155.uasset",
+      "git_blob_sha256": "5a6338bea6d66b6bfb815445e26a6399d58eb074590c326aeb54e45a805bcf5a",
+      "lfs_oid": "1b22f0b31a28e5697cb0006e81132e27d853e50ab26444d2722f69c6b50b7c35",
+      "lfs_bytes": 4391
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/IR/IIXCSTVL53K5DT7JJMR5VR.uasset",
+      "git_blob_sha256": "18a45fd59662ae8bf767db9f0b8d372b6e1b486b5fdcd8df758f959ee113b70b",
+      "lfs_oid": "66565919b7346f450a6327333cfaaa3c65308d94fa77fe8f7950cd38389c6bef",
+      "lfs_bytes": 4512
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/MX/G9CHGVEI824JFIMAAVZZRR.uasset",
+      "git_blob_sha256": "737ba8da7fbbfce8cf79be2775010657bc768b29a2dfdb3482bfde9268607b89",
+      "lfs_oid": "85e85d24fa35293a4c6e3f0cb521cfc1e14b3f764a12444726a8b16f6340ca92",
+      "lfs_bytes": 334651
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/NV/U97FDF6FODBCREK1KXIZWI.uasset",
+      "git_blob_sha256": "9b46530d262869768047619b116b6e7b56ec9dc49b915f679cc4f4f395908018",
+      "lfs_oid": "415a894f23c32aab58f1bcd80aab95004542eaa085e8c296ff5f4ff3a85f2f51",
+      "lfs_bytes": 4410
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/OL/X0S8ZGWRKRZCEZ7UAK5EAA.uasset",
+      "git_blob_sha256": "f1fcffa58664ce63a370f674aa764cd894866917248d265b44cc05fec546dcf8",
+      "lfs_oid": "0b5b6e284b4aace83cf5c0eb5b1535b5edfe190eb21c8bd3aa00874899d47562",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/QG/G3KQOXU8BCIWK68AXZURKC.uasset",
+      "git_blob_sha256": "8f7e967868aba9ed148f6790cad85e002818ff933b5da287827b42f550933a51",
+      "lfs_oid": "4ab1e264b0665b9a126d164cbf02dff6a19c1f177af34e8f057eaaf4571b9023",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/S3/NOT87UKE9BMW4G8YDA7IQC.uasset",
+      "git_blob_sha256": "4682d66a14953c77fde8c89afe7c244b0555e30a075d6850660cc37484e6d8f1",
+      "lfs_oid": "0bb09bf5396167f9c676505e08997e88e38cb7a63e2b9aabd4223821afa68130",
+      "lfs_bytes": 4410
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/UL/P7IHESLXVGS622F04DG7HW.uasset",
+      "git_blob_sha256": "c27723b7c27b9657837d3949ff95d8f2f99ce37a19078fdb5cb3511d734544ab",
+      "lfs_oid": "915b6f6745eb09fb03acb8b399549afec3d4b3adc2916b71dc04c5e80a9aaef6",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/W6/R7N5WAD1CCXOZJA5H2PBFB.uasset",
+      "git_blob_sha256": "c02294bc6a3f520d3047af1c9fa905522ebea0b45a74864b82a95b92741f2d32",
+      "lfs_oid": "e8569b9e9bce4d7a6ee5b778961527304a2d190f0aeb65bc03b62234552161fe",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/WH/AS8ONKI69YBHZI066ZBXU9.uasset",
+      "git_blob_sha256": "58ee9fed0f2df06b09d6ffa2767a54ee78471770825c5ecc3cc17ea3ae0eece3",
+      "lfs_oid": "46fde886f66077cb8cb63dac75130fd14e827e7ea0db3bbc03274a6343884ef5",
+      "lfs_bytes": 4510
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/XJ/T7GTRTZUF9K9FTDZWKR5PJ.uasset",
+      "git_blob_sha256": "133c0851514ca9916929f3d30d0d6bb58feba4496b15fe809d83e51f774197f4",
+      "lfs_oid": "41950683921b8811f069124381dea0b1dda26729c07ee40f203312c89096081f",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/ZK/W4194Q7PC0SEGFE5LILEAG.uasset",
+      "git_blob_sha256": "031d7733b5d4ad4226040fedbf9528f12dc4a49bed9cfed853fa91d18565296d",
+      "lfs_oid": "38c96d20a261b5cc1dc2fc5b487850146fa61d44e52faebecefb899a68d55147",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/ZS/80V4M2LC644KAIHBT91JJX.uasset",
+      "git_blob_sha256": "6b62a2dcde9774a52d7cce1a12a778f4b2182e4333ff253e3c7e3c908e90a551",
+      "lfs_oid": "c9a06dfa6c49254dab4664234626fc7ee826615a2fc270bac1608a1c2cd9d6f5",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/09/CTQXDU787FT8QVDUNOEPN5.uasset",
+      "git_blob_sha256": "f8f5c8d296ba7e22f829fce15897c1a38dea60f823bdf209c73c4a14541f56fa",
+      "lfs_oid": "244ce847857f6df06c79291b7f89c588c2898898e9cf6dc02f8bd6f9f40c2976",
+      "lfs_bytes": 4465
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/0B/GAZXBGFJ2LDEF1FTQK6F3B.uasset",
+      "git_blob_sha256": "e4fde880746f4fb6492f9095546f0c64c8891699e91b7591b35f4c885208e291",
+      "lfs_oid": "7a6c198e77a0b0395b4b71a1162b1e4dc024e3db55074a9771da53f0fcb32cdf",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/2C/GIHDVNSR7R00841O95L0B8.uasset",
+      "git_blob_sha256": "551ca97d06fc112bdf7596d74597ad194d98613dd58c399350508fc27780c9ba",
+      "lfs_oid": "066373e1730773c38ab5504d106dc9bf766f05dc8ffc9539125e04e0a2711c73",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/44/TO7CUZC3W04JZOUSFXP8FT.uasset",
+      "git_blob_sha256": "513805a2ce3abc95b8e4cb2c41d30237be71b1166524abdeecf5d28edf726cec",
+      "lfs_oid": "e001d758816c991edf3fff49d7da8f209d2fb5db8a8d55b2cda0d55774f4b217",
+      "lfs_bytes": 12574356
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/5Y/DOGONO3GDF8MG57L36AG0U.uasset",
+      "git_blob_sha256": "1e36b347501725fe41e6558a3af40c36ab40c7d7b5c55841fa56f5965f2437f4",
+      "lfs_oid": "310cacdccaa4d05d198073cd971c9e36f5b35378fc82b192dbb7762e5cf3847e",
+      "lfs_bytes": 4525
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/5Z/YOAJEHKWS00W3HVV2EFYM1.uasset",
+      "git_blob_sha256": "623e1a447b2850df57ef7a2bce0161312d9a76c41022671cf7da68341f765af6",
+      "lfs_oid": "26bb3d1ec1ca336174701aa257867e78174d5442283446b7963395908f53448b",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/6A/65PGZSKIQ9HQ6QNYC7L5SU.uasset",
+      "git_blob_sha256": "a452c550d5a0b19099f09507aa1527108abefcc357ae087aeb59891d885cd5f1",
+      "lfs_oid": "fe4e6ae6984f0b3405ed35d0b4303847a49bcabdfccb9c116f2ba21c35d1d731",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/6K/Z2KBUZDXJO394NPTXKHXQW.uasset",
+      "git_blob_sha256": "20e2056d502e854da8ae93b3113212cd474b92e81b8dd5543cdfd8ff440dac23",
+      "lfs_oid": "9e8867d8676131c4bff6665a2bd53b5c57ccb94d4ae4f14e5892bf777f374439",
+      "lfs_bytes": 7565
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/AT/I5JTMY7PP4MD4U3JZ2NDL9.uasset",
+      "git_blob_sha256": "a15ce42502ed368c038ecda38adeaf34a358b05cc26f6e665c24bcc7552b7ced",
+      "lfs_oid": "b7c6cf7de485fa0dd0dff87c0273f90ce8219bd75db0f4bdd28e5f6de4ae726e",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/C5/IWYW99SIB484WE1VD6Z383.uasset",
+      "git_blob_sha256": "a0228a680bd32510fa9eac764857b45c8f8fbf732371eee2ada60e8bfc11febd",
+      "lfs_oid": "4819ec5d051ab86ed35520bef0d8325c68ffe3e6e29251b791a64c0b8528b007",
+      "lfs_bytes": 4800
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/D0/WJ2QEZRLVH06W3AXAB8WV7.uasset",
+      "git_blob_sha256": "034dbb485b95302e24ddfada9c57539d8bbe573e863c9ad1c3fdbbe6b483a857",
+      "lfs_oid": "88a7dfaff26e6ce9a9be21d3b7d9be1adf5830a3157536e07a3d55f8f505fe29",
+      "lfs_bytes": 9635
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/EE/1EJEY62E2U6RFGO9CER06Y.uasset",
+      "git_blob_sha256": "6bb5a68786cb9391ebf0f245f4a9924dc064fdce1c27e4969cc36fd13b30edce",
+      "lfs_oid": "0f0e396eff23a197c572eb382ab13862ee9e50efc7b4923a827c5ca15b59f53e",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/EK/VTHUTXVB3QI7MPQNLQN6B2.uasset",
+      "git_blob_sha256": "2741f88c4620eada1039f8e8e9c790920a81b1722a7a3f6f20149b7d87a1fd30",
+      "lfs_oid": "2eace2f5ab9e9aa7ceba7c0c7dff3659514e76999100e9d56ecbb287628ae389",
+      "lfs_bytes": 4509
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/FE/TSWLUOQQ3XW4TWUDTY6UC7.uasset",
+      "git_blob_sha256": "fab0a59848cb85c8f3ced0f99326dc78457fbb33e8ec18ae04251c09b17cedbf",
+      "lfs_oid": "35db504d4282dee2f246a8c821ea765de5809db2a26b252300119524c2ecd510",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/FN/H5WBIJZ2KAD6JU3OSJKJ0T.uasset",
+      "git_blob_sha256": "43c3f23b9fa5044cfdceb1beee650738a3225982d570c13ea7e1f76ecdc26614",
+      "lfs_oid": "65d84a809ae14e6c3c021b58bada149f58b180a744ac7bc3a6033d69470e5878",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/H8/L0YLVWBLNLVH3VCP14AUBZ.uasset",
+      "git_blob_sha256": "59dc485301aef3240b5b661c6ecac7a281fc1efece1b60105ee00fe78560d998",
+      "lfs_oid": "e77628c9a129a698eebf8c5e367ae363f447abb159a667389b86d0ef1fc4ee90",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/L8/9E3PS76GLPGMV93E6BTDNO.uasset",
+      "git_blob_sha256": "3d3a679b90e3fe417be9dde4c2ec6a2b51cf71ecdfb86cad132e880ef2a0574c",
+      "lfs_oid": "93f8a12f26012e5efe74df54f4fcd86616e33d8f358ca6e7f8df8c73714a66c0",
+      "lfs_bytes": 4479
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/MJ/POMTDT7Z92YTHKE7MHQYVL.uasset",
+      "git_blob_sha256": "14ac7f058f5f86e8fe15d03ebc9fe3e85d5045716a71e7d2eabf54c77010102a",
+      "lfs_oid": "a426c8a43dd604a57a03dd5beef65077a21fb46ed4bbce72a9e19c7f771f28cc",
+      "lfs_bytes": 5036
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/O7/HW3OBCCHLRS1ND0EDLTGT3.uasset",
+      "git_blob_sha256": "26bffd97bb404bcabd8b2b1aa75a82b96f1406c8a791ea1920a73a7829e47d55",
+      "lfs_oid": "d992a51e139014c880b269a282ed2af62a27811e774b6c72434977e9dfd5e49e",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/PR/JNSTS5TTT7LOJ9ZGGRE7TV.uasset",
+      "git_blob_sha256": "a494588ef00faf2a3aad30e7e2e8adf21b62bd2faa02dd98865152187bd6b104",
+      "lfs_oid": "8acca0c91a16b71980c1b84767d3da72c763ee418aadbb90901e0fcdb82e8237",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/S5/LX7CPIW7NSTT0DF3L8NONL.uasset",
+      "git_blob_sha256": "835c07f76ab2da87259ed9aa587f5cee56d0fc592faeda6c5295b87b839a5093",
+      "lfs_oid": "e0457fc605587db20385988be348e9b3bcd9b43e4a07ba57d9c62c71a1b0906b",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/SN/AUP4U6S383OF6W5OUZ9TL9.uasset",
+      "git_blob_sha256": "e6a54d255c47b5f48defd63b94268d8d1aa6c093b7cbe777a2dff55ab8838e05",
+      "lfs_oid": "08f6d0e96068ef0136b737e17bec0b7ce656c1a4361f1318907660f36cd20b17",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/UF/J12Q0D4R98V8FHIQ8MLJS7.uasset",
+      "git_blob_sha256": "455d4351218a6cc95b5c6965a92b1e565ccdc711aea0025841fa2f18a9b496aa",
+      "lfs_oid": "9b17e6c29eae8b492083e60a6f2d4191ff6beea45cc8c75e4b468d370fe30f48",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/VP/C5U9A3ZN7KBAP0F5ZS6D5W.uasset",
+      "git_blob_sha256": "2b9efca078c6844cca6c7187a5d3d94d0785c52f23b0bbdec15c648fa1670913",
+      "lfs_oid": "a812371c54d481ace9601df5ad1d55701ddd072cb822e00b39b4237b9ddf99f9",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/W3/EHHAJ33WHBOR405RIDTFLX.uasset",
+      "git_blob_sha256": "732b8c5b14cac666f3e1862590f16ea4bd77b2848e2f6ca26f3aa3f21354232e",
+      "lfs_oid": "099a67f92bd128c129601f8c4817ae8c087a43f898aaa9dac2b73e6d50953f83",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/Z9/SOSFD01VU9CS6UYV4BUHV9.uasset",
+      "git_blob_sha256": "c8850e21ee708ae960c3279a8b2b88403393b22cfb74af23ca0e8090402a3546",
+      "lfs_oid": "f901d32f7b880afd958daee513df5b147137e94e793ed9e09b2c72f6b3cf8933",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/ZL/Q3XI8C70GCIVLVJ4SVB3NZ.uasset",
+      "git_blob_sha256": "29b184d3b551ac78b5c82a730e44fa6c7438c217eccfc7f44d246f137fc6447d",
+      "lfs_oid": "eb43ff5144a6ee2ee3786f68f19bb0c0c9f8be33804acc0702e49799002b37df",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/2J/2FWG6ILUKKZK2V3K4AP5YC.uasset",
+      "git_blob_sha256": "74aae1b1b21e23b8a57cbd1bc0e501c3f792a09842911bc60ce6e73888765d57",
+      "lfs_oid": "1a1c3a2b71a8378a7fe91de5117f98056f8603cd0d348c0f356864cc70347c92",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/3M/73CHVCS5UBCQY5AYIQH5W1.uasset",
+      "git_blob_sha256": "47052e318b6712a87c9a3292cbfd824610612c391c50a496fe53a800a6ccdcc0",
+      "lfs_oid": "8be78a82d53b5d48ae143536ba6a8c6f095485f9760e6bea9e3ad9739c739fd1",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/6A/9XDE74NWBFSMC816GQ1H1V.uasset",
+      "git_blob_sha256": "67452080074c0e73f657e84b9f3a51273a9aa2129996f7642f992b0de4f8d0b5",
+      "lfs_oid": "3ebd92d837bbf97010ed19a0e819c7f89436e21801808a56c8fcf1bc2dbc8639",
+      "lfs_bytes": 29722
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/6U/6878DTZJFTAB6RSMVVZTBF.uasset",
+      "git_blob_sha256": "0809ae59c0d76fe1d656c15a6460d9573593bf40a8e740f91563f14aea8f1140",
+      "lfs_oid": "4ff4f3b8cdb6f0abe997bf8c7302cf518857753836e801e71b2fe47a2df9f4ae",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/9A/0SWRXQ57BU0VMHOS1R56FG.uasset",
+      "git_blob_sha256": "e0764bc67ff30be1bec04892f5722cfb80a1f5378223a4b0eae8dd142f084382",
+      "lfs_oid": "9b26b4d3b5f6e4ae4867284ae534a8fc95a5c36d855f04c119dc12b27df3f8c9",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/9N/24QMTUUVLSN8EJEWKFZRR2.uasset",
+      "git_blob_sha256": "a328d454b55ad0bfd0b872cfa41df81dc9fa38bd1bd8b4a3bbe063b1c6e182c3",
+      "lfs_oid": "3c6e7bdab70fa5ad63053a67aecd3a022409789c821b184fc2968871eaf17beb",
+      "lfs_bytes": 13771
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/A1/H9FXM0J45MDTF5TF2Z2T0L.uasset",
+      "git_blob_sha256": "743a5c20c65e3dd6e30ade200dffdb10bb36e26b2bcee6930f8bd2ed13ed8a5a",
+      "lfs_oid": "a62f25435d2ffdc1c8d7390ca60b16f439101e7e4fde4b2d2fbb29fab7e3d819",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/A3/YTARXMLFF1TF1ZK2LBSMBB.uasset",
+      "git_blob_sha256": "f3144b843850a492479badd61b0781f30f22aa9eef7d5c3e7458aee72577271a",
+      "lfs_oid": "f8b13ee2f0fbbd01bbecd308a8446b461ce4453c97dac4ddbf2b16fffb2739ba",
+      "lfs_bytes": 4402
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/BE/4U452NDRGN5UV7XOHWVPA1.uasset",
+      "git_blob_sha256": "e5fa12108491db82929d60480b33a81c31a8c46abe22f657c614a6e576cc4b3e",
+      "lfs_oid": "095cc77124f72ba17295aa6a2cbc8ac188580f0b617b771e49caf7fe80d12239",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/C5/JNU7M0C47XGF9VI442YXQL.uasset",
+      "git_blob_sha256": "d6aa5559083e7a04191d3d9c74de1d23b62cf71bf81f849ca028655d934ee141",
+      "lfs_oid": "0b67cdb1cddf29d1df4be4a232afbb31fe823b46c670a89b214b7b9cdc70caea",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/EY/0V0XUNM3KKSM9PYHZFO80A.uasset",
+      "git_blob_sha256": "e83dc35e534df96599d9d34e7830e5babcac146956cd8a93ab38bff5e31dd387",
+      "lfs_oid": "32e763bedafb371ed0aa095d2b513404eeed593ae19239d1d6320055e96e1031",
+      "lfs_bytes": 3244
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/IE/B6AOXL0JPND7ZX9YJHTHGF.uasset",
+      "git_blob_sha256": "d7eebb37691a392975f4e03e0ff9494303c20d4775156a53069b80ccaa1004e8",
+      "lfs_oid": "5f4f094802f0b90c47c500e3c8e09d1ec70450183046660604370ee367694089",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/II/DOU219OBCB3PA133PACP9R.uasset",
+      "git_blob_sha256": "e87ed276c4463bf229f4242d81e3f3c45e8e1d729e17839ad385632e4bd70d87",
+      "lfs_oid": "70550eb407b4799d39ce9414d1c202ee835f1ab7960415823cbba25ecb9e3feb",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/IO/N1NAE56SBZI1CR2PL1XM7T.uasset",
+      "git_blob_sha256": "1b1ba63c773aa0523fcebf65fe2788d3c37a1adf06245b11d52b77736865bb39",
+      "lfs_oid": "eb77680d90e4c1aff24ebdcd5add45fc63a0e4ddeea7265242c3ba0e1d0de870",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/JR/3RRQRG4E8AALRCKKOX4DAT.uasset",
+      "git_blob_sha256": "dffe3af1ea39381c6d35f628a7e7f29595438c6b1adc88c03f15a0e2e3a02526",
+      "lfs_oid": "84031c2733c461d00d37961f586e6514efec5fe65d6597fb3e7ae5ddfcebee8a",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/K5/XCNI9IIIRPYCQDGD37VXXM.uasset",
+      "git_blob_sha256": "96294b792cd3ec4be5bdd5e179bc104e5abb8929dce5fbac1a6909b760c2f0ce",
+      "lfs_oid": "43775b9d11fb03552e87c0924bf04ad64f375b22c9162205d1184cd2e2f78036",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/LQ/BJMN3I3C4CUUSX8B2C5ICH.uasset",
+      "git_blob_sha256": "0eee0103475eb2aa249b44208faf8125675cc271cc88a17dee14821cba03e5fd",
+      "lfs_oid": "d20347ece153cd1b8edeee151db2c50c3bc75d16ed84b98ad28ba0eddba6a664",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/O9/TCYVKZ79057EA8GWT0EKY1.uasset",
+      "git_blob_sha256": "369bc219b8cbc6b42f75da50cb37a1cdff59255cbba9931fdbfae6f1ba7c9841",
+      "lfs_oid": "1fca0db4f4873cacb28d42ec61b1ce710b76a96febf37b2831751619d9be3c81",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/OG/MRPXYYJA5MT5RH921T0Y8A.uasset",
+      "git_blob_sha256": "5f83cec0bf3353a196825d4790674aea4f289384e676fe3e45b564743a4f3d8c",
+      "lfs_oid": "a4a4aaddef059318c43c9fea6566212c3c258ac2babceec81f7184a20d359322",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/PA/9AIB0XNN2IDSUM264JFR0N.uasset",
+      "git_blob_sha256": "88955aca2a0ef0520cc289eddd67e418673edf61e923fc89718cb091f0327245",
+      "lfs_oid": "df9f69984a74f5e3e864b18bb4f836a3bc31b448b875314b3b56e1cdaa8be3ba",
+      "lfs_bytes": 5337
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/QO/2U8XLNY9OS85SW2DC1NFWS.uasset",
+      "git_blob_sha256": "6e84832ac8f4b6bd13095555fefda8b0d4fbd64a4066ecfa213cfe55c901dad7",
+      "lfs_oid": "2af83aca52645ebc448afbcc8da1ddb4078f5d9a3e9bb6e33e6609859ad703d4",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/S9/YZUI0C6HPJEB80AR8O04VB.uasset",
+      "git_blob_sha256": "6de1e407a228ffcdfaafef11b38e1b1e1dfa195e74a9f98d27aa9cee0767e856",
+      "lfs_oid": "9e51d70af8a34e71eb42d6654f78f53aad13add4d9bf15804c00a86c9b597f4a",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/UZ/ZQXCSMCGYBYU0KZB1MND64.uasset",
+      "git_blob_sha256": "2efa7e45e63ebf7ec9c8053db855fc517333e9833bcbc2596a1597b7259bebc6",
+      "lfs_oid": "df9b5f37b5581e0f96fb2f1cc94b21bc826b2e8da6b6f469bc51cdc4dbde791a",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/W8/AWJMPO0EU5JFNIWUOZ0RRM.uasset",
+      "git_blob_sha256": "964da08abc7457c604239caf4e330377355e1260e2dd7395b64487b150ce6efd",
+      "lfs_oid": "5865d1c0b05b9084018b0b7ad56622652ba7e49514c7746e5c63e1ea46b9839a",
+      "lfs_bytes": 4465
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/WO/F8BC0FVGW3641RZQFOPDI5.uasset",
+      "git_blob_sha256": "9130f901b5af1e15a31f4c932fd3a3a6898532f658b38be0787eb8f7223f7620",
+      "lfs_oid": "bc1d0a7f29f28d6a53d8b692f61acec8547fbfe3b9054b23fd36903a6274fe7b",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/X0/7MA38OBZ5KOKQ5KMJB1PZ3.uasset",
+      "git_blob_sha256": "78406eed52984e666ba428bd2eb87ca515c698af14a7e2b5a831788f5b50444e",
+      "lfs_oid": "7300ef34472a9da7eb99c5dd6c639e8e007eaa168934c247f0738d57485684c6",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/XU/4ENZOXZ61WXUVMTUI1EC9K.uasset",
+      "git_blob_sha256": "865006ea92ad95ce7bb8e0b6647c5f811ba14b7363eb339658a3854b27318597",
+      "lfs_oid": "6ed1e5a81abca8e0ee69c6a12137667fc9ec31e39019493ebb26eb122a061fd1",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/YU/NFL65ACLYI3H88PQO9BA5S.uasset",
+      "git_blob_sha256": "e79a466db44acc8708ecdacb285cf02c7590cbee647db1bad962188607c63b40",
+      "lfs_oid": "cf547ee317951fa2d158860a9a9e8fc42cedc6c6a347e869955c430ce47e4e63",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/YW/WN6L0AZ2AEFRS9PYQ6XL9T.uasset",
+      "git_blob_sha256": "df952724efebe0c3b178fe44bea7dd960284d4405919d973180cf62923e4b232",
+      "lfs_oid": "d71a7569bf955e3251e506713a24d7c9136b677a264d5dedfc072453d728c674",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/2G/5HI8SLFN8TUIZMS1RPF0V7.uasset",
+      "git_blob_sha256": "0dc15cca3033823c3bbfb916251c66c0a94bf8aa6c34f8838557b411f02ded8b",
+      "lfs_oid": "dc7f4aa26b6cbdfce4edb6bc8b3ee7ea658cf78c47cb3706082003f6466d8ba2",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/3I/5WAN87XCH6YK6OAXVYAIPS.uasset",
+      "git_blob_sha256": "df6e7ff6f450182915eb99beac43cf171c6bb002980f11d40969f36a6921417d",
+      "lfs_oid": "649fa138f5790fc64be007f63d88e034a03564e1b4a97b4c5246d23fc6fe4a51",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/62/4LQDRH765Y18K6S4L94F66.uasset",
+      "git_blob_sha256": "aa19c735138b15c1225a4189003f680e153053db756bd677a24236d72e6cc37d",
+      "lfs_oid": "aff9934646292422da3d2665089917bf9de162a221a823a1bb9d4f9583741bef",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/67/NMNLQONA3HPL3QO797UWBE.uasset",
+      "git_blob_sha256": "cd6665f60e1600a523fb88061620c5238040b36799921936f868ffcc61d2780b",
+      "lfs_oid": "2e9d505b444e09a121a4e40dd9629fa056227731e09e1f2956ec6a158e4e2867",
+      "lfs_bytes": 4450
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/6Q/NJE5CLSRJC3UF398K0FCD9.uasset",
+      "git_blob_sha256": "f311d3e786c010626dd0be6300bb58c10378ad0cc71c2cb91ad05b53400743c7",
+      "lfs_oid": "b209b67775ddc18d76be86624e96c6d18b8bc50d0752ef3970a1c3cdf004bdbc",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/73/LYMKXU0K0AULFBPYGINWA8.uasset",
+      "git_blob_sha256": "5ea103fc74e4e080addc2c9b7817031cd52600af06a49786c8bc0d420b65547b",
+      "lfs_oid": "82298d72e5857841b5d09b064e3e73b660710ac1f81ad349e0593d4bdaee6762",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/97/OVLMAVWRTR9AUQ6HJEP2NS.uasset",
+      "git_blob_sha256": "9114694bc55ce0bb678bf5e2101797e834668c28fae2ef118b2f8028e3e937fc",
+      "lfs_oid": "50965690e27a68d95411c025f6e3c4cbe996f677feacaa480a79c6e659653a8d",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/A4/1PUO6ZH66J2SY3LI7ACOS8.uasset",
+      "git_blob_sha256": "63b21c5917c067b31cf48dff025c79f59a2c8b5d9355e8e4248a873d37f22385",
+      "lfs_oid": "199d73c587ed6ac9f693ab22a38340ad646ab890869bb36bac7fdaab9c3f8051",
+      "lfs_bytes": 5337
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/A9/NAQKIGLK5QPTAM4SO3N5G7.uasset",
+      "git_blob_sha256": "67626685f23d346212243b6bbc4f9d502e9d9314ce05a8e402f2663f8a17dfc4",
+      "lfs_oid": "fc7a9587d7a1edce3258d2e7f31b927f93a9a3dd63dfde60c60b897ec2fab2d5",
+      "lfs_bytes": 4509
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/B9/43P8QAFRH7AXCV3Z9VX7CL.uasset",
+      "git_blob_sha256": "9f55ac4aab65eff6c02c389e46e90eef2ba58142d9c67a1f45e0e30bf9f1c581",
+      "lfs_oid": "e83cc7f528a4b6a613569d19e43320ea820ec8a32f2d1f76411a3b4058daf9fa",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/E8/3YG0FJA2YCBVWCVZ4IKSN2.uasset",
+      "git_blob_sha256": "e3804b5a6412fb4a49dda9e8d54e51cc8a974e1be3b7b56e5842657a0f936c12",
+      "lfs_oid": "b8d78f0455a805fd33fbf58ad105b3ece4077d3e50ff15f912cabc51c9be10fd",
+      "lfs_bytes": 11398
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/EZ/S89P6APGXLJHJTUM4CEPGX.uasset",
+      "git_blob_sha256": "34b97f61185fe9a461b0ef2b8937d82d99a15e0611849d6a205531299fa1d0ec",
+      "lfs_oid": "2d601066a749175abd7178eca63a999e801ed35056f5a4a7a43ccdb62b36e453",
+      "lfs_bytes": 4510
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/FT/X9X2UATB5UJQD9V5888M4D.uasset",
+      "git_blob_sha256": "c57f8df9749d048d5df4bce46bf6738da48207c7bbc411314529a43c8c2b34f4",
+      "lfs_oid": "9f0084bd0dfc2ac1933af6ac6164bb4d79ecc17f27d9544e4f6a013fcbaab240",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/JO/BZHT5SCQ7JFNHJC1XUPFH7.uasset",
+      "git_blob_sha256": "5d8141cda3f8e97fea1e9c5981a54e42c6562b35aebf7c9fb7480b317a71aed3",
+      "lfs_oid": "519816f8afb41d24b01720e45537b395b4de713168726864622f9cc7e364770d",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/JR/TQB9VC6KFYRFLJXQD7SANW.uasset",
+      "git_blob_sha256": "19e18a8d764cb02a36b024932c374b9203acb63685b0b9bbc83c8109c097bbc2",
+      "lfs_oid": "9f8bfbffa81fcd9c0638cbece6bb407cae3eaac7c1369955285b4f5bb16f6cd2",
+      "lfs_bytes": 4446
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/N5/4JSH2ORPRA1L8RQE7WYSQH.uasset",
+      "git_blob_sha256": "8d2c90ac87e5590f76cff9200ded5dd94413f96b6cc77078ea67fcd96bdf90ce",
+      "lfs_oid": "1fe6dd919a31e5ee70f2eb606cb4950331eb1b90d4270bd2360a4e6290e2d185",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/NE/NQZ31PPNCPFKTMUDURD0HD.uasset",
+      "git_blob_sha256": "a6d3bb25b1ea5b86bdae9e367efcefe91c55da890d8e316425cf1ba509187c1b",
+      "lfs_oid": "6dd285f5e4a3094f104d3eec2c4b16ad6a641c101bf5e90a300977239568bf77",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/O0/TJSYUATMDRB650565JEX80.uasset",
+      "git_blob_sha256": "12c6f43b025a3b2034387ecd4f0f614f32f7cc09115decdddadcad21079a6850",
+      "lfs_oid": "c36cfa5c79feb2136193a50a9323a2253541f24eb108e3a54b5d995e46666fc2",
+      "lfs_bytes": 29674
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/OI/NHTUYZQJ8GDQMP8HRNK3MG.uasset",
+      "git_blob_sha256": "b9bc04259a2ea7b43b4474d895803c1b367965c82dce1db14d8fe0d0575fe119",
+      "lfs_oid": "3d5719ecffc12408370fc9c5d4ce78eafa531dfe873a0c0a473a57060d3e53c4",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/PJ/VN9H3FQYIWFWZHWXY4SWJ8.uasset",
+      "git_blob_sha256": "f8888bafc433f88f127e74e00e9bc3b1264d2bc01de2bb0815c6341a5ca93811",
+      "lfs_oid": "4c75ff8a6808f09c38cbe89d98b53186d1c5fa011473ed0c7e8808e36e1fe5d9",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/QT/B6YJ14D2Q841HOGWL7W1P5.uasset",
+      "git_blob_sha256": "069e69d9553e77bb73e5f996e447da3cc46b49c086476f78e6712af08efc29c7",
+      "lfs_oid": "657f4341296d7768f973709b86b66874328465b80b146025d1aaf7ae40cd7782",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/ST/H5E3G383ES1AJI1FTGIQ8W.uasset",
+      "git_blob_sha256": "e9a4b55b34eeee1da6c5eab00d76748123ac3f82d64154d81cad6443e187a547",
+      "lfs_oid": "6356ce9cf750b374bdb0aec5bfb456e17714a7c95db597caea1df18cbb6f7f68",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/U4/P314ZL0F9XPSDG3K9QV2JT.uasset",
+      "git_blob_sha256": "c0bc5622a5e298927af80f81b3eea57de4bf30ca0935a50b0c9b17375ea5fa24",
+      "lfs_oid": "6924af334b04a6d2ac54e5160306941b87962a6cc1561b66072b7f2f445ef7e5",
+      "lfs_bytes": 10961
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/UD/AJNGF21WT6HZ3GUEESHC01.uasset",
+      "git_blob_sha256": "2163679b25cc699d40d9bde7717d9e7687566427be2b05274fa15d327e843d9c",
+      "lfs_oid": "ae63d407852236d65e1156b03b3aba9c19ba68dc2de80d1a5aba29103267f669",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/WO/D0GLMJCGSBPCCQGP8OCCCR.uasset",
+      "git_blob_sha256": "325e877cfaa29569535a06cfa6fe0d5d7460b380ab77197c4f718e98d9fa609e",
+      "lfs_oid": "395040513678e4775927ed75a1516a607319efd9a5a539c55a414527188b1d40",
+      "lfs_bytes": 144838
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/X7/TJ2F9K0AYU94LB3E2Q3XNJ.uasset",
+      "git_blob_sha256": "4ef5976e5ee767dbefc9dfea2d5646b8f459ec8c17ae14b8b33b1f5ab01531f4",
+      "lfs_oid": "f1dde369c8072ffd560a049b9a4515c2e944267ea076ce031a501a5f637fbb97",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/X9/Y62ADR73I4JS937O2CYOJA.uasset",
+      "git_blob_sha256": "bf6087decaf5964afb16e3dd1fa0a33be3fd5d50b520e60e778af6f20cd9433f",
+      "lfs_oid": "eb10ca7d1860fdd82b0676b82f4be67652196a325bbd769cf04735c44162cece",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/YI/67IK3WGKN790HMGR24ALAQ.uasset",
+      "git_blob_sha256": "2044115f8a6c10d1dbe4195744fe0c2c17ea979ef0c3a4bf48a68dcb0a4dd076",
+      "lfs_oid": "f3a4dc7b87f503fa63d968e2bfd79920bea4453b6c4dbd72a1ecd1180bc6de97",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/YT/YW7MCXG87D6BGQ8VMNN6P8.uasset",
+      "git_blob_sha256": "91d43e943a62a1ce9532a2bece30e5780f03c9aabc4a22dbdf1312446007f157",
+      "lfs_oid": "659c7076bb5c95cefc631fba0903ee33cce0d3f2f510f9d4886b92ca70af649d",
+      "lfs_bytes": 4308
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/1M/0P21636XKSWYRY1444SUIY.uasset",
+      "git_blob_sha256": "7e563465b8f2295e77706cc656bdc96ecbc32a302ed0a769fa975ce618719a8c",
+      "lfs_oid": "64d95125833f0fe7e57f8c883802d1d9aecfc4394f7114a842ba288067728b9c",
+      "lfs_bytes": 4298
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/2O/XYO5QDWJZDS0RKT57V52GJ.uasset",
+      "git_blob_sha256": "ccbcba971fe4e5d1ead0d9116516e3d5c7b953cc905c92a9fcbbb2bdfe897043",
+      "lfs_oid": "8c056d02732c38631926baaa34fb86aeaf1f99eb9e3c255d90f039655563c699",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/2Z/NA0V6KP585IQCVV2AJZTJB.uasset",
+      "git_blob_sha256": "b89696aeebe824d0d07a5bb10839b009fa565c47a4229940aae99c162dc48920",
+      "lfs_oid": "6283853f72136d6eb6f8d904f21a7d1c08f5dc804a619883ec02f2c1ef099f02",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/4W/16E902KH89MJC4P0USB8QJ.uasset",
+      "git_blob_sha256": "5b9f71f11591e73ee6c0c45e7657de665e67b60bd9a810c4f8119e104987c208",
+      "lfs_oid": "73039603eb73e93b3b965e7c2d87b800b99dd2d24c59d7b9a236a4cecd8b1895",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/7V/NOZN8TL9Q9SH46DQIXMXYC.uasset",
+      "git_blob_sha256": "8c44a277a6c6093e3c8a3588220711589476d59b6d92585ab32cfbe94106fe63",
+      "lfs_oid": "62aa7d2028a4395f0eada52c154b5b4f898af593bcbf9c22966760e80aba072c",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/AB/52DPDN3I0DEOHCSWZDUYFH.uasset",
+      "git_blob_sha256": "8bab92a4dc0e7bb61e65933fa06a83aa47ce4f482712b0b3d7f164e6d71070db",
+      "lfs_oid": "5b64068215f3401717c2c16db7f8ded59529e4ffbf960082c76b634b8a98604b",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/AL/YFXFMLGF2C7PE8UFCIG14M.uasset",
+      "git_blob_sha256": "4de890f8649dcdbcafa5f7281960d356fa047d7acd63151d0f355c49a1d004a6",
+      "lfs_oid": "25dc1dc5952e97f60e6487e0c1a0a560d3f3fdf25247d363c9facad0039fdabf",
+      "lfs_bytes": 6282
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/AM/BOMXYGHNSU4VZRWMKD54YS.uasset",
+      "git_blob_sha256": "cc8612ebf3ab82c13a35860b7f430660d0bc09c7138f10651f896031026b9e20",
+      "lfs_oid": "078b895a678d0a0caa7bf266af7bfdaeed63221284e9c3b49c211f7a563d6f44",
+      "lfs_bytes": 3961
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/CX/AJC74Y1OCX1UW7N6I3UW33.uasset",
+      "git_blob_sha256": "6c85b5d31b4628303a9be6981b0ad7148898dd71f1db108375fb63bc35fc7a2f",
+      "lfs_oid": "e8fa9cb2ea91294eafedbb7fa0f0c7b6badff0365a80813ca1fc467e40817d4a",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/F2/VX684Q6Y9B0PX2VNEEVGWX.uasset",
+      "git_blob_sha256": "9df685659b9050da4ae378cbcc9e95c7d87ecf77c41630b57ad610ed1e842c47",
+      "lfs_oid": "9f774e9c1e7d6cb2a4994974333a5f6354c83af4abab3017157ce9ac2ddd6d1f",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/JK/RC0OHHYMGJX2QMRMDL6NRM.uasset",
+      "git_blob_sha256": "8638045fe269804c8d8c163958bc4ce3a2a6ec281836f2af17f9945365663283",
+      "lfs_oid": "5106c685e702fc7075ccc652f5be69e9ffaf0b6dbc49424f450f60e8c28d6b66",
+      "lfs_bytes": 4402
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/JY/CWMR4AM90SOD6E9Z7H2HSA.uasset",
+      "git_blob_sha256": "779dbb4493245d46cabc3605060d886aaf285ed5fc3493da22b6101cb858722c",
+      "lfs_oid": "dab0bcfecc693e8e1d15164312b3c35eb148a39e6160c7e66b3d21688c503c26",
+      "lfs_bytes": 5036
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/LB/S8LSVK19MOCNRUOFVHG0EN.uasset",
+      "git_blob_sha256": "2c15a495439ae5f6646ca01f0b056ebcb62b68d6ad163083fa4e9cebb3c2bb1a",
+      "lfs_oid": "981320345764d6e6fdd9dbd366bed4351cbc8220d03572ed2de907169477d218",
+      "lfs_bytes": 4479
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/O0/79E3ZPFINQESSYZ717X475.uasset",
+      "git_blob_sha256": "80476105b71b8c732c48dd1f9b4f0adcc229c69a3dd973f35764559b33d2a64d",
+      "lfs_oid": "381143cf8bc08762c52d1578bee138da176b73b35c50863ede2e80fee55eae37",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/P6/EJTVET9YSBHPU9EXPF6SDF.uasset",
+      "git_blob_sha256": "4ea3f0a767532a6589c7e29f2441d602ed4e0c57e2dd2643d90e740ac2406e94",
+      "lfs_oid": "2fbd91b9a1b9c03ab93c8829e5ba236254f67ceb29e59039acea0cf6d453427f",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/SX/UHENCABSQ6IV9GYK8FMSR8.uasset",
+      "git_blob_sha256": "a2202bc12a6a6ddb85b5a4fe051afc234c094d12b55b33276249454ab627c988",
+      "lfs_oid": "adac53843c670d29cdea93441c672f2a004c4af22c5b77d5b3912ad32606ec6e",
+      "lfs_bytes": 3806
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/T5/E8JGOK2K6TYSW3TE6YUB35.uasset",
+      "git_blob_sha256": "99e12f674c269db1b79af7bbfa06339a13f0de99c40b437c1fb78b12ef0116ea",
+      "lfs_oid": "4d1c3419f7f100126a21a69c45ef8d721d9244f79626ce0464f7ff3fd03c742f",
+      "lfs_bytes": 332791
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/U1/3WAP4SFHB46Q7YBA6QQGED.uasset",
+      "git_blob_sha256": "6261c2f219b9f461f2a94e1e024b3bc1b50c731d6c1b68d4830c54be375de8cc",
+      "lfs_oid": "cf699e5711388eb0773d200f8abed71daaf40d8a54483515e77a6ddefb690c80",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/UH/8E036YLN4327HX8DO5FANX.uasset",
+      "git_blob_sha256": "06e811b9930f49b5b7b4466357b00751e9b721b79d77cc45d791ea7c15be9206",
+      "lfs_oid": "fd6ab3c397598462376261b87b926a44ee4525486cf04c76ca7fb2845067d925",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/X0/YQRDXBQR534T08Q6G2HZDQ.uasset",
+      "git_blob_sha256": "c62cceae53538c61fbced77bf0f938eca65f5ca367a48434872669447bc0247c",
+      "lfs_oid": "7a8068041c801eb352d59b5e37d07ec744b3ada5dc2541f1fd2a7dc861f64fa2",
+      "lfs_bytes": 11870
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/0C/HDBOEOQPMHBJG3C8N96Q5A.uasset",
+      "git_blob_sha256": "a18db269f312c71a8e924833d49595c95f5a90448e5b7683047fc82b33b97100",
+      "lfs_oid": "63ba9a2ac69f4bc65604394eac6153bad084e7df8e6a6b5ed7909fa2002e23fd",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/0U/HQ6CMGAITF4QDOTZ8VNNPH.uasset",
+      "git_blob_sha256": "9ec9329b81cb9f7680f0c63a37ba319f52ffba053bd0f9947ea2e19b569ba19e",
+      "lfs_oid": "7fbb76fa3c47a018d606ccc21e1b5e618249b49c7ba8b13ba3637aebbaf7b924",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/1U/BHINDY2G8Y58V9UF0IPVPE.uasset",
+      "git_blob_sha256": "e4f14f584d8039f03cbe10f6eb2cab92fe265676402ded4bdc7587ab65a4be81",
+      "lfs_oid": "8f0f794a0409b6ed62690e8b19cfc917d8a723a2b62c35e88d28ad46d4aa0676",
+      "lfs_bytes": 4512
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/2A/AFHICFRSMLD0GYWU3MEIZ3.uasset",
+      "git_blob_sha256": "d3dd0afdaaa9380bb2c71cb4bc55b228ff9003cf0358fc96ee48a7918a58d709",
+      "lfs_oid": "9a1b04f157287419ccc1b74f1fdcb48d16425202861492947ddcedb267b95825",
+      "lfs_bytes": 3803
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/56/W7YSZ464U6MXMME3UZ0R9T.uasset",
+      "git_blob_sha256": "00df631ecab3719c72df41054c63f6af3117cf0e84bfbefa44f87f9b52665b20",
+      "lfs_oid": "429f991bc9cad5154d45e99d895297d489caa89017f8cfaf42188447ce70ffc0",
+      "lfs_bytes": 4502
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/A4/OYQUMMGK9KZMQWCAD78RL5.uasset",
+      "git_blob_sha256": "d517292581aa5ec865faa524624ed7e3ac84540b77c256bbd26c20e68fc9c8e5",
+      "lfs_oid": "f47bfa54c5b5d6ce9a4e02194c48ce08e0ed06fbfef9aea1a922840d85a495d5",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/D0/NVAWLKCTVQQCD734S51RXN.uasset",
+      "git_blob_sha256": "c32a22023a6b5684f4b65aa2382b15d8412b106ab0913afd3c4db9ef1fe8727e",
+      "lfs_oid": "7aacaded7dba1b01ed3097aded16a3818862d9b92056d0e8c8e8c6f6f1883f85",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/JT/QUWZL7LB04M2O7DF2SQLOZ.uasset",
+      "git_blob_sha256": "09b5668f94edc67a4d0396041edd0cca056471a7c2c92869dc39de528bc44cd9",
+      "lfs_oid": "1a007f2d0bdc24dbef5f07f6974307a1830dba899a71e8c8465b13287432109f",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/KM/6OD8QSVQPHSOLTN04J50XK.uasset",
+      "git_blob_sha256": "90dce374548a457fec4a31d5a5ad3dfddb4e337cdd56b259f00ff1da03d60b56",
+      "lfs_oid": "368d4e7bdd889978691fc57d4745e51ef52627085c0b02c7095809ec67882c8a",
+      "lfs_bytes": 29715
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/LD/9XJXY5LWC895QWZMAW968M.uasset",
+      "git_blob_sha256": "db334b581bcb74f514a015f122fcd860e277556b1c6825d98dd48a32086964a1",
+      "lfs_oid": "eb9bb31235cbb5f02e15cb649097cb6208a60ee25fd2bdb8b3dc9240cec5d5e5",
+      "lfs_bytes": 567410
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/MY/8EZAAMZTJ8XISCH1ICZCOG.uasset",
+      "git_blob_sha256": "2f7da101d193f15f455134b04c03bc8c134fc61d5dc40adae3bdaa07082c3188",
+      "lfs_oid": "58e7cbd171c580b6c43d5635eb527021e43ab628de28be33e9d01f574db4a04a",
+      "lfs_bytes": 4509
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/P3/6SLY2QQHRXTX7EX6DLS5XV.uasset",
+      "git_blob_sha256": "643b24bdd2934573736ebfb3d11cc571d676119f14d27b2de301eb204a32777b",
+      "lfs_oid": "eaeaf97f4e8d150a7310b71f315998c9c57c3caefabaf5b21ca166b73e8a451f",
+      "lfs_bytes": 30644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/QN/YAAZNEL3ATPXCIT71W4PGW.uasset",
+      "git_blob_sha256": "ce978502825921d3f234b4509828c8d79819ccfb610ccf3e6d1531c69e4232e1",
+      "lfs_oid": "42d44b5d8e71943383680bae5005777c8ecde0fb852c7b18c006f718ac24bb48",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/R4/7R9LT8LYXK1JW5PZDH3QHJ.uasset",
+      "git_blob_sha256": "d37dc588d809a14473fe7aea99050060ce285bde66ad0c02ed314828535b2c05",
+      "lfs_oid": "90d4608f76f5954e54928c6cbbadf06f3480c4e83858dca80ac5bb57b989b0da",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/T2/P28B7PQXKT3DM1ZO2HXLJT.uasset",
+      "git_blob_sha256": "d6336daf56a1315fd75fa0ea28de49a6adcfd9dd72f203368a89fb7a950d7641",
+      "lfs_oid": "87edb10091c443ab5f61adbddbac1ed8e7e1d0b9b64e458a1757ad037d192802",
+      "lfs_bytes": 4391
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/UT/8GPTJDQCT2NF2K72HN1G2Z.uasset",
+      "git_blob_sha256": "b06bc3ec8bbd6bfb378cfa53714a2e887193f1426106a7577e78b572c9f0afdd",
+      "lfs_oid": "ce8dbc8bae6f70dd173895c3df7f02ca6a1a6fd53f16c8d5938d4f45dd725d72",
+      "lfs_bytes": 4391
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/UZ/EBGJXJ2F7GOFLMYH1EFOIX.uasset",
+      "git_blob_sha256": "393d92fdd169e1e905c135789e7b7c8a105ee58cd0d1c5d72a0ddf96fcbca0e4",
+      "lfs_oid": "06341d89bac071220939f35d25eab3ece2fbf3386d317bfe96c585e1da7ee6c9",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/VB/VHWRT1P58KT1SXWCO9HLIA.uasset",
+      "git_blob_sha256": "61364e2f0ebf76f7a952f96dc94ded5ac695dc3ed994018d799ba44e3a369617",
+      "lfs_oid": "32dab85e14d45072fd2efee332d80317e5aa03c5af8e9cb9d2d203294e7d5942",
+      "lfs_bytes": 29907
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/VF/I1SST6MA93ICB8TMRZRBQK.uasset",
+      "git_blob_sha256": "696e09bb7e6e83c4d702908a54a84c6259837047085b5e91c64d474d33e8e49c",
+      "lfs_oid": "b94cfe12128a25ecc0a3970531ad4d46db197062e8f614013c26816308a1dfd8",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/VT/DML4QML3FE975IGXLR8J3K.uasset",
+      "git_blob_sha256": "74d3cff53943400837d81a181884818d1b821072ed240b64fdbbc30114c62f0e",
+      "lfs_oid": "96e0b8af5f90bcfa0cfc7a7cc510f5887d97ba089c6898f23f7769458f8b73a4",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/WU/RQM9DS1K7HPTULKVI6MNZ3.uasset",
+      "git_blob_sha256": "0238ee01cd589d4f444455cbe698a7b96a5aaaeabc3aee65fe74ccf9b6a0b12c",
+      "lfs_oid": "c05348436aca46291355b5c8bb81da397a79f0456fc4f040d7cb23d9b49a9e59",
+      "lfs_bytes": 4314
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/13/RJ40O4GKHANXLPZISIIU4Q.uasset",
+      "git_blob_sha256": "5817d1972f87bc326f0870f431728328cbc12176437b6e3d9055ebf68ebee0d7",
+      "lfs_oid": "c51b332d15a7f3ec420db207113b375be14bd697efd72a289ec18e8e07cb8a1a",
+      "lfs_bytes": 4481
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/1X/1D6CWM9RXMHUBL051RGSCU.uasset",
+      "git_blob_sha256": "91230a7918d9e035fda83671126358fbb8c51002afc0cc1122ed54746e636131",
+      "lfs_oid": "c79d40b7bee35c26636a29df419f6fb73b13828ed7d0c5038b252f22327e8bd6",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/3S/K8AGBXW2KNFKKTMTI2AH26.uasset",
+      "git_blob_sha256": "d8482187f8c720eddc7f1b9df82df6136633463e6ed5f67eda8ce94c337cdb92",
+      "lfs_oid": "3ee2d6789162eb36d66832318820e2f21cdf6d3ff9d9eb08145476d188647d2b",
+      "lfs_bytes": 4638
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/5J/D4XCJM7Y1VG6WA91S44YHV.uasset",
+      "git_blob_sha256": "0ecf60cdaf04e1a1dc77ec5dce67bc039281102c623263e95f4e1907847e1bc6",
+      "lfs_oid": "0ab5b6c74da7bec7f1c8944f0960fef7f9690dd7c6dcdbc04a75122bf76f4c28",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/9V/6RY7KQKZQQ35Y7KFMQ6HKO.uasset",
+      "git_blob_sha256": "5fa7cd436580a63b843fff1f479776bf88cc52c21439418818792f32e8a4c00e",
+      "lfs_oid": "0671695151b9e858f1c5b7d2374a3ef66a32d3e7f11ed2609b811ee00fd38465",
+      "lfs_bytes": 4519
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/9W/EDJXRP4100MX14U4Z37HBS.uasset",
+      "git_blob_sha256": "9264befde73102badaaa286c0257da79cad10b27b815d3946e33a9ad6f724fad",
+      "lfs_oid": "014a0516fe2d9e389454c75431edd9c5c2422a8aa81868038998d5bb1301be8e",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/B9/ZDS3A1XE3X82E02B8XOMNT.uasset",
+      "git_blob_sha256": "6b4399008cfe159a7ded04398de2a357bc0500556fd4f927cb223ff21c7dc2f1",
+      "lfs_oid": "f75fc31f1176d06aa4db0fe4b2e93584bd0ee4e0db6be03fe9a0d537b7485acc",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/CE/4Y4L4TQCAP1ZCZAAGR07EO.uasset",
+      "git_blob_sha256": "dce177f3470bff6046408acc899b1cd7066aced5f2c9b63d0fd7acd46e0b9bf3",
+      "lfs_oid": "eff5882b9ebcf825f9eef6d6aab4abfc387a3fdddd8fa0d4906884e0916e30b7",
+      "lfs_bytes": 9617
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/DI/JKPVF06FG6I79AXMOHTP3I.uasset",
+      "git_blob_sha256": "2c7b6f3a693fd8f6a6b12a7172dc807b070806f083c8280440c42c8550f6ccfc",
+      "lfs_oid": "724aa71a8f5f155a478cc800167290767acee48c430fb7459e3399a5ba56ff39",
+      "lfs_bytes": 4448
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/G8/ZTZDUEE3G7YI6AHHTJ7FFJ.uasset",
+      "git_blob_sha256": "f5ae68c2e59fea11821733d1d55db285b579deb7add48a3b10477da5266418fc",
+      "lfs_oid": "324bab0236d6c5bb4384bda4e4a7c58e3ec9c46ebddbcb9c0508aa4d14bd8d9c",
+      "lfs_bytes": 4634
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/I1/YREXCGRKZ68AV79ZW14QU8.uasset",
+      "git_blob_sha256": "4322a2cd4a02f70f4f525d103be8cd9479934cd19697962316e980a13b0468ea",
+      "lfs_oid": "3302adb9539bd901595f6e19915d82821b9e937461885963304e46d955786dff",
+      "lfs_bytes": 4519
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/IS/1Z47JUVV5PS11Y083RXFN2.uasset",
+      "git_blob_sha256": "1cf5cd1ffa587fb94195aefafd94704b9806efb8042b61a4620e4a28a51e49f2",
+      "lfs_oid": "d286a6e7051c94773c7a4407f863db1ed1eaf57bd0a9278018b2312dbd1dfc15",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/ML/N0L7LVO05QCDP21V9V2ZTZ.uasset",
+      "git_blob_sha256": "b2467c2312b776820badfe0c2155f25a005d9af9dd1acb2e253623524fe4802a",
+      "lfs_oid": "c2213b1f144a45a7b2dad58633d58ef63bb3d39c86d0e33ecd1788e2c04368b3",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/OA/53A74L4A5FD3I2GCSNLK4I.uasset",
+      "git_blob_sha256": "d2f95647a59082129509c804ce46d1bb4208628b1e14b890ffc46bad0948f634",
+      "lfs_oid": "62667e7dec889b683733ac1cb825e4e266051c8e1fde984c7b097618278d13cf",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/PB/8X80JIN0LMGF2QMCTUP697.uasset",
+      "git_blob_sha256": "5c09aeb08983f6261a166cd2d4d60cc9653654b767eec7c7ab6c7f33cbbab37d",
+      "lfs_oid": "733cddcc5e55e1062d8d985243098903ffe1353cf9bd7c773c0500f46585e919",
+      "lfs_bytes": 31320
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/QU/TIZ5PPID4ARFDP9ESN8T6C.uasset",
+      "git_blob_sha256": "c4749598e2a5712ab30a174bfbfcddc5b8ffc5176458c4063183a9fbe518784b",
+      "lfs_oid": "b687207bc2d2eb7c52d7d4ccf5a39c6162ffc05835872022306f495361d4e1b0",
+      "lfs_bytes": 12187
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/RP/L4V187CKBHWLY5IU6ENBAN.uasset",
+      "git_blob_sha256": "66eab020d2ea2eda7dde1b91b56f2a2421161bc5334a0f5f75f423627a4f92b8",
+      "lfs_oid": "b79f6b6a37193b809ce3e18b7fcc51c258ac5c02d0eaeb849e2d6594f9c97618",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/S8/J704P40T7J6W26DUCW78B9.uasset",
+      "git_blob_sha256": "01efa8d61a699bd8971d15b77809954ec8d3982dd4086ce684ee55668b71d1d8",
+      "lfs_oid": "07ebca3712e9145a63b0fa66035a37ac1cab2efe71cff73d3c21fccaf7caa354",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/TW/9Q1RSOJBRWLHLSEET2PBWQ.uasset",
+      "git_blob_sha256": "a328567cfb857f83042df879fe673f3b4923aa0c786f049b03bb9fb8c723df4e",
+      "lfs_oid": "b49e6ea1846821c8db2ee153a33237a2c1f5e341b4b92b4b00dd00b06ad0c7b1",
+      "lfs_bytes": 64703
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/YF/3WTPARYNE5BYXR463JZZ36.uasset",
+      "git_blob_sha256": "7e88520f06b7b255aaae2cbc577eacbce41366b725017beb50d26d545eb9fedc",
+      "lfs_oid": "323840f2340ee6ba79dd5dc2c1d6b7efe1abc1c81f774f0009c4e1f0462dcc70",
+      "lfs_bytes": 29720
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/12/SM0OE0PQP0MV059X8E7CBE.uasset",
+      "git_blob_sha256": "2e4ae835673e64f7cb9258224c894bf2206febc2922e7996e89faa6251a42fc5",
+      "lfs_oid": "8aeceac6d01c913747221d4b5644dafeca23741335ac360c7f024767081884c9",
+      "lfs_bytes": 4646
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/1W/YL0G5PWD22IYNOGT5VL4KI.uasset",
+      "git_blob_sha256": "e2ccb3d229c6e543367eb3fc78a206d7e9c406c07a657e9e76ef7e18bc360cee",
+      "lfs_oid": "37132d3ae13d6501017d3490be030d79296651b1b4b28b2f424bcdd0d99cee62",
+      "lfs_bytes": 4513
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/27/TP0ZHF9H6H85ZKKUF6A3CR.uasset",
+      "git_blob_sha256": "19be989f5f7b9940692d670814526344dd8c182fb7ef1018fc632699d9d5d371",
+      "lfs_oid": "ad898ac535a1416cf9906d50ec58675454e7c7534386abeacfe1b340e31ccc37",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/2L/EXWI3BVG7MRVCP7XRTF9ZW.uasset",
+      "git_blob_sha256": "9fe7540c76141d3fa9f53ef5f81c8a1ca7d73d9781394ee7e8219bfbeb3c93de",
+      "lfs_oid": "ff4b3bfd0d095eed2eec91ba060005717dce8e08a9a5f75b102a0f66f27c5801",
+      "lfs_bytes": 4636
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/5U/J8NY1VSKA1QBAEG5WTUHJ2.uasset",
+      "git_blob_sha256": "244e4664c0cee88ef8fca6511bc12d707f999f74e567871eef0bb4012d15181f",
+      "lfs_oid": "c6bf56ddc8a19d92e55c8c579ac1833fcc1ff806f2a9ed6cf5772c6c0d36ac4c",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/5W/HIURR37D7FE1YULWR7ZZVL.uasset",
+      "git_blob_sha256": "2f3be044cbcc8fd451028cfe61cade71db6390334035a2c673ee5459aeb9cd34",
+      "lfs_oid": "2ae9f514398b326101e4d2f3b875cea057c47cfadc6748fe6b73e2fd54192a71",
+      "lfs_bytes": 4644
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/AK/6QIB7RAVPA04SI9563AW3S.uasset",
+      "git_blob_sha256": "9f0ec3d4e67668d32320c2f3072c8c5572d181cb871df2797a4e54d4436800c7",
+      "lfs_oid": "42d4c1f2c6dcde5cc9741b876a956a84edc9a391e77daab5a2035619b8cb1048",
+      "lfs_bytes": 4519
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/CF/I9GDHQ845UGC3TKVO9JB9T.uasset",
+      "git_blob_sha256": "a12085e1511f13cbc96068147552c99c1f79db4601a7c219658da07437fc8067",
+      "lfs_oid": "c859ff654bbfc2b8f3c14d1998826c89303a70b6af8be0ef53b23bcdf00d76ca",
+      "lfs_bytes": 174399
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/DM/95CCKFDCP5M6LXTQ6PFS1W.uasset",
+      "git_blob_sha256": "7a9960e40b930e4e59d9a3cd12bebf6b6f81f8db741235374f9d6a2c830edb48",
+      "lfs_oid": "445dc83dacc5bccfb3b59d12253dd11c2084475365c41820ed6eecb54aab105a",
+      "lfs_bytes": 4656
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/FT/K3LQJF4QI8RU7JQFYD4D3K.uasset",
+      "git_blob_sha256": "d05888e5947f490e95bbdf36dcddf3c3903af6272676f96ab3d0a3283e72f29f",
+      "lfs_oid": "55eec085e4b99701fc7d49678970dbdafadfa005bc22ebec95539465f7ae766a",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/GP/EHUVLMXHV1N9AHVMLIW7C4.uasset",
+      "git_blob_sha256": "bb0b6d6f4f0255edd8b11938ca5a23e397c350770bdac65f687f5fa44de2e2fa",
+      "lfs_oid": "6d9b64be40a00483824df17c7793486e6a60dd106fb632e95901a09056015679",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/GZ/EAWWKCIGTY95Q208HBDYTW.uasset",
+      "git_blob_sha256": "a3cbd77aa9b01fb1670becb70ab0213c05918f7a76ffd8c86f0a6a1880f3d938",
+      "lfs_oid": "9e7ff5d74c3c00d4d3b802d43fb788867dbd9f0f214ac12d1d0a56af04ddb88d",
+      "lfs_bytes": 4509
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/HM/4JKEA6A5V12C5JF1J8ZCX0.uasset",
+      "git_blob_sha256": "4185f6c16fcca7036aadd7d1615cd94b1a568403278a62d6fc9205b6cdcb3950",
+      "lfs_oid": "857926cc485c87a40c317b3857bca21d554261eaf29bb4e2e2fee80b55bee1c3",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/IK/1L409KTEG0B7G7QBIV7G7T.uasset",
+      "git_blob_sha256": "2f5c07db11dfb6072beb92b444a8c56b730cb956b803d2f4d0f122536cb60ef0",
+      "lfs_oid": "46af0e020469df99c799bc6956eb3d6f354f04236b8979ee9dedcdeb352fc824",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/IZ/YLTGAVDJWB3JLT3CVDPCYJ.uasset",
+      "git_blob_sha256": "47a801d4e76bfeb9a572fa91ba34646b0771c303eca0cdae62b29c872f2d94b9",
+      "lfs_oid": "9a1605b47414bcbbb63730e55e219c44347fa534b3578f0fb377cbe4877ec875",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/MQ/TJ2O87M4X4F4PEKTJU8GP3.uasset",
+      "git_blob_sha256": "0d031652b4077382c80c0df45eb0f85ac6d7df1c414a63a57d70bb5bd51d7be0",
+      "lfs_oid": "fa8fd9fee360db9480eb9c66c6363aacb5973d5543388db951201ca08c5b576e",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/NM/ZXIE6JXO09EI25W4IXYP0D.uasset",
+      "git_blob_sha256": "fbd6e81b986df50ea9b05fa1b6be0cf03ce8291c017feb9496dbb2d1efcb29ea",
+      "lfs_oid": "c9bceb80d9d6560399e7d7fb8d47abe6bc858373885c27842ebbe3717e2f8db2",
+      "lfs_bytes": 4642
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/P6/1XFZVGXYUNBNZPQT941N11.uasset",
+      "git_blob_sha256": "e41743b8555463ec8e80cdfd7b632f2d26e88261f1ffb912ded12da61e215f59",
+      "lfs_oid": "abe1622b63756b474eb6226032a287badf3798e78a09cf8d082a77904eebf8b1",
+      "lfs_bytes": 76755
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/PC/NIKGLWPH0PXIAQEU1ZZLC7.uasset",
+      "git_blob_sha256": "ace5f7ad8578517fae3b719611b68ccbdbe794621105f65e73191ab334578145",
+      "lfs_oid": "f544252ade24ac7e3d7ce79bf3a542bdf07cb8c52a3c79134be8fba11504a1a2",
+      "lfs_bytes": 4524
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/PJ/UQR33XNHHNWRB5F4O3Q1N2.uasset",
+      "git_blob_sha256": "9654a227fdd9e293c01a8c1a4a810e5e932f68c4e5ca04f6319b2516a67d0721",
+      "lfs_oid": "4143ac570804f4451cdab23a4ba2ce09527a3414e58a7d6c1f244333058f8f26",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/Q0/GXI8FTSAL86MDTVN9XJG0V.uasset",
+      "git_blob_sha256": "f08faab6ffaa69e276d4d05b17ca1cdd2b67134bbaefb123c4a03962c258a149",
+      "lfs_oid": "b5b78808f13dbd754fbb8d587c83ab6ddc0df3804422ff5c2f41d90ad1584887",
+      "lfs_bytes": 4654
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/QJ/RMKFOIQWHU519R1X2SVI3I.uasset",
+      "git_blob_sha256": "a606b3062468749af3eee1c788eaaf3068beb9d6eae724c11511316bd1ac522a",
+      "lfs_oid": "ab6ba3bb588f2b89b1f9a5b27048ae695643abf4d1ece4c6df9e46ea13d5d48d",
+      "lfs_bytes": 4208
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/SG/KFPQKD2F3D3FZTV9L8TIX7.uasset",
+      "git_blob_sha256": "4d74b01b1d6b15cb6f22b53cac1bba62f9e4e757ab0b0b564e4d3518dcdca907",
+      "lfs_oid": "268edf4c45c82ab4653c629d18d8f947644f955efc50bdd96696d3c8f95ba864",
+      "lfs_bytes": 5682
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/TG/KK3B0NUBFT22KZRCXP0FCD.uasset",
+      "git_blob_sha256": "b0c2a02f727d642f1772c7f0d97a15bf1718bc7907bf530e15bfcd7e7ff33631",
+      "lfs_oid": "acc1bdec4b95b483a0e7f4d05137900f98e0c5e287e119cbc62929cfc739e9e8",
+      "lfs_bytes": 4216
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/VB/8AVF0G243OG45ICQ1K1NL3.uasset",
+      "git_blob_sha256": "17b2e05fa2cca4fca8e46e10892eb6d7c87965e4b6296f68599372b88b1a3d7c",
+      "lfs_oid": "4d1b75f14cc25fbdb78caca41c4b5b464a834514c171a1d017d5e04a5ec6cc11",
+      "lfs_bytes": 5180
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/W3/FXPXFNUS94AHDKNR89A9FL.uasset",
+      "git_blob_sha256": "1b704d0b881b196984349cbca292184c88ee2f3e7b3ab411baa56e229bb9cf2e",
+      "lfs_oid": "a4924cf7ae0979108bd710c794aa5cc74f57e528d286f762a000435b562d2a1f",
+      "lfs_bytes": 49738
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/X0/VH5ACHC8OFS1I86YHQZMYE.uasset",
+      "git_blob_sha256": "3ae6ed353228481f38c5d33e5c6f1e62e6648e22ccacf6ea6e7af04ab405bf4b",
+      "lfs_oid": "5b190872e44af9a7d9ed156733fc950167e390cb30654ecf74078f1dee2b6b24",
+      "lfs_bytes": 6140
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/XB/SJE73PVF5SFHBF4BS4XRT5.uasset",
+      "git_blob_sha256": "3a36ef10c41b05d625f56d89e13cfa6e176e3489cc84ab8a23fde81f4f3a1cf6",
+      "lfs_oid": "e98f4b7cf87ddbbec1d11f43fc788c058258ca47959d9b1fd92d343132a4ca08",
+      "lfs_bytes": 5036
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/XG/DND41LZJ5LF3FZTZPSZG05.uasset",
+      "git_blob_sha256": "3dde553959427106c7cda5597795851984c3778b4ade4c6a33faf50dcc379e6a",
+      "lfs_oid": "3637fdcb4bd4f90e08ab5c768c995db50494622b144b176b3610f1d629e9adc0",
+      "lfs_bytes": 174397
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/YT/KESJPKUCZHAYADVUWP8J04.uasset",
+      "git_blob_sha256": "08fbc6a89f2d5dc7b5d2c68403179c3b5b4a867af37796262375b8415b6e98f1",
+      "lfs_oid": "13c03484f8885444c99e4ee533e175a0d7326f705f2f56a83b0ff1ad4d3db065",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/Z0/V8SK8MHHMU9LMZS3NP3HIT.uasset",
+      "git_blob_sha256": "ba24af906de7ec0245fe259a4737068693ee1c8711b4fc0f7116f8246debfd30",
+      "lfs_oid": "befaa8ea8ecf3cd7ea6c5eb8e31f980e26f1ec8e1c441fcbe5b499ee65337ddb",
+      "lfs_bytes": 29737
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/F/0R/OPYOFDF9U92UFKP4XC0VVQ.uasset",
+      "git_blob_sha256": "af3916cc512bfe5a076f4616c7af3936cdac2ee2823306b1686d590f7ff3d7c3",
+      "lfs_oid": "57ad4cfc2b137029c99cd82dcb0acbfd8e08557b9f08da1abd7dd2c4260f3086",
+      "lfs_bytes": 4660
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/F/1E/P533OTFCR0F03TRJ3PBMVM.uasset",
+      "git_blob_sha256": "c678cddd6e2348d0fe057b78a62769e9fd8095cc7ce4891c4cb9e928ba873dd2",
+      "lfs_oid": "1c934596cd10602a2b09043578d90b42017457171cc4dd28bd253732095c44cc",
+      "lfs_bytes": 4640
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/F/2I/Z4G2DD545PHJKETUABP6B3.uasset",
+      "git_blob_sha256": "ebcb84665296870f7f846f033c4393866ec1697a142b39537762873f83b216c5",
+      "lfs_oid": "b859f89480e8b929b00382e3b14a61207c33531b0e57fb6ebd396434ed550cf9",
+      "lfs_bytes": 73291
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/F/2M/V5XR95NCHX0EDII7SACTIN.uasset",
+      "git_blob_sha256": "14844a09034da138e7cbe227f327cb414b061c01452fcb1debb11278d00be9f0",
+      "lfs_oid": "e8c67843d847d00c195c9af69a21b50e18a972f8d0f4d67449b76e91ac4d463b",
+      "lfs_bytes": 4650
+    },
+    {
+      "path": "Content/__ExternalActors__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/F/34/KEOGNK485AKJYP46V0635A.uasset",
+      "git_blob_sha256": "6aa89c0eb9ca61671576d7a37367a311626f792cde809a619898f9dd0f82eabe",
+      "lfs_oid": "42581d7ab29b96dcd292aeb4833fbe7750467a2b66675aa0b3ee6b0e72182bf7",
+      "lfs_bytes": 29713
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/90/5JRQ4JTKY3EQR5C4JQFYGB.uasset",
+      "git_blob_sha256": "b44564b6b3d149239f1b8d867ba1fbaba853c8ea2a666c8ab9a8fe89c9931e4c",
+      "lfs_oid": "00d61aa68da5cc27e3241a4c032b0cedfad6a3f739414a374412ed4678ab4a6e",
+      "lfs_bytes": 2111
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/0/C0/IOIDCZQXAXW54USVW45N7B.uasset",
+      "git_blob_sha256": "f84550d064b4f17f10702a3a34b4ce8400d5da31f01e00ff3f2de06730eecb7d",
+      "lfs_oid": "4132314c26082442bb132fe4a7880d050a60b3e67e8afe04e392d1d0d3f1ac19",
+      "lfs_bytes": 1999
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/5U/Y7MCB33QR9AXHUQLHAW3KF.uasset",
+      "git_blob_sha256": "df2bfc6902c03aaeb606db91d9b41065c9e10778d4c3e140e5e69919774a7710",
+      "lfs_oid": "c646484264f9ad90fb9cc11fb1462530010c73ccf95dd435ad0ec36baac278fe",
+      "lfs_bytes": 2013
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/7N/NWOVG2QALTTYKJB6NPWA3V.uasset",
+      "git_blob_sha256": "563ef283080f6a3664857285460dca98798be44a8dc658fe9b8a811d0219a571",
+      "lfs_oid": "55f041716d364a21eec4eff3464da27b8741639a55bdffb695c5ade9c0ce572c",
+      "lfs_bytes": 1999
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/CF/HI0HYWENFKX9LH06MS8NAC.uasset",
+      "git_blob_sha256": "d297eb1f06fe5e0b94a97c4a8938ba7e912f726d1aeb2f8020749a11f19cf3a4",
+      "lfs_oid": "1d1ecd24d78ffc64a02dcbea8966c73cd635748a6c6a34193297a497c1c46848",
+      "lfs_bytes": 1995
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/2/UX/D17DMUQBMXJD62GAU9JF5W.uasset",
+      "git_blob_sha256": "95e6c08005109c39c5c26ea82a3cda982012c7e21a27c6ecb9cb05d18b7f4b63",
+      "lfs_oid": "f30ea0394b6608d366a9b29a5fa8e70d8e2ef88ac199138f8a55eb6ef31b82b0",
+      "lfs_bytes": 2005
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/2S/6UGQOUY277CYGFPKCKAO58.uasset",
+      "git_blob_sha256": "858e621b750e961b8773eab180b070c428c802386513361f9a8925cdc9e9af14",
+      "lfs_oid": "dcac8f2280cb0f0936e993beea70c72a48cf10b0420909760a33bb77b55efd46",
+      "lfs_bytes": 2093
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/3/EB/ZA7D740T1SEYB0TDPH6OKY.uasset",
+      "git_blob_sha256": "70e9326892a77a8f5313b10f0ecf7b57ee8eec4117bd1477bacbc9ad315794a1",
+      "lfs_oid": "1dbf20d69932691068a106cbae9240fed3d747a0f3a8a774db647d4402dd99d6",
+      "lfs_bytes": 2097
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/4/0R/SOIIWM0DUEGQEOZIP7B83J.uasset",
+      "git_blob_sha256": "571ce586ac48f0de3592d8a24f4e229575a73c962f3fab5e78c16ddd38cee66f",
+      "lfs_oid": "1f499d696f27c958bea69a73644853ba53a8867481afa22a48e77f59fcbca300",
+      "lfs_bytes": 2087
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/HB/UQUBHM4ZMHW8HMXPG5ZQVI.uasset",
+      "git_blob_sha256": "2100e98f6f7cc20aa0fb07027bb51082112197d75b9241f2109704f4c858110e",
+      "lfs_oid": "79e885f7994682ca21396d04559acc9f95bd0be9680abbd6ff62b2e70644c1f5",
+      "lfs_bytes": 2081
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/LP/W2Z467B8K5B3K65KAG614V.uasset",
+      "git_blob_sha256": "84d9840c5b2fbaab452f542cc178869c00cfcca4c16e39591b101e5455915e1a",
+      "lfs_oid": "f3bdc07866ec525fd730a246af996823e426a36986a19190deb7042030e75b77",
+      "lfs_bytes": 2091
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/TG/7Z5J8EWEKOPRWZ7VDKFX4N.uasset",
+      "git_blob_sha256": "ee8adfbe7419a834453a9349d66842373d1162a253ffc892f11b32ae781cd4da",
+      "lfs_oid": "9680586d357809a8e0381b82b270ede1674930c13e79af34431a28b400569f02",
+      "lfs_bytes": 2111
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/5/XS/I6V9QZNTB8H0X4QMX6XBA6.uasset",
+      "git_blob_sha256": "6dffac343634e8b2d1de4e53ec8ab129238d6acf0bda11ff2d9a4d014c129360",
+      "lfs_oid": "dbddf95e62561e8081cd9309f2f95f8b9130fe23427103954b0c670b84aa1afc",
+      "lfs_bytes": 2001
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/0R/NMA5RNY1B4XN7CPZBZLYH2.uasset",
+      "git_blob_sha256": "4e16e527102eae4066562efcced54abbc7b3830246ac2fb817b091ce35957db7",
+      "lfs_oid": "cd86a75583f468a3a3c87630712588bb2163806b59fd287b21aa55d067e7a26b",
+      "lfs_bytes": 2105
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/5D/UE6GQ6YY08G5VTJUK754XY.uasset",
+      "git_blob_sha256": "94215596b331ad7454610cb7db95898348a7cb29ae428154aef36d375a1e25aa",
+      "lfs_oid": "21d2826a52ecd2bf1d3cac9b02ee95274a3e47f9ac05e191c36db4176613066b",
+      "lfs_bytes": 2095
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/UN/5CJKU1V6NPMAJTXIC8UUWH.uasset",
+      "git_blob_sha256": "723a326f511a2dfd478b93d0cdcf350596e1ea5b7748396f474b14410158f7ba",
+      "lfs_oid": "19b817426205e0ce9f2088f5ece3042dc7192210e858e76f2cf58c533324a6ba",
+      "lfs_bytes": 2095
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/6/XU/NBDCWKV8A1OSSUA1YOQ3JY.uasset",
+      "git_blob_sha256": "64e7af2b84ef94d1d13c002aff9e947ab3cecffadedbb3f3d302538fd1f5724d",
+      "lfs_oid": "0c105b9561e200fe3f3e098a9636603bc9cc45aa9767dbe2134f0a142d7dde75",
+      "lfs_bytes": 2093
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/E9/0HRTNNMP9F37V4USTIBALG.uasset",
+      "git_blob_sha256": "a2a294b309ae1061f0feba589e60b1dc36a6920fa927fea54f35b822024bf76a",
+      "lfs_oid": "cd6d89e36ef6793351f6d9ba23c9cf14cb593f2dc5935af52b23365f8b7889bf",
+      "lfs_bytes": 2089
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/NZ/N0855K5MUHRO0XK4RB22S5.uasset",
+      "git_blob_sha256": "79c77236de9b91c1cd45d225f23a15cb80d7f68811b3e507d895acf4f09c9e88",
+      "lfs_oid": "220072a5b94d73b5f87c8624e360095d1f5697cda9a91bf9fcab1f6901020910",
+      "lfs_bytes": 2005
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/7/XG/60X7C4L68Z0DHAQ87QNDSW.uasset",
+      "git_blob_sha256": "36f3ca935adee934b8f96efa1e895fd66be69c8c6467ff16f6eb4868bac908fa",
+      "lfs_oid": "d36ecdfa0bb36f66bc360816e4c8bfe5ff1e9b30e9b78615a322c23fda9e2fae",
+      "lfs_bytes": 2083
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/J5/DKYCHJZVMXC41DSDRKRMAD.uasset",
+      "git_blob_sha256": "f6313db772bf9ec2c26ff8ff256f13898bd15a146215cd7f6dc89980b1b3f85c",
+      "lfs_oid": "de0f62d56f4af2c2f0eb187f053b7db33a6c90cef0bb56af0b1d32ed13df7cc4",
+      "lfs_bytes": 2093
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/MF/7W2XB8YF6A9LPWEI528STN.uasset",
+      "git_blob_sha256": "769879a5e6eba6bec95b1964daf8566ee6ba4eeddad6b5d9d3616c4c1a6c2f6b",
+      "lfs_oid": "e4708402e19072f385937f762e87de6512f3152ec1ba1c1e648a1a0ab664904d",
+      "lfs_bytes": 2154
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/8/RY/DPRXAE43EJA1QTNXFAJOY3.uasset",
+      "git_blob_sha256": "b420881a24335c8af2337818c061c1e05fb7fed0218801af0c99d151bee2025e",
+      "lfs_oid": "447c97dde2a6bf5b15e5e850c5f14d8e7f3e6f39f78be9d317102f816b82dc6c",
+      "lfs_bytes": 2013
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/0G/1V46GTKDZ0MMK8Z0AER8RC.uasset",
+      "git_blob_sha256": "877992bdb82184fbff5b9d78ada082e4120eb6b2751bb836920fe98f6f8333d2",
+      "lfs_oid": "f146dad41dccc8400d88b81877baa49a835680f237d675c47328ceae311617ff",
+      "lfs_bytes": 2097
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/1G/0E90RWTJKTG3E8FGAB2A6V.uasset",
+      "git_blob_sha256": "a7096c58f0c5d611e5c00b2e75522441543ddf90172f1c923cd905141cfbb2eb",
+      "lfs_oid": "c15a62de62b5ffc5ebec20e006a06d54383a0cc7f2079eaf3214cbb0bef45050",
+      "lfs_bytes": 1999
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/1K/LT5WD9DJ62YRTGJ01EN3NN.uasset",
+      "git_blob_sha256": "613638a2510668af9b6dc4ff7489f70f75f3b49dc53d8aea59ac70603421bf37",
+      "lfs_oid": "9230f07ce972c28c79ae7a2bbf8233b2da38cdb152350a50df9c933c02e49075",
+      "lfs_bytes": 2005
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/9/7K/HZGQ6CUSDYON0ECV6O4I9A.uasset",
+      "git_blob_sha256": "33aa1e948844ec2677233ad912f82db822ca2494dcaf6bea0a140d8e90347ebc",
+      "lfs_oid": "f14bcf548d05bd2078466dd454416a1066a2fe00d8bccf6e84639234cba676c8",
+      "lfs_bytes": 2091
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/H7/QEZFXPSH5X263N0UVOB8RV.uasset",
+      "git_blob_sha256": "79bebc320f450b466bfc2f3e6a7d33dd4583f6837f7215a2f3a35dae245dd591",
+      "lfs_oid": "94c1b6372a441982ca02dbfbccda54186f1dd272b189160f111e77e9a536ba14",
+      "lfs_bytes": 2111
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/JS/8APGF5EQCOPN7NZG5326ZK.uasset",
+      "git_blob_sha256": "3d7f92e6a43acebf96b805a6536a7c77cecd1a9a228b05c6e2d4fd8d3167d923",
+      "lfs_oid": "a7853ed4e3de3fefe055bd46d0bd9e4f86bb5833947e5919669dc8cfa470c9a7",
+      "lfs_bytes": 2101
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/TX/XD9L5T81NAYUR7AJKVHKYA.uasset",
+      "git_blob_sha256": "357b39cc698a4deb691ef7638eb986eda67618a4af60ebaefcf564d3e8c3824f",
+      "lfs_oid": "deb0aab969b7912b5aa7ee79334195ad2a5532d611f493b81fe5916c698f7c2f",
+      "lfs_bytes": 2079
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/Y1/SVJERA8VZIEAY8H5ICMR7Q.uasset",
+      "git_blob_sha256": "dcdd38668a08616f96c771cae3b4a10747f4013f9b1e7c8c3cc4c0011664777d",
+      "lfs_oid": "ce6d831537316e0ecbf23472d10195e90bbcbb5a0ae0f9139f5a9e370aaa9901",
+      "lfs_bytes": 2097
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/YP/31H9XZUWSYRYZSFBH8FLEY.uasset",
+      "git_blob_sha256": "392ebdd4bf3257edbc70a87f68c5fa095d6fe8670df6da5b10a9ae70eeed9067",
+      "lfs_oid": "e56f320eeea2105cf2e0966c20f56178103a14a7873004497e48f9075d9ee82a",
+      "lfs_bytes": 2091
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/YV/98SMVRCB9OHKKY9IEL6C1S.uasset",
+      "git_blob_sha256": "64f9c3124cc1f4463331c1d3bf727b36777b319eda9e937abdf0b9064625729c",
+      "lfs_oid": "d1153e002d69ca8e3d111d334a3d5826addadd948ef966ed1df7947ecc8ddad2",
+      "lfs_bytes": 1999
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/A/ZL/OKPCIPDM41ZKJDFSKNR3US.uasset",
+      "git_blob_sha256": "22fe582313acb788cd8a2160bbdb0e2599062a67fb525f29075922db70914714",
+      "lfs_oid": "e486a6b1fbd624ce95b296075d2a860d643ee00da0c1497e831c758563f2ed9a",
+      "lfs_bytes": 2095
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/B/42/KQBNX11DI7P28O1LEMRNHP.uasset",
+      "git_blob_sha256": "fc9dcc629fba21aacd55f519e33e2088eba1854341c6768d81ea267c11654098",
+      "lfs_oid": "35a7210dbabca6bf8bacf5f3c857131d3b2b7e8afbf246ec61a3d95c9115f844",
+      "lfs_bytes": 1999
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/IB/RAAP2Y3I429IOO2V4HTF0U.uasset",
+      "git_blob_sha256": "39ae786a7dd711f5c61ae8b4e8a734804fd041eaadcd953e1aa31a1e004a2389",
+      "lfs_oid": "17ced7ca515887e5a539d1fed23dc1bedc3382881d0685235710c3833a6114c6",
+      "lfs_bytes": 2081
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/C/WH/MY1RA1G5WP113R1D6J1Y6Y.uasset",
+      "git_blob_sha256": "6af467046b9d5bbdca9bd6429b13fe6ef2d0ae0360e73a05c9c5d13bf2aa02f5",
+      "lfs_oid": "511b498685172fb178e7639e3802125ac951142b9110ece68ed73ae1a8bb9fb2",
+      "lfs_bytes": 2105
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/0W/AC5B8DOW1NZUBSPRC68RD9.uasset",
+      "git_blob_sha256": "762d999330719ea06fd57bd34b894d83b71564904c7801c0def4031fb17cd3fd",
+      "lfs_oid": "44adb41a524cd6f7e0608ca9076b81bcf324c4d80d030b243da751b6703a74f3",
+      "lfs_bytes": 1997
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/D/GG/LXLZ0H58GWSJU89B1GV58L.uasset",
+      "git_blob_sha256": "da2fb9f37b79af870268dc4f97b757f6ac3cbdf8588e38b1685fcc41de8cd518",
+      "lfs_oid": "86e9285e6f6342fcb83ca9aa974b3a9982df52d5a4bdb0760a100404642604e1",
+      "lfs_bytes": 2005
+    },
+    {
+      "path": "Content/__ExternalObjects__/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype/E/CJ/SB6X16EGYEI3I7FB1SLPLH.uasset",
+      "git_blob_sha256": "5da1ae5dd257524f3f9519b02fc8d73cf67e7f779fe161ea9370a80758081a88",
+      "lfs_oid": "63d635ef9f1a3e36b5c149644c2f45b7801b0b66f16fc3c0a929efaa7d42cfae",
+      "lfs_bytes": 2109
+    },
+    {
+      "path": "Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md",
+      "git_blob_sha256": "e5076e2ab48f7c19287aae4505dd4cf7bd659db2776fade5a03b141313a60445"
+    },
+    {
+      "path": "Docs/Handoffs/PPV_FINALIZE_PLAN_2026-08-26.md",
+      "git_blob_sha256": "b59da551d850791fb8f036d8a4b9c0d241f67b7a729ec305086ffef8fd80d21a"
+    },
+    {
+      "path": "Docs/Handoffs/PPV_GRANDMASTER_OUTLINE_CYMATICS_CONVERGENCE_2026-09-04.md",
+      "git_blob_sha256": "03f1c4cecb7a21070ab00defbf030a7605477b7a13f55a1132222a96e809f227"
+    },
+    {
+      "path": "Docs/Handoffs/UNIFIED_PPV_OCEANOLOGY_LOOKDEV_PLAN_2026-08-28.md",
+      "git_blob_sha256": "4df40d200a11df4e7cdc91bcabd3d2e65bf4dc5b3b6d6c056a51861355fbf3d2"
+    },
+    {
+      "path": "Docs/LookDev/GAEA_MASKS_ROOT_CAUSE_2026-09-04.md",
+      "git_blob_sha256": "fd959b904cb9a5c673ec5260382341313c038e72222aad5a54e67acf1b1f36a8"
+    },
+    {
+      "path": "Docs/LookDev/LOOKDEV_SESSION_BRIEF_2026-09-04.md",
+      "git_blob_sha256": "7fe3e3f545651f73646498a53218d61cd3a644e6d9904edd4b0dc635337aca36"
+    },
+    {
+      "path": "Docs/Plans/SEA_ABOVE_ASSET_GROUNDING_2026-09-04.md",
+      "git_blob_sha256": "64f926706cefcb51178c9cc9f12d99c89eb598bf43ffcdec6376c8131d0f5cd9"
+    },
+    {
+      "path": "Docs/Plans/SEA_ABOVE_GIT_REVIEW_2026-09-04.md",
+      "git_blob_sha256": "3329e08a20878dcedb4609d2bb755097d3b89a1a18411e5d1aeecd83d7653df1"
+    },
+    {
+      "path": "Docs/Plans/SEA_ABOVE_PHASE2_PCG_ATLANTIS_2026-09-04.md",
+      "git_blob_sha256": "370ab7e2fe985d0ce3335210edee9f6dc0e17de000f32fd393bce5e7a8e34de5"
+    },
+    {
+      "path": "Docs/Production/SEA_ABOVE_LEVEL_ARRANGEMENT_TOOL.md",
+      "git_blob_sha256": "d19c55cc71a600ad40a91cc31ef3d871cbb21d67935e34b64a36d2a39d17ee0e"
+    },
+    {
+      "path": "Docs/Reports/DEEP_INTAKE_MATERIALS_PPV_2026-08-26.md",
+      "git_blob_sha256": "338308f54f63c3d931a66d7204a7eb219a968d8810a7f74653309b3a6ff84ba2"
+    },
+    {
+      "path": "Docs/Research/SEA_ABOVE_LANDSCAPE_MATERIAL_DEEP_RESEARCH_2026-09-04/report-source.md",
+      "git_blob_sha256": "37d6d9e2d257c0d938a6ca91c3365bad49a83ae933f5fd040d9c7314b360b6c9"
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha256": "3e89af152effee829a608990157dd84d996900b5f2153eb2393ec70fa43b9c62"
+    },
+    {
+      "path": "Source/BS_GodFile/MelodiaIntegration/MelodiaAudioReactivePresentationSubsystem.cpp",
+      "git_blob_sha256": "9715e226290bf10c50d94aaf92797090a53a6b22da24f76ef927193fb8b4c4fc"
+    },
+    {
+      "path": "_VERTICAL_SLICE_SCOPE.md",
+      "git_blob_sha256": "b30965466c744a678b3c562317eefc3cae3420960ea362cae70d937d24eb0550"
+    }
+  ],
+  "lfs_objects_sha256_verified": 479,
+  "errors": [],
+  "cold_build": "Succeeded; 13 actions; 46.41 seconds; original workspace before later concurrent edits",
+  "runtime": "Not rerun; checkpoint does not certify PIE or packaging",
+  "note": "Payload validation applies to the three checkpoint commits through df9ca6a8. Later documentation/whitespace-only closeout does not change binary payloads.",
+  "raw_build_log_sha256": "e99470767882be1bb76cb905cc5023544696521fbdbe9d95e2775c66d6e6d28c",
+  "committed_build_log_sha256": "5886d074af578e024eb3b0ff701adf51aed820a0e4557eef4eb435595a30dca4",
+  "build_log_normalization": "Trailing whitespace normalized in committed log; raw log preserved in backup."
+}

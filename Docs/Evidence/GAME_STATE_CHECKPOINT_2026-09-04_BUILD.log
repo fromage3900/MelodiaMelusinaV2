@@ -1,0 +1,46 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" BS_GodFileEditor Win64 Development -Project=C:/EnvironmentPortfolio/BS_GodFile/BS_GodFile.uproject -NoUBA -MaxParallelActions=4
+Log file: C:\Users\froma\AppData\Local\UnrealBuildTool\Log.txt
+Executing up to 4 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (C:\EnvironmentPortfolio\BS_GodFile).
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+{
+  "ok": true,
+  "errors": [],
+  "warnings": []
+}
+Invalidating makefile for BS_GodFileEditor (source file added)
+Houdini Engine : Found Houdini in C:/Program Files/Side Effects Software/Houdini 22.0.368
+UHT compiled-in object format Default
+C:\EnvironmentPortfolio\BS_GodFile\Plugins\VRM4U\Source\VRM4URender\Private\VRM4URender.h(63): Deprecation: The identifier 'UPROPERTY' was detected in a block being skipped and is now being flagged. This will be a warning in a future version of Unreal.
+Building BS_GodFileEditor...
+===== Toolchain Information =====
+Using ISPC compiler (C:\Program Files\Epic Games\UE_5.8\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2)
+Using Visual Studio 14.44.35227 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+[Adaptive Build] Excluded from BS_GodFile unity file: MelodiaAudioReactivePresentationSubsystem.cpp
+=================================
+Using Unreal Build Accelerator local executor to run 13 action(s)
+  CPU 20 physical cores, 28 logical cores
+  Memory 63.76 GB physical, 33.79 GB/102.03 GB committed
+  UBA Storage capacity 40 GB
+[1/13] Compile [x64] MelodiaAudioReactivePresentationSubsystem.cpp [NoUba]
+[2/13] Compile [x64] Module.MelodiaCore.1.cpp [NoUba]
+[3/13] Link [x64] UnrealEditor-MelodiaCore.lib [NoUba]
+[4/13] Compile [x64] Module.BS_GodFile.1.cpp [NoUba]
+[5/13] Link [x64] UnrealEditor-MelodiaCore.dll [NoUba]
+[6/13] Compile [x64] Module.MelodiaWardrobe.cpp [NoUba]
+[7/13] Link [x64] UnrealEditor-MelodiaWardrobe.lib [NoUba]
+[8/13] Compile [x64] Module.BS_GodFile.2.cpp [NoUba]
+[9/13] Compile [x64] Module.BS_GodFile.3.cpp [NoUba]
+[10/13] Link [x64] UnrealEditor-BS_GodFile.lib [NoUba]
+[11/13] Link [x64] UnrealEditor-MelodiaWardrobe.dll [NoUba]
+[12/13] Link [x64] UnrealEditor-BS_GodFile.dll [NoUba]
+[13/13] WriteMetadata BS_GodFileEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 39.98 seconds
+Output binary: C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe
+
+Result: Succeeded
+Total execution time: 46.41 seconds
+Trace written to file C:\Users\froma\AppData\Local\UnrealBuildTool\Trace.uba with size 9.3kb

@@ -9,4 +9,3 @@ sweep.REPORT_PATH = "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/sea_above_st
 
 if __name__ == "__main__":
     print(sweep.run())
-

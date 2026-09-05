@@ -1,7 +1,7 @@
 # SeaAbove landscape material and curated biome research
 
-**Audience:** technical art and level design owners of `LV_SeaAbove_Prototype`  
-**Date:** 2026-09-04  
+**Audience:** technical art and level design owners of `LV_SeaAbove_Prototype`
+**Date:** 2026-09-04
 **Scope:** Gaea landscape intake, reusable UE5.8 landscape shading, triplanar normals, snow breakup, cymatics, and golden-ratio PCG biome dressing. Houdini Engine and VDM authoring remain a later input lane.
 
 ## Executive answer
@@ -65,4 +65,3 @@ The PCG framework exposes point density, transforms, bounds, and user attributes
 | Landscape material layers own texture scaling/rotation/panning | [Epic Landscape Paint Mode](https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-paint-mode-in-unreal-engine) |
 | Surface-gradient composition is a principled triplanar bump-map method | [Mikkelsen, JCGT 9(3)](https://jcgt.org/published/0009/03/04/) |
 | Infinity Nikki presents an open-world styling fantasy visual target | [Infinity Nikki official site](https://infinitynikki.infoldgames.com/en/home) |
-

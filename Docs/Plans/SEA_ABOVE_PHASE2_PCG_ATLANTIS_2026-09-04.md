@@ -1,6 +1,6 @@
 # SeaAbove Phase 2: terrain grounded dressing and Atlantis kit
 
-Date: 2026-09-04  
+Date: 2026-09-04
 Level: `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`
 
 ## Scale decision
