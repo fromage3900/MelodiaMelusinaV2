@@ -66,7 +66,8 @@ from . import scifi_fx  # noqa: F401
 from . import zen_kit  # noqa: F401 - zen/castle/asian absorbed from monolith (P2)
 from . import castle_kit  # noqa: F401
 from . import asian_kit  # noqa: F401
-from . import civic_kit  # noqa: F401 - civic absorbed from monolith (P2)  # noqa: F401  # noqa: F401 - 7 effect passes absorbed from monolith (P2)  # noqa: F401 - 70 effect passes absorbed from monolith (P2)
+from . import civic_kit  # noqa: F401
+from . import experimental_kit  # noqa: F401 - experimental+2 core-forms absorbed (P2)  # noqa: F401 - civic absorbed from monolith (P2)  # noqa: F401  # noqa: F401 - 7 effect passes absorbed from monolith (P2)  # noqa: F401 - 70 effect passes absorbed from monolith (P2)
 from . import house_dress  # noqa: F401 - mh_* dressing builders (piano walk, sheet rail, lanterns...) - unified house module: genome room shell (mh6) + AAA kit (cornice/dentil/scallop/lissajous)
 from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
     build_city_house_cell, build_city_avenue, build_city_block,
