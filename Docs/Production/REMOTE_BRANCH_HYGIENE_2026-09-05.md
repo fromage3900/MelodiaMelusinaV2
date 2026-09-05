@@ -8,7 +8,7 @@ This cleanup is intentionally **reversible**.
 
 ## Active branch set to keep
 
-The generated pruning script preserves these six branch refs:
+The generated pruning script preserves these seven branch refs:
 
 - `main`
 - `integration/astra-game-state-transplant-2026-09-05`
@@ -16,6 +16,7 @@ The generated pruning script preserves these six branch refs:
 - `codex/game-state-2026-09-04-checkpoint`
 - `codex/weapon-gallery-20260902`
 - `rnd/2026-08-30-blender52-music-gn-studio`
+- `docs/2026-08-29-character-p1-p2-canon-audit`
 
 Everything else in the 2026-09-05 census is a fixed, explicit candidate list. The script does **not** discover and delete future branches.
 
@@ -46,6 +47,7 @@ The stale archaeology PRs were closed on 2026-09-05:
 
 The active recovery lanes remain:
 
+- #28 — P1–P3 canon / Mara / deep-toolchain research (still open; keep until extracted or intentionally closed)
 - #94 — Astra game-state / PPV transplant
 - #96 — MH6 shell promotion
 
@@ -63,7 +65,7 @@ Execute:
 powershell -ExecutionPolicy Bypass -File Tools/prune_remote_branches_2026_09_05.ps1 -Execute
 ```
 
-Expected target after execution: **6 live remote branch refs** from this snapshot, plus archive tags preserving the exact old tips.
+Expected target after execution: **7 live remote branch refs** from this snapshot, plus archive tags preserving the exact old tips.
 
 ## Restore an archived branch
 
@@ -79,4 +81,4 @@ Do not remove the three temporary recovery/source branches in the keep set until
 - `fix/mh6-shell-promotion-20260904`
 - `codex/game-state-2026-09-04-checkpoint`
 
-The weapon-gallery and Blender music-GN research branches are also kept until their small unique deltas are transplanted or explicitly rejected.
+The weapon-gallery and Blender music-GN research branches are also kept until their small unique deltas are transplanted or explicitly rejected. PR #28's canon/toolchain branch is kept because it is still open and contains research that should be extracted deliberately rather than disappearing under branch cleanup.
