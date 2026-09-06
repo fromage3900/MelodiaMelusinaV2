@@ -2,17 +2,25 @@
   "schema": "melodia.chapter_allowlist_delta.v1",
   "chapter": "02_shorewake_calling",
   "status": "PREVIEW_ONLY — do not apply to DA_MelodiaIntegrationConfig until golden run closed and one editor writer is assigned to this chapter",
+  "live_reality_note": "Content/MelodiaIntegration/Narrative/Shorewake/MelodiaQuillShorewake.qsc ALREADY emits these ids (notified via $ Notify). None are in the 08-28 allowlist delta, and test_qsc_allowlist_contract passes only because its scope is the 5 P0 scripts. Under bRelaxedAllowlistInEditor=true they silently pass in PIE and break in shipping (rule 18).",
+  "verb_syntax_note": "The script uses the registered 6-field verb melodia:questcomplete:<QuestId>:<CompletionFlagId>:<RewardId>:<IntentId>:<CheckpointId> (handler line ~1097, syntax comment ~1219 in MelodiaNarrativeSubsystem.cpp). Contract tests must gain a shorewake case when the id is allowlisted.",
   "travel": [
     "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype"
   ],
   "travel_note": "ALREADY allowlisted (27-ID delta, Phase 1) — no DA change for travel.",
-  "quests_new": ["quest.shorewake.calling"],
-  "flags_new": ["flag.shorewake.calling", "flag.shorewake.skiff_departed"],
-  "rewards_new": ["reward.shorewake.skiff_charm"],
+  "quests_new": ["quest.shorewake.initiation"],
+  "flags_new": ["flag.quest.shorewake_completed", "flag.sea_above.starskiff_ready"],
+  "rewards_new": ["reward.shorewake_weave"],
   "stats_existing": ["melodia_elegance", "melodia_resonance", "melodia_harmony"],
-  "stat_intents_new": ["shorewake_first_tide"],
+  "stat_intents_new": ["intent.shorewake.resonance"],
+  "questcomplete_intents_new": ["intent.shorewake.complete"],
+  "checkpoints_new": ["checkpoint.shorewake.complete"],
   "encounters_new": ["encounter.shorewake.reef_choir"],
   "cosmetic_new": ["Cos_Charm_SkiffShell"],
-  "qsc_new": ["MelodiaQuillShorewake (exists; add melodia: notifications)", "MelodiaQuillSkiffDeparture (new)"],
-  "validation_contract": "Content.Python.Tests.test_qsc_allowlist_contract must pass after DA apply, with bRelaxedAllowlistInEditor OFF for the final check (rule 18)"
+  "design_flags": [
+    "melodia:item:give:item.outfit.shorewake — the item verb is a LOGGING STUB with no inventory/wallet consumer (AGENTS stable-notification contract). The dress is already owned via the wardrobe catalog path (Cos_ShorewakeDress record, 09-04 commit). Recommend REMOVING the item:give line from the qsc rather than building an item system for it — the grant belongs to MelodiaWardrobeSubsystem, not a stub.",
+    "starskiff traversal-unlock claim in @Finish ('Traversal aboard the Starskiff is unlocked') must route through IMelodiaTraversalCapabilityProvider (the proven wardrobe_gameplay_hook seam) or be reworded — prose in a qsc unlocks nothing."
+  ],
+  "qsc_new": ["MelodiaQuillSkiffDeparture (new, draft when editor lane open)", "existing MelodiaQuillShorewake: apply design_flags edits"],
+  "validation_contract": "Content.Python.Tests.test_qsc_allowlist_contract must pass after DA apply AND gain a shorewake-scoped case, with bRelaxedAllowlistInEditor OFF for the final check (rule 18)"
 }
