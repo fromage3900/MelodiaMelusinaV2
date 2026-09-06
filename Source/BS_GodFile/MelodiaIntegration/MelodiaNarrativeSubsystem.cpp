@@ -4,6 +4,7 @@
 #include "MelodiaIntegrationConfig.h"
 #include "MelodiaOllamaValidation.h"
 #include "MelodiaWaterGameplaySubsystem.h"
+#include "MelodiaSaveSlotLibrary.h"
 #include "Core/QuillscriptAsset.h"
 #include "Core/QuillscriptInterpreter.h"
 #include "Core/QuillscriptSubsystem.h"
@@ -1091,6 +1092,7 @@ void UMelodiaNarrativeSubsystem::HandleQuillNotification(FString Message)
 	if (Handlers.Num() == 0)
 	{
 		Handlers.Add(TEXT("battle"), &UMelodiaNarrativeSubsystem::HandleBattleVerb);
+		Handlers.Add(TEXT("ui"), &UMelodiaNarrativeSubsystem::HandleUIVerb);
 		Handlers.Add(TEXT("quest"), &UMelodiaNarrativeSubsystem::HandleQuestVerb);
 		Handlers.Add(TEXT("questcomplete"), &UMelodiaNarrativeSubsystem::HandleQuestCompleteVerb);
 		Handlers.Add(TEXT("flag"), &UMelodiaNarrativeSubsystem::HandleFlagVerb);
@@ -1142,6 +1144,51 @@ FString UMelodiaNarrativeSubsystem::GetWorldStateForValidation() const
 	}
 
 	return FString::Join(StateParts, TEXT("; "));
+}
+
+void UMelodiaNarrativeSubsystem::HandleUIVerb(const FName Id, const TArray<FString>& Parts, const FString& Message)
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	UQuillscriptSubsystem* Quill = GameInstance ? GameInstance->GetSubsystem<UQuillscriptSubsystem>() : nullptr;
+	if (!Quill || !ActiveInterpreter.IsValid() || Parts.Num() != 3)
+	{
+		Reject(Message, EMelodiaIntentFailure::MissingRuntime);
+		return;
+	}
+
+	// UI results are transient Quill flow variables, not a copy of save state.
+	Quill->GetVariables().Add(TEXT("ui_action_result"), FText::FromString(TEXT("unavailable")));
+	if (Id == TEXT("retry"))
+	{
+		// Re-enter the existing narrative battle seam. StartBattle resets the
+		// completion guard, pauses Quill, and synchronously asks the external
+		// bridge to invoke the stock encounter's StartBattle contract.
+		const FName EncounterId = NarrativeRecord.LastEncounterId;
+		const bool bRequested = !EncounterId.IsNone()
+			&& StartBattle(EncounterId, NarrativeRecord.LastEncounterCommandId, NarrativeRecord.ScriptCheckpoint);
+		const bool bStarted = bRequested && !PendingEncounterId.IsNone();
+		Quill->GetVariables().Add(
+			TEXT("ui_action_result"),
+			FText::FromString(bStarted ? TEXT("started") : TEXT("unavailable")));
+		return;
+	}
+	if (Id == TEXT("load_checkpoint"))
+	{
+		const EMelodiaLoadSlotResult Result = UMelodiaSaveSlotLibrary::LoadCanonicalJRPGSlotDetailed(
+			this, TEXT("MelodiaJRPGSlot0"), 0);
+		const TCHAR* ResultName = TEXT("refused");
+		switch (Result)
+		{
+		case EMelodiaLoadSlotResult::Missing: ResultName = TEXT("missing"); break;
+		case EMelodiaLoadSlotResult::LoadedNarrativeRestored:
+		case EMelodiaLoadSlotResult::LoadedNarrativeDegraded: ResultName = TEXT("loaded"); break;
+		case EMelodiaLoadSlotResult::Refused: break;
+		}
+		Quill->GetVariables().Add(TEXT("ui_action_result"), FText::FromString(ResultName));
+		return;
+	}
+
+	Reject(Message, EMelodiaIntentFailure::UnknownIntent);
 }
 
 void UMelodiaNarrativeSubsystem::HandleBattleVerb(const FName Id, const TArray<FString>& Parts, const FString& Message)
