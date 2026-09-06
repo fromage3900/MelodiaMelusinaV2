@@ -14,7 +14,7 @@ This is Melusina's **DAWN CHORUS** gown — the capstone of the overnight wardro
 
 ```
 dawn_chorus/
-  meshes/DawnChorus.fbx          10.5 MB  24afebf25f84  180,895v / 316,912 polys / 20 mats / 1 UV
+  meshes/DawnChorus.fbx          10.0 MB  6df19846bc0e  180,895v / 316,912 polys / 20 mats / 1 UV
   textures/                       pristine fallback (don't paint here)
     T_DawnChorus_BaseColor.png    2048  8f3a4a233abc  rose blush → gilt hem (Chladni 5,7 veins)
     T_DawnChorus_Normal.png       2048  de21921eadec  OpenGL +Y (Sobel strength 2.0)
