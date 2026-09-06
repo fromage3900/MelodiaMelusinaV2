@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .bg{fill:#0d1117}.panel{fill:#141a22;stroke:#4b5563;stroke-width:2}.title{fill:#f5f5f4;font-family:Arial,sans-serif;font-size:34px;font-weight:700}.sub{fill:#d6d3d1;font-family:Arial,sans-serif;font-size:20px}.label{fill:#f5f5f4;font-family:Arial,sans-serif;font-size:22px;font-weight:700}.small{fill:#d6d3d1;font-family:Arial,sans-serif;font-size:17px}.tiny{fill:#a8a29e;font-family:Arial,sans-serif;font-size:15px}.gold{stroke:#f6c453;fill:none;stroke-width:4}.cyan{stroke:#72d6ff;fill:none;stroke-width:4}.pink{stroke:#f6a1d3;fill:none;stroke-width:4}.green{stroke:#8fd694;fill:none;stroke-width:4}.dash{stroke-dasharray:10 10}.nodeA{fill:#1e293b;stroke:#72d6ff;stroke-width:2}.nodeB{fill:#2b2230;stroke:#f6a1d3;stroke-width:2}.nodeC{fill:#2c2a1f;stroke:#f6c453;stroke-width:2}.nodeD{fill:#1f2d24;stroke:#8fd694;stroke-width:2}.pill{fill:#202631;stroke:#697386;stroke-width:1.5}.accent{fill:#f6c453;font-family:Arial,sans-serif;font-size:18px;font-weight:700}
+    </style>
+    <marker id="arrowGold" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#f6c453"/></marker>
+    <marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#72d6ff"/></marker>
+    <marker id="arrowPink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#f6a1d3"/></marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#8fd694"/></marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1920" height="1080"/>
+  <text class="title" x="80" y="70">MELODIA MUSIC SIGNAL BRIDGE — TOUCHDESIGNER × BLENDER 5.2 × UNREAL 5.8</text>
+  <text class="sub" x="80" y="105">One semantic music language; three execution contexts. MIDI describes composition. Audio describes performance. Unreal remains runtime truth.</text>
+
+  <!-- Left Authoring -->
+  <rect class="panel" x="70" y="150" width="520" height="800" rx="20"/>
+  <text class="label" x="100" y="190">AUTHORING — BLENDER 5.2 / MELODIA STUDIO</text>
+  <text class="small" x="100" y="220">Offline procedural form generation</text>
+
+  <rect class="nodeA" x="105" y="265" width="190" height="105" rx="14"/>
+  <text class="label" x="135" y="305">MIDI</text>
+  <text class="small" x="125" y="335">pitch • velocity</text>
+  <text class="small" x="125" y="360">duration • track • beat</text>
+
+  <rect class="nodeA" x="335" y="265" width="215" height="105" rx="14"/>
+  <text class="label" x="365" y="305">AUDIO FILE / STEM</text>
+  <text class="small" x="365" y="335">timbre • dynamics</text>
+  <text class="small" x="365" y="360">actual performance</text>
+
+  <rect class="nodeA" x="105" y="410" width="190" height="110" rx="14"/>
+  <text class="label" x="125" y="450">midi_bridge.py</text>
+  <text class="small" x="125" y="480">existing parser + presets</text>
+  <text class="small" x="125" y="505">melodia_roll_field_v1</text>
+
+  <rect class="nodeA" x="335" y="410" width="215" height="110" rx="14"/>
+  <text class="label" x="355" y="447">Sample Sound</text>
+  <text class="label" x="355" y="475">Frequencies</text>
+  <text class="small" x="355" y="503">LOW • LOWMID • MID • HIGH</text>
+
+  <path class="cyan" d="M200 370 L200 410" marker-end="url(#arrowCyan)"/>
+  <path class="cyan" d="M442 370 L442 410" marker-end="url(#arrowCyan)"/>
+
+  <rect class="nodeC" x="155" y="565" width="350" height="120" rx="18"/>
+  <text class="label" x="188" y="605">MEL_MusicReactiveField_v1</text>
+  <text class="small" x="188" y="637">stable semantic outputs for every GN template</text>
+  <text class="small" x="188" y="663">Music.Low • BeatPreview • Pitch • Velocity • Duration</text>
+
+  <path class="gold" d="M200 520 C220 550,250 555,300 565" marker-end="url(#arrowGold)"/>
+  <path class="gold" d="M442 520 C420 550,390 555,360 565" marker-end="url(#arrowGold)"/>
+
+  <rect class="nodeC" x="105" y="735" width="135" height="90" rx="14"/>
+  <text class="small" x="120" y="770">Rhythm</text><text class="small" x="120" y="794">Garden</text>
+  <rect class="nodeC" x="250" y="735" width="135" height="90" rx="14"/>
+  <text class="small" x="268" y="770">Tide</text><text class="small" x="268" y="794">Seam</text>
+  <rect class="nodeC" x="395" y="735" width="155" height="90" rx="14"/>
+  <text class="small" x="410" y="770">Filter</text><text class="small" x="410" y="794">Filaments</text>
+  <path class="gold" d="M330 685 L330 720" marker-end="url(#arrowGold)"/>
+  <path class="gold" d="M330 720 L170 735" marker-end="url(#arrowGold)"/>
+  <path class="gold" d="M330 720 L318 735" marker-end="url(#arrowGold)"/>
+  <path class="gold" d="M330 720 L470 735" marker-end="url(#arrowGold)"/>
+
+  <rect class="pill" x="140" y="865" width="380" height="55" rx="14"/>
+  <text class="accent" x="175" y="900">BAKE / EXPORT → mesh • curves • attrs • morphs • cache</text>
+
+  <!-- Middle Live -->
+  <rect class="panel" x="640" y="150" width="500" height="800" rx="20"/>
+  <text class="label" x="670" y="190">LIVE LOOKDEV — TOUCHDESIGNER / OSC</text>
+  <text class="small" x="670" y="220">Existing live response lane</text>
+
+  <rect class="nodeB" x="705" y="290" width="370" height="120" rx="18"/>
+  <text class="label" x="820" y="333">TouchDesigner</text>
+  <text class="small" x="765" y="365">audio analysis • performance controls</text>
+  <text class="small" x="790" y="392">artistic smoothing / gain / lag</text>
+
+  <rect class="nodeB" x="770" y="470" width="240" height="100" rx="18"/>
+  <text class="label" x="860" y="510">OSC</text>
+  <text class="small" x="805" y="542">live normalized control values</text>
+  <path class="pink" d="M890 410 L890 470" marker-end="url(#arrowPink)"/>
+
+  <rect class="nodeC" x="705" y="650" width="370" height="150" rx="18"/>
+  <text class="label" x="755" y="690">Semantic Calibration Reference</text>
+  <text class="small" x="750" y="723">beat = beat everywhere</text>
+  <text class="small" x="750" y="750">tension = sustained pressure everywhere</text>
+  <text class="small" x="750" y="777">dream/ripple = slow world deformation everywhere</text>
+
+  <path class="gold dash" d="M705 725 C620 725,610 630,505 625" marker-end="url(#arrowGold)"/>
+  <text class="tiny" x="585" y="610">calibrate meaning, not ownership</text>
+
+  <!-- Right Unreal -->
+  <rect class="panel" x="1190" y="150" width="660" height="800" rx="20"/>
+  <text class="label" x="1220" y="190">RUNTIME — UNREAL ENGINE 5.8</text>
+  <text class="small" x="1220" y="220">Shipping authority</text>
+
+  <rect class="nodeD" x="1260" y="275" width="520" height="110" rx="18"/>
+  <text class="label" x="1320" y="315">UMelodiaRhythmReactivitySubsystem</text>
+  <text class="small" x="1330" y="348">BeatPulse • BeatPhase • BPM • Crescendo • Tension • DreamRipple</text>
+  <text class="small" x="1375" y="373">gameplay-facing rhythm truth</text>
+
+  <path class="green" d="M1010 520 C1140 520,1145 330,1260 330" marker-end="url(#arrowGreen)"/>
+
+  <rect class="nodeD" x="1320" y="445" width="400" height="100" rx="18"/>
+  <text class="label" x="1390" y="485">MPC_Melodia_Palette</text>
+  <text class="small" x="1390" y="518">shared rhythm / audio / material bus</text>
+  <path class="green" d="M1520 385 L1520 445" marker-end="url(#arrowGreen)"/>
+
+  <rect class="nodeD" x="1225" y="620" width="285" height="105" rx="16"/>
+  <text class="label" x="1275" y="660">Niagara Driver</text>
+  <text class="small" x="1270" y="691">shared User.* fan-out</text>
+  <rect class="nodeD" x="1530" y="620" width="285" height="105" rx="16"/>
+  <text class="label" x="1570" y="660">Local MIDs / Directors</text>
+  <text class="small" x="1590" y="691">chapter physiology + reveal</text>
+  <path class="green" d="M1520 545 L1370 620" marker-end="url(#arrowGreen)"/>
+  <path class="green" d="M1520 545 L1670 620" marker-end="url(#arrowGreen)"/>
+
+  <rect class="nodeD" x="1320" y="790" width="400" height="95" rx="18"/>
+  <text class="label" x="1395" y="830">Gameplay / Wardrobe / Monolith</text>
+  <text class="small" x="1410" y="858">player-facing world state and response</text>
+  <path class="green" d="M1520 725 L1520 790" marker-end="url(#arrowGreen)"/>
+
+  <!-- Cross-lane semantics -->
+  <path class="gold dash" d="M505 625 C700 610,1010 610,1320 495" marker-end="url(#arrowGold)"/>
+  <text class="tiny" x="755" y="590">SHARED SEMANTIC CONTRACT — meanings align; implementation stays local</text>
+
+  <rect class="pill" x="650" y="980" width="620" height="60" rx="15"/>
+  <text class="accent" x="705" y="1018">MIDI = COMPOSITION   •   AUDIO = PERFORMANCE   •   TD = LIVE REFERENCE   •   UE = RUNTIME TRUTH</text>
+</svg>
