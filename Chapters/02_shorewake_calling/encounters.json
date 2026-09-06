@@ -1,0 +1,18 @@
+{
+  "schema": "melodia.chapter_allowlist_delta.v1",
+  "chapter": "02_shorewake_calling",
+  "status": "PREVIEW_ONLY — do not apply to DA_MelodiaIntegrationConfig until golden run closed and one editor writer is assigned to this chapter",
+  "travel": [
+    "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype"
+  ],
+  "travel_note": "ALREADY allowlisted (27-ID delta, Phase 1) — no DA change for travel.",
+  "quests_new": ["quest.shorewake.calling"],
+  "flags_new": ["flag.shorewake.calling", "flag.shorewake.skiff_departed"],
+  "rewards_new": ["reward.shorewake.skiff_charm"],
+  "stats_existing": ["melodia_elegance", "melodia_resonance", "melodia_harmony"],
+  "stat_intents_new": ["shorewake_first_tide"],
+  "encounters_new": ["encounter.shorewake.reef_choir"],
+  "cosmetic_new": ["Cos_Charm_SkiffShell"],
+  "qsc_new": ["MelodiaQuillShorewake (exists; add melodia: notifications)", "MelodiaQuillSkiffDeparture (new)"],
+  "validation_contract": "Content.Python.Tests.test_qsc_allowlist_contract must pass after DA apply, with bRelaxedAllowlistInEditor OFF for the final check (rule 18)"
+}
