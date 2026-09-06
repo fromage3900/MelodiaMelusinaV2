@@ -10,9 +10,9 @@
   "verdict": "PASS",
   "mesh": {
     "file": "Saved/Audit/wardrobe_pipeline/dawn_chorus/meshes/DawnChorus.fbx",
-    "size_b": 10466876,
-    "sha12": "24afebf25f84",
-    "sha256": "24afebf25f84540243304e14534eb2591f21a715a65b57dd5e64b44f713568f7",
+    "size_b": 10464444,
+    "sha12": "6df19846bc0e",
+    "sha256": "6df19846bc0ed9c05646c529387497fc493bb6b736d907904ee87271d0b0ffe8",
     "source": "Saved/Audit/wardrobe_pipeline/intake/Cos_Dress_Melusina_AntiqueDoll/Cos_Dress_Melusina_AntiqueDoll.obj (180895 verts OBJ, 20 mats)",
     "verts": 180895,
     "polys": 316912,

@@ -1,5 +1,9 @@
 @ Start
 
+// See MelodiaQuillPetalPriestess.qsc -- the background box renders blank until a
+// script sets an image. CosmicOrrery is the star-weaver counterpart to that grove.
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_CosmicOrrery.T_Melodia_Figma_Asset_Hero_CosmicOrrery} none 0
+
 ? if: {melodia_q_echo_02_complete} == on
 
   - Star Weaver
