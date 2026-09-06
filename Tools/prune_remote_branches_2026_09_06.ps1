@@ -14,12 +14,13 @@ $ErrorActionPreference = "Stop"
 $Keep = @(
   'main',
   'docs/stale-session-start-fix-2026-09-06',
-  'recovery/harvest-small-branches-2026-09-06'
+  'feature/grandmaster-melodia-studio'
 ) + $KeepAdditional
 
 $Candidates = @(
   'backup/pre-consolidation-2026-08-30',
   'claude/tonight-cymatic-ecology-interaction',
+  'cleanup/final-branch-prune-2026-09-06',
   'cleanup/golden-scorecard-2026-09-06',
   'cleanup/lookdev-plan-2026-09-06',
   'cleanup/scrub-spec-2026-09-06',
@@ -30,7 +31,6 @@ $Candidates = @(
   'copilot/new-feature-implementation',
   'docs/2026-08-29-character-p1-p2-canon-audit',
   'docs/2026-09-02-grand-master-plan',
-  'feature/grandmaster-melodia-studio',
   'feature/ue58-runner-registration',
   'fix/mh6-fix-promotion-20260904',
   'fix/prune-script-ps51',
@@ -39,6 +39,7 @@ $Candidates = @(
   'recovery/astra-docs-2026-09-06',
   'recovery/blender-music-gn-docs-2026-09-06',
   'recovery/canon-docs-2026-09-06',
+  'recovery/harvest-small-branches-2026-09-06',
   'recovery/small-tools-2026-09-06',
   'rescue/web-threejs-recovery-2026-09-05',
   'rnd/2026-08-30-blender52-music-gn-studio'
@@ -69,9 +70,14 @@ if ($LASTEXITCODE -ne 0 -or -not $repoRoot) { throw "Run this from a clone of Me
 $dirty = (& git status --porcelain)
 if ($dirty) { throw "Worktree is dirty. Commit or stash first; pruning is intentionally blocked." }
 
+$currentBranch = (& git branch --show-current).Trim()
+if ($currentBranch -ne 'main') { throw "Current branch is '$currentBranch'. Switch to main before pruning." }
+
 Invoke-Git fetch $Remote --prune --tags
 $mainSha = Get-RemoteHeadSha "main"
 if (-not $mainSha) { throw "Could not resolve $Remote/main." }
+$localHead = (& git rev-parse HEAD).Trim()
+if ($localHead -ne $mainSha) { throw "Local HEAD ($localHead) is not $Remote/main ($mainSha). Pull current main before pruning." }
 
 Write-Host ""
 Write-Host "Melodia remote branch hygiene - 2026-09-06 second pass"
