@@ -1,0 +1,162 @@
+{
+  "schema": "melodia.sea_above.meshed_lane_height_aware_placements.v1",
+  "version": "1.0.0",
+  "lane": {
+    "id": "SeaAbove_MeshedLane_FabricRidge",
+    "description": "Named Sea Above meshed lane running along the Faraway Mother Fabric Ridge seam (X-axis sweep, Y held on the seam normal). Instances drop onto the existing CanonicalLandscape — no new Landscape, no floating geometry.",
+    "bundle": "Sea Above / Faraway Mother meshed lane (12-20 instance batch)"
+  },
+  "target_level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "terrain": {
+    "name": "CanonicalLandscape",
+    "mode": "raycast-destination only",
+    "contract": "No Landscape created. No LandscapeGrassType. All placed geometry raycasts to the existing CanonicalLandscape."
+  },
+  "batching": {
+    "method": "PCG volume graph-driven ISM/HISM instance batching",
+    "ism_batch": true,
+    "hism_component": "PCG.HISM_Faraway_FabricRidge",
+    "note": "Instances are HISM/PCG only — no unique StaticMeshActor. PCG graph stages instances into an Instanced/HISM static mesh component under the owning graph."
+  },
+  "raycast": {
+    "method": "KismetSystemLibrary.line_trace_single (TraceTypeQuery.Visibility, complex=false)",
+    "start_z": 5000,
+    "end_z": -1000,
+    "fallback_z": 35,
+    "no_floating": "Secondary re-trace after placement; reject/clamp if re-trace delta > 15cm. Hover offset keeps feet above terrain — no floating.",
+    "note": "Instances are height-aware raycast ONLY."
+  },
+  "instance_count": 16,
+  "owning_graph": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+  "placements": [
+    {
+      "id": "SA_RidgeLane_0000",
+      "world_xz": [-2400.0, -2200.0],
+      "hover_offset": 9.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0001",
+      "world_xz": [-2080.0, -2200.0],
+      "hover_offset": 11.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0002",
+      "world_xz": [-1760.0, -2200.0],
+      "hover_offset": 8.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0003",
+      "world_xz": [-1440.0, -2200.0],
+      "hover_offset": 12.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0004",
+      "world_xz": [-1120.0, -2200.0],
+      "hover_offset": 10.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0005",
+      "world_xz": [-800.0, -2200.0],
+      "hover_offset": 9.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0006",
+      "world_xz": [-480.0, -2200.0],
+      "hover_offset": 11.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0007",
+      "world_xz": [-160.0, -2200.0],
+      "hover_offset": 8.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0008",
+      "world_xz": [160.0, -2200.0],
+      "hover_offset": 12.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0009",
+      "world_xz": [480.0, -2200.0],
+      "hover_offset": 10.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0010",
+      "world_xz": [800.0, -2200.0],
+      "hover_offset": 9.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0011",
+      "world_xz": [1120.0, -2200.0],
+      "hover_offset": 11.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0012",
+      "world_xz": [1440.0, -2200.0],
+      "hover_offset": 8.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0013",
+      "world_xz": [1760.0, -2200.0],
+      "hover_offset": 12.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0014",
+      "world_xz": [2080.0, -2200.0],
+      "hover_offset": 10.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    },
+    {
+      "id": "SA_RidgeLane_0015",
+      "world_xz": [2400.0, -2200.0],
+      "hover_offset": 9.0,
+      "owning_pcg": "/Game/EnvSandbox/PCG/FarawayMother/PCG_Faraway_FabricRidge",
+      "hism_component": "PCG.HISM_Faraway_FabricRidge",
+      "note": "height-aware raycast only"
+    }
+  ],
+  "notes": "Entire batch is instances-only (HISM/PCG). Z for every world_xz is resolved at placement time by a single Visibility line trace toward the existing CanonicalLandscape (start_z 5000 -> end_z -1000); each instance then hovers at its declared hover_offset above the hit. No new Landscape, no floating pieces, no unique StaticMeshActor."
+}

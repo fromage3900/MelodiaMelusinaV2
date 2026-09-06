@@ -1,0 +1,66 @@
+{
+  "schema": "melodia.horizon_eater_pcg.v1",
+  "version": "1.0.0",
+  "seed": 20260829,
+  "bounds_uu": [
+    -400000.0,
+    -400000.0,
+    400000.0,
+    400000.0
+  ],
+  "sea_surface_z_uu": 13455.0,
+  "total_points": 480,
+  "zone_summaries": {
+    "FilterCorridor": {
+      "name": "FilterCorridor",
+      "point_count": 120,
+      "builders": [
+        "MEL_horizon_filter_flow",
+        "MEL_horizon_filter_plate"
+      ],
+      "avg_tension": 0.9182,
+      "avg_horizon_mask": 0.9909,
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_FilterFlow",
+      "mode": "3_7"
+    },
+    "HorizonRim": {
+      "name": "HorizonRim",
+      "point_count": 120,
+      "builders": [
+        "MEL_horizon_rim_proxy",
+        "MEL_horizon_mouth_card"
+      ],
+      "avg_tension": 0.7864,
+      "avg_horizon_mask": 1.0,
+      "material_instance": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Horizon_MouthCard",
+      "mode": "6_9"
+    },
+    "WayfoldPair": {
+      "name": "WayfoldPair",
+      "point_count": 120,
+      "builders": [
+        "MEL_horizon_wayfold_entry",
+        "MEL_horizon_wayfold_exit"
+      ],
+      "avg_tension": 0.0949,
+      "avg_horizon_mask": 0.0995,
+      "material_instance": "/Game/EnvSandbox/Monoliths/HorizonEater/Prototype/Materials/MI_Horizon_Wayfold",
+      "mode": "4_4"
+    },
+    "DistanceEvidence": {
+      "name": "DistanceEvidence",
+      "point_count": 120,
+      "builders": [
+        "MEL_horizon_distance_evidence",
+        "MEL_horizon_pollen_drift"
+      ],
+      "avg_tension": 0.9289,
+      "avg_horizon_mask": 0.9868,
+      "material_instance": "/Game/EnvSandbox/Textures/Copernicus/Shared/MI_Horizon_Evidence",
+      "mode": "5_6"
+    }
+  },
+  "horizon_scalar": "MPC_Melodia_Palette.HorizonEatAmount 0..1 (alias WorldField.Tension/HorizonEat)",
+  "bus": "UMelodiaAudioReactivePresentationSubsystem sole writer",
+  "hash": "565fef21f0b31116"
+}

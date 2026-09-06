@@ -102,6 +102,11 @@ void UMelodiaWardrobeComponent::ApplyWardrobeState()
 			Pair.Value->SetVisibility(false);
 		}
 	}
+
+	// The restored equipped set may cover different body regions than whatever was
+	// visible before the restore: re-derive the collapse from the record, not from
+	// what happened to be equipped last frame.
+	ApplyBodyRegionVisibility();
 }
 
 USkeletalMeshComponent* UMelodiaWardrobeComponent::GetBodyMesh() const
@@ -250,6 +255,7 @@ bool UMelodiaWardrobeComponent::EquipCosmetic(const FName CosmeticId)
 	// reporting success with a state the player cannot see.
 	if (IsSlotShowingMesh(Slot, Mesh))
 	{
+		ApplyBodyRegionVisibility();
 		return true;
 	}
 
@@ -349,6 +355,9 @@ void UMelodiaWardrobeComponent::UnequipSlot(const EMelodiaWardrobeSlot Slot)
 		Wardrobe->UnequipSlot(Slot);
 	}
 	EquipGarment(Slot, nullptr);
+	// The unequipped garment may have been the only claim on a body region; the
+	// remaining equipped set decides what stays collapsed.
+	ApplyBodyRegionVisibility();
 }
 
 USkeletalMeshComponent* UMelodiaWardrobeComponent::GetSlotComponent(const EMelodiaWardrobeSlot Slot) const
@@ -379,4 +388,69 @@ void UMelodiaWardrobeComponent::SetSlotMaterial(const EMelodiaWardrobeSlot Slot,
 	{
 		SlotComp->SetMaterial(MaterialIndex, Material);
 	}
+}
+
+void UMelodiaWardrobeComponent::ApplyBodyRegionVisibility()
+{
+	USkeletalMeshComponent* BodyMesh = GetBodyMesh();
+	const USkeletalMesh* BodyAsset = BodyMesh ? BodyMesh->GetSkeletalMeshAsset() : nullptr;
+	if (!BodyMesh || !BodyAsset)
+	{
+		return;
+	}
+
+	UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(this);
+	if (!Wardrobe)
+	{
+		return;
+	}
+
+	// Derive at call time from the equipped map (the authority); this component
+	// only remembers what IT set last, so an unequip re-expands exactly what it
+	// collapsed and nothing more.
+	TSet<FName> DesiredHides;
+	{
+		const TArray<FName> Regions = Wardrobe->GetHiddenBodyRegions();
+		DesiredHides.Reserve(Regions.Num());
+		for (const FName Region : Regions)
+		{
+			DesiredHides.Add(Region);
+		}
+	}
+
+	// Re-expand regions this component previously collapsed that the new equipped
+	// set no longer covers. Only touch morphs we set -- a designer-authored
+	// corrective morph on the same mesh is not ours to reset.
+	for (const FName PreviouslyHidden : AppliedBodyRegionHides)
+	{
+		if (!DesiredHides.Contains(PreviouslyHidden))
+		{
+			BodyMesh->SetMorphTarget(PreviouslyHidden, 0.0f);
+		}
+	}
+
+	for (const FName Region : DesiredHides)
+	{
+		// Presence check, not a guess: FindMorphTarget returns null when the body
+		// mesh has not been re-authored with this region's hide morph yet.
+		// That is an authoring-lag condition (region declared, morph pending), so
+		// it degrades to "no collapse" -- never to a section-index hack.
+		// (USkeletalMesh has no GetMorphTargetIndex in UE 5.8; the members are
+		// FindMorphTarget / FindMorphTargetAndIndex, SkeletalMesh.h:2757-2758.)
+		if (BodyAsset->FindMorphTarget(Region) == nullptr)
+		{
+			if (!WarnedMissingBodyRegionMorphs.Contains(Region))
+			{
+				WarnedMissingBodyRegionMorphs.Add(Region);
+				UE_LOG(LogTemp, Warning,
+					TEXT("MELODIA_WARDROBE_CLIP body mesh %s has no region-hide morph '%s' yet; "
+						 "region declared by the equipped set stays visible until the morph is authored."),
+					*GetNameSafe(BodyAsset), *Region.ToString());
+			}
+			continue;
+		}
+		BodyMesh->SetMorphTarget(Region, 1.0f);
+	}
+
+	AppliedBodyRegionHides = DesiredHides;
 }

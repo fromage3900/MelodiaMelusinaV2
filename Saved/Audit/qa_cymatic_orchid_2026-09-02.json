@@ -1,0 +1,22 @@
+{
+  "schema": "melodia.cymatic_variant_qa.v1",
+  "variant": "CymaticOrchid",
+  "generated": "2026-09-02",
+  "source": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py (builder present in tree — foreign work from sibling agent, cooked for QA)",
+  "cook_cmd": ".venv-guardrails/Scripts/python.exe Tools/Houdini/copernicus/copernicus_cymatic_parallax.py --variant CymaticOrchid --size 1024x1024 --cook",
+  "size": "1024x1024",
+  "result": "PASS",
+  "all_9_maps_ok": true,
+  "maps": [
+    {"name": "BaseColor",   "exists": true, "size": "1024x1024", "mode": "RGB", "nonblank": true},
+    {"name": "Normal",      "exists": true, "size": "1024x1024", "mode": "RGB", "nonblank": true},
+    {"name": "Roughness",   "exists": true, "size": "1024x1024", "mode": "L",   "nonblank": true},
+    {"name": "Metallic",    "exists": true, "size": "1024x1024", "mode": "L",   "nonblank": true},
+    {"name": "Height",      "exists": true, "size": "1024x1024", "mode": "RGB", "nonblank": true},
+    {"name": "ORM",         "exists": true, "size": "1024x1024", "mode": "RGB", "nonblank": true},
+    {"name": "Emissive",    "exists": true, "size": "1024x1024", "mode": "RGB", "nonblank": true},
+    {"name": "Iridescence", "exists": true, "size": "1024x1024", "mode": "RGB", "nonblank": true},
+    {"name": "Opacity",     "exists": true, "size": "1024x1024", "mode": "L",   "nonblank": true}
+  ],
+  "note": "Outputs under Saved/Audit/copernicus_cymatic/ (gitignored parent). QA evidence and manifest carry the record; PNGs themselves are not committed."
+}

@@ -1,0 +1,220 @@
+{
+  "schema": "melodia.wardrobe_verify.v1",
+  "variant": "AntiqueDollRose",
+  "title": "AntiqueDollRose \u2014 dusty-rose damask + gilt, seed 20260902",
+  "palette": "rose_deep(122,62,76) rose(196,130,142) rose_hi(232,186,196) mauve_shadow(148,104,116) gilt(232,196,120) gilt_hi(255,226,160)",
+  "chladni_modes": [
+    [
+      5,
+      3
+    ],
+    [
+      10,
+      7
+    ],
+    [
+      15,
+      12
+    ]
+  ],
+  "primary_mode": [
+    5,
+    3
+  ],
+  "seed_rule": 20260902,
+  "seed_in_copernicus_cymatic_parallax_py": 20260831,
+  "seed_note": "on-disk provenance drift: py SEED is 20260831, rule demands 20260902. Maps on disk were generated under whichever SEED the cooker had at 01:40. Re-derive needed before next cook \u2014 patch SEED to 20260902 and recook to fully close provenance. This run VERIFIES on-disk bytes only.",
+  "checked_at": "2026-09-03T14:28:21.309492-04:00",
+  "path": "Saved/Audit/copernicus_cymatic/AntiqueDollRose",
+  "maps": [
+    {
+      "file": "T_Cymatic_AntiqueDollRose_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 2832474,
+      "sha12": "759d489cb306",
+      "mean": [
+        181.16561603546143,
+        129.7780773639679,
+        119.30922150611877
+      ],
+      "std": [
+        33.25324284297983,
+        42.10452729800813,
+        21.033938222163183
+      ],
+      "mtime": "2026-09-03T01:40:12.372849-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Emissive.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 677990,
+      "sha12": "34973c2df28d",
+      "mean": [
+        1.867431879043579,
+        1.549046516418457,
+        1.2107493877410889
+      ],
+      "std": [
+        4.586818552340049,
+        3.814264994158956,
+        2.996534400613041
+      ],
+      "mtime": "2026-09-03T01:40:14.156949-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Height.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 1442716,
+      "sha12": "caf41e76a74e",
+      "mean": [
+        65.82886219024658,
+        65.82886219024658,
+        65.82886219024658
+      ],
+      "std": [
+        50.82143379539143,
+        50.82143379539143,
+        50.82143379539143
+      ],
+      "mtime": "2026-09-03T01:40:13.430958-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Iridescence.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 1301878,
+      "sha12": "4a4a541d4d8d",
+      "mean": [
+        41.42466473579407,
+        41.42466473579407,
+        41.42466473579407
+      ],
+      "std": [
+        31.465148316753766,
+        31.465148316753766,
+        31.465148316753766
+      ],
+      "mtime": "2026-09-03T01:40:14.557599-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "L",
+      "bytes": 937736,
+      "sha12": "7a1b40b0989c",
+      "mean": [
+        61.50450372695923
+      ],
+      "std": [
+        82.73958739221361
+      ],
+      "mtime": "2026-09-03T01:40:13.081605-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 2341299,
+      "sha12": "763abb07ea17",
+      "mean": [
+        127.00316405296326,
+        126.99964785575867,
+        253.4269244670868
+      ],
+      "std": [
+        9.675196913874656,
+        9.66934504388484,
+        1.7477103838314132
+      ],
+      "mtime": "2026-09-03T01:40:12.803834-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Opacity.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "L",
+      "bytes": 8533,
+      "sha12": "7368a2762f02",
+      "mean": [
+        255.0
+      ],
+      "std": [
+        0.0
+      ],
+      "mtime": "2026-09-03T01:40:14.574127-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_ORM.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 2539348,
+      "sha12": "dac96b25bbca",
+      "mean": [
+        214.70321011543274,
+        144.80107951164246,
+        61.50450372695923
+      ],
+      "std": [
+        30.49396869144869,
+        45.27057780747984,
+        82.73958739221361
+      ],
+      "mtime": "2026-09-03T01:40:13.927795-04:00"
+    },
+    {
+      "file": "T_Cymatic_AntiqueDollRose_Roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "mode": "L",
+      "bytes": 895083,
+      "sha12": "8209335c1a94",
+      "mean": [
+        144.80107951164246
+      ],
+      "std": [
+        45.27057780747984
+      ],
+      "mtime": "2026-09-03T01:40:12.960061-04:00"
+    }
+  ],
+  "counts": "9/9",
+  "all_2048": true,
+  "distinct_within_family": true,
+  "cross_family_distinct_bc": true,
+  "cross_family_bc_sha12": {
+    "AntiqueDollRose": "759d489cb306",
+    "ButterflyWingMembrane": "112d0baace20"
+  },
+  "variance_gate": "PASS \u2014 every non-opacity map std>2.0 (BaseColor min 21.0, Metallic 82.7, Roughness 45.3, Height 50.8, Iridescence 31.5, Normal XY ~9.7)",
+  "opacity_flat": "intentional solid 0.0 variance 255.0 mean",
+  "vocab": "primary (5,3) free of all 10 garment-layer + 4 water-zone modes per file header comment; 0 collisions claimed. No live vocab file on disk to re-derive \u2014 accepted from header + prior verify.",
+  "gate": "PASS"
+}

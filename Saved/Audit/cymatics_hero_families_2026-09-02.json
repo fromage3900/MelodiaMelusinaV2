@@ -1,0 +1,520 @@
+{
+  "schema": "melodia.cymatics.hero.v1",
+  "generated": "2026-09-02",
+  "manifest_read": {
+    "schema": "melodia.copernatic_cymatic_parallax.v2",
+    "frames": 1,
+    "variants_in_manifest": [
+      "WeepingWillow"
+    ]
+  },
+  "manifest_stale": "manifest only lists WeepingWillow (frames=1); Melodia hero families and 8-frame update are NOT recorded in the manifest \u2014 present only in generator script",
+  "hero_families": {
+    "MelodiaHeroGem": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaGoldSilk": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaMotherPearl": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaSapphireGlass": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaRoseVelvet": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaMoonlace": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaForestEmerald": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaAmethystVein": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    },
+    "MelodiaAuroraGlass": {
+      "maps_present": [
+        "BaseColor",
+        "Normal",
+        "Roughness",
+        "Metallic",
+        "Height",
+        "ORM",
+        "Emissive",
+        "Iridescence",
+        "Opacity"
+      ],
+      "maps_missing": [],
+      "png_magic_valid": true,
+      "dims": {
+        "BaseColor": [
+          1024,
+          1024
+        ],
+        "Normal": [
+          1024,
+          1024
+        ],
+        "Roughness": [
+          1024,
+          1024
+        ],
+        "Metallic": [
+          1024,
+          1024
+        ],
+        "Height": [
+          1024,
+          1024
+        ],
+        "ORM": [
+          1024,
+          1024
+        ],
+        "Emissive": [
+          1024,
+          1024
+        ],
+        "Iridescence": [
+          1024,
+          1024
+        ],
+        "Opacity": [
+          1024,
+          1024
+        ]
+      },
+      "status": "PASS"
+    }
+  },
+  "summary": {
+    "total": 9,
+    "pass": 9,
+    "pending_cook": 0,
+    "fail": 0,
+    "passed": [
+      "MelodiaHeroGem",
+      "MelodiaGoldSilk",
+      "MelodiaMotherPearl",
+      "MelodiaSapphireGlass",
+      "MelodiaRoseVelvet",
+      "MelodiaMoonlace",
+      "MelodiaForestEmerald",
+      "MelodiaAmethystVein",
+      "MelodiaAuroraGlass"
+    ],
+    "pending": [],
+    "failed": [],
+    "overall": "PASS"
+  }
+}

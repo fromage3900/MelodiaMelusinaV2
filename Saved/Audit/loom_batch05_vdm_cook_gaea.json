@@ -1,0 +1,39 @@
+{
+  "schema": "melodia.loom_batch05.vdm_cook_gaea.v1",
+  "generated": "2026-09-02T09:55-04:00",
+  "lane": "VDM real cook + Gaea live capture readiness",
+  "verified_ground_truth": true,
+  "vdm": {
+    "variant": "A/B/C real 32f OpenEXR cook (baked this morning 07:08-07:12)",
+    "outputs_produced": [
+      "Saved/Audit/vdm_fabric/T_FarawayMother_Fabric_VDM_A.exr  7,876,637 B  magic 76 2f 31 01",
+      "Saved/Audit/vdm_fabric/T_FarawayMother_Fabric_VDM_B.exr  6,924,223 B  magic 76 2f 31 01",
+      "Saved/Audit/vdm_fabric/T_FarawayMother_Fabric_VDM_C.exr  5,513,443 B  magic 76 2f 31 01"
+    ],
+    "aside": {
+      "npy": "A/B/C 64 MiB each (67108992 B)",
+      "png": "A 1,985,688 / B 1,545,414 / C 1,035,989 B",
+      "qa_evidence": "Saved/Audit/vdm_fabric/vdm_qa_2026-09-02.json — each variant nonblank=true, mask_valid=true, exr_roundtrip=true, verdict PASS (sha256 recorded)",
+      "note": "KleinVeil still lacks a 32f EXR (only .npy/.png) — candidate next cook"
+    },
+    "cook_attempt_this_hour": {
+      "subagent": "sa-2-8e32f8e6",
+      "result": "FAILED",
+      "detail": "hython scratch driver hit attribcreate param-naming blocker (param is name1 not name; cls (class) parm returns None) then the lane died on API connection error (3 retries) before writing its report. No NEW EXR produced by the lane; the on-disk A/B/C EXRs are from the 07:08-07:12 morning cook, verified independently here by file magic."
+    },
+    "cooked_variants": ["A", "B", "C"]
+  },
+  "gaea": {
+    "ready": true,
+    "locked_frames": 12,
+    "terrain_levels": ["cadence_crystal_ridge", "sakura_terrace", "liquid_cathedral", "fugue_grotto"],
+    "evidence": "Saved/Audit/gaea_pie_capture_plan_2026-09-02.json — 4 built WP terrain levels x 3 locked hero CinematicCamera frames each = 12 frames; each level verified on disk 2026-09-02 (Nanite 1025 mesh + Substrate terrain MI + HLOD layers).",
+    "gate_key": "cadence_crystal_ridge|liquid_cathedral|fugue_grotto|sakura_terrace x 3 frames",
+    "capture_paths": "Saved/Audit/gaea_{level}_frame{1..3}.mp4"
+  },
+  "learning_notes": [
+    "RTX Kit / NvRTX (WATCH): neural materials + neural texture compression require a material onnx (present onnx is embedding-only bge-small-en) — still on owner-task gate.",
+    "WPO on instanced-static-mesh discipline: WPO via MPC scalar is ultra cheap; merge+minimize instances carrying WPO; avoid per-wall WPO 'cube' pattern; use cull-distance multiply on WPO output. Releayant to MF_FabricMountainWPO on HISM_Faraway_FabricRidge.",
+    "VDM bake pitfall recorded: in a hython attribcreate node the attribute-name parm is name1 (not name), and the type/class parm was not settable by .set() in the scratch driver."
+  ]
+}

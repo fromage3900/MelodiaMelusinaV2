@@ -1,0 +1,677 @@
+{
+  "seed": 20260902,
+  "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha",
+  "layers": {
+    "M_Bodice_Torso": {
+      "layer": "M_Bodice_Torso",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_BaseColor.png",
+          "sha256": "aea866b4e75c6d7679e361465c92db931f91472e1aa78dbe90a680859d8e4acf",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_Normal.png",
+          "sha256": "967f30743076777be45cc83f274869534be5777129ca8dac1df6ffbd7cc008f6",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_Height.png",
+          "sha256": "efc3ec524bae4cab588a3927e54dc3083c2bcebe8fbd8e4b2fd70752e99dbd22",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_Metallic.png",
+          "sha256": "17fb42307c4cca9de167ca85d12a915dadfd46cfcee6e6b69bdb4f77c7d904e8",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_ORM.png",
+          "sha256": "8e6629842a95b931495d586a904a08616959f30b9d869ca844990ec66dea8f4a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_Emissive.png",
+          "sha256": "03dda53bcc8dba5cd45900407e93c17fae34696f9bb51686d9219dc4dca76999",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Bodice_Torso_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Torso_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Torso",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Torso.MI_Melusina_Toon_Cymatic_M_Bodice_Torso\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Bodice_",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Torso\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name"
+      },
+      "errors": []
+    },
+    "M_Bodice_Front": {
+      "layer": "M_Bodice_Front",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_BaseColor.png",
+          "sha256": "7445a01cbdc2c46b7f9b2d50ff2dd648390b76fd30f752d76b74b05a7cdb7e71",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_Normal.png",
+          "sha256": "6e2d1b35a79eb70907eaf206e5d141365f5908667865bbf1e34c24a7237cc09a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_Height.png",
+          "sha256": "d747ae346cc75bb6c4893def849b3345c6ab12b615923daaba1025d8eadcd9d8",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_Metallic.png",
+          "sha256": "055c773b840d7f8cf5e49198102a095d8eafa9d6930a16e388bdb3fd42b68fed",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_ORM.png",
+          "sha256": "9dc2c384332c84a5e602fe251136082a023f963e5e61635a875f6b04ee7df233",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_Emissive.png",
+          "sha256": "13af8545c2d8e346cce99ec728298c8840986ecdb8234470b01fb637becd147f",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Bodice_Front_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Front_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Front",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Front.MI_Melusina_Toon_Cymatic_M_Bodice_Front\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Bodice_",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Front\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name"
+      },
+      "errors": []
+    },
+    "M_Bodice_Side": {
+      "layer": "M_Bodice_Side",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_BaseColor.png",
+          "sha256": "92d3e7fb968bf266760b0561a3c56244febbb35ef0b8beefa71290d422585268",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_Normal.png",
+          "sha256": "1824107628c88ad7ab25e985dc29b1e3b41e15811b2f59e39f8e1f69ac96e3d8",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_Height.png",
+          "sha256": "1aa6041f2967d3ea37e4840e95d91ea91e4c5fea3fe5f3ecf5081935e4db3d3a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_Metallic.png",
+          "sha256": "37756be6a4cabc317307499e51a26bc1af767959889a8e47bc906db0d42b0ead",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_ORM.png",
+          "sha256": "2a3a630a5199622df254f6ede25f560a2dfe3996b5a7b950dad3d81d826689b6",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_Emissive.png",
+          "sha256": "623f964dbd23cc55d148d3958628f9b2920ebe0276140101b9afc0e62d8914f7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Bodice_Side_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Side_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Side",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Side.MI_Melusina_Toon_Cymatic_M_Bodice_Side\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Bodice_Si",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Side\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name\""
+      },
+      "errors": []
+    },
+    "M_Bodice_Upper": {
+      "layer": "M_Bodice_Upper",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_BaseColor.png",
+          "sha256": "188464609b375a6b72a34d27ca8af34bdebabbf5c387b668814324dc0c7e11fd",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_Normal.png",
+          "sha256": "943d59e07ecfcea9c282b01a288ec6432c67f602fb8040176e68507881b46477",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_Height.png",
+          "sha256": "4b5043a33e060e73f20bf6784b11bca42ff1197494ddef512b1b71e0089bfbb5",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_Metallic.png",
+          "sha256": "2c187a6593eb5a56893db017136d5d25b7b941bb3674c0e7ebac3f5d4d164316",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_ORM.png",
+          "sha256": "c5458566f5ecb87539b5070b0586092a64b25dcf9d49c1d7004276f498dc9d1f",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_Emissive.png",
+          "sha256": "68c847ccb21066c6de59c2386dd5d5002f0126174201a583a41983daa727c37e",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Bodice_Upper_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Bodice_Upper_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Upper",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Upper.MI_Melusina_Toon_Cymatic_M_Bodice_Upper\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Bodice_",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Bodice_Upper\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name"
+      },
+      "errors": []
+    },
+    "M_Collar": {
+      "layer": "M_Collar",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Collar_BaseColor.png",
+          "sha256": "f959d18a84a4fa10d18f7a6a07a691ae55ddc30ae71decf79fef6b8923c51b66",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Collar_Normal.png",
+          "sha256": "63f62546d0207ac3c1c016bd1d414b25922f413d3bf25a38dc8131065e9f089c",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Collar_Height.png",
+          "sha256": "f50f415ad9212341ca97e1ad07d4035bc796e5cdcb47ad84a5f2f01f345c91df",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Collar_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Collar_Metallic.png",
+          "sha256": "47409785b30cc38f1ec62f219ce1c46f885427442416c0768dc470497ef784cb",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Collar_ORM.png",
+          "sha256": "2872b2c2095d30a2bd673f83305f9c646c169dd4e53056f15906dce2f779afb1",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Collar_Emissive.png",
+          "sha256": "abc4f0945e189c3d9bd9144e7b38f9fa767ee648445530c3d9220dea1ff54dff",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Collar_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Collar_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Collar",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Collar.MI_Melusina_Toon_Cymatic_M_Collar\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Collar\",\"parent_mat",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Collar\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"Rou"
+      },
+      "errors": []
+    },
+    "M_Shoulder_Trim": {
+      "layer": "M_Shoulder_Trim",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_BaseColor.png",
+          "sha256": "0b128ce7c421a8612294dbb249e781c03050f0fe03089c98f44ecf074462f29a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_Normal.png",
+          "sha256": "513bc8af7be0f8024e1bd437fbf762b9b20afc8e979eb1fc1d1f5cab87d85cba",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_Height.png",
+          "sha256": "3a27c40271e37490d876591273dfb4e3a18d44b2d76bb5e6f0a40fb90a511e8c",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_Metallic.png",
+          "sha256": "d9b78393f57acf3ed70dee384e17bfa96c18f89703708335017c9b088d6651ab",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_ORM.png",
+          "sha256": "5c6e84125fce05a52af0eebbadb15dc13b8aeeaf065568d39d94fa0ae8757f91",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_Emissive.png",
+          "sha256": "7abc772f79a6bf57ba1358535ae8acc249ada3d81d756527d4c65b42889664a6",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Shoulder_Trim_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Trim_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Trim",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Trim.MI_Melusina_Toon_Cymatic_M_Shoulder_Trim\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Shoul",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Trim\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"nam"
+      },
+      "errors": []
+    },
+    "M_Shoulder_Ornament": {
+      "layer": "M_Shoulder_Ornament",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_BaseColor.png",
+          "sha256": "f959d18a84a4fa10d18f7a6a07a691ae55ddc30ae71decf79fef6b8923c51b66",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_Normal.png",
+          "sha256": "b98ee8ab6b370813f3364c11cfca0083b2c0dec7cb63f2945e21ae90a285f46c",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_Height.png",
+          "sha256": "f50f415ad9212341ca97e1ad07d4035bc796e5cdcb47ad84a5f2f01f345c91df",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_Metallic.png",
+          "sha256": "47409785b30cc38f1ec62f219ce1c46f885427442416c0768dc470497ef784cb",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_ORM.png",
+          "sha256": "2872b2c2095d30a2bd673f83305f9c646c169dd4e53056f15906dce2f779afb1",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_Emissive.png",
+          "sha256": "abc4f0945e189c3d9bd9144e7b38f9fa767ee648445530c3d9220dea1ff54dff",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Shoulder_Ornament_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Shoulder_Ornament_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Ornament",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Ornament.MI_Melusina_Toon_Cymatic_M_Shoulder_Ornament\",\"asset_name\":\"MI_Melusina_Toon_Cymatic",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Shoulder_Ornament\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{"
+      },
+      "errors": []
+    },
+    "M_Sleeve": {
+      "layer": "M_Sleeve",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Sleeve_BaseColor.png",
+          "sha256": "1ffcc8499691973f3024c8eb2a6dcac623b580f0a8591418388bbc1d1e3f22fd",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Sleeve_Normal.png",
+          "sha256": "331baeb7c8850ecd3a3fd2727b109db9f15b030fccad162556fa7249f9a3aee0",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Sleeve_Height.png",
+          "sha256": "a1a1b6a6907e06fe36654123110da7e49ea465579b3762b935e906dcdfed6692",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Sleeve_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Sleeve_Metallic.png",
+          "sha256": "d46f87a4b78c2bb8b9c1780856e68183d00902b8f33e535fb5645e9f7bff1613",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Sleeve_ORM.png",
+          "sha256": "ad0c57bbea4fac8e1798c84abcdacd478392ee350b28e7029fd5d9b7f648c2e0",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Sleeve_Emissive.png",
+          "sha256": "62763d177824003bfb9e7546f0c248bbfe3c50bf08a1c6a0d64b9fcecf976cb7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Sleeve_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Sleeve_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Sleeve",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Sleeve.MI_Melusina_Toon_Cymatic_M_Sleeve\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Sleeve\",\"parent_mat",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Sleeve\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"Rou"
+      },
+      "errors": []
+    },
+    "M_Underskirt": {
+      "layer": "M_Underskirt",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Underskirt_BaseColor.png",
+          "sha256": "7429fd4b4fbe9e5ff475ea0f67954eaf43eda6c7f4957f64d9a68c0dc729dc64",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Underskirt_Normal.png",
+          "sha256": "b0cb9d99e25c78c8d58f9b9658d41f974ae974732afeefdc290c7635ca9842f5",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Underskirt_Height.png",
+          "sha256": "f133c5b77c4a591b3356e3ac247b817ec84fa87ea76860037b41d90db8bb8f6f",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Underskirt_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Underskirt_Metallic.png",
+          "sha256": "ff5e9ac6192e74734b2939eae3b2a3016e574481847ef74fdfe0eda0c102d5eb",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Underskirt_ORM.png",
+          "sha256": "3f09798944994ec06fe671c6058da1e4317c593c5ec4913bdfbc31727db6e73a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Underskirt_Emissive.png",
+          "sha256": "a184c97c284a3d97dff1c1e762fde0d8b6b13b68226a7d3d7d38e0fc1f663b36",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Underskirt_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Underskirt_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Underskirt",
+        "response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Underskirt.MI_Melusina_Toon_Cymatic_M_Underskirt\",\"asset_name\":\"MI_Melusina_Toon_Cymatic_M_Underskirt\"",
+        "param_response": "{\"asset_path\":\"/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Underskirt\",\"set_count\":12,\"results\":[{\"name\":\"Albedo\",\"type\":\"texture\",\"success\":true},{\"name\":\"NormalMap\",\"type\":\"texture\",\"success\":true},{\"name\":\"HeightMap\",\"type\":\"texture\",\"success\":true},{\"name\":"
+      },
+      "errors": []
+    },
+    "M_Skirt_Full": {
+      "layer": "M_Skirt_Full",
+      "texture_imports": [
+        {
+          "channel": "BaseColor",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_BaseColor.png",
+          "sha256": "cafca34d8ee5b946ad253fe91dec956e1a0b9e8aea61840fc69d834fb9bf3abf",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_BaseColor",
+          "response_ok": true
+        },
+        {
+          "channel": "Normal",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_Normal.png",
+          "sha256": "9b83b747546c2173b19d1a80396d6d3966497bf060a0e68f52bcf0acad1a84b0",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_Normal",
+          "response_ok": true
+        },
+        {
+          "channel": "Height",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_Height.png",
+          "sha256": "773a10334a7b23f1afdb4272b2d4fb573e667af32433f8931d2c912d3fd83243",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_Height",
+          "response_ok": true
+        },
+        {
+          "channel": "Roughness",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_Roughness.png",
+          "sha256": "d42720aa27c2e44d8b0b6a521c3edba599c1580b6ea21747dfc233ff7c8ea1b7",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_Roughness",
+          "response_ok": true
+        },
+        {
+          "channel": "Metallic",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_Metallic.png",
+          "sha256": "4e84c9167834eea7415b21b1e1e009d5170492b6c26a3977258fe2ab122f343b",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_Metallic",
+          "response_ok": true
+        },
+        {
+          "channel": "ORM",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_ORM.png",
+          "sha256": "cf70ba8d2f10c79d643222c9bf134d59bde1ee233bc3384d479d778bb373f833",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_ORM",
+          "response_ok": true
+        },
+        {
+          "channel": "Emissive",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_Emissive.png",
+          "sha256": "489bbf17a9d1b5a903c72e385015a8a9296e50dcab464aa6dc4bcf9a3793fbcf",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_Emissive",
+          "response_ok": true
+        },
+        {
+          "channel": "Opacity",
+          "src": "T_Cymatic_Garment_M_Skirt_Full_Opacity.png",
+          "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a",
+          "dest": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Textures/GarmentCymatic/T_Cymatic_Garment_M_Skirt_Full_Opacity",
+          "response_ok": true
+        }
+      ],
+      "mi": {
+        "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Skirt_Full",
+        "response": "ERROR:Asset already exists at '/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Skirt_Full'"
+      },
+      "errors": [
+        "create MI: ERROR:Asset already exists at '/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Materials/MI_Melusina_Toon_Cymatic_M_Skirt_Full'"
+      ]
+    }
+  }
+}

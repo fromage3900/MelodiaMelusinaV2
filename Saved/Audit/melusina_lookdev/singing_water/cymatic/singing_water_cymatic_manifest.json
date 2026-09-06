@@ -1,0 +1,73 @@
+{
+  "schema": "melodia.singing_water_cymatic.v1",
+  "seed": 20260902,
+  "params": {
+    "size": 2048,
+    "zones": [
+      "SheetVeil",
+      "SingingFall",
+      "HearthPool",
+      "TideSeam"
+    ],
+    "modes": {
+      "SheetVeil": [
+        2,
+        4
+      ],
+      "SingingFall": [
+        4,
+        9
+      ],
+      "HearthPool": [
+        1,
+        2
+      ],
+      "TideSeam": [
+        6,
+        7
+      ]
+    },
+    "veil_height_res": 4096,
+    "recipe": "ocean-silk macro swell + per-zone Chladni standing-wave nodal lines; cymatic node glow on emissive/iridescence/foam; height-derived normal (OpenGL Y+); audio-reactive-READY (no reader; single MPC writer untouched)",
+    "height_contract": "placed on CanonicalLandscape (never created) via paired placement plan; height-awake raycast"
+  },
+  "files": [
+    "T_SingingWater_SheetVeil_BaseColor.png",
+    "T_SingingWater_SheetVeil_Normal.png",
+    "T_SingingWater_SheetVeil_Height.png",
+    "T_SingingWater_SheetVeil_Roughness.png",
+    "T_SingingWater_SheetVeil_Metallic.png",
+    "T_SingingWater_SheetVeil_Iridescence.png",
+    "T_SingingWater_SheetVeil_Emissive.png",
+    "T_SingingWater_SheetVeil_ORM.png",
+    "T_SingingWater_SheetVeil_Opacity.png",
+    "T_SingingWater_SingingFall_BaseColor.png",
+    "T_SingingWater_SingingFall_Normal.png",
+    "T_SingingWater_SingingFall_Height.png",
+    "T_SingingWater_SingingFall_Roughness.png",
+    "T_SingingWater_SingingFall_Metallic.png",
+    "T_SingingWater_SingingFall_Iridescence.png",
+    "T_SingingWater_SingingFall_Emissive.png",
+    "T_SingingWater_SingingFall_ORM.png",
+    "T_SingingWater_SingingFall_Opacity.png",
+    "T_SingingWater_HearthPool_BaseColor.png",
+    "T_SingingWater_HearthPool_Normal.png",
+    "T_SingingWater_HearthPool_Height.png",
+    "T_SingingWater_HearthPool_Roughness.png",
+    "T_SingingWater_HearthPool_Metallic.png",
+    "T_SingingWater_HearthPool_Iridescence.png",
+    "T_SingingWater_HearthPool_Emissive.png",
+    "T_SingingWater_HearthPool_ORM.png",
+    "T_SingingWater_HearthPool_Opacity.png",
+    "T_SingingWater_TideSeam_BaseColor.png",
+    "T_SingingWater_TideSeam_Normal.png",
+    "T_SingingWater_TideSeam_Height.png",
+    "T_SingingWater_TideSeam_Roughness.png",
+    "T_SingingWater_TideSeam_Metallic.png",
+    "T_SingingWater_TideSeam_Iridescence.png",
+    "T_SingingWater_TideSeam_Emissive.png",
+    "T_SingingWater_TideSeam_ORM.png",
+    "T_SingingWater_TideSeam_Opacity.png",
+    "T_SingingWater_VeilHeight_4K.png"
+  ]
+}

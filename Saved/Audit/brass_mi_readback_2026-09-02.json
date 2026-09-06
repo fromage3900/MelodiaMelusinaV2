@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-09-02T11:28:25.582754+00:00",
+  "mis": {
+    "PatinaAnimated": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F3F80) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_BaseColor.T_Brass_PatinaAnimated_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F8A80) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Normal.T_Brass_PatinaAnimated_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FAC80) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_ORM.T_Brass_PatinaAnimated_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F1D40) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Height.T_Brass_PatinaAnimated_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FA9C0) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassPatinaAnimated/T_Brass_PatinaAnimated_Emissive.T_Brass_PatinaAnimated_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "FiligreeGold": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F3AC0) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_BaseColor.T_Brass_FiligreeGold_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F21C0) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Normal.T_Brass_FiligreeGold_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FA340) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_ORM.T_Brass_FiligreeGold_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FC300) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Height.T_Brass_FiligreeGold_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FAA40) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassFiligreeGold/T_Brass_FiligreeGold_Emissive.T_Brass_FiligreeGold_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "Engraved": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F8740) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_BaseColor.T_Brass_Engraved_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F9040) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Normal.T_Brass_Engraved_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F0E40) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_ORM.T_Brass_Engraved_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F1580) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Height.T_Brass_Engraved_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F4BC0) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassEngraved/T_Brass_Engraved_Emissive.T_Brass_Engraved_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "Iridescent": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F3D40) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_BaseColor.T_Brass_Iridescent_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F3140) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Normal.T_Brass_Iridescent_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F7940) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_ORM.T_Brass_Iridescent_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F1B00) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Height.T_Brass_Iridescent_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FA880) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassIridescent/T_Brass_Iridescent_Emissive.T_Brass_Iridescent_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "VerdigrisBloom": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F8EC0) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_BaseColor.T_Brass_VerdigrisBloom_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F6F80) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Normal.T_Brass_VerdigrisBloom_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F97C0) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_ORM.T_Brass_VerdigrisBloom_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F7A80) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Height.T_Brass_VerdigrisBloom_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FAA00) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassVerdigrisBloom/T_Brass_VerdigrisBloom_Emissive.T_Brass_VerdigrisBloom_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "HammeredPulse": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FAFC0) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_BaseColor.T_Brass_HammeredPulse_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FA280) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Normal.T_Brass_HammeredPulse_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F3380) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_ORM.T_Brass_HammeredPulse_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F7D00) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Height.T_Brass_HammeredPulse_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F3780) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/EnvSandbox/Textures/Copernicus/BrassHammeredPulse/T_Brass_HammeredPulse_Emissive.T_Brass_HammeredPulse_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "Nautilus": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F50C0) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_BaseColor.T_Brass_Nautilus_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F2E80) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Normal.T_Brass_Nautilus_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F8F80) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_ORM.T_Brass_Nautilus_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F4800) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Height.T_Brass_Nautilus_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F7A00) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassNautilus/T_Brass_Nautilus_Emissive.T_Brass_Nautilus_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    },
+    "FarawayMother": {
+      "textures": [
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FA700) {parameter_info: {name: \"Albedo\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_BaseColor.T_Brass_FarawayMother_BaseColor'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5FB940) {parameter_info: {name: \"NormalMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Normal.T_Brass_FarawayMother_Normal'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F2080) {parameter_info: {name: \"ORM\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_ORM.T_Brass_FarawayMother_ORM'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F7340) {parameter_info: {name: \"HeightMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Height.T_Brass_FarawayMother_Height'\"}>",
+        "<Struct 'TextureParameterValue' (0x0000014FDC5F5040) {parameter_info: {name: \"EmissiveMap\", association: GlobalParameter, index: -1}, parameter_value: \"/Script/Engine.Texture2D'/Game/Melodia/SeaAbove/Textures/Brass/BrassFarawayMother/T_Brass_FarawayMother_Emissive.T_Brass_FarawayMother_Emissive'\"}>"
+      ],
+      "scalar_overrides": 17
+    }
+  }
+}

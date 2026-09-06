@@ -8,7 +8,7 @@
   "slots": {
     "Skirt": {
       "cosmetic_id": "Cos_ShorewakeDress",
-      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/Shorewake/SK_DressShorewake",
+      "mesh": "/Game/Melodia/Characters/Melusina/Textures/Clothes/Retargeted/SK_ShorewakeDress_Melusina465",
       "material_slots": ["MI_Melusina_Dress_Shorewake"]
     }
   },
@@ -30,5 +30,8 @@
     "can_board_starskiff": true,
     "sea_above_buoyancy_active": true
   },
-  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds"
+  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds",
+  "_stale_fields": [
+    "resonant_form.capability_unlocked — no matching traversal capability id exists; boarding is actually gated by flag.sea_above.starskiff_ready OR capability.melodia.glide, see MelodiaStarskiffPawn.cpp"
+  ]
 }

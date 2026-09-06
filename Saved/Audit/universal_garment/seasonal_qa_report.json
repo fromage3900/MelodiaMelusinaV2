@@ -1,0 +1,44 @@
+{
+  "schema": "melodia.seasons_qa.v1",
+  "seed": 20260902,
+  "generated_utc": "2026-09-02T06:51:12.529492+00:00",
+  "script": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\sea_above_reef\\seasons_qa.py",
+  "audit_root": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev",
+  "per_corpus": {
+    "seasonal": {
+      "expected": 320,
+      "found": 320,
+      "pass": true,
+      "missing": [],
+      "non_pot": [],
+      "root": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\garment_refresh\\seasons"
+    },
+    "garment_refresh": {
+      "expected": 80,
+      "found": 80,
+      "pass": true,
+      "missing": [],
+      "non_pot": [],
+      "root": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\garment_refresh"
+    },
+    "cymatic": {
+      "expected": 90,
+      "found": 90,
+      "pass": true,
+      "missing": [],
+      "non_pot": [],
+      "root": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\garment_refresh\\cymatic"
+    },
+    "water_veil": {
+      "expected": 37,
+      "found": 37,
+      "pass": true,
+      "missing": [],
+      "non_pot": [],
+      "root": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\singing_water\\cymatic"
+    }
+  },
+  "sheet_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\universal_garment\\seasonal_composite_contact.png",
+  "sheet_basis": "season_contact_rows",
+  "overall_pass": true
+}

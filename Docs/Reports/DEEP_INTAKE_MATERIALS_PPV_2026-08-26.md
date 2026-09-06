@@ -1,5 +1,5 @@
 # Deep Intake — Material Pipeline & Post-Process Volume Stack
-**Date:** 2026-08-26
+**Date:** 2026-08-26 (historical intake; current authority 2026-09-04)
 **Lane:** `asset_qa` / `audit`
 **Scope:** Verified state of the BS_GodFile material pipeline (masters, MIs, ToonProfiles, MF_*, MPCs) and the PPV (PostProcessVolume) stack. Every claim was re-derived by direct file-system + Python inspection of `C:\EnvironmentPortfolio\BS_GodFile\`; no inheritance from prior intake prose.
 
@@ -11,8 +11,8 @@
 - **4 MPCs** (`Portfolio_Audio`, `Portfolio_Palette`, `Melodia_Palette`, `MelodiaInk`).
 - **~60 material functions** under `Materials/Functions/`, organized into Nikki / Water / SDF / Landscape / Triplanar / Impressionist / Surface families.
 - **5 PPV scripts** in the tree, **2 of them reference materials that do not exist on disk**.
-- **5 levels with live PPV_NikkiDream** (4 cited paths in PPV scripts no longer exist).
-- **The authoritative 2026-08-18 PPV stack**: 3 blendables (Outline + Grade + Ink) with weights (1.0, 0.69, 1.0) — applied via `apply_dream_candidate_ppv.py`.
+- **Current PPV taxonomy:** 6 packaged shipping maps, 4 gameplay certification targets, and 2 lookdev/regression maps. Sea Above is a shipping target at `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`.
+- **The current gameplay PPV stack**: grandmaster Outline + Grade + Ink with weights (1.0, 0.69, 1.0), centralized in `Content/Python/ppv_contract.py` and applied via `apply_dream_candidate_ppv.py`.
 - **No edits to `M_Master_Toon_Universal`** were made by this intake. The previous session's Musical Dream kit (2026-08-26) also leaves the master untouched.
 
 **Companion artifacts:**

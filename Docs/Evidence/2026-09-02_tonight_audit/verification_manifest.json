@@ -1,0 +1,4231 @@
+{
+  "generated": "2026-09-02",
+  "base": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "total_deliverables": 321,
+  "pass_count": 321,
+  "fail_count": 0,
+  "deliverables": [
+    {
+      "path": "Docs/Handoffs/WORK_DONE_2026-09-02.md",
+      "exists": true,
+      "sha256": "11a6fbaa6a30f047a587242707689d9842f1c09cb8580f94ab72c2a07edab7ed",
+      "size": 12205,
+      "status": "PASS"
+    },
+    {
+      "path": "Docs/Handoffs/FARAWAY_MOTHER_LOD_ILLUSION_WORKPLAN_2026-09-02.md",
+      "exists": true,
+      "sha256": "f60bb1e04470a062434bcf4ac501305d5673fff0b47576db2fe1974d869fa2e9",
+      "size": 22908,
+      "status": "PASS"
+    },
+    {
+      "path": "Docs/Handoffs/AUDIO_REACTIVE_FLOWER_SPRINT_2026-09-02.md",
+      "exists": true,
+      "sha256": "ee3ae21ca38f0d153affb2e111d8cea6745d7ac9b16ccfddab082b228e218ed4",
+      "size": 12045,
+      "status": "PASS"
+    },
+    {
+      "path": "Docs/Handoffs/AUDIO_REACTIVE Flower_CHOP_OSC_2026-09-02.md",
+      "exists": true,
+      "sha256": "026daccefa2ea3d7031ff6926597c78698ff27ed1cd03df6910909a111c243b8",
+      "size": 4503,
+      "status": "PASS"
+    },
+    {
+      "path": "Docs/Research/NMS_SCALE_PROCEDURAL_AUDIO_REACTIVE_PIPELINES_2026-09-02.md",
+      "exists": true,
+      "sha256": "9bd514b6660bca90efdeae7ef9e29ffb6c892742cc83c8b26cd0eab0a4642f4b",
+      "size": 21664,
+      "status": "PASS"
+    },
+    {
+      "path": "Docs/Research/BLENDER_AUDIO_GEOMETRY_NODES_PIPELINE_2026-09-02.md",
+      "exists": true,
+      "sha256": "853d70622b1c6214d24fc317fc7d2c278bfa41cd632f9065626f80e7246c81d0",
+      "size": 13120,
+      "status": "PASS"
+    },
+    {
+      "path": "specs/lookdev/FarawayMother_CelestialSilk_LookDev.json",
+      "exists": true,
+      "sha256": "04bf56806068d514adc9733b0f090e0d8c2f658fcd0827180f0d4247d46d05bf",
+      "size": 7613,
+      "status": "PASS"
+    },
+    {
+      "path": "specs/lookdev/optical_lod_manifest.v1.json",
+      "exists": true,
+      "sha256": "8cbce8333ef0b7057b5210a1cefa7c1b389696c0002f2eefb997d6bf07a3653d",
+      "size": 79704,
+      "status": "PASS"
+    },
+    {
+      "path": "specs/lookdev/optical_material_instances.v1.json",
+      "exists": true,
+      "sha256": "7ee153155e2b7817466cb7aa709cce7a39a94c5ef61bed3eb76e92197c245db3",
+      "size": 94574,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/build_faraway_mother_height_aware_pcg.py",
+      "exists": true,
+      "sha256": "5525db7569562d3faf584fc922ed88be4c5d66d384e7cc6d52a318d54a3c9fd0",
+      "size": 24356,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/faraway_mother_pcg_assembly.py",
+      "exists": true,
+      "sha256": "8b72bfd65cc4221f86c01a2d89d21428aa52ca6a9d961fa5f20f1a0df99be45e",
+      "size": 6608,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/faraway_mother_prototype_build.py",
+      "exists": true,
+      "sha256": "cce151e42be7f83c53e72d8923a1e5595ce39a725c3a44ed3f42bb840919e0f2",
+      "size": 18506,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/faraway_mother_height_aware_placements.json",
+      "exists": true,
+      "sha256": "670c43d099b2f8b3fd567230effb83a57dffc3a8e6f8d667f91537d5d40cee89",
+      "size": 3911,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/melodia_faraway_mother_cymatic_integration.py",
+      "exists": true,
+      "sha256": "fdc2095d2817de5220b4f479b03a38c7b42228ea3ec37728488d2c447ee1833f",
+      "size": 11491,
+      "status": "PASS"
+    },
+    {
+      "path": "Tools/Houdini/copernicus/copernicus_brass_animated.py",
+      "exists": true,
+      "sha256": "a49359f5fed36ccb7e08796689907a40eb6b436676c02439846f7f66c3761aad",
+      "size": 24591,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/_mi_brass_animated_create.py",
+      "exists": true,
+      "sha256": "fa2a647529de551a6ae041df02b5558cdcece923d7644f89ea99f856a14c4461",
+      "size": 11684,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/gmm/melodia/brass_architect.py",
+      "exists": true,
+      "sha256": "8a740a2e89f3b6eefa3f57364829f6c5acd372b0773bb0eaaaa4bf8ca58592b5",
+      "size": 6063,
+      "status": "PASS"
+    },
+    {
+      "path": "Content/Python/gmm/geometry/brass_modifiers.py",
+      "exists": true,
+      "sha256": "da5cb73c527093f26aee9760e73751114875b1111863f0fe149923f2453fc8da",
+      "size": 26607,
+      "status": "PASS"
+    },
+    {
+      "path": "Docs/Brass_Structure_Framework.md",
+      "exists": true,
+      "sha256": "27fcf8660bc64955ff759bf0658038fd26bec8e4dfbcb7381c48d74578733fe9",
+      "size": 15406,
+      "status": "PASS"
+    },
+    {
+      "path": "specs/pcg/faraway_mother_pcg_manifest.v1.json",
+      "exists": true,
+      "sha256": "af55c63f709f54505927b6536e8ff04bd53d8101b813a80836e8c73c772f0310",
+      "size": 79990,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+      "exists": true,
+      "sha256": "164489ff6626aa584ce342367c6532ed6edcd805b9025248f3de6875628f145d",
+      "size": 140,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "exists": true,
+      "sha256": "bbc9f481b544d5a4d084edce000d7c3b4f6fdd3d41525f8e1f6d4fd24e57ca97",
+      "size": 4228,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png",
+      "exists": true,
+      "sha256": "1f9217074937f396c40208da82a203e9bbe4fc1f02218874f41656ef48157a42",
+      "size": 18064,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "cf7182cce5e3e4a2388652a38b122c002b3e7b378f2284059da32b9280044055",
+      "size": 207267,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_Height.png",
+      "exists": true,
+      "sha256": "473f53d679830c91d5ff7cbd84ab0f644db28bed1953ba7a5049ad7858475a51",
+      "size": 239123,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "e6ddb85a6ed90f8b98d10c54d660631de5b5d8cac0579705d07b897dc141f9aa",
+      "size": 301241,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "b7bc267fd747f29d399831535eeb1f107a8c41862ea895e211e6bf91b23d9e91",
+      "size": 240212,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "253a9fab2aba92585295a587b65de1c4193ab378d9c2a8c52e08abce1e5287d2",
+      "size": 83893,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_Height.png",
+      "exists": true,
+      "sha256": "724c98ab8bd48c3d3f29ec611acd0fc03cca4f4f1876f61d42027504397c1926",
+      "size": 87916,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "21799d4b7d2be6e4f8e533d6722af8605d9d03796fb78e4d3d1efd892709b4d7",
+      "size": 109815,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "d18d5f47175415e3518efd8caf7a0385e9a128a2af754ba9c554e34c8647fda6",
+      "size": 90004,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "3fda78cd2f6c1d1a9c3ad3ea8ab193656451fc1cb512fa6d19fa3f5e202fda4a",
+      "size": 32731,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_Height.png",
+      "exists": true,
+      "sha256": "cdabc7375c986ae388ce1a7cc701fd89e5b40efb5d376837ac481ed4b9fffdf3",
+      "size": 30917,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "587d32236eb060672f489d519949bf04faecf6c6cde2aab87728839ff58c83f0",
+      "size": 31076,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "da606016c86ef9a0eed2f81280507ac8556c63ff283b92b77a9acbd3a5e5adb4",
+      "size": 34042,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "03175f3195d70b5f556fe106518447be4cb06e6605436d1435106a587dcea7ff",
+      "size": 11734,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_Height.png",
+      "exists": true,
+      "sha256": "bf84376e301a07f43ed125370dd53450c638322317da34d5cd44ca5a55ab94e8",
+      "size": 9689,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "234a9afa3160c683956a02c85578c4784794fc0c789a4ca7b53ccc8a5732bd33",
+      "size": 7677,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "bccdffec83733266a31414c59506672df71049069296abe77c63414a4510ab55",
+      "size": 11178,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "a1182bf38348679b8b90ba19aaee700dc1365a6a9d8df6e62d89499e73fe8832",
+      "size": 261804,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_Height.png",
+      "exists": true,
+      "sha256": "a506f52677ce4e26ff44935ef0d6ba1079fa3284453b8d01b14e1257725aacf6",
+      "size": 235833,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "16fbaf3f955f5f577c8b79795d3fe5346131a2c7011135b511d489e20d723bbf",
+      "size": 302568,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "de89080407cb50443a6ad2c10d29841a3a1e77d45fecb80f902e6f3c76a29ab8",
+      "size": 236911,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "403bb9d17a7b55e2085cc13e6f089a3452c2ff74469fc93f2521406de6e94d82",
+      "size": 102464,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_Height.png",
+      "exists": true,
+      "sha256": "6b96e490611cf5cea783514ee1d04d0949539304ecaa051a932b96b465960630",
+      "size": 87007,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "e352d5d08e306a5ca38970ddf66de79f3dbc04325a19c410d5adddad9737a364",
+      "size": 110022,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "c5dced96bc45b1b7276cfdfbd1abe419581422dba3173e8fa11686418282ba23",
+      "size": 88691,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "3ebacfbde7344776dc0c9e04db46949ae4d2f304de02499d8865a50f225f56a2",
+      "size": 39771,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_Height.png",
+      "exists": true,
+      "sha256": "f670d3c18744fafeacca870bdf48ced75663a0fbf2d6f3f6ee71d34bc0b356e9",
+      "size": 31047,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "2e66cccbfea2d1f6d7b1c0202bab86cd29a6be093ffb0d0a36b840b34cf50185",
+      "size": 32630,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "bbccca21bcc725ace59b3abae869964ae53ef551709698399f7ee6cd688faacc",
+      "size": 34006,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "6166f46e62630d219907ca7b1872f7aab15fe27a3dbee489e82f8eb98fb1a0cc",
+      "size": 13913,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_Height.png",
+      "exists": true,
+      "sha256": "f35d98a63f8eb75a89e0a8e19f771eba8d2832a23e20572ba7a62b46de9f7b50",
+      "size": 9767,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "c53ed12f2284b1ae2f94d2a14345a29f0a4d0067e100b5c54be121140e139b3c",
+      "size": 8140,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "66b4702d78c2b64f1814627bf467dc8349e6c86d32fb728885e9f380bb7a4fdc",
+      "size": 11378,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "3eb58306dd77bde9af131fbc26c1de64a86634275e95426924b6d20970b171b6",
+      "size": 249598,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_Height.png",
+      "exists": true,
+      "sha256": "eb5e9246ddb63cb48b83736ddf51fa4b57f13388f762a350b6e0b26de9e1f71e",
+      "size": 227931,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "edcf823da9b7f2186f3f9364272f947e4b78e31cec949f789c8a8ba35bcb8af1",
+      "size": 295826,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "a79b782ce29009590a1646901f720b4904b3fa0a6b900cd559b3fb191f94383e",
+      "size": 228241,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "b1b83b82b4e3a66c81587f0e58b9a33019c814f1dd725ef60a742239e70d103d",
+      "size": 98163,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_Height.png",
+      "exists": true,
+      "sha256": "216499918c143be973d6fe628c58975d69604464de9b047b0c456d547f9fd3aa",
+      "size": 83447,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "636572f3aba29f7e8448440ef90ae249cc6d10d6e59aa862fb519308324cdb70",
+      "size": 104049,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "757437327de88fe14fbde5711b42869fd52c5ff3f51404450e865cdd73025c51",
+      "size": 85258,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "45f6243c83fac1e2227affd44ac2fdbb8f4c6d8a483ecda8941905d082804453",
+      "size": 37874,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_Height.png",
+      "exists": true,
+      "sha256": "7e82594dc6326193db481ca83b0f0fa857d8548f0dab6967eae8c5d405547cf9",
+      "size": 29088,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "bf86d618853801b0560e04156ad284d7dc89fabffb5836bd3d6133f038d000ea",
+      "size": 28700,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "92139eccfe137fcf2a5c60f44af5aa1ee2305d760587562f013ba7596e305f6f",
+      "size": 32199,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "92a53e26f25972770fdea83da36b782957227fe6767fb32e6722fbee275a4a03",
+      "size": 13007,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_Height.png",
+      "exists": true,
+      "sha256": "4f594965eeb002e3cc67174284733a89936adb3badb13e35971b9ae6cc96349b",
+      "size": 9238,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "a070be9c2e5f6a612e16093e39234d58b557c6b498ac67a80262796410006723",
+      "size": 7088,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "9e9382120d5bd1bb90bf057db18bcd0f5b38374bc066ca83e1a63b160cb83a5b",
+      "size": 10759,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "72a84fb534ffe5ccee2c4f8ac986977d8bc82e55ce33603fae7d2e615150e850",
+      "size": 15059,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_Height.png",
+      "exists": true,
+      "sha256": "a456230ec6e506b76feb025b07cab11d04dcd6cfdde14b0b50d03bed78e3d67e",
+      "size": 6922,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "b278aceb928437d9a8f7253e3d85883c6e405ed348400f7f9bd7a326181264d0",
+      "size": 43897,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "f6b251c0d517f6ef6f7e8d89e1ee9691e93b9d0d184834247f70676ea9e5d5da",
+      "size": 35221,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "1de116adca0b75172f54a4b9d667c07e9a6297ba3bb8be8b296c09dee83ab21b",
+      "size": 3417,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_Height.png",
+      "exists": true,
+      "sha256": "05c2d71d9e7735828050661f15e8c1c9c65dac3cfa7912013084cbe5cbf810ca",
+      "size": 1841,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "bc9287c8c7ea1424ea1262a39990938d2c5ac54b477d69d9852cf2d4794ae0b2",
+      "size": 4816,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "5f0f0e322e6664b9041004742b047f4777bab6db7d9f569b2d8187dad8bfe723",
+      "size": 4476,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "1a0c49f904781862a211ff4a77c4f61506c0aa7f67317f6926fc4984dac7c572",
+      "size": 1057,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_Height.png",
+      "exists": true,
+      "sha256": "1497e32d9379862c56dd0af8360df5b5c128092eb2aed1de7a06c8ef068d17b9",
+      "size": 638,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "6011465bd682dcf23448f0fef1d5ca31d1288ad6a47d5492ade742e0bb17aa4c",
+      "size": 1226,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "31c82f66b36d9e4efff4a33e840891e40e0ffcb3d2e7e272393ef6d797922e5d",
+      "size": 1180,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "15de4c7ed094c2a47940c23a519b8625168396ac9862deff6cddd5a4519e293b",
+      "size": 378,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_Height.png",
+      "exists": true,
+      "sha256": "ad9d9dd59407f7a00b501125a84c84b9cf51885ca75f14ee69262c58873e8373",
+      "size": 236,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "dc46282874d24bc427a658c50178821bd876e25a92b8d90bcbda8a7c1dfdd101",
+      "size": 406,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "7d8ab9cc468f37832d2242c58a30754ba117ee7e25d8ac73e94ebc13088ab5d4",
+      "size": 422,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "b6c0bb4f5cf8087945551d907016c4f2759b74202b8b32ed25bf3db09bbd26c6",
+      "size": 240434,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_Height.png",
+      "exists": true,
+      "sha256": "d72e8a541beb6cbc872ec625450131958110c944ea1e294e6d8b219dee99582f",
+      "size": 227234,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "c5fd30a5a41397e8aecb537037e4837a061cd434b027ba16826be6d5c6cace95",
+      "size": 297070,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "48e2d7fb37bd44837dca444ed3c4fdc935e016662fcbb5db1a86836d0c5d5775",
+      "size": 225328,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "17a5061060a0170bd155f3f5f25ebb58f6c617f812eb01e14822ae75875f596b",
+      "size": 93875,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_Height.png",
+      "exists": true,
+      "sha256": "ac48b1267137694b2e30af09532086af28778b8f7cc3616468dfcb315509d019",
+      "size": 81757,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "97b3b914cdf5d879e4917b8e5e4cd65c22ea79a3bf736f353257bfe51fbef521",
+      "size": 101295,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "02001341de73d8652b0ed748b622a61149c572e9a361d482e0d8b4fb73fdc76b",
+      "size": 84057,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "5ad726db3ea31f55339981380374ef8fecad9dc4ff08eaa4ca545acec19aa9a1",
+      "size": 36204,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_Height.png",
+      "exists": true,
+      "sha256": "45196cc0565217d062a6fba1f6c6a6af852a16311e444596ec6d0d0a1a0847d6",
+      "size": 24975,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "547d9b8e30d436c44a2fc8d30d96d1d68deb9733ef41f4a0dde7f667172b4631",
+      "size": 26617,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "42630c6b8a717f6fd2109651683578988668712f81f1409313ade81f773b41ea",
+      "size": 31106,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "a1464d28767fcd09b0d2eb1623f7a1e6181d721e2a05fbe244e149d667f43a8b",
+      "size": 12312,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_Height.png",
+      "exists": true,
+      "sha256": "3deddd966eb2574466547012bcd62a500d401b286ff47de074d24f2f1b9bd42c",
+      "size": 8155,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "4e2c6e70fd5a3ea15fd2918585ffffc0398eaf89ce8234f7ee3191f5708be6f2",
+      "size": 6429,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "5b937c03db20d2c0ea47b27f37eaac3f4c349fb1f958b0f32ffe9245276493a0",
+      "size": 10146,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "75da45578c54f837e62d96f1b475b2c32ae6d8272b89e782c6ed91809fd92958",
+      "size": 219422,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_Height.png",
+      "exists": true,
+      "sha256": "fd3bb3005266f57f8fd02ababddebbee25a4e68362cccdf9423be08f68fa789f",
+      "size": 233294,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "f669c111da4c92f11f8eeba8e9938d0baafc62ee62dbaefb4a5fb69b8b17b185",
+      "size": 296816,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "f7e6f1cb9bcc5de53de506ad1190345abd75cb0b3c4e5235028f21b9b902a7b0",
+      "size": 234103,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "75608eeba90b37a4daca7746f80d052dbc8de063e09c292e4030b10115165089",
+      "size": 89586,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_Height.png",
+      "exists": true,
+      "sha256": "fef7566d009167499d79d345098cf4af07a74c18b41771a03c98356d30615106",
+      "size": 85373,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "10c968ec1cb38ab460c01effe1d05f1e26f1fc5c9ac24cc9ec4ba0e5c6e591a3",
+      "size": 107007,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "22016a03a9ba87b2b9b3b89f1dc0dd56ac562546d94e3e17b26ca032ee47a869",
+      "size": 87433,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "ba759d323b884af663e37a1ba93df1eddf436da9541e71510ebe137cbfec3217",
+      "size": 32858,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_Height.png",
+      "exists": true,
+      "sha256": "6e78261dddd5752cc9de5f1a8dd1637ca598bc5502b2dd11e34cd770cf19472a",
+      "size": 30273,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "5dddb17d423e56822b11c73ade112828d8c2ad881ede170dd8acfcc936e9fd44",
+      "size": 30460,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "026007926aa5a4d8a2ff86244f7a9afe9d698cb167be58e8418f08e5ab3f5826",
+      "size": 33377,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "04290ecd82ed0dd8ce490f6b9132ef8708c463b60b50097ce8e2bbbdb72e8b20",
+      "size": 10922,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_Height.png",
+      "exists": true,
+      "sha256": "cc556ae43c50795be2dafbbe782ed2162e7ec3d8c4edc71ac37e62828f06b0fe",
+      "size": 9525,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "f6dd146d4d06023a8f8c892b2e382ad750107be16cb67d667fb45d2260bc776e",
+      "size": 7392,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "1f2159fece469b1ae4855a0ddab943e6f9999533b0143955229f80fffef502d5",
+      "size": 10999,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "0f8596877bf4eef11be565b262099d1c43e527d6cee7cd05828addf7a501a944",
+      "size": 241966,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_Height.png",
+      "exists": true,
+      "sha256": "e60c9151a549ecdcb3e1a4f301a044381ec0c8ffef0fa328cbc7093a270e9e20",
+      "size": 227713,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "ed5028470dc79970add13bd4780c2f7e064236e5e34e3c9d6151edbc65f7fa62",
+      "size": 295622,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "380a01c1191b848657189687d4e77743a245a4e6976f2ef2116ae0d1b7840812",
+      "size": 228166,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "2212f9f6810b9cfb9e9ade0ffade1735e135fbead9f2d4b8cbe00f7d816b8e3d",
+      "size": 95306,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_Height.png",
+      "exists": true,
+      "sha256": "bf88f1596127645667987db411482d463fc213d20cabfbc45ce417792f566453",
+      "size": 83408,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "c61da64f3b7f98881dea6dacad2a49626948b0d67add4aecbd8003570353c2f3",
+      "size": 103919,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "daa4aac2de66a9bbfb111701dd994318fa1bf20a60bd99c58b36de06e45735a5",
+      "size": 85299,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "f349222cad444159cb501ef42f6fefae40085ee16cfca05f45f82f6e8200f3fc",
+      "size": 37068,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_Height.png",
+      "exists": true,
+      "sha256": "bbf9bcb6c87280677a6817b7f6232b2d3ad7685dc27ba02104e4836dc8b92349",
+      "size": 28948,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "58209180915031aaa8a891d5a23b23a74a00102872bb113305e21e2d33eea38b",
+      "size": 29138,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "1d53cf60f5187b4c53d7d84db33293a3766e89c548c959c24ced485e9110a5a3",
+      "size": 32084,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "248f011b73ffbce5ce5bce29a008fe92bc26b52771736e4caf1582c3b7bc567d",
+      "size": 12827,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_Height.png",
+      "exists": true,
+      "sha256": "9d22cd3f3ef2aec524c4fa3ece4bc36264a63fc6452d6e57f955f6c7b45b47e2",
+      "size": 9222,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "0c69e19ca791880e34eadc450ab50c288a9df665e7b8df2ccd4a78ef5b022c08",
+      "size": 7124,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "a0800327cdb7f85dbbd20666997be9523dae2eca0491c5d30d6b49f50e5e09d5",
+      "size": 10735,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "d9ceae67e3807a2bb7db521cdcde0c3b99202c0e3d80cf264dc473354de8b620",
+      "size": 228556,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_Height.png",
+      "exists": true,
+      "sha256": "292e59ce1ab76ac3f8968ef671c7cc0ee4bc0a76655675e8eb50a1bd7647e22e",
+      "size": 226214,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "3cc0c765cdc5482058d4310fa17de0f7482befa90289c1ed1207bf625b16f566",
+      "size": 287603,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "9421b62d33d1a34a9839a162015bdd73c24597b441b0dc22fc35eaa7986d2ae9",
+      "size": 226486,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "2938ce8092a148d2470641ae7f5b273c8a0783d7029968bcc0a8e8c92289b93a",
+      "size": 91186,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_Height.png",
+      "exists": true,
+      "sha256": "d1e98f3c5221fdc4712c2b114aa67ffd6d13207bb32ed0de1b24b469f07f80d8",
+      "size": 82815,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "c5e6b6c599a73ce5f62637555d5e7c6e88afac905e9a1f03195f39da51244a57",
+      "size": 102556,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "8a0009739544fa8962e668e7f326bc6fe6c429859c92bd2b9f7dd237452fb438",
+      "size": 84702,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "f13bf0dc4ed53146f81700c4269045afb369dff9ae4771c9aec14da39f810847",
+      "size": 35284,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_Height.png",
+      "exists": true,
+      "sha256": "7604c96f758a6a73c722f0441947b8a97e8787748833ccc57bfe12f130ed0cfd",
+      "size": 28791,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "ff9d28054de28adbbf10e79d4b83c6de7cd3e299813b54b56c2018668eac7e89",
+      "size": 29013,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "5972be7d137dc0bc1ae9bb46426cda017e999e197525f8db36d63d65297c9d3a",
+      "size": 31909,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "dca7ff4919800cd736842222cc35be7b02f90b17030556ee4925a1fe988177f2",
+      "size": 6960,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_Height.png",
+      "exists": true,
+      "sha256": "1ab96a3806ee9d9ce14fcb54d03014c9c57d05ef6a0ade1e57ef7d07159ed724",
+      "size": 7422,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "b93cbd24dc4640bd2a3400d0136413155e6709d8a5ad341a968dac36e278816c",
+      "size": 4268,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "e8f38dcfbb1714eb176d0a586223b1d3291a3b9cffcb8d91b090960e44a0ac06",
+      "size": 6169,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "bb7ec0f0315710fa198d546e58e9a4668e7145bce6e8014c58d328ee96d0d26d",
+      "size": 143794,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Height.png",
+      "exists": true,
+      "sha256": "0c385ea2318a0385f9a6bd10501150b166945d8d3d7193c80d43a6576103152f",
+      "size": 230036,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "8c849d1cf4cc0e81f910bfc32504d51a6063e09dc3645282fdd53a2163b58d13",
+      "size": 292397,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "6a215ad21bd5f24e30fe8b151fe6fddfcd13429df5843eb24f10e642faebb5e1",
+      "size": 230375,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "b90132f95070239c650f89ba03d93f18e02ef9c758c7e272ae90b44b107b92a2",
+      "size": 60703,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Height.png",
+      "exists": true,
+      "sha256": "4d04ca29d7bfddf9e640719b6b7a067c3d0311f7d98a9694af92cf3bc7c30dd9",
+      "size": 83869,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "fc0a091c161e00957db6599b40c6720c10dbf391a1b5c55ba3f963ad30e249eb",
+      "size": 102967,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "5576dbfc507b1be821fa06f264ec02abe9759f7381db2783442800802e6447af",
+      "size": 86032,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "21efae167245137299043a7f4803d5e75d8481b119c9eb2c903995e385057471",
+      "size": 24861,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Height.png",
+      "exists": true,
+      "sha256": "2e221e8df405a82df1cf23ed1c871caa671f06969a76f6670948238e1ee90e7f",
+      "size": 29176,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "1d68fbf03f0eeac97e0f5cbd47b796c8d4eb435ff6d62727e7b21be931b1bd4b",
+      "size": 28655,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "17c7030f98a23f1c25e275121343730f81e153d9b3450e92b920d0b00749c131",
+      "size": 32504,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "789fa5e7797e3953e4b3c790bc7d5864b81c4a3cc647de453ba446dddb12d3a1",
+      "size": 5065,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Height.png",
+      "exists": true,
+      "sha256": "b9c75c58a47651b85dd6ca8aa50e304d1210dcb2e47d22c75b6bbebd3d780b2e",
+      "size": 7216,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "503832fba9e17d26c5004ef73c4c46b79b4a0e71c6bafe6b3aa644d794d48956",
+      "size": 4437,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "e94043b824adbed480414d0970079cac94bb23116a7a637a6404b0a4680705e6",
+      "size": 6248,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "792d21829087320fcd3264218c554cfd7ecea2fd8b1845b5af60724cf7c6e2f2",
+      "size": 35159,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Height.png",
+      "exists": true,
+      "sha256": "0730f18bb589477e54dbbb946143acbe7ed3253ee032cd17c559763bd2d9a19f",
+      "size": 6816,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "e0bb93be3d39d8b414d63cada951e32e301d5b7e127156b324eb83747937b415",
+      "size": 44268,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "0ef629ff635d7027798dbcfe6aab8570954309b23c952c4a997eda2fad28c22e",
+      "size": 34317,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "0c3000db290681fe5cd5a75bd5fd3642a519466e5557c140840ecca463dc2933",
+      "size": 4551,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Height.png",
+      "exists": true,
+      "sha256": "eb0d26020e3c61c53b3394d74d7307e628fb74f47bd52b3121bf6ec6f9168db1",
+      "size": 1829,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "7b149ba7d62be2061c790a780be42ada3a4f56697498058ee4c3b125ed1b024e",
+      "size": 4997,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "40abb5f32b362839cb4b4dbec562773a3a57d168dc6d05c5ee1e6aaed6dcc2f9",
+      "size": 4556,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "66fe38d8ac1d5bf101c65188dcb49f13f24ec7df85dfc8c7b0094616d21d9d89",
+      "size": 1183,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Height.png",
+      "exists": true,
+      "sha256": "8f1716ba24d50cde4f72e629a1ec1f22ee7bceea4fa2c03fe69f29e7e3274cb4",
+      "size": 639,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "18afdc60ca991491e79ad94c69581450bbd0e62deb0ccb3300d8a3328ea9133e",
+      "size": 1214,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "07c62148183e6f74fde91708fb7edcc6554f8aff83673c50bb86fe45ab402a97",
+      "size": 1186,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "cf809afcfb93ddbc4adb4a179c5ca26682ee9da8f9e02dee552ac9848ac8aec8",
+      "size": 416,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Height.png",
+      "exists": true,
+      "sha256": "a39e3f8541e07a167eb0ff2f382b0abb5b32dc0c814f475c7966d4b9860cd05f",
+      "size": 237,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "4a8dc9cdbcf92d3631b0aa316d3b1aa4cd87ad562f04f5459627fd82fb7baaea",
+      "size": 417,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "05fa505cb4dd93468727281ba00f31ae269a54f84c8652050dc3e1c20aaa6981",
+      "size": 420,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_BaseColor.png",
+      "exists": true,
+      "sha256": "1625e1d1cc6771d7e6c9321e6139bc39ea5fffd4a1241e7285a636870dd2628c",
+      "size": 264012,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Height.png",
+      "exists": true,
+      "sha256": "842716ceda85e8a7006e9382b04658c8f91814f327189840b3cfb602689f28e5",
+      "size": 230991,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Normal.png",
+      "exists": true,
+      "sha256": "7ed1d380b2f3b964024955051649b25f306f9ac9e657a4e8267cb188ad9c6792",
+      "size": 302254,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_ORM.png",
+      "exists": true,
+      "sha256": "2ef38f2661b5e435c6f3aea4bd15f4679af77504fbbe1d70fdf0b1adf4f4065d",
+      "size": 231630,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_BaseColor.png",
+      "exists": true,
+      "sha256": "66ac9d657daaebf660a05b53d8fa07ba1e1001b89159ab14701e6d89a836efeb",
+      "size": 103103,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Height.png",
+      "exists": true,
+      "sha256": "d0787d13ca9538f56cf32332e974d33073d3d96685ad33b266488cde3e44bba6",
+      "size": 84678,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Normal.png",
+      "exists": true,
+      "sha256": "728e3550e3b620dbc11623b39b985e3a0991f023edd82bf3eae4b1162b0c2013",
+      "size": 105269,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_ORM.png",
+      "exists": true,
+      "sha256": "c7feb171c05b8a3dcd1a479d6354ef42011b5b483e90f16b3bbada8ede69f456",
+      "size": 86348,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_BaseColor.png",
+      "exists": true,
+      "sha256": "c6efb7a020932da046ec0ca4f1b05e6e3852f478ee0c9e07b712de2fe98ea896",
+      "size": 36385,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Height.png",
+      "exists": true,
+      "sha256": "3a74cfe2a3228c86da82da757e6bb83414d42a36981ea6ca909e2cb9ab180df7",
+      "size": 29466,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Normal.png",
+      "exists": true,
+      "sha256": "83bd0732215a0724165b892897ccbf7dc2f9b582fe326993819f04d3d298358c",
+      "size": 29279,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_ORM.png",
+      "exists": true,
+      "sha256": "a322571b6b5247842c4eb6dc36d236a1c37922d9afbe4017cefe51ab8749738e",
+      "size": 32696,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_BaseColor.png",
+      "exists": true,
+      "sha256": "8bdd6e9ada6910f2f79f18e2517f73410c4c763b5bd12531d97cc446ce703e53",
+      "size": 12151,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Height.png",
+      "exists": true,
+      "sha256": "257a4f502398cd9d445cdfb1de4a2ab43d9919089d9bceda5c1f50d141743a15",
+      "size": 9297,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Normal.png",
+      "exists": true,
+      "sha256": "8e9db6b08df2b91f5a6c8a47c74d93ecfd0c75fc950e1794c30c521098150d9e",
+      "size": 7279,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_ORM.png",
+      "exists": true,
+      "sha256": "a587009a28e24a378d9408462d9c5942af681f9e779ebd1cd77e564c22f88292",
+      "size": 10857,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Brass_Engraved.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Brass_FiligreeGold.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Brass_HammeredPulse.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Brass_Iridescent.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Brass_PatinaAnimated.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Brass_VerdigrisBloom.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_CavernWeave.uasset",
+      "exists": true,
+      "sha256": "0de5a09fcc71316aa5a271a18b79d4e0e2e3412fe5a4aca91e8b4cab3bed19a7",
+      "size": 14027,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_CherryBlossomWood.uasset",
+      "exists": true,
+      "sha256": "b0f7c85d85037db8f3fcef0794e7dd6902671a6d42d9d86df2013ff8415828e5",
+      "size": 2735,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_ChoirStone.uasset",
+      "exists": true,
+      "sha256": "5b903d80678eedd70cea055987790d43840c2f8492782a8b933938844ba1822e",
+      "size": 13876,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_CrystalCathedral.uasset",
+      "exists": true,
+      "sha256": "113dfb38a45e1467d457efc44e4f59c6718a7f76c4f8b3a23c25bc9031288a32",
+      "size": 12797,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_CymaticMarble.uasset",
+      "exists": true,
+      "sha256": "a35912da944fb8b47f780ce064b83275b86afba3d5763f8de838c6ea8b3eaf70",
+      "size": 2711,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_CymaticReactive.uasset",
+      "exists": true,
+      "sha256": "a09c6057a4cc896170bf80b19458670a8e9c72d41d5db422c9d558edcf0b573c",
+      "size": 4211,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_DancingCrystals.uasset",
+      "exists": true,
+      "sha256": "3ff70962024c2568b464712a7c88591b9b62f1950298513e61d0d543e4351e28",
+      "size": 2723,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_EnchantedTome.uasset",
+      "exists": true,
+      "sha256": "f94141bca6aa249226819187173fc93d31d93e6d3d249145d1f3565fda767e42",
+      "size": 2711,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayAlabasterDrape.uasset",
+      "exists": true,
+      "sha256": "a35912da944fb8b47f780ce064b83275b86afba3d5763f8de838c6ea8b3eaf70",
+      "size": 2711,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayAquaLace.uasset",
+      "exists": true,
+      "sha256": "938f3435d7523d242f66d1297990631a705eac5fc8887d3a8654e21bcf4bea6a",
+      "size": 14000,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayCelestialSilk.uasset",
+      "exists": true,
+      "sha256": "040a2892d93aad68a587e17923591bbfa66d8d41702fda2927f6c4ee1c6fe211",
+      "size": 13903,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayGildedRidge.uasset",
+      "exists": true,
+      "sha256": "113dfb38a45e1467d457efc44e4f59c6718a7f76c4f8b3a23c25bc9031288a32",
+      "size": 12797,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayLullabyFleece.uasset",
+      "exists": true,
+      "sha256": "d813e391aa5580cb96f05a1818c5191da6b35966f764129c60e3b1dc29f782cc",
+      "size": 14000,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayMoonChiffon.uasset",
+      "exists": true,
+      "sha256": "040a2892d93aad68a587e17923591bbfa66d8d41702fda2927f6c4ee1c6fe211",
+      "size": 13903,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayNacreVeil.uasset",
+      "exists": true,
+      "sha256": "938f3435d7523d242f66d1297990631a705eac5fc8887d3a8654e21bcf4bea6a",
+      "size": 14000,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FarawayNightVelvet.uasset",
+      "exists": true,
+      "sha256": "938f3435d7523d242f66d1297990631a705eac5fc8887d3a8654e21bcf4bea6a",
+      "size": 14000,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FinalDreamweaver.uasset",
+      "exists": true,
+      "sha256": "3493065e1adc5ddb1d0e005b57800fc136c0a14feffb4367cb2071281f915c6e",
+      "size": 2729,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FractalCathedral.uasset",
+      "exists": true,
+      "sha256": "e8b0b9cbeae54ee41b35c334681748812797897319beed889ca8c687e349ee81",
+      "size": 14038,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FrostBloom.uasset",
+      "exists": true,
+      "sha256": "d813e391aa5580cb96f05a1818c5191da6b35966f764129c60e3b1dc29f782cc",
+      "size": 14000,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_FrozenFracture.uasset",
+      "exists": true,
+      "sha256": "4b46e0a79e1bbb14ededff193d8fca29e80783de513c1a85df41ae0f78f9c09c",
+      "size": 13984,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GildedCoral.uasset",
+      "exists": true,
+      "sha256": "6c5d263bad20fc5e0e8486595668b12286df1f712313ac34bcca76a7d45c9598",
+      "size": 14027,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GildedLoom.uasset",
+      "exists": true,
+      "sha256": "0b0771609df24db51558c93fb0b7af523c8c9c7d54191a22604fff5312b3d1c7",
+      "size": 2693,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GlitterCrystal.uasset",
+      "exists": true,
+      "sha256": "9b9df504ae2af8f53e55c787c8c046654e6dbcefe9c9e2a4f944dbf7705e7675",
+      "size": 2717,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GlitterGold.uasset",
+      "exists": true,
+      "sha256": "511b677e449f1c5adc94251e4af1f2e78465cfd65436aa30df6995edc576a52d",
+      "size": 2699,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GlitterHolographic.uasset",
+      "exists": true,
+      "sha256": "6c4287f89ce3da2e947bc438dc527386b345d0cbffd733679b2a90946cf2f08d",
+      "size": 2741,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GlitterIridescent.uasset",
+      "exists": true,
+      "sha256": "bdb68cc5dcb7b218bf351d6f432acfd7baa33dfbb687307134de6c36bb714f23",
+      "size": 2735,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GlitterRainbow.uasset",
+      "exists": true,
+      "sha256": "a554859f04e92283f820a846de759b12cb56688aa8563ee9cebd1ec404fcaa63",
+      "size": 2717,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_GoldenSpiralGrove.uasset",
+      "exists": true,
+      "sha256": "321d8de686bef65c3fe63fe439fa10e79774cb2587f1cb9adec1fdde0b7faf28",
+      "size": 2735,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_MoltenCore.uasset",
+      "exists": true,
+      "sha256": "9a4c6936b3d5c012da5770bf29c29b87412c4ce7c74b4e1519e8539da0deaa0a",
+      "size": 13876,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_PearlWeave.uasset",
+      "exists": true,
+      "sha256": "938f3435d7523d242f66d1297990631a705eac5fc8887d3a8654e21bcf4bea6a",
+      "size": 14000,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_SilkWaterfall.uasset",
+      "exists": true,
+      "sha256": "98df0c0f993d039b9697a54916ffa3abc6607d26032b394662917211d82a5f1b",
+      "size": 2711,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_SingingConstellations.uasset",
+      "exists": true,
+      "sha256": "52dd09eb0b2132c1c61272715c0372010f32069f0f97f5c58d1ff0b9f0ed3bdf",
+      "size": 2759,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_SingingSilk.uasset",
+      "exists": true,
+      "sha256": "040a2892d93aad68a587e17923591bbfa66d8d41702fda2927f6c4ee1c6fe211",
+      "size": 13903,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_SpiralMonument.uasset",
+      "exists": true,
+      "sha256": "d930103271f6804234afdbb3f36d77727a47387805f79a65e6923ae00be92b6a",
+      "size": 2717,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_StarlitAbyss.uasset",
+      "exists": true,
+      "sha256": "0c449d4dc1819ebc22a5329739a311cdc5edbf86c525b68bbd715dcaf2ce0438",
+      "size": 2705,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_StarlitLoom.uasset",
+      "exists": true,
+      "sha256": "569bd67b79596e1ad7ecdd01575b0e6bd66ac4134f40aa9ecfc87b055b835486",
+      "size": 13903,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_TessellationSanctum.uasset",
+      "exists": true,
+      "sha256": "e217b58cf0b541603b0e1839e4090a576f7d28a57a7b5ab702d6a3bd1f5b9d8d",
+      "size": 2747,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_TwinklingGears.uasset",
+      "exists": true,
+      "sha256": "d8c3fd3cacae33664c4c5909b5dd80205dba1f1c4a0f1a175bf94450624c706b",
+      "size": 2717,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Materials\\Instances\\Copernicus\\MI_Copernicus_VoronoiSacredGeometry.uasset",
+      "exists": true,
+      "sha256": "3db2a4844c02acb05818c04376c99eb77552442442a5cc4e1b0b8f34842f6f95",
+      "size": 14173,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_BaseColor.png",
+      "exists": true,
+      "sha256": "9e8ae032e3b9df5164127c80f135d65ab3713fe8c930b0a630b6b0c96e66a5e7",
+      "size": 231762,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Emissive.png",
+      "exists": true,
+      "sha256": "f62b4f72f3a8879fb014cc820ad0a223753f5598976e0f035d4cb69532fe7007",
+      "size": 40288,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Height.png",
+      "exists": true,
+      "sha256": "76bc42ff85e971ffb268b07292e5c682c499a52b492b6e96fe43c61684bbcde2",
+      "size": 163626,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Iridescence.png",
+      "exists": true,
+      "sha256": "da6bd3e3ca10a35368a8880bfd1599d8c580a1b5269ee1f4d2507815654391f2",
+      "size": 62178,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Metallic.png",
+      "exists": true,
+      "sha256": "a8e477fd159b139fa84e8a94ab408a87518fef1454760a6ef98b69589825089c",
+      "size": 57426,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Normal.png",
+      "exists": true,
+      "sha256": "7e2963ac6a11ade8b77cee44f7fcb2cdf97d05c2d944302f118fd18354e2bb91",
+      "size": 241349,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_ORM.png",
+      "exists": true,
+      "sha256": "0418ecfccaf98a6d7a63d028f644c70b3ac1b76659cf55e77a8b73e33f667471",
+      "size": 159589,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Roughness.png",
+      "exists": true,
+      "sha256": "8688161e4efcddf7da0fc10dfc66f0dff9802863f73176ce1ad7de397ada5edf",
+      "size": 58226,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_BaseColor.png",
+      "exists": true,
+      "sha256": "4a0eef207dcde8b099a86356186729bcfd6a2ae48a3c30851a291355ee0353a4",
+      "size": 149942,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Emissive.png",
+      "exists": true,
+      "sha256": "80dbf9d1b109fe6880d72e29f151bb7272d8207531f8dd20fd4d8493bc099f81",
+      "size": 81397,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Height.png",
+      "exists": true,
+      "sha256": "0d75a7151b860bcbe70aefff2fe10e0ced6f6139bd966d011b434fa13e0aa17b",
+      "size": 77436,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Iridescence.png",
+      "exists": true,
+      "sha256": "28f66b8cd0d3e73b4d07279ccf394d98db11d0b1809950e054e5d2289d48c2b8",
+      "size": 14714,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Metallic.png",
+      "exists": true,
+      "sha256": "0148ff50aa12f58df661871385a9d666fb6698638c9f76ae6edcd544d40a90b9",
+      "size": 47056,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Normal.png",
+      "exists": true,
+      "sha256": "41d8113ef820b6fc2f3ccc2f5ad41508af903c409278cab691bfbf54810b1346",
+      "size": 57361,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_ORM.png",
+      "exists": true,
+      "sha256": "64cf76f8e5204dcf0b36cb5c97eb1376bbf33d3a4bb96c58e6de7f557913e9f6",
+      "size": 147233,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Roughness.png",
+      "exists": true,
+      "sha256": "b719024a6a067414e909aeb597ff5955c92ab5774d52493b08f9cb89eef75699",
+      "size": 53319,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_BaseColor.png",
+      "exists": true,
+      "sha256": "75f8278a6ee2ec9f809fc86a4f528d73985f557fc3e4a5f7478d98c33a08f69f",
+      "size": 252391,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Emissive.png",
+      "exists": true,
+      "sha256": "d79a720cc1ab82d488f68b6f9fc599319ee424f300f0862e17133798a539eb31",
+      "size": 35885,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Height.png",
+      "exists": true,
+      "sha256": "131182de9744464f55391fcce178b573345aa0f2b9664afb109f177afe828a92",
+      "size": 173472,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Iridescence.png",
+      "exists": true,
+      "sha256": "6ee4caa6692b6d34435309d7633af0bf1ad29cf32de8c598822aba20f5bc739e",
+      "size": 48853,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Metallic.png",
+      "exists": true,
+      "sha256": "62f2861f3c11e34bb54e3e39ab2c35acafb06920fc23b6a68e3b16ea756ba7ab",
+      "size": 52718,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Normal.png",
+      "exists": true,
+      "sha256": "e8ef4ab0d840edb55527d15f86818a86232c1ca10937d4ca075b182af04ba073",
+      "size": 263737,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_ORM.png",
+      "exists": true,
+      "sha256": "457da74e5bdbdbbe29adabc35e02111187c20202688088e0564399dd35fa3250",
+      "size": 180778,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Roughness.png",
+      "exists": true,
+      "sha256": "be0d4270cc6ec6d6b2d6dabb812b10b8b855889327c7fc179160761746ada562",
+      "size": 43624,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_BaseColor.png",
+      "exists": true,
+      "sha256": "5e4844597efa40feaef2bdbfde9013c04c08aa35976c65505b79e015424b9d67",
+      "size": 137992,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Emissive.png",
+      "exists": true,
+      "sha256": "15d54cb6f8c47a9061806ffe1e677ec7fb72ffd636c94e81250e10f8637688de",
+      "size": 15074,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Height.png",
+      "exists": true,
+      "sha256": "d3af31c115220a7a3871f4804969ea825d5ecbdd4ee6eae7f4f400782bdfc271",
+      "size": 94731,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Iridescence.png",
+      "exists": true,
+      "sha256": "59db8e2bcbde81e69fd1af67dc68229d3823a4e4a9ee06ef07981bc362853ca2",
+      "size": 20811,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Metallic.png",
+      "exists": true,
+      "sha256": "88a7a6bbe6ba9adb8b9ad0d1660f6be0b01ea57e79e5fd95fb232792d44818f2",
+      "size": 1302,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Normal.png",
+      "exists": true,
+      "sha256": "c8177f29aa1a6dcbdce115733d56da72c3f3a076704c51607f80f16e4c1a4faf",
+      "size": 138761,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_ORM.png",
+      "exists": true,
+      "sha256": "3927c26fab4052625784daa1abd4464c9dbc7905805e36275670dda31b466646",
+      "size": 77772,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Roughness.png",
+      "exists": true,
+      "sha256": "3b44e6a18a61caeebb0a201ceaeba319a0264c4ff81e4aa4a4b1ad1b43257799",
+      "size": 17606,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_BaseColor.png",
+      "exists": true,
+      "sha256": "3624743096eaf4bb108551824db798edb10c36f9f8dbe911fe8782ca728cb45e",
+      "size": 337368,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Emissive.png",
+      "exists": true,
+      "sha256": "a6cb43fb6c994b486147de549970c96a75f1f876edf88d46dffdff08b1add412",
+      "size": 155292,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Height.png",
+      "exists": true,
+      "sha256": "8b48af3569f4565d0953791ab41f917a32011d901fc7fb5bb64b16f99bc6d856",
+      "size": 118596,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Iridescence.png",
+      "exists": true,
+      "sha256": "d918bddaad7ae9571e41469f68308a7df6f270c1c240efd1d07d873a3e20e6da",
+      "size": 280231,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Metallic.png",
+      "exists": true,
+      "sha256": "68cf8ce9f26f44e7ba02bbaf22c050d7799e6f6adef7a0cb4b3539207dd1e641",
+      "size": 120457,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Normal.png",
+      "exists": true,
+      "sha256": "ffa684a10600bfe3536f2e702f9e750ec0fcd0f7034270da6293e14a8ac190f7",
+      "size": 254564,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_ORM.png",
+      "exists": true,
+      "sha256": "d5c040c66d7eacf0cd191b40a2a5ce716e20a6223c6c42bda8aa26ac35cd8ea9",
+      "size": 241456,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Roughness.png",
+      "exists": true,
+      "sha256": "32ee4b7d4fb89e45df353a69c56ebff9fd6f61efade59955ff7204b546fb3e24",
+      "size": 103405,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_BaseColor.png",
+      "exists": true,
+      "sha256": "7d9be9ef6da5fd471213f82411355bb06a632ee1fe59550c28d0adef67ae95e1",
+      "size": 173295,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Emissive.png",
+      "exists": true,
+      "sha256": "ffa7699e679e20a3df080d831a65a35667ecefe7d762fe8a16e2a7da3add7707",
+      "size": 78280,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Height.png",
+      "exists": true,
+      "sha256": "d2860f179519ed7da330367cd19c84d85ff57774b42126a7e51eb76883323d65",
+      "size": 137251,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Iridescence.png",
+      "exists": true,
+      "sha256": "74f840acc6fed190148ad1d84b974125bd0bc823d8ee7bb1a034985e233cc37b",
+      "size": 61765,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Metallic.png",
+      "exists": true,
+      "sha256": "0754ea1e226017c0f938b34405212273de6be6b167da807166e4136ad1a67081",
+      "size": 24315,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Normal.png",
+      "exists": true,
+      "sha256": "74904427e7779af616aa0bf03f2ac09fa8ff07b21d560d9713748bc8403b7632",
+      "size": 181845,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_ORM.png",
+      "exists": true,
+      "sha256": "549a7b557e4e291d18fc6d26494adb8de1509165fa8db6769de6c95baba4ff12",
+      "size": 123286,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Roughness.png",
+      "exists": true,
+      "sha256": "12b27525ecc766b446d1eaff0d4eb126b1b8347bf2c94553799cbe64715e2d1b",
+      "size": 40008,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_BaseColor.png",
+      "exists": true,
+      "sha256": "2251d13b32d93dcf5443f461b3f55bc88fac43d34c77f2aee268a0891693eb0d",
+      "size": 121345,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Emissive.png",
+      "exists": true,
+      "sha256": "6efc97f37ffa16d21662bbb9a3662bb3459c73ca510740ae6fb7005144252855",
+      "size": 8522,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Height.png",
+      "exists": true,
+      "sha256": "988654346ac9ff69a63abd60c9083f1d06134c582359fa144c08b5f2ceb01f44",
+      "size": 87431,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Iridescence.png",
+      "exists": true,
+      "sha256": "4193dc07665558b182ab72d245a00ac7cd9cec25130ba53a9cbd63a58bd686f1",
+      "size": 48491,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Metallic.png",
+      "exists": true,
+      "sha256": "dc474174e475199ddab93cf7bb7ecd260aca7da10a2e916142ad597497795c41",
+      "size": 56443,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Normal.png",
+      "exists": true,
+      "sha256": "44d2f527308592065fb3c493642397859e174aecf7dda51cf84269ca21e05b26",
+      "size": 121830,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_ORM.png",
+      "exists": true,
+      "sha256": "27345572cc6a1fd62df918f37d4aa34d02812f36d4f9a05cc2f5f270d49598db",
+      "size": 181418,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Roughness.png",
+      "exists": true,
+      "sha256": "d5fba6c52c44297f800fc5cc673bfc34373783e5c2fd0af8df08cb21f50a1b0e",
+      "size": 69292,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_BaseColor.png",
+      "exists": true,
+      "sha256": "e2c83adf354d75044a507c71a3101c255d8379ebc4d700c69ff897e51b953262",
+      "size": 131434,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Emissive.png",
+      "exists": true,
+      "sha256": "9f041aedcdece17ca3c0ebbe9fe55d4bc28559cb3c8d0db56e92d2dc42f19cd2",
+      "size": 54380,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Height.png",
+      "exists": true,
+      "sha256": "24bd7523978ced20bb4c92cb3b06c4be50943838e713e6e47226538dc2b730a2",
+      "size": 59630,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Iridescence.png",
+      "exists": true,
+      "sha256": "205782f87bb978fc0e4281044c436416e8240731d1eadb4168c79b0f2d2a5321",
+      "size": 39153,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Metallic.png",
+      "exists": true,
+      "sha256": "4041821b6d83aa6ca88cd6799f6a955dccd5cbadc89e45fb6a8016d11f1ba76d",
+      "size": 40784,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Normal.png",
+      "exists": true,
+      "sha256": "8fd07ddf2383323412ccb431d9fac0467ecd603f2d1e477d8c437796fdd14fce",
+      "size": 28758,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Opacity.png",
+      "exists": true,
+      "sha256": "d8acccafa1fdcf03f3bb9112f5f2f30ad1558e446d5c12ec5644fc0d53c1e58b",
+      "size": 1301,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_ORM.png",
+      "exists": true,
+      "sha256": "d0ea41e2105b77347a6daba3eb977fd30d29a416443957970b0644545a2eca08",
+      "size": 135969,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Roughness.png",
+      "exists": true,
+      "sha256": "574657ffc908344defc090eba8e1cfa7846b828834f334287a36066d2b0655ec",
+      "size": 39970,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\_BrassShared\\T_Brass_Flipbook_30_Atlas_4x4.png",
+      "exists": true,
+      "sha256": "0aef0fbfe988161caae0773608f61130f188508f9cd0ea013c7bcfd8ce7100ec",
+      "size": 129075,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\_BrassShared\\T_Brass_FlowMap.png",
+      "exists": true,
+      "sha256": "b8820c03eb67c29683846ef5d88dd40a5e9880815bef847b3ffc6d436ce6f2c9",
+      "size": 126739,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\_BrassShared\\T_Brass_PanningNoise.png",
+      "exists": true,
+      "sha256": "c68cd9c556b10bd26d2b9d49f5bc419dfc6c031b73cde32827b8646fb453362f",
+      "size": 65779,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved/Audit/faraway_mother_height_aware_pcg.json",
+      "exists": true,
+      "sha256": "1999ad1dad94e82a2a6a1032b053d1367c145d33537f2ab23cf6440c3078ad36",
+      "size": 8072,
+      "status": "PASS"
+    },
+    {
+      "path": "Saved/Audit/faraway_mother_height_aware_pcg_live_corrected.json",
+      "exists": true,
+      "sha256": "1999ad1dad94e82a2a6a1032b053d1367c145d33537f2ab23cf6440c3078ad36",
+      "size": 8072,
+      "status": "PASS"
+    }
+  ],
+  "resolution_checks": [
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BayerDither_8x8.png",
+      "size": "8x8",
+      "expected": 8,
+      "lod": "unknown",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_BlueNoise_64x64.png",
+      "size": "64x64",
+      "expected": 64,
+      "lod": "unknown",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\shared\\T_LOD_Iridescence_ThinFilm_LUT.png",
+      "size": "128x512",
+      "expected": 128,
+      "lod": "unknown",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD0\\T_Surreal_StarlitLoom_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD1\\T_Surreal_StarlitLoom_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD2\\T_Surreal_StarlitLoom_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_StarlitLoom\\LOD3\\T_Surreal_StarlitLoom_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD0\\T_Surreal_SingingSilk_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD1\\T_Surreal_SingingSilk_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD2\\T_Surreal_SingingSilk_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_SingingSilk\\LOD3\\T_Surreal_SingingSilk_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD0\\T_Surreal_PearlWeave_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD1\\T_Surreal_PearlWeave_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD2\\T_Surreal_PearlWeave_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_PearlWeave\\LOD3\\T_Surreal_PearlWeave_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD0\\T_Surreal_NightVelvet_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD1\\T_Surreal_NightVelvet_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD2\\T_Surreal_NightVelvet_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_NightVelvet\\LOD3\\T_Surreal_NightVelvet_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD0\\T_Surreal_MoonChiffon_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD1\\T_Surreal_MoonChiffon_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD2\\T_Surreal_MoonChiffon_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_MoonChiffon\\LOD3\\T_Surreal_MoonChiffon_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD0\\T_Surreal_GildedLoom_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD1\\T_Surreal_GildedLoom_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD2\\T_Surreal_GildedLoom_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_GildedLoom\\LOD3\\T_Surreal_GildedLoom_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD0\\T_Surreal_CelestialSilk_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD1\\T_Surreal_CelestialSilk_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD2\\T_Surreal_CelestialSilk_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_CelestialSilk\\LOD3\\T_Surreal_CelestialSilk_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD0\\T_Surreal_AquaLace_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD1\\T_Surreal_AquaLace_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD2\\T_Surreal_AquaLace_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Surreal_AquaLace\\LOD3\\T_Surreal_AquaLace_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD0\\T_Starskiff_Hull_Celestial_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD1\\T_Starskiff_Hull_Celestial_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD2\\T_Starskiff_Hull_Celestial_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Starskiff_Hull_Celestial\\LOD3\\T_Starskiff_Hull_Celestial_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD0\\T_Melusina_Shorewake_Gown_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD1\\T_Melusina_Shorewake_Gown_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD2\\T_Melusina_Shorewake_Gown_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\Melusina_Shorewake_Gown\\LOD3\\T_Melusina_Shorewake_Gown_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_BaseColor.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Height.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_Normal.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD0\\T_FarawayMother_CelestialSilk_LOD0_ORM.png",
+      "size": "1024x1024",
+      "expected": 1024,
+      "lod": "LOD0",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD1\\T_FarawayMother_CelestialSilk_LOD1_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "lod": "LOD1",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_BaseColor.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Height.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_Normal.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD2\\T_FarawayMother_CelestialSilk_LOD2_ORM.png",
+      "size": "256x256",
+      "expected": 256,
+      "lod": "LOD2",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_BaseColor.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Height.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_Normal.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Saved\\Audit\\lookdev\\optical_lods\\FarawayMother_CelestialSilk\\LOD3\\T_FarawayMother_CelestialSilk_LOD3_ORM.png",
+      "size": "128x128",
+      "expected": 128,
+      "lod": "LOD3",
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassEngraved\\T_Brass_Engraved_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFarawayMother\\T_Brass_FarawayMother_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassFiligreeGold\\T_Brass_FiligreeGold_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassHammeredPulse\\T_Brass_HammeredPulse_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassIridescent\\T_Brass_Iridescent_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassNautilus\\T_Brass_Nautilus_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassPatinaAnimated\\T_Brass_PatinaAnimated_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_BaseColor.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Emissive.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Height.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Iridescence.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Metallic.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Normal.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Opacity.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_ORM.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\BrassVerdigrisBloom\\T_Brass_VerdigrisBloom_Roughness.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\_BrassShared\\T_Brass_Flipbook_30_Atlas_4x4.png",
+      "size": "1024x1024",
+      "expected": 512,
+      "status": "FAIL"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\_BrassShared\\T_Brass_FlowMap.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    },
+    {
+      "path": "Content\\EnvSandbox\\Textures\\Copernicus\\_BrassShared\\T_Brass_PanningNoise.png",
+      "size": "512x512",
+      "expected": 512,
+      "status": "PASS"
+    }
+  ],
+  "resolution_pass": 253,
+  "resolution_fail": 1,
+  "mi_params_checks": [
+    {
+      "instance": "MI_FarawayMother_CelestialSilk_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_FarawayMother_CelestialSilk_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_FarawayMother_CelestialSilk_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_FarawayMother_CelestialSilk_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Melusina_Shorewake_Gown_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Melusina_Shorewake_Gown_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Melusina_Shorewake_Gown_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Melusina_Shorewake_Gown_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Starskiff_Hull_Celestial_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Starskiff_Hull_Celestial_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Starskiff_Hull_Celestial_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Starskiff_Hull_Celestial_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_CelestialSilk_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_CelestialSilk_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_CelestialSilk_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_CelestialSilk_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_GildedLoom_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_GildedLoom_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_GildedLoom_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_GildedLoom_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_PearlWeave_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_PearlWeave_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_PearlWeave_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_PearlWeave_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_SingingSilk_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_SingingSilk_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_SingingSilk_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_SingingSilk_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_StarlitLoom_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_StarlitLoom_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_StarlitLoom_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_StarlitLoom_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_NightVelvet_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_NightVelvet_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_NightVelvet_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_NightVelvet_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_AquaLace_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_AquaLace_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_AquaLace_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_AquaLace_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_MoonChiffon_LOD0",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_MoonChiffon_LOD1",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_MoonChiffon_LOD2",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    },
+    {
+      "instance": "MI_Surreal_MoonChiffon_LOD3",
+      "missing_scalars": [],
+      "missing_textures": [],
+      "status": "PASS"
+    }
+  ],
+  "mi_params_pass": 44,
+  "mi_params_fail": 0
+}

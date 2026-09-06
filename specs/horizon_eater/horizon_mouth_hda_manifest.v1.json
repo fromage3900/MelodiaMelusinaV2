@@ -1,0 +1,18 @@
+{
+  "schema": "melodia.horizon_mouth_hda_manifest.v1",
+  "seed": 20260829,
+  "res": 2048,
+  "variants": [
+    {
+      "variant": "upper_rim",
+      "seed": 20260829,
+      "res": 2048,
+      "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\horizon_eater\\HorizonMouth_upper_rim.fbx",
+      "dry_run": true,
+      "template": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\horizon_eater\\hda_horizon_mouth_upper_rim_template.py"
+    }
+  ],
+  "ue_proxies": "/Game/EnvSandbox/Monoliths/HorizonEater/Proxies/",
+  "ue_curves": "Saved/Audit/horizon_eater/HorizonMouth_*_curves.csv (for PCGEx)",
+  "hash": "4b0364e6a3468b17"
+}

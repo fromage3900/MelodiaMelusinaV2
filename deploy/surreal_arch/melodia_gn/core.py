@@ -1144,11 +1144,39 @@ def add_mesh_torus_linked(tree, loc, major_radius_sock, minor_radius_sock,
 GROUP_BUILDERS: dict[str, callable] = {}
 GROUP_METADATA: dict[str, dict] = {}
 
+STUDIO_LABELS.update({
+    "MH_FOUNDATION_POD": {
+        "ui_label": "MH Foundation Pod",
+        "mel_tree": "MEL_mh_foundation_pod",
+        "category": "Melusina House",
+        "panel_hint": "Atomic rounded room slab; lowest-level Melusina House massing primitive.",
+    },
+    "MH_FOUNDATION_CLUSTER": {
+        "ui_label": "MH Foundation Cluster",
+        "mel_tree": "MEL_mh_foundation_cluster",
+        "category": "Melusina House",
+        "panel_hint": "Salon + side pods + rear pod; first useful lower-house footprint.",
+    },
+    "MH_FOUNDATION_PORCH": {
+        "ui_label": "MH Foundation Porch",
+        "mel_tree": "MEL_mh_foundation_porch",
+        "category": "Melusina House",
+        "panel_hint": "Front oval entry/terrace slab before stairs, rails and ornament.",
+    },
+    "MH_FOUNDATION_MASTER": {
+        "ui_label": "MH Foundation Master",
+        "mel_tree": "MEL_mh_foundation_master",
+        "category": "Melusina House",
+        "panel_hint": "Recommended first house builder: rounded core, porch and Listening Tower pad.",
+    },
+})
+
 CATEGORY_META: dict[str, dict] = {
     "primitives":  {"label": "Primitives",          "icon": "MESH_GRID"},
     "profiles":    {"label": "Profiles",             "icon": "MESH_CYLINDER"},
     "math_attrs":  {"label": "Math & Attributes",    "icon": "NODETREE"},
     "structures":  {"label": "Structures",           "icon": "HOME"},
+    "melusina_house":  {"label": "Melusina House",       "icon": "HOME"},
     "effects":     {"label": "Magic Effects",        "icon": "SHADERFX"},
     "ornament":    {"label": "Ornament",             "icon": "DECORATE"},
     "filigree":    {"label": "Filigree & Crests",    "icon": "MOD_CURVE"},

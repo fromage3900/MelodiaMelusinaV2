@@ -1,0 +1,1100 @@
+{
+  "schema": "melodia.sea_above_pcg_integration.v1",
+  "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "level_alt": "/Game/LV_SeaAbove_Prototype",
+  "seed": 20260902,
+  "grid_size": 25600,
+  "wp_cell_size": 25600,
+  "hlod_cell_size": 25600,
+  "biome_bands": {
+    "island_crest": {
+      "z_offset": 55,
+      "yaw_variance": 6,
+      "scale": [
+        2.8,
+        2.8,
+        2.2
+      ],
+      "density": 0.42,
+      "notes": "Highest \u2014 island crest / cathedral perch. Atlantis arches + Cathedral spire.",
+      "target_kit": "Atlantis+Cathedral"
+    },
+    "cathedral_nave": {
+      "z_offset": 22,
+      "yaw_variance": 4,
+      "scale": [
+        3.2,
+        3.2,
+        2.6
+      ],
+      "density": 0.55,
+      "notes": "Hero landmark \u2014 Cathedral nave / vault / rose window axis.",
+      "target_kit": "Cathedral+Houdini"
+    },
+    "lagoon_shallow": {
+      "z_offset": 8,
+      "yaw_variance": 12,
+      "scale": [
+        2.0,
+        2.0,
+        1.1
+      ],
+      "density": 0.35,
+      "notes": "Playable shoreline \u2014 kelp, clutter, small Atlantis scatter.",
+      "target_kit": "Reef"
+    },
+    "reef_wall": {
+      "z_offset": -18,
+      "yaw_variance": 18,
+      "scale": [
+        1.6,
+        1.6,
+        1.4
+      ],
+      "density": 0.48,
+      "notes": "Vertical reef face \u2014 coral, barnacle, wet-rock. Steep normal bias.",
+      "target_kit": "Reef"
+    },
+    "abyssal_keel": {
+      "z_offset": -45,
+      "yaw_variance": 20,
+      "scale": [
+        2.4,
+        2.4,
+        1.0
+      ],
+      "density": 0.28,
+      "notes": "Deep underside \u2014 heavy fog, leviathan bone, sparse islands.",
+      "target_kit": "Reef+Atlantis"
+    },
+    "sky_motes": {
+      "z_offset": 180,
+      "yaw_variance": 25,
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "density": 0.15,
+      "notes": "Airborne \u2014 jelly arms / motes. NO ground contact; haze/creature DataLayer.",
+      "target_kit": "Reef_Creature"
+    }
+  },
+  "pcg_params": {
+    "grid_size": 25600,
+    "seed": 20260902,
+    "wp_cell_size": 25600,
+    "hlod_cell_size": 25600,
+    "bounds_half_extent": [
+      12800.0,
+      12800.0,
+      6000
+    ],
+    "density": 0.4,
+    "cull_distance": 40000,
+    "lod_bias": 0,
+    "nanite_enabled": true,
+    "ism_batch": true,
+    "height_aware": true,
+    "raycast_start_z": 50000,
+    "raycast_end_z": -50000,
+    "trace_channel": "Visibility",
+    "ground_candidates": [
+      "CanonicalLandscape",
+      "MeshTerrain",
+      "Landscape",
+      "SM_SeaAbove_LiquidCathedral"
+    ],
+    "biome_bands": {
+      "island_crest": {
+        "z_offset": 55,
+        "yaw_variance": 6,
+        "scale": [
+          2.8,
+          2.8,
+          2.2
+        ],
+        "density": 0.42,
+        "notes": "Highest \u2014 island crest / cathedral perch. Atlantis arches + Cathedral spire.",
+        "target_kit": "Atlantis+Cathedral"
+      },
+      "cathedral_nave": {
+        "z_offset": 22,
+        "yaw_variance": 4,
+        "scale": [
+          3.2,
+          3.2,
+          2.6
+        ],
+        "density": 0.55,
+        "notes": "Hero landmark \u2014 Cathedral nave / vault / rose window axis.",
+        "target_kit": "Cathedral+Houdini"
+      },
+      "lagoon_shallow": {
+        "z_offset": 8,
+        "yaw_variance": 12,
+        "scale": [
+          2.0,
+          2.0,
+          1.1
+        ],
+        "density": 0.35,
+        "notes": "Playable shoreline \u2014 kelp, clutter, small Atlantis scatter.",
+        "target_kit": "Reef"
+      },
+      "reef_wall": {
+        "z_offset": -18,
+        "yaw_variance": 18,
+        "scale": [
+          1.6,
+          1.6,
+          1.4
+        ],
+        "density": 0.48,
+        "notes": "Vertical reef face \u2014 coral, barnacle, wet-rock. Steep normal bias.",
+        "target_kit": "Reef"
+      },
+      "abyssal_keel": {
+        "z_offset": -45,
+        "yaw_variance": 20,
+        "scale": [
+          2.4,
+          2.4,
+          1.0
+        ],
+        "density": 0.28,
+        "notes": "Deep underside \u2014 heavy fog, leviathan bone, sparse islands.",
+        "target_kit": "Reef+Atlantis"
+      },
+      "sky_motes": {
+        "z_offset": 180,
+        "yaw_variance": 25,
+        "scale": [
+          0.9,
+          0.9,
+          0.9
+        ],
+        "density": 0.15,
+        "notes": "Airborne \u2014 jelly arms / motes. NO ground contact; haze/creature DataLayer.",
+        "target_kit": "Reef_Creature"
+      }
+    },
+    "data_layers": [
+      "DL_SeaAbove_Islands",
+      "DL_SeaAbove_Creature",
+      "DL_SeaAbove_Lighting"
+    ],
+    "hlod_layers": [
+      "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "LV_SeaAbove_Prototype_WP_HLODLayer_Merged"
+    ]
+  },
+  "data_layers": {
+    "islands": "DL_SeaAbove_Islands",
+    "creature": "DL_SeaAbove_Creature",
+    "lighting": "DL_SeaAbove_Lighting",
+    "water": "DL_SeaAbove_Water",
+    "ondisk_map": {
+      "DL_SeaAbove_Islands": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/DataLayers/DL_Islands",
+      "DL_SeaAbove_Creature": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/DataLayers/DL_Creature",
+      "DL_SeaAbove_Lighting": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/DataLayers/DL_Lighting",
+      "DL_SeaAbove_Water": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/DataLayers/DL_Water"
+    }
+  },
+  "hlod_layers": [
+    "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+    "LV_SeaAbove_Prototype_WP_HLODLayer_Merged"
+  ],
+  "material_overrides": {
+    "island_crest": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+    "cathedral_nave": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+    "lagoon_shallow": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+    "reef_wall": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral",
+    "abyssal_keel": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_StarlitAbyss.MI_Copernicus_StarlitAbyss",
+    "sky_motes": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticReactive.MI_Copernicus_CymaticReactive"
+  },
+  "material_fallbacks": {
+    "island_crest": [
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FractalCathedral.MI_Copernicus_FractalCathedral",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_WetRock.MI_SeaAbove_WetRock",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_TessellationSanctum.MI_Copernicus_TessellationSanctum"
+    ],
+    "cathedral_nave": [
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SpiralMonument.MI_Copernicus_SpiralMonument",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FractalCathedral.MI_Copernicus_FractalCathedral",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_WetRock.MI_SeaAbove_WetRock"
+    ],
+    "lagoon_shallow": [
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Kelp.MI_SeaAbove_Kelp",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Sand.MI_SeaAbove_Sand",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_PearlWeave.MI_Copernicus_PearlWeave",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall.MI_Copernicus_SilkWaterfall"
+    ],
+    "reef_wall": [
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin.MI_SeaAbove_CoralSkin",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_MoltenCore.MI_Copernicus_MoltenCore",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_WetRock.MI_SeaAbove_WetRock"
+    ],
+    "abyssal_keel": [
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_StarlitAbyss.MI_Copernicus_StarlitAbyss",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_Leviathan_Bone.MI_SeaAbove_Leviathan_Bone",
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_WetRock.MI_SeaAbove_WetRock",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral"
+    ],
+    "sky_motes": [
+      "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_Jelly_Bell.MI_Jelly_Bell",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticReactive.MI_Copernicus_CymaticReactive",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SingingSilk.MI_Copernicus_SingingSilk",
+      "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FrostBloom.MI_Copernicus_FrostBloom"
+    ]
+  },
+  "greybox_swap_map": {
+    "SM_Greybox_Wall_Tall": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BuildingA",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Wall_Tall_001": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BuildingB",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Wall_4x3": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Wall",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Wall_Mid": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BaseColumnsA",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Wall_Mid_001": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ColumnsA",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Wall_Short": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BenchA",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral"
+    },
+    "SM_Greybox_Wall_Short_001": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_StaffBalustrade",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_HalfWall_4": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_WallParapet",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Floor_4x4": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_CombatFloor",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Beam_4": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Buttress",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Pillar_03": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ColumnsB",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Column_05": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ColumnadeA",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Pole": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Pier",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Rock_A": {
+      "final": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Bell",
+      "kit": "Reef",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral"
+    },
+    "SM_Greybox_Rock_B": {
+      "final": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JellyArm",
+      "kit": "Reef",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral"
+    },
+    "SM_Greybox_Rock_C": {
+      "final": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_arch_00",
+      "kit": "Reef_Houdini",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral"
+    },
+    "SM_Greybox_TeaHouse": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Pavilion",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_TeaBridge": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_BifrostBridge",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Torii": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Step_2": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_SpiralStairs",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_Cube_1m": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_Barrel",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral"
+    },
+    "SM_Greybox_BuildingBlock_A": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BuildingC",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_BuildingBlock_B": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BuildingD",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_BuildingBlock_C": {
+      "final": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BuildingE",
+      "kit": "Atlantis",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave"
+    },
+    "SM_Greybox_Gem": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_HarmonicOrb",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_StarlitAbyss.MI_Copernicus_StarlitAbyss"
+    },
+    "SM_Greybox_Star": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_HarmonicOrb",
+      "kit": "Cathedral",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticReactive.MI_Copernicus_CymaticReactive"
+    },
+    "SM_Greybox_Heart": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_RoseWindow",
+      "kit": "Houdini",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_LissajousSculpture": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_RoseWindow",
+      "kit": "Houdini",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    },
+    "SM_Greybox_GreatDodecahedron": {
+      "final": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_Grand",
+      "kit": "Houdini",
+      "mi": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone"
+    }
+  },
+  "kit_inventory": {
+    "Atlantis": {
+      "path": "/Game/EnvSandbox/Meshes/Atlantis",
+      "count": 333,
+      "examples": [
+        "SM_ATL_Palace_ArchA",
+        "SM_ATL_Palace_ColumnsA",
+        "SM_ATL_Palace_BuildingA"
+      ]
+    },
+    "Cathedral": {
+      "path": "/Game/EnvSandbox/Meshes/Cathedral",
+      "count": 41,
+      "examples": [
+        "SM_Cathedral_Spire",
+        "SM_Cathedral_VaultBay",
+        "SM_Cathedral_RoseWindow"
+      ]
+    },
+    "Reef": {
+      "path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes",
+      "count": 181,
+      "examples": [
+        "JELLY_Bell",
+        "JellyArm",
+        "JELLY_Cathedral_Body_SERAPH_arch_00"
+      ]
+    },
+    "Houdini": {
+      "path": "/Game/EnvSandbox/Meshes/Cathedral_Houdini",
+      "count": 8,
+      "examples": [
+        "SM_P4_Cathedral_Grand",
+        "SM_P4_Cathedral_RoseWindow_6Bays"
+      ]
+    },
+    "Copernicus_MIs": {
+      "path": "/Game/EnvSandbox/Materials/Instances/Copernicus",
+      "count": 40,
+      "examples": [
+        "MI_Copernicus_CavernWeave",
+        "MI_Copernicus_ChoirStone",
+        "MI_Copernicus_GildedCoral"
+      ]
+    }
+  },
+  "ground_ref": {
+    "label": "offline_fallback",
+    "z": 0.0
+  },
+  "placements": [
+    {
+      "id": "SA_IslandCrest_Arch01",
+      "biome": "island_crest",
+      "xy": [
+        0,
+        4200
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 55.0,
+      "z_offset": 55,
+      "yaw": 0,
+      "scale": [
+        2.8,
+        2.8,
+        2.2
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA.SM_ATL_Palace_ArchA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Torii",
+      "notes": "Island crest \u2014 Atlantis arch replaces SM_Greybox_Torii",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_IslandCrest_Arch02",
+      "biome": "island_crest",
+      "xy": [
+        900,
+        4400
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 55.0,
+      "z_offset": 55,
+      "yaw": 8,
+      "scale": [
+        2.6,
+        2.6,
+        2.0
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchB.SM_ATL_Palace_ArchB",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Wall_Tall",
+      "notes": "Island crest \u2014 Atlantis arch B",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_IslandCrest_Columns01",
+      "biome": "island_crest",
+      "xy": [
+        -1100,
+        4000
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 50.0,
+      "z_offset": 50,
+      "yaw": -6,
+      "scale": [
+        2.4,
+        2.4,
+        1.9
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ColumnsA.SM_ATL_Palace_ColumnsA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CavernWeave.MI_Copernicus_CavernWeave",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Column_05",
+      "notes": "Island crest \u2014 Columns replaces SM_Greybox_Column_05",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_Spire01",
+      "biome": "cathedral_nave",
+      "xy": [
+        0,
+        0
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 22.0,
+      "z_offset": 22,
+      "yaw": 0,
+      "scale": [
+        3.2,
+        3.2,
+        2.6
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Spire.SM_Cathedral_Spire",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_Pillar_03",
+      "notes": "Hero \u2014 Cathedral spire replaces SM_Greybox_Pillar_03",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_Vault01",
+      "biome": "cathedral_nave",
+      "xy": [
+        1100,
+        200
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 22.0,
+      "z_offset": 22,
+      "yaw": 12,
+      "scale": [
+        3.0,
+        3.0,
+        2.4
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_VaultBay.SM_Cathedral_VaultBay",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_Beam_4",
+      "notes": "Nave vault replaces SM_Greybox_Beam_4",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_RoseWindow01",
+      "biome": "cathedral_nave",
+      "xy": [
+        -1200,
+        -150
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 24.0,
+      "z_offset": 24,
+      "yaw": -8,
+      "scale": [
+        2.2,
+        2.2,
+        2.2
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_RoseWindow.SM_P4_Cathedral_RoseWindow",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_LissajousSculpture",
+      "notes": "Houdini rose window replaces SM_Greybox_LissajousSculpture",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_CathedralNave_Grand01",
+      "biome": "cathedral_nave",
+      "xy": [
+        0,
+        -900
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 20.0,
+      "z_offset": 20,
+      "yaw": 0,
+      "scale": [
+        2.8,
+        2.8,
+        2.8
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_Grand.SM_P4_Cathedral_Grand",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_ChoirStone.MI_Copernicus_ChoirStone",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Merged",
+      "greybox_replaced": "SM_Greybox_GreatDodecahedron",
+      "notes": "Houdini grand replaces SM_Greybox_GreatDodecahedron",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lagoon_Kelp01",
+      "biome": "lagoon_shallow",
+      "xy": [
+        2400,
+        1800
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 8.0,
+      "z_offset": 8,
+      "yaw": 22,
+      "scale": [
+        2.0,
+        2.0,
+        1.1
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JellyArm.JellyArm",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Rock_B",
+      "notes": "Lagoon \u2014 JellyArm/kelp replaces SM_Greybox_Rock_B",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lagoon_Bench01",
+      "biome": "lagoon_shallow",
+      "xy": [
+        -2200,
+        1600
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 8.0,
+      "z_offset": 8,
+      "yaw": -15,
+      "scale": [
+        1.8,
+        1.8,
+        1.0
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BenchA.SM_ATL_Palace_BenchA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Wall_Short",
+      "notes": "Lagoon \u2014 Bench replaces SM_Greybox_Wall_Short",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lagoon_Pavilion01",
+      "biome": "lagoon_shallow",
+      "xy": [
+        1800,
+        -1400
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 8.0,
+      "z_offset": 8,
+      "yaw": 30,
+      "scale": [
+        2.0,
+        2.0,
+        1.1
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Pavilion.SM_Cathedral_Pavilion",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedCoral.MI_Copernicus_GildedCoral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_TeaHouse",
+      "notes": "Lagoon \u2014 Pavilion replaces SM_Greybox_TeaHouse",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_ReefWall_Coral01",
+      "biome": "reef_wall",
+      "xy": [
+        3600,
+        800
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": -18.0,
+      "z_offset": -18,
+      "yaw": 45,
+      "scale": [
+        1.6,
+        1.6,
+        1.4
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Bell.JELLY_Bell",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Rock_A",
+      "notes": "Reef wall \u2014 Bell as coral mass replaces SM_Greybox_Rock_A",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_ReefWall_Arch01",
+      "biome": "reef_wall",
+      "xy": [
+        3800,
+        -600
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": -18.0,
+      "z_offset": -18,
+      "yaw": -20,
+      "scale": [
+        1.5,
+        1.5,
+        1.3
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_arch_00.JELLY_Cathedral_Body_SERAPH_arch_00",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Rock_C",
+      "notes": "Reef arch \u2014 Houdini serpent replaces SM_Greybox_Rock_C",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_ReefWall_Buttress01",
+      "biome": "reef_wall",
+      "xy": [
+        -3400,
+        600
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": -15.0,
+      "z_offset": -15,
+      "yaw": 18,
+      "scale": [
+        1.7,
+        1.7,
+        1.5
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Buttress.SM_Cathedral_Buttress",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral.MI_Copernicus_CrystalCathedral",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Beam_4",
+      "notes": "Reef \u2014 Buttress as reef spur replaces SM_Greybox_Beam_4",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Abyss_Leviathan01",
+      "biome": "abyssal_keel",
+      "xy": [
+        0,
+        -4200
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": -45.0,
+      "z_offset": -45,
+      "yaw": 0,
+      "scale": [
+        2.4,
+        2.4,
+        1.0
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Body_SERAPH_cascade_00.JELLY_Cathedral_Body_SERAPH_cascade_00",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_StarlitAbyss.MI_Copernicus_StarlitAbyss",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_BuildingBlock_A",
+      "notes": "Abyss \u2014 cascade as leviathan keel replaces SM_Greybox_BuildingBlock_A",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Abyss_Building01",
+      "biome": "abyssal_keel",
+      "xy": [
+        -1800,
+        -3800
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": -42.0,
+      "z_offset": -42,
+      "yaw": 14,
+      "scale": [
+        2.2,
+        2.2,
+        0.95
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_BuildingA.SM_ATL_Palace_BuildingA",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_StarlitAbyss.MI_Copernicus_StarlitAbyss",
+      "data_layer": "DL_SeaAbove_Islands",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Wall_Tall_001",
+      "notes": "Abyss \u2014 Atlantis building as drowned ruin replaces SM_Greybox_Wall_Tall",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_SkyMote_Jelly01",
+      "biome": "sky_motes",
+      "xy": [
+        900,
+        900
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 180.0,
+      "z_offset": 180,
+      "yaw": 0,
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Arms_SERAPH_Arm_00.JELLY_Cathedral_Arms_SERAPH_Arm_00",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticReactive.MI_Copernicus_CymaticReactive",
+      "data_layer": "DL_SeaAbove_Creature",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Star",
+      "notes": "Sky mote \u2014 jelly arm replaces SM_Greybox_Star (airborne)",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_SkyMote_Jelly02",
+      "biome": "sky_motes",
+      "xy": [
+        -800,
+        1200
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 180.0,
+      "z_offset": 180,
+      "yaw": 90,
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/JELLY_Cathedral_Arms_SERAPH_Arm_01.JELLY_Cathedral_Arms_SERAPH_Arm_01",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CymaticReactive.MI_Copernicus_CymaticReactive",
+      "data_layer": "DL_SeaAbove_Creature",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Gem",
+      "notes": "Sky mote \u2014 second arm replaces SM_Greybox_Gem (airborne)",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    },
+    {
+      "id": "SA_Lighting_Orb01",
+      "biome": "cathedral_nave",
+      "xy": [
+        0,
+        600
+      ],
+      "wp_snapped": [
+        0,
+        0
+      ],
+      "raycast_z": 0.0,
+      "hit": false,
+      "detail": "offline_fallback",
+      "ground_ref": "offline_fallback",
+      "ground_z": 0.0,
+      "final_z": 45.0,
+      "z_offset": 45,
+      "yaw": 0,
+      "scale": [
+        1.2,
+        1.2,
+        1.2
+      ],
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_HarmonicOrb.SM_Cathedral_HarmonicOrb",
+      "material_hint": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SingingConstellations.MI_Copernicus_SingingConstellations",
+      "data_layer": "DL_SeaAbove_Lighting",
+      "hlod_layer": "LV_SeaAbove_Prototype_WP_HLODLayer_Instanced",
+      "greybox_replaced": "SM_Greybox_Gem",
+      "notes": "Lighting \u2014 HarmonicOrb replaces SM_Greybox_Gem (DL_Lighting)",
+      "status": "planned_offline",
+      "height_aware": true,
+      "floating_check": true,
+      "grid_size": 25600
+    }
+  ],
+  "planned_count": 18,
+  "placed_count": 0,
+  "errors": [],
+  "saved": false,
+  "height_aware": true,
+  "raycast": {
+    "start_z": 50000,
+    "end_z": -50000,
+    "channel": "Visibility",
+    "targets": [
+      "CanonicalLandscape",
+      "MeshTerrain"
+    ]
+  },
+  "no_floating": true,
+  "floating_threshold_cm": 15.0,
+  "mode": "offline"
+}

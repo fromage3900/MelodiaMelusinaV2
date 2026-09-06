@@ -160,7 +160,7 @@ To officially close out P0 and sign off on shipping certification tonight (2026-
 - **Canonical Map List**:
   - `/Game/Melodia/Levels/Opening/L_MelusinaMorning` (Sanctuary / Chapter Start)
   - `/Game/EnvSandbox/Environments/L_KaleidoNave` (Battle Arena / Combat Encounter)
-  - `/Game/Melodia/Maps/LV_SeaAbove_Prototype` (Overworld Traversal / Music Key / Starskiff Dock)
+  - `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` (Overworld Traversal / Music Key / Starskiff Dock; shipping map)
   - `/Game/Melodia/Maps/MelodiaMainMenu` (Title / Entry)
 - **Command**:
   ```powershell
@@ -169,7 +169,7 @@ To officially close out P0 and sign off on shipping certification tonight (2026-
     -noP4 -platform=Win64 -clientconfig=Development `
     -cook -build -stage -pak -archive `
     -archivedirectory="C:\EnvironmentPortfolio\BS_GodFile\Saved\Packages\P0_Closeout_20260901" `
-    -map="/Game/Melodia/Levels/Opening/L_MelusinaMorning+/Game/EnvSandbox/Environments/L_KaleidoNave+/Game/Melodia/Maps/LV_SeaAbove_Prototype+/Game/Melodia/Maps/MelodiaMainMenu"
+    -map="/Game/Melodia/Levels/Opening/L_MelusinaMorning+/Game/EnvSandbox/Environments/L_KaleidoNave+/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype+/Game/Melodia/Maps/MelodiaMainMenu"
   ```
 
 ### Step 3: Packaged Build Validation & Launch Verification

@@ -1,0 +1,34 @@
+{
+  "seed": 20260902,
+  "schema": "melodia.garment_spatial_3d.inputs.v1",
+  "files": {
+    "Saved/Audit/melusina_lookdev/garment_refresh/cymatic/cymatic_garment_manifest.json": {
+      "sha256": "3d8ce43811faa0c8c9b38293afcde5bc7cab7f7c4b8f8583a895fb24a6db02a2",
+      "bytes": 30488
+    },
+    "Saved/Audit/melusina_lookdev/dress_materials_manifest.json": {
+      "sha256": "aa2f78b050f1fa3f168de12a85a3808f68446409a915f11445cc3b74836cff12",
+      "bytes": 7558
+    },
+    "Saved/Audit/melusina_lookdev/magical/passA_inventory.json": {
+      "sha256": "7c7ba985db200cb7a2622ecbc39f3dab506d1f926f9b00287ea87b2d6e21f6a3",
+      "bytes": 8509
+    },
+    "Saved/Audit/melusina_lookdev/retargeted/SK_ShorewakeDress_Melusina465.fbx": {
+      "sha256": "685f063481825d0b8f67d27e065d86efe32792a236d50ef343e74af0f799c45a",
+      "bytes": 22349836
+    },
+    "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md": {
+      "sha256": "7693e6b588217a1f8f4b55f6f0f2d5d939a9e3151be25ea3957a21187507267d",
+      "bytes": 7937
+    },
+    "Docs/Research/INFINITY_NIKKI_UE5_TRANSLATION_FOR_MELODIA_2026-08-30.md": {
+      "sha256": "2b14bdf26cd063294ba338b12fd1d23a90865eb6126666d4e9f0fcd1ae02a1a1",
+      "bytes": 16778
+    },
+    "Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md": {
+      "sha256": "6b58bbfff8f7aa4bd5e4a67bcae97274101fe177835cd8d527b29cd3f9901752",
+      "bytes": 10738
+    }
+  }
+}

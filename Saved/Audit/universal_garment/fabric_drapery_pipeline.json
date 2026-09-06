@@ -1,0 +1,146 @@
+{
+  "schema": "melodia.universal_garment_fabric_drapery_pipeline.v1",
+  "seed": 20260902,
+  "date": "2026-09-02",
+  "purpose": "Houdini Vellum drapery + VAT bake plan mapping the 10 universal-garment layers to Nikki cloth-tier drape recipes. Offline spec/audit. No editor, no .uasset, no landscape.",
+  "hero_drape_layer": "M_Skirt_Full",
+  "hero_drape_report": "M_Skirt_Full is the hero drape target: the big 'sing' panel (Chladni m7,n9, full-voice), the garment carrying gameplay meaning. It alone gets the expensive solution — full Vellum drape + vertex-animation-texture (VAT) bake (Tier D). All other layers support it cheaply (rigid/WPO/soft-pin).",
+  "chain": [
+    {
+      "role": "authority_nikki",
+      "path": "Docs/Research/INFINITY_NIKKI_UE5_TRANSLATION_FOR_MELODIA_2026-08-30.md",
+      "sha256": "not_calculated",
+      "note": "Cloth tiers A-D + cost ladder + 'piece carrying gameplay meaning gets expensive solution'"
+    },
+    {
+      "role": "authority_garment_pipeline",
+      "path": "Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md",
+      "sha256": "not_calculated",
+      "note": "10-layer grid, Chladni modes, verified small master family M_Master_Nikki / M_Universal_Enhanced_Fabric / M_Master_Toon_Universal_Alpha"
+    },
+    {
+      "role": "authority_cloth_tier_precedent",
+      "path": "Docs/Art/FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md",
+      "sha256": "not_calculated",
+      "note": "Per-piece tier precedent (A rigid / B Chaos / C WPO / D VAT)"
+    },
+    {
+      "role": "input_garment_grid",
+      "path": "Saved/Audit/melusina_lookdev/night_pkg_2026-08-31/garment_layers_manifest.json",
+      "sha256": "76fc93537e88eeba743202d7e62ca9a6c742b07bb20fa97b415e53082e251e00",
+      "note": "48 Shorewake panels -> 10 garment layers / material groups, seed 20260902"
+    },
+    {
+      "role": "node_presence_evidence",
+      "path": "Saved/Audit/universal_garment/vellum_node_presence.json",
+      "sha256": "708b6c0dc78097b5d6aa03655ede7dfab6fe0e5342fee877ce6b6d84aed49feb",
+      "note": "Vellum SOP/DOP node presence verified via Houdini 22.0.368 install filesystem evidence"
+    }
+  ],
+  "vellum_node_presence_check": {
+    "method": "filesystem evidence in Houdini 22.0.368 install (per-node Dialog config definitions + help-example node dirs); hython hdefereval/hou.nodeType unavailable headless (graphical-Houdini-only).",
+    "hython_path": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe",
+    "excluded_unverified_nodes": [
+      "veler (Vellum Erosion) - NOT present; relaxation handled by vellumrestblend + vellumpostprocess instead"
+    ],
+    "SOP_nodes_present": [
+      "vellumsolver","vellumdrape","vellumconstraints","vellumattachconstraints",
+      "vellumconstraintproperty","vellumrestblend","vellumpostprocess","vellumpack",
+      "vellumunpack","vellumio","vellumrefframe","vellumxformpieces","vellumbrush",
+      "vellumconfiguremuscles","vellumconfiguretissue","vellumconstraints_grain"
+    ],
+    "DOP_nodes_present": [
+      "vellumsolver","vellumobject","vellumsource","vellumconstraintproperty",
+      "vellumconstraints","vellumrestblend"
+    ],
+    "core_nodes_used": {
+      "vellumsolver": "present",
+      "vellumdrape": "present",
+      "vellumconstraints": "present",
+      "vellumattachconstraints": "present",
+      "vellumrestblend": "present",
+      "vellumpostprocess": "present",
+      "vellumpack": "present",
+      "vellumunpack": "present",
+      "vellumio": "present",
+      "veler": "absent"
+    }
+  },
+  "per_layer_drapery_table": [
+    {
+      "garment_layer": "M_Skirt_Full",
+      "tier": "D",
+      "sim_approach": "FULL Vellum drape + VAT bake (vellumdrape -> vellumconstraints/attach pin waist -> vellumsolver over run/pirouette cycle -> vellumpack/io -> RGBA16F VAT atlas)",
+      "output": "VAT (hero)",
+      "rationale": "Hero drape: the big sing plate (Chladni 7,9), gameplay-meaning garment. Expensive solution. VAT reads in a WPO lane of M_Universal_Enhanced_Fabric, LOD-blended by screen importance."
+    },
+    {
+      "garment_layer": "M_Bodice_Torso",
+      "tier": "A",
+      "sim_approach": "None - rigid bone skinning; optional cymatic micro-swell WPO",
+      "output": "Bone (+ optional WPO)",
+      "rationale": "Structured torso band (chest note). Deterministic skinning; simulation adds noise."
+    },
+    {
+      "garment_layer": "M_Bodice_Front",
+      "tier": "A",
+      "sim_approach": "None - rigid bone skinning (yoke/corset panels)",
+      "output": "Bone",
+      "rationale": "Structured front/yoke panels. Rigid."
+    },
+    {
+      "garment_layer": "M_Bodice_Side",
+      "tier": "A",
+      "sim_approach": "None - rigid bone skinning",
+      "output": "Bone",
+      "rationale": "Side torso panels. Rigid."
+    },
+    {
+      "garment_layer": "M_Bodice_Upper",
+      "tier": "A",
+      "sim_approach": "None - rigid bone skinning",
+      "output": "Bone",
+      "rationale": "Upper band = waist anchor row pinning the hero skirt VAT seam. Rigid."
+    },
+    {
+      "garment_layer": "M_Collar",
+      "tier": "B",
+      "sim_approach": "Soft pin - Vellum soft-pin, collar edge pinned to neck, low-resolve settle",
+      "output": "Bone + light VAT (or bone)",
+      "rationale": "Structured lace; scapula soft-pin for subtle breath. Masked alpha; <=2 overlapping translucent layers (Nikki OIT lesson)."
+    },
+    {
+      "garment_layer": "M_Shoulder_Trim",
+      "tier": "B",
+      "sim_approach": "Soft pin - Vellum soft-pin, tiny, 1-2 frame settle, no collision",
+      "output": "WPO or bone",
+      "rationale": "Small armhole cap trim. Cheap secondary."
+    },
+    {
+      "garment_layer": "M_Shoulder_Ornament",
+      "tier": "A",
+      "sim_approach": "None - rigid bone (bead/stud clusters)",
+      "output": "Bone",
+      "rationale": "Decorative studs/beads. Rigid, deterministic."
+    },
+    {
+      "garment_layer": "M_Sleeve",
+      "tier": "C",
+      "sim_approach": "WPO drape (cymatic height + gravity squash); optional soft-pin later",
+      "output": "WPO",
+      "rationale": "Sleeve/arm. Cheap distant fill; no collision fidelity demanded."
+    },
+    {
+      "garment_layer": "M_Underskirt",
+      "tier": "C",
+      "sim_approach": "WPO fallback or very light Vellum drape inside the hero plate",
+      "output": "WPO",
+      "rationale": "Mid skirt/slip - hidden under the hero skirt. Cheap."
+    }
+  ],
+  "output_spec": {
+    "path": "Docs/Art/UNIVERSAL_GARMENT_FABRIC_DRAPERY_2026-09-02.md",
+    "sha256": "1bd94e73b5602b4ba0da215bc2ec92dc69bbb742f7c3a88ac4ea4e13d0e2a4ae",
+    "role": "spec + drapery table"
+  }
+}

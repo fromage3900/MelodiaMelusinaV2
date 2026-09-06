@@ -1,5 +1,11 @@
 # melusinashouseplan
 
+## ⚠ 2026-09-04 agent discovery correction
+
+**For live Melodia Studio implementation, read `MELUSINA_HOUSE_GN_START_HERE.md` before using this document.**
+
+This file remains the visual/modeling score. The `GN_MH_*` names below are **scene-local composition names / historical plan aliases**, not proof of a registered Melodia Studio builder. Live registered house builders use `MEL_mh_*` IDs.
+
 > **HERMES_DISCOVERY_KEY:** `melusinashouseplan`  
 > **Search aliases:** `Melusina house` · `Melusina's House` · `geometry nodes house` · `Blender 5.2` · `round baroque` · `pink blue architecture` · `rococo shell house` · `seaside sanctuary`  
 > **Canonical entrypoint:** `/melusinashouseplan.md`  
@@ -15,7 +21,7 @@
 
 ## 𝄞 Read these first
 
-1. `melusinashouseplan.md` — this file; canonical house build score.
+1. `MELUSINA_HOUSE_GN_START_HERE.md` — live builder IDs, current Melodia Studio integration, foundation-first execution.\n2. `melusinashouseplan.md` — this file; visual/modeling score.
 2. `Docs/References/MelusinasHouse/` — the three attached modeling boards.
 3. `Docs/BLENDER_MELODIA_COCKPIT.md` — current Blender 5.2 / MCP safety and startup truth.
 4. `deploy/surreal_arch/README.md` — Melodia Studio procedural-architecture SSOT. Reuse existing builders before adding duplicates.
@@ -155,7 +161,7 @@ LOC_MH_Tower
 CUT_MH_DoorsWindows
 ```
 
-Create or reuse these exact node-group names so Hermes and later audits can find them:
+The following `GN_MH_*` names are **optional scene-local wrapper names only**. Do not search for them as registry authority. Registered Melodia Studio house builders are listed in `MELUSINA_HOUSE_GN_START_HERE.md` and begin with `MEL_mh_*`:
 
 ```text
 GN_MH_00_MasterAssembly
@@ -173,7 +179,7 @@ GN_MH_11_InteriorShell
 GN_MH_12_MusicalOrnamentPass     # optional tonight
 ```
 
-Before writing a new builder, check Melodia Studio / `deploy/surreal_arch/` for an existing equivalent. **Reuse + wrap beats duplicate + drift.**
+For the first blockout, use `MEL_mh_foundation_master` before drawing a replacement foundation from scratch. Before writing any new builder, check Melodia Studio / `deploy/surreal_arch/` for an existing equivalent. **Reuse + wrap beats duplicate + drift.**
 
 ---
 
@@ -663,13 +669,13 @@ A successful first house pass satisfies all of these:
 
 When Hermes receives “build Melusina's house,” do this exact sequence:
 
-1. Open `/melusinashouseplan.md`.
+1. Open `/MELUSINA_HOUSE_GN_START_HERE.md`, run the catalog verifier, then use `/melusinashouseplan.md` for visual intent.
 2. Inspect `/Docs/References/MelusinasHouse/`.
 3. Read `Docs/BLENDER_MELODIA_COCKPIT.md` for the current Blender/MCP safety state.
 4. Read `deploy/surreal_arch/README.md` and search existing builders before creating anything new.
 5. Work in a new/dedicated `.blend`; do **not** rewrite Melodia Studio or save the live portfolio stage.
 6. If using BlenderMCP, connect on the documented lane and verify scene info before mutation.
-7. Create/reuse the node groups using the exact `GN_MH_*` names in this packet.
+7. Use registered `MEL_mh_*` builders when they exist. Create a `GN_MH_*` scene wrapper only when the scene genuinely needs composition above the registered builder layer.
 8. Stop for visual evidence at three milestones: **wall silhouette**, **roof + shingle proof**, **detail/color pass**.
 9. If a Blender 5.2 node/socket/API differs from this document, consult the current 5.2 docs and record the correction. Never invent a node name to make the plan look complete.
 10. Prefer existing Melodia builders/operators where they already solve arches, ornaments, musical motifs, scatter or export.

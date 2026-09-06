@@ -1,0 +1,66 @@
+{
+  "schema": "melodia.hot_loop_state.v1",
+    "run_count": 9,
+        "done": false,
+        "started": "2026-09-02",
+        "updated": "2026-09-02T16:15:00",
+  "git_context": {
+    "branch": "main",
+    "ahead_origin_estimated": 391,
+        "behind_origin_estimated": 360,
+    "note": "verify live each run; force-push NEVER if diverged; push rejected non-ff — owner merge/rebase required"
+  },
+  "cooked_variants_complete": [
+    "MelodiaHeroGem", "MelodiaGoldSilk", "MelodiaMotherPearl", "MelodiaSapphireGlass",
+    "MelodiaRoseVelvet", "MelodiaMoonlace", "MelodiaForestEmerald", "MelodiaAmethystVein", "MelodiaAuroraGlass"
+  ],
+  "flipbooks_baked": [
+    "MelodiaHeroGem", "MelodiaGoldSilk", "MelodiaMotherPearl", "MelodiaSapphireGlass",
+    "MelodiaRoseVelvet", "MelodiaMoonlace", "MelodiaForestEmerald", "MelodiaAmethystVein", "MelodiaAuroraGlass"
+  ],
+  "verify": {
+    "onnx_controller": "run7: 5-in->6-out graph (added SheenMask), 7/7 PASS onnxruntime 1.29; prior 5-param sweep 7/7 PASS"
+  },
+  "run_07_summary": {
+    "unit": "extend neural hero controller (unit c) — added SheenMask 6th output to drive the Faraway showcase M_Master_Nikki sheen lane",
+    "work": "Tools/Audio/hero_neural_material_controller.py gained OUTPUTS['SheenMask']; rebuilt onnx (opset17, [16,12] MLP) and verified 7/7 via onnxruntime sweep (silent/bass_only/full_beat/beat_pulse/loopPhase1/loopPhase2/max_all) — all finite & [0,1]-bounded, SheenMask input-responsive (bass_only 0.51->0.82). Plan gained §10. QA evidence hero_controller_sheenmask_qa_2026-09-02.json. Controller .py/.onnx stay gitignored (commit carries doc + QA JSON)."
+  },
+  "next_steps": [
+    "editor (Phase C/D/E/F, when 9316 frees): closed-editor Build.bat; rerun WFB PIE param-match gate + golden-run preflight (expect PASS on 3 reconciled lanes); bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove; UI: expose SheenMask in M_Master_Nikki sheen lane",
+    "master-index SSOT: promote neural scaffold + hero gem to §2 when build lands (Phase C)",
+    "merger: local main AHEAD ~386 / BEHIND ~359 vs origin/main — NOT fast-forward; owner pull/merge/rebase required before any ff push (do NOT force)"
+  ],
+  "learnings": [
+    "controller extension + onnxruntime verification IS a clean offline unit (c) — the 5-param controller had a real sheen gap (Faraway variants bake canonical 10th Sheen map); commits carry doc+QA JSON since .py/.onnx are gitignored",
+    "pre-commit hook and force-add work cleanly for Docs/Plans + Saved/Audit; push remains non-ff blocked by ~359 behind + ~386 ahead — every run verifies live and records, never forces"
+  ],
+  "run_09_summary": {
+      "unit": "advance Copernicus variant library (unit d) — cooked + QA'd the CymaticOrchid bioluminescent singing-orchid variant (builder was foreign in-tree work from a sibling agent, per run 8)",
+      "work": "CymaticOrchid re-cooked with .venv-guardrails python (1024x1024). QA: 9/9 maps valid / 1024x1024 / non-blank (BaseColor/Normal/Roughness/Metallic/Height/ORM/Emissive/Iridescence/Opacity). Evidence qa_cymatic_orchid_2026-09-02.json. PNGs + manifest live in gitignored Saved/Audit/copernicus_cymatic/; only QA JSON + state committed. Modified tools .py (foreign 113-line builder) NOT staged.",
+      "cooked_variants_added": ["CymaticOrchid"]
+    },
+    "last_commit_hashes": [
+                "2fcfae38"
+              ],
+    "run_08_summary": {
+      "unit": "advance Copernicus variant library (unit d) — completed + QA'd the PrismaticObsidian hero-material variant",
+      "work": "PrismaticObsidian (volcanic glass / conchoidal fracture / internal crystal lattice / thin-film rainbow sheen) was added to the tool in da25dafd but its 13:17 cook on disk was PARTIAL — only 7/9 PNGs (missing Roughness + ORM). Re-cooked with .venv-guardrails python; now 9/9 maps valid, 1024x1024, non-blank (QA evidence qa_prismatic_obsidian_2026-09-02.json). Manifest updated. NOTE: concurrent work found in tree NOT in this commit — CymaticOrchid variant builder (113 lines in copernicus .py) + Docs/Plans/GN_CYMATIC_PROMOTION_READINESS_2026-09-02.md — left uncommitted as foreign/pending; not stage-swept."
+    },
+    "next_steps": [
+      "editor (Phase C/D/E/F, when 9316 frees): closed-editor Build.bat; rerun WFB PIE param-match gate + golden-run preflight; bind MI_HeroGem_Cymatic into L_PCG_Hero_CrystalHarpGrove; UI: expose SheenMask in M_Master_Nikki sheen lane",
+      "master-index SSOT: promote neural scaffold + hero gem to §2 when build lands (Phase C)",
+      "pending foreign work — cook + QA CymaticOrchid variant (builder already in Tools/Houdini/copernicus/copernicus_cymatic_parallax.py) and decide fate of Docs/Plans/GN_CYMATIC_PROMOTION_READINESS_2026-09-02.md",
+      "merger: local main AHEAD ~391 / BEHIND ~360 vs origin/main — NOT fast-forward; owner pull/merge/rebase required before any ff push (do NOT force)"
+    ],
+    "learnings": [
+      "controller extension + onnxruntime verification IS a clean offline unit (c) — the 5-param controller had a real sheen gap (Faraway variants bake canonical 10th Sheen map); commits carry doc+QA JSON since .py/.onnx are gitignored",
+      "a 'cooked' manifest entry does NOT guarantee the PNGs are on disk — re-QA each time: PrismaticObsidian cook 13:17 was partial (7/9), re-cook required before committing QA evidence",
+      "a concurrent/sibling agent is active in this tree (CymaticOrchid builder + readiness doc appear uncommitted) — stage EXPLICIT paths only, never stage-sweep, to avoid claiming another agent's in-flight work"
+    ],
+  "push": {
+          "attempted": "2026-09-02 (run 9)",
+          "origin": "https://github.com/fromage3900/MelodiaMelusinaV2.git",
+          "result": "BLOCKED by branch protection: 'direct pushes to main are not allowed; use a reviewed branch/PR' — refs rejected; commit 2fcfae38 is local-only. Non-ff persists (ahead 398 / behind 380).",
+          "action": "NO force-push, NO reset; no PR opened (autonomous job claims no merge authority). Owner must push via a reviewed branch/PR or reconcile the 380-commit divergence."
+        }
+}
