@@ -3,7 +3,7 @@
   "generated": "2026-08-07",
   "engine": "UE 5.8 (CL-55116800)",
   "method": "Monolith project_query/export_asset_text, max_bytes=4194304, full_bytes==returned_bytes enforced",
-  "total_assets": 55,
+  "total_assets": 53,
   "families": {
     "Master Materials": {
       "display": "Master Materials",
@@ -34,29 +34,17 @@
           "lines": 752
         },
         {
-          "name": "M_Master_Nikki",
-          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
-          "file": "materials/M_Master_Nikki.t3d",
-          "payload_bytes": 333918,
-          "nodes": 251,
-          "sha256": "e5c474e38e2d281197bd83bfb03b6d6a0b8f2d7b6887604857bac4e4f7c9e23b",
-          "tags": [
-            "nikki"
-          ],
-          "lines": 3244
-        },
-        {
           "name": "M_Master_Nikki_Landscape",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
           "file": "materials/M_Master_Nikki_Landscape.t3d",
-          "payload_bytes": 382522,
-          "nodes": 269,
-          "sha256": "0526f479f55ef231cc20d71ffd84376e7323b8ea4c182bd12e720a9e185f6995",
+          "payload_bytes": 599271,
+          "nodes": 425,
+          "sha256": "f78baa7b5f608f5c181e3296494b76a69228fc6a3d182db6e9c0aa6fe26e41ec",
           "tags": [
             "landscape",
             "nikki"
           ],
-          "lines": 3458
+          "lines": 5233
         },
         {
           "name": "M_Master_SDF_Toon",
@@ -74,58 +62,48 @@
           "name": "M_Master_Simple_Universal",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Simple_Universal",
           "file": "materials/M_Master_Simple_Universal.t3d",
-          "payload_bytes": 33784,
-          "nodes": 26,
-          "sha256": "fcf9e080a6fafa1c0cb3817d1e3d7edd7af2856f2614cf2433b82b9361fc1a97",
+          "payload_bytes": 43053,
+          "nodes": 33,
+          "sha256": "fe5779f6847a99c6da5a8ff46f18e9b900915885f6763c47a275e0313fe819c0",
           "tags": [],
-          "lines": 268
-        },
-        {
-          "name": "M_Master_Toon_Cosmic",
-          "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Cosmic",
-          "file": "materials/M_Master_Toon_Cosmic.t3d",
-          "payload_bytes": 1320886,
-          "nodes": 1042,
-          "sha256": "1f174f43979811917f4305150a15c936aa8985cdb441491c28d230e047d72330",
-          "tags": [],
-          "lines": 11472
+          "lines": 341
         },
         {
           "name": "M_Master_Toon_Landscape_HeightBlend",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend",
           "file": "materials/M_Master_Toon_Landscape_HeightBlend.t3d",
-          "payload_bytes": 480555,
+          "payload_bytes": 481212,
           "nodes": 326,
-          "sha256": "525b643af50bdc553de435ab90cc39b1205db4f1eb83b9753f57be564969fe23",
+          "sha256": "15aeaebb2e252c2486c9c543285a0b981ef04294ba7b8c568303b5d14721675f",
           "tags": [
             "landscape"
           ],
-          "lines": 3824
+          "lines": 3832
         },
         {
           "name": "M_Master_Toon_Unified",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Unified",
           "file": "materials/M_Master_Toon_Unified.t3d",
-          "payload_bytes": 74894,
-          "nodes": 63,
-          "sha256": "d06a65ff98d996ee1a4929e8175443bc1a9e9ce04339818d88ee8ee871f46c52",
+          "payload_bytes": 83874,
+          "nodes": 70,
+          "sha256": "84f2be6cf26e1f6c7efb444e0831878cd105785c2470991e638e1ccba1911553",
           "tags": [],
-          "lines": 695
+          "lines": 768
         },
         {
           "name": "M_Master_Toon_Universal",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
           "file": "materials/M_Master_Toon_Universal.t3d",
-          "payload_bytes": 1647965,
-          "nodes": 1257,
-          "sha256": "55781ff5c49fa89f0d106a0c68a99f1353f4ea934bc0299fc99dfb456862222d",
+          "payload_bytes": 1725137,
+          "nodes": 1319,
+          "sha256": "8562ae83e2ae5601a3a4ee79f1823cbbf7cdcabfb060c11656ef032f5bab5f53",
           "tags": [],
-          "lines": 14131
+          "lines": 14827
         }
       ],
-      "count": 10,
-      "payload_bytes": 4602840,
-      "nodes": 3477
+      "count": 8,
+      "payload_bytes": 3260863,
+      "nodes": 2416
     },
     "Material Functions": {
       "display": "Material Functions",
@@ -459,17 +437,17 @@
           "name": "MPC_Melodia_Palette",
           "ue_path": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
           "file": "materials/MPC_Melodia_Palette.t3d",
-          "payload_bytes": 7387,
+          "payload_bytes": 7769,
           "nodes": 1,
-          "sha256": "e3fc5e9b5bf75a416343744f27d08be23c2fe5c14690db25f995a88685dcd452",
+          "sha256": "f441ce269fa71b0552dca15eabec71cbec47eaefbc165626bd3c98d52ffe0839",
           "tags": [
             "melusina"
           ],
-          "lines": 67
+          "lines": 71
         }
       ],
       "count": 1,
-      "payload_bytes": 7387,
+      "payload_bytes": 7769,
       "nodes": 1
     },
     "Toon Profiles": {
@@ -663,7 +641,8 @@
       "nodes": 17
     }
   },
-  "total_payload_bytes": 6878231,
-  "total_nodes": 5422,
-  "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files."
+  "total_payload_bytes": 5536636,
+  "total_nodes": 4361,
+  "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files.",
+  "note_retired": "M_Master_Nikki + M_Master_Toon_Cosmic retired 2026-09-05 by Line A master convergence (commits 40d13289/69251852); their instances reparented onto the M_Master_Toon_Universal family. 6 other assets re-baselined via --update after the same convergence."
 }
