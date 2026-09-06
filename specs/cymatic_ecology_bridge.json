@@ -1,0 +1,74 @@
+{
+  "_doc": "BP_MelodiaCymaticPresentationBridge — T3D injection spec, Track A1",
+  "_spike_doc": "Docs/Research/CYMATIC_ECOLOGY_TONIGHT_SPIKE_PLAN_2026-08-30.md",
+  "_hard_rules": [
+    "No new clock",
+    "No regrading",
+    "No gameplay feedback path",
+    "Single OnLaneHitJudged binding per PIE session (duplicate-bind guard)",
+    "Presentation-only: no HP, no score, no state change"
+  ],
+  "asset_path": "/Game/MelodiaIntegration/Blueprints/Cymatic/BP_MelodiaCymaticPresentationBridge",
+  "asset_type": "Blueprint",
+  "parent_class": "Actor",
+  "referenced_assets": {
+    "ndc": "/Game/MelodiaIntegration/Effects/Cymatic/NDC_MelodiaRhythmPulse",
+    "field_material": "/Game/MelodiaIntegration/Materials/Cymatic/MI_CymaticStandingWave_Field",
+    "rhythm_subsystem": "MelodiaRhythmCombatSubsystem",
+    "delegate": "OnLaneHitJudged"
+  },
+  "structs": [
+    {
+      "struct_name": "FMelodiaCymaticPulse",
+      "fields": [
+        {"name": "Position",    "type": "FVector", "comment": "World-space pulse origin"},
+        {"name": "Lane",        "type": "int32",   "comment": "0-3"},
+        {"name": "Grade",       "type": "uint8",   "comment": "EMelodiaRhythmGrade cast"},
+        {"name": "TimingError", "type": "float",   "comment": "Signed ms; early=negative, late=positive"},
+        {"name": "Phase",       "type": "float",   "comment": "Accumulated beat phase from subsystem"},
+        {"name": "PulseId",     "type": "int32",   "comment": "Monotonic counter, wraps at INT32_MAX"}
+      ]
+    }
+  ],
+  "variables": [
+    {"name": "bDelegateBound",      "type": "bool",                       "default": false,  "access": "Private", "comment": "Guard against duplicate binding across PIE restart"},
+    {"name": "FieldMaterialInstance","type": "UMaterialInstanceDynamic*", "default": null,   "access": "Private", "comment": "Created from field_material in BeginPlay"},
+    {"name": "RecentPulses",        "type": "TArray<FMelodiaCymaticPulse>","default": [],    "access": "Private", "comment": "Ring buffer: latest 4 pulses only"},
+    {"name": "PulseIdCounter",      "type": "int32",                      "default": 0,      "access": "Private", "comment": "Monotonic, wraps at INT32_MAX"},
+    {"name": "FieldPlane",          "type": "UStaticMeshComponent*",      "default": null,   "access": "Private", "comment": "Set to field plane actor in LV_RND_CymaticEcology"}
+  ],
+  "graphs": {
+    "BeginPlay": {
+      "description": "Find subsystem, bind OnLaneHitJudged once, set bDelegateBound",
+      "guard": "Skip if bDelegateBound is true (PIE restart safety)",
+      "on_subsystem_missing": "PrintWarning, no crash"
+    },
+    "EndPlay": {
+      "description": "Unbind delegate via stored handle, reset bDelegateBound to false"
+    },
+    "HandleLaneHit": {
+      "description": "Write NDC pulse, update field material params. No gameplay changes.",
+      "inputs": [{"name": "Result", "type": "FMelodiaLaneHitResult"}],
+      "steps": [
+        "TimingPhaseShift = Result.TimingError / 16.0 * PI",
+        "Switch on Grade: Perfect=1.0, Great=0.7, Good=0.4, Miss=0.0 (CoherenceFactor)",
+        "Switch on Lane: 0->1.0, 1->1.3, 2->0.9, 3->1.1 (WavelengthMultiplier)",
+        "Miss: NoiseAmount=1.0, else NoiseAmount=0.0",
+        "Fill FMelodiaCymaticPulse struct",
+        "Append to RecentPulses; if Num > 4, RemoveAt(0)",
+        "Write to NDC_MelodiaRhythmPulse channel",
+        "Set FieldMaterialInstance params: CoherenceFactor, NoiseAmount, WavelengthMultiplier, TimingPhaseShift",
+        "Increment PulseIdCounter (wrap at INT32_MAX)"
+      ]
+    }
+  },
+  "material_dynamic_params": [
+    {"name": "PulseOrigins",         "type": "FVector2D[4]"},
+    {"name": "Frequencies",          "type": "float[4]"},
+    {"name": "Phases",               "type": "float[4]"},
+    {"name": "CoherenceFactor",      "type": "float", "range": [0.0, 1.0]},
+    {"name": "NoiseAmount",          "type": "float", "range": [0.0, 1.0]}
+  ],
+  "lane_wavelength_map": {"0": 1.0, "1": 1.3, "2": 0.9, "3": 1.1},
+  "grade_coherence_map": {"Perfect": 1.0, "Great": 0.7, "Good": 0.4, "Miss": 0.0}
+}
