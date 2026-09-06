@@ -1,0 +1,98 @@
+name: One-shot remote branch hygiene 2026-09-06
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/branch_hygiene_2026_09_06.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Archive and delete snapshot branches
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "Melodia Branch Hygiene"
+          git config user.email "branch-hygiene@melodia.local"
+          git fetch origin --prune --tags
+
+          candidates=(
+            'backup/pre-consolidation-2026-08-30'
+            'claude/tonight-cymatic-ecology-interaction'
+            'cleanup/final-branch-prune-2026-09-06'
+            'cleanup/golden-scorecard-2026-09-06'
+            'cleanup/lookdev-plan-2026-09-06'
+            'cleanup/scrub-spec-2026-09-06'
+            'codex/game-state-2026-09-04-checkpoint'
+            'codex/weapon-gallery-20260902'
+            'collab/laptop/main-reconciliation-2026-09-04'
+            'copilot/fix-runners-and-review-logs'
+            'copilot/new-feature-implementation'
+            'docs/2026-08-29-character-p1-p2-canon-audit'
+            'docs/2026-09-02-grand-master-plan'
+            'feature/ue58-runner-registration'
+            'fix/mh6-fix-promotion-20260904'
+            'fix/prune-script-ps51'
+            'integration/astra-game-state-transplant-2026-09-05'
+            'pr/melusina-v22-sync'
+            'recovery/astra-docs-2026-09-06'
+            'recovery/blender-music-gn-docs-2026-09-06'
+            'recovery/canon-docs-2026-09-06'
+            'recovery/harvest-small-branches-2026-09-06'
+            'recovery/small-tools-2026-09-06'
+            'rescue/web-threejs-recovery-2026-09-05'
+            'rnd/2026-08-30-blender52-music-gn-studio'
+          )
+
+          for branch in "${candidates[@]}"; do
+            sha="$(git ls-remote --heads origin "refs/heads/${branch}" | awk '{print $1}')"
+            if [[ -z "${sha}" ]]; then
+              echo "already gone: ${branch}"
+              continue
+            fi
+
+            git fetch origin "refs/heads/${branch}:refs/remotes/origin/${branch}"
+            tag="archive/branches/2026-09-06/${branch}"
+            existing="$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')"
+
+            if [[ -n "${existing}" && "${existing}" != "${sha}" ]]; then
+              echo "archive tag conflict for ${branch}: ${existing} != ${sha}" >&2
+              exit 1
+            fi
+
+            if [[ -z "${existing}" ]]; then
+              git tag "${tag}" "${sha}"
+              git push origin "refs/tags/${tag}:refs/tags/${tag}"
+            fi
+
+            verified="$(git ls-remote --tags origin "refs/tags/${tag}" | awk '{print $1}')"
+            if [[ "${verified}" != "${sha}" ]]; then
+              echo "archive verification failed for ${branch}" >&2
+              exit 1
+            fi
+
+            git push origin --delete "${branch}"
+
+            still="$(git ls-remote --heads origin "refs/heads/${branch}" | awk '{print $1}')"
+            if [[ -n "${still}" ]]; then
+              echo "delete verification failed for ${branch}" >&2
+              exit 1
+            fi
+
+            echo "archived + deleted: ${branch}"
+          done
+
+          echo "live heads after cleanup:"
+          git ls-remote --heads origin
