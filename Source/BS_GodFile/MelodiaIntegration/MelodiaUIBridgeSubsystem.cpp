@@ -6,7 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "GameFramework/PlayerController.h"
 #include "TimerManager.h"
-#include "UObject/UObjectIterator.h"
 #include "UObject/UnrealType.h"
 #include "Blueprint/UserWidget.h"
 #include "MelodiaBattleKeyboardLegendWidget.h"
@@ -137,11 +136,6 @@ void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UMelodiaUIBridgeSubsystem::Deinitialize()
 {
-	if (UWorld* World = GetWorld())
-	{
-		World->GetTimerManager().ClearTimer(StockDefeatCleanupTimer);
-	}
-	StockDefeatCleanupTicksRemaining = 0;
 	RemoveBattleUIInternal();
 
 	if (NarrativeSubsystem)
@@ -393,57 +387,6 @@ bool UMelodiaUIBridgeSubsystem::EnsureStockBattleUIControllerReference()
 void UMelodiaUIBridgeSubsystem::HandleExternalBattleEnded(uint8 BattleResult)
 {
 	RemoveBattleUIInternal();
-
-	// The stock controller creates BP_MelodiaDefeatDialogue after its terminal
-	// delay. An authored Quill defeat branch is already the presentation owner,
-	// so remove that legacy surface as soon as it appears. The timer is scoped to
-	// a pending narrative encounter; ordinary stock battles retain their normal
-	// defeat dialogue.
-	if (NarrativeSubsystem && NarrativeSubsystem->IsBattlePending())
-	{
-		if (UWorld* World = GetWorld())
-		{
-			StockDefeatCleanupTicksRemaining = 24; // six seconds at 250 ms
-			World->GetTimerManager().SetTimer(
-				StockDefeatCleanupTimer,
-				this,
-				&ThisClass::RemoveStockDefeatDialogueWidgets,
-				0.25f,
-				true,
-				0.0f);
-		}
-	}
-}
-
-void UMelodiaUIBridgeSubsystem::RemoveStockDefeatDialogueWidgets()
-{
-	UWorld* World = GetWorld();
-	bool bRemoved = false;
-	if (World)
-	{
-		for (TObjectIterator<UUserWidget> It; It; ++It)
-		{
-			UUserWidget* Widget = *It;
-			if (!IsValid(Widget) || Widget->GetWorld() != World)
-			{
-				continue;
-			}
-			if (Widget->GetClass()->GetName().StartsWith(TEXT("BP_MelodiaDefeatDialogue")))
-			{
-				Widget->RemoveFromParent();
-				bRemoved = true;
-			}
-		}
-	}
-
-	if (bRemoved || --StockDefeatCleanupTicksRemaining <= 0)
-	{
-		if (World)
-		{
-			World->GetTimerManager().ClearTimer(StockDefeatCleanupTimer);
-		}
-		StockDefeatCleanupTicksRemaining = 0;
-	}
 }
 
 void UMelodiaUIBridgeSubsystem::CreateBattleUIInternal()

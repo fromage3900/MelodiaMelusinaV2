@@ -137,32 +137,6 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	float GetBreathNormalized() const;
 
-	/**
-	 * Hands wing opacity and visibility to another presentation authority.
-	 *
-	 * WHY THIS EXISTS: SetWingPresentation drives the wing material's `Opacity`
-	 * scalar as a binary 0/1 and forces component visibility to match. That is
-	 * correct while glide state is the ONLY thing wings mean. It stops being
-	 * correct once an outfit reveal also owns that scalar -- this component
-	 * writes 0 in its own BeginPlay and again on every StopGlide, so a wardrobe
-	 * reveal animating the same parameter would be silently erased the first time
-	 * the player landed. The player sees wings vanish permanently with nothing in
-	 * the log.
-	 *
-	 * When claimed, this component stops writing wing opacity and visibility
-	 * entirely, but KEEPS broadcasting OnGlideStateChanged -- glide state is still
-	 * this component's truth to report, it just no longer decides how the wing
-	 * looks. UMelodiaMagicalTransformComponent claims this in its BeginPlay and
-	 * releases it in EndPlay.
-	 *
-	 * Traversal movement is unaffected either way; this is presentation only.
-	 */
-	UFUNCTION(BlueprintCallable, Category="Melodia|Traversal|Presentation")
-	void SetWingPresentationOwnedExternally(bool bOwnedExternally);
-
-	UFUNCTION(BlueprintPure, Category="Melodia|Traversal|Presentation")
-	bool IsWingPresentationOwnedExternally() const { return bWingPresentationOwnedExternally; }
-
 	/** Presentation hook for an AnimBP or a wing component not tagged for auto-discovery. */
 	UPROPERTY(BlueprintAssignable, Category="Melodia|Traversal|Presentation")
 	FMelodiaGlideStateChanged OnGlideStateChanged;
@@ -216,9 +190,6 @@ private:
 	TWeakObjectPtr<UCharacterMovementComponent> Movement;
 	bool bInputBound = false;
 	bool bSuppressWaterPresentation = false;
-
-	/** Set via SetWingPresentationOwnedExternally; see that function for why. */
-	bool bWingPresentationOwnedExternally = false;
 	bool bIsGliding = false;
 	bool bJumpWindingUp = false;
 	bool bAwaitingGlideTap = false;

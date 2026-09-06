@@ -4,21 +4,14 @@
 
 param(
     [int]$LimitMB = 512,
-    [string]$Remote = "origin",
-    [string]$Branch = ""
+    [string]$Remote = "v2",
+    [string]$Branch = "main"
 )
 
 $ErrorActionPreference = "Stop"
 Set-Location (Join-Path $PSScriptRoot "..")
 
-if (-not $Branch) {
-    $Branch = (git branch --show-current).Trim()
-}
-if (-not $Branch) {
-    $Branch = "main"
-}
-
-Write-Host "==> [git_safe_push] LFS batch guard for $Remote/$Branch (limit $LimitMB MB)" -ForegroundColor Cyan
+Write-Host "==> [git_safe_push] LFS batch guard (limit $LimitMB MB)" -ForegroundColor Cyan
 
 if (-not (Test-Path ".git")) {
     Write-Error "Not a git repository (no .git found). Run from BS_GodFile root."

@@ -119,7 +119,6 @@ private:
 	void HandleExternalBattleStarted(FName EncounterId);
 	UFUNCTION()
 	void HandleExternalBattleEnded(uint8 BattleResult);
-	void RemoveStockDefeatDialogueWidgets();
 	UFUNCTION()
 	void HandleNarrativeFlagChanged(FName FlagId, bool bValue);
 	UFUNCTION()
@@ -172,7 +171,4 @@ private:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UMelodiaBattleKeyboardLegendWidget> KeyboardLegend;
-
-	FTimerHandle StockDefeatCleanupTimer;
-	int32 StockDefeatCleanupTicksRemaining = 0;
 };

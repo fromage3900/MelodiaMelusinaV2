@@ -120,10 +120,8 @@ def build_garment_loom_variation(group_name="MEL_garment_loom_variation"):
     tree, gin, gout = new_geometry_tree(group_name)
     geo = gin.outputs["Geometry"]
     s = add_int_param(tree, "Seed", 20260902, 0, 99999999)
-    # 2026-09-06 neutrality fix (wardrobe_proof G3): dials default 0.0 (was 0.5,
-    # which displaced every vertex by ~0.5*pos.y and bloated bounds 83-90%).
-    fold = add_float_param(tree, "Fold", 0.0, 0.0, 2.0)
-    drape = add_float_param(tree, "Drape", 0.0, 0.0, 2.0)
+    fold = add_float_param(tree, "Fold", 0.5, 0.0, 2.0)
+    drape = add_float_param(tree, "Drape", 0.5, 0.0, 2.0)
     # Blender has no white-noise-with-seed on geometry domain in older 5.x; use
     # a seeded sin hash on position for deterministic variation.
     pos = safe_node(tree, "GeometryNodeInputPosition", (0, 0))

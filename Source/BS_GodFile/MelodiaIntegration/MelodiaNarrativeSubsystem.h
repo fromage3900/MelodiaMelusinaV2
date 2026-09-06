@@ -252,7 +252,6 @@ public:
 	void HandleQuillNotification(FString Message);
 
 private:
-	void HandleUIVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleBattleVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleQuestVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);
 	void HandleQuestCompleteVerb(const FName Id, const TArray<FString>& Parts, const FString& Message);

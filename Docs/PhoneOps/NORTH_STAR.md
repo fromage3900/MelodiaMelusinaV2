@@ -2,7 +2,6 @@
 
 Phone-friendly control plane for MelodiaMelusinaV2. Authority: [`PROJECT.md`](../../PROJECT.md).
 P0 detail: [`../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
-Live gate standing: last row per gate id in `Saved/gate_ledger.json` (not the plan doc).
 Now/Next: [`BACKLOG.md`](BACKLOG.md).
 
 ## North star
@@ -15,11 +14,11 @@ One-liner: **agents accelerate Melodia; you keep art direction, story, and publi
 
 ## This-week focus (phone-steerable)
 
-1. **P0 live proof** — certification only per the [2026-09-06 plan](../P0_INTEGRATION_EXECUTION_PLAN_2026-09-06.md) (package + owner golden run). Prefer over new R&D.
+1. **P0 live proof** — rhythm grade→result, HUD single-writer, wardrobe+Glide, music-as-key, battle map, static_gates (Aug 24 closeout). Prefer over new R&D.
 2. **P1 recruiter sendoffs** — OpenCode first, then Certain Affinity / Velan / Infold. **NVIDIA withdrawn.** See [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../Career/RECRUITER_SENDOFFS_2026-08-25.md).
 3. Keep PhoneOps docs accurate as the mobile SSOT entry.
 4. Website/deploy honesty: `_github_deploy/` until `my-site-clean/` is explicitly promoted.
-5. **P3 only when labeled** — Claireon live (owner 2026-09-06); Nemotron only if editor-free.
+5. **P3 only when labeled** — Claireon parked; Nemotron only if editor-free.
 
 ## Milestones (compressed)
 
@@ -29,7 +28,7 @@ One-liner: **agents accelerate Melodia; you keep art direction, story, and publi
 | Historical shipping gates (runtime/save/repeat/package) | PASS rows exist | Ledger — not current P0 exit |
 | Portfolio / recruiter sendoff | Active P1 | OpenCode → Toronto studios |
 | Env / Blender / PCG platform | Infra when unblocks P0/P1 | Not the north star |
-| Claireon / Nemotron / MCP R&D | P3 scoped | Claireon live (owner 2026-09-06) |
+| Claireon / Nemotron / MCP R&D | P3 scoped | Claireon disabled (C1076) |
 
 ## Open decisions
 
@@ -39,7 +38,7 @@ Track here until locked in `Docs/AgentMemory/Decisions.md` or `_DECISION_LOG.md`
 |---|---|---|
 | Website lane | Keep `_github_deploy/` vs promote `my-site-clean/` | Favor `_github_deploy/` until explicit promotion |
 | NVIDIA applications | WITHDRAWN | Owner 2026-08-25 |
-| Claireon scope | Live; keep off P0 critical path | Owner 2026-09-06 |
+| Claireon re-enable | After P0 + PCH fix | Do not put on critical path |
 | Store / Gumroad | `store_live` false until screenshots + upload | Publish is Red |
 
 ## Success checks (this week)

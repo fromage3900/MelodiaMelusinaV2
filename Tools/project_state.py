@@ -21,7 +21,7 @@ it describes -- never what the document says.
     python Tools/project_state.py --live          # adds editor-derived facts
     python Tools/project_state.py --out Saved/Dashboards/state.txt
 
-Views: git | gates | baselines | staleness | tools | integration | session_start | live | all
+Views: git | gates | baselines | staleness | tools | live | all
 """
 import argparse
 import datetime
@@ -69,19 +69,6 @@ DOC_SUBJECTS = {
     ],
     "CURRENT_STATE.md": [
         "Source/BS_GodFile/MelodiaIntegration",
-    ],
-    "AGENT_START_HERE.md": [
-        "Source/BS_GodFile/MelodiaIntegration",
-    ],
-    "MELODIA_TECHNICAL_VERTICAL_SLICE.md": [
-        "Source/BS_GodFile/MelodiaIntegration",
-    ],
-    "Docs/PhoneOps/BACKLOG.md": [
-        "Docs/P0_TASK_LEDGER.json",
-    ],
-    ".jcode/coordinator-bootstrap.md": [
-        "AGENTS.md",
-        "Docs/PhoneOps/BACKLOG.md",
     ],
     "README.md": [
         "Source/BS_GodFile",
@@ -283,8 +270,9 @@ def _newest_commit_ts(subject):
 STALENESS_THRESHOLD_HOURS = 48
 
 
-def _staleness_rows():
-    """(status, doc, note, src) per DOC_SUBJECTS entry. Shared by views."""
+def view_staleness():
+    lines = header("DOC STALENESS RADAR",
+                   "a doc older than the code it describes is UNVERIFIED, not wrong")
     rows = []
     for doc, subjects in DOC_SUBJECTS.items():
         dpath = os.path.join(PROJECT, doc)
@@ -310,13 +298,6 @@ def _staleness_rows():
             rows.append(("recent", doc, f"{drift_h:.0f}h (within {STALENESS_THRESHOLD_HOURS}h)", ""))
         else:
             rows.append(("fresh", doc, "", ""))
-    return rows
-
-
-def view_staleness():
-    lines = header("DOC STALENESS RADAR",
-                   "a doc older than the code it describes is UNVERIFIED, not wrong")
-    rows = _staleness_rows()
 
     for status, doc, note, src in rows:
         mark = {"STALE": "STALE", "?": "  ?  ", "MISSING": "MISS ", "recent": "  ~  "}.get(status, "fresh")
@@ -400,44 +381,6 @@ def view_integration():
     return lines
 
 
-def view_session_start():
-    """Cold-open orientation. Run before opening any prose.
-
-    Tip, tree, latest ledger row per gate, ledger age, staleness flags.
-    Counts and latest-rows only -- no notes, no history. Fails closed:
-    an unreadable ledger prints as unreadable, never as empty.
-    """
-    lines = header("SESSION START", "run first; derived, not asserted")
-    lines.append(f"  tip               {git('log', '-1', '--oneline')}")
-    lines.append(f"  branch            {git('rev-parse', '--abbrev-ref', 'HEAD')}")
-    porcelain = git("status", "--porcelain").splitlines()
-    lines.append(f"  dirty             "
-                 f"{len([l for l in porcelain if not l.startswith('??')])} tracked, "
-                 f"{len([l for l in porcelain if l.startswith('??')])} untracked")
-    for l in porcelain[:6]:
-        lines.append(f"    {l}")
-    lines += ["", "  latest row per gate id (this is standing; older rows are history):"]
-    ledger = _ledger_latest()
-    if "_error" in ledger:
-        lines.append(f"    gate ledger: {ledger['_error']}")
-    else:
-        for gid in sorted(ledger):
-            rec = ledger[gid]
-            status = rec.get("status", "?").upper()
-            lines.append(f"    [{status:<4}] {gid:<24} {rec.get('date', '')} {rec.get('time', '')}")
-    try:
-        with open(os.path.join(PROJECT, "Docs", "P0_TASK_LEDGER.json"), encoding="utf-8") as fh:
-            as_of = json.load(fh).get("as_of", "?")
-        lines.append(f"  p0_task_ledger    as_of {as_of}")
-    except Exception:
-        lines.append("  p0_task_ledger    unreadable")
-    stale = [r for r in _staleness_rows() if r[0] in ("STALE", "MISSING")]
-    lines.append(f"  stale watched docs {len(stale)} (see --view staleness)")
-    for _, doc, note, _ in stale[:8]:
-        lines.append(f"    {doc}  {note}")
-    return lines
-
-
 def view_tools():
     lines = header("VERIFICATION TOOLING", "what exists to check work with")
     tools = [
@@ -508,7 +451,6 @@ VIEWS = {
     "staleness": view_staleness,
     "tools": view_tools,
     "integration": view_integration,
-    "session_start": view_session_start,
 }
 
 

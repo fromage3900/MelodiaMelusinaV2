@@ -116,8 +116,8 @@ Identified component packs (assembly is first-party; each component keeps its ow
 | Store / location | Contents | Notes |
 |---|---|---|
 | `F:\harddrivebackup\unreal marketplace` | 2023 Unreal Marketplace bundle rars (Ultra Dynamic Sky v7.5a, Sky Creator, WorldScape, Oceanology, Medieval Castle, etc.) | Purchase provenance only — of these, only UDS is used in this project (already credited: Everett Gunther) |
-| `F:\Library\Assets\Downloads_Zips` | Kenney zips (see Kenney inventory), ArtOfShader (vfxMed rar), GuttyKreum Japanese City (free), FoodProps/carrot/confectionary, VRM4U, KawaiiPhysics, melodia-design-system (first-party), melodia-psd-files (first-party), Live2D Zunko assets | The pack store for both POCs and this project |
-| `F:\Library\Assets\Packs` | ArtStation + vfxMed products: 121 FABRIC, 50 Lace & Guipure, 70 Japanese Ornament Alphas, fabric/leather alphas, brushes | Zbrush/blender tools + textures; 70 Japanese Ornament Alphas is used in this project (credited: Jonas Ronnegard) |
+| `F:\Library\Assets\Downloads_Zips` | Kenney zips (see Kenney inventory), ArtOfShader, GuttyKreum Japanese City (free), FoodProps/carrot/confectionary, VRM4U, KawaiiPhysics, melodia-design-system (first-party), melodia-psd-files (first-party), Live2D Zunko assets | The pack store for both POCs and this project |
+| `F:\Library\Assets\Packs` | ArtStation products: 121 FABRIC, 50 Lace & Guipure, 70 Japanese Ornament Alphas, fabric/leather alphas, brushes | Zbrush/blender tools + textures; 70 Japanese Ornament Alphas is used in this project (credited: Jonas Ronnegard) |
 | `F:\Inbox\Downloads_Sweep_2026-07-11\Unzipped_Repos` | Extracted zips: kenney packs, SOYA* (VRoid), obj001n101_cherryblossom, SummerAssets_FBX_Outline, Basic_Assets_Bundle_by_Raivo, young-lady-zundamon-lowpoly, Zundamon (FBX/PMX), Roblox-Projects-Public (MIT), VRM4U-master | Staging for POC + future imports; none of the unreferenced ones are in this project's `Content/` |
 | `G:\Zundamons-kItchen` (+V2, `ZUNDYMONSKITCHEN`) | Zundamon's Kitchen (Roblox cooking RPG) — owner POC, MIT 2026 | Its own `CREDITS.md` credits Zunko/Zundamon (SSS LLC), Kenney Mini Characters + Survival Kit, VOICEVOX, wappon_28_dev cursors (MIT) |
 | `F:\_Organized\POC_Archive\My project` | Unity POC (Melusina rig test: `MelusinarigWithANMN7.blend`) | First-party test; no third-party packs |
@@ -131,7 +131,7 @@ Identified component packs (assembly is first-party; each component keeps its ow
 - Most environment/audio packs are **CC0 1.0 Universal** (public domain): Kenney, Quaternius, KayKit, Polygonal Mind, Poly Haven, OpenGameArt packs, Beatscribe, Juhani Junkala.
 - The **Zunko family and BOOTH packs** carry their own per-creator terms (non-commercial for SSS LLC; 0 JPY free with per-page terms for BOOTH) — see each pack's `PROVENANCE.md` for the exact text.
 - The **Epic sample (Electric Dreams) and marketplace packs** (Ultra Dynamic Sky, Brushify, Magician's Library, Turn-Based jRPG Template, Megascans where applicable) are licensed per Epic's UE-only / Fab Marketplace terms — fine for UE-based products including commercial ones; a redistribution credit line per pack's terms applies.
-- **ArtStation licenses** (Jonas Ronnegard's Japanese Ornament Alphas; Art of Shader by Sameek Kundu via marketplace/vfxMed distribution) are per-product Standard/EULA — personal and commercial use of the licensed files as purchased.
+- **ArtStation licenses** (Jonas Ronnegard's Japanese Ornament Alphas; Art of Shader by Sameek Kundu via marketplace distribution) are per-product Standard/EULA — personal and commercial use of the licensed files as purchased.
 - **First-party rows** (incl. the assembled mega-kit) need no attribution; their components keep their own.
 - If you redistribute the game, include this file and keep the PROVENANCE records and the SOURCES_MATRIX.
 

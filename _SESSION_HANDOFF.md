@@ -1,38 +1,83 @@
-# Session Handoff — 2026-09-06 (staleness fix + Accessed-None T3D guards)
+# Session Handoff — 2026-09-05
 
 *Overwritten each session. Canonical detail lives in `CURRENT_STATE.md` §7 and
 `Docs/P0_TASK_LEDGER.json`.*
 
 ---
 
-## Headline: session-start rot fixed at the source; battle null-guards live
+## The headline: the project builds and plays
 
 | | |
 |---|---|
-| **Stale-info fix** | Committed `32fc42fd` on `docs/stale-session-start-fix-2026-09-06` (pushed): AGENTS.md dated blocks deleted, `project_state.py --view session_start` added, PhoneOps pointers re-aimed at ledger+front door, ECHO latest-row-wins documented. Follow-up commit pending (this session's work, same branch). |
-| **T3D guards** | 11 `IsValid` null-guards injected across 5 live battle BPs (EnemyUnitBase ×4, EnemyBossBase, ProjectileBase + stock-destroy call, BattleController, JRPGFunctionLibrary/DisableActor + early Return). All compile 0 errors, all saved, 0 dirty. Fixes the 19 Accessed-None errors from battle PIE. |
-| **B3 input contract** | Proven live on tip by reflection: `BP_BattleUI::OnKeyDown` compares Q/W/O/P → `RegisterLaneHit` ×4 + lane-press ×4; `OnKeyUp` symmetric. Harness `check-wiring` was blind to override graphs — fixed, now reports `RAW_KEY_BACKEND`. |
-| **Gates** | No rows written (bugfix + tooling, not gate claims). Ledger standing unchanged: 10/10 PASS. Offline trio re-verified this session: 12/12, 77/77, 17/17. Baseline 53 clean. |
-| **Unify** | `main` == `origin/main` at `d9e8f781` via PRs #96–#101; tip has since moved (local `main` `18a470aa`, origin `73a7f707` PR #102). Network down at closeout — push/PR deferred. |
-| **Claireon** | LIVE per owner 2026-09-06 (MCP traffic in log). BACKLOG/NORTH_STAR PARKED claims corrected. Still off P0 critical path. |
+| **Editor build** | **GREEN** — `582fa914`. Binary dated 2026-09-04 21:47, editor runs from it. |
+| **Audio reactivity** | **WORKS**, verified live in PIE with measured values — `b1cac649`. |
+| **P0 gates** | 8/8 active gates `pass`. |
+| **Tests** | 524/524 pass. |
+| **Packaged route** | verified, both legs, 0 fatals. |
+| **Toon master convergence** | **DONE** — `M_Master_Toon_Universal_Alpha` has zero instances; all 109 reparented onto the opaque master (`44398419`). Melusina's dress now exposes all 15 `Cymatic_*`/`Audio*` params. |
 
-## Branch map (this machine)
+**Build root cause, for the record:** `LPCTSTR MaterialToken` silently dropped a struct member in
+`MelodiaCaptureRenderSubsystem.cpp`. Two earlier `FString::Printf` rewrites blamed a UE 5.8
+consteval format sanitiser and were treating symptoms. The fix is `const TCHAR*`.
 
-- `docs/stale-session-start-fix-2026-09-06` — this session's branch (owner has since committed 6× on top: materials specs, lookdev plan, wardrobe runs, scorecard — all fromage3900, all compatible).
-- `main` local `18a470aa`; `origin/main` tracking `73a7f707`. Rebase/merge + push + PR blocked on github.com:443 (flaky, documented).
-- Linked worktrees active: `Worktrees/melodia-checkpoint-20260904` (codex checkpoint), `.claude/worktrees/p0-morning-dungeon-hop` (Claireon lane). Do not assume a clean single-checkout world.
-- Other lanes' dirty files left untouched: `WBP_MainMenu.uasset`, `MelodiaQuillDefeat.*`, `Melodia*NarrativeSubsystem.*` + `MelodiaUIBridgeSubsystem.*` (C++), several `melodia_gn/*.py`, `.hermes/plans/`.
+**Audio root cause:** nothing was wrong with the subsystems — **route leg 0 simply had no music
+clock**, so nothing drove `MPC_Melodia_Palette`. The clock now lives on the GameMode
+(`5fea50c8`), so every level reacts instead of only levels with a hand-placed clock actor.
 
-## Known HOLDs for next session
+---
 
-1. **Battle-cycle proof of the guards** — WalkLoop PIE never reached the encounter; guarded paths unexecuted at runtime. Needs encounter driving (B4 driver + vars + rhythm-window timing), same open item as B7.
-2. **`bp_sweep` project-wide still 0-for-3** (~12s/asset × 200 > 900s stage timeout — structural, not a hang). Scoped sweeps clean; composition fix proposed, not implemented.
-3. **4 `_PROJECT` mirror pairs** shadowing live assets (`BP_MelodySlimeBattle[_Hub]`, `BP_RhythmHUD`, `WBP_RhythmHUD`) + 17 dead nodes in live `BP_BattleUI` EventGraph (legacy show branches, likely benign). Owner adjudication needed; nothing moved.
-4. **`BP_BattleController.uasset` was read-only on disk** — cleared to save S4. Worth a sweep for other read-only `.uasset`s before next edit session.
-5. **Editor churn**: 4 PIDs in ~1h during this session (owner active). Coordinate quiet windows for PIE evidence.
+## Read these before touching the landscape
 
-## Tools changed (uncommitted → commit with this handoff)
+1. **Ultra Dynamic Sky is not pinned, and its time-of-day is not exposed to Python.** Two captures
+   with *identical* material state differed by a lot (terrain colour spread 25.1 vs 15.9). Any
+   before/after on `LV_SeaAbove_Prototype` has an uncontrolled lighting variable. **Pin the sky
+   first or your A/B is noise.**
+2. **`update_material_instance()` or the render is stale.** Parameter read-backs succeed while the
+   viewport still shows the old value. This invalidated several measurements last session.
+3. **Something rewrites `MI_Glacier_Landscape_Layered`.** `Gaea_SnowWeight` was found at −14.94 and
+   `Gaea_RockWeight` at 6.43 *after* both had been set to 1.0 and verified. Writer unidentified.
+   The master's `Saturate` clamps limit the damage, and the weights were measured to make no
+   visual difference at all.
+4. **`W_Glacier_Rock` is a near-black Gaea export** (peaks 31/255). The rock layer cannot read
+   until it is re-exported with correct normalisation. Nothing on the UE side fixes this.
+5. **SeaAbove `__ExternalActors__` are untracked.** That is why the key-light fix was lost twice.
+   The light actor is now force-added (`0fb76675`); the other 73 are not.
 
-- `Tools/playtest_harness.py`: override-graph census fix + clip-before-stop ordering fix.
-- `Tools/project_state.py`: `session_start` view + wider watchlist (committed `32fc42fd`).
-- Evidence: `Saved/Audit/accessed-none-*`, `bp_sweep_*_2026-09-06.json`, `bp_battleui_keygraphs_2026-09-06.json`, `p0_offline_contract_2026-09-06.txt`, `verify_baseline_2026-09-06.txt`, `pie_battle_closure_2026-09-06/`, `Saved/Playtest/PLAYTEST_1788671563*`.
+---
+
+## Git
+
+- **19 commits replayed onto local `main`** via `merge-tree`/`commit-tree` — no worktree, index or
+  HEAD touched. Full record: `Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md`.
+- **Local `main` and `origin/main` are diverged lineages** (628 vs 704, neither an ancestor of the
+  other). This predates the merge. "On main" means **local** main.
+- Off-machine: `recovery/unify-histories-20260904`, `recovery/main-merged-20260904`.
+- **Do not push `main`** — the pre-push hook forbids it. Branch names must start with
+  `feature/ fix/ docs/ cleanup/ collab/ codex/ recovery/ cursor/`.
+
+**Two other agents write to this repo.** The overnight wardrobe daemon *drives git itself* — it
+checked the repo off `main` onto its own branch and committed mid-operation last session. Check
+`git status` and `git rev-parse --abbrev-ref HEAD` before assuming which branch you are on.
+
+---
+
+## Next, in the order I would take it
+
+1. **Re-export `W_Glacier_Rock` from Gaea.** Unblocks the rock layer *and* the close-range detail
+   texture, which is gated behind it.
+2. **PCG volume layout** — four concentric 600–800k volumes over a 250k landscape, so no zone owns
+   a style. Cheap and non-destructive to fix. `Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md`
+   §4a.
+3. **Find whatever writes junk into the landscape material instance.** Resetting values it will
+   overwrite again is treating a symptom.
+
+---
+
+## Tools added this session
+
+| Path | Purpose |
+|---|---|
+| `Content/Python/lookdev_capture.py` | Deterministic level captures via `SceneCapture2D`. `take_high_res_screenshot` needs a game viewport and silently writes nothing from an editor-only session. |
+| `Content/Python/audit_gaea_wiring.py` | Traces each Gaea mask parameter to the `LandscapeLayerSample` it gates and whether it reaches the output. |
+| `Content/Python/import_gaea_landscape_paint.py` | Imports Gaea weightmaps into landscape **paint** layers — the half of the pipeline that texture import does not cover. |
+| `Content/Python/converge_toon_universal.py` | The Universal/Universal_Alpha convergence, in three verifiable steps. Kept because the same pattern applies to any future master merge. |

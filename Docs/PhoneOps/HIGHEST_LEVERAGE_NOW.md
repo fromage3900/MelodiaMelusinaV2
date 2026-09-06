@@ -1,10 +1,6 @@
-# Highest leverage now — week of 2026-08-11 (SUPERSEDED — archive, not orders)
+# Highest leverage now — week of 2026-08-11
 
-> Current standing lives in `Saved/gate_ledger.json` (last row per gate wins) and
-> `_SESSION_HANDOFF.md`. The RT-*/PH-* queue below and its "authority" pointer describe
-> August truth; do not execute or cite them as current.
-
-**Authority runtime truth (August 2026, historical):** [`Docs/Handoffs/PIE_2026-08-11.md`](../Handoffs/PIE_2026-08-11.md)  
+**Authority runtime truth:** [`Docs/Handoffs/PIE_2026-08-11.md`](../Handoffs/PIE_2026-08-11.md)  
 **Repo:** MelodiaMelusinaV2 (public). **Echo:** gates OPEN until ledger rows.
 
 Phone/cloud agents: **docs / issues / specs only** unless the owner frees the editor. One RT-* or PH-* at a time. No Sakura. No Done without evidence.
@@ -45,7 +41,7 @@ Phone/cloud agents: **docs / issues / specs only** unless the owner frees the ed
 ## Paste brief for agents
 
 ```text
-You are on MelodiaMelusinaV2. Read AGENT_START_HERE.md, then _SESSION_HANDOFF.md
-and the last row per gate id in Saved/gate_ledger.json. Docs only unless I say
-editor is free. One task only. No Sakura. No Done without Echo ledger evidence.
+You are on MelodiaMelusinaV2. Read Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md
+and Docs/Handoffs/PIE_2026-08-11.md. Docs only unless I say editor is free.
+One RT-* or PH-* only. No Sakura. No Done without Echo ledger evidence.
 ```

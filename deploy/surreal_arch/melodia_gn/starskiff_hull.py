@@ -48,14 +48,13 @@ def build_starskiff_hull_form(group_name="MEL_starskiff_hull_form"):
     tree, gin, gout = new_geometry_tree(group_name)
     geo = gin.outputs["Geometry"]
 
-    # Zero-centered dials: 0 = neutral (authored shape untouched), + = effect
     seed = add_int_param(tree, "Seed", 20260903, 0, 99999999)
     sym = add_float_param(tree, "Symmetry", 1.0, 0.0, 2.0)
-    beam = add_float_param(tree, "Beam", 0.0, -1.0, 1.0)
-    length = add_float_param(tree, "Length", 0.0, -1.0, 1.0)
+    beam = add_float_param(tree, "Beam", 1.0, 0.5, 2.0)
+    length = add_float_param(tree, "Length", 1.0, 0.5, 2.0)
     rocker = add_float_param(tree, "Rocker", 0.0, -1.0, 1.0)
     tumble = add_float_param(tree, "Tumble", 0.0, -1.0, 1.0)
-    taper = add_float_param(tree, "Taper", 0.0, -1.0, 1.0)
+    taper = add_float_param(tree, "Taper", 1.0, 0.0, 2.0)
 
     # Position + local frame (5.2: InputPosition auto-consumes context geometry,
     # no Geometry input socket — don't try to feed it)
@@ -82,9 +81,6 @@ def build_starskiff_hull_form(group_name="MEL_starskiff_hull_form"):
     nz = sock(noise, "Fac") or noise.outputs[0]
 
     # --- form math (blend-space hull shaping) ---
-    # Dials are zero-neutral: offset = pos * dial, so dial 0 = authored shape.
-    # (Proof 2026-09-05: the multiply is already zero-at-zero; the MK38 bloat came
-    # from DEFAULTS at 1.0, not the wiring. A SUBTRACT-1 "fix" inverts the hull.)
     # Beam: scale across Z by beam (wider/narrower hull)
     beam_z = safe_node(tree, "ShaderNodeMath", (-720, -260))
     beam_z.operation = "MULTIPLY"
