@@ -1,0 +1,1587 @@
+{
+ "graph_name": "OnKeyDown",
+ "graph_type": "function",
+ "nodes": [
+  {
+   "id": "K2Node_FunctionEntry_0",
+   "class": "K2Node_FunctionEntry",
+   "title": "OnKeyDown",
+   "pos": [
+    0,
+    0
+   ],
+   "pins": [
+    {
+     "id": "389DE50E4365849EA95570ABCC0B8ADD",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_DynamicCast_0.execute"
+     ],
+     "connected_to_ids": [
+      "0BB1101C40F0877B133C1DA06EB5B67D"
+     ]
+    },
+    {
+     "id": "AF54500F436907485A8ADBA8489B9EC6",
+     "name": "MyGeometry",
+     "direction": "output",
+     "type": "struct:Geometry",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "FCFE00194007B09663E0969BFCDB2220",
+     "name": "InKeyEvent",
+     "direction": "output",
+     "type": "struct:KeyEvent",
+     "connected_to": [
+      "K2Node_CallFunction_1.Input"
+     ],
+     "connected_to_ids": [
+      "1EEFFE8E49ABA641B337DCA11CE6FA03"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_FunctionResult_0",
+   "class": "K2Node_FunctionResult",
+   "title": "Return Node",
+   "pos": [
+    256,
+    0
+   ],
+   "pins": [
+    {
+     "id": "FD15D4C949B6CD71DE06CB9049E6BE82",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_3.else",
+      "K2Node_DynamicCast_0.CastFailed",
+      "PulseOnLaneHit.then"
+     ],
+     "connected_to_ids": [
+      "9EB30F234897D3D8A10E429F74819AF2",
+      "51309D8F447F810DF70692A183672C40",
+      "4CD87D524A6A42A7B802BCA3324E5DC7"
+     ]
+    },
+    {
+     "id": "49C307A14F33777490B7C884EE43663D",
+     "name": "ReturnValue",
+     "direction": "input",
+     "type": "struct:EventReply",
+     "connected_to": [
+      "K2Node_Select_0.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "16642AD1455A631191126C94F1E4B384"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_0",
+   "class": "K2Node_CallFunction",
+   "title": "Get",
+   "pos": [
+    200,
+    700
+   ],
+   "function": "Get",
+   "function_class": "MelodiaRhythmCombatSubsystem",
+   "pins": [
+    {
+     "id": "0805D0804C5577BBC18A399CDA01FFB7",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "object:MelodiaRhythmCombatSubsystem",
+     "connected_to": [
+      "K2Node_CallFunction_6.self",
+      "K2Node_CallFunction_7.self",
+      "K2Node_CallFunction_8.self",
+      "K2Node_CallFunction_9.self"
+     ],
+     "connected_to_ids": [
+      "46ECF9AA4B4E6B459B41009C72A0BDD8",
+      "52D570E64FA1FF7528D7FAA7D37EC494",
+      "BBA22DDF44B83F1FF140248A97D26F96",
+      "0602D743439569071CAD81B2D7D813CB"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_1",
+   "class": "K2Node_CallFunction",
+   "title": "Get Key",
+   "pos": [
+    200,
+    500
+   ],
+   "function": "GetKey",
+   "function_class": "KismetInputLibrary",
+   "pins": [
+    {
+     "id": "1EEFFE8E49ABA641B337DCA11CE6FA03",
+     "name": "Input",
+     "direction": "input",
+     "type": "struct:KeyEvent",
+     "connected_to": [
+      "K2Node_FunctionEntry_0.InKeyEvent"
+     ],
+     "connected_to_ids": [
+      "FCFE00194007B09663E0969BFCDB2220"
+     ]
+    },
+    {
+     "id": "B47120A54C15B0D88311148E01610DBD",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "struct:Key",
+     "connected_to": [
+      "K2Node_CallFunction_2.A",
+      "K2Node_CallFunction_3.A",
+      "K2Node_CallFunction_4.A",
+      "K2Node_CallFunction_5.A"
+     ],
+     "connected_to_ids": [
+      "CC984F1D4D6ECB3B645160813AE57039",
+      "4B237A0446109609D927078C6B4C9150",
+      "EE9D217749FB7AE734379D868FE47426",
+      "24B862D74325F60BC9038B949DB21016"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_2",
+   "class": "K2Node_CallFunction",
+   "title": "Equal (Key)",
+   "pos": [
+    430,
+    260
+   ],
+   "function": "EqualEqual_KeyKey",
+   "function_class": "KismetInputLibrary",
+   "pins": [
+    {
+     "id": "CC984F1D4D6ECB3B645160813AE57039",
+     "name": "A",
+     "direction": "input",
+     "type": "struct:Key",
+     "connected_to": [
+      "K2Node_CallFunction_1.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "B47120A54C15B0D88311148E01610DBD"
+     ]
+    },
+    {
+     "id": "26B13E62449665710B4D92A27BF2391F",
+     "name": "B",
+     "direction": "input",
+     "type": "struct:Key",
+     "default_value": "Q",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "54528F5C46BAD0442FC74C92D0A24B88",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_IfThenElse_0.Condition",
+      "K2Node_CallFunction_11.A"
+     ],
+     "connected_to_ids": [
+      "337793FF4E592B2F4C4623875A3A0ABD",
+      "F3EF4D174915492E6A4B1F9F0637C1AE"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_3",
+   "class": "K2Node_CallFunction",
+   "title": "Equal (Key)",
+   "pos": [
+    430,
+    460
+   ],
+   "function": "EqualEqual_KeyKey",
+   "function_class": "KismetInputLibrary",
+   "pins": [
+    {
+     "id": "4B237A0446109609D927078C6B4C9150",
+     "name": "A",
+     "direction": "input",
+     "type": "struct:Key",
+     "connected_to": [
+      "K2Node_CallFunction_1.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "B47120A54C15B0D88311148E01610DBD"
+     ]
+    },
+    {
+     "id": "73C7393746FBFA4FC6FF3095F242ECBF",
+     "name": "B",
+     "direction": "input",
+     "type": "struct:Key",
+     "default_value": "W",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "E0910B7141E138D9FA90A4931111B203",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_IfThenElse_1.Condition",
+      "K2Node_CallFunction_11.B"
+     ],
+     "connected_to_ids": [
+      "9DB84C0B44209428CB4157BDAAEB76CC",
+      "5040EC4E466CB57FFFD9D882991EB066"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_4",
+   "class": "K2Node_CallFunction",
+   "title": "Equal (Key)",
+   "pos": [
+    430,
+    660
+   ],
+   "function": "EqualEqual_KeyKey",
+   "function_class": "KismetInputLibrary",
+   "pins": [
+    {
+     "id": "EE9D217749FB7AE734379D868FE47426",
+     "name": "A",
+     "direction": "input",
+     "type": "struct:Key",
+     "connected_to": [
+      "K2Node_CallFunction_1.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "B47120A54C15B0D88311148E01610DBD"
+     ]
+    },
+    {
+     "id": "8EAF49284E6A37DAF6C1108EAF039956",
+     "name": "B",
+     "direction": "input",
+     "type": "struct:Key",
+     "default_value": "O",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "0294B1DA4BE0DBEF96EAC9A004606CA8",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_IfThenElse_2.Condition",
+      "K2Node_CallFunction_12.A"
+     ],
+     "connected_to_ids": [
+      "474C8610402B7B0913339DAB22335C15",
+      "64385DD549808EF9BE2C60820845BF3F"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_5",
+   "class": "K2Node_CallFunction",
+   "title": "Equal (Key)",
+   "pos": [
+    430,
+    860
+   ],
+   "function": "EqualEqual_KeyKey",
+   "function_class": "KismetInputLibrary",
+   "pins": [
+    {
+     "id": "24B862D74325F60BC9038B949DB21016",
+     "name": "A",
+     "direction": "input",
+     "type": "struct:Key",
+     "connected_to": [
+      "K2Node_CallFunction_1.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "B47120A54C15B0D88311148E01610DBD"
+     ]
+    },
+    {
+     "id": "C397241A4CD87EF1D8B8C7B74DF4E889",
+     "name": "B",
+     "direction": "input",
+     "type": "struct:Key",
+     "default_value": "P",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "8357677848B7FC31CF82EB88EA094CE2",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_IfThenElse_3.Condition",
+      "K2Node_CallFunction_12.B"
+     ],
+     "connected_to_ids": [
+      "00FC6F17466645D08EC4A6908DCB34B0",
+      "3C1D0DBD422D5930744330A0D16FA9B0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_IfThenElse_0",
+   "class": "K2Node_IfThenElse",
+   "title": "Branch",
+   "pos": [
+    700,
+    180
+   ],
+   "pins": [
+    {
+     "id": "1BFC7A2C425C655D1B7F8B9B71FDA271",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_DynamicCast_0.then"
+     ],
+     "connected_to_ids": [
+      "FB6FD2714A1AA3A96131DBB5EED5DCB6"
+     ]
+    },
+    {
+     "id": "337793FF4E592B2F4C4623875A3A0ABD",
+     "name": "Condition",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [
+      "K2Node_CallFunction_2.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "54528F5C46BAD0442FC74C92D0A24B88"
+     ]
+    },
+    {
+     "id": "7E179DE24E8A1EC7556526A5092BB4AB",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_6.execute"
+     ],
+     "connected_to_ids": [
+      "0A79981F466F727855B832AE673DD1C1"
+     ]
+    },
+    {
+     "id": "493B650847E3A4A80188978459CD35CE",
+     "name": "else",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_1.execute"
+     ],
+     "connected_to_ids": [
+      "BE3735394B28EA2EB10FC58A963402F6"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_IfThenElse_1",
+   "class": "K2Node_IfThenElse",
+   "title": "Branch",
+   "pos": [
+    700,
+    380
+   ],
+   "pins": [
+    {
+     "id": "BE3735394B28EA2EB10FC58A963402F6",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_0.else"
+     ],
+     "connected_to_ids": [
+      "493B650847E3A4A80188978459CD35CE"
+     ]
+    },
+    {
+     "id": "9DB84C0B44209428CB4157BDAAEB76CC",
+     "name": "Condition",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [
+      "K2Node_CallFunction_3.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "E0910B7141E138D9FA90A4931111B203"
+     ]
+    },
+    {
+     "id": "C997E7F045FD5ADBC4E894B99CBB93FE",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_7.execute"
+     ],
+     "connected_to_ids": [
+      "D76446E144068E0CED1674B1A39A5022"
+     ]
+    },
+    {
+     "id": "AC6E2CD042DEB5B3F0A1628841D5FC08",
+     "name": "else",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_2.execute"
+     ],
+     "connected_to_ids": [
+      "0216294B4489DCBED1A1A79556EDDB77"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_IfThenElse_2",
+   "class": "K2Node_IfThenElse",
+   "title": "Branch",
+   "pos": [
+    700,
+    580
+   ],
+   "pins": [
+    {
+     "id": "0216294B4489DCBED1A1A79556EDDB77",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_1.else"
+     ],
+     "connected_to_ids": [
+      "AC6E2CD042DEB5B3F0A1628841D5FC08"
+     ]
+    },
+    {
+     "id": "474C8610402B7B0913339DAB22335C15",
+     "name": "Condition",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [
+      "K2Node_CallFunction_4.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "0294B1DA4BE0DBEF96EAC9A004606CA8"
+     ]
+    },
+    {
+     "id": "D357CB5E41F455CE4E83CCA5536B28C5",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_8.execute"
+     ],
+     "connected_to_ids": [
+      "FCEE31004F1EFFF5496E68B18739D242"
+     ]
+    },
+    {
+     "id": "C624700C4ACCE4D7161CEAADEF7F8D96",
+     "name": "else",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_3.execute"
+     ],
+     "connected_to_ids": [
+      "2D5C7B1E4A269D1F4A440A901C5E8933"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_IfThenElse_3",
+   "class": "K2Node_IfThenElse",
+   "title": "Branch",
+   "pos": [
+    700,
+    780
+   ],
+   "pins": [
+    {
+     "id": "2D5C7B1E4A269D1F4A440A901C5E8933",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_2.else"
+     ],
+     "connected_to_ids": [
+      "C624700C4ACCE4D7161CEAADEF7F8D96"
+     ]
+    },
+    {
+     "id": "00FC6F17466645D08EC4A6908DCB34B0",
+     "name": "Condition",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [
+      "K2Node_CallFunction_5.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "8357677848B7FC31CF82EB88EA094CE2"
+     ]
+    },
+    {
+     "id": "827414D24DB4CA6DED083BAE30B3BEFB",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_9.execute"
+     ],
+     "connected_to_ids": [
+      "96F9E30C42D40FDB63ADDF932DEAC48B"
+     ]
+    },
+    {
+     "id": "9EB30F234897D3D8A10E429F74819AF2",
+     "name": "else",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_FunctionResult_0.execute"
+     ],
+     "connected_to_ids": [
+      "FD15D4C949B6CD71DE06CB9049E6BE82"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_6",
+   "class": "K2Node_CallFunction",
+   "title": "Register Lane Hit\nTarget is Melodia Rhythm Combat Subsystem",
+   "pos": [
+    950,
+    140
+   ],
+   "function": "RegisterLaneHit",
+   "function_class": "MelodiaRhythmCombatSubsystem",
+   "pins": [
+    {
+     "id": "0A79981F466F727855B832AE673DD1C1",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_0.then"
+     ],
+     "connected_to_ids": [
+      "7E179DE24E8A1EC7556526A5092BB4AB"
+     ]
+    },
+    {
+     "id": "00F294DB4CBF3BF9B8C373923D8F34B5",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_15.execute"
+     ],
+     "connected_to_ids": [
+      "D2A4AA9D4269D2C8D5A2628039B262A3"
+     ]
+    },
+    {
+     "id": "46ECF9AA4B4E6B459B41009C72A0BDD8",
+     "name": "self",
+     "direction": "input",
+     "type": "object:MelodiaRhythmCombatSubsystem",
+     "connected_to": [
+      "K2Node_CallFunction_0.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "0805D0804C5577BBC18A399CDA01FFB7"
+     ]
+    },
+    {
+     "id": "2A267EF641989A2E6E79F19306C58D96",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "0",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "9E0625E5422880481D8E399FA83D0180",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "byte",
+     "default_value": "Miss",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_7",
+   "class": "K2Node_CallFunction",
+   "title": "Register Lane Hit\nTarget is Melodia Rhythm Combat Subsystem",
+   "pos": [
+    950,
+    340
+   ],
+   "function": "RegisterLaneHit",
+   "function_class": "MelodiaRhythmCombatSubsystem",
+   "pins": [
+    {
+     "id": "D76446E144068E0CED1674B1A39A5022",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_1.then"
+     ],
+     "connected_to_ids": [
+      "C997E7F045FD5ADBC4E894B99CBB93FE"
+     ]
+    },
+    {
+     "id": "782C536443A8A2E04B507AAABF132195",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_16.execute"
+     ],
+     "connected_to_ids": [
+      "2A8FFACF4D511E5AD93C02A129344923"
+     ]
+    },
+    {
+     "id": "52D570E64FA1FF7528D7FAA7D37EC494",
+     "name": "self",
+     "direction": "input",
+     "type": "object:MelodiaRhythmCombatSubsystem",
+     "connected_to": [
+      "K2Node_CallFunction_0.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "0805D0804C5577BBC18A399CDA01FFB7"
+     ]
+    },
+    {
+     "id": "82A8E4714591BEA2B9DD778FA7C8D0A3",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "1",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "5BC50CA24013986C16C446A4682FCDF2",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "byte",
+     "default_value": "Miss",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_8",
+   "class": "K2Node_CallFunction",
+   "title": "Register Lane Hit\nTarget is Melodia Rhythm Combat Subsystem",
+   "pos": [
+    950,
+    540
+   ],
+   "function": "RegisterLaneHit",
+   "function_class": "MelodiaRhythmCombatSubsystem",
+   "pins": [
+    {
+     "id": "FCEE31004F1EFFF5496E68B18739D242",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_2.then"
+     ],
+     "connected_to_ids": [
+      "D357CB5E41F455CE4E83CCA5536B28C5"
+     ]
+    },
+    {
+     "id": "BE781CE14A1D4E0C6E1F688A5EE79EAE",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_17.execute"
+     ],
+     "connected_to_ids": [
+      "4A0CD5404A9C003EA37C9D93553372A0"
+     ]
+    },
+    {
+     "id": "BBA22DDF44B83F1FF140248A97D26F96",
+     "name": "self",
+     "direction": "input",
+     "type": "object:MelodiaRhythmCombatSubsystem",
+     "connected_to": [
+      "K2Node_CallFunction_0.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "0805D0804C5577BBC18A399CDA01FFB7"
+     ]
+    },
+    {
+     "id": "B406D76347BDB84160CBC5B26E6D86D2",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "2",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "9BFB77E543EEC9594B32BCB4603C083F",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "byte",
+     "default_value": "Miss",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_9",
+   "class": "K2Node_CallFunction",
+   "title": "Register Lane Hit\nTarget is Melodia Rhythm Combat Subsystem",
+   "pos": [
+    950,
+    740
+   ],
+   "function": "RegisterLaneHit",
+   "function_class": "MelodiaRhythmCombatSubsystem",
+   "pins": [
+    {
+     "id": "96F9E30C42D40FDB63ADDF932DEAC48B",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_3.then"
+     ],
+     "connected_to_ids": [
+      "827414D24DB4CA6DED083BAE30B3BEFB"
+     ]
+    },
+    {
+     "id": "E7A0BC3840A7B2DE56626397988832A3",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_18.execute"
+     ],
+     "connected_to_ids": [
+      "AB218BE246F0AD73EF70D9BD465FB25A"
+     ]
+    },
+    {
+     "id": "0602D743439569071CAD81B2D7D813CB",
+     "name": "self",
+     "direction": "input",
+     "type": "object:MelodiaRhythmCombatSubsystem",
+     "connected_to": [
+      "K2Node_CallFunction_0.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "0805D0804C5577BBC18A399CDA01FFB7"
+     ]
+    },
+    {
+     "id": "F73AC88E48D2F26204BB77891057BE63",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "3",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "07A857684F1489ED34A281BB45B8B77D",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "byte",
+     "default_value": "Miss",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_10",
+   "class": "K2Node_CallFunction",
+   "title": "Handled",
+   "pos": [
+    1250,
+    400
+   ],
+   "function": "Handled",
+   "function_class": "WidgetBlueprintLibrary",
+   "pins": [
+    {
+     "id": "CDB1B272418E6DB055AAA2ADBB9E1E66",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "struct:EventReply",
+     "connected_to": [
+      "K2Node_Select_0.Option 1"
+     ],
+     "connected_to_ids": [
+      "2D93CD1F4BDEEFE6509CEEB1AE849691"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_11",
+   "class": "K2Node_CallFunction",
+   "title": "OR Boolean",
+   "pos": [
+    700,
+    1150
+   ],
+   "function": "BooleanOR",
+   "function_class": "KismetMathLibrary",
+   "pins": [
+    {
+     "id": "F3EF4D174915492E6A4B1F9F0637C1AE",
+     "name": "A",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_2.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "54528F5C46BAD0442FC74C92D0A24B88"
+     ]
+    },
+    {
+     "id": "5040EC4E466CB57FFFD9D882991EB066",
+     "name": "B",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_3.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "E0910B7141E138D9FA90A4931111B203"
+     ]
+    },
+    {
+     "id": "CDB6A18D476D640A2D07BE92D095989B",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_13.A"
+     ],
+     "connected_to_ids": [
+      "EE1AE01C40BE0800CF622986E49134EE"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_12",
+   "class": "K2Node_CallFunction",
+   "title": "OR Boolean",
+   "pos": [
+    700,
+    1300
+   ],
+   "function": "BooleanOR",
+   "function_class": "KismetMathLibrary",
+   "pins": [
+    {
+     "id": "64385DD549808EF9BE2C60820845BF3F",
+     "name": "A",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_4.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "0294B1DA4BE0DBEF96EAC9A004606CA8"
+     ]
+    },
+    {
+     "id": "3C1D0DBD422D5930744330A0D16FA9B0",
+     "name": "B",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_5.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "8357677848B7FC31CF82EB88EA094CE2"
+     ]
+    },
+    {
+     "id": "EC088DD34682972AE7E8219B550D29E3",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_13.B"
+     ],
+     "connected_to_ids": [
+      "B92885E6464DEF8DBA5905AED4A88289"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_13",
+   "class": "K2Node_CallFunction",
+   "title": "OR Boolean",
+   "pos": [
+    900,
+    1220
+   ],
+   "function": "BooleanOR",
+   "function_class": "KismetMathLibrary",
+   "pins": [
+    {
+     "id": "EE1AE01C40BE0800CF622986E49134EE",
+     "name": "A",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_11.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "CDB6A18D476D640A2D07BE92D095989B"
+     ]
+    },
+    {
+     "id": "B92885E6464DEF8DBA5905AED4A88289",
+     "name": "B",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_12.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "EC088DD34682972AE7E8219B550D29E3"
+     ]
+    },
+    {
+     "id": "69CE848048E9599084C01E916F7F9E34",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_Select_0.Index"
+     ],
+     "connected_to_ids": [
+      "0723FE9F48666F34AC9B5EA6D00802BE"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_14",
+   "class": "K2Node_CallFunction",
+   "title": "Unhandled",
+   "pos": [
+    1250,
+    550
+   ],
+   "function": "Unhandled",
+   "function_class": "WidgetBlueprintLibrary",
+   "pins": [
+    {
+     "id": "BBC626834A7A3CDF51C8A5914C754F4B",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "struct:EventReply",
+     "connected_to": [
+      "K2Node_Select_0.Option 0"
+     ],
+     "connected_to_ids": [
+      "9837E8D44C1E983C6596849589A1883E"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_Select_0",
+   "class": "K2Node_Select",
+   "title": "Select",
+   "pos": [
+    1550,
+    450
+   ],
+   "pins": [
+    {
+     "id": "9837E8D44C1E983C6596849589A1883E",
+     "name": "Option 0",
+     "direction": "input",
+     "type": "struct:EventReply",
+     "connected_to": [
+      "K2Node_CallFunction_14.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "BBC626834A7A3CDF51C8A5914C754F4B"
+     ]
+    },
+    {
+     "id": "2D93CD1F4BDEEFE6509CEEB1AE849691",
+     "name": "Option 1",
+     "direction": "input",
+     "type": "struct:EventReply",
+     "connected_to": [
+      "K2Node_CallFunction_10.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "CDB1B272418E6DB055AAA2ADBB9E1E66"
+     ]
+    },
+    {
+     "id": "0723FE9F48666F34AC9B5EA6D00802BE",
+     "name": "Index",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_13.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "69CE848048E9599084C01E916F7F9E34"
+     ]
+    },
+    {
+     "id": "16642AD1455A631191126C94F1E4B384",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "struct:EventReply",
+     "connected_to": [
+      "K2Node_FunctionResult_0.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "49C307A14F33777490B7C884EE43663D"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_VariableGet_0",
+   "class": "K2Node_VariableGet",
+   "title": "Get RhythmHighwayWidget",
+   "pos": [
+    200,
+    1050
+   ],
+   "pins": [
+    {
+     "id": "703FDCC34DB857171515D590219C7C05",
+     "name": "RhythmHighwayWidget",
+     "direction": "output",
+     "type": "object:MelodiaRhythmHUDWidget",
+     "connected_to": [
+      "K2Node_DynamicCast_0.Object"
+     ],
+     "connected_to_ids": [
+      "06D86B2E4D91D3E740FA0D985926BD63"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_DynamicCast_0",
+   "class": "K2Node_DynamicCast",
+   "title": "Cast To WBP_MelodiaRhythmHighway",
+   "pos": [
+    450,
+    1050
+   ],
+   "pins": [
+    {
+     "id": "0BB1101C40F0877B133C1DA06EB5B67D",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_FunctionEntry_0.then"
+     ],
+     "connected_to_ids": [
+      "389DE50E4365849EA95570ABCC0B8ADD"
+     ]
+    },
+    {
+     "id": "FB6FD2714A1AA3A96131DBB5EED5DCB6",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_IfThenElse_0.execute"
+     ],
+     "connected_to_ids": [
+      "1BFC7A2C425C655D1B7F8B9B71FDA271"
+     ]
+    },
+    {
+     "id": "51309D8F447F810DF70692A183672C40",
+     "name": "CastFailed",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_FunctionResult_0.execute"
+     ],
+     "connected_to_ids": [
+      "FD15D4C949B6CD71DE06CB9049E6BE82"
+     ]
+    },
+    {
+     "id": "06D86B2E4D91D3E740FA0D985926BD63",
+     "name": "Object",
+     "direction": "input",
+     "type": "object:Object",
+     "connected_to": [
+      "K2Node_VariableGet_0.RhythmHighwayWidget"
+     ],
+     "connected_to_ids": [
+      "703FDCC34DB857171515D590219C7C05"
+     ]
+    },
+    {
+     "id": "80AF9D9B410924576A6D818A6AA58030",
+     "name": "AsWBP Melodia Rhythm Highway",
+     "direction": "output",
+     "type": "object:WBP_MelodiaRhythmHighway_C",
+     "connected_to": [
+      "K2Node_CallFunction_15.self",
+      "K2Node_CallFunction_16.self",
+      "K2Node_CallFunction_17.self",
+      "K2Node_CallFunction_18.self"
+     ],
+     "connected_to_ids": [
+      "489AE5E14206C032A3EBEBB63EBD9E85",
+      "FADDC2FE434239ADA965BE8D48341416",
+      "545783C44F21308E9DB94CB42AD261F8",
+      "84409875460C6D00D903339C357CF057"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_15",
+   "class": "K2Node_CallFunction",
+   "title": "Set Lane Pressed\nTarget is WBP Melodia Rhythm Highway",
+   "pos": [
+    1400,
+    140
+   ],
+   "function": "SetLanePressed",
+   "function_class": "WBP_MelodiaRhythmHighway_C",
+   "pins": [
+    {
+     "id": "D2A4AA9D4269D2C8D5A2628039B262A3",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_6.then"
+     ],
+     "connected_to_ids": [
+      "00F294DB4CBF3BF9B8C373923D8F34B5"
+     ]
+    },
+    {
+     "id": "7C2A80B04E3DEA28B1F257AF18A63484",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "PulseOnLaneHit.execute"
+     ],
+     "connected_to_ids": [
+      "F02F2A5844D499572DA47CB0B280B117"
+     ]
+    },
+    {
+     "id": "489AE5E14206C032A3EBEBB63EBD9E85",
+     "name": "self",
+     "direction": "input",
+     "type": "object:WBP_MelodiaRhythmHighway_C",
+     "connected_to": [
+      "K2Node_DynamicCast_0.AsWBP Melodia Rhythm Highway"
+     ],
+     "connected_to_ids": [
+      "80AF9D9B410924576A6D818A6AA58030"
+     ]
+    },
+    {
+     "id": "87D72B67432EA9CD9BD77499AC1478BF",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "0",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "5A52ABB449995D397734AD8B517265EF",
+     "name": "bPressed",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_16",
+   "class": "K2Node_CallFunction",
+   "title": "Set Lane Pressed\nTarget is WBP Melodia Rhythm Highway",
+   "pos": [
+    1400,
+    340
+   ],
+   "function": "SetLanePressed",
+   "function_class": "WBP_MelodiaRhythmHighway_C",
+   "pins": [
+    {
+     "id": "2A8FFACF4D511E5AD93C02A129344923",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_7.then"
+     ],
+     "connected_to_ids": [
+      "782C536443A8A2E04B507AAABF132195"
+     ]
+    },
+    {
+     "id": "51302C1942F6F157EA66CBB27239AFE2",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "PulseOnLaneHit.execute"
+     ],
+     "connected_to_ids": [
+      "F02F2A5844D499572DA47CB0B280B117"
+     ]
+    },
+    {
+     "id": "FADDC2FE434239ADA965BE8D48341416",
+     "name": "self",
+     "direction": "input",
+     "type": "object:WBP_MelodiaRhythmHighway_C",
+     "connected_to": [
+      "K2Node_DynamicCast_0.AsWBP Melodia Rhythm Highway"
+     ],
+     "connected_to_ids": [
+      "80AF9D9B410924576A6D818A6AA58030"
+     ]
+    },
+    {
+     "id": "E069332647AD3F6A20833DA10CC24223",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "1",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "254ED55A479E0E5EF597E4A76D8E4792",
+     "name": "bPressed",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_17",
+   "class": "K2Node_CallFunction",
+   "title": "Set Lane Pressed\nTarget is WBP Melodia Rhythm Highway",
+   "pos": [
+    1400,
+    540
+   ],
+   "function": "SetLanePressed",
+   "function_class": "WBP_MelodiaRhythmHighway_C",
+   "pins": [
+    {
+     "id": "4A0CD5404A9C003EA37C9D93553372A0",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_8.then"
+     ],
+     "connected_to_ids": [
+      "BE781CE14A1D4E0C6E1F688A5EE79EAE"
+     ]
+    },
+    {
+     "id": "355825D44BD06A70F252CB805284E9E8",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "PulseOnLaneHit.execute"
+     ],
+     "connected_to_ids": [
+      "F02F2A5844D499572DA47CB0B280B117"
+     ]
+    },
+    {
+     "id": "545783C44F21308E9DB94CB42AD261F8",
+     "name": "self",
+     "direction": "input",
+     "type": "object:WBP_MelodiaRhythmHighway_C",
+     "connected_to": [
+      "K2Node_DynamicCast_0.AsWBP Melodia Rhythm Highway"
+     ],
+     "connected_to_ids": [
+      "80AF9D9B410924576A6D818A6AA58030"
+     ]
+    },
+    {
+     "id": "D330C85C458DF51230F08980C8ED56BB",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "2",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "FD69832B41A6B1A6FC03FDB6502647A8",
+     "name": "bPressed",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_18",
+   "class": "K2Node_CallFunction",
+   "title": "Set Lane Pressed\nTarget is WBP Melodia Rhythm Highway",
+   "pos": [
+    1400,
+    740
+   ],
+   "function": "SetLanePressed",
+   "function_class": "WBP_MelodiaRhythmHighway_C",
+   "pins": [
+    {
+     "id": "AB218BE246F0AD73EF70D9BD465FB25A",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_9.then"
+     ],
+     "connected_to_ids": [
+      "E7A0BC3840A7B2DE56626397988832A3"
+     ]
+    },
+    {
+     "id": "30E758634DBBBB5A63FE66BD177F56C5",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "PulseOnLaneHit.execute"
+     ],
+     "connected_to_ids": [
+      "F02F2A5844D499572DA47CB0B280B117"
+     ]
+    },
+    {
+     "id": "84409875460C6D00D903339C357CF057",
+     "name": "self",
+     "direction": "input",
+     "type": "object:WBP_MelodiaRhythmHighway_C",
+     "connected_to": [
+      "K2Node_DynamicCast_0.AsWBP Melodia Rhythm Highway"
+     ],
+     "connected_to_ids": [
+      "80AF9D9B410924576A6D818A6AA58030"
+     ]
+    },
+    {
+     "id": "AF130D724BE7C7A550D33D941A807E1C",
+     "name": "LaneIndex",
+     "direction": "input",
+     "type": "int",
+     "default_value": "3",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "DF4C8E3042966641D0560DB3FC7A8550",
+     "name": "bPressed",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "true",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  },
+  {
+   "id": "GetAudioPresentation",
+   "class": "K2Node_GetSubsystem",
+   "title": "Melodia Audio Reactive Presentation Subsystem",
+   "pos": [
+    0,
+    1616
+   ],
+   "pins": [
+    {
+     "id": "390C4A42429C4A62A4D51D902697EEB7",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "object:MelodiaAudioReactivePresentationSubsystem",
+     "connected_to": [
+      "PulseOnLaneHit.self"
+     ],
+     "connected_to_ids": [
+      "40256609468B851DB84814A0C9F363DA"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "PulseOnLaneHit",
+   "class": "K2Node_CallFunction",
+   "title": "Pulse Impact\nTarget is Melodia Audio Reactive Presentation Subsystem",
+   "pos": [
+    288,
+    1616
+   ],
+   "function": "PulseImpact",
+   "function_class": "MelodiaAudioReactivePresentationSubsystem",
+   "pins": [
+    {
+     "id": "F02F2A5844D499572DA47CB0B280B117",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_15.then",
+      "K2Node_CallFunction_16.then",
+      "K2Node_CallFunction_17.then",
+      "K2Node_CallFunction_18.then"
+     ],
+     "connected_to_ids": [
+      "7C2A80B04E3DEA28B1F257AF18A63484",
+      "51302C1942F6F157EA66CBB27239AFE2",
+      "355825D44BD06A70F252CB805284E9E8",
+      "30E758634DBBBB5A63FE66BD177F56C5"
+     ]
+    },
+    {
+     "id": "4CD87D524A6A42A7B802BCA3324E5DC7",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_FunctionResult_0.execute"
+     ],
+     "connected_to_ids": [
+      "FD15D4C949B6CD71DE06CB9049E6BE82"
+     ]
+    },
+    {
+     "id": "40256609468B851DB84814A0C9F363DA",
+     "name": "self",
+     "direction": "input",
+     "type": "object:MelodiaAudioReactivePresentationSubsystem",
+     "connected_to": [
+      "GetAudioPresentation.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "390C4A42429C4A62A4D51D902697EEB7"
+     ]
+    },
+    {
+     "id": "470DCE7D44ED75D2DB6EF186BD0033AC",
+     "name": "Strength",
+     "direction": "input",
+     "type": "float",
+     "default_value": "1.000000",
+     "connected_to": [],
+     "connected_to_ids": []
+    }
+   ]
+  }
+ ]
+}

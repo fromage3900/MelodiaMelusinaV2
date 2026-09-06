@@ -19,7 +19,7 @@ Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../
 0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. Do not reopen without evidence. Locks recorded in [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) — confirm standing in `Saved/gate_ledger.json` (last row per gate wins) before citing them.
 1. **Smaller scope — certification only** ([2026-09-06 plan](../P0_INTEGRATION_EXECUTION_PLAN_2026-09-06.md)): a current closed-editor package + one uninterrupted owner-played golden run. No new authorities — no dungeon coordinator/persistence, audio, HUD, or PCG-framework additions. Quarantines stay quarantined.
 2. **Proof backlog (existing paths only):** Starskiff board/move/disembark real-input PIE; music-key → dock Glide transition; dungeon probe sequence (`FirstDungeonGate` → seed run → typed result → exit once → save/restart); lookdev/PCG extension-only pass.
-3. **Claireon:** **PARKED** (disabled in `.uproject` for C1076 PCH). Do not re-enable on the critical path. Monolith stays.
+3. **Claireon:** **LIVE** (owner 2026-09-06 — MCP traffic in the editor log; the PARKED/C1076 claim was stale). Still keep it off the P0 critical path. Monolith stays.
 
 ### P1 — Recruiter sendoffs (NVIDIA withdrawn)
 
@@ -40,7 +40,7 @@ Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../
 - Material Maker / Houdini phases.
 - Ornament store screenshots + Gumroad (`store_live` stays false until then).
 - Pillar hero captures when editor is free after P0.
-- Claireon re-enable only after P0 clears and PCH heap is fixed.
+- Claireon work stays off the P0 critical path.
 
 ## Explicitly not Now
 
@@ -48,7 +48,7 @@ Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../
 - Deletes, master architecture rewrites, external publish without approval.
 - Writes under `Content/_PROJECT/`.
 - NVIDIA applications.
-- Reopening Claireon on the P0 critical path.
+- Putting Claireon MCP work on the P0 critical path.
 - Citing withdrawn MATH 98.8% figures in any outgoing draft.
 
 ## How to update from phone

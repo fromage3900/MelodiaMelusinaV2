@@ -100,6 +100,20 @@ def check_wiring():
         return 2
     graph = monolith("blueprint_query", {"action": "get_graph_data", "asset_path": path})
     blob = json.dumps(graph)
+    # Key overrides live on function graphs, not the default graph: a census of
+    # the default graph alone reports a live 4-lane contract as UNWIRED
+    # (observed 2026-09-06: OnKeyDown/OnKeyUp missed). Census the overrides too.
+    try:
+        listed = monolith("blueprint_query", {"action": "list_graphs", "asset_path": path})
+        listed = json.loads(listed) if isinstance(listed, str) else listed
+        for g in listed.get("graphs", []):
+            if g.get("name") in ("OnKeyDown", "OnKeyUp"):
+                extra = monolith("blueprint_query", {"action": "get_graph_data",
+                                                     "asset_path": path,
+                                                     "graph_name": g["name"]})
+                blob += json.dumps(extra)
+    except Exception:
+        pass
     report = {
         "status": "UNKNOWN",
         "battle_ui": path,
@@ -107,7 +121,8 @@ def check_wiring():
         "has_registerlanehit": "RegisterLaneHit" in blob,
         "has_bindrhythmhud": "BindRhythmHUD" in blob,
         "has_pushhighway": "PushHighwayToHUD" in blob,
-        "keys_found": [k for k in ["Q", "W", "O", "P", "D", "F", "J", "K"] if ("\"%s\"" % k) in blob],
+        "keys_found": [k for k in ["Q", "W", "O", "P", "D", "F", "J", "K"]
+                       if ('"%s"' % k) in blob or ('"default_value": "%s"' % k) in blob],
         "uses_enhanced_input": "InputAction" in blob and ("UInputAction" in blob or "InputAction" in blob),
     }
     if report["has_onkeydown"] and report["has_registerlanehit"]:
@@ -226,6 +241,10 @@ def do_run(args):
         damage_after = snapshot_damage(dict(v.split(":", 1) for v in args.vars)) if args.vars else {}
         report["damage_before"] = damage
         report["damage_after"] = damage_after
+        # Stop the run session BEFORE the clip: capture_pie_movement_clip
+        # refuses while any PIE session is active, and a clip failure must
+        # not orphan the run session (observed 2026-09-06).
+        monolith("editor_query", {"action": "stop_pie_smoke", "session_id": session_id})
         if args.capture_clip:
             clip = monolith("editor_query", {
                 "action": "capture_pie_movement_clip",
@@ -237,7 +256,6 @@ def do_run(args):
             })
             report["clip_session"] = clip.get("session_id")
         report["status"] = "COMPLETE"
-        monolith("editor_query", {"action": "stop_pie_smoke", "session_id": session_id})
     else:
         report["poll"] = state
         monolith("editor_query", {"action": "stop_pie_smoke", "session_id": session_id})

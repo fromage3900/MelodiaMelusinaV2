@@ -1,0 +1,1780 @@
+{
+  "records": [
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_Camera",
+      "name": "BP_Camera",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 2,
+      "nodes": 4,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase",
+      "name": "BP_BattleBase",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "RemoveBattle"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OverlapStarted"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "RemoveBattle",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "DisableEnemyUnits",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "SpawnEnemyUnits",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "DisablePlayerUnits",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "SpawnPlayerUnits",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "InitUnits",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "AddActionTime",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnEnemyUnitDiedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnPlayerUnitDiedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "InitPlayerSpawnLocations",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "InitBattle",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Flee",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "InitPlayerUnit",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "DropUsableItems",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "DropMiscItems",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OverlapStarted",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "DropEquipment",
+          "wired": true
+        }
+      ],
+      "graphs": 7,
+      "nodes": 321,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase",
+      "name": "BP_BattleTransitionBase",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "StartTransition",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 4,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController",
+      "name": "BP_BattleController",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "InitBattle",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "SwitchToBattleMode",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "StartTransition",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnTransitionEndedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "SwitchToExploreMode",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "StartBattle",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "AdjustCamera",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "SetReadyUnits",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnUnitsTurnEnded",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnTurnEndedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnUnitsTurnStarted",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Attack",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnBattleOverHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "PlayerWon",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "EnemyWon",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnBattleOver",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "MeleeAttack",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "RangeAttack",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnProjectileHitHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Flee",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnConfirmedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowItemInventory",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemSelectedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UseItem",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemUsedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemUseCancelledHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemUsed",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemCancelled",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowSkills",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillUseCancelledHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillUsed",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UseSkill",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillCancelled",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillSelectedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnManaNotEnoughConfirmed",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillUseFinished",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "EnemyPrepareForSkill",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "EnemyUseSkill",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnEnemySkillUsedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UpdateUnitBattleDetails",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "PlayVictoryAnimation",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnContinueClickedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "AddUsableItemsToPlayerInventory",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowLeveledUpUnit",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnLevelUpContinueClickedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnUnitMovedToTargetHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnUnitMovedBackHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "PlayBattleTheme",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "PlayExploreTheme",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnDeadUnitSelectedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnDeadUnitItemCancelled",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "AddMiscItemsToPlayerInventory",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "AddEquipmentToPlayerInventory",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "IncreaseTurnCount",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ChangeMapForBattle",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnBattleLevelTransitionEndedHandler",
+          "wired": true
+        }
+      ],
+      "graphs": 15,
+      "nodes": 950,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DamageText",
+      "name": "BP_DamageText",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnAnimationFinishedHandler",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 21,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_FixedEnemyBattleBase",
+      "name": "BP_FixedEnemyBattleBase",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 4,
+      "nodes": 10,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_BattleSkillBase",
+      "name": "BP_BattleSkillBase",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_SkillBase.BP_SkillBase_C'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "UseSkillOnNotify"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillAnimationEnded"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "UseBattleSkillInExplore",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ApplyBuffs",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UseSkillOnNotify",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "PlaySkillAnimation",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillAnimationEnded",
+          "wired": false
+        }
+      ],
+      "graphs": 3,
+      "nodes": 75,
+      "error": null,
+      "parent_class": "BP_SkillBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_UnitSpawnLocation",
+      "name": "BP_UnitSpawnLocation",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Init",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnBattleDestroyedHandler",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 6,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_EnemySpawnLocation",
+      "name": "BP_EnemySpawnLocation",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_UnitSpawnLocation.BP_UnitSpawnLocation_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 2,
+      "nodes": 1,
+      "error": null,
+      "parent_class": "BP_UnitSpawnLocation_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_PlayerSpawnLocation",
+      "name": "BP_PlayerSpawnLocation",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_UnitSpawnLocation.BP_UnitSpawnLocation_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 2,
+      "nodes": 1,
+      "error": null,
+      "parent_class": "BP_UnitSpawnLocation_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OneTimeBattle",
+      "name": "BP_OneTimeBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_FixedEnemyBattleBase.BP_FixedEnemyBattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event RemoveBattle",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "BndEvt__PlayerDetector_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event OverlapStarted",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 32,
+      "error": null,
+      "parent_class": "BP_FixedEnemyBattleBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_FadeBattleLevelTransition",
+      "name": "BP_FadeBattleLevelTransition",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase.BP_BattleTransitionBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event StartTransition",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 22,
+      "error": null,
+      "parent_class": "BP_BattleTransitionBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_InstantBattleTransition",
+      "name": "BP_InstantBattleTransition",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase.BP_BattleTransitionBase_C'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 2,
+      "nodes": 5,
+      "error": null,
+      "parent_class": "BP_BattleTransitionBase_C"
+    },
+    {
+      "path": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaBattleBridge",
+      "name": "BP_MelodiaBattleBridge",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.BlueprintFunctionLibrary'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 0,
+      "nodes": 0,
+      "error": null,
+      "parent_class": "BlueprintFunctionLibrary"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DynamicEnemyBattleBase",
+      "name": "BP_DynamicEnemyBattleBase",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "StartBattle",
+          "wired": true
+        }
+      ],
+      "graphs": 4,
+      "nodes": 16,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_InteractionBattle",
+      "name": "BP_InteractionBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DynamicEnemyBattleBase.BP_DynamicEnemyBattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event RemoveBattle",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 9,
+      "error": null,
+      "parent_class": "BP_DynamicEnemyBattleBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_FadeBattleTransition",
+      "name": "BP_FadeBattleTransition",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase.BP_BattleTransitionBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event StartTransition",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 21,
+      "error": null,
+      "parent_class": "BP_BattleTransitionBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BossCameraShake",
+      "name": "BP_BossCameraShake",
+      "parent": "/Script/CoreUObject.Class'/Script/EngineCameras.LegacyCameraShake'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 1,
+      "nodes": 0,
+      "error": null,
+      "parent_class": "LegacyCameraShake"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BossTransition",
+      "name": "BP_BossTransition",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BattleTransition/BP_BattleTransitionBase.BP_BattleTransitionBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event StartTransition",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "BossFallFromTheSky",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 38,
+      "error": null,
+      "parent_class": "BP_BattleTransitionBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_PermanentBattle",
+      "name": "BP_PermanentBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_FixedEnemyBattleBase.BP_FixedEnemyBattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event RemoveBattle",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "BndEvt__PlayerDetector_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnGameStateChangedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "StartBattleInRandomTime",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event OverlapStarted",
+          "wired": true
+        }
+      ],
+      "graphs": 3,
+      "nodes": 75,
+      "error": null,
+      "parent_class": "BP_FixedEnemyBattleBase_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OffLevelBattleController",
+      "name": "BP_OffLevelBattleController",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController.BP_BattleController_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event SwitchToExploreMode",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event SwitchToBattleMode",
+          "wired": true
+        }
+      ],
+      "graphs": 4,
+      "nodes": 44,
+      "error": null,
+      "parent_class": "BP_BattleController_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_OffLevelBattle",
+      "name": "BP_OffLevelBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_DynamicEnemyBattleBase.BP_DynamicEnemyBattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event RemoveBattle",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 23,
+      "error": null,
+      "parent_class": "BP_DynamicEnemyBattleBase_C"
+    },
+    {
+      "path": "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle_Hub",
+      "name": "BP_MelodySlimeBattle_Hub",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 4,
+      "nodes": 10,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle",
+      "name": "BP_MelodySlimeBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/_ThirdParty/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 4,
+      "nodes": 10,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/Melodia/_PROJECT/Blueprints/Gameplay/BP_RhythmHUD",
+      "name": "BP_RhythmHUD",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_IfThenElse_0",
+          "title": "Branch"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_VariableSet_0",
+          "title": "Set BeatRingScale"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_VariableSet_1",
+          "title": "Set BeatRingOpacity"
+        },
+        {
+          "graph": "UpdateBeatIndicator",
+          "id": "K2Node_CallFunction_0",
+          "title": "Print String"
+        },
+        {
+          "graph": "UpdateBeatIndicator",
+          "id": "K2Node_CallFunction_1",
+          "title": "Pulse Beat"
+        },
+        {
+          "graph": "ShowAccuracyPopup",
+          "id": "K2Node_CallFunction_0",
+          "title": "Print String"
+        },
+        {
+          "graph": "ResetCombo",
+          "id": "K2Node_CallFunction_0",
+          "title": "Print String"
+        }
+      ],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 7,
+      "nodes": 23,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/Melodia/Blueprints/Battle/BP_Melodia_RhythmBattle",
+      "name": "BP_Melodia_RhythmBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/_ThirdParty/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 2,
+      "nodes": 6,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/Melodia/Blueprints/Battle/BP_Melodia_GameMode",
+      "name": "BP_Melodia_GameMode",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaGameMode'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 2,
+      "nodes": 3,
+      "error": null,
+      "parent_class": "MelodiaGameMode"
+    },
+    {
+      "path": "/Game/MelodiaIntegration/UI/BP_MelodiaRhythmPrompt",
+      "name": "BP_MelodiaRhythmPrompt",
+      "parent": "/Script/CoreUObject.Class'/Script/UMG.UserWidget'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 2,
+      "nodes": 9,
+      "error": null,
+      "parent_class": "UserWidget"
+    },
+    {
+      "path": "/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway",
+      "name": "WBP_MelodiaRhythmHighway",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaRhythmHUDWidget'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 2,
+      "nodes": 21,
+      "error": null,
+      "parent_class": "MelodiaRhythmHUDWidget"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BattleUI",
+      "name": "BP_BattleUI",
+      "parent": "/Script/CoreUObject.Class'/Script/UMG.UserWidget'",
+      "dead": [
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_0",
+          "title": "Set Player Unit UIList"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_2",
+          "title": "Play Animation"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_56",
+          "title": "Play Animation"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_3",
+          "title": "Delay"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_4",
+          "title": "Remove from Parent"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_25",
+          "title": "Play Animation"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_28",
+          "title": "Show Boss UI"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_1",
+          "title": "Play Animation"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_18",
+          "title": "Create Widget"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_21",
+          "title": "Add to Viewport"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_39",
+          "title": "Set Visibility"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_40",
+          "title": "Create Widget"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_46",
+          "title": "Add to Viewport"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_47",
+          "title": "Set Visibility"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_58",
+          "title": "Create Widget"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_59",
+          "title": "Add to Viewport"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_CallFunction_60",
+          "title": "Set Visibility"
+        }
+      ],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "ShowBattleUI",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "HideBattleUI",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "HideUsableItemInventory",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowUsableItemInventory",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemSelectedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UseItem",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemCancelledHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "HideItemsActionButtons",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemUsedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnItemUseCancelledHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UnbindAllItemEvents",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowSkills",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UnbindAllSkillEvents",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillCancelledHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillSelectedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "HideSkills",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "HideSkillActionButtons",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillUsedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnSkillUseCancelledHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnUnitHasEnoughMP",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowUnitBattleDetails",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "HideUnitBattleDetails",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UpdateAttackingUnitBattleDetails",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UpdateTargetUnitBattleDetails",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowBossUI",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "OnBossDiedHandler",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UpdateTurnOrderList",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "InitTurnOrderUI",
+          "wired": true
+        }
+      ],
+      "graphs": 3,
+      "nodes": 243,
+      "error": null,
+      "parent_class": "UserWidget"
+    },
+    {
+      "path": "/Game/MelodiaIntegration/UI/BP_MelodiaBattleUI",
+      "name": "BP_MelodiaBattleUI",
+      "parent": "/Script/UMG.WidgetBlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_BattleUI.BP_BattleUI_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 30,
+      "error": null,
+      "parent_class": "BP_BattleUI_C"
+    },
+    {
+      "path": "/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UnitBattleDetails",
+      "name": "BP_UnitBattleDetails",
+      "parent": "/Script/CoreUObject.Class'/Script/UMG.UserWidget'",
+      "dead": [],
+      "empty_events": [],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "UpdateUnitDetails",
+          "wired": true
+        }
+      ],
+      "graphs": 1,
+      "nodes": 45,
+      "error": null,
+      "parent_class": "UserWidget"
+    },
+    {
+      "path": "/Game/Melodia/UI/WBP_Battle_Results",
+      "name": "WBP_Battle_Results",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaBattleResultsWidget'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 1,
+      "nodes": 3,
+      "error": null,
+      "parent_class": "MelodiaBattleResultsWidget"
+    },
+    {
+      "path": "/Game/Melodia/UI/WBP_Battle_Rhythm",
+      "name": "WBP_Battle_Rhythm",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaRhythmHUDWidget'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "BndEvt__WBP_Battle_Rhythm_MenuOpenButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "BndEvt__WBP_Battle_Rhythm_MenuOpenButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature",
+          "wired": false
+        }
+      ],
+      "graphs": 1,
+      "nodes": 20,
+      "error": null,
+      "parent_class": "MelodiaRhythmHUDWidget"
+    },
+    {
+      "path": "/Game/Melodia/UI/WBP_Battle_Mobile",
+      "name": "WBP_Battle_Mobile",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaMobileHUD'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 1,
+      "nodes": 3,
+      "error": null,
+      "parent_class": "MelodiaMobileHUD"
+    },
+    {
+      "path": "/Game/Melodia/UI/BP_MelodiaUnitBattleDetails",
+      "name": "BP_MelodiaUnitBattleDetails",
+      "parent": "/Script/UMG.WidgetBlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/UI/BP_UnitBattleDetails.BP_UnitBattleDetails_C'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 1,
+      "nodes": 3,
+      "error": null,
+      "parent_class": "BP_UnitBattleDetails_C"
+    },
+    {
+      "path": "/Game/Melodia/Blueprints/WBP_RhythmHUD",
+      "name": "WBP_RhythmHUD",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaRhythmHUDWidget'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowPendingRating",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UpdateCombo",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 40,
+      "error": null,
+      "parent_class": "MelodiaRhythmHUDWidget"
+    },
+    {
+      "path": "/Game/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle_Hub",
+      "name": "BP_MelodySlimeBattle_Hub",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 4,
+      "nodes": 10,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle",
+      "name": "BP_MelodySlimeBattle",
+      "parent": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleBase.BP_BattleBase_C'",
+      "dead": [],
+      "empty_events": [],
+      "events": [],
+      "graphs": 4,
+      "nodes": 10,
+      "error": null,
+      "parent_class": "BP_BattleBase_C"
+    },
+    {
+      "path": "/Game/_PROJECT/Blueprints/Gameplay/BP_RhythmHUD",
+      "name": "BP_RhythmHUD",
+      "parent": "/Script/CoreUObject.Class'/Script/Engine.Actor'",
+      "dead": [
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_IfThenElse_0",
+          "title": "Branch"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_VariableSet_0",
+          "title": "Set BeatRingScale"
+        },
+        {
+          "graph": "EventGraph",
+          "id": "K2Node_VariableSet_1",
+          "title": "Set BeatRingOpacity"
+        },
+        {
+          "graph": "UpdateBeatIndicator",
+          "id": "K2Node_CallFunction_0",
+          "title": "Print String"
+        },
+        {
+          "graph": "UpdateBeatIndicator",
+          "id": "K2Node_CallFunction_1",
+          "title": "Pulse Beat"
+        },
+        {
+          "graph": "ShowAccuracyPopup",
+          "id": "K2Node_CallFunction_0",
+          "title": "Print String"
+        },
+        {
+          "graph": "ResetCombo",
+          "id": "K2Node_CallFunction_0",
+          "title": "Print String"
+        }
+      ],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event BeginPlay",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event ActorBeginOverlap",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": false
+        }
+      ],
+      "graphs": 7,
+      "nodes": 28,
+      "error": null,
+      "parent_class": "Actor"
+    },
+    {
+      "path": "/Game/Blueprints/WBP_RhythmHUD",
+      "name": "WBP_RhythmHUD",
+      "parent": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaRhythmHUDWidget'",
+      "dead": [],
+      "empty_events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct"
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct"
+        }
+      ],
+      "events": [
+        {
+          "graph": "EventGraph",
+          "name": "Event PreConstruct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Construct",
+          "wired": false
+        },
+        {
+          "graph": "EventGraph",
+          "name": "Event Tick",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "ShowPendingRating",
+          "wired": true
+        },
+        {
+          "graph": "EventGraph",
+          "name": "UpdateCombo",
+          "wired": true
+        }
+      ],
+      "graphs": 2,
+      "nodes": 40,
+      "error": null,
+      "parent_class": "MelodiaRhythmHUDWidget"
+    }
+  ],
+  "shadowed": [],
+  "duplicates": {
+    "BP_MelodySlimeBattle_Hub": [
+      "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle_Hub",
+      "/Game/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle_Hub"
+    ],
+    "BP_MelodySlimeBattle": [
+      "/Game/Melodia/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle",
+      "/Game/_PROJECT/Characters/Enemies/BP_MelodySlimeBattle"
+    ],
+    "BP_RhythmHUD": [
+      "/Game/Melodia/_PROJECT/Blueprints/Gameplay/BP_RhythmHUD",
+      "/Game/_PROJECT/Blueprints/Gameplay/BP_RhythmHUD"
+    ],
+    "WBP_RhythmHUD": [
+      "/Game/Melodia/Blueprints/WBP_RhythmHUD",
+      "/Game/Blueprints/WBP_RhythmHUD"
+    ]
+  }
+}

@@ -19,7 +19,7 @@ One-liner: **agents accelerate Melodia; you keep art direction, story, and publi
 2. **P1 recruiter sendoffs** — OpenCode first, then Certain Affinity / Velan / Infold. **NVIDIA withdrawn.** See [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../Career/RECRUITER_SENDOFFS_2026-08-25.md).
 3. Keep PhoneOps docs accurate as the mobile SSOT entry.
 4. Website/deploy honesty: `_github_deploy/` until `my-site-clean/` is explicitly promoted.
-5. **P3 only when labeled** — Claireon parked; Nemotron only if editor-free.
+5. **P3 only when labeled** — Claireon live (owner 2026-09-06); Nemotron only if editor-free.
 
 ## Milestones (compressed)
 
@@ -29,7 +29,7 @@ One-liner: **agents accelerate Melodia; you keep art direction, story, and publi
 | Historical shipping gates (runtime/save/repeat/package) | PASS rows exist | Ledger — not current P0 exit |
 | Portfolio / recruiter sendoff | Active P1 | OpenCode → Toronto studios |
 | Env / Blender / PCG platform | Infra when unblocks P0/P1 | Not the north star |
-| Claireon / Nemotron / MCP R&D | P3 scoped | Claireon disabled (C1076) |
+| Claireon / Nemotron / MCP R&D | P3 scoped | Claireon live (owner 2026-09-06) |
 
 ## Open decisions
 
@@ -39,7 +39,7 @@ Track here until locked in `Docs/AgentMemory/Decisions.md` or `_DECISION_LOG.md`
 |---|---|---|
 | Website lane | Keep `_github_deploy/` vs promote `my-site-clean/` | Favor `_github_deploy/` until explicit promotion |
 | NVIDIA applications | WITHDRAWN | Owner 2026-08-25 |
-| Claireon re-enable | After P0 + PCH fix | Do not put on critical path |
+| Claireon scope | Live; keep off P0 critical path | Owner 2026-09-06 |
 | Store / Gumroad | `store_live` false until screenshots + upload | Publish is Red |
 
 ## Success checks (this week)

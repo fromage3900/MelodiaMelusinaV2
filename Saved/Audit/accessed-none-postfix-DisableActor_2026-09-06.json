@@ -1,0 +1,653 @@
+{
+ "format_version": 1,
+ "asset_path": "/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGFunctionLibrary",
+ "graph_name": "DisableActor",
+ "graph_type": "function",
+ "include_hidden_pins": false,
+ "nodes": [
+  {
+   "id": "K2Node_FunctionEntry_0",
+   "class": "K2Node_FunctionEntry",
+   "title": "DisableActor",
+   "pos": [
+    0,
+    0
+   ],
+   "pins": [
+    {
+     "id": "B6CD9E254EB444A222D311B5824E789E",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "B45064CC45C8B4BF1B80FABA23E466FD",
+     "name": "actor",
+     "direction": "output",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_3.InputPin"
+     ],
+     "connected_to_ids": [
+      "0E84C548419F5BEBB9FC9EBB80156485"
+     ]
+    },
+    {
+     "id": "CA3EF6084666081C253FEF83AFB7E7F1",
+     "name": "isDisabled",
+     "direction": "output",
+     "type": "bool",
+     "connected_to": [
+      "K2Node_Knot_2.InputPin"
+     ],
+     "connected_to_ids": [
+      "47B7BA404CD6FBB960C883969999441F"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_4",
+   "class": "K2Node_CallFunction",
+   "title": "Set Actor Hidden In Game\nTarget is Actor",
+   "pos": [
+    283,
+    -16
+   ],
+   "function": "SetActorHiddenInGame",
+   "function_class": "Actor",
+   "pins": [
+    {
+     "id": "D2D104FA41F96604FBBC4DB569BEC48A",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "0EE62EB24BFEB3B15251DEA8E494477F",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_19.execute"
+     ],
+     "connected_to_ids": [
+      "CFE1CB624AABD7C98C9863848328CAD0"
+     ]
+    },
+    {
+     "id": "45794B534E5BFDA83AB964A4DDFF2FBD",
+     "name": "self",
+     "direction": "input",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_3.OutputPin"
+     ],
+     "connected_to_ids": [
+      "95FDCB0B4947274AF011289C5470B3E6"
+     ]
+    },
+    {
+     "id": "2BED5B144AB96D3EE727518F2B538266",
+     "name": "bNewHidden",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_Knot_2.OutputPin"
+     ],
+     "connected_to_ids": [
+      "6731BEA74394A95427BFE0BBB5ACC7BA"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_19",
+   "class": "K2Node_CallFunction",
+   "title": "Set Actor Enable Collision\nTarget is Actor",
+   "pos": [
+    641,
+    -16
+   ],
+   "function": "SetActorEnableCollision",
+   "function_class": "Actor",
+   "pins": [
+    {
+     "id": "CFE1CB624AABD7C98C9863848328CAD0",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_4.then"
+     ],
+     "connected_to_ids": [
+      "0EE62EB24BFEB3B15251DEA8E494477F"
+     ]
+    },
+    {
+     "id": "D0AD4857416950CB8745299B4BEF0822",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_9.execute"
+     ],
+     "connected_to_ids": [
+      "285CB06A491651C6A6BDA99595614084"
+     ]
+    },
+    {
+     "id": "CAA6F7E94091C5143EEE439203B423C8",
+     "name": "self",
+     "direction": "input",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_4.OutputPin"
+     ],
+     "connected_to_ids": [
+      "95FDCB0B4947274AF011289C5470B3E6"
+     ]
+    },
+    {
+     "id": "2CDF9D414DCDDB7C86EDF38F4C8FBFFC",
+     "name": "bNewActorEnableCollision",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_10.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "B49D433146146C9EC84B13A1732C9DD4"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_Knot_2",
+   "class": "K2Node_Knot",
+   "title": "Reroute Node",
+   "pos": [
+    160,
+    219
+   ],
+   "pins": [
+    {
+     "id": "47B7BA404CD6FBB960C883969999441F",
+     "name": "InputPin",
+     "direction": "input",
+     "type": "bool",
+     "connected_to": [
+      "K2Node_FunctionEntry_0.isDisabled"
+     ],
+     "connected_to_ids": [
+      "CA3EF6084666081C253FEF83AFB7E7F1"
+     ]
+    },
+    {
+     "id": "6731BEA74394A95427BFE0BBB5ACC7BA",
+     "name": "OutputPin",
+     "direction": "output",
+     "type": "bool",
+     "connected_to": [
+      "K2Node_CallFunction_4.bNewHidden",
+      "K2Node_CallFunction_10.A"
+     ],
+     "connected_to_ids": [
+      "2BED5B144AB96D3EE727518F2B538266",
+      "D3FAA44445E342E343A92899445FDB7C"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_10",
+   "class": "K2Node_CallFunction",
+   "title": "NOT Boolean",
+   "pos": [
+    357,
+    208
+   ],
+   "function": "Not_PreBool",
+   "function_class": "KismetMathLibrary",
+   "pins": [
+    {
+     "id": "D3FAA44445E342E343A92899445FDB7C",
+     "name": "A",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_Knot_2.OutputPin"
+     ],
+     "connected_to_ids": [
+      "6731BEA74394A95427BFE0BBB5ACC7BA"
+     ]
+    },
+    {
+     "id": "B49D433146146C9EC84B13A1732C9DD4",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_CallFunction_19.bNewActorEnableCollision",
+      "K2Node_Knot_1.InputPin"
+     ],
+     "connected_to_ids": [
+      "2CDF9D414DCDDB7C86EDF38F4C8FBFFC",
+      "EC6D35754135B106BC5DA1B68DE28BCB"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_Knot_1",
+   "class": "K2Node_Knot",
+   "title": "Reroute Node",
+   "pos": [
+    832,
+    219
+   ],
+   "pins": [
+    {
+     "id": "EC6D35754135B106BC5DA1B68DE28BCB",
+     "name": "InputPin",
+     "direction": "input",
+     "type": "bool",
+     "connected_to": [
+      "K2Node_CallFunction_10.ReturnValue"
+     ],
+     "connected_to_ids": [
+      "B49D433146146C9EC84B13A1732C9DD4"
+     ]
+    },
+    {
+     "id": "18E6B4BC4C96A32E4D1B80B12D2A5F95",
+     "name": "OutputPin",
+     "direction": "output",
+     "type": "bool",
+     "connected_to": [
+      "K2Node_CallFunction_9.bEnabled"
+     ],
+     "connected_to_ids": [
+      "0E60124640992FDC83E4A9A6B227F2D2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_CallFunction_9",
+   "class": "K2Node_CallFunction",
+   "title": "Set Actor Tick Enabled\nTarget is Actor",
+   "pos": [
+    976,
+    -16
+   ],
+   "function": "SetActorTickEnabled",
+   "function_class": "Actor",
+   "pins": [
+    {
+     "id": "285CB06A491651C6A6BDA99595614084",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "K2Node_CallFunction_19.then"
+     ],
+     "connected_to_ids": [
+      "D0AD4857416950CB8745299B4BEF0822"
+     ]
+    },
+    {
+     "id": "86F3EA3845FDA17FDD41508371557B02",
+     "name": "then",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "F34EA0EA474FEE408A6BA6B27B8AD8C5",
+     "name": "self",
+     "direction": "input",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_0.OutputPin"
+     ],
+     "connected_to_ids": [
+      "95FDCB0B4947274AF011289C5470B3E6"
+     ]
+    },
+    {
+     "id": "0E60124640992FDC83E4A9A6B227F2D2",
+     "name": "bEnabled",
+     "direction": "input",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [
+      "K2Node_Knot_1.OutputPin"
+     ],
+     "connected_to_ids": [
+      "18E6B4BC4C96A32E4D1B80B12D2A5F95"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_Knot_3",
+   "class": "K2Node_Knot",
+   "title": "Reroute Node",
+   "pos": [
+    160,
+    160
+   ],
+   "pins": [
+    {
+     "id": "0E84C548419F5BEBB9FC9EBB80156485",
+     "name": "InputPin",
+     "direction": "input",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_FunctionEntry_0.actor"
+     ],
+     "connected_to_ids": [
+      "B45064CC45C8B4BF1B80FABA23E466FD"
+     ]
+    },
+    {
+     "id": "95FDCB0B4947274AF011289C5470B3E6",
+     "name": "OutputPin",
+     "direction": "output",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_CallFunction_4.self",
+      "K2Node_Knot_4.InputPin"
+     ],
+     "connected_to_ids": [
+      "45794B534E5BFDA83AB964A4DDFF2FBD",
+      "0E84C548419F5BEBB9FC9EBB80156485"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_Knot_4",
+   "class": "K2Node_Knot",
+   "title": "Reroute Node",
+   "pos": [
+    450,
+    160
+   ],
+   "pins": [
+    {
+     "id": "0E84C548419F5BEBB9FC9EBB80156485",
+     "name": "InputPin",
+     "direction": "input",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_3.OutputPin"
+     ],
+     "connected_to_ids": [
+      "95FDCB0B4947274AF011289C5470B3E6"
+     ]
+    },
+    {
+     "id": "95FDCB0B4947274AF011289C5470B3E6",
+     "name": "OutputPin",
+     "direction": "output",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_0.InputPin",
+      "K2Node_CallFunction_19.self"
+     ],
+     "connected_to_ids": [
+      "0E84C548419F5BEBB9FC9EBB80156485",
+      "CAA6F7E94091C5143EEE439203B423C8"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "K2Node_Knot_0",
+   "class": "K2Node_Knot",
+   "title": "Reroute Node",
+   "pos": [
+    832,
+    160
+   ],
+   "pins": [
+    {
+     "id": "0E84C548419F5BEBB9FC9EBB80156485",
+     "name": "InputPin",
+     "direction": "input",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_Knot_4.OutputPin"
+     ],
+     "connected_to_ids": [
+      "95FDCB0B4947274AF011289C5470B3E6"
+     ]
+    },
+    {
+     "id": "95FDCB0B4947274AF011289C5470B3E6",
+     "name": "OutputPin",
+     "direction": "output",
+     "type": "object:Actor",
+     "connected_to": [
+      "K2Node_CallFunction_9.self"
+     ],
+     "connected_to_ids": [
+      "F34EA0EA474FEE408A6BA6B27B8AD8C5"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "EdGraphNode_Comment_0",
+   "class": "EdGraphNode_Comment",
+   "title": "Disable / Enable actor",
+   "pos": [
+    -45,
+    -103
+   ],
+   "comment": "Disable / Enable actor",
+   "pins": [],
+   "comment_size_x": 1264,
+   "comment_size_y": 400,
+   "comment_color": "(1.000,1.000,1.000,1.000)"
+  },
+  {
+   "id": "IsValid_GUARD_S6",
+   "class": "K2Node_CallFunction",
+   "title": "Is Valid",
+   "pos": [
+    0,
+    528
+   ],
+   "function": "IsValid",
+   "function_class": "KismetSystemLibrary",
+   "pins": [
+    {
+     "id": "E36E68564D25C0964378B49CD26030F3",
+     "name": "Object",
+     "direction": "input",
+     "type": "object:Object",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "A519A3E64D4E25AF9BDE589464E787B1",
+     "name": "ReturnValue",
+     "direction": "output",
+     "type": "bool",
+     "default_value": "false",
+     "connected_to": [],
+     "connected_to_ids": []
+    },
+    {
+     "id": "0B7D9AF44BE0082D92D399AF65E947CB",
+     "name": "Is Not Valid",
+     "direction": "output",
+     "type": "exec",
+     "connected_to": [
+      "Return_S6.execute"
+     ],
+     "connected_to_ids": [
+      "51B2B4D441A8C297D317B9A6F12E2D3A"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Return_S6",
+   "class": "K2Node_FunctionResult",
+   "title": "Return Node",
+   "pos": [
+    0,
+    528
+   ],
+   "pins": [
+    {
+     "id": "51B2B4D441A8C297D317B9A6F12E2D3A",
+     "name": "execute",
+     "direction": "input",
+     "type": "exec",
+     "connected_to": [
+      "IsValid_GUARD_S6.Is Not Valid"
+     ],
+     "connected_to_ids": [
+      "0B7D9AF44BE0082D92D399AF65E947CB"
+     ]
+    }
+   ]
+  }
+ ],
+ "connections": [
+  {
+   "from_node": "K2Node_FunctionEntry_0",
+   "from_pin": "actor",
+   "to_node": "K2Node_Knot_3",
+   "to_pin": "InputPin",
+   "from_pin_id": "B45064CC45C8B4BF1B80FABA23E466FD",
+   "to_pin_id": "0E84C548419F5BEBB9FC9EBB80156485"
+  },
+  {
+   "from_node": "K2Node_FunctionEntry_0",
+   "from_pin": "isDisabled",
+   "to_node": "K2Node_Knot_2",
+   "to_pin": "InputPin",
+   "from_pin_id": "CA3EF6084666081C253FEF83AFB7E7F1",
+   "to_pin_id": "47B7BA404CD6FBB960C883969999441F"
+  },
+  {
+   "from_node": "K2Node_CallFunction_4",
+   "from_pin": "then",
+   "to_node": "K2Node_CallFunction_19",
+   "to_pin": "execute",
+   "from_pin_id": "0EE62EB24BFEB3B15251DEA8E494477F",
+   "to_pin_id": "CFE1CB624AABD7C98C9863848328CAD0"
+  },
+  {
+   "from_node": "K2Node_CallFunction_19",
+   "from_pin": "then",
+   "to_node": "K2Node_CallFunction_9",
+   "to_pin": "execute",
+   "from_pin_id": "D0AD4857416950CB8745299B4BEF0822",
+   "to_pin_id": "285CB06A491651C6A6BDA99595614084"
+  },
+  {
+   "from_node": "K2Node_Knot_2",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_CallFunction_4",
+   "to_pin": "bNewHidden",
+   "from_pin_id": "6731BEA74394A95427BFE0BBB5ACC7BA",
+   "to_pin_id": "2BED5B144AB96D3EE727518F2B538266"
+  },
+  {
+   "from_node": "K2Node_Knot_2",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_CallFunction_10",
+   "to_pin": "A",
+   "from_pin_id": "6731BEA74394A95427BFE0BBB5ACC7BA",
+   "to_pin_id": "D3FAA44445E342E343A92899445FDB7C"
+  },
+  {
+   "from_node": "K2Node_CallFunction_10",
+   "from_pin": "ReturnValue",
+   "to_node": "K2Node_CallFunction_19",
+   "to_pin": "bNewActorEnableCollision",
+   "from_pin_id": "B49D433146146C9EC84B13A1732C9DD4",
+   "to_pin_id": "2CDF9D414DCDDB7C86EDF38F4C8FBFFC"
+  },
+  {
+   "from_node": "K2Node_CallFunction_10",
+   "from_pin": "ReturnValue",
+   "to_node": "K2Node_Knot_1",
+   "to_pin": "InputPin",
+   "from_pin_id": "B49D433146146C9EC84B13A1732C9DD4",
+   "to_pin_id": "EC6D35754135B106BC5DA1B68DE28BCB"
+  },
+  {
+   "from_node": "K2Node_Knot_1",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_CallFunction_9",
+   "to_pin": "bEnabled",
+   "from_pin_id": "18E6B4BC4C96A32E4D1B80B12D2A5F95",
+   "to_pin_id": "0E60124640992FDC83E4A9A6B227F2D2"
+  },
+  {
+   "from_node": "K2Node_Knot_3",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_CallFunction_4",
+   "to_pin": "self",
+   "from_pin_id": "95FDCB0B4947274AF011289C5470B3E6",
+   "to_pin_id": "45794B534E5BFDA83AB964A4DDFF2FBD"
+  },
+  {
+   "from_node": "K2Node_Knot_3",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_Knot_4",
+   "to_pin": "InputPin",
+   "from_pin_id": "95FDCB0B4947274AF011289C5470B3E6",
+   "to_pin_id": "0E84C548419F5BEBB9FC9EBB80156485"
+  },
+  {
+   "from_node": "K2Node_Knot_4",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_Knot_0",
+   "to_pin": "InputPin",
+   "from_pin_id": "95FDCB0B4947274AF011289C5470B3E6",
+   "to_pin_id": "0E84C548419F5BEBB9FC9EBB80156485"
+  },
+  {
+   "from_node": "K2Node_Knot_4",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_CallFunction_19",
+   "to_pin": "self",
+   "from_pin_id": "95FDCB0B4947274AF011289C5470B3E6",
+   "to_pin_id": "CAA6F7E94091C5143EEE439203B423C8"
+  },
+  {
+   "from_node": "K2Node_Knot_0",
+   "from_pin": "OutputPin",
+   "to_node": "K2Node_CallFunction_9",
+   "to_pin": "self",
+   "from_pin_id": "95FDCB0B4947274AF011289C5470B3E6",
+   "to_pin_id": "F34EA0EA474FEE408A6BA6B27B8AD8C5"
+  },
+  {
+   "from_node": "IsValid_GUARD_S6",
+   "from_pin": "Is Not Valid",
+   "to_node": "Return_S6",
+   "to_pin": "execute",
+   "from_pin_id": "0B7D9AF44BE0082D92D399AF65E947CB",
+   "to_pin_id": "51B2B4D441A8C297D317B9A6F12E2D3A"
+  }
+ ]
+}
