@@ -13,17 +13,21 @@ as the product. The previous framing ("the Melodia Platform", a pipeline-infrast
 inverted that and has been corrected; see
 [MELODIA_STUDIO_STARTUP_PARAGRAPH.md](MELODIA_STUDIO_STARTUP_PARAGRAPH.md).
 
-### Active sendoffs (2026-08-25)
+### Active sendoffs (refreshed 2026-09-05)
 
-**Canonical paste-ready package:** [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md)
+**Canonical application ledger / send queue:** [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md)  
+**Current weekly scout + senior-framing plan:** [WEEKLY_ROLE_SCOUT_AND_SENIOR_FRAMING_PLAN_2026-09-05.md](WEEKLY_ROLE_SCOUT_AND_SENIOR_FRAMING_PLAN_2026-09-05.md)
 
 | # | Target | Status |
 |---|--------|--------|
-| 1 | OpenCode (Toronto) | **Send first** |
-| 2 | Certain Affinity (Toronto) | Next |
-| 3 | Velan Studios (Toronto) | Next |
-| 4 | Infold campus (Oct 31) | Portal |
-| 5 | Nous Research (optional) | Corrected evidence only |
+| 1 | SageMesh — Synthetic Data / 3D Technical Artist | **APPLY FIRST** |
+| 2 | 9 Story / Brown Bag — Unreal Environment Generalist | **APPLY** |
+| 3 | Hardsuit Labs — Technical Artist | Targeted stretch |
+| 4 | Rockstar Toronto — Procedural Technical Artist | Stretch / career target |
+| 5 | Marks — Creative Technologist CGI | Opportunistic |
+| 6 | Certain Affinity — Senior Material Artist | Lower priority; shipped-title gap |
+| 7 | Blue Isle — Senior Environment Artist | Reference / stretch |
+| — | Older OpenCode / Velan / Infold / Nous queue | Retained in canonical ledger |
 | — | NVIDIA Toronto | **WITHDRAWN** — archive only |
 
 Older draft bodies also live in [EMAIL_DRAFTS_2026-08-20.md](EMAIL_DRAFTS_2026-08-20.md) (priority table updated).
@@ -42,7 +46,8 @@ Older draft bodies also live in [EMAIL_DRAFTS_2026-08-20.md](EMAIL_DRAFTS_2026-0
 
 | Studio | File | Status |
 |---|---|---|
-| **OpenCode / Certain Affinity / Velan / Infold / Nous** | [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md) | **Active send list** |
+| **SageMesh / 9 Story / Hardsuit / Rockstar / Marks / Certain Affinity / Blue Isle** | [WEEKLY_ROLE_SCOUT_AND_SENIOR_FRAMING_PLAN_2026-09-05.md](WEEKLY_ROLE_SCOUT_AND_SENIOR_FRAMING_PLAN_2026-09-05.md) · [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md) | **Current live queue** |
+| OpenCode / Velan / Infold / Nous legacy queue | [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md) | Retained; below Sep 5 queue |
 | Epic MegaGrants (funding, not a job) | [EPIC_MEGAGRANTS_APPLICATION_DRAFT.md](EPIC_MEGAGRANTS_APPLICATION_DRAFT.md) | Draft — needs real numbers/URLs filled in |
 | Promethean AI | [STUDIO_PROMETHEAN_AI_DRAFT.md](STUDIO_PROMETHEAN_AI_DRAFT.md) | Draft — strong fit, Junior Artist (remote) |
 | Digital Extremes | [STUDIO_DIGITAL_EXTREMES_DRAFT.md](STUDIO_DIGITAL_EXTREMES_DRAFT.md) | Draft — good fit, pick one experience level honestly |
