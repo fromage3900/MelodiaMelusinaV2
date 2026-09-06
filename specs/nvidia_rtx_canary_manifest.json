@@ -1,0 +1,49 @@
+{
+  "_doc": "NVIDIA RTX canary test manifest template — fill per session",
+  "_spike_doc": "Docs/Research/NVIDIA_RTX_RENDER_SYSTEMS_SPIKE_PLAN_2026-08-30.md",
+  "_stop_rule": "Session is successful when: (1) cymatic ecology interaction works, (2) TSR vs DLSS comparison captured, (3) clear next_decision recorded",
+  "B0_machine": {
+    "gpu_model": "",
+    "gpu_architecture": "",
+    "vram_gb": 0,
+    "driver_version": "",
+    "windows_build": "",
+    "ue5_build": "",
+    "ue5_exact_cl": "",
+    "rhi": "DX12",
+    "hardware_ray_tracing": false,
+    "lumen_state": "",
+    "nanite_state": "",
+    "substrate_state": ""
+  },
+  "B1_dlss": {
+    "dlss_plugin_version": "",
+    "streamline_version": "",
+    "ngx_sdk_version": "",
+    "build_result": "",
+    "fallback_clean": null
+  },
+  "B2_temporal": {
+    "sequence": "8-beat fixed loop",
+    "modes": {
+      "TSR":           {"gpu_ms": null, "vram_mb": null, "stability_notes": {}},
+      "DLSS_Quality":  {"gpu_ms": null, "vram_mb": null, "stability_notes": {}},
+      "DLSS_Balanced": {"gpu_ms": null, "vram_mb": null, "stability_notes": {}},
+      "DLAA":          {"gpu_ms": null, "vram_mb": null, "stability_notes": {}}
+    }
+  },
+  "stability_scale": {
+    "1": "stable",
+    "2": "minor artifact",
+    "3": "obvious / broken"
+  },
+  "stability_dimensions": [
+    "thin_interference_lines",
+    "water_shimmer",
+    "niagara_ghosting",
+    "toon_edge",
+    "iridescence"
+  ],
+  "next_decision": "",
+  "notes": ""
+}
