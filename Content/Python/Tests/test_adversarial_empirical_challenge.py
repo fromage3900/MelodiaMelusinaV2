@@ -105,8 +105,9 @@ class TestEmpiricalViewAnglesAndToonShadow(unittest.TestCase):
     def test_on_disk_authored_textures_toon_monotonicity(self):
         """Verify that 100% of authored fabric and character BaseColor textures produce strictly monotonic ramps."""
         sim = mod_workloads.ShadingSimulator()
-        fabrics_dir = Path('BS_GodFile/Content/Textures/Fabrics')
-        melusina_dir = Path('BS_GodFile/Content/Melodia/Characters/Melusina/Textures')
+        project_root = Path(__file__).resolve().parents[3]
+        fabrics_dir = project_root / 'Content/Textures/Fabrics'
+        melusina_dir = project_root / 'Content/Melodia/Characters/Melusina/Textures'
         
         all_bc_files = list(fabrics_dir.glob('T_Fabric_*_BC.png')) + list(melusina_dir.glob('T_Melusina_*_BC.png'))
         self.assertGreaterEqual(len(all_bc_files), 15)

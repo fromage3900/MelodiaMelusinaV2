@@ -55,13 +55,9 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-LEVELS = (
-    "/Game/EnvSandbox/Environments/L_KaleidoNave",
-    "/Game/EnvSandbox/Environments/L_FallenMoon",
-    "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "/Game/ZenForestTest",
-    "/Game/EnvSandbox/_Template/L_Template",
-)
+from ppv_contract import GAMEPLAY_PPV_CERTIFICATION_LEVELS, LOOKDEV_REGRESSION_LEVELS
+
+LEVELS = GAMEPLAY_PPV_CERTIFICATION_LEVELS + LOOKDEV_REGRESSION_LEVELS
 # Each role lists candidate paths in preference order; the first that loads wins.
 # Instances are preferred over their master so per-level/per-shot grade tuning never
 # requires editing the shared master material (which is also what makes the master
