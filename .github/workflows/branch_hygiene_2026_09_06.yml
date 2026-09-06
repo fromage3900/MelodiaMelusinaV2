@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Archive and delete snapshot branches
+      - name: Archive and delete final chapter branches
         shell: bash
         run: |
           set -euo pipefail
@@ -29,31 +29,8 @@ jobs:
           git fetch origin --prune --tags
 
           candidates=(
-            'backup/pre-consolidation-2026-08-30'
-            'claude/tonight-cymatic-ecology-interaction'
-            'cleanup/final-branch-prune-2026-09-06'
-            'cleanup/golden-scorecard-2026-09-06'
-            'cleanup/lookdev-plan-2026-09-06'
-            'cleanup/scrub-spec-2026-09-06'
-            'codex/game-state-2026-09-04-checkpoint'
-            'codex/weapon-gallery-20260902'
-            'collab/laptop/main-reconciliation-2026-09-04'
-            'copilot/fix-runners-and-review-logs'
-            'copilot/new-feature-implementation'
-            'docs/2026-08-29-character-p1-p2-canon-audit'
-            'docs/2026-09-02-grand-master-plan'
-            'feature/ue58-runner-registration'
-            'fix/mh6-fix-promotion-20260904'
-            'fix/prune-script-ps51'
-            'integration/astra-game-state-transplant-2026-09-05'
-            'pr/melusina-v22-sync'
-            'recovery/astra-docs-2026-09-06'
-            'recovery/blender-music-gn-docs-2026-09-06'
-            'recovery/canon-docs-2026-09-06'
-            'recovery/harvest-small-branches-2026-09-06'
-            'recovery/small-tools-2026-09-06'
-            'rescue/web-threejs-recovery-2026-09-05'
-            'rnd/2026-08-30-blender52-music-gn-studio'
+            'cleanup/chapters-batch-2026-09-06'
+            'cleanup/chapters-batch2-2026-09-06'
           )
 
           for branch in "${candidates[@]}"; do
