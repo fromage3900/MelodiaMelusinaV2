@@ -30,6 +30,11 @@
   },
   "open_questions": [
     "per-frame textures in git are Texture2D sets; a true VirtualTexture2DArray promotion needs an importer pass - spec first, decide with editor batch F",
-    "frame counts per family not yet censored (count files per set in batch F, pre-editor, from disk)"
-  ]
+    "RESOLVED 09-06 (disk census): PearlWoven = 16 frames x 5 channels (per-frame mode, FrameCount=16); SurrealFabric families = *_Atlas_6x5 + *_AtlasCompact_6x5 textures (FrameCount=30, AtlasGrid=6x5 -> generalize AtlasGridSide to AtlasCols/AtlasRows); T_Brass_Flipbook_30_Atlas_4x4 naming implies 30 frames in a 4x4 grid = NON-uniform, verify atlas layout before wiring (may be 6x5 misnamed or padded)"
+  ],
+  "parameters_update": {
+    "AtlasCols": "ScalarParameter, default 4",
+    "AtlasRows": "ScalarParameter, default 4",
+    "frame_math": "frame = floor((Time*FrameRate + FrameOffset) mod FrameCount); atlas: uv = (baseUV + float2(frame mod Cols, floor(frame/Cols))) / float2(Cols,Rows); guard frame<FrameCount"
+  }
 }
