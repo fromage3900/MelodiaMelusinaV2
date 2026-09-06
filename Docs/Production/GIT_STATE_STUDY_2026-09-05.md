@@ -259,6 +259,24 @@ Proposed standing protocol — **git is the spine, G: is the foundry:**
    certification for the term-demo build.
 5. **Optional:** portfolio repo split (3.7) after two chapters live on unified main.
 
+## 5a. AS EXECUTED — 2026-09-05 evening (owner signed off; Batches 0–6 run)
+
+| Step | Result |
+|---|---|
+| Batch 0 | `git_bundles_2026-09-05/pre_unify_ALLREFS.bundle` (85.6 MB, verified, all 43 local + 121 remote refs) |
+| Batch 1a | `26f63fe7` local `main` (Sol 32 commits) × `codex/game-state` tip — 22 conflicts, newest-side |
+| Batch 2 | Skipped as separate step — LFS filters were live; handled inline |
+| Batch 3 | `f19b6459` cross-line merge × `origin/main` — 623 conflicts: 492 by adjudication table, 12 C++ hunk-level (Line A kept gate-certified behavior; Line B save-invariant `db3272d4` kept). `validate-intrinsic-record` both survived |
+| Batch 4 | Closed-editor `Build.bat` **SUCCEEDED** (`BUILD_EXIT=0`, 655s) on the unified tree. Contract tests 116/116 on the live tree. Worktree conflict-marker scan: 0 |
+| Batch 5 | **PR #98 admin-merged → `a72e2eee`**; PR #99 (post-unify editor saves: map 20a0055f, .qsc bg-box, wardrobe run20) merged → `29d8530d`; PR #96 (mh6) merged → `40eb5cc0`; PR #100 (T3D baseline re-freeze 53/53) merged → includes daemon runs 21–22. Both former tips + old local main verified ancestors of new `origin/main` |
+| Batch 6 | Local branches 43→2 (`main` + daemon-held checkpoint); 5 fully-merged deleted safely, 36 pruned via `-D` after bundle verification. Remote: copilot/* + rescue/* refs archived to tags + deleted via REST (branch-name policy blocked git-delete for non-prefixed names) |
+| Live-tree catch | A concurrent lane pushed directly to main (29d8530d) — reconciled; all lanes' content present |
+
+**Remaining after unification:** PR #94 (astra, conflicts — a live lane's), PR #28
+(docs, 87 file adds incl. Kenney MIs — needs editor-side redirector check),
+`static_gates` ledger row rerun, golden run, branch-name policy on origin could be
+loosened or left (cleanup/ names all comply).
+
 ## 6. Open owner decisions (nothing below was done silently)
 
 - [ ] Sign-off for Batch 5 `--force-with-lease origin main` (additive; verified ancestry first).
