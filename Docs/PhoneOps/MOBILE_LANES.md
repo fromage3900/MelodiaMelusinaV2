@@ -51,8 +51,8 @@ How to work MelodiaMelusinaV2 from iOS / SuperGrok / Cursor cloud without fighti
 **Docs only**
 
 ```text
-You are on MelodiaMelusinaV2. Read Docs/PhoneOps/HIGHEST_LEVERAGE_NOW.md
-and Docs/Handoffs/PIE_2026-08-11.md. Docs only. One PH-* only.
+You are on MelodiaMelusinaV2. Read AGENT_START_HERE.md, then _SESSION_HANDOFF.md
+and the last row per gate id in Saved/gate_ledger.json. Docs only. One PH-* only.
 ```
 
 **PC editor free**

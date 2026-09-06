@@ -51,32 +51,19 @@ Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` 
 > contracts, one-editor/unattended/no `_PROJECT`, evidence standard) prevents parallel-authority defects.
 
 
-## Historical P0 snapshot — 2026-08-28 (not current authority)
+## Current P0 authority — live pointers, not snapshots
 
-Read [`Docs/P0_CLOSEOUT_PLAN_2026-08-28.md`](Docs/P0_CLOSEOUT_PLAN_2026-08-28.md) first. The
-[2026-08-24 convergence plan](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)
-is the standing architecture record behind it, not the current task list.
+No gate table lives in this file — any table written here is stale on arrival. Read live state instead:
 
-**Phase 1 is closed.** The authored 08-27 content is live, no longer inert:
-
-- `DA_MelodiaIntegrationConfig` carries the full 27-ID delta — quests, narrative flags, dialogue
-  rewards, `melodia_elegance` / `melodia_resonance`, and `LV_SeaAbove_Prototype` in `TravelLevelIds`.
-- All five P0 `.qsc` have compiled `.uasset` counterparts, each newer than its source.
-- `python -m unittest Content.Python.Tests.test_qsc_allowlist_contract` → 4/4 PASS.
-
-**Phases 2–4 are open, and every remaining item is editor-bound.** Two ledgers, read both:
-
-| Ledger | State |
-|---|---|
-| `Saved/gate_ledger.json` (echo) | 5 pass — `runtime`, `save_load`, `repeat_consume`, `package_launch`, `hud_single_writer`. 5 open — `rhythm_owner`, `rhythm_grade_to_result`, `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`. |
-| `Docs/P0_TASK_LEDGER.json` → `active_p0_gates` | Same five open, plus `static_gates` **fail** against the frozen baseline and `battle_integration_map` **pass**. |
+- Front door: [`AGENT_START_HERE.md`](AGENT_START_HERE.md) (reading order + freshness rule).
+- Gate standing: the **last** row per gate id in `Saved/gate_ledger.json`; scope notes in `Docs/P0_TASK_LEDGER.json` (its `as_of` field tells you its age).
+- Session start: `python Tools/project_state.py --view session_start` (tip, branch, dirty files, latest gate rows, staleness flags) before opening any prose.
+- Standing architecture record (not the task list): [2026-08-24 convergence plan](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
 
 `echo_run status` reports `editor reachable on 9316: no` whenever the editor is down — editor gates
-HOLD, and nothing in Phase 2–4 can advance until it is up.
+HOLD, and nothing editor-bound can advance until it is up.
 
-The old nine-item economy expansion is post-P0 (`Docs/P0_TASK_LEDGER.json`). August 13–14
-`runtime`/save/replay/package passes are bounded evidence, not current shipping certification —
-`package_launch` in particular is the 08-14 baseline and is now 150+ commits stale.
+The old nine-item economy expansion is post-P0 (`Docs/P0_TASK_LEDGER.json` → `deferred_post_p0_expansion`). Ledger rows are bounded to their captured baselines, not current shipping certification.
 
 ---
 
@@ -289,13 +276,9 @@ Production JRPG + QuillScript integration in UE 5.8. The target loop is:
 
 `QuillScript dialogue -> allowlisted encounter request -> JRPG battle with Melusina -> typed result -> QuillScript resumes once -> exploration`
 
-The loop is not yet fully proven. The August 13–14 runtime, save/load, repeat-callback, and
-Development-package rows are bounded historical evidence only. Do not report the current shipping
-baseline complete until the active P0 gates above are recorded against that baseline.
-
-As of 2026-08-28 the offline half of that loop is real: the allowlist carries every authored ID and
-all five P0 `.qsc` are compiled. What is unproven is the *live* half — no gate past Phase 1 can be
-claimed without a PIE session and a `Saved/gate_ledger.json` row. Prose is not a row.
+Loop standing is not asserted here — read the last row per gate id in `Saved/gate_ledger.json`.
+Ledger rows are bounded to their captured baselines: a row proves its baseline, not the current
+tip. Prose is not a row.
 
 ## Quantum usage
 
@@ -518,50 +501,6 @@ plausible to a folder outside `Content/` first.
 26. **`Saved/Audit/*.json` commits are allowed.** Daemon-produced specs and audit reports in `Saved/Audit/` are explicitly allowlisted in `.githooks/pre-commit` (line 68: `grep -Ev '^Saved/Audit/.*\.(json|md)\$'`). They do not need owner sign-off to commit.
 
 
-## Historical August 10 work queue — superseded
-
-Retained for incident context. Do not execute this list as the current queue; use the August 24
-P0 authority at the top of this file. Historical WORKED/PASS observations are bounded evidence.
-
-1. ~~**Give the song map a beat map.**~~ **DONE 2026-08-11** — `MelodiaMusicClockSubsystem`
-   loads the imported `128BPMarpeggiomelody_beatgrid` MIDI (tempo+bar+beat maps validated,
-   never hand-built).
-2. **Certify the `runtime` gate with formal evidence — owner PIE saw it PLAY; ledger still OPEN.**
-   Owner PIE 2026-08-13: after Melusina's unique skill, rhythm highway worked (clunky), damage
-   procced, next turn applied on skill finish. That is play evidence; it is **not** a ledger row.
-   Still owed: (a) Decision 024 A/B on `melodia.Rhythm.Disable 1`, (b) assertion report JSON
-   next to frames from the committed harness, (c) `record_gate.py runtime pass|fail`. Probe-only
-   Python hits remain non-evidence. Do **not** reopen Rhythm/Quill as P0.
-3. ~~**Build and verify the highway-ownership fix.**~~ **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED**
-   (reconfirmed PIE 2026-08-13 after Melusina unique; clunk is feel, not absence).
-   Canonical: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`.
-   Do not reopen “highway unverified / never observed.”
-4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
-   may fire ~2.5s before the scalar latches. Owner saw damage proc; A/B delta still unrecorded.
-5. **Highway note rendering / feel** — clunk reported in owner PIE; genuine T3D target for note
-   presentation. Re-export baselines and resolve `unresolved_member_parent` first.
-6. ~~Wire a call site for `RestorePartyAfterBattle`.~~ **DONE on `main` via #6** (`6715d51`) —
-   `BP_BattleController` lookup path. Confirm `MELODIA_RECOVERY` log in a battle-end PIE.
-7. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
-   incident; scoped runs are clean.
-8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
-   guess at the curve, and do not add a multiplier that cancels out a bad one.
-9. Duplicate `BP_BattleUI` paths — mirror quarantined 2026-08-11; confirm no remaining
-   short-name collisions before delete of quarantine tree.
-
-Done 2026-08-09/10: Sir rescue; StockSkillRhythmIds; BattleController in KaleidoNave;
-Dreamstate merge. Done 2026-08-11: beat map; probe runnable; highway-ownership staged
-(unbuilt); mirror quarantined; UI transparency fix. Done 2026-08-12: model lanes +
-AGENTS slim under 32 KB subagent cap. Done 2026-08-12/13: #4+#6 on `main`; owner PIE —
-Melusina unique → highway (clunky) → damage → next turn on skill finish.
-
-Parallel work for other agents, partitioned by contended resource:
-**historical** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
-+ paste prompts [`Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md)
-(history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
-
----
-
 ## 5. jcode Swarm (parallel coding lane)
 
 Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
@@ -570,7 +509,7 @@ Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm
 *   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste [`.jcode/coordinator-bootstrap.md`](.jcode/coordinator-bootstrap.md).
 *   **MCP:** [`.jcode/mcp.json`](.jcode/mcp.json) → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
 *   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
-*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md). Tonight prep: [`Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`](Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md).
+*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md). Current-session prep lives in `_SESSION_HANDOFF.md`, not in dated prep docs.
 *   **Keep running:** surreal/world/`run_verify` production loops.
 *   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
 *   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.

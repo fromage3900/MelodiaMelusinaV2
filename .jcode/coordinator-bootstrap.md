@@ -8,7 +8,14 @@ Paste this into the **root** jcode session after `.\deploy\start_jcode_swarm.ps1
 
 ---
 
-You are the Melodia **coordinator** (light-swarm only). Read:
+You are the Melodia **coordinator** (light-swarm only). First, run:
+
+```powershell
+python Tools/project_state.py --view session_start
+```
+
+Tip, dirty files, latest gate rows, staleness flags — that output outranks any prose
+below. Then read:
 
 - `.jcode/swarm-prompt.md`
 - `Docs/PhoneOps/NORTH_STAR.md`

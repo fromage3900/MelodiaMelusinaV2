@@ -2,6 +2,7 @@
 
 Phone-friendly control plane for MelodiaMelusinaV2. Authority: [`PROJECT.md`](../../PROJECT.md).
 P0 detail: [`../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+Live gate standing: last row per gate id in `Saved/gate_ledger.json` (not the plan doc).
 Now/Next: [`BACKLOG.md`](BACKLOG.md).
 
 ## North star
@@ -14,7 +15,7 @@ One-liner: **agents accelerate Melodia; you keep art direction, story, and publi
 
 ## This-week focus (phone-steerable)
 
-1. **P0 live proof** — rhythm grade→result, HUD single-writer, wardrobe+Glide, music-as-key, battle map, static_gates (Aug 24 closeout). Prefer over new R&D.
+1. **P0 live proof** — certification only per the [2026-09-06 plan](../P0_INTEGRATION_EXECUTION_PLAN_2026-09-06.md) (package + owner golden run). Prefer over new R&D.
 2. **P1 recruiter sendoffs** — OpenCode first, then Certain Affinity / Velan / Infold. **NVIDIA withdrawn.** See [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../Career/RECRUITER_SENDOFFS_2026-08-25.md).
 3. Keep PhoneOps docs accurate as the mobile SSOT entry.
 4. Website/deploy honesty: `_github_deploy/` until `my-site-clean/` is explicitly promoted.

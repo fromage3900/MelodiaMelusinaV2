@@ -114,6 +114,13 @@ missing editor returns `HOLD` with a non-zero exit code; it is not a pass.
 `_SESSION_HANDOFF.md` and `CURRENT_STATE.md` remain as history and context; the
 ledger and the panel are the truth.
 
+**Latest-row-wins:** `Saved/gate_ledger.json` is append-only. A gate's standing is
+always its **last** row chronologically — older rows are history, including older
+FAILs superseded by a pass and older passes bounded to a stale baseline. Citing a
+non-last row as current standing is a stale-info defect. Read standing via
+`python Tools/echo_run.py status` or `python Tools/project_state.py --view
+session_start`, never by sampling mid-file.
+
 ## 5. Agent contract (how lanes fold in)
 
 The multi-agent lane system (`_TASK_QUEUE.md`, `PARALLEL_LANES_2026-08-08.md`)

@@ -78,7 +78,7 @@ More: [`.jcode/README.md`](../../.jcode/README.md)
 | `deploy/start_opencode_muse_lane.ps1` | Validate OpenCode (+ optional Muse); print Rider shortcuts; no UE |
 | `.opencode/opencode.jsonc` | OpenCode project config for Rider lane |
 | `Docs/Production/MUSE_CODE_LANE_2026-08-11.md` | Muse Code install/auth status |
-| `Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md` | Tonight First Dream + OpenCode prep |
+| `Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md` | 2026-08-11 prep record (historical — current prep lives in `_SESSION_HANDOFF.md`) |
 | `AGENTS.md` §5 | Constitution pointer |
 
 ## Loops policy

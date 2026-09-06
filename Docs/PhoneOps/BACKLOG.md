@@ -6,15 +6,19 @@ Simple queue for phone agents. Prefer updating this file over inventing parallel
 [`../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](../Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md) ·
 playbook [`../P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md`](../P0_CLOSEOUT_TEST_PLAYBOOK_2026-08-24.md).
 
+**Live standing (read before acting):** last row per gate id in `Saved/gate_ledger.json`
+(`Docs/P0_TASK_LEDGER.json` carries scope notes + `as_of`). A dated handoff below is memory,
+not orders — verify against the ledger first. Session start: `python Tools/project_state.py --view session_start`.
+
 Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../Career/RECRUITER_SENDOFFS_2026-08-25.md).
 
 ## Now
 
 ### P0 — Ship Melodia (live proof — prefer over R&D)
 
-0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. Do not reopen without evidence. [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md).
-1. **Current P0 gates** (Aug 24 closeout — still open): `rhythm_grade_to_result`, `hud_single_writer`, `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook` (Glide), `music_world_key`, `battle_integration_map`, `static_gates`, `rhythm_owner`.
-2. **Playbook:** assertion-bearing NPC/quest, four-outcome, restart, packaged evidence — not another feature tranche.
+0. **FAMILY LOCKS — RHYTHM + QUILLSCRIPT WORKED**. Do not reopen without evidence. Locks recorded in [RHYTHM…](../Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md) · [QUILL…](../Handoffs/QUILLSCRIPT_LOCKED_2026-08-12.md) — confirm standing in `Saved/gate_ledger.json` (last row per gate wins) before citing them.
+1. **Smaller scope — certification only** ([2026-09-06 plan](../P0_INTEGRATION_EXECUTION_PLAN_2026-09-06.md)): a current closed-editor package + one uninterrupted owner-played golden run. No new authorities — no dungeon coordinator/persistence, audio, HUD, or PCG-framework additions. Quarantines stay quarantined.
+2. **Proof backlog (existing paths only):** Starskiff board/move/disembark real-input PIE; music-key → dock Glide transition; dungeon probe sequence (`FirstDungeonGate` → seed run → typed result → exit once → save/restart); lookdev/PCG extension-only pass.
 3. **Claireon:** **PARKED** (disabled in `.uproject` for C1076 PCH). Do not re-enable on the critical path. Monolith stays.
 
 ### P1 — Recruiter sendoffs (NVIDIA withdrawn)
@@ -53,3 +57,6 @@ Career sendoffs (downstream): [`../Career/RECRUITER_SENDOFFS_2026-08-25.md`](../
 Reconcile Docs/PhoneOps/BACKLOG.md with PROJECT.md and the Aug 24 P0 closeout.
 Move finished items out; do not add speculative work. Commit + PR.
 ```
+
+First command before any edit: `python Tools/project_state.py --view session_start`
+(tip + latest gate rows + staleness flags — this output outranks dated handoffs).
