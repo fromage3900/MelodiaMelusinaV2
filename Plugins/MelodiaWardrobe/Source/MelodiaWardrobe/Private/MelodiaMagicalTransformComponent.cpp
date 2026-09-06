@@ -173,7 +173,8 @@ bool UMelodiaMagicalTransformComponent::ClassifySlot(const FName SlotName, bool&
 }
 
 void UMelodiaMagicalTransformComponent::CollectFromMeshComponent(
-	UMeshComponent* Mesh, const bool bForceWing, const bool bTagDiscovered)
+	UMeshComponent* Mesh, const bool bForceWing, const bool bTagDiscovered,
+	const bool bIncludeUnmatchedSlots)
 {
 	if (!IsValid(Mesh))
 	{
@@ -189,8 +190,14 @@ void UMelodiaMagicalTransformComponent::CollectFromMeshComponent(
 			? SlotNames[MaterialIndex]
 			: FName(*FString::Printf(TEXT("index_%d"), MaterialIndex));
 
-		bool bIsWing = bForceWing;
-		if (!bForceWing && !ClassifySlot(SlotName, bIsWing))
+		// Wing-ness is always decided by slot name even when the whole component
+		// participates, so a garment that ships its own wing section still gets
+		// opacity control rather than merely shimmering.
+		bool bIsWing = false;
+		const bool bMatched = ClassifySlot(SlotName, bIsWing);
+		bIsWing = bIsWing || bForceWing;
+
+		if (!bMatched && !bForceWing && !bIncludeUnmatchedSlots)
 		{
 			continue;
 		}
@@ -229,46 +236,31 @@ void UMelodiaMagicalTransformComponent::ResolveBindings()
 	Bindings.Reset();
 	HideableWingComponents.Reset();
 
-	// 1. The body mesh, filtered by slot name. This is the no-new-mesh route.
-	CollectFromMeshComponent(GetBodyMesh(), /*bForceWing=*/false, /*bTagDiscovered=*/false);
+	// 1. The body mesh: ONLY the named slots. This is the no-new-mesh route, and
+	//    it is the one place unmatched slots must be skipped -- claiming every slot
+	//    here would put her face and hair under the transform.
+	CollectFromMeshComponent(
+		GetBodyMesh(), /*bForceWing=*/false, /*bTagDiscovered=*/false,
+		/*bIncludeUnmatchedSlots=*/false);
 
-	// 2. Wardrobe slot components for the decorative slots. Every material on an
-	//    accessory garment participates -- the whole piece is the accessory, so
-	//    there is no slot-name filtering to do here.
-	//
-	//    Wing-ness is by slot NAME even inside a wardrobe garment, so a garment
-	//    that ships its own wing section still gets opacity control.
+	// 2. Wardrobe slot components for the decorative slots. The whole garment IS
+	//    the accessory, so every material participates regardless of its name.
 	if (const AActor* Owner = GetOwner())
 	{
-		if (UMelodiaWardrobeComponent* WardrobeComponent =
+		if (const UMelodiaWardrobeComponent* WardrobeComponent =
 			Owner->FindComponentByClass<UMelodiaWardrobeComponent>())
 		{
 			for (const EMelodiaWardrobeSlot Slot : AccessoryWardrobeSlots)
 			{
-				if (USkeletalMeshComponent* SlotComponent = WardrobeComponent->GetSlotComponent(Slot))
-				{
-					const TArray<FName> SlotNames = SlotComponent->GetMaterialSlotNames();
-					const int32 MaterialCount = SlotComponent->GetNumMaterials();
-					for (int32 MaterialIndex = 0; MaterialIndex < MaterialCount; ++MaterialIndex)
-					{
-						const FName SlotName = SlotNames.IsValidIndex(MaterialIndex)
-							? SlotNames[MaterialIndex]
-							: FName(*FString::Printf(TEXT("index_%d"), MaterialIndex));
-
-						bool bIsWing = false;
-						ClassifySlot(SlotName, bIsWing);
-
-						if (UMaterialInstanceDynamic* Mid =
-							SlotComponent->CreateAndSetMaterialInstanceDynamic(MaterialIndex))
-						{
-							FMelodiaMagicalTransformBinding Binding;
-							Binding.Material = Mid;
-							Binding.SlotName = SlotName;
-							Binding.bIsWing = bIsWing;
-							Bindings.Add(Binding);
-						}
-					}
-				}
+				// Not hideable: hiding the component would fight
+				// UMelodiaWardrobeComponent, which owns slot visibility as its
+				// unequip mechanism (EquipGarment(Slot, nullptr) hides rather than
+				// destroys). Two owners of one visibility flag is the bug this
+				// whole component exists to avoid.
+				CollectFromMeshComponent(
+					WardrobeComponent->GetSlotComponent(Slot),
+					/*bForceWing=*/false, /*bTagDiscovered=*/false,
+					/*bIncludeUnmatchedSlots=*/true);
 			}
 		}
 	}
@@ -277,21 +269,32 @@ void UMelodiaMagicalTransformComponent::ResolveBindings()
 	//    own mesh, and the bridge to any already-authored MelodiaWings component.
 	if (AActor* Owner = GetOwner())
 	{
+		const UMeshComponent* BodyMesh = GetBodyMesh();
 		TArray<UMeshComponent*> MeshComponents;
 		Owner->GetComponents<UMeshComponent>(MeshComponents);
 		for (UMeshComponent* Candidate : MeshComponents)
 		{
-			if (!IsValid(Candidate) || Candidate == GetBodyMesh())
+			// Skipping the body mesh here is what keeps step 1's filtering
+			// meaningful: a tag on the body mesh would otherwise re-claim all 33
+			// slots and drag the whole character into the dissolve.
+			if (!IsValid(Candidate) || Candidate == BodyMesh)
 			{
 				continue;
 			}
 			if (!WingComponentTag.IsNone() && Candidate->ComponentHasTag(WingComponentTag))
 			{
-				CollectFromMeshComponent(Candidate, /*bForceWing=*/true, /*bTagDiscovered=*/true);
+				CollectFromMeshComponent(
+					Candidate, /*bForceWing=*/true, /*bTagDiscovered=*/true,
+					/*bIncludeUnmatchedSlots=*/true);
 			}
 			else if (!AccessoryComponentTag.IsNone() && Candidate->ComponentHasTag(AccessoryComponentTag))
 			{
-				CollectFromMeshComponent(Candidate, /*bForceWing=*/false, /*bTagDiscovered=*/true);
+				// bIncludeUnmatchedSlots matters here: a component tagged as an
+				// accessory is an accessory whatever its slots happen to be named,
+				// and filtering by name would have it claim nothing at all.
+				CollectFromMeshComponent(
+					Candidate, /*bForceWing=*/false, /*bTagDiscovered=*/true,
+					/*bIncludeUnmatchedSlots=*/true);
 			}
 		}
 	}
@@ -374,12 +377,26 @@ void UMelodiaMagicalTransformComponent::SyncToWardrobeState(const bool bAllowAni
 	if (bShouldBeRevealed && Phase != EMelodiaMagicalTransformPhase::Revealed
 		&& Phase != EMelodiaMagicalTransformPhase::Revealing)
 	{
-		bAllowAnimation ? PlayReveal() : SnapToPhase(EMelodiaMagicalTransformPhase::Revealed);
+		if (bAllowAnimation)
+		{
+			PlayReveal();
+		}
+		else
+		{
+			SnapToPhase(EMelodiaMagicalTransformPhase::Revealed);
+		}
 	}
 	else if (!bShouldBeRevealed && Phase != EMelodiaMagicalTransformPhase::Dormant
 		&& Phase != EMelodiaMagicalTransformPhase::Concealing)
 	{
-		bAllowAnimation ? PlayConceal() : SnapToPhase(EMelodiaMagicalTransformPhase::Dormant);
+		if (bAllowAnimation)
+		{
+			PlayConceal();
+		}
+		else
+		{
+			SnapToPhase(EMelodiaMagicalTransformPhase::Dormant);
+		}
 	}
 	else if (!bAllowAnimation)
 	{
@@ -476,11 +493,15 @@ void UMelodiaMagicalTransformComponent::TickComponent(
 	const float DeltaTime, const ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	AdvanceTransform(DeltaTime);
+}
 
+void UMelodiaMagicalTransformComponent::AdvanceTransform(const float DeltaSeconds)
+{
 	if (Phase == EMelodiaMagicalTransformPhase::Revealing)
 	{
 		const float Duration = FMath::Max(RevealDurationSeconds, UE_KINDA_SMALL_NUMBER);
-		NormalizedTime = FMath::Min(NormalizedTime + DeltaTime / Duration, 1.0f);
+		NormalizedTime = FMath::Min(NormalizedTime + DeltaSeconds / Duration, 1.0f);
 		if (NormalizedTime >= 1.0f)
 		{
 			SetPhase(EMelodiaMagicalTransformPhase::Revealed);
@@ -489,7 +510,7 @@ void UMelodiaMagicalTransformComponent::TickComponent(
 	else if (Phase == EMelodiaMagicalTransformPhase::Concealing)
 	{
 		const float Duration = FMath::Max(ConcealDurationSeconds, UE_KINDA_SMALL_NUMBER);
-		NormalizedTime = FMath::Max(NormalizedTime - DeltaTime / Duration, 0.0f);
+		NormalizedTime = FMath::Max(NormalizedTime - DeltaSeconds / Duration, 0.0f);
 		if (NormalizedTime <= 0.0f)
 		{
 			SetPhase(EMelodiaMagicalTransformPhase::Dormant);
@@ -498,7 +519,7 @@ void UMelodiaMagicalTransformComponent::TickComponent(
 
 	const float FlareTarget = bGlideFlareTarget ? 1.0f : 0.0f;
 	GlideFlareAlpha = FMath::FInterpConstantTo(
-		GlideFlareAlpha, FlareTarget, DeltaTime,
+		GlideFlareAlpha, FlareTarget, DeltaSeconds,
 		1.0f / FMath::Max(GlideFlareBlendSeconds, UE_KINDA_SMALL_NUMBER));
 
 	ApplyPose(EvaluateCurrentPose());
@@ -530,8 +551,10 @@ float UMelodiaMagicalTransformComponent::ReadBeatPulse() const
 		return 0.0f;
 	}
 
+	// GetWorld() rather than `this` as the world context: the Kismet helper takes a
+	// non-const UObject* and this accessor is const by contract.
 	const float BeatPhase = UKismetMaterialLibrary::GetScalarParameterValue(
-		this, PaletteCollection, GBeatPhaseParameter);
+		GetWorld(), PaletteCollection, GBeatPhaseParameter);
 
 	// cos^2, not sin^2: BeatPhase is 0 ON the beat, so sin^2 peaks on the
 	// off-beat. Same correction as UMelodiaAudioReactivePresentationSubsystem and
@@ -601,14 +624,14 @@ void UMelodiaMagicalTransformComponent::ApplyPose(const FMelodiaMagicalTransform
 		}
 	}
 
-	if (bPublishToParameterCollection && PaletteCollection)
+	if (bPublishToParameterCollection && PaletteCollection && GetWorld())
 	{
 		UKismetMaterialLibrary::SetScalarParameterValue(
-			this, PaletteCollection, MelodiaMagicalTransformMPC::Progress, Pose.Progress);
+			GetWorld(), PaletteCollection, MelodiaMagicalTransformMPC::Progress, Pose.Progress);
 
 		// Flare mirrors the wavefront, not the bloom: bloom carries the glide term
 		// and world-side post process should not brighten every time she glides.
 		UKismetMaterialLibrary::SetScalarParameterValue(
-			this, PaletteCollection, MelodiaMagicalTransformMPC::Flare, Pose.Dissolve);
+			GetWorld(), PaletteCollection, MelodiaMagicalTransformMPC::Flare, Pose.Dissolve);
 	}
 }

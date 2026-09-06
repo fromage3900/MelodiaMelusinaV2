@@ -135,6 +135,21 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|MagicalTransform")
 	void RefreshAccessoryMaterials();
 
+	/**
+	 * Advances the transition by DeltaSeconds and writes the resulting pose.
+	 *
+	 * This is the whole per-frame body; TickComponent does nothing but call it.
+	 * Separated out because the transformation is exactly the kind of thing an
+	 * authored scene wants to scrub rather than let run on wall-clock time -- a
+	 * Sequencer track or a cutscene director can step it directly, and the
+	 * automation suite can assert on the curve without a registered tick.
+	 *
+	 * Safe to call when nothing is animating: a steady phase just re-applies its
+	 * held pose.
+	 */
+	UFUNCTION(BlueprintCallable, Category="Melodia|MagicalTransform")
+	void AdvanceTransform(float DeltaSeconds);
+
 	// ── Read-only state ───────────────────────────────────────────────────────
 
 	UFUNCTION(BlueprintPure, Category="Melodia|MagicalTransform")
@@ -358,7 +373,20 @@ private:
 	/** Collect MIDs from the body mesh, wardrobe slot components, and tagged meshes. */
 	void ResolveBindings();
 
-	void CollectFromMeshComponent(UMeshComponent* Mesh, bool bForceWing, bool bTagDiscovered);
+	/**
+	 * Claims MIDs from one mesh component.
+	 *
+	 * @param bForceWing              Treat every slot as wing geometry.
+	 * @param bTagDiscovered          Component was found by tag, so it is safe to
+	 *                                hide wholesale when concealed.
+	 * @param bIncludeUnmatchedSlots  Claim slots that match no name filter. True
+	 *                                for a whole component that IS an accessory
+	 *                                (a wardrobe garment, a tagged mesh); false
+	 *                                for the body mesh, where only the named
+	 *                                slots may participate.
+	 */
+	void CollectFromMeshComponent(
+		UMeshComponent* Mesh, bool bForceWing, bool bTagDiscovered, bool bIncludeUnmatchedSlots);
 
 	/** Classify one slot name against the filters. Returns false when it matches neither. */
 	bool ClassifySlot(FName SlotName, bool& bOutIsWing) const;

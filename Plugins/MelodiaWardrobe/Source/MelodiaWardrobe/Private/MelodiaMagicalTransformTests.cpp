@@ -172,7 +172,7 @@ bool FMelodiaMagicalTransformPhaseTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("Revealing reports as transitioning"), Transform->IsTransitioning());
 
 	// Re-entrancy: a second call must not restart the transition.
-	Transform->TickComponent(0.5f, LEVELTICK_All, nullptr);
+	Transform->AdvanceTransform(0.5f);
 	const float MidProgress = Transform->GetProgress();
 	Transform->PlayReveal();
 	TestEqual(TEXT("PlayReveal while revealing does not restart"),
@@ -181,7 +181,7 @@ bool FMelodiaMagicalTransformPhaseTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("Progress has not completed at the halfway tick"), MidProgress < 1.0f);
 
 	// Completion is exact, not asymptotic.
-	Transform->TickComponent(0.6f, LEVELTICK_All, nullptr);
+	Transform->AdvanceTransform(0.6f);
 	TestEqual(TEXT("Reveal completes into Revealed"),
 		Transform->GetPhase(), EMelodiaMagicalTransformPhase::Revealed);
 	TestEqual(TEXT("Revealed holds full progress"), Transform->GetProgress(), 1.0f);
@@ -189,14 +189,14 @@ bool FMelodiaMagicalTransformPhaseTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("Revealed is not transitioning"), Transform->IsTransitioning());
 
 	// Overshooting ticks must not push progress past 1.
-	Transform->TickComponent(10.0f, LEVELTICK_All, nullptr);
+	Transform->AdvanceTransform(10.0f);
 	TestEqual(TEXT("Extra ticks do not overshoot progress"), Transform->GetProgress(), 1.0f);
 
 	// Conceal runs the clock back down.
 	Transform->PlayConceal();
 	TestEqual(TEXT("PlayConceal enters Concealing"),
 		Transform->GetPhase(), EMelodiaMagicalTransformPhase::Concealing);
-	Transform->TickComponent(0.4f, LEVELTICK_All, nullptr);
+	Transform->AdvanceTransform(0.4f);
 	const float ConcealProgress = Transform->GetProgress();
 	TestTrue(TEXT("Conceal reduces progress"), ConcealProgress < 1.0f);
 
@@ -210,7 +210,7 @@ bool FMelodiaMagicalTransformPhaseTest::RunTest(const FString& Parameters)
 
 	// Conceal all the way down returns to the zero-safe dormant state.
 	Transform->PlayConceal();
-	Transform->TickComponent(5.0f, LEVELTICK_All, nullptr);
+	Transform->AdvanceTransform(5.0f);
 	TestEqual(TEXT("Conceal completes into Dormant"),
 		Transform->GetPhase(), EMelodiaMagicalTransformPhase::Dormant);
 	TestEqual(TEXT("Dormant holds zero progress"), Transform->GetProgress(), 0.0f);
