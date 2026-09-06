@@ -1,0 +1,77 @@
+@ Start
+
+// Chapter 02 — second beat. Requires MelodiaQuillShorewake rev A, which sets the
+// PERSISTENT session var melodia_shorewake_attuned (melodia_ prefix => survives
+// save/reload via RestorePersistentQuillVariables). Non-persistent bridge flags
+// (flag.* names) are deliberately NOT used as guards.
+
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_CosmicOrrery.T_Melodia_Figma_Asset_Hero_CosmicOrrery} none 0
+
+? if: {melodia_skiff_departed} == on
+
+  - Sir Melodious
+    The Starskiff has already kissed the far tide. The memory of its bells stays with us.
+
+  $ End
+
+? else:
+
+  ? if: {melodia_shorewake_attuned} == on
+
+    - Melusina
+      The mooring bell is warm under my hand. The Shorewake hums against the current, ready.
+
+    - Sir Melodious
+      Two ways to say goodbye to a shore, little bard. One of them the sea remembers longer.
+
+    * Play the departure phrase on the lyre first. | -> PlayPhrase
+    * Push off quietly; the tide will not wait. | -> QuietPush
+
+  ? else:
+
+    - Sir Melodious
+      The skiff is tethered, but the weave has not chosen you yet. Return when the shorewake sits easy on your shoulders.
+
+    $ End
+
+  ? endif
+
+? endif
+
+<@> PlayPhrase
+
+- Melusina
+  Then let the sea take a song with it. One phrase — no more. The wake should outlast the note.
+
+- .
+  (Lyre phrase sounds: three rising figures, the farewell motif.)
+
+$ Notify melodia:stat:intent.skiffdeparture.farewell:melodia_resonance:3
+
+-> Departure
+
+<@> QuietPush
+
+- Melusina
+  Some goodbyes are just a hand on a rope and a held breath.
+
+-> Departure
+
+<@> Departure
+
+- Sir Melodious
+  Lines away. The terrace lamps are fireflies now. Steady — the high current runs cold on this side.
+
+- Melusina
+  Cold, and quiet, and mine. I think the sea was never calling my name. It was saving a seat.
+
+$ melodia_skiff_departed = on
+
+$ Notify melodia:questcomplete:quest.shorewake.passage:flag.shorewake.passage:reward.skiff_passage:intent.skiffdeparture.passage:checkpoint.skiff.underway
+
+@ Finish
+
+- .
+  The Starskiff slides the last ribbon of shore and is sea, wholly. Chapter 02 onward.
+
+$ End
