@@ -3,7 +3,7 @@
 **Verdict: PASS** — first-light rose-gold OPEN gown staged from proven pieces, beautiful and verifiable.
 
 ## Mesh — re-read
-- `dawn_chorus/meshes/DawnChorus.fbx` — **10466876 B, sha12 `24afebf25f84`, sha256 `24afebf25f8454…`** — Blender 5.2.1 LTS `9e2066aef7ef --factory-startup --background` import PASS: `Cos_Dress_Melusina_DawnChorus` **180,895v / 316,912 polys / 20 mats / 1 UV** (`UVMap`, dims 2.0×2.0×2.148). Source: `intake/Cos_Dress_Melusina_AntiqueDoll` interchange OBJ (same counts, 20 slots). Previous cube (8v, `58860c25`, 7.8 MB) replaced headless via `obj_import` + `fbx export`. Staged **OPEN** — no modifier baked, no MI wired, no Content/** touched.
+- `dawn_chorus/meshes/DawnChorus.fbx` — **10464444 B, sha12 `6df19846bc0e`, sha256 `6df19846bc0e…`** — Blender 5.2.1 LTS `9e2066aef7ef --factory-startup --background` import PASS: `Cos_Dress_Melusina_DawnChorus` **180,895v / 316,912 polys / 20 mats / 1 UV** (`UVMap`, dims 2.0×2.0×2.148). Source: `intake/Cos_Dress_Melusina_AntiqueDoll` interchange OBJ (same counts, 20 slots). Rebuilt headless 2026-09-06 via `obj_import` + `fbx export` (replaces 2026-09-05 hash `24afebf25f84` — 2432 B FBX metadata delta, geometry identical). Staged **OPEN** — no modifier baked, no MI wired, no Content/** touched.
 - Retopo is available, not required: `MELODIA_RETOPO_RECIPE_2026-09-03.md` + `garment_retopo_preintake.py` proven to `voxel_fallback 0.050931 → 9168v/9166q quad_ratio 1.0` (verified 2026-09-04). Painter can decimate in-editor; overnight watch left the hero shell dense and intact.
 
 ## OPEN paint maps — re-read (2048²)
@@ -36,7 +36,7 @@ Generator `dawn_chorus/_gen_maps.py` — numpy `seed 20260902`, Chladni(5,7) + (
 Blender `5.2.1 LTS 9e2066aef7ef (2026-08-25 02:38:20)`.
 
 ## Staging
-`OPEN — hand-paint; never auto-wire`. `resources/` identical to `textures/`; hand-paint rule honored; UE stays only runtime writer; `Content/**` untouched; offline only; editor lock never taken. `dawn_chorus_manifest.json` re-stamped `2026-09-05T02:45` with new mesh hash `24afebf25f84` and COP provenance.
+`OPEN — hand-paint; never auto-wire`. `resources/` identical to `textures/`; hand-paint rule honored; UE stays only runtime writer; `Content/**` untouched; offline only; editor lock never taken. `dawn_chorus_manifest.json` re-stamped `2026-09-06` with corrected mesh hash `6df19846bc0e` (was `24afebf25f84` — metadata delta only) and COP provenance.
 
 ## What landed this run
 - Rebuilt `meshes/DawnChorus.fbx` from interchange AntiqueDoll intake (cube → 180k shell, 20 mats preserved).

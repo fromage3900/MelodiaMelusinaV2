@@ -7,9 +7,9 @@
   "status": "OPEN (hand-paint; never auto-wire)",
   "mesh": {
     "file": "meshes/DawnChorus.fbx",
-    "sha12": "24afebf25f84",
-    "sha256": "24afebf25f84540243304e14534eb2591f21a715a65b57dd5e64b44f713568f7",
-    "size_b": 10466876,
+    "sha12": "6df19846bc0e",
+    "sha256": "6df19846bc0ed9c05646c529387497fc493bb6b736d907904ee87271d0b0ffe8",
+    "size_b": 10464444,
     "source": "intake/Cos_Dress_Melusina_AntiqueDoll (180895v/316912 polys, 20 slots)",
     "verts": 180895,
     "polys": 316912,
