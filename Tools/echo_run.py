@@ -51,6 +51,15 @@ ALLOWLIST_ASSET = os.environ.get(
 )
 
 VERB_SPECS: dict[str, dict[str, Any]] = {
+    # Registered in C++ (MelodiaNarrativeSubsystem.cpp ~1097: Handlers "questcomplete")
+    # but was invisible to this validator until 2026-09-06 — a registered verb the
+    # offline gate cannot see silently passes everything (rule-13/20 family).
+    # Syntax: melodia:questcomplete:<QuestId>:<CompletionFlagId>:<RewardId>:<IntentId>:<CheckpointId>
+    "questcomplete": {
+        "parts": 7,
+        "label": "QuestId:CompletionFlagId:RewardId:IntentId:CheckpointId",
+        "allowlist_multi": {"quest": "quests", "flag": "flags", "reward": "rewards"},
+    },
     "battle": {
         "parts": 3,
         "label": "EncounterId",
@@ -94,8 +103,8 @@ VERB_SPECS: dict[str, dict[str, Any]] = {
 }
 
 TOKEN_RE = re.compile(
-    r"melodia:(?:battle|quest|flag|travel|reward|stat|item):"
-    r"[A-Za-z0-9_./+\-]+(?::[A-Za-z0-9_./+\-]+){0,3}"
+    r"melodia:(?:battle|quest|flag|travel|reward|stat|item|questcomplete):"
+    r"[A-Za-z0-9_./+\-]+(?::[A-Za-z0-9_./+\-]+){0,4}"
     r"(?![A-Za-z0-9_./+\-:<])"
 )
 ID_RE = re.compile(r"^[A-Za-z0-9_./+\-]+$")
@@ -437,7 +446,8 @@ def validate_spec(
     allowlist_verbs = {
         verb
         for verb in verbs
-        if VERB_SPECS[verb].get("allowlist") and not VERB_SPECS[verb].get("stub")
+        if (VERB_SPECS[verb].get("allowlist") or VERB_SPECS[verb].get("allowlist_multi"))
+        and not VERB_SPECS[verb].get("stub")
     }
     allowlist_source = None
     if allowlist_verbs:
@@ -458,6 +468,20 @@ def validate_spec(
             for token in tokens:
                 verb, parts, error = _parse_token(token)
                 if error or verb not in allowlist_verbs:
+                    continue
+                multi = VERB_SPECS[verb].get("allowlist_multi")
+                if multi:
+                    # questcomplete: field-index -> allowlist collection
+                    field_idx = {"quest": 2, "flag": 3, "reward": 4}
+                    for field, category in multi.items():
+                        identifier = parts[field_idx[field]]
+                        values = allowlist.get(category)
+                        if values is None:
+                            errors.append(f"{token}: allowlist has no '{category}' collection")
+                        elif identifier not in values:
+                            errors.append(
+                                f"{token}: '{identifier}' is not in live allowlist '{category}'"
+                            )
                     continue
                 category = VERB_SPECS[verb]["allowlist"]
                 values = allowlist.get(category)

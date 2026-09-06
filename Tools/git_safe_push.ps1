@@ -4,7 +4,7 @@
 
 param(
     [int]$LimitMB = 512,
-    [string]$Remote = "v2",
+    [string]$Remote = "origin",
     [string]$Branch = "main"
 )
 

@@ -32,7 +32,10 @@ def _math(tree, op, loc):
 def build_garment_tension_folds(group_name="MEL_garment_tension_folds"):
     """Tension-driven folds: rest/deviation mask -> normal displacement."""
     tree, gin, gout = new_geometry_tree(group_name)
-    add_float_param(tree, "Strength", 0.5, 0.0, 2.0)
+    # 2026-09-06 neutrality fix (wardrobe_proof G3): Strength default 0.5 was a
+    # constant half-normal displacement on every vertex (22% Y drift at defaults).
+    # Zero = passthrough; authored presets carry the intensity.
+    add_float_param(tree, "Strength", 0.0, 0.0, 2.0)
     add_float_param(tree, "Compress Gain", 1.0, 0.0, 5.0)
     add_float_param(tree, "Stretch Gain", 0.8, 0.0, 5.0)
     add_int_param(tree, "Seed", 20260902, 0, 99999999)
