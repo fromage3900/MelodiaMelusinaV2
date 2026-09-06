@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Trail_MelusinaEclipse",
+  "display_name": "Melusina Eclipse",
+  "slot": "trail",
+  "rarity": "Grandmaster",
+  "element_mood": "Umbral",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 10,
+    "swirl": 4
+  },
+  "palette": [
+    "#000000",
+    "#333333",
+    "#666666"
+  ],
+  "flavor": "Ethereal tail trail of dark magic.",
+  "material_notes": "Aurora band with iridescent filigree.",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

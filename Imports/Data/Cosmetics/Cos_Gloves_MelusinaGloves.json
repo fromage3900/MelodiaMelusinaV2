@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Gloves_MelusinaGloves",
+  "display_name": "Moonlit Veil",
+  "slot": "gloves",
+  "rarity": "Grandmaster",
+  "element_mood": "Umbral",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 12,
+    "swirl": 3
+  },
+  "palette": [
+    "#333333",
+    "#666666",
+    "#FFFFFF"
+  ],
+  "flavor": "Graceful gloves woven from moonlight.",
+  "material_notes": "Gilded filigree, stained glass",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Gloves_Melusina_Gauntlets",
+  "display_name": "Melusina Gauntlets",
+  "slot": "gloves",
+  "rarity": "Grandmaster",
+  "element_mood": "Gale",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 12,
+    "swirl": 6
+  },
+  "palette": [
+    "#E8C1A1",
+    "#94B49F",
+    "#D0A18F"
+  ],
+  "flavor": "Crimson leather gloves adorned with silver filigree, perfect for battling the wind.",
+  "material_notes": "Gilded filigree, stained glass",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

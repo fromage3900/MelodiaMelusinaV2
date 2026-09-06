@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Gloves_MelusinaRadiant",
+  "display_name": "Radiant Moonlight Mittens",
+  "slot": "gloves",
+  "rarity": "Common",
+  "element_mood": "Radiant",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 5,
+    "swirl": 2
+  },
+  "palette": [
+    "#FFFFFF",
+    "#D6D6D6",
+    "#E1C799"
+  ],
+  "flavor": "Glimmering gloves for the moon's daughter, imbued with light.",
+  "material_notes": "Iridescence, gilded filigree",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

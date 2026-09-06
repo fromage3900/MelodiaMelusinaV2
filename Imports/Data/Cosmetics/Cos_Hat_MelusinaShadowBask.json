@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Hat_MelusinaShadowBask",
+  "display_name": "Melusina's Shadow Bask",
+  "slot": "hat",
+  "rarity": "Grandmaster",
+  "element_mood": "Umbral",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 10,
+    "swirl": 3
+  },
+  "palette": [
+    "#2B2B2B",
+    "#4D4D4D",
+    "#6A6A6A"
+  ],
+  "flavor": "Ethereal whispers of the darkened moon.",
+  "material_notes": "Iridescence, gilded filigree, stained glass, aurora band.",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

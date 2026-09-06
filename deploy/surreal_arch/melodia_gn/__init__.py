@@ -1,4 +1,4 @@
-from .core import safe_node, link_sockets, color_node, label_tree, new_geometry_tree, make_group_input, make_group_output, TREE_TYPES, GROUP_BUILDERS, GROUP_METADATA, CATEGORY_META, STUDIO_LABELS, TREE_LABEL_MAP, TREE_DESCRIPTIONS, TREE_CATEGORY_MAP, TREE_CATEGORIES, register_builder
+from .core import safe_node, link_sockets, color_node, label_tree, new_geometry_tree, make_group_input, make_group_output, TREE_TYPES, GROUP_BUILDERS, GROUP_METADATA, CATEGORY_META, STUDIO_LABELS, TREE_LABEL_MAP, TREE_DESCRIPTIONS, TREE_CATEGORY_MAP, TREE_CATEGORIES, register_builder, get_param_schema, PARAM_SCHEMAS
 from .logging import log, install_pref_bridge
 from .primitives import build_circular_array, build_linear_array, build_grid_array, build_bounding_box, build_instance_on_spline
 from .profiles import build_column, build_baluster, build_post, build_rail, build_star_finial, build_lissajous_curve
@@ -63,7 +63,20 @@ from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_en
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
 from . import melodia_house  # noqa: F401 - unified house module: genome room shell (mh6) + AAA kit
-from . import melusina_house_foundation  # noqa: F401 - Melusina House foundation/pod builders
+from . import aesthetic_fx  # noqa: F401
+from . import scifi_fx  # noqa: F401
+from . import zen_kit  # noqa: F401 - zen/castle/asian absorbed from monolith (P2)
+from . import castle_kit  # noqa: F401
+from . import asian_kit  # noqa: F401
+from . import civic_kit  # noqa: F401
+from . import experimental_kit  # noqa: F401
+from . import euro_kit  # noqa: F401
+from . import core_forms_kit  # noqa: F401
+from . import walls_kit  # noqa: F401
+from . import buildings_kit  # noqa: F401 - buildings absorbed (P2)
+from . import misc_props_kit  # noqa: F401
+from . import materials_kit  # noqa: F401 - materials absorbed (P2)
+from . import filigree_kit  # noqa: F401 - filigree absorbed (P2)  # noqa: F401 - misc props absorbed (P2)  # noqa: F401 - walls absorbed from monolith (P2)  # noqa: F401 - core forms absorbed from monolith (P2)  # noqa: F401 - euro-classical absorbed from monolith (P2)  # noqa: F401 - experimental+2 core-forms absorbed (P2)  # noqa: F401 - civic absorbed from monolith (P2)  # noqa: F401  # noqa: F401 - 7 effect passes absorbed from monolith (P2)  # noqa: F401 - 70 effect passes absorbed from monolith (P2)
 from . import house_dress  # noqa: F401 - mh_* dressing builders (piano walk, sheet rail, lanterns...) - unified house module: genome room shell (mh6) + AAA kit (cornice/dentil/scallop/lissajous)
 from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
     build_city_house_cell, build_city_avenue, build_city_block,

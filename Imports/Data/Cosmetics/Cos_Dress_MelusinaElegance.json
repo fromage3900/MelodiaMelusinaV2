@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Dress_MelusinaElegance",
+  "display_name": "Melusina's Elegance",
+  "slot": "dress",
+  "rarity": "Refined",
+  "element_mood": "Arcane",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 9,
+    "swirl": 3
+  },
+  "palette": [
+    "#A0C4FF",
+    "#F7D3C0",
+    "#734C5B"
+  ],
+  "flavor": "A celestial gown woven from the stars, adorned with moonlit filigree.",
+  "material_notes": "Iridescence, gilded filigree, stained glass, aurora band",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

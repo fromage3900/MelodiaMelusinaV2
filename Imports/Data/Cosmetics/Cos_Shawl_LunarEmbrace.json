@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Shawl_LunarEmbrace",
+  "display_name": "Lunar Embrace",
+  "slot": "shawl",
+  "rarity": "Refined",
+  "element_mood": "Tide",
+  "content_pack_id": "Pack_GildedOverture",
+  "token_cost": {
+    "heart": 8,
+    "swirl": 3
+  },
+  "palette": [
+    "#7F8C8D",
+    "#D3D3D3",
+    "#FFFFFF"
+  ],
+  "flavor": "Melusina's moonlit veil, shimmering with starlight.",
+  "material_notes": "Gilded filigree, stained glass, aurora band",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

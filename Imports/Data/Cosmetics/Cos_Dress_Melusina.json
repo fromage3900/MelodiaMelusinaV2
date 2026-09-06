@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Dress_Melusina",
+  "display_name": "Glistening Coral Sash",
+  "slot": "dress",
+  "rarity": "Couture",
+  "element_mood": "Tide",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 10,
+    "swirl": 3
+  },
+  "palette": [
+    "#F0A0A0",
+    "#FFD7A0",
+    "#90EE90"
+  ],
+  "flavor": "Enchanting skirt with shimmering coral accents.",
+  "material_notes": "Gilded filigree, stained glass, aurora band",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

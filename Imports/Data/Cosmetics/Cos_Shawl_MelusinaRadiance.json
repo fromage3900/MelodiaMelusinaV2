@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Shawl_MelusinaRadiance",
+  "display_name": "Radiant Veil of Melusina",
+  "slot": "shawl",
+  "rarity": "Common",
+  "element_mood": "Radiant",
+  "content_pack_id": "Pack_MoonlitSonata",
+  "token_cost": {
+    "heart": 2,
+    "swirl": 1
+  },
+  "palette": [
+    "#FFFFFF",
+    "#A0522D",
+    "#FFD700"
+  ],
+  "flavor": "Ethereal light whispers through intricate filigree.",
+  "material_notes": "Gilded filigree and stained glass",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

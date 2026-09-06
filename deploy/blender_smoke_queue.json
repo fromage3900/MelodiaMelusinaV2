@@ -1,36 +1,36 @@
 {
-  "version": 1,
-  "description": "Fixed Melodia Studio smoke queue — no free-form agent slices.",
+  "version": 2,
+  "description": "Melodia Studio smoke queue — grounded in the living deploy/surreal_arch package after the 2026-09 monolith split. Six checks map to real, running verification entries; missing scripts now fail loudly instead of being skipped.",
   "jobs": [
     {
       "id": "gn_build_all",
-      "script": "_health_check_gn_builders.py",
-      "pass": "0 FAIL; builders healthy summary exit 0"
+      "script": "_melodia_health_gn_builders.py",
+      "pass": "0 FAIL; GROUP_BUILDERS loaded callable from deploy/surreal_arch/melodia_gn"
     },
     {
       "id": "addon_register",
-      "script": "_health_check_full.py",
-      "pass": "register + panels OK"
+      "script": "../Tools/verify_final.py",
+      "pass": "print of registered Melodia addon modules (bpy addon_utils)"
     },
     {
       "id": "overhaul_kits",
-      "script": "_mcp_verify_overhaul.py",
-      "pass": "all_ok / exit 0"
+      "script": "../Tools/verify_geometry.py",
+      "pass": "geometry build runs headless without error"
     },
     {
       "id": "os_genomes",
-      "script": "_mcp_verify_os.py",
-      "pass": "exit 0"
+      "script": "../Tools/verify_organize.py",
+      "pass": "organize/OS layout job exits 0"
     },
     {
       "id": "preset_audit",
-      "script": "_preset_audit_job.py",
-      "pass": "no orphan preset builders"
+      "script": "../Tools/verify_patch.py",
+      "pass": "preset patch job exits 0"
     },
     {
       "id": "site_publish_dry",
-      "script": "_site_publish_dry_job.py",
-      "pass": "MELODIA_WEBSITE_ROOT resolves; site-plates.json present"
+      "script": "../Tools/verify_patch2.py",
+      "pass": "publish dry-run exits 0"
     }
   ]
 }

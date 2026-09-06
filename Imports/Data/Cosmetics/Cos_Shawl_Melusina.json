@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Shawl_Melusina",
+  "display_name": "Celestial Whisper",
+  "slot": "shawl",
+  "rarity": "Common",
+  "element_mood": "Gale",
+  "content_pack_id": "Pack_MoonlitSonata",
+  "token_cost": {
+    "heart": 3,
+    "swirl": 2
+  },
+  "palette": [
+    "#FFFFFF",
+    "#FFFFFF",
+    "#FFFFFF"
+  ],
+  "flavor": "Melusina's grace under moonlit skies.",
+  "material_notes": "Iridescence, gilded filigree, stained glass, aurora band",
+  "schema": "MelodiaCosmetic-draft-v1"
+}
