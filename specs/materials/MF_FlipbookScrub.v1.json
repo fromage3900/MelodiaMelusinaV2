@@ -1,0 +1,40 @@
+{
+  "schema": "melodia.material_function_spec.v1",
+  "id": "MF_FlipbookScrub",
+  "target": "/Game/EnvSandbox/VFX/Materials/Functions/MF_FlipbookScrub",
+  "status": "awaiting-editor-batch",
+  "purpose": "Scrub a per-frame PBR flipbook set (PearlWoven/SurrealFabric families) or a 4x4 atlas (Brass_T_Brass_Flipbook_30_Atlas_4x4, Alphas_Sparkles atlases) with a shared time->frame contract. One function serves the Nikki-chain flipbook cloth masters AND the Niagara sparkle materials (plan tiers T3).",
+  "authoring_rules": [
+    "create_custom_hlsl_node ONLY on new function; never build_material_graph on existing assets",
+    "vertex-safe: no Parameters.CameraVector inside any path reachable from WPO",
+    "single writer: time comes from engine Time via a Time-scalar parameter fed by MPC_Melodia_Palette reader; MF never writes MPC"
+  ],
+  "inputs": {
+    "TextureArrayOrAtlas": "TextureObjectParameter (per-frame mode: user sets frame count)",
+    "FrameCount": "ScalarParameter, default 1",
+    "FrameRate": "ScalarParameter, default 12 (fps)",
+    "FrameOffset": "ScalarParameter, default 0 (phase sync across channels)",
+    "AtlasGridSide": "StaticSwitch or int scalar: 0 = per-frame mode; 4 = 4x4 atlas chop",
+    "UVs": "default UV"
+  },
+  "outputs": {
+    "FrameUVs": "Vector2 (atlas-chopped or passthrough)",
+    "ValidMask": "Scalar 0/1 (frame index guard)",
+    "CurrentFrame": "Scalar (for debug / audio-reactive lane read)"
+  },
+  "frame_math": "frame = floor((Time*FrameRate + FrameOffset) mod FrameCount); per-frame mode: caller samples TextureObject(index) via StaticBranch loop OR TextureArray if promoted; atlas mode: uv = (baseUV + float2(frame%G, floor(frame/G))) / G, G=4",
+  "channel_sets_ready": {
+    "PearlWoven_Flipbook": ["BaseColor","Normal","Roughness","Height","Iridescence"],
+    "SurrealFabric_Flipbooks": ["BrassPatina","CelestialSilk","CymaticPulse"],
+    "atlas": ["T_Brass_Flipbook_30_Atlas_4x4","T_Alpha_sparkle_pulse_flipbook","T_Alpha_fluid_metaball_flipbook"]
+  },
+  "open_questions": [
+    "per-frame textures in git are Texture2D sets; a true VirtualTexture2DArray promotion needs an importer pass - spec first, decide with editor batch F",
+    "RESOLVED 09-06 (disk census): PearlWoven = 16 frames x 5 channels (per-frame mode, FrameCount=16); SurrealFabric families = *_Atlas_6x5 + *_AtlasCompact_6x5 textures (FrameCount=30, AtlasGrid=6x5 -> generalize AtlasGridSide to AtlasCols/AtlasRows); T_Brass_Flipbook_30_Atlas_4x4 naming implies 30 frames in a 4x4 grid = NON-uniform, verify atlas layout before wiring (may be 6x5 misnamed or padded)"
+  ],
+  "parameters_update": {
+    "AtlasCols": "ScalarParameter, default 4",
+    "AtlasRows": "ScalarParameter, default 4",
+    "frame_math": "frame = floor((Time*FrameRate + FrameOffset) mod FrameCount); atlas: uv = (baseUV + float2(frame mod Cols, floor(frame/Cols))) / float2(Cols,Rows); guard frame<FrameCount"
+  }
+}
