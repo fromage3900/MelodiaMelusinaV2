@@ -180,3 +180,21 @@ the game thread — grep the log for `MODAL_OPEN` before assuming the plugin is 
 session is restarted — check what you actually have before promising editor work.
 
 **Gameplay authority correction (2026-07-26, read before touching any gameplay system)**: MelodiaCore is quarantined as runtime-unstable and does **not** own battle/turn/save authority. The complete standalone TurnBased JRPG template is the provisional mechanical authority instead. QuillScript is an isolated narrative candidate (not yet proven to own gameplay state). ACFU is archived/reference-only and must not run parallel to the JRPG authority. Full decision record and ownership map: `Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md`. Do not rebuild JRPG-native mechanics in MelodiaCore, ACFU, or a parallel Blueprint graph.
+
+## Claireon Session Coordination
+
+Claireon (`Plugins/Claireon/`) is a fourth MCP surface — its own proxy singleton, editor-resident,
+one per Windows account, multiplexing every git worktree's traffic to whichever editor is
+registered. It has per-asset exclusive locks but **no PIE-session lock and no editor-instance
+arbitration** — the "one editor instance" / "never run two surfaces against the same graph" rules
+above apply to it exactly as they do to the other three, and Claireon will not enforce them for
+you. A git worktree isolates git state for a Claireon task; it does **not** isolate the editor,
+Claireon's proxy, or the current PIE session — those stay shared no matter how many worktrees
+exist.
+
+Before starting or resuming Claireon work: read `Docs/Claireon/CLAIREON_SESSION_PROTOCOL.md`
+(preflight checklist, worktree-isolation gap, when to reach for each of Claireon's instruction
+resources) and `~/.claude/claireon/ACTIVE_TASK.md` (cross-session pointer to whatever task is
+currently in flight — lives outside the repo on purpose, since `Saved/Claireon/Workflow/` is
+git-ignored and per-worktree). `Docs/Claireon/CLAIREON_CAPABILITY_CHEATSHEET.md` covers
+underused MCP tools (batch `*_apply_spec` edits, `uobject_set_property`, `pie_wait_for`).
