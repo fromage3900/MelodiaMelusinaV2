@@ -139,6 +139,50 @@ def build_mh6_room_shell(group_name="MEL_mh6_room_shell"):
     except Exception:
         pass
 
+    # V0 fix 2026-09-04 (stages 7-20): Size X = span.x*0.92, Size Y =
+    # span.z*0.92 via SeparateXYZ — the old vector->float link only fed
+    # Size X and left Size Y at default 1m.
+    span_sep = safe_node(tree, "ShaderNodeSeparateXYZ", (1000, -60))
+    _link(tree, span.outputs[0], span_sep.inputs[0])
+    gx = safe_node(tree, "ShaderNodeMath", (1140, -20))
+    gx.operation = 'MULTIPLY'
+    try:
+        gx.inputs[1].default_value = 0.92
+    except Exception:
+        pass
+    _link(tree, span_sep.outputs["X"], gx.inputs[0])
+    gy = safe_node(tree, "ShaderNodeMath", (1140, -140))
+    gy.operation = 'MULTIPLY'
+    try:
+        gy.inputs[1].default_value = 0.92
+    except Exception:
+        pass
+    _link(tree, span_sep.outputs["Z"], gy.inputs[0])
+    _link(tree, gx.outputs[0], grid.inputs["Size X"])
+    _link(tree, gy.outputs[0], grid.inputs["Size Y"])
+    # V0 fix: stand the grid up in the wall plane (XZ) and lift it to the
+    # wall's vertical center so cutter rows ride the wall band, not the floor.
+    grid_rot = safe_node(tree, "GeometryNodeTransform", (1060, -200))
+    try:
+        grid_rot.inputs["Rotation"].default_value = (1.5708, 0.0, 0.0)
+    except Exception:
+        pass
+    _link(tree, grid.outputs["Mesh"], grid_rot.inputs["Geometry"])
+    gmaxz = safe_node(tree, "ShaderNodeSeparateXYZ", (1000, 120))
+    _link(tree, bbox.outputs["Max"], gmaxz.inputs[0])
+    glift = safe_node(tree, "ShaderNodeMath", (1140, 120))
+    glift.operation = 'MULTIPLY'
+    try:
+        glift.inputs[1].default_value = 0.5
+    except Exception:
+        pass
+    _link(tree, gmaxz.outputs["Z"], glift.inputs[0])
+    glift_vec = safe_node(tree, "ShaderNodeCombineXYZ", (1280, 120))
+    _link(tree, glift.outputs[0], glift_vec.inputs["Z"])
+    grid_lift = safe_node(tree, "GeometryNodeTransform", (1420, -200))
+    _link(tree, grid_rot.outputs["Geometry"], grid_lift.inputs["Geometry"])
+    _link(tree, glift_vec.outputs[0], grid_lift.inputs["Translation"])
+
     # --- cutter instances: scalloped arch windows on each grid vertex
     # arch cutter = cylinder + box, scaled by Opening Scale
     cutter_box = safe_node(tree, "GeometryNodeMeshCube", (760, -520))
@@ -164,7 +208,7 @@ def build_mh6_room_shell(group_name="MEL_mh6_room_shell"):
     _link(tree, osc.outputs[0], cut_xf.inputs["Scale"])
 
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (1140, -200))
-    _link(tree, grid.outputs["Mesh"], inst.inputs["Points"])
+    _link(tree, grid_lift.outputs["Geometry"], inst.inputs["Points"])
     _link(tree, cut_xf.outputs["Geometry"], inst.inputs["Instance"])
     # drop cutters below floor line: position offset via bbox Min handled by
     # grid location (grid centered at origin, wall also centered) - acceptable
@@ -176,7 +220,62 @@ def build_mh6_room_shell(group_name="MEL_mh6_room_shell"):
     _link(tree, tosdf.outputs["SDF Grid"], sdf_bool.inputs["Grid 1"])
 
     cut_sdf = safe_node(tree, "GeometryNodeMeshToSDFGrid", (1500, -200))
-    _link(tree, realized.outputs[0], cut_sdf.inputs["Mesh"])
+    # V0 fix (stage 14-16): cutter scale Combine must carry Y=1.0 — default 0
+    # flattened every cutter into a zero-thickness sheet, so the boolean
+    # subtracted nothing (the real "openings never cut" defect).
+    try:
+        osc.inputs["Y"].default_value = 1.0
+    except Exception:
+        pass
+    # V0 fix (stage 19): rotate the arch cylinder so its axis drills along Y
+    # (through the wall) and raise it to cap the box as the arch top.
+    cutter_arch_xf = safe_node(tree, "GeometryNodeTransform", (880, -780))
+    try:
+        cutter_arch_xf.inputs["Rotation"].default_value = (1.5708, 0.0, 0.0)
+        cutter_arch_xf.inputs["Translation"].default_value = (0.0, 0.0, 0.45)
+    except Exception:
+        pass
+    _link(tree, cutter_arch.outputs["Mesh"], cutter_arch_xf.inputs["Geometry"])
+    for _l in list(cutter_join.inputs[0].links):
+        if _l.from_node == cutter_arch:
+            tree.links.remove(_l)
+    _link(tree, cutter_arch_xf.outputs["Geometry"], cutter_join.inputs[0])
+
+    # V0 fix (stage 14): empty-cutter guard — with zero cutters the empty
+    # SDF in Grid 2 destroys the wall (112-vert plane). Gate the cutter mesh
+    # on its own bbox: no cutters -> an off-wall dummy cube whose SDF
+    # subtracts nothing.
+    guard_bb = safe_node(tree, "GeometryNodeBoundBox", (1320, -380))
+    _link(tree, realized.outputs[0], guard_bb.inputs["Geometry"])
+    guard_sep = safe_node(tree, "ShaderNodeSeparateXYZ", (1460, -380))
+    _link(tree, guard_bb.outputs["Max"], guard_sep.inputs[0])
+    guard_gt = safe_node(tree, "ShaderNodeMath", (1600, -380))
+    guard_gt.operation = 'GREATER_THAN'
+    try:
+        guard_gt.inputs[1].default_value = 0.0
+    except Exception:
+        pass
+    _link(tree, guard_sep.outputs["X"], guard_gt.inputs[0])
+    guard_dummy = safe_node(tree, "GeometryNodeMeshCube", (1320, -560))
+    try:
+        guard_dummy.inputs["Size"].default_value = (0.1, 0.1, 0.1)
+    except Exception:
+        pass
+    guard_dummy_xf = safe_node(tree, "GeometryNodeTransform", (1460, -560))
+    try:
+        guard_dummy_xf.inputs["Translation"].default_value = (0.0, 50.0, 0.0)
+    except Exception:
+        pass
+    _link(tree, guard_dummy.outputs["Mesh"], guard_dummy_xf.inputs["Geometry"])
+    guard_sw = safe_node(tree, "GeometryNodeSwitch", (1620, -220))
+    try:
+        guard_sw.input_type = 'GEOMETRY'
+    except Exception:
+        pass
+    _link(tree, guard_gt.outputs[0], guard_sw.inputs["Switch"])
+    _link(tree, guard_dummy_xf.outputs["Geometry"], guard_sw.inputs["False"])
+    _link(tree, realized.outputs[0], guard_sw.inputs["True"])
+    _link(tree, guard_sw.outputs["Output"], cut_sdf.inputs["Mesh"])
     _link(tree, gin.outputs["Voxel Size"], cut_sdf.inputs["Voxel Size"])
     _link(tree, cut_sdf.outputs["SDF Grid"], sdf_bool.inputs["Grid 2"])
 
@@ -300,7 +399,7 @@ register_builder(
     "MEL_mh6_room_shell", build_mh6_room_shell,
     "MH6 Room Shell", "Genome room shell: curved wall + cornice + SDF-filleted "
     "openings, all driven off Bounding Box extents.",
-    category="melusina_house")
+    category="structures")
 
 def _bevel(tree, loc, geom_sock, width=0.01, segments=2):
     n = safe_node(tree, "GeometryNodeMeshBevel", loc)
@@ -743,11 +842,11 @@ def _register_all():
     register_builder(
         "MEL_mh_aaa_cornice", build_mh_aaa_cornice,
         "MH AAA Cornice", "Stepped cornice/string-course ring, swept + beveled.",
-        category="melusina_house")
+        category="structures")
     register_builder(
         "MEL_mh_aaa_dentil", build_mh_aaa_dentil,
         "MH AAA Dentil Row", "Repeat Zone dentil blocks under a cornice.",
-        category="melusina_house")
+        category="structures")
     register_builder(
         "MEL_mh_aaa_scallop_uv", build_mh_aaa_scallop_uv,
         "MH AAA Scallop UV", "UV-projected scallop shingles via Sample UV Surface.",
@@ -755,7 +854,7 @@ def _register_all():
     register_builder(
         "MEL_mh_aaa_lissajous_pearl", build_mh_aaa_lissajous_pearl,
         "MH AAA Lissajous Pearl", "Lissajous pearl string driven by sine math; music-reactive.",
-        category="melusina_house")
+        category="ornament")
 
 
 _register_all()
