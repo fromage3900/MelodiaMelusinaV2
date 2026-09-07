@@ -5,6 +5,13 @@
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
 
 ---
+
+## 🧊 SHOWCASE SOFT FREEZE ACTIVE — 2026-09-07
+
+Recruiter/public presentation is frozen except for approved render promotion, critical factual/contact/accessibility fixes, and render-pipeline work required to produce the final Melusina/Sakura/Kaleido/FallenMoon proof set. **Do not redesign the website, add public demos, broaden recruiter claims, or create another capture framework during freeze.** Game/semester production continues. Read [Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
+
+---
+
 ## 🚨 CURRENT DISCOVERY AUTHORITY — 2026-09-04
 
 **Read [`AGENT_START_HERE.md`](AGENT_START_HERE.md) before using any dated plan, handoff, roadblock file, or research packet as project status.**
