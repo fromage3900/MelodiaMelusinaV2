@@ -119,7 +119,7 @@ function Get-LfsInclude {
             return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/**"
         }
         "HumberSemester" {
-            return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/SeaAbove/**,Content/EnvSandbox/Materials/Masters/**,Content/EnvSandbox/Materials/ToonProfiles/**,RawArt/MelusinasHouse/**"
+            return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/SeaAbove/**,Content/EnvSandbox/Materials/Masters/**,Content/EnvSandbox/Materials/ToonProfiles/**"
         }
         default {
             return ""
