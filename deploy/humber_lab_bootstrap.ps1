@@ -83,6 +83,12 @@ $Report = [ordered]@{
 
 $Report | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $ReportPath -Encoding UTF8
 
+$Inspector = Join-Path $ProjectRoot "deploy\inspect_workstation.ps1"
+$HardwareReport = Join-Path $ReportDir ($Machine + "-workstation-report.json")
+if (Test-Path -LiteralPath $Inspector -PathType Leaf) {
+    & powershell -NoProfile -ExecutionPolicy Bypass -File $Inspector -OutputPath $HardwareReport
+}
+
 Write-Host "====================================" -ForegroundColor Magenta
 Write-Host " MELODIA HUMBER LAB BOOTSTRAP" -ForegroundColor Magenta
 Write-Host "====================================" -ForegroundColor Magenta
@@ -94,7 +100,7 @@ Write-Host "Git LFS:    $LfsAvailable"
 Write-Host "UE 5.8:     $UnrealAvailable"
 Write-Host "Blender:    $BlenderExe"
 Write-Host "Free disk:  $FreeGB GB"
-Write-Host "Report:     $ReportPath"
+Write-Host "Report:     $ReportPath"\nWrite-Host "Hardware:   $HardwareReport"
 
 if (-not $GitAvailable -or -not $LfsAvailable) { exit 1 }
 if ($Mode -eq "Prepare" -and $Branch -ne "main") { exit 1 }
