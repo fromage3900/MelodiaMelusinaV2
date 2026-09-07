@@ -23,7 +23,23 @@
 | p07 | Polish audit | art-review checklist: framing, contact shadow, blown/dead check, hue sanity, ORM noncolor, tri budget <80k, outline consistency; contact sheet | 45m | YES |
 | p08 | Export prep | `Export` collection + ME_BakeUV + sidecar JSON; UE intake manifest `/Game/EnvSandbox/Meshes/Environment/waveviolin` naming `SM_MEWaveViolin` | 30m | YES |
 
-**Acceptance:** p07 contact sheet + `pipeline_report.json` with per-phase status; owner viewport = final truth.
+## Acceptance: p07 contact sheet + `pipeline_report.json` with per-phase status; owner viewport = final truth.
+
+## STATUS LEDGER (executed 2026-09-07 evening, headless — owner absent)
+| Phase | Status | Evidence |
+|---|---|---|
+| p00 stage | DONE | `p00_report.json`, blend saved |
+| p01 blockout | DONE | 2,078 tris, `p01_blockout.png` |
+| p02 mats/UV | DONE | 6 hybrid mats, UVMap+ME_BakeUV |
+| p03 transform | DONE | 8 rigged, stow/half/deploy plates |
+| p04 cymatics | DONE | eigen 3,5 belly, vent glow, string energy |
+| p05 ribbons+beads | DONE | 2 ribbons, 14-bead GN chain, `p05_hero.png` |
+| p06 drape | DONE (authored fallback) | XPBD cloth node absent in 5.2.1 headless; `Drape_Editorial` key built |
+| p07/p08 audit+export | DONE | 16,056 tris (budget ✓), **0 issues**, 22 export objs, manifest |
+| p09 refine (extra) | DONE | review 6/10 → **8/10**: waist/neck/strings all fixed |
+| p10-p13 (extra) | DONE w/ caveat | scroll volute ✓, f-holes present w/ VentPure ✓ — glow legibility unconfirmed by eye-review; AgX→Standard transform applied; owner viewport call owed |
+
+Commits: `9d8d5ff3` (p00-p08) `eb6b8057` (p09-p13). Open: f-hole vent read, `.gitignore` allowlist sign-off for `Tools/wave_violin/`.
 **Guardrails:** no GUI-session writes; no saves outside the lane folder; git = docs+scripts only (renders to `Saved/Portfolio/` allowlist); never `clean`/`checkout -- .`.
 
 **Runner:** `run_phases.sh` executes p00→p08 sequentially headless, logging `pipeline.log`; phases idempotent (skip if output PNG exists).
