@@ -69,7 +69,7 @@ Before opening Blender/Rider/Unreal on either workstation, run `.\deploy\sync_wo
 As of 2026-09-04:
 
 - `recovery/laptop-main-20260904` is **13 commits ahead of main and 0 behind** at discovery time.
-- It contains current Melusina House Geometry Nodes/addon work, V7 build scripts, house Blender files, and `SESSION_NOTES_2026-09-04.md`.
+- It contains current Melusina House Geometry Nodes/addon work, V7 build scripts, house Blender files, and `Docs/MelodiaStudio/SESSION_NOTES_2026-09-04.md`.
 - It also contains broad export/quarantine deletions, so **do not merge it wholesale**.
 - Older `collab/laptop/*` branches are diverged and remain discovery/extraction sources.
 

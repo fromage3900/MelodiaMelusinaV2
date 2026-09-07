@@ -37,8 +37,8 @@ This is the most important current laptop recovery source.
 
 Notable work present there includes:
 
-- `SESSION_NOTES_2026-09-04.md`
-- `melusinahouse_v7_plan.md`
+- `Docs/MelodiaStudio/SESSION_NOTES_2026-09-04.md` (moved 2026-09-06; was repo root)
+- `Docs/MelodiaStudio/MELUSINA_HOUSE_V7_PLAN.md` (moved 2026-09-06; was `melusinahouse_v7_plan.md` at repo root)
 - `Tools/house_v7_base_build.py`
 - `Tools/house_detailed.py`
 - `Tools/house_facade.py`
