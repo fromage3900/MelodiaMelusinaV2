@@ -109,7 +109,7 @@ if ($Mode -eq "Blender") {
         if ($Parent) { New-Item -ItemType Directory -Path $Parent -Force | Out-Null }
     }
 
-    $Args = @(
+    $CommandArgs = @(
         "-b", $BlendFile,
         "-o", $BlenderOutput,
         "-F", $BlenderFormat,
@@ -122,7 +122,7 @@ if ($Mode -eq "Blender") {
     $Manifest.start_frame = $StartFrame
     $Manifest.end_frame = $EndFrame
     $Manifest.output = $BlenderOutput
-    $Manifest.command = $BlenderExe + " " + ($Args -join " ")
+    $Manifest.command = $BlenderExe + " " + ($CommandArgs -join " ")
 
     Write-Host $Manifest.command -ForegroundColor Cyan
     if ($Execute) {
@@ -137,11 +137,11 @@ if ($Mode -eq "UnrealMRQ") {
     if ([string]::IsNullOrWhiteSpace($Map)) { throw "-Map is required." }
     if ([string]::IsNullOrWhiteSpace($MoviePipelineConfig)) { throw "-MoviePipelineConfig is required." }
 
-    $Args = @($ProjectFile, $Map, "-game")
+    $CommandArgs = @($ProjectFile, $Map, "-game")
     if (-not [string]::IsNullOrWhiteSpace($LevelSequence)) {
-        $Args += "-LevelSequence=$LevelSequence"
+        $CommandArgs += "-LevelSequence=$LevelSequence"
     }
-    $Args += @(
+    $CommandArgs += @(
         "-MoviePipelineConfig=$MoviePipelineConfig",
         "-windowed",
         "-resx=1280",
@@ -153,7 +153,7 @@ if ($Mode -eq "UnrealMRQ") {
     $Manifest.map = $Map
     $Manifest.level_sequence = $LevelSequence
     $Manifest.movie_pipeline_config = $MoviePipelineConfig
-    $Manifest.command = $UnrealCmd + " " + ($Args -join " ")
+    $Manifest.command = $UnrealCmd + " " + ($CommandArgs -join " ")
 
     Write-Host $Manifest.command -ForegroundColor Cyan
     Write-Host "Farm unit: keep each temporal camera cut / Level Sequence shot intact." -ForegroundColor Yellow
