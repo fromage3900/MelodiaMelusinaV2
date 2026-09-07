@@ -1,7 +1,7 @@
 # Current State — Melodia (BS_GodFile)
 
 **Canonical State Document**
-**Last Updated:** 2026-09-05 (Build green · audio reactivity verified live · landscape/look-dev pass)
+**Last Updated:** 2026-09-07 (Fall semester/workstation authority sync; runtime evidence below remains grounded in the 2026-09-05 verification pass)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
 **Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals)**
 
@@ -19,13 +19,13 @@
 
 ## 1. Executive Summary & Paradigm Shift
 
-Melodia has converged from disparate exploratory prototypes into a unified, production-grade **Rhythm-JRPG**. The codebase and content pipeline operate under a strict separation of concerns governed by **Two Absolute Authorities** and **Four Converged Pillars**, with a standardized **6-Phase Reusable Gameplay Loop** that serves as the canonical blueprint for every single chapter.
+Melodia has converged from disparate exploratory prototypes into a unified **Rhythm-JRPG / environment-led technical-art project**. The runtime operates under stable ownership boundaries and a set of converged gameplay/production pillars. The proven six-phase First Dream route is a full-stack integration test, **not a mandatory story template for every future chapter**.
 
 ### Two Absolute Authorities
 1. **QuillScript Narrative Authority (`UMelodiaNarrativeSubsystem`)**: Sole authority for narrative flow, branching dialogue, cutscene triggering, quest flag evaluation, and 7-verb structured notifications (`melodia:quest`, `melodia:battle`, `melodia:stat`, `melodia:wardrobe`, `melodia:item`, `melodia:inspect`, `melodia:checkpoint`).
 2. **Turn-Based JRPG State Authority (`BP_JRPGSaveGame` & Combat Subsystem)**: Sole authority for turn queue resolution, combat calculations, party stats, inventory, and canonical game state persistence.
 
-### Four Converged Pillars
+### Converged Gameplay + Production Pillars
 1. **Rhythm Combat Layer**: Rhythm timing highway executes directly over JRPG command selections (Attack / Skill / Item / Flee). Note accuracy (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) scales base damage and pulses material parameter collections (`MPC_Melodia_Palette`) without bypassing JRPG turn logic.
 2. **Wardrobe Traversal System**: Outfits provide visual mesh customization and implement `IMelodiaTraversalCapabilityProvider` to grant physical world traversal capabilities (Glide, Swim, Dash), fully persisted across save/reload cycles via `UMelodiaWardrobeSubsystem`.
 3. **Music-as-Key World Puzzles**: Environmental barriers and harmonic puzzles respond to played musical phrases (`APCGHeroMusicGraphHost` / Piano node stepping), dispatching 7-verb narrative notifications to unlock physical routes and portal boundaries without combat code.
@@ -36,9 +36,9 @@ Melodia has converged from disparate exploratory prototypes into a unified, prod
 
 ---
 
-## 2. Universal Reusable Chapter Gameplay Loop
+## 2. First Dream Full-Stack Integration Loop
 
-Every chapter in Melodia (from Chapter 1 "First Dream" through all subsequent chapters) executes the exact same standardized 6-phase loop:
+The sequence below is the canonical P0 integration route used to prove the project end to end. Future Chapters may use different narrative/mechanical shapes while reusing the same stable authorities, persistence rules, and typed intent contracts:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
