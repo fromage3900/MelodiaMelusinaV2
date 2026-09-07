@@ -4,9 +4,16 @@
 
 ---
 
+## Reviewer Entry
+
+- **Portfolio:** https://www.fromageart.xyz/
+- **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
+- **Render Archive:** https://fromage3900.github.io/my-site/wix/hero-renders.html
+- **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
+
 ## Reel
 
-Coming Semester 2 (Week 9-10).
+In production for Semester 2. The current recruiter sendoff uses the live Selected Art, render archive, character breakdown, and verified technical proof rather than a placeholder reel link.
 
 ---
 
@@ -57,9 +64,10 @@ Portfolio rule: publish the smallest excellent set; do not pad the board with we
 
 | Platform | Link |
 |----------|------|
+| Portfolio | https://www.fromageart.xyz/ |
+| Selected Art | https://fromage3900.github.io/my-site/wix/curated-art.html |
+| Resume | https://fromage3900.github.io/my-site/wix/resume.html |
 | GitHub | https://github.com/fromage3900/MelodiaMelusinaV2 |
-| YouTube | [coming] |
-| ArtStation | [coming] |
 
 ---
 
