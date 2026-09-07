@@ -24,24 +24,26 @@ function G([string[]]$A,[switch]$AllowFailure){
 G @("fetch",$Remote,"main",$QueueBranch)|Out-Null
 $Paths=(G @("ls-tree","-r","--name-only",$Remote+"/"+$QueueBranch,"--","RenderQueue/Inbox")).Lines | Where-Object {$_ -match "^RenderQueue/Inbox/.+\.json$"} | Sort-Object
 
-$Ledger=[ordered]@{schema="melodia.render_queue_ledger.v1";jobs=[ordered]@{}}
+$Ledger=[ordered]@{schema="melodia.render_queue_ledger.v1";jobs=@()}
 if(Test-Path $LedgerPath){
-  $Loaded=Get-Content $LedgerPath -Raw|ConvertFrom-Json -AsHashtable
-  if($Loaded.jobs){$Ledger=$Loaded}
+  $Loaded=Get-Content $LedgerPath -Raw|ConvertFrom-Json
+  if($Loaded.jobs){$Ledger.jobs=@($Loaded.jobs)}
 }
 
 $Pending=@()
 foreach($P in $Paths){
   $Raw=(G @("show",$Remote+"/"+$QueueBranch+":"+$P)).Text
   $J=$Raw|ConvertFrom-Json
-  if($J.id -and -not $Ledger.jobs.ContainsKey([string]$J.id)){$Pending+=$J}
+  $DoneIds=@($Ledger.jobs | ForEach-Object {[string]$_.id})
+  if($J.id -and ($DoneIds -notcontains [string]$J.id)){$Pending+=$J}
 }
 
 if($Pending.Count -eq 0){Write-Host "No pending render jobs." -ForegroundColor Green;exit 0}
 $Pending|Select-Object -First $MaxJobs|ForEach-Object{Write-Host ("PENDING "+$_.id+" ["+$_.mode+"] "+$_.source_sha)}
 
 if(-not $Execute){Write-Host "Inspection only. Use -Execute -AllowCheckout in a dedicated clean render clone." -ForegroundColor Yellow;exit 0}
-if(@(G @("status","--short")).Lines.Count -gt 0){throw "Worker checkout is dirty."}
+$StatusLines=@((G @("status","--short")).Lines)
+if($StatusLines.Count -gt 0){throw "Worker checkout is dirty."}
 
 $OriginalBranch=(G @("branch","--show-current")).Text
 $OriginalHead=(G @("rev-parse","HEAD")).Text
@@ -51,9 +53,9 @@ try{
     $Id=[string]$J.id
     $Sha=[string]$J.source_sha
     if((G @("cat-file","-e",$Sha+"^{commit}") -AllowFailure).Code -ne 0){G @("fetch",$Remote,"main")|Out-Null}
-    if((G @("cat-file","-e",$Sha+"^{commit}") -AllowFailure).Code -ne 0){$Ledger.jobs[$Id]=[ordered]@{status="failed";error="source SHA unavailable";at=(Get-Date).ToString("o")};continue}
+    if((G @("cat-file","-e",$Sha+"^{commit}") -AllowFailure).Code -ne 0){$Ledger.jobs+=([pscustomobject][ordered]@{id=$Id;status="failed";error="source SHA unavailable";at=(Get-Date).ToString("o");source_sha=$Sha});continue}
     if((G @("rev-parse","HEAD")).Text -ne $Sha){
-      if(-not $AllowCheckout){$Ledger.jobs[$Id]=[ordered]@{status="blocked";error="HEAD differs; use AllowCheckout in dedicated clone";at=(Get-Date).ToString("o")};continue}
+      if(-not $AllowCheckout){$Ledger.jobs+=([pscustomobject][ordered]@{id=$Id;status="blocked";error="HEAD differs; use AllowCheckout in dedicated clone";at=(Get-Date).ToString("o");source_sha=$Sha});continue}
       G @("switch","--detach",$Sha)|Out-Null
     }
     try{
@@ -64,9 +66,9 @@ try{
       }
       & powershell @A
       if($LASTEXITCODE -ne 0){throw "render_worker exit "+$LASTEXITCODE}
-      $Ledger.jobs[$Id]=[ordered]@{status="completed";at=(Get-Date).ToString("o");source_sha=$Sha;output=(Join-Path $Root ("Saved\RenderFarm\"+$Id))}
+      $Ledger.jobs+=([pscustomobject][ordered]@{id=$Id;status="completed";at=(Get-Date).ToString("o");source_sha=$Sha;output=(Join-Path $Root ("Saved\RenderFarm\"+$Id))})
     }catch{
-      $Ledger.jobs[$Id]=[ordered]@{status="failed";at=(Get-Date).ToString("o");source_sha=$Sha;error=$_.Exception.Message}
+      $Ledger.jobs+=([pscustomobject][ordered]@{id=$Id;status="failed";at=(Get-Date).ToString("o");source_sha=$Sha;error=$_.Exception.Message})
     }finally{
       $Ledger|ConvertTo-Json -Depth 10|Set-Content $LedgerPath -Encoding UTF8
     }
