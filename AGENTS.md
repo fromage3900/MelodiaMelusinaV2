@@ -1,5 +1,31 @@
 # BS_GodFile agent context
 
+## 🛑 GIT PIPELINE LAW — READ BEFORE ANY GIT OPERATION (owner directive 2026-09-06, outranks all agent convenience)
+
+This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Poor git management has already
+caused real regressions and missed deadlines in this project. Do not add to that history.
+
+1. **Canonical authority is `origin/main`, maintained on Brennan's desktop PC.**
+   The laptop clone (`P:\MelodiaMelusinaV2-Laptop`) is ONLY a Blender / 3D-asset-prep /
+   mobile work hub. Its local `main` must always mirror `origin/main` exactly — it never
+   diverges, never accumulates local commits, and is never used as an integration point.
+2. **No branch creation, commits, merges, rebases, resets, or pushes without explicit
+   owner permission for that specific operation, plus a written plan stated first.**
+   "Keep going" is permission for the currently agreed task, not for new git surgery.
+3. **Never consolidate, restructure, or reconcile branches from this machine.** Branch
+   topology decisions are made desktop-side. The laptop ships assets, not git history.
+4. **Read-only verification first.** Before any approved mutation, verify state with
+   `git status`, `git log`, `git merge-base --is-ancestor`. After it, verify the result
+   the same way. Prose claims of success are not evidence.
+5. **Destructive-adjacent commands are blocked without explicit per-command approval:**
+   `git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, `git filter-branch`,
+   history rewrite of any kind. See also the "NEVER RUN THESE" section below.
+6. **Long-lived laptop asset work lives on `collab/laptop/longterm`** (additive branch,
+   created 2026-09-06 with owner review; safe to delete without affecting main). Laptop
+   asset work is merged INTO it by explicit owner approval only.
+
+Violating this section is a pipeline incident, not a productivity shortcut.
+
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
@@ -572,7 +598,7 @@ Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm
 *   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
 *   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md). Tonight prep: [`Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`](Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md).
 *   **Keep running:** surreal/world/`run_verify` production loops.
-*   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
+*   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1`, `deploy/start_surreal_*.ps1`, `deploy/start_world_loop.ps1` (all moved to `deploy/archive/deprecated-loops/`; do not start for new work).
 *   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.
 
 Full guide: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](Docs/PhoneOps/JCODE_SWARM_PIPELINE.md) · [`.jcode/README.md`](.jcode/README.md)

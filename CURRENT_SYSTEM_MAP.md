@@ -123,3 +123,12 @@ See:
 - `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
 
 **Target end state:** new journeys mostly add data, art, narrative, encounters, outfits, world relationships, and tests—without reopening core ownership.
+
+---
+
+## 7. Multi-machine development
+
+`LAPTOP-Q8S5OSQ2` (Acer Nitro, 16 GB RAM) is configured as a `worker-first-16GB` node:
+- Two-PC workflow: `Docs/Production/TWO_PC_DEVELOPMENT_WORKFLOW_2026-09-02.md`
+- Laptop onboarding closeout: `Docs/Production/LAPTOP_ONBOARDING_CLOSEOUT_2026-09-02.md`
+- Master index: `Docs/Production/MASTER_INDEX.md`

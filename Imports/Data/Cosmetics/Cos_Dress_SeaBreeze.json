@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Dress_SeaBreeze",
+  "display_name": "Sea Breeze Elegance",
+  "slot": "dress",
+  "rarity": "Refined",
+  "element_mood": "Gale",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 8,
+    "swirl": 4
+  },
+  "palette": [
+    "#87CEEB",
+    "#FFFFFF",
+    "#6699FF"
+  ],
+  "flavor": "Ethereal dress shimmering with sea mist and starlight.",
+  "material_notes": "Gilded filigree, stained glass, aurora band",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

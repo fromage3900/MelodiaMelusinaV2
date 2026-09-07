@@ -85,7 +85,7 @@ More: [`.jcode/README.md`](../../.jcode/README.md)
 
 | Keep | Deprecated for parallel coding wakes |
 |---|---|
-| `start_surreal_*.ps1`, `start_world_loop.ps1`, `run_verify.ps1` | `deploy/cursor_*_loop.ps1`, `start_cursor_agent_loop.ps1` |
+| `run_verify.ps1` | `deploy/cursor_*_loop.ps1`, `start_cursor_agent_loop.ps1`, `start_surreal_*.ps1`, `start_world_loop.ps1` (all archived) |
 
 After Recipes A/B pass, do **not** start Cursor wake loops for new parallel work — use jcode swarm.
 

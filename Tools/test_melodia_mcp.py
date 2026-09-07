@@ -453,7 +453,12 @@ def test_resonant_world_chronicle_is_read_only_and_replayable() -> None:
 
 
 def test_resonant_world_capture_manifest_is_evidence_gated() -> None:
-    """Capture contracts expose real evidence without promoting debug frames."""
+    """Capture contracts expose real evidence without promoting debug frames.
+
+    Works on both the main PC (where SakuraDream evidence exists) and fresh
+    clones (where it does not). Both cases demonstrate evidence-gating: the
+    manifest never approves or promotes unreviewed/debug frames.
+    """
     import deploy.melodia_mcp_server as server
 
     result = server.melodia_resonant_world_get_capture_manifest(3900, "all", 0, 0)
@@ -467,13 +472,18 @@ def test_resonant_world_capture_manifest_is_evidence_gated() -> None:
     assert result["runtime_boundary"]["does_not_publish_webfront"] is True
     assert result["materialization"]["writes_project_state"] is False
     sakura = next(item for item in result["targets"] if item["target_id"] == "niagara_sakura_ambience")
-    assert sakura["status"] == "observed_candidates_not_publishable"
-    raw = next(
-        item for item in sakura["observed_candidates"]
-        if item["filename"] == "L_Render_SakuraDream_beauty_raw.png"
-    )
-    assert raw["verdict"] == "rejected_runtime_evidence"
-    assert "black/checker" in raw["note"]
+    # Evidence-gating: the manifest never approves/promotes unreviewed frames.
+    # On the main PC, evidence exists and is rejected; on fresh clones, evidence
+    # is missing. Both states demonstrate the gate.
+    if sakura["status"] == "observed_candidates_not_publishable":
+        raw = next(
+            item for item in sakura["observed_candidates"]
+            if item["filename"] == "L_Render_SakuraDream_beauty_raw.png"
+        )
+        assert raw["verdict"] == "rejected_runtime_evidence"
+        assert "black/checker" in raw["note"]
+    else:
+        assert sakura["status"] == "missing_clean_capture"
 
 
 def test_animation_validate_state_machine_schema() -> None:
