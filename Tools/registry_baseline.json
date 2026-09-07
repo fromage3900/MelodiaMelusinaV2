@@ -474,11 +474,29 @@
   },
   "MEL_arch": {
    "ok": true,
-   "verts": 32,
+   "verts": 424,
    "bbox": [
-    2.1,
-    0.1,
-    4.5
+    3.579,
+    1.922,
+    0.65
+   ]
+  },
+  "MEL_arch_broken": {
+   "ok": true,
+   "verts": 37,
+   "bbox": [
+    3.378,
+    0.6,
+    1.907
+   ]
+  },
+  "MEL_archway": {
+   "ok": true,
+   "verts": 232,
+   "bbox": [
+    3.82,
+    0.72,
+    4.168
    ]
   },
   "MEL_attr_ramp_mix": {
@@ -524,6 +542,24 @@
    "ok": false,
    "error": "KeyError: 'bpy_prop_collection[key]: key \"Angle\" not found'"
   },
+  "MEL_auto_building": {
+   "ok": true,
+   "verts": 300,
+   "bbox": [
+    10.8,
+    8.8,
+    28.32
+   ]
+  },
+  "MEL_balcony": {
+   "ok": true,
+   "verts": 468,
+   "bbox": [
+    3.87,
+    1.245,
+    1.261
+   ]
+  },
   "MEL_baluster": {
    "ok": true,
    "verts": 192,
@@ -544,6 +580,51 @@
     5.292,
     1.764,
     5.836
+   ]
+  },
+  "MEL_baroque_balustrade": {
+   "ok": true,
+   "verts": 88,
+   "bbox": [
+    4.1,
+    0.15,
+    0.56
+   ]
+  },
+  "MEL_baroque_facade": {
+   "ok": true,
+   "verts": 331,
+   "bbox": [
+    12.42,
+    0.49,
+    12.0
+   ]
+  },
+  "MEL_baroque_niche": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    1.6,
+    0.405,
+    2.375
+   ]
+  },
+  "MEL_baroque_vault": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    6.279,
+    7.84,
+    3.142
+   ]
+  },
+  "MEL_barrel_stack": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    2.794,
+    1.33,
+    5.004
    ]
   },
   "MEL_bell_chime": {
@@ -568,6 +649,15 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_bifora": {
+   "ok": true,
+   "verts": 1808,
+   "bbox": [
+    2.718,
+    0.72,
+    4.12
+   ]
+  },
   "MEL_biolum_vein": {
    "ok": false,
    "error": "KeyError: 'bpy_prop_collection[key]: key \"Mesh\" not found'"
@@ -581,6 +671,15 @@
     9.25
    ]
   },
+  "MEL_boulder_pile": {
+   "ok": true,
+   "verts": 252,
+   "bbox": [
+    3.789,
+    2.967,
+    2.475
+   ]
+  },
   "MEL_bounding_box": {
    "ok": false,
    "error": "empty geometry"
@@ -592,6 +691,42 @@
     6.0,
     6.0,
     40.0
+   ]
+  },
+  "MEL_brick_wall": {
+   "ok": true,
+   "verts": 864,
+   "bbox": [
+    4.84,
+    0.2,
+    3.15
+   ]
+  },
+  "MEL_bridge_advanced": {
+   "ok": true,
+   "verts": 1460,
+   "bbox": [
+    12.5,
+    3.25,
+    5.868
+   ]
+  },
+  "MEL_buttress": {
+   "ok": true,
+   "verts": 425,
+   "bbox": [
+    3.461,
+    0.528,
+    5.01
+   ]
+  },
+  "MEL_campfire": {
+   "ok": true,
+   "verts": 118,
+   "bbox": [
+    1.539,
+    1.472,
+    2.547
    ]
   },
   "MEL_castle_arrow_slit": {
@@ -765,6 +900,15 @@
     3.0
    ]
   },
+  "MEL_ceiling_tile": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    2.0,
+    2.0,
+    0.14
+   ]
+  },
   "MEL_chapel": {
    "ok": true,
    "verts": 71,
@@ -919,6 +1063,15 @@
     7.142
    ]
   },
+  "MEL_collapsed_floor": {
+   "ok": true,
+   "verts": 21,
+   "bbox": [
+    3.0,
+    2.367,
+    2.133
+   ]
+  },
   "MEL_column": {
    "ok": true,
    "verts": 16,
@@ -928,6 +1081,24 @@
     3.0
    ]
   },
+  "MEL_corner_pillar": {
+   "ok": true,
+   "verts": 384,
+   "bbox": [
+    0.96,
+    0.96,
+    3.4
+   ]
+  },
+  "MEL_cornice": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    4.0,
+    0.25,
+    0.4
+   ]
+  },
   "MEL_cosmic_web": {
    "ok": true,
    "verts": 1056,
@@ -935,6 +1106,24 @@
     2.922,
     2.787,
     5.323
+   ]
+  },
+  "MEL_crate_pile": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    1.795,
+    0.881,
+    1.611
+   ]
+  },
+  "MEL_crenellation": {
+   "ok": true,
+   "verts": 88,
+   "bbox": [
+    8.0,
+    0.6,
+    3.16
    ]
   },
   "MEL_crypt_entrance": {
@@ -972,6 +1161,24 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_curved_building": {
+   "ok": true,
+   "verts": 6336,
+   "bbox": [
+    7.613,
+    16.554,
+    0.24
+   ]
+  },
+  "MEL_cusped_arch": {
+   "ok": true,
+   "verts": 1402,
+   "bbox": [
+    2.24,
+    1.496,
+    2.779
+   ]
+  },
   "MEL_decorative_rosette": {
    "ok": true,
    "verts": 610,
@@ -988,6 +1195,33 @@
     2.543,
     2.541,
     5.14
+   ]
+  },
+  "MEL_dome": {
+   "ok": true,
+   "verts": 1810,
+   "bbox": [
+    3.089,
+    3.089,
+    2.702
+   ]
+  },
+  "MEL_door": {
+   "ok": true,
+   "verts": 560,
+   "bbox": [
+    1.68,
+    0.42,
+    3.782
+   ]
+  },
+  "MEL_door_frame": {
+   "ok": true,
+   "verts": 108,
+   "bbox": [
+    1.632,
+    0.55,
+    3.678
    ]
   },
   "MEL_drawbridge": {
@@ -1208,6 +1442,15 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_fence": {
+   "ok": true,
+   "verts": 864,
+   "bbox": [
+    6.09,
+    0.09,
+    1.28
+   ]
+  },
   "MEL_field_sculpture": {
    "ok": true,
    "verts": 40898,
@@ -1215,6 +1458,15 @@
     2.394,
     2.394,
     2.399
+   ]
+  },
+  "MEL_filigree_core": {
+   "ok": true,
+   "verts": 736,
+   "bbox": [
+    1.487,
+    1.848,
+    0.06
    ]
   },
   "MEL_filigree_corner_volute": {
@@ -1235,6 +1487,24 @@
     2.0
    ]
   },
+  "MEL_filigree_panel": {
+   "ok": true,
+   "verts": 736,
+   "bbox": [
+    1.487,
+    1.848,
+    0.06
+   ]
+  },
+  "MEL_filigree_rail_inset": {
+   "ok": true,
+   "verts": 736,
+   "bbox": [
+    2.438,
+    0.796,
+    0.06
+   ]
+  },
   "MEL_filigree_spiral": {
    "ok": true,
    "verts": 512,
@@ -1251,6 +1521,24 @@
     0.96,
     0.96,
     0.072
+   ]
+  },
+  "MEL_floor_tile": {
+   "ok": true,
+   "verts": 288,
+   "bbox": [
+    3.475,
+    3.475,
+    0.05
+   ]
+  },
+  "MEL_fountain": {
+   "ok": true,
+   "verts": 658,
+   "bbox": [
+    3.0,
+    3.0,
+    2.287
    ]
   },
   "MEL_fractal": {
@@ -1300,6 +1588,15 @@
     2.198,
     2.32,
     2.4
+   ]
+  },
+  "MEL_gothic_arch": {
+   "ok": true,
+   "verts": 512,
+   "bbox": [
+    2.24,
+    0.24,
+    1.529
    ]
   },
   "MEL_gravity_well": {
@@ -1359,6 +1656,15 @@
     5.07
    ]
   },
+  "MEL_half_timber_wall": {
+   "ok": true,
+   "verts": 13,
+   "bbox": [
+    3.06,
+    0.158,
+    3.003
+   ]
+  },
   "MEL_harmonic_orb": {
    "ok": true,
    "verts": 674,
@@ -1402,6 +1708,33 @@
     0.349,
     0.24,
     0.608
+   ]
+  },
+  "MEL_heraldic_banner": {
+   "ok": true,
+   "verts": 60,
+   "bbox": [
+    0.84,
+    1.176,
+    5.4
+   ]
+  },
+  "MEL_higgsas_colonnade": {
+   "ok": true,
+   "verts": 200,
+   "bbox": [
+    16.6,
+    1.0,
+    4.48
+   ]
+  },
+  "MEL_higgsas_surface_wall": {
+   "ok": true,
+   "verts": 852,
+   "bbox": [
+    4.0,
+    0.25,
+    3.0
    ]
   },
   "MEL_hyperbolic_disk": {
@@ -1482,6 +1815,15 @@
     0.568,
     0.615,
     5.796
+   ]
+  },
+  "MEL_lantern_post": {
+   "ok": true,
+   "verts": 137,
+   "bbox": [
+    0.48,
+    0.48,
+    3.39
    ]
   },
   "MEL_lighthouse": {
@@ -1650,6 +1992,15 @@
     4.446,
     3.794,
     1.5
+   ]
+  },
+  "MEL_modular_house": {
+   "ok": true,
+   "verts": 216,
+   "bbox": [
+    4.3,
+    4.3,
+    7.612
    ]
   },
   "MEL_monastery": {
@@ -2396,6 +2747,15 @@
     2.64
    ]
   },
+  "MEL_pillar": {
+   "ok": true,
+   "verts": 480,
+   "bbox": [
+    1.3,
+    1.3,
+    4.8
+   ]
+  },
   "MEL_planetary_musical_terrain": {
    "ok": true,
    "verts": 16641,
@@ -2462,6 +2822,15 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_radial_building": {
+   "ok": true,
+   "verts": 10258,
+   "bbox": [
+    13.777,
+    13.777,
+    11.07
+   ]
+  },
   "MEL_radial_wave": {
    "ok": false,
    "error": "empty geometry"
@@ -2469,6 +2838,24 @@
   "MEL_rail": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_railing": {
+   "ok": true,
+   "verts": 540,
+   "bbox": [
+    9.12,
+    0.114,
+    1.156
+   ]
+  },
+  "MEL_raycast_facade": {
+   "ok": true,
+   "verts": 268,
+   "bbox": [
+    2.4,
+    2.364,
+    5.0
+   ]
   },
   "MEL_recursive_castle_spire": {
    "ok": true,
@@ -2491,6 +2878,15 @@
   "MEL_remesh_dual": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_retaining_wall": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    4.2,
+    1.277,
+    3.41
+   ]
   },
   "MEL_ribbon_curve": {
    "ok": true,
@@ -2630,6 +3026,15 @@
     0.12
    ]
   },
+  "MEL_staircase": {
+   "ok": true,
+   "verts": 384,
+   "bbox": [
+    4.8,
+    1.669,
+    3.278
+   ]
+  },
   "MEL_star_finial": {
    "ok": true,
    "verts": 10,
@@ -2660,6 +3065,24 @@
   "MEL_store_named_attr": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_street_lamp": {
+   "ok": true,
+   "verts": 219,
+   "bbox": [
+    0.4,
+    0.4,
+    6.07
+   ]
+  },
+  "MEL_stylized_tree": {
+   "ok": true,
+   "verts": 142,
+   "bbox": [
+    2.241,
+    2.244,
+    5.234
+   ]
   },
   "MEL_subdivision_surface": {
    "ok": false,
@@ -2700,6 +3123,15 @@
     4.051
    ]
   },
+  "MEL_torch_sconce": {
+   "ok": true,
+   "verts": 173,
+   "bbox": [
+    0.15,
+    0.337,
+    0.645
+   ]
+  },
   "MEL_torus_cross": {
    "ok": true,
    "verts": 1152,
@@ -2736,6 +3168,15 @@
     8.867
    ]
   },
+  "MEL_trefoil": {
+   "ok": true,
+   "verts": 960,
+   "bbox": [
+    3.04,
+    0.208,
+    3.04
+   ]
+  },
   "MEL_tuning_fork": {
    "ok": true,
    "verts": 64,
@@ -2743,6 +3184,15 @@
     0.08,
     0.04,
     0.66
+   ]
+  },
+  "MEL_venetian_bridge": {
+   "ok": true,
+   "verts": 1664,
+   "bbox": [
+    8.0,
+    1.05,
+    2.713
    ]
   },
   "MEL_vertex_relax": {
@@ -2767,9 +3217,108 @@
     26.0
    ]
   },
+  "MEL_volume_cloud": {
+   "ok": true,
+   "verts": 6219,
+   "bbox": [
+    2.18,
+    2.2,
+    2.159
+   ]
+  },
   "MEL_vortex_twist": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_wall_arched_window": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    2.0,
+    0.35,
+    3.023
+   ]
+  },
+  "MEL_wall_arrow_slits": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    3.08,
+    0.317,
+    3.46
+   ]
+  },
+  "MEL_wall_bay_window": {
+   "ok": true,
+   "verts": 80,
+   "bbox": [
+    2.0,
+    0.9,
+    3.0
+   ]
+  },
+  "MEL_wall_corner": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    2.188,
+    2.188,
+    3.0
+   ]
+  },
+  "MEL_wall_multi_window": {
+   "ok": true,
+   "verts": 80,
+   "bbox": [
+    2.0,
+    0.35,
+    3.0
+   ]
+  },
+  "MEL_wall_ruined": {
+   "ok": true,
+   "verts": 31,
+   "bbox": [
+    4.0,
+    0.635,
+    2.777
+   ]
+  },
+  "MEL_wall_straight": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    2.0,
+    0.35,
+    3.0
+   ]
+  },
+  "MEL_wall_t_join": {
+   "ok": true,
+   "verts": 40,
+   "bbox": [
+    4.04,
+    2.189,
+    3.0
+   ]
+  },
+  "MEL_wall_with_door": {
+   "ok": true,
+   "verts": 40,
+   "bbox": [
+    2.0,
+    0.35,
+    3.0
+   ]
+  },
+  "MEL_wall_with_window": {
+   "ok": true,
+   "verts": 48,
+   "bbox": [
+    2.0,
+    0.35,
+    3.0
+   ]
   },
   "MEL_watchtower": {
    "ok": true,
@@ -2992,6 +3541,24 @@
     7.68,
     2.4,
     11.84
+   ]
+  },
+  "MEL_window": {
+   "ok": true,
+   "verts": 552,
+   "bbox": [
+    1.007,
+    0.31,
+    1.593
+   ]
+  },
+  "MEL_window_frame": {
+   "ok": true,
+   "verts": 44,
+   "bbox": [
+    1.092,
+    0.53,
+    1.31
    ]
   },
   "MEL_zen_bridge": {
@@ -4938,7 +5505,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 403,
+  "package_count": 466,
   "monolith_count": 209
  }
 }
