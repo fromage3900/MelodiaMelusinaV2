@@ -164,6 +164,21 @@ Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/*
 Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/*
 !Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/AggressiveEnemyExplorePawns/BP_AggressiveEnemyExplorePawnBase.uasset
 
+# Accessed-None null-guard fix, 2026-09-06: reviewed stock-template
+# exceptions required by the tracked battle guards below. Siblings remain ignored.
+!Content/TurnBasedJRPGTemplate/Blueprints/Controllers/
+Content/TurnBasedJRPGTemplate/Blueprints/Controllers/*
+!Content/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGFunctionLibrary.uasset
+!Content/TurnBasedJRPGTemplate/Blueprints/Projectiles/
+Content/TurnBasedJRPGTemplate/Blueprints/Projectiles/*
+!Content/TurnBasedJRPGTemplate/Blueprints/Projectiles/BP_ProjectileBase.uasset
+!Content/TurnBasedJRPGTemplate/Blueprints/Units/
+Content/TurnBasedJRPGTemplate/Blueprints/Units/*
+!Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/
+Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/*
+!Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_EnemyBossBase.uasset
+!Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/BP_EnemyUnitBase.uasset
+
 # --- PLAYABLE ROUTE LEVELS — tracked (2026-08-12) ---
 # The `Content/*` blanket meant the two levels that ARE the vertical slice had no
 # version history: L_MelusinaMorning and L_KaleidoNave. KaleidoNave is the only
