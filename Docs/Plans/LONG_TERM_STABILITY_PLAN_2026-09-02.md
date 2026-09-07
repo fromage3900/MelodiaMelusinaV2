@@ -4,6 +4,8 @@
 **Trigger:** User moving between PC, laptop, and Humber Labs for final year
 **Goal:** Zero-downtime cross-machine development, clean source control, no lost work
 
+> **Fall 2026 role update (2026-09-07):** machine-role assignments in this dated plan are superseded by `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`. Humber labs are the primary interactive semester lane; the home PC is the render/bake/long-job worker; the laptop is auxiliary. Source-control safety rules below still apply.
+
 ---
 
 ## Part 1: Source Control — The Non-Negotiables
