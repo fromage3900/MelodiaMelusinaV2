@@ -11,11 +11,20 @@
 ![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
+## Recruiter / Professor Entry
+
+- **Portfolio:** https://www.fromageart.xyz/
+- **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
+- **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
+- **Current verified state:** [CURRENT_STATE.md](CURRENT_STATE.md)
+- **Portfolio / render plan:** [PORTFOLIO.md](PORTFOLIO.md)
+
+
 > **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md) and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
 
 > **Fall 2026 workstation topology:** Humber lab workstations are the primary interactive semester lane, the home Windows PC is the dedicated render/bake/long-job worker, and the ASUS Nitro laptop is auxiliary. See [Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) and [Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md).
 
-♪ **Production-Grade Rhythm-JRPG in Unreal Engine 5.8 + Blender 5.2.** A single-author vertical slice and extensible multi-chapter framework. Every architectural claim is backed by a verified ledger row in `Saved/gate_ledger.json`. No prose passes for evidence. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
+♪ **Solo-developed rhythm-JRPG vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Current task/gate authority is tracked in `Docs/P0_TASK_LEDGER.json` and `CURRENT_STATE.md`; generated local ledgers are evidence artifacts, not recruiter copy. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
 
 ♫ **Current Status:** the canonical state is [CURRENT_STATE.md](CURRENT_STATE.md), not old README gate counts. The current baseline records a green editor build, live audio-reactivity proof, active P0 gates passing, and a packaged route verified on both legs. Fall 2026 work is now bounded around **First Dream as stable technical proof** and **Shorewake Calling as the semester production artwork**.
 
@@ -108,7 +117,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 - **Outputs:** playable 3–5 minute vignette, Melusina acting shot, couture/material treatment, technical-art breakdowns, 60–90 second reel.
 - **Academic mapping:** `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`.
 
-### Track 2: Model Context Protocol (MCP) & Automation Tooling
+### Track 3: Model Context Protocol (MCP) & Automation Tooling
 - **1330 Typed MCP Actions** across 24 namespaces supporting offline schema inspection and live Unreal Engine automation.
 - **Melodia MCP Server (`deploy/melodia_mcp_server.py`):** 38/38 verified unit & regression tests.
 - **Melusina Agent Test Harness (MATH):** Strict quantitative evaluation of local models across 5 core metrics:
@@ -118,10 +127,10 @@ The six-phase route below is the proven **First Dream integration song** used to
   - **RCF** (Recovery from Feedback ≥ 90%)
   - **TER** (Token Efficiency Ratio ≤ 0.20)
 
-### Track 3: ECHO Pipeline & Evidence Ledger
+### Track 4: ECHO Pipeline & Evidence Ledger
 - **Deterministic Pipeline:** `Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote`
 - **Gate Runner:** `Tools/echo_run.py` & `Tools/project_state.py`
-- **Single Source of Truth:** `Saved/gate_ledger.json` (no row = not done).
+- **Evidence policy:** tracked authority lives in `Docs/P0_TASK_LEDGER.json` / `CURRENT_STATE.md`; generated `Saved/` ledgers are runtime evidence and may be absent from a fresh clone.
 
 ---
 
