@@ -38,6 +38,8 @@ Status values:
 | `Imports` (staging) | Kenney / Quaternius / KayKit / BOOTH / Beatscribe / etc. | per-pack creators (see `Imports/<pack>/PROVENANCE.md`) | https://github.com/fromage3900/MelodiaMelusinaV2/tree/main/Imports | CC0 / BOOTH / per-creator | verified |
 | `Actor_BP` | Gameplay actor & controller blueprints (template-derived + first-party) | fromage3900 + Phoenix Market (template) | first-party · https://www.fab.com/listings/fe140454-1e7f-49eb-bd29-cf5588ce3ed1 | Owner + Marketplace EULA | verified |
 | `Blueprints` / `Game_BP` / `DataStuctures` | Template framework blueprints & data structures | Phoenix Market (template) | https://www.fab.com/listings/fe140454-1e7f-49eb-bd29-cf5588ce3ed1 | Marketplace EULA | verified |
+| `Gaea` | First-party terrain exports (Glacier layers + MI) via Melodia Studio Gaea pipeline (`melodia_studio/gaea_terrain_io.py`, `gaea_panel.py`) | fromage3900 (QuadSpinner Gaea tooling) | first-party | Owner (asset) / Gaea EULA (tool) | verified |
+| `KitBash_EnchantedVehicles` | Enchanted Vehicles kitbash materials (M_KB3D_ECV_*) — provenance awaits owner confirmation; name pattern suggests KitBash3D marketplace pack, **no name guessed** | pending | N/A | pending | pending |
 | `Characters` | Melusina + Zunko-family + GMM/VRoid cast | fromage3900 + SSS LLC + でし丸 | first-party · https://zunko.jp | Owner + SSS/per-model terms | verified |
 | `Art` | Environment-art platform own content | fromage3900 | first-party | Owner | verified |
 | `ArtOfShader` | Art of Shader — Stylized Post Process Pack | Sameek Kundu | https://forums.unrealengine.com/t/art-of-shader-stylized-post-process-pack/142950 | Marketplace EULA (vfxMed distribution) | verified |

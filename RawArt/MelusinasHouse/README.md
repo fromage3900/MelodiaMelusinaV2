@@ -13,6 +13,6 @@ This folder is the temporary Git LFS handoff surface for the current canonical M
 - Commit and push the handoff branch before switching machines.
 - Unlock only after the pushed edit is visible remotely.
 
-Historical house versions remain on `recovery/laptop-main-20260904` and are not part of the everyday sync surface.
+Recovered intermediate house versions (greybox → mansion lookdev lineage) live in `Intermediates/`, promoted from the archived laptop tip so a laptop 3D lane can stay on current `main`.
 
 When the Perforce shared-server/cutover acceptance gates are complete, this source should move to the canonical Perforce RawArt depot rather than creating a second permanent authority.
