@@ -26,7 +26,7 @@ This plan gives you three distinct ways to work across machines — pick the lan
 Main PC (display)                    Laptop (compute)
 ┌──────────────────┐     SSH      ┌──────────────────────┐
 │ JetBrains Client │◄────────────►│ JetBrains Rider      │
-│ (thin UI)        │   port 2222  │ (full backend)       │
+│ (thin UI)        │   port 22    │ (full backend)       │
 │                  │              │ ┌──────────────────┐ │
 │ You type here    │              │ │ Unreal C++ src   │ │
 │ Results render   │              │ │ Git repo clone   │ │
@@ -119,6 +119,14 @@ Both machines need:
 - Same version of Visual Studio 2022 with matching workloads (import `.vsconfig`)
 - The Melodia repo cloned and LFS-hydrated
 
+**On both machines**, install the same UE 5.8 and VS 2022 toolchain (import `.vsconfig`).
+
+**On the laptop**, the UBA executor must be actively running to accept compile jobs from the main PC. The laptop does NOT auto-register just because UBA is enabled on the main PC — the executor process must be started.
+
+**BuildConfiguration.xml location:**
+- `%LOCALAPPDATA%\UnrealBuildAccelerator\BuildConfiguration.xml` (per-user)
+- Or `Engine\Programs\UnrealBuildAccelerator\BuildConfiguration.xml` (per-engine)
+
 **On the main PC**, configure `BuildConfiguration.xml`:
 
 ```xml
@@ -128,12 +136,23 @@ Both machines need:
         <bAllowUBAExecutor>true</bAllowUBAExecutor>
     </BuildConfiguration>
     <UnrealBuildAccelerator>
-        <bLaunchVisualizer>true</bLaunchVisualizer>
+        <!-- Visualizer is launched via: -UBAVisualizer command-line arg or UBAVisualizer.exe -->
     </UnrealBuildAccelerator>
 </Configuration>
 ```
 
-The laptop auto-registers as an agent when UBA is enabled and you trigger a build from the main PC — no separate Horde server needed for two machines.
+**On the laptop**, also create `BuildConfiguration.xml` with the executor enabled so it can accept remote jobs:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration xmlns="https://www.unrealengine.com/BuildConfiguration">
+    <BuildConfiguration>
+        <bAllowUBAExecutor>true</bAllowUBAExecutor>
+    </BuildConfiguration>
+</Configuration>
+```
+
+Once both machines have UBA configured and the executor is running on the laptop, compile jobs are distributed automatically — no separate Horde server needed for two machines.
 
 ### When to use Lane C
 - Full C++ rebuilds after header changes

@@ -72,8 +72,8 @@ Earlier July also saw master restore/rebuild cycles (`949e22f`, `df7858d`, `40d4
 
 | Script | Purpose |
 |---|---|
-| `start_cursor_agent_loop.ps1` / `cursor_surreal_agent_loop.ps1` | Emits `AGENT_LOOP_TICK_surreal_micro2` every N seconds with a fixed prompt |
-| `start_surreal_tierb_loop.ps1` / `cursor_surreal_tierb_loop.ps1` | AAA genome expansion micro-cycle; tick prompt references `AGENTS.md`, research/, verify |
+| `start_cursor_agent_loop.ps1` / `cursor_surreal_agent_loop.ps1` | **ARCHIVED** — Emitted `AGENT_LOOP_TICK_surreal_micro2` every N seconds |
+| `start_surreal_tierb_loop.ps1` / `cursor_surreal_tierb_loop.ps1` | **ARCHIVED** — AAA genome expansion micro-cycle |
 | `stop_*_loop.ps1` + `*_STOP` / `*_LOOP_STOP` | Safety interlocks |
 
 Tick prompts explicitly say: implement one slice, sync+verify, update LOOP_STATE, **do not edit plan files**.

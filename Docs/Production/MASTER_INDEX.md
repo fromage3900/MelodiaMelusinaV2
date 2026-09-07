@@ -93,9 +93,13 @@ This is the central cross-reference for all production-critical documentation. E
 
 All deprecated scripts have been moved to `deploy/archive/deprecated-loops/`:
 
-- `cursor_*_loop.ps1` — deprecated for parallel coding wakes (AGENTS.md)
-- `surreal_*_loop.ps1` — deprecated (superseded by jcode swarm)
-- `stop_*_loop.ps1` — deprecated (cleanup scripts for deprecated loops)
+- `cursor_surreal_agent_loop.ps1`, `cursor_surreal_tierb_loop.ps1` — deprecated for parallel coding wakes
+- `start_surreal_loop.ps1`, `start_surreal_tierb_loop.ps1`, `start_world_loop.ps1` — referenced archived loop scripts
+- `start_cursor_agent_loop.ps1` — referenced archived cursor_surreal_agent_loop
+- `stop_cursor_agent_loop.ps1`, `stop_surreal_loop.ps1`, `stop_surreal_tierb_loop.ps1`, `stop_world_loop.ps1` — cleanup for archived loops
+- `surreal_micro_loop.ps1`, `surreal_world_loop.ps1` — deprecated (superseded by jcode swarm)
+
+Active deploy scripts: `run_verify.ps1`, `test_laptop_workstation.ps1`, `validate_setup.ps1`, `start_jcode_swarm.ps1`, `sync_site_to_github.ps1`, `inspect_workstation.ps1`, `collaborator_onboarding.sh`, and ~30 others.
 
 Preserved for reference. Do not reactivate without owner approval.
 
