@@ -39,6 +39,43 @@ A fresh Git clone is not guaranteed to contain the author's entire binary art wo
 
 ---
 
+## ♫ Humber lab primary workstation
+
+For Fall 2026, the default interactive semester topology is:
+
+```text
+Humber lab = primary authoring workstation
+home PC    = render / bake / long-job worker
+laptop     = auxiliary authoring / validation / spare render worker
+```
+
+Before starting a Humber session:
+
+```powershell
+.\deploy\humber_lab_bootstrap.ps1 -Mode Check
+
+# When you are ready to synchronize/hydrate the authorized lab checkout:
+.\deploy\humber_lab_bootstrap.ps1 -Mode Prepare -IConfirmAuthorizedUse
+```
+
+Prepare mode returns a safe checkout to `origin/main` when permitted by the existing sync contract and hydrates the semester-scoped `HumberSemester` LFS profile. It installs nothing and creates no persistent service.
+
+Semester production contract:
+
+- `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md`
+- `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`
+- `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`
+
+### Home render worker
+
+Probe the home PC:
+
+```powershell
+.\deploy\render_worker.ps1 -Mode Probe
+```
+
+Blender animations may be split by frame range. Unreal MRQ work should be split by complete temporal shots / camera cuts rather than arbitrary frames.
+
 ## ♬ Second workstation / laptop
 
 If this checkout is on a second machine, read:
