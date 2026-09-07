@@ -86,13 +86,26 @@ assign("ME_WaveViolin_Neck", mat_body); assign("ME_WaveViolin_Fingerboard", mat_
 assign("ME_WaveViolin_Scroll", mat_pearl); assign("ME_WaveViolin_BridgeHub", mat_pearl)
 assign("ME_WaveViolin_Tailpiece", mat_dark)
 for i in (1,2,3,4): assign(f"ME_WaveViolin_String_{i}", mat_brass)
-for s in "LR":
-    assign(f"ME_WaveViolin_FHole_{s}", mat_dark)
-    for i in range(2): assign(f"ME_WaveViolin_Peg_{'L' if s=='L' else 'R'}{i}", mat_pearl)
+# f-hole vents keep their glow material if present (p11 pure emission overrides ebony)
+for sgn, zn in ((-1, "L"), (1, "R")):
+    for i in range(2):
+        assign(f"ME_WaveViolin_Peg_{'L' if sgn < 0 else 'R'}{i}", mat_pearl)
+for zn in ("L", "R"):
+    ob = bpy.data.objects.get(f"ME_WaveViolin_FHole_{zn}")
+    if ob:
+        vmat = bpy.data.materials.get("ME_MAT_Violin_VentPure") or bpy.data.materials.get(f"ME_MAT_Violin_VentGlow_{zn}") or mat_dark
+        ob.data.materials.clear(); ob.data.materials.append(vmat)
+# strings: keep energy mat if it exists from p04
+se = bpy.data.materials.get("ME_MAT_Violin_StringEnergy")
+for i in (1,2,3,4):
+    ob = bpy.data.objects.get(f"ME_WaveViolin_String_{i}")
+    if ob and se and (not ob.data.materials or ob.data.materials[0] != se):
+        ob.data.materials.clear(); ob.data.materials.append(se)
 
 # ---------- UVs: smart project + ME_BakeUV second layer ----------
 bpy.ops.object.select_all(action='DESELECT')
-targets = [o for o in bpy.data.objects if o.type == "MESH" and o.name.startswith("ME_WaveViolin")]
+targets = [o for o in bpy.data.objects if o.type == "MESH" and o.name.startswith("ME_WaveViolin")
+           and o.visible_get() and not o.hide_viewport and not o.hide_render]
 for o in targets:
     bpy.context.view_layer.objects.active = o
     o.select_set(True)
