@@ -1,4 +1,4 @@
-﻿# ♪ Melodia — BS_GodFile ✧ Single-Author Rhythm-JRPG in Unreal Engine 5.8
+﻿# ♪ Melodia Melusina — Solo UE5.8 Rhythm-JRPG & Technical Art Project
 
 ```
 ✦ ─── ✧ ─── ★ ─── ✧ ─── ✦
@@ -101,7 +101,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 
 ---
 
-## ♪ Three Active Tracks
+## ♪ Four Active Tracks
 
 ### Track 1: Stable Technical Proof — "First Dream"
 
