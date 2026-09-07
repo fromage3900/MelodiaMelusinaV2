@@ -39,7 +39,17 @@ Coming Semester 2 (Week 9-10).
 
 ## Stills
 
-Coming soon.
+### Active P0 — Melusina recruiter render
+
+Canonical plan: [P0 Melusina Render + Website Breakdown Plan](Docs/Production/P0_MELUSINA_RENDER_AND_WEBSITE_BREAKDOWN_PLAN_2026-09-07.md)
+
+Current public state:
+- the failed 2026-08-13 Cam_Beauty plate is rejected for recruiter-facing use;
+- the website temporarily uses the existing EEVEE stage beauty;
+- next required proof is a reviewed **UE5.8 B2 Melusina hero** with correct hair, plus portrait, material macro, in-world context, back/silhouette and wireframe proof;
+- after Melusina, the environment P0 order is **Sakura Dream → Kaleido Nave → Fallen Moon** canonical beauty captures.
+
+Portfolio rule: publish the smallest excellent set; do not pad the board with weaker near-duplicates or diagnostics.
 
 ---
 
@@ -64,4 +74,4 @@ Coming soon.
 
 ---
 
-*Last updated: 2026-09-03*
+*Last updated: 2026-09-07*
