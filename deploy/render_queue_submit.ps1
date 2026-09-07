@@ -25,13 +25,13 @@ function G([string[]]$A,[switch]$AllowFailure){
   return [pscustomobject]@{Code=$c;Lines=$o;Text=($o -join [Environment]::NewLine).Trim()}
 }
 
-G @("fetch",$Remote,"main",$QueueBranch) | Out-Null
+G @("fetch",$Remote,$SourceRef,$QueueBranch) | Out-Null
 $SourceSha=(G @("rev-parse",$Remote+"/"+$SourceRef+"^{commit}")).Text
 if($SourceSha -notmatch "^[0-9a-f]{40}$"){throw "Could not resolve source ref."}
 
 $Slug=($JobName.ToLowerInvariant() -replace "[^a-z0-9._-]+","-").Trim("-")
 if([string]::IsNullOrWhiteSpace($Slug)){throw "Invalid JobName."}
-$JobId=(Get-Date -Format "yyyyMMdd_HHmmss")+"_"+$Slug+"_"+$SourceSha.Substring(0,8)
+$JobId=(Get-Date -Format "yyyyMMdd_HHmmssfff")+"_"+$Slug+"_"+$SourceSha.Substring(0,8)
 
 $M=[ordered]@{schema="melodia.render_queue_job.v1";id=$JobId;created_at=(Get-Date).ToString("o");source_ref=$SourceRef;source_sha=$SourceSha;mode=$Mode;job_name=$JobName}
 
