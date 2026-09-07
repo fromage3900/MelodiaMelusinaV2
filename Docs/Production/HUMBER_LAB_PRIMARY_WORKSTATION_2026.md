@@ -3,7 +3,8 @@
 **Status:** ACTIVE SEMESTER WORKFLOW  
 **Primary interactive workstation:** authorized Humber lab PC during class/lab sessions  
 **Secondary interactive workstation:** ASUS Nitro laptop  
-**Dedicated long-job worker:** home Windows workstation
+**Dedicated long-job worker:** home Windows workstation  
+**Git baseline:** protected `main`; "Humber is primary" refers to the machine role, not permission to bypass branch/PR discipline.
 
 ## 1. Semester topology
 
@@ -109,7 +110,7 @@ Unreal temporal rendering depends on prior-frame history, so a shot is the small
 powershell -ExecutionPolicy Bypass -File .\deploy\humber_lab_bootstrap.ps1 -Mode Prepare -IConfirmAuthorizedUse
 ```
 
-The normal target is `origin/main`.
+The normal synchronization target is `origin/main`. After the machine is synchronized, create/use a **small task branch** for actual authored changes when the task is more than a trivial doc-only correction.
 
 ### Sending work home
 
