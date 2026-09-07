@@ -401,6 +401,109 @@ register_builder(
     "openings, all driven off Bounding Box extents.",
     category="structures")
 
+
+# ---------------------------------------------------------------------------
+# C1 param adapter (ROOM_SHELL_CONVERGENCE_PLAN_2026-09-04) — a wiring helper,
+# NOT a fifth shell. Maps greybox-room-kit param names onto the mh6 shell so
+# callers (city cells, music room shell) can swap the nested group without
+# renaming their own params.
+#
+# Measured 2026-09-05 (Tools/c1_diag.py): mh6's SDF hollow offset dilates the
+# exterior by Wall Thickness T on EVERY face — declared extents are exceeded
+# by 2T whenever T>0 (plus ~±0.05 SDF voxel quantization at Voxel Size 0.035,
+# which no param mapping can remove). The plan's original assumption ("pass
+# Depth = wall thickness") is therefore wrong by 2T. This adapter compensates
+# in the CALLER's tree with math nodes: each span input becomes (span − 2·T),
+# clamped ≥0.1, and the shell output is lifted +T in Z so the base sits at 0.
+# mh6 itself is untouched.
+#
+# Value map (greybox name -> mh6 socket):
+#   Room Length    -> Width           (compensated −2T)
+#   Room Width     -> Depth           (compensated −2T)
+#   Room Height    -> Height          (compensated −2T)
+#   Wall Thickness -> Wall Thickness  (straight link; drives the compensation)
+# Curve is pinned 0 (converged exteriors replace a flat greybox box). Cornice
+# Rise defaults 0.06 (its band's own half-height) so the cornice stays flush
+# with the wall top instead of protruding; Cornice Depth defaults 0.
+def mh6_shell_adapter(node, mapping):
+    """Wire a MEL_mh6_room_shell group node from greybox-style params.
+
+    `node` is the GeometryNodeGroup nesting the mh6 shell; `mapping` maps
+    greybox param names to values or sockets. Returns the compensated
+    geometry OUTPUT socket the caller should consume (group output lifted
+    +T so the shell base sits at z=0 like the greybox shell it replaces).
+    """
+    tree = node.id_data
+
+    def _math(op, a, b=None, loc=(0, 0)):
+        n = tree.nodes.new("ShaderNodeMath")
+        n.operation = op
+        n.location = loc
+        if hasattr(a, "node"):
+            tree.links.new(a, n.inputs[0])
+        else:
+            n.inputs[0].default_value = a
+        if b is not None:
+            if hasattr(b, "node"):
+                tree.links.new(b, n.inputs[1])
+            else:
+                n.inputs[1].default_value = b
+        return n.outputs[0]
+
+    tsock = mapping.get("Wall Thickness")
+    span_map = (("Room Length", "Width"), ("Room Width", "Depth"),
+                ("Room Height", "Height"))
+    y0 = -200
+    for src_name, dst_name in span_map:
+        src = mapping.get(src_name)
+        if src is None or dst_name not in node.inputs:
+            continue
+        y0 -= 120
+        if tsock is None:
+            # values-only mode: compensate in Python
+            tv = mapping.get("Wall Thickness", 0.0)
+            try:
+                src_v = float(src)
+            except (TypeError, ValueError):
+                src_v = None
+            if src_v is not None:
+                node.inputs[dst_name].default_value = max(src_v - 2.0 * tv, 0.1)
+                continue
+        # socket mode: dst = max(src − 2T, 0.1)
+        two_t = _math('MULTIPLY', tsock, 2.0, (-800, y0))
+        shrunk = _math('SUBTRACT', src, two_t, (-620, y0))
+        clamped = _math('MAXIMUM', shrunk, 0.1, (-440, y0))
+        tree.links.new(clamped, node.inputs[dst_name])
+    if tsock is not None and "Wall Thickness" in node.inputs:
+        tree.links.new(tsock, node.inputs["Wall Thickness"])
+    if "Curve" in node.inputs:
+        node.inputs["Curve"].default_value = 0.0
+    cornice = {"Cornice Rise": 0.06, "Cornice Depth": 0.0}
+    for extra, default in cornice.items():
+        if extra in node.inputs:
+            node.inputs[extra].default_value = mapping.get(extra, default)
+    # ---- compensated output: lift +T so base sits at z=0 ----
+    geo_out = None
+    for o in node.outputs:
+        if o.type == "GEOMETRY":
+            geo_out = o
+            break
+    if geo_out is None:
+        return None
+    lift = tree.nodes.new("GeometryNodeTransform")
+    lift.name = "MH6 Adapter Lift"
+    lift.location = (node.location.x + 220, node.location.y)
+    tree.links.new(geo_out, lift.inputs["Geometry"])
+    if tsock is not None:
+        zvec = tree.nodes.new("ShaderNodeCombineXYZ")
+        zvec.location = (node.location.x + 60, node.location.y - 140)
+        tree.links.new(tsock, zvec.inputs["Z"])
+        tree.links.new(zvec.outputs[0], lift.inputs["Translation"])
+    else:
+        tv = mapping.get("Wall Thickness", 0.0)
+        lift.inputs["Translation"].default_value = (0.0, 0.0, float(tv))
+    return lift.outputs["Geometry"]
+
 def _bevel(tree, loc, geom_sock, width=0.01, segments=2):
     n = safe_node(tree, "GeometryNodeMeshBevel", loc)
     if n is None:
