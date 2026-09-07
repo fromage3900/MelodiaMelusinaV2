@@ -54,14 +54,26 @@ def load_node(name: str):
     path = library_path()
     if not os.path.exists(path):
         return None
+    # v1.3 library dropped the legacy "NT" group-name prefix: resolve
+    # "NTSpin" -> "Spin" etc. so callers written against older builds work.
+    candidates = [name]
+    if name.startswith("NT") and len(name) > 2:
+        candidates.append(name[2:])
     try:
         with bpy.data.libraries.load(path, link=False) as (src, dst):
-            if name in src.node_groups:
-                dst.node_groups = [name]
-            else:
+            found = next((c for c in candidates if c in src.node_groups), None)
+            if found is None:
                 return None
+            dst.node_groups = [found]
     except Exception:
         return None
+    # Appended under the library's own name; callers may reference either.
+    ng = bpy.data.node_groups.get(name)
+    if ng is None and name.startswith("NT") and len(name) > 2:
+        ng = bpy.data.node_groups.get(name[2:])
+        if ng is not None:
+            # Alias so NT-named lookups elsewhere in the session also resolve.
+            ng.name = name
     return bpy.data.node_groups.get(name)
 
 

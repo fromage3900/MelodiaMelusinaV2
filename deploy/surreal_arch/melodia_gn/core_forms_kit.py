@@ -17,63 +17,23 @@ from .core import (
 )
 
 def _higg_load(name):
-    """Lazily append one Higgsas node group from the library. Returns the
-    NodeGroup or None if unavailable. Idempotent - skips if already loaded."""
-    ng = bpy.data.node_groups.get(name)
-    if ng is not None:
-        return ng
-    import os
-    if not os.path.exists(_HIGGSAS_LIB_PATH):
-        return None
+    """Lazily append one Higgsas node group from the library. Delegates to the
+    addon-level bridge; capabilities.higgsas_library_path resolves an ordered
+    candidate list (prefs override, repo RawArt, legacy G:, Downloads)."""
     try:
-        with bpy.data.libraries.load(_HIGGSAS_LIB_PATH, link=False) as (src, dst):
-            if name in src.node_groups:
-                dst.node_groups = [name]
-            else:
-                return None
+        from ..higgsas_bridge import load_node
+        return load_node(name)
     except Exception:
         return None
-    return bpy.data.node_groups.get(name)
 
-
-_HIGGSAS_LIB_PATH = (
-    r"G:\programs\BlenderPlugins"
-    r"\Higgsas_Geometry_Nodes_Toolset_v1.3 vfxMed"
-    r"\Higgsas Geo Nodes Blender 5.0"
-    r"\Blender 5.0 Higgsas Geo Node Groups v13.blend"
-)
 
 def _higgsas_available():
     """Return True if the Higgsas library is accessible OR groups already loaded."""
-    # Fast path: any Higgsas NT* group already in the file
-    for ng in bpy.data.node_groups:
-        if ng.name.startswith('NT') and len(ng.name) > 4:
-            return True
-    # Check the library file on disk
-    import os
-    return os.path.exists(_HIGGSAS_LIB_PATH)
-
-
-
-def _higg_load(name):
-    """Lazily append one Higgsas node group from the library. Returns the
-    NodeGroup or None if unavailable. Idempotent - skips if already loaded."""
-    ng = bpy.data.node_groups.get(name)
-    if ng is not None:
-        return ng
-    import os
-    if not os.path.exists(_HIGGSAS_LIB_PATH):
-        return None
     try:
-        with bpy.data.libraries.load(_HIGGSAS_LIB_PATH, link=False) as (src, dst):
-            if name in src.node_groups:
-                dst.node_groups = [name]
-            else:
-                return None
+        from ..higgsas_bridge import is_available
+        return is_available()
     except Exception:
-        return None
-    return bpy.data.node_groups.get(name)
-
+        return False
 
 
 def _higg_node(tree, name, loc, fallback_type=None):
@@ -92,11 +52,9 @@ def _higg_node(tree, name, loc, fallback_type=None):
         color_node(node, 'ornament')
         return node
     except Exception:
-        # Group loaded but node creation failed (version mismatch, corrupt group, etc.)
         if fallback_type:
             return _safe_node(tree, fallback_type, loc)
         return None
-
 
 
 def _higg_input(node, name, value):
@@ -374,27 +332,6 @@ def make_harmonic_value(tree, index_socket, freq_a, freq_b, layers, x, y):
 # ----------------------------------------------------------------------
 # BUILDERS - TOWER / ORGANIC / HYBRID (existing)
 # ----------------------------------------------------------------------
-
-def _higg_node(tree, name, loc, fallback_type=None):
-    """Add a GeometryNodeGroup node for the named Higgsas group.
-    If unavailable, creates `fallback_type` (e.g. 'GeometryNodeMeshCube') instead.
-    Returns the node or None. All failure paths fall back gracefully."""
-    ng = _higg_load(name)
-    if ng is None:
-        if fallback_type:
-            return _safe_node(tree, fallback_type, loc)
-        return None
-    try:
-        node = tree.nodes.new('GeometryNodeGroup')
-        node.node_tree = ng
-        node.location = loc
-        color_node(node, 'ornament')
-        return node
-    except Exception:
-        # Group loaded but node creation failed (version mismatch, corrupt group, etc.)
-        if fallback_type:
-            return _safe_node(tree, fallback_type, loc)
-        return None
 
 def _ogee_curve_pair(tree, half_W, height, swell, shoulder, base_x=0, base_y=0):
     """
