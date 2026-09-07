@@ -4,6 +4,7 @@
 **Last Updated:** 2026-09-07 (Fall semester/workstation authority sync; runtime evidence below remains grounded in the 2026-09-05 verification pass)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
 **Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals)**
+**Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
 
 > **Build:** green. `UnrealEditor-BS_GodFile.dll` built 2026-09-04 21:47 and the editor is running
 > from it. The blocker was `LPCTSTR` dropping a struct member in
