@@ -1,4 +1,4 @@
-# Melodia BS_GodFile — University & Portfolio Entry Point
+# Melodia Melusina — University & Portfolio Entry Point
 
 > **Solo-developed Unreal Engine 5.8 rhythm-JRPG vertical slice and environment/technical-art project.**
 > **Public portfolio:** https://www.fromageart.xyz/ · **Verified state:** [CURRENT_STATE.md](CURRENT_STATE.md)
