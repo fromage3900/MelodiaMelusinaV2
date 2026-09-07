@@ -62,6 +62,7 @@
 | Write QuillScript dialogue | `Plugins/QuillScript/` |
 | Use Monolith MCP | `Plugins/Monolith/` |
 | Render a beauty shot | `Tools/setup_melusina_master_studio.py` |
+| **Ship the P0 Melusina recruiter render + breakdown** | `Docs/Production/P0_MELUSINA_RENDER_AND_WEBSITE_BREAKDOWN_PLAN_2026-09-07.md` |
 | Make Melusina sing | `studio/tracks/` + OpenUtau |
 | Understand project state | `Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md` |
 | Plan animation work | `Docs/Production/CHARACTER_ANIMATION_2_SEMESTER_PLAN.md` |
@@ -90,6 +91,7 @@
 | [EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md) | ~121 | What exists, what's research, what's external |
 | [CHARACTER_ANIMATION_2_SEMESTER_PLAN.md](Docs/Production/CHARACTER_ANIMATION_2_SEMESTER_PLAN.md) | ~300 | 2-semester production plan |
 | [LONG_TERM_INFRASTRUCTURE_PLAN.md](Docs/Production/LONG_TERM_INFRASTRUCTURE_PLAN.md) | ~250 | LFS, laptop, portfolio strategy |
+| [P0_MELUSINA_RENDER_AND_WEBSITE_BREAKDOWN_PLAN_2026-09-07.md](Docs/Production/P0_MELUSINA_RENDER_AND_WEBSITE_BREAKDOWN_PLAN_2026-09-07.md) | active | Recruiter-facing Melusina UE5.8 hero render, breakdown and website integration contract |
 | [BLENDER_AUDIO_GEOMETRY_NODES_PIPELINE_2026-09-02.md](Docs/Research/BLENDER_AUDIO_GEOMETRY_NODES_PIPELINE_2026-09-02.md) | ~191 | Audio→GN research (5 tools compared) |
 | [GN_TAXONOMY_2026-08-29.md](Docs/Production/GN_TAXONOMY_2026-08-29.md) | ~700 | GN builder taxonomy |
 
@@ -114,4 +116,4 @@
 
 ---
 
-*Last updated: 2026-09-03*
+*Last updated: 2026-09-07*
