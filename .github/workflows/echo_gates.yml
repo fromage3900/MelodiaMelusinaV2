@@ -15,6 +15,7 @@ on:
       - 'Content/Python/**'
       - 'specs/**'
       - 'Tools/**'
+      - 'deploy/**'
       - '.github/workflows/**'
   workflow_dispatch:
 
