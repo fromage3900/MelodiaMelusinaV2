@@ -1,6 +1,6 @@
 # Melodia Agent Start Here
 
-**Status authority date:** 2026-09-04  
+**Status authority date:** 2026-09-07  
 **Purpose:** One current discovery contract for every AI / IDE / remote agent.
 
 > **Do not derive current project state from an old handoff, old roadblock file, old session note, or the absence of a file on `main`.**
@@ -10,13 +10,16 @@
 Read only this front door before expanding outward:
 
 1. `README.md`
-2. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
-3. `CURRENT_STATE.md`
-4. `_VERTICAL_SLICE_SCOPE.md`
-5. `TODO.md`
-6. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
-7. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` when work may have come from the laptop or another workstation
-8. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
+2. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
+3. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
+4. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+5. `CURRENT_STATE.md`
+6. `_VERTICAL_SLICE_SCOPE.md`
+7. `TODO.md`
+8. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
+9. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
+10. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` only when historical laptop recovery matters
+11. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
 
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
 
@@ -58,18 +61,22 @@ Do **not** regress the project back to an August “nothing is live” interpret
 
 The still-open boundary is deeper persistence/idempotency/package closure, not whether the core runtime exists.
 
-## 4. Laptop / multi-workstation discovery rule
+## 4. Fall 2026 workstation rule
 
-**Both workstations should use `main` as the shared baseline unless the owner explicitly assigns a feature branch.** The recovered V7 house baseline was promoted to `main` via PR #82.
+**Humber labs are the primary interactive semester workstation. The home Windows PC is the render/bake/long-job worker. The ASUS Nitro laptop is auxiliary.** All machines use `main` as the shared baseline unless the owner explicitly assigns a feature branch.
 
-Before opening Blender/Rider/Unreal on either workstation, run `.\deploy\sync_workstation.ps1`. A handoff is not complete until its report says `sync_state = synced`.
+At Humber, start with `.\deploy\humber_lab_bootstrap.ps1 -Mode Check`; authorized preparation uses `-Mode Prepare -IConfirmAuthorizedUse`, which delegates to the existing safe sync contract and the `HumberSemester` LFS profile.
+
+The home PC should consume explicit render/bake jobs through `.\deploy\render_worker.ps1`; render-worker mode must not invent project edits.
+
+A handoff is not complete until the relevant commit is pushed and the receiving machine's sync state is safe.
 
 **Never equate “not on main” with “not committed.”**
 
 As of 2026-09-04:
 
 - `recovery/laptop-main-20260904` is **13 commits ahead of main and 0 behind** at discovery time.
-- It contains current Melusina House Geometry Nodes/addon work, V7 build scripts, house Blender files, and `SESSION_NOTES_2026-09-04.md`.
+- It contains current Melusina House Geometry Nodes/addon work, V7 build scripts, house Blender files, and `Docs/MelodiaStudio/SESSION_NOTES_2026-09-04.md`.
 - It also contains broad export/quarantine deletions, so **do not merge it wholesale**.
 - Older `collab/laptop/*` branches are diverged and remain discovery/extraction sources.
 

@@ -10,10 +10,20 @@ Out:  Tools/registry_baseline.json + console PASS/FAIL table.
 """
 import bpy, json, os, sys, traceback
 
-REPO = "C:/Users/brenn/melodiamelusinav2"
+REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = os.path.join(REPO, "Tools", "registry_baseline.json")
-sys.path.insert(0, r"C:\Users\brenn\AppData\Roaming\Blender Foundation\Blender\5.2\scripts\addons")
+sys.path.insert(0, os.path.join(os.environ.get("APPDATA", ""),
+    "Blender Foundation", "Blender", "5.2", "scripts", "addons"))
 sys.path.insert(0, os.path.join(REPO, "deploy"))
+
+# Blender autoloads AppData addons before this script runs; drop any cached
+# surreal_arch so the harness measures THIS repo's deploy tree, not the stale
+# live copy (laptop AppData had the P2 kits; this box's does not).
+for _m in [m for m in list(sys.modules) if m == "surreal_arch" or m.startswith("surreal_arch.")]:
+    del sys.modules[_m]
+import surreal_arch  # noqa: E402
+assert surreal_arch.__file__.replace("\\", "/").startswith(REPO.replace("\\", "/")), \
+    f"harness must load repo copy, got {surreal_arch.__file__}"
 
 results = {"package": {}, "monolith": {}, "meta": {}}
 

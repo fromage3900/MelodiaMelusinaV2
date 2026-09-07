@@ -13,12 +13,12 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 | Order | Read this | Why |
 |:---:|---|---|
 | **1** | [`README.md`](README.md) | Project identity and one-page orientation. |
-| **2** | [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) | Professor/reviewer route: playable proof, runtime architecture, evidence levels, boundaries, and 5–10 minute demo. |
-| **3** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can honestly be claimed now. |
-| **4** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) | The bounded First Dream / Sea Above P0 scope. |
-| **5** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
-| **6** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Architecture detail only when needed. |
-| **7** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, and validation commands. |
+| **2** | [`Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md`](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md) | Fall 2026 production authority: First Dream stable proof, Shorewake semester artwork. |\n| **3** | [`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`](Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md) | Course brief → Melodia deliverable mapping; populate from Humber outlines/Blackboard. |\n| **4** | [`Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) | Humber-primary authoring + home-PC render worker contract. |\n| **5** | [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) | Professor/reviewer route: playable proof, runtime architecture, evidence levels, boundaries, and 5–10 minute demo. |
+| **6** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can honestly be claimed now. |
+| **7** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) | The bounded First Dream / Sea Above P0 scope. |
+| **8** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
+| **9** | [`SYSTEM_MAP.md`](SYSTEM_MAP.md) + [`DATA_FLOW.md`](DATA_FLOW.md) | Architecture detail only when needed. |
+| **10** | [`QUICKSTART.md`](QUICKSTART.md) | Setup, tests, editor, and validation commands. |
 | **Agent** | [`AGENT_START_HERE.md`](AGENT_START_HERE.md) | Mandatory current discovery contract for AI/remote agents. |
 | **House GN** | [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) | Live Melodia Studio builder IDs, foundation-first workflow, category/preset verification, and the correction for stale `GN_MH_*` plan aliases. |
 | **Laptop** | [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) | Find committed work that has not reached `main`. |
