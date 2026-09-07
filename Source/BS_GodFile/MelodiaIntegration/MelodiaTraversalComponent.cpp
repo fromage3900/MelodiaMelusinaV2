@@ -1067,8 +1067,35 @@ void UMelodiaTraversalComponent::ResolveWingPresentation()
 	}
 }
 
+void UMelodiaTraversalComponent::SetWingPresentationOwnedExternally(const bool bOwnedExternally)
+{
+	if (bWingPresentationOwnedExternally == bOwnedExternally)
+	{
+		return;
+	}
+
+	bWingPresentationOwnedExternally = bOwnedExternally;
+
+	// On release, re-assert the wing state this component believes in. Otherwise
+	// the wings keep whatever pose the departing authority left behind, which for
+	// a mid-transition handover is an arbitrary partial opacity.
+	if (!bWingPresentationOwnedExternally)
+	{
+		SetWingPresentation(bIsGliding);
+	}
+}
+
 void UMelodiaTraversalComponent::SetWingPresentation(bool bVisible)
 {
+	// Another authority owns the wing look (see SetWingPresentationOwnedExternally).
+	// Glide state still broadcasts through OnGlideStateChanged; only the material
+	// and visibility writes are surrendered, so the two never fight over the same
+	// scalar.
+	if (bWingPresentationOwnedExternally)
+	{
+		return;
+	}
+
 	const float Opacity = bVisible ? 1.0f : 0.0f;
 	for (UMaterialInstanceDynamic* WingMaterial : WingMaterials)
 	{
