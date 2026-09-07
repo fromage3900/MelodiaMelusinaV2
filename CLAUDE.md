@@ -1,5 +1,19 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
+## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
+
+This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
+`origin/main`, maintained on the desktop PC. This laptop clone is ONLY a Blender /
+asset-prep / mobile hub — its local `main` must mirror `origin/main` exactly and never
+diverge. No agent may create branches, commit, merge, rebase, reset, or push without
+explicit owner permission for that specific operation plus a written plan stated first.
+Never consolidate or restructure git history from this machine. Destructive commands
+(`git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, any history
+rewrite) are forbidden without explicit per-command owner approval. Long-lived laptop
+asset work lives on `collab/laptop/longterm`. Verify read-only before and after any
+approved mutation. Poor git management has already caused real regressions and missed
+deadlines here — do not add to that history.
+
 ## ⛔ READ FIRST — [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md)
 
 **This is a working portfolio and a livelihood, not a technical sandbox.** When the owner asks for
