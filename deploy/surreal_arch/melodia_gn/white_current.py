@@ -90,7 +90,6 @@ def build_white_seam_spline(group_name="MEL_white_seam_spline"):
 
     # Curve to mesh
     profile = safe_node(tree, "GeometryNodeCurvePrimitiveLine", (bx + 400, by - 300))
-    profile.inputs["Resolution"].default_value = 1
     profile_pos = safe_node(tree, "GeometryNodeTransform", (bx + 400, by - 380))
     link_sockets(tree, profile.outputs["Curve"], profile_pos.inputs["Geometry"])
     profile_pos.inputs["Scale"].default_value = (0.02, 0.005, 1.0)

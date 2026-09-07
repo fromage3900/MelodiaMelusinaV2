@@ -115,14 +115,14 @@ F5  snapshot + verify runner ~half session (after F1–F3b green)
 | Gate | Status | Evidence |
 |---|---|---|
 | S0 live install byte-clean | **DONE 2026-09-07** | 249/249 match, stamp main@025ae175 |
-| F1 Higgsas available + no silent fallback | OPEN | — |
-| F1b core_forms_kit duplicate defs removed | OPEN | — |
+| F1 Higgsas available + no silent fallback | **DONE 2026-09-07** | Tools/higgsas_gate.py: G1–G6 PASS; 23/23 arch nodes load; pillar=NTSpin/NTTaper, wall=NTBricks Grid/NTSolidify real group nodes. Root cause: v1.3 library dropped the NT name prefix — bridge + monolith _higg_load now resolve NTSpin→Spin and alias back. Library relocated to RawArt/BlenderLibraries/Higgsas (gitignored, README'd); capabilities.py ordered candidate resolver; monolith const resolver-backed. |
+| F1b core_forms_kit duplicate defs removed | **DONE 2026-09-07** | core_forms_kit.py + walls_kit.py: single delegation shim each (→ higgsas_bridge.load_node), all _HIGGSAS_LIB_PATH/G: hardcodes gone from kits |
 | F2 5 dup pairs resolved + functional census | OPEN | Saved/Audit/_census_dups.py (string census done) |
-| F2b 10 broken builders → 0 real errors | OPEN | registry_baseline.json (114 fail: 9 real + 105 input-dependent empties) |
-| F3 466/466 panel enumeration + labels | OPEN | _census_panel.py (22 cats, 6 no-meta) |
+| F2b 10 broken builders → 0 real errors | **DONE 2026-09-07** | baseline regen: package 355/466 ok, 0 real errors (was 9); monolith 209/209 ok (ZEN_PAGODA fixed: CurveToMesh outputs Mesh not Geometry). Fixes: EdgeAngle Angle→Unsigned Angle ×3, SetPosition Mesh→Geometry ×2, Line bogus Resolution dropped ×2, MeshPlane→MeshGrid (node type removed in 5.x) ×3, CurvePrimitiveBezierArc→CurveArc ×1. 111 input-dependent empties = known class, recorded not failed. |
+| F3 466/466 panel enumeration + labels | **labels DONE 2026-09-07** | CATEGORY_META +6 (asian/civic/euro/experimental/melusina_house/zen_kit); census no-label list now empty. Enumeration gate + GUI screenshots still OPEN. |
 | F3b pie defects fixed + poll gate | OPEN | pie_menu.py review 2026-09-07 |
 | F3b catalog ownership declared + search seam | OPEN | — |
-| F4 M0 baseline re-run | OPEN | — |
+| F4 M0 baseline re-run | **DONE 2026-09-07** | Tools/registry_baseline.json regenerated post-fixes (466 pkg + 209 mono) |
 | F5 registry snapshot + verify runner 0-exit | OPEN | baseline diff 0-lost/0-new vs 466 snapshot |
 
 ---

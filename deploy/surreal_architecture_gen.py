@@ -12249,7 +12249,7 @@ def build_zen_pagoda(tree, props, base_x=-1400):
                     except Exception:
                         pass
                     color_node(shin_sw, "house")
-                    parts.append(shin_sw.outputs['Geometry'])
+                    parts.append(shin_sw.outputs['Mesh'])
 
     # ── Sōrin (crowning spire) - thin swept rod + kurin rings ─────
     spire_h = th * 1.25
@@ -29517,13 +29517,34 @@ class SURREAL_ARCH_OT_organize(bpy.types.Operator):
 #   Every usage gracefully falls back to native GN nodes if unavailable.
 # ==============================================================================
 
-# Registered asset library path (from userpref.blend - G: drive)
-_HIGGSAS_LIB_PATH = (
-    r"G:\programs\BlenderPlugins"
-    r"\Higgsas_Geometry_Nodes_Toolset_v1.3 vfxMed"
-    r"\Higgsas Geo Nodes Blender 5.0"
-    r"\Blender 5.0 Higgsas Geo Node Groups v13.blend"
-)
+# Higgsas library path — resolved via the addon-level capabilities resolver
+# (ordered candidates: prefs override, repo RawArt, legacy G:, Downloads).
+# Falls back to inline candidates if surreal_arch is not importable.
+def _resolve_higgsas_path():
+    import os
+    try:
+        import surreal_arch.capabilities as _cap
+        return _cap.higgsas_library_path()
+    except Exception:
+        pass
+    _LIB = "Blender 5.0 Higgsas Geo Node Groups v13.blend"
+    _cands = [
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                     "RawArt", "BlenderLibraries", "Higgsas", _LIB),
+        os.path.join(os.path.expanduser("~"), "Downloads",
+                     "Higgsas_Geometry_Nodes_Toolset_v1.3",
+                     "Higgsas Geo Nodes Blender 5.0", _LIB),
+        r"G:\programs\BlenderPlugins"
+        r"\Higgsas_Geometry_Nodes_Toolset_v1.3 vfxMed"
+        r"\Higgsas Geo Nodes Blender 5.0"
+        "\\" + _LIB,
+    ]
+    for _c in _cands:
+        if os.path.exists(_c):
+            return _c
+    return _cands[0]
+
+_HIGGSAS_LIB_PATH = _resolve_higgsas_path()
 
 # Most useful node groups for architecture - pre-warmed on first "Load All"
 _HIGGSAS_ARCH_NODES = [
@@ -29574,21 +29595,30 @@ def _higgsas_available():
 
 def _higg_load(name):
     """Lazily append one Higgsas node group from the library. Returns the
-    NodeGroup or None if unavailable. Idempotent - skips if already loaded."""
+    NodeGroup or None if unavailable. Idempotent - skips if already loaded.
+    v1.3 library dropped the legacy NT prefix: resolve NTSpin -> Spin."""
     ng = bpy.data.node_groups.get(name)
     if ng is not None:
         return ng
     import os
     if not os.path.exists(_HIGGSAS_LIB_PATH):
         return None
+    cands = [name]
+    if name.startswith("NT") and len(name) > 2:
+        cands.append(name[2:])
     try:
         with bpy.data.libraries.load(_HIGGSAS_LIB_PATH, link=False) as (src, dst):
-            if name in src.node_groups:
-                dst.node_groups = [name]
-            else:
+            found = next((c for c in cands if c in src.node_groups), None)
+            if found is None:
                 return None
+            dst.node_groups = [found]
     except Exception:
         return None
+    ng = bpy.data.node_groups.get(name)
+    if ng is None and name.startswith("NT") and len(name) > 2:
+        ng = bpy.data.node_groups.get(name[2:])
+        if ng is not None:
+            ng.name = name
     return bpy.data.node_groups.get(name)
 
 

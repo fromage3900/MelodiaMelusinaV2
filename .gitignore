@@ -242,6 +242,7 @@ Tools/*
 !Tools/graph_reachability.py
 !Tools/ui_lint.py
 !Tools/melodia_studio_census.py
+!Tools/higgsas_gate.py
 !Tools/record_gate.py
 !Tools/echo_run.py
 # Agent infrastructure 2026-08-11 (intake fan-out tooling)
@@ -350,3 +351,7 @@ surreal_sweep_wave2/
 Plugins/HoudiniEngine/Binaries/
 Plugins/HoudiniEngine/Intermediate/
 Plugins/HoudiniEngine/Content/
+
+# Third-party Blender node libraries (licensed; local-only per RawArt/BlenderLibraries/README.md)
+RawArt/BlenderLibraries/*
+!RawArt/BlenderLibraries/README.md

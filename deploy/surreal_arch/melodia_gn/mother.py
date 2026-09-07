@@ -124,7 +124,6 @@ def build_mother_hair_cascade(group_name="MEL_mother_hair_cascade"):
 
     # Curve to mesh with ribbon profile
     profile = safe_node(tree, "GeometryNodeCurvePrimitiveLine", (bx + 200, by - 200))
-    profile.inputs["Resolution"].default_value = 1
     profile_pos = safe_node(tree, "GeometryNodeTransform", (bx + 200, by - 280))
     link_sockets(tree, profile.outputs["Curve"], profile_pos.inputs["Geometry"])
     profile_pos.inputs["Scale"].default_value = (0.15, 0.02, 1.0)
@@ -682,8 +681,9 @@ def build_mother_moonlight_rig(group_name="MEL_mother_moonlight_rig"):
     moon_tint_n = add_float_param(tree, "Moon Tint", 0.8, 0.0, 1.0)
 
     # Key light: area light at angle
-    key_light = safe_node(tree, "GeometryNodeMeshPlane", (bx - 400, by))
-    key_light.inputs["Size"].default_value = (4.0, 4.0)
+    key_light = safe_node(tree, "GeometryNodeMeshGrid", (bx - 400, by))
+    key_light.inputs["Size X"].default_value = 4.0
+    key_light.inputs["Size Y"].default_value = 4.0
     key_pos = safe_node(tree, "GeometryNodeTransform", (bx - 200, by))
     link_sockets(tree, key_light.outputs["Mesh"], key_pos.inputs["Geometry"])
     key_offset = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 400, by - 100))
@@ -704,8 +704,9 @@ def build_mother_moonlight_rig(group_name="MEL_mother_moonlight_rig"):
     link_sockets(tree, key_offset.outputs["Vector"], key_pos.inputs["Translation"])
 
     # Fill light: opposite side, dimmer
-    fill_light = safe_node(tree, "GeometryNodeMeshPlane", (bx - 400, by - 200))
-    fill_light.inputs["Size"].default_value = (3.0, 3.0)
+    fill_light = safe_node(tree, "GeometryNodeMeshGrid", (bx - 400, by - 200))
+    fill_light.inputs["Size X"].default_value = 3.0
+    fill_light.inputs["Size Y"].default_value = 3.0
     fill_pos = safe_node(tree, "GeometryNodeTransform", (bx - 200, by - 200))
     link_sockets(tree, fill_light.outputs["Mesh"], fill_pos.inputs["Geometry"])
     fill_offset = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 400, by - 300))
@@ -714,8 +715,9 @@ def build_mother_moonlight_rig(group_name="MEL_mother_moonlight_rig"):
     link_sockets(tree, fill_offset.outputs["Vector"], fill_pos.inputs["Translation"])
 
     # Rim light: behind, low
-    rim_light = safe_node(tree, "GeometryNodeMeshPlane", (bx - 400, by - 400))
-    rim_light.inputs["Size"].default_value = (2.0, 2.0)
+    rim_light = safe_node(tree, "GeometryNodeMeshGrid", (bx - 400, by - 400))
+    rim_light.inputs["Size X"].default_value = 2.0
+    rim_light.inputs["Size Y"].default_value = 2.0
     rim_pos = safe_node(tree, "GeometryNodeTransform", (bx - 200, by - 400))
     link_sockets(tree, rim_light.outputs["Mesh"], rim_pos.inputs["Geometry"])
     rim_offset = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 400, by - 500))
