@@ -167,7 +167,7 @@ merged addon.
 
 | Gate | Status | Evidence |
 |---|---|---|
-| V0 room-shell convergence | **BLOCKED — mh6 builder defects found 2026-09-04** | `Saved/Audit/melusinashouse/v0_shell_convergence_proof.png`; forensics in session log |
+| V0 room-shell convergence | **DEFECTS VERIFIED FIXED; identity gate OPEN** 2026-09-06 | `Tools/house_v0_shell_proof.py` → `Saved/Audit/melusinashouse/v0_proof_last.json`: empty-cutter guard holds (0x0 = 87,856 verts, not the old 112-plane), openings survive (3x2 > solid), full Y span honored. NOT yet identity: converged Z overruns stock by 0.085 m (SDF voxel 0.035 quantization + fillet band), and T=2.0 hits the adapter's span clamp (Y bbox 4.096). Rewiring stays gated until tolerance is adjudicated (raise tol to voxel-quantization scale, or refine the shell) — owner call. |
 | V1 roof params on cell | OPEN | — |
 | V2 interior convergence | OPEN | — |
 | V3 music keys | OPEN | — |

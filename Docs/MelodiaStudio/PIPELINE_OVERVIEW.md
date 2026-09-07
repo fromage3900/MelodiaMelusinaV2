@@ -67,12 +67,12 @@ Lockable: `*.blend`, `.fbx`, `.uasset`, `.umap` (.gitattributes:25–34).
 
 | Item | State | Where it's written |
 |---|---|---|
-| V0 cell rewiring (nest `MEL_mh6_room_shell` in `MEL_city_house_cell` via C1 adapter) | shell DEFECTS FIXED (PR #96, `b828e82f`) — rewiring awaits re-ledger + harness | `MELUSINA_HOUSE_V7_PLAN.md` Ledger + V0 forensics |
+| V0 cell rewiring (nest `MEL_mh6_room_shell` in `MEL_city_house_cell` via C1 adapter) | shell DEFECTS FIXED + RE-PROVEN 2026-09-06 (`Tools/house_v0_shell_proof.py`: guard holds 87,856 v, openings survive) — strict bbox-identity gate awaits owner tolerance call (SDF quantization +0.085 Z) | `MELUSINA_HOUSE_V7_PLAN.md` Ledger |
 | 16 dead builders (mother_v3 ×8, mother_tapestry_wall, p4_ ×7) — registered nowhere, never imported | OPEN — quarantine behind harness | V7 plan V5 phases table |
 | 8 passthrough stubs (same files) — geometry-less trees, two conflicting signatures | OPEN — flag `role='research'` | V7 plan V5 phases table |
 | Rebrand: (1) Melodia Studio umbrella [recommended] / (2) Surreal Studio / (3) Melodia Forge | **OWNER DECISION** — no MEL_* renames in v1 either way | V7 plan V5 |
-| Grandmaster lane unmerged: 14 family kits (`0b50b42d`) + Melusina's Study blend (`027dce9b`) sit only on `feature/grandmaster-melodia-studio`; main's registry baseline lists their ids but main's tree lacks the modules | OPEN — merge as stacked work (Task 5b of the branch plan) | `.hermes/plans/2026-09-06_195928-…-branch.md` |
-| Study dressing: blend committed as WIP shell (interior unfurnished, camera unaimed) | OWNER is fetching decorated state from laptop 2026-09-06 evening | this row |
+| Grandmaster lane (14 family kits `0b50b42d` + Melusina's Study blend `027dce9b`) | MERGED 2026-09-06 into `pipeline/melodia-studio-3d` (`7135bde3`); registry reconciled at 466 ids, zero regressions (`e5e0c28f`) — PR to main pending | `Docs/MelodiaStudio/PIPELINE_OVERVIEW.md` |
+| Study dressing: blend committed as WIP shell (interior unfurnished, camera unaimed) | OWNER fetching decorated state from laptop 2026-09-06 evening | this row |
 
 ## Standing rituals
 
@@ -94,5 +94,5 @@ Lockable: `*.blend`, `.fbx`, `.uasset`, `.umap` (.gitattributes:25–34).
 |---|---|---|
 | Pipeline overview written | PASS 2026-09-06 | this file; every path above confirmed via `git ls-files` on `pipeline/melodia-studio-3d` |
 | integration.py restored | PASS 2026-09-06 | blob `b7fe7f10` at `deploy/surreal_arch/integration.py`; 908 lines, ast parse clean; carried by `5862f539` |
-| V0 cell rewiring | OPEN (defects fixed; re-ledger pending) | `b828e82f` commit body: openings 55158 vs 48200 v, guard 48200 vs 112 |
-| Registry regression gate | BASELINE 289/403 pkg + 208/209 mono ok | `Tools/registry_baseline.json` (9 known errors unchanged) |
+| V0 re-proof run | PARTIAL 2026-09-06 — guard/openings PASS, strict identity awaits tolerance call | `Tools/house_v0_shell_proof.py`; `Saved/Audit/melusinashouse/v0_proof_last.json` |
+| Registry regression gate | BASELINE 466/209 ids refreshed post-merge — 352 pkg ok, 208/209 mono, 0 regressions | `Tools/registry_baseline.json` (9 known errors unchanged) |
