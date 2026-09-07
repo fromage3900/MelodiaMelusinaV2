@@ -63,6 +63,7 @@
 | Use Monolith MCP | `Plugins/Monolith/` |
 | Render a beauty shot | `Tools/setup_melusina_master_studio.py` |
 | **Ship the P0 Melusina recruiter render + breakdown** | `Docs/Production/P0_MELUSINA_RENDER_AND_WEBSITE_BREAKDOWN_PLAN_2026-09-07.md` |
+| **Check recruiter/public freeze scope** | `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md` |
 | Make Melusina sing | `studio/tracks/` + OpenUtau |
 | Understand project state | `Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md` |
 | Plan animation work | `Docs/Production/CHARACTER_ANIMATION_2_SEMESTER_PLAN.md` |
