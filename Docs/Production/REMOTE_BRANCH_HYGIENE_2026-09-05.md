@@ -67,6 +67,14 @@ powershell -ExecutionPolicy Bypass -File Tools/prune_remote_branches_2026_09_05.
 
 Expected target after execution: **7 live remote branch refs** from this snapshot, plus archive tags preserving the exact old tips.
 
+## PowerShell 5.1 compatibility
+
+Runs natively under pwsh (PowerShell 7). Under Windows PowerShell 5.1 the committed
+copy fails to parse (the banner em-dash decodes as a cp1252 smart quote) and produces
+malformed refs/heads//remotes/... refspecs (unbraced dollar-variables followed by a
+colon expand to empty). The patched copy merged with this change adds a UTF-8 BOM
+and brace-delimits the refspec variables.
+
 ## Restore an archived branch
 
 ```powershell
