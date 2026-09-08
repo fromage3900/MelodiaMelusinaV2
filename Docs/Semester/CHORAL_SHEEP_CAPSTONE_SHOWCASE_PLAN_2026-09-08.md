@@ -69,7 +69,20 @@ one sheep + C
 → one world-propagation response
 ```
 
-This is the primary TD ↔ Unreal bridge for Capstone 01. It reuses Melodia's existing read-only cymatics / resonance language; it does not create a second music, save, or gameplay authority.
+This is **not a new TD ↔ Unreal architecture**. It is the first capstone-specific consumer of Melodia's pre-existing **UniversalMusicalInfluence** spine.
+
+Existing prior art that owns the architecture:
+
+- `Docs/UNIVERSAL_MUSICAL_INFLUENCE_SCAFFOLD_2026-07-18.md` — project-wide rule: one music signal, MPC broadcast, generic reactive meshes, TD bridge;
+- `UMelodiaRhythmReactivitySubsystem` — existing project signal object, reactive-material registration, UE→TD OSC on port 9000;
+- `UMelodiaAudioReactivePresentationSubsystem` — sole continuous beat/audio writer to `MPC_Melodia_Palette` + Niagara twin;
+- `UMelodiaReactiveMeshRegistrar` — existing `ReactiveToMusic` tag path for arbitrary visible mesh components;
+- `UMelodiaCymaticsSubsystem` + `UMelodiaCymaticsWriterSubsystem` — existing Chladni evaluator and `MPC_Cymatics_Driver` presentation surface;
+- `_TouchDesigner/grandmaster_melodia/` + `wire_audio_reactive_flower.py` — existing TD CHOP/audio/OSC implementation;
+- `Content/Python/osc_server.py` + `deploy/osc_routing.json` — existing TD→UE mapping contract;
+- `Docs/Blender/MELODIA_MUSIC_SIGNAL_BRIDGE_TD_BLENDER_UNREAL_2026-08-30.md` — existing principle: **one semantic music language, three execution contexts**.
+
+Therefore Chladni Fleece should be implemented as a **specialized profile/consumer** of the existing music-reactivity architecture, not as a new visual-instrument framework. It reuses Melodia's read-only cymatics/resonance language and does not create a second music, save, or gameplay authority.
 
 ## 3. Tool ownership
 
