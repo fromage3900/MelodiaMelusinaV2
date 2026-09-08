@@ -45,6 +45,30 @@ Do not re-rig the sheep unless a fresh export/deformation check proves the curre
 
 ---
 
+## Reference lock — 20 minutes maximum
+
+Before material/lookdev decisions, read:
+
+`Docs/References/ChoralSheepCapstone/REFERENCE_MANIFEST.md`
+
+Then skim the five focused boards.
+
+For today's C-note proof, lock **no more than three visual rules**:
+
+1. one creature/fleece rule;
+2. one Chladni/pattern rule;
+3. one concert/scale rule.
+
+Recommended starting lock:
+
+- **Creature:** fleece remains soft/dusty; resonance looks woven under wool.
+- **Pattern:** low-order pitch-C nodal structure, readable at thumbnail.
+- **Concert:** quiet field → one giant ROOT HIT → return to creature.
+
+Do not spend the session endlessly collecting references.
+
+The boards are there to accelerate decisions, not replace making the image.
+
 ## Lane A — Owner / Blender + Unreal
 
 ### A0 — Open the authoritative sheep source
