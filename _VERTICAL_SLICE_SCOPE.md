@@ -1,15 +1,17 @@
 # Active Vertical Slice Scope & Universal Chapter Gameplay Loop
 
 **Canonical Scope Document**
-**Last Updated:** 2026-09-01 (Evening P0 Closeout & Chapter Loop Checkpoint)
-**Status:** **10/10 P0 Completion Gates PASS | Preflight Ready for Final Packaged Golden Run**
-**Authorities:** [`../PROJECT.md`](../PROJECT.md), [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md)
+**Last Updated:** 2026-09-08
+**Current status:** **8/8 active P0 gates PASS** in `Docs/P0_TASK_LEDGER.json`. First Dream music → wardrobe → Glide → portal is live-proven. Long-chain persistence / repeat-load / packaged golden-run certification remains open (Issue #51).
+**Authorities:** [`AGENT_START_HERE.md`](AGENT_START_HERE.md), [`CURRENT_STATE.md`](CURRENT_STATE.md), [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md)
+
+> The 10-row completion-gate matrix below is **historical evidence vocabulary** from the 2026-09-01 closeout. It is not a second current gate count and it is not a claim that Issue #51 is closed.
 
 ---
 
 ## 1. Product Goal & The Paradigm Shift
 
-Melodia delivers a focused, highly polished **Rhythm-JRPG vertical slice ("First Dream")** and an extensible, reusable architecture for all subsequent game chapters. The design blends the intimate narrative rhythm of *OMORI*, the musical world-unlocking of *The Legend of Zelda: Ocarina of Time*, and the high-fidelity fashion and traversal presentation of *Infinity Nikki*.
+Melodia delivers a focused, highly polished **Rhythm-JRPG vertical slice ("First Dream")** and an extensible, reusable architecture for later chapters. The design blends the intimate narrative rhythm of *OMORI*, the musical world-unlocking of *The Legend of Zelda: Ocarina of Time*, and the high-fidelity fashion and traversal presentation of *Infinity Nikki*.
 
 ### The Two Absolute Authorities
 1. **QuillScript (`UMelodiaNarrativeSubsystem`)**: Absolute authority on branching dialogue, cutscene flow, quest flags, and 7-verb notifications.
@@ -23,13 +25,13 @@ Melodia delivers a focused, highly polished **Rhythm-JRPG vertical slice ("First
 
 ---
 
-## 2. The Universal Reusable Chapter Gameplay Loop
+## 2. First Dream integration loop
 
-Every chapter in Melodia (Chapter 1 "First Dream" through all subsequent chapters) strictly executes the same standardized 6-phase loop:
+The six-phase route below is the proven **First Dream integration song**. Later chapters may use different shapes as long as they keep the same authorities, IDs, persistence rules, and evidence labels. It is **not** a mandatory script for every future chapter.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                        UNIVERSAL CHAPTER GAMEPLAY LOOP TEMPLATE                         │
+│                        FIRST DREAM FULL-STACK INTEGRATION LOOP                          │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
    │
    ▼
@@ -84,29 +86,35 @@ Every chapter in Melodia (Chapter 1 "First Dream" through all subsequent chapter
 
 ---
 
-## 4. Verified P0 Completion Gates Matrix
+## 4. Historical completion-gate taxonomy (10 IDs)
 
-All 10 completion gates in `Saved/gate_ledger.json` are verified PASS:
+Recorded during the 2026-09-01 closeout. Current tracked authority is the **8 active P0 gates** in `Docs/P0_TASK_LEDGER.json`. These 10 IDs remain useful vocabulary; they are not a second live scoreboard.
 
-| Gate | Target System | Acceptance Criteria | Status |
+| Gate | Target System | Acceptance Criteria | Recorded status |
 |---|---|---|:---:|
-| `runtime` | Full Loop PIE | Real-input playthrough from sanctuary through battle and checkpoint | **PASS** |
-| `save_load` | Persistence | Slot serialization and roundtrip restore via `BP_JRPGSaveGame` | **PASS** |
-| `repeat_consume` | Narrative Queue | Exactly-once consumption of narrative notifications and rewards | **PASS** |
-| `package_launch` | Standalone Executable | Clean boot and initialization outside Unreal Editor | **PASS** |
-| `rhythm_owner` | Rhythm Layer | Rhythm highway scales JRPG command execution without taking state ownership | **PASS** |
-| `hud_single_writer` | UI Hierarchy | `UMelodiaUIBridgeSubsystem` is the sole designated writer for HUD surfaces | **PASS** |
-| `wardrobe_equip_roundtrip` | Wardrobe Subsystem | Mesh swap and equipped outfit state persist across save/reload | **PASS** |
-| `rhythm_grade_to_result` | Combat Scaling | Note accuracy grades scale JRPG damage calculations | **PASS** |
-| `music_world_key` | Resonant World | Musical phrase stepping unlocks route barriers via narrative subsystem | **PASS** |
-| `wardrobe_gameplay_hook` | Traversal Provider | Equipping outfit grants physical world traversal capabilities (`Glide`) | **PASS** |
+| `runtime` | Full Loop PIE | Real-input playthrough from sanctuary through battle and checkpoint | historical PASS |
+| `save_load` | Persistence | Slot serialization and roundtrip restore via `BP_JRPGSaveGame` | historical PASS |
+| `repeat_consume` | Narrative Queue | Exactly-once consumption of narrative notifications and rewards | historical PASS |
+| `package_launch` | Standalone Executable | Clean boot and initialization outside Unreal Editor | historical PASS |
+| `rhythm_owner` | Rhythm Layer | Rhythm highway scales JRPG command execution without taking state ownership | **active PASS** |
+| `hud_single_writer` | UI Hierarchy | `UMelodiaUIBridgeSubsystem` is the sole designated writer for HUD surfaces | **active PASS** |
+| `wardrobe_equip_roundtrip` | Wardrobe Subsystem | Mesh swap and equipped outfit state persist across save/reload | **active PASS** |
+| `rhythm_grade_to_result` | Combat Scaling | Note accuracy grades scale JRPG damage calculations | **active PASS** |
+| `music_world_key` | Resonant World | Musical phrase stepping unlocks route barriers via narrative subsystem | **active PASS** |
+| `wardrobe_gameplay_hook` | Traversal Provider | Equipping outfit grants physical world traversal capabilities (`Glide`) | **active PASS** |
+
+Also passing as active gates, not in this 10-row list: `static_gates`, `battle_integration_map`.
+
+Still open beyond this matrix: Issue #51 long-chain persistence / repeat-load / packaged golden-run certification.
 
 ---
 
-## 5. Evening P0 Closeout & Shipping Sequence
+## 5. Evening P0 Closeout sequence (historical)
 
-1. **Test Preflight (Completed):** 524/524 automated tests passing across GMM simulations, P0 integration, ECHO contracts, MCP regression, and release hygiene.
-2. **Clean Win64 Standalone Packaging:** Run `BuildCookRun` covering canonical maps (`L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`).
-3. **Packaged Binary Launch Verification:** Confirm `Saved/Packages/P0_Closeout_20260901/Windows/BS_GodFile.exe` boots and initializes all subsystems.
-4. **Packaged Golden Run Execution:** Execute the end-to-end P0 Golden Run contract (`specs/p0/core_p0_dream_golden_run.v1.json`) through the 6-phase chapter loop.
-5. **Evidence Ledger Freezing:** Freeze execution reports to `Saved/Audit/` and record PASS sign-off in `Saved/gate_ledger.json`.
+This sequence is retained for audit. Do not read the future-tense lines as work that has not started.
+
+1. **Test Preflight (Completed):** 524/524 automated tests recorded across GMM simulations, P0 integration, ECHO contracts, MCP regression, and release hygiene for that captured revision.
+2. **Clean Win64 Standalone Packaging:** `BuildCookRun` covering canonical maps (`L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`).
+3. **Packaged Binary Launch Verification:** `Saved/Packages/P0_Closeout_20260901/Windows/BS_GodFile.exe` boot check.
+4. **Packaged Golden Run Execution:** `specs/p0/core_p0_dream_golden_run.v1.json` through the 6-phase chapter loop.
+5. **Evidence Ledger Freezing:** reports under `Saved/Audit/` and `Saved/gate_ledger.json` (local evidence; may be absent from a fresh clone).

@@ -27,3 +27,5 @@ Under `Reports/`:
 - `UNREAL_CAPTURE_GAPS.md`
 
 Git history preserves the original root paths. Historical docs may still cite those old locations; treat those citations as archival references, not current navigation.
+
+As of 2026-09-08, leftover **root copies** of the snapshots above were replaced with short `HISTORICAL` stubs that point here, so agents do not treat those titles as current project status.
