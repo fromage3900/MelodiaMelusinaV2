@@ -675,6 +675,7 @@ def register_overhaul(monolith):
     )
     from .stage_publish import CLASSES as STAGE_PUBLISH_CLASSES, register_props as register_stage_publish_props
     from .music_ui import register_music_ui, unregister_music_ui
+    from . import convergence_mode
 
     patch_workflow_polls(monolith)
     register_preferences()
@@ -702,6 +703,7 @@ def register_overhaul(monolith):
     _EXTRA_CLASSES.extend(MELUSINA_PORTRAIT_CLASSES)
     _EXTRA_CLASSES.extend(list(register_pie_menu()))
     _EXTRA_CLASSES.extend(STAGE_PUBLISH_CLASSES)
+    _EXTRA_CLASSES.extend(convergence_mode._classes)
 
     try:
         from surreal_world.patch import register_world_operators
@@ -860,6 +862,10 @@ def register_overhaul(monolith):
         register_music_ui()
     except Exception as exc:
         print(f"[Melodia Studio] music score UI skipped: {exc}")
+    try:
+        convergence_mode.register()
+    except Exception as exc:
+        print(f"[Melodia Studio] convergence mode skipped: {exc}")
 
 
 def unregister_overhaul():
@@ -872,6 +878,11 @@ def unregister_overhaul():
     try:
         from .music_ui import unregister_music_ui
         unregister_music_ui()
+    except Exception:
+        pass
+    try:
+        from . import convergence_mode
+        convergence_mode.unregister()
     except Exception:
         pass
     from .bootstrap import unregister_preferences
