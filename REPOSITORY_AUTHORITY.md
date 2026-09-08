@@ -3,6 +3,9 @@
 **Status:** CANONICAL — 2026-09-08  
 **Purpose:** Prevent duplicate project authority across historical workspace repositories.
 
+**Current pipeline:** `Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md`  
+**Branch decisions:** `Docs/Reports/BRANCH_CANONIZATION_2026-09-08.md`
+
 ## Active repositories
 
 | Domain | Canonical repository | Authority |
