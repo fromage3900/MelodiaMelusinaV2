@@ -49,6 +49,7 @@ Read these before touching the capstone lane:
 - `Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md` — **today's execution order:** verify current fully rigged source → ARP re-export if needed → UE proof → M0 beauty → M1 pitch-C Chladni proof.
 - `Docs/Semester/CHORAL_SHEEP_CHLADNI_FLEECE_EXPERIMENT_2026-09-08.md` — **locked first technical-art experiment:** pitch-linked fleece → C/E/G shared field → world propagation.
 - `Docs/Handoffs/GEMINI_TD_AE_CAPSTONE_HANDOFF_2026-09-08.md` — Gemini's TouchDesigner + After Effects execution/documentation lane.
+- `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — **repo boundary:** UE truth stays here; canonical `grandmaster_melodia` stays in its own Git; TD/AE is the concert-visual/editorial/compositing pipeline.
 - `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md` — milestone and evidence ledger.
 - `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` — academic mapping once the official Humber brief/rubric is available.
 - `Docs/CHORAL_SHEEP_INTEGRATION_RUNBOOK.md` — grounded companion runtime contract.
