@@ -131,6 +131,9 @@ Large source binaries may live outside Git when appropriate, but the current imp
 
 ## 6. Choral Sheep / capstone lane
 
+**Reference authority:** `Docs/Art/VISUAL_REFERENCE_INDEX.md`  
+**Reference integrity receipt:** `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md`
+
 Current durable game-side state includes:
 - Choral Sheep source assets and runtime actor work;
 - owner-approved concept/reference boards;
