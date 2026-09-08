@@ -19,6 +19,18 @@ Gemini should continue TD/AE work in parallel and should not open a re-rigging l
 Owner execution plan:
 `Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md`
 
+## Cross-repo implementation authority
+
+Read first:
+`Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md`
+
+Implementation rule:
+- gather runtime/game truth from `fromage3900/MelodiaMelusinaV2`;
+- implement new TouchDesigner work in the canonical `grandmaster_melodia` Git checkout at `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`;
+- treat `fromage3900/EnvironmentPortfolio/_TouchDesigner/grandmaster_melodia/` as a frozen historical mirror, not the active build target;
+- use TD/AE as the concert-visual, editorial-graphics, compositing, and showcase pipeline for the main game project;
+- keep the repos separate; do not vendor or submodule the TD project into the game repo.
+
 ## Mission
 
 Prepare the Choral Sheep capstone presentation lane so that the project can move directly from one working sheep prototype into a polished 60–90 second showcase.
@@ -45,8 +57,8 @@ Read in this order:
 10. `Docs/Blender/MELODIA_MUSIC_SIGNAL_BRIDGE_TD_BLENDER_UNREAL_2026-08-30.md` — existing one-semantic-language / three-context contract.
 11. `Docs/Handoffs/AUDIO_REACTIVE Flower_CHOP_OSC_2026-09-02.md` — existing live TD audio/OSC proof.
 12. `Docs/NIAGARA_ECOSYSTEM_2026-08-09.md` — existing shared presentation parameter language.
-13. `_TouchDesigner/README.md`
-14. `_TouchDesigner/grandmaster_melodia/scripts/wire_audio_reactive_flower.py`
+13. `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — repo ownership and canonical TD checkout.
+14. Canonical TD checkout: `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`; use its current scripts/networks as implementation authority. The old `EnvironmentPortfolio/_TouchDesigner/grandmaster_melodia/` tree is historical reference only.
 15. `deploy/osc_routing.json`
 16. `Content/Python/osc_server.py`
 17. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaRhythmReactivitySubsystem.h/.cpp`
