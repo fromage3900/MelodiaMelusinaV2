@@ -14,7 +14,12 @@ Two generated concept boards were approved by the owner on 2026-09-08:
 
 They should be treated as the clearest current visual interpretation of the written Choral Sheep reference set.
 
-The generated raster images were produced in the working ChatGPT session and are not yet stored as binary image assets in this Git repository. Until they are copied into the project, this document is the canonical textual translation for agents working outside that session.
+Optimized WebP copies of both approved concept sheets are now committed on `main`:
+
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_creature_fleece.webp`
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_chladni_fleece.webp`
+
+The committed copies are Git-friendly reference previews; the generation-session originals were higher resolution. This document remains the semantic/art-direction authority, while the WebPs are the directly viewable visual reference.
 
 ## Sheet A — Creature + Fleece Direction
 
