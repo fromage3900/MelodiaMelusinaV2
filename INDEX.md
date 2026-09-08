@@ -65,6 +65,8 @@
 | **Ship the P0 Melusina recruiter render + breakdown** | `Docs/Production/P0_MELUSINA_RENDER_AND_WEBSITE_BREAKDOWN_PLAN_2026-09-07.md` |
 | **Check recruiter/public freeze scope** | `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md` |
 | Make Melusina sing | `studio/tracks/` + OpenUtau |
+| **Develop Melusina as a musical character-medium** | `Docs/Music/MELUSINA_PERFORMANCE_PERSONA_BIBLE_2026-09-08.md` |
+| **Run the first virtual-songstress performance test** | `Docs/Production/MELUSINA_VIRTUAL_SONGSTRESS_DAY1_2026-09-08.md` |
 | Understand project state | `Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md` |
 | Plan animation work | `Docs/Production/CHARACTER_ANIMATION_2_SEMESTER_PLAN.md` |
 | Plan long-term infra | `Docs/Production/LONG_TERM_INFRASTRUCTURE_PLAN.md` |
