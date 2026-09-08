@@ -129,6 +129,30 @@ reference / design lock
 
 Large source binaries may live outside Git when appropriate, but the current import contract, scripts, manifests, evidence, and promoted game assets must resolve through the canonical game repo.
 
+## 5.1 Semester animation / performance capture lane
+
+The researched Melusina performance-capture studio plan is:
+
+`Docs/Research/MELUSINA_PERFORMANCE_CAPTURE_STUDIO_2026-09-08.md`
+
+It extends the existing `Docs/CASCADEUR_MELUSINA_PIPELINE_2026-08-07.md` contract with:
+
+```text
+OBSBOT Meet 2 fixed 1080p60 capture
+  → MP4 reference
+  → Cascadeur 2026 Mocap (Alpha)
+  → owner animation cleanup / AutoPosing / physics tools
+  → Cascadeur Live Link
+  → UE5.8 Melusina evaluation
+```
+
+Research boundaries are explicit:
+- Cascadeur Mocap is a single-performer, single-camera, editable draft workflow rather than final optical mocap;
+- current Cascadeur Live Link supports Cascadeur 2026.1+ with UE 5.5–5.8 on Windows and requires the supported paid tiers;
+- the Meet 2 is used with Auto Framing disabled for mocap-source capture so the crop remains stable;
+- the canonical Melusina skeleton/export contract remains authoritative;
+- this lane is **semester animation infrastructure**, not an immediate Choral Sheep P0 dependency.
+
 ## 6. Choral Sheep / capstone lane
 
 **Reference authority:** `Docs/Art/VISUAL_REFERENCE_INDEX.md`  
