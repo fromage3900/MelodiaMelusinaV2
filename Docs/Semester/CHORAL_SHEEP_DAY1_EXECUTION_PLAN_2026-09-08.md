@@ -102,6 +102,18 @@ Verify:
 
 Do not redesign maps or gameplay architecture during this step.
 
+### A2b — non-blocking visual fallback
+
+If the current source deforms correctly in Blender but the ARP/FBX → UE export path is temporarily broken, **do not lose the whole art session to export archaeology**.
+
+For Chladni Fleece lookdev only:
+- use the owner-authored rigged sheep directly in Blender/TouchDesigner, or a clearly labeled presentation-only preview/static export;
+- solve the pitch-C fleece pattern, value hierarchy, and transition there;
+- capture the result as lookdev evidence;
+- keep `CS-01` / UE runtime proof open until the real skeletal import succeeds.
+
+This fallback is allowed to preserve visual momentum. It is **not** permission to call the companion runtime-complete.
+
 ### A3 — M0 beauty-ready creature
 
 Before Chladni Fleece, make one sheep visually convincing.
@@ -208,6 +220,28 @@ During the art session:
 
 The website is supporting presentation infrastructure today, not the production target.
 
+### Review Gemini by artifacts, not intent
+
+As Gemini outputs land:
+- review the actual pushed TD network spec / replay schema / AE spec / shot manifest;
+- verify they extend `grandmaster_melodia` and the existing OSC/music semantics;
+- do not mark the lane complete merely because a prep/handoff document exists;
+- keep “documented”, “built”, “live-proven”, and “final-capture proven” separate.
+
+### Convergence Mode is support, not critical path
+
+The newly merged Blender Convergence Mode is conceptually aligned with this capstone and may be useful for procedural ornament/field studies.
+
+A review found one concrete implementation defect in `analyze_audio()`: normal successfully decoded PCM WAVs could bypass the envelope/BPM analysis block and return no analysis result. That repair is isolated in PR #123.
+
+Before relying on Convergence Mode today, smoke:
+- one normal PCM WAV;
+- one fallback/unsupported source;
+- N-panel draw;
+- frame playback / reset behavior.
+
+Even when green, Convergence Mode remains Blender lookdev/offline authoring. It does not replace Unreal musical-time authority or the TD lane.
+
 ---
 
 ## Decision tree for the first hour
@@ -240,11 +274,12 @@ The export problem is allowed to consume time only until the sheep is reliably i
 1. Verify current fully rigged source.
 2. ARP re-export if needed.
 3. Verify UE skeletal mesh / deformation.
-4. Produce one beauty-ready sheep.
-5. Produce one Harmonize / pitch-C Chladni proof.
-6. Capture beauty + proof.
-7. Review Gemini TD/AE outputs.
-8. If energy remains: begin E/G, not the full chromatic flock.
+4. If export blocks, pivot immediately to labeled visual lookdev rather than re-rigging.
+5. Produce one beauty-ready sheep.
+6. Produce one Harmonize / pitch-C Chladni proof.
+7. Capture beauty + proof.
+8. Review Gemini TD/AE outputs by actual pushed artifacts.
+9. If energy remains: begin E/G, not the full chromatic flock.
 
 ---
 
