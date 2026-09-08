@@ -9,7 +9,7 @@ Pre-canonization `main`: `ab263f807d2c4bb8f0e91ea72f80e3c65705de49`
 
 ### Branches safe to supersede / normalize
 
-These branches were reviewed against current `main`. Their useful work is already represented on `main`, landed through later commits, or moved to the correct separate repository:
+These branches were reviewed against current `main`. Their useful work is already represented on `main`, landed through later commits, or moved to the correct separate repository. Their refs were then normalized to the canonical `main` tip:
 
 | Branch | Pre-cleanup tip | Decision |
 |---|---|---|
@@ -68,7 +68,7 @@ Pre-cleanup tips:
 | `fix/repo-authority-workspace-vs-repo-2026-09-08` | `77d7327e24dbe8c7128418828f387193c8ceee29` |
 | `portfolio-sendoff-20260813` | `0fd0307c9ca6094da9124a8729e65d6a6d1e0759` |
 
-These are superseded by the current site `main` and may be normalized to the post-canonization main tip.
+These are superseded by the current site `main` and were normalized to the post-canonization main tip.
 
 ## TouchDesigner reference
 
