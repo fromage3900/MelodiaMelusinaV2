@@ -28,6 +28,7 @@ ROOT_EXEC_SUFFIXES = {".py", ".ps1", ".bat", ".cmd", ".sh", ".json", ".yml", ".y
 
 ALLOW_EXACT = {
     "Tools/safe_root_sweep.py",  # migration/audit tool whose purpose is finding old roots
+    "Tools/guard_deprecated_workspace_refs.py",  # this guard names the deprecated root by design
 }
 
 
