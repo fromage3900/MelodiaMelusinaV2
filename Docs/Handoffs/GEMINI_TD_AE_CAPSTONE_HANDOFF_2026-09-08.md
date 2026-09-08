@@ -104,6 +104,48 @@ For Melodia, implement this as an extension of the existing grandmaster project�
 First flagship module:
 `performance/scenes/chladni_fleece`.
 
+## 2026-09-08 owner-approved concept-sheet lock
+
+Before revising the Chladni Fleece scene, read:
+
+`Docs/References/ChoralSheepCapstone/BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md`
+
+This translates the owner-approved generated concept boards into the current visual authority for the TD/AE lane.
+
+### Do not improvise away from these visual truths
+
+- sheep remains soft, rounded, blush-pink, calm, and lovable before VFX;
+- fleece motifs read as hidden musical structure inside wool, not a projected techno texture;
+- palette stays sheep pink / blush / pearl / lilac / blue-violet / luminous cream, with cyan only as a restrained Melodia water-light accent;
+- C / E / G use sparse distinct musical glyph identities;
+- brightness is not the main harmony indicator;
+- the harmonic field becomes **more coherent and organized** at C/E/G resolution;
+- one major scale expansion is enough;
+- after the world hit, return to intimate creature readability.
+
+### Map the approved board directly into TD show states
+
+```text
+REST
+→ ROOT_C
+→ INTERVAL_CE
+→ RESOLUTION_CEG
+→ WORLD_HIT
+→ AFTERIMAGE
+```
+
+Preferred motif vocabulary:
+- Fundamental Rings;
+- Spiral Resonance;
+- Nodal Weave;
+- Harmonic Blossom;
+- Interference Lines;
+- Celestial Motif.
+
+Use the smallest useful subset. Do not stack all motifs at once.
+
+The flagship `performance/scenes/chladni_fleece` module should make this progression immediately readable before expanding into additional concert scenes.
+
 ## Mission
 
 Prepare the Choral Sheep capstone presentation lane so that the project can move directly from one working sheep prototype into a polished 60–90 second showcase.
@@ -118,7 +160,8 @@ Your job is to make the TouchDesigner and After Effects pipeline support that ar
 
 Read in this order:
 
-1. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md`
+1. `Docs/References/ChoralSheepCapstone/BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md` — owner-approved current visual lock.
+2. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md`
 2. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md`
 3. `Docs/CHORAL_SHEEP_INTEGRATION_RUNBOOK.md`
 4. `Content/Melodia/Companions/ChoralSheep/ChoralSheepDefinition.json`
