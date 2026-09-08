@@ -84,6 +84,21 @@ Existing prior art that owns the architecture:
 
 Therefore Chladni Fleece should be implemented as a **specialized profile/consumer** of the existing music-reactivity architecture, not as a new visual-instrument framework. It reuses Melodia's read-only cymatics/resonance language and does not create a second music, save, or gameplay authority.
 
+## 2.6 Cross-repo implementation boundary
+
+The TD/AE presentation pipeline is intentionally kept separate from the Unreal game repository.
+
+Canonical contract:
+`Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md`
+
+- `MelodiaMelusinaV2` owns runtime/music/companion truth, schemas, and capstone evidence.
+- canonical `grandmaster_melodia` Git checkout owns TouchDesigner implementation, concert visuals, replay-driven graphics, and TD capture tooling.
+- After Effects owns final editorial/compositing assembly.
+- the old `EnvironmentPortfolio/_TouchDesigner/grandmaster_melodia/` tree is a frozen historical mirror.
+- do not copy, submodule, or fork the full TD project into this repo.
+
+This is a coordination boundary, not a new architecture.
+
 ## 3. Tool ownership
 
 ### Unreal Engine 5.8 owns
