@@ -47,6 +47,25 @@ Read in this order:
 - The hero system proof uses three sheep: C / E / G.
 - Full chromatic flock is stretch scope.
 
+## Locked experiment authority
+
+Before designing the TD network, read:
+
+`Docs/Semester/CHORAL_SHEEP_CHLADNI_FLEECE_EXPERIMENT_2026-09-08.md`
+
+**Chladni Fleece is no longer an optional brainstorm. It is the first Capstone 01 technical-art experiment.**
+
+Gemini's TD/AE planning must explicitly support:
+
+1. one-sheep C fleece proof;
+2. C/E/G shared harmonic field;
+3. deterministic replay;
+4. separate fleece and world masks;
+5. one world-propagation response;
+6. AE breakdown: musical state → TD field → UE fleece → resolved flock → world.
+
+Do not replace this with a generic spectrum visualizer or unrelated audiovisual concept.
+
 ## Deliverables you should prepare
 
 ### A. TouchDesigner capstone spec
