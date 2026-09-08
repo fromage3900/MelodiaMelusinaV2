@@ -161,29 +161,30 @@ Your job is to make the TouchDesigner and After Effects pipeline support that ar
 Read in this order:
 
 1. `Docs/References/ChoralSheepCapstone/BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md` — owner-approved current visual lock.
-2. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md`
-2. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md`
-3. `Docs/CHORAL_SHEEP_INTEGRATION_RUNBOOK.md`
-4. `Content/Melodia/Companions/ChoralSheep/ChoralSheepDefinition.json`
-5. `Content/MelodiaIntegration/ResonantWorld/MotifCreatures/ChoralSheep/ChoralSheepVariants.json`
-6. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaCompanionData.h`
-7. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaChoralSheepActor.h`
-8. `Docs/RESONANT_WORLD_SYSTEM.md`
-9. `Docs/UNIVERSAL_MUSICAL_INFLUENCE_SCAFFOLD_2026-07-18.md` — **existing architecture; extend, do not replace**.
-10. `Docs/Blender/MELODIA_MUSIC_SIGNAL_BRIDGE_TD_BLENDER_UNREAL_2026-08-30.md` — existing one-semantic-language / three-context contract.
-11. `Docs/Handoffs/AUDIO_REACTIVE Flower_CHOP_OSC_2026-09-02.md` — existing live TD audio/OSC proof.
-12. `Docs/NIAGARA_ECOSYSTEM_2026-08-09.md` — existing shared presentation parameter language.
-13. `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — repo ownership and canonical TD checkout.
-14. Canonical TD checkout: `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`; use its current scripts/networks as implementation authority. The old `EnvironmentPortfolio/_TouchDesigner/grandmaster_melodia/` tree is historical reference only.
-15. `deploy/osc_routing.json`
-16. `Content/Python/osc_server.py`
-17. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaRhythmReactivitySubsystem.h/.cpp`
-18. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaReactiveMeshRegistrar.h/.cpp`
-19. `Source/BS_GodFile/MelodiaIntegration/MelodiaAudioReactivePresentationSubsystem.h/.cpp`
-20. `Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h/.cpp`
-21. `Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsWriterSubsystem.h/.cpp`
-22. `Docs/HARMONIX_MIDI_RHYTHM_CONTRACT_2026-07-29.md`
-23. `Docs/Handoffs/AAA_GN_TOUCHDESIGNER_WORLDGEN_AGENT_PROMPTS_2026-08-24.md` — reference only; do not blindly execute old scope.
+2. `Docs/References/VisualBoards/2026-09-08/README.md` — committed visual-board front door; Choral Sheep images are the active capstone reference.
+3. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md`
+4. `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md`
+5. `Docs/CHORAL_SHEEP_INTEGRATION_RUNBOOK.md`
+6. `Content/Melodia/Companions/ChoralSheep/ChoralSheepDefinition.json`
+7. `Content/MelodiaIntegration/ResonantWorld/MotifCreatures/ChoralSheep/ChoralSheepVariants.json`
+8. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaCompanionData.h`
+9. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaChoralSheepActor.h`
+10. `Docs/RESONANT_WORLD_SYSTEM.md`
+11. `Docs/UNIVERSAL_MUSICAL_INFLUENCE_SCAFFOLD_2026-07-18.md` — **existing architecture; extend, do not replace**.
+12. `Docs/Blender/MELODIA_MUSIC_SIGNAL_BRIDGE_TD_BLENDER_UNREAL_2026-08-30.md` — existing one-semantic-language / three-context contract.
+13. `Docs/Handoffs/AUDIO_REACTIVE Flower_CHOP_OSC_2026-09-02.md` — existing live TD audio/OSC proof.
+14. `Docs/NIAGARA_ECOSYSTEM_2026-08-09.md` — existing shared presentation parameter language.
+15. `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — repo ownership and canonical TD checkout.
+16. Canonical TD checkout: `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`; use its current scripts/networks as implementation authority. The old `EnvironmentPortfolio/_TouchDesigner/grandmaster_melodia/` tree is historical reference only.
+17. `deploy/osc_routing.json`
+18. `Content/Python/osc_server.py`
+19. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaRhythmReactivitySubsystem.h/.cpp`
+20. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaReactiveMeshRegistrar.h/.cpp`
+21. `Source/BS_GodFile/MelodiaIntegration/MelodiaAudioReactivePresentationSubsystem.h/.cpp`
+22. `Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h/.cpp`
+23. `Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsWriterSubsystem.h/.cpp`
+24. `Docs/HARMONIX_MIDI_RHYTHM_CONTRACT_2026-07-29.md`
+25. `Docs/Handoffs/AAA_GN_TOUCHDESIGNER_WORLDGEN_AGENT_PROMPTS_2026-08-24.md` — reference only; do not blindly execute old scope.
 
 ## Preserve these truths
 
@@ -437,7 +438,7 @@ When documentation distinguishes:
 
 Do not convert a design target into a completion claim.
 
-Current Choral Sheep source still describes final skeletal/groom beauty state as pending/optional. Respect that until a real owner-approved asset is proven.
+The current Choral Sheep **source rig is owner-confirmed fully rigged**. What remains unproven is the fresh ARP/FBX → Unreal skeletal import/deformation path and the final UE beauty state; Groom remains optional/pending. Keep those evidence levels separate until actual UE proof lands.
 
 ## Stop condition
 
