@@ -46,6 +46,7 @@ If you are an agent or reviewer: **do not start by searching every old handoff, 
 Read these before touching the capstone lane:
 
 - `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md` — canonical capstone thesis, tool ownership, film structure, and UE/TD/AE pipeline.
+- `Docs/Semester/CHORAL_SHEEP_CHLADNI_FLEECE_EXPERIMENT_2026-09-08.md` — **locked first technical-art experiment:** pitch-linked fleece → C/E/G shared field → world propagation.
 - `Docs/Handoffs/GEMINI_TD_AE_CAPSTONE_HANDOFF_2026-09-08.md` — Gemini's TouchDesigner + After Effects execution/documentation lane.
 - `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md` — milestone and evidence ledger.
 - `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` — academic mapping once the official Humber brief/rubric is available.
