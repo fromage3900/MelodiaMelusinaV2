@@ -5,6 +5,20 @@
 **Scope:** TouchDesigner + After Effects planning/prep and capstone documentation  
 **Do not own:** Unreal gameplay architecture, save, narrative, companion recruitment, world-state authority
 
+## 2026-09-08 asset-state correction
+
+The Choral Sheep source is now **owner-confirmed fully rigged**. Do not treat the older “0 vertex groups / weight-paint blocked” note as current truth.
+
+The remaining owner-side asset check is narrower:
+- verify the current rig deforms correctly;
+- use an **Auto-Rig Pro (ARP) re-export** if the current UE FBX needs refreshing;
+- verify the resulting skeletal mesh/deformation in UE.
+
+Gemini should continue TD/AE work in parallel and should not open a re-rigging lane.
+
+Owner execution plan:
+`Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md`
+
 ## Mission
 
 Prepare the Choral Sheep capstone presentation lane so that the project can move directly from one working sheep prototype into a polished 60–90 second showcase.
