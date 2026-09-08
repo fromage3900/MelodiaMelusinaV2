@@ -136,8 +136,13 @@ def _advance_clock(scene):
 # Audio analysis (BPM + envelope)
 # ---------------------------------------------------------------------------
 def analyze_audio(path: str):
-    """Return (bpm, envelope, beats) from a sound file. envelope is
-    [(t, amp), ...] at ~30Hz; beats is [t, ...]. Pure-numpy, no scipy."""
+    """Return (bpm, envelope, beats) from a sound file.
+
+    envelope is [(t, amp), ...] at ~30 Hz; beats is [t, ...].
+    Uses numpy only. Unsupported/failed decodes fall back to a deterministic
+    synthetic tone for lookdev, but normal PCM WAV files must still reach the
+    real envelope/BPM analysis path.
+    """
     import wave
 
     if not os.path.exists(path):
@@ -155,48 +160,60 @@ def analyze_audio(path: str):
                 raw = wf.readframes(n)
                 sw = wf.getsampwidth()
                 ch = wf.getnchannels()
+
             if sw == 2:
                 data = np.frombuffer(raw, dtype=np.int16).astype(np.float64)
             elif sw == 4:
                 data = np.frombuffer(raw, dtype=np.int32).astype(np.float64)
             else:
                 data = np.frombuffer(raw, dtype=np.uint8).astype(np.float64)
+
             if ch == 2:
                 data = data[::2]
-            peak = np.max(np.abs(data))
+
+            peak = np.max(np.abs(data)) if len(data) else 0.0
             if peak > 0:
                 data /= peak
         else:
-            # non-wav: generate a 10s synthetic tone so the UI always has data
+            # Unsupported formats are lookdev-only here. Use deterministic
+            # fallback data instead of claiming the source file was analysed.
             sr = 44100
             t = np.linspace(0, 10, sr * 10, endpoint=False)
             data = np.sin(2 * np.pi * 440 * t) * 0.5
     except Exception:
-        # unsupported format (e.g. IEEE float WAV): synthetic fallback
+        # e.g. IEEE-float WAV unsupported by Python's wave module.
         sr = 44100
         t = np.linspace(0, 10, sr * 10, endpoint=False)
         data = np.sin(2 * np.pi * 440 * t) * 0.5
 
-    # Envelope: RMS in ~33ms windows
+    try:
+        # Envelope: RMS in ~33 ms windows.
         win = max(int(sr * 0.033), 1)
         n_frames = max(len(data) // win, 1)
-        env = [(i * win / sr,
-                float(np.sqrt(np.mean(data[i * win:(i + 1) * win] ** 2))))
-               for i in range(n_frames)]
+        env = [
+            (
+                i * win / sr,
+                float(np.sqrt(np.mean(data[i * win:(i + 1) * win] ** 2))),
+            )
+            for i in range(n_frames)
+            if len(data[i * win:(i + 1) * win]) > 0
+        ]
         if not env:
             return _DEFAULT_BPM, [], []
 
-        # BPM: autocorrelation of the envelope (numpy only)
+        # BPM: autocorrelation of the envelope (numpy only).
         env_vals = np.array([e[1] for e in env])
         env_vals -= np.mean(env_vals)
-        # windowed autocorrelation via FFT (fast, no scipy)
+
         n_fft = 1
         while n_fft < 2 * len(env_vals):
             n_fft *= 2
+
         fft = np.fft.rfft(env_vals, n=n_fft)
         corr = np.fft.irfft(fft * np.conj(fft))[:len(env_vals)]
-        dt = 0.033  # seconds per envelope sample
-        # search lags for 60–240 BPM (0.25–1.0s per beat)
+        dt = 0.033
+
+        # Search 60–240 BPM (0.25–1.0 s/beat).
         min_lag = max(int(0.25 / dt), 1)
         max_lag = min(int(1.0 / dt), len(corr) - 1)
         bpm = _DEFAULT_BPM
@@ -210,8 +227,7 @@ def analyze_audio(path: str):
         duration = len(data) / sr
         beat_interval = 60.0 / bpm
         beats = list(np.arange(0, duration, beat_interval))
-
-        return bpm, env, list(beats)
+        return bpm, env, beats
     except Exception as e:
         print("[Melodia Convergence] audio analysis failed:", e)
         return _DEFAULT_BPM, [], []
