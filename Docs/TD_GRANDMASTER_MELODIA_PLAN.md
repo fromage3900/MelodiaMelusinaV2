@@ -1,5 +1,7 @@
 # Grandmaster Melodia TouchDesigner Project — Architecture & Build Plan
 
+> **2026-09-08 CURRENT-STATE NOTICE:** This July document is retained as historical architecture context. For current live-performance, concert, and Choral Sheep capstone work, the authority is `_TouchDesigner/Docs/`, especially `MELODIA_LIVE_VISUAL_IDENTITY_CONTRACT_2026-09-08.md` and `MELODIA_SHOW_SYSTEM_ARCHITECTURE_2026-09-08.md`. Unreal remains game/world authority. Do not revive the generic five-style-preset/portfolio-viewer framing where it conflicts with the current contracts.
+
 **Version:** 1.0.0
 **Date:** 2026-07-15
 **Branch:** `feature/touchdesigner-mcp-integration`
