@@ -31,6 +31,79 @@ Implementation rule:
 - use TD/AE as the concert-visual, editorial-graphics, compositing, and showcase pipeline for the main game project;
 - keep the repos separate; do not vendor or submodule the TD project into the game repo.
 
+## 2026-09-08 live-performance research landing gate
+
+A complete TouchDesigner performance-research packet was prepared on the **unmerged staging branch**:
+
+`docs/td-live-performance-contract-2026-09-08`
+
+Do **not** merge that branch into `MelodiaMelusinaV2`; the V2 `_TouchDesigner` tree is historical/frozen.
+
+Before expanding the canonical TD implementation, transfer/adapt these six files from that staging branch into the **canonical TD Git** at:
+
+`C:/MelodiaTouchDesigner/td/grandmaster_melodia/`
+
+Recommended destination: `Docs/`.
+
+Files to land in the TD repo:
+
+1. `MELODIA_LIVE_VISUAL_IDENTITY_CONTRACT_2026-09-08.md`
+2. `ACTUAL_LIVE_SHOW_PIPELINES_RESEARCH_2026-09-08.md`
+3. `MELODIA_SHOW_SYSTEM_ARCHITECTURE_2026-09-08.md`
+4. `PIPELINE_RECIPES_CHORAL_SHEEP_2026-09-08.md`
+5. `AGENT_BUILD_CONTRACT.md`
+6. `CHORAL_SHEEP_CAPSTONE_TD_IMPLEMENTATION_PLAN_2026-09-08.md`
+
+After transfer:
+- commit them in the **TD repo**, not the game repo;
+- record the TD commit SHA in the capstone handoff/evidence;
+- treat them as TD-side authority before building new concert scenes.
+
+### Visual identity that must be enforced
+
+> **Steal the timing, not the branding.**
+
+Canonical show grammar:
+
+```text
+QUIET
+→ ROOT HIT
+→ INTERVAL HIT
+→ RESOLUTION HIT
+→ WORLD HIT
+→ AFTERIMAGE
+```
+
+Hard visual rules:
+- subject silhouette first;
+- black-violet negative space + pearl / sea-cyan / lavender;
+- one primary musical structure per hit;
+- stillness/rest states are mandatory;
+- giant scale change is used sparingly;
+- typography is a semantic event, not constant HUD;
+- feedback/glitch is punctuation, never the default texture;
+- no generic rainbow/cyberpunk VJ drift;
+- no copied Ninajirachi / BABYMETAL / 2hollis / PC Music branding.
+
+### Pipeline architecture that must be enforced
+
+Real show research repeatedly supports:
+
+```text
+semantic show/music signals
+→ normalized control bus
+→ authored scene/song module
+→ generator
+→ bounded FX stack
+→ state/preset + manual trim
+→ output/capture
+```
+
+For Melodia, implement this as an extension of the existing grandmaster project—not a replacement project or parallel bridge.
+
+First flagship module:
+`performance/scenes/chladni_fleece`.
+
 ## Mission
 
 Prepare the Choral Sheep capstone presentation lane so that the project can move directly from one working sheep prototype into a polished 60–90 second showcase.
