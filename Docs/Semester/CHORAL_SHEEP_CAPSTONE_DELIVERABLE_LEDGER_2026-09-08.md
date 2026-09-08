@@ -9,7 +9,7 @@ This ledger tracks production evidence without inventing grading requirements.
 
 | ID | Deliverable | Minimum proof | Primary tool | Status | Blocker / note |
 |---|---|---|---|---|---|
-| CS-01 | Approved sheep base | one usable Choral Sheep mesh/rig in presentation lane | Blender / UE | PENDING VERIFY | owner-approved asset state must be confirmed |
+| CS-01 | Approved sheep base | one usable Choral Sheep mesh/rig in presentation lane | Blender / UE | OWNER-CONFIRMED / EXPORT VERIFY | source is fully rigged per owner; fresh ARP/FBX export + UE deformation proof still required |
 | CS-02 | Companion beauty | one portfolio-quality sheep hero shot | UE | TODO | depends on CS-01 |
 | CS-03 | Graze personality | readable Graze behavior capture | UE | TODO | interaction already exists in contract |
 | CS-04 | Harmonize behavior | readable Harmonize state/capture | UE | TODO | first capstone behavior target |
@@ -33,6 +33,8 @@ This ledger tracks production evidence without inventing grading requirements.
 ## Milestone gates
 
 ### M0 — Base creature
+
+Current note: the source rig is owner-confirmed fully rigged. M0 is now blocked only on fresh export/import/deformation verification and visual readiness, not re-rigging.
 
 Pass when:
 - one sheep is usable in the presentation lane;
@@ -70,7 +72,21 @@ Pass when:
 - 60–90 second edit communicates Creature → Motif → Harmony → World;
 - all implementation claims match actual proof.
 
-## Tomorrow's Gemini lane
+## Today's owner lane
+
+Canonical execution plan:
+
+`Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md`
+
+Immediate order:
+1. verify current rig deformation;
+2. ARP re-export if needed;
+3. verify UE skeletal import/reimport;
+4. M0 creature beauty;
+5. M1 one-note C Chladni proof;
+6. capture beauty + proof before expanding to E/G.
+
+## Today's Gemini lane
 
 Expected document outputs:
 
