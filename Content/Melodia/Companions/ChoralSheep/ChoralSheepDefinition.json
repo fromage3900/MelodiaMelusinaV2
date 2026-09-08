@@ -19,15 +19,27 @@
     "Guide"
   ],
   "movement": {
-    "follow_distance_cm": 180.0,
-    "acceptance_radius_cm": 75.0
+    "follow_distance_cm": 180,
+    "acceptance_radius_cm": 75
   },
   "fur": {
     "profile_id": "Fur_ChoralSheep_Wool",
     "lod_bands_cm": [
-      { "min": 0.0, "max": 400.0, "backend": "NativeGroom" },
-      { "min": 400.0, "max": 1200.0, "backend": "ShellCard" },
-      { "min": 1200.0, "max": 1000000.0, "backend": "Impostor" }
+      {
+        "min": 0,
+        "max": 400,
+        "backend": "NativeGroom"
+      },
+      {
+        "min": 400,
+        "max": 1200,
+        "backend": "ShellCard"
+      },
+      {
+        "min": 1200,
+        "max": 1000000,
+        "backend": "Impostor"
+      }
     ],
     "groom_asset_tag": "Groom_ChoralSheep_Wool_Hero",
     "shell_asset_tag": "FurShell_ChoralSheep_Wool_Mid",
@@ -38,7 +50,7 @@
   },
   "asset_status": {
     "ue_definition_asset": "pending_clean_editor_reservation",
-    "skeletal_mesh": "pending_owner_authored_or_approved_asset_at_reserved_path",
+    "skeletal_mesh": "owner_confirmed_fully_rigged_source_arp_reexport_and_ue_verification_pending",
     "groom": "pending_melodia_studio_authoring",
     "beauty_capture": "blocked_until_clean_render_gate"
   },
@@ -52,7 +64,7 @@
   "native_integration": {
     "native_actor_class": "/Script/MelodiaCore.MelodiaChoralSheepActor",
     "blueprint_class_path": "/Game/Melodia/Companions/ChoralSheep/BP_ChoralSheep",
-    "interaction_radius_cm": 160.0,
+    "interaction_radius_cm": 160,
     "auto_follow_first_player_for_smoke": true,
     "save_authority": "none",
     "first_live_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap"
