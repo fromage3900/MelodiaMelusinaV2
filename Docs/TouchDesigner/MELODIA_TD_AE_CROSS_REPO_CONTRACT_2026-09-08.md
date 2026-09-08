@@ -3,7 +3,7 @@
 **Date:** 2026-09-08  
 **Status:** ACTIVE  
 **Game/runtime authority:** `fromage3900/MelodiaMelusinaV2`  
-**TouchDesigner implementation:** canonical working checkout is `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`, maintained as its **own Git repository**  
+**TouchDesigner implementation:** `fromage3900/MelodiaTouchDesigner` (private), canonical working checkout `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`  
 **Historical/frozen TD mirror:** `fromage3900/EnvironmentPortfolio/_TouchDesigner/grandmaster_melodia/`  
 **Presentation role:** concert visuals, editorial graphics, compositing, deterministic showcase passes, and live-performance lookdev
 
@@ -163,7 +163,7 @@ That copy is useful for:
 
 It is **not** where agents should implement new TD work unless the owner explicitly reactivates it.
 
-The connected GitHub account does not currently expose a separately named GitHub remote for the canonical TD checkout, so this contract does not invent one. Use the actual remote configured in the canonical local TD Git checkout.
+The canonical TD Git remote is now verified as `fromage3900/MelodiaTouchDesigner` (private). The local checkout remains `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`. Use that repo for new TD/AE implementation; do not revive the frozen EnvironmentPortfolio mirror.
 
 ## 7. Cross-repo handoff discipline
 
