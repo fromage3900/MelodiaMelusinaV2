@@ -5,11 +5,39 @@ import os
 
 import bpy
 
-_DEFAULT_HIGGSAS = (
+# Repo root = two levels up from deploy/surreal_arch/capabilities.py
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+_HIGGSAS_LIB_NAME = "Blender 5.0 Higgsas Geo Node Groups v13.blend"
+
+_LEGACY_HIGGSAS = (
     r"G:\programs\BlenderPlugins"
     r"\Higgsas_Geometry_Nodes_Toolset_v1.3 vfxMed"
     r"\Higgsas Geo Nodes Blender 5.0"
-    r"\Blender 5.0 Higgsas Geo Node Groups v13.blend"
+    "\\" + _HIGGSAS_LIB_NAME
+)
+
+
+def _higgsas_candidates() -> list:
+    """Ordered library locations; first existing wins. See RawArt/BlenderLibraries/README.md."""
+    downloads = os.path.join(
+        os.path.expanduser("~"), "Downloads",
+        "Higgsas_Geometry_Nodes_Toolset_v1.3",
+        "Higgsas Geo Nodes Blender 5.0", _HIGGSAS_LIB_NAME)
+    return [
+        os.path.join(_REPO_ROOT, "RawArt", "BlenderLibraries",
+                     "Higgsas", _HIGGSAS_LIB_NAME),
+        _LEGACY_HIGGSAS,
+        downloads,
+    ]
+
+
+# Legacy module-level name kept for bootstrap.py prefs default. The resolver
+# (higgsas_library_path) is the authority; this is only the prefs fallback shown
+# in Edit > Preferences before the user sets an override.
+_DEFAULT_HIGGSAS = (
+    os.path.join(_REPO_ROOT, "RawArt", "BlenderLibraries",
+                 "Higgsas", _HIGGSAS_LIB_NAME)
 )
 
 
@@ -22,9 +50,15 @@ def _prefs():
 
 def higgsas_library_path() -> str:
     prefs = _prefs()
-    if prefs and getattr(prefs, "higgsas_library_path", ""):
-        return prefs.higgsas_library_path
-    return _DEFAULT_HIGGSAS
+    override = getattr(prefs, "higgsas_library_path", "") if prefs else ""
+    if override and os.path.exists(override):
+        return override
+    for cand in _higgsas_candidates():
+        if os.path.exists(cand):
+            return cand
+    # Nothing found: report the canonical repo-relative expectation.
+    return os.path.join(_REPO_ROOT, "RawArt", "BlenderLibraries",
+                        "Higgsas", _HIGGSAS_LIB_NAME)
 
 
 def synthia_addon_hint() -> str:

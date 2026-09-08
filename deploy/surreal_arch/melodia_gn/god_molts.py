@@ -148,7 +148,7 @@ def build_shell_thorax(group_name="MEL_shell_thorax"):
     thick_n = add_float_param(tree, "Chitin Thickness", 0.2, 0.01, 2.0)
 
     # Base arch: curved line
-    arch_curve = safe_node(tree, "GeometryNodeCurvePrimitiveBezierArc", (bx - 400, by))
+    arch_curve = safe_node(tree, "GeometryNodeCurveArc", (bx - 400, by))
     arch_curve.inputs["Resolution"].default_value = 16
     arch_curve.inputs["Radius"].default_value = 2.0
     arch_curve.inputs["Start Angle"].default_value = 0.0
@@ -418,7 +418,7 @@ def build_fracture_seam(group_name="MEL_fracture_seam"):
 
     # Convert to curve
     crack_curve = safe_node(tree, "GeometryNodeMeshToCurve", (bx + 200, by))
-    link_sockets(tree, crack_set.outputs["Mesh"], crack_curve.inputs["Mesh"])
+    link_sockets(tree, crack_set.outputs["Geometry"], crack_curve.inputs["Mesh"])
 
     # Set radius for crack width
     crack_radius = safe_node(tree, "GeometryNodeSetCurveRadius", (bx + 400, by))
@@ -494,7 +494,7 @@ def build_biolum_vein(group_name="MEL_biolum_vein"):
 
     # Convert to curve
     vein_curve = safe_node(tree, "GeometryNodeMeshToCurve", (bx + 200, by))
-    link_sockets(tree, vein_set.outputs["Mesh"], vein_curve.inputs["Mesh"])
+    link_sockets(tree, vein_set.outputs["Geometry"], vein_curve.inputs["Mesh"])
 
     # Set radius
     vein_radius = safe_node(tree, "GeometryNodeSetCurveRadius", (bx + 400, by))

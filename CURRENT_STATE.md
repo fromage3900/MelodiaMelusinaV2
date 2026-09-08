@@ -4,6 +4,7 @@
 **Last Updated:** 2026-09-07 (Fall semester/workstation authority sync; runtime evidence below remains grounded in the 2026-09-05 verification pass)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
 **Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals)**
+**Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
 
 > **Build:** green. `UnrealEditor-BS_GodFile.dll` built 2026-09-04 21:47 and the editor is running
 > from it. The blocker was `LPCTSTR` dropping a struct member in
@@ -87,9 +88,11 @@ The sequence below is the canonical P0 integration route used to prove the proje
 
 ---
 
-## 3. P0 Completion Gate Matrix (`Saved/gate_ledger.json`)
+## 3. P0 Gate Evidence
 
-All 10 P0 gameplay completion gates are verified and pass in `Saved/gate_ledger.json`:
+**Current tracked authority:** `Docs/P0_TASK_LEDGER.json` records **8/8 active P0 gates passing**. The 10-row matrix below preserves the broader completion-gate taxonomy used during the September 1 closeout; it is historical evidence vocabulary, **not a second current gate count**. `Saved/gate_ledger.json` is a generated/local evidence artifact and may not exist in a fresh GitHub clone.
+
+### Historical completion-gate taxonomy (10 IDs)
 
 | Gate ID | Target System | Verification Criteria | Status | Evidence Source |
 |---|---|---|:---:|---|
@@ -142,9 +145,9 @@ The project enforces automated test coverage across Python simulations, C++ auto
 
 ---
 
-## 6. Evening Closeout & Shipping Certification Plan
+## 6. Historical September 1 Closeout Sequence
 
-To achieve final shipping sign-off tonight (2026-09-01), the project is executing the sequence defined in [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md):
+This sequence is retained for audit/history only. The verified status at the top of this document supersedes its future-tense wording. The original closeout sequence was defined in [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md):
 
 1. **Stage 1 — Clean Environment Preflight:** Execute full test suites (`run_tests.ps1`, `verify_p0_offline.py`, `test_melodia_mcp.py`). (Status: **COMPLETED / GREEN**)
 2. **Stage 2 — Clean Win64 Packaging:** Execute Unreal Automation Tool `BuildCookRun` with canonical map roster (`L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`).

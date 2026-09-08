@@ -99,7 +99,7 @@ def build_weighted_bevel(group_name="MEL_weighted_bevel"):
     if edge_angle and thresh_rad and cmp:
         cmp.data_type = "FLOAT"
         cmp.operation = "GREATER_THAN"
-        link_sockets(tree, edge_angle.outputs["Angle"], cmp.inputs["A"])
+        link_sockets(tree, edge_angle.outputs["Unsigned Angle"], cmp.inputs["A"])
         link_sockets(tree, thresh_rad.outputs[0], cmp.inputs["B"])
         # Compare (float 0/1) -> capture as edge domain attribute bevel_weight
         auto_store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx - 50, by + 80))
@@ -515,7 +515,7 @@ def build_auto_bevel(group_name="MEL_auto_bevel"):
     if cmp and edge_angle and thresh:
         cmp.data_type = "FLOAT"
         cmp.operation = "GREATER_THAN"
-        link_sockets(tree, edge_angle.outputs["Angle"], cmp.inputs["A"])
+        link_sockets(tree, edge_angle.outputs["Unsigned Angle"], cmp.inputs["A"])
         link_sockets(tree, thresh.outputs[0], cmp.inputs["B"])
         store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 80, by + 40))
         if store:
@@ -570,7 +570,7 @@ def build_curvature_bevel(group_name="MEL_curvature_bevel"):
     norm = safe_node(tree, "ShaderNodeMath", (bx - 100, by + 60))
     if norm and angle:
         norm.operation = "DIVIDE"
-        link_sockets(tree, angle.outputs["Angle"], norm.inputs[0])
+        link_sockets(tree, angle.outputs["Unsigned Angle"], norm.inputs[0])
         norm.inputs[1].default_value = 3.14159
     mult = safe_node(tree, "ShaderNodeMath", (bx + 60, by + 20))
     if mult and gin.outputs["Curvature Scale"]:

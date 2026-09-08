@@ -1,7 +1,7 @@
-# Melodia BS_GodFile — University & Portfolio Entry Point
+# Melodia Melusina — University & Portfolio Entry Point
 
-> **Solo-developed rhythm-JRPG prototype** in Unreal Engine 5.8 with a procedural Geometry Nodes pipeline in Blender 5.2.
-> The game's world is generated from MIDI files — music becomes terrain, rhythm becomes gameplay.
+> **Solo-developed Unreal Engine 5.8 rhythm-JRPG vertical slice and environment/technical-art project.**
+> **Public portfolio:** https://www.fromageart.xyz/ · **Verified state:** [CURRENT_STATE.md](CURRENT_STATE.md)
 
 ---
 
@@ -57,7 +57,7 @@ Built solo over 2+ years. ~130GB, 13,000+ files, 60+ Geometry Nodes builders, fu
 
 ### For Technical Interviews
 1. **`PORTFOLIO.md`** — reel + breakdowns
-2. **`Docs/Portfolio/SYSTEMS.md`** — "here's what I built" (coming soon)
+2. **`CURRENT_STATE.md`** — current verified runtime/build state
 3. **`Source/BS_GodFile/MelodiaIntegration/`** — C++ bridge code
 4. **`Tools/BlenderAddons/melodia_studio/`** — largest single addon
 
@@ -81,11 +81,16 @@ Built solo over 2+ years. ~130GB, 13,000+ files, 60+ Geometry Nodes builders, fu
 
 ---
 
-## Demo
+## Demo & Reviewer Proof
 
-Reel coming Semester 2 (Week 9-10).
+The semester reel is in production. Current reviewer-facing proof is already live:
 
-Current work-in-progress clips:
+- **Portfolio:** https://www.fromageart.xyz/
+- **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
+- **Render Archive:** https://fromage3900.github.io/my-site/wix/hero-renders.html
+- **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
+
+Current work-in-progress animation clips:
 - `Content/Melodia/Characters/Melusina/Animations/Mocap/A_Mocap_LittleDance.uasset`
 - `Content/Melodia/Characters/Melusina/Animations/Mocap/A_Mocap_Dodge.uasset`
 - `Content/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX.uasset`
@@ -126,9 +131,9 @@ Current work-in-progress clips:
 ## Contact
 
 - **GitHub:** [fromage3900](https://github.com/fromage3900)
-- **Portfolio:** [coming soon]
-- **Reel:** [coming Semester 2]
+- **Portfolio:** https://www.fromageart.xyz/
+- **Reel:** in production for Semester 2
 
 ---
 
-*Last updated: 2026-09-03*
+*Last updated: 2026-09-07*

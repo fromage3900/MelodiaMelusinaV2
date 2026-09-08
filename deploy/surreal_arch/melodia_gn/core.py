@@ -1166,6 +1166,12 @@ CATEGORY_META: dict[str, dict] = {
     "white_current": {"label": "White Current",      "icon": "MOD_FLUID"},
     "god_molts":   {"label": "God That Molts",        "icon": "MOD_EXPLODE"},
     "city_gen":    {"label": "Melodia City Gen",      "icon": "MOD_BUILD"},
+    "asian":       {"label": "Asian Kit",             "icon": "PROP_OFF"},
+    "civic":       {"label": "Civic Kit",             "icon": "COMMUNITY"},
+    "euro":        {"label": "European Kit",          "icon": "WORLD"},
+    "experimental": {"label": "Experimental",         "icon": "EXPERIMENTAL"},
+    "melusina_house": {"label": "Melusina House",     "icon": "HOME"},
+    "zen_kit":     {"label": "Zen Kit",               "icon": "LIGHT_AREA"},
 }
 
 
