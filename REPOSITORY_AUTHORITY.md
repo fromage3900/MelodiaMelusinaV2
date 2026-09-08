@@ -96,3 +96,60 @@ As of 2026-09-08:
 - the public `MelodiaTouchDesigner` remote is still to be recorded once exposed.
 
 **One domain, one repo, one authority.**
+
+## Local workspace topology — important
+
+The intended on-disk layout is:
+
+```text
+C:/EnvironmentPortfolio/                  ← workspace container; NOT project authority by itself
+├── BS_GodFile/.git                       ← fromage3900/MelodiaMelusinaV2
+├── <website-checkout>/.git               ← fromage3900/my-site, if stored here
+├── other independent project folders
+└── loose workspace-only files
+```
+
+The TouchDesigner repo may live elsewhere, currently:
+
+`C:/MelodiaTouchDesigner/td/grandmaster_melodia/`
+
+### Root-Git retirement
+
+The source of confusion was the extra:
+
+`C:/EnvironmentPortfolio/.git`
+
+which made the **container folder itself** appear to be another authoritative project.
+
+After the remote `fromage3900/EnvironmentPortfolio` is archived, the preferred local cleanup is:
+
+1. verify each nested active repo has the expected remote;
+2. record the root umbrella repo remote for provenance;
+3. rename/move `C:/EnvironmentPortfolio/.git` out of the way;
+4. verify the nested repos still work normally;
+5. only delete the displaced root-Git metadata after recovery confidence is high.
+
+Example PowerShell verification:
+
+```powershell
+git -C C:\EnvironmentPortfolio remote -v
+git -C C:\EnvironmentPortfolio\BS_GodFile remote -v
+git -C C:\EnvironmentPortfolio\BS_GodFile status
+```
+
+Then, after verifying all sibling repos:
+
+```powershell
+Move-Item C:\EnvironmentPortfolio\.git C:\EnvironmentPortfolio\.git_EnvironmentPortfolio_Archive_20260908
+```
+
+Re-test the nested repo:
+
+```powershell
+git -C C:\EnvironmentPortfolio\BS_GodFile status
+git -C C:\EnvironmentPortfolio\BS_GodFile remote -v
+```
+
+If those still resolve to `fromage3900/MelodiaMelusinaV2`, the workspace-container topology is correct.
+
+**Do not delete or rename the `C:/EnvironmentPortfolio/` folder just because its old root Git repository is archived.**
