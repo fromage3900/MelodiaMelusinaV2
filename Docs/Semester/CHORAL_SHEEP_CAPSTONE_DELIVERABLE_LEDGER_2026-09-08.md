@@ -14,12 +14,12 @@ This ledger tracks production evidence without inventing grading requirements.
 | CS-03 | Graze personality | readable Graze behavior capture | UE | TODO | interaction already exists in contract |
 | CS-04 | Harmonize behavior | readable Harmonize state/capture | UE | TODO | first capstone behavior target |
 | CS-05 | Pitch-C response | one sheep visibly tied to pitch C | UE + TD | TODO | first technical milestone |
-| CS-06 | Wool/material resonance | amplitude/pitch visibly changes wool/material presentation | UE / TD | TODO | presentation only |
+| CS-06 | **Chladni Fleece — C** | one sheep's pitch-C Harmonize state creates a beautiful pitch-linked fleece pattern | UE + TD | **LOCKED / TODO** | canonical experiment spec exists; presentation only |
 | CS-07 | Replay schema | deterministic presentation replay format | JSON / TD | TODO | Gemini lane |
 | CS-08 | TD one-sheep network | deterministic C visualization | TD | TODO | Gemini lane |
 | CS-09 | C/E/G identities | three readable pitch identities | UE + TD | TODO | core capstone |
-| CS-10 | Harmony resolution | C/E/G relationship visibly resolves | TD | TODO | core capstone |
-| CS-11 | World response | resolved harmony creates clear world payoff | UE + TD | TODO | world presentation must remain non-authoritative |
+| CS-10 | **Chladni Fleece — C/E/G** | C/E/G relationship resolves into a visibly synchronized shared harmonic field | TD + UE | **LOCKED / TODO** | core capstone |
+| CS-11 | **Chladni propagation** | resolved fleece/harmony field extends into one clear water/reef/pearl world payoff | UE + TD | **LOCKED / TODO** | world presentation must remain non-authoritative |
 | CS-12 | Chromatic family | 12 pitch-class contact sheet / lineup | UE / TD | STRETCH | must not block core |
 | CS-13 | UE beauty passes | final cinematic image sequences | UE MRQ | TODO | after cameras/materials stabilize |
 | CS-14 | UE utility passes | only required matte/depth/process passes | UE MRQ | TODO | define per shot |
