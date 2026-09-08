@@ -5,6 +5,21 @@
 
 > **Do not derive current project state from an old handoff, old roadblock file, old session note, or the absence of a file on `main`.**
 
+## 0. Repository identity — mandatory
+
+Read `REPOSITORY_AUTHORITY.md` before any cross-repo or old-workspace discovery.
+
+Hard rule:
+
+> `fromage3900/EnvironmentPortfolio` is deprecated historical storage. Never use it as current Melodia, website, or TouchDesigner authority.
+
+Active domains are split deliberately:
+- game/runtime/capstone → this repository;
+- website → `fromage3900/my-site`;
+- TD/AE → separate `MelodiaTouchDesigner` Git.
+
+Historical `C:/EnvironmentPortfolio/... ` path strings may remain as evidence/examples. They do not change repository authority.
+
 ## 1. Current reading order
 
 Read only this front door before expanding outward:
