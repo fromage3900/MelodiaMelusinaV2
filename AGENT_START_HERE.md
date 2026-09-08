@@ -1,6 +1,6 @@
 # Melodia Agent Start Here
 
-**Status authority date:** 2026-09-07  
+**Status authority date:** 2026-09-08  
 **Purpose:** One current discovery contract for every AI / IDE / remote agent.
 
 > **Do not derive current project state from an old handoff, old roadblock file, old session note, or the absence of a file on `main`.**
@@ -25,16 +25,17 @@ Active domains are split deliberately:
 Read only this front door before expanding outward:
 
 1. `README.md`
-2. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
-3. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
-4. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
-5. `CURRENT_STATE.md`
-6. `_VERTICAL_SLICE_SCOPE.md`
-7. `TODO.md`
-8. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
-9. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
-10. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` only when historical laptop recovery matters
-11. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
+2. `Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md` for repository/lane/Git authority
+3. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
+4. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
+5. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+6. `CURRENT_STATE.md`
+7. `_VERTICAL_SLICE_SCOPE.md`
+8. `TODO.md`
+9. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
+10. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
+11. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` only when historical laptop recovery matters
+12. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
 
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
 
@@ -86,16 +87,13 @@ The home PC should consume explicit render/bake jobs through `.\deploy\render_wo
 
 A handoff is not complete until the relevant commit is pushed and the receiving machine's sync state is safe.
 
-**Never equate “not on main” with “not committed.”**
+**Never equate “not on main” with “not committed,” but never equate a branch with current truth either.**
 
-As of 2026-09-04:
+As of 2026-09-08, `main` is the only canonical production baseline. Superseded September 8 docs/fix branches have been reconciled into current main state. Recovery-only branches may remain for deliberate extraction; they are not task queues and must never be merged wholesale.
 
-- `recovery/laptop-main-20260904` is **13 commits ahead of main and 0 behind** at discovery time.
-- It contains current Melusina House Geometry Nodes/addon work, V7 build scripts, house Blender files, and `Docs/MelodiaStudio/SESSION_NOTES_2026-09-04.md`.
-- It also contains broad export/quarantine deletions, so **do not merge it wholesale**.
-- Older `collab/laptop/*` branches are diverged and remain discovery/extraction sources.
+The authoritative branch decisions and preserved recovery refs are recorded in `Docs/Reports/BRANCH_CANONIZATION_2026-09-08.md`.
 
-Before declaring laptop work absent, check the branch discovery document and compare relevant branches with `main`.
+Before declaring laptop/recovery work absent, compare the relevant branch to current `main` and extract only the specific unique artifact with provenance.
 
 ## 5. Visual reference rule
 
