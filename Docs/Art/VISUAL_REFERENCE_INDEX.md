@@ -1,6 +1,6 @@
 # Melodia Visual Reference Index
 
-**Status:** 2026-09-04  
+**Status:** 2026-09-08  
 **Purpose:** Canonical discovery point for image reference boards, concept sheets, visual targets, and known missing/uncommitted boards.
 
 > Agents: **start here before searching dated art/research handoffs.** Never fabricate a path for a board you cannot find.
@@ -44,6 +44,27 @@ Supporting specification:
 `Docs/Art/Images/shorewake_shader_flow_sea_above_p0_visual_target_2026-08-29.svg`
 
 Use as a committed technical/visual target, not as proof that every referenced runtime asset is final.
+
+## Choral Sheep Capstone reference boards
+
+**Canonical folder:** `Docs/References/ChoralSheepCapstone/`
+
+Use this set for Capstone 01 / Chladni Fleece / TD-AE presentation work:
+
+- `REFERENCE_MANIFEST.md` — read-first synthesis and reference handling rules.
+- `BOARD_01_CREATURE_FLEECE.md` — creature appeal, wool, textile/pearlescent response.
+- `BOARD_02_CHLADNI_PATTERN_LANGUAGE.md` — standing waves, nodal-line hierarchy, C→E→G pattern logic.
+- `BOARD_03_HYPERPOP_RAVE_CONCERT_DRAMATURGY.md` — Ninajirachi, Frost Children, A. G. Cook/PC Music, and 2hollis references translated into Melodia scale/timing principles.
+- `BOARD_04_TD_HARMONIC_FIELD.md` — TouchDesigner field and live-visual rules.
+- `BOARD_05_CAMERA_COMPOSITE.md` — camera hierarchy and AE final-composite rhythm.
+
+These are **analytical/source-link boards**, not a redistribution archive of third-party concert photography.
+
+The concert-reference rule is:
+
+> **Steal the timing, not the branding.**
+
+Translate scale, silhouette, graphic punctuation, live response, and lighting dramaturgy into Melodia's pearl / water / embroidery / cymatic language.
 
 ## Production sheets that describe visual direction
 
