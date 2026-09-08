@@ -58,13 +58,42 @@ Use this set for Capstone 01 / Chladni Fleece / TD-AE presentation work:
 - `BOARD_04_TD_HARMONIC_FIELD.md` — TouchDesigner field and live-visual rules.
 - `BOARD_05_CAMERA_COMPOSITE.md` — camera hierarchy and AE final-composite rhythm.
 
-These are **analytical/source-link boards**, not a redistribution archive of third-party concert photography.
+Also read:
+
+- `BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md` — owner-approved concrete sheep/fleece visual lock.
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_creature_fleece.webp`
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_chladni_fleece.webp`
+
+Boards 01–05 are **analytical/source-link boards**, not a redistribution archive of third-party concert photography. Board 06 + the two committed WebPs convert that research into an owner-approved Melodia target.
 
 The concert-reference rule is:
 
 > **Steal the timing, not the branding.**
 
 Translate scale, silhouette, graphic punctuation, live response, and lighting dramaturgy into Melodia's pearl / water / embroidery / cymatic language.
+
+## 2026-09-08 character / instrument visual-board set
+
+**Canonical folder:** `Docs/References/VisualBoards/2026-09-08/`
+
+Read `Docs/References/VisualBoards/2026-09-08/README.md` first.
+
+### Mara Ellettra Vell / Electra + Ebenezer
+
+- `MaraEllettraVell/mara_character_field_luthier.webp` — character / resonance-cartographer direction.
+- `MaraEllettraVell/mara_instrument_variants.webp` — instrument variants and resonance-device language.
+- `MaraEllettraVell/electra_cymatic_instruments.webp` — active cymatic instrument / performance studies.
+- `MaraEllettraVell/electra_ebenezer_relationship.webp` — companion relationship, palette, and field-role study.
+
+### Melusina
+
+- `Melusina/melusina_field_song_reference.webp` — current character identity / silhouette / turnaround reference.
+- `Melusina/melusina_cymatic_instruments.webp` — instrument ideation and equipped-state reference.
+- `Melusina/melusina_performance_outfit_song_states.webp` — outfit/colorway, performance-pose, expression, and song-state reference.
+
+**Evidence classification:** CANONICAL COMMITTED REFERENCE IMAGE.
+
+These are concept / art-direction boards. They do **not** replace UE5.8 runtime proof, approved final meshes, or final beauty renders. In particular, Melusina's final portfolio authority remains the UE5.8 B2 beauty / portrait / breakdown suite once captured.
 
 ## Production sheets that describe visual direction
 
