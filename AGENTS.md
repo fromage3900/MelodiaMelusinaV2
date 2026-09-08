@@ -1,5 +1,13 @@
 # BS_GodFile agent context
 
+## 🧭 REPOSITORY AUTHORITY — check before anything else
+
+Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md).
+
+`EnvironmentPortfolio` is a deprecated archive and must never be revived as an active Melodia/TD/site workspace. Work in exactly one canonical domain repo.
+
+---
+
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
