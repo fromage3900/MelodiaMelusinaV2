@@ -108,3 +108,19 @@ save transitions.
 Use `Tools/t3d_anim_injector.py` for Blend Space and AnimBP wiring. Do not use
 the crashing `blueprint_query:compile_blueprint` action. Use the existing
 animation-query/T3D paths and verify after each import.
+
+## 2026-09-08 Performance Capture Studio Extension
+
+The canonical researched extension for owner-performed animation capture is:
+
+`Docs/Research/MELUSINA_PERFORMANCE_CAPTURE_STUDIO_2026-09-08.md`
+
+That lane uses the OBSBOT Meet 2 as a fixed video source, Cascadeur 2026 Mocap (Alpha) as an editable draft generator, and Cascadeur Live Link for UE5.8 evaluation.
+
+Important boundaries:
+
+- this does **not** replace the skeleton/export contract above;
+- Meet 2 capture is a reference/video-mocap source, not a new gameplay or animation authority;
+- Cascadeur Mocap remains an editable first pass;
+- Live Link must be proven on the actual Melusina skeleton before it is called live;
+- this is semester animation infrastructure and is not a prerequisite for the current Choral Sheep P0.
