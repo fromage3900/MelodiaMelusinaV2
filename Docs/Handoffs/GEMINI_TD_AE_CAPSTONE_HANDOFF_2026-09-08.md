@@ -27,10 +27,21 @@ Read in this order:
 6. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaCompanionData.h`
 7. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaChoralSheepActor.h`
 8. `Docs/RESONANT_WORLD_SYSTEM.md`
-9. `_TouchDesigner/README.md`
-10. `deploy/osc_routing.json`
-11. `Docs/HARMONIX_MIDI_RHYTHM_CONTRACT_2026-07-29.md`
-12. `Docs/Handoffs/AAA_GN_TOUCHDESIGNER_WORLDGEN_AGENT_PROMPTS_2026-08-24.md` — reference only; do not blindly execute old scope.
+9. `Docs/UNIVERSAL_MUSICAL_INFLUENCE_SCAFFOLD_2026-07-18.md` — **existing architecture; extend, do not replace**.
+10. `Docs/Blender/MELODIA_MUSIC_SIGNAL_BRIDGE_TD_BLENDER_UNREAL_2026-08-30.md` — existing one-semantic-language / three-context contract.
+11. `Docs/Handoffs/AUDIO_REACTIVE Flower_CHOP_OSC_2026-09-02.md` — existing live TD audio/OSC proof.
+12. `Docs/NIAGARA_ECOSYSTEM_2026-08-09.md` — existing shared presentation parameter language.
+13. `_TouchDesigner/README.md`
+14. `_TouchDesigner/grandmaster_melodia/scripts/wire_audio_reactive_flower.py`
+15. `deploy/osc_routing.json`
+16. `Content/Python/osc_server.py`
+17. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaRhythmReactivitySubsystem.h/.cpp`
+18. `Plugins/MelodiaCore/Source/MelodiaCore/MelodiaReactiveMeshRegistrar.h/.cpp`
+19. `Source/BS_GodFile/MelodiaIntegration/MelodiaAudioReactivePresentationSubsystem.h/.cpp`
+20. `Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsSubsystem.h/.cpp`
+21. `Source/BS_GodFile/MelodiaIntegration/MelodiaCymaticsWriterSubsystem.h/.cpp`
+22. `Docs/HARMONIX_MIDI_RHYTHM_CONTRACT_2026-07-29.md`
+23. `Docs/Handoffs/AAA_GN_TOUCHDESIGNER_WORLDGEN_AGENT_PROMPTS_2026-08-24.md` — reference only; do not blindly execute old scope.
 
 ## Preserve these truths
 
@@ -46,6 +57,23 @@ Read in this order:
 - The first capstone proof requires only one sheep.
 - The hero system proof uses three sheep: C / E / G.
 - Full chromatic flock is stretch scope.
+
+## Prior-art rule — critical
+
+Melodia already has the architecture that this capstone needs.
+
+Do **not** create:
+- a second global music-reactivity subsystem;
+- a second OSC bridge;
+- a second beat clock;
+- a second audio MPC;
+- a new generic "visual instrument" framework;
+- a replacement TD grandmaster project.
+
+Treat **Chladni Fleece as a Choral Sheep-specific consumer/profile** of:
+`UniversalMusicalInfluence → MPC_Melodia_Palette → cymatics/reactive MIDs → existing TD/OSC lane`.
+
+The work should preferentially extend the existing `grandmaster_melodia` and its reusable components/networks.
 
 ## Locked experiment authority
 
