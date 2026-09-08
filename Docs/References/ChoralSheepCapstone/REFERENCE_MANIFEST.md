@@ -36,6 +36,11 @@ Do not copy artist branding, logos, characters, costumes, proprietary screen con
 3. `BOARD_03_HYPERPOP_RAVE_CONCERT_DRAMATURGY.md` — Ninajirachi + adjacent live-electronic/hyperpop stage principles.
 4. `BOARD_04_TD_HARMONIC_FIELD.md` — TouchDesigner-specific visual language.
 5. `BOARD_05_CAMERA_COMPOSITE.md` — UE camera, scale contrast, AE breakdown/composite.
+6. `BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md` — **owner-approved concrete visual target:** creature silhouette, fleece softness, C/E/G glyph language, REST → HARMONIZE → HARMONY BLOOM progression, and TD/AE translation.
+
+## Owner-approved visual lock
+
+As of 2026-09-08, Board 06 is the concrete art-direction lock derived from the generated Choral Sheep concept sheets. When a generic interpretation conflicts with Board 06, prefer the owner-approved concept-sheet direction.
 
 ## Capstone synthesis
 
