@@ -51,6 +51,26 @@ Current musical variation facts:
 
 These contracts are the foundation of the capstone explanation.
 
+## 2.5 Locked first technical-art experiment — Chladni Fleece
+
+The first capstone technical-art experiment is **Chladni Fleece**.
+
+Canonical spec:
+
+`Docs/Semester/CHORAL_SHEEP_CHLADNI_FLEECE_EXPERIMENT_2026-09-08.md`
+
+Locked progression:
+
+```text
+one sheep + C
+→ pitch-linked fleece pattern
+→ C + E + G
+→ synchronized harmonic field
+→ one world-propagation response
+```
+
+This is the primary TD ↔ Unreal bridge for Capstone 01. It reuses Melodia's existing read-only cymatics / resonance language; it does not create a second music, save, or gameplay authority.
+
 ## 3. Tool ownership
 
 ### Unreal Engine 5.8 owns
