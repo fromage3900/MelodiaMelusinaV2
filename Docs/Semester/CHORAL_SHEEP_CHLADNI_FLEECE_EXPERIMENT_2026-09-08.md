@@ -51,6 +51,54 @@ The result is easy to communicate:
 
 > **The harmonic state of a companion flock becomes a cymatic field that drives character materials and environmental presentation.**
 
+## 2.5 Existing implementation this experiment extends
+
+This experiment is deliberately **an application of existing Melodia infrastructure**.
+
+### Already implemented / source-present
+
+- `UMelodiaRhythmReactivitySubsystem`
+  - publishes the existing `FMelodiaRhythmReactivitySignal`;
+  - sends UE→TD OSC on `127.0.0.1:9000`;
+  - already publishes `/rhythm/beat_pulse`, `/rhythm/beat_phase`, combo, crescendo, command energy, victory, tension, dread, and dissonance;
+  - already exposes `RegisterReactiveMeshComponent(UPrimitiveComponent*)` and pushes `DreamPulseAmp`, `Iridescence`, `TemporalStrength`, and `ParallaxStrength` into registered MIDs.
+
+- `UMelodiaReactiveMeshRegistrar`
+  - scans actors tagged `ReactiveToMusic`;
+  - registers visible primitive components with the reactivity subsystem.
+
+- `UMelodiaAudioReactivePresentationSubsystem`
+  - owns the continuous music-clock-derived beat namespace in `MPC_Melodia_Palette`;
+  - writes the Niagara-side twin;
+  - already drives Oceanology water presentation from the same beat data.
+
+- `UMelodiaCymaticsSubsystem`
+  - already computes Chladni standing-wave amplitude from the canonical audio palette;
+  - is explicitly read-only.
+
+- `UMelodiaCymaticsWriterSubsystem`
+  - already maps BeatPulse/Bass/Mid into `Cymatic_ModeN`, `Cymatic_ModeM`, emissive, iridescence shift, and UV distortion in `MPC_Cymatics_Driver`.
+
+- TouchDesigner
+  - active project: `_TouchDesigner/grandmaster_melodia/grandmaster_melodia7.22.toe`;
+  - `wire_audio_reactive_flower.py` already builds a CHOP audio-analysis network and OSC mapping;
+  - TD→UE audio bands and UE→TD beat/phase routes already exist;
+  - loopback validation previously recorded 38 pass / 0 fail in the audio-reactive flower handoff.
+
+### Therefore the actual missing delta
+
+Chladni Fleece does **not** need a new global bridge.
+
+It needs:
+
+1. Choral Sheep-specific pitch/harmony presentation fields;
+2. one fleece material consumer/profile;
+3. a TD Chladni field network that plugs into the existing grandmaster project;
+4. deterministic replay for final capture;
+5. one optional world-propagation consumer.
+
+This is a consumer specialization problem, not an infrastructure problem.
+
 ## 3. Authority boundary
 
 This experiment is **presentation-only**.
