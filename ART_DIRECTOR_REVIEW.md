@@ -1,3 +1,11 @@
+# HISTORICAL — not current project status
+
+**Written:** 2026-06-25. Claims below (no root README, greybox-only Sakura, empty portfolio package) are **stale**. The repo now has `README.md`, `CURRENT_STATE.md`, and a recruiter showcase soft freeze.
+
+Current discovery starts at [`AGENT_START_HERE.md`](AGENT_START_HERE.md). Recruiter presentation: [`Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
+
+---
+
 # Art Director Review — Environment Portfolio Platform
 
 **Reviewer lens:** Senior Environment Art Lead · hiring-manager POV  

@@ -39,6 +39,8 @@ Read only this front door before expanding outward:
 
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
 
+Root files stamped `HISTORICAL` or replaced with archive stubs are memory, not status. Current score is `TODO.md`. Current slice scope is `_VERTICAL_SLICE_SCOPE.md`. Capstone/TD contracts stay live and are not historical.
+
 ## 2. Freshness rule
 
 Use this precedence:
