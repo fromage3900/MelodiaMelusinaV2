@@ -9,7 +9,7 @@
 |---|---|---|
 | Game / Unreal / runtime / capstone | `fromage3900/MelodiaMelusinaV2` | gameplay, assets, runtime contracts, semester/capstone truth |
 | Portfolio website | `fromage3900/my-site` | public web presentation, Three.js/editorial site work |
-| TouchDesigner / AE visual-performance lane | separate `MelodiaTouchDesigner` Git; canonical local checkout `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` | TD networks, TDN/TOE, concert/live visuals, presentation passes |
+| TouchDesigner / AE visual-performance lane | `fromage3900/MelodiaTouchDesigner` (private); canonical local checkout `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` | TD networks, TDN/TOE, concert/live visuals, presentation passes |
 
 ## Deprecated repository
 
@@ -93,7 +93,7 @@ As of 2026-09-08:
 - its legacy authority files were preserved under `Docs/Archive/`;
 - the recent frozen TD snapshot is retained for uniqueness comparison;
 - final GitHub rename/archive metadata is pending owner-side repository settings;
-- the public `MelodiaTouchDesigner` remote is still to be recorded once exposed.
+- the private `fromage3900/MelodiaTouchDesigner` remote is now verified and recorded as the TD/AE authority.
 
 **One domain, one repo, one authority.**
 
