@@ -3,6 +3,20 @@
 **Date:** 2026-08-25 · **Status:** Blender-side export verified; UE-side steps ready
 **Mesh:** `Skin_Sheep_ZSpheres2` (5918 verts) · **Rig:** `rig` (474 bones = 106 deform + 368 control)
 
+## 2026-09-08 owner update
+
+**Supersedes the stale weight-paint caveat below for the current source asset.**
+
+The project owner confirms that the current Choral Sheep source is **fully rigged**. The August audit that reported zero vertex groups described an earlier source state and must not be used to trigger a re-rig.
+
+Current uncertainty is narrower:
+- the sheep may need a fresh **Auto-Rig Pro (ARP) export/re-export** for the current UE path;
+- the repository's deform-only exporter remains a useful fallback/comparison tool;
+- fresh FBX deformation and UE import/reimport still need to be verified before claiming runtime proof.
+
+Current execution authority:
+`Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md`
+
 ## Goal
 
 Make `SK_ChoralSheep` a clean UE skeletal mesh that accepts retargeted quadruped
@@ -26,11 +40,9 @@ The deform skeleton is **quadruped-friendly**: root → spine → neck → head 
 4 leg chains (`thigh/foot/toes`), and a 4-bone tail. This maps cleanly to a
 horse/deer/goat source skeleton.
 
-> **Known caveat:** the body mesh currently has **0 vertex groups** (not yet weight
-> painted to the rig). Export succeeds regardless, but the FBX is not a true skinned
-> skeletal mesh until skinning lands. Finish weight painting before the final import.
+> **Historical caveat — superseded 2026-09-08:** this August source snapshot reported 0 vertex groups. The owner has since confirmed the current Choral Sheep source is fully rigged. Do not re-rig based on this historical note; verify the current ARP/FBX export instead.
 
-## UE-side steps (editor, once mesh is skinned)
+## UE-side steps (editor, after fresh current-source export is verified)
 
 1. **Import** `SK_ChoralSheep.fbx` → `/Game/Melodia/Companions/ChoralSheep/SK_ChoralSheep`.
    - Skeleton Type: **Create new** (`SK_ChoralSheep_Skeleton`). Do not reuse Sir/Melusina's.
