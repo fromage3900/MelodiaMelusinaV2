@@ -53,6 +53,8 @@ Read these before touching the capstone lane:
 - `Docs/Handoffs/GEMINI_TD_AE_CAPSTONE_HANDOFF_2026-09-08.md` — Gemini's TouchDesigner + After Effects execution/documentation lane.
 - `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — **repo boundary:** UE truth stays here; canonical `grandmaster_melodia` stays in its own Git; TD/AE is the concert-visual/editorial/compositing pipeline.
 - `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md` — milestone and evidence ledger.
+- `Docs/References/ChoralSheepCapstone/REFERENCE_MANIFEST.md` — analytical reference set + owner-approved sheep visual lock.
+- `Docs/References/VisualBoards/2026-09-08/README.md` — **committed visual boards:** Choral Sheep, Mara/Electra + Ebenezer, and Melusina.
 - `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` — academic mapping once the official Humber brief/rubric is available.
 - `Docs/CHORAL_SHEEP_INTEGRATION_RUNBOOK.md` — grounded companion runtime contract.
 - `Content/Melodia/Companions/ChoralSheep/ChoralSheepDefinition.json` — current companion data truth.
