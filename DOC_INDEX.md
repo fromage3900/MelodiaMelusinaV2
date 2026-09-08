@@ -13,6 +13,7 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 | Order | Read this | Why |
 |:---:|---|---|
 | **0** | [`REPOSITORY_AUTHORITY.md`](REPOSITORY_AUTHORITY.md) | Canonical game/site/TD repo boundaries; blocks deprecated EnvironmentPortfolio authority. |
+| **0A** | [`Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md`](Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md) | Final archaeology stop-condition and branch-noise policy. |
 | **1** | [`README.md`](README.md) | Project identity and one-page orientation. |
 | **2** | [`Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md`](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md) | Fall 2026 production authority: First Dream stable proof, Shorewake semester artwork. |
 | **3** | [`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`](Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md) | Course brief → Melodia deliverable mapping; populate from Humber outlines/Blackboard. |
