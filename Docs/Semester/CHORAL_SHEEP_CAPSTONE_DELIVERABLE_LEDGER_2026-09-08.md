@@ -16,15 +16,15 @@ This ledger tracks production evidence without inventing grading requirements.
 | CS-05 | Pitch-C response | one sheep visibly tied to pitch C | UE + TD | TODO | first technical milestone |
 | CS-06 | **Chladni Fleece — C** | one sheep's pitch-C Harmonize state creates a beautiful pitch-linked fleece pattern | UE + TD | **LOCKED / TODO** | canonical experiment spec exists; presentation only |
 | CS-07 | Replay schema | deterministic presentation replay format | JSON / TD | TODO | Gemini lane |
-| CS-08 | TD one-sheep network | deterministic C visualization | TD | TODO | Gemini lane |
+| CS-08 | TD one-sheep network | deterministic C visualization | TD | SOURCE-BUILT / LIVE VERIFY | `MelodiaTouchDesigner` has ROOT_C TDN + GLSL + deterministic fixture at `fe81890931`; live `.toe` import/cook/capture still required |
 | CS-09 | C/E/G identities | three readable pitch identities | UE + TD | TODO | core capstone |
 | CS-10 | **Chladni Fleece — C/E/G** | C/E/G relationship resolves into a visibly synchronized shared harmonic field | TD + UE | **LOCKED / TODO** | core capstone |
 | CS-11 | **Chladni propagation** | resolved fleece/harmony field extends into one clear water/reef/pearl world payoff | UE + TD | **LOCKED / TODO** | world presentation must remain non-authoritative |
 | CS-12 | Chromatic family | 12 pitch-class contact sheet / lineup | UE / TD | STRETCH | must not block core |
 | CS-13 | UE beauty passes | final cinematic image sequences | UE MRQ | TODO | after cameras/materials stabilize |
 | CS-14 | UE utility passes | only required matte/depth/process passes | UE MRQ | TODO | define per shot |
-| CS-15 | TD transparent passes | constellation/cymatic/halo/etc. | TD | TODO | replay-driven final |
-| CS-16 | AE master project | organized rebuildable composite | AE | TODO | Gemini lane |
+| CS-15 | TD transparent passes | constellation/cymatic/halo/etc. | TD | SOURCE OUTPUTS / CAPTURE TODO | ROOT_C source exposes `OUT_MAIN`, `OUT_ALPHA`, `OUT_FIELD`, `OUT_DEBUG`; no live/captured pass evidence yet |
+| CS-16 | AE master project | organized rebuildable composite | AE | SCAFFOLD PRESENT / CAPSTONE TODO | TD repo now contains AE scaffolding/tooling; capstone-specific master/assembly proof still pending |
 | CS-17 | 60–90 sec master | final capstone film | AE | TODO | final |
 | CS-18 | technical breakdown | one rig → motif → harmony → world diagram | AE / docs | TODO | image-led |
 | CS-19 | process evidence | WIP, viewport, node, before/after captures | all | ACTIVE | capture continuously |
@@ -86,6 +86,23 @@ Immediate order:
 5. M1 one-note C Chladni proof;
 6. capture beauty + proof before expanding to E/G.
 
+## 2026-09-08 TD repo checkpoint
+
+Canonical TD repo: `fromage3900/MelodiaTouchDesigner`
+
+Reviewed TD state:
+- source-built ROOT_C scene exists at `/project1/performance/scenes/chladni_fleece`;
+- repository source: `td/grandmaster_melodia/project/project1/performance/scenes/chladni_fleece.tdn`;
+- Chladni GLSL source is committed;
+- deterministic C fixture is committed;
+- canonical rhythm consumer points at the existing `/project1/osc/in_battle` / UDP 9000 semantic lane;
+- outputs are `OUT_MAIN`, `OUT_ALPHA`, `OUT_FIELD`, `OUT_DEBUG`;
+- static contract tests exist;
+- the TD docs explicitly classify this as **SOURCE-BUILT, NOT LIVE-PROVEN**.
+
+Current hard gate:
+> import ROOT_C into the live canonical `.toe`, verify cook/errors and semantic wiring, capture QUIET/C_ROOT/C_ROOT_HIT, then stop before E/G.
+
 ## Today's Gemini lane
 
 Expected document outputs:
@@ -98,3 +115,5 @@ Expected document outputs:
 6. CHORAL_SHEEP_CAPSTONE_README.md
 
 Do not mark them implemented merely because they are documented.
+
+As of this ledger review, the six named game-repo outputs above are still not present on `MelodiaMelusinaV2/main`. Equivalent TD-side implementation planning and ROOT_C source have begun landing in `MelodiaTouchDesigner`, but the replay schema, capstone-specific AE assembly spec, shot/pass manifest, and short capstone README still need explicit closeout.
