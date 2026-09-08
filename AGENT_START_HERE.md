@@ -11,14 +11,14 @@ Read `REPOSITORY_AUTHORITY.md` before any cross-repo or old-workspace discovery.
 
 Hard rule:
 
-> `fromage3900/EnvironmentPortfolio` is deprecated historical storage. Never use it as current Melodia, website, or TouchDesigner authority.
+> `fromage3900/EnvironmentPortfolio` is a deprecated **root umbrella Git repo**. The local folder `C:/EnvironmentPortfolio/` itself remains a valid workspace container. Never infer repo authority from the container path.
 
 Active domains are split deliberately:
 - game/runtime/capstone → this repository;
 - website → `fromage3900/my-site`;
 - TD/AE → separate `MelodiaTouchDesigner` Git.
 
-Historical `C:/EnvironmentPortfolio/... ` path strings may remain as evidence/examples. They do not change repository authority.
+`C:/EnvironmentPortfolio/...` paths may be valid live checkout locations. The rule is about Git boundaries: `BS_GodFile/.git`, `my-site/.git`, and the separate TD repo own their domains; the workspace root must not become a competing authority.
 
 ## 1. Current reading order
 
