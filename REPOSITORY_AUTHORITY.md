@@ -15,9 +15,11 @@
 
 `fromage3900/EnvironmentPortfolio`
 
-is a **historical umbrella/archive only**.
+is a **historical umbrella/archive Git repository only**.
 
-It was created on 2026-08-25 to preserve loose workspace files around the old `C:/EnvironmentPortfolio/` folder.
+Important distinction: the local filesystem folder `C:/EnvironmentPortfolio/` remains a valid workspace container. The deprecated thing is the **root Git repository attached to that container**, not the folder itself.
+
+`C:/EnvironmentPortfolio/BS_GodFile/` may continue to be the local checkout path for the canonical game repo, and sibling project folders may also live under `C:/EnvironmentPortfolio/`.
 
 It is not:
 - the game repo;
@@ -32,17 +34,17 @@ Do not implement new work there.
 
 A local folder name does not define Git authority.
 
-Old paths such as:
+Paths such as:
 
 ```text
 C:/EnvironmentPortfolio/BS_GodFile
-G:/EnvironmentPortfolio/BS_GodFile
 C:/EnvironmentPortfolio/my-site-clean
+C:/EnvironmentPortfolio/<other-project>
 ```
 
-may remain in historical documents, old scripts, logs, or machine-specific examples.
+may be perfectly valid local checkout locations. A filesystem path does not determine Git authority.
 
-Their presence does **not** make `EnvironmentPortfolio` an active repository.
+What is deprecated is using the **root `C:/EnvironmentPortfolio/.git` / `fromage3900/EnvironmentPortfolio` repo** as Melodia authority.
 
 Current repository identity is determined by:
 1. the actual Git remote;
@@ -94,3 +96,60 @@ As of 2026-09-08:
 - the public `MelodiaTouchDesigner` remote is still to be recorded once exposed.
 
 **One domain, one repo, one authority.**
+
+## Local workspace topology — important
+
+The intended on-disk layout is:
+
+```text
+C:/EnvironmentPortfolio/                  ← workspace container; NOT project authority by itself
+├── BS_GodFile/.git                       ← fromage3900/MelodiaMelusinaV2
+├── <website-checkout>/.git               ← fromage3900/my-site, if stored here
+├── other independent project folders
+└── loose workspace-only files
+```
+
+The TouchDesigner repo may live elsewhere, currently:
+
+`C:/MelodiaTouchDesigner/td/grandmaster_melodia/`
+
+### Root-Git retirement
+
+The source of confusion was the extra:
+
+`C:/EnvironmentPortfolio/.git`
+
+which made the **container folder itself** appear to be another authoritative project.
+
+After the remote `fromage3900/EnvironmentPortfolio` is archived, the preferred local cleanup is:
+
+1. verify each nested active repo has the expected remote;
+2. record the root umbrella repo remote for provenance;
+3. rename/move `C:/EnvironmentPortfolio/.git` out of the way;
+4. verify the nested repos still work normally;
+5. only delete the displaced root-Git metadata after recovery confidence is high.
+
+Example PowerShell verification:
+
+```powershell
+git -C C:\EnvironmentPortfolio remote -v
+git -C C:\EnvironmentPortfolio\BS_GodFile remote -v
+git -C C:\EnvironmentPortfolio\BS_GodFile status
+```
+
+Then, after verifying all sibling repos:
+
+```powershell
+Move-Item C:\EnvironmentPortfolio\.git C:\EnvironmentPortfolio\.git_EnvironmentPortfolio_Archive_20260908
+```
+
+Re-test the nested repo:
+
+```powershell
+git -C C:\EnvironmentPortfolio\BS_GodFile status
+git -C C:\EnvironmentPortfolio\BS_GodFile remote -v
+```
+
+If those still resolve to `fromage3900/MelodiaMelusinaV2`, the workspace-container topology is correct.
+
+**Do not delete or rename the `C:/EnvironmentPortfolio/` folder just because its old root Git repository is archived.**

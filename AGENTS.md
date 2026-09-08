@@ -4,7 +4,7 @@
 
 Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md).
 
-`EnvironmentPortfolio` is a deprecated archive and must never be revived as an active Melodia/TD/site workspace. Work in exactly one canonical domain repo.
+`fromage3900/EnvironmentPortfolio` / the root workspace `.git` is deprecated. The folder `C:/EnvironmentPortfolio/` may remain the valid parent workspace containing the separate game/site/TD repos. Work in exactly one nested canonical domain repo.
 
 ---
 
