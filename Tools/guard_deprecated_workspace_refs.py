@@ -26,6 +26,8 @@ ACTIVE_PREFIXES = (
 
 
 def is_active_surface(path: str) -> bool:
+    if path == "Tools/guard_deprecated_workspace_refs.py":
+        return False
     return path.startswith(ACTIVE_PREFIXES)
 
 
