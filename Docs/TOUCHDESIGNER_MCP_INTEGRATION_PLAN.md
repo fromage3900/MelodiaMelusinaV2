@@ -1,9 +1,11 @@
 # TouchDesigner + MCP Integration Plan — Environment Portfolio Platform
 
+> **SUPERSEDED 2026-09-08** — Draft frozen. Canon is `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` + `deploy/osc_routing.json v1.1 (port 9000)`. Old `osc_routing.json v1.0` and `C:\EnvironmentPortfolio\_TouchDesigner` paths below are historical; canon TD is `C:/MelodiaTouchDesigner` private `fromage3900/MelodiaTouchDesigner`.
+
 **Version:** 1.0.0
 **Date:** 2026-07-15
 **Branch:** `feature/touchdesigner-mcp-integration`
-**Status:** Draft — Awaiting Phase 1 Execution
+**Status:** SUPERSEDED — frozen, see cross-repo contract
 
 ---
 

@@ -1,10 +1,12 @@
 # Grandmaster Melodia TouchDesigner Project — Architecture & Build Plan
 
+> **SUPERSEDED 2026-09-08** — This plan is frozen. Canon is `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` and the private `fromage3900/MelodiaTouchDesigner` checkout at `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` (see `REPOSITORY_AUTHORITY.md` e48bcb0). The old `_TouchDesigner/grandmaster_melodia.toe` path below is historical.
+
 **Version:** 1.0.0
 **Date:** 2026-07-15
 **Branch:** `feature/touchdesigner-mcp-integration`
-**Status:** Ready for execution
-**TD Project:** `_TouchDesigner/grandmaster_melodia.toe`
+**Status:** SUPERSEDED — frozen, see cross-repo contract
+**TD Project (historical):** `_TouchDesigner/grandmaster_melodia.toe` → canon now `C:/MelodiaTouchDesigner/td/grandmaster_melodia/`
 
 ---
 
