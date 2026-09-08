@@ -3,6 +3,8 @@
 **Status:** 2026-09-08  
 **Purpose:** Canonical discovery point for image reference boards, concept sheets, visual targets, and known missing/uncommitted boards.
 
+**Integrity receipt:** `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md` — September 8 Sheep/Mara/Melusina batch verified; missing Melusina House REF_01 path restored.
+
 > Agents: **start here before searching dated art/research handoffs.** Never fabricate a path for a board you cannot find.
 
 ## Committed visual canon on `main`
@@ -18,7 +20,7 @@ These are committed, immediately viewable working boards on `main` and should be
 - `Docs/References/MelusinasHouse/REF_03_CUTAWAY_INTERIOR_FLOW.jpg` — cutaway, room flow, stair/tower relationships, interior-light rhythm.
 - `Docs/References/MelusinasHouse/README.md` — canonical usage order and interpretation notes.
 
-Important reconciliation note: old laptop PR #81 stored 130-byte Git LFS pointer forms of these JPEG paths. The pointer metadata declares the same nominal image sizes as the viewable copies already on `main`; do **not** replace the current visible working copies merely because a recovery branch shows different blob SHAs.
+Important reconciliation note: the three Melusina House JPEGs are intentionally Git LFS-managed. Git stores small pointer blobs; a hydrated checkout resolves the image bytes with `git lfs pull`. During the 2026-09-08 closeout, REF_01 was recovered from the preserved laptop branch and restored to `main`. See `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md` for the exact LFS object IDs and sizes.
 
 
 ### Mara Elettra Vell + Ebenezer
