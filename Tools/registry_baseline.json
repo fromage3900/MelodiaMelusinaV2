@@ -2554,15 +2554,6 @@
     0.8
    ]
   },
-  "MEL_music_vinyl_disc": {
-   "ok": true,
-   "verts": 52267,
-   "bbox": [
-    2.0,
-    2.0,
-    1.908
-   ]
-  },
   "MEL_music_waveform_wall": {
    "ok": true,
    "verts": 768,
@@ -5525,7 +5516,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 466,
+  "package_count": 465,
   "monolith_count": 209
  }
 }

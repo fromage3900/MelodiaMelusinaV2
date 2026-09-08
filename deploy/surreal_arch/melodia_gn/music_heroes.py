@@ -1062,5 +1062,5 @@ register_builder(
 register_builder(
     "MEL_music_harp", build_music_harp, "Music Harp",
     "Pedal harp: pillar, neck curve, strings instance-on-spline, soundboard, pitch index",
-    "music",
+    "music", hidden=True,  # v1 superseded by MEL_music_harp_v2
 )
