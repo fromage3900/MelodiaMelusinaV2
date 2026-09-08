@@ -38,6 +38,15 @@ Do not copy artist branding, logos, characters, costumes, proprietary screen con
 5. `BOARD_05_CAMERA_COMPOSITE.md` — UE camera, scale contrast, AE breakdown/composite.
 6. `BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md` — **owner-approved concrete visual target:** creature silhouette, fleece softness, C/E/G glyph language, REST → HARMONIZE → HARMONY BLOOM progression, and TD/AE translation.
 
+## Committed visual previews
+
+The owner-approved Choral Sheep concept sheets are directly viewable on `main`:
+
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_creature_fleece.webp`
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_chladni_fleece.webp`
+
+These are **concept/reference images**, not UE runtime proof.
+
 ## Owner-approved visual lock
 
 As of 2026-09-08, Board 06 is the concrete art-direction lock derived from the generated Choral Sheep concept sheets. When a generic interpretation conflicts with Board 06, prefer the owner-approved concept-sheet direction.
