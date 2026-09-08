@@ -15,9 +15,11 @@
 
 `fromage3900/EnvironmentPortfolio`
 
-is a **historical umbrella/archive only**.
+is a **historical umbrella/archive Git repository only**.
 
-It was created on 2026-08-25 to preserve loose workspace files around the old `C:/EnvironmentPortfolio/` folder.
+Important distinction: the local filesystem folder `C:/EnvironmentPortfolio/` remains a valid workspace container. The deprecated thing is the **root Git repository attached to that container**, not the folder itself.
+
+`C:/EnvironmentPortfolio/BS_GodFile/` may continue to be the local checkout path for the canonical game repo, and sibling project folders may also live under `C:/EnvironmentPortfolio/`.
 
 It is not:
 - the game repo;
@@ -32,17 +34,17 @@ Do not implement new work there.
 
 A local folder name does not define Git authority.
 
-Old paths such as:
+Paths such as:
 
 ```text
 C:/EnvironmentPortfolio/BS_GodFile
-G:/EnvironmentPortfolio/BS_GodFile
 C:/EnvironmentPortfolio/my-site-clean
+C:/EnvironmentPortfolio/<other-project>
 ```
 
-may remain in historical documents, old scripts, logs, or machine-specific examples.
+may be perfectly valid local checkout locations. A filesystem path does not determine Git authority.
 
-Their presence does **not** make `EnvironmentPortfolio` an active repository.
+What is deprecated is using the **root `C:/EnvironmentPortfolio/.git` / `fromage3900/EnvironmentPortfolio` repo** as Melodia authority.
 
 Current repository identity is determined by:
 1. the actual Git remote;
