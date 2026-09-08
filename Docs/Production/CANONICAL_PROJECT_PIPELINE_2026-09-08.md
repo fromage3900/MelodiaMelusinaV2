@@ -168,7 +168,7 @@ Direction of authority is one-way for facts:
 
 ## 10. Branch policy after 2026-09-08 reconciliation
 
-Superseded documentation/feature refs are to be normalized to the canonical `main` tip after this pipeline lands.
+Superseded documentation/feature refs reviewed in this pass have been normalized to the canonical `main` tip.
 
 The following game branches remain intentionally separate because they contain recovery/history or operational state and must **not** be treated as current truth:
 - `cleanup/root-trim-docs-2026-09-06` — historical cleanup/recovery source;
@@ -177,6 +177,6 @@ The following game branches remain intentionally separate because they contain r
 - `integration/semester-closeout-salvage-2026-09-07` — salvage source requiring deliberate extraction;
 - `render-queue` — operational queue branch, intentionally non-merge.
 
-Everything else should either be represented on `main` or explicitly documented as a recovery-only exception.
+All safe superseded refs now point at `main`; only the recovery/operational exceptions listed above remain intentionally separate.
 
 **One lane, one authority, one current branch: `main`.**
