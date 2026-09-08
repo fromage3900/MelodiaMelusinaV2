@@ -1,5 +1,30 @@
 # TouchDesigner Project Workspace
 
+## 2026-09-08 — Current live-performance authority
+
+For current Melodia performance / concert / Capstone 01 work, read **before editing the project**:
+
+1. `Docs/MELODIA_LIVE_VISUAL_IDENTITY_CONTRACT_2026-09-08.md`
+2. `Docs/MELODIA_SHOW_SYSTEM_ARCHITECTURE_2026-09-08.md`
+3. `Docs/ACTUAL_LIVE_SHOW_PIPELINES_RESEARCH_2026-09-08.md`
+4. `Docs/PIPELINE_RECIPES_CHORAL_SHEEP_2026-09-08.md`
+5. `Docs/AGENT_BUILD_CONTRACT.md`
+6. `Docs/CHORAL_SHEEP_CAPSTONE_TD_IMPLEMENTATION_PLAN_2026-09-08.md`
+
+Visual references:
+`../Docs/References/ChoralSheepCapstone/REFERENCE_MANIFEST.md`
+
+**Authority correction:** TouchDesigner owns Melodia's live visual interpretation and performance networks. Unreal remains the canonical game/world authority. The older `Docs/TD_GRANDMASTER_MELODIA_PLAN.md` is historical where it describes TD as a broad real-time SSOT, generic portfolio viewer, or five-style-preset authority.
+
+Current concert rule:
+
+> **Steal the timing, not the branding.**
+
+Current flagship proof:
+
+> **QUIET → C ROOT HIT → Chladni Fleece → AFTERIMAGE**
+
+
 This directory is the TouchDesigner project root for the Environment Portfolio Platform.
 The active project is `grandmaster_melodia/grandmaster_melodia7.22.toe` on the `G:` workspace.
 Embody/Envoy controls that running project through `http://127.0.0.1:9870/mcp`.
