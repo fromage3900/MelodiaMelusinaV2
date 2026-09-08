@@ -1,7 +1,7 @@
 # Melodia — what we are actually doing next
 
 **Date:** 2026-09-08  
-**Phase:** protect First Dream · produce Shorewake / Choral Sheep · close long-chain persistence
+**Phase:** protect First Dream · ship one Choral Sheep proof · present the strongest evidence
 
 > This is the production score, not the dream board. If something is beautiful but makes the core less reliable, it waits.
 > Current discovery authority is [`AGENT_START_HERE.md`](AGENT_START_HERE.md). Do not treat dated Handoffs or `_ROADBLOCKS_2026-07-31.md` as this list.
@@ -14,7 +14,21 @@ Canonical long-term direction:
 
 ---
 
-## NOW — current production
+## OWNER QUEUE — only these three tasks count right now
+
+1. **UE Choral Sheep proof** — verify deformation; ARP re-export only if needed; bind one C-root fleece response; capture REST → ROOT_C → hit → REST.
+2. **UE ↔ TD proof** — prove one real OSC `:9000` and/or Spout connection. Do not rebuild the TD scene.
+3. **Presentation proof** — make one 5–10 second AE sequence: **Creature → Motif → Harmony → World**. Only then promote the best result to the website.
+
+**Today's minimum win:** one readable Sheep screenshot or short clip.
+
+Issue #51 persistence closure is a real engineering backlog item, but it is **not a prerequisite for the next capstone image**.
+
+Do not add Git archaeology, new frameworks, website redesign, new TD infrastructure, or another research sweep to this queue.
+
+---
+
+## ENGINEERING / SEMESTER BACKLOG — not all for today
 
 Semester thesis: **First Dream is the stable technical proof. Shorewake Calling is the semester artwork. Choral Sheep is the capstone lane.**
 
@@ -34,7 +48,7 @@ Still open:
 - [ ] Add repeat-load equality + idempotency tests.
 - [ ] Trace Starskiff and Convergence durable facts vs derived/transient state before any schema v6.
 - [ ] Shorewake dress bind: 2-bone dress skeleton vs Melusina’s 465-bone skeleton.
-- [ ] Choral Sheep: owner-confirmed rig → fresh ARP/FBX → UE deformation proof → one beautiful sheep → live-imported ROOT_C.
+- [ ] Choral Sheep follow-through: owner-confirmed rig → UE deformation proof → C-root fleece binding → one beautiful captured sheep. TD ROOT_C evidence already exists; do not rebuild it.
 - [ ] Sea Above look-dev: re-export `W_Glacier_Rock`; pin Ultra Dynamic Sky before trusting A/B captures.
 
 ### Hard no's while persistence is open
