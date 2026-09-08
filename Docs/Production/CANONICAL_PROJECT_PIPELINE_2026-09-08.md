@@ -23,7 +23,74 @@ The folder `C:/EnvironmentPortfolio/` may remain a workspace container. Its old 
 5. Do not merge old cleanup/recovery branches wholesale. Extract a specific unique file or change with provenance.
 6. The dedicated `render-queue` branch is operational infrastructure and is intentionally not merged into `main`.
 
-## 3. Game / Unreal lane
+## 3. Immediate owner queue — actual tasks now
+
+This is the **sanity lock** for the next working sessions. It intentionally separates visible capstone production from long-horizon engineering backlog.
+
+### P0 — one Choral Sheep Unreal proof
+
+1. Open the current Choral Sheep skeletal asset / actor in UE5.8.
+2. Verify deformation with the current rig/export.
+3. Use an ARP re-export **only if** the current export fails the deformation check.
+4. Bind one C-root Chladni fleece response. A pre-baked TD ROOT_C plate is acceptable for the first proof; live Spout is not required to begin.
+5. Capture one readable sequence:
+
+```text
+REST
+→ Harmonize
+→ ROOT_C visible in fleece
+→ ROOT_C hit
+→ clean return to REST
+```
+
+**Finish line:** one saved screenshot or short clip where the sheep is readable and the musical response is unmistakable.
+
+Do not block this proof on creating twelve chromatic material instances. The TD repository now contains an integration **contract** that names `MI_ChoralSheep_Coat_PC*`; those assets are not yet proven present on game `main`.
+
+### P1 — one UE ↔ TouchDesigner live integration proof
+
+TouchDesigner already has the Chladni scene and committed evidence. Do not rebuild it.
+
+Current durable TD evidence includes:
+- `TD_CF_01_QUIET.png`;
+- `TD_CF_02_C_ROOT.png`;
+- `TD_CF_03_C_ROOT_HIT.png`;
+- `TD_CF_DEBUG_SIGNAL.png`;
+- `TD_CF_DEBUG_PERFORM.png`.
+
+Prove one real game/TD connection:
+- semantic OSC on UDP `:9000`;
+- and/or one verified Spout sender/receiver capture where it materially improves the proof.
+
+The UE→TD `UE_Beauty` ingest remains **VERIFY LIVE** until captured. Do not turn that one gate into a new infrastructure project.
+
+### P2 — one short presentation proof
+
+Once the UE Sheep proof exists:
+1. assemble a **5–10 second** AE sequence;
+2. communicate **Creature → Motif → Harmony → World**;
+3. use the existing TD/AE pipeline rather than adding another compositing system;
+4. promote only the strongest resulting still/clip to the website.
+
+The website stays under its recruiter soft freeze. No redesign is required.
+
+### Engineering backlog — real, but not the immediate finish line
+
+GitHub Issue #51 (atomic persistence / repeat-load closure) remains open and important. Treat it as a bounded engineering lane to resume from current `main`, **not as a prerequisite for producing the next capstone image**.
+
+### Explicitly not in the immediate queue
+
+- no more Git archaeology or branch-cleanup campaign;
+- no new gameplay framework;
+- no new save authority;
+- no broad website redesign;
+- no new TD grandmaster;
+- no new research sweep unless a concrete implementation blocker requires it;
+- no agent may expand the task list merely because an old plan contains unchecked boxes.
+
+**Current production rule:** make something visible → verify it → capture it → polish the capture → publish only the best proof.
+
+## 4. Game / Unreal lane
 
 **Engine:** Unreal Engine 5.8.
 
@@ -44,7 +111,7 @@ Runtime ownership remains explicit:
 - Wardrobe → owned/equipped outfit state and traversal capability;
 - Convergence → derived interpretation unless a fact is explicitly promoted to durable state.
 
-## 4. DCC / procedural authoring lane
+## 5. DCC / procedural authoring lane
 
 Blender/Houdini/Geometry Nodes tooling that produces game assets is coordinated from the game repository.
 
@@ -62,7 +129,7 @@ reference / design lock
 
 Large source binaries may live outside Git when appropriate, but the current import contract, scripts, manifests, evidence, and promoted game assets must resolve through the canonical game repo.
 
-## 5. Choral Sheep / capstone lane
+## 6. Choral Sheep / capstone lane
 
 Current durable game-side state includes:
 - Choral Sheep source assets and runtime actor work;
@@ -79,7 +146,7 @@ Do **not** claim the previously reported twelve `MI_ChoralSheep_Coat_PC*` instan
 
 A historical `Humber_FinalYear_Prep/Capstone_Portfolio_Tracker.md` exists on the preserved `cleanup/root-trim-docs-2026-09-06` branch. It is recovery material, not current canon, until deliberately migrated and updated.
 
-## 6. TouchDesigner / live-performance lane
+## 7. TouchDesigner / live-performance lane
 
 Canonical repo: `fromage3900/MelodiaTouchDesigner`.
 
@@ -99,7 +166,7 @@ The AE lane remains downstream:
 - gesture/audio keyframe injection;
 - editorial/reel assembly.
 
-## 7. Render / evidence lane
+## 8. Render / evidence lane
 
 Evidence levels must be named accurately:
 
@@ -119,7 +186,7 @@ Machine roles:
 
 All machines start from `main` unless explicitly assigned a feature branch.
 
-## 8. Website / recruiter lane
+## 9. Website / recruiter lane
 
 Canonical repo: `fromage3900/my-site`.
 
@@ -145,7 +212,7 @@ The recruiter-facing site remains under the 2026-09-07 soft freeze:
 - critical deployment fixes;
 - no broad route/layout/effect expansion unless the freeze is explicitly lifted.
 
-## 9. Cross-lane handoff
+## 10. Cross-lane handoff
 
 ```text
 GAME / DCC
@@ -166,7 +233,7 @@ Direction of authority is one-way for facts:
 - AE may editorialize captures but does not redefine runtime state.
 - Website copy may summarize evidence but does not create evidence.
 
-## 10. Branch policy after 2026-09-08 reconciliation
+## 11. Branch policy after 2026-09-08 reconciliation
 
 Superseded documentation/feature refs reviewed in this pass have been normalized to the canonical `main` tip.
 
