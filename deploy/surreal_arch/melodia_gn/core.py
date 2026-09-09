@@ -1214,6 +1214,8 @@ CATEGORY_META: dict[str, dict] = {
     "white_current": {"label": "White Current",      "icon": "MOD_FLUID"},
     "god_molts":   {"label": "God That Molts",        "icon": "MOD_EXPLODE"},
     "city_gen":    {"label": "Melodia City Gen",      "icon": "MOD_BUILD"},
+    "garment":     {"label": "Garment Atelier",       "icon": "MATCLOTH"},
+    "nikki":       {"label": "Infinity Nikki",        "icon": "MATFLUID"},
     "asian":       {"label": "Asian Kit",             "icon": "PROP_OFF"},
     "civic":       {"label": "Civic Kit",             "icon": "COMMUNITY"},
     "euro":        {"label": "European Kit",          "icon": "WORLD"},
