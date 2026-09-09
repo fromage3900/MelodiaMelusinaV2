@@ -86,6 +86,25 @@ Committed harness `Tools/run_p0_real_input_probe.py` was fixed and run live 4x:
   save trigger (checkpoint path?) or a Monolith static-lib call, then
   save → quit → relaunch → load → load-again with the fixed harness asserting each leg.
 
+## 8. 01:05 UTC editor death + recovery (same night)
+
+- After the PASS run, the editor (PID 46504, up since the prior day with 3 earlier
+  crash-reporter folders) died on a **D3D12RHI GPU page fault** in the transient
+  allocator heap (`TerminateOnGPUCrash`, log `01.04.53–01.05.00`). No code crash.
+  Plausibly contributed to by 7 PIE + map-load cycles in ~40 min on a stale session.
+- **Losses: none.** Last dirty check before death and first check after relaunch both
+  read 0/0; deferred Sea Above files untouched on disk since 17:44; all Lane A work
+  was already committed + pushed.
+- Editor relaunched clean (PID 27736, Idle, RiderLink + 9316 verified ~21:10 local).
+- Cadence rule going forward: **restart the editor between heavy PIE batches**; treat
+  >5 consecutive load_level+PIE cycles on one session as a crash risk, not routine.
+- New startup warning to triage (touches tonight's area, possible serializer-quirk
+  kin): `'/Script/BS_GodFile.EMelodiaTraversalRequestResult' and
+  '/Script/BS_GodFile.MelodiaTraversalRequestResult' have the same exposed Python
+  name` — enum/struct collision; rename one via `ScriptName` metadata.
+- A `MODAL_OPEN` ("asset editor has no docked tabs") fired at startup 21:10; calls
+  succeed now, but dismiss any lingering dialog before the next probe batch.
+
 ## 7. After this run
 
 - Commit deferred Sea Above actors from clean editor close (see Git Health doc §4).
