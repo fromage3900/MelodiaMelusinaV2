@@ -119,6 +119,7 @@ A late-game Oracle / predictive-field prototype is now documented as a **gated s
 Read:
 `Docs/Strategy/ORACLE_THIRTEENTH_NOTE_CAPSTONE_MISSION_2026-09-09.md`
 `Docs/Strategy/ORACLE_COSMIC_HORROR_VIRTUALIZED_FOURTH_WALL_2026-09-09.md`
+`Docs/Strategy/ORACLE_LOCAL_LLM_RUNTIME_PLAN_2026-09-09.md`
 
 Activation requires the current Choral Sheep proof, Shorewake playable route, Melusina performance, technical-art breakdowns, reel, and professor-facing proof to be safe first.
 
