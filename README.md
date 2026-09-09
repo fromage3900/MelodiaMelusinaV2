@@ -18,7 +18,9 @@
 - **Portfolio:** https://www.fromageart.xyz/
 - **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
 - **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
+- **Current capstone queue:** [CAPSTONE_NOW.md](CAPSTONE_NOW.md)
 - **Current verified state:** [CURRENT_STATE.md](CURRENT_STATE.md)
+- **Agent / contributor front door:** [AGENT_START_HERE.md](AGENT_START_HERE.md)
 - **Portfolio / render plan:** [PORTFOLIO.md](PORTFOLIO.md)
 
 > **SHOWCASE SOFT FREEZE ACTIVE — 2026-09-07.** Public/recruiter presentation is structurally frozen while the final Melusina + canonical world renders are produced and promoted. Game/semester development continues. See [the freeze contract](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
