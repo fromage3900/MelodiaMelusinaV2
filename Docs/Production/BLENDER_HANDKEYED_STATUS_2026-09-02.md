@@ -1,5 +1,7 @@
 # Melusina Blender Hand-Keyed Animation Pipeline — Status 2026-09-02
 
+> **2026-09-09 CLOSEOUT:** The owner reports the dedicated IK-retarget path for Melusina hand-keyed animation is now working in Unreal and can be used systematically alongside the mocap lane. Treat the unresolved Stage-E language below as **historical 2026-09-02 inventory**, not a current blocker. Do not reopen retarget-root-cause research unless a new clip reproduces a real deformation failure. Remaining work is clip polish, animation craft, and capture—not rebuilding the pipeline.
+
 **Generated:** 2026-09-02 (offline evidence-gather; no editor calls)
 **Canonical doc:** `Docs/Production/BLENDER_HANDKEYED_ANIM_IMPORT_PIPELINE_2026-08-22.md`
 **Companion skill:** `melusina-blender-handkeyed-import`
@@ -28,7 +30,7 @@
 |---|---|---|
 | `A_Melusina_Idle_v22.fbx` | `Exports/MelusinaAnims/A_Melusina_Idle_v22.fbx` (6.3 MB) | Stage B export complete (2026-08-22). NOT yet through Stage C (remap) or D (import). |
 | `A_Melusina_Idle_v22_ARP.fbx` | `Exports/MelusinaAnims/A_Melusina_Idle_v22_ARP.fbx` | ARP-variant export. |
-| `A_BL_FinalHandKeyed_Source_20260824.fbx` | `Exports/AnimationLibrary/Blender/` | Manifest: `lane_a_ready=true`; 464 bones, 30 FPS, cm header, animation-only. IK retarget + live non-bind proof PENDING. |
+| `A_BL_FinalHandKeyed_Source_20260824.fbx` | `Exports/AnimationLibrary/Blender/` | Manifest: `lane_a_ready=true`; 464 bones, 30 FPS, cm header, animation-only. **Pipeline-level IK retarget is owner-verified working as of 2026-09-09; per-clip promotion/evidence still applies.** |
 | `A_BL_Source_Idle_Loop__MUAL_SRC.uasset` | `Animations/SourceRetargeted/` | In UE (source-rig contract). |
 | `A_BL_Source_Idle_Loop__MUAL_TARGET.uasset` | `Animations/SourceRetargeted/` | In UE (target-rig contract). |
 | `SK_QuaterniusArmature_Idle_Loop.uasset` | `Animations/SourceRetargeted/` | In UE (source retargeted). |
@@ -92,15 +94,15 @@ This is a minimum version (4.0+). **Blender 5.2 is compatible.** The addon's mod
 ### Needs editor (:9316 up)
 
 - [ ] Stage D: actual UE import (`import_blender_melusina_idle.py` — uses `unreal` module)
-- [ ] Stage E: IK-retarget onto `SK_Melusina_Skeleton` (Monolith `animation_query batch_retarget_animations`)
-- [ ] Stage F: bind into `ABP_Melusina_Current` via Monolith (`set_state_animation`)
-- [ ] Stage G: `editor.capture_anim_frames` (ONE per session)
+- [x] Stage E: dedicated IK-retarget path onto `SK_Melusina_Skeleton` — **pipeline-level path owner-verified working 2026-09-09**
+- [ ] Stage F: bind / promote the specific clip into the intended AnimBP or sequence context
+- [ ] Stage G: capture / visual QA for the specific clip
 
 ---
 
-## 6. Next action to unblock
+## 6. Next action after pipeline unblock
 
-**Immediate (offline, unblocks the quarantine):**
+**Historical 2026-09-02 recovery notes (retain for provenance; no longer the current pipeline blocker):**
 
 1. **Confirm v22 stage blend availability.** If `G:\EnvironmentPortfolio\BS_GodFile\Melodia_Portfolio_Stage_v22_FINAL_2026-08-15.blend` is reachable, re-run Stage B to export a fresh `A_Melusina_Idle_v22.fbx`. If not, author the idle NLA track in the in-repo v23 stage blend (`Exports/PortfolioStages/Melodia_Portfolio_Stage_v23_grandmaster_RQ_20260829.blend`) and generalize `export_melusina_idle_v22.py` to point at it.
 
@@ -110,11 +112,11 @@ This is a minimum version (4.0+). **Blender 5.2 is compatible.** The addon's mod
 
 4. **Re-stage the quarantined clips.** Both `Authored/A_Melusina_Idle_v22` and `Cascadeur/A_BL_Melusina_Idle_Loop` must go through the full A→B→C→D→E→F chain. They cannot be name-matched onto `SK_Melusina_Skeleton` — that is the failure mode that quarantined them.
 
-**Editor-gated (wait for :9316):**
+**Current editor-side rule (2026-09-09):**
 
-5. Stage D import → Stage E IK-retarget → Stage F bind. These are sequential and all editor-bound. Nothing in the quarantine list can be promoted until this chain runs on the freshly exported FBX.
+5. Use the now-working dedicated IK-retarget chain for hand-keyed source animation, then bind/promote and visually QA each clip. Mocap and owner-authored clips now converge at the Melusina target skeleton through a repeatable retarget path. Do not directly name-match a Blender source clip onto the target skeleton.
 
-**Blocker:** `scripts/bind_and_verify.py` does not exist. The 2026-08-22 evidence JSON proves the bind-and-verify RAN, but the script is gone from `scripts/`. Recover it from git history or recreate from `Saved/Audit/melusina_idle_glide_final_2026-08-22.json` + `Docs/Evidence/2026-08-22_melusina_idle_glide/` before Stage F.
+**Historical tooling gap:** `scripts/bind_and_verify.py` does not exist. The 2026-08-22 evidence JSON proves the bind-and-verify RAN, but the script is gone from `scripts/`. Recover it from git history or recreate from `Saved/Audit/melusina_idle_glide_final_2026-08-22.json` + `Docs/Evidence/2026-08-22_melusina_idle_glide/` before Stage F.
 
 ---
 
