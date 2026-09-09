@@ -11,6 +11,7 @@ class USkeletalMeshComponent;
 class USphereComponent;
 class UMelodiaCompanionComponent;
 class UMelodiaCompanionDefinitionAsset;
+class UMaterialInstanceDynamic;
 
 /**
  * Native, map-agnostic home for the Choral Sheep.
@@ -29,6 +30,7 @@ public:
 
 	virtual void PostInitializeComponents() override;
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 	/** The one authored data asset that owns mesh, optional animation, and behavior identity. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|ChoralSheep")
@@ -48,6 +50,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|ChoralSheep|Movement")
 	bool bAutoFollowFirstPlayer = true;
 
+	/** Fade speed for Harmonize fleece presentation ramp in/out. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|ChoralSheep|Presentation")
+	float HarmonizeFadeSpeed = 3.0f;
+
+	/** Current Harmonize presentation blend weight (0.0 = REST, 1.0 = FULL C-ROOT EMBROIDERY). */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Melodia|ChoralSheep|Presentation")
+	float CurrentHarmonizeWeight = 0.0f;
+
+	/** Cached dynamic material instance driving the fleece shader parameters. */
+	UPROPERTY(Transient, BlueprintReadOnly, Category="Melodia|ChoralSheep|Presentation")
+	TObjectPtr<UMaterialInstanceDynamic> SheepDynamicMaterial = nullptr;
+
 	UFUNCTION(BlueprintCallable, Category="Melodia|ChoralSheep")
 	bool ApplyChoralSheepDefinition();
 
@@ -61,7 +75,7 @@ public:
 	bool TryBeginGraze(AActor* Interactor);
 
 	UFUNCTION(BlueprintCallable, Category="Melodia|ChoralSheep|Interaction")
-	bool TryBeginHarmonize(AActor* Interactor);
+	bool TryBeginHarmonize(AActor* Interactor = nullptr);
 
 	UFUNCTION(BlueprintCallable, Category="Melodia|ChoralSheep|Interaction")
 	bool TryBeginGuide(AActor* Interactor, AActor* GuideTarget);
