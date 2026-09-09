@@ -40,15 +40,15 @@ Read only this front door before expanding outward:
 2. `CAPSTONE_NOW.md` for the immediate production queue
 3. `Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md` for repository/lane/Git authority
 4. `Docs/Production/BRANCH_WORKSTATION_POLICY.md` when branches, machines, salvage, or cleanup matter
-4. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
-5. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
-6. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
-7. `CURRENT_STATE.md`
-8. `_VERTICAL_SLICE_SCOPE.md`
-9. `TODO.md`
-10. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
-11. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
-12. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
+5. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
+6. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
+7. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+8. `CURRENT_STATE.md`
+9. `_VERTICAL_SLICE_SCOPE.md`
+10. `TODO.md`
+11. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
+12. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
+13. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
 
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
 
