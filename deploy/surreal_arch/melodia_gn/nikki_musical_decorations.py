@@ -134,15 +134,27 @@ def build_nikki_star_pendant(group_name="MEL_nikki_star_pendant"):
     star_info.inputs["Object"].default_value = star_template
     link_sockets(tree, star_info.outputs["Geometry"], instance.inputs["Instance"])
     
-    # Scale
+    # Scale (uniform via CombineXYZ)
     scale = safe_node(tree, "GeometryNodeScaleInstances", (bx - 200, by))
     link_sockets(tree, instance.outputs["Instances"], scale.inputs["Instances"])
-    link_float_to_vector(tree, gin.outputs["Star Size"], scale.inputs["Scale"], factor=1.0)
+    star_scale = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 300, by - 100))
+    link_sockets(tree, gin.outputs["Star Size"], star_scale.inputs["X"])
+    link_sockets(tree, gin.outputs["Star Size"], star_scale.inputs["Y"])
+    link_sockets(tree, gin.outputs["Star Size"], star_scale.inputs["Z"])
+    link_sockets(tree, star_scale.outputs["Vector"], scale.inputs["Scale"])
     
-    # Drop
+    # Drop (negative Z offset)
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx, by))
     link_sockets(tree, scale.outputs["Instances"], set_pos.inputs["Geometry"])
-    link_float_to_vector(tree, gin.outputs["Drop"], set_pos.inputs["Offset"], axis="Z", factor=-1.0)
+    drop_vec = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 100, by - 100))
+    drop_vec.inputs["X"].default_value = 0.0
+    drop_vec.inputs["Y"].default_value = 0.0
+    drop_scale = safe_node(tree, "ShaderNodeMath", (bx - 200, by - 200))
+    drop_scale.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Drop"], drop_scale.inputs[0])
+    drop_scale.inputs[1].default_value = -1.0
+    link_sockets(tree, drop_scale.outputs[0], drop_vec.inputs["Z"])
+    link_sockets(tree, drop_vec.outputs["Vector"], set_pos.inputs["Offset"])
     
     # Realize
     realize = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 200, by))
@@ -196,15 +208,27 @@ def build_nikki_heart_filigree(group_name="MEL_nikki_heart_filigree"):
     heart_info.inputs["Object"].default_value = heart_templates[0]
     link_sockets(tree, heart_info.outputs["Geometry"], instance.inputs["Instance"])
     
-    # Scale
+    # Scale (uniform via CombineXYZ)
     scale = safe_node(tree, "GeometryNodeScaleInstances", (bx - 200, by))
     link_sockets(tree, instance.outputs["Instances"], scale.inputs["Instances"])
-    link_float_to_vector(tree, gin.outputs["Heart Size"], scale.inputs["Scale"], factor=1.0)
+    heart_scale = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 300, by - 100))
+    link_sockets(tree, gin.outputs["Heart Size"], heart_scale.inputs["X"])
+    link_sockets(tree, gin.outputs["Heart Size"], heart_scale.inputs["Y"])
+    link_sockets(tree, gin.outputs["Heart Size"], heart_scale.inputs["Z"])
+    link_sockets(tree, heart_scale.outputs["Vector"], scale.inputs["Scale"])
     
-    # Offset
+    # Offset (negative Z drop)
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx, by))
     link_sockets(tree, scale.outputs["Instances"], set_pos.inputs["Geometry"])
-    link_float_to_vector(tree, gin.outputs["Drop"], set_pos.inputs["Offset"], axis="Z", factor=-1.0)
+    drop_vec = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 100, by - 100))
+    drop_vec.inputs["X"].default_value = 0.0
+    drop_vec.inputs["Y"].default_value = 0.0
+    drop_scale = safe_node(tree, "ShaderNodeMath", (bx - 200, by - 200))
+    drop_scale.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Drop"], drop_scale.inputs[0])
+    drop_scale.inputs[1].default_value = -1.0
+    link_sockets(tree, drop_scale.outputs[0], drop_vec.inputs["Z"])
+    link_sockets(tree, drop_vec.outputs["Vector"], set_pos.inputs["Offset"])
     
     # Realize
     realize = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 200, by))
@@ -288,10 +312,14 @@ def build_nikki_wall_beads(group_name="MEL_nikki_wall_beads"):
     bead_info.inputs["Object"].default_value = bead_template
     link_sockets(tree, bead_info.outputs["Geometry"], instance_inner.inputs["Instance"])
     
-    # Scale beads
+    # Scale beads (uniform via CombineXYZ)
     scale = safe_node(tree, "GeometryNodeScaleInstances", (bx - 200, by))
     link_sockets(tree, instance_inner.outputs["Instances"], scale.inputs["Instances"])
-    link_float_to_vector(tree, gin.outputs["Bead Radius"], scale.inputs["Scale"], factor=1.0)
+    bead_scale = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 300, by - 100))
+    link_sockets(tree, gin.outputs["Bead Radius"], bead_scale.inputs["X"])
+    link_sockets(tree, gin.outputs["Bead Radius"], bead_scale.inputs["Y"])
+    link_sockets(tree, gin.outputs["Bead Radius"], bead_scale.inputs["Z"])
+    link_sockets(tree, bead_scale.outputs["Vector"], scale.inputs["Scale"])
     
     # Realize
     realize = safe_node(tree, "GeometryNodeRealizeInstances", (bx, by))

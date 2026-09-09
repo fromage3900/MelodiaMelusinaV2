@@ -44,7 +44,7 @@ def build_sdf_star_panel(group_name="MEL_sdf_star_panel"):
     bx, by = 0, 0
     
     # Panel mesh
-    plane = safe_node(tree, "GeometryNodeMeshPlane", (bx - 800, by + 200))
+    plane = safe_node(tree, "GeometryNodeMeshGrid", (bx - 800, by + 200))
     plane.inputs["Size X"].default_value = 0.15
     plane.inputs["Size Y"].default_value = 0.15
     plane.inputs["Vertices X"].default_value = 32
@@ -52,7 +52,7 @@ def build_sdf_star_panel(group_name="MEL_sdf_star_panel"):
     
     # Extrude for thickness
     extrude = safe_node(tree, "GeometryNodeExtrudeMesh", (bx - 600, by + 200))
-    extrude.inputs["Offset Z"].default_value = 0.01
+    extrude.inputs["Offset"].default_value = (0.0, 0.0, 0.01)
     link_sockets(tree, plane.outputs["Mesh"], extrude.inputs["Mesh"])
     
     # Star curve
