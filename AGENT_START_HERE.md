@@ -20,6 +20,16 @@ Active domains are split deliberately:
 
 `C:/EnvironmentPortfolio/...` paths may be valid live checkout locations. The rule is about Git boundaries: `BS_GodFile/.git`, `my-site/.git`, and the separate TD repo own their domains; the workspace root must not become a competing authority.
 
+## 0.5 Git — do not spend a day
+
+```text
+python Tools/git_ok.py
+```
+
+If it prints `git_ok: OK`, Git is not the task. Stop. Do not reconstruct merge history, do not run `Tools/git_health_audit.py` (fsck), and do not write another Git report.
+
+If it FAILs, fix the printed lines only. Protected material masters and both-parent merge drops are CI-gated.
+
 ## 1. Current reading order
 
 Read only this front door before expanding outward:
