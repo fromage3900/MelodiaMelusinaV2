@@ -86,9 +86,25 @@ Steal timing, not branding. Hyperpop dramaturgy lives in the bloom sequence (C h
 
 ---
 
+## Drawing language
+
+Board 06 still owns **who the sheep is**: compact, rounded, blush, lovable before any effect.
+
+Owner illustration language owns **how it is drawn** in this lab:
+
+- charcoal / brown textured line, not clean product UI;
+- painterly wool clumps and paper grain;
+- diamond sparkle eyes and a small singing heart;
+- sketchbook doodles (stars, hearts, swirls) kept off the body;
+- Melusina water-caustic + diamond net only on WORLD, as world-light, not as a second character.
+
+Do not turn the sheep into the pea-pod girl, the hat-girl sketch, or Melusina's T-pose. Steal line, grain, and water-light. Keep the creature.
+
+---
+
 ## Sibling
 
-`Prototypes/Web/MusicKey3D/` is the music-as-key interaction lab. This study should feel related: ivory paper, plum ink, blush / pearl / lilac fleece, restrained cyan only when the world answers.
+`Prototypes/Web/MusicKey3D/` is the music-as-key interaction lab. This study should feel like owner illustration on ivory paper: charcoal line, blush fleece, painterly wash, Melusina caustic only when the world answers.
 
 Board 02 order check (no browser required):
 

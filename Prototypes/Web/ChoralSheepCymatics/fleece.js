@@ -53,6 +53,8 @@
   let particles = [];
   let worldDust = [];
   let curls = [];
+  let doodles = [];
+  let grain = null;
   let grid = null;
   let gridN = 96;
 
@@ -77,7 +79,7 @@
   }
 
   function inFaceQuiet(x, y) {
-    return inEllipse(x, y, 78, -18, 28, 24);
+    return inEllipse(x, y, 80, -20, 34, 30);
   }
 
   function spawnInFleece() {
@@ -280,10 +282,68 @@
     cy = H * 0.54;
     scale = Math.min(W, H) / 520;
     rebuildParticles();
+    buildGrain();
+    buildDoodles();
     grid = {
       n: gridN,
       u: new Float32Array(gridN * gridN),
     };
+  }
+
+  function buildGrain() {
+    grain = document.createElement("canvas");
+    grain.width = 128;
+    grain.height = 128;
+    const g = grain.getContext("2d");
+    const img = g.createImageData(128, 128);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const n = 210 + (hash(i) * 45) | 0;
+      img.data[i] = n;
+      img.data[i + 1] = n - 6;
+      img.data[i + 2] = n - 12;
+      img.data[i + 3] = 40;
+    }
+    g.putImageData(img, 0, 0);
+  }
+
+  function buildDoodles() {
+    doodles = [];
+    const kinds = ["star", "heart", "swirl", "diamond"];
+    for (let i = 0; i < 22; i++) {
+      doodles.push({
+        kind: kinds[i % kinds.length],
+        x: hash(i * 11) * W,
+        y: hash(i * 19) * H,
+        r: 6 + hash(i * 3) * 11,
+        rot: hash(i * 7) * TAU,
+        a: 0.08 + hash(i * 13) * 0.12,
+      });
+    }
+  }
+
+  function wobbleEllipse(g, ex, ey, rx, ry, rot, seed) {
+    g.beginPath();
+    const n = 32;
+    for (let i = 0; i <= n; i++) {
+      const t = (i / n) * TAU;
+      const j = 1 + (hash(seed + i) - 0.5) * 0.055;
+      const x = ex + Math.cos(t) * rx * j;
+      const y = ey + Math.sin(t) * ry * j;
+      const xr = ex + (x - ex) * Math.cos(rot) - (y - ey) * Math.sin(rot);
+      const yr = ey + (x - ex) * Math.sin(rot) + (y - ey) * Math.cos(rot);
+      if (i === 0) g.moveTo(xr, yr);
+      else g.lineTo(xr, yr);
+    }
+    g.closePath();
+  }
+
+  function diamond(g, x, y, r) {
+    g.beginPath();
+    g.moveTo(x, y - r);
+    g.lineTo(x + r * 0.72, y);
+    g.lineTo(x, y + r);
+    g.lineTo(x - r * 0.72, y);
+    g.closePath();
   }
 
   function lerpMix(dt) {
@@ -330,41 +390,98 @@
 
   function paper() {
     const g = ctx;
-    g.fillStyle = "#eee7f4";
-    g.fillRect(0, 0, W, H);
-    const grd = g.createRadialGradient(cx, cy, 40 * scale, cx, cy, Math.max(W, H) * 0.7);
-    grd.addColorStop(0, "rgba(247, 240, 228, 0.45)");
-    grd.addColorStop(1, "rgba(238, 231, 244, 0)");
-    g.fillStyle = grd;
+    g.fillStyle = "#f3efe4";
     g.fillRect(0, 0, W, H);
 
-    g.save();
-    g.strokeStyle = "rgba(155, 140, 196, 0.13)";
-    g.lineWidth = 1;
-    const step = 28 * scale;
-    for (let x = cx % step; x < W; x += step) {
-      g.beginPath();
-      g.moveTo(x, 0);
-      g.lineTo(x, H);
-      g.stroke();
+    const wash = g.createRadialGradient(cx - 80 * scale, cy - 40 * scale, 20 * scale, cx, cy, Math.max(W, H) * 0.62);
+    wash.addColorStop(0, "rgba(244, 214, 228, 0.55)");
+    wash.addColorStop(0.45, "rgba(226, 210, 240, 0.28)");
+    wash.addColorStop(1, "rgba(243, 239, 228, 0)");
+    g.fillStyle = wash;
+    g.fillRect(0, 0, W, H);
+
+    if (grain) {
+      g.save();
+      g.globalAlpha = 0.35;
+      g.fillStyle = g.createPattern(grain, "repeat");
+      g.fillRect(0, 0, W, H);
+      g.restore();
     }
-    for (let y = cy % step; y < H; y += step) {
-      g.beginPath();
-      g.moveTo(0, y);
-      g.lineTo(W, y);
-      g.stroke();
+
+    g.save();
+    g.strokeStyle = "rgba(58, 46, 36, 0.28)";
+    g.lineWidth = 1.1 * scale;
+    g.lineCap = "round";
+    for (const d of doodles) {
+      const dx = d.x - cx;
+      const dy = d.y - cy;
+      if (Math.hypot(dx, dy) < 160 * scale) continue;
+      g.globalAlpha = d.a * (1 - mix.world * 0.55);
+      g.save();
+      g.translate(d.x, d.y);
+      g.rotate(d.rot);
+      if (d.kind === "star") {
+        g.beginPath();
+        for (let i = 0; i < 10; i++) {
+          const a = (i / 10) * TAU - Math.PI / 2;
+          const r = i % 2 ? d.r * 0.38 : d.r;
+          const x = Math.cos(a) * r;
+          const y = Math.sin(a) * r;
+          if (i === 0) g.moveTo(x, y);
+          else g.lineTo(x, y);
+        }
+        g.closePath();
+        g.stroke();
+      } else if (d.kind === "heart") {
+        g.beginPath();
+        g.moveTo(0, d.r * 0.35);
+        g.bezierCurveTo(d.r, -d.r * 0.3, d.r * 0.3, -d.r, 0, -d.r * 0.35);
+        g.bezierCurveTo(-d.r * 0.3, -d.r, -d.r, -d.r * 0.3, 0, d.r * 0.35);
+        g.stroke();
+      } else if (d.kind === "diamond") {
+        diamond(g, 0, 0, d.r * 0.7);
+        g.stroke();
+      } else {
+        g.beginPath();
+        for (let t = 0; t < 1.4; t += 0.05) {
+          const a = t * TAU;
+          const r = d.r * (t / 1.4);
+          const x = Math.cos(a) * r;
+          const y = Math.sin(a) * r;
+          if (t === 0) g.moveTo(x, y);
+          else g.lineTo(x, y);
+        }
+        g.stroke();
+      }
+      g.restore();
     }
     g.restore();
 
-    // World field: the drafting grid itself picks up nodal light.
     if (mix.world > 0.02) {
       g.save();
-      g.globalAlpha = mix.world * 0.35;
-      g.strokeStyle = "rgba(110, 200, 232, 0.55)";
-      g.lineWidth = 1.2 * scale;
-      for (let i = 0; i < 5; i++) {
+      g.globalAlpha = mix.world * 0.55;
+      g.strokeStyle = "rgba(94, 200, 232, 0.7)";
+      g.lineWidth = 1.4 * scale;
+      for (let k = 0; k < 7; k++) {
         g.beginPath();
-        g.arc(cx, cy, (150 + i * 38) * scale, 0, TAU);
+        for (let x = 0; x <= W; x += 8) {
+          const y = cy + Math.sin(x * 0.012 + k * 0.9 + mix.world * 2) * (18 + k * 7) * scale
+            + Math.sin(x * 0.03 + k) * 8 * scale;
+          if (x === 0) g.moveTo(x, y);
+          else g.lineTo(x, y);
+        }
+        g.stroke();
+      }
+      g.strokeStyle = "rgba(232, 123, 165, 0.28)";
+      const cell = 28 * scale;
+      for (let i = -8; i < 10; i++) {
+        g.beginPath();
+        g.moveTo(cx + i * cell - 180 * scale, cy - 160 * scale);
+        g.lineTo(cx + i * cell + 180 * scale, cy + 160 * scale);
+        g.stroke();
+        g.beginPath();
+        g.moveTo(cx + i * cell + 180 * scale, cy - 160 * scale);
+        g.lineTo(cx + i * cell - 180 * scale, cy + 160 * scale);
         g.stroke();
       }
       g.restore();
@@ -378,35 +495,56 @@
     g.translate(cx, cy);
     g.scale(s, s);
 
-    const wool = g.createRadialGradient(-20, -30, 10, 8, 12, 130);
-    wool.addColorStop(0, "#f6e6ee");
-    wool.addColorStop(0.45, "#e8b4c4");
-    wool.addColorStop(1, "#c98aa3");
+    if (mix.world > 0.2) {
+      g.save();
+      g.globalAlpha = mix.world * 0.45;
+      g.strokeStyle = "#7ee7ff";
+      g.lineWidth = 7;
+      wobbleEllipse(g, 0, 10, 102, 88, -0.08, 3);
+      g.stroke();
+      g.restore();
+    }
+
+    const wool = g.createRadialGradient(-28, -36, 8, 10, 16, 140);
+    wool.addColorStop(0, "#fbe8ef");
+    wool.addColorStop(0.4, "#e8b4c4");
+    wool.addColorStop(1, "#c07a96");
     g.fillStyle = wool;
-    const blob = (ex, ey, rx, ry, rot) => {
-      g.beginPath();
-      g.ellipse(ex, ey, rx, ry, rot || 0, 0, TAU);
+    const blob = (ex, ey, rx, ry, rot, seed) => {
+      wobbleEllipse(g, ex, ey, rx, ry, rot || 0, seed);
       g.fill();
     };
-    blob(0, 10, 96, 82, -0.08);
-    blob(72, -22, 50, 46, 0.18);
-    blob(-46, -8, 42, 36, 0.2);
-    blob(18, -58, 38, 28, -0.3);
+    blob(0, 10, 96, 82, -0.08, 11);
+    blob(72, -22, 50, 46, 0.18, 17);
+    blob(-46, -8, 42, 36, 0.2, 23);
+    blob(18, -58, 38, 28, -0.3, 29);
+    blob(-12, 28, 36, 24, 0.4, 31);
 
     g.fillStyle = "#d7a3b5";
-    blob(58, -62, 18, 32, 0.55);
-    blob(98, -58, 16, 30, -0.7);
+    blob(58, -62, 18, 32, 0.55, 41);
+    blob(98, -58, 16, 30, -0.7, 43);
 
-    g.fillStyle = "#c48aa0";
-    blob(-28, 86, 7, 18, 0.08);
-    blob(6, 90, 7, 18, -0.04);
-    blob(36, 88, 7, 17, 0.1);
-    blob(62, 82, 6.5, 16, 0.18);
-    g.fillStyle = "#2a1f3d";
-    blob(-28, 102, 5, 3.2, 0);
-    blob(6, 106, 5, 3.2, 0);
-    blob(36, 103, 5, 3.1, 0);
-    blob(62, 96, 4.8, 3, 0.1);
+    g.strokeStyle = "rgba(58, 46, 36, 0.72)";
+    g.lineWidth = 1.8;
+    wobbleEllipse(g, 0, 10, 96, 82, -0.08, 11);
+    g.stroke();
+    wobbleEllipse(g, 72, -22, 50, 46, 0.18, 17);
+    g.stroke();
+    wobbleEllipse(g, 58, -62, 18, 32, 0.55, 41);
+    g.stroke();
+    wobbleEllipse(g, 98, -58, 16, 30, -0.7, 43);
+    g.stroke();
+
+    g.fillStyle = "#b57a90";
+    blob(-28, 86, 8, 20, 0.08, 51);
+    blob(6, 90, 8, 20, -0.04, 53);
+    blob(36, 88, 8, 19, 0.1, 55);
+    blob(62, 82, 7.5, 18, 0.18, 57);
+    g.fillStyle = "#2c241c";
+    blob(-28, 104, 5.4, 3.4, 0, 61);
+    blob(6, 108, 5.4, 3.4, 0, 63);
+    blob(36, 105, 5.2, 3.3, 0, 65);
+    blob(62, 98, 5, 3.2, 0.1, 67);
 
     g.restore();
   }
@@ -419,8 +557,8 @@
     g.save();
     g.translate(cx, cy);
     g.scale(s, s);
-    g.strokeStyle = `rgba(255, 255, 255, ${0.28 * fade})`;
-    g.lineWidth = 1.3;
+    g.strokeStyle = `rgba(58, 46, 36, ${0.22 * fade})`;
+    g.lineWidth = 1.45;
     g.lineCap = "round";
     for (const c of curls) {
       g.beginPath();
@@ -454,8 +592,8 @@
     g.save();
     g.translate(cx, cy);
     g.scale(scale, scale);
-    g.lineWidth = 1.15;
-    g.strokeStyle = `rgba(200, 168, 232, ${0.22 + active * 0.28})`;
+    g.lineWidth = 1.35;
+    g.strokeStyle = `rgba(58, 46, 36, ${0.18 + active * 0.32})`;
     g.lineCap = "round";
     const cell = span / (n - 1);
     for (let j = 0; j < n - 1; j++) {
@@ -494,9 +632,9 @@
       const onNode = u < 0.12;
       const a = 0.18 + active * (onNode ? 0.55 : 0.12);
       if (onNode && active > 0.2) {
-        g.fillStyle = `rgba(74, 63, 107, ${a})`;
+        g.fillStyle = `rgba(44, 36, 28, ${a})`;
       } else {
-        g.fillStyle = `rgba(255, 248, 252, ${0.22 + (1 - active) * 0.18})`;
+        g.fillStyle = `rgba(255, 244, 248, ${0.2 + (1 - active) * 0.16})`;
       }
       const r = p.r * s * (onNode && active > 0.3 ? 1.25 : 0.9);
       g.beginPath();
@@ -519,8 +657,8 @@
       const u = Math.abs(field(x / 160, y / 160));
       const onNode = u < 0.18 || mix.world > 0.5;
       g.fillStyle = onNode
-        ? `rgba(110, 200, 232, ${0.18 + mix.world * 0.45})`
-        : `rgba(244, 238, 248, ${0.08 + mix.world * 0.12})`;
+        ? `rgba(126, 231, 255, ${0.22 + mix.world * 0.5})`
+        : `rgba(232, 123, 165, ${0.08 + mix.world * 0.1})`;
       g.beginPath();
       g.arc(x * s, y * s, d.r * s, 0, TAU);
       g.fill();
@@ -535,61 +673,69 @@
     g.translate(cx, cy);
     g.scale(s, s);
 
-    g.fillStyle = "#f0c3d0";
-    g.beginPath();
-    g.ellipse(78, -18, 28, 24, 0.12, 0, TAU);
+    g.fillStyle = "#f3c4d0";
+    wobbleEllipse(g, 80, -18, 30, 26, 0.12, 71);
     g.fill();
+    g.strokeStyle = "rgba(58, 46, 36, 0.7)";
+    g.lineWidth = 1.6;
+    g.stroke();
 
     g.fillStyle = "#e59bb0";
-    g.beginPath();
-    g.ellipse(70, -6, 7, 4.5, 0.2, 0, TAU);
+    wobbleEllipse(g, 70, -4, 8, 5, 0.2, 73);
     g.fill();
-    g.beginPath();
-    g.ellipse(90, -8, 7, 4.5, -0.1, 0, TAU);
+    wobbleEllipse(g, 92, -6, 8, 5, -0.1, 75);
     g.fill();
 
-    g.fillStyle = "#2a1f3d";
-    g.beginPath();
-    g.ellipse(70, -22, 3.1, 4.2, 0.1, 0, TAU);
-    g.fill();
-    g.beginPath();
-    g.ellipse(88, -24, 3.1, 4.2, -0.05, 0, TAU);
-    g.fill();
-    g.fillStyle = "rgba(255,255,255,.7)";
-    g.beginPath();
-    g.arc(69.2, -23.4, 1.05, 0, TAU);
-    g.fill();
-    g.beginPath();
-    g.arc(87.2, -25.4, 1.05, 0, TAU);
-    g.fill();
+    const eye = (x, y) => {
+      g.fillStyle = "#2c241c";
+      g.beginPath();
+      g.ellipse(x, y, 5.2, 6.6, 0.08, 0, TAU);
+      g.fill();
+      g.fillStyle = "#7ee7ff";
+      diamond(g, x - 1.1, y - 1.6, 2.1);
+      g.fill();
+      g.fillStyle = "#fff";
+      diamond(g, x + 1.6, y + 1.4, 1.15);
+      g.fill();
+    };
+    eye(70, -22);
+    eye(92, -24);
 
-    g.fillStyle = "#4a3f6b";
-    g.beginPath();
-    g.ellipse(80, -10, 4.2, 3.2, 0, 0, TAU);
+    g.fillStyle = "#4a3a46";
+    wobbleEllipse(g, 82, -8, 4.6, 3.4, 0, 77);
     g.fill();
 
     const singing = mix.C + mix.E + mix.G > 0.4;
-    g.strokeStyle = "#4a3f6b";
-    g.lineWidth = 1.3;
+    g.strokeStyle = "#2c241c";
+    g.lineWidth = 1.5;
     g.lineCap = "round";
     g.beginPath();
     if (singing) {
-      g.ellipse(80, -2, 4.5, 3.2, 0, 0, TAU);
+      g.ellipse(82, 0, 5.2, 3.6, 0, 0, TAU);
+      g.stroke();
+      g.strokeStyle = "rgba(58, 46, 36, 0.7)";
+      g.beginPath();
+      g.moveTo(78, -48);
+      g.quadraticCurveTo(84, -58, 90, -50);
+      g.quadraticCurveTo(84, -44, 78, -48);
+      g.stroke();
     } else {
-      g.moveTo(76, -2);
-      g.quadraticCurveTo(80, 1, 84, -2);
+      g.moveTo(76, 1);
+      g.quadraticCurveTo(80, 5, 84, 1);
+      g.quadraticCurveTo(88, -1, 90, 2);
+      g.stroke();
     }
-    g.stroke();
 
     g.restore();
   }
 
   function corners() {
     const g = ctx;
-    g.strokeStyle = "rgba(74, 63, 107, 0.35)";
-    g.lineWidth = 1.2;
-    const m = 18;
-    const L = 22;
+    g.strokeStyle = "rgba(58, 46, 36, 0.4)";
+    g.lineWidth = 1.3;
+    g.lineCap = "round";
+    const m = 22;
+    const L = 26;
     const marks = [
       [m, m, 1, 1],
       [W - m, m, -1, 1],
@@ -598,9 +744,9 @@
     ];
     for (const [x, y, sx, sy] of marks) {
       g.beginPath();
-      g.moveTo(x, y + sy * L);
+      g.moveTo(x + (hash(x) - 0.5) * 3, y + sy * L);
       g.lineTo(x, y);
-      g.lineTo(x + sx * L, y);
+      g.lineTo(x + sx * L, y + (hash(y) - 0.5) * 3);
       g.stroke();
     }
   }

@@ -1,18 +1,21 @@
 :root {
-  --paper: #eee7f4;
-  --paper-hi: #faf7fc;
-  --ink: #2a1f3d;
-  --plum: #4a3f6b;
-  --muted: #7b6e9d;
-  --lavender: #b8a8d8;
+  --paper: #f3efe4;
+  --paper-hi: #faf6ee;
+  --ink: #2c241c;
+  --plum: #4a3a46;
+  --muted: #7a6a62;
+  --lavender: #c9b7d4;
   --blush: #e8b4c4;
   --rose: #d48aa0;
-  --pearl: #f4eef8;
+  --pearl: #f7f0e8;
   --lilac: #c8a8e8;
-  --violet: #8b7ab3;
+  --violet: #7a5a88;
   --cream: #f7f0e4;
-  --cyan: #6ec8e8;
+  --cyan: #7ee7ff;
+  --caustic: #5ec8e8;
+  --magenta: #e87ba5;
   --gold: #e5bf62;
+  --line: #3a2e24;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +23,7 @@
 html, body {
   height: 100%;
   background: var(--paper);
-  color: var(--plum);
+  color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   overflow: hidden;
 }
@@ -49,66 +52,57 @@ html, body {
 }
 
 .kicker {
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: .68rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-size: .78rem;
+  letter-spacing: .08em;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 h1 {
   font-weight: 500;
-  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
-  letter-spacing: .18em;
-  text-transform: uppercase;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  letter-spacing: .04em;
   color: var(--ink);
-  text-shadow: 0 2px 0 rgba(255,255,255,.75);
 }
 
 .sub {
   margin-top: 6px;
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: .72rem;
+  font-style: italic;
+  font-size: .78rem;
   color: var(--muted);
-  letter-spacing: .04em;
 }
 
 .plate {
   position: absolute;
-  top: 28%;
-  width: min(220px, 22vw);
-  background: rgba(250, 247, 252, .78);
-  border: 1.5px solid var(--lavender);
-  border-radius: 16px;
+  top: 27%;
+  width: min(230px, 24vw);
+  background: rgba(250, 246, 238, .72);
+  border: 1.5px solid rgba(58, 46, 36, .35);
+  border-radius: 18px 22px 16px 20px;
   padding: 14px 16px 16px;
-  box-shadow: 0 8px 28px rgba(74, 63, 107, .08);
-  backdrop-filter: blur(8px);
+  box-shadow: 3px 4px 0 rgba(58, 46, 36, .08);
 }
 
-.left-plate { left: 24px; }
-.right-plate { right: 24px; }
+.left-plate { left: 24px; transform: rotate(-1.1deg); }
+.right-plate { right: 24px; transform: rotate(1.2deg); }
 
 .plate-label {
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: .62rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-size: .72rem;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 #state-name {
-  font-size: 1.15rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  font-size: 1.2rem;
   color: var(--ink);
   margin-bottom: 8px;
 }
 
 #state-note, .rule, .hint, .legend, .authority {
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: .68rem;
+  font-style: italic;
+  font-size: .74rem;
   line-height: 1.45;
   color: var(--muted);
 }
@@ -123,18 +117,16 @@ h1 {
   grid-template-columns: auto 1fr auto;
   gap: 8px;
   align-items: center;
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: .62rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  font-size: .68rem;
+  font-style: italic;
   color: var(--muted);
   margin-bottom: 8px;
 }
 
 .bar {
-  height: 6px;
+  height: 7px;
   border-radius: 99px;
-  background: rgba(184, 168, 216, .35);
+  background: rgba(58, 46, 36, .12);
   overflow: hidden;
 }
 
@@ -142,15 +134,15 @@ h1 {
   display: block;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--blush), var(--lilac), var(--cyan));
+  background: linear-gradient(90deg, var(--blush), var(--lilac), var(--caustic));
   transition: width .45s ease;
 }
 
-#coherence-val { color: var(--plum); font-weight: 700; min-width: 2.2em; text-align: right; }
+#coherence-val { color: var(--ink); font-weight: 700; min-width: 2.2em; text-align: right; font-style: normal; }
 
 .glyphs {
   position: absolute;
-  top: 18%;
+  top: 17%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -160,19 +152,19 @@ h1 {
 .glyph {
   width: 42px;
   height: 42px;
-  color: var(--lavender);
-  opacity: .22;
+  color: var(--line);
+  opacity: .18;
   transition: opacity .45s ease, color .45s ease, transform .45s ease;
 }
 
 .glyph.on {
   opacity: 1;
-  color: var(--plum);
+  color: var(--ink);
   transform: translateY(-2px);
 }
 
 .glyph.event {
-  color: var(--cyan);
+  color: var(--caustic);
 }
 
 .dock {
@@ -195,24 +187,23 @@ h1 {
 }
 
 .key, .btn {
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: .72rem;
-  letter-spacing: .06em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .78rem;
+  letter-spacing: .03em;
   min-height: 42px;
   padding: 8px 16px;
-  border-radius: 22px;
-  border: 1.5px solid var(--lavender);
-  background: rgba(255,255,255,.9);
-  color: var(--plum);
+  border-radius: 16px 20px 15px 18px;
+  border: 1.6px solid var(--line);
+  background: rgba(250, 246, 238, .92);
+  color: var(--ink);
   cursor: pointer;
-  transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  transition: transform .18s ease, background .18s ease, color .18s ease;
 }
 
 .key small {
   display: block;
-  font-size: .58rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  font-size: .62rem;
+  font-style: italic;
   color: var(--muted);
 }
 
@@ -222,28 +213,27 @@ h1 {
 .key:active, .btn:active { transform: translateY(0); }
 
 .key.on {
-  background: var(--plum);
+  background: var(--ink);
   color: var(--paper-hi);
-  border-color: var(--plum);
+  border-color: var(--ink);
 }
 
-.key.on small { color: var(--lilac); }
+.key.on small { color: var(--blush); }
 
 .btn.bloom {
-  border-color: var(--gold);
-  background: rgba(255, 250, 235, .95);
+  border-color: var(--magenta);
+  background: rgba(255, 236, 244, .95);
 }
 
-.btn.bloom:hover { background: var(--gold); color: var(--ink); }
+.btn.bloom:hover { background: var(--magenta); color: #fff; }
 
 .legend { text-align: center; }
-.legend b { color: var(--plum); font-weight: 700; }
+.legend b { color: var(--ink); font-weight: 700; font-style: normal; }
 .authority { opacity: .8; text-align: center; }
 
 @media (max-width: 820px) {
   .plate { display: none; }
   .glyphs { top: 14%; }
-  h1 { letter-spacing: .1em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
