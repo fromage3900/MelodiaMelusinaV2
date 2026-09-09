@@ -206,6 +206,14 @@ Content/EnvSandbox/*
 !Content/EnvSandbox/Monoliths/
 !Content/EnvSandbox/Monoliths/**
 
+# Material masters must remain addable. Merge f19b6459 deleted
+# M_Master_Nikki.uasset even though BOTH parents still had it; Content/EnvSandbox/*
+# then hid the path from a normal git add, so the lookdev never came back.
+!Content/EnvSandbox/Materials/
+Content/EnvSandbox/Materials/*
+!Content/EnvSandbox/Materials/Masters/
+!Content/EnvSandbox/Materials/Masters/**
+
 # World Partition one-file-per-actor mirror for the Monoliths levels above.
 # OFPA actors live under Content/__ExternalActors__/<original package path>/,
 # a separate top-level dir from Content/EnvSandbox/ -- the unignore above does
@@ -269,6 +277,9 @@ Tools/*
 !Tools/git_safe_push.py
 !Tools/lfs_health_audit.py
 !Tools/git_health_audit.py
+!Tools/guard_protected_assets.py
+!Tools/test_guard_protected_assets.py
+!Tools/run_contract_tests.py
 !Tools/artdrop_archive.py
 !Tools/art_gates.py
 !Tools/validate_source_control_ownership.py
