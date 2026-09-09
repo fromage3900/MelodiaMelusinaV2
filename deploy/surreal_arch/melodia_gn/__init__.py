@@ -39,6 +39,8 @@ from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge ter
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
 from . import planetary_terrain  # noqa: F401 - v3 deterministic planetary musical terrain
 from . import infinity_nikki_kit  # noqa: F401 - Infinity Nikki expanded wardrobe kit (bloom pavilion/nook/runway)
+from . import nikki_musical_decorations  # noqa: F401 - Nikki musical decorations (star/heart/bead generators)
+from . import nikki_advanced_decorations  # noqa: F401 - Nikki advanced (SDF, repeat zones, capture/store)
 from . import mother  # noqa: F401 - Faraway Mother Monolith kit (8 builders)
 from . import white_current  # noqa: F401 - White Current Monolith kit (6 builders)
 from . import god_molts  # noqa: F401 - God That Molts Monolith kit (8 builders)

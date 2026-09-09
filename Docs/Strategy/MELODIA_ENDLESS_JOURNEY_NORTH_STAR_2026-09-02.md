@@ -4,6 +4,7 @@
 **Status:** CANONICAL PRODUCT VISION  
 **Supersedes as product framing:** the finite ~12h / four-movement assumption in `Docs/FULL_GAME_LOOSE_SCOPE_2026-07-31.md` and the claim that every chapter must execute one identical six-phase loop.  
 **Does not supersede:** runtime authority, save ownership, P0 evidence, or validated subsystem boundaries.
+**Companions:** `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md` · `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
 
 ---
 
