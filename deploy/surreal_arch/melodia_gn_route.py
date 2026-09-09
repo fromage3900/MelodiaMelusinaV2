@@ -22,6 +22,12 @@ ARCH_TO_GN = {
     "ORN_FRAME": ("ornament.build_ornament_frame", "MEL_ornament_frame"),
     "ORN_PANEL": ("ornament.build_ornament_panel", "MEL_ornament_panel"),
     "ORN_GRID": ("ornament.build_ornament_grid", "MEL_ornament_grid"),
+    "ROSE_WINDOW_SMALL": ("rose_window.build_rose_window_small", "MEL_rose_window_small"),
+    "DREAMY_GOTHIC_ARCH": ("dreamy_gothic_arch.build_dreamy_gothic_arch", "MEL_dreamy_gothic_arch"),
+    "CURVED_WALL": ("curved_wall.build_curved_wall", "MEL_curved_wall"),
+    "GOLD_ORNAMENT_STRIP": ("ornament_strip.build_gold_ornment_strip", "MEL_gold_ornament_strip"),
+    "GOLD_LIGHT_STRIP": ("gold_light_strip.build_gold_light_strip", "MEL_gold_light_strip"),
+    "BARREL_VAULT_CEILING": ("barrel_vault_kit.build_barrel_vault_ceiling", "MEL_barrel_vault_ceiling"),
     # Live musical RNA aliases → Melodia GN (prefer_melodia_gn).
     # FILIGREE_* stays on monolith builders — gothic kitbash SPECS need style props.
     "TREBLE_CLEF": ("music.build_music_treble_clef", "MEL_music_treble_clef"),
@@ -70,8 +76,10 @@ def _collection_for_arch_type(arch_type: str) -> str | None:
         return "NikkiGN_Editable"
     if arch_type.startswith("ESCHER_"):
         return "EscherGN_Editable"
-    if arch_type.startswith("ORN_") or arch_type.startswith("CASTLE_") or arch_type in ("ARCH", "GAZEBO", "PORTICO"):
+    if arch_type.startswith("ORN_") or arch_type.startswith("CASTLE_") or arch_type in ("ARCH", "GAZEBO", "PORTICO", "ROSE_WINDOW_SMALL", "DREAMY_GOTHIC_ARCH", "GOLD_ORNAMENT_STRIP"):
         return "OrnamentGN_Editable"
+    if arch_type in ("CURVED_WALL", "GOLD_LIGHT_STRIP", "BARREL_VAULT_CEILING"):
+        return "StructureGN_Editable"
     return None
 
 

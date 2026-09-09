@@ -46,6 +46,11 @@ If you are an agent or reviewer: **do not start by searching every old handoff, 
 **Presentation spine:** **Creature → Motif → Harmony → World**
 
 Read these before touching the capstone lane:
+Professor-facing presentation / rehearsal:
+
+- `Docs/Semester/PAUL_NEALE_CAPSTONE_PRESENTATION_STRATEGY_2026-09-09.md` — art-first professor review strategy, provenance/ownership language, technical boundaries, and 3ds Max Astrolabe niche.
+- `Docs/Semester/PAUL_NEALE_REHEARSAL_SHEETS_2026-09-09.md` — oral-defense study pack and rapid-fire rehearsal drills.
+
 
 - `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md` — canonical capstone thesis, tool ownership, film structure, and UE/TD/AE pipeline.
 - `Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md` — **today's execution order:** verify current fully rigged source → ARP re-export if needed → UE proof → M0 beauty → M1 pitch-C Chladni proof.
