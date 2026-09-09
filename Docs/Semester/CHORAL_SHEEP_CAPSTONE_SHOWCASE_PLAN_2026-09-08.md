@@ -51,6 +51,36 @@ Current musical variation facts:
 
 These contracts are the foundation of the capstone explanation.
 
+## 2.4 Owner material lock — Nikki is part of the capstone thesis
+
+The material rule is now explicit:
+
+> **The Choral Sheep MUST use the approved Nikki-derived character material for final lookdev and all Unreal capstone proof.**
+
+Current repo-backed route:
+
+```text
+MI_ChoralSheep_Body
+  → M_Master_Toon_Character
+
+MI_ChoralSheep_Body_Chladni_C
+  → inherits MI_ChoralSheep_Body
+  → adds ROOT_C Chladni/cymatics response
+```
+
+The capstone should therefore present Chladni Fleece as **musical structure emerging through the Nikki material language**, not as a replacement shader.
+
+For showcase capture:
+- Sheep hero portrait must visibly read the Nikki material at REST;
+- wool/groom macro must show the same approved material family;
+- Harmonize close/medium must preserve the base material while revealing the cymatic embroidery;
+- final UE beauty must not use a generic toon/PBR substitute, water/landscape master, or TD/Blender approximation.
+
+The older standalone `M_Chorus_Wool_Master` proposal is superseded for P0.
+
+Coordination authority:
+`Docs/Production/P0_RECRUITER_SENDOFF_AND_CHORAL_SHEEP_VISUAL_QUEUE_2026-09-09.md`
+
 ## 2.5 Locked first technical-art experiment — Chladni Fleece
 
 The first capstone technical-art experiment is **Chladni Fleece**.
@@ -401,10 +431,10 @@ Compositing priorities:
 
 ### Beauty set
 
-1. Sheep hero portrait.
-2. Wool/groom macro.
+1. Sheep hero portrait — **approved Nikki material visible at REST**.
+2. Wool/groom macro — **Nikki surface response + wool detail**.
 3. Graze or idle personality shot.
-4. Harmonize close/medium.
+4. Harmonize close/medium — **same Nikki material, Chladni/cymatics revealed through it**.
 5. Three-sheep chord composition.
 6. Cymatic/world-response wide.
 7. Melusina + flock + destination final wide.
