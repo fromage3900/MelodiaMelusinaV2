@@ -126,7 +126,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 7. Read existing Color (FLOAT_COLOR, CORNER) for blending
     existing_attr = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx + 1800, by - 300))
-    existing_attr.data_type = "RGBA"
+    existing_attr.data_type = "FLOAT_COLOR"
     existing_attr.inputs["Name"].default_value = "Color"
     existing_val = sock(existing_attr, "Attribute", outputs=True)
     existing_exists = sock(existing_attr, "Exists", outputs=True)
