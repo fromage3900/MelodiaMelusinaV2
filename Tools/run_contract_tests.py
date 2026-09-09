@@ -51,6 +51,8 @@ SUITES = (
     Suite("Tools/test_melodia_wardrobe_transaction_contract.py", re.compile(r"validated Melodia wardrobe transaction contract")),
     Suite("Tools/test_melusina_skin_topology_contract.py", re.compile(r"validated Melusina skin topology contract")),
     Suite("Tools/test_validate_source_control_ownership.py", re.compile(r"source-control ownership validator contract \(4 assertions\)")),
+    Suite("Tools/test_guard_protected_assets.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
+    Suite("Tools/test_git_ok.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_art_gates_authority.py", re.compile(r"Ran\s+4 tests.*\bOK\b", re.S)),
     Suite("Tools/test_artdrop_archive.py", re.compile(r"Ran\s+3 tests.*\bOK\b", re.S)),
     Suite("Tools/test_faraway_mother_pcg.py", re.compile(r"Ran\s+5 tests.*\bOK\b", re.S)),
