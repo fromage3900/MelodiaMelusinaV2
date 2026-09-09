@@ -13,6 +13,8 @@ as the product. The previous framing ("the Melodia Platform", a pipeline-infrast
 inverted that and has been corrected; see
 [MELODIA_STUDIO_STARTUP_PARAGRAPH.md](MELODIA_STUDIO_STARTUP_PARAGRAPH.md).
 
+**Student / education benefits (2026-09-09):** claim queue, official sources, and renewal dates live in [`STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md`](STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md). Paste-ready vendor emails: [`STUDENT_BENEFITS_EMAILS_2026-09-09.md`](STUDENT_BENEFITS_EMAILS_2026-09-09.md). Gmail was not available to this agent; nothing has been submitted.
+
 ### Active sendoffs (refreshed 2026-09-05)
 
 **Canonical application ledger / send queue:** [RECRUITER_SENDOFFS_2026-08-25.md](RECRUITER_SENDOFFS_2026-08-25.md)  
