@@ -1,5 +1,8 @@
 # Gemini Handoff — Choral Sheep TouchDesigner + After Effects Capstone Lane
 
+> **MANDATORY CHORAL SHEEP AGENT CONTEXT:** Before changing Sheep visuals, materials, cymatics/Chladni, TouchDesigner, Geometry Nodes, or gameplay presentation, read `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`. **Board 06 + the two committed Sheep WebPs are the owner-approved visual lock, and the approved Nikki-derived Cymatics material MUST be used for final Sheep lookdev/P0 proof.** C++ owns gameplay truth; Blueprint/material/Niagara/TD present it. `collab/laptop/longterm` is the intentional parallel laptop Blender/Geometry Nodes lane: preserve it, never wholesale-merge it over current `main`, and promote useful GN work deliberately.
+
+
 **Date:** 2026-09-08  
 **Lane owner:** Gemini  
 **Scope:** TouchDesigner + After Effects planning/prep and capstone documentation  
