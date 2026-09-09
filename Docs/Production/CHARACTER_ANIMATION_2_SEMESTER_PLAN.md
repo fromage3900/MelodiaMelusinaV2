@@ -24,6 +24,7 @@
 |--------|----------|-------|
 | **Mocap import** | `Content/Python/import_rokoko_mocap.py` | Rokoko FBX → `A_Src_Rokoko_*` on `SK_MocapSource` |
 | **Mocap retarget** | `Content/Python/headless_retarget_mocap.py` | `A_Src_*` → `A_Mocap_*` on `SK_Melusina` via `RTG_Mocap_to_Melusina_Current` |
+| **Hand-keyed retarget** | dedicated source-rig → IK Retargeter → `SK_Melusina_Skeleton` path | **Owner-verified working 2026-09-09.** Hand-keyed Blender clips and mocap now have a repeatable convergence path; treat animation polish as content work, not pipeline R&D. |
 | **Headless runner** | `Tools/run_headless_mocap_retarget.ps1` | Editor-closed batch retarget, writes `Saved/Melodia/retarget_report.json` |
 | **Animation probe** | `Tools/probe_ue_animation_tracks.py` | Read-only bone pose sampling for root-motion verification |
 | **Contract tests** | `Tools/test_melusina_animation_library.py` | 343-line offline test suite for manifest validation |
