@@ -1,7 +1,7 @@
 # Current State — Melodia (BS_GodFile)
 
 **Canonical State Document**
-**Last Updated:** 2026-09-08 (front-door score/scope reconciled; runtime evidence below remains grounded in the 2026-09-05 verification pass)
+**Last Updated:** 2026-09-09 (front-door health gate; Choral Sheep UE proof is the owner queue; runtime evidence below remains grounded in the 2026-09-05 verification pass)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
 **Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS (captured revision) · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals) · Issue #51 long-chain persistence still OPEN**
 **Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
@@ -224,6 +224,12 @@ carry this work. Off-machine copies live on `recovery/unify-histories-20260904` 
 ### 7.5 Front-door reconciliation — 2026-09-08
 
 `TODO.md` and `_VERTICAL_SLICE_SCOPE.md` were reconciled with this document and `AGENT_START_HERE.md`. They no longer claim that restart/package proof never ran, or that 10/10 gates are the current scoreboard. Issue #51 remains the open long-chain persistence boundary. Leftover root audit copies now stub to `Docs/Archive/RootLegacy/`.
+
+### 7.6 Front-door health — 2026-09-09
+
+Periodic git/status drift is gated by `python Tools/front_door_health.py`. PR CI runs contradiction checks. Monday CI runs `--age` so source movement without a `CURRENT_STATE.md` refresh fails in the open. The tool does not auto-write docs.
+
+Owner queue remains Choral Sheep UE proof → one UE↔TD connection → one short AE sequence (`TODO.md`).
 
 ---
 *Melodia © 2026. Authoritative State Ledger.*

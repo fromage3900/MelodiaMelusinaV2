@@ -1,6 +1,6 @@
 # Melodia Agent Start Here
 
-**Status authority date:** 2026-09-08  
+**Status authority date:** 2026-09-09  
 **Purpose:** One current discovery contract for every AI / IDE / remote agent.
 
 > **Do not derive current project state from an old handoff, old roadblock file, old session note, or the absence of a file on `main`.**
@@ -40,6 +40,14 @@ Read only this front door before expanding outward:
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
 
 Root files stamped `HISTORICAL` or replaced with archive stubs are memory, not status. Current score is `TODO.md`. Current slice scope is `_VERTICAL_SLICE_SCOPE.md`. Capstone/TD contracts stay live and are not historical.
+
+Before trusting or rewriting status, run:
+
+```text
+python Tools/front_door_health.py --brief
+```
+
+`--ci` is the PR gate (contradictions). `--age` is the Monday reminder: production source moved and `CURRENT_STATE.md` was not refreshed. The tool does not rewrite docs and does not merge branches.
 
 ## 2. Freshness rule
 

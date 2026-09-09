@@ -51,6 +51,9 @@ jobs:
           fi
           python Tools/guard_deprecated_workspace_refs.py --base "$base"
 
+      - name: Front-door health
+        run: python Tools/front_door_health.py --ci
+
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json
 

@@ -46,9 +46,18 @@ WIDTH = 78
 # every doc in the repo. See the summary line in view_staleness() for the
 # corrected wording.
 DOC_SUBJECTS = {
-    "Docs/BLUEPRINT_WIRING_CONTRACT_2026-08-07.md": [
-        "Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.h",
-        "Source/BS_GodFile/MelodiaIntegration/MelodiaInputContextSubsystem.h",
+    "AGENT_START_HERE.md": [
+        "CURRENT_STATE.md",
+        "TODO.md",
+        "REPOSITORY_AUTHORITY.md",
+    ],
+    "CURRENT_STATE.md": [
+        "Source/BS_GodFile/MelodiaIntegration",
+        "Docs/P0_TASK_LEDGER.json",
+    ],
+    "TODO.md": [
+        "Docs/P0_TASK_LEDGER.json",
+        "Source/BS_GodFile/MelodiaIntegration",
     ],
     "_VERTICAL_SLICE_SCOPE.md": [
         "Source/BS_GodFile/MelodiaIntegration",
@@ -57,18 +66,9 @@ DOC_SUBJECTS = {
         "Tools/bp_live_path.py",
         "Tools/graph_reachability.py",
     ],
-    "_SESSION_HANDOFF.md": [
-        "Source/BS_GodFile/MelodiaIntegration",
-    ],
     "AGENTS.md": [
         "Tools",
         "_AGENT_WORKING_AGREEMENT.md",
-    ],
-    "_TASK_QUEUE.md": [
-        "Source/BS_GodFile/MelodiaIntegration",
-    ],
-    "CURRENT_STATE.md": [
-        "Source/BS_GodFile/MelodiaIntegration",
     ],
     "README.md": [
         "Source/BS_GodFile",
