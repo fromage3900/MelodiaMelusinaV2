@@ -41,6 +41,7 @@ Full map: [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md). Process: label →
 - `RECEIPT_WIRING_BATCH4_*.md` (pending Phase A)
 - `RECEIPT_FLIPBOOK_*.md` (pending Phase B)
 - `RECEIPT_MATERIALS_CLEAN_ENV_*.md` (pending Phase C)
+- [RECEIPT_OFFLINE_WORLDGRID_FLIPBOOK_2026-09-09.md](RECEIPT_OFFLINE_WORLDGRID_FLIPBOOK_2026-09-09.md) (offline inventory)
 
 ## Hard rules
 - One concern per PR / isolated batch from **main**.
@@ -48,3 +49,4 @@ Full map: [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md). Process: label →
 - No Monolith `save_packages` / `recompile_material`. Owner Ctrl+S for editor packages.
 - Do not run graph-clearing landscape rebuild scripts against the active master.
 - Soft-freeze for Live Link / Rokoko satisfied via ALL_MATERIALS on main; remaining polish is Batch 4 + Lane D + clean-env (this index).
+
