@@ -49,6 +49,10 @@ Use as a committed technical/visual target, not as proof that every referenced r
 
 ## Choral Sheep Capstone reference boards
 
+**Mandatory agent contract:** `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md` — read before Sheep visual/material/TD/GN/gameplay-presentation changes; this locks the owner-approved boards, mandatory Nikki Cymatics material path, C++ gameplay authority, TD presentation boundary, and intentional laptop GN lane.
+
+
+
 **Canonical folder:** `Docs/References/ChoralSheepCapstone/`
 
 Use this set for Capstone 01 / Chladni Fleece / TD-AE presentation work:
