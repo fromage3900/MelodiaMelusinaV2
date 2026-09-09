@@ -90,6 +90,18 @@ Unless a concrete blocker appears, do **not** turn the current session into:
 - speculative tooling research;
 - re-rigging assets that already deform correctly.
 
+
+## Deferred end-of-semester stretch — Oracle / Thirteenth Note
+
+A late-game Oracle / predictive-field prototype is now documented as a **gated stretch mission**, not current P0.
+
+Read:
+`Docs/Strategy/ORACLE_THIRTEENTH_NOTE_CAPSTONE_MISSION_2026-09-09.md`
+
+Activation requires the current Choral Sheep proof, Shorewake playable route, Melusina performance, technical-art breakdowns, reel, and professor-facing proof to be safe first.
+
+Do **not** treat this as permission to start a new global AI/gameplay framework during current production. The plan explicitly reuses the existing quantum service, Ollama path, Quill authority, MPC/Niagara presentation, and C++ gameplay authority.
+
 ## Git rule
 
 Run:
