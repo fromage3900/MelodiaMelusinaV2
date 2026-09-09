@@ -203,3 +203,20 @@ GN_MH_*  = optional scene-local wrapper / historical plan alias
 ```
 
 Do not infer missing implementation from a missing `GN_MH_*` name.
+
+---
+
+## ♬ Choral Sheep / Chladni Fleece / Nikki Cymatics
+
+If the task mentions **Choral Sheep**, **Chladni Fleece**, **Nikki Cymatics**, **Sheep lookdev**, or Sheep **TouchDesigner / Geometry Nodes** presentation, stop broad repo discovery and open:
+
+`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`
+
+Preserve these locks:
+
+- Board 06 + the two committed Sheep WebPs are the owner-approved visual lock;
+- final Sheep lookdev / P0 proof uses the approved Nikki-derived Cymatics material (`MI_ChoralSheep_Body` → `M_Master_Toon_Character`, Chladni as a child, not a replacement shader);
+- C++ owns gameplay truth; Blueprint / material / Niagara / TD present it;
+- `collab/laptop/longterm` is the intentional laptop Blender / Geometry Nodes lane — inspect and promote in scoped batches; never wholesale-merge or delete it as stale.
+
+Do not reparent Sheep off `M_Master_Toon_Character`. The Nikki **character** master `M_Master_Nikki.uasset` is restored on `main` as a protected EnvSandbox showcase/glitter asset; it is not the Sheep body parent.
