@@ -1,14 +1,9 @@
-"""Garment vertex AO — bakes fold-depth ambient occlusion into vertex colors.
-
-Reads 'tension_fold' attribute (or derives from rest_position deviation) and
-concave curvature to darken fold creases. Infinity Nikki style.
-"""
+"""Garment vertex AO — bakes fold-depth ambient occlusion into vertex colors."""
 
 from __future__ import annotations
 import bpy
-
 from .core import (
-    add_float_param, add_int_param, color_node, label_tree,
+    add_float_param, add_int_param, label_tree,
     link_sockets, new_geometry_tree, register_builder, safe_node, sock,
 )
 
@@ -22,23 +17,22 @@ def _math(tree, op, loc):
 def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
     """Bake garment fold AO into vertex colors."""
     tree, gin, gout = new_geometry_tree(group_name)
-
     add_float_param(tree, "AO Strength", 1.0, 0.0, 5.0)
     add_float_param(tree, "Curvature AO", 0.5, 0.0, 2.0)
     add_float_param(tree, "Base Color", 1.0, 0.0, 1.0)
-    add_int_param(tree, "Blend Mode", 0, 0, 2)  # 0=Multiply, 1=Add, 2=Override
+    add_int_param(tree, "Blend Mode", 0, 0, 2)
 
     geo = sock(gin, "Geometry", outputs=True)
     bx, by = 0, 0
 
-    # 1. Read tension_fold (FLOAT, POINT)
+    # 1. Read tension_fold (FLOAT)
     tension_attr = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx, by))
     tension_attr.data_type = "FLOAT"
     tension_attr.inputs["Name"].default_value = "tension_fold"
-    tension_fold_val = sock(tension_attr, "Attribute", outputs=True)
+    tension_val = sock(tension_attr, "Attribute", outputs=True)
     tension_exists = sock(tension_attr, "Exists", outputs=True)
 
-    # 2. Rest-deviation proxy: |position - rest_position|
+    # 2. Rest-deviation proxy
     pos = safe_node(tree, "GeometryNodeInputPosition", (bx, by - 200))
     rest_attr = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx, by - 200))
     rest_attr.data_type = "FLOAT_VECTOR"
@@ -55,26 +49,24 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
     link_sockets(tree, sock(diff, "Vector", outputs=True), sock(proxy_len, "Vector"))
     proxy_val = sock(proxy_len, "Value", outputs=True)
 
-    # 3. Select fold depth: tension_fold if exists, else proxy
-    fold_depth_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 600, by))
-    fold_depth_sw.input_type = "FLOAT"
-    link_sockets(tree, tension_exists, sock(fold_depth_sw, "Switch"))
-    link_sockets(tree, proxy_val, sock(fold_depth_sw, "False"))
-    link_sockets(tree, tension_fold_val, sock(fold_depth_sw, "True"))
-    fold_depth = sock(fold_depth_sw, "Output", outputs=True)
+    # 3. Select fold depth
+    fold_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 600, by))
+    fold_sw.input_type = "FLOAT"
+    link_sockets(tree, tension_exists, sock(fold_sw, "Switch"))
+    link_sockets(tree, proxy_val, sock(fold_sw, "False"))
+    link_sockets(tree, tension_val, sock(fold_sw, "True"))
+    fold_depth = sock(fold_sw, "Output", outputs=True)
 
-    # 4. Fold AO: clamp(depth * strength, 0, 1)
-    fold_ao_mul = _math(tree, "MULTIPLY", (bx + 800, by))
-    link_sockets(tree, fold_depth, fold_ao_mul.inputs[0])
-    link_sockets(tree, sock(gin, "AO Strength", outputs=True), fold_ao_mul.inputs[1])
-
-    fold_ao_clamp = safe_node(tree, "ShaderNodeClamp", (bx + 1000, by))
-    sock(fold_ao_clamp, "Min").default_value = 0.0
-    sock(fold_ao_clamp, "Max").default_value = 1.0
-    link_sockets(tree, fold_ao_mul.outputs[0], sock(fold_ao_clamp, "Value"))
+    # 4. AO = clamp(depth * strength, 0, 1)
+    ao_mul = _math(tree, "MULTIPLY", (bx + 800, by))
+    link_sockets(tree, fold_depth, ao_mul.inputs[0])
+    link_sockets(tree, sock(gin, "AO Strength", outputs=True), ao_mul.inputs[1])
+    ao_clamp = safe_node(tree, "ShaderNodeClamp", (bx + 1000, by))
+    sock(ao_clamp, "Min").default_value = 0.0
+    sock(ao_clamp, "Max").default_value = 1.0
+    link_sockets(tree, ao_mul.outputs[0], sock(ao_clamp, "Value"))
 
     # 5. Curvature: dot(vertex_normal, blurred_normal)
-    # Blender 5.2: GeometryNodeInputNormal gives per-point normals
     normal_node = safe_node(tree, "GeometryNodeInputNormal", (bx, by - 400))
     normal = sock(normal_node, "Normal", outputs=True)
 
@@ -99,7 +91,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 6. Combine: final = base * (1 - fold_ao*0.5) * (1 - curv_ao*0.3)
     fold_dark = _math(tree, "MULTIPLY", (bx + 1000, by))
-    link_sockets(tree, fold_ao_clamp.outputs[0], fold_dark.inputs[0])
+    link_sockets(tree, ao_clamp.outputs[0], fold_dark.inputs[0])
     fold_dark.inputs[1].default_value = 0.5
     fold_factor = _math(tree, "SUBTRACT", (bx + 1200, by))
     fold_factor.inputs[0].default_value = 1.0
@@ -126,7 +118,6 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 7. Read existing Color (FLOAT_COLOR, CORNER) for blending
     existing_attr = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx + 1800, by - 300))
-    existing_attr.data_type = "FLOAT_COLOR"
     existing_attr.inputs["Name"].default_value = "Color"
     existing_val = sock(existing_attr, "Attribute", outputs=True)
     existing_exists = sock(existing_attr, "Exists", outputs=True)
@@ -187,7 +178,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
     link_sockets(tree, sock(blend_sw2, "Output", outputs=True), sock(final_sw, "True"))
     final_color = sock(final_sw, "Output", outputs=True)
 
-    # 12. Store as 'Color' (FLOAT_COLOR, CORNER)
+    # 12. Store as 'Color' (RGBA, CORNER)
     store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 3000, by - 100))
     store.data_type = "RGBA"
     store.domain = "CORNER"
