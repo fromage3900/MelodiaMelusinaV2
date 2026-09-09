@@ -1,0 +1,52 @@
+{
+  "schema": "MelodiaChladniSheet-draft-v1",
+  "id": "Chl_Sq_n2m3_C_9b6e",
+  "family": "C",
+  "notes": [
+    {
+      "name": "C",
+      "octave": 4,
+      "hz": 261.63,
+      "amp": 1.0
+    }
+  ],
+  "geometry": "square",
+  "modes": [
+    {
+      "n": 2,
+      "m": 3,
+      "w": 0.698
+    }
+  ],
+  "seed": 39790,
+  "rank": 0.6912,
+  "nodal_length": 3.994,
+  "scores": {
+    "order": 0.7,
+    "legibility": 1.0,
+    "negative_space": 0.1667,
+    "symmetry": 0.855,
+    "coherence": 1.0
+  },
+  "rank_weights": {
+    "order": 0.25,
+    "legibility": 0.2,
+    "negative_space": 0.2,
+    "symmetry": 0.25,
+    "coherence": 0.1
+  },
+  "display_name": "Square 23 - C",
+  "production_note": "draft preview; owner picks for texture authoring",
+  "name_model": "deterministic-fallback",
+  "palette": {
+    "field": "#F6F0E3",
+    "frame": "#8F83C4",
+    "blush": "#D98CA6",
+    "mauve": "#A96E96",
+    "lilac": "#7E74C9",
+    "pearl_shadow": "#B7AC99",
+    "cyan": "#4FA8BE"
+  },
+  "palette_provenance": "derived from BOARD_06 language: ivory field, lavender drafting lines, blush/mauve creature, restrained cyan accent; owner review required before real texture authoring",
+  "status": "draft"
+}

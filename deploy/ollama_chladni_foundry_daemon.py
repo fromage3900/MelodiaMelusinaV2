@@ -75,11 +75,11 @@ def slug(s):
     return re.sub(r"[^A-Za-z0-9_-]", "_", s)
 
 
-def sample_candidate(rng):
+def sample_candidate(rng, family=None, geometry=None):
     """One review-grade candidate spec. family/geometry/mode chosen by seeded rng."""
-    fam = rng.choices(["C", "C_E", "C_E_G"], weights=[0.5, 0.3, 0.2])[0]
+    fam = family or rng.choices(["C", "C_E", "C_E_G"], weights=[0.5, 0.3, 0.2])[0]
     notes = FAMILIES[fam]
-    geom = rng.choices(["square", "circular"], weights=[0.55, 0.45])[0]
+    geom = geometry or rng.choices(["square", "circular"], weights=[0.55, 0.45])[0]
     modes = []
     if geom == "square":
         for _ in notes:
@@ -478,12 +478,12 @@ def existing_ids():
     return {p.stem for p in OUT.glob("*.json")}
 
 
-def mint_once(rng, no_ollama=False, cap=CAP):
+def mint_once(rng, no_ollama=False, cap=CAP, family=None, geometry=None):
     ids = existing_ids()
     if len(ids) >= cap:
         return None
     for _ in range(40):
-        spec = sample_candidate(rng)
+        spec = sample_candidate(rng, family=family, geometry=geometry)
         if spec["id"] in ids:
             continue
         sheet, svg = build_sheet(spec, no_ollama=no_ollama)
@@ -491,23 +491,112 @@ def mint_once(rng, no_ollama=False, cap=CAP):
             continue
         return sheet, svg
     return None
+def export_sheets(ids, dest):
+    """Copy picked sheets + SVGs into a committable review dir; write INDEX.md + contact HTML."""
+    dest = Path(dest)
+    dest.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for cid in ids:
+        jp, sp = OUT / f"{cid}.json", OUT / f"{cid}.svg"
+        if not (jp.exists() and sp.exists()):
+            log(f"export skip (missing): {cid}")
+            continue
+        sheet = json.loads(jp.read_text(encoding="utf-8"))
+        svg = sp.read_text(encoding="utf-8")
+        (dest / f"{cid}.json").write_text(json.dumps(sheet, indent=2), encoding="utf-8")
+        (dest / f"{cid}.svg").write_text(svg, encoding="utf-8")
+        rows.append((sheet.get("rank", 0.0), sheet))
+    rows.sort(reverse=True)
+    lines = ["# Chladni sheets — owner review export", "",
+             f"Shelf: `{OUT}` · schema `{SCHEMA}` · exported "
+             f"{time.strftime('%Y-%m-%d %H:%M')}", ""]
+    for rank, s in rows:
+        md = s.get("modes", [{}])[0]
+        mstr = (f"n{md.get('n')}m{md.get('m')}" if s.get("geometry") == "square"
+                else f"n{md.get('n')}p{md.get('p')}")
+        lines.append(f"## {s.get('display_name', s['id'])} (rank {rank})")
+        lines.append(f"- id `{s['id']}` · family {s.get('family')} · {s.get('geometry')} "
+                     f"{mstr} · seed {s.get('seed')} · preview `{s['id']}.svg`")
+        lines.append(f"- note: {s.get('production_note', '')}")
+        lines.append("")
+    (dest / "INDEX.md").write_text("\n".join(lines), encoding="utf-8")
+    cards = []
+    for rank, s in rows:
+        svg = (dest / f"{s['id']}.svg").read_text(encoding="utf-8")
+        inner = svg[svg.find(">") + 1:].replace("</svg>", "")
+        cards.append(
+            f"<figure><div>{inner}</div><figcaption>{esc(s.get('display_name', s['id']))}"
+            f" — rank {rank}</figcaption></figure>")
+    html = ("<html><head><meta charset='utf-8'><title>Chladni review export</title>"
+            "<style>figure{display:inline-block;width:240px;margin:8px;vertical-align:top}"
+            "figcaption{font-family:Georgia,serif;font-size:12px}</style></head><body>"
+            + "".join(cards) + "</body></html>")
+    (dest / "contact_sheet.html").write_text(html, encoding="utf-8")
+    return len(rows)
+
+
+def name_sheets_batch(sheets, no_ollama=False):
+    """One Ollama call names up to N sheets; deterministic fallback per sheet on failure."""
+    if no_ollama or not sheets:
+        return
+    descs = "; ".join(f"{s['id']}: {fallback_name({'geometry': s['geometry'], 'modes': s['modes'], 'family': s['family']})}" for s in sheets)
+    ask = ollama_json(
+        f"Name Chladni nodal-pattern drafts for a cozy rhythm JRPG proof board. "
+        f"Patterns: {descs}. Palette: blush/pearl/lilac/cream. "
+        f'Output ONLY a JSON array, one object per id: '
+        f'[{{"id": "...", "display_name": "<=5 words", '
+        f'"production_note": "<=18 words"}}]. No markdown.')
+    got = {}
+    if isinstance(ask, list):
+        for item in ask:
+            if isinstance(item, dict) and item.get("id"):
+                got[item["id"]] = item
+    elif isinstance(ask, dict) and "items" in ask:
+        for item in ask["items"]:
+            if isinstance(item, dict) and item.get("id"):
+                got[item["id"]] = item
+    for s in sheets:
+        item = got.get(s["id"], {})
+        s["display_name"] = item.get("display_name") or fallback_name(
+            {"geometry": s["geometry"], "modes": s["modes"], "family": s["family"]})
+        s["production_note"] = item.get("production_note") or \
+            "draft preview; owner picks for texture authoring"
+        s["name_model"] = (ask.get("_model", MODEL) if isinstance(ask, dict)
+                           else MODEL)
+
+
 def parse_args(argv=None):
     p = argparse.ArgumentParser(description="Chladni pattern foundry daemon (draft sheets)")
     p.add_argument("--once", type=int, default=0, help="mint N sheets then exit")
     p.add_argument("--cap", type=int, default=CAP)
     p.add_argument("--seed", type=int, default=None)
     p.add_argument("--no-ollama", action="store_true", help="offline: skip model naming lane")
+    p.add_argument("--family", default=None, choices=["C", "C_E", "C_E_G"])
+    p.add_argument("--geometry", default=None, choices=["square", "circular"])
+    p.add_argument("--name-batch", type=int, default=0,
+                   help="name up to N freshly minted sheets with ONE model call, then exit")
+    p.add_argument("--export", default=None, help="comma-separated sheet ids to export")
+    p.add_argument("--export-dir", default=None)
     return p.parse_args(argv)
 
 
 def run_loop(args, rng, stops=None):
     stops = stops or STOPS
+    if args.export and args.export.strip().lower() not in ("", "none", "off"):
+        ids = [c.strip() for c in args.export.split(",") if c.strip()]
+        dest = Path(args.export_dir) if args.export_dir else \
+            ROOT / "Docs" / "References" / "ChoralSheepCapstone" / "ChladniSheets"
+        n = export_sheets(ids, dest)
+        log(f"exported {n}/{len(ids)} sheets to {dest}")
+        return n
     made = 0
+    batch = []
     while not stopped(stops) and (args.once and made < args.once or not args.once):
         if len(existing_ids()) >= args.cap:
             log(f"cap reached ({args.cap}); exit")
             break
-        got = mint_once(rng, no_ollama=args.no_ollama, cap=args.cap)
+        got = mint_once(rng, no_ollama=True, cap=args.cap,
+                        family=args.family, geometry=args.geometry)
         if got is None:
             log("no mintable candidate this pass; exit")
             break
@@ -515,8 +604,21 @@ def run_loop(args, rng, stops=None):
         write_sheet(sheet, svg)
         made += 1
         log(f"written: {sheet['id']} rank={sheet['rank']} ({sheet['display_name']})")
+        if args.name_batch and not args.no_ollama and len(batch) < args.name_batch:
+            batch.append(sheet)
         if not args.once:
             time.sleep(SLEEP_S)
+    if batch:
+        name_sheets_batch(batch, no_ollama=args.no_ollama)
+        OUT.mkdir(parents=True, exist_ok=True)
+        for s in batch:
+            jp = OUT / f"{s['id']}.json"
+            data = json.loads(jp.read_text(encoding="utf-8"))
+            data["display_name"] = s["display_name"]
+            data["production_note"] = s["production_note"]
+            data["name_model"] = s["name_model"]
+            jp.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        log(f"batch-named {len(batch)} sheets")
     log("exit")
     return made
 

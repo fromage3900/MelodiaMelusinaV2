@@ -104,6 +104,52 @@ def main():
     except Exception as e:
         check(False, "ranker never raises on degenerate field", str(e))
 
+    # Export round-trip: build a sheet in a temp shelf, export, verify files.
+    with tempfile.TemporaryDirectory() as td:
+        import pathlib
+        bak_out = cf.OUT
+        cf.OUT = pathlib.Path(td) / "shelf"
+        try:
+            rngx = random.Random(23)
+            specx, sheetx, svgx = None, None, None
+            for _ in range(30):
+                cand = cf.sample_candidate(rngx)
+                built, art = cf.build_sheet(cand, no_ollama=True)
+                if built is not None:
+                    specx, sheetx, svgx = cand, built, art
+                    break
+            check(sheetx is not None, "export fixture minted", "")
+            if sheetx is not None:
+                cf.write_sheet(sheetx, svgx)
+                dest = pathlib.Path(td) / "exp"
+                n = cf.export_sheets([sheetx["id"]], dest)
+                check(n == 1, "export writes one sheet set", f"n={n}")
+                idx = (dest / "INDEX.md").read_text(encoding="utf-8")
+                check(sheetx["id"] in idx, "INDEX.md lists the sheet id", "")
+                html = (dest / "contact_sheet.html").read_text(encoding="utf-8")
+                check("<figure>" in html, "contact sheet embeds the SVG preview", "")
+                n2 = cf.export_sheets([sheetx["id"]], dest)
+                check(n2 == 1, "re-export is stable", f"n2={n2}")
+        finally:
+            cf.OUT = bak_out
+
+    # Naming batch is a pure offline no-op when no_ollama is set.
+    demo2 = {"id": "Demo_Y", "geometry": "square",
+             "modes": [{"n": 1, "m": 1, "w": 1.0}], "family": "C"}
+    cf.name_sheets_batch([demo2], no_ollama=True)
+    check("display_name" not in demo2, "offline naming leaves sheet untouched", "")
+    check("C" in cf.fallback_name({"geometry": "square",
+                                   "modes": [{"n": 1, "m": 1, "w": 1.0}],
+                                   "family": "C"}),
+          "fallback naming is deterministic and readable", "")
+
+    # Filters: family/geometry-pinned sampling always honors the pin.
+    rngf = random.Random(11)
+    pinned = [cf.sample_candidate(rngf, family="C", geometry="circular")
+              for _ in range(10)]
+    check(all(s["family"] == "C" and s["geometry"] == "circular" for s in pinned),
+          "--family/--geometry pins honored", "")
+
     # Stop marker honored: pre-set marker dir -> loop exits immediately.
     with tempfile.TemporaryDirectory() as td:
         import pathlib
