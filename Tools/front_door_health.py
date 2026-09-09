@@ -42,6 +42,10 @@ FORBIDDEN_CURRENT_CLAIMS = (
         "CURRENT_STATE.md",
         re.compile(r"(?im)^\*\*Overall Status:\*\*.*10/10 P0 Completion Gates PASS"),
     ),
+    (
+        "CURRENT_STATE.md",
+        re.compile(r"(?im)^\*\*`main` and `origin/main` are diverged lineages\*\*"),
+    ),
     ("TODO.md", re.compile(r"\[ \] Run full process restart proof")),
     ("TODO.md", re.compile(r"\[ \] Run packaged-build proof")),
 )
