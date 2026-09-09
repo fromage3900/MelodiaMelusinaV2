@@ -10,6 +10,8 @@
 
 **Companion cosmic-horror / fourth-wall design:** `Docs/Strategy/ORACLE_COSMIC_HORROR_VIRTUALIZED_FOURTH_WALL_2026-09-09.md`
 
+**Companion local-LLM runtime plan:** `Docs/Strategy/ORACLE_LOCAL_LLM_RUNTIME_PLAN_2026-09-09.md`
+
 ---
 
 ## 1. Mission thesis
