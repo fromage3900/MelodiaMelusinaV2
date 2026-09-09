@@ -1,5 +1,8 @@
 # Choral Sheep — UE Direct Work Plan (2026-09-08)
 
+> **MANDATORY CHORAL SHEEP AGENT CONTEXT:** Before changing Sheep visuals, materials, cymatics/Chladni, TouchDesigner, Geometry Nodes, or gameplay presentation, read `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`. **Board 06 + the two committed Sheep WebPs are the owner-approved visual lock, and the approved Nikki-derived Cymatics material MUST be used for final Sheep lookdev/P0 proof.** C++ owns gameplay truth; Blueprint/material/Niagara/TD present it. `collab/laptop/longterm` is the intentional parallel laptop Blender/Geometry Nodes lane: preserve it, never wholesale-merge it over current `main`, and promote useful GN work deliberately.
+
+
 **Replaces:** execution order in `CHORAL_SHEEP_INTEGRATION_RUNBOOK.md` + 08-25/26/28 docs (all retained as rationale).
 **Recorded decisions:** Wool Lab = **A (ship flat)** per lab recommendation (sat 0.38, Worley/fibers deferred) · reframe: `choralsheepbase_*` PNGs are legacy single-texture exports; **12 PC coat albedos are the real color system** (`Saved/Audit/choral_sheep/houdini_variants/`). **Owner material lock (2026-09-09): final Sheep lookdev MUST use the approved Nikki-derived character material path + existing cymatics/Chladni consumer; the older standalone wool-master proposal is superseded.**
 **Editor state:** NOT running (port 9316 down) → Phase 1 is owner-less, Phase 2 waits for a clean reservation.
