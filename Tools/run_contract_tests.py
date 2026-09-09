@@ -67,7 +67,7 @@ SUITES = (
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 26
+MINIMUM_SUITE_COUNT = 28
 
 # These suites are self-contained in a Git checkout. The remaining suites
 # require Perforce-synced content, materialized LFS binaries, ignored local MCP
@@ -87,6 +87,8 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Tools/test_melodia_bp_registry_contract.py",
         "Tools/test_melodia_wardrobe_transaction_contract.py",
         "Tools/test_validate_source_control_ownership.py",
+        "Tools/test_guard_protected_assets.py",
+        "Tools/test_git_ok.py",
         "Tools/test_art_gates_authority.py",
         "Tools/test_artdrop_archive.py",
         "Tools/test_faraway_mother_pcg.py",
@@ -97,7 +99,7 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Docs/T3D_Baseline/test_canonical.py",
     }
 )
-MINIMUM_OFFLINE_SUITE_COUNT = 20
+MINIMUM_OFFLINE_SUITE_COUNT = 22
 
 
 def run_suite(suite: Suite) -> dict[str, object]:

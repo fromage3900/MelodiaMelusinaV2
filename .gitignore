@@ -206,6 +206,15 @@ Content/EnvSandbox/*
 !Content/EnvSandbox/Monoliths/
 !Content/EnvSandbox/Monoliths/**
 
+# Protected authored material masters. These must remain addable even though
+# bulk EnvSandbox content is ignored. A cross-line merge previously dropped
+# M_Master_Nikki while both parents still contained it; the blanket ignore then
+# prevented a normal git add from restoring the master.
+!Content/EnvSandbox/Materials/
+Content/EnvSandbox/Materials/*
+!Content/EnvSandbox/Materials/Masters/
+!Content/EnvSandbox/Materials/Masters/**
+
 # World Partition one-file-per-actor mirror for the Monoliths levels above.
 # OFPA actors live under Content/__ExternalActors__/<original package path>/,
 # a separate top-level dir from Content/EnvSandbox/ -- the unignore above does
@@ -269,6 +278,11 @@ Tools/*
 !Tools/git_safe_push.py
 !Tools/lfs_health_audit.py
 !Tools/git_health_audit.py
+!Tools/guard_protected_assets.py
+!Tools/test_guard_protected_assets.py
+!Tools/git_ok.py
+!Tools/test_git_ok.py
+!Tools/run_contract_tests.py
 !Tools/artdrop_archive.py
 !Tools/art_gates.py
 !Tools/validate_source_control_ownership.py
