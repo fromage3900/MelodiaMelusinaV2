@@ -1,0 +1,36 @@
+name: Front-door health
+
+# Weekly reminder that CURRENT_STATE / TODO must track real git work.
+# Contradiction checks also run on every PR via Echo Static Gates.
+# This job adds --age so a week of source movement without a front-door
+# refresh fails in the open instead of lying during a deadline.
+on:
+  schedule:
+    - cron: "0 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  front_door:
+    name: Front door vs git
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 0
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch origin/main
+        run: git fetch origin main --prune
+
+      - name: Front-door health with age
+        run: python Tools/front_door_health.py --ci --age --brief

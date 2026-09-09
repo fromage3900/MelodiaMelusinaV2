@@ -139,9 +139,18 @@ These are fast experiments. They are allowed to be weird because they are not al
 
 ## Git health
 
-Git archaeology closed 2026-09-08 (`Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md`). This repo’s `main` matches `origin/main`. Do not start another merge/cleanup campaign.
+Git archaeology closed 2026-09-08 (`Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md`). Do not start another merge/cleanup campaign.
+
+Periodic health:
+
+```text
+python Tools/front_door_health.py --brief
+```
+
+PR CI runs contradiction checks. Monday CI runs `--age` when production source moved and `CURRENT_STATE.md` was not refreshed.
 
 - [x] Record repository authority: game / site / TD are separate remotes; `EnvironmentPortfolio` is archive-only.
+- [x] Gate front-door drift (`Tools/front_door_health.py`).
 - [ ] Refresh persistence closure from current `main`; do not merge stale PR #54 wholesale.
 - [ ] Keep human-owned maps/art isolated from automated mass merges.
 - [ ] Keep new work in small fresh branches with one clear reason to exist.
