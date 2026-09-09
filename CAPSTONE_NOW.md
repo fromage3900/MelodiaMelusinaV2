@@ -1,0 +1,112 @@
+# Capstone Now
+
+**Status:** ACTIVE OWNER QUEUE  
+**Owner-session date:** 2026-09-08  
+**Purpose:** one short answer to “what should we be making next?”
+
+This file is intentionally small. It is the **current production queue**, not architecture history.
+
+If another document conflicts with this page about immediate priority, use:
+1. current source / current evidence;
+2. this file for production priority;
+3. canonical architecture/front-door docs for system authority.
+
+## Current capstone thesis
+
+**Creature → Motif → Harmony → World**
+
+The immediate goal is visible, portfolio-quality proof. Infrastructure work is only priority when it blocks that proof.
+
+## P0 — Choral Sheep visual proof
+
+Current owner lane:
+
+1. finish / validate the approved **Nikki-derived Cymatics** Sheep material;
+2. keep the Sheep readable and lovable at REST;
+3. make one pitch-C Chladni/Harmonize response unmistakable;
+4. capture one strong beauty + one clear musical-response proof.
+
+Mandatory context:
+
+- `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`
+- `Docs/References/ChoralSheepCapstone/BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md`
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_creature_fleece.webp`
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_chladni_fleece.webp`
+
+Do not reopen generic Sheep redesign, standalone wool-master replacement, or duplicate reactivity architecture.
+
+## P1 — animation / character craft
+
+Owner-facing work that directly strengthens the capstone:
+
+- topology cleanup where visibly needed;
+- Choral Sheep / Melusina animation;
+- Substance maps and surface polish;
+- Cascadeur / OBSBOT performance-capture benchmark;
+- character presentation and final render readiness.
+
+Agents should support these tasks with bounded tools, code, validation, or handoffs rather than replacing them with repository chores.
+
+## P2 — harmonic / presentation escalation
+
+Only after the one-sheep proof reads clearly:
+
+```text
+C
+→ E
+→ G
+→ harmony resolves
+→ one world response
+```
+
+TouchDesigner and AE remain downstream presentation tools:
+- consume existing game/music semantics;
+- build deterministic visual replay and concert/editorial layers;
+- never become save/gameplay authority.
+
+## P3 — portfolio promotion
+
+Promote only approved proof:
+
+```text
+UE / DCC / TD evidence
+→ strongest still or short clip
+→ website asset/manifest
+→ recruiter-facing presentation
+```
+
+The website remains under soft freeze except for approved render promotion and factual/deployment fixes.
+
+## Not the owner's job right now
+
+Unless a concrete blocker appears, do **not** turn the current session into:
+
+- Git archaeology;
+- branch-count cleanup;
+- another status-document campaign;
+- new global gameplay framework work;
+- new save / beat-clock / OSC / cymatics authority;
+- broad website redesign;
+- speculative tooling research;
+- re-rigging assets that already deform correctly.
+
+## Git rule
+
+Run:
+
+```text
+python Tools/git_ok.py
+```
+
+If it reports OK, Git is not the task.
+
+Branch/workstation policy:
+`Docs/Production/BRANCH_WORKSTATION_POLICY.md`
+
+## Finish-line question
+
+Before starting any new task, ask:
+
+> **Will this make the capstone more visible, more believable, more playable, or safer to present?**
+
+If not, defer it unless it removes a real blocker.
