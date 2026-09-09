@@ -1,22 +1,31 @@
 # Student-benefits support emails — 2026-09-09
 
 Paste-ready. Send from `brennan.shepherd3900@gmail.com` unless a form forces the Humber address.  
-Do not send NVIDIA job/DevRel material (withdrawn). Do not invent a company, revenue, or bachelor’s degree.
+Hermes operating sheet: [`STUDENT_BENEFITS_HERMES_CLOSEOUT_2026-09-09.md`](STUDENT_BENEFITS_HERMES_CLOSEOUT_2026-09-09.md).
+
+Do not send NVIDIA job/DevRel material (withdrawn). Do not invent a company, revenue, or bachelor’s degree. Placeholders remain only for the live Humber email, ChatGPT account email, SheerID error text, and faculty names.
 
 **Sender facts (only these):** Brennan Shepherd; final-year Humber Polytechnic Animation – 3D Advanced Diploma (AN311); Toronto, Canada; building Melodia Melusina, a solo UE5.8 rhythm-JRPG capstone with a production pipeline (environment art, technical art, procedural worldbuilding, Python/C++, animation). Portfolio: https://fromage3900.github.io/my-site/ · GitHub: https://github.com/fromage3900/MelodiaMelusinaV2
 
 ---
 
-## 0. Send order
+## 0. Send classification
 
-1. Ontario Creates Futures Forward newsletter (if the 2026-27 page is still “details coming”) — or skip if you can already see the workshop dates.
-2. Epic MegaGrants (after the draft’s dollar figure and live stills are filled).
-3. Google Cloud teaching credits — **to a Humber faculty member**, not to Google as if you were faculty.
-4. Chaos / Rokoko / Move.ai / SpeedTree / Hugging Face / NVIDIA academic — only after tonight’s self-serve claims, and only if you will use the product.
+| When | What |
+|---|---|
+| **Send now** | Subscribe Ontario Creates newsletter on the Futures Forward page. Then send #20 Interactive Ontario, #6 NVIDIA academic, #9 Chaos, #12 Rokoko, #13 Move.ai, #17 SpeedTree, #11 Reallusion, #8 Foundry. |
+| **Send now if Brennan names the coordinator** | #4 Google Cloud faculty forward; Epic Academic Partner block in #5. |
+| **Send only on failure** | #1 Kiro, #2 Codex, #3 Azure, #7 SideFX, #10 Maxon, #14 Cascadeur. |
+| **Owner fills numbers first** | Epic MegaGrants **form** (not email) in [`EPIC_MEGAGRANTS_APPLICATION_DRAFT.md`](EPIC_MEGAGRANTS_APPLICATION_DRAFT.md). |
+| **Faculty-only — do not impersonate an instructor** | #4, Epic Academic Partner in #5, #15 Perforce classroom. |
+| **Skip** | Ontario IP Fund Interactive (2026-09-14). NVIDIA job packet. |
+| **Leftover time only** | #16 Blackmagic, #18 Hugging Face, #19 Futures Forward (after 2026-27 dates are posted). |
+
+Send order for **send now**: newsletter → #20 → #6 → #9 → #12 → #13 → #17 → #11 → #8. Log each send on the ledger. Do not send twice.
 
 ---
 
-## 1. Kiro — only if SheerID hides Humber or the verify banner never appears
+## 1. Kiro — SEND ONLY ON FAILURE (no banner / SheerID school picker)
 
 **To:** Kiro Discord student channel, or the contact path on https://kiro.dev/students/  
 **Subject:** Humber Polytechnic student — Kiro Students banner / SheerID
@@ -40,7 +49,7 @@ https://fromage3900.github.io/my-site/
 
 ---
 
-## 2. OpenAI Codex — only if SheerID denies the Advanced Diploma
+## 2. OpenAI Codex — SEND ONLY ON FAILURE (SheerID denies Advanced Diploma)
 
 **To:** SheerID support from the denial email, or OpenAI help from the claim page  
 **Subject:** Codex for Students — Humber Polytechnic Advanced Diploma (Canada)
@@ -60,7 +69,7 @@ Brennan Shepherd
 
 ---
 
-## 3. Azure for Students — only if school-email signup fails
+## 3. Azure for Students — SEND ONLY ON FAILURE (school-email signup fails)
 
 **To:** Azure support from the students page, or GitHub Education support if you came through the Pack  
 **Subject:** Azure for Students — Humber Polytechnic Advanced Diploma, Canada
@@ -80,7 +89,7 @@ School email: [Humber]
 
 ---
 
-## 4. Google Cloud credits — faculty forward (students cannot self-apply)
+## 4. Google Cloud credits — FACULTY-ONLY (send now if Brennan names the coordinator)
 
 **To:** your program coordinator / a UE-friendly faculty member  
 **Cc:** yourself  
@@ -102,11 +111,11 @@ https://fromage3900.github.io/my-site/
 
 ---
 
-## 5. Epic Games — MegaGrants (student-honest)
+## 5. Epic Games — MegaGrants form is OWNER-FILLS-FIRST; Academic Partner is FACULTY-ONLY
 
-Use after you fill the dollar figure and 3–5 stills in [`EPIC_MEGAGRANTS_APPLICATION_DRAFT.md`](EPIC_MEGAGRANTS_APPLICATION_DRAFT.md). Apply at https://www.unrealengine.com/en-US/megagrants — this is the form, not an inbox.
+MegaGrants: apply at https://www.unrealengine.com/en-US/megagrants after filling the dollar figure and 3–5 stills in [`EPIC_MEGAGRANTS_APPLICATION_DRAFT.md`](EPIC_MEGAGRANTS_APPLICATION_DRAFT.md). That is a form, not an inbox. Hermes does not submit it.
 
-If you also want Academic Partner routed through Humber:
+Academic Partner (send now if Brennan names the coordinator):
 
 **To:** program coordinator  
 **Subject:** Epic Academic Partner — Humber Animation 3D / Unreal capstone
@@ -123,7 +132,7 @@ Brennan Shepherd
 
 ---
 
-## 6. NVIDIA — academic / student compute (not Inception, not the withdrawn job)
+## 6. NVIDIA — SEND NOW (academic / student compute; not Inception; not the withdrawn job)
 
 **To:** NVIDIA Higher Education / Developer Programs contact on https://www.nvidia.com/en-us/education/ or the developer programs form  
 **Subject:** Academic inquiry — Humber Polytechnic UE5 student, Omniverse / inference credits
@@ -145,7 +154,7 @@ https://github.com/fromage3900/MelodiaMelusinaV2
 
 ---
 
-## 7. SideFX Education — only if Proxi.ID cannot find Humber
+## 7. SideFX Education — SEND ONLY ON FAILURE (Proxi.ID cannot find Humber)
 
 **To:** SideFX Education / request@proxi.id as their FAQ directs  
 **Subject:** Houdini Education student verify — Humber Polytechnic
@@ -165,7 +174,7 @@ School email: [Humber]
 
 ---
 
-## 8. Foundry Education Collective
+## 8. Foundry Education Collective — SEND NOW (ask partner vs $99; do not claim partner)
 
 **To:** via https://www.foundry.com/education/students (or support after a failed Proxi.id)  
 **Subject:** Student Education Collective — Humber Polytechnic 3D Animation
@@ -183,7 +192,7 @@ School email: [Humber]
 
 ---
 
-## 9. Chaos Education
+## 9. Chaos Education — SEND NOW
 
 **To:** Chaos education team from https://www.chaos.com/education/educational-hub  
 **Subject:** Student / academic access — Humber Polytechnic, UE5 capstone
@@ -203,7 +212,7 @@ https://fromage3900.github.io/my-site/
 
 ---
 
-## 10. Maxon — only if SheerID / payment verification fails
+## 10. Maxon — SEND ONLY ON FAILURE (SheerID / payment verification)
 
 **To:** Maxon education support from https://support.maxon.net  
 **Subject:** Maxon One Student — Humber Polytechnic verification
@@ -221,7 +230,7 @@ School email: [Humber]
 
 ---
 
-## 11. Reallusion education discount
+## 11. Reallusion education discount — SEND NOW
 
 **To:** sales@reallusion.com  
 **Subject:** 60% education discount — Humber Polytechnic student, iClone / Character Creator → Unreal
@@ -238,7 +247,7 @@ Brennan Shepherd
 
 ---
 
-## 12. Rokoko — student / education quote
+## 12. Rokoko — SEND NOW (student / education quote)
 
 **To:** education / sales from https://www.rokoko.com/pricing (Get a quote)  
 **Subject:** Education / student pricing — solo UE5 capstone, Humber Polytechnic
@@ -256,7 +265,7 @@ https://fromage3900.github.io/my-site/
 
 ---
 
-## 13. Move.ai — academic / student credits
+## 13. Move.ai — SEND NOW (academic / student credits)
 
 **To:** Move.ai support / partnerships from https://www.move.ai/ (contact)  
 **Subject:** Academic inquiry — student mocap credits for a UE5 capstone
@@ -274,7 +283,7 @@ https://fromage3900.github.io/my-site/
 
 ---
 
-## 14. Cascadeur — only if school domain is unrecognized
+## 14. Cascadeur — SEND ONLY ON FAILURE (school domain unrecognized)
 
 **To:** the form on https://cascadeur.com/education  
 **Subject:** Please add Humber Polytechnic student email domain
@@ -291,7 +300,7 @@ Brennan Shepherd
 
 ---
 
-## 15. Perforce Education — faculty (classroom P4)
+## 15. Perforce Education — FACULTY-ONLY (classroom P4; solo already has 5-user free)
 
 **To:** program coordinator, then Perforce via https://www.perforce.com/educational-licenses  
 **Subject:** Free P4 educational licenses for Animation 3D / UE capstone
@@ -310,7 +319,7 @@ Brennan Shepherd
 
 ---
 
-## 16. Blackmagic — optional Studio education
+## 16. Blackmagic — LEFTOVER TIME ONLY (optional Studio education)
 
 **To:** Blackmagic Education / your regional office from blackmagicdesign.com  
 **Subject:** Student / campus DaVinci Resolve Studio — Humber Polytechnic
@@ -327,7 +336,7 @@ Brennan Shepherd
 
 ---
 
-## 17. SpeedTree — student export
+## 17. SpeedTree — SEND NOW (student export)
 
 **To:** sales@speedtree.com  
 **Subject:** Student / education modeler with export — Humber Polytechnic, Unreal capstone
@@ -345,7 +354,7 @@ https://fromage3900.github.io/my-site/
 
 ---
 
-## 18. Hugging Face — optional partnerships
+## 18. Hugging Face — LEFTOVER TIME ONLY
 
 **To:** partnerships / education via huggingface.co contact; or reply on the Academia Hub thread only if you have a faculty sponsor  
 **Subject:** Student / academic GPU access — Humber Polytechnic capstone
@@ -363,9 +372,9 @@ https://github.com/fromage3900/MelodiaMelusinaV2
 
 ---
 
-## 19. Ontario Creates — Futures Forward (watch, then apply to the workshop)
+## 19. Ontario Creates Futures Forward — LEFTOVER TIME (after 2026-27 dates post)
 
-Do not email IP Fund Interactive for the 2026-09-14 deadline. Guidelines say post-secondary work is not professional experience.
+**Skip IP Fund Interactive 2026-09-14.** Post-secondary work is not professional experience. **Send now:** subscribe to the newsletter on the Futures Forward page.
 
 **To:** the contact on https://www.ontariocreates.ca/our-sectors/interactive/interactive-digital-media-fund/ontario-creates-idm-fund-futures (when 2026-27 is posted)  
 **Subject:** Futures Forward 2026-27 — recent / soon graduate, original game (Melodia Melusina)
@@ -385,7 +394,7 @@ Also subscribe to the Ontario Creates newsletter on that page today.
 
 ---
 
-## 20. Interactive Ontario — membership / emerging talent
+## 20. Interactive Ontario — SEND NOW (membership / emerging talent)
 
 **To:** info / membership from https://www.interactiveontario.com (use the live contact on the site)  
 **Subject:** Student / emerging developer — Humber Polytechnic, Melodia Melusina

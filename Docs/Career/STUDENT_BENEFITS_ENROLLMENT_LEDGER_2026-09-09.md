@@ -16,7 +16,7 @@
 3. After each claim, fill **Account / email used**, **Granted until**, and **Status**.
 4. Do not re-apply to a program already granted. Re-verify only when the vendor asks.
 
-**Emails this agent could not send:** Gmail MCP is unauthenticated in this session. Paste-ready messages are in [`STUDENT_BENEFITS_EMAILS_2026-09-09.md`](STUDENT_BENEFITS_EMAILS_2026-09-09.md).
+**Emails this agent could not send:** Gmail MCP is unauthenticated. Paste-ready messages: [`STUDENT_BENEFITS_EMAILS_2026-09-09.md`](STUDENT_BENEFITS_EMAILS_2026-09-09.md). Hermes operating sheet: [`STUDENT_BENEFITS_HERMES_CLOSEOUT_2026-09-09.md`](STUDENT_BENEFITS_HERMES_CLOSEOUT_2026-09-09.md).
 
 **Recommended identities**
 
