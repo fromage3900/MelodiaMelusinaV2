@@ -182,10 +182,11 @@ branch and committed. The merge was instead replayed entirely in the object grap
 Three conflicts, each resolved deliberately and recorded in
 `Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md`.
 
-**`main` and `origin/main` are diverged lineages** (628 vs 704 commits, neither an ancestor of the
-other). This predates the merge. "Merged to main" means **local** `main`; `origin/main` does not
-carry this work. Off-machine copies live on `recovery/unify-histories-20260904` and
-`recovery/main-merged-20260904`.
+**Historical Sep 4 snapshot — superseded Sep 9.** At the time of this merge, local `main`
+and `origin/main` were diverged lineages (628 vs 704 commits, neither an ancestor of the other).
+That condition is no longer current: the lineages were reconciled through the Sep 9 unification /
+canonization merges, and GitHub `main` is now the canonical shared baseline. The old recovery refs
+remain extraction-only historical safety copies and are not current task queues.
 
 ### 7.3 Landscape / look-dev
 
