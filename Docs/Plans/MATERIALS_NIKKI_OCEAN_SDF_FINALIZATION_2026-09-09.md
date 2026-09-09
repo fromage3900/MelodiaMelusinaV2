@@ -74,3 +74,12 @@ Anyone cloning main should find materials truth in under 30 seconds:
 ## Authority correction (2026-09-09)
 Active landscape master is `/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape` per `Saved/Audit/landscape_authority_convergence_2026-09-03.json`. HeightBlend is legacy.
 
+
+
+---
+
+## Status footer (2026-09-09)
+
+**GATE COMPLETE** via PR #156 (0441cbb) — ALL_MATERIALS receipt on main; Live Link / Rokoko soft-freeze lifted.
+
+Follow-on cleanup (Batch 4 wiring, flipbook Lane D, deprecate/label): [MATERIALS_WIRING_FLIPBOOK_CLEANUP_2026-09-09.md](MATERIALS_WIRING_FLIPBOOK_CLEANUP_2026-09-09.md).
