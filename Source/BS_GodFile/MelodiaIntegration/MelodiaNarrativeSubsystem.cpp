@@ -770,7 +770,8 @@ bool UMelodiaNarrativeSubsystem::RestoreNarrativeRecord(const FMelodiaNarrativeR
 	FMelodiaNarrativeRecord Migrated = Record;
 	if (!MigrateRecord(Migrated))
 	{
-		ResetNarrativeRecord();
+		// Refuse an incompatible candidate without touching the currently running
+		// canonical record. A failed load must never turn valid history into defaults.
 		return Reject(TEXT("RestoreNarrativeRecord"), EMelodiaIntentFailure::IncompatibleSave);
 	}
 
