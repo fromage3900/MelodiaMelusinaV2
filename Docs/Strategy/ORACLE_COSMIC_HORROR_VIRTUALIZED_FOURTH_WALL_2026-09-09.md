@@ -3,6 +3,7 @@
 **Date:** 2026-09-09  
 **Status:** GATED DESIGN COMPANION — READ WITH ORACLE MISSION  
 **Parent mission:** `Docs/Strategy/ORACLE_THIRTEENTH_NOTE_CAPSTONE_MISSION_2026-09-09.md`  
+**Runtime companion:** `Docs/Strategy/ORACLE_LOCAL_LLM_RUNTIME_PLAN_2026-09-09.md`  
 **Purpose:** define the safest, strongest way for Melodia to create DDLC-style player-aware cosmic horror without invasive real-world data access.
 
 > **Core rule:** the game should feel like it knows more than it actually knows.
