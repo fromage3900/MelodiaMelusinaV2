@@ -197,7 +197,28 @@ The project should read as the work of an environment designer / technical artis
 - generalized tools without a semester asset consumer;
 - large world expansion beyond the hero route.
 
-## 10. Definition of semester success
+
+## 10. End-of-semester stretch mission — Oracle / Thirteenth Note
+
+After Phase D is substantially safe, one optional technical-art/gameplay R&D proof may activate:
+
+`Docs/Strategy/ORACLE_THIRTEENTH_NOTE_CAPSTONE_MISSION_2026-09-09.md`
+
+This is **not** a replacement for Shorewake Calling and does not change the semester thesis.
+
+The stretch mission is intentionally bounded to a ~60-second Oracle proof that demonstrates:
+
+- Melodia-only player telemetry;
+- one learned habit and one fair prediction;
+- C++-authoritative response selection;
+- a bounded structured LLM response;
+- one existing quantum/probabilistic provider selecting among authored possibilities;
+- visible `OracleCertainty` collapse through MPC / Niagara / cymatics;
+- deterministic authored fallback with background AI / quantum services disabled.
+
+It may proceed only when the graded/portfolio deliverables above are safe. It must reuse current authorities rather than introduce a second save, combat, narrative, beat-clock, or unrestricted AI-control framework.
+
+## 11. Definition of semester success
 
 Fall 2026 is successful if it ends with:
 
