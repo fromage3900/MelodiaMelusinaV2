@@ -119,18 +119,42 @@ try:
     # -------------------------------------------------------------
     print("\n--- STEP 2: Walking Onto Music Key Note Pad ---")
     # Step onto pad face at X=-112, Y=300, Z=210.15 (pad top 120 + capsule 90)
-    move_res = call_fn("BP_MelusinaJRPGCharacter", "K2_SetActorLocation", args={
-        "NewLocation": {"X": -112.0, "Y": 300.0, "Z": 210.15},
-        "bSweep": False,
-        "bTeleport": False
-    })
+    def teleport_to_pad():
+        return call_fn("BP_MelusinaJRPGCharacter", "K2_SetActorLocation", args={
+            "NewLocation": {"X": -112.0, "Y": 300.0, "Z": 210.15},
+            "bSweep": False,
+            "bTeleport": False
+        })
+    teleport_to_pad()
     time.sleep(1.2)
 
-    # Inspect ScoreState on PCGHeroMusicGraphHost
-    score_res = call_fn("PCGHeroMusicGraphHost", "GetScoreState")
-    score_state = score_res.get("return_value")
+    # Cold-PIE overlap can flicker, and grading is music-clock-relative, so a
+    # teleport can land off-beat (Miss judgments, no completion). A player
+    # answers by stepping again; the probe does the same: seat on the pad,
+    # read, step off to close the overlap, repeat until the phase aligns.
+    # Misses accumulate but never gate MarkCompleted, so retries are safe.
+    score_state = None
+    for cycle in range(8):
+        teleport_to_pad()
+        time.sleep(1.5)
+        score_res = call_fn("PCGHeroMusicGraphHost", "GetScoreState")
+        score_state = score_res.get("return_value")
+        if score_state and "bCompleted=True" in str(score_state):
+            break
+        call_fn("BP_MelusinaJRPGCharacter", "K2_SetActorLocation", args={
+            "NewLocation": {"X": 0.0, "Y": 0.0, "Z": 110.15},
+            "bSweep": False,
+            "bTeleport": False
+        })
+        time.sleep(0.6)
     print(f"  Music Graph Host ScoreState: {score_state}")
+    assert score_state and "bCompleted=True" in str(score_state), \
+        "Music challenge must complete (bCompleted=True) after pad settle"
 
+    # NOTE: direct EquipCosmetic is a probe-injected equip proving the wardrobe
+    # authority chain, NOT the canonical reward->auto-equip path. The reward
+    # path was proven 2026-08-31 (same-frame grant+equip logs) and is re-owed
+    # with reward-driven assertions, not re-proven here.
     # Inspect Wardrobe / Equipped cosmetic on pawn
     equipped_res = call_fn("BP_MelusinaJRPGCharacter", "EquipCosmetic", args={"CosmeticId": "Cos_Accessories_MelusinaV2"}, component_name="Wardrobe")
     print(f"  Cosmetic Equip Result: {equipped_res}")
@@ -153,9 +177,24 @@ try:
     # STEP 3: Jump and Glide Traversal Request
     # -------------------------------------------------------------
     print("\n--- STEP 3: Jump and Request Glide Traversal ---")
-    # Grounded glide request check (must reject)
-    grounded_res = call_fn("BP_MelusinaJRPGCharacter", "RequestTraversalMode", args={"Mode": "Glide"})
-    print(f"  Grounded Glide Request: {grounded_res}")
+    # Traversal requests live on UMelodiaTraversalComponent (instance
+    # "MelodiaTraversal"), NOT on the character: RequestTraversalMode(
+    # EMelodiaTraversalMode RequestedMode) -> FMelodiaTraversalRequestResult.
+    def glide_result_text(res):
+        rv = res.get("return_value") if isinstance(res, dict) else res
+        return str(rv)
+
+    def is_accepted(text):
+        return "Accepted" in text and "Rejected" not in text and "Unsupported" not in text
+
+    # Grounded glide request check (must reject / fail closed)
+    grounded_res = call_fn("BP_MelusinaJRPGCharacter", "RequestTraversalMode",
+                           args={"RequestedMode": "Glide"}, component_name="MelodiaTraversal")
+    grounded_text = glide_result_text(grounded_res)
+    print(f"  Grounded Glide Request: {grounded_text}")
+    assert not is_accepted(grounded_text), \
+        f"Grounded Glide request must fail closed, got: {grounded_text}"
+    print("  -> ASSERTION PASS: Grounded glide correctly rejected")
 
     # Launch into air
     call_fn("BP_MelusinaJRPGCharacter", "LaunchCharacter", args={
@@ -166,21 +205,41 @@ try:
     time.sleep(0.4)
 
     # Airborne glide request (must accept)
-    airborne_res = call_fn("BP_MelusinaJRPGCharacter", "RequestTraversalMode", args={"Mode": "Glide"})
-    print(f"  Airborne Glide Request: {airborne_res}")
+    airborne_res = call_fn("BP_MelusinaJRPGCharacter", "RequestTraversalMode",
+                           args={"RequestedMode": "Glide"}, component_name="MelodiaTraversal")
+    airborne_text = glide_result_text(airborne_res)
+    print(f"  Airborne Glide Request: {airborne_text}")
 
     air_loc_res = call_fn("BP_MelusinaJRPGCharacter", "K2_GetActorLocation")
     air_loc = air_loc_res.get("return_value")
     print(f"  Airborne Glide Location: {air_loc}")
 
+    # NOTE 2026-09-09: the struct serializer drops Result when it is Accepted
+    # (enum value 0), so an accepted request reads "(RequestedMode=Glide)".
+    # Assert behaviorally instead: IsGliding true + mode Glide. A rejected
+    # request serializes fully (RejectedContext/RejectedCapability/...).
+    time.sleep(0.5)
+    gliding_res = call_fn("BP_MelusinaJRPGCharacter", "IsGliding", component_name="MelodiaTraversal")
+    mode_res = call_fn("BP_MelusinaJRPGCharacter", "GetTraversalMode", component_name="MelodiaTraversal")
+    gliding_text = glide_result_text(gliding_res)
+    mode_text = glide_result_text(mode_res)
+    print(f"  IsGliding: {gliding_text} / TraversalMode: {mode_text}")
+
     evidence["steps"]["step3_jump_glide"] = {
-        "grounded_request": grounded_res.get("return_value") if isinstance(grounded_res, dict) else str(grounded_res),
-        "airborne_request": airborne_res.get("return_value") if isinstance(airborne_res, dict) else str(airborne_res),
+        "grounded_request": grounded_text,
+        "airborne_request": airborne_text,
         "airborne_location": air_loc,
+        "is_gliding": gliding_text,
+        "traversal_mode": mode_text,
         "screenshot": evidence["screenshots"]["03_jump_and_glide"]
     }
+    assert "True" in gliding_text or "true" in gliding_text, \
+        f"IsGliding must be true after accepted airborne request, got: {gliding_text}"
+    assert "Glide" in mode_text, \
+        f"TraversalMode must be Glide after accepted request, got: {mode_text}"
+    evidence["assertions"]["grounded_glide_rejected"] = True
     evidence["assertions"]["airborne_glide_accepted"] = True
-    print("  -> ASSERTION PASS: Airborne glide requested and active")
+    print("  -> ASSERTION PASS: Grounded rejected, airborne glide behaviorally proven")
 
     # -------------------------------------------------------------
     # STEP 4: Approach Portal and Press Interaction
@@ -211,8 +270,8 @@ try:
         "screenshot": evidence["screenshots"]["04_portal_interacted"]
     }
     assert portal_unlocked is True, "Portal must be unlocked after acquiring traversal capability"
-    evidence["assertions"]["portal_unlocked_and_interacted"] = True
-    print("  -> ASSERTION PASS: Portal unlocked and interaction accepted")
+    evidence["assertions"]["portal_unlocked"] = True
+    print("  -> ASSERTION PASS: Portal unlocked (TryInteract return not asserted; routing TBD)")
 
     evidence["overall_verdict"] = "PASS"
     print("\n=================================================================")
@@ -224,8 +283,9 @@ finally:
     stop_res = call_editor("stop_pie")
     print("  PIE Stop:", stop_res)
 
-# Save evidence JSON
-out_evidence_path = PROJECT_ROOT / "Docs" / "Evidence" / "P0_FINAL_REAL_INPUT_VERIFICATION_2026-08-31.json"
+# Save evidence JSON under a run-dated name (never overwrite a prior dated file)
+run_stamp = time.strftime("%Y-%m-%d", time.gmtime())
+out_evidence_path = PROJECT_ROOT / "Docs" / "Evidence" / f"P0_REAL_INPUT_PROBE_{run_stamp}.json"
 with open(out_evidence_path, "w", encoding="utf-8") as f:
     json.dump(evidence, f, indent=2)
 print(f"\nSaved verified evidence JSON to: {out_evidence_path.relative_to(PROJECT_ROOT)}")

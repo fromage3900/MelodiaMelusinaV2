@@ -54,7 +54,39 @@ Drain via `DRAIN_EVENTS` (`tracepointOutputsTail`); breakpoint errors via `break
   physics snapshot, no schema extension before durable-vs-transient ownership is written down
   (Starskiff + Convergence tracing still open per TODO).
 
-## 5. After the hour
+## 6. Night run 2026-09-09 — what actually happened (read before re-running)
+
+Committed harness `Tools/run_p0_real_input_probe.py` was fixed and run live 4x:
+
+- **Run 1: FAIL** — cold-PIE teleport landed off-beat (`MissCount=2`, never completed).
+  Lesson: grading is music-clock-relative; teleports are phase-lottery.
+- **Run 2: PASS** — exact 08-31 signature (`Perfect/100/completed`, portal unlocked).
+  But step 3 called `RequestTraversalMode` on the **character** (not found) and the
+  harness printed PASS unconditionally → **void glide assertion**. Kept as run log,
+  superseded, scratch copy removed.
+- **Diagnosis:** traversal authority lives on `MelodiaTraversal` component instance;
+  native signature `RequestTraversalMode(EMelodiaTraversalMode RequestedMode)`.
+  Serializer quirk: `Result=Accepted` (enum 0) is dropped → accepted reads
+  `(RequestedMode=Glide)`; rejections serialize fully. `IsGliding`/`GetTraversalMode`
+  are the behavioral oracles.
+- **Run 3 (fixed harness): genuine PASS** — `Docs/Evidence/P0_REAL_INPUT_PROBE_2026-09-09.json`:
+  locked → `Perfect/100/bCompleted=True` (2 accumulated misses from re-step cycles,
+  misses do not gate `MarkCompleted`) → probe-equip → grounded
+  `RejectedContext/glide_requires_airborne_state` → airborne `IsGliding=true`,
+  mode `Glide` → portal unlocked, reason `None`.
+- **Withheld:** no `record_gate.py` row — teleports are probe movement, not real-key
+  input, and step-2 equip is probe-injected (reward path re-owed, last proven 08-31).
+  Screenshots in the evidence JSON were never captured by the harness (dangling paths).
+  `TryInteract` returns False while unlocked in all runs — interaction preconditions
+  (overlap/facing) unsatisfied by teleport; routing TBD, not asserted.
+- **Restart proof NOT run:** editor kill deferred (relaunch risk, owner absent). Zero-cost
+  check passed: 0 dirty packages after all PIE runs. Save-driver gap found: no committed
+  caller of `CreateCanonicalJRPGSlot`; `pie_call_function` cannot reach static
+  `UBlueprintFunctionLibrary` entries ("No PIE actor matched"). Next step is an in-game
+  save trigger (checkpoint path?) or a Monolith static-lib call, then
+  save → quit → relaunch → load → load-again with the fixed harness asserting each leg.
+
+## 7. After this run
 
 - Commit deferred Sea Above actors from clean editor close (see Git Health doc §4).
 - Push feature branch; next promotion batch to `main` after PR #133 lands.
