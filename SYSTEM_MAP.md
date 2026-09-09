@@ -1,7 +1,8 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-02  
-**Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20
+**Last Updated:** 2026-09-09  
+**Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
+**World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
 ---
 
@@ -40,7 +41,29 @@ Melodia's long-term growth depends on **stable runtime ownership beneath renewab
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
+The same stack, from the C++ ownership diagram:
+
+```text
+Data definitions (enums, structs, Data Assets, tables, config)
+        ↓
+Core C++ systems (Actors, components, subsystems, save, state machines)
+        ↓
+Gameplay rules (movement, combat, companion, traversal, persistence)
+        ↓
+Blueprint layer (assemble, iterate, hook events — does not invent truth)
+        ↓
+Content layer (animation, materials, UI, audio, VFX, levels)
+        ↓
+Player experience
+        ↓
+Persistence (SaveGame, narrative record, world state)
+```
+
+C++ defines the rules; Blueprints present and connect them. TouchDesigner and Chladni/cymatics visualize owner state. They do not become a second combat, save, or quest authority.
+
 The core should become more stable as content grows. A new Voyage is normally a **content integration problem**, not an excuse to reopen combat/save/UI ownership.
+
+This page is runtime-ownership detail. [`Docs/Architecture/CURRENT_SYSTEM_MAP.md`](Docs/Architecture/CURRENT_SYSTEM_MAP.md) is a duplicate snapshot, not a second authority.
 
 ---
 
@@ -193,6 +216,7 @@ Closing this loop is more important than adding another global subsystem.
 - `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
 - `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`
 - `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
+- `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`
 - `CURRENT_STATE.md`
 - `TODO.md`
 

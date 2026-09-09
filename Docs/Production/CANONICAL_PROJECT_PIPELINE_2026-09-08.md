@@ -132,6 +132,8 @@ reference / design lock
 
 Large source binaries may live outside Git when appropriate, but the current import contract, scripts, manifests, evidence, and promoted game assets must resolve through the canonical game repo.
 
+World-building follows the four-layer contract in `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`: player loop → C++ truth → Chladni/cymatics form → TouchDesigner as visual instrument. DCC authoring produces content for that stack; it does not invent a parallel gameplay or save authority.
+
 ## 5.1 Semester animation / performance capture lane
 
 The researched Melusina performance-capture studio plan is:
@@ -185,6 +187,8 @@ Current interface contract:
 - game ↔ TD semantic/show-control lane → UDP `:9000`;
 - TD → Blender auxiliary lane → `:9001` where used;
 - TD consumes game semantics; it does not own gameplay state.
+
+World-building / live-visual boundary: `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md` §4. TouchDesigner remains the visual instrument; Unreal remains authored-world and gameplay authority.
 
 Current Chladni Fleece scene is live-evidenced in TD. The later UE integration work prepares material/telemetry contracts.
 

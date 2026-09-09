@@ -1,5 +1,7 @@
 # Worldbuilding, Material Fixes & Nikki Treatment Plan — 2026-09-06
 
+> **Status:** SUPPORTING — chapter-bible / lookdev campaign. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 Companion to `GIT_STATE_STUDY_2026-09-05.md` (§5a). Everything here is grounded in a
 read-only census run today on unified main (binary string-scan of .uasset imports —
 confirms presence, never absence, per rule 20).

@@ -1,5 +1,7 @@
 # Melodia Retopo Recipe (pre-intake) — 2026-09-03
 
+> **Status:** SUPPORTING garment-intake recipe. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 **Recommended route: Quadriflow-first + Smart Project, calibrated Voxel fallback.**
 One script: `Tools/Houdini/sea_above_reef/garment_retopo_preintake.py`
 (schema `melodia.garment_retopo_preintake.v1`, seed `20260902`).

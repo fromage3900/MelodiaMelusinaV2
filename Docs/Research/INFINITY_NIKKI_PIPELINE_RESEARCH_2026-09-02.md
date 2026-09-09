@@ -1,5 +1,7 @@
 # INFINITY NIKKI PIPELINE RESEARCH — MIs, Real-Time Cymatics, NNERuntimeORT (2026-09-02)
 
+> **Status:** RESEARCH. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 **Purpose:** Deep-dive feeding `Docs/Plans/AUDIO_HERO_MATERIAL_PLAN_2026-09-02.md` (Phase 1
 "Research deepen"). Three sections: (1) Infinity Nikki material-instance authoring,
 (2) real-time cymatics in UE 5.8, (3) NNERuntimeORT (NNE) in UE 5.8. Ends with how it

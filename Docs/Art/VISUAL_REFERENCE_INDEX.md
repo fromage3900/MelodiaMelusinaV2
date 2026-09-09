@@ -1,6 +1,6 @@
 # Melodia Visual Reference Index
 
-**Status:** 2026-09-08  
+**Status:** 2026-09-09  
 **Purpose:** Canonical discovery point for image reference boards, concept sheets, visual targets, and known missing/uncommitted boards.
 
 **Integrity receipt:** `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md` — September 8 Sheep/Mara/Melusina batch verified; missing Melusina House REF_01 path restored.
@@ -8,6 +8,22 @@
 > Agents: **start here before searching dated art/research handoffs.** Never fabricate a path for a board you cannot find.
 
 ## Committed visual canon on `main`
+
+## World-building authority boards
+
+**Canonical folder:** `Docs/References/WorldBuilding/`  
+**Contract:** `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`
+
+Owner diagrams for how a Melodia world is authored. Read the contract first; these boards are the visual lock for that stack, not a second runtime architecture.
+
+- `01_player_loop.jpg` — exploration → encounter → rhythm combat → resolution → progression.
+- `02_cpp_drives_the_game.jpg` — Data → C++ → rules → Blueprints → content → player; C++ owns truth.
+- `03_chladni_cymatics_pipeline.jpg` — sound → nodal geometry → game assets → material/FX use.
+- `04_touchdesigner_visuals_pipeline.jpg` — signal → TD operators → live visuals; TD is not the gameplay brain.
+
+**Evidence classification:** CANONICAL COMMITTED REFERENCE IMAGE.
+
+These do **not** replace Sheep Board 06, the Nikki Cymatics material lock, or First Dream runtime evidence.
 
 ## Melusina House reference boards
 

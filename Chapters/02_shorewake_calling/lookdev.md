@@ -3,6 +3,7 @@
 PPV: reuse certified `PPV_NikkiDream` stack (weights: MelodiaInk 1.0,
 MeluColorGrade 0.69, StarryNight_Hero 1.0 per `IsPPVStackCanonical`). Chapter may add
 ONE weight-shifted variant for the deep-reef leg; never a new master.
+World-building contract: `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md` (Chladni/TD presentation-only for this chapter).
 
 Nikki treatment tiers (see WORLDBUILDING_LOOKDEV_PLAN §4), SeaAbove-scoped:
 | Surface | Tier | MF | Switch |

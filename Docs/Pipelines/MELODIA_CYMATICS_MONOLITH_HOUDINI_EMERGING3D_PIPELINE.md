@@ -2,7 +2,7 @@
 **Document Version:** 1.0.0
 **Date:** 2026-09-01
 **Target Engine:** Unreal Engine 5.8.0 | Houdini 22.0.368 | Blender 5.2 LTS | C++20 | Python 3.11
-**Classification:** Canonical Architecture & Pipeline SSOT
+**Classification:** SUPPORTING engineering encyclopedia — world-building SSOT is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`. This page is not a competing pipeline authority.
 
 ---
 

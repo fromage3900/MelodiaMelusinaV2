@@ -1,5 +1,7 @@
 # Melodia Wardrobe Pipeline: Blender 5.2 -> MD -> Houdini -> Substance -> UE (2026-09-03)
 
+> **Status:** SUPPORTING garment interchange. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 The interchange path for market/closet garments onto Melusina. Extends (does not
 replace) `Docs/Art/UNIVERSAL_GARMENT_INTERCHANGEABLE_WARDROBE_2026-09-02.md` and the
 canonical Substance pattern in `Docs/Production/CANONICAL_SHOREWAKE_SUBSTANCE_STAGING_PIPELINE_2026-09-02.md`.

@@ -1,7 +1,8 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-02  
-**Scope:** stable runtime/state lifecycle for an evergreen single-player game
+**Last Updated:** 2026-09-09  
+**Scope:** stable runtime/state lifecycle for an evergreen single-player game  
+**World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
 ---
 
@@ -23,6 +24,24 @@ world / combat / narrative consequence
 canonical durable fact
         ↓
 save / restart / restore
+```
+
+The C++ ownership diagram is the same lifecycle read as layers:
+
+```text
+Data definitions
+        ↓
+Core C++ systems
+        ↓
+Gameplay rules
+        ↓
+Blueprint assembly (events call into code; Blueprints read structured data)
+        ↓
+Content (systems drive visuals)
+        ↓
+Player experience
+        ↓
+Persistence (results are saved)
 ```
 
 Different content tiers can enter and leave this flow at different points.

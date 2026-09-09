@@ -47,8 +47,9 @@ Read only this front door before expanding outward:
 9. `_VERTICAL_SLICE_SCOPE.md`
 10. `TODO.md`
 11. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
-12. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
-13. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
+12. `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md` when world-building, chapter authoring, cymatics, or TouchDesigner visual work
+13. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
+14. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
 
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
 
