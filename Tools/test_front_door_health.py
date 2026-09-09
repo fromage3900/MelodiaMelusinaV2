@@ -50,6 +50,14 @@ def test_todo_unrun_proofs() -> None:
     )
 
 
+def test_current_state_divergence() -> None:
+    pattern = fdh.FORBIDDEN_CURRENT_CLAIMS[2][1]
+    active = "**`main` and `origin/main` are diverged lineages** (stale)\n"
+    historical = "**Historical Sep 4 snapshot — superseded Sep 9.** At the time, local `main` and `origin/main` were diverged lineages.\n"
+    check("active CURRENT_STATE divergence is forbidden", bool(pattern.search(active)))
+    check("historical divergence wording is allowed", not pattern.search(historical))
+
+
 def test_ledger_divergence() -> None:
     live = "origin/main is a diverged lineage and does NOT."
     reconciled = (
@@ -82,6 +90,7 @@ def main() -> int:
     print("front-door health contract")
     test_forbidden_current_status()
     test_todo_unrun_proofs()
+    test_current_state_divergence()
     test_ledger_divergence()
     test_stub_banner()
     test_live_repo_contradictions()
