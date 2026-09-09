@@ -24,7 +24,7 @@
 > **SHOWCASE SOFT FREEZE ACTIVE — 2026-09-07.** Public/recruiter presentation is structurally frozen while the final Melusina + canonical world renders are produced and promoted. Game/semester development continues. See [the freeze contract](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
 
 
-> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md) and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
+> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
 
 > **Fall 2026 workstation topology:** Humber lab workstations are the primary interactive semester lane, the home Windows PC is the dedicated render/bake/long-job worker, and the ASUS Nitro laptop is auxiliary. See [Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) and [Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md).
 

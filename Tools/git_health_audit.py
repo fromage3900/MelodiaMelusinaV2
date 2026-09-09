@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Serial, index-safe Git/LFS health audit for BS_GodFile.
 
+Not the daily command. For deadline work run ``python Tools/git_ok.py`` and stop
+if it is OK. This script runs fsck / LFS fsck / pre-commit and will eat a session.
+
 This is intentionally read-only: it never refreshes the index, stages, resets,
 cleans, fetches, or pushes. Run without arguments for local health, then add
 ``--remote`` from a normal user terminal before staging or pushing LFS assets.

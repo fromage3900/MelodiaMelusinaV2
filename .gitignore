@@ -279,6 +279,8 @@ Tools/*
 !Tools/git_health_audit.py
 !Tools/guard_protected_assets.py
 !Tools/test_guard_protected_assets.py
+!Tools/git_ok.py
+!Tools/test_git_ok.py
 !Tools/run_contract_tests.py
 !Tools/artdrop_archive.py
 !Tools/art_gates.py
