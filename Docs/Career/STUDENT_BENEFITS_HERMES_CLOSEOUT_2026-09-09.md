@@ -24,8 +24,8 @@ Do not submit a form past the identity gate. Fill the ledger row with `STOP — 
 
 | Use | Account |
 |---|---|
-| School verify | Current Humber-issued email from myHumber (do not guess the domain) |
-| GitHub / Copilot / Camber / Zed | `fromage3900` with school email added |
+| School verify | `n01358429@humbermail.ca` |
+| GitHub / Copilot / Camber / Zed | `fromage3900` with `n01358429@humbermail.ca` added |
 | Codex | Personal ChatGPT (not a school Edu workspace) |
 | Outgoing mail | `brennan.shepherd3900@gmail.com` |
 | Cursor | `fromage@kittymail.com` — not for school verify unless it *is* the Humber address |
@@ -41,7 +41,7 @@ Owner present for login. After each grant: set **Status**, **Account / email use
 | 1 | Kiro Student | https://kiro.dev/students/ | Usage page shows 1,000 monthly credits. School name: **Humber Polytechnic**. One-time SheerID. |
 | 2 | Codex Student | https://chatgpt.com/codex/students/ | Usage page shows 2,500 credits (US$100). Personal ChatGPT. |
 | 3 | GitHub Student Pack | https://github.com/settings/education/benefits | Education benefits page shows verified student. |
-| 4 | Copilot Student | Same GitHub Education page | Copilot Student active. If paid checkout only: **do not buy**; wait; try https://github.com/github-copilot/free_signup |
+| 4 | Copilot Student | Same GitHub Education page | Copilot Student active. If paid checkout only **or Pack card says paused**: **do not buy**; wait; try https://github.com/github-copilot/free_signup. Official student-setup docs still describe activation. |
 | 5 | Camber Student | https://education.github.com/pack | Dashboard 40 CPU / 5 GPU / 50 GB / 50 agent msgs. Trust dashboard, not old 200-CPU marketing. |
 | 6 | Azure for Students | https://azure.microsoft.com/en-ca/free/students | USD$100, no card. Diploma caveat: apply honestly. Calendar T-30 for annual manual renew. |
 | 7 | JetBrains Student | https://www.jetbrains.com/community/education/ | Rider installs. AI Pro is **not** included; AI Free only after any trial. |
@@ -90,3 +90,5 @@ Send from `brennan.shepherd3900@gmail.com`. Full bodies: [`STUDENT_BENEFITS_EMAI
 1. Ledger rows filled. Renewal calendar events created from the ledger table.
 2. Routing: Kiro for routine agents; Copilot for completions; Camber for long CPU/GPU; Codex $100 and Cursor Astra for hard UE/C++ only.
 3. Stop. Do not add a new capture framework or a parallel grant tracker.
+
+**Git:** ledger+emails are on `main` via PR #146 (merged). This closeout sheet lands via PR #147. `main` is protected (PR-only, no merge commits). Do not force-push `main`.

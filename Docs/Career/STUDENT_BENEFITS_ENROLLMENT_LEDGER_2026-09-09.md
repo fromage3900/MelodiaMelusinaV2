@@ -1,6 +1,6 @@
 # Student / Education Benefits Enrollment Ledger
 
-**Verified:** 2026-09-09 from official program pages  
+**Verified:** 2026-09-09 from official program pages · **Re-checked:** 2026-09-09 16:55 UTC  
 **Applicant:** Brennan Shepherd · Humber Polytechnic · Animation – 3D Advanced Diploma (AN311) · Canada  
 **Project:** Melodia Melusina (UE5.8 capstone / production pipeline)  
 **Purpose:** Claim every currently eligible student, education, indie, cloud, AI-agent, DCC, mocap, and game-dev benefit before student status expires. Do not invent eligibility. Do not submit misleading school, employment, company, revenue, or funding information.
@@ -22,8 +22,8 @@
 
 | Use | Address / account |
 |---|---|
-| School verification | Current Humber-issued student email from myHumber (do not guess the domain) |
-| GitHub / Copilot / Camber | `fromage3900` personal GitHub, with school email added and verified on the account |
+| School verification | `n01358429@humbermail.ca` (GitHub co-author on these commits; confirm in myHumber if it ever changes) |
+| GitHub / Copilot / Camber | `fromage3900` personal GitHub, with `n01358429@humbermail.ca` added and verified on the account |
 | ChatGPT / Codex | Existing personal ChatGPT account (school Edu/Enterprise workspace will not work) |
 | Career / support emails | `brennan.shepherd3900@gmail.com` |
 | Cursor | `fromage@kittymail.com` — keep for Cursor; do not use as the school-verify email unless it is actually your Humber address |
@@ -107,7 +107,7 @@ Status key: **READY TO CLAIM** = official offer live, you appear eligible, this 
 | Renewal / expiry | While GitHub Education stays verified. |
 | Status | BLOCKED ON GITHUB EDUCATION |
 | Account / email used | Intended: `fromage3900` |
-| Next action | After Pack approval: https://github.com/settings/education/benefits → activate Copilot Student. If checkout is paid-only, wait; do not purchase. Fallback: https://github.com/github-copilot/free_signup |
+| Next action | After Pack approval: https://github.com/settings/education/benefits → activate Copilot Student. If checkout is paid-only **or a Pack card says sign-ups paused**, wait; do not purchase. Official student-setup docs still describe activation. Fallback: https://github.com/github-copilot/free_signup |
 
 ### 5. Camber Student (via GitHub Education)
 
@@ -303,6 +303,21 @@ Goal: keep Cursor Astra and paid Codex for work that actually needs them.
 | Google Gemini student (US/eligible markets) | Redeem by **2026-12-31** | **Not available in Canada** |
 | Ontario Creates IP Fund | **2026-09-14 17:00 ET** | Skip — ineligible |
 | Ontario Creates Futures Forward 2026-27 | Watch official page | Newsletter + workshop |
+
+---
+
+## Research pass 2026-09-09 16:55 UTC
+
+Re-fetched official pages. Unchanged unless noted:
+
+- Kiro: Humber Polytechnic still on https://kiro.dev/students/; 1,000 credits/month × 12 months.
+- Codex: US$100 / 2,500 credits, Canada+US, degree-granting wording unchanged.
+- GitHub Pack: Camber still **40 CPU / 5 GPU / 50 GB / 50 agent msgs**. Azure $100 still listed.
+- Copilot: official student-setup docs still describe activation. One Pack listing also said “New plan sign-ups are temporarily paused.” Try activation; if paused, wait, do not buy.
+- Zed, Unity, Figma Education: unchanged.
+- Google Gemini student paid plan: Canada still excluded (footnote 3).
+- Ontario Creates Futures Forward: 2026-27 workshop/grant details **still not posted**; page remains 2025-26. Partner contact for Interactive Ontario: **programs@interactiveontario.com**.
+- School email on these commits: **n01358429@humbermail.ca**.
 
 ---
 

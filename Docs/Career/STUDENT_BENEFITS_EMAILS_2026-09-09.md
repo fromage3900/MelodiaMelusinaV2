@@ -376,7 +376,8 @@ https://github.com/fromage3900/MelodiaMelusinaV2
 
 **Skip IP Fund Interactive 2026-09-14.** Post-secondary work is not professional experience. **Send now:** subscribe to the newsletter on the Futures Forward page.
 
-**To:** the contact on https://www.ontariocreates.ca/our-sectors/interactive/interactive-digital-media-fund/ontario-creates-idm-fund-futures (when 2026-27 is posted)  
+**To:** ipfund@ontariocreates.ca  
+Official page still shows **2025-26** copy as of 2026-09-09 16:55 UTC (“Workshop and Grant details for 2026-27 will be posted late-August/early-September”). Subscribe to the newsletter; do not treat the Dec 15 2025 deadline as live.  
 **Subject:** Futures Forward 2026-27 — recent / soon graduate, original game (Melodia Melusina)
 
 ```
@@ -396,7 +397,7 @@ Also subscribe to the Ontario Creates newsletter on that page today.
 
 ## 20. Interactive Ontario — SEND NOW (membership / emerging talent)
 
-**To:** info / membership from https://www.interactiveontario.com (use the live contact on the site)  
+**To:** programs@interactiveontario.com (Ontario Creates lists this as Interactive Ontario’s Futures Forward partner contact)  
 **Subject:** Student / emerging developer — Humber Polytechnic, Melodia Melusina
 
 ```
