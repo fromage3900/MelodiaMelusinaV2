@@ -16,7 +16,7 @@ Canonical long-term direction:
 
 ## OWNER QUEUE — only these three tasks count right now
 
-1. **UE Choral Sheep proof** — verify deformation; ARP re-export only if needed; bind one C-root fleece response; capture REST → ROOT_C → hit → REST.
+1. **UE Choral Sheep proof** — read [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md) first. Verify deformation; ARP re-export only if needed; bind one C-root fleece response on the approved Nikki Cymatics path; capture REST → ROOT_C → hit → REST.
 2. **UE ↔ TD proof** — prove one real OSC `:9000` and/or Spout connection. Do not rebuild the TD scene.
 3. **Presentation proof** — make one 5–10 second AE sequence: **Creature → Motif → Harmony → World**. Only then promote the best result to the website.
 
@@ -144,10 +144,11 @@ Git archaeology closed 2026-09-08 (`Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-0
 Periodic health:
 
 ```text
+python Tools/git_ok.py
 python Tools/front_door_health.py --brief
 ```
 
-PR CI runs contradiction checks. Monday CI runs `--age` when production source moved and `CURRENT_STATE.md` was not refreshed.
+`git_ok.py` is the seconds-long protected-asset / LFS check. If it prints OK, do not reconstruct merge history. `front_door_health.py` is the status-doc contradiction check. PR CI runs both. Monday CI runs `--age` when production source moved and `CURRENT_STATE.md` was not refreshed.
 
 - [x] Record repository authority: game / site / TD are separate remotes; `EnvironmentPortfolio` is archive-only.
 - [x] Gate front-door drift (`Tools/front_door_health.py`).
