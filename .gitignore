@@ -241,6 +241,11 @@ Imports/Animations/Cascadeur/*
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
 Tools/*
+# Issue #42 Resonance Astrolabe implementation lane — narrow allowlist only.
+!Tools/Houdini/
+Tools/Houdini/*
+!Tools/Houdini/mara_elletra/
+!Tools/Houdini/mara_elletra/**
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/
 !Tools/Cascadeur/Melusina/README.md
