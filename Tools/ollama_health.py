@@ -28,14 +28,20 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://127.0.0.1:11434").rstrip("/")
 EVIDENCE_PATH = ROOT / "Saved" / "Integration" / "ollama_health.json"
 
-# Keep this list small and explicit. It is the contract for the local fleet;
-# optional models may exist without becoming a hidden runtime dependency.
+# DECISION-REQUIRED (owner sign-off before merge): the qwen3:8b "naming" lane is
+# what deploy/ollama_chladni_foundry_daemon.py actually uses on machines that
+# pass preflight. Adding it CHANGES the fleet gate contract for every machine:
+# any machine missing both qwen3:8b and the fallback becomes unhealthy.
+# Alternative (no contract change): pull deepseek-r1:14b on the laptop (~9 GB)
+# or keep running daemons standalone here.
+# Lanes the content fleet actually consumes; keep this list small and explicit.
 LANE_MODELS = {
     "reasoning": "deepseek-r1:14b",
     "code": "qwen2.5-coder:7b",
     "heavy_code": "qwen2.5-coder:14b",
     "general": "qwen2.5-coder:7b",
     "creative": "deepseek-r1:14b",
+    "naming": "qwen3:8b",
 }
 
 LANE_FALLBACKS = {
@@ -44,6 +50,7 @@ LANE_FALLBACKS = {
     "heavy_code": ["qwen2.5-coder:14b", "qwen3.8-27b:latest", "qwen2.5-coder:7b"],
     "general": ["qwen2.5-coder:7b", "qwen2.5-coder:14b", "hermes3:latest"],
     "creative": ["deepseek-r1:14b", "deepseek-r1:7b", "qwen2.5-coder:7b"],
+    "naming": ["qwen3:8b", "qwen2.5-coder:7b"],
 }
 
 

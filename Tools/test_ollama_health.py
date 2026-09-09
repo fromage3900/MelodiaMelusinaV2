@@ -72,6 +72,40 @@ class OllamaHealthTests(unittest.TestCase):
         self.assertFalse(report["healthy"])
         self.assertIn("connection refused", report["error"])
 
+    def test_naming_lane_uses_qwen3_with_coder_fallback(self):
+        def fake_urlopen(request, timeout):
+            if request.full_url.endswith("/api/version"):
+                return _Response({"version": "0.33.3"})
+            return _Response(
+                {
+                    "models": [
+                        {"name": "qwen3:8b", "digest": "sha256:four"},
+                        {"name": "qwen2.5-coder:7b", "digest": "sha256:two"},
+                    ]
+                }
+            )
+
+        with patch.object(ollama_health.urllib.request, "urlopen", fake_urlopen):
+            report = ollama_health.probe("http://127.0.0.1:11434")
+
+        naming = report["lanes"]["naming"]
+        self.assertTrue(naming["available"])
+        self.assertEqual(naming["model"], "qwen3:8b")
+
+    def test_naming_lane_falls_back_to_coder_when_qwen3_missing(self):
+        def fake_urlopen(request, timeout):
+            if request.full_url.endswith("/api/version"):
+                return _Response({"version": "0.33.3"})
+            return _Response({"models": [{"name": "qwen2.5-coder:7b"}]})
+
+        with patch.object(ollama_health.urllib.request, "urlopen", fake_urlopen):
+            report = ollama_health.probe("http://127.0.0.1:11434")
+
+        naming = report["lanes"]["naming"]
+        self.assertTrue(naming["available"])
+        self.assertEqual(naming["model"], "qwen2.5-coder:7b")
+        self.assertEqual(naming["configured_primary"], "qwen3:8b")
+
 
 if __name__ == "__main__":
     unittest.main()
