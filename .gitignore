@@ -322,6 +322,14 @@ Tools/BlenderAddons/**/*.blend1
 !Tools/melodia_stage_shot.py
 !Tools/create_animation_template.py
 !Tools/gn_health_check.py
+!Tools/test_chladni_foundry.py
+
+# --- Ollama fleet runtime control markers (created by start/stop scripts, never commit)
+deploy/STOP_ALL
+deploy/OLLAMA_*_STOP
+
+# --- Laptop session scratch (machine-local, never commit)
+Temp/
 melodia-design-system/
 KitbashExport/
 /research/
