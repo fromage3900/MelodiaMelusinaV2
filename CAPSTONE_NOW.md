@@ -35,6 +35,27 @@ Mandatory context:
 
 Do not reopen generic Sheep redesign, standalone wool-master replacement, or duplicate reactivity architecture.
 
+## Professor-facing presentation / rehearsal
+
+Presentation prep is now explicitly art-first and bounded. Read:
+
+- `Docs/Semester/PAUL_NEALE_CAPSTONE_PRESENTATION_STRATEGY_2026-09-09.md` — professor-facing narrative, authorship/provenance language, technical boundaries, and the targeted 3ds Max Astrolabe rig lane;
+- `Docs/Semester/PAUL_NEALE_REHEARSAL_SHEETS_2026-09-09.md` — oral-defense flashcards, likely questions, fallback phrases, and rehearsal circuit.
+
+Presentation hierarchy:
+
+```text
+final image / gameplay first
+→ artistic intent
+→ player-facing system consequence
+→ process / technical-art breakdown
+→ architecture only when it explains the result
+```
+
+Do not lead with agentic workflow, repository infrastructure, commit history, or backend architecture. Attribute third-party frameworks accurately. In particular, **Harmonix is the musical-time / MIDI layer, not the main gameplay code**, and **MelodiaCore must not be presented as the authoritative battle/save foundation while it remains quarantined for gameplay authority**.
+
+This rehearsal work must not displace the current Choral Sheep visual proof.
+
 ## P1 — animation / character craft
 
 Owner-facing work that directly strengthens the capstone:
