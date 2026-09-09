@@ -61,6 +61,12 @@ from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_en
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
 from . import melodia_house  # noqa: F401 - unified house module: genome room shell (mh6) + AAA kit
+from . import dreamy_gothic_arch  # noqa: F401 - slim lancet arch with gold tracery inlay
+from . import rose_window  # noqa: F401 - rose window GN builders
+from . import curved_wall  # noqa: F401 - adjustable arc wall for dreamy interiors
+from . import ornament_strip  # noqa: F401 - gold bead distribution along curves
+from . import gold_light_strip  # noqa: F401 - emissive gold LED strip lighting
+from . import barrel_vault_kit  # noqa: F401 - barrel vault ceiling GN builder
 from . import aesthetic_fx  # noqa: F401
 from . import scifi_fx  # noqa: F401
 from . import zen_kit  # noqa: F401 - zen/castle/asian absorbed from monolith (P2)
