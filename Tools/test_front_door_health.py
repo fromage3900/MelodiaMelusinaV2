@@ -34,8 +34,8 @@ def test_forbidden_current_status() -> None:
 
 
 def test_todo_unrun_proofs() -> None:
-    restart = fdh.FORBIDDEN_CURRENT_CLAIMS[2][1]
-    package = fdh.FORBIDDEN_CURRENT_CLAIMS[3][1]
+    restart = fdh.FORBIDDEN_CURRENT_CLAIMS[3][1]
+    package = fdh.FORBIDDEN_CURRENT_CLAIMS[4][1]
     check(
         "unchecked restart proof is forbidden",
         bool(restart.search("- [ ] Run full process restart proof.\n")),
