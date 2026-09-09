@@ -30,21 +30,24 @@ If it prints `git_ok: OK`, Git is not the task. Stop. Do not reconstruct merge h
 
 If it FAILs, fix the printed lines only. Protected material masters and both-parent merge drops are CI-gated.
 
+Branch/workstation classification authority: `Docs/Production/BRANCH_WORKSTATION_POLICY.md`. Do not merge/delete a divergent branch merely to make branch count smaller. `collab/laptop/longterm` is the intentional laptop Blender / Geometry Nodes lane.
+
 ## 1. Current reading order
 
 Read only this front door before expanding outward:
 
 1. `README.md`
-2. `Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md` for repository/lane/Git authority
-3. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
-4. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
-5. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
-6. `CURRENT_STATE.md`
-7. `_VERTICAL_SLICE_SCOPE.md`
-8. `TODO.md`
-9. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
-10. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
-11. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` only when historical laptop recovery matters
+2. `CAPSTONE_NOW.md` for the immediate production queue
+3. `Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md` for repository/lane/Git authority
+4. `Docs/Production/BRANCH_WORKSTATION_POLICY.md` when branches, machines, salvage, or cleanup matter
+4. `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md` for Fall 2026 production priority
+5. `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` when academic requirements are involved
+6. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+7. `CURRENT_STATE.md`
+8. `_VERTICAL_SLICE_SCOPE.md`
+9. `TODO.md`
+10. `Docs/Art/VISUAL_REFERENCE_INDEX.md` when art / design / modeling / environment references matter
+11. `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` for semester workstation/render decisions
 12. `SYSTEM_MAP.md` + `DATA_FLOW.md` only when architecture detail is required
 
 Everything under dated Handoffs, Reviews, Research, Archives, old queues, and old roadblock files is **context/evidence**, not automatic current authority.
@@ -111,7 +114,9 @@ A handoff is not complete until the relevant commit is pushed and the receiving 
 
 As of 2026-09-08, `main` is the only canonical production baseline. Superseded September 8 docs/fix branches have been reconciled into current main state. Recovery-only branches may remain for deliberate extraction; they are not task queues and must never be merged wholesale.
 
-The authoritative branch decisions and preserved recovery refs are recorded in `Docs/Reports/BRANCH_CANONIZATION_2026-09-08.md`.
+The authoritative branch classes/workstation rules are in `Docs/Production/BRANCH_WORKSTATION_POLICY.md`; the September reconciliation receipt remains in `Docs/Reports/BRANCH_CANONIZATION_2026-09-08.md`.
+
+`collab/laptop/longterm` is intentionally preserved for laptop Blender / Geometry Nodes production. It is neither current runtime truth nor disposable stale history. Promote useful work selectively; never wholesale-merge or auto-delete it.
 
 Before declaring laptop/recovery work absent, compare the relevant branch to current `main` and extract only the specific unique artifact with provenance.
 
@@ -144,6 +149,8 @@ Do not:
 - read the entire repo before doing a scoped task.
 
 ## 7. Current production bias
+
+`CAPSTONE_NOW.md` owns the immediate owner queue. The rules below are scope constraints, not an invitation to create a second task list.
 
 Until the professor-facing vertical slice is safe:
 
