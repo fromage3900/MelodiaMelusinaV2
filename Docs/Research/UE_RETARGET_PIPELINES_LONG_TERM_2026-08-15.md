@@ -1,5 +1,7 @@
 # Universal UE Retargeting Pipeline — Melodia Long-Term Standard
 
+> **Status:** RESEARCH / supporting retarget notes. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 Date: 2026-08-15
 
 ## Decision

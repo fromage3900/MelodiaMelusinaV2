@@ -1,5 +1,7 @@
 # Automated Portfolio & Figma Production Pipeline Specification
 
+> **Status:** SUPPORTING. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`. Showcase freeze still forbids website redesign.
+
 This document details the pipeline design for automatically extracting visual assets, technical statistics, and narrative metadata from **Unreal Engine 5.8** and mapping them directly to a **Figma Design System** template for automated portfolio assembly and ArtStation publishing.
 
 ---

@@ -66,17 +66,12 @@ Still open:
 
 The project wins when a new Chapter mostly means **content**, not surgery on the engine.
 
-- [ ] Lock one canonical Chapter-package template from the existing progression schema.
-- [ ] Give each package a tier: Reverie / Episode / Chapter / Monolith Event.
-- [ ] Require the seven useful authoring questions:
-  - Narrative Question
-  - Mechanical Focus
-  - Character Focus
-  - Location
-  - Visual Signature
-  - Persistent Change
-  - Exit Image
-- [ ] Require stable IDs + idempotent intents/rewards + checkpoint/restore policy.
+World-building / chapter contract: [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md). Authoring template: [`Chapters/CHAPTER_TEMPLATE.md`](Chapters/CHAPTER_TEMPLATE.md). Shorewake is the pilot bible: [`Chapters/02_shorewake_calling/CHAPTER.md`](Chapters/02_shorewake_calling/CHAPTER.md).
+
+- [x] Lock one canonical Chapter-package template from the existing progression schema (`Chapters/CHAPTER_TEMPLATE.md`).
+- [x] Give each package a tier: Reverie / Episode / Chapter / Monolith Event (required in CHAPTER.md).
+- [x] Require the seven useful authoring questions (required in CHAPTER.md; Shorewake filled).
+- [ ] Require stable IDs + idempotent intents/rewards + checkpoint/restore policy (Shorewake `encounters.json` remains PREVIEW_ONLY).
 - [ ] Validate the package offline, then runtime/restart/package where it matters.
 
 The old P0 six-phase route stays as one great **integration song**. It is not a template every story has to obey.

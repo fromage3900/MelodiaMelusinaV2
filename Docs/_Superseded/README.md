@@ -6,6 +6,9 @@ were made, and because deleting project history is how the same argument gets ha
 **Do not act on anything in this folder.** If a file here contradicts a live doc, the
 live doc wins. If it contradicts `_DECISION_LOG.md`, the decision log wins.
 
+World-building / chapter / cymatics / TD visual authority is
+`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`, not any pipeline plan in this folder.
+
 ## Archived 2026-08-13
 
 Sixteen root-level documents, moved during the repo lock-in pass. Root `.md` count went

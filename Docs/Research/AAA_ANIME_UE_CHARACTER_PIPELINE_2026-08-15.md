@@ -1,5 +1,7 @@
 # AAA Anime / Gacha Character Pipelines in Unreal Engine — Research Brief
 
+> **Status:** RESEARCH. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 **Date:** 2026-08-15
 **Scope:** Infinity Nikki (Infold/Papergames, UE5), Wuthering Waves (Kuro Games, UE4.26), Genshin Impact / HoYoverse where publicly documented, plus Epic first-party documentation.
 **Purpose:** Inform character-integration decisions for *Melodia* / Melusina (UE 5.8, Blender + Auto-Rig Pro + Rigify face + Faceit).

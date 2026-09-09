@@ -5,6 +5,7 @@
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
 **Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS (captured revision) · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals) · Issue #51 long-chain persistence still OPEN**
 **Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
+**World-building authority:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) — player loop, C++ truth, Chladni/cymatics, TouchDesigner as visual instrument.
 
 > **Build:** green. `UnrealEditor-BS_GodFile.dll` built 2026-09-04 21:47 and the editor is running
 > from it. The blocker was `LPCTSTR` dropping a struct member in

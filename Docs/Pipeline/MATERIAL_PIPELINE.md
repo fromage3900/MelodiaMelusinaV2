@@ -1,5 +1,7 @@
 # Material Pipeline Specification — Environment Portfolio Platform
 
+> **Status:** SUPPORTING material plumbing. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`. Do not treat this page as a competing SSOT.
+
 This document specifies the master shader architecture, parameter schemas, Substrate Toon integrations, and automation scripts used in the **Environment Portfolio Platform**.
 
 ---

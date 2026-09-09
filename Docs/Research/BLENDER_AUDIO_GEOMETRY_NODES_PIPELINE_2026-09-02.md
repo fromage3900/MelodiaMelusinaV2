@@ -1,4 +1,6 @@
 # Blender Audio -> Geometry Nodes Pipeline - Research Report
+
+> **Status:** RESEARCH. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
 **Date:** 2026-09-02 | **Task:** 5-8 concrete tools/repos/threads with URLs + Melodia Blender->UE integration
 **Context:** Melodia Studio on Blender 5.2 (surreal_architecture_gen, 173 GN builders) -> UE 5.8 (PCG, Substrate, cymatic fabric, Sea Above)
 
