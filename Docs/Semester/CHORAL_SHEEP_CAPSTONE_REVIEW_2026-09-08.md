@@ -62,6 +62,36 @@ Current evidence classification:
 
 Do not reopen the old zero-vertex-group / re-rigging lane unless the current source actually fails.
 
+## 2.5 Owner material authority lock — Nikki MUST be used
+
+The P0 material decision is now explicit:
+
+> **All final Choral Sheep lookdev, beauty, Harmonize, Chladni Fleece, and professor/recruiter-facing Sheep proof MUST use the approved Nikki-derived character material path.**
+
+Current repo-backed path:
+
+```text
+MI_ChoralSheep_Body
+  → M_Master_Toon_Character
+
+MI_ChoralSheep_Body_Chladni_C
+  → inherits MI_ChoralSheep_Body
+  → consumes T_Chladni_C_ROOT
+```
+
+This supersedes the older proposal to create `M_Chorus_Wool_Master` as a standalone P0 material authority.
+
+The design rule is:
+- Sheep first reads as a soft, beautiful Nikki-quality creature;
+- Chladni/cymatics appears **inside that material language**;
+- ROOT_C changes pattern organization, while beat/amplitude control strength;
+- at REST the cymatic layer must recede cleanly and the approved character material must still read.
+
+Do not substitute a water/landscape master, random standalone Nikki master, generic toon/PBR material, or TD/Blender approximation for final Unreal proof.
+
+Coordination authority:
+`Docs/Production/P0_RECRUITER_SENDOFF_AND_CHORAL_SHEEP_VISUAL_QUEUE_2026-09-09.md`
+
 ## 3. Capstone design lock
 
 The first technical-art experiment is locked:

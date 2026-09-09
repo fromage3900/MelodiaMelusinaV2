@@ -125,6 +125,37 @@ The site currently has to qualify several of those cards as "study" / "beauty pe
 
 ---
 
+## 3.5 P0 visual coordination with Choral Sheep capstone
+
+The recruiter-sendoff render queue and the Choral Sheep capstone now share one coordination authority:
+
+`Docs/Production/P0_RECRUITER_SENDOFF_AND_CHORAL_SHEEP_VISUAL_QUEUE_2026-09-09.md`
+
+The priority remains:
+
+```text
+Melusina A1/A2
+→ compact A3–A6 proof set
+→ Sakura Dream beauty
+→ Kaleido Nave beauty
+→ Fallen Moon beauty
+→ real browser QA
+→ hard freeze
+```
+
+Choral Sheep may progress alongside this queue, but it must not cause more recruiter-site redesign.
+
+For the Sheep lane specifically:
+
+- M0 = one beauty-ready sheep;
+- M1 = one ROOT_C Harmonize / Chladni Fleece proof;
+- **the approved Nikki-derived Sheep material MUST be used for final lookdev/proof**;
+- current concrete material path is `MI_ChoralSheep_Body → M_Master_Toon_Character`, with `MI_ChoralSheep_Body_Chladni_C` inheriting that body material for C-root cymatics;
+- the older standalone `M_Chorus_Wool_Master` proposal is superseded for P0;
+- do not proceed to C/E/G until the single-sheep beauty + ROOT_C proof photograph well.
+
+This coordination note does not change the Melusina art-direction rules below. It prevents the capstone and recruiter render lanes from drifting into contradictory material or website priorities.
+
 ## 4. Melusina art direction
 
 ### A1 — 3/4 full-body hero

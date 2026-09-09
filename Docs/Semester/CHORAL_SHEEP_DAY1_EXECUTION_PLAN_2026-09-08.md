@@ -43,6 +43,31 @@ animation / Harmonize runtime proven
 
 Do not re-rig the sheep unless a fresh export/deformation check proves the current rig is unusable.
 
+## Owner material lock — Nikki is mandatory
+
+**For all final Sheep lookdev and P0 proof, the approved Nikki-derived character material MUST be used.**
+
+Current concrete path:
+
+```text
+MI_ChoralSheep_Body
+  → M_Master_Toon_Character
+
+MI_ChoralSheep_Body_Chladni_C
+  → inherits MI_ChoralSheep_Body
+  → consumes T_Chladni_C_ROOT for ROOT_C proof
+```
+
+This means:
+- preserve the current Sheep body material ancestry;
+- build the Chladni/cymatics response as a child/consumer of that approved material;
+- do not introduce `M_Chorus_Wool_Master` as a replacement P0 authority;
+- do not reparent to a water/landscape/random standalone Nikki master;
+- Blender or TD approximations may support lookdev, but final Sheep material proof must be the Unreal Nikki + cymatics path.
+
+See:
+`Docs/Production/P0_RECRUITER_SENDOFF_AND_CHORAL_SHEEP_VISUAL_QUEUE_2026-09-09.md`
+
 ---
 
 ## Reference lock — 20 minutes maximum
@@ -152,8 +177,11 @@ Priorities:
 - one appealing idle / pose.
 
 Current wool direction:
+- **use the approved Nikki-derived Sheep material; this is mandatory for final proof**;
 - preserve the dusty / soft coat language;
 - let normal, sheen, groom, lighting, and authored fleece form create wool volume;
+- keep the Nikki character-side sheen / stylized response readable at rest;
+- layer Chladni/cymatics into the existing material consumer rather than replacing the material;
 - do not add heavy albedo noise merely to make the surface look more complicated.
 
 Groom is optional for M0. A clean base sheep is better than a broken hero Groom.
@@ -300,7 +328,7 @@ The export problem is allowed to consume time only until the sheep is reliably i
 3. Verify UE skeletal mesh / deformation.
 4. If export blocks, pivot immediately to labeled visual lookdev rather than re-rigging.
 5. Produce one beauty-ready sheep.
-6. Produce one Harmonize / pitch-C Chladni proof.
+6. Produce one Harmonize / pitch-C Chladni proof **using the approved Nikki material + Chladni child consumer**.
 7. Capture beauty + proof.
 8. Review Gemini TD/AE outputs by actual pushed artifacts.
 9. If energy remains: begin E/G, not the full chromatic flock.
