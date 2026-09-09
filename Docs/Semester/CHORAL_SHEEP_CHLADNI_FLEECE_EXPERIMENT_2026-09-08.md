@@ -311,22 +311,49 @@ OUT_DEBUG
 
 The final render path should use replay data, not depend on a perfect live OSC take.
 
-## 10. Unreal material role
+## 10. Unreal material role — NIKKI MATERIAL LOCK
 
 Unreal remains responsible for making the result belong to the actual game asset.
 
-Preferred material consumers:
+**Owner decision (2026-09-09): the approved Nikki-derived Sheep character material MUST be used for the final Chladni Fleece proof.**
 
+Current concrete material path:
+
+```text
+/Game/Melodia/Companions/ChoralSheep/MI_ChoralSheep_Body
+  → parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character
+
+/Game/Melodia/Companions/ChoralSheep/Materials/MI_ChoralSheep_Body_Chladni_C
+  → parent: MI_ChoralSheep_Body
+  → texture: T_Chladni_C_ROOT
+```
+
+The Chladni layer is a **consumer specialization of the Nikki character material**, not a replacement material family.
+
+Required material consumers:
+
+- Chladni pattern texture / mask;
 - mask intensity;
-- mask scale / phase;
+- mask scale / phase where supported;
 - subtle WPO or shell lift;
 - emissive;
-- sheen / roughness modulation;
-- bell/trim accent.
+- Nikki-style sheen / roughness modulation;
+- bell/trim accent;
+- existing Melodia cymatics / beat parameters.
+
+Do not:
+- create `M_Chorus_Wool_Master` as the P0 authority;
+- replace the Sheep material with a generic toon/PBR shader;
+- reparent to water/landscape masters;
+- pick a random `M_Master_Nikki` asset simply because of its name;
+- bypass the character material with a full-screen or full-surface neon overlay.
 
 Do not require destructive mesh changes.
 
-The first proof should be achievable as a reversible material/presentation layer on the approved sheep asset.
+The first proof should be achievable as a reversible material/presentation layer on the approved Sheep asset while visibly preserving the Nikki material response at REST.
+
+See:
+`Docs/Production/P0_RECRUITER_SENDOFF_AND_CHORAL_SHEEP_VISUAL_QUEUE_2026-09-09.md`.
 
 ## 11. After Effects breakdown
 
@@ -394,7 +421,7 @@ Do not start stretch work until P1 photographs beautifully.
 
 The first implementation question is intentionally narrow:
 
-> **Can one pitch-stable, amplitude-responsive Chladni mask look beautiful when integrated into the current Choral Sheep wool material without damaging the creature silhouette?**
+> **Can one pitch-stable, amplitude-responsive Chladni mask look beautiful when integrated into the approved Nikki-derived Choral Sheep material without damaging the creature silhouette?**
 
 If no, solve the material/art problem before adding multiple sheep or world response.
 
@@ -403,6 +430,7 @@ If no, solve the material/art problem before adding multiple sheep or world resp
 Chladni Fleece succeeds when:
 
 - it reads as part of the sheep, not an overlay pasted on top;
+- the approved Nikki material response remains visibly intact at rest and through Harmonize;
 - pitch identity affects pattern structure;
 - amplitude affects strength;
 - timing affects pulse/phase;
