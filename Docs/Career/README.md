@@ -13,7 +13,7 @@ as the product. The previous framing ("the Melodia Platform", a pipeline-infrast
 inverted that and has been corrected; see
 [MELODIA_STUDIO_STARTUP_PARAGRAPH.md](MELODIA_STUDIO_STARTUP_PARAGRAPH.md).
 
-**Student / education benefits (2026-09-09):** claim queue, official sources, and renewal dates live in [`STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md`](STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md). Paste-ready vendor emails: [`STUDENT_BENEFITS_EMAILS_2026-09-09.md`](STUDENT_BENEFITS_EMAILS_2026-09-09.md). Gmail was not available to this agent; nothing has been submitted.
+**Student / education benefits (2026-09-09):** execution starts at [`STUDENT_BENEFITS_HERMES_CLOSEOUT_2026-09-09.md`](STUDENT_BENEFITS_HERMES_CLOSEOUT_2026-09-09.md). Claim queue, official sources, and renewal dates live in [`STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md`](STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md). Paste-ready vendor emails: [`STUDENT_BENEFITS_EMAILS_2026-09-09.md`](STUDENT_BENEFITS_EMAILS_2026-09-09.md). Keep personal verification identifiers out of the public repository.
 
 ### Active sendoffs (refreshed 2026-09-05)
 
