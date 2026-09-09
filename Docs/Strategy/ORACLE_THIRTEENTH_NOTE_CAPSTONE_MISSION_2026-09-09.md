@@ -8,6 +8,8 @@
 
 > **Activation rule:** this mission does not supersede Choral Sheep P0, Shorewake Calling, the semester reel, professor demo, or recruiter sendoff. It activates only after the current semester hero deliverables are safe.
 
+**Companion cosmic-horror / fourth-wall design:** `Docs/Strategy/ORACLE_COSMIC_HORROR_VIRTUALIZED_FOURTH_WALL_2026-09-09.md`
+
 ---
 
 ## 1. Mission thesis
