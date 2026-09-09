@@ -1,6 +1,6 @@
 # ♬ Melodia — Documentation Score Map
 
-**Last updated:** 2026-09-04
+**Last updated:** 2026-09-08
 
 > Front-facing docs tell the current truth. Dated handoffs keep the memory. Research is allowed to be weird. Runtime ownership is not. ♪
 
@@ -12,8 +12,13 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 
 | Order | Read this | Why |
 |:---:|---|---|
+| **0** | [`REPOSITORY_AUTHORITY.md`](REPOSITORY_AUTHORITY.md) | Canonical game/site/TD repo boundaries; blocks deprecated EnvironmentPortfolio authority. |
+| **0A** | [`Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md`](Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md) | Final archaeology stop-condition and branch-noise policy. |
 | **1** | [`README.md`](README.md) | Project identity and one-page orientation. |
-| **2** | [`Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md`](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md) | Fall 2026 production authority: First Dream stable proof, Shorewake semester artwork. |\n| **3** | [`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`](Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md) | Course brief → Melodia deliverable mapping; populate from Humber outlines/Blackboard. |\n| **4** | [`Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) | Humber-primary authoring + home-PC render worker contract. |\n| **5** | [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) | Professor/reviewer route: playable proof, runtime architecture, evidence levels, boundaries, and 5–10 minute demo. |
+| **2** | [`Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md`](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md) | Fall 2026 production authority: First Dream stable proof, Shorewake semester artwork. |
+| **3** | [`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`](Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md) | Course brief → Melodia deliverable mapping; populate from Humber outlines/Blackboard. |
+| **4** | [`Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) | Humber-primary authoring + home-PC render worker contract. |
+| **5** | [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](MELODIA_TECHNICAL_VERTICAL_SLICE.md) | Professor/reviewer route: playable proof, runtime architecture, evidence levels, boundaries, and 5–10 minute demo. |
 | **6** | [`CURRENT_STATE.md`](CURRENT_STATE.md) | What exists and what can honestly be claimed now. |
 | **7** | [`_VERTICAL_SLICE_SCOPE.md`](_VERTICAL_SLICE_SCOPE.md) | The bounded First Dream / Sea Above P0 scope. |
 | **8** | [`TODO.md`](TODO.md) | The active production queue and closure work. |
@@ -33,6 +38,35 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 - dated handoffs / audits — historical memory, not current authority unless explicitly referenced by a front-door document.
 
 If you are an agent or reviewer: **do not start by searching every old handoff, research packet, or experiment.** Read the seven-item front door above, then follow links into the specific system you actually need.
+
+---
+
+## ♫ Fall 2026 Capstone 01 — Choral Sheep
+
+**Presentation spine:** **Creature → Motif → Harmony → World**
+
+Read these before touching the capstone lane:
+
+- `Docs/Semester/CHORAL_SHEEP_CAPSTONE_SHOWCASE_PLAN_2026-09-08.md` — canonical capstone thesis, tool ownership, film structure, and UE/TD/AE pipeline.
+- `Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md` — **today's execution order:** verify current fully rigged source → ARP re-export if needed → UE proof → M0 beauty → M1 pitch-C Chladni proof.
+- `Docs/Semester/CHORAL_SHEEP_CHLADNI_FLEECE_EXPERIMENT_2026-09-08.md` — **locked first technical-art experiment:** pitch-linked fleece → C/E/G shared field → world propagation.
+- `Docs/Handoffs/GEMINI_TD_AE_CAPSTONE_HANDOFF_2026-09-08.md` — Gemini's TouchDesigner + After Effects execution/documentation lane.
+- `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — **repo boundary:** UE truth stays here; canonical `grandmaster_melodia` stays in its own Git; TD/AE is the concert-visual/editorial/compositing pipeline.
+- `Docs/Semester/CHORAL_SHEEP_CAPSTONE_DELIVERABLE_LEDGER_2026-09-08.md` — milestone and evidence ledger.
+- `Docs/References/ChoralSheepCapstone/REFERENCE_MANIFEST.md` — analytical reference set + owner-approved sheep visual lock.
+- `Docs/References/VisualBoards/2026-09-08/README.md` — **committed visual boards:** Choral Sheep, Mara/Electra + Ebenezer, and Melusina.
+- `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md` — academic mapping once the official Humber brief/rubric is available.
+- `Docs/CHORAL_SHEEP_INTEGRATION_RUNBOOK.md` — grounded companion runtime contract.
+- `Content/Melodia/Companions/ChoralSheep/ChoralSheepDefinition.json` — current companion data truth.
+- `Content/MelodiaIntegration/ResonantWorld/MotifCreatures/ChoralSheep/ChoralSheepVariants.json` — pitch-class variation truth.
+
+Important scope rule:
+
+> **TouchDesigner visualizes resonance; After Effects assembles the argument; Unreal remains the authored world/game authority.**
+
+The first proof is **one sheep + one note + visible resonance**.  
+The core capstone is **C + E + G → harmony → world response**.  
+The twelve-note flock is stretch scope, not a blocker.
 
 ---
 

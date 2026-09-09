@@ -1,5 +1,13 @@
 # BS_GodFile agent context
 
+## 🧭 REPOSITORY AUTHORITY — check before anything else
+
+Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md).
+
+`fromage3900/EnvironmentPortfolio` / the root workspace `.git` is deprecated. The folder `C:/EnvironmentPortfolio/` may remain the valid parent workspace containing the separate game/site/TD repos. Work in exactly one nested canonical domain repo.
+
+---
+
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.

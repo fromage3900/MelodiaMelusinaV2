@@ -317,7 +317,7 @@ class SURREAL_ARCH_OT_toggle_wave_overlay(bpy.types.Operator):
 # ── IMM kit export (ZBrush Insert Multi Mesh) ───────────────────────────
 
 _IMM_KIT = (
-    "MEL_music_waveform_wall",
+    "MEL_music_waveform_wall_v2",
     "MEL_music_vinyl_disc",
     "MEL_music_lissajous_harp",
     "MEL_imm_piano_keys",
@@ -517,7 +517,7 @@ class SURREAL_ARCH_PT_music_score(bpy.types.Panel):
         kit.label(text="Musical Kit (GN Stack)", icon="IPO_BEZIER")
         grid = kit.grid_flow(row_major=True, columns=2, align=True)
         for tree_name, label in (
-            ("MEL_music_waveform_wall", "* Waveform Wall"),
+            ("MEL_music_waveform_wall_v2", "* Waveform Wall"),
             ("MEL_music_vinyl_disc", "◎ Vinyl Disc"),
             ("MEL_music_lissajous_harp", "∿ Lissajous Harp"),
             ("MEL_imm_piano_keys", "▤ Piano Keys"),
@@ -547,7 +547,7 @@ class SURREAL_ARCH_MT_pie_score(bpy.types.Menu):
         pie.operator("surreal_arch.export_imm_kit", text="IMM Kit Export", icon="EXPORT")
         col = pie.column(align=True)
         for tree_name, label in (
-            ("MEL_music_waveform_wall", "Waveform Wall"),
+            ("MEL_music_waveform_wall_v2", "Waveform Wall"),
             ("MEL_music_vinyl_disc", "Vinyl Disc"),
             ("MEL_imm_piano_keys", "Piano Keys"),
             ("MEL_music_soundhole_rosette", "Rosette"),

@@ -1,7 +1,9 @@
 # Melodia Visual Reference Index
 
-**Status:** 2026-09-04  
+**Status:** 2026-09-08  
 **Purpose:** Canonical discovery point for image reference boards, concept sheets, visual targets, and known missing/uncommitted boards.
+
+**Integrity receipt:** `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md` — September 8 Sheep/Mara/Melusina batch verified; missing Melusina House REF_01 path restored.
 
 > Agents: **start here before searching dated art/research handoffs.** Never fabricate a path for a board you cannot find.
 
@@ -18,7 +20,7 @@ These are committed, immediately viewable working boards on `main` and should be
 - `Docs/References/MelusinasHouse/REF_03_CUTAWAY_INTERIOR_FLOW.jpg` — cutaway, room flow, stair/tower relationships, interior-light rhythm.
 - `Docs/References/MelusinasHouse/README.md` — canonical usage order and interpretation notes.
 
-Important reconciliation note: old laptop PR #81 stored 130-byte Git LFS pointer forms of these JPEG paths. The pointer metadata declares the same nominal image sizes as the viewable copies already on `main`; do **not** replace the current visible working copies merely because a recovery branch shows different blob SHAs.
+Important reconciliation note: the three Melusina House JPEGs are intentionally Git LFS-managed. Git stores small pointer blobs; a hydrated checkout resolves the image bytes with `git lfs pull`. During the 2026-09-08 closeout, REF_01 was recovered from the preserved laptop branch and restored to `main`. See `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md` for the exact LFS object IDs and sizes.
 
 
 ### Mara Elettra Vell + Ebenezer
@@ -44,6 +46,56 @@ Supporting specification:
 `Docs/Art/Images/shorewake_shader_flow_sea_above_p0_visual_target_2026-08-29.svg`
 
 Use as a committed technical/visual target, not as proof that every referenced runtime asset is final.
+
+## Choral Sheep Capstone reference boards
+
+**Canonical folder:** `Docs/References/ChoralSheepCapstone/`
+
+Use this set for Capstone 01 / Chladni Fleece / TD-AE presentation work:
+
+- `REFERENCE_MANIFEST.md` — read-first synthesis and reference handling rules.
+- `BOARD_01_CREATURE_FLEECE.md` — creature appeal, wool, textile/pearlescent response.
+- `BOARD_02_CHLADNI_PATTERN_LANGUAGE.md` — standing waves, nodal-line hierarchy, C→E→G pattern logic.
+- `BOARD_03_HYPERPOP_RAVE_CONCERT_DRAMATURGY.md` — Ninajirachi, Frost Children, A. G. Cook/PC Music, and 2hollis references translated into Melodia scale/timing principles.
+- `BOARD_04_TD_HARMONIC_FIELD.md` — TouchDesigner field and live-visual rules.
+- `BOARD_05_CAMERA_COMPOSITE.md` — camera hierarchy and AE final-composite rhythm.
+
+Also read:
+
+- `BOARD_06_OWNER_APPROVED_CONCEPT_SHEETS_2026-09-08.md` — owner-approved concrete sheep/fleece visual lock.
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_creature_fleece.webp`
+- `Docs/References/VisualBoards/2026-09-08/ChoralSheep/choral_sheep_chladni_fleece.webp`
+
+Boards 01–05 are **analytical/source-link boards**, not a redistribution archive of third-party concert photography. Board 06 + the two committed WebPs convert that research into an owner-approved Melodia target.
+
+The concert-reference rule is:
+
+> **Steal the timing, not the branding.**
+
+Translate scale, silhouette, graphic punctuation, live response, and lighting dramaturgy into Melodia's pearl / water / embroidery / cymatic language.
+
+## 2026-09-08 character / instrument visual-board set
+
+**Canonical folder:** `Docs/References/VisualBoards/2026-09-08/`
+
+Read `Docs/References/VisualBoards/2026-09-08/README.md` first.
+
+### Mara Ellettra Vell / Electra + Ebenezer
+
+- `MaraEllettraVell/mara_character_field_luthier.webp` — character / resonance-cartographer direction.
+- `MaraEllettraVell/mara_instrument_variants.webp` — instrument variants and resonance-device language.
+- `MaraEllettraVell/electra_cymatic_instruments.webp` — active cymatic instrument / performance studies.
+- `MaraEllettraVell/electra_ebenezer_relationship.webp` — companion relationship, palette, and field-role study.
+
+### Melusina
+
+- `Melusina/melusina_field_song_reference.webp` — current character identity / silhouette / turnaround reference.
+- `Melusina/melusina_cymatic_instruments.webp` — instrument ideation and equipped-state reference.
+- `Melusina/melusina_performance_outfit_song_states.webp` — outfit/colorway, performance-pose, expression, and song-state reference.
+
+**Evidence classification:** CANONICAL COMMITTED REFERENCE IMAGE.
+
+These are concept / art-direction boards. They do **not** replace UE5.8 runtime proof, approved final meshes, or final beauty renders. In particular, Melusina's final portfolio authority remains the UE5.8 B2 beauty / portrait / breakdown suite once captured.
 
 ## Production sheets that describe visual direction
 

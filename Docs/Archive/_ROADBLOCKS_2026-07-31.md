@@ -1,3 +1,11 @@
+# HISTORICAL — not current project status
+
+**Written:** 2026-07-31. Kept as a contradiction register, not a live blocker list.
+
+Do not treat any row below as current. Start at [`AGENT_START_HERE.md`](AGENT_START_HERE.md). The still-open technical boundary is Issue #51 (long-chain persistence), Shorewake dress bind, and Choral Sheep UE export proof.
+
+---
+
 # Roadblocks & Contradiction Register — 2026-07-31
 
 **Purpose:** one place for what is actually blocked, and for which documents currently contain false

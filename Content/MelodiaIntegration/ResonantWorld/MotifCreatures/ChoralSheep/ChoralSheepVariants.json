@@ -5,7 +5,20 @@
   "variant_axis": {
     "type": "pitch_class",
     "count": 12,
-    "labels": ["C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A", "As", "B"],
+    "labels": [
+      "C",
+      "Cs",
+      "D",
+      "Ds",
+      "E",
+      "F",
+      "Fs",
+      "G",
+      "Gs",
+      "A",
+      "As",
+      "B"
+    ],
     "semitone_offset_rule": "variant_index == pitch_class, C=0",
     "blender_material_names": "ChoralWool_PC_{label} (see sheep_shine.build_chromatic_materials)"
   },
@@ -13,7 +26,12 @@
     "naming": "MI_ChoralSheep_Coat_PC{label:02d}",
     "directory": "/Game/Melodia/Companions/ChoralSheep/Materials/",
     "parent_master_tbd": "/Game/EnvSandbox/Materials/Masters/ (fur master pending; do NOT reuse water or landscape masters)",
-    "scalar_overrides": ["CoatHueShift", "CoatSaturation", "TrimEmissive", "BellToneScale"],
+    "scalar_overrides": [
+      "CoatHueShift",
+      "CoatSaturation",
+      "TrimEmissive",
+      "BellToneScale"
+    ],
     "reimport_policy": "master_edit_only_no_instance_deletion"
   },
   "behavior_binding": {
@@ -32,5 +50,5 @@
     "Docs/Art/TONIGHT_ASSEMBLY_PLAN_2026-08-26.md",
     "Docs/CHORAL_SHEEP_UE_RETARGET_PREP_2026-08-25.md"
   ],
-  "status": "coat_pipeline_ready_weight_paint_blocked_pending_blend_transfer"
+  "status": "coat_pipeline_ready_source_rig_owner_confirmed_arp_export_and_ue_verification_pending"
 }

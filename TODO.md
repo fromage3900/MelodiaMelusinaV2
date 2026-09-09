@@ -1,9 +1,10 @@
-# ♪ Melodia — what we are actually doing next
+# Melodia — what we are actually doing next
 
-**Date:** 2026-09-02  
-**Phase:** close the runtime → make Chapters cheap to add → grow the journey
+**Date:** 2026-09-08  
+**Phase:** protect First Dream · ship one Choral Sheep proof · present the strongest evidence
 
 > This is the production score, not the dream board. If something is beautiful but makes the core less reliable, it waits.
+> Current discovery authority is [`AGENT_START_HERE.md`](AGENT_START_HERE.md). Do not treat dated Handoffs or `_ROADBLOCKS_2026-07-31.md` as this list.
 
 Canonical long-term direction:
 
@@ -13,42 +14,44 @@ Canonical long-term direction:
 
 ---
 
-## 𝄞 NOW — close the song
+## OWNER QUEUE — only these three tasks count right now
 
-Golden proof:
+1. **UE Choral Sheep proof** — verify deformation; ARP re-export only if needed; bind one C-root fleece response; capture REST → ROOT_C → hit → REST.
+2. **UE ↔ TD proof** — prove one real OSC `:9000` and/or Spout connection. Do not rebuild the TD scene.
+3. **Presentation proof** — make one 5–10 second AE sequence: **Creature → Motif → Harmony → World**. Only then promote the best result to the website.
 
-```text
-Outfit
-→ Starskiff / exploration
-→ Phoenix action
-→ rhythm execution
-→ Convergence / world consequence
-→ reward / checkpoint
-→ SAVE
-→ quit process
-→ relaunch
-→ same durable state
-→ load again
-→ no duplication / no drift
-```
+**Today's minimum win:** one readable Sheep screenshot or short clip.
 
-### Persistence / restore
+Issue #51 persistence closure is a real engineering backlog item, but it is **not a prerequisite for the next capstone image**.
 
-- [x] Keep the existing load-result split; do not invent another save framework.
-- [x] Reject equipped cosmetic state that contradicts owned cosmetic state before stock load mutation.
-- [ ] Re-cut / transplant runtime-persistence work from stale PR #54 onto a fresh branch from current `main`.
+Do not add Git archaeology, new frameworks, website redesign, new TD infrastructure, or another research sweep to this queue.
+
+---
+
+## ENGINEERING / SEMESTER BACKLOG — not all for today
+
+Semester thesis: **First Dream is the stable technical proof. Shorewake Calling is the semester artwork. Choral Sheep is the capstone lane.**
+
+Already recorded (do not reopen as “never proven”):
+
+- music / challenge → reward → wardrobe equip → Glide → portal unlock (live-proven)
+- wardrobe restore after full editor process restart
+- 8/8 active P0 gates in `Docs/P0_TASK_LEDGER.json`
+- editor build green; audio reactivity measured live in PIE
+- packaged route recorded as verified on both legs (bounded evidence, not a new shipping certificate)
+
+Still open:
+
+- [ ] Close Issue #51 long-chain persistence: Outfit → Starskiff → Phoenix → rhythm → Convergence → save → quit → relaunch → load again with no duplication. Refresh from current `main`. **Do not merge stale PR #54 wholesale.**
 - [ ] Audit `RestoreNarrativeRecord` / `RestoreNarrativeRecordFromSave` for partial mutation and duplicate rebuild side effects.
-- [ ] Add remaining intrinsic candidate validation before canonical mutation where possible.
-- [ ] Keep Wardrobe catalog / slot / authored semantic checks inside Wardrobe ownership.
+- [ ] Add remaining intrinsic candidate validation and Wardrobe-owned semantic checks before canonical mutation.
 - [ ] Add repeat-load equality + idempotency tests.
-- [ ] Trace Starskiff ownership and write down **durable facts vs derived/transient state**.
-- [ ] Trace Convergence ownership the same way.
-- [ ] Extend the save schema only after those durable facts are locked.
-- [ ] Audit sync/async save writes; add stale-write protection only if a real race is proven.
-- [ ] Run full process restart proof.
-- [ ] Run packaged-build proof.
+- [ ] Trace Starskiff and Convergence durable facts vs derived/transient state before any schema v6.
+- [ ] Shorewake dress bind: 2-bone dress skeleton vs Melusina’s 465-bone skeleton.
+- [ ] Choral Sheep follow-through: owner-confirmed rig → UE deformation proof → C-root fleece binding → one beautiful captured sheep. TD ROOT_C evidence already exists; do not rebuild it.
+- [ ] Sea Above look-dev: re-export `W_Glacier_Rock`; pin Ultra Dynamic Sky before trusting A/B captures.
 
-### Hard no's while this is open
+### Hard no's while persistence is open
 
 - no Phoenix rewrite;
 - no second SaveGame authority;
@@ -59,7 +62,7 @@ Outfit
 
 ---
 
-## ♫ NEXT — make a new Chapter boring to author
+## NEXT — make a new Chapter boring to author
 
 The project wins when a new Chapter mostly means **content**, not surgery on the engine.
 
@@ -74,16 +77,13 @@ The project wins when a new Chapter mostly means **content**, not surgery on the
   - Persistent Change
   - Exit Image
 - [ ] Require stable IDs + idempotent intents/rewards + checkpoint/restore policy.
-- [ ] Validate the package offline.
-- [ ] Validate runtime/PIE behavior where it matters.
-- [ ] Validate restart/load for durable state.
-- [ ] Validate package/release promotion.
+- [ ] Validate the package offline, then runtime/restart/package where it matters.
 
 The old P0 six-phase route stays as one great **integration song**. It is not a template every story has to obey.
 
 ---
 
-## ♬ Volume I — the journey we can keep arranging
+## Volume I — the journey we can keep arranging
 
 ### Movement I — The First Answer
 
@@ -122,7 +122,7 @@ The 50+ Chapter grid is a **score we can rearrange**, not a legal contract with 
 
 ---
 
-## ♪ Browser / UI / authoring playground
+## Browser / UI / authoring playground
 
 These are fast experiments. They are allowed to be weird because they are not allowed to become runtime authority.
 
@@ -137,18 +137,20 @@ These are fast experiments. They are allowed to be weird because they are not al
 
 ---
 
-## ♫ Git health — keep the repo from becoming archaeology again
+## Git health
 
+Git archaeology closed 2026-09-08 (`Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md`). This repo’s `main` matches `origin/main`. Do not start another merge/cleanup campaign.
+
+- [x] Record repository authority: game / site / TD are separate remotes; `EnvironmentPortfolio` is archive-only.
 - [ ] Refresh persistence closure from current `main`; do not merge stale PR #54 wholesale.
-- [ ] Review PR #61 as a **large Wix/site snapshot**, not a tiny Three.js patch.
-- [ ] Reconcile PR #61's shared Three.js r128 layer with the newer 0.185-era Folio/MusicKey prototypes before making it a common dependency.
-- [ ] Treat giant old research PRs (#28 / #37 and similar) as extraction sources unless specifically refreshed.
 - [ ] Keep human-owned maps/art isolated from automated mass merges.
 - [ ] Keep new work in small fresh branches with one clear reason to exist.
 
+Website PR #61 and old research PRs live in other remotes or as extraction sources. They are not this repo’s current queue.
+
 ---
 
-## 𝄞 Evergreen lane — design the door now, build the server later
+## Evergreen lane — design the door now, build the server later
 
 - [ ] Keep content / reward IDs globally stable.
 - [ ] Keep save schemas versioned and migratable.
@@ -160,7 +162,7 @@ These are fast experiments. They are allowed to be weird because they are not al
 
 ---
 
-## ♬ Toolchain rule
+## Toolchain rule
 
 Active core: Unreal 5.8 · Houdini · Blender 5.2 LTS · SpeedTree · existing Wardrobe/Rhythm/Starskiff pipelines.
 
@@ -172,7 +174,7 @@ That question outranks novelty.
 
 ---
 
-## ♪ Definition of progress
+## Definition of progress
 
 I would rather leave a session with:
 
@@ -185,4 +187,4 @@ I would rather leave a session with:
 
 …than five more global systems with beautiful diagrams.
 
-> **The goal is to spend more time making journeys and less time reopening the engine underneath them.** ♫
+> **The goal is to spend more time making journeys and less time reopening the engine underneath them.**

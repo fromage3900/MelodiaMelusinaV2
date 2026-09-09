@@ -34,13 +34,18 @@ class SURREAL_ARCH_OT_set_room_shape(bpy.types.Operator):
             "CIRCULAR": "CIRCULAR", "APSIDAL": "APSIDAL", "OCTAGON": "OCTAGON", "HEX": "HEX",
             "ELLIPSE": "ELLIPSE", "SUPERELLIPSE": "SUPERELLIPSE", "FREEFORM": "FREEFORM",
         }
-        target = legacy_map.get(self.shape, "RECTANGLE")
-        # gb_room_shape now supports extended enum (patched in Phase B)
+        target = legacy_map.get(self.shape)
+        if target is None:
+            self.report({"ERROR"}, "Unknown room shape: %s" % self.shape)
+            return {"CANCELLED"}
+        # gb_room_shape covers all 11 shapes (verified 2026-09-07). A rejected
+        # value is a real defect — report it, never stash parallel state on the
+        # object (the generator reads props only).
         try:
             props.gb_room_shape = target
-        except Exception:
-            # fallback: store on custom property if enum not yet extended
-            obj["melodia_room_shape"] = target
+        except (TypeError, ValueError) as exc:
+            self.report({"ERROR"}, "gb_room_shape rejected %s: %s" % (target, exc))
+            return {"CANCELLED"}
         # Also ensure we are on a room arch type
         try:
             if getattr(props, "arch_type", "") not in ("GREYBOX_ROOM", "GB_ROOM_COMPOSITE", "GB_ROOM_CIRCULAR", "GB_ROOM_APSIDAL"):
@@ -65,11 +70,13 @@ class SURREAL_ARCH_OT_set_window_shape(bpy.types.Operator):
             self.report({"ERROR"}, "No Melodia mesh active")
             return {"CANCELLED"}
         props = obj.surreal_arch_props
-        # gb_window_shape is new enum (Phase C); store gracefully if missing
+        # gb_window_shape enum; a rejected value is a defect — report, never
+        # stash parallel state on the object.
         try:
             props.gb_window_shape = self.shape
-        except Exception:
-            obj["melodia_window_shape"] = self.shape
+        except (TypeError, ValueError) as exc:
+            self.report({"ERROR"}, "gb_window_shape rejected %s: %s" % (self.shape, exc))
+            return {"CANCELLED"}
         # ensure windows enabled
         try:
             props.gb_windows_enabled = True
@@ -147,7 +154,8 @@ class SURREAL_ARCH_MT_pie_room(bpy.types.Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        # 8 shapes + generate center-ish. Order: W,E,S,N,NW,NE,SW,SE
+        # 7 common shapes + "More Shapes" submenu (pies cap at 8 wedges;
+        # ELLIPSE/SUPERELLIPSE/FREEFORM live in the submenu — no dead ends).
         ops = [
             ("RECTANGLE", "Rectangle", "MESH_PLANE"),
             ("L_SHAPE", "L-Shape", "MESH_CUBE"),
@@ -156,17 +164,30 @@ class SURREAL_ARCH_MT_pie_room(bpy.types.Menu):
             ("CIRCULAR", "Circular", "MESH_CIRCLE"),
             ("APSIDAL", "Apsidal", "MESH_CAPSULE"),
             ("OCTAGON", "Octagon", "MESH_CUBE"),
-            ("HEX", "Hex / Ellipse", "MESH_CIRCLE"),
         ]
         for shape, label, icon in ops:
             op = pie.operator("surreal_arch.set_room_shape", text=label, icon=icon)
             op.shape = shape
             op.do_generate = False
-        # Extra row for advanced shapes (superellipse / freeform) as nested buttons below pie
-        # Blender pies are capped at 8 - superellipse & freeform live in the main room operators
-        # Add a hint label in the remaining slot if available
-        pie.separator()
-        pie.separator()
+        pie.menu("SURREAL_ARCH_MT_room_shapes_more", text="More Shapes", icon="DOWNARROW_HLT")
+
+
+class SURREAL_ARCH_MT_room_shapes_more(bpy.types.Menu):
+    """Advanced room shapes beyond the room pie's 8-wedge cap."""
+    bl_label = "More Room Shapes"
+    bl_idname = "SURREAL_ARCH_MT_room_shapes_more"
+
+    def draw(self, context):
+        layout = self.layout
+        for shape, label, icon in (
+            ("HEX", "Hexagon", "MESH_CIRCLE"),
+            ("ELLIPSE", "Ellipse", "MESH_CIRCLE"),
+            ("SUPERELLIPSE", "Superellipse", "MESH_CAPSULE"),
+            ("FREEFORM", "Freeform Curve", "CURVE_BEZCURVE"),
+        ):
+            op = layout.operator("surreal_arch.set_room_shape", text=label, icon=icon)
+            op.shape = shape
+            op.do_generate = False
 
 
 class SURREAL_ARCH_MT_pie_window(bpy.types.Menu):
@@ -191,9 +212,6 @@ class SURREAL_ARCH_MT_pie_window(bpy.types.Menu):
             op = pie.operator("surreal_arch.set_window_shape", text=label, icon=icon)
             op.shape = shape
             op.do_generate = False
-        if has_props:
-            # Quick window toggle + count nudge row (drawn as extra pie items - Blender clips at 8, so add as column)
-            pass
 
 
 class SURREAL_ARCH_MT_pie_genome(bpy.types.Menu):
@@ -203,7 +221,8 @@ class SURREAL_ARCH_MT_pie_genome(bpy.types.Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        # 6 DNA axes as paired +/- wedges + 2 style picks
+        # 6 DNA axes, one wedge each (+/- stacked) — 8-wedge cap respected:
+        # wedges 7-8 = Presets submenu + Reset. No cramming.
         axes = [
             ("genome_verticality", "Vertical", "SORTSIZE"),
             ("genome_symmetry", "Symmetry", "MOD_MIRROR"),
@@ -220,10 +239,25 @@ class SURREAL_ARCH_MT_pie_genome(bpy.types.Menu):
             op_dn = col.operator("surreal_arch.nudge_genome", text=f"{label} −", icon=icon)
             op_dn.attr = attr
             op_dn.delta = -0.15
-        # Two extra style genome quick picks
-        col = pie.column(align=True)
-        col.operator("surreal_arch.select_style_genome", text="Zen Shrine").genome_id = "zen_shrine_v1"
-        col.operator("surreal_arch.select_style_genome", text="Gothic Cloister").genome_id = "gothic_cloister_v1"
+        pie.menu("SURREAL_ARCH_MT_genome_presets", text="Presets", icon="PRESET")
+        pie.operator("surreal_arch.apply_style_genome", text="Apply Genome", icon="CHECKMARK")
+
+
+class SURREAL_ARCH_MT_genome_presets(bpy.types.Menu):
+    """Style genome quick picks (was crammed into the genome pie)."""
+    bl_label = "Genome Presets"
+    bl_idname = "SURREAL_ARCH_MT_genome_presets"
+
+    _PRESETS = (
+        ("zen_shrine_v1", "Zen Shrine"),
+        ("gothic_cloister_v1", "Gothic Cloister"),
+    )
+
+    def draw(self, context):
+        layout = self.layout
+        for gid, label in self._PRESETS:
+            layout.operator("surreal_arch.select_style_genome",
+                            text=label).genome_id = gid
 
 
 # ── Pie caller operators ────────────────────────────────────────────────
@@ -277,7 +311,10 @@ def _ctx_menu_draw(self, context):
     layout.operator("surreal_arch.pie_menu", text="Melodia Pie  (Shift+Q)", icon="SHADERFX")
     layout.operator("surreal_arch.pie_room", text="Room Shape Pie  (Alt+Q)", icon="MESH_CUBE")
     layout.operator("surreal_arch.pie_window", text="Window Pie  (Ctrl+Shift+Q)", icon="WINDOW")
-    layout.operator("surreal_arch.pie_score", text="* Score Pie  (Shift+M)", icon="PLAY")
+    # pie_score is owned by music_ui.py — guard so a failed music registration
+    # cannot break the object context menu.
+    if hasattr(bpy.ops.surreal_arch, "pie_score"):
+        layout.operator("surreal_arch.pie_score", text="* Score Pie  (Shift+M)", icon="PLAY")
 
 
 def _register_keymaps():
@@ -339,8 +376,10 @@ def register_pie_menu():
         SURREAL_ARCH_OT_nudge_genome,
         SURREAL_ARCH_MT_pie_main,
         SURREAL_ARCH_MT_pie_room,
+        SURREAL_ARCH_MT_room_shapes_more,
         SURREAL_ARCH_MT_pie_window,
         SURREAL_ARCH_MT_pie_genome,
+        SURREAL_ARCH_MT_genome_presets,
         SURREAL_ARCH_OT_pie_menu,
         SURREAL_ARCH_OT_pie_room,
         SURREAL_ARCH_OT_pie_window,

@@ -11,6 +11,8 @@
 ![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
+> **Repository boundary:** this repository is the canonical Unreal/game/capstone authority. The website lives in `fromage3900/my-site`; TouchDesigner lives in its separate `MelodiaTouchDesigner` Git; the **root EnvironmentPortfolio Git repo** is deprecated history only. The local `C:/EnvironmentPortfolio/` folder may remain the workspace container. Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md) before cross-repo work.
+
 ## Recruiter / Professor Entry
 
 - **Portfolio:** https://www.fromageart.xyz/

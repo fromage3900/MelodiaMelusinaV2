@@ -1,9 +1,9 @@
 # Current State — Melodia (BS_GodFile)
 
 **Canonical State Document**
-**Last Updated:** 2026-09-07 (Fall semester/workstation authority sync; runtime evidence below remains grounded in the 2026-09-05 verification pass)
+**Last Updated:** 2026-09-08 (front-door score/scope reconciled; runtime evidence below remains grounded in the 2026-09-05 verification pass)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
-**Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals)**
+**Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS (captured revision) · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals) · Issue #51 long-chain persistence still OPEN**
 **Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
 
 > **Build:** green. `UnrealEditor-BS_GodFile.dll` built 2026-09-04 21:47 and the editor is running
@@ -219,6 +219,11 @@ carry this work. Off-machine copies live on `recovery/unify-histories-20260904` 
 6. **Universal / Universal_Alpha master convergence** — analysed, not executed. The Alpha master
    carries **none** of the 14 `Cymatic_*`/`Audio*` parameters, so its 109 instances (including
    Melusina's `SW_Dress_P01..P48`) are structurally excluded from audio reactivity.
+
+---
+### 7.5 Front-door reconciliation — 2026-09-08
+
+`TODO.md` and `_VERTICAL_SLICE_SCOPE.md` were reconciled with this document and `AGENT_START_HERE.md`. They no longer claim that restart/package proof never ran, or that 10/10 gates are the current scoreboard. Issue #51 remains the open long-chain persistence boundary. Leftover root audit copies now stub to `Docs/Archive/RootLegacy/`.
 
 ---
 *Melodia © 2026. Authoritative State Ledger.*
