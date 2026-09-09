@@ -1,0 +1,57 @@
+diff --git a/wix/melodia-editorial.css b/wix/melodia-editorial.css
+index f36736d..e41ac45 100644
+--- a/wix/melodia-editorial.css
++++ b/wix/melodia-editorial.css
+@@ -11,6 +11,7 @@
+ @import url("melodia-game-ui.css?v=20260904p1");
+ @import url("melodia-night-theme.css?v=20260904p1");
+ @import url("melodia-editorial-polish.css?v=20260904p1");
++@import url("melodia-composition-variants.css?v=20260909c1");
+ 
+ /* ===== LEGACY TOKEN ALIASES (for backward compat) =====
+    These map old token names to new semantic tokens.
+diff --git a/wix/melodia-site-nav.js b/wix/melodia-site-nav.js
+index b8d1f39..e7675c5 100644
+--- a/wix/melodia-site-nav.js
++++ b/wix/melodia-site-nav.js
+@@ -6,6 +6,20 @@
+ (function (global) {
+   'use strict';
+ 
++  try {
++    var params = new URLSearchParams(global.location.search);
++    var stored = '';
++    try { stored = global.localStorage.getItem('melodia.composition.v1') || ''; } catch (e) {}
++    var raw = (params.get('composition') || stored || 'current').toLowerCase();
++    var aliases = { museum: 'quiet', pearl: 'constellation', a: 'current', b: 'quiet', c: 'constellation' };
++    var value = aliases[raw] || raw;
++    if (value !== 'quiet' && value !== 'constellation') value = 'current';
++    document.documentElement.setAttribute('data-composition', value);
++    if (global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches) {
++      document.documentElement.setAttribute('data-reduced-motion', 'true');
++    }
++  } catch (e) {}
++
+   var LINKS = [
+     { href: 'index.html', label: 'Home', keys: ['index', ''] },
+     { href: 'curated-art.html', label: 'Art', keys: ['curated-art'] },
+@@ -140,9 +154,19 @@
+     cta.textContent = ctaLabel;
+   }
+ 
++  function bootComposition() {
++    if (document.querySelector('script[data-composition-boot]')) return;
++    var script = document.createElement('script');
++    script.src = 'melodia-composition.js?v=20260909c1';
++    script.defer = true;
++    script.setAttribute('data-composition-boot', '1');
++    document.head.appendChild(script);
++  }
++
+   function boot() {
+     ensureSkipLink();
+     applyNav();
++    bootComposition();
+   }
+ 
+   if (document.readyState === 'loading') {

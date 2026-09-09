@@ -1,0 +1,5 @@
+Apply in fromage3900/my-site, not this game repository.
+
+1. Copy wix/melodia-composition-variants.css and wix/melodia-composition.js into my-site/wix/.
+2. Apply wix-wire.diff, then freeze-and-ci.diff.
+3. Live default stays current. Compare with ?composition=quiet and ?composition=constellation.

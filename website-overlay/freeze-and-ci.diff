@@ -1,0 +1,66 @@
+diff --git a/.github/workflows/pages.yml b/.github/workflows/pages.yml
+index 91cea34..3d6fe50 100644
+--- a/.github/workflows/pages.yml
++++ b/.github/workflows/pages.yml
+@@ -60,6 +60,7 @@ jobs:
+         run: |
+           node --check wix/wix-entry-bootstrap.js
+           node --check wix/melodia-site-nav.js
++          node --check wix/melodia-composition.js
+           node --check wix/melodia-editorial.js
+           node --check wix/melodia-mahou-flourish.js
+           node --check wix/melodia-starfield.js
+diff --git a/content/showcase-freeze.json b/content/showcase-freeze.json
+index 72d75ce..cc62e46 100644
+--- a/content/showcase-freeze.json
++++ b/content/showcase-freeze.json
+@@ -46,7 +46,11 @@
+     "wix/melodia-atelier-lab.js",
+     "wix/shader-breakdowns.html",
+     "wix/constellation-brush.html",
+-    "wix/public-routes.json"
++    "wix/public-routes.json",
++    "wix/melodia-composition-variants.css",
++    "wix/melodia-composition.js",
++    "wix/melodia-editorial.css",
++    "wix/melodia-site-nav.js"
+   ],
+   "allowed_prefixes": [
+     "generated/assets/character/",
+@@ -129,6 +133,23 @@
+         "no replacement artwork",
+         "no new renderer dependency"
+       ]
++    },
++    {
++      "id": "editorial-composition-variants-2026-09-09",
++      "reason": "Owner explicitly requested a reversible CSS/layout polish experiment (Museum Quiet / Pearl Constellation) on the existing site. Default remains the current layout. No new architecture, routes, Three.js, or recruiter copy.",
++      "scope": [
++        "additive golden-ratio spacing and semantic colour tokens that do not collide with the 8pt --space-* scale",
++        "opt-in html[data-composition] overlays for Quiet and Constellation",
++        "quiet-state interaction that recedes chrome around artwork",
++        "accessible corner switcher; prefers-reduced-motion respected"
++      ],
++      "exclusions": [
++        "no new public routes",
++        "no new design framework, component library, routing, build, CMS, or Three.js architecture",
++        "no navigation taxonomy changes",
++        "no recruiter-copy expansion",
++        "do not make Quiet or Constellation the live default without owner confirmation"
++      ]
+     }
+   ]
+ }
+diff --git a/docs/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md b/docs/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md
+index d8a45d2..f5beed0 100644
+--- a/docs/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md
++++ b/docs/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md
+@@ -30,6 +30,8 @@ Do not add or redesign:
+ 
+ The point of the freeze is to stop polishing the *container* and finish the *proof*.
+ 
++Owner exception 2026-09-09: reversible composition overlays (`current` / `quiet` / `constellation`) may land as CSS/JS on the existing recruiter pages. The live default stays the current layout. See `content/showcase-freeze.json` → `editorial-composition-variants-2026-09-09`.
++
+ ## Remaining visual promotion queue
+ 
+ 1. Melusina UE5.8 B2 full-body hero.
