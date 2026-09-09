@@ -65,6 +65,7 @@ from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - 
 from . import melodia_house  # noqa: F401 - unified house module: genome room shell (mh6) + AAA kit
 from . import melusina_house_foundation  # noqa: F401 - Melusina House foundation/pod builders
 from . import garment_material_id  # noqa: F401 - per-face material ID assignment for garments
+from . import garment_smart_bevel  # noqa: F401 - material-aware edge bevel (fabric round, trim sharp)
 from . import garment_trim_uv  # noqa: F401 - trim UV layout for garment texturing
 from . import garment_vertex_ao  # noqa: F401 - vertex-baked AO for garment detail
 from . import dreamy_gothic_arch  # noqa: F401 - slim lancet arch with gold tracery inlay
