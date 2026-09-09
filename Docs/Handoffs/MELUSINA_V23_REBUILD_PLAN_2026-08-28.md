@@ -79,11 +79,11 @@ The character is functional in-editor but the user wants to rebuild from the v23
    - Skeletal Mesh + Armature
    - Import Materials + Textures
    - Use the existing skeleton if compatible (or create new)
-4. After import, verify:
-   - Mesh renders correctly
-   - Materials apply
-   - Skeleton/skinning is correct
-   - ABP_Melusina_Current can use the new mesh (re-target if needed)
+4. After import, verify each — by evidence, not by eye alone:
+   - [ ] Mesh loads: `load_asset` returns the mesh; viewport shows geometry (screenshot committed)
+   - [ ] Materials apply: slot count + names match the export manifest (`get_cdo_properties`, not "looks applied")
+   - [ ] Skeleton/skinning: preview a posed frame; zero-weight-vertex count == 0 from the import log
+   - [ ] ABP_Melusina_Current binds to the new mesh (re-target if needed) — confirm in PIE, not editor preview
 5. Update ABP_Melusina_Current to point to the v23 mesh
 6. Save all dirty packages
 

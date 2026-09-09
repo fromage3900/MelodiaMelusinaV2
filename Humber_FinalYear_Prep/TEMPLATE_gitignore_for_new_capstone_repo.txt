@@ -1,0 +1,28 @@
+# Humber Capstone — standalone repo template
+# Copy this to .gitignore when you `git init` your capstone repo
+Binaries/
+DerivedDataCache/
+Intermediate/
+Build/
+*.VC.db
+*.VC.opendb
+*.sln
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Renders / caches — keep source, not output
+04_Renders/cache/
+04_Renders/flip_cache_*/
+*.blend1
+*__pycache__/
+*.pyc
+/_staging/
+
+# Keep these
+!01_Preprod/
+!02_Assets/
+!03_Scenes/
+!05_Edit/
+!.gitignore
+!.gitattributes
