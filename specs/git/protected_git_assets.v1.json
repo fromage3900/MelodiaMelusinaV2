@@ -1,0 +1,16 @@
+{
+  "schema": "melodia.protected_git_assets.v1",
+  "as_of": "2026-09-09",
+  "incident": "f19b6459",
+  "summary": "Cross-line merge deleted files present on both parents. Gitignore then prevented a normal restore of EnvSandbox material masters.",
+  "required_paths": [
+    "Content/EnvSandbox/Materials/Masters/M_Master_Nikki.uasset",
+    "Content/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.uasset",
+    "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Character.uasset",
+    "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.uasset",
+    "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Cosmic.uasset",
+    "Content/EnvSandbox/Materials/Masters/M_LF_StainedGlass.uasset",
+    "Content/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v6.uasset",
+    "Content/EnvSandbox/Materials/Masters/SDF/M_SDF_Mandelbulb_Master.uasset"
+  ]
+}

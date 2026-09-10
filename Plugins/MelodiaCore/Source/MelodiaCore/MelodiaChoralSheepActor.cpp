@@ -5,11 +5,15 @@
 #include "Components/SphereComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/GameplayStatics.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "MelodiaCompanionComponent.h"
+#include "MelodiaReactiveMeshRegistrar.h"
+#include "MelodiaRhythmReactivitySubsystem.h"
 
 AMelodiaChoralSheepActor::AMelodiaChoralSheepActor()
 {
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bStartWithTickEnabled = true;
 
 	USceneComponent* Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
@@ -28,6 +32,9 @@ AMelodiaChoralSheepActor::AMelodiaChoralSheepActor()
 	InteractionRange->SetGenerateOverlapEvents(true);
 
 	CompanionComponent = CreateDefaultSubobject<UMelodiaCompanionComponent>(TEXT("Companion"));
+
+	// Option A: Tag actor for auto-discovery
+	Tags.AddUnique(UMelodiaReactiveMeshRegistrar::ReactiveTag);
 }
 
 void AMelodiaChoralSheepActor::PostInitializeComponents()
@@ -44,12 +51,59 @@ void AMelodiaChoralSheepActor::BeginPlay()
 	Super::BeginPlay();
 	ApplyChoralSheepDefinition();
 
+	// Option B: Deterministic explicit registration with Rhythm Reactivity Subsystem
+	if (SkeletalMeshComponent)
+	{
+		if (UWorld* World = GetWorld())
+		{
+			if (UMelodiaRhythmReactivitySubsystem* Reactivity = World->GetSubsystem<UMelodiaRhythmReactivitySubsystem>())
+			{
+				Reactivity->RegisterReactiveMeshComponent(SkeletalMeshComponent);
+			}
+		}
+
+		// Ensure Dynamic Material Instance is created and cached
+		UMaterialInterface* CurrentMat = SkeletalMeshComponent->GetMaterial(0);
+		SheepDynamicMaterial = Cast<UMaterialInstanceDynamic>(CurrentMat);
+		if (!SheepDynamicMaterial && CurrentMat)
+		{
+			SheepDynamicMaterial = SkeletalMeshComponent->CreateAndSetMaterialInstanceDynamic(0);
+		}
+
+		if (SheepDynamicMaterial)
+		{
+			SheepDynamicMaterial->SetScalarParameterValue(TEXT("HarmonizeActive"), 0.0f);
+		}
+	}
+
 	if (bAutoFollowFirstPlayer && CompanionComponent)
 	{
 		if (APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(this, 0))
 		{
 			CompanionComponent->SetFollowTarget(PlayerPawn);
 		}
+	}
+}
+
+void AMelodiaChoralSheepActor::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	const bool bHarmonizeActive = (ActiveInteraction == EMelodiaCompanionInteractionKind::Harmonize)
+		&& CompanionComponent
+		&& (CompanionComponent->CurrentState == EMelodiaCompanionBehaviorState::Harmonize);
+
+	const float TargetWeight = bHarmonizeActive ? 1.0f : 0.0f;
+	CurrentHarmonizeWeight = FMath::FInterpTo(CurrentHarmonizeWeight, TargetWeight, DeltaTime, FMath::Max(0.1f, HarmonizeFadeSpeed));
+
+	if (!SheepDynamicMaterial && SkeletalMeshComponent)
+	{
+		SheepDynamicMaterial = Cast<UMaterialInstanceDynamic>(SkeletalMeshComponent->GetMaterial(0));
+	}
+
+	if (SheepDynamicMaterial)
+	{
+		SheepDynamicMaterial->SetScalarParameterValue(TEXT("HarmonizeActive"), CurrentHarmonizeWeight);
 	}
 }
 
@@ -83,7 +137,7 @@ bool AMelodiaChoralSheepActor::IsInteractorInRange(const AActor* Interactor) con
 
 bool AMelodiaChoralSheepActor::TryBeginGraze(AActor* Interactor)
 {
-	const bool bStarted = IsInteractorInRange(Interactor)
+	const bool bStarted = (!Interactor || IsInteractorInRange(Interactor))
 		&& CompanionComponent
 		&& CompanionComponent->BeginInteraction(EMelodiaCompanionInteractionKind::Graze);
 	if (bStarted)
@@ -95,7 +149,7 @@ bool AMelodiaChoralSheepActor::TryBeginGraze(AActor* Interactor)
 
 bool AMelodiaChoralSheepActor::TryBeginHarmonize(AActor* Interactor)
 {
-	const bool bStarted = IsInteractorInRange(Interactor)
+	const bool bStarted = (!Interactor || IsInteractorInRange(Interactor))
 		&& CompanionComponent
 		&& CompanionComponent->BeginInteraction(EMelodiaCompanionInteractionKind::Harmonize);
 	if (bStarted)
@@ -107,7 +161,7 @@ bool AMelodiaChoralSheepActor::TryBeginHarmonize(AActor* Interactor)
 
 bool AMelodiaChoralSheepActor::TryBeginGuide(AActor* Interactor, AActor* GuideTarget)
 {
-	if (!IsInteractorInRange(Interactor) || !CompanionComponent || !IsValid(GuideTarget))
+	if ((Interactor && !IsInteractorInRange(Interactor)) || !CompanionComponent || !IsValid(GuideTarget))
 	{
 		return false;
 	}

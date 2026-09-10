@@ -540,7 +540,7 @@
   },
   "MEL_auto_bevel": {
    "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Angle\" not found'"
+   "error": "empty geometry"
   },
   "MEL_auto_building": {
    "ok": true,
@@ -660,7 +660,7 @@
   },
   "MEL_biolum_vein": {
    "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Mesh\" not found'"
+   "error": "empty geometry"
   },
   "MEL_blacksmith": {
    "ok": true,
@@ -695,11 +695,11 @@
   },
   "MEL_brick_wall": {
    "ok": true,
-   "verts": 864,
+   "verts": 2460,
    "bbox": [
-    4.84,
-    0.2,
-    3.15
+    4.0,
+    0.15,
+    3.0
    ]
   },
   "MEL_bridge_advanced": {
@@ -1083,10 +1083,10 @@
   },
   "MEL_corner_pillar": {
    "ok": true,
-   "verts": 384,
+   "verts": 368,
    "bbox": [
-    0.96,
-    0.96,
+    1.14,
+    1.14,
     3.4
    ]
   },
@@ -1155,7 +1155,7 @@
   },
   "MEL_curvature_bevel": {
    "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Angle\" not found'"
+   "error": "empty geometry"
   },
   "MEL_curve_array": {
    "ok": false,
@@ -1552,7 +1552,7 @@
   },
   "MEL_fracture_seam": {
    "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Mesh\" not found'"
+   "error": "empty geometry"
   },
   "MEL_gatehouse": {
    "ok": true,
@@ -1721,7 +1721,7 @@
   },
   "MEL_higgsas_colonnade": {
    "ok": true,
-   "verts": 200,
+   "verts": 1560,
    "bbox": [
     16.6,
     1.0,
@@ -1730,7 +1730,7 @@
   },
   "MEL_higgsas_surface_wall": {
    "ok": true,
-   "verts": 852,
+   "verts": 2460,
    "bbox": [
     4.0,
     0.25,
@@ -2040,8 +2040,13 @@
    ]
   },
   "MEL_mother_hair_cascade": {
-   "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Resolution\" not found'"
+   "ok": true,
+   "verts": 64,
+   "bbox": [
+    0.0,
+    0.0,
+    12.0
+   ]
   },
   "MEL_mother_head_silhouette": {
    "ok": true,
@@ -2062,8 +2067,13 @@
    ]
   },
   "MEL_mother_moonlight_rig": {
-   "ok": false,
-   "error": "AttributeError: 'NoneType' object has no attribute 'inputs'"
+   "ok": true,
+   "verts": 27,
+   "bbox": [
+    21.5,
+    8.0,
+    2.602
+   ]
   },
   "MEL_mother_shoulder_fold": {
    "ok": true,
@@ -2544,15 +2554,6 @@
     0.8
    ]
   },
-  "MEL_music_vinyl_disc": {
-   "ok": true,
-   "verts": 52267,
-   "bbox": [
-    2.0,
-    2.0,
-    1.908
-   ]
-  },
   "MEL_music_waveform_wall": {
    "ok": true,
    "verts": 768,
@@ -2749,10 +2750,10 @@
   },
   "MEL_pillar": {
    "ok": true,
-   "verts": 480,
+   "verts": 456,
    "bbox": [
-    1.3,
-    1.3,
+    1.52,
+    1.52,
     4.8
    ]
   },
@@ -2971,7 +2972,7 @@
   },
   "MEL_shell_thorax": {
    "ok": false,
-   "error": "AttributeError: 'NoneType' object has no attribute 'inputs'"
+   "error": "empty geometry"
   },
   "MEL_singing_bowl": {
    "ok": true,
@@ -3515,7 +3516,7 @@
   },
   "MEL_weighted_bevel": {
    "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Angle\" not found'"
+   "error": "empty geometry"
   },
   "MEL_white_haze_volume": {
    "ok": true,
@@ -3527,8 +3528,13 @@
    ]
   },
   "MEL_white_seam_spline": {
-   "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Resolution\" not found'"
+   "ok": true,
+   "verts": 128,
+   "bbox": [
+    64.017,
+    0.0,
+    0.0
+   ]
   },
   "MEL_wind_siku": {
    "ok": false,
@@ -3709,10 +3715,10 @@
   },
   "PILLAR": {
    "ok": true,
-   "verts": 2432,
+   "verts": 1518,
    "bbox": [
-    1.3,
-    1.3,
+    1.522,
+    1.521,
     4.8
    ]
   },
@@ -3844,11 +3850,11 @@
   },
   "BRICK_WALL": {
    "ok": true,
-   "verts": 10368,
+   "verts": 11760,
    "bbox": [
-    4.84,
-    0.2,
-    3.15
+    4.0,
+    0.15,
+    3.0
    ]
   },
   "BRIDGE": {
@@ -4033,10 +4039,10 @@
   },
   "CORNER_PIECE": {
    "ok": true,
-   "verts": 1984,
+   "verts": 1402,
    "bbox": [
-    0.768,
-    0.768,
+    0.913,
+    0.914,
     3.4
    ]
   },
@@ -4077,8 +4083,13 @@
    ]
   },
   "ZEN_PAGODA": {
-   "ok": false,
-   "error": "KeyError: 'bpy_prop_collection[key]: key \"Geometry\" not found'"
+   "ok": true,
+   "verts": 11718,
+   "bbox": [
+    3.499,
+    3.499,
+    4.45
+   ]
   },
   "ZEN_TORII": {
    "ok": true,
@@ -4811,7 +4822,7 @@
   },
   "GB_ROOM_CIRCULAR": {
    "ok": true,
-   "verts": 586,
+   "verts": 584,
    "bbox": [
     7.987,
     7.994,
@@ -4858,9 +4869,9 @@
    "ok": true,
    "verts": 1162,
    "bbox": [
-    10.76,
-    9.289,
-    4.12
+    10.7,
+    9.173,
+    4.014
    ]
   },
   "GB_WOODS_FREESPACE": {
@@ -4883,11 +4894,11 @@
   },
   "GB_WOODS_HARPSICHORD": {
    "ok": true,
-   "verts": 256,
+   "verts": 308,
    "bbox": [
     7.776,
     8.133,
-    14.0
+    13.937
    ]
   },
   "GB_WOODS_WAR_SCAR": {
@@ -4919,10 +4930,10 @@
   },
   "GB_UMEMOTO_LATTICE": {
    "ok": true,
-   "verts": 200,
+   "verts": 120,
    "bbox": [
     8.16,
-    0.75,
+    0.6,
     3.42
    ]
   },
@@ -4937,7 +4948,7 @@
   },
   "HIGG_SURFACE_WALL": {
    "ok": true,
-   "verts": 584,
+   "verts": 11760,
    "bbox": [
     4.0,
     0.2,
@@ -4946,7 +4957,7 @@
   },
   "HIGG_COLONNADE": {
    "ok": true,
-   "verts": 608,
+   "verts": 1136,
    "bbox": [
     10.6,
     1.0,
@@ -5505,7 +5516,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 466,
+  "package_count": 465,
   "monolith_count": 209
  }
 }

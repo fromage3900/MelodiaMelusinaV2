@@ -44,6 +44,7 @@ table for a one-line fix; you are proposing a design where the ask was a repair.
 
 > This file is auto-loaded by Claude at session start. Read it before doing anything.
 > **Read next:** [`AGENT_START_HERE.md`](AGENT_START_HERE.md). It is the 2026-09-04 discovery authority.
+> Sheep / Chladni / Nikki Cymatics work must also open [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md).
 > Then follow the current front door into `MELODIA_TECHNICAL_VERTICAL_SLICE.md`, `CURRENT_STATE.md`, and `TODO.md`.
 > **Do not use deleted `_SESSION_HANDOFF.md` / `_TASK_QUEUE.md` or `_ROADBLOCKS_2026-07-31.md` as current status.**
 

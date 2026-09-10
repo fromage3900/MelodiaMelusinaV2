@@ -15,6 +15,7 @@ on:
       - 'Content/Python/**'
       - 'specs/**'
       - 'Tools/**'
+      - 'deploy/**'
       - '.github/workflows/**'
   workflow_dispatch:
 
@@ -37,6 +38,36 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Guard deprecated workspace roots
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          base="${PR_BASE_SHA:-}"
+          if [[ -z "$base" ]]; then
+            git fetch origin main --depth=50
+            base="origin/main"
+          fi
+          python Tools/guard_deprecated_workspace_refs.py --base "$base"
+
+      - name: Guard protected material assets
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          base="${PR_BASE_SHA:-}"
+          if [[ -z "$base" ]]; then
+            git fetch origin main --depth=50
+            base="origin/main"
+          fi
+          python Tools/guard_protected_assets.py --base "$base"
+
+      - name: Repository governance guard
+        run: python Tools/repo_governance_guard.py
+
+      - name: Front-door health
+        run: python Tools/front_door_health.py --ci
 
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json

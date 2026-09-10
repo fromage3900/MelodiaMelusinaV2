@@ -1,4 +1,4 @@
-﻿# ♪ Melodia — BS_GodFile ✧ Single-Author Rhythm-JRPG in Unreal Engine 5.8
+﻿# ♪ Melodia Melusina — Solo UE5.8 Rhythm-JRPG & Technical Art Project
 
 ```
 ✦ ─── ✧ ─── ★ ─── ✧ ─── ✦
@@ -11,13 +11,28 @@
 ![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
-> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. See [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md) and [Docs/LFS_COLD_ARCHIVE.md](Docs/LFS_COLD_ARCHIVE.md).
+> **Repository boundary:** this repository is the canonical Unreal/game/capstone authority. The website lives in `fromage3900/my-site`; TouchDesigner lives in its separate `MelodiaTouchDesigner` Git; the **root EnvironmentPortfolio Git repo** is deprecated history only. The local `C:/EnvironmentPortfolio/` folder may remain the workspace container. Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md) before cross-repo work.
 
-> **Cross-Machine Development:** This project is actively developed across three workstations — a Windows desktop PC (primary), a laptop (Humber Labs / on-the-go), and Humber Labs workstations. See [Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md](Docs/Production/CROSS_MACHINE_WORKFLOW_2026-09-02.md) for the authoritative workflow.
+## Recruiter / Professor Entry
 
-♪ **Production-Grade Rhythm-JRPG in Unreal Engine 5.8 + Blender 5.2.** A single-author vertical slice and extensible multi-chapter framework. Every architectural claim is backed by a verified ledger row in `Saved/gate_ledger.json`. No prose passes for evidence. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
+- **Portfolio:** https://www.fromageart.xyz/
+- **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
+- **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
+- **Current capstone queue:** [CAPSTONE_NOW.md](CAPSTONE_NOW.md)
+- **Current verified state:** [CURRENT_STATE.md](CURRENT_STATE.md)
+- **Agent / contributor front door:** [AGENT_START_HERE.md](AGENT_START_HERE.md)
+- **Portfolio / render plan:** [PORTFOLIO.md](PORTFOLIO.md)
 
-♫ **Current Status (2026-09-02 Night):** 27/31 P0 gameplay completion gates verified passing. **116 automated tests** run (108 pass / 1 fail / 3 errors — under active repair). Two packaging gates remain open (`package_build`, `package_launch`) plus two PIE-capture gates (`world_field_bus_pie`, `gaeA_live_pie`). Shipping certification staged for final packaged validation.
+> **SHOWCASE SOFT FREEZE ACTIVE — 2026-09-07.** Public/recruiter presentation is structurally frozen while the final Melusina + canonical world renders are produced and promoted. Game/semester development continues. See [the freeze contract](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
+
+
+> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on Git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+
+> **Fall 2026 workstation topology:** Humber lab workstations are the primary interactive semester lane, the home Windows PC is the dedicated render/bake/long-job worker, and the ASUS Nitro laptop is auxiliary. See [Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) and [Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md).
+
+♪ **Solo-developed rhythm-JRPG vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Current task/gate authority is tracked in `Docs/P0_TASK_LEDGER.json` and `CURRENT_STATE.md`; generated local ledgers are evidence artifacts, not recruiter copy. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
+
+♫ **Current Status:** the canonical state is [CURRENT_STATE.md](CURRENT_STATE.md), not old README gate counts. The current baseline records a green editor build, live audio-reactivity proof, active P0 gates passing, and a packaged route verified on both legs. Fall 2026 work is now bounded around **First Dream as stable technical proof** and **Shorewake Calling as the semester production artwork**.
 
 **Sea Above Level Integration:** 221 cathedral pieces at Z=13,455 on CanonicalLandscape. 2 PCG volumes. 12 Copernicus MIs. Cutscene trigger at (-910, 500, 13,145). Landscape at Z=0. QuillScript cutscene authored.
 
@@ -41,9 +56,9 @@ The Melodia engine architecture converges four distinct gameplay systems onto tw
 
 ---
 
-## ♪ Universal Reusable Chapter Gameplay Loop
+## ♪ P0 Full-Stack Integration Loop
 
-Every single chapter in Melodia (from Chapter 1 "First Dream" to the Final Chapter) executes the exact same standardized 6-phase loop:
+The six-phase route below is the proven **First Dream integration song** used to exercise Melodia end to end. It is **not mandatory pacing for every future chapter**. Later chapters may use different shapes as long as they preserve the stable runtime authorities, IDs, persistence rules, and evidence discipline:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
@@ -92,31 +107,23 @@ Every single chapter in Melodia (from Chapter 1 "First Dream" to the Final Chapt
 
 ---
 
-## ♪ Three Active Tracks
+## ♪ Four Active Tracks
 
-### Track 1: Gameplay Vertical Slice — "First Dream"
+### Track 1: Stable Technical Proof — "First Dream"
+
+- **Role:** protect-and-polish professor/reviewer proof; no broad semester expansion.
 - **Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
-- **P0 Completion Gates (27/31 PASS):**
+- **Current evidence:** use `CURRENT_STATE.md`, `_VERTICAL_SLICE_SCOPE.md`, and the current gate ledger rather than stale copied counts.
+- **Semester rule:** regressions, packaging, presentation, capture quality, and demo rehearsal are in scope; new global frameworks are not.
 
-| Gate | Status | Category |
-|---|---|---|
-| `runtime` | ✅ PASS | Core gameplay loop |
-| `save_load` | ✅ PASS | State persistence |
-| `repeat_consume` | ✅ PASS | Narrative queue |
-| `rhythm_owner` | ✅ PASS | Rhythm subsystem |
-| `rhythm_grade_to_result` | ✅ PASS | Combat multiplier |
-| `hud_single_writer` | ✅ PASS | UI hierarchy |
-| `wardrobe_equip_roundtrip` | ✅ PASS | Wardrobe subsystem |
-| `wardrobe_gameplay_hook` | ✅ PASS | Traversal provider |
-| `music_world_key` | ✅ PASS | Resonant world |
-| `static_gates` | ✅ PASS | Material baselines |
-| `battle_integration_map` | ✅ PASS | Allowlist |
-| `package_build` | ❌ FAIL | Cook exits -1 |
-| `package_launch` | ❌ FAIL | No archive |
-| `world_field_bus_pie` | ⏳ PENDING | Needs PIE |
-| `gaeA_live_pie` | ⏳ PENDING | Needs PIE |
+### Track 2: Fall 2026 Production — "Shorewake Calling"
 
-### Track 2: Model Context Protocol (MCP) & Automation Tooling
+- **Canonical package:** `Chapters/02_shorewake_calling/`
+- **Hero environment:** Shorewake Quay → Reef Choir → Starskiff Mooring.
+- **Outputs:** playable 3–5 minute vignette, Melusina acting shot, couture/material treatment, technical-art breakdowns, 60–90 second reel.
+- **Academic mapping:** `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`.
+
+### Track 3: Model Context Protocol (MCP) & Automation Tooling
 - **1330 Typed MCP Actions** across 24 namespaces supporting offline schema inspection and live Unreal Engine automation.
 - **Melodia MCP Server (`deploy/melodia_mcp_server.py`):** 38/38 verified unit & regression tests.
 - **Melusina Agent Test Harness (MATH):** Strict quantitative evaluation of local models across 5 core metrics:
@@ -126,10 +133,10 @@ Every single chapter in Melodia (from Chapter 1 "First Dream" to the Final Chapt
   - **RCF** (Recovery from Feedback ≥ 90%)
   - **TER** (Token Efficiency Ratio ≤ 0.20)
 
-### Track 3: ECHO Pipeline & Evidence Ledger
+### Track 4: ECHO Pipeline & Evidence Ledger
 - **Deterministic Pipeline:** `Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote`
 - **Gate Runner:** `Tools/echo_run.py` & `Tools/project_state.py`
-- **Single Source of Truth:** `Saved/gate_ledger.json` (no row = not done).
+- **Evidence policy:** tracked authority lives in `Docs/P0_TASK_LEDGER.json` / `CURRENT_STATE.md`; generated `Saved/` ledgers are runtime evidence and may be absent from a fresh clone.
 
 ---
 

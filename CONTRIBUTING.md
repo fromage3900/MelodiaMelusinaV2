@@ -16,12 +16,50 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 ## Quick Start
 
-1. Review [README.md](README.md) to choose your onboarding path.
-2. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
-3. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
+1. Read [AGENT_START_HERE.md](AGENT_START_HERE.md) and [CAPSTONE_NOW.md](CAPSTONE_NOW.md) before expanding scope.
+2. Review [README.md](README.md) to choose your onboarding path.
+3. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
+4. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
   chosen lane. `Exports/` is also seeded in the local Perforce pilot; use Git for the project checkout
   until the shared Perforce server and cutover are announced.
-4. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
+5. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
+
+---
+
+## Production Governance
+
+`main` is canonical durable game/runtime/capstone truth. Feature branches are scoped work, not competing project state.
+
+Read [Docs/Production/BRANCH_WORKSTATION_POLICY.md](Docs/Production/BRANCH_WORKSTATION_POLICY.md) before merge, salvage, deletion, or machine-specific branch work.
+
+### No unrequested cleanup
+
+Repository cleanup is not a default contribution category. Cleanup must resolve a concrete blocker, integrity risk, discoverability failure, or verified duplicate authority. Do not open broad formatting/refactor/branch-count work simply because it is available.
+
+### Branch roles
+
+Classify non-main branches before acting on them:
+
+- **ACTIVE** — current scoped implementation;
+- **CANONIZED** — meaningful work already contained in `main`;
+- **WORKSTATION** — intentional parallel production lane;
+- **RECOVERY** — selective salvage source;
+- **OPERATIONAL** — infrastructure intentionally outside `main`;
+- **UNKNOWN** — investigate before merge or deletion.
+
+`collab/laptop/longterm` is the preserved ASUS laptop Blender / Geometry Nodes WORKSTATION lane. Do not auto-delete it and do not wholesale-merge it over current `main`.
+
+### Evidence ladder
+
+Use the weakest accurate claim:
+
+`SOURCE PRESENT → SOURCE BUILT → LIVE PROVEN → RESTART PROVEN → PACKAGED PROVEN → PORTFOLIO APPROVED`
+
+Reference art is not runtime proof. A committed asset is not automatically live-proven. A TD visual does not create gameplay truth.
+
+### Capstone bias
+
+Contributions should preferentially improve visible/playable/presentable capstone proof. Infrastructure work should be bounded to the blocker it removes.
 
 ---
 

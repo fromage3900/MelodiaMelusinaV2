@@ -12,6 +12,7 @@
 #   .\deploy\sync_workstation.ps1 -Mode Sync
 #   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile House
 #   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile Gameplay
+#   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile HumberSemester
 #   .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile Full
 # Explicit feature-branch check only:
 #   .\deploy\sync_workstation.ps1 -Target Current
@@ -23,7 +24,7 @@ param(
     [ValidateSet("Main", "Current")]
     [string]$Target = "Main",
 
-    [ValidateSet("None", "Core", "House", "Gameplay", "Full")]
+    [ValidateSet("None", "Core", "House", "Gameplay", "HumberSemester", "Full")]
     [string]$LfsProfile = "None",
 
     [string]$Remote = "origin",
@@ -116,6 +117,9 @@ function Get-LfsInclude {
         }
         "Gameplay" {
             return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/**"
+        }
+        "HumberSemester" {
+            return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/SeaAbove/**,Content/EnvSandbox/Materials/Masters/**,Content/EnvSandbox/Materials/ToonProfiles/**"
         }
         default {
             return ""

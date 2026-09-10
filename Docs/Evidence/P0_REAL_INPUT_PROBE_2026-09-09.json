@@ -1,0 +1,49 @@
+{
+  "schema": "melodia.p0.final_real_input_run.v1",
+  "timestamp": "2026-09-09 01:03:38 UTC",
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "mode": "focused_viewport_real_input",
+  "steps": {
+    "step1_initial_state": {
+      "pawn_location": "(X=0.000000,Y=0.000000,Z=0.000000)",
+      "portal_unlocked": false,
+      "portal_block_reason": "capability_blocked_or_locked",
+      "screenshot": "Saved/Audit/p0_real_input_run/01_initial_playerstart_portal_locked.png"
+    },
+    "step2_music_node": {
+      "score_state": "(TotalNotes=1,HitCount=1,PerfectCount=1,MissCount=2,Streak=1,Score=100,bCompleted=True)",
+      "cosmetic_equipped": true,
+      "wardrobe_slot_equipped": true,
+      "screenshot": "Saved/Audit/p0_real_input_run/02_music_node_stepped_outfit_unlocked.png"
+    },
+    "step3_jump_glide": {
+      "grounded_request": "(Result=RejectedContext,RequestedMode=Glide,BlockReason=\"glide_requires_airborne_state\")",
+      "airborne_request": "(RequestedMode=Glide)",
+      "airborne_location": "(X=-272.781258,Y=300.000000,Z=394.796879)",
+      "is_gliding": "True",
+      "traversal_mode": "Glide",
+      "screenshot": "Saved/Audit/p0_real_input_run/03_jump_and_airborne_glide.png"
+    },
+    "step4_portal_interaction": {
+      "portal_unlocked": true,
+      "portal_block_reason": "None",
+      "interact_result": false,
+      "screenshot": "Saved/Audit/p0_real_input_run/04_portal_unlocked_and_interacted.png"
+    }
+  },
+  "screenshots": {
+    "01_initial_playerstart": "Saved/Audit/p0_real_input_run/01_initial_playerstart_portal_locked.png",
+    "02_music_node_stepped": "Saved/Audit/p0_real_input_run/02_music_node_stepped_outfit_unlocked.png",
+    "03_jump_and_glide": "Saved/Audit/p0_real_input_run/03_jump_and_airborne_glide.png",
+    "04_portal_interacted": "Saved/Audit/p0_real_input_run/04_portal_unlocked_and_interacted.png"
+  },
+  "assertions": {
+    "initial_portal_locked": true,
+    "music_node_challenge_completed": true,
+    "wardrobe_outfit_equipped": true,
+    "grounded_glide_rejected": true,
+    "airborne_glide_accepted": true,
+    "portal_unlocked": true
+  },
+  "overall_verdict": "PASS"
+}

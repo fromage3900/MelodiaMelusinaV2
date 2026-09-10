@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-05",
+  "as_of": "2026-09-08",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
@@ -444,7 +444,7 @@
     "universal_luxury_wbp_system": "SCAFFOLDED 2026-08-28: All 30 Melodia WBP atoms mapped from Figma Grandmaster (tokens.json, Batch N/O ornate filigrees) to /Game/Melodia/UI/ with 4-layer depth hierarchy (Void Plate, Iridescent Sheen, Champagne Gold Filigree, Active Content). T3D specs generated in specs/ui/, design token palette exported to Saved/Audit/melodia_ui_tokens_unreal.json, and system audit written to Saved/Audit/melodia_universal_wbp_system.json.",
     "editor_build": "GREEN as of 2026-09-04 (582fa914). Root cause was LPCTSTR dropping a struct member in MelodiaCaptureRenderSubsystem.cpp, not a format-string or UE 5.8 issue.",
     "audio_reactivity": "WORKS and verified live in PIE (b1cac649). Clock lives on the GameMode (5fea50c8) so every level reacts. The former Alpha-master gap is CLOSED at 44398419 - all 109 instances, Melusina's dress included, now carry the Cymatic_*/Audio* parameters.",
-    "git_authority": "Local main carries this work; origin/main is a diverged lineage and does NOT. Read recovery/main-merged-20260904 for the off-machine copy.",
+    "git_authority": "Reconciled 2026-09-08: this repository's main matches origin/main. The 2026-09-04 local-vs-origin divergence note is historical. Archaeology closeout: Docs/Reports/GIT_ARCHAEOLOGY_CLOSEOUT_2026-09-08.md. Recovery branches remain extraction sources only; do not merge them wholesale.",
     "toon_master": "ONE Toon Universal master. M_Master_Toon_Universal_Alpha is orphaned (0 instances) and must not be reparented to. Masked content uses per-instance BlendMode/TwoSided overrides."
   },
   "vendor_compatibility_track": {
@@ -646,7 +646,7 @@
     "merge_to_main": {
       "commits_replayed": 19,
       "method": "merge-tree --write-tree + commit-tree, entirely in the object graph. The planned checkout+cherry-pick was abandoned: the editor holds .uasset handles and the overnight wardrobe daemon drives git itself, checking the repo off main mid-operation.",
-      "divergence_warning": "local main and origin/main are DIVERGED lineages (628 vs 704, neither an ancestor of the other), predating this merge. 'Merged to main' means LOCAL main only. Off-machine copies: recovery/unify-histories-20260904 and recovery/main-merged-20260904.",
+      "divergence_warning": "HISTORICAL 2026-09-04 note: at merge time local main and origin/main were diverged lineages. SUPERSEDED 2026-09-08: current main matches origin/main. Recovery copies remain extraction-only.",
       "record": "Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md"
     },
     "open_items": [

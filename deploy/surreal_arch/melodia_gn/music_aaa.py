@@ -1124,10 +1124,7 @@ from .core import register_builder
 
 register_builder("MEL_music_waveform_wall", build_music_waveform_wall, "Waveform Wall",
                  "Oscilloscope ribbon displaced by 3 additive harmonic layers (capped tube)",
-                 "music")
-register_builder("MEL_music_vinyl_disc", build_music_vinyl_disc, "Vinyl Disc",
-                 "Record disc with groove spiral, label, spindle-hole boolean",
-                 "music")
+                 "music", hidden=True)  # v1 superseded by MEL_music_waveform_wall_v2
 register_builder("MEL_music_lissajous_harp", build_music_lissajous_harp, "Lissajous Harp",
                  "Harp frame, soundbox plinth and upright lissajous string web",
                  "music")

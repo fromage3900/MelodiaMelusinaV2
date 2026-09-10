@@ -2,16 +2,16 @@
 
 **Authoritative for:** PC (froma), Laptop, Humber Labs
 **Last Updated:** 2026-09-02
-**Status:** ACTIVE — implement before next machine switch
+**Status:** PARTIALLY SUPERSEDED — source-control rules remain useful; Fall 2026 machine roles are superseded by `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`.
 
 ---
 
 ## 1. The Problem
 
 You work across three machines:
-- **Desktop PC (froma)** — primary authoring station, Windows 11, all tools installed
-- **Laptop** — on-the-go, Humber Labs, coffee shops
-- **Humber Labs** — college workstations, shared, fresh OS images
+- **Humber Labs** — Fall 2026 primary interactive authoring lane when authorized
+- **Desktop PC (froma)** — dedicated render / bake / long-job worker plus home fallback authoring
+- **Laptop** — auxiliary authoring, validation, and spare render worker
 
 Without discipline, you'll hit:
 - "Works on my machine" — missing plugins, wrong paths, stale assets
@@ -36,7 +36,7 @@ Main is sacred. Feature branches only. Merge via PR with CI green.
 Every machine switch = commit + push on old machine, pull + checkout on new machine.
 
 ### Rule 4: No autonomous work on shared machines
-Hot loops, daemons, and cron jobs only run on your primary PC. Laptop and Humber Labs are pull-and-work only.
+Hot loops, daemons, persistent workers, and unattended render-farm services do not run on Humber lab machines. The home PC may run explicit long jobs; Humber remains an authorized foreground authoring workstation.
 
 ### Rule 5: LFS is metered — track only what ships
 Bulk raw art stays local. Only curated `.uasset` files get LFS tracking.
@@ -71,12 +71,13 @@ pip install onnx onnxruntime numpy pillow
 python -m unittest discover -s Content/Python/Tests -p "test_*.py" 2>&1 | tail -3
 ```
 
-### Primary PC (froma) — Already Set Up
+### Home PC (froma) — Render / Bake Worker
 
-- All tools installed
-- All plugins configured
-- Cron jobs running (hot loop, daemons)
-- Monolith MCP on :9316
+- All tools installed;
+- full binary workspace available;
+- primary target for final Cycles/MRQ renders, bakes, transcodes, long tests, and packaging;
+- use `deploy/render_worker.ps1` for provenance-stamped render jobs;
+- do not assume the home PC must remain the interactive authoring station during the semester.
 
 ---
 
