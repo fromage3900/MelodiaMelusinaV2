@@ -57,7 +57,7 @@ jobs:
             fi
 
             exact_merged_count="$(
-              gh api --method GET "/repos/$REPOSITORY/pulls"                 -f state=closed                 -f head="$OWNER:$branch"                 -f per_page=100                 --jq --arg sha "$sha" '[.[] | select(.merged_at != null and .head.sha == $sha)] | length'
+              gh api --method GET "/repos/$REPOSITORY/pulls"                 -f state=closed                 -f head="$OWNER:$branch"                 -f per_page=100                 | jq --arg sha "$sha" '[.[] | select(.merged_at != null and .head.sha == $sha)] | length'
             )"
 
             any_merged_count="$(
