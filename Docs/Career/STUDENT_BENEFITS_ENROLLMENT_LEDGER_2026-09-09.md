@@ -344,3 +344,19 @@ Highest-value additions:
 - **Humber:** Microsoft Copilot Enterprise, 1 TB OneDrive, LinkedIn Learning and the myApps/AppsAnywhere software catalog.
 
 The original Tonight Queue remains the student-verification priority. The deep-sweep file handles always-free, secondary, and Humber-specific claims.
+
+
+### Trench IV urgent additions — 2026-09-10
+
+See [`AI_FREEBIE_DEEP_SWEEP_2026-09-09.md`](AI_FREEBIE_DEEP_SWEEP_2026-09-09.md), **Trench IV**.
+
+Immediate additions to the claim queue:
+- **RizomUV Student:** FREE student UV license; portfolio/study work permitted, non-commercial.
+- **Marvelous Designer Student:** first **3 months free** for new student subscriptions started by **2026-10-31**; then current student rate applies.
+- **Mistral Free:** $0 plan with **$10/month API credits** and limited Vibe agentic coding.
+- **Google Antigravity Individual:** $0 coding-agent platform, unlimited Tab completions + Command requests, basic weekly agent quota.
+- **NVIDIA Developer Program:** complimentary self-paced DLI course worth up to $90 plus credit-earning learning pathways.
+- **RealityScan:** full desktop photogrammetry tool free for students.
+- **Plask Motion:** 15 seconds/day free AI mocap with FBX/GLB/BVH export.
+- **AWS Educate:** free no-card cloud labs.
+- **GarageFarm / Fox:** legitimate $25 one-time render-farm starter credits.
