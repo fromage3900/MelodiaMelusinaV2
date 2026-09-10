@@ -315,3 +315,32 @@ Goal: keep Cursor Astra and paid Codex for work that actually needs them.
 - See whether you already hold any of these (GitHub Education, JetBrains, Autodesk labs, etc.). If a dashboard already shows a grant, **do not apply again**.
 
 Fill the Status / Account columns as you claim. That is the live ledger.
+
+
+---
+
+## Deep sweep expansion — late 2026-09-09
+
+A second verified trench sweep found substantial additional free resources beyond the original student-claim queue.
+
+**Canonical deep-dive:** [`AI_FREEBIE_DEEP_SWEEP_2026-09-09.md`](AI_FREEBIE_DEEP_SWEEP_2026-09-09.md)
+
+Highest-value additions:
+
+- **Gaea Student + Teacher Edition:** free 1-year education license, renewable while eligible.
+- **Modal Starter:** $30/month free compute credit.
+- **Vercel AI Gateway:** $5 credits every 30 days for qualifying free users who have not made a payment.
+- **Cloudflare Workers AI:** 10,000 free Neurons/day.
+- **Groq Free:** current free GPT-OSS / Qwen / Compound / Whisper rate-limited inference.
+- **Kaggle:** free P100 GPU quota, generally 30 hours/week or sometimes higher.
+- **Colab Free:** dynamic free GPU/TPU notebook access.
+- **OpenRouter Free Router:** zero-token-cost routing across current free models.
+- **Replit Starter:** recurring daily free Agent usage.
+- **Gemini Developer API Free Tier:** separate from the Canada-excluded Google AI Pro student promotion.
+- **Rokoko Starter:** 30 seconds/month Vision AI, unlimited text-to-motion generation, 5 Studio imports/month.
+- **Meshy Free:** 100 credits/month plus legitimate bonus-credit paths.
+- **V-Ray for Blender Community Edition:** free renewable renderer license.
+- **GitHub Pack:** Appwrite Education, Datadog, Sentry, Deepnote, BrowserStack, LocalStack, Doppler and other underused entitlements.
+- **Humber:** Microsoft Copilot Enterprise, 1 TB OneDrive, LinkedIn Learning and the myApps/AppsAnywhere software catalog.
+
+The original Tonight Queue remains the student-verification priority. The deep-sweep file handles always-free, secondary, and Humber-specific claims.
