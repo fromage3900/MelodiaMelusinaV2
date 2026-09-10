@@ -1,0 +1,379 @@
+{
+  "audit_meta": {
+    "title": "Infinity Nikki Rig & Animation Elegance Review — Choral Sheep ARP",
+    "date": "2026-09-09",
+    "lens": "Infinity Nikki — photoshoot-ready, pose-preset, silhouette-clean",
+    "rig_source": "ARP (Auto Rig Pro) — Skin_Sheep_ZSpheres2",
+    "addons_scanned": {
+      "Auto_Rig_Pro": "present (474-bone control rig)",
+      "Voxel_Skinning_3_5_3": "installed — UNUSED",
+      "Quad_Remesher_1_3": "installed — not required for this rig",
+      "Rokoko_Studio_Live_1_4_3": "installed — unused (no mocap takes)",
+      "Melodia_Pose_Audit_1_1": "installed — at Tools/BlenderAddons/melodia_pose_audit",
+      "Pose_Library_builtin": "available — 0 poses stored"
+    },
+    "method": "Reconciled task-provided Blender inspection (474b/326c/spine.004, hierarchy, weights, actions/NLA) with repo SSOT: TONIGHT_ASSEMBLY_PLAN_2026-08-26, melodia_studio/export_choral_sheep.py (106 deform of 474), sheep_shine.py, sheep_bake_prep.py, melodia_pose_audit/operators.py",
+    "workspace": "C:/EnvironmentPortfolio/BS_GodFile"
+  },
+  "rig_summary": {
+    "armature_name": "rig (ARP)",
+    "total_bones": 474,
+    "deform_bones": 106,
+    "control_bones": 368,
+    "constraints": 326,
+    "spine_chain": "spine_04 (4-bone — ARP default quadruped spine)",
+    "drivers": "IK/FK switch drivers present (ARP standard)",
+    "mesh": {
+      "name": "Skin_Sheep_ZSpheres2",
+      "verts": 5918,
+      "vertex_groups": 0,
+      "uv_layers": "unknown — sheep_bake_prep flags as at-risk (verify)",
+      "material_slots": ">=1 expected (ChoralWool_* from sheep_shine.py)"
+    }
+  },
+  "rig_health_score": {
+    "overall": 36,
+    "out_of": 100,
+    "grade": "F — Not Photoshoot Ready",
+    "breakdown": {
+      "hierarchy": 0,
+      "skinning_weights": 5,
+      "rig_logic": 72,
+      "animation_data": 0,
+      "nikki_silhouette_readiness": 35,
+      "pipeline_hygiene": 45
+    },
+    "scoring_notes": "100 -20 hierarchy inversion -15 MrSheepTail zero-weight/frozen -12 zero vertex groups/Voxel unused -15 no Actions/ShapeKeys/NLA -8 tail+extremity elegance risk -5 spine-4 minimal for fashion-pose range = 25-36 band; 36 chosen because bone-parented beads/eyes and ARP logic themselves are sound."
+  },
+  "findings": [
+    {
+      "id": "F01_HIERARCHY_INVERSION",
+      "severity": "P0 Blocker",
+      "category": "hierarchy",
+      "title": "Rig is child of Skin_Sheep_ZSpheres2 (inverted)",
+      "detail": "Current parent: Skin_Sheep_ZSpheres2 > rig. Correct: rig > Skin_Sheep_ZSpheres2 (mesh parented to armature via Armature modifier, or rig as root). Inverted hierarchy causes double-transform on move, breaks export_choral_sheep.py selection logic (armature+mesh pair), breaks UE FBX import (root motion, scale 100x, axis -Z/Y). Also violates ARP expectation where rig is scene root.",
+      "nikki_impact": "Any pose or turntable render inherits mesh shear; photoshoot silhouette unstable; Rokoko retarget root drift.",
+      "evidence": "Task inspection; corroborated by export_choral_sheep.py which expects sibling armature+mesh, not parented rig.",
+      "fix_ref": "Q01"
+    },
+    {
+      "id": "F02_ZERO_WEIGHTS",
+      "severity": "P0 Blocker",
+      "category": "skinning",
+      "title": "MrSheepTail chain has 0.0 weights — tail frozen",
+      "detail": "Skin_Sheep_ZSpheres2 has 0 vertex groups (TONIGHT_ASSEMBLY_PLAN confirms). Even after generic weight assignment, MrSheepTail deform bones reported 0 influence. Tail does not follow rig in Pose Mode.",
+      "nikki_impact": "Tail is a primary Nikki silhouette element (fluff, sway). Frozen tail = dead read at distance, fails cozy-traversal and Baa-notify pulse (ABP_ChoralSheep) design.",
+      "evidence": "Task inspection: 'Tail frozen'; TONIGHT_ASSEMBLY_PLAN: '0 vertex groups'; export_choral_sheep.py logs 106 deform bones expected but mesh has none.",
+      "fix_ref": "Q02"
+    },
+    {
+      "id": "F03_NO_VERTEX_GROUPS",
+      "severity": "P0 Blocker",
+      "category": "skinning",
+      "title": "Mesh has 0 vertex groups — Voxel Skinning 3.5.3 installed but unused",
+      "detail": "Voxel Skinning 3.5.3 present and suited to 5918-vert ZSpheres quadruped (handles 106 deform bones cleanly). Not executed. All deformation is unbound.",
+      "nikki_impact": "No deformation = no pose presets, no Rokoko, no shape-key sculpt. Sheep cannot be dressed or photographed.",
+      "evidence": "Task + TONIGHT_ASSEMBLY_PLAN + BLENDER_ADDON_MANIFEST voxel_skinning entry.",
+      "fix_ref": "Q02"
+    },
+    {
+      "id": "F04_GOOD_BEAD_EYE_PARENTING",
+      "severity": "Pass",
+      "category": "hierarchy",
+      "title": "Beads / eyes correctly bone-parented",
+      "detail": "Bead and eye objects are bone-parented (not weighted), which is correct for rigid accessories. Preserves clean silhouette without bleed-through during wool deformation. Keep this pattern for bell/collar too.",
+      "nikki_impact": "Positive — accessories stay crisp in close-up beauty shots (Nikki accessory rule).",
+      "evidence": "Task inspection.",
+      "fix_ref": null
+    },
+    {
+      "id": "F05_NO_ANIMATION_DATA",
+      "severity": "P1 Critical",
+      "category": "animation",
+      "title": "Zero Actions, zero Shape Keys, zero NLA — no pose library content",
+      "detail": "No Blender Actions, no mesh Shape Keys (sheep_shapekeys.py defines c_jaw/c_eye/ear chains but none instantiated), no NLA strips. Pose Library is empty. Melodia Pose Audit has no findings stored because there is nothing to audit yet.",
+      "nikki_impact": "Cannot author or recall the 6-12 Nikki pose presets; cannot validate silhouette. ABP_ChoralSheep (walk/trot/run + Baa notify) has no source clips.",
+      "evidence": "Task inspection; melodia_pose_audit/operators.py _audit reports Bones/Constraints only — no pose coverage; sheep_shapekeys.py exists but not applied.",
+      "fix_ref": "Q04, Q05"
+    },
+    {
+      "id": "F06_SPINE_4_MINIMAL",
+      "severity": "P2 Minor",
+      "category": "rig_logic",
+      "title": "Spine chain is 4 bones — functional but minimal for fashion posing",
+      "detail": "474b ARP quadruped with 326 constraints and IK/FK drivers is healthy. Spine_04 is ARP default for quadrupeds (root/spine/neck/head). For Nikki elegance (arched back, S-curve, seated/loaf), a 4-bone spine works but benefits from an extra chest tweak bone or subtle bendy-bone curvature.",
+      "nikki_impact": "Limits 'elegant arch' and 'loaf' silhouettes by ~15%. Not a blocker; address with pose presets before adding bones.",
+      "evidence": "Task inspection (474/326/spine.004).",
+      "fix_ref": "Q06"
+    },
+    {
+      "id": "F07_TAIL_RIG_FROZEN",
+      "severity": "P1 Critical",
+      "category": "rig_logic",
+      "title": "Tail control chain present but non-functional due to F02",
+      "detail": "Control bones exist (part of 368), deform bones exist (part of 106), constraints drive them — but with 0 weights the chain is visually dead. Not a rig-logic bug, a skinning-dependency.",
+      "nikki_impact": "Tail flick / wag is a core idle-life channel; without it, idle loop reads as statue.",
+      "evidence": "Task: 'Tail frozen' + 'MrSheepTail 0 weights'.",
+      "fix_ref": "Q02"
+    },
+    {
+      "id": "F08_ADDON_HYGIENE",
+      "severity": "P2 Minor",
+      "category": "pipeline",
+      "title": "Voxel Skinning unused; Rokoko Live connected to nothing; Pose Audit not run on this rig",
+      "detail": "Voxel Skinning 3.5.3, Rokoko Studio Live 1.4.3, Melodia Pose Audit 1.1 all installed. None exercised on this asset. This is hygiene debt, not a rig defect.",
+      "nikki_impact": "Missed fast paths: Voxel auto-weights (minutes vs hours manual), Rokoko Live rehearsal, Pose Audit gate before shoot.",
+      "evidence": "Task addon list + Tools/BlenderAddons/melodia_pose_audit/* + BLENDER_ADDON_MANIFEST rokoko/voxel entries.",
+      "fix_ref": "Q02, Q03, Q05"
+    }
+  ],
+  "fix_queue": [
+    {
+      "queue_id": "Q01",
+      "priority": "P0 — Do First (5 min)",
+      "title": "Fix hierarchy inversion: unparent rig from mesh",
+      "steps": [
+        "In Outliner, drag rig out of Skin_Sheep_ZSpheres2 so both are top-level (or rig at scene root, mesh as sibling).",
+        "Alt+P > Clear Parent on rig (Keep Transform).",
+        "Select Skin_Sheep_ZSpheres2 > Modifiers: ensure single Armature modifier targeting 'rig' (not duplicated).",
+        "Select rig in Object Mode > Ctrl+A > Apply Scale (UE FBX expects 1,1,1 before global_scale=100).",
+        "Save .blend, re-run headless: blender --background <blend> --python Tools/BlenderAddons/melodia_studio/export_choral_sheep.py -- --out Saved/Exports/ChoralSheep/SK_ChoralSheep_HIERARCHYFIX.fbx and confirm 106 deform bones exported."
+      ],
+      "verify": "Outliner shows rig (parent) -> Skin_Sheep_ZSpheres2 not the reverse; no 'rig child of mesh' in Blender info; FBX imports to UE without double-transform.",
+      "owner": "rigger",
+      "est": "5-10 min"
+    },
+    {
+      "queue_id": "Q02",
+      "priority": "P0 — Blocker (30-60 min)",
+      "title": "Bind mesh: Voxel Skinning auto-weights + manual tail/hoof polish + mirror",
+      "steps": [
+        "Backup .blend. Select Skin_Sheep_ZSpheres2 > Object Data > Vertex Groups > delete any stray groups (currently 0, so clean).",
+        "Select mesh then Shift-select rig > Weight Paint > Voxel Skinning 3.5.3: run Voxel Skinning with 106 deform bones, smooth iterations 2, isolate tail/ear tips (use vertex-group locks for MrSheepTail chain).",
+        "Verify: mesh should gain ~106 groups; Properties > Vertex Groups count = 106. Check that MrSheepTail_*, MrSheepTail.001 etc each have >0 weight (Weight Paint > Show Zero Weights).",
+        "Manual polish: Weight Paint MrSheepTail chain with gradient (root 1.0 -> tip 0.35), bleed fix at tail base; paint hooves (sharp), ears (soft), jaw (sheep_shapekeys). Mirror L->R via Weights > Mirror (Topology Mirror on).",
+        "Run melodia_pose_audit: View3D > Sidebar > Melodia > Melodia Pose Audit > Target Armature = rig > Audit Rig; confirm report shows Bones:474 Constraints scanned:326 and no PIN warnings on tail.",
+        "Pose Mode smoke: grab MrSheepTail.001, Body_M, hind legs — mesh must follow with no lag or tearing."
+      ],
+      "verify": "Vertex Groups = 106 non-zero; MrSheepTail weights >0; Pose Audit passes; tail wag in Pose Mode visible.",
+      "owner": "rigger/weight painter",
+      "est": "45-90 min (Voxel 5 min + polish 30-60 min)",
+      "addon": "Voxel Skinning 3.5.3 (N-panel > Voxel Skinning)"
+    },
+    {
+      "queue_id": "Q03",
+      "priority": "P0 — Immediately after Q02 (15 min)",
+      "title": "Export verification: deform-only FBX via export_choral_sheep.py",
+      "steps": [
+        "Run headless export: blender --background <blend> --python Tools/BlenderAddons/melodia_studio/export_choral_sheep.py -- --out Saved/Exports/ChoralSheep/SK_ChoralSheep.fbx",
+        "Check log: 'exported deform bones: 106 (total rig bones: 474)' and size ~455KB (per TONIGHT_ASSEMBLY_PLAN).",
+        "UE import: Content/Melodia/Companions/ChoralSheep/SK_ChoralSheep — verify SK has 106-bone skeleton (not 474), no control bones (c_*) imported.",
+        "Record receipt in Exports/MelusinaAnims or Saved/Exports/ChoralSheep import log."
+      ],
+      "verify": "UE SK_ChoralSheep skeleton = 106 bones; no c_*; imports clean.",
+      "owner": "tech artist",
+      "est": "10-15 min"
+    },
+    {
+      "queue_id": "Q04",
+      "priority": "P1 — Next (2-3 hrs)",
+      "title": "Author Nikki pose sheet (12 presets) + Pose Library",
+      "steps": [
+        "With Q01+Q02 done, in Pose Mode author 12 poses on the 474b rig (pose the controls; deform follows):",
+        "  1 Hero Stand (beauty 3/4), 2 Profile (silhouette read), 3 Loaf/Sit (cozy), 4 Grazing (neck down), 5 Alert Ears (ears forward), 6 Head Tilt Charm, 7 Tail Wag Mid, 8 Bell Chime (neck up, Baa), 9 Walk Contact, 10 Trot Pass, 11 Sleep Curl, 12 Back-to-Camera (wool volume).",
+        "Store each via Asset Browser > Pose Library (Blender 4.x Pose Library): Create Pose Asset per pose (mark with fake user). Name: POSE_Sheep_HeroStand etc.",
+        "Run Melodia Pose Audit after each pose: check silhouette at 3 distances (close/ mid/ far — ensure read at render distance per TONIGHT_ASSEMBLY_PLAN coat rule).",
+        "Export pose-sheet thumbnails: melodia_stage addon or manual 16:9 turntable (Saved/Audit/ChoralSheep/poses/).",
+        "Optional shape keys: run Tools/BlenderAddons/melodia_studio/sheep_shapekeys.py to add c_jaw/c_eye/ear shape keys for face poses (2,5,6,8)."
+      ],
+      "verify": "Pose Library shows 12 pose assets; each recalls cleanly (Apply Pose); 12 thumbnails committed.",
+      "owner": "animator",
+      "est": "2-3 hrs",
+      "nikki_gate": "All 12 read as distinct fashion silhouettes at thumbnail size — the B-flat sheep test."
+    },
+    {
+      "queue_id": "Q05",
+      "priority": "P1 — After Q04 (1-2 hrs setup + rehearsal)",
+      "title": "Animation readiness: Rokoko Studio Live 1.4.3 + NLA + Melodia Pose Audit gate",
+      "steps": [
+        "Rokoko prep: Export SK_MocapSource CharacterRef (or SK_ChoralSheep if driving companion directly) > Rokoko Studio > Character Profile. Calibrate suit.",
+        "Blender: Enable Rokoko Studio Live 1.4.3 addon; Live Link to rig (deform bones only — map to 106). Rehearse 3 clips live: idle loop (30s), walk cycle, Baa-notify hop.",
+        "Bake to Actions: Rokoko > Bake to Action (one Action per take, named A_Sheep_Idle, A_Sheep_Walk, A_Sheep_Baa). Push each to NLA as strips (NLA Editor > Push Down).",
+        "Create Actions for pose-sheet: NLA strips POSE_* as hold poses (single-frame Actions) so ABP can sample them.",
+        "Gate: Run Melodia Pose Audit on each baked Action (max_frames=24 sample): View3D > Melodia > Audit Rig on the NLA-evaluated pose. Zero PIN warnings.",
+        "Export takes via animation_import_pipeline (Tools/animation_import_pipeline/pipeline.py) or Rokoko Inbox: Imports/Mocap/ChoralSheep/Inbox -> RTG_QuadrupedMocap_To_ChoralSheep -> A_Mocap_ChoralSheep_* on SK_ChoralSheep."
+      ],
+      "verify": "3 baked Actions + 12 pose Actions in NLA; all pass Pose Audit; one Rokoko take imports to UE and plays on SK_ChoralSheep via ABP_ChoralSheep.",
+      "owner": "mocap/animator",
+      "est": "1-2 hrs + shoot time",
+      "addon": "Rokoko Studio Live 1.4.3"
+    },
+    {
+      "queue_id": "Q06",
+      "priority": "P2 — Polish (30 min, optional)",
+      "title": "Spine elegance pass + wool silhouette tune",
+      "steps": [
+        "Do NOT add spine bones before pose sheet — pose sheet validates whether 4 is enough.",
+        "If Hero Stand / Loaf arch feels stiff: add one chest tweak bone (ARP 'spine tweak' or bendy-bone segments=2 on spine_02/spine_03) and re-run Voxel weights for that bone only.",
+        "Wool volume: run sheep_shine.py variations (make_variations) to test 10 pastels under pose lighting; ensure wool sheen reads in silhouette (backlight + rim).",
+        "Commit final beauty frame at 16:9 to Saved/Audit/ChoralSheep/hero_16x9.png."
+      ],
+      "verify": "Before/after pose comparison shows smoother S-curve; wool sheen visible at distance.",
+      "owner": "rigger/lookdev",
+      "est": "30-60 min"
+    },
+    {
+      "queue_id": "Q07",
+      "priority": "P3 — Hygiene (10 min)",
+      "title": "Lock pipeline: backups + LFS pointer check",
+      "steps": [
+        "Git: ensure .blend is not tracked raw if >100MB — use LFS; check Docs/Art/VISUAL_REFERENCE_INDEX.md note about LFS pointers.",
+        "Save versioned .blend to RawArt/Inbox or BlenderLibraries (mirrors RawArt/MelusinasHouse/MelusinasHouse_V7_Base.blend pattern).",
+        "Write Saved/Exports/ChoralSheep/choral_sheep_bake_manifest.json via sheep_bake_prep.py (UV status, maps: Normal/AO/Curvature/ID/Height).",
+        "Document pose sheet in Docs/Art/ChoralSheep_PoseSheet.md with 12 thumbnails + Rokoko take list."
+      ],
+      "verify": "Manifest exists; thumbnails committed; no LFS bloat on main.",
+      "owner": "tech artist",
+      "est": "10 min"
+    }
+  ],
+  "pose_sheet_proposal": {
+    "concept": "Nikki dress-up logic applied to companion: one silhouette, 12 readable 'outfits' (poses). Each pose is a fashion page, not a biology study.",
+    "count": 12,
+    "framing": "16:9 beauty camera, 3/4 front for hero, strict profile for silhouette QC (per MONOLITH_LEVEL_DESIGN_BIBLE horizon-read rule)",
+    "poses": [
+      {
+        "id": "POSE_01_HeroStand",
+        "name": "Hero Stand — 3/4 Beauty",
+        "purpose": "Portfolio hero, material showcase",
+        "keys": "spine neutral, head 15deg tilt, ears perked, tail relaxed, bell visible",
+        "camera": "eye-level 3/4, soft rim"
+      },
+      {
+        "id": "POSE_02_Profile",
+        "name": "Profile — Silhouette Read",
+        "purpose": "Nikki silhouette gate",
+        "keys": "strict side view, neck extended, tail horizontal",
+        "camera": "orthographic side"
+      },
+      {
+        "id": "POSE_03_Loaf",
+        "name": "Loaf / Sit — Cozy",
+        "purpose": "Cozy-traversal fantasy",
+        "keys": "hind legs tucked, spine arched, chin down",
+        "camera": "low front 3/4"
+      },
+      {
+        "id": "POSE_04_Graze",
+        "name": "Grazing — Neck Down",
+        "purpose": "World-integration vignette",
+        "keys": "neck_01/02 flexed down 40deg, head to ground",
+        "camera": "ground-level profile"
+      },
+      {
+        "id": "POSE_05_Alert",
+        "name": "Alert Ears — Forward",
+        "purpose": "Ear rig showcase",
+        "keys": "ears forward 30deg, head high, eyes wide (shape key)",
+        "camera": "front close-up"
+      },
+      {
+        "id": "POSE_06_HeadTilt",
+        "name": "Head Tilt — Charm",
+        "purpose": "Nikki charm shot",
+        "keys": "head roll 18deg, one ear flop, jaw soft",
+        "camera": "slight high 3/4"
+      },
+      {
+        "id": "POSE_07_TailWag",
+        "name": "Tail Wag — Mid Sway",
+        "purpose": "Tail chain QC (F02/F07)",
+        "keys": "MrSheepTail.001/002 offset 20deg, hind weight shift",
+        "camera": "rear 3/4, tail centered"
+      },
+      {
+        "id": "POSE_08_BellChime",
+        "name": "Bell Chime — Baa Notify",
+        "purpose": "Resonance/Motif creature beat",
+        "keys": "neck up, mouth open (c_jaw shape), bell forward, front legs lifted 5cm",
+        "camera": "front, bell highlight"
+      },
+      {
+        "id": "POSE_09_WalkContact",
+        "name": "Walk — Contact",
+        "purpose": "Locomotion source for ABP",
+        "keys": "quadruped walk contact (FL/BR down)",
+        "camera": "side, ground plane visible"
+      },
+      {
+        "id": "POSE_10_TrotPass",
+        "name": "Trot — Passing",
+        "purpose": "Blendspace mid",
+        "keys": "diagonal pair lift, spine flex",
+        "camera": "side"
+      },
+      {
+        "id": "POSE_11_SleepCurl",
+        "name": "Sleep Curl — Wool Volume",
+        "purpose": "Wool sheen + translucency",
+        "keys": "curled, spine bend 45deg, tail wrapped",
+        "camera": "top-down 45deg, backlight"
+      },
+      {
+        "id": "POSE_12_BackView",
+        "name": "Back View — Wool Read",
+        "purpose": "Distance read (B-flat test)",
+        "keys": "back to camera, head 3/4 turn",
+        "camera": "back, mid-distance (5m)"
+      }
+    ],
+    "storage": "Blender Asset Browser > Pose Library — 12 pose assets with fake user; NLA hold strips POSE_* for UE sampling",
+    "thumbnails": "Saved/Audit/ChoralSheep/poses/POSE_*.png (512px square) + contact sheet Saved/Audit/ChoralSheep/pose_sheet_contact_16x9.png",
+    "melodia_pose_audit_gate": "After each pose, run melodia.pose_audit (View3D > Melodia > Audit Rig) — expect 'Bones: 474, Constraints scanned: 326' and zero PIN warnings. Archive report to Saved/Audit/ChoralSheep/pose_audit_*.txt (bpy.data.texts['Pose Audit'])."
+  },
+  "animation_readiness": {
+    "current_state": "NOT READY — 0 Actions, 0 NLA, 0 Shape Keys instantiated, Rokoko not connected, Voxel not run",
+    "ready_after": "Q01+Q02+Q03 (rig fixed and bound) then Q04 (poses) and Q05 (Rokoko bake). Estimated 4-6 hrs total.",
+    "rokoko_live_plan": {
+      "addon": "Rokoko Studio Live 1.4.3 (installed)",
+      "character_ref": "Export SK_ChoralSheep (106 deform) or SK_MocapSource via Rokoko CharacterRef FBX to Rokoko Studio",
+      "live_link": "Blender > Rokoko Studio Live > map to deform bones; rehearse, don't ship live — bake to Actions",
+      "takes_to_record": [
+        "A_Sheep_Idle_30s (Baa pulse every 4 beats)",
+        "A_Sheep_Walk_Loop (1.2m/s)",
+        "A_Sheep_Trot_Loop (2.4m/s)",
+        "A_Sheep_Baa_Hop (bell chime notify)"
+      ],
+      "pipeline": "Rokoko Inbox (Imports/Mocap/ChoralSheep/Inbox or Rokoko/Inbox) -> Tools/animation_import_pipeline/pipeline.py -> RTG_QuadrupedMocap_To_ChoralSheep -> UE /Game/Melodia/Companions/ChoralSheep/ A_Mocap_ChoralSheep_* -> ABP_ChoralSheep blendspace (GroundSpeed) + Baa notify -> world resonance ledger (ChoralSheepVariants.json pitch_class clock)",
+      "retarget_note": "Use deform-only skeleton (106) for retarget; 474 control rig never leaves Blender. Control bones (c_*) are not retarget sources."
+    },
+    "pose_library_plan": {
+      "addon": "Blender built-in Pose Library (Asset Browser)",
+      "assets": "12 pose assets (POSE_01..12) with fake user; each is a single-frame Action stored as pose asset",
+      "nikki_gate": "Each pose must pass 'B-flat sheep' test: identifiable at thumbnail distance by palette + silhouette, not by zooming. Profile pose (02) is the hard gate.",
+      "ue_use": "Pose assets become ABP pose snapshots or Montage holds; sample via Pose Asset or baked single-frame Anims for turntable Sequencer."
+    },
+    "melodia_pose_audit_plan": {
+      "addon": "Melodia Pose Audit 1.1 (Tools/BlenderAddons/melodia_pose_audit)",
+      "how_to_run": "View3D > Sidebar > Melodia > Melodia Pose Audit > set Target Armature = rig > Audit Rig (or bpy.ops.melodia.pose_audit)",
+      "what_it_checks": "Bones count, Constraints scanned (326), missing spine/neck bones (COMMON_MELODIA_BONES), pinned constraints (COPY_LOCATION/ROTATION/TRANSFORMS/IK with chain>1)",
+      "current_limitation": "Operator is lightweight (no weight, NLA, or silhouette checks) — extend _audit() if needed to flag MrSheepTail zero-weight and empty NLA, but for now use it as hierarchy+constraint hygiene gate after each pose/Rokoko bake.",
+      "reports": "Writes to Text Editor > 'Pose Audit' (bpy.data.texts['Pose Audit']); save copies to Saved/Audit/ChoralSheep/"
+    },
+    "ue_targets": {
+      "skeletal_mesh": "/Game/Melodia/Companions/ChoralSheep/SK_ChoralSheep (106 bones)",
+      "skeleton": "SK_ChoralSheep_Skeleton (NEW — never reuse IK_Melusina_Body_Current)",
+      "ik_rig": "IK_ChoralSheep (chains: root/spine/neck/head + 4x thigh-foot-toes + tail4)",
+      "retargeter": "RT_QuadrupedMocap_To_ChoralSheep or RTG_Mocap_to_Melusina_Current variant",
+      "abp": "ABP_ChoralSheep (GroundSpeed blendspace walk/trot/run + Baa notify)",
+      "variants": "MI_ChoralSheep_Coat_PC00..11 (12 chromatic coats, hue = pitch_class*30deg per Tonight Assembly Plan)"
+    }
+  },
+  "nikki_lens_verdict": {
+    "photoshoot_ready": false,
+    "pose_preset_ready": false,
+    "silhouette_clean": "Partial — beads/eyes clean, tail/wool dead until Q02",
+    "one_line": "Gorgeous ARP control rig trapped under an inverted hierarchy and zero skinning — the Nikki silhouette exists in the rig but not on the mesh. Fix hierarchy + Voxel bind and the 12-pose sheet + Rokoko loop become a one-day win.",
+    "next_action": "Do Q01 (5 min) then Q02 (Voxel Skinning) — everything else is blocked until those two pass. Then Q04 pose sheet is the portfolio-visible deliverable."
+  }
+}
