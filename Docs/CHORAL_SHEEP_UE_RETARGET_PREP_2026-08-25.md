@@ -1,6 +1,6 @@
 # Choral Sheep — UE Retarget Prep
 
-**Date:** 2026-08-25 · **Status:** Blender-side export verified; UE-side steps ready
+**Date:** 2026-08-25 · **Status:** Blender-side export verified; quick-animation retarget pass active; UE-side proof pending
 **Mesh:** `Skin_Sheep_ZSpheres2` (5918 verts) · **Rig:** `rig` (474 bones = 106 deform + 368 control)
 
 ## 2026-09-08 owner update
@@ -16,6 +16,24 @@ Current uncertainty is narrower:
 
 Current execution authority:
 `Docs/Semester/CHORAL_SHEEP_DAY1_EXECUTION_PLAN_2026-09-08.md`
+
+## 2026-09-10 final presentation feature — quick Blender animation retarget
+
+The owner is actively retargeting a small set of quick animations onto the current Choral Sheep rig in Blender as the final bounded presentation feature of the current sheep pass. This is an **animation proof/polish lane**, not permission to reopen the rig, locomotion architecture, companion AI, or unrelated gameplay systems.
+
+### Minimum acceptance gate
+
+Call the Blender retarget pass complete when:
+- at least one useful action plays on the current sheep rig without catastrophic limb twist, inverted feet, broken spine orientation, or visible mesh separation;
+- the action has an explicit root-motion choice (prefer in-place for quick presentation/companion loops unless root motion is intentionally required);
+- action names and source/provenance are retained so the animation can be traced later;
+- any UE-bound export contains the intended deform skeleton rather than the full control rig, using the verified deform-only exporter or a freshly verified ARP export;
+- one clean viewport/playback proof is captured before further cleanup;
+- the resulting FBX is treated as **Blender/export proof only** until a fresh Unreal import/reimport is actually tested.
+
+### Stop condition for this pass
+
+Do **not** turn this final feature into a full animation-system rebuild tonight. A successful Blender retarget + clean export + proof capture is enough to close the art-side milestone. `IK_ChoralSheep`, the UE retargeter, `ABP_ChoralSheep`, blendspace wiring, and runtime locomotion remain separate UE-side evidence gates below unless they are deliberately tested.
 
 ## Goal
 
