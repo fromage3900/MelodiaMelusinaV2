@@ -1,6 +1,6 @@
 ﻿# Receipt - Materials clean-env stubs + TextureWeight - 2026-09-09
 
-**Status:** LIVE PASS (unsaved until owner Ctrl+S)  
+**Status:** LIVE PASS + **owner Ctrl+S confirmed** (dirty packages 0)  
 **Index:** [Docs/Materials/README.md](README.md) · **Labels:** [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md)  
 **Plan:** [MATERIALS_WIRING_FLIPBOOK_CLEANUP_2026-09-09.md](../Plans/MATERIALS_WIRING_FLIPBOOK_CLEANUP_2026-09-09.md) Phase C
 
@@ -51,3 +51,7 @@ Spot-check after assign (mesh_query):
 - [ ] Melusina V2Test slots → proper character MIs (not stubs)
 - [ ] DemoRoom/`*_BS` load failures triage
 - [ ] LABEL_MAP ENGINE_DEFAULT row → LEGACY cleared after Ctrl+S
+
+## LABEL_MAP fold (same evening)
+
+Updated [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md) with New Bot landscape/SDF/VFX deprecate audit: Enhanced QUARANTINE, HeightBlend 28 LEGACY pointer (#158), _PROJECT VFX DUPLICATE + sheep MI retarget owed, WorldGrid PARTIAL after stub assign.
