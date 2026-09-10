@@ -38,7 +38,7 @@ Full map: [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md). Process: label →
 - [RECEIPT_OCEANOLOGY_2026-09-09.md](RECEIPT_OCEANOLOGY_2026-09-09.md) (#151 → `26794063`)
 - [RECEIPT_SDF_MASTERS_2026-09-09.md](RECEIPT_SDF_MASTERS_2026-09-09.md) (#152 → `da667673`)
 - [RECEIPT_ALL_MATERIALS_MERGED_2026-09-09.md](RECEIPT_ALL_MATERIALS_MERGED_2026-09-09.md) (**GATE PASS** — Live Link / Rokoko restart unlocked; caveats in receipt)
-- `RECEIPT_WIRING_BATCH4_*.md` (pending Phase A)
+- [RECEIPT_WIRING_BATCH4_2026-09-09.md](RECEIPT_WIRING_BATCH4_2026-09-09.md) (Universal + Wool read-back)
 - `RECEIPT_FLIPBOOK_*.md` (pending Phase B)
 - `RECEIPT_MATERIALS_CLEAN_ENV_*.md` (pending Phase C)
 - [RECEIPT_OFFLINE_WORLDGRID_FLIPBOOK_2026-09-09.md](RECEIPT_OFFLINE_WORLDGRID_FLIPBOOK_2026-09-09.md) (offline inventory)
@@ -49,4 +49,5 @@ Full map: [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md). Process: label →
 - No Monolith `save_packages` / `recompile_material`. Owner Ctrl+S for editor packages.
 - Do not run graph-clearing landscape rebuild scripts against the active master.
 - Soft-freeze for Live Link / Rokoko satisfied via ALL_MATERIALS on main; remaining polish is Batch 4 + Lane D + clean-env (this index).
+
 
