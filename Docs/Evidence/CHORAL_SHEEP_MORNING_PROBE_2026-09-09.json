@@ -1,0 +1,46 @@
+{
+  "schema": "melodia.choral_sheep.morning_probe.v1",
+  "timestamp": "2026-09-09 06:01:59 UTC",
+  "map": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+  "steps": {
+    "summon": {
+      "console": "{'command': 'summon BP_ChoralSheep', 'world': 'pie', 'via_player_controller': True}",
+      "resolve": {
+        "resolved": "BP_ChoralSheep (BP_ChoralSheep_C)",
+        "object": "BP_ChoralSheep_C_UAID_7C5758FA1CACDAFF02_1566876143",
+        "object_class": "/Game/Melodia/Companions/ChoralSheep/BP_ChoralSheep.BP_ChoralSheep_C",
+        "properties": {
+          "CurrentHarmonizeWeight": 0,
+          "HarmonizeFadeSpeed": 3
+        }
+      }
+    },
+    "apply_definition": {
+      "resolved": "BP_ChoralSheep (BP_ChoralSheep_C)",
+      "object": "BP_ChoralSheep_C_UAID_7C5758FA1CACDAFF02_1566876143",
+      "function": "ApplyChoralSheepDefinition",
+      "called": true,
+      "return_value": true
+    },
+    "begin": {
+      "resolved": "BP_ChoralSheep (BP_ChoralSheep_C)",
+      "object": "BP_ChoralSheep_C_UAID_7C5758FA1CACDAFF02_1566876143",
+      "function": "TryBeginHarmonize",
+      "called": true,
+      "return_value": true
+    },
+    "weights": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "decay_weight": 0.0
+  },
+  "assertions": {
+    "harmonize_weight_ramps": true,
+    "harmonize_weight_decays": true
+  },
+  "overall_verdict": "PASS"
+}
