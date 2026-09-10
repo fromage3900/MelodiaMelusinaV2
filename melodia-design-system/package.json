@@ -1,0 +1,16 @@
+{
+  "name": "melodia-design-system",
+  "version": "1.0.0",
+  "description": "A complete, reusable Figma design system for a premium 3D/technical-art portfolio. North star: **premium fantasy artbook meets professional technical documentation.** Inspiration: **HoYoverse** celestial UI (Genshin / Honkai: Star Rail) × **luxury editorial** — ivory editorial *Light* theme + HoYoverse-grade *Astral Night* dark theme, 8-point astral star mark, luminous gold glow, restrained gold filigree.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ag-psd": "^30.2.0",
+    "pngjs": "^7.0.0"
+  }
+}

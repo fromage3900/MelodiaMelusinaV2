@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melodia Section Header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --surface-base: #F7F4EF;
+    --surface-raised: #FCFBF8;
+    --text-primary: #241B2E;
+    --text-secondary: #6E6080;
+    --gold: #B08D4F;
+    --gold-soft: #C9A86A;
+    --border-gold: rgba(176, 141, 79, 0.4);
+  }
+
+  /* Dark theme variables */
+  [data-theme="dark"] {
+    --surface-base: #141A30;
+    --surface-raised: #1C2340;
+    --text-primary: #ECEAF4;
+    --text-secondary: #A9A7C0;
+    --gold: #C9A86A;
+    --gold-soft: #DDC79B;
+    --border-gold: rgba(201, 168, 106, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    width: 100%;
+    min-height: 120px;
+  }
+
+  .section-header {
+    width: 100%;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gold Divider Line */
+  .gold-divider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 12px var(--gold);
+  }
+
+  /* Star Accent */
+  .star-accent {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 24px;
+    opacity: 0.6;
+    animation: star-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes star-pulse {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
+  }
+
+  /* Chapter Number */
+  .chapter-number {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    line-height: 1;
+  }
+
+  /* Header Content */
+  .header-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .section-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Constellation Lines */
+  .constellation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.08;
+  }
+
+  .constellation-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Corner Accents */
+  .corner-accent {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--border-gold);
+    opacity: 0.3;
+  }
+
+  .corner-accent.top-left {
+    top: 30px;
+    left: 30px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .corner-accent.top-right {
+    top: 30px;
+    right: 30px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .section-header {
+      padding: 40px 24px;
+    }
+
+    .chapter-number {
+      font-size: 36px;
+      left: 24px;
+    }
+
+    .corner-accent {
+      width: 40px;
+      height: 40px;
+    }
+
+    .corner-accent.top-left { top: 20px; left: 20px; }
+    .corner-accent.top-right { top: 20px; right: 20px; }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .star-accent {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="section-header" id="sectionHeader" data-theme="light">
+  <!-- Gold Divider -->
+  <div class="gold-divider"></div>
+
+  <!-- Star Accent -->
+  <div class="star-accent">✦</div>
+
+  <!-- Chapter Number -->
+  <div class="chapter-number" id="chapterNumber">01</div>
+
+  <!-- Corner Accents -->
+  <div class="corner-accent top-left"></div>
+  <div class="corner-accent top-right"></div>
+
+  <!-- Constellation Lines -->
+  <div class="constellation" id="constellation"></div>
+
+  <!-- Header Content -->
+  <div class="header-content">
+    <h2 class="section-title" id="sectionTitle">Section Title</h2>
+    <p class="section-subtitle" id="sectionSubtitle">Section description goes here</p>
+  </div>
+</div>
+
+<script>
+  // Configuration from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const config = {
+    title: urlParams.get('title') || 'Section Title',
+    subtitle: urlParams.get('subtitle') || 'Section description goes here',
+    chapter: urlParams.get('chapter') || '01',
+    theme: urlParams.get('theme') || 'light'
+  };
+
+  // Update content
+  document.getElementById('sectionTitle').textContent = config.title;
+  document.getElementById('sectionSubtitle').textContent = config.subtitle;
+  document.getElementById('chapterNumber').textContent = config.chapter;
+  document.getElementById('sectionHeader').setAttribute('data-theme', config.theme);
+
+  // Generate constellation lines
+  function createConstellation() {
+    const container = document.getElementById('constellation');
+    const lineCount = 5;
+
+    for (let i = 0; i < lineCount; i++) {
+      const line = document.createElement('div');
+      line.className = 'constellation-line';
+      
+      const x1 = Math.random() * 80 + 10;
+      const y1 = Math.random() * 80 + 10;
+      const length = Math.random() * 150 + 100;
+      const angle = Math.random() * 360;
+
+      line.style.cssText = `
+        left: ${x1}%;
+        top: ${y1}%;
+        width: ${length}px;
+        transform: rotate(${angle}deg);
+      `;
+
+      container.appendChild(line);
+    }
+  }
+
+  // Initialize
+  createConstellation();
+
+  // Handle reduced motion preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelector('.star-accent').style.animation = 'none';
+  }
+</script>
+</body>
+</html>

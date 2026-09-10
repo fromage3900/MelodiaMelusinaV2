@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melodia — style variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,500;9..144,1,300&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory-50:#FCFBF8; --ivory-100:#F7F4EF; --ivory-200:#EFEAE1; --ivory-300:#E3DACE;
+    --plum-800:#241B2E; --plum-900:#1C1426;
+    --gold-300:#DDC79B; --gold-500:#C9A86A; --gold-700:#A7884E;
+    --lavender-300:#C2BAE0; --lavender-500:#9F94C6; --sakura-300:#E7C9CE;
+    --astral-300:#8AA9D6; --astral-500:#3C5C9E; --astral-700:#26365E; --astral-900:#141A30;
+    --iris-300:#A99AD0; --iris-500:#6E5AA6; --slate-300:#AEB4BF; --slate-500:#5A6170;
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace; --caps:'Cinzel',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#06080f;color:#fff;padding:40px}
+  .page{width:1280px;margin:0 auto}
+  .vtitle{font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--gold-300);margin:34px 0 12px;display:flex;align-items:center;gap:12px}
+  .vtitle .n{color:#fff;font-weight:500}
+  .vtitle .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-500),transparent)}
+  .panel{height:420px;border-radius:3px;overflow:hidden;position:relative}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+  .meta{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+  .pad{position:absolute;inset:0;padding:48px;z-index:3}
+  .brandmark{display:flex;align-items:center;gap:11px}
+  .brandmark .wm{font-family:var(--caps);letter-spacing:.32em;font-size:17px}
+  .gstar{color:var(--gold-500);filter:drop-shadow(0 0 9px rgba(201,168,106,.65))}
+  h1{font-family:var(--serif);font-weight:300;font-size:58px;line-height:1.02;letter-spacing:-.02em;margin:26px 0 6px}
+  .sub{font-family:var(--serif);font-style:italic;font-weight:300;font-size:20px;color:var(--gold-300)}
+  .kick{color:var(--gold-300);font-size:11px;margin-top:20px}
+  /* sparkle field */
+  .sp{position:absolute;color:#fff;opacity:.5;z-index:2;font-size:10px}
+  .sp.g{color:var(--gold-300);opacity:.9;filter:drop-shadow(0 0 6px rgba(221,199,155,.8))}
+  .stars{position:absolute;inset:0;z-index:1;background-image:
+      radial-gradient(1.4px 1.4px at 18% 26%, #fff7, transparent),
+      radial-gradient(1.2px 1.2px at 72% 18%, #fff6, transparent),
+      radial-gradient(1px 1px at 58% 64%, #fff5, transparent),
+      radial-gradient(1px 1px at 34% 74%, #fff4, transparent),
+      radial-gradient(1.4px 1.4px at 88% 76%, #fff5, transparent),
+      radial-gradient(1px 1px at 46% 12%, #fff5, transparent),
+      radial-gradient(1px 1px at 8% 60%, #fff4, transparent),
+      radial-gradient(1px 1px at 92% 44%, #fff4, transparent)}
+  .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;max-width:620px}
+  .tag{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px;padding:7px 12px;border:1px solid rgba(201,168,106,.55);border-radius:2px;background:rgba(255,255,255,.03);display:flex;gap:8px}
+  .tag b{color:var(--gold-300);font-weight:500}
+  .col{display:flex;flex-direction:column;height:100%}
+
+  /* ---- A Constellation ---- */
+  .vA{background:linear-gradient(180deg,var(--astral-900),var(--plum-900))}
+  .constel{position:absolute;inset:0;z-index:1;opacity:.9}
+  .constel line{stroke:var(--gold-300);stroke-width:.8;opacity:.35}
+  .constel circle{fill:var(--gold-300)}
+
+  /* ---- B Nebula (iris) ---- */
+  .vB{background:
+      radial-gradient(700px 360px at 78% 12%, rgba(110,90,166,.6), transparent 62%),
+      radial-gradient(620px 320px at 12% 96%, rgba(60,92,158,.5), transparent 60%),
+      radial-gradient(500px 260px at 50% 50%, rgba(169,154,208,.18), transparent 60%),
+      linear-gradient(180deg,#171232,#0f0b1f)}
+
+  /* ---- C Ornate frame ---- */
+  .vC{background:linear-gradient(180deg,#13182b,var(--plum-900))}
+  .frm{position:absolute;inset:24px;border:1px solid rgba(201,168,106,.5);z-index:2}
+  .brk{position:absolute;width:60px;height:60px;z-index:3}
+  .brk b{position:absolute;background:var(--gold-500);box-shadow:0 0 8px rgba(201,168,106,.6)}
+  .brk .h{height:1.5px;width:60px;top:0} .brk .v{width:1.5px;height:60px;left:0}
+  .brk.tl{top:24px;left:24px} .brk.tr{top:24px;right:24px} .brk.tr .v{left:auto;right:0}
+  .brk.bl{bottom:24px;left:24px} .brk.bl .h{top:auto;bottom:0}
+  .brk.br{bottom:24px;right:24px} .brk.br .h{top:auto;bottom:0} .brk.br .v{left:auto;right:0}
+
+  /* ---- D Ivory editorial + sparkle ---- */
+  .vD{background:var(--ivory-100);color:var(--plum-800)}
+  .vD h1{color:var(--plum-800)} .vD .sub{color:var(--gold-700)}
+  .vD .kick{color:var(--slate-500)}
+  .vD .ey{display:flex;align-items:center;gap:12px}
+  .vD .ey .lbl{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--slate-500)}
+  .vD .ey .ln{flex:1;height:1px;background:var(--gold-500)}
+  .vD .gstar{color:var(--gold-700);filter:none}
+  .vD .sp{color:var(--gold-500);opacity:.55}
+  .vD .tag{border-color:var(--ivory-300);color:var(--plum-800);background:#fff}
+  .vD .tag b{color:var(--gold-700)}
+  .vD .wm{color:var(--plum-800)}
+
+  /* ---- Passport variants ---- */
+  .ppgrid{display:flex;gap:24px;align-items:stretch}
+  .passport{border-radius:2px;padding:22px;position:relative;overflow:hidden}
+  .passport .stars{opacity:.5}
+  .pdark{background:linear-gradient(180deg,var(--astral-700),#1b2740);border:1px solid var(--iris-500);color:#fff}
+  .plight{background:var(--ivory-50);border:1px solid var(--slate-300);color:var(--plum-800)}
+  .pp-head{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+  .pp-kick{display:flex;gap:7px;align-items:center;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--gold-300)}
+  .plight .pp-kick{color:var(--gold-700)}
+  .pp-title{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.01em;margin:12px 0 1px;position:relative;z-index:2}
+  .pp-cat{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--slate-300);position:relative;z-index:2}
+  .plight .pp-cat{color:var(--slate-500)}
+  .rule{height:1px;background:var(--gold-500);opacity:.85;position:relative;z-index:2}
+  .pp-row{display:flex;justify-content:space-between;padding:6px 0;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px;position:relative;z-index:2}
+  .pp-row .k{color:var(--slate-300)} .plight .pp-row .k{color:var(--slate-500)}
+  .pp-foot{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--slate-300);position:relative;z-index:2}
+  .plight .pp-foot{color:var(--slate-500)}
+  .pcard{width:300px} .pcompact{width:260px} .pbanner{flex:1;display:flex;flex-direction:column}
+  .bannerrow{display:flex;justify-content:space-between;gap:24px;position:relative;z-index:2;margin-top:14px}
+  .bannerrow .cell{font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+  .bannerrow .cell .k{display:block;color:var(--slate-300);font-size:9px;margin-bottom:3px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- A. CONSTELLATION -->
+  <div class="vtitle"><span class="gstar">&#10040;</span> VARIATION A <span class="n">&middot; Constellation</span> <span class="ln"></span></div>
+  <div class="panel vA">
+    <div class="stars"></div>
+    <svg class="constel" viewBox="0 0 1280 420" preserveAspectRatio="none">
+      <line x1="860" y1="70" x2="980" y2="120"/><line x1="980" y1="120" x2="1080" y2="90"/>
+      <line x1="1080" y1="90" x2="1140" y2="170"/><line x1="980" y1="120" x2="1020" y2="220"/>
+      <line x1="1020" y1="220" x2="1120" y2="250"/>
+      <circle cx="860" cy="70" r="2.4"/><circle cx="980" cy="120" r="3"/><circle cx="1080" cy="90" r="2.4"/>
+      <circle cx="1140" cy="170" r="2.4"/><circle cx="1020" cy="220" r="2.4"/><circle cx="1120" cy="250" r="2.8"/>
+    </svg>
+    <span class="sp g" style="top:120px;left:560px">&#10040;</span>
+    <span class="sp" style="top:300px;left:120px">&#10038;</span>
+    <span class="sp" style="top:90px;left:330px">&#10038;</span>
+    <div class="pad col">
+      <div class="brandmark"><span class="gstar" style="font-size:19px">&#10040;</span><span class="wm">MELODIA</span></div>
+      <h1>Ashen Cathedral</h1>
+      <div class="sub">mapped to the stars</div>
+      <div class="tags">
+        <div class="tag">TRIANGLES <b>482,318</b></div><div class="tag">4K</div><div class="tag">12 MATERIALS</div><div class="tag">NANITE <b>ON</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B. NEBULA -->
+  <div class="vtitle"><span class="gstar">&#10040;</span> VARIATION B <span class="n">&middot; Nebula (iris-forward)</span> <span class="ln"></span></div>
+  <div class="panel vB">
+    <div class="stars"></div>
+    <span class="sp g" style="top:90px;left:720px">&#10040;</span>
+    <span class="sp g" style="top:250px;left:880px;font-size:7px">&#10040;</span>
+    <span class="sp" style="top:160px;left:520px">&#10038;</span>
+    <span class="sp" style="top:330px;left:260px">&#10038;</span>
+    <div class="pad col">
+      <div class="brandmark"><span class="gstar" style="font-size:19px">&#10040;</span><span class="wm">MELODIA</span></div>
+      <h1 style="background:linear-gradient(90deg,#fff,var(--iris-300));-webkit-background-clip:text;background-clip:text;color:transparent">Veil of Amethyst</h1>
+      <div class="sub" style="color:var(--lavender-300)">where violet meets the void</div>
+      <div class="tags">
+        <div class="tag" style="border-color:rgba(169,154,208,.6)">TRIANGLES <b style="color:var(--iris-300)">512,440</b></div>
+        <div class="tag" style="border-color:rgba(169,154,208,.6)">8K</div>
+        <div class="tag" style="border-color:rgba(169,154,208,.6)">18 MATERIALS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C. ORNATE FRAME -->
+  <div class="vtitle"><span class="gstar">&#10040;</span> VARIATION C <span class="n">&middot; Ornate Frame</span> <span class="ln"></span></div>
+  <div class="panel vC">
+    <div class="stars"></div>
+    <div class="frm"></div>
+    <div class="brk tl"><b class="h"></b><b class="v"></b></div>
+    <div class="brk tr"><b class="h"></b><b class="v"></b></div>
+    <div class="brk bl"><b class="h"></b><b class="v"></b></div>
+    <div class="brk br"><b class="h"></b><b class="v"></b></div>
+    <span class="sp g" style="top:70px;left:640px">&#10040;</span>
+    <span class="sp" style="top:330px;left:980px">&#10038;</span>
+    <div class="pad col" style="inset:24px;padding:48px">
+      <div class="brandmark" style="justify-content:center"><span class="gstar" style="font-size:18px">&#10040;</span><span class="wm">MELODIA</span></div>
+      <div style="text-align:center;margin:auto 0">
+        <div class="meta" style="color:var(--gold-300);margin-bottom:14px">ENVIRONMENT &middot; ASSET STUDY</div>
+        <h1 style="font-size:54px">Ashen Cathedral</h1>
+        <div class="sub">an artbook plate</div>
+      </div>
+      <div class="meta" style="text-align:center;color:var(--slate-300)">482,318 TRI &nbsp;&middot;&nbsp; 4K &nbsp;&middot;&nbsp; 12 MAT &nbsp;&middot;&nbsp; UE5.4</div>
+    </div>
+  </div>
+
+  <!-- D. IVORY EDITORIAL + SPARKLE -->
+  <div class="vtitle"><span class="gstar">&#10040;</span> VARIATION D <span class="n">&middot; Ivory Editorial + sparkle</span> <span class="ln"></span></div>
+  <div class="panel vD">
+    <span class="sp" style="top:80px;left:900px">&#10040;</span>
+    <span class="sp" style="top:300px;left:1040px;font-size:8px">&#10038;</span>
+    <span class="sp" style="top:200px;left:820px;font-size:7px">&#10040;</span>
+    <div class="pad col">
+      <div class="brandmark"><span class="gstar" style="font-size:18px">&#10040;</span><span class="wm">MELODIA</span></div>
+      <div class="ey" style="margin-top:24px"><span class="gstar">&#10040;</span><span class="lbl">Environment Breakdown</span><span class="ln"></span></div>
+      <h1 style="margin-top:18px">Ashen Cathedral</h1>
+      <div class="sub">light, stone, and stardust</div>
+      <div class="tags">
+        <div class="tag">TRIANGLES <b>482,318</b></div><div class="tag">4K</div><div class="tag">12 MATERIALS</div><div class="tag">UE 5.4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E. PASSPORT VARIANTS -->
+  <div class="vtitle"><span class="gstar">&#10040;</span> VARIATION E <span class="n">&middot; Asset Passport &mdash; Card / Banner / Compact</span> <span class="ln"></span></div>
+  <div class="ppgrid">
+    <!-- Card (dark, sparkle) -->
+    <div class="passport pdark pcard">
+      <div class="stars"></div>
+      <span class="sp g" style="top:60px;right:30px">&#10040;</span>
+      <div class="pp-head"><div class="pp-kick"><span class="gstar">&#10040;</span> ASSET PASSPORT</div><div class="meta" style="color:var(--slate-300)">v1.2</div></div>
+      <div class="rule" style="margin:11px 0"></div>
+      <div class="pp-title">Ashen Cathedral</div><div class="pp-cat">ENVIRONMENT</div>
+      <div style="height:1px;background:rgba(201,168,106,.3);margin:12px 0"></div>
+      <div class="pp-row"><span class="k">Triangles</span><span>482,318</span></div>
+      <div class="pp-row"><span class="k">Textures</span><span>4K</span></div>
+      <div class="pp-row"><span class="k">Materials</span><span>12</span></div>
+      <div class="pp-row"><span class="k">Engine</span><span>UE 5.4</span></div>
+      <div class="rule" style="margin:10px 0"></div>
+      <div class="pp-foot"><span class="gstar">&#10040;</span><span>MELODIA</span></div>
+    </div>
+
+    <!-- Banner (dark, landscape) -->
+    <div class="passport pdark pbanner">
+      <div class="stars"></div>
+      <span class="sp g" style="top:40px;left:380px">&#10040;</span>
+      <div class="pp-head">
+        <div class="pp-kick"><span class="gstar">&#10040;</span> ASSET PASSPORT &nbsp;&middot;&nbsp; <span style="color:#fff">Ashen Cathedral</span> <span style="color:var(--slate-300)">/ ENVIRONMENT</span></div>
+        <div class="meta" style="color:var(--slate-300)">v1.2 &middot; 2026-03</div>
+      </div>
+      <div class="rule" style="margin:14px 0"></div>
+      <div class="bannerrow">
+        <div class="cell"><span class="k">Triangles</span>482,318</div>
+        <div class="cell"><span class="k">Textures</span>4K</div>
+        <div class="cell"><span class="k">Materials</span>12</div>
+        <div class="cell"><span class="k">Draw Calls</span>184</div>
+        <div class="cell"><span class="k">Software</span>Blender &middot; ZBrush</div>
+        <div class="cell"><span class="k">Engine</span>Unreal Engine 5.4</div>
+      </div>
+      <div class="rule" style="margin:16px 0 12px"></div>
+      <div class="pp-foot"><span>NANITE &middot; LOD 0&ndash;3 &middot; PC / CONSOLE</span><div style="display:flex;gap:7px;align-items:center"><span class="gstar">&#10040;</span><span>MELODIA</span></div></div>
+    </div>
+
+    <!-- Compact (light) -->
+    <div class="passport plight pcompact">
+      <span class="sp" style="top:50px;right:26px;color:var(--gold-500);opacity:.6">&#10040;</span>
+      <div class="pp-head"><div class="pp-kick"><span style="color:var(--gold-700)">&#10040;</span> PASSPORT</div><div class="meta" style="color:var(--slate-500)">v1.2</div></div>
+      <div class="rule" style="margin:11px 0"></div>
+      <div class="pp-title" style="font-size:24px">Ashen Cathedral</div><div class="pp-cat">ENVIRONMENT</div>
+      <div style="height:1px;background:var(--ivory-300);margin:12px 0"></div>
+      <div class="pp-row"><span class="k">Triangles</span><span>482,318</span></div>
+      <div class="pp-row"><span class="k">Textures</span><span>4K</span></div>
+      <div class="pp-row"><span class="k">Engine</span><span>UE 5.4</span></div>
+      <div class="rule" style="margin:10px 0;background:var(--gold-500)"></div>
+      <div class="pp-foot"><span style="color:var(--gold-700)">&#10040;</span><span>MELODIA</span></div>
+    </div>
+  </div>
+
+  <div style="height:30px"></div>
+</div>
+</body>
+</html>

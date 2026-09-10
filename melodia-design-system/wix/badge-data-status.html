@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  BADGE/DATA STATUS — Data availability indicator
+  HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
+  Size: auto (fits content)
+  Edit DATA below to change status.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:4px}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase}
+  .dot{width:6px;height:6px;border-radius:50%}
+  .present{background:#5E8B7E;color:#ECEAF4;border:1px solid rgba(94,139,126,0.3)}
+  .present .dot{background:#5E8B7E}
+  .missing{background:#A85751;color:#ECEAF4;border:1px solid rgba(168,87,81,0.3)}
+  .missing .dot{background:#A85751}
+  .partial{background:#B8862F;color:#ECEAF4;border:1px solid rgba(184,134,47,0.3)}
+  .partial .dot{background:#B8862F}
+</style>
+</head>
+<body>
+<div id="badge"></div>
+<script>
+var DATA = {
+  status: "partial",  // "present", "missing", "partial"
+  label: "Data Status"
+};
+var q=new URLSearchParams(location.search);
+["status","label"].forEach(function(k){ if(q.get(k)) DATA[k]=q.get(k); });
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+function render(){
+  var h=document.getElementById("badge");
+  var cls=["present","missing","partial"].indexOf(DATA.status)>-1?DATA.status:"partial";
+  var html='<div class="badge '+cls+'"><span class="dot"></span><span>'+esc(DATA.label)+'</span></div>';
+  h.innerHTML=html;
+}
+render();
+</script>
+</body>
+</html>
