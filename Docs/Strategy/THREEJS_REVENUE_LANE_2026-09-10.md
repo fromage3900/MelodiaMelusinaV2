@@ -68,6 +68,7 @@ This work may consume outputs that naturally emerge from capstone/site work, but
 
 Monochrome industrial BASE polish + proposal pack:
 
-- Playbook: `Docs/Strategy/MONOCHROME_INDUSTRIAL_SUBMIT_TODAY_2026-09-10.md`
-- Transfer patch / evidence: `Docs/Strategy/webgl-kit-monochrome-2026-09-10/`
+- Final polish complete: `Docs/Strategy/INDUSTRIAL_FINAL_POLISH_SUBMIT_2026-09-10.md`
+- Transfer patch: `Docs/Strategy/webgl-kit-industrial-final-2026-09-10/`
+- Earlier draft pack: `Docs/Strategy/webgl-kit-monochrome-2026-09-10/`
 - Target listing: $10k procedural industrial homepage loop (human send only)
