@@ -866,6 +866,206 @@ async function buildTemplates(refs) {
   note("Built " + count + " hero templates on '06 Templates' (4 treatments × Desktop/Tablet/Mobile).");
 }
 
+// ============================================================
+// 07 — SUBMISSION KIT (FIGMA_MINIMAL_POLISH_BRIEF.md)
+// ------------------------------------------------------------
+// Clean-room evidence packaging for commercial proposals.
+// Deliberately NOT the Melodia look: no gold rules, no star
+// ornaments, no brand mark, no fantasy decoration. Restrained
+// off-white / charcoal editorial, 8px grid, thin neutral rules.
+// One lane accent only, where it clarifies hierarchy.
+// ============================================================
+
+const SUB = {
+  accent: "color/accent/primary",
+  surface: "color/surface/sunken",
+  raised: "color/surface/raised",
+  rule: "color/border/subtle",
+  text1: "color/text/primary",
+  text2: "color/text/secondary",
+};
+
+function subRule(w) {
+  const r = figma.createRectangle();
+  r.resize(w, 1);
+  setFill(r, SUB.rule);
+  r.layoutAlign = "STRETCH";
+  return r;
+}
+
+// 1. Case-study cover
+async function buildSubmissionCover() {
+  const c = figma.createComponent();
+  c.name = "Submission/Case Study Cover";
+  autoV(c, 16, 32);
+  c.resize(880, 560);
+  c.cornerRadius = 2;
+  setFill(c, SUB.raised);
+  setStroke(c, SUB.rule, 1);
+  c.counterAxisSizingMode = "FIXED";
+
+  const eyebrow = await makeText("Label/Technical", "CASE STUDY", SUB.text2);
+  const title = await makeText("Header/Section", "Deterministic industrial loop", SUB.text1);
+  title.layoutAlign = "STRETCH";
+  const claim = await makeText("Body/Large", "One 16-second mechanically exact loop, browser-native, no render farm.", SUB.text2);
+  claim.layoutAlign = "STRETCH";
+
+  const accent = figma.createRectangle();
+  accent.resize(64, 2);
+  setFill(accent, SUB.accent);
+
+  // hero slot — a labelled placeholder; replace with a real capture before export
+  const hero = frame("hero-slot", 816, 300);
+  autoV(hero, 8, 16);
+  hero.cornerRadius = 2;
+  setFill(hero, SUB.surface);
+  setStroke(hero, SUB.rule, 1);
+  const heroLabel = await makeText("Metadata", "HERO CAPTURE — REPLACE BEFORE EXPORT", SUB.text2);
+  hero.appendChild(heroLabel);
+
+  const foot = frame("cover-foot", 816, 32);
+  autoH(foot, 16, 0);
+  foot.primaryAxisSizingMode = "FIXED";
+  foot.layoutAlign = "STRETCH";
+  foot.primaryAxisAlignItems = "SPACE_BETWEEN";
+  const badge = await makeText("Label/Technical", "STATUS — UNVERIFIED", SUB.text2);
+  const role = await makeText("Metadata", "REALTIME 3D / TECHNICAL ART / WEBGL", SUB.text2);
+  foot.appendChild(badge);
+  foot.appendChild(role);
+
+  for (const n of [eyebrow, title, claim, accent, hero, subRule(816), foot]) c.appendChild(n);
+
+  try { const tp = c.addComponentProperty("title", "TEXT", "Deterministic industrial loop"); title.componentPropertyReferences = { characters: tp }; } catch (e) {}
+  try { const cp = c.addComponentProperty("claim", "TEXT", "One 16-second mechanically exact loop, browser-native, no render farm."); claim.componentPropertyReferences = { characters: cp }; } catch (e) {}
+  try { const sp = c.addComponentProperty("status", "TEXT", "STATUS — UNVERIFIED"); badge.componentPropertyReferences = { characters: sp }; } catch (e) {}
+  return c;
+}
+
+// 2. Evidence card — the frame the brief asks to variant from
+async function buildEvidenceCard() {
+  const c = figma.createComponent();
+  c.name = "Submission/Evidence Card";
+  autoV(c, 12, 20);
+  c.resize(420, 320);
+  c.cornerRadius = 2;
+  setFill(c, SUB.raised);
+  setStroke(c, SUB.rule, 1);
+  c.counterAxisSizingMode = "FIXED";
+
+  const shot = frame("shot-slot", 380, 180);
+  autoV(shot, 8, 12);
+  shot.cornerRadius = 2;
+  shot.layoutAlign = "STRETCH";
+  setFill(shot, SUB.surface);
+  setStroke(shot, SUB.rule, 1);
+  shot.appendChild(await makeText("Metadata", "CAPTURE SLOT", SUB.text2));
+
+  const proves = await makeText("Body/Default", "What this proves — one sentence, stated as fact.", SUB.text1);
+  proves.layoutAlign = "STRETCH";
+
+  const vals = frame("measured", 380, 48);
+  autoV(vals, 4, 0);
+  vals.layoutAlign = "STRETCH";
+  for (const [k, v] of [["DRAW CALLS", "—"], ["TRIANGLES", "—"], ["DPR", "—"]]) {
+    const row = frame("m", 380, 16);
+    autoH(row, 12, 0);
+    row.primaryAxisSizingMode = "FIXED";
+    row.primaryAxisAlignItems = "SPACE_BETWEEN";
+    row.layoutAlign = "STRETCH";
+    row.appendChild(await makeText("Label/Technical", k, SUB.text2));
+    row.appendChild(await makeText("Metadata", v, SUB.text1));
+    vals.appendChild(row);
+  }
+
+  const src = await makeText("Metadata", "SOURCE — my-site/main", SUB.text2);
+
+  for (const n of [shot, proves, subRule(380), vals, src]) c.appendChild(n);
+
+  try { const pp = c.addComponentProperty("proves", "TEXT", "What this proves — one sentence, stated as fact."); proves.componentPropertyReferences = { characters: pp }; } catch (e) {}
+  return c;
+}
+
+// 3. Pipeline strip
+async function buildPipelineStrip() {
+  const c = figma.createComponent();
+  c.name = "Submission/Pipeline Strip";
+  autoH(c, 8, 20);
+  c.resize(880, 64);
+  c.cornerRadius = 2;
+  setFill(c, SUB.surface);
+  c.counterAxisSizingMode = "FIXED";
+  const steps = ["SOURCE", "CLEANUP", "EXPORT", "RUNTIME", "EVIDENCE"];
+  for (let i = 0; i < steps.length; i++) {
+    const s = await makeText("Label/Technical", steps[i], SUB.text1);
+    c.appendChild(s);
+    if (i < steps.length - 1) c.appendChild(await makeText("Metadata", ">", SUB.text2));
+  }
+  return c;
+}
+
+// 4. Requirements matrix
+async function buildRequirementsMatrix() {
+  const c = figma.createComponent();
+  c.name = "Submission/Requirements Matrix";
+  autoV(c, 0, 20);
+  c.resize(880, 240);
+  c.cornerRadius = 2;
+  setFill(c, SUB.raised);
+  setStroke(c, SUB.rule, 1);
+  c.counterAxisSizingMode = "FIXED";
+  c.appendChild(await makeText("Header/Sub", "Buyer requirement", SUB.text1));
+  c.appendChild(subRule(840));
+  const rows = [
+    ["Requirement", "Proof artifact", "Status"],
+    ["—", "—", "UNVERIFIED"],
+    ["—", "—", "UNVERIFIED"],
+    ["—", "—", "UNVERIFIED"],
+  ];
+  for (const [a, b, s] of rows) {
+    const row = frame("r", 840, 28);
+    autoH(row, 16, 0);
+    row.primaryAxisSizingMode = "FIXED";
+    row.layoutAlign = "STRETCH";
+    const t1 = await makeText("Body/Default", a, SUB.text1); t1.layoutGrow = 3;
+    const t2 = await makeText("Metadata", b, SUB.text2); t2.layoutGrow = 3;
+    const t3 = await makeText("Label/Technical", s, SUB.text2); t3.layoutGrow = 2;
+    row.appendChild(t1); row.appendChild(t2); row.appendChild(t3);
+    c.appendChild(row);
+    c.appendChild(subRule(840));
+  }
+  return c;
+}
+
+// 5. Contact strip
+async function buildContactStrip() {
+  const c = figma.createComponent();
+  c.name = "Submission/Contact Strip";
+  autoH(c, 24, 20);
+  c.resize(880, 56);
+  c.cornerRadius = 2;
+  setFill(c, SUB.surface);
+  c.counterAxisSizingMode = "FIXED";
+  c.primaryAxisSizingMode = "FIXED";
+  c.primaryAxisAlignItems = "SPACE_BETWEEN";
+  c.appendChild(await makeText("Label/Technical", "fromageart.xyz", SUB.text1));
+  c.appendChild(await makeText("Metadata", "github.com/fromage3900", SUB.text2));
+  c.appendChild(await makeText("Metadata", "REALTIME 3D / TECHNICAL ART / WEBGL", SUB.text2));
+  return c;
+}
+
+async function buildSubmissionKit() {
+  await figma.setCurrentPageAsync(componentsPage);
+  const made = [
+    await buildSubmissionCover(),
+    await buildEvidenceCard(),
+    await buildPipelineStrip(),
+    await buildRequirementsMatrix(),
+    await buildContactStrip(),
+  ];
+  for (const m of made) place(m);
+  note("Built 5 submission-kit components (cover, evidence card, pipeline strip, requirements matrix, contact strip) per FIGMA_MINIMAL_POLISH_BRIEF.");
+}
+
 // ---------- main ----------
 async function main() {
   note("Melodia build starting…");
@@ -889,6 +1089,11 @@ async function main() {
   place(await buildInfoCard());
   const passport = await buildPassportSet(); place(passport);
   note("Built core components + Constellation, Corner Frame, and Asset Passport variant set on '03 Components'.");
+
+  // commercial submission kit — clean-room, kept visually separate from the brand set
+  try {
+    await buildSubmissionKit();
+  } catch (e) { note("Submission kit step skipped: " + (e && e.message ? e.message : String(e))); }
 
   // build hero templates on the Templates page
   try {
