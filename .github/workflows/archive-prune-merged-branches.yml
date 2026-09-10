@@ -38,6 +38,7 @@ jobs:
           skipped_open=0
           skipped_unmerged=0
           skipped_changed=0
+          pruned_ancestor=0
           failed=0
 
           while IFS= read -r branch; do
@@ -64,15 +65,20 @@ jobs:
               gh api --method GET "/repos/$REPOSITORY/pulls"                 -f state=closed                 -f head="$OWNER:$branch"                 -f per_page=100                 --jq '[.[] | select(.merged_at != null)] | length'
             )"
 
+            safe_reason="merged-pr"
             if [[ "$exact_merged_count" == "0" ]]; then
-              if [[ "$any_merged_count" != "0" ]]; then
-                echo "KEEP CHANGED  $branch ($sha differs from merged PR tip)"
-                skipped_changed=$((skipped_changed + 1))
+              if git merge-base --is-ancestor "$sha" "refs/remotes/origin/main"; then
+                safe_reason="ancestor-of-main"
               else
-                echo "KEEP UNIQUE   $branch (no merged PR at current tip)"
-                skipped_unmerged=$((skipped_unmerged + 1))
+                if [[ "$any_merged_count" != "0" ]]; then
+                  echo "KEEP CHANGED  $branch ($sha differs from merged PR tip and has unique commits)"
+                  skipped_changed=$((skipped_changed + 1))
+                else
+                  echo "KEEP UNIQUE   $branch (unique commits not present on main)"
+                  skipped_unmerged=$((skipped_unmerged + 1))
+                fi
+                continue
               fi
-              continue
             fi
 
             tag="archive/branches/$ARCHIVE_DATE/$branch"
@@ -96,9 +102,12 @@ jobs:
               continue
             fi
 
-            echo "PRUNE MERGED $branch -> $tag"
+            echo "PRUNE SAFE [$safe_reason] $branch -> $tag"
             git push origin --delete "$branch"
             deleted=$((deleted + 1))
+            if [[ "$safe_reason" == "ancestor-of-main" ]]; then
+              pruned_ancestor=$((pruned_ancestor + 1))
+            fi
           done < <(
             git for-each-ref refs/remotes/origin               --format='%(refname:strip=3)' |
               sort
@@ -108,6 +117,7 @@ jobs:
             echo "## Remote branch prune summary"
             echo ""
             echo "- Archived + deleted: $deleted"
+            echo "- Of those, ancestor aliases: $pruned_ancestor"
             echo "- Kept because open PR: $skipped_open"
             echo "- Kept because branch changed after merge: $skipped_changed"
             echo "- Kept because no exact merged PR: $skipped_unmerged"
