@@ -1,5 +1,7 @@
 # Choral Sheep Cymatics Integration — Night Record 2026-09-09
 
+> **2026-09-09 late closeout:** PR #149 is superseded by later Sheep/material work already on `main`. This record is retained as historical proof/provenance only. The unique `MPC_Cymatics_Driver`, morning probe, visual evidence, integration record, and probe harness were surgically salvaged onto current `main`; stale binary content from #149 was not merged. `M_Scratch_Test.uasset` was accidentally promoted by a later material closeout and is removed in the same cleanup. Do not reopen #149 as a merge candidate.
+
 **Branch:** `feature/choral-sheep-root-c-material-proof-2026-09-08` (pushed through `7871c5ef`)
 **Goal:** sheep reacts to audio, proven in the morning level, merged to main when ready.
 **Status:** behavioral + VFX proof BANKED with screenshots; Chladni nodal-line pixel proof still owed (close-up session).
