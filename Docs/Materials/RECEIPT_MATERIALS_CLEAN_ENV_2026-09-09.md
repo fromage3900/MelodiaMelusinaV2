@@ -1,4 +1,4 @@
-﻿# Receipt - Materials clean-env stubs + TextureWeight - 2026-09-09
+# Receipt - Materials clean-env stubs + TextureWeight - 2026-09-09
 
 **Status:** LIVE PASS + **owner Ctrl+S confirmed** (dirty packages 0)  
 **Index:** [Docs/Materials/README.md](README.md) · **Labels:** [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md)  
@@ -28,7 +28,8 @@ Source inventory: `Saved/Audit/ENGINE_DEFAULT_SM_SLOTS_2026-09-09.csv` (New Bot 
 | Assigned Stub_Toon / Stub_Fabric | **123** |
 | Skipped Melusina V2Test character meshes | (keep for real character MIs) |
 | Skipped scratch `_GENERATED/froma` | 1 |
-| Load fail (DemoRoom / `*_BS` / missing) | **82** |
+| Load fail (DemoRoom / `*_BS` / missing) | **82** (many were CSV naming; later recovered) |
+| Later DemoRoom/house/GPU recover + stub | **+75** slots (`Button_BS.Button` pattern) |
 
 Spot-check after assign (mesh_query):
 
@@ -46,12 +47,19 @@ Spot-check after assign (mesh_query):
 
 ## Still open
 
-- [ ] Owner Ctrl+S
-- [ ] TextureWeight=0 census on remaining Universal-family MIs (New Bot)
+- [ ] Owner Ctrl+S (TW 34 MIs + +75 stubbed SMs + sheep VFX WoolMote/BeatStar)
+- [x] TextureWeight=0 census - see [RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md](RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md)
 - [ ] Melusina V2Test slots → proper character MIs (not stubs)
-- [ ] DemoRoom/`*_BS` load failures triage
+- [x] DemoRoom `*_BS` naming quirk documented (package vs object); +75 stubbed
 - [ ] LABEL_MAP ENGINE_DEFAULT row → LEGACY cleared after Ctrl+S
 
 ## LABEL_MAP fold (same evening)
 
 Updated [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md) with New Bot landscape/SDF/VFX deprecate audit: Enhanced QUARANTINE, HeightBlend 28 LEGACY pointer (#158), _PROJECT VFX DUPLICATE + sheep MI retarget owed, WorldGrid PARTIAL after stub assign.
+
+## Evening follow-on (New Bot live)
+
+- TextureWeight Universal/Wool scan: **2128** scanned, **34** set to `1.0` (sheep coats skipped). Receipt: [RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md](RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md); full list local `Saved/Audit/TEXTUREWEIGHT_SCAN_2026-09-09.*`.
+- DemoRoom `*_BS` SCRATCH naming: ENGINE CSV used package name as object; correct form `Package.Object` (e.g. `Button_BS.Button`). **+75** slots stubbed after rename fix.
+- Melusina V2Test **33** None rows still owner-parked (real character MIs, not stubs).
+- Sheep VFX WoolMote/BeatStar parents already Melodia/_PROJECT; Ctrl+S still owed with TW + stub packs.
