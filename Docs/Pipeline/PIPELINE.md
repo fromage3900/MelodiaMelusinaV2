@@ -1,5 +1,7 @@
 # Melodia -- Unified Pipeline Architecture
 
+> **Status:** SUPPORTING — Blender / MCP plumbing. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 ```
 ◇─◇──◇──◇─◇
 ```

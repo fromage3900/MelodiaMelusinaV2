@@ -71,6 +71,10 @@ Prefer parameterized visual response driven by real musical/game semantics such 
 
 ## Gameplay authority
 
+World-building / chapter / cymatics / TD visual contract (stacked with this file; does not replace Board 06 or the Nikki material lock):
+
+`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`
+
 Use this mental model:
 
 ```text

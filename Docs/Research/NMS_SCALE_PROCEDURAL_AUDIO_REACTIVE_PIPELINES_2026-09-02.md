@@ -1,4 +1,6 @@
 # NMS-Scale Procedural + Audio-Reactive Pipelines — Research Report
+
+> **Status:** RESEARCH. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
 **Date:** 2026-09-02 | **For:** Melodia `Sea Above` large-scale experimental systems (Gaea + PCG + Kitbash → Houdini NMS-scale)
 **Scope:** Reddit/niche repos, Houdini large-scale terrain, UE World Partition + PCG, procedural universe/planet gen, audio-reactive
 

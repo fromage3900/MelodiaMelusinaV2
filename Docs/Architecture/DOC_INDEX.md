@@ -1,6 +1,6 @@
 # ♬ Melodia — Documentation Score Map
 
-**Last updated:** 2026-09-08
+**Last updated:** 2026-09-09
 
 > Front-facing docs tell the current truth. Dated handoffs keep the memory. Research is allowed to be weird. Runtime ownership is not. ♪
 
@@ -28,6 +28,7 @@ The repository is intentionally deep, but the **front door is small**. Do not mi
 | **House GN** | [`MELUSINA_HOUSE_GN_START_HERE.md`](MELUSINA_HOUSE_GN_START_HERE.md) | Live Melodia Studio builder IDs, foundation-first workflow, category/preset verification, and the correction for stale `GN_MH_*` plan aliases. |
 | **Laptop** | [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) | Find committed work that has not reached `main`. |
 | **Visuals** | [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) | Find canonical image boards and distinguish missing/uncommitted references. |
+| **World-building** | [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) | Four-layer world-building authority: player loop, C++ truth, Chladni/cymatics, TouchDesigner as visual instrument. |
 
 ### Supporting context — not required reading
 

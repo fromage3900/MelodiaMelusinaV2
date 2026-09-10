@@ -1,7 +1,13 @@
 # Reusable Chapter Validation System — Rider + UE 5.8
 
 **Date:** 2026-08-31  
-**Status:** reviewed against Junie's Rider workflow; Shorewake/Starskiff pilot prepared
+**Status:** reviewed against Junie's Rider workflow; Shorewake/Starskiff pilot prepared  
+**World-building / chapter bible:** `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md` + `Chapters/CHAPTER_TEMPLATE.md`
+
+A chapter package must name its tier, the seven metadata fields, the player-loop stages
+it actually uses (First Dream's six-phase route is the integration proof, not mandatory
+pacing), the C++ owners it touches, and whether Chladni/TouchDesigner are presentation-only.
+Do not add a chapter manager or another progression authority.
 
 ## Decision
 

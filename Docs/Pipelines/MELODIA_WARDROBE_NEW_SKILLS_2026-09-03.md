@@ -1,5 +1,7 @@
 # Melodia Wardrobe New Skills — 2026-09-03
 
+> **Status:** SUPPORTING wardrobe tooling notes. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 Seed 20260902 everywhere. Authority: Docs/Art/UNIVERSAL_GARMENT_SYSTEM_MASTER_SPEC_2026-09-02.md (S0-S6),
 Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md (extend PRESENT, never parallel).
 Single audio writer untouched: UMelodiaAudioReactivePresentationSubsystem -> MPC_Melodia_Palette.

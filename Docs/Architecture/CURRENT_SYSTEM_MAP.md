@@ -1,5 +1,7 @@
 # Current System Map — Melodia Melusina
 
+> **Status:** DUPLICATE SNAPSHOT of root [`SYSTEM_MAP.md`](../../SYSTEM_MAP.md). Not a second architecture authority. World-building contract: [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](../WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md).
+
 **Last Updated:** 2026-09-02  
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20 | Python 3.11
 

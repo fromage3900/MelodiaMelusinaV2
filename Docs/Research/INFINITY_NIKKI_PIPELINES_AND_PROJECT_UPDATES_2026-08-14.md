@@ -1,5 +1,7 @@
 # Infinity Nikki Pipeline Research and Project Update
 
+> **Status:** RESEARCH. World-building authority is `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
+
 Date: 2026-08-14
 
 Scope: public, engineering-relevant observations for Melodia's Melusina V2 and long-term wardrobe platform. This is reference research, not a claim of access to proprietary Infinity Nikki source code or production assets.
