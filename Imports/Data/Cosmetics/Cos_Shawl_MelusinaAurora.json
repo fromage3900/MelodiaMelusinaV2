@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Shawl_MelusinaAurora",
+  "display_name": "Melusina's Aurora Shawl",
+  "slot": "shawl",
+  "rarity": "Refined",
+  "element_mood": "Arcane",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 10,
+    "swirl": 3
+  },
+  "palette": [
+    "#FFFFFF",
+    "#D7CEC0",
+    "#B59967"
+  ],
+  "flavor": "Enchanted by the celestial light of the night sky.",
+  "material_notes": "Iridescence and gilded filigree weave through the intricate designs.",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

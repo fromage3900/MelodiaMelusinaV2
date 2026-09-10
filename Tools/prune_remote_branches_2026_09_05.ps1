@@ -1,4 +1,4 @@
-param(
+﻿param(
   [switch]$Execute,
   [string]$Remote = "origin",
   [string]$ArchiveDate = "2026-09-05",
@@ -183,7 +183,7 @@ foreach ($branch in $Candidates) {
   }
 
   # Fetch the exact remote tip into a temporary remote-tracking ref if needed.
-  Invoke-Git fetch $Remote "refs/heads/$branch:refs/remotes/$Remote/$branch"
+  Invoke-Git fetch $Remote "refs/heads/${branch}:refs/remotes/${Remote}/${branch}"
 
   $counts = (& git rev-list --left-right --count "$Remote/main...$Remote/$branch").Trim()
   if ($LASTEXITCODE -ne 0) {
@@ -214,7 +214,7 @@ foreach ($branch in $Candidates) {
         Invoke-Git tag $tag $sha
       }
 
-      Invoke-Git push $Remote "refs/tags/$tag:refs/tags/$tag"
+      Invoke-Git push $Remote "refs/tags/${tag}:refs/tags/${tag}"
       $remoteTagSha = Get-RemoteTagSha $tag
       if ($remoteTagSha -ne $sha) {
         throw "Remote archive verification failed for $branch. Expected $sha, got $remoteTagSha."

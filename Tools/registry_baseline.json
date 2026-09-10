@@ -627,6 +627,15 @@
     5.004
    ]
   },
+  "MEL_barrel_vault_ceiling": {
+   "ok": true,
+   "verts": 1272,
+   "bbox": [
+    10.262,
+    10.24,
+    0.0
+   ]
+  },
   "MEL_bell_chime": {
    "ok": true,
    "verts": 170,
@@ -728,6 +737,10 @@
     1.472,
     2.547
    ]
+  },
+  "MEL_capture_filigree": {
+   "ok": false,
+   "error": "KeyError: 'bpy_prop_collection[key]: key \"Radius Growth\" not found'"
   },
   "MEL_castle_arrow_slit": {
    "ok": true,
@@ -1170,6 +1183,15 @@
     0.24
    ]
   },
+  "MEL_curved_wall": {
+   "ok": true,
+   "verts": 256,
+   "bbox": [
+    9.047,
+    9.047,
+    0.0
+   ]
+  },
   "MEL_cusped_arch": {
    "ok": true,
    "verts": 1402,
@@ -1231,6 +1253,15 @@
     1.582,
     1.739,
     4.518
+   ]
+  },
+  "MEL_dreamy_gothic_arch": {
+   "ok": true,
+   "verts": 3136,
+   "bbox": [
+    0.226,
+    0.0,
+    0.452
    ]
   },
   "MEL_edge_band_weight": {
@@ -1554,6 +1585,22 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_garment_material_id": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_garment_smart_bevel": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_garment_trim_uv": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_garment_vertex_ao": {
+   "ok": false,
+   "error": "empty geometry"
+  },
   "MEL_gatehouse": {
    "ok": true,
    "verts": 140,
@@ -1589,6 +1636,19 @@
     2.32,
     2.4
    ]
+  },
+  "MEL_gold_light_strip": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    4.02,
+    0.07,
+    0.02
+   ]
+  },
+  "MEL_gold_ornament_strip": {
+   "ok": false,
+   "error": "empty geometry"
   },
   "MEL_gothic_arch": {
    "ok": true,
@@ -1709,6 +1769,10 @@
     0.24,
     0.608
    ]
+  },
+  "MEL_heart_chain": {
+   "ok": false,
+   "error": "empty geometry"
   },
   "MEL_heraldic_banner": {
    "ok": true,
@@ -1927,6 +1991,42 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_mh_foundation_cluster": {
+   "ok": true,
+   "verts": 6144,
+   "bbox": [
+    11.893,
+    7.795,
+    0.36
+   ]
+  },
+  "MEL_mh_foundation_master": {
+   "ok": true,
+   "verts": 9216,
+   "bbox": [
+    12.196,
+    10.946,
+    0.36
+   ]
+  },
+  "MEL_mh_foundation_pod": {
+   "ok": true,
+   "verts": 1536,
+   "bbox": [
+    4.592,
+    3.795,
+    0.36
+   ]
+  },
+  "MEL_mh_foundation_porch": {
+   "ok": true,
+   "verts": 1536,
+   "bbox": [
+    5.197,
+    2.297,
+    0.28
+   ]
+  },
   "MEL_mh_lantern_row": {
    "ok": true,
    "verts": 2730,
@@ -1939,6 +2039,15 @@
   "MEL_mh_piano_walk": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_mh_roof_ribbon": {
+   "ok": true,
+   "verts": 1972,
+   "bbox": [
+    6.0,
+    18.0,
+    1.444
+   ]
   },
   "MEL_mh_sheet_rail": {
    "ok": true,
@@ -2572,6 +2681,22 @@
     508.577
    ]
   },
+  "MEL_musical_harmonic_variant": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_musical_pulse_variant": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_musical_seeded_variant": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_musical_wave_variant": {
+   "ok": false,
+   "error": "empty geometry"
+  },
   "MEL_nikki_bloom_pavilion": {
    "ok": true,
    "verts": 138,
@@ -2580,6 +2705,10 @@
     4.8,
     4.6
    ]
+  },
+  "MEL_nikki_heart_filigree": {
+   "ok": false,
+   "error": "empty geometry"
   },
   "MEL_nikki_podium_runway": {
    "ok": true,
@@ -2608,6 +2737,24 @@
     0.02
    ]
   },
+  "MEL_nikki_star_pendant": {
+   "ok": true,
+   "verts": 153664,
+   "bbox": [
+    0.061,
+    0.067,
+    0.011
+   ]
+  },
+  "MEL_nikki_wall_beads": {
+   "ok": true,
+   "verts": 336,
+   "bbox": [
+    0.06,
+    0.06,
+    0.323
+   ]
+  },
   "MEL_nikki_wardrobe_nook": {
    "ok": true,
    "verts": 96,
@@ -2616,6 +2763,10 @@
     1.0,
     1.45
    ]
+  },
+  "MEL_note_head_filigree": {
+   "ok": false,
+   "error": "empty geometry"
   },
   "MEL_obelisk": {
    "ok": true,
@@ -2902,6 +3053,15 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_rose_window_small": {
+   "ok": true,
+   "verts": 1324,
+   "bbox": [
+    1.5,
+    0.0,
+    1.5
+   ]
+  },
   "MEL_scifi_antenna": {
    "ok": false,
    "error": "empty geometry"
@@ -2929,6 +3089,15 @@
   "MEL_scifi_panel_lines": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_sdf_star_panel": {
+   "ok": true,
+   "verts": 8916,
+   "bbox": [
+    0.15,
+    0.15,
+    1.0
+   ]
   },
   "MEL_seifert_surface": {
    "ok": true,
@@ -4822,7 +4991,7 @@
   },
   "GB_ROOM_CIRCULAR": {
    "ok": true,
-   "verts": 584,
+   "verts": 586,
    "bbox": [
     7.987,
     7.994,
@@ -5516,7 +5685,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 465,
+  "package_count": 491,
   "monolith_count": 209
  }
 }

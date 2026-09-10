@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Hair_Charm_MelusinaVeil",
+  "display_name": "Moonlit Veil",
+  "slot": "hair_charm",
+  "rarity": "Grandmaster",
+  "element_mood": "Umbral",
+  "content_pack_id": "Pack_MoonlitSonata",
+  "token_cost": {
+    "heart": 12,
+    "swirl": 6
+  },
+  "palette": [
+    "#263238",
+    "#8E44AD",
+    "#D35400"
+  ],
+  "flavor": "Ethereal locks, bathed in moonlight.",
+  "material_notes": "Stained glass, iridescence, gilded filigree.",
+  "schema": "MelodiaCosmetic-draft-v1"
+}
