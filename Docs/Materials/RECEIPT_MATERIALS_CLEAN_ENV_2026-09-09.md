@@ -47,7 +47,7 @@ Spot-check after assign (mesh_query):
 
 ## Still open
 
-- [ ] Owner Ctrl+S (TW 34 MIs + +75 stubbed SMs + sheep VFX WoolMote/BeatStar)
+- [x] Owner Ctrl+S confirmed (TW + stubs + sheep VFX)
 - [x] TextureWeight=0 census - see [RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md](RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md)
 - [ ] Melusina V2Test slots → proper character MIs (not stubs)
 - [x] DemoRoom `*_BS` naming quirk documented (package vs object); +75 stubbed
@@ -62,4 +62,4 @@ Updated [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md) with New Bot landscap
 - TextureWeight Universal/Wool scan: **2128** scanned, **34** set to `1.0` (sheep coats skipped). Receipt: [RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md](RECEIPT_TEXTUREWEIGHT_SCAN_2026-09-09.md); full list local `Saved/Audit/TEXTUREWEIGHT_SCAN_2026-09-09.*`.
 - DemoRoom `*_BS` SCRATCH naming: ENGINE CSV used package name as object; correct form `Package.Object` (e.g. `Button_BS.Button`). **+75** slots stubbed after rename fix.
 - Melusina V2Test **33** None rows still owner-parked (real character MIs, not stubs).
-- Sheep VFX WoolMote/BeatStar parents already Melodia/_PROJECT; Ctrl+S still owed with TW + stub packs.
+- Sheep VFX WoolMote/BeatStar parents already Melodia/_PROJECT; Owner Ctrl+S confirmed for TW + stub + sheep VFX packs.
