@@ -643,3 +643,74 @@ Official: https://marmoset.co/toolbag/education/
 ### Newly urgent deadline
 
 **Marvelous Designer's student 3-month-free promotion ends 2026-10-31.** This is the only newly discovered claim in Trench IV with a near-term hard deadline, so it should be completed before optional cloud/render claims.
+
+
+---
+
+## Existing trench scan — next search targets
+
+Do **not** create another parallel benefits document for these. Future research should append verified finds back into this file and promote only urgent claims into the master enrollment ledger.
+
+### Trench V search order
+
+1. **Academic / student render-farm sponsorships**
+   - Search for individual student grants, portfolio-render credits, education coupons, competition credits, and “contact us for academic access” programs.
+   - Prioritize Blender, Maya, 3ds Max, Houdini, Redshift, Arnold, V-Ray and Unreal-adjacent workflows.
+   - Distinguish recurring credits from one-time trial coupons.
+
+2. **NVIDIA / AMD / Intel creator and academic programs**
+   - Look beyond startup-only programs.
+   - Search for individual developer credits, GPU cloud credits, academic challenges, developer contests, free training/workstations, creator grants and hardware-access programs.
+   - Never claim institutional or startup status unless actually true.
+
+3. **Procedural / material / environment-art tools**
+   - Terrain, foliage, scattering, photogrammetry cleanup, UV, baking, material authoring, texture synthesis, geometry processing and USD tools.
+   - Prioritize tools useful for UE5 environment production and portfolio work.
+   - Record commercial-use restrictions separately from educational-use allowances.
+
+4. **Game-audio libraries and middleware**
+   - Free commercial SFX/music libraries, middleware education licenses, spatial-audio SDKs, procedural-audio tools, dialogue/voice prototyping credits and audio-analysis APIs.
+   - Preserve source/license provenance for every asset entering Melodia.
+   - Exclude “free” assets whose licenses prohibit game use.
+
+5. **Photogrammetry / NeRF / Gaussian-splat / spatial capture**
+   - Search free/student tiers for reconstruction, splat capture, scene cleanup, point-cloud processing, scan hosting and export.
+   - Prioritize workflows that can produce UE-ready data or useful environment references.
+   - Record cloud-processing quotas separately from software-license access.
+
+6. **Academic cloud and GPU programs**
+   - Search AWS, Azure, Google Cloud, Oracle, NVIDIA, AMD, Intel, universities and Canadian research networks for student-accessible compute.
+   - Separate direct student claims from faculty-sponsored teaching/research credits.
+   - Faculty paths are valid outreach targets; they are not self-serve student entitlements.
+
+7. **Competitions / hackathons / creator challenges**
+   - Track contests that award GPU time, cloud credit, software licenses, render credits, marketplace credit or cash.
+   - Prefer contests that can reuse existing Melodia work rather than creating unrelated side projects.
+   - Record deadlines and effort-to-reward ratio.
+
+8. **“Email us if you are a student” programs**
+   - Search vendor FAQ/help/licensing pages for undocumented education support.
+   - Draft concise truthful outreach asking specifically for education access, temporary capstone credits, GPU/render allocation, or extended evaluation.
+   - Never imply Humber has a partnership unless confirmed.
+
+### Search quality rules
+
+- Official provider page or official support response is required before marking **VERIFIED**.
+- Record verification date because quotas and promotions change quickly.
+- Promotional trials belong in a separate one-time bucket; do not add them to recurring monthly value.
+- Prefer benefits that directly reduce current Melodia costs or expand production capability.
+- Avoid account clutter from low-value services.
+- Keep secrets, student identifiers and account-specific verification data out of the public repository.
+- Any near-term deadline should be copied into the master ledger and renewal calendar immediately.
+
+### High-value watch signals
+
+Escalate a find into the master claim queue when it provides any of:
+
+- >= **US$10 recurring monthly AI/cloud value**
+- >= **5 GPU hours/month**
+- a normally-paid professional DCC/tool **free for students**
+- a commercial-use asset library with clear perpetual licensing
+- a direct UE/game-industry workflow improvement
+- a hard student-only deadline before graduation
+- a faculty-sponsored program realistically accessible through Humber
