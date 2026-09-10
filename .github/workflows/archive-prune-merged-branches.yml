@@ -1,0 +1,122 @@
+name: Archive and prune merged branches
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/archive-prune-merged-branches.yml
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out complete repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Archive and delete safely merged branch refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+          ARCHIVE_DATE: "2026-09-10"
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*' --prune --tags
+
+          deleted=0
+          skipped_open=0
+          skipped_unmerged=0
+          skipped_changed=0
+          failed=0
+
+          while IFS= read -r branch; do
+            [[ -z "$branch" ]] && continue
+            [[ "$branch" == "main" || "$branch" == "HEAD" ]] && continue
+
+            sha="$(git rev-parse "refs/remotes/origin/$branch")"
+
+            open_count="$(
+              gh api --method GET "/repos/$REPOSITORY/pulls"                 -f state=open                 -f head="$OWNER:$branch"                 -f per_page=100                 --jq 'length'
+            )"
+
+            if [[ "$open_count" != "0" ]]; then
+              echo "KEEP OPEN PR  $branch"
+              skipped_open=$((skipped_open + 1))
+              continue
+            fi
+
+            exact_merged_count="$(
+              gh api --method GET "/repos/$REPOSITORY/pulls"                 -f state=closed                 -f head="$OWNER:$branch"                 -f per_page=100                 --jq --arg sha "$sha" '[.[] | select(.merged_at != null and .head.sha == $sha)] | length'
+            )"
+
+            any_merged_count="$(
+              gh api --method GET "/repos/$REPOSITORY/pulls"                 -f state=closed                 -f head="$OWNER:$branch"                 -f per_page=100                 --jq '[.[] | select(.merged_at != null)] | length'
+            )"
+
+            if [[ "$exact_merged_count" == "0" ]]; then
+              if [[ "$any_merged_count" != "0" ]]; then
+                echo "KEEP CHANGED  $branch ($sha differs from merged PR tip)"
+                skipped_changed=$((skipped_changed + 1))
+              else
+                echo "KEEP UNIQUE   $branch (no merged PR at current tip)"
+                skipped_unmerged=$((skipped_unmerged + 1))
+              fi
+              continue
+            fi
+
+            tag="archive/branches/$ARCHIVE_DATE/$branch"
+            remote_tag="$(git ls-remote --tags origin "refs/tags/$tag" | awk '{print $1}' | head -n1)"
+
+            if [[ -n "$remote_tag" && "$remote_tag" != "$sha" ]]; then
+              echo "::error::Archive tag collision for $branch: $tag is $remote_tag, expected $sha"
+              failed=$((failed + 1))
+              continue
+            fi
+
+            if [[ -z "$remote_tag" ]]; then
+              git tag "$tag" "$sha"
+              git push origin "refs/tags/$tag:refs/tags/$tag"
+            fi
+
+            verify_tag="$(git ls-remote --tags origin "refs/tags/$tag" | awk '{print $1}' | head -n1)"
+            if [[ "$verify_tag" != "$sha" ]]; then
+              echo "::error::Archive verification failed for $branch"
+              failed=$((failed + 1))
+              continue
+            fi
+
+            echo "PRUNE MERGED $branch -> $tag"
+            git push origin --delete "$branch"
+            deleted=$((deleted + 1))
+          done < <(
+            git for-each-ref refs/remotes/origin               --format='%(refname:strip=3)' |
+              sort
+          )
+
+          {
+            echo "## Remote branch prune summary"
+            echo ""
+            echo "- Archived + deleted: $deleted"
+            echo "- Kept because open PR: $skipped_open"
+            echo "- Kept because branch changed after merge: $skipped_changed"
+            echo "- Kept because no exact merged PR: $skipped_unmerged"
+            echo "- Failures: $failed"
+            echo ""
+            echo "Every deletion is restorable from:"
+            echo "`refs/tags/archive/branches/$ARCHIVE_DATE/<old-branch>`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [[ "$failed" != "0" ]]; then
+            exit 1
+          fi
