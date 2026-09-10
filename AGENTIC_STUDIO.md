@@ -8,6 +8,7 @@ It does **not** replace the current production queue or discovery authority:
 - immediate priority → `CAPSTONE_NOW.md`
 - agent discovery/current state routing → `AGENT_START_HERE.md`
 - agent execution philosophy → `Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md`
+- bounded inference-funding / paid-problem sidecar → `Docs/Strategy/PAID_PROBLEM_RADAR_BUILD_NOW_2026-09-10.md`
 
 Core rules:
 
