@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Hat_EnchantedVeil",
+  "display_name": "Enchanted Veil",
+  "slot": "hat",
+  "rarity": "Couture",
+  "element_mood": "Arcane",
+  "content_pack_id": "Pack_GildedOverture",
+  "token_cost": {
+    "heart": 8,
+    "swirl": 3
+  },
+  "palette": [
+    "#DAA520",
+    "#00FFFF",
+    "#FFC0CB"
+  ],
+  "flavor": "A radiant circlet adorned with stars and moon.",
+  "material_notes": "Iridescence and stained glass",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

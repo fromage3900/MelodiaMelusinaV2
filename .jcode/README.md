@@ -41,7 +41,7 @@ Then paste `.jcode\coordinator-bootstrap.md` into the root session.
 
 ## Loops
 
-- Keep: `deploy/start_surreal_*.ps1`, `start_world_loop.ps1`, `run_verify.ps1`
+- Keep: `run_verify.ps1` (start_surreal_*.ps1 and start_world_loop.ps1 archived — referenced surreal_micro/world_loop)
 - Deprecated for parallel coding wakes: `deploy/cursor_*_loop.ps1` (use jcode swarm instead)
 
 Full pipeline notes: `Docs/PhoneOps/JCODE_SWARM_PIPELINE.md`

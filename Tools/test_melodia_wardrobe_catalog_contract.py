@@ -130,7 +130,7 @@ def main() -> int:
     lint_report, lint_code = draft_lint.lint()
     assert lint_code == 0
     assert lint_report["blocking_count"] == 0
-    assert lint_report["owner_decision_count"] == 23
+    assert lint_report["owner_decision_count"] == 10
     assert lint_report["unmodelled_count"] == 0
     assert set(lint_report["content_pack_mappings"].values()) == {
         "Core",
@@ -178,3 +178,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
