@@ -1,105 +1,68 @@
 ﻿# Receipt - Nikki leftover validate + HeightBlend reparent list - 2026-09-09
 
-**Status:** DOC list + validate checklist (parents not inventable without editor Asset Registry)  
-**Owner lane:** Melodia study bot (per MATERIALS_WIRING_FLIPBOOK_CLEANUP + New Bot split)  
+**Status:** VALIDATE PASS + parent lists FILLED (read-back only)  
+**Owner lane:** Melodia study bot (docs) · **Live fill:** New Bot 2026-09-09 (~20:07 ET)  
 **Index:** [Docs/Materials/README.md](README.md) · **Labels:** [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md)  
 **Authority:** `/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape` (**SHIP**)  
 **Legacy:** `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend` (**LEGACY**)  
-**Source:** `Saved/Audit/landscape_authority_convergence_2026-09-03.json` + on-disk MI inventory 2026-09-09
+**Source:** Monolith `validate_material` + `list_material_instances` (NO save_packages / NO recompile)
 
-## A) Fresh validate checklist (OPEN — editor)
-
-Run **`validate_material` only** on Nikki master (NO `recompile_material`, NO `save_packages`). Owner Ctrl+S if anything intentional.
+## A) Fresh validate (FILLED)
 
 | Check | Result |
 |-------|--------|
-| `validate_material` `/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape` | **OPEN** — hard errors: ___ / warnings: ___ |
-| Parent of `MI_Glacier_Landscape_Layered` still Nikki | **OPEN** (contract says yes as of 2026-09-04) |
-| Sea Above / Glacier PIE reads Nikki parent | **OPEN** (owner) |
-| Scratch `/Game/.../_Scratch/M_Master_Nikki_Landscape` ignored | SCRATCH — not authority |
+| `validate_material` `/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape` (`fix_issues=false`) | **PASS** — **hard errors: 0**; warnings: **126** (islands / unused_parameter mainly); info: 1 |
+| Parent of `MI_Glacier_Landscape_Layered` | **Nikki** (confirmed) |
+| Sea Above / Glacier PIE | still owner smoke |
+| Scratch `_Scratch/M_Master_Nikki_Landscape` | SCRATCH — not authority |
 
-## B) Reparent progress (from convergence audit — do not invent names)
+## B) Reparent progress (live Asset Registry)
 
-| Bucket | Count / note |
-|--------|----------------|
-| **DONE** | **19/37** core landscape/Gaea MIs reparented to Nikki (incl. **`MI_Glacier_Landscape_Layered`**) |
-| **DEFERRED** | Remaining **~18** showcase/test MIs — audit did **not** name them; fill via editor parent query below |
-| HeightBlend master quarantine | **not_completed** until all consumers reparented (owner review) |
+| Bucket | Count |
+|--------|-------|
+| On **Nikki** authority | **9** |
+| Still on **HeightBlend** | **28** |
+| Prior audit claim | 19/37 core — live count differs; **prefer this registry list** |
 
-## C) Candidate MI inventory (filesystem — parents UNKNOWN until editor)
+### On Nikki (9) — keep / SHIP consumers
 
-Paths under `Content/` as of 2026-09-09. **Parent column stays OPEN** until Asset Registry / Monolith read-back. Do not guess.
+1. `/Game/Gaea/Glacier/Materials/MI_Glacier_Landscape_Layered`
+2. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_CarvedRock`
+3. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_Meadow`
+4. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_NikkiDream`
+5. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_PondBank`
+6. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_SnowAlpine`
+7. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_UrbanCobble`
+8. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_VolcanicRock`
+9. `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_WetlandMud`
 
-### Likely core / still in play
+### Still on HeightBlend (28) — reparent → Nikki or explicitly defer
 
-| Path | Suspected role | Parent |
-|------|----------------|--------|
-| `/Game/Gaea/Glacier/Materials/MI_Glacier_Landscape_Layered` | Sea Above / Gaea — **DONE → Nikki** | Nikki (audit) |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_CliffGrass` | core landscape | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_CarvedRock` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_CoastalCliff` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_DesertArid` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_ForestFloor` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_Meadow` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_NikkiDream` | Nikki lookdev | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_PondBank` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_SakuraGarden` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_SnowAlpine` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_UrbanCobble` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_VolcanicRock` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_WetlandMud` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_WitchGarden` | core | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_Grass_Tilable_R090_Tile6` | tiled grass | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/Sakura/MI_SakuraLandscape` | Sakura | OPEN |
-| `/Game/EnvSandbox/Materials/Masters/MI_SakuraLandscape` | **misplaced in Masters/** — move-to-Instances path hygiene | OPEN |
+New Bot registry (`list_material_instances` parent = `M_Master_Toon_Landscape_HeightBlend`):
 
-### Explicit HeightBlend-named / LEGACY-family (high priority to confirm)
+| Path / family | Suggested action |
+|---------------|------------------|
+| `MI_Master_Toon_Landscape_HeightBlend_Inst` | reparent or retire with master |
+| MelusinaReal HeightBlend Grass / Grayscale / Soil | reparent → Nikki or LEGACY-keep until MelusinaReal pass |
+| `MI_Landscape_CliffGrass`, `CoastalCliff`, `DesertArid`, `ForestFloor`, `Grass_Tilable_*`, `SakuraGarden`, `WitchGarden` | **reparent → Nikki** (core landscape) |
+| `MI_SakuraLandscape` (×2 paths incl. Masters/) | reparent → Nikki; move Masters/ copy to Instances (path hygiene) |
+| Gaea Cadence / Fugue / Sakura substrates | owner call: reparent vs Gaea-specific defer |
+| SeaAbove CanonicalLandscape + LiquidCathedral substrates | **reparent → Nikki** (Sea Above should match Glacier) |
+| Showcase2 Landscape ×3 | **defer showcase** (owner) |
+| Terrain Baroque / Cosmic / Sakura / Space substrates | owner triage |
+| `Zen_RakedSand` | owner triage |
+| `_Scratch` / `Test_Landscape` | **SCRATCH** — ignore |
 
-| Path | Note | Parent |
-|------|------|--------|
-| `/Game/EnvSandbox/Materials/Instances/MI_Master_Toon_Landscape_HeightBlend_Inst` | HeightBlend Inst | OPEN |
-| `/Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Landscape_HeightBlend/MI_M_Master_Toon_Landscape_HeightBlend_Grass` | folder implies HeightBlend | OPEN |
-| `.../MI_M_Master_Toon_Landscape_HeightBlend_LandscapeGrayscale` | same | OPEN |
-| `.../MI_M_Master_Toon_Landscape_HeightBlend_Soil` | same | OPEN |
-| `/Game/EnvSandbox/Materials/SDF/Instances/MI_Landscape_HeightBlend` | SDF HeightBlend MI | OPEN |
-| `/Game/EnvSandbox/Materials/SDF/Instances/MI_AdvancedLandscape_HeightBlend` | SDF advanced | OPEN |
-| `/Game/EnvSandbox/Materials/SDF/Instances/MI_Landscape_LayerBlend` | older blend | OPEN |
-| `/Game/EnvSandbox/Materials/SDF/Instances/MI_HybridLandscape_MooaToonSDF` | hybrid | OPEN |
-| `/Game/EnvSandbox/Materials/SDF/Instances/MI_Landscape_Quad_GeometryFake` | fake geo | OPEN |
+Exact 28 soft-paths: live Monolith dump 2026-09-09 (New Bot). If a name above is abbreviated, prefer registry path over this summary.
 
-### Showcase / test (likely the deferred ~18)
+## C) Still open (not blockers for this receipt)
 
-| Path | Note | Parent |
-|------|------|--------|
-| `/Game/EnvSandbox/Materials/Instances/Showcase2026_06_27/Landscape/MI_Showcase2_Landscape_Baseline` | showcase | OPEN |
-| `.../MI_Showcase2_Landscape_MacroVariation` | showcase | OPEN |
-| `.../MI_Showcase2_Landscape_RealNormals` | showcase | OPEN |
-| `/Game/EnvSandbox/Materials/Validation/MI_Landscape_CymaticsFull` | validation | OPEN |
-| `/Game/EnvSandbox/Materials/Validation/MI_Landscape_CymaticsHalf` | validation | OPEN |
-| `/Game/EnvSandbox/Materials/_Scratch/MI_NikkiLandscape_Test` | **SCRATCH** | ignore |
-
-### Other / triage
-
-| Path | Note |
-|------|------|
-| Impressionist / Stylized / PBR_Auto / Melusina grayscale landscape MIs | Not in 37-core claim; label separately if they still parent HeightBlend |
-
-## D) LEGACY masters (from LABEL_MAP — retire after consumers clear)
-
-- `M_Master_Toon_Landscape_HeightBlend` (+ Inst)
-- `M_Landscape_HeightBlend`
-- `M_AdvancedLandscape_HeightBlend`
-- `M_Landscape_LayerBlend`
-
-## E) Editor fill-in procedure (New Bot or Melodia bot when :9316 up)
-
-1. Asset Registry filter: MaterialInstanceConstant whose parent soft-path contains `Landscape_HeightBlend` OR equals HeightBlend master paths above.
-2. For each hit: record path → current parent → action (`reparent→Nikki` / `defer showcase` / `LEGACY keep until…`).
-3. `validate_material` Nikki master only; paste hard-error count into section A.
-4. Owner Ctrl+S after any intentional reparent. **Never** Monolith `save_packages` / `recompile_material`.
+- [ ] Owner Ctrl+S after any intentional reparent batch
+- [ ] PIE confirm Sea Above / Glacier after reparents
+- [ ] HeightBlend master quarantine only after consumers clear (LABEL_MAP LEGACY)
 
 ## Hard rules
 
-- Docs-first; no Content binaries in this PR.
-- No invented parent assignments.
+- No Monolith `save_packages` / `recompile_material` from agents.
+- Owner Ctrl+S for package saves.
 - One concern per PR off **main**.

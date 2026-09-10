@@ -61,3 +61,7 @@ HeightBlend is **legacy**, not the wiring target for cymatics tonight. Prefer Ni
 ## Leftover follow-on (2026-09-09)
 
 See [RECEIPT_NIKKI_LEFTOVER_HEIGHTBLEND_2026-09-09.md](RECEIPT_NIKKI_LEFTOVER_HEIGHTBLEND_2026-09-09.md) for validate checklist + HeightBlend MI candidate inventory (parents OPEN until editor).
+
+### Live validate fill (2026-09-09)
+
+alidate_material Nikki master: **0 hard errors**, 126 warnings (New Bot, Monolith read-back). Parent census: **9 Nikki / 28 HeightBlend** — see [RECEIPT_NIKKI_LEFTOVER_HEIGHTBLEND_2026-09-09.md](RECEIPT_NIKKI_LEFTOVER_HEIGHTBLEND_2026-09-09.md).
