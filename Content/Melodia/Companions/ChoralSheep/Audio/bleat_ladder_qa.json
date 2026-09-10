@@ -1,0 +1,137 @@
+{
+  "schema": "melodia.choral_sheep.bleat_ladder_qa.v1",
+  "seed_take": "realistic",
+  "seed_crest": 6.137,
+  "rejected_seed_crest": {
+    "baaing": 5.31
+  },
+  "peak_target_dbfs": -6.0,
+  "files": {
+    "sheep_baa_PCC_01.wav": {
+      "sha12": "04b68e35b23f",
+      "peak_dbfs": -6.0,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": 4.1
+    },
+    "sheep_baa_PCCs_01.wav": {
+      "sha12": "a660135c0992",
+      "peak_dbfs": -5.96,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -3.3
+    },
+    "sheep_baa_PCD_01.wav": {
+      "sha12": "43ed78646e2d",
+      "peak_dbfs": -6.02,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.4
+    },
+    "sheep_baa_PCDs_01.wav": {
+      "sha12": "766f32075884",
+      "peak_dbfs": -5.98,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -5.7
+    },
+    "sheep_baa_PCE_01.wav": {
+      "sha12": "dda221479f6e",
+      "peak_dbfs": -6.03,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -5.0
+    },
+    "sheep_baa_PCF_01.wav": {
+      "sha12": "87081c5c16b0",
+      "peak_dbfs": -6.05,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.8
+    },
+    "sheep_baa_PCFs_01.wav": {
+      "sha12": "c2509a44abb7",
+      "peak_dbfs": -6.05,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.8
+    },
+    "sheep_baa_PCG_01.wav": {
+      "sha12": "3ef3b45ae6e4",
+      "peak_dbfs": -5.99,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.7
+    },
+    "sheep_baa_PCGs_01.wav": {
+      "sha12": "00e04257baf9",
+      "peak_dbfs": -6.03,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.6
+    },
+    "sheep_baa_PCA_01.wav": {
+      "sha12": "02809c7d8c5f",
+      "peak_dbfs": -6.03,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.8
+    },
+    "sheep_baa_PCAs_01.wav": {
+      "sha12": "387575c9c79d",
+      "peak_dbfs": -6.02,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.8
+    },
+    "sheep_baa_PCB_01.wav": {
+      "sha12": "79ea7ad02d56",
+      "peak_dbfs": -6.03,
+      "dur_s": 1.4,
+      "ch": 1,
+      "bits": 24,
+      "rate": 48000,
+      "bytes": 201702,
+      "gain_db": -4.4
+    }
+  },
+  "assertions": {
+    "12_wavs": true,
+    "peak_minus6_pm03": true,
+    "48k_24bit_mono": true,
+    "12_distinct_sha12": true
+  }
+}
