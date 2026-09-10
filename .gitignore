@@ -349,6 +349,12 @@ Plugins/Claireon/
 # Re-install from: com.epicgames.launcher://ue/Fab/product/4e59bf12-d0c8-46f4-b5f9-37d48d0b6e63
 Plugins/Oceanology_Plugin/
 
+# --- Vendored third-party editor plugin (Rokoko Smartsuit) ---
+# Plugins/Smartsuit is a 174 MB / 170-file vendor drop (Binaries/ and Intermediate/ included).
+# Not tracked for the same reason as Claireon and Oceanology above: it would add vendor
+# binaries to an already-24 GB .git and the source is re-installable, not re-authorable.
+Plugins/Smartsuit/
+
 # --- Exports: large Blender/3D deliverables at repo root (never commit) ---
 # Portfolio and stage .blend files, hero vehicle meshes, GLB/FBX sweeps.
 # If something here should be tracked, move it into Content/ instead.
@@ -370,3 +376,8 @@ Plugins/HoudiniEngine/Content/
 # Third-party Blender node libraries (licensed; local-only per RawArt/BlenderLibraries/README.md)
 RawArt/BlenderLibraries/*
 !RawArt/BlenderLibraries/README.md
+
+# --- Blender / Cycles bake intermediates (never commit) ---
+# .assbin is Arnold/AssBin-style bake output: 168 MB for a single sheep fleece dump, fully
+# re-derivable from the .blend. Same class as KitbashExport/ and surreal_sweep/ above.
+*.assbin
