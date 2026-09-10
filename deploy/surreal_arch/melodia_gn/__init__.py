@@ -35,6 +35,8 @@ from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/ba
 from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
 from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime_row physics)
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
+from . import musical_mesh_variants  # noqa: F401 - Musical mesh variant sweep (wave/harmonic/pulse/seeded)
+from . import music_euro_remainder  # noqa: F401 - Cascading beams, rose window, lancet (P2 remainder)
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
 from . import planetary_terrain  # noqa: F401 - v3 deterministic planetary musical terrain
