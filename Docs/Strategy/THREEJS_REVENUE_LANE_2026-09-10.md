@@ -63,3 +63,11 @@ After that gate, review actual demand before adding more abstractions or product
 ## Capstone boundary
 
 This work may consume outputs that naturally emerge from capstone/site work, but must not displace Choral Sheep P0 or reopen the public website redesign. The WebGL kit lives under `tools/` specifically so commercial infrastructure can evolve without changing the recruiter-facing deployment surface.
+
+## Same-day submit note — 2026-09-10
+
+Monochrome industrial BASE polish + proposal pack:
+
+- Playbook: `Docs/Strategy/MONOCHROME_INDUSTRIAL_SUBMIT_TODAY_2026-09-10.md`
+- Transfer patch / evidence: `Docs/Strategy/webgl-kit-monochrome-2026-09-10/`
+- Target listing: $10k procedural industrial homepage loop (human send only)

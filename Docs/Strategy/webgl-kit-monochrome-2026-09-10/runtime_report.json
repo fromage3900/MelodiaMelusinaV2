@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-09-10T15:53:35.850Z",
+  "console_errors": [],
+  "desktop": {
+    "mode": "base",
+    "seed": 1,
+    "time": 1.105,
+    "fps": 26,
+    "dpr": 1,
+    "draws": 95,
+    "tris": 3500,
+    "geometries": 62,
+    "capture": false
+  },
+  "mobile": {
+    "mode": "base",
+    "seed": 1,
+    "time": 0.412,
+    "fps": 43,
+    "dpr": 1,
+    "draws": 95,
+    "tris": 3500,
+    "geometries": 62,
+    "capture": false
+  },
+  "files": [
+    "base_t00.png",
+    "base_t02.png",
+    "base_t04.png",
+    "base_t06.png",
+    "base_t08.png",
+    "base_t10.png",
+    "base_t12.png",
+    "base_t14.png",
+    "capture_hero.png",
+    "loop_frame_00.png",
+    "loop_frame_01.png",
+    "loop_frame_02.png",
+    "loop_frame_03.png",
+    "loop_frame_04.png",
+    "loop_frame_05.png",
+    "loop_frame_06.png",
+    "loop_frame_07.png",
+    "mobile_width.png",
+    "mode_base.png",
+    "mode_flow.png",
+    "mode_structural.png",
+    "mode_thermal.png",
+    "seed_01.png",
+    "seed_02.png",
+    "seed_03.png"
+  ]
+}
