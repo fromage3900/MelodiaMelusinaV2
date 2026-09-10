@@ -151,6 +151,22 @@
         "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\mcp_git.py"
       ],
       "enabled": true
+    },
+    // FL Studio bridge (scaffolded 2026-09-09, vendor at Tools/vendor/flstudio-mcp).
+    // ENABLE ONLY AFTER: install_windows.bat run + loopMIDI RX/TX ports exist +
+    // FL MIDI settings wired (RX in / TX out, same port) + daemon running.
+    // NOTE: this machine's FL user-data folder lives under OneDrive Documents,
+    // but the installer assumes %USERPROFILE%\Documents\Image-Line\FL Studio\Settings
+    // -- confirm FL_SETTINGS (FL Studio > Options > File settings > User data folder)
+    // before running it.
+    "fl-studio": {
+      // Absolute exe: Python314 Scripts is not on PATH (pip warning at install).
+      "type": "local",
+      "command": ["C:\\Users\\froma\\AppData\\Roaming\\Python\\Python314\\Scripts\\fl-studio-mcp.exe"],
+      "environment": {
+        "FLSTUDIO_MCP_TRANSPORT": "tcp"
+      },
+      "enabled": true
     }
   }
 }

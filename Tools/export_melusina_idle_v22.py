@@ -40,8 +40,8 @@ import bpy
 TOOLS = Path(__file__).resolve().parent
 PROJECT = TOOLS.parent
 OUT_DIR = PROJECT / "Exports" / "MelusinaAnims"
-OUT_FBX = OUT_DIR / "A_Melusina_Idle_v22.fbx"
-REPORT = PROJECT / "Saved" / "Audit" / "melusina_idle_v22_export.json"
+OUT_FBX = OUT_DIR / "A_Melusina_Idle_v22_HERO01_20260908.fbx"
+REPORT = PROJECT / "Saved" / "Audit" / "melusina_idle_v22_HERO01_20260908_export.json"
 
 ARM_NAME = "character_rig"
 NLA_TRACK = "idle_animation"
@@ -50,6 +50,20 @@ ACTION_HINT = "character_rigAction"
 
 def log(m):
     print(f"[idle_v22] {m}")
+
+
+def action_fcurve_count(action) -> int:
+    """Return an action's curve count across legacy and slotted APIs."""
+    legacy = getattr(action, "fcurves", None)
+    if legacy is not None:
+        return len(legacy)
+
+    count = 0
+    for layer in getattr(action, "layers", ()):
+        for strip in getattr(layer, "strips", ()):
+            for channelbag in getattr(strip, "channelbags", ()):
+                count += len(channelbag.fcurves)
+    return count
 
 
 def main() -> int:
@@ -90,8 +104,8 @@ def main() -> int:
 
     report["action"] = action.name
     report["frame_range"] = [float(x) for x in action.frame_range]
-    report["fcurves"] = len(action.fcurves)
-    log(f"idle action {action.name} {report['frame_range']} fcurves={len(action.fcurves)}")
+    report["fcurves"] = action_fcurve_count(action)
+    log(f"idle action {action.name} {report['frame_range']} fcurves={report['fcurves']}")
 
     # 2. Remap bones to the UE contract, in memory only.
     plan = remap.rename_plan(arm)

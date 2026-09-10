@@ -53,8 +53,26 @@ def main() -> None:
     scene = bpy.context.scene
     scene.render.fps = 24
     scene.render.fps_base = 1.0
-    scene.frame_start = 1
-    scene.frame_end = 24
+    imported_action = arm.animation_data.action if arm.animation_data else None
+    if imported_action:
+        imported_action_name = imported_action.name
+        frame_start, frame_end = [int(v) for v in imported_action.frame_range]
+        imported_action.use_fake_user = True
+    else:
+        imported_action_name = None
+        frame_start, frame_end = 1, 24
+    scene.frame_start = frame_start
+    scene.frame_end = frame_end
+
+    # The Blender FBX exporter otherwise serializes the evaluated first frame as
+    # the skeleton bind pose. Keep the imported action datablock available for
+    # all-actions export, but detach it while the neutral rest skeleton is written.
+    if arm.animation_data:
+        arm.animation_data.action = None
+    for pose_bone in arm.pose.bones:
+        pose_bone.matrix_basis.identity()
+    scene.frame_set(0)
+    bpy.context.view_layer.update()
 
     for obj in bpy.data.objects:
         obj.select_set(obj is arm)
@@ -70,14 +88,16 @@ def main() -> None:
         bake_anim=True,
         bake_anim_use_all_bones=True,
         bake_anim_use_nla_strips=False,
-        bake_anim_use_all_actions=False,
+        bake_anim_use_all_actions=True,
         bake_anim_force_startend_keying=True,
         bake_anim_simplify_factor=0.0,
         axis_forward="-Z",
         axis_up="Y",
         apply_unit_scale=True,
         apply_scale_options="FBX_SCALE_ALL",
-        global_scale=100.0,
+        # Blender's FBX unit metadata already converts meters to UE centimeters.
+        # Applying another x100 here creates a 100x source skeleton in Unreal.
+        global_scale=1.0,
     )
 
     after = [b.name for b in arm.data.bones]
@@ -86,6 +106,8 @@ def main() -> None:
         "dst": str(dst),
         "bytes": dst.stat().st_size if dst.is_file() else 0,
         "bone_count": len(after),
+        "action": imported_action_name,
+        "frame_range": [frame_start, frame_end],
         "renamed": renamed,
         "collisions": collisions[:20],
         "sample_before": before[:15],
