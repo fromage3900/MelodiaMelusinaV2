@@ -567,3 +567,79 @@ The current free coding hierarchy should now include:
 - **Astra/Codex** — reserve for hard reasoning and final passes
 
 Do not spend premium Astra/Codex capacity on a task that one of these verified free lanes can safely complete.
+
+
+### Trench IV-B — game services and lifetime-use asset libraries
+
+#### Epic Online Services — free production services
+Epic Online Services is free for game developers, with no royalty or hosting fees for the standard service set. Epic's licensing page describes free use for commercial, non-commercial, educational and personal video-game projects and allows unlimited games/live titles.
+
+Official:
+- https://onlineservices.epicgames.com/
+- https://onlineservices.epicgames.com/licensing
+
+**Melodia role:** accounts/auth, achievements, sessions, cross-platform services or other online functionality without paying for a separate platform layer. Only integrate if the game actually needs it.
+
+#### Microsoft PlayFab Foundation / Development Mode — no monthly development bill
+Microsoft's current PlayFab guidance says new titles should use **Foundation Mode** to access PlayFab services with **no monthly bill for the duration of the development cycle**. Legacy Development Mode can also evaluate core services without monthly bills, subject to player/usage limits.
+
+Official:
+- https://learn.microsoft.com/en-us/gaming/playfab/pricing/development-mode
+- https://learn.microsoft.com/en-us/gaming/playfab/pricing/account-upgrades
+
+**Melodia role:** backend experiments, cloud save/profile/economy/telemetry prototypes. Keep titles in the free development mode until there is a real reason to launch a paid live title.
+
+#### GameAnalytics — free analytics + tiny AI analyst
+GameAnalytics currently starts free with no MAU limit for its standard analytics features. The free feature set includes dashboards, custom events, funnels, retention, realtime, error health, cohorts and related game analytics. Its current free **AI Agent** allowance is 3 messages/day per user and 6/day per organization.
+
+Official: https://www.gameanalytics.com/pricing
+
+**Melodia role:** lightweight external telemetry/analytics comparison if native Unreal telemetry is insufficient. Do not add analytics merely because it is free; preserve player privacy and keep the capstone instrumentation minimal.
+
+#### Sonniss GDC 2026 Game Audio Bundle — free commercial SFX
+The current **GDC 2026 Game Audio Bundle** provides:
+- **7.47 GB+**
+- **347+ sound-effect files**
+- royalty-free commercial media-production use
+- no attribution required
+- unlimited project use under the bundle license
+
+Sonniss also exposes an archive of previous GDC bundles totaling **200 GB+** of professional game audio. Current license terms prohibit using these sounds for AI/ML training.
+
+Official:
+- https://gdc.sonniss.com/
+- https://sonniss.com/gdc-bundle-license/
+
+**Action:** download/archive the 2026 bundle and the specific older packs that are actually useful. Record provenance/license next to any sounds that enter Melodia.
+
+#### Kenney CC0 — prototype/gameplay asset reserve
+Kenney continues to publish game assets under **CC0**, including current 3D kits, textures, skyboxes and prototyping packs.
+
+Official: https://kenney.nl/assets
+
+**Melodia role:** gameplay-blockout and temporary UI/environment content only where it saves real time. Replace hero-facing content with project-specific art.
+
+### Additional student / creator finds
+
+#### Move One Free — 30 non-expiring starter mocap credits
+Move One's current Free plan includes a **one-time 30 credits that do not expire**, with free users able to record clips up to 30 seconds.
+
+Official: https://docs.move.ai/knowledge/move-one-pricing
+
+Add this to the mocap solver pool, but do not count it as a recurring monthly grant.
+
+#### Fox Renderfarm — current $25 new-user trial
+Fox's current Blender/render-farm materials state new accounts receive approximately **$25 in free render credit**. Event-specific coupons can be larger but expire; only bank the permanent new-user allowance unless an active event applies.
+
+Official: https://www.foxrenderfarm.com/
+
+#### Marmoset Toolbag — 30-day full trial, but no individual free student SKU found
+Marmoset currently provides a fully-featured **30-day free trial**. Its Academic tier is institution-purchased, currently listed at $119.99/year/seat; the normal Individual subscription is not a free student entitlement.
+
+Official: https://marmoset.co/toolbag/education/
+
+**Action:** check Humber myApps/labs first. Only start the personal trial when there is a specific bake/render portfolio sprint so the 30 days are not wasted.
+
+### Newly urgent deadline
+
+**Marvelous Designer's student 3-month-free promotion ends 2026-10-31.** This is the only newly discovered claim in Trench IV with a near-term hard deadline, so it should be completed before optional cloud/render claims.
