@@ -43,11 +43,14 @@ Full map: [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md). Process: label →
 - `RECEIPT_MATERIALS_CLEAN_ENV_*.md` (pending Phase C)
 - [RECEIPT_OFFLINE_WORLDGRID_FLIPBOOK_2026-09-09.md](RECEIPT_OFFLINE_WORLDGRID_FLIPBOOK_2026-09-09.md) (offline inventory)
 
+- [RECEIPT_TEXTURE_TRIAGE_UNIVERSAL_WOOL_2026-09-09.md](RECEIPT_TEXTURE_TRIAGE_UNIVERSAL_WOOL_2026-09-09.md) (broken_texture_ref triage)
+
 ## Hard rules
 - One concern per PR / isolated batch from **main**.
 - Read-back or compile stats beat tool return values.
 - No Monolith `save_packages` / `recompile_material`. Owner Ctrl+S for editor packages.
 - Do not run graph-clearing landscape rebuild scripts against the active master.
 - Soft-freeze for Live Link / Rokoko satisfied via ALL_MATERIALS on main; remaining polish is Batch 4 + Lane D + clean-env (this index).
+
 
 
