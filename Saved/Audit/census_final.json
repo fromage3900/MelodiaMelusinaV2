@@ -1,5 +1,5 @@
 {
- "total": 562,
+ "total": 566,
  "ids": [
   "MEL_add_geometry",
   "MEL_aest_adv_crystals",
@@ -201,6 +201,10 @@
   "MEL_escher_waterfall",
   "MEL_exponent_blend",
   "MEL_eyewear_front",
+  "MEL_eyewear_hinge",
+  "MEL_eyewear_lens",
+  "MEL_eyewear_pair",
+  "MEL_eyewear_temple",
   "MEL_fence",
   "MEL_field_sculpture",
   "MEL_filigree_core",
@@ -612,7 +616,7 @@
   "experimental": 16,
   "white_current": 6,
   "ornament": 25,
-  "eyewear": 1,
+  "eyewear": 5,
   "filigree": 7,
   "Garment": 4,
   "melusina_house": 13,
