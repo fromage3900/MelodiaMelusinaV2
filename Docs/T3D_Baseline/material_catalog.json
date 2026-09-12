@@ -37,14 +37,14 @@
           "name": "M_Master_Nikki_Landscape",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
           "file": "materials/M_Master_Nikki_Landscape.t3d",
-          "payload_bytes": 599271,
+          "payload_bytes": 595831,
           "nodes": 425,
-          "sha256": "f78baa7b5f608f5c181e3296494b76a69228fc6a3d182db6e9c0aa6fe26e41ec",
+          "sha256": "2b14f1d33b39ab2b346d5b2d6e9a1b699e6d7d2bbe3f4bf46e67a8c7e40e8136",
           "tags": [
             "landscape",
             "nikki"
           ],
-          "lines": 5233
+          "lines": 5219
         },
         {
           "name": "M_Master_SDF_Toon",
@@ -74,7 +74,7 @@
           "file": "materials/M_Master_Toon_Landscape_HeightBlend.t3d",
           "payload_bytes": 481212,
           "nodes": 326,
-          "sha256": "15aeaebb2e252c2486c9c543285a0b981ef04294ba7b8c568303b5d14721675f",
+          "sha256": "f7c3232ffe0a4ba0b9dc99cf0cef367ddc5a454774a7f3df21b5c00d76d11017",
           "tags": [
             "landscape"
           ],
@@ -94,16 +94,16 @@
           "name": "M_Master_Toon_Universal",
           "ue_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
           "file": "materials/M_Master_Toon_Universal.t3d",
-          "payload_bytes": 1725137,
-          "nodes": 1319,
-          "sha256": "8562ae83e2ae5601a3a4ee79f1823cbbf7cdcabfb060c11656ef032f5bab5f53",
+          "payload_bytes": 1734376,
+          "nodes": 1326,
+          "sha256": "b32765ca4ffc26652a1a38691b73e24d45b7002fb53b5218ff6f2be14ebb8968",
           "tags": [],
-          "lines": 14827
+          "lines": 14897
         }
       ],
       "count": 8,
-      "payload_bytes": 3260863,
-      "nodes": 2416
+      "payload_bytes": 3266662,
+      "nodes": 2423
     },
     "Material Functions": {
       "display": "Material Functions",
@@ -407,13 +407,13 @@
           "name": "MF_SDF_BandRelief",
           "ue_path": "/Game/EnvSandbox/Materials/Functions/MF_SDF_BandRelief",
           "file": "materials/MF_SDF_BandRelief.t3d",
-          "payload_bytes": 355273,
-          "nodes": 319,
-          "sha256": "c41035fe8c05d26c44bac9caec6a252a9cf29ceca01d5bbceaf530be8e36beb3",
+          "payload_bytes": 315236,
+          "nodes": 285,
+          "sha256": "5e49b6d457d0ff393900ceee66695b74f4d5997b87bb3538caefda115f0e217a",
           "tags": [
             "sdf"
           ],
-          "lines": 3111
+          "lines": 2771
         },
         {
           "name": "MF_Triplanar_Stable",
@@ -427,8 +427,8 @@
         }
       ],
       "count": 27,
-      "payload_bytes": 2259801,
-      "nodes": 1927
+      "payload_bytes": 2219764,
+      "nodes": 1893
     },
     "Parameter Collections": {
       "display": "Parameter Collections",
@@ -641,8 +641,8 @@
       "nodes": 17
     }
   },
-  "total_payload_bytes": 5536636,
-  "total_nodes": 4361,
+  "total_payload_bytes": 5502398,
+  "total_nodes": 4334,
   "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files.",
   "note_retired": "M_Master_Nikki + M_Master_Toon_Cosmic retired 2026-09-05 by Line A master convergence (commits 40d13289/69251852); their instances reparented onto the M_Master_Toon_Universal family. 6 other assets re-baselined via --update after the same convergence."
 }

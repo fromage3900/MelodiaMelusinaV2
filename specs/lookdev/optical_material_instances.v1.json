@@ -8,7 +8,7 @@
     {
       "instance_name": "MI_FarawayMother_CelestialSilk_LOD0",
       "asset_name": "FarawayMother_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -50,7 +50,7 @@
     {
       "instance_name": "MI_FarawayMother_CelestialSilk_LOD1",
       "asset_name": "FarawayMother_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -92,7 +92,7 @@
     {
       "instance_name": "MI_FarawayMother_CelestialSilk_LOD2",
       "asset_name": "FarawayMother_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -134,7 +134,7 @@
     {
       "instance_name": "MI_FarawayMother_CelestialSilk_LOD3",
       "asset_name": "FarawayMother_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -176,7 +176,7 @@
     {
       "instance_name": "MI_Melusina_Shorewake_Gown_LOD0",
       "asset_name": "Melusina_Shorewake_Gown",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -218,7 +218,7 @@
     {
       "instance_name": "MI_Melusina_Shorewake_Gown_LOD1",
       "asset_name": "Melusina_Shorewake_Gown",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -260,7 +260,7 @@
     {
       "instance_name": "MI_Melusina_Shorewake_Gown_LOD2",
       "asset_name": "Melusina_Shorewake_Gown",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -302,7 +302,7 @@
     {
       "instance_name": "MI_Melusina_Shorewake_Gown_LOD3",
       "asset_name": "Melusina_Shorewake_Gown",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -344,7 +344,7 @@
     {
       "instance_name": "MI_Starskiff_Hull_Celestial_LOD0",
       "asset_name": "Starskiff_Hull_Celestial",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -386,7 +386,7 @@
     {
       "instance_name": "MI_Starskiff_Hull_Celestial_LOD1",
       "asset_name": "Starskiff_Hull_Celestial",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -428,7 +428,7 @@
     {
       "instance_name": "MI_Starskiff_Hull_Celestial_LOD2",
       "asset_name": "Starskiff_Hull_Celestial",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -470,7 +470,7 @@
     {
       "instance_name": "MI_Starskiff_Hull_Celestial_LOD3",
       "asset_name": "Starskiff_Hull_Celestial",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -512,7 +512,7 @@
     {
       "instance_name": "MI_Surreal_CelestialSilk_LOD0",
       "asset_name": "Surreal_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -557,7 +557,7 @@
     {
       "instance_name": "MI_Surreal_CelestialSilk_LOD1",
       "asset_name": "Surreal_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -602,7 +602,7 @@
     {
       "instance_name": "MI_Surreal_CelestialSilk_LOD2",
       "asset_name": "Surreal_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -647,7 +647,7 @@
     {
       "instance_name": "MI_Surreal_CelestialSilk_LOD3",
       "asset_name": "Surreal_CelestialSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -692,7 +692,7 @@
     {
       "instance_name": "MI_Surreal_GildedLoom_LOD0",
       "asset_name": "Surreal_GildedLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -737,7 +737,7 @@
     {
       "instance_name": "MI_Surreal_GildedLoom_LOD1",
       "asset_name": "Surreal_GildedLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -782,7 +782,7 @@
     {
       "instance_name": "MI_Surreal_GildedLoom_LOD2",
       "asset_name": "Surreal_GildedLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -827,7 +827,7 @@
     {
       "instance_name": "MI_Surreal_GildedLoom_LOD3",
       "asset_name": "Surreal_GildedLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -872,7 +872,7 @@
     {
       "instance_name": "MI_Surreal_PearlWeave_LOD0",
       "asset_name": "Surreal_PearlWeave",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -917,7 +917,7 @@
     {
       "instance_name": "MI_Surreal_PearlWeave_LOD1",
       "asset_name": "Surreal_PearlWeave",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -962,7 +962,7 @@
     {
       "instance_name": "MI_Surreal_PearlWeave_LOD2",
       "asset_name": "Surreal_PearlWeave",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -1007,7 +1007,7 @@
     {
       "instance_name": "MI_Surreal_PearlWeave_LOD3",
       "asset_name": "Surreal_PearlWeave",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -1052,7 +1052,7 @@
     {
       "instance_name": "MI_Surreal_SingingSilk_LOD0",
       "asset_name": "Surreal_SingingSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -1097,7 +1097,7 @@
     {
       "instance_name": "MI_Surreal_SingingSilk_LOD1",
       "asset_name": "Surreal_SingingSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -1142,7 +1142,7 @@
     {
       "instance_name": "MI_Surreal_SingingSilk_LOD2",
       "asset_name": "Surreal_SingingSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -1187,7 +1187,7 @@
     {
       "instance_name": "MI_Surreal_SingingSilk_LOD3",
       "asset_name": "Surreal_SingingSilk",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -1232,7 +1232,7 @@
     {
       "instance_name": "MI_Surreal_StarlitLoom_LOD0",
       "asset_name": "Surreal_StarlitLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -1277,7 +1277,7 @@
     {
       "instance_name": "MI_Surreal_StarlitLoom_LOD1",
       "asset_name": "Surreal_StarlitLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -1322,7 +1322,7 @@
     {
       "instance_name": "MI_Surreal_StarlitLoom_LOD2",
       "asset_name": "Surreal_StarlitLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -1367,7 +1367,7 @@
     {
       "instance_name": "MI_Surreal_StarlitLoom_LOD3",
       "asset_name": "Surreal_StarlitLoom",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -1412,7 +1412,7 @@
     {
       "instance_name": "MI_Surreal_NightVelvet_LOD0",
       "asset_name": "Surreal_NightVelvet",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -1457,7 +1457,7 @@
     {
       "instance_name": "MI_Surreal_NightVelvet_LOD1",
       "asset_name": "Surreal_NightVelvet",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -1502,7 +1502,7 @@
     {
       "instance_name": "MI_Surreal_NightVelvet_LOD2",
       "asset_name": "Surreal_NightVelvet",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -1547,7 +1547,7 @@
     {
       "instance_name": "MI_Surreal_NightVelvet_LOD3",
       "asset_name": "Surreal_NightVelvet",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -1592,7 +1592,7 @@
     {
       "instance_name": "MI_Surreal_AquaLace_LOD0",
       "asset_name": "Surreal_AquaLace",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -1637,7 +1637,7 @@
     {
       "instance_name": "MI_Surreal_AquaLace_LOD1",
       "asset_name": "Surreal_AquaLace",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -1682,7 +1682,7 @@
     {
       "instance_name": "MI_Surreal_AquaLace_LOD2",
       "asset_name": "Surreal_AquaLace",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -1727,7 +1727,7 @@
     {
       "instance_name": "MI_Surreal_AquaLace_LOD3",
       "asset_name": "Surreal_AquaLace",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
@@ -1772,7 +1772,7 @@
     {
       "instance_name": "MI_Surreal_MoonChiffon_LOD0",
       "asset_name": "Surreal_MoonChiffon",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD0",
       "tier_index": 0,
       "distance_min_m": 0.0,
@@ -1817,7 +1817,7 @@
     {
       "instance_name": "MI_Surreal_MoonChiffon_LOD1",
       "asset_name": "Surreal_MoonChiffon",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD1",
       "tier_index": 1,
       "distance_min_m": 15.0,
@@ -1862,7 +1862,7 @@
     {
       "instance_name": "MI_Surreal_MoonChiffon_LOD2",
       "asset_name": "Surreal_MoonChiffon",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD2",
       "tier_index": 2,
       "distance_min_m": 50.0,
@@ -1907,7 +1907,7 @@
     {
       "instance_name": "MI_Surreal_MoonChiffon_LOD3",
       "asset_name": "Surreal_MoonChiffon",
-      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "parent_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "tier_name": "LOD3",
       "tier_index": 3,
       "distance_min_m": 200.0,
