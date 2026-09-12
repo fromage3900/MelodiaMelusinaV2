@@ -427,6 +427,258 @@ def build_skiff_plates(group_name="MEL_skiff_plates"):
     )
 
 
+def build_skiff_rivet_lattice(group_name="MEL_skiff_rivet_lattice"):
+    """Points-on-face rivet lattice at 6x-diameter pitch, edges + collars.
+
+    One rivet row template (points along the plate arc, carrying a t_param
+    attribute) is instanced at both X edges of every strake bay; realized
+    points split into field points (|t| <= 0.8) and collar studs (|t| > 0.8,
+    scaled up) before instancing the rivet-head geometry. Pitch follows the
+    classic rule: spacing = 6x head diameter, wired from the dials so the
+    rule survives retuning. Heads are parametric low-poly domes here; the
+    art pass may swap in the existing jewel/brass instances (same sockets).
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    geo = gin.outputs["Geometry"]
+
+    add_int_param(tree, "Seed", 20260903, 0, 99999999)
+    add_float_param(tree, "Rivet Bays", 9.0, 2.0, 12.0)
+    add_float_param(tree, "Rivets Per Edge", 7.0, 3.0, 15.0)
+    add_float_param(tree, "Rivet Diameter", 0.012, 0.004, 0.03)
+    add_float_param(tree, "Edge Inset", 0.03, 0.005, 0.1)
+    add_float_param(tree, "Plate Beam", 1.44, 0.6, 2.0)
+    add_float_param(tree, "Plate Depth", 0.75, 0.3, 1.2)
+    add_float_param(tree, "Collar Scale", 1.4, 1.0, 2.5)
+    add_music_influence_params(tree)  # heads glint on high band at material level
+
+    half_beam = safe_node(tree, "ShaderNodeMath", (-1080, 120))
+    half_beam.operation = "DIVIDE"
+    link_sockets(tree, gin.outputs["Plate Beam"], half_beam.inputs[0])
+    half_beam.inputs[1].default_value = 2.0
+
+    # --- rivet row template: n points, t in [-0.9, 0.9], arc-deformed ---
+    rcount = safe_node(tree, "ShaderNodeMath", (-1080, -40))
+    rcount.operation = "ROUND"
+    link_sockets(tree, gin.outputs["Rivets Per Edge"], rcount.inputs[0])
+
+    # line step in t: 1.8 / (n - 1), guarded against n = 1
+    nminus = safe_node(tree, "ShaderNodeMath", (-900, -40))
+    nminus.operation = "SUBTRACT"
+    link_sockets(tree, rcount.outputs[0], nminus.inputs[0])
+    nminus.inputs[1].default_value = 1.0
+    nclamp = safe_node(tree, "ShaderNodeMath", (-720, -40))
+    nclamp.operation = "MAXIMUM"
+    link_sockets(tree, nminus.outputs[0], nclamp.inputs[0])
+    nclamp.inputs[1].default_value = 1.0
+    tstep = safe_node(tree, "ShaderNodeMath", (-540, -40))
+    tstep.operation = "DIVIDE"
+    tstep.inputs[0].default_value = 1.8
+    link_sockets(tree, nclamp.outputs[0], tstep.inputs[1])
+
+    row = safe_node(tree, "GeometryNodeMeshLine", (-360, 0))
+    if row is not None:
+        link_sockets(tree, rcount.outputs[0], row.inputs["Count"])
+        row.inputs["Start Location"].default_value = (0.0, -0.9, 0.0)
+        toff = safe_node(tree, "ShaderNodeCombineXYZ", (-540, 120))
+        toff.inputs["X"].default_value = 0.0
+        link_sockets(tree, tstep.outputs[0], toff.inputs["Y"])
+        toff.inputs["Z"].default_value = 0.0
+        link_sockets(tree, toff.outputs["Vector"], row.inputs["Offset"])
+
+    rpos = safe_node(tree, "GeometryNodeInputPosition", (-180, 120))
+    rsep = safe_node(tree, "ShaderNodeSeparateXYZ", (0, 120))
+    link_sockets(tree, rpos.outputs["Position"], rsep.inputs["Vector"])
+
+    # arc: y = t * half_beam, z = depth * sqrt(max(0, 1 - t*t))
+    rtsq = safe_node(tree, "ShaderNodeMath", (180, 60))
+    rtsq.operation = "MULTIPLY"
+    link_sockets(tree, rsep.outputs["Y"], rtsq.inputs[0])
+    link_sockets(tree, rsep.outputs["Y"], rtsq.inputs[1])
+    rtom = safe_node(tree, "ShaderNodeMath", (360, 60))
+    rtom.operation = "SUBTRACT"
+    rtom.inputs[0].default_value = 1.0
+    link_sockets(tree, rtsq.outputs[0], rtom.inputs[1])
+    rtcl = safe_node(tree, "ShaderNodeMath", (450, 0))
+    rtcl.operation = "MAXIMUM"
+    link_sockets(tree, rtom.outputs[0], rtcl.inputs[0])
+    rtcl.inputs[1].default_value = 0.0
+    rtrt = safe_node(tree, "ShaderNodeMath", (540, 60))
+    rtrt.operation = "SQRT"
+    link_sockets(tree, rtcl.outputs[0], rtrt.inputs[0])
+    rz = safe_node(tree, "ShaderNodeMath", (540, -60))
+    rz.operation = "MULTIPLY"
+    link_sockets(tree, rtrt.outputs[0], rz.inputs[0])
+    link_sockets(tree, gin.outputs["Plate Depth"], rz.inputs[1])
+    ry = safe_node(tree, "ShaderNodeMath", (360, -120))
+    ry.operation = "MULTIPLY"
+    link_sockets(tree, rsep.outputs["Y"], ry.inputs[0])
+    link_sockets(tree, half_beam.outputs[0], ry.inputs[1])
+    rcomb = safe_node(tree, "ShaderNodeCombineXYZ", (720, 0))
+    rcomb.inputs["X"].default_value = 0.0
+    link_sockets(tree, ry.outputs[0], rcomb.inputs["Y"])
+    link_sockets(tree, rz.outputs[0], rcomb.inputs["Z"])
+    rset = safe_node(tree, "GeometryNodeSetPosition", (900, 0))
+    link_sockets(tree, rcomb.outputs["Vector"], rset.inputs["Position"])
+
+    # tag each template point with t_param for the field/collar split.
+    # MUST sit upstream of the arc deform: fields evaluate in the context
+    # of the consuming geometry, so sampling t downstream of rset would
+    # read post-deform arc Y (t*half_beam), not line t. Proof 2026-09-10.
+    tag = safe_node(tree, "GeometryNodeStoreNamedAttribute", (260, 200))
+    tag.data_type = "FLOAT"
+    tag.domain = "POINT"
+    if row is not None:
+        link_sockets(tree, row.outputs["Mesh"], tag.inputs["Geometry"])
+    tag.inputs["Name"].default_value = "t_param"
+    link_sockets(tree, rsep.outputs["Y"], tag.inputs["Value"])
+    link_sockets(tree, tag.outputs["Geometry"], rset.inputs["Geometry"])
+
+    # --- bay edge X positions: two point-lines (leading/trailing edges) ---
+    baycount = safe_node(tree, "ShaderNodeMath", (-360, 320))
+    baycount.operation = "ROUND"
+    link_sockets(tree, gin.outputs["Rivet Bays"], baycount.inputs[0])
+
+    edge_off = safe_node(tree, "ShaderNodeCombineXYZ", (-180, 320))
+    edge_off.inputs["X"].default_value = 0.951875  # measured rib spacing
+    edge_off.inputs["Y"].default_value = 0.0
+    edge_off.inputs["Z"].default_value = 0.0
+
+    def _edge_line(name, loc, at_leading):
+        line = safe_node(tree, "GeometryNodeMeshLine", loc)
+        if line is not None:
+            link_sockets(tree, baycount.outputs[0], line.inputs["Count"])
+            estart = safe_node(tree, "ShaderNodeCombineXYZ", (loc[0] - 180, loc[1] + 80))
+            # x = hull_start + inset  (leading) or + spacing - inset (trailing)
+            ex = safe_node(tree, "ShaderNodeMath", (loc[0] - 360, loc[1] + 80))
+            if at_leading:
+                ex.operation = "ADD"
+                ex.inputs[0].default_value = -3.8075
+                link_sockets(tree, gin.outputs["Edge Inset"], ex.inputs[1])
+            else:
+                ex.operation = "SUBTRACT"
+                ex.inputs[0].default_value = -3.8075 + 0.951875
+                link_sockets(tree, gin.outputs["Edge Inset"], ex.inputs[1])
+            link_sockets(tree, ex.outputs[0], estart.inputs["X"])
+            estart.inputs["Y"].default_value = 0.0
+            estart.inputs["Z"].default_value = 0.0
+            link_sockets(tree, estart.outputs["Vector"], line.inputs["Start Location"])
+            link_sockets(tree, edge_off.outputs["Vector"], line.inputs["Offset"])
+        return line
+
+    line_a = _edge_line("edge_a", (-360, 420), True)
+    line_b = _edge_line("edge_b", (-360, 560), False)
+
+    inst_a = safe_node(tree, "GeometryNodeInstanceOnPoints", (0, 420))
+    link_sockets(tree, tag.outputs["Geometry"], inst_a.inputs["Instance"])
+    if line_a is not None:
+        link_sockets(tree, line_a.outputs["Mesh"], inst_a.inputs["Points"])
+    inst_b = safe_node(tree, "GeometryNodeInstanceOnPoints", (0, 560))
+    link_sockets(tree, tag.outputs["Geometry"], inst_b.inputs["Instance"])
+    if line_b is not None:
+        link_sockets(tree, line_b.outputs["Mesh"], inst_b.inputs["Points"])
+
+    cloud = safe_node(tree, "GeometryNodeJoinGeometry", (180, 480))
+    if inst_a:
+        link_sockets(tree, inst_a.outputs["Instances"], cloud.inputs["Geometry"])
+    if inst_b:
+        link_sockets(tree, inst_b.outputs["Instances"], cloud.inputs["Geometry"])
+    cloud_real = safe_node(tree, "GeometryNodeRealizeInstances", (360, 480))
+    link_sockets(tree, cloud.outputs["Geometry"], cloud_real.inputs["Geometry"])
+
+    # --- split field (|t| <= 0.8) vs collar studs (|t| > 0.8) ---
+    named_t = safe_node(tree, "GeometryNodeInputNamedAttribute", (540, 420))
+    named_t.data_type = "FLOAT"
+    named_t.inputs["Name"].default_value = "t_param"
+    t_abs = safe_node(tree, "ShaderNodeMath", (720, 420))
+    t_abs.operation = "ABSOLUTE"
+    link_sockets(tree, named_t.outputs["Attribute"], t_abs.inputs[0])
+    is_collar = safe_node(tree, "ShaderNodeMath", (900, 420))
+    # NOTE: COMPARE means almost-equal (|a-b| <= eps) — the threshold test
+    # needs GREATER_THAN. Proof 2026-09-10 caught COMPARE selecting nothing.
+    is_collar.operation = "GREATER_THAN"
+    link_sockets(tree, t_abs.outputs[0], is_collar.inputs[0])
+    is_collar.inputs[1].default_value = 0.8
+
+    sep_field = safe_node(tree, "GeometryNodeSeparateGeometry", (1080, 420))
+    link_sockets(tree, cloud_real.outputs["Geometry"], sep_field.inputs["Geometry"])
+    link_sockets(tree, is_collar.outputs[0], sep_field.inputs["Selection"])
+
+    # --- rivet head: low-poly dome, 6x-pitch rule survives retuning ---
+    head = safe_node(tree, "GeometryNodeMeshUVSphere", (540, 120))
+    if head is not None:
+        head.inputs["Segments"].default_value = 8
+        head.inputs["Rings"].default_value = 4
+        head.inputs["Radius"].default_value = 0.5
+    head_scale = safe_node(tree, "ShaderNodeCombineXYZ", (720, 120))
+    link_sockets(tree, gin.outputs["Rivet Diameter"], head_scale.inputs["X"])
+    link_sockets(tree, gin.outputs["Rivet Diameter"], head_scale.inputs["Y"])
+    head_z = safe_node(tree, "ShaderNodeMath", (720, 40))
+    head_z.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Rivet Diameter"], head_z.inputs[0])
+    head_z.inputs[1].default_value = 0.6  # squashed dome
+    link_sockets(tree, head_z.outputs[0], head_scale.inputs["Z"])
+    head_xf = safe_node(tree, "GeometryNodeTransform", (900, 120))
+    if head is not None:
+        link_sockets(tree, head.outputs["Mesh"], head_xf.inputs["Geometry"])
+    if head_xf is not None:
+        link_sockets(tree, head_scale.outputs["Vector"], head_xf.inputs["Scale"])
+
+    collar_scale = safe_node(tree, "ShaderNodeCombineXYZ", (900, 220))
+    link_sockets(tree, gin.outputs["Rivet Diameter"], collar_scale.inputs["X"])
+    link_sockets(tree, gin.outputs["Rivet Diameter"], collar_scale.inputs["Y"])
+    collar_z = safe_node(tree, "ShaderNodeMath", (900, 160))
+    collar_z.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Rivet Diameter"], collar_z.inputs[0])
+    link_sockets(tree, gin.outputs["Collar Scale"], collar_z.inputs[1])
+    collar_z2 = safe_node(tree, "ShaderNodeMath", (1080, 160))
+    collar_z2.operation = "MULTIPLY"
+    link_sockets(tree, collar_z.outputs[0], collar_z2.inputs[0])
+    collar_z2.inputs[1].default_value = 0.6
+    link_sockets(tree, collar_z2.outputs[0], collar_scale.inputs["Z"])
+    collar_xy = safe_node(tree, "ShaderNodeMath", (720, 220))
+    collar_xy.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Rivet Diameter"], collar_xy.inputs[0])
+    link_sockets(tree, gin.outputs["Collar Scale"], collar_xy.inputs[1])
+    link_sockets(tree, collar_xy.outputs[0], collar_scale.inputs["X"])
+    link_sockets(tree, collar_xy.outputs[0], collar_scale.inputs["Y"])
+    collar_xf = safe_node(tree, "GeometryNodeTransform", (1080, 220))
+    if head is not None:
+        link_sockets(tree, head.outputs["Mesh"], collar_xf.inputs["Geometry"])
+    if collar_xf is not None:
+        link_sockets(tree, collar_scale.outputs["Vector"], collar_xf.inputs["Scale"])
+
+    # field heads at scale 1 (Inverted branch), collar studs scaled up
+    field_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (1260, 360))
+    if head_xf is not None:
+        link_sockets(tree, head_xf.outputs["Geometry"], field_inst.inputs["Instance"])
+    link_sockets(tree, sep_field.outputs["Inverted"], field_inst.inputs["Points"])
+
+    collar_inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (1260, 220))
+    if collar_xf is not None:
+        link_sockets(tree, collar_xf.outputs["Geometry"], collar_inst.inputs["Instance"])
+    link_sockets(tree, sep_field.outputs["Selection"], collar_inst.inputs["Points"])
+
+    final = safe_node(tree, "GeometryNodeJoinGeometry", (1440, 280))
+    if field_inst:
+        link_sockets(tree, field_inst.outputs["Instances"], final.inputs["Geometry"])
+    if collar_inst:
+        link_sockets(tree, collar_inst.outputs["Instances"], final.inputs["Geometry"])
+    freal = safe_node(tree, "GeometryNodeRealizeInstances", (1620, 280))
+    link_sockets(tree, final.outputs["Geometry"], freal.inputs["Geometry"])
+    link_sockets(tree, freal.outputs["Geometry"], gout.inputs["Geometry"])
+
+    return label_tree(
+        tree,
+        group_name,
+        [
+            {"title": "Row Template", "nodes": ("row", "rset", "tag"), "role": "geometry"},
+            {"title": "Bay Edges", "nodes": ("line_a", "line_b", "inst_a", "inst_b", "cloud"), "role": "geometry"},
+            {"title": "Split", "nodes": ("named_t", "is_collar", "sep_field"), "role": "geometry"},
+            {"title": "Heads", "nodes": ("head", "field_inst", "collar_inst", "freal"), "role": "output"},
+        ],
+    )
+
+
 def register():
     register_builder(
         "MEL_skiff_ribcage",
@@ -440,5 +692,12 @@ def register():
         build_skiff_plates,
         "Skiff Biomech Strake Plates",
         "Interlocking armor plates with tenons + boolean mortise notches, instanced per rib bay (MK39 design doc)",
+        "Starskiff",
+    )
+    register_builder(
+        "MEL_skiff_rivet_lattice",
+        build_skiff_rivet_lattice,
+        "Skiff Biomech Rivet Lattice",
+        "6x-pitch rivet rows on bay edges + scaled collar studs (MK39 design doc)",
         "Starskiff",
     )

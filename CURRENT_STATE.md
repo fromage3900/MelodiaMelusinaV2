@@ -267,3 +267,10 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
 - **Branch-health flag (not this lane):** this branch's `melodia_gn/__init__.py` imports
   `barrel_vault_kit`, which does not exist in the tree — normal package import dies,
   so the plates proof loads modules by path. Owner/daemon lane to resolve.
+- **2026-09-10 later — MK39 rivets done:** `MEL_skiff_rivet_lattice` in the same module
+  (6x-pitch rivet rows on bay edges + scaled collar studs via a t_param field/collar
+  split); proof `Tools/wardrobe_pipeline/proof_mk39_rivets.py` green (53 nodes,
+  3276 verts/9 bays, bays/diameter/collar dials live, receipt `Saved/Audit/`).
+  Proof caught two real defects: COMPARE is almost-equal (collar split needs
+  GREATER_THAN), and fields sample in consumer-geometry context (t_param store moved
+  upstream of the arc deform). Addon re-synced (hash-verified).
