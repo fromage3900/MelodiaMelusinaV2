@@ -80,14 +80,17 @@ def process(collection, bridge, seed=0, input_pin=INPUT_PIN, output_pin=OUTPUT_P
 
     data_list, _ = collection.get_typed_inputs_by_pin_label(input_pin, unreal.PCGPointData)
     emitted = 0
-    # initialize_metadata requires a real PCGPoint as parent; None is rejected by
-    # PCGMetadataAccessorHelpers.InitializeMetadata. A default point means "no parent entry".
-    no_parent = unreal.PCGPoint()
 
     for data in data_list:
         points = data.get_points()
         result = unreal.PCGPointData()
-        metadata = result.create_empty_metadata()
+        # Inherit the source's metadata structure and parenting. Building a bare
+        # PCGPointData and calling create_empty_metadata() produces attributes that
+        # downstream PCG cannot see: the graph logs "does not have valid point
+        # metadata" and accessors fail with "Attribute 'X' was not found".
+        result.initialize_from_data(data)
+        metadata = result.mutable_metadata()
+        src_metadata = data.const_metadata()
         metadata.create_float_attribute(ATTR_RESONANCE, 0.0, True, True)
         metadata.create_integer32_attribute(ATTR_ECOLOGY, 0, False, True)
         metadata.create_integer32_attribute(ATTR_VARIANT, 0, False, True)
@@ -103,7 +106,7 @@ def process(collection, bridge, seed=0, input_pin=INPUT_PIN, output_pin=OUTPUT_P
         for point in points:
             loc = point.transform.translation
             resonance, ecology, variant, scale_bias = derive(loc.x, loc.y, loc.z, seed, z_lo, z_hi)
-            point.initialize_metadata(metadata, no_parent)
+            point.initialize_metadata(metadata, point, src_metadata)
             # Placement influence (authoring-time only): density drives downstream
             # pruning/filtering, scale makes high-resonance instances taller.
             point.density = resonance
