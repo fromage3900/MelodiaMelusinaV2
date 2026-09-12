@@ -57,11 +57,10 @@ x_start = -((len(SILHOUETTES) - 1) * spacing) / 2
 for i, (idx, label) in enumerate(SILHOUETTES):
     x = x_start + i * spacing
     
-    # Create empty host
-    bpy.ops.object.empty_add(type="PLAIN_AXES", location=(x, 0, 0))
+    # Create mesh host (Cube) — GN modifiers produce geometry on mesh hosts, not empties
+    bpy.ops.mesh.primitive_cube_add(size=0.10, location=(x, 0, 0))
     host = bpy.context.active_object
     host.name = f"Eyewear_{label}"
-    host.scale = (0.05, 0.05, 0.05)  # ~5cm — real glasses size
     
     # Apply hero builder
     mod = host.modifiers.new("GN", "NODES")
