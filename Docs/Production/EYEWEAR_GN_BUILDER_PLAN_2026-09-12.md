@@ -305,11 +305,15 @@ boxing-system A/B map directly onto X/Y — but it is the first thing to fix.
 is **0.134 BU wide (13.4 cm)**. Dropped into a scene built in metres it will look
 microscopic. That is correct, not broken.
 
-**3. No UVs, and no lens.** Geometry-nodes output carries no UV layer (measured:
-the exported GLB has `POSITION` and `NORMAL` only), so use solid / Principled
-materials rather than image textures, or add a UV pass first. And there is no lens
-geometry yet — the aperture is a real hole, so a render shows straight through it.
-The lens is the next builder if you want it filled.
+**3. No UVs.** Geometry-nodes output carries no UV layer (measured: the exported
+GLB has `POSITION` and `NORMAL` only), so use solid / Principled materials rather
+than image textures, or add a UV pass first.
+
+The lens now exists — `MEL_eyewear_lens` fills the aperture. Add it as a second
+modifier alongside `MEL_eyewear_pair`; it is a separate builder because the lens
+wants a different material (transmission/IOR) from the frame. It is a flat plano
+solid, 2 mm thick, centred on `Z = 0`, spanning `2A + DBL` across both eyes. No
+base curve yet, so it reads flat rather than slightly domed.
 
 ## Materials
 

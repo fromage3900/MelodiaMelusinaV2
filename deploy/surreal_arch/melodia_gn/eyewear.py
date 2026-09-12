@@ -760,3 +760,158 @@ register_builder(
     "endpiece axis (X = A + DBL/2 + RimThickness). The render-ready build — every "
     "parameter is in millimetres.",
     category="eyewear")
+
+
+def build_eyewear_lens(group_name="MEL_eyewear_lens"):
+    """Both lenses: a rounded-rect solid per aperture, seated at the boxing centres.
+
+    The lens is flat (a plano blank). Real lenses carry a base curve; that is a
+    deliberate v1 omission, not an oversight — see the plan doc.
+
+    Flow is silhouette -> Fill Curve -> Extrude Mesh. Note Fill Curve takes
+    (Curve, Group ID, Mode, Fill Rule) and Extrude Mesh takes
+    (Mesh, Selection, Offset, Offset Scale, Individual) with mode on the PROPERTY.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+
+    add_float_param(tree, "Lens Width A", 54.0, 34.0, 66.0)
+    add_float_param(tree, "Lens Height B", 34.0, 24.0, 48.0)
+    add_float_param(tree, "Bridge DBL", 18.0, 12.0, 26.0)
+    add_float_param(tree, "Lens Thickness", 2.0, 0.4, 9.0)
+    add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
+    add_float_param(tree, "Path Resolution", 2.0, 0.4, 12.0)
+    add_bool_param(tree, "Flat Shading", False)
+
+    bx, by = 0, 0
+
+    a_w = _mm(tree, gin, "Lens Width A", (bx - 1400, by + 300))
+    b_h = _mm(tree, gin, "Lens Height B", (bx - 1400, by + 140))
+    thick = _mm(tree, gin, "Lens Thickness", (bx - 1400, by - 20))
+    res_mm = _mm(tree, gin, "Path Resolution", (bx - 1400, by - 180))
+    corner = _mm(tree, gin, "Corner Radius", (bx - 1400, by - 340))
+
+    quad = _cyc_profile(tree, (bx - 1180, by + 220), a_w, b_h)
+    if quad is None:
+        return (tree, gin, gout)
+
+    res = safe_node(tree, "GeometryNodeResampleCurve", (bx - 1000, by + 220))
+    if res is None:
+        return (tree, gin, gout)
+    for cand in ("Length", "LENGTH"):
+        try:
+            res.inputs["Mode"].default_value = cand
+            break
+        except Exception:
+            continue
+    link_sockets(tree, quad.outputs["Curve"], res.inputs["Curve"])
+    link_sockets(tree, res_mm, res.inputs["Length"])
+
+    flt = safe_node(tree, "GeometryNodeFilletCurve", (bx - 820, by + 220))
+    if flt is None:
+        return (tree, gin, gout)
+    for cand in ("Poly", "POLY", "Polygon"):
+        try:
+            flt.inputs["Mode"].default_value = cand
+            break
+        except Exception:
+            continue
+    link_sockets(tree, res.outputs["Curve"], flt.inputs["Curve"])
+    link_sockets(tree, corner, flt.inputs["Radius"])
+    flt.inputs["Limit Radius"].default_value = True
+
+    fill = safe_node(tree, "GeometryNodeFillCurve", (bx - 640, by + 220))
+    if fill is None:
+        return (tree, gin, gout)
+    for cand in ("N-gons", "NGONS", "Ngons", "Triangles"):
+        try:
+            fill.inputs["Mode"].default_value = cand
+            break
+        except Exception:
+            continue
+    link_sockets(tree, flt.outputs["Curve"], fill.inputs["Curve"])
+
+    ext = safe_node(tree, "GeometryNodeExtrudeMesh", (bx - 460, by + 220))
+    if ext is None:
+        return (tree, gin, gout)
+    try:
+        ext.mode = "FACES"
+    except Exception:
+        pass
+    link_sockets(tree, fill.outputs["Mesh"], ext.inputs["Mesh"])
+    # extrude along +Z by the thickness, then centre the prism on Z = 0
+    link_sockets(tree, _vec(tree, (bx - 640, by + 60), z=thick).outputs["Vector"],
+                 ext.inputs["Offset"])
+
+    half_t = _math(tree, "MULTIPLY", (bx - 460, by - 60), a=thick, b=-0.5)
+    centre = safe_node(tree, "GeometryNodeTransform", (bx - 280, by + 220))
+    if centre is None:
+        return (tree, gin, gout)
+    link_sockets(tree, ext.outputs["Mesh"], centre.inputs["Geometry"])
+    link_sockets(tree, _vec(tree, (bx - 460, by - 160), z=half_t.outputs[0]).outputs["Vector"],
+                 centre.inputs["Translation"])
+    geom = centre.outputs["Geometry"]
+
+    # Edge break: deliberately NOT applied. GeometryNodeMeshBevel is unusable
+    # on this mesh in 5.2 - a 0.3 mm offset took the 54 mm lens to 322 mm,
+    # both unrestricted and restricted to the extrude Side selection. The
+    # same defect was already measured on this project for the decor star and
+    # heart builders and the node was removed there too. A lens edge break
+    # belongs in the profile geometry, not in a bevel pass.
+    # seat at the boxing lens centre and mirror for the right eye
+    span = _math(tree, "ADD", (bx + 220, by - 160),
+                 a=a_w, b=_mm(tree, gin, "Bridge DBL", (bx + 40, by - 200)))
+    half_span = _math(tree, "MULTIPLY", (bx + 400, by - 160), a=span.outputs[0], b=0.5)
+    place = safe_node(tree, "GeometryNodeTransform", (bx + 580, by + 220))
+    if place is None:
+        return (tree, gin, gout)
+    link_sockets(tree, geom, place.inputs["Geometry"])
+    link_sockets(tree, _vec(tree, (bx + 400, by - 320), x=half_span.outputs[0]).outputs["Vector"],
+                 place.inputs["Translation"])
+    left = place.outputs["Geometry"]
+
+    mir = safe_node(tree, "GeometryNodeTransform", (bx + 740, by - 220))
+    flip = safe_node(tree, "GeometryNodeFlipFaces", (bx + 900, by - 220))
+    if mir is None or flip is None:
+        return (tree, gin, gout)
+    link_sockets(tree, left, mir.inputs["Geometry"])
+    link_sockets(tree, _vec(tree, (bx + 580, by - 420), x=-1.0, y=1.0, z=1.0).outputs["Vector"],
+                 mir.inputs["Scale"])
+    link_sockets(tree, mir.outputs["Geometry"], flip.inputs["Mesh"])
+    right = flip.outputs["Mesh"]
+
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 1060, by))
+    if join is None:
+        return (tree, gin, gout)
+    link_sockets(tree, left, join.inputs["Geometry"])
+    link_sockets(tree, right, join.inputs["Geometry"])
+
+    shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1220, by))
+    if shade is not None:
+        link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
+        smooth = safe_node(tree, "GeometryNodeSwitch", (bx + 1380, by))
+        if smooth is not None:
+            try:
+                smooth.input_type = "BOOLEAN"
+            except Exception:
+                pass
+            inv = safe_node(tree, "FunctionNodeBooleanMath", (bx + 1220, by - 200))
+            if inv is not None:
+                inv.operation = "NOT"
+                link_sockets(tree, sock(gin, "Flat Shading", outputs=True), inv.inputs[0])
+                link_sockets(tree, inv.outputs[0], smooth.inputs["False"])
+            smooth.inputs["True"].default_value = False
+            smooth.inputs["Switch"].default_value = True
+            link_sockets(tree, smooth.outputs["Output"], shade.inputs["Shade Smooth"])
+        link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+    else:
+        link_sockets(tree, join.outputs["Geometry"], gout.inputs["Geometry"])
+
+    label_tree(tree, group_name)
+    return (tree, gin, gout)
+
+
+register_builder(
+    "MEL_eyewear_lens", build_eyewear_lens, "Eyewear Lens",
+    "Both lenses as flat plano solids, centred on the boxing lens positions "
+    "(+/- (A+DBL)/2) and on Z = 0 within the rim. Flat for v1 - no base curve.",
+    category="eyewear")

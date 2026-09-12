@@ -2,7 +2,7 @@
  "meta": {
   "blender": "5.2.1 LTS",
   "monolith_count": 209,
-  "package_count": 565
+  "package_count": 566
  },
  "monolith": {
   "ARCH": {
@@ -3431,6 +3431,15 @@
    ],
    "ok": true,
    "verts": 72
+  },
+  "MEL_eyewear_lens": {
+   "bbox": [
+    0.126,
+    0.034,
+    0.002
+   ],
+   "ok": true,
+   "verts": 420
   },
   "MEL_eyewear_pair": {
    "bbox": [

@@ -75,6 +75,36 @@
    "want": 2.8,
    "tol": 0.3,
    "pass": true
+  },
+  "lens pair span (2A + DBL)": {
+   "got": 126.0,
+   "want": 126.0,
+   "tol": 1.0,
+   "pass": true
+  },
+  "lens symmetry": {
+   "got": 0.0,
+   "want": 0.0,
+   "tol": 0.5,
+   "pass": true
+  },
+  "lens height (B)": {
+   "got": 34.0,
+   "want": 34.0,
+   "tol": 1.5,
+   "pass": true
+  },
+  "lens thickness": {
+   "got": 2.0,
+   "want": 2.0,
+   "tol": 0.8,
+   "pass": true
+  },
+  "lens centred on Z=0": {
+   "got": 0.0,
+   "want": 0.0,
+   "tol": 0.3,
+   "pass": true
   }
  },
  "temple_open": {
@@ -123,6 +153,22 @@
   "z": [
    -1.4,
    1.4
+  ]
+ },
+ "lens": {
+  "verts": 420,
+  "tris": 626,
+  "x": [
+   -63.0,
+   63.0
+  ],
+  "y": [
+   -17.0,
+   17.0
+  ],
+  "z": [
+   -1.0,
+   1.0
   ]
  },
  "fails": [],
