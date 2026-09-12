@@ -1183,6 +1183,7 @@ def decode_glb_summary(path):
     if js is None or bn is None:
         raise AssertionError("gate: %s missing JSON/BIN chunks" % path)
     prims = []
+    nodes = [n.get("name") for n in js.get("nodes", [])]
     for prim in js["meshes"][0]["primitives"]:
         attrs = list(prim.get("attributes", {}).keys())
         info = {"attrs": attrs, "color0": None, "tris": 0, "verts": 0}
@@ -1208,7 +1209,7 @@ def decode_glb_summary(path):
         if ii is not None:
             info["tris"] = js["accessors"][ii]["count"] // 3
         prims.append(info)
-    return {"prims": prims, "bytes": len(data),
+    return {"prims": prims, "nodes": nodes, "bytes": len(data),
             "tris": sum(p["tris"] for p in prims)}
 
 
@@ -1221,6 +1222,29 @@ def _set_params(tree, params):
                 except Exception:
                     pass
                 break
+
+
+# Builder defaults mirrored here so anchor positions track the params.
+_PAIR_DEFAULTS = {"Lens Width A": 54.0, "Lens Height B": 34.0, "Bridge DBL": 18.0,
+                  "Rim Thickness": 4.0, "Bridge Drop": 5.0}
+
+
+def anchor_positions(params=None):
+    """ANCHOR_lens/hinge/bridge in pair space (BU), derived from boxing.
+
+    Website contract (product-motion-lab ?asset=eyewear): single empties named
+    ANCHOR_<lens|hinge|bridge>. +X side throughout (our L). Lens = left lens
+    centre, hinge = left endpiece axis, bridge = bridge midpoint.
+    """
+    p = dict(_PAIR_DEFAULTS)
+    p.update(params or {})
+    a, dbl = p["Lens Width A"], p["Bridge DBL"]
+    eye_x = (a + dbl) / 2.0 / 1000.0
+    end_x = (a + dbl / 2.0 + p["Rim Thickness"]) / 1000.0
+    bridge_y = (p["Lens Height B"] / 2.0 - p["Bridge Drop"]) / 1000.0
+    return {"lens": (eye_x, 0.0, 0.0),
+            "hinge": (end_x, 0.0, 0.0),
+            "bridge": (0.0, bridge_y, 0.0)}
 
 
 def melodia_eyewear_export_gate(outdir, parts=("Frame", "TempleL", "TempleR",
@@ -1266,12 +1290,29 @@ def melodia_eyewear_export_gate(outdir, parts=("Frame", "TempleL", "TempleR",
             bpy.ops.object.select_all(action="DESELECT")
             ob.select_set(True)
             bpy.context.view_layer.objects.active = ob
+            extras = []
+            if part == "Geometry":
+                # Website anchor contract: ANCHOR_lens/hinge/bridge empties in
+                # pair space ride along in the assembled export only; part
+                # files stay pure single-part geometry.
+                for key, loc in anchor_positions(params).items():
+                    try:
+                        em = bpy.data.objects.new("ANCHOR_" + key, None)
+                        em.empty_display_type = "PLAIN_AXES"
+                        em.location = loc
+                        bpy.context.scene.collection.objects.link(em)
+                        em.select_set(True)
+                        extras.append(em)
+                    except Exception:
+                        pass
             path = os.path.join(outdir, "MEL_eyewear_%s.glb" % part)
             bpy.ops.export_scene.gltf(
                 filepath=path, use_selection=True, export_format="GLB",
                 export_apply=True, export_texcoords=True, export_normals=True)
             try:
                 bpy.data.objects.remove(ob, do_unlink=True)
+                for em in extras:
+                    bpy.data.objects.remove(em, do_unlink=True)
             except Exception:
                 pass
             summary = decode_glb_summary(path)
@@ -1291,6 +1332,12 @@ def melodia_eyewear_export_gate(outdir, parts=("Frame", "TempleL", "TempleR",
                 col = prim["color0"]
                 if col is None or col["count"] < 100:
                     problems.append("%s prim %d: no usable COLOR_0" % (part, pi))
+            if part == "Geometry":
+                missing = [a for a in ("ANCHOR_lens", "ANCHOR_hinge", "ANCHOR_bridge")
+                           if a not in summary["nodes"]]
+                if missing:
+                    problems.append("%s: missing website anchors %s (nodes=%s)"
+                                    % (part, missing, summary["nodes"]))
         except AssertionError:
             raise
         except Exception as exc:
@@ -1303,6 +1350,99 @@ def melodia_eyewear_export_gate(outdir, parts=("Frame", "TempleL", "TempleR",
     if problems:
         raise AssertionError("gate FAIL:\n  - " + "\n  - ".join(problems))
     return report
+
+
+def melodia_eyewear_hero_export(outdir, hero_tag="hero", params=None,
+                                tri_budget=150000, byte_budget=3 * 1024 * 1024):
+    """Website hero: all five parts as separate NODES in one scene + anchors.
+
+    The accessory-viewer classifies meshes by node-name token (/lens|glass/
+    -> lens, /metal|hinge|.../ -> metal, else frame), so part files alone are
+    not enough: it loads ONE GLB. Objects are named MEL_eyewear_<part> so the
+    roles resolve (LensL/R -> lens; Frame/TempleL/R -> frame; hinge prims ride
+    inside Frame with the metal slot). Anchors ANCHOR_lens/hinge/bridge in
+    pair space satisfy the product-motion-lab contract too.
+    Returns the report row; raises AssertionError on any failure.
+    """
+    res = GROUP_BUILDERS["MEL_eyewear_pair"]()
+    pair_tree = res[0] if isinstance(res, (tuple, list)) else res
+    _set_params(pair_tree, params)
+    try:
+        os.makedirs(outdir, exist_ok=True)
+    except Exception as exc:
+        raise AssertionError("hero: cannot create %s (%s)" % (outdir, exc))
+    problems, obs = [], []
+    try:
+        bpy.ops.object.select_all(action="DESELECT")
+        for part in ("Frame", "TempleL", "TempleR", "LensL", "LensR"):
+            wrap = bpy.data.node_groups.new("__hero__", "GeometryNodeTree")
+            try:
+                wgi = wrap.nodes.new("NodeGroupInput")
+                wgo = wrap.nodes.new("NodeGroupOutput")
+                wrap.interface.new_socket(name="Geometry", in_out="INPUT",
+                                          socket_type="NodeSocketGeometry")
+                wrap.interface.new_socket(name="Geometry", in_out="OUTPUT",
+                                          socket_type="NodeSocketGeometry")
+                gn = wrap.nodes.new("GeometryNodeGroup")
+                gn.node_tree = pair_tree
+                wrap.links.new(wgi.outputs["Geometry"], gn.inputs["Geometry"])
+                wrap.links.new(gn.outputs[part], wgo.inputs["Geometry"])
+                me = bpy.data.meshes.new("__hero__")
+                ob = bpy.data.objects.new("MEL_eyewear_" + part, me)
+                bpy.context.scene.collection.objects.link(ob)
+                ob.modifiers.new("m", "NODES").node_group = wrap
+                ob.select_set(True)
+                obs.append((ob, wrap))
+            except Exception as exc:
+                problems.append("%s: scene build %s: %s" % (part, type(exc).__name__, exc))
+        for key, loc in anchor_positions(params).items():
+            try:
+                em = bpy.data.objects.new("ANCHOR_" + key, None)
+                em.empty_display_type = "PLAIN_AXES"
+                em.location = loc
+                bpy.context.scene.collection.objects.link(em)
+                em.select_set(True)
+                obs.append((em, None))
+            except Exception:
+                pass
+        bpy.context.view_layer.update()
+        path = os.path.join(outdir, "MEL_eyewear_%s.glb" % hero_tag)
+        bpy.ops.export_scene.gltf(
+            filepath=path, use_selection=True, export_format="GLB",
+            export_apply=True, export_texcoords=True, export_normals=True)
+        summary = decode_glb_summary(path)
+        want_nodes = {"MEL_eyewear_Frame", "MEL_eyewear_TempleL", "MEL_eyewear_TempleR",
+                      "MEL_eyewear_LensL", "MEL_eyewear_LensR",
+                      "ANCHOR_lens", "ANCHOR_hinge", "ANCHOR_bridge"}
+        missing = sorted(want_nodes - set(summary["nodes"]))
+        if missing:
+            problems.append("hero: missing nodes %s (got %s)" % (missing, summary["nodes"]))
+        for pi, prim in enumerate(summary["prims"]):
+            if "TEXCOORD_0" not in prim["attrs"] or prim["color0"] is None:
+                problems.append("hero prim %d: missing TEXCOORD_0/COLOR_0 (%s)"
+                                % (pi, prim["attrs"]))
+        row = {"file": path, "bytes": summary["bytes"], "tris": summary["tris"],
+               "nodes": summary["nodes"]}
+        if summary["bytes"] < 1024:
+            problems.append("hero: %d bytes (empty-export trap)" % summary["bytes"])
+        if summary["tris"] > tri_budget:
+            problems.append("hero: %d tris over budget" % summary["tris"])
+        if summary["bytes"] > byte_budget:
+            problems.append("hero: %d bytes over budget" % summary["bytes"])
+    finally:
+        for ob, wrap in obs:
+            try:
+                bpy.data.objects.remove(ob, do_unlink=True)
+            except Exception:
+                pass
+            if wrap is not None:
+                try:
+                    bpy.data.node_groups.remove(wrap)
+                except Exception:
+                    pass
+    if problems:
+        raise AssertionError("hero FAIL:\n  - " + "\n  - ".join(problems))
+    return row
 
 
 def _apply_material(tree, geom, material, loc):

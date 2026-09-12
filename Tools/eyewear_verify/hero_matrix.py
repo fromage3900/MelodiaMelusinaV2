@@ -43,10 +43,13 @@ for tag, params in HEROES:
     try:
         rep = EW.melodia_eyewear_export_gate(d, parts=PARTS, params=params)
         rep2 = EW.melodia_eyewear_export_gate(d, parts=("Geometry",), params=params)
+        hero = EW.melodia_eyewear_hero_export(d, hero_tag="hero", params=params)
         files = {}
         for k, v in list(rep.items()) + list(rep2.items()):
             files[k] = {"file": os.path.basename(v["file"]), "bytes": v["bytes"],
                         "tris": v["tris"], "prims": v["prims"]}
+        files["hero"] = {"file": os.path.basename(hero["file"]), "bytes": hero["bytes"],
+                         "tris": hero["tris"], "nodes": hero["nodes"]}
         manifest["heroes"][tag] = {
             "params": {k: (list(v) if isinstance(v, tuple) else v) for k, v in params.items()},
             "files": files,

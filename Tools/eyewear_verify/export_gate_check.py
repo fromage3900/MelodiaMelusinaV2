@@ -125,6 +125,20 @@ except AssertionError as exc:
     chk("gate-flat", False, str(exc)[:300])
 
 try:
+    hero_params = {"Silhouette": 0, "Tortoise": 1.0, "Base Curve": 6.0,
+                   "Form Angle": 4.4, "Metal Frame": False}
+    hero = EW.melodia_eyewear_hero_export(os.path.join(RUN_OUT, "hero"),
+                                          hero_tag="hero", params=hero_params)
+    want = {"MEL_eyewear_Frame", "MEL_eyewear_TempleL", "MEL_eyewear_TempleR",
+            "MEL_eyewear_LensL", "MEL_eyewear_LensR",
+            "ANCHOR_lens", "ANCHOR_hinge", "ANCHOR_bridge"}
+    chk("hero-nodes", want <= set(hero["nodes"]), "%s" % hero["nodes"])
+    chk("hero-budgets", hero["tris"] < 150000 and hero["bytes"] < 3 * 1024 * 1024,
+        "tris=%d bytes=%d" % (hero["tris"], hero["bytes"]))
+except AssertionError as exc:
+    chk("hero-combined", False, str(exc)[:300])
+
+try:
     rep = EW.melodia_eyewear_export_gate(
         os.path.join(RUN_OUT, "editorial"),
         params={"Tortoise": 1.0, "Base Curve": 6.0, "Form Angle": 4.4,
