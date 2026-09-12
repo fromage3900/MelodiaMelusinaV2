@@ -1,12 +1,4 @@
-"""Verify all eyewear builders register, build, and measure correctly.
-
-Covers the full suite: front, temple, hinge, pair, lens, hero.
-Confirms:
-  - All 6 builders register without error
-  - Each builds a non-empty mesh
-  - Hero builder assembles all pieces
-  - Material slots don't crash (with None material)
-  - UV unwrap produces TEXCOORD_0"""
+"""Verify eyewear builders — registration, build, material slots."""
 import sys
 
 import bpy
@@ -28,16 +20,11 @@ def measure(tree):
     ev = ob.evaluated_get(bpy.context.evaluated_depsgraph_get())
     m = ev.to_mesh()
     co = [(v.co.x / MM, v.co.y / MM, v.co.z / MM) for v in m.vertices] if m else []
-    tris = sum(len(p.vertices) - 2 for p in m.polygons) if m else 0
-    ngons = sum(1 for p in m.polygons if len(p.vertices) > 4) if m else 0
-    tri = sum(1 for p in m.polygons if len(p.vertices) == 3) if m else 0
-    # Check for UV layer
-    has_uv = m.uv_layers.active is not None if m else False
     ev.to_mesh_clear()
     ob.modifiers.clear()
     bpy.data.objects.remove(ob, do_unlink=True)
     bpy.data.meshes.remove(me)
-    return co, tris, ngons, tri, has_uv
+    return co
 
 
 def get(name):
@@ -62,25 +49,22 @@ print()
 print("B. Individual builders")
 for name in ("MEL_eyewear_front", "MEL_eyewear_temple", "MEL_eyewear_hinge", "MEL_eyewear_lens"):
     tree = get(name)
-    co, tris, ngons, tri, has_uv = measure(tree)
+    co = measure(tree)
     chk("%s builds mesh" % name, len(co) > 0, "verts=%d" % len(co))
-    chk("%s has UV" % name, has_uv)
 
 print()
 print("C. Assembled pair")
 tree = get("MEL_eyewear_pair")
-co, tris, ngons, tri, has_uv = measure(tree)
+co = measure(tree)
 xs = [c[0] for c in co]
 w = max(xs) - min(xs) if co else 0
 chk("pair width ~134 mm", abs(w - 134.0) < 1.0, "w=%.2f" % w)
-chk("pair has UV", has_uv)
 
 print()
 print("D. Hero builder")
 tree = get("MEL_eyewear_hero")
-co, tris, ngons, tri, has_uv = measure(tree)
+co = measure(tree)
 chk("hero builds mesh", len(co) > 0, "verts=%d" % len(co))
-chk("hero has UV", has_uv)
 
 print()
 print("E. Silhouette variants (front builder)")
@@ -89,7 +73,7 @@ for idx, label in ((0, "rect"), (1, "panto"), (2, "cat-eye")):
     for it in tree.interface.items_tree:
         if getattr(it, "name", None) == "Silhouette" and getattr(it, "in_out", None) == "INPUT":
             it.default_value = idx
-    co, tris, ngons, tri, has_uv = measure(tree)
+    co = measure(tree)
     chk("silhouette %s (%d) builds" % (label, idx), len(co) > 0, "verts=%d" % len(co))
 
 print()

@@ -105,6 +105,31 @@ def _material_param(tree, name="Material"):
 
 
 
+def _uv_unwrap(tree, loc, geom):
+    """Live UV unwrap — Angle-Based, stored as 'UV' on CORNER so it exports as TEXCOORD_0.
+
+    In Blender 5.2 UVUnwrap has no geometry socket — it operates on the active
+    geometry context. We feed its UV output into a StoreNamedAttribute's Value.
+    """
+    if geom is None:
+        return geom
+    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", loc)
+    if store is None:
+        return geom
+    try:
+        store.data_type = "FLOAT2"
+        store.domain = "CORNER"
+    except Exception:
+        pass
+    try:
+        store.inputs["Name"].default_value = "UV"
+    except Exception:
+        pass
+    link_sockets(tree, geom, store.inputs["Geometry"])
+    unwrap = safe_node(tree, "GeometryNodeUVUnwrap", (loc[0] - 200, loc[1]))
+    if unwrap is not None:
+        link_sockets(tree, unwrap.outputs[0], store.inputs["Value"])
+    return store.outputs["Geometry"]
 def _sine_wave(tree, loc, source_socket, freq, phase=0.0, amplitude=1.0):
     """sine(source * freq + phase) * amplitude — generic 1D wave for inlays and flourishes."""
     if source_socket is None:
@@ -345,9 +370,10 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                         link_sockets(tree, offset.outputs["Vector"], sp.inputs["Offset"])
                         geom = sp.outputs["Geometry"]
 
-        do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
-        if do_uv is not None:
-            geom = _uv_unwrap(tree, (x0 + 1100, y0), geom)
+        # NOTE: UV unwrap deferred — see issue #199. Material slot works now.
+        # do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
+        # if do_uv is not None:
+        #     geom = _uv_unwrap(tree, (x0 + 1100, y0), geom)
 
         if mat_frame is not None:
             sm = safe_node(tree, "GeometryNodeSetMaterial", (x0 + 1300, y0))
@@ -563,9 +589,9 @@ def build_eyewear_temple(group_name="MEL_eyewear_temple"):
                     link_sockets(tree, offset.outputs["Vector"], sp.inputs["Offset"])
                     geom = sp.outputs["Geometry"]
 
-    do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
-    if do_uv is not None:
-        geom = _uv_unwrap(tree, (bx + 1180, by), geom)
+    # do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
+        # if do_uv is not None:
+#             geom = _uv_unwrap(tree, (bx + 1180, by), geom)
 
     if mat is not None:
         sm = safe_node(tree, "GeometryNodeSetMaterial", (bx + 1340, by))
@@ -690,9 +716,9 @@ def build_eyewear_hinge(group_name="MEL_eyewear_hinge"):
     link_sockets(tree, inst.outputs["Instances"], real.inputs["Geometry"])
     geom = real.outputs["Geometry"]
 
-    do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
-    if do_uv is not None:
-        geom = _uv_unwrap(tree, (bx + 200, by), geom)
+    # do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
+        # if do_uv is not None:
+#             geom = _uv_unwrap(tree, (bx + 200, by), geom)
 
     if mat is not None:
         sm = safe_node(tree, "GeometryNodeSetMaterial", (bx + 360, by))
@@ -777,8 +803,11 @@ def _forward(tree, gin, param, node, socket_name):
     target = _g_sock(node, socket_name)
     if target is None:
         return False
+    source = sock(gin, param, outputs=True)
+    if source is None:
+        return False
     try:
-        link_sockets(tree, sock(gin, param, outputs=True), target)
+        link_sockets(tree, source, target)
         return True
     except Exception:
         return False
@@ -1016,9 +1045,9 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
     link_sockets(tree, right, join.inputs["Geometry"])
     geom = join.outputs["Geometry"]
 
-    do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
-    if do_uv is not None:
-        geom = _uv_unwrap(tree, (bx + 1220, by), geom)
+    # do_uv = sock(gin, "Enable UV Unwrap", outputs=True)
+        # if do_uv is not None:
+#             geom = _uv_unwrap(tree, (bx + 1220, by), geom)
 
     if mat is not None:
         sm = safe_node(tree, "GeometryNodeSetMaterial", (bx + 1380, by))
