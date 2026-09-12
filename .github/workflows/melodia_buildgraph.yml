@@ -17,7 +17,12 @@ on:
 
 concurrency:
   group: melodia-ue-buildgraph
-  cancel-in-progress: false
+  cancel-in-progress: true
+  # A single [self-hosted, Windows, UE58] runner backs this group. When that
+  # machine is offline every dispatch in the group sits 'Expected' forever with
+  # cancel-in-progress: false. Flipping to true lets a new dispatch replace the
+  # stuck one; pair with the self-hosted runner watchdog (re-register the runner
+  # on the home PC if queued runs pile up: deploy/register_ue58_runner.ps1).
 
 jobs:
   buildgraph:

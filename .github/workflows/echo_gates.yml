@@ -118,6 +118,11 @@ jobs:
   live_gates:
     name: Editor-backed gates (manual)
     if: ${{ github.event_name == 'workflow_dispatch' }}
+    # Manual only: left off the self-hosted label for PR-driven runs specifically
+    # so a PR cannot queue forever behind the offline UE machine. The UE-backed
+    # sweep still needs the same [self-hosted, Windows, UE58] runner as the
+    # BuildGraph / unreal-build / aws-publish jobs — see their concurrency
+    # comments for the runner watchdog (deploy/register_ue58_runner.ps1).
     runs-on: [self-hosted, Windows, UE58]
     timeout-minutes: 20
 

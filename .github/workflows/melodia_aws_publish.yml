@@ -37,6 +37,12 @@ permissions:
 concurrency:
   group: melodia-aws-artifact-publish
   cancel-in-progress: false
+  # A single [self-hosted, Windows, UE58] runner backs this group alongside the
+  # BuildGraph group. cancel-in-progress is intentionally left false here so an
+  # in-flight publish on a real home-PC UE runner is not evicted by a stray
+  # re-dispatch — but the trade-off is that a dead runner leaves this group
+  # queued forever. See melodia_buildgraph.yml's concurrency comment for the
+  # runner watchdog (deploy/register_ue58_runner.ps1).
 
 jobs:
   publish:

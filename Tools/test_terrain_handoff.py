@@ -230,6 +230,8 @@ def main() -> int:
     test_emit_roundtrip(gaea_files[0] if gaea_files else None)
     test_cli(audio_files[0] if audio_files else None)
 
+    print("===" + str(CHECKS - len(FAILURES)) + "/" + str(CHECKS) + " passed ===")
+
     print("%d checks run, %d passed, %d failed" % (CHECKS, CHECKS - len(FAILURES),
                                                    len(FAILURES)))
     for message in FAILURES:
