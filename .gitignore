@@ -388,3 +388,12 @@ Plugins/HoudiniEngine/Content/
 # Third-party Blender node libraries (licensed; local-only per RawArt/BlenderLibraries/README.md)
 RawArt/BlenderLibraries/*
 !RawArt/BlenderLibraries/README.md
+
+# MIDI-to-voxel Resonant World generator (2026-09-11): sources only.
+# Referenced by Content/Python/resonant_world_phrase_bridge.py,
+# melusina_offline_world_bundle.py and Tools/BlenderAddons/melodia_studio/core/field.py,
+# but previously untracked and present on exactly one disk. Generated .obj
+# chunks and __pycache__ stay ignored.
+!Tools/midi_to_voxel/
+Tools/midi_to_voxel/*
+!Tools/midi_to_voxel/*.py

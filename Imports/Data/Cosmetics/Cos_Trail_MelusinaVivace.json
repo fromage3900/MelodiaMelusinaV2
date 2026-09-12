@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Trail_MelusinaVivace",
+  "display_name": "Melusina's Swift Embrace",
+  "slot": "trail",
+  "rarity": "Common",
+  "element_mood": "Gale",
+  "content_pack_id": "Pack_MoonlitSonata",
+  "token_cost": {
+    "heart": 3,
+    "swirl": 0
+  },
+  "palette": [
+    "#B5B5D7",
+    "#778899",
+    "#556B2F"
+  ],
+  "flavor": "Tailored for the dancer of the moonlight, she glides with a light, ethereal grace.",
+  "material_notes": "Iridescence, gilded filigree",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

@@ -5,6 +5,14 @@
 This file is the fast-finding index for `Docs/Research`. The Emerging 3D Toolchain doc is the
 single source of truth for tool adoption decisions (CORE / TEST NOW / OPTIONAL / WATCH / RESEARCH ONLY).
 
+## Current TEST NOW addendum — procedural worldbuilding (2026-09-11)
+
+| Doc | What it is |
+| --- | --- |
+| **[UE58_PROCEDURAL_WORLDBUILDING_TEST_NOW_2026-09-11.md](UE58_PROCEDURAL_WORLDBUILDING_TEST_NOW_2026-09-11.md)** | **Active practical R&D addendum** — UE 5.8 PCG Python interop, Houdini → PCG semantic attributes, GPU PCG sandbox, and Resonance Ecology v0 evidence plan. Does not replace the world-building source of truth. |
+
+**Current execution order:** PCG Python Data Processor → Houdini semantic point handoff → shared resonance field driving PCG + materials → GPU PCG only if useful. The only required proof for this cycle is **Resonance Ecology v0**; avoid opening another generalized framework.
+
 ## Emerging 3D toolchain set (2026-08-30/31)
 
 | Doc | What it is |

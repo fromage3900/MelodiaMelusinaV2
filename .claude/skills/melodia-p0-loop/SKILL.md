@@ -13,8 +13,8 @@ lists the traps that have cost the most time; read it before touching any graph.
 
 This project runs under `_AGENT_WORKING_AGREEMENT.md` — do the job asked, ship it, stop. This
 skill is a *procedure* for doing that safely on Blueprint work, not a license to expand scope.
-Do not edit `README.md`, `_TASK_QUEUE.md`, `_SESSION_HANDOFF.md`, `Docs/P0_TASK_LEDGER.json`, or
-`Docs/Handoffs/**` unless the task explicitly is one of those. Never modify `.uasset`/`.umap` files
+Do not edit `README.md` or `CURRENT_STATE.md` unless the task explicitly is one of those, and do not
+create handoff, plan, or session-note files — status goes in `CURRENT_STATE.md`. Never modify `.uasset`/`.umap` files
 directly on disk, never run raw git commands as a side effect of this loop, and never touch
 `Config/` or `Content/Materials/` without asking first.
 
