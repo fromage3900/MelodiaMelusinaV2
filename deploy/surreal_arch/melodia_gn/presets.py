@@ -113,6 +113,24 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "WIDE_SALON": {"Center Width": 6.6, "Center Depth": 5.2, "Side Width": 3.9, "Side Depth": 3.5, "Side Spread": 4.8, "Rear Width": 4.6, "Rear Depth": 3.4, "Rear Offset": 4.0, "Porch Width": 6.0, "Porch Depth": 2.6, "Porch Offset": 4.8, "Tower Radius": 1.3, "Tower X": 5.7, "Tower Y": 1.8, "Foundation Height": 0.38, "Bevel": 0.07},
         },
     },
+    "MEL_mh_roof_ribbon": {
+        "label": "MH Roof Ribbon",
+        "preset_labels": {
+            "MAIN_WHALE_BACK": "Main Whale-back",
+            "WING_ROOF": "Wing Roof",
+            "PORCH_ROOF": "Porch Roof",
+        },
+        "preset_descriptions": {
+            "MAIN_WHALE_BACK": "Broad main whale-back roof, roof-rise heavy, curled eaves.",
+            "WING_ROOF": "Narrow lower wing roof with light lift for offsets.",
+            "PORCH_ROOF": "Wide, shallow porch roof hugging the arrival slab.",
+        },
+        "presets": {
+            "MAIN_WHALE_BACK": {"Roof Width": 12.0, "Roof Depth": 5.0, "Roof Rise": 2.55, "Eave Curl": 0.45, "End Lift": 0.65, "Thickness": 0.12, "Asymmetry": 0.25, "Preview Density": 48},
+            "WING_ROOF": {"Roof Width": 4.0, "Roof Depth": 3.0, "Roof Rise": 1.7, "Eave Curl": 0.3, "End Lift": 0.35, "Thickness": 0.08, "Asymmetry": 0.35, "Preview Density": 24},
+            "PORCH_ROOF": {"Roof Width": 5.2, "Roof Depth": 2.0, "Roof Rise": 1.1, "Eave Curl": 0.5, "End Lift": 0.6, "Thickness": 0.1, "Asymmetry": 0.1, "Preview Density": 16},
+        },
+    },
     "MEL_audio_spectrum_terrain": {
         "label": "Audio Spectrum Terrain",
         "preset_labels": {

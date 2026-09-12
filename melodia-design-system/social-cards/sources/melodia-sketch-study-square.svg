@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<title>Shape Notes</title>
+<defs>
+  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F7F4EF"/>
+    <stop offset=".62" stop-color="#FCFBF8"/>
+    <stop offset="1" stop-color="#EFEAE1"/>
+  </linearGradient>
+  <linearGradient id="iridescentShader" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F5E8EA" stop-opacity=".0"/>
+    <stop offset=".28" stop-color="#E7C9CE" stop-opacity=".32"/>
+    <stop offset=".54" stop-color="#A99AD0" stop-opacity=".28"/>
+    <stop offset=".78" stop-color="#8AA9D6" stop-opacity=".24"/>
+    <stop offset="1" stop-color="#DDC79B" stop-opacity=".16"/>
+  </linearGradient>
+</defs>
+<g id="Background">
+  <rect width="1080" height="1080" fill="url(#background)"/>
+  <ellipse cx="842.4" cy="140.4" rx="367.20000000000005" ry="237.6" fill="#6E5AA6" opacity=".08"/>
+  <rect id="IridescentShaderOverlay/FigmaEditable" width="1080" height="1080" fill="url(#iridescentShader)" opacity=".58"/>
+</g>
+<g id="Motifs/ConstellationField" opacity=".3">
+<circle cx="330" cy="88" r="2" fill="#C9A86A"/>
+<circle cx="564" cy="92" r="1.4" fill="#C9A86A"/>
+<circle cx="760" cy="78" r="1.4" fill="#C9A86A"/>
+<circle cx="824" cy="190" r="2.2" fill="#C9A86A"/>
+<circle cx="452" cy="156" r="1.4" fill="#C9A86A"/>
+<circle cx="688" cy="340" r="2.4" fill="#C9A86A"/>
+<circle cx="842" cy="372" r="1.3" fill="#C9A86A"/>
+<circle cx="910" cy="448" r="2.5" fill="#C9A86A"/>
+<circle cx="196" cy="752" r="1.4" fill="#C9A86A"/>
+<circle cx="422" cy="754" r="2.4" fill="#C9A86A"/>
+<circle cx="705" cy="753" r="2.4" fill="#C9A86A"/>
+<circle cx="944" cy="773" r="1.3" fill="#C9A86A"/>
+<polygon points="462,140 465.52,152.48 478,156 465.52,159.52 462,172 458.48,159.52 446,156 458.48,152.48" fill="#DDC79B" opacity=".82"/>
+<polygon points="540,838 543.52,850.48 556,854 543.52,857.52 540,870 536.48,857.52 524,854 536.48,850.48" fill="#DDC79B" opacity=".72"/>
+</g>
+<g id="FrameAndFiligree">
+  <rect x="44" y="44" width="992" height="992" fill="none" stroke="#C9A86A" stroke-opacity=".55"/>
+  <path d="M44 130V44h86 M950 44h86v86 M44 950v86h86 M950 1036h86v-86" fill="none" stroke="#C9A86A" stroke-width="3"/>
+</g>
+<g id="Brand">
+  <polygon points="78,58 81.96,72.04 96,76 81.96,79.96 78,94 74.04,79.96 60,76 74.04,72.04" fill="#C9A86A" opacity=".9"/>
+  <text x="104" y="83" fill="#241B2E" font-family="Cinzel, Georgia, serif" font-size="21" letter-spacing="3">MELODIA</text>
+</g>
+<g id="Text/EditMe">
+  <text x="64" y="154" fill="#A7884E" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5">SKETCH STUDY</text>
+  <text x="64" y="264" fill="#241B2E" font-family="Fraunces, Georgia, serif" font-size="74">Shape Notes</text>
+  <text x="64" y="320" fill="#A7884E" font-family="Fraunces, Georgia, serif" font-size="34">gesture, rhythm, motif exploration</text>
+</g>
+
+<g id="ArtworkSlot/ReplaceMe">
+  <rect x="64" y="529" width="952" height="324" fill="#FFFFFF" fill-opacity=".84" stroke="#C9A86A" stroke-width="2"/>
+  <pattern id="diagonal-melodia-sketch-study-square" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="24" stroke="#C9A86A" stroke-opacity=".38" stroke-width="1"/>
+  </pattern>
+  <rect x="64" y="529" width="952" height="324" fill="url(#diagonal-melodia-sketch-study-square)" opacity=".7"/>
+  <text x="540.0" y="691.0" text-anchor="middle" fill="#5A6170" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="1.3">DROP SKETCH SCAN HERE</text>
+</g>
+<g id="Metadata/Tags">
+<g id="Tag/Sketch"><rect x="64" y="970" width="88" height="30" fill="#FFFFFF" stroke="#C9A86A" stroke-opacity=".62"/>
+<text x="81" y="990" fill="#241B2E" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.1">SKETCH</text></g>
+<g id="Tag/Ideation"><rect x="162" y="970" width="106" height="30" fill="#FFFFFF" stroke="#C9A86A" stroke-opacity=".62"/>
+<text x="179" y="990" fill="#241B2E" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.1">IDEATION</text></g>
+<g id="Tag/Linework"><rect x="278" y="970" width="106" height="30" fill="#FFFFFF" stroke="#C9A86A" stroke-opacity=".62"/>
+<text x="295" y="990" fill="#241B2E" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.1">LINEWORK</text></g>
+</g>
+<g id="Metadata/Footer">
+  <text x="1016" y="994" fill="#5A6170" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.4" text-anchor="end">IVORY EDITORIAL</text>
+</g>
+</svg>

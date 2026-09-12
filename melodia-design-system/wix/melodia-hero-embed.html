@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  MELODIA · Hero Banner (Constellation, Astral Night) — Wix HTML embed
+  HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
+  Stretch the box full-width; set height ~ 420–520px. It is fluid/responsive.
+  Edit DATA below or override via URL query: ?title=...&kicker=...&sub=...&theme=dark|nebula|ivory
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@500&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  .hero{position:relative;width:100%;min-height:100%;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:6vw 7vw;font-family:'IBM Plex Mono',monospace;isolation:isolate}
+  .hero-layer{position:absolute;inset:-8%;pointer-events:none;will-change:transform}
+  .content{position:relative;z-index:4;will-change:transform}
+  .mark{position:absolute;top:5%;left:7vw;display:flex;align-items:center;gap:12px}
+  .wordmark{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.32em;font-size:18px}
+  .kick{letter-spacing:.28em;text-transform:uppercase;font-size:clamp(10px,1.1vw,13px)}
+  .title{font-family:'Fraunces',serif;font-weight:500;line-height:.98;letter-spacing:-.01em;font-size:clamp(40px,7vw,92px);margin-top:1.2vh}
+  .sub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,2vw,24px);margin-top:1.4vh}
+  .star{position:absolute;background:#fff;border-radius:50%}
+  .gstar{position:absolute}
+  .gstar svg{filter:drop-shadow(0 0 6px rgba(201,168,106,.7))}
+  svg.constel{position:absolute;right:5vw;top:12%;width:min(42vw,520px);height:auto;opacity:.9}
+  .burst{filter:drop-shadow(0 0 8px rgba(201,168,106,.65))}
+  @keyframes drift{from{transform:translate3d(-1.2%,.6%,0)}to{transform:translate3d(1.2%,-.6%,0)}}
+  @keyframes twinkle{0%,100%{opacity:.35;transform:scale(.92)}50%{opacity:.9;transform:scale(1.08)}}
+  @media (prefers-reduced-motion:no-preference){
+    .layer-stars{animation:drift 18s ease-in-out infinite alternate}
+    .layer-constel{animation:drift 26s ease-in-out infinite alternate-reverse}
+    .star,.gstar{animation:twinkle 4.8s ease-in-out infinite}
+  }
+</style>
+</head>
+<body>
+<div class="hero" id="hero"></div>
+<script>
+var DATA = {
+  theme: "dark",                 // "dark" | "nebula" | "ivory"
+  kicker: "3D Environment & Technical Art",
+  title: "Melodia",
+  sub: "environment art, mapped to the stars"
+};
+var q=new URLSearchParams(location.search);
+["theme","kicker","title","sub"].forEach(function(k){ if(q.get(k)) DATA[k]=q.get(k); });
+
+function burst(size,color){var pts=[],cx=size/2,cy=size/2,o=size/2,inr=o*0.4;for(var i=0;i<16;i++){var r=i%2===0?o:inr;var a=-Math.PI/2+i*Math.PI/8;pts.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1));}return '<svg class="burst" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'"><polygon points="'+pts.join(' ')+'" fill="'+color+'"/></svg>';}
+function fourstar(s,c){var h=s/2,t=s*0.16;var d="M "+h+" 0 L "+(h+t)+" "+(h-t)+" L "+s+" "+h+" L "+(h+t)+" "+(h+t)+" L "+h+" "+s+" L "+(h-t)+" "+(h+t)+" L 0 "+h+" L "+(h-t)+" "+(h-t)+" Z";return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 '+s+' '+s+'"><path d="'+d+'" fill="'+c+'"/></svg>';}
+function rng(s){return function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff;};}
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+var T = {
+  dark:  {bg:"radial-gradient(120% 120% at 20% 0%, #1b2444 0%, #141A30 60%, #0f1426 100%)", word:"#ECEAF4", kick:"#DDC79B", title:"#ECEAF4", sub:"#DDC79B", stars:true, constel:true, nebula:false},
+  nebula:{bg:"#141A30", word:"#ECEAF4", kick:"#A99AD0", title:"#ECEAF4", sub:"#A99AD0", stars:true, constel:false, nebula:true},
+  ivory: {bg:"linear-gradient(180deg,#FCFBF8,#F7F4EF)", word:"#241B2E", kick:"#5A6170", title:"#241B2E", sub:"#A7884E", stars:false, constel:false, nebula:false}
+};
+function render(){
+  var t = T[DATA.theme]||T.dark;
+  var h=document.getElementById("hero");
+  h.style.background=t.bg;
+  var goldMark = DATA.theme==="ivory" ? "#A7884E" : "#C9A86A";
+  var html='';
+  if(t.nebula){
+    html+='<div class="hero-layer layer-nebula" data-depth=".18"><div style="position:absolute;right:-2%;top:-22%;width:60%;height:120%;border-radius:50%;background:radial-gradient(closest-side,rgba(110,90,166,.7),rgba(110,90,166,0));filter:blur(40px)"></div>';
+    html+='<div style="position:absolute;left:-4%;bottom:-22%;width:55%;height:110%;border-radius:50%;background:radial-gradient(closest-side,rgba(60,92,158,.55),rgba(60,92,158,0));filter:blur(46px)"></div></div>';
+  }
+  html+='<div class="hero-layer layer-stars" data-depth=".08">';
+  if(t.stars){var r=rng(7);for(var i=0;i<70;i++){var x=(r()*100).toFixed(2),y=(r()*100).toFixed(2);var delay=(r()*-5).toFixed(2);if(i%18===0){html+='<div class="gstar" style="left:'+x+'%;top:'+y+'%;opacity:.85;animation-delay:'+delay+'s">'+fourstar(9,goldMark)+'</div>';}else{var sz=(0.8+r()*1.6).toFixed(1);html+='<div class="star" style="left:'+x+'%;top:'+y+'%;width:'+sz+'px;height:'+sz+'px;opacity:'+(0.25+r()*0.4).toFixed(2)+';animation-delay:'+delay+'s"></div>';}}}
+  else {var r2=rng(11);for(var j=0;j<6;j++){html+='<div class="gstar" style="left:'+(55+r2()*40).toFixed(1)+'%;top:'+(10+r2()*70).toFixed(1)+'%;opacity:.5">'+fourstar(9,"#A7884E")+'</div>';}}
+  html+='</div>';
+  if(t.constel){html+='<div class="hero-layer layer-constel" data-depth=".14"><svg class="constel" viewBox="0 0 520 330"><g stroke="#DDC79B" stroke-width="1" fill="none" opacity=".55"><path d="M30 90 L160 200 L300 110 L450 240 M300 110 L350 40 L230 300"/></g><g fill="#C9A86A"><circle cx="30" cy="90" r="4"/><circle cx="160" cy="200" r="5"/><circle cx="300" cy="110" r="4"/><circle cx="450" cy="240" r="5"/><circle cx="350" cy="40" r="4"/><circle cx="230" cy="300" r="4"/></g></svg></div>';}
+  html+='<div class="mark">'+burst(22,goldMark)+'<span class="wordmark" style="color:'+t.word+'">MELODIA</span></div>';
+  html+='<div class="content" data-depth="-.04"><div class="kick" style="color:'+t.kick+'">'+esc(DATA.kicker)+'</div>';
+  html+='<div class="title" style="color:'+t.title+'">'+esc(DATA.title)+'</div>';
+  html+='<div class="sub" style="color:'+t.sub+'">'+esc(DATA.sub)+'</div></div>';
+  h.innerHTML=html;
+}
+render();
+if(matchMedia("(prefers-reduced-motion: no-preference)").matches){
+  var hero=document.getElementById("hero");
+  hero.addEventListener("pointermove",function(e){
+    var r=hero.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5;
+    var y=(e.clientY-r.top)/r.height-.5;
+    hero.querySelectorAll("[data-depth]").forEach(function(el){
+      var d=parseFloat(el.getAttribute("data-depth"))||0;
+      el.style.transform="translate3d("+(-x*d*34).toFixed(2)+"px,"+(-y*d*28).toFixed(2)+"px,0)";
+    });
+  });
+}
+</script>
+</body>
+</html>

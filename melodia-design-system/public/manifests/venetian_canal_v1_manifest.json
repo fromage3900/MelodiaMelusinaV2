@@ -1,0 +1,32 @@
+{
+  "theme": "dark",
+  "project": "Venetian Canal V1",
+  "category": "Environment / PCG",
+  "version": "v1.0",
+  "rows": [
+    [
+      "Triangles",
+      "TBD"
+    ],
+    [
+      "Textures",
+      "TBD"
+    ],
+    [
+      "Materials",
+      "TBD"
+    ],
+    [
+      "Software",
+      "Unreal Engine + PCG"
+    ],
+    [
+      "Engine",
+      "Unreal Engine 5.8"
+    ],
+    [
+      "Date",
+      "2026-07"
+    ]
+  ]
+}

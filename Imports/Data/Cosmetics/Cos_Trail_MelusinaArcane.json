@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Trail_MelusinaArcane",
+  "display_name": "Aurora Veil of Melusina",
+  "slot": "trail",
+  "rarity": "Couture",
+  "element_mood": "Arcane",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 10,
+    "swirl": 3
+  },
+  "palette": [
+    "#3366FF",
+    "#FFFFFF",
+    "#FFD700"
+  ],
+  "flavor": "A dazzling trail of starlight, fitting for the celestial Melusina.",
+  "material_notes": "Aurora band, gilded filigree",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

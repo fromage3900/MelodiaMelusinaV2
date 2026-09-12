@@ -322,7 +322,11 @@ Tools/BlenderAddons/**/*.blend1
 !Tools/melodia_stage_shot.py
 !Tools/create_animation_template.py
 !Tools/gn_health_check.py
-melodia-design-system/
+# melodia-design-system/ — TRACKED from 2026-09-10. It was previously local-only:
+# 0 tracked files against 104 on disk, which meant the entire design language
+# (tokens.json, DESIGN-SYSTEM.md, melodia-figma-plugin/, resume + social-card
+# templates) had no version history at all. Re-ignoring this line would put it
+# back outside source control. See Docs/ for the un-ignore receipt.
 KitbashExport/
 /research/
 Products/
@@ -384,3 +388,12 @@ Plugins/HoudiniEngine/Content/
 # Third-party Blender node libraries (licensed; local-only per RawArt/BlenderLibraries/README.md)
 RawArt/BlenderLibraries/*
 !RawArt/BlenderLibraries/README.md
+
+# MIDI-to-voxel Resonant World generator (2026-09-11): sources only.
+# Referenced by Content/Python/resonant_world_phrase_bridge.py,
+# melusina_offline_world_bundle.py and Tools/BlenderAddons/melodia_studio/core/field.py,
+# but previously untracked and present on exactly one disk. Generated .obj
+# chunks and __pycache__ stay ignored.
+!Tools/midi_to_voxel/
+Tools/midi_to_voxel/*
+!Tools/midi_to_voxel/*.py

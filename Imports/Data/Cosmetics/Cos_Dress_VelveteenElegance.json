@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Dress_VelveteenElegance",
+  "display_name": "Velveteen Elegance",
+  "slot": "dress",
+  "rarity": "Common",
+  "element_mood": "Gale",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 3,
+    "swirl": 1
+  },
+  "palette": [
+    "#FFFFFF",
+    "#A52A2A",
+    "#E6E6FA"
+  ],
+  "flavor": "Elegant dress with shimmering fabrics.",
+  "material_notes": "Gilded filigree, iridescence",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

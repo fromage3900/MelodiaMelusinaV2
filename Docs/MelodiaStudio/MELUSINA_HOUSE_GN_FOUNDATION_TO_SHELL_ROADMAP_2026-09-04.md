@@ -43,14 +43,22 @@ Do not call the new foundation builders visually proven until that smoke exists.
 
 | Layer | Source | Registered | Category / presets | Blender 5.2 smoke | Artist approved |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Foundation Pod | ✓ | ✓ | ✓ | pending | pending |
-| Foundation Cluster | ✓ | ✓ | ✓ | pending | pending |
-| Foundation Porch | ✓ | ✓ | ✓ | pending | pending |
-| Foundation Master | ✓ | ✓ | ✓ | pending | pending |
+| Foundation Pod | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 | pending |
+| Foundation Cluster | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 | pending |
+| Foundation Porch | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 | pending |
+| Foundation Master | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 (Round vs Wide presets drive footprint) | pending |
+| `MEL_mh_roof_ribbon` (P1) | ✓ | ✓ | ✓ (MAIN_WHALE_BACK / WING_ROOF / PORCH_ROOF) | headless construct + preset-response proof 2026-09-06 | pending |
 | `MEL_mh6_room_shell` | ✓ | ✓ | ✓ | re-smoke with new foundation | pending composition |
 | `MEL_melusina_house_round_interior` | ✓ | ✓ | ✓ | re-smoke with new foundation | pending composition |
 | AAA trim family | ✓ | ✓ | ✓ | existing family | defer until silhouette |
 | House dressing family | ✓ | ✓ | ✓ | existing family | defer until silhouette |
+
+Headless 5.2 evidence (all under `Saved/Audit/melusina_house/`):
+`foundation_headless_smoke_v4_2026-09-06.json` (foundation registry + construct + preset response, `ok: true`),
+`roof_ribbon_headless_smoke_v5_2026-09-06.json` (roof registry + construct + preset response, `ok: true`),
+`sync_check_2026-09-06*.txt` (AppData byte-sync 234/234 at HEAD 15f03403).
+Blender 5.2 note recorded there: `GeometryNodeMeshLine.count_mode` enum is `('TOTAL','RESOLUTION')` and
+NODES modifiers pin interface defaults at attach time (no IDProperties bag).
 
 Proof ladder:
 

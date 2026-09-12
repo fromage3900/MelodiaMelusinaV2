@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  CARD/PERFORMANCE — Performance stats card
+  HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
+  Size: ~ 360 × auto
+  Edit DATA below to customize.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:8px}
+  .card{width:100%;max-width:360px;border-radius:2px;padding:16px;background:#FFFFFF;border:1px solid #E3DACE;font-family:'IBM Plex Mono',monospace}
+  .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #E3DACE}
+  .title{font-size:13px;font-weight:500;color:#241B2E}
+  .status{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#5E8B7E}
+  .row{display:flex;justify-content:space-between;padding:6px 0;font-size:11px}
+  .k{letter-spacing:0.1em;text-transform:uppercase;color:#6E6080}
+  .v{color:#241B2E;font-weight:500}
+  .v.null{color:#A85751;font-style:italic}
+</style>
+</head>
+<body>
+<div id="card"></div>
+<script>
+var DATA = {
+  triangleCount: 482318,
+  drawCalls: 184,
+  materialCount: 12,
+  textureCount: 36,
+  textureResolution: "4K"
+};
+var q=new URLSearchParams(location.search);
+["triangleCount","drawCalls","materialCount","textureCount"].forEach(function(k){ if(q.get(k)!=null) DATA[k]=q.get(k)===""?null:Number(q.get(k)); });
+if(q.get("textureResolution")) DATA.textureResolution=q.get("textureResolution");
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+function render(){
+  var h=document.getElementById("card");
+  var fmt=function(n){return n===null||!Number.isFinite(n)?'<span class="null">TBD</span>':n.toLocaleString();};
+  var rows='';
+  rows+='<div class="row"><span class="k">Triangles</span><span class="v">'+fmt(DATA.triangleCount)+'</span></div>';
+  rows+='<div class="row"><span class="k">Draw Calls</span><span class="v">'+fmt(DATA.drawCalls)+'</span></div>';
+  rows+='<div class="row"><span class="k">Materials</span><span class="v">'+fmt(DATA.materialCount)+'</span></div>';
+  rows+='<div class="row"><span class="k">Textures</span><span class="v">'+fmt(DATA.textureCount)+'</span></div>';
+  if(DATA.textureResolution) rows+='<div class="row"><span class="k">Resolution</span><span class="v">'+esc(DATA.textureResolution)+'</span></div>';
+  h.innerHTML='<div class="card"><div class="head"><span class="title">Performance</span><span class="status">Profiled</span></div>'+rows+'</div>';
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "id": "Cos_Gloves_MelusinaForte",
+  "display_name": "Mermaid's Embrace",
+  "slot": "gloves",
+  "rarity": "Couture",
+  "element_mood": "Forte",
+  "content_pack_id": "Core",
+  "token_cost": {
+    "heart": 12,
+    "swirl": 3
+  },
+  "palette": [
+    "#D700FF",
+    "#0080FF",
+    "#00FFD7"
+  ],
+  "flavor": "Graceful scales with a touch of starlight.",
+  "material_notes": "Iridescence and gilded filigree",
+  "schema": "MelodiaCosmetic-draft-v1"
+}

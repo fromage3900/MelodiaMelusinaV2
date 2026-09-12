@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  LAYOUT/PROCESS FLOW — Horizontal process flow layout
+  HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
+  Size: ~ 800 × 120px (adjust as needed)
+  Edit DATA below to customize steps.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:8px}
+  .flow{width:100%;max-width:800px;display:flex;align-items:center;gap:16px;padding:16px;background:#FFFFFF;border:1px solid #E3DACE;border-radius:2px;font-family:'IBM Plex Mono',monospace}
+  .step{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .step-num{width:24px;height:24px;border-radius:50%;background:#C9A86A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+  .step-title{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#241B2E;text-align:center}
+  .connector{flex:0;height:1px;background:#E3DACE;width:24px}
+</style>
+</head>
+<body>
+<div id="flow"></div>
+<script>
+var DATA = {
+  steps: [
+    {num: 1, title: "Exclusion"},
+    {num: 2, title: "Foliage"},
+    {num: 3, title: "Rock"},
+    {num: 4, title: "Wall"}
+  ]
+};
+var q=new URLSearchParams(location.search);
+if(q.get("steps")){
+  DATA.steps=q.get("steps").split("|").map(function(title,i){return {num:i+1,title:title};});
+}
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+function render(){
+  var h=document.getElementById("flow");
+  var html='';
+  DATA.steps.forEach(function(s,i){
+    html+='<div class="step"><div class="step-num">'+esc(s.num)+'</div><div class="step-title">'+esc(s.title)+'</div></div>';
+    if(i<DATA.steps.length-1) html+='<div class="connector"></div>';
+  });
+  h.innerHTML='<div class="flow">'+html+'</div>';
+}
+render();
+</script>
+</body>
+</html>
