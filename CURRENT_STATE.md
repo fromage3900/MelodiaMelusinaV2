@@ -160,9 +160,10 @@ itself.
 reason, named per `CONTRIBUTING.md`. Never let a background agent commit on your behalf — check for
 OpenCode (Rider) and Hermes before editor or git work.
 
-**CI.** `.github/workflows/echo_gates.yml` still runs `Tools/repo_governance_guard.py` and
-`Tools/front_door_health.py --ci`. Both require docs this collapse removed, so PR CI fails until
-those two steps and their tools are deleted. Owner decision, not an agent's.
+**CI.** The doc-policing steps are gone: `repo_governance_guard.py` and `front_door_health.py`
+existed to cross-check front-door docs against each other, which a single document cannot fail. PR
+CI still runs the protected-asset guard, the echo manifest, the offline contract suites, and the
+health scorecard.
 
 **Public hygiene.** This repo and `my-site` are public. Personal, school, career, and client
 documents live in local-only `C:/EnvironmentPortfolio/_offgame/` and never in either repo.
