@@ -326,38 +326,55 @@ the front.
 
 ---
 
-# Status: chain blocked on a bead-path defect
+# Status: the chain is UNBLOCKED - my earlier "defect" was a test bug
 
-`MEL_eyewear_chain` was written against these anchors and then backed out before
-committing, because it cannot produce beads. Do not rebuild it until the item
-below is fixed.
+**Superseded.** An earlier version of this section claimed the in-graph
+`Guide Curve` path steered the cord but not the beads, and that
+`MEL_eyewear_chain` therefore could not be built. That claim was wrong and is
+withdrawn. The bead path was never broken.
 
-## The anchors are right (verified)
+## What is actually true (measured)
 
-The pair seats each arm at `nest_x = pivot_x - (TempleWidth + EndpieceClearance)`
-where `pivot_x = A + DBL/2 + RimThickness`. From that, the temple tip is at
+Reading `build_nikki_bead_string` shows the beads come from
+`_resample(_drooped_curve(guide_geom))` - the same `guide_geom` the cord uses,
+straight through the `Guide From Curve` switch. There is no separate read of the
+guide object.
 
-    centre = nest_x + EndpieceClearance + TempleWidth/2
-    tip    = (centre, -TipDrop, -(LengthToBend + TipReach))
+Testing both routes with **identical** guide geometry and direct group-node
+socket lookup (`Saved/Audit/eyewear/bead_path_definitive.py`):
 
-Measured on the built guide line, default parameters: `x = +/-64.75`,
-`y = -30.00`, `z = -119.00`. Note this is the **arm centreline**, not the nest
-origin — the strand attaches where the arm actually is.
+    object route   use_curve=False  3124 verts   ~14 beads
+    curve route    use_curve=True   3124 verts   ~14 beads
+    RESULT PASS
 
-## What blocks it
+Both routes work. `_guide_params` / `_guide_geometry` need no further change.
 
-The in-graph `Guide Curve` path added to the draping builders steers the **cord**
-but not the **beads**. Measured with a straight 100 mm guide at `y = -30`:
+## Why the earlier tests lied
 
-    guide via OBJECT socket   3124 verts   = 14 beads x 222 + 16 cord verts
-    guide via Curve input       16 verts   = cord only, zero beads
+Two harness faults, both mine, neither in the addon:
 
-The arithmetic is exact, so this is not a scaling or count question. The beads
-read the guide **object** through a path of their own; the switch added in
-`_guide_params` only redirects `_guide_geometry`, which is what the cord, the
-droop and the resample all consume. The bead instancing is a separate read.
+1. **Name-mapping group-node sockets through the sub-tree interface.** Group node
+   inputs support direct lookup (`grp.inputs["Guide Curve"]`), so the indirection
+   was unnecessary and could resolve the wrong socket silently. The definitive
+   test uses direct lookup and prints every socket it touches.
+2. **Destroying the template before using it.** One test measured the bare
+   `MEL_nikki_bead` template *before* evaluating a bead string built earlier in the
+   same process. `new_geometry_tree` removes and re-creates a tree by name, so that
+   call nulled the template tree the bead string's group node pointed at - cord
+   still rendered, beads vanished. Exactly the defect recorded in the
+   `melodia-studio-gn-builders` skill, and I walked into it while writing the test
+   for it.
 
-Fix the bead branch's guide source, then the chain becomes a short builder.
+Lesson: when a builder's own code contradicts a test result, the test is the
+suspect. Read the wiring first.
+
+## Still outstanding on the chain
+
+One unexplained measurement from the backed-out attempt: the assembled strand sat
+about 16 mm above its own guide. The guide line itself measured correctly
+(`x +/-64.75, y -30.00, z -119.00`), so this is in the composition, not the
+anchors. Chase it with the definitive-test method above - direct socket lookup,
+one variable at a time - rather than by name mapping.
 
 ## Two traps found on the way (both cost real time)
 
