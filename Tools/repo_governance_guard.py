@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_PATHS = [
     "README.md",
+    "CURRENT_STATE.md",
     "AGENT_START_HERE.md",
     "CAPSTONE_NOW.md",
     "CONTRIBUTING.md",
@@ -30,19 +31,17 @@ REQUIRED_PATHS = [
 
 TEXT_REQUIREMENTS = {
     "AGENT_START_HERE.md": [
-        "CAPSTONE_NOW.md",
-        "Docs/Production/BRANCH_WORKSTATION_POLICY.md",
+        "CURRENT_STATE.md",
+        "only current status",
+        "not a status document or task queue",
+    ],
+    "CAPSTONE_NOW.md": [
+        "CURRENT_STATE.md",
+        "not a task queue",
         "Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md",
     ],
     "CONTRIBUTING.md": [
-        "CAPSTONE_NOW.md",
-        "BRANCH_WORKSTATION_POLICY.md",
         "unrequested cleanup",
-    ],
-    "CAPSTONE_NOW.md": [
-        "Nikki-derived Cymatics",
-        "Creature → Motif → Harmony → World",
-        "python Tools/git_ok.py",
     ],
     "Docs/Production/BRANCH_WORKSTATION_POLICY.md": [
         "collab/laptop/longterm",
