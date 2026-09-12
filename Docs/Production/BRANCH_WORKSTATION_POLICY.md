@@ -2,6 +2,7 @@
 
 **Status:** CANONICAL OPERATING POLICY  
 **Date:** 2026-09-08  
+**Updated:** 2026-09-11  
 **Authority:** `main` remains the only canonical game/runtime/capstone branch.
 
 This policy exists to make Git infrastructure boring and predictable.
@@ -44,6 +45,8 @@ Current preserved example:
 `collab/laptop/longterm`
 
 This branch is the ASUS laptop Blender / Geometry Nodes / procedural-authoring lane.
+
+**Current lane contract:** [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md) — Blender 5.2 LTS GN baseline, audio-reactive GN proof, Blender Python automation, ArmorPaint evaluation, and promotion rules back into UE/main.
 
 Rules:
 - divergence from `main` is not, by itself, a defect;
@@ -151,8 +154,13 @@ Auxiliary Blender / Geometry Nodes / procedural-authoring workstation.
 Use for:
 - GN builders;
 - Blender source work;
+- Blender 5.2 LTS audio/GN procedural experiments;
+- Blender Python authoring automation;
+- bounded ArmorPaint evaluation;
 - DCC experiments;
 - on-the-go procedural production.
+
+Read [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md) before assigning new laptop procedural work.
 
 Its long-term branch is intentionally preserved until a future DCC-repository migration is deliberately chosen. Do not perform that migration during capstone production merely for repository aesthetics.
 
