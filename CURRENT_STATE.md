@@ -258,3 +258,12 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
   parametrizes. Fixed files synced back to the live Blender addon (hash-verified).
 - **Next:** MK39 plates + tenons → rivets → ball joints (proof after each); then updated
   Chladni + Copernicus trimsheet bakes.
+- **2026-09-10 later — MK39 plates done:** `MEL_skiff_plates` authored fresh in
+  `deploy/surreal_arch/melodia_gn/starskiff_biomech.py` (parametric strake patch +
+  tenon tabs + boolean mortise notches, instanced per rib bay); proof
+  `Tools/wardrobe_pipeline/proof_mk39_plates.py` green (52 nodes, 306 verts/9 bays,
+  rows/tenon/gap dials all live, receipt `Saved/Audit/sea_above/skiff_MK3/`).
+  Fixed files synced to the live Blender addon (hash-verified).
+- **Branch-health flag (not this lane):** this branch's `melodia_gn/__init__.py` imports
+  `barrel_vault_kit`, which does not exist in the tree — normal package import dies,
+  so the plates proof loads modules by path. Owner/daemon lane to resolve.
