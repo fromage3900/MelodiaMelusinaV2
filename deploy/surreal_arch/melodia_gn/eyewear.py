@@ -24,8 +24,6 @@ thickness per side, so the swept band's inner edge lands exactly on A x B.
 
 from __future__ import annotations
 
-import bpy
-
 from .core import (
     GROUP_BUILDERS, add_bool_param, add_float_param, add_int_param, add_vector_param,
     label_tree, link_sockets, new_geometry_tree, register_builder, safe_node, sock,
@@ -57,16 +55,39 @@ def _mm(tree, gin, param, loc, scale=1.0):
     return m.outputs[0] if m else None
 
 
-def _constant(tree, loc, value):
-    v = safe_node(tree, "ShaderNodeValue", loc)
-    if v is not None:
-        v.outputs[0].default_value = value
-    return v
+def _vec(tree, loc, x=None, y=None, z=None, const=0.0):
+    """CombineXYZ with each component either a socket or a float."""
+    n = safe_node(tree, "ShaderNodeCombineXYZ", loc)
+    if n is None:
+        return None
+    for name, val in (("X", x), ("Y", y), ("Z", z)):
+        if val is None:
+            n.inputs[name].default_value = const
+        elif hasattr(val, "node"):
+            link_sockets(tree, val, n.inputs[name])
+        else:
+            n.inputs[name].default_value = val
+    return n
 
 
-def _offset(tree, loc, source, dx):
-    """source + dx, where dx is a socket or a float."""
-    return _math(tree, "ADD", loc, a=source, b=dx)
+def _rad(tree, gin, param, loc):
+    """Group param in degrees -> radians."""
+    return _math(tree, "MULTIPLY", loc, a=sock(gin, param, outputs=True),
+                 b=0.017453292519943295)
+
+
+def _cyc_profile(tree, loc, w_sock, h_sock):
+    """A cyclic rectangular cross-section (the swept profile)."""
+    q = safe_node(tree, "GeometryNodeCurvePrimitiveQuadrilateral", loc)
+    if q is None:
+        return None
+    try:
+        q.mode = "RECTANGLE"
+    except Exception:
+        pass
+    link_sockets(tree, w_sock, q.inputs["Width"])
+    link_sockets(tree, h_sock, q.inputs["Height"])
+    return q
 
 
 def build_eyewear_front(group_name="MEL_eyewear_front"):
@@ -375,41 +396,6 @@ register_builder(
 # A frame front lies in XY and the temples run backward along -Z. Folding rotates
 # about Y. The hinge barrel axis is therefore Y as well, which is why the cylinder
 # is rotated 90 degrees about X before being instanced.
-
-
-def _vec(tree, loc, x=None, y=None, z=None, const=0.0):
-    """CombineXYZ with each component either a socket or a float."""
-    n = safe_node(tree, "ShaderNodeCombineXYZ", loc)
-    if n is None:
-        return None
-    for name, val in (("X", x), ("Y", y), ("Z", z)):
-        if val is None:
-            n.inputs[name].default_value = const
-        elif hasattr(val, "node"):
-            link_sockets(tree, val, n.inputs[name])
-        else:
-            n.inputs[name].default_value = val
-    return n
-
-
-def _rad(tree, gin, param, loc):
-    """Group param in degrees -> radians."""
-    return _math(tree, "MULTIPLY", loc, a=sock(gin, param, outputs=True),
-                 b=0.017453292519943295)
-
-
-def _cyc_profile(tree, loc, w_sock, h_sock):
-    """A cyclic rectangular cross-section (the swept profile)."""
-    q = safe_node(tree, "GeometryNodeCurvePrimitiveQuadrilateral", loc)
-    if q is None:
-        return None
-    try:
-        q.mode = "RECTANGLE"
-    except Exception:
-        pass
-    link_sockets(tree, w_sock, q.inputs["Width"])
-    link_sockets(tree, h_sock, q.inputs["Height"])
-    return q
 
 
 def build_eyewear_temple(group_name="MEL_eyewear_temple"):
