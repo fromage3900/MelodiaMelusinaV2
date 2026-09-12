@@ -19,10 +19,42 @@ def _addon_dir():
     return os.path.dirname(os.path.abspath(__file__))
 
 
-def repo_root():
-    """BS_GodFile root, from Tools/BlenderAddons/melodia_studio/ -> up 3.
+def _melodia_utils():
+    """Import the shared Melodia resolver, adding the addons root if needed.
 
-    Honors AddonPreferences project_root (if set in Blender) and $MELODIA_PROJECT_ROOT env.
+    Works whether this addon runs from the source tree
+    (Tools/BlenderAddons/melodia_studio) or from the copied live install
+    (.../scripts/addons/melodia_studio); melodia_utils sits beside it in both.
+    """
+    try:
+        import melodia_utils as _mu  # type: ignore
+        return _mu
+    except Exception:
+        pass
+    addons_root = os.path.dirname(_addon_dir())
+    if addons_root not in sys.path:
+        sys.path.insert(0, addons_root)
+    try:
+        import melodia_utils as _mu  # type: ignore
+        return _mu
+    except Exception:
+        return None
+
+
+def repo_root():
+    """Resolve the active Melodia project root.
+
+    Blender installs this addon at
+    ``%APPDATA%/.../scripts/addons/melodia_studio``, where a bare relative
+    walk-up lands on the Blender *version* directory (``.../Blender/5.2``), not
+    the project. Resolution therefore goes, in order:
+
+      1. AddonPreferences.project_root (if set in Blender)
+      2. $MELODIA_PROJECT_ROOT env
+      3. melodia_utils.repo_root() - the shared canonical, drive-agnostic
+         resolver (env -> module walk -> install provenance -> cwd)
+      4. last resort: path relative to this file, correct only when running
+         from the source tree
     """
     # 1) Blender AddonPreferences override
     try:
@@ -38,6 +70,14 @@ def repo_root():
     env = os.environ.get("MELODIA_PROJECT_ROOT", "").strip()
     if env and os.path.isdir(env):
         return os.path.normpath(env)
+    # 3) Shared canonical resolver
+    mu = _melodia_utils()
+    if mu is not None:
+        try:
+            return os.path.normpath(str(mu.repo_root()))
+        except Exception:
+            pass
+    # 4) Last resort: addon-relative (only correct from the source tree)
     return os.path.normpath(os.path.join(_addon_dir(), "..", "..", ".."))
 
 

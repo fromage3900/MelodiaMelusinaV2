@@ -24,9 +24,16 @@ import midi_bridge  # noqa: E402
 
 
 class TestPaths(unittest.TestCase):
-    def test_repo_root_is_bs_godfile(self):
-        self.assertEqual(os.path.basename(midi_bridge.repo_root()),
-                         "BS_GodFile")
+    def test_repo_root_is_a_valid_checkout(self):
+        """Active checkout is authority - do not hardcode a drive or folder name.
+
+        (Was ``basename == "BS_GodFile"`` from the retired C:-authority era; on
+        the laptop checkout the folder is ``MelodiaMelusinaV2-Laptop``.)
+        """
+        root = midi_bridge.repo_root()
+        self.assertTrue(os.path.isfile(os.path.join(root, "BS_GodFile.uproject")))
+        self.assertTrue(os.path.isdir(os.path.join(root, "Tools")))
+        self.assertTrue(os.path.isdir(os.path.join(root, "deploy")))
 
     def test_studio_root_not_doubled(self):
         """Regression: was Tools/Tools/MelodiaProceduralStudio."""

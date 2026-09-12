@@ -99,6 +99,7 @@ from .presets import (
     BUILDERS_PRESETS, builders_with_presets, preset_names, preset_param_sets,
     export_builder_preset, export_all_presets_json, audit_presets,
 )
+from . import nikki_decor  # noqa: F401 - Nikki decor: beads, stars, hearts, crystals, cords, guide-driven strings
 
 # Rebuild derived lookup tables now that all builder modules
 # have imported and called register_builder(). Mutates core containers
