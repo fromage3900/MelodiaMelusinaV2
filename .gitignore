@@ -397,3 +397,8 @@ RawArt/BlenderLibraries/*
 !Tools/midi_to_voxel/
 Tools/midi_to_voxel/*
 !Tools/midi_to_voxel/*.py
+
+# --- Chladni foundry (2026-09-12): the test is source, the stop-markers are runtime state
+!Tools/test_chladni_foundry.py
+deploy/STOP_ALL
+deploy/OLLAMA_*_STOP
