@@ -104,6 +104,22 @@ from . import nikki_decor  # noqa: F401 - Nikki decor: beads, stars, hearts, cry
 # Rebuild derived lookup tables now that all builder modules
 # have imported and called register_builder(). Mutates core containers
 # in place so early importers (stack UI) see live catalog sections.
+from . import barrel_vault_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import curved_wall  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import dreamy_gothic_arch  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_material_id  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_smart_bevel  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_trim_uv  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_vertex_ao  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import gold_light_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import melusina_house_foundation  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import music_euro_remainder  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import musical_mesh_variants  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import nikki_advanced_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import nikki_musical_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 
