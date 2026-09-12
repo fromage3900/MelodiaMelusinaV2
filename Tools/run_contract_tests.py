@@ -96,10 +96,11 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Tools/test_evidence_envelope.py",
         "Tools/test_ollama_health.py",
         "Tools/test_ui_style_audit.py",
+        "Tools/test_terrain_handoff.py",
         "Docs/T3D_Baseline/test_canonical.py",
     }
 )
-MINIMUM_OFFLINE_SUITE_COUNT = 21
+MINIMUM_OFFLINE_SUITE_COUNT = 22
 
 
 def run_suite(suite: Suite) -> dict[str, object]:

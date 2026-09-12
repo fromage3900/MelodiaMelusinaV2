@@ -1,0 +1,92 @@
+{
+  "schema": "melodia.terrain_handoff.v1",
+  "handoff_id": "gaea:cadence_crystal_ridge",
+  "lane": "gaea",
+  "created_utc": "2026-09-12T15:52:40.653178+00:00",
+  "converted_from_schema": "melodia.gaea_setup.v1",
+  "source": {
+    "kind": "gaea_graph",
+    "path": "C:/Program Files/QuadSpinner/Gaea 2/Examples/Creative - Stylized Mountain.terrain",
+    "preset": "toccata_spires_toccata",
+    "provider": "Open Topo Data",
+    "dataset": "aster30m",
+    "movement_id": "cadence_cathedral",
+    "dressing_style": "crystalline",
+    "design_intent": "A high-contrast ridge with a strong skyline, a readable ascent, and a crystal cadence landmark."
+  },
+  "coordinate_system": {
+    "source_units": "meters",
+    "unreal_scale_cm_per_meter": 100.0,
+    "description": null,
+    "tile_grid": null
+  },
+  "extent": {
+    "width_m": 4000.0,
+    "depth_m": 4000.0,
+    "height_range_m": [
+      0.0,
+      900.0
+    ],
+    "target_resolution": 4097,
+    "world_origin_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "artifacts": {
+    "mesh_obj": "Saved/Audit/gaea_setups/cadence_crystal_ridge/CadenceCrystalRidge_4097.obj",
+    "heightfield_png16": "Saved/Audit/gaea_setups/cadence_crystal_ridge/CadenceCrystalRidge_4097_height.png",
+    "dressing_plan": null,
+    "handoff_manifest": "Saved/Audit/gaea_setups/cadence_crystal_ridge/handoff_manifest.json",
+    "masks": [
+      "flow",
+      "slope",
+      "curvature",
+      "height",
+      "crystal_ridge"
+    ],
+    "mesh_fbx": null,
+    "blend": null
+  },
+  "ue5_8": {
+    "engine": "5.8",
+    "target": "Mesh Terrain",
+    "asset_kind": null,
+    "content_namespace": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/CadenceCrystalRidge",
+    "classic_landscape_used": false,
+    "mesh_terrain_import_scale_cm_per_m": 100.0,
+    "required_plugins": [
+      "MeshPartition",
+      "MeshTerrainMode",
+      "MeshPartitionWater",
+      "PCGMeshPartitionInterop"
+    ],
+    "pcg_profile": "crystalline",
+    "runtime_audio_authority": null
+  },
+  "evidence": {
+    "setup_status": "recipe_ready_reference_graph_validated_native_export_pending",
+    "display_name": "Cadence Cathedral \u2014 Crystal Ridge",
+    "world_seed": 3900,
+    "export_status": null,
+    "native_gaea_export_verified": null,
+    "mesh_terrain_handoff_verified": null,
+    "gates": [
+      "metric_extent_verified",
+      "ridge_mask_verified",
+      "hero_landmark_grounded",
+      "mesh_terrain_partition_built",
+      "pcg_reads_partition",
+      "clean_pie",
+      "lookdev_approved"
+    ]
+  },
+  "provenance": {
+    "generator": "Docs/WorldGen GAEA_SETUP_*.json (gaea lane)",
+    "generator_schema": "melodia.gaea_setup.v1",
+    "unified_schema": "melodia.terrain_handoff.v1",
+    "converted_utc": "2026-09-12T15:52:40.653178+00:00",
+    "source_doc": null
+  }
+}

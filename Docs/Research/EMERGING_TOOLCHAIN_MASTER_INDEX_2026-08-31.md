@@ -94,6 +94,16 @@ at that location). Downstream consumers (water ripple displacement, PCG scatter 
 pulse) read these fields — they do not call the cymatic subsystem directly. Cross-reference:
 `Saved/Audit/ecosystem_integration_report.json` mapping_01_cymatic_to_rhythm + mapping_04_cymatic_to_water.
 
+**5c. Unified terrain-handoff contract (added 2026-09-12):** all three terrain
+authoring lanes — MIDI voxel (`melodia_studio`), Blender 5.2 audio GN
+(`Tools/audio_terrain_pipeline.py`), and Gaea 2 native (`Docs/WorldGen/GAEA_SETUP_*`)
+— emit a sibling `terrain_handoff.json` in the single `melodia.terrain_handoff.v1`
+schema implemented by `Tools/terrain_handoff.py` (converters + validators + CLI),
+then validate with `python Tools/terrain_handoff.py validate --strict`. A handoff
+that does not validate is not UE-ready; a new lane schema without a converter is a
+defect. Contract: `Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`. Evidence:
+`Saved/Audit/terrain_handoffs/`.
+
 ## 6. Houdini execution plan (executable, reviewed)
 
 `Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md` — Mara + P0–P3. HDA families:

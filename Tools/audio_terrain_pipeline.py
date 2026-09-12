@@ -75,6 +75,21 @@ def _controller(args: argparse.Namespace) -> int:
         subprocess.run(command, cwd=PROJECT, check=True)
         if not output.is_file():
             raise RuntimeError(f"Blender completed without writing expected scene: {output}")
+
+        # Unified terrain-handoff sibling (convergence contract): emit the
+        # cross-lane melodia.terrain_handoff.v1 document beside the native lane
+        # handoff so every authoring lane feeds one Mesh Terrain intake.
+        lane_handoff = output.with_suffix(".audio_terrain_handoff.json")
+        if lane_handoff.is_file():
+            try:
+                from terrain_handoff import from_audio_gn, emit_unified
+                report = emit_unified(from_audio_gn(lane_handoff),
+                                      output.with_suffix(".terrain_handoff.json"))
+                if not report["ok"]:
+                    print("WARN unified terrain handoff failed validation: %s"
+                          % "; ".join(report["errors"]))
+            except Exception as exc:  # never fail the batch over the sibling
+                print("WARN unified terrain handoff not emitted: %r" % (exc,))
     manifest = {
         "schema": "melodia.audio_terrain_batch.v1",
         "created_utc": datetime.now(timezone.utc).isoformat(),
