@@ -2,184 +2,115 @@
 
 **Status:** CANONICAL OPERATING CONTRACT  
 **Owner:** Brennan Shepherd  
-**Purpose:** Define how AI agents, workstations, Git, and evidence cooperate without replacing owner judgment or turning agent activity into fake production progress.
+**Purpose:** Define how AI agents, workstations, Git, evidence, and knowledge tools cooperate without replacing owner judgment or turning agent activity into fake production progress.
 
-This document does **not** create a second task queue. `CAPSTONE_NOW.md` owns immediate priority. `AGENT_START_HERE.md` owns discovery. This file defines how assigned work should be executed.
+This document does **not** create a task queue or status surface.
+
+- `CURRENT_STATE.md` owns **all current status, priorities, blockers, and open work**.
+- `SYSTEM_MAP.md` + `DATA_FLOW.md` own runtime architecture/ownership explanations.
+- durable subsystem contracts/specs/reference bibles own long-lived rules.
+- PR/commit bodies own session narrative and handoff context.
+- dated plans, handoffs, scorecards, and session notes are historical only and must not be recreated as a parallel authority.
 
 ## 1. Studio principle
 
-Melodia is a solo-authored art/game project using AI to approximate parts of studio infrastructure that a solo student does not have: repo maintenance, repetitive implementation, QA preparation, documentation, research, test generation, evidence organization, and bounded technical investigation.
+Melodia is a solo-authored art/game project using AI to approximate parts of studio infrastructure that a solo student does not have: repo maintenance, repetitive implementation, QA preparation, research, test generation, evidence organization, and bounded technical investigation.
 
 AI is infrastructure, not artistic authority.
 
 The owner chooses the artistic target, gameplay intent, acceptable visual result, and final production decision. Agents may propose, implement, test, organize, and falsify; they do not turn confidence into truth.
 
-Core loop:
-
 ```text
 OWNER SETS TARGET
-  → cheap/appropriate agent gathers + executes
-  → tests/build/runtime establish what is real
-  → stronger model handles genuine ambiguity/blockers
-  → owner reviews visual/gameplay result
-  → evidence is captured
-  → only then is the milestone promoted
+  -> appropriate agent gathers / executes
+  -> tests, build, or runtime establish what is real
+  -> stronger model handles genuine ambiguity / blockers
+  -> owner reviews visual / gameplay result
+  -> evidence is captured
+  -> only then is the milestone promoted
 ```
 
-## 2. The cheapest reliable model should do the most work
+## 2. Capability routing
 
-Do not default to the most expensive model.
-
-Route by task shape and demonstrated reliability:
+Do not default to the most expensive model. Route by task shape and demonstrated reliability.
 
 ```text
 cheap endurance model
-  → archaeology, repetitive edits, docs normalization, validation,
-    manifests, test setup, evidence packets, branch comparison
+  -> archaeology, repetitive edits, docs normalization, validation,
+     manifests, test setup, evidence packets, branch comparison
 
 mid/high reasoning model
-  → bounded implementation, difficult refactors, subtle debugging,
-    architecture review
+  -> bounded implementation, difficult refactors, subtle debugging,
+     architecture review
 
 frontier closer
-  → genuine P0 deadlock, ambiguous cross-system failure,
-    release-critical falsification, problems cheaper agents failed to close
+  -> genuine P0 deadlock, ambiguous cross-system failure,
+     release-critical falsification, problems cheaper agents failed to close
 ```
 
-Provider/model names change. The durable rule is capability routing, not loyalty to a vendor.
+Provider/model names change. The durable rule is capability routing, not vendor loyalty.
 
-Empirical project performance outweighs leaderboard prestige. A cheap model that survives a long Melodia shift coherently and produces verifiable useful work is a trusted workhorse until evidence says otherwise.
-
-Use this pattern whenever practical:
+Prefer:
 
 ```text
 CHEAP AGENT gathers / reproduces / executes
-  → EVIDENCE PACKET
-  → EXPENSIVE AGENT decides / closes hard remainder
-  → CHEAP AGENT verifies / documents / cleans up
+  -> EVIDENCE PACKET
+  -> STRONGER AGENT decides / closes hard remainder
+  -> CHEAP AGENT verifies / cleans up
 ```
-
-Do not pay a frontier model to rediscover repository context a cheaper model can prepare safely.
 
 ## 3. Mobile is the control room
 
 Mobile work is for direction and delegation, not pretending a phone can prove Unreal runtime state.
 
-Good mobile-delegated work:
-- inspect current Git/PR/issue state;
-- reconcile bounded docs/source drift;
-- prepare exact PC commands;
-- run non-GUI tests and static validation;
-- inspect branches and LFS signals;
-- generate evidence checklists from current source;
-- perform repetitive safe edits;
-- prepare a `WHEN YOU SIT DOWN AT THE PC` handoff.
+Good mobile-delegated work includes current Git/PR/issue inspection, bounded source/doc drift repair, exact PC command preparation, non-GUI checks, branch/LFS inspection, and evidence preparation.
 
-A successful mobile agent shift should reduce workstation startup friction.
-
-Preferred landing-strip output:
-
-```text
-WHEN YOU SIT DOWN AT THE PC
-1. pull/switch to the named branch
-2. run the exact build/test
-3. observe the named pass signal
-4. capture the named evidence
-5. if failure: preserve the first real error and stop expansion
-```
-
-The goal is that the owner reaches Unreal/art judgment quickly instead of spending the first hours reconstructing agent/Git history.
+A successful mobile shift reduces workstation startup friction and leaves a concise next owner action in the conversation / PR body rather than generating a new handoff document.
 
 ## 4. Workstation truth hierarchy
 
 ### Interactive Unreal workstation
 
-The interactive UE workstation is the truth machine for:
-- editor/runtime behavior;
-- packaged-build behavior;
-- save/restart proof;
-- gameplay feel;
-- material/lookdev judgment;
-- topology/deformation judgment;
-- animation quality;
-- camera-scale readability;
-- performance/profiling;
-- final owner acceptance.
+Truth machine for editor/runtime behavior, packaged behavior, save/restart proof, gameplay feel, materials/lookdev, topology/deformation, animation, camera-scale readability, performance, and final owner acceptance.
 
 ### Home PC / long-job worker
 
-Use for explicitly assigned render, bake, packaging, compile, or long-running jobs. Do not let worker mode invent unrelated project edits.
+For explicitly assigned render, bake, package, compile, or long-running jobs. Worker mode must not invent unrelated edits.
 
-### ASUS Nitro / auxiliary workstation
+### ASUS Nitro / auxiliary DCC workstation
 
-Use for Blender/Geometry Nodes, secondary DCC work, batch processing, investigation, and explicitly assigned auxiliary lanes. It is not automatically runtime authority.
+For Blender/Geometry Nodes, secondary DCC work, batch processing, investigation, and explicit auxiliary lanes. Durable contract: `LAPTOP_PROCEDURAL_LANE_2026-09-11.md`. It is not runtime authority.
 
 ### Phone
 
-Use as production control room: specify, delegate, review summaries, approve/reject direction, and prepare PC execution.
+Production control room: specify, delegate, review, approve/reject direction, and prepare workstation execution.
 
-## 5. Evidence beats agent activity
+## 5. Evidence beats activity
 
-Commits, messages, generated plans, agent runtime, and Markdown PASS labels are not proof that the game works.
-
-Use the repository evidence ladder:
+Commits, messages, plans, agent runtime, and Markdown PASS labels are not proof that the game works.
 
 ```text
 SOURCE-BUILT
-  → LIVE-PROVEN
-  → RESTART-PROVEN
-  → PACKAGED-PROVEN
+  -> LIVE-PROVEN
+  -> RESTART-PROVEN
+  -> PACKAGED-PROVEN
 ```
 
-Never promote a claim above the evidence actually captured.
-
-Examples:
-- code exists + compiles statically = source-built at best;
-- editor interaction observed = live-proven;
-- full process exit/relaunch preserves required state = restart-proven;
-- packaged executable repeats the required behavior after process restart = packaged-proven.
-
-For visual assets, source files or generated meshes are not final proof. Put the asset in the actual production context, evaluate it at authored scale and the real gameplay camera/FOV, and capture the result before promoting the milestone.
+Never promote a claim above the evidence actually captured. For visual assets, evaluate in real production context at authored scale/camera and capture the result before promoting the milestone.
 
 Unreal/runtime/art output is the lie detector.
 
 ## 6. Smallest decisive milestone
 
-Agents should close the smallest production unit that produces a meaningful yes/no result.
+Agents should close the smallest production unit that produces a meaningful yes/no result: one reproduced blocker, build proof, scale test, silhouette decision, integration capture, restart proof, packaged proof, or bounded PR.
 
-Prefer:
-- one reproduced blocker;
-- one build proof;
-- one scale test;
-- one silhouette decision;
-- one integration capture;
-- one restart proof;
-- one packaged proof;
-- one clearly bounded PR.
-
-Avoid:
-- broad cleanup because adjacent files look untidy;
-- new frameworks while proving an existing one;
-- speculative architecture during a validation pass;
-- TODO forests;
-- research sweeps without a concrete blocker;
-- "while we're here" expansion.
-
-If a task can be rejected independently, it is easier to delegate safely.
+Avoid broad cleanup, speculative frameworks, TODO forests, unbounded research sweeps, and "while we're here" expansion.
 
 ## 7. Stop rules
 
-An agent must stop and report rather than expand when:
-- current source contradicts the task premise;
-- a semantic merge conflict touches gameplay authority;
-- a runtime-only decision cannot be established remotely;
-- owner visual judgment is required;
-- a missing credential/license/payment/hardware action is required;
-- the next step would create a second authority for an existing system;
-- the task has reached its requested evidence level;
-- one reproduced blocker explains the failure.
+An agent must stop and report rather than expand when current source contradicts the task premise, a semantic conflict touches authority, runtime-only judgment is required, owner visual judgment is required, credentials/licenses/hardware are required, the next step would create a second authority, the requested evidence level is reached, or one reproduced blocker explains failure.
 
-A good blocked result is:
+Good blocked result:
 
 ```text
 BLOCKER
@@ -191,43 +122,32 @@ STOP
 
 Do not compensate for uncertainty by producing more prose.
 
-## 8. Git is infrastructure, not the product
+## 8. Git and documentation are infrastructure, not the product
 
-Run the repository's existing Git/front-door health checks first.
+Run existing health checks first. If Git is healthy, leave it alone and return to production.
 
-If Git is healthy, leave it alone and return to production.
+Do not reconstruct history for curiosity, merge branches merely to reduce count, delete intentional workstation lanes, treat every stale document as a task, or create another health report when tooling already answers the question.
 
-Do not:
-- reconstruct history for curiosity;
-- merge branches merely to reduce branch count;
-- delete intentional workstation lanes;
-- treat every stale document as a task;
-- create another Git health report when existing tooling already answers the question.
+Documentation doctrine:
 
-Branches are work/evidence; `main` is durable canon after accepted integration.
+```text
+What is true now?        -> CURRENT_STATE.md
+How does runtime work?   -> SYSTEM_MAP.md / DATA_FLOW.md
+What rules persist?      -> durable contract / spec / runbook
+What should it look like?-> reference / bible
+What did we learn?       -> research
+What happened before?    -> Git history / clearly HISTORICAL stub
+```
 
-Agent work is not complete until its meaningful result is pushed, reviewable, and the receiving workstation can consume it safely.
+There is no active-plan-document category. If a task changes current status, update `CURRENT_STATE.md` in the same change set.
 
 ## 9. Owner authority and artistic authorship
 
-Agents may execute technical/art-production instructions, but Brennan retains final authority over:
-- visual identity;
-- composition;
-- environment design;
-- character presentation;
-- gameplay feel;
-- musical identity;
-- scope;
-- what is portfolio-worthy;
-- whether a generated/modified asset is actually better.
+Brennan retains final authority over visual identity, composition, environment design, character presentation, gameplay feel, musical identity, scope, portfolio selection, and whether a generated/modified asset is actually better.
 
-Do not "fix" reference art, redesign approved visuals, replace an approved material parent, or reinterpret an established aesthetic unless explicitly asked.
-
-Technical correctness does not override owner art direction.
+Do not redesign approved visuals, replace approved material parents, or reinterpret established aesthetics unless explicitly asked.
 
 ## 10. Preferred agent brief
-
-A strong task brief should state:
 
 ```text
 OBJECTIVE
@@ -252,46 +172,35 @@ FINAL RESPONSE
 what changed, validation performed, first owner action
 ```
 
-For expensive models, always reduce ambiguity first. Do not spend premium quota on "look around and improve things."
+For expensive models, reduce ambiguity first.
 
 ## 11. PC landing-strip contract
 
-Before a planned owner workstation session, a remote/mobile agent may be assigned a landing-strip pass.
+A remote/mobile agent may do every safe prerequisite that does not require owner/runtime/art judgment, then leave one concise workstation handoff in the conversation or PR body.
 
-Its job is to do every safe prerequisite that does **not** require owner/runtime/art judgment, then leave exactly one concise workstation handoff.
+It may fetch refs, inspect divergence, reconcile safe non-semantic drift, run static/non-GUI checks, inspect LFS signals, locate exact commands, and prepare evidence capture names/paths.
 
-A landing-strip agent may:
-- fetch latest `main` and target branch;
-- inspect divergence;
-- reconcile safe non-semantic drift;
-- run static/non-GUI checks;
-- inspect LFS/asset availability signals;
-- locate exact build/test/package commands;
-- prepare evidence capture names/paths.
-
-It may not:
-- claim runtime PASS from source reasoning;
-- redesign the target subsystem;
-- expand into another milestone;
-- merge a gated PR without its required evidence;
-- replace the owner's visual/gameplay judgment.
-
-Success means the first owner workstation action is concrete, preferably a build/test/open-and-judge action rather than Git archaeology.
+It may not claim runtime PASS from source reasoning, redesign the subsystem, expand milestones, merge gated work without evidence, or replace owner judgment.
 
 ## 12. Definition of productive agent work
 
-Productive agent work reduces uncertainty or produces verifiable project value.
-
-Good outputs:
-- fewer real blockers;
-- passing tests/builds;
-- a reproduced failure;
-- an integrated bounded feature;
-- a stronger art/runtime capture;
-- a clean evidence packet;
-- less PC setup friction;
-- a safely landed canonical change.
+Productive agent work reduces uncertainty or produces verifiable project value: fewer blockers, passing tests/builds, reproduced failures, bounded integrated features, stronger art/runtime captures, useful evidence, less workstation friction, or safely landed canonical changes.
 
 Agent motion is not automatically progress.
 
-**The project is judged by the game, the art, the build, and the captured evidence—not by how many agents ran or how many commits were generated.**
+**The project is judged by the game, the art, the build, and the captured evidence—not by how many agents ran or how many commits/documents were generated.**
+
+## 13. Obsidian / knowledge-browser rule
+
+Obsidian is approved as an **optional human navigation layer over the repository Markdown**.
+
+Recommended setup:
+
+- open the repository root (or a read-focused copy of its Markdown tree) as the vault;
+- keep Git files as canonical; Obsidian does not own project truth;
+- prefer links/backlinks, search, local graph, bookmarks, and tags for discovery;
+- do not create duplicate Obsidian-only status notes, dashboards, task queues, or handoffs;
+- do not treat graph centrality as authority — the authority rules above still apply;
+- keep `.obsidian/` machine-local unless a deliberately reviewed shared configuration is ever needed.
+
+The value of Obsidian is **finding and relating durable knowledge**, not generating another knowledge base beside Git.

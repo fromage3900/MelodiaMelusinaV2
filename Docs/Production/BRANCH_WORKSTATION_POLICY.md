@@ -2,10 +2,12 @@
 
 **Status:** CANONICAL OPERATING POLICY  
 **Date:** 2026-09-08  
-**Updated:** 2026-09-11  
+**Updated:** 2026-09-12  
 **Authority:** `main` remains the only canonical game/runtime/capstone branch.
 
 This policy exists to make Git infrastructure boring and predictable.
+
+For **current** priorities, blockers, and assigned work, read `CURRENT_STATE.md`. This file defines durable branch/workstation behavior only.
 
 ## 1. Branch classes
 
@@ -46,7 +48,7 @@ Current preserved example:
 
 This branch is the ASUS laptop Blender / Geometry Nodes / procedural-authoring lane.
 
-**Single current laptop source of truth:** [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md). It now contains the active Blender/GN/ArmorPaint plan, workstation sync/handoff rules, recovery provenance, and promotion contract. `LAPTOP_WORK_DISCOVERY_2026-09-04.md` is historical only.
+**Durable laptop/workstation contract:** [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md). It defines Blender/GN/ArmorPaint boundaries, workstation sync/handoff rules, recovery provenance, and promotion behavior. `LAPTOP_WORK_DISCOVERY_2026-09-04.md` is historical only.
 
 Rules:
 - divergence from `main` is not, by itself, a defect;
@@ -160,7 +162,7 @@ Use for:
 - DCC experiments;
 - on-the-go procedural production.
 
-Read [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md) before assigning new laptop procedural work.
+Read [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md) for durable lane rules before assigning laptop procedural work. Read `CURRENT_STATE.md` for what the laptop is actually doing now.
 
 Its long-term branch is intentionally preserved until a future DCC-repository migration is deliberately chosen. Do not perform that migration during capstone production merely for repository aesthetics.
 

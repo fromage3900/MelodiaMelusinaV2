@@ -1,0 +1,214 @@
+{
+  "test_name": "orphan_retire_proof",
+  "session_id": "pie_smoke_4_230315",
+  "timestamp": "2026-09-12T03:03:32.176152+00:00",
+  "ok": true,
+  "ok_reason": "clean",
+  "map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+  "duration": 15,
+  "captured_frames": [],
+  "frame_count": 0,
+  "anim_samples": [
+    {
+      "t": 0.0021588988602161407,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.15867039933800697,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.3870886005461216,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.6970946975052357,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.0270439982414246,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.3692959994077682,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.692722599953413,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.027775000780821,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.3601633980870247,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.698139898478985,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.0324633978307247,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.362252701073885,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.7004875987768173,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.025759398937225,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.35856319963932,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.779508899897337,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.042230397462845,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.364847898483276,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.693396598100662,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.029277600347996,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.3616043999791145,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.697730898857117,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.029065500944853,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.364799298346043,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.697165798395872,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.030330199748278,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.361306797713041,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.700139697641134,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.042309500277042,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.36727900058031,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.698234800249338,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.033723000437021,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.36449670046568,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.699420899152756,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.035114400088787,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.368791799992323,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.698347598314285,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.03175999969244,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.368426498025656,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.698915500193834,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.031364601105452,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.371324200183153,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.7022759988904,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.037868700921535,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.36925669759512,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.698291201144457,
+      "bIsMoving": false
+    },
+    {
+      "t": 15.032645300030708,
+      "bIsMoving": false
+    }
+  ],
+  "sample_count": 47,
+  "log_matches": {
+    "Blueprint Runtime Error": 0,
+    "Accessed None": 0,
+    "LogChooser": 0
+  },
+  "must_absent_hits": {},
+  "missing_must_present": [],
+  "console_script": [],
+  "errors": [],
+  "warnings": [],
+  "elapsed_seconds": 15.032644398510456,
+  "frames_captured": 0
+}

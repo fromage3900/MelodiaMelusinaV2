@@ -60,18 +60,21 @@ if [ "$TIER" = "blender" ]; then
     /RawArt/MelusinasHouse/ \
     /Docs/References/MelusinasHouse/ \
     /Docs/Art/VISUAL_REFERENCE_INDEX.md \
-    /Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md \
+    /Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md \
+    /Docs/Production/BRANCH_WORKSTATION_POLICY.md \
     /Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md \
     /Docs/ONBOARDING_LIVE_COLLAB.md \
     /Docs/ZUNZUN_FAMILY_INTEGRATION.md \
     /Docs/ZUNDAMON_DESIGN_BIBLE.md \
     /Docs/ZUNDAMON_NPC_SPEC.md \
     /CURRENT_STATE.md \
+    /SYSTEM_MAP.md \
+    /DATA_FLOW.md \
     /README.md
   echo "==> Hydrating canonical Melusina House source"
   git lfs pull --include="RawArt/MelusinasHouse/**"
   echo "==> Blender-only checkout ready"
-  echo "Read CURRENT_STATE.md and Docs/Art/VISUAL_REFERENCE_INDEX.md first."
+  echo "Read CURRENT_STATE.md first; use the laptop procedural contract for DCC/workstation rules."
   echo "Install the addon under Blender 5.2, then use Docs/ONBOARDING_LIVE_COLLAB.md."
   exit 0
 fi
@@ -79,6 +82,7 @@ fi
 if [ "$TIER" = "docs" ]; then
   echo "==> Docs/code-only workflow"
   git lfs install || true
+  echo "Read CURRENT_STATE.md first; follow subsystem contracts only as needed."
   exit 0
 fi
 
@@ -131,6 +135,7 @@ if [ "$missing" -ne 0 ]; then
 fi
 
 echo "==> Onboarding complete for tier: $TIER"
+echo "Read CURRENT_STATE.md before acting on older plans or handoffs."
 echo "Plugins are source-only; compile them before opening the project:"
 echo '  "<UE_ROOT>\\Engine\\Build\\BatchFiles\\Build.bat" BS_GodFileEditor Win64 Development -Project="<checkout>\\BS_GodFile.uproject" -NoUBA -MaxParallelActions=1'
 if [ -f "$REPO_DIR/deploy/validate_setup.ps1" ]; then

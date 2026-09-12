@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<rect width="240" height="240" fill="#F6F0E3"/>
+<rect x="6" y="6" width="228" height="228" fill="none" stroke="#8F83C4" stroke-width="1"/>
+<circle cx="120" cy="120" r="108.0" fill="none" stroke="#D98CA6" stroke-width="1.8"/>
+<line x1="120" y1="120" x2="190.0" y2="202.2" stroke="#7E74C9" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="120" y1="120" x2="50.0" y2="37.8" stroke="#A96E96" stroke-width="1.6" stroke-linecap="round"/>
+<circle cx="120" cy="120" r="2.6" fill="#4FA8BE"/>
+<text x="12" y="230" font-family="Georgia,serif" font-size="10" fill="#A96E96">C &#183; Ring 1.1 - C</text></svg>
