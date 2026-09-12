@@ -544,3 +544,347 @@ one variable at a time - rather than by name mapping.
 When the chain was assembled the whole strand sat about 16 mm above its own
 guide. Not chased down, because the bead path had to be fixed first - recheck it
 afterwards rather than assuming it is separate.
+
+---
+
+# Materials and lenses — research, 2026-09-12
+
+Extends section 5.2 (no UVs) and the Appendix "Materials" note. Everything below assumes
+that finding holds: **the GN output ships POSITION and NORMAL only**, so image-texture
+options in the photoreal playbook are closed until `MEL_eyewear_uv` exists.
+
+## M1. Four materials, four draw calls
+
+| id | parts | glTF primitive |
+|---|---|---|
+| `MEL_mat_eyewear_acetate` | front, temple tips, moulded ends | 1 |
+| `MEL_mat_eyewear_metal` | hinges, metal temples, nose-pad arms | 1 |
+| `MEL_mat_eyewear_lens` | lens solid | 1 |
+| `MEL_mat_eyewear_silicone` | nose pads | 1 |
+
+Each material slot is one glTF primitive, i.e. one draw call. Four is far inside the
+Khronos 3D Commerce single-item web budget (<20 draw calls). Follow `materials_kit.py`'s
+`_set_principled(bsdf, **kwargs)` pattern — it sets Principled sockets by name and skips
+unknown keys, which is what keeps socket renames from breaking the build.
+
+`MEL_eyewear_pair` currently emits one joined mesh with **no material slots**. It needs a
+`GeometryNodeSetMaterial` per part. `MEL_eyewear_hinge` already derives
+`GeometryNodeMeshCylinder` Top/Side/Bottom selections, so the barrel's side is a ready-made
+material selection.
+
+## M2. Vertex colour is the only texturing channel this pipeline can ship
+
+No UVs ⇒ no textures. But glTF carries `COLOR_0`, and viewers multiply it into base colour.
+That is enough for tortoiseshell marbling and for a lens gradient tint.
+
+    GeometryNodeStoreNamedAttribute   data_type FLOAT_COLOR, domain CORNER, name "Col"
+
+Blender 4.x+ exports colour attributes as `COLOR_0` without a dedicated flag. Two traps:
+
+1. The exporter runs vertex colours through sRGB→linear conversion (`color_srgb_to_scene_linear`).
+   Author in sRGB and check the GLB, or the result double-darkens.
+2. **Vertex alpha does not become opacity in three.js** — `vertexColors` consumes RGB only.
+   Put the gradient in RGB, not in alpha.
+
+Acetate palette, sRGB hex → **linear** (computed, standard sRGB transfer):
+
+    dark tortoise base   #2B2118  ->  0.024, 0.015, 0.009
+    medium tortoise      #5A3A22  ->  0.102, 0.042, 0.016
+    amber honey          #8A5A32  ->  0.254, 0.102, 0.032
+    blonde tortoise      #C8A882  ->  0.578, 0.392, 0.223
+    black acetate        #141414  ->  0.007, 0.007, 0.007
+
+Resolution limit: at the measured `Length 0.5` setting the front is 5,648 tris across
+~134 mm, roughly one vertex per 2.4 mm. Marbling detail finer than ~5 mm will alias —
+keep the noise scale coarse, or densify the sweep for the colour pass only.
+
+## M3. Acetate
+
+Base colour = one of the palette entries. Physically it is a plain dielectric with a
+buffing lacquer on top, so the coat *is* the material.
+
+    Metallic             0.0
+    Roughness            0.35-0.55   (bulk)
+    IOR                  1.48-1.49   (cellulose acetate, measured; CAMEO / refractiveindex.info)
+    Specular IOR Level   0.5         (default; F0 for n=1.49 is 0.0387, vs 0.04 at n=1.5)
+    Coat Weight          0.6-1.0     -> KHR_materials_clearcoat
+    Coat Roughness       0.08-0.15
+
+`KHR_materials_clearcoat` exports from Blender 5.2 and is parsed by three.js, Babylon,
+model-viewer and UE's Interchange glTF importer. Safe.
+
+Crystal/transparent acetate is **not** a transmission material — it is a very dark-tinted
+dielectric. Alpha-blend it (alpha 0.25-0.45), keep the coat, and do not reach for
+`KHR_materials_transmission`.
+
+## M4. Metal / titanium
+
+    Metallic             1.0
+    Roughness            polished 0.20-0.30 · satin 0.45-0.60 · matte 0.65-0.80
+    Base Color           Ti (0.542, 0.497, 0.449)  [UE physically-based list]
+                         Ti (0.441, 0.400, 0.361)  [physicallybased.info]
+                         Cr (0.549, 0.556, 0.554) · Ag (0.972, 0.960, 0.915) · Au (1.000, 0.766, 0.336)
+
+Roughness bands are industry convention, **not measured**. The two titanium base colours
+are both legitimate measurements/derivations and differ because UE's chart is tuned for UE
+tonemapping — pick one and stay with it per-lens.
+
+Anodised titanium: keep the same base colour, add Coat Weight 0.3-0.5. Do not tint the metal.
+
+Anisotropy (`KHR_materials_anisotropy`) exports from 5.2 and three.js parses it, **but
+Blender requires the Anisotropic tangent socket linked to a Tangent node with a UVMap** —
+so it is a non-starter until `MEL_eyewear_uv`. Flag, not a task.
+
+## M5. The lens — cheap approximation by default
+
+Do **not** ship `KHR_materials_transmission` as the default path. Reasons, in order:
+
+- three.js `MeshPhysicalMaterial.transmission` costs an extra full scene render into a
+  transmission render target per frame; drei's `MeshTransmissionMaterial` is a second
+  full-screen pass per material. Two lenses = two more scene renders.
+- Transmissive materials cannot see each other, and the Blender manual itself warns support
+  "is not yet widespread".
+- model-viewer has an open defect where transmission loses colour (`google/model-viewer#4047`).
+- On a 2 mm slab inside a 134 mm assembly the refraction is visually negligible.
+
+Instead:
+
+    Base Color      tint (or one of the acetate palette entries for sun tints)
+    Metallic        0.0
+    Roughness       0.02-0.06
+    IOR             1.50 default · 1.53 CR-39 · 1.67 / 1.74 high-index
+    Coat Weight     1.0
+    Coat Roughness  0.02
+    alphaMode       BLEND when alpha < 1 (clear lenses alpha 0.15-0.35, sun 1.0)
+
+Three cues carry the whole read:
+
+1. **Environment reflection** at roughness <=0.06 — this is 90 % of "glass". Requires the
+   viewer to supply an env map: model-viewer does by default, r3f needs `<Environment>`.
+   With no env map a roughness-0.04 dielectric reads as flat dark.
+2. **Fresnel edge** — free from a dielectric BSDF. Strengthen it, if wanted, by writing a
+   rim-darkened RGB into `COLOR_0`.
+3. **Gradient tint** — dark at the top of the lens fading down, the single most
+   recognisable sunglasses tell. Author it in `COLOR_0` from the lens mesh's vertical
+   coordinate (`Position` → Separate XYZ → Map Range → ColorRamp → StoreNamedAttribute).
+   This is the one place vertex resolution is comfortably enough: 34 mm of lens height at
+   ~2.4 mm spacing is smooth.
+
+## M6. Mirror / flash coating
+
+A mirror is a metal, not a dielectric: Metallic 1.0, Roughness 0.05-0.12, base colour from
+the metal list. Gradient mirror (mirror on top, tinting through below) cannot be driven from
+`COLOR_0` — **metallic is not a per-vertex channel in glTF**. The export-safe route is a
+second lens solid split at the gradient line with its own mirror material: +1 primitive,
++1 draw call.
+
+## M7. Nose pads and temple tips
+
+Silicone nose pad (PDMS, n 1.40-1.43 measured; F0 ≈ 0.029-0.031):
+
+    Base Color      0.75-0.85 linear near-white
+    Roughness       0.45-0.65   (the matte is what reads as rubber)
+    IOR             1.42
+    Metallic 0.0 · Coat 0.0
+
+`KHR_materials_subsurface` is an Initial Draft only and no common viewer supports it — do
+not use it to fake translucency; raise the base colour slightly instead.
+
+Moulded acetate temple tips reuse the acetate material at roughness ~0.5; give them a
+distinct colour through `COLOR_0` so they cost no extra material.
+
+## M8. Anti-reflective coating
+
+Physically AR takes per-surface reflectance from 4.0 % (n=1.50) / 5.3 % (1.60) / 7.3 %
+(1.74) to under 1 % with a hue-dependent residual sheen. Real-time, approximate it as
+Specular IOR Level 0.15-0.25 plus a faint Specular Tint (0.70, 0.90, 0.75) green or
+(0.85, 0.80, 1.00) violet. Both ride `KHR_materials_specular`, which exports.
+
+`KHR_materials_iridescence` would be the correct layer; Blender 5.2 documents an
+iridescence export path but does **not** list the extension in its supported-export set —
+**unverified, do not depend on it.**
+
+For a stylized look AR is often *subtracted*: the sheen is a photoreal cue and can read muddy.
+
+## M9. What will not survive export, or breaks in viewers
+
+| Item | Status |
+|---|---|
+| Procedural nodes (Noise/ColorRamp) driving Base Colour or Roughness | **Not exported.** glTF has no procedural textures. Bake to `COLOR_0` or an image texture. |
+| Any texture map (ORM, metalness, gradient alpha, thickness) | Blocked — no `TEXCOORD_0`. |
+| `KHR_materials_anisotropy` | Exports, but Blender needs a Tangent node + UVMap. Blocked. |
+| `KHR_materials_iridescence` | Not in Blender 5.2's export list. Unverified. |
+| `KHR_materials_sheen` | Exportable, but Blender's sheen model is not glTF-compatible. Prefer Coat. |
+| `KHR_materials_subsurface` / `diffuse_transmission` | Draft / RC. No viewer support. |
+| Metallic from `COLOR_0` | Not a thing. Gradient mirror needs two primitives. |
+| Vertex alpha as opacity | three.js ignores it. Gradient goes in RGB. |
+| `export_apply=False` | Still the empty-176-byte trap from 5.1. |
+
+Blender 5.2 export-supported set, confirmed from the manual: `clearcoat`, `transmission`,
+`volume`, `sheen`, `specular`, `anisotropy`, `dispersion`, `ior`, `emissive_strength`,
+`unlit`, `variants`, `texture_transform`, `draco`, `lights_punctual`,
+`EXT_mesh_gpu_instancing`.
+
+## M10. Implementation order
+
+    M-1  MEL_eyewear_materials.py   four build_*_material() fns, materials_kit conventions
+    M-2  material slots on the pair + hinge side selection
+    M-3  lens material + lens sharp tint
+    M-4  MEL_eyewear_tortoise / MEL_eyewear_lens_gradient  (COLOR_0 writers)
+    M-5  extend MEL_eyewear_export_gate: COLOR_0 present, extensionsUsed matches intent,
+         no material with transmission>0 unless explicitly enabled
+    M-6  UE 5.8 import check (Interchange handles clearcoat / ior / specular / sheen)
+    M-7  viewer wiring: env map mandatory, transmission off, lens alphaMode BLEND last
+
+## M11. Sources
+
+- Blender 5.2 glTF manual (export extension list, clearcoat/specular/transmission/anisotropy/
+  volume/IOR rules): https://docs.blender.org/manual/en/latest/addons/scene_gltf2.html
+- Khronos glTF extension registry (ratified vs in-progress):
+  https://github.com/KhronosGroup/glTF/blob/main/extensions/README.md
+- `KHR_materials_volume` (manifold/closed mesh requirement):
+  https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_volume/README.md
+- Khronos PBR glossary: https://www.khronos.org/gltf/pbr/
+- Blender glTF I/O PBR-extension support notes (sheen/specular model incompatibility):
+  https://www.khronos.org/blog/blender-gltf-i-o-support-for-gltf-pbr-material-extensions
+- three.js GLTFLoader / MeshPhysicalMaterial transmission cost; drei `MeshTransmissionMaterial`
+  extra render pass: https://drei.docs.pmnd.rs/shaders/mesh-transmission-material
+- model-viewer transmission colour-loss defect: https://github.com/google/model-viewer/issues/4047
+- Cellulose acetate refractive index 1.48-1.51: https://cameo.mfa.org/wiki/Cellulose_acetate
+- PDMS refractive index: https://refractiveindex.info/?shelf=organic&book=polydimethylsiloxane
+- Lens index ↔ reflectance (AR, 8 % at 1.74): https://www.opterio.com/learn/anti-reflective-coatings-guide
+- Metal base colours: https://physicallybased.info/ · UE physically-based materials chart
+- UE glTF importer extension support (5.0+): Epic glTF Importer roadmap / UE glTF exporter docs
+
+
+---
+
+# Appendix B — presentation: hero render and turntable (2026-09-12)
+
+Appendix A covers getting *a* render out. This appendix covers getting an **AAA product
+render** out — the hero still and the turntable — and what the builder must emit so that
+render is repeatable rather than luck. It extends Appendix A; it does not repeat it.
+
+The existing builders supply geometry and nothing else. `MEL_eyewear_pair` emits **one joined
+mesh with no material slots**. Everything below therefore starts from "the builder must emit
+more" rather than "the artist must work harder".
+
+## B.1 What the photography rigs actually are
+
+The one practitioner source found that documents an eyewear rig in numbers rather than
+adjectives is the eyewear chapter of *Lighting for Fashion Accessories* (Rocky Nook):
+
+| Case | Rig |
+|---|---|
+| Prescription, flat lenses | **a large diffused light box for the lenses + small diffused sources for the temples and edges** |
+| Sunglasses | **backlight** through a large light box + a **rounded reflector in front** of the frame |
+| Lens coverage ("family of angles") | **180° for flat lenses, up to 250° for curved, 300° for goggles** |
+| Reference distances | **60 in octabox ≈ 3 ft from the frame, behind a 98 × 60 in diffusing fabric** |
+| Reflection angle on the lens | light placed **slightly descending, ~10–20°** |
+| Catalog presentation | **shadowless**, frame on an **elevated sheet of glass** |
+| Advertising presentation | **high-key, large and very soft**, "glasses are made so you can see better" |
+
+Three load-bearing readings from that:
+
+1. **Eyewear is not a three-point product rig.** The dominant source is one very large
+   diffuser sized to cover the *whole* family of angles, plus small sources specifically for
+   the acetate edges and the temples. The small sources exist because the big one is too
+   diffuse to describe an edge.
+2. **The diffuser is huge relative to the subject** — 2.5 m of fabric for a 134 mm object,
+   ~15–20× the subject width, at roughly 6–7× subject width of distance. Proportion, not
+   absolute size, is what ports to 3D: any small area light will read as a hard, wrong
+   glaze on acetate.
+3. **Shadowless is the catalog default**, which is why the elevated glass sheet exists. The
+   contact shadow is an editorial/advertising choice, not a catalog one.
+
+`Light: Science & Magic` (Hunter/Biver/Fuqua) is the underlying theory — "the family of
+angles" and "the angle of incidence equals the angle of reflectance" on a smooth surface. The
+relevant consequence for a lens: **you never light glass, you light what it reflects.** The
+lens is a mirror with a slight tint; the visible content of the lens is the virtual image of
+whatever large bright shape sits inside that family of angles.
+This is convention-as-physics: it is the documented model, and it applies to a 3D renderer
+directly because a path tracer computes the same reflection.
+
+## B.2 Acetate edge glow
+
+Retailer/editorial sources (Warby Parker, eluno, shutterstock descriptions) consistently
+describe the same thing: translucent tortoise/crystal acetate **glows at the edges**, and on a
+polished rim the edge reads "jewellery-like". This is documented as a *look*, not as a
+measured optical figure — treat it as convention. It is also physically obvious: at an edge
+the material is thin, so transmitted light escapes there that cannot escape through the
+6 mm-deep rim face.
+
+For the builder that means **the rim edge is a separate region that must be identifiable**,
+because the shader that produces the glow is a thickness/edge-mask shader, and there is no UV
+layer to build that mask from.
+
+## B.3 Lens
+
+- Uncoated optical surfaces reflect ~4 % per surface; AR coating takes that under ~0.5 % and
+  leaves a faint residual colour (green is the common one; magenta/purple also occurs). No
+  measured source in this research gave the coating figure — **convention**.
+- Clear lenses: keep near-full transmission with the faint green cast. Sunglasses: subject to
+  tint, roughly 10–30 % VLT depending on category.
+- The blowout failure is not the lens transmission, it is the **specular lobe** of whatever
+  bright shape is in the family of angles. Polish the lens to roughness ≈ 0.02–0.08 and shape
+  the *source* (a large soft plane, not a hot point) and it reads as glass. Leave the default
+  white specular and a small light and it reads as a white blob.
+
+## B.4 Turntable numbers
+
+| Source | Number |
+|---|---|
+| Miops (360 product photography guide) | **24 frames / 15° = functional minimum; 36 frames / 10° = the standard recommendation** for ecommerce |
+| ProductPhoto.com | offers **24, 36, 72** frames |
+| Iconasys turntable hardware | up to 10,200 frames / 360°, 0.03° precision — the ceiling, not the norm |
+
+Easing: a real product spin is **constant angular velocity**. Ease-in/ease-out on a 360° loop
+produces a visible hitch at the seam; if easing is wanted it has to be a per-shot video
+decision, not part of the spin rig. This is convention (no vendor document states it), but it
+follows from the seam.
+Also conventional and important for reflective products: in a real turntable **the product
+rotates and the lights do not**. Orbiting the camera instead holds the highlight still and
+makes a specular product look subtly wrong across the spin.
+
+## B.5 Product versus editorial
+
+E-commerce/product: neutral, even, shadowless (or minimal contact shadow), honest colour,
+frame silhouette legible, lens deliberately quiet. Editorial/beauty: directional key with
+falloff, one graphic highlight, gradient environment, shallow depth of field, a mood, lens
+either dramatised or vanished. Both are documented distinctions in fashion-photography
+writeups (ArtChick, Elixxier) — the useful part for us is that **they are two rigs, not two
+grades**, so they have to be two presets.
+
+## B.6 Bake versus post
+
+Rule that follows from the turntable: **anything that must be identical across 36 frames has
+to be in-scene.** A lens reflection, an acetate glow, a gradient background — in-scene is one
+change; in post it is 36 or 72 retouches that will drift.
+In-scene: geometry, material separation, vertex-attribute masks, orientation/origin, camera,
+lights, view transform, and depth of field.
+Post: crop, dust, white balance, background compositing behind the alpha, campaign grade,
+and the small retouch that removes a fixture reflection the rig could not avoid.
+
+## B.7 Pipeline requirements this implies
+
+1. `MEL_eyewear_present` — nests `MEL_eyewear_pair` + `MEL_eyewear_lens`, applies the
+   **−90° X** stand-up rotation, sets the object origin to the **optical centre** (not the
+   bounding-box centre, or the spin wobbles), and emits material slots.
+2. Named material slots on the joined mesh, aligned with the Amazon eyewear node names where
+   they map: `Frame`, `TempleR`, `TempleL`, `LensR`, `LensL`, plus `Metal` for the hinge
+   barrel. Acetate and metal cannot share a shader; the lens cannot share with either.
+3. Named vertex attributes (the only spatial channel available without UVs), via the existing
+   `MEL_store_named_attr`: at minimum a part id, and a **rim-edge / thickness mask** to drive
+   the acetate edge glow. Suggest `eyewear_part_id`, `eyewear_edge`, `eyewear_thickness`.
+4. Camera presets in `presets.py` (`BUILDERS_PRESETS` already carries the preset shape):
+   `HERO_3Q`, `FRONT_ORTHO`, `PROFILE`, `TOP`, `HINGE_MACRO`, and a `TURNTABLE` rig.
+   Front elevation wants an **orthographic** camera — it is the technical/product view.
+5. Lighting presets, proportionally scaled to a 134 mm subject: `CATALOG_SHADOWLESS`
+   (large diffuser + elevated glass), `STUDIO_ACETATE` (big key + small edge sources),
+   `SUNGLASS_BACKLIGHT` (backlight + front rounded reflector), `EDITORIAL_GRADE`.
+6. Scale contract stated in the asset: keep mm (1 BU = 1 m). Then the render rig must set
+   `camera.clip_start ≈ 0.0005` (the 0.1 m default clips the whole asset away) and light
+   sizes/powers authored in the same unit space. A `PRESENT_CM` variant at ×10 (1 BU = 1 cm,
+   frame ≈ 1.34 BU) is the more comfortable authoring space and is worth emitting.
+7. Smooth-shading contract: `Shade Smooth` with an angle-based auto-smooth (~30–40°) so the
+   rim reads as one polished sweep while the endpiece and hinge barrel keep their breaks.
