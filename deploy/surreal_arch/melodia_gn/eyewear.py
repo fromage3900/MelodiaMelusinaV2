@@ -98,6 +98,11 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
     # a published radius. Constructed into the profile - GeometryNodeMeshBevel is measured
     # unusable on this build (0.3 mm took a 54 mm lens to 322 mm).
     add_float_param(tree, "Rim Edge Break", 1.0, 0.2, 1.5)
+    # 11.2 base curve + frame form. Defaults 0/0 keep today's verified flat
+    # look bit-exact (pure-Z fields; X/Y untouched); the editorial set passes
+    # explicit values (Base Curve 4-6, Form Angle ~4.4).
+    add_float_param(tree, "Base Curve", 0.0, 0.0, 8.0)
+    add_float_param(tree, "Form Angle", 0.0, 0.0, 25.0)
 
     bx, by = 0, 0
 
@@ -337,6 +342,14 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                 bridge_geo = c2m_b.outputs["Mesh"]
 
     # --- combine -------------------------------------------------------------
+    # 11.2 post-pass: wrap + base curve as one pure-Z field over the joined
+    # front (rims + bridge together, so no seam can open between them).
+    _fspan = _math(tree, "ADD", (bx + 140, by + 240),
+                     a=_mm(tree, gin, "Lens Width A", (bx - 60, by + 280)),
+                     b=_mm(tree, gin, "Bridge DBL", (bx - 60, by + 160)))
+    half_span = _math(tree, "MULTIPLY", (bx + 320, by + 240),
+                      a=(_fspan.outputs[0] if _fspan is not None else None), b=0.5)
+    front_joined = None
     if left is not None and right is not None and bridge_geo is not None:
         j1 = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 500, by))
         if j1 is not None:
@@ -346,13 +359,18 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
             if j2 is not None:
                 link_sockets(tree, j1.outputs["Geometry"], j2.inputs["Geometry"])
                 link_sockets(tree, bridge_geo, j2.inputs["Geometry"])
-                link_sockets(tree, j2.outputs["Geometry"], gout.inputs["Geometry"])
+                front_joined = j2.outputs["Geometry"]
     elif left is not None and right is not None:
         j1 = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 500, by))
         if j1 is not None:
             link_sockets(tree, left, j1.inputs["Geometry"])
             link_sockets(tree, right, j1.inputs["Geometry"])
-            link_sockets(tree, j1.outputs["Geometry"], gout.inputs["Geometry"])
+            front_joined = j1.outputs["Geometry"]
+    if front_joined is not None and half_span is not None:
+        front_joined = _base_curve_field(tree, front_joined, gin,
+                                         half_span.outputs[0], (bx + 840, by))
+    if front_joined is not None:
+        link_sockets(tree, front_joined, gout.inputs["Geometry"])
 
     label_tree(tree, group_name)
     return (tree, gin, gout)
@@ -882,6 +900,92 @@ def _split_x_sign(tree, geom, loc):
         return None, None
 
 
+_SMOOTH_ABS_K = 0.002  # BU (2 mm): smooth-abs knee for the 11.2 fields
+
+
+def _base_curve_field(tree, geom, gin, half_sock, loc,
+                      bc_param="Base Curve", form_param="Form Angle"):
+    """11.2 base curve + frame form as pure Z fields (no splits, no topology change).
+
+    sag = R - sqrt(max(R^2 - r^2, 0)) with R = 523 / max(BaseCurve, 1e-3) mm
+    (plan table: 2 base -> 261.5 mm | 4 -> 130.75 | 6 -> 87.17 | 8 -> 65.38)
+    and r^2 = (smooth|x| - half)^2 + y^2 about each eye's boxing centre;
+    wrap pushes z -= smooth|x| * sin(Form). smooth|x| = sqrt(x^2 + k^2) - k.
+
+    Why fields, not the plan's per-side rotation: splitting the front at x = 0
+    DROPS the ~80 bridge faces straddling the plane (measured,
+    split_behavior_probe) — Separate never resurrects them on rejoin. The sag
+    needs no sign anyway (distance is even: both sides agree at x = 0), and the
+    smoothed abs keeps the wrap continuous and crease-free across the bridge.
+    Pure Z by construction, so every X/Y boxing assertion survives untouched.
+    At Base Curve 0 the residual sag is ~1e-6 BU; at Form Angle 0 the wrap is
+    exactly 0. Defaults are 0/0 (today's verified look); the editorial set
+    passes explicit values. Any wiring failure degrades to passthrough and the
+    z-assertions in base_curve_check.py catch it.
+    """
+    if geom is None or half_sock is None:
+        return geom
+    x0, y0 = loc
+    try:
+        bc = sock(gin, bc_param, outputs=True)
+        form = sock(gin, form_param, outputs=True)
+        pos = safe_node(tree, "GeometryNodeInputPosition", (x0, y0 - 260))
+        sepx = safe_node(tree, "ShaderNodeSeparateXYZ", (x0 + 180, y0 - 260))
+        link_sockets(tree, sock(pos, "Position", outputs=True), sock(sepx, "Vector"))
+        xs = sock(sepx, "X", outputs=True)
+        ys = sock(sepx, "Y", outputs=True)
+        # smooth |x|
+        x2 = _math(tree, "MULTIPLY", (x0 + 360, y0 - 200), a=xs, b=xs)
+        kk = _constant(tree, (x0 + 360, y0 - 320), _SMOOTH_ABS_K ** 2)
+        ssum = _math(tree, "ADD", (x0 + 540, y0 - 260),
+                     a=x2.outputs[0], b=kk.outputs[0])
+        srt = _math(tree, "SQRT", (x0 + 720, y0 - 260), a=ssum.outputs[0])
+        kval = _constant(tree, (x0 + 720, y0 - 380), _SMOOTH_ABS_K)
+        ax = _math(tree, "SUBTRACT", (x0 + 900, y0 - 260),
+                   a=srt.outputs[0], b=kval.outputs[0])
+        axs = ax.outputs[0]
+        # sag about the eye boxing centre
+        dx = _math(tree, "SUBTRACT", (x0 + 1080, y0 - 260), a=axs, b=half_sock)
+        dx2 = _math(tree, "MULTIPLY", (x0 + 1260, y0 - 200),
+                    a=dx.outputs[0], b=dx.outputs[0])
+        dy2 = _math(tree, "MULTIPLY", (x0 + 1260, y0 - 320), a=ys, b=ys)
+        r2 = _math(tree, "ADD", (x0 + 1440, y0 - 260),
+                   a=dx2.outputs[0], b=dy2.outputs[0])
+        bcmax = _math(tree, "MAXIMUM", (x0 + 1080, y0 + 100), a=bc, b=0.001)
+        c523 = _constant(tree, (x0 + 1080, y0 - 20), 523.0)
+        rmm = _math(tree, "DIVIDE", (x0 + 1260, y0 + 40),
+                    a=c523.outputs[0], b=bcmax.outputs[0])
+        rr = _math(tree, "MULTIPLY", (x0 + 1440, y0 + 40),
+                   a=rmm.outputs[0], b=MM)
+        rrs = rr.outputs[0]
+        r2s = r2.outputs[0]
+        rr2 = _math(tree, "MULTIPLY", (x0 + 1620, y0 + 100), a=rrs, b=rrs)
+        sub = _math(tree, "SUBTRACT", (x0 + 1800, y0 + 40),
+                    a=rr2.outputs[0], b=r2s)
+        diff = _math(tree, "MAXIMUM", (x0 + 1980, y0 + 40),
+                     a=sub.outputs[0], b=0.0)
+        root = _math(tree, "SQRT", (x0 + 2160, y0 + 40), a=diff.outputs[0])
+        sag = _math(tree, "SUBTRACT", (x0 + 2340, y0 + 40),
+                    a=rrs, b=root.outputs[0])
+        # wrap: z -= smooth|x| * sin(form)
+        rad = _math(tree, "MULTIPLY", (x0 + 1620, y0 - 200), a=form, b=0.0174532925)
+        s = _math(tree, "SINE", (x0 + 1800, y0 - 200), a=rad.outputs[0])
+        wrap = _math(tree, "MULTIPLY", (x0 + 1980, y0 - 200),
+                     a=axs, b=s.outputs[0])
+        negw = _math(tree, "MULTIPLY", (x0 + 2160, y0 - 200),
+                     a=wrap.outputs[0], b=-1.0)
+        offz = _math(tree, "SUBTRACT", (x0 + 2340, y0 - 200),
+                     a=negw.outputs[0], b=sag.outputs[0])
+        comb = safe_node(tree, "ShaderNodeCombineXYZ", (x0 + 2520, y0 - 200))
+        link_sockets(tree, offz.outputs[0], sock(comb, "Z"))
+        sp = safe_node(tree, "GeometryNodeSetPosition", (x0 + 2700, y0))
+        link_sockets(tree, geom, sock(sp, "Geometry"))
+        link_sockets(tree, comb.outputs["Vector"], sock(sp, "Offset"))
+        return sp.outputs["Geometry"]
+    except Exception:
+        return geom
+
+
 def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     """A complete, assembled pair: front + two temples + two hinges, positioned.
 
@@ -908,6 +1012,10 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     add_float_param(tree, "Fold Angle", 0.0, 0.0, 95.0)
     add_float_param(tree, "Barrel Radius", 1.4, 0.4, 6.0)
     add_float_param(tree, "Barrel Length", 2.4, 0.6, 10.0)
+    # 11.2 defaults flat (today's verified look); forwarded to front + lens,
+    # and applied as rigid seat rotations below so hinges/temples track the wrap.
+    add_float_param(tree, "Base Curve", 0.0, 0.0, 8.0)
+    add_float_param(tree, "Form Angle", 0.0, 0.0, 25.0)
 
     bx, by = 0, 0
 
@@ -933,7 +1041,8 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
 
     # forward the frame parameters to the front
     for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
-              "Rim Depth", "Corner Radius", "Silhouette"):
+              "Rim Depth", "Corner Radius", "Silhouette",
+              "Base Curve", "Form Angle"):
         _forward(tree, gin, p, front, p)
 
     # arms and knuckles
@@ -970,6 +1079,13 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
                   a=nest_x.outputs[0], b=-1.0)
     neg_pivot = _vec(tree, (bx - 780, by - 500),
                      x=neg_x.outputs[0] if neg_x is not None else -62.0)
+
+    # 11.2 seat tracking: rigid wrap rotation about the frame origin, +form on
+    # the left, -form on the right (mirrored, so coincident joints stay
+    # coincident exactly, like the seat mirror above). At Form Angle 0 this is
+    # identity. Front/lens halves use the equivalent Z field in-builder.
+    form_rad = _math(tree, "MULTIPLY", (bx - 780, by - 620),
+                     a=sock(gin, "Form Angle", outputs=True), b=0.0174532925)
 
     # 11.5 materials: acetate front + temples, metal hinges, blend lens.
     # Assigned BEFORE placement transforms; transforms never touch materials.
@@ -1025,7 +1141,20 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
             link_sockets(tree, seat.outputs["Vector"], xf.inputs["Translation"])
         else:
             link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
-        placed[key] = xf.outputs["Geometry"]
+        seated = xf.outputs["Geometry"]
+        if form_rad is not None:
+            side_sign = -1.0 if key in ("tr", "hr") else 1.0
+            ly = by - len(placed) * 240
+            sgn = _math(tree, "MULTIPLY", (bx + 240, ly),
+                        a=form_rad.outputs[0], b=side_sign)
+            rvec = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 420, ly))
+            rt = safe_node(tree, "GeometryNodeTransform", (bx + 600, ly))
+            if sgn is not None and rvec is not None and rt is not None:
+                link_sockets(tree, sgn.outputs[0], rvec.inputs["Y"])
+                link_sockets(tree, seated, rt.inputs["Geometry"])
+                link_sockets(tree, rvec.outputs["Vector"], sock(rt, "Rotation"))
+                seated = rt.outputs["Geometry"]
+        placed[key] = seated
 
     # 11.5 Frame output: front + both hinges, welded (11.4). Hinges keep their
     # metal slot through the join; Join Geometry preserves per-face materials.
@@ -1039,7 +1168,8 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     lens_sub = _subtree("MEL_eyewear_lens")
     lens_n = _nest(tree, lens_sub, (bx - 400, by - 1300))
     if lens_n is not None:
-        for p in ("Lens Width A", "Lens Height B", "Bridge DBL"):
+        for p in ("Lens Width A", "Lens Height B", "Bridge DBL",
+                  "Base Curve", "Form Angle"):
             _forward(tree, gin, p, lens_n, p)
         lens_geo = _g_sock(lens_n, "Geometry", outputs=True)
         lens_r_geo, lens_l_geo = _split_x_sign(tree, lens_geo, (bx - 200, by - 1300))
@@ -1101,8 +1231,8 @@ register_builder(
 def build_eyewear_lens(group_name="MEL_eyewear_lens"):
     """Both lenses: a rounded-rect solid per aperture, seated at the boxing centres.
 
-    The lens is flat (a plano blank). Real lenses carry a base curve; that is a
-    deliberate v1 omission, not an oversight — see the plan doc.
+    Base Curve + Form Angle drive the same pure-Z field as the front (11.2),
+    so rim and lens stay in agreement. Default flat (today's look).
 
     Flow is silhouette -> Fill Curve -> Extrude Mesh. Note Fill Curve takes
     (Curve, Group ID, Mode, Fill Rule) and Extrude Mesh takes
@@ -1117,6 +1247,10 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
     add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
     add_float_param(tree, "Path Resolution", 2.0, 0.4, 12.0)
     add_bool_param(tree, "Flat Shading", False)
+    # 11.2: same base-curve/form field as the front, driven from the same
+    # values so rim and lens agree. Default flat (today's look).
+    add_float_param(tree, "Base Curve", 0.0, 0.0, 8.0)
+    add_float_param(tree, "Form Angle", 0.0, 0.0, 25.0)
 
     bx, by = 0, 0
 
@@ -1222,6 +1356,7 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
     link_sockets(tree, right, join.inputs["Geometry"])
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 1220, by))
+    lens_joined = None
     if shade is not None:
         link_sockets(tree, join.outputs["Geometry"], shade.inputs["Geometry"])
         smooth = safe_node(tree, "GeometryNodeSwitch", (bx + 1380, by))
@@ -1238,9 +1373,16 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
             smooth.inputs["True"].default_value = False
             smooth.inputs["Switch"].default_value = True
             link_sockets(tree, smooth.outputs["Output"], shade.inputs["Shade Smooth"])
-        link_sockets(tree, shade.outputs["Geometry"], gout.inputs["Geometry"])
+        lens_joined = shade.outputs["Geometry"]
     else:
-        link_sockets(tree, join.outputs["Geometry"], gout.inputs["Geometry"])
+        lens_joined = join.outputs["Geometry"]
+    # 11.2 post-pass over both lenses together (same field as the front, same
+    # centres, so rim and lens stay in agreement).
+    if lens_joined is not None and half_span is not None:
+        lens_joined = _base_curve_field(tree, lens_joined, gin,
+                                        half_span.outputs[0], (bx + 1400, by))
+    if lens_joined is not None:
+        link_sockets(tree, lens_joined, gout.inputs["Geometry"])
 
     label_tree(tree, group_name)
     return (tree, gin, gout)
@@ -1248,6 +1390,7 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
 
 register_builder(
     "MEL_eyewear_lens", build_eyewear_lens, "Eyewear Lens",
-    "Both lenses as flat plano solids, centred on the boxing lens positions "
-    "(+/- (A+DBL)/2) and on Z = 0 within the rim. Flat for v1 - no base curve.",
+    "Both lenses as plano solids, centred on the boxing lens positions "
+    "(+/- (A+DBL)/2) and on Z = 0 within the rim. Base Curve + Form Angle "
+    "drive the same pure-Z field as the front (default flat).",
     category="eyewear")
