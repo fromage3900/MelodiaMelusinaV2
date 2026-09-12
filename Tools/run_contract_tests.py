@@ -62,13 +62,14 @@ SUITES = (
     Suite("Tools/test_evidence_envelope.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_ollama_health.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_ui_style_audit.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
+    Suite("Tools/test_terrain_handoff.py", re.compile(r"\d+ checks run, \d+ passed, 0 failed")),
     Suite("Tools/test_melusina_anim_unit_guard.py", re.compile(r'"ok"\s*:\s*true')),
     Suite("Docs/T3D_Baseline/test_canonical.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
 )
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 27
+MINIMUM_SUITE_COUNT = 28
 
 # These suites are self-contained in a Git checkout. The remaining suites
 # require Perforce-synced content, materialized LFS binaries, ignored local MCP
