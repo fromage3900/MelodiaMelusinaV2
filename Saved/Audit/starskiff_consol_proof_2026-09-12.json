@@ -1,0 +1,214 @@
+{
+  "test_name": "starskiff_consol_proof",
+  "session_id": "pie_smoke_6_232344",
+  "timestamp": "2026-09-12T03:24:01.262205+00:00",
+  "ok": true,
+  "ok_reason": "clean",
+  "map": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "duration": 15,
+  "captured_frames": [],
+  "frame_count": 0,
+  "anim_samples": [
+    {
+      "t": 0.0035808011889457703,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.9912719987332821,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.5171264000236988,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.6821405999362469,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.1200703978538513,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.4564245007932186,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.5555583983659744,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.702453199774027,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.77144980058074,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.898531697690487,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.0147868990898132,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.340462598949671,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.597359500825405,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.9286623001098633,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.267137799412012,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.605381898581982,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.94396759942174,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.26080609858036,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.594539698213339,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.431459799408913,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.496016599237919,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.796043001115322,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.1291658990085125,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.462201599031687,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.7961490005254745,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.127940699458122,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.463691998273134,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.793982900679111,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.129815999418497,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.460469998419285,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.794273599982262,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.13060050085187,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.461881898343563,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.796087000519037,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.126765597611666,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.46241270005703,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.798641201108694,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.129625499248505,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.462126098573208,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.79540130123496,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.130035698413849,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.463638998568058,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.799482800066471,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.128603000193834,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.4625947996974,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.80194739997387,
+      "bIsMoving": false
+    },
+    {
+      "t": 15.142803698778152,
+      "bIsMoving": false
+    }
+  ],
+  "sample_count": 47,
+  "log_matches": {
+    "Blueprint Runtime Error": 0,
+    "Accessed None": 0,
+    "LogChooser": 0
+  },
+  "must_absent_hits": {},
+  "missing_must_present": [],
+  "console_script": [],
+  "errors": [],
+  "warnings": [],
+  "elapsed_seconds": 15.142802599817514,
+  "frames_captured": 0
+}
