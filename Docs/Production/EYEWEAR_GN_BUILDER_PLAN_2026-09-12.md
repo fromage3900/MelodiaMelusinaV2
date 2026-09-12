@@ -283,6 +283,39 @@ With Taper and Jitter at 0, measured bead radius equals `Bead Radius` within 2%,
 three values spanning the range. The existing harness already reports exactly that
 and currently fails, so it is the test to make green - not a new one.
 
+### Decisive measurement — the template's Radius is not linear
+
+Reading `build_nikki_bead` and measuring it directly settles this:
+
+    Radius=1.0    ->  Xhalf=1000.00 mm   factor 1.000
+    Radius=0.044  ->  Xhalf=  57.23 mm   expected 44.00
+    Radius=0.022  ->  Xhalf=  36.31 mm   expected 22.00
+
+So `_set_group_param(bead_grp, "Radius", 1.0)` **works** — at 1.0 the template is
+exactly 1000 mm, which is 1 Blender unit, so the unit normalisation the bead string's
+comment describes is genuine and the instance `Scale` really is meant to be the
+single source of truth. The instance path is not the fault.
+
+The fault is upstream of it: `MEL_nikki_bead`'s `GeometryNodeMeshUVSphere` radius
+does not track its own `Radius` parameter. Driving that parameter to 0.022 yields
+36.31 mm, not 22.00. The relationship is neither linear nor a clean power, and the
+error is not constant either, so it is not a simple offset that a single constant
+can absorb.
+
+Note also that the sphere measures differently on X and Y (36.31 vs 42.00 at
+Radius=0.022, converging to 1000 vs 1020 at 1.0), so the template is not radially
+symmetric at small parameters either. That is a second symptom of the same thing and
+worth explaining rather than patching.
+
+Because the template is only correct at Exactly 1.0, every consumer that drives
+`Radius` to anything other than 1.0 inherits an unpredictable size — which is why the
+bead string, the star pendant and the heart filigree can all be wrong at once.
+
+Next step is inside `build_nikki_bead`: find why the sphere's radius input does not
+follow the parameter, and whether the `Squash`/`Teardrop` branch or the param's own
+min/max range is implicated. Do not fix this by scaling the result at the call site —
+that would bury a template defect under per-consumer constants.
+
 ### 8.1 Silhouettes — the literal 5.2 nodes
 
 `build_eyewear_front` currently makes one shape: a `CurvePrimitiveQuadrilateral`
