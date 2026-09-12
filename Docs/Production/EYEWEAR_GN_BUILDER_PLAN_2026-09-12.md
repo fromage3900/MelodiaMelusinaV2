@@ -323,3 +323,57 @@ pass, one acetate-ish Principled shader on the whole object reads fine: roughnes
 colour rather than a flat tint. Metal frames are better served by the separate
 builders, so you can put a metal shader on the hinges and temples and acetate on
 the front.
+
+---
+
+# Status: chain blocked on a bead-path defect
+
+`MEL_eyewear_chain` was written against these anchors and then backed out before
+committing, because it cannot produce beads. Do not rebuild it until the item
+below is fixed.
+
+## The anchors are right (verified)
+
+The pair seats each arm at `nest_x = pivot_x - (TempleWidth + EndpieceClearance)`
+where `pivot_x = A + DBL/2 + RimThickness`. From that, the temple tip is at
+
+    centre = nest_x + EndpieceClearance + TempleWidth/2
+    tip    = (centre, -TipDrop, -(LengthToBend + TipReach))
+
+Measured on the built guide line, default parameters: `x = +/-64.75`,
+`y = -30.00`, `z = -119.00`. Note this is the **arm centreline**, not the nest
+origin — the strand attaches where the arm actually is.
+
+## What blocks it
+
+The in-graph `Guide Curve` path added to the draping builders steers the **cord**
+but not the **beads**. Measured with a straight 100 mm guide at `y = -30`:
+
+    guide via OBJECT socket   3124 verts   = 14 beads x 222 + 16 cord verts
+    guide via Curve input       16 verts   = cord only, zero beads
+
+The arithmetic is exact, so this is not a scaling or count question. The beads
+read the guide **object** through a path of their own; the switch added in
+`_guide_params` only redirects `_guide_geometry`, which is what the cord, the
+droop and the resample all consume. The bead instancing is a separate read.
+
+Fix the bead branch's guide source, then the chain becomes a short builder.
+
+## Two traps found on the way (both cost real time)
+
+1. **A two-point poly line cannot carry a sag.** `SplineParameter.Factor` is 0 and
+   1 at the ends only, so `1 - (2t - 1)^2` evaluates to zero everywhere and the
+   strand comes out perfectly straight - measured as a single distinct Y at
+   exactly -30 with the whole 28 mm droop discarded. Subdivide (Resample Curve,
+   COUNT) before offsetting.
+
+2. **`MEL_nikki_bead_string` sags along Z, not Y.** `_drooped_curve` offsets Z,
+   which in the eyewear family is the depth axis; using it there would push the
+   strand backwards behind the head instead of hanging it. Apply the hang to the
+   guide curve along -Y and force the nested `Droop` to 0.
+
+## Also unresolved, lower priority
+
+When the chain was assembled the whole strand sat about 16 mm above its own
+guide. Not chased down, because the bead path had to be fixed first - recheck it
+afterwards rather than assuming it is separate.
