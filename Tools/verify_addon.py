@@ -41,8 +41,9 @@ CONVERGED_FILES = [
 # an empty base mesh, count those producing 0 verts). It is not the census's
 # `baseline_empty_count` (111) — that uses a different scope, so the two numbers are
 # not comparable. This one exists only to catch growth: a new builder that silently
-# needs inputs will push it up.
-RECORDED_EMPTIES = 125
+# needs inputs will push it up. Raised 125 -> 136 on 2026-09-11 when the three port
+# modules were installed, adding 59 builders (11 of them input-dependent).
+RECORDED_EMPTIES = 136
 
 results = []
 

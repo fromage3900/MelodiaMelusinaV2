@@ -18,7 +18,7 @@ from .core import (
 )
 
 
-def build_curved_wall(group_name="MEL_curved_wall"):
+def build_curved_wall(group_name="MEL_legacy_curved_wall"):
     """Curved wall segment: an arc of a circle, built as a mesh.
 
     Uses GeometryNodeCurveArc for the wall outline, then CurveToMesh
@@ -117,7 +117,7 @@ def build_curved_wall(group_name="MEL_curved_wall"):
 
     link_sockets(tree, shade.outputs.get("Geometry"), gout.inputs.get("Geometry"))
 
-    return label_tree(tree, "MEL_curved_wall", [
+    return label_tree(tree, "MEL_legacy_curved_wall", [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
         {"title": "Arc", "nodes": ("arc", "rad_conv"), "role": "curve"},
         {"title": "Profile", "nodes": ("profile_mesh", "profile_curve", "profile_tx"), "role": "geometry"},
@@ -127,7 +127,7 @@ def build_curved_wall(group_name="MEL_curved_wall"):
 
 # ── Registry ──
 register_builder(
-    "MEL_curved_wall", build_curved_wall,
+    "MEL_legacy_curved_wall", build_curved_wall,
     "Curved Wall",
     "Adjustable arc wall segment for dreamy stylized interiors. "
     "Edit radius, arc angle, height, thickness, and segment count.",

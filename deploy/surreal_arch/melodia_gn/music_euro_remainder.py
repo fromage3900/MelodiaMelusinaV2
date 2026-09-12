@@ -17,7 +17,7 @@ from .core import (
 )
 
 
-def build_cascading_beams(group_name="MEL_cascading_beams"):
+def build_cascading_beams(group_name="MEL_legacy_cascading_beams"):
     """Erindale-style cascading beams: per-index Z/X cascade + twist.
 
     Music-reactive: beam count and spacing map to rhythm subdivisions.
@@ -98,13 +98,13 @@ def build_cascading_beams(group_name="MEL_cascading_beams"):
 
 
 register_builder(
-    "MEL_cascading_beams", build_cascading_beams,
+    "MEL_legacy_cascading_beams", build_cascading_beams,
     "Cascading Beams", "Erindale-style cascading beams with per-index cascade + twist",
     category="music", role="modifier",
 )
 
 
-def build_rose_window(group_name="MEL_rose_window"):
+def build_rose_window(group_name="MEL_legacy_rose_window"):
     """Radial Gothic rose window. Petal count maps to time signature."""
     tree, gin, gout = new_geometry_tree(group_name)
     add_float_param(tree, "Outer Radius", 2.0, 0.5, 8.0)
@@ -165,13 +165,13 @@ def build_rose_window(group_name="MEL_rose_window"):
 
 
 register_builder(
-    "MEL_rose_window", build_rose_window,
+    "MEL_legacy_rose_window", build_rose_window,
     "Rose Window", "Radial Gothic rose window with petal + spoke tracery",
     category="ornament", role="sku",
 )
 
 
-def build_lancet(group_name="MEL_lancet"):
+def build_lancet(group_name="MEL_legacy_lancet"):
     """Tall narrow Gothic lancet window — pointed arch top."""
     tree, gin, gout = new_geometry_tree(group_name)
     add_float_param(tree, "Width", 1.0, 0.3, 3.0)
@@ -223,7 +223,7 @@ def build_lancet(group_name="MEL_lancet"):
 
 
 register_builder(
-    "MEL_lancet", build_lancet,
+    "MEL_legacy_lancet", build_lancet,
     "Lancet Window", "Tall narrow Gothic pointed-arch window",
     category="ornament", role="sku",
 )

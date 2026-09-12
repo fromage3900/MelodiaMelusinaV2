@@ -580,7 +580,7 @@ def _impl_build_buttress(tree, gin, base_x=-1400):
 # GROUP BUILDERS (ported from monolith)
 # ──────────────────────────────────────────────────────────────────────
 
-def build_tower_group(group_name="MEL_tower"):
+def build_tower_group(group_name="MEL_legacy_tower"):
     """Port of build_tower as a group builder."""
     tree, gin, gout = new_geometry_tree(group_name)
     add_int_param(tree, "Complexity Level", 3, 1, 5)
@@ -596,12 +596,12 @@ def build_tower_group(group_name="MEL_tower"):
     geom = _impl_build_tower(tree, gin, base_x=-1400)
     if geom is not None:
         link_sockets(tree, geom, gout.inputs["Geometry"])
-    label_tree(tree, "MEL_tower")
+    label_tree(tree, "MEL_legacy_tower")
     return tree, gin, gout
 
 
 register_builder(
-    "MEL_tower", build_tower_group,
+    "MEL_legacy_tower", build_tower_group,
     "Tower", "Core form builder (absorbed from monolith build_tower).",
     category="structures")
 

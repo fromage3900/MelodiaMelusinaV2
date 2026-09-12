@@ -270,7 +270,7 @@ def build_greybox_room(group_name="MEL_greybox_room"):
     return tree, gin, gout
 
 
-def build_greybox_corridor(group_name="MEL_greybox_corridor"):
+def build_greybox_corridor(group_name="MEL_legacy_greybox_corridor"):
     """Straight corridor segment: floor + 2 side walls + ceiling kit + trim bands."""
     tree, gin, gout = new_geometry_tree(group_name)
 
@@ -1500,7 +1500,7 @@ def build_gb_umemoto_fortress_room(group_name="MEL_gb_umemoto_fortress_room"):
 register_builder("MEL_greybox_room", build_greybox_room, "Greybox Room",
                  "Parametric room shell: floor + 4 walls + optional ceiling",
                  category="structures")
-register_builder("MEL_greybox_corridor", build_greybox_corridor, "Greybox Corridor",
+register_builder("MEL_legacy_greybox_corridor", build_greybox_corridor, "Greybox Corridor",
                  "Straight corridor segment: floor + 2 walls + ceiling",
                  category="structures")
 register_builder("MEL_greybox_ramp", build_greybox_ramp, "Greybox Ramp",
