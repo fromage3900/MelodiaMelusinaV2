@@ -1,110 +1,85 @@
 ---
 name: melodia-p0-closeout
-description: Current professor-facing P0 closure runbook for BS_GodFile UE5.8 — protect the proven First Dream / Sea Above loop, harden persistence/idempotency/package proof, and do not revive stale August blockers.
+description: Professor-facing P0 closure runbook for BS_GodFile UE5.8 — protect the proven First Dream / Sea Above loop, harden persistence/idempotency/package proof, and do not revive stale blockers.
 ---
 
-# Melodia P0 closeout — current authority
+# Melodia P0 closeout — durable runbook
 
-**Authority date:** 2026-09-04
+Read `CURRENT_STATE.md` first. It is the only authority for current status, priorities, blockers, and next work. This skill defines **how** to close P0 work safely; it does not maintain a task queue.
 
-Read first:
+## Baseline rule
 
-1. `AGENT_START_HERE.md`
-2. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
-3. `CURRENT_STATE.md`
-4. `_VERTICAL_SLICE_SCOPE.md`
-5. `TODO.md`
+Do not regress newer evidence to an older snapshot. Before claiming a system is absent, broken, or unproven, inspect current source plus the evidence named by `CURRENT_STATE.md`.
 
-Older August P0 plans and handoffs are historical evidence. They are not the current task list.
-
-## Current proven baseline
-
-The current evidence in `Docs/Evidence/P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md` records the 2026-09-01 closeout checks:
-
-- music/challenge completion reaches the canonical reward path;
-- Wardrobe grants and equips the Accessories item;
-- Glide capability becomes available through the existing traversal authority;
-- the visible portal/route transitions from locked to unlocked;
-- canonical save was written;
-- the UnrealEditor process was fully restarted;
-- canonical load returned `LOADED_NARRATIVE_RESTORED`;
-- Wardrobe state restored after restart;
-- `Melodia.Wardrobe` 6/6 passed;
-- `Melodia.P0` 4/4 passed;
-- `Melodia.Quest.Shorewake` 1/1 passed;
-- traversal capability contract 1/1 passed;
-- `BP_Starskiff_MK2` boarding and movement were exercised in PIE.
-
-Do not regress this to the old “Phase 1 content is inert” or “Starskiff is only a shell” interpretation.
-
-## Current closure target
-
-The remaining high-value proof is:
+The established vertical-slice ownership remains:
 
 ```text
-Outfit
- → Starskiff / exploration
- → Encounter
- → Phoenix command
- → Rhythm phrase
- → Convergence consequence
- → Reward
- → Save
- → Quit
- → Relaunch
- → Load same durable state
- → Load again
- → no duplication / drift
- → packaged execution
+Quill / narrative truth
+  -> Phoenix / JRPG action and result
+  -> Melodia rhythm execution
+  -> Wardrobe / traversal capability
+  -> world consequence
+  -> canonical save
 ```
 
-PR #54 / Issue #51 contain persistence work and history, but are not automatically current/merge-ready. Reapply or extract against current `main` rather than merging stale work wholesale.
+Do not create parallel save, combat, rhythm, Wardrobe, traversal, UI, or narrative authorities while closing the loop.
+
+## Closeout method
+
+For any P0 closure task:
+
+1. identify the exact current claim in `CURRENT_STATE.md`;
+2. inspect the current source/evidence rather than old handoffs;
+3. reproduce the smallest missing proof or blocker;
+4. change only the owner system required to close it;
+5. rerun the narrowest relevant test/runtime proof;
+6. label the achieved evidence level honestly;
+7. update `CURRENT_STATE.md` in the same change if project status changed;
+8. stop when the requested evidence level is reached.
+
+Issue/PR history may contain useful implementation work, but stale branches are never merge-ready merely because they once targeted the same problem. Extract or reapply bounded changes against current `main`.
 
 ## Scope guard
 
-- Do not hand-edit `.uasset`.
+- Do not hand-edit `.uasset` files.
 - One Unreal Editor / one mutating MCP holder.
-- Do not create a second save, wardrobe, traversal, combat, rhythm, or UI authority.
-- Do not claim packaged proof from PIE/source proof.
-- Do not use deleted `_TASK_QUEUE.md` / `_SESSION_HANDOFF.md`.
-- Do not use `_ROADBLOCKS_2026-07-31.md` as current status.
-- Before declaring laptop work absent, read `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`.
-- Before declaring a visual board absent, read `Docs/Art/VISUAL_REFERENCE_INDEX.md`.
+- Never use deleted `_TASK_QUEUE.md` / `_SESSION_HANDOFF.md` or old roadblock files as current status.
+- For laptop/DCC work, use `Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md` plus `Docs/Production/BRANCH_WORKSTATION_POLICY.md`.
+- For visual boards, use `Docs/Art/VISUAL_REFERENCE_INDEX.md`.
+- Do not claim packaged proof from PIE or source proof.
+- Do not expand a closure pass into framework work, branch cleanup, or speculative redesign.
 
 ## Evidence levels
 
-Always label the strongest evidence honestly:
+Use the repository ladder without collapsing levels:
 
 1. **SOURCE-BUILT** — code/assets exist and compile.
 2. **LIVE-PROVEN** — observed in intended PIE/runtime.
-3. **RESTART-PROVEN** — survives full save → process exit → relaunch → load.
-4. **PACKAGED-PROVEN** — reproduced in packaged Development build.
+3. **RESTART-PROVEN** — survives save -> full process exit -> relaunch -> load.
+4. **PACKAGED-PROVEN** — reproduced in the packaged Development build.
 
-A later level does not follow automatically from an earlier one.
+A later level never follows automatically from an earlier one.
 
-## Current work order
+## Persistence/idempotency proof shape
 
-1. Protect the existing First Dream / Sea Above route from unrelated feature churn.
-2. Re-run / harden repeat-load and idempotency checks.
-3. Trace durable vs derived Starskiff and Convergence state before extending schema.
-4. Audit restore mutation ordering and duplicate rebuild side effects.
-5. Run full process restart proof on the current baseline.
-6. Run packaged-build proof.
-7. Capture a stable professor-facing demo and backup recording.
+When persistence is the active closure target, the decisive chain is conceptually:
+
+```text
+owned/equipped state
+  -> traversal / encounter / rhythm consequence
+  -> durable reward/checkpoint
+  -> save
+  -> quit process
+  -> relaunch
+  -> load exact durable state
+  -> load again
+  -> no duplication / drift
+```
+
+Before extending a save schema, separate durable ownership from derived/presentation state and audit restore mutation ordering.
 
 ## Review-safe presentation
 
-Prefer one reliable 5–10 minute route:
+A professor/recruiter proof should favor one reliable route over feature breadth. Show the authored environment, one meaningful music/rhythm interaction, a visible consequence or capability, and only the persistence/package evidence that is actually proven.
 
-```text
-environment
-  → music/rhythm
-  → reward
-  → Wardrobe equip
-  → Glide/world access
-  → Sea Above / Starskiff if stable
-  → checkpoint/save
-  → explain or show recorded restart proof
-```
-
-The milestone is closure, not expansion.
+The milestone is **closure and captured proof**, not the number of systems touched.

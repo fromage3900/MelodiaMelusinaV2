@@ -43,6 +43,7 @@ from . import mother  # noqa: F401 - Faraway Mother Monolith kit (8 builders)
 from . import white_current  # noqa: F401 - White Current Monolith kit (6 builders)
 from . import god_molts  # noqa: F401 - God That Molts Monolith kit (8 builders)
 from .notation_extras import build_music_bass_clef, build_music_beam_cluster, build_music_triplet_note, build_music_chord_stack, build_music_fermata, build_music_repeat_bar, build_music_time_signature, build_music_stand
+from . import music_port  # noqa: F401 - note_head, staff, treble_clef, sheet_music_railing, cascading_beams + euro
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (
     build_ribbon_curve, build_lissajous_ribbon, build_closed_ribbon, build_violin_bow,
@@ -70,11 +71,13 @@ from . import civic_kit  # noqa: F401
 from . import experimental_kit  # noqa: F401
 from . import euro_kit  # noqa: F401
 from . import core_forms_kit  # noqa: F401
+from . import core_forms_port  # noqa: F401 - tower, organic, hybrid, curved_wall, building
 from . import walls_kit  # noqa: F401
 from . import buildings_kit  # noqa: F401 - buildings absorbed (P2)
 from . import misc_props_kit  # noqa: F401
 from . import materials_kit  # noqa: F401 - materials absorbed (P2)
 from . import filigree_kit  # noqa: F401 - filigree absorbed (P2)  # noqa: F401 - misc props absorbed (P2)  # noqa: F401 - walls absorbed from monolith (P2)  # noqa: F401 - core forms absorbed from monolith (P2)  # noqa: F401 - euro-classical absorbed from monolith (P2)  # noqa: F401 - experimental+2 core-forms absorbed (P2)  # noqa: F401 - civic absorbed from monolith (P2)  # noqa: F401  # noqa: F401 - 7 effect passes absorbed from monolith (P2)  # noqa: F401 - 70 effect passes absorbed from monolith (P2)
+from . import greybox_port  # noqa: F401 - greybox room/corridor convergence
 from . import house_dress  # noqa: F401 - mh_* dressing builders (piano walk, sheet rail, lanterns...) - unified house module: genome room shell (mh6) + AAA kit (cornice/dentil/scallop/lissajous)
 from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
     build_city_house_cell, build_city_avenue, build_city_block,
@@ -96,10 +99,27 @@ from .presets import (
     BUILDERS_PRESETS, builders_with_presets, preset_names, preset_param_sets,
     export_builder_preset, export_all_presets_json, audit_presets,
 )
+from . import nikki_decor  # noqa: F401 - Nikki decor: beads, stars, hearts, crystals, cords, guide-driven strings
 
 # Rebuild derived lookup tables now that all builder modules
 # have imported and called register_builder(). Mutates core containers
 # in place so early importers (stack UI) see live catalog sections.
+from . import barrel_vault_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import curved_wall  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import dreamy_gothic_arch  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_material_id  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_smart_bevel  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_trim_uv  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import garment_vertex_ao  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import gold_light_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import melusina_house_foundation  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import music_euro_remainder  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import musical_mesh_variants  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import nikki_advanced_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import nikki_musical_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 

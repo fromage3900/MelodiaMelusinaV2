@@ -66,7 +66,7 @@
     "FarawayMother_CelestialSilk": {
       "asset_name": "FarawayMother_CelestialSilk",
       "family": "FabricMountain",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "lod_tiers": {
         "LOD0": {
           "tier_index": 0,
@@ -163,7 +163,7 @@
     "Melusina_Shorewake_Gown": {
       "asset_name": "Melusina_Shorewake_Gown",
       "family": "HeroWardrobe",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Melusina_Costume",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "lod_tiers": {
         "LOD0": {
           "tier_index": 0,
@@ -260,7 +260,7 @@
     "Starskiff_Hull_Celestial": {
       "asset_name": "Starskiff_Hull_Celestial",
       "family": "VehicleHull",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Starskiff_Rigid",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "lod_tiers": {
         "LOD0": {
           "tier_index": 0,
@@ -357,7 +357,7 @@
     "Surreal_CelestialSilk": {
       "asset_name": "Surreal_CelestialSilk",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Moonlit jacquard \u2014 Chladni 3,5 harmonic weave, ethereal silk with thin-film rainbow",
       "base_color_rgb": [
@@ -489,7 +489,7 @@
     "Surreal_GildedLoom": {
       "asset_name": "Surreal_GildedLoom",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Gilded loom \u2014 interlocking gear-weave brocade, metallic thread, warm gold rim",
       "base_color_rgb": [
@@ -621,7 +621,7 @@
     "Surreal_PearlWeave": {
       "asset_name": "Surreal_PearlWeave",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Pearl weave \u2014 nacre mother-of-pearl, maximum thin-film iridescence, pearlescent sheen",
       "base_color_rgb": [
@@ -753,7 +753,7 @@
     "Surreal_SingingSilk": {
       "asset_name": "Surreal_SingingSilk",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Singing silk \u2014 cymatic standing-wave silk, audio-reactive WPO 1.0, flowing drape",
       "base_color_rgb": [
@@ -885,7 +885,7 @@
     "Surreal_StarlitLoom": {
       "asset_name": "Surreal_StarlitLoom",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Starlit loom \u2014 abyssal indigo with bioluminescent constellation nodes, emissive bloom",
       "base_color_rgb": [
@@ -1017,7 +1017,7 @@
     "Surreal_NightVelvet": {
       "asset_name": "Surreal_NightVelvet",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Night velvet \u2014 deep pile velvet, grazing-angle velvet sheen, low translucency",
       "base_color_rgb": [
@@ -1149,7 +1149,7 @@
     "Surreal_AquaLace": {
       "asset_name": "Surreal_AquaLace",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Aqua lace \u2014 sheer aquatic lace, high translucency 0.72, openwork negative space",
       "base_color_rgb": [
@@ -1281,7 +1281,7 @@
     "Surreal_MoonChiffon": {
       "asset_name": "Surreal_MoonChiffon",
       "family": "SurrealFabric",
-      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+      "target_material_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
       "target_material_master_nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "description": "Moon chiffon \u2014 ultra-sheer vapor chiffon, translucency 0.78, WPO bellows 1.0",
       "base_color_rgb": [

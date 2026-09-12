@@ -1,0 +1,2397 @@
+{
+ "meta": {
+  "blender": "5.2.1 LTS",
+  "monolith_count": 209,
+  "package_count": 473
+ },
+ "monolith": {
+  "ARCH": {
+   "bbox": [
+    3.565,
+    1.915,
+    0.65
+   ],
+   "ok": true,
+   "verts": 2623
+  },
+  "ARCHWAY_ADV": {
+   "bbox": [
+    3.82,
+    0.72,
+    4.168
+   ],
+   "ok": true,
+   "verts": 1312
+  },
+  "ARCH_BROKEN": {
+   "bbox": [
+    3.378,
+    0.608,
+    1.907
+   ],
+   "ok": true,
+   "verts": 203
+  },
+  "AUTO_BUILDING": {
+   "bbox": [
+    10.8,
+    8.8,
+    28.307
+   ],
+   "ok": true,
+   "verts": 3210
+  },
+  "BALCONY": {
+   "bbox": [
+    3.863,
+    1.613,
+    1.261
+   ],
+   "ok": true,
+   "verts": 6096
+  },
+  "BARBICAN": {
+   "bbox": [
+    5.292,
+    1.764,
+    5.836
+   ],
+   "ok": true,
+   "verts": 220
+  },
+  "BAROQUE_BALUSTRADE": {
+   "bbox": [
+    4.1,
+    0.15,
+    0.56
+   ],
+   "ok": true,
+   "verts": 1056
+  },
+  "BAROQUE_FACADE": {
+   "bbox": [
+    12.42,
+    0.49,
+    12.0
+   ],
+   "ok": true,
+   "verts": 3004
+  },
+  "BAROQUE_NICHE": {
+   "bbox": [
+    1.6,
+    0.405,
+    2.375
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "BAROQUE_VAULT": {
+   "bbox": [
+    6.274,
+    7.84,
+    3.14
+   ],
+   "ok": true,
+   "verts": 448
+  },
+  "BARREL_STACK": {
+   "bbox": [
+    2.794,
+    1.329,
+    5.004
+   ],
+   "ok": true,
+   "verts": 384
+  },
+  "BELL_TOWER": {
+   "bbox": [
+    2.609,
+    2.609,
+    15.099
+   ],
+   "ok": true,
+   "verts": 203
+  },
+  "BIFORA": {
+   "bbox": [
+    2.716,
+    0.717,
+    4.119
+   ],
+   "ok": true,
+   "verts": 7780
+  },
+  "BLACKSMITH": {
+   "bbox": [
+    3.42,
+    2.799,
+    9.25
+   ],
+   "ok": true,
+   "verts": 230
+  },
+  "BOULDER_PILE": {
+   "bbox": [
+    3.784,
+    2.967,
+    2.475
+   ],
+   "ok": true,
+   "verts": 276
+  },
+  "BRICK_WALL": {
+   "bbox": [
+    4.0,
+    0.15,
+    3.0
+   ],
+   "ok": true,
+   "verts": 11760
+  },
+  "BRIDGE": {
+   "bbox": [
+    8.0,
+    1.05,
+    2.71
+   ],
+   "ok": true,
+   "verts": 8064
+  },
+  "BRIDGE_ADV": {
+   "bbox": [
+    12.5,
+    3.25,
+    5.868
+   ],
+   "ok": true,
+   "verts": 6516
+  },
+  "BUILDING": {
+   "bbox": [
+    5.929,
+    5.929,
+    8.691
+   ],
+   "ok": true,
+   "verts": 87948
+  },
+  "BUTTRESS": {
+   "bbox": [
+    3.436,
+    0.528,
+    4.998
+   ],
+   "ok": true,
+   "verts": 1793
+  },
+  "CAMPFIRE": {
+   "bbox": [
+    1.519,
+    1.458,
+    2.268
+   ],
+   "ok": true,
+   "verts": 1472
+  },
+  "CASCADING_BEAMS": {
+   "bbox": [
+    7.4,
+    2.98,
+    1.23
+   ],
+   "ok": true,
+   "verts": 768
+  },
+  "CEILING_TILE": {
+   "bbox": [
+    2.0,
+    2.0,
+    0.14
+   ],
+   "ok": true,
+   "verts": 192
+  },
+  "CHAPEL": {
+   "bbox": [
+    3.024,
+    7.479,
+    11.34
+   ],
+   "ok": true,
+   "verts": 334
+  },
+  "CN_DOUGONG": {
+   "bbox": [
+    2.281,
+    2.281,
+    2.493
+   ],
+   "ok": true,
+   "verts": 3294
+  },
+  "CN_MOON_GATE": {
+   "bbox": [
+    8.176,
+    0.6,
+    6.228
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "CN_PAILOU": {
+   "bbox": [
+    5.2,
+    1.502,
+    9.065
+   ],
+   "ok": true,
+   "verts": 21738
+  },
+  "CN_TIERED_PAGODA": {
+   "bbox": [
+    3.116,
+    3.116,
+    4.643
+   ],
+   "ok": true,
+   "verts": 506
+  },
+  "CN_TING_PAVILION": {
+   "bbox": [
+    5.367,
+    5.427,
+    7.142
+   ],
+   "ok": true,
+   "verts": 3610
+  },
+  "COLLAPSED_FLOOR": {
+   "bbox": [
+    3.0,
+    2.367,
+    2.133
+   ],
+   "ok": true,
+   "verts": 27
+  },
+  "CORNER_PIECE": {
+   "bbox": [
+    0.913,
+    0.914,
+    3.4
+   ],
+   "ok": true,
+   "verts": 1402
+  },
+  "CORNICE": {
+   "bbox": [
+    4.0,
+    0.25,
+    0.4
+   ],
+   "ok": true,
+   "verts": 416
+  },
+  "COSMIC_WEB": {
+   "bbox": [
+    2.917,
+    2.784,
+    5.317
+   ],
+   "ok": true,
+   "verts": 18468
+  },
+  "CRATE_PILE": {
+   "bbox": [
+    1.795,
+    0.881,
+    1.611
+   ],
+   "ok": true,
+   "verts": 1152
+  },
+  "CRENEL": {
+   "bbox": [
+    8.0,
+    0.6,
+    3.16
+   ],
+   "ok": true,
+   "verts": 1056
+  },
+  "CRYPT_ENTRANCE": {
+   "bbox": [
+    3.0,
+    7.05,
+    4.4
+   ],
+   "ok": true,
+   "verts": 869
+  },
+  "CURTAIN_WALL": {
+   "bbox": [
+    10.88,
+    0.583,
+    6.35
+   ],
+   "ok": true,
+   "verts": 1344
+  },
+  "CURVED_BUILDING": {
+   "bbox": [
+    7.609,
+    16.545,
+    0.257
+   ],
+   "ok": true,
+   "verts": 28416
+  },
+  "CURVED_WALL": {
+   "bbox": [
+    3.412,
+    8.69,
+    3.0
+   ],
+   "ok": true,
+   "verts": 2608
+  },
+  "CUSPED_ARCH": {
+   "bbox": [
+    2.221,
+    1.486,
+    2.769
+   ],
+   "ok": true,
+   "verts": 2930
+  },
+  "DNA_HELIX": {
+   "bbox": [
+    2.532,
+    2.534,
+    5.124
+   ],
+   "ok": true,
+   "verts": 6592
+  },
+  "DOME": {
+   "bbox": [
+    3.087,
+    3.087,
+    2.701
+   ],
+   "ok": true,
+   "verts": 7330
+  },
+  "DOOR": {
+   "bbox": [
+    1.68,
+    0.42,
+    3.777
+   ],
+   "ok": true,
+   "verts": 2752
+  },
+  "DOOR_FRAME": {
+   "bbox": [
+    1.632,
+    0.44,
+    3.678
+   ],
+   "ok": true,
+   "verts": 672
+  },
+  "DRAWBRIDGE": {
+   "bbox": [
+    1.582,
+    1.739,
+    4.518
+   ],
+   "ok": true,
+   "verts": 14
+  },
+  "ESCHER_PATH": {
+   "bbox": [
+    9.511,
+    9.511,
+    1.984
+   ],
+   "ok": true,
+   "verts": 19392
+  },
+  "FENCE": {
+   "bbox": [
+    6.085,
+    0.085,
+    1.28
+   ],
+   "ok": true,
+   "verts": 10368
+  },
+  "FIELD_SCULPTURE": {
+   "bbox": [
+    2.394,
+    2.394,
+    2.399
+   ],
+   "ok": true,
+   "verts": 40898
+  },
+  "FILIGREE_PANEL": {
+   "bbox": [
+    1.527,
+    2.713,
+    0.065
+   ],
+   "ok": true,
+   "verts": 39408
+  },
+  "FILIGREE_RAIL_INSET": {
+   "bbox": [
+    5.933,
+    1.174,
+    0.058
+   ],
+   "ok": true,
+   "verts": 18576
+  },
+  "FLOOR_TILE": {
+   "bbox": [
+    3.475,
+    3.475,
+    0.05
+   ],
+   "ok": true,
+   "verts": 3456
+  },
+  "FOUNTAIN": {
+   "bbox": [
+    3.0,
+    3.0,
+    2.287
+   ],
+   "ok": true,
+   "verts": 2098
+  },
+  "FRACTAL": {
+   "bbox": [
+    2.399,
+    2.435,
+    9.244
+   ],
+   "ok": true,
+   "verts": 2048
+  },
+  "GATEHOUSE": {
+   "bbox": [
+    6.471,
+    2.058,
+    9.344
+   ],
+   "ok": true,
+   "verts": 538
+  },
+  "GB_BRUTALIST_PANEL_WALL": {
+   "bbox": [
+    8.8,
+    0.375,
+    3.92
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "GB_COMBAT_ROOM": {
+   "bbox": [
+    12.274,
+    6.034,
+    3.5
+   ],
+   "ok": true,
+   "verts": 7994
+  },
+  "GB_CORRIDOR_ARC": {
+   "bbox": [
+    8.748,
+    3.18,
+    4.1
+   ],
+   "ok": true,
+   "verts": 572
+  },
+  "GB_CORRIDOR_ARC_CROSS": {
+   "bbox": [
+    45.115,
+    45.115,
+    3.805
+   ],
+   "ok": true,
+   "verts": 2274
+  },
+  "GB_CORRIDOR_BEND": {
+   "bbox": [
+    11.21,
+    13.5,
+    3.8
+   ],
+   "ok": true,
+   "verts": 3040
+  },
+  "GB_CORRIDOR_CROSS": {
+   "bbox": [
+    19.42,
+    19.42,
+    3.8
+   ],
+   "ok": true,
+   "verts": 3968
+  },
+  "GB_CORRIDOR_DOOR_END": {
+   "bbox": [
+    3.0,
+    4.92,
+    3.8
+   ],
+   "ok": true,
+   "verts": 1315
+  },
+  "GB_CORRIDOR_OFFSET": {
+   "bbox": [
+    3.0,
+    8.42,
+    3.8
+   ],
+   "ok": true,
+   "verts": 1312
+  },
+  "GB_CORRIDOR_REC": {
+   "bbox": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "ok": true,
+   "verts": 96
+  },
+  "GB_CORRIDOR_T": {
+   "bbox": [
+    8.01,
+    8.42,
+    3.8
+   ],
+   "ok": true,
+   "verts": 1792
+  },
+  "GB_ELEVATOR_SHAFT": {
+   "bbox": [
+    18.313,
+    6.034,
+    14.0
+   ],
+   "ok": true,
+   "verts": 39931
+  },
+  "GB_ESCHER_BELVEDERE": {
+   "bbox": [
+    9.0,
+    9.0,
+    10.302
+   ],
+   "ok": true,
+   "verts": 1504
+  },
+  "GB_ESCHER_GRAVITY_SHIFT": {
+   "bbox": [
+    13.753,
+    8.0,
+    13.753
+   ],
+   "ok": true,
+   "verts": 2016
+  },
+  "GB_ESCHER_PENROSE_LOOP": {
+   "bbox": [
+    8.3,
+    8.3,
+    123.0
+   ],
+   "ok": true,
+   "verts": 4032
+  },
+  "GB_ESCHER_RECURSIVE": {
+   "bbox": [
+    8.08,
+    8.08,
+    3.5
+   ],
+   "ok": true,
+   "verts": 816
+  },
+  "GB_ESCHER_RELATIVITY": {
+   "bbox": [
+    8.3,
+    9.87,
+    10.77
+   ],
+   "ok": true,
+   "verts": 3552
+  },
+  "GB_ESCHER_WATERFALL": {
+   "bbox": [
+    19.8,
+    19.102,
+    11.473
+   ],
+   "ok": true,
+   "verts": 1536
+  },
+  "GB_GOTHIC_BAY": {
+   "bbox": [
+    8.08,
+    6.08,
+    3.5
+   ],
+   "ok": true,
+   "verts": 791
+  },
+  "GB_GOTHIC_BUTTRESS": {
+   "bbox": [
+    3.436,
+    0.528,
+    4.998
+   ],
+   "ok": true,
+   "verts": 1793
+  },
+  "GB_GOTHIC_PORTAL": {
+   "bbox": [
+    8.0,
+    0.3,
+    3.5
+   ],
+   "ok": true,
+   "verts": 388
+  },
+  "GB_GOTHIC_TRACERY_PANEL": {
+   "bbox": [
+    3.041,
+    0.208,
+    3.039
+   ],
+   "ok": true,
+   "verts": 3888
+  },
+  "GB_ROMANESQUE_APSE": {
+   "bbox": [
+    8.08,
+    6.08,
+    3.5
+   ],
+   "ok": true,
+   "verts": 791
+  },
+  "GB_ROMANESQUE_ARCADE": {
+   "bbox": [
+    8.08,
+    6.08,
+    3.5
+   ],
+   "ok": true,
+   "verts": 791
+  },
+  "GB_ROOM_APSIDAL": {
+   "bbox": [
+    8.6,
+    10.286,
+    3.8
+   ],
+   "ok": true,
+   "verts": 669
+  },
+  "GB_ROOM_CIRCULAR": {
+   "bbox": [
+    7.987,
+    7.994,
+    4.1
+   ],
+   "ok": true,
+   "verts": 584
+  },
+  "GB_ROOM_COMPOSITE": {
+   "bbox": [
+    8.08,
+    6.08,
+    3.5
+   ],
+   "ok": true,
+   "verts": 791
+  },
+  "GB_ROOM_ROTUNDA": {
+   "bbox": [
+    8.007,
+    7.994,
+    24.8
+   ],
+   "ok": true,
+   "verts": 2190
+  },
+  "GB_SCIFI_PRESSURE_DOOR": {
+   "bbox": [
+    3.0,
+    4.92,
+    3.8
+   ],
+   "ok": true,
+   "verts": 1315
+  },
+  "GB_UMEMOTO_FORTRESS": {
+   "bbox": [
+    8.832,
+    6.9,
+    3.36
+   ],
+   "ok": true,
+   "verts": 349
+  },
+  "GB_UMEMOTO_LATTICE": {
+   "bbox": [
+    8.16,
+    0.6,
+    3.42
+   ],
+   "ok": true,
+   "verts": 120
+  },
+  "GB_UMEMOTO_TERRACE": {
+   "bbox": [
+    8.003,
+    6.3,
+    13.784
+   ],
+   "ok": true,
+   "verts": 2866
+  },
+  "GB_UMEMOTO_VAULT": {
+   "bbox": [
+    13.5,
+    50.1,
+    5.411
+   ],
+   "ok": true,
+   "verts": 5373
+  },
+  "GB_VENETIAN_LOGGIA": {
+   "bbox": [
+    2.716,
+    0.717,
+    4.119
+   ],
+   "ok": true,
+   "verts": 7780
+  },
+  "GB_WOODS_FREESPACE": {
+   "bbox": [
+    11.322,
+    8.173,
+    4.032
+   ],
+   "ok": true,
+   "verts": 574
+  },
+  "GB_WOODS_HARPSICHORD": {
+   "bbox": [
+    7.776,
+    8.133,
+    13.937
+   ],
+   "ok": true,
+   "verts": 308
+  },
+  "GB_WOODS_PARASITE": {
+   "bbox": [
+    10.7,
+    9.173,
+    4.014
+   ],
+   "ok": true,
+   "verts": 1162
+  },
+  "GB_WOODS_RIBS": {
+   "bbox": [
+    8.048,
+    8.0,
+    3.803
+   ],
+   "ok": true,
+   "verts": 1506
+  },
+  "GB_WOODS_WAR_SCAR": {
+   "bbox": [
+    8.025,
+    0.808,
+    3.474
+   ],
+   "ok": true,
+   "verts": 175
+  },
+  "GB_ZEN_BAMBOO_FENCE": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_CHERRY_ALLEE": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_ENGAWA": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_GOJU_PAGODA": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_HAIDEN": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_HONDEN": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_KAIRO": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_KARESANSUI": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_LANTERN": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_MACHIAI": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_ROJI_STEP": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_SAKURA_TORII": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_SANDO": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_STONE_BRIDGE": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_TAHOTO": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_TOBIISHI": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_TORII_GATE": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_TSUKUBAI": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GB_ZEN_WATER_EDGE": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "GEODESIC_VORONOI": {
+   "bbox": [
+    2.198,
+    2.32,
+    2.4
+   ],
+   "ok": true,
+   "verts": 118
+  },
+  "GOTHIC_ARCH": {
+   "bbox": [
+    2.224,
+    0.269,
+    1.514
+   ],
+   "ok": true,
+   "verts": 2304
+  },
+  "GREYBOX_ARENA": {
+   "bbox": [
+    19.0,
+    19.0,
+    16.05
+   ],
+   "ok": true,
+   "verts": 883
+  },
+  "GREYBOX_CATWALK": {
+   "bbox": [
+    8.114,
+    12.297,
+    4.712
+   ],
+   "ok": true,
+   "verts": 13632
+  },
+  "GREYBOX_CORRIDOR": {
+   "bbox": [
+    3.0,
+    8.42,
+    3.8
+   ],
+   "ok": true,
+   "verts": 1312
+  },
+  "GREYBOX_COVER": {
+   "bbox": [
+    8.8,
+    0.375,
+    3.92
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "GREYBOX_DOORWAY": {
+   "bbox": [
+    8.0,
+    0.3,
+    3.5
+   ],
+   "ok": true,
+   "verts": 388
+  },
+  "GREYBOX_PILLAR_HALL": {
+   "bbox": [
+    13.8,
+    19.8,
+    3.8
+   ],
+   "ok": true,
+   "verts": 1944
+  },
+  "GREYBOX_PIPE_RUN": {
+   "bbox": [
+    16.069,
+    24.0,
+    20.8
+   ],
+   "ok": true,
+   "verts": 448
+  },
+  "GREYBOX_PLATFORM": {
+   "bbox": [
+    16.12,
+    12.12,
+    4.654
+   ],
+   "ok": true,
+   "verts": 26400
+  },
+  "GREYBOX_RAMP": {
+   "bbox": [
+    8.0,
+    8.208,
+    3.689
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "GREYBOX_ROOM": {
+   "bbox": [
+    8.08,
+    6.08,
+    3.5
+   ],
+   "ok": true,
+   "verts": 791
+  },
+  "GREYBOX_STAIR_BLOCK": {
+   "bbox": [
+    8.6,
+    7.47,
+    30.6
+   ],
+   "ok": true,
+   "verts": 1184
+  },
+  "GREYBOX_TOWER": {
+   "bbox": [
+    8.007,
+    6.007,
+    14.307
+   ],
+   "ok": true,
+   "verts": 1327
+  },
+  "GUILD_HALL": {
+   "bbox": [
+    5.147,
+    4.369,
+    5.07
+   ],
+   "ok": true,
+   "verts": 308
+  },
+  "HALF_TIMBER_WALL": {
+   "bbox": [
+    3.02,
+    0.0,
+    3.0
+   ],
+   "ok": true,
+   "verts": 9
+  },
+  "HERALDIC_BANNER": {
+   "bbox": [
+    0.84,
+    1.176,
+    5.4
+   ],
+   "ok": true,
+   "verts": 720
+  },
+  "HIGG_COLONNADE": {
+   "bbox": [
+    10.6,
+    1.0,
+    4.48
+   ],
+   "ok": true,
+   "verts": 1136
+  },
+  "HIGG_SURFACE_WALL": {
+   "bbox": [
+    4.0,
+    0.2,
+    3.0
+   ],
+   "ok": true,
+   "verts": 11760
+  },
+  "HYBRID": {
+   "bbox": [
+    3.426,
+    3.407,
+    5.123
+   ],
+   "ok": true,
+   "verts": 1088
+  },
+  "HYPERBOLIC": {
+   "bbox": [
+    4.072,
+    4.0,
+    4.506
+   ],
+   "ok": true,
+   "verts": 4512
+  },
+  "JP_KURA_STOREHOUSE": {
+   "bbox": [
+    4.033,
+    3.63,
+    7.82
+   ],
+   "ok": true,
+   "verts": 9496
+  },
+  "KEEP": {
+   "bbox": [
+    5.333,
+    4.703,
+    10.888
+   ],
+   "ok": true,
+   "verts": 784
+  },
+  "KLEIN_BOTTLE": {
+   "bbox": [
+    0.597,
+    0.595,
+    3.705
+   ],
+   "ok": true,
+   "verts": 15230
+  },
+  "KR_HANOK": {
+   "bbox": [
+    4.187,
+    4.266,
+    5.166
+   ],
+   "ok": true,
+   "verts": 24952
+  },
+  "KR_HONG_SAL_MUN": {
+   "bbox": [
+    3.28,
+    0.36,
+    5.05
+   ],
+   "ok": true,
+   "verts": 1136
+  },
+  "KR_JANGSEUNG": {
+   "bbox": [
+    0.516,
+    0.561,
+    5.713
+   ],
+   "ok": true,
+   "verts": 272
+  },
+  "LANCET": {
+   "bbox": [
+    1.234,
+    0.273,
+    4.553
+   ],
+   "ok": true,
+   "verts": 2368
+  },
+  "LANTERN": {
+   "bbox": [
+    0.48,
+    0.48,
+    3.39
+   ],
+   "ok": true,
+   "verts": 609
+  },
+  "LIGHTHOUSE": {
+   "bbox": [
+    2.4,
+    2.4,
+    19.499
+   ],
+   "ok": true,
+   "verts": 340
+  },
+  "MARKET_STALL": {
+   "bbox": [
+    2.155,
+    1.294,
+    4.658
+   ],
+   "ok": true,
+   "verts": 107
+  },
+  "MOBIUS_CATHEDRAL": {
+   "bbox": [
+    4.446,
+    3.794,
+    1.5
+   ],
+   "ok": true,
+   "verts": 3707
+  },
+  "MODULAR_HOUSE": {
+   "bbox": [
+    4.28,
+    4.28,
+    7.596
+   ],
+   "ok": true,
+   "verts": 3024
+  },
+  "MONASTERY": {
+   "bbox": [
+    6.175,
+    6.054,
+    5.175
+   ],
+   "ok": true,
+   "verts": 122
+  },
+  "NOTE_HEAD": {
+   "bbox": [
+    0.578,
+    0.425,
+    1.633
+   ],
+   "ok": true,
+   "verts": 396
+  },
+  "OBELISK": {
+   "bbox": [
+    1.502,
+    1.502,
+    11.891
+   ],
+   "ok": true,
+   "verts": 216
+  },
+  "OGEE_ARCH": {
+   "bbox": [
+    2.408,
+    0.258,
+    3.655
+   ],
+   "ok": true,
+   "verts": 2433
+  },
+  "ORGANIC": {
+   "bbox": [
+    3.426,
+    3.407,
+    4.981
+   ],
+   "ok": true,
+   "verts": 576
+  },
+  "PALAZZO": {
+   "bbox": [
+    8.8,
+    0.7,
+    9.205
+   ],
+   "ok": true,
+   "verts": 29484
+  },
+  "PENROSE": {
+   "bbox": [
+    4.76,
+    4.76,
+    3.632
+   ],
+   "ok": true,
+   "verts": 1920
+  },
+  "PILLAR": {
+   "bbox": [
+    1.522,
+    1.521,
+    4.8
+   ],
+   "ok": true,
+   "verts": 1518
+  },
+  "PUBLIC_FOUNTAIN": {
+   "bbox": [
+    3.84,
+    3.84,
+    2.75
+   ],
+   "ok": true,
+   "verts": 1010
+  },
+  "RADIAL_ARRAY": {
+   "bbox": [
+    4.11,
+    4.11,
+    0.112
+   ],
+   "ok": true,
+   "verts": 2304
+  },
+  "RADIAL_BUILDING": {
+   "bbox": [
+    13.771,
+    13.771,
+    11.08
+   ],
+   "ok": true,
+   "verts": 45218
+  },
+  "RAILING": {
+   "bbox": [
+    9.113,
+    0.114,
+    1.156
+   ],
+   "ok": true,
+   "verts": 6480
+  },
+  "RAYCAST_FACADE": {
+   "bbox": [
+    2.4,
+    2.364,
+    5.0
+   ],
+   "ok": true,
+   "verts": 240
+  },
+  "RETAINING_WALL": {
+   "bbox": [
+    4.189,
+    1.207,
+    3.41
+   ],
+   "ok": true,
+   "verts": 280
+  },
+  "ROOF_TILES": {
+   "bbox": [
+    4.5,
+    4.099,
+    2.547
+   ],
+   "ok": true,
+   "verts": 9216
+  },
+  "ROSE_WINDOW": {
+   "bbox": [
+    3.105,
+    0.104,
+    3.105
+   ],
+   "ok": true,
+   "verts": 5568
+  },
+  "SEIFERT_SURFACE": {
+   "bbox": [
+    2.31,
+    2.296,
+    2.927
+   ],
+   "ok": true,
+   "verts": 18327
+  },
+  "SHEET_MUSIC_RAIL": {
+   "bbox": [
+    10.952,
+    0.142,
+    2.602
+   ],
+   "ok": true,
+   "verts": 13940
+  },
+  "SPIDERWEB_DOME": {
+   "bbox": [
+    2.424,
+    2.424,
+    1.519
+   ],
+   "ok": true,
+   "verts": 6288
+  },
+  "SPLINE_INSTANCE": {
+   "bbox": [
+    4.206,
+    4.206,
+    0.112
+   ],
+   "ok": true,
+   "verts": 3840
+  },
+  "STABLE": {
+   "bbox": [
+    4.699,
+    2.656,
+    7.764
+   ],
+   "ok": true,
+   "verts": 128
+  },
+  "STAFF": {
+   "bbox": [
+    10.611,
+    0.216,
+    2.122
+   ],
+   "ok": true,
+   "verts": 2848
+  },
+  "STAIRCASE": {
+   "bbox": [
+    4.8,
+    1.669,
+    3.278
+   ],
+   "ok": true,
+   "verts": 4608
+  },
+  "STONE_BRIDGE": {
+   "bbox": [
+    1.0,
+    10.164,
+    2.579
+   ],
+   "ok": true,
+   "verts": 1352
+  },
+  "STREET_LAMP": {
+   "bbox": [
+    0.355,
+    0.355,
+    6.07
+   ],
+   "ok": true,
+   "verts": 555
+  },
+  "STYLIZED_TREE": {
+   "bbox": [
+    2.241,
+    2.244,
+    5.234
+   ],
+   "ok": true,
+   "verts": 318
+  },
+  "SYNTHIA_LORENZ": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "SYNTHIA_MOBIUS": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "SYNTHIA_PLATONIC": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "SYNTHIA_TORUS_KNOT": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "TAVERN": {
+   "bbox": [
+    4.5,
+    3.105,
+    13.614
+   ],
+   "ok": true,
+   "verts": 189
+  },
+  "TESSELLATION": {
+   "bbox": [
+    4.525,
+    4.525,
+    0.794
+   ],
+   "ok": true,
+   "verts": 6144
+  },
+  "TESSELLATION_TOWER": {
+   "bbox": [
+    2.4,
+    2.4,
+    4.051
+   ],
+   "ok": true,
+   "verts": 28384
+  },
+  "TORCH_SCONCE": {
+   "bbox": [
+    0.15,
+    0.337,
+    0.588
+   ],
+   "ok": true,
+   "verts": 1008
+  },
+  "TOWER": {
+   "bbox": [
+    2.394,
+    2.429,
+    5.123
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "TOWN_HALL": {
+   "bbox": [
+    5.6,
+    4.769,
+    14.541
+   ],
+   "ok": true,
+   "verts": 275
+  },
+  "TOWN_HOUSE": {
+   "bbox": [
+    3.283,
+    2.316,
+    8.867
+   ],
+   "ok": true,
+   "verts": 150
+  },
+  "TREBLE_CLEF": {
+   "bbox": [
+    0.896,
+    0.264,
+    3.002
+   ],
+   "ok": true,
+   "verts": 8004
+  },
+  "TREFOIL": {
+   "bbox": [
+    3.041,
+    0.208,
+    3.039
+   ],
+   "ok": true,
+   "verts": 3888
+  },
+  "VILLAGE_WELL": {
+   "bbox": [
+    2.1,
+    2.352,
+    2.759
+   ],
+   "ok": true,
+   "verts": 92
+  },
+  "VOLUME_CLOUD": {
+   "bbox": [
+    2.18,
+    2.2,
+    2.159
+   ],
+   "ok": true,
+   "verts": 6293
+  },
+  "WALL_ARCHED_WINDOW": {
+   "bbox": [
+    2.0,
+    0.28,
+    3.065
+   ],
+   "ok": true,
+   "verts": 1408
+  },
+  "WALL_ARROW_SLITS": {
+   "bbox": [
+    3.12,
+    0.25,
+    4.283
+   ],
+   "ok": true,
+   "verts": 128
+  },
+  "WALL_BAY_WINDOW": {
+   "bbox": [
+    2.0,
+    0.84,
+    3.0
+   ],
+   "ok": true,
+   "verts": 960
+  },
+  "WALL_CORNER": {
+   "bbox": [
+    2.15,
+    2.15,
+    3.0
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "WALL_DOOR": {
+   "bbox": [
+    2.0,
+    0.28,
+    3.04
+   ],
+   "ok": true,
+   "verts": 448
+  },
+  "WALL_MULTI_WINDOW": {
+   "bbox": [
+    2.0,
+    0.28,
+    3.017
+   ],
+   "ok": true,
+   "verts": 896
+  },
+  "WALL_RUINED": {
+   "bbox": [
+    4.0,
+    0.514,
+    2.756
+   ],
+   "ok": true,
+   "verts": 131
+  },
+  "WALL_STRAIGHT": {
+   "bbox": [
+    2.0,
+    0.28,
+    3.0
+   ],
+   "ok": true,
+   "verts": 288
+  },
+  "WALL_T_JOIN": {
+   "bbox": [
+    4.04,
+    2.155,
+    3.0
+   ],
+   "ok": true,
+   "verts": 480
+  },
+  "WALL_WINDOW": {
+   "bbox": [
+    2.0,
+    0.28,
+    3.068
+   ],
+   "ok": true,
+   "verts": 512
+  },
+  "WATCHTOWER": {
+   "bbox": [
+    2.862,
+    2.862,
+    9.268
+   ],
+   "ok": true,
+   "verts": 272
+  },
+  "WATERMILL": {
+   "bbox": [
+    3.919,
+    2.648,
+    7.614
+   ],
+   "ok": true,
+   "verts": 238
+  },
+  "WAYSIDE_SHRINE": {
+   "bbox": [
+    1.344,
+    1.176,
+    7.9
+   ],
+   "ok": true,
+   "verts": 211
+  },
+  "WEAVE_SURFACE": {
+   "bbox": [
+    0.048,
+    0.042,
+    0.0
+   ],
+   "ok": true,
+   "verts": 6
+  },
+  "WINDMILL": {
+   "bbox": [
+    7.68,
+    2.4,
+    11.84
+   ],
+   "ok": true,
+   "verts": 192
+  },
+  "WINDOW": {
+   "bbox": [
+    1.29,
+    0.308,
+    2.649
+   ],
+   "ok": true,
+   "verts": 2656
+  },
+  "WINDOW_FRAME": {
+   "bbox": [
+    1.392,
+    0.431,
+    1.81
+   ],
+   "ok": true,
+   "verts": 544
+  },
+  "ZEN_BRIDGE": {
+   "bbox": [
+    5.053,
+    1.23,
+    2.307
+   ],
+   "ok": true,
+   "verts": 9432
+  },
+  "ZEN_LANTERN": {
+   "bbox": [
+    0.948,
+    0.824,
+    1.278
+   ],
+   "ok": true,
+   "verts": 2913
+  },
+  "ZEN_PAGODA": {
+   "bbox": [
+    3.499,
+    3.499,
+    4.45
+   ],
+   "ok": true,
+   "verts": 11718
+  },
+  "ZEN_SHOJI": {
+   "bbox": [
+    2.017,
+    0.088,
+    2.418
+   ],
+   "ok": true,
+   "verts": 1088
+  },
+  "ZEN_STONE_GARDEN": {
+   "bbox": [
+    3.0,
+    3.0,
+    0.895
+   ],
+   "ok": true,
+   "verts": 9568
+  },
+  "ZEN_TEAHOUSE": {
+   "bbox": [
+    4.75,
+    4.75,
+    3.64
+   ],
+   "ok": true,
+   "verts": 16498
+  },
+  "ZEN_TORII": {
+   "bbox": [
+    4.35,
+    0.486,
+    3.888
+   ],
+   "ok": true,
+   "verts": 1300
+  }
+ },
+ "package": [
+  "MEL_add_geometry",
+  "MEL_aest_adv_crystals",
+  "MEL_aest_adv_dual_mesh",
+  "MEL_aest_adv_edge_tubes",
+  "MEL_aest_adv_field_lat",
+  "MEL_aest_adv_near_fur",
+  "MEL_aest_adv_ray_grow",
+  "MEL_aest_adv_vor_frac",
+  "MEL_aest_goth_drip",
+  "MEL_aest_goth_fans",
+  "MEL_aest_goth_finials",
+  "MEL_aest_goth_lattice",
+  "MEL_aest_goth_leadwork",
+  "MEL_aest_goth_niches",
+  "MEL_aest_goth_ribs",
+  "MEL_aest_goth_spikes",
+  "MEL_aest_goth_spires",
+  "MEL_aest_goth_tracery",
+  "MEL_aest_goth_tracery2",
+  "MEL_aest_goth_vault",
+  "MEL_aest_goth_weathered",
+  "MEL_aest_mech_bolts",
+  "MEL_aest_mech_gears",
+  "MEL_aest_mech_panels",
+  "MEL_aest_mech_pipes",
+  "MEL_aest_mech_pistons",
+  "MEL_aest_mus_beat_ring",
+  "MEL_aest_mus_eq_bars",
+  "MEL_aest_mus_harmonic",
+  "MEL_aest_mus_pulse",
+  "MEL_aest_mus_wave_disp",
+  "MEL_aest_spi_astral",
+  "MEL_aest_spi_aura",
+  "MEL_aest_spi_beam",
+  "MEL_aest_spi_chakra",
+  "MEL_aest_spi_eye",
+  "MEL_aest_spi_flames",
+  "MEL_aest_spi_flower",
+  "MEL_aest_spi_halo",
+  "MEL_aest_spi_lotus",
+  "MEL_aest_spi_mandala",
+  "MEL_aest_spi_metatron",
+  "MEL_aest_spi_ouroboros",
+  "MEL_aest_spi_portal",
+  "MEL_aest_spi_ring",
+  "MEL_aest_spi_runes",
+  "MEL_aest_spi_triangles",
+  "MEL_aest_vap_busts",
+  "MEL_aest_vap_chromatic",
+  "MEL_aest_vap_dolphin",
+  "MEL_aest_vap_grid",
+  "MEL_aest_vap_neon_wrap",
+  "MEL_aest_vap_palms",
+  "MEL_aest_vap_pixel",
+  "MEL_aest_vap_scanlines",
+  "MEL_aest_vap_slabs",
+  "MEL_aest_vap_slices",
+  "MEL_aest_vap_sun",
+  "MEL_aest_vap_wire",
+  "MEL_aest_zen_bamboo",
+  "MEL_aest_zen_bonsai",
+  "MEL_aest_zen_ginkgo",
+  "MEL_aest_zen_moss",
+  "MEL_aest_zen_orbit",
+  "MEL_aest_zen_petals",
+  "MEL_aest_zen_pond",
+  "MEL_aest_zen_ripple",
+  "MEL_aest_zen_runes",
+  "MEL_aest_zen_sand",
+  "MEL_aest_zen_smoke",
+  "MEL_aest_zen_terrace",
+  "MEL_aftermath_fragment",
+  "MEL_allee_ribbon",
+  "MEL_arch",
+  "MEL_arch_broken",
+  "MEL_archway",
+  "MEL_attr_ramp_mix",
+  "MEL_attr_vector_rotate",
+  "MEL_attribute_math",
+  "MEL_audio_radial_field",
+  "MEL_audio_spectrum_terrain",
+  "MEL_audio_spectrum_towers",
+  "MEL_auto_bevel",
+  "MEL_auto_building",
+  "MEL_balcony",
+  "MEL_baluster",
+  "MEL_baluster_collar",
+  "MEL_barbican",
+  "MEL_baroque_balustrade",
+  "MEL_baroque_facade",
+  "MEL_baroque_niche",
+  "MEL_baroque_vault",
+  "MEL_barrel_stack",
+  "MEL_barrel_vault_ceiling",
+  "MEL_bell_chime",
+  "MEL_bell_tower",
+  "MEL_bevel_profile",
+  "MEL_bifora",
+  "MEL_biolum_vein",
+  "MEL_blacksmith",
+  "MEL_boulder_pile",
+  "MEL_bounding_box",
+  "MEL_brass_pipe",
+  "MEL_brick_wall",
+  "MEL_bridge_advanced",
+  "MEL_buttress",
+  "MEL_campfire",
+  "MEL_capture_filigree",
+  "MEL_cascading_beams",
+  "MEL_castle_arrow_slit",
+  "MEL_castle_assembler",
+  "MEL_castle_barbican",
+  "MEL_castle_buttress",
+  "MEL_castle_corner_bastion",
+  "MEL_castle_corner_turret",
+  "MEL_castle_crenellation",
+  "MEL_castle_curtain_wall",
+  "MEL_castle_drawbridge",
+  "MEL_castle_gatehouse",
+  "MEL_castle_gothic_window",
+  "MEL_castle_hoarding",
+  "MEL_castle_keep",
+  "MEL_castle_machicolations",
+  "MEL_castle_portcullis",
+  "MEL_castle_siege_tower",
+  "MEL_castle_spiral_stairs",
+  "MEL_castle_tower",
+  "MEL_castle_wall_segment",
+  "MEL_ceiling_tile",
+  "MEL_chapel",
+  "MEL_chime_aeolian_wall",
+  "MEL_chime_carillon_tier",
+  "MEL_chime_field_scatter",
+  "MEL_chime_mark_tree",
+  "MEL_chime_tube",
+  "MEL_church_bell",
+  "MEL_circular_array",
+  "MEL_city_avenue",
+  "MEL_city_block",
+  "MEL_city_corridors",
+  "MEL_city_house_cell",
+  "MEL_city_plan_courtyard",
+  "MEL_city_plan_round",
+  "MEL_city_plan_salon",
+  "MEL_closed_ribbon",
+  "MEL_cn_dougong",
+  "MEL_cn_moon_gate",
+  "MEL_cn_pailou",
+  "MEL_cn_tiered_pagoda",
+  "MEL_cn_ting_pavilion",
+  "MEL_collapsed_floor",
+  "MEL_column",
+  "MEL_corner_pillar",
+  "MEL_cornice",
+  "MEL_cosmic_web",
+  "MEL_crate_pile",
+  "MEL_crenellation",
+  "MEL_crypt_entrance",
+  "MEL_current_marker",
+  "MEL_curtain_wall",
+  "MEL_curvature_bevel",
+  "MEL_curve_array",
+  "MEL_curved_building",
+  "MEL_curved_wall",
+  "MEL_cusped_arch",
+  "MEL_decorative_rosette",
+  "MEL_dna_helix",
+  "MEL_dome",
+  "MEL_door",
+  "MEL_door_frame",
+  "MEL_drawbridge",
+  "MEL_dreamy_gothic_arch",
+  "MEL_edge_band_weight",
+  "MEL_edge_ring_inset",
+  "MEL_eel_silhouette",
+  "MEL_effect_cast",
+  "MEL_effect_displace",
+  "MEL_effect_magic",
+  "MEL_effect_smooth",
+  "MEL_effect_wave",
+  "MEL_effect_wireframe",
+  "MEL_egg_dart_rail",
+  "MEL_endless_escher_bridge",
+  "MEL_env_buoy_line",
+  "MEL_env_campfire_ring",
+  "MEL_env_hedgerow",
+  "MEL_env_lantern_post",
+  "MEL_env_lily_pond",
+  "MEL_env_market_stall",
+  "MEL_env_reeds_patch",
+  "MEL_env_stepping_stones",
+  "MEL_env_village_well",
+  "MEL_env_waterfall_pool",
+  "MEL_escher_belvedere",
+  "MEL_escher_path",
+  "MEL_escher_penrose_stairs",
+  "MEL_escher_waterfall",
+  "MEL_exponent_blend",
+  "MEL_fence",
+  "MEL_field_sculpture",
+  "MEL_filigree_core",
+  "MEL_filigree_corner_volute",
+  "MEL_filigree_finial_cross",
+  "MEL_filigree_panel",
+  "MEL_filigree_rail_inset",
+  "MEL_filigree_spiral",
+  "MEL_filigree_wreath_ring",
+  "MEL_floor_tile",
+  "MEL_fountain",
+  "MEL_fractal",
+  "MEL_fracture_seam",
+  "MEL_garment_material_id",
+  "MEL_garment_smart_bevel",
+  "MEL_garment_trim_uv",
+  "MEL_garment_vertex_ao",
+  "MEL_gatehouse",
+  "MEL_gazebo",
+  "MEL_gear",
+  "MEL_geodesic_voronoi",
+  "MEL_gold_light_strip",
+  "MEL_gold_ornament_strip",
+  "MEL_gothic_arch",
+  "MEL_gravity_well",
+  "MEL_greybox_composer",
+  "MEL_greybox_corridor",
+  "MEL_greybox_junction",
+  "MEL_greybox_openings",
+  "MEL_greybox_room_kit",
+  "MEL_grid_array",
+  "MEL_guild_hall",
+  "MEL_half_timber_wall",
+  "MEL_harmonic_orb",
+  "MEL_harp_concert_real",
+  "MEL_harp_kora",
+  "MEL_harp_string_unit",
+  "MEL_harp_ur_lyre",
+  "MEL_heart_chain",
+  "MEL_heraldic_banner",
+  "MEL_higgsas_colonnade",
+  "MEL_higgsas_surface_wall",
+  "MEL_hyperbolic_disk",
+  "MEL_imm_piano_keys",
+  "MEL_inset_faces",
+  "MEL_instance_on_spline",
+  "MEL_jp_kura_storehouse",
+  "MEL_keep",
+  "MEL_klein_bottle",
+  "MEL_kr_hanok",
+  "MEL_kr_hong_sal_mun",
+  "MEL_kr_jangseung",
+  "MEL_lancet",
+  "MEL_lantern_post",
+  "MEL_lighthouse",
+  "MEL_linear_array",
+  "MEL_lissajous",
+  "MEL_lissajous_ribbon",
+  "MEL_market_stall",
+  "MEL_material_crosswalk",
+  "MEL_material_crosswalk_v2",
+  "MEL_math_gothic_cathedral",
+  "MEL_melusina_house_round_interior",
+  "MEL_mh6_room_shell",
+  "MEL_mh_aaa_cornice",
+  "MEL_mh_aaa_dentil",
+  "MEL_mh_aaa_lissajous_pearl",
+  "MEL_mh_aaa_scallop_uv",
+  "MEL_mh_foundation_cluster",
+  "MEL_mh_foundation_master",
+  "MEL_mh_foundation_pod",
+  "MEL_mh_foundation_porch",
+  "MEL_mh_lantern_row",
+  "MEL_mh_piano_walk",
+  "MEL_mh_roof_ribbon",
+  "MEL_mh_sheet_rail",
+  "MEL_mh_staff_rows",
+  "MEL_mh_stepping_stones",
+  "MEL_mh_tree_line",
+  "MEL_mh_xylo_fountain",
+  "MEL_mobius_cathedral",
+  "MEL_modular_house",
+  "MEL_monastery",
+  "MEL_moonlit_surf",
+  "MEL_mother_fabric_ridge",
+  "MEL_mother_fog_volume",
+  "MEL_mother_hair_cascade",
+  "MEL_mother_head_silhouette",
+  "MEL_mother_heart_gate",
+  "MEL_mother_moonlight_rig",
+  "MEL_mother_shoulder_fold",
+  "MEL_mother_valley_depression",
+  "MEL_multi_bevel",
+  "MEL_music_bamboo_chimes",
+  "MEL_music_baroque_harpsichord",
+  "MEL_music_baroque_lute",
+  "MEL_music_baroque_organ",
+  "MEL_music_baroque_violin",
+  "MEL_music_bass_clef",
+  "MEL_music_beam_cluster",
+  "MEL_music_boss_gate",
+  "MEL_music_celesta",
+  "MEL_music_chord_stack",
+  "MEL_music_dulcimer",
+  "MEL_music_fermata",
+  "MEL_music_frequency_ribcage",
+  "MEL_music_glockenspiel",
+  "MEL_music_harmonic",
+  "MEL_music_harmonograph",
+  "MEL_music_harp",
+  "MEL_music_harp_v2",
+  "MEL_music_jingle_tower",
+  "MEL_music_kalimba",
+  "MEL_music_key_unit",
+  "MEL_music_lissajous_harp",
+  "MEL_music_lullaby_nook",
+  "MEL_music_metronome_pillar",
+  "MEL_music_note_head",
+  "MEL_music_organ_pipes",
+  "MEL_music_phrase",
+  "MEL_music_piano_roll",
+  "MEL_music_repeat_bar",
+  "MEL_music_room_shell",
+  "MEL_music_sheet_rail",
+  "MEL_music_soundhole_rosette",
+  "MEL_music_staff",
+  "MEL_music_stand",
+  "MEL_music_them_arch",
+  "MEL_music_them_bandstand",
+  "MEL_music_them_bridge",
+  "MEL_music_them_curtain",
+  "MEL_music_them_fountain",
+  "MEL_music_them_gazebo",
+  "MEL_music_them_portico",
+  "MEL_music_them_recital",
+  "MEL_music_them_shell",
+  "MEL_music_them_stage",
+  "MEL_music_them_structure",
+  "MEL_music_them_wall",
+  "MEL_music_time_signature",
+  "MEL_music_timpani",
+  "MEL_music_treble_clef",
+  "MEL_music_triplet_note",
+  "MEL_music_tubular_bells",
+  "MEL_music_tuning_fork",
+  "MEL_music_victory_plaza",
+  "MEL_music_waveform_wall",
+  "MEL_music_waveform_wall_v2",
+  "MEL_musical_harmonic_variant",
+  "MEL_musical_pulse_variant",
+  "MEL_musical_seeded_variant",
+  "MEL_musical_wave_variant",
+  "MEL_nikki_bead",
+  "MEL_nikki_bead_string",
+  "MEL_nikki_bloom_pavilion",
+  "MEL_nikki_cord",
+  "MEL_nikki_crystal",
+  "MEL_nikki_heart",
+  "MEL_nikki_heart_filigree",
+  "MEL_nikki_legacy_heart_filigree",
+  "MEL_nikki_legacy_star_pendant",
+  "MEL_nikki_podium_runway",
+  "MEL_nikki_quarter",
+  "MEL_nikki_sheet_rail_hero",
+  "MEL_nikki_star",
+  "MEL_nikki_star_pendant",
+  "MEL_nikki_wall_beads",
+  "MEL_nikki_wardrobe_nook",
+  "MEL_note_head_filigree",
+  "MEL_obelisk",
+  "MEL_ogee_arch",
+  "MEL_op_bounded",
+  "MEL_op_iterate",
+  "MEL_op_power_clamp",
+  "MEL_ornament_frame",
+  "MEL_ornament_grid",
+  "MEL_ornament_keyhole_frame",
+  "MEL_ornament_panel",
+  "MEL_ornament_radial",
+  "MEL_ornament_rosette_sixpetal",
+  "MEL_ornament_scallop_band",
+  "MEL_ornament_vine",
+  "MEL_pcg_music_tags",
+  "MEL_pcg_music_tags_v2",
+  "MEL_pcg_water_tags",
+  "MEL_pcg_water_tags_v2",
+  "MEL_penrose",
+  "MEL_pergola_walkway",
+  "MEL_pillar",
+  "MEL_planetary_musical_terrain",
+  "MEL_poke_faces",
+  "MEL_polyhedra_dodecahedron",
+  "MEL_polyhedra_icosahedron",
+  "MEL_portico",
+  "MEL_post",
+  "MEL_power_scale",
+  "MEL_public_fountain",
+  "MEL_radial_array",
+  "MEL_radial_building",
+  "MEL_radial_wave",
+  "MEL_rail",
+  "MEL_railing",
+  "MEL_raycast_facade",
+  "MEL_recursive_castle_spire",
+  "MEL_reed_body",
+  "MEL_remesh_dual",
+  "MEL_retaining_wall",
+  "MEL_ribbon_curve",
+  "MEL_roll_walkable",
+  "MEL_rose_window",
+  "MEL_rose_window_small",
+  "MEL_scifi_antenna",
+  "MEL_scifi_circuit",
+  "MEL_scifi_damage",
+  "MEL_scifi_greeble",
+  "MEL_scifi_hex_armour",
+  "MEL_scifi_neon_trim",
+  "MEL_scifi_panel_lines",
+  "MEL_sdf_star_panel",
+  "MEL_seifert_surface",
+  "MEL_shell_cephalon",
+  "MEL_shell_interior",
+  "MEL_shell_pygidium",
+  "MEL_shell_thicken",
+  "MEL_shell_thorax",
+  "MEL_singing_bowl",
+  "MEL_sky_observatory",
+  "MEL_smooth_laplacian",
+  "MEL_spiderweb_dome",
+  "MEL_spiral_array",
+  "MEL_stable",
+  "MEL_staff_bridge",
+  "MEL_staircase",
+  "MEL_star_finial",
+  "MEL_stepped_pyramid",
+  "MEL_stone_bridge",
+  "MEL_store_named_attr",
+  "MEL_street_lamp",
+  "MEL_stylized_tree",
+  "MEL_subdivision_surface",
+  "MEL_subtract_geometry",
+  "MEL_symmetry_weld",
+  "MEL_tavern",
+  "MEL_tessellation",
+  "MEL_tessellation_tower",
+  "MEL_torch_sconce",
+  "MEL_torus_cross",
+  "MEL_tower",
+  "MEL_town_hall",
+  "MEL_town_house",
+  "MEL_trefoil",
+  "MEL_tuning_fork",
+  "MEL_venetian_bridge",
+  "MEL_vertex_relax",
+  "MEL_village_well",
+  "MEL_violin_bow",
+  "MEL_volume_cloud",
+  "MEL_vortex_twist",
+  "MEL_wall_arched_window",
+  "MEL_wall_arrow_slits",
+  "MEL_wall_bay_window",
+  "MEL_wall_corner",
+  "MEL_wall_multi_window",
+  "MEL_wall_ruined",
+  "MEL_wall_straight",
+  "MEL_wall_t_join",
+  "MEL_wall_with_door",
+  "MEL_wall_with_window",
+  "MEL_watchtower",
+  "MEL_water_current_markers",
+  "MEL_water_foam",
+  "MEL_water_gerstner",
+  "MEL_water_network",
+  "MEL_water_ripples",
+  "MEL_water_them_arch",
+  "MEL_water_them_bridge",
+  "MEL_water_them_canal",
+  "MEL_water_them_curtain",
+  "MEL_water_them_deck",
+  "MEL_water_them_dock",
+  "MEL_water_them_fountain",
+  "MEL_water_them_gazebo",
+  "MEL_water_them_portico",
+  "MEL_water_them_structure",
+  "MEL_water_them_wall",
+  "MEL_water_them_waterfall",
+  "MEL_watermill",
+  "MEL_wayside_shrine",
+  "MEL_weave_surface",
+  "MEL_weighted_array",
+  "MEL_weighted_bevel",
+  "MEL_white_haze_volume",
+  "MEL_white_seam_spline",
+  "MEL_wind_siku",
+  "MEL_windmill",
+  "MEL_window",
+  "MEL_window_frame",
+  "MEL_zen_bridge",
+  "MEL_zen_lantern",
+  "MEL_zen_pagoda",
+  "MEL_zen_shoji",
+  "MEL_zen_stone_garden",
+  "MEL_zen_teahouse",
+  "MEL_zen_torii"
+ ],
+ "package_count": 502,
+ "frozen_at": "2026-09-11",
+ "frozen_note": "Re-cut 2026-09-11 from the verified live registry (502 builders, 0 build errors). Gate: Tools/verify_addon.py"
+}

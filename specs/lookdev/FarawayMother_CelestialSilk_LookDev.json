@@ -5,7 +5,7 @@
     3,
     5
   ],
-  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_FarawayMother_Fabric",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
   "tiers": {
     "LOD0": {
       "instance": "MI_FarawayMother_CelestialSilk_LOD0",

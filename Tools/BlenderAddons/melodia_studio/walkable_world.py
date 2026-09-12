@@ -30,11 +30,32 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def _repo_root():
+    """Resolve the active Melodia project root.
+
+    Delegates to midi_bridge.repo_root(), which reuses the shared
+    melodia_utils resolver. The previous local ``..\\..\\..`` walk pointed at
+    the Blender version directory whenever the addon was loaded from its live
+    install under %APPDATA%, not the project.
+    """
+    try:
+        from . import midi_bridge as _mb  # type: ignore
+    except Exception:
+        try:
+            import midi_bridge as _mb  # type: ignore
+        except Exception:
+            _mb = None  # type: ignore
+    if _mb is not None:
+        try:
+            return _mb.repo_root()
+        except Exception:
+            pass
     return os.path.normpath(os.path.join(_HERE, "..", "..", ".."))
 
 
 def load_voxel_module():
     vdir = os.path.join(_repo_root(), "Tools", "midi_to_voxel")
+    if not os.path.isdir(vdir):
+        raise RuntimeError("midi_to_voxel not found: %s" % vdir)
     if vdir not in sys.path:
         sys.path.insert(0, vdir)
     import midi_voxel_v3

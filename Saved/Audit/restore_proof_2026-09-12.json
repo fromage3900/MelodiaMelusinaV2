@@ -1,0 +1,218 @@
+{
+  "test_name": "restore_proof",
+  "session_id": "pie_smoke_8_233550",
+  "timestamp": "2026-09-12T03:36:07.171177+00:00",
+  "ok": true,
+  "ok_reason": "clean",
+  "map": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+  "duration": 15,
+  "captured_frames": [],
+  "frame_count": 0,
+  "anim_samples": [
+    {
+      "t": 0.0034133009612560272,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.18730450049042702,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.3036177009344101,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.5874660983681679,
+      "bIsMoving": false
+    },
+    {
+      "t": 0.9833929985761642,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.2178529016673565,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.546255398541689,
+      "bIsMoving": false
+    },
+    {
+      "t": 1.8797162994742393,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.211095701903105,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.548215501010418,
+      "bIsMoving": false
+    },
+    {
+      "t": 2.8811412006616592,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.215115498751402,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.5427934005856514,
+      "bIsMoving": false
+    },
+    {
+      "t": 3.8808640986680984,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.21611649915576,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.544990099966526,
+      "bIsMoving": false
+    },
+    {
+      "t": 4.881021801382303,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.211572401225567,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.545847099274397,
+      "bIsMoving": false
+    },
+    {
+      "t": 5.884723600000143,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.210215400904417,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.544062800705433,
+      "bIsMoving": false
+    },
+    {
+      "t": 6.882720198482275,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.211771000176668,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.548833798617125,
+      "bIsMoving": false
+    },
+    {
+      "t": 7.879676401615143,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.217540200799704,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.559056099504232,
+      "bIsMoving": false
+    },
+    {
+      "t": 8.888641200959682,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.213034398853779,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.54573829844594,
+      "bIsMoving": false
+    },
+    {
+      "t": 9.88056379929185,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.212873101234436,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.545272499322891,
+      "bIsMoving": false
+    },
+    {
+      "t": 10.87844780087471,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.213192999362946,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.547577299177647,
+      "bIsMoving": false
+    },
+    {
+      "t": 11.879519000649452,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.21304740011692,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.547485399991274,
+      "bIsMoving": false
+    },
+    {
+      "t": 12.879225298762321,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.210921701043844,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.54561860114336,
+      "bIsMoving": false
+    },
+    {
+      "t": 13.88236179947853,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.215934701263905,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.549541302025318,
+      "bIsMoving": false
+    },
+    {
+      "t": 14.88151029869914,
+      "bIsMoving": false
+    },
+    {
+      "t": 15.218747898936272,
+      "bIsMoving": false
+    }
+  ],
+  "sample_count": 48,
+  "log_matches": {
+    "Blueprint Runtime Error": 0,
+    "Accessed None": 0,
+    "LogChooser": 0
+  },
+  "must_absent_hits": {},
+  "missing_must_present": [],
+  "console_script": [],
+  "errors": [],
+  "warnings": [],
+  "elapsed_seconds": 15.218746699392796,
+  "frames_captured": 0
+}

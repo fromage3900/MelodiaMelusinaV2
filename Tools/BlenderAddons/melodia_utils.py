@@ -6,10 +6,17 @@
 
 from __future__ import annotations
 
+import json
 import os
 from pathlib import Path
 
 _SENTINEL = Path("Content") / "MelodiaIntegration" / "MIDI"
+
+# Install-time stamp written next to the live addons by
+# deploy/_sync_addon_to_blender_5_2.py. It records the checkout the live addon
+# was installed from, which is how a *copied* (non-junction) live install can
+# still find its repo without relying on cwd or an env var.
+_PROVENANCE_FILES = ("melodia_studio_sync_provenance.json",)
 
 
 def _looks_like_repo(path: Path) -> bool:
@@ -39,14 +46,39 @@ def _walk_for_repo(start: Path) -> Path | None:
     return None
 
 
+def _install_provenance_root() -> Path | None:
+    """Checkout recorded by the install-time provenance stamp, if any.
+
+    ``_sync_addon_to_blender_5_2.py`` writes
+    ``melodia_studio_sync_provenance.json`` (``source_project_root``) into the
+    Blender addons directory. A live addon copied there has no other structural
+    link back to its checkout, so this is the only drive-agnostic way for it to
+    find the repo without an env var or the addon preference.
+    """
+    addons_dir = Path(__file__).resolve().parent
+    for name in _PROVENANCE_FILES:
+        path = addons_dir / name
+        if not path.is_file():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        recorded = str(data.get("source_project_root") or "").strip()
+        if recorded and _looks_like_repo(Path(recorded)):
+            return Path(recorded).expanduser().resolve()
+    return None
+
+
 def repo_root() -> Path:
     """Resolve the active Melodia checkout without assuming a drive letter.
 
     Order:
       1. explicit MELODIA_PROJECT_ROOT / legacy MELODIA_PROJECT_ROOT_C
       2. checkout containing this module
-      3. current working directory's checkout
-      4. deterministic module-relative fallback
+      3. install-time provenance stamp beside the live addons
+      4. current working directory's checkout
+      5. deterministic module-relative fallback
 
     A valid laptop checkout is just as authoritative as the PC checkout.
     """
@@ -63,6 +95,10 @@ def repo_root() -> Path:
     if from_module is not None:
         return from_module
 
+    from_install = _install_provenance_root()
+    if from_install is not None:
+        return from_install
+
     from_cwd = _walk_for_repo(Path.cwd())
     if from_cwd is not None:
         return from_cwd
@@ -72,7 +108,8 @@ def repo_root() -> Path:
         return fallback
 
     raise RuntimeError(
-        "Could not resolve Melodia project root from environment, module location, or cwd."
+        "Could not resolve Melodia project root from environment, module location, "
+        "install provenance, or cwd."
     )
 
 

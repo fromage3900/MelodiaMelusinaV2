@@ -657,6 +657,7 @@ def register_overhaul(monolith):
     from .os_ops import register_os_operators
     from . import uv_ops
     from . import melodia_gn
+    from . import trim_sheet_lab
     from .quality_props import register_quality_props
     from .stage_visibility import register_stage_visibility_classes
     from .accessory_visibility import register_accessory_classes, unregister_accessory_props
@@ -691,6 +692,7 @@ def register_overhaul(monolith):
     _EXTRA_CLASSES.extend(register_catalog_enum_ops(monolith))
     _EXTRA_CLASSES.extend(register_os_operators(monolith))
     _EXTRA_CLASSES.extend(uv_ops.UV_OPERATOR_CLASSES)
+    _EXTRA_CLASSES.extend(trim_sheet_lab.MELTS_CLASSES)
     _EXTRA_CLASSES.extend(register_stage_visibility_classes())
     _EXTRA_CLASSES.extend(register_accessory_classes())
     _EXTRA_CLASSES.extend(register_stats_overlay())

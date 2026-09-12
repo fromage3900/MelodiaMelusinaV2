@@ -1,17 +1,16 @@
-> **CURRENT 2026-09-04 DISCOVERY RULE:** Read [`AGENT_START_HERE.md`](../AGENT_START_HERE.md) before dated handoffs. Check [`Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md`](../Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md) before declaring laptop work absent, and [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](../Docs/Art/VISUAL_REFERENCE_INDEX.md) before declaring a reference board missing.
+> **CURRENT DISCOVERY RULE:** Read [`CURRENT_STATE.md`](../CURRENT_STATE.md) first. It is the only current status / priority / open-work authority. Use [`SYSTEM_MAP.md`](../SYSTEM_MAP.md) and [`DATA_FLOW.md`](../DATA_FLOW.md) for architecture, [`Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](../Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md) for the laptop/DCC workstation contract, and [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](../Docs/Art/VISUAL_REFERENCE_INDEX.md) for visual references.
 >
-> Old `_SESSION_HANDOFF.md`, `_TASK_QUEUE.md`, July roadblocks, and August “current” snapshots are historical, not task authority.
+> Dated handoffs, old task queues, session notes, recovery docs, and historical snapshots are not task authority. Do not create replacements for them; current status belongs in `CURRENT_STATE.md` and session narrative belongs in the PR/commit body.
 
 # MelodiaMelusinaV2 swarm policy
 
-You are in the Melodia / Environment Portfolio repo (`BS_GodFile`, UE 5.8 + Blender 5.1).
+You are in the Melodia / Environment Portfolio repo (`BS_GodFile`, UE 5.8 + Blender 5.2 LTS).
 Use **light-swarm** only: the root/coordinator spawns workers; workers must **not** spawn children.
 Prefer the shared checkout — do **not** create git worktrees unless the coordinator explicitly requests isolation for a risky refactor.
 
-Read first: `_AGENT_WORKING_AGREEMENT.md`, `AGENTS.md` (Core vision + model lanes),
-`Docs/Production/MODEL_LANES_2026-08-12.md`, `Docs/PhoneOps/NORTH_STAR.md`,
-`Docs/PhoneOps/BACKLOG.md`, `CURRENT_STATE.md`. Gameplay queue ≠ `NEXT_ACTIONS.md`
-(platform); use `_VERTICAL_SLICE_SCOPE.md` / core-systems handoffs for Melodia play work.
+Read first: `CURRENT_STATE.md`, `_AGENT_WORKING_AGREEMENT.md`, `AGENTS.md` (Core vision + model lanes),
+`Docs/Production/MODEL_LANES_2026-08-12.md`, `Docs/PhoneOps/NORTH_STAR.md`, and
+`Docs/PhoneOps/BACKLOG.md`. For gameplay ownership use `SYSTEM_MAP.md` / `DATA_FLOW.md`; do not treat historical handoffs or old scope snapshots as current task authority.
 
 ## Coordinator duties
 
@@ -23,6 +22,7 @@ Read first: `_AGENT_WORKING_AGREEMENT.md`, `AGENTS.md` (Core vision + model lane
 - After workers finish: reconcile reports, assign SQA verify when needed, then `/commit` in logical chunks.
 - External publish (Gumroad, public site, `store_live`) stays human-approved.
 - Cursor cloud / phone agents remain a separate PR lane — do not fight them on the same files without coordination.
+- Do not create new handoff, status, scorecard, session-note, or dated planning Markdown files. Current status updates `CURRENT_STATE.md`; lasting knowledge updates an existing durable contract/spec/reference; session narrative stays in PR/commit messages.
 
 ## Completion report (required)
 
@@ -81,7 +81,7 @@ Done: assigned PCG builder/docs/audit task; completion report.
 Role: WIA. Light-swarm worker. Do not spawn children.
 May write: deploy/surreal_world/, Content/Python/import_world_manifest.py, Content/Python/setup_template_showcase.py, Content/Python/setup_*_mpc.py, Tools/BlenderLiveLink/ (if present), Content/Python/monolith_mcp_client.py
 Must not: style genome taxonomy without PGA; Content/_PROJECT/
-Monolith MCP (editor open): use project MCP "monolith" via stdio proxy; otherwise document exact handoff.
+Monolith MCP (editor open): use project MCP "monolith" via stdio proxy; otherwise document exact handoff in the completion report / PR body rather than creating a new handoff file.
 Done: completion report; note if UE was required and unavailable.
 ```
 
@@ -89,9 +89,9 @@ Done: completion report; note if UE was required and unavailable.
 
 ```text
 Role: SQA. Light-swarm worker. Do not spawn children.
-May write: Docs/Reports/, Content/Python/audit_*.py, verify notes under Docs/ or Saved/Audit/ paths when writable
-Must not: production Content art; clear *_LOOP_STOP without diagnosis + coordinator approval
-Prefer: deploy/run_verify.ps1, deploy/_mcp_verify_*.py (read/run), summarize failures.
+May write: existing durable QA specs/contracts when the task explicitly requires a lasting change; Content/Python/audit_*.py; machine-readable evidence under established Saved/Audit paths when writable.
+Must not: production Content art; clear *_LOOP_STOP without diagnosis + coordinator approval; create a new prose audit/status report by default.
+Prefer: deploy/run_verify.ps1, deploy/_mcp_verify_*.py (read/run), report failures to coordinator/PR body.
 Done: completion report with verify outcomes.
 ```
 
@@ -109,11 +109,11 @@ Done: completion report; no external publish.
 ```text
 Role: MUSE. Light-swarm worker. Do not spawn children.
 Lane map: jcode = parallel repo swarm; OpenCode-in-Rider = C++/PIE gameplay IDE lane; Muse Code = Meta terminal agent (WSL).
-May write: .opencode/, Docs/Production/MUSE*, Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE*, deploy/*opencode*, deploy/*muse*
-Must not: Content/_PROJECT/, Sakura / L_SakuraPath composition, bulk .uasset / .umap churn, overlapping MelodiaCore .cpp with a live Rider session without coordinator lock.
-Prefer: OpenCode project config, Muse lane docs, lane start scripts, Rider shortcut notes -- not production Content art.
+May write: .opencode/, existing durable production/tooling contracts, deploy/*opencode*, deploy/*muse*
+Must not: create dated handoff docs; Content/_PROJECT/, Sakura / L_SakuraPath composition, bulk .uasset / .umap churn, overlapping MelodiaCore .cpp with a live Rider session without coordinator lock.
+Prefer: OpenCode project config, Muse lane contracts, lane start scripts, Rider shortcut notes -- not production Content art.
 UE: do not start Unreal from this role; leave editor start to human / Integration.
-Done: assigned OpenCode/Muse/Rider lane wiring or docs; completion report; note PATH checks for jcode + opencode (muse via WSL if used).
+Done: assigned OpenCode/Muse/Rider lane wiring or durable docs; completion report; note PATH checks for jcode + opencode (muse via WSL if used).
 ```
 
 ## Task graph style

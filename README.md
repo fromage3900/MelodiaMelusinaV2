@@ -181,10 +181,12 @@ start BS_GodFile.uproject
 
 ---
 
-## ♪ License & Attributions
+## ♪ Rights & Attributions
 
-### License
-This repository and its original source code, tools, and configurations are licensed under the **MIT License**. See [LICENSE](LICENSE) for full legal terms.
+### Project Rights
+Unless a specific file or bundled third-party component states otherwise, the original **Melodia Melusina** source code, tools, configurations, documentation, and original artwork are © 2026 Brennan Shepherd / fromage3900. **All rights reserved.** No permission is granted to copy, redistribute, republish, scrape for reuse, create derivative works from, or use this original project material for machine-learning/model-training datasets without prior written permission from the copyright holder.
+
+Third-party plugins, libraries, Marketplace/Fab content, CC0 assets, and other external dependencies remain governed by their own licenses and attribution requirements; nothing in this notice overrides those terms.
 
 ### Attributions & Provenance
 *Melodia* relies on creators across the Unreal Engine Marketplace / Fab, CC0 open-source communities, BOOTH.pm, and original first-party artwork. Every imported asset carries strict provenance tracking including named creator, source repository, and license category.
@@ -195,4 +197,4 @@ This repository and its original source code, tools, and configurations are lice
 
 ---
 
-*Melodia © 2026. Built with Unreal Engine 5.8, Blender 5.2, and Model Context Protocol automation.*
+*Melodia © 2026. All rights reserved. Built with Unreal Engine 5.8, Blender 5.2, and Model Context Protocol automation.*
