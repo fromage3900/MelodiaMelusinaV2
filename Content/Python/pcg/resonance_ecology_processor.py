@@ -75,13 +75,28 @@ def derive(pos_x, pos_y, pos_z, seed, z_lo=HEIGHT_MIN, z_hi=HEIGHT_MAX):
 
 
 def process(collection, bridge, seed=0, input_pin=INPUT_PIN, output_pin=OUTPUT_PIN):
-    """Enrich every PCGPointData on input_pin and emit it on output_pin."""
+    """Enrich every PCGPointData on input_pin and emit it on output_pin.
+
+    get_typed_inputs_by_pin_label returns (data, tags) -- the tags must be carried
+    through to the emitted data or downstream selectors that key off them stop
+    matching. Forwarding non-point data is deliberately NOT attempted: the bridge
+    cannot marshal a base PCGData through AddToCollection ("Failed to convert
+    parameter 'data'"), so this node is point-data-only by contract.
+    """
     import unreal
 
-    data_list, _ = collection.get_typed_inputs_by_pin_label(input_pin, unreal.PCGPointData)
+    data_list, tag_list = collection.get_typed_inputs_by_pin_label(
+        input_pin, unreal.PCGPointData
+    )
     emitted = 0
+    forwarded = 0
 
-    for data in data_list:
+    for idx, data in enumerate(data_list):
+        try:
+            tags = list(tag_list[idx]) if tag_list else []
+        except Exception:
+            tags = []
+
         points = data.get_points()
         result = unreal.PCGPointData()
         # Inherit the source's metadata structure and parenting. Building a bare
@@ -97,7 +112,7 @@ def process(collection, bridge, seed=0, input_pin=INPUT_PIN, output_pin=OUTPUT_P
         metadata.create_float_attribute(ATTR_SCALE_BIAS, 1.0, True, True)
 
         # Normalise against this cloud's own Z range so the rule is level-agnostic.
-        zs = [p.transform.translation.z for p in points]
+        zs = [pt.transform.translation.z for pt in points]
         z_lo, z_hi = (min(zs), max(zs)) if zs else (HEIGHT_MIN, HEIGHT_MAX)
         if z_hi - z_lo < 1.0:
             z_lo, z_hi = HEIGHT_MIN, HEIGHT_MAX
@@ -105,13 +120,21 @@ def process(collection, bridge, seed=0, input_pin=INPUT_PIN, output_pin=OUTPUT_P
         new_points = []
         for point in points:
             loc = point.transform.translation
-            resonance, ecology, variant, scale_bias = derive(loc.x, loc.y, loc.z, seed, z_lo, z_hi)
+            resonance, ecology, variant, scale_bias = derive(
+                loc.x, loc.y, loc.z, seed, z_lo, z_hi
+            )
             point.initialize_metadata(metadata, point, src_metadata)
-            # Placement influence (authoring-time only): density drives downstream
-            # pruning/filtering, scale makes high-resonance instances taller.
-            point.density = resonance
+            # Placement influence (authoring-time only). Compose with what the
+            # upstream graph already authored rather than replacing it: on a unit
+            # point this is identical to assignment, so nothing that fed us a
+            # unit scale changes, while graphs that authored their own per-point
+            # scale keep it. Density is left alone -- it is PCG's own culling
+            # channel and Resonance, not density, is the semantic authority.
             xf = point.transform
-            xf.scale3d = unreal.Vector(scale_bias, scale_bias, scale_bias)
+            sc = xf.scale3d
+            xf.scale3d = unreal.Vector(
+                sc.x * scale_bias, sc.y * scale_bias, sc.z * scale_bias
+            )
             point.transform = xf
             point.set_float_attribute(metadata, ATTR_RESONANCE, resonance)
             point.set_integer32_attribute(metadata, ATTR_ECOLOGY, ecology)
@@ -120,13 +143,13 @@ def process(collection, bridge, seed=0, input_pin=INPUT_PIN, output_pin=OUTPUT_P
             new_points.append(point)
 
         result.set_points(new_points)
-        bridge.add_to_collection(result, output_pin, [])
+        bridge.add_to_collection(result, output_pin, tags)
         emitted += len(new_points)
 
-    return emitted
+    return emitted, forwarded
 
 
 # When the node executes this file, data_in / data_out are already injected.
 if "data_in" in dir() and "data_out" in dir():
-    _n = process(data_in, data_out)  # noqa: F821 - engine-injected
-    print("[ResonanceEcology] enriched %d points" % _n)
+    _n, _fwd = process(data_in, data_out)  # noqa: F821 - engine-injected
+    print("[ResonanceEcology] enriched %d points, forwarded %d non-point data" % (_n, _fwd))
