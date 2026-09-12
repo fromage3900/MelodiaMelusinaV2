@@ -235,3 +235,26 @@ Owner queue remains Choral Sheep UE proof → one UE↔TD connection → one sho
 
 ---
 *Melodia © 2026. Authoritative State Ledger.*
+
+---
+
+## 8. Session 2026-09-10 — Starskiff boarding proof + MK39 ribcage
+
+Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked intact in `stash@{0}`; lane committed on top).
+
+- **Starskiff boarding contract, live-proven in PIE** (`Saved/Audit/starskiff_boarding_proof_2026-09-10.json`):
+  far/out-of-range refused, in-range-without-precondition refused, `flag.sea_above.starskiff_ready`
+  set live → board accepted → possession transferred → 680 cm sustained movement →
+  disembark restored Melusina → unboarded traversal refused. Shell confirmed deriving
+  from `AMelodiaStarskiffPawn` (registry reflection). Source identical to local `main`,
+  so the result covers both lines. Not restart/packaged/input-proven; boarded-traversal
+  branch unfired (default target `/Game/ZenForestTest` needs owner approval).
+- **MK39 ribcage GN builder, headless-proven** (`Tools/wardrobe_pipeline/proof_mk39_ribcage.py`,
+  receipt `Saved/Audit/sea_above/skiff_MK3/mk39_ribcage_proof_2026-09-10.json`):
+  `MEL_skiff_ribcage` ported from the 09-05 addon-only build into the repo; hull neutral
+  patch synced (already on this branch via `e7628720`); proof caught + fixed a real spacing
+  bug (7.615/9 spans 6.768 — now 0.951875 centered, span measures exactly 7.615).
+  Hull neutral residual 0.032, dials live, ribcage 216 verts deterministic, Rib Count
+  parametrizes. Fixed files synced back to the live Blender addon (hash-verified).
+- **Next:** MK39 plates + tenons → rivets → ball joints (proof after each); then updated
+  Chladni + Copernicus trimsheet bakes.
