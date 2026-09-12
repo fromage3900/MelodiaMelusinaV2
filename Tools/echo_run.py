@@ -604,6 +604,21 @@ def cmd_run(args: argparse.Namespace) -> None:
         if not result:
             sys.exit(1)
         return
+    if name in STATIC:
+        if name in ("graph_reachability", "bp_live_path", "bp_sweep",
+                    "ui_lint", "verify_baseline") and not editor_live():
+            print(f"[HOLD] {name}: editor not reachable on 9316 - no ledger row written")
+            sys.exit(2)
+        try:
+            ok = STATIC[name]()
+        except subprocess.TimeoutExpired:
+            print(f"[HOLD] {name}: timeout (tool hung against a busy editor)")
+            sys.exit(2)
+        except Exception as e:  # noqa: BLE001 - a gate must not kill the chain
+            print(f"[FAIL] {name}: error: {e}")
+            sys.exit(1)
+        print(f"[{'ok' if ok else 'FAIL'}] {name}")
+        sys.exit(0 if ok else 1)
     if name in EDITOR_ONLY:
         result = _run_editor_stage(name)
         if result is None:
