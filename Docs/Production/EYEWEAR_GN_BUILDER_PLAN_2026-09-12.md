@@ -209,63 +209,139 @@ Known loader seam: `drei`'s `useGLTF()` has **no KTX2 support** (open issue pmnd
 naive per-asset wiring duplicates the decoder WASM. If the viewer is r3f, either use an
 app-level singleton KTX2 loader created after the renderer exists, or ship WebP/JPEG first.
 
-## 7. Builder decomposition
+## 7. Where this actually stands
 
-Following the established couture precedent in this addon: `MEL_garment_*` is **nine small
-single-purpose builders** (UV unwrap, smart bevel, tension folds, trim UV, vertex AO, material
-ID, xpbd drape), not one monolith. Eyewear should decompose the same way:
+Sections 7-10 originally described intent. This is the measured state.
 
-```
-MEL_eyewear_front        cyclic silhouette + cyclic profile sweep  -> frame body, free aperture
-MEL_eyewear_temple       arm solid + tip downturn
-MEL_eyewear_hinge        barrel + clevis + fold transform
-MEL_eyewear_lens         Grid / conformed blank + edge break, separate mesh
-MEL_eyewear_edge_break   the manifold-safe bevel pass (reusable, like MEL_garment_smart_bevel)
-MEL_eyewear_uv           asserts/creates TEXCOORD_0            <- required, see 5.2
-MEL_eyewear_export_gate  realizes + exports + asserts the file is non-empty and UV'd
-```
+**Built, in the addon, verified by `Tools/eyewear_verify/`:**
 
-The last two exist purely because of section 5. Without them the pipeline can silently
-produce an empty, untexturable asset.
+| builder | state |
+|---|---|
+| `MEL_eyewear_front` | done. Cyclic silhouette swept by a cyclic profile. Boxing arithmetic verified 3/3. |
+| `MEL_eyewear_temple` | done. Arm, ear drop, fold rotation, endpiece clearance. |
+| `MEL_eyewear_hinge` | done. Barrel stack on the derived endpiece axis. |
+| `MEL_eyewear_pair` | done. Auto-assembles front + 2 temples + 2 hinges. 15/15 measurement checks. |
+| `MEL_eyewear_lens` | done. Flat plano, centred, `2A + DBL` across both eyes. |
 
-## 8. Units decision — the blocker
+Registry: **566 builders, 0 build errors.** All gates green (A-F), census PASS.
+Eyewear parameters are in **millimetres**, converted once at the graph input.
 
-The addon has **no units convention at all**: zero uses of `scene.unit_settings`,
-`scale_length`, or a length unit anywhere in `deploy/surreal_arch/`. Every existing builder
-works in raw Blender units.
+## 8. The close-out plan
 
-Because this builder's entire premise is real measurements, units must be settled first:
+### 8.0 Fix first — it blocks 8.4 and it is already a live defect
 
-- Blender default is 1 unit = 1 m. A 54 mm lens is 0.054 BU.
-- **Proposal:** author the group's parameters in **millimetres**, and convert once at the graph
-  input (`mm × 0.001`) so every authored number matches the frame's printed marking and the
-  published standard. Do not scatter conversions through the graph.
-- Consequence: the builder emits geometry 0.001× the scale of the architecture builders. That is
-  correct for eyewear, but it means the builder needs its own scene-scale note and will look
-  microscopic if dropped into the nave scene.
+**`MEL_nikki_bead_string` places beads roughly an order of magnitude larger than its own
+parameter.** Measured: beads span **+/-29.5 mm** around the guide, and the bare
+`MEL_nikki_bead` template spans **+/-22 mm**, against a stated `Bead Radius` of `0.022`.
+The cause is the interaction between `_set_group_param(bead_grp, "Radius", 1.0)` (intended
+to normalise the template to unit radius) and the instance `Scale` that is supposed to be
+the single source of truth for bead size. One of the two is not doing what its comment
+claims.
 
-This needs a decision before any code is written.
+This is not cosmetic and not only about the chain: it is the bead/cord authority behind the
+eave swag and the wall drop in the study scene. Fix it, re-measure, and re-run the decor
+verification before building anything on top.
 
-## 9. Open items — must be closed before or during the build
+### 8.1 Silhouettes — the literal 5.2 nodes
 
-1. **Units convention** (section 8) — a decision, not research.
-2. **The `void` block / lens material on the web.** `KHR_materials_transmission` is the
-   unquantified risk: Blender's own manual warns support is not widespread. For a product where
-   the lens *is* the product, this needs its own spike against the actual target viewer.
-3. **Re-run the spike on a real builder output.** All measured numbers came from a proxy (one
-   bezier rim outline, 2.5 mm bevel). They are valid as relative comparisons and orders of
-   magnitude; absolute counts for a finished frame will differ.
-4. **Verify `Set Position → Offset`** (section 2) empirically before coding around or with it.
-5. **Alpha/transmission and draw-call budget** interact: a 5-node split is 5 primitives = 5 draw
-   calls, and that did **not** fall when materials were shared — draw calls track node count,
-   not material count.
+`build_eyewear_front` currently makes one shape: a `CurvePrimitiveQuadrilateral`
+(`eyewear.py:90`) filleted at `:141` — a rounded rectangle, no matter what. This build has
+the dedicated nodes:
 
-## 10. What this document is not
+    CurveArc                      round / panto
+    CurvePrimitiveBezierSegment   cat-eye, aviator teardrop (real cubic control)
+    CurvePrimitiveQuadrilateral   square, browline, rectangular
+    MenuSwitch / IndexSwitch      literal selector across the profile branches
 
-It is not the builder, and nothing here has been written into the addon. No file under
-`deploy/surreal_arch/` has been touched. The next step is the units decision, then
-`MEL_eyewear_front` as a single registered builder with the measurement contract as its
-parameter surface.
+Work: branch the aperture silhouette, select it with `MenuSwitch` (label) or `IndexSwitch`
+(index), and keep the existing cyclic sweep downstream untouched so the rim, aperture and
+`2A + DBL` contract are unchanged. Every branch must satisfy the same measurement checks,
+which means the harness grows a case per silhouette — that is the acceptance test, not a
+render.
+
+Note the boxing caveat: A and B describe the **lens aperture box**. A cat-eye or aviator
+does not fill its boxing rectangle, so each silhouette needs its own expected-width
+assertion rather than reusing 134.000.
+
+### 8.2 `MEL_eyewear_edge_break`
+
+Section 5 work that was never done. The earlier plan called for a reusable manifold-safe
+bevel "like `MEL_garment_smart_bevel`". It cannot use `GeometryNodeMeshBevel`: measured
+twice now, it is unusable in 5.2 (a 0.3 mm offset took a 54 mm lens to 322 mm, both
+unrestricted and restricted to the extrude `Side` selection; the same defect removed it from
+the decor star and heart builders). The edge break has to be **constructed into the
+profile** — a chamfered or rounded rim cross-section — not applied as a post-pass.
+
+### 8.3 `MEL_eyewear_lens` base curve
+
+The lens is currently flat. Real lenses are not. Add a base-curve sag driven by radial
+distance (`Set Position` with a spherical offset, or a `CurveArc`-derived profile) and expose
+the sag in mm. Keep the flat case exact so the existing 15 checks still pin the aperture.
+
+### 8.4 `MEL_eyewear_chain` and the accessory family
+
+The chain is **unblocked** — the earlier "bead path is broken" conclusion was withdrawn after
+measurement, and the in-graph `Guide Curve` path works for cord and beads alike. What it
+needs:
+
+    MEL_eyewear_chain     bead strand between the temple tips. Anchors are already derived
+                          and measured correct: x +/-64.75, y -30.00, z -119.00. Hang the sag
+                          on the guide curve in -Y and set the nested Droop to 0 — the nested
+                          builder sags along Z, which is the depth axis in this family.
+    MEL_finding_ring      jump ring / bail
+    MEL_finding_clasp     eyeglass clasp
+    MEL_finding_loop      the endpiece loop the chain terminates in
+
+The findings are what let any decor attach to a frame at all, so they are worth more than the
+chain alone: they compose with the whole `MEL_nikki_*` family.
+
+One unresolved measurement must be re-taken with the 8.0 fix in place: in the backed-out
+chain attempt the assembled strand sat ~16 mm above its own guide while the guide line itself
+measured correctly. 8.0 is the prime suspect. Re-measure rather than assume.
+
+### 8.5 Web-export hygiene — `MEL_eyewear_uv`, `MEL_eyewear_export_gate`
+
+Both exist because of section 5. Measured: GN output carries **no UV layer** (the exported
+GLB had `POSITION` and `NORMAL` only), and `export_apply=False` **reports success while
+shipping an empty 176-byte file**. These two are the only thing standing between the pipeline
+and a silently empty, untexturable asset:
+
+    MEL_eyewear_uv           asserts/creates TEXCOORD_0
+    MEL_eyewear_export_gate  realizes, exports, asserts the file is non-empty AND UV'd
+
+### 8.6 Audio reactivity — clarification, then a decision
+
+Universal Music Influence now defaults ON across the addon, but it is **not audio reactive**.
+It is a procedural radial harmonic — `sin(Z*FreqA) + sin(atan2(Y,X)*FreqB)` — with no audio
+input anywhere in the graph. This build exposes no audio-input geometry node.
+
+So "audio reactivity" is a separate question. If it is wanted, it goes through the existing
+MIDI bridge; it must not become a second music authority. Spike it, then decide.
+
+## 9. Definition of done
+
+A builder is closed out when all of these hold, and not before:
+
+1. It is registered and appears in the census at the expected id.
+2. `Tools/eyewear_verify/` asserts its **arithmetic**, not its looks — mm dimensions from the
+   parameters, symmetry, manifold, aperture. Every new silhouette gets its own expected width.
+3. Gates A-F green, eyewear suite PASS, census PASS, three copies byte-converged.
+4. Any new `BoundBox` measures **realized** geometry. Gate F catches this and it has already
+   bitten twice.
+5. It composes rather than duplicates: beads, cord, stars and hearts stay in `nikki_decor.py`.
+
+## 10. Order, and why
+
+    8.0  bead size          blocks the chain and is already live in decor
+    8.1  silhouettes        independent, highest visual value, uses the literal nodes
+    8.2  edge break         front geometry, do with 8.1 while in the profile
+    8.3  lens base curve    small, after 8.1
+    8.4  chain + findings   after 8.0
+    8.5  uv + export gate   last — they gate delivery, they do not shape the asset
+    8.6  audio              spike only; needs a decision, not code
+
+Nothing is half-built in the tree: `MEL_eyewear_chain` has zero occurrences in `eyewear.py`,
+so 8.4 starts clean.
 
 ---
 
