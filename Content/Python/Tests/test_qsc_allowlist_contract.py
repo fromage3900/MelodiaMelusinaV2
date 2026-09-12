@@ -24,6 +24,9 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 NARRATIVE_DIR = PROJECT_ROOT / "Content" / "MelodiaIntegration" / "Narrative"
+CHAPTER_QUILL_DIRS = [
+    PROJECT_ROOT / "Chapters" / "02_shorewake_calling" / "quill",
+]
 CONFIG_ASSET = (
     PROJECT_ROOT / "Content" / "MelodiaIntegration" / "Config" / "DA_MelodiaIntegrationConfig.uasset"
 )
@@ -64,7 +67,13 @@ def _gated_ids(notification: str) -> list[tuple[str, str]]:
 class TestQscAllowlistContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.scripts = sorted(NARRATIVE_DIR.glob("*.qsc"))
+        # Recursive: Shorewake/ and any future subdirs are gated content too.
+        # A flat glob here once hid a live allowlist hole (Shorewake IDs pass
+        # in PIE via bRelaxedAllowlistInEditor and break in shipping).
+        cls.scripts = sorted(NARRATIVE_DIR.rglob("*.qsc"))
+        for extra in CHAPTER_QUILL_DIRS:
+            if extra.is_dir():
+                cls.scripts.extend(sorted(extra.glob("*.qsc")))
         cls.config_bytes = CONFIG_ASSET.read_bytes() if CONFIG_ASSET.is_file() else b""
 
     def test_fixtures_present(self):
