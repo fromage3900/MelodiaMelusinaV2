@@ -1021,9 +1021,30 @@ def sweep_profile(tree, loc, curve_or_mesh_sock, radius_sock, profile_res=8, alr
 
 
 def add_music_influence_params(tree):
-    """Sockets for the Universal Musical Influence post-pass (default 0 = no warp)."""
-    add_float_param(tree, "Music Influence", 0.0, 0.0, 1.0)
-    add_float_param(tree, "Musical Amplitude", 1.0, 0.0, 4.0)
+    """Sockets for the Universal Musical Influence post-pass.
+
+    Music Influence defaults ON so builds are musical out of the box. The offset is
+    an ABSOLUTE distance in Blender units, so the way to default it on safely is a
+    small Musical Amplitude: 0.02 keeps the peak near 40 mm once |sin+sin| reaches
+    2. At the original 1.0 the peak was ~2 m, which took the 134 mm eyewear pair to
+    1.97 m.
+
+    A size-relative pulse (multiply by the geometry's own bounding-box diagonal) was
+    tried and abandoned: it requires a BoundBox, and this project's F gate forbids
+    reading a BoundBox over unrealized instances. Realizing first also tripped F, and
+    with both removed F still flagged the same six builders, so that condition is
+    pre-existing and unrelated. Nothing here adds nodes - only defaults change.
+
+    The mm-accurate eyewear family is exempt. It is authored to ISO 8624 for
+    CAD-level mockups, where a pulse of a few percent moves the frame off its own
+    dimensions (measured with the pass on: pair 142.629 mm against its specified
+    134.000, lens 129.286 against 126.000). Those builders default to 0 and the
+    parameter is still there to raise when a render wants the pulse.
+    """
+    name = getattr(tree, "name", "") or ""
+    default = 0.0 if name.startswith("MEL_eyewear") else 1.0
+    add_float_param(tree, "Music Influence", default, 0.0, 1.0)
+    add_float_param(tree, "Musical Amplitude", 0.02, 0.0, 0.5)
     add_float_param(tree, "Musical Freq A", 2.0, 0.1, 12.0)
     add_float_param(tree, "Musical Freq B", 3.0, 0.1, 12.0)
 
