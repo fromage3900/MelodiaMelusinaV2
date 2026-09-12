@@ -1,0 +1,139 @@
+{
+  "schema": "melodia.terrain_handoff.v1",
+  "handoff_id": "audio_gn:ita_battle_debuff_01",
+  "lane": "audio_gn_5_2",
+  "created_utc": "2026-09-12T15:53:00.255049+00:00",
+  "converted_from_schema": "melodia.audio_terrain_ue_handoff.v1",
+  "source": {
+    "kind": "audio_wav",
+    "path": "P:\\MelodiaMelusinaV2-Laptop\\Content\\Melodia\\Characters\\Itako\\Audio\\ita_battle_debuff_01.wav",
+    "preset": null,
+    "provider": "Blender 5.2 GeometryNodes (Sample Sound Frequencies)",
+    "builders": [
+      "MEL_audio_radial_field",
+      "MEL_audio_spectrum_terrain",
+      "MEL_audio_spectrum_towers"
+    ],
+    "presets": [
+      "BASS_CANYON",
+      "BASS_FORTRESS",
+      "CHOIR_CITY",
+      "CHORAL_CRATER",
+      "DREAMING_HIGHLANDS",
+      "FULL_SONG_CONTINENT",
+      "HORIZON_EATER_FIELD",
+      "MEGASPECTRUM_WALL",
+      "MONOLITH_RIPPLES",
+      "SEA_ABOVE_BELL_RIBS",
+      "SEA_ABOVE_FALSE_HORIZON",
+      "SEA_ABOVE_MEMBRANE"
+    ]
+  },
+  "coordinate_system": {
+    "source_units": "meters",
+    "unreal_scale_cm_per_meter": 100.0,
+    "description": "Blender Z-up meters",
+    "tile_grid": {
+      "x": 1,
+      "y": 1,
+      "tile_size_m": 256.0
+    }
+  },
+  "extent": {
+    "width_m": 256.0,
+    "depth_m": 256.0,
+    "height_range_m": null,
+    "target_resolution": null,
+    "world_origin_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "artifacts": {
+    "mesh_obj": null,
+    "heightfield_png16": null,
+    "dressing_plan": null,
+    "handoff_manifest": null,
+    "masks": null,
+    "mesh_fbx": null,
+    "blend": "P:\\MelodiaMelusinaV2-Laptop\\Saved\\AudioTerrain\\AudioTerrain_ita_battle_debuff_01.blend"
+  },
+  "ue5_8": {
+    "engine": "5.8",
+    "target": "Mesh Terrain",
+    "asset_kind": "StaticMesh",
+    "content_namespace": "/Game/Melodia/World/AudioTerrain",
+    "classic_landscape_used": false,
+    "mesh_terrain_import_scale_cm_per_m": 100.0,
+    "required_plugins": [
+      "MeshPartition",
+      "MeshTerrainMode",
+      "MeshPartitionWater",
+      "PCGMeshPartitionInterop"
+    ],
+    "pcg_profile": null,
+    "runtime_audio_authority": "MPC_Portfolio_Audio / Melodia presentation subsystem"
+  },
+  "evidence": {
+    "artifact_count": 36,
+    "sample_times": [
+      0.0,
+      15.0,
+      30.0
+    ],
+    "frequency_bands": [
+      [
+        16.0,
+        700.0
+      ],
+      [
+        18.0,
+        900.0
+      ],
+      [
+        18.0,
+        1200.0
+      ],
+      [
+        18.0,
+        1800.0
+      ],
+      [
+        20.0,
+        500.0
+      ],
+      [
+        20.0,
+        20000.0
+      ],
+      [
+        25.0,
+        800.0
+      ],
+      [
+        30.0,
+        16000.0
+      ],
+      [
+        60.0,
+        6000.0
+      ],
+      [
+        80.0,
+        9000.0
+      ],
+      [
+        120.0,
+        12000.0
+      ]
+    ]
+  },
+  "provenance": {
+    "generator": "audio_terrain_pipeline.py (audio_gn_5_2 lane)",
+    "generator_schema": "melodia.audio_terrain_ue_handoff.v1",
+    "unified_schema": "melodia.terrain_handoff.v1",
+    "converted_utc": "2026-09-12T15:53:00.255049+00:00",
+    "source_doc": null
+  }
+}
