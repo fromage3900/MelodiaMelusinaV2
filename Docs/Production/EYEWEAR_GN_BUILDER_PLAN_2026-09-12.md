@@ -228,19 +228,41 @@ Eyewear parameters are in **millimetres**, converted once at the graph input.
 
 ## 8. The close-out plan
 
-### 8.0 Fix first — it blocks 8.4 and it is already a live defect
+### 8.0 Fix first — it blocks 8.4, and it is a real defect (but not the one first reported)
 
-**`MEL_nikki_bead_string` places beads roughly an order of magnitude larger than its own
-parameter.** Measured: beads span **+/-29.5 mm** around the guide, and the bare
-`MEL_nikki_bead` template spans **+/-22 mm**, against a stated `Bead Radius` of `0.022`.
-The cause is the interaction between `_set_group_param(bead_grp, "Radius", 1.0)` (intended
-to normalise the template to unit radius) and the instance `Scale` that is supposed to be
-the single source of truth for bead size. One of the two is not doing what its comment
-claims.
+**`MEL_nikki_bead_string`'s `Bead Radius` parameter does not control the bead size.**
+Measured with Taper and Jitter forced to 0, so nothing else can move the number
+(`Tools/eyewear_verify/bead_size_check.py`):
 
-This is not cosmetic and not only about the chain: it is the bead/cord authority behind the
-eave swag and the wall drop in the study scene. Fix it, re-measure, and re-run the decor
-verification before building anything on top.
+    Bead Radius 0.022  ->  bead radius 47.80 mm
+    Bead Radius 0.010  ->  bead radius 39.10 mm
+    Bead Radius 0.044  ->  bead radius 47.80 mm   <- identical to 0.022
+    defaults (Taper .55, Jitter .12)  ->  28.89 mm
+
+Doubling the parameter changes nothing at all, and halving it moves the bead by
+18%. The value is dominated by something that is not the parameter, so a designer
+turning this dial gets almost no response and no indication why.
+
+Correction to the earlier note in this document: the claim that beads come out "an
+order of magnitude larger than the parameter" was wrong, and so was the inferred
+cause (`_set_group_param(bead_grp, "Radius", 1.0)` fighting the instance Scale).
+The earlier evidence was a single spread measurement that happened to sit near
+22 mm x Taper x Jitter, which is consistent with correct behaviour. Isolating Taper
+and Jitter is what exposed the real fault, and it is a different one.
+
+Prime suspect on the evidence: `_set_group_param(bead_grp, "Radius", 1.0)` does not
+reach the nested template, so the bead is the template's own geometry scaled by a
+size that is not the author's parameter. Two co-operating values, one comment
+claiming the other is authoritative - the same shape of defect as the guide switch
+that was added but never wired.
+
+Why it matters beyond the chain: this is the bead/cord authority behind the eave
+swag and the wall drop in the study scene. Any garland built with it inherits the
+dead dial.
+
+Acceptance: with Taper and Jitter at 0, bead radius equals `Bead Radius` exactly,
+at three different values, and scales linearly between them. Anything else is not
+fixed.
 
 ### 8.1 Silhouettes — the literal 5.2 nodes
 
