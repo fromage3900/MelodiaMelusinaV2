@@ -25,6 +25,9 @@ thickness per side, so the swept band's inner edge lands exactly on A x B.
 from __future__ import annotations
 
 import bpy
+import json
+import os
+import struct
 
 from .core import (
     GROUP_BUILDERS, add_bool_param, add_float_param, add_int_param, add_vector_param,
@@ -171,6 +174,176 @@ def build_eyewear_lens_gradient(group_name="MEL_eyewear_lens_gradient"):
 register_builder(
     "MEL_eyewear_lens_gradient", build_eyewear_lens_gradient, "Eyewear Lens Gradient",
     "Chainable COLOR_0 writer: vertical lens tint (Top at +Y).",
+    category="eyewear")
+
+
+def build_eyewear_uv(group_name="MEL_eyewear_uv"):
+    """Chainable UV writer (8.5): dominant-axis box projection -> UVMap.
+
+    Weights w_i = |n_i|^8 / sum (smooth triplanar: no switches, no seams);
+    each axis pair bbox-normalized to 0..1, times UV Scale. Stored CORNER
+    FLOAT2 'UVMap', which exports as TEXCOORD_0 (measured, uv_api_probe —
+    custom names export too, as TEXCOORD_1+, but the canonical first UV
+    keeps the Amazon node vocabulary clean).
+    NOTE: no Mix node — Mix has no FLOAT2 mode on 5.2 (silently stays FLOAT).
+    All blends here are scalar Math or VectorMath SCALE/ADD.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    add_float_param(tree, "UV Scale", 1.0, 0.01, 100.0)
+
+    bx, by = 0, 0
+    try:
+        pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 900, by + 200))
+        sepp = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 720, by + 200))
+        link_sockets(tree, sock(pos, "Position", outputs=True), sock(sepp, "Vector"))
+        xs = sock(sepp, "X", outputs=True)
+        ys = sock(sepp, "Y", outputs=True)
+        zs = sock(sepp, "Z", outputs=True)
+
+        bb = safe_node(tree, "GeometryNodeBoundBox", (bx - 900, by - 200))
+        sepmn = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 720, by - 160))
+        sepmx = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 720, by - 320))
+        # BoundBox needs its Geometry input: unlinked Min/Max collapse the
+        # span guard to 1e-6 and UVs explode to ~1e4 (measured).
+        link_sockets(tree, sock(gin, "Geometry", outputs=True), sock(bb, "Geometry"))
+        link_sockets(tree, sock(bb, "Min", outputs=True), sock(sepmn, "Vector"))
+        link_sockets(tree, sock(bb, "Max", outputs=True), sock(sepmx, "Vector"))
+
+        nrm = safe_node(tree, "GeometryNodeInputNormal", (bx - 900, by + 480))
+        absn = safe_node(tree, "ShaderNodeVectorMath", (bx - 720, by + 480))
+        try:
+            absn.operation = "ABSOLUTE"
+        except Exception:
+            pass
+        link_sockets(tree, sock(nrm, "Normal", outputs=True), sock(absn, "Vector"))
+        sepn = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 540, by + 480))
+        link_sockets(tree, sock(absn, "Vector", outputs=True), sock(sepn, "Vector"))
+
+        def _vmath(op, a, b, loc):
+            vm = safe_node(tree, "ShaderNodeVectorMath", loc)
+            if vm is None:
+                return None
+            try:
+                vm.operation = op
+            except Exception:
+                pass
+            try:
+                link_sockets(tree, a, vm.inputs[0])
+                if b is not None:
+                    try:
+                        vm.inputs[1]
+                    except Exception:
+                        return vm
+                    link_sockets(tree, b, vm.inputs[1])
+            except Exception:
+                pass
+            return vm
+
+        def _norm1d(sel, mn, mx, loc):
+            d = _math(tree, "SUBTRACT", (loc[0], loc[1] + 40), a=sel, b=mn)
+            span = _math(tree, "MAXIMUM", (loc[0] + 180, loc[1] + 40),
+                         a=_math(tree, "SUBTRACT", (loc[0], loc[1] - 60),
+                                 a=mx, b=mn).outputs[0], b=1e-6)
+            return _math(tree, "DIVIDE", (loc[0] + 360, loc[1] + 40),
+                         a=(d.outputs[0] if d else None),
+                         b=(span.outputs[0] if span else None))
+
+        # three planar projections, bbox-normalized
+        pxx = _norm1d(ys, sock(sepmn, "Y", outputs=True), sock(sepmx, "Y", outputs=True),
+                      (bx - 360, by + 320))
+        pxz = _norm1d(zs, sock(sepmn, "Z", outputs=True), sock(sepmx, "Z", outputs=True),
+                      (bx - 360, by + 120))
+        pyx = _norm1d(xs, sock(sepmn, "X", outputs=True), sock(sepmx, "X", outputs=True),
+                      (bx - 360, by - 80))
+        pyz = _norm1d(zs, sock(sepmn, "Z", outputs=True), sock(sepmx, "Z", outputs=True),
+                      (bx - 360, by - 280))
+        pzx = _norm1d(xs, sock(sepmn, "X", outputs=True), sock(sepmx, "X", outputs=True),
+                      (bx - 360, by - 480))
+        pzy = _norm1d(ys, sock(sepmn, "Y", outputs=True), sock(sepmx, "Y", outputs=True),
+                      (bx - 360, by - 680))
+
+        cX = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 180, by + 220))
+        link_sockets(tree, pxx.outputs[0], sock(cX, "X"))
+        link_sockets(tree, pxz.outputs[0], sock(cX, "Y"))
+        cY = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 180, by - 80))
+        link_sockets(tree, pyx.outputs[0], sock(cY, "X"))
+        link_sockets(tree, pyz.outputs[0], sock(cY, "Y"))
+        cZ = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 180, by - 380))
+        link_sockets(tree, pzx.outputs[0], sock(cZ, "X"))
+        link_sockets(tree, pzy.outputs[0], sock(cZ, "Y"))
+
+        # smooth triplanar weights, guarded divide
+        p8 = 8.0
+        wx = _math(tree, "POWER", (bx - 360, by + 560),
+                   a=sock(sepn, "X", outputs=True), b=p8)
+        wy = _math(tree, "POWER", (bx - 180, by + 560),
+                   a=sock(sepn, "Y", outputs=True), b=p8)
+        wz = _math(tree, "POWER", (bx, by + 560),
+                   a=sock(sepn, "Z", outputs=True), b=p8)
+        tot = _math(tree, "ADD", (bx + 180, by + 560),
+                    a=_math(tree, "ADD", (bx, by + 640),
+                            a=wx.outputs[0], b=wy.outputs[0]).outputs[0],
+                    b=wz.outputs[0])
+        den = _math(tree, "ADD", (bx + 360, by + 560), a=tot.outputs[0], b=1e-6)
+        fx = _math(tree, "DIVIDE", (bx + 540, by + 560), a=wx.outputs[0], b=den.outputs[0])
+        fy = _math(tree, "DIVIDE", (bx + 540, by + 440), a=wy.outputs[0], b=den.outputs[0])
+        fz = _math(tree, "DIVIDE", (bx + 540, by + 320), a=wz.outputs[0], b=den.outputs[0])
+
+        def _wscale(vec_out, w, loc):
+            vm = safe_node(tree, "ShaderNodeVectorMath", loc)
+            if vm is None:
+                return None
+            try:
+                vm.operation = "SCALE"
+            except Exception:
+                pass
+            try:
+                link_sockets(tree, vec_out, vm.inputs[0])
+                link_sockets(tree, w.outputs[0], sock(vm, "Scale"))
+                return vm.outputs["Vector"]
+            except Exception:
+                return None
+
+        tX = _wscale(sock(cX, "Vector", outputs=True), fx, (bx + 720, by + 220))
+        tY = _wscale(sock(cY, "Vector", outputs=True), fy, (bx + 720, by - 80))
+        tZ = _wscale(sock(cZ, "Vector", outputs=True), fz, (bx + 720, by - 380))
+        tXY = _vmath("ADD", tX, tY, (bx + 900, by))
+        tXYZ = _vmath("ADD", (tXY.outputs["Vector"] if tXY else None), tZ,
+                      (bx + 1080, by))
+        uv = safe_node(tree, "ShaderNodeVectorMath", (bx + 1260, by))
+        try:
+            uv.operation = "SCALE"
+        except Exception:
+            pass
+        link_sockets(tree, (tXYZ.outputs["Vector"] if tXYZ else None), uv.inputs[0])
+        link_sockets(tree, sock(gin, "UV Scale", outputs=True), sock(uv, "Scale"))
+
+        st = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 1440, by))
+        try:
+            st.data_type = "FLOAT2"
+        except Exception:
+            pass
+        try:
+            st.domain = "CORNER"
+        except Exception:
+            pass
+        try:
+            sock(st, "Name").default_value = "UVMap"
+        except Exception:
+            pass
+        link_sockets(tree, sock(gin, "Geometry", outputs=True), sock(st, "Geometry"))
+        link_sockets(tree, uv.outputs["Vector"], sock(st, "Value"))
+        link_sockets(tree, st.outputs["Geometry"], gout.inputs["Geometry"])
+    except Exception:
+        link_sockets(tree, sock(gin, "Geometry", outputs=True), gout.inputs["Geometry"])
+    label_tree(tree, group_name)
+    return (tree, gin, gout)
+
+
+register_builder(
+    "MEL_eyewear_uv", build_eyewear_uv, "Eyewear UV",
+    "Chainable UV writer (8.5): dominant-axis box projection -> UVMap "
+    "(TEXCOORD_0).",
     category="eyewear")
 
 
@@ -987,6 +1160,151 @@ def ensure_eyewear_materials():
     return mats
 
 
+def decode_glb_summary(path):
+    """Minimal GLB reader for the export gate: per-primitive attributes,
+    COLOR_0 stats and triangle counts. Raises on anything unparseable —
+    including the classic 176-byte empty file (no JSON chunk survives)."""
+    with open(path, "rb") as f:
+        data = f.read()
+    if len(data) < 20:
+        raise AssertionError("gate: %s is %d bytes, not a GLB" % (path, len(data)))
+    magic, _ver, _ln = struct.unpack("<III", data[:12])
+    if magic != 0x46546C67:
+        raise AssertionError("gate: %s bad magic %s" % (path, hex(magic)))
+    off, js, bn = 12, None, None
+    while off < len(data):
+        clen, ctype = struct.unpack("<II", data[off:off + 8])
+        chunk = data[off + 8:off + 8 + clen]
+        if ctype == 0x4E4F534A:
+            js = json.loads(chunk.decode("utf-8"))
+        elif ctype == 0x004E4942:
+            bn = chunk
+        off += 8 + clen
+    if js is None or bn is None:
+        raise AssertionError("gate: %s missing JSON/BIN chunks" % path)
+    prims = []
+    for prim in js["meshes"][0]["primitives"]:
+        attrs = list(prim.get("attributes", {}).keys())
+        info = {"attrs": attrs, "color0": None, "tris": 0, "verts": 0}
+        for key, want in (("COLOR_0", "color0"), ("POSITION", "verts")):
+            ai = prim["attributes"].get(key)
+            if ai is None:
+                continue
+            acc = js["accessors"][ai]
+            bv = js["bufferViews"][acc["bufferView"]]
+            start = bv.get("byteOffset", 0) + acc.get("byteOffset", 0)
+            n = acc["count"]
+            comp = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4}[acc["type"]]
+            vals = struct.unpack("<%df" % (n * comp), bn[start:start + 4 * n * comp])
+            if want == "color0":
+                r0 = [vals[i * comp] for i in range(n)]
+                mean = tuple(sum(vals[i * comp + c] for i in range(n)) / n
+                             for c in range(min(comp, 3)))
+                info["color0"] = {"mean": mean, "min": min(r0), "max": max(r0),
+                                  "count": n}
+            else:
+                info["verts"] = n
+        ii = prim.get("indices")
+        if ii is not None:
+            info["tris"] = js["accessors"][ii]["count"] // 3
+        prims.append(info)
+    return {"prims": prims, "bytes": len(data),
+            "tris": sum(p["tris"] for p in prims)}
+
+
+def _set_params(tree, params):
+    for name, val in (params or {}).items():
+        for it in getattr(tree.interface, "items_tree", []):
+            if getattr(it, "name", None) == name:
+                try:
+                    it.default_value = val
+                except Exception:
+                    pass
+                break
+
+
+def melodia_eyewear_export_gate(outdir, parts=("Frame", "TempleL", "TempleR",
+                                              "LensL", "LensR"),
+                                params=None, tri_budget=150000,
+                                byte_budget=3 * 1024 * 1024):
+    """8.5 export gate: realize + export each part, assert delivery-ready.
+
+    A GN group cannot touch the filesystem, so the gate is a Python-side
+    builder over the same bpy export path: fresh pair build with `params`
+    applied, one selected-object GLB per part with export_apply=True (the
+    export_apply=False empty-file trap fails here by construction), then:
+    file non-empty AND TEXCOORD_0 present AND COLOR_0 present with >100
+    corners AND tri/byte budgets (Khronos single-item: 150k tris, 3 MB).
+    Returns {part: report}; raises AssertionError listing every failure.
+    """
+    res = GROUP_BUILDERS["MEL_eyewear_pair"]()
+    pair_tree = res[0] if isinstance(res, (tuple, list)) else res
+    _set_params(pair_tree, params)
+    try:
+        os.makedirs(outdir, exist_ok=True)
+    except Exception as exc:
+        raise AssertionError("gate: cannot create %s (%s)" % (outdir, exc))
+    report, problems = {}, []
+    for part in parts:
+        wrap = bpy.data.node_groups.new("__gate__", "GeometryNodeTree")
+        try:
+            wgi = wrap.nodes.new("NodeGroupInput")
+            wgo = wrap.nodes.new("NodeGroupOutput")
+            wrap.interface.new_socket(name="Geometry", in_out="INPUT",
+                                      socket_type="NodeSocketGeometry")
+            wrap.interface.new_socket(name="Geometry", in_out="OUTPUT",
+                                      socket_type="NodeSocketGeometry")
+            gn = wrap.nodes.new("GeometryNodeGroup")
+            gn.node_tree = pair_tree
+            wrap.links.new(wgi.outputs["Geometry"], gn.inputs["Geometry"])
+            wrap.links.new(gn.outputs[part], wgo.inputs["Geometry"])
+            me = bpy.data.meshes.new("__gate__")
+            ob = bpy.data.objects.new("__gateo__", me)
+            bpy.context.scene.collection.objects.link(ob)
+            ob.modifiers.new("m", "NODES").node_group = wrap
+            bpy.context.view_layer.update()
+            bpy.ops.object.select_all(action="DESELECT")
+            ob.select_set(True)
+            bpy.context.view_layer.objects.active = ob
+            path = os.path.join(outdir, "MEL_eyewear_%s.glb" % part)
+            bpy.ops.export_scene.gltf(
+                filepath=path, use_selection=True, export_format="GLB",
+                export_apply=True, export_texcoords=True, export_normals=True)
+            try:
+                bpy.data.objects.remove(ob, do_unlink=True)
+            except Exception:
+                pass
+            summary = decode_glb_summary(path)
+            row = {"file": path, "bytes": summary["bytes"], "tris": summary["tris"],
+                   "prims": len(summary["prims"])}
+            report[part] = row
+            if summary["bytes"] < 1024:
+                problems.append("%s: %d bytes (empty-export trap)" % (part, summary["bytes"]))
+            if summary["bytes"] > byte_budget:
+                problems.append("%s: %d bytes over budget" % (part, summary["bytes"]))
+            if summary["tris"] > tri_budget:
+                problems.append("%s: %d tris over budget" % (part, summary["tris"]))
+            for pi, prim in enumerate(summary["prims"]):
+                if "TEXCOORD_0" not in prim["attrs"]:
+                    problems.append("%s prim %d: no TEXCOORD_0 (%s)"
+                                    % (part, pi, prim["attrs"]))
+                col = prim["color0"]
+                if col is None or col["count"] < 100:
+                    problems.append("%s prim %d: no usable COLOR_0" % (part, pi))
+        except AssertionError:
+            raise
+        except Exception as exc:
+            problems.append("%s: harness error %s: %s" % (part, type(exc).__name__, exc))
+        finally:
+            try:
+                bpy.data.node_groups.remove(wrap)
+            except Exception:
+                pass
+    if problems:
+        raise AssertionError("gate FAIL:\n  - " + "\n  - ".join(problems))
+    return report
+
+
 def _apply_material(tree, geom, material, loc):
     """Assign a material to one part's geometry (11.5). Pure pass-through on failure."""
     if geom is None or material is None:
@@ -1396,6 +1714,26 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
         dressed["hl"] = _paint(dressed.get("hl"), (bx - 60, by - 1560), champ_col)
         dressed["hr"] = _paint(dressed.get("hr"), (bx - 60, by - 1690), champ_col)
 
+    # 8.5 UV finish: one shared writer (same once-per-build rule as paint),
+    # applied post-paint pre-placement in local coords. Store adds no topology,
+    # so the downstream welds are unaffected by construction.
+    uv_sub = _subtree("MEL_eyewear_uv")
+
+    def _uv(geom, loc):
+        n = _nest(tree, uv_sub, loc)
+        if n is None:
+            return geom
+        try:
+            link_sockets(tree, geom, _g_sock(n, "Geometry"))
+            return _g_sock(n, "Geometry", outputs=True)
+        except Exception:
+            return geom
+
+    if uv_sub is not None:
+        for _k, _y in (("front", by - 1820), ("tl", by - 1950), ("tr", by - 2080),
+                       ("hl", by - 2210), ("hr", by - 2340)):
+            dressed[_k] = _uv(dressed.get(_k), (bx - 60, _y))
+
     placed = {}
     for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
         src = dressed.get(key)
@@ -1457,6 +1795,9 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
         lens_r_geo, lens_l_geo = _split_x_sign(tree, lens_geo, (bx - 200, by - 1300))
         lens_r_geo = _apply_material(tree, lens_r_geo, lens_mat, (bx + 360, by - 1300))
         lens_l_geo = _apply_material(tree, lens_l_geo, lens_mat, (bx + 360, by - 1500))
+        if uv_sub is not None:
+            lens_r_geo = _uv(lens_r_geo, (bx + 180, by - 1300))
+            lens_l_geo = _uv(lens_l_geo, (bx + 180, by - 1500))
 
     # 11.5 five named part outputs (Amazon node vocabulary). The original
     # assembled Geometry output stays the modifier path (active output).
