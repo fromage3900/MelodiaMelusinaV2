@@ -1575,6 +1575,10 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     add_float_param(tree, "Tortoise", 0.0, 0.0, 1.0)
     make_group_input(tree, "NodeSocketColor", "Top Tint", default=LENS_TINT_DEFAULT)
     make_group_input(tree, "NodeSocketColor", "Bottom Tint", default=LENS_TINT_DEFAULT)
+    # 11.7 hero variants: metal frame swaps front + temples to the metal
+    # material (hinges are always metal); Frame Solid tints the writer base.
+    add_bool_param(tree, "Metal Frame", False)
+    make_group_input(tree, "NodeSocketColor", "Frame Solid", default=TORTOISE_SOLID)
 
     bx, by = 0, 0
 
@@ -1663,16 +1667,41 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
         return j.outputs["Geometry"]
 
     dressed = {}
-    dressed["front"] = _apply_material(
-        tree, _g_sock(front, "Geometry", outputs=True), acetate, (bx - 240, by + 300))
+    dressed["front"] = _g_sock(front, "Geometry", outputs=True)
     dressed["hl"] = _apply_material(
         tree, _g_sock(hinge_l, "Geometry", outputs=True), metal, (bx - 240, by - 300))
     dressed["hr"] = _apply_material(
         tree, _g_sock(hinge_r, "Geometry", outputs=True), metal, (bx - 240, by - 550))
-    dressed["tl"] = _apply_material(
-        tree, _g_sock(templ_l, "Geometry", outputs=True), acetate, (bx - 240, by - 800))
-    dressed["tr"] = _apply_material(
-        tree, _g_sock(templ_r, "Geometry", outputs=True), acetate, (bx - 240, by - 1050))
+    dressed["tl"] = _g_sock(templ_l, "Geometry", outputs=True)
+    dressed["tr"] = _g_sock(templ_r, "Geometry", outputs=True)
+
+    # 11.7 Metal Frame switch: front + temples select acetate vs metal without
+    # rebuilding (Switch input_type GEOMETRY, measured on 5.2). Hinges stay metal.
+    def _finish(geom, loc):
+        a = _apply_material(tree, geom, acetate, (loc[0], loc[1]))
+        m = _apply_material(tree, geom, metal, (loc[0] + 140, loc[1] - 120))
+        sw = safe_node(tree, "GeometryNodeSwitch", (loc[0] + 280, loc[1] - 60))
+        if sw is None or a is None or m is None:
+            return a if m is None else m
+        try:
+            sw.input_type = "GEOMETRY"
+        except Exception:
+            pass
+        try:
+            link_sockets(tree, sock(gin, "Metal Frame", outputs=True),
+                         sock(sw, "Switch"))
+            link_sockets(tree, a, sock(sw, "False"))
+            link_sockets(tree, m, sock(sw, "True"))
+            return sw.outputs["Output"]
+        except Exception:
+            return a
+
+    dressed["front"] = _finish(
+        _g_sock(front, "Geometry", outputs=True), (bx - 240, by + 430))
+    dressed["tl"] = _finish(
+        _g_sock(templ_l, "Geometry", outputs=True), (bx - 240, by - 930))
+    dressed["tr"] = _finish(
+        _g_sock(templ_r, "Geometry", outputs=True), (bx - 240, by - 1180))
 
     # 11.6 COLOR_0 ensure: solid Col on arms + knuckles (temples espresso via
     # the writer default, hinges champagne) so the join never inherits a
@@ -1708,7 +1737,8 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
 
     if tor_sub is not None:
         dressed["front"] = _paint(dressed.get("front"), (bx - 60, by - 1170),
-                                  amount_from=sock(gin, "Tortoise", outputs=True))
+                                  amount_from=sock(gin, "Tortoise", outputs=True),
+                                  solid_from=sock(gin, "Frame Solid", outputs=True))
         dressed["tl"] = _paint(dressed.get("tl"), (bx - 60, by - 1300))
         dressed["tr"] = _paint(dressed.get("tr"), (bx - 60, by - 1430))
         dressed["hl"] = _paint(dressed.get("hl"), (bx - 60, by - 1560), champ_col)
