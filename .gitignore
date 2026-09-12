@@ -397,6 +397,9 @@ RawArt/BlenderLibraries/*
 !Tools/midi_to_voxel/
 Tools/midi_to_voxel/*
 !Tools/midi_to_voxel/*.py
+!Tools/eyewear_verify/
+!Tools/eyewear_verify/*.py
+
 
 # --- Chladni foundry (2026-09-12): the test is source, the stop-markers are runtime state
 !Tools/test_chladni_foundry.py
