@@ -1,126 +1,204 @@
-# Cascadeur Melusina Pipeline
+# Melusina Cascadeur / Performance Capture Pipeline
 
-## Authority
+**Status:** CANONICAL DURABLE ANIMATION AUTHORING CONTRACT  
+**Current task / proof state:** `CURRENT_STATE.md`
 
-Cascadeur is the authoring source for new Melusina animation. Lane A is the
-default: animate on `updated_melusina_rig_noclothes.fbx`, preserving the real
-Melusina deform skeleton and ARP bone names. Lane B, AutoRig plus retargeting,
-is fallback only.
+This document defines the stable Melusina animation path from authored or captured performance through Cascadeur into Unreal. It does **not** maintain a current clip queue, setup checklist, or claim about what is presently live-proven.
 
-### Current staging result
+## 1. Authority
 
-The staged Quaternius source is a generic CC0 animation library and must not be
-sent to the direct Melusina importer. It is reserved for the manual Cascadeur
-retarget pass:
+Cascadeur is the primary authoring/editing environment for new Melusina skeletal animation.
 
-- Source: `Imports/Animations/Cascadeur/Source/Quaternius/UAL1_Standard.fbx`
-- Target: `Imports/Animations/Cascadeur/Target/SK_Melusina_Cascadeur_Target.fbx`
-- Provenance: `Docs/CASCADEUR_QUATERNIUS_PROVENANCE_2026-08-07.md`
+Two lanes are allowed:
 
-The currently staged `updated_melusina_rig_noclothes.fbx` also fails direct
-Lane A preflight today: it is 24 FPS with 432 bones and uses names such as
-`DEF_eye.L` and `c_kilt_master.x`, while the live UE contract is 30 FPS, 465
-bones, `DEF_eye_L`, and `c_kilt_master_x`. Do not import it directly. Either
-export a corrected target-skeleton FBX from Cascadeur or explicitly use the
-retarget fallback.
+### Lane A — canonical skeleton authoring
 
-## Export Contract
+Animate / clean up against the real Melusina deform skeleton and preserve its ARP/deform naming and export contract. Prefer this when the source already targets Melusina correctly.
 
-- Animation only; do not export mesh or materials.
-- 30 FPS.
-- Bake all deform joints.
-- Preserve ARP/deform bone names.
-- Root motion disabled for locomotion clips unless explicitly requested.
-- Keep `DEF_eye_L`, `DEF_eye_R`, `c_kilt_master_x`, `head_x`, and `root`.
-- One animation clip per FBX.
+### Lane B — explicit retarget
 
-## Folder Contract
+Use retargeting only for generic motion libraries, video-mocap drafts, or another source skeleton. Retargeting must end on the canonical Melusina Unreal skeleton; it may not redefine that skeleton.
 
-Drop exports into:
+Historical source/retarget findings belong in provenance docs, Git history, or the task/PR context rather than this current contract.
 
-`Imports/Animations/Cascadeur/Inbox/`
+## 2. Canonical export contract
 
-Use names such as:
+- animation only unless a specific diagnostic explicitly needs mesh;
+- **30 FPS** for Unreal-target animation exports;
+- bake required deform joints;
+- preserve canonical ARP/deform bone names;
+- root motion disabled for locomotion clips unless explicitly requested;
+- preserve required canonical bones including `DEF_eye_L`, `DEF_eye_R`, `c_kilt_master_x`, `head_x`, and `root`;
+- one animation clip per FBX;
+- never silently change the live Unreal skeleton to accommodate a source clip.
+
+## 3. Folder / naming contract
+
+Unreal-target exports land in:
+
+```text
+Imports/Animations/Cascadeur/Inbox/
+```
+
+Preferred naming:
+
+```text
+CAS_Melusina_<Action>_<Variant>.fbx
+```
+
+Examples:
 
 - `CAS_Melusina_Idle_Serene.fbx`
-- `CAS_Melusina_Breathing_Additive.fbx`
 - `CAS_Melusina_Land_Soft.fbx`
 - `CAS_Melusina_Victory_Twirl.fbx`
 - `CAS_Melusina_Glide_Start.fbx`
 
-## Offline Gate
+## 4. Offline gate
 
-Run `Tools/scan_cascadeur_fbx.py` with Blender before opening Unreal:
+Before opening Unreal, scan the export with:
 
 ```text
 blender --background --python Tools/scan_cascadeur_fbx.py -- input.fbx report.json
 ```
 
-The report must show `lane_a_ready: true`, 30 FPS, an armature, and no missing
-required bones.
+For direct Lane A import, the report must confirm the expected frame rate, armature, and required canonical bones. If it fails, repair/export or explicitly choose Lane B; do not force the importer through a skeleton mismatch.
 
-## Unreal Import
+## 5. Unreal import
 
-Run inside the Unreal Editor:
+Inside Unreal:
 
 ```python
 import import_cascadeur_anim as cascadeur
 print(cascadeur.import_inbox())
 ```
 
-The importer is animation-only and targets:
+Canonical targets:
 
 - Mesh: `/Game/Melodia/Characters/Melusina/SK_Melusina`
 - Skeleton: `/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton`
 - Destination: `/Game/Melodia/Characters/Melusina/Animations/Cascadeur`
 
-No retargeter is used in Lane A. Do not use the absent/unconfirmed
-`RTG_UE4Mannequin_To_Melusina` unless Lane B is explicitly selected and the
-asset is first verified.
+Lane A imports directly to the canonical skeleton. Lane B uses an explicitly verified retarget path.
 
-## First Batch
+## 6. Performance-capture source — OBSBOT Meet 2
 
-1. `CAS_Melusina_Idle_Serene`
-2. `CAS_Melusina_Breathing_Additive`
-3. `CAS_Melusina_Land_Soft`
-4. `CAS_Melusina_Victory_Twirl`
-5. `CAS_Melusina_Glide_Start`
+The OBSBOT Meet 2 is an optional **performance source**, not animation authority.
 
-The current mocap idle remains the live idle until the new serene clip passes
-verification. The first Cascadeur idle should replace only the speed-zero
-sample in `BS_Melusina_Locomotion`.
+Recommended body-capture preset:
 
-## Pizzazz Layer
+```text
+1920x1080
+60 fps
+Auto Framing OFF
+fixed crop / fixed camera
+stable exposure and white balance where practical
+whole body + feet visible
+clean MP4 capture
+```
 
-- Idle: breathing, weight shift, soft glance variation.
-- Landing: skirt settle plus `NS_SakuraPetals_v2`.
-- Glide: shawl lift, hair lag, restrained sheen.
-- Victory: storybook twirl plus petal burst.
-- Perfect rhythm result: brief outline/material pulse, UI confirmation, and
-  optional camera emphasis.
-- Good result: UI only; no camera shake.
+Use 4K30 or reframing only when the goal is acting/reference detail rather than body-pose reconstruction.
 
-These effects remain cosmetic. Do not delay damage, turns, battle results, or
-save transitions.
+A capture session should favor:
 
-## Wiring
+- stable camera position;
+- readable limb silhouette against the background;
+- broad even lighting;
+- enough floor area for safe footwork;
+- floor marks for neutral/action bounds;
+- body intent first, secondary cloth/hair later.
 
-Use `Tools/t3d_anim_injector.py` for Blend Space and AnimBP wiring. Do not use
-the crashing `blueprint_query:compile_blueprint` action. Use the existing
-animation-query/T3D paths and verify after each import.
+## 7. Video mocap -> Cascadeur
 
-## 2026-09-08 Performance Capture Studio Extension
+Video mocap is an editable draft generator, not final animation.
 
-The canonical researched extension for owner-performed animation capture is:
+```text
+owner performance
+  -> fixed-camera MP4
+  -> Cascadeur Mocap draft
+  -> AutoPosing / manual cleanup / physics tools
+  -> canonical Melusina target
+  -> Live Link or FBX export
+  -> UE evaluation
+  -> final polish
+```
 
-`Docs/Research/MELUSINA_PERFORMANCE_CAPTURE_STUDIO_2026-09-08.md`
+Expect to repair depth, foot contacts, root/center of mass, hands, silhouette, arcs, weight, and momentum.
 
-That lane uses the OBSBOT Meet 2 as a fixed video source, Cascadeur 2026 Mocap (Alpha) as an editable draft generator, and Cascadeur Live Link for UE5.8 evaluation.
+Do not attempt to encode final skirt/hair physics into the body capture.
 
-Important boundaries:
+## 8. Cascadeur Live Link -> UE5.8
 
-- this does **not** replace the skeleton/export contract above;
-- Meet 2 capture is a reference/video-mocap source, not a new gameplay or animation authority;
-- Cascadeur Mocap remains an editable first pass;
-- Live Link must be proven on the actual Melusina skeleton before it is called live;
-- this is semester animation infrastructure and is not a prerequisite for the current Choral Sheep P0.
+Live Link is an evaluation/iteration path. It does not change skeleton ownership.
+
+A valid proof requires actual observation that:
+
+1. Cascadeur appears as a Live Link source/subject in UE;
+2. the intended Melusina skeleton receives the stream or a verified retarget maps it;
+3. root orientation/rotations are sane;
+4. a simple edited motion updates correctly in UE;
+5. no axis/bone mismatch blocks evaluation;
+6. a capture proves the connection.
+
+Do not call the lane live-proven from configuration alone.
+
+A minimal mocap/evaluation map may exist for this purpose, but it must remain an animation studio/test surface rather than becoming a gameplay level.
+
+## 9. Animation quality / pizzazz
+
+Authoring may add breathing, weight shifts, glances, stylized landings, glides, victory flourishes, conducting/casting gestures, creature interaction, conversational body language, and other performance detail.
+
+Secondary systems remain downstream:
+
+```text
+body intent
+  -> Cascadeur cleanup
+  -> UE skeletal evaluation
+  -> manual / Control Rig correction where needed
+  -> cloth / hair / secondary motion
+  -> final game validation
+```
+
+Cosmetic animation/VFX must not delay damage, turns, battle results, traversal truth, or save transitions.
+
+## 10. Existing tools to reuse
+
+Reuse existing infrastructure before building another importer or scanner:
+
+- `Tools/Cascadeur/Melusina/`
+- `Tools/import_takes_to_cascadeur.py`
+- `Tools/run_cascadeur_import.ps1`
+- `Tools/run_cascadeur_retarget_pipeline.py`
+- `Tools/scan_cascadeur_fbx.py`
+- `Content/Python/import_cascadeur_anim.py`
+- `Content/Python/import_cascadeur_animation.py`
+- `specs/anim_presets/cascadeur_melusina_animation_contract.json`
+- `Tools/t3d_anim_injector.py` for approved Blend Space / AnimBP wiring paths.
+
+Do not create a second animation-import framework unless a concrete deficiency is proven.
+
+## 11. Evidence language
+
+Use accurate evidence labels:
+
+```text
+SOURCE / CAPTURE PREPARED
+  -> CAPTURE-PROVEN
+  -> RETARGET / ANIMATION-PROVEN
+  -> LIVE-LINK-PROVEN (when applicable)
+  -> IN-GAME-PROVEN
+  -> PACKAGED-PROVEN
+```
+
+Current evidence level and the next required animation belong in `CURRENT_STATE.md`, not this contract.
+
+## 12. Non-goals
+
+Do not:
+
+- replace the canonical Melusina skeleton;
+- rebuild the existing import stack without a demonstrated blocker;
+- treat raw video mocap as final animation;
+- claim Live Link proof without an actual stream capture;
+- bake dress/hair physics into the body capture;
+- make performance-capture infrastructure a prerequisite for unrelated capstone work;
+- create a dated animation handoff/task-plan document instead of updating `CURRENT_STATE.md` or this durable contract.
