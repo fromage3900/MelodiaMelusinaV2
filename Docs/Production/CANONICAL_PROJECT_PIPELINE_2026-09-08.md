@@ -1,287 +1,189 @@
-# Canonical Melodia Project Pipeline — 2026-09-08
+# Canonical Melodia Project Pipeline
 
-> **MANDATORY CHORAL SHEEP AGENT CONTEXT:** Before changing Sheep visuals, materials, cymatics/Chladni, TouchDesigner, Geometry Nodes, or gameplay presentation, read `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`. **Board 06 + the two committed Sheep WebPs are the owner-approved visual lock, and the approved Nikki-derived Cymatics material MUST be used for final Sheep lookdev/P0 proof.** C++ owns gameplay truth; Blueprint/material/Niagara/TD present it. `collab/laptop/longterm` is the intentional parallel laptop Blender/Geometry Nodes lane: preserve it, never wholesale-merge it over current `main`, and promote useful GN work deliberately.
-
-
-**Status:** CANONICAL CROSS-REPO FRONT DOOR  
-**Use this document before dated handoffs, recovery branches, or historical workspace notes.**
+**Status:** CANONICAL CROSS-REPO ROUTING CONTRACT  
+**Use this document for ownership and handoff boundaries only.**  
+**For what is true now, open, blocked, or next: read `CURRENT_STATE.md`.**
 
 ## 1. Repository authority
 
-| Lane | Canonical repository | Local / operational home | Owns |
+| Lane | Canonical repository | Operational home | Owns |
 |---|---|---|---|
-| Game / Unreal / capstone | `fromage3900/MelodiaMelusinaV2` | `C:/EnvironmentPortfolio/BS_GodFile` | UE5.8 runtime, gameplay, maps, assets, C++/Blueprint contracts, semester/capstone truth |
-| Portfolio website | `fromage3900/my-site` | independent checkout, optionally under `C:/EnvironmentPortfolio/` | recruiter-facing pages, Three.js/browser presentation, deployment |
-| TouchDesigner / AE | `fromage3900/MelodiaTouchDesigner` | `C:/MelodiaTouchDesigner` | TD show rig, TDN/TOE, hand/audio performance layer, AE finishing |
+| Game / Unreal / capstone | `fromage3900/MelodiaMelusinaV2` | `C:/EnvironmentPortfolio/BS_GodFile` | UE5.8 runtime, gameplay, maps, assets, C++/Blueprint contracts, capstone truth/evidence |
+| Portfolio website | `fromage3900/my-site` | independent checkout | recruiter-facing pages, Three.js/browser presentation, deployment |
+| TouchDesigner / AE | `fromage3900/MelodiaTouchDesigner` | `C:/MelodiaTouchDesigner` | TD show rig, concert visuals, replay/capture tooling, AE finishing |
 | Historical umbrella | `fromage3900/EnvironmentPortfolio` | old root `C:/EnvironmentPortfolio/.git` only | archive/provenance only; never current authority |
 
-The folder `C:/EnvironmentPortfolio/` may remain a workspace container. Its old root Git repository is not Melodia authority.
+`C:/EnvironmentPortfolio/` may remain a workspace container. Its retired root Git repository is not Melodia authority.
 
-## 2. Git truth rule
+## 2. Truth and freshness rules
 
-1. `main` is the only canonical durable state for the game and website.
-2. A feature/recovery branch is evidence or work-in-progress, not current status.
-3. Runtime claims require runtime evidence; repository structure alone proves only source state.
-4. Dated handoffs never override newer source, current `main`, or newer evidence.
-5. Do not merge old cleanup/recovery branches wholesale. Extract a specific unique file or change with provenance.
-6. The dedicated `render-queue` branch is operational infrastructure and is intentionally not merged into `main`.
+1. `CURRENT_STATE.md` is the only current status / priority / blocker / open-work document.
+2. `main` is canonical durable game state after accepted integration.
+3. Feature, workstation, recovery, and render branches are work/evidence lanes, not current project status.
+4. Runtime claims require runtime evidence; repository structure alone proves source state only.
+5. Dated handoffs, plans, receipts, scorecards, and session notes never override `CURRENT_STATE.md`, source, or newer evidence.
+6. Do not create a new status/plan/handoff file. Current facts update `CURRENT_STATE.md`; durable rules update a contract/spec/runbook; session narrative belongs in PR/commit messages.
 
-## 3. Immediate owner queue — actual tasks now
+## 3. Game / Unreal lane
 
-This is the **sanity lock** for the next working sessions. It intentionally separates visible capstone production from long-horizon engineering backlog.
+The game repo owns:
 
-### P0 — one Choral Sheep Unreal proof
-
-1. Open the current Choral Sheep skeletal asset / actor in UE5.8.
-2. Verify deformation with the current rig/export.
-3. Use an ARP re-export **only if** the current export fails the deformation check.
-4. Bind one C-root Chladni fleece response. A pre-baked TD ROOT_C plate is acceptable for the first proof; live Spout is not required to begin.
-5. Capture one readable sequence:
-
-```text
-REST
-→ Harmonize
-→ ROOT_C visible in fleece
-→ ROOT_C hit
-→ clean return to REST
-```
-
-**Finish line:** one saved screenshot or short clip where the sheep is readable and the musical response is unmistakable.
-
-Do not block this proof on creating twelve chromatic material instances. The TD repository now contains an integration **contract** that names `MI_ChoralSheep_Coat_PC*`; those assets are not yet proven present on game `main`.
-
-### P1 — one UE ↔ TouchDesigner live integration proof
-
-TouchDesigner already has the Chladni scene and committed evidence. Do not rebuild it.
-
-Current durable TD evidence includes:
-- `TD_CF_01_QUIET.png`;
-- `TD_CF_02_C_ROOT.png`;
-- `TD_CF_03_C_ROOT_HIT.png`;
-- `TD_CF_DEBUG_SIGNAL.png`;
-- `TD_CF_DEBUG_PERFORM.png`.
-
-Prove one real game/TD connection:
-- semantic OSC on UDP `:9000`;
-- and/or one verified Spout sender/receiver capture where it materially improves the proof.
-
-The UE→TD `UE_Beauty` ingest remains **VERIFY LIVE** until captured. Do not turn that one gate into a new infrastructure project.
-
-### P2 — one short presentation proof
-
-Once the UE Sheep proof exists:
-1. assemble a **5–10 second** AE sequence;
-2. communicate **Creature → Motif → Harmony → World**;
-3. use the existing TD/AE pipeline rather than adding another compositing system;
-4. promote only the strongest resulting still/clip to the website.
-
-The website stays under its recruiter soft freeze. No redesign is required.
-
-### Engineering backlog — real, but not the immediate finish line
-
-GitHub Issue #51 (atomic persistence / repeat-load closure) remains open and important. Treat it as a bounded engineering lane to resume from current `main`, **not as a prerequisite for producing the next capstone image**.
-
-### Explicitly not in the immediate queue
-
-- no more Git archaeology or branch-cleanup campaign;
-- no new gameplay framework;
-- no new save authority;
-- no broad website redesign;
-- no new TD grandmaster;
-- no new research sweep unless a concrete implementation blocker requires it;
-- no agent may expand the task list merely because an old plan contains unchecked boxes.
-
-**Current production rule:** make something visible → verify it → capture it → polish the capture → publish only the best proof.
-
-## 4. Game / Unreal lane
-
-**Engine:** Unreal Engine 5.8.
-
-The game repo is the single authority for:
 - QuillScript narrative/progression;
 - JRPG combat and canonical save state;
 - rhythm execution and gameplay interpretation;
-- Wardrobe ownership/equip/traversal capabilities;
-- Starskiff and world traversal;
+- Wardrobe ownership/equip/traversal capability;
+- Starskiff traversal;
+- Convergence interpretation boundaries;
 - environment, material, PCG, Houdini/Blender integration contracts;
 - Choral Sheep runtime/companion state;
-- capstone and semester ledgers.
+- capstone implementation evidence.
 
-Runtime ownership remains explicit:
-- narrative/progression → `UMelodiaNarrativeSubsystem` / QuillScript;
-- combat/state persistence → existing JRPG/Phoenix authority;
-- rhythm → execution quality, never a second combat authority;
-- Wardrobe → owned/equipped outfit state and traversal capability;
-- Convergence → derived interpretation unless a fact is explicitly promoted to durable state.
+Detailed runtime ownership lives in `SYSTEM_MAP.md` and `DATA_FLOW.md`.
 
-## 5. DCC / procedural authoring lane
+## 4. DCC / procedural authoring lane
 
-Blender/Houdini/Geometry Nodes tooling that produces game assets is coordinated from the game repository.
-
-Pipeline:
+Blender, Houdini, Geometry Nodes, texture tools, and procedural authoring produce content for the game; they do not create a parallel runtime authority.
 
 ```text
 reference / design lock
-  → Blender / Houdini / procedural authoring
-  → tracked script/spec/provenance
-  → export/import candidate
-  → UE validation
-  → runtime or render evidence
-  → main
+  -> DCC / procedural authoring
+  -> tracked source/spec/provenance
+  -> export/import candidate
+  -> UE validation
+  -> runtime/render evidence
+  -> main
 ```
 
-Large source binaries may live outside Git when appropriate, but the current import contract, scripts, manifests, evidence, and promoted game assets must resolve through the canonical game repo.
+Laptop-specific durable rules live in `Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md` and `Docs/Production/BRANCH_WORKSTATION_POLICY.md`.
 
-World-building follows the four-layer contract in `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`: player loop → C++ truth → Chladni/cymatics form → TouchDesigner as visual instrument. DCC authoring produces content for that stack; it does not invent a parallel gameplay or save authority.
+Large source binaries may live outside Git where appropriate, but promoted assets, scripts, manifests, and import contracts must resolve through the canonical game repo.
 
-## 5.1 Semester animation / performance capture lane
+## 5. Animation / performance capture lane
 
-The researched Melusina performance-capture studio plan is:
-
-`Docs/Research/MELUSINA_PERFORMANCE_CAPTURE_STUDIO_2026-09-08.md`
-
-It extends the existing `Docs/CASCADEUR_MELUSINA_PIPELINE_2026-08-07.md` contract with:
+The durable animation pipeline is:
 
 ```text
-OBSBOT Meet 2 fixed 1080p60 capture
-  → MP4 reference
-  → Cascadeur 2026 Mocap (Alpha)
-  → owner animation cleanup / AutoPosing / physics tools
-  → Cascadeur Live Link
-  → UE5.8 Melusina evaluation
+stable camera capture
+  -> Cascadeur mocap / authored cleanup
+  -> canonical Melusina skeleton/export contract
+  -> Cascadeur Live Link or export
+  -> UE5.8 evaluation
+  -> captured evidence
 ```
 
-Research boundaries are explicit:
-- Cascadeur Mocap is a single-performer, single-camera, editable draft workflow rather than final optical mocap;
-- current Cascadeur Live Link supports Cascadeur 2026.1+ with UE 5.5–5.8 on Windows and requires the supported paid tiers;
-- the Meet 2 is used with Auto Framing disabled for mocap-source capture so the crop remains stable;
-- the canonical Melusina skeleton/export contract remains authoritative;
-- this lane is **semester animation infrastructure**, not an immediate Choral Sheep P0 dependency.
+Use the established Cascadeur/Melusina pipeline and performance-capture research as reference. Any statement about what is currently fixed, blocked, or next belongs in `CURRENT_STATE.md`, not here.
 
 ## 6. Choral Sheep / capstone lane
 
-**Reference authority:** `Docs/Art/VISUAL_REFERENCE_INDEX.md`  
-**Reference integrity receipt:** `Docs/Reports/REFERENCE_BOARD_INTEGRITY_2026-09-08.md`
+Durable authorities:
 
-Current durable game-side state includes:
-- Choral Sheep source assets and runtime actor work;
-- owner-approved concept/reference boards;
-- Day 1 execution and capstone ledgers;
-- ARP re-export as the fallback if the current UE skeletal export needs refresh.
+- visual reference entrypoint: `Docs/Art/VISUAL_REFERENCE_INDEX.md`;
+- Sheep contract: `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`;
+- capstone showcase thesis: Creature -> Motif -> Harmony -> World;
+- current task/proof state: `CURRENT_STATE.md` only.
 
-Current TD-side state at `MelodiaTouchDesigner/main` includes a landed Chladni Fleece performance scene with six harmonic states and rendered evidence:
-`REST → ROOT_C → INTERVAL_CE → RESOLUTION_CEG → WORLD_HIT → AFTERIMAGE`.
+The approved Nikki-derived character material remains the Sheep visual-material authority; Chladni/cymatics is a presentation consumer layered through that path, not a replacement gameplay/material authority.
 
-Do **not** re-open the old “weight-paint blocked / no rig” interpretation.
-
-Do **not** claim the previously reported twelve `MI_ChoralSheep_Coat_PC*` instances or Shot06 tracking files are in the game repo unless they actually appear on current `main`. They were not present during the 2026-09-08 reconciliation.
-
-A historical `Humber_FinalYear_Prep/Capstone_Portfolio_Tracker.md` exists on the preserved `cleanup/root-trim-docs-2026-09-06` branch. It is recovery material, not current canon, until deliberately migrated and updated.
+Do not reopen historical blockers or revive old execution plans merely because they contain unchecked boxes.
 
 ## 7. TouchDesigner / live-performance lane
 
 Canonical repo: `fromage3900/MelodiaTouchDesigner`.
 
-Current interface contract:
-- MediaPipe / camera bridge → OSC UDP `:7001` + Spout sender `MelodiaHandCam`;
-- game ↔ TD semantic/show-control lane → UDP `:9000`;
-- TD → Blender auxiliary lane → `:9001` where used;
-- TD consumes game semantics; it does not own gameplay state.
+Interface boundary:
 
-World-building / live-visual boundary: `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md` §4. TouchDesigner remains the visual instrument; Unreal remains authored-world and gameplay authority.
+- camera/hand bridge -> OSC UDP `:7001` + Spout sender `MelodiaHandCam` where used;
+- game <-> TD semantic/show-control lane -> UDP `:9000`;
+- TD -> Blender auxiliary lane -> `:9001` where used;
+- TD consumes game semantics and presentation data; it does not own gameplay/save/quest truth.
 
-Current Chladni Fleece scene is live-evidenced in TD. The later UE integration work prepares material/telemetry contracts.
+Durable integration contract: `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md`.
 
-**UE → TD `UE_Beauty` Spout ingest remains VERIFY LIVE until an actual Unreal sender/receiver capture proves it.**
-
-The AE lane remains downstream:
-- 12-pass 32-bit linear scaffold;
-- lookdev LUT / grading;
-- gesture/audio keyframe injection;
-- editorial/reel assembly.
+After Effects remains downstream editorial/compositing, not gameplay/system authority.
 
 ## 8. Render / evidence lane
 
-Evidence levels must be named accurately:
+Evidence levels must remain explicit:
 
 ```text
 SOURCE-BUILT
-  → LIVE-PROVEN
-  → RESTART-PROVEN
-  → PACKAGED-PROVEN
+  -> LIVE-PROVEN
+  -> RESTART-PROVEN
+  -> PACKAGED-PROVEN
 ```
 
-Do not promote a claim to a stronger level without corresponding evidence.
+Do not promote a claim to a stronger level without matching evidence.
 
-Machine roles:
-- Humber lab → primary interactive semester workstation;
-- home Windows PC → render/bake/long-job worker;
-- ASUS Nitro laptop → auxiliary/recovery/secondary task lane.
+Typical machine roles:
 
-All machines start from `main` unless explicitly assigned a feature branch.
+- Humber lab -> primary interactive semester workstation;
+- home Windows PC -> render/bake/long-job worker;
+- ASUS Nitro -> auxiliary Blender/GN/DCC workstation.
+
+Current deviations or temporary assignments belong in `CURRENT_STATE.md` or the active PR/task conversation, not this contract.
 
 ## 9. Website / recruiter lane
 
 Canonical repo: `fromage3900/my-site`.
 
-The website consumes approved downstream proof; it never becomes gameplay authority.
-
-Publishing flow:
+The website consumes approved proof; it never creates gameplay evidence or project truth.
 
 ```text
 approved game / DCC / TD evidence
-  → curated site asset / manifest update
-  → site validation
-  → my-site/main
-  → GitHub Pages
-  → Wix Studio shell / fromageart.xyz
+  -> curated site asset / manifest update
+  -> site validation
+  -> my-site/main
+  -> deployed portfolio
 ```
 
-GitHub Pages hosts the portfolio files. Wix owns the top-level custom domain/shell and embeds the stable GitHub Pages entry.
-
-The recruiter-facing site remains under the 2026-09-07 soft freeze:
-- approved render promotion;
-- factual/contact/accessibility fixes;
-- social-preview correctness;
-- critical deployment fixes;
-- no broad route/layout/effect expansion unless the freeze is explicitly lifted.
+Current freeze/polish status belongs in that repo's current-state/issue surface or the active task context, not in this cross-repo contract.
 
 ## 10. Cross-lane handoff
 
 ```text
 GAME / DCC
 authoritative state + assets + renders
-        ↓
+        |
+        v
 TOUCHDESIGNER
 performance interpretation + visual layers
-        ↓
+        |
+        v
 AFTER EFFECTS
 editorial / compositing / reel finishing
-        ↓
+        |
+        v
 WEBSITE
 curated recruiter-facing proof
 ```
 
 Direction of authority is one-way for facts:
+
 - TD may visualize game state but does not redefine it.
 - AE may editorialize captures but does not redefine runtime state.
-- Website copy may summarize evidence but does not create evidence.
+- website copy may summarize evidence but does not create evidence.
 
-## 11. Branch policy after 2026-09-08 reconciliation
+## 11. Branch classes
 
-Superseded documentation/feature refs reviewed in this pass have been normalized to the canonical `main` tip.
+- `main` -> durable canonical game state.
+- `collab/laptop/longterm` -> intentional laptop Blender/GN workstation source lane; never wholesale-merge/delete.
+- recovery/salvage branches -> provenance sources; extract named reviewed work only.
+- `render-queue` -> operational render infrastructure; not a gameplay/status authority.
 
-The following game branches remain intentionally separate because they contain recovery/history or operational state and must **not** be treated as current truth:
-- `cleanup/root-trim-docs-2026-09-06` — historical cleanup/recovery source;
-- `collab/laptop/longterm` — large diverged laptop history;
-- `docs/stale-session-start-fix-2026-09-06` — stale but potentially unique recovery source;
-- `integration/semester-closeout-salvage-2026-09-07` — salvage source requiring deliberate extraction;
-- `render-queue` — operational queue branch, intentionally non-merge.
+Branch names and exact active refs may evolve. `CURRENT_STATE.md` and `BRANCH_WORKSTATION_POLICY.md` own the live interpretation.
 
-All safe superseded refs now point at `main`; only the recovery/operational exceptions listed above remain intentionally separate.
+## 12. Documentation routing
 
-**One lane, one authority, one current branch: `main`.**
+Use exactly one answer surface per question:
 
-## 12. Document health
+```text
+What is true / next / blocked? -> CURRENT_STATE.md
+How does runtime work?         -> SYSTEM_MAP.md / DATA_FLOW.md
+How do repos/tools hand off?   -> this pipeline contract
+How does a subsystem behave?   -> its durable contract/spec/runbook
+What should it look like?      -> reference / visual bible
+What did research find?        -> Docs/Research
+What happened before?          -> Git history / HISTORICAL stub
+```
 
-Current documentation is maintained under `Docs/Production/DOCUMENT_HEALTH_PLAN.md`. Use it when a doc feels stale, contradictory, or hard to place — it is the maintenance contract for the front door set, not another report to write.
+Obsidian may be used as a local knowledge browser over these Markdown files, but Git files remain canonical and Obsidian must not introduce a second task/status system. See `Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md`.
