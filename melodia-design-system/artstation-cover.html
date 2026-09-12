@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  BRENNAN SHEPHERD · ArtStation Project Cover (1920 x 1080)
+  HOW TO USE:
+   1. Open this file in a browser
+   2. Take a screenshot at 1920 x 1080px
+   3. Upload to ArtStation as project cover
+   4. Edit DATA below to customize
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=IBM+Plex+Mono:wght@500&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{display:flex;justify-content:center;align-items:center;min-height:100vh;background:#1a1a1a}
+  .cover{width:1920px;height:1080px;position:relative;overflow:hidden;background:radial-gradient(120% 120% at 30% 0%, #1b2444 0%, #141A30 60%, #0f1426 100%);font-family:'IBM Plex Mono',monospace}
+  .mark{position:absolute;top:48px;left:64px;display:flex;align-items:center;gap:16px}
+  .wordmark{font-family:'Cinzel',serif;font-weight:600;letter-spacing:.32em;font-size:24px;color:#ECEAF4}
+  .kick{letter-spacing:.28em;text-transform:uppercase;font-size:16px;color:#DDC79B}
+  .title{font-family:'Fraunces',serif;font-weight:500;line-height:.95;letter-spacing:-.01em;font-size:120px;color:#ECEAF4;position:absolute;top:50%;left:64px;transform:translateY(-50%);max-width:1000px}
+  .sub{font-family:'Fraunces',serif;font-style:italic;font-size:32px;color:#DDC79B;position:absolute;bottom:64px;left:64px}
+  .stats{position:absolute;bottom:64px;right:64px;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .stat{display:flex;align-items:center;gap:12px;font-size:14px;color:#A9A7C0}
+  .stat-label{letter-spacing:.12em;text-transform:uppercase}
+  .stat-value{color:#ECEAF4;font-weight:500}
+  .accent{position:absolute;right:64px;top:50%;transform:translateY(-50%);width:2px;height:300px;background:linear-gradient(to bottom,transparent,rgba(201,168,106,.5),transparent)}
+  .star{position:absolute;background:#fff;border-radius:50%;opacity:.4}
+  .gstar{position:absolute}
+  .gstar svg{filter:drop-shadow(0 0 8px rgba(201,168,106,.7))}
+  svg.constel{position:absolute;right:10%;top:15%;width:600px;height:auto;opacity:.7}
+  .burst{filter:drop-shadow(0 0 10px rgba(201,168,106,.6))}
+</style>
+</head>
+<body>
+<div class="cover" id="cover"></div>
+<script>
+var DATA = {
+  kicker: "3D Environment Art",
+  title: "Project Name",
+  sub: "Unreal Engine 5 · PCG · Houdini",
+  stats: [
+    {label: "Triangles", value: "482K"},
+    {label: "Materials", value: "12"},
+    {label: "Resolution", value: "4K"}
+  ]
+};
+
+function burst(size,color){
+  var pts=[],cx=size/2,cy=size/2,o=size/2,inr=o*0.4;
+  for(var i=0;i<16;i++){var r=i%2===0?o:inr;var a=-Math.PI/2+i*Math.PI/8;pts.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1));}
+  return '<svg class="burst" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'"><polygon points="'+pts.join(' ')+'" fill="'+color+'"/></svg>';
+}
+function fourstar(s,c){
+  var h=s/2,t=s*0.16;
+  var d="M "+h+" 0 L "+(h+t)+" "+(h-t)+" L "+s+" "+h+" L "+(h+t)+" "+(h+t)+" L "+h+" "+s+" L "+(h-t)+" "+(h+t)+" L 0 "+h+" L "+(h-t)+" "+(h-t)+" Z";
+  return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 '+s+' '+s+'"><path d="'+d+'" fill="'+c+'"/></svg>';
+}
+function rng(s){return function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff;};}
+
+function render(){
+  var h=document.getElementById("cover");
+  var gold="#C9A86A";
+  var html='';
+  var r=rng(7);
+  for(var i=0;i<100;i++){
+    var x=(r()*100).toFixed(2);
+    var y=(r()*100).toFixed(2);
+    if(i%20===0){
+      html+='<div class="gstar" style="left:'+x+'%;top:'+y+'%;opacity:.9">'+fourstar(12,gold)+'</div>';
+    }else{
+      var sz=(0.8+r()*2).toFixed(1);
+      html+='<div class="star" style="left:'+x+'%;top:'+y+'%;width:'+sz+'px;height:'+sz+'px;opacity:'+(0.2+r()*0.5).toFixed(2)+'"></div>';
+    }
+  }
+  html+='<svg class="constel" viewBox="0 0 600 400"><g stroke="#DDC79B" stroke-width="1.5" fill="none" opacity=".6"><path d="M50 120 L200 250 L380 150 L550 280 M380 150 L450 50 L300 350"/></g><g fill="#C9A86A"><circle cx="50" cy="120" r="6"/><circle cx="200" cy="250" r="7"/><circle cx="380" cy="150" r="6"/><circle cx="550" cy="280" r="7"/><circle cx="450" cy="50" r="6"/><circle cx="300" cy="350" r="6"/></g></svg>';
+  html+='<div class="mark">'+burst(28,gold)+'<span class="wordmark">BRENNAN SHEPHERD</span></div>';
+  html+='<div class="kick">'+DATA.kicker+'</div>';
+  html+='<div class="title">'+DATA.title+'</div>';
+  html+='<div class="sub">'+DATA.sub+'</div>';
+  html+='<div class="accent"></div>';
+  html+='<div class="stats">';
+  DATA.stats.forEach(function(s){
+    html+='<div class="stat"><span class="stat-label">'+s.label+'</span><span class="stat-value">'+s.value+'</span></div>';
+  });
+  html+='</div>';
+  h.innerHTML=html;
+}
+render();
+</script>
+</body>
+</html>

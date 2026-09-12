@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  MELODIA · Asset Passport — Wix HTML embed
+  HOW TO USE IN WIX:
+   1. Editor → Add (+) → Embed Code → Embed HTML → "Enter Code".
+   2. Paste this ENTIRE file.
+   3. Drag the box to ~ 360 × 560 px (dark) — it auto-fits; adjust height if needed.
+   4. Edit the DATA block below, OR pass values via the iframe URL query string
+      (e.g. ...?project=Ashen%20Cathedral&theme=dark&triangles=482,318).
+  Fonts load from Google Fonts. Works on desktop + mobile.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:8px}
+  .passport{width:100%;max-width:360px;border-radius:3px;padding:24px 26px;font-family:'IBM Plex Mono',monospace}
+  .head{display:flex;justify-content:space-between;align-items:center}
+  .kick{letter-spacing:.24em;font-size:10px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .ver{font-size:11px}
+  .rule{height:1px;margin:13px 0}
+  .title{font-family:'Fraunces',serif;font-weight:500;font-size:28px;line-height:1.05}
+  .cat{letter-spacing:.22em;font-size:11px;text-transform:uppercase;margin-top:4px}
+  .row{display:flex;justify-content:space-between;padding:8px 0;font-size:12.5px}
+  .k{letter-spacing:.12em;text-transform:uppercase}
+  .foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:11px;letter-spacing:.1em}
+  .burst{filter:drop-shadow(0 0 6px rgba(201,168,106,.6))}
+</style>
+</head>
+<body>
+<div id="pp"></div>
+<script>
+/* ============ DATA — edit these (or override via URL query) ============ */
+var DATA = {
+  theme: "dark",                 // "dark" (Astral Night) or "light" (Ivory)
+  project: "Procedural Cathedral",
+  category: "Environment / PCG",
+  version: "v0.1 (greybox)",
+  rows: [
+    ["Triangles", "TBD"],
+    ["Textures", "TBD"],
+    ["Materials", "TBD"],
+    ["Software", "Unreal Engine + PCG"],
+    ["Engine", "Unreal Engine 5.8"],
+    ["Date", "2026-06"]
+  ]
+};
+/* ====================================================================== */
+
+// URL overrides (?project=...&theme=...&triangles=...&textures=...&materials=...&software=...&engine=...&date=...&version=...&category=...)
+var q = new URLSearchParams(location.search);
+["theme","project","category","version"].forEach(function(k){ if(q.get(k)) DATA[k]=q.get(k); });
+var rowKeys = ["triangles","textures","materials","software","engine","date","drawcalls","lod"];
+rowKeys.forEach(function(k){
+  var v=q.get(k); if(v==null) return;
+  var label=k.charAt(0).toUpperCase()+k.slice(1).replace("drawcalls","Draw Calls").replace("lod","LOD");
+  var found=DATA.rows.find(function(r){return r[0].toLowerCase()===k;});
+  if(found){found[1]=v;} else {DATA.rows.push([label,v]);}
+});
+function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+function burst(size,color){
+  var pts=[],cx=size/2,cy=size/2,outer=size/2,inner=outer*0.4;
+  for(var i=0;i<16;i++){var r=i%2===0?outer:inner;var a=-Math.PI/2+i*Math.PI/8;pts.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1));}
+  return '<svg class="burst" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'"><polygon points="'+pts.join(' ')+'" fill="'+color+'"/></svg>';
+}
+function render(){
+  var dark = DATA.theme!=="light";
+  var c = dark
+    ? {surf:"#1C2340",bord:"rgba(201,168,106,.35)",txt:"#ECEAF4",sec:"#A9A7C0",acc:"#DDC79B",gold:"#C9A86A",glow:"0 0 40px rgba(60,92,158,.35)",line:"rgba(255,255,255,.06)"}
+    : {surf:"#FFFFFF",bord:"rgba(176,141,79,.4)",txt:"#241B2E",sec:"#6E6080",acc:"#A7884E",gold:"#B08D4F",glow:"0 18px 40px rgba(36,27,46,.12)",line:"rgba(0,0,0,.06)"};
+  var rows = DATA.rows.map(function(r){
+    return '<div class="row" style="border-top:1px solid '+c.line+'"><span class="k" style="color:'+c.sec+'">'+esc(r[0])+'</span><span style="color:'+c.txt+'">'+esc(r[1])+'</span></div>';
+  }).join("");
+  document.getElementById("pp").innerHTML =
+    '<div class="passport" style="background:'+c.surf+';border:1px solid '+c.bord+';box-shadow:'+c.glow+'">'
+    +'<div class="head"><span class="kick" style="color:'+c.acc+'">'+burst(14,c.gold)+'Asset Passport</span><span class="ver" style="color:'+c.sec+'">'+esc(DATA.version)+'</span></div>'
+    +'<div class="rule" style="background:'+c.gold+'"></div>'
+    +'<div class="title" style="color:'+c.txt+'">'+esc(DATA.project)+'</div><div class="cat" style="color:'+c.sec+'">'+esc(DATA.category)+'</div>'
+    +'<div style="height:8px"></div>'+rows
+    +'<div class="rule" style="background:'+c.gold+';margin-top:13px"></div>'
+    +'<div class="foot"><span style="display:flex;align-items:center;gap:7px">'+burst(10,c.gold)+'</span><span style="color:'+c.sec+'">MELODIA</span></div>'
+    +'</div>';
+}
+render();
+</script>
+</body>
+</html>

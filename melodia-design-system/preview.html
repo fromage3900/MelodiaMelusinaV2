@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melodia — direction preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory-50:#FCFBF8; --ivory-100:#F7F4EF; --ivory-200:#EFEAE1; --ivory-300:#E3DACE;
+    --plum-800:#241B2E; --plum-900:#1C1426;
+    --gold-300:#DDC79B; --gold-500:#C9A86A; --gold-700:#A7884E;
+    --lavender-300:#C2BAE0; --lavender-500:#9F94C6; --sakura-300:#E7C9CE;
+    --astral-300:#8AA9D6; --astral-500:#3C5C9E; --astral-700:#26365E; --astral-900:#141A30;
+    --iris-300:#A99AD0; --iris-500:#6E5AA6; --slate-300:#AEB4BF; --slate-500:#5A6170;
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace; --caps:'Cinzel',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#0b0e18;color:var(--ivory-50)}
+  .wrap{width:1440px;margin:0 auto}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+  .meta{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+  .star{display:inline-block;color:var(--gold-500);filter:drop-shadow(0 0 10px rgba(201,168,106,.6))}
+  .rule{height:1px;background:var(--gold-500);opacity:.9}
+
+  /* ===== Astral Night hero ===== */
+  .hero{position:relative;padding:96px;background:
+      radial-gradient(1200px 500px at 75% -10%, rgba(60,92,158,.45), transparent 60%),
+      radial-gradient(800px 400px at 10% 110%, rgba(110,90,166,.35), transparent 60%),
+      linear-gradient(180deg,var(--astral-900),var(--plum-900));
+      overflow:hidden}
+  .stars{position:absolute;inset:0;background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, #fff6, transparent),
+      radial-gradient(1.5px 1.5px at 80% 20%, #fff5, transparent),
+      radial-gradient(1px 1px at 60% 60%, #fff5, transparent),
+      radial-gradient(1px 1px at 35% 75%, #fff4, transparent),
+      radial-gradient(1.5px 1.5px at 90% 80%, #fff4, transparent),
+      radial-gradient(1px 1px at 50% 15%, #fff4, transparent);opacity:.7}
+  .corner{position:absolute;width:120px;height:120px;border:1px solid var(--gold-500);opacity:.55}
+  .corner.tl{top:40px;left:40px;border-right:0;border-bottom:0}
+  .corner.br{bottom:40px;right:40px;border-left:0;border-top:0}
+  .brandmark{display:flex;align-items:center;gap:12px;position:relative;z-index:2}
+  .brandmark .wordmark{font-family:var(--caps);letter-spacing:.34em;font-size:20px;color:var(--ivory-50)}
+  .brandmark .star{font-size:22px}
+  .hero h1{font-family:var(--serif);font-weight:300;font-size:72px;line-height:1.04;letter-spacing:-.02em;margin:40px 0 8px;position:relative;z-index:2}
+  .hero .sub{font-family:var(--serif);font-weight:300;font-style:italic;font-size:24px;color:var(--gold-300);position:relative;z-index:2}
+  .hero .kicker{position:relative;z-index:2;color:var(--gold-300);font-size:12px;margin-top:28px}
+
+  .layout{display:flex;gap:48px;position:relative;z-index:2;margin-top:56px;align-items:flex-start}
+  .tags{display:flex;flex-wrap:wrap;gap:12px;max-width:760px}
+  .tag{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px;
+       padding:8px 14px;border:1px solid rgba(201,168,106,.6);border-radius:2px;color:var(--ivory-50);
+       background:rgba(255,255,255,.03);display:flex;gap:10px;align-items:center}
+  .tag b{color:var(--gold-300);font-weight:500}
+  .tag .s{color:var(--astral-300)}
+  .swrap{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;max-width:760px}
+  .soft{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px;color:var(--slate-300);
+        padding:6px 12px;border-radius:2px;background:rgba(255,255,255,.04);display:flex;gap:8px;align-items:center}
+  .soft .d{color:var(--lavender-300)}
+
+  /* ===== Asset Passport ===== */
+  .passport{width:360px;flex:0 0 360px;border-radius:2px;padding:24px}
+  .passport.dark{background:linear-gradient(180deg,var(--astral-700),#1d2942);border:1px solid var(--iris-500)}
+  .passport.light{background:var(--ivory-50);border:1px solid var(--slate-300);color:var(--plum-800)}
+  .pp-head{display:flex;justify-content:space-between;align-items:center}
+  .pp-kick{display:flex;gap:8px;align-items:center;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+  .passport.dark .pp-kick{color:var(--gold-300)} .passport.light .pp-kick{color:var(--gold-700)}
+  .pp-title{font-family:var(--serif);font-weight:400;font-size:34px;letter-spacing:-.01em;margin:14px 0 2px}
+  .pp-cat{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+  .passport.dark .pp-cat{color:var(--slate-300)} .passport.light .pp-cat{color:var(--slate-500)}
+  .pp-rows{margin:14px 0}
+  .pp-row{display:flex;justify-content:space-between;padding:7px 0;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+  .pp-row .k{opacity:.75} .passport.dark .pp-row .k{color:var(--slate-300)} .passport.light .pp-row .k{color:var(--slate-500)}
+  .pp-div{height:1px;background:rgba(201,168,106,.35)}
+  .pp-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.18em}
+  .passport.dark .pp-foot{color:var(--slate-300)} .passport.light .pp-foot{color:var(--slate-500)}
+
+  /* ===== Light editorial band ===== */
+  .editorial{background:var(--ivory-100);color:var(--plum-800);padding:72px 96px}
+  .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .eyebrow .star{color:var(--gold-700);filter:none;font-size:14px}
+  .eyebrow .lbl{font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--slate-500)}
+  .eyebrow .ln{flex:1;height:1px;background:var(--gold-500)}
+  .ed-grid{display:flex;gap:48px;align-items:flex-start}
+  .ed-text{flex:1}
+  .ed-text h2{font-family:var(--serif);font-weight:400;font-size:40px;letter-spacing:-.01em;margin-bottom:16px}
+  .ed-text p{font-size:16px;line-height:1.7;color:var(--slate-500);max-width:60ch}
+  .palette{display:flex;flex-wrap:wrap;gap:0;margin-top:34px;border:1px solid var(--ivory-300)}
+  .sw{width:120px;height:88px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px}
+  .sw span{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.04em;background:rgba(255,255,255,.85);color:#222;padding:2px 4px;border-radius:2px;align-self:flex-start}
+  .sw.d span{background:rgba(0,0,0,.35);color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Astral Night hero -->
+  <section class="hero">
+    <div class="stars"></div>
+    <div class="corner tl"></div><div class="corner br"></div>
+
+    <div class="brandmark"><span class="star">&#10040;</span><span class="wordmark">MELODIA</span></div>
+
+    <div class="kicker mono">3D ENVIRONMENT &amp; TECHNICAL ART &nbsp;&middot;&nbsp; ASTRAL NIGHT THEME</div>
+    <h1>Ashen Cathedral</h1>
+    <div class="sub">a study in light, stone, and stardust</div>
+
+    <div class="layout">
+      <div style="flex:1">
+        <div class="tags">
+          <div class="tag"><span class="s">&#9650;</span> TRIANGLES <b>482,318</b></div>
+          <div class="tag">TEXTURES <b>4K</b></div>
+          <div class="tag">MATERIALS <b>12</b></div>
+          <div class="tag">DRAW CALLS <b>184</b></div>
+          <div class="tag">NANITE <b>ON</b></div>
+          <div class="tag">LOD <b>0&ndash;3</b></div>
+        </div>
+        <div class="swrap">
+          <div class="soft"><span class="d">&#10038;</span> BLENDER</div>
+          <div class="soft"><span class="d">&#10038;</span> ZBRUSH</div>
+          <div class="soft"><span class="d">&#10038;</span> SUBSTANCE PAINTER</div>
+          <div class="soft"><span class="d">&#10038;</span> HOUDINI</div>
+          <div class="soft"><span class="d">&#10038;</span> UNREAL ENGINE</div>
+        </div>
+      </div>
+
+      <!-- Asset Passport (dark) -->
+      <div class="passport dark">
+        <div class="pp-head">
+          <div class="pp-kick"><span class="star" style="font-size:13px">&#10040;</span> ASSET PASSPORT</div>
+          <div class="meta" style="color:var(--slate-300)">v1.2</div>
+        </div>
+        <div class="rule" style="margin:12px 0"></div>
+        <div class="pp-title">Ashen Cathedral</div>
+        <div class="pp-cat">ENVIRONMENT</div>
+        <div class="pp-div" style="margin:14px 0"></div>
+        <div class="pp-rows">
+          <div class="pp-row"><span class="k">Triangles</span><span>482,318</span></div>
+          <div class="pp-row"><span class="k">Textures</span><span>4K</span></div>
+          <div class="pp-row"><span class="k">Materials</span><span>12</span></div>
+          <div class="pp-row"><span class="k">Software</span><span>Blender &middot; ZBrush</span></div>
+          <div class="pp-row"><span class="k">Engine</span><span>Unreal Engine 5.4</span></div>
+          <div class="pp-row"><span class="k">Date</span><span>2026-03</span></div>
+        </div>
+        <div class="rule" style="margin:6px 0 10px"></div>
+        <div class="pp-foot"><span class="star" style="font-size:11px">&#10040;</span><span>MELODIA</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Light editorial band -->
+  <section class="editorial">
+    <div class="eyebrow"><span class="star">&#10040;</span><span class="lbl">Foundations &middot; Ivory editorial theme</span><span class="ln"></span></div>
+    <div class="ed-grid">
+      <div class="ed-text">
+        <h2>Premium fantasy artbook<br>meets technical documentation</h2>
+        <p>Two themes, one system. The ivory editorial light theme reads like a collector artbook colophon &mdash; high-contrast serif titles, monospace specs, and a single champagne-gold rule. The Astral Night dark theme borrows HoYoverse&rsquo;s celestial luminosity for ArtStation covers. Ornamentation always serves the information.</p>
+      </div>
+
+      <!-- Asset Passport (light) -->
+      <div class="passport light">
+        <div class="pp-head">
+          <div class="pp-kick"><span style="color:var(--gold-700)">&#10040;</span> ASSET PASSPORT</div>
+          <div class="meta" style="color:var(--slate-500)">v1.2</div>
+        </div>
+        <div class="rule" style="margin:12px 0;background:var(--gold-500)"></div>
+        <div class="pp-title">Ashen Cathedral</div>
+        <div class="pp-cat">ENVIRONMENT</div>
+        <div class="pp-div" style="margin:14px 0;background:var(--ivory-300)"></div>
+        <div class="pp-rows">
+          <div class="pp-row"><span class="k">Triangles</span><span>482,318</span></div>
+          <div class="pp-row"><span class="k">Textures</span><span>4K</span></div>
+          <div class="pp-row"><span class="k">Materials</span><span>12</span></div>
+          <div class="pp-row"><span class="k">Software</span><span>Blender &middot; ZBrush</span></div>
+          <div class="pp-row"><span class="k">Engine</span><span>Unreal Engine 5.4</span></div>
+          <div class="pp-row"><span class="k">Date</span><span>2026-03</span></div>
+        </div>
+        <div class="rule" style="margin:6px 0 10px;background:var(--gold-500)"></div>
+        <div class="pp-foot"><span style="color:var(--gold-700)">&#10040;</span><span>MELODIA</span></div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:48px"><span class="star">&#10040;</span><span class="lbl">Palette</span><span class="ln"></span></div>
+    <div class="palette">
+      <div class="sw" style="background:#F7F4EF"><span>Ivory 100</span></div>
+      <div class="sw" style="background:#E7C9CE"><span>Dusty Sakura</span></div>
+      <div class="sw" style="background:#9F94C6"><span>Lavender</span></div>
+      <div class="sw d" style="background:#C9A86A"><span>Champagne Gold</span></div>
+      <div class="sw d" style="background:#6E5AA6"><span>Iris</span></div>
+      <div class="sw d" style="background:#3C5C9E"><span>Astral Blue</span></div>
+      <div class="sw d" style="background:#241B2E"><span>Midnight Plum</span></div>
+      <div class="sw d" style="background:#141A30"><span>Astral Night</span></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

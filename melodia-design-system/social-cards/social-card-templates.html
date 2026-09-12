@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melodia Social Card Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory-50:#FCFBF8;
+  --ivory-100:#F7F4EF;
+  --ivory-200:#EFEAE1;
+  --ivory-300:#E3DACE;
+  --plum-800:#241B2E;
+  --plum-900:#1C1426;
+  --gold-300:#DDC79B;
+  --gold-500:#C9A86A;
+  --gold-700:#A7884E;
+  --lavender-300:#C2BAE0;
+  --astral-700:#26365E;
+  --astral-900:#141A30;
+  --iris-500:#6E5AA6;
+  --sakura-300:#E7C9CE;
+  --slate-500:#5A6170;
+  --serif:"Fraunces", Georgia, serif;
+  --sans:"Inter", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", monospace;
+  --caps:"Cinzel", serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 40px;
+  background: #06080f;
+  color: var(--ivory-50);
+  font-family: var(--sans);
+}
+.page { width: min(100%, 1280px); margin: 0 auto; }
+.title {
+  margin: 0 0 24px;
+  font: 500 12px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--gold-300);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.card {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,106,.42);
+  background: var(--astral-900);
+}
+.portrait { aspect-ratio: 4 / 5; }
+.light {
+  background: var(--ivory-100);
+  color: var(--plum-800);
+}
+.night {
+  background:
+    radial-gradient(700px 360px at 78% 12%, rgba(110,90,166,.5), transparent 62%),
+    radial-gradient(620px 320px at 12% 96%, rgba(60,92,158,.42), transparent 60%),
+    linear-gradient(180deg, var(--astral-900), var(--plum-900));
+}
+.stars {
+  position: absolute;
+  inset: 0;
+  opacity: .58;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 26%, #fff8, transparent),
+    radial-gradient(1.2px 1.2px at 72% 18%, #ddc79bcc, transparent),
+    radial-gradient(1px 1px at 58% 64%, #fff6, transparent),
+    radial-gradient(1px 1px at 34% 74%, #fff5, transparent),
+    radial-gradient(1.4px 1.4px at 88% 76%, #ddc79baa, transparent);
+}
+.frame {
+  position: absolute;
+  inset: 28px;
+  border: 1px solid rgba(201,168,106,.48);
+}
+.corner {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  border-color: var(--gold-500);
+}
+.tl { left: 28px; top: 28px; border-left: 2px solid; border-top: 2px solid; }
+.tr { right: 28px; top: 28px; border-right: 2px solid; border-top: 2px solid; }
+.bl { left: 28px; bottom: 28px; border-left: 2px solid; border-bottom: 2px solid; }
+.br { right: 28px; bottom: 28px; border-right: 2px solid; border-bottom: 2px solid; }
+.pad {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 52px;
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 600 15px/1 var(--caps);
+  letter-spacing: .32em;
+}
+.star {
+  color: var(--gold-500);
+  filter: drop-shadow(0 0 9px rgba(201,168,106,.65));
+}
+.meta {
+  font: 500 11px/1.4 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--gold-300);
+}
+.light .meta { color: var(--gold-700); }
+h2 {
+  margin: auto 0 10px;
+  max-width: 680px;
+  font: 300 58px/1.02 var(--serif);
+  letter-spacing: -0.02em;
+}
+.sub {
+  max-width: 620px;
+  font: italic 300 21px/1.35 var(--serif);
+  color: var(--gold-300);
+}
+.light .sub { color: var(--gold-700); }
+.artbox {
+  margin: 34px 0 0;
+  min-height: 390px;
+  border: 1px solid rgba(201,168,106,.46);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.01)),
+    repeating-linear-gradient(135deg, rgba(201,168,106,.16) 0 1px, transparent 1px 22px);
+  display: grid;
+  place-items: center;
+  color: rgba(221,199,155,.78);
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.light .artbox {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(252,251,248,.58)),
+    repeating-linear-gradient(135deg, rgba(167,136,78,.18) 0 1px, transparent 1px 22px);
+  color: var(--slate-500);
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 28px;
+}
+.tag {
+  border: 1px solid rgba(201,168,106,.55);
+  padding: 8px 12px;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.light .tag { background: #fff; border-color: var(--ivory-300); }
+.specs {
+  margin-top: 24px;
+  border-top: 1px solid rgba(201,168,106,.55);
+}
+.spec {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(201,168,106,.22);
+  font: 500 11px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.spec span { opacity: .62; }
+@media (max-width: 900px) {
+  body { padding: 18px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1 class="title">&#10040; Melodia Social Card Templates</h1>
+  <section class="grid">
+    <article class="card night">
+      <div class="stars"></div><div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="pad">
+        <div class="brand"><span class="star">&#10040;</span>MELODIA</div>
+        <h2>ZBrush Sculpt Study</h2>
+        <p class="sub">silhouette, form language, and surface pass</p>
+        <div class="artbox">Drop sculpt render here</div>
+        <div class="tags"><span class="tag">Sculpt</span><span class="tag">ZBrush</span><span class="tag">WIP</span></div>
+      </div>
+    </article>
+    <article class="card light">
+      <div class="pad">
+        <div class="brand"><span class="star">&#10040;</span>MELODIA</div>
+        <p class="meta" style="margin-top:28px">Sketch study</p>
+        <h2>Shape Notes</h2>
+        <p class="sub">gesture, rhythm, and motif exploration</p>
+        <div class="artbox">Drop sketch scan here</div>
+        <div class="tags"><span class="tag">Sketch</span><span class="tag">Ideation</span><span class="tag">Linework</span></div>
+      </div>
+    </article>
+    <article class="card night">
+      <div class="stars"></div>
+      <div class="pad">
+        <div class="brand"><span class="star">&#10040;</span>MELODIA</div>
+        <p class="meta" style="margin-top:28px">Shader passport</p>
+        <h2>Pear-fect Sheen Pass</h2>
+        <p class="sub">iridescence, satin gloss, sparkle mask</p>
+        <div class="specs">
+          <div class="spec"><span>Surface</span><b>Petal Satin</b></div>
+          <div class="spec"><span>Inputs</span><b>Ramp / Fresnel / Mask</b></div>
+          <div class="spec"><span>Engine</span><b>Unreal Material</b></div>
+        </div>
+        <div class="tags"><span class="tag">Shader</span><span class="tag">Texture Breakdown</span><span class="tag">UE</span></div>
+      </div>
+    </article>
+    <article class="card light">
+      <div class="pad">
+        <div class="brand"><span class="star">&#10040;</span>MELODIA</div>
+        <p class="meta" style="margin-top:28px">Geometry nodes</p>
+        <h2>Procedural Scatter</h2>
+        <p class="sub">node graph, masks, variation, handoff</p>
+        <div class="artbox">Drop node graph here</div>
+        <div class="tags"><span class="tag">Blender</span><span class="tag">PCG</span><span class="tag">Tooling</span></div>
+      </div>
+    </article>
+    <article class="card portrait night">
+      <div class="stars"></div><div class="frame"></div>
+      <div class="pad">
+        <div class="brand"><span class="star">&#10040;</span>MELODIA</div>
+        <h2>Process Carousel</h2>
+        <p class="sub">beauty plate, wireframe, shader graph, final notes</p>
+        <div class="artbox">Cover image slot</div>
+        <div class="tags"><span class="tag">01 / 05</span><span class="tag">Breakdown</span><span class="tag">Portfolio</span></div>
+      </div>
+    </article>
+  </section>
+</main>
+</body>
+</html>
