@@ -419,6 +419,178 @@ so 8.4 starts clean.
 
 ---
 
+## 11. Items added by the AAA review, 2026-09-12
+
+From a four-way review (geometry/topology, materials, presentation, hardware). Each
+item below is a gap, not a duplicate, and carries the route and the assertion that
+closes it. Items 8.2 (edge break) and 8.3 (lens base curve) are now **specified** by
+11.1 and 11.2 and should be built from those routes rather than re-derived.
+
+Ordering follows the plan's rule: fix what blocks, then what is visible, then what
+gates delivery.
+
+### 11.1 Rim edge break — route confirmed (supersedes the 8.2 description)
+
+Every real frame has a rounded edge because it was **tumbled**, not modelled with
+one. Acetate runs 3-4 tumbling cycles, >96 h; metal ~72 h plus a bright tumble. There
+is no published eyewear edge-break radius; the 0.5-1.0 mm acetate and 0.2-0.5 mm
+metal figures are inferred from the tumbling process, and should be treated as
+defaults rather than standards.
+
+    route       between the silhouette Quadrilateral (eyewear.py:90) and CurveToMesh
+                (eyewear.py:161):
+                  Resample Curve  Mode 'Length', Length = Rim Edge Break * 0.5
+                  Fillet Curve    Mode 'Poly',   Radius = _mm('Rim Edge Break')
+                                  Limit Radius = True
+    params      Rim Edge Break  float 1.0 mm (acetate preset 1.0, metal 0.3), 0.2-1.5
+    why safe    Limit Radius clamps the fillet so it cannot consume a whole face.
+                For the 4.0 x 6.0 rim profile the clamp is 2.0 mm, so 1.0 mm cannot
+                over-break. Do NOT use GeometryNodeMeshBevel - measured unusable twice.
+    assertion   UNCHANGED. A break <= 0.25 * min(Rim Thickness, Rim Depth) leaves a
+                flat land mid-face, so 134.000 / 42.000 still hold. If a new
+                assertion is wanted, it is that the parameter moves the silhouette
+                measurably at its extremes and not at zero.
+
+### 11.2 Base curve — route confirmed (supersedes the 8.3 description)
+
+    formula     r = 523 / BaseCurve, in mm, then x MM. Stated independently by two
+                practitioners and self-consistent with r = 1000(n-1)/D at n = 1.523.
+                2 base -> 261.50 mm | 4 -> 130.75 | 6 -> 87.17 | 8 -> 65.38
+    sag         for the 54 x 34 aperture, ED/2 = 31.906 mm:
+                2 base 1.95 mm | 4 base 3.95 mm | 6 base 6.05 mm | 8 base 8.32 mm
+    params      Base Curve float 4.0 (0-8; 0 = flat = today's look)
+                Frame Form Angle float 4.4 deg (0-25)
+    route       per-rim Set Position AFTER CurveToMesh and BEFORE the mirror:
+                Z offset = -(R - sqrt(R^2 - r^2)) about that rim's own boxing centre.
+                Then separate the halves by Frame Form Angle as a rotation about Y.
+    assertion   a pure Z sag moves no X or Y vertex, so 134.000 / 42.000 and the
+                2A + DBL lens span survive. The Frame Form Angle rotation DOES move
+                X (4.4 deg -> 133.605 mm; 10 deg -> 131.964), so assert boxed A
+                separately (unaffected by rotation about Y) and run the outer-width
+                check after the rotation.
+    unverified  whether a production front is ONE spherical surface spanning both
+                eyes. At 4 base the radius cannot span a 134 mm front, so per-eye
+                plus a form-angle rotation is the defensible reading. Flagged, not
+                asserted.
+    lens        drive MEL_eyewear_lens from the same Base Curve so rim and lens agree.
+
+### 11.3 Temple taper — the dead-straight specular stripe
+
+A constant-section arm is the defining amateur tell on the temple, a third of the
+silhouette. No source gives a published hinge-width/tip-width pair; every source
+states the taper qualitatively.
+
+    params      Temple Taper float 0.65 (tip/hinge ratio)
+                Taper Start  float, distance back where the taper begins
+    route       post-sweep Set Position, using Z as the along-arm proxy (the arm runs
+                along -Z), Map Range over Z scaling X and Y. No welding needed.
+    why not sweep it  Curve to Mesh's Scale is a single float, not a per-point field,
+                so a swept band is constant-section by construction. A true swept
+                taper needs 4-6 sized segments plus Merge by Distance - only worth it
+                if a macro shot needs it.
+    note        real temples taper X more than Y, because thickness is the sheet
+                gauge. Drive them separately.
+    assertion   cross-section at 5 mm behind the hinge within 0.05 mm of nominal, and
+                at the tip within 0.05 mm of nominal * Temple Taper. The current
+                harness measures endpoints only and would not catch a dead parameter.
+
+### 11.4 Merge by Distance on the assembled pair — a real defect
+
+`build_eyewear_pair` joins front + hinges + temples with `Join Geometry`, which does
+**not** weld. The bridge is likewise joined to the rim unwelded (eyewear.py:229-238).
+So the assembled pair is non-manifold at those seams. The front alone measures clean,
+which is why this was never caught - the checks ran on the front, not the pair.
+
+    fix         Merge by Distance at the pair level, small threshold
+    assertion   NEW: the pair must be manifold. This is the check that was missing.
+
+### 11.5 Split the pair into the five named nodes, with material slots
+
+`build_eyewear_pair` currently emits ONE joined mesh with no material slots. That
+fails the only machine-checkable eyewear delivery spec (Frame / TempleR / TempleL /
+LensR / LensL) and blocks per-part materials - metal hinges and an acetate front
+cannot share a shader.
+
+    route       Set Material per part in-graph; the hinge barrel already derives
+                Top/Side/Bottom selections and the barrel side is a ready-made
+                material selection
+    budget      4 materials = 4 draw calls, well inside the web budget
+    assertion   the five node names exist as separate outputs, each with a slot
+    note        material separation is builder work, not artist work. Nothing in the
+                materials appendix (M1-M11) works until this exists.
+
+### 11.6 Material builders and COLOR_0 writers (from M1-M11)
+
+    MEL_mat_eyewear_acetate / _metal / _lens / _silicone
+    MEL_eyewear_tortoise      COLOR_0 marbling, FLOAT_COLOR, CORNER domain
+    MEL_eyewear_lens_gradient COLOR_0 vertical tint
+
+The load-bearing constraint: GN output ships POSITION + NORMAL only, so **COLOR_0 is
+the only spatial shading channel this pipeline has**. Marbling and gradient tint are
+spatial masks - if the builder does not emit them they cannot be authored at all.
+Author in sRGB and verify against the exported GLB, because Blender's exporter runs
+vertex colours through a linear conversion and the result double-darkens if assumed.
+
+Do NOT use KHR_materials_transmission for the lens: three.js fires an extra full scene
+render per transmissive material, for negligible payoff on a 2 mm slab.
+
+### 11.7 MEL_eyewear_present — orientation, origin, presets
+
+    emits    pair + lens, rotated -90 deg about X so it stands up, origin at the
+             OPTICAL CENTRE (boxing centre / bridge midpoint), not the bbox centre
+    why      a turntable must orbit the vertical axis through the optical centre or
+             the spin wobbles. Right now every render starts with a manual fix.
+    presets  cameras HERO_3Q (85-100 mm equivalent), FRONT_ORTHO, PROFILE, TOP,
+             HINGE_MACRO, TURNTABLE; rigs CATALOG_SHADOWLESS and STUDIO_ACETATE;
+             view transform set explicitly (AgX desaturates tortoiseshell muddy)
+    trap     the default camera clip_start of 0.1 m CLIPS THE ENTIRE 0.134-unit
+             ASSET AWAY and nothing errors. Set ~0.0005 m in the preset.
+
+### 11.8 Hardware and finding builders
+
+Prioritised from the hardware review. All emit millimetres via the existing `_mm`
+helper, all chamfers CONSTRUCTED (no Mesh Bevel), and any nesting builder must
+measure REALIZED geometry (DoD item 4 - already bitten twice).
+
+The review returns a full dimensioned set: hinge leaf and 5-barrel variant, spring
+hinge housing (proud block + slot + plunger tip; the internals are invisible and
+should NOT be modelled), hinge screw M1.4 with head forms, rivet clusters, temple tip
+sleeve with bore matched to the core wire (1.0/1.05/1.2/1.3/1.4/1.6 mm), nose pads and
+arms, and the findings set - jump rings, lobster clasps (12 mm), silicone grip ends
+(19 mm), and the ~3 mm bead palette real eyeglass chains use.
+
+Chain termination in the real world, in order: bead cord -> crimp bead -> jump ring ->
+loop back through the crimp, hung off a silicone or metal eyeglass end on the temple
+tip. The chain builder composes `MEL_nikki_bead_string` through the existing Guide
+Curve path and must not author beads itself.
+
+### 11.9 Barrel Radius — triaged, NOT a defect, do not change it
+
+The geometry review flagged `eyewear.py:454` Barrel Radius 1.4 mm (a 2.80 mm barrel)
+as 1.9x oversized against a 1.5 mm hidden hinge. **The same report contradicts that**:
+it also states barrel outer diameter on a normal frame is commonly 2.0-3.0 mm and that
+our 2.80 mm "sits at the heavy end, appropriate for an acetate front". A 1.5 mm barrel
+is a hidden single-barrel construction, not a visible stack on acetate.
+
+Decision: **leave 1.4**. The useful part of the finding is that barrel COUNT is the
+strongest quality signal in real eyewear (2 reads budget, 3 everyday, 5 and 7
+premium) and the builder already exposes Front Barrels / Temple Barrels. A 3/5/7
+selector is the cheap realism win, not a diameter change.
+
+### 11.10 What the review could not establish
+
+Recorded so these are not mistaken later for settled facts:
+
+- No published eyewear edge-break radius exists. The figures above derive from
+  tumbling process descriptions.
+- Temple width at hinge vs at tip: no numeric pair found anywhere. Ours are the
+  project's own choice, neither corroborated nor contradicted.
+- Minimum metal/titanium rim wall thickness; minimum acetate wall around an embedded
+  barrel; nose pad arm angle in degrees.
+- Whether a production front is one base-curve surface or per-eye.
+- Sizes and clearances that are maker signature rather than engineering: rivet size,
+  count and placement; endpiece geometry.
+
 # Appendix — render workflow
 
 ## Use `MEL_eyewear_pair`
