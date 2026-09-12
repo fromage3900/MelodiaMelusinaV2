@@ -46,7 +46,7 @@ Current preserved example:
 
 This branch is the ASUS laptop Blender / Geometry Nodes / procedural-authoring lane.
 
-**Current lane contract:** [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md) — Blender 5.2 LTS GN baseline, audio-reactive GN proof, Blender Python automation, ArmorPaint evaluation, and promotion rules back into UE/main.
+**Single current laptop source of truth:** [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md). It now contains the active Blender/GN/ArmorPaint plan, workstation sync/handoff rules, recovery provenance, and promotion contract. `LAPTOP_WORK_DISCOVERY_2026-09-04.md` is historical only.
 
 Rules:
 - divergence from `main` is not, by itself, a defect;
