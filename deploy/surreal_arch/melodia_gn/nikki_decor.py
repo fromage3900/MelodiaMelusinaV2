@@ -247,12 +247,13 @@ def _guide_params(tree):
     off is exactly what it was before.
     """
     obj = _guide_param(tree, "Guide")
+    curve = None
     try:
-        make_group_input(tree, "NodeSocketGeometry", "Guide Curve")
+        curve = make_group_input(tree, "NodeSocketGeometry", "Guide Curve")
     except Exception:
         pass
-    add_bool_param(tree, "Guide From Curve", False)
-    return obj
+    use_curve = add_bool_param(tree, "Guide From Curve", False)
+    return obj, curve, use_curve
 
 
 def _guide_geometry(tree, loc, guide_sock, curve_sock=None, use_curve_sock=None):
@@ -759,7 +760,7 @@ def build_nikki_bead_string(group_name="MEL_nikki_bead_string"):
     two near-identical trees plus three stacked duplicates of one of them.
     """
     tree, gin, gout = new_geometry_tree(group_name)
-    guide = _guide_params(tree)
+    guide, guide_curve, use_curve = _guide_params(tree)
     bead_count = add_int_param(tree, "Bead Count", 14, 1, 200)
     bead_radius = add_float_param(tree, "Bead Radius", 0.022, 0.002, 0.30)
     droop = add_float_param(tree, "Droop", 0.10, 0.0, 2.0)
@@ -769,7 +770,7 @@ def build_nikki_bead_string(group_name="MEL_nikki_bead_string"):
     show_cord = add_bool_param(tree, "Show Cord", True)
     mat = _material_param(tree)
 
-    guide_geom = _guide_geometry(tree, (-1460, 0), guide)
+    guide_geom = _guide_geometry(tree, (-1460, 0), guide, guide_curve, use_curve)
     drooped = _drooped_curve(tree, (-1260, 0), guide_geom, droop)
 
     cord = _sweep_circle(tree, (-1040, -340), drooped, cord_r)
@@ -843,7 +844,7 @@ def build_nikki_bead_string(group_name="MEL_nikki_bead_string"):
 def build_nikki_star_pendant(group_name="MEL_nikki_star_pendant"):
     """Star pendants hanging from a drooping cord run along a guide object."""
     tree, gin, gout = new_geometry_tree(group_name)
-    guide = _guide_params(tree)
+    guide, guide_curve, use_curve = _guide_params(tree)
     count = add_int_param(tree, "Pendant Count", 12, 1, 120)
     star_size = add_float_param(tree, "Star Size", 0.032, 0.005, 0.30)
     hang = add_float_param(tree, "Hang", 0.075, 0.0, 1.0)
@@ -851,7 +852,7 @@ def build_nikki_star_pendant(group_name="MEL_nikki_star_pendant"):
     cord_r = add_float_param(tree, "Cord Radius", 0.0026, 0.0005, 0.05)
     mat = _material_param(tree)
 
-    guide_geom = _guide_geometry(tree, (-1460, 0), guide)
+    guide_geom = _guide_geometry(tree, (-1460, 0), guide, guide_curve, use_curve)
     drooped = _drooped_curve(tree, (-1260, 0), guide_geom, droop)
     cord = _sweep_circle(tree, (-1040, -340), drooped, cord_r)
     points = _resample(tree, (-1040, 120), drooped, count)
@@ -895,7 +896,7 @@ def build_nikki_star_pendant(group_name="MEL_nikki_star_pendant"):
 def build_nikki_heart_filigree(group_name="MEL_nikki_heart_filigree"):
     """Hearts hanging beneath a drooping cord run, each optionally in a filigree wreath."""
     tree, gin, gout = new_geometry_tree(group_name)
-    guide = _guide_params(tree)
+    guide, guide_curve, use_curve = _guide_params(tree)
     count = add_int_param(tree, "Heart Count", 6, 1, 80)
     heart_size = add_float_param(tree, "Heart Size", 0.032, 0.005, 0.30)
     hang = add_float_param(tree, "Hang", 0.10, 0.0, 1.0)
@@ -904,7 +905,7 @@ def build_nikki_heart_filigree(group_name="MEL_nikki_heart_filigree"):
     cord_r = add_float_param(tree, "Cord Radius", 0.0026, 0.0005, 0.05)
     mat = _material_param(tree)
 
-    guide_geom = _guide_geometry(tree, (-1460, 0), guide)
+    guide_geom = _guide_geometry(tree, (-1460, 0), guide, guide_curve, use_curve)
     drooped = _drooped_curve(tree, (-1260, 0), guide_geom, droop)
     cord = _sweep_circle(tree, (-1040, -340), drooped, cord_r)
     points = _resample(tree, (-1040, 120), drooped, count)
