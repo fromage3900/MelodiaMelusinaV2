@@ -28,8 +28,8 @@ import bpy
 
 from .core import (
     GROUP_BUILDERS, add_bool_param, add_float_param, add_int_param, add_vector_param,
-    label_tree, link_sockets, make_group_output, new_geometry_tree, register_builder,
-    safe_node, sock,
+    label_tree, link_sockets, make_group_input, make_group_output, new_geometry_tree,
+    register_builder, safe_node, sock,
 )
 
 MM = 0.001          # millimetres -> Blender units (1 BU = 1 m)
@@ -68,6 +68,110 @@ def _constant(tree, loc, value):
 def _offset(tree, loc, source, dx):
     """source + dx, where dx is a socket or a float."""
     return _math(tree, "ADD", loc, a=source, b=dx)
+
+
+def build_eyewear_tortoise(group_name="MEL_eyewear_tortoise"):
+    """Chainable COLOR_0 writer (11.6): tortoise marbling over a solid base.
+
+    out = mix(Solid, marble(Position * Scale), Amount). Amount 0 writes the
+    solid alone (today's look, and the ensure step that guarantees every part
+    carries Col so joined meshes never inherit a black default).
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    make_group_input(tree, "NodeSocketColor", "Solid", default=TORTOISE_SOLID)
+    add_float_param(tree, "Amount", 0.0, 0.0, 1.0)
+    add_float_param(tree, "Scale", 250.0, 10.0, 2000.0)
+
+    bx, by = 0, 0
+    done = False
+    try:
+        pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 600, by))
+        noise = safe_node(tree, "ShaderNodeTexNoise", (bx - 420, by))
+        link_sockets(tree, sock(pos, "Position", outputs=True),
+                     sock(noise, "Vector"))
+        link_sockets(tree, sock(gin, "Scale", outputs=True),
+                     sock(noise, "Scale"))
+        try:
+            sock(noise, "Detail").default_value = 3.0
+        except Exception:
+            pass
+        marble = None
+        try:
+            # Noise Fac concentrates mid-range, which would leave the ramp's
+            # dark/honey ends unsampled (measured marble stuck in [0.22, 0.6]).
+            # Remap 0.2..0.8 -> 0..1 (clamped) so the full stop range expresses.
+            fac = sock(noise, "Fac", outputs=True)
+            mr = safe_node(tree, "ShaderNodeMapRange", (bx - 330, by))
+            _typed(mr, "From Min", "VALUE").default_value = 0.2
+            _typed(mr, "From Max", "VALUE").default_value = 0.8
+            link_sockets(tree, fac, _typed(mr, "Value", "VALUE"))
+            marble = _ramp(tree, _typed(mr, "Result", "VALUE", outputs=True),
+                           TORTOISE_STOPS, (bx - 240, by))
+        except Exception:
+            marble = _ramp(tree, sock(noise, "Fac", outputs=True),
+                           TORTOISE_STOPS, (bx - 240, by))
+        mixed = _mix_rgba(tree, sock(gin, "Amount", outputs=True),
+                          sock(gin, "Solid", outputs=True), marble,
+                          (bx - 60, by))
+        out = _store_col(tree, sock(gin, "Geometry", outputs=True), mixed,
+                         (bx + 140, by))
+        link_sockets(tree, out, gout.inputs["Geometry"])
+        done = out is not None
+    except Exception:
+        done = False
+    if not done:
+        link_sockets(tree, sock(gin, "Geometry", outputs=True),
+                     gout.inputs["Geometry"])
+    label_tree(tree, group_name)
+    return (tree, gin, gout)
+
+
+register_builder(
+    "MEL_eyewear_tortoise", build_eyewear_tortoise, "Eyewear Tortoise",
+    "Chainable COLOR_0 writer: tortoise marbling over Solid "
+    "(Amount 0 = solid).",
+    category="eyewear")
+
+
+def build_eyewear_lens_gradient(group_name="MEL_eyewear_lens_gradient"):
+    """Chainable COLOR_0 writer (11.6): vertical lens tint, Top at +Y.
+
+    t = MapRange(Y, -HalfHeight, +HalfHeight -> 0, 1); out = mix(Bottom, Top, t).
+    Equal tints = uniform (today's look).
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    make_group_input(tree, "NodeSocketColor", "Top Tint", default=LENS_TINT_DEFAULT)
+    make_group_input(tree, "NodeSocketColor", "Bottom Tint", default=LENS_TINT_DEFAULT)
+    add_float_param(tree, "Half Height", 17.0, 1.0, 100.0)
+
+    bx, by = 0, 0
+    try:
+        pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 600, by))
+        sepx = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 420, by))
+        link_sockets(tree, sock(pos, "Position", outputs=True), sock(sepx, "Vector"))
+        half = sock(gin, "Half Height", outputs=True)
+        negh = _math(tree, "MULTIPLY", (bx - 420, by - 200), a=half, b=-1.0)
+        mr = safe_node(tree, "ShaderNodeMapRange", (bx - 240, by))
+        link_sockets(tree, sock(sepx, "Y", outputs=True), _typed(mr, "Value", "VALUE"))
+        link_sockets(tree, negh.outputs[0], _typed(mr, "From Min", "VALUE"))
+        link_sockets(tree, half, _typed(mr, "From Max", "VALUE"))
+        mixed = _mix_rgba(tree, _typed(mr, "Result", "VALUE", outputs=True),
+                          sock(gin, "Bottom Tint", outputs=True),
+                          sock(gin, "Top Tint", outputs=True), (bx - 60, by))
+        out = _store_col(tree, sock(gin, "Geometry", outputs=True), mixed,
+                         (bx + 140, by))
+        if out is not None:
+            link_sockets(tree, out, gout.inputs["Geometry"])
+    except Exception:
+        link_sockets(tree, sock(gin, "Geometry", outputs=True), gout.inputs["Geometry"])
+    label_tree(tree, group_name)
+    return (tree, gin, gout)
+
+
+register_builder(
+    "MEL_eyewear_lens_gradient", build_eyewear_lens_gradient, "Eyewear Lens Gradient",
+    "Chainable COLOR_0 writer: vertical lens tint (Top at +Y).",
+    category="eyewear")
 
 
 def build_eyewear_front(group_name="MEL_eyewear_front"):
@@ -369,6 +473,10 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
     if front_joined is not None and half_span is not None:
         front_joined = _base_curve_field(tree, front_joined, gin,
                                          half_span.outputs[0], (bx + 840, by))
+    # NOTE: no finish writer here. _subtree() rebuilds by name, so a writer
+    # nested in this intermediate builder would be destroyed when the pair
+    # builds its own copy for the shared finish pass. The pair owns ALL
+    # tortoise application (see _paint); this builder stays paint-free.
     if front_joined is not None:
         link_sockets(tree, front_joined, gout.inputs["Geometry"])
 
@@ -827,15 +935,39 @@ def _principled_material(name, base_color, metallic=0.0, roughness=0.5,
     return mat
 
 
-def ensure_eyewear_materials():
-    """The four M1 delivery materials (11.6 structural core; COLOR_0 work later).
+def _drive_base_from_col(mat):
+    """Point a Principled Base Color at the Col attribute (11.6).
 
-    Acetate default is a neutral espresso; tortoise marbling arrives as a
-    CORNER-domain COLOR_0 layer, not as a second material. Lens stays clear of
+    Col IS the display color (solid / marble / gradient per part); the
+    authored Base Color stays as the no-attribute fallback. Every part leaves
+    the pair builders carrying Col, so the fallback never shows — and the
+    export gate asserts it.
+    """
+    try:
+        nt = mat.node_tree
+        bsdf = next(n for n in nt.nodes
+                    if getattr(n, "bl_idname", "") == "ShaderNodeBsdfPrincipled")
+        attr = nt.nodes.new("ShaderNodeAttribute")
+        attr.location = (-200, 100)
+        try:
+            attr.attribute_name = COL_ATTR
+        except Exception:
+            pass
+        nt.links.new(attr.outputs["Color"], bsdf.inputs["Base Color"])
+    except Exception:
+        pass
+
+
+def ensure_eyewear_materials():
+    """The four M1 delivery materials (11.6).
+
+    Display color comes from the CORNER COLOR_0 attribute the builders write
+    (solid / tortoise marble / lens gradient); the authored Base Color stays
+    as the no-attribute fallback. Lens stays clear of
     KHR_materials_transmission: alpha blend only, so three.js pays no extra
     scene render per lens.
     """
-    return {
+    mats = {
         "acetate": _principled_material(
             "MEL_mat_eyewear_acetate", (0.09, 0.055, 0.045, 1.0),
             metallic=0.0, roughness=0.45),
@@ -849,6 +981,10 @@ def ensure_eyewear_materials():
             "MEL_mat_eyewear_silicone", (0.75, 0.72, 0.70, 1.0),
             metallic=0.0, roughness=0.90),
     }
+    for mat in mats.values():
+        if mat is not None:
+            _drive_base_from_col(mat)
+    return mats
 
 
 def _apply_material(tree, geom, material, loc):
@@ -901,6 +1037,107 @@ def _split_x_sign(tree, geom, loc):
 
 
 _SMOOTH_ABS_K = 0.002  # BU (2 mm): smooth-abs knee for the 11.2 fields
+
+# 11.6 sRGB working values. The exporter converts vertex colours on the way
+# out (see tortoise_gradient_check.py round-trip pin), so these are authored
+# as sRGB and verified against the decoded GLB, never assumed.
+TORTOISE_SOLID = (0.09, 0.055, 0.045, 1.0)   # neutral espresso acetate
+TORTOISE_STOPS = (  # (position, rgba) marbling across Noise Fac
+    (0.00, (0.05, 0.020, 0.010, 1.0)),
+    (0.35, (0.28, 0.090, 0.020, 1.0)),
+    (0.55, (0.75, 0.420, 0.120, 1.0)),
+    (0.72, (0.50, 0.200, 0.050, 1.0)),
+    (1.00, (0.04, 0.015, 0.008, 1.0)),
+)
+LENS_TINT_DEFAULT = (0.90, 0.95, 1.0, 1.0)
+CHAMPAGNE = (0.95, 0.80, 0.60, 1.0)
+COL_ATTR = "Col"  # Blender default colour-attribute name: exports as COLOR_0
+
+
+def _typed(node, name, stype, outputs=False):
+    """Socket by (name, type). REQUIRED on 5.2 multi-type nodes (Mix exposes
+    Factor/A/B/Result in FLOAT, VECTOR, RGBA and ROTATION side by side, all
+    sharing names) — name-only lookup silently lands on FLOAT."""
+    if node is None:
+        return None
+    coll = node.outputs if outputs else node.inputs
+    try:
+        for s in coll:
+            if getattr(s, "name", None) == name and getattr(s, "type", None) == stype:
+                return s
+    except Exception:
+        pass
+    return None
+
+
+def _mix_rgba(tree, factor, col_a, col_b, loc):
+    """Color mix node (Factor, A, B). Returns the RGBA Result or None."""
+    mx = safe_node(tree, "ShaderNodeMix", loc)
+    if mx is None:
+        return None
+    try:
+        mx.data_type = "RGBA"
+    except Exception:
+        pass
+    try:
+        mx.blend_type = "MIX"
+    except Exception:
+        pass
+    try:
+        if factor is not None:
+            link_sockets(tree, factor, _typed(mx, "Factor", "VALUE"))
+        if col_a is not None:
+            link_sockets(tree, col_a, _typed(mx, "A", "RGBA"))
+        if col_b is not None:
+            link_sockets(tree, col_b, _typed(mx, "B", "RGBA"))
+        return _typed(mx, "Result", "RGBA", outputs=True)
+    except Exception:
+        return None
+
+
+def _store_col(tree, geom, color_sock, loc, name=COL_ATTR):
+    """Write a colour field to a CORNER FLOAT_COLOR attribute (11.6)."""
+    if geom is None or color_sock is None:
+        return geom
+    st = safe_node(tree, "GeometryNodeStoreNamedAttribute", loc)
+    if st is None:
+        return geom
+    try:
+        st.data_type = "FLOAT_COLOR"
+    except Exception:
+        pass
+    try:
+        st.domain = "CORNER"
+    except Exception:
+        pass
+    try:
+        sock(st, "Name").default_value = name
+    except Exception:
+        pass
+    try:
+        link_sockets(tree, geom, sock(st, "Geometry"))
+        link_sockets(tree, color_sock, sock(st, "Value"))
+        return st.outputs["Geometry"]
+    except Exception:
+        return geom
+
+
+def _ramp(tree, fac_sock, stops, loc):
+    """ValToRGB with explicit stops. Returns outputs['Color'] or None."""
+    rp = safe_node(tree, "ShaderNodeValToRGB", loc)
+    if rp is None or fac_sock is None:
+        return None
+    try:
+        link_sockets(tree, fac_sock, sock(rp, "Fac"))
+        els = rp.color_ramp.elements
+        while len(els) < len(stops):
+            els.new(0.5)
+        for el, (pos, col) in zip(els, stops):
+            el.position = pos
+            el.color = col
+        return rp.outputs["Color"]
+    except Exception:
+        return None
 
 
 def _base_curve_field(tree, geom, gin, half_sock, loc,
@@ -1016,6 +1253,10 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     # and applied as rigid seat rotations below so hinges/temples track the wrap.
     add_float_param(tree, "Base Curve", 0.0, 0.0, 8.0)
     add_float_param(tree, "Form Angle", 0.0, 0.0, 25.0)
+    # 11.6 editorial finish controls.
+    add_float_param(tree, "Tortoise", 0.0, 0.0, 1.0)
+    make_group_input(tree, "NodeSocketColor", "Top Tint", default=LENS_TINT_DEFAULT)
+    make_group_input(tree, "NodeSocketColor", "Bottom Tint", default=LENS_TINT_DEFAULT)
 
     bx, by = 0, 0
 
@@ -1039,7 +1280,8 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     if not all((front, hinge_l, hinge_r, templ_l, templ_r)):
         return (tree, gin, gout)
 
-    # forward the frame parameters to the front
+    # forward the frame parameters to the front (finish params live here in
+    # the pair: the shared tortoise pass below, driven by Tortoise)
     for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
               "Rim Depth", "Corner Radius", "Silhouette",
               "Base Curve", "Form Angle"):
@@ -1114,6 +1356,46 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     dressed["tr"] = _apply_material(
         tree, _g_sock(templ_r, "Geometry", outputs=True), acetate, (bx - 240, by - 1050))
 
+    # 11.6 COLOR_0 ensure: solid Col on arms + knuckles (temples espresso via
+    # the writer default, hinges champagne) so the join never inherits a
+    # black default attribute.
+    tor_sub = _subtree("MEL_eyewear_tortoise")
+    # Champagne constant: FunctionNodeCombineColor (ShaderNodeRGB and
+    # ShaderNodeCombineColor cannot join a geometry tree on this build).
+    champ = safe_node(tree, "FunctionNodeCombineColor", (bx - 60, by - 1250))
+    champ_col = None
+    if champ is not None:
+        try:
+            sock(champ, "Red").default_value = CHAMPAGNE[0]
+            sock(champ, "Green").default_value = CHAMPAGNE[1]
+            sock(champ, "Blue").default_value = CHAMPAGNE[2]
+            sock(champ, "Alpha").default_value = CHAMPAGNE[3]
+            champ_col = sock(champ, "Color", outputs=True)
+        except Exception:
+            champ_col = None
+
+    def _paint(geom, loc, solid_from=None, amount_from=None):
+        n = _nest(tree, tor_sub, loc)
+        if n is None:
+            return geom
+        try:
+            link_sockets(tree, geom, _g_sock(n, "Geometry"))
+            if solid_from is not None:
+                link_sockets(tree, solid_from, _g_sock(n, "Solid"))
+            if amount_from is not None:
+                link_sockets(tree, amount_from, _g_sock(n, "Amount"))
+            return _g_sock(n, "Geometry", outputs=True)
+        except Exception:
+            return geom
+
+    if tor_sub is not None:
+        dressed["front"] = _paint(dressed.get("front"), (bx - 60, by - 1170),
+                                  amount_from=sock(gin, "Tortoise", outputs=True))
+        dressed["tl"] = _paint(dressed.get("tl"), (bx - 60, by - 1300))
+        dressed["tr"] = _paint(dressed.get("tr"), (bx - 60, by - 1430))
+        dressed["hl"] = _paint(dressed.get("hl"), (bx - 60, by - 1560), champ_col)
+        dressed["hr"] = _paint(dressed.get("hr"), (bx - 60, by - 1690), champ_col)
+
     placed = {}
     for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
         src = dressed.get(key)
@@ -1169,7 +1451,7 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     lens_n = _nest(tree, lens_sub, (bx - 400, by - 1300))
     if lens_n is not None:
         for p in ("Lens Width A", "Lens Height B", "Bridge DBL",
-                  "Base Curve", "Form Angle"):
+                  "Base Curve", "Form Angle", "Top Tint", "Bottom Tint"):
             _forward(tree, gin, p, lens_n, p)
         lens_geo = _g_sock(lens_n, "Geometry", outputs=True)
         lens_r_geo, lens_l_geo = _split_x_sign(tree, lens_geo, (bx - 200, by - 1300))
@@ -1251,6 +1533,9 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
     # values so rim and lens agree. Default flat (today's look).
     add_float_param(tree, "Base Curve", 0.0, 0.0, 8.0)
     add_float_param(tree, "Form Angle", 0.0, 0.0, 25.0)
+    # 11.6 lens gradient endpoints (Top at +Y). Equal = uniform (today's look).
+    make_group_input(tree, "NodeSocketColor", "Top Tint", default=LENS_TINT_DEFAULT)
+    make_group_input(tree, "NodeSocketColor", "Bottom Tint", default=LENS_TINT_DEFAULT)
 
     bx, by = 0, 0
 
@@ -1381,6 +1666,23 @@ def build_eyewear_lens(group_name="MEL_eyewear_lens"):
     if lens_joined is not None and half_span is not None:
         lens_joined = _base_curve_field(tree, lens_joined, gin,
                                         half_span.outputs[0], (bx + 1400, by))
+    # 11.6 COLOR_0: vertical gradient tint (defaults uniform = today's look).
+    if lens_joined is not None:
+        grad_sub = _subtree("MEL_eyewear_lens_gradient")
+        grad_n = _nest(tree, grad_sub, (bx + 1580, by))
+        if grad_n is not None:
+            _forward(tree, gin, "Top Tint", grad_n, "Top Tint")
+            _forward(tree, gin, "Bottom Tint", grad_n, "Bottom Tint")
+            try:
+                half_b = _math(tree, "MULTIPLY", (bx + 1400, by - 200),
+                               a=b_h, b=0.5)
+                if half_b is not None:
+                    link_sockets(tree, half_b.outputs[0],
+                                 _g_sock(grad_n, "Half Height"))
+                link_sockets(tree, lens_joined, _g_sock(grad_n, "Geometry"))
+                lens_joined = _g_sock(grad_n, "Geometry", outputs=True)
+            except Exception:
+                pass
     if lens_joined is not None:
         link_sockets(tree, lens_joined, gout.inputs["Geometry"])
 
