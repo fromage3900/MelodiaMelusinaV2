@@ -1198,6 +1198,7 @@ GROUP_BUILDERS: dict[str, callable] = {}
 GROUP_METADATA: dict[str, dict] = {}
 
 CATEGORY_META: dict[str, dict] = {
+    "eyewear": {"label": "Eyewear", "icon": "MESH_CIRCLE"},
     "primitives":  {"label": "Primitives",          "icon": "MESH_GRID"},
     "profiles":    {"label": "Profiles",             "icon": "MESH_CYLINDER"},
     "math_attrs":  {"label": "Math & Attributes",    "icon": "NODETREE"},
