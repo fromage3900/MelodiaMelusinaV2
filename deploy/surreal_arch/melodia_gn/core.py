@@ -1020,29 +1020,49 @@ def sweep_profile(tree, loc, curve_or_mesh_sock, radius_sock, profile_res=8, alr
     return sweep.outputs.get("Mesh") or sweep.outputs.get("Geometry")
 
 
+# Builders for which an ABSOLUTE pulse cannot be defended, because their own geometry is
+# smaller than the pulse. Measured per builder by Tools/music_pulse_audit.py; the ledger is
+# Saved/Audit/music_pulse_audit_<date>.json. The pulse is Musical Amplitude (0.02 BU =
+# 20 mm peak) applied in absolute distance, so it is 1-2% of a metre-scale build's own
+# diagonal - the intended subtle warp - but 41% of the 76 mm bead and 444% of the 8 mm
+# eyewear hinge. Prefixes, not ids: a bead string inherits the pulse on its nested beads,
+# so every consumer of a prop template has to be covered, not just the template.
+_PROP_SCALE_PREFIXES = (
+    "MEL_eyewear",        # ISO 8624 CAD eyewear, millimetre-exact by contract
+    "MEL_nikki_bead",     # bead + bead string (+41.2% of own diagonal measured)
+    "MEL_nikki_heart",    # heart + heart filigree (+11.4%)
+    "MEL_nikki_star",     # star + star pendant (+1.8%, same 20 mm pulse on an 84 mm star)
+    "MEL_nikki_crystal",
+    "MEL_nikki_cord",
+    "MEL_nikki_wall_beads",
+    "MEL_nikki_legacy_",
+    "MEL_aest_zen_bonsai",  # +2.6%
+)
+
+
 def add_music_influence_params(tree):
     """Sockets for the Universal Musical Influence post-pass.
 
-    Music Influence defaults ON so builds are musical out of the box. The offset is
-    an ABSOLUTE distance in Blender units, so the way to default it on safely is a
-    small Musical Amplitude: 0.02 keeps the peak near 40 mm once |sin+sin| reaches
-    2. At the original 1.0 the peak was ~2 m, which took the 134 mm eyewear pair to
-    1.97 m.
+    The offset is an ABSOLUTE distance in Blender units, so the only way to default it
+    on safely is a small Musical Amplitude: 0.02 keeps the peak near 40 mm once
+    |sin+sin| reaches 2. That is 1-2% of a metre-scale build and was measured across
+    all 566 builders (Tools/music_pulse_audit.py) rather than assumed.
+
+    Music Influence therefore defaults OFF for the prop-scale families listed in
+    _PROP_SCALE_PREFIXES, where the same absolute 20 mm is a large fraction of the
+    geometry itself - the mm-accurate eyewear family (a pulse of a few percent moves
+    the pair off its own specified dimensions: 142.629 mm against 134.000 with the
+    pass on) and the jewellery family (a 22 mm bead measures 27.99 mm with it on and
+    exactly 22.00 mm with it off). The parameter is still there on every one of them
+    to raise when a render wants the pulse.
 
     A size-relative pulse (multiply by the geometry's own bounding-box diagonal) was
     tried and abandoned: it requires a BoundBox, and this project's F gate forbids
-    reading a BoundBox over unrealized instances. Realizing first also tripped F, and
-    with both removed F still flagged the same six builders, so that condition is
-    pre-existing and unrelated. Nothing here adds nodes - only defaults change.
-
-    The mm-accurate eyewear family is exempt. It is authored to ISO 8624 for
-    CAD-level mockups, where a pulse of a few percent moves the frame off its own
-    dimensions (measured with the pass on: pair 142.629 mm against its specified
-    134.000, lens 129.286 against 126.000). Those builders default to 0 and the
-    parameter is still there to raise when a render wants the pulse.
+    reading a BoundBox over unrealized instances. Nothing here adds nodes - only
+    defaults change.
     """
     name = getattr(tree, "name", "") or ""
-    default = 0.0 if name.startswith("MEL_eyewear") else 1.0
+    default = 0.0 if name.startswith(_PROP_SCALE_PREFIXES) else 1.0
     add_float_param(tree, "Music Influence", default, 0.0, 1.0)
     add_float_param(tree, "Musical Amplitude", 0.02, 0.0, 0.5)
     add_float_param(tree, "Musical Freq A", 2.0, 0.1, 12.0)

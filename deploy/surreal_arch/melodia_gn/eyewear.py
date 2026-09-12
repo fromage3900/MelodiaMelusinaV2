@@ -84,6 +84,20 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
     add_float_param(tree, "Bridge Drop", 5.0, -6.0, 20.0)
     add_bool_param(tree, "Fill Caps", False)
 
+    # 8.1 silhouettes. Every shape stays INSCRIBED in the same w x h box, so the boxing
+    # contract (outer width 2A + DBL + 2 Rim Thickness) is invariant across them and the
+    # existing 134.000 measurement still pins the aperture. 0 Rect, 1 Round/Panto,
+    # 2 Cat-Eye.
+    add_int_param(tree, "Silhouette", 0, 0, 2)
+    add_float_param(tree, "Panto Round", 0.45, 0.1, 0.5)
+    add_float_param(tree, "Cat Eye Taper", 0.88, 0.6, 1.0)
+    add_float_param(tree, "Cat Eye Sweep", 6.0, 0.0, 14.0)
+    # 11.1 rim edge break. Every real frame is tumbled, not modelled with a rounded edge;
+    # 0.5-1.0 mm acetate and 0.2-0.5 mm metal are inference from the tumbling process, not
+    # a published radius. Constructed into the profile - GeometryNodeMeshBevel is measured
+    # unusable on this build (0.3 mm took a 54 mm lens to 322 mm).
+    add_float_param(tree, "Rim Edge Break", 1.0, 0.2, 1.5)
+
     bx, by = 0, 0
 
     # --- profile: the rim cross-section, cyclic ------------------------------
@@ -98,6 +112,34 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                  prof.inputs["Width"])
     link_sockets(tree, _mm(tree, gin, "Rim Depth", (bx - 1080, by - 360)),
                  prof.inputs["Height"])
+
+    # rounded rim cross-section: resample so the fillet has a vertex to work with, then
+    # fillet with Limit Radius on so the break cannot consume a whole face (clamp is
+    # half the shortest edge - 2.0 mm for the 4.0 x 6.0 default profile)
+    prof_out = prof.outputs["Curve"]
+    p_res = safe_node(tree, "GeometryNodeResampleCurve", (bx - 760, by - 300))
+    p_flt = safe_node(tree, "GeometryNodeFilletCurve", (bx - 620, by - 300))
+    if p_res is not None and p_flt is not None:
+        for cand in ("Length", "LENGTH"):
+            try:
+                p_res.inputs["Mode"].default_value = cand
+                break
+            except Exception:
+                continue
+        link_sockets(tree, prof_out, p_res.inputs["Curve"])
+        link_sockets(tree, _mm(tree, gin, "Rim Edge Break", (bx - 900, by - 460), scale=0.5),
+                     p_res.inputs["Length"])
+        for cand in ("Poly", "POLY", "Polygon"):
+            try:
+                p_flt.inputs["Mode"].default_value = cand
+                break
+            except Exception:
+                continue
+        link_sockets(tree, p_res.outputs["Curve"], p_flt.inputs["Curve"])
+        link_sockets(tree, _mm(tree, gin, "Rim Edge Break", (bx - 900, by - 560)),
+                     p_flt.inputs["Radius"])
+        p_flt.inputs["Limit Radius"].default_value = True
+        prof_out = p_flt.outputs["Curve"]
 
     def rim(tag, y_flip):
         """One eyewire: aperture box grown by a rim, resampled, filleted, swept."""
@@ -123,22 +165,76 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
         link_sockets(tree, w.outputs[0], quad.inputs["Width"])
         link_sockets(tree, h.outputs[0], quad.inputs["Height"])
 
-        # uniform path spacing, then pre-round the corners (Limit Radius on) so
-        # the profile cannot self-intersect inside a turn
-        res = safe_node(tree, "GeometryNodeResampleCurve", (x0 - 240, y0))
-        if res is None:
-            return None
-        for cand in ("Length", "LENGTH"):
+        # --- 8.1 silhouette branch -------------------------------------------
+        # Cat-eye as a TRAPEZOID (measured on 5.2: Width not used, Bottom Width / Top
+        # Width / Offset are - Top Width is centred on Offset). Top Width = w - 2*Sweep
+        # and Offset = Sweep put the swept top edge exactly on +w/2, so the box is
+        # unchanged and the 134.000 assertion still pins the aperture.
+        sweep_mm = _mm(tree, gin, "Cat Eye Sweep", (x0 - 820, y0 + 620))
+        taper = _math(tree, "MULTIPLY", (x0 - 820, y0 + 520),
+                      a=w.outputs[0], b=sock(gin, "Cat Eye Taper", outputs=True))
+        two_sweep = _math(tree, "MULTIPLY", (x0 - 820, y0 + 720), a=sweep_mm, b=2.0)
+        top_w = _math(tree, "SUBTRACT", (x0 - 700, y0 + 700),
+                      a=w.outputs[0], b=two_sweep.outputs[0] if two_sweep else None)
+        quad_ce = safe_node(tree, "GeometryNodeCurvePrimitiveQuadrilateral", (x0 - 420, y0 + 500))
+        if quad_ce is not None:
             try:
-                res.inputs["Mode"].default_value = cand
-                break
+                quad_ce.mode = "TRAPEZOID"
             except Exception:
-                continue
-        link_sockets(tree, quad.outputs["Curve"], res.inputs["Curve"])
-        link_sockets(tree, _mm(tree, gin, "Path Resolution", (x0 - 420, y0 - 220)),
-                     res.inputs["Length"])
+                pass
+            link_sockets(tree, top_w.outputs[0], quad_ce.inputs["Top Width"])
+            link_sockets(tree, taper.outputs[0], quad_ce.inputs["Bottom Width"])
+            link_sockets(tree, h.outputs[0], quad_ce.inputs["Height"])
+            sign = -1.0 if y_flip else 1.0
+            sgn = _math(tree, "MULTIPLY", (x0 - 700, y0 + 420), a=sweep_mm, b=sign)
+            if sgn is not None:
+                link_sockets(tree, sgn.outputs[0], quad_ce.inputs["Offset"])
 
-        flt = safe_node(tree, "GeometryNodeFilletCurve", (x0 - 60, y0))
+        sw_geo = safe_node(tree, "GeometryNodeIndexSwitch", (x0 - 300, y0 + 460))
+        shape_out = quad.outputs["Curve"]
+        if sw_geo is not None:
+            try:
+                sw_geo.data_type = "GEOMETRY"
+            except Exception:
+                pass
+            while len(sw_geo.index_switch_items) < 3:
+                sw_geo.index_switch_items.new()
+            link_sockets(tree, sock(gin, "Silhouette", outputs=True), sw_geo.inputs["Index"])
+            link_sockets(tree, quad.outputs["Curve"], sw_geo.inputs["0"])
+            link_sockets(tree, quad.outputs["Curve"], sw_geo.inputs["1"])
+            if quad_ce is not None:
+                link_sockets(tree, quad_ce.outputs["Curve"], sw_geo.inputs["2"])
+            shape_out = sw_geo.outputs[0]
+
+        # corner radius per shape: 0/2 use the Corner Radius param, 1 (panto) rounds the
+        # box as far as Limit Radius allows
+        minwh = _math(tree, "MINIMUM", (x0 - 620, y0 + 900),
+                      a=w.outputs[0], b=h.outputs[0])
+        panto_r = _math(tree, "MULTIPLY", (x0 - 500, y0 + 900),
+                        a=minwh.outputs[0], b=sock(gin, "Panto Round", outputs=True))
+        corner = _mm(tree, gin, "Corner Radius", (x0 - 620, y0 + 1040))
+        sw_rad = safe_node(tree, "GeometryNodeIndexSwitch", (x0 - 340, y0 + 980))
+        radius_out = corner
+        if sw_rad is not None and corner is not None:
+            try:
+                sw_rad.data_type = "FLOAT"
+            except Exception:
+                pass
+            while len(sw_rad.index_switch_items) < 3:
+                sw_rad.index_switch_items.new()
+            link_sockets(tree, sock(gin, "Silhouette", outputs=True), sw_rad.inputs["Index"])
+            link_sockets(tree, corner, sw_rad.inputs["0"])
+            link_sockets(tree, panto_r.outputs[0], sw_rad.inputs["1"])
+            link_sockets(tree, corner, sw_rad.inputs["2"])
+            radius_out = sw_rad.outputs[0]
+
+        # Fillet BEFORE resample. Measured: with Resample first, every silhouette edge is
+        # diced to Path Resolution (~3 mm), and Fillet's Limit Radius clamps to half the
+        # shortest edge - 1.5 mm - so Corner Radius (7 mm) and the panto radius (18.9 mm)
+        # both collapsed to the same value and the shape branch measured dead (rect and
+        # panto row width identical at 128.257). Filleting the undiced quad lets
+        # Limit Radius clamp against the real 42 mm edge (21 mm) instead.
+        flt = safe_node(tree, "GeometryNodeFilletCurve", (x0 - 240, y0))
         if flt is None:
             return None
         for cand in ("Poly", "POLY", "Polygon"):
@@ -147,10 +243,24 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                 break
             except Exception:
                 continue
-        link_sockets(tree, res.outputs["Curve"], flt.inputs["Curve"])
-        link_sockets(tree, _mm(tree, gin, "Corner Radius", (x0 - 240, y0 - 320)),
-                     flt.inputs["Radius"])
+        link_sockets(tree, shape_out, flt.inputs["Curve"])
+        link_sockets(tree, radius_out, flt.inputs["Radius"])
         flt.inputs["Limit Radius"].default_value = True
+
+        # uniform path spacing over the already-rounded corners, so the profile cannot
+        # self-intersect inside a turn
+        res = safe_node(tree, "GeometryNodeResampleCurve", (x0 - 60, y0))
+        if res is None:
+            return None
+        for cand in ("Length", "LENGTH"):
+            try:
+                res.inputs["Mode"].default_value = cand
+                break
+            except Exception:
+                continue
+        link_sockets(tree, flt.outputs["Curve"], res.inputs["Curve"])
+        link_sockets(tree, _mm(tree, gin, "Path Resolution", (x0 - 420, y0 - 220)),
+                     res.inputs["Length"])
 
         # place the lens centre at +/-(A + DBL)/2 so the aperture gap is exactly DBL
         span = _math(tree, "ADD", (x0 - 620, y0 + 320),
@@ -161,8 +271,8 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
         c2m = safe_node(tree, "GeometryNodeCurveToMesh", (x0 + 140, y0))
         if c2m is None:
             return None
-        link_sockets(tree, flt.outputs["Curve"], c2m.inputs["Curve"])
-        link_sockets(tree, prof.outputs["Curve"], c2m.inputs["Profile Curve"])
+        link_sockets(tree, res.outputs["Curve"], c2m.inputs["Curve"])
+        link_sockets(tree, prof_out, c2m.inputs["Profile Curve"])
         link_sockets(tree, sock(gin, "Fill Caps", outputs=True), c2m.inputs["Fill Caps"])
 
         xf = safe_node(tree, "GeometryNodeTransform", (x0 + 300, y0))
@@ -218,7 +328,7 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
             c2m_b = safe_node(tree, "GeometryNodeCurveToMesh", (bx + 40, by - 700))
             if c2m_b is not None:
                 link_sockets(tree, line.outputs["Curve"], c2m_b.inputs["Curve"])
-                link_sockets(tree, prof.outputs["Curve"], c2m_b.inputs["Profile Curve"])
+                link_sockets(tree, prof_out, c2m_b.inputs["Profile Curve"])
                 # the rims are cyclic so caps are meaningless there; the bridge is an
                 # open span and must be capped to stay manifold. Its two caps are the
                 # only n-gons in the result.
