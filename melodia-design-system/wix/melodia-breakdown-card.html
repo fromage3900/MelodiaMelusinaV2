@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melodia Breakdown Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --surface-base: #141A30;
+    --surface-raised: #1C2340;
+    --surface-sunken: #241B2E;
+    --text-primary: #ECEAF4;
+    --text-secondary: #A9A7C0;
+    --gold: #C9A86A;
+    --gold-soft: #DDC79B;
+    --accent-astral: #3C5C9E;
+    --border-default: rgba(201, 168, 106, 0.2);
+    --border-gold: rgba(201, 168, 106, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    width: 100%;
+    min-height: 500px;
+  }
+
+  .breakdown-card {
+    width: 100%;
+    max-width: 800px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  /* Header Section */
+  .breakdown-header {
+    padding: 32px;
+    background: linear-gradient(135deg, var(--surface-sunken) 0%, var(--surface-raised) 100%);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .breakdown-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .breakdown-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+
+  /* Content Grid */
+  .breakdown-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 768px) {
+    .breakdown-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Left Column: Technical Specs */
+  .specs-column {
+    padding: 32px;
+    border-right: 1px solid var(--border-default);
+  }
+
+  @media (max-width: 768px) {
+    .specs-column {
+      border-right: none;
+      border-bottom: 1px solid var(--border-default);
+    }
+  }
+
+  .specs-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .specs-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* Process Flow Integration */
+  .process-section {
+    margin-bottom: 24px;
+  }
+
+  .process-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .process-step {
+    padding: 6px 12px;
+    background: var(--surface-sunken);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  /* Performance Metrics */
+  .performance-section {
+    margin-bottom: 24px;
+  }
+
+  .performance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .metric-item {
+    padding: 12px;
+    background: var(--surface-sunken);
+    border-radius: 4px;
+  }
+
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .metric-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .metric-value.tbd {
+    color: #A85751;
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  /* Right Column: Process Gallery */
+  .gallery-column {
+    padding: 32px;
+    background: var(--surface-sunken);
+  }
+
+  .gallery-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .gallery-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* Horizontal Scroll Gallery */
+  .process-gallery {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .process-gallery::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .process-gallery::-webkit-scrollbar-track {
+    background: var(--surface-base);
+    border-radius: 3px;
+  }
+
+  .process-gallery::-webkit-scrollbar-thumb {
+    background: var(--border-gold);
+    border-radius: 3px;
+  }
+
+  .gallery-item {
+    flex: 0 0 auto;
+    width: 200px;
+    scroll-snap-align: start;
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border-default);
+    background: linear-gradient(135deg, var(--surface-base) 0%, var(--accent-astral) 100%);
+  }
+
+  .gallery-caption {
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* Technical Notes */
+  .notes-section {
+    grid-column: 1 / -1;
+    padding: 24px 32px;
+    background: var(--surface-base);
+    border-top: 1px solid var(--border-default);
+  }
+
+  .notes-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+  }
+
+  .notes-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .breakdown-header,
+    .specs-column,
+    .gallery-column,
+    .notes-section {
+      padding: 24px;
+    }
+
+    .process-gallery {
+      gap: 12px;
+    }
+
+    .gallery-item {
+      width: 160px;
+    }
+
+    .gallery-image {
+      height: 120px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .process-gallery {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="breakdown-card">
+  <!-- Header -->
+  <div class="breakdown-header">
+    <h2 class="breakdown-title" id="breakdownTitle">Project Breakdown</h2>
+    <p class="breakdown-subtitle" id="breakdownSubtitle">Technical Analysis & Process</p>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="breakdown-content">
+    <!-- Left Column: Technical Specs -->
+    <div class="specs-column">
+      <div class="specs-header">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="color: var(--gold);">
+          <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+          <circle cx="8" cy="8" r="3"/>
+        </svg>
+        <span class="specs-title">Technical Specifications</span>
+      </div>
+
+      <!-- Process Flow -->
+      <div class="process-section">
+        <p class="process-label">Workflow</p>
+        <div class="process-steps" id="processSteps"></div>
+      </div>
+
+      <!-- Performance Metrics -->
+      <div class="performance-section">
+        <p class="process-label">Performance</p>
+        <div class="performance-grid" id="performanceGrid"></div>
+      </div>
+    </div>
+
+    <!-- Right Column: Process Gallery -->
+    <div class="gallery-column">
+      <div class="gallery-header">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="color: var(--gold);">
+          <path d="M4 2h8v2H4V2zm0 4h8v2H4V6zm0 4h8v2H4v-2zm0 4h8v2H4v-2z"/>
+        </svg>
+        <span class="gallery-title">Process Gallery</span>
+      </div>
+
+      <div class="process-gallery" id="processGallery"></div>
+    </div>
+
+    <!-- Technical Notes -->
+    <div class="notes-section">
+      <p class="notes-label">Technical Notes</p>
+      <p class="notes-content" id="notesContent">No technical notes available.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Configuration from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const config = {
+    title: urlParams.get('title') || 'Project Breakdown',
+    subtitle: urlParams.get('subtitle') || 'Technical Analysis & Process',
+    process: JSON.parse(urlParams.get('process') || '[]'),
+    performance: JSON.parse(urlParams.get('performance') || '{}'),
+    gallery: JSON.parse(urlParams.get('gallery') || '[]'),
+    notes: urlParams.get('notes') || 'No technical notes available.'
+  };
+
+  // Update header
+  document.getElementById('breakdownTitle').textContent = config.title;
+  document.getElementById('breakdownSubtitle').textContent = config.subtitle;
+  document.getElementById('notesContent').textContent = config.notes;
+
+  // Render process steps
+  const processContainer = document.getElementById('processSteps');
+  if (config.process.length > 0) {
+    config.process.forEach(step => {
+      const stepEl = document.createElement('div');
+      stepEl.className = 'process-step';
+      stepEl.textContent = step;
+      processContainer.appendChild(stepEl);
+    });
+  } else {
+    processContainer.innerHTML = '<div class="process-step">No workflow data</div>';
+  }
+
+  // Render performance metrics
+  const performanceContainer = document.getElementById('performanceGrid');
+  const metrics = [
+    { key: 'triangleCount', label: 'Triangles' },
+    { key: 'drawCalls', label: 'Draw Calls' },
+    { key: 'materialCount', label: 'Materials' },
+    { key: 'textureCount', label: 'Textures' }
+  ];
+
+  metrics.forEach(metric => {
+    const value = config.performance[metric.key];
+    const item = document.createElement('div');
+    item.className = 'metric-item';
+    item.innerHTML = `
+      <span class="metric-label">${metric.label}</span>
+      <span class="metric-value ${value === null || value === undefined ? 'tbd' : ''}">${value !== null && value !== undefined ? value.toLocaleString() : 'TBD'}</span>
+    `;
+    performanceContainer.appendChild(item);
+  });
+
+  // Render process gallery
+  const galleryContainer = document.getElementById('processGallery');
+  if (config.gallery.length > 0) {
+    config.gallery.forEach(item => {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+
+      const image = item.image || '';
+      const placeholder = item.placeholder || `linear-gradient(135deg, #141A30 0%, #3C5C9E 100%)`;
+
+      galleryItem.innerHTML = `
+        <img class="gallery-image" src="${image}" alt="${item.caption}" onerror="this.style.background='${placeholder}'">
+        <p class="gallery-caption">${item.caption || 'Step'}</p>
+      `;
+
+      galleryContainer.appendChild(galleryItem);
+    });
+  } else {
+    galleryContainer.innerHTML = '<p style="color: var(--text-secondary); font-size: 12px; text-align: center; padding: 20px;">No process images available</p>';
+  }
+</script>
+</body>
+</html>

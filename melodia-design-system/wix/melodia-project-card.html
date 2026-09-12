@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melodia Project Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --surface-base: #F7F4EF;
+    --surface-raised: #FCFBF8;
+    --surface-sunken: #EFEAE1;
+    --text-primary: #241B2E;
+    --text-secondary: #6E6080;
+    --gold: #B08D4F;
+    --gold-soft: #C9A86A;
+    --lavender: #9F94C6;
+    --border-default: #E3DACE;
+    --border-gold: rgba(176, 141, 79, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    width: 100%;
+    min-height: 600px;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(36, 27, 46, 0.12);
+    border-color: var(--border-gold);
+  }
+
+  /* Hero Image Section */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, #241B2E 0%, #3C5C9E 100%);
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .project-card:hover .hero-image {
+    transform: scale(1.05);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(36, 27, 46, 0.9));
+  }
+
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #ECEAF4;
+    margin-bottom: 4px;
+  }
+
+  .project-category {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+
+  /* Content Section */
+  .content-section {
+    padding: 24px;
+  }
+
+  /* Asset Passport Integration */
+  .passport-section {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--surface-base);
+    border: 1px solid var(--border-default);
+    border-radius: 6px;
+  }
+
+  .passport-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .passport-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--gold);
+  }
+
+  .passport-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .passport-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 13px;
+  }
+
+  .passport-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .passport-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  /* Performance Card Integration */
+  .performance-section {
+    padding: 16px;
+    background: var(--surface-sunken);
+    border-radius: 6px;
+  }
+
+  .performance-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .performance-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .performance-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .metric-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .metric-value.tbd {
+    color: #A85751;
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  /* View Project Button */
+  .view-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .view-button:hover {
+    background: var(--gold);
+    color: var(--surface-raised);
+  }
+
+  /* Status Badge */
+  .status-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    background: rgba(201, 168, 106, 0.9);
+    border-radius: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--surface-raised);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .project-card {
+      max-width: 100%;
+    }
+
+    .hero-section {
+      height: 220px;
+    }
+
+    .project-title {
+      font-size: 20px;
+    }
+
+    .content-section {
+      padding: 20px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .hero-image,
+    .view-button {
+      transition: none;
+    }
+
+    .project-card:hover {
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="project-card" id="projectCard">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <img class="hero-image" id="heroImage" src="" alt="Project render">
+    <div class="hero-overlay">
+      <h3 class="project-title" id="projectTitle">Project Name</h3>
+      <span class="project-category" id="projectCategory">Environment</span>
+    </div>
+    <div class="status-badge" id="statusBadge">WIP</div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <!-- Asset Passport -->
+    <div class="passport-section">
+      <div class="passport-header">
+        <svg class="passport-icon" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+          <circle cx="8" cy="8" r="3"/>
+        </svg>
+        <span class="passport-title">Asset Passport</span>
+      </div>
+      <div id="passportRows"></div>
+    </div>
+
+    <!-- Performance Card -->
+    <div class="performance-section">
+      <div class="performance-header">
+        <svg class="passport-icon" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 2C4.69 2 2 4.69 2 8s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+          <path d="M8 5v3l2 2"/>
+        </svg>
+        <span class="performance-title">Performance</span>
+      </div>
+      <div class="performance-metrics" id="performanceMetrics"></div>
+    </div>
+
+    <!-- View Button -->
+    <button class="view-button" id="viewButton">View Project</button>
+  </div>
+</div>
+
+<script>
+  // Configuration from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const config = {
+    title: urlParams.get('title') || 'Project Name',
+    category: urlParams.get('category') || 'Environment',
+    image: urlParams.get('image') || '',
+    status: urlParams.get('status') || 'WIP',
+    url: urlParams.get('url') || '#',
+    passport: JSON.parse(urlParams.get('passport') || '[]'),
+    performance: JSON.parse(urlParams.get('performance') || '{}')
+  };
+
+  // Update content
+  document.getElementById('projectTitle').textContent = config.title;
+  document.getElementById('projectCategory').textContent = config.category;
+  document.getElementById('statusBadge').textContent = config.status;
+  document.getElementById('viewButton').onclick = () => {
+    if (config.url && config.url !== '#') {
+      window.open(config.url, '_blank');
+    }
+  };
+
+  // Set hero image
+  if (config.image) {
+    document.getElementById('heroImage').src = config.image;
+  } else {
+    // Placeholder gradient
+    document.getElementById('heroImage').style.background = 'linear-gradient(135deg, #241B2E 0%, #3C5C9E 100%)';
+  }
+
+  // Render passport rows
+  const passportContainer = document.getElementById('passportRows');
+  if (config.passport.length > 0) {
+    config.passport.forEach(([label, value]) => {
+      const row = document.createElement('div');
+      row.className = 'passport-row';
+      row.innerHTML = `
+        <span class="passport-label">${label}</span>
+        <span class="passport-value">${value}</span>
+      `;
+      passportContainer.appendChild(row);
+    });
+  } else {
+    passportContainer.innerHTML = '<div class="passport-row"><span class="passport-value" style="color: var(--text-secondary);">No data available</span></div>';
+  }
+
+  // Render performance metrics
+  const performanceContainer = document.getElementById('performanceMetrics');
+  const metrics = [
+    { key: 'triangleCount', label: 'Triangles' },
+    { key: 'drawCalls', label: 'Draw Calls' },
+    { key: 'materialCount', label: 'Materials' },
+    { key: 'textureCount', label: 'Textures' }
+  ];
+
+  metrics.forEach(metric => {
+    const value = config.performance[metric.key];
+    const item = document.createElement('div');
+    item.className = 'metric-item';
+    item.innerHTML = `
+      <span class="metric-label">${metric.label}</span>
+      <span class="metric-value ${value === null || value === undefined ? 'tbd' : ''}">${value !== null && value !== undefined ? value.toLocaleString() : 'TBD'}</span>
+    `;
+    performanceContainer.appendChild(item);
+  });
+
+  // Card click handler
+  document.getElementById('projectCard').addEventListener('click', (e) => {
+    if (e.target.closest('.view-button')) return;
+    if (config.url && config.url !== '#') {
+      window.open(config.url, '_blank');
+    }
+  });
+</script>
+</body>
+</html>

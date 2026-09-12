@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brennan Shepherd — Resume</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F7F4EF;color:#241B2E;line-height:1.6}
+  .page{max-width:900px;margin:0 auto;padding:64px;background:#fff;box-shadow:0 2px 32px rgba(36,27,46,0.08)}
+  @media print{body{background:#fff}.page{box-shadow:none;padding:32px}}
+  
+  /* Header */
+  .header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:32px;border-bottom:2px solid #C9A86A;margin-bottom:32px}
+  .name-block{flex:1}
+  .name{font-family:'Fraunces',serif;font-weight:500;font-size:48px;line-height:1.1;color:#241B2E;letter-spacing:-0.01em}
+  .title{font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.18em;text-transform:uppercase;color:#6E6080;margin-top:8px}
+  .contact{font-size:13px;color:#5A6170;margin-top:16px}
+  .contact span{margin-right:16px}
+  .location{font-size:13px;color:#5A6170;margin-top:4px}
+  .mark{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .wordmark{font-family:'Cinzel',serif;font-weight:600;letter-spacing:0.32em;font-size:16px;color:#241B2E}
+  
+  /* Sections */
+  .section{margin-bottom:32px}
+  .section-title{font-family:'Fraunces',serif;font-weight:500;font-size:24px;color:#241B2E;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+  .section-title::before{content:'';width:24px;height:1px;background:linear-gradient(to right,#C9A86A,transparent)}
+  
+  /* Experience */
+  .job{margin-bottom:24px}
+  .job-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .job-title{font-weight:600;font-size:16px;color:#241B2E}
+  .job-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6170}
+  .job-company{font-size:14px;color:#6E6080;margin-bottom:8px}
+  .job-desc{font-size:14px;color:#5A6170;line-height:1.7}
+  .job-desc ul{margin:8px 0;padding-left:20px}
+  .job-desc li{margin-bottom:4px}
+  
+  /* Skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .skill-category{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#6E6080;margin-bottom:8px}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-tag{font-size:13px;padding:4px 12px;background:#F7F4EF;border:1px solid #E3DACE;border-radius:2px;color:#241B2E}
+  
+  /* Projects */
+  .project{margin-bottom:20px;padding:16px;background:#F7F4EF;border:1px solid #E3DACE;border-radius:2px}
+  .project-title{font-weight:600;font-size:15px;color:#241B2E;margin-bottom:4px}
+  .project-desc{font-size:13px;color:#5A6170;margin-bottom:8px}
+  .project-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .project-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;background:#fff;border:1px solid #E3DACE;color:#6E6080}
+  
+  /* Education */
+  .edu{margin-bottom:16px}
+  .edu-school{font-weight:600;font-size:15px;color:#241B2E}
+  .edu-program{font-size:14px;color:#6E6080}
+  .edu-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6170}
+  
+  /* Footer */
+  .footer{margin-top:48px;padding-top:24px;border-top:1px solid #E3DACE;text-align:center;font-size:12px;color:#5A6170}
+  .footer-mark{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px}
+  
+  /* Print button */
+  .print-btn{position:fixed;top:20px;right:20px;padding:10px 20px;background:#C9A86A;color:#fff;border:none;border-radius:2px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase}
+  .print-btn:hover{background:#A7884E}
+  @media print{.print-btn{display:none}}
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+
+<div class="page">
+  <!-- Header -->
+  <div class="header">
+    <div class="name-block">
+      <div class="mark">
+        <svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,0 12,8 20,8 14,13 16,20 10,15 4,20 6,13 0,8 8,8" fill="#C9A86A"/></svg>
+        <span class="wordmark">BRENNAN SHEPHERD</span>
+      </div>
+      <div class="name">Brennan Shepherd</div>
+      <div class="title">3D Environment & Technical Artist</div>
+      <div class="contact">
+        <span>📧 brennan@example.com</span>
+        <span>🔗 fromageart.xyz</span>
+        <span>📍 Toronto, ON</span>
+      </div>
+      <div class="location">Available for freelance & full-time opportunities</div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <p style="font-size:14px;color:#5A6170;max-width:700px">
+      3D Environment & Technical Artist specializing in Unreal Engine 5, procedural content generation, and environment art pipelines. Passionate about creating immersive, performant environments with a focus on technical excellence and artistic quality. Experienced in PCG workflows, material systems, and shader development.
+    </p>
+  </div>
+
+  <!-- Experience -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+    
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Senior Environment Artist</div>
+        <div class="job-date">2023 — Present</div>
+      </div>
+      <div class="job-company">Studio Name • Toronto, ON</div>
+      <div class="job-desc">
+        <ul>
+          <li>Led environment art team for AAA title, delivering 12+ unique biomes with PCG-driven ecosystems</li>
+          <li>Developed custom PCG graphs for vegetation distribution, rock placement, and terrain erosion</li>
+          <li>Optimized environments to maintain 60fps on console targets with Nanite and Lumen</li>
+          <li>Mentored junior artists and established environment art pipeline documentation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Environment Artist</div>
+        <div class="job-date">2021 — 2023</div>
+      </div>
+      <div class="job-company">Studio Name • Remote</div>
+      <div class="job-desc">
+        <ul>
+          <li>Created modular environment kits for open-world game with 40+ unique assets</li>
+          <li>Developed master materials with parameterized controls for weathering and wear</li>
+          <li>Collaborated with design team to implement gameplay-friendly environment layouts</li>
+          <li>Integrated photogrammetry scans into game-ready asset pipeline</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Junior Technical Artist</div>
+        <div class="job-date">2019 — 2021</div>
+      </div>
+      <div class="job-company">Studio Name • Vancouver, BC</div>
+      <div class="job-desc">
+        <ul>
+          <li>Developed Python tools for asset batch processing and automated LOD generation</li>
+          <li>Created shader graphs for terrain blending and water simulation</li>
+          <li>Assisted in performance profiling and optimization of environment scenes</li>
+          <li>Documented technical art workflows for team knowledge sharing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-category">Game Engines</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Unreal Engine 5</span>
+          <span class="skill-tag">Unity</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category">3D Software</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Blender</span>
+          <span class="skill-tag">Maya</span>
+          <span class="skill-tag">ZBrush</span>
+          <span class="skill-tag">Houdini</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category">Texturing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Substance Painter</span>
+          <span class="skill-tag">Substance Designer</span>
+          <span class="skill-tag">Material Maker</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category">Programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Blueprints</span>
+          <span class="skill-tag">HLSL</span>
+          <span class="skill-tag">C++</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category">Specialization</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PCG</span>
+          <span class="skill-tag">Nanite</span>
+          <span class="skill-tag">Lumen</span>
+          <span class="skill-tag">Shaders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div class="section">
+    <div class="section-title">Featured Projects</div>
+    
+    <div class="project">
+      <div class="project-title">Ashen Cathedral</div>
+      <div class="project-desc">Cathedral environment with PCG-driven vegetation and custom atmospheric shaders. 482K triangles, 12 materials.</div>
+      <div class="project-tags">
+        <span class="project-tag">Unreal Engine 5</span>
+        <span class="project-tag">PCG</span>
+        <span class="project-tag">Shaders</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Sakura Path Environment</div>
+      <div class="project-desc">Japanese-inspired garden with procedural cherry blossom distribution and seasonal material variants.</div>
+      <div class="project-tags">
+        <span class="project-tag">Unreal Engine 5</span>
+        <span class="project-tag">PCG</span>
+        <span class="project-tag">Materials</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Zen Rock Master Materials</div>
+      <div class="project-desc">Modular material system with 50+ instance variations, supporting weathering, moss growth, and wet surface states.</div>
+      <div class="project-tags">
+        <span class="project-tag">Materials</span>
+        <span class="project-tag">Shaders</span>
+        <span class="project-tag">Substance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    
+    <div class="edu">
+      <div class="edu-school">Sheridan College</div>
+      <div class="edu-program">Bachelor of Game Design</div>
+      <div class="edu-date">2015 — 2019</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-mark">
+      <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="7,0 8.4,5.6 14,5.6 9.8,9.1 11.2,14.7 7,11.2 2.8,14.7 4.2,9.1 0,5.6 5.6,5.6" fill="#C9A86A"/></svg>
+      <span>BRENNAN SHEPHERD</span>
+    </div>
+    <div>Toronto, ON · brennan@example.com · fromageart.xyz</div>
+  </div>
+</div>
+
+</body>
+</html>

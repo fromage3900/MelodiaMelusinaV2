@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+  TAG/PCG FEATURE — PCG-specific feature tag
+  HOW TO USE: Wix Editor → Add (+) → Embed Code → Embed HTML → paste this file.
+  Size: auto (fits content)
+  Edit DATA below to change feature.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:transparent}
+  body{display:flex;justify-content:center;padding:4px}
+  .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:#F7F4EF;border:1px solid #E3DACE;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6E6080}
+  .tag.active{background:#EFEAE1;border-color:#C9A86A;color:#241B2E}
+</style>
+</head>
+<body>
+<div id="tag"></div>
+<script>
+var DATA = {
+  feature: "Density Filter",
+  active: true
+};
+
+function render(){
+  var h=document.getElementById("tag");
+  var cls=DATA.active?'tag active':'tag';
+  h.innerHTML='<div class="'+cls+'">'+DATA.feature+'</div>';
+}
+render();
+</script>
+</body>
+</html>
