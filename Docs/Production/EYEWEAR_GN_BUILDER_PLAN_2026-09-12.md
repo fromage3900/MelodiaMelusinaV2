@@ -228,41 +228,60 @@ Eyewear parameters are in **millimetres**, converted once at the graph input.
 
 ## 8. The close-out plan
 
-### 8.0 Fix first — it blocks 8.4, and it is a real defect (but not the one first reported)
+### 8.0 Fix first — it blocks 8.4. Beads come out ~25% overscale
 
-**`MEL_nikki_bead_string`'s `Bead Radius` parameter does not control the bead size.**
-Measured with Taper and Jitter forced to 0, so nothing else can move the number
+**`Bead Radius` works, but the bead is consistently about a quarter larger than the
+parameter says.** Measured with Taper and Jitter forced to 0, a FRESH tree per value,
+and the set asserted so a silent failure cannot masquerade as a result
 (`Tools/eyewear_verify/bead_size_check.py`):
 
-    Bead Radius 0.022  ->  bead radius 47.80 mm
-    Bead Radius 0.010  ->  bead radius 39.10 mm
-    Bead Radius 0.044  ->  bead radius 47.80 mm   <- identical to 0.022
-    defaults (Taper .55, Jitter .12)  ->  28.89 mm
+    Bead Radius   expected_mm   measured_mm   ratio
+    0.010              10.00         11.56     1.16
+    0.022              22.00         27.99     1.27
+    0.044              44.00         55.20     1.25
 
-Doubling the parameter changes nothing at all, and halving it moves the bead by
-18%. The value is dominated by something that is not the parameter, so a designer
-turning this dial gets almost no response and no indication why.
+Monotonic and roughly proportional, so the dial is alive — but every value lands
+16-27% high. That is a scaling constant somewhere between the parameter and the
+bead, not a dead input.
 
-Correction to the earlier note in this document: the claim that beads come out "an
-order of magnitude larger than the parameter" was wrong, and so was the inferred
-cause (`_set_group_param(bead_grp, "Radius", 1.0)` fighting the instance Scale).
-The earlier evidence was a single spread measurement that happened to sit near
-22 mm x Taper x Jitter, which is consistent with correct behaviour. Isolating Taper
-and Jitter is what exposed the real fault, and it is a different one.
+### Two earlier conclusions on this item were wrong, and both were test faults
 
-Prime suspect on the evidence: `_set_group_param(bead_grp, "Radius", 1.0)` does not
-reach the nested template, so the bead is the template's own geometry scaled by a
-size that is not the author's parameter. Two co-operating values, one comment
-claiming the other is authoritative - the same shape of defect as the guide switch
-that was added but never wired.
+This item has now been reported three times. Recording why, because the pattern is
+the lesson:
 
-Why it matters beyond the chain: this is the bead/cord authority behind the eave
-swag and the wall drop in the study scene. Any garland built with it inherits the
-dead dial.
+1. **First claim: "beads are an order of magnitude larger than the parameter."**
+   Wrong. It rested on one spread measurement that sat near
+   `22 mm x Taper x Jitter`, which is what correct behaviour looks like.
+2. **Second claim: "`Bead Radius` is a dead dial."** Also wrong. That test reused a
+   single bead-string tree across four runs and mutated its interface defaults in
+   place, so a failed set silently kept the previous value. `0.022` and `0.044`
+   appearing identical was the tell, and it was the harness, not the builder.
 
-Acceptance: with Taper and Jitter at 0, bead radius equals `Bead Radius` exactly,
-at three different values, and scales linearly between them. Anything else is not
-fixed.
+The fix for both was the same and should have been the first move: isolate one
+variable, use a fresh tree per case, and assert that the input actually took. The
+same discipline that caught the guide-switch and the `new_geometry_tree` template
+invalidation.
+
+### Where the 25% lives
+
+Presumed between the template's `Radius` and the instance scale, both of which
+currently claim to be authoritative. `_set_group_param(bead_grp, "Radius", 1.0)` is
+intended to normalise `MEL_nikki_bead` to unit radius so that the instance `Scale`
+is the single source of truth; a ~1.25 factor surviving that normalisation means one
+of the two is not doing what its comment says. Needs a read of `build_nikki_bead`
+rather than more measurement from outside.
+
+### Why it matters beyond the chain
+
+This is the bead/cord authority behind the eave swag and the wall drop in the study
+scene. Every garland built with it inherits the 25% - visible on a chunky Nikki
+bead, and it will show on any accessory chain sized against a frame.
+
+### Acceptance
+
+With Taper and Jitter at 0, measured bead radius equals `Bead Radius` within 2%, at
+three values spanning the range. The existing harness already reports exactly that
+and currently fails, so it is the test to make green - not a new one.
 
 ### 8.1 Silhouettes — the literal 5.2 nodes
 

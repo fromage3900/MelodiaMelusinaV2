@@ -1,10 +1,13 @@
-"""Is the bead actually the size its parameter says?
+"""Does Bead Radius control bead size? Fresh tree per value, set asserted.
 
-Bead Radius defaults to 0.022 m. With the default Taper (up to 1.275x) and Jitter
-(up to 1.12x) a bead could legitimately reach ~31 mm, which is close to the
-+/-29.5 mm spread measured earlier. So the earlier "order of magnitude too large"
-claim may be wrong. Isolate: taper and jitter off should leave exactly the
-parameter value.
+The previous version of this test reused ONE bead-string tree across four runs and
+mutated its interface defaults in place. If a set silently failed, the previous
+value persisted and the measurement described the wrong value. Same class of
+mistake as the guide-switch test. This rebuilds the tree for every value and fails
+loudly if the default did not take.
+
+Beads are instanced along a straight guide on +X at y=0, so a bead's Y half-extent
+IS its radius. Cord radius is 0.0032, well below any expected bead size.
 """
 import sys
 
@@ -14,19 +17,26 @@ sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001
-sub = GROUP_BUILDERS["MEL_nikki_bead_string"]()
-sub = sub[0] if isinstance(sub, (tuple, list)) else sub
 
 
-def setp(tree, name, val):
-    for it in tree.interface.items_tree:
-        if getattr(it, "name", None) == name:
-            it.default_value = val
-            return True
-    return False
+def measure(radius_m):
+    """Build a FRESH bead string, set the radius, measure the bead."""
+    sub = GROUP_BUILDERS["MEL_nikki_bead_string"]()
+    sub = sub[0] if isinstance(sub, (tuple, list)) else sub
 
+    # kill taper and jitter so only the radius can move the number
+    want = {"Bead Radius": radius_m, "Taper": 0.0, "Jitter": 0.0,
+            "Droop": 0.0, "Bead Count": 6}
+    got = {}
+    for it in sub.interface.items_tree:
+        n = getattr(it, "name", None)
+        if n in want:
+            it.default_value = want[n]
+            got[n] = it.default_value
+    for n, v in want.items():
+        assert n in got, "param %s missing from the interface" % n
+        assert abs(got[n] - v) < 1e-9, "set failed for %s: %r != %r" % (n, got[n], v)
 
-def run(tag, taper, jitter, radius, droop=0.0):
     h = bpy.data.node_groups.new("h", "GeometryNodeTree")
     h.is_modifier = True
     h.interface.new_socket("Geometry", in_out="INPUT", socket_type="NodeSocketGeometry")
@@ -34,17 +44,13 @@ def run(tag, taper, jitter, radius, droop=0.0):
     gi = h.nodes.new("NodeGroupInput")
     go = h.nodes.new("NodeGroupOutput")
     ln = h.nodes.new("GeometryNodeCurvePrimitiveLine")
-    ln.inputs["Start"].default_value = (-0.05, 0.0, 0.0)
-    ln.inputs["End"].default_value = (0.05, 0.0, 0.0)
+    ln.inputs["Start"].default_value = (-0.30, 0.0, 0.0)
+    ln.inputs["End"].default_value = (0.30, 0.0, 0.0)
     g = h.nodes.new("GeometryNodeGroup")
     g.node_tree = sub
     h.links.new(gi.outputs[0], g.inputs["Geometry"])
     h.links.new(ln.outputs["Curve"], g.inputs["Guide Curve"])
     g.inputs["Guide From Curve"].default_value = True
-    for n, v in (("Taper", taper), ("Jitter", jitter), ("Bead Radius", radius),
-                 ("Droop", droop), ("Bead Count", 14)):
-        if not setp(sub, n, v):
-            print("   (no param %s)" % n)
     h.links.new(g.outputs["Geometry"], go.inputs[0])
 
     me = bpy.data.meshes.new("m")
@@ -56,26 +62,29 @@ def run(tag, taper, jitter, radius, droop=0.0):
     ev = ob.evaluated_get(bpy.context.evaluated_depsgraph_get())
     mm = ev.to_mesh()
     if not mm or not mm.vertices:
-        print("  %-44s EMPTY" % tag)
-        return
-    xs = [v.co.x for v in mm.vertices]
+        raise RuntimeError("EMPTY output for radius %r" % radius_m)
     ys = [v.co.y for v in mm.vertices]
-    # beads sit on a line along X at y=0, so the Y half-extent IS the bead radius
-    print("  %-44s verts=%-5d  bead radius ~= %.2f mm   x[%.1f %.1f]"
-          % (tag, len(mm.vertices), max(abs(min(ys)), abs(max(ys))) / MM,
-             min(xs) / MM, max(xs) / MM))
+    r = max(abs(min(ys)), abs(max(ys))) / MM
     ev.to_mesh_clear()
     ob.modifiers.clear()
     bpy.data.objects.remove(ob, do_unlink=True)
     bpy.data.meshes.remove(me)
-    for l in list(h.links):
-        h.links.remove(l)
     bpy.data.node_groups.remove(h)
+    return r
 
 
-print("  Bead Radius parameter is 0.022 m = 22.00 mm")
-run("taper=0 jitter=0  (pure parameter)", 0.0, 0.0, 0.022)
-run("taper=0 jitter=0  radius=0.010", 0.0, 0.0, 0.010)
-run("defaults (taper .55 jitter .12)", 0.55, 0.12, 0.022)
-run("taper=0 jitter=0  radius=0.044", 0.0, 0.0, 0.044)
+print("  expected_mm   measured_mm   ratio")
+rows = []
+for param in (0.010, 0.022, 0.044):
+    got = measure(param)
+    exp = param / MM
+    rows.append((exp, got, got / exp if exp else 0))
+    print("  %10.2f   %10.2f   %5.2f" % (exp, got, got / exp if exp else 0))
+
+linear = all(abs(r[2] - 1.0) < 0.05 for r in rows)
+monotonic = rows[0][1] < rows[1][1] < rows[2][1]
+print()
+print("  radius == parameter at all three values : %s" % linear)
+print("  monotonic in the parameter             : %s" % monotonic)
+print("  RESULT %s" % ("PASS" if (linear and monotonic) else "FAIL"))
 print("DONE")
