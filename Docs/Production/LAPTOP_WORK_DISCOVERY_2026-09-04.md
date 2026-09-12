@@ -2,6 +2,16 @@
 
 **Purpose:** Stop remote agents from losing committed work simply because it has not reached `main`.
 
+## Current active laptop lane — 2026-09-11
+
+The active ASUS procedural-authoring lane is still:
+
+`collab/laptop/longterm`
+
+Read [`LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](LAPTOP_PROCEDURAL_LANE_2026-09-11.md) for the current execution contract: Blender 5.2 LTS Geometry Nodes, audio-reactive GN, Blender Python automation, bounded ArmorPaint evaluation, and narrow promotion back into UE/`main`.
+
+The recovery branches described below remain recovery/history sources. They are **not** the current task baton and must not supersede the active laptop lane contract.
+
 ## Two-workstation sync command
 
 Before opening Blender/Rider/Unreal on either machine:
