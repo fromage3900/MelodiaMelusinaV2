@@ -1,5 +1,13 @@
 # Melodia Studio addon — repo authority map (2026-09-03)
 
+> **Recovered 2026-09-11.** This doc was written to prevent the 2026-09-03 divergence
+> incident and it is correct. It prevented nothing, because it existed only inside the
+> live AppData install behind a gitignored path — nobody could find it. It is now in the
+> tracked tree. **Semester freeze, gate procedure, and current state:**
+> [`Docs/Production/MELODIA_STUDIO_FREEZE_2026-09-11.md`](../../../Docs/Production/MELODIA_STUDIO_FREEZE_2026-09-11.md).
+> Treat the copy layout and authority tables below as current; treat any dated claim in
+> them as needing a re-check against source.
+
 **Write this doc before touching the addon or any stage script.** It records the copy
 layout that caused the 2026-09-03 convergence incident: builders that existed in one
 copy but not another, three diverging `__init__.py` files, and a roof feature

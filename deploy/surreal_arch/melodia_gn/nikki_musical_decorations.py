@@ -96,7 +96,7 @@ def _get_bead_template():
 # Builder: MEL_nikki_star_pendant
 # ---------------------------------------------------------------------------
 
-def build_nikki_star_pendant(group_name="MEL_nikki_star_pendant"):
+def build_nikki_star_pendant(group_name="MEL_nikki_legacy_star_pendant"):
     """Star-shaped musical pendant. Curve Star → Curve to Mesh with optional tuned drop.
     
     Params:
@@ -178,7 +178,7 @@ def build_nikki_star_pendant(group_name="MEL_nikki_star_pendant"):
 # Builder: MEL_nikki_heart_filigree
 # ---------------------------------------------------------------------------
 
-def build_nikki_heart_filigree(group_name="MEL_nikki_heart_filigree"):
+def build_nikki_heart_filigree(group_name="MEL_nikki_legacy_heart_filigree"):
     """Heart token filigree — IcoSphere + cone pair above window headers.
     
     Params:
@@ -343,11 +343,11 @@ def build_nikki_wall_beads(group_name="MEL_nikki_wall_beads"):
 # Register
 # ---------------------------------------------------------------------------
 
-register_builder("MEL_nikki_star_pendant", build_nikki_star_pendant,
+register_builder("MEL_nikki_legacy_star_pendant", build_nikki_star_pendant,
                  "Nikki Star Pendant", "Star-shaped musical pendant — Curve Star → Curve to Mesh with tuned drop",
                  category="music")
 
-register_builder("MEL_nikki_heart_filigree", build_nikki_heart_filigree,
+register_builder("MEL_nikki_legacy_heart_filigree", build_nikki_heart_filigree,
                  "Nikki Heart Filigree", "Heart token filigree — IcoSphere + cone pair above window headers",
                  category="music")
 

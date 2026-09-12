@@ -220,7 +220,7 @@ def build_note_head_filigree(group_name="MEL_note_head_filigree"):
 # ---------------------------------------------------------------------------
 
 def build_capture_filigree(group_name="MEL_capture_filigree"):
-    """Filigree spiral that captures curve tangent for width modulation.
+    """Filigree spiral that carries the curve tangent as a named attribute.
     
     Params:
         Spiral Turns: number of rotations
@@ -237,20 +237,31 @@ def build_capture_filigree(group_name="MEL_capture_filigree"):
     # Spiral curve
     spiral = safe_node(tree, "GeometryNodeCurveSpiral", (bx - 800, by))
     spiral.inputs["Rotations"].default_value = 3.0
-    spiral.inputs["Radius Growth"].default_value = 0.02
     spiral.inputs["Resolution"].default_value = 64
+    # 5.2 CurveSpiral sockets: Resolution, Rotations, Start/End Radius,
+    # Height, Reverse (no 'Radius' / 'Radius Growth'); drive Start Radius
+    # from the group param so 'Spiral Radius' is live.
+    spiral.inputs["Start Radius"].default_value = 0.05
+    spiral.inputs["End Radius"].default_value = 0.07
+    link_sockets(tree, gin.outputs["Spiral Turns"], spiral.inputs["Rotations"])
+    link_sockets(tree, gin.outputs["Spiral Radius"], spiral.inputs["Start Radius"])
     
-    # Capture Attribute - get tangent for width
+    # Capture Attribute — 5.2 multi-item API (capture_items.new(socket_type,
+    # name); no data_type/Name props). Tangent field feeds the value socket so
+    # the named attribute rides the output geometry for downstream shading.
     capture = safe_node(tree, "GeometryNodeCaptureAttribute", (bx - 600, by))
-    capture.data_type = "FLOAT_VECTOR"
     capture.domain = "CURVE"
-    capture.inputs["Name"].default_value = "tangent"
+    capture.capture_items.new("VECTOR", "tangent")
+    tangent = safe_node(tree, "GeometryNodeInputTangent", (bx - 800, by - 200))
+    value_in = capture.inputs["Value"] if "Value" in capture.inputs else capture.inputs[2]
+    link_sockets(tree, tangent.outputs["Tangent"], value_in)
     link_sockets(tree, spiral.outputs["Curve"], capture.inputs["Geometry"])
     
     # Set curve radius (thickness)
     set_radius = safe_node(tree, "GeometryNodeSetCurveRadius", (bx - 400, by))
     link_sockets(tree, capture.outputs["Geometry"], set_radius.inputs["Curve"])
     set_radius.inputs["Radius"].default_value = 0.005
+    link_sockets(tree, gin.outputs["Filigree Thickness"], set_radius.inputs["Radius"])
     
     # Curve to mesh
     tube = safe_node(tree, "GeometryNodeCurveToMesh", (bx - 200, by))
@@ -292,5 +303,5 @@ register_builder("MEL_note_head_filigree", build_note_head_filigree,
                  category="music")
 
 register_builder("MEL_capture_filigree", build_capture_filigree,
-                 "Capture Filigree", "Filigree spiral capturing curve tangent for width modulation",
+                 "Capture Filigree", "Filigree spiral carrying curve tangent as a named attribute; thickness via Set Curve Radius",
                  category="music")
