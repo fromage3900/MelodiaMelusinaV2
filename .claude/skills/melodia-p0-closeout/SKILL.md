@@ -5,8 +5,17 @@ description: Current professor-facing P0 closure runbook for BS_GodFile UE5.8 �
 
 # Melodia P0 closeout — current authority
 
-Read first: `CURRENT_STATE.md` — the only status document. If this skill and `CURRENT_STATE.md`
-disagree, `CURRENT_STATE.md` wins; fix this skill.
+**Authority date:** 2026-09-04
+
+Read first:
+
+1. `AGENT_START_HERE.md`
+2. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
+3. `CURRENT_STATE.md`
+4. `_VERTICAL_SLICE_SCOPE.md`
+5. `TODO.md`
+
+Older August P0 plans and handoffs are historical evidence. They are not the current task list.
 
 ## Current proven baseline
 

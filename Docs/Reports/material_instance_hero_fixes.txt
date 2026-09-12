@@ -1,0 +1,787 @@
+HERO FIXES REQUIRED
+==================================================
+
+/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FinalDreamweaver
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SingingConstellations
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_CathedralSurreal
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: ParallaxSteps; RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: ParallaxSteps; RefractionDepthBias
+
+/Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_EscherOrnament
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: InkIntensity; OrnamentStyle
+  Note: Dead overrides may cause unpredictable shading: InkIntensity; OrnamentStyle
+
+/Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_FiligreeDream
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: GrassAmount; GrassTint; HeightBlendStrength; MacroStrength; MudAmount; MudTint; RockTint; SlopeSharpness; TriplanarTiling
+  Missing texture slots: Albedo
+  Note: Dead overrides may cause unpredictable shading: GrassAmount; GrassTint; HeightBlendStrength; MacroStrength; 
+
+/Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_GildedFiligree
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: AtmosphericFadeStrength; OrnamentScale; SparkleNoiseScale
+  Missing texture slots: Albedo
+  Note: Dead overrides may cause unpredictable shading: AtmosphericFadeStrength; OrnamentScale; SparkleNoiseScale
+
+/Game/EnvSandbox/Materials/Instances/Environment/MI_Celestial_Space
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/Magical/MI_StarryNight_VanGogh
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Candidates/Lookdev/M_Melodia_StarryNight_UDS_Candidate.M_Melodia_StarryNight_UDS_Candidate
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Base4K
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Gingham
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Linen
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Plush
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_BaroqueFiligreeLace
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_BaroqueLace
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_CelestialWeave
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_IridescentCelestialWeave
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_FarawayMother_Gown_CelestialSilkJacquard
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Houdini_BaroqueAcanthus_GildedMagentaSilk
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_MelodyToken_Heart
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_BaroqueAquatic_MosaicTile
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_BaroqueTiara_RoseGoldFiligree
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_CathedralPearl_MarbleTile
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_EtherealVeil_StarlightChantilly
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_FrontPanel
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_IridescentSiren_ScaleTessellation
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_MoonlitHarbor_WaterRippleParquet
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_PorcelainMusicBox_KintsugiLapis
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_SakuraLullaby_SilkOrganza
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_UpdatedShirt
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_WatercolourWave_Parquet
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_NikkiDream
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_FloralBrickGrayScale
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v7.M_Water_Master_Grand_v7
+  Dead overrides: DripLength; DripSpeed; HairDripIntensity; RefractionDepthBias; SplashForce; WaterOpacity; WaterRoughness
+  Note: Dead overrides may cause unpredictable shading: DripLength; DripSpeed; HairDripIntensity; RefractionDepthBia
+
+/Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Landscape_HeightBlend/MI_M_Master_Toon_Landscape_HeightBlend_Soil
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Universal/MI_M_Master_Toon_Universal_Crystal
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Universal/MI_M_Master_Toon_Universal_FloralBrickGrayScale
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/EnvSandbox/Materials/Instances/Terrain/MI_Terrain_SakuraDream_Substrate
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend
+  Dead overrides: TriplanarBlend
+  Note: Dead overrides may cause unpredictable shading: TriplanarBlend
+
+/Game/EnvSandbox/Materials/Instances/Water/MI_GrandWater_OceanDeep
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v6.M_Water_Master_Grand_v6
+  Dead overrides: RefractionDepthBias; RefractionStrength
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias; RefractionStrength
+
+/Game/Melodia/Characters/MaraVell/Materials/MI_Mara_Skin_007
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_GLOVES_001
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Gradient__Radial__002
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_023
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_024
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_UpdatedShirt
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_bow_002
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_frontpanel_001
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_sleeve_003
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/Characters/Melusina/Textures/Clothes/MI_Starskiff_Hull_Regal
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/Characters/Melusina/Textures/Clothes/MI_Starskiff_Wake_Emission
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/Enemies/StoneGolem/MI_StoneGolem_Toon
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/Enemies/Zundapal/MI_Zundapal_Toon
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/Materials/DistanceField/MI_DF_ContactBlend_Soft
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/SeaAbove/Materials/MI_Starskiff_Night_Wake
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/Cathedral/MI_CathedralFloor_Textured
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/Cathedral/MI_LF_StainedGlass
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_AudioDriven
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_Balanced
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_Enhanced
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_GildingMax
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_TriplanarMax
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/MI_Cosmo_Aurora_Teal
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/Cosmo/MI_Cosmo_Ember_Gold
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/Landscape/Instances/MI_HybridLandscape_Balanced
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Landscape/M_HybridLandscape_MooaToonSDF.M_HybridLandscape_MooaToonSDF
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Landscape/Instances/MI_HybridLandscape_Enhanced
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Landscape/M_HybridLandscape_MooaToonSDF.M_HybridLandscape_MooaToonSDF
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/Landscape/Instances/MI_HybridLandscape_InkFocus
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/Landscape/M_HybridLandscape_MooaToonSDF.M_HybridLandscape_MooaToonSDF
+  Dead overrides: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  Note: Dead overrides may cause unpredictable shading: AudioReactivity; Gilding; InkAmount; NormalMapScale; Paralla
+
+/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_GameplayStandard
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk.M_PP_MelodiaInk
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_Narrative
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk.M_PP_MelodiaInk
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_PortfolioHero
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk.M_PP_MelodiaInk
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_PortfolioHero
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade.M_PP_MeluColorGrade
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_Baroque_InkwellRelief
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_Baroque.M_SDF_Baroque
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_HybridStone_SDF
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_Music_AquaWave
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_Musical.M_SDF_Musical
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_MusicalSDF_CyanPulse
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/SDF/Instances/MI_SDF_TealCeramic.MI_SDF_TealCeramic
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_MusicalSDF_PulsingGeometry
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_Parallax_FLAT_TEST
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_TrueParallax.M_SDF_TrueParallax
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Baroque
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_BaroqueColumn
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_CathedralVault
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_CosmicPortal
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_CrystallineSpire
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_EscherGeometry_Enhanced
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FloatingNotes
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FloralMagic
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FlyingButtress
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FractalOrnament
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GildedAltar
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GothicArchitecture
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GothicArchitecture_Enhanced
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GothicRoseWindow
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Gothic_RoseGold
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_RayMarch_Gothic.M_SDF_RayMarch_Gothic
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GrandStaff_CrossSection
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Grass_Field
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_InfinityMirror
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_JuliaSet_Quaternion
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Klein_Bottle
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MagicOrb
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MandelbulbSlice
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Mandelbulb_Master
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MengerSponge
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MetalShards
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Mobius_Strip
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Musical
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer_Enhanced
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Penrose_Staircase
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_RayMarch_Gothic
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_SheetMusic_Score
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_SierpinskiTetrahedron
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_StarburstGem
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_TrebleClef_Ornament
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_TrueParallax
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_VinylRecord
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_AbyssalVent
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_Anemone
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_Bioluminescence
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_BubbleColumn
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_Caustics_Underwater
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_CoralBranching
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_FishSchool_Caustics
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_KelpCurtain
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_ThermalGlow
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/baroque/MI_SDF_GildedFiligree
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: BaseRoughness; GlowAmount; RefractionDepthBias; Scale
+  Missing texture slots: Albedo
+  Note: Dead overrides may cause unpredictable shading: BaseRoughness; GlowAmount; RefractionDepthBias; Scale
+
+/Game/Melodia/_PROJECT/04_Materials/baroque/MI_SDF_GildedStucco
+  Issue: MARBLE-DEFAULT
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Missing texture slots: Albedo
+  Note: Missing albedo texture - will show master default (likely grey/marble)
+
+/Game/Melodia/_PROJECT/04_Materials/baroque/MI_SDF_RoseWindow
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: BaseRoughness; GlowAmount; Petals; RefractionDepthBias; RingFreq
+  Missing texture slots: Albedo
+  Note: Dead overrides may cause unpredictable shading: BaseRoughness; GlowAmount; Petals; RefractionDepthBias; Ring
+
+/Game/Melodia/_PROJECT/04_Materials/water/MI_Water_Ocean
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v6.M_Water_Master_Grand_v6
+  Dead overrides: BioluminescenceAmount; RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: BioluminescenceAmount; RefractionDepthBias
+
+/Game/Melodia/_PROJECT/Materials/MI_Lookdev_LanternSoftGold
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+  Dead overrides: TriplanarTiling
+  Note: Dead overrides may cause unpredictable shading: TriplanarTiling
+
+/Game/Melodia/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_StateB
+  Issue: DEAD-OVERRIDE
+  Parent: /Game/EnvSandbox/VFX/Materials/MI_Niagara_Cosmic.MI_Niagara_Cosmic
+  Dead overrides: RefractionDepthBias
+  Note: Dead overrides may cause unpredictable shading: RefractionDepthBias
+

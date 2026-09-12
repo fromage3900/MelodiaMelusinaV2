@@ -218,5 +218,6 @@ Closing this loop is more important than adding another global subsystem.
 - `Docs/Strategy/MELODIA_EVERGREEN_CONTENT_AND_GIFT_MODEL_2026-09-02.md`
 - `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`
 - `CURRENT_STATE.md`
+- `TODO.md`
 
 **Architecture goal:** years from now, most new Melodia work should look like authoring a journey, not repairing the engine underneath it.

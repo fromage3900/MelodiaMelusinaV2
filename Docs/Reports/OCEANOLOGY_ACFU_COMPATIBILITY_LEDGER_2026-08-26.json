@@ -1,0 +1,57 @@
+{
+  "schema": "melodia.vendor_compatibility_ledger.v1",
+  "as_of": "2026-08-26",
+  "overall_status": "HOLD_VENDOR_INPUTS_MISSING",
+  "report": "Docs/Reports/OCEANOLOGY_ACFU_MELUSINA_COMPATIBILITY_2026-08-26.md",
+  "p0_task_ledger": "Docs/P0_TASK_LEDGER.json",
+  "p0_relationship": "optional_post_baseline_compatibility_track_not_a_p0_dependency",
+  "tracks": [
+    {
+      "id": "oceanology_expanded",
+      "status": "hold",
+      "proof_tier": "package_inventory",
+      "finding": "Purchased provenance exists, but no vendor archive, descriptor, or source is on disk. Local plugin directory is a descriptor-less binary remnant and remains disabled.",
+      "next_gate": "vendor_package_fingerprint_and_isolated_ue58_compile"
+    },
+    {
+      "id": "acfu_melusina_lab",
+      "status": "hold",
+      "proof_tier": "scaffold_contract",
+      "finding": "Disposable lab isolation contract passes; ACFU vendor source/plugin descriptor is absent.",
+      "next_gate": "restore_vendor_source_and_compile_disposable_lab"
+    },
+    {
+      "id": "melodia_core_rhythm_baseline",
+      "status": "pass",
+      "proof_tier": "editor_automation",
+      "finding": "14/14 targeted rhythm, presentation, water-state, and wiring automation tests pass without either vendor plugin loaded.",
+      "next_gate": "repeat_after_each_isolated_vendor_compile"
+    },
+    {
+      "id": "melusina_bp_offline_preflight",
+      "status": "pass",
+      "proof_tier": "offline_contract",
+      "finding": "Registry, readiness, materialization, topology, skill bridge, native adapter, and HUD ownership source checks pass.",
+      "next_gate": "clean_editor_pie_identity_and_animation_smoke"
+    },
+    {
+      "id": "melusina_headless_pie",
+      "status": "hold",
+      "proof_tier": "live_runtime_required",
+      "finding": "Shared-editor PIE was held for four dirty UI packages and errored WBP_MelodiaRhythmHighway. A later unattended NullRHI commandlet loaded modules but stalled before automation discovery because UE-LocalDataCachePath points to unavailable F:/UE_DDC and Zen found no valid data path.",
+      "next_gate": "process_local_valid_ddc_then_zero_dirty_packages_and_zero_errored_blueprints"
+    }
+  ],
+  "known_harness_findings": [
+    "test_e2e_melusina_release syntax repaired; suite now runs 17 tests with 15 pass, one README wording failure, and one nested MCP timeout error",
+    "animation promotion fixtures fail closed on manifest/live-promotion identity",
+    "integration-map contract has stale hard-coded Melody Slime row counts"
+  ],
+  "environment_blockers": [
+    "F: root access does not complete within the bounded inventory window",
+    "UE-LocalDataCachePath=F:/UE_DDC prevents unattended Zen/DDC initialization",
+    "The unattended commandlet was terminated after its log stopped before automation discovery; no test result was emitted",
+    "A process-local DDC retry emitted no new log and did not reach automation discovery within the bounded window; it was terminated without changing the machine-level environment"
+  ],
+  "live_game_mutation_authorized": false
+}

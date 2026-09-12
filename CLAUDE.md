@@ -1,19 +1,5 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
-## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
-
-This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
-`origin/main`, maintained on the desktop PC. This laptop clone is ONLY a Blender /
-asset-prep / mobile hub — its local `main` must mirror `origin/main` exactly and never
-diverge. No agent may create branches, commit, merge, rebase, reset, or push without
-explicit owner permission for that specific operation plus a written plan stated first.
-Never consolidate or restructure git history from this machine. Destructive commands
-(`git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, any history
-rewrite) are forbidden without explicit per-command owner approval. Long-lived laptop
-asset work lives on `collab/laptop/longterm`. Verify read-only before and after any
-approved mutation. Poor git management has already caused real regressions and missed
-deadlines here — do not add to that history.
-
 ## ⛔ READ FIRST — [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md)
 
 **This is a working portfolio and a livelihood, not a technical sandbox.** When the owner asks for
@@ -43,9 +29,10 @@ table for a one-line fix; you are proposing a design where the ask was a repair.
 ---
 
 > This file is auto-loaded by Claude at session start. Read it before doing anything.
-> **Status, queue, and where everything is: [`CURRENT_STATE.md`](CURRENT_STATE.md) — the only status document.**
+> **Read next:** [`AGENT_START_HERE.md`](AGENT_START_HERE.md). It is the 2026-09-04 discovery authority.
 > Sheep / Chladni / Nikki Cymatics work must also open [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md).
-> Do not create handoff, plan, receipt, or session-note files. Update `CURRENT_STATE.md` in the same commit as the change; everything else goes in the commit or PR message.
+> Then follow the current front door into `MELODIA_TECHNICAL_VERTICAL_SLICE.md`, `CURRENT_STATE.md`, and `TODO.md`.
+> **Do not use deleted `_SESSION_HANDOFF.md` / `_TASK_QUEUE.md` or `_ROADBLOCKS_2026-07-31.md` as current status.**
 
 ## ⏱ Read dates before you trust a doc
 
@@ -133,7 +120,7 @@ permitted gets talked out of.
 ## 🟡 Yellow (Do With a Report)
 - Run material/look-dev loops — must write a `Saved/Audit/` report
 - Generate PCG graph changes — must not alter Sakura level content
-- Update `CURRENT_STATE.md`
+- Update `CURRENT_STATE.md`, `NEXT_ACTIONS.md`
 
 ## 🔴 Red (Ask First)
 - Delete or move `.uasset` files
@@ -155,7 +142,15 @@ permitted gets talked out of.
 > Docs that still target 5.1 — notably `Docs/MELODIA_STUDIO_SHIP_CHECKLIST.md` and the default in
 > `sync_surreal_to_live.ps1` — describe steps that cannot currently run.
 
-**Current focus and queue:** [`CURRENT_STATE.md`](CURRENT_STATE.md) §4.
+**Current focus (updated 2026-07-31)**: **First Dream vertical slice, foundation closeout.** Both
+tracks are active — Decision 008 (2026-07-29) put the vertical slice first with the portfolio
+proceeding in parallel via delegation. The native build is green, five test suites pass, and the
+route packages clean; the remaining work is **Blueprint wiring**, not code. Start at
+`Docs/BLUEPRINT_WIRING_CHECKLIST_2026-07-30.md`.
+
+> The older line here said *"Gameplay work is paused during this push."* That was the 2026-07-26
+> portfolio-first stance and it was superseded by Decision 008. `Docs/QUEUE.md` is now the
+> **environment-art/portfolio** tracker only; gameplay lives in `_TASK_QUEUE.md`.
 
 **Agent tooling — three Unreal MCP surfaces registered in `.mcp.json`, two enabled by default**
 (Decision 025 as reversed 2026-07-31; Decision 027 for the third):

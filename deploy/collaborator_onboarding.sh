@@ -66,12 +66,17 @@ if [ "$TIER" = "blender" ]; then
     /Docs/ZUNZUN_FAMILY_INTEGRATION.md \
     /Docs/ZUNDAMON_DESIGN_BIBLE.md \
     /Docs/ZUNDAMON_NPC_SPEC.md \
+    /AGENT_START_HERE.md \
+    /MELODIA_TECHNICAL_VERTICAL_SLICE.md \
     /CURRENT_STATE.md \
-    /README.md
+    /_VERTICAL_SLICE_SCOPE.md \
+    /TODO.md \
+    /README.md \
+    /DOC_INDEX.md
   echo "==> Hydrating canonical Melusina House source"
   git lfs pull --include="RawArt/MelusinasHouse/**"
   echo "==> Blender-only checkout ready"
-  echo "Read CURRENT_STATE.md and Docs/Art/VISUAL_REFERENCE_INDEX.md first."
+  echo "Read AGENT_START_HERE.md and Docs/Art/VISUAL_REFERENCE_INDEX.md before using dated handoffs."
   echo "Install the addon under Blender 5.2, then use Docs/ONBOARDING_LIVE_COLLAB.md."
   exit 0
 fi

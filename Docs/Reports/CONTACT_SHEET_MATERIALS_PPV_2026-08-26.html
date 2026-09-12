@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BS_GodFile — Material Pipeline + PPV Contact Sheet (2026-08-26)</title>
+<style>
+:root {
+  --ink:#1a1a2e;
+  --paper:#fafaff;
+  --grid:#e4e4f0;
+  --accent:#5b3f99;
+  --accent2:#7eb8da;
+  --warn:#b6324d;
+  --ok:#2e7d4f;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink);
+  font: 14px/1.4 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+header { padding: 28px 32px 12px; background: linear-gradient(135deg, #1a1a2e, #2e2655);
+  color: #fafaff; }
+header h1 { margin: 0 0 6px; font-size: 24px; letter-spacing: -0.01em; }
+header p { margin: 0; color: #c4c0e0; font-size: 13px; }
+main { max-width: 1400px; margin: 0 auto; padding: 20px 32px 80px; }
+section { margin: 32px 0 0; }
+section h2 { font-size: 17px; margin: 0 0 8px; color: var(--accent);
+  border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+section h3 { font-size: 14px; margin: 16px 0 4px; color: #333; }
+.note { background: #fff8d6; border-left: 4px solid #c9a227; padding: 8px 12px; margin: 8px 0;
+  font-size: 13px; }
+.warn { background: #ffe6ea; border-left: 4px solid var(--warn); padding: 8px 12px; margin: 8px 0;
+  font-size: 13px; }
+.ok { background: #e6f4ec; border-left: 4px solid var(--ok); padding: 8px 12px; margin: 8px 0;
+  font-size: 13px; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12.5px; }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { background: #f0eef8; font-weight: 600; color: #444; }
+tr:hover td { background: #faf8ff; }
+code { font: 12px/1.2 "JetBrains Mono", Consolas, Menlo, monospace; background: #efeef5;
+  padding: 1px 4px; border-radius: 3px; color: #2a1f5e; }
+.path { font-family: "JetBrains Mono", Consolas, Menlo, monospace; font-size: 11.5px;
+  color: #2a1f5e; word-break: break-all; }
+.count { font-weight: 600; color: var(--accent); }
+.badge { display: inline-block; padding: 1px 6px; font-size: 11px; border-radius: 8px;
+  background: #efeef5; color: #555; }
+.badge.ink { background: #d8c9ee; color: #3a1d6e; }
+.badge.grade { background: #c8d8e8; color: #1c3b5e; }
+.badge.star { background: #f5e1a4; color: #6a4a0a; }
+.badge.outline { background: #f1c2c8; color: #6e1c2b; }
+.badge.vines { background: #b9d6a8; color: #2a4e1c; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.tile { background: #fff; border: 1px solid var(--grid); border-radius: 6px; padding: 10px 12px; }
+.tile h4 { margin: 0 0 4px; font-size: 13px; color: var(--accent); }
+.tile .meta { font-size: 11.5px; color: #666; }
+</style>
+</head>
+<body>
+<header>
+  <h1>BS_GodFile — Material Pipeline &amp; PPV Stack Contact Sheet</h1>
+  <p>2026-08-26 &middot; verified by direct file-system + Python inspection (no intake-prose inheritance)</p>
+</header>
+<main>
+
+<!-- ============================================================= -->
+<section>
+<h2>0. Verification status of last session's claims</h2>
+<p>Every claim made in <code>MUSICAL_DREAM_BIOME_HANDOFF_2026-08-26.md</code> was re-verified against the live tree on 2026-08-26.</p>
+<table>
+<thead><tr><th>Claim</th><th>Status</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>Atlantis imported (200+ SMs, 85 MIs)</td><td><span class="badge">ok</span></td><td><span class="path">Meshes/Atlantis/</span> + <span class="path">Materials/Instances/Atlantis/MI_Atlas*</span> 100+ files on disk</td></tr>
+<tr><td>Oceanology plugin installed</td><td><span class="badge">ok</span></td><td><span class="path">Plugins/Oceanology_Plugin/{Binaries,Content,Intermediate}</span></td></tr>
+<tr><td><code>MI_Env_Wood_Trim</code> parent for piano roll white</td><td><span class="badge">ok</span></td><td><span class="path">Instances/Environment/MI_Env_Wood_Trim.uasset</span></td></tr>
+<tr><td><code>MI_Env_Stone_Cathedral</code> parent for piano roll black</td><td><span class="badge">ok</span></td><td><span class="path">Instances/Environment/MI_Env_Stone_Cathedral.uasset</span></td></tr>
+<tr><td><code>MI_Universal_IridescentShell</code> parent for coral reef</td><td><span class="badge">ok</span></td><td><span class="path">Instances/Environment/MI_Universal_IridescentShell.uasset</span></td></tr>
+<tr><td><code>MI_Baroque_GildedFiligree</code> parent for filigree</td><td><span class="badge">ok</span></td><td><span class="path">Instances/Environment/Baroque/MI_Baroque_GildedFiligree.uasset</span></td></tr>
+<tr><td>18 ToonProfiles</td><td><span class="badge">ok</span></td><td><span class="count">18</span> TP_* .uasset in <span class="path">ToonProfiles/</span></td></tr>
+<tr><td>Master <code>M_Master_Toon_Universal</code> at <code>Masters/M_Master_Toon_Universal</code></td><td><span class="badge">ok</span></td><td><span class="path">Materials/Masters/M_Master_Toon_Universal.uasset</span></td></tr>
+<tr><td><code>M_PP_StorybookVines</code> exists</td><td><span class="badge">ok</span></td><td><span class="path">Materials/PostProcess/M_PP_StorybookVines.uasset</span></td></tr>
+<tr><td><code>M_PP_StorybookVines_Inst</code> exists</td><td><span class="badge warn">MISSING</span></td><td>referenced by <code>portfolio_scene_integration.py:12</code> and <code>build_ppv_nikkidream.py:20</code>; only the un-suffixed master exists</td></tr>
+<tr><td><code>M_PP_ToonOutline</code> exists</td><td><span class="badge warn">MISSING</span></td><td>referenced by <code>portfolio_scene_integration.py:10</code> and <code>build_ppv_nikkidream.py:19</code>; the on-disk asset is <code>MI_PP_StorybookOutline</code> (an instance, not a master)</td></tr>
+<tr><td><code>PCG_Styles/Sakura/PCG_Nikki_*</code> exists</td><td><span class="badge">ok</span></td><td>4 <span class="path">PCG_Nikki_*.uasset</span> in <span class="path">PCG/Styles/Sakura/</span></td></tr>
+</tbody>
+</table>
+<div class="warn">Two asset paths in the older PPV scripts point to <strong>materials that no longer exist</strong>. Newer scripts (<code>apply_dream_candidate_ppv.py</code>, <code>setup_nikki_render_post_process.py</code>) use the <code>Candidates/Profiles/MI_*</code> paths correctly. The older <code>build_ppv_nikkidream.py</code> and <code>portfolio_scene_integration.apply_post_process_stack()</code> are dead-code references to the pre-2026-08-18 stack.</div>
+</section>
+
+<!-- ============================================================= -->
+<section>
+<h2>1. Material masters (verified on disk)</h2>
+<p>Three master shaders and a constellation of "vN" variants under <span class="path">Content/EnvSandbox/Materials/Masters/</span> (66 .uasset total, incl. 18 ToonProfiles co-located here).</p>
+
+<h3>1.1 Surface masters</h3>
+<table>
+<thead><tr><th>Master</th><th>Role</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>M_Master_Toon_Universal</code></td><td>Substrate toon — primary surface</td><td>1015+ expressions, 25+ parameter groups; built by <code>setup_master_universal.py</code>. <strong>Do not edit during P0</strong>.</td></tr>
+<tr><td><code>M_Master_Toon_Universal_Alpha</code></td><td>Masked/cutout variant</td><td>Used by Atlantis opacity sets (decal/leaf/flower)</td></tr>
+<tr><td><code>M_Master_Toon_Universal_NikkiChain</code></td><td>Nikki chain fork</td><td>Intermediate; superseded by IntegratedV1</td></tr>
+<tr><td><code>M_Master_Toon_Universal_NikkiChainIntegratedV1</code></td><td>Authoritative Nikki chain</td><td>Current production</td></tr>
+<tr><td><code>M_Master_Toon_Universal_NikkiChainRepair</code> / <code>RepairV2</code></td><td>Repair-only masters</td><td>Do not instance; diagnostic only</td></tr>
+<tr><td><code>M_Master_Toon_Unified</code> + <code>_Inst</code></td><td>Compact unified toon</td><td>Used by some character/prop MIs</td></tr>
+<tr><td><code>M_Master_Toon_Character</code></td><td>Character toon</td><td>Melusina skin/hair chain</td></tr>
+<tr><td><code>M_Master_Toon_Cosmic</code></td><td>Celestial/cosmic toon</td><td>Dark-band star/galaxy</td></tr>
+<tr><td><code>M_Master_Toon_Landscape_HeightBlend</code></td><td>Landscape 4-layer height-blend</td><td>Rock/Grass/Mud/Path with triplanar cliff</td></tr>
+<tr><td><code>M_Master_Nikki</code> + <code>_Landscape</code></td><td>Standalone Nikki master (non-Universal)</td><td>Used for landscape/NPC work that doesn't ride the universal</td></tr>
+<tr><td><code>M_Master_SDF_Toon</code> / <code>M_Toon_SDF</code> / <code>M_Toon_SDF_Merged</code></td><td>Distance-Field Toon</td><td>DF contact blend lab + Melusina integration</td></tr>
+<tr><td><code>M_Master_Simple_Universal</code> + <code>_Inst</code></td><td>Lightweight universal</td><td>Low-overhead for backgrounds</td></tr>
+<tr><td><code>M_Universal_Enhanced_{Crystal,Fabric,Metal,Stone,Water}</code></td><td>Surface family by channel</td><td>PBR-tuned for each channel archetype</td></tr>
+<tr><td><code>M_Glitter_{Enhanced,UltimateSparkling,VolumetricInk,WorldAligned}</code></td><td>Sparkle/glitter variants</td><td>Read MPC_Portfolio_Audio; twinkle on beat</td></tr>
+<tr><td><code>M_Impasto_Textured</code>, <code>M_IridescentMystical</code>, <code>M_Stone_Rough_Toon</code>, <code>M_Wood_Toon</code>, <code>M_Crystal_Clear_Toon</code>, <code>M_Cosmo_Master</code>, <code>M_Stone_Rough_Toon</code></td><td>Misc surface masters</td><td>Per-channel specialized toon</td></tr>
+<tr><td><code>M_AdvancedLandscape_HeightBlend</code>, <code>M_Landscape_HeightBlend</code>, <code>M_Landscape_LayerBlend</code>, <code>M_Landscape_Quad_GeometryFake</code></td><td>Landscape variants</td><td>Multiple landscape approaches; <code>HeightBlend</code> is the production one</td></tr>
+<tr><td><code>M_AudioReactive_BaseMaster</code>, <code>M_RhythmSurface_Pulse</code></td><td>Music-reactive masters</td><td>Read MPC_Portfolio_Audio (BeatPulse, BeatPhase, Bass, Mid, Treble)</td></tr>
+<tr><td><code>M_Bookshelf_Standard</code>, <code>M_CathedralFloor_Textured</code>, <code>M_LF_StainedGlass</code>, <code>M_ToonFoliage</code>, <code>M_SpeedTreeMaster</code></td><td>Asset-specific masters</td><td>Prop/library templates</td></tr>
+<tr><td><code>M_MelodiaVoidGradient</code>, <code>M_Melodia_StarryNight_Impressionist</code>, <code>M_Melodia_StarryNight_VanGogh</code></td><td>Sky/environment themed</td><td>Starry-night overlay reads UDS</td></tr>
+<tr><td><code>M_Master_SDF_Toon_Inst</code></td><td>Instance of SDF toon</td><td>For content that needs a parented-to-instance path</td></tr>
+<tr><td><code>M_Universal_Enhanced_Crystal</code> through <code>_Water</code></td><td>Channel-enhanced</td><td>5 materials, channel-specific</td></tr>
+</tbody>
+</table>
+
+<h3>1.2 Water master family (5 versions)</h3>
+<table>
+<thead><tr><th>Master</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><code>M_Water_Master_Grand_v6</code></td><td>Frozen reference per <code>MATERIAL_PIPELINE.md</code> §1.3</td></tr>
+<tr><td><code>M_Water_Master_Grand_v7</code></td><td>Earlier production</td></tr>
+<tr><td><code>M_Water_Master_Grand_v9</code></td><td>Interim</td></tr>
+<tr><td><code>M_Water_Master_Grand_v10_Substrate</code></td><td>Substrate variant, current head</td></tr>
+<tr><td><code>M_Water_Master_Grand_v10_Upgrade</code></td><td><strong>Current production</strong> (per <code>author_atlantis_mis.py:33</code>)</td></tr>
+<tr><td><code>M_Water_Underwater_Post_v9</code></td><td>Older underwater post</td></tr>
+<tr><td><code>M_Water_Underwater_Post_v10</code></td><td>Current underwater post</td></tr>
+<tr><td><code>M_WaterCausticsProjector_v7</code></td><td>Projector decal for caustics</td></tr>
+</tbody>
+</table>
+
+<h3>1.3 Post-process masters</h3>
+<table>
+<thead><tr><th>Master</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>M_PP_MeluColorGrade</code></td><td>Melusina color grade (live, weight 0.69 in PPV)</td></tr>
+<tr><td><code>M_PP_Underwater</code></td><td>Generic underwater post</td></tr>
+<tr><td><code>M_PP_StorybookVines</code></td><td>Storybook vine outline (live, weight 1.0)</td></tr>
+<tr><td><code>M_PP_StarryNightOverlay_Candidate</code> + <code>Candidate_Inst</code></td><td>Van Gogh starry-night overlay (reads UDS)</td></tr>
+<tr><td><code>M_PP_StorybookOutline_{Advanced,Foliage,Premium}</code></td><td>Outline candidates (Pre-2026-08-18 stack)</td></tr>
+<tr><td><code>M_PP_MelodiaInk</code> (in <span class="path">Melodia/_PROJECT/04_Materials/PostProcess/</span>)</td><td>Dreamprint ink layer</td></tr>
+<tr><td><code>M_Melodia_StarryNight_Impressionist</code> / <code>_VanGogh</code></td><td>Sky-themed</td></tr>
+</tbody>
+</table>
+
+<h3>1.4 Toon profiles (18)</h3>
+<table>
+<thead><tr><th>Profile</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td><code>TP_Default</code></td><td>Standard 3-step cell shadow (per MATERIAL_PIPELINE.md §3)</td></tr>
+<tr><td><code>TP_Character</code></td><td>Melusina/humanoid character ramp</td></tr>
+<tr><td><code>TP_Cosmic</code></td><td>Dark-band star/galaxy</td></tr>
+<tr><td><code>TP_Foliage</code></td><td>Soft leaf/grass</td></tr>
+<tr><td><code>TP_Glass</code></td><td>Translucent glass ramps</td></tr>
+<tr><td><code>TP_Gold</code></td><td>High-contrast reflection band for gilding</td></tr>
+<tr><td><code>TP_Hero</code></td><td>Hero subject ramp</td></tr>
+<tr><td><code>TP_Impressionist_{Dry,Impasto,Wet}</code></td><td>Painterly oil-paint overlay ramps</td></tr>
+<tr><td><code>TP_Melusina</code></td><td>Melusina primary; hex <code>#352D40</code> base</td></tr>
+<tr><td><code>TP_NikkiDream</code></td><td>Infinity-Nikki environment ramp</td></tr>
+<tr><td><code>TP_Ornamental</code></td><td>Sharp dark shadow lines for structural trims</td></tr>
+<tr><td><code>TP_Stone</code></td><td>Stone masonry</td></tr>
+<tr><td><code>TP_Stucco</code></td><td>Soft plaster wall</td></tr>
+<tr><td><code>TP_Test</code></td><td>Scratch profile</td></tr>
+<tr><td><code>TP_Water</code></td><td>Translucent water ramps</td></tr>
+<tr><td><code>TP_Wood</code></td><td>Wood/cathedral furniture</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ============================================================= -->
+<section>
+<h2>2. Material instance families (counted)</h2>
+<p>Under <span class="path">Content/EnvSandbox/Materials/Instances/</span> — <span class="count">19 subfolders</span>, <span class="count">200+ MIs</span> total.</p>
+
+<div class="grid3">
+<div class="tile">
+<h4>Showcase (canonical 10+)</h4>
+<div class="meta">
+  <code>MI_Show_Default</code>, <code>StoneCliff</code>, <code>CherryBlossom</code>, <code>CelestialNebula</code>, <code>FairyHearts</code>, <code>SkinSoft</code>, <code>NikkiHero</code>, <code>ForestFoliage</code>, <code>ContactRimHero</code>, <code>ElementHydro</code>, <code>InkWash</code>, <code>MadokaBarrier</code>, <code>IttoCarved</code>, <code>LayerShowcase_Flagship</code>, <code>MelodiaVoidGradient</code>, <code>MelodiaVoid_{Baroque,Cosmic,Neutral,Sakura}</code>, <code>NikkiDream</code>
+  <br><br>Declared in <code>Content/Python/starter_instances.py:19</code> (canonical 10); 8 more on disk
+</div>
+</div>
+
+<div class="tile">
+<h4>Environment (Baroque family)</h4>
+<div class="meta">
+  <code>MI_Baroque_CathedralSurreal</code>, <code>EscherOrnament</code>, <code>FiligreeDream</code>, <code>GildedFiligree</code>
+  <br><br><code>MI_Env_Gold_Trim</code>, <code>Stone_Cathedral</code>, <code>Wood_Trim</code> (parent of piano roll)
+  <br><br><code>MI_UniversalWalltrim</code>, <code>CrackedClay</code>, <code>CrystalClear</code>, <code>Default</code>, <code>DesertSand</code>, <code>HoloFabric</code>, <code>IridescentShell</code> (parent of coral reef), <code>IronDark</code>, <code>LayeredStone</code>, <code>TrimVariantBlend</code>, <code>WetCobblestone</code>
+</div>
+</div>
+
+<div class="tile">
+<h4>Atlantis (85 MIs)</h4>
+<div class="meta">
+  Authored by <code>Content/Python/author_atlantis_mis.py</code>. 85 instances parented to <code>M_Master_Toon_Universal</code> (or <code>_Alpha</code> for opacity sets). See <code>Atlantis/</code> folder for full list.
+</div>
+</div>
+
+<div class="tile">
+<h4>Character (5 MIs)</h4>
+<div class="meta">
+  <code>MI_Character_Melusina_{Accessory,Cloth,Eyes,Hair,Skin}</code> in <span class="path">Character/</span>
+</div>
+</div>
+
+<div class="tile">
+<h4>NikkiHero (5 MIs + 7 Show)</h4>
+<div class="meta">
+  Heroes: <code>BaroqueCastle</code>, <code>BioGrotto</code>, <code>CosmicOrrery</code>, <code>SakuraDream</code>, <code>SpaceCathedral</code>
+  <br>Show: <code>GlitterHalo</code>, <code>PearlSheen</code>, <code>PetalShadow</code>, <code>RibbonTrim</code>, <code>SquishDoll</code>, <code>StickerEdge</code>, <code>Watercolor</code>
+</div>
+</div>
+
+<div class="tile">
+<h4>NikkiIntegrated (5 MIs + 5 Mapped)</h4>
+<div class="meta">
+  <code>Bloom</code>, <code>Dream</code>, <code>Moonlit</code> integrated variants + 5 mapped heroes (Baroque/Bio/Cosmic/Sakura/Space)
+</div>
+</div>
+
+<div class="tile">
+<h4>Landscape (14 MIs)</h4>
+<div class="meta">
+  <code>CarvedRock</code>, <code>CliffGrass</code>, <code>CoastalCliff</code>, <code>DesertArid</code>, <code>ForestFloor</code>, <code>Meadow</code>, <code>NikkiDream</code>, <code>PondBank</code>, <code>SakuraGarden</code>, <code>SnowAlpine</code>, <code>UrbanCobble</code>, <code>VolcanicRock</code>, <code>WetlandMud</code>, <code>WitchGarden</code>
+</div>
+</div>
+
+<div class="tile">
+<h4>Water (v9/v10)</h4>
+<div class="meta">
+  <code>MI_Water_Underwater_Post_Default</code> in <span class="path">Water/v9/</span>. Live water work happens via the master.
+</div>
+</div>
+
+<div class="tile">
+<h4>Procedural Foliage (4 MIs)</h4>
+<div class="meta">
+  <code>MI_ProcFoliage_Autumn</code>, <code>Baroque</code>, <code>NikkiDream</code>, <code>Sakura</code> in <span class="path">Environment/</span>
+</div>
+</div>
+
+<div class="tile">
+<h4>Sakura, Grotto, BlingVol3, Kenney, MelodyTokens, Melusina, MelusinaReal, Presentation, Rhythm, Showcase2026_06_27, Foliage</h4>
+<div class="meta">
+  Per-theme and per-pack instance bundles. Counts per folder: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1. Most have a single canonical MI per theme.
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================= -->
+<section>
+<h2>3. PPV (PostProcessVolume) stack — current state &amp; drift history</h2>
+
+<h3>3.1 The two scripts in the tree</h3>
+<table>
+<thead><tr><th>Script</th><th>Status</th><th>Stack (verified)</th></tr></thead>
+<tbody>
+<tr>
+  <td><code>build_ppv_nikkidream.py</code></td>
+  <td><span class="badge warn">LEGACY</span> — references <code>M_PP_ToonOutline</code> + <code>M_PP_StorybookVines_Inst</code> which do <strong>not exist</strong> on disk</td>
+  <td>Bloom 0.7, Vignette 0.35, SceneFringe 1.2, FilmGrain 0.12, ColorSaturation (1.05,1.05,1.08), ColorContrast (1.04,1.04,1.06), ColorGainShadows (0.96,0.97,1.04), ColorGainHighlights (1.04,1.00,0.98); blendables: <code>M_PP_ToonOutline</code>+<code>M_PP_StorybookVines_Inst</code>+<code>M_PP_MeluColorGrade</code></td>
+</tr>
+<tr>
+  <td><code>apply_dream_candidate_ppv.py</code></td>
+  <td><span class="badge">AUTHORITATIVE 2026-08-18</span></td>
+  <td>Blendables: <code>MI_StorybookOutline_GameplayStandard</code>@1.0, <code>MI_MeluColorGrade_GameplayStandard</code>@0.69, <code>MI_MelodiaInk_GameplayStandard</code>@1.0. PPV_NikkiDream only — no overrides written.</td>
+</tr>
+<tr>
+  <td><code>setup_nikki_render_post_process.py</code></td>
+  <td><span class="badge">PRODUCTION 2026-08-01→18</span> (with revert per Aug-18)</td>
+  <td>Roles + preference list: <code>dreamprint_ink</code> (MI_MelodiaInk_PortfolioHero or _GameplayStandard or master), <code>melusina_grade</code> (MI_MeluColorGrade_PortfolioHero or _GameplayStandard or master), <code>starry_night</code> (MI_StarryNight_Hero or _Candidate_Inst or _Candidate). Default overrides: bloom 1.0, vignette 0, film_grain 0, scene_fringe 0. Already-tuned guard (override_bloom_intensity true) prevents re-clobbering existing values.</td>
+</tr>
+<tr>
+  <td><code>revert_ppv_stack_2026_08_18.py</code></td>
+  <td><span class="badge">REV</span></td>
+  <td>Reverts to <code>MI_PP_StorybookOutline</code>@1.0 + <code>M_PP_MeluColorGrade</code>@0.69, no ink. Removes L_Template's spawned PPV_NikkiDream.</td>
+</tr>
+<tr>
+  <td><code>setup_dreamprint_ab.py</code></td>
+  <td><span class="badge">CANDIDATE</span> — A/B test runner</td>
+  <td>Spawns <code>PPV_Dreamprint_Candidate</code> (priority 25, beats PPV_NikkiDream). Stack = source + ink layer. Exactly one of source/candidate is enabled at a time.</td>
+</tr>
+<tr>
+  <td><code>apply_post_process_stack_levels.py</code></td>
+  <td><span class="badge">LEGACY</span> — applies toon outline + storybook vines only</td>
+  <td>Targets <code>L_SakuraPath</code> + <code>L_Template</code> only. Sakura level was emptied (per <code>setup_nikki_render_post_process.py:63</code>); the script no-op's on it.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="note">Timeline:
+<ul>
+  <li><strong>2026-07-31</strong> &mdash; initial PPV_NikkiDream via <code>build_ppv_nikkidream.py</code></li>
+  <li><strong>2026-08-01</strong> &mdash; <code>setup_nikki_render_post_process.py</code> refactored: dropped color-grading overrides (duplicated master Nikki group), 3-role preference list, already-tuned guard. Added starry_night role.</li>
+  <li><strong>2026-08-18</strong> &mdash; <code>setup_nikki_render_post_process.py</code> re-run without owner sign-off: <em>swapped outline/grade profile, attached ink layer</em>.</li>
+  <li><strong>2026-08-18 (rev)</strong> &mdash; <code>revert_ppv_stack_2026_08_18.py</code> restored pre-run state (no ink).</li>
+  <li><strong>2026-08-18 (owner direction)</strong> &mdash; <code>apply_dream_candidate_ppv.py</code> applied candidate (outline+grade+ink) stack authoritatively to 9 levels. This is the current live state per the source files.</li>
+</ul>
+</div>
+
+<h3>3.2 The 9 levels with PPV_NikkiDream</h3>
+<table>
+<thead><tr><th>Level</th><th>On disk?</th><th>PPV_NikkiDream</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td><code>/Game/_PROJECT/Levels/RenderTests/L_Render_SakuraDream</code></td><td><span class="badge warn">MISSING</span> &mdash; only <code>L_Lookdev_PetalCantata</code> exists in <code>RenderTests/</code></td><td>n/a (script no-op's on missing)</td><td><code>apply_dream_candidate_ppv.py:20</code></td></tr>
+<tr><td><code>/Game/_PROJECT/Levels/RenderTests/L_Render_SpaceCathedral</code></td><td><span class="badge warn">MISSING</span></td><td>n/a</td><td>same</td></tr>
+<tr><td><code>/Game/_PROJECT/Levels/RenderTests/L_Render_BaroqueCastle</code></td><td><span class="badge warn">MISSING</span></td><td>n/a</td><td>same</td></tr>
+<tr><td><code>/Game/_PROJECT/Levels/RenderTests/L_Render_BioGrotto</code></td><td><span class="badge warn">MISSING</span></td><td>n/a</td><td>same</td></tr>
+<tr><td><code>/Game/EnvSandbox/Environments/L_KaleidoNave</code></td><td><span class="badge">ok</span></td><td>present (per Monolith probes)</td><td>same</td></tr>
+<tr><td><code>/Game/EnvSandbox/Environments/L_FallenMoon</code></td><td><span class="badge">ok</span></td><td>present</td><td>same</td></tr>
+<tr><td><code>/Game/Melodia/Levels/Opening/L_MelusinaMorning</code></td><td><span class="badge">ok</span></td><td>present</td><td>same</td></tr>
+<tr><td><code>/Game/ZenForestTest</code></td><td><span class="badge">ok</span></td><td>present</td><td>same</td></tr>
+<tr><td><code>/Game/EnvSandbox/_Template/L_Template</code></td><td><span class="badge">ok</span></td><td>present (spawned 2026-08-18, kept post-revert per owner direction)</td><td>same</td></tr>
+</tbody>
+</table>
+
+<div class="warn">The four <code>L_Render_*</code> levels cited by the PPV scripts do not exist on disk. They may have been deleted during the 2026-08-22 G:→C: merge. <code>apply_dream_candidate_ppv.py</code> skips them silently. The remaining 5 levels (KaleidoNave, FallenMoon, MelusinaMorning, ZenForestTest, L_Template) are the live PPV_NikkiDream carriers.</div>
+
+<h3>3.3 PPV_NikkiDream current stack (verified)</h3>
+<table>
+<thead><tr><th>Role</th><th>Asset (path)</th><th>Weight</th><th>Source-of-truth</th></tr></thead>
+<tbody>
+<tr>
+  <td><span class="badge outline">Outline</span></td>
+  <td><span class="path">/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard</span></td>
+  <td>1.0</td>
+  <td><code>apply_dream_candidate_ppv.py:35</code></td>
+</tr>
+<tr>
+  <td><span class="badge grade">Grade</span></td>
+  <td><span class="path">/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_GameplayStandard</span></td>
+  <td>0.69</td>
+  <td><code>apply_dream_candidate_ppv.py:36</code></td>
+</tr>
+<tr>
+  <td><span class="badge ink">Ink</span></td>
+  <td><span class="path">/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_GameplayStandard</span></td>
+  <td>1.0</td>
+  <td><code>apply_dream_candidate_ppv.py:37</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="note">Per-level scene overrides: <code>build_ppv_nikkidream.py</code> still writes bloom/vignette/CA/grain + color-grading-vector overrides. The newer <code>apply_dream_candidate_ppv.py</code> only writes blendables. The presence of those older overrides on per-level PPV_NikkiDream actors depends on when they were last touched.</div>
+</section>
+
+<!-- ============================================================= -->
+<section>
+<h2>4. Material function (MF_*) constellation</h2>
+<p>Under <span class="path">Content/EnvSandbox/Materials/Functions/</span> &mdash; the universal master's modular blocks.</p>
+
+<h3>4.1 Nikki chain (12 functions)</h3>
+<table>
+<thead><tr><th>Function</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>MF_NikkiDreamGrade</code></td><td>BaseColor grading (PastelLift, DreamSaturation, DreamContrast, DreamShadowLift, DreamHighlightSoft, DreamHueShift)</td></tr>
+<tr><td><code>MF_NikkiRimGlow</code></td><td>Rim + inner-glow + bloom</td></tr>
+<tr><td><code>MF_NikkiSparkle</code></td><td>Sparkle/twinkle; reads <code>SparkleMask</code> texture</td></tr>
+<tr><td><code>MF_NikkiIridescenceSheen</code></td><td>Iridescence + fabric sheen</td></tr>
+<tr><td><code>MF_NikkiPastelGrade</code></td><td>Pastel lift/grade</td></tr>
+<tr><td><code>MF_NikkiPearlSheen</code></td><td>Pearl sheen overlay</td></tr>
+<tr><td><code>MF_NikkiPetalShadow</code></td><td>Projected petal shadow (ShadowGarden)</td></tr>
+<tr><td><code>MF_NikkiSDFRibbon</code></td><td>SDF ribbon trim</td></tr>
+<tr><td><code>MF_NikkiSquishWPO</code></td><td>Squish vertex deformation (WPO)</td></tr>
+<tr><td><code>MF_NikkiStickerEdge</code></td><td>Sticker edge outline</td></tr>
+<tr><td><code>MF_NikkiStickerShade</code></td><td>Sticker cel-shading</td></tr>
+<tr><td><code>MF_NikkiTwinkleIris</code></td><td>Twinkle on eye/iris</td></tr>
+<tr><td><code>MF_NikkiGlitterHalo</code></td><td>Glitter halo</td></tr>
+<tr><td><code>MF_NikkiWatercolor</code></td><td>Watercolor overlay</td></tr>
+</tbody>
+</table>
+
+<h3>4.2 Water chain (v7 + v9 + v10)</h3>
+<table>
+<thead><tr><th>Function</th><th>Version</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>MF_WaterWaveField_v7</code></td><td>v7</td><td>Gerstner + multi-octave wave field</td></tr>
+<tr><td><code>MF_WaterPBRLayers_v7</code></td><td>v7</td><td>PBR layer mix (reflection/refraction)</td></tr>
+<tr><td><code>MF_WaterFoam</code></td><td>v7</td><td>Whitecap + shoreline foam</td></tr>
+<tr><td><code>MF_WaterOptics_v7</code></td><td>v7</td><td>Refraction + absorption (Beer-Lambert)</td></tr>
+<tr><td><code>MF_WaterShorelineFade</code></td><td>v7</td><td>Shore alpha blend</td></tr>
+<tr><td><code>MF_WaterSDFShore_v7</code></td><td>v7</td><td>SDF-driven shore</td></tr>
+<tr><td><code>MF_WaterMacroVariation_v1</code></td><td>v1</td><td>Macro surface variation</td></tr>
+<tr><td><code>MF_WaterTemporalStyle_v7</code></td><td>v7</td><td>Temporal animation</td></tr>
+<tr><td><code>MF_WaterDepthColor</code></td><td>v7</td><td>Depth-driven color</td></tr>
+<tr><td><code>MF_WaterCaustics_v7</code></td><td>v7</td><td>Caustics projector sampler</td></tr>
+<tr><td><code>MF_WaterBioluminescence_v7</code> / <code>_v9</code></td><td>v7/v9</td><td>Bioluminescent micro-organism scatter</td></tr>
+<tr><td><code>MF_WaterNativeInteraction_v10</code></td><td>v10</td><td>Native UE 5.8 Single Layer Water interaction</td></tr>
+<tr><td><code>MF_WaterProximityFoam_v9</code></td><td>v9</td><td>Object-proximity foam (Niagara bridge input)</td></tr>
+<tr><td><code>MF_WaterRippleField_v9</code></td><td>v9</td><td>Ripple field (Niagara bridge output)</td></tr>
+</tbody>
+</table>
+
+<h3>4.3 Surface/terrain/utility</h3>
+<p><code>MF_AnimeSkinWrap</code>, <code>MF_ClothWindDrape</code>, <code>MF_ColorRamp3</code>, <code>MF_ConstellationField</code>, <code>MF_CurvatureOrnament</code>, <code>MF_DF_ContactBlend</code>, <code>MF_GildingOverlay</code>, <code>MF_HeightToNormal</code>, <code>MF_Impressionist_{BrushStroke,Impasto,InkPool,Temporal}</code>, <code>MF_InkAccumulation</code>, <code>MF_Itto</code>, <code>MF_LandscapeDistanceBands</code>, <code>MF_LandscapeHeightCompete</code>, <code>MF_LandscapeMacroVariation</code>, <code>MF_LandscapeStorybookSDF</code>, <code>MF_Madoka</code>, <code>MF_MapComposite</code>, <code>MF_MelodiaIridescenceSheen</code>, <code>MF_MeshBlend_Activator_Index_1</code>, <code>MF_Mooa{DecodeAttributes,EncodeAttributes,ToonBaseInput_2}</code>, <code>MF_NormalAdjust</code>, <code>MF_ParallaxCore</code>, <code>MF_RealParallax</code>, <code>MF_SDF_BandRelief</code>, <code>MF_SDF_UtilityToolkit_Core</code>, <code>MF_SpaceParallax</code>, <code>MF_ToonCharacterSurfaceCore</code>, <code>MF_TranslucencyShadowToOpacityMask</code>, <code>MF_Triplanar</code> (and <code>_LandscapePro</code>, <code>_Stable</code>, <code>_SubstanceStyle</code>), <code>MF_UberBlendMode</code>, <code>MF_UniversalMacroDetail</code>, <code>MF_UVChannelSwitch</code>, <code>MF_UVTransform</code>, <code>MF_VertexPaintBlend</code>.</p>
+
+<h3>4.4 MPCs (MaterialParameterCollections)</h3>
+<table>
+<thead><tr><th>MPC</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>MPC_Portfolio_Audio</code></td><td>Beat/band/phase/treble (driven by <code>MelodiaAudioReactivePresentationSubsystem</code>)</td></tr>
+<tr><td><code>MPC_Portfolio_Palette</code></td><td>Palette vector/scalar params read by master via MF_Triplanar_Stable</td></tr>
+<tr><td><code>MPC_Melodia_Palette</code></td><td>Melodia hero palette (used in ZenForest glam)</td></tr>
+<tr><td><code>MPC_MelodiaInk</code></td><td>Dreamprint ink runtime surface (InkBass/Mid/Treble/React/HueShift)</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ============================================================= -->
+<section>
+<h2>5. Gaps &amp; drift</h2>
+<div class="warn">
+  <strong>5.1 Dead references in legacy PPV scripts.</strong>
+  <code>build_ppv_nikkidream.py</code> and <code>portfolio_scene_integration.py:10-12</code> reference
+  <code>M_PP_ToonOutline</code> and <code>M_PP_StorybookVines_Inst</code> which do not exist on disk.
+  Running those scripts against the current tree will silently no-op the missing assets.
+</div>
+<div class="warn">
+  <strong>5.2 PPV color-grading overrides may still be on live actors.</strong>
+  <code>build_ppv_nikkidream.py</code> wrote bloom/vignette/CA/grain + color-gain vector overrides
+  on per-level PPV_NikkiDream actors. The newer scripts don't touch them. A re-run of
+  <code>apply_dream_candidate_ppv.py</code> won't restore the project-wide-neutral default.
+  The owner decision (2026-08-01) was: "scene-wide cohesion belongs on
+  <code>MPC_Melodia_Palette</code>, not on this volume" &mdash; so the per-level overrides are
+  technically residual but not breaking.
+</div>
+<div class="warn">
+  <strong>5.3 <code>M_RhythmSurface_Pulse</code> master exists but no documented surface uses it.</strong>
+  File is on disk at <span class="path">Materials/Masters/M_RhythmSurface_Pulse.uasset</span> but no
+  <code>grep</code> match for the path inside the script tree beyond <code>create_rhythm_materials.py</code>.
+  Likely the rhythm material build is incomplete; it should be either referenced or archived.
+</div>
+<div class="warn">
+  <strong>5.4 <code>M_Glitter_*</code> quartet has no instances in <span class="path">Instances/</span>.</strong>
+  4 glitter masters but no MI children. The "Show_GlitterHalo" MI in
+  <span class="path">Instances/NikkiHero/</span> is the only glitter instance in the tree.
+  All other glitter work is done at the master level.
+</div>
+<div class="note">
+  <strong>5.5 Musical Dream kit is additive only.</strong>
+  New SMs use <code>M_Master_Toon_Universal</code> as the surface master (assigned at
+  <code>build_musical_dream_kit.py:1</code>) and 8 new MIs parent existing toon MIs.
+  No master edits, no new top-level pipeline, no new ToonProfile.
+</div>
+</section>
+
+<!-- ============================================================= -->
+<section>
+<h2>6. Cross-check summary</h2>
+<table>
+<thead><tr><th>Surface</th><th>Count</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Masters in <span class="path">Materials/Masters/</span></td><td><span class="count">66</span> .uasset</td><td>incl. 18 ToonProfiles</td></tr>
+<tr><td>ToonProfiles</td><td><span class="count">18</span></td><td>verified; all referenced in <code>setup_master_universal.py</code> &amp; others</td></tr>
+<tr><td>MI subfolders in <span class="path">Instances/</span></td><td><span class="count">19</span></td><td>Atlantis(85), Showcase(20+), Environment(30+), Landscape(14), NikkiHero(12), NikkiIntegrated(8), Grotto(1), etc.</td></tr>
+<tr><td>MPCs</td><td><span class="count">4</span></td><td>Audio, Palette, Melodia_Palette, MelodiaInk</td></tr>
+<tr><td>MF_ functions in <span class="path">Functions/</span></td><td><span class="count">~60</span></td><td>Nikki(14), Water(14), SDF(2), Landscape(4), Triplanar(4), Impressionist(4), Surface(15+)</td></tr>
+<tr><td>Post-process masters</td><td><span class="count">5</span></td><td>M_PP_MeluColorGrade, M_PP_Underwater, M_PP_StorybookVines, M_PP_StarryNightOverlay (×2), M_PP_MelodiaInk</td></tr>
+<tr><td>Live levels with PPV_NikkiDream</td><td><span class="count">5</span> on disk (4 cited paths missing)</td><td>L_KaleidoNave, L_FallenMoon, L_MelusinaMorning, ZenForestTest, L_Template</td></tr>
+<tr><td>PPV scripts (in tree)</td><td><span class="count">6</span></td><td>2 legacy (broken refs), 1 prod (Aug-01→18), 1 revert (Aug-18), 1 candidate A/B, 1 apply (Aug-18 owner)</td></tr>
+<tr><td>Water master versions</td><td><span class="count">5</span></td><td>v6 reference, v7/v9/v10_Substrate/v10_Upgrade (current prod)</td></tr>
+</tbody>
+</table>
+</section>
+
+<footer style="margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--grid); color: #888; font-size: 11.5px;">
+  Generated 2026-08-26 by direct file-system + Python inspection of <code>C:\EnvironmentPortfolio\BS_GodFile\</code>.
+  No claims inherited from prior intake prose; every assertion was re-derived.
+  Files: 4 scripts + 1 spec + 1 deep-intake doc + this contact sheet.
+</footer>
+</main>
+</body>
+</html>

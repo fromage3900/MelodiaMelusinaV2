@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "created": "2026-07-31",
+  "purpose": "Technical specifications for UE5.8 gameplay level renders",
+  "engine": {
+    "name": "Unreal Engine",
+    "version": "5.8",
+    "master_material": "M_Master_Toon_Universal",
+    "pipeline": "Hybrid (Blender EEVEE → UE Substrate Toon)"
+  },
+  "render_settings": {
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "format": "PNG",
+    "colorspace": "sRGB",
+    "anti_aliasing": true,
+    "lossless": true
+  },
+  "levels": [
+    {
+      "name": "L_KaleidoNave",
+      "description": "Prologue · Bifrost Bridge",
+      "old_placeholder": "WP_SpaceCathedral_terrain.png",
+      "render_types": ["beauty", "wireframe", "materials", "pcg", "stats"],
+      "output_files": [
+        "L_KaleidoNave_beauty.png",
+        "L_KaleidoNave_wireframe.png",
+        "L_KaleidoNave_materials.png",
+        "L_KaleidoNave_pcg.png",
+        "L_KaleidoNave_stats.png"
+      ],
+      "website_sections": ["application-hub.html", "recruiter-one-sheet.html"],
+      "camera_notes": "Bridge overview with open sky"
+    },
+    {
+      "name": "L_MelusinaMorning",
+      "description": "Bedroom Interior",
+      "old_placeholder": "WP_BaroqueGrotto_terrain.png",
+      "render_types": ["beauty", "wireframe", "materials", "pcg", "stats"],
+      "output_files": [
+        "L_MelusinaMorning_beauty.png",
+        "L_MelusinaMorning_wireframe.png",
+        "L_MelusinaMorning_materials.png",
+        "L_MelusinaMorning_pcg.png",
+        "L_MelusinaMorning_stats.png"
+      ],
+      "website_sections": ["application-hub.html", "recruiter-one-sheet.html"],
+      "camera_notes": "Bedroom overview showing bed, perch, Songcraft area"
+    },
+    {
+      "name": "ZenForestTest",
+      "description": "Combat Smoke-Test",
+      "old_placeholder": "WP_SakuraDream_terrain.png",
+      "render_types": ["beauty", "wireframe", "materials", "pcg", "stats"],
+      "output_files": [
+        "ZenForestTest_beauty.png",
+        "ZenForestTest_wireframe.png",
+        "ZenForestTest_materials.png",
+        "ZenForestTest_pcg.png",
+        "ZenForestTest_stats.png"
+      ],
+      "website_sections": ["application-hub.html", "recruiter-one-sheet.html"],
+      "camera_notes": "Forest overview showing combat area"
+    },
+    {
+      "name": "L_FallenMoon",
+      "description": "Recursive Expedition",
+      "old_placeholder": "WP_CosmicOrrery_terrain.png",
+      "render_types": ["beauty", "wireframe", "materials", "pcg", "stats"],
+      "output_files": [
+        "L_FallenMoon_beauty.png",
+        "L_FallenMoon_wireframe.png",
+        "L_FallenMoon_materials.png",
+        "L_FallenMoon_pcg.png",
+        "L_FallenMoon_stats.png"
+      ],
+      "website_sections": ["application-hub.html", "recruiter-one-sheet.html"],
+      "camera_notes": "Dungeon overview showing Room A, blessing/burden area, Room B"
+    }
+  ],
+  "output_directory": "my-site-deploy/generated/assets/landscape-loops/",
+  "naming_convention": "{LevelName}_{RenderType}.png",
+  "render_type_descriptions": {
+    "beauty": "Final lookdev showcase with Substrate Toon active",
+    "wireframe": "Wireframe overlay on beauty render",
+    "materials": "Material ID breakdown view with color coding",
+    "pcg": "PCG debug visualization overlay",
+    "stats": "Performance stats panel screenshot (Ctrl+Shift+H)"
+  },
+  "metadata_tags": {
+    "engine": "UE5.8",
+    "material": "M_Master_Toon_Universal",
+    "resolution": "1920x1080",
+    "format": "PNG",
+    "colorspace": "sRGB",
+    "pipeline": "Hybrid (Blender EEVEE → UE)"
+  },
+  "preservation_rules": {
+    "do_not_modify": [
+      "generated/assets/character/",
+      "generated/assets/material-loops/",
+      "generated/assets/nightshift/",
+      "generated/assets/melodia-game-ui/"
+    ],
+    "reason": "These demonstrate the hybrid pipeline and are current"
+  },
+  "total_renders_expected": 20,
+  "validation": {
+    "file_count": 20,
+    "resolution_check": "1920x1080",
+    "format_check": "PNG",
+    "naming_check": "{LevelName}_{RenderType}.png"
+  }
+}

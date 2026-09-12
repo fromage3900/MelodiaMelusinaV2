@@ -1,4 +1,4 @@
-# ♪ Melodia Melusina — Solo UE5.8 Rhythm-JRPG & Technical Art Project
+﻿# ♪ Melodia Melusina — Solo UE5.8 Rhythm-JRPG & Technical Art Project
 
 ```
 ✦ ─── ✧ ─── ★ ─── ✧ ─── ✦
@@ -11,19 +11,30 @@
 ![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
-> **Status:** [CURRENT_STATE.md](CURRENT_STATE.md) is the only status document — what works and at what evidence level, what is open, the owner queue, repositories and workstations. This README describes the project; it does not track status.
+> **Repository boundary:** this repository is the canonical Unreal/game/capstone authority. The website lives in `fromage3900/my-site`; TouchDesigner lives in its separate `MelodiaTouchDesigner` Git; the **root EnvironmentPortfolio Git repo** is deprecated history only. The local `C:/EnvironmentPortfolio/` folder may remain the workspace container. Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md) before cross-repo work.
 
 ## Recruiter / Professor Entry
 
 - **Portfolio:** https://www.fromageart.xyz/
 - **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
 - **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
-- **Current state and queue:** [CURRENT_STATE.md](CURRENT_STATE.md)
+- **Current capstone queue:** [CAPSTONE_NOW.md](CAPSTONE_NOW.md)
+- **Current verified state:** [CURRENT_STATE.md](CURRENT_STATE.md)
+- **Agent / contributor front door:** [AGENT_START_HERE.md](AGENT_START_HERE.md)
 - **Portfolio / render plan:** [PORTFOLIO.md](PORTFOLIO.md)
+
+> **SHOWCASE SOFT FREEZE ACTIVE — 2026-09-07.** Public/recruiter presentation is structurally frozen while the final Melusina + canonical world renders are produced and promoted. Game/semester development continues. See [the freeze contract](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
+
 
 > **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on Git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
 
-♪ **Solo-developed rhythm-JRPG vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
+> **Fall 2026 workstation topology:** Humber lab workstations are the primary interactive semester lane, the home Windows PC is the dedicated render/bake/long-job worker, and the ASUS Nitro laptop is auxiliary. See [Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md](Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md) and [Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md](Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md).
+
+♪ **Solo-developed rhythm-JRPG vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Current task/gate authority is tracked in `Docs/P0_TASK_LEDGER.json` and `CURRENT_STATE.md`; generated local ledgers are evidence artifacts, not recruiter copy. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
+
+♫ **Current Status:** the canonical state is [CURRENT_STATE.md](CURRENT_STATE.md), not old README gate counts. The current baseline records a green editor build, live audio-reactivity proof, active P0 gates passing, and a packaged route verified on both legs. Fall 2026 work is now bounded around **First Dream as stable technical proof** and **Shorewake Calling as the semester production artwork**.
+
+**Sea Above Level Integration:** 221 cathedral pieces at Z=13,455 on CanonicalLandscape. 2 PCG volumes. 12 Copernicus MIs. Cutscene trigger at (-910, 500, 13,145). Landscape at Z=0. QuillScript cutscene authored.
 
 ---
 
@@ -102,7 +113,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 
 - **Role:** protect-and-polish professor/reviewer proof; no broad semester expansion.
 - **Route:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` → `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` → `/Game/EnvSandbox/Environments/L_KaleidoNave`
-- **Current evidence:** `CURRENT_STATE.md` §2.
+- **Current evidence:** use `CURRENT_STATE.md`, `_VERTICAL_SLICE_SCOPE.md`, and the current gate ledger rather than stale copied counts.
 - **Semester rule:** regressions, packaging, presentation, capture quality, and demo rehearsal are in scope; new global frameworks are not.
 
 ### Track 2: Fall 2026 Production — "Shorewake Calling"
@@ -125,7 +136,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 ### Track 4: ECHO Pipeline & Evidence Ledger
 - **Deterministic Pipeline:** `Spec → T3D Inject → Compile → Fingerprint → Regression Test → Promote`
 - **Gate Runner:** `Tools/echo_run.py` & `Tools/project_state.py`
-- **Evidence policy:** status lives in `CURRENT_STATE.md`; generated `Saved/` ledgers are runtime evidence and may be absent from a fresh clone.
+- **Evidence policy:** tracked authority lives in `Docs/P0_TASK_LEDGER.json` / `CURRENT_STATE.md`; generated `Saved/` ledgers are runtime evidence and may be absent from a fresh clone.
 
 ---
 
@@ -140,7 +151,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 | `deploy/` | MCP server implementations (`melodia_mcp_server.py`, `agent_bridge_mcp.py`), daemons, build graphs |
 | `specs/` | 87 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
 | `Plugins/` | 15 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
-| `Docs/` | Architecture, pipelines, research, evidence, art references, and credits |
+| `Docs/` | Architectural specifications, handoff records, evening plans, credits, and career dossiers |
 | `Saved/` | Gate ledgers (`gate_ledger.json`), audit manifests, and test execution reports |
 
 ---

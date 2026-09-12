@@ -165,24 +165,15 @@ Two-tier model: **primitives** (raw palette, never used directly in designs) →
 
 Three roles. Recommended stack uses **free, high-quality Google Fonts** so the system is shareable; premium upgrades listed for when budget allows.
 
-| Role | Token SSOT (`tokens.json`) | Status | Why |
+| Role | Portfolio UI SSOT (live site) | Print / legacy Figma text styles | Why |
 |---|---|---|---|
-| **Display / Titles** | **Fraunces** | **Live** | Editorial serif for heroes and passports |
-| **Body / UI** | **Inter** | **Live** | Lookbook body and cards |
-| **Technical / Metadata** | **IBM Plex Mono** | **Live** | Specs, passport rows, dividers |
-| **Cover / Hero caps** *(optional)* | **Cinzel** | **Live** | Engraved wordmark / cover titles only |
+| **Brand / UI caps** | **Syne** | — | Live portfolio identity; do not substitute Inter for recruiter UI |
+| **Display / Titles** | **Instrument Serif** | Fraunces (doc samples only) | Editorial serif for heroes and passports |
+| **Body / UI** | **Bricolage Grotesque** | Inter (doc samples only) | Lookbook body and cards |
+| **Technical / Metadata** | **Azeret Mono** | IBM Plex Mono (doc samples only) | Specs, passport rows, dividers |
+| **Cover / Hero caps** *(optional)* | **Cinzel** | Cinzel | Engraved wordmark / cover titles only |
 
-**Portfolio type SSOT:** Fraunces / Inter / IBM Plex Mono, with Cinzel for the wordmark
-(`tokens.json → global.fontFamilies`, `melodia-luxury-type.css`, and the Figma plugin's
-`code.js` — all three agree). Pairing logic is a high-contrast serif + a neutral sans + a mono.
-
-> **Superseded 2026-09-11.** This section previously declared **Syne / Instrument Serif /
-> Bricolage Grotesque / Azeret Mono** as the SSOT and instructed *"do not restyle portfolio
-> lookbook UI to Fraunces/Inter."* That instruction contradicted the system's own token source:
-> `tokens.json` and the Figma plugin had already been building Fraunces / Inter / IBM Plex Mono,
-> so the doc described a stack nothing else implemented. The site CSS was the last surface
-> still carrying the old names and has been corrected to match the tokens. **The token source
-> wins over this prose — if they diverge again, fix the prose.**
+**Portfolio type SSOT:** Syne / Instrument Serif / Bricolage Grotesque / Azeret Mono (`melodia-luxury-type.css` + Figma page 02 live samples). Do **not** restyle portfolio lookbook UI to Fraunces/Inter. Pairing logic stays high-contrast serif + characterful sans + mono; Cinzel remains wordmark-only.
 
 ### 3.2 Type scale
 
@@ -537,7 +528,7 @@ Build foundations → tokens → components → patterns → layouts. Do not jum
 
 1. **File + pages.** Create the 7 pages (§8.1). Add `00 Cover`. *(Plugin does this.)*
 2. **Variables.** Create `Color` (Light+Dark modes), `Spacing`, `Radius` collections from §2/§4. *(Plugin + `tokens.json`.)*
-3. **Text styles.** Create §3.2 styles. Load **Fraunces / Inter / IBM Plex Mono** first — that is the token SSOT, and Cinzel for the wordmark. *(Plugin.)*
+3. **Text styles.** Create §3.2 styles. For **portfolio UI**, load Syne / Instrument Serif / Bricolage / Azeret first; Fraunces / Inter / IBM Plex Mono only for print-doc samples. *(Plugin.)*
 4. **Effects.** Create `shadow/sm`, `shadow/md`.
 5. **Motif primitives.** `Star/8pt` (signature), `Star/4pt`, `Constellation`, `Frame/Corner`, `Brand/Mark` lockups (Cinzel wordmark + ✸). Draw once, componentize.
 6. **Atoms.** `Row/Spec`, `Divider/Section`, `Icon/Software/*`.
@@ -576,7 +567,7 @@ The system *is* the brand. **Name: Melodia** (*melody + celestial* — composed,
 - **A signature gesture:** the **gold ✸ + hairline rule** kicker above every section title. Cheap to apply, instantly recognizable.
 - **Two-world identity.** *Light = Ivory editorial colophon* (galleries, print, web) and *Dark = Astral Night* (HoYoverse-grade ArtStation covers / splash). Same system, two moods — lead with Astral Night for hero pieces.
 - **Own a color memory.** Champagne gold + midnight plum on ivory, and luminous gold + iris on astral blue, are the palettes people will remember; resist trendier hues.
-- **Tri-voice type as identity.** Portfolio type SSOT = Fraunces + Inter + IBM Plex Mono (Cinzel for the wordmark). The site CSS, `tokens.json`, and the Figma plugin all agree on this set; the earlier Syne / Instrument Serif / Bricolage / Azeret stack is retired.
+- **Tri-voice type as identity.** Portfolio UI SSOT = Syne + Instrument Serif + Bricolage + Azeret (Cinzel for the wordmark). Fraunces/Inter/IBM Plex remain print-doc legacy only — keep portfolio lookbook fixed to the live stack.
 - **Consistent surfaces:** ArtStation cover, website hero, PDF breakdowns, and social posts all use the same templates + Passport → cross-platform cohesion.
 - **Social system:** a square (1080) and portrait (1080×1350) template variant carrying the Passport + one beauty shot; a story (1080×1920) variant with the Astral Night wordmark end-card.
 - **Watermark, lightly.** A 6%-opacity ✸ or constellation in a consistent corner of beauty shots.

@@ -1,0 +1,12 @@
+# Digital Extremes — Cover Letter Paragraph
+
+> **Downstream of the game.** This is marketing / funding / hiring material for
+> **Melodia Melusina**, a single-person AAA-tier UE 5.8 rhythm-JRPG. It exists to fund and staff
+> the game. **No agent may cite anything in this folder as project direction** — authority is
+> [`../../../PROJECT.md`](../../../PROJECT.md).
+
+**Context:** Adapted for Digital Extremes environment artist postings in London, Ontario. Emphasizes the studio's explicit ask for "surreal/abstract spaces," pipeline literacy, and local geographic fit.
+
+---
+
+I am Brennan Shepherd, a final-year Humber 3D Animation student and solo environment-pipeline developer applying as a technical environment artist. My work is built around one premise: a single artist can produce at the velocity of a small team if the tooling is engineered first. I work in Unreal Engine 5.8 with a single production master material used across every environment, a 140+ graph PCG library, and a Blender-to-UE procedural geometry pipeline — all connected by Python automation. The result is a portfolio that reads as both art and infrastructure: readable stylized worlds, a Substrate toon shader system, and procedurally generated surreal geometry including impossible-space environments and raymarched SDF materials built from pure material-graph math. Being local to London, Ontario, I would bring that pipeline discipline to Digital Extremes without relocation risk, and I'm specifically drawn to the studio's range across landscapes, sci-fi, and abstract environments — the exact territory my current work is designed to explore.

@@ -48,9 +48,9 @@ Highest level actually supported by this PR:
 
 ## Checklist
 
-- [ ] Read `CURRENT_STATE.md`
+- [ ] Read `AGENT_START_HERE.md` and `CAPSTONE_NOW.md`
 - [ ] Changes are focused and do not expand scope unnecessarily
 - [ ] Required local/static validation was run where applicable
-- [ ] If project status changed, `CURRENT_STATE.md` is updated in this PR — no new handoff, plan, receipt, or session-note files
+- [ ] Documentation was updated only where durable project truth changed
 - [ ] No unrequested cleanup was bundled into feature work
 - [ ] No `.blend1`, `Intermediate/`, temp, secret, or accidental generated files are committed

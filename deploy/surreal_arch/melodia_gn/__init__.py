@@ -35,15 +35,10 @@ from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/ba
 from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
 from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime_row physics)
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
-from . import musical_mesh_variants  # noqa: F401 - Musical mesh variant sweep (wave/harmonic/pulse/seeded)
-from . import ue_proxy_kit  # noqa: F401 — UE proxy materials (halftone, fabric, crystal)
-from . import music_euro_remainder  # noqa: F401 - Cascading beams, rose window, lancet (P2 remainder)
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
 from . import planetary_terrain  # noqa: F401 - v3 deterministic planetary musical terrain
 from . import infinity_nikki_kit  # noqa: F401 - Infinity Nikki expanded wardrobe kit (bloom pavilion/nook/runway)
-from . import nikki_musical_decorations  # noqa: F401 - Nikki musical decorations (star/heart/bead generators)
-from . import nikki_advanced_decorations  # noqa: F401 - Nikki advanced (SDF, repeat zones, capture/store)
 from . import mother  # noqa: F401 - Faraway Mother Monolith kit (8 builders)
 from . import white_current  # noqa: F401 - White Current Monolith kit (6 builders)
 from . import god_molts  # noqa: F401 - God That Molts Monolith kit (8 builders)
@@ -66,17 +61,6 @@ from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_en
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
 from . import melodia_house  # noqa: F401 - unified house module: genome room shell (mh6) + AAA kit
-from . import melusina_house_foundation  # noqa: F401 - Melusina House foundation/pod builders
-from . import garment_material_id  # noqa: F401 - per-face material ID assignment for garments
-from . import garment_smart_bevel  # noqa: F401 - material-aware edge bevel (fabric round, trim sharp)
-from . import garment_trim_uv  # noqa: F401 - trim UV layout for garment texturing
-from . import garment_vertex_ao  # noqa: F401 - vertex-baked AO for garment detail
-from . import dreamy_gothic_arch  # noqa: F401 - slim lancet arch with gold tracery inlay
-from . import rose_window  # noqa: F401 - rose window GN builders
-from . import curved_wall  # noqa: F401 - adjustable arc wall for dreamy interiors
-from . import ornament_strip  # noqa: F401 - gold bead distribution along curves
-from . import gold_light_strip  # noqa: F401 - emissive gold LED strip lighting
-from . import barrel_vault_kit  # noqa: F401 - barrel vault ceiling GN builder
 from . import aesthetic_fx  # noqa: F401
 from . import scifi_fx  # noqa: F401
 from . import zen_kit  # noqa: F401 - zen/castle/asian absorbed from monolith (P2)

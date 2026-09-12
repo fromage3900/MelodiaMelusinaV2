@@ -1,0 +1,603 @@
+======================================================================
+MATERIAL INSTANCE AUDIT — LOOKDEV-QUALITY REPORT
+======================================================================
+
+OVERALL TOTALS
+----------------------------------------
+  Total instances audited: 1089
+  OK:             604
+  DEAD-OVERRIDE:  147
+  MARBLE-DEFAULT: 287
+  ORPHAN:         51
+
+VISUAL IMPACT BREAKDOWN
+----------------------------------------
+  HERO issues:    130
+  MID issues:     287
+  BACKGROUND issues: 17
+
+======================================================================
+HERO / HERO-ADJACENT ISSUES (MUST FIX)
+======================================================================
+
+
+--- DEAD-OVERRIDE (48 instances) ---
+  /Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_CathedralSurreal
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: ParallaxSteps; RefractionDepthBias
+  /Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_EscherOrnament
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: InkIntensity; OrnamentStyle
+  /Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_FiligreeDream
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: GrassAmount; GrassTint; HeightBlendStrength; MacroStrength; MudAmount; MudTint; RockTint; SlopeSharp
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/Baroque/MI_Baroque_GildedFiligree
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: AtmosphericFadeStrength; OrnamentScale; SparkleNoiseScale
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/Magical/MI_StarryNight_VanGogh
+    Parent: /Game/EnvSandbox/Materials/Candidates/Lookdev/M_Melodia_StarryNight_UDS_Candidate.M_Melodia_StarryNight_UDS_Candidate
+    Dead: RefractionDepthBias
+  /Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_FloralBrickGrayScale
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v7.M_Water_Master_Grand_v7
+    Dead: DripLength; DripSpeed; HairDripIntensity; RefractionDepthBias; SplashForce; WaterOpacity; WaterRough
+  /Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Landscape_HeightBlend/MI_M_Master_Toon_Landscape_HeightBlend_Soil
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend
+    Dead: RefractionDepthBias
+  /Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Universal/MI_M_Master_Toon_Universal_Crystal
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/EnvSandbox/Materials/Instances/MelusinaReal/M_Master_Toon_Universal/MI_M_Master_Toon_Universal_FloralBrickGrayScale
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/EnvSandbox/Materials/Instances/Terrain/MI_Terrain_SakuraDream_Substrate
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Landscape_HeightBlend.M_Master_Toon_Landscape_HeightBlend
+    Dead: TriplanarBlend
+  /Game/EnvSandbox/Materials/Instances/Water/MI_GrandWater_OceanDeep
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v6.M_Water_Master_Grand_v6
+    Dead: RefractionDepthBias; RefractionStrength
+  /Game/Melodia/Characters/MaraVell/Materials/MI_Mara_Skin_007
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_GLOVES_001
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Gradient__Radial__002
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_023
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_024
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_UpdatedShirt
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_bow_002
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_frontpanel_001
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/Characters/Melusina/Materials/MI_Melusina_sleeve_003
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_AudioDriven
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_Balanced
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_Enhanced
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_GildingMax
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/Instances/MI_Cosmo_Master_TriplanarMax
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/MI_Cosmo_Aurora_Teal
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/Cosmo/MI_Cosmo_Ember_Gold
+    Parent: /Game/_PROJECT/04_Materials/Cosmo/M_Cosmo_Master.M_Cosmo_Master
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/Landscape/Instances/MI_HybridLandscape_Balanced
+    Parent: /Game/_PROJECT/04_Materials/Landscape/M_HybridLandscape_MooaToonSDF.M_HybridLandscape_MooaToonSDF
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Landscape/Instances/MI_HybridLandscape_Enhanced
+    Parent: /Game/_PROJECT/04_Materials/Landscape/M_HybridLandscape_MooaToonSDF.M_HybridLandscape_MooaToonSDF
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/Landscape/Instances/MI_HybridLandscape_InkFocus
+    Parent: /Game/_PROJECT/04_Materials/Landscape/M_HybridLandscape_MooaToonSDF.M_HybridLandscape_MooaToonSDF
+    Dead: AudioReactivity; Gilding; InkAmount; NormalMapScale; ParallaxAmount; Roughness; TriplanarEnable
+  /Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_GameplayStandard
+    Parent: /Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk.M_PP_MelodiaInk
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_Narrative
+    Parent: /Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk.M_PP_MelodiaInk
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_PortfolioHero
+    Parent: /Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk.M_PP_MelodiaInk
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_PortfolioHero
+    Parent: /Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade.M_PP_MeluColorGrade
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_Baroque_InkwellRelief
+    Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_Baroque.M_SDF_Baroque
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_Music_AquaWave
+    Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_Musical.M_SDF_Musical
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_MusicalSDF_CyanPulse
+    Parent: /Game/EnvSandbox/Materials/SDF/Instances/MI_SDF_TealCeramic.MI_SDF_TealCeramic
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_Parallax_FLAT_TEST
+    Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_TrueParallax.M_SDF_TrueParallax
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Gothic_RoseGold
+    Parent: /Game/_PROJECT/04_Materials/SDF/M_SDF_RayMarch_Gothic.M_SDF_RayMarch_Gothic
+    Dead: RefractionDepthBias
+  /Game/Melodia/_PROJECT/04_Materials/baroque/MI_SDF_GildedFiligree
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: BaseRoughness; GlowAmount; RefractionDepthBias; Scale
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/baroque/MI_SDF_RoseWindow
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: BaseRoughness; GlowAmount; Petals; RefractionDepthBias; RingFreq
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/water/MI_Water_Ocean
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v6.M_Water_Master_Grand_v6
+    Dead: BioluminescenceAmount; RefractionDepthBias
+  /Game/Melodia/_PROJECT/Materials/MI_Lookdev_LanternSoftGold
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Dead: TriplanarTiling
+  /Game/Melodia/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_StateB
+    Parent: /Game/EnvSandbox/VFX/Materials/MI_Niagara_Cosmic.MI_Niagara_Cosmic
+    Dead: RefractionDepthBias
+
+--- MARBLE-DEFAULT (82 instances) ---
+  /Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FinalDreamweaver
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SingingConstellations
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/MI_Celestial_Space
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Base4K
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Gingham
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Linen
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_ClothTrim_Plush
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_BaroqueFiligreeLace
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_BaroqueLace
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_CelestialWeave
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Fabric_IridescentCelestialWeave
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_FarawayMother_Gown_CelestialSilkJacquard
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Houdini_BaroqueAcanthus_GildedMagentaSilk
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_MelodyToken_Heart
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_BaroqueAquatic_MosaicTile
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_BaroqueTiara_RoseGoldFiligree
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_CathedralPearl_MarbleTile
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_EtherealVeil_StarlightChantilly
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_FrontPanel
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_IridescentSiren_ScaleTessellation
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_MoonlitHarbor_WaterRippleParquet
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_PorcelainMusicBox_KintsugiLapis
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_SakuraLullaby_SilkOrganza
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_UpdatedShirt
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Environment/PBR_Auto/MI_Orphan_T_Melusina_WatercolourWave_Parquet
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/EnvSandbox/Materials/Instances/Landscape/MI_Landscape_NikkiDream
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape
+    Missing: Albedo
+  /Game/Melodia/Characters/Melusina/Textures/Clothes/MI_Starskiff_Hull_Regal
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/Characters/Melusina/Textures/Clothes/MI_Starskiff_Wake_Emission
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/Enemies/StoneGolem/MI_StoneGolem_Toon
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/Enemies/Zundapal/MI_Zundapal_Toon
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/Materials/DistanceField/MI_DF_ContactBlend_Soft
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/SeaAbove/Materials/MI_Starskiff_Night_Wake
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/Cathedral/MI_CathedralFloor_Textured
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/Cathedral/MI_LF_StainedGlass
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_HybridStone_SDF
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_MusicalSDF_PulsingGeometry
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Baroque
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_BaroqueColumn
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_CathedralVault
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_CosmicPortal
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_CrystallineSpire
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_EscherGeometry_Enhanced
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FloatingNotes
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FloralMagic
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FlyingButtress
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_FractalOrnament
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GildedAltar
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GothicArchitecture
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GothicArchitecture_Enhanced
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GothicRoseWindow
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_GrandStaff_CrossSection
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Grass_Field
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_InfinityMirror
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_JuliaSet_Quaternion
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Klein_Bottle
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MagicOrb
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MandelbulbSlice
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Mandelbulb_Master
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MengerSponge
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_MetalShards
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Mobius_Strip
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Musical
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer_Enhanced
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_Penrose_Staircase
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_RayMarch_Gothic
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_SheetMusic_Score
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_SierpinskiTetrahedron
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_StarburstGem
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_TrebleClef_Ornament
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_TrueParallax
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/MI_SDF_VinylRecord
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_AbyssalVent
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_Anemone
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_Bioluminescence
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_BubbleColumn
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_Caustics_Underwater
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_CoralBranching
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_FishSchool_Caustics
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_KelpCurtain
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/SDF/Underwater/MI_SDF_ThermalGlow
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+  /Game/Melodia/_PROJECT/04_Materials/baroque/MI_SDF_GildedStucco
+    Parent: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal
+    Missing: Albedo
+
+======================================================================
+MID-GROUND ISSUES (SHOULD FIX)
+======================================================================
+
+
+Architecture (55 issues):
+  [MARBLE-DEFAULT] MI_Arch_KB3D_ATL_AtlasFlowersA
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Arch_KB3D_ATL_AtlasIvy
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Arch_KB3D_ATL_AtlasLeafA
+    Missing: Albedo
+  [DEAD-OVERRIDE] MI_Arch_KB3D_ATL_AtlasLeafB
+    Dead: RefractionDepthBias
+  [MARBLE-DEFAULT] MI_Arch_KB3D_ATL_AtlasPaintPatternsA
+    Missing: Albedo
+  ... and 50 more
+
+Atlantis (2 issues):
+  [DEAD-OVERRIDE] MI_BrickStoneCleanTrimB
+    Dead: RefractionDepthBias
+  [DEAD-OVERRIDE] MI_TerracottaTileB
+    Dead: RefractionDepthBias
+
+BlingVol3 (1 issues):
+  [DEAD-OVERRIDE] MI_BlingVol3_06
+    Dead: RefractionDepthBias
+
+Copernicus (30 issues):
+  [DEAD-OVERRIDE] MI_Copernicus_CavernWeave
+    Dead: EmissiveScale; IridescenceIntensity
+  [MARBLE-DEFAULT] MI_Copernicus_CherryBlossomWood
+    Missing: Albedo
+  [DEAD-OVERRIDE] MI_Copernicus_ChoirStone
+    Dead: EmissiveScale; IridescenceIntensity
+  [DEAD-OVERRIDE] MI_Copernicus_CrystalCathedral
+    Dead: EmissiveScale; IridescenceIntensity
+  [MARBLE-DEFAULT] MI_Copernicus_CymaticMarble
+    Missing: Albedo
+  ... and 25 more
+
+Environment (156 issues):
+  [DEAD-OVERRIDE] MI_Escher_ImpossibleTile
+    Dead: AtmosphericFadeStrength; ParallaxMode; ParallaxSteps; RefractionDepthBias; Spark
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Escher_Woodcut
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Flat__defaultMat
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Flat_carpet
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Flat_carpetBlue
+    Missing: Albedo
+  ... and 151 more
+
+FarawayMother (6 issues):
+  [MARBLE-DEFAULT] MI_Mother_Corset
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Mother_Cradle
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Mother_Gown
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Mother_Mantle
+    Missing: Albedo
+  [MARBLE-DEFAULT] MI_Mother_Ornament
+    Missing: Albedo
+  ... and 1 more
+
+Kenney (1 issues):
+  [MARBLE-DEFAULT] MI_water
+    Missing: Albedo
+
+Landscape (13 issues):
+  [DEAD-OVERRIDE] MI_Landscape_CarvedRock
+    Dead: Albedo; DetailNormal; HeightMap; LayerB_Albedo; LayerB_HeightMap; NormalMap
+  [DEAD-OVERRIDE] MI_Landscape_CliffGrass
+    Dead: RefractionDepthBias
+  [DEAD-OVERRIDE] MI_Landscape_CoastalCliff
+    Dead: Albedo; DetailNormal; HeightMap; LayerB_Albedo; LayerB_HeightMap; NormalMap
+  [DEAD-OVERRIDE] MI_Landscape_DesertArid
+    Dead: RefractionDepthBias
+  [DEAD-OVERRIDE] MI_Landscape_ForestFloor
+    Dead: Albedo; DetailNormal; Grass_NormalHeightTex; GroundNormalTexelSize; HeightMap; I
+  ... and 8 more
+
+Sakura (6 issues):
+  [DEAD-OVERRIDE] MI_SakuraLandscape
+    Dead: RefractionDepthBias
+  [DEAD-OVERRIDE] MI_Sakura_Moss
+    Dead: ShadowContactBoost
+  [MARBLE-DEFAULT] MI_Sakura_Petals
+    Missing: Albedo
+  [DEAD-OVERRIDE] MI_Sakura_StonePath
+    Dead: ShadowContactBoost; ShadowFlowerAlbedoDarken; ShadowFlowerScaleFine
+  [DEAD-OVERRIDE] MI_Sakura_ToriiRed
+    Dead: AtmosphericFadeStrength; SparkleNoiseScale
+  ... and 1 more
+
+Water (11 issues):
+  [DEAD-OVERRIDE] MI_GrandWater_FrozenPond
+    Dead: RefractionStrength
+  [DEAD-OVERRIDE] MI_GrandWater_PondStylized
+    Dead: RefractionStrength
+  [DEAD-OVERRIDE] MI_GrandWater_RiverClear
+    Dead: RefractionStrength
+  [DEAD-OVERRIDE] MI_GrandWater_SakuraPond
+    Dead: RefractionStrength
+  [DEAD-OVERRIDE] MI_GrandWater_SakuraPond1
+    Dead: RefractionDepthBias
+  ... and 6 more
+
+_Root (6 issues):
+  [DEAD-OVERRIDE] MI_IridescentRock
+    Dead: InkAccumBias; InkAmount; InkCavityPower
+    Missing: Albedo
+  [DEAD-OVERRIDE] MI_Master_Simple_Universal_Inst
+    Dead: RefractionDepthBias
+  [DEAD-OVERRIDE] MI_Master_Toon_Landscape_HeightBlend_Inst
+    Dead: IttoCrosshatchDensity; IttoCrosshatchIntensity; IttoSpiralDensity; IttoSpiralWar
+  [DEAD-OVERRIDE] MI_Master_Toon_Universal_Inst
+    Dead: RefractionDepthBias
+  [DEAD-OVERRIDE] MI_Master_Toon_Universal_Inst1
+    Dead: RefractionDepthBias
+  ... and 1 more
+
+======================================================================
+BACKGROUND / SCAFFOLDING ISSUES (CAN LEAVE)
+======================================================================
+
+  [MARBLE-DEFAULT] MI_ToonBush
+  [DEAD-OVERRIDE] MI_Toon_GenericFlower1
+  [DEAD-OVERRIDE] MI_Toon_GenericFlowerTall
+  [MARBLE-DEFAULT] MI_Toon_GenericTree_001
+  [DEAD-OVERRIDE] MI_Toon_GrassSimple
+  [MARBLE-DEFAULT] MI_barrel
+  [MARBLE-DEFAULT] MI_cobblestone
+  [MARBLE-DEFAULT] MI_cobblestoneAlternative
+  [MARBLE-DEFAULT] MI_cobblestonePainted
+  [MARBLE-DEFAULT] MI_details
+  [MARBLE-DEFAULT] MI_fence
+  [MARBLE-DEFAULT] MI_planks
+  [MARBLE-DEFAULT] MI_roof
+  [MARBLE-DEFAULT] MI_tree
+  [MARBLE-DEFAULT] MI_Tilable_BaseTrim_R078_Tile4
+  [MARBLE-DEFAULT] MI_Tilable_ConcreteTrim_R078_Tile4
+  [DEAD-OVERRIDE] MI_Tilable_ZenTrimCrackedToHell_R078_Tile4
+
+======================================================================
+SIBLING DUPLICATES (FLAG FOR CLEANUP)
+======================================================================
+
+
+  Base: MI_Master_Toon_Universal
+    MI_Master_Toon_Universal_Inst [DEAD-OVERRIDE] MID
+    MI_Master_Toon_Universal_Inst1 [DEAD-OVERRIDE] MID
+    MI_Master_Toon_Universal_Inst3 [DEAD-OVERRIDE] MID
+
+======================================================================
+PER-FAMILY BREAKDOWN
+======================================================================
+
+Architecture               total=  55  OK=   0  DEAD=  5  MARBLE= 50  ORPHAN= 0
+Atlantis                   total=  83  OK=  81  DEAD=  2  MARBLE=  0  ORPHAN= 0
+BlingVol3                  total=  15  OK=  14  DEAD=  1  MARBLE=  0  ORPHAN= 0
+Character                  total=   5  OK=   5  DEAD=  0  MARBLE=  0  ORPHAN= 0
+Copernicus                 total=  52  OK=   1  DEAD= 13  MARBLE= 19  ORPHAN=19
+Environment                total= 566  OK= 382  DEAD= 45  MARBLE=139  ORPHAN= 0
+FarawayMother              total=   6  OK=   0  DEAD=  0  MARBLE=  6  ORPHAN= 0
+Foliage                    total=  10  OK=   0  DEAD=  3  MARBLE=  2  ORPHAN= 5
+Kenney                     total=  10  OK=   0  DEAD=  0  MARBLE= 10  ORPHAN= 0
+Landscape                  total=  15  OK=   1  DEAD= 13  MARBLE=  1  ORPHAN= 0
+MelodyTokens               total=   4  OK=   4  DEAD=  0  MARBLE=  0  ORPHAN= 0
+Melusina                   total=  14  OK=  12  DEAD=  2  MARBLE=  0  ORPHAN= 0
+MelusinaReal               total=  12  OK=   9  DEAD=  3  MARBLE=  0  ORPHAN= 0
+Oceanology                 total=   1  OK=   1  DEAD=  0  MARBLE=  0  ORPHAN= 0
+Rhythm                     total=   5  OK=   5  DEAD=  0  MARBLE=  0  ORPHAN= 0
+Sakura                     total=  12  OK=   6  DEAD=  4  MARBLE=  2  ORPHAN= 0
+Terrain                    total=   4  OK=   3  DEAD=  1  MARBLE=  0  ORPHAN= 0
+Tilable                    total=   3  OK=   0  DEAD=  1  MARBLE=  2  ORPHAN= 0
+Water                      total=  31  OK=  19  DEAD= 12  MARBLE=  0  ORPHAN= 0
+_Melodia                   total= 180  OK=  61  DEAD= 36  MARBLE= 56  ORPHAN=27
+_RootLoose                 total=   6  OK=   0  DEAD=  6  MARBLE=  0  ORPHAN= 0

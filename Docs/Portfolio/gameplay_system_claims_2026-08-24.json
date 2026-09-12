@@ -1,0 +1,206 @@
+{
+  "schema": "melodia.gameplay_system_claims.v1",
+  "packet_date": "2026-08-24",
+  "status_vocabulary": [
+    "VERIFIED_RUNTIME",
+    "VERIFIED_OFFLINE",
+    "SOURCE_BUILT_LIVE_PENDING",
+    "DESIGN_INTENT",
+    "RETIRED_PROTOTYPE",
+    "NEED_EVIDENCE"
+  ],
+  "claims": [
+    {
+      "id": "quillscript_narrative_authority",
+      "copy": "QuillScript is the named narrative authority for dialogue, choices, story progression, and the seven-verb notification vocabulary; this is an authority decision, not a claim that every route is runtime-proven.",
+      "proof_status": "DESIGN_INTENT",
+      "approved_for_publication": false,
+      "evidence": [
+        {"path": "AGENTS.md", "line": 19, "kind": "source", "ephemeral": false, "note": "Repository authority statement assigns narrative to QuillScript."},
+        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 14, "kind": "source", "ephemeral": false, "note": "Absolute authority layer table names QuillScript and its scope."}
+      ]
+    },
+    {
+      "id": "jrpg_template_gameplay_authority",
+      "copy": "The TurnBased JRPG template remains the gameplay authority for party, turns, targeting, damage, results, inventory, and saves; rhythm is designed to ride on that command scaffold.",
+      "proof_status": "DESIGN_INTENT",
+      "approved_for_publication": false,
+      "evidence": [
+        {"path": "AGENTS.md", "line": 19, "kind": "source", "ephemeral": false, "note": "Repository authority statement assigns core gameplay state to the JRPG template."},
+        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 21, "kind": "source", "ephemeral": false, "note": "Contract forbids pillars from competing with the absolute authority layers."}
+      ]
+    },
+    {
+      "id": "rhythm_clock_owner",
+      "copy": "The source contract names UMelodiaMusicClockSubsystem as the musical-time authority, with Harmonix/Quartz as the time sources; runtime convergence proof is tracked separately.",
+      "proof_status": "SOURCE_BUILT_LIVE_PENDING",
+      "approved_for_publication": false,
+      "evidence": [
+        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 100, "kind": "source", "ephemeral": false, "note": "Rhythm seam names the combat owner and one beat authority."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaMusicClockSubsystem.h", "line": 79, "kind": "source", "ephemeral": false, "note": "Header records the Harmonix/Quartz authority contract."}
+      ]
+    },
+    {
+      "id": "real_keyboard_runtime_gate",
+      "copy": "The durable gate ledger records owner-verified real keyboard input through BP_BattleUI::OnKeyDown on 2026-08-13.",
+      "proof_status": "VERIFIED_RUNTIME",
+      "approved_for_publication": true,
+      "evidence": [
+        {"path": "Saved/gate_ledger.json", "line": 188, "kind": "ledger", "ephemeral": false, "note": "Latest runtime PASS row begins."},
+        {"path": "Saved/gate_ledger.json", "line": 192, "kind": "ledger", "ephemeral": false, "note": "Owner-verified real-key note and supersession rule."}
+      ]
+    },
+    {
+      "id": "canonical_save_load_runtime_gate",
+      "copy": "The durable gate ledger records canonical save/load across a process restart, with the slot surfaced through the menu and owner verification dated 2026-08-14.",
+      "proof_status": "VERIFIED_RUNTIME",
+      "approved_for_publication": true,
+      "evidence": [
+        {"path": "Saved/gate_ledger.json", "line": 228, "kind": "ledger", "ephemeral": false, "note": "Full process restart save/load row."},
+        {"path": "Saved/gate_ledger.json", "line": 240, "kind": "ledger", "ephemeral": false, "note": "Owner-verified save/load row."}
+      ]
+    },
+    {
+      "id": "repeat_consume_runtime_gate",
+      "copy": "The durable gate ledger records a Priestess authored intent surviving SaveToSlot and ResumeScript replay without duplicating its social stat or quest intent.",
+      "proof_status": "VERIFIED_RUNTIME",
+      "approved_for_publication": true,
+      "evidence": [
+        {"path": "Saved/gate_ledger.json", "line": 284, "kind": "ledger", "ephemeral": false, "note": "repeat_consume PASS row."},
+        {"path": "Saved/gate_ledger.json", "line": 288, "kind": "ledger", "ephemeral": false, "note": "Idempotence note for the authored replay."}
+      ]
+    },
+    {
+      "id": "package_launch_runtime_gate",
+      "copy": "The durable gate ledger records a UE 5.8 packaged Gauntlet launch outside the editor, including IoStore mount and main-menu map cycling.",
+      "proof_status": "VERIFIED_RUNTIME",
+      "approved_for_publication": true,
+      "evidence": [
+        {"path": "Saved/gate_ledger.json", "line": 268, "kind": "ledger", "ephemeral": false, "note": "Packaged launch PASS row."},
+        {"path": "Saved/gate_ledger.json", "line": 272, "kind": "ledger", "ephemeral": false, "note": "Outside-editor package evidence note."}
+      ]
+    },
+    {
+      "id": "offline_world_bundle_boundary",
+      "copy": "The PetalCantata offline bundle is validated as a deterministic, non-mutating artifact: its source tests assert 9 chunks, 5 hero volumes, 162 static specs, no gameplay-save write, and no applied UE import.",
+      "proof_status": "VERIFIED_OFFLINE",
+      "approved_for_publication": true,
+      "evidence": [
+        {"path": "Content/Python/test_melusina_offline_world_bundle.py", "line": 28, "kind": "test", "ephemeral": false, "note": "Offline bundle shape and counts are asserted."},
+        {"path": "Content/Python/test_melusina_offline_world_bundle.py", "line": 33, "kind": "test", "ephemeral": false, "note": "Offline boundary and non-applied import assertions."},
+        {"path": "Content/Python/test_import_melusina_offline_world.py", "line": 13, "kind": "test", "ephemeral": false, "note": "Import plan test begins with the non-mutating contract."},
+        {"path": "Content/MelodiaIntegration/ResonantWorld/OfflineWorldGen/PetalCantata_3900/bundle.json", "line": 165, "kind": "offline", "ephemeral": false, "note": "Durable bundle runtime-boundary fields."}
+      ]
+    },
+    {
+      "id": "source_tests_do_not_equal_play_proof",
+      "copy": "The integration test source explicitly distinguishes connected graph assertions from the proof that the loop actually plays; runtime play evidence remains a separate obligation.",
+      "proof_status": "SOURCE_BUILT_LIVE_PENDING",
+      "approved_for_publication": false,
+      "evidence": [
+        {"path": "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaWiringContractTests.cpp", "line": 22, "kind": "test", "ephemeral": false, "note": "Test file describes graph-connectivity assertions."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaWiringContractTests.cpp", "line": 27, "kind": "test", "ephemeral": false, "note": "Test source states that connected assets do not prove the loop plays."}
+      ]
+    },
+    {
+      "id": "rhythm_grade_result_gate",
+      "copy": "The rhythm grade changing a JRPG result remains an open convergence gate; source tests cover session and grade mechanics but do not establish the real battle-result edge.",
+      "proof_status": "NEED_EVIDENCE",
+      "approved_for_publication": false,
+      "gate_refs": ["rhythm_grade_to_result"],
+      "evidence": [
+        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 105, "kind": "source", "ephemeral": false, "note": "Contract marks grade-to-result unproven."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaRhythmCombatTests.cpp", "line": 9, "kind": "test", "ephemeral": false, "note": "Source tests describe the authoritative subsystem contract."}
+      ]
+    },
+    {
+      "id": "hud_single_writer_gate",
+      "copy": "The source assigns Melodia battle-widget ownership to UMelodiaUIBridgeSubsystem, while the retired compatibility observer creates no viewport widgets; the hud_single_writer gate remains open because runtime viewport proof is unrecorded.",
+      "proof_status": "NEED_EVIDENCE",
+      "approved_for_publication": false,
+      "gate_refs": ["hud_single_writer"],
+      "evidence": [
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.h", "line": 11, "kind": "source", "ephemeral": false, "note": "Header identifies the old overlay as a retired presentation observer."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.h", "line": 13, "kind": "source", "ephemeral": false, "note": "Header assigns battle-time Melodia widget ownership to UMelodiaUIBridgeSubsystem."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGBattleOverlaySubsystem.cpp", "line": 39, "kind": "source", "ephemeral": false, "note": "Retired observer handles battle requests without creating a widget."},
+        {"path": "_VERTICAL_SLICE_SCOPE.md", "line": 120, "kind": "source", "ephemeral": false, "note": "Runtime hud_single_writer proof remains an unchecked convergence gate."}
+      ]
+    },
+    {
+      "id": "wardrobe_equip_roundtrip_gate",
+      "copy": "The wardrobe subsystem is the named owner for outfit state, but equip-save-restart-load proof remains open and is not presented as a finished player feature.",
+      "proof_status": "NEED_EVIDENCE",
+      "approved_for_publication": false,
+      "gate_refs": ["wardrobe_equip_roundtrip"],
+      "evidence": [
+        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 151, "kind": "source", "ephemeral": false, "note": "Wardrobe presentation/gameplay seam table."},
+        {"path": "Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md", "line": 70, "kind": "source", "ephemeral": false, "note": "Wardrobe subsystem is named OWNER."}
+      ]
+    },
+    {
+      "id": "wardrobe_gameplay_hook_gate",
+      "copy": "The wardrobe-to-traversal capability path is a named source seam, not an evidenced player-visible capability; its gate remains open.",
+      "proof_status": "NEED_EVIDENCE",
+      "approved_for_publication": false,
+      "gate_refs": ["wardrobe_gameplay_hook"],
+      "evidence": [
+        {"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 155, "kind": "source", "ephemeral": false, "note": "Wardrobe owner and traversal provider direction."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaTraversalCapabilityProvider.h", "line": 27, "kind": "source", "ephemeral": false, "note": "Capability vocabulary requires a provider and caller."}
+      ]
+    },
+    {
+      "id": "music_world_key_gate",
+      "copy": "The Piano pattern-completion emitter and Narrative adapter are source-built; level and host placement plus a player-facing world consequence remain unproven.",
+      "proof_status": "SOURCE_BUILT_LIVE_PENDING",
+      "approved_for_publication": false,
+      "gate_refs": ["music_world_key"],
+      "evidence": [
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 50, "kind": "source", "ephemeral": false, "note": "Source declares the Blueprint-spawnable Narrative challenge adapter."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.cpp", "line": 61, "kind": "source", "ephemeral": false, "note": "Adapter binds uniquely to the music host pattern-completion event."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.cpp", "line": 138, "kind": "source", "ephemeral": false, "note": "Pattern completion routes through the canonical atomic Narrative transaction."},
+        {"path": "_VERTICAL_SLICE_SCOPE.md", "line": 123, "kind": "source", "ephemeral": false, "note": "Player-facing music_world_key proof remains an unchecked convergence gate."},
+        {"path": "Content/Python/test_pcg_piano_layout.py", "line": 14, "kind": "test", "ephemeral": false, "note": "Piano authoring contract tests cover layout, not narrative consequence."}
+      ]
+    },
+    {
+      "id": "world_challenge_adapter_boundary",
+      "copy": "The source-built world-challenge adapter is constrained to one Narrative transaction, no direct save write, and no combat authority; runtime host placement and consequence evidence remain pending.",
+      "proof_status": "SOURCE_BUILT_LIVE_PENDING",
+      "approved_for_publication": false,
+      "evidence": [
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 35, "kind": "source", "ephemeral": false, "note": "Adapter contract excludes combat, damage, turn, and party authority."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.h", "line": 40, "kind": "source", "ephemeral": false, "note": "Adapter contract forbids direct save-object writes."},
+        {"path": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCGNarrativeChallengeBridgeComponent.cpp", "line": 138, "kind": "source", "ephemeral": false, "note": "Implementation uses the canonical atomic CommitWorldChallenge transaction."}
+      ]
+    },
+    {
+      "id": "first_dream_playtest_design",
+      "copy": "The First Dream document defines a 20-minute sanctuary-to-dream-to-encounter-to-save playtest with branch and idempotence follow-ups; it is a test design, not a blanket runtime claim.",
+      "proof_status": "DESIGN_INTENT",
+      "approved_for_publication": false,
+      "evidence": [
+        {"path": "Docs/FIRST_DREAM_20_MINUTE_PLAYTEST_2026-08-01.md", "line": 5, "kind": "source", "ephemeral": false, "note": "Canonical route and purpose."},
+        {"path": "Docs/FIRST_DREAM_20_MINUTE_PLAYTEST_2026-08-01.md", "line": 184, "kind": "source", "ephemeral": false, "note": "Outcome matrix defines follow-up branch proof."}
+      ]
+    },
+    {
+      "id": "static_gates_baseline_drift",
+      "copy": "The latest durable ledger rows leave static_gates failed because two material baselines drifted; the packet does not describe the quality gate as clean.",
+      "proof_status": "NEED_EVIDENCE",
+      "approved_for_publication": false,
+      "gate_refs": ["static_gates"],
+      "evidence": [
+        {"path": "Saved/gate_ledger.json", "line": 220, "kind": "ledger", "ephemeral": false, "note": "Latest static-gates failure row."},
+        {"path": "Saved/gate_ledger.json", "line": 224, "kind": "ledger", "ephemeral": false, "note": "Material baseline drift and no-clean-claim note."}
+      ]
+    }
+  ],
+  "open_gates": [
+    {"id": "rhythm_grade_to_result", "state": "OPEN", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 105, "note": "Contract marks the grade-to-result edge unproven."}]},
+    {"id": "hud_single_writer", "state": "OPEN", "evidence": [{"path": "_VERTICAL_SLICE_SCOPE.md", "line": 120, "note": "Source ownership is consolidated, while viewport single-writer proof remains open."}]},
+    {"id": "wardrobe_equip_roundtrip", "state": "OPEN", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 159, "note": "Wardrobe roundtrip gate is unproven."}]},
+    {"id": "wardrobe_gameplay_hook", "state": "OPEN", "evidence": [{"path": "Docs/ORCHESTRA_CONTRACT_2026-08-20.md", "line": 160, "note": "Wardrobe gameplay hook gate is unproven."}]},
+    {"id": "music_world_key", "state": "OPEN", "evidence": [{"path": "_VERTICAL_SLICE_SCOPE.md", "line": 123, "note": "The source adapter exists, while live host placement and player-facing consequence proof remain open."}]},
+    {"id": "static_gates", "state": "FAIL", "evidence": [{"path": "Saved/gate_ledger.json", "line": 224, "note": "Latest static-gates row records material baseline drift."}]}
+  ]
+}

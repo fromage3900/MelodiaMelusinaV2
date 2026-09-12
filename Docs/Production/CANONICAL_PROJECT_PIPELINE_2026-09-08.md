@@ -281,7 +281,3 @@ The following game branches remain intentionally separate because they contain r
 All safe superseded refs now point at `main`; only the recovery/operational exceptions listed above remain intentionally separate.
 
 **One lane, one authority, one current branch: `main`.**
-
-## 12. Document health
-
-Current documentation is maintained under `Docs/Production/DOCUMENT_HEALTH_PLAN.md`. Use it when a doc feels stale, contradictory, or hard to place — it is the maintenance contract for the front door set, not another report to write.

@@ -1,291 +1,201 @@
-# Melodia — The Bard's Grief Hook
+# Melodia — The Bard's Grief Hook (Author's Lived Material, Metaphorized)
 
-**Date:** 2026-07-31  
-**Narrative-contract refresh:** 2026-09-11  
-**Status:** Durable narrative reference. This file defines emotional intent, metaphor, visual language, and legal narrative landing points. **It is not a project-status document.** Implementation truth, open work, and owner priority live only in [`CURRENT_STATE.md`](../../CURRENT_STATE.md).
-
-**Anchors:**
-- `Docs/Research/MELODIA_PSYCH_MUSIC_INDIE_REFERENCE_2026-07-31.md` — psych/music reference and Decision 033 context.
-- `_DECISION_LOG.md` — settled system/authority decisions.
-- `CURRENT_STATE.md` — current implementation truth and production queue.
-
-**Authorial ground truth:** Melodia's emotional core draws from grief, abandonment, isolation, compulsive return, intense attachment, and the feeling of being behind. These are mapped **metaphorically**, never presented as diagnosis. **Sir Melodious does not die — he flew away for snacks.** The heavier wound belongs to a different, past presence. The ending register is **reunion**.
+**Date:** 2026-07-31
+**Status:** Reference material, locked. Companion to the psych/music reference (Decision 033).
+**Not scope.** No code changed for this doc.
+**Anchors:** `Docs/Research/MELODIA_PSYCH_MUSIC_INDIE_REFERENCE_2026-07-31.md` (OMORI formula, Decision
+033 horror-as-tonal-register), `Docs/MELODIA_IDENTITY_AND_LOOP_2026-07-30.md` (thesis: *Melodia is
+music you cannot fail at*; Resonance as the universal verb), `Docs/MELODIA_DREAMSTATE_PROLOGUE.md`
+(Sir across the bridge, unreachable; `ResonanceBond = Absent`).
+**Author's ground truth (2026-07-31):** the emotional core is the author's lived experience — grief,
+lived abandonment, BPD, OCD, isolation, and the feeling of being behind. It is mapped *metaphorically*,
+never as diagnosis. **Sir Melodious does not die — he flew away for snacks.** The heavy wound is
+carried by a different presence. The ending register is **reunion**.
 
 ---
 
 ## 1. How to use this doc
 
-This is a narrative contract, not a request for new mechanics. Every idea must land in an existing Melodia system or in authored content/presentation. If an idea requires a grief meter, sanity system, surveillance mechanic, punishment loop, or second gameplay authority, reject it.
+Same rules as the psych/music reference: every entry ends with **Take / Reject** and a **landing
+system** — an existing Melodia system, never a new one. Guardrails that govern every entry:
 
-Guardrails:
-
-- **Decision 009/011:** stock JRPG authority owns turns, damage, and results.
-- **Decision 012/016:** musical time is presentation-first; rhythm never gates, blocks, or reduces an outcome. No `MISS`, ever.
-- **Decision 033:** horror is a tonal register, not a mechanics mandate.
-- **Current architecture:** QuillScript owns authored narrative; stock JRPG owns party/turns/damage/inventory/saves; Resonance, wardrobe/traversal, and music-driven world response already exist. Do not invent a second emotional ruleset beside them.
-- **Author's line:** no dead bird, no animal-harm content, no on-screen diagnosis. The wound is felt through world, pacing, music, silence, and character behaviour.
-- **Privacy line:** lived material is transformed. Do not reproduce real people, literal events, locations, social-media behaviour, or private disputes as identifiable fiction.
+- **Decision 009/011:** the stock JRPG controller owns turns, damage, and results.
+- **Decision 012/016:** musical time is presentation-only; rhythm never gates, blocks, or reduces an
+  outcome. No "MISS", ever.
+- **Decision 033:** horror is a *tonal register*, not a mechanics mandate. No sanity meters, no new
+  subsystems, no punishment loops.
+- **Author's line:** no dead bird, no animal-harm content, no on-screen diagnosis. The wound is felt
+  through system and metaphor; it is named once, at the reunion, and only in human language.
 
 ---
 
-## 2. The psych-game formula — steal the structure, reject the wound
+## 2. The OMORI formula — corrected, then split into "steal" and "reject"
 
-The useful reference pattern remains:
+### What the formula actually is (from the psych/music reference + fresh research)
 
-1. **Dramatic irony from minute one.** The player feels that something is wrong before the protagonist can name it.
-2. **A personal, universal wound — not spectacle.** The exact biography is private; the emotional shape is legible.
-3. **Theme is carried by interaction and presentation.** The game should *behave* like the wound before dialogue explains it.
-4. **Tonal contrast does the work.** Beauty, warmth, and playfulness make silence and absence hit harder.
-5. **Relief is delayed, not denied.** Melodia is allowed to be heavy without becoming punitive or nihilistic.
+1. **Dramatic irony from minute one.** The player *knows* something is wrong before the protagonist
+   accepts it. Dread is preloaded; the reveal only confirms what the player already felt.
+2. **A personal, universal wound — not a spectacle.** Grief + guilt + self-forgiveness. The *shape*
+   is universal even when the specifics are not.
+3. **The theme IS the mechanic.** OMORI's emotion chart is not flavor text — it *is* how trauma
+   alters perception.
+4. **Tonal whiplash.** Cute dream world that slowly rots. The *contrast* does the work.
+5. **Reaction-worthiness.** The twist lands on camera; viewers buy the game to feel it themselves.
 
-| | OMORI reference shape | Melodia |
+### The split
+
+| | OMORI | Melodia |
 |---|---|---|
-| Wound type | Guilt — "what did you do?" | Loss + uncertainty — "what was taken, and what does silence mean?" |
-| Who carries it | The perpetrator | The survivor — the one who stayed and kept singing |
-| The absent one | Dead / fixed truth | A past person whose absence remains unresolved; Sir is alive and retrievable |
-| Core question | Will I be forgiven? | **Will anyone answer my song — and can I keep singing when I do not know?** |
-| Ending register | No simple catharsis | **Warm reunion. Relief delayed, not denied.** |
+| Wound type | **Guilt** — "what did *you* do?" | **Loss** — "what was taken, and what do I keep *being left behind by*?" |
+| Who carries it | The perpetrator (Sunny) | The survivor (Melusina) — the one who stayed and kept singing |
+| The absent one | Mari (dead, staged) | A past person (left her) AND Sir (alive — flew off for snacks) |
+| Core question | Will I be forgiven? | Will anyone answer my song? |
+| Ending | No easy catharsis | **Reunion.** The one retrievable bond comes home |
 
-**Take:** dramatic irony, theme-in-system, dual-register colour language, authored silence, relief-delayed, reaction-worthiness.
+**Take:** dramatic irony, theme-is-the-mechanic (already built: Resonance *is* call-and-response),
+dual-world colour language, relief-delayed, reaction-worthiness.
 
-**Reject:** guilt as the core wound, dead-absent-person framing, punishment mechanics, and any reveal that claims omniscient knowledge of why the absent person behaved as they did.
+**Reject:** the guilt-based wound, the dead-absent-one, no-easy-catharsis as a *mandate*. Melodia's
+heaviness is relief-delayed, not relief-denied — and its relief is earned, concrete, and warm.
 
 ---
 
-## 3. The wound catalog — emotional material → bard metaphor → existing landing point
+## 3. The wound catalog — author's lived material, mapped to a bard metaphor and a system
 
-| # | Emotional material | Bard metaphor | Existing landing point | Take / Reject |
+Every row follows the house format: lived experience → bard metaphor → existing landing system →
+Take/Reject.
+
+| # | Lived material | Bard metaphor | Landing system | Take / Reject |
 |---|---|---|---|---|
-| 1 | **Grief** | A duet she once sang with someone who left; she can still perform only the surviving half | **Resonance** — call-and-response, a phrase offered and an answer awaited | **Take.** The mechanic already carries the grief. No grief meter. |
-| 2 | **Abandonment** | The travelling life guarantees impermanence: every audience leaves, or she does. Applause is not belonging | Dream/waking contrast; QuillScript; environmental arrivals | **Take.** Impermanence is structural to the road, not a diagnosis monologue. |
-| 3 | **Catastrophic reading of absence** | A small absence becomes proof that every bond is gone forever | First Dream: Sir's benign snack-run becomes emotionally enormous | **Take.** The perception is catastrophic; reality does not need to become cruel to validate the feeling. |
-| 4 | **Idealization / devaluation** | The same place can feel like paradise and then like abandonment | Dual-register palette, lighting, music, and dressing | **Take as visual language.** Never label it in UI or dialogue. |
-| 5 | **Compulsive return / "it has to be right"** | A phrase rehearsed until it hurts; returning to the same perch, measure, or route | Expressive repetition, authored Quill beats, musical/world presentation | **Take as ritual, never punishment.** Repetition may deepen meaning; it must not hard-fail the player. |
-| 6 | **Isolation among people** | The bard can perform for a crowd and still know no one | Quiet spaces, empty listening architecture, sparse Quill beats | **Take.** Silence can be authored without becoming emptiness of content. |
-| 7 | **Feeling behind** | She reaches every town after the festival; the road always leads to the *after* of things | Environmental storytelling, travel seams, Shorewake dressing | **Take as the quiet engine.** Each arrival should feel slightly past its moment. |
-| 8 | **Ambiguity / not knowing** | When no second voice answers, echoes begin to sound like possible replies | Resonance presentation, QuillScript silence, audio-reactive environments, distant motifs | **Take uncertainty and false echoes. Reject mind-reading.** The game never confirms secret motives merely to soothe the protagonist. |
-| 9 | **Near but unreachable** | Two performers can hear one another across water, walls, balconies, or parallel paths but cannot yet share the same stage | Environment composition and traversal | **Take as spatial metaphor.** Physical nearness can intensify emotional distance without literalizing a real person or place. |
+| 1 | **Grief** | A duet she once sang with someone who left; the melody is incomplete, and every town she plays only the surviving half | The Resonance verb — a mark set, waiting for an answer that used to come | **Take.** Her music is literally a half-song looking for its answering voice. The mechanic already is the grief. |
+| 2 | **Lived abandonment** | The travelling life *guarantees* impermanence: every audience she plays for, she leaves or is left by. Applause is not belonging | Dream/waking registers (saturated dream / muted morning) | **Take.** The profession makes the wound structural — she is not abandoned *despite* being a bard, she is abandoned *because* the road requires it. |
+| 3 | **BPD — fear of abandonment, the "can't hold what I love" spiral** | She believes the reason the duet-partner left was *her* — that she pushed, or wasn't enough, or that love is something that leaves no matter what she does | The dream's catastrophic over-reading of small absences (Sir's snack-run becomes the bridge fracture) | **Take.** The prologue already does this: a small, benign absence is experienced as the end of the world. That *is* the fear, rendered honestly. |
+| 4 | **BPD — splitting (idealize / devalue)** | The two registers are not just scenery — they are *how she sees the same places twice*: once as paradise, once as abandonment | Dual-world palette split (OMORI's structural point, already in the DNA) | **Take.** The colour split is the metaphor for splitting. No text required. Make it a hard, pre-art constraint. |
+| 5 | **OCD — the need for the thing to be exactly right** | A song that must be perfect before it can be offered; a phrase rehearsed until it hurts; the compulsion to return to the same phrase and try again | The opening fizzle + the ritual of re-arrival at the perch (pacing subsystem: *held* beats) | **Take as ritual, never as punishment.** The loop is something she *returns to*, a comfort and a cage at once. Decision 016 is what makes this legal: repetition that adds, never one that penalizes. |
+| 6 | **Isolation — alone among people** | The bard performs for crowds and knows no one | The empty-perch morning; quiet places that "are listening" but do not answer yet | **Take.** Silence as design (OMORI's held-beat) is already the tool — `UMelodiaPacingSubsystem` owns it. |
+| 7 | **Feeling behind** | She arrives at every town after the festival ended; everyone has already heard a better singer; the road always leads to the *after* of things | The arrival seam (travel authority → each new place already past its moment) | **Take as the quiet engine.** This is the least spectacular wound and the most universal. It does not need a scene — it needs every arrival to feel slightly late. |
 
-**Parked / prohibited:** explicit diagnostic language in gameplay; emotional contagion systems; surveillance gameplay; social-media analogues; punishment for compulsion; hidden-motive detective mechanics; any system that mechanically rewards obsession.
-
----
-
-## 4. The hook — 2026-09-11 convergence
-
-> **Melusina is a travelling bard who learned to hear every silence as an ending. She keeps arriving after the music has stopped, carrying half of a duet and mistaking echoes for answers. The road asks her to keep singing without knowing who is listening — until she discovers that absence is not always abandonment, uncertainty is not proof, and arriving behind is not the same as being unwanted.**
-
-The wound has four connected shapes:
-
-- **"I was left."** The past duet-partner is experienced through fragments: a half-melody, a place that still seems to listen, an authored silence where a second voice used to answer. Never a boss, corpse, or expositional villain. Just **an absence with a shape**.
-- **"I couldn't hold what I loved."** Melusina assumes leaving must reveal something terrible about herself. Sir's harmless absence becomes catastrophic because an older wound has taught her that every silence is final.
-- **"I don't know."** The missing answer becomes its own source of pain. Echoes, distant motifs, and environmental responses can tempt Melusina — and the player — to over-interpret what cannot actually be known.
-- **"I'm always behind."** The journey's texture is post-festival: ribbons after the crowd has gone, wet streets after the procession, lamps being extinguished, stages being struck, music fading around the corner.
-
-### The key narrative evolution
-
-The older formulation asked only: **"Will anyone answer my song?"**
-
-The current formulation adds a second, more mature question:
-
-> **"Can I keep singing when I do not know whether an answer is coming?"**
-
-That protects the story from making external reassurance the only path to emotional survival. Reunion remains the ending register, but the protagonist acquires agency *before* reunion rather than receiving personhood from it.
+**Parked:** explicit naming of any diagnosis in gameplay text (see §5); emotional contagion between
+party members; any mechanical representation of compulsion that can fail.
 
 ---
 
-## 5. Why this is native to the game that exists now
+## 4. The hook (converged)
 
-Melodia no longer needs hypothetical grief mechanics. The existing game already contains the right verbs.
+> **Melusina is a travelling bard who keeps arriving too late — too late for the festival, too late
+> to answer the one person who used to sing back to her, and just in time to find that the one bond
+> she could still hold has flown off for snacks. The game is: follow the road, find Sir, and learn —
+> one festival at a time — that arriving behind is not the same as being unwanted.**
 
-### Resonance: the wound is already in the core verb
+How the three wound-shapes the author named blend into it:
 
-Resonance is call-and-response. A phrase is offered; an answer is awaited. This is the cleanest systemic metaphor and must remain mechanically healthy rather than punitive. Grief changes **presentation and meaning**, not authority, damage ownership, or success conditions.
+- **"I was left"** → the past duet-partner who left her (the *other-than-Sir* presence). She is
+  experienced through fragments — a half-melody, a place that still "listens," an authored emptiness
+  where a second voice used to answer. Never a boss. Never a corpse. Just *an absence with a shape*.
+- **"I couldn't hold what I loved"** → the BPD spiral: her belief that the leaving was her fault, and
+  her catastrophic reading of Sir's benign absence. The dream makes a snack-run feel like the end of
+  the world, because an old wound taught her that every absence is final.
+- **"I'm always behind"** → the entire journey's *texture*. Every arrival is post-festival. This is
+  not one scene — it is the reason each new place feels slightly past its moment, and it is what the
+  reunion finally answers.
 
-### QuillScript: fragments, not explanation
+**Why this is Melodia-native and not OMORI's story:**
+- The mechanic *already is* the metaphor. Resonance is call-and-response — a mark set, an answer
+  awaited. The whole loop (battle / dialogue / exploration, Identity doc §2) is literally the question
+  "will anyone answer my song?" No new system is needed to tell this story. It is already the game.
+- The dual-world palette split is already in the fiction (Dreamstate, `ResonanceBond = Absent`).
+- Sir being alive-and-retrievable keeps the wound *loss-shaped* but the *game* hope-shaped. Grief
+  without a corpse; abandonment without a final abandonment. **That is the author's story told with
+  the author's chosen ending.**
 
-QuillScript is the correct home for:
-
-- partial recollections;
-- the past duet-partner's three-to-five recurring fragments;
-- conversations that stop just before explanatory closure;
-- moments where Melusina notices that she is assigning meaning to silence;
-- one eventual human-language naming beat.
-
-Do not write a courtroom scene where the absent person's true psychology is finally solved.
-
-### Music clock + audio-reactive world: the environment can answer without pretending a person did
-
-The current game can make music visibly and sonically affect the world. Use that to separate two ideas:
-
-- **The world can answer Melusina.** Water, cymatic surfaces, Chladni fields, light, particles, architecture, and musical motifs may resonate with her phrase.
-- **That does not mean the absent person answered.** Environmental response offers beauty and connection without fabricating interpersonal certainty.
-
-This distinction is central to the revised hook.
-
-### Wardrobe / traversal: motion without closure
-
-Traversal upgrades should not become therapy tokens, but their existing role supports the theme elegantly: Melusina can continue moving through the world while some emotional questions remain unanswered. New movement does not erase grief; it prevents grief from becoming immobility.
-
-### Sir Melodious: the counterexample, not the wound
-
-Sir's absence in First Dream can still trigger catastrophe. Across the broader game, however, Sir should increasingly become evidence for a different truth:
-
-> **A loved being can leave immediate perception without ceasing to love, exist, return, or answer.**
-
-His eventual return works because the game does not use him as the source of the original injury. He is the retrievable bond that proves not every absence has the same meaning.
+**Cost (all content, zero mechanics):** the past-person's fragments (QuillScript beats), the
+post-festival arrival texture (pacing profile + authored level dressing), one authored "the place you
+returned to is subtly different" beat at the perch seam (Layers of Fear's cheap move, from the psych
+reference §3.4).
 
 ---
 
-## 6. Current production landing map
+## 5. The explicitness balance — "how much do we name?"
 
-**This section is a narrative mapping snapshot, not status authority. For what is actually built or next, read `CURRENT_STATE.md`.**
+**Recommendation: feel first, name once. Gris through ninety percent of the game; one moment of
+human clarity at the reunion.**
 
-### First Dream — protected technical proof
+Why this is the balance to strike:
 
-Emotional job: **catastrophic absence**.
+1. **It protects the author.** This is lived material. A game that *names* BPD/OCD/abandonment on
+   the sleeve (OMORI's model) invites diagnosis-comparison, trigger-flag policing, and the 
+   "does this game represent ME correctly" debate. A game that *feels* it and names it once keeps
+   ownership where it belongs — with the author — while letting every player find their own meaning.
+2. **It fits the register.** The genre is cozy + psych-music (Chicory's proof, psych reference §2.4).
+   Felt-over-named is what the register already does. Naming is the exception that lands *because* it
+   is rare.
+3. **It survives streaming.** Viewers who share "this game gets it" clips do so because the *feeling*
+   was transmitted, not because a character said the words. The named moment is the clip; the
+   metaphor is why they were watching.
+4. **The one name is the reunion's job.** When Sir comes home, one human sentence can land — the
+   it's-okay-to-arrive-late moment, the you-didn't-push-me-away moment — spoken the way a person
+   actually speaks to someone they love. SOMA's "questions, not threats" (psych reference §3.3)
+   licenses exactly one such beat: heavy, honest, and immediately followed by warmth.
 
-- Sir is missing for a benign reason.
-- Melusina experiences the absence at impossible scale.
-- Dream architecture may exaggerate separation: broken bridge, impossible distance, unreachable silhouette, sound without access.
-- Do not add new mechanics to explain the wound. Protect the existing proof and let presentation carry it.
-
-### Shorewake Calling — semester artwork
-
-Emotional job: **the world continued without me**.
-
-Shorewake is the natural home for the post-festival motif because this can be done almost entirely through environment art:
-
-- decorations left after an event;
-- stages being packed away;
-- puddles holding reflected lights after the crowd is gone;
-- distant music ending before the player reaches its source;
-- chairs, ribbons, footprints, flowers, banners, food stalls, wet paper, extinguished lanterns;
-- routes that run close together without meeting;
-- architecture oriented toward an absent focal point.
-
-The player should feel late **before anyone says they are late**.
-
-### Choral Sheep — capstone counterpoint
-
-Emotional job: **many separate voices can become harmony**.
-
-Choral Sheep should **not** become trauma exposition or "BPD sheep." Its current Creature → Motif → Harmony → World language is valuable precisely because it offers the positive counter-image:
-
-- one creature produces a motif;
-- multiple motifs interfere;
-- interference can become pattern rather than noise;
-- individual voices remain distinct while forming harmony;
-- Chladni/cymatic response makes relationship visible without dialogue.
-
-This lets the capstone express connection and co-regulation aesthetically while remaining a strong creature/material/audio-reactive showcase.
+**Guardrail:** the naming is *one* beat, not a theme. If a line of dialogue ever reads like a
+therapist's note or a glossary entry, it is cut. The metaphor carried the game; the name only closes
+the loop.
 
 ---
 
-## 7. Environment language — make attachment spatial
-
-The current environment-art direction can carry more of this story than dialogue.
-
-### Primary motif: **near but unreachable**
-
-Use compositions such as:
-
-- a figure or light visible across water with no direct bridge;
-- two balconies facing one another across a void;
-- music audible through a wall whose doorway is elsewhere;
-- parallel paths separated by glass, current, altitude, fog, or architecture;
-- a destination repeatedly visible before it is traversable;
-- structures that appear to lean or orient toward an absent partner;
-- two architectural halves whose ornament almost lines up but misses by a measure.
-
-The sensation is: **close enough to imagine contact, too far away to receive certainty.**
-
-### False echoes
-
-Use sparingly:
-
-- a motif returns harmonically altered and Melusina briefly mistakes it for the old duet;
-- a distant silhouette resolves into architecture;
-- a reflection looks paired until the camera moves;
-- a response in cymatic material feels conversational but belongs to the world itself.
-
-The player may share the impulse to interpret. The game should then gently reveal the difference between **meaning** and **evidence**.
-
-### Post-festival texture
-
-"Always behind" becomes an art-direction constraint rather than a cutscene premise. Each major arrival may include one or two traces of something just finished. Never make every location depressing; the melancholy comes from timing, not ruin.
-
----
-
-## 8. Explicitness balance — feel first, name once
-
-**Recommendation remains: feel first, name once.** The metaphor carries almost the entire game; one human moment of clarity can close the loop.
-
-What has changed in this refresh is **what the named moment must not do**.
-
-It must **not** reveal that the absent person secretly loved Melusina, secretly hated her, enjoyed being wanted, regretted leaving, was manipulating her, or had some other hidden motive. The story does not earn omniscience merely because uncertainty hurts.
-
-The eventual human-language beat should instead name something Melusina can actually know:
-
-- an absence is not proof of worthlessness;
-- not every silence has the same meaning;
-- being unable to hold a relationship does not make every good memory false;
-- she can survive unansweredness without turning it into self-conviction;
-- she can arrive late and still belong.
-
-If dialogue reads like a therapist's note, glossary, diagnosis, or moral lesson, cut it.
-
----
-
-## 9. The reunion ending register
+## 6. The reunion ending register
 
 Ending = **reunion, warm, earned, not cheap.**
 
-- Sir returns because the road's question finally becomes literal: one being who reliably answered is present again.
-- His return does **not** erase the past duet-partner's absence or explain that person's motives.
-- The emotional victory begins before the reunion: Melusina has already learned to keep moving and making music without forcing silence to become certainty.
-- The reunion therefore confirms growth rather than causing it.
-- The last image remains musical: a half-song gains another living voice while the old missing half remains missing.
-- The post-festival motif resolves: the final arrival is one moment in which Melusina is not late.
-
-Melodia's heaviness remains **relief-delayed, not relief-denied**.
-
----
-
-## 10. Anti-patterns — what this hook is NOT
-
-1. **A dead Sir / animal harm.** He flew away for snacks. The contrast between benign reality and catastrophic perception is the point.
-2. **A guilt-wound.** Melusina is not secretly responsible for a horror that the player must uncover.
-3. **A grief/sanity/dream-integrity meter.** No mechanic with teeth on the wound.
-4. **Compulsion as failure.** Repetition may add meaning; it never punishes the player for not being "regulated" enough.
-5. **On-screen diagnosis.** No glossary terms, medical exposition, or trigger-flag theatre inside the fiction.
-6. **The absent person as a boss.** Do not externalize a relationship rupture into a villain encounter.
-7. **Mind-reading as closure.** The game never declares hidden interpersonal motives as fact merely because the protagonist wants certainty.
-8. **Surveillance as play.** No tracking, checking, profile-watching, location-watching, or detective loop built around the absent person.
-9. **Literal autobiography.** No identifiable recreation of private relationships, schools, neighborhoods, messages, or disputes.
-10. **No-easy-catharsis as a mandate.** Warmth is allowed. The ending is reunion, full stop.
-11. **Choral Sheep as trauma exposition.** The capstone lane expresses harmony and world response; it is not a diagnostic allegory.
-12. **A second status authority.** This document never claims what is currently implemented or next. `CURRENT_STATE.md` owns that.
+- Sir comes back not because of a plot contrivance but because of the *road* — the game's whole
+  question ("will anyone answer my song?") is answered by the one being who always did. His return is
+  the mechanical and emotional thesis becoming literal.
+- The reunion does **not** erase the past-person's absence. Grief and the new warmth coexist —
+  Melodia's heaviness is relief-delayed, not relief-denied. The last image is not a reset; it is a
+  half-song *gaining its second voice again* while the old half stays half.
+- The post-festival texture resolves: the final arrival is the first time she is not late, because
+  the one she was behind *for* is home.
 
 ---
 
-## 11. Authored-content opportunities when this lane is active
+## 7. Anti-patterns — what this hook is NOT
 
-These are **narrative opportunities, not the production queue**.
-
-1. Write three-to-five past-duet fragments: half-melody, listening place, silence where a second voice used to be, one false echo, one moment where Melusina chooses not to interpret.
-2. Give Shorewake a restrained post-festival dressing language that communicates "the world continued" without exposition.
-3. Use one near-but-unreachable composition as a repeated environmental motif and let later traversal reframe it.
-4. Let the audio-reactive world answer Melusina clearly at least once while keeping interpersonal silence unresolved. This makes the distinction between *connection* and *certainty* playable without a new mechanic.
-5. Preserve First Dream's benign-absence catastrophe rather than escalating it into literal danger.
-6. Draft the reunion naming beat only after the preceding content earns it. One sentence, human language, no diagnosis, no omniscient explanation of the absent person.
-7. Re-check every authored beat against Decisions 016/033 and the anti-patterns above.
+1. **A dead Sir / animal harm.** Author's line. He flew away for snacks. The absence is benign in
+   truth and catastrophic only in the dream — that contrast is the point.
+2. **A guilt-wound.** Melusina is the survivor, not the perpetrator. No "what did you do" framing.
+3. **A sanity meter, dream-integrity meter, or any mechanic with teeth** on the wound. Decision 033.
+4. **OCD as failure.** Repetition that punishes, misses, or hard-fails is Decision 016's exact
+   prohibition. Ritual that *adds* is the only legal shape.
+5. **On-screen diagnosis.** No glossary terms, no medical naming, no trigger-flag theatre. One human
+   sentence at the reunion, and nothing more.
+6. **No-easy-catharsis as a mandate.** Melodia's ending is reunion, full stop. The psych reference's
+   "no easy catharsis" observation about OMORI is a description of *OMORI's* wound; it is not a rule.
 
 ---
 
-## 12. Sources and provenance
+## 8. Next steps (authored-first, all content/presentation, zero new systems)
 
-- OMORI structural reference, Gris-model metaphor, Chicory cozy-heavy register, SOMA "questions, not threats," Layers of Fear environmental shift, and presentation-first horror references: `Docs/Research/MELODIA_PSYCH_MUSIC_INDIE_REFERENCE_2026-07-31.md`.
-- System authority and settled constraints: `_DECISION_LOG.md`.
-- Current implementation and semester/capstone priorities: `CURRENT_STATE.md` only.
+1. Lock the saturated/muted palette split as a hard pre-art constraint (OMORI's own guide calls this
+   a pre-art rule) — the split *is* the BPD splitting metaphor.
+2. Author the first `UMelodiaPacingProfile`: *held* beats for the morning register, *stutter* beats
+   for the dream register — the cheapest way to make "arriving late" felt.
+3. Write the one QuillScript beat at the empty-perch seam: the benign snack-run experienced as
+   catastrophe in the dream, gently resolved in the morning (the "subtlly different return" beat).
+4. Author the past-person's fragments (three to five beats): a half-melody, a place that still
+   "listens," an authored silence where a second voice used to answer. Content only.
+5. Draft the single named moment at the reunion — one sentence, human language, no diagnosis.
+6. Re-check every beat against Decision 016/033 and the author's ground-truth line above.
 
-*Originally authored 2026-07-31 from the owner's stated emotional material and ground-truth constraints. Refreshed 2026-09-11 to align the durable narrative contract with the current Melodia architecture and production lanes while deliberately adding no new gameplay system and no new private autobiographical detail.*
+---
+
+## 9. Sources
+
+- The OMORI formula: `Docs/Research/MELODIA_PSYCH_MUSIC_INDIE_REFERENCE_2026-07-31.md` §2.1 and
+  the web research behind it (OMORI Story/Plot wiki; brothers-in-gaming streaming-success analysis;
+  neurolaunch emotion-depth analysis; the 2026 "why viral" field research).
+- Gris-model metaphor and Chicory's cozy-heavy register: psych reference §2.4.
+- SOMA's "questions, not threats" and Layers of Fear's cheap environment shift: psych reference §3.3/§3.4.
+- Amnesia's sanity-as-placebo (presentation-first feedback is a validated technique): psych reference §3.2.
+
+*Authored 2026-07-31 by the narrative research lane, from the owner's stated lived material and
+ground-truth constraints. This doc is reference only; nothing here is a change request.*
