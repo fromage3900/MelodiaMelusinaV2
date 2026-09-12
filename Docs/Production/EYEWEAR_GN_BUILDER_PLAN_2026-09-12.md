@@ -266,3 +266,56 @@ It is not the builder, and nothing here has been written into the addon. No file
 `deploy/surreal_arch/` has been touched. The next step is the units decision, then
 `MEL_eyewear_front` as a single registered builder with the measurement contract as its
 parameter surface.
+
+---
+
+# Appendix — render workflow
+
+## Use `MEL_eyewear_pair`
+
+One builder emits the whole thing: front, two temples, two knuckles, already
+positioned. The separate `MEL_eyewear_front` / `_temple` / `_hinge` builders remain
+for parts work, but for a beauty render start with the pair.
+
+Every parameter is in **millimetres**. Defaults are a 54▯18 frame:
+
+    Lens Width A 54   Lens Height B 34   Bridge DBL 18   Rim Thickness 4   Rim Depth 6
+    Length to Bend 100   Tip Drop 28   Temple Width 4.5   Temple Thickness 3
+    Fold Angle 0   Barrel Radius 1.4   Barrel Length 2.4
+
+Verified assembly (Saved/Audit/eyewear/final_verify.json, 10/10):
+
+    width    134.00 mm   exactly 2A + DBL + 2*RimThickness
+    symmetry   0.00 mm   x spans [-67.0, 67.0]
+    depth    126.18 mm   frame plane back to temple tip
+    height    49.93 mm   frame top to ear-drop bottom
+    1912 verts / 3788 tris
+
+## Three things that will bite you on the first render
+
+**1. Orientation.** The family uses `Y` as vertical, not Blender's `Z`:
+
+    X  across the face        Y  vertical (ear drop is -Y)        Z  viewing axis (-Z is behind)
+
+The pair therefore loads **lying on its side**. Rotate the object **-90° about X**
+and it stands up. This is deliberate — it keeps the lens plane in `XY` so the
+boxing-system A/B map directly onto X/Y — but it is the first thing to fix.
+
+**2. Scale.** The builder is millimetre-accurate, so 1 unit = 1 m and a 54▯18 pair
+is **0.134 BU wide (13.4 cm)**. Dropped into a scene built in metres it will look
+microscopic. That is correct, not broken.
+
+**3. No UVs, and no lens.** Geometry-nodes output carries no UV layer (measured:
+the exported GLB has `POSITION` and `NORMAL` only), so use solid / Principled
+materials rather than image textures, or add a UV pass first. And there is no lens
+geometry yet — the aperture is a real hole, so a render shows straight through it.
+The lens is the next builder if you want it filled.
+
+## Materials
+
+The pair emits a single joined mesh with no material slots assigned. For a first
+pass, one acetate-ish Principled shader on the whole object reads fine: roughness
+0.4–0.7, and for tortoiseshell layer a semi-transparent speckle over the base
+colour rather than a flat tint. Metal frames are better served by the separate
+builders, so you can put a metal shader on the hinges and temples and acetate on
+the front.

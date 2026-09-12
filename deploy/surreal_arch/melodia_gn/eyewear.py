@@ -27,7 +27,7 @@ from __future__ import annotations
 import bpy
 
 from .core import (
-    add_bool_param, add_float_param, add_int_param, add_vector_param,
+    GROUP_BUILDERS, add_bool_param, add_float_param, add_int_param, add_vector_param,
     label_tree, link_sockets, new_geometry_tree, register_builder, safe_node, sock,
 )
 
@@ -554,4 +554,209 @@ register_builder(
     "MEL_eyewear_hinge", build_eyewear_hinge, "Eyewear Hinge",
     "Hinge knuckle: an instanced barrel stack on the vertical hinge axis, realized so "
     "it survives glTF export. Pivot is the barrel axis.",
+    category="eyewear")
+
+
+def _subtree(name):
+    """Build a registered builder ONCE and return its tree.
+
+    CRITICAL: new_geometry_tree REMOVES and recreates a tree by name. Building the
+    same sub-builder twice therefore destroys the tree the first group node was
+    pointing at - node_tree goes to None, the output socket disappears, and the
+    instance is silently dropped from the join. Build each sub-tree once, then
+    share it across as many group nodes as needed.
+    """
+    if name not in GROUP_BUILDERS:
+        print("[eyewear] _subtree: '%s' is not registered" % name)
+        return None
+    try:
+        res = GROUP_BUILDERS[name]()
+    except Exception as exc:
+        print("[eyewear] _subtree: building '%s' raised %s: %s"
+              % (name, type(exc).__name__, exc))
+        return None
+    sub = res[0] if isinstance(res, (tuple, list)) else res
+    if sub is None:
+        print("[eyewear] _subtree: '%s' returned no tree" % name)
+    return sub
+
+
+def _nest(tree, sub, loc):
+    """One group node pointing at an ALREADY-BUILT sub-tree."""
+    if sub is None:
+        return None
+    node = safe_node(tree, "GeometryNodeGroup", loc)
+    if node is None:
+        print("[eyewear] _nest: could not create a Group node")
+        return None
+    node.node_tree = sub
+    return node
+
+
+def _g_sock(node, name, outputs=False):
+    """Resolve a nested group node's socket by NAME.
+
+    A Group node's sockets are identified as Socket_0, Socket_1 ... not by the
+    parameter name, so they must be mapped through the nested tree's interface.
+    Order matches the interface declaration order.
+    """
+    sub = getattr(node, "node_tree", None)
+    if sub is None:
+        return None
+    want = "OUTPUT" if outputs else "INPUT"
+    names = [getattr(it, "name", None) for it in getattr(sub.interface, "items_tree", [])
+             if getattr(it, "in_out", None) == want]
+    try:
+        idx = names.index(name)
+    except ValueError:
+        return None
+    coll = node.outputs if outputs else node.inputs
+    return coll[idx] if idx < len(coll) else None
+
+
+def _forward(tree, gin, param, node, socket_name):
+    """Drive a nested builder's input from a pair-level parameter."""
+    target = _g_sock(node, socket_name)
+    if target is None:
+        return False
+    try:
+        link_sockets(tree, sock(gin, param, outputs=True), target)
+        return True
+    except Exception:
+        return False
+
+
+def build_eyewear_pair(group_name="MEL_eyewear_pair"):
+    """A complete, assembled pair: front + two temples + two hinges, positioned.
+
+    The endpiece X is derived, not guessed. From the boxing arithmetic the outer
+    width is 2A + DBL + 2*RimThickness, so the hinge sits at
+        X = A + DBL/2 + RimThickness
+    and both the temple and the hinge take that as their Hinge Pivot. The right
+    side is produced by the nested builders' own mirroring, so both sides use the
+    same positive pivot.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+
+    add_float_param(tree, "Lens Width A", 54.0, 34.0, 66.0)
+    add_float_param(tree, "Lens Height B", 34.0, 24.0, 48.0)
+    add_float_param(tree, "Bridge DBL", 18.0, 12.0, 26.0)
+    add_float_param(tree, "Rim Thickness", 4.0, 1.5, 10.0)
+    add_float_param(tree, "Rim Depth", 6.0, 2.0, 14.0)
+    add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
+    add_float_param(tree, "Length to Bend", 100.0, 40.0, 160.0)
+    add_float_param(tree, "Tip Drop", 28.0, 0.0, 70.0)
+    add_float_param(tree, "Temple Width", 4.5, 1.0, 14.0)
+    add_float_param(tree, "Temple Thickness", 3.0, 1.0, 12.0)
+    add_float_param(tree, "Fold Angle", 0.0, 0.0, 95.0)
+    add_float_param(tree, "Barrel Radius", 1.4, 0.4, 6.0)
+    add_float_param(tree, "Barrel Length", 2.4, 0.6, 10.0)
+
+    bx, by = 0, 0
+
+    # endpiece X in BU: A + DBL/2 + RimThickness, all in mm
+    a_mm = _mm(tree, gin, "Lens Width A", (bx - 1500, by + 400))
+    dbl_half = _math(tree, "MULTIPLY", (bx - 1300, by + 260),
+                     a=_mm(tree, gin, "Bridge DBL", (bx - 1500, by + 120)), b=0.5)
+    rt_mm = _mm(tree, gin, "Rim Thickness", (bx - 1500, by - 40))
+    x_ab = _math(tree, "ADD", (bx - 1120, by + 300), a=a_mm, b=dbl_half.outputs[0])
+    pivot_x = _math(tree, "ADD", (bx - 940, by + 300), a=x_ab.outputs[0], b=rt_mm)
+
+    # each sub-tree is built exactly once, then shared by the group nodes
+    front_sub = _subtree("MEL_eyewear_front")
+    hinge_sub = _subtree("MEL_eyewear_hinge")
+    temple_sub = _subtree("MEL_eyewear_temple")
+    front = _nest(tree, front_sub, (bx - 400, by + 300))
+    hinge_l = _nest(tree, hinge_sub, (bx - 400, by - 300))
+    hinge_r = _nest(tree, hinge_sub, (bx - 400, by - 550))
+    templ_l = _nest(tree, temple_sub, (bx - 400, by - 800))
+    templ_r = _nest(tree, temple_sub, (bx - 400, by - 1050))
+    if not all((front, hinge_l, hinge_r, templ_l, templ_r)):
+        return (tree, gin, gout)
+
+    # forward the frame parameters to the front
+    for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
+              "Rim Depth", "Corner Radius"):
+        _forward(tree, gin, p, front, p)
+
+    # arms and knuckles
+    for t in (templ_l, templ_r):
+        for p in ("Length to Bend", "Tip Drop", "Temple Width", "Temple Thickness",
+                  "Fold Angle", "Rim Thickness"):
+            _forward(tree, gin, p, t, p)
+    for h in (hinge_l, hinge_r):
+        for p in ("Barrel Radius", "Barrel Length"):
+            _forward(tree, gin, p, h, p)
+
+    # seat both arms and both knuckles on the derived endpiece axis
+    # Placement is done by a Transform AFTER each nested node, not by driving the
+    # nested "Hinge Pivot" input. Setting that input through the group node did not
+    # take reliably (the right knuckle landed correctly while the left stayed at the
+    # origin, leaving 1.4 mm - one barrel radius - of asymmetry), so the pair owns
+    # placement itself and the nested builders keep their own defaults.
+    # Seat the nest so the temple's OUTER face is flush with the frame's outer edge.
+    # The arm builder offsets itself by (half width + clearance) internally, so its
+    # outer face sits at (width + clearance) from the nest origin.
+    inset = _math(tree, "ADD", (bx - 780, by + 120),
+                  a=_mm(tree, gin, "Temple Width", (bx - 1000, by + 160)),
+                  b=_mm(tree, gin, "Endpiece Clearance", (bx - 1000, by - 20)))
+    nest_x = _math(tree, "SUBTRACT", (bx - 620, by + 200),
+                   a=pivot_x.outputs[0], b=inset.outputs[0])
+
+    pivot = _vec(tree, (bx - 780, by - 40), x=nest_x.outputs[0])
+    neg_one_v = _vec(tree, (bx - 780, by - 260), x=-1.0, y=1.0, z=1.0)
+
+    placed = {}
+    for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
+        src = _g_sock(node, "Geometry", outputs=True)
+        if src is None:
+            placed[key] = None
+            continue
+        geom = src
+        # the right side must be MIRRORED, not merely translated to the other side,
+        # or the arm reaches inward instead of outward
+        if key in ("tr", "hr"):
+            m = safe_node(tree, "GeometryNodeTransform", (bx - 400, by - 700))
+            fl = safe_node(tree, "GeometryNodeFlipFaces", (bx - 240, by - 700))
+            if m is not None and fl is not None and neg_one_v is not None:
+                link_sockets(tree, geom, m.inputs["Geometry"])
+                link_sockets(tree, neg_one_v.outputs["Vector"], m.inputs["Scale"])
+                link_sockets(tree, m.outputs["Geometry"], fl.inputs["Mesh"])
+                geom = fl.outputs["Mesh"]
+        xf = safe_node(tree, "GeometryNodeTransform", (bx - 80, by - len(placed) * 240))
+        if xf is None:
+            placed[key] = None
+            continue
+        link_sockets(tree, geom, xf.inputs["Geometry"])
+        link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
+        placed[key] = xf.outputs["Geometry"]
+
+    joins = []
+    front_geo = _g_sock(front, "Geometry", outputs=True)
+    if front_geo is not None:
+        joins.append(front_geo)
+    for key in ("hl", "hr", "tl", "tr"):
+        if placed.get(key) is not None:
+            joins.append(placed[key])
+
+    if joins:
+        acc = joins[0]
+        for i, nxt in enumerate(joins[1:]):
+            j = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 200 + i * 160, by))
+            if j is None:
+                break
+            link_sockets(tree, acc, j.inputs["Geometry"])
+            link_sockets(tree, nxt, j.inputs["Geometry"])
+            acc = j.outputs["Geometry"]
+        link_sockets(tree, acc, gout.inputs["Geometry"])
+
+    label_tree(tree, group_name)
+    return (tree, gin, gout)
+
+
+register_builder(
+    "MEL_eyewear_pair", build_eyewear_pair, "Eyewear Pair",
+    "Assembled pair: front, two temples and two hinges seated on the derived "
+    "endpiece axis (X = A + DBL/2 + RimThickness). The render-ready build — every "
+    "parameter is in millimetres.",
     category="eyewear")
