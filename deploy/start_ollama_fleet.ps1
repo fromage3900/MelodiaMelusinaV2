@@ -15,7 +15,8 @@ $daemons = @(
     "ollama_wardrobe_catalog_daemon.py",
     "ollama_dialogue_daemon.py",
     "ollama_gumroad_copy_daemon.py",
-    "ollama_data_validator_daemon.py"
+    "ollama_data_validator_daemon.py",
+    "ollama_chladni_foundry_daemon.py"
 )
 foreach ($d in $daemons) {
     Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList "`"$PSScriptRoot\$d`"" -WorkingDirectory $root
