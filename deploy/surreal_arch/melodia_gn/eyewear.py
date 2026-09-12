@@ -28,7 +28,8 @@ import bpy
 
 from .core import (
     GROUP_BUILDERS, add_bool_param, add_float_param, add_int_param, add_vector_param,
-    label_tree, link_sockets, new_geometry_tree, register_builder, safe_node, sock,
+    label_tree, link_sockets, make_group_output, new_geometry_tree, register_builder,
+    safe_node, sock,
 )
 
 MM = 0.001          # millimetres -> Blender units (1 BU = 1 m)
@@ -736,6 +737,151 @@ def _forward(tree, gin, param, node, socket_name):
         return False
 
 
+# ------------------------------------------- 11.4/11.5 pair integrity -----
+# 11.4: Join Geometry does not weld, so the assembled pair carried 5688 doubled
+# seam verts (measured: 10464 verts collapse to 4776 at a 0.02 mm weld, with
+# zero wire edges introduced; 0.05 mm already creates wire — probe
+# Tools/eyewear_verify/pair_manifold_probe.py). The weld below is that measured
+# value, not a guess.
+WELD_DISTANCE_MM = 0.02
+
+
+def _weld(tree, geom, loc, dist_mm=WELD_DISTANCE_MM):
+    """Merge by Distance at a measured threshold (11.4)."""
+    if geom is None:
+        return None
+    mg = safe_node(tree, "GeometryNodeMergeByDistance", loc)
+    if mg is None:
+        return geom
+    try:
+        mg.inputs["Distance"].default_value = dist_mm * MM
+    except Exception:
+        pass
+    try:
+        link_sockets(tree, geom, sock(mg, "Geometry"))
+        return mg.outputs["Geometry"]
+    except Exception:
+        return geom
+
+
+def _principled_material(name, base_color, metallic=0.0, roughness=0.5,
+                         alpha=None, blend=None):
+    """Get-or-create an eyewear material, rebuilt deterministically (11.5/11.6).
+
+    Same convention as materials_kit builders: clear and rebuild so repeated
+    builder evaluation cannot stack stale nodes.
+    """
+    try:
+        mat = bpy.data.materials.get(name)
+        if mat is None:
+            mat = bpy.data.materials.new(name)
+    except Exception:
+        return None
+    try:
+        mat.use_nodes = True
+        nt = mat.node_tree
+        nt.nodes.clear()
+        out = nt.nodes.new("ShaderNodeOutputMaterial")
+        out.location = (400, 0)
+        bsdf = nt.nodes.new("ShaderNodeBsdfPrincipled")
+        bsdf.location = (100, 0)
+        if "Base Color" in bsdf.inputs:
+            bsdf.inputs["Base Color"].default_value = base_color
+        for key, val in (("Metallic", metallic), ("Roughness", roughness)):
+            if key in bsdf.inputs:
+                try:
+                    bsdf.inputs[key].default_value = val
+                except Exception:
+                    pass
+        if alpha is not None and "Alpha" in bsdf.inputs:
+            try:
+                bsdf.inputs["Alpha"].default_value = alpha
+            except Exception:
+                pass
+        nt.links.new(bsdf.outputs["BSDF"], out.inputs["Surface"])
+        if blend is not None:
+            try:
+                mat.blend_method = blend
+            except Exception:
+                pass
+    except Exception:
+        pass
+    return mat
+
+
+def ensure_eyewear_materials():
+    """The four M1 delivery materials (11.6 structural core; COLOR_0 work later).
+
+    Acetate default is a neutral espresso; tortoise marbling arrives as a
+    CORNER-domain COLOR_0 layer, not as a second material. Lens stays clear of
+    KHR_materials_transmission: alpha blend only, so three.js pays no extra
+    scene render per lens.
+    """
+    return {
+        "acetate": _principled_material(
+            "MEL_mat_eyewear_acetate", (0.09, 0.055, 0.045, 1.0),
+            metallic=0.0, roughness=0.45),
+        "metal": _principled_material(
+            "MEL_mat_eyewear_metal", (0.95, 0.80, 0.60, 1.0),
+            metallic=1.0, roughness=0.28),
+        "lens": _principled_material(
+            "MEL_mat_eyewear_lens", (0.90, 0.95, 1.0, 1.0),
+            metallic=0.0, roughness=0.05, alpha=0.30, blend="BLEND"),
+        "silicone": _principled_material(
+            "MEL_mat_eyewear_silicone", (0.75, 0.72, 0.70, 1.0),
+            metallic=0.0, roughness=0.90),
+    }
+
+
+def _apply_material(tree, geom, material, loc):
+    """Assign a material to one part's geometry (11.5). Pure pass-through on failure."""
+    if geom is None or material is None:
+        return geom
+    sm = safe_node(tree, "GeometryNodeSetMaterial", loc)
+    if sm is None:
+        return geom
+    try:
+        link_sockets(tree, geom, sock(sm, "Geometry"))
+        sock(sm, "Material").default_value = material
+    except Exception:
+        return geom
+    try:
+        return sm.outputs["Geometry"]
+    except Exception:
+        return geom
+
+
+def _split_x_sign(tree, geom, loc):
+    """Split one geometry into (x >= 0, x < 0) halves (lens L/R, 11.5).
+
+    Selection is Position.X GREATER_THAN 0 via ShaderNode nodes, the same
+    construction family the rest of this module already uses.
+    """
+    if geom is None:
+        return None, None
+    x0, y0 = loc
+    pos = safe_node(tree, "GeometryNodeInputPosition", (x0, y0))
+    sepx = safe_node(tree, "ShaderNodeSeparateXYZ", (x0 + 180, y0))
+    if pos is None or sepx is None:
+        return None, None
+    try:
+        link_sockets(tree, sock(pos, "Position", outputs=True),
+                     sock(sepx, "Vector"))
+        x_sock = sock(sepx, "X", outputs=True)
+    except Exception:
+        return None, None
+    gt = _math(tree, "GREATER_THAN", (x0 + 360, y0), a=x_sock, b=0.0)
+    sep = safe_node(tree, "GeometryNodeSeparateGeometry", (x0 + 540, y0))
+    if gt is None or sep is None:
+        return None, None
+    try:
+        link_sockets(tree, geom, sock(sep, "Geometry"))
+        link_sockets(tree, gt.outputs[0], sock(sep, "Selection"))
+        return sep.outputs["Selection"], sep.outputs["Inverted"]
+    except Exception:
+        return None, None
+
+
 def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     """A complete, assembled pair: front + two temples + two hinges, positioned.
 
@@ -754,6 +900,7 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     add_float_param(tree, "Rim Thickness", 4.0, 1.5, 10.0)
     add_float_param(tree, "Rim Depth", 6.0, 2.0, 14.0)
     add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
+    add_int_param(tree, "Silhouette", 0, 0, 2)
     add_float_param(tree, "Length to Bend", 100.0, 40.0, 160.0)
     add_float_param(tree, "Tip Drop", 28.0, 0.0, 70.0)
     add_float_param(tree, "Temple Width", 4.5, 1.0, 14.0)
@@ -786,7 +933,7 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
 
     # forward the frame parameters to the front
     for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
-              "Rim Depth", "Corner Radius"):
+              "Rim Depth", "Corner Radius", "Silhouette"):
         _forward(tree, gin, p, front, p)
 
     # arms and knuckles
@@ -815,10 +962,45 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
 
     pivot = _vec(tree, (bx - 780, by - 40), x=nest_x.outputs[0])
     neg_one_v = _vec(tree, (bx - 780, by - 260), x=-1.0, y=1.0, z=1.0)
+    # the right side mirrors the SEAT as well as the geometry: mirroring about
+    # X then translating by +nest_x parks the right arm inboard over the lens
+    # (measured: TempleR at [+57.0, +61.5] instead of [-67.0, -62.5]). The
+    # right-side translation is therefore -nest_x.
+    neg_x = _math(tree, "MULTIPLY", (bx - 780, by - 380),
+                  a=nest_x.outputs[0], b=-1.0)
+    neg_pivot = _vec(tree, (bx - 780, by - 500),
+                     x=neg_x.outputs[0] if neg_x is not None else -62.0)
+
+    # 11.5 materials: acetate front + temples, metal hinges, blend lens.
+    # Assigned BEFORE placement transforms; transforms never touch materials.
+    mats = ensure_eyewear_materials()
+    acetate = mats.get("acetate")
+    metal = mats.get("metal")
+    lens_mat = mats.get("lens")
+
+    def _join2(a, b, loc):
+        j = safe_node(tree, "GeometryNodeJoinGeometry", loc)
+        if j is None or a is None or b is None:
+            return a if b is None else b
+        link_sockets(tree, a, j.inputs["Geometry"])
+        link_sockets(tree, b, j.inputs["Geometry"])
+        return j.outputs["Geometry"]
+
+    dressed = {}
+    dressed["front"] = _apply_material(
+        tree, _g_sock(front, "Geometry", outputs=True), acetate, (bx - 240, by + 300))
+    dressed["hl"] = _apply_material(
+        tree, _g_sock(hinge_l, "Geometry", outputs=True), metal, (bx - 240, by - 300))
+    dressed["hr"] = _apply_material(
+        tree, _g_sock(hinge_r, "Geometry", outputs=True), metal, (bx - 240, by - 550))
+    dressed["tl"] = _apply_material(
+        tree, _g_sock(templ_l, "Geometry", outputs=True), acetate, (bx - 240, by - 800))
+    dressed["tr"] = _apply_material(
+        tree, _g_sock(templ_r, "Geometry", outputs=True), acetate, (bx - 240, by - 1050))
 
     placed = {}
     for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
-        src = _g_sock(node, "Geometry", outputs=True)
+        src = dressed.get(key)
         if src is None:
             placed[key] = None
             continue
@@ -838,26 +1020,68 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
             placed[key] = None
             continue
         link_sockets(tree, geom, xf.inputs["Geometry"])
-        link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
+        seat = neg_pivot if key in ("tr", "hr") else pivot
+        if seat is not None:
+            link_sockets(tree, seat.outputs["Vector"], xf.inputs["Translation"])
+        else:
+            link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
         placed[key] = xf.outputs["Geometry"]
 
-    joins = []
-    front_geo = _g_sock(front, "Geometry", outputs=True)
-    if front_geo is not None:
-        joins.append(front_geo)
-    for key in ("hl", "hr", "tl", "tr"):
-        if placed.get(key) is not None:
-            joins.append(placed[key])
+    # 11.5 Frame output: front + both hinges, welded (11.4). Hinges keep their
+    # metal slot through the join; Join Geometry preserves per-face materials.
+    frame_geo = dressed.get("front")
+    frame_geo = _join2(frame_geo, placed.get("hl"), (bx + 200, by + 200))
+    frame_geo = _join2(frame_geo, placed.get("hr"), (bx + 360, by + 200))
+    frame_geo = _weld(tree, frame_geo, (bx + 520, by + 200))
+
+    # lenses: nest once, drive from the same boxing params, split L/R by X sign.
+    lens_r_geo = lens_l_geo = None
+    lens_sub = _subtree("MEL_eyewear_lens")
+    lens_n = _nest(tree, lens_sub, (bx - 400, by - 1300))
+    if lens_n is not None:
+        for p in ("Lens Width A", "Lens Height B", "Bridge DBL"):
+            _forward(tree, gin, p, lens_n, p)
+        lens_geo = _g_sock(lens_n, "Geometry", outputs=True)
+        lens_r_geo, lens_l_geo = _split_x_sign(tree, lens_geo, (bx - 200, by - 1300))
+        lens_r_geo = _apply_material(tree, lens_r_geo, lens_mat, (bx + 360, by - 1300))
+        lens_l_geo = _apply_material(tree, lens_l_geo, lens_mat, (bx + 360, by - 1500))
+
+    # 11.5 five named part outputs (Amazon node vocabulary). The original
+    # assembled Geometry output stays the modifier path (active output).
+    for _part in ("Frame", "TempleL", "TempleR", "LensL", "LensR"):
+        make_group_output(tree, "NodeSocketGeometry", _part)
+    try:
+        if frame_geo is not None:
+            link_sockets(tree, frame_geo, gout.inputs["Frame"])
+        if placed.get("tl") is not None:
+            link_sockets(tree, placed["tl"], gout.inputs["TempleL"])
+        if placed.get("tr") is not None:
+            link_sockets(tree, placed["tr"], gout.inputs["TempleR"])
+        if lens_l_geo is not None:
+            link_sockets(tree, lens_l_geo, gout.inputs["LensL"])
+        if lens_r_geo is not None:
+            link_sockets(tree, lens_r_geo, gout.inputs["LensR"])
+    except Exception:
+        pass
+    try:
+        gout.is_active_output = True
+    except Exception:
+        pass
+
+    joins = [g for g in (frame_geo, placed.get("tl"), placed.get("tr"))
+             if g is not None]
 
     if joins:
         acc = joins[0]
         for i, nxt in enumerate(joins[1:]):
-            j = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 200 + i * 160, by))
+            j = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 700 + i * 160, by))
             if j is None:
                 break
             link_sockets(tree, acc, j.inputs["Geometry"])
             link_sockets(tree, nxt, j.inputs["Geometry"])
             acc = j.outputs["Geometry"]
+        # 11.4: weld the assembled pair — kills the doubled seam verts.
+        acc = _weld(tree, acc, (bx + 700 + len(joins) * 160, by))
         link_sockets(tree, acc, gout.inputs["Geometry"])
 
     label_tree(tree, group_name)
@@ -867,8 +1091,10 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
 register_builder(
     "MEL_eyewear_pair", build_eyewear_pair, "Eyewear Pair",
     "Assembled pair: front, two temples and two hinges seated on the derived "
-    "endpiece axis (X = A + DBL/2 + RimThickness). The render-ready build — every "
-    "parameter is in millimetres.",
+    "endpiece axis (X = A + DBL/2 + RimThickness, mirrored per side), welded "
+    "0.02 mm (11.4), with five named part outputs Frame/TempleL/TempleR/LensL/"
+    "LensR carrying the acetate/metal/lens delivery materials (11.5). The "
+    "render-ready build — every parameter is in millimetres.",
     category="eyewear")
 
 
