@@ -38,7 +38,8 @@ PACKAGED PROVEN.
 | Starskiff board / move / disembark | LIVE PROVEN (PIE) | `AMelodiaStarskiffPawn` — stabilize only |
 | Resonance Ecology PCG enrichment (decision 057) on Sea Above biome graphs | LIVE PROVEN 2026-09-12 — 1 of 9 graphs | #196, #198, #203; `PCG_East_PhyllotaxisCourtyard`: 140 instances, 1 per-instance custom float, Resonance 0.030–0.925. `Content/Python/pcg/apply_resonance_to_sea_above.py` applies it to the rest |
 | Choral Sheep on the approved Nikki Cymatics path | LIVE PROVEN 2026-09-12 | `MI_ChoralSheep_Body` → `M_Master_Toon_Character` with `T_Chladni_C_ROOT`; child `MI_ChoralSheep_Body_Chladni_C` |
-| Choral Sheep Harmonize → fleece | SOURCE BUILT 2026-09-12 | `AMelodiaChoralSheepActor::Tick` writes `CurrentHarmonizeWeight` into `HarmonizeActive` on a slot-0 MID (`2d1f8b49`); not yet captured |
+| Choral Sheep Harmonize (definition → begin → ramp → decay) | LIVE PROVEN (PIE) 2026-09-13 | `L_MelusinaMorning`: `ApplyChoralSheepDefinition` true, `TryBeginHarmonize` true, weight 1.0 → 0.0 after end. Required `DA_ChoralSheepDefinition` role Companion + `NPCId`. `Docs/Evidence/CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json`; fleece not yet captured |
+| Choral Sheep mesh → definition → ABP → anims | LIVE PROVEN 2026-09-13 | `SK_ChoralSheep` = 1,000-vert `...FINALCANON...fbx` body (identical rest pose, 118 bones); `ABP_ChoralSheep` Idle/Walk/Run on `Anims/A_Sheep_*` (retargeted via `RTG_MrSheep_To_ChoralSheep`), compile 0/0; applied at runtime by `MelodiaCompanionComponent`. Receipts: `Docs/Evidence/CHORAL_SHEEP_{ABP_LOCOMOTION,RETARGET_DEFORMATION}_PROOF_2026-09-13.json` |
 | Shorewake dress on Melusina's 465-bone skeleton | owner-confirmed fixed 2026-09-02 | `SK_ShorewakeDress_Melusina465`, `MI_Melusina_Dress_Shorewake`; not yet captured in-game |
 
 **Active P0 gates — 8/8 pass:** `rhythm_owner`, `hud_single_writer`, `rhythm_grade_to_result`,
@@ -72,15 +73,12 @@ MCP regression, Ollama daemon stress — not only game tests).
   (same transform, seed 42, all 193 instance transforms) — delete it. PCG regenerate + save leaves the
   previous generation's spawned actors on disk: `ResonanceCathedral Music Node0–11` exists three times,
   and the 09-01 set is referenced by no volume on `main` or any branch.
-- **Choral Sheep deformation is unverified in UE.** `BP_ChoralSheep` has no AnimClass. The six takes
-  (Idle/Walk/WalkSlow/Run/Jump/Death) are now baked onto the canonical export skeleton offline
-  (2026-09-13, `deploy/blender/choral_sheep_bake_takes.py`) and verified through an FBX round trip:
-  rest and motion within 0.006 mm / 0 deg on all 117 bones, every take moves. The FBXs are local only in
-  `Saved/Audit/choral_sheep/bake_canonical_2026-09-13/`. Remaining: import onto
-  `SK_ChoralSheep_Skeleton`, give `BP_ChoralSheep` an AnimClass, capture. Source: the 474-bone ARP
-  control rig in `Saved/Audit/choral_sheep/choralsheep_Takes_v4_20260910.blend` (local only).
-  UE `SK_ChoralSheep` is the 550-vertex `ChoralSheepARPExport.fbx`, not the 1,000-vertex
-  `...FINALCANON...fbx`; both share an identical skeleton, so the takes fit either.
+- **Choral Sheep — still owed:** in-PIE follow/transition proof (Sheep trailing at 180 cm/s and
+  actually swapping Idle/Walk/Run; foot-slide check against the ABP thresholds 10/5 and 120/100);
+  lit-level REST → ROOT_C → hit → REST capture. `MI_ChoralSheep_Body` samples UV0 only — normal maps
+  baked to the mesh's second UV set (`BakeUV`) need the material to sample it. `Retarget/SK_MrSheep` is
+  the retarget source at ~100× scale; never place it in a level. Offline bake alternative (verified
+  0.006 mm / 0 deg): `deploy/blender/choral_sheep_bake_takes.py`.
 - **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
   re-adds 830 of the 840 files `08a608bc` deleted, including `Docs/Career`. Never merge it wholesale;
   promote its real work (MK39 skiff GN, Sea Above external actors, HUD tokens) in scoped PRs.

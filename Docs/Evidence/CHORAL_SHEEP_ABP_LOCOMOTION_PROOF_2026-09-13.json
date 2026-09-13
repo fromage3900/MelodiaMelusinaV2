@@ -1,0 +1,25 @@
+{
+  "schema": "melodia.sheep.abp_proof.v1",
+  "date": "2026-09-13",
+  "lane": "choral-sheep ABP locomotion (TODO owner queue #1; drop-in contract path ABP_ChoralSheep)",
+  "built_this_session": [
+    "ABP_ChoralSheep on SK_ChoralSheep_Skeleton (parent AnimInstance, contract path)",
+    "Locomotion state machine: Idle / Walk / Run, each with looped SequencePlayer (retargeted Anims)",
+    "Speed float var (Locomotion, default 0)",
+    "4 transitions with hysteresis: Idle->Walk Speed>=10; Walk->Idle Speed<5; Walk->Run Speed>=120; Run->Walk Speed<100",
+    "Entry state Idle",
+    "EventGraph driver: BlueprintUpdateAnimation -> TryGetPawnOwner -> GetVelocity -> VSize -> SET Speed (4/4 pins connected)",
+    "compile_blueprint: UpToDate, 0 errors, 0 warnings",
+    "DA_ChoralSheepDefinition.Definition.AnimationBlueprint = ABP_ChoralSheep_C (was None; strict write, saved)",
+    "ABP package saved to disk; DA saved; zero dirty packages remain"
+  ],
+  "proof": {
+    "abp_capture": "Saved/Audit/choral_sheep/abp_proof_20260913/frame_000..002 (AnimBlueprint TickComponent mode, 3/3 rendered, live class ABP_ChoralSheep_C) — sheep evaluates through the ABP in Idle",
+    "visual_caveat": "same dark isolated-preview lighting as sequence capture; beauty pass still needs a lit level"
+  },
+  "open_and_honest": [
+    "Speed thresholds (10/5/120/100) are first-pass tuning, not measured against the 180cm follow speed or the Walk/Run anim ground speeds — foot-slide tuning owed.",
+    "In-PIE proof (sheep follows, transitions fire, REST -> ROOT_C -> hit -> REST) NOT yet run — needs a PIE session with the placed BP_ChoralSheep in L_MelusinaMorning.",
+    "Graze/Harmonize slots per RTG spec bake list remain custom future work (only Idle/Walk/Run locomotion built)."
+  ]
+}
