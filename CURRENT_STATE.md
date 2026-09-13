@@ -274,3 +274,9 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
   Proof caught two real defects: COMPARE is almost-equal (collar split needs
   GREATER_THAN), and fields sample in consumer-geometry context (t_param store moved
   upstream of the arc deform). Addon re-synced (hash-verified).
+- **2026-09-10 later — MK39 ball joints done:** `MEL_skiff_balljoints` in the same module
+  (ball + squashed collar ring instanced at 18 keel/gunwale stations from the measured
+  table via a static index-selected lookup chain); proof
+  `Tools/wardrobe_pipeline/proof_mk39_balljoints.py` green first try (73 nodes,
+  1692 verts, span 7.695, ball/collar dials live, receipt `Saved/Audit/`).
+  MK39 builder set complete: ribcage → plates → rivets → balljoints. Addon re-synced.

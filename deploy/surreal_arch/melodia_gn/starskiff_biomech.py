@@ -679,6 +679,151 @@ def build_skiff_rivet_lattice(group_name="MEL_skiff_rivet_lattice"):
     )
 
 
+def build_skiff_balljoints(group_name="MEL_skiff_balljoints"):
+    """Sphere-in-collar joints where ribs meet keel shoe and gunwale rim.
+
+    One joint per rib end: a ball (rib knuckle cap) seated in a squashed
+    collar ring, instanced at the 9 live rib stations from the measured
+    station table (deadwood stations 2/6 skipped, same as the ribcage).
+    Keel joints ride the centerline; gunwale joints ride at each station's
+    measured beam. Materials bind later to Keel_BrassShoe / Stem_Brass
+    instances — no new masters, no new textures in this builder.
+    """
+    tree, gin, gout = new_geometry_tree(group_name)
+    geo = gin.outputs["Geometry"]
+
+    add_int_param(tree, "Seed", 20260903, 0, 99999999)
+    add_float_param(tree, "Ball Diameter", 0.05, 0.02, 0.12)
+    add_float_param(tree, "Collar Ratio", 1.6, 1.2, 2.5)
+    add_float_param(tree, "Collar Squash", 0.45, 0.2, 1.0)
+    add_music_influence_params(tree)  # joint flex binds at material level later
+
+    # live stations mirror the ribcage (skip deadwood 2 and 6)
+    live = [s for s in sorted(STATION_TABLE) if STATION_TABLE[s][0] > 0.0]
+    njoints = len(live) * 2  # keel + gunwale per station
+
+    # --- ball: UV sphere at unit radius, scaled by dial ---
+    ball = safe_node(tree, "GeometryNodeMeshUVSphere", (-640, 0))
+    if ball is not None:
+        ball.inputs["Segments"].default_value = 12
+        ball.inputs["Rings"].default_value = 6
+        ball.inputs["Radius"].default_value = 0.5
+    ball_scale = safe_node(tree, "ShaderNodeCombineXYZ", (-460, 0))
+    link_sockets(tree, gin.outputs["Ball Diameter"], ball_scale.inputs["X"])
+    link_sockets(tree, gin.outputs["Ball Diameter"], ball_scale.inputs["Y"])
+    link_sockets(tree, gin.outputs["Ball Diameter"], ball_scale.inputs["Z"])
+    ball_xf = safe_node(tree, "GeometryNodeTransform", (-280, 0))
+    if ball is not None:
+        link_sockets(tree, ball.outputs["Mesh"], ball_xf.inputs["Geometry"])
+    if ball_xf is not None:
+        link_sockets(tree, ball_scale.outputs["Vector"], ball_xf.inputs["Scale"])
+
+    # --- collar: squashed cylinder ring around the ball ---
+    collar = safe_node(tree, "GeometryNodeMeshCylinder", (-640, -220))
+    if collar is not None:
+        collar.inputs["Vertices"].default_value = 16
+        collar.inputs["Radius"].default_value = 0.5
+        collar.inputs["Depth"].default_value = 1.0
+    collar_r = safe_node(tree, "ShaderNodeMath", (-460, -220))
+    collar_r.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Ball Diameter"], collar_r.inputs[0])
+    link_sockets(tree, gin.outputs["Collar Ratio"], collar_r.inputs[1])
+    collar_d = safe_node(tree, "ShaderNodeMath", (-460, -300))
+    collar_d.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Ball Diameter"], collar_d.inputs[0])
+    link_sockets(tree, gin.outputs["Collar Squash"], collar_d.inputs[1])
+    collar_xf = safe_node(tree, "GeometryNodeTransform", (-280, -220))
+    if collar is not None:
+        link_sockets(tree, collar.outputs["Mesh"], collar_xf.inputs["Geometry"])
+    if collar_xf is not None:
+        csc = safe_node(tree, "ShaderNodeCombineXYZ", (-460, -140))
+        link_sockets(tree, collar_r.outputs[0], csc.inputs["X"])
+        link_sockets(tree, collar_r.outputs[0], csc.inputs["Y"])
+        link_sockets(tree, collar_d.outputs[0], csc.inputs["Z"])
+        link_sockets(tree, csc.outputs["Vector"], collar_xf.inputs["Scale"])
+
+    joint = safe_node(tree, "GeometryNodeJoinGeometry", (-100, -100))
+    if ball_xf is not None:
+        link_sockets(tree, ball_xf.outputs["Geometry"], joint.inputs["Geometry"])
+    if collar_xf is not None:
+        link_sockets(tree, collar_xf.outputs["Geometry"], joint.inputs["Geometry"])
+
+    # --- joint positions: per-station keel (y=0) + gunwale (y=beam) ---
+    # Static-authored position list from the measured table: 18 points.
+    jpts = []
+    for s in live:
+        beam, _depth = STATION_TABLE[s]
+        x = s / 10.0 * 7.615 - 3.8075
+        jpts.append((x, 0.0, 0.0))
+        jpts.append((x, beam, 0.0))
+    assert len(jpts) == njoints == 18
+
+    pts = safe_node(tree, "GeometryNodeMeshLine", (-100, 200))
+    if pts is not None:
+        # Placeholder line: real positions land per-point below via Set Position.
+        pts.inputs["Count"].default_value = njoints
+        pts.inputs["Start Location"].default_value = (0.0, 0.0, 0.0)
+        pts.inputs["Offset"].default_value = (0.0, 0.0, 0.0)
+
+    # Per-point index -> position lookup would need a repeat zone; instead bake
+    # the 18 measured positions as a constant offset chain: each point gets its
+    # station position through index-selected translates. Index selection via
+    # cumulative compare thresholds keeps the graph static and headless-safe.
+    idx = safe_node(tree, "GeometryNodeInputIndex", (80, 200))
+    # Build the position lookup as nested mix chain over the constant table.
+    acc = None
+    for i, (jx, jy, jz) in enumerate(jpts):
+        is_i = safe_node(tree, "ShaderNodeMath", (80 + (i % 6) * 180, 320 + (i // 6) * 120))
+        is_i.operation = "COMPARE"
+        link_sockets(tree, idx.outputs["Index"], is_i.inputs[0])
+        is_i.inputs[1].default_value = float(i)
+        is_i.inputs[2].default_value = 0.001
+        const = safe_node(tree, "ShaderNodeCombineXYZ", (80 + (i % 6) * 180, 200 + (i // 6) * 120))
+        const.inputs["X"].default_value = jx
+        const.inputs["Y"].default_value = jy
+        const.inputs["Z"].default_value = jz
+        mix = safe_node(tree, "ShaderNodeMix", (260 + (i % 6) * 180, 200 + (i // 6) * 120))
+        try:
+            mix.data_type = "VECTOR"
+        except Exception:
+            pass
+        if acc is not None:
+            link_sockets(tree, acc.outputs["Result"] if hasattr(acc.outputs, "__getitem__") else acc.outputs[0], mix.inputs["A"] if "A" in [s.name for s in mix.inputs] else mix.inputs[0])
+        link_sockets(tree, is_i.outputs[0], mix.inputs["Factor"] if "Factor" in [s.name for s in mix.inputs] else mix.inputs[0])
+        link_sockets(tree, const.outputs["Vector"], mix.inputs["B"] if "B" in [s.name for s in mix.inputs] else mix.inputs[2])
+        acc = mix
+
+    jset = safe_node(tree, "GeometryNodeSetPosition", (80 + 6 * 180, 200))
+    if pts is not None:
+        link_sockets(tree, pts.outputs["Mesh"], jset.inputs["Geometry"])
+    if acc is not None:
+        try:
+            link_sockets(tree, acc.outputs["Result"], jset.inputs["Position"])
+        except Exception:
+            link_sockets(tree, acc.outputs[0], jset.inputs["Position"])
+
+    jinst = safe_node(tree, "GeometryNodeInstanceOnPoints", (260 + 6 * 180, 200))
+    if joint is not None:
+        link_sockets(tree, joint.outputs["Geometry"], jinst.inputs["Instance"])
+    link_sockets(tree, jset.outputs["Geometry"], jinst.inputs["Points"])
+
+    jjoin = safe_node(tree, "GeometryNodeJoinGeometry", (440 + 6 * 180, 200))
+    if jinst:
+        link_sockets(tree, jinst.outputs["Instances"], jjoin.inputs["Geometry"])
+    jreal = safe_node(tree, "GeometryNodeRealizeInstances", (620 + 6 * 180, 200))
+    link_sockets(tree, jjoin.outputs["Geometry"], jreal.inputs["Geometry"])
+    link_sockets(tree, jreal.outputs["Geometry"], gout.inputs["Geometry"])
+
+    return label_tree(
+        tree,
+        group_name,
+        [
+            {"title": "Ball + Collar", "nodes": ("ball", "collar", "joint"), "role": "geometry"},
+            {"title": "Stations", "nodes": ("pts", "jset", "jinst", "jreal"), "role": "output"},
+        ],
+    )
+
+
 def register():
     register_builder(
         "MEL_skiff_ribcage",
@@ -699,5 +844,12 @@ def register():
         build_skiff_rivet_lattice,
         "Skiff Biomech Rivet Lattice",
         "6x-pitch rivet rows on bay edges + scaled collar studs (MK39 design doc)",
+        "Starskiff",
+    )
+    register_builder(
+        "MEL_skiff_balljoints",
+        build_skiff_balljoints,
+        "Skiff Biomech Ball Joints",
+        "Sphere-in-collar joints at rib/keel and rib/gunwale crossings (MK39 design doc)",
         "Starskiff",
     )
