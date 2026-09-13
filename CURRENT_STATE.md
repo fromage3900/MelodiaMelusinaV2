@@ -280,3 +280,12 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
   `Tools/wardrobe_pipeline/proof_mk39_balljoints.py` green first try (73 nodes,
   1692 verts, span 7.695, ball/collar dials live, receipt `Saved/Audit/`).
   MK39 builder set complete: ribcage → plates → rivets → balljoints. Addon re-synced.
+- **2026-09-10 later — updated bakes staged, import handed over:** fresh 2048 wood
+  (6 maps) + regal (13 maps) bakes re-ran clean with manifests into
+  `Saved/Audit/melusina_lookdev/houdini_variants/`; one-shot import contract in
+  `Saved/Audit/sea_above/skiff_MK3/STARSKIFF_BAKE_IMPORT_RUNBOOK_2026-09-10.md`.
+  Import did NOT run tonight (fresh editor PID 49136: Rider Python bridge down,
+  :9316 without listener). Note PR #188 moved Starskiff textures to
+  `/Game/Melodia/SeaAbove/Textures/` — the 09-04 spec's old Clothes/ base is stale.
+  Chladni builder (`chladni_layers.py`) found addon-only, same rescue pattern as the
+  ribcage was; queued with the import.
