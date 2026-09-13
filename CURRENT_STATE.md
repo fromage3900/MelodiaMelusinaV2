@@ -297,3 +297,8 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
   `/Game/Melodia/SeaAbove/Textures/` — the 09-04 spec's old Clothes/ base is stale.
   Chladni builder (`chladni_layers.py`) found addon-only, same rescue pattern as the
   ribcage was; queued with the import.
+- **Import still blocked (editor closed):** both channels briefly came up (Rider
+  Python bridge answered once, :9316 listened), then the batch-1 call was cancelled
+  and the editor process exited — no UnrealEditor running, no listener. Verified
+  batch 1 saved nothing (newest texture mtime still PR-#188 era, no new dirt).
+  Runbook stands by for relaunch. Lane held here per owner.
