@@ -72,10 +72,15 @@ MCP regression, Ollama daemon stress — not only game tests).
   (same transform, seed 42, all 193 instance transforms) — delete it. PCG regenerate + save leaves the
   previous generation's spawned actors on disk: `ResonanceCathedral Music Node0–11` exists three times,
   and the 09-01 set is referenced by no volume on `main` or any branch.
-- **Choral Sheep deformation is unverified.** `BP_ChoralSheep` has no AnimClass. The six takes
-  (Idle/Walk/WalkSlow/Run/Jump/Death) live only on the 474-bone Auto-Rig Pro control rig in
-  `Saved/Audit/choral_sheep/choralsheep_Takes_v4_20260910.blend` and on the untracked
-  `Retarget/SK_MrSheep_Skeleton` (161 bones) — none on `SK_ChoralSheep_Skeleton` (118).
+- **Choral Sheep deformation is unverified in UE.** `BP_ChoralSheep` has no AnimClass. The six takes
+  (Idle/Walk/WalkSlow/Run/Jump/Death) are now baked onto the canonical export skeleton offline
+  (2026-09-13, `deploy/blender/choral_sheep_bake_takes.py`) and verified through an FBX round trip:
+  rest and motion within 0.006 mm / 0 deg on all 117 bones, every take moves. The FBXs are local only in
+  `Saved/Audit/choral_sheep/bake_canonical_2026-09-13/`. Remaining: import onto
+  `SK_ChoralSheep_Skeleton`, give `BP_ChoralSheep` an AnimClass, capture. Source: the 474-bone ARP
+  control rig in `Saved/Audit/choral_sheep/choralsheep_Takes_v4_20260910.blend` (local only).
+  UE `SK_ChoralSheep` is the 550-vertex `ChoralSheepARPExport.fbx`, not the 1,000-vertex
+  `...FINALCANON...fbx`; both share an identical skeleton, so the takes fit either.
 - **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
   re-adds 830 of the 840 files `08a608bc` deleted, including `Docs/Career`. Never merge it wholesale;
   promote its real work (MK39 skiff GN, Sea Above external actors, HUD tokens) in scoped PRs.
