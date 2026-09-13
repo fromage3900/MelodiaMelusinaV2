@@ -160,8 +160,11 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
   `monolith_proxy.exe`, loads maps, saves, runs `Build.bat BS_GodFileEditor` against an open editor and
   restarts it. `ListAgents`/`SendMessage` do not reach it. Check `monolith_proxy.exe` parents and a
   running `UnrealBuildTool.dll` before closing, rebuilding or PIE-driving.
-- **Read-only flags keep coming back on content.** `L_MelusinaMorning.umap` and the Sheep MIs were
-  read-only; editor saves fail with "because the file is read-only!". The re-applying source is unknown.
+- **Read-only content files come from Git LFS locking.** `.gitattributes` marks `*.uasset`, `*.umap`,
+  `*.blend`, `*.fbx` and 31 more patterns `lockable`, so every checkout, reset or branch switch makes
+  them read-only and editor saves fail with "because the file is read-only!". Nobody uses LFS locks
+  (`locksverify false`). In each clone or worktree run `git config lfs.setlockablereadonly false`, then
+  clear the flag once: `Get-ChildItem Content -Recurse -File | ? IsReadOnly | % { $_.IsReadOnly = $false }`.
 - **Monolith `run_python` cannot sleep** — `time.sleep` is intercepted and PCG `generate()` is async, so
   instance counts read in the same call race generation.
 - **Headless Blender hangs on user add-ons** — pass `--factory-startup` for `-b` inspection/bake runs.

@@ -19,7 +19,6 @@
 - **Selected Art:** https://fromage3900.github.io/my-site/wix/curated-art.html
 - **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
 - **Current state and queue:** [CURRENT_STATE.md](CURRENT_STATE.md)
-- **Portfolio / render plan:** [PORTFOLIO.md](PORTFOLIO.md)
 
 > **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on Git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
 

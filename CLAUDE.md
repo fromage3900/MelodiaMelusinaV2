@@ -114,9 +114,10 @@ Rules:
 ## 🏗️ Agent Ownership — RETIRED
 
 **Decision 002 (2026-07-26) retired the 5-agent ownership model.** This is a solo project; the
-PGA/MPA/PPA/WIA/SQA boundaries and the "no cross-owner writes" rule no longer apply. `AGENTS.md`,
-`AGENT_BOUNDARIES.md`, `AGENT_OPERATING_MODEL.md` and `AGENT_OWNERSHIP.md` are **historical** — read
-them for tool-capability context, not as process.
+PGA/MPA/PPA/WIA/SQA boundaries and the "no cross-owner writes" rule no longer apply.
+`AGENT_BOUNDARIES.md`, `AGENT_OPERATING_MODEL.md` and `AGENT_OWNERSHIP.md` were removed in the
+2026-09-10 docs collapse; recover one with `git show 7d271c15:<path>` if you need its tool-capability
+notes. None of them is process.
 
 The constraints that *do* still bind are specific and asset-named: the never-touch table above,
 Decision 021's three content-reference cleanups, and `L_SakuraPath` art direction (human-owned).
@@ -157,16 +158,19 @@ permitted gets talked out of.
 
 **Current focus and queue:** [`CURRENT_STATE.md`](CURRENT_STATE.md) §4.
 
-**Agent tooling — three Unreal MCP surfaces registered in `.mcp.json`, two enabled by default**
-(Decision 025 as reversed 2026-07-31; Decision 027 for the third):
+**Agent tooling — Unreal MCP surfaces.** They are registered in the workspace-level
+`C:/EnvironmentPortfolio/.mcp.json`, not in this repo's `.mcp.json` (which lists only `agent_bridge`,
+`claireon` and `melodia`). Verified 2026-09-13:
 
 | Server | Transport | Shape | Enabled by default? |
 |---|---|---|---|
-| `monolith` | `Plugins/Monolith/Binaries/monolith_proxy.exe` → port 9316 | ~116 Blueprint actions via `blueprint_query({action, params})`: full graph read (`export_graph`, `get_graph_data`), the verification loop (`get_graph_fingerprint`, `assert_graph_matches`, `set_node_property`), and atomic T3D authoring (`validate_nodes_t3d`, `inject_nodes_t3d` — whole clusters in one transaction, see MONOLITH_GUIDE Recipe 16) | Yes |
-| `it-is-unreal` | HTTP, port 8088 (VibeUE) | ~150 flat tools (`add_node`, `connect_nodes`, `analyze_blueprint_graph`, `take_screenshot`, …) | Yes |
+| `monolith` | `Plugins/Monolith/Binaries/monolith_proxy.exe` → port 9316 | ~1,426 actions in 24 namespaces (`blueprint_query`, `editor_query`, `material_query`, …): full graph read, the verification loop (`get_graph_fingerprint`, `assert_graph_matches`), atomic T3D authoring (`validate_nodes_t3d`, `inject_nodes_t3d`, see MONOLITH_GUIDE Recipe 16), `run_python` | Yes |
 | `ueblueprintmcp` | Python venv (`Plugins/UEBlueprintMCP/Python/venv`) → TCP port 55558 | ~60 tools: Blueprints, graph nodes, event dispatchers, Enhanced Input (Input Actions/Mapping Contexts), materials, UMG, editor control | **No — deliberately off** |
 
-`ueblueprintmcp` is registered so it's one line away from live, but not in `enabledMcpjsonServers`.
+`it-is-unreal` (VibeUE, port 8088) is gone: the plugin is not in `Plugins/` and no `.mcp.json`
+registers it.
+
+`ueblueprintmcp` is registered so it's one line away from live, but not enabled.
 It's a 9-commit, 36-star third-party plugin (`zolnoor`) with no audit history, and its ~60 commands
 substantially overlap the two surfaces already enabled — installing it live-by-default would be a
 third authority over exactly the graph-mutation surface this project has spent real effort
@@ -177,9 +181,9 @@ doesn't. **Requires a closed-editor build first** — it's a new plugin module w
 editor closed does.
 
 Prefer Monolith where more than one surface can do the job. **Never run two surfaces against the
-same graph in one session** — this applies to all three, not just the original two.
+same graph in one session** — this applies to every surface.
 
-All three need the editor running. Monolith additionally cannot answer while a modal dialog blocks
+Both need the editor running. Monolith additionally cannot answer while a modal dialog blocks
 the game thread — grep the log for `MODAL_OPEN` before assuming the plugin is at fault.
 
 **MCP servers load at session start.** Editing `.mcp.json` mid-session does nothing until the

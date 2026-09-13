@@ -64,7 +64,8 @@ Status and scope: [`CURRENT_STATE.md`](CURRENT_STATE.md).
 deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
 beatmap_author|quill_author|asset_qa|anim_bindings`). Router: `python Tools/model_router.py pick
 <class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
-Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / core-systems handoffs.
+Gameplay queue: [`CURRENT_STATE.md`](CURRENT_STATE.md) §4. The handoff files this line used to point
+at were removed in the 2026-09-10 docs collapse.
 
 | Class | Use for | Must not |
 |---|---|---|
