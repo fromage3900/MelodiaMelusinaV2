@@ -365,11 +365,17 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
     # 8.1 silhouettes. Every shape stays INSCRIBED in the same w x h box, so the boxing
     # contract (outer width 2A + DBL + 2 Rim Thickness) is invariant across them and the
     # existing 134.000 measurement still pins the aperture. 0 Rect, 1 Round/Panto,
-    # 2 Cat-Eye.
-    add_int_param(tree, "Silhouette", 0, 0, 2)
+    # 2 Cat-Eye, 3 Aviator. Each branch owns its corner radius: rounding removes the box
+    # extreme point, so a new shape gets its own measured bound rather than 134.000.
+    add_int_param(tree, "Silhouette", 0, 0, 3)
     add_float_param(tree, "Panto Round", 0.45, 0.1, 0.5)
     add_float_param(tree, "Cat Eye Taper", 0.88, 0.6, 1.0)
     add_float_param(tree, "Cat Eye Sweep", 6.0, 0.0, 14.0)
+    # Aviator: full-width flat top, bottom pulled in to Aviator Taper x width and heavily
+    # rounded, so the teardrop reads without a bezier spline (CurvePrimitiveBezierSegment
+    # is a single OPEN span, so it cannot make a closed aperture loop on its own).
+    add_float_param(tree, "Aviator Taper", 0.45, 0.30, 1.0)
+    add_float_param(tree, "Aviator Round", 0.15, 0.05, 0.50)
     # 11.1 rim edge break. Every real frame is tumbled, not modelled with a rounded edge;
     # 0.5-1.0 mm acetate and 0.2-0.5 mm metal are inference from the tumbling process, not
     # a published radius. Constructed into the profile - GeometryNodeMeshBevel is measured
@@ -473,6 +479,34 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
             if sgn is not None:
                 link_sockets(tree, sgn.outputs[0], quad_ce.inputs["Offset"])
 
+        # --- Aviator (index 3) -------------------------------------------------
+        # TRAPEZOID with a FULL-WIDTH top (so the top stays flat and spans the box) and the
+        # bottom pulled in to Aviator Taper x width, then rounded hard by the radius branch
+        # below. Offset stays 0: the taper is symmetric, and the front's own mirror makes
+        # the assembled pair symmetric. Verified on 5.2 that Width is unused in TRAPEZOID
+        # mode - Top Width / Bottom Width / Height are the live inputs.
+        av_taper = _math(tree, "MULTIPLY", (x0 - 820, y0 + 960),
+                         a=w.outputs[0], b=sock(gin, "Aviator Taper", outputs=True))
+        quad_av = safe_node(tree, "GeometryNodeCurvePrimitiveQuadrilateral", (x0 - 420, y0 + 900))
+        if quad_av is not None:
+            try:
+                quad_av.mode = "TRAPEZOID"
+            except Exception:
+                pass
+            # Offset must be pinned to 0 on this node. Its factory default is 1.0 BU -
+            # 1000 mm - and an unlinked socket keeps it. Measured: the first aviator build
+            # came out 1028.155 mm wide with 989 mm of asymmetry, because the whole lens was
+            # translated a metre sideways. The cat-eye gets away with leaving it linked
+            # because it always drives Offset from the sweep maths.
+            try:
+                quad_av.inputs["Offset"].default_value = 0.0
+            except Exception as exc:
+                print("MEL_eyewear_front: could not pin aviator Offset: %s" % exc)
+            link_sockets(tree, w.outputs[0], quad_av.inputs["Top Width"])
+            if av_taper is not None:
+                link_sockets(tree, av_taper.outputs[0], quad_av.inputs["Bottom Width"])
+            link_sockets(tree, h.outputs[0], quad_av.inputs["Height"])
+
         sw_geo = safe_node(tree, "GeometryNodeIndexSwitch", (x0 - 300, y0 + 460))
         shape_out = quad.outputs["Curve"]
         if sw_geo is not None:
@@ -480,21 +514,26 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                 sw_geo.data_type = "GEOMETRY"
             except Exception:
                 pass
-            while len(sw_geo.index_switch_items) < 3:
+            while len(sw_geo.index_switch_items) < 4:
                 sw_geo.index_switch_items.new()
             link_sockets(tree, sock(gin, "Silhouette", outputs=True), sw_geo.inputs["Index"])
             link_sockets(tree, quad.outputs["Curve"], sw_geo.inputs["0"])
             link_sockets(tree, quad.outputs["Curve"], sw_geo.inputs["1"])
             if quad_ce is not None:
                 link_sockets(tree, quad_ce.outputs["Curve"], sw_geo.inputs["2"])
+            if quad_av is not None:
+                link_sockets(tree, quad_av.outputs["Curve"], sw_geo.inputs["3"])
             shape_out = sw_geo.outputs[0]
 
         # corner radius per shape: 0/2 use the Corner Radius param, 1 (panto) rounds the
-        # box as far as Limit Radius allows
+        # box as far as Limit Radius allows, 3 (aviator) rounds against the narrowed
+        # bottom so the taper reads as a teardrop rather than a wedge
         minwh = _math(tree, "MINIMUM", (x0 - 620, y0 + 900),
                       a=w.outputs[0], b=h.outputs[0])
         panto_r = _math(tree, "MULTIPLY", (x0 - 500, y0 + 900),
                         a=minwh.outputs[0], b=sock(gin, "Panto Round", outputs=True))
+        aviator_r = _math(tree, "MULTIPLY", (x0 - 500, y0 + 1120),
+                          a=minwh.outputs[0], b=sock(gin, "Aviator Round", outputs=True))
         corner = _mm(tree, gin, "Corner Radius", (x0 - 620, y0 + 1040))
         sw_rad = safe_node(tree, "GeometryNodeIndexSwitch", (x0 - 340, y0 + 980))
         radius_out = corner
@@ -503,12 +542,14 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                 sw_rad.data_type = "FLOAT"
             except Exception:
                 pass
-            while len(sw_rad.index_switch_items) < 3:
+            while len(sw_rad.index_switch_items) < 4:
                 sw_rad.index_switch_items.new()
             link_sockets(tree, sock(gin, "Silhouette", outputs=True), sw_rad.inputs["Index"])
             link_sockets(tree, corner, sw_rad.inputs["0"])
             link_sockets(tree, panto_r.outputs[0], sw_rad.inputs["1"])
             link_sockets(tree, corner, sw_rad.inputs["2"])
+            if aviator_r is not None:
+                link_sockets(tree, aviator_r.outputs[0], sw_rad.inputs["3"])
             radius_out = sw_rad.outputs[0]
 
         # Fillet BEFORE resample. Measured: with Resample first, every silhouette edge is
@@ -1699,7 +1740,9 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     add_float_param(tree, "Rim Thickness", 4.0, 1.5, 10.0)
     add_float_param(tree, "Rim Depth", 6.0, 2.0, 14.0)
     add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
-    add_int_param(tree, "Silhouette", 0, 0, 2)
+    add_int_param(tree, "Silhouette", 0, 0, 3)
+    add_float_param(tree, "Aviator Taper", 0.45, 0.30, 1.0)
+    add_float_param(tree, "Aviator Round", 0.15, 0.05, 0.50)
     add_float_param(tree, "Length to Bend", 100.0, 40.0, 160.0)
     add_float_param(tree, "Tip Drop", 28.0, 0.0, 70.0)
     add_float_param(tree, "Temple Width", 4.5, 1.0, 14.0)
@@ -1746,6 +1789,7 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     # the pair: the shared tortoise pass below, driven by Tortoise)
     for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
               "Rim Depth", "Corner Radius", "Silhouette",
+              "Aviator Taper", "Aviator Round",
               "Base Curve", "Form Angle"):
         _forward(tree, gin, p, front, p)
 
