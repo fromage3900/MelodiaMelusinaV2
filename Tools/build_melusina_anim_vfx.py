@@ -90,7 +90,8 @@ def step_eye() -> None:
                                        "input": "Sprite Size Min", "value": "0.06,0.06"})
         nig("set_module_input_value", {"asset_path": EYE, "emitter": em, "module_node": "InitializeParticle",
                                        "input": "Sprite Size Max", "value": "0.10,0.10"})
-    nig("set_fixed_bounds", {"asset_path": EYE, "min": "-0.5,-0.5,-0.5", "max": "0.5,0.5,0.5"})
+    # Bounds are world units (cm) around the attach point; a sub-cm box culls the effect off-screen.
+    nig("set_fixed_bounds", {"asset_path": EYE, "min": "-250,-250,-100", "max": "250,250,300"})
     nig("request_compile", {"asset_path": EYE})
 
 
@@ -117,7 +118,7 @@ def step_globules() -> None:
                                        "input": "Sprite Size Max", "value": "0.06,0.06"})
     bone_swap(GLOB, {"GlobuleA": "A_DEF_hair_bbone_017", "GlobuleB": "B_DEF_hair_bbone_007",
                      "GlobuleC": "C_DEF_hair_bbone_119"})
-    nig("set_fixed_bounds", {"asset_path": GLOB, "min": "-1,-1,-1", "max": "1,1,1"})
+    nig("set_fixed_bounds", {"asset_path": GLOB, "min": "-700,-700,-300", "max": "700,700,500"})
     nig("request_compile", {"asset_path": GLOB})
 
 
@@ -132,7 +133,7 @@ def step_trail() -> None:
         nig("set_module_input_value", {"asset_path": TRAIL, "emitter": em, "module_node": "SpawnRate",
                                        "input": "SpawnRate", "value": "User.SwingEnergy"})
     bone_swap(TRAIL, {"TrailLeader_R": "hand_r", "TrailLeader_L": "hand_l"})
-    nig("set_fixed_bounds", {"asset_path": TRAIL, "min": "-1.5,-1.5,-1.5", "max": "1.5,1.5,1.5"})
+    nig("set_fixed_bounds", {"asset_path": TRAIL, "min": "-1200,-1200,-1000", "max": "2200,1200,1800"})
     nig("request_compile", {"asset_path": TRAIL})
 
 
