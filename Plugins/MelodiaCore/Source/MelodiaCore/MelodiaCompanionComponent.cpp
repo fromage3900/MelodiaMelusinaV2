@@ -324,13 +324,23 @@ void UMelodiaCompanionComponent::DriveOwnerToward(const FVector& DesiredLocation
 		return;
 	}
 
+	USceneComponent* Root = Owner->GetRootComponent();
 	const FVector CurrentLocation = Owner->GetActorLocation();
 	if (FVector::DistSquared2D(CurrentLocation, DesiredLocation) <= FMath::Square(AcceptanceRadius))
 	{
+		if (Root)
+		{
+			Root->ComponentVelocity = FVector::ZeroVector;
+		}
 		return;
 	}
 
 	const FVector NewLocation = FMath::VInterpTo(CurrentLocation, DesiredLocation, DeltaTime, FMath::Max(0.0f, FollowInterpSpeed));
 	FHitResult Hit;
 	Owner->SetActorLocation(NewLocation, true, &Hit);
+	// SetActorLocation does not update velocity; AActor::GetVelocity (read by the companion ABP) returns this.
+	if (Root && DeltaTime > UE_KINDA_SMALL_NUMBER)
+	{
+		Root->ComponentVelocity = (Owner->GetActorLocation() - CurrentLocation) / DeltaTime;
+	}
 }
