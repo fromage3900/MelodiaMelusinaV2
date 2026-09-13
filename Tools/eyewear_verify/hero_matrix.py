@@ -9,7 +9,8 @@ import json
 import os
 import sys
 
-WT = "P:/MelodiaMelusinaV2-Laptop"
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+WT = _WT
 sys.path.insert(0, WT + "/deploy")
 from surreal_arch.melodia_gn import eyewear as EW  # noqa: E402
 

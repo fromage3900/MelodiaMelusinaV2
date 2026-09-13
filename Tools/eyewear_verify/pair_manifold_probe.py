@@ -11,11 +11,13 @@ carries 5688 doubled seam verts (10464 -> 4776 at 0.02 mm); 0.05 mm already
 creates wire edges. WELD_DISTANCE_MM = 0.02 in eyewear.py is this probe's
 value, not a guess.
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, "P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001

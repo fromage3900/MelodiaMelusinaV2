@@ -14,7 +14,8 @@ import sys
 import bpy
 from mathutils import Quaternion, Vector
 
-WT = "P:/MelodiaMelusinaV2-Laptop"
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+WT = _WT
 sys.path.insert(0, WT + "/deploy")
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 

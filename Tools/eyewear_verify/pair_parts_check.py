@@ -7,11 +7,13 @@ Asserts ARITHMETIC on realized geometry, not looks:
   sit where the boxing system says, and carry the delivery materials;
   Silhouette 0/1/2 all satisfy the boxing contract through the pair.
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, "P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001
