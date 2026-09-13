@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-10 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-12 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -28,7 +28,7 @@ PACKAGED PROVEN.
 
 | Capability | Level | Evidence |
 |---|---|---|
-| Editor build | SOURCE BUILT | `582fa914` (`LPCTSTR` fix); DLL 2026-09-04 21:47 |
+| Editor build | SOURCE BUILT | Game + `MelodiaCore` DLLs rebuilt 2026-09-12 21:55 by a Codex UBT run from the local `cleanup/pbr-twin-landing-2026-09-10` working tree — not from `main` |
 | Music node → `reward.first_resonance_echo` → Accessories auto-equip → Glide → portal unlocks | LIVE PROVEN 2026-09-01 | `Docs/Evidence/P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md`, `Saved/Audit/p0_real_input_run/` |
 | Wardrobe save → full editor restart → load → outfit restored | RESTART PROVEN 2026-09-01 | slot `P0_Shorewake_Validation`, `LOADED_NARRATIVE_RESTORED` |
 | Battle outcomes (victory / defeat / fled / unavailable) return a typed result; Quill resumes exactly once | LIVE PROVEN 2026-08-27 | `MelodiaIntegrationMap`, `MelodiaQuillSmoke` |
@@ -36,6 +36,9 @@ PACKAGED PROVEN.
 | Audio reactivity on every level | LIVE PROVEN | `b1cac649`; music clock on the GameMode `5fea50c8` |
 | Packaged Development route, both legs, 0 fatals | PACKAGED (bounded) | builds at `G:\melodia_packages\P0_Closeout_20260902\`, `P0_Route_20260903\`; not a golden-run certification |
 | Starskiff board / move / disembark | LIVE PROVEN (PIE) | `AMelodiaStarskiffPawn` — stabilize only |
+| Resonance Ecology PCG enrichment (decision 057) on Sea Above biome graphs | LIVE PROVEN 2026-09-12 — 1 of 9 graphs | #196, #198, #203; `PCG_East_PhyllotaxisCourtyard`: 140 instances, 1 per-instance custom float, Resonance 0.030–0.925. `Content/Python/pcg/apply_resonance_to_sea_above.py` applies it to the rest |
+| Choral Sheep on the approved Nikki Cymatics path | LIVE PROVEN 2026-09-12 | `MI_ChoralSheep_Body` → `M_Master_Toon_Character` with `T_Chladni_C_ROOT`; child `MI_ChoralSheep_Body_Chladni_C` |
+| Choral Sheep Harmonize → fleece | SOURCE BUILT 2026-09-12 | `AMelodiaChoralSheepActor::Tick` writes `CurrentHarmonizeWeight` into `HarmonizeActive` on a slot-0 MID (`2d1f8b49`); not yet captured |
 | Shorewake dress on Melusina's 465-bone skeleton | owner-confirmed fixed 2026-09-02 | `SK_ShorewakeDress_Melusina465`, `MI_Melusina_Dress_Shorewake`; not yet captured in-game |
 
 **Active P0 gates — 8/8 pass:** `rhythm_owner`, `hud_single_writer`, `rhythm_grade_to_result`,
@@ -63,8 +66,21 @@ MCP regression, Ollama daemon stress — not only game tests).
 - **Audio reactivity gap:** `M_Master_Toon_Universal_Alpha` has none of the 14 `Cymatic_*`/`Audio*`
   params, so its 109 instances (incl. Melusina `SW_Dress_P01..P48`) cannot react.
 - **Sea Above look-dev:** `W_Glacier_Rock` is a near-black Gaea export (re-export); an unidentified
-  writer rewrites `MI_Glacier_Landscape_Layered` weights; four concentric 600–800k PCG volumes over a
-  250k landscape. Pin Ultra Dynamic Sky before trusting any A/B capture on `LV_SeaAbove_Prototype`.
+  writer rewrites `MI_Glacier_Landscape_Layered` weights. Pin Ultra Dynamic Sky before trusting any A/B
+  capture on `LV_SeaAbove_Prototype`. Measured 2026-09-12: 11 bounded PCG volumes (largest 83×15×17 m),
+  not four giant ones. `PCG_East_AtlantisGrove2` is an exact duplicate of `PCG_East_AtlantisGrove`
+  (same transform, seed 42, all 193 instance transforms) — delete it. PCG regenerate + save leaves the
+  previous generation's spawned actors on disk: `ResonanceCathedral Music Node0–11` exists three times,
+  and the 09-01 set is referenced by no volume on `main` or any branch.
+- **Choral Sheep deformation is unverified.** `BP_ChoralSheep` has no AnimClass. The six takes
+  (Idle/Walk/WalkSlow/Run/Jump/Death) live only on the 474-bone Auto-Rig Pro control rig in
+  `Saved/Audit/choral_sheep/choralsheep_Takes_v4_20260910.blend` and on the untracked
+  `Retarget/SK_MrSheep_Skeleton` (161 bones) — none on `SK_ChoralSheep_Skeleton` (118).
+- **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
+  re-adds 830 of the 840 files `08a608bc` deleted, including `Docs/Career`. Never merge it wholesale;
+  promote its real work (MK39 skiff GN, Sea Above external actors, HUD tokens) in scoped PRs.
+  `Docs/Career` also sits on ~37 remote branches and in `main`'s history; purging it needs an
+  owner-approved history rewrite.
 
 ---
 
@@ -105,13 +121,13 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 
 | What | Where |
 |---|---|
-| Game (this repo, **public**) | `fromage3900/MelodiaMelusinaV2`, local `C:/EnvironmentPortfolio/BS_GodFile` |
-| Website (**public**) | `fromage3900/my-site` |
+| Game (this repo, **private**, no licence file) | `fromage3900/MelodiaMelusinaV2`, local `C:/EnvironmentPortfolio/BS_GodFile` |
+| Website (**public** — serves GitHub Pages; owner decision 2026-09-12) | `fromage3900/my-site` |
 | TouchDesigner / AE (private) | `fromage3900/MelodiaTouchDesigner`, `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` |
 | AI token treasury (revenue sidecar) | my-site `tools/fromage-webgl-kit/TREASURY_LEDGER.json` — 0 entries, first gate 0/5; never displaces the capstone |
 | `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
 
-**Both code repos are public:** never commit personal, school, career, or client documents here.
+**The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.
 
 - **Route maps:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` →
   `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` →
@@ -140,6 +156,15 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
   before any editor or git work.
 - **Material instance writes** need `update_material_instance()` to reach the renderer.
 - **Never `load_level` straight after stopping PIE** — teardown is async and crashes the editor.
+- **Codex desktop drives the editor too.** `ChatGPT.exe` → `codex.exe` holds its own
+  `monolith_proxy.exe`, loads maps, saves, runs `Build.bat BS_GodFileEditor` against an open editor and
+  restarts it. `ListAgents`/`SendMessage` do not reach it. Check `monolith_proxy.exe` parents and a
+  running `UnrealBuildTool.dll` before closing, rebuilding or PIE-driving.
+- **Read-only flags keep coming back on content.** `L_MelusinaMorning.umap` and the Sheep MIs were
+  read-only; editor saves fail with "because the file is read-only!". The re-applying source is unknown.
+- **Monolith `run_python` cannot sleep** — `time.sleep` is intercepted and PCG `generate()` is async, so
+  instance counts read in the same call race generation.
+- **Headless Blender hangs on user add-ons** — pass `--factory-startup` for `-b` inspection/bake runs.
 
 ---
 
@@ -165,7 +190,7 @@ existed to cross-check front-door docs against each other, which a single docume
 CI still runs the protected-asset guard, the echo manifest, the offline contract suites, and the
 health scorecard.
 
-**Public hygiene.** This repo and `my-site` are public. Personal, school, career, and client
+**Hygiene.** This repo is private and `my-site` is public. Personal, school, career, and client
 documents live in local-only `C:/EnvironmentPortfolio/_offgame/` and never in either repo.
 
 **Weekly, ten minutes:** is §2 still true, is §4 still what you are actually doing, does `git_ok`
