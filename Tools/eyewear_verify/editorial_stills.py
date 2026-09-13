@@ -37,6 +37,10 @@ HEROES = [
                                       "Metal Frame": False, "Frame Solid": ESP})),
     ("cateye-metal", dict(BASE, **{"Silhouette": 2, "Tortoise": 0.0, "Base Curve": 4.0,
                                    "Metal Frame": True, "Frame Solid": CHAMP})),
+    ("aviator-tortoise", dict(BASE, **{"Silhouette": 3, "Tortoise": 1.0,
+                                       "Metal Frame": False, "Frame Solid": ESP})),
+    ("aviator-metal", dict(BASE, **{"Silhouette": 3, "Tortoise": 0.0, "Base Curve": 4.0,
+                                    "Metal Frame": True, "Frame Solid": CHAMP})),
 ]
 ROOT = os.path.join(WT, "Exports", "EyewearEditorial")
 os.makedirs(os.path.join(ROOT, "Stills"), exist_ok=True)
