@@ -191,6 +191,11 @@ void UMelodiaHairComponent::BindToOwnerMesh()
 
 	const FName AttachBone = (HeadBoneIndex != INDEX_NONE) ? HeadBone : NAME_None;
 
+	// Hair is part of the hero silhouette: match the body's custom depth/stencil so the
+	// storybook post-process outline (which skips hero stencil 4) treats it like the body.
+	SetRenderCustomDepth(BodyMesh->bRenderCustomDepth);
+	SetCustomDepthStencilValue(BodyMesh->CustomDepthStencilValue);
+
 	SetLeaderPoseComponent(nullptr);
 
 	// Install the AnimBP here rather than in the constructor: this is the same
