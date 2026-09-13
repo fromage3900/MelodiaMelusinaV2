@@ -280,6 +280,14 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
   `Tools/wardrobe_pipeline/proof_mk39_balljoints.py` green first try (73 nodes,
   1692 verts, span 7.695, ball/collar dials live, receipt `Saved/Audit/`).
   MK39 builder set complete: ribcage → plates → rivets → balljoints. Addon re-synced.
+- **2026-09-10 later — Chladni rescue + skiff extension done:** `chladni_layers.py`
+  ported from the addon-only 09-06 build; added `MEL_skiff_chladni_plates`
+  (strake-tuned modes m6/n2, 320-640 Hz shimmer defaults, same bake contract);
+  proof `Tools/wardrobe_pipeline/proof_mk39_chladni.py` green on both builders
+  (neutral 0.0, amplitude + mode dials live, psi/amplitude attrs present).
+  Proof caught a dead primary path: `GeometryNodeInputUV` is undefined in 5.2,
+  so both builders now read UVs via named attribute (position fallback kept).
+  Addon re-synced (hash-verified).
 - **2026-09-10 later — updated bakes staged, import handed over:** fresh 2048 wood
   (6 maps) + regal (13 maps) bakes re-ran clean with manifests into
   `Saved/Audit/melusina_lookdev/houdini_variants/`; one-shot import contract in
