@@ -40,6 +40,10 @@ PACKAGED PROVEN.
 | Choral Sheep on the approved Nikki Cymatics path | LIVE PROVEN 2026-09-12 | `MI_ChoralSheep_Body` → `M_Master_Toon_Character` with `T_Chladni_C_ROOT`; child `MI_ChoralSheep_Body_Chladni_C` |
 | Choral Sheep Harmonize (definition → begin → ramp → decay) | LIVE PROVEN (PIE) 2026-09-13 | `L_MelusinaMorning`: `ApplyChoralSheepDefinition` true, `TryBeginHarmonize` true, weight 1.0 → 0.0 after end. Required `DA_ChoralSheepDefinition` role Companion + `NPCId`. `Docs/Evidence/CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json`; fleece not yet captured |
 | Choral Sheep mesh → definition → ABP → anims | LIVE PROVEN 2026-09-13 | `SK_ChoralSheep` = 1,000-vert `...FINALCANON...fbx` body (identical rest pose, 118 bones); `ABP_ChoralSheep` Idle/Walk/Run on `Anims/A_Sheep_*` (retargeted via `RTG_MrSheep_To_ChoralSheep`), compile 0/0; applied at runtime by `MelodiaCompanionComponent`. Receipts: `Docs/Evidence/CHORAL_SHEEP_{ABP_LOCOMOTION,RETARGET_DEFORMATION}_PROOF_2026-09-13.json` |
+| Choral Sheep follow → Idle/Walk/Run | LIVE PROVEN (PIE) 2026-09-13 | #210: `MelodiaCompanionComponent` writes root `ComponentVelocity` (follow used `SetActorLocation`); `ABP_ChoralSheep` reads `GetOwningActor` velocity (was `TryGetPawnOwner`, null on an Actor). Under `slomo 0.1`: `Speed` 5,970 → 269 cm/s across 26 frames, crossing Walk 10 and Run 120, back to 0. Packed `BakeUV` now UV0 on `SK_ChoralSheep` |
+| Frozen PPV stack on `L_MelusinaMorning` | owner-approved 2026-09-13 | `PPV_NikkiDream` → `/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/` (gitignored; backups + report `Saved/Audit/ppv_lookdev_2026-09-13/`). Outline V7 after tonemapping, un-jittered filtered taps; ink misregistration/smear wired, static grain. `DefaultEngine.ini`: `r.TSR.ThinGeometryDetection=1`, `...Coverage.ShadingRange=0` |
+| Hero stencil 4 (PP outline skips hull-outlined heroes) | LIVE PROVEN (PIE) 2026-09-13 | #210 body meshes; #211 `UMelodiaHairComponent` + `UMelodiaWardrobeComponent` slots copy the body's custom depth/stencil. PIE on `L_MelusinaMorning` after a full editor build: `CharacterMesh0`, `WaterHairMesh`, `WardrobeSlot_{Shirt,Skirt,Boots,Accessories}` and `BP_ChoralSheep` mesh all read customDepth true / stencil 4 (`Docs/Evidence/PPV_STENCIL_PIE_2026-09-13.json`). **Visual skip not yet confirmed:** captures `..._{a,b}.jpg` show the frozen stack live, but the PIE camera sits behind the Sheep and a dark edge is still drawn around its silhouette — root cause found: `MF_StencilDepthAlpha` returns a 0/1 in-range mask, not the stencil value, so the outline's `styleIdx = round(saturate(StencilAlpha)*255)` was only ever 0 or 255 (hero skip and Style1–3 never fired). Frozen outline V7.1 reads `PPI_CustomStencil` directly. **Visual skip confirmed** in `..._{c,d}.jpg`: props keep the dark ink, Melusina (body, hair, dress) and the Sheep carry no post-process line. The shared original `M_PP_StorybookOutline_Premium_Candidate` still has the bug |
+| P0 / Melusina Niagara hygiene | SOURCE + ASSET 2026-09-13 | 16 systems had ~1 cm fixed bounds (metre values; culling pops) → 300–500 cm; `ET_Melodia_CharacterFX` on 17 hero/gameplay systems; shadows off + view-distance sort on route sprites; dead `WaterSplashEmitter` disabled; duplicate `NS_MagicTrail` + 11 mirrored flipbook materials deleted. Report `Saved/Audit/vfx_pass_2026-09-13/` |
 | Shorewake dress on Melusina's 465-bone skeleton | owner-confirmed fixed 2026-09-02 | `SK_ShorewakeDress_Melusina465`, `MI_Melusina_Dress_Shorewake`; not yet captured in-game |
 
 **Active P0 gates — 8/8 pass:** `rhythm_owner`, `hud_single_writer`, `rhythm_grade_to_result`,
@@ -73,12 +77,16 @@ MCP regression, Ollama daemon stress — not only game tests).
   (same transform, seed 42, all 193 instance transforms) — delete it. PCG regenerate + save leaves the
   previous generation's spawned actors on disk: `ResonanceCathedral Music Node0–11` exists three times,
   and the 09-01 set is referenced by no volume on `main` or any branch.
-- **Choral Sheep — still owed:** in-PIE follow/transition proof (Sheep trailing at 180 cm/s and
-  actually swapping Idle/Walk/Run; foot-slide check against the ABP thresholds 10/5 and 120/100);
-  lit-level REST → ROOT_C → hit → REST capture. `MI_ChoralSheep_Body` samples UV0 only — normal maps
-  baked to the mesh's second UV set (`BakeUV`) need the material to sample it. `Retarget/SK_MrSheep` is
-  the retarget source at ~100× scale; never place it in a level. Offline bake alternative (verified
-  0.006 mm / 0 deg): `deploy/blender/choral_sheep_bake_takes.py`.
+- **Choral Sheep — still owed:** foot-slide check against the ABP thresholds 10/5 and 120/100 at real
+  frame rate (the background editor ticks PIE at ~3 fps — test in the foreground or under `slomo`);
+  lit-level REST → ROOT_C → hit → REST capture; plug the new UVPackmaster normal maps into
+  `MI_ChoralSheep_Body` (they now land on UV0 via `deploy/blender/choral_sheep_export_bakeuv.py`).
+  `Retarget/SK_MrSheep` is the retarget source at ~100× scale; never place it in a level.
+- **VFX / materials still owed:** Melusina sprite sizes 0.03–0.10 look metre-scale (owner look call);
+  sort/shadow sweep on the remaining `VFX/Systems/**` sprite systems; golden-run spec names
+  `/Game/L_Melodia_Dreamstate`, which does not exist.
+- **Eyewear PRs #205 / #194** each touch protected `.gitignore` and add 16 files under `Saved/`; the
+  −1,835 lines are a `Tools/registry_baseline.json` regeneration. Owner review before merge.
 - **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
   re-adds 830 of the 840 files `08a608bc` deleted, including `Docs/Career`. Never merge it wholesale;
   promote its real work (MK39 skiff GN, Sea Above external actors, HUD tokens) in scoped PRs.
