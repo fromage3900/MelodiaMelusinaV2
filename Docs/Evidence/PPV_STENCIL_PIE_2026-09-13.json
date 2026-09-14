@@ -1,0 +1,81 @@
+{
+  "schema": "melodia.evidence.pie_probe.v1",
+  "date": "2026-09-13",
+  "map": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+  "build": "BS_GodFileEditor Win64 Development, full UBT build with editor closed (Result: Succeeded) after #211",
+  "session": {
+    "duration_s": 30,
+    "ok": true,
+    "blueprint_runtime_errors": 0,
+    "accessed_none": 0,
+    "niagara_errors": 0,
+    "material_errors": 0
+  },
+  "ppv": {
+    "volume": "PPV_NikkiDream",
+    "blendables": [
+      "MI_StorybookOutline_Frozen",
+      "MI_StarryNight_Frozen",
+      "MI_MeluColorGrade_Frozen",
+      "MI_MelodiaInk_Frozen@0.31"
+    ]
+  },
+  "stencil_probe_t8s": [
+    {
+      "actor": "BP_MelusinaJRPGCharacter_C",
+      "component": "CharacterMesh0",
+      "custom_depth": true,
+      "stencil": 4
+    },
+    {
+      "actor": "BP_MelusinaJRPGCharacter_C",
+      "component": "WaterHairMesh",
+      "custom_depth": true,
+      "stencil": 4
+    },
+    {
+      "actor": "BP_MelusinaJRPGCharacter_C",
+      "component": "WardrobeSlot_Shirt",
+      "custom_depth": true,
+      "stencil": 4
+    },
+    {
+      "actor": "BP_MelusinaJRPGCharacter_C",
+      "component": "WardrobeSlot_Skirt",
+      "custom_depth": true,
+      "stencil": 4
+    },
+    {
+      "actor": "BP_MelusinaJRPGCharacter_C",
+      "component": "WardrobeSlot_Boots",
+      "custom_depth": true,
+      "stencil": 4
+    },
+    {
+      "actor": "BP_MelusinaJRPGCharacter_C",
+      "component": "WardrobeSlot_Accessories",
+      "custom_depth": true,
+      "stencil": 4
+    },
+    {
+      "actor": "BP_ChoralSheep_C",
+      "component": "SkeletalMesh",
+      "custom_depth": true,
+      "stencil": 4
+    }
+  ],
+  "captures": [
+    "PPV_STENCIL_PIE_2026-09-13_a.jpg (t=12s, 1280px)",
+    "PPV_STENCIL_PIE_2026-09-13_b.jpg (t=18s, 1280px)"
+  ],
+  "sheep_transitions": {
+    "source": "PR #210 commit 05077c78",
+    "method": "slomo 0.1 + slate post-tick recorder",
+    "speed_peak_cm_s": 5970,
+    "frames_moving": 26,
+    "crossed_walk_10": true,
+    "crossed_run_120": true,
+    "settled_to_0": true
+  },
+  "capture_notes": "Frozen PPV stack visibly live (halftone, grade, ink outlines on props). Default PIE camera sits behind the Choral Sheep, which fills the frame, so Melusina's hull-outlined silhouette is not visible; a dark edge is still drawn around the Sheep silhouette. These captures prove stencil values and the live stack, NOT that the storybook outline visually skips stencil-4 pixels."
+}
