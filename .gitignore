@@ -435,6 +435,8 @@ deploy/OLLAMA_*_STOP
 !Content/EnvSandbox/Textures_Shared/sbs_-_seamless_space_backgrounds_-_large_1024x1024/
 !Content/EnvSandbox/Textures_Shared/sbs_-_seamless_space_backgrounds_-_large_1024x1024/Large_1024x1024/
 !Content/EnvSandbox/Textures_Shared/sbs_-_seamless_space_backgrounds_-_large_1024x1024/Large_1024x1024/Purple_Nebula/
+!Content/EnvSandbox/VFX/
+!Content/EnvSandbox/VFX/EffectTypes/
 !Content/Materials/
 !Content/Melodia/
 !Content/Melodia/Cymatics/
@@ -479,6 +481,7 @@ deploy/OLLAMA_*_STOP
 !Content/EnvSandbox/Textures/T_crystal1_BaseColor.uasset
 !Content/EnvSandbox/Textures/T_crystal1_Normal.uasset
 !Content/EnvSandbox/Textures_Shared/sbs_-_seamless_space_backgrounds_-_large_1024x1024/Large_1024x1024/Purple_Nebula/Purple_Nebula_3_-_1024x1024.uasset
+!Content/EnvSandbox/VFX/EffectTypes/ENV_StorybookAmbientVFX.uasset
 !Content/Materials/MF_MeshBlend_Activator_Index_0.uasset
 !Content/Melodia/Cymatics/FarawayAlabasterDrape/T_Cymatic_FarawayAlabasterDrape_BaseColor.uasset
 !Content/Melodia/VFX/EffectTypes/ET_Melodia_CharacterFX.uasset
