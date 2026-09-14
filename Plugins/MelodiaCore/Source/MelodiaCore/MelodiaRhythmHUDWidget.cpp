@@ -225,7 +225,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer,
 			AllottedGeometry.ToPaintGeometry(FVector2D(BarW, BarH), FSlateLayoutTransform(FVector2D(BarX, BarY))),
 			&WhiteBrush, ESlateDrawEffect::None,
-			FLinearColor(0.08f, 0.06f, 0.12f, 0.85f));
+			FLinearColor(0.109804f, 0.078431f, 0.149020f, 0.85f)); // surface.sunken
 
 		// Fill
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
@@ -240,7 +240,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			const FVector2D IconPos(BarX - IconSize - 4.0f, BarY);
 			FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
 				AllottedGeometry.ToPaintGeometry(FVector2D(IconSize, IconSize), FSlateLayoutTransform(IconPos)),
-				&WhiteBrush, ESlateDrawEffect::None, FLinearColor(0.2f, 0.9f, 0.2f, 0.9f));
+				&WhiteBrush, ESlateDrawEffect::None, FLinearColor(0.368627f, 0.545098f, 0.494118f, 0.9f)); // feedback.success
 		}
 
 		// Glide indicator (blue square)
@@ -250,7 +250,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			const FVector2D IconPos(BarX + BarW + 4.0f, BarY);
 			FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
 				AllottedGeometry.ToPaintGeometry(FVector2D(IconSize, IconSize), FSlateLayoutTransform(IconPos)),
-				&WhiteBrush, ESlateDrawEffect::None, FLinearColor(0.3f, 0.5f, 0.9f, 0.9f));
+				&WhiteBrush, ESlateDrawEffect::None, FLinearColor(0.541176f, 0.662745f, 0.839216f, 0.9f)); // accent.astral
 		}
 	}
 	
@@ -266,7 +266,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer,
 			AllottedGeometry.ToPaintGeometry(FVector2D(BarW, BarH), FSlateLayoutTransform(FVector2D(BarX, BarY))),
 			&WhiteBrush, ESlateDrawEffect::None,
-			FLinearColor(0.08f, 0.06f, 0.12f, 0.85f));
+			FLinearColor(0.109804f, 0.078431f, 0.149020f, 0.85f)); // surface.sunken
 
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
 			AllottedGeometry.ToPaintGeometry(FVector2D(BarW * HPFraction, BarH), FSlateLayoutTransform(FVector2D(BarX, BarY))),
@@ -286,7 +286,8 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
 				AllottedGeometry.ToPaintGeometry(FVector2D(DotSize, DotSize), FSlateLayoutTransform(FVector2D(DotStartX + Index * DotSpacing, DotY))),
 				&WhiteBrush, ESlateDrawEffect::None,
-				bFilled ? FLinearColor(0.42f, 0.68f, 1.0f, 0.95f) : FLinearColor(0.2f, 0.18f, 0.28f, 0.6f));
+				bFilled ? FLinearColor(0.541176f, 0.662745f, 0.839216f, 0.95f) // accent.astral
+				        : FLinearColor(0.109804f, 0.078431f, 0.149020f, 0.6f)); // surface.sunken
 		}
 	}
 
@@ -301,10 +302,10 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer,
 			AllottedGeometry.ToPaintGeometry(FVector2D(BarW, BarH), FSlateLayoutTransform(FVector2D(BarX, BarY))),
 			&WhiteBrush, ESlateDrawEffect::None,
-			FLinearColor(0.08f, 0.06f, 0.12f, 0.7f));
+			FLinearColor(0.109804f, 0.078431f, 0.149020f, 0.7f)); // surface.sunken
 
 		const FLinearColor GaugeFill = bUltimateReadyVisible
-			? FLinearColor(1.0f, 0.86f, 0.42f, 1.0f) // Gold when ready
+			? FLinearColor(0.788235f, 0.658824f, 0.415686f, 1.0f) // accent.primary / gold.500, ready
 			: UltimateGaugeTint;
 
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
@@ -324,10 +325,10 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer,
 			AllottedGeometry.ToPaintGeometry(FVector2D(BarW, BarH), FSlateLayoutTransform(FVector2D(BarX, BarY))),
 			&WhiteBrush, ESlateDrawEffect::None,
-			FLinearColor(0.08f, 0.06f, 0.12f, 0.6f));
+			FLinearColor(0.109804f, 0.078431f, 0.149020f, 0.6f)); // surface.sunken
 
 		const FLinearColor ToughFill = bEnemyBreakVisible
-			? FLinearColor(0.96f, 0.28f, 0.42f, 1.0f) // Red when broken
+			? FLinearColor(0.658824f, 0.341176f, 0.317647f, 1.0f) // feedback.error, broken
 			: BreakGaugeTint;
 
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
@@ -363,7 +364,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 				const FSlateFontInfo Font = FCoreStyle::GetDefaultFontStyle("Bold", FMath::RoundToInt(28.0f * Scale));
 				FSlateDrawElement::MakeText(OutDrawElements, CurrentLayer + 2,
 					AllottedGeometry.ToPaintGeometry(FVector2D(200.0f, 40.0f), FSlateLayoutTransform(FVector2D(W * 0.5f - 100.0f, H * 0.45f - 20.0f))),
-					GradeText, Font, ESlateDrawEffect::None, FLinearColor(1.0f, 1.0f, 1.0f, Alpha));
+					GradeText, Font, ESlateDrawEffect::None, FLinearColor(0.988235f, 0.984314f, 0.972549f, Alpha)); // text.primary, grade texture missing
 			}
 		}
 	}
@@ -392,7 +393,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			AllottedGeometry.ToPaintGeometry(FVector2D(W * 0.7f, 28.0f), FSlateLayoutTransform(FVector2D(W * 0.15f, H * 0.875f))),
 			LastBattleStatusText,
 			Font, ESlateDrawEffect::None,
-			FLinearColor(0.98f, 0.92f, 0.72f, 0.95f));
+			FLinearColor(0.988235f, 0.984314f, 0.972549f, 0.95f)); // text.primary
 	}
 
 	if (!LastActionPromptText.IsEmpty() && ActiveHUDMode != EMelodiaHUDMode::Exploration)
@@ -402,7 +403,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			AllottedGeometry.ToPaintGeometry(FVector2D(W * 0.6f, 24.0f), FSlateLayoutTransform(FVector2D(W * 0.2f, H * 0.96f))),
 			LastActionPromptText,
 			Font, ESlateDrawEffect::None,
-			FLinearColor(0.8f, 0.78f, 0.86f, 0.9f));
+			FLinearColor(0.682353f, 0.705882f, 0.749020f, 0.9f)); // text.secondary
 	}
 
 	// --- Damage flash overlay ---
@@ -414,7 +415,7 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 3,
 				AllottedGeometry.ToPaintGeometry(FVector2D(W, H), FSlateLayoutTransform(FVector2D::ZeroVector)),
 				&WhiteBrush, ESlateDrawEffect::None,
-				FLinearColor(0.96f, 0.15f, 0.15f, Alpha));
+				FLinearColor(0.658824f, 0.341176f, 0.317647f, Alpha)); // feedback.error
 		}
 	}
 
@@ -482,10 +483,10 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 		{
 			switch (Note.Grade)
 			{
-			case EMelodiaRhythmGrade::Perfect: NoteColor = FLinearColor(0.42f, 1.0f, 0.72f, 0.6f); break;
-			case EMelodiaRhythmGrade::Great:   NoteColor = FLinearColor(0.62f, 0.92f, 1.0f, 0.5f); break;
-			case EMelodiaRhythmGrade::Good:    NoteColor = FLinearColor(0.98f, 0.88f, 0.36f, 0.4f); break;
-			default:                           NoteColor = FLinearColor(0.96f, 0.28f, 0.42f, 0.3f); break;
+			case EMelodiaRhythmGrade::Perfect: NoteColor = FLinearColor(0.368627f, 0.545098f, 0.494118f, 0.6f); break; // feedback.success
+			case EMelodiaRhythmGrade::Great:   NoteColor = FLinearColor(0.541176f, 0.662745f, 0.839216f, 0.5f); break; // accent.astral
+			case EMelodiaRhythmGrade::Good:    NoteColor = FLinearColor(0.721569f, 0.525490f, 0.184314f, 0.4f); break; // feedback.warning
+			default:                           NoteColor = FLinearColor(0.658824f, 0.341176f, 0.317647f, 0.3f); break; // feedback.error
 			}
 		}
 		else
