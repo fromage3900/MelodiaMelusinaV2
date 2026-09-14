@@ -75,6 +75,26 @@ failure above is deliberately retained. WaveHarp_R07 remains a separate owner de
 mirror the real `Content/Cinematics` files now; tracking its three meshes requires a scoped
 `.gitignore` sign-off and dependency review.
 
+**UI inventory, completed read-only:** 144 widget Blueprints / 955 styled widgets,
+108 distinct colours / 73 font-size pairs. Raw inventory is local at
+`%TEMP%/melodia-ui-audit-all-0913.json`. The table below lists game-facing authored-text
+candidates outside the token palette, not verified runtime defects; check bindings,
+animations and active screen reachability before changing values. Transparent shadows and
+white texture multipliers are excluded. Third-party ArtOfShader/UltraDynamicSky editor
+utilities are outside the game's styling scope.
+
+| Folder | Remaining widget candidates (names relative to folder) |
+|---|---|
+| `/Game/Melodia/UI/` | `BP_MelodiaDefeatDialogue`, `Foundation/WBP_MelodiaUniversalButton`, `WBP_Battle_Results`, `WBP_BlessingBurden`, `WBP_ComicOrrery`, `WBP_DialogueBubble`, `WBP_MainMenu`, `WBP_MelodiaCurrencyRow`, `WBP_MelodiaOpeningSlideshow`, `WBP_MelodiaSettings`, `WBP_MelodiaTokenWallet`, `WBP_MelodiaWallet_Universal`, `WBP_MenuButton`, `WBP_QuestJournal`, `WBP_SaveLoadPanel`, `WBP_Settings`, `WBP_SkillCodex`, `WBP_UltCutIn` |
+| `/Game/MelodiaIntegration/UI/` | `BP_MelodiaBattleUI`, `BP_MelodiaRhythmPrompt` |
+| `/Game/TurnBasedJRPGTemplate/Blueprints/UI/` | `BP_ActionTimeBar`, `BP_BattleUI`, `BP_CraftBar`, `BP_DamageTextUI`, `BP_ExpBar`, `BP_HPBar`, `BP_MPBar`, `BP_QuestNotification`, `BP_TurnOrderUI`, `BP_UnitClass` |
+| Same stock folder, `Dialogues/` | `BP_BuyItemAmountDialogue`, `BP_CraftDetails`, `BP_CraftItemButton`, `BP_CraftItemRecipe`, `BP_DefeatDialogue`, `BP_DialogueButton`, `BP_EquipmentButton`, `BP_EquipmentStatComparison`, `BP_InfoDialogue`, `BP_ItemButton`, `BP_ItemObtainDialogue`, `BP_ItemUseDialogue`, `BP_LevelUpDialogue`, `BP_QuestButton`, `BP_SellItemAmountDialogue`, `BP_ShopBuyDialogue`, `BP_ShopBuyItemButton`, `BP_ShopSellDialogue`, `BP_SkillButton`, `BP_SkillUseDialogue`, `BP_VictoryDialogue`, `BP_YesNoDialogue` |
+| Same stock folder, `MainMenu/` | `BP_EquipmentDetails`, `BP_ItemDetails`, `BP_MenuButton`, `BP_PartyUI`, `BP_PauseMenu`, `BP_QuestDetails`, `BP_SaveButton`, `BP_SkillDetails`, `BP_UnitButton`, `BP_UnitDetails`, `BP_UnitDetailsSummary`, `BP_UnitPartyDetails`, `BP_WearEquipmentUI` |
+
+`WBP_MainMenu`, integration `BP_MelodiaBattleUI`, and stock `BP_BattleUI` are tracked.
+`WBP_MenuButton` and `Melodia/VFX/EffectTypes/*` are not tracked at this baseline; source
+control inclusion requires the owner's scoped `.gitignore` decision before landing them.
+
 - **Issue #51 — long-chain persistence.** Outfit → Starskiff → encounter → rhythm → Convergence →
   reward → save → quit → relaunch → load → load again, with no duplication. Refresh from current
   `main`; do not merge stale PR #54 wholesale. Audit `RestoreNarrativeRecord*` for partial mutation,
