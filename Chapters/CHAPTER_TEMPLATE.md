@@ -1,8 +1,12 @@
 # Chapter bible template — copy to Chapters/NN_name/ and fill
 
-World-building authority: `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
-Tier / seven fields: `Docs/Strategy/MELODIA_CHAPTER_TIER_AND_VOLUME_ARCHITECTURE_2026-09-02.md`.
-Validation sequence: `Docs/Plans/REUSABLE_CHAPTER_VALIDATION_SYSTEM_2026-08-31.md`.
+Create a source chapter with `python Tools/scaffold_chapter.py NN_slug`.
+The concrete folder template is [`_template/`](_template/CHAPTER.md): `quill/`, `maps/`,
+`encounters/`, and `rewards/`. [`03_tide_listening/`](03_tide_listening/CHAPTER.md) is a
+four-beat worked example using an existing runtime social-stat ID. Run
+`python -m unittest Content.Python.Tests.test_qsc_allowlist_contract` after authoring.
+Every numbered chapter folder is discovered automatically. Import and PIE proof remain
+editor work; generated source alone is not a playable chapter.
 
 Rule that keeps authorities safe: a chapter adds DATA only
 (qsc, allowlist delta previewed in encounters.json, PPV weight shifts, meshes,

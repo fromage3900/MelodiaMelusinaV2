@@ -44,6 +44,7 @@
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "AssetRegistry/ARFilter.h"
 #include "Engine/Blueprint.h"
+#include "Materials/MaterialInterface.h"
 #include "EdGraph/EdGraph.h"
 #include "EdGraph/EdGraphNode.h"
 #include "UObject/SoftObjectPath.h"
@@ -90,6 +91,31 @@ namespace MelodiaWiringContract
 		}
 		return Skills;
 	}
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaCoreIdentityCanonTest,
+	"Melodia.Wiring.CoreIdentity.Canon",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaCoreIdentityCanonTest::RunTest(const FString& Parameters)
+{
+	using namespace MelodiaWiringContract;
+	const UMelodiaIntegrationConfig* Config = LoadChecked<UMelodiaIntegrationConfig>(*this, ConfigPath);
+	if (!Config) { return false; }
+
+	TestTrue(TEXT("P0 player resolves"), Config->P0PlayerClass.LoadSynchronous() != nullptr);
+	TestTrue(TEXT("Choral Sheep definition resolves"), Config->ChoralSheepDefinition.LoadSynchronous() != nullptr);
+	TestEqual(TEXT("Hero stencil"), Config->HeroStencil, 4);
+	TestEqual(TEXT("Frozen PPV entry count"), Config->FrozenPostProcessStack.Num(), 4);
+	for (int32 Index = 0; Index < Config->FrozenPostProcessStack.Num(); ++Index)
+	{
+		TestTrue(FString::Printf(TEXT("Frozen PPV %d resolves"), Index),
+			Config->FrozenPostProcessStack[Index].Material.LoadSynchronous() != nullptr);
+	}
+	TestTrue(TEXT("Character effect type resolves"), Config->CharacterEffectType.LoadSynchronous() != nullptr);
+	TestTrue(TEXT("Ambient effect type resolves"), Config->AmbientEffectType.LoadSynchronous() != nullptr);
+	return !HasAnyErrors();
 }
 
 // ---------------------------------------------------------------------------

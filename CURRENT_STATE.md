@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-12 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-13 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -58,6 +58,42 @@ MCP regression, Ollama daemon stress — not only game tests).
 ---
 
 ## 3. Open
+
+### Stabilization — 2026-09-13
+
+| Item | Source / evidence | Remaining owner decision or proof |
+|---|---|---|
+| Branch archaeology | `Docs/Evidence/BRANCH_LEDGER_2026-09-13.json` inventories both remotes and all four open V2 PRs. `Tools/guard_collapsed_paths.py` blocks re-additions deleted by `08a608bc`, including renames; runs on every PR. | Approve the ledger's close/archive candidates; reconcile unique files only. No PR or remote branch closed by this pass. #201 was superseded by merged #213 (owner report). |
+| Identity canon | `UMelodiaIntegrationConfig` now exposes one runtime-owned core identity record: P0 player, Choral Sheep definition, hero stencil 4, ordered frozen PPV stack with weights, and character/ambient Niagara effect types. `Melodia.Wiring.CoreIdentity.Canon` reads that same config and resolves every reference. | Owner approved the narrow asset closure: 52 previously ignored packages (68.76 MiB), including the seven canonical Frozen PPV assets, `ET_Melodia_CharacterFX`, all recursive dependencies, and the three WaveHarp_R07 meshes. Closed-editor UE 5.8 Development build passed all 460 actions. Never substitute the unfrozen originals. |
+| Chapter reuse | `Tools/scaffold_chapter.py`, `Chapters/_template/{quill,maps,encounters,rewards}`, and four-beat `03_tide_listening` source. Generator validates gated IDs against the actual DA before writing; numbered chapter folders are automatically tested. | Full QSC contract FAILS on existing SkiffDeparture `quest.shorewake.passage`, `flag.shorewake.passage`, `reward.skiff_passage`. Resolve those IDs and reward binding through the canonical DA in the editor; import the example and prove both choices/revisit/save-load in `MelodiaIntegrationMap`. Scaffold regression passes; no PIE claim. |
+| UI staleness | Read-only `melodia-ui-artist` audit: rhythm HUD and four Quill widgets have palette colours. P0 candidates: `BP_MelodiaBattleUI` RhythmGradeText/SongPickLabel white; stock `BP_BattleUI` KeyboardLegend `#F2D69E`; `WBP_MainMenu` near-palette text; `WBP_MenuButton` label `#F2D69E`. | Editor reopened externally during audit; ownership pending, no widgets changed. Remaining candidates include `BP_MelodiaDefeatDialogue` near-black text, `BP_MelodiaVictoryDialogue` zero-alpha text (check runtime bindings), Foundation parchment/button styling. White image tints and transparent shadows are not automatically defects. |
+| G: saved-state mirror | `Tools/mirror_saved_project.ps1` defaults to dry-run; scoped `/MIR`, destination/junction checks, cache/binary/Blender-autosave exclusions. Includes Content (Frozen + Cinematics), Config, Source, Plugins, Saved/Audit, Chapters, specs, Tools and design tokens. Dry logs: `%TEMP%/melodia-mirror-20260913/`. | Proposed destination `G:/BS_GodFile_Mirror/20260913`; initial dry run 119.75 GiB / 55,549 files plus project descriptor, zero failures/extras. Real run awaits owner approval and a saved, closed, stable source. This mirrors the saved local tree, including uncommitted assets; it is not a claim that local tree equals main. |
+
+C++ and its asset closure passed a closed-editor UE 5.8 Development build (460/460 actions).
+Offline contract suites: 22/22 PASS; collapse/scaffold regression tests: 2/2 PASS. The broader
+QSC failure above is deliberately retained. The owner approved narrowly tracking the three
+WaveHarp_R07 meshes and the exact recursive dependency closure; no other Cinematics path is
+unignored.
+
+**UI inventory, completed read-only:** 144 widget Blueprints / 955 styled widgets,
+108 distinct colours / 73 font-size pairs. Raw inventory is local at
+`%TEMP%/melodia-ui-audit-all-0913.json`. The table below lists game-facing authored-text
+candidates outside the token palette, not verified runtime defects; check bindings,
+animations and active screen reachability before changing values. Transparent shadows and
+white texture multipliers are excluded. Third-party ArtOfShader/UltraDynamicSky editor
+utilities are outside the game's styling scope.
+
+| Folder | Remaining widget candidates (names relative to folder) |
+|---|---|
+| `/Game/Melodia/UI/` | `BP_MelodiaDefeatDialogue`, `Foundation/WBP_MelodiaUniversalButton`, `WBP_Battle_Results`, `WBP_BlessingBurden`, `WBP_ComicOrrery`, `WBP_DialogueBubble`, `WBP_MainMenu`, `WBP_MelodiaCurrencyRow`, `WBP_MelodiaOpeningSlideshow`, `WBP_MelodiaSettings`, `WBP_MelodiaTokenWallet`, `WBP_MelodiaWallet_Universal`, `WBP_MenuButton`, `WBP_QuestJournal`, `WBP_SaveLoadPanel`, `WBP_Settings`, `WBP_SkillCodex`, `WBP_UltCutIn` |
+| `/Game/MelodiaIntegration/UI/` | `BP_MelodiaBattleUI`, `BP_MelodiaRhythmPrompt` |
+| `/Game/TurnBasedJRPGTemplate/Blueprints/UI/` | `BP_ActionTimeBar`, `BP_BattleUI`, `BP_CraftBar`, `BP_DamageTextUI`, `BP_ExpBar`, `BP_HPBar`, `BP_MPBar`, `BP_QuestNotification`, `BP_TurnOrderUI`, `BP_UnitClass` |
+| Same stock folder, `Dialogues/` | `BP_BuyItemAmountDialogue`, `BP_CraftDetails`, `BP_CraftItemButton`, `BP_CraftItemRecipe`, `BP_DefeatDialogue`, `BP_DialogueButton`, `BP_EquipmentButton`, `BP_EquipmentStatComparison`, `BP_InfoDialogue`, `BP_ItemButton`, `BP_ItemObtainDialogue`, `BP_ItemUseDialogue`, `BP_LevelUpDialogue`, `BP_QuestButton`, `BP_SellItemAmountDialogue`, `BP_ShopBuyDialogue`, `BP_ShopBuyItemButton`, `BP_ShopSellDialogue`, `BP_SkillButton`, `BP_SkillUseDialogue`, `BP_VictoryDialogue`, `BP_YesNoDialogue` |
+| Same stock folder, `MainMenu/` | `BP_EquipmentDetails`, `BP_ItemDetails`, `BP_MenuButton`, `BP_PartyUI`, `BP_PauseMenu`, `BP_QuestDetails`, `BP_SaveButton`, `BP_SkillDetails`, `BP_UnitButton`, `BP_UnitDetails`, `BP_UnitDetailsSummary`, `BP_UnitPartyDetails`, `BP_WearEquipmentUI` |
+
+`WBP_MainMenu`, integration `BP_MelodiaBattleUI`, and stock `BP_BattleUI` are tracked.
+`WBP_MenuButton` and `Melodia/VFX/EffectTypes/*` are not tracked at this baseline; source
+control inclusion requires the owner's scoped `.gitignore` decision before landing them.
 
 - **Issue #51 — long-chain persistence.** Outfit → Starskiff → encounter → rhythm → Convergence →
   reward → save → quit → relaunch → load → load again, with no duplication. Refresh from current

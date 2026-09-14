@@ -1,0 +1,43 @@
+@ Start
+
+? if: {melodia_03_tide_listening_heard} == on
+
+  - Sir Melodious
+    The tide kept your answer. There is no need to sing over it.
+
+  $ End
+
+? endif
+
+- Melusina
+  Someone has tied a little bell beneath the mooring. It rings when the sea rises, even with no wind.
+
+-> Listen
+
+<@> Listen
+
+- Sir Melodious
+  Three notes from the water. Then a space. What would you put there?
+
+* Listen through the silence. | -> Answer
+* Leave the bell its secret for now. | -> Return
+
+<@> Answer
+
+- Melusina
+  Nothing. The space is how I know the next note belongs to someone else.
+
+- Sir Melodious
+  Good. A duet needs room for two.
+
+$ Notify melodia:stat:intent.03_tide_listening.listen:melodia_resonance:1
+$ melodia_03_tide_listening_heard = on
+
+-> Return
+
+<@> Return
+
+- .
+  The bell slips below the surface. Beyond it, the Starskiff waits in a widening ring of light.
+
+$ End
