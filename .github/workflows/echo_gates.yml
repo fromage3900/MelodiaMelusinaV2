@@ -39,6 +39,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Reject collapsed-path resurrection
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python Tools/guard_collapsed_paths.py --base "$PR_BASE_SHA"
+
+      - name: Collapse guard regression
+        run: python -m unittest Tools.test_guard_collapsed_paths
+
       - name: Guard deprecated workspace roots
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}

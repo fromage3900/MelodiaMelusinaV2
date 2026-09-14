@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-12 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-13 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -58,6 +58,22 @@ MCP regression, Ollama daemon stress — not only game tests).
 ---
 
 ## 3. Open
+
+### Stabilization — 2026-09-13
+
+| Item | Source / evidence | Remaining owner decision or proof |
+|---|---|---|
+| Branch archaeology | `Docs/Evidence/BRANCH_LEDGER_2026-09-13.json` inventories both remotes and all four open V2 PRs. `Tools/guard_collapsed_paths.py` blocks re-additions deleted by `08a608bc`, including renames; runs on every PR. | Approve the ledger's close/archive candidates; reconcile unique files only. No PR or remote branch closed by this pass. #201 was superseded by merged #213 (owner report). |
+| Identity canon | Existing player `BP_MelusinaJRPGCharacter`, Sheep `DA_ChoralSheepDefinition`, inherited hair/wardrobe stencil 4, frozen PPV, and Niagara effect types remain the authored authorities described in §2. | Runtime/test shared identity allowlists are NOT implemented. Assign the single editor lane before extracting and binding the final identities; approve narrowly tracking the frozen PPV and its dependency closure if it must ship through Git. Never substitute the unfrozen originals. |
+| Chapter reuse | `Tools/scaffold_chapter.py`, `Chapters/_template/{quill,maps,encounters,rewards}`, and four-beat `03_tide_listening` source. Generator validates gated IDs against the actual DA before writing; numbered chapter folders are automatically tested. | Full QSC contract FAILS on existing SkiffDeparture `quest.shorewake.passage`, `flag.shorewake.passage`, `reward.skiff_passage`. Resolve those IDs and reward binding through the canonical DA in the editor; import the example and prove both choices/revisit/save-load in `MelodiaIntegrationMap`. Scaffold regression passes; no PIE claim. |
+| UI staleness | Read-only `melodia-ui-artist` audit: rhythm HUD and four Quill widgets have palette colours. P0 candidates: `BP_MelodiaBattleUI` RhythmGradeText/SongPickLabel white; stock `BP_BattleUI` KeyboardLegend `#F2D69E`; `WBP_MainMenu` near-palette text; `WBP_MenuButton` label `#F2D69E`. | Editor reopened externally during audit; ownership pending, no widgets changed. Remaining candidates include `BP_MelodiaDefeatDialogue` near-black text, `BP_MelodiaVictoryDialogue` zero-alpha text (check runtime bindings), Foundation parchment/button styling. White image tints and transparent shadows are not automatically defects. |
+| G: saved-state mirror | `Tools/mirror_saved_project.ps1` defaults to dry-run; scoped `/MIR`, destination/junction checks, cache/binary/Blender-autosave exclusions. Includes Content (Frozen + Cinematics), Config, Source, Plugins, Saved/Audit, Chapters, specs, Tools and design tokens. Dry logs: `%TEMP%/melodia-mirror-20260913/`. | Proposed destination `G:/BS_GodFile_Mirror/20260913`; initial dry run 119.75 GiB / 55,549 files plus project descriptor, zero failures/extras. Real run awaits owner approval and a saved, closed, stable source. This mirrors the saved local tree, including uncommitted assets; it is not a claim that local tree equals main. |
+
+No C++ changed in this stabilization pass; no new build/runtime certification. Offline
+contract suites: 22/22 PASS; collapse/scaffold regression tests: 2/2 PASS. The broader QSC
+failure above is deliberately retained. WaveHarp_R07 remains a separate owner decision:
+mirror the real `Content/Cinematics` files now; tracking its three meshes requires a scoped
+`.gitignore` sign-off and dependency review.
 
 - **Issue #51 — long-chain persistence.** Outfit → Starskiff → encounter → rhythm → Convergence →
   reward → save → quit → relaunch → load → load again, with no duplication. Refresh from current
