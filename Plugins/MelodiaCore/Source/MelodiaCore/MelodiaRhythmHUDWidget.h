@@ -127,17 +127,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Style")
 	FLinearColor SparkleTint = FLinearColor(0.86f, 0.74f, 1.0f, 0.96f);
 
+	// accent.secondary / lavender.300 #C2BAE0 (melodia-design-system/tokens.json)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Style")
-	FLinearColor UltimateGaugeTint = FLinearColor(0.62f, 0.48f, 0.98f, 0.95f);
+	FLinearColor UltimateGaugeTint = FLinearColor(0.760784f, 0.729412f, 0.878431f, 0.95f);
 
+	// feedback.error / status.error #A85751 (melodia-design-system/tokens.json)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Style")
-	FLinearColor EnemyHPBarTint = FLinearColor(0.96f, 0.28f, 0.42f, 1.0f);
+	FLinearColor EnemyHPBarTint = FLinearColor(0.658824f, 0.341176f, 0.317647f, 1.0f);
 
+	// feedback.success / status.success #5E8B7E (melodia-design-system/tokens.json)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Style")
-	FLinearColor PartyHPBarTint = FLinearColor(0.42f, 1.0f, 0.72f, 1.0f);
+	FLinearColor PartyHPBarTint = FLinearColor(0.368627f, 0.545098f, 0.494118f, 1.0f);
 
+	// feedback.warning / status.warning #B8862F (melodia-design-system/tokens.json)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm HUD|Style")
-	FLinearColor BreakGaugeTint = FLinearColor(0.98f, 0.88f, 0.36f, 1.0f);
+	FLinearColor BreakGaugeTint = FLinearColor(0.721569f, 0.525490f, 0.184314f, 1.0f);
 
 	// --- Note highway geometry ---
 	// PaintNoteHighway drew every note at one Y regardless of LaneIndex, so a four-lane
