@@ -66,7 +66,9 @@
   ],
   "captures": [
     "PPV_STENCIL_PIE_2026-09-13_a.jpg (t=12s, 1280px)",
-    "PPV_STENCIL_PIE_2026-09-13_b.jpg (t=18s, 1280px)"
+    "PPV_STENCIL_PIE_2026-09-13_b.jpg (t=18s, 1280px)",
+    "PPV_STENCIL_PIE_2026-09-13_c.jpg (V7.1 outline, Sheep hidden, Melusina framed)",
+    "PPV_STENCIL_PIE_2026-09-13_d.jpg (V7.1 outline, Sheep moved next to Melusina)"
   ],
   "sheep_transitions": {
     "source": "PR #210 commit 05077c78",
@@ -77,5 +79,7 @@
     "crossed_run_120": true,
     "settled_to_0": true
   },
-  "capture_notes": "Frozen PPV stack visibly live (halftone, grade, ink outlines on props). Default PIE camera sits behind the Choral Sheep, which fills the frame, so Melusina's hull-outlined silhouette is not visible; a dark edge is still drawn around the Sheep silhouette. These captures prove stencil values and the live stack, NOT that the storybook outline visually skips stencil-4 pixels."
+  "capture_notes": "Frozen PPV stack visibly live (halftone, grade, ink outlines on props). Default PIE camera sits behind the Choral Sheep, which fills the frame, so Melusina's hull-outlined silhouette is not visible; a dark edge is still drawn around the Sheep silhouette. These captures prove stencil values and the live stack, NOT that the storybook outline visually skips stencil-4 pixels.",
+  "outline_fix": "Frozen outline V7.1 reads PPI_CustomStencil directly. MF_StencilDepthAlpha returns a 0/1 in-range mask, so styleIdx was only ever 0 or 255 and the stencil-4 hero skip never fired.",
+  "visual_result": "c/d: props (rattan stand, doll, wall) keep the dark storybook ink; Melusina's body, hair and dress and the Sheep carry no post-process ink line (their silhouettes read from shading and hull only)."
 }
