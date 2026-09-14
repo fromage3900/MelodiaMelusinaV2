@@ -593,3 +593,6 @@ deploy/OLLAMA_*_STOP
 !Content/_PROJECT/VFX/Textures/water_globule_cluster_alpha_1786230853060.uasset
 !Content/_PROJECT/VFX/Textures/water_globule_flipbook_1786230879573.uasset
 !Content/_PROJECT/VFX/Textures/water_splash_burst_alpha_1786230870676.uasset
+!Content/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_DropletRing.uasset
+!Content/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_SplashBurst.uasset
+!Content/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_GlobuleCluster.uasset
