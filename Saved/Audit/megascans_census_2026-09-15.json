@@ -1,0 +1,56 @@
+{
+ "verdict": "PARAMS HEALTHY IN-FAMILY. Dead-vs-Universal counts are meaningless for non-Universal children; no repair indicated. Toon unification = per-asset art decision (Greybox recipe), not a bug fix.",
+ "method": "Monolith get_material_parameters vs 374 live Universal names + get_material_properties parent check",
+ "assets": {
+  "MI_WaterClean": {
+   "parent": "M_Water_Master_Grand_v10_Upgrade",
+   "dead_vs_universal": 113,
+   "overrides": 4
+  },
+  "MI_Flat_water": {
+   "parent": "M_Master_Toon_Universal",
+   "dead_vs_universal": 0,
+   "overrides": 35
+  },
+  "MI_Copernicus_ChoirStone": {
+   "parent": "M_Master_Toon_Universal",
+   "dead_vs_universal": 0,
+   "overrides": 9
+  },
+  "MI_MossyRock_21": {
+   "parent": "?",
+   "dead_vs_universal": 69,
+   "overrides": 1
+  },
+  "MI_Rock_01": {
+   "parent": "M_MS_Default_Material_VT_DynamicLayering",
+   "dead_vs_universal": 69,
+   "overrides": 1
+  },
+  "GenericFlower1_Mat": {
+   "parent": "SpeedTreeMaster",
+   "dead_vs_universal": 31,
+   "overrides": 0
+  },
+  "GenericFlowerTall_Mat": {
+   "parent": "SpeedTreeMaster",
+   "dead_vs_universal": 31,
+   "overrides": 0
+  },
+  "BigBush_Mat": {
+   "parent": "SpeedTreeMaster",
+   "dead_vs_universal": 31,
+   "overrides": 0
+  },
+  "MI_ForestDeadTree_01": {
+   "parent": "M_RealityScan_03",
+   "dead_vs_universal": 6,
+   "overrides": 1
+  },
+  "MI_T_Melusina_WatercolourWave_Parquet": {
+   "parent": "M_Master_Toon_Universal",
+   "dead_vs_universal": 0,
+   "overrides": 5
+  }
+ }
+}
