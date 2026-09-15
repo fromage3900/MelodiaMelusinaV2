@@ -1,0 +1,261 @@
+{
+ "floaters": [
+  {
+   "label": "Morning_Dell_Banks",
+   "loc": [
+    -950.0,
+    3180.0,
+    -500.0
+   ],
+   "issue": "no_ground_800_below"
+  }
+ ],
+ "buried": [
+  {
+   "label": "Morning_SheepDell_Lake",
+   "depth": 1975.0
+  },
+  {
+   "label": "BellTreeGarden Music Node9",
+   "depth": 136.5
+  },
+  {
+   "label": "ArpeggioBridge Music Node23",
+   "depth": 136.6
+  },
+  {
+   "label": "ArpeggioBridge Music Node16",
+   "depth": 138.0
+  },
+  {
+   "label": "BellTreeGarden Music Node2",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node15",
+   "depth": 136.5
+  },
+  {
+   "label": "BellTreeGarden Music Node13",
+   "depth": 135.4
+  },
+  {
+   "label": "BellTreeGarden Music Node5",
+   "depth": 137.6
+  },
+  {
+   "label": "BellTreeGarden Music Node8",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node3",
+   "depth": 136.5
+  },
+  {
+   "label": "BellTreeGarden Music Node11",
+   "depth": 137.6
+  },
+  {
+   "label": "BellTreeGarden Music Node1",
+   "depth": 135.4
+  },
+  {
+   "label": "BellTreeGarden Music Node14",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node6",
+   "depth": 134.8
+  },
+  {
+   "label": "BellTreeGarden Music Node16",
+   "depth": 137.0
+  },
+  {
+   "label": "BellTreeGarden Music Node0",
+   "depth": 134.8
+  },
+  {
+   "label": "ArpeggioBridge Music Node17",
+   "depth": 137.6
+  },
+  {
+   "label": "ArpeggioBridge Music Node19",
+   "depth": 135.2
+  },
+  {
+   "label": "BellTreeGarden Music Node12",
+   "depth": 134.8
+  },
+  {
+   "label": "ArpeggioBridge Music Node21",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node7",
+   "depth": 135.4
+  },
+  {
+   "label": "BellTreeGarden Music Node10",
+   "depth": 137.0
+  },
+  {
+   "label": "ArpeggioBridge Music Node22",
+   "depth": 136.2
+  },
+  {
+   "label": "ArpeggioBridge Music Node20",
+   "depth": 135.5
+  },
+  {
+   "label": "BellTreeGarden Music Node17",
+   "depth": 137.6
+  },
+  {
+   "label": "BellTreeGarden Music Node4",
+   "depth": 137.0
+  },
+  {
+   "label": "ArpeggioBridge Music Node18",
+   "depth": 134.8
+  },
+  {
+   "label": "BellTreeGarden Music Node3",
+   "depth": 136.5
+  },
+  {
+   "label": "BellTreeGarden Music Node1",
+   "depth": 135.4
+  },
+  {
+   "label": "BellTreeGarden Music Node6",
+   "depth": 134.8
+  },
+  {
+   "label": "BellTreeGarden Music Node0",
+   "depth": 134.8
+  },
+  {
+   "label": "BellTreeGarden Music Node5",
+   "depth": 137.6
+  },
+  {
+   "label": "BellTreeGarden Music Node8",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node2",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node4",
+   "depth": 137.0
+  },
+  {
+   "label": "BellTreeGarden Music Node7",
+   "depth": 135.4
+  },
+  {
+   "label": "BellTreeGarden Music Node16",
+   "depth": 138.0
+  },
+  {
+   "label": "BellTreeGarden Music Node12",
+   "depth": 134.8
+  },
+  {
+   "label": "BellTreeGarden Music Node9",
+   "depth": 136.5
+  },
+  {
+   "label": "BellTreeGarden Music Node17",
+   "depth": 138.0
+  },
+  {
+   "label": "BellTreeGarden Music Node10",
+   "depth": 137.0
+  },
+  {
+   "label": "BellTreeGarden Music Node15",
+   "depth": 136.5
+  },
+  {
+   "label": "BellTreeGarden Music Node14",
+   "depth": 135.9
+  },
+  {
+   "label": "BellTreeGarden Music Node11",
+   "depth": 137.6
+  },
+  {
+   "label": "BellTreeGarden Music Node13",
+   "depth": 135.4
+  },
+  {
+   "label": "ArpeggioBridge Music Node15",
+   "depth": 136.9
+  },
+  {
+   "label": "ArpeggioBridge Music Node7",
+   "depth": 137.2
+  },
+  {
+   "label": "ArpeggioBridge Music Node2",
+   "depth": 135.5
+  },
+  {
+   "label": "ArpeggioBridge Music Node1",
+   "depth": 135.2
+  },
+  {
+   "label": "ArpeggioBridge Music Node8",
+   "depth": 137.6
+  },
+  {
+   "label": "ArpeggioBridge Music Node4",
+   "depth": 136.2
+  },
+  {
+   "label": "ArpeggioBridge Music Node0",
+   "depth": 134.8
+  },
+  {
+   "label": "ArpeggioBridge Music Node14",
+   "depth": 136.6
+  },
+  {
+   "label": "ArpeggioBridge Music Node13",
+   "depth": 136.2
+  },
+  {
+   "label": "ArpeggioBridge Music Node10",
+   "depth": 135.2
+  },
+  {
+   "label": "ArpeggioBridge Music Node5",
+   "depth": 136.6
+  },
+  {
+   "label": "ArpeggioBridge Music Node3",
+   "depth": 135.9
+  },
+  {
+   "label": "ArpeggioBridge Music Node9",
+   "depth": 134.8
+  },
+  {
+   "label": "ArpeggioBridge Music Node11",
+   "depth": 135.5
+  },
+  {
+   "label": "ArpeggioBridge Music Node12",
+   "depth": 135.9
+  },
+  {
+   "label": "ArpeggioBridge Music Node6",
+   "depth": 136.9
+  }
+ ],
+ "ok": 74,
+ "checked": 136
+}
