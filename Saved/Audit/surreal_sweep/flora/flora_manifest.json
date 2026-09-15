@@ -1,0 +1,483 @@
+{
+  "schema": "melodia.surreal_flora.v1",
+  "seed": 20260829,
+  "size": 1024,
+  "generator": "Tools/Houdini/sea_above_reef/surreal_flora.py",
+  "description": "Surreal Dream Flora \u2014 3 oversized blooms (Ghost Lotus 8m, Siren Kelp 30m, Crystal Anemone 4m) with PBR 1024 texture sets + Blender meshes + 1920x1080 CYCLES 96spp beauty renders",
+  "scale": "metres; Blender units = metres; UE import x100 (m->cm); FBX global_scale 100",
+  "textures": [
+    {
+      "name": "T_Surreal_GhostLotus_Albedo",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Albedo.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "3c17af9e51776d679dbdb6a811ed801f80a659b07380398ae27cb09c045f728e",
+      "bytes": 317044
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Normal",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Normal.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "842ab0b74bba5739ca2a0eef7e1226b48b388686f40be9931d51d28cb5481c53",
+      "bytes": 169747
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Roughness",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Roughness.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "4779152a41746ed9d746e20c14a409c33d134433279651d915da9897c7a3ec96",
+      "bytes": 93408
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Emissive",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Emissive.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "f1b645a1c3b7f90a48dbb72d394c73fc9431af886fafdbc61f11ffa434b5a332",
+      "bytes": 144018
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Translucency",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Translucency.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "fdffc4af2ffe4115045ca84d17936e6d62df147cedc412278e092ed52738922e",
+      "bytes": 171287
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Albedo",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Albedo.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "379e179551672e81c05bfd44dfd68bdf4b488283a1328df2d2b575c402923e09",
+      "bytes": 238287
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Normal",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Normal.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "f9d58d112000f9a15c2e08253b0864c8e55ad6ff9b09adc49371a24b4eaae10b",
+      "bytes": 121738
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Roughness",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Roughness.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "459aa3f8344282c659077e0f0d55c9b90a0a79cdbc609514621d83cd214d0ca2",
+      "bytes": 121289
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Emissive",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Emissive.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "e2fe0ee15d1f96a7719dca466094d2aebecb49b110d0ad7f53467571417173a9",
+      "bytes": 56795
+    },
+    {
+      "name": "T_Surreal_SirenKelp_EyeMask",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_EyeMask.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "7b81c47eb4f9871b1cc49d593123c634c544c3c6af519c04b2f7752e3f57a0f0",
+      "bytes": 8450
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Albedo",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Albedo.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "e058a724393a35fc99ce430fb2958ca5e7f14d59420dc773bd7df6f4b3f78afe",
+      "bytes": 1024210
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Normal",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Normal.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "21fc0b1df0003c08ea49ee7b05025bd5fdf576acf173a2e749b10fa0ee7a2c4e",
+      "bytes": 683337
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Roughness",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Roughness.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "cf67e9700ec051a79f8bbd2a02037417a0d0b2ee88b27d282e331deaf2a4ec77",
+      "bytes": 365773
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Emissive",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Emissive.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "1d009b55469413c04981246e0c6dd4d29d4d3e1dd542abb657e60846fde84a6d",
+      "bytes": 359327
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Opacity",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Opacity.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "6893f4edd84737ac41b5de9055924099fb82182999303db31038da504f07a5f6",
+      "bytes": 257746
+    }
+  ],
+  "meshes": [
+    {
+      "name": "SM_Surreal_GhostLotus",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_GhostLotus.blend",
+      "kind": "blend",
+      "sha256": "060b11a047e49e9c37517bd0beb0a4d92312b2de9f22780c762701c40c03473c",
+      "bytes": 135277
+    },
+    {
+      "name": "SM_Surreal_GhostLotus",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_GhostLotus.fbx",
+      "kind": "fbx",
+      "sha256": "49234504efc49c0a7b6ac767849d61e71c924e55062970795c4fc5ce05a095f6",
+      "bytes": 159708
+    },
+    {
+      "name": "SM_Surreal_SirenKelp",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_SirenKelp.blend",
+      "kind": "blend",
+      "sha256": "6fcaba47528e58f245924adc04282e9256e50e610876a7a88b64b50bc0ee6237",
+      "bytes": 259911
+    },
+    {
+      "name": "SM_Surreal_SirenKelp",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_SirenKelp.fbx",
+      "kind": "fbx",
+      "sha256": "981f19c522364e6af01d307d5effa8e5437b6d8d3bc1f8b9072eaaca931ed48a",
+      "bytes": 438796
+    },
+    {
+      "name": "SM_Surreal_CrystalAnemone",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_CrystalAnemone.blend",
+      "kind": "blend",
+      "sha256": "9a0e1a2eb86aacd27ac109c22d7fae1624e1ec75feb30e582046d63f027b76fb",
+      "bytes": 257479
+    },
+    {
+      "name": "SM_Surreal_CrystalAnemone",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_CrystalAnemone.fbx",
+      "kind": "fbx",
+      "sha256": "08f66350c8bda6c0e8e0fc4238965f9c51eb4161b99b3caeb26e338e61419209",
+      "bytes": 1403804
+    }
+  ],
+  "renders": [
+    {
+      "name": "SM_Surreal_GhostLotus",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\renders\\SM_Surreal_GhostLotus.png",
+      "kind": "render",
+      "resolution": "1920x1080",
+      "samples": 96,
+      "engine": "CYCLES",
+      "sha256": "03564fb121b27b9672fac0bf69db73f8f4978139ab2e834989446b679bc3d2a9",
+      "bytes": 1605030
+    },
+    {
+      "name": "SM_Surreal_SirenKelp",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\renders\\SM_Surreal_SirenKelp.png",
+      "kind": "render",
+      "resolution": "1920x1080",
+      "samples": 96,
+      "engine": "CYCLES",
+      "sha256": "9a157c0483ac9ab8533017d07cefd7c3cd84cb27c4ad1ae9ab50d3b01504b16a",
+      "bytes": 1571703
+    },
+    {
+      "name": "SM_Surreal_CrystalAnemone",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\renders\\SM_Surreal_CrystalAnemone.png",
+      "kind": "render",
+      "resolution": "1920x1080",
+      "samples": 96,
+      "engine": "CYCLES",
+      "sha256": "ea600cd55dc6119626183bdafff64a5ae6caea421d9759e66bc60f528158415b",
+      "bytes": 1733045
+    }
+  ],
+  "all_files": [
+    {
+      "name": "T_Surreal_GhostLotus_Albedo",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Albedo.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "3c17af9e51776d679dbdb6a811ed801f80a659b07380398ae27cb09c045f728e",
+      "bytes": 317044
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Normal",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Normal.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "842ab0b74bba5739ca2a0eef7e1226b48b388686f40be9931d51d28cb5481c53",
+      "bytes": 169747
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Roughness",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Roughness.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "4779152a41746ed9d746e20c14a409c33d134433279651d915da9897c7a3ec96",
+      "bytes": 93408
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Emissive",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Emissive.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "f1b645a1c3b7f90a48dbb72d394c73fc9431af886fafdbc61f11ffa434b5a332",
+      "bytes": 144018
+    },
+    {
+      "name": "T_Surreal_GhostLotus_Translucency",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_GhostLotus_Translucency.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "fdffc4af2ffe4115045ca84d17936e6d62df147cedc412278e092ed52738922e",
+      "bytes": 171287
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Albedo",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Albedo.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "379e179551672e81c05bfd44dfd68bdf4b488283a1328df2d2b575c402923e09",
+      "bytes": 238287
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Normal",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Normal.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "f9d58d112000f9a15c2e08253b0864c8e55ad6ff9b09adc49371a24b4eaae10b",
+      "bytes": 121738
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Roughness",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Roughness.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "459aa3f8344282c659077e0f0d55c9b90a0a79cdbc609514621d83cd214d0ca2",
+      "bytes": 121289
+    },
+    {
+      "name": "T_Surreal_SirenKelp_Emissive",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_Emissive.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "e2fe0ee15d1f96a7719dca466094d2aebecb49b110d0ad7f53467571417173a9",
+      "bytes": 56795
+    },
+    {
+      "name": "T_Surreal_SirenKelp_EyeMask",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_SirenKelp_EyeMask.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "7b81c47eb4f9871b1cc49d593123c634c544c3c6af519c04b2f7752e3f57a0f0",
+      "bytes": 8450
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Albedo",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Albedo.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "e058a724393a35fc99ce430fb2958ca5e7f14d59420dc773bd7df6f4b3f78afe",
+      "bytes": 1024210
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Normal",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Normal.png",
+      "kind": "rgb",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "21fc0b1df0003c08ea49ee7b05025bd5fdf576acf173a2e749b10fa0ee7a2c4e",
+      "bytes": 683337
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Roughness",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Roughness.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "cf67e9700ec051a79f8bbd2a02037417a0d0b2ee88b27d282e331deaf2a4ec77",
+      "bytes": 365773
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Emissive",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Emissive.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "1d009b55469413c04981246e0c6dd4d29d4d3e1dd542abb657e60846fde84a6d",
+      "bytes": 359327
+    },
+    {
+      "name": "T_Surreal_CrystalAnemone_Opacity",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\textures\\T_Surreal_CrystalAnemone_Opacity.png",
+      "kind": "gray",
+      "size": 1024,
+      "seed": 20260829,
+      "sha256": "6893f4edd84737ac41b5de9055924099fb82182999303db31038da504f07a5f6",
+      "bytes": 257746
+    },
+    {
+      "name": "SM_Surreal_GhostLotus",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_GhostLotus.blend",
+      "kind": "blend",
+      "sha256": "060b11a047e49e9c37517bd0beb0a4d92312b2de9f22780c762701c40c03473c",
+      "bytes": 135277
+    },
+    {
+      "name": "SM_Surreal_GhostLotus",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_GhostLotus.fbx",
+      "kind": "fbx",
+      "sha256": "49234504efc49c0a7b6ac767849d61e71c924e55062970795c4fc5ce05a095f6",
+      "bytes": 159708
+    },
+    {
+      "name": "SM_Surreal_GhostLotus",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\renders\\SM_Surreal_GhostLotus.png",
+      "kind": "render",
+      "resolution": "1920x1080",
+      "samples": 96,
+      "engine": "CYCLES",
+      "sha256": "03564fb121b27b9672fac0bf69db73f8f4978139ab2e834989446b679bc3d2a9",
+      "bytes": 1605030
+    },
+    {
+      "name": "SM_Surreal_SirenKelp",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_SirenKelp.blend",
+      "kind": "blend",
+      "sha256": "6fcaba47528e58f245924adc04282e9256e50e610876a7a88b64b50bc0ee6237",
+      "bytes": 259911
+    },
+    {
+      "name": "SM_Surreal_SirenKelp",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_SirenKelp.fbx",
+      "kind": "fbx",
+      "sha256": "981f19c522364e6af01d307d5effa8e5437b6d8d3bc1f8b9072eaaca931ed48a",
+      "bytes": 438796
+    },
+    {
+      "name": "SM_Surreal_SirenKelp",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\renders\\SM_Surreal_SirenKelp.png",
+      "kind": "render",
+      "resolution": "1920x1080",
+      "samples": 96,
+      "engine": "CYCLES",
+      "sha256": "9a157c0483ac9ab8533017d07cefd7c3cd84cb27c4ad1ae9ab50d3b01504b16a",
+      "bytes": 1571703
+    },
+    {
+      "name": "SM_Surreal_CrystalAnemone",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_CrystalAnemone.blend",
+      "kind": "blend",
+      "sha256": "9a0e1a2eb86aacd27ac109c22d7fae1624e1ec75feb30e582046d63f027b76fb",
+      "bytes": 257479
+    },
+    {
+      "name": "SM_Surreal_CrystalAnemone",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\meshes\\SM_Surreal_CrystalAnemone.fbx",
+      "kind": "fbx",
+      "sha256": "08f66350c8bda6c0e8e0fc4238965f9c51eb4161b99b3caeb26e338e61419209",
+      "bytes": 1403804
+    },
+    {
+      "name": "SM_Surreal_CrystalAnemone",
+      "path": "Saved\\Audit\\surreal_sweep\\flora\\renders\\SM_Surreal_CrystalAnemone.png",
+      "kind": "render",
+      "resolution": "1920x1080",
+      "samples": 96,
+      "engine": "CYCLES",
+      "sha256": "ea600cd55dc6119626183bdafff64a5ae6caea421d9759e66bc60f528158415b",
+      "bytes": 1733045
+    }
+  ],
+  "stats": {
+    "texture_sets": 3,
+    "texture_files": 15,
+    "mesh_stems": 3,
+    "mesh_files": 6,
+    "render_files": 3,
+    "total_files": 24
+  },
+  "flora": [
+    {
+      "id": "ghost_lotus",
+      "name": "Ghost Lotus",
+      "diameter_m": 8.0,
+      "stem": "SM_Surreal_GhostLotus",
+      "textures": [
+        "T_Surreal_GhostLotus_Albedo",
+        "T_Surreal_GhostLotus_Normal",
+        "T_Surreal_GhostLotus_Roughness",
+        "T_Surreal_GhostLotus_Emissive",
+        "T_Surreal_GhostLotus_Translucency"
+      ],
+      "material": "translucent Principled + inside point light + emissive core; transmission 0.35-0.45"
+    },
+    {
+      "id": "siren_kelp",
+      "name": "Spiral Siren Kelp",
+      "height_m": 30.0,
+      "width_m": 0.85,
+      "stem": "SM_Surreal_SirenKelp",
+      "textures": [
+        "T_Surreal_SirenKelp_Albedo",
+        "T_Surreal_SirenKelp_Normal",
+        "T_Surreal_SirenKelp_Roughness",
+        "T_Surreal_SirenKelp_Emissive",
+        "T_Surreal_SirenKelp_EyeMask"
+      ],
+      "material": "ribbon with 720deg twist + 18 eye-spots (sclera/iris/pupil + point lights)"
+    },
+    {
+      "id": "crystal_anemone",
+      "name": "Crystal Anemone",
+      "diameter_m": 4.0,
+      "stem": "SM_Surreal_CrystalAnemone",
+      "textures": [
+        "T_Surreal_CrystalAnemone_Albedo",
+        "T_Surreal_CrystalAnemone_Normal",
+        "T_Surreal_CrystalAnemone_Roughness",
+        "T_Surreal_CrystalAnemone_Emissive",
+        "T_Surreal_CrystalAnemone_Opacity"
+      ],
+      "material": "fractal polyp cluster (depth 4, ~7 primaries); transmission 0.30-0.42; icosphere tips"
+    }
+  ]
+}
