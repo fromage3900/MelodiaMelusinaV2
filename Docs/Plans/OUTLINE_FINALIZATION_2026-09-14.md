@@ -134,3 +134,16 @@ RenderCustomDepth false per skeletal/static mesh comp, recompile, save only
 those two BPs, PIE-check Morning. Estimated minutes once the editor wakes.
 Alternative if hull needs stencil elsewhere: narrow StenciRange on the live
 profile instead — owner call at the viewport.
+
+## Task-1 verdict (2026-09-15) — the verdict finally delivers
+
+Two commits (946f67d1, 276ed580) wrote `r.DefaultFeature.AntiAliasing=1`, which
+names NO registered cvar: boot log shows a deferred dummy, bare echo returns
+nothing, and the fresh boot read `r.AntiAliasingMethod = "4" LastSetBy:
+Constructor` — the viewport ran TSR all along. Engine source:
+`RendererSettings.h:866 DefaultFeatureAntiAliasing` exports to
+`r.AntiAliasingMethod` (SceneUtils.h enum: 0 None, 1 FXAA, 2 TAA, 3 MSAA, 4 TSR).
+Fix (de0d9bb9): `DefaultFeatureAntiAliasing=1` under RendererSettings, dead cvar
+line removed. Proof: `Saved/Audit/outline_method_proof_2026-09-15.json`.
+Plan: `.hermes/plans/2026-09-15_134500-outline-jitter-deep-research.md`.
+Full effect at next restart; console method set live meanwhile.
