@@ -1,0 +1,57 @@
+{
+ "PCG_Nikki_MandalaBloom": {
+  "nodes": 5,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_Nikki_PhyllotaxisGarden": {
+  "nodes": 5,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_Nikki_PhyllotaxisGarden_Walkable": {
+  "nodes": 8,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_BezierColonnadeAvenue": {
+  "nodes": 4,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_BezierVistaTerrace": {
+  "nodes": 5,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_WallGardenPath": {
+  "nodes": 13,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_TerraceGarden": {
+  "nodes": 23,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_SeaAbove_East_PhyllotaxisBiome": {
+  "nodes": 6,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_SeaAbove_East_PhyllotaxisCourtyard": {
+  "nodes": 7,
+  "spawners": 0,
+  "mesh_spawners": 0
+ },
+ "PCG_Hero_TeaGarden": {
+  "nodes": 16,
+  "spawners": 1,
+  "mesh_spawners": 0
+ },
+ "PCG_SeaAbove_BellTreeGarden": {
+  "nodes": 19,
+  "spawners": 1,
+  "mesh_spawners": 0
+ }
+}
