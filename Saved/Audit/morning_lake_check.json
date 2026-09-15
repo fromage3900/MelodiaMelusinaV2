@@ -1,0 +1,38 @@
+[
+ {
+  "label": "Morning_SheepDell_Lake",
+  "class": "OceanologyLake",
+  "loc": [
+   -950.0,
+   2300.0,
+   -615.4
+  ]
+ },
+ {
+  "label": "Morning_Brook_Arpeggio",
+  "class": "PCGVolume",
+  "loc": [
+   -350.0,
+   2320.0,
+   -480.0
+  ]
+ },
+ {
+  "label": "Morning_Dell_Banks",
+  "class": "PCGVolume",
+  "loc": [
+   -950.0,
+   2300.0,
+   -500.0
+  ]
+ },
+ {
+  "label": "Morning_SheepDell_Water",
+  "class": "StaticMeshActor",
+  "loc": [
+   -950.0,
+   2300.0,
+   -625.4
+  ]
+ }
+]
