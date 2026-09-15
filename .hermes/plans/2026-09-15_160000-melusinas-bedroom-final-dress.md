@@ -21,7 +21,7 @@
 **Houdini creative (all real, all committed):**
 - Moonlit cobble: hython COP + numpy, 8 maps, imported with sRGB/compression fixed, `MI_Tilable_SurrealCobble_MoonlitCobble_R060_Tile4` live on the terrace.
 - Crystal eigen-medallion (2,3): exact plate solver, verify gate 9/9 PASS, Height+Normal in-engine.
-- Surreal flora: 15 PBR maps (Ghost Lotus, Siren Kelp, Crystal Anemone) baked + imported. Ghost lotus mesh in Blender 5.2 headless kiln (background, notify) — FBX import waits for owner (modal risk unattended).
+- Surreal flora: 15 PBR maps baked + imported; bodies in-engine too — ghost lotus (29 parts), siren kelp (59, eyes + ribbon), crystal anemone (341 fractal polyps). Arrangement in the dell waits for your hand tonight (Act 4).
 
 **Greybox (done):** 11 arch mats → toon heirs, 14 meshes reseated, all compile. Oddments out of scope.
 
