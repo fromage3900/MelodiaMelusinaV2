@@ -1,0 +1,113 @@
+{
+ "meshes_scanned": 111,
+ "legacy": {
+  "M_arch_02_mat": [
+   "SM_arch_02"
+  ],
+  "M_arch_03_mat": [
+   "SM_arch_03_a",
+   "SM_arch_03_b",
+   "SM_arch_03_c"
+  ],
+  "M_arch_04_mat": [
+   "SM_arch_04_a_002",
+   "SM_arch_04_b"
+  ],
+  "M_arch_05_mat": [
+   "SM_arch_05_a_001"
+  ],
+  "M_arch_06_mat": [
+   "SM_arch_06"
+  ],
+  "M_arch_11_mat": [
+   "SM_arch_11"
+  ],
+  "M_Material_003": [
+   "SM_ROOF",
+   "SM_SM_Heart",
+   "SM_SM_Pole",
+   "SM_Window",
+   "SM_bed",
+   "SM_bed_001",
+   "SM_circular_room",
+   "SM_circular_room_nofloor",
+   "SM_room_1",
+   "SM_room_2",
+   "SM_room_3",
+   "SM_wallhi_019",
+   "SM_wallwindow"
+  ],
+  "M_classic_arch_13": [
+   "SM_classic_arch_13"
+  ],
+  "M_frieze_01_001": [
+   "SM_classic_arch_13"
+  ],
+  "M_classic_arch_18_mat": [
+   "SM_classic_arch_18_c"
+  ],
+  "M_classical_arch_20": [
+   "SM_classic_arch_20"
+  ],
+  "M_column_2_mat": [
+   "SM_column_02"
+  ],
+  "M_Vertex_Colors_003": [
+   "SM_Cube_010"
+  ],
+  "M_Material_001": [
+   "SM_PM3D_Cube3D1",
+   "SM_PM3D_Cube3D1_1",
+   "SM_PM3D_Cube3D1_2",
+   "SM_PM3D_Sphere3D1",
+   "SM_SM_BuildingBlock01",
+   "SM_SM_BuildingBlock02",
+   "SM_SM_BuildingBlock03",
+   "SM_SM_ShojiScreen",
+   "SM_SM_StreetLamp",
+   "SM_SM_TeaBridge002",
+   "SM_SM_Torii"
+  ],
+  "M_Material_004": [
+   "SM_PM3D_Sphere3D1_002",
+   "SM_PM3D_Sphere3D1_1",
+   "SM_PolySphere"
+  ],
+  "M_Material_005": [
+   "SM_PM3D_Sphere3D1_003",
+   "SM_PM3D_Sphere3D1_1_001",
+   "SM_PM3D_Sphere3D2",
+   "SM_PM3D_Sphere3D2_1",
+   "SM_PM3D_Sphere3D2_2",
+   "SM_PM3D_Sphere3D2_3",
+   "SM_PolySphere_001"
+  ],
+  "M_Material_022": [
+   "SM_Retopo_wand"
+  ],
+  "M_Material_025": [
+   "SM_SM_Gem"
+  ],
+  "M_Material_010": [
+   "SM_SM_Gem"
+  ],
+  "M_Outline": [
+   "SM_SM_Heart"
+  ],
+  "M_Material_026": [
+   "SM_SM_Star"
+  ],
+  "M_Material_027": [
+   "SM_SM_Star"
+  ],
+  "M_SurrealArch_Marble": [
+   "SM_SM_TeaHouse"
+  ],
+  "M_Mossy_Rock_008": [
+   "SM_Wall_001_dmg"
+  ],
+  "M_Mossy_Rock_009": [
+   "SM_Wall_dmg"
+  ]
+ }
+}
