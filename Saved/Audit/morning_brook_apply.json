@@ -1,0 +1,22 @@
+{
+ "lake": {
+  "ok": false,
+  "err": "spawn null"
+ },
+ "volumes": [
+  {
+   "label": "Morning_Dell_Banks",
+   "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_BellTreeGarden",
+   "ok": true,
+   "isms": [],
+   "total": 0
+  },
+  {
+   "label": "Morning_Brook_Arpeggio",
+   "graph": "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ArpeggioBridge",
+   "ok": true,
+   "isms": [],
+   "total": 0
+  }
+ ]
+}
