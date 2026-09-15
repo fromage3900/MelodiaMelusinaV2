@@ -9,13 +9,35 @@
 
 ## Visual reference boards
 
-These boards are the current visual target for the concept:
+Three visual boards were generated and approved as the current art-direction target for this concept. The repo paths below are reserved for the owner binary drop so agents do not invent alternate filenames or visual directions:
 
-![The Saint of the Last Reply — character concept](Images/saint_last_reply_character_2026-09-15.jpg)
+| Board | Reserved repo path | Original SHA-256 |
+|---|---|---|
+| Character / silhouette / costume | `Docs/Art/Images/saint_last_reply_character_2026-09-15.png` | `d590a3f407c04410b99b5e440532b06ce363f4a96c1f88f4e6f720e32f622520` |
+| Chapter / environment | `Docs/Art/Images/house_unanswered_bells_environment_2026-09-15.png` | `d8536ae345a66757fa6c112d992cf294b8241e73ceaa4e6390ec6f977c6b30b7` |
+| Encounter / phases / quantum reaction | `Docs/Art/Images/saint_last_reply_encounter_2026-09-15.png` | `d834021038e0fcd5199918c294778830133ec52608f1604e9c4bccfe4440c3e4` |
 
-![The House of Unanswered Bells — environment concept](Images/house_unanswered_bells_environment_2026-09-15.jpg)
+Until those exact image bytes are landed, **this document is the canonical textual description of the boards**. Do not generate substitutes and then treat them as canon.
 
-![The Saint of the Last Reply — encounter mechanics](Images/saint_last_reply_encounter_2026-09-15.jpg)
+### Board A — character target
+
+A tall, pale, elegant false saint / courtier with deliberately gangly proportions. White-silver hair, delicate face, elongated fingers, a halo-like metal frame and an ecclesiastical/editorial costume held together visually by bells, ribbons, hooks and tension wires. Ivory, black, burgundy and champagne-gold dominate. The design should feel seductive, theatrical and emotionally dangerous rather than physically bulky.
+
+Callouts established by the board:
+- face: beautiful, distant, hungry;
+- hand / bell details as a record of pursuit;
+- retreating silhouette that always looks one step out of reach;
+- martyr-like damage pose where injury reads as validation;
+- tension-wire silhouette held together by pursuit;
+- **The Rest** as the quiet visual counter-motif.
+
+### Board B — environment target
+
+A monumental cathedral / theatre / palace hybrid with mirrored floors, ivory stone, black lacquer, burgundy drapery and gold bells. Bridges retract when pursued; corridors lengthen as the player approaches; doorways are woven with bells; silent audience balconies observe without answering. The boss appears tiny against the architecture until the final arena.
+
+### Board C — encounter target
+
+The battle board establishes four readable phases — **Pursuit, Provocation, Martyrdom, The Rest** — plus a circular pursuit -> withdrawal -> fake opening -> validation reaction loop, ghosted quantum-state silhouettes collapsing into one response, and a rhythm UI in which rests are explicit actions.
 
 ## Chapter II — The House of Unanswered Bells
 
@@ -144,10 +166,10 @@ The chapter should establish **rests as actions**.
 Possible authored grammar:
 
 ```text
-NOTE      = commit / answer
-REST      = hold / refuse / create distance
-ENEMY BEAT= provocation window
-KEY REST  = explicit "do not answer" beat
+NOTE       = commit / answer
+REST       = hold / refuse / create distance
+ENEMY BEAT = provocation window
+KEY REST   = explicit "do not answer" beat
 ```
 
 The encounter should tempt the player to press early. The emotional trick only works if the mechanically correct response eventually becomes legible and fair.
