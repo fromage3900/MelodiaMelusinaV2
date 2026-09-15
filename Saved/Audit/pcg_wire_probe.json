@@ -1,0 +1,5 @@
+[
+ "get_settings ERR PCGBlueprintHelpers: Failed to convert parameter 'context' when calling function 'PCGBlueprintHelpers.GetSettings' on 'Default__PCGBlueprintHelpers'\n  TypeError: NativizeProperty: Cannot nativize 'PCG",
+ "edge_labels ERR add_edge() required argument 'to' (pos 3) not found",
+ "edge_nodes ERR add_edge() required argument 'from_pin_label' (pos 2) not found"
+]

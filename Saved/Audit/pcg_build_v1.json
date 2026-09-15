@@ -1,0 +1,12 @@
+{
+ "steps": [
+  "start_count=15",
+  "doomed=14",
+  "remove_borrowed ERR remove_nodes() takes no arguments (1 given)",
+  "after_strip=15",
+  "add_spawner OK (<Object '/Game/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.PCG_MelusinaHouse_MorningDell:StaticMeshSpawner_0' (0x000001B4D07F4500) Class 'PCGNode'>, <Ob",
+  "add_sampler OK (<Object '/Game/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.PCG_MelusinaHouse_MorningDell:SurfaceSampler_0' (0x000001B4D07FE500) Class 'PCGNode'>, <Objec",
+  "add_volume_in OK (<Object '/Game/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.PCG_MelusinaHouse_MorningDell:GetVolumeData_0' (0x000001B4D07F5F00) Class 'PCGNode'>, <Object"
+ ],
+ "spawner_attrs": []
+}
