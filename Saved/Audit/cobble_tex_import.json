@@ -1,0 +1,43 @@
+{
+ "imported": [
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_BaseColor.T_SurrealCobble_MoonlitCobble_BaseColor",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_Height.T_SurrealCobble_MoonlitCobble_Height",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_Iridescence.T_SurrealCobble_MoonlitCobble_Iridescence",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_Metallic.T_SurrealCobble_MoonlitCobble_Metallic",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_MovingPearlMask.T_SurrealCobble_MoonlitCobble_MovingPearlMask",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_Normal.T_SurrealCobble_MoonlitCobble_Normal",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_ORM.T_SurrealCobble_MoonlitCobble_ORM",
+  "/Game/EnvSandbox/Textures/SurrealCobble/T_SurrealCobble_MoonlitCobble_Roughness.T_SurrealCobble_MoonlitCobble_Roughness",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_AO_1.raw_MoonlitCobble_AO_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_ClothMask_1.raw_MoonlitCobble_ClothMask_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_CobbleDome_1.raw_MoonlitCobble_CobbleDome_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_GoldMask_1.raw_MoonlitCobble_GoldMask_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_Height_1.raw_MoonlitCobble_Height_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_Iridescence_1.raw_MoonlitCobble_Iridescence_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_Mortar_1.raw_MoonlitCobble_Mortar_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_Normal_1.raw_MoonlitCobble_Normal_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_Ornament_1.raw_MoonlitCobble_Ornament_1",
+  "/Game/EnvSandbox/Textures/SurrealCobble/raw_MoonlitCobble_PearlMask_1.raw_MoonlitCobble_PearlMask_1"
+ ],
+ "failed": [],
+ "fixed": [
+  "T_SurrealCobble_MoonlitCobble_BaseColor",
+  "T_SurrealCobble_MoonlitCobble_Height",
+  "T_SurrealCobble_MoonlitCobble_Iridescence",
+  "T_SurrealCobble_MoonlitCobble_Metallic",
+  "T_SurrealCobble_MoonlitCobble_MovingPearlMask",
+  "T_SurrealCobble_MoonlitCobble_Normal",
+  "T_SurrealCobble_MoonlitCobble_ORM",
+  "T_SurrealCobble_MoonlitCobble_Roughness",
+  "raw_MoonlitCobble_AO_1",
+  "raw_MoonlitCobble_ClothMask_1",
+  "raw_MoonlitCobble_CobbleDome_1",
+  "raw_MoonlitCobble_GoldMask_1",
+  "raw_MoonlitCobble_Height_1",
+  "raw_MoonlitCobble_Iridescence_1",
+  "raw_MoonlitCobble_Mortar_1",
+  "raw_MoonlitCobble_Normal_1",
+  "raw_MoonlitCobble_Ornament_1",
+  "raw_MoonlitCobble_PearlMask_1"
+ ]
+}
