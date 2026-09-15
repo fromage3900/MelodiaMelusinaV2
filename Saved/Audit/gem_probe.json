@@ -1,0 +1,10 @@
+{
+ "GB_Morning_ResonanceGem": {
+  "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Gem.SM_Greybox_Gem",
+  "override_mats": []
+ },
+ "GB_Morning_ResonancePlinth": {
+  "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Floor_4x4.SM_Greybox_Floor_4x4",
+  "override_mats": []
+ }
+}
