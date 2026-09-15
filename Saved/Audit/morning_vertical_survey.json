@@ -1,0 +1,534 @@
+{
+ "climbables": [
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    536.7,
+    2438.3,
+    1793.7
+   ],
+   "top_z": 1804.5,
+   "traced_z": 1796.5
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    1041.1,
+    2390.7,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1707.9
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    1170.9,
+    2370.7,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    1435.0,
+    2321.0,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    786.0,
+    2421.0,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    912.8,
+    2407.5,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    660.6,
+    2431.3,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    1302.2,
+    2347.5,
+    1698.4
+   ],
+   "top_z": 1709.2,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    900.0,
+    2150.0,
+    1703.4
+   ],
+   "top_z": 1708.4,
+   "traced_z": 1708.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    732.8,
+    2115.4,
+    1703.4
+   ],
+   "top_z": 1708.4,
+   "traced_z": 1708.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    569.8,
+    2088.5,
+    1687.6
+   ],
+   "top_z": 1692.6,
+   "traced_z": 1703.9
+  },
+  {
+   "label": "SM_classic_arch_13",
+   "loc": [
+    1650.0,
+    1700.0,
+    1150.0
+   ],
+   "top_z": 1683.3,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    414.4,
+    2442.1,
+    1619.3
+   ],
+   "top_z": 1630.1,
+   "traced_z": 1622.1
+  },
+  {
+   "label": "SM_MassiveSandstoneCliff_01",
+   "loc": [
+    -2609.5,
+    3103.5,
+    -1344.7
+   ],
+   "top_z": 1595.9,
+   "traced_z": null
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    410.9,
+    2069.2,
+    1528.7
+   ],
+   "top_z": 1533.7,
+   "traced_z": 1688.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    293.5,
+    2442.6,
+    1406.3
+   ],
+   "top_z": 1417.1,
+   "traced_z": 1409.1
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    256.2,
+    2057.7,
+    1374.0
+   ],
+   "top_z": 1379.0,
+   "traced_z": 1530.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    174.1,
+    2439.9,
+    1286.9
+   ],
+   "top_z": 1297.7,
+   "traced_z": 1289.7
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    105.6,
+    2053.8,
+    1223.4
+   ],
+   "top_z": 1228.4,
+   "traced_z": 1376.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    56.2,
+    2433.9,
+    1169.0
+   ],
+   "top_z": 1179.8,
+   "traced_z": 1171.8
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -40.8,
+    2057.7,
+    1077.0
+   ],
+   "top_z": 1082.0,
+   "traced_z": 1225.8
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    -60.2,
+    2424.7,
+    1052.6
+   ],
+   "top_z": 1063.4,
+   "traced_z": 1055.4
+  },
+  {
+   "label": "SM_Bookshelf",
+   "loc": [
+    -1025.0,
+    732.0,
+    -75.0
+   ],
+   "top_z": 107.5,
+   "traced_z": 107.5
+  },
+  {
+   "label": "GB_Morning_ThresholdPillar_0",
+   "loc": [
+    -430.0,
+    240.0,
+    105.0
+   ],
+   "top_z": 106.3,
+   "traced_z": 106.4
+  },
+  {
+   "label": "GB_Morning_ThresholdPillar_1",
+   "loc": [
+    430.0,
+    240.0,
+    105.0
+   ],
+   "top_z": 106.3,
+   "traced_z": 1527.8
+  },
+  {
+   "label": "GB_Morning_ResonancePlinth",
+   "loc": [
+    160.0,
+    130.0,
+    65.0
+   ],
+   "top_z": 65.0,
+   "traced_z": 1257.8
+  },
+  {
+   "label": "SM_Greybox_Wall_Mid_001",
+   "loc": [
+    70.0,
+    1660.0,
+    -270.0
+   ],
+   "top_z": 54.6,
+   "traced_z": 1167.8
+  },
+  {
+   "label": "SM_Greybox_Wall_Mid_2",
+   "loc": [
+    860.0,
+    1660.0,
+    -270.0
+   ],
+   "top_z": 54.6,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "SM_wallhi_003",
+   "loc": [
+    465.0,
+    1655.0,
+    -255.0
+   ],
+   "top_z": 54.1,
+   "traced_z": 1562.8
+  },
+  {
+   "label": "SM_Greybox_Wall_Window",
+   "loc": [
+    1679.0,
+    1957.6,
+    -350.6
+   ],
+   "top_z": -115.4,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "SM_Greybox_Wall_Window2",
+   "loc": [
+    1679.0,
+    3177.6,
+    -350.6
+   ],
+   "top_z": -115.4,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "Dress_BedBedding",
+   "loc": [
+    1440.1,
+    2340.8,
+    -541.2
+   ],
+   "top_z": -514.4,
+   "traced_z": 1701.2
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -832.5,
+    2242.3,
+    -607.7
+   ],
+   "top_z": -602.7,
+   "traced_z": 420.5
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -710.9,
+    2192.3,
+    -608.7
+   ],
+   "top_z": -603.7,
+   "traced_z": 447.9
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -585.2,
+    2150.0,
+    -613.8
+   ],
+   "top_z": -608.8,
+   "traced_z": 440.2
+  },
+  {
+   "label": "SM_classic_arch_26",
+   "loc": [
+    396.7,
+    3030.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1494.5
+  },
+  {
+   "label": "SM_classic_arch_24",
+   "loc": [
+    1264.7,
+    3030.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "SM_classic_arch_25",
+   "loc": [
+    1264.7,
+    2110.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "SM_classic_arch_27",
+   "loc": [
+    396.7,
+    2110.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1533.7
+  },
+  {
+   "label": "SM_classic_arch_23",
+   "loc": [
+    1264.7,
+    3030.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "SM_classic_arch_21",
+   "loc": [
+    1264.7,
+    2110.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1683.4
+  },
+  {
+   "label": "SM_classic_arch_22",
+   "loc": [
+    396.7,
+    3030.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1494.5
+  },
+  {
+   "label": "SM_classic_arch_20",
+   "loc": [
+    396.7,
+    2110.0,
+    -751.3
+   ],
+   "top_z": -610.3,
+   "traced_z": 1533.7
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -950.0,
+    2300.0,
+    -620.4
+   ],
+   "top_z": -615.4,
+   "traced_z": 337.2
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -455.3,
+    2115.4,
+    -620.9
+   ],
+   "top_z": -615.9,
+   "traced_z": 445.6
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -321.3,
+    2088.5,
+    -651.5
+   ],
+   "top_z": -646.5,
+   "traced_z": 395.5
+  },
+  {
+   "label": "Morning_SheepDell_PondBed",
+   "loc": [
+    -950.0,
+    2300.0,
+    -660.0
+   ],
+   "top_z": -660.0,
+   "traced_z": 337.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    -620.0,
+    2330.0,
+    -680.3
+   ],
+   "top_z": -669.5,
+   "traced_z": 415.9
+  },
+  {
+   "label": "MH_path_pond_window",
+   "loc": [
+    -183.1,
+    2069.2,
+    -689.2
+   ],
+   "top_z": -684.2,
+   "traced_z": 1079.7
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    -511.0,
+    2355.4,
+    -696.0
+   ],
+   "top_z": -685.2,
+   "traced_z": 366.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    -400.6,
+    2377.6,
+    -712.5
+   ],
+   "top_z": -701.7,
+   "traced_z": 357.2
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    -288.6,
+    2396.6,
+    -729.7
+   ],
+   "top_z": -718.9,
+   "traced_z": 312.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "loc": [
+    -175.2,
+    2412.3,
+    -745.9
+   ],
+   "top_z": -735.1,
+   "traced_z": 204.1
+  }
+ ]
+}
