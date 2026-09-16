@@ -39,18 +39,30 @@ If no skill fits, use the relevant durable subsystem contract directly. **Do not
 
 ## 2. Worldbuilding orchestration
 
-For 3D tasks, the conductor delegates spatial perception to the world-builder skill immediately:
+For 3D tasks, the conductor delegates spatial perception and measured art direction to the world-builder skill immediately:
 
 ```text
 owner intent
   -> scene_context_cycle.begin()
+  -> read live transforms / bounds / counts / current camera
+  -> MEASURED BUILD CARD
+       camera + FOV/focal length
+       player route dimensions
+       reveal distance / clear zone
+       transform deltas
+       PCG bounds + instance budget
+       exact before/after comparison view
   -> BUILDER edits the actual level
   -> scene_context_cycle.end()
-  -> FALSIFIER reads spatial diff + captures
+  -> FALSIFIER checks measurements + spatial diff + captures
   -> owner judges viewport / gameplay
   -> provenance check
   -> done
 ```
+
+For substantial environment work, “make it prettier / more epic / more lush / more readable” is not an executable brief by itself. The routed task must convert subjective intent into falsifiable spatial targets using actual live scene measurements.
+
+Do not invent fake precision. Read the level first. If the owner did not provide numbers, choose provisional working targets, label them as such, and execute.
 
 Do not substitute source-code inspection for scene perception when the editor is available.
 
@@ -96,8 +108,12 @@ one selected skill / contract
 LIVE CONTEXT
 scene packet / graph export / failing test / source diff as appropriate
 
+MEASURED TARGETS
+for 3D: camera, distance, width, clearance, bounds, transform, density/count budget
+for systems: exact input/output/state/evidence target
+
 FINISH LINE
-one measurable result
+one falsifiable result
 ```
 
 Do not paste the entire architecture into a prompt when the relevant skill already carries it.
@@ -124,5 +140,7 @@ Do not create another plan, handoff, retrospective, or adjacent task merely beca
 Report:
 
 - what changed;
+- what measurable target it was aiming at;
+- actual before/after result;
 - what proved it;
 - what the owner should look at/play if visual judgment remains.
