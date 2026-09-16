@@ -1,0 +1,174 @@
+@ Start
+
+- .
+  A Bell Tree rings somewhere across the water.
+
+  One clear note.
+
+- Melusina
+  It's doing it again.
+
+- Sir Melodious
+  You have been staring at that tree like it owes you money.
+
+- Melusina
+  It owes me an answer.
+
+- Sir Melodious
+  Trees have terrible credit.
+
+- .
+  The Bell Tree rings again.
+
+* Answer it. | -> Answer
+* Wait. Let it finish. | -> Wait
+
+<@> Answer
+
+- Melusina
+  Fine.
+
+- Melusina
+  Since apparently we're being shy.
+
+- .
+  Melusina hums the note back.
+
+  Then she adds a second tone above it.
+
+- Melusina
+  There.
+
+- Melusina
+  Extremely generous of me.
+
+- .
+  Nothing answers.
+
+- Melusina
+  ...
+
+- Melusina
+  Oh, disgusting.
+
+- Sir Melodious
+  It has been four seconds.
+
+- Melusina
+  I am aware.
+
+- Sir Melodious
+  Your face disagrees.
+
+- Melusina
+  My face is not part of this conversation.
+
+-> Resolve
+
+<@> Wait
+
+- Melusina
+  No.
+
+- Sir Melodious
+  No?
+
+- Melusina
+  It can come to me.
+
+- Sir Melodious
+  Excellent.
+
+- Sir Melodious
+  A diplomatic crisis with a tree.
+
+- Melusina
+  I am listening.
+
+- .
+  They wait.
+
+  The Bell Tree rings once more.
+
+  This time, another tree answers from somewhere beyond the fog.
+
+- Melusina
+  Oh.
+
+- Sir Melodious
+  Ah.
+
+- Melusina
+  It wasn't waiting for me.
+
+- Sir Melodious
+  Most things aren't.
+
+- Melusina
+  ...
+
+- Sir Melodious
+  I meant that encouragingly.
+
+-> Resolve
+
+<@> Resolve
+
+- .
+  A third Bell Tree joins the interval.
+
+  Then a fourth.
+
+  Across the water, the garden begins passing the phrase from tree to tree.
+
+- Melusina
+  They already had a song.
+
+- Sir Melodious
+  Rude of them not to send you the score.
+
+- Melusina
+  Actually, yes.
+
+- Sir Melodious
+  That was not—
+
+- Melusina
+  No, I heard you.
+
+- Melusina
+  I agree.
+
+- .
+  The trees continue without them.
+
+- Melusina
+  ...I suppose I can still sing with them.
+
+- Sir Melodious
+  You do that often.
+
+- Melusina
+  I meant musically.
+
+- Sir Melodious
+  Ah.
+
+- .
+  Melusina listens until the phrase comes around again.
+
+- Melusina
+  Okay.
+
+- Melusina
+  Again.
+
+- Melusina
+  But this time I'm listening.
+
+@ Finish
+
+- .
+  The next note belongs to the garden.
+
+$ End
