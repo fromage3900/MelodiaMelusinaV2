@@ -1,0 +1,102 @@
+{
+ "mis": [
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B0_Red",
+   "created": true,
+   "tint": [
+    1.0,
+    0.18,
+    0.22
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  },
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B1_Orange",
+   "created": true,
+   "tint": [
+    1.0,
+    0.45,
+    0.1
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  },
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B2_Gold",
+   "created": true,
+   "tint": [
+    1.0,
+    0.8,
+    0.2
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  },
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B3_Green",
+   "created": true,
+   "tint": [
+    0.35,
+    0.95,
+    0.45
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  },
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B4_Blue",
+   "created": true,
+   "tint": [
+    0.3,
+    0.55,
+    1.0
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  },
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B5_Indigo",
+   "created": true,
+   "tint": [
+    0.45,
+    0.3,
+    0.95
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  },
+  {
+   "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_B6_Violet",
+   "created": true,
+   "tint": [
+    0.75,
+    0.35,
+    1.0
+   ],
+   "maps": [
+    "Albedo",
+    "EmissiveMap",
+    "Normal"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "cleanup": [
+  "removed_grids=7"
+ ],
+ "templates": [],
+ "branches": [
+  {
+   "band": "R",
+   "template": "dressed",
+   "wired": true
+  },
+  {
+   "band": "O",
+   "template": "dressed",
+   "wired": true
+  },
+  {
+   "band": "Y",
+   "template": "dressed",
+   "wired": true
+  },
+  {
+   "band": "G",
+   "template": "dressed",
+   "wired": true
+  },
+  {
+   "band": "B",
+   "template": "dressed",
+   "wired": true
+  },
+  {
+   "band": "I",
+   "template": "dressed",
+   "wired": true
+  },
+  {
+   "band": "V",
+   "template": "dressed",
+   "wired": true
+  }
+ ],
+ "petal_class": "StaticMesh",
+ "generated": true,
+ "spawned_tagged": 0
+}

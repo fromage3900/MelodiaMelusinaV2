@@ -1,0 +1,26 @@
+{
+ "Wake_Mandala": {
+  "graph": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom",
+  "isms": [],
+  "total": 0,
+  "volume": "Wake_Mandala"
+ },
+ "Wake_Phyllo": {
+  "graph": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden",
+  "isms": [],
+  "total": 0,
+  "volume": "Wake_Phyllo"
+ },
+ "Wake_Terrace": {
+  "graph": "/Game/EnvSandbox/PCG/Styles/Baroque/PCG_TerraceGarden",
+  "isms": [],
+  "total": 0,
+  "volume": "Wake_Terrace"
+ },
+ "Wake_WallPath": {
+  "graph": "/Game/EnvSandbox/PCG/Styles/Baroque/PCG_WallGardenPath",
+  "isms": [],
+  "total": 0,
+  "volume": "Wake_WallPath"
+ }
+}

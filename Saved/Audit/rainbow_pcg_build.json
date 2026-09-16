@@ -1,0 +1,72 @@
+{
+ "templates": [
+  {
+   "band": "R",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  },
+  {
+   "band": "O",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  },
+  {
+   "band": "Y",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  },
+  {
+   "band": "G",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  },
+  {
+   "band": "B",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  },
+  {
+   "band": "I",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  },
+  {
+   "band": "V",
+   "dress_err": "StaticMeshComponent: Failed to convert parameter 'new_mesh' when calling function 'StaticMeshComponent.SetStaticMesh' on 'StaticMeshComponent0'\n  Type"
+  }
+ ],
+ "branches": [
+  {
+   "band": "R",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  },
+  {
+   "band": "O",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  },
+  {
+   "band": "Y",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  },
+  {
+   "band": "G",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  },
+  {
+   "band": "B",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  },
+  {
+   "band": "I",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  },
+  {
+   "band": "V",
+   "err": "PCGCreatePointsGridSettings: Property 'bUseSeed' for attribute 'use_seed' on 'PCGCreatePointsGridSettings' is protected and cannot be set"
+  }
+ ],
+ "lake": {
+  "label": "Morning_SheepDell_Lake",
+  "pos": [
+   -950.0,
+   2300.0,
+   -615.4
+  ]
+ },
+ "generated": true,
+ "spawned_tagged": 0
+}

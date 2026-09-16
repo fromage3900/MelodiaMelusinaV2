@@ -1,0 +1,19 @@
+{
+ "keep_original_before": "False",
+ "unwire_ray": true,
+ "wire_direct": true,
+ "spawner_inputs": [
+  [
+   "PCGPin_0",
+   1
+  ],
+  [
+   "PCGPin_1",
+   0
+  ],
+  [
+   "PCGPin_2",
+   0
+  ]
+ ]
+}

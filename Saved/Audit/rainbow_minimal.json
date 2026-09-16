@@ -1,0 +1,9 @@
+{
+ "duplicated": true,
+ "pruned": true,
+ "extents_rb": "<Struct 'Vector' (0x000001B42DD6CF18) {x: 400.000000, y: 400.000000, z: 200.000000}>",
+ "cell_rb": "<Struct 'Vector' (0x000001B42DD6CF30) {x: 100.000000, y: 100.000000, z: 100.000000}>",
+ "cull_rb": "False",
+ "build_err": "'NoneType' object has no attribute 'get_actor_label'",
+ "generated": true
+}

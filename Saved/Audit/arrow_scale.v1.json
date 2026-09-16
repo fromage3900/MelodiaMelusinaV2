@@ -1,0 +1,52 @@
+{
+ "spawned": [
+  {
+   "label": "ArrowScale_Twin",
+   "mesh": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R08/SM_ME_WaveHarp_Arrow_R08",
+   "loc": [
+    1250.0,
+    2200.0,
+    -550.3
+   ],
+   "extent": [
+    31.7,
+    5.7,
+    27.2
+   ]
+  },
+  {
+   "label": "ArrowScale_Stock",
+   "skipped": "no_mesh"
+  },
+  {
+   "label": "ArrowScale_Stock",
+   "mesh": "/Engine/BasicShapes/Sphere.Sphere at 0.15",
+   "loc": [
+    1330.0,
+    2200.0,
+    -550.3
+   ],
+   "extent": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  }
+ ],
+ "stock_resolve_err": "'NoneType' object has no attribute 'get_class'",
+ "stock_mesh": null,
+ "twin_bounds": "<Struct 'BoxSphereBounds' (0x0000021EEFEA5940) {origin: {x: 30.324408, y: 3.721975, z: 25.900194}, box_extent: {x: 31.675592, y: 5.697347, z: 27.221343}, sphere_radius: 41.665055}>",
+ "saved": true,
+ "reload_proof": {
+  "ArrowScale_Twin": [
+   1250.0,
+   -550.3,
+   31.7
+  ],
+  "ArrowScale_Stock": [
+   1330.0,
+   -550.3,
+   7.5
+  ]
+ }
+}

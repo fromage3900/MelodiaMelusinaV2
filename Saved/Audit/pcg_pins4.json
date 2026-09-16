@@ -1,0 +1,418 @@
+{
+ "GetVolumeData_0": [
+  [
+   "IN",
+   "PCGPin_0",
+   "Optional bounding shape to filter found "
+  ],
+  [
+   "IN",
+   "PCGPin_1",
+   "Data passed to this pin will be used to "
+  ],
+  [
+   "IN",
+   "PCGPin_2",
+   "Attribute Set containing multiple parame"
+  ],
+  [
+   "IN",
+   "PCGPin_3",
+   "Which actors to consider.\nAttribute type"
+  ],
+  [
+   "IN",
+   "PCGPin_4",
+   "Filters out actors that do not overlap t"
+  ],
+  [
+   "IN",
+   "PCGPin_5",
+   "Whether to consider child actors.\nAttrib"
+  ],
+  [
+   "IN",
+   "PCGPin_6",
+   "Attribute type is \"EPCGIsolatedActorIncl"
+  ],
+  [
+   "IN",
+   "PCGPin_7",
+   "How to select when filtering actors.\nAtt"
+  ],
+  [
+   "IN",
+   "PCGPin_8",
+   "Tag to match against when filtering acto"
+  ],
+  [
+   "IN",
+   "PCGPin_9",
+   "Actor class to match against when filter"
+  ],
+  [
+   "IN",
+   "PCGPin_10",
+   "Controls what attribute to read from whe"
+  ],
+  [
+   "IN",
+   "PCGPin_11",
+   "If true processes all matching actors, o"
+  ],
+  [
+   "IN",
+   "PCGPin_12",
+   "If true, ignores results found from with"
+  ],
+  [
+   "IN",
+   "PCGPin_13",
+   "How to select when filtering actors.\nAtt"
+  ],
+  [
+   "IN",
+   "PCGPin_14",
+   "Tag to match against when filtering acto"
+  ],
+  [
+   "IN",
+   "PCGPin_15",
+   "Actor class to match against when filter"
+  ],
+  [
+   "OUT",
+   "PCGPin_16",
+   ""
+  ]
+ ],
+ "CreatePointsGrid_8": [
+  [
+   "IN",
+   "PCGPin_0",
+   "Data passed to this pin will be used to "
+  ],
+  [
+   "IN",
+   "PCGPin_1",
+   "Attribute Set containing multiple parame"
+  ],
+  [
+   "IN",
+   "PCGPin_2",
+   "Attribute type is \"FVector\" and its exac"
+  ],
+  [
+   "IN",
+   "PCGPin_3",
+   "Attribute type is \"FVector\" and its exac"
+  ],
+  [
+   "IN",
+   "PCGPin_4",
+   "Each PCG point represents a discretized,"
+  ],
+  [
+   "IN",
+   "PCGPin_5",
+   "Sets the generation referential of the p"
+  ],
+  [
+   "IN",
+   "PCGPin_6",
+   "If true, the bounds of the points are se"
+  ],
+  [
+   "IN",
+   "PCGPin_7",
+   "If true, points are removed if they are "
+  ],
+  [
+   "IN",
+   "PCGPin_8",
+   "Attribute type is \"EPCGPointPosition\" an"
+  ],
+  [
+   "OUT",
+   "PCGPin_9",
+   ""
+  ]
+ ],
+ "WorldRaycast_1": [
+  [
+   "IN",
+   "PCGPin_0",
+   "Points acting as the point origin of eac"
+  ],
+  [
+   "IN",
+   "PCGPin_1",
+   "All projected points must be contained w"
+  ],
+  [
+   "IN",
+   "PCGPin_2",
+   "Data passed to this pin will be used to "
+  ],
+  [
+   "IN",
+   "PCGPin_3",
+   "Attribute Set containing multiple parame"
+  ],
+  [
+   "IN",
+   "PCGPin_4",
+   "Shape that will be used in the collision"
+  ],
+  [
+   "IN",
+   "PCGPin_5",
+   "Half the size of the sweep box's X, Y, Z"
+  ],
+  [
+   "IN",
+   "PCGPin_6",
+   "Radius of the sweep's sphere in world sp"
+  ],
+  [
+   "IN",
+   "PCGPin_7",
+   "Radius of the spherical shape of the swe"
+  ],
+  [
+   "IN",
+   "PCGPin_8",
+   "Half the length of the sweep's capsule i"
+  ],
+  [
+   "IN",
+   "PCGPin_9",
+   "World space rotation applied to the coll"
+  ],
+  [
+   "IN",
+   "PCGPin_10",
+   "The selected attribute determines the ra"
+  ],
+  [
+   "IN",
+   "PCGPin_11",
+   "Use a selected attribute as the ray dire"
+  ],
+  [
+   "IN",
+   "PCGPin_12",
+   "A ray direction that will be used for al"
+  ],
+  [
+   "IN",
+   "PCGPin_13",
+   "The selected attribute determines the ra"
+  ],
+  [
+   "IN",
+   "PCGPin_14",
+   "The selected attribute determines the ra"
+  ],
+  [
+   "IN",
+   "PCGPin_15",
+   "Use a selected attribute as the ray leng"
+  ],
+  [
+   "IN",
+   "PCGPin_16",
+   "A ray length that will be used for all r"
+  ],
+  [
+   "IN",
+   "PCGPin_17",
+   "The selected attribute determines the ra"
+  ],
+  [
+   "IN",
+   "PCGPin_18",
+   "Ignore rays that hit backfaces.\nAttribut"
+  ],
+  [
+   "IN",
+   "PCGPin_19",
+   "Create an attribute for whether the rayc"
+  ],
+  [
+   "IN",
+   "PCGPin_20",
+   "Create an attribute for the impact locat"
+  ],
+  [
+   "IN",
+   "PCGPin_21",
+   "Create an attribute for the impact norma"
+  ],
+  [
+   "IN",
+   "PCGPin_22",
+   "Create an attribute for the reflection v"
+  ],
+  [
+   "IN",
+   "PCGPin_23",
+   "Create an attribute for the distance bet"
+  ],
+  [
+   "IN",
+   "PCGPin_24",
+   "Create an attribute for the impact point"
+  ],
+  [
+   "IN",
+   "PCGPin_25",
+   "Create an attribute for the render mater"
+  ],
+  [
+   "IN",
+   "PCGPin_26",
+   "Create an attribute for the static mesh."
+  ],
+  [
+   "IN",
+   "PCGPin_27",
+   "Create an attribute for index of the hit"
+  ],
+  [
+   "IN",
+   "PCGPin_28",
+   "Create an attribute for UV Coordinates o"
+  ],
+  [
+   "IN",
+   "PCGPin_29",
+   "Create an attribute for the index of the"
+  ],
+  [
+   "IN",
+   "PCGPin_30",
+   "Create an attribute for the index of the"
+  ],
+  [
+   "IN",
+   "PCGPin_31",
+   "Will apply landscape layers and their va"
+  ],
+  [
+   "IN",
+   "PCGPin_32",
+   "Retrieve the material index explicitly. "
+  ],
+  [
+   "IN",
+   "PCGPin_33",
+   "Define the index of the render material "
+  ],
+  [
+   "IN",
+   "PCGPin_34",
+   "The index of the render material to quer"
+  ],
+  [
+   "IN",
+   "PCGPin_35",
+   "This UV Channel will be selected when re"
+  ],
+  [
+   "IN",
+   "PCGPin_36",
+   "If true, will ignore hits/overlaps on co"
+  ],
+  [
+   "IN",
+   "PCGPin_37",
+   "Attribute type is \"bool\" and its exact n"
+  ],
+  [
+   "IN",
+   "PCGPin_38",
+   "Attribute type is \"TEnumAsByte<ECollisio"
+  ],
+  [
+   "IN",
+   "PCGPin_39",
+   "Queries against complex collision if ena"
+  ],
+  [
+   "IN",
+   "PCGPin_40",
+   "Attribute type is \"EPCGWorldQueryFilter\""
+  ],
+  [
+   "IN",
+   "PCGPin_41",
+   "Attribute type is \"FString\" and its exac"
+  ],
+  [
+   "IN",
+   "PCGPin_42",
+   "Attribute type is \"EPCGWorldQueryFilter\""
+  ],
+  [
+   "IN",
+   "PCGPin_43",
+   "Attribute type is \"TSubclassOf<AActor>\" "
+  ],
+  [
+   "IN",
+   "PCGPin_44",
+   "Will add an input pin to pass a list of "
+  ],
+  [
+   "IN",
+   "PCGPin_45",
+   "Input source for the attribute to read f"
+  ],
+  [
+   "IN",
+   "PCGPin_46",
+   "Attribute type is \"EPCGWorldQuerySelectL"
+  ],
+  [
+   "IN",
+   "PCGPin_47",
+   "Attribute type is \"bool\" and its exact n"
+  ],
+  [
+   "IN",
+   "PCGPin_48",
+   "Attribute type is \"bool\" and its exact n"
+  ],
+  [
+   "IN",
+   "PCGPin_49",
+   "Will keep the original points at their l"
+  ],
+  [
+   "IN",
+   "PCGPin_50",
+   "If no Bounding Shape input is provided, "
+  ],
+  [
+   "IN",
+   "PCGPin_51",
+   "[EXPERIMENTAL] Create a Vector2 attribut"
+  ],
+  [
+   "IN",
+   "PCGPin_52",
+   "[EXPERIMENTAL] Which channel to sample U"
+  ],
+  [
+   "IN",
+   "PCGPin_53",
+   "[EXPERIMENTAL] Create a Vector attribute"
+  ],
+  [
+   "OUT",
+   "PCGPin_54",
+   ""
+  ]
+ ]
+}

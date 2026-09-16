@@ -1,0 +1,20 @@
+[
+ "PCGBakeStaticMeshAttributesSettings",
+ "PCGCopyPointsSettings",
+ "PCGExBinPacking3DSettings",
+ "PCGExBinPackingSettings",
+ "PCGExPackActorDataSettings",
+ "PCGExPackClustersSettings",
+ "PCGExStagingSpawnActorsSettings",
+ "PCGGetSplineControlPointsSettings",
+ "PCGGetSplineSettings",
+ "PCGGetStaticMeshResourceDataSettings",
+ "PCGGetVolumeSettings",
+ "PCGNaniteAssemblyStaticMeshBuilderSettings",
+ "PCGSpawnActorSettings",
+ "PCGSplineSamplerSettings",
+ "PCGStaticMeshSpawnerSettings",
+ "PCGStaticMeshToDynamicMeshSettings",
+ "PCGSurfaceSamplerSettings",
+ "ProceduralModelingToolkitPCGOutputStaticMeshSettings"
+]

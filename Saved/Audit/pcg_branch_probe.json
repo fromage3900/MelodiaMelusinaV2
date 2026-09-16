@@ -1,0 +1,38 @@
+{
+ "classes": [
+  "PCGAttributeFilterNamesSettings",
+  "PCGAttributeFilterSettings",
+  "PCGAttributeFilterThresholdSettings",
+  "PCGAttributeFilteringRangeSettings",
+  "PCGAttributeFilteringSettings",
+  "PCGCopyPointsSettings",
+  "PCGCreatePointsGridSettings",
+  "PCGCreatePointsSettings",
+  "PCGCreatePointsSphereSettings",
+  "PCGDensityFilterSettings",
+  "PCGExRaycastFilterProviderSettings",
+  "PCGExStagingSpawnActorsSettings",
+  "PCGExTransformPointsSettings",
+  "PCGSpawnActorSettings",
+  "PCGSurfaceSamplerSettings",
+  "PCGToolRaycastSettings",
+  "PCGTransformPointsSettings",
+  "PCGWorldRaycastElementSettings"
+ ],
+ "PCGAttributeFilterNamesSettings": [
+  "dirprobe:['acquire_editor_element_handle', 'bp_get_type_union_of_incident_edges', 'break_debugger', 'call_method', 'cast']"
+ ],
+ "PCGAttributeFilterSettings": [
+  "dirprobe:['acquire_editor_element_handle', 'bp_get_type_union_of_incident_edges', 'break_debugger', 'call_method', 'cast']"
+ ],
+ "PCGAttributeFilterThresholdSettings": "ERR PCGGraph: Failed to convert parameter 'settings_class' when calling function 'PCGGraph.AddNodeOfType' on 'PCG_MelusinaHouse_MorningDell'\n  TypeError: ",
+ "PCGAttributeFilteringRangeSettings": [
+  "dirprobe:['acquire_editor_element_handle', 'bp_get_type_union_of_incident_edges', 'break_debugger', 'call_method', 'cast']"
+ ],
+ "PCGAttributeFilteringSettings": [
+  "dirprobe:['acquire_editor_element_handle', 'attribute_types', 'bp_get_type_union_of_incident_edges', 'break_debugger', 'call_method']"
+ ],
+ "PCGCopyPointsSettings": [
+  "dirprobe:['acquire_editor_element_handle', 'apply_target_rotation_to_positions', 'apply_target_scale_to_positions', 'attribute_inheritance', 'bp_get_type_union_of_incident_edges']"
+ ]
+}

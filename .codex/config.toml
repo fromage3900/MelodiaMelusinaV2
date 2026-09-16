@@ -69,3 +69,24 @@ OLLAMA_HOST = "http://127.0.0.1:11434"
 command = "python"
 args = ["deploy/surreal_arch_mcp_adapter.py"]
 cwd = "."
+
+[mcp_servers.agent_bridge]
+command = "C:/Python314/python.exe"
+args = ["C:/EnvironmentPortfolio/BS_GodFile/deploy/agent_bridge_mcp.py"]
+
+[mcp_servers.claireon]
+url = "http://127.0.0.1:60162/mcp"
+
+[mcp_servers.melodia]
+command = "C:/Python314/python.exe"
+args = ["C:/EnvironmentPortfolio/BS_GodFile/deploy/melodia_mcp_server.py"]
+
+[mcp_servers.melodia.env]
+MONOLITH_URL = "http://localhost:9316/mcp"
+
+[mcp_servers.ollama-mcp]
+command = "node"
+args = ['C:\Users\froma\AppData\Roaming\npm\node_modules\ollama-mcp\dist\index.js']
+
+[mcp_servers.ollama-mcp.env]
+OLLAMA_HOST = "http://127.0.0.1:11434"

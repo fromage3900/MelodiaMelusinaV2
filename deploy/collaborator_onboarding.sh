@@ -67,6 +67,8 @@ if [ "$TIER" = "blender" ]; then
     /Docs/ZUNZUN_FAMILY_INTEGRATION.md \
     /Docs/ZUNDAMON_DESIGN_BIBLE.md \
     /Docs/ZUNDAMON_NPC_SPEC.md \
+    /AGENT_START_HERE.md \
+    /MELODIA_TECHNICAL_VERTICAL_SLICE.md \
     /CURRENT_STATE.md \
     /SYSTEM_MAP.md \
     /DATA_FLOW.md \

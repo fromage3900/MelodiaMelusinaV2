@@ -1,0 +1,201 @@
+{
+ "pairs": {
+  "MI_StorybookOutline_Frozen": {
+   "compared": 60,
+   "drifted": 5,
+   "drift": {
+    "OutlineWidth": {
+     "live": -0.5997,
+     "master": 1.5
+    },
+    "DepthWeight": {
+     "live": 0.1905,
+     "master": 1
+    },
+    "NormalWeight": {
+     "live": 0.536,
+     "master": 1
+    },
+    "AAWidth": {
+     "live": -13.0092,
+     "master": 1.5
+    },
+    "DistanceFadeEnd": {
+     "live": 2537.0671,
+     "master": 20000
+    }
+   },
+   "mi_only": []
+  },
+  "MI_MelodiaInk_Frozen": {
+   "compared": 23,
+   "drifted": 9,
+   "drift": {
+    "InkDotPitch": {
+     "live": 0.0336,
+     "master": 0.015
+    },
+    "InkDotLumaDrive": {
+     "live": 0.0602,
+     "master": 0.6
+    },
+    "InkDotScale": {
+     "live": 0.9451,
+     "master": 1
+    },
+    "InkStrength": {
+     "live": 0.6475,
+     "master": 0.65
+    },
+    "InkPrintOffsetDepth": {
+     "live": 0.7,
+     "master": 0.5
+    },
+    "InkGrainScale": {
+     "live": 3.1028,
+     "master": 3
+    },
+    "InkPaperShadow": {
+     "live": 1.4577,
+     "master": 0.65
+    },
+    "InkSmearOn": {
+     "live": 1,
+     "master": 0
+    },
+    "InkHueTint": {
+     "live": {
+      "R": -1.6032559871673584,
+      "G": 1.6566940546035767,
+      "B": 1,
+      "A": 1
+     },
+     "master": {
+      "R": 1,
+      "G": 1,
+      "B": 1,
+      "A": 1
+     }
+    }
+   },
+   "mi_only": []
+  },
+  "MI_MeluColorGrade_Frozen": {
+   "compared": 31,
+   "drifted": 19,
+   "drift": {
+    "NikkiHeroGradeStrength": {
+     "live": 0.5264,
+     "master": 0.35
+    },
+    "DreamHighlightSoft": {
+     "live": 0.2424,
+     "master": 0.12
+    },
+    "DreamSplitToneStrength": {
+     "live": 0.2176,
+     "master": 0.1
+    },
+    "DreamSpectralCycles": {
+     "live": 1.0628,
+     "master": 1.5
+    },
+    "VignetteBaseIntensity": {
+     "live": 0.5,
+     "master": 0.08
+    },
+    "VignetteFalloff": {
+     "live": 2.0256,
+     "master": 1.25
+    },
+    "VignetteBlurStrength": {
+     "live": 0.0734,
+     "master": 0.06
+    },
+    "VignetteFeather": {
+     "live": 0.6,
+     "master": 0.18
+    },
+    "VignettePigmentBlend": {
+     "live": 0.35,
+     "master": 0.08
+    },
+    "GradeStrength": {
+     "live": 0.8094,
+     "master": 0.69
+    },
+    "Saturation": {
+     "live": 0.226,
+     "master": 0.15
+    },
+    "Contrast": {
+     "live": 0.7887,
+     "master": 0.08
+    },
+    "ShadowLift": {
+     "live": -0.0878,
+     "master": 0.05
+    },
+    "HighlightSoft": {
+     "live": 0.5137,
+     "master": 2
+    },
+    "SplitStrength": {
+     "live": 0.5071,
+     "master": 0.2
+    },
+    "SpectralCycles": {
+     "live": 3.1248,
+     "master": 3
+    },
+    "DreamTint": {
+     "live": {
+      "R": 0.5905799865722656,
+      "G": 0.2866179943084717,
+      "B": 1,
+      "A": 1
+     },
+     "master": {
+      "R": 1,
+      "G": 0.8500000238418579,
+      "B": 0.9200000166893005,
+      "A": 1
+     }
+    },
+    "DreamShadowTint": {
+     "live": {
+      "R": 1,
+      "G": 0.17072300612926483,
+      "B": 0.6363630294799805,
+      "A": 1
+     },
+     "master": {
+      "R": 0.8600000143051147,
+      "G": 0.8999999761581421,
+      "B": 1,
+      "A": 1
+     }
+    },
+    "DreamHighlightTint": {
+     "live": {
+      "R": 0.9831839799880981,
+      "G": 1,
+      "B": 0.10932599753141403,
+      "A": 1
+     },
+     "master": {
+      "R": 1,
+      "G": 0.9399999976158142,
+      "B": 0.8199999928474426,
+      "A": 1
+     }
+    }
+   },
+   "mi_only": []
+  }
+ },
+ "MI_StarryNight_Frozen_parent": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate.M_PP_StarryNightOverlay_Candidate",
+ "provenance": {
+  "note": "Live read 2026-09-15 ~15:47 EDT. 12:xx master-true reset was memory-only (was_dirty:false on save) and died in the 13:30 restart; disk holds 12:43 hand state. OutlineWidth/AAWidth extremes are live hand values, NOT agent writes. No MI writes after this point without owner nod."
+ }
+}

@@ -3,7 +3,7 @@
 Status: DRAFT-B (bible skeleton; every claim below traces to a path on unified main)
 Reference: `Docs/Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md` §1 chassis.
 World-building contract: `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`.
-Source beat: `CURRENT_STATE.md` §4 — Shorewake Calling playable route + Starskiff departure.
+Source beat: `TODO.md` "Shorewake calling + Starskiff departure."
 Pilot of: `Chapters/CHAPTER_TEMPLATE.md`.
 
 ## Tier

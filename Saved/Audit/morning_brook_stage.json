@@ -1,0 +1,352 @@
+{
+ "arp": [
+  {
+   "label": "ArpeggioBridge Music Node0",
+   "loc": [
+    1250.0,
+    2420.0,
+    1780.2
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node1",
+   "loc": [
+    1165.2,
+    2449.4,
+    1780.5
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node2",
+   "loc": [
+    1080.4,
+    2476.2,
+    1780.9
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node3",
+   "loc": [
+    995.7,
+    2498.1,
+    1781.2
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node4",
+   "loc": [
+    910.9,
+    2512.8,
+    1781.6
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node5",
+   "loc": [
+    826.1,
+    2519.0,
+    1781.9
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node6",
+   "loc": [
+    741.3,
+    2515.8,
+    1782.3
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node7",
+   "loc": [
+    656.5,
+    2502.9,
+    1782.6
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node8",
+   "loc": [
+    571.7,
+    2481.0,
+    1769.1
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node9",
+   "loc": [
+    487.0,
+    2451.2,
+    1681.6
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node10",
+   "loc": [
+    402.2,
+    2415.3,
+    1597.1
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node11",
+   "loc": [
+    317.4,
+    2375.5,
+    1512.7
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node12",
+   "loc": [
+    232.6,
+    2334.5,
+    1428.3
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node13",
+   "loc": [
+    147.8,
+    2294.7,
+    1343.8
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node14",
+   "loc": [
+    63.0,
+    2258.8,
+    1259.4
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node15",
+   "loc": [
+    -21.7,
+    2229.0,
+    1175.0
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node16",
+   "loc": [
+    -106.5,
+    2207.1,
+    -626.3
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node17",
+   "loc": [
+    -191.3,
+    2194.2,
+    -605.0
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node18",
+   "loc": [
+    -276.1,
+    2191.0,
+    -586.9
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node19",
+   "loc": [
+    -360.9,
+    2197.2,
+    -571.7
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node20",
+   "loc": [
+    -445.7,
+    2211.9,
+    -565.0
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node21",
+   "loc": [
+    -530.4,
+    2233.8,
+    -559.8
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node22",
+   "loc": [
+    -615.2,
+    2260.6,
+    -555.7
+   ]
+  },
+  {
+   "label": "ArpeggioBridge Music Node23",
+   "loc": [
+    -700.0,
+    2290.0,
+    -588.7
+   ]
+  }
+ ],
+ "bells": [
+  {
+   "label": "BellTreeGarden Music Node0",
+   "loc": [
+    -570.0,
+    2600.0,
+    -540.1
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node1",
+   "loc": [
+    -592.9,
+    1910.0,
+    -482.3
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node2",
+   "loc": [
+    -658.9,
+    2780.0,
+    -896.1
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node3",
+   "loc": [
+    -760.0,
+    2000.0,
+    -454.0
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node4",
+   "loc": [
+    -884.0,
+    2690.0,
+    -578.8
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node5",
+   "loc": [
+    -1016.0,
+    1820.0,
+    -628.7
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node6",
+   "loc": [
+    -1140.0,
+    2600.0,
+    -540.0
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node7",
+   "loc": [
+    -1241.1,
+    1910.0,
+    -729.0
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node8",
+   "loc": [
+    -1307.1,
+    2780.0,
+    -540.0
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node9",
+   "loc": [
+    -1330.0,
+    2000.0,
+    -796.4
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node10",
+   "loc": [
+    -1307.1,
+    2690.0,
+    -540.0
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node11",
+   "loc": [
+    -1241.1,
+    1820.0,
+    -722.8
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node12",
+   "loc": [
+    -1140.0,
+    2600.0,
+    -473.2
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node13",
+   "loc": [
+    -1016.0,
+    1910.0,
+    -608.6
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node14",
+   "loc": [
+    -884.0,
+    2780.0,
+    -540.0
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node15",
+   "loc": [
+    -760.0,
+    2000.0,
+    -385.5
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node16",
+   "loc": [
+    -658.9,
+    2690.0,
+    -639.1
+   ]
+  },
+  {
+   "label": "BellTreeGarden Music Node17",
+   "loc": [
+    -592.9,
+    1820.0,
+    -586.6
+   ]
+  }
+ ],
+ "water": {
+  "mi": true,
+  "ok": true,
+  "loc": [
+   -950.0,
+   2300.0,
+   -625.387432419199
+  ]
+ },
+ "cube_deleted": true
+}

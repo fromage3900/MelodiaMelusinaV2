@@ -1,0 +1,8 @@
+{
+ "mpc_paths": [
+  "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+  "/Game/Melodia/_PROJECT/04_Materials/MPC_MelodiaInk.MPC_MelodiaInk",
+  "/Game/Melodia/Cymatics/MPC_Cymatics_Driver.MPC_Cymatics_Driver"
+ ],
+ "mi_err": "'ScalarParameterValue' object has no attribute 'name'"
+}

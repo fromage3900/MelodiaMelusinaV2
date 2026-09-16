@@ -243,6 +243,62 @@ control inclusion requires the owner's scoped `.gitignore` decision before landi
 
 ---
 
+### P0 closeout — plan of record, 2026-09-16
+
+**Every gate reads PASS, but the proof is old.** Latest ledger rows (`Saved/gate_ledger.json`,
+latest row per id) are all `pass` and `melodia_system_golden_run_preflight` returns `ready`,
+yet `runtime` is 08-13, `save_load` / `repeat_consume` 08-14, `package_launch` 09-03 — before
+three weeks of `L_MelusinaMorning` and Melusina rig work. **Issue #51 is the only open P0 item**;
+draft PR #144 (refuse incompatible `FMelodiaNarrativeRecord` candidates without resetting the
+valid record, plus atomicity and repeat-restore tests) is its implementation. Stale PR #54 stays
+closed. Starskiff persistence decision (from #144): persist `flag.sea_above.starskiff_ready` and
+the spawn tag only — never `bBoarded`, possession or transform. Boarding contract live proof:
+`Saved/Audit/starskiff_boarding_proof_2026-09-10.json`.
+
+**Automation, 2026-09-16 (headless `UnrealEditor-Cmd`, `Melodia.` prefix): 97/99 pass.**
+Report: `Saved/Audit/p0_closeout_2026-09-16/automation/`.
+- `Melodia.Roguelike.Functional.ThreeStagePhysicalRoute` fails headless only: it expects the
+  `Using CommonUI without a CommonGameViewportClient` warning, which needs a real viewport.
+- `Melodia.Roguelike.Functional.TwentyFiveGenerationSoak` additionally raised
+  `Accessed None ... Title` in `BP_SkillUseDialogue` and a `RecoverableFailure` at
+  `RD_MelodiaGrove_V1` **with the uncommitted 2026-09-15 `BP_BattleUI` dead-island cut in place**.
+  The same test with the committed `BP_BattleUI` failed only on the viewport expectation. That
+  cut is therefore held back uncommitted (rollback: `Docs/Audits/ROLLBACK_BP_BattleUI_2026-09-15.json`).
+- Do not run automation through Monolith `editor_query run_automation_tests`: latent tests trip
+  `Assertion failed: LatentCommands.IsEmpty()` and crash the editor. Use `UnrealEditor-Cmd`.
+
+**PIE, 2026-09-16 (rebuilt editor, `L_MelusinaMorning`, 18 s):** `ok` — 0 Blueprint runtime
+errors, 0 Accessed None, 0 fatals; live pawn `BP_MelusinaJRPGCharacter` on `ABP_Melusina_Current`;
+13/14 frames valid. `BP_MelusinaJRPGCharacter` already carries #210's stencil 4 (verified live).
+On-screen engine warning: **eye-adaptation exposure −5.4 is outside Lumen's safe range [−4, 16]**
+("cached lighting … going to be clipped", `r.EyeAdaptation.CachedLightingPreExposure`) — a look
+issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_CLOSEOUT_2026-09-16/`.
+
+**Phases**
+0. *Land on `main`, editor closed.* Branch reconciled with its origin copy and `main` merged in
+   (2026-09-16). Binary picks: frozen PPV MIs kept from the 09-15 lock-in; Choral Sheep
+   `A_Sheep_Death/Jump/WalkSlow` + `SK_MrSheep_Skeleton` taken from #209 (the owner's 09-16 save of
+   the other sheep takes already matched #209 byte-for-byte); `BP_MelusinaJRPGCharacter` kept from
+   the 09-16 save, so #210's `CharacterMesh0` custom-depth **stencil 4** must be re-applied in the
+   editor. Then PR to `main`, and rebuild `BS_GodFileEditor` with UBT while the editor is closed.
+1. *#51 code.* Rebase #144 onto `main`, headless-test the `Melodia.Integration` suites, merge on
+   green. Proposed scope cut: #144 + the restart and packaged proofs are the closure; schema v6 and
+   the stale-write guard move to P1 unless an audit finds a real race.
+2. *Re-prove on current `main`.* Restart proof (save → quit → relaunch → load, real input) and a
+   packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
+3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
+
+**Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
+`M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);
+a second, differently-shaped 18-node BellTree generation under `Morning_Dell_Banks`; shirt
+dangle bones; `Content/Textures/` allowlist. Reference:
+`Docs/MELUSINA_WARDROBE_PHYSICS_PIPELINE_2026-09-15.md`.
+
+**Held for owner sign-off:** the uncommitted `Config/DefaultEngine.ini` edit (drops the dead
+`DefaultFeatureAntiAliasing=1`; live `r.AntiAliasingMethod=1` unchanged) — the pre-commit hook
+requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly failed with
+"not enough space"; cook to G:.
+
 ## 4. Owner queue — now
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the

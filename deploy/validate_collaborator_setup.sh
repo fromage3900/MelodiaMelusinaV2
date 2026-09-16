@@ -76,7 +76,7 @@ if [ "$MODE" = "blender" ]; then
   check_required_path "deploy/surreal_architecture_gen.py"
   check_required_path "deploy/sync_workstation.ps1"
   check_required_path "deploy/install_melodia_studio.ps1"
-  check_required_path "CURRENT_STATE.md"
+  check_required_path "AGENT_START_HERE.md"
   check_required_path "Docs/Art/VISUAL_REFERENCE_INDEX.md"
   check_required_path "Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md"
   check_required_path "Docs/References/MelusinasHouse/REF_01_EXTERIOR_ROUND_BAROQUE_PINK_BLUE.jpg"

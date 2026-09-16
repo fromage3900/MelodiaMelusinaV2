@@ -1,0 +1,36 @@
+{
+ "moved": [
+  {
+   "label": "MH_bank_grass",
+   "to": [
+    -302.5,
+    2243.5,
+    195.1
+   ]
+  },
+  {
+   "label": "MH_bank_grass",
+   "to": [
+    -1298.6,
+    1751.4,
+    193.7
+   ]
+  },
+  {
+   "label": "SM_Bookshelf",
+   "to": [
+    1150.0,
+    2321.0,
+    -408.8
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "label": "SM_room_2",
+   "why": "greybox_shell_owner_call"
+  }
+ ],
+ "saved": true,
+ "dirty_after": null
+}

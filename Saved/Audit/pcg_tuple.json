@@ -1,0 +1,43 @@
+{
+ "attrs": [
+  "acquire_editor_element_handle",
+  "add_edge_to",
+  "call_method",
+  "cast",
+  "get_class",
+  "get_default_object",
+  "get_editor_property",
+  "get_fname",
+  "get_full_name",
+  "get_graph",
+  "get_name",
+  "get_node_position",
+  "get_outer",
+  "get_outermost",
+  "get_package",
+  "get_path_name",
+  "get_settings",
+  "get_typed_outer",
+  "get_world",
+  "input_pins",
+  "is_editor_property_overridden",
+  "is_package_external",
+  "modify",
+  "node_title",
+  "node_title_color",
+  "output_pins",
+  "remove_edge_to",
+  "rename",
+  "reset_editor_property",
+  "set_editor_properties",
+  "set_editor_property",
+  "set_node_position",
+  "settings_interface",
+  "static_class"
+ ],
+ "tuple_len": 2,
+ "tuple_types": [
+  "PCGNode:PCGNode",
+  "PCGCreatePointsSettings:PCGCreatePointsSettings"
+ ]
+}

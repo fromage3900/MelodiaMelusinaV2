@@ -76,6 +76,12 @@ jobs:
           fi
           python Tools/guard_protected_assets.py --base "$base"
 
+      - name: Repository governance guard
+        run: python Tools/repo_governance_guard.py
+
+      - name: Front-door health
+        run: python Tools/front_door_health.py --ci
+
       - name: Validate content-first agent front door
         run: python Tools/validate_agent_frontdoor.py
 

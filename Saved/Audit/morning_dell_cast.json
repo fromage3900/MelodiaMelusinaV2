@@ -1,0 +1,479 @@
+[
+ {
+  "label": "Morning_PlayerStart",
+  "class": "PlayerStart",
+  "loc": [
+   1305.3,
+   1861.3,
+   -452.6
+  ]
+ },
+ {
+  "label": "BP_PhysicsPlacementSpawner",
+  "class": "BP_PhysicsPlacementSpawner_C",
+  "loc": [
+   1498.7,
+   2477.7,
+   -501.4
+  ]
+ },
+ {
+  "label": "Dress_BedBedding",
+  "class": "StaticMeshActor",
+  "loc": [
+   1440.1,
+   2340.8,
+   -541.2
+  ]
+ },
+ {
+  "label": "Morning_Bed",
+  "class": "MelodiaBedActor",
+  "loc": [
+   1435.1,
+   2320.8,
+   -421.2
+  ]
+ },
+ {
+  "label": "Morning_SirMelodious_STATIC_INTRO",
+  "class": "BP_MelodiaSirMelodiousMorningIntro_C",
+  "loc": [
+   371.1,
+   2106.9,
+   -492.8
+  ]
+ },
+ {
+  "label": "SM_room_2",
+  "class": "StaticMeshActor",
+  "loc": [
+   461.0,
+   575.0,
+   -222.0
+  ]
+ },
+ {
+  "label": "PointLight",
+  "class": "PointLight",
+  "loc": [
+   -292.0,
+   1003.3,
+   317.4
+  ]
+ },
+ {
+  "label": "FX_Morning_DustShafts_Threshold",
+  "class": "NiagaraActor",
+  "loc": [
+   208.0,
+   997.0,
+   241.0
+  ]
+ },
+ {
+  "label": "Dress_BedGlow",
+  "class": "PointLight",
+  "loc": [
+   -2391.0,
+   1147.0,
+   -927.0
+  ]
+ },
+ {
+  "label": "SM_PM3D_Sphere3D5",
+  "class": "StaticMeshActor",
+  "loc": [
+   -1300.0,
+   800.0,
+   -1350.0
+  ]
+ },
+ {
+  "label": "SM_PM3D_Sphere3D4",
+  "class": "StaticMeshActor",
+  "loc": [
+   -100.0,
+   800.0,
+   -1350.0
+  ]
+ },
+ {
+  "label": "LT_Melodia_Morning_Exit",
+  "class": "SpotLight",
+  "loc": [
+   0.0,
+   300.0,
+   350.0
+  ]
+ },
+ {
+  "label": "FX_Morning_ImpactBurst",
+  "class": "NiagaraActor",
+  "loc": [
+   -950.0,
+   1980.0,
+   -430.0
+  ]
+ },
+ {
+  "label": "SM_classic_arch_26",
+  "class": "StaticMeshActor",
+  "loc": [
+   396.7,
+   3030.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "GroupActor_UAID_7C5758FA1CACF00103_1683039129",
+  "class": "GroupActor",
+  "loc": [
+   830.7,
+   2570.0,
+   -2165.0
+  ]
+ },
+ {
+  "label": "SM_classic_arch_24",
+  "class": "StaticMeshActor",
+  "loc": [
+   1264.7,
+   3030.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "SM_classic_arch_25",
+  "class": "StaticMeshActor",
+  "loc": [
+   1264.7,
+   2110.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "SM_classic_arch_27",
+  "class": "StaticMeshActor",
+  "loc": [
+   396.7,
+   2110.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "SM_Bookshelf",
+  "class": "StaticMeshActor",
+  "loc": [
+   -1025.0,
+   732.0,
+   -75.0
+  ]
+ },
+ {
+  "label": "GroupActor",
+  "class": "GroupActor",
+  "loc": [
+   830.7,
+   2570.0,
+   -2165.0
+  ]
+ },
+ {
+  "label": "SM_classic_arch_23",
+  "class": "StaticMeshActor",
+  "loc": [
+   1264.7,
+   3030.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "SM_classic_arch_21",
+  "class": "StaticMeshActor",
+  "loc": [
+   1264.7,
+   2110.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "SM_classic_arch_22",
+  "class": "StaticMeshActor",
+  "loc": [
+   396.7,
+   3030.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "SM_classic_arch_20",
+  "class": "StaticMeshActor",
+  "loc": [
+   396.7,
+   2110.0,
+   -751.3
+  ]
+ },
+ {
+  "label": "NS_ChoralSheep_BeatBurst_Preview",
+  "class": "NiagaraActor",
+  "loc": [
+   -1030.0,
+   2380.0,
+   -590.0
+  ]
+ },
+ {
+  "label": "FX_Morning_Bed_PollenSparkle",
+  "class": "NiagaraActor",
+  "loc": [
+   -1275.2,
+   2137.0,
+   -509.2
+  ]
+ },
+ {
+  "label": "Morning_QuillTrigger_P0",
+  "class": "BP_KaleidoNaveArrivalTrigger_C",
+  "loc": [
+   -601.4,
+   1939.4,
+   103.9
+  ]
+ },
+ {
+  "label": "SM_MassiveSandstoneCliff_01",
+  "class": "StaticMeshActor",
+  "loc": [
+   -2609.5,
+   3103.5,
+   -1344.7
+  ]
+ },
+ {
+  "label": "CAM_MelusinaMorning_Portfolio",
+  "class": "CameraActor",
+  "loc": [
+   750.0,
+   1650.0,
+   631.0
+  ]
+ },
+ {
+  "label": "SM_PM3D_Sphere3D1",
+  "class": "StaticMeshActor",
+  "loc": [
+   -500.0,
+   2300.0,
+   -950.0
+  ]
+ },
+ {
+  "label": "Dress_LanternLight_0",
+  "class": "PointLight",
+  "loc": [
+   -240.0,
+   940.0,
+   260.0
+  ]
+ },
+ {
+  "label": "Dress_LanternLight_1",
+  "class": "PointLight",
+  "loc": [
+   128.7,
+   1503.5,
+   145.7
+  ]
+ },
+ {
+  "label": "FX_Morning_Mist",
+  "class": "NiagaraActor",
+  "loc": [
+   -850.0,
+   1900.0,
+   -400.0
+  ]
+ },
+ {
+  "label": "NS_ChoralSheep_WoolMotes_Preview",
+  "class": "NiagaraActor",
+  "loc": [
+   -1059.7,
+   2502.5,
+   -639.2
+  ]
+ },
+ {
+  "label": "BP_ChoralSheep",
+  "class": "BP_ChoralSheep_C",
+  "loc": [
+   -850.0,
+   2400.0,
+   -650.0
+  ]
+ },
+ {
+  "label": "SM_Flag",
+  "class": "StaticMeshActor",
+  "loc": [
+   -65.0,
+   330.0,
+   -110.0
+  ]
+ },
+ {
+  "label": "Morning_QuillTrigger_ChoralSheep",
+  "class": "BP_KaleidoNaveArrivalTrigger_C",
+  "loc": [
+   -887.6,
+   2140.0,
+   -707.6
+  ]
+ },
+ {
+  "label": "SM_PM3D_Sphere3D2",
+  "class": "StaticMeshActor",
+  "loc": [
+   400.0,
+   2300.0,
+   -1050.0
+  ]
+ },
+ {
+  "label": "FX_Morning_WaterGlint",
+  "class": "NiagaraActor",
+  "loc": [
+   -1100.0,
+   2050.0,
+   -450.0
+  ]
+ },
+ {
+  "label": "Morning_QuillTrigger_Wardrobe",
+  "class": "BP_KaleidoNaveArrivalTrigger_C",
+  "loc": [
+   1340.2,
+   1836.9,
+   -597.6
+  ]
+ },
+ {
+  "label": "SM_wallhi_003",
+  "class": "StaticMeshActor",
+  "loc": [
+   465.0,
+   1655.0,
+   -255.0
+  ]
+ },
+ {
+  "label": "SM_Greybox_Wall_Mid_001",
+  "class": "StaticMeshActor",
+  "loc": [
+   70.0,
+   1660.0,
+   -270.0
+  ]
+ },
+ {
+  "label": "SM_Greybox_Wall_Mid_2",
+  "class": "StaticMeshActor",
+  "loc": [
+   860.0,
+   1660.0,
+   -270.0
+  ]
+ },
+ {
+  "label": "MEL_Ambience_ElectricDreams",
+  "class": "AmbientSound",
+  "loc": [
+   1355.3,
+   1461.3,
+   -602.6
+  ]
+ },
+ {
+  "label": "GB_Morning_ResonanceGem",
+  "class": "StaticMeshActor",
+  "loc": [
+   -836.2,
+   1174.0,
+   160.9
+  ]
+ },
+ {
+  "label": "GB_Morning_ThresholdPillar_0",
+  "class": "StaticMeshActor",
+  "loc": [
+   -430.0,
+   240.0,
+   105.0
+  ]
+ },
+ {
+  "label": "GB_Morning_ResonancePlinth",
+  "class": "StaticMeshActor",
+  "loc": [
+   160.0,
+   130.0,
+   65.0
+  ]
+ },
+ {
+  "label": "GB_Morning_ThresholdPillar_1",
+  "class": "StaticMeshActor",
+  "loc": [
+   430.0,
+   240.0,
+   105.0
+  ]
+ },
+ {
+  "label": "Morning_Dell_Banks",
+  "class": "PCGVolume",
+  "loc": [
+   -950.0,
+   2300.0,
+   -500.0
+  ]
+ },
+ {
+  "label": "Morning_Brook_Arpeggio",
+  "class": "PCGVolume",
+  "loc": [
+   -350.0,
+   2320.0,
+   -480.0
+  ]
+ },
+ {
+  "label": "BellTreeGarden Music Node13",
+  "class": "PCGBellTreeGardenNode",
+  "loc": [
+   1167.5,
+   137.1,
+   735.7
+  ]
+ },
+ {
+  "label": "BellTreeGarden Music Node14",
+  "class": "PCGBellTreeGardenNode",
+  "loc": [
+   1426.5,
+   176.7,
+   788.5
+  ]
+ },
+ {
+  "label": "Dbg_CubeProbe_DELETE",
+  "class": "StaticMeshActor",
+  "loc": [
+   -950.0,
+   2300.0,
+   -600.0
+  ]
+ }
+]
