@@ -267,6 +267,13 @@ Report: `Saved/Audit/p0_closeout_2026-09-16/automation/`.
 - Do not run automation through Monolith `editor_query run_automation_tests`: latent tests trip
   `Assertion failed: LatentCommands.IsEmpty()` and crash the editor. Use `UnrealEditor-Cmd`.
 
+**PIE, 2026-09-16 (rebuilt editor, `L_MelusinaMorning`, 18 s):** `ok` — 0 Blueprint runtime
+errors, 0 Accessed None, 0 fatals; live pawn `BP_MelusinaJRPGCharacter` on `ABP_Melusina_Current`;
+13/14 frames valid. `BP_MelusinaJRPGCharacter` already carries #210's stencil 4 (verified live).
+On-screen engine warning: **eye-adaptation exposure −5.4 is outside Lumen's safe range [−4, 16]**
+("cached lighting … going to be clipped", `r.EyeAdaptation.CachedLightingPreExposure`) — a look
+issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_CLOSEOUT_2026-09-16/`.
+
 **Phases**
 0. *Land on `main`, editor closed.* Branch reconciled with its origin copy and `main` merged in
    (2026-09-16). Binary picks: frozen PPV MIs kept from the 09-15 lock-in; Choral Sheep
