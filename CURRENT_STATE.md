@@ -1,7 +1,7 @@
 # Current State — Melodia (BS_GodFile)
 
 **Canonical State Document**
-**Last Updated:** 2026-09-09 (front-door health gate; Choral Sheep UE proof is the owner queue; runtime evidence below remains grounded in the 2026-09-05 verification pass)
+**Last Updated:** 2026-09-16 (P0 closeout plan of record — §9; gate rows below are real but their evidence predates three weeks of content work, see §9.1)
 **Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
 **Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS (captured revision) · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals) · Issue #51 long-chain persistence still OPEN**
 **Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
@@ -302,3 +302,70 @@ Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked 
   and the editor process exited — no UnrealEditor running, no listener. Verified
   batch 1 saved nothing (newest texture mtime still PR-#188 era, no new dirt).
   Runbook stands by for relaunch. Lane held here per owner.
+
+---
+
+## 9. P0 closeout plan of record — 2026-09-16
+
+### 9.1 Where P0 actually stands
+
+- **Every gate reads PASS** (`Saved/gate_ledger.json`, latest row per id) and
+  `melodia_system_golden_run_preflight` returns `ready: true`.
+- **But the load-bearing evidence is old.** `runtime` 08-13, `save_load` 08-14,
+  `repeat_consume` 08-14, `package_launch` 09-03. Since then `L_MelusinaMorning` was rebuilt
+  (Oceanology lake, sheep-dell brook, Melusina House dell graph, reseats, greybox toon mats,
+  PCG on-demand freeze, room harness, rainbow bloom) and Melusina's Kawaii nodes changed
+  (`28877a55`). The gates are true of a build that no longer exists.
+- **Issue #51 is the only genuinely open P0 item.** Draft PR #144 (3 files, +315/−4, CLEAN,
+  161 behind `main`) refuses incompatible `FMelodiaNarrativeRecord` candidates without
+  resetting the valid record, and adds rejected-restore atomicity and same-candidate
+  repeat-restore tests. It records the Starskiff persistence decision (persist
+  `flag.sea_above.starskiff_ready` + spawn tag; never `bBoarded`/possession/transform).
+  Stale PR #54 is closed and is not to be revived.
+- **Most of the work isn't on `main`.** `cleanup/pbr-twin-landing-2026-09-10` is 56 ahead /
+  44 behind `origin/main`, and diverged from its own origin copy by one CI-only commit
+  (`a3251756`, `Tools/repo_governance_guard.py`). Off-disk backup:
+  `cleanup/pbr-twin-backup-20260915`.
+- **Editor DLL is current.** `MelodiaHairComponent.cpp` reports newer than the 09-13 DLL, but
+  its content is identical to HEAD (last change 08-11) — mtime-only, from a git read-tree.
+
+### 9.2 Plan — four phases, in order
+
+**Phase 0 — land the code on `main` (editor CLOSED; one sitting).**
+The 2026-09-16 merge attempt aborted because the open editor held
+`__ExternalActors__/.../L_MelusinaMorning/*` handles (`unlink … Invalid argument`). No data was
+lost, but git operations that touch the worktree need the editor down.
+1. Merge `origin/cleanup/pbr-twin-landing-2026-09-10` (1 file) → push the real branch name.
+2. PR `cleanup/pbr-twin-landing-2026-09-10` → `main`; review for bulk before merging.
+3. Decide PR #215 (13 timestamp-suffixed duplicate textures are allowlisted beside their
+   clean twins; it also edits protected `.gitignore`).
+4. Rebuild `BS_GodFileEditor` from the merged `main` with UBT while the editor is closed.
+
+**Phase 1 — close the #51 code.**
+1. Rebase #144 onto `main`, build, run its automation tests headless
+   (`MelodiaIntegration` filter). Merge on green.
+2. Scope cut, proposed: #144 + the restart and packaged proofs **are** the closure. Schema v6
+   and the stale-write guard move to P1 unless the audit finds a real race — the issue itself
+   says both are conditional.
+
+**Phase 2 — re-prove on current `main` (editor open, nothing else driving it).**
+1. Restart proof: save → quit → relaunch → load through the full route, via real input.
+   Append `runtime`, `save_load`, `repeat_consume`, `wardrobe_equip_roundtrip` rows.
+2. Packaged proof: cook to `G:\melodia_packages\` (C: lacks room), omit `-map=`
+   (`MapsToCook` is already correct), launch both legs, append `package_launch`.
+3. Before trusting any PIE result: DLL mtime vs source *content*, one editor on :9316, no
+   Codex/Rider/scheduled-task driver, and `ls -t Saved/Logs/*.log` for the live log.
+
+**Phase 3 — front door and close.**
+Refresh this file, `TODO.md` and `AGENT_START_HERE.md` from the new ledger rows;
+`python Tools/front_door_health.py --age` green; close #51 with the proof receipts.
+
+### 9.3 Explicitly not P0
+
+Look-dev and hygiene found this week stay out of the closeout path:
+`Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on `M_Material_003`;
+three of four `PPV_NikkiDream` blendables at weight 0 (owner intent unconfirmed);
+`Morning_Dell_Banks` carrying a second, differently-shaped 18-node BellTree generation
+(likely stale, not deleted); shirt dangle bones; `Content/Textures/` allowlist.
+Reference: `Docs/MELUSINA_WARDROBE_PHYSICS_PIPELINE_2026-09-15.md`.
+
