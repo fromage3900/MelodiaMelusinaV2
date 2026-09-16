@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-14 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-16 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -285,6 +285,7 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 | Website (**public** — serves GitHub Pages; owner decision 2026-09-12) | `fromage3900/my-site` |
 | TouchDesigner / AE (private) | `fromage3900/MelodiaTouchDesigner`, `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` |
 | AI token treasury (revenue sidecar) | my-site `tools/fromage-webgl-kit/TREASURY_LEDGER.json` — 0 entries, first gate 0/5; never displaces the capstone |
+| Accessory viewer twins (website lane) | Transfer pack [`Docs/Strategy/webgl-kit-viewer-twins-2026-09-16/`](Docs/Strategy/webgl-kit-viewer-twins-2026-09-16/) — Google `<model-viewer>` + Babylon Viewer on the same eyewear `catalog.js`. Cloud cannot push `my-site` (403). Apply there with `git am` the included patch. Not a recruiter-site redesign. |
 | `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
 
 **The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.

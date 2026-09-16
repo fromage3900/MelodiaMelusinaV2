@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Accessory Atelier / Babylon embed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@babylonjs/viewer@8.29.1/dist/babylon-viewer.esm.min.js"></script>
+  <style>
+    :root {
+      --paper: #f5f0e8;
+      --ink: #1b1717;
+      --muted: #766d68;
+      --accent: #684057;
+      --rule: rgba(104,64,87,.28);
+      --serif: "Times New Roman", Times, serif;
+      --sans: "Jost", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    .page { width: min(1180px, 100%); margin: 0 auto; padding: 22px 28px 48px; }
+    .mast { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px dashed var(--rule); }
+    .micro { font: 500 10px/1.45 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+    h1 { font: 400 clamp(42px, 7vw, 72px)/.9 var(--serif); letter-spacing: -.04em; margin: 22px 0 8px; }
+    .dek { max-width: 46rem; color: var(--muted); font: italic 18px/1.35 var(--serif); margin: 0 0 28px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 22px; align-items: start; }
+    babylon-viewer {
+      width: 100%;
+      height: 62vh;
+      min-height: 420px;
+      background: #ece7e0;
+      display: block;
+    }
+    babylon-viewer::part(tool-bar),
+    babylon-viewer::part(progress-bar) {
+      display: none;
+    }
+    .panel { border-top: 1px solid var(--accent); padding-top: 12px; display: grid; gap: 16px; }
+    .panel h2 { font: 400 28px/1 var(--serif); margin: 0; }
+    label { display: grid; gap: 7px; }
+    select, button {
+      min-height: 42px;
+      padding: 9px 11px;
+      border: 1px dashed var(--rule);
+      background: rgba(245,240,232,.5);
+      font: 500 11px var(--sans);
+      color: var(--ink);
+    }
+    button[aria-pressed="true"] { background: var(--accent); color: #fff; border-style: solid; }
+    .note, .diag { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .diag { white-space: pre-line; font: 11px/1.55 ui-monospace, monospace; }
+    .links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 18px; }
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      babylon-viewer { height: 52vh; min-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="mast">
+      <a class="micro" href="./floral-study.html">← Floral atelier</a>
+      <span class="micro">S.05 / Engine check</span>
+    </header>
+    <h1>Same object.<br>Second engine.</h1>
+    <p class="dek">Babylon.js Viewer loading the same authored eyewear GLBs as the floral atelier and the Google <code>&lt;model-viewer&gt;</code> embed. This is a second-engine check — not a second art-direction surface.</p>
+
+    <section class="layout">
+      <babylon-viewer
+        id="viewer"
+        engine="WebGL2"
+        reset-mode="reframe"
+        environment-lighting="auto"
+      ></babylon-viewer>
+
+      <aside class="panel">
+        <div>
+          <span class="micro">Object / 001–008</span>
+          <h2>Engine.</h2>
+        </div>
+        <label>
+          <span class="micro">Silhouette</span>
+          <select id="heroSelector" aria-label="Eyewear silhouette"></select>
+        </label>
+        <button id="rotateToggle" type="button" aria-pressed="true">Auto orbit</button>
+        <p class="note">Facing clears the glTF loader quaternion and applies the atelier’s <code>-PI/2</code> X, then reframes. Variants remain separate GLBs.</p>
+        <div id="diagnostics" class="diag">Loading…</div>
+      </aside>
+    </section>
+
+    <nav class="links">
+      <a class="micro" href="./floral-study.html">Floral atelier ↗</a>
+      <a class="micro" href="./model-viewer.html">model-viewer ↗</a>
+      <a class="micro" href="./">Product viewer ↗</a>
+    </nav>
+  </main>
+  <script type="module" src="./babylon-viewer.js"></script>
+</body>
+</html>
