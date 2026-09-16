@@ -22,24 +22,28 @@ If the experience can be authored through existing systems, author it. New archi
 
 ## 1. 3D preflight — mandatory when the editor is available
 
-Before the first spatial mutation, run:
+Before the first spatial mutation, establish a before state:
 
 ```python
-exec(open(r"C:\EnvironmentPortfolio\BS_GodFile\Content\Python\scene_context_snapshot.py").read())
+exec(open(r"C:\EnvironmentPortfolio\BS_GodFile\Content\Python\scene_context_cycle.py").read()); begin()
 ```
 
-Canonical tool:
-
-`Content/Python/scene_context_snapshot.py`
-
-It writes machine-local context under:
+This calls the canonical snapshot tool and writes machine-local context under:
 
 ```text
 Saved/Audit/SceneContext/<LevelName>/
+  scene_context_before.json
+  viewport_before.png
+  top_before.png
   scene_context_latest.json
   viewport_latest.png
   top_latest.png
 ```
+
+Canonical tools:
+
+- `Content/Python/scene_context_snapshot.py` — one compact live 3D awareness packet.
+- `Content/Python/scene_context_cycle.py` — before/after packet + spatial diff.
 
 These files are **ephemeral spatial evidence**, not project authority.
 
@@ -68,12 +72,12 @@ Preferred rhythm:
 
 ```text
 owner intent
-  -> scene snapshot
+  -> scene_context_cycle.begin()
   -> inspect 3D relationships
   -> make the bounded change
-  -> play / inspect / capture
-  -> resnapshot
-  -> compare
+  -> play / inspect
+  -> scene_context_cycle.end()
+  -> falsify the diff + captures
   -> stop
 ```
 
@@ -128,6 +132,7 @@ For substantial 3D work, use two temporary roles:
 - captures the result.
 
 **FALSIFIER / REVIEWER**
+- reads `scene_context_diff.json` and before/after captures;
 - checks route clearance;
 - player scale;
 - landmark silhouette;
@@ -142,7 +147,22 @@ The owner decides whether the result actually looks or feels better.
 
 ## 7. Before / after spatial proof
 
-After an edit, rerun `scene_context_snapshot.py` and compare the same anchors.
+After the bounded edit, run:
+
+```python
+exec(open(r"C:\EnvironmentPortfolio\BS_GodFile\Content\Python\scene_context_cycle.py").read()); end()
+```
+
+This writes:
+
+```text
+scene_context_after.json
+viewport_after.png
+top_after.png
+scene_context_diff.json
+```
+
+The diff records prioritized actors added/removed/moved, PCG graph or instance-count changes, world-bounds changes, viewport changes, and route/exclusion membership changes.
 
 At minimum verify:
 
@@ -181,7 +201,7 @@ Keep it production-facing:
 
 - what changed in the world;
 - which existing systems/graphs were reused;
-- spatial proof / captures;
+- before/after spatial proof / captures;
 - PCG count/bounds impact if relevant;
 - exact assets/external actors changed;
 - evidence level actually achieved;
