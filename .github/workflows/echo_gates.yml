@@ -16,7 +16,11 @@ on:
       - 'specs/**'
       - 'Tools/**'
       - 'deploy/**'
-      - '.github/workflows/**'
+      - 'AGENTS.md'
+      - 'CURRENT_STATE.md'
+      - 'SYSTEM_MAP.md'
+      - 'DATA_FLOW.md'
+      - '.github/**'
   workflow_dispatch:
 
 permissions:
@@ -71,6 +75,9 @@ jobs:
             base="origin/main"
           fi
           python Tools/guard_protected_assets.py --base "$base"
+
+      - name: Validate content-first agent front door
+        run: python Tools/validate_agent_frontdoor.py
 
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json
