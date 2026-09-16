@@ -1,5 +1,7 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
+**Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
+
 ## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
 
 This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
@@ -149,7 +151,9 @@ permitted gets talked out of.
 
 **Environment Portfolio** — Surreal/Zen/Baroque/Sakura environment art in **Blender 5.2** + UE5.8.
 **Pipeline**: Blender → world.json manifest → UE import → PCG scatter → Material masters → Portfolio captures.
-**Melodia/Melusina** — the eventual authored game is deliberately small: `bedroom/VN → overworld exploration → simple fixed turn-based battle → buddy/VN → bed`. No procedural roguelike depth in the current scope.
+**Melodia/Melusina** — an authored rhythm-JRPG with a working Quill → Phoenix/JRPG → rhythm → typed-result
+core, Wardrobe/traversal hooks, music-key world progression, and a renewable Chapter/content layer. The
+procedural tools author world/content variation; they are not a second gameplay authority.
 
 > **Blender version:** 5.1 is **not installed** — that directory is empty. Only 4.3, 4.5 and **5.2**
 > have executables, and the full addon set (including Melodia Studio / `surreal_arch`) runs on 5.2.
@@ -160,7 +164,7 @@ permitted gets talked out of.
 
 **Agent tooling — Unreal MCP surfaces.** They are registered in the workspace-level
 `C:/EnvironmentPortfolio/.mcp.json`, not in this repo's `.mcp.json` (which lists only `agent_bridge`,
-`claireon` and `melodia`). Verified 2026-09-13:
+`claireon` and `melodia`). Verified 2026-09-14:
 
 | Server | Transport | Shape | Enabled by default? |
 |---|---|---|---|
@@ -189,4 +193,18 @@ the game thread — grep the log for `MODAL_OPEN` before assuming the plugin is 
 **MCP servers load at session start.** Editing `.mcp.json` mid-session does nothing until the
 session is restarted — check what you actually have before promising editor work.
 
-**Gameplay authority correction (2026-07-26, read before touching any gameplay system)**: MelodiaCore is quarantined as runtime-unstable and does **not** own battle/turn/save authority. The complete standalone TurnBased JRPG template is the provisional mechanical authority instead. QuillScript is an isolated narrative candidate (not yet proven to own gameplay state). ACFU is archived/reference-only and must not run parallel to the JRPG authority. Full decision record and ownership map: `Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md`. Do not rebuild JRPG-native mechanics in MelodiaCore, ACFU, or a parallel Blueprint graph.
+**Current gameplay authority (verified 2026-09-14 against `origin/main`)**: QuillScript is the narrative
+authoring authority; `UMelodiaNarrativeSubsystem` is its runtime bridge for authored facts, consequences,
+checkpoints and exactly-once progression transactions. TurnBased JRPG / Phoenix owns party, turns, skills,
+targeting, action resolution, damage, terminal results, inventory and stock gameplay saves. Rhythm executes
+on the selected JRPG action and returns grade/performance data; Wardrobe owns owned/equipped fashion state
+and its existing traversal/battle/rhythm/Convergence capability hooks. One writer owns each UI/audio surface.
+MelodiaCore remains integration/presentation-only; ACFU and Conversation2D are excluded. The scoped battle,
+grade-to-damage, Wardrobe and music-key seams are evidence-backed in `CURRENT_STATE.md`; packaged golden-run
+and long-chain persistence proof remain separate open gates.
+
+**Content-first rule:** before changing architecture, ask whether the requested experience can be authored
+through `CURRENT_STATE.md` → `PROVEN CREATIVE CAPABILITY SURFACE`. If yes, author the boss, side quest,
+rhythm skill, creature episode, outfit ability, musical puzzle, or procedural setpiece through the existing
+entry points. Architecture work requires a demonstrated content blocker. Do not reopen old rig or system work
+without current evidence of a blocker.
