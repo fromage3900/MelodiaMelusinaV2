@@ -1,0 +1,1018 @@
+{
+ "anchors": {
+  "Morning_Bed": [
+   1435.1,
+   2320.8,
+   -421.2
+  ],
+  "Dress_BedBedding": [
+   1440.1,
+   2340.8,
+   -541.2
+  ],
+  "Morning_QuillTrigger_Wardrobe": [
+   1340.2,
+   1836.9,
+   -597.6
+  ],
+  "SM_room_2": [
+   461.0,
+   575.0,
+   -222.0
+  ],
+  "SM_Bookshelf": [
+   -1025.0,
+   732.0,
+   -75.0
+  ]
+ },
+ "bounds": {
+  "x0": 740.2,
+  "x1": 2035.1,
+  "y0": 1236.9,
+  "y1": 2920.8,
+  "z_top": -21.2
+ },
+ "field": [
+  {
+   "x": 740.2,
+   "y": 1236.9,
+   "z": -21.2
+  },
+  {
+   "x": 740.2,
+   "y": 1486.9,
+   "z": -21.2
+  },
+  {
+   "x": 740.2,
+   "y": 1736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 740.2,
+   "y": 1986.9,
+   "z": -499.60992332166217
+  },
+  {
+   "x": 740.2,
+   "y": 2236.9,
+   "z": -500.0534087275961
+  },
+  {
+   "x": 740.2,
+   "y": 2486.9,
+   "z": -590.964162635803
+  },
+  {
+   "x": 740.2,
+   "y": 2736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 990.2,
+   "y": 1236.9,
+   "z": null
+  },
+  {
+   "x": 990.2,
+   "y": 1486.9,
+   "z": null
+  },
+  {
+   "x": 990.2,
+   "y": 1736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 990.2,
+   "y": 1986.9,
+   "z": -585.8559363353908
+  },
+  {
+   "x": 990.2,
+   "y": 2236.9,
+   "z": -586.897860306993
+  },
+  {
+   "x": 990.2,
+   "y": 2486.9,
+   "z": -593.0420759201047
+  },
+  {
+   "x": 990.2,
+   "y": 2736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1240.2,
+   "y": 1236.9,
+   "z": null
+  },
+  {
+   "x": 1240.2,
+   "y": 1486.9,
+   "z": null
+  },
+  {
+   "x": 1240.2,
+   "y": 1736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1240.2,
+   "y": 1986.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1240.2,
+   "y": 2236.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1240.2,
+   "y": 2486.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1240.2,
+   "y": 2736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1490.2,
+   "y": 1236.9,
+   "z": null
+  },
+  {
+   "x": 1490.2,
+   "y": 1486.9,
+   "z": null
+  },
+  {
+   "x": 1490.2,
+   "y": 1736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1490.2,
+   "y": 1986.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1490.2,
+   "y": 2236.9,
+   "z": -115.90668857097626
+  },
+  {
+   "x": 1490.2,
+   "y": 2486.9,
+   "z": -163.51642684641854
+  },
+  {
+   "x": 1490.2,
+   "y": 2736.9,
+   "z": -610.2769386728515
+  },
+  {
+   "x": 1740.2,
+   "y": 1236.9,
+   "z": null
+  },
+  {
+   "x": 1740.2,
+   "y": 1486.9,
+   "z": null
+  },
+  {
+   "x": 1740.2,
+   "y": 1736.9,
+   "z": null
+  },
+  {
+   "x": 1740.2,
+   "y": 1986.9,
+   "z": null
+  },
+  {
+   "x": 1740.2,
+   "y": 2236.9,
+   "z": null
+  },
+  {
+   "x": 1740.2,
+   "y": 2486.9,
+   "z": null
+  },
+  {
+   "x": 1740.2,
+   "y": 2736.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 1236.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 1486.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 1736.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 1986.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 2236.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 2486.9,
+   "z": null
+  },
+  {
+   "x": 1990.2,
+   "y": 2736.9,
+   "z": null
+  }
+ ],
+ "audit": [
+  {
+   "label": "Dress_BedBedding",
+   "z": -541.2,
+   "ground": -115.9,
+   "gap": -425.3
+  },
+  {
+   "label": "Morning_Bed",
+   "z": -421.2,
+   "ground": -115.9,
+   "gap": -305.3
+  },
+  {
+   "label": "SM_room_2",
+   "z": -222.0,
+   "ground": -21.2,
+   "gap": -200.8
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": -626.8,
+   "ground": -591.0,
+   "gap": -35.8
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -723.1,
+   "ground": -591.0,
+   "gap": -132.1
+  },
+  {
+   "label": "SM_Bookshelf",
+   "z": -75.0,
+   "ground": -21.2,
+   "gap": -53.8
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -617.4,
+   "ground": -499.6,
+   "gap": -117.8
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -640.2,
+   "ground": -499.6,
+   "gap": -140.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -590.3,
+   "ground": -499.6,
+   "gap": -90.7
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -167.9,
+   "ground": -610.3,
+   "gap": 442.4
+  },
+  {
+   "label": "Morning_QuillTrigger_Wardrobe",
+   "z": -597.6,
+   "ground": -610.3,
+   "gap": 12.7
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -568.2,
+   "ground": -499.6,
+   "gap": -68.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -610.3,
+   "gap": 15.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -117.5,
+   "ground": -115.9,
+   "gap": -1.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_hero_rock_2",
+   "z": -580.6,
+   "ground": -591.0,
+   "gap": 10.4
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -593.0,
+   "gap": -2.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -504.6,
+   "ground": -500.1,
+   "gap": -4.5
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -590.3,
+   "ground": -586.9,
+   "gap": -3.4
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -593.0,
+   "gap": -2.3
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": -595.3,
+   "ground": -591.0,
+   "gap": -4.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -546.6,
+   "ground": -499.6,
+   "gap": -47.0
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -525.4,
+   "ground": -499.6,
+   "gap": -25.8
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_stump",
+   "z": 160.0,
+   "ground": -499.6,
+   "gap": 659.6
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -610.3,
+   "gap": 785.3
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -610.3,
+   "gap": 775.3
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -500.1,
+   "gap": 675.1
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -610.3,
+   "gap": 775.3
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 135.4,
+   "ground": -500.1,
+   "gap": 635.5
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -500.1,
+   "gap": 675.1
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -499.6,
+   "gap": 669.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -610.3,
+   "gap": 785.3
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -499.6,
+   "gap": 664.6
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_hero_rock_1",
+   "z": 160.0,
+   "ground": -499.6,
+   "gap": 659.6
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -499.6,
+   "gap": 664.6
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 131.6,
+   "ground": -610.3,
+   "gap": 741.9
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -610.3,
+   "gap": 780.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -499.6,
+   "gap": 669.6
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -591.0,
+   "gap": 761.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -610.3,
+   "gap": 785.3
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": -620.0,
+   "ground": -499.6,
+   "gap": -120.4
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -499.6,
+   "gap": 664.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  }
+ ],
+ "float": [
+  {
+   "label": "MH_path_bed_pond",
+   "z": -167.9,
+   "ground": -610.3,
+   "gap": 442.4
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_stump",
+   "z": 160.0,
+   "ground": -499.6,
+   "gap": 659.6
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -610.3,
+   "gap": 785.3
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -610.3,
+   "gap": 775.3
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -500.1,
+   "gap": 675.1
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -610.3,
+   "gap": 775.3
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 135.4,
+   "ground": -500.1,
+   "gap": 635.5
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -500.1,
+   "gap": 675.1
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -499.6,
+   "gap": 669.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -610.3,
+   "gap": 785.3
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -591.0,
+   "gap": 756.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -499.6,
+   "gap": 664.6
+  },
+  {
+   "label": "MH_rosette",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_hero_rock_1",
+   "z": 160.0,
+   "ground": -499.6,
+   "gap": 659.6
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -499.6,
+   "gap": 664.6
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 131.6,
+   "ground": -610.3,
+   "gap": 741.9
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -610.3,
+   "gap": 780.3
+  },
+  {
+   "label": "MH_path_pond_window",
+   "z": 170.0,
+   "ground": -500.1,
+   "gap": 670.1
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -499.6,
+   "gap": 669.6
+  },
+  {
+   "label": "MH_bank_grass",
+   "z": 170.0,
+   "ground": -591.0,
+   "gap": 761.0
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -610.3,
+   "gap": 785.3
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -499.6,
+   "gap": 674.6
+  },
+  {
+   "label": "MH_bank_flower",
+   "z": 175.0,
+   "ground": -591.0,
+   "gap": 766.0
+  },
+  {
+   "label": "MH_bank_pebble",
+   "z": 165.0,
+   "ground": -499.6,
+   "gap": 664.6
+  },
+  {
+   "label": "MH_path_bed_pond",
+   "z": 165.0,
+   "ground": -500.1,
+   "gap": 665.1
+  }
+ ],
+ "buried": [
+  {
+   "label": "Dress_BedBedding",
+   "z": -541.2,
+   "ground": -115.9,
+   "gap": -425.3
+  },
+  {
+   "label": "Morning_Bed",
+   "z": -421.2,
+   "ground": -115.9,
+   "gap": -305.3
+  },
+  {
+   "label": "SM_room_2",
+   "z": -222.0,
+   "ground": -21.2,
+   "gap": -200.8
+  }
+ ],
+ "ok": 25,
+ "field_hit": 22
+}
