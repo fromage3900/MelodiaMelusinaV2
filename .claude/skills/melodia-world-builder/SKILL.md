@@ -5,7 +5,7 @@ description: Build, arrange, inspect, or polish Melodia Unreal worlds with live 
 
 # Melodia world builder
 
-Operational runbook for world / level / environment work. The goal is to make agents **spatially aware and fast**, not to add another planning layer.
+Operational runbook for world / level / environment work. The goal is to make agents **spatially aware, art-directed, measurable, and fast**, not to add another planning layer.
 
 ## 0. Read only what the task needs
 
@@ -66,7 +66,69 @@ From the packet and live editor, identify:
 
 Never judge composition from actor names, graph names, or source code alone.
 
-## 3. Work promptly
+## 3. Measured art-direction build card — required for substantial 3D work
+
+Before the first spatial mutation, convert the owner's intent into a **small measured build card** using the live scene data. Keep it in the active task/tool context or PR body; do **not** create a new plan Markdown file.
+
+Use centimetres, metres, degrees, percentages, screen occupancy, instance counts, or explicit transform deltas instead of vague prose wherever a measurement is meaningful.
+
+A good card contains only the dimensions relevant to the task:
+
+```text
+ART DIRECTION INTENT
+- one sentence: what the player should feel/read
+
+TARGET VIEW
+- camera / viewport: named camera or live viewport transform
+- FOV or focal length
+- focal subject
+- camera-to-subject distance
+- desired subject screen occupancy / silhouette relationship
+
+PLAYER ROUTE
+- current clear width -> target clear width
+- vertical clearance if relevant
+- reveal / approach distance to the landmark
+- intended turn, rise, drop, bridge, or path dimensions
+
+COMPOSITION
+- hero / support / background hierarchy
+- protected negative-space zone or clearance radius
+- foreground / midground / background separation distances
+- intended overlap or silhouette separation in degrees / screen percentage where useful
+
+PCG / ECOLOGY
+- current volume bounds / graph owner
+- current instance count -> target range or maximum delta
+- exclusion margin from route / landmark
+- density zones or falloff distances
+- semantic response being emphasized
+
+DIRECT EDITS
+- actor/volume A: translate/rotate/scale by measured amount
+- actor/volume B: bounds/density/seed/parameter target
+- assets/graphs that must remain untouched
+
+DONE WHEN
+- same camera before/after proves the intended hierarchy
+- route measurements remain valid
+- PCG count/bounds change is intentional
+- no protected clear zone is invaded
+```
+
+### Measurement rules
+
+- **Measure first; do not invent precision.** Read current transforms/bounds/counts before stating them.
+- If the owner gives art direction without numbers, choose **provisional working targets**, label them as such, and execute rather than asking for unnecessary clarification.
+- The existing human-scale anchors (`300 cm` corridor width, `240 cm` clear height, `1200 cm` hall width) are useful baselines, not universal laws. Override them when the actual gameplay/camera requires it.
+- Prefer deltas that can be falsified: `+850 cm Z`, `rotate 18° toward cathedral`, `shrink PCG X extent 12,000 -> 7,500 cm`, `instances 4,200 -> <=2,800`, not “move it up a bit” or “reduce density.”
+- For hero composition, record the actual comparison camera. A beautiful change from a different camera is not proof of an improved composition.
+- For PCG, always pair aesthetic intent with a spatial/instance budget. “More lush” without bounds/count guidance is incomplete.
+- For negative space, define **what must remain empty and how much clearance it needs**.
+
+The purpose is not bureaucracy. The build card should make the edit faster because the agent knows exactly what spatial result it is trying to produce.
+
+## 4. Work promptly
 
 Preferred rhythm:
 
@@ -74,10 +136,11 @@ Preferred rhythm:
 owner intent
   -> scene_context_cycle.begin()
   -> inspect 3D relationships
+  -> write measured build card
   -> make the bounded change
   -> play / inspect
   -> scene_context_cycle.end()
-  -> falsify the diff + captures
+  -> falsify measurements + captures
   -> stop
 ```
 
@@ -85,7 +148,7 @@ If you are three tool calls into a normal environment-art task and have not touc
 
 Do not invent a framework because the level is messy. Use the existing pieces and improve the actual place.
 
-## 4. Composition rules
+## 5. Composition rules
 
 PCG is an assembly tool, not the art director.
 
@@ -100,11 +163,13 @@ Prioritize:
 7. controlled procedural richness;
 8. musical/world response.
 
+Translate subjective direction into measurable constraints when possible. Examples: route width, camera distance/FOV, landmark reveal distance, clear-zone radius, angular separation, PCG bounds, instance-count budget, density falloff, and transform deltas.
+
 If procedural output damages the frame, constrain the PCG bounds/density or remove the offending output rather than compensating with more effects.
 
 Empty space is allowed and often desirable.
 
-## 5. PCG / Resonance Ecology
+## 6. PCG / Resonance Ecology
 
 Use the validated pipeline in `Docs/Production/PCG/README.md`:
 
@@ -122,17 +187,20 @@ Gameplay/music truth remains with existing runtime owners. Python is editor auth
 
 Do not repurpose PCG density as semantic Resonance. Preserve upstream tags/transforms and use the proven metadata contract.
 
-## 6. Builder → falsifier, not permanent departments
+For every substantial PCG art pass, record before/after **graph owner, bounds, generated instance count, route/landmark exclusion distance, and the visual reason for the change**.
+
+## 7. Builder → falsifier, not permanent departments
 
 For substantial 3D work, use two temporary roles:
 
 **BUILDER**
-- makes the requested bounded world change;
+- makes the requested bounded world change against the measured build card;
 - preserves existing ownership;
 - captures the result.
 
 **FALSIFIER / REVIEWER**
 - reads `scene_context_diff.json` and before/after captures;
+- checks each measurable target from the build card;
 - checks route clearance;
 - player scale;
 - landmark silhouette;
@@ -145,7 +213,7 @@ The reviewer fixes clear P0 defects but does not start a redesign campaign.
 
 The owner decides whether the result actually looks or feels better.
 
-## 7. Before / after spatial proof
+## 8. Before / after spatial proof
 
 After the bounded edit, run:
 
@@ -166,6 +234,7 @@ The diff records prioritized actors added/removed/moved, PCG graph or instance-c
 
 At minimum verify:
 
+- the measured build-card targets were actually met or consciously revised;
 - route still reads and remains traversable;
 - hero silhouettes are not buried;
 - PCG did not invade exclusion/clear zones;
@@ -176,7 +245,7 @@ At minimum verify:
 
 A technically valid graph mutation that worsens composition is a failed worldbuilding change.
 
-## 8. World Partition / Git provenance
+## 9. World Partition / Git provenance
 
 Unreal editor Save does not prove Git persistence.
 
@@ -187,7 +256,7 @@ For World Partition / ignored environment paths, finish by enumerating the inten
 
 Do not force-add an entire ignored content tree. Promote the exact intended packages.
 
-## 9. Editor discipline
+## 10. Editor discipline
 
 - Prefer the already-open target level. Do not load away from the owner's current level just to inspect another map.
 - One editor-mutating surface at a time. Prefer Monolith when available.
@@ -195,11 +264,13 @@ Do not force-add an entire ignored content tree. Promote the exact intended pack
 - PCG generation may be asynchronous; do not read counts immediately after `generate()` and call that evidence.
 - Do not infer LIVE/PACKAGED success from source state.
 
-## 10. Final response
+## 11. Final response
 
-Keep it production-facing:
+Keep it production-facing and measurable:
 
 - what changed in the world;
+- the measured art-direction targets used;
+- actual before/after measurements and transform deltas;
 - which existing systems/graphs were reused;
 - before/after spatial proof / captures;
 - PCG count/bounds impact if relevant;
