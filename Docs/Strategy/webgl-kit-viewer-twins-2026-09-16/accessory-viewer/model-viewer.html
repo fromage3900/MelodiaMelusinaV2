@@ -28,15 +28,24 @@
     h1 { font: 400 clamp(42px, 7vw, 72px)/.9 var(--serif); letter-spacing: -.04em; margin: 22px 0 8px; }
     .dek { max-width: 46rem; color: var(--muted); font: italic 18px/1.35 var(--serif); margin: 0 0 28px; }
     .layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 22px; align-items: start; }
-    model-viewer {
+    #stage { background: #ece7e0; min-height: 62vh; }
+    model-viewer,
+    babylon-viewer {
       width: 100%;
       min-height: 62vh;
       background: #ece7e0;
       --poster-color: #ece7e0;
+      display: block;
     }
+    model-viewer[hidden],
+    babylon-viewer[hidden] { display: none !important; }
+    babylon-viewer { height: 62vh; }
+    babylon-viewer::part(tool-bar),
+    babylon-viewer::part(progress-bar) { display: none; }
     .panel { border-top: 1px solid var(--accent); padding-top: 12px; display: grid; gap: 16px; }
     .panel h2 { font: 400 28px/1 var(--serif); margin: 0; }
     label { display: grid; gap: 7px; }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
     select, button {
       min-height: 42px;
       padding: 9px 11px;
@@ -51,7 +60,8 @@
     .links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 18px; }
     @media (max-width: 800px) {
       .layout { grid-template-columns: 1fr; }
-      model-viewer { min-height: 52vh; }
+      #stage, model-viewer, babylon-viewer { min-height: 52vh; }
+      babylon-viewer { height: 52vh; }
     }
     @media (prefers-reduced-motion: reduce) {
       model-viewer { --auto-rotate-delay: 0s; }
@@ -64,51 +74,59 @@
       <a class="micro" href="./floral-study.html">← Floral atelier</a>
       <span class="micro">S.04 / Commerce embed</span>
     </header>
-    <h1>Same object.<br>Standard viewer.</h1>
-    <p class="dek">Google <code>&lt;model-viewer&gt;</code> loading the same authored eyewear GLBs as the floral atelier. This is the commerce/AR embed path — not a replacement for the custom Three.js study.</p>
+    <h1>Same object.<br>Same camera.</h1>
+    <p class="dek">Google <code>&lt;model-viewer&gt;</code> and Babylon Viewer on one camera contract — same GLBs, same facing, same orbit. Lighting stays native to each engine. This is not a replacement for the floral atelier.</p>
 
     <section class="layout">
-      <model-viewer
-        id="viewer"
-        camera-controls
-        touch-action="pan-y"
-        interaction-prompt="none"
-        shadow-intensity="0.7"
-        exposure="1"
-        tone-mapping="commerce"
-        orientation="0deg 90deg 0deg"
-        camera-orbit="24deg 74deg 1.2m"
-        camera-target="0m 0.02m 0m"
-        field-of-view="28deg"
-        min-camera-orbit="auto 55deg auto"
-        max-camera-orbit="auto 95deg auto"
-        ar
-        ar-modes="webxr scene-viewer"
-        alt="Original eyewear study in Google model-viewer"
-      ></model-viewer>
+      <div id="stage">
+        <model-viewer
+          id="googleViewer"
+          camera-controls
+          touch-action="pan-y"
+          interaction-prompt="none"
+          shadow-intensity="0.7"
+          exposure="1"
+          tone-mapping="commerce"
+          orientation="0deg 90deg 0deg"
+          camera-orbit="24deg 74deg 1.2m"
+          camera-target="0m 0.02m 0m"
+          field-of-view="28deg"
+          min-camera-orbit="auto 55deg auto"
+          max-camera-orbit="auto 95deg auto"
+          ar
+          ar-modes="webxr scene-viewer"
+          alt="Original eyewear study"
+        ></model-viewer>
+      </div>
 
       <aside class="panel">
         <div>
           <span class="micro">Object / 001–008</span>
           <h2>Embed.</h2>
         </div>
+        <div>
+          <span class="micro">Engine</span>
+          <div class="choice-grid" role="group" aria-label="Viewer engine">
+            <button type="button" data-engine="google" aria-pressed="true">Google</button>
+            <button type="button" data-engine="babylon" aria-pressed="false">Babylon</button>
+          </div>
+        </div>
         <label>
           <span class="micro">Silhouette</span>
           <select id="heroSelector" aria-label="Eyewear silhouette"></select>
         </label>
         <button id="rotateToggle" type="button" aria-pressed="false">Auto rotate</button>
-        <p class="note">Variants are separate GLBs, not <code>KHR_materials_variants</code>. AR is enabled for WebXR / Scene Viewer; iOS Quick Look needs a USDZ we have not authored yet.</p>
+        <p class="note">Shared <code>viewer-contract.js</code> owns facing and camera. Variants are separate GLBs. AR is Google-only (WebXR / Scene Viewer; no USDZ).</p>
         <div id="diagnostics" class="diag">Loading…</div>
       </aside>
     </section>
 
     <nav class="links">
       <a class="micro" href="./floral-study.html">Floral atelier ↗</a>
-      <a class="micro" href="./babylon-viewer.html">Babylon check ↗</a>
       <a class="micro" href="./">Product viewer ↗</a>
       <a class="micro" href="../prototypes/fabric-material-lab/">Textile lab ↗</a>
     </nav>
   </main>
-  <script type="module" src="./model-viewer.js"></script>
+  <script type="module" src="./embed.js"></script>
 </body>
 </html>
