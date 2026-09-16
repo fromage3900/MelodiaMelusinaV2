@@ -288,6 +288,13 @@ issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_
    packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
 3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
 
+**PR cleanup, 2026-09-16:** #215 (VFX flipbook closure) refreshed onto `main`, static + LFS gates
+green, merged as `88248226` — all 73 `Content/_PROJECT/VFX` files are LFS-backed on the remote.
+#205 (eyewear editorial) is superseded by #223: against current `main` only `eyewear.py` (its later
+09-12 19:30 version) and 8 `Tools/eyewear_verify` probes were still unique; close #205 when #223 lands.
+The 09-12..09-16 working-branch content lands through #224 (filtered: #181-deleted docs, career/school
+files, plan/receipt notes, `DefaultEngine.ini` and 77 unreviewed sweep deletions kept out).
+
 **Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
 `M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);
 a second, differently-shaped 18-node BellTree generation under `Morning_Dell_Banks`; shirt
