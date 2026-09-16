@@ -13,18 +13,27 @@ For anything involving **what is true now, what is blocked, or what to do next**
 
 ## Production / agent / workstation contracts
 
-- [`Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md`](Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md) — how agents, evidence, Git, workstations, and knowledge tools cooperate.
+- [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding fast-start conductor path and scope rules.
+- [`Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md`](Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md) — how agents, evidence, Git, workstations, knowledge tools, and 3D scene-context preflight cooperate.
+- [`.claude/skills/melodia-conductor/SKILL.md`](.claude/skills/melodia-conductor/SKILL.md) / [`.agents/skills/melodia-conductor/SKILL.md`](.agents/skills/melodia-conductor/SKILL.md) — routes a task to the smallest correct skill/context surface; not a task queue or authority.
+- [`Content/Python/scene_context_snapshot.py`](Content/Python/scene_context_snapshot.py) — generates the machine-local `melodia.scene_context.v1` spatial packet for Unreal worldbuilding awareness.
+- [`Content/Python/scene_context_cycle.py`](Content/Python/scene_context_cycle.py) — records before/after 3D packets and a compact spatial/PCG diff for falsification.
+- [`.claude/skills/melodia-world-builder/SKILL.md`](.claude/skills/melodia-world-builder/SKILL.md) / [`.agents/skills/melodia-world-builder/SKILL.md`](.agents/skills/melodia-world-builder/SKILL.md) — spatially aware world/PCG/environment runbook using the begin → build → end cycle.
 - [`Docs/Production/BRANCH_WORKSTATION_POLICY.md`](Docs/Production/BRANCH_WORKSTATION_POLICY.md) — branch classes, workstation roles, cleanup and promotion rules.
 - [`Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md) — durable ASUS/Blender/GN/DCC lane contract.
 
 ## Worldbuilding / procedural environment
 
 - [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) — chapter/world ownership and sound-to-form contract.
+- [`Docs/Production/PCG/README.md`](Docs/Production/PCG/README.md) — canonical UE5.8 PCG authoring contract, including the validated Python Data Processor → semantic metadata → native PCG → per-instance material-data workflow used by Resonance Ecology / Sea Above.
+- [`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`](Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md) — durable intake contract for terrain-authoring lanes before UE world integration.
 - [`Docs/Research/README.md`](Docs/Research/README.md) — research index; research informs implementation but does not assign current work.
 
-## Art / references
+## Art / narrative / references
 
 - [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) — canonical visual-reference entry point.
+- [`Docs/References/Narrative/MELODIA_CHARACTER_VOICE_BIBLE.md`](Docs/References/Narrative/MELODIA_CHARACTER_VOICE_BIBLE.md) — durable Melusina + Sir dialogue/performance/voicebank writing reference, including Quill line discipline and the "world as third speaker" rule.
+- [`Docs/References/Narrative/MELODIA_COMPENDIUM_BIBLE.md`](Docs/References/Narrative/MELODIA_COMPENDIUM_BIBLE.md) — durable in-game Compendium content/UI contract: categories, entry grammar, narrative-flag discovery, Melusina field notes, optional voicebank snippets, and the existing Persona read-model seam.
 - [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md) — durable Choral Sheep visual/material/gameplay contract.
 
 ## Animation / performance capture
@@ -52,6 +61,12 @@ Recommended bookmarks:
 3. `SYSTEM_MAP.md`
 4. `DATA_FLOW.md`
 5. the one lane contract relevant to the current task
+
+For procedural/world-building sessions, bookmark `Docs/Production/PCG/README.md` beside the world-building authority so future agents do not rediscover the UE5.8 Python/PCG API traps from scratch. The generated Scene Context packets/diffs remain under `Saved/Audit/SceneContext/` and should not become an Obsidian status/dashboard system.
+
+For dialogue/Quill/voicebank writing, use `Docs/References/Narrative/MELODIA_CHARACTER_VOICE_BIBLE.md` as the durable character-performance reference; current narrative implementation/evidence still belongs to `CURRENT_STATE.md` and the runtime authorities.
+
+For Compendium writing/UI work, use `Docs/References/Narrative/MELODIA_COMPENDIUM_BIBLE.md`; runtime entries live on `DA_MelodiaPersonaContent` and the UI reads them through `UMelodiaPersonaSubsystem` rather than maintaining a second lore database.
 
 Use backlinks, search, bookmarks, and local graph for discovery. Do not create Obsidian-only task queues, handoffs, dashboards, or duplicate status notes.
 

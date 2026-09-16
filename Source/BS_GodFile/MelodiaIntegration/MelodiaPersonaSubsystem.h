@@ -79,8 +79,25 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Persona|Minimap")
 	TArray<FMelodiaMinimapMarkerDefinition> GetVisibleMinimapMarkers() const;
 
+	/** All authored Compendium entries, optionally filtered to persistent narrative unlocks. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Persona|Compendium")
+	TArray<FMelodiaCompendiumEntry> GetCompendiumEntries(bool bUnlockedOnly) const;
+
+	/** Category-filtered Compendium view for tabbed UI surfaces. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Persona|Compendium")
+	TArray<FMelodiaCompendiumEntry> GetCompendiumEntriesByCategory(EMelodiaCompendiumCategory Category, bool bUnlockedOnly) const;
+
+	/** Resolves a single entry by stable EntryId. Returns false when the id is unknown. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Persona|Compendium")
+	bool GetCompendiumEntry(FName EntryId, FMelodiaCompendiumEntry& OutEntry) const;
+
+	/** Reads UnlockFlagId from the canonical narrative record; it never owns persistence itself. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Persona|Compendium")
+	bool IsCompendiumEntryUnlocked(FName EntryId) const;
+
 private:
 	const FMelodiaQuestDefinition* FindQuest(FName QuestId) const;
+	const FMelodiaCompendiumEntry* FindCompendiumEntry(FName EntryId) const;
 	bool IsQuestComplete(FName QuestId) const;
 	void RefreshMinimapWidgets() const;
 

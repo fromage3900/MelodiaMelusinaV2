@@ -4,6 +4,9 @@
 #include "Engine/DataAsset.h"
 #include "MelodiaPersonaTypes.generated.h"
 
+class USoundBase;
+class UTexture2D;
+
 UENUM(BlueprintType)
 enum class EMelodiaQuestState : uint8
 {
@@ -21,6 +24,18 @@ enum class EMelodiaMinimapMarkerType : uint8
 	Encounter,
 	Exit,
 	SavePoint
+};
+
+UENUM(BlueprintType)
+enum class EMelodiaCompendiumCategory : uint8
+{
+	Character,
+	MotifCreature,
+	Instrument,
+	Place,
+	Phenomenon,
+	Song,
+	Relic
 };
 
 USTRUCT(BlueprintType)
@@ -152,6 +167,60 @@ struct BS_GODFILE_API FMelodiaMinimapMarkerDefinition
 	FName RequiredQuestId;
 };
 
+/**
+ * Player-facing Compendium presentation data.
+ *
+ * This structure never owns gameplay truth. EntryId points at authored knowledge,
+ * UnlockFlagId reads the canonical narrative record, and RelatedEntryIds link other
+ * Compendium entries. The UI is free to present these fields without inventing a
+ * second save, quest, creature, instrument, or world-state authority.
+ */
+USTRUCT(BlueprintType)
+struct BS_GODFILE_API FMelodiaCompendiumEntry
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName EntryId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	EMelodiaCompendiumCategory Category = EMelodiaCompendiumCategory::Phenomenon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText Subtitle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(MultiLine=true))
+	FText Summary;
+
+	/** Optional musical identity: pitch, interval, mode, rhythmic cell, or motif description. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(MultiLine=true))
+	FText MusicalIdentity;
+
+	/** Melusina's authored marginalia. Keep this in character; it may be voiced. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(MultiLine=true))
+	FText FieldNote;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<UTexture2D> Artwork;
+
+	/** Optional spoken field note / performance snippet from the voicebank. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSoftObjectPtr<USoundBase> VoiceNote;
+
+	/** Empty = visible from the start. Otherwise reads this flag from the canonical narrative record. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName UnlockFlagId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FName> RelatedEntryIds;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FName> Tags;
+};
+
 UCLASS(BlueprintType)
 class BS_GODFILE_API UMelodiaPersonaContent : public UDataAsset
 {
@@ -169,6 +238,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Persona|Minimap")
 	TArray<FMelodiaMinimapMarkerDefinition> MinimapMarkers;
+
+	/** Player-facing knowledge catalog. Runtime truth remains in the systems referenced by each entry. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Persona|Compendium")
+	TArray<FMelodiaCompendiumEntry> Compendium;
 
 	/**
 	 * Allowlisted reward id -> EquipmentId that granting it should equip.

@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:auriga": "node --check src/auriga-meter.js"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "date": "2026-09-10",
+  "objective": "Prepare up to three truthful buyer-shaped WebGL/technical-art submissions this afternoon.",
+  "audit": "CURRENT_STATE_AUDIT_2026-09-10.md",
+  "canonical_state": "CANONICAL_SUBMISSION_STATE_2026-09-10.md",
+  "tracker_csv": "APPLICATION_TRACKER_SNAPSHOT.csv",
+  "figma_brief": "FIGMA_MINIMAL_POLISH_BRIEF.md",
+  "package_brief": "AFTERNOON_SUBMISSION_PACK.md",
+  "lanes": [
+    {
+      "id": "C_INDUSTRIAL_LOOP",
+      "title": "$10,000 Procedural Industrial Homepage Loop",
+      "owner": ["Brennan"],
+      "priority": 1,
+      "status": "FINAL_SOURCE_CANONICAL_EXTERNAL_SANITY_GATED",
+      "preservation": "SOURCE_ON_MY_SITE_MAIN_CURSOR_CAPTURE_ARCHIVE_IN_CLOSED_MELODIA_PR_176",
+      "canonical_repo": "fromage3900/my-site",
+      "capture_archive_repo": "fromage3900/MelodiaMelusinaV2",
+      "capture_archive_pr": 176,
+      "observed_cursor_capture_evidence": {
+        "console_errors": 0,
+        "canonical_seed": 1,
+        "draw_calls": 81,
+        "triangles": 16948,
+        "loop_delta": 0,
+        "full_16s_capture": true,
+        "deterministic_capture_urls": true,
+        "hero_and_viz_stills": true
+      },
+      "required_before_submit": [
+        "perform one normal local-browser sanity check of current my-site main",
+        "confirm five final attachments open",
+        "human-review final proposal",
+        "recheck listing current at click-send"
+      ],
+      "application_path": "../../prototypes/procedural-industrial-loop/APPLICATION_DRAFT_AFTER_QA.md",
+      "evidence_path": "../../prototypes/procedural-industrial-loop/EVIDENCE.md",
+      "submission_state": "FIRST_SEND_READY_AFTER_SANITY_CHECK"
+    },
+    {
+      "id": "B_FABRIC_CONSULTANT",
+      "title": "Three.js Fabric Technical-Art Consultant",
+      "owner": ["Brennan", "ChatGPT/Kimi packaging"],
+      "priority": 2,
+      "status": "SOURCE_EVIDENCE_PRESENT_QA_PROVENANCE_OWNER_PROOF_GATED",
+      "preservation": "CANONICAL_DOCS_ON_MY_SITE_MAIN",
+      "required_before_submit": [
+        "existing fabric viewer runtime checked",
+        "commercial-safe evidence chosen",
+        "texture/material provenance classified",
+        "genuine CLO or Blender artifact selected",
+        "application evidence links chosen",
+        "listing rechecked current"
+      ],
+      "application_path": "../../fabric/APPLICATION_DRAFT_AFTER_QA.md",
+      "evidence_path": "../../fabric/FABRIC_CONSULTANT_EVIDENCE.md",
+      "submission_state": "SECOND_SEND_STRONG_LOW_COMPETITION_FIT"
+    },
+    {
+      "id": "A_PRODUCT_GLB",
+      "title": "$3,000 Web-ready Product Animation / GLB",
+      "owner": ["Brennan"],
+      "priority": 3,
+      "status": "AURIGA_SOURCE_CANONICAL_GENERATION_RUNTIME_GATED",
+      "preservation": "AURIGA_BUILDER_CHECKER_AND_BROWSER_LOADER_CANONICAL_ON_MY_SITE_MAIN",
+      "canonical_source": [
+        "../../scripts/build_auriga_meter.py",
+        "../../scripts/check_auriga_meter.py",
+        "../../prototypes/product-motion-lab/src/auriga-meter.js",
+        "../../prototypes/product-motion-lab/package.json"
+      ],
+      "required_before_submit": [
+        "run the canonical Blender builder to generate assets/auriga_meter.glb",
+        "perform Brennan visual and silhouette pass on the generated asset",
+        "run check_auriga_meter.py against the exported GLB",
+        "load the generated GLB through the Product Motion Lab browser runtime",
+        "verify deterministic 0 to 1 to 0 scrub",
+        "verify screen hinge and port anchors through the motion range",
+        "export desktop and mobile captures",
+        "record real runtime triangles draw calls DPR FPS and byte size",
+        "recheck listing current"
+      ],
+      "application_path": "../../DIRECT_LISTING_STRIKES_2026-09-10.md",
+      "evidence_path": "../../prototypes/product-motion-lab/EVIDENCE.md",
+      "submission_state": "THIRD_SEND_BLOCKED_ONLY_ON_GENERATION_RUNTIME_AND_CAPTURE"
+    }
+  ],
+  "shared_package_files": [
+    "01_COVER.png",
+    "02_PRIMARY_PROOF.png",
+    "03_SECONDARY_PROOF.png",
+    "04_MOBILE_PROOF.png",
+    "05_EVIDENCE.md",
+    "06_APPLICATION_DRAFT.md",
+    "07_REQUIREMENT_MAP.md",
+    "08_SOURCE_LINKS.txt"
+  ],
+  "industrial_rule": "Current industrial source is canonical on my-site main. Melodia PR 176 is a closed audit/capture archive only; do not apply its transfer patch over current main without an explicit diff review.",
+  "product_rule": "Auriga source is canonical. Do not mark the product lane runtime-verified until Blender generates the GLB and browser QA/capture evidence exists.",
+  "figma_rule": "Use Figma only after real captures exist. Presentation may improve hierarchy and annotation but may not invent metrics, runtime states, client results, or capabilities.",
+  "human_gate": "No submission is sent without Brennan approval.",
+  "capstone_boundary": "CAPSTONE_NOW.md remains authoritative; Choral Sheep visual proof remains P0 after submission work."
+}

@@ -1,6 +1,6 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-09  
+**Last Updated:** 2026-09-14
 **Scope:** stable runtime/state lifecycle for an evergreen single-player game  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -88,6 +88,10 @@ Convergence reads durable/authoritative inputs and derives relationship state or
 ---
 
 ## 3. Example: combat Chapter
+
+This is an authoring pattern, not a requirement to build another combat framework. A new boss or
+encounter supplies authored Quill intent, Phoenix skill data, rhythm phrase data, consequence and
+reward/checkpoint content around this flow.
 
 ```text
 Quill/world encounter intent

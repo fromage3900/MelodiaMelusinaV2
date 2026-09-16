@@ -204,3 +204,73 @@ Recommended setup:
 - keep `.obsidian/` machine-local unless a deliberately reviewed shared configuration is ever needed.
 
 The value of Obsidian is **finding and relating durable knowledge**, not generating another knowledge base beside Git.
+
+## 14. 3D scene-context preflight
+
+For Unreal worldbuilding, environment art, PCG placement, lookdev, traversal composition, camera, or spatial QA, agents need **live spatial evidence**, not only repository prose.
+
+Canonical snapshot tool:
+
+`Content/Python/scene_context_snapshot.py`
+
+Run it against the level that is already open before the first spatial mutation when editor access is available. It writes machine-local artifacts under:
+
+```text
+Saved/Audit/SceneContext/<LevelName>/
+  scene_context_latest.json
+  viewport_latest.png
+  top_latest.png
+```
+
+These files are ephemeral context/evidence. They are not a status document, task queue, or gameplay authority and should not be promoted as canonical Markdown.
+
+The packet intentionally prioritizes selected actors, route/exclusion tags, PCG actors/graphs/instance counts, cameras, major landmarks, large spatial anchors, actor/world bounds, human-scale reference, and the current editor viewport instead of dumping every actor into prompt context.
+
+### Required 3D work rhythm
+
+```text
+CURRENT_STATE + relevant durable contract
+  -> scene-context snapshot
+  -> inspect current viewport + top view + spatial JSON
+  -> BUILD promptly
+  -> regenerate scene-context snapshot
+  -> compare route / silhouette / PCG bounds / player scale
+  -> owner visual or gameplay judgment
+  -> save / provenance check / promote
+```
+
+A successful preflight is a reason to **start working**, not a reason to begin another audit. Do not spend the session rediscovering facts already present in the packet.
+
+Before adding or moving world content, check at minimum:
+
+- player-scale readability;
+- primary route and traversal clearance;
+- landmark silhouette and protected negative space;
+- relevant PCG volume/graph ownership and generated instance count;
+- `WP_PrimaryRoute`, `WP_NoScatter`, `PCG_Exclude`, and `WP_LandmarkClear` where present;
+- selected actor and current viewport context when the owner has framed a target.
+
+After the edit, compare the same spatial anchors. A technically valid graph change that damages composition is a failed worldbuilding change.
+
+### Builder / falsifier roles
+
+Do not revive permanent multi-agent departments. For substantial 3D tasks, use temporary task roles:
+
+```text
+BUILDER
+  -> makes the bounded spatial change
+
+FALSIFIER / REVIEWER
+  -> checks route, scale, composition, ownership, regression and evidence
+
+OWNER
+  -> decides whether the world actually looks / feels better
+```
+
+The reviewer must not turn review into a redesign campaign. The builder must not turn implementation into architecture research.
+
+### Provenance rule
+
+For World Partition / gitignored environment content, editor success is incomplete until intended `.uasset` and external-actor packages are confirmed tracked or deliberately local. Never infer Git persistence from an editor Save success.
+
+If the snapshot tool cannot run, use equivalent live editor queries/captures and state the missing spatial evidence explicitly. Do not load away from the owner's currently open level merely to generate a packet unless the task requires that target level and changing maps is safe/authorized.

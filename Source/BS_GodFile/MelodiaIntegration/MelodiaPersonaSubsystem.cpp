@@ -165,6 +165,77 @@ TArray<FMelodiaEquipmentDefinition> UMelodiaPersonaSubsystem::GetEquipmentDefini
 	return Content ? Content->Equipment : TArray<FMelodiaEquipmentDefinition>();
 }
 
+const FMelodiaCompendiumEntry* UMelodiaPersonaSubsystem::FindCompendiumEntry(const FName EntryId) const
+{
+	return Content ? Content->Compendium.FindByPredicate(
+		[EntryId](const FMelodiaCompendiumEntry& Entry) { return Entry.EntryId == EntryId; }) : nullptr;
+}
+
+bool UMelodiaPersonaSubsystem::IsCompendiumEntryUnlocked(const FName EntryId) const
+{
+	const FMelodiaCompendiumEntry* Entry = FindCompendiumEntry(EntryId);
+	if (!Entry)
+	{
+		return false;
+	}
+
+	if (Entry->UnlockFlagId.IsNone())
+	{
+		return true;
+	}
+
+	return Narrative && Narrative->GetNarrativeRecord().Flags.FindRef(Entry->UnlockFlagId);
+}
+
+bool UMelodiaPersonaSubsystem::GetCompendiumEntry(const FName EntryId, FMelodiaCompendiumEntry& OutEntry) const
+{
+	const FMelodiaCompendiumEntry* Entry = FindCompendiumEntry(EntryId);
+	if (!Entry)
+	{
+		return false;
+	}
+
+	OutEntry = *Entry;
+	return true;
+}
+
+TArray<FMelodiaCompendiumEntry> UMelodiaPersonaSubsystem::GetCompendiumEntries(const bool bUnlockedOnly) const
+{
+	TArray<FMelodiaCompendiumEntry> Result;
+	if (!Content)
+	{
+		return Result;
+	}
+
+	for (const FMelodiaCompendiumEntry& Entry : Content->Compendium)
+	{
+		if (!bUnlockedOnly || IsCompendiumEntryUnlocked(Entry.EntryId))
+		{
+			Result.Add(Entry);
+		}
+	}
+	return Result;
+}
+
+TArray<FMelodiaCompendiumEntry> UMelodiaPersonaSubsystem::GetCompendiumEntriesByCategory(
+	const EMelodiaCompendiumCategory Category, const bool bUnlockedOnly) const
+{
+	TArray<FMelodiaCompendiumEntry> Result;
+	if (!Content)
+	{
+		return Result;
+	}
+
+	for (const FMelodiaCompendiumEntry& Entry : Content->Compendium)
+	{
+		if (Entry.Category == Category && (!bUnlockedOnly || IsCompendiumEntryUnlocked(Entry.EntryId)))
+		{
+			Result.Add(Entry);
+		}
+	}
+	return Result;
+}
+
 bool UMelodiaPersonaSubsystem::RequestEquip(const FName UnitId, const FName EquipmentId)
 {
 	const FMelodiaEquipmentDefinition* Definition = Content ? Content->Equipment.FindByPredicate(
