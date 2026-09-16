@@ -51,7 +51,7 @@ TEXT_REQUIREMENTS = {
         "UNKNOWN",
     ],
     ".github/pull_request_template.md": [
-        "Capstone / production value",
+        "Player / artist outcome",
         "Evidence level",
         "Authority touched",
         "Cleanup justification",
