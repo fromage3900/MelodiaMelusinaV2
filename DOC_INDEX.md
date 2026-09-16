@@ -13,9 +13,12 @@ For anything involving **what is true now, what is blocked, or what to do next**
 
 ## Production / agent / workstation contracts
 
+- [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding fast-start conductor path and scope rules.
 - [`Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md`](Docs/Production/AGENTIC_STUDIO_OPERATING_MODEL.md) — how agents, evidence, Git, workstations, knowledge tools, and 3D scene-context preflight cooperate.
-- [`Content/Python/scene_context_snapshot.py`](Content/Python/scene_context_snapshot.py) — generates the machine-local `melodia.scene_context.v1` spatial packet used before/after Unreal worldbuilding edits; output is evidence/context, not authority.
-- [`.claude/skills/melodia-world-builder/SKILL.md`](.claude/skills/melodia-world-builder/SKILL.md) / [`.agents/skills/melodia-world-builder/SKILL.md`](.agents/skills/melodia-world-builder/SKILL.md) — spatially aware world/PCG/environment agent runbook.
+- [`.claude/skills/melodia-conductor/SKILL.md`](.claude/skills/melodia-conductor/SKILL.md) / [`.agents/skills/melodia-conductor/SKILL.md`](.agents/skills/melodia-conductor/SKILL.md) — routes a task to the smallest correct skill/context surface; not a task queue or authority.
+- [`Content/Python/scene_context_snapshot.py`](Content/Python/scene_context_snapshot.py) — generates the machine-local `melodia.scene_context.v1` spatial packet for Unreal worldbuilding awareness.
+- [`Content/Python/scene_context_cycle.py`](Content/Python/scene_context_cycle.py) — records before/after 3D packets and a compact spatial/PCG diff for falsification.
+- [`.claude/skills/melodia-world-builder/SKILL.md`](.claude/skills/melodia-world-builder/SKILL.md) / [`.agents/skills/melodia-world-builder/SKILL.md`](.agents/skills/melodia-world-builder/SKILL.md) — spatially aware world/PCG/environment runbook using the begin → build → end cycle.
 - [`Docs/Production/BRANCH_WORKSTATION_POLICY.md`](Docs/Production/BRANCH_WORKSTATION_POLICY.md) — branch classes, workstation roles, cleanup and promotion rules.
 - [`Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md) — durable ASUS/Blender/GN/DCC lane contract.
 
@@ -57,7 +60,7 @@ Recommended bookmarks:
 4. `DATA_FLOW.md`
 5. the one lane contract relevant to the current task
 
-For procedural/world-building sessions, bookmark `Docs/Production/PCG/README.md` beside the world-building authority so future agents do not rediscover the UE5.8 Python/PCG API traps from scratch. The generated Scene Context packet remains under `Saved/Audit/SceneContext/` and should not become an Obsidian status/dashboard system.
+For procedural/world-building sessions, bookmark `Docs/Production/PCG/README.md` beside the world-building authority so future agents do not rediscover the UE5.8 Python/PCG API traps from scratch. The generated Scene Context packets/diffs remain under `Saved/Audit/SceneContext/` and should not become an Obsidian status/dashboard system.
 
 Use backlinks, search, bookmarks, and local graph for discovery. Do not create Obsidian-only task queues, handoffs, dashboards, or duplicate status notes.
 
