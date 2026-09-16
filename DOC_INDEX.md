@@ -20,6 +20,8 @@ For anything involving **what is true now, what is blocked, or what to do next**
 ## Worldbuilding / procedural environment
 
 - [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) — chapter/world ownership and sound-to-form contract.
+- [`Docs/Production/PCG/README.md`](Docs/Production/PCG/README.md) — canonical UE5.8 PCG authoring contract, including the validated Python Data Processor → semantic metadata → native PCG → per-instance material-data workflow used by Resonance Ecology / Sea Above.
+- [`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`](Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md) — durable intake contract for terrain-authoring lanes before UE world integration.
 - [`Docs/Research/README.md`](Docs/Research/README.md) — research index; research informs implementation but does not assign current work.
 
 ## Art / references
@@ -52,6 +54,8 @@ Recommended bookmarks:
 3. `SYSTEM_MAP.md`
 4. `DATA_FLOW.md`
 5. the one lane contract relevant to the current task
+
+For procedural/world-building sessions, bookmark `Docs/Production/PCG/README.md` beside the world-building authority so future agents do not rediscover the UE5.8 Python/PCG API traps from scratch.
 
 Use backlinks, search, bookmarks, and local graph for discovery. Do not create Obsidian-only task queues, handoffs, dashboards, or duplicate status notes.
 
