@@ -1,0 +1,20 @@
+{
+  "repo_modules": [
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\surreal_arch\\melodia_gn\\starskiff_hull.py",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\surreal_arch\\melodia_gn\\starskiff_biomech.py"
+  ],
+  "node_counts": {
+    "MEL_starskiff_hull_form": 30,
+    "MEL_starskiff_hull_audio": 20,
+    "MEL_skiff_ribcage": 28
+  },
+  "hull_neutral_residual": 0.03199,
+  "hull_dial_response": {
+    "Beam": 0.025,
+    "Rocker": 0.02083
+  },
+  "hull_audio_residual": 0.0,
+  "ribcage_verts_9": 216,
+  "ribcage_xspan": 7.615,
+  "ribcage_verts_5": 120
+}

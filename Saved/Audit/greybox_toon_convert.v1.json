@@ -1,0 +1,17 @@
+{
+ "created": [],
+ "repointed": [],
+ "notes": [
+  "MI_Greybox_Arch_02 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Arch_03 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Arch_04 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Arch_05 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Arch_06 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Arch_11 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Classic_Arch_13 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Classic_Arch_18 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Classic_Arch_20 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Column_02 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'",
+  "MI_Greybox_Frieze_01 ERR 'MaterialInstanceConstant' object has no attribute 'set_texture_parameter_value_editor_only'"
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "members": [
+  "GENERATE_AT_RUNTIME",
+  "GENERATE_ON_DEMAND",
+  "GENERATE_ON_LOAD",
+  "cast",
+  "get_display_name",
+  "name",
+  "static_enum",
+  "value"
+ ],
+ "Morning_Brook_Arpeggio": "<PCGComponentGenerationTrigger.GENERATE_ON_DEMAND: 1>",
+ "Morning_Dell_Banks": "<PCGComponentGenerationTrigger.GENERATE_ON_DEMAND: 1>",
+ "PCG_MelodiaOpening_Morning_Dressing": "<PCGComponentGenerationTrigger.GENERATE_ON_DEMAND: 1>"
+}

@@ -1,0 +1,8 @@
+{
+ "generated": "True",
+ "generation_trigger": "<PCGComponentGenerationTrigger.GENERATE_ON_LOAD: 0>",
+ "graph": "ERR PCGComponent: Property 'Graph' for attribute 'graph' on 'PCGComponent' is protec",
+ "load_from_disk": "ERR PCGComponent: Failed to find property 'load_from_disk' for attribute 'load_from_",
+ "is_partitioned": "ERR PCGComponent: Failed to find property 'is_partitioned' for attribute 'is_partiti",
+ "generate_callable": "True"
+}

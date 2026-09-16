@@ -1,0 +1,6 @@
+{
+ "graph_nodes_now": 14,
+ "add_node_of_type": "SIGERR no signature found for builtin <built-in method add_node_of_type of PCGGraph object at 0x000001B229693810>",
+ "add_edge": "SIGERR no signature found for builtin <built-in method add_edge of PCGGraph object at 0x000001B229693810>",
+ "remove_nodes": "SIGERR no signature found for builtin <built-in method remove_nodes of PCGGraph object at 0x000001B229693810>"
+}

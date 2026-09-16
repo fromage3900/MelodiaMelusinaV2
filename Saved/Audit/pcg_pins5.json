@@ -1,0 +1,48 @@
+{
+ "CreatePointsGrid_8": [
+  [
+   "PCGPin_0",
+   "in",
+   "Execution Dependency"
+  ],
+  [
+   "PCGPin_1",
+   "in",
+   "Overrides"
+  ],
+  [
+   "PCGPin_2",
+   "in",
+   "GridExtents"
+  ],
+  [
+   "PCGPin_9",
+   "out",
+   "Out"
+  ]
+ ],
+ "CreatePointsGrid_8_settingslabels": "ERR 'PCGCreatePointsGridSettings' object has no attribute 'get_input_pin_labels'",
+ "WorldRaycast_1": [
+  [
+   "PCGPin_0",
+   "in",
+   "Origins"
+  ],
+  [
+   "PCGPin_1",
+   "in",
+   "Bounding Shape"
+  ],
+  [
+   "PCGPin_2",
+   "in",
+   "Execution Dependency"
+  ],
+  [
+   "PCGPin_54",
+   "out",
+   "Out"
+  ]
+ ],
+ "WorldRaycast_1_settingslabels": "ERR 'PCGWorldRaycastElementSettings' object has no attribute 'get_input_pin_labels'"
+}

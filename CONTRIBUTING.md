@@ -16,7 +16,7 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 ## Quick Start
 
-1. Read [CURRENT_STATE.md](CURRENT_STATE.md) — the only status document — before expanding scope.
+1. Read [AGENT_START_HERE.md](AGENT_START_HERE.md) and [CAPSTONE_NOW.md](CAPSTONE_NOW.md) before expanding scope.
 2. Review [README.md](README.md) to choose your onboarding path.
 3. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
 4. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
@@ -124,8 +124,8 @@ The local pilot has seeded `//melodia/Exports/...`, but it is not a shared colla
   batch `ready`, then run `python Tools/source_control_triage.py --commit-ready <batch-name>`.
 
 The scheduled task `Melodia Source Control Triage` produces this report every 12 hours without staging,
-committing, pushing, or deleting files. Perforce setup and cutover conditions are in git history:
-`git show 7d271c15:Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md`.
+committing, pushing, or deleting files. Perforce setup and cutover conditions are recorded in
+[Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
 
 ---
 
@@ -177,5 +177,7 @@ If you discover a security vulnerability, please refer to our [Security Policy](
 
 ## Documentation & Help
 
+- Complete Documentation Index: [DOC_INDEX.md](DOC_INDEX.md)
 - Agent Test Harness Whitepaper: [Docs/MELUSINA_AGENT_TEST_HARNESS.md](Docs/MELUSINA_AGENT_TEST_HARNESS.md)
+- LLM Daemon Ecosystem Report: [Docs/OLLAMA_UE5_INTEGRATION_REPORT.md](Docs/OLLAMA_UE5_INTEGRATION_REPORT.md)
 - Live Collaboration Setup: [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md)

@@ -1,0 +1,20 @@
+{
+ "Morning_Brook_Arpeggio": {
+  "generation_trigger": "<PCGComponentGenerationTrigger.GENERATE_ON_LOAD: 0>",
+  "regenerate_in_editor": "True",
+  "generate_on_drop_when_trigger_on_demand": "False",
+  "override_generation_radii": "False"
+ },
+ "Morning_Dell_Banks": {
+  "generation_trigger": "<PCGComponentGenerationTrigger.GENERATE_ON_LOAD: 0>",
+  "regenerate_in_editor": "True",
+  "generate_on_drop_when_trigger_on_demand": "False",
+  "override_generation_radii": "False"
+ },
+ "PCG_MelodiaOpening_Morning_Dressing": {
+  "generation_trigger": "<PCGComponentGenerationTrigger.GENERATE_ON_LOAD: 0>",
+  "regenerate_in_editor": "True",
+  "generate_on_drop_when_trigger_on_demand": "False",
+  "override_generation_radii": "False"
+ }
+}

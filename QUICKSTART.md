@@ -10,9 +10,10 @@
 
 1. `README.md`
 2. `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
-3. `CURRENT_STATE.md` — the only status document
-4. `SYSTEM_MAP.md`
-5. the Chapter / tool / subsystem doc you are actually touching
+3. `CURRENT_STATE.md`
+4. `TODO.md`
+5. `SYSTEM_MAP.md`
+6. the Chapter / tool / subsystem doc you are actually touching
 
 The P0 six-phase route is still a useful full-stack test. It is **not** mandatory pacing for every future story.
 
@@ -61,7 +62,7 @@ Prepare mode returns a safe checkout to `origin/main` when permitted by the exis
 
 Semester production contract:
 
-- `CURRENT_STATE.md` §4 (semester thesis, owner queue, task filter)
+- `Docs/Production/SEMESTER_SCOPE_LEDGER_2026.md`
 - `Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`
 - `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md`
 
@@ -142,18 +143,6 @@ After Smoke passes, use `-Suite Build` with Unreal closed, then run `-Suite Fast
 
 ---
 
-## ♬ Two-PC workflow
-
-If you're working across a main PC and a second machine (laptop/worker), the five-lane workflow is documented in:
-
-`Docs/Production/TWO_PC_DEVELOPMENT_WORKFLOW_2026-09-02.md`
-
-Lanes: JetBrains Gateway (remote Rider backend), VS Code Remote SSH (lightweight scripts/docs), UBA (distributed compile), Git branch handoff with LFS locks, Hermes as orchestration. The branch handoff protocol uses `collab/laptop/<task>` prefixes.
-
-See also: `Docs/Production/MASTER_INDEX.md` for the full doc navigation hub.
-
----
-
 ## ♬ Run the tests
 
 ```powershell
@@ -196,7 +185,7 @@ Wardrobe / Convergence consequence
 checkpoint / save / restore
 ```
 
-Use `CURRENT_STATE.md` §6 and `specs/p0/core_p0_dream_golden_run.v1.json` for the exact route.
+Use `_VERTICAL_SLICE_SCOPE.md` and the current golden-run spec for the exact route.
 
 ---
 
@@ -334,7 +323,11 @@ The evergreen architecture matters **now** because it changes stable IDs, save m
 
 - `README.md`
 - `CURRENT_STATE.md`
+- `TODO.md`
+- `DOC_INDEX.md`
 - `SYSTEM_MAP.md`
 - `DATA_FLOW.md`
+- `_VERTICAL_SLICE_SCOPE.md`
+- `TEST_READY.md`
 
 > **Goal: make adding journeys routine and reopening the engine exceptional.** ♪

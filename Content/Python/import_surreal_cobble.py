@@ -46,14 +46,15 @@ MAP_SUFFIXES = {
 }
 
 # Texture param name on M_Master_Toon_Universal for each map
+# (trued 2026-09-15 against live master params; guesses skip via gate below)
 TEX_PARAM = {
-    "BaseColor": "BaseColor",
-    "Normal": "Normal",
+    "BaseColor": "Albedo",
+    "Normal": "NormalMap",
     "Roughness": "RoughnessMap",
     "Metallic": "MetallicMap",
     "Height": "HeightMap",
-    "Iridescence": "IridescenceMap",
-    "MovingPearlMask": "PearlMask",   # best-guess param; gated below
+    "Iridescence": "EmissiveMap",  # no Iridescence slot on Universal; pearl glow as emissive (art call 2026-09-15)
+    "MovingPearlMask": "PearlMask",   # best-guess param; gated below (skips: no such slot)
     "ORM": "ORM",
 }
 
@@ -112,7 +113,9 @@ def main():
     results = []
     if DRY:
         print("[SurrealCobble] DRY RUN")
-    for stem in VARIANTS:
+    only = [a.split("=", 1)[1] for a in sys.argv if a.startswith("--only=")]
+    stems = [s for s in VARIANTS if not only or s in only]
+    for stem in stems:
         name = f"MI_Tilable_SurrealCobble_{stem}_R060_Tile4"
         if DRY:
             present = {s: (ensure_tex(stem, MAP_SUFFIXES[s]) is not None) for s in MAP_SUFFIXES}

@@ -1,0 +1,132 @@
+{
+ "templates": [
+  {
+   "band": "R",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  },
+  {
+   "band": "O",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  },
+  {
+   "band": "Y",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  },
+  {
+   "band": "G",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  },
+  {
+   "band": "B",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  },
+  {
+   "band": "I",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  },
+  {
+   "band": "V",
+   "dress_err": "'StaticMeshComponent' object has no attribute 'get_static_mesh'"
+  }
+ ],
+ "grids": [
+  {
+   "band": "R",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  },
+  {
+   "band": "O",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  },
+  {
+   "band": "Y",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  },
+  {
+   "band": "G",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  },
+  {
+   "band": "B",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  },
+  {
+   "band": "I",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  },
+  {
+   "band": "V",
+   "set_errs": [
+    "point_position:PCGCreatePointsGridSettings: Failed to convert type 'Vector' to property 'PointPosition' (EnumProper"
+   ],
+   "pos_rb": "<PCGPointPosition.CELL_CENTER: 0>"
+  }
+ ],
+ "spawners": [
+  {
+   "band": "R",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_R",
+   "cleanup_rb": "False"
+  },
+  {
+   "band": "O",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_O",
+   "cleanup_rb": "False"
+  },
+  {
+   "band": "Y",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_Y",
+   "cleanup_rb": "False"
+  },
+  {
+   "band": "G",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_G",
+   "cleanup_rb": "False"
+  },
+  {
+   "band": "B",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_B",
+   "cleanup_rb": "False"
+  },
+  {
+   "band": "I",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_I",
+   "cleanup_rb": "False"
+  },
+  {
+   "band": "V",
+   "set_errs": [],
+   "template_rb": "PetalTemplate_V",
+   "cleanup_rb": "False"
+  }
+ ],
+ "destroyed": [
+  "",
+  ""
+ ],
+ "ray_restore": true
+}

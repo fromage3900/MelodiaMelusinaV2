@@ -1,0 +1,116 @@
+{
+ "repointed": [
+  {
+   "mesh": "SM_arch_02",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_02"
+  },
+  {
+   "mesh": "SM_arch_03_a",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_03"
+  },
+  {
+   "mesh": "SM_arch_03_b",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_03"
+  },
+  {
+   "mesh": "SM_arch_03_c",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_03"
+  },
+  {
+   "mesh": "SM_arch_04_a_002",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_04"
+  },
+  {
+   "mesh": "SM_arch_04_b",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_04"
+  },
+  {
+   "mesh": "SM_arch_05_a_001",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_05"
+  },
+  {
+   "mesh": "SM_arch_06",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_06"
+  },
+  {
+   "mesh": "SM_arch_11",
+   "slot": 0,
+   "mi": "MI_Greybox_arch_11"
+  },
+  {
+   "mesh": "SM_classic_arch_13",
+   "slot": 0,
+   "mi": "MI_Greybox_classic_arch_13"
+  },
+  {
+   "mesh": "SM_classic_arch_13",
+   "slot": 1,
+   "mi": "MI_Greybox_frieze_01"
+  },
+  {
+   "mesh": "SM_classic_arch_18_c",
+   "slot": 0,
+   "mi": "MI_Greybox_classic_arch_18"
+  },
+  {
+   "mesh": "SM_classic_arch_20",
+   "slot": 0,
+   "mi": "MI_Greybox_Classic_Arch_20"
+  }
+ ],
+ "notes": [
+  "SM_Cube_010 slot0 MI missing MI_Greybox_Vertex_Colors_003",
+  "SM_PM3D_Cube3D1 slot0 MI missing MI_Greybox_Material",
+  "SM_PM3D_Cube3D1_1 slot0 MI missing MI_Greybox_Material",
+  "SM_PM3D_Cube3D1_2 slot0 MI missing MI_Greybox_Material",
+  "SM_PM3D_Sphere3D1 slot0 MI missing MI_Greybox_Material",
+  "SM_PM3D_Sphere3D1_002 slot0 MI missing MI_Greybox_Material_004",
+  "SM_PM3D_Sphere3D1_003 slot0 MI missing MI_Greybox_Material_005",
+  "SM_PM3D_Sphere3D1_1 slot0 MI missing MI_Greybox_Material_004",
+  "SM_PM3D_Sphere3D1_1_001 slot0 MI missing MI_Greybox_Material_005",
+  "SM_PM3D_Sphere3D2 slot0 MI missing MI_Greybox_Material_005",
+  "SM_PM3D_Sphere3D2_1 slot0 MI missing MI_Greybox_Material_005",
+  "SM_PM3D_Sphere3D2_2 slot0 MI missing MI_Greybox_Material_005",
+  "SM_PM3D_Sphere3D2_3 slot0 MI missing MI_Greybox_Material_005",
+  "SM_PolySphere slot0 MI missing MI_Greybox_Material_004",
+  "SM_PolySphere_001 slot0 MI missing MI_Greybox_Material_005",
+  "SM_ROOF slot0 MI missing MI_Greybox_Material_003",
+  "SM_Retopo_wand slot0 MI missing MI_Greybox_Material_022",
+  "SM_SM_BuildingBlock01 slot0 MI missing MI_Greybox_Material",
+  "SM_SM_BuildingBlock02 slot0 MI missing MI_Greybox_Material",
+  "SM_SM_BuildingBlock03 slot0 MI missing MI_Greybox_Material",
+  "SM_SM_Gem slot0 MI missing MI_Greybox_Material_025",
+  "SM_SM_Gem slot1 MI missing MI_Greybox_Material_010",
+  "SM_SM_Heart slot0 MI missing MI_Greybox_Material_003",
+  "SM_SM_Heart slot1 MI missing MI_Greybox_Outline",
+  "SM_SM_Pole slot0 MI missing MI_Greybox_Material_003",
+  "SM_SM_ShojiScreen slot0 MI missing MI_Greybox_Material",
+  "SM_SM_Star slot0 MI missing MI_Greybox_Material_026",
+  "SM_SM_Star slot1 MI missing MI_Greybox_Material_027",
+  "SM_SM_StreetLamp slot0 MI missing MI_Greybox_Material",
+  "SM_SM_TeaBridge002 slot0 MI missing MI_Greybox_Material",
+  "SM_SM_TeaHouse slot0 MI missing MI_Greybox_SurrealArch_Marble",
+  "SM_SM_Torii slot0 MI missing MI_Greybox_Material",
+  "SM_Wall_001_dmg slot0 MI missing MI_Greybox_Mossy_Rock_008",
+  "SM_Wall_dmg slot0 MI missing MI_Greybox_Mossy_Rock_009",
+  "SM_Window slot0 MI missing MI_Greybox_Material_003",
+  "SM_bed slot0 MI missing MI_Greybox_Material_003",
+  "SM_bed_001 slot0 MI missing MI_Greybox_Material_003",
+  "SM_circular_room slot0 MI missing MI_Greybox_Material_003",
+  "SM_circular_room_nofloor slot0 MI missing MI_Greybox_Material_003",
+  "SM_column_02 slot0 MI missing MI_Greybox_column_2",
+  "SM_room_1 slot0 MI missing MI_Greybox_Material_003",
+  "SM_room_2 slot0 MI missing MI_Greybox_Material_003",
+  "SM_room_3 slot0 MI missing MI_Greybox_Material_003",
+  "SM_wallhi_019 slot0 MI missing MI_Greybox_Material_003",
+  "SM_wallwindow slot0 MI missing MI_Greybox_Material_003"
+ ]
+}

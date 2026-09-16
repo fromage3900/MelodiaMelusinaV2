@@ -1,0 +1,31 @@
+{
+  "schema": "melodia.copernicus_surreal_cobble.v2",
+  "seed": 20260828,
+  "size": "1920x1080",
+  "frames": 1,
+  "variants": {
+    "MoonlitCobble": {
+      "outputs": [
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_BaseColor.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_Normal.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_Roughness.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_Metallic.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_Height.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_Iridescence.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_MovingPearlMask.png",
+        "Saved/Audit/copernicus_cobble/T_SurrealCobble_MoonlitCobble_ORM.png"
+      ]
+    }
+  },
+  "maps": [
+    "BaseColor",
+    "Normal",
+    "Roughness",
+    "Metallic",
+    "Height",
+    "Iridescence",
+    "MovingPearlMask",
+    "ORM"
+  ],
+  "pipeline": "COP signal maps (hython) + numpy color composite"
+}

@@ -1,0 +1,18 @@
+{
+ "pin_verbs": [
+  "input_pins",
+  "output_pins"
+ ],
+ "StaticMeshSpawner_0": {
+  "input_pins": "ERR 'Array' object is not callable",
+  "output_pins": "ERR 'Array' object is not callable"
+ },
+ "CreatePointsGrid_8": {
+  "input_pins": "ERR 'Array' object is not callable",
+  "output_pins": "ERR 'Array' object is not callable"
+ },
+ "WorldRaycast_1": {
+  "input_pins": "ERR 'Array' object is not callable",
+  "output_pins": "ERR 'Array' object is not callable"
+ }
+}
