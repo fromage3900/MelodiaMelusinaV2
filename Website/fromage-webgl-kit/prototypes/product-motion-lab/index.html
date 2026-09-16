@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fromage WebGL Kit — Product Motion Lab</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; font:16px/1.45 system-ui,sans-serif; background:#101216; color:#f3f4f6; }
+    main { width:min(1120px,100%); margin:0 auto; padding:20px; }
+    .intro { max-width:760px; margin-bottom:16px; }
+    .intro p { color:#b8bec9; }
+    .lab { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:16px; align-items:start; }
+    .stage { position:relative; min-height:480px; aspect-ratio:16/10; overflow:hidden; border:1px solid #313742; border-radius:18px; background:linear-gradient(#1a1d23,#111318); }
+    .stage canvas { position:relative; z-index:1; display:block; width:100%; height:100%; }
+    .callout { position:absolute; z-index:2; transform:translate(-50%,-50%); pointer-events:none; padding:5px 9px; border:1px solid rgba(255,255,255,.28); border-radius:999px; background:rgba(13,15,18,.82); font-size:12px; white-space:nowrap; }
+    .panel { border:1px solid #313742; border-radius:16px; padding:16px; background:#171a20; }
+    .row { display:grid; gap:6px; margin:0 0 16px; }
+    label { font-weight:650; }
+    input[type="range"] { width:100%; min-height:34px; }
+    button { min-height:44px; border:1px solid #596273; border-radius:10px; background:#252a33; color:inherit; padding:8px 12px; cursor:pointer; }
+    button:focus-visible,input:focus-visible { outline:3px solid white; outline-offset:2px; }
+    .actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .diag { margin-top:14px; padding-top:14px; border-top:1px solid #313742; color:#bdc3ce; font:12px/1.5 ui-monospace,monospace; }
+    .asset-status { margin-top:14px; padding:8px 10px; border:1px solid #313742; border-radius:10px; background:#12151a; color:#9fb0c4; font:12px/1.45 ui-monospace,monospace; }
+    .scroll-track { margin-top:24px; height:620px; border-top:1px dashed #343944; padding-top:18px; color:#979fac; }
+    @media (max-width:780px) { .lab { grid-template-columns:1fr; } .stage { min-height:340px; } .panel { order:-1; } .scroll-track { height:420px; } }
+    @media (prefers-reduced-motion: reduce) { .scroll-track { height:120px; } }
+  </style>
+  <script type="importmap">
+  {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <main>
+    <section class="intro">
+      <h1>Web Product Motion Lab</h1>
+      <p>Clean-room proof for deterministic product animation, annotation anchors, browser diagnostics, and scrub-safe presentation.</p>
+    </section>
+
+    <section class="lab">
+      <div id="stage" class="stage" aria-label="Interactive 3D product motion demonstration">
+        <span class="callout" data-anchor="screen">Display</span>
+        <span class="callout" data-anchor="hinge">Hinge</span>
+        <span class="callout" data-anchor="port">Port</span>
+      </div>
+
+      <aside class="panel" aria-label="Product motion controls">
+        <div class="row">
+          <label for="timeline">Timeline <output id="timelineValue">0.00</output></label>
+          <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" />
+        </div>
+        <div class="actions">
+          <button id="play" type="button">Play</button>
+          <button id="reset" type="button">Reset</button>
+          <button id="wireframe" type="button" aria-pressed="false">Wireframe</button>
+          <button id="callouts" type="button" aria-pressed="true">Callouts</button>
+        </div>
+        <div id="assetStatus" class="asset-status" aria-live="polite">loading GLB…</div>
+        <div id="diagnostics" class="diag" aria-live="polite">Starting renderer…</div>
+      </aside>
+    </section>
+
+    <section id="scrollTrack" class="scroll-track">
+      <strong>Scroll-scrub zone</strong>
+      <p>Scroll through this region to drive the same deterministic 0–1 product timeline. The slider remains the accessible direct control.</p>
+    </section>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

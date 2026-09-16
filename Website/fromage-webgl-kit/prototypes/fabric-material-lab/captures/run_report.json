@@ -1,0 +1,81 @@
+{
+  "url": "http://localhost:8126/tools/fromage-webgl-kit/prototypes/fabric-material-lab/",
+  "errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ],
+  "requests404": [
+    "404 favicon.ico"
+  ],
+  "presets": [
+    {
+      "label": "Velvet-like",
+      "active": "Velvet-like"
+    },
+    {
+      "label": "Satin-like",
+      "active": "Satin-like"
+    },
+    {
+      "label": "Brocade-like",
+      "active": "Brocade-like"
+    },
+    {
+      "label": "Lace-like",
+      "active": "Lace-like"
+    },
+    {
+      "label": "Embroidered-like",
+      "active": "Embroidered-like"
+    },
+    {
+      "label": "Iridescent-like",
+      "active": "Iridescent-like"
+    }
+  ],
+  "controls": {
+    "grazingLabel": "lighting: grazing",
+    "afterSliders": "{\n \"preset\": \"iridescent-like\",\n \"textileKind\": \"view-shift weave\",\n \"tint\": \"#ffffff\",\n \"roughnessScale\": 1.8,\n \"normalScale\": 2.1,\n \"sheenScale\": 0.4,\n \"grazingInspection\": true,\n \"wireframe\": false,\n \"source\": \"owner-authored procedural textures\"\n}"
+  },
+  "captures": [
+    {
+      "name": "01_desktop_default",
+      "bytes": 566140
+    },
+    {
+      "name": "02_satin_like",
+      "bytes": 518130
+    },
+    {
+      "name": "03_grazing_angle",
+      "bytes": 818227
+    },
+    {
+      "name": "04_controls_changed",
+      "bytes": 858949
+    },
+    {
+      "name": "05_wireframe",
+      "bytes": 1315230
+    },
+    {
+      "name": "06_phone_390",
+      "bytes": 699292
+    }
+  ],
+  "init": {
+    "preset": "Velvet-like",
+    "diag": "FPS ~60 · DPR 1.00 · draw calls 1 · triangles 39,000 · textures 0.62 MB",
+    "fallbackVisible": false,
+    "presetButtons": 6,
+    "canvasPixels": "1110x900"
+  },
+  "mobile": {
+    "canvasW": 390,
+    "docScrollW": 390,
+    "innerW": 390,
+    "overflows": false
+  },
+  "exportedState": "{\n \"preset\": \"iridescent-like\",\n \"textileKind\": \"view-shift weave\",\n \"tint\": \"#ffffff\",\n \"roughnessScale\": 1.8,\n \"normalScale\": 2.1,\n \"sheenScale\": 0.4,\n \"grazingInspection\": true,\n \"wireframe\": false,\n \"source\": \"owner-authored procedural textures\"\n}",
+  "stateParses": true,
+  "finalDiag": "FPS ~57 · DPR 1.00 · draw calls 1 · triangles 39,000 · textures 8.08 MB"
+}

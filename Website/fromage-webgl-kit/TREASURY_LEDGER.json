@@ -1,0 +1,117 @@
+{
+  "schema": "melodia.treasury_ledger.v1",
+  "created_at": "2026-09-10",
+  "updated_at": "2026-09-11",
+  "status": "PRE_REVENUE / ACTIVE STRIKE: PREMIUM EYEWEAR",
+  "authority": {
+    "current_strategy": "README.md",
+    "service_catalog": "SERVICES.md",
+    "financial_record": "this file",
+    "note": "README.md is the only current Treasury/status document. Do not create dated handoffs or speculative revenue rows."
+  },
+  "pools": {
+    "FREE_POOL": "promotional / student / startup / cloud credits",
+    "EARNED_POOL": "inference budget funded by paid work, products, bounties, or other revenue",
+    "PERSONAL_POOL": "owner's money; never spent autonomously"
+  },
+  "authority_limit": "Agents may recommend spend. They do not receive uncapped financial authority.",
+  "currency": {
+    "canonical": "CAD",
+    "rule": "Record the currency actually received. If paid in another currency, record both received amount and CAD equivalent with the conversion rate used."
+  },
+  "active_strike": {
+    "source": "Upwork",
+    "title": "3D Blender Designer — premium eyewear e-commerce",
+    "url": "https://www.upwork.com/freelance-jobs/apply/Blender-Designer_~022095185281992255243/",
+    "status": "OWNER_WORKING_NOW",
+    "closest_sku": "Interactive 3D Product / Accessory Viewer",
+    "fit": [
+      "Blender modelling / cleanup",
+      "premium PBR metal / acetate / lens lookdev",
+      "web-ready GLB/GLTF",
+      "360/orbit and close-up presentation",
+      "simple product animation",
+      "browser optimization and QA"
+    ],
+    "guardrails": [
+      "clarify per-product / batch scope before commitment",
+      "do not treat a headline sample price as an unlimited catalogue budget",
+      "do not perform substantial unpaid client-specific production",
+      "virtual try-on, AR, ecommerce, CAD/manufacturing and optical simulation are separate scope"
+    ]
+  },
+  "first_revenue_gate": {
+    "authority": "README.md -> First revenue gate",
+    "all_five_required": true,
+    "conditions": [
+      { "id": "buyer_accepts", "text": "one real prospect or buyer accepts a bounded WebGL/3D deliverable", "met": false },
+      { "id": "payment_received", "text": "payment is actually received", "met": false },
+      { "id": "costs_recorded", "text": "platform/inference costs and owner hours are recorded", "met": false },
+      { "id": "earned_pool_min", "text": "at least CAD $20 equivalent is designated to EARNED_POOL", "met": false },
+      { "id": "reusable_left", "text": "the job leaves one reusable generic IP-safe primitive/checklist/benchmark/template", "met": false }
+    ],
+    "completion": "0/5"
+  },
+  "entry_schema": [
+    { "field": "GROSS_REVENUE", "note": "as invoiced, in the currency actually received" },
+    { "field": "PLATFORM_FEES", "note": "record observed fee on the real payout; do not assume a percentage" },
+    { "field": "INFERENCE_COST", "note": "measured paid inference attributable to the job" },
+    { "field": "HUMAN_HOURS", "note": "actual owner hours" },
+    { "field": "NET_REVENUE", "note": "gross minus platform fees minus inference cost" },
+    { "field": "EARNED_POOL_ALLOCATION", "note": "capped share returned to the token treasury" },
+    { "field": "REUSABLE_ASSET_CREATED", "note": "generic, IP-safe artifact left in the kit" }
+  ],
+  "entries": [],
+  "opportunity_record_schema": {
+    "fields": [
+      "source",
+      "client_or_sponsor_credibility",
+      "gross_value",
+      "estimated_platform_fees",
+      "estimated_human_hours",
+      "estimated_inference_cost",
+      "probability_of_winning",
+      "delivery_risk",
+      "evidence_already_available",
+      "status_APPLY_WATCH_IGNORE",
+      "actual_result_after_closure"
+    ]
+  },
+  "metrics": {
+    "formulas": {
+      "opportunity_ev": "(net payment x estimated win probability) - inference spend - human-time allowance - delivery/revision risk",
+      "token_roic": "revenue attributable to agent-assisted work / paid inference expenditure"
+    },
+    "computed": false
+  },
+  "rules": [
+    "MAKE THE CAPSTONE WORK -> IDENTIFY THE GENERIC PIECE -> SEPARATE PROJECT IP -> PACKAGE REUSABLE PROOF -> SELL A BOUNDED SOLUTION -> RETURN A CAPPED SHARE TO EARNED_POOL",
+    "Freelance gigs are sidecars: they must never displace Choral Sheep or an academic deadline.",
+    "WebGL/product/accessory work is the first-payment scope. UE5/TouchDesigner/Houdini/3ds Max services are not needed to prove the first Treasury loop.",
+    "A high-value listing is never mandatory. Owner comfort, truthful fit and bounded delivery are hard gates.",
+    "Never package Melodia-specific characters, textures, music, purchased templates, third-party material graphs or client assets as generic inventory."
+  ],
+  "stop_conditions": [
+    "Treasury starts displacing capstone/academic P0",
+    "delivery requires unrelated backend/full-stack ownership",
+    "a prospect asks for substantial unpaid speculative production",
+    "legal/IP ownership is unclear",
+    "scope cannot be bounded before acceptance",
+    "effective pay collapses after revisions/platform costs",
+    "reusable-kit work grows faster than actual demand"
+  ],
+  "resolved_decisions": [
+    "CAD is the canonical rate-card currency.",
+    "README.md replaces dated lead/strike/status documents.",
+    "The original industrial listing is archived proof, not an active strike.",
+    "The first paid-job experiment remains WebGL/product/accessory focused; adjacent DCC/engine services can wait until the loop is proven."
+  ],
+  "open_decisions": [
+    "Minimum acceptable effective hourly rate after revisions/platform costs.",
+    "Retrospective cadence for Opportunity EV / Token ROIC after real payment data exists."
+  ],
+  "uncertainty": [
+    "No payment, invoice or payout exists in this ledger yet.",
+    "No platform fee percentage should be assumed before a real payout is observed."
+  ]
+}

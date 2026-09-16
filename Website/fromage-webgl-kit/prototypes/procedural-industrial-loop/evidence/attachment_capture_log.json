@@ -1,0 +1,79 @@
+[
+  {
+    "file": "industrial_base_hero.png",
+    "mode": "base",
+    "t": 4,
+    "state": {
+      "mode": "base",
+      "seed": 1,
+      "canonicalSeed": 1,
+      "time": 4,
+      "phase": "C_LIFT_OUT",
+      "loopDelta": 0,
+      "capture": true,
+      "draws": 110,
+      "tris": 74030,
+      "geometries": 54
+    },
+    "bytes": 190022
+  },
+  {
+    "file": "industrial_structural.png",
+    "mode": "structural",
+    "t": 5.2,
+    "state": {
+      "mode": "structural",
+      "seed": 1,
+      "canonicalSeed": 1,
+      "time": 5.2,
+      "phase": "C_LIFT_OUT",
+      "loopDelta": 0,
+      "capture": true,
+      "draws": 110,
+      "tris": 74030,
+      "geometries": 54
+    },
+    "bytes": 196736
+  },
+  {
+    "file": "industrial_flow.png",
+    "mode": "flow",
+    "t": 5.2,
+    "state": {
+      "mode": "flow",
+      "seed": 1,
+      "canonicalSeed": 1,
+      "time": 5.2,
+      "phase": "C_LIFT_OUT",
+      "loopDelta": 0,
+      "capture": true,
+      "draws": 110,
+      "tris": 74030,
+      "geometries": 54
+    },
+    "bytes": 199523
+  },
+  {
+    "file": "industrial_thermal.png",
+    "mode": "thermal",
+    "t": 5.2,
+    "state": {
+      "mode": "thermal",
+      "seed": 1,
+      "canonicalSeed": 1,
+      "time": 5.2,
+      "phase": "C_LIFT_OUT",
+      "loopDelta": 0,
+      "capture": true,
+      "draws": 110,
+      "tris": 74030,
+      "geometries": 54
+    },
+    "bytes": 197987
+  },
+  {
+    "video_frames": 1030,
+    "elapsed_s": 17.205,
+    "fps": 59.87
+  }
+]

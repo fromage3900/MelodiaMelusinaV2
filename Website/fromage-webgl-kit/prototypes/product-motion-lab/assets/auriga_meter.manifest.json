@@ -1,0 +1,28 @@
+{
+  "asset": "auriga_meter_v1",
+  "output": "C:\\Users\\froma\\AppData\\Local\\Temp\\ms-sub\\tools\\fromage-webgl-kit\\prototypes\\product-motion-lab\\assets\\auriga_meter.glb",
+  "fps": 30,
+  "frame_start": 1,
+  "frame_end": 121,
+  "anchors": [
+    "ANCHOR_screen",
+    "ANCHOR_hinge",
+    "ANCHOR_port"
+  ],
+  "animated_nodes": [
+    "AURIGA_METER_ROOT",
+    "LID_ASSEMBLY",
+    "CONTROL_DIAL"
+  ],
+  "mesh_nodes": [
+    "BODY_BASE",
+    "BODY_LOWER_INSERT",
+    "LID_SHELL",
+    "DISPLAY_BEZEL",
+    "DISPLAY_GLASS",
+    "SIDE_PORT",
+    "CONTROL_DIAL",
+    "HINGE_L",
+    "HINGE_R"
+  ]
+}
