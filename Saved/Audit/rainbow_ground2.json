@@ -1,0 +1,9 @@
+{
+ "scalar_err": "'MaterialParameterCollection' object has no attribute 'scalar_parameter_names'",
+ "mi_scalars": [
+  "LayerA_TextureWeight",
+  "Metallic",
+  "TextureWeight"
+ ],
+ "mi_vectors": []
+}

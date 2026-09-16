@@ -1,0 +1,21 @@
+{
+ "graph_edge_verbs": [
+  "add_edge",
+  "get_all_edges",
+  "remove_edge"
+ ],
+ "StaticMeshSpawner_0": [
+  [
+   "PCGPin_0",
+   "in",
+   1
+  ]
+ ],
+ "SurfaceSampler_0": [
+  [
+   "PCGPin_12",
+   "out",
+   1
+  ]
+ ]
+}

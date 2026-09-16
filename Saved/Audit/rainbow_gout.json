@@ -1,0 +1,24 @@
+{
+ "regen_err": "'bool' object is not callable",
+ "gout_type": "<class 'PCGDataCollection'>",
+ "gout_dir": [
+  "add_to_collection",
+  "assign",
+  "cancel_execution_on_empty",
+  "cast",
+  "copy",
+  "export_text",
+  "get_editor_property",
+  "get_typed_inputs",
+  "get_typed_inputs_by_pin",
+  "get_typed_inputs_by_pin_label",
+  "get_typed_inputs_by_tag",
+  "import_text",
+  "set_editor_properties",
+  "set_editor_property",
+  "static_struct",
+  "tagged_data",
+  "to_dict",
+  "to_tuple"
+ ]
+}
