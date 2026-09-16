@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fabric Material Lab — clean-room PBR textile study</title>
+<meta name="description" content="A clean-room Three.js study of tileable PBR textile response: base-colour, roughness, normal and sheen controls, grazing-angle inspection, and exportable material state." />
+<style>
+  :root{
+    --bg:#0c0d12; --panel:#14161d; --line:#262a35; --ink:#e8e6e1; --dim:#9aa0ad; --accent:#c9a86a;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Cascadia Mono",monospace;
+    --sans:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  .wrap{display:grid;grid-template-columns:minmax(0,1fr) 330px;height:100%}
+  .stage{position:relative;min-width:0}
+  canvas{display:block;width:100%;height:100%}
+  .hud{position:absolute;top:14px;left:14px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+  .pill{background:rgba(20,22,29,.82);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:11px/1 var(--mono);color:var(--dim)}
+  .diag{position:absolute;left:14px;bottom:14px;background:rgba(20,22,29,.82);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font:11px/1.6 var(--mono);color:var(--dim);pointer-events:none}
+  .diag b{color:var(--ink);font-weight:600}
+  aside{border-left:1px solid var(--line);background:var(--panel);overflow-y:auto;padding:18px}
+  h1{font-size:15px;margin:0 0 4px;letter-spacing:.01em}
+  .sub{font-size:12px;color:var(--dim);margin:0 0 18px;line-height:1.5}
+  .group{font:10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:7px;margin:20px 0 11px}
+  .presets{display:grid;gap:7px}
+  .preset{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#1b1e27;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12px;color:var(--ink);cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+  .preset:hover{border-color:var(--accent)}
+  .preset[aria-pressed="true"]{border-color:var(--accent);background:linear-gradient(135deg,rgba(201,168,106,.16),rgba(201,168,106,.05))}
+  .preset .kind{font:10px/1 var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+  .ctl{margin:11px 0}
+  .ctl label{display:flex;justify-content:space-between;font:11px/1 var(--mono);color:var(--dim);margin-bottom:6px}
+  .ctl label span{color:var(--ink)}
+  input[type=range]{width:100%;accent-color:var(--accent);background:transparent}
+  input[type=color]{width:100%;height:30px;background:#1b1e27;border:1px solid var(--line);border-radius:6px;padding:2px}
+  .row{display:flex;gap:7px;margin:11px 0}
+  .btn{flex:1;background:#1b1e27;border:1px solid var(--line);border-radius:8px;padding:9px;font:11px/1 var(--mono);color:var(--ink);cursor:pointer}
+  .btn:hover{border-color:var(--accent)}
+  .btn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+  pre{background:#0f1116;border:1px solid var(--line);border-radius:8px;padding:10px;font:10px/1.5 var(--mono);color:var(--dim);max-height:190px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+  .note{font:10px/1.5 var(--mono);color:var(--dim);margin-top:10px}
+  .fallback{position:absolute;inset:0;display:none;place-items:center;padding:24px;text-align:center;font-size:13px;color:var(--dim);background:var(--bg)}
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr;grid-template-rows:minmax(320px,52vh) 1fr;height:auto}
+    aside{border-left:0;border-top:1px solid var(--line)}
+    body{overflow:auto}
+  }
+  @media (prefers-reduced-motion:reduce){ .preset,.btn{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="stage">
+    <canvas id="c"></canvas>
+    <div class="hud">
+      <span class="pill" id="p-preset">— loading —</span>
+      <span class="pill" id="p-light">lighting: studio</span>
+    </div>
+    <div class="diag" id="diag">initialising…</div>
+    <div class="fallback" id="fallback">WebGL unavailable on this device — the material controls below still describe the state.</div>
+  </div>
+
+  <aside>
+    <h1>Fabric Material Lab</h1>
+    <p class="sub">A clean-room Three.js study of tileable PBR textile response. Every texture here is procedurally generated and owner-authored — no third-party or brand-specific material is used.</p>
+
+    <div class="group">Textile presets</div>
+    <div class="presets" id="presets"></div>
+
+    <div class="group">Material controls</div>
+    <div class="ctl"><label>Tint <span id="v-tint">#ffffff</span></label><input type="color" id="tint" value="#ffffff"></div>
+    <div class="ctl"><label>Roughness <span id="v-rough">1.00×</span></label><input type="range" id="rough" min="0.2" max="2" step="0.05" value="1"></div>
+    <div class="ctl"><label>Normal strength <span id="v-normal">1.00×</span></label><input type="range" id="normal" min="0" max="2.5" step="0.05" value="1"></div>
+    <div class="ctl"><label>Sheen <span id="v-sheen">1.00×</span></label><input type="range" id="sheen" min="0" max="2.5" step="0.05" value="1"></div>
+
+    <div class="group">Inspection</div>
+    <div class="row">
+      <button class="btn" id="b-light" aria-pressed="false">Grazing angle</button>
+      <button class="btn" id="b-wire" aria-pressed="false">Wireframe</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="b-spin" aria-pressed="true">Turntable</button>
+      <button class="btn" id="b-reset">Reset</button>
+    </div>
+
+    <div class="group">Exported state</div>
+    <pre id="state">—</pre>
+    <div class="row"><button class="btn" id="b-copy">Copy JSON</button></div>
+    <p class="note">State is the material parameters only — it can be handed to a client as a starting point for their own material library.</p>
+  </aside>
+</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

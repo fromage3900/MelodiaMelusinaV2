@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Accessory Atelier / Commerce embed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <style>
+    :root {
+      --paper: #f5f0e8;
+      --ink: #1b1717;
+      --muted: #766d68;
+      --accent: #684057;
+      --rule: rgba(104,64,87,.28);
+      --serif: "Times New Roman", Times, serif;
+      --sans: "Jost", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    .page { width: min(1180px, 100%); margin: 0 auto; padding: 22px 28px 48px; }
+    .mast { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px dashed var(--rule); }
+    .micro { font: 500 10px/1.45 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+    h1 { font: 400 clamp(42px, 7vw, 72px)/.9 var(--serif); letter-spacing: -.04em; margin: 22px 0 8px; }
+    .dek { max-width: 46rem; color: var(--muted); font: italic 18px/1.35 var(--serif); margin: 0 0 28px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 22px; align-items: start; }
+    #stage { background: #ece7e0; min-height: 62vh; }
+    model-viewer,
+    babylon-viewer {
+      width: 100%;
+      min-height: 62vh;
+      background: #ece7e0;
+      --poster-color: #ece7e0;
+      display: block;
+    }
+    model-viewer[hidden],
+    babylon-viewer[hidden] { display: none !important; }
+    babylon-viewer { height: 62vh; }
+    babylon-viewer::part(tool-bar),
+    babylon-viewer::part(progress-bar) { display: none; }
+    .panel { border-top: 1px solid var(--accent); padding-top: 12px; display: grid; gap: 16px; }
+    .panel h2 { font: 400 28px/1 var(--serif); margin: 0; }
+    label { display: grid; gap: 7px; }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    select, button {
+      min-height: 42px;
+      padding: 9px 11px;
+      border: 1px dashed var(--rule);
+      background: rgba(245,240,232,.5);
+      font: 500 11px var(--sans);
+      color: var(--ink);
+    }
+    button[aria-pressed="true"] { background: var(--accent); color: #fff; border-style: solid; }
+    .note, .diag { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .diag { white-space: pre-line; font: 11px/1.55 ui-monospace, monospace; }
+    .links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 18px; }
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      #stage, model-viewer, babylon-viewer { min-height: 52vh; }
+      babylon-viewer { height: 52vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      model-viewer { --auto-rotate-delay: 0s; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="mast">
+      <a class="micro" href="./floral-study.html">← Floral atelier</a>
+      <span class="micro">S.04 / Commerce embed</span>
+    </header>
+    <h1>Same object.<br>Same camera.</h1>
+    <p class="dek">Google <code>&lt;model-viewer&gt;</code> and Babylon Viewer on one camera contract and one DCC GLB per silhouette — <code>KHR_materials_variants</code> for Tortoise / Champagne. Lighting stays native to each engine.</p>
+
+    <section class="layout">
+      <div id="stage">
+        <model-viewer
+          id="googleViewer"
+          camera-controls
+          touch-action="pan-y"
+          interaction-prompt="none"
+          shadow-intensity="0.7"
+          exposure="1"
+          tone-mapping="commerce"
+          orientation="0deg 90deg 0deg"
+          camera-orbit="24deg 74deg 1.2m"
+          camera-target="0m 0.02m 0m"
+          field-of-view="28deg"
+          min-camera-orbit="auto 55deg auto"
+          max-camera-orbit="auto 95deg auto"
+          ar
+          ar-modes="webxr scene-viewer"
+          alt="Original eyewear study"
+        ></model-viewer>
+      </div>
+
+      <aside class="panel">
+        <div>
+          <span class="micro">Object / 001–004</span>
+          <h2>Embed.</h2>
+        </div>
+        <div>
+          <span class="micro">Engine</span>
+          <div class="choice-grid" role="group" aria-label="Viewer engine">
+            <button type="button" data-engine="google" aria-pressed="true">Google</button>
+            <button type="button" data-engine="babylon" aria-pressed="false">Babylon</button>
+          </div>
+        </div>
+        <label>
+          <span class="micro">Silhouette</span>
+          <select id="heroSelector" aria-label="Eyewear silhouette"></select>
+        </label>
+        <div>
+          <span class="micro">Finish</span>
+          <div class="choice-grid" role="group" aria-label="Authored finish">
+            <button type="button" data-variant="Tortoise" aria-pressed="true">Tortoise</button>
+            <button type="button" data-variant="Champagne" aria-pressed="false">Champagne</button>
+          </div>
+        </div>
+        <button id="rotateToggle" type="button" aria-pressed="false">Auto rotate</button>
+        <p class="note">Shared camera contract. Finishes are authored <code>KHR_materials_variants</code>. AR is Google-only (WebXR / Scene Viewer; no USDZ).</p>
+        <div id="diagnostics" class="diag">Loading…</div>
+      </aside>
+    </section>
+
+    <nav class="links">
+      <a class="micro" href="./floral-study.html">Floral atelier ↗</a>
+      <a class="micro" href="./">Product viewer ↗</a>
+      <a class="micro" href="../prototypes/fabric-material-lab/">Textile lab ↗</a>
+    </nav>
+  </main>
+  <script type="module" src="./embed.js"></script>
+</body>
+</html>
