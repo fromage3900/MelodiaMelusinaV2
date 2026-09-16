@@ -4,12 +4,51 @@
 #include "Engine/DataAsset.h"
 #include "MelodiaIntegrationConfig.generated.h"
 
+class APawn;
+class UMaterialInterface;
+class UNiagaraEffectType;
+class UPrimaryDataAsset;
+
+USTRUCT(BlueprintType)
+struct FMelodiaPostProcessIdentity
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity")
+	TSoftObjectPtr<UMaterialInterface> Material;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity")
+	float Weight = 1.0f;
+};
+
 UCLASS(BlueprintType)
 class BS_GODFILE_API UMelodiaIntegrationConfig : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
+	UMelodiaIntegrationConfig();
+
+	/** Canonical identities consumed by runtime and editor contract tests. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity|Core")
+	TSoftClassPtr<APawn> P0PlayerClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity|Core")
+	TSoftObjectPtr<UPrimaryDataAsset> ChoralSheepDefinition;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity|Core", meta = (ClampMin = "0", ClampMax = "255"))
+	int32 HeroStencil = 4;
+
+	/** Ordered exactly as the PPV blendable stack. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity|Core")
+	TArray<FMelodiaPostProcessIdentity> FrozenPostProcessStack;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity|Core")
+	TSoftObjectPtr<UNiagaraEffectType> CharacterEffectType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Identity|Core")
+	TSoftObjectPtr<UNiagaraEffectType> AmbientEffectType;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Allowlist")
 	TSet<FName> EncounterIds;
 

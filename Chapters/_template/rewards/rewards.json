@@ -1,0 +1,8 @@
+{
+  "chapter": "{{chapter}}",
+  "stat_intent": "intent.{{chapter}}.listen",
+  "kind": "narrative_social_stat",
+  "source": "quill/TideListening.qsc",
+  "authority": "UMelodiaNarrativeSubsystem.HandleStatVerb; existing DA_MelodiaIntegrationConfig SocialStatIds",
+  "inventory_rewards": []
+}

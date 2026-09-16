@@ -1,5 +1,21 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
+**Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
+
+## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
+
+This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
+`origin/main`, maintained on the desktop PC. This laptop clone is ONLY a Blender /
+asset-prep / mobile hub — its local `main` must mirror `origin/main` exactly and never
+diverge. No agent may create branches, commit, merge, rebase, reset, or push without
+explicit owner permission for that specific operation plus a written plan stated first.
+Never consolidate or restructure git history from this machine. Destructive commands
+(`git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, any history
+rewrite) are forbidden without explicit per-command owner approval. Long-lived laptop
+asset work lives on `collab/laptop/longterm`. Verify read-only before and after any
+approved mutation. Poor git management has already caused real regressions and missed
+deadlines here — do not add to that history.
+
 ## ⛔ READ FIRST — [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md)
 
 **This is a working portfolio and a livelihood, not a technical sandbox.** When the owner asks for
@@ -29,10 +45,9 @@ table for a one-line fix; you are proposing a design where the ask was a repair.
 ---
 
 > This file is auto-loaded by Claude at session start. Read it before doing anything.
-> **Read next:** [`AGENT_START_HERE.md`](AGENT_START_HERE.md). It is the 2026-09-04 discovery authority.
+> **Status, queue, and where everything is: [`CURRENT_STATE.md`](CURRENT_STATE.md) — the only status document.**
 > Sheep / Chladni / Nikki Cymatics work must also open [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md).
-> Then follow the current front door into `MELODIA_TECHNICAL_VERTICAL_SLICE.md`, `CURRENT_STATE.md`, and `TODO.md`.
-> **Do not use deleted `_SESSION_HANDOFF.md` / `_TASK_QUEUE.md` or `_ROADBLOCKS_2026-07-31.md` as current status.**
+> Do not create handoff, plan, receipt, or session-note files. Update `CURRENT_STATE.md` in the same commit as the change; everything else goes in the commit or PR message.
 
 ## ⏱ Read dates before you trust a doc
 
@@ -101,9 +116,10 @@ Rules:
 ## 🏗️ Agent Ownership — RETIRED
 
 **Decision 002 (2026-07-26) retired the 5-agent ownership model.** This is a solo project; the
-PGA/MPA/PPA/WIA/SQA boundaries and the "no cross-owner writes" rule no longer apply. `AGENTS.md`,
-`AGENT_BOUNDARIES.md`, `AGENT_OPERATING_MODEL.md` and `AGENT_OWNERSHIP.md` are **historical** — read
-them for tool-capability context, not as process.
+PGA/MPA/PPA/WIA/SQA boundaries and the "no cross-owner writes" rule no longer apply.
+`AGENT_BOUNDARIES.md`, `AGENT_OPERATING_MODEL.md` and `AGENT_OWNERSHIP.md` were removed in the
+2026-09-10 docs collapse; recover one with `git show 7d271c15:<path>` if you need its tool-capability
+notes. None of them is process.
 
 The constraints that *do* still bind are specific and asset-named: the never-touch table above,
 Decision 021's three content-reference cleanups, and `L_SakuraPath` art direction (human-owned).
@@ -120,7 +136,7 @@ permitted gets talked out of.
 ## 🟡 Yellow (Do With a Report)
 - Run material/look-dev loops — must write a `Saved/Audit/` report
 - Generate PCG graph changes — must not alter Sakura level content
-- Update `CURRENT_STATE.md`, `NEXT_ACTIONS.md`
+- Update `CURRENT_STATE.md`
 
 ## 🔴 Red (Ask First)
 - Delete or move `.uasset` files
@@ -135,33 +151,30 @@ permitted gets talked out of.
 
 **Environment Portfolio** — Surreal/Zen/Baroque/Sakura environment art in **Blender 5.2** + UE5.8.
 **Pipeline**: Blender → world.json manifest → UE import → PCG scatter → Material masters → Portfolio captures.
-**Melodia/Melusina** — the eventual authored game is deliberately small: `bedroom/VN → overworld exploration → simple fixed turn-based battle → buddy/VN → bed`. No procedural roguelike depth in the current scope.
+**Melodia/Melusina** — an authored rhythm-JRPG with a working Quill → Phoenix/JRPG → rhythm → typed-result
+core, Wardrobe/traversal hooks, music-key world progression, and a renewable Chapter/content layer. The
+procedural tools author world/content variation; they are not a second gameplay authority.
 
 > **Blender version:** 5.1 is **not installed** — that directory is empty. Only 4.3, 4.5 and **5.2**
 > have executables, and the full addon set (including Melodia Studio / `surreal_arch`) runs on 5.2.
 > Docs that still target 5.1 — notably `Docs/MELODIA_STUDIO_SHIP_CHECKLIST.md` and the default in
 > `sync_surreal_to_live.ps1` — describe steps that cannot currently run.
 
-**Current focus (updated 2026-07-31)**: **First Dream vertical slice, foundation closeout.** Both
-tracks are active — Decision 008 (2026-07-29) put the vertical slice first with the portfolio
-proceeding in parallel via delegation. The native build is green, five test suites pass, and the
-route packages clean; the remaining work is **Blueprint wiring**, not code. Start at
-`Docs/BLUEPRINT_WIRING_CHECKLIST_2026-07-30.md`.
+**Current focus and queue:** [`CURRENT_STATE.md`](CURRENT_STATE.md) §4.
 
-> The older line here said *"Gameplay work is paused during this push."* That was the 2026-07-26
-> portfolio-first stance and it was superseded by Decision 008. `Docs/QUEUE.md` is now the
-> **environment-art/portfolio** tracker only; gameplay lives in `_TASK_QUEUE.md`.
-
-**Agent tooling — three Unreal MCP surfaces registered in `.mcp.json`, two enabled by default**
-(Decision 025 as reversed 2026-07-31; Decision 027 for the third):
+**Agent tooling — Unreal MCP surfaces.** They are registered in the workspace-level
+`C:/EnvironmentPortfolio/.mcp.json`, not in this repo's `.mcp.json` (which lists only `agent_bridge`,
+`claireon` and `melodia`). Verified 2026-09-14:
 
 | Server | Transport | Shape | Enabled by default? |
 |---|---|---|---|
-| `monolith` | `Plugins/Monolith/Binaries/monolith_proxy.exe` → port 9316 | ~116 Blueprint actions via `blueprint_query({action, params})`: full graph read (`export_graph`, `get_graph_data`), the verification loop (`get_graph_fingerprint`, `assert_graph_matches`, `set_node_property`), and atomic T3D authoring (`validate_nodes_t3d`, `inject_nodes_t3d` — whole clusters in one transaction, see MONOLITH_GUIDE Recipe 16) | Yes |
-| `it-is-unreal` | HTTP, port 8088 (VibeUE) | ~150 flat tools (`add_node`, `connect_nodes`, `analyze_blueprint_graph`, `take_screenshot`, …) | Yes |
+| `monolith` | `Plugins/Monolith/Binaries/monolith_proxy.exe` → port 9316 | ~1,426 actions in 24 namespaces (`blueprint_query`, `editor_query`, `material_query`, …): full graph read, the verification loop (`get_graph_fingerprint`, `assert_graph_matches`), atomic T3D authoring (`validate_nodes_t3d`, `inject_nodes_t3d`, see MONOLITH_GUIDE Recipe 16), `run_python` | Yes |
 | `ueblueprintmcp` | Python venv (`Plugins/UEBlueprintMCP/Python/venv`) → TCP port 55558 | ~60 tools: Blueprints, graph nodes, event dispatchers, Enhanced Input (Input Actions/Mapping Contexts), materials, UMG, editor control | **No — deliberately off** |
 
-`ueblueprintmcp` is registered so it's one line away from live, but not in `enabledMcpjsonServers`.
+`it-is-unreal` (VibeUE, port 8088) is gone: the plugin is not in `Plugins/` and no `.mcp.json`
+registers it.
+
+`ueblueprintmcp` is registered so it's one line away from live, but not enabled.
 It's a 9-commit, 36-star third-party plugin (`zolnoor`) with no audit history, and its ~60 commands
 substantially overlap the two surfaces already enabled — installing it live-by-default would be a
 third authority over exactly the graph-mutation surface this project has spent real effort
@@ -172,12 +185,26 @@ doesn't. **Requires a closed-editor build first** — it's a new plugin module w
 editor closed does.
 
 Prefer Monolith where more than one surface can do the job. **Never run two surfaces against the
-same graph in one session** — this applies to all three, not just the original two.
+same graph in one session** — this applies to every surface.
 
-All three need the editor running. Monolith additionally cannot answer while a modal dialog blocks
+Both need the editor running. Monolith additionally cannot answer while a modal dialog blocks
 the game thread — grep the log for `MODAL_OPEN` before assuming the plugin is at fault.
 
 **MCP servers load at session start.** Editing `.mcp.json` mid-session does nothing until the
 session is restarted — check what you actually have before promising editor work.
 
-**Gameplay authority correction (2026-07-26, read before touching any gameplay system)**: MelodiaCore is quarantined as runtime-unstable and does **not** own battle/turn/save authority. The complete standalone TurnBased JRPG template is the provisional mechanical authority instead. QuillScript is an isolated narrative candidate (not yet proven to own gameplay state). ACFU is archived/reference-only and must not run parallel to the JRPG authority. Full decision record and ownership map: `Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md`. Do not rebuild JRPG-native mechanics in MelodiaCore, ACFU, or a parallel Blueprint graph.
+**Current gameplay authority (verified 2026-09-14 against `origin/main`)**: QuillScript is the narrative
+authoring authority; `UMelodiaNarrativeSubsystem` is its runtime bridge for authored facts, consequences,
+checkpoints and exactly-once progression transactions. TurnBased JRPG / Phoenix owns party, turns, skills,
+targeting, action resolution, damage, terminal results, inventory and stock gameplay saves. Rhythm executes
+on the selected JRPG action and returns grade/performance data; Wardrobe owns owned/equipped fashion state
+and its existing traversal/battle/rhythm/Convergence capability hooks. One writer owns each UI/audio surface.
+MelodiaCore remains integration/presentation-only; ACFU and Conversation2D are excluded. The scoped battle,
+grade-to-damage, Wardrobe and music-key seams are evidence-backed in `CURRENT_STATE.md`; packaged golden-run
+and long-chain persistence proof remain separate open gates.
+
+**Content-first rule:** before changing architecture, ask whether the requested experience can be authored
+through `CURRENT_STATE.md` → `PROVEN CREATIVE CAPABILITY SURFACE`. If yes, author the boss, side quest,
+rhythm skill, creature episode, outfit ability, musical puzzle, or procedural setpiece through the existing
+entry points. Architecture work requires a demonstrated content blocker. Do not reopen old rig or system work
+without current evidence of a blocker.

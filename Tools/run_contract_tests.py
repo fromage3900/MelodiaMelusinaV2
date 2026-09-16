@@ -63,6 +63,7 @@ SUITES = (
     Suite("Tools/test_evidence_envelope.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_ollama_health.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_ui_style_audit.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
+    Suite("Tools/test_terrain_handoff.py", re.compile(r"\d+ checks run, \d+ passed, 0 failed")),
     Suite("Tools/test_melusina_anim_unit_guard.py", re.compile(r'"ok"\s*:\s*true')),
     Suite("Docs/T3D_Baseline/test_canonical.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
 )
@@ -98,6 +99,7 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Tools/test_evidence_envelope.py",
         "Tools/test_ollama_health.py",
         "Tools/test_ui_style_audit.py",
+        "Tools/test_terrain_handoff.py",
         "Docs/T3D_Baseline/test_canonical.py",
     }
 )

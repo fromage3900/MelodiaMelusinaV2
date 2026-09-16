@@ -8,6 +8,52 @@ not because they want an analysis, a framework, or a conversation about it.
 
 ---
 
+## Fast-start conductor path
+
+The project is now organized around **prompt execution with just-in-time context**, not broad startup reading.
+
+For a clear task, use this order:
+
+```text
+OWNER REQUEST
+  -> CURRENT_STATE.md only for current truth
+  -> one relevant durable contract / skill
+  -> live evidence required by the task
+  -> BUILD / FIX promptly
+  -> verify
+  -> stop
+```
+
+Do not preload unrelated subsystem docs, historical reports, research indexes, or old handoffs.
+
+For Unreal worldbuilding / environment art / PCG / level composition specifically:
+
+```text
+CURRENT_STATE + world/PCG contract
+  -> scene_context_cycle.begin()
+  -> inspect spatial packet + live editor
+  -> make the bounded change
+  -> scene_context_cycle.end()
+  -> falsify route / silhouette / PCG / scale regressions
+  -> owner judges the actual viewport/game
+  -> provenance check
+  -> stop
+```
+
+Canonical tools:
+
+- `Content/Python/scene_context_snapshot.py` — compact live 3D awareness packet.
+- `Content/Python/scene_context_cycle.py` — before/after spatial evidence and diff.
+- `.claude/skills/melodia-world-builder/SKILL.md` / `.agents/skills/melodia-world-builder/SKILL.md` — worldbuilding runbook.
+
+The generated files under `Saved/Audit/SceneContext/` are ephemeral evidence, **not** a new status system.
+
+A normal agent should not need to understand the whole project before doing a bounded task. The orchestration goal is:
+
+> **give the right agent the smallest true context that lets it act correctly, then make the result prove itself.**
+
+---
+
 ## The five rules
 
 ### 1. Do the job asked. Ship it. Stop.

@@ -120,6 +120,7 @@ from . import nikki_musical_decorations  # noqa: F401 - recovered 2026-09-11 (wa
 from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import eyewear  # noqa: F401 - Eyewear: CAD-level frame front from ISO 8624 boxing measurements
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 

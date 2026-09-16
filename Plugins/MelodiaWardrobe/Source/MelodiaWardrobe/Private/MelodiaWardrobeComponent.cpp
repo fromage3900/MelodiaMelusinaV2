@@ -163,6 +163,12 @@ USkeletalMeshComponent* UMelodiaWardrobeComponent::FindOrCreateSlotComponent(
 
 	SlotComp->SetupAttachment(BodyMesh);
 
+	// Garments are part of the hero silhouette: write the same custom depth/stencil as the
+	// body, so post-process passes that key off the hero stencil (the storybook outline skips
+	// stencil 4 because heroes carry inverted-hull outlines) treat the dress like the skin.
+	SlotComp->SetRenderCustomDepth(BodyMesh->bRenderCustomDepth);
+	SlotComp->SetCustomDepthStencilValue(BodyMesh->CustomDepthStencilValue);
+
 	// Order matters: the mesh must exist before the leader-pose binding, or the
 	// binding is built against an empty component and the garment never follows the
 	// body until something reassigns it.

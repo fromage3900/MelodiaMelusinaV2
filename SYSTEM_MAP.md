@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-09  
+**Last Updated:** 2026-09-14
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -62,6 +62,14 @@ Persistence (SaveGame, narrative record, world state)
 C++ defines the rules; Blueprints present and connect them. TouchDesigner and Chladni/cymatics visualize owner state. They do not become a second combat, save, or quest authority.
 
 The core should become more stable as content grows. A new Voyage is normally a **content integration problem**, not an excuse to reopen combat/save/UI ownership.
+
+### Content-first boundary (verified 2026-09-14)
+
+The stable gameplay core is already in service of authored content. A boss battle, rhythm skill,
+side quest, creature Episode, outfit ability, musical world puzzle, or procedural setpiece normally
+uses the owners and entry points above. Before changing architecture, ask whether the experience can
+be expressed as content through `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`. If yes,
+author it. Architecture work requires a demonstrated blocker against a named owner seam.
 
 This page is runtime-ownership detail. [`Docs/Architecture/CURRENT_SYSTEM_MAP.md`](Docs/Architecture/CURRENT_SYSTEM_MAP.md) is a duplicate snapshot, not a second authority.
 

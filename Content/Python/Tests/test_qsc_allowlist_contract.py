@@ -24,9 +24,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 NARRATIVE_DIR = PROJECT_ROOT / "Content" / "MelodiaIntegration" / "Narrative"
-CHAPTER_QUILL_DIRS = [
-    PROJECT_ROOT / "Chapters" / "02_shorewake_calling" / "quill",
-]
+CHAPTER_QUILL_DIRS = sorted((PROJECT_ROOT / "Chapters").glob("[0-9][0-9]_*/quill"))
 CONFIG_ASSET = (
     PROJECT_ROOT / "Content" / "MelodiaIntegration" / "Config" / "DA_MelodiaIntegrationConfig.uasset"
 )
@@ -73,8 +71,11 @@ class TestQscAllowlistContract(unittest.TestCase):
         cls.scripts = sorted(NARRATIVE_DIR.rglob("*.qsc"))
         for extra in CHAPTER_QUILL_DIRS:
             if extra.is_dir():
-                cls.scripts.extend(sorted(extra.glob("*.qsc")))
+                cls.scripts.extend(sorted(extra.rglob("*.qsc")))
         cls.config_bytes = CONFIG_ASSET.read_bytes() if CONFIG_ASSET.is_file() else b""
+        if cls.config_bytes.startswith(b"version https://git-lfs.github.com/spec/v1"):
+            raise RuntimeError("Allowlist is an LFS pointer; run git lfs pull --include=" +
+                               str(CONFIG_ASSET.relative_to(PROJECT_ROOT)))
 
     def test_fixtures_present(self):
         self.assertTrue(self.scripts, f"no .qsc files under {NARRATIVE_DIR}")

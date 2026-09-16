@@ -1,0 +1,176 @@
+{
+ "pair": {
+  "verts": 10464,
+  "tris": 20892,
+  "x": [
+   -67.0,
+   67.0
+  ],
+  "y": [
+   -28.927,
+   21.0
+  ],
+  "z": [
+   -123.179,
+   3.0
+  ]
+ },
+ "checks": {
+  "pair width": {
+   "got": 134.0,
+   "want": 134.0,
+   "tol": 3.0,
+   "pass": true
+  },
+  "pair symmetry": {
+   "got": 0.0,
+   "want": 0.0,
+   "tol": 0.5,
+   "pass": true
+  },
+  "pair depth (temple reach)": {
+   "got": 126.179,
+   "want": 126.2,
+   "tol": 6.0,
+   "pass": true
+  },
+  "pair height (drop + frame)": {
+   "got": 49.927,
+   "want": 49.9,
+   "tol": 6.0,
+   "pass": true
+  },
+  "temple reach (-Z)": {
+   "got": 123.179,
+   "want": 123.2,
+   "tol": 3.0,
+   "pass": true
+  },
+  "temple inner face x_min": {
+   "got": 0.5,
+   "want": 0.5,
+   "tol": 0.6,
+   "pass": true
+  },
+  "folded X reach": {
+   "got": 123.179,
+   "want": 123.2,
+   "tol": 6.0,
+   "pass": true
+  },
+  "folded Z collapse": {
+   "got": 4.5,
+   "want": 4.5,
+   "tol": 1.5,
+   "pass": true
+  },
+  "hinge stack on axis (Y)": {
+   "got": 7.5,
+   "want": 7.5,
+   "tol": 0.4,
+   "pass": true
+  },
+  "hinge diameter X": {
+   "got": 2.8,
+   "want": 2.8,
+   "tol": 0.3,
+   "pass": true
+  },
+  "lens pair span (2A + DBL)": {
+   "got": 126.0,
+   "want": 126.0,
+   "tol": 1.0,
+   "pass": true
+  },
+  "lens symmetry": {
+   "got": 0.0,
+   "want": 0.0,
+   "tol": 0.5,
+   "pass": true
+  },
+  "lens height (B)": {
+   "got": 34.0,
+   "want": 34.0,
+   "tol": 1.5,
+   "pass": true
+  },
+  "lens thickness": {
+   "got": 2.0,
+   "want": 2.0,
+   "tol": 0.8,
+   "pass": true
+  },
+  "lens centred on Z=0": {
+   "got": 0.0,
+   "want": 0.0,
+   "tol": 0.3,
+   "pass": true
+  }
+ },
+ "temple_open": {
+  "verts": 360,
+  "tris": 716,
+  "x": [
+   0.5,
+   5.0
+  ],
+  "y": [
+   -28.927,
+   1.5
+  ],
+  "z": [
+   -123.179,
+   0.0
+  ]
+ },
+ "temple_folded90": {
+  "verts": 360,
+  "tris": 716,
+  "x": [
+   -120.429,
+   2.75
+  ],
+  "y": [
+   -28.927,
+   1.5
+  ],
+  "z": [
+   -2.25,
+   2.25
+  ]
+ },
+ "hinge": {
+  "verts": 72,
+  "tris": 132,
+  "x": [
+   -1.4,
+   1.4
+  ],
+  "y": [
+   -3.75,
+   3.75
+  ],
+  "z": [
+   -1.4,
+   1.4
+  ]
+ },
+ "lens": {
+  "verts": 420,
+  "tris": 626,
+  "x": [
+   -63.0,
+   63.0
+  ],
+  "y": [
+   -17.0,
+   17.0
+  ],
+  "z": [
+   -1.0,
+   1.0
+  ]
+ },
+ "fails": [],
+ "result": "PASS"
+}

@@ -11,6 +11,12 @@ env:
   UE_ROOT: C:\Program Files\Epic Games\UE_5.8
   PROJECT_PATH: ${{ github.workspace }}\BS_GodFile.uproject
 
+# This job runs on the same single [self-hosted, Windows, UE58] runner as the
+# BuildGraph and AWS-publish jobs. When that machine is offline, any dispatch
+# here sits 'Expected' forever. The runner watchdog is the same as
+# melodia_buildgraph.yml: re-register the runner on the home PC if queued runs
+# pile up (deploy/register_ue58_runner.ps1).
+
 jobs:
   build:
     runs-on: [self-hosted, Windows, UE58]

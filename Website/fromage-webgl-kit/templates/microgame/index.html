@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fromage WebGL Kit — Microgame Template</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; font: 16px/1.4 system-ui, sans-serif; background: #0d1020; color: #f5f5f7; }
+    main { width: min(980px, 100%); margin: 0 auto; padding: 20px; }
+    .hud { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:12px; }
+    .stage { position:relative; width:100%; aspect-ratio:16/10; min-height:320px; overflow:hidden; border:1px solid #333a58; border-radius:16px; background:#151a31; }
+    .stage canvas { display:block; width:100%; height:100%; touch-action:manipulation; }
+    button { min-height:44px; padding:9px 16px; border-radius:999px; border:1px solid #7983b6; background:#252c50; color:inherit; cursor:pointer; }
+    button:focus-visible { outline:3px solid #fff; outline-offset:2px; }
+    .status { color:#cbd0e8; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main>
+    <div class="hud">
+      <div>
+        <strong>Collect the five echoes</strong>
+        <div id="status" class="status" aria-live="polite">Tap the glowing forms to begin.</div>
+      </div>
+      <button id="reset" type="button">Reset</button>
+    </div>
+    <div id="stage" class="stage" aria-label="Interactive 3D microgame"></div>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

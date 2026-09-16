@@ -1,371 +1,410 @@
-# Current State — Melodia (BS_GodFile)
+# Melodia Melusina — Current State
 
-**Canonical State Document**
-**Last Updated:** 2026-09-16 (P0 closeout plan of record — §9; gate rows below are real but their evidence predates three weeks of content work, see §9.1)
-**Target Engine:** Unreal Engine 5.8.0 | Blender 5.2 LTS | C++20 | Python 3.11
-**Overall Status:** **Editor build GREEN · 8/8 active P0 gates PASS · 524/524 tests PASS (captured revision) · audio reactivity verified live in PIE · packaged route verified (both legs, 0 fatals) · Issue #51 long-chain persistence still OPEN**
-**Recruiter showcase:** **SOFT FREEZE ACTIVE (2026-09-07)** — only final render promotion and critical correctness fixes are in scope; game/semester production continues. See `Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md`.
-**World-building authority:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) — player loop, C++ truth, Chladni/cymatics, TouchDesigner as visual instrument.
+**This is the only status document.** If any other file states what works, what is open, or what
+to do next, that file is wrong: fix this one instead. Update it in the same commit as the change it
+describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
+new file.
 
-> **Build:** green. `UnrealEditor-BS_GodFile.dll` built 2026-09-04 21:47 and the editor is running
-> from it. The blocker was `LPCTSTR` dropping a struct member in
-> `MelodiaCaptureRenderSubsystem.cpp` — fixed at `582fa914`, not a format-string or UE-5.8
-> issue as earlier notes claimed.
->
-> **Audio reactivity:** works, and is not theoretical — measured live in PIE at `b1cac649`.
-> The original fault was that route leg 0 had no music clock, so nothing drove the palette;
-> the clock now lives on the GameMode (`5fea50c8`) so **every** level reacts rather than only
-> those with a hand-placed clock actor.
+**Updated:** 2026-09-16 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
+`git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
 ---
 
-## 1. Executive Summary & Paradigm Shift
+## 1. What the game is
 
-Melodia has converged from disparate exploratory prototypes into a unified **Rhythm-JRPG / environment-led technical-art project**. The runtime operates under stable ownership boundaries and a set of converged gameplay/production pillars. The proven six-phase First Dream route is a full-stack integration test, **not a mandatory story template for every future chapter**.
-
-### Two Absolute Authorities
-1. **QuillScript Narrative Authority (`UMelodiaNarrativeSubsystem`)**: Sole authority for narrative flow, branching dialogue, cutscene triggering, quest flag evaluation, and 7-verb structured notifications (`melodia:quest`, `melodia:battle`, `melodia:stat`, `melodia:wardrobe`, `melodia:item`, `melodia:inspect`, `melodia:checkpoint`).
-2. **Turn-Based JRPG State Authority (`BP_JRPGSaveGame` & Combat Subsystem)**: Sole authority for turn queue resolution, combat calculations, party stats, inventory, and canonical game state persistence.
-
-### Converged Gameplay + Production Pillars
-1. **Rhythm Combat Layer**: Rhythm timing highway executes directly over JRPG command selections (Attack / Skill / Item / Flee). Note accuracy (`Poor: 0.35`, `Good: 1.0`, `Great: 1.2`, `Perfect: 1.5`) scales base damage and pulses material parameter collections (`MPC_Melodia_Palette`) without bypassing JRPG turn logic.
-2. **Wardrobe Traversal System**: Outfits provide visual mesh customization and implement `IMelodiaTraversalCapabilityProvider` to grant physical world traversal capabilities (Glide, Swim, Dash), fully persisted across save/reload cycles via `UMelodiaWardrobeSubsystem`.
-3. **Music-as-Key World Puzzles**: Environmental barriers and harmonic puzzles respond to played musical phrases (`APCGHeroMusicGraphHost` / Piano node stepping), dispatching 7-verb narrative notifications to unlock physical routes and portal boundaries without combat code.
-4. **Single-Writer UI Architecture**: Strict UI hierarchy where every surface has exactly one designated writer (`UMelodiaUIBridgeSubsystem`), eliminating race conditions, duplicate overlays, and widget memory leaks.
-5. **Canonical Procedural & 3D Pipelines**: Deep cross-system pipeline architecture established in `Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md` governing Cymatics math & runtime subsystems, Monolith MCP automation, Houdini procedural authoring, and emerging 3D toolchains.
-6. **Faraway Mother PCG Ecosystem**: Procedural fabric mountain architecture established in `Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md` and `specs/pcg/faraway_mother_pcg_manifest.v1.json`, with 4 biomes (WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay), multi-frequency WPO deformation, World Field Bus tension integration, and Heart Gate hero music puzzles.
-7. **Perceptual LOD LookDev Architecture**: Advanced optical deception framework established in `Docs/LookDev/MELODIA_PERCEPTUAL_LOD_LOOKDEV_ARCHITECTURE.md`, `Tools/LookDev/build_optical_lod_matrix.py`, `Content/Python/melodia_optical_lod_pipeline.py`, and `specs/lookdev/optical_lod_manifest.v1.json`, delivering 4-tier perceptual LOD continuity, Toksvig specular anti-aliasing compensation, adaptive Parallax Occlusion step scaling, 8x8 Bayer/64x64 blue-noise dithered crossfading, and grazing-angle silhouette compensation.
+A solo rhythm-JRPG. QuillScript owns narrative; the TurnBased JRPG template owns party, turns,
+damage, inventory and saves. Rhythm timing rides on top of JRPG commands, outfits grant traversal,
+and played phrases unlock the world. Shape: OMORI. Music-as-key: Zelda. Wardrobe bar: Infinity
+Nikki. Architecture detail: [`SYSTEM_MAP.md`](SYSTEM_MAP.md), [`DATA_FLOW.md`](DATA_FLOW.md).
+Settled decisions: [`_DECISION_LOG.md`](_DECISION_LOG.md).
 
 ---
 
-## 2. First Dream Full-Stack Integration Loop
+## 2. What works — and how strongly it is proven
 
-The sequence below is the canonical P0 integration route used to prove the project end to end. Future Chapters may use different narrative/mechanical shapes while reusing the same stable authorities, persistence rules, and typed intent contracts:
+Evidence ladder (never collapse levels): SOURCE BUILT → LIVE PROVEN → RESTART PROVEN →
+PACKAGED PROVEN.
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                        UNIVERSAL CHAPTER GAMEPLAY LOOP TEMPLATE                         │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
-   │
-   ▼
-[ Phase 1: Narrative Initiation & Sanctuary Departure ]
-   ├── QuillScript dialogue node with chapter key NPC
-   ├── Authoring of active quest flag (`quest.<chapter_id>.start`)
-   └── Authoring of Sanctuary departure gate unlock
-   │
-   ▼
-[ Phase 2: Overworld Traversal & Music-as-Key Route Unlock ]
-   ├── Traversal across overworld using active Wardrobe traversal capabilities
-   ├── Discovery of environmental musical puzzle / route barrier
-   ├── Player steps on musical nodes / plays resonant melody
-   └── Route / portal barrier unlocks via 7-verb narrative notification
-   │
-   ▼
-[ Phase 3: Turn-Based JRPG Combat with Rhythm Command Timing ]
-   ├── Seamless encounter transition to battle arena
-   ├── Single HUD writer (`UMelodiaUIBridgeSubsystem`) displays command menu
-   ├── Player selects action (Attack / Resonance Skill / Item / Flee)
-   ├── Harmonix Rhythm Highway engages for real-key timed inputs
-   └── Grade multiplier scales stock JRPG damage calculation
-   │
-   ▼
-[ Phase 4: Battle Resolution & Idempotent Reward Distribution ]
-   ├── Terminal combat outcome reached (Victory / Defeat / Flee / Timeout)
-   ├── QuillScript narrative resumes once
-   └── Idempotent reward distribution via Intent-ID (Wardrobe unlock, Stat increase, Item)
-   │
-   ▼
-[ Phase 5: Traversal Upgrade & World Progression ]
-   ├── Player equips newly acquired wardrobe piece
-   ├── `UMelodiaWardrobeSubsystem` grants new traversal capability (e.g., Glide / Dash)
-   └── Player accesses previously unreachable chapter climax portal / landmark
-   │
-   ▼
-[ Phase 6: Canonical Checkpoint & Seamless Chapter Transition ]
-   ├── State serialized to `BP_JRPGSaveGame` slot
-   ├── Verified round-trip persistence (Party, Stats, Flags, Wardrobe, Inventory)
-   └── Level streaming / transition to next Chapter map
-```
+### PROVEN CREATIVE CAPABILITY SURFACE - BUILD WITH THIS NOW
 
----
+This is the affordance map for a fresh agent. It is not a claim that every possible Chapter or
+asset is already finished. `LIVE PROVEN` means a current receipt, ledger row, or PIE proof exercised
+the named seam. `RESTART PROVEN` and `PACKAGED PROVEN` are stronger, separate levels. `PRESENT /
+SOURCE-TOOL PROVEN` means the source, plugin, generator, or asset family exists and has been checked;
+it does not mean a live UE cook or finished content. `SCAFFOLDED` means the contract is useful but
+still has a named proof or integration blocker.
 
-## 3. P0 Gate Evidence
+**Default:** author content through these seams. Boss battles, new rhythm skills/attacks, side
+quests, encounters, creature episodes, outfit abilities, and musical world puzzles are now content
+problems. They do not require another gameplay framework or another authority.
 
-**Current tracked authority:** `Docs/P0_TASK_LEDGER.json` records **8/8 active P0 gates passing**. The 10-row matrix below preserves the broader completion-gate taxonomy used during the September 1 closeout; it is historical evidence vocabulary, **not a second current gate count**. `Saved/gate_ledger.json` is a generated/local evidence artifact and may not exist in a fresh GitHub clone.
+#### Gameplay and content authoring
 
-### Historical completion-gate taxonomy (10 IDs)
+| Capability | Status / evidence level | Canonical entry points | What it enables creatively | Use this instead of rebuilding |
+|---|---|---|---|---|
+| QuillScript narrative and encounter authoring | **LIVE PROVEN (scoped)** - authored `MelodiaQuillSmoke` drives the integration proof; the allowlist contract is checked by [`test_qsc_allowlist_contract.py`](Content/Python/Tests/test_qsc_allowlist_contract.py) | `Plugins/QuillScript/`, `Content/MelodiaIntegration/Narrative/*.qsc`, `UMelodiaNarrativeSubsystem`, `/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig` | Dialogue, choices, encounter intent, consequence and reward content | A new dialogue runtime, quest authority, or parallel notification bus |
+| Chapter scaffold and stable IDs | **SOURCE + CONTRACT PROVEN; existing package has a known validation failure** - [`scaffold_chapter.py`](Tools/scaffold_chapter.py), [`test_scaffold_chapter.py`](Tools/test_scaffold_chapter.py), [`test_melodia_chapter_content_package_contract.py`](Tools/test_melodia_chapter_content_package_contract.py), `Chapters/_template/`; scaffold regression passes, while existing Shorewake IDs still fail the broader QSC contract | `Chapters/_template/{quill,maps,encounters,rewards}`, `Tools/scaffold_chapter.py`, `specs/progression/` | New Chapters, side quests, creature Episodes and reusable encounter/reward packages with gated IDs | A new chapter loader or hand-authored ID convention; validate the IDs and use the scaffold |
+| Quill encounter -> JRPG battle -> rhythm -> typed result -> Quill resumes once | **LIVE PROVEN (scoped owner seams)** - [`ue_level_building_coinsheet_2026-09-01.json`](Saved/Audit/ue_level_building_coinsheet_2026-09-01.json) records `battle_integration_map` pass for unavailable/victory/defeat/fled, typed results and exactly-once Quill resume; the separate `rhython_grade_to_result` row proves grade-to-damage. This is not a fresh packaged golden run | `MelodiaExternalJRPGBridgeSubsystem`, `MelodiaNarrativeSubsystem::CompleteBattle` / `ResumeQuillOnce`, `MelodiaIntegrationMap`, `MelodiaQuillSmoke` | Boss battles, normal encounters, authored phase consequences, rewards and checkpoints | A new battle manager, transition graph, combat result type, or second Quill resume path |
+| Rhythm grade affects authoritative JRPG combat | **LIVE PROVEN** - `FMelodiaRhythmGradeBoundaryTest`, the `rhython_grade_to_result` ledger row, and `MelodiaRhythmCombatSubsystem` verify Q/W/O/P grade data reaches the stock skill damage path | `Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.cpp`, authored `UMelodiaRhythmSkillDefinition` / skill data | New rhythm skills, attacks, patterns, grade-driven damage, healing or resource effects | A second damage formula, rhythm combat authority, or bespoke boss combat framework |
+| Wardrobe, traversal and gameplay capability hooks | **LIVE PROVEN + RESTART PROVEN baseline** - `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, [`P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md`](Docs/Evidence/P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md), and the restart slot proof pass | `Plugins/MelodiaWardrobe/`, `UMelodiaWardrobeSubsystem`, `MelodiaTraversalComponent`, wardrobe catalog manifests | Outfit abilities, traversal gates, creature/world relationships and battle/rhythm affordances | A new outfit inventory, equipment owner, traversal capability registry, or cosmetic-only workaround |
+| Music-as-key world unlock | **LIVE PROVEN (scoped)** - the coinsheet receipt records one idempotent Piano phrase -> typed world result -> visible route; [`music_world_key_real_input_2026-08-31.json`](Docs/Evidence/music_world_key_real_input_2026-08-31.json) and [`P0_REAL_INPUT_PROBE_2026-09-09.json`](Docs/Evidence/P0_REAL_INPUT_PROBE_2026-09-09.json) provide route/input evidence | `Content/Melodia/_PROJECT/Blueprints/Gameplay/BP_MusicManager.uasset`, `MelodiaMusicClockSubsystem`, Quill world-result path, `Content/Python/build_pcg_piano.py` | Musical world puzzles, phrase-locked routes, keys, shrines and side-quest progression | A new puzzle framework, second music clock, or one-off door/route authority |
+| Choral Sheep companion and Harmonize | **LIVE PROVEN (PIE behavior); visual fleece response still owed** - [`CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json), [`CHORAL_SHEEP_ABP_LOCOMOTION_PROOF_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_ABP_LOCOMOTION_PROOF_2026-09-13.json), and [`CHORAL_SHEEP_RETARGET_DEFORMATION_PROOF_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_RETARGET_DEFORMATION_PROOF_2026-09-13.json) plus current Sheep assets prove definition -> begin -> ramp -> decay and locomotion; the receipts explicitly leave the lit fleece capture open | `Content/Melodia/Companions/ChoralSheep/`, `BP_ChoralSheep`, `DA_ChoralSheepDefinition`, `MelodiaCompanionComponent`, `TryBeginHarmonize` | Creature Episodes, companion abilities, creature reactions and harmony moments | A new companion framework, ad-hoc creature state, or rig reopening without a current defect |
+| Save, checkpoint and reward ownership | **LIVE/RESTART PROVEN for the baseline; long-chain repeat proof remains open** - `UMelodiaNarrativeSubsystem` owns authored checkpoints/consequences and exactly-once transactions; stock JRPG owns its save state; [`ue_level_building_coinsheet_2026-09-01.json`](Saved/Audit/ue_level_building_coinsheet_2026-09-01.json) records wardrobe restore. Issue #51 remains the explicit long-chain gate | `MelodiaNarrativeSubsystem`, `MelodiaSaveRecoverySubsystem`, `MelodiaSaveSlotLibrary`, `BP_JRPGSaveGame`, canonical reward/flag paths | Checkpoints, reward claims, side-quest completion, route restoration and durable episode history | Direct SaveGame writes, duplicate reward registries, or a new save authority |
 
-| Gate ID | Target System | Verification Criteria | Status | Evidence Source |
-|---|---|---|:---:|---|
-| `runtime` | Core Gameplay Loop | Full PIE session execution across sanctuary, traversal, and battle | **PASS** | `Saved/gate_ledger.json` |
-| `save_load` | State Persistence | `BP_JRPGSaveGame` slot serialization & roundtrip deserialization | **PASS** | `Saved/gate_ledger.json` |
-| `repeat_consume` | Narrative Queue | Exactly-once consumption of narrative notifications | **PASS** | `Saved/gate_ledger.json` |
-| `package_launch` | Standalone Shipping | Executable boots cleanly and initializes all core subsystems | **PASS** | `Saved/gate_ledger.json` |
-| `rhythm_owner` | Rhythm Subsystem | Rhythm highway modifies JRPG action inputs without owning combat state | **PASS** | `Saved/gate_ledger.json` |
-| `hud_single_writer` | UI Hierarchy | `UMelodiaUIBridgeSubsystem` is the sole writer for HUD/Battle UI | **PASS** | `Saved/gate_ledger.json` |
-| `wardrobe_equip_roundtrip` | Wardrobe Subsystem | Mesh swapping and outfit persistence verified across save/load | **PASS** | `Saved/gate_ledger.json` |
-| `rhythm_grade_to_result` | Combat Multiplier | Note accuracy (`Poor`/`Good`/`Great`/`Perfect`) scales damage calculation | **PASS** | `Saved/gate_ledger.json` |
-| `music_world_key` | Resonant World | Musical phrase stepping unlocks route barriers via narrative subsystem | **PASS** | `Saved/gate_ledger.json` |
-| `wardrobe_gameplay_hook` | Traversal Provider | Equipping outfit grants physical world traversal capabilities (`Glide`) | **PASS** | `Saved/gate_ledger.json` |
+#### Procedural worldbuilding and musical fields
 
----
+The productive affordance is real: the proven Sea Above path enriches PCG points with a Resonance
+float and packs it into per-instance custom data for material response. Musical/cymatic data can
+drive geometry, scatter and material/Niagara response. Use that lane; do not manually place every
+instance or invent a new world signal system.
 
-## 4. Current Test Suite Status
+| Capability | Status / evidence level | Canonical entry points | What it enables creatively | Use this instead of rebuilding |
+|---|---|---|---|---|
+| UE 5.8 PCG and PCG Extended Toolkit | **PRESENT / SOURCE-TOOL PROVEN; LIVE PROVEN in scoped graphs** - `BS_GodFile.uproject` enables `PCG`, `PCGPythonInterop` and `PCGExtendedToolkit`; `Plugins/PCGExtendedToolkit/PCGExtendedToolkit.uplugin` targets UE 5.8; Sea Above receipts and offline contracts cover the current graph path | UE PCG graphs, `Plugins/PCGExtendedToolkit/`, `Content/Python/pcg/`, existing `/Game/EnvSandbox/PCG/` authorities | Procedural biomes, musical architecture, scatter, falloffs and setpieces | Hand-authored actor forests, a new scatter framework, or a parallel PCG graph authority |
+| Resonance Ecology processor and instance material bridge | **LIVE PROVEN on 1 Sea Above graph; reusable editor tooling for the remaining graphs** - current state records `PCG_East_PhyllotaxisCourtyard` at 140 instances with Resonance 0.030-0.925 and one custom float; [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) records placement/runtime pass and no parallel graph | `Content/Python/pcg/resonance_ecology_processor.py`, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Content/Python/pcg/test_resonance_ecology.py`, existing Resonance Cathedral/Sea Above graphs | Cymatic ecology bands, musical density, material variants and resonance-driven geometry/scatter | Hardcoded biome bands, per-asset custom scripts, or another PCG enrichment authority |
+| World Field Bus Resonance/Tension contract | **SCAFFOLDED / SOURCE CONTRACT - not LIVE PROVEN** - `MelodiaWorldFieldBus.*` defines `ResonanceN/M`, `Tension`, `BeatPulse` and position sampling; [`world_field_bus_probe_2026-09-02.json`](Saved/Audit/world_field_bus_probe_2026-09-02.json) says SCAFFOLD and the PIE note records parameter-name alignment still open | `UWorldFieldBus`, `MelodiaCymaticsSubsystem`, `MelodiaOceanologyWaterBridgeSubsystem` | A shared future field for cymatic water, PCG and material consumers once the contract is closed | Another global bus, guessed MPC parameters, or claiming the current scaffold is a live contract |
+| Sea Above musical PCG proof | **LIVE PROVEN (scoped) / not full route certification** - [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) is `PLACEMENT_RUNTIME_PASS`; current state records 1 of 9 Resonance Ecology graphs. [`P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json`](Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json) is `PASS_SCOPED`, with visible-frame/focused-player/package work still open | `LV_SeaAbove_Prototype`, existing PCG graph authorities, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json` | Author a musical biome or setpiece now, while keeping the uninterrupted player route and visual-capture boundary honest | A new Sea Above world framework or a claim that every graph/consumer is already live |
 
-The project enforces automated test coverage across Python simulations, C++ automation tests, schema validation contracts, and MCP regression suites:
+#### Houdini, Hython and Copernicus production lane
 
-```powershell
-# Automated Test Execution Summary (2026-09-01):
-# 1. GMM Python Simulations & Math Contracts:  307 / 307 PASS
-# 2. P0 Content & Integration Test Suite:        48 /  48 PASS
-# 3. ECHO Pipeline Asset & Audio Contracts:     77 /  77 PASS
-# 4. Melodia MCP Regression Suite:              38 /  38 PASS
-# 5. Ollama Token & Daemon Stress Suite:        25 /  25 PASS
-# 6. Melusina Release End-to-End Suite:         17 /  17 PASS
-# 7. Offline Preflight Gate Checks:             12 /  12 PASS
-# ─────────────────────────────────────────────────────────────
-# TOTAL VERIFIED AUTOMATED TESTS:              524 / 524 PASS (100%)
+This is an available production lane, not a research-only idea. The evidence boundary is important:
+Houdini 22 Hython is healthy and the Copernicus/HDA generators, manifests and asset families are
+present; current `origin/main` does **not** contain a receipt proving a custom HDA cooked and baked
+inside UE. License/editor-cook proof remains intentionally unpromoted.
+
+| Capability | Status / evidence level | Canonical entry points | What it enables creatively | Use this instead of rebuilding |
+|---|---|---|---|---|
+| Houdini Engine plugin in UE 5.8 | **PRESENT / SOURCE + PREFLIGHT PROVEN; LIVE UE HDA COOK NOT PROVEN** - [`HoudiniEngine.uplugin`](Plugins/HoudiniEngine/HoudiniEngine.uplugin) is H22.0.368/UE 5.8 and `BS_GodFile.uproject` enables it; [`smoke_houdini_engine_pcg.py`](Content/Python/smoke_houdini_engine_pcg.py) checks the plugin/hython/project; the smoke/spec still record license and editor-cook steps as pending | `Plugins/HoudiniEngine/`, `BS_GodFile.uproject`, `Content/Python/smoke_houdini_engine_pcg.py`, `hda/README.md`, `Docs/WorldGen/HOUDINI_ENGINE_SMOKE_SPEC_2026-08-27.md` | HDA geometry, procedural stairs/chords, Houdini-authored production geometry and design-time bake to UE meshes/HISM/Nanite | A new UE procedural bridge; use the HDA lane when the license/cook gate is actually available, with PCG/Python as fallback |
+| Hython procedural generation and deterministic handoff | **SOURCE/TOOL PROVEN; output families are receipt-backed, not a live UE cook claim** - [`hython_monolith_bridge_report.json`](Saved/Audit/hython_monolith_bridge_report.json) records Houdini 22.0.368, `hou_available`, and a healthy Hython lane; manifests record seeds, outputs and hashes | `Tools/Houdini/`, `Tools/Houdini/copernicus/`, `Content/Python/create_hda_arpeggio_stair.py`, `Saved/Audit/copernicus_cymatic_manifest.json` | Deterministic geometry/HDA generation, seeded variants, reproducible handoff into UE | One-off exported meshes without seed/manifests, or a bespoke procedural backend |
+| Copernicus texture/material generation | **PRESENT / SOURCE + OFFLINE ASSET PROVEN; live UE/HDA handoff not proven** - [`copernicus_dress_bake.py`](Tools/Houdini/copernicus/copernicus_dress_bake.py) builds the SOP -> COP network; [`README.md`](Tools/Houdini/copernicus/README.md) documents the COP/ROP path and contracts; Hython and output manifests are audited | `Tools/Houdini/copernicus/copernicus_dress_bake.py`, `copernicus_fabric_sheen.py`, `copernicus_terrain_height_to_nanite.py`, `copernicus_petal_variants.py`, `Content/Python/verify_tex_contract.py` | Dress/fabric sheen, masks, curvature/thickness/AO, terrain-height -> Nanite, petal and material variants | Ad-hoc PIL-only material baking, a new texture pipeline, or making live HDA cooking a hidden dependency |
+| Cymatic PBR map families | **PRESENT / SOURCE + ASSET PROVEN; live material import/build remains separate** - [`cymatic_audit_2026-09-01.json`](Saved/Audit/cymatics_audit_2026-09-01.json) and [`cymatics_present_status.json`](Saved/Audit/cymatics_present_status.json) record valid on-disk families and offline wiring while noting live import/build work; `copernicus_cymatic_parallax.py` defines seeded Chladni/cymatic families and nine-map output | `Tools/Houdini/copernicus/copernicus_cymatic_parallax.py`, `Saved/Audit/copernicus_cymatic_manifest.json`, `Saved/Audit/copernicus_cymatic/`, `Saved/Audit/cymatics_present_status.json` | Cymatic stone, fabric, sheen, masks, animated/flipbook variants and material dressing | A new master shader or untracked texture family; extend the existing map/MPC contracts |
+
+#### Materials, cymatics, shaders and presentation
+
+The material convention is scalar MPC data, not a new master per effect: `MPC_Melodia_Palette`
+is the audio source, `MPC_Cymatics_Driver` is the cymatic driver, and the existing driver fields
+include `Cymatic_BassIntensity`, `Cymatic_MidIntensity`, `Cymatic_BeatPulse`,
+`Cymatic_EmissiveScale`, `Cymatic_IridescenceShift`, `Cymatic_UVDistortion` and
+`Cymatic_ModeN/M`. `WorldField.ResonanceN/M` and `WorldField.Tension` are bus-struct fields, not
+MPC parameters; the water bridge maps them to its consumer contract. Extend those existing
+contracts and the canonical masters when a new reactive variant is needed.
+
+| Capability | Status / evidence level | Canonical entry points | What it enables creatively | Use this instead of rebuilding |
+|---|---|---|---|---|
+| Nikki-derived toon/material path | **PRESENT / ASSET + SOURCE PROVEN; scoped live use** - `M_Master_Toon_Character.uasset` and `M_Master_Toon_Universal.uasset` are tracked; Sheep proof binds `MI_ChoralSheep_Body` to the approved character master with Chladni as a child | `Content/EnvSandbox/Materials/Masters/M_Master_Toon_Character.uasset`, `Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.uasset`, `Content/Melodia/Companions/ChoralSheep/`, [`CHORAL_SHEEP_RETARGET_DEFORMATION_PROOF_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_RETARGET_DEFORMATION_PROOF_2026-09-13.json) | Author new hero, creature, outfit and biome material variants while keeping the current toon identity | A new master-material architecture or replacing the Nikki-derived base with a parallel shader |
+| Audio-reactive presentation and cymatics driver | **SOURCE + SCOPED LIVE PROVEN** - the audio palette writer and read-only Cymatics runtime are scoped-live proven; the dedicated driver writer is source/asset proven and remains a separate material contract. Sea Above pulse/mode/amplitude automation is `PASS` with one audio writer | `MelodiaAudioReactivePresentationSubsystem.*`, `MelodiaCymaticsSubsystem.*`, `MelodiaCymaticsWriterSubsystem.*`, `Content/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.uasset`, `Content/Melodia/Cymatics/MPC_Cymatics_Driver.uasset`, `Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json` | Audio-reactive materials, Chladni response, beat/mode/tension-driven water, Niagara and surface presentation | A second audio writer, a second MPC contract, or a new master shader for each variant |
+| Chladni/cymatic shader automation | **PRESENT / SOURCE PROVEN; consumer-specific visual proof varies** - `Source/MelodiaShader/Shaders/` contains the shader module; Chladni sampling and material automation scripts are present; use the current PPV/material receipts for visual proof | `Source/MelodiaShader/Shaders/`, `Content/Python/assign_toon_profiles.py`, existing MPC contracts | Reactive shader/material variants and automated parameter application within the frozen identity | Hand-guessed parameters, per-widget/per-material constants, or a new universal master |
+| Frozen PPV, Niagara and flipbook presentation stack | **OWNER-APPROVED / LIVE PROVEN scoped** - [`PPV_STENCIL_PIE_2026-09-13.json`](Docs/Evidence/PPV_STENCIL_PIE_2026-09-13.json) and the current identity record in this file prove the frozen visual boundary; canonical Niagara effect types and companion VFX assets are tracked, while visual work remains asset-specific | Frozen `PPV_NikkiDream` stack, `Content/Melodia/VFX/EffectTypes/ET_Melodia_CharacterFX.uasset`, `Content/Melodia/Companions/ChoralSheep/VFX/`, `Tools/Houdini/sea_above_reef/shorewake_animated_flipbook.py`, `Content/Python/import_flipbooks.py`, `UMelodiaAudioReactivePresentationSubsystem` | Storybook identity, audio-reactive VFX, canonical Niagara effects, flipbook shimmer and polished captures | A new post-process identity, duplicate Niagara framework, or a “fancy VFX” system outside the canonical stack |
+
+#### UI authoring
+
+| Capability | Status / evidence level | Canonical entry points | What it enables creatively | Use this instead of rebuilding |
+|---|---|---|---|---|
+| Melodia UI artist skill and existing Quill UI chain | **PRESENT / SOURCE-TOOL PROVEN; audit workflow established** - both agent skill copies define the token SSOT, Quill widgets, audit and editor apply workflow; current state records the read-only inventory of 144 widget Blueprints / 955 styled widgets | [`.claude/skills/melodia-ui-artist/SKILL.md`](.claude/skills/melodia-ui-artist/SKILL.md), [`.agents/skills/melodia-ui-artist/SKILL.md`](.agents/skills/melodia-ui-artist/SKILL.md), `melodia-design-system/tokens.json`, [`ui_style_audit.py`](Tools/ui_style_audit.py), `Content/Melodia/UI/Quill/`, `Content/Python/assign_melodia_quill_presentation.py` | UI polish, new dialogue/selection screens and authored screens that match the current identity | A new widget framework, manual style guesses, or hand-editing `.uasset`; load the skill first |
+
+**Concrete authoring example:**
+
+```text
+Quill boss intent (allowlisted encounter ID)
+  -> Phoenix skill/action (authored JRPG skill data)
+  -> existing rhythm phrase/session
+  -> Q/W/O/P grade
+  -> Phoenix authoritative damage/result
+  -> Quill consequence, reward and checkpoint
 ```
 
----
+The current proof covers the owner seams needed for this shape. Author the boss's IDs, skill data,
+phrase, dialogue, consequence and reward through those entry points; do not design another battle or
+rhythm framework. Keep the packaged golden-run and long-chain persistence gates separate until they
+have their own evidence.
 
-## 5. Level & Environment Verification Status
+### WHAT TO REACH FOR
 
-1. **`L_MelusinaMorning` (Sanctuary / Chapter Opening)**
-   - **Role:** Narrative initialization, NPC dialogue, departure gate.
-   - **Status:** Verified. QuillScript NPC anchor dispatches `melodia:quest:first_dream.started`; departure gate opens seamlessly.
-2. **`LV_SeaAbove_Prototype` (Overworld Traversal & Music-as-Key)**
-   - **Role:** Traversal, Starskiff navigation, musical puzzle, route unlock.
-   - **Status:** Verified. Clean Outliner hierarchy (0 root actors); Recast navmesh paths active; Starskiff boarding, driving, and docking confirmed; `APCGHeroMusicGraphHost` unlocks portal path upon harmonic match.
-3. **`L_KaleidoNave` (Battle Arena / Boss Encounter)**
-   - **Role:** Turn-based combat, Rhythm Highway interaction, victory resolution.
-   - **Status:** Verified. Single HUD writer (`UMelodiaUIBridgeSubsystem`); Harmonix rhythm note highway scales `BP_MelodySlime_Boss` combat damage; victory triggers idempotent reward flow.
-4. **`MelodiaMainMenu` (Title & Frontend)**
-   - **Role:** Title screen, new game / load game entry point.
-   - **Status:** Verified. Clean bootstrap into sanctuary level.
+| User asks for... | Reach for... |
+|---|---|
+| New boss | Quill + Phoenix/JRPG + existing rhythm seam + authored skill/data |
+| Side quest | Chapter scaffold + Quill + stable IDs + existing reward/save owners |
+| New rhythm ability | Existing rhythm execution + JRPG Skill/command path |
+| Musical biome | Cymatics -> Resonance/PCG data -> UE PCG + material/Niagara consumers; remember the broader World Field Bus is scaffolded |
+| Procedural environment | UE PCG/Python and/or Houdini Engine/Hython, with the current proof label |
+| New cymatic material | Copernicus/Hython map family + existing toon/material/MPC contracts |
+| Outfit mechanic | Wardrobe subsystem + existing capability/Convergence hooks |
+| UI polish or new screen | `melodia-ui-artist` skill + tokens + existing UI ownership |
+| Fancy VFX | Canonical Niagara/flipbook/audio-reactive stack |
+| Character rig repair | **Only** if current evidence shows an actual rig defect; do not reopen four-month-old rig work by default |
 
----
+**Sea Above boundary:** the live proof is one Resonance Ecology graph and scoped cymatic/runtime
+automation. The processor/apply script, remaining graph bindings, World Field Bus consumers and the
+uninterrupted focused-player/package route are reusable or open work, not silently promoted proof.
 
-## 6. Historical September 1 Closeout Sequence
-
-This sequence is retained for audit/history only. The verified status at the top of this document supersedes its future-tense wording. The original closeout sequence was defined in [Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md](Docs/Handoffs/MELODIA_EVENING_PLAN_P0_AND_CHAPTER_LOOP_2026-09-01.md):
-
-1. **Stage 1 — Clean Environment Preflight:** Execute full test suites (`run_tests.ps1`, `verify_p0_offline.py`, `test_melodia_mcp.py`). (Status: **COMPLETED / GREEN**)
-2. **Stage 2 — Clean Win64 Packaging:** Execute Unreal Automation Tool `BuildCookRun` with canonical map roster (`L_MelusinaMorning`, `L_KaleidoNave`, `LV_SeaAbove_Prototype`, `MelodiaMainMenu`).
-3. **Stage 3 — Package Launch Verification:** Confirm packaged binary `Saved/Packages/P0_Closeout_20260901/Windows/BS_GodFile.exe` launches without errors.
-4. **Stage 4 — Official Golden Run Execution:** Execute the end-to-end P0 Golden Run contract (`specs/p0/core_p0_dream_golden_run.v1.json`) through the 6-phase reusable chapter loop on the packaged build.
-5. **Stage 5 — Evidence Ledger Freezing:** Record immutable execution logs to `Saved/Audit/` and update `Saved/gate_ledger.json`.
-6. **Stage 6 — Final Sign-Off:** Publish final shipping report and hand off to Chapter 2 production.
-
----
-
-## 7. Session 2026-09-04 → 09-05 — Build, Audio, Merge, Look-Dev
-
-### 7.1 What is now true
-
-| Area | State | Evidence |
+| Capability | Level | Evidence |
 |---|---|---|
-| **Editor build** | **GREEN** | `582fa914`. Root cause was `LPCTSTR MaterialToken` silently dropping a struct member in `MelodiaCaptureRenderSubsystem.cpp`; corrected to `const TCHAR*`. Two earlier `FString::Printf` rewrites treated symptoms. Binary dated 2026-09-04 21:47; editor runs from it. |
-| **Audio reactivity** | **VERIFIED LIVE** | `b1cac649` — measured in PIE, not inferred. Root cause at `0bc95bfb`: route leg 0 had no music clock. Fix at `5fea50c8` puts the clock on the GameMode so every level reacts. Electric Dreams ambience + landscape beat response at `9b74f333`. |
-| **Packaged route** | verified, both legs, 0 fatals | earlier this session |
-| **P0 gates** | 8/8 active gates `pass` | `Docs/P0_TASK_LEDGER.json` |
-| **Niagara FX** | 5 dead systems repaired | `abd87eca` — they were rendering `DefaultSpriteMaterial` (the "green balls"), including `NS_Melodia_BattleBackdropPulse`. Mouse-click sparkle wired on the player controller. |
-| **Masked foliage** | repaired | `16bcff59` — `OpacityMap` on `M_Master_Toon_Universal_Alpha` was an orphan parameter; the sampler feeding the OpacityMask chain had `TextureObject` unconnected, so every pixel clipped. `MI_AtlasLeafA` rendered as an empty frame before the fix. |
+| Editor build | SOURCE BUILT | Game + `MelodiaCore` DLLs rebuilt 2026-09-12 21:55 by a Codex UBT run from the local `cleanup/pbr-twin-landing-2026-09-10` working tree — not from `main` |
+| Music node → `reward.first_resonance_echo` → Accessories auto-equip → Glide → portal unlocks | LIVE PROVEN 2026-09-01 | `Docs/Evidence/P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md`, `Saved/Audit/p0_real_input_run/` |
+| Wardrobe save → full editor restart → load → outfit restored | RESTART PROVEN 2026-09-01 | slot `P0_Shorewake_Validation`, `LOADED_NARRATIVE_RESTORED` |
+| Battle outcomes (victory / defeat / fled / unavailable) return a typed result; Quill resumes exactly once | LIVE PROVEN 2026-08-27 | `MelodiaIntegrationMap`, `MelodiaQuillSmoke` |
+| Rhythm grade (Q/W/O/P) scales stock JRPG damage | LIVE PROVEN (owner PIE 2026-08-12/13) | `FMelodiaRhythmGradeBoundaryTest` |
+| Audio reactivity on every level | LIVE PROVEN | `b1cac649`; music clock on the GameMode `5fea50c8` |
+| Packaged Development route, both legs, 0 fatals | PACKAGED (bounded) | builds at `G:\melodia_packages\P0_Closeout_20260902\`, `P0_Route_20260903\`; not a golden-run certification |
+| Starskiff board / move / disembark | LIVE PROVEN (PIE) | `AMelodiaStarskiffPawn` — stabilize only |
+| Resonance Ecology PCG enrichment (decision 057) on Sea Above biome graphs | LIVE PROVEN 2026-09-12 — 1 of 9 graphs | #196, #198, #203; `PCG_East_PhyllotaxisCourtyard`: 140 instances, 1 per-instance custom float, Resonance 0.030–0.925. `Content/Python/pcg/apply_resonance_to_sea_above.py` applies it to the rest |
+| Choral Sheep on the approved Nikki Cymatics path | LIVE PROVEN 2026-09-12 | `MI_ChoralSheep_Body` → `M_Master_Toon_Character` with `T_Chladni_C_ROOT`; child `MI_ChoralSheep_Body_Chladni_C` |
+| Choral Sheep Harmonize (definition → begin → ramp → decay) | LIVE PROVEN (PIE) 2026-09-13 | `L_MelusinaMorning`: `ApplyChoralSheepDefinition` true, `TryBeginHarmonize` true, weight 1.0 → 0.0 after end. Required `DA_ChoralSheepDefinition` role Companion + `NPCId`. `Docs/Evidence/CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json`; fleece not yet captured |
+| Choral Sheep mesh → definition → ABP → anims | LIVE PROVEN 2026-09-13 | `SK_ChoralSheep` = 1,000-vert `...FINALCANON...fbx` body (identical rest pose, 118 bones); `ABP_ChoralSheep` Idle/Walk/Run on `Anims/A_Sheep_*` (retargeted via `RTG_MrSheep_To_ChoralSheep`), compile 0/0; applied at runtime by `MelodiaCompanionComponent`. Receipts: `Docs/Evidence/CHORAL_SHEEP_{ABP_LOCOMOTION,RETARGET_DEFORMATION}_PROOF_2026-09-13.json` |
+| Choral Sheep follow → Idle/Walk/Run | LIVE PROVEN (PIE) 2026-09-13 | #210: `MelodiaCompanionComponent` writes root `ComponentVelocity` (follow used `SetActorLocation`); `ABP_ChoralSheep` reads `GetOwningActor` velocity (was `TryGetPawnOwner`, null on an Actor). Under `slomo 0.1`: `Speed` 5,970 → 269 cm/s across 26 frames, crossing Walk 10 and Run 120, back to 0. Packed `BakeUV` now UV0 on `SK_ChoralSheep` |
+| Frozen PPV stack on `L_MelusinaMorning` | owner-approved 2026-09-13 | `PPV_NikkiDream` → `/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/` (gitignored; backups + report `Saved/Audit/ppv_lookdev_2026-09-13/`). Outline V7 after tonemapping, un-jittered filtered taps; ink misregistration/smear wired, static grain. `DefaultEngine.ini`: `r.TSR.ThinGeometryDetection=1`, `...Coverage.ShadingRange=0` |
+| Hero stencil 4 (PP outline skips hull-outlined heroes) | LIVE PROVEN (PIE) 2026-09-13 | #210 body meshes; #211 `UMelodiaHairComponent` + `UMelodiaWardrobeComponent` slots copy the body's custom depth/stencil. PIE on `L_MelusinaMorning` after a full editor build: `CharacterMesh0`, `WaterHairMesh`, `WardrobeSlot_{Shirt,Skirt,Boots,Accessories}` and `BP_ChoralSheep` mesh all read customDepth true / stencil 4 (`Docs/Evidence/PPV_STENCIL_PIE_2026-09-13.json`). Earlier `..._{a,b}.jpg` captures exposed the root cause (`MF_StencilDepthAlpha` returned a 0/1 in-range mask rather than the stencil value); Frozen outline V7.1 now reads `PPI_CustomStencil` directly. **Visual skip confirmed** in `..._{c,d}.jpg`: props keep the dark ink, Melusina (body, hair, dress) and the Sheep carry no post-process line. The shared original `M_PP_StorybookOutline_Premium_Candidate` still has the historical bug |
+| P0 / Melusina Niagara hygiene | SOURCE + ASSET 2026-09-13 | 16 systems had ~1 cm fixed bounds (metre values; culling pops) → 300–500 cm; `ET_Melodia_CharacterFX` on 17 hero/gameplay systems; shadows off + view-distance sort on route sprites; dead `WaterSplashEmitter` disabled; duplicate `NS_MagicTrail` + 11 mirrored flipbook materials deleted. Report `Saved/Audit/vfx_pass_2026-09-13/` |
+| Shorewake dress on Melusina's 465-bone skeleton | owner-confirmed fixed 2026-09-02 | `SK_ShorewakeDress_Melusina465`, `MI_Melusina_Dress_Shorewake`; not yet captured in-game |
 
-### 7.2 Merge to main
+**Active P0 gates — 8/8 pass:** `rhythm_owner`, `hud_single_writer`, `rhythm_grade_to_result`,
+`wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`, `static_gates`,
+`battle_integration_map`. Ledger rows live in local `Saved/gate_ledger.json` — append-only, read
+the **latest row per gate id**. The Aug 13–14 `runtime` / `save_load` / `repeat_consume` /
+`package_launch` passes apply only to that baseline.
 
-19 commits replayed onto `main`. The planned `checkout` + cherry-pick was abandoned: the editor
-holds `.uasset` handles (`unlink … Invalid argument`, not the lfs read-only bit) and the overnight
-wardrobe daemon **drives git itself** — mid-operation it checked the repo off `main` onto its own
-branch and committed. The merge was instead replayed entirely in the object graph
-(`merge-tree --write-tree` + `commit-tree`), touching no worktree, index or HEAD.
-
-Three conflicts, each resolved deliberately and recorded in
-`Docs/Production/MERGE_TO_MAIN_RECORD_2026-09-04.md`.
-
-**Historical Sep 4 snapshot — superseded Sep 9.** At the time of this merge, local `main`
-and `origin/main` were diverged lineages (628 vs 704 commits, neither an ancestor of the other).
-That condition is no longer current: the lineages were reconciled through the Sep 9 unification /
-canonization merges, and GitHub `main` is now the canonical shared baseline. The old recovery refs
-remain extraction-only historical safety copies and are not current task queues.
-
-### 7.3 Landscape / look-dev
-
-- **Key light was pointing at the sky.** `Key_TwilightPink` sat at pitch **+30**, so the terrain
-  received no key lighting. Fixed to −32 (`c94f1746`, re-applied and this time *tracked* at
-  `0fb76675` — the first fix was lost because SeaAbove external actors are untracked).
-- **SuperColor is now bound.** The landscape had been rendering `T_Glacier_ColorErosion`, a colour
-  map from a **different Gaea project**, while `T_Gaea_SeaAbove_SuperColor` sat unreferenced
-  (`99a32308`, `e4c97d15`).
-- Gaea mask wiring audited end to end — each mask gates its own layer and reaches the output.
-  Tool: `Content/Python/audit_gaea_wiring.py`.
-
-### 7.4 Open, and honestly stated
-
-1. **`W_Glacier_Rock` is a near-black export** (peaks 31/255). The rock layer cannot read until it
-   is re-exported from Gaea with correct normalisation. Not a UE-side problem.
-2. **Something rewrites `MI_Glacier_Landscape_Layered`.** `Gaea_SnowWeight` was found at −14.94 and
-   `Gaea_RockWeight` at 6.43 *after* both had been set to 1.0 and read back as 1.0. The writer is
-   unidentified. The master's `Saturate` clamps limit the damage, and the weights were measured to
-   make no visual difference at all.
-3. **Look-dev captures on this level are not trustworthy evidence.** Two captures with identical
-   material state differ substantially (terrain colour spread 25.1 vs 15.9). Ultra Dynamic Sky's
-   time-of-day is not reflected to Python, so it cannot be pinned or read — every before/after on
-   `LV_SeaAbove_Prototype` has an uncontrolled lighting variable. **Pin the sky before trusting any
-   A/B on this map.**
-4. **Material instance writes need `update_material_instance()`** to reach the renderer. Parameter
-   read-backs succeed while the render still shows the old value; several measurements this session
-   were invalidated by this.
-5. **PCG volume layout** — four concentric 600–800k volumes over a 250k landscape, still unaddressed
-   (`Docs/Plans/SEA_ABOVE_PCG_DRESSING_PLAN_2026-09-04.md` §4a).
-6. **Universal / Universal_Alpha master convergence** — analysed, not executed. The Alpha master
-   carries **none** of the 14 `Cymatic_*`/`Audio*` parameters, so its 109 instances (including
-   Melusina's `SW_Dress_P01..P48`) are structurally excluded from audio reactivity.
-
----
-### 7.5 Front-door reconciliation — 2026-09-08
-
-`TODO.md` and `_VERTICAL_SLICE_SCOPE.md` were reconciled with this document and `AGENT_START_HERE.md`. They no longer claim that restart/package proof never ran, or that 10/10 gates are the current scoreboard. Issue #51 remains the open long-chain persistence boundary. Leftover root audit copies now stub to `Docs/Archive/RootLegacy/`.
-
-### 7.6 Front-door health — 2026-09-09
-
-Periodic git/status drift is gated by `python Tools/front_door_health.py`. PR CI runs contradiction checks. Monday CI runs `--age` so source movement without a `CURRENT_STATE.md` refresh fails in the open. The tool does not auto-write docs.
-
-Owner queue remains Choral Sheep UE proof → one UE↔TD connection → one short AE sequence (`TODO.md`).
-
----
-*Melodia © 2026. Authoritative State Ledger.*
+Automated tests: 524/524 at the 2026-09-01 captured revision (that total includes tooling suites —
+MCP regression, Ollama daemon stress — not only game tests).
 
 ---
 
-## 8. Session 2026-09-10 — Starskiff boarding proof + MK39 ribcage
+## 3. Open
 
-Branch: `feat/choral-sheep-root-c-material-proof-2026-09-08` (sheep work parked intact in `stash@{0}`; lane committed on top).
+### Stabilization — 2026-09-13
 
-- **Starskiff boarding contract, live-proven in PIE** (`Saved/Audit/starskiff_boarding_proof_2026-09-10.json`):
-  far/out-of-range refused, in-range-without-precondition refused, `flag.sea_above.starskiff_ready`
-  set live → board accepted → possession transferred → 680 cm sustained movement →
-  disembark restored Melusina → unboarded traversal refused. Shell confirmed deriving
-  from `AMelodiaStarskiffPawn` (registry reflection). Source identical to local `main`,
-  so the result covers both lines. Not restart/packaged/input-proven; boarded-traversal
-  branch unfired (default target `/Game/ZenForestTest` needs owner approval).
-- **MK39 ribcage GN builder, headless-proven** (`Tools/wardrobe_pipeline/proof_mk39_ribcage.py`,
-  receipt `Saved/Audit/sea_above/skiff_MK3/mk39_ribcage_proof_2026-09-10.json`):
-  `MEL_skiff_ribcage` ported from the 09-05 addon-only build into the repo; hull neutral
-  patch synced (already on this branch via `e7628720`); proof caught + fixed a real spacing
-  bug (7.615/9 spans 6.768 — now 0.951875 centered, span measures exactly 7.615).
-  Hull neutral residual 0.032, dials live, ribcage 216 verts deterministic, Rib Count
-  parametrizes. Fixed files synced back to the live Blender addon (hash-verified).
-- **Next:** MK39 plates + tenons → rivets → ball joints (proof after each); then updated
-  Chladni + Copernicus trimsheet bakes.
-- **2026-09-10 later — MK39 plates done:** `MEL_skiff_plates` authored fresh in
-  `deploy/surreal_arch/melodia_gn/starskiff_biomech.py` (parametric strake patch +
-  tenon tabs + boolean mortise notches, instanced per rib bay); proof
-  `Tools/wardrobe_pipeline/proof_mk39_plates.py` green (52 nodes, 306 verts/9 bays,
-  rows/tenon/gap dials all live, receipt `Saved/Audit/sea_above/skiff_MK3/`).
-  Fixed files synced to the live Blender addon (hash-verified).
-- **Branch-health flag (not this lane):** this branch's `melodia_gn/__init__.py` imports
-  `barrel_vault_kit`, which does not exist in the tree — normal package import dies,
-  so the plates proof loads modules by path. Owner/daemon lane to resolve.
-- **2026-09-10 later — MK39 rivets done:** `MEL_skiff_rivet_lattice` in the same module
-  (6x-pitch rivet rows on bay edges + scaled collar studs via a t_param field/collar
-  split); proof `Tools/wardrobe_pipeline/proof_mk39_rivets.py` green (53 nodes,
-  3276 verts/9 bays, bays/diameter/collar dials live, receipt `Saved/Audit/`).
-  Proof caught two real defects: COMPARE is almost-equal (collar split needs
-  GREATER_THAN), and fields sample in consumer-geometry context (t_param store moved
-  upstream of the arc deform). Addon re-synced (hash-verified).
-- **2026-09-10 later — MK39 ball joints done:** `MEL_skiff_balljoints` in the same module
-  (ball + squashed collar ring instanced at 18 keel/gunwale stations from the measured
-  table via a static index-selected lookup chain); proof
-  `Tools/wardrobe_pipeline/proof_mk39_balljoints.py` green first try (73 nodes,
-  1692 verts, span 7.695, ball/collar dials live, receipt `Saved/Audit/`).
-  MK39 builder set complete: ribcage → plates → rivets → balljoints. Addon re-synced.
-- **2026-09-10 later — Chladni rescue + skiff extension done:** `chladni_layers.py`
-  ported from the addon-only 09-06 build; added `MEL_skiff_chladni_plates`
-  (strake-tuned modes m6/n2, 320-640 Hz shimmer defaults, same bake contract);
-  proof `Tools/wardrobe_pipeline/proof_mk39_chladni.py` green on both builders
-  (neutral 0.0, amplitude + mode dials live, psi/amplitude attrs present).
-  Proof caught a dead primary path: `GeometryNodeInputUV` is undefined in 5.2,
-  so both builders now read UVs via named attribute (position fallback kept).
-  Addon re-synced (hash-verified).
-- **2026-09-10 later — updated bakes staged, import handed over:** fresh 2048 wood
-  (6 maps) + regal (13 maps) bakes re-ran clean with manifests into
-  `Saved/Audit/melusina_lookdev/houdini_variants/`; one-shot import contract in
-  `Saved/Audit/sea_above/skiff_MK3/STARSKIFF_BAKE_IMPORT_RUNBOOK_2026-09-10.md`.
-  Import did NOT run tonight (fresh editor PID 49136: Rider Python bridge down,
-  :9316 without listener). Note PR #188 moved Starskiff textures to
-  `/Game/Melodia/SeaAbove/Textures/` — the 09-04 spec's old Clothes/ base is stale.
-  Chladni builder (`chladni_layers.py`) found addon-only, same rescue pattern as the
-  ribcage was; queued with the import.
-- **Import still blocked (editor closed):** both channels briefly came up (Rider
-  Python bridge answered once, :9316 listened), then the batch-1 call was cancelled
-  and the editor process exited — no UnrealEditor running, no listener. Verified
-  batch 1 saved nothing (newest texture mtime still PR-#188 era, no new dirt).
-  Runbook stands by for relaunch. Lane held here per owner.
+| Item | Source / evidence | Remaining owner decision or proof |
+|---|---|---|
+| Branch archaeology | `Docs/Evidence/BRANCH_LEDGER_2026-09-13.json` inventories both remotes and all four open V2 PRs. `Tools/guard_collapsed_paths.py` blocks re-additions deleted by `08a608bc`, including renames; runs on every PR. | Approve the ledger's close/archive candidates; reconcile unique files only. No PR or remote branch closed by this pass. #201 was superseded by merged #213 (owner report). |
+| Identity canon | `UMelodiaIntegrationConfig` now exposes one runtime-owned core identity record: P0 player, Choral Sheep definition, hero stencil 4, ordered frozen PPV stack with weights, and character/ambient Niagara effect types. `Melodia.Wiring.CoreIdentity.Canon` reads that same config and resolves every reference. | Owner approved the narrow asset closure: 52 previously ignored packages (68.76 MiB), including the seven canonical Frozen PPV assets, `ET_Melodia_CharacterFX`, all recursive dependencies, and the three WaveHarp_R07 meshes. Closed-editor UE 5.8 Development build passed all 460 actions. Never substitute the unfrozen originals. |
+| Chapter reuse | `Tools/scaffold_chapter.py`, `Chapters/_template/{quill,maps,encounters,rewards}`, and four-beat `03_tide_listening` source. Generator validates gated IDs against the actual DA before writing; numbered chapter folders are automatically tested. | Full QSC contract FAILS on existing SkiffDeparture `quest.shorewake.passage`, `flag.shorewake.passage`, `reward.skiff_passage`. Resolve those IDs and reward binding through the canonical DA in the editor; import the example and prove both choices/revisit/save-load in `MelodiaIntegrationMap`. Scaffold regression passes; no PIE claim. |
+| UI staleness | Read-only `melodia-ui-artist` audit: rhythm HUD and four Quill widgets have palette colours. P0 candidates: `BP_MelodiaBattleUI` RhythmGradeText/SongPickLabel white; stock `BP_BattleUI` KeyboardLegend `#F2D69E`; `WBP_MainMenu` near-palette text; `WBP_MenuButton` label `#F2D69E`. | Editor reopened externally during audit; ownership pending, no widgets changed. Remaining candidates include `BP_MelodiaDefeatDialogue` near-black text, `BP_MelodiaVictoryDialogue` zero-alpha text (check runtime bindings), Foundation parchment/button styling. White image tints and transparent shadows are not automatically defects. |
+| G: saved-state mirror | `Tools/mirror_saved_project.ps1` defaults to dry-run; scoped `/MIR`, destination/junction checks, cache/binary/Blender-autosave exclusions. Includes Content (Frozen + Cinematics), Config, Source, Plugins, Saved/Audit, Chapters, specs, Tools and design tokens. Dry logs: `%TEMP%/melodia-mirror-20260913/`. | Proposed destination `G:/BS_GodFile_Mirror/20260913`; initial dry run 119.75 GiB / 55,549 files plus project descriptor, zero failures/extras. Real run awaits owner approval and a saved, closed, stable source. This mirrors the saved local tree, including uncommitted assets; it is not a claim that local tree equals main. |
+
+C++ and its asset closure passed a closed-editor UE 5.8 Development build (460/460 actions).
+Offline contract suites: 22/22 PASS; collapse/scaffold regression tests: 2/2 PASS. The broader
+QSC failure above is deliberately retained. The owner approved narrowly tracking the three
+WaveHarp_R07 meshes and the exact recursive dependency closure; no other Cinematics path is
+unignored.
+
+**UI inventory, completed read-only:** 144 widget Blueprints / 955 styled widgets,
+108 distinct colours / 73 font-size pairs. Raw inventory is local at
+`%TEMP%/melodia-ui-audit-all-0913.json`. The table below lists game-facing authored-text
+candidates outside the token palette, not verified runtime defects; check bindings,
+animations and active screen reachability before changing values. Transparent shadows and
+white texture multipliers are excluded. Third-party ArtOfShader/UltraDynamicSky editor
+utilities are outside the game's styling scope.
+
+| Folder | Remaining widget candidates (names relative to folder) |
+|---|---|
+| `/Game/Melodia/UI/` | `BP_MelodiaDefeatDialogue`, `Foundation/WBP_MelodiaUniversalButton`, `WBP_Battle_Results`, `WBP_BlessingBurden`, `WBP_ComicOrrery`, `WBP_DialogueBubble`, `WBP_MainMenu`, `WBP_MelodiaCurrencyRow`, `WBP_MelodiaOpeningSlideshow`, `WBP_MelodiaSettings`, `WBP_MelodiaTokenWallet`, `WBP_MelodiaWallet_Universal`, `WBP_MenuButton`, `WBP_QuestJournal`, `WBP_SaveLoadPanel`, `WBP_Settings`, `WBP_SkillCodex`, `WBP_UltCutIn` |
+| `/Game/MelodiaIntegration/UI/` | `BP_MelodiaBattleUI`, `BP_MelodiaRhythmPrompt` |
+| `/Game/TurnBasedJRPGTemplate/Blueprints/UI/` | `BP_ActionTimeBar`, `BP_BattleUI`, `BP_CraftBar`, `BP_DamageTextUI`, `BP_ExpBar`, `BP_HPBar`, `BP_MPBar`, `BP_QuestNotification`, `BP_TurnOrderUI`, `BP_UnitClass` |
+| Same stock folder, `Dialogues/` | `BP_BuyItemAmountDialogue`, `BP_CraftDetails`, `BP_CraftItemButton`, `BP_CraftItemRecipe`, `BP_DefeatDialogue`, `BP_DialogueButton`, `BP_EquipmentButton`, `BP_EquipmentStatComparison`, `BP_InfoDialogue`, `BP_ItemButton`, `BP_ItemObtainDialogue`, `BP_ItemUseDialogue`, `BP_LevelUpDialogue`, `BP_QuestButton`, `BP_SellItemAmountDialogue`, `BP_ShopBuyDialogue`, `BP_ShopBuyItemButton`, `BP_ShopSellDialogue`, `BP_SkillButton`, `BP_SkillUseDialogue`, `BP_VictoryDialogue`, `BP_YesNoDialogue` |
+| Same stock folder, `MainMenu/` | `BP_EquipmentDetails`, `BP_ItemDetails`, `BP_MenuButton`, `BP_PartyUI`, `BP_PauseMenu`, `BP_QuestDetails`, `BP_SaveButton`, `BP_SkillDetails`, `BP_UnitButton`, `BP_UnitDetails`, `BP_UnitDetailsSummary`, `BP_UnitPartyDetails`, `BP_WearEquipmentUI` |
+
+`WBP_MainMenu`, integration `BP_MelodiaBattleUI`, and stock `BP_BattleUI` are tracked.
+`WBP_MenuButton` and `Melodia/VFX/EffectTypes/*` are not tracked at this baseline; source
+control inclusion requires the owner's scoped `.gitignore` decision before landing them.
+
+- **Issue #51 — long-chain persistence.** Outfit → Starskiff → encounter → rhythm → Convergence →
+  reward → save → quit → relaunch → load → load again, with no duplication. Refresh from current
+  `main`; do not merge stale PR #54 wholesale. Audit `RestoreNarrativeRecord*` for partial mutation,
+  add repeat-load equality tests, and separate durable vs derived Starskiff/Convergence state before
+  any save schema v6.
+- **Packaged golden run** of `specs/p0/core_p0_dream_golden_run.v1.json` — not certified.
+- **Allowlist is relaxed in editor builds** (`bRelaxedAllowlistInEditor`); run one pass with it off
+  before any packaged demo.
+- **Owner decision:** retire vestigial `melodiaBattleUI` / `MelodiaUI` vars on `BP_BattleController`.
+- **Audio reactivity gap:** `M_Master_Toon_Universal_Alpha` has none of the 14 `Cymatic_*`/`Audio*`
+  params, so its 109 instances (incl. Melusina `SW_Dress_P01..P48`) cannot react.
+- **Sea Above look-dev:** `W_Glacier_Rock` is a near-black Gaea export (re-export); an unidentified
+  writer rewrites `MI_Glacier_Landscape_Layered` weights. Pin Ultra Dynamic Sky before trusting any A/B
+  capture on `LV_SeaAbove_Prototype`. Measured 2026-09-12: 11 bounded PCG volumes (largest 83×15×17 m),
+  not four giant ones. `PCG_East_AtlantisGrove2` is an exact duplicate of `PCG_East_AtlantisGrove`
+  (same transform, seed 42, all 193 instance transforms) — delete it. PCG regenerate + save leaves the
+  previous generation's spawned actors on disk: `ResonanceCathedral Music Node0–11` exists three times,
+  and the 09-01 set is referenced by no volume on `main` or any branch.
+- **Choral Sheep — still owed:** foot-slide check against the ABP thresholds 10/5 and 120/100 at real
+  frame rate (the background editor ticks PIE at ~3 fps — test in the foreground or under `slomo`);
+  lit-level REST → ROOT_C → hit → REST capture; plug the new UVPackmaster normal maps into
+  `MI_ChoralSheep_Body` (they now land on UV0 via `deploy/blender/choral_sheep_export_bakeuv.py`).
+  `Retarget/SK_MrSheep` is the retarget source at ~100× scale; never place it in a level.
+- **VFX / materials still owed:** Melusina sprite sizes 0.03–0.10 look metre-scale (owner look call);
+  sort/shadow sweep on the remaining `VFX/Systems/**` sprite systems; golden-run spec names
+  `/Game/L_Melodia_Dreamstate`, which does not exist.
+- **Eyewear PRs #205 / #194** each touch protected `.gitignore` and add 16 files under `Saved/`; the
+  −1,835 lines are a `Tools/registry_baseline.json` regeneration. Owner review before merge.
+- **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
+  re-adds 830 of the 840 files `08a608bc` deleted, including `Docs/Career`. Never merge it wholesale;
+  promote its real work (MK39 skiff GN, Sea Above external actors, HUD tokens) in scoped PRs.
+  `Docs/Career` also sits on ~37 remote branches and in `main`'s history; purging it needs an
+  owner-approved history rewrite.
 
 ---
 
-## 9. P0 closeout plan of record — 2026-09-16
+### P0 closeout — plan of record, 2026-09-16
 
-### 9.1 Where P0 actually stands
+**Every gate reads PASS, but the proof is old.** Latest ledger rows (`Saved/gate_ledger.json`,
+latest row per id) are all `pass` and `melodia_system_golden_run_preflight` returns `ready`,
+yet `runtime` is 08-13, `save_load` / `repeat_consume` 08-14, `package_launch` 09-03 — before
+three weeks of `L_MelusinaMorning` and Melusina rig work. **Issue #51 is the only open P0 item**;
+draft PR #144 (refuse incompatible `FMelodiaNarrativeRecord` candidates without resetting the
+valid record, plus atomicity and repeat-restore tests) is its implementation. Stale PR #54 stays
+closed. Starskiff persistence decision (from #144): persist `flag.sea_above.starskiff_ready` and
+the spawn tag only — never `bBoarded`, possession or transform. Boarding contract live proof:
+`Saved/Audit/starskiff_boarding_proof_2026-09-10.json`.
 
-- **Every gate reads PASS** (`Saved/gate_ledger.json`, latest row per id) and
-  `melodia_system_golden_run_preflight` returns `ready: true`.
-- **But the load-bearing evidence is old.** `runtime` 08-13, `save_load` 08-14,
-  `repeat_consume` 08-14, `package_launch` 09-03. Since then `L_MelusinaMorning` was rebuilt
-  (Oceanology lake, sheep-dell brook, Melusina House dell graph, reseats, greybox toon mats,
-  PCG on-demand freeze, room harness, rainbow bloom) and Melusina's Kawaii nodes changed
-  (`28877a55`). The gates are true of a build that no longer exists.
-- **Issue #51 is the only genuinely open P0 item.** Draft PR #144 (3 files, +315/−4, CLEAN,
-  161 behind `main`) refuses incompatible `FMelodiaNarrativeRecord` candidates without
-  resetting the valid record, and adds rejected-restore atomicity and same-candidate
-  repeat-restore tests. It records the Starskiff persistence decision (persist
-  `flag.sea_above.starskiff_ready` + spawn tag; never `bBoarded`/possession/transform).
-  Stale PR #54 is closed and is not to be revived.
-- **Most of the work isn't on `main`.** `cleanup/pbr-twin-landing-2026-09-10` is 56 ahead /
-  44 behind `origin/main`, and diverged from its own origin copy by one CI-only commit
-  (`a3251756`, `Tools/repo_governance_guard.py`). Off-disk backup:
-  `cleanup/pbr-twin-backup-20260915`.
-- **Editor DLL is current.** `MelodiaHairComponent.cpp` reports newer than the 09-13 DLL, but
-  its content is identical to HEAD (last change 08-11) — mtime-only, from a git read-tree.
+**Automation, 2026-09-16 (headless `UnrealEditor-Cmd`, `Melodia.` prefix): 97/99 pass.**
+Report: `Saved/Audit/p0_closeout_2026-09-16/automation/`.
+- `Melodia.Roguelike.Functional.ThreeStagePhysicalRoute` fails headless only: it expects the
+  `Using CommonUI without a CommonGameViewportClient` warning, which needs a real viewport.
+- `Melodia.Roguelike.Functional.TwentyFiveGenerationSoak` additionally raised
+  `Accessed None ... Title` in `BP_SkillUseDialogue` and a `RecoverableFailure` at
+  `RD_MelodiaGrove_V1` **with the uncommitted 2026-09-15 `BP_BattleUI` dead-island cut in place**.
+  The same test with the committed `BP_BattleUI` failed only on the viewport expectation. That
+  cut is therefore held back uncommitted (rollback: `Docs/Audits/ROLLBACK_BP_BattleUI_2026-09-15.json`).
+- Do not run automation through Monolith `editor_query run_automation_tests`: latent tests trip
+  `Assertion failed: LatentCommands.IsEmpty()` and crash the editor. Use `UnrealEditor-Cmd`.
 
-### 9.2 Plan — four phases, in order
+**Phases**
+0. *Land on `main`, editor closed.* Branch reconciled with its origin copy and `main` merged in
+   (2026-09-16). Binary picks: frozen PPV MIs kept from the 09-15 lock-in; Choral Sheep
+   `A_Sheep_Death/Jump/WalkSlow` + `SK_MrSheep_Skeleton` taken from #209 (the owner's 09-16 save of
+   the other sheep takes already matched #209 byte-for-byte); `BP_MelusinaJRPGCharacter` kept from
+   the 09-16 save, so #210's `CharacterMesh0` custom-depth **stencil 4** must be re-applied in the
+   editor. Then PR to `main`, and rebuild `BS_GodFileEditor` with UBT while the editor is closed.
+1. *#51 code.* Rebase #144 onto `main`, headless-test the `Melodia.Integration` suites, merge on
+   green. Proposed scope cut: #144 + the restart and packaged proofs are the closure; schema v6 and
+   the stale-write guard move to P1 unless an audit finds a real race.
+2. *Re-prove on current `main`.* Restart proof (save → quit → relaunch → load, real input) and a
+   packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
+3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
 
-**Phase 0 — land the code on `main` (editor CLOSED; one sitting).**
-The 2026-09-16 merge attempt aborted because the open editor held
-`__ExternalActors__/.../L_MelusinaMorning/*` handles (`unlink … Invalid argument`). No data was
-lost, but git operations that touch the worktree need the editor down.
-1. Merge `origin/cleanup/pbr-twin-landing-2026-09-10` (1 file) → push the real branch name.
-2. PR `cleanup/pbr-twin-landing-2026-09-10` → `main`; review for bulk before merging.
-3. Decide PR #215 (13 timestamp-suffixed duplicate textures are allowlisted beside their
-   clean twins; it also edits protected `.gitignore`).
-4. Rebuild `BS_GodFileEditor` from the merged `main` with UBT while the editor is closed.
+**Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
+`M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);
+a second, differently-shaped 18-node BellTree generation under `Morning_Dell_Banks`; shirt
+dangle bones; `Content/Textures/` allowlist. Reference:
+`Docs/MELUSINA_WARDROBE_PHYSICS_PIPELINE_2026-09-15.md`.
 
-**Phase 1 — close the #51 code.**
-1. Rebase #144 onto `main`, build, run its automation tests headless
-   (`MelodiaIntegration` filter). Merge on green.
-2. Scope cut, proposed: #144 + the restart and packaged proofs **are** the closure. Schema v6
-   and the stale-write guard move to P1 unless the audit finds a real race — the issue itself
-   says both are conditional.
+**Held for owner sign-off:** the uncommitted `Config/DefaultEngine.ini` edit (drops the dead
+`DefaultFeatureAntiAliasing=1`; live `r.AntiAliasingMethod=1` unchanged) — the pre-commit hook
+requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly failed with
+"not enough space"; cook to G:.
 
-**Phase 2 — re-prove on current `main` (editor open, nothing else driving it).**
-1. Restart proof: save → quit → relaunch → load through the full route, via real input.
-   Append `runtime`, `save_load`, `repeat_consume`, `wardrobe_equip_roundtrip` rows.
-2. Packaged proof: cook to `G:\melodia_packages\` (C: lacks room), omit `-map=`
-   (`MapsToCook` is already correct), launch both legs, append `package_launch`.
-3. Before trusting any PIE result: DLL mtime vs source *content*, one editor on :9316, no
-   Codex/Rider/scheduled-task driver, and `ls -t Saved/Logs/*.log` for the live log.
+## 4. Owner queue — now
 
-**Phase 3 — front door and close.**
-Refresh this file, `TODO.md` and `AGENT_START_HERE.md` from the new ledger rows;
-`python Tools/front_door_health.py --age` green; close #51 with the proof receipts.
+**Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
+stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
+Choral Sheep is the capstone lane.
 
-### 9.3 Explicitly not P0
+1. **Choral Sheep UE proof.** Verify deformation; bind one C-root fleece response on the approved
+   Nikki-derived Cymatics path (`MI_ChoralSheep_Body` → `M_Master_Toon_Character`, Chladni as a
+   child, not a replacement shader); capture REST → ROOT_C → hit → REST. Visual lock: Board 06 +
+   the two WebPs in `Docs/References/VisualBoards/2026-09-08/ChoralSheep/`. Context:
+   `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`.
+2. **UE ↔ TD proof.** One real OSC `:9000` and/or Spout connection. Do not rebuild the TD scene.
+3. **One 5–10 s AE sequence** — Creature → Motif → Harmony → World. Only then promote to the site.
 
-Look-dev and hygiene found this week stay out of the closeout path:
-`Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on `M_Material_003`;
-three of four `PPV_NikkiDream` blendables at weight 0 (owner intent unconfirmed);
-`Morning_Dell_Banks` carrying a second, differently-shaped 18-node BellTree generation
-(likely stale, not deleted); shirt dangle bones; `Content/Textures/` allowlist.
-Reference: `Docs/MELUSINA_WARDROBE_PHYSICS_PIPELINE_2026-09-15.md`.
+Then: the 3–5 minute playable Shorewake route (`Chapters/02_shorewake_calling/`), then Issue #51.
 
+**Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
+or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
+
+**Not now:** git archaeology, new frameworks or second authorities, website redesign (showcase soft
+freeze since 2026-09-07), or research sweeps. Keep status changes in this file and do not create
+another status, handoff, plan, receipt, or session-note document. Oracle / Thirteenth Note
+(`Docs/Strategy/ORACLE_*`) is a gated end-of-semester stretch.
+
+---
+
+## 5. How progress is measured
+
+Playable minutes and captured proof — not gates, commits, or documents. As of 2026-09-10 the
+authored QuillScript is 16 `.qsc` files, about 500 lines, several of them smoke tests. A session
+counts if it adds playable or presentable minutes, or removes a real blocker.
+
+---
+
+## 6. Where things are
+
+| What | Where |
+|---|---|
+| Game (this repo, **private**, no licence file) | `fromage3900/MelodiaMelusinaV2`, local `C:/EnvironmentPortfolio/BS_GodFile` |
+| Website (**public** — serves GitHub Pages; owner decision 2026-09-12) | `fromage3900/my-site` |
+| TouchDesigner / AE (private) | `fromage3900/MelodiaTouchDesigner`, `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` |
+| AI token treasury (revenue sidecar) | my-site `tools/fromage-webgl-kit/TREASURY_LEDGER.json` — 0 entries, first gate 0/5; never displaces the capstone |
+| Accessory / WebGL website lane (isolated) | [`Website/fromage-webgl-kit/`](Website/fromage-webgl-kit/) — floral atelier + commerce embed, DCC `KHR_materials_variants` GLBs. Not the recruiter site. Cloud cannot push `my-site` (403). |
+| `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
+
+**The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.
+
+- **Route maps:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` →
+  `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` →
+  `/Game/EnvSandbox/Environments/L_KaleidoNave`; menu `/Game/Melodia/Levels/Menu/L_MelodiaMainMenu`.
+- **Systems test level:** `/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap` — additive only.
+- **Workstations:** Humber lab = primary interactive; home PC = render/bake worker
+  (`deploy/render_worker.ps1`); ASUS laptop = auxiliary. `main` is the shared baseline.
+  `collab/laptop/longterm` is the laptop Blender/GN lane — never wholesale-merge or delete it
+  (`Docs/Production/BRANCH_WORKSTATION_POLICY.md`).
+- **Packaging:** cook to `G:` (C: lacks space). `Config/DefaultGame.ini` `MapsToCook` is correct —
+  omit `-map=`.
+- **Git health:** `python Tools/git_ok.py` — if it prints OK, Git is not the task.
+- **Art references:** `Docs/Art/VISUAL_REFERENCE_INDEX.md`. Melusina House GN:
+  `MELUSINA_HOUSE_GN_START_HERE.md`.
+
+---
+
+## 7. Traps that keep costing sessions
+
+- **Stale DLL.** Compare `Binaries/Win64/UnrealEditor-BS_GodFile.dll` mtime against the source
+  before trusting any PIE result.
+- **One editor, one MCP writer** (Monolith port 9316). A second editor logs to
+  `Saved/Logs/BS_GodFile_2.log`.
+- **Background agents.** OpenCode in Rider (runs a git MCP server), Hermes, and the Melodia
+  scheduled tasks (disabled 2026-09-10) have switched branches and committed mid-merge. Check
+  before any editor or git work.
+- **Material instance writes** need `update_material_instance()` to reach the renderer.
+- **Never `load_level` straight after stopping PIE** — teardown is async and crashes the editor.
+- **Codex desktop drives the editor too.** `ChatGPT.exe` → `codex.exe` holds its own
+  `monolith_proxy.exe`, loads maps, saves, runs `Build.bat BS_GodFileEditor` against an open editor and
+  restarts it. `ListAgents`/`SendMessage` do not reach it. Check `monolith_proxy.exe` parents and a
+  running `UnrealBuildTool.dll` before closing, rebuilding or PIE-driving.
+- **Read-only content files come from Git LFS locking.** `.gitattributes` marks `*.uasset`, `*.umap`,
+  `*.blend`, `*.fbx` and 31 more patterns `lockable`, so every checkout, reset or branch switch makes
+  them read-only and editor saves fail with "because the file is read-only!". Nobody uses LFS locks
+  (`locksverify false`). In each clone or worktree run `git config lfs.setlockablereadonly false`, then
+  clear the flag once: `Get-ChildItem Content -Recurse -File | ? IsReadOnly | % { $_.IsReadOnly = $false }`.
+- **Monolith `run_python` cannot sleep** — `time.sleep` is intercepted and PCG `generate()` is async, so
+  instance counts read in the same call race generation.
+- **Headless Blender hangs on user add-ons** — pass `--factory-startup` for `-b` inspection/bake runs.
+
+---
+
+## 8. Keeping this healthy
+
+**Docs.** This replaces the front-door contradiction checker: one status document cannot contradict
+itself.
+
+- A change that alters project status updates this file **in the same PR** (PR template checkbox).
+- No new handoff, plan, receipt, scorecard, or session-note files. That narrative belongs in the
+  commit or PR body, where it is already dated and attributed.
+- A new doc is only for durable reference — pipeline, contract, spec, runbook, bible, research.
+  Name it for what it teaches, not for the day it was written.
+- Monthly: re-read §2 and §3 against the current build. Delete any claim you cannot point at
+  evidence for. Nothing is lost — `git show 7d271c15:<path>`, tag `docs-precollapse-2026-09-10`.
+
+**Git.** `python Tools/git_ok.py` first; if it prints OK, git is not the task. One branch per
+reason, named per `CONTRIBUTING.md`. Never let a background agent commit on your behalf — check for
+OpenCode (Rider) and Hermes before editor or git work.
+
+**CI.** The doc-policing steps are gone: `repo_governance_guard.py` and `front_door_health.py`
+existed to cross-check front-door docs against each other, which a single document cannot fail. PR
+CI still runs the protected-asset guard, the echo manifest, the offline contract suites, and the
+health scorecard.
+
+**Hygiene.** This repo is private and `my-site` is public. Personal, school, career, and client
+documents live in local-only `C:/EnvironmentPortfolio/_offgame/` and never in either repo.
+
+**Weekly, ten minutes:** is §2 still true, is §4 still what you are actually doing, does `git_ok`
+pass, and did anything get written this week that should have been an edit to this file?

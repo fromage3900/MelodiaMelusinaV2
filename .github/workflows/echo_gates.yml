@@ -16,7 +16,11 @@ on:
       - 'specs/**'
       - 'Tools/**'
       - 'deploy/**'
-      - '.github/workflows/**'
+      - 'AGENTS.md'
+      - 'CURRENT_STATE.md'
+      - 'SYSTEM_MAP.md'
+      - 'DATA_FLOW.md'
+      - '.github/**'
   workflow_dispatch:
 
 permissions:
@@ -38,6 +42,15 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Reject collapsed-path resurrection
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python Tools/guard_collapsed_paths.py --base "$PR_BASE_SHA"
+
+      - name: Collapse guard regression
+        run: python -m unittest Tools.test_guard_collapsed_paths
 
       - name: Guard deprecated workspace roots
         env:
@@ -68,6 +81,9 @@ jobs:
 
       - name: Front-door health
         run: python Tools/front_door_health.py --ci
+
+      - name: Validate content-first agent front door
+        run: python Tools/validate_agent_frontdoor.py
 
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json
@@ -124,6 +140,11 @@ jobs:
   live_gates:
     name: Editor-backed gates (manual)
     if: ${{ github.event_name == 'workflow_dispatch' }}
+    # Manual only: left off the self-hosted label for PR-driven runs specifically
+    # so a PR cannot queue forever behind the offline UE machine. The UE-backed
+    # sweep still needs the same [self-hosted, Windows, UE58] runner as the
+    # BuildGraph / unreal-build / aws-publish jobs — see their concurrency
+    # comments for the runner watchdog (deploy/register_ue58_runner.ps1).
     runs-on: [self-hosted, Windows, UE58]
     timeout-minutes: 20
 

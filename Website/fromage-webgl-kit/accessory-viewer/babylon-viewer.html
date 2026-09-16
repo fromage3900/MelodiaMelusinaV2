@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content="0;url=./model-viewer.html?engine=babylon" />
+  <title>Accessory Atelier / Babylon</title>
+  <script>
+    const url = new URL('model-viewer.html', window.location.href);
+    url.search = window.location.search;
+    url.searchParams.set('engine', 'babylon');
+    window.location.replace(url);
+  </script>
+</head>
+<body>
+  <p><a href="./model-viewer.html?engine=babylon">Open the shared embed in Babylon ↗</a></p>
+</body>
+</html>

@@ -1,47 +1,14 @@
 # BS_GodFile agent context
 
-## 🧭 REPOSITORY AUTHORITY — check before anything else
+**Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
 
-Read [REPOSITORY_AUTHORITY.md](REPOSITORY_AUTHORITY.md).
+## STATUS — one document
 
-`fromage3900/EnvironmentPortfolio` / the root workspace `.git` is deprecated. The folder `C:/EnvironmentPortfolio/` may remain the valid parent workspace containing the separate game/site/TD repos. Work in exactly one nested canonical domain repo.
-
----
+[`CURRENT_STATE.md`](CURRENT_STATE.md) is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
 See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
-
----
-
-## 🧊 SHOWCASE SOFT FREEZE ACTIVE — 2026-09-07
-
-Recruiter/public presentation is frozen except for approved render promotion, critical factual/contact/accessibility fixes, and render-pipeline work required to produce the final Melusina/Sakura/Kaleido/FallenMoon proof set. **Do not redesign the website, add public demos, broaden recruiter claims, or create another capture framework during freeze.** Game/semester production continues. Read [Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md](Docs/Production/PORTFOLIO_SENDOFF_FREEZE_2026-09-07.md).
-
----
-
-## 🚨 CURRENT DISCOVERY AUTHORITY — 2026-09-04
-
-**Read [`AGENT_START_HERE.md`](AGENT_START_HERE.md) before using any dated plan, handoff, roadblock file, or research packet as project status.**
-
-Current front door:
-
-1. `MELODIA_TECHNICAL_VERTICAL_SLICE.md`
-2. `CURRENT_STATE.md`
-3. `_VERTICAL_SLICE_SCOPE.md`
-4. `TODO.md`
-5. `Docs/Art/VISUAL_REFERENCE_INDEX.md` for visual/art work
-6. `Docs/Production/LAPTOP_WORK_DISCOVERY_2026-09-04.md` for multi-workstation work
-
-**Hard discovery rules:**
-- A dated doc saying “missing”, “broken”, “blocked”, or “unproven” is historical until checked against current source/evidence.
-- `_ROADBLOCKS_2026-07-31.md`, deleted `_SESSION_HANDOFF.md`, and deleted `_TASK_QUEUE.md` are not current authority.
-- “Not on `main`” does **not** mean “not committed.” Check relevant remote branches before declaring work absent.
-- `recovery/laptop-main-20260904` currently carries recovered laptop work and must be inspected for house/GN/Blender work; do not merge it wholesale because it also contains broad deletions.
-- For concept/reference work, use `Docs/Art/VISUAL_REFERENCE_INDEX.md`; do not invent image-board paths from old prose.
-- The current runtime is not “nonfunctional”: September evidence records music/challenge → wardrobe → Glide/world unlock and save → full process restart → wardrobe restore. State the proof level rather than reverting to an August snapshot.
-
-Any lower section in this file that presents a dated “current” snapshot older than 2026-09-04 is retained as historical operating context and is subordinate to `AGENT_START_HERE.md`.
 
 ---
 
@@ -59,77 +26,78 @@ Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` 
 
 ## Toolchain discovery — read first before any emerging-toolchain / render / audio work
 
-> **Read [`Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md)
-> BEFORE building in any of these systems.** It is the verified SSOT: what is PRESENT (SpeedTree, Houdini/Copernicus,
-> audio-reactive writer, onnx), what is SCAFFOLDED, what is research-only, what is external-tool. Its §9 anti-duplication
-> checklist (extend PRESENT, finish SCAFFOLDED, WATCH needs owner task, external = say-so-don't-fake, reuse field
-> contracts, one-editor/unattended/no `_PROJECT`, evidence standard) prevents parallel-authority defects.
+> **Read [`CURRENT_STATE.md`](CURRENT_STATE.md) → `PROVEN CREATIVE CAPABILITY SURFACE` first.** It is the
+> live status authority and tells you which affordances are live-proven, source/tool-proven, or scaffolded.
+> Then use [`Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md)
+> as the detailed inventory for SpeedTree, Houdini/Copernicus, PCG, cymatics, audio reactivity and external tools.
+> The index is a reference inventory, not a second status authority. Extend PRESENT lanes, finish SCAFFOLDED
+> lanes with evidence, and never promote research-only or external work as live.
 
+## Core vision - the stable core is for authored content
 
-## Historical P0 snapshot — 2026-08-28 (not current authority)
+> **THE CORE WORKS. DEFAULT TO AUTHORING CONTENT WITH IT. EXTEND SYSTEMS ONLY WHEN A REAL CONTENT BLOCKER REQUIRES IT.**
 
-Read [`Docs/P0_CLOSEOUT_PLAN_2026-08-28.md`](Docs/P0_CLOSEOUT_PLAN_2026-08-28.md) first. The
-[2026-08-24 convergence plan](Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md)
-is the standing architecture record behind it, not the current task list.
-
-**Phase 1 is closed.** The authored 08-27 content is live, no longer inert:
-
-- `DA_MelodiaIntegrationConfig` carries the full 27-ID delta — quests, narrative flags, dialogue
-  rewards, `melodia_elegance` / `melodia_resonance`, and `LV_SeaAbove_Prototype` in `TravelLevelIds`.
-- All five P0 `.qsc` have compiled `.uasset` counterparts, each newer than its source.
-- `python -m unittest Content.Python.Tests.test_qsc_allowlist_contract` → 4/4 PASS.
-
-**Phases 2–4 are open, and every remaining item is editor-bound.** Two ledgers, read both:
-
-| Ledger | State |
-|---|---|
-| `Saved/gate_ledger.json` (echo) | 5 pass — `runtime`, `save_load`, `repeat_consume`, `package_launch`, `hud_single_writer`. 5 open — `rhythm_owner`, `rhythm_grade_to_result`, `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, `music_world_key`. |
-| `Docs/P0_TASK_LEDGER.json` → `active_p0_gates` | Same five open, plus `static_gates` **fail** against the frozen baseline and `battle_integration_map` **pass**. |
-
-`echo_run status` reports `editor reachable on 9316: no` whenever the editor is down — editor gates
-HOLD, and nothing in Phase 2–4 can advance until it is up.
-
-The old nine-item economy expansion is post-P0 (`Docs/P0_TASK_LEDGER.json`). August 13–14
-`runtime`/save/replay/package passes are bounded evidence, not current shipping certification —
-`package_launch` in particular is the 08-14 baseline and is now 150+ commits stale.
-
----
-
-## Core vision (stick to this)
-
-Ship one integrated rhythm-JRPG loop — not a systems demo, and not four parallel systems:
+Melodia is an authored rhythm-JRPG with a working gameplay core and a growing procedural/lookdev
+production surface. The current scoped owner seam is:
 
 ```text
-Quill dialogue → allowlisted encounter → JRPG battle (Melusina), rhythm-timed
-  → typed result → Quill resumes once → exploration / checkpoint
+Quill encounter intent -> Phoenix / TurnBased JRPG selected action -> rhythm execution
+  -> typed terminal result -> Quill resumes exactly once -> consequence / reward / checkpoint
 ```
 
-**Absolute authority — never rebuilt, wrapped, or competed with:**
-QuillScript owns narrative. The TurnBased JRPG template owns party/turns/targeting/damage/
-results/inventory/saves. `UMelodiaNarrativeSubsystem` is only the narrow Quill bridge.
-MelodiaCore is presentation-only this phase. Do not invent parallel combat authority.
+Use the exact evidence levels in `CURRENT_STATE.md`. The scoped battle and grade-to-damage seams
+are live-proven; a fresh packaged golden run and the long-chain persistence proof are separate
+open gates, not reasons to reopen the owners.
+
+## Default decision rule - author content before changing architecture
+
+Before changing architecture, ask:
+
+> Can the requested experience be authored using the systems listed in
+> `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`?
+
+If yes, author the content. Do not alter architecture. A boss, side quest, rhythm skill, cymatic
+biome, wardrobe ability, and procedural setpiece are normally content/data authored through the
+existing seams. Architecture work requires a demonstrated blocker recorded against the relevant
+owner seam.
+
+The surface already supports authoring boss battles, rhythm skills/attacks, side quests, encounters,
+creature episodes, outfit abilities, and musical world puzzles without another gameplay framework.
+
+The integrated rhythm-JRPG loop remains the production spine:
+
+**Stable ownership - never rebuilt, wrapped, or competed with:**
+- **QuillScript** is the narrative authoring authority. `UMelodiaNarrativeSubsystem` is the runtime
+  bridge and owns authored narrative facts, consequences, checkpoints, and exactly-once progression
+  transactions; it does not resolve stock combat.
+- **TurnBased JRPG / Phoenix** owns party, turns, targeting, skills, action resolution, damage,
+  inventory, terminal battle results, and stock gameplay save state.
+- **Rhythm** executes on the selected JRPG action. Grade may affect the authoritative result, but
+  rhythm does not create a second combat transaction or damage authority.
+- **Wardrobe** owns owned/equipped fashion state and exposes the existing traversal, battle, rhythm,
+  and Convergence capability hooks.
+- **One writer per UI/audio surface.** `UMelodiaUIBridgeSubsystem` owns the Melodia UI surface;
+  `UMelodiaAudioReactivePresentationSubsystem` owns the canonical audio palette. Cymatics reads
+  that palette and its dedicated driver contract; it does not become a second audio writer.
+- **MelodiaCore** is an integration/presentation layer, not a competing combat or save authority.
+  ACFU and Conversation2D remain excluded.
 
 **The four pillars converge onto those two layers.** Rhythm input rides *on top of* JRPG command
-input — same Attack/Skill/Item/Flee decisions, timed. Wardrobe is a core pillar (outfits carry
+input - same Attack/Skill/Item/Flee decisions, timed. Wardrobe is a core pillar (outfits carry
 presentation *and* gameplay meaning). UI has one writer per surface. World puzzle is music-as-key
-and its Piano-to-Narrative edge is **source-built but not live-proven**.
+and its Piano-to-Narrative edge has a scoped live-proven world-unlock path. Deeper route/package
+proof remains separately tracked in `CURRENT_STATE.md`.
 
 Shape: OMORI. Music-as-key: Zelda. Visual/wardrobe bar: Infinity Nikki.
 
-**The current job is convergence, not construction.** Rhythm and wardrobe still have competing
-or prototype authorities. The battle-HUD source has one Melodia widget writer, but runtime widget
-identity and exactly-once behavior remain unproven. Before adding anything, check
-[`Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md`](Docs/ORCHESTRA_CONVERGENCE_2026-08-20.md) for which
-implementation is OWNER and which are DEAD, and
-[`Docs/ORCHESTRA_CONTRACT_2026-08-20.md`](Docs/ORCHESTRA_CONTRACT_2026-08-20.md) for the seams.
-
-Authority statement: [`../PROJECT.md`](../PROJECT.md). Full product scope: `_VERTICAL_SLICE_SCOPE.md`.
+Status and scope: [`CURRENT_STATE.md`](CURRENT_STATE.md).
 
 **Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
 deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
 beatmap_author|quill_author|asset_qa|anim_bindings`). Router: `python Tools/model_router.py pick
 <class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
-Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / core-systems handoffs.
+Gameplay queue: [`CURRENT_STATE.md`](CURRENT_STATE.md) §4. The handoff files this line used to point
+at were removed in the 2026-09-10 docs collapse.
 
 | Class | Use for | Must not |
 |---|---|---|
@@ -147,7 +115,8 @@ Gameplay queue ≠ `NEXT_ACTIONS.md` (that is platform); use vertical-slice / co
 **Every lane must not:** build a fifth wardrobe track, a fourth rhythm path, or a second HUD
 writer. Converge onto the named owner. A new parallel implementation is a defect, not progress.
 
-**UI/visual-artist work:** load the `.claude/skills/melodia-ui-artist` skill — it carries the
+**UI/visual-artist work:** load `.claude/skills/melodia-ui-artist/SKILL.md` (the equivalent
+`.agents/skills/melodia-ui-artist/SKILL.md` is also present) — it carries the
 real token SSOT (`melodia-design-system/tokens.json`), the Quill dialogue WBP chain
 (`Content/Melodia/UI/Quill/`, tracked), the `ui_style_audit.py` inventory flow, and the
 editor-driven apply workflow. Do not hand-edit `.uasset`; `Content/Melodia/UI/Textures/` is
@@ -236,7 +205,11 @@ Two of these have committed assertions because loosening a check is how you blin
 `Docs/T3D_Baseline/test_canonical.py` and `Tools/test_ui_style_audit.py`. Run them after
 touching the corresponding tool.
 
-### Evidence standard — runtime/rhythm gates (2026-08-11)
+### Evidence standard — runtime/rhythm gates (2026-08-11; scoped claims still matter)
+
+The current scoped `battle_integration_map` and `rhython_grade_to_result` rows are real evidence
+for the owner seams above. This section remains intentionally stricter about a new player-input,
+restart, or packaged claim: those proofs cannot be inferred from the scoped rows.
 
 The `runtime` completion gate (rhythm→damage delta, campaign
 `Docs/ECHO/campaign_01_rhythm_damage_delta.md`) was reported "certified" with none of the
@@ -298,20 +271,6 @@ blueprint/material/editor/project/niagara actions):
 
 Read this file before changing gameplay integration.
 
-## Current phase
-
-Production JRPG + QuillScript integration in UE 5.8. The target loop is:
-
-`QuillScript dialogue -> allowlisted encounter request -> JRPG battle with Melusina -> typed result -> QuillScript resumes once -> exploration`
-
-The loop is not yet fully proven. The August 13–14 runtime, save/load, repeat-callback, and
-Development-package rows are bounded historical evidence only. Do not report the current shipping
-baseline complete until the active P0 gates above are recorded against that baseline.
-
-As of 2026-08-28 the offline half of that loop is real: the allowlist carries every authored ID and
-all five P0 `.qsc` are compiled. What is unproven is the *live* half — no gate past Phase 1 can be
-claimed without a PIE session and a `Saved/gate_ledger.json` row. Prose is not a row.
-
 ## Quantum usage
 
 Use quantum computing only as an asynchronous decision service for narrow, measurable gameplay problems.
@@ -335,11 +294,20 @@ Implementation rules:
 
 ## Ownership
 
-- JRPG template owns party, turns, skills, damage, quests, inventory, battle transitions, battle results, and canonical saves.
-- `UMelodiaNarrativeSubsystem` owns only the narrow narrative-to-JRPG bridge and versioned narrative record.
-- QuillScript supplies authored narrative and stable notifications only.
-- MelodiaCore assets are presentation-only in this phase.
-- ACFU and Conversation2D are excluded.
+- QuillScript is the narrative authoring authority: dialogue, choices, encounter intent, and authored
+  consequence content use the allowlisted Quill contract.
+- `UMelodiaNarrativeSubsystem` is the runtime Quill bridge and the owner of authored narrative facts,
+  checkpoints, consequences, and exactly-once reward/progression transactions; it does not resolve
+  stock combat.
+- TurnBased JRPG / Phoenix owns party, turns, skills, targets, action resolution, damage, inventory,
+  terminal battle results, and canonical stock gameplay saves.
+- Rhythm executes on the selected JRPG action and returns grade/performance data to that authority;
+  it is not a second combat path.
+- `UMelodiaWardrobeSubsystem` owns owned/equipped fashion state and its existing gameplay capability
+  hooks. `MelodiaTraversalComponent` owns traversal behavior.
+- One writer owns each UI/audio surface. Extend the existing UI bridge, audio-reactive palette,
+  cymatic driver, and Niagara/flipbook consumers instead of introducing parallel writers.
+- MelodiaCore remains presentation/integration-only; ACFU and Conversation2D are excluded.
 
 ## Project-owned paths
 
@@ -532,51 +500,6 @@ plausible to a folder outside `Content/` first.
 
 26. **`Saved/Audit/*.json` commits are allowed.** Daemon-produced specs and audit reports in `Saved/Audit/` are explicitly allowlisted in `.githooks/pre-commit` (line 68: `grep -Ev '^Saved/Audit/.*\.(json|md)\$'`). They do not need owner sign-off to commit.
 
-
-## Historical August 10 work queue — superseded
-
-Retained for incident context. Do not execute this list as the current queue; use the August 24
-P0 authority at the top of this file. Historical WORKED/PASS observations are bounded evidence.
-
-1. ~~**Give the song map a beat map.**~~ **DONE 2026-08-11** — `MelodiaMusicClockSubsystem`
-   loads the imported `128BPMarpeggiomelody_beatgrid` MIDI (tempo+bar+beat maps validated,
-   never hand-built).
-2. **Certify the `runtime` gate with formal evidence — owner PIE saw it PLAY; ledger still OPEN.**
-   Owner PIE 2026-08-13: after Melusina's unique skill, rhythm highway worked (clunky), damage
-   procced, next turn applied on skill finish. That is play evidence; it is **not** a ledger row.
-   Still owed: (a) Decision 024 A/B on `melodia.Rhythm.Disable 1`, (b) assertion report JSON
-   next to frames from the committed harness, (c) `record_gate.py runtime pass|fail`. Probe-only
-   Python hits remain non-evidence. Do **not** reopen Rhythm/Quill as P0.
-3. ~~**Build and verify the highway-ownership fix.**~~ **OWNER LOCK 2026-08-12 — RHYTHM GAME WORKED**
-   (reconfirmed PIE 2026-08-13 after Melusina unique; clunk is feel, not absence).
-   Canonical: `Docs/Handoffs/RHYTHM_GAME_LOCKED_2026-08-12.md`.
-   Do not reopen “highway unverified / never observed.”
-4. **Verify the damage-scalar sequencing** before trusting any A/B numbers — the damage notify
-   may fire ~2.5s before the scalar latches. Owner saw damage proc; A/B delta still unrecorded.
-5. **Highway note rendering / feel** — clunk reported in owner PIE; genuine T3D target for note
-   presentation. Re-export baselines and resolve `unresolved_member_parent` first.
-6. ~~Wire a call site for `RestorePartyAfterBattle`.~~ **DONE on `main` via #6** (`6715d51`) —
-   `BP_BattleController` lookup path. Confirm `MELODIA_RECOVERY` log in a battle-end PIE.
-7. Re-run `python Tools/bp_sweep.py` project-wide. It died mid-run during the three-editor
-   incident; scoped runs are clean.
-8. Damage progression smoothing — owner has a recorded contact sheet. Ask for it; do not
-   guess at the curve, and do not add a multiplier that cancels out a bad one.
-9. Duplicate `BP_BattleUI` paths — mirror quarantined 2026-08-11; confirm no remaining
-   short-name collisions before delete of quarantine tree.
-
-Done 2026-08-09/10: Sir rescue; StockSkillRhythmIds; BattleController in KaleidoNave;
-Dreamstate merge. Done 2026-08-11: beat map; probe runnable; highway-ownership staged
-(unbuilt); mirror quarantined; UI transparency fix. Done 2026-08-12: model lanes +
-AGENTS slim under 32 KB subagent cap. Done 2026-08-12/13: #4+#6 on `main`; owner PIE —
-Melusina unique → highway (clunky) → damage → next turn on skill finish.
-
-Parallel work for other agents, partitioned by contended resource:
-**historical** [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Docs/Handoffs/PARALLEL_LANES_2026-08-12.md)
-+ paste prompts [`Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md`](Docs/Handoffs/PARALLEL_SESSIONS_2026-08-12.md)
-(history: `PARALLEL_LANES_2026-08-08.md`). Rhythm + Quill are owner-locked WORKED — do not reopen.
-
----
-
 ## 5. jcode Swarm (parallel coding lane)
 
 Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
@@ -585,7 +508,7 @@ Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm
 *   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste [`.jcode/coordinator-bootstrap.md`](.jcode/coordinator-bootstrap.md).
 *   **MCP:** [`.jcode/mcp.json`](.jcode/mcp.json) → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
 *   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
-*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md). Tonight prep: [`Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`](Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md).
+*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md).
 *   **Keep running:** surreal/world/`run_verify` production loops.
 *   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
 *   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.

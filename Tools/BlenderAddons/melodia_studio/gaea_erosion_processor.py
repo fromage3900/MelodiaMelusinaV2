@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 import os
 import random
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Sequence
@@ -386,7 +387,43 @@ def build_mesh_terrain_handoff(
 
     manifest_path = output_dir / "handoff_manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+    # Unified terrain-handoff sibling (convergence contract): emit the
+    # cross-lane melodia.terrain_handoff.v1 document beside the native lane
+    # manifest so every authoring lane feeds one Mesh Terrain intake.
+    # Optional by design: the addon may run on a machine without the repo's
+    # Tools/terrain_handoff.py (warn loudly, never fail the lane).
+    unified_report = _emit_unified_handoff(manifest, output_dir)
+    if not unified_report.get("ok"):
+        print("WARN terrain_handoff.json not emitted for %s: %s"
+              % (preset_id, unified_report.get("reason")), file=sys.stderr)
+
     return manifest
+
+
+def _emit_unified_handoff(manifest: dict[str, Any], output_dir: Path) -> dict[str, Any]:
+    """Emit ``terrain_handoff.json`` (``melodia.terrain_handoff.v1``) next to the
+    lane manifest produced by :func:`build_mesh_terrain_handoff`."""
+    try:
+        import melodia_utils as _mu  # type: ignore
+        root = Path(str(_mu.repo_root()))
+    except Exception:
+        root = Path(__file__).resolve().parents[3]
+    mod_path = root / "Tools" / "terrain_handoff.py"
+    if not mod_path.is_file():
+        return {"ok": False, "reason": "terrain_handoff.py not found at %s" % mod_path}
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("melodia_terrain_handoff", mod_path)
+    th = importlib.util.module_from_spec(spec)
+    sys.modules.setdefault("melodia_terrain_handoff", th)
+    spec.loader.exec_module(th)
+    try:
+        unified = th.from_midi_handoff(manifest)
+        out = output_dir / "terrain_handoff.json"
+        th.emit_unified(unified, out)
+        return {"ok": True, "path": str(out)}
+    except Exception as exc:
+        return {"ok": False, "reason": repr(exc)}
 
 
 def _get_image_dimensions(path: Path) -> dict[str, int]:

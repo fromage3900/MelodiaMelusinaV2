@@ -118,7 +118,15 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 7. Read existing Color (FLOAT_COLOR, CORNER) for blending
     existing_attr = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx + 1800, by - 300))
-    existing_attr.data_type = "RGBA"
+    existing_attr.data_type = "FLOAT_COLOR"
+    # the named-attribute node exposes both the value and an existence flag; the
+    # blend logic below references both, and neither was ever bound
+    try:
+        sock(existing_attr, "Name").default_value = "Color"
+    except Exception:
+        pass
+    existing_val = sock(existing_attr, "Attribute", outputs=True)
+    existing_exists = sock(existing_attr, "Exists", outputs=True)
 
     # Convert scalar AO to grayscale FLOAT_COLOR
     to_color = safe_node(tree, "FunctionNodeCombineColor", (bx + 2000, by - 100))
@@ -147,7 +155,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 10. Select blend by int: 0=Multiply, 1=Add, 2=Override
     blend_sw1 = safe_node(tree, "GeometryNodeSwitch", (bx + 2600, by))
-    blend_sw1.input_type = "FLOAT_COLOR"
+    blend_sw1.input_type = "RGBA"
     cmp_mul = safe_node(tree, "FunctionNodeCompare", (bx + 2400, by + 100))
     cmp_mul.data_type = "INT"
     cmp_mul.operation = "EQUAL"
@@ -158,7 +166,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
     link_sockets(tree, mul_result, sock(blend_sw1, "True"))
 
     blend_sw2 = safe_node(tree, "GeometryNodeSwitch", (bx + 2600, by - 150))
-    blend_sw2.input_type = "FLOAT_COLOR"
+    blend_sw2.input_type = "RGBA"
     cmp_add = safe_node(tree, "FunctionNodeCompare", (bx + 2400, by - 250))
     cmp_add.data_type = "INT"
     cmp_add.operation = "EQUAL"
@@ -170,7 +178,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 11. If no existing color, use new_color
     final_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 2800, by - 100))
-    final_sw.input_type = "FLOAT_COLOR"
+    final_sw.input_type = "RGBA"
     link_sockets(tree, existing_exists, sock(final_sw, "Switch"))
     link_sockets(tree, new_color, sock(final_sw, "False"))
     link_sockets(tree, sock(blend_sw2, "Output", outputs=True), sock(final_sw, "True"))
@@ -178,7 +186,7 @@ def build_garment_vertex_ao(group_name="MEL_garment_vertex_ao"):
 
     # 12. Store as 'Color' (RGBA, CORNER)
     store = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 3000, by - 100))
-    store.data_type = "RGBA"
+    store.data_type = "FLOAT_COLOR"
     store.domain = "CORNER"
     store.inputs["Name"].default_value = "Color"
     link_sockets(tree, geo, sock(store, "Geometry"))

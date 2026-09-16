@@ -1,0 +1,55 @@
+{
+  "schema": "melodia.sheep.retarget_proof.v1",
+  "date": "2026-09-13",
+  "lane": "choral-sheep UE deformation proof (TODO owner queue #1, step: verify deformation)",
+  "branch": "cleanup/pbr-twin-landing-2026-09-10",
+  "editor_evidence": true,
+  "method": "Monolith MCP (native C++ reflection + IK retarget ops). No Python glue on Blueprint assets.",
+  "starting_state": {
+    "canonical_mesh": "/Game/Melodia/Companions/ChoralSheep/SK_ChoralSheep (118-bone export skeleton, sheep-sized bounds ~113x189x129cm)",
+    "takes": "6 AnimSequences bound to Retarget/SK_MrSheep_Skeleton (161 bones): Idle 6.25s / Walk 2.667s / WalkSlow 2.0s / Run 0.833s / Jump 1.125s / Death 1.083s",
+    "missing": "SK_MrSheep preview mesh absent (skeleton + anims intact); no IKRig / IKRetargeter / ABP existed"
+  },
+  "built_this_session": [
+    "Retarget/SK_MrSheep (mesh-only reimport from Saved/Audit/choral_sheep/takes/SK_MrSheep_AllTakes.fbx; bound to pre-existing SK_MrSheep_Skeleton, no skeleton dupe)",
+    "Retarget/IK_MrSheep (161 bones, pelvis root_x)",
+    "Retarget/IK_ChoralSheep (118 bones, pelvis root_x)",
+    "8 matched retarget chains per rig (Root/Spine/Head/Leg_Front_L/R/Leg_Hind_L/R/Tail) per RTG_WOLF_TO_SHEEP_SPEC_2026-09-10 chain map (front legs = _dupli_001 set)",
+    "Retarget/RTG_MrSheep_To_ChoralSheep (8/8 chains mapped 1:1, root rig->root, pelvis motion on)",
+    "Anims/A_Sheep_{Idle,Walk,WalkSlow,Run,Jump,Death} retargeted onto canonical SK_ChoralSheep_Skeleton (6/6, durations match sources)"
+  ],
+  "deformation_proof_numeric": {
+    "retargeted_Run_c_thigh_b_l_local": {
+      "frame_0": {"pitch": 56.70, "yaw": -76.31, "roll": 101.04},
+      "frame_10": {"pitch": 78.84, "yaw": -46.88, "roll": 130.88},
+      "verdict": "ANIMATED (large swing, same family as source yaw -23.3 -> -47.3)"
+    },
+    "retargeted_Run_root_x_component": {
+      "scale": [1, 1, 1],
+      "location": [0, -24.56, 84.37],
+      "static_across_frames": true,
+      "verdict": "CLEAN — no 100x source-scale contamination; pelvis height sheep-sane (~84cm)"
+    },
+    "retargeted_Walk_duration_s": 2.6667,
+    "retargeted_Idle_duration_s": 6.25,
+    "verdict": "DEFORMATION PROVEN on canonical skeleton"
+  },
+  "c_root_fleece_binding": {
+    "MI_ChoralSheep_Body": "parent M_Master_Toon_Character (approved Nikki path); ChladniPatternTexture=T_Chladni_C_ROOT; HarmonizeActive~1; ChladniIntensity~2.0",
+    "MI_ChoralSheep_Body_Chladni_C": "child of MI_ChoralSheep_Body; overrides ChladniPatternTexture=T_Chladni_C_ROOT, ChladniIntensity 2.5, ChladniEmissiveStrength 3.5, HarmonizeActive 1",
+    "verdict": "ONE C-ROOT FLEECE RESPONSE BOUND on approved path (parameter level; in-PIE Harmonize sweep still owed)"
+  },
+  "visual_proof": {
+    "frames_dir": "Saved/Audit/choral_sheep/retarget_proof_20260913/frame_000..005 (retargeted Run on SK_ChoralSheep, isolated preview, 6/6 rendered)",
+    "readable": "sheep silhouette renders (head/body/legs); DARK — isolated preview lacks the toon light rig, not a material defect (material params verified above)",
+    "verdict": "minimum-win readable capture: YES (deformation view); beauty capture: OWED (needs lit level, e.g. placed BP_ChoralSheep in L_MelusinaMorning)"
+  },
+  "save_state": "9/9 new packages saved to disk via save_packages (2 IK rigs + RTG + 6 anims); SK_MrSheep reimport self-saved",
+  "open_and_honest": [
+    "SK_MrSheep_AllTakes.fbx carries a ~100x unit artifact (reimported preview bounds ~11.5x20.6x13.5m; source root_x component scale ~10000). Retargeted clips are provably clean (scale 1), but the scratch preview mesh must never be placed in a level; canonical fix is a Blender re-export (owner lane).",
+    "Retargeted root_x carries a static ~176deg roll vs source rest — posture-offset note for ABP review, not a deformation blocker (static across frames).",
+    "ABP_ChoralSheep locomotion state (Idle/Walk/Trot per spec bake list) NOT yet built — next step.",
+    "REST -> ROOT_C -> hit -> REST in-PIE capture NOT yet run — needs ABP + lit level.",
+    "rider_take_screenshot asset_preview timed out once; capture_anim_frames path worked (472ms for 6 frames)."
+  ]
+}

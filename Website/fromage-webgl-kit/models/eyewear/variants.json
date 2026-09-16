@@ -1,0 +1,66 @@
+[
+  {
+    "silhouette": "aviator",
+    "path": "models/eyewear/aviator.glb",
+    "bytes": 1042952,
+    "materials": [
+      "MEL_mat_eyewear_metal_tortoise",
+      "MEL_mat_eyewear_metal_champagne",
+      "MEL_mat_eyewear_acetate_tortoise",
+      "MEL_mat_eyewear_acetate_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_acetate_tortoise"
+    ]
+  },
+  {
+    "silhouette": "cateye",
+    "path": "models/eyewear/cateye.glb",
+    "bytes": 1085152,
+    "materials": [
+      "MEL_mat_eyewear_metal_tortoise",
+      "MEL_mat_eyewear_metal_champagne",
+      "MEL_mat_eyewear_acetate_tortoise",
+      "MEL_mat_eyewear_acetate_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_acetate_tortoise"
+    ]
+  },
+  {
+    "silhouette": "panto",
+    "path": "models/eyewear/panto.glb",
+    "bytes": 1048428,
+    "materials": [
+      "MEL_mat_eyewear_metal_tortoise",
+      "MEL_mat_eyewear_metal_champagne",
+      "MEL_mat_eyewear_acetate_tortoise",
+      "MEL_mat_eyewear_acetate_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_acetate_tortoise"
+    ]
+  },
+  {
+    "silhouette": "rect",
+    "path": "models/eyewear/rect.glb",
+    "bytes": 1126720,
+    "materials": [
+      "MEL_mat_eyewear_metal_tortoise",
+      "MEL_mat_eyewear_metal_champagne",
+      "MEL_mat_eyewear_acetate_tortoise",
+      "MEL_mat_eyewear_acetate_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_lens_tortoise",
+      "MEL_mat_eyewear_lens_champagne",
+      "MEL_mat_eyewear_acetate_tortoise"
+    ]
+  }
+]

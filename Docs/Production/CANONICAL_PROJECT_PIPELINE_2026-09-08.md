@@ -40,23 +40,42 @@ The game repo owns:
 
 Detailed runtime ownership lives in `SYSTEM_MAP.md` and `DATA_FLOW.md`.
 
+Durable UE PCG authoring rules — including the UE5.8 Python Data Processor semantic-enrichment path — live in `Docs/Production/PCG/README.md`.
+
 ## 4. DCC / procedural authoring lane
 
-Blender, Houdini, Geometry Nodes, texture tools, and procedural authoring produce content for the game; they do not create a parallel runtime authority.
+Blender, Houdini, Geometry Nodes, texture tools, UE PCG, and procedural authoring produce content for the game; they do not create a parallel runtime authority.
 
 ```text
 reference / design lock
-  -> DCC / procedural authoring
+  -> DCC / procedural source authoring
   -> tracked source/spec/provenance
-  -> export/import candidate
+  -> export/import or UE-native PCG candidate
+  -> optional editor-only semantic enrichment
   -> UE validation
   -> runtime/render evidence
   -> main
 ```
 
+### UE-native semantic PCG path
+
+When a world/biome already exists as a UE PCG graph, prefer enriching the chapter-specific derivative instead of rebuilding the source graph in another tool:
+
+```text
+existing authored PCG points
+  -> UE5.8 Python Data Processor (editor-only semantics)
+  -> native PCG transforms / filtering / spawning
+  -> per-instance custom data
+  -> material / Niagara presentation
+```
+
+The validated Resonance Ecology path uses `Resonance`, `EcologyClass`, `MaterialVariant`, and `ScaleBias` while preserving upstream tags, density, and authored transforms. Native PCG remains the assembler; gameplay/music truth remains with the existing runtime owners. Full contract: `Docs/Production/PCG/README.md`.
+
+Shared musical hero graphs are reusable sources. Chapter-specific worlds such as Sea Above should normally use derivatives/wrappers and bounded regional graph ownership rather than destructively modifying shared hero graphs.
+
 Laptop-specific durable rules live in `Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md` and `Docs/Production/BRANCH_WORKSTATION_POLICY.md`.
 
-Large source binaries may live outside Git where appropriate, but promoted assets, scripts, manifests, and import contracts must resolve through the canonical game repo.
+Large source binaries may live outside Git where appropriate, but promoted assets, scripts, manifests, PCG graphs, World Partition external actors, and import contracts must resolve through the canonical game repo. An editor save is not proof that a generated/modified `.uasset` is tracked.
 
 ## 5. Animation / performance capture lane
 
@@ -180,6 +199,7 @@ Use exactly one answer surface per question:
 What is true / next / blocked? -> CURRENT_STATE.md
 How does runtime work?         -> SYSTEM_MAP.md / DATA_FLOW.md
 How do repos/tools hand off?   -> this pipeline contract
+How does PCG authoring work?    -> Docs/Production/PCG/README.md
 How does a subsystem behave?   -> its durable contract/spec/runbook
 What should it look like?      -> reference / visual bible
 What did research find?        -> Docs/Research

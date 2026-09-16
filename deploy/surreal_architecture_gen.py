@@ -11469,8 +11469,16 @@ def add_auto_align_pass(tree, in_geom, mode, x=14400):
     if mode == 'NONE':
         return in_geom
 
+    # Realize on the measuring branch. A BoundBox read over unrealized instances
+    # reports the instance ORIGINS, not the real extent, so GROUND/CENTER alignment
+    # came out silently wrong for every instance-emitting piece. The offset is still
+    # applied to the original geometry below, so the instance representation is kept.
+    measure = tree.nodes.new('GeometryNodeRealizeInstances')
+    measure.location = (x - 200, 200); color_node(measure, "cleanup")
+    tree.links.new(in_geom, measure.inputs['Geometry'])
+
     bbox = tree.nodes.new('GeometryNodeBoundBox'); bbox.location = (x, 200); color_node(bbox, "cleanup")
-    tree.links.new(in_geom, bbox.inputs['Geometry'])
+    tree.links.new(measure.outputs['Geometry'], bbox.inputs['Geometry'])
 
     # Min + Max -> vector
     add_mm = tree.nodes.new('ShaderNodeVectorMath'); add_mm.location = (x+200, 200); add_mm.operation = 'ADD'
@@ -11562,8 +11570,14 @@ def add_procedural_uv_pass(tree, in_geom, props, x=14700):
     uv_name = getattr(props, 'uv_map_name', 'UVMap') or 'UVMap'
     uv_scale = max(0.01, getattr(props, 'uv_scale', 1.0))
 
+    # Same reason as add_auto_align_pass: measure the realized extent, or the UV
+    # normalization is computed from instance origins and tiles wrongly.
+    measure_uv = tree.nodes.new('GeometryNodeRealizeInstances')
+    measure_uv.location = (x - 200, 300); color_node(measure_uv, "cleanup")
+    tree.links.new(in_geom, measure_uv.inputs['Geometry'])
+
     bbox = tree.nodes.new('GeometryNodeBoundBox'); bbox.location = (x, 300); color_node(bbox, "cleanup")
-    tree.links.new(in_geom, bbox.inputs['Geometry'])
+    tree.links.new(measure_uv.outputs['Geometry'], bbox.inputs['Geometry'])
 
     sep_min = tree.nodes.new('ShaderNodeSeparateXYZ'); sep_min.location = (x + 200, 200); color_node(sep_min, "cleanup")
     sep_max = tree.nodes.new('ShaderNodeSeparateXYZ'); sep_max.location = (x + 200, 400); color_node(sep_max, "cleanup")
