@@ -29,9 +29,10 @@ For anything involving **what is true now, what is blocked, or what to do next**
 - [`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`](Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md) — durable intake contract for terrain-authoring lanes before UE world integration.
 - [`Docs/Research/README.md`](Docs/Research/README.md) — research index; research informs implementation but does not assign current work.
 
-## Art / references
+## Art / narrative / references
 
 - [`Docs/Art/VISUAL_REFERENCE_INDEX.md`](Docs/Art/VISUAL_REFERENCE_INDEX.md) — canonical visual-reference entry point.
+- [`Docs/References/Narrative/MELODIA_CHARACTER_VOICE_BIBLE.md`](Docs/References/Narrative/MELODIA_CHARACTER_VOICE_BIBLE.md) — durable Melusina + Sir dialogue/performance/voicebank writing reference, including Quill line discipline and the "world as third speaker" rule.
 - [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md) — durable Choral Sheep visual/material/gameplay contract.
 
 ## Animation / performance capture
@@ -61,6 +62,8 @@ Recommended bookmarks:
 5. the one lane contract relevant to the current task
 
 For procedural/world-building sessions, bookmark `Docs/Production/PCG/README.md` beside the world-building authority so future agents do not rediscover the UE5.8 Python/PCG API traps from scratch. The generated Scene Context packets/diffs remain under `Saved/Audit/SceneContext/` and should not become an Obsidian status/dashboard system.
+
+For dialogue/Quill/voicebank writing, use `Docs/References/Narrative/MELODIA_CHARACTER_VOICE_BIBLE.md` as the durable character-performance reference; current narrative implementation/evidence still belongs to `CURRENT_STATE.md` and the runtime authorities.
 
 Use backlinks, search, bookmarks, and local graph for discovery. Do not create Obsidian-only task queues, handoffs, dashboards, or duplicate status notes.
 
