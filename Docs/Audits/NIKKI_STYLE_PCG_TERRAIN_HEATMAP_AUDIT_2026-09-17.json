@@ -1,0 +1,47 @@
+﻿{
+    "date":  "2026-09-17",
+    "stamp_et":  "2026-09-17 15:18 ET (America/Toronto)",
+    "method":  "offline_corpus_reconstruct_no_live_fromage_shell",
+    "pcg_assets":  226,
+    "pcg_musical_hero_levels":  7,
+    "heatmap_assets":  10,
+    "heatmap_note":  "tool/spec/json name hits; live T_Heatmap*.uasset count unverified",
+    "terrain_mesh_clusters":  4,
+    "terrain_mesh_clusters_detail":  [
+                                         "Gaea CadenceCrystalRidge",
+                                         "Gaea FugueGrotto",
+                                         "Gaea LiquidCathedral",
+                                         "Gaea SakuraTerrace"
+                                     ],
+    "glacier_weightmap_textures":  3,
+    "open_issues":  7,
+    "open_issues_list":  [
+                             "no_live_fromage_disk_census_this_session",
+                             "heroes_partial_on_box_only_not_yet_on_fromage_my-site",
+                             "td_portfolio_hero_renders_not_yet_copied_to_heroes",
+                             "chladni_closeup_proof_still_missing_PR149",
+                             "heatmap_texture_asset_count_unverified",
+                             "quadmask_hot_spike_artifacts_if_used_as_density",
+                             "HeightBlend_legacy_MIs_owner_lane"
+                         ],
+    "recommended_next":  [
+                             "parent_CopyFromBox_staging_pack_to_Working_and_heroes",
+                             "CopyToBox_TD_portfolio_hero_renders_and_grandmaster_renders_promote",
+                             "CopyToBox_UE_CF_and_ChladniFleece_beauty_frames",
+                             "live_Get-ChildItem_PCG_and_Heatmap_census",
+                             "audit_pcg_heatmap.py_dry_run_SeaAbove",
+                             "MelusinaMorning_clearing_LD_pass_for_sheep",
+                             "TD_Spout_UE_bridge_health_check"
+                         ],
+    "paths":  {
+                  "working_target":  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\SemesterEvidence\\2026-W38\\MelusinaMorning_VFX\\2026-09-17\\\\",
+                  "heroes_target":  "C:\\Users\\froma\\my-site\\public\\melodia\\melusina-morning-vfx\\2026-09-17\\heroes\\\\",
+                  "audit_target":  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\NIKKI_STYLE_PCG_TERRAIN_HEATMAP_AUDIT_2026-09-17.md",
+                  "td_canon":  "C:\\MelodiaTouchDesigner",
+                  "staging_box":  "/workspace/fromage-push/"
+              },
+    "pcg_assets_live_unique_basename":  276,
+    "pcg_assets_live_under_pcg_folder_unique":  317,
+    "pcg_assets_claimed_offline_226":  226,
+    "verification":  "LOCAL_DISK_RECOUNT_2026-09-17"
+}
