@@ -1,12 +1,12 @@
 # VFX Fix A risks — flipbook double-scrub (2026-09-17)
 
-**Type:** documentary audit (not a live editor read).
-**Home:** `Docs/VFX/` (matches the 2026-09-14 Melodia Niagara docs).
-**Status authority:** `CURRENT_STATE.md`. This file does not claim live pin state.
+**Type:** LIVE_MONOLITH pin read (DETAIL CSV is authority).
+**Home:** `Docs/VFX/`.
+**Status authority:** `CURRENT_STATE.md`.
+**Scope:** 65 ship Niagara systems under `/Game/Melodia` + `/Game/EnvSandbox`.
+`Candidates/` and `_Archive` are excluded.
 
-Fix A is a **non-binding hypothesis** until a Monolith pass confirms renderer
-`SubImageSize`, the presence of `SubUVAnimation`, and the MI's `FlipFPS` /
-`GridRows` / `GridCols` / `SubImage` knobs on the same system.
+This file does **not** claim `NS_Melodia_LeafPileLoop` was fixed in-engine.
 
 ## 0. What Fix A is
 
@@ -18,51 +18,73 @@ Fix A is a **non-binding hypothesis** until a Monolith pass confirms renderer
 **Fix A:** the material owns scrub. Disable Niagara `SubUVAnimation`. Set
 renderer `SubImageSize` to `1×1`.
 
+`CLEAN_FIXA_SUBUV_OFF` means the SubUV module is **present but disabled**, and
+`SubImageSize` is `1×1` where the renderer exposes it. That is the applied Fix A
+shape, not a remaining double-scrub.
+
 Do **not** invert that without an owner look call: Niagara-owns-scrub
 (`SubUVAnimation` + `SubImageSize` matching the sheet, material sampling the
 full UV) is a valid single-owner design. Double-scrub is the defect.
 
-## 1. Risks / unknowns first
+## 1. RISK_DOUBLE — one system only (not fixed)
 
-| Item | Why it is first | In-repo evidence | `fix_a_status` |
-|---|---|---|---|
-| **`NS_ChoralSheep_BeatBurst` + `MI_NS_ChoralSheep_BeatStar`** | Only named system with a written SubUV pin history **and** a flipbook MI | `Saved/Audit/BATCH_B_SHEEP_2026-09-12.md`: renderer `SubImageSize` went **1×1 → 4×2**, **`SubUVAnimation` added**, 8 frames, on `T_Spark_Twinkle8`. That is Niagara-owns-scrub. Owner later says Fix A was applied (material owns; SubUV off; 1×1). **Those two statements disagree.** This checkout has only the LFS pointer, so neither live pin can be read. | **RISK** + `LIVE_MONOLITH_PENDING` |
-| **`NS_Melodia_LeafPileLoop` + `MI_Leaves`** | Authored with Niagara SubUV on purpose | `Docs/VFX_ASSET_MANIFEST.md`: Sprite SubUV 2×2 / `MI_Leaves`. `Tools/author_endless_loops.py` injects `SubUVAnimation`. Double-scrub **only if** `MI_Leaves` also FlipFPS-scrubs. `MI_Leaves` is not in this clone (`/Game/Effects/Environments/Leaves/...`). | **RISK** (conditional) + `LIVE_MONOLITH_PENDING` |
-| **Flipbook consumers under `Content/Melodia/VFX/`** | Same master as BeatBurst's donor | Manifest 2026-08-15: `NS_Melodia_ClickSparkle`, `NS_Melusina_EyeSparkle`, `NS_Melusina_Globules`, `NS_Melusina_Splash` consume `M_Niagara_MelodiaFlipbook` (FlipFPS=15, Grid 4×4). Folder is **gitignored**; zero `.uasset` bodies here. Sibling of BeatBurst. | **UNKNOWN** + `LIVE_MONOLITH_PENDING` |
-| **`NS_SakuraPetals_v2` SubUV + `MI_Niagara_Petal`** | Docs say Niagara SubUV **and** a sprite MI | `Docs/SAKURA_PETAL_NIAGARA.md`: SubUV across `T_Sakura_Petal` / `T_Sakura_Blossom`, assign `MI_Niagara_Petal`. If that MI (parent `M_Niagara_SakuraSprite`) also scrubs, it is the same defect class. | **UNKNOWN** + `LIVE_MONOLITH_PENDING` |
-| **Owner names with no asset** | Cannot audit what does not exist | `HybridSparkles`, `PetalCascade`, `MotionTrails`, `FluidSplash` — **zero** hits as `NS_` / `MI_` paths in git, disk, or `BRANCH_LEDGER`. Closest guesses are listed in the inventory; they are guesses. | **UNKNOWN** (alias rows) |
-| **`MI_Niagara_Melodia_Static_StateB` parent** | Two masters = two scrub contracts | Ecosystem spec 2026-09-14: reparent onto the flipbook master **or** bless Cosmic. Unresolved. | **UNKNOWN** |
-| **Grid vs sheet mismatch** | Cheapest broken look, adjacent to Fix A | Spec 2026-09-14: every water/fluid MI `Rows`/`Cols`/`FlipFPS` vs true 4×4 sheets. Not the same as double-scrub, but will look like it. | not scored; `LIVE_MONOLITH_PENDING` |
-| **This cloud clone cannot read Niagara graphs** | Hard limit | Tracked VFX `.uasset` files are Git LFS pointers (~130 B). `Content/Melodia/VFX/*.uasset` and `Content/EnvSandbox/VFX/Systems/**` are gitignored. No `Saved/Audit/niagara_ecosystem_review.json` / `live_niagara_audit.json` in this tree. | every NS row |
-
-## 2. Owner claims, checked against repo text
-
-| Owner claim | Repo text | How this audit treats it |
+| Item | Live pin read (DETAIL) | `fix_a_status` |
 |---|---|---|
-| `NS_ChoralSheep_BeatBurst` had double-scrub; **Fix A applied** | Last **written** pin state is Batch B: Niagara SubUV **on**. No later receipt records SubUV off / 1×1. | **RISK** until Monolith confirms the revert. Do not mark **FIXED** from the claim alone. |
-| HybridSparkles / PetalCascade / MotionTrails / FluidSplash / WoolMotes ladder **Fix A clean** | WoolMotes: Batch B agrees (`SubImageSize` 1×1, single-frame). The other four **names are not assets**. | WoolMotes **CLEAN**. Four aliases **UNKNOWN**. |
-| `NS_ConstellationDraw` Fix A OK; **Dream\*** user bus (not BeatPulse) | System is gitignored. Codex 2026-08-01: black isolated preview, CPU, dynamic bounds. Ecosystem contract includes `User.DreamVisibility` / `DreamIntensity` / `DreamTwinkleSpeed`. No SubUV pin text. | **CLEAN** for Fix A *as claimed*, with `LIVE_MONOLITH_PENDING`. Dream bus is a **separate** wiring gap, not a double-scrub proof. |
+| **`NS_Melodia_LeafPileLoop`** `/Game/EnvSandbox/VFX/Systems/Sakura/NS_Melodia_LeafPileLoop` | Emitter **LeafPile**; renderer sprite; **`SubUVAnimation` enabled = true**; **`SubImageSize` 2×2**; material `/Game/Effects/Environments/Leaves/Materials/MI_Leaves`. Same double-scrub class BeatBurst used to have. | **RISK_DOUBLE** |
 
-## 3. What is actually CLEAN from receipts
+Coarse 65-NS inventory scored LeafPile **CLEAN** (0 coarse RISK). The SubImageSize
+property read is what caught it. Edges CSV also lists LeafPile `fix_a=CLEAN`,
+`subX/subY=2/2`, `subuv_live=False` — that `subuv_live` disagrees with DETAIL.
+**DETAIL wins.** Do not treat the coarse/edges CLEAN as a fix.
 
-- **`NS_ChoralSheep_WoolMotes` / `MI_NS_ChoralSheep_WoolMote`:** Batch B 2026-09-12 verified `SubImageSize` 1×1, single-frame texture, left alone. That is Niagara **not** scrubbing an atlas. Still confirm the MI has `FlipFPS=0` / grid 1×1 so the material is not the only remaining clock on a static glint.
-- **Ribbon / mesh systems** (`NS_Melusina_SwingTrail`, `NS_Melusina_Arc`, `NS_Melodia_PetalEndlessLoop`, Aurora / MagicTrail ribbons): Fix A is **N_A** — no sprite atlas clock.
-- **SDF prototypes:** incomplete CPU sprites in the 2026-08-01 Codex audit; not the flipbook family.
+`NS_Uni_LeafDrift` also binds `MI_Leaves` and is **CLEAN** (no live SubUV on that
+emitter). RISK is the LeafPile emitter, not every consumer of the MI.
 
-## 4. Suggested live Monolith order (editor lane, not this PR)
+No other ship system in the 65 is RISK_DOUBLE.
 
-1. `NS_ChoralSheep_BeatBurst` — read renderer `SubImageSize`, list modules for `SubUVAnimation`, read `MI_NS_ChoralSheep_BeatStar` `FlipFPS`/`Grid*`. If both clocks live, apply Fix A. If Niagara already 1×1 and SubUV gone, mark **FIXED** with a JSON receipt.
-2. Donor + flipbook consumers: `NS_Melodia_ClickSparkle`, `EyeSparkle`, `Globules`, `Splash`, `Ripple`.
-3. `NS_Melodia_LeafPileLoop` + `MI_Leaves` graph (Niagara-owns vs double).
-4. `NS_SakuraPetals_v2` SubUV vs `MI_Niagara_Petal`.
-5. Resolve StateB parent. Resolve the four alias names or drop them.
-6. Write results back into `VFX_NIAGARA_INVENTORY_2026-09-17.csv` `fix_a_status`.
+## 2. CLEAN_FIXA_SUBUV_OFF — four Choral Sheep systems
 
-Do not run two MCP surfaces on the same graph. Do not Python-load skill Blueprints.
-Do not treat probe-injected Niagara compiles as play proof.
+SubUV module present, **disabled**; SubImage `1×1` where applicable. These are
+real assets under `/Game/Melodia/Companions/ChoralSheep/VFX/`.
+
+| NS | Emitter | Material | Notes |
+|---|---|---|---|
+| `NS_ChoralSheep_BeatBurst` | BeatStars | `MI_NS_ChoralSheep_BeatStar` | **FIXED / CLEAN_FIXA live.** Batch B 2026-09-12 “SubUV on, SubImageSize 4×2” is **superseded**. Not RISK. |
+| `NS_ChoralSheep_HybridSparkles` | FlipSparkles | same `MI_NS_ChoralSheep_BeatStar` | SoftGlints → `MI_NS_ChoralSheep_WoolMote` is CLEAN (no SubUV module). |
+| `NS_ChoralSheep_PetalCascade` | PetalLoop | `MI_NS_ChoralSheep_PetalLoop` | PetalPile → `MI_NS_ChoralSheep_PetalPile` is CLEAN. |
+| `NS_ChoralSheep_MotionTrails` | MotionRibbon (ribbon) | `MI_NS_ChoralSheep_MotionRibbon` | TrailSparks → `MI_NS_ChoralSheep_WoolMote` is CLEAN. |
+
+Also live and **CLEAN** (not aliases, not missing):
+
+- `NS_ChoralSheep_WoolMotes` → `MI_NS_ChoralSheep_WoolMote`
+- `NS_ChoralSheep_FluidSplash` → `MI_NS_ChoralSheep_FluidGlobule` + `MI_NS_ChoralSheep_SplashBurst`
+
+## 3. Other live confirmations (stale claims corrected)
+
+| Claim from documentary first pass | Live result |
+|---|---|
+| BeatBurst is RISK until Monolith confirms Fix A | **CLEAN_FIXA_SUBUV_OFF.** SubUV present, live=false, SubImage 1×1. |
+| HybridSparkles / PetalCascade / MotionTrails / FluidSplash / WoolMotes are unresolved aliases | **Real NS** under `Content/Melodia/Companions/ChoralSheep/VFX/`. |
+| ConstellationDraw Fix A OK; Dream\* bus (not BeatPulse); material unnamed | **CLEAN.** Stars sprite → `M_StardustParticle_Glow`. SubUV live=false, SubImage 1×1. Dream\* user bus is a **separate** wiring topic, not a double-scrub proof. |
+| ClickSparkle / EyeSparkle / Globules / Splash UNKNOWN (gitignored here) | **CLEAN** on DETAIL. ClickSparkle binds `MI_Niagara_Melodia_ClickSparkle` (`/Game/Melodia/_PROJECT/...`). EyeSparkle binds the flipbook **master** with SubUV off / 1×1. |
+| StarGold / DropletRing orphan MIs | **Live-bound.** StarGold → `NS_Melodia_CursorTrail`. DropletRing → Ripple emitter on `NS_Melusina_Ripple`. |
+| Superposition StateB parent unverified | StateA = `MI_Niagara_Melodia_Static_Glint`, StateB = `MI_Niagara_Melodia_Static_StateB`. Both CLEAN. |
+| `NS_SakuraPetals_v2` SubUV + `MI_Niagara_Petal` UNKNOWN | **CLEAN.** Live material is `M_SakuraPetal` (+ mesh `M_Niagara_Ripple` pond). No live SubUV. |
+
+## 4. Coarse vs DETAIL (do not mix)
+
+| Source | Ship NS scores |
+|---|---|
+| Coarse `VFX_NIAGARA_SHIP_NS_LIVE_2026-09-17.csv` | **50 CLEAN / 15 N_A_RIBBON_MESH / 0 RISK** |
+| DETAIL `VFX_FIXA_DETAIL_2026-09-17.csv` (authority) | **45 CLEAN / 4 CLEAN_FIXA_SUBUV_OFF / 1 RISK_DOUBLE / 15 N_A** (the 15 N_A are systems DETAIL did not need to pin-read as sprite-atlas clocks) |
+
+Canonical CSV `fix_a_status` follows DETAIL for the four sheep NS and LeafPile.
 
 ## 5. Out of scope (do not call Fix A)
 
-- UltraDynamicSky `Basic_SubUV_Animation`, TurnBasedJRPG `M_Fire_SubUV` / explosion sheets, ArtOfShader glitch NS, Greybox `NS_WaterFall_*`, Nikki fixture JSON systems that were never proven on disk (`NS_Nikki_*` in `Content/Python/gmm/fixtures/niagara_nikki_library.json`).
-- Cloth/Copernicus flipbook masters (`MI_Copernicus_*_Flipbook`, PearlWoven frame stacks). Those are character/environment materials, not Niagara sprite systems.
+- `Candidates/` and `_Archive` (excluded from the 65).
+- UltraDynamicSky `Basic_SubUV_Animation`, TurnBasedJRPG `M_Fire_SubUV` / explosion sheets, ArtOfShader glitch NS, Greybox `NS_WaterFall_*`, Nikki fixture JSON systems never proven on disk.
+- Cloth/Copernicus flipbook masters (`MI_Copernicus_*_Flipbook`, PearlWoven frame stacks).
+- NiagaraFluids engine materials on the Water v10 FLIP systems (including `WhitewaterMaterial` SubImage 8×8 with SubUV off). Not a Melodia sprite-atlas owner.
 - PPV / StarryNight (separate work order).
+- Applying Fix A to LeafPile — **document RISK only** in this PR. No `.uasset` edits.

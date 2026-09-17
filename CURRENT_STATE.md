@@ -232,9 +232,10 @@ control inclusion requires the owner's scoped `.gitignore` decision before landi
   `Retarget/SK_MrSheep` is the retarget source at ~100× scale; never place it in a level.
 - **VFX / materials still owed:** Melusina sprite sizes 0.03–0.10 look metre-scale (owner look call);
   sort/shadow sweep on the remaining `VFX/Systems/**` sprite systems; golden-run spec names
-  `/Game/L_Melodia_Dreamstate`, which does not exist. Flipbook double-scrub (Fix A) inventory is
-  [`Docs/VFX/VFX_FIXA_RISKS_2026-09-17.md`](Docs/VFX/VFX_FIXA_RISKS_2026-09-17.md) — BeatBurst last
-  written pin state is Niagara SubUV on; live confirm still owed.
+  `/Game/L_Melodia_Dreamstate`, which does not exist. Flipbook double-scrub (Fix A) live Monolith
+  2026-09-17: 65 ship NS; **RISK_DOUBLE** only `NS_Melodia_LeafPileLoop` (SubUV on, SubImage 2×2,
+  `MI_Leaves`) — **not** fixed in-engine; BeatBurst / HybridSparkles / PetalCascade / MotionTrails
+  are **CLEAN_FIXA_SUBUV_OFF**. Home: [`Docs/VFX/`](Docs/VFX/README.md).
 - **Eyewear PRs #205 / #194** each touch protected `.gitignore` and add 16 files under `Saved/`; the
   −1,835 lines are a `Tools/registry_baseline.json` regeneration. Owner review before merge.
 - **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
@@ -351,7 +352,7 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 | TouchDesigner / AE (private) | `fromage3900/MelodiaTouchDesigner`, `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` |
 | AI token treasury (revenue sidecar) | my-site `tools/fromage-webgl-kit/TREASURY_LEDGER.json` — 0 entries, first gate 0/5; never displaces the capstone |
 | Accessory / WebGL website lane (isolated) | [`Website/fromage-webgl-kit/`](Website/fromage-webgl-kit/) — floral atelier + commerce embed, DCC `KHR_materials_variants` GLBs. Not the recruiter site. Cloud cannot push `my-site` (403). |
-| Niagara / VFX inventory + Fix A audit (docs, 2026-09-17) | [`Docs/VFX/`](Docs/VFX/README.md) — full inventory, mermaid graph, CSV, Fix A risks. Disk+docs only; live SubUV pins `LIVE_MONOLITH_PENDING` |
+| Niagara / VFX inventory + Fix A (LIVE_MONOLITH, 2026-09-17) | [`Docs/VFX/`](Docs/VFX/README.md) — 65 ship NS; 1 RISK_DOUBLE `NS_Melodia_LeafPileLoop`; 4 ChoralSheep CLEAN_FIXA. DETAIL pin CSV is authority |
 | `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
 
 **The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.
