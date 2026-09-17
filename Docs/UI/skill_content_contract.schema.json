@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/skill_content_contract.schema.json",
+  "title": "Melodia Skill Content Contract",
+  "description": "Authoring-time contract for player-facing skills, traversal verbs, companion interactions, and encounter abilities. Presentation fields never replace authoritative gameplay owners.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "skill_id",
+    "display_name",
+    "owner",
+    "role",
+    "status",
+    "semantic_result",
+    "input_or_trigger",
+    "persistence_expectation",
+    "feedback",
+    "tooltip",
+    "proof"
+  ],
+  "properties": {
+    "skill_id": {"type": "string", "minLength": 1},
+    "display_name": {"type": "string", "minLength": 1},
+    "owner": {"type": "string", "minLength": 1},
+    "chapter_or_unlock_source": {"type": ["string", "null"]},
+    "role": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["combat", "traversal", "puzzle", "companion", "world_response"]
+      }
+    },
+    "status": {
+      "enum": ["concept", "authored", "runtime_proven", "presentation_proven"]
+    },
+    "semantic_result": {"type": "string", "minLength": 1},
+    "runtime_authority": {
+      "type": ["string", "null"],
+      "description": "Existing system/class/data owner. Null means the authoring pass is blocked from claiming implementation-ready status."
+    },
+    "input_or_trigger": {"type": "string", "minLength": 1},
+    "rhythm_phrase_or_window": {"type": ["string", "null"]},
+    "target_rules": {"type": ["string", "null"]},
+    "cost_or_resource": {"type": ["string", "null"]},
+    "cooldown_or_reuse_rule": {"type": ["string", "null"]},
+    "persistence_expectation": {
+      "enum": ["none", "transient", "checkpointed", "canonical_save_owned"]
+    },
+    "feedback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["telegraph", "success", "miss_or_invalid", "active"],
+      "properties": {
+        "telegraph": {"type": "string"},
+        "success": {"type": "string"},
+        "miss_or_invalid": {"type": "string"},
+        "active": {"type": "string"},
+        "cooldown": {"type": ["string", "null"]},
+        "vfx_hooks": {"type": "array", "items": {"type": "string"}, "default": []},
+        "sfx_hooks": {"type": "array", "items": {"type": "string"}, "default": []},
+        "animation_hooks": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "tooltip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["short", "long", "tags", "icon_motif", "accent_family"],
+      "properties": {
+        "short": {"type": "string", "minLength": 1},
+        "long": {"type": "string", "minLength": 1},
+        "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "icon_motif": {"type": "string", "minLength": 1},
+        "accent_family": {"type": "string", "minLength": 1},
+        "states": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["default", "focused", "selected", "active", "cooldown", "locked", "invalid_target", "miss", "reduced_motion"]
+          },
+          "default": ["default", "focused", "selected", "active", "reduced_motion"]
+        }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assemble": {"type": ["string", "null"]},
+        "bloom": {"type": ["string", "null"]},
+        "orbit": {"type": ["string", "null"]},
+        "resolve": {"type": ["string", "null"]},
+        "reduced_motion": {"type": ["string", "null"]}
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime_capture", "error_receipt", "tooltip_capture"],
+      "properties": {
+        "runtime_capture": {"type": ["string", "null"]},
+        "error_receipt": {"type": ["string", "null"]},
+        "tooltip_capture": {"type": ["string", "null"]},
+        "restart_proof": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
