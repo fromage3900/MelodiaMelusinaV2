@@ -2,7 +2,7 @@
 
 **Owner:** Fromage · **Executor:** Study Melodia / Grok Bot Package A  
 **Machine:** fromage `6402dab1-6635-4abb-8220-27a07354b444`  
-**Repo tip:** `C:\EnvironmentPortfolio\BS_GodFile` (MelodiaMelusinaV2)  
+**Repo tip:** `C:\\EnvironmentPortfolio\\BS_GodFile` (MelodiaMelusinaV2)  
 **Stamp:** 2026-09-17 ~18:25 EDT (America/Toronto)  
 **Handoff SSOT:** `Saved/Audit/MELODIA_CLOSEOUT_HANDOFF_2026-09-17.md` (+ `Docs/VFX/` in #228)
 
@@ -45,7 +45,7 @@ Primary live retarget still owed: Melodia Static_Glint must drop Content Flipboo
 | `Saved/Audit/PACKAGE_A_MATERIALS_ORG_2026-09-17.md` |
 | `Saved/Audit/LABEL_MAP_2026-09-09.md` (mirror of Docs/Materials stamp) |
 
-Intended fromage disk: `C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\` (+ Docs paths via git PR).
+Intended fromage disk: `C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\` (+ Docs paths via git PR).
 
 ## Phase C stamps
 
@@ -86,4 +86,15 @@ Plus after twin retarget (if performed live): Melodia Static_Glint, WoolMote, Be
 
 - No fromage Shell / Monolith from this executor — live re-read of Static_Glint parent / SurrealFabric texture names not reconfirmed this pass (docs from fold-in + LABEL_MAP + playbook + offline receipts)
 - `Saved/` on fromage disk not written directly (box mirror only)
-- Git: docs-only branch via GitHub MCP (see PR/SHA below when landed)
+- Git: landed — see Git landing section
+
+## Git landing (updated)
+
+| Item | Value |
+|------|-------|
+| Branch | `docs/package-a-materials-org-2026-09-17` |
+| Tip SHA | see branch HEAD after this receipt amend |
+| PR | https://github.com/fromage3900/MelodiaMelusinaV2/pull/231 |
+| Base | `main` |
+| Content push | **none** (docs-only) |
+| Fat tip | not touched |
