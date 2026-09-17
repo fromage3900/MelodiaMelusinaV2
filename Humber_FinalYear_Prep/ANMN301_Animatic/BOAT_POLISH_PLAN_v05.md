@@ -61,3 +61,29 @@ Merge plan (v05 stage):
 v05 stage: fresh-tree rollout + ribcage merge (gates above) → re-render the 6
 boat panels + boat beauty set → commit. Then brightwork 1-2, then 3-5 as the
 panels demand. Bones before armor, proof before polish.
+
+## 5. v06 — rib orientation fix + finial + crash recovery (2026-09-17 evening)
+
+The GUI session crashed at 19:20 (UI panel-draw thread, right after hardops /
+kushiro_tools / cloth_next / pro_particles were installed mid-session; the
+reopened session sits clean on the v05 disk state). Live-only edits were lost and
+have been REBUILT on disk as SHOREWAKE_proxy_v06_boat.blend (headless —
+Saved/Audit/roll_v06_recovery.py):
+
+- Material dedupe: 15 identical .001 dupes verified, remapped, purged (57 mats).
+- RIBCAGE ORIENTATION FIX (the big one): measured cross-sections (ASCII, mid +
+  bow) show the builder's arc arrives as an upside-down dome spanning one side
+  (y 0..beam, high center). Correct form for this hull = U: tips at the gunwales,
+  dip at the keel. Fix = rotate host 180 about X + re-seat: ribs now y ±0.403,
+  z 0.620..1.618 — tips spring 0.32 above the deck line, which is exactly the
+  Arc Rise dial's own language ("how far the arc springs above the deck line").
+- BalljointsHost: MEL_skiff_balljoints built + same transform (1,692 verts at the
+  rib tips, gunwale collars). Flag: bow-most pair reaches ~0.35 m past the rail.
+- Star finial: kit builder MEL_star_finial, M_Brass, seated 0.03 above the
+  masthead lantern (x 0.21..0.48, z 3.54..3.84).
+- The owner's mid-session HullForm Beam 0.53 dial died in the crash — not baked
+  (panels so far all rendered at neutral); re-dial in the modifier panel or ask.
+
+RULES from tonight: (1) after installing addons mid-session, restart Blender;
+(2) structural edits persist to disk headless — never live-only;
+(3) the open session is for looking; the roll scripts are for keeping.
