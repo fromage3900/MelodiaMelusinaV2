@@ -3,7 +3,7 @@
 **Owner:** Fromage · **Machine id:** `6402dab1-6635-4abb-8220-27a07354b444`  
 **Lane:** Melodia Package B — Niagara AAA (playbooks → live if possible)  
 **Stamp:** 2026-09-17 ~18:30 EDT (America/Toronto)  
-**Repo:** GitHub `fromage3900/MelodiaMelusinaV2` · local disk `C:\EnvironmentPortfolio\BS_GodFile`
+**Repo:** GitHub `fromage3900/MelodiaMelusinaV2` · local disk `C:\\EnvironmentPortfolio\\BS_GodFile`
 
 ## Summary
 
@@ -25,7 +25,7 @@
 | `Docs/VFX/PLAYBOOK_PETALCASCADE_LEAFPILLE_2026-09-17.md` | PetalCascade → LeafPile-style settle; shared BeatPulse wind; LeafPile Fix A ref |
 | `Docs/VFX/PLAYBOOK_FLIPBOOK_FIXA.md` | Stub + cross-link (material owns scrub; SubUV off; 1×1 vs 2×2 atlas policy) |
 
-Saved/Audit mirrors (box staging → CopyToBox to fromage `Saved\Audit\`): same filenames under `Saved/Audit/`.
+Saved/Audit mirrors (box staging → CopyToBox to fromage `Saved\\Audit\\`): same filenames under `Saved/Audit/`.
 
 ## Live status
 
@@ -78,15 +78,15 @@ Stub/TEMP/Test NS: documented in playbooks as docs-only quarantine. No Content m
 
 ## Git
 
-- Branch: `docs/package-b-niagara-aaa-2026-09-17` (off `main` @ `d4cbf1550cedb807636d4c45faa8a97b05f5573d`)
+- Branch: `docs/package-b-niagara-aaa-2026-09-17` (off `main`)
 - Content: docs only (no `Content/**` uassets)
-- Commits: Flipbook stub `29c2993867fcac0d61b8c730e41778321057655d` → BeatBurst/HybridSparkles `7ea30c4c94d4ac56d25604508d4f6bdcdc47e7ae` → this tip (PetalCascade + receipt)
-- PR: see create result
+- Tip SHA: `923a921c71f66160f09b31c7fe2bd66a4408bcf0` (PetalCascade + receipt; receipt amend may bump tip)
+- PR: https://github.com/fromage3900/MelodiaMelusinaV2/pull/232 (draft)
 
 ## Blockers
 
 1. **BLOCKED_LIVE** — Monolith unavailable on executor / fromage machine bridge.
-2. No fromage local Shell → cannot write `C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\` directly; box staging under `/workspace/package-b-niagara/Saved/Audit/` for CopyToBox.
+2. No fromage local Shell → cannot write `C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\` directly; box staging under `/workspace/package-b-niagara/Saved/Audit/` for CopyToBox.
 3. `gh` CLI unauthenticated on box — push via user-Github MCP.
 
 ## Related
