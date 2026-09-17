@@ -3,6 +3,15 @@
 School: ANMN301 animatic A1, silent 1080p24, due Oct 9. Blender 5.2 only. No UE.
 Source blend: proxy/SHOREWAKE_proxy_v01_posed.blend (1 keyed sit pose, 17 FK bones).
 Stage blend (this plan's output): proxy/SHOREWAKE_proxy_v02_storyboard.blend.
+Skiff upgrade: proxy/SHOREWAKE_proxy_v03_skiff.blend — MK38 AAA hull appended
+(90 objects, Hull_Shell + keel + mast/sail + jewels + perch), aligned to the
+proxy hull seat, proxy hidden as fallback. MK38 carries the audio-reactive GN
+tree (MEL_starskiff_hull_audio, Sample Sound node, verified live but clip-less
+= silent-neutral for stills) AND a form tree whose defaults bloat the hull
+11.4m (measured, in the source file too): 5.2 exposes no Python path to GN
+modifier inputs (no IDProperties on the modifier struct), so the form modifier
+is MUTED and the authored 7.55m base mesh carries the shots. Revisit dials from
+the GUI sliders, never headless.
 Panels output: proxy/panels_v2/panel_01..17.png (1920x1080, on-panel numbers).
 Cut + MP4 rebuild from v2 panels with identical timing (1560f, black title/end slugs).
 
