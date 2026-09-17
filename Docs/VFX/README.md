@@ -4,6 +4,16 @@ Canonical home for Melodia Niagara and VFX material documentation. Dated
 audit files keep the evidence date in the filename; status still lives in
 `CURRENT_STATE.md`.
 
+## Playbooks (reuse)
+
+| File | Use when |
+|---|---|
+| [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md) | Material owns scrub; Niagara SubUV off; SubImage 1×1 **or** keep static atlas grid (LeafPile 2×2) |
+| [`Playbooks/PLAYBOOK_SURREALFABRIC_FLIPBOOK_MASTER.md`](Playbooks/PLAYBOOK_SURREALFABRIC_FLIPBOOK_MASTER.md) | `M_SurrealFabric_Flipbook` + `MF_FlipbookScrub`; MI recipe Grid 6×5 FlipFPS 12; Normal/ORM atlas debt |
+| [`Playbooks/PLAYBOOK_BEATPULSE_COMPANION_BUS.md`](Playbooks/PLAYBOOK_BEATPULSE_COMPANION_BUS.md) | `BP_ChoralSheep` Tick → `ResonanceIntensity` → `User.BeatPulse` on six NS; reparent `VFXRoot` |
+
+Closeout (delegated packages A/B): [`MELODIA_CLOSEOUT_HANDOFF_2026-09-17.md`](MELODIA_CLOSEOUT_HANDOFF_2026-09-17.md).
+
 ## 2026-09-17 — project-wide inventory + Fix A (LIVE_MONOLITH)
 
 Live editor pin read, then owner-saved LeafPile Fix A. Authority for SubUV /
@@ -22,6 +32,7 @@ stays 2×2** (atlas variants); only `SubUVAnimation` was disabled.
 | [`VFX_FIXA_RISKS_LIVE_2026-09-17.csv`](VFX_FIXA_RISKS_LIVE_2026-09-17.csv) | Live risks table — **empty** (header only) |
 | [`VFX_FIXA_LEAFPILE_2026-09-17.md`](VFX_FIXA_LEAFPILE_2026-09-17.md) | LeafPile Fix A receipt (SubUV off; 2×2 atlas kept) |
 | [`VFX_BEATPULSE_BP_WIRE_2026-09-17.md`](VFX_BEATPULSE_BP_WIRE_2026-09-17.md) | BP_ChoralSheep `User.BeatPulse` graph contract (binary not in this PR) |
+| [`MELODIA_CLOSEOUT_HANDOFF_2026-09-17.md`](MELODIA_CLOSEOUT_HANDOFF_2026-09-17.md) | Org / QOL closeout; materials twins + Niagara AAA delegated |
 
 Companion receipts this inventory reads, it does not replace:
 
@@ -34,4 +45,6 @@ Companion receipts this inventory reads, it does not replace:
 (Candidates / `_Archive` excluded). **0 RISK_DOUBLE.** **5 CLEAN_FIXA**
 (four Choral Sheep SubUV-off / 1×1, plus LeafPile SubUV-off / **2×2 atlas kept**).
 LeafPile Fix A applied live (owner Ctrl+S). BeatPulse BP wire compiled on
-`BP_ChoralSheep` (docs-only here).
+`BP_ChoralSheep` (docs-only here). **Lane D** `M_SurrealFabric_Flipbook` live
+2026-09-17. Closeout delegated: materials twins / Phase C + Niagara AAA
+(BeatBurst / Hybrid / Petal) to study bot. **RISK_DOUBLE=0**.
