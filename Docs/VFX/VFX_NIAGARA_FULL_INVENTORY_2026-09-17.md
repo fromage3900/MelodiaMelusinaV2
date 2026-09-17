@@ -8,19 +8,21 @@ materials. Documentary first pass is superseded for Fix A pin state.
 **Pin authority:** [`VFX_FIXA_DETAIL_2026-09-17.csv`](VFX_FIXA_DETAIL_2026-09-17.csv)
 **Graph:** [`VFX_NIAGARA_GRAPH_2026-09-17.md`](VFX_NIAGARA_GRAPH_2026-09-17.md)
 **Fix A:** [`VFX_FIXA_RISKS_2026-09-17.md`](VFX_FIXA_RISKS_2026-09-17.md)
+**LeafPile receipt:** [`VFX_FIXA_LEAFPILE_2026-09-17.md`](VFX_FIXA_LEAFPILE_2026-09-17.md)
+**BeatPulse BP contract:** [`VFX_BEATPULSE_BP_WIRE_2026-09-17.md`](VFX_BEATPULSE_BP_WIRE_2026-09-17.md)
 
-LeafPile was **not** fixed in-engine. RISK is documented only.
+LeafPile Fix A is **applied live** (owner Ctrl+S). SubImageSize **2×2 kept**
+(atlas). Ship **RISK_DOUBLE = 0**.
 
 ## 1. Method
 
-- Coarse ship inventory: 65 NS (`VFX_NIAGARA_SHIP_NS_LIVE_2026-09-17.csv`) —
-  50 CLEAN / 15 N_A_RIBBON_MESH / **0 RISK**.
+- Coarse ship inventory: 65 NS (`VFX_NIAGARA_SHIP_NS_LIVE_2026-09-17.csv`).
 - DETAIL pin read (emitter, renderer, material, `subuv_present`, `subuv_live`,
-  SubImage): **authority** for Fix A.
+  SubImage): **authority** for Fix A, including post-Ctrl+S LeafPile.
 - Live NS→material edges: 106 rows (`VFX_NS_MATERIAL_EDGES_2026-09-17.csv`).
-  Edges lists LeafPile `subuv_live=False`; DETAIL lists `True`. DETAIL wins.
 - Canonical CSV merges those into 125 rows (65 NS + bound MI / masters /
   NiagaraFluids engine materials still referenced by the Water v10 systems).
+- Live risks table is empty (`VFX_FIXA_RISKS_LIVE_2026-09-17.csv`).
 
 ## 2. Summary counts
 
@@ -31,25 +33,26 @@ LeafPile was **not** fixed in-engine. RISK is documented only.
 | DETAIL emitter rows | **48** | pin-level SubUV / SubImage |
 | Live NS→MI edges | **106** | renderer bindings |
 | NS **CLEAN** | **45** | no live SubUV clock |
-| NS **CLEAN_FIXA** (`CLEAN_FIXA_SUBUV_OFF`) | **4** | BeatBurst, HybridSparkles, PetalCascade, MotionTrails |
-| NS **RISK_DOUBLE** | **1** | `NS_Melodia_LeafPileLoop` only |
+| NS **CLEAN_FIXA** | **5** | four Choral Sheep (SubUV off, SubImage 1×1) + LeafPile (SubUV off, **2×2 atlas kept**) |
+| NS **RISK_DOUBLE** | **0** | none remaining |
 | NS **N_A** (ribbon/mesh) | **15** | no sprite-atlas Fix A clock |
-| Coarse RISK | **0** | LeafPile only visible on SubImageSize + DETAIL `subuv_live` |
+| Live RISK rows | **0** | `VFX_FIXA_RISKS_LIVE_2026-09-17.csv` header only |
 | Unresolved owner aliases | **0** | HybridSparkles / PetalCascade / MotionTrails / FluidSplash / WoolMotes are real ChoralSheep NS |
 
-CSV `fix_a_status` values used: `CLEAN`, `CLEAN_FIXA`, `RISK_DOUBLE`, `N_A`,
-`UNKNOWN` (three unbound petal-loop masters with no ship renderer).
+CSV `fix_a_status` values used: `CLEAN`, `CLEAN_FIXA`, `N_A`,
+`UNKNOWN` (three unbound petal-loop masters with no ship renderer). `RISK_DOUBLE`
+is unused after the LeafPile apply.
 
 ## 3. Fix A headline (65 ship NS)
 
-### 3.1 RISK_DOUBLE — `NS_Melodia_LeafPileLoop` only
+### 3.1 CLEAN_FIXA — `NS_Melodia_LeafPileLoop` (applied live)
 
 `/Game/EnvSandbox/VFX/Systems/Sakura/NS_Melodia_LeafPileLoop`
 
 - Emitter **LeafPile**; sprite; material `/Game/Effects/Environments/Leaves/Materials/MI_Leaves`
-- `SubUVAnimation` **enabled = true**; `SubImageSize` **2×2**
-- Same double-scrub class BeatBurst had before Fix A
-- **Not fixed in this PR.** Document RISK only.
+- `SubUVAnimation` **enabled = false** (was true)
+- `SubImageSize` **2×2 kept** — leaf atlas variants via `MI_Leaves` SubUV Columns/Rows=2, **not** flipbook scrub. Do not claim 1×1.
+- Owner Ctrl+S; dirty packages = 0. Niagara binary is not in this docs PR.
 
 `NS_Uni_LeafDrift` also uses `MI_Leaves` and is **CLEAN** (no live SubUV).
 
@@ -79,6 +82,11 @@ Sibling sheep systems, live and CLEAN (not aliases):
 
 Live sheep MIs: BeatStar, WoolMote, PetalLoop, PetalPile, MotionRibbon,
 FluidGlobule, SplashBurst.
+
+`BP_ChoralSheep` Event Tick drives `User.BeatPulse` on all six sheep NS from
+`CompanionComponent.ResonanceIntensity`. Graph contract:
+[`VFX_BEATPULSE_BP_WIRE_2026-09-17.md`](VFX_BEATPULSE_BP_WIRE_2026-09-17.md)
+(compile UpToDate, 0 errors; Blueprint binary not in this PR).
 
 ### 3.3 ConstellationDraw
 
@@ -131,7 +139,7 @@ N_A ribbon/mesh: `NS_SDF_{PulsingGeometry,ParallaxPulse,ParallaxFish,Foliage_Vin
 `NS_Sakura{WaterPetals,PondShimmer,Petals,GroundPetals,CosmicAurora}`,
 `NS_Melodia_PetalEndlessLoop`, `NS_CosmicPetalOrbit`, `NS_EscherTorusKnot`.
 
-RISK_DOUBLE: `NS_Melodia_LeafPileLoop` only.
+CLEAN_FIXA (atlas 2×2 kept): `NS_Melodia_LeafPileLoop`.
 
 Two `NS_MagicTrail` paths are both in the 65 and both CLEAN. That duplication is
 live inventory, not a merge in this PR.
@@ -176,6 +184,6 @@ Candidates (`NS_*_AdvancedCandidate`, BattleBackdropPulse) stay out of the 65.
 
 ## 7. What this PR does not do
 
-- No `.uasset` edits.
-- No in-engine Fix A on LeafPile.
+- No `.uasset` edits (LeafPile Fix A and BeatPulse BP wire live in owner-saved
+  binaries; this PR documents the graph/pin contract only).
 - No second MCP surface, no Python load of skill Blueprints.

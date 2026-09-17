@@ -1,23 +1,26 @@
 # VFX Niagara graph — Material → MI → Niagara system (2026-09-17)
 
 LIVE_MONOLITH edges from `VFX_NS_MATERIAL_EDGES_2026-09-17.csv` and DETAIL pin
-read. Solid arrows are live renderer bindings. **RISK_DOUBLE** is LeafPile only.
-Choral Sheep CLEAN_FIXA nodes are the four systems with SubUV present-but-off.
+read. Solid arrows are live renderer bindings. **RISK_DOUBLE = 0.** LeafPile is
+**CLEAN_FIXA** (SubUV off; SubImage **2×2 atlas kept**). Choral Sheep CLEAN_FIXA
+nodes are the four systems with SubUV present-but-off and SubImage 1×1.
 
 Companion: [`VFX_NIAGARA_FULL_INVENTORY_2026-09-17.md`](VFX_NIAGARA_FULL_INVENTORY_2026-09-17.md),
 [`VFX_NIAGARA_INVENTORY_2026-09-17.csv`](VFX_NIAGARA_INVENTORY_2026-09-17.csv),
 [`VFX_FIXA_DETAIL_2026-09-17.csv`](VFX_FIXA_DETAIL_2026-09-17.csv),
-[`VFX_FIXA_RISKS_2026-09-17.md`](VFX_FIXA_RISKS_2026-09-17.md).
+[`VFX_FIXA_RISKS_2026-09-17.md`](VFX_FIXA_RISKS_2026-09-17.md),
+[`VFX_FIXA_LEAFPILE_2026-09-17.md`](VFX_FIXA_LEAFPILE_2026-09-17.md),
+[`VFX_BEATPULSE_BP_WIRE_2026-09-17.md`](VFX_BEATPULSE_BP_WIRE_2026-09-17.md).
 
 Scope: 65 ship NS under `/Game/Melodia` + `/Game/EnvSandbox`. Candidates / `_Archive`
-excluded. LeafPile was **not** fixed in-engine.
+excluded. LeafPile Fix A applied live (owner Ctrl+S).
 
 ```mermaid
 flowchart TB
-  subgraph RISK["RISK_DOUBLE — not fixed"]
+  subgraph FIXA_ATLAS["CLEAN_FIXA — LeafPile atlas 2x2 kept"]
     MILeaves[MI_Leaves]
     NSLeafPile[NS_Melodia_LeafPileLoop]
-    MILeaves -->|LeafPile SubUV on 2x2| NSLeafPile
+    MILeaves -->|LeafPile SubUV off 2x2 atlas| NSLeafPile
   end
 
   subgraph FIXA["CLEAN_FIXA_SUBUV_OFF — Choral Sheep"]
@@ -148,7 +151,7 @@ flowchart TB
 ```
 
 `NS_Uni_LeafDrift` shares `MI_Leaves` with LeafPile and is **CLEAN** (no live SubUV).
-The RISK arrow is LeafPile only.
+LeafPile is **CLEAN_FIXA** — SubUV off, 2×2 atlas kept. Not RISK.
 
 Two live `NS_MagicTrail` paths: `/Game/EnvSandbox/VFX/Systems/Magical/NS_MagicTrail`
 and `/Game/EnvSandbox/VFX/Systems/NS_MagicTrail`. Both CLEAN.
@@ -173,7 +176,7 @@ subgraph**, not aliases.
 ## Read rules
 
 - Solid arrows: live renderer material from the 2026-09-17 Monolith edges CSV.
-- DETAIL overrides edges when they disagree (`NS_Melodia_LeafPileLoop.subuv_live`).
 - `NS_ChoralSheep_BeatBurst` is **CLEAN_FIXA**, not RISK. Batch B 4×2 / SubUV-on is superseded.
 - `NS_ConstellationDraw` binds `M_StardustParticle_Glow`. Dream\* bus is not drawn here.
-- `NS_Melodia_LeafPileLoop` is the only **RISK_DOUBLE** node. Do not mark it FIXED.
+- `NS_Melodia_LeafPileLoop` is **CLEAN_FIXA**. SubImage **2×2 kept** (atlas). Do not claim 1×1.
+- BeatPulse: `BP_ChoralSheep` Tick → `User.BeatPulse` on the six sheep NS (binary not in this PR).
