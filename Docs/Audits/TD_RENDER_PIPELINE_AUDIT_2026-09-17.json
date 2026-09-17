@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-17",
+  "owner": "MelodiaTouchDesigner",
+  "canonical_checkout": "C:\\MelodiaTouchDesigner",
+  "active_toe_tip": [
+    "grandmaster_melodia7.3.toe",
+    "grandmaster_melodia7.toe"
+  ],
+  "active_toe_mtime_hint": "2026-09-16",
+  "frozen_do_not_edit": "C:\\EnvironmentPortfolio\\_TouchDesigner",
+  "key_folders": {
+    "renders": "C:\\MelodiaTouchDesigner\\td\\grandmaster_melodia\\renders",
+    "portfolio_hero_renders": "C:\\MelodiaTouchDesigner\\scratch\\portfolio_hero_renders",
+    "exports": "C:\\MelodiaTouchDesigner\\exports",
+    "assets_houdini_flip": "C:\\MelodiaTouchDesigner\\td\\grandmaster_melodia\\assets\\houdini_flip",
+    "assets_vfx_alphas": "C:\\MelodiaTouchDesigner\\td\\grandmaster_melodia\\assets\\vfx_alphas",
+    "lookdev_cube": "C:\\MelodiaTouchDesigner\\td\\grandmaster_melodia\\assets\\nikki_atlus_lookdev.cube"
+  },
+  "bridges": {
+    "spout": "TD_UE_or_peers_live_share",
+    "livelink_osc": 9876,
+    "embody_envoy": 9870,
+    "blender_mcp": 9877
+  },
+  "toe_tox_live_count": null,
+  "heroes_from_td_copied_this_session": 0,
+  "heroes_box_staged_non_td": 4,
+  "gaps": 6,
+  "recommended_next": [
+    "enumerate_toe_full_paths",
+    "CopyToBox_portfolio_hero_renders_and_promote_to_my-site_heroes",
+    "CopyToBox_grandmaster_renders_and_exports_QC",
+    "document_Spout_vs_offline_export",
+    "retarget_mcp_venv_notes_to_canon_not_frozen",
+    "apply_nikki_atlus_lookdev_cube_grade_consistently"
+  ]
+}

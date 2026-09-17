@@ -1,0 +1,72 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaWindHueReveal.ush — wind-driven directional hue reveal for the living
+// flower field (Muse brief P3, 2026-09-16).
+//
+// Field math (verbatim from the brief):
+//   D     = normalize(WindDirection.xy)          // guarded: near-zero -> wave 0
+//   phase = dot(AbsoluteWorldPosition.xy, D) * SpatialFrequency
+//   phase += Time * WindStrength * TravelSpeed
+//   phase += PerInstanceHueSeed
+//   Wave  = sin(phase) * 0.5 + 0.5
+//
+// The wave blends the natural albedo toward an ARTIST-AUTHORED tint — never a
+// full-spectrum rainbow cycle. Base appearance is exact at amount 0.
+//
+// Authoring: edited in JetBrains Rider with HLSL validation. Consumed by the
+// Custom HLSL node in MF_MelodiaWindHueReveal (material function, editor lane).
+// MPC values are passed as named Custom node inputs, never read from the
+// collection inside HLSL (UE 5.8 by-name global failure mode, proven 2026-08-18).
+// Mirrors MPC_Melodia_Palette WindDirX/WindDirY/WindStrength source lanes and
+// the MPC_Cymatics_Driver Cymatic_WindDirX/Y/Strength derived lanes.
+
+#pragma once
+
+// ============================================================================
+// Wind-field parameters (mirror of the canonical wind contract, brief P4)
+// Pass the DERIVED Cymatic_* lanes for material response; the Cymatics writer
+// subsystem remains the sole writer to MPC_Cymatics_Driver.
+// ============================================================================
+
+struct FMelodiaWindField
+{
+    float2 WindDir;      // normalized XY direction (material feeds Cymatic_WindDirX/Y)
+    float  WindStrength; // magnitude (material feeds Cymatic_WindStrength)
+    float  TimeSeconds;  // Time node (material side)
+    float  SpatialFreq;  // hue spatial scale (artist control)
+    float  TravelSpeed;  // hue travel speed (artist control)
+};
+
+#define MEL_WIND_EPS_SQ 1e-6
+
+// ============================================================================
+// MelodiaWindWave — directional travelling wave, 0..1. Returns 0 when the wind
+// vector is near-zero so fields rest neutral instead of NaN-snapping.
+// worldXZ: AbsoluteWorldPosition.xy. hueSeed: per-instance (hue_seed metadata).
+// ============================================================================
+
+float MelodiaWindWave(float2 worldXZ, FMelodiaWindField Wind, float hueSeed)
+{
+    float dirLenSq = dot(Wind.WindDir, Wind.WindDir);
+    if (dirLenSq < MEL_WIND_EPS_SQ || Wind.WindStrength <= 0.0)
+    {
+        return 0.0;
+    }
+    float2 D = Wind.WindDir * rsqrt(dirLenSq);
+    float phase = dot(worldXZ, D) * Wind.SpatialFreq;
+    phase += Wind.TimeSeconds * Wind.WindStrength * Wind.TravelSpeed;
+    phase += hueSeed;
+    return sin(phase) * 0.5 + 0.5;
+}
+
+// ============================================================================
+// MelodiaWindHueTint — blend natural albedo toward the artist tint.
+// amount = Hue Reveal Amount * per-family wind_response (instance metadata).
+// At amount 0 the albedo passes through bit-exact.
+// ============================================================================
+
+float3 MelodiaWindHueTint(float3 albedo, float wave, float3 tintColor, float amount)
+{
+    float t = saturate(wave * saturate(amount));
+    return lerp(albedo, tintColor, t);
+}
