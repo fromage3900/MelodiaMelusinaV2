@@ -1,15 +1,41 @@
 """
 Generate Melodia Design Tokens Data Asset from Figma tokens.json
-Reads melodia-design-system/tokens.json and outputs UE-compatible data structure
+Reads melodia-design-system/tokens.json and outputs UE-compatible data structure.
+
+GameColors / KeybindColors are resolved from the same flatten path as Colors
+(tokens.json primitives + semantics). Do not hardcode leftover Figma / Nikki hexes.
 """
 
 import json
-import os
 from pathlib import Path
 
-# Paths
-TOKENS_PATH = r"c:\EnvironmentPortfolio\BS_GodFile\melodia-design-system\tokens.json"
-OUTPUT_PATH = r"c:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\melodia_design_tokens_ue.json"
+REPO_ROOT = Path(__file__).resolve().parents[2]
+TOKENS_PATH = REPO_ROOT / "melodia-design-system" / "tokens.json"
+OUTPUT_PATH = REPO_ROOT / "Saved" / "Audit" / "melodia_design_tokens_ue.json"
+
+# Role → SSOT flatten key (same keys as Colors). Optional alpha keeps existing
+# plate/border translucency but RGB always comes from tokens.json.
+GAME_COLOR_ROLES = {
+    "VoidPlate": {"token": "primitives.plum.900"},
+    "ParchmentField": {"token": "primitives.plum.700", "alpha": 0.92},
+    "ParchmentFill_Start": {"token": "primitives.gold.100"},
+    "ParchmentFill_End": {"token": "primitives.gold.300"},
+    "GoldBorder": {"token": "primitives.gold.500", "alpha": 0.8},
+    "GoldText": {"token": "primitives.gold.300"},
+    "IriCyan": {"token": "primitives.astral.300"},
+    "PlumButton": {"token": "primitives.plum.600", "alpha": 0.95},
+    "Ink": {"token": "primitives.plum.800"},
+    "CardGold": {"token": "primitives.gold.300", "alpha": 0.95},
+}
+
+KEYBIND_COLOR_ROLES = {
+    "Interact": {"token": "primitives.sakura.500"},
+    "Attack": {"token": "primitives.gold.500"},
+    "Skill": {"token": "primitives.lavender.500"},
+    "Ultimate": {"token": "primitives.iris.500"},
+    "Menu": {"token": "primitives.gold.100"},
+    "Back": {"token": "primitives.plum.800"},
+}
 
 def resolve_reference(value, tokens):
     """Resolve token references like {primitives.ivory.100}"""
@@ -32,24 +58,32 @@ def resolve_reference(value, tokens):
         return current
     return value
 
-def flatten_tokens(tokens, prefix=""):
-    """Flatten nested token structure to dot-notation keys"""
+def flatten_tokens(tokens, prefix="", root=None):
+    """Flatten nested token structure to dot-notation keys.
+
+    Always resolve `{primitives.*}` against the root document so semantic
+    sets emit hex, not leftover reference strings.
+    """
+    if root is None:
+        root = tokens
     flat = {}
     
     for key, value in tokens.items():
+        if isinstance(key, str) and key.startswith("$"):
+            continue
         full_key = f"{prefix}.{key}" if prefix else key
         
         if isinstance(value, dict):
             # Check if this is a token with value/type
             if "value" in value and "type" in value:
                 flat[full_key] = {
-                    "value": resolve_reference(value["value"], tokens),
+                    "value": resolve_reference(value["value"], root),
                     "type": value["type"],
                     "description": value.get("description", "")
                 }
             else:
                 # Recurse into nested structure
-                flat.update(flatten_tokens(value, full_key))
+                flat.update(flatten_tokens(value, full_key, root))
     
     return flat
 
@@ -106,6 +140,48 @@ def generate_ue_structure(flat_tokens):
     
     return ue_tokens
 
+
+def require_color(flat_tokens, token_key):
+    """Return a resolved SSOT color hex. Raises if the flatten path is missing."""
+    token = flat_tokens.get(token_key)
+    if not token or token.get("type") != "color":
+        raise KeyError(f"SSOT color token missing from flatten path: {token_key}")
+    value = token.get("value")
+    if not isinstance(value, str) or not value:
+        raise KeyError(f"SSOT color token has no resolved value: {token_key}")
+    return value
+
+
+def hex_to_rgb(hex_value):
+    hex_string = hex_value.lstrip("#")
+    if len(hex_string) != 6:
+        raise ValueError(f"Expected 6-digit SSOT hex, got {hex_value!r}")
+    return int(hex_string[0:2], 16), int(hex_string[2:4], 16), int(hex_string[4:6], 16)
+
+
+def emit_role_color(flat_tokens, spec):
+    """Resolve a role to an SSOT hex, optionally composing the role's existing alpha."""
+    hex_value = require_color(flat_tokens, spec["token"])
+    alpha = spec.get("alpha")
+    if alpha is None:
+        return hex_value
+    r, g, b = hex_to_rgb(hex_value)
+    return f"rgba({r},{g},{b},{alpha})"
+
+
+def map_role_colors(flat_tokens, roles):
+    return {role: emit_role_color(flat_tokens, spec) for role, spec in roles.items()}
+
+
+def print_role_mappings(label, flat_tokens, roles, emitted):
+    print(f"  {label}:")
+    for role, spec in roles.items():
+        token_key = spec["token"]
+        hex_value = require_color(flat_tokens, token_key)
+        extra = f"  alpha={spec['alpha']}" if "alpha" in spec else ""
+        print(f"    {role}: {emitted[role]}  <- {token_key} {hex_value}{extra}")
+
+
 def main():
     # Load tokens
     with open(TOKENS_PATH, 'r', encoding='utf-8') as f:
@@ -117,29 +193,10 @@ def main():
     # Generate UE structure
     ue_tokens = generate_ue_structure(flat_tokens)
     
-    # Add game-specific color mappings (from Figma wiring plan)
-    ue_tokens["GameColors"] = {
-        "VoidPlate": "#0b0a13",
-        "ParchmentField": "rgba(56,41,59,0.92)",
-        "ParchmentFill_Start": "#F2E6CF",
-        "ParchmentFill_End": "#E3D3AD",
-        "GoldBorder": "rgba(235,184,87,0.8)",
-        "GoldText": "#F2D69E",
-        "IriCyan": "#78EBFF",
-        "PlumButton": "rgba(77,46,61,0.95)",
-        "Ink": "#291A21",
-        "CardGold": "rgba(232,199,140,0.95)"
-    }
-    
-    # Add JRPG keybind colors
-    ue_tokens["KeybindColors"] = {
-        "Interact": "#E8A9A1",  # Rose for F
-        "Attack": "#D9A566",   # Amber for J
-        "Skill": "#B6A6D9",    # Lavender for K
-        "Ultimate": "#8FC9BD", # Seafoam for L
-        "Menu": "#F2E6CF",     # Parchment for E
-        "Back": "#3B2A22"      # Ink for ESC
-    }
+    # Game / keybind roles resolve from SSOT flatten keys (same path as Colors).
+    # The old "Figma wiring plan" literals (Nikki gold/cyan/seafoam) are gone.
+    ue_tokens["GameColors"] = map_role_colors(flat_tokens, GAME_COLOR_ROLES)
+    ue_tokens["KeybindColors"] = map_role_colors(flat_tokens, KEYBIND_COLOR_ROLES)
     
     # Add sparkle density tiers (from Figma wiring plan)
     ue_tokens["SparkleTiers"] = {
@@ -165,6 +222,8 @@ def main():
     print(f"  - Game Colors: {len(ue_tokens['GameColors'])}")
     print(f"  - Keybind Colors: {len(ue_tokens['KeybindColors'])}")
     print(f"  - Sparkle Tiers: {len(ue_tokens['SparkleTiers'])}")
+    print_role_mappings("GameColors", flat_tokens, GAME_COLOR_ROLES, ue_tokens["GameColors"])
+    print_role_mappings("KeybindColors", flat_tokens, KEYBIND_COLOR_ROLES, ue_tokens["KeybindColors"])
 
 if __name__ == "__main__":
     main()
