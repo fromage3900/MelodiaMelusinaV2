@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-16 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-17 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -232,7 +232,9 @@ control inclusion requires the owner's scoped `.gitignore` decision before landi
   `Retarget/SK_MrSheep` is the retarget source at ~100× scale; never place it in a level.
 - **VFX / materials still owed:** Melusina sprite sizes 0.03–0.10 look metre-scale (owner look call);
   sort/shadow sweep on the remaining `VFX/Systems/**` sprite systems; golden-run spec names
-  `/Game/L_Melodia_Dreamstate`, which does not exist.
+  `/Game/L_Melodia_Dreamstate`, which does not exist. Flipbook double-scrub (Fix A) inventory is
+  [`Docs/VFX/VFX_FIXA_RISKS_2026-09-17.md`](Docs/VFX/VFX_FIXA_RISKS_2026-09-17.md) — BeatBurst last
+  written pin state is Niagara SubUV on; live confirm still owed.
 - **Eyewear PRs #205 / #194** each touch protected `.gitignore` and add 16 files under `Saved/`; the
   −1,835 lines are a `Tools/registry_baseline.json` regeneration. Owner review before merge.
 - **`cleanup/pbr-twin-landing-2026-09-10` resurrects the docs collapse.** Its snapshot `673a5ddf`
@@ -349,6 +351,7 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 | TouchDesigner / AE (private) | `fromage3900/MelodiaTouchDesigner`, `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` |
 | AI token treasury (revenue sidecar) | my-site `tools/fromage-webgl-kit/TREASURY_LEDGER.json` — 0 entries, first gate 0/5; never displaces the capstone |
 | Accessory / WebGL website lane (isolated) | [`Website/fromage-webgl-kit/`](Website/fromage-webgl-kit/) — floral atelier + commerce embed, DCC `KHR_materials_variants` GLBs. Not the recruiter site. Cloud cannot push `my-site` (403). |
+| Niagara / VFX inventory + Fix A audit (docs, 2026-09-17) | [`Docs/VFX/`](Docs/VFX/README.md) — full inventory, mermaid graph, CSV, Fix A risks. Disk+docs only; live SubUV pins `LIVE_MONOLITH_PENDING` |
 | `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
 
 **The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.

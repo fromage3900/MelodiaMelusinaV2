@@ -1,6 +1,7 @@
 # Melodia VFX — Niagara Asset Manifest & Unification Record (2026-08-15)
 
 **Status:** LIVE — canonical snapshot after the 2026-08-15 unification session.
+**Later census:** [`Docs/VFX/VFX_NIAGARA_FULL_INVENTORY_2026-09-17.md`](VFX/VFX_NIAGARA_FULL_INVENTORY_2026-09-17.md) (git + docs; not a live pin read).
 **Engine:** UE 5.8 · **Branch:** `feature/repo-lockin-20260813`
 **Scope:** unify, organize, and expand the project's Niagara effects to triple-AAA;
 finalize the material petal/leaf loops and flipbook family.

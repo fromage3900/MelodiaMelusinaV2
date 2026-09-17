@@ -1,6 +1,8 @@
 # Melodia Niagara Ecosystem Spec — Flipbook, Params & Material Loops (2026-09-14)
 
 **Type:** integration spec + work plan (not a status doc).
+**Inventory (2026-09-17):** [`VFX_NIAGARA_FULL_INVENTORY_2026-09-17.md`](VFX_NIAGARA_FULL_INVENTORY_2026-09-17.md)
+· [`VFX_FIXA_RISKS_2026-09-17.md`](VFX_FIXA_RISKS_2026-09-17.md) · [`README.md`](README.md).
 **Lens:** Infinity Nikki — abilities read at silhouette distance, cloth and
 sparkle hold up nose-close, photo mode is a pillar, every effect answers the music.
 **Evidence basis:** disk census + live-editor compile reads 2026-09-14; flipbook
