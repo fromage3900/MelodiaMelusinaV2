@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-08",
+  "as_of": "2026-09-18",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
@@ -668,5 +668,42 @@
       "verified": "MI_AtlasLeafA renders foliage; SW_Dress_P01 renders solid, not clipped; MI_SeaAbove_Cloth_Banner/_Shroud had bClothWind_Active switched on so they did not silently lose their wind WPO.",
       "residual": "M_Master_Toon_Universal_Alpha is orphaned but left on disk - deleting a .uasset is owner-ask-first. Nothing should be reparented to it."
     }
+  },
+  "agent_work_log_2026-09-18_slime_tutorial": {
+    "commit": "5d2685d4",
+    "branch": "cleanup/pbr-twin-landing-2026-09-10",
+    "scope": "Melody Slime first-tide tutorial chain authored end to end through existing owner seams; PIE proof still owed.",
+    "deliverables": {
+      "skill_data": "DT_MelodySlime_Skills live 24->31 rows (importer expected_count + UE reflection-name fix); offline contract updated 24->31, green.",
+      "tutorial_song": "DA_MelodySlimeTutorialSongs 'Tide Wave': Chart_Tide_Wave transcribed 1:1 (12 eighth-notes, lanes=pitch mod 4, 128 BPM). Dry-run 0 errors, saved.",
+      "tutorial_skill_da": "DA_TideWave (tide_wave, Vigorous/Damage, 2+6+1 beats, 0 SP, teal lane) -> tutorial song asset. 20/20 props validated, saved, SkillId readback confirmed.",
+      "tutorial_stock_skill": "BP_MelusinaTidecall duplicated from PetalCadence (inherits proven magnitudes); validates 0 errors. Display text still reads as PetalCadence (name lives in shared parent chain; renaming touches 5 skills, deferred to playtest judgment).",
+      "skill_mapping": "StockSkillRhythmIds 5->6 entries (BP_MelusinaTidecall_C -> tide_wave); old_value readback proved all 5 existing mappings preserved byte-for-byte. Saved.",
+      "registration": "No GameInstance graph edit needed: subsystem Initialize auto-discovers all rhythm DAs under /Game/MelodiaIntegration/Config, so tide_wave resolves via find_skill on next boot. (Side finding: the 8 BP RegisterSkill nodes all carry unconnected InSkill pins; the registry scan does the real work.)",
+      "tutorial_quill": "MelodiaQuillSlimeTutorial.qsc, 30 compiled statements, battle/quest/reward/flag notifies verified in compiled asset, saved.",
+      "allowlist": "EncounterIds +melodia_slime_tutorial (3), QuestIds +quest.slime_tutorial.first_tide (12), NarrativeFlagIds +flag.slime_tutorial.completed (23), DialogueRewardIds +reward.slime_tutorial.tidecall (14). Saved.",
+      "voice": "MorningIntro recompiled (23 stmts): restored mel_perch_01 cue (source/compiled drift recovered) + new Departure battle_entry beat. mel_battle_entry/mel_dream_01/mel_intro_greeting WAVs re-registered as SoundWaves (tracked files the registry had lost).",
+      "roster": "Tutorial battle spawn struct verified {chance 1.0, lvl 1} (no write needed); fleeChance 0->100 applied, read back, saved.",
+      "material": "MI_MelodySlime_Body on M_Master_Toon_Character (Tide tint, canonical Chladni, BeatAccent 1.5, 10 overrides, 16 sheep overrides cleared), saved. Unit still wears mannequin; visual swap deferred to playtest judgment."
+    },
+    "test_results_2026-09-18": {
+      "test_qsc_allowlist_contract": "PASS 4/4 (covers new QSC + 4 new IDs).",
+      "test_melody_slime_datatables_contract": "PASS.",
+      "echo_static_gates": "FAIL, pre-existing only: graph_reachability 46 dead-island violations (PEN tools, probes, old RhythmHUD/MusicManager, UI widgets), bp_sweep dupes, verify_baseline material drift. Zero violations in tutorial-touched assets. Recorded via record_gate.py static_gates fail with note.",
+      "bp_live_path": "ok. ui_lint: ok.",
+      "wiring_contract_by_inspection": "HaveCharts assertions hold for tide_wave (SkillId set, PatternAsset resolves, BPM 128, ActiveBeats 6); mapping test holds (key _C suffix, value authored). Live automation NOT run: headless UnrealEditor-Cmd is a second editor instance, forbidden while the editor holds dirty work; Monolith run_automation_tests crashes on latent tests per P0 skill notes."
+    },
+    "not_done": [
+      "Tag placed battle actor melodia_slime_tutorial (map edit; world was unloaded mid-session with 242 foreign dirty packages, untouched).",
+      "Morning QSC starter/trigger for the tutorial script (no story actors found in Morning; opening-flow hook is C++/BP flow work).",
+      "Real-input PIE proof: overlap -> Tidecall -> Tide Wave phrase -> grade -> damage -> typed result -> exactly-once resume.",
+      "Tidecall display text, slime visual swap, packaged proof."
+    ],
+    "conventions_learned": [
+      "set_cdo_property on TMap REPLACES the whole map: always send the full entry set (proved by StockSkillRhythmIds old_value readback).",
+      "Python UE API cannot see inside UDS-keyed TMaps; Monolith get_cdo_properties/set_cdo_property with dry_run+strict is the safe path (enemyList spawn struct verified, fleeChance applied).",
+      "Timed-out Monolith calls mean a modal save loop or a heavy query on the game thread: check Rider logs for MODAL_OPEN, wait, never kill.",
+      "New .uasset files under Content/* gitignore need git add -f (one-time, documented); the 4 slime assets were force-added so the committed chain resolves."
+    ]
   }
 }
