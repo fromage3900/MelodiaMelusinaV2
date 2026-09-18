@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""Offline tests for Tools/world_compiler.py (rung 1 of the compiled-world evidence ladder).
+
+Run:  python Tools/test_world_compiler.py        (plain runner, no pytest needed)
+      python -m pytest Tools/test_world_compiler.py -q
+"""
+from __future__ import annotations
+
+import csv
+import json
+import math
+import sys
+import tempfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "Tools"))
+
+import world_compiler as wc  # noqa: E402
+
+RECIPE = ROOT / "recipes" / "morning_rainbow_bloom.v1.json"
+
+
+def _compile(tmp: Path, recipe: Path = RECIPE) -> tuple[dict, Path]:
+    manifest = wc.compile_recipe(recipe, out_root=tmp, write_envelope=False)
+    return manifest, Path(manifest["out_dir"])
+
+
+def _rows(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
+def test_recipe_validates():
+    recipe, _ = wc.load_recipe(RECIPE)
+    assert wc.validate_recipe(recipe) == []
+
+
+def test_recipe_rejects_bad_band_count():
+    recipe, _ = wc.load_recipe(RECIPE)
+    recipe["field"]["band_count"] = 6
+    errors = wc.validate_recipe(recipe)
+    assert any("band_count" in e for e in errors)
+
+
+def test_recipe_rejects_workstation_path():
+    recipe, _ = wc.load_recipe(RECIPE)
+    recipe["muse"]["brief"] = "C:/Users/someone/brief.md"
+    assert any("workstation path" in e for e in wc.validate_recipe(recipe))
+
+
+def test_bundle_matches_schema():
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        disk = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
+        try:
+            import jsonschema  # type: ignore
+
+            schema = json.loads((ROOT / "specs" / "schemas" / "world_compiler_bundle.v1.schema.json").read_text(encoding="utf-8"))
+            jsonschema.Draft202012Validator(schema).validate(disk)
+        except ImportError:
+            for key in ("schema", "compile_id", "stages", "bands", "tables", "counts", "ue_lane"):
+                assert key in disk
+        assert disk["status"] in ("PASS", "EXPECTED_FAIL")
+        for name in ("points.csv", "fx_anchors.csv", "dressing_table.json", "signal_bindings.json", "identity.json", "manifest.json"):
+            assert (out / name).exists(), name
+
+
+def test_deterministic_two_runs_identical():
+    with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+        ma, oa = _compile(Path(a))
+        mb, ob = _compile(Path(b))
+        assert ma["manifest_sha256"] == mb["manifest_sha256"]
+        for name in ("points.csv", "fx_anchors.csv", "dressing_table.json", "signal_bindings.json", "identity.json"):
+            assert (oa / name).read_bytes() == (ob / name).read_bytes(), name
+
+
+def test_seed_changes_output():
+    recipe, _ = wc.load_recipe(RECIPE)
+    recipe["world_seed"] = 3901
+    with tempfile.TemporaryDirectory() as tmp:
+        alt = Path(tmp) / "alt.json"
+        alt.write_text(json.dumps(recipe), encoding="utf-8")
+        m1, o1 = _compile(Path(tmp) / "a", alt)
+        m2, o2 = _compile(Path(tmp) / "b")
+        assert (o1 / "points.csv").read_bytes() != (o2 / "points.csv").read_bytes()
+
+
+def test_band_counts_equal_manifest_and_columns_fixed():
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        rows = _rows(out / "points.csv")
+        assert list(rows[0].keys()) == wc.POINT_COLUMNS
+        per_band = {}
+        for r in rows:
+            per_band[int(r["band"])] = per_band.get(int(r["band"]), 0) + 1
+        for band in manifest["bands"]:
+            assert per_band.get(band["band"], 0) == band["point_count"], band
+            assert band["point_count"] > 0
+        assert manifest["counts"]["points_total"] == len(rows)
+        assert manifest["tables"]["points.csv"]["rows"] == len(rows)
+
+
+def test_points_lie_in_their_band_ring():
+    recipe, _ = wc.load_recipe(RECIPE)
+    ax, ay, _ = recipe["place"]["anchor_cm"]
+    jitter = recipe["field"]["radial_jitter_cm"]
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        rings = {b["band"]: (b["inner_radius_cm"], b["outer_radius_cm"]) for b in manifest["bands"]}
+        for r in _rows(out / "points.csv"):
+            d = math.hypot(float(r["x"]) - ax, float(r["y"]) - ay)
+            lo, hi = rings[int(r["band"])]
+            assert lo - jitter - 0.01 <= d <= hi + jitter + 0.01, (r["point_id"], d, lo, hi)
+
+
+def test_clearance_masks_respected_for_points_and_anchors():
+    recipe, _ = wc.load_recipe(RECIPE)
+    clearance = wc.Clearance.from_recipe(recipe)
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        for r in _rows(out / "points.csv"):
+            assert clearance.blocked(float(r["x"]), float(r["y"])) is None, r["point_id"]
+        for r in _rows(out / "fx_anchors.csv"):
+            assert clearance.blocked(float(r["x"]), float(r["y"])) is None, r["anchor_id"]
+        assert manifest["counts"]["points_removed_by_clearance"] > 0  # the wake path crosses the field
+
+
+def test_attribute_ranges():
+    recipe, _ = wc.load_recipe(RECIPE)
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        for r in _rows(out / "points.csv"):
+            for col in ("hue_seed", "wind_phase", "wind_response", "sparkle_response", "hero_weight", "Resonance"):
+                v = float(r[col])
+                assert 0.0 <= v <= 1.0, (col, v)
+            assert 0.0 <= float(r["yaw"]) < 360.0
+            s_lo, s_hi = recipe["field"]["scale_range"]
+            assert s_lo * 0.85 <= float(r["scale"]) <= s_hi * 1.0 + 1e-6
+            assert int(r["EcologyClass"]) in (0, 1, 2)
+            assert int(r["MaterialVariant"]) == int(r["band"])
+            species = {s["species_id"]: s for s in recipe["species"]}[r["species_id"]]
+            meshes = species.get("meshes") or [species["mesh"]]
+            assert r["mesh"].split(".")[0] in meshes  # mesh follows variant_id
+            assert int(r["variant_id"]) < int(species.get("variants", len(meshes)))
+            # no two columns may differ only by case (FName is case-insensitive in UE)
+            lowered = [c.lower() for c in wc.POINT_COLUMNS]
+            assert len(set(lowered)) == len(lowered)
+
+
+def test_fx_anchor_contract():
+    recipe, _ = wc.load_recipe(RECIPE)
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        rows = _rows(out / "fx_anchors.csv")
+        assert list(rows[0].keys()) == wc.FX_COLUMNS
+        kinds = {}
+        for r in rows:
+            kinds[r["fx_kind"]] = kinds.get(r["fx_kind"], 0) + 1
+            assert 300 <= float(r["bounds_cm"]) <= 500
+            assert r["system"].startswith("/Game/Melodia/VFX/NS_Morning_")
+            if r["fx_kind"] in ("petal", "pollen"):
+                assert r["material_instance"].endswith(f"_B{r['band']}")
+        bands = recipe["field"]["band_count"]
+        assert kinds["petal"] == bands * recipe["fx"]["anchors_per_band"]["petal"]
+        assert kinds["pollen"] == bands * recipe["fx"]["anchors_per_band"]["pollen"]
+        assert kinds["mist"] == recipe["fx"]["mist_anchors"]
+        assert kinds["windfront"] == recipe["fx"]["windfront_anchors"]
+        assert 10 <= len(rows) <= 20
+
+
+def test_signal_stage_reports_wind_lanes():
+    recipe, _ = wc.load_recipe(RECIPE)
+    bindings, stage = wc.stage_signal(recipe)
+    lanes = {c["lane"] for c in bindings["lane_checks"]}
+    assert {"Cymatic_WindDirX", "Cymatic_WindDirY", "Cymatic_WindStrength", "WindDirX", "WindDirY", "WindStrength"} <= lanes
+    assert stage["status"] in ("PASS", "SKIPPED")  # SKIPPED only when the MPC uasset is an LFS pointer
+
+
+def test_no_unreal_import_in_compiler():
+    import ast
+
+    tree = ast.parse((ROOT / "Tools" / "world_compiler.py").read_text(encoding="utf-8"))
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            assert all(a.name.split(".")[0] != "unreal" for a in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            assert (node.module or "").split(".")[0] != "unreal"
+
+
+def test_retired_rainbow_scripts_are_gone():
+    leftovers = sorted(p.name for p in (ROOT / "Content" / "Python").glob("rainbow_*.py"))
+    assert leftovers == [], f"retire into Tools/world_compiler.py: {leftovers}"
+
+
+if __name__ == "__main__":
+    failures = 0
+    for name, fn in sorted(globals().items()):
+        if name.startswith("test_") and callable(fn):
+            try:
+                fn()
+                print(f"PASS {name}")
+            except AssertionError as exc:
+                failures += 1
+                print(f"FAIL {name}: {exc}")
+            except Exception as exc:  # pragma: no cover
+                failures += 1
+                print(f"ERROR {name}: {type(exc).__name__}: {exc}")
+    print(f"\n{'ALL PASS' if not failures else str(failures) + ' FAILED'}")
+    raise SystemExit(1 if failures else 0)

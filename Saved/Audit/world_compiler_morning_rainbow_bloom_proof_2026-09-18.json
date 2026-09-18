@@ -1,0 +1,537 @@
+{
+  "schema": "melodia.world_compiler_proof.v1",
+  "recorded_at_utc": "2026-09-18T07:12:56.247002+00:00",
+  "compile_id": "morning_rainbow_bloom_3900",
+  "manifest_sha256_prefix": null,
+  "bundle_dir": "Saved/WorldCompiler/morning_rainbow_bloom_3900",
+  "steps": {
+    "preflight": {
+      "level_open_matches_recipe": true,
+      "level_open": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "template_graph_exists": true,
+      "row_struct_exists": true,
+      "data_table_exists": true,
+      "parent_master_exists": true,
+      "species_mesh_exists": {
+        "speedtree_meadow": true
+      },
+      "band_mi_exists": {
+        "B0_Red": true,
+        "B1_Orange": true,
+        "B2_Gold": true,
+        "B3_Green": true,
+        "B4_Blue": true,
+        "B5_Indigo": true,
+        "B6_Violet": true
+      },
+      "husks_present": [],
+      "tagged_actors_present": 3,
+      "husk_assets_present": [],
+      "ok_to_proceed": true,
+      "blocked_on_template": false,
+      "step": "preflight",
+      "recorded_at_utc": "2026-09-18T07:12:57.959837Z",
+      "monolith_success": true
+    },
+    "cleanup": {
+      "destroyed_actors": [
+        "WC_morning_rainbow_bloom_Field",
+        "WC_morning_rainbow_bloom_Field",
+        "WC_morning_rainbow_bloom_Field"
+      ],
+      "deleted_assets": [],
+      "step": "cleanup",
+      "recorded_at_utc": "2026-09-18T07:12:59.460148Z",
+      "monolith_success": true
+    },
+    "materials": {
+      "parent": "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1",
+      "band_mis": [],
+      "active_lane": "wind",
+      "wind_lane": {
+        "parent": "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1",
+        "band_mis": [
+          {
+            "band": 0,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B0_Red",
+            "existed": true,
+            "saved": true
+          },
+          {
+            "band": 1,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B1_Orange",
+            "existed": true,
+            "saved": true
+          },
+          {
+            "band": 2,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B2_Gold",
+            "existed": true,
+            "saved": true
+          },
+          {
+            "band": 3,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B3_Green",
+            "existed": true,
+            "saved": true
+          },
+          {
+            "band": 4,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B4_Blue",
+            "existed": true,
+            "saved": true
+          },
+          {
+            "band": 5,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B5_Indigo",
+            "existed": true,
+            "saved": true
+          },
+          {
+            "band": 6,
+            "mi": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B6_Violet",
+            "existed": true,
+            "saved": true
+          }
+        ],
+        "binds": {
+          "material_function": "MF_MelodiaWindHueReveal (called by the parent)",
+          "reads": [
+            "MPC_Melodia_Palette.WindDirX",
+            "MPC_Melodia_Palette.WindDirY",
+            "MPC_Melodia_Palette.WindStrength"
+          ]
+        }
+      },
+      "skipped_static_kit": true,
+      "step": "materials",
+      "recorded_at_utc": "2026-09-18T07:13:06.097552Z",
+      "monolith_success": true
+    },
+    "table": {
+      "data_table": "/Game/Melodia/WorldCompiler/DT_morning_rainbow_bloom_Points",
+      "created": false,
+      "fill_ok": true,
+      "rows_in_csv": 1075,
+      "rows_in_table": 1075,
+      "columns": [
+        "point_id",
+        "x",
+        "y",
+        "z",
+        "yaw",
+        "scale",
+        "species_id",
+        "variant_id",
+        "band",
+        "mode_n",
+        "mode_m",
+        "cluster_id",
+        "hue_seed",
+        "wind_phase",
+        "wind_response",
+        "sparkle_response",
+        "hero_weight",
+        "height_class",
+        "density_class",
+        "Resonance",
+        "EcologyClass",
+        "MaterialVariant",
+        "ScaleBias",
+        "mesh",
+        "material",
+        "StemMaterial",
+        "Position",
+        "Rotation",
+        "Scale3D"
+      ],
+      "missing_columns": [],
+      "saved": true,
+      "match": true,
+      "struct_drift": false,
+      "step": "table",
+      "recorded_at_utc": "2026-09-18T07:13:06.819441Z",
+      "monolith_success": true
+    },
+    "volume": {
+      "volume": "WC_morning_rainbow_bloom_Field",
+      "location": [
+        -2297.7891296870193,
+        1442.0292591384089,
+        65.85523809964161
+      ],
+      "scale": [
+        21.078905736154983,
+        18.06999066189564,
+        13.598012334919371
+      ],
+      "walkable_z_cm": [
+        -900.0,
+        1400.0
+      ],
+      "graph": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_PointField.PCG_WorldCompiler_PointField",
+      "tag": "WorldCompiler.morning_rainbow_bloom_3900",
+      "step": "volume",
+      "recorded_at_utc": "2026-09-18T07:13:06.932178Z",
+      "monolith_success": true
+    },
+    "generate": {
+      "volume": "WC_morning_rainbow_bloom_Field",
+      "generate_requested": true,
+      "cache_flushed": true,
+      "location": [
+        -2297.7891296870193,
+        1442.0292591384089,
+        65.85523809964161
+      ],
+      "scale": [
+        21.078905736154983,
+        18.06999066189564,
+        13.598012334919371
+      ],
+      "step": "generate",
+      "recorded_at_utc": "2026-09-18T07:13:07.047714Z",
+      "monolith_success": true
+    },
+    "count_after_generate": {
+      "generated": true,
+      "ism_components": 14,
+      "instances_total": 1065,
+      "per_band": {
+        "0": 92,
+        "1": 135,
+        "2": 163,
+        "3": 190,
+        "4": 301,
+        "5": 125,
+        "6": 59
+      },
+      "expected_per_band": {
+        "0": 92,
+        "1": 135,
+        "2": 163,
+        "3": 194,
+        "4": 304,
+        "5": 125,
+        "6": 62
+      },
+      "expected_total": 1075,
+      "tolerance": 0.95,
+      "per_band_ok": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true
+      },
+      "match": true,
+      "step": "count",
+      "recorded_at_utc": "2026-09-18T07:13:11.198507Z",
+      "monolith_success": true,
+      "poll_history": [
+        {
+          "t": 0.1,
+          "generated": true,
+          "total": 1065
+        },
+        {
+          "t": 2.1,
+          "generated": true,
+          "total": 1065
+        },
+        {
+          "t": 4.2,
+          "generated": true,
+          "total": 1065
+        }
+      ]
+    },
+    "save": {
+      "level_saved": true,
+      "world_compiler_folder_saved": true,
+      "folder": "/Game/Melodia/WorldCompiler",
+      "step": "save",
+      "recorded_at_utc": "2026-09-18T07:13:12.780583Z",
+      "monolith_success": true
+    },
+    "lookdev_cameras": {
+      "hidden": [
+        "WC_EscherWalk_mst_01_02_00",
+        "WC_EscherWalk_mst_03_10_00",
+        "WC_EscherWalk_spur_pond_15",
+        "WC_EscherWalk_spur_pond_12",
+        "WC_EscherWalk_spur_pond_10",
+        "WC_EscherWalk_mst_03_10_02",
+        "WC_EscherWalk_mst_04_09_08",
+        "WC_EscherWalk_mst_03_08_03",
+        "WC_EscherWalk_mst_04_09_06",
+        "WC_EscherWalk_spur_westbank_00",
+        "WC_EscherWalk_spur_pond_01",
+        "WC_EscherWalk_mst_04_09_01",
+        "WC_EscherWalk_spur_pond_08",
+        "WC_EscherWalk_mst_04_09_03",
+        "WC_EscherWalk_spur_pond_09",
+        "WC_EscherWalk_mst_04_07_01",
+        "WC_EscherWalk_spur_pond_14",
+        "WC_EscherWalk_mst_05_09_00",
+        "WC_EscherWalk_mst_04_09_04",
+        "WC_EscherWalk_mst_04_09_02",
+        "WC_EscherWalk_spur_pond_00",
+        "WC_EscherWalk_mst_03_08_00",
+        "WC_EscherWalk_mst_04_09_05",
+        "WC_EscherWalk_mst_01_02_01",
+        "WC_EscherWalk_mst_04_09_00",
+        "WC_EscherWalk_mst_01_06_01",
+        "WC_EscherWalk_mst_03_08_02",
+        "WC_EscherWalk_mst_03_08_01",
+        "WC_EscherWalk_spur_pond_11",
+        "WC_EscherWalk_spur_pond_06",
+        "WC_EscherWalk_spur_pond_16",
+        "WC_EscherWalk_mst_02_07_00",
+        "WC_EscherWalk_spur_pond_02",
+        "WC_EscherWalk_mst_03_10_01",
+        "WC_EscherWalk_spur_pond_07",
+        "WC_EscherWalk_mst_06_10_00",
+        "WC_EscherWalk_spur_pond_04",
+        "WC_EscherWalk_spur_pond_13",
+        "WC_EscherWalk_platform_landing_00",
+        "WC_EscherWalk_mst_03_10_04",
+        "WC_EscherWalk_spur_pond_05",
+        "WC_EscherWalk_mst_01_06_00",
+        "WC_EscherWalk_spur_pond_03",
+        "WC_EscherWalk_mst_02_07_01",
+        "WC_EscherWalk_mst_03_10_03",
+        "WC_EscherWalk_mst_04_09_07",
+        "WC_EscherWalk_mst_04_07_00",
+        "FX_Morning_Mist",
+        "FX_Morning_Bed_PollenSparkle",
+        "HoudiniEngine_RainbowBloom_3900",
+        "Houdini_RainbowBloom_3900"
+      ],
+      "missing": [],
+      "destroyed_prior": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "spawned": [
+        {
+          "name": "waterline_dolly",
+          "label": "WC_Lookdev_waterline_dolly",
+          "loc_cm": [
+            -500.0,
+            1400.0,
+            350.0
+          ]
+        },
+        {
+          "name": "website_oblique",
+          "label": "WC_Lookdev_website_oblique",
+          "loc_cm": [
+            -800.0,
+            200.0,
+            1100.0
+          ]
+        },
+        {
+          "name": "website_top",
+          "label": "WC_Lookdev_website_top",
+          "loc_cm": [
+            -2300.0,
+            1440.0,
+            3200.0
+          ]
+        },
+        {
+          "name": "website_south",
+          "label": "WC_Lookdev_website_south",
+          "loc_cm": [
+            -600.0,
+            -100.0,
+            700.0
+          ]
+        },
+        {
+          "name": "south_fix",
+          "label": "WC_Lookdev_south_fix",
+          "loc_cm": [
+            -800.0,
+            0.0,
+            900.0
+          ]
+        }
+      ],
+      "compile_stays_cli": "python Tools/world_compiler.py compile recipes/<id>.v1.json && python Tools/world_compiler_ue_driver.py Saved/WorldCompiler/<id>_<seed>",
+      "step": "lookdev_cameras",
+      "recorded_at_utc": "2026-09-18T07:13:13.214203Z",
+      "monolith_success": true
+    },
+    "lookdev_capture": {
+      "hidden_houdini": {
+        "hidden": [
+          "WC_EscherWalk_mst_01_02_00",
+          "WC_EscherWalk_mst_03_10_00",
+          "WC_EscherWalk_spur_pond_15",
+          "WC_EscherWalk_spur_pond_12",
+          "WC_EscherWalk_spur_pond_10",
+          "WC_EscherWalk_mst_03_10_02",
+          "WC_EscherWalk_mst_04_09_08",
+          "WC_EscherWalk_mst_03_08_03",
+          "WC_EscherWalk_mst_04_09_06",
+          "WC_EscherWalk_spur_westbank_00",
+          "WC_EscherWalk_spur_pond_01",
+          "WC_EscherWalk_mst_04_09_01",
+          "WC_EscherWalk_spur_pond_08",
+          "WC_EscherWalk_mst_04_09_03",
+          "WC_EscherWalk_spur_pond_09",
+          "WC_EscherWalk_mst_04_07_01",
+          "WC_EscherWalk_spur_pond_14",
+          "WC_EscherWalk_mst_05_09_00",
+          "WC_EscherWalk_mst_04_09_04",
+          "WC_EscherWalk_mst_04_09_02",
+          "WC_EscherWalk_spur_pond_00",
+          "WC_EscherWalk_mst_03_08_00",
+          "WC_EscherWalk_mst_04_09_05",
+          "WC_EscherWalk_mst_01_02_01",
+          "WC_EscherWalk_mst_04_09_00",
+          "WC_EscherWalk_mst_01_06_01",
+          "WC_EscherWalk_mst_03_08_02",
+          "WC_EscherWalk_mst_03_08_01",
+          "WC_EscherWalk_spur_pond_11",
+          "WC_EscherWalk_spur_pond_06",
+          "WC_EscherWalk_spur_pond_16",
+          "WC_EscherWalk_mst_02_07_00",
+          "WC_EscherWalk_spur_pond_02",
+          "WC_EscherWalk_mst_03_10_01",
+          "WC_EscherWalk_spur_pond_07",
+          "WC_EscherWalk_mst_06_10_00",
+          "WC_EscherWalk_spur_pond_04",
+          "WC_EscherWalk_spur_pond_13",
+          "WC_EscherWalk_platform_landing_00",
+          "WC_EscherWalk_mst_03_10_04",
+          "WC_EscherWalk_spur_pond_05",
+          "WC_EscherWalk_mst_01_06_00",
+          "WC_EscherWalk_spur_pond_03",
+          "WC_EscherWalk_mst_02_07_01",
+          "WC_EscherWalk_mst_03_10_03",
+          "WC_EscherWalk_mst_04_09_07",
+          "WC_EscherWalk_mst_04_07_00",
+          "FX_Morning_Mist",
+          "FX_Morning_Bed_PollenSparkle",
+          "HoudiniEngine_RainbowBloom_3900",
+          "Houdini_RainbowBloom_3900"
+        ],
+        "missing": []
+      },
+      "shots": [
+        {
+          "name": "waterline_dolly",
+          "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/Screens/wc_morning_rainbow_bloom_waterline_dolly_2026-09-18.png",
+          "bytes": 2637659
+        },
+        {
+          "name": "website_oblique",
+          "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/Screens/wc_morning_rainbow_bloom_website_oblique_2026-09-18.png",
+          "bytes": 3254013
+        },
+        {
+          "name": "website_top",
+          "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/Screens/wc_morning_rainbow_bloom_website_top_2026-09-18.png",
+          "bytes": 3353479
+        },
+        {
+          "name": "website_south",
+          "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/Screens/wc_morning_rainbow_bloom_website_south_2026-09-18.png",
+          "bytes": 3050173
+        },
+        {
+          "name": "south_fix",
+          "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/Screens/wc_morning_rainbow_bloom_south_fix_2026-09-18.png",
+          "bytes": 3081264
+        }
+      ],
+      "ppv": "frozen stack left in level; capture does not add bloom",
+      "bookmark": {
+        "asset": "/Game/Melodia/WorldCompiler/DA_MorningRainbowBloom",
+        "recipe_rel_path": "recipes/morning_rainbow_bloom.v1.json",
+        "last_bundle_rel_path": "Saved/WorldCompiler/morning_rainbow_bloom_3900",
+        "last_paths_readonly": true,
+        "level_err": null
+      },
+      "step": "lookdev_capture",
+      "recorded_at_utc": "2026-09-18T07:13:15.056136Z",
+      "monolith_success": true
+    },
+    "ensure_euw": {
+      "path": "/Game/Melodia/WorldCompiler/EUW_WorldCompiler",
+      "compile_stays_cli": "python Tools/world_compiler.py compile recipes/<id>.v1.json && python Tools/world_compiler_ue_driver.py Saved/WorldCompiler/<id>_<seed>",
+      "existed": true,
+      "step": "ensure_euw",
+      "recorded_at_utc": "2026-09-18T07:13:15.193046Z",
+      "monolith_success": true
+    },
+    "lookdev_save": {
+      "level_saved": true,
+      "world_compiler_folder_saved": true,
+      "folder": "/Game/Melodia/WorldCompiler",
+      "step": "save",
+      "recorded_at_utc": "2026-09-18T07:14:22.771869Z",
+      "monolith_success": true
+    }
+  },
+  "gates": {
+    "preflight": "PASS",
+    "band_mis": "PASS",
+    "data_table": "PASS",
+    "spawner_counts": "PASS",
+    "save": "PASS",
+    "lookdev_stills": "PASS"
+  },
+  "terrain": {
+    "cells": 2401,
+    "exclude_actor_classes": [
+      "MelodiaBedActor"
+    ],
+    "hit_classes": {
+      "MelodiaMovingPlatform": 171,
+      "StaticMeshActor": 1518
+    },
+    "kind": "ground_probe",
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+    "plantable_area_m2": 700.0,
+    "plantable_cells": 700,
+    "probe": "recipes/ground/morning_rainbow_bloom_ground_probe.json",
+    "probe_radius_cm": 2400.0,
+    "probe_step_cm": 100.0,
+    "recorded_at_utc": "2026-09-18T07:11:20.530164+00:00",
+    "walkable_z_cm": [
+      -900.0,
+      1400.0
+    ]
+  },
+  "field": {
+    "anchor_cm": [
+      -2300.0,
+      1442.0,
+      0.0
+    ],
+    "sector_deg": [
+      0.0,
+      360.0
+    ],
+    "ground_mask": {
+      "plantable_area_m2": 700.0,
+      "plantable_cells": 700
+    }
+  },
+  "monolith": {
+    "version": "0.20.3",
+    "port": null,
+    "uptime": null
+  },
+  "verdict": "PASS"
+}
