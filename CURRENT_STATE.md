@@ -175,7 +175,7 @@ MCP regression, Ollama daemon stress — not only game tests).
 
 - **Historical cleanup lane resolved.** PR #201 was superseded by merged #213; accidental resurrection PR #230 was closed unmerged. `cleanup/pbr-twin-landing-2026-09-10` is provenance only: never use it as a repository-health proxy or wholesale merge source. Salvage named unique work through scoped branches only.
 - **September 17 durable landings.** #227 retargeted UE `GameColors` / `KeybindColors` to the design-token SSOT; #229 landed Melusina Morning audits; #231/#232 landed materials/VFX closeout playbooks; #234 landed the materials convergence inventory; #236 corrected marketplace material authority to `M_Master_Toon_Universal` / `M_ToonFoliage` and records the live reconvert counts. Main Echo run #565 is green.
-- **Open docs review lanes are not status authorities.** #226 (Figma/skill-tooltip contract), #228 (Fix A / SurrealFabric / BeatPulse inventory), and #233 (truth sweep) remain review lanes as of this reconciliation. Merge only unique durable contract/evidence content; close anything superseded instead of rebasing session prose indefinitely.
+- **Open docs review lanes are not status authorities.** #226 (Figma/skill-tooltip contract) and #228 (Fix A / SurrealFabric / BeatPulse inventory) remain review lanes as of this reconciliation. #233 was closed unmerged as redundant after #237 canonicalized the current truth. Merge only unique durable contract/evidence content; close anything superseded instead of rebasing session prose indefinitely.
 
 ### Stabilization — 2026-09-13
 
