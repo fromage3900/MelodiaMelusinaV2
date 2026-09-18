@@ -135,6 +135,27 @@ proof (victory/defeat/flee + exactly-once resume). `MI_MelodySlime_Body` (toon m
 canonical Chladni, `BeatAccent 1.5`) is presentation-ready; the unit still wears the mannequin
 until the visual swap is judged.
 
+**Zundamon battle unit + Morning exploration platform crossing (authored 2026-09-18):**
+`ABP_Zundamon_Battle` (`target_skeleton = SK_Zundamon_Skeleton`, duplicated from the stock
+`A_BattleAnimationBlueprint`) plus `AM_Zundamon_Attack`/`AM_Zundamon_GetHit` montages are compiled
+and saved. `BP_WeakEnemy`'s `BeginPlay` now sets `SkeletalMeshAsset`/`AnimInstanceClass` to the real
+Zundamon mesh/ABP (a per-child graph override, not a CDO write, so the shared `BP_UnitBase` parent
+and its other children stay untouched); live PIE confirms `BP_WeakEnemy_C_*` spawns with the real
+mesh. **Known gap:** `Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/*` is excluded by
+`.gitignore` (line 178), so `BP_WeakEnemy`'s wiring cannot be committed — it exists only on this
+machine's disk and must be redone if that file is ever lost. `L_MelusinaMorning`'s ~46-piece
+`WC_EscherWalk_*` blockout was redesigned into one continuous golden-ratio spiral (φ-scaled radius
+per turn, five Fibonacci-fraction clearings) connecting the real `BrushifyIsland` terrain, with
+`BP_Starskiff_MK2` relocated to water level at the spiral's base. The four pre-existing, never-wired
+`MelodiaMovingPlatform` actors near the spiral's summit spur (previously default blockout values,
+`bAutoStart=false`) are now a real crossing: repositioned into a bridge line to a new landing piece,
+`bAutoStart=true`, staggered `TravelDuration` (1.6-2.6s) so their vertical ping-pong drifts out of
+phase over time — confirmed moving via two live PIE position reads (DedicatedServer net mode, no
+relay/Blueprint-graph wiring needed). Zundapal/`BP_Enemy_StoneGolem` also has a real imported mesh
+(`SK_Zundapal`, single-node embedded animation, no retarget — 38 vs 82 bones, by design) but
+`Content/Melodia/Enemies/**` is entirely outside the `.gitignore` allowlist (owner decision: leave
+it out of git for now), so none of that is trackable either.
+
 ### WHAT TO REACH FOR
 
 | User asks for... | Reach for... |
