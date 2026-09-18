@@ -119,3 +119,61 @@ re-render the affected panels.
 | Live MCP edit passes | 12 |
 | Render+vision verification passes | 21 |
 | Subagent children dispatched | 5 (in flight at close) |
+
+---
+
+## ADDENDUM — delegation batch complete; chain consolidated (23:35 EDT)
+
+All five delegated tasks delivered and self-verified. The scripts were then run
+for real down the chain, each on the previous generation:
+
+```
+v12w_water -> v13_tiers -> v14_drapery -> v15_jewels -> v16_lissajous  (chain tip)
+```
+
+| Step | Script (Saved/Audit/, gitignored — persists on disk) | Result |
+|---|---|---|
+| v13 | `sa_tiers.py` (SA_INPUT/SA_OUTPUT env) | Tier2_Carillon visible + Tier2_Pagoda hidden (A/B) + Tier2_Balcony; gates PASS on v12w |
+| v14 | `sa_drapery.py` (`-- --out`) | stern awning (draped curtain, hem z 1.271, slope 13.2 deg) + masthead banner; SA_DRAPERY_OK |
+| v15 | `sa_jewels.py` (`-- --src/--scratch/--out`) | 12 pieces: rim bead string, 2 star-pendant strands, heart chain, mast wreath collar, 7 cascade ribbons; gates PASS |
+| v16 | `sa_lissajous.py` (patched OUTPUT) | 2 ribbon stays + nest arch + pearl seaward strand; re-open verified, GATE_STATUS PASS |
+
+Workspace kit: `Saved/Audit/tools_gn/{raycast_place,seat_by_iteration,host_builder}.py`
++ `self_test.py` (log `self_test.out.txt`) — per-object raycast proven vs the scene
+BVH trap; seat converges 1 pass rigid; host_builder sets object sockets pre-attach.
+
+### Renders (Saved/Audit/): v16_mast.png, v16_stern.png, v16_wide.png
+- Mast: "coherent as a whimsical second story" — carillon crown, banner, filigree
+  wreath, pendants, lissajous arch all read.
+- Stern: awning "roofs the stern deck and slopes from the mast side down to the
+  transom" — verified read.
+
+### Owner calls / polish list (from the v16 art-director pass)
+1. LISSAJOUS near-miss (flagged by the lissajous agent, stands): the bow stay and
+   pearl strand graze the LIVE furled-sail mesh (0.0-1.0 mm, 4+97 sample points)
+   because the brief's sail box (z 2.31..2.46) is 7 cm below the live roll
+   (z 2.529..2.729). Fix = either drop the sail back to the stated z, re-route
+   the stays, or accept the kiss.
+2. Blue lissajous disc crowds the chime tubes at the mast — pull apart.
+3. Boom/strap/banner silhouette ambiguous in the mast view; "detached left-hand
+   cylinders" (rope coils?) want anchoring or cutting.
+4. Heart chain barely reads from stern views (Stern_Crest silhouettes it); fine
+   from quarters.
+5. Pagoda (option B) sits at a 2.7 cm gap from the authored MastLantern and its
+   spire lands inside the star finial — if B is chosen, revisit the lantern scale.
+
+### Kit quirks carried (fixes applied on fresh trees only; kit sources untouched)
+- chimes: Tube Count dial unwired (now wired, 14 chimes); semitone FIELD link
+  collapses tube depth in 5.2 (dropped — chimes hang uniform 0.64 m).
+- pagoda/balcony bake from module param defaults (dials cosmetic).
+- draped curtain: gather vector mis-wired into SetPosition.Position (collapsed
+  strip; relinked to Offset); literals relinked to the interface dials.
+- hair cascade: profile curve reseated (zero-area sheet measured); needs a
+  Set Material node on the fresh tree.
+- heart chain needs a `Heart_Template_L` scene object (script builds + hides one).
+
+### Status of this lane at close
+Chain tip committed: `SHOREWAKE_proxy_v16_lissajous.blend` (all structure, drapery,
+jewels, rigging, water). Next session: owner picks the A/Bs (carillon vs pagoda;
+ribbon vs pearl), then the polish list, then re-render the promoted shots and the
+panels, then the pennant bake.
