@@ -207,3 +207,30 @@ rebuilt from v16; the wrong-rule lesson is now law in the new skill
 
 New skills created this session: `melodia-blender-snap-soft`,
 `melodia-skiff-chain`.
+
+## ADDENDUM 3 — v18 REFINE + BIRD-SAFE TRAVERSAL (2026-09-18 00:45)
+
+`SHOREWAKE_proxy_v18_refine.blend` (chain tip, 185 objects). Scripts:
+`Saved/Audit/sa_refine_v18.py` + `fix_v18_arms.py` / `fix_v18c_soft.py` /
+`fix_v18d.py` (iterative corrections, each render-verified).
+
+Delivered:
+- 3 soft ribbon swags (aft, fore, deck run) — Bezier + flat-object profile,
+  rebuilt with a SAGGING cross-section after the first pass read as "rigid
+  folded planes"; verdict after: "sagging, curved, soft cloth".
+- 3 dangling heart chains: boom end (drop 0.26), bow rail, nest rail (0.22) —
+  oriented to world-down by measured local axis (first attempt lay them flat).
+- 1 more pearl lissajous strand (aft, scale 0.62).
+- PROPER PADDLES: 4 leaf-blade oars in brass rowlock forks (port+starboard,
+  midship), 1 spare stowed along the deck; M_Oar_Wood, smooth-shaded.
+- BIRD-SAFE KIT for Sir Melodious: 9-tread spiral mast stair (0.165 m rise,
+  hop-friendly) + 9 strut arms + helical handrail + 3 posts; 2 shroud cables +
+  6 thick ratline rungs (mirror-interpolation bug fixed — first pass floated);
+  4 brass T-bar perches (bow, stern, 2 on the nest rail); 2 gunwale guard-rope
+  runs with 6 posts each. Route: deck -> guard ropes -> spiral stair (or
+  ratlines) -> nest rim perches.
+
+Owner notes: chains read "tonally twee" to the AD pass (kept — requested);
+the swags may want a twist pass later; everything else verified at render.
+New lessons written into `melodia-skiff-chain` (chain orientation, sagging
+ribbon profile, strut+rail for stairs, shroud-parameter direction trap).
