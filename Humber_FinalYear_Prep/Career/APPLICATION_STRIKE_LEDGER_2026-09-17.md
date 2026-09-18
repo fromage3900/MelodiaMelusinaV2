@@ -84,6 +84,112 @@
 
 ---
 
+### P0 — Skydance Animation — Junior Environment Surfacing Artist — Madrid, Spain
+
+**Why it matters:** closest current relocation-capable role to Brennan's actual career stage and art stack. The employer posting explicitly targets **0–2 years** and says **recent graduates may be considered**.
+
+**Live source**
+- https://jobs.lever.co/skydance/4c18ce73-8217-44a7-af15-b5a5f18bc07e
+- Application form: https://jobs.lever.co/skydance/4c18ce73-8217-44a7-af15-b5a5f18bc07e/apply
+
+**Verified role signal**
+- Full-time hybrid role in Madrid.
+- Stylized texture painting for environments / props.
+- Substance Painter / Designer / Mari family, material and shader authoring, modeling / lighting fundamentals.
+- Digital hand-painted techniques + procedural workflows.
+- Houdini listed as a plus.
+- English required; Spanish desirable rather than mandatory.
+- Application form includes a working-status option equivalent to **requires work permit**.
+
+**Relocation / immigration caution**
+- The application form accepting "require work permit" candidates is evidence that non-authorized applicants can enter the process.
+- It is **not** proof that Skydance guarantees visa sponsorship, immigration approval, or moving-cost reimbursement.
+- Hermes must verify sponsorship / relocation directly from the live application or recruiter before describing it as a benefit.
+
+**Application story**
+- Stylized environment surfacing artist with a hand-authored visual foundation and unusually strong procedural / technical-art depth.
+- Lead with materials, painterly surface language, props-in-world, environment mood, Substance, Houdini, ZBrush, and authored 2D work.
+- UE5 / Python / PCG are additional production depth, not the opening thesis.
+
+**Suggested first six visual / proof beats**
+1. Water Sanctuary — atmosphere + surface read
+2. Choral Sheep Pasture — stylized ecology / environment treatment
+3. Siren Harp / Bow — prop surfacing + world identity
+4. Nikki / Cymatics material study — material authoring
+5. Melusina design / traditional art — hand-authored visual foundation
+6. Houdini / procedural surface or environment proof
+
+**Next action:** Hermes verifies the live Lever fields, work-permit / sponsorship wording, required uploads, and creates a Madrid-specific resume delta + concise cover note. This should be treated as a **submit-now** role if still live.
+
+---
+
+### P0-ALT — Skydance Animation — Environment Set Dressing Trainee — Madrid, Spain
+
+**Why it matters:** direct classroom-to-industry route aimed at students / trainees and highly aligned to environment assembly, scattering, composition, Houdini, Maya, and Python.
+
+**Live source**
+- https://jobs.lever.co/skydance/570eb832-3f6e-47cc-9a34-f7b34ca74a92
+- Application form: https://jobs.lever.co/skydance/570eb832-3f6e-47cc-9a34-f7b34ca74a92/apply
+
+**Verified role signal**
+- Paid trainee / internship-style environment set-dressing role in Madrid.
+- Environment distribution / scattering and set dressing.
+- Houdini or similar procedural tools.
+- Composition and 3D environment fundamentals.
+- Application form includes final-year / fourth-year education signals and relevant tools including Houdini, Maya, Python, Photoshop.
+
+**Hard gate to verify**
+- Requires an internship agreement / educational arrangement with the candidate's university or school.
+- Current evidence does **not** establish that Humber can execute the required agreement with Skydance in Spain.
+- Do not describe this lane as eligible until Humber / Skydance confirm the agreement mechanism.
+
+**Application story**
+- Final-year 3D Animation student already doing procedural environment dressing in UE5 / Houdini / PCG.
+- Stronger-than-typical trainee technical exposure, but still frame as a student learning route rather than as a senior pipeline candidate.
+
+**Next action:** Hermes checks the exact internship-agreement requirement and drafts one short eligibility email for Humber / Skydance. If the agreement is feasible, prepare the application in parallel with the Junior Environment Surfacing Artist role.
+
+---
+
+### P0 — Techland — Junior Level Designer — Wrocław, Poland
+
+**Why it matters:** true junior role with an employer-wide relocation program, and the skill floor is much closer to Brennan's current professional stage than most AAA environment postings.
+
+**Live source**
+- Role: https://techland.net/job-offers/junior-level-designer-07
+- Careers / relocation: https://techland.net/company/careers
+- Open application / benefits reference: https://techland.net/job-offers/open-application-84
+
+**Verified role signal**
+- Junior Level Designer in Wrocław.
+- Playable environment / level creation, debugging, optimization, and collaboration across disciplines.
+- Basic competence in an editor such as Unreal is relevant.
+- Art fundamentals such as drawing / painting / modeling are useful.
+- No mandatory multi-year AAA requirement or shipped-title requirement was identified in the reviewed posting.
+- Techland's careers material describes an international relocation package covering formalities, tickets, and an initial place to live, plus onboarding support.
+
+**Role-positioning caution**
+- This is **level design**, not a pure Environment Artist job.
+- Do not rewrite Brennan into a systems-heavy designer if the portfolio evidence is stronger on environment art.
+- Use Melodia's actual traversal / world / encounter / readable-space work as design evidence and the art portfolio as visual-environment evidence.
+
+**Application story**
+- Environment-minded level designer with unusually deep UE5 art / worldbuilding literacy.
+- Playable-space construction, readable routes, rhythm / encounter integration, environment composition, PCG worldbuilding, and technical collaboration.
+
+**Suggested first six visual / proof beats**
+1. strongest environment beauty / route-composition plate
+2. gameplay / traversal environment evidence
+3. PCG worldbuilding proof
+4. terrain / set-dressing study
+5. UI / rhythm or encounter integration only where it demonstrates playable-space thinking
+6. one drawing / traditional-art study
+
+**Next action:** Hermes verifies the live application fields and relocation wording, then prepares a level-design-specific resume delta rather than reusing the environment-artist version unchanged.
+
+---
+
+
 ### P1 — Playdead — 3D Environment Artist — Copenhagen, Denmark
 
 **Why it matters:** strongest verified relocation opportunity currently found. The employer page is live and explicitly offers **relocation and visa support if required**.
@@ -153,7 +259,9 @@ Campus recruitment is live, but public material reviewed on 2026-09-17 does **no
 
 ## Current decision
 
-Open **Infold, Awe, Playdead, Brown Bag** in Hermes.
+Open **Skydance Junior Environment Surfacing, Skydance Set Dressing Trainee, Techland Junior Level Designer, Infold, Awe, Playdead, and Brown Bag** in Hermes.
+
+Immediate relocation-first order: **Skydance Junior Environment Surfacing → Techland Junior Level Designer → Skydance Set Dressing Trainee (eligibility check) → Playdead stretch**.
 
 The output we want from Hermes is not more research prose. For each role it should produce:
 1. live-listing verification,
