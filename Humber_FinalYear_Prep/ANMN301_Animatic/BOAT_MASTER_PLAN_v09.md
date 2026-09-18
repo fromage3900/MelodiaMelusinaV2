@@ -145,3 +145,17 @@ NEW FINDINGS (write into the boat's law):
 Remaining: A4 garlands legibility (dials, GUI), B4/B5 bow crest + stern plate,
 D pennant cloth bake + water tier 1 + the five promoted shots, E workspace kit,
 F hygiene sweep before the final generation.
+
+## 8. v09 status (2026-09-17 later) — B4/B5 done
+
+SHOREWAKE_proxy_v09_crest.blend: stern plate (0.46 x 0.18, four corner studs,
+bevel) raycast-placed on the true transom at (-3.70, 0, 0.72); kit rosette
+medallion (six-petal, object-scaled 0.075) centred on it; bow crest rosette
+(0.075) on the prow at (3.82, 0, 0.95). FillBrass_Stern added — the stern was
+unlit and read black until it arrived (verified: warm brass medallion, finished
+hardware read). NEW LAW: the transom's visible band is z 0.62..0.84 (the stern
+face tops out at 0.84 and the waterline eats everything below 0.62) — stern
+hardware lives in that 22 cm strip.
+
+Still owed: A4 garlands legibility, D pennant bake + water tier + five promoted
+shots, E workspace kit, F hygiene sweep.
