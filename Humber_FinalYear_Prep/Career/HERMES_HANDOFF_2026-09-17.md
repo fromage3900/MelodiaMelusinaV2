@@ -106,6 +106,107 @@ Tasks:
 
 ---
 
+## Mission R1 — SKYDANCE ANIMATION / JUNIOR ENVIRONMENT SURFACING ARTIST / MADRID
+
+Live source:
+https://jobs.lever.co/skydance/4c18ce73-8217-44a7-af15-b5a5f18bc07e
+
+Application:
+https://jobs.lever.co/skydance/4c18ce73-8217-44a7-af15-b5a5f18bc07e/apply
+
+Goal:
+Prepare the strongest current relocation-oriented art application.
+
+Role facts to verify / preserve:
+- Madrid hybrid
+- 0–2 years
+- recent graduates may be considered
+- stylized texture painting for environments / props
+- hand-painted + procedural workflows
+- materials / shaders
+- Substance family
+- Houdini a plus
+- English required; Spanish desirable
+- application currently exposes a work-status option for candidates who require a work permit
+
+Hard caution:
+The presence of a "require work permit" answer does NOT prove sponsorship or relocation reimbursement. Verify this separately and phrase it accurately.
+
+Tasks:
+1. Confirm the role is still live.
+2. Capture exact experience / education / software requirements from the employer page.
+3. Inspect all application fields, especially work authorization and location.
+4. Pick six portfolio pieces around surfacing, materials, props, stylized environments, hand art, and Houdini.
+5. Draft role-specific resume deltas.
+6. Draft a 150-word cover note.
+7. Produce paste-ready answers for all application fields supported by evidence.
+8. End with READY TO SUBMIT / OWNER INPUT / BLOCKED.
+
+---
+
+## Mission R2 — SKYDANCE ANIMATION / ENVIRONMENT SET DRESSING TRAINEE / MADRID
+
+Live source:
+https://jobs.lever.co/skydance/570eb832-3f6e-47cc-9a34-f7b34ca74a92
+
+Application:
+https://jobs.lever.co/skydance/570eb832-3f6e-47cc-9a34-f7b34ca74a92/apply
+
+Goal:
+Determine whether Brennan can use the student / trainee route in parallel with the full-time surfacing role.
+
+Key fit:
+- final-year student
+- set dressing / scattering
+- Houdini / procedural tools
+- Maya
+- Python
+- composition
+- environment fundamentals
+
+Hard gate:
+The trainee route requires an internship / educational agreement. Verify whether Humber College can provide the required agreement for an international placement. Do not assume eligibility.
+
+Tasks:
+1. Verify the role remains live.
+2. Extract the exact internship-agreement requirement.
+3. Draft a short, factual eligibility inquiry Brennan can send to Humber / Skydance.
+4. If eligible, prepare application materials around Houdini / PCG / set dressing / composition.
+5. End with ELIGIBLE / AGREEMENT CHECK NEEDED / BLOCKED.
+
+---
+
+## Mission R3 — TECHLAND / JUNIOR LEVEL DESIGNER / WROCŁAW
+
+Live role:
+https://techland.net/job-offers/junior-level-designer-07
+
+Relocation reference:
+https://techland.net/company/careers
+
+Goal:
+Prepare a relocation-supported junior application without misrepresenting environment art as professional level-design employment.
+
+Verified positioning to preserve:
+- junior role
+- playable environment / level construction
+- debugging / optimization / cross-discipline work
+- Unreal/editor literacy is relevant
+- drawing / painting / modeling are useful
+- Techland careers material describes an international relocation package covering formalities, tickets, and an initial place to live
+
+Tasks:
+1. Verify the role and relocation language are still live.
+2. Inspect application fields and work-authorization questions.
+3. Map Melodia evidence to actual level-design competencies: readable routes, traversal, encounter placement, world response, iteration, debugging.
+4. Keep environment-art evidence as a differentiator, not a substitute for design evidence.
+5. Draft a Techland-specific resume delta and concise cover note.
+6. Pick six portfolio / gameplay proof links.
+7. End with READY / OWNER INPUT / BLOCKED.
+
+---
+
+
 ## Mission 3 — PLAYDEAD / 3D ENVIRONMENT ARTIST / COPENHAGEN
 
 Live source:
