@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/morning_hero_fx_pack.v1.json",
+  "schema": "melodia.niagara_hero_fx_pack.v1",
+  "version": "1.0.0-draft",
+  "status": "draft_no_editor_writes_until_P4_proof",
+  "feature": "L_MelusinaMorning Rainbow Bloom - hero Niagara set (4 material parents, 4 child systems)",
+  "citations": [
+    "CURRENT_STATE.md:98",
+    "CURRENT_STATE.md:158",
+    "Docs/Handoffs/MUSE_LIVING_FLOWER_FIELD_TECHNICAL_BRIEF_2026-09-16.md:310",
+    "Docs/WorldGen/WORLD_COMPILER_CONTRACT.md",
+    "specs/niagara/melusina_polish_pack.v1.json"
+  ],
+  "rules": {
+    "no_duplicate_framework": "children of existing NS_Uni_* / NS_Melodia_* / NS_WindRibbonGust only",
+    "no_new_master_per_effect": "exactly four material parents, duplicated from the named sources; never edit the sources",
+    "mpc_reads_only": "materials read MPC_Cymatics_Driver lanes; nothing here writes a collection",
+    "effect_type": "/Game/EnvSandbox/VFX/EffectTypes/ENV_StorybookAmbientVFX",
+    "effect_type_fallback": "ENV_StorybookAmbientVFX is the ambient_effect_type named by DA_MelodiaIntegrationConfig (identity canon); never assign ET_Melodia_CharacterFX to ambient systems; never create a third effect type",
+    "fixed_bounds_cm": [300, 500],
+    "cast_shadow": false,
+    "sort_mode": "view_distance",
+    "artist_controls_live_on_actor_user_params_not_on_mpc": true
+  },
+  "materials": [
+    {
+      "id": "petal_card",
+      "target": "/Game/Melodia/VFX/Materials/M_Niagara_Morning_PetalCard",
+      "duplicate_from": "/Game/EnvSandbox/VFX/Materials/M_Niagara_PetalSprite_Loop",
+      "blend": "Masked",
+      "params_add": {"BandHue": "LinearColor", "HueSeed": "Scalar", "SpawnMultiplier": "Scalar", "RimIridescence": "Scalar"},
+      "mpc_lanes": ["Cymatic_IridescenceShift", "Cymatic_WindDirX", "Cymatic_WindDirY"],
+      "notes": "SubUV flipbook card; WindDir drives card yaw; BandHue tints albedo so a drifting petal carries the band it lifted from"
+    },
+    {
+      "id": "pollen_mote",
+      "target": "/Game/Melodia/VFX/Materials/M_Niagara_Morning_PollenMote",
+      "duplicate_from": "material_of:/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_PollenSparkle",
+      "blend": "Additive",
+      "params_add": {"BandHue": "LinearColor", "HueSeed": "Scalar", "SpawnMultiplier": "Scalar", "SparkleCeiling": "Scalar"},
+      "mpc_lanes": ["Cymatic_BeatPulse"],
+      "notes": "soft-depth additive sparkle; BeatPulse on brightness; SparkleCeiling is the artist ceiling (maps to sparkle_response)"
+    },
+    {
+      "id": "mist_sheet",
+      "target": "/Game/Melodia/VFX/Materials/M_Niagara_Morning_MistSheet",
+      "duplicate_from": "/Game/EnvSandbox/VFX/Candidates/Materials/M_Niagara_MelodiaSoftMist_Candidate",
+      "blend": "Translucent",
+      "shading": "Unlit",
+      "params_add": {"BandHue": "LinearColor", "TintSaturation": "Scalar", "MistDensity": "Scalar"},
+      "mpc_lanes": ["Cymatic_WindDirX", "Cymatic_WindDirY", "Cymatic_WindStrength"],
+      "defaults": {"TintSaturation": 0.06},
+      "notes": "pond-edge ground mist; depth fade + camera fade; 5-8% band saturation so the rainbow reads through the mist"
+    },
+    {
+      "id": "wind_ribbon",
+      "target": "/Game/Melodia/VFX/Materials/M_Niagara_Morning_WindRibbon",
+      "duplicate_from": "/Game/EnvSandbox/VFX/Materials/M_SakuraRibbon",
+      "blend": "Translucent",
+      "params_add": {"BandHue": "LinearColor", "HueSeed": "Scalar", "WindFrontVisible": "Scalar"},
+      "mpc_lanes": ["Cymatic_WindDirX", "Cymatic_WindDirY", "Cymatic_WindStrength", "Cymatic_IridescenceShift"],
+      "notes": "the visible hue-front; ribbon travels along WindDir at WindStrength so ribbon, MF_MelodiaWindHueReveal and bend are one wind event"
+    }
+  ],
+  "systems": [
+    {
+      "id": "petal",
+      "target": "/Game/Melodia/VFX/NS_Morning_PetalDrift",
+      "child_of": "/Game/EnvSandbox/VFX/Systems/Sakura/NS_Melodia_PetalEndlessLoop",
+      "material_id": "petal_card",
+      "material_instance_prefix": "/Game/Melodia/VFX/Materials/MI_Morning_Petal_B",
+      "per_band": true,
+      "gpu_sim": true,
+      "fixed_bounds_cm": 400,
+      "budget": {"max_particles": 900, "stat_niagara_gpu_ms": 0.35},
+      "user_params": {"BandHue": "LinearColor", "PetalSpawnMultiplier": "float", "HueSeed": "float"}
+    },
+    {
+      "id": "pollen",
+      "target": "/Game/Melodia/VFX/NS_Morning_PollenSparkle",
+      "child_of": "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_PollenSparkle",
+      "material_id": "pollen_mote",
+      "material_instance_prefix": "/Game/Melodia/VFX/Materials/MI_Morning_Pollen_B",
+      "per_band": true,
+      "gpu_sim": true,
+      "fixed_bounds_cm": 350,
+      "budget": {"max_particles": 600, "stat_niagara_gpu_ms": 0.25},
+      "user_params": {"BandHue": "LinearColor", "MoteSpawnMultiplier": "float", "HueSeed": "float"}
+    },
+    {
+      "id": "mist",
+      "target": "/Game/Melodia/VFX/NS_Morning_PondMist",
+      "child_of": "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_MistSheet",
+      "material_id": "mist_sheet",
+      "material_instance": "/Game/Melodia/VFX/Materials/MI_Morning_Mist",
+      "per_band": false,
+      "gpu_sim": false,
+      "fixed_bounds_cm": 500,
+      "budget": {"max_particles": 24, "stat_niagara_cpu_ms": 0.1},
+      "user_params": {"MistDensity": "float", "BandHue": "LinearColor"}
+    },
+    {
+      "id": "windfront",
+      "target": "/Game/Melodia/VFX/NS_Morning_WindFront",
+      "child_of": "/Game/EnvSandbox/VFX/Systems/Sakura/NS_WindRibbonGust",
+      "material_id": "wind_ribbon",
+      "material_instance": "/Game/Melodia/VFX/Materials/MI_Morning_WindFront",
+      "per_band": false,
+      "gpu_sim": false,
+      "fixed_bounds_cm": 500,
+      "budget": {"max_particles": 2, "ribbons": 2, "stat_niagara_cpu_ms": 0.15},
+      "user_params": {"WindFrontVisible": "float", "BandHue": "LinearColor", "HueSeed": "float"}
+    }
+  ],
+  "field_budget": {
+    "gpu_particles_total_max": 6000,
+    "systems_ticking_on_screen_max": 4,
+    "framing": "trove low dolly from the waterline (CAM_MelusinaMorning_Portfolio)"
+  },
+  "gates": [
+    "every NS_Morning_* has effect type ENV_StorybookAmbientVFX (DA_MelodiaIntegrationConfig.ambient_effect_type)",
+    "fixed bounds within 300..500 cm on every emitter",
+    "cast shadows off on every renderer; view-distance sort on sprites",
+    "stat Niagara at framing: GPU particles <= 6000, ticking systems <= 4",
+    "direction tests +X -X +Y -Y: ribbon heading, hue-reveal travel, and foliage bend agree (4 stills)",
+    "no material master edits outside the four new parents",
+    "PIE still + save + reload: anchor actor count identical"
+  ],
+  "validation": ["niagara_query validate_system 0 err/warn per NS_Morning_*", "capture_scene_preview non-black per system", "stat Niagara capture attached to proof JSON under fx"]
+}

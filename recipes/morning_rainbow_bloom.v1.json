@@ -1,0 +1,129 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "morning_rainbow_bloom",
+  "world_seed": 3900,
+  "identity": {
+    "mode_id": "ionian",
+    "root_pitch_class": 0,
+    "bpm": 96,
+    "movement_id": "petal_cantata",
+    "chunk": [0, 0]
+  },
+  "place": {
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+    "anchor_cm": [-2300.0, 1442.0, 0.0],
+    "up_axis_offset_cm": 8.0,
+    "clearance": {
+      "circles": [
+        {"label": "pond_water", "center_cm": [-950.0, 2300.0], "radius_cm": 380.0},
+        {"label": "bedroom_keepout", "center_cm": [900.0, 2300.0], "radius_cm": 1100.0},
+        {"label": "Morning_QuillTrigger_ChoralSheep", "center_cm": [-887.6, 2140.0], "radius_cm": 140.0},
+        {"label": "BP_ChoralSheep_rest", "center_cm": [-110.9, 1042.5], "radius_cm": 220.0},
+        {"label": "Morning_Bed", "center_cm": [1435.1, 2320.8], "radius_cm": 420.0}
+      ],
+      "capsules": [
+        {"label": "wake_path_pond_to_sheep", "a_cm": [-887.6, 2140.0], "b_cm": [-110.9, 1042.5], "radius_cm": 90.0},
+        {"label": "wake_path_west_bank", "a_cm": [-1800.0, 2500.0], "b_cm": [-1800.0, 1600.0], "radius_cm": 80.0}
+      ]
+    }
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 7,
+    "inner_radius_cm": 200.0,
+    "band_width_cm": 250.0,
+    "sector_deg": [0.0, 360.0],
+    "density_per_m2": 3.5,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 22.0,
+    "scale_range": [0.85, 1.45],
+    "chladni": {
+      "modes": [[2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]],
+      "threshold": 0.35,
+      "plate_size_cm": 11000.0
+    },
+    "hero_falloff_cm": 2000.0
+  },
+  "species": [
+    {
+      "species_id": "speedtree_meadow",
+      "mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+      "meshes": [
+        "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+        "/Game/EnvSandbox/Library/FoliageCards/GenericFlowerTall"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
+      "stem_material": "__band__",
+      "weight": 1.0,
+      "variants": 2,
+      "height_class": 1
+    }
+  ],
+  "palette": {
+    "parent_master": "/Game/Melodia/_PROJECT/04_Materials/Plants/M_MelodiaPlant_Wind",
+    "tint_parameter": "MelodiaWindRevealTint",
+    "active_lane": "wind",
+    "wind": {
+      "parent": "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
+      "tint_parameter": "MelodiaWindRevealTint",
+      "hue_seed_parameter": "MelodiaWindHueSeed",
+      "response_parameter": "MelodiaWindResponse",
+      "response": 0.5,
+      "static_switches_off": [],
+      "texture_overrides": {},
+      "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only."
+    },
+    "bands": [
+      {"label": "B0_Red", "tint": [1.0, 0.18, 0.22]},
+      {"label": "B1_Orange", "tint": [1.0, 0.45, 0.10]},
+      {"label": "B2_Gold", "tint": [1.0, 0.80, 0.20]},
+      {"label": "B3_Green", "tint": [0.35, 0.95, 0.45]},
+      {"label": "B4_Blue", "tint": [0.30, 0.55, 1.0]},
+      {"label": "B5_Indigo", "tint": [0.45, 0.30, 0.95]},
+      {"label": "B6_Violet", "tint": [0.75, 0.35, 1.0]}
+    ]
+  },
+  "fx": {
+    "pack": "specs/niagara/morning_hero_fx_pack.v1.json",
+    "anchors_per_band": {"petal": 1, "pollen": 1},
+    "mist_anchors": 2,
+    "windfront_anchors": 1,
+    "wind_dir": [1.0, 0.0],
+    "bounds_cm": 400
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": ["Cymatic_EmissiveScale", "Cymatic_IridescenceShift", "Cymatic_BeatPulse", "Cymatic_WindDirX", "Cymatic_WindDirY", "Cymatic_WindStrength"],
+    "material_function": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MelodiaWindHueReveal"
+  },
+  "terrain": {
+    "kind": "ground_probe",
+    "probe": "recipes/ground/morning_rainbow_bloom_ground_probe.json",
+    "probe_radius_cm": 2400.0,
+    "probe_step_cm": 100.0,
+    "walkable_z_cm": [-900.0, 1400.0],
+    "exclude_actor_classes": ["MelodiaBedActor"],
+    "note": "Snap onto BrushifyIsland_* (S_FloatingMountain_01..04) west/south of the pond. SM_PM3D_Sphere3D stand-ins, WC_DellFloor, and SM_classic_arch bedroom boards are excluded. Not a Landscape. No second meadow authority."
+  },
+  "chapter": null,
+  "motif": null,
+  "influence": [],
+  "region_history": null,
+  "muse": {
+    "brief": "Docs/Handoffs/MUSE_LIVING_FLOWER_FIELD_TECHNICAL_BRIEF_2026-09-16.md",
+    "trove_plan": ".hermes/plans/2026-09-17_melusina-morning-trove-master-plan.md",
+    "restraint": "hue travel at <= 0.5 weight inside MF_MelodiaWindHueReveal; undriven meadow is natural albedo",
+    "framing": "low dolly from the waterline, bands arcing to the rim (CAM_MelusinaMorning_Portfolio)"
+  },
+  "lookdev": {
+    "cameras": [
+      {"name": "waterline_dolly", "loc_cm": [-500.0, 1400.0, 350.0], "look_cm": [-2300.0, 1550.0, -50.0], "fov": 58, "exposure_bias": 0.7},
+      {"name": "website_oblique", "loc_cm": [-800.0, 200.0, 1100.0], "look_cm": [-2300.0, 1550.0, -50.0], "fov": 68, "exposure_bias": 0.7},
+      {"name": "website_top", "loc_cm": [-2300.0, 1440.0, 3200.0], "look_cm": [-2300.0, 1440.0, -100.0], "fov": 70, "exposure_bias": 0.5},
+      {"name": "website_south", "loc_cm": [-600.0, -100.0, 700.0], "look_cm": [-2100.0, 1650.0, -80.0], "fov": 62, "exposure_bias": 1.5},
+      {"name": "south_fix", "loc_cm": [-800.0, 0.0, 900.0], "look_cm": [-2100.0, 1650.0, -50.0], "fov": 62, "exposure_bias": 1.75}
+    ]
+  }
+}

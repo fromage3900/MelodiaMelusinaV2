@@ -73,6 +73,30 @@ void UMelodiaCymaticsWriterSubsystem::RefreshAndPublish()
 		MidIntensity = BeatIntensity * 0.7f + BassIntensity * 0.3f;
 	}
 
+	// ── Wind lanes (2026-09-16 Muse brief P4) ─────────────────────────────────
+	// The palette is the source lane for wind; OSC/TD/game write the normalized
+	// XY direction plus magnitude there and never touch the driver. This writer
+	// derives the driver copy, which is why the flower-field wind must not be
+	// published straight to MPC_Cymatics_Driver by anything else.
+	//
+	// The old OSC handler reduced wind to abs(X), so -X and +X gusts were
+	// identical and Y was dropped; the direction lanes carry the whole heading.
+	float WindDirX = 0.f;
+	float WindDirY = 0.f;
+	float WindStrength = 0.f;
+	const bool bHaveWindX = SrcInst->GetScalarParameterValue(FName(TEXT("WindDirX")), WindDirX);
+	const bool bHaveWindY = SrcInst->GetScalarParameterValue(FName(TEXT("WindDirY")), WindDirY);
+	const bool bHaveWindS = SrcInst->GetScalarParameterValue(FName(TEXT("WindStrength")), WindStrength);
+
+	// Direction is re-orthonormalized defensively: a malformed sender can hand us
+	// a non-unit vector, and a zero-length vector would poison the material's
+	// normalize(). When the vector is degenerate we skip the direction writes and
+	// let the driver hold its previous heading -- a hold is not a snap, and it
+	// keeps NaN out of the graph. Strength still publishes 0, which is the
+	// neutral state: the material multiplies its response by strength.
+	const float WindDirLen = FMath::Sqrt(WindDirX * WindDirX + WindDirY * WindDirY);
+	const bool bWindDirValid = bHaveWindX && bHaveWindY && WindDirLen > 1e-4f;
+
 	// Chladni modes mirrored from UMelodiaCymaticsSubsystem (read-only) so writer and sampler stay coherent
 	const int32 ModeN = FMath::Clamp(2 + FMath::FloorToInt(BassIntensity * 6.0f), 1, 8);
 	const int32 ModeM = FMath::Clamp(3 + FMath::FloorToInt(BeatPulse * 5.0f), 1, 8);
@@ -96,4 +120,18 @@ void UMelodiaCymaticsWriterSubsystem::RefreshAndPublish()
 	// Also mirror legacy names expected by some Copernicus MIs if they sample BeatPulse/BassIntensity directly from driver
 	DstInst->SetScalarParameterValue(FName(TEXT("BeatPulse")), BeatPulse);
 	DstInst->SetScalarParameterValue(FName(TEXT("BassIntensity")), BassIntensity);
+
+	// Derived wind lanes. Direction publishes only when the source vector is
+	// usable; strength publishes whenever the lane exists, clamped so a bad
+	// sender cannot drive the meadow into a runaway sweep.
+	if (bWindDirValid)
+	{
+		DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_WindDirX")), WindDirX / WindDirLen);
+		DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_WindDirY")), WindDirY / WindDirLen);
+	}
+	if (bHaveWindS)
+	{
+		DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_WindStrength")),
+			FMath::Clamp(WindStrength, 0.f, 10.f));
+	}
 }

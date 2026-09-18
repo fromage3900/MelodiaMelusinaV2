@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/world_recipe.v1.schema.json",
+  "title": "Melodia World Compiler recipe v1",
+  "description": "Small, seed-driven input to Tools/world_compiler.py. See Docs/WorldGen/WORLD_COMPILER_CONTRACT.md section 2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "recipe_id", "world_seed", "identity", "place", "field", "species", "palette", "signal"],
+  "properties": {
+    "schema": {"const": "melodia.world_recipe.v1"},
+    "recipe_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+    "world_seed": {"type": "integer", "minimum": 0},
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode_id": {"type": "string", "enum": ["ionian", "dorian", "lydian", "aeolian", "phrygian"]},
+        "root_pitch_class": {"type": "integer", "minimum": 0, "maximum": 11},
+        "bpm": {"type": "integer", "minimum": 40, "maximum": 220},
+        "movement_id": {"type": "string"},
+        "chunk": {"type": "array", "items": {"type": "integer"}, "minItems": 2, "maxItems": 2}
+      }
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "anchor_cm"],
+      "properties": {
+        "level": {"type": "string", "pattern": "^/Game/"},
+        "anchor_cm": {"$ref": "#/$defs/vec3"},
+        "up_axis_offset_cm": {"type": "number", "default": 4.0},
+        "clearance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "circles": {"type": "array", "items": {"$ref": "#/$defs/circle"}},
+            "capsules": {"type": "array", "items": {"$ref": "#/$defs/capsule"}}
+          }
+        }
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "band_count", "inner_radius_cm", "band_width_cm", "density_per_m2"],
+      "properties": {
+        "kind": {"const": "radial_bands"},
+        "band_count": {"type": "integer", "minimum": 1, "maximum": 12},
+        "inner_radius_cm": {"type": "number", "minimum": 0},
+        "band_width_cm": {"type": "number", "exclusiveMinimum": 0},
+        "density_per_m2": {"type": "number", "exclusiveMinimum": 0, "maximum": 20},
+        "phyllotaxis_angle_rad": {"type": "number", "default": 2.399963},
+        "radial_jitter_cm": {"type": "number", "minimum": 0, "default": 18.0},
+        "scale_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2, "default": [0.5, 1.1]},
+        "sector_deg": {"$ref": "#/$defs/vec2", "description": "Optional [center_deg, half_width_deg] (0 = +X, CCW). Folds the phyllotaxis sweep into that arc so density targets are spent where ground exists."},
+        "chladni": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["modes"],
+          "properties": {
+            "modes": {"type": "array", "items": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 12}, "minItems": 2, "maxItems": 2}},
+            "threshold": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.35},
+            "plate_size_cm": {"type": "number", "exclusiveMinimum": 0}
+          }
+        },
+        "hero_falloff_cm": {"type": "number", "minimum": 0, "default": 600.0}
+      }
+    },
+    "species": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["species_id", "mesh", "weight"],
+        "properties": {
+          "species_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "mesh": {"type": "string", "pattern": "^/Game/", "description": "Default mesh (also the dressing-table headline mesh)."},
+          "meshes": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^/Game/"}, "description": "Optional per-variant mesh list; variant_id % len(meshes) selects. When present, variants defaults to len(meshes)."},
+          "band_mi_prefix": {"type": "string", "pattern": "^/Game/"},
+          "stem_material": {
+            "oneOf": [
+              {"type": "string", "pattern": "^/Game/", "description": "Material for slot 0 (stem/leaf)."},
+              {"const": "__band__", "description": "Use the same per-band MI on slot 0 (SpeedTree two-slot cards)."}
+            ]
+          },
+          "weight": {"type": "number", "exclusiveMinimum": 0},
+          "variants": {"type": "integer", "minimum": 1, "default": 3},
+          "height_class": {"type": "integer", "minimum": 0, "maximum": 2}
+        }
+      }
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bands"],
+      "properties": {
+        "bands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "tint"],
+            "properties": {
+              "label": {"type": "string", "pattern": "^B[0-9]+_[A-Za-z]+$"},
+              "tint": {"$ref": "#/$defs/rgb"},
+              "hue": {"type": "number", "minimum": 0, "maximum": 1}
+            }
+          }
+        },
+        "parent_master": {"type": "string", "pattern": "^/Game/"},
+        "tint_parameter": {"type": "string", "default": "BaseTint"},
+        "active_lane": {"type": "string", "enum": ["static", "wind"], "default": "static", "description": "Which band-MI family the 'material' column references: static hue gradient (parent_master + tint_parameter) or the wind hue-reveal family (wind.*)."},
+        "wind": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["parent", "mi_prefix"],
+          "description": "Wind hue-reveal lane. The parent must already call MF_MelodiaWindHueReveal and read the palette Wind* lanes; the compiler only names MIs and their parameter values.",
+          "properties": {
+            "parent": {"type": "string", "pattern": "^/Game/"},
+            "mi_prefix": {"type": "string", "pattern": "^/Game/"},
+            "tint_parameter": {"type": "string", "default": "MelodiaWindRevealTint"},
+            "hue_seed_parameter": {"type": "string", "default": "MelodiaWindHueSeed"},
+            "response_parameter": {"type": "string", "default": "MelodiaWindResponse"},
+            "response": {"type": "number", "minimum": 0, "maximum": 1, "default": 1.0},
+            "scalar_overrides": {"type": "object", "additionalProperties": {"type": "number"}},
+            "static_switches_off": {"type": "array", "items": {"type": "string"}},
+            "texture_overrides": {"type": "object", "additionalProperties": {"type": "string"}},
+            "note": {"type": "string"}
+          }
+        }
+      }
+    },
+    "fx": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pack": {"type": "string"},
+        "anchors_per_band": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "mist_anchors": {"type": "integer", "minimum": 0},
+        "windfront_anchors": {"type": "integer", "minimum": 0},
+        "wind_dir": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "bounds_cm": {"type": "number", "minimum": 300, "maximum": 500, "default": 400}
+      }
+    },
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_mpc", "driver_mpc", "lanes"],
+      "properties": {
+        "source_mpc": {"type": "string", "pattern": "^/Game/"},
+        "driver_mpc": {"type": "string", "pattern": "^/Game/"},
+        "lanes": {"type": "array", "items": {"type": "string", "pattern": "^Cymatic_"}, "minItems": 1},
+        "material_function": {"type": "string", "pattern": "^/Game/"}
+      }
+    },
+    "terrain": {"type": ["object", "null"], "properties": {
+      "kind": {"type": "string", "enum": ["handoff", "ground_probe"]},
+      "handoff": {"type": "string", "description": "kind=handoff: terrain_handoff document path"},
+      "probe": {"type": "string", "description": "kind=ground_probe: tracked JSON written by world_compiler_ue.py probe_ground (line-trace grid: x,y,z,actor_label,actor_class)"},
+      "walkable_z_cm": {"$ref": "#/$defs/vec2", "description": "kind=ground_probe: [min,max] hit z accepted as plantable ground; cells outside (or with no hit) are masked"},
+      "exclude_actor_classes": {"type": "array", "items": {"type": "string"}, "description": "kind=ground_probe: hit actor classes that are never plantable (props, beds)"},
+      "probe_radius_cm": {"type": "number"},
+      "probe_step_cm": {"type": "number"}
+    }},
+    "chapter": {"type": ["object", "null"], "properties": {"chapter": {"type": "string", "pattern": "^[0-9]{2}_[a-z][a-z0-9_]*$"}, "create": {"type": "boolean"}}},
+    "motif": {"type": ["object", "null"], "properties": {"roll_field": {"type": "string"}, "phrase_manifest": {"type": "string"}}},
+    "influence": {"type": "array", "items": {"type": "object", "required": ["monolith_id", "influence"], "properties": {"monolith_id": {"type": "string"}, "influence": {"type": "number", "minimum": 0, "maximum": 1}, "anatomy_role": {"type": "string"}, "foreshadow_level": {"type": "integer", "minimum": 0, "maximum": 5}}}},
+    "region_history": {"type": ["object", "null"]},
+    "muse": {"type": "object"},
+    "lookdev": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Named still cameras in level cm. Canonical lookdev list; not duplicated on UWorldRecipe.",
+      "properties": {
+        "cameras": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "loc_cm", "look_cm"],
+            "properties": {
+              "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+              "loc_cm": {"$ref": "#/$defs/vec3"},
+              "look_cm": {"$ref": "#/$defs/vec3"},
+              "fov": {"type": "number", "minimum": 10, "maximum": 170, "default": 70},
+              "exposure_bias": {"type": "number", "minimum": 0, "maximum": 4, "description": "Scene-capture auto-exposure bias only; never extra PPV bloom"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+    "vec2": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "rgb": {"type": "array", "items": {"type": "number", "minimum": 0, "maximum": 4}, "minItems": 3, "maxItems": 3},
+    "circle": {"type": "object", "required": ["label", "center_cm", "radius_cm"], "properties": {"label": {"type": "string"}, "center_cm": {"$ref": "#/$defs/vec2"}, "radius_cm": {"type": "number", "minimum": 0}}},
+    "capsule": {"type": "object", "required": ["label", "a_cm", "b_cm", "radius_cm"], "properties": {"label": {"type": "string"}, "a_cm": {"$ref": "#/$defs/vec2"}, "b_cm": {"$ref": "#/$defs/vec2"}, "radius_cm": {"type": "number", "minimum": 0}}}
+  }
+}
