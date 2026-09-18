@@ -10,7 +10,7 @@
 
 ## Goal
 
-Convert Quixel / Megascans / Enchanted Vehicles onto **Melodia Toon pipeline masters**.
+Convert Quixel / Megascans / Enchanted Vehicles / Brushify Floating Islands onto **Melodia Toon pipeline masters**.
 
 **Owner correction:** Quixel **Custom_MS** (`M_MS_CustomDefault` / `M_MS_CustomFoliage` and overwrite variants) is the **wrong** target. Abandoned after that correction. Same-day gap hunt [`MATERIALS_CONVERGENCE_GAP_HUNT_2026-09-17.md`](MATERIALS_CONVERGENCE_GAP_HUNT_2026-09-17.md) still names Custom_MS as a hypothesized retarget — that hypothesis is **superseded**.
 
@@ -34,7 +34,7 @@ Do **not** retarget marketplace env MIs onto Custom_MS overwrite masters.
 | Megascans MI | **237/237** reparented onto Toon / ToonFoliage |
 | Quixel / MSPresets leftovers | **2/2** on Toon Universal |
 | Enchanted Vehicles (KitBash) | Stock assets are **masters** `M_KB3D_ECV_*` (**72**). Created Melodia MI wrappers at `/Game/Melodia/Imported/EnchantedVehicles/MI_KB3D_ECV_*` on Toon Universal with basecolor / normal / rough / metal / height + light Cymatic params. Disk confirmed **73** MI `.uasset` after owner save. |
-| Brushify Floating Islands | Disk census **111 MI / 19 M** under `Content/Brushify - Floating Islands` — convert to Toon still **pending** this pass |
+| Brushify Floating Islands | **98** MI reparented onto Toon / ToonFoliage · **13** skipped (sky / cloud / water / FX) · **0** fail. Disk `Content/Brushify - Floating Islands/...` · UE mount `/Game/Brushify/...`. Prior disk census **111 MI / 19 M** (98 + 13 = 111 MI accounted). |
 
 Megascans / Brushify / ECV Content trees are typically **local-only** (not on git `main`). Counts above are fromage disk / live editor, not this PR's tree.
 
@@ -42,13 +42,13 @@ Megascans / Brushify / ECV Content trees are typically **local-only** (not on gi
 
 ## Owner actions
 
-- **Ctrl+S** for any remaining dirty packages (Megascans / Quixel parent edits).
+- **Ctrl+S** for remaining dirty packages (Megascans / Quixel parent edits **and** Brushify).
 - Never use Monolith `save_packages` / `recompile_material`.
 
 ## Still pending
 
-- **Brushify Floating Islands** → Toon masters (`M_Master_Toon_Universal` / `M_ToonFoliage` as appropriate; landscape defer unless owner says otherwise).
 - **ECV mesh material slot retarget:** Monolith mesh APIs only expose `set_actor_material` / level swap — **no asset-slot setter**. Meshes still reference stock `M_KB3D_ECV_*`; Melodia wrappers are ready for manual or future-tool retarget.
+- **Owner Ctrl+S** for Brushify dirty packages (and any leftover Megascans / Quixel).
 - **SurrealFabric / flipbook Ctrl+S** if still dirty from earlier lane (`MI_SurrealFabric_CelestialSilk` / `CymaticPulse` / `BrassPatina`, `MF_FlipbookScrub` — see [`PACKAGE_A_MATERIALS_ORG_2026-09-17.md`](PACKAGE_A_MATERIALS_ORG_2026-09-17.md)).
 
 ## Hard rules honored
