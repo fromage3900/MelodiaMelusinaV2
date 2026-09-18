@@ -155,3 +155,14 @@ distance on this 7.6 m hull — "sparse and irregular", never a lattice. The
 hand-placed stud rows (116: keel, waterline strake, rub rail, plates) already
 carry the riveted read. The lattice is removed from the v12 file; the finding
 stands: for THIS hull, rivets are a hand-placed band language, not a field.
+
+## v12w note — water tier 1 landed (2026-09-18 small hours)
+
+Ocean modifier on ProxyWater (res 7, spatial 8, wave_scale 0.35, chopped 0.4,
+time keyed 10/70/130/170) + a normal-driven emission shader (Geometry Normal Z
+-> MapRange 0.982..1.0 -> Emission 2.0..7.0) so the glow survives while the
+swells BAND and read. Ripple rings (two, keyed 1..17 for shots 07/08) and a
+WakeTrail plane (scaled on from shot 13) are in and keyed. Verified: "visible
+wave banding/swells rather than flat". OPEN: the wake plane still reads too
+faint at wide scale (sits at water level and may dip under crests) — raise or
+rework per owner's eye; rings pass as glow accents.
