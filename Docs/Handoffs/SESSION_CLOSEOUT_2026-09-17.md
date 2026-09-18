@@ -177,3 +177,33 @@ Chain tip committed: `SHOREWAKE_proxy_v16_lissajous.blend` (all structure, drape
 jewels, rigging, water). Next session: owner picks the A/Bs (carillon vs pagoda;
 ribbon vs pearl), then the polish list, then re-render the promoted shots and the
 panels, then the pennant bake.
+
+## ADDENDUM 2 — v17 SNAP + SOFTEN (2026-09-18 00:05)
+
+`SHOREWAKE_proxy_v17_soft.blend` (chain tip) — BVH nearest-surface audit +
+selective snapping + soft-edge pass (`Saved/Audit/sa_snap_soft_v17b.py`,
+`soft_cloth_v17c.py`).
+
+Audit (gap to nearest big surface, world space): 14 pieces snug (0-10 mm) —
+mast bands, lantern hoops, rope ladder, laundry line, nest bell, garlands
+(2 mm), jewel beads/wreath/stars (0-8 mm), plates + stern plate (0 mm).
+Snapped loose fittings: KeelCaps 0.136->0.006, Keel_BrassShoe 0.166->0.006,
+MastLantern 0.035->0.006. Standoffs classified as BY DESIGN and left:
+Tier2_Carillon (0.080 above the sail), StarFinialHost (0.410 over the lantern),
+BalljointsHost (0.085 on rib tips), Stern_Crest (0.133, reads attached in
+render). Tier2_Balcony's designed 0.167 m nest gap BRIDGED with a new
+`BalconyBracket` (brass, beveled) instead of slamming the balcony inward.
+
+Soft edges: Bevel 4 mm/2 seg/40 deg + smooth-by-angle on 9 hard-surface pieces
+(plates, tiers, star, keel caps/shoe, mast bands, hoops, bell, nest, lantern);
+`shade_smooth()` on the cloth family (awning, banner, swallowtail, 7 cascades).
+
+Verification (vision): "keel trim caps and brass shoe flush, no floating gaps;
+hull edges and armor plates read soft/beveled"; awning "reads softer, smooth
+cloth shading rather than faceted hard creases". Note: the FIRST snap pass used
+a blanket gap>30mm rule and damaged 5 standoff pieces — caught, reclassified,
+rebuilt from v16; the wrong-rule lesson is now law in the new skill
+`melodia-blender-snap-soft`.
+
+New skills created this session: `melodia-blender-snap-soft`,
+`melodia-skiff-chain`.
