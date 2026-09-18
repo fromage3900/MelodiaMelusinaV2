@@ -119,3 +119,29 @@ F. INFRA HYGIENE: parent-inverse pattern (done in live fixes); .001 material
   4. Bolt density: **keep 0.33 storybook spacing**; densify only if closeups
      come back sparse again.
   5. Whimsy trio: **approve ladder + bell/sign + laundry line** as stream B.
+
+## 7. v08 status (2026-09-17 late) — decisions 1-5 executed, streams started
+
+SHOREWAKE_proxy_v08_brightwork.blend (headless replay of the live session onto
+the 19:52 save, then committed): sail furled + original stowed; pennant reseated
+to z 2.68 above the nest rail; FillBrass warm fill; rope ladder (deck 0.853 via
+raycast); bell v2; laundry v2 (reads as signal flags, kept); mast bands x3 +
+rope lashings x2; keel caps + tip ball (NOTE: keel is submerged — draft!);
+lantern hoops swapped to M_Brass (were M_Regal_Brass_Filigree — one call reverts);
+waterline rivet row (40 domes) on the visible strake; 76+40 = 116 studs total.
+
+Stream D started in v08: anchor ROCK KEYS per shot (pitch/roll + heave, asleep
+1° -> wake 4°, verified: frame 10/70/130 read 1.0/1.7/3.3°) and WIND STATE keys
+(0.02 asleep / 0.06 playing / 0.35 at the wake, verified on the field fcurves).
+
+NEW FINDINGS (write into the boat's law):
+- Her waterline sits at z 0.62; keel (0.28-0.31) is draft — keel hardware is
+  invisible in every shot. Visible hardware lives on TWO bands only:
+  waterline strake z 0.68 and rub rail z 0.855.
+- The boom passes ~3 cm above the nest platform — reads fine, nudge candidate.
+- FLIP Domain object confused a scene raycast (ladder first landed at 1.70).
+  Per-object raycasts beat scene raycasts on this stage.
+
+Remaining: A4 garlands legibility (dials, GUI), B4/B5 bow crest + stern plate,
+D pennant cloth bake + water tier 1 + the five promoted shots, E workspace kit,
+F hygiene sweep before the final generation.
