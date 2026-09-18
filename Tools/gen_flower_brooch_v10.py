@@ -25,11 +25,18 @@ seat cups + bezel, plate step + collar, bloom driver, Bevel_Detail stack positio
 Run:  bridge --file Tools/gen_flower_brooch_v7.py   (live session; script does not save)
 """
 import importlib.util
+import json
 import math
 import os
-import shutil
+import random
+import sys
 import time
 import traceback
+
+# ensure Tools/ is importable for the sparkle companion
+_TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+if _TOOLS_DIR not in sys.path:
+    sys.path.insert(0, _TOOLS_DIR)
 
 import bpy
 
@@ -410,6 +417,14 @@ def petal_surface(tree, tag, loc, gin, base_w, tip_pow, bend0, recurve, cup, rid
         L(tree, wc, "Value", wmw, 0)
         L(tree, wbw, "Value", wmw, 1)
         wsrc = wmw
+    # A1: super-ellipse margin exponent (continuous round→squarish→needle control)
+    # drives the petal outline as a power of the base width profile
+    w_base = mathx(tree, "%s w(u) base" % tag, 'MULTIPLY', (x0 + 450, y0 + 200), b=base_w)
+    L(tree, wsrc, "Value", w_base, 0)
+    w_exp = mathx(tree, "%s w(u) margin" % tag, 'POWER', (x0 + 600, y0 + 200))
+    L(tree, w_base, "Value", w_exp, 0)
+    L(tree, gin, "Margin Exp", w_exp, 1)
+    w = w_exp
     if ripple > 0.0:
         rf = mathx(tree, "%s u*rf" % tag, 'MULTIPLY', (x0 + 180, y0 + 320), b=ripple_freq * 2.0 * PI)
         L(tree, u, "Value", rf, 0)
@@ -419,14 +434,10 @@ def petal_surface(tree, tag, loc, gin, base_w, tip_pow, bend0, recurve, cup, rid
         L(tree, rs, "Value", rsc, 0)
         r1 = mathx(tree, "%s 1+rip" % tag, 'ADD', (x0 + 580, y0 + 320), b=1.0)
         L(tree, rsc, "Value", r1, 0)
-        wcp = mathx(tree, "%s w*rip" % tag, 'MULTIPLY', (x0 + 450, y0 + 200))
-        L(tree, wsrc, "Value", wcp, 0)
-        L(tree, r1, "Value", wcp, 1)
-        w = mathx(tree, "%s w(u)" % tag, 'MULTIPLY', (x0 + 590, y0 + 200), b=base_w)
-        L(tree, wcp, "Value", w, 0)
-    else:
-        w = mathx(tree, "%s w(u)" % tag, 'MULTIPLY', (x0 + 450, y0 + 200), b=base_w)
-        L(tree, wsrc, "Value", w, 0)
+        w_rip = mathx(tree, "%s w*rip" % tag, 'MULTIPLY', (x0 + 450, y0 + 200))
+        L(tree, w, "Value", w_rip, 0)
+        L(tree, r1, "Value", w_rip, 1)
+        w = w_rip
 
     xnew = mathx(tree, "%s x*w" % tag, 'MULTIPLY', (x0 + 580, y0 + 120))
     L(tree, xyz, "X", xnew, 0)
@@ -670,6 +681,240 @@ def whorl_chain(tree, tag, gin, ix, loc):
     return vpos, vrot, vsc
 
 
+def petal_system(tree, gin, crown, phy, mat_metal_petal, flutter=False):
+    """v10 petal block — extracted from build() for dual use: body tree (invisible sampler
+    for accent snap, flutter=False) and petals object (visible + flutter, flutter=True).
+    Returns (petal_out, petal_sock). Reads Petal Count/Phyllotaxis Angle/Spread/Petal
+    Length/Width/Thickness/Inner Size/Tilt/Cup/Rise/Chaos/Bloom from gin; flutter reads
+    Petal Amp + Petal Rate (must exist on the target tree's interface when flutter=True)."""
+    ARCH = {
+        "round":     ((0.92, 0.55, 1.05, -1.35, 0.55, 0.060, 0.030, 3.5, 1.00, 0.0, 0.0),
+                      (0.60, 0.85, 0.90, -0.70, 0.90, 0.050, 0.020, 2.0, 0.80, 0.0, 0.0)),
+        "acuminate": ((0.60, 0.95, 1.30, -1.20, 0.70, 0.080, 0.020, 2.0, 0.90, 0.0, 0.0),
+                      (0.40, 1.10, 1.50, -0.50, 1.00, 0.065, 0.014, 1.6, 0.70, 0.0, 0.0)),
+        "spatulate": ((0.95, 2.20, 0.95, -0.95, 0.50, 0.055, 0.025, 3.0, 1.00, 0.0, 0.12),
+                      (0.62, 2.40, 0.85, -0.60, 0.75, 0.045, 0.018, 2.5, 0.80, 0.0, 0.10)),
+        "cordate":   ((1.00, 2.60, 1.10, -1.60, 0.35, 0.070, 0.020, 2.5, 1.00, 0.0, 0.0),
+                      (0.65, 2.80, 1.00, -1.00, 0.60, 0.055, 0.015, 2.0, 0.80, 0.0, 0.0)),
+        "frilled":   ((0.85, 0.70, 0.90, -1.20, 0.45, 0.045, 0.040, 4.0, 0.95, 0.06, 0.0),
+                      (0.55, 0.85, 0.80, -0.80, 0.70, 0.040, 0.030, 3.0, 0.75, 0.05, 0.0)),
+        "reflexed":  ((0.88, 0.62, 1.25, -1.90, 0.70, 0.065, 0.020, 2.0, 1.00, 0.0, 0.0),
+                      (0.58, 0.75, 1.35, -1.20, 0.95, 0.055, 0.015, 1.8, 0.80, 0.0, 0.0)),
+        "cupped":    ((0.80, 0.75, 0.55, -0.60, 1.30, 0.080, 0.020, 2.0, 1.00, 0.0, 0.0),
+                      (0.52, 0.85, 0.50, -0.40, 1.10, 0.060, 0.015, 1.8, 0.80, 0.0, 0.0)),
+    }
+    prof = str(crown.get("petal_profile", "round")).lower()
+    arch_name = {"pointed": "acuminate"}.get(prof, prof)
+    if arch_name not in ARCH:
+        arch_name = "round"
+    P_OUT, P_IN = ARCH[arch_name]
+
+    ix = mk(tree, 'GeometryNodeInputIndex', "index i", (-6200, -500))
+    t_sub = mathx(tree, "n-1", 'SUBTRACT', (-5800, -300), a=0.0)
+    L(tree, gin, "Petal Count", t_sub, 0)
+    d0(t_sub, 1, 1.0)
+    t_max = mathx(tree, "max(n-1,1)", 'MAXIMUM', (-5600, -500), b=1.0)
+    L(tree, t_sub, "Value", t_max, 0)
+    t_div = mathx(tree, "t = i/(n-1)", 'DIVIDE', (-5400, -400))
+    L(tree, ix, "Index", t_div, 0)
+    L(tree, t_max, "Value", t_div, 1)
+
+    r_a = rnd(tree, "rand A (angle)", (-6200, -900))
+    seed_a = rand_seed(r_a)
+    if seed_a is not None:
+        L(tree, ix, "Index", r_a, seed_a.name)
+    d0(r_a, 0, 0.0)
+    d0(r_a, 1, 1.0)
+    j_0 = mathx(tree, "randA-0.5", 'SUBTRACT', (-5900, -850), b=0.5)
+    L(tree, r_a, "Value", j_0, 0)
+    j_1 = mathx(tree, "*chaos", 'MULTIPLY', (-5700, -950))
+    L(tree, j_0, "Value", j_1, 0)
+    L(tree, gin, "Chaos", j_1, 1)
+    j_2 = mathx(tree, "jitter rad", 'MULTIPLY', (-5500, -900), b=0.35)
+    L(tree, j_1, "Value", j_2, 0)
+    th_0 = mathx(tree, "i*GA", 'MULTIPLY', (-5800, -650))
+    L(tree, ix, "Index", th_0, 0)
+    L(tree, gin, "Phyllotaxis Angle", th_0, 1)
+    th = mathx(tree, "theta", 'ADD', (-5300, -800))
+    L(tree, th_0, "Value", th, 0)
+    L(tree, j_2, "Value", th, 1)
+
+    sq = mathx(tree, "sqrt(t)", 'SQRT', (-5400, -200))
+    L(tree, t_div, "Value", sq, 0)
+    rr = mathx(tree, "r = Spread*sqrt(t)", 'MULTIPLY', (-5200, -150))
+    L(tree, sq, "Value", rr, 0)
+    L(tree, gin, "Spread", rr, 1)
+    cos_t = mathx(tree, "cos(theta)", 'COSINE', (-4900, -900))
+    L(tree, th, "Value", cos_t, 0)
+    sin_t = mathx(tree, "sin(theta)", 'SINE', (-4900, -700))
+    L(tree, th, "Value", sin_t, 0)
+    px = mathx(tree, "x = r*cos", 'MULTIPLY', (-4600, -950))
+    L(tree, cos_t, "Value", px, 0)
+    L(tree, rr, "Value", px, 1)
+    py = mathx(tree, "y = r*sin", 'MULTIPLY', (-4600, -750))
+    L(tree, sin_t, "Value", py, 0)
+    L(tree, rr, "Value", py, 1)
+    one_mt = mathx(tree, "1-t", 'SUBTRACT', (-5400, 100), a=1.0)
+    L(tree, t_div, "Value", one_mt, 1)
+    pz = mathx(tree, "z = Rise*(1-t)", 'MULTIPLY', (-4900, 100))
+    L(tree, one_mt, "Value", pz, 0)
+    L(tree, gin, "Rise", pz, 1)
+    v_pos = combine(tree, "petal position", (-4200, -850))
+    L(tree, px, "Value", v_pos, "X")
+    L(tree, py, "Value", v_pos, "Y")
+    L(tree, pz, "Value", v_pos, "Z")
+
+    seed_s = mathx(tree, "seedS = i+1000", 'ADD', (-6200, -1300), b=1000.0)
+    L(tree, ix, "Index", seed_s, 0)
+    r_s = rnd(tree, "rand S (scale)", (-6000, -1500))
+    seed_sock = rand_seed(r_s)
+    if seed_sock is not None:
+        L(tree, seed_s, "Value", r_s, seed_sock.name)
+    d0(r_s, 0, 0.0)
+    d0(r_s, 1, 1.0)
+    s_0 = mathx(tree, "randS-0.5", 'SUBTRACT', (-5700, -1450), b=0.5)
+    L(tree, r_s, "Value", s_0, 0)
+    s_1 = mathx(tree, "*chaos", 'MULTIPLY', (-5500, -1550))
+    L(tree, s_0, "Value", s_1, 0)
+    L(tree, gin, "Chaos", s_1, 1)
+    s_2 = mathx(tree, "scale jitter", 'MULTIPLY', (-5300, -1500), b=0.5)
+    L(tree, s_1, "Value", s_2, 0)
+    s_3 = mathx(tree, "1+jit", 'ADD', (-5100, -1400), b=1.0)
+    L(tree, s_2, "Value", s_3, 0)
+    mr = mk(tree, 'ShaderNodeMapRange', "falloff map", (-5100, -1150))
+    dn(mr, "From Min", 0.0)
+    dn(mr, "From Max", 1.0)
+    L(tree, t_div, "Value", mr, "Value")
+    L(tree, gin, "Inner Size", mr, "To Min")
+    dn(mr, "To Max", 1.0)
+    s_tot = mathx(tree, "s = falloff*jit", 'MULTIPLY', (-4800, -1250))
+    L(tree, mr, "Result", s_tot, 0)
+    L(tree, s_3, "Value", s_tot, 1)
+    sc_w = mathx(tree, "W*s", 'MULTIPLY', (-4400, -1600))
+    L(tree, s_tot, "Value", sc_w, 0)
+    L(tree, gin, "Petal Width", sc_w, 1)
+    sc_l = mathx(tree, "L*s", 'MULTIPLY', (-4400, -1300))
+    L(tree, s_tot, "Value", sc_l, 0)
+    L(tree, gin, "Petal Length", sc_l, 1)
+    sc_t = mathx(tree, "T*s", 'MULTIPLY', (-4400, -1000))
+    L(tree, s_tot, "Value", sc_t, 0)
+    L(tree, gin, "Petal Thickness", sc_t, 1)
+    v_scale = combine(tree, "petal scale", (-4100, -1300))
+    L(tree, sc_w, "Value", v_scale, "X")
+    L(tree, sc_l, "Value", v_scale, "Y")
+    L(tree, sc_t, "Value", v_scale, "Z")
+
+    cup_t = mathx(tree, "cup*(1-t)", 'MULTIPLY', (-4900, 400))
+    L(tree, one_mt, "Value", cup_t, 0)
+    L(tree, gin, "Cup", cup_t, 1)
+    tf = mathx(tree, "1+cup", 'ADD', (-4700, 450), b=1.0)
+    L(tree, cup_t, "Value", tf, 0)
+    tilt = mathx(tree, "tilt_i", 'MULTIPLY', (-4500, 400))
+    L(tree, tf, "Value", tilt, 0)
+    L(tree, gin, "Tilt", tilt, 1)
+    az = mathx(tree, "theta+90", 'ADD', (-4900, 600), b=R90)
+    L(tree, th, "Value", az, 0)
+    tilt_neg = mathx(tree, "tilt (outer tips up)", 'MULTIPLY', (-4300, 350), b=-1.0)
+    L(tree, tilt, "Value", tilt_neg, 0)
+    bloom_amt = mathx(tree, "1-bloom", 'SUBTRACT', (-4500, 250), a=1.0)
+    L(tree, gin, "Bloom", bloom_amt, 1)
+    bloom_closed = mathx(tree, "closed tilt delta", 'MULTIPLY', (-4300, 200), b=-1.15)
+    L(tree, bloom_amt, "Value", bloom_closed, 0)
+    tilt_fin = mathx(tree, "tilt + bloom", 'ADD', (-4100, 300))
+    L(tree, tilt_neg, "Value", tilt_fin, 0)
+    L(tree, bloom_closed, "Value", tilt_fin, 1)
+
+    v_rot = combine(tree, "petal rotation", (-3900, 400))
+    if flutter:
+        fl_t = mk(tree, 'GeometryNodeInputSceneTime', "petal flutter time", (-6900, 1200))
+        fl_r = mathx(tree, "flutter rate x", 'MULTIPLY', (-6700, 1200))
+        L(tree, fl_t, "Frame", fl_r, 0)
+        L(tree, gin, "Petal Rate", fl_r, 1)
+        fl_ph = mathx(tree, "flutter phase", 'MULTIPLY', (-6500, 1200), b=0.55)
+        L(tree, ix, "Index", fl_ph, 0)
+        fl_ps = mathx(tree, "flutter phase sum", 'ADD', (-6300, 1200))
+        L(tree, fl_r, "Value", fl_ps, 0)
+        L(tree, fl_ph, "Value", fl_ps, 1)
+        fl_sin = mathx(tree, "flutter sin", 'SINE', (-6100, 1200))
+        L(tree, fl_ps, "Value", fl_sin, 0)
+        fl_amp = mathx(tree, "flutter amp", 'MULTIPLY', (-5900, 1200))
+        L(tree, fl_sin, "Value", fl_amp, 0)
+        L(tree, gin, "Petal Amp", fl_amp, 1)
+        fl_add = mathx(tree, "rot X + flutter", 'ADD', (-3700, 400))
+        L(tree, tilt_fin, "Value", fl_add, 0)
+        L(tree, fl_amp, "Value", fl_add, 1)
+        L(tree, fl_add, "Value", v_rot, "X")
+    else:
+        L(tree, tilt_fin, "Value", v_rot, "X")
+    d0(v_rot, 1, 0.0)
+    L(tree, az, "Value", v_rot, "Z")
+
+    inner_mul = mathx(tree, "n*0.38", 'MULTIPLY', (-6250, -1900), b=0.38)
+    L(tree, gin, "Petal Count", inner_mul, 0)
+    inner_n = mathx(tree, "inner_n = round(n*0.38)", 'ROUND', (-6100, -1750))
+    L(tree, inner_mul, "Value", inner_n, 0)
+    outer_n = mathx(tree, "outer_n = n - inner_n", 'SUBTRACT', (-5950, -1750))
+    L(tree, gin, "Petal Count", outer_n, 0)
+    L(tree, inner_n, "Value", outer_n, 1)
+
+    proto_out, proto_out_sock = petal_surface(tree, "petal S outer", (-3200, -1400), gin, *P_OUT)
+    proto_in, proto_in_sock = petal_surface(tree, "petal S inner", (-3200, -2700), gin, *P_IN)
+
+    pts = mk(tree, 'GeometryNodePoints', "phyllotaxis points (outer)", (-3600, -700))
+    L(tree, outer_n, "Value", pts, "Count")
+    L(tree, v_pos, "Vector", pts, "Position")
+    iop = mk(tree, 'GeometryNodeInstanceOnPoints', "instance petals (outer)", (-2900, -700))
+    L(tree, pts, "Geometry", iop, "Points")
+    L(tree, proto_out, proto_out_sock, iop, "Instance")
+    L(tree, v_rot, "Vector", iop, "Rotation")
+    L(tree, v_scale, "Vector", iop, "Scale")
+
+    ix_b = mathx(tree, "inner index = i + outer_n", 'ADD', (-6200, -2100))
+    L(tree, ix, "Index", ix_b, 0)
+    L(tree, outer_n, "Value", ix_b, 1)
+    vpos_b, vrot_b, vsc_b = whorl_chain(tree, "inner", gin, ix_b, (-6050, -2900))
+    lb = vrot_b.inputs["X"].links[0]
+    fin_b = mathx(tree, "inner tilt + bloom", 'ADD', (-3900, 620))
+    L(tree, lb.from_socket.node, lb.from_socket.name, fin_b, 0)
+    L(tree, bloom_closed, "Value", fin_b, 1)
+    L(tree, fin_b, "Value", vrot_b, "X")
+    pts_b = mk(tree, 'GeometryNodePoints', "phyllotaxis points (inner)", (-3600, -1900))
+    L(tree, inner_n, "Value", pts_b, "Count")
+    L(tree, vpos_b, "Vector", pts_b, "Position")
+    iop_b = mk(tree, 'GeometryNodeInstanceOnPoints', "instance petals (inner)", (-2900, -1900))
+    L(tree, pts_b, "Geometry", iop_b, "Points")
+    L(tree, proto_in, proto_in_sock, iop_b, "Instance")
+    L(tree, vrot_b, "Vector", iop_b, "Rotation")
+    L(tree, vsc_b, "Vector", iop_b, "Scale")
+
+    join_i = mk(tree, 'GeometryNodeJoinGeometry', "join petal whorls", (-2700, -1200))
+    L(tree, iop, "Instances", join_i, "Geometry")
+    L(tree, iop_b, "Instances", join_i, "Geometry")
+    real = mk(tree, 'GeometryNodeRealizeInstances', "realize petals", (-2650, -700))
+    L(tree, join_i, "Geometry", real, "Geometry")
+    petal_out, petal_sock = smooth_shade(tree, real, "Geometry", (-2500, -700), "smooth petals")
+    return petal_out, petal_sock, sc_l, rr, cos_t, sin_t, tilt, pz
+
+
+def clone_interface(src_tree, dst_tree):
+    """Clone all INPUT sockets from src_tree's interface to dst_tree (for parallel trees)."""
+    for item in src_tree.interface.items_tree:
+        if getattr(item, "in_out", "") != "INPUT":
+            continue
+        try:
+            s = dst_tree.interface.new_socket(name=item.name, in_out='INPUT',
+                                              socket_type=item.socket_type)
+            s.default_value = item.default_value
+            for attr in ("min_value", "max_value", "subtype"):
+                if hasattr(item, attr):
+                    try:
+                        setattr(s, attr, getattr(item, attr))
+                    except Exception:
+                        pass
+        except Exception as exc:
+            print("  warn: clone socket %s (%r)" % (item.name, exc))
+
+
 def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=False):
     """Build one v7 tree from one genome. real_scale = final uniform scale (pass 2)."""
     S = float(real_scale) if real_scale else 1.0
@@ -745,6 +990,8 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     iface("Petal Length", 'NodeSocketFloat', float(crown["petal_len"]))
     iface("Petal Width", 'NodeSocketFloat', float(crown["petal_wid"]))
     iface("Petal Thickness", 'NodeSocketFloat', float(crown["petal_thk"]))
+    # A1 margin system: super-ellipse exponent driving the petal outline
+    iface("Margin Exp", 'NodeSocketFloat', 1.0, 0.2, 4.0)
     iface("Inner Size", 'NodeSocketFloat', float(crown["inner_size"]))
     iface("Tilt", 'NodeSocketFloat', math.radians(crown["tilt_deg"]), subtype='ANGLE')
     iface("Cup", 'NodeSocketFloat', float(crown["cup"]))
@@ -764,6 +1011,11 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     # Off = the legacy golden-angle phyllotaxis spiral (kept for comparison/designs).
     iface("Pave Even", 'NodeSocketBool', True)
     iface("Petal Inset", 'NodeSocketFloat', 1.0, 0.0, 1.0)
+    # 2026-09-17 (v11 animation): Bloom = 1 authored open crown, 0 closed bud. Pure parameter --
+    # NO SceneTime here (the body must stay time-free; live flutter belongs to the petal object).
+    iface("Bloom", 'NodeSocketFloat', 1.0, 0.0, 1.0)
+    # v11 polish: product/website shots hide the pin stem+tip (reads as a dead bar at 3/4 angles)
+    iface("Show Pin", 'NodeSocketBool', True)
     iface("Bead Settings", 'NodeSocketBool', True)
     iface("Real Scale", 'NodeSocketFloat', float(S), 0.05, 5.0)
     iface("Cast Finish", 'NodeSocketBool', bool(cast_default))
@@ -774,6 +1026,12 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     iface("Ring Count", 'NodeSocketInt', int(gspec.get("ring_count", 0) or 0), 0, 64)
     iface("Ring Gem Size", 'NodeSocketFloat', float(gspec.get("ring_size", 0.0) or 0.0), 0.0, 0.3)
     iface("Gem Size", 'NodeSocketFloat', float(gspec.get("center_size", 0.0) or 0.0), 0.0, 0.4)
+    # v11 milgrain + filigree (lace-like jewelry detail)
+    iface("Milgrain On", 'NodeSocketBool', True)
+    iface("Milgrain Size", 'NodeSocketFloat', 0.012, 0.003, 0.05)
+    iface("Filigree On", 'NodeSocketBool', True)
+    iface("Filigree Depth", 'NodeSocketFloat', 1, 0, 3)
+    iface("Filigree Width", 'NodeSocketFloat', 0.008, 0.003, 0.03)
     tree.interface.new_socket(name="Geometry", in_out='OUTPUT', socket_type='NodeSocketGeometry')
     print("[%s] interface sockets: %d | target %s mm | S=%.5f" % (
         tree_name, len(tree.interface.items_tree), target_mm or "-", S))
@@ -781,193 +1039,12 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     gin = mk(tree, 'NodeGroupInput', "Group Input", (-6200, 200))
     gout = mk(tree, 'NodeGroupOutput', "Group Output", (3400, 0))
 
-    # ---------------- index + t (shared by fields) --------------------------
-    ix = mk(tree, 'GeometryNodeInputIndex', "index i", (-6200, -500))
-    t_sub = mathx(tree, "n-1", 'SUBTRACT', (-5800, -300), a=0.0)
-    L(tree, gin, "Petal Count", t_sub, 0)
-    d0(t_sub, 1, 1.0)
-    t_max = mathx(tree, "max(n-1,1)", 'MAXIMUM', (-5600, -500), b=1.0)
-    L(tree, t_sub, "Value", t_max, 0)
-    t_div = mathx(tree, "t = i/(n-1)", 'DIVIDE', (-5400, -400))
-    L(tree, ix, "Index", t_div, 0)
-    L(tree, t_max, "Value", t_div, 1)
-
-    # ---------------- theta with chaos --------------------------------------
-    r_a = rnd(tree, "rand A (angle)", (-6200, -900))
-    seed_a = rand_seed(r_a)
-    if seed_a is not None:
-        L(tree, ix, "Index", r_a, seed_a.name)
-    d0(r_a, 0, 0.0)
-    d0(r_a, 1, 1.0)
-    j_0 = mathx(tree, "randA-0.5", 'SUBTRACT', (-5900, -850), b=0.5)
-    L(tree, r_a, "Value", j_0, 0)
-    j_1 = mathx(tree, "*chaos", 'MULTIPLY', (-5700, -950))
-    L(tree, j_0, "Value", j_1, 0)
-    L(tree, gin, "Chaos", j_1, 1)
-    j_2 = mathx(tree, "jitter rad", 'MULTIPLY', (-5500, -900), b=0.35)
-    L(tree, j_1, "Value", j_2, 0)
-    th_0 = mathx(tree, "i*GA", 'MULTIPLY', (-5800, -650))
-    L(tree, ix, "Index", th_0, 0)
-    L(tree, gin, "Phyllotaxis Angle", th_0, 1)
-    th = mathx(tree, "theta", 'ADD', (-5300, -800))
-    L(tree, th_0, "Value", th, 0)
-    L(tree, j_2, "Value", th, 1)
-
-    # ---------------- radius + position --------------------------------------
-    sq = mathx(tree, "sqrt(t)", 'SQRT', (-5400, -200))
-    L(tree, t_div, "Value", sq, 0)
-    rr = mathx(tree, "r = Spread*sqrt(t)", 'MULTIPLY', (-5200, -150))
-    L(tree, sq, "Value", rr, 0)
-    L(tree, gin, "Spread", rr, 1)
-    cos_t = mathx(tree, "cos(theta)", 'COSINE', (-4900, -900))
-    L(tree, th, "Value", cos_t, 0)
-    sin_t = mathx(tree, "sin(theta)", 'SINE', (-4900, -700))
-    L(tree, th, "Value", sin_t, 0)
-    px = mathx(tree, "x = r*cos", 'MULTIPLY', (-4600, -950))
-    L(tree, cos_t, "Value", px, 0)
-    L(tree, rr, "Value", px, 1)
-    py = mathx(tree, "y = r*sin", 'MULTIPLY', (-4600, -750))
-    L(tree, sin_t, "Value", py, 0)
-    L(tree, rr, "Value", py, 1)
-    one_mt = mathx(tree, "1-t", 'SUBTRACT', (-5400, 100), a=1.0)
-    L(tree, t_div, "Value", one_mt, 1)
-    pz = mathx(tree, "z = Rise*(1-t)", 'MULTIPLY', (-4900, 100))
-    L(tree, one_mt, "Value", pz, 0)
-    L(tree, gin, "Rise", pz, 1)
-    v_pos = combine(tree, "petal position", (-4200, -850))
-    L(tree, px, "Value", v_pos, "X")
-    L(tree, py, "Value", v_pos, "Y")
-    L(tree, pz, "Value", v_pos, "Z")
-
-    # ---------------- scale jitter -------------------------------------------
-    seed_s = mathx(tree, "seedS = i+1000", 'ADD', (-6200, -1300), b=1000.0)
-    L(tree, ix, "Index", seed_s, 0)
-    r_s = rnd(tree, "rand S (scale)", (-6000, -1500))
-    seed_sock = rand_seed(r_s)
-    if seed_sock is not None:
-        L(tree, seed_s, "Value", r_s, seed_sock.name)
-    d0(r_s, 0, 0.0)
-    d0(r_s, 1, 1.0)
-    s_0 = mathx(tree, "randS-0.5", 'SUBTRACT', (-5700, -1450), b=0.5)
-    L(tree, r_s, "Value", s_0, 0)
-    s_1 = mathx(tree, "*chaos", 'MULTIPLY', (-5500, -1550))
-    L(tree, s_0, "Value", s_1, 0)
-    L(tree, gin, "Chaos", s_1, 1)
-    s_2 = mathx(tree, "scale jitter", 'MULTIPLY', (-5300, -1500), b=0.5)
-    L(tree, s_1, "Value", s_2, 0)
-    s_3 = mathx(tree, "1+jit", 'ADD', (-5100, -1400), b=1.0)
-    L(tree, s_2, "Value", s_3, 0)
-    mr = mk(tree, 'ShaderNodeMapRange', "falloff map", (-5100, -1150))
-    dn(mr, "From Min", 0.0)
-    dn(mr, "From Max", 1.0)
-    L(tree, t_div, "Value", mr, "Value")
-    L(tree, gin, "Inner Size", mr, "To Min")
-    dn(mr, "To Max", 1.0)
-    s_tot = mathx(tree, "s = falloff*jit", 'MULTIPLY', (-4800, -1250))
-    L(tree, mr, "Result", s_tot, 0)
-    L(tree, s_3, "Value", s_tot, 1)
-    sc_w = mathx(tree, "W*s", 'MULTIPLY', (-4400, -1600))
-    L(tree, s_tot, "Value", sc_w, 0)
-    L(tree, gin, "Petal Width", sc_w, 1)
-    sc_l = mathx(tree, "L*s", 'MULTIPLY', (-4400, -1300))
-    L(tree, s_tot, "Value", sc_l, 0)
-    L(tree, gin, "Petal Length", sc_l, 1)
-    sc_t = mathx(tree, "T*s", 'MULTIPLY', (-4400, -1000))
-    L(tree, s_tot, "Value", sc_t, 0)
-    L(tree, gin, "Petal Thickness", sc_t, 1)
-    v_scale = combine(tree, "petal scale", (-4100, -1300))
-    L(tree, sc_w, "Value", v_scale, "X")
-    L(tree, sc_l, "Value", v_scale, "Y")
-    L(tree, sc_t, "Value", v_scale, "Z")
-
-    # ---------------- rotation -----------------------------------------------
-    cup_t = mathx(tree, "cup*(1-t)", 'MULTIPLY', (-4900, 400))
-    L(tree, one_mt, "Value", cup_t, 0)
-    L(tree, gin, "Cup", cup_t, 1)
-    tf = mathx(tree, "1+cup", 'ADD', (-4700, 450), b=1.0)
-    L(tree, cup_t, "Value", tf, 0)
-    tilt = mathx(tree, "tilt_i", 'MULTIPLY', (-4500, 400))
-    L(tree, tf, "Value", tilt, 0)
-    L(tree, gin, "Tilt", tilt, 1)
-    az = mathx(tree, "theta+90", 'ADD', (-4900, 600), b=R90)
-    L(tree, th, "Value", az, 0)
-    tilt_neg = mathx(tree, "tilt (outer tips up)", 'MULTIPLY', (-4300, 350), b=-1.0)
-    L(tree, tilt, "Value", tilt_neg, 0)
-    v_rot = combine(tree, "petal rotation", (-4100, 400))
-    L(tree, tilt_neg, "Value", v_rot, "X")
-    d0(v_rot, 1, 0.0)
-    L(tree, az, "Value", v_rot, "Z")
-
-    # ---------------- v9 petal system: parametric surfaces, two whorls ------------------
-    prof = str(crown.get("petal_profile", "round")).lower()
-    inner_mul = mathx(tree, "n*0.38", 'MULTIPLY', (-6250, -1900), b=0.38)
-    L(tree, gin, "Petal Count", inner_mul, 0)
-    inner_n = mathx(tree, "inner_n = round(n*0.38)", 'ROUND', (-6100, -1750))
-    L(tree, inner_mul, "Value", inner_n, 0)
-    outer_n = mathx(tree, "outer_n = n - inner_n", 'SUBTRACT', (-5950, -1750))
-    L(tree, gin, "Petal Count", outer_n, 0)
-    L(tree, inner_n, "Value", outer_n, 1)
-
-    # v10 silhouette: archetype table. 11 params: base_w, tip_pow, bend, recurve, cup, ridge,
-    # wave_amp, wave_freq, thick, ripple, waist. "pointed" is an alias of "acuminate".
-    ARCH = {
-        "round":     ((0.92, 0.55, 1.05, -1.35, 0.55, 0.060, 0.030, 3.5, 1.00, 0.0, 0.0),
-                      (0.60, 0.85, 0.90, -0.70, 0.90, 0.050, 0.020, 2.0, 0.80, 0.0, 0.0)),
-        "acuminate": ((0.60, 0.95, 1.30, -1.20, 0.70, 0.080, 0.020, 2.0, 0.90, 0.0, 0.0),
-                      (0.40, 1.10, 1.50, -0.50, 1.00, 0.065, 0.014, 1.6, 0.70, 0.0, 0.0)),
-        "spatulate": ((0.95, 2.20, 0.95, -0.95, 0.50, 0.055, 0.025, 3.0, 1.00, 0.0, 0.12),
-                      (0.62, 2.40, 0.85, -0.60, 0.75, 0.045, 0.018, 2.5, 0.80, 0.0, 0.10)),
-        "cordate":   ((1.00, 2.60, 1.10, -1.60, 0.35, 0.070, 0.020, 2.5, 1.00, 0.0, 0.0),
-                      (0.65, 2.80, 1.00, -1.00, 0.60, 0.055, 0.015, 2.0, 0.80, 0.0, 0.0)),
-        "frilled":   ((0.85, 0.70, 0.90, -1.20, 0.45, 0.045, 0.040, 4.0, 0.95, 0.06, 0.0),
-                      (0.55, 0.85, 0.80, -0.80, 0.70, 0.040, 0.030, 3.0, 0.75, 0.05, 0.0)),
-        "reflexed":  ((0.88, 0.62, 1.25, -1.90, 0.70, 0.065, 0.020, 2.0, 1.00, 0.0, 0.0),
-                      (0.58, 0.75, 1.35, -1.20, 0.95, 0.055, 0.015, 1.8, 0.80, 0.0, 0.0)),
-        "cupped":    ((0.80, 0.75, 0.55, -0.60, 1.30, 0.080, 0.020, 2.0, 1.00, 0.0, 0.0),
-                      (0.52, 0.85, 0.50, -0.40, 1.10, 0.060, 0.015, 1.8, 0.80, 0.0, 0.0)),
-    }
-    arch_name = {"pointed": "acuminate"}.get(prof, prof)
-    if arch_name not in ARCH:
-        print("[%s] petal profile %r unknown -> round" % (tree_name, prof))
-        arch_name = "round"
-    P_OUT, P_IN = ARCH[arch_name]
-    print("[%s] petal profile: %s -> v10 archetype whorl surfaces" % (tree_name, arch_name))
-
-    proto_out, proto_out_sock = petal_surface(tree, "petal S outer", (-3200, -1400), gin, *P_OUT)
-    proto_in, proto_in_sock = petal_surface(tree, "petal S inner", (-3200, -2700), gin, *P_IN)
-
-    pts = mk(tree, 'GeometryNodePoints', "phyllotaxis points (outer)", (-3600, -700))
-    L(tree, outer_n, "Value", pts, "Count")
-    L(tree, v_pos, "Vector", pts, "Position")
-    iop = mk(tree, 'GeometryNodeInstanceOnPoints', "instance petals (outer)", (-2900, -700))
-    L(tree, pts, "Geometry", iop, "Points")
-    L(tree, proto_out, proto_out_sock, iop, "Instance")
-    L(tree, v_rot, "Vector", iop, "Rotation")
-    L(tree, v_scale, "Vector", iop, "Scale")
-
-    ix_b = mathx(tree, "inner index = i + outer_n", 'ADD', (-6200, -2100))
-    L(tree, ix, "Index", ix_b, 0)
-    L(tree, outer_n, "Value", ix_b, 1)
-    vpos_b, vrot_b, vsc_b = whorl_chain(tree, "inner", gin, ix_b, (-6050, -2900))
-    pts_b = mk(tree, 'GeometryNodePoints', "phyllotaxis points (inner)", (-3600, -1900))
-    L(tree, inner_n, "Value", pts_b, "Count")
-    L(tree, vpos_b, "Vector", pts_b, "Position")
-    iop_b = mk(tree, 'GeometryNodeInstanceOnPoints', "instance petals (inner)", (-2900, -1900))
-    L(tree, pts_b, "Geometry", iop_b, "Points")
-    L(tree, proto_in, proto_in_sock, iop_b, "Instance")
-    L(tree, vrot_b, "Vector", iop_b, "Rotation")
-    L(tree, vsc_b, "Vector", iop_b, "Scale")
-
-    join_i = mk(tree, 'GeometryNodeJoinGeometry', "join petal whorls", (-2700, -1200))
-    L(tree, iop, "Instances", join_i, "Geometry")
-    L(tree, iop_b, "Instances", join_i, "Geometry")
-    real = mk(tree, 'GeometryNodeRealizeInstances', "realize petals", (-2650, -700))
-    L(tree, join_i, "Geometry", real, "Geometry")
-    petal_out, petal_sock = smooth_shade(tree, real, "Geometry", (-2500, -700), "smooth petals")
-    print("  [v10] petal whorls: outer=%s inner=%s | surfaces: OUT%s IN%s" % (
-        "n-inner", "round(0.38n)", P_OUT[:2], P_IN[:2]))
+    # ---------------- petals (extracted to petal_system) ---------------------
+    petal_out, petal_sock, sc_l, rr, cos_t, sin_t, tilt, pz = petal_system(tree, gin, crown, phy, mat_metal_petal, flutter=False)
 
     # ---------------- pave field (v5 law) + v6 seats + v7 surface sampling ----
+    # the pave section needs its own index counter (petal_system has its own internal ix)
+    ix_pave = mk(tree, 'GeometryNodeInputIndex', "index i (pave)", (-6200, -2300))
     gold_surf = mk(tree, 'GeometryNodeJoinGeometry', "gold surface (for seating)", (-3450, -3080))
     pc_sub = mathx(tree, "pave n-1", 'SUBTRACT', (-5800, -2400), a=0.0)
     L(tree, gin, "Pave Count", pc_sub, 0)
@@ -975,7 +1052,7 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     pc_max = mathx(tree, "pave max(n-1,1)", 'MAXIMUM', (-5600, -2600), b=1.0)
     L(tree, pc_sub, "Value", pc_max, 0)
     pc_t = mathx(tree, "pt = i/(n-1)", 'DIVIDE', (-5400, -2500))
-    L(tree, ix, "Index", pc_t, 0)
+    L(tree, ix_pave, "Index", pc_t, 0)
     L(tree, pc_max, "Value", pc_t, 1)
     in2 = mathx(tree, "inner^2", 'MULTIPLY', (-5600, -3000))
     L(tree, gin, "Border Inner", in2, 0)
@@ -1001,10 +1078,10 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     p_step = mathx(tree, "pave step = 2pi/n", 'DIVIDE', (-5400, -2750), a=2.0 * math.pi)
     L(tree, gin, "Pave Count", p_step, 1)
     p_the = mathx(tree, "i*step (pave)", 'MULTIPLY', (-5200, -2870))
-    L(tree, ix, "Index", p_the, 0)
+    L(tree, ix_pave, "Index", p_the, 0)
     L(tree, p_step, "Value", p_the, 1)
     p_par = mathx(tree, "i mod 2 (stagger)", 'MODULO', (-5200, -2650))
-    L(tree, ix, "Index", p_par, 0)
+    L(tree, ix_pave, "Index", p_par, 0)
     d0(p_par, 1, 2.0)
     p_ref = mathx(tree, "par*span2", 'MULTIPLY', (-5000, -2650))
     L(tree, p_par, "Value", p_ref, 0)
@@ -1018,7 +1095,7 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     p_seed = rand_seed(p_rnd)
     if p_seed is not None:
         seed_p = mathx(tree, "seedP = i+2000", 'ADD', (-6200, -3300), b=2000.0)
-        L(tree, ix, "Index", seed_p, 0)
+        L(tree, ix_pave, "Index", seed_p, 0)
         L(tree, seed_p, "Value", p_rnd, p_seed.name)
     d0(p_rnd, 0, 0.0)
     d0(p_rnd, 1, 1.0)
@@ -1029,9 +1106,9 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     L(tree, gin, "Chaos", p_j1, 1)
     p_j2 = mathx(tree, "pave jitter rad", 'MULTIPLY', (-5400, -3450))
     L(tree, p_j1, "Value", p_j2, 0)
-    L(tree, gin, "Pave Jitter", p_j2, 1)  # 2026-09-17: dial (0 = machine-regular border row)
+    L(tree, gin, "Pave Jitter", p_j2, 1)
     p_th0 = mathx(tree, "i*GA (pave)", 'MULTIPLY', (-5600, -3650))
-    L(tree, ix, "Index", p_th0, 0)
+    L(tree, ix_pave, "Index", p_th0, 0)
     L(tree, gin, "Phyllotaxis Angle", p_th0, 1)
     p_th_sw = mk(tree, 'GeometryNodeSwitch', "pave even switch (theta)", (-5150, -3820))
     L(tree, p_th0, "Value", p_th_sw, "False")
@@ -1301,6 +1378,130 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     L(tree, step, "Mesh", step_tr, "Geometry")
     dn(step_tr, "Translation", (0.0, 0.0, step_z))
     step_out, step_sock = smooth_shade(tree, step_tr, "Geometry", (-1650, 700), "smooth step")
+
+    # ---------------- v11 base-plate redesign (silhouette audit 2026-09-17) ---------
+    # Audit verdict: the plate was the weakest silhouette element ("smooth featureless arc").
+    # Moves: scallop notches on the plate SKIRT (lower 70% of the depth only -- the top face stays
+    # intact so the pave seating raycast cannot miss), one fine engraved ring on the plate's outer
+    # annulus (outside the step, inside the rim), and a collar rail on the step top (the visible
+    # band between the dome and the pave row). Radii respect the occupied zones: dome <= ~22 mm,
+    # pave band 25.5-29.5 mm (local), step edge at 0.88*plate.
+    # v11.1 (2026-09-17 late): the exact-boolean notches/grooves emitted 425 sentinel verts at
+    # x ~ -7.7e31 (984 degenerate sliver faces -- the "thin line" artifact across renders;
+    # proven by bypass test: without both booleans the sentinel count is 0). Replaced with
+    # ADDITIVE details: a rim bead ring (scalloped edge read) + raised rails. No plate booleans.
+    rim_sphere = mk(tree, 'GeometryNodeMeshUVSphere', "rim bead proto", (-2500, 320))
+    dn(rim_sphere, "Segments", 10)
+    dn(rim_sphere, "Rings", 8)
+    dn(rim_sphere, "Radius", mm(0.55))
+    rim_circ = mk(tree, 'GeometryNodeMeshCircle', "rim bead ring", (-2500, 180))
+    dn(rim_circ, "Radius", float(hw["plate_radius"]) * 0.998)
+    dn(rim_circ, "Vertices", 48)
+    rim_pts = mk(tree, 'GeometryNodeMeshToPoints', "rim bead points", (-2300, 180))
+    L(tree, rim_circ, "Mesh", rim_pts, "Mesh")
+    rim_inst = mk(tree, 'GeometryNodeInstanceOnPoints', "rim bead instances", (-2100, 320))
+    L(tree, rim_pts, "Points", rim_inst, "Points")
+    L(tree, rim_sphere, "Mesh", rim_inst, "Instance")
+    rim_real = mk(tree, 'GeometryNodeRealizeInstances', "rim bead realize", (-1900, 320))
+    L(tree, rim_inst, "Instances", rim_real, "Geometry")
+    rim_tr = mk(tree, 'GeometryNodeTransform', "rim bead z", (-1700, 320))
+    L(tree, rim_real, "Geometry", rim_tr, "Geometry")
+    dn(rim_tr, "Translation", (0.0, 0.0, float(hw["plate_z"])))
+    rim_out, rim_sock = smooth_shade(tree, rim_tr, "Geometry", (-1500, 320), "smooth rim beads")
+
+    grv = torus(tree, "plate rail a", (-2300, 20), float(hw["plate_radius"]) * 0.94, mm(0.25), 64, 6)
+    dn(grv, "Translation", (0.0, 0.0, float(hw["plate_z"]) + float(hw["plate_depth"]) * 0.5))
+    grv2 = torus(tree, "plate rail b", (-2300, -60), float(hw["plate_radius"]) * 0.86,
+                 mm(0.22), 64, 6)
+    dn(grv2, "Translation", (0.0, 0.0, float(hw["plate_z"]) + float(hw["plate_depth"]) * 0.5))
+    grvj = mk(tree, 'GeometryNodeJoinGeometry', "plate rails join", (-2100, -40))
+    L(tree, grv, "Geometry", grvj, "Geometry")
+    L(tree, grv2, "Geometry", grvj, "Geometry")
+    grvj_out, grvj_sock = smooth_shade(tree, grvj, "Geometry", (-1900, -40), "smooth plate rails")
+
+    rail = torus(tree, "plate rail", (-2300, -140), float(hw["plate_radius"]) * 0.755, mm(0.32), 64, 8)
+    dn(rail, "Translation", (0.0, 0.0, step_z + mm(0.7) * 0.5))
+    rail_out, rail_sock = smooth_shade(tree, rail, "Geometry", (-2100, -140), "smooth plate rail")
+
+    # milgrain row (v11 polish, "better detailing"): 48 micro-beads on the step top hugging the
+    # rail -- classic jewelry grain; spheres need no per-point rotation.
+    mg_sphere = mk(tree, 'GeometryNodeMeshUVSphere', "milgrain proto", (-2500, -300))
+    dn(mg_sphere, "Segments", 8)
+    dn(mg_sphere, "Rings", 6)
+    mg_size = mk(tree, 'ShaderNodeMath', "milgrain size", (-2600, -350))
+    mg_size.operation = 'MULTIPLY'
+    L(tree, gin, "Milgrain Size", mg_size, 0)
+    d0(mg_size, 1, 100.0)  # socket is in mm, convert to units (1u = 100mm)
+    L(tree, mg_size, "Value", mg_sphere, "Radius")
+    mg_circ = mk(tree, 'GeometryNodeMeshCircle', "milgrain ring", (-2500, -440))
+    # v11.1: the row sat at 0.728*plate = ON the petal bases -> the beads interpenetrated the
+    # petals and read as shattered shards (bypass-proven). Moved into the free slot between the
+    # collar rail (0.755) and the pave band inner edge (~0.797): 0.772.
+    dn(mg_circ, "Radius", float(hw["plate_radius"]) * 0.772)
+    dn(mg_circ, "Vertices", 48)
+    mg_pts = mk(tree, 'GeometryNodeMeshToPoints', "milgrain points", (-2300, -440))
+    L(tree, mg_circ, "Mesh", mg_pts, "Mesh")
+    mg_inst = mk(tree, 'GeometryNodeInstanceOnPoints', "milgrain instances", (-2100, -300))
+    L(tree, mg_pts, "Points", mg_inst, "Points")
+    L(tree, mg_sphere, "Mesh", mg_inst, "Instance")
+    mg_real = mk(tree, 'GeometryNodeRealizeInstances', "milgrain realize", (-1900, -300))
+    L(tree, mg_inst, "Instances", mg_real, "Geometry")
+    mg_tr = mk(tree, 'GeometryNodeTransform', "milgrain z", (-1700, -300))
+    L(tree, mg_real, "Geometry", mg_tr, "Geometry")
+    dn(mg_tr, "Translation", (0.0, 0.0, step_z + mm(0.7) * 0.5 - mm(0.12)))
+    mg_out, mg_sock = smooth_shade(tree, mg_tr, "Geometry", (-1500, -300), "smooth milgrain")
+
+    # ---------------- v11 FILIGREE WIRE (lace-like jewelry detail) ----------------
+    fg_join = None
+    if True:
+        fg_circ = mk(tree, 'GeometryNodeCurvePrimitiveCircle', "filigree rim curve",
+                      (-2700, -600))
+        dn(fg_circ, "Resolution", 64)
+        fg_rim_r = mathx(tree, "filigree rim radius", 'MULTIPLY',
+                          (-2800, -700), b=float(hw["plate_radius"]) * 0.94)
+        dn(fg_circ, "Radius", 0.25)
+        L(tree, fg_rim_r, "Value", fg_circ, "Radius")
+        fg_prof = mk(tree, 'GeometryNodeCurvePrimitiveCircle',
+                      "filigree wire profile", (-2500, -750))
+        dn(fg_prof, "Resolution", 8)
+        fg_width = mathx(tree, "filigree width", 'MULTIPLY',
+                          (-2600, -850), b=0.012)
+        L(tree, gin, "Filigree Width", fg_width, 1)
+        dn(fg_prof, "Radius", 0.012)
+        fg_sweep = mk(tree, 'GeometryNodeCurveToMesh', "filigree sweep",
+                        (-2300, -600))
+        L(tree, fg_circ, "Curve", fg_sweep, "Curve")
+        L(tree, fg_prof, "Curve", fg_sweep, "Profile Curve")
+        fg_z = mk(tree, 'GeometryNodeTransform', "filigree z place",
+                    (-2100, -600))
+        L(tree, fg_sweep, "Mesh", fg_z, "Geometry")
+        dn(fg_z, "Translation", (0.0, 0.0, float(hw["plate_z"]) + float(hw["plate_depth"]) * 0.5))
+        # v11 openwork: a second concentric wire + small pierced notches
+        fg2_circ = mk(tree, 'GeometryNodeCurvePrimitiveCircle', "openwork rim curve",
+                       (-2700, -900))
+        dn(fg2_circ, "Resolution", 48)
+        dn(fg2_circ, "Radius", 0.265)
+        fg2_prof = mk(tree, 'GeometryNodeCurvePrimitiveCircle',
+                       "openwork wire profile", (-2500, -1050))
+        dn(fg2_prof, "Resolution", 6)
+        dn(fg2_prof, "Radius", 0.006)
+        fg2_sweep = mk(tree, 'GeometryNodeCurveToMesh', "openwork sweep",
+                         (-2300, -900))
+        L(tree, fg2_circ, "Curve", fg2_sweep, "Curve")
+        L(tree, fg2_prof, "Curve", fg2_sweep, "Profile Curve")
+        fg2_z = mk(tree, 'GeometryNodeTransform', "openwork z place",
+                     (-2100, -900))
+        L(tree, fg2_sweep, "Mesh", fg2_z, "Geometry")
+        dn(fg2_z, "Translation", (0.0, 0.0, float(hw["plate_z"]) + float(hw["plate_depth"]) * 0.5 + 0.005))
+        # join filigree + openwork
+        fg_join_all = mk(tree, 'GeometryNodeJoinGeometry', "filigree join", (-1700, -750))
+        L(tree, fg_z, "Geometry", fg_join_all, "Geometry")
+        L(tree, fg2_z, "Geometry", fg_join_all, "Geometry")
+        fg_mat = mk(tree, 'GeometryNodeSetMaterial', "filigree material", (-1500, -750))
+        L(tree, fg_join_all, "Geometry", fg_mat, "Geometry")
+        dn(fg_mat, "Material", mat_metal_setting)
+        fg_join = fg_mat
+
     # v7: the seating sampler reads the real plate + step surfaces (multi-input join appends both).
     # NOTE 2026-09-17: an earlier reading of "only the step is linked" was an inspection artifact
     # (links[0] on a multi-input socket). The real seating defect was the SampleNearestSurface
@@ -1354,7 +1555,6 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     # 5.2 cone primitive is 0-BASED (z 0..depth) -- place base at the hinge so the
     # apex lands exactly on tip_x = hinge_x + pin_len (verified: prim_semantics_probe).
     dn(pin_tr, "Translation", (hinge_x, HY, pin_z))
-    hw_parts.append(pin_tr)
     tip_s = mk(tree, 'GeometryNodeMeshUVSphere', "pin tip", (-2300, 400))
     dn(tip_s, "Segments", 12)
     dn(tip_s, "Rings", 8)
@@ -1362,7 +1562,19 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     tip_tr = mk(tree, 'GeometryNodeTransform', "pin tip xf", (-2150, 400))
     L(tree, tip_s, "Mesh", tip_tr, "Geometry")
     dn(tip_tr, "Translation", (tip_x, HY, pin_z))
-    hw_parts.append(tip_tr)
+    # v11 polish: "Show Pin" -- product/website shots hide the stem+tip (at 3/4 angles they read
+    # as a dead bar across the piece); the catch hardware stays either way.
+    # NOTE: two separate switches -- links.new() onto one multi-input join socket kept only the
+    # last link here, so the stem silently stayed in the mesh. One switch per part, both on the
+    # same socket, consumed by the (multi-part, proven) hw join.
+    pin_empty = empty_geo(tree, "no pin", (-1950, 360))
+    pin_sw, pin_sw_sock = geo_switch(tree, "pin switch", (-1800, 430), gin, "Show Pin",
+                                     (pin_empty, "Geometry"), (pin_tr, "Geometry"))
+    pin_empty2 = empty_geo(tree, "no pin tip", (-1950, 300))
+    pin_sw2, pin_sw2_sock = geo_switch(tree, "pin tip switch", (-1800, 370), gin, "Show Pin",
+                                       (pin_empty2, "Geometry"), (tip_tr, "Geometry"))
+    hw_parts.append(pin_sw)
+    hw_parts.append(pin_sw2)
     # catch: pad + riser + C torus (cut open) + safety jaw
     hw_parts.append(box(tree, "catch pad", (-2300, 200), (mm(7.0), mm(3.5), pad_t),
                         trans=(catch_x, HY, back_z - pad_t * 0.5)))
@@ -1585,10 +1797,17 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
         (dome_out, dome_sock, mat_metal_dome, "dome"),
         (step_out, step_sock, mat_metal_body, "step"),
         (plate_out, plate_sock, mat_metal_body, "plate"),
+        (rail_out, rail_sock, mat_metal_body, "rail"),
+        (mg_out, mg_sock, mat_metal_body, "milgrain"),
+        (rim_out, rim_sock, mat_metal_body, "rim beads"),
+        (grvj_out, grvj_sock, mat_metal_body, "plate rails"),
         (seats_out, seats_sock, mat_metal_body, "seats"),
         (bezel_out, bezel_sock, mat_metal_setting, "bezel"),
         (collar_out, collar_sock, mat_metal_body, "collar"),
     )
+    # v11 filigree (lace-like wire detail) — added to gold join when present
+    if fg_join is not None:
+        gold_parts = gold_parts + ((fg_join, "Geometry", mat_metal_setting, "filigree"),)
     for gi, (src, ss, gmat, gtag) in enumerate(gold_parts):
         if src is None:
             continue
@@ -1904,6 +2123,7 @@ def dangle_tree_name(tname):
 
 
 DANGLE_OBJ_NAME = "FlowerBrooch_Dangles"
+PETAL_OBJ_NAME = "FlowerBrooch_Petals"
 
 
 def dangle_block(tree, gin, dspec, hw, mat_petal, mat_bead):
@@ -1928,16 +2148,61 @@ def dangle_block(tree, gin, dspec, hw, mat_petal, mat_bead):
             hy = math.sin(th) * rim_r
             left = -3900 - 46 * i
             top = 260 - 34 * i
-            parts = []
-            parts.append(torus(tree, "dangle %d eyelet" % i, (left, top), link_t * 1.5, link_t * 0.7,
-                               rot=(R90, 0.0, 0.0), trans=(0.0, 0.0, link_t * 1.6)))
-            parts.append(torus(tree, "dangle %d hinge" % i, (left, top), link_r * 1.25, link_t * 1.1,
-                               rot=(R90, 0.0, 0.0)))
             z = -link_r * 1.5
+            fr = mk(tree, 'GeometryNodeInputSceneTime', "dangle %d time" % i, (left - 60, top + 460))
+            sw1 = mathx(tree, "dangle %d sway a" % i, 'MULTIPLY', (left + 70, top + 460))
+            L(tree, fr, "Frame", sw1, 0)
+            L(tree, gin, "Dangle Rate", sw1, 1)
+            sw2 = mathx(tree, "dangle %d sway w" % i, 'MULTIPLY', (left + 200, top + 460), b=TAU / 60.0)
+            L(tree, sw1, "Value", sw2, 0)
+            sw3 = mathx(tree, "dangle %d sway ph" % i, 'ADD', (left + 330, top + 460), b=float(i) * 0.55)
+            L(tree, sw2, "Value", sw3, 0)
+            sw4 = mathx(tree, "dangle %d sway sin" % i, 'SINE', (left + 460, top + 460))
+            L(tree, sw3, "Value", sw4, 0)
+            sw5 = mathx(tree, "dangle %d sway deg" % i, 'MULTIPLY', (left + 590, top + 460))
+            L(tree, sw4, "Value", sw5, 0)
+            L(tree, gin, "Dangle Sway", sw5, 1)
+            swr = mathx(tree, "dangle %d sway rad" % i, 'MULTIPLY', (left + 720, top + 460), b=0.017453292519943295)
+            L(tree, sw5, "Value", swr, 0)
+            dj = mk(tree, 'GeometryNodeJoinGeometry', "dangle %d join" % i, (left + 40, top - 40))
+            eyelet = torus(tree, "dangle %d eyelet" % i, (left, top), link_t * 1.5, link_t * 0.7,
+                           rot=(R90, 0.0, 0.0), trans=(0.0, 0.0, link_t * 1.6))
+            em, em_s = set_material(tree, eyelet, first_geo_out(eyelet), mat_petal,
+                                    (left - 30, top + 40), "dangle %d eyelet mat" % i)
+            L(tree, em, em_s, dj, "Geometry")
+            hinge = torus(tree, "dangle %d hinge" % i, (left, top), link_r * 1.25, link_t * 1.1,
+                           rot=(R90, 0.0, 0.0))
+            hm, hm_s = set_material(tree, hinge, first_geo_out(hinge), mat_petal,
+                                    (left - 30, top + 40 + 24), "dangle %d hinge mat" % i)
+            L(tree, hm, hm_s, dj, "Geometry")
             for j in range(n_links):
                 rot = (R90, 0.0, 0.0) if j % 2 == 0 else (0.0, R90, 0.0)
-                parts.append(torus(tree, "dangle %d link %d" % (i, j), (left, top),
-                                   link_r, link_t, rot=rot, trans=(0.0, 0.0, z)))
+                lk = torus(tree, "dangle %d link %d" % (i, j), (left, top),
+                           link_r, link_t, rot=rot, trans=(0.0, 0.0, z))
+                lk_m, lk_s = set_material(tree, lk, first_geo_out(lk), mat_petal,
+                                          (left - 30, top + 40 + 24 * j),
+                                          "dangle %d chain mat %d" % (i, j))
+                lag_mul = mathx(tree, "dangle %d link %d lag" % (i, j), 'MULTIPLY',
+                                (left + 850, top + 320 + 30 * j), b=float(j + 1) * 0.15)
+                L(tree, swr, "Value", lag_mul, 0)
+                lk_rot = combine(tree, "dangle %d link %d rot" % (i, j),
+                                 (left + 1000, top + 350 + 30 * j))
+                d0(lk_rot, 0, 0.0)
+                L(tree, lag_mul, "Value", lk_rot, "Y")
+                d0(lk_rot, 2, th)
+                lk_tr = mk(tree, 'GeometryNodeTransform', "dangle %d link %d lag_tr" % (i, j),
+                            (left + 1150, top + 320 + 30 * j))
+                L(tree, lk_m, lk_s, lk_tr, "Geometry")
+                L(tree, lk_rot, "Vector", lk_tr, "Rotation")
+                lk_pos = combine(tree, "dangle %d link %d pos" % (i, j),
+                                 (left + 1000, top + 200 + 30 * j))
+                d0(lk_pos, 0, 0.0)
+                d0(lk_pos, 1, 0.0)
+                lk_z = mathx(tree, "dangle %d link %d z" % (i, j), 'MULTIPLY',
+                             (left + 850, top + 200 + 30 * j), b=float(j) * (link_r * 1.45))
+                L(tree, lk_z, "Value", lk_pos, "Z")
+                L(tree, lk_pos, "Vector", lk_tr, "Translation")
+                L(tree, lk_tr, "Geometry", dj, "Geometry")
                 z -= link_r * 1.45
             drop = mk(tree, 'GeometryNodeMeshUVSphere', "dangle %d drop" % i, (left, top))
             dn(drop, "Segments", 24)
@@ -1958,29 +2223,9 @@ def dangle_block(tree, gin, dspec, hw, mat_petal, mat_bead):
             d0(d_tv, 2, z - term_r * 0.9)
             L(tree, d_tv, "Vector", d_tr, "Translation")
             d_sh, d_sh_s = smooth_shade(tree, d_tr, "Geometry", (left, top - 180), "dangle %d drop smooth" % i)
-            dj = mk(tree, 'GeometryNodeJoinGeometry', "dangle %d join" % i, (left + 40, top - 40))
-            for k, p in enumerate(parts):
-                pm, pm_s = set_material(tree, p, first_geo_out(p), mat_petal, (left - 30, top + 40 + 24 * k),
-                                        "dangle %d chain mat %d" % (i, k))
-                L(tree, pm, pm_s, dj, "Geometry")
             dm, dm_s = set_material(tree, d_sh, d_sh_s, mat_bead, (left - 30, top - 200),
                                     "dangle %d drop mat" % i)
             L(tree, dm, dm_s, dj, "Geometry")
-            fr = mk(tree, 'GeometryNodeInputSceneTime', "dangle %d time" % i, (left - 60, top + 460))
-            sw1 = mathx(tree, "dangle %d sway a" % i, 'MULTIPLY', (left + 70, top + 460))
-            L(tree, fr, "Frame", sw1, 0)
-            L(tree, gin, "Dangle Rate", sw1, 1)
-            sw2 = mathx(tree, "dangle %d sway w" % i, 'MULTIPLY', (left + 200, top + 460), b=TAU / 60.0)
-            L(tree, sw1, "Value", sw2, 0)
-            sw3 = mathx(tree, "dangle %d sway ph" % i, 'ADD', (left + 330, top + 460), b=float(i) * 0.55)
-            L(tree, sw2, "Value", sw3, 0)
-            sw4 = mathx(tree, "dangle %d sway sin" % i, 'SINE', (left + 460, top + 460))
-            L(tree, sw3, "Value", sw4, 0)
-            sw5 = mathx(tree, "dangle %d sway deg" % i, 'MULTIPLY', (left + 590, top + 460))
-            L(tree, sw4, "Value", sw5, 0)
-            L(tree, gin, "Dangle Sway", sw5, 1)
-            swr = mathx(tree, "dangle %d sway rad" % i, 'MULTIPLY', (left + 720, top + 460), b=0.017453292519943295)
-            L(tree, sw5, "Value", swr, 0)
             rot_v = combine(tree, "dangle %d euler" % i, (left + 850, top + 460))
             d0(rot_v, 0, 0.0)
             L(tree, swr, "Value", rot_v, "Y")
@@ -2149,6 +2394,201 @@ def ensure_dangle_object(tree):
     return ob
 
 
+def build_petals(genome_id, tree_name, bg, real_scale=1.0):
+    """Own-object petals tree: the petal block extracted from the body, with flutter
+    (SceneTime) enabled. The body stays time-free; the petals object re-cooks per frame
+    (cheap — only the petal system, not the whole stack)."""
+    r = bg.resolve_genome(genome_id)
+    t = r["traits"]
+    crown, phy, mats = t["crown"], t["phyllotaxis"], t["materials"]
+    mat_petal = bpy.data.materials.get(mats.get("petal", ""))
+    if mat_petal is None:
+        ob = bpy.data.objects.get(OBJ_NAME)
+        if ob is not None and ob.material_slots:
+            mat_petal = ob.material_slots[0].material
+    if mat_petal is None:
+        print("  [petals] materials missing; skipped")
+        return None
+    mat_metal_petal = resolve_material(mats, "metal_petal", "petal", mat_petal)
+
+    body_tree_name = tree_name
+    body_tree = bpy.data.node_groups.get(body_tree_name)
+    if body_tree is None:
+        print("  [petals] body tree %r not found; skipped" % body_tree_name)
+        return None
+
+    pt_name = body_tree_name.replace("FlowerBrooch", "BroochPetals")
+    old = bpy.data.node_groups.get(pt_name)
+    if old is not None:
+        try:
+            bpy.data.node_groups.remove(old)
+        except Exception:
+            pass
+    ptree = bpy.data.node_groups.new(pt_name, 'GeometryNodeTree')
+
+    # clone the body's interface sockets (so the modifier panel shows the same dials)
+    clone_interface(body_tree, ptree)
+
+    # flutter-specific sockets (added on top of the cloned body interface)
+    try:
+        s = ptree.interface.new_socket(name="Petal Amp", in_out='INPUT', socket_type='NodeSocketFloat')
+        s.default_value = 0.05
+        s.min_value = 0.0
+        s.max_value = 0.3
+    except Exception:
+        pass
+    try:
+        s = ptree.interface.new_socket(name="Petal Rate", in_out='INPUT', socket_type='NodeSocketFloat')
+        s.default_value = 0.7
+        s.min_value = 0.0
+        s.max_value = 3.0
+    except Exception:
+        pass
+    try:
+        s = ptree.interface.new_socket(name="Real Scale", in_out='INPUT', socket_type='NodeSocketFloat')
+        s.default_value = float(real_scale)
+        s.min_value = 0.05
+        s.max_value = 5.0
+    except Exception:
+        pass
+
+    # add the output socket FIRST (before Group Output node, so its input auto-creates)
+    ptree.interface.new_socket(name="Geometry", in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    pgin = mk(ptree, 'NodeGroupInput', "Group Input", (-6200, 200))
+    pgout = mk(ptree, 'NodeGroupOutput', "Group Output", (3400, 0))
+
+    petal_out, petal_sock, _, _, _, _, _, _ = petal_system(ptree, pgin, crown, phy, mat_metal_petal, flutter=True)
+
+    # material + real scale + output
+    pmat, pmat_s = set_material(ptree, petal_out, petal_sock, mat_metal_petal, (-2200, 0), "petals metal")
+    rs = mk(ptree, 'GeometryNodeTransform', "petals real scale", (-1500, 0))
+    L(ptree, pmat, pmat_s, rs, "Geometry")
+    rs_v = combine(ptree, "petals scale vec", (-1700, -150))
+    L(ptree, pgin, "Real Scale", rs_v, "X")
+    L(ptree, pgin, "Real Scale", rs_v, "Y")
+    L(ptree, pgin, "Real Scale", rs_v, "Z")
+    L(ptree, rs_v, "Vector", rs, "Scale")
+    L(ptree, rs, "Geometry", pgout, "Geometry")
+
+    ptree.use_fake_user = True
+    print("[%s] petals tree built: %d nodes | flutter amp=0.05 rate=0.7"
+          % (pt_name, len(ptree.nodes)))
+    return ptree
+
+
+def ensure_petal_object(tree):
+    """Create/update FlowerBrooch_Petals: parented to the hero (identity local), petals tree
+    attached, and the outline pass copied from the hero stack (same values)."""
+    from mathutils import Matrix
+    ob = bpy.data.objects.get(PETAL_OBJ_NAME)
+    if ob is None:
+        me = bpy.data.meshes.new(PETAL_OBJ_NAME)
+        ob = bpy.data.objects.new(PETAL_OBJ_NAME, me)
+        bpy.context.scene.collection.objects.link(ob)
+        print("created petal object:", PETAL_OBJ_NAME)
+    hero = bpy.data.objects.get(OBJ_NAME)
+    if hero is not None and ob.parent is None:
+        ob.parent = hero
+        ob.matrix_parent_inverse = Matrix.Identity(4)
+        ob.location = (0.0, 0.0, 0.0)
+        ob.rotation_euler = (0.0, 0.0, 0.0)
+        ob.scale = (1.0, 1.0, 1.0)
+        print("petal object parented to", OBJ_NAME)
+    mod = None
+    for m in ob.modifiers:
+        if m.type == 'NODES':
+            mod = m
+            break
+    if mod is None:
+        mod = ob.modifiers.new("GN_Petals", 'NODES')
+    before = mod.node_group.name if mod.node_group else None
+    mod.node_group = tree
+    mod.show_viewport = True
+    mod.show_render = True
+    for item in tree.interface.items_tree:
+        if getattr(item, "in_out", "") != "INPUT":
+            continue
+        val = item.default_value
+        try:
+            mod.properties.inputs[item.identifier]["value"] = val
+        except Exception:
+            try:
+                mod[item.identifier] = val
+            except Exception:
+                pass
+    print("petals modifier %r: node_group %s -> %s" % (mod.name, before, tree.name))
+    # outline pass (same tree + same values as the hero's)
+    hero_outline = None
+    if hero is not None:
+        for m in hero.modifiers:
+            if m.type == 'NODES' and m.node_group and m.node_group.name == "Outline [GeoNodes]":
+                hero_outline = m
+                break
+    if hero_outline is not None:
+        om = ob.modifiers.get("Outline [GeoNodes]")
+        if om is None:
+            om = ob.modifiers.new("Outline [GeoNodes]", 'NODES')
+        om.node_group = hero_outline.node_group
+        om.show_viewport = hero_outline.show_viewport
+        om.show_render = hero_outline.show_render
+        try:
+            for item in hero_outline.node_group.interface.items_tree:
+                if getattr(item, "in_out", "") != "INPUT":
+                    continue
+                try:
+                    v = hero_outline.properties.inputs[item.identifier]["value"]
+                    om.properties.inputs[item.identifier]["value"] = v
+                except Exception:
+                    pass
+            print("petal outline pass mirrored (values copied from the hero)")
+        except Exception as exc:
+            print("  warn: outline copy (%r)" % (exc,))
+    return ob
+
+
+def ensure_sparkle_object():
+    """Create/update FlowerBrooch_Sparkles: parented to the hero (identity local), sparkle tree
+    attached (with twinkle). Stays on its own object so the body stays fully cached."""
+    from mathutils import Matrix
+    tree = bpy.data.node_groups.get("GN_Brooch_Sparkles_v7")
+    if tree is None:
+        return None
+    ob = bpy.data.objects.get("FlowerBrooch_Sparkles")
+    if ob is None:
+        me = bpy.data.meshes.new("FlowerBrooch_Sparkles")
+        ob = bpy.data.objects.new("FlowerBrooch_Sparkles", me)
+        bpy.context.scene.collection.objects.link(ob)
+        print("created sparkle object: FlowerBrooch_Sparkles")
+    hero = bpy.data.objects.get(OBJ_NAME)
+    if hero is not None and ob.parent is None:
+        ob.parent = hero
+        ob.matrix_parent_inverse = Matrix.Identity(4)
+        ob.location = (0.0, 0.0, 0.0)
+        print("sparkle object parented to", OBJ_NAME)
+    mod = ob.modifiers.get("GN_Sparkles")
+    if mod is None:
+        mod = ob.modifiers.new("GN_Sparkles", 'NODES')
+    mod.node_group = tree
+    mod.show_viewport = True
+    mod.show_render = True
+    for item in tree.interface.items_tree:
+        if getattr(item, "in_out", "") != "INPUT":
+            continue
+        try:
+            val = item.default_value
+        except AttributeError:
+            continue  # geometry sockets have no default_value
+        try:
+            mod.properties.inputs[item.identifier]["value"] = val
+        except Exception:
+            try:
+                mod[item.identifier] = val
+            except Exception:
+                pass
+    print("sparkle modifier GN_Sparkles attached to FlowerBrooch_Sparkles")
+    return ob
+
+
 # ---------------------------------------------------------------- main -------
 print("=== gen_flower_brooch_v7 (final refined: cast SDF finish + sampled seating + hardware v7) ===")
 print("file:", bpy.data.filepath)
@@ -2195,6 +2635,8 @@ if bg is not None:
                 attach(ob, bpy.data.node_groups[tname])
                 d_tree = build_dangles(gid, dangle_tree_name(tname), bg, real_scale=1.0)
                 d_ob = ensure_dangle_object(d_tree) if d_tree is not None else None
+                p_tree = build_petals(gid, tname, bg, real_scale=1.0)
+                p_ob = ensure_petal_object(p_tree) if p_tree is not None else None
                 sv = gn_only(ob)
                 m_a = measure(ob)
                 restore_mods(sv)
@@ -2220,6 +2662,8 @@ if bg is not None:
                 ensure_bevel(ob)
                 d_tree = build_dangles(gid, dangle_tree_name(tname), bg, real_scale=S)
                 d_ob = ensure_dangle_object(d_tree) if d_tree is not None else None
+                p_tree = build_petals(gid, tname, bg, real_scale=S)
+                p_ob = ensure_petal_object(p_tree) if p_tree is not None else None
                 sv = gn_only(ob)
                 m_b = measure(ob)
                 restore_mods(sv)
@@ -2249,6 +2693,8 @@ if bg is not None:
                             ensure_bevel(ob)
                             d_tree = build_dangles(gid, dangle_tree_name(tname), bg, real_scale=S_used)
                             d_ob = ensure_dangle_object(d_tree) if d_tree is not None else None
+                            p_tree = build_petals(gid, tname, bg, real_scale=S_used)
+                            p_ob = ensure_petal_object(p_tree) if p_tree is not None else None
                             sv = gn_only(ob)
                             m_b = measure(ob)
                             restore_mods(sv)
@@ -2316,6 +2762,10 @@ if bg is not None:
                 hero_gid = stats.get(used, {}).get("genome", "melodia_brooch_v1")
                 d_tree = build_dangles(hero_gid, dangle_tree_name(used), bg, real_scale=hero_s)
                 d_ob = ensure_dangle_object(d_tree) if d_tree is not None else None
+                p_tree = build_petals(hero_gid, used, bg, real_scale=hero_s)
+                p_ob = ensure_petal_object(p_tree) if p_tree is not None else None
+                # land the hero sparkles on their own object (twinkle restored)
+                ensure_sparkle_object()
                 if d_ob is not None:
                     sv_d = gn_only(d_ob)
                     m_d = measure(d_ob)
@@ -2329,9 +2779,10 @@ if bg is not None:
 
         # --- live-motion discipline: the body object must stay time-free, or every frame change
         # re-cooks its whole stack (measured 8-22 s/frame vs 0.33 s once time-free). The bloom is a
-        # build-time option now; the Outline/Sparkle trees must not carry SceneTime nodes. ---
+        # build-time option now; the Outline tree must not carry SceneTime nodes.
+        # The sparkle tree is on its OWN object (FlowerBrooch_Sparkles), so its twinkle is allowed. ---
         try:
-            for tname in ("Outline [GeoNodes]", "GN_Brooch_Sparkles_v7"):
+            for tname in ("Outline [GeoNodes]",):
                 t = bpy.data.node_groups.get(tname)
                 if t is None:
                     continue
@@ -2353,6 +2804,11 @@ if bg is not None:
                     nm = m.name
                     hero_ob.modifiers.remove(m)
                     print("live discipline: removed empty modifier %r" % nm)
+                # remove the old sparkle modifier from the hero (it's now on its own object)
+                sparkle_mod = hero_ob.modifiers.get("GN_Sparkles")
+                if sparkle_mod is not None:
+                    hero_ob.modifiers.remove(sparkle_mod)
+                    print("live discipline: removed GN_Sparkles from hero (now on own object)")
         except Exception as exc:
             print("live discipline warn:", repr(exc))
 

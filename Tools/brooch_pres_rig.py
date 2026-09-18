@@ -160,6 +160,135 @@ def main():
                     pass
         print("sky: disabled (--sky none)")
 
+    # ---------------- polish pass (2026-09-17, owner: "needs lighting polish + detailing") -----
+    # Problems found in review: key/gem-point blowout on the right petals, muddy left/inner
+    # shadows, uniform "plastic" metal reflections, flat matte pearls.
+    # Lights: soften the key, tame the gem point, lift the shadow side with a broad front fill,
+    # strengthen the rim for edge definition.
+    ensure_light("PRES_Key_Soft", coll, 'AREA', 16.0, (-0.62, -0.62, 0.62), size=2.0)
+    ensure_light("PRES_Gem_Point", coll, 'POINT', 5.0, (0.10, -0.38, 0.42), radius=0.02)
+    ensure_light("PRES_Rim", coll, 'AREA', 16.0, (0.72, 0.35, 0.55), size=0.55,
+                 color=(1.0, 0.96, 0.9))
+    ensure_light("PRES_Fill_Soft", coll, 'AREA', 9.0, (-0.25, -0.95, 0.52), size=2.2,
+                 color=(0.96, 0.97, 1.0))
+    ensure_light("PRES_Kick_Low", coll, 'POINT', 1.8, (-0.20, -0.42, 0.12), radius=0.07)
+
+    # Materials: micro-contrast on the metals (noise -> roughness + a faint bump), lustre on the
+    # pearls (coat + sheen + a touch of subsurface). Render-side only -- the asset is untouched.
+    def _set_inp(node, key, val):
+        for k in (key,):
+            try:
+                node.inputs[k].default_value = val
+                return True
+            except Exception:
+                continue
+        return False
+
+    _polished = []
+    for m in bpy.data.materials:
+        if not m.use_nodes or not m.node_tree:
+            continue
+        nm = m.name
+        if not (nm.startswith("MID_") or nm.startswith("MEL_") or "Petal" in nm):
+            continue
+        nt = m.node_tree
+        for n in nt.nodes:
+            if n.type != 'BSDF_PRINCIPLED':
+                continue
+            if "Bead" in nm or "Pearl" in nm:
+                _set_inp(n, "Coat Weight", 0.5)
+                _set_inp(n, "Coat Roughness", 0.08)
+                _set_inp(n, "Sheen Weight", 0.35)
+                _set_inp(n, "Subsurface Weight", 0.12)
+                _set_inp(n, "Roughness", 0.10)
+                try:
+                    n.inputs["Emission Color"].default_value = (0.9, 0.88, 0.86, 1.0)
+                    n.inputs["Emission Strength"].default_value = 0.015
+                except Exception:
+                    pass
+                try:
+                    n.inputs["Subsurface Radius"].default_value = (0.004, 0.003, 0.003)
+                except Exception:
+                    pass
+                _polished.append(nm + ":pearl")
+            elif "Metal" in nm:
+                try:
+                    n.inputs["Roughness"].default_value = 0.26
+                except Exception:
+                    pass
+                nz = nt.nodes.new('ShaderNodeTexNoise')
+                nz.name = "POLISH noise"
+                nz.inputs['Scale'].default_value = 55.0
+                nz.inputs['Detail'].default_value = 3.0
+                mr = nt.nodes.new('ShaderNodeMapRange')
+                mr.name = "POLISH rough"
+                mr.inputs['From Min'].default_value = 0.0
+                mr.inputs['From Max'].default_value = 1.0
+                mr.inputs['To Min'].default_value = 0.30
+                mr.inputs['To Max'].default_value = 0.44
+                nt.links.new(nz.outputs['Fac'], mr.inputs['Value'])
+                try:
+                    nt.links.new(mr.outputs['Result'], n.inputs['Roughness'])
+                except Exception:
+                    pass
+                bp = nt.nodes.new('ShaderNodeBump')
+                bp.name = "POLISH bump"
+                bp.inputs['Strength'].default_value = 0.012
+                bp.inputs['Distance'].default_value = 0.0004
+                nt.links.new(nz.outputs['Fac'], bp.inputs['Height'])
+                try:
+                    nt.links.new(bp.outputs['Normal'], n.inputs['Normal'])
+                except Exception:
+                    pass
+                _polished.append(nm + ":metal")
+    print("polish: %d material(s) -> %s" % (len(_polished), ", ".join(sorted(set(_polished)))))
+
+    # ---------------- magic pass + per-object materials (2026-09-17 late, owner asks) ---------
+    # (a) materials are separated PER OBJECT by copying them per GN tree (each object owns its
+    #     own tree, so retargeting the tree's Set Material nodes gives independent materials);
+    # (b) the Melusina magic: gem fire, pearl iridescence (thin film), sparkle glow, faint
+    #     metal warmth. All render-side; the saved asset keeps the authored materials.
+    _magic = []
+    _seen = set()
+    for ob, suffix in ((bpy.data.objects.get("FlowerBrooch"), "_hero"),
+                       (bpy.data.objects.get("FlowerBrooch_Dangles"), "_dang")):
+        if ob is None:
+            continue
+        for mod in ob.modifiers:
+            ng = getattr(mod, "node_group", None)
+            if ng is None:
+                continue
+            for n in ng.nodes:
+                if n.bl_idname != 'GeometryNodeSetMaterial':
+                    continue
+                src = n.inputs['Material'].default_value
+                if src is None:
+                    continue
+                mc = bpy.data.materials.get(src.name + suffix)
+                if mc is None:
+                    mc = src.copy()
+                    mc.name = src.name + suffix
+                n.inputs['Material'].default_value = mc
+                if mc.name in _seen:
+                    continue
+                _seen.add(mc.name)
+                _magic.append(mc.name)
+                for nn in mc.node_tree.nodes:
+                    if nn.type != 'BSDF_PRINCIPLED':
+                        continue
+                    if mc.name.startswith("MID_Gem"):
+                        _set_inp(nn, "Emission Strength", 0.8)
+                        _set_inp(nn, "Coat Weight", 0.4)
+                    elif "Sparkle" in mc.name:
+                        _set_inp(nn, "Emission Strength", 6.0)
+                    elif "Bead" in mc.name or "Pearl" in mc.name:
+                        _set_inp(nn, "Thin Film Thickness", 420.0)
+                        _set_inp(nn, "Thin Film IOR", 1.6)
+                        _set_inp(nn, "Emission Strength", 0.03)
+                    elif "Metal" in mc.name:
+                        _set_inp(nn, "Emission Strength", 0.006)
+    print("magic: %d per-object materials -> %s" % (len(_magic), ", ".join(sorted(_magic))))
+
     # view/render settings for the stills
     scn = bpy.context.scene
     scn.render.engine = 'BLENDER_EEVEE'
@@ -169,7 +298,7 @@ def main():
     except Exception:
         pass
     try:
-        scn.view_settings.look = 'AgX - Medium High Contrast'
+        scn.view_settings.look = 'AgX - Base Contrast'
     except Exception:
         pass
     print("PRES_RIG ready: %d objects" % len(coll.objects))

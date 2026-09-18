@@ -31,7 +31,7 @@ SKY_PRESETS = {
     "editorial_dark": dict(
         zenith=(0.0035, 0.0045, 0.0070), horizon=(0.010, 0.013, 0.022),
         ground=(0.0015, 0.0020, 0.0030), glow=(0.012, 0.013, 0.020),
-        horizon_glow=0.45, band_contrast=0.10, cloud_coverage=0.0, cloud_height=0.55,
+        horizon_glow=0.18, band_contrast=0.04, cloud_coverage=0.0, cloud_height=0.55,
         star_density=0.0, star_brightness=0.35, aurora_strength=0.0, grain=0.0035,
         sky_strength=0.35, seed=17),
     "forte": dict(
