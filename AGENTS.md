@@ -1,10 +1,12 @@
 # BS_GodFile agent context
 
-**Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
+**Front-door review:** 2026-09-17 against `main` at `7770b1a8f1e3506dad9c6038dee7912b64e689d1` (post #236).
 
 ## STATUS — one document
 
 [`CURRENT_STATE.md`](CURRENT_STATE.md) is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
+
+**Historical branch guard:** PR #201 is resolved/superseded by merged #213; PR #230 was closed unmerged. `cleanup/pbr-twin-landing-2026-09-10` is provenance only — never use it as a current health proxy or wholesale merge source.
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
