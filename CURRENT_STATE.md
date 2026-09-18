@@ -5,7 +5,8 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-16 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-18 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+Tonight lookdev (`Saved/Audit/morning_lookdev_tonight_2026-09-18.json`): SpeedTree+rock stills exist (teal, not rainbow); recipe `south_cluster` is still too dark, recipe `island_west_dolly` still shows the bedroom — website board should use the `website_*` / `south_fix` captures, not the recipe-pose dolly.
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -65,6 +66,7 @@ instance or invent a new world signal system.
 | Resonance Ecology processor and instance material bridge | **LIVE PROVEN on 1 Sea Above graph; reusable editor tooling for the remaining graphs** - current state records `PCG_East_PhyllotaxisCourtyard` at 140 instances with Resonance 0.030-0.925 and one custom float; [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) records placement/runtime pass and no parallel graph | `Content/Python/pcg/resonance_ecology_processor.py`, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Content/Python/pcg/test_resonance_ecology.py`, existing Resonance Cathedral/Sea Above graphs | Cymatic ecology bands, musical density, material variants and resonance-driven geometry/scatter | Hardcoded biome bands, per-asset custom scripts, or another PCG enrichment authority |
 | World Field Bus Resonance/Tension contract | **SCAFFOLDED / SOURCE CONTRACT - not LIVE PROVEN** - `MelodiaWorldFieldBus.*` defines `ResonanceN/M`, `Tension`, `BeatPulse` and position sampling; [`world_field_bus_probe_2026-09-02.json`](Saved/Audit/world_field_bus_probe_2026-09-02.json) says SCAFFOLD and the PIE note records parameter-name alignment still open | `UWorldFieldBus`, `MelodiaCymaticsSubsystem`, `MelodiaOceanologyWaterBridgeSubsystem` | A shared future field for cymatic water, PCG and material consumers once the contract is closed | Another global bus, guessed MPC parameters, or claiming the current scaffold is a live contract |
 | Sea Above musical PCG proof | **LIVE PROVEN (scoped) / not full route certification** - [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) is `PLACEMENT_RUNTIME_PASS`; current state records 1 of 9 Resonance Ecology graphs. [`P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json`](Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json) is `PASS_SCOPED`, with visible-frame/focused-player/package work still open | `LV_SeaAbove_Prototype`, existing PCG graph authorities, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json` | Author a musical biome or setpiece now, while keeping the uninterrupted player route and visual-capture boundary honest | A new Sea Above world framework or a claim that every graph/consumer is already live |
+| Resonant World generator + World Compiler | **SOURCE/TOOL PROVEN + LIVE PROVEN scoped on `L_MelusinaMorning`** — field is on the **islands** (`SM_PM3D_Sphere3D*`), not the bedroom, not the rejected `WC_DellFloor_*` grass shelf. Island proof [`world_compiler_morning_rainbow_bloom_islands_2026-09-17.json`](Saved/Audit/world_compiler_morning_rainbow_bloom_islands_2026-09-17.json): 1174 compiled SpeedTree points, 1166 PCG ISMs (`GenericFlower1`/`GenericFlowerTall`), 0 in bedroom keepout, z −1775..−706 (above oceanology ~−1823). Gaea mesh-terrain fallback was **not** staged (islands had enough nearly-horizontal area; Gaea OBJs still exist under `Saved/Audit/gaea_setups_normals_smoke_20260901/`). UE driver proof [`world_compiler_morning_rainbow_bloom_proof_2026-09-17.json`](Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-17.json) PASS after volume Z/XY pin to pond-centered 54.4×9.95 box (a sibling dressing volume had been stealing the WC box pose). Compile stays CLI. Wind lane children of `MI_Plant_Flower_GenericFlower1`; SpeedTree wind switches not killed. No Landscape. Editor front door unchanged (`UWorldRecipe` + `EUW_WorldCompiler` apply-only). Lookdev stills face the islands: `Saved/Audit/Screens/wc_morning_rainbow_bloom_island_west_*_2026-09-18.png`. Substrate Toon A/B remains PARK. | [`WORLD_COMPILER_CONTRACT.md`](Docs/WorldGen/WORLD_COMPILER_CONTRACT.md) §6.1, `Tools/world_compiler.py`, `Content/Python/world_compiler_ue.py`, `Content/Python/world_compiler_panel.py`, `recipes/morning_rainbow_bloom.v1.json`, `Content/Python/resonant_world_generator.py`, `Tools/terrain_handoff.py`, `Tools/scaffold_chapter.py` | Compile a recipe into PCG-driven dressing (point field + band MIs + signal bindings) without a new authority | A new scatter framework, Python-wired PCG graphs per species, `new_object` ISMs, a second MPC writer, a second compiler inside EUW, Houdini Engine as a live overlay |
 
 #### Houdini, Hython and Copernicus production lane
 
@@ -119,6 +121,20 @@ phrase, dialogue, consequence and reward through those entry points; do not desi
 rhythm framework. Keep the packaged golden-run and long-chain persistence gates separate until they
 have their own evidence.
 
+**Tutorial instance — Melody Slime first tide (authored 2026-09-18, PIE proof still owed):**
+`SlimeTideCurrent` + `Chart_Tide_Wave` transcribed to `DA_MelodySlimeTutorialSongs` ("Tide Wave",
+12 eighth-notes, 128 BPM) + `DA_TideWave` (`tide_wave`, auto-discovered by the subsystem scan) +
+`BP_MelusinaTidecall` (stock skill, PetalCadence behavior) mapped in `StockSkillRhythmIds` (6/6
+entries preserved) + `MelodiaQuillSlimeTutorial` (30 compiled statements, battle/quest/reward/flag
+notifies verified) with allowlisted `melodia_slime_tutorial` / `quest.slime_tutorial.first_tide` /
+`reward.slime_tutorial.tidecall` / `flag.slime_tutorial.completed`. MorningIntro carries
+`mel_perch_01` + `mel_battle_entry` voice cues (compiled). `BP_MelodySlimeTutorialBattle` roster is
+`{slime: chance 1.0, lvl 1}` with `fleeChance 100`. Still owed before playtest: tag the placed
+battle actor `melodia_slime_tutorial`, a QSC starter/trigger in Morning, and the real-input PIE
+proof (victory/defeat/flee + exactly-once resume). `MI_MelodySlime_Body` (toon master, Tide tint,
+canonical Chladni, `BeatAccent 1.5`) is presentation-ready; the unit still wears the mannequin
+until the visual swap is judged.
+
 ### WHAT TO REACH FOR
 
 | User asks for... | Reach for... |
@@ -126,7 +142,7 @@ have their own evidence.
 | New boss | Quill + Phoenix/JRPG + existing rhythm seam + authored skill/data |
 | Side quest | Chapter scaffold + Quill + stable IDs + existing reward/save owners |
 | New rhythm ability | Existing rhythm execution + JRPG Skill/command path |
-| Musical biome | Cymatics -> Resonance/PCG data -> UE PCG + material/Niagara consumers; remember the broader World Field Bus is scaffolded |
+| Musical biome | Cymatics -> Resonance/PCG data -> World Compiler recipe -> UE PCG + material/Niagara consumers; remember the broader World Field Bus is scaffolded |
 | Procedural environment | UE PCG/Python and/or Houdini Engine/Hython, with the current proof label |
 | New cymatic material | Copernicus/Hython map family + existing toon/material/MPC contracts |
 | Outfit mechanic | Wardrobe subsystem + existing capability/Convergence hooks |
@@ -180,6 +196,7 @@ MCP regression, Ollama daemon stress — not only game tests).
 | Chapter reuse | `Tools/scaffold_chapter.py`, `Chapters/_template/{quill,maps,encounters,rewards}`, and four-beat `03_tide_listening` source. Generator validates gated IDs against the actual DA before writing; numbered chapter folders are automatically tested. | Full QSC contract FAILS on existing SkiffDeparture `quest.shorewake.passage`, `flag.shorewake.passage`, `reward.skiff_passage`. Resolve those IDs and reward binding through the canonical DA in the editor; import the example and prove both choices/revisit/save-load in `MelodiaIntegrationMap`. Scaffold regression passes; no PIE claim. |
 | UI staleness | Read-only `melodia-ui-artist` audit: rhythm HUD and four Quill widgets have palette colours. P0 candidates: `BP_MelodiaBattleUI` RhythmGradeText/SongPickLabel white; stock `BP_BattleUI` KeyboardLegend `#F2D69E`; `WBP_MainMenu` near-palette text; `WBP_MenuButton` label `#F2D69E`. | Editor reopened externally during audit; ownership pending, no widgets changed. Remaining candidates include `BP_MelodiaDefeatDialogue` near-black text, `BP_MelodiaVictoryDialogue` zero-alpha text (check runtime bindings), Foundation parchment/button styling. White image tints and transparent shadows are not automatically defects. |
 | G: saved-state mirror | `Tools/mirror_saved_project.ps1` defaults to dry-run; scoped `/MIR`, destination/junction checks, cache/binary/Blender-autosave exclusions. Includes Content (Frozen + Cinematics), Config, Source, Plugins, Saved/Audit, Chapters, specs, Tools and design tokens. Dry logs: `%TEMP%/melodia-mirror-20260913/`. | Proposed destination `G:/BS_GodFile_Mirror/20260913`; initial dry run 119.75 GiB / 55,549 files plus project descriptor, zero failures/extras. Real run awaits owner approval and a saved, closed, stable source. This mirrors the saved local tree, including uncommitted assets; it is not a claim that local tree equals main. |
+| World Compiler close-out (2026-09-17) | Rainbow bloom is on `SM_PM3D_Sphere3D*` islands via SpeedTree PCG (not bedroom boards, not `WC_DellFloor` grass shelf, not Gaea mesh, not Landscape). Proof: `Saved/Audit/world_compiler_morning_rainbow_bloom_islands_2026-09-17.json`. | Judge wind hue-reveal weight at PIE (stills read dark teal). Substrate Toon PARK/ADOPT-as-variant. Do not treat the grass shelf or bedroom as meadow authority. |
 
 C++ and its asset closure passed a closed-editor UE 5.8 Development build (460/460 actions).
 Offline contract suites: 22/22 PASS; collapse/scaffold regression tests: 2/2 PASS. The broader
