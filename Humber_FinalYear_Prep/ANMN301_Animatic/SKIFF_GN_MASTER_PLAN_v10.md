@@ -145,3 +145,13 @@ and of the promoted-shot camera frustums (01/03/13/15/16).
    (recommendation: ribbon port, pearl starboard — asymmetry is whimsy)
 4. Awning over stern: yes/no (recommendation: yes — it makes shot 03's
    mid-ship closeup read as inhabited).
+
+## v12 note — rivet lattice tested and PARKED (2026-09-17)
+
+MEL_skiff_rivet_lattice was built, flipped/seated, rebent numerically onto the
+hull arc (dip 0.62 -> rise 1.37, y +-0.418, then pushed +-0.443 proud), and
+judged by three render/vision passes: its rivets read sub-pixel at storyboard
+distance on this 7.6 m hull — "sparse and irregular", never a lattice. The
+hand-placed stud rows (116: keel, waterline strake, rub rail, plates) already
+carry the riveted read. The lattice is removed from the v12 file; the finding
+stands: for THIS hull, rivets are a hand-placed band language, not a field.
