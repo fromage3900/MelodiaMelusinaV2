@@ -56,7 +56,47 @@
       "stem_material": "__band__",
       "weight": 1.0,
       "variants": 2,
-      "height_class": 1
+      "height_class": 1,
+      "ground_labels": ["BrushifyIsland_"]
+    },
+    {
+      "species_id": "brushify_overgrowth",
+      "mesh": "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_01",
+      "meshes": [
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_01",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_02"
+      ],
+      "weight": 0.04,
+      "variants": 2,
+      "height_class": 0,
+      "scale_range": [0.035, 0.065],
+      "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
+    },
+    {
+      "species_id": "brushify_roots",
+      "mesh": "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_01/S_Roots_01",
+      "meshes": [
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_01/S_Roots_01",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_02/S_Roots_02",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_03/S_Roots_03"
+      ],
+      "weight": 0.035,
+      "variants": 3,
+      "height_class": 0,
+      "scale_range": [0.04, 0.075],
+      "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
+    },
+    {
+      "species_id": "brushify_bush",
+      "mesh": "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Small",
+      "meshes": [
+        "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Small",
+        "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Medium"
+      ],
+      "weight": 0.03,
+      "variants": 2,
+      "height_class": 0,
+      "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
     }
   ],
   "palette": {
@@ -105,7 +145,7 @@
     "probe_step_cm": 100.0,
     "walkable_z_cm": [-900.0, 1500.0],
     "exclude_actor_classes": ["MelodiaBedActor"],
-    "note": "Snap onto BrushifyIsland_* (S_FloatingMountain_01..04) west/south of the pond. WC_EscherWalk_* is excluded in probe_ground (never plantable). SM_PM3D_Sphere3D stand-ins, WC_DellFloor, and SM_classic_arch bedroom boards are excluded. Not a Landscape. No second meadow authority."
+    "note": "Snap flowers onto BrushifyIsland_* only. Dressing may use WC_EscherWalk_* plus island skirts. Bedroom / classic_arch / Sphere3D / WC_DellFloor stay null. Not a Landscape. No second meadow authority."
   },
   "chapter": null,
   "motif": null,

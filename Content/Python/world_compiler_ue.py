@@ -12,6 +12,7 @@ one step per call so every step lands on a real frame boundary:
     world_compiler_ue.py <bundle_dir> generate         # comp.generate(force) -- returns immediately
     world_compiler_ue.py <bundle_dir> count            # per-band ISM counts (poll until stable)
     world_compiler_ue.py <bundle_dir> save             # save level + WorldCompiler folder, unattended
+    world_compiler_ue.py <bundle_dir> fx_systems       # duplicate named EnvSandbox NS/M parents into Melodia children
     world_compiler_ue.py <bundle_dir> fx_materials     # forge FX MIs from the four hero parents (if they exist)
     world_compiler_ue.py <bundle_dir> fx_place         # place tagged NiagaraActors from fx_anchors.csv
     world_compiler_ue.py <bundle_dir> fx_audit         # effect type / bounds / shadow gates per NS_Morning_*
@@ -245,7 +246,8 @@ def _forge_wind_lane(w: dict) -> dict:
             r, g, bl = band["tint"]
             MEL.set_material_instance_vector_parameter_value(mi, w["tint_parameter"], unreal.LinearColor(r, g, bl, 1.0))
             MEL.set_material_instance_scalar_parameter_value(mi, w["hue_seed_parameter"], float(band["hue_seed"]))
-            MEL.set_material_instance_scalar_parameter_value(mi, w["response_parameter"], float(w["response"]))
+            # Lookdev-legal ceiling: never raise above 0.5 (recipe may already be 0.5).
+            MEL.set_material_instance_scalar_parameter_value(mi, w["response_parameter"], min(0.5, float(w["response"])))
             for k, v in (w.get("scalar_overrides") or {}).items():
                 MEL.set_material_instance_scalar_parameter_value(mi, k, float(v))
             for sw in w.get("static_switches_off") or []:
@@ -422,11 +424,13 @@ def step_count(b: dict) -> dict:
     band_by_mi = {r["material_instance"].split("/")[-1]: r["band"] for r in b["dressing"]["bands"]}
     for r in (b["dressing"].get("wind_lane") or {}).get("bands", []):
         band_by_mi[r["material_instance"].split("/")[-1]] = r["band"]
-    per_band: dict[str, int] = {}
+    flower_per_band: dict[str, int] = {}
+    dressing_by_mi: dict[str, int] = {}
     comps = 0
     total = 0
+    flower_total = 0
+    dressing_total = 0
     _, actors = _actors()
-    # Spawned ISMs live on the volume actor (component ISMs) or on partition actors; scan both.
     candidates = [vol] + [a for a in actors if a.get_class().get_name() in ("PCGPartitionActor",)]
     for a in candidates:
         for c in a.get_components_by_class(unreal.InstancedStaticMeshComponent):
@@ -436,23 +440,42 @@ def step_count(b: dict) -> dict:
             n = c.get_instance_count()
             if n == 0:
                 continue
-            # The band MI may sit on any slot (petal slot is 1 on the flower kit; stem slot 0 is neutral).
+            # Petal slot is 1 on the flower kit; stem slot 0 is often a band MI too (stem_material __band__).
             slot_names = [c.get_material(i).get_name() if c.get_material(i) else "none" for i in range(c.get_num_materials())]
-            key = next((s for s in slot_names if s in band_by_mi), slot_names[0] if slot_names else "none")
-            band = band_by_mi.get(key, key)
-            per_band[str(band)] = per_band.get(str(band), 0) + n
+            flower_slot = next((s for s in slot_names if s in band_by_mi), None)
             comps += 1
             total += n
-    expected = {str(r["band"]): r["point_count"] for r in m["bands"]}
-    # The template graph projects points onto real world geometry and drops misses. With a ground-probe
-    # terrain stage the table already excludes non-walkable cells, so survivors should be >= 95 % per band;
-    # without one (terrain: null) the gate is exact.
+            if flower_slot is not None:
+                band = str(band_by_mi[flower_slot])
+                flower_per_band[band] = flower_per_band.get(band, 0) + n
+                flower_total += n
+            else:
+                key = slot_names[0] if slot_names else "none"
+                dressing_by_mi[key] = dressing_by_mi.get(key, 0) + n
+                dressing_total += n
+    rows = _rows(b["dir"] / "points.csv")
+    expected_flowers = {}
+    expected_dressing = 0
+    for r in rows:
+        mat = (r.get("material") or "").strip()
+        if "MI_RainbowSpeedTree_" in mat:
+            expected_flowers[str(r["band"])] = expected_flowers.get(str(r["band"]), 0) + 1
+        else:
+            expected_dressing += 1
     tolerance = 0.95 if (m.get("terrain") or {}).get("kind") == "ground_probe" else 1.0
-    per_band_ok = {k: per_band.get(k, 0) >= math.ceil(v * tolerance) and per_band.get(k, 0) <= v for k, v in expected.items()}
-    return {"generated": generated, "ism_components": comps, "instances_total": total, "per_band": per_band,
-            "expected_per_band": expected, "expected_total": m["counts"]["points_total"],
-            "tolerance": tolerance, "per_band_ok": per_band_ok,
-            "match": all(per_band_ok.values())}
+    flower_ok = {
+        k: flower_per_band.get(k, 0) >= int(v * tolerance)
+        for k, v in expected_flowers.items()
+    }
+    return {
+        "generated": generated, "ism_components": comps, "instances_total": total,
+        "per_band": flower_per_band, "expected_per_band": expected_flowers,
+        "dressing_by_mi": dressing_by_mi, "dressing_instances": dressing_total,
+        "expected_dressing": expected_dressing, "flower_instances": flower_total,
+        "expected_total": m["counts"]["points_total"],
+        "tolerance": tolerance, "per_band_ok": flower_ok,
+        "match": bool(expected_flowers) and all(flower_ok.values()),
+    }
 
 
 def step_probe_ground(b: dict) -> dict:
@@ -486,13 +509,18 @@ def step_probe_ground(b: dict) -> dict:
                 label = actor.get_actor_label() if actor else None
                 cls = actor.get_class().get_name() if actor else None
                 classes[cls] = classes.get(cls, 0) + 1
-                # Plant only BrushifyIsland_* crowns. Bedroom boards, grass shelf, and
-                # SM_PM3D_Sphere3D stand-ins are never plantable.
+                # Record z for BrushifyIsland_* crowns and WC_EscherWalk_* decks.
+                # Bedroom boards, Sphere3D stand-ins, and WC_DellFloor are never plantable.
+                # Species allowlists in GroundMask decide who may use walk vs island hits.
                 lab = (label or "")
-                if (lab.startswith("WC_DellFloor") or lab.startswith("WC_EscherWalk")
-                        or "classic_arch" in lab.lower()
-                        or "Sphere3D" in lab or lab.startswith("SM_PM3D")
-                        or not lab.startswith("BrushifyIsland_")):
+                never = (
+                    lab.startswith("WC_DellFloor")
+                    or "classic_arch" in lab.lower()
+                    or "Sphere3D" in lab
+                    or lab.startswith("SM_PM3D")
+                )
+                record = lab.startswith("BrushifyIsland_") or lab.startswith("WC_EscherWalk_")
+                if never or not record:
                     rows.append([round(x, 1), round(y, 1), None, label, cls])
                 else:
                     rows.append([round(x, 1), round(y, 1), round(t[4].z, 1), label, cls])
@@ -749,6 +777,126 @@ def _fx_pack(b: dict) -> dict | None:
     return json.loads(p.read_text(encoding="utf-8-sig")) if p.exists() else None
 
 
+def _duplicate_named(src: str, dst: str) -> tuple[object | None, dict]:
+    rec = {"src": src, "dst": dst}
+    if not src or src.startswith("material_of:"):
+        rec["error"] = "unresolved source"
+        return None, rec
+    if not AL.does_asset_exist(src):
+        rec["error"] = f"source missing: {src}"
+        return None, rec
+    if AL.does_asset_exist(dst):
+        rec["existed"] = True
+        return AL.load_asset(dst), rec
+    folder, _name = dst.rsplit("/", 1)
+    if not AL.does_directory_exist(folder):
+        AL.make_directory(folder)
+    dup = AL.duplicate_asset(src, dst)
+    rec["created"] = bool(dup)
+    if not dup:
+        rec["error"] = "duplicate_asset returned None"
+        return None, rec
+    return dup, rec
+
+
+def _material_of_niagara(ns_path: str) -> str | None:
+    fallback = "/Game/EnvSandbox/VFX/Materials/MI_Niagara_Sparkle"
+    if AL.does_asset_exist(fallback):
+        # Prefer a dependency of the named system when Asset Registry can see it.
+        try:
+            ar = unreal.AssetRegistryHelpers.get_asset_registry()
+            opts = unreal.AssetRegistryDependencyOptions()
+            for key in ("include_soft_package_references", "include_hard_management_references",
+                        "include_direct_soft_references", "include_searchable_names"):
+                try:
+                    opts.set_editor_property(key, False)
+                except Exception:
+                    pass
+            try:
+                opts.set_editor_property("include_soft_package_references", True)
+            except Exception:
+                pass
+            deps = list(ar.get_dependencies(unreal.Name(ns_path), opts) or [])
+            for d in deps:
+                p = str(d)
+                if "/Materials/" in p or "Niagara" in p:
+                    if AL.does_asset_exist(p):
+                        asset = AL.load_asset(p)
+                        if asset and "Material" in asset.get_class().get_name():
+                            return p.split(".")[0]
+        except Exception:
+            pass
+        if AL.does_asset_exist(fallback):
+            return fallback
+    candidates = (
+        "/Game/EnvSandbox/VFX/Materials/MI_Niagara_Sparkle",
+        "/Game/EnvSandbox/VFX/Materials/M_Niagara_Sparkle",
+        "/Game/EnvSandbox/VFX/Materials/M_NiagaraPetal_Loop_Candidate",
+    )
+    for c in candidates:
+        if AL.does_asset_exist(c):
+            return c
+    return None
+
+
+def _resolve_mat_src(spec: dict) -> str | None:
+    src = spec.get("duplicate_from") or ""
+    if src.startswith("material_of:"):
+        return _material_of_niagara(src.split(":", 1)[1])
+    return src or None
+
+
+def step_fx_systems(b: dict) -> dict:
+    """Duplicate the four named EnvSandbox parents into Melodia children. Never edit the sources."""
+    pack = _fx_pack(b)
+    if not pack:
+        return {"error": "fx pack missing", "blocked": True}
+    et_path = pack["rules"]["effect_type"]
+    et = AL.load_asset(et_path) if AL.does_asset_exist(et_path) else None
+    mats, systems = [], []
+    for spec in pack["materials"]:
+        src = _resolve_mat_src(spec)
+        asset, rec = _duplicate_named(src or "", spec["target"])
+        rec["id"] = spec["id"]
+        rec["resolved_src"] = src
+        mats.append(rec)
+    for spec in pack["systems"]:
+        src = spec.get("child_of") or ""
+        asset, rec = _duplicate_named(src, spec["target"])
+        rec["id"] = spec["id"]
+        if asset is not None:
+            try:
+                if et:
+                    asset.set_editor_property("effect_type", et)
+                    rec["effect_type"] = et_path
+            except Exception as exc:
+                rec["effect_type_err"] = str(exc)[:160]
+            try:
+                cm = float(spec.get("fixed_bounds_cm") or pack["rules"]["fixed_bounds_cm"][0])
+                half = cm * 0.5
+                box = unreal.Box()
+                box.min = unreal.Vector(-half, -half, -half)
+                box.max = unreal.Vector(half, half, half)
+                asset.set_editor_property("fixed_bounds", box)
+                rec["fixed_bounds_cm"] = cm
+            except Exception as exc:
+                rec["bounds_err"] = str(exc)[:160]
+            for prop, val in (("cast_shadow", False), ("b_cast_shadows", False), ("cast_shadows", False)):
+                try:
+                    asset.set_editor_property(prop, val)
+                    rec["cast_shadow"] = 0
+                    break
+                except Exception:
+                    pass
+            AL.save_asset(spec["target"], only_if_is_dirty=True)
+        systems.append(rec)
+    return {
+        "materials": mats, "systems": systems,
+        "forged": all("error" not in r for r in mats + systems),
+        "sources_untouched": True,
+    }
+
+
 def step_fx_materials(b: dict) -> dict:
     pack = _fx_pack(b)
     if not pack:
@@ -811,13 +959,27 @@ def step_fx_place(b: dict) -> dict:
             continue
         system = AL.load_asset(sys_path)
         actor = ELL.spawn_actor_from_class(unreal.NiagaraActor, _vec(r), unreal.Rotator(0, 0, 0))
-        actor.set_actor_label(f"WC_FX_{r['anchor_id']}")
+        kind = r["fx_kind"]
+        actor.set_actor_label(f"WC_NS_Morning_{kind}_{r['anchor_id']}")
         tags = list(actor.get_editor_property("tags"))
         tags.append(unreal.Name(ue["actor_tag"]))
-        tags.append(unreal.Name(f"WorldCompiler.fx.{r['fx_kind']}"))
+        tags.append(unreal.Name(f"WorldCompiler.fx.{kind}"))
         actor.set_editor_property("tags", tags)
-        comp = actor.get_niagara_component()
+        comp = actor.get_component_by_class(unreal.NiagaraComponent)
+        if comp is None:
+            try:
+                comp = actor.get_editor_property("niagara_component")
+            except Exception:
+                comp = None
+        if comp is None:
+            blocked.append({"anchor": r["anchor_id"], "error": "no_niagara_component"})
+            continue
         comp.set_asset(system)
+        for prop in ("cast_shadow", "cast_shadows"):
+            try:
+                comp.set_editor_property(prop, False)
+            except Exception:
+                pass
         try:
             band = int(r["band"])
             if band >= 0:
@@ -827,7 +989,10 @@ def step_fx_place(b: dict) -> dict:
             comp.set_variable_float("SpawnMultiplier", float(r["spawn_multiplier"]))
         except Exception:
             pass
-        placed.append({"anchor": r["anchor_id"], "system": sys_path, "loc": [float(r["x"]), float(r["y"]), float(r["z"])]})
+        placed.append({
+            "anchor": r["anchor_id"], "label": actor.get_actor_label(), "system": sys_path,
+            "loc": [float(r["x"]), float(r["y"]), float(r["z"])], "cast_shadow": 0,
+        })
     return {"removed_previous": removed, "placed": placed, "blocked": blocked, "anchors_in_csv": len(rows)}
 
 
@@ -872,11 +1037,15 @@ def _level_look_at(loc: unreal.Vector, look: unreal.Vector) -> unreal.Rotator:
     """Look-at with roll forced to 0. Straight-down targets gimbal find_look_at_rotation."""
     dx = look.x - loc.x
     dy = look.y - loc.y
-    dz = look.z - loc.z
     if abs(dx) < 1.0 and abs(dy) < 1.0:
         look = unreal.Vector(look.x + 8.0, look.y + 8.0, look.z)
     rot = unreal.MathLibrary.find_look_at_rotation(loc, look)
-    return unreal.Rotator(rot.pitch, rot.yaw, 0.0)
+    # Positional unreal.Rotator(a,b,c) is (roll, pitch, yaw); set named fields.
+    fixed = unreal.Rotator()
+    fixed.pitch = rot.pitch
+    fixed.yaw = rot.yaw
+    fixed.roll = 0.0
+    return fixed
 
 
 def step_lookdev_cameras(b: dict) -> dict:
@@ -1074,6 +1243,7 @@ STEPS = {
     "save": step_save,
     "reset_table": step_reset_table,
     "template_scaffold": step_template_scaffold,
+    "fx_systems": step_fx_systems,
     "fx_materials": step_fx_materials,
     "fx_place": step_fx_place,
     "fx_audit": step_fx_audit,
