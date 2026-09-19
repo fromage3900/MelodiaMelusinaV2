@@ -139,6 +139,9 @@ canonical Chladni, `BeatAccent 1.5`) is presentation-ready; the unit still wears
 until the visual swap is judged. Breath wired 2026-09-18: tick-driven squash-and-stretch on
 `SlimeMesh` (`Sin(time)` through mirrored `MapRangeClamped` ±5%, XY swell against Z settle,
 parent Tick preserved, 0 errored BPs); beat-pulse rides the existing driver→master path.
+Skin bound 2026-09-18: `SlimeMesh.OverrideMaterials[0]` now wears `MI_MelodySlime_Body`
+(the mesh slot alone wore plain `Material_002`); master carries the full reactive
+vocabulary (`BeatAccent`, `Chladni*`, `HarmonizeActive`, 31 params).
 
 **Zundamon battle unit + Morning exploration platform crossing (authored 2026-09-18):**
 `ABP_Zundamon_Battle` (`target_skeleton = SK_Zundamon_Skeleton`, duplicated from the stock
