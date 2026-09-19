@@ -82,10 +82,25 @@ them), `CompatibilityLabs`, `.git` beyond the LFS prune, `Windows\Installer`, `W
 
 ## 4. Suggested next batch (by GB per risk)
 
-1. Move `Backups\BS_GodFile-20260904-205650` (39.5) and `.git_EnvironmentPortfolio_Archive_20260908`
-   (19.9) to `G:` with `robocopy /MOVE` after a two-writer probe of G: — reversible, ~59 GB.
+1. ~~Move `Backups\BS_GodFile-20260904-205650` (39.5) and `.git_EnvironmentPortfolio_Archive_20260908`
+   (19.9) to `G:`~~ — **DONE 2026-09-18, see §5**: 59.3 GB moved, C: 66 GB → **124 GB** free.
 2. Purge DDC+Zen (25.3) and JetBrains caches (21.1) in the next **closed-editor, closed-Rider** window
    — ~46 GB.
 3. Decide F1 (symlink repair) — dangling links are a data-availability flag, not a space item.
 4. Remove the two unlocked `.claude` worktrees and the issue51 worktree after saving its diff — ~27 GB.
 5. OneDrive "Free up space" on Documents (Adobe/Xfer/Unreal Projects) — ~30 GB local.
+
+## 5. Batch 1 executed — 2026-09-18 evening
+
+Moved off C: with `robocopy /MOVE` (one job at a time, destination probed by two writers first and
+churn-checked: G: free stable across 20 s), then verified byte-for-byte with a native walk:
+
+| Tree | Files / Dirs / Bytes | Destination | Result |
+|---|---|---|---|
+| `C:\Users\froma\Backups\BS_GodFile-20260904-205650` | 37,028 / 31,342 / 42,406,197,350 | `G:\_relocated\Backups\BS_GodFile-20260904-205650` | identical, 0 failed |
+| `C:\EnvironmentPortfolio\.git_EnvironmentPortfolio_Archive_20260908` | 12,782 / 11,427 / 21,315,380,317 | `G:\_relocated\.git_EnvironmentPortfolio_Archive_20260908` | identical, 0 failed |
+
+- Robocopy log: `%LOCALAPPDATA%\Temp\disk-dive-20260918\move_log_20260918.txt` (RC=1 both trees = success).
+- Sources removed by `/MOVE`; pointer files left at the old locations
+  (`C:\Users\froma\Backups\_MOVED_TO_G_20260918.txt`, `C:\EnvironmentPortfolio\_ARCHIVE_GIT_MOVED_TO_G_20260918.txt`).
+- **C: free 66 GB → 124 GB.** Session total so far: 6.4 GB → 124 GB (≈ +118 GB).
