@@ -271,6 +271,50 @@ def _register_agent_bridge() -> None:
         unreal.log_error(f"[AgentBridge] Registration failed: {e}")
 
 
+def _register_world_compiler() -> None:
+    """Apply/Cleanup/Capture only. Compile stays CLI."""
+    try:
+        menus = unreal.ToolMenus.get()
+        main = menus.find_menu("LevelEditor.MainMenu")
+        if not main:
+            return
+        owner = "BSGodFile_WorldCompiler"
+        if menus.find_menu("LevelEditor.MainMenu.WorldCompiler"):
+            menus.remove_menu("LevelEditor.MainMenu.WorldCompiler")
+        main.add_sub_menu(owner, "WorldCompiler", "WorldCompiler", "World Compiler", "World Compiler")
+        menu = menus.extend_menu("LevelEditor.MainMenu.WorldCompiler")
+        menu.add_section("Apply", "Apply", 0)
+        hint = (
+            "unreal.log('[WorldCompiler] Compile is CLI: python Tools/world_compiler.py "
+            "compile recipes/morning_rainbow_bloom.v1.json && python Tools/world_compiler_ue_driver.py "
+            "Saved/WorldCompiler/morning_rainbow_bloom_3900 --lookdev')"
+        )
+        py_dir = _SCRIPT_DIR.replace("\\", "/")
+
+        def add(name, label, body):
+            entry = unreal.ToolMenuEntry(name=name, type=unreal.MultiBlockType.MENU_ENTRY)
+            entry.set_label(label)
+            entry.set_string_command(
+                type=unreal.ToolMenuStringCommandType.PYTHON,
+                custom_type_name="",
+                string=(
+                    f"import sys; p=r'{py_dir}'; sys.path.insert(0,p) if p not in sys.path else None; "
+                    f"import world_compiler_panel as wcp; {body}"
+                ),
+            )
+            menu.add_menu_entry("Apply", entry)
+
+        add("WCHint", "Compile stays CLI (log hint)", hint)
+        add("WCStatus", "Status (last ue/step.json)", "unreal.log(str(wcp.status()))")
+        add("WCCleanup", "Cleanup tagged field actors", "unreal.log(str(wcp.cleanup()))")
+        add("WCApply", "Apply field from existing bundle", "unreal.log(str(wcp.apply_field()))")
+        add("WCCapture", "Capture lookdev stills", "unreal.log(str(wcp.capture()))")
+        menus.refresh_all_widgets()
+        unreal.log("[WorldCompiler] menu registered (apply/cleanup/capture; compile stays CLI)")
+    except Exception as exc:
+        unreal.log_error(f"[WorldCompiler] menu failed: {exc}")
+
+
 def startup():
     if m is None:
         print("[init_unreal] LiveLink module not found, skipping startup", flush=True)
@@ -281,6 +325,7 @@ def startup():
     _register_gmm()
     _register_osc_bridge()
     _register_agent_bridge()
+    _register_world_compiler()
     unreal.log(
         "[LiveLink] v3.1 loaded — LiveLink menu has Start/Stop/Status "
         "(no floating panel; start Blender server first)"

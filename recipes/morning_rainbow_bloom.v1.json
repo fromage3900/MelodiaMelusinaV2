@@ -103,9 +103,9 @@
     "probe": "recipes/ground/morning_rainbow_bloom_ground_probe.json",
     "probe_radius_cm": 2400.0,
     "probe_step_cm": 100.0,
-    "walkable_z_cm": [-900.0, 1400.0],
+    "walkable_z_cm": [-900.0, 1500.0],
     "exclude_actor_classes": ["MelodiaBedActor"],
-    "note": "Snap onto BrushifyIsland_* (S_FloatingMountain_01..04) west/south of the pond. SM_PM3D_Sphere3D stand-ins, WC_DellFloor, and SM_classic_arch bedroom boards are excluded. Not a Landscape. No second meadow authority."
+    "note": "Snap onto BrushifyIsland_* (S_FloatingMountain_01..04) west/south of the pond. WC_EscherWalk_* is excluded in probe_ground (never plantable). SM_PM3D_Sphere3D stand-ins, WC_DellFloor, and SM_classic_arch bedroom boards are excluded. Not a Landscape. No second meadow authority."
   },
   "chapter": null,
   "motif": null,
@@ -119,9 +119,9 @@
   },
   "lookdev": {
     "cameras": [
-      {"name": "waterline_dolly", "loc_cm": [-500.0, 1400.0, 350.0], "look_cm": [-2300.0, 1550.0, -50.0], "fov": 58, "exposure_bias": 0.7},
+      {"name": "waterline_dolly", "loc_cm": [-3100.0, 200.0, 180.0], "look_cm": [-2300.0, 1550.0, 80.0], "fov": 55, "exposure_bias": 0.8},
       {"name": "website_oblique", "loc_cm": [-800.0, 200.0, 1100.0], "look_cm": [-2300.0, 1550.0, -50.0], "fov": 68, "exposure_bias": 0.7},
-      {"name": "website_top", "loc_cm": [-2300.0, 1440.0, 3200.0], "look_cm": [-2300.0, 1440.0, -100.0], "fov": 70, "exposure_bias": 0.5},
+      {"name": "website_top", "loc_cm": [-2300.0, 1440.0, 3200.0], "look_cm": [-2292.0, 1448.0, -100.0], "fov": 70, "exposure_bias": 0.5},
       {"name": "website_south", "loc_cm": [-600.0, -100.0, 700.0], "look_cm": [-2100.0, 1650.0, -80.0], "fov": 62, "exposure_bias": 1.5},
       {"name": "south_fix", "loc_cm": [-800.0, 0.0, 900.0], "look_cm": [-2100.0, 1650.0, -50.0], "fov": 62, "exposure_bias": 1.75}
     ]
