@@ -129,8 +129,11 @@ entries preserved) + `MelodiaQuillSlimeTutorial` (30 compiled statements, battle
 notifies verified) with allowlisted `melodia_slime_tutorial` / `quest.slime_tutorial.first_tide` /
 `reward.slime_tutorial.tidecall` / `flag.slime_tutorial.completed`. MorningIntro carries
 `mel_perch_01` + `mel_battle_entry` voice cues (compiled). `BP_MelodySlimeTutorialBattle` roster is
-`{slime: chance 1.0, lvl 1}` with `fleeChance 100`. Still owed before playtest: tag the placed
-battle actor `melodia_slime_tutorial`, a QSC starter/trigger in Morning, and the real-input PIE
+`{slime: chance 1.0, lvl 1}` with `fleeChance 100`. Wired 2026-09-18 (commit 593ef613e):
+battle actor tagged `melodia_slime_tutorial` (actor package force-added, one-time),
+`Morning_QuillTrigger_SlimeTutorial` placed at the battle actor in the persistent level with
+`QuillScriptToPlay` resolved to the tutorial QSC, map + 3 external packages saved, dirty 0,
+pushed 0 0. Still owed: Tidecall display-text check + the real-input PIE
 proof (victory/defeat/flee + exactly-once resume). `MI_MelodySlime_Body` (toon master, Tide tint,
 canonical Chladni, `BeatAccent 1.5`) is presentation-ready; the unit still wears the mannequin
 until the visual swap is judged.
