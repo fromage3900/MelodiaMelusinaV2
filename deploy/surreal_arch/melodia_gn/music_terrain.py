@@ -255,7 +255,7 @@ def build_staff_bridge(group_name="MEL_staff_bridge"):
         link_sockets(tree, xf.outputs["Geometry"], rails_join.inputs["Geometry"])
 
     # Note heads: spheres at pitch-heights along span
-    head = safe_node(tree, "GeometryNodeUVSphere", (bx - 800, by - 300))
+    head = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 800, by - 300))
     try:
         head.inputs["Segments"].default_value = 16
         head.inputs["Rings"].default_value = 8

@@ -117,6 +117,13 @@ from .presets import (
 )
 from . import nikki_decor  # noqa: F401 - Nikki decor: beads, stars, hearts, crystals, cords, guide-driven strings
 
+# --- 2026-09-14 wave (wired 2026-09-16): audio-reactive study decor + Escher math ---
+from . import audio_architecture  # noqa: F401 - MEL_audio_facade, MEL_audio_landscape
+from . import cute_decor  # noqa: F401 - 14 cute decor builders (crystal drops, dangls, chains...)
+from . import escher_decor  # noqa: F401 - hyperbolic window, Penrose triangle, Mobius strip, escher tessellation
+from . import study_ground  # noqa: F401 - audio-reactive study ground
+from . import note_school  # noqa: F401 - note fish school (Melody Aquarium): MEL_music_note_fish
+
 # Rebuild derived lookup tables now that all builder modules
 # have imported and called register_builder(). Mutates core containers
 # in place so early importers (stack UI) see live catalog sections.

@@ -100,7 +100,7 @@ def _box(tree, loc, size, center):
     """Axis-aligned box mesh. size=(x,y,z), center=(x,y,z). Returns Geometry socket."""
     cube = safe_node(tree, "GeometryNodeMeshCube", loc)
     if cube is None:
-        cube = safe_node(tree, "GeometryNodeCube", loc)
+        cube = safe_node(tree, "GeometryNodeMeshCube", loc)
     if cube is None:
         return None
     xf = safe_node(tree, "GeometryNodeTransform", (loc[0] - 200, loc[1]))
@@ -125,7 +125,7 @@ def _box(tree, loc, size, center):
 def _sphere(tree, loc, radius, center, scale=(1, 1, 1)):
     sph = safe_node(tree, "GeometryNodeMeshUVSphere", loc)
     if sph is None:
-        sph = safe_node(tree, "GeometryNodeUVSphere", loc)
+        sph = safe_node(tree, "GeometryNodeMeshUVSphere", loc)
     if sph is None:
         return None
     xf = safe_node(tree, "GeometryNodeTransform", (loc[0] - 220, loc[1]))

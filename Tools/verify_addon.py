@@ -1,7 +1,15 @@
 """Melodia Studio addon gate. Run:
-     blender.exe --background --factory-startup --python Tools/verify_addon.py
+     "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe" \
+         --background --factory-startup --python Tools/verify_addon.py
 Exits non-zero on any failure. Prints one GATE line per assertion.
 See Docs/Production/MELODIA_STUDIO_FREEZE_2026-09-11.md section 4.
+
+This is a BLENDER script, not a plain-Python one: gates A/D/F construct and
+evaluate every registered builder, which requires bpy. Invoking it with a bare
+`python Tools/verify_addon.py` used to die on a bare ImportError traceback,
+which reads as "the gate is broken" instead of "the gate was called wrong"
+(that misdiagnosis happened on 2026-09-18 and blocked a close-out). It now
+fails with the exact command to run instead.
 """
 import collections
 import glob
@@ -12,7 +20,18 @@ import re
 import sys
 import traceback
 
-import bpy
+try:
+    import bpy
+except ImportError:
+    sys.stderr.write(
+        "\n[verify_addon] bpy not available - this gate must run inside Blender.\n"
+        "  Correct invocation:\n"
+        '    "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe"'
+        " --background --factory-startup --python Tools/verify_addon.py\n"
+        "  (Plain `python Tools/verify_addon.py` cannot work: gates A/D/F"
+        " construct and evaluate every registered builder.)\n\n"
+    )
+    raise SystemExit(2)
 
 REPO = r"P:/MelodiaMelusinaV2-Laptop"
 APPDATA_ADDONS = os.path.join(os.environ["APPDATA"], "Blender Foundation",
@@ -42,8 +61,12 @@ CONVERGED_FILES = [
 # `baseline_empty_count` (111) — that uses a different scope, so the two numbers are
 # not comparable. This one exists only to catch growth: a new builder that silently
 # needs inputs will push it up. Raised 125 -> 136 on 2026-09-11 when the three port
-# modules were installed, adding 59 builders (11 of them input-dependent).
-RECORDED_EMPTIES = 136
+# modules were installed, adding 59 builders (11 of them input-dependent). Raised
+# 136 -> 137 on 2026-09-18 when the note fish school was swept in:
+# MEL_music_note_fish builds 730 verts (non-empty), while MEL_music_note_school
+# arrays fish on a spline and is input-dependent (0 verts at the default group
+# input) -- same family as the 11 input-dependent empties above.
+RECORDED_EMPTIES = 137
 
 results = []
 

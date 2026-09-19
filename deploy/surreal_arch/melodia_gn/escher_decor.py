@@ -241,7 +241,7 @@ def build_mobius_strip(group_name="MEL_mobius_strip"):
 # Tessellation — interlocking pattern (p4m wallpaper group)
 # ---------------------------------------------------------------------------
 
-def build_tessellation(group_name="MEL_tessellation"):
+def build_tessellation(group_name="MEL_escher_tessellation"):
     """Interlocking tessellation pattern (p4m wallpaper group).
     
     Params:
@@ -319,6 +319,6 @@ register_builder("MEL_mobius_strip", build_mobius_strip,
                  "Möbius Strip", "Single-sided surface with a twist",
                  category="escher")
 
-register_builder("MEL_tessellation", build_tessellation,
-                 "Tessellation", "Interlocking p4m wallpaper pattern",
+register_builder("MEL_escher_tessellation", build_tessellation,
+                 "Escher Tessellation", "Interlocking p4m wallpaper pattern",
                  category="escher")

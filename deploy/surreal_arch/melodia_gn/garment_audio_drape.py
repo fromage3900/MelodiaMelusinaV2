@@ -28,12 +28,16 @@ def _add_sound_param(tree, name="Sound"):
     return tree.interface.new_socket(name=name, in_out="INPUT", socket_type="NodeSocketSound")
 
 
-def _sample_band(tree, gin, loc, low, high):
+def _sample_band(tree, gin, loc, low, high, use_scene_time=False):
     sample = safe_node(tree, "GeometryNodeSampleSoundFrequencies", loc)
     if sample is None:
         raise RuntimeError("Blender 5.2 Sample Sound Frequencies node is unavailable")
     link_sockets(tree, gin.outputs["Sound"], sample.inputs["Sound"])
-    link_sockets(tree, gin.outputs["Time"], sample.inputs["Time"])
+    if use_scene_time:
+        t_node = safe_node(tree, "GeometryNodeInputSceneTime", (loc[0], loc[1] - 160))
+        link_sockets(tree, t_node.outputs["Seconds"], sample.inputs["Time"])
+    else:
+        link_sockets(tree, gin.outputs["Time"], sample.inputs["Time"])
     link_sockets(tree, low, sample.inputs["Low"])
     link_sockets(tree, high, sample.inputs["High"])
     sample.inputs["All Channels"].default_value = True
@@ -77,7 +81,8 @@ def build_garment_audio_drape(group_name="MEL_garment_audio_drape"):
     link_sockets(tree, gin.outputs["Low Hz"], band_high.inputs[0])
     link_sockets(tree, scaled_span.outputs[0], band_high.inputs[1])
 
-    amp = _sample_band(tree, gin, (-60, -140), gin.outputs["Low Hz"], band_high.outputs[0])
+    amp = _sample_band(tree, gin, (-60, -140), gin.outputs["Low Hz"], band_high.outputs[0],
+                       use_scene_time=True)
     scaled = safe_node(tree, "ShaderNodeMath", (130, -140))
     scaled.operation = "MULTIPLY"
     link_sockets(tree, amp, scaled.inputs[0])

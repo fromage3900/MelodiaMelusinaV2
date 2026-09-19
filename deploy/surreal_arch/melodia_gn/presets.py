@@ -131,6 +131,24 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "PORCH_ROOF": {"Roof Width": 5.2, "Roof Depth": 2.0, "Roof Rise": 1.1, "Eave Curl": 0.5, "End Lift": 0.6, "Thickness": 0.1, "Asymmetry": 0.1, "Preview Density": 16},
         },
     },
+    "MEL_mh_opening_family": {
+        "label": "MH Opening Family",
+        "preset_labels": {
+            "ROUND_WINDOW": "Round Window",
+            "TALL_DOOR": "Tall Door",
+            "PALLADIAN": "Palladian Arch",
+        },
+        "preset_descriptions": {
+            "ROUND_WINDOW": "Standard round-Baroque window with soft jamb and keystone.",
+            "TALL_DOOR": "Entry-scale arched door for the porch facade.",
+            "PALLADIAN": "Wide motif arch for salon and grotto openings.",
+        },
+        "presets": {
+            "ROUND_WINDOW": {"Opening Width": 1.1, "Opening Height": 1.6, "Jamb Width": 0.12, "Frame Depth": 0.35, "Sill Height": 0.12, "Keystone Scale": 0.6, "Bevel": 0.02, "Arch Segments": 32, "Keystone": True},
+            "TALL_DOOR": {"Opening Width": 1.25, "Opening Height": 2.6, "Jamb Width": 0.14, "Frame Depth": 0.42, "Sill Height": 0.08, "Keystone Scale": 0.75, "Bevel": 0.02, "Arch Segments": 40, "Keystone": True},
+            "PALLADIAN": {"Opening Width": 2.3, "Opening Height": 1.3, "Jamb Width": 0.16, "Frame Depth": 0.45, "Sill Height": 0.16, "Keystone Scale": 0.9, "Bevel": 0.025, "Arch Segments": 48, "Keystone": True},
+        },
+    },
     "MEL_audio_spectrum_terrain": {
         "label": "Audio Spectrum Terrain",
         "preset_labels": {

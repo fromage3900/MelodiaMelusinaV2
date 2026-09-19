@@ -123,7 +123,8 @@ def build_planetary_musical_terrain(group_name="MEL_planetary_musical_terrain"):
     terrain_h = _math(tree, "ADD", terrain_h, micro_h, (100, -250))
 
     # Broad-band music adds authored relief but defaults to zero through Audio Height.
-    amp = _sample_band(tree, gin, (-80, -760), gin.outputs["Low Hz"], gin.outputs["High Hz"])
+    amp = _sample_band(tree, gin, (-80, -760), gin.outputs["Low Hz"], gin.outputs["High Hz"],
+                       use_scene_time=True)
     amp = _math(tree, "MULTIPLY", amp, gin.outputs["Audio Gain"], (160, -760))
     audio_h = _math(tree, "MULTIPLY", amp, gin.outputs["Audio Height M"], (360, -700))
     terrain_h = _math(tree, "ADD", terrain_h, audio_h, (360, -250))

@@ -18,7 +18,10 @@ def add_audio_reactivity(tree, gin, geo_socket, loc=(0, 0)):
     add_float_param(tree, "High Hz", 20000.0, 1.0, 20000.0)
     add_float_param(tree, "Audio Gain", 4.0, 0.0, 50.0)
 
-    amp = _sample_band(tree, gin, loc, gin.outputs["Low Hz"], gin.outputs["High Hz"])
+    # Scene-time driven so the reactivity actually animates across frames.
+    # The tree's "Time" input socket remains as a manual override point.
+    amp = _sample_band(tree, gin, loc, gin.outputs["Low Hz"], gin.outputs["High Hz"],
+                       use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (loc[0] + 100, loc[1]))
     gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0])

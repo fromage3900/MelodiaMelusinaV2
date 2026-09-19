@@ -114,7 +114,8 @@ def build_audio_facade(group_name="MEL_audio_facade"):
     link_sockets(tree, bw.outputs[0], band_high.inputs[1])
 
     # Sample the band
-    amp = _sample_band(tree, gin, (0, -120), map_low.outputs["Result"], band_high.outputs[0])
+    amp = _sample_band(tree, gin, (0, -120), map_low.outputs["Result"], band_high.outputs[0],
+                       use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (200, -120))
     gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0])
@@ -226,7 +227,8 @@ def build_audio_landscape(group_name="MEL_audio_landscape"):
     link_sockets(tree, micro_h.outputs[0], terrain_h2.inputs[1])
 
     # --- Audio displacement ---
-    amp = _sample_band(tree, gin, (-100, -500), gin.outputs["Low Hz"], gin.outputs["High Hz"])
+    amp = _sample_band(tree, gin, (-100, -500), gin.outputs["Low Hz"], gin.outputs["High Hz"],
+                       use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (100, -500))
     gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0])

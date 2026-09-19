@@ -60,7 +60,8 @@ def build_study_ground(group_name="MEL_study_ground"):
     link_sockets(tree, gin.outputs["Ripple Height M"], ripple_h.inputs[1])
 
     # Audio displacement
-    amp = _sample_band(tree, gin, (0, -300), gin.outputs["Low Hz"], gin.outputs["High Hz"])
+    amp = _sample_band(tree, gin, (0, -300), gin.outputs["Low Hz"], gin.outputs["High Hz"],
+                       use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (200, -300))
     gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0])
