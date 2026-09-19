@@ -157,9 +157,10 @@ def validate_manifest(data: Any) -> dict:
 
 
 def use_case_b_checklist(data: dict) -> dict:
-    """Offline B gate: format → HISM (role, lib) → ROLE_UE_HINTS → counts.
+    """Offline B gate: schema PASS → hints resolve → hism_groups (role, lib) → counts.
 
-    Does not load Unreal assets. Live mesh/MI resolve is import_world_manifest --apply.
+    Does not load Unreal assets. Live mesh/MI resolve is import_world_manifest --apply,
+    which is SMA-only until HISM spawn from hism_groups is added.
     """
     try:
         from surreal_world.role_ue_hints import ROLE_UE_HINTS, STYLE_ROLE_OVERRIDES, material_hint
@@ -190,6 +191,17 @@ def use_case_b_checklist(data: dict) -> dict:
             "detail": data.get("format"),
         },
         {
+            "id": "materials_resolve_role_ue_hints",
+            "ok": bool(instances) and not mismatches,
+            "detail": {
+                "style": style,
+                "sacred_default": ROLE_UE_HINTS["sacred"],
+                "zen_shrine_overrides": STYLE_ROLE_OVERRIDES.get("ZEN_SHRINE"),
+                "stone_cliff": ROLE_UE_HINTS["corner_tower"],
+                "mismatches": mismatches,
+            },
+        },
+        {
             "id": "hism_groups_by_role_lib",
             "ok": bool(pair_keys) and len(pair_keys) == len(set(pair_keys)),
             "detail": [{"role": role, "lib": lib} for role, lib in pair_keys],
@@ -201,16 +213,6 @@ def use_case_b_checklist(data: dict) -> dict:
                 "declared": data.get("instance_count"),
                 "instances": len(instances),
                 "hism_transforms": grouped,
-            },
-        },
-        {
-            "id": "materials_resolve_role_ue_hints",
-            "ok": bool(instances) and not mismatches,
-            "detail": {
-                "style": style,
-                "sacred_default": ROLE_UE_HINTS["sacred"],
-                "zen_shrine_overrides": STYLE_ROLE_OVERRIDES.get("ZEN_SHRINE"),
-                "mismatches": mismatches,
             },
         },
     ]
@@ -225,8 +227,18 @@ def use_case_b_checklist(data: dict) -> dict:
         "importer": "Content/Python/import_world_manifest.py",
         "steps": steps,
         "live_todo": (
+            "Fill instance static_mesh_path then "
             "py Content/Python/import_world_manifest.py --manifest "
-            "deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json --apply"
+            "<world.json> --apply (SMA only today). True HISM needs importer "
+            "extension to spawn HierarchicalInstancedStaticMeshComponent from "
+            "hism_groups. Schema PASS is not live UE proof."
+        ),
+        "importer_apply": "StaticMeshActor when static_mesh_path is set; hism_groups not spawned",
+        "local_dry_run": (
+            "Saved/Audit/proof_b_zen_shrine/SurrealPlan_ZenShrine_ProofB.world.json "
+            "(local Windows checkout, not in git): style ZEN_SHRINE, plan "
+            "SurrealPlan_ZenTemple, 8 instances, 6 hism_groups; schema PASS vs "
+            "Config/world_schema.json. Not a live UE apply receipt."
         ),
     }
 

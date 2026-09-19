@@ -10,9 +10,17 @@ Headless:
     -manifest="world.json" ^
     -stdout -unattended -nullrhi
 
-Without `--apply`, the command is a read-only import plan. With `--apply`, it
-spawns StaticMeshActors only for instances that provide an explicit
-`static_mesh_path`; it never guesses a mesh from a library name.
+Without `--apply`, the command is a read-only import plan (schema validate +
+per-instance dry-plan). With `--apply`, it spawns StaticMeshActors only for
+instances that provide an explicit `static_mesh_path`; it never guesses a mesh
+from a library name.
+
+True HierarchicalInstancedStaticMeshComponent placement is **not** implemented
+here. `hism_groups` are validated by schema / the B checklist, but `--apply`
+does not spawn HISM from those groups. Full use-case B live proof therefore
+needs either filled `static_mesh_path` on each instance (current SMA path) **or**
+an extension of this importer to spawn HISM from `hism_groups`. Do not treat
+schema PASS as live UE HISM proof.
 """
 from __future__ import annotations
 

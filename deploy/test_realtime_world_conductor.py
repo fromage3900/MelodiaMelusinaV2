@@ -146,9 +146,9 @@ def test_use_case_b_checklist_castle_and_zen():
     step_ids = [step["id"] for step in castle["steps"]]
     assert step_ids == [
         "format_surreal_arch_world_v1",
+        "materials_resolve_role_ue_hints",
         "hism_groups_by_role_lib",
         "instance_counts_match",
-        "materials_resolve_role_ue_hints",
     ]
     sacred = next(
         inst["ue_material_hint"]
@@ -159,8 +159,25 @@ def test_use_case_b_checklist_castle_and_zen():
     zen = rwc.use_case_b_checklist(_load(ZEN))
     assert zen["ok"] is True, zen
     hints = {inst["role"]: inst["ue_material_hint"] for inst in _load(ZEN)["instances"]}
-    assert hints["sacred"].endswith("MI_Zen_HondenSanctum")
+    assert hints["sacred"].endswith("MI_Zen_Karesansui")
     assert hints["gate"].endswith("MI_Zen_ToriiVermillion")
+    from surreal_world.role_ue_hints import material_hint
+
+    stone = "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff"
+    assert material_hint("WESTERN_CASTLE", "corner_tower") == stone
+    assert material_hint("WESTERN_CASTLE", "large") == stone
+    assert material_hint("WESTERN_CASTLE", "monument") == stone
+    assert material_hint("ZEN_SHRINE", "sacred").endswith("MI_Zen_Karesansui")
+    assert "HondenSanctum" not in material_hint("ZEN_SHRINE", "sacred")
+
+
+def test_importer_apply_is_sma_not_hism():
+    src = (ROOT / "Content" / "Python" / "import_world_manifest.py").read_text(encoding="utf-8")
+    apply_fn = src.split("def _apply_instance", 1)[1].split("def import_manifest", 1)[0]
+    assert "StaticMeshActor" in apply_fn
+    assert "apply requires an explicit static_mesh_path" in apply_fn
+    assert "HierarchicalInstancedStaticMeshComponent" not in apply_fn
+    assert "hism_groups" not in apply_fn
 
 
 def test_default_manifest_is_castle_surreal_plan():

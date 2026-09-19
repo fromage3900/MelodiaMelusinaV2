@@ -186,8 +186,11 @@ material_bridge.py          resolve_material_crosswalk.py
 
 World manifests are read-only plans unless `import_world_manifest.py --apply`
 is explicitly used. The current importer creates explicit StaticMeshActors for
-instances with a declared `static_mesh_path`; HISM grouping remains a separate
-optimization and is not inferred from a role or library name.
+instances with a declared `static_mesh_path`; it never guesses a mesh from a
+library name. `hism_groups` are authored on the manifest and checked by the B
+checklist, but `--apply` does not spawn `HierarchicalInstancedStaticMeshComponent`
+from them. Full use-case B live proof needs filled `static_mesh_path` **or** an
+importer extension that reads those groups.
 
 ### Voice Pipeline
 

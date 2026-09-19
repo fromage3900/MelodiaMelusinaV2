@@ -5,20 +5,26 @@ producer; Content/Python/import_world_manifest.py consumes the resulting
 ue_material_hint strings. Do not invent a second hint table.
 
 Default sacred slot is MI_Zen_Karesansui. ZEN_SHRINE style overrides remap
-gate/sacred/large/monument onto the Zen MI set at export time.
+gate/large/monument onto the Zen MI set at export time. Sacred stays on
+Karesansui until MI_Zen_HondenSanctum is authored on disk.
+
+StoneCliff lives under Instances/Showcase, not Environment/Stylized. Proof B
+dry-run (2026-09-19) caught the Stylized path as a miss.
 """
 from __future__ import annotations
 
 MATERIALS_ROOT = "/Game/EnvSandbox/Materials/Instances/Environment"
+SHOWCASE_ROOT = "/Game/EnvSandbox/Materials/Instances/Showcase"
+STONE_CLIFF = f"{SHOWCASE_ROOT}/MI_Show_StoneCliff"
 
 ROLE_UE_HINTS = {
-    "large": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
+    "large": STONE_CLIFF,
     "medium": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
     "small": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
     "wall": f"{MATERIALS_ROOT}/Stylized/MI_Trimsheet_HeavyWear",
-    "corner_tower": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
+    "corner_tower": STONE_CLIFF,
     "gate": f"{MATERIALS_ROOT}/Stylized/MI_Show_ContactRimHero",
-    "monument": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
+    "monument": STONE_CLIFF,
     "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_Karesansui",
     "joined_mesh": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
 }
@@ -26,7 +32,8 @@ ROLE_UE_HINTS = {
 STYLE_ROLE_OVERRIDES = {
     "ZEN_SHRINE": {
         "gate": f"{MATERIALS_ROOT}/Zen/MI_Zen_ToriiVermillion",
-        "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_HondenSanctum",
+        # sacred intentionally omitted: MI_Zen_HondenSanctum is not on disk;
+        # material_hint falls through to ROLE_UE_HINTS["sacred"] (Karesansui).
         "large": f"{MATERIALS_ROOT}/Zen/MI_Zen_MossGarden",
         "monument": f"{MATERIALS_ROOT}/Zen/MI_Zen_SakuraDrift",
     },

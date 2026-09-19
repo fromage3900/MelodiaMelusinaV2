@@ -4,7 +4,7 @@
 **Producer:** Blender addon `surreal_arch.export_world_ue`  
 **Consumer:** [`Content/Python/import_world_manifest.py`](../Content/Python/import_world_manifest.py)
 
-**First live proof (use case B):** Castle or Zen shrine SurrealPlan → HISM with `ROLE_UE_HINTS`. In-repo stand-ins: [`fixtures/SurrealPlan_Castle_WorldRoot.world.json`](fixtures/SurrealPlan_Castle_WorldRoot.world.json) (conductor default), [`fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json`](fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json). Checklist: format `surreal_arch_world_v1` → HISM groups by `(role, lib)` → `ue_material_hint` matches `material_hint(style, role)` → instance counts match. Consume with [`Content/Python/import_world_manifest.py`](../Content/Python/import_world_manifest.py) only.
+**First live proof (use case B):** Castle or Zen shrine SurrealPlan → HISM with `ROLE_UE_HINTS`. In-repo stand-ins: [`fixtures/SurrealPlan_Castle_WorldRoot.world.json`](fixtures/SurrealPlan_Castle_WorldRoot.world.json) (conductor default), [`fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json`](fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json). Checklist: **schema PASS** → **hints resolve** (Showcase `MI_Show_StoneCliff`; Zen sacred stays `MI_Zen_Karesansui` until `MI_Zen_HondenSanctum` is authored) → **`hism_groups` by `(role, lib)`** → **live UE apply**. Consume with [`Content/Python/import_world_manifest.py`](../Content/Python/import_world_manifest.py) only. That importer `--apply`s StaticMeshActors when `static_mesh_path` is set; it does not spawn HISM from `hism_groups`. Local Proof B dry-run (`Saved/Audit/proof_b_zen_shrine/SurrealPlan_ZenShrine_ProofB.world.json`, not in git): `ZEN_SHRINE` / `SurrealPlan_ZenTemple`, 8 instances, 6 groups, schema PASS — not live UE proof.
 
 ## Purpose
 
@@ -74,7 +74,7 @@ Realtime conductor: [`deploy/realtime_world_conductor.py`](realtime_world_conduc
 
 ## HISM group (derived)
 
-Grouped by `(role, lib)` for instancing. Importer creates one HISM component per group.
+Grouped by `(role, lib)` for instancing. The **authored** contract is one HISM component per group. The **current** importer does not spawn those components: `import_world_manifest.py --apply` creates a `StaticMeshActor` per instance that already has `static_mesh_path`. True HISM live proof needs filled mesh paths (SMA fallback) **or** an importer extension that reads `hism_groups`.
 
 | Field | Type | Notes |
 |-------|------|-------|
@@ -87,20 +87,20 @@ Grouped by `(role, lib)` for instancing. Importer creates one HISM component per
 
 ## ROLE_UE_HINTS → project paths
 
-Defined in [`deploy/surreal_world/export.py`](surreal_world/export.py). Maps compose roles to EnvSandbox material instances:
+Defined in [`deploy/surreal_world/role_ue_hints.py`](surreal_world/role_ue_hints.py) (imported by `export.py`). Maps compose roles to EnvSandbox material instances:
 
 | Role | UE material path |
 |------|------------------|
-| `large` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_StoneCliff` |
+| `large` | `/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff` |
 | `medium` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_Default` |
 | `small` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_Default` |
 | `wall` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear` |
-| `corner_tower` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_StoneCliff` |
+| `corner_tower` | `/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff` |
 | `gate` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_ContactRimHero` |
-| `monument` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_StoneCliff` |
+| `monument` | `/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff` |
 | `sacred` | `/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui` |
 
-ZEN_SHRINE style overrides sacred/gate roles to Zen MI paths at export time.
+`ZEN_SHRINE` style overrides `gate` / `large` / `monument` to Zen MI paths at export time. Sacred stays on `MI_Zen_Karesansui` until `MI_Zen_HondenSanctum` exists on disk. StoneCliff is Showcase, not `Environment/Stylized` (Proof B dry-run, 2026-09-19).
 
 ## UE5 HISM import strategy
 

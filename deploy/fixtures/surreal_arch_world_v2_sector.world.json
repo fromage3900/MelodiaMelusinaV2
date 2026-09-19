@@ -23,7 +23,7 @@
         [0.0, 0.0, 1.0, 0.0],
         [0.0, 0.0, 0.0, 1.0]
       ],
-      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_HondenSanctum",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
       "static_mesh_path": "/Game/EnvSandbox/WorldImport/Shorewake_WorldRoot/SM_Lantern",
       "lod_group": "SmallProp",
       "stream_priority": 1,
@@ -37,7 +37,7 @@
     {
       "role": "sacred",
       "lib": "_lib_ZEN_LANTERN",
-      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_HondenSanctum",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
       "static_mesh_path": "/Game/EnvSandbox/WorldImport/Shorewake_WorldRoot/SM_Lantern",
       "instance_count": 1,
       "lod_group": "SmallProp",
