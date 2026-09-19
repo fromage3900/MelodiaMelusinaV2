@@ -4,6 +4,8 @@
 **Producer:** Blender addon `surreal_arch.export_world_ue`  
 **Consumer:** [`Content/Python/import_world_manifest.py`](../Content/Python/import_world_manifest.py)
 
+**First live proof (use case B):** Castle or Zen shrine SurrealPlan → HISM with `ROLE_UE_HINTS`. In-repo stand-ins: [`fixtures/SurrealPlan_Castle_WorldRoot.world.json`](fixtures/SurrealPlan_Castle_WorldRoot.world.json) (conductor default), [`fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json`](fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json). Checklist: format `surreal_arch_world_v1` → HISM groups by `(role, lib)` → `ue_material_hint` matches `material_hint(style, role)` → instance counts match. Consume with [`Content/Python/import_world_manifest.py`](../Content/Python/import_world_manifest.py) only.
+
 ## Purpose
 
 Modular world export for UE5 **Hierarchical Instanced Static Mesh (HISM)** placement. Each manifest entry is one placed instance with role, library source, transform, and material hint.

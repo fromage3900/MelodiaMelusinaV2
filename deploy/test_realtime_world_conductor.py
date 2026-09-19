@@ -17,7 +17,8 @@ sys.path.insert(0, str(ROOT / "deploy"))
 
 CONDUCTOR_PATH = ROOT / "deploy" / "realtime_world_conductor.py"
 SCHEMA_PATH = ROOT / "Config" / "world_schema.json"
-V1 = ROOT / "deploy" / "fixtures" / "surreal_arch_world_v1_minimal.world.json"
+V1 = ROOT / "deploy" / "fixtures" / "SurrealPlan_Castle_WorldRoot.world.json"
+ZEN = ROOT / "deploy" / "fixtures" / "SurrealPlan_ZenShrine_WorldRoot.world.json"
 V2 = ROOT / "deploy" / "fixtures" / "surreal_arch_world_v2_sector.world.json"
 V2_EAST = ROOT / "deploy" / "fixtures" / "surreal_arch_world_v2_sector_east.world.json"
 
@@ -105,11 +106,11 @@ def test_dirty_groups_then_unchanged(tmp_path: Path | None = None):
         rwc.AUDIT = tmp_path
         first = rwc.tick([V1], apply=False)
         assert first["ok"] is True
-        assert first["dirty_group_count"] == 2
+        assert first["dirty_group_count"] == 3
         assert first["evidence_level"].startswith("SOURCE-TOOL")
         second = rwc.tick([V1], apply=False)
         assert second["dirty_group_count"] == 0
-        assert second["unchanged_group_count"] == 2
+        assert second["unchanged_group_count"] == 3
 
 
 def test_tile_expansion_and_filtered_dirty_manifest():
@@ -137,6 +138,36 @@ def test_tile_expansion_and_filtered_dirty_manifest():
         assert filtered["format"] == "surreal_arch_world_v1"
         assert filtered["instance_count"] == len(filtered["instances"])
         assert rwc.structural_errors(filtered) == []
+
+
+def test_use_case_b_checklist_castle_and_zen():
+    castle = rwc.use_case_b_checklist(_load(V1))
+    assert castle["ok"] is True, castle
+    step_ids = [step["id"] for step in castle["steps"]]
+    assert step_ids == [
+        "format_surreal_arch_world_v1",
+        "hism_groups_by_role_lib",
+        "instance_counts_match",
+        "materials_resolve_role_ue_hints",
+    ]
+    sacred = next(
+        inst["ue_material_hint"]
+        for inst in _load(V1)["instances"]
+        if inst["role"] == "sacred"
+    )
+    assert sacred.endswith("MI_Zen_Karesansui")
+    zen = rwc.use_case_b_checklist(_load(ZEN))
+    assert zen["ok"] is True, zen
+    hints = {inst["role"]: inst["ue_material_hint"] for inst in _load(ZEN)["instances"]}
+    assert hints["sacred"].endswith("MI_Zen_HondenSanctum")
+    assert hints["gate"].endswith("MI_Zen_ToriiVermillion")
+
+
+def test_default_manifest_is_castle_surreal_plan():
+    assert rwc.DEFAULT_MANIFEST.resolve() == V1.resolve()
+    args = rwc.parse_args(["--once"])
+    paths = rwc.resolve_manifests(args)
+    assert paths == [V1.resolve()]
 
 
 def test_gmm_v2_sample_still_structurally_valid():

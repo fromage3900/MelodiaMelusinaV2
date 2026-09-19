@@ -231,7 +231,7 @@ Hard no's:
 | [`Docs/Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md`](../Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md) | Chapter-bible / lookdev campaign (supporting) |
 | [`Docs/WorldGen/REALTIME_CONVERGED_PIPELINE.md`](../WorldGen/REALTIME_CONVERGED_PIPELINE.md) | Realtime world-compiler stage graph (LookDev → Author → Compile → Dress → Place → Stream). Scaffold; not live UE proof |
 | [`deploy/SURREAL_WORLD_MANIFEST.md`](../../deploy/SURREAL_WORLD_MANIFEST.md) | `surreal_arch_world_v1` producer/consumer contract |
-| [`Docs/WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md`](../WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md) | Six concrete compiler jobs (Sea Above refresh, Zen HISM, Copernicus, PCGEx, lookdev stages, greybox→hero) |
+| [`Docs/WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md`](../WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md) | First vertical: B Castle/Zen shrine → HISM + ROLE_UE_HINTS |
 | [`CAPSTONE_NOW.md`](../../CAPSTONE_NOW.md) | Immediate production queue |
 
 Dated handoffs, research packets, and superseded pipeline plans are memory. They do not override this page.

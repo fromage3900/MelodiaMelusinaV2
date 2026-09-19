@@ -1,21 +1,77 @@
 # World-compiler use cases — 2026-09
 
-Six Melodia-flavoured jobs for `surreal_arch_world_v1`. Architecture: [`REALTIME_CONVERGED_PIPELINE.md`](REALTIME_CONVERGED_PIPELINE.md). Status/evidence: [`CURRENT_STATE.md`](../../CURRENT_STATE.md) only.
+**First vertical: B.** Castle or Zen shrine surreal plan → HISM with `ROLE_UE_HINTS`.
+Architecture: [`REALTIME_CONVERGED_PIPELINE.md`](REALTIME_CONVERGED_PIPELINE.md).
+Status: [`CURRENT_STATE.md`](../../CURRENT_STATE.md) only. This scaffold is **not LIVE PROVEN**.
 
-None of these is live-proven by this scaffold. Success criteria are what a later UE session must capture.
+---
 
-| ID | Use case | Entry points | Success |
-|---|---|---|---|
-| A | **Sea Above / `L_MelusinaMorning` set-dress refresh from a Blender plan, no editor restart** | `deploy/surreal_world/export.py` → `{WorldRoot}.world.json`; `deploy/realtime_world_conductor.py --watch`; dirty file `Saved/Audit/realtime_dirty_*.world.json`; `Content/Python/import_world_manifest.py --apply`; maps `/Game/Melodia/Levels/Opening/L_MelusinaMorning` and `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype`. Do not tidy `MelodiaIntegrationMap`. | Conductor reports dirty HISM groups only; `--apply` in a running editor updates those groups; PIE still shows the existing Resonance Ecology graph (`PCG_East_PhyllotaxisCourtyard`) and frozen PPV. Receipt in `Saved/Audit/`. |
-| B | **Zen shrine / castle surreal plan → HISM import with `ROLE_UE_HINTS`** | Blender `surreal_architecture_gen.py` + `ZEN_SHRINE` / `WESTERN_CASTLE`; `ROLE_UE_HINTS` in `deploy/surreal_world/export.py` and `Config/material_hints.json`; WIA `import_world_manifest.py`. | One HISM component per `(role, lib)`; sacred/gate materials resolve to Zen MI paths for `ZEN_SHRINE`; instance count matches Blender `surreal_instance_count`. |
-| C | **Houdini Copernicus terrain / cymatic maps → Nanite + MPC-driven materials** | `Tools/Houdini/copernicus/copernicus_terrain_height_to_nanite.py`; `copernicus_cymatic_parallax.py`; `Plugins/HoudiniEngine`; `MPC_Melodia_Palette` / `MPC_Cymatics_Driver`; master `M_Master_Toon_Landscape_HeightBlend`. | Seeded maps on disk; mesh under `/Game/EnvSandbox/Meshes/Terrain/`; materials consume existing MPC lanes. **Live UE HDA cook remains unproven** until that receipt exists. |
-| D | **PCGEx scatter kits for foliage/props from manifest collections** | Manifest `collections` + optional `scatter_kits`; `Content/Python/setup_pcg_universal.py`; `Plugins/PCGExtendedToolkit`; Sea Above `Content/Python/pcg/apply_resonance_to_sea_above.py`. | Named collection drives one existing graph; instance custom data still packs Resonance; no new scatter framework. |
-| E | **Lookdev stage variants (day / night / vapor) as material/PPV packs, no new geometry** | Manifest `stages[]`; frozen `PPV_NikkiDream`; `Content/Python/lookdev_capture.py`; `Content/Python/assign_toon_profiles.py`; `Content/Python/setup_master_universal.py`. | Switching `stages[].id` changes PPV/MPC/MI only; HISM transforms unchanged; `lookdev_capture.py` A/B stills in `Saved/Audit/`. |
-| F | **Agent/MCP greybox → hero mesh promotion** | Greybox: `Content/Python/setup_pcg_greybox.py` / Melodia Studio greybox kits; Monolith `mesh_query` / `editor_query`; importer fills `static_mesh_path` on the same instance `id`. | Stable instance `id` survives the swap; greybox mesh path is replaced, transform/role/lib stay; conductor hashes the group dirty and reimports that group only. |
+## B — first live proof (do this)
 
-Run the offline conductor against the v2 fixture anytime:
+Castle (`WESTERN_CASTLE` / `SurrealPlan_Castle`) or Zen shrine (`ZEN_SHRINE` / `SurrealPlan_ZenShrine`) exported from Melodia Studio, imported through the existing WIA path. No parallel importer.
+
+### Entry points
+
+| Step | File | Job |
+|---|---|---|
+| Produce | [`deploy/surreal_world/export.py`](../../deploy/surreal_world/export.py) | Writes `{WorldRoot}.world.json`, `hism_groups`, `ue_material_hint` |
+| Hint SSOT | [`deploy/surreal_world/role_ue_hints.py`](../../deploy/surreal_world/role_ue_hints.py) | `ROLE_UE_HINTS` + `STYLE_ROLE_OVERRIDES` (bpy-free; export and conductor share it) |
+| Schema | [`Config/world_schema.json`](../../Config/world_schema.json) | `format` must be `surreal_arch_world_v1` |
+| Consume | [`Content/Python/import_world_manifest.py`](../../Content/Python/import_world_manifest.py) | Validate + `--apply` into the open level |
+| Conduct | [`deploy/realtime_world_conductor.py`](../../deploy/realtime_world_conductor.py) | Default manifest is the Castle fixture; diffs dirty HISM groups only |
+
+### `ROLE_UE_HINTS` (from `role_ue_hints.py`, not a second table)
+
+Default sacred slot is **`MI_Zen_Karesansui`**. Gate default is `MI_Show_ContactRimHero`.
+
+`ZEN_SHRINE` style overrides at export time:
+
+| Role | Default `ROLE_UE_HINTS` | `ZEN_SHRINE` override |
+|---|---|---|
+| `sacred` | `/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui` | `MI_Zen_HondenSanctum` |
+| `gate` | `/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_ContactRimHero` | `MI_Zen_ToriiVermillion` |
+| `large` | `MI_Show_StoneCliff` | `MI_Zen_MossGarden` |
+| `monument` | `MI_Show_StoneCliff` | `MI_Zen_SakuraDrift` |
+
+`Config/material_hints.json` is a copy with a `Stylistic` path typo. **Producer SSOT is `export.py` / `role_ue_hints.py` (`Stylized`).**
+
+### In-repo manifests (no live Blender `SurrealPlan_*.world.json` was in git)
+
+| File | Style | Plan |
+|---|---|---|
+| [`deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json`](../../deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json) | `WESTERN_CASTLE` | `SurrealPlan_Castle` — conductor default |
+| [`deploy/fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json`](../../deploy/fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json) | `ZEN_SHRINE` | `SurrealPlan_ZenShrine` |
+
+### Checklist (must all pass)
+
+1. **Format** `format == "surreal_arch_world_v1"` (`Config/world_schema.json`).
+2. **HISM groups** keyed by `(role, lib)` — one group per pair, matching `export.build_hism_groups`.
+3. **Materials resolve** — every instance `ue_material_hint == material_hint(style, role)` (Castle sacred → `MI_Zen_Karesansui`; Zen sacred/gate → Honden / Torii overrides).
+4. **Counts match** — `instance_count == len(instances) == sum(hism_groups[].instance_count)`.
+5. **Live (UE session, still owed)** — `py Content/Python/import_world_manifest.py --manifest deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json --apply` on a running editor; one HISM (or explicit SMA) per group; no second importer.
+
+Offline gate:
 
 ```text
-python deploy/realtime_world_conductor.py --once --manifest deploy/fixtures/surreal_arch_world_v2_sector.world.json
+python deploy/realtime_world_conductor.py --once
+python deploy/realtime_world_conductor.py --once --manifest deploy/fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json
 python deploy/test_realtime_world_conductor.py
 ```
+
+Live apply (Windows UE 5.8, not this checkout):
+
+```text
+py Content/Python/import_world_manifest.py --manifest deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json --apply
+```
+
+---
+
+## Later (not this vertical)
+
+| ID | One line |
+|---|---|
+| A | Sea Above / Morning set-dress refresh without editor restart — after B’s importer path is live. |
+| C | Houdini Copernicus → Nanite + existing MPC. Live HDA cook still unproven. |
+| D | PCGEx scatter from `collections` / `setup_pcg_universal.py`. |
+| E | Day/night/vapor lookdev packs on frozen PPV, no new geometry. |
+| F | Greybox → hero mesh on the same instance `id`. |

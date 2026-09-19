@@ -2,22 +2,29 @@
 """Realtime world conductor — watch surreal_arch_world_v1 manifests and
 hot-reimport only dirty HISM groups.
 
+First live proof (use case B): Castle or Zen shrine SurrealPlan → HISM
+with ROLE_UE_HINTS. Default manifest is the in-repo Castle fixture.
+No parallel importer — apply still goes through import_world_manifest.py.
+
 This is a conductor, not a sixth Monolith agent and not a second world
 compiler. It composes with:
 
   deploy/monolith_orchestrator.py          5-agent health / routing
   deploy/start_world_loop.ps1              10m world micro-cycle + run_verify
   Content/Python/import_world_manifest.py  authored-actor import (WIA)
+  deploy/surreal_world/export.py           ROLE_UE_HINTS producer
+  deploy/surreal_world/role_ue_hints.py    bpy-free hint SSOT
   deploy/probe_world_pipeline.py           Blender addon probe (not CI-importable)
   Content/Python/gmm/pcg/manifest.py       structural v1/v2 contract
 
 Usage:
   python deploy/realtime_world_conductor.py --once
-  python deploy/realtime_world_conductor.py --once --manifest path/to/root.world.json
+  python deploy/realtime_world_conductor.py --once --manifest deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json
+  python deploy/realtime_world_conductor.py --once --manifest deploy/fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json
   python deploy/realtime_world_conductor.py --watch --interval 5
   python deploy/realtime_world_conductor.py --once --apply   # UE session only
 
-Offline --once is SOURCE-TOOL PROVEN. Live HISM hot-reimport is not claimed
+Offline --once is SOURCE-TOOL PROVEN. Live HISM import is not claimed
 until a UE session writes a receipt through import_world_manifest --apply.
 """
 from __future__ import annotations
@@ -40,6 +47,8 @@ STATUS_PATH = AUDIT / "realtime_world_conductor_status.json"
 RECEIPT_PATH = AUDIT / "realtime_world_conductor_receipt.json"
 STOP_SENTINEL = DEPLOY / "SURREAL_REALTIME_WORLD_LOOP_STOP"
 FORMAT_ID = "surreal_arch_world_v1"
+DEFAULT_MANIFEST = PROJECT_ROOT / "deploy" / "fixtures" / "SurrealPlan_Castle_WorldRoot.world.json"
+ZEN_MANIFEST = PROJECT_ROOT / "deploy" / "fixtures" / "SurrealPlan_ZenShrine_WorldRoot.world.json"
 
 DEFAULT_SEARCH_ROOTS = (
     PROJECT_ROOT / "deploy" / "fixtures",
@@ -144,6 +153,81 @@ def validate_manifest(data: Any) -> dict:
         "jsonschema": schema,
         "gmm": gmm,
         "errors": errors,
+    }
+
+
+def use_case_b_checklist(data: dict) -> dict:
+    """Offline B gate: format → HISM (role, lib) → ROLE_UE_HINTS → counts.
+
+    Does not load Unreal assets. Live mesh/MI resolve is import_world_manifest --apply.
+    """
+    try:
+        from surreal_world.role_ue_hints import ROLE_UE_HINTS, STYLE_ROLE_OVERRIDES, material_hint
+    except Exception as exc:
+        return {"use_case": "B", "ok": False, "error": f"role_ue_hints unavailable: {exc}"}
+
+    instances = [entry for entry in (data.get("instances") or []) if isinstance(entry, dict)]
+    groups = groups_from_manifest(data)
+    style = str(data.get("style") or "")
+    pair_keys = [(str(group.get("role") or ""), str(group.get("lib") or "")) for group in groups]
+    grouped = sum(int(group.get("instance_count") or len(group.get("transforms") or [])) for group in groups)
+    mismatches = []
+    for entry in instances:
+        role = str(entry.get("role") or "")
+        expected = material_hint(style, role)
+        actual = str(entry.get("ue_material_hint") or "")
+        if actual != expected:
+            mismatches.append({
+                "object": entry.get("object"),
+                "role": role,
+                "expected": expected,
+                "actual": actual,
+            })
+    steps = [
+        {
+            "id": "format_surreal_arch_world_v1",
+            "ok": data.get("format") == FORMAT_ID,
+            "detail": data.get("format"),
+        },
+        {
+            "id": "hism_groups_by_role_lib",
+            "ok": bool(pair_keys) and len(pair_keys) == len(set(pair_keys)),
+            "detail": [{"role": role, "lib": lib} for role, lib in pair_keys],
+        },
+        {
+            "id": "instance_counts_match",
+            "ok": data.get("instance_count") == len(instances) == grouped,
+            "detail": {
+                "declared": data.get("instance_count"),
+                "instances": len(instances),
+                "hism_transforms": grouped,
+            },
+        },
+        {
+            "id": "materials_resolve_role_ue_hints",
+            "ok": bool(instances) and not mismatches,
+            "detail": {
+                "style": style,
+                "sacred_default": ROLE_UE_HINTS["sacred"],
+                "zen_shrine_overrides": STYLE_ROLE_OVERRIDES.get("ZEN_SHRINE"),
+                "mismatches": mismatches,
+            },
+        },
+    ]
+    return {
+        "use_case": "B",
+        "label": "Castle / Zen shrine surreal plan → HISM + ROLE_UE_HINTS",
+        "ok": all(step["ok"] for step in steps),
+        "evidence_level": "SOURCE-TOOL PROVEN; not LIVE PROVEN",
+        "producer": "deploy/surreal_world/export.py",
+        "hints": "deploy/surreal_world/role_ue_hints.py",
+        "schema": "Config/world_schema.json",
+        "importer": "Content/Python/import_world_manifest.py",
+        "steps": steps,
+        "live_todo": (
+            "py Content/Python/import_world_manifest.py --manifest "
+            "deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json --apply"
+        ),
     }
 
 
@@ -422,7 +506,10 @@ def tick(manifests: list[Path], *, apply: bool) -> dict:
                 "group_count": len(groups),
                 "seed": child_data.get("seed"),
                 "biome_tags": child_data.get("biome_tags") or [],
+                "style": child_data.get("style"),
+                "plan": child_data.get("plan"),
                 "validation": report,
+                "use_case_b": use_case_b_checklist(child_data),
             })
             if not report["ok"]:
                 schema_failures.append({"path": str(child_path), "errors": report["errors"]})
@@ -458,8 +545,11 @@ def tick(manifests: list[Path], *, apply: bool) -> dict:
     status = {
         "generated_at": _now(),
         "generated_by": "realtime_world_conductor.py",
-        "ok": not schema_failures,
+        "ok": not schema_failures and all(
+            (row.get("use_case_b") or {}).get("ok", True) for row in scanned
+        ),
         "evidence_level": "SOURCE-TOOL PROVEN; not LIVE PROVEN",
+        "first_vertical": "B — Castle / Zen shrine → HISM + ROLE_UE_HINTS",
         "format": FORMAT_ID,
         "manifests_scanned": len(scanned),
         "dirty_group_count": len(dirty),
@@ -470,11 +560,14 @@ def tick(manifests: list[Path], *, apply: bool) -> dict:
         "unchanged_groups": unchanged,
         "scanned": scanned,
         "apply": apply_hooks[0] if len(apply_hooks) == 1 else apply_hooks,
+        "use_case_b": next((row.get("use_case_b") for row in scanned if row.get("use_case_b")), None),
         "hooks": {
             "import_world_manifest": "Content/Python/import_world_manifest.py (UE --apply; stubbed without unreal)",
+            "role_ue_hints": "deploy/surreal_world/role_ue_hints.py (SSOT with export.py)",
             "probe_world_pipeline": "deploy/probe_world_pipeline.py (Blender; never imported here)",
             "monolith_orchestrator": "deploy/monolith_orchestrator.py --workflow realtime_world",
             "world_loop": "deploy/start_world_loop.ps1 (compose, do not replace)",
+            "default_manifest": str(DEFAULT_MANIFEST),
         },
         "receipt": str(RECEIPT_PATH),
     }
@@ -493,7 +586,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     mode.add_argument("--once", action="store_true", help="Single diff pass (default).")
     mode.add_argument("--watch", action="store_true", help="Poll until the stop sentinel exists.")
     parser.add_argument("--interval", type=float, default=5.0, help="Watch interval in seconds.")
-    parser.add_argument("--manifest", action="append", default=[], help="Explicit manifest path. Repeatable.")
+    parser.add_argument(
+        "--manifest",
+        action="append",
+        default=[],
+        help="Explicit manifest path. Repeatable. Default: deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json",
+    )
     parser.add_argument("--root", action="append", default=[], help="Extra search directory. Repeatable.")
     parser.add_argument(
         "--apply",
@@ -509,7 +607,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def resolve_manifests(args: argparse.Namespace) -> list[Path]:
     explicit = [Path(item) for item in args.manifest]
     roots = [Path(item) for item in args.root]
-    return discover_manifests(explicit, roots)
+    if explicit or roots:
+        return discover_manifests(explicit, roots)
+    if DEFAULT_MANIFEST.is_file():
+        return [DEFAULT_MANIFEST.resolve()]
+    return discover_manifests([], [])
 
 
 def main(argv: list[str] | None = None) -> int:

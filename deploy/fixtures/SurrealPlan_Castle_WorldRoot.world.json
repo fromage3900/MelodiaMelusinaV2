@@ -6,7 +6,7 @@
   "plan": "SurrealPlan_Castle",
   "world_root": "SurrealPlan_Castle_WorldRoot",
   "compose_mode": "COLLECTION",
-  "instance_count": 2,
+  "instance_count": 3,
   "instances": [
     {
       "role": "wall",
@@ -39,6 +39,22 @@
       "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Gate",
       "lod_group": "LargeProp",
       "stream_priority": 0
+    },
+    {
+      "role": "sacred",
+      "lib": "_lib_KEEP",
+      "object": "Chapel_01",
+      "plan_face": 2,
+      "transform": [
+        [1.0, 0.0, 0.0, -4.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Chapel",
+      "lod_group": "LargeProp",
+      "stream_priority": 0
     }
   ],
   "hism_groups": [
@@ -66,6 +82,21 @@
       "transforms": [
         [
           [1.0, 0.0, 0.0, 4.0],
+          [0.0, 1.0, 0.0, 0.0],
+          [0.0, 0.0, 1.0, 0.0],
+          [0.0, 0.0, 0.0, 1.0]
+        ]
+      ]
+    },
+    {
+      "role": "sacred",
+      "lib": "_lib_KEEP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Chapel",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [1.0, 0.0, 0.0, -4.0],
           [0.0, 1.0, 0.0, 0.0],
           [0.0, 0.0, 1.0, 0.0],
           [0.0, 0.0, 0.0, 1.0]

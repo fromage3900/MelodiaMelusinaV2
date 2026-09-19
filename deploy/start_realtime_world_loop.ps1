@@ -4,12 +4,12 @@
 #   deploy/start_world_loop.ps1         10m world micro-cycle + run_verify -Mode world
 #   deploy/monolith_orchestrator.py     5-agent health / routing
 #
-# This process only watches surreal_arch_world_v1 manifests and diffs HISM
-# groups. It does not rebuild Phoenix, does not claim live UE proof, and
-# does not import Blender's probe_world_pipeline.py.
+# First vertical (use case B): Castle SurrealPlan → HISM + ROLE_UE_HINTS.
+# Default --manifest is deploy/fixtures/SurrealPlan_Castle_WorldRoot.world.json.
+# Zen shrine:  -Manifest (Join-Path $deploy "fixtures/SurrealPlan_ZenShrine_WorldRoot.world.json")
 param(
     [int]$IntervalSeconds = 5,
-    [string]$Manifest = ""
+    [string]$Manifest = $(Join-Path $PSScriptRoot "fixtures/SurrealPlan_Castle_WorldRoot.world.json")
 )
 
 $ErrorActionPreference = "Stop"

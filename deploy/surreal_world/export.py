@@ -21,35 +21,14 @@ FORMAT_ID = "surreal_arch_world_v1"
 SCHEMA_VERSION = 1
 COORDINATE_SYSTEM = "blender_z_up"
 
-MATERIALS_ROOT = "/Game/EnvSandbox/Materials/Instances/Environment"
-
-ROLE_UE_HINTS = {
-    "large": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
-    "medium": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
-    "small": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
-    "wall": f"{MATERIALS_ROOT}/Stylized/MI_Trimsheet_HeavyWear",
-    "corner_tower": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
-    "gate": f"{MATERIALS_ROOT}/Stylized/MI_Show_ContactRimHero",
-    "monument": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
-    "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_Karesansui",
-    "joined_mesh": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
-}
-
-STYLE_ROLE_OVERRIDES = {
-    "ZEN_SHRINE": {
-        "gate": f"{MATERIALS_ROOT}/Zen/MI_Zen_ToriiVermillion",
-        "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_HondenSanctum",
-        "large": f"{MATERIALS_ROOT}/Zen/MI_Zen_MossGarden",
-        "monument": f"{MATERIALS_ROOT}/Zen/MI_Zen_SakuraDrift",
-    },
-}
+from .role_ue_hints import (  # noqa: E402  — bpy-free SSOT; conductor imports the same module
+    MATERIALS_ROOT,
+    ROLE_UE_HINTS,
+    STYLE_ROLE_OVERRIDES,
+    material_hint,
+)
 
 logger = logging.getLogger(__name__)
-
-
-def material_hint(style, role):
-    overrides = STYLE_ROLE_OVERRIDES.get(style, {})
-    return overrides.get(role, ROLE_UE_HINTS.get(role, f"{MATERIALS_ROOT}/Stylized/MI_Show_Default"))
 
 
 def _matrix_list(obj):
