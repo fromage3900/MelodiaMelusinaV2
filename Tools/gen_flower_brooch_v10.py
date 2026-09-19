@@ -338,7 +338,8 @@ def gn_only(ob):
     for m in ob.modifiers:
         is_gn = (m.type == 'NODES' and m.node_group is not None
                  and (m.node_group.name.startswith("GN_FlowerBrooch")
-                      or m.node_group.name.startswith("GN_BroochDangles")))
+                      or m.node_group.name.startswith("GN_BroochDangles")
+                      or m.node_group.name.startswith("GN_BroochPetals")))
         if is_gn:
             continue
         saved.append((m, m.show_viewport))
@@ -1428,11 +1429,11 @@ def build(genome_id, tree_name, bg, real_scale=1.0, cast_default=True, bloom=Fal
     mg_sphere = mk(tree, 'GeometryNodeMeshUVSphere', "milgrain proto", (-2500, -300))
     dn(mg_sphere, "Segments", 8)
     dn(mg_sphere, "Rings", 6)
-    mg_size = mk(tree, 'ShaderNodeMath', "milgrain size", (-2600, -350))
-    mg_size.operation = 'MULTIPLY'
-    L(tree, gin, "Milgrain Size", mg_size, 0)
-    d0(mg_size, 1, 100.0)  # socket is in mm, convert to units (1u = 100mm)
-    L(tree, mg_size, "Value", mg_sphere, "Radius")
+    # v11.2 FIX (2026-09-19): the old x100 "mm->units" node was inverted -- the socket is
+    # authored in tree units already (0.012 u = 1.2 mm bead at S~0.21). x100 made 48
+    # beach-ball spheres that closed the whole flower into an ovoid (probe9 per-link
+    # bisect, Saved/Audit/probe9_cumulative.log). Wire the socket straight in.
+    L(tree, gin, "Milgrain Size", mg_sphere, "Radius")
     mg_circ = mk(tree, 'GeometryNodeMeshCircle', "milgrain ring", (-2500, -440))
     # v11.1: the row sat at 0.728*plate = ON the petal bases -> the beads interpenetrated the
     # petals and read as shattered shards (bypass-proven). Moved into the free slot between the
@@ -1986,8 +1987,11 @@ def attach(ob, tree):
     for item in tree.interface.items_tree:
         if getattr(item, "in_out", "") != "INPUT":
             continue
+        try:
+            val = item.default_value
+        except AttributeError:
+            continue  # geometry sockets carry no syncable value (v11 rebuild crash fix)
         total += 1
-        val = item.default_value
         done = False
         try:
             mod.properties.inputs[item.identifier]["value"] = val
@@ -2355,7 +2359,10 @@ def ensure_dangle_object(tree):
     for item in tree.interface.items_tree:
         if getattr(item, "in_out", "") != "INPUT":
             continue
-        val = item.default_value
+        try:
+            val = item.default_value
+        except AttributeError:
+            continue  # geometry sockets carry no syncable value (v11 attach crash fix)
         try:
             mod.properties.inputs[item.identifier]["value"] = val
         except Exception:
@@ -2444,11 +2451,18 @@ def build_petals(genome_id, tree_name, bg, real_scale=1.0):
         s.max_value = 3.0
     except Exception:
         pass
+    # v11.2 FIX: clone_interface already copied the body's "Real Scale" input -- creating a
+    # second one left an unlinked duplicate socket (findings 2026-09-18 d). Reuse if present.
+    _rs_items = [it for it in ptree.interface.items_tree
+                 if getattr(it, "in_out", "") == "INPUT" and it.name == "Real Scale"]
     try:
-        s = ptree.interface.new_socket(name="Real Scale", in_out='INPUT', socket_type='NodeSocketFloat')
-        s.default_value = float(real_scale)
-        s.min_value = 0.05
-        s.max_value = 5.0
+        if _rs_items:
+            _rs_items[0].default_value = float(real_scale)
+        else:
+            s = ptree.interface.new_socket(name="Real Scale", in_out='INPUT', socket_type='NodeSocketFloat')
+            s.default_value = float(real_scale)
+            s.min_value = 0.05
+            s.max_value = 5.0
     except Exception:
         pass
 
@@ -2508,7 +2522,10 @@ def ensure_petal_object(tree):
     for item in tree.interface.items_tree:
         if getattr(item, "in_out", "") != "INPUT":
             continue
-        val = item.default_value
+        try:
+            val = item.default_value
+        except AttributeError:
+            continue  # geometry sockets carry no syncable value (v11 attach crash fix)
         try:
             mod.properties.inputs[item.identifier]["value"] = val
         except Exception:
@@ -2760,9 +2777,38 @@ if bg is not None:
                 # land the hero dangles on their own object
                 hero_s = float(stats.get(used, {}).get("S", 1.0) or 1.0)
                 hero_gid = stats.get(used, {}).get("genome", "melodia_brooch_v1")
-                d_tree = build_dangles(hero_gid, dangle_tree_name(used), bg, real_scale=hero_s)
+                hero_target = float(stats.get(used, {}).get("target_mm", 60.0) or 60.0)
+
+                # v11.2 (2026-09-19): the split trees are authored in raw petal units whose
+                # span is a per-genome constant (independent of the body S), so their RS is
+                # solved from measurement: RS = wanted_span / authored_span. Petals span
+                # slightly past the plate rim; the dangle chain stays at plate width.
+                def _solve_split(build_fn, ensure_fn, want, label, tname):
+                    t0 = build_fn(hero_gid, tname, bg, real_scale=1.0)
+                    o0 = ensure_fn(t0) if t0 is not None else None
+                    rs = 1.0
+                    if o0 is not None:
+                        sv0 = gn_only(o0)
+                        m0 = measure(o0)
+                        restore_mods(sv0)
+                        span = max(m0["mm"][0], m0["mm"][1]) if m0.get("mm") else 0.0
+                        if span > 0.0:
+                            rs = want / span
+                        t0 = build_fn(hero_gid, tname, bg, real_scale=rs)
+                        ensure_fn(t0)
+                        print("  [%s] split solve: span %.1f mm -> RS %.4f (want %.1f mm)"
+                              % (label, span, rs, want))
+                    return t0
+
+                # NOTE: build_dangles takes the ALREADY-CONVERTED dangle tree name and uses it
+                # as-is (it must never receive the body tree name -- it would delete and
+                # replace the hero tree, v11.2 incident 2026-09-19). build_petals takes the
+                # BODY tree name and derives its own petals name internally.
+                d_tree = _solve_split(build_dangles, ensure_dangle_object,
+                                      hero_target * 1.00, "dangles", dangle_tree_name(used))
                 d_ob = ensure_dangle_object(d_tree) if d_tree is not None else None
-                p_tree = build_petals(hero_gid, used, bg, real_scale=hero_s)
+                p_tree = _solve_split(build_petals, ensure_petal_object,
+                                      hero_target * 1.10, "petals", used)
                 p_ob = ensure_petal_object(p_tree) if p_tree is not None else None
                 # land the hero sparkles on their own object (twinkle restored)
                 ensure_sparkle_object()
