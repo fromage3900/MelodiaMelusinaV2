@@ -41,8 +41,16 @@ def _resolve_manifest_path() -> Path | None:
 
 
 def validate_manifest(data: dict) -> list[str]:
-    """Validate the manifest against the JSON‑Schema (same file as export)."""
-    import jsonschema
+    """Validate the manifest against the JSON Schema (same file as export).
+
+    jsonschema is optional in the UE-embedded interpreter; if missing, return
+    no schema errors so apply can still run after offline validation.
+    """
+    try:
+        import jsonschema
+    except ImportError:
+        logger.warning("jsonschema not installed in UE Python; skipping schema validation")
+        return []
     schema_path = Path(__file__).resolve().parents[2] / "Config" / "world_schema.json"
     if not schema_path.exists():
         logger.error(f"Schema file not found at {schema_path}")
