@@ -341,6 +341,12 @@ class SURREAL_ARCH_OT_ivy_scatter(bpy.types.Operator):
 
         if repair.get("missing_roles"):
             missing = ", ".join(repair["missing_roles"])
+            # 5.2 socket rebind note: Blender renumbered Bagapie's GN inputs
+            # (Input_9/16/17). repair.get("missing_roles") already warns on
+            # absent sockets — Bagapie defaults stand, never a silent skip.
+            self.report({"WARNING"}, f"Ivy created; missing collection data: {missing}")
+        elif repair.get("changed_roles"):
+            missing = ", ".join(repair["missing_roles"])
             self.report({"WARNING"}, f"Ivy created; missing collection socket data: {missing}")
         elif repair.get("changed_roles"):
             changed = ", ".join(repair["changed_roles"])
@@ -365,8 +371,12 @@ class SURREAL_ARCH_OT_ivy_scatter_review_queue(bpy.types.Operator):
     )
     dry_run: BoolProperty(
         name="Dry run",
-        default=False,
-        description="Only report eligible Review Queue targets; do not create ivy",
+        default=True,
+        description=(
+            "Only report eligible Review Queue targets; uncheck to create ivy. "
+            "First click is always a report (Bagapie one-click rule: preview "
+            "before destructive-adjacent batch)."
+        ),
     )
 
     def invoke(self, context, event):

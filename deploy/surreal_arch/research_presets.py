@@ -967,7 +967,14 @@ def register_research_preset_operators(monolith):
             {
                 "bl_idname": op_id,
                 "bl_label": spec["label"],
-                "bl_description": spec.get("description", ""),
+                # Bagapie parity trait 5: research_ref surfaces as tooltip —
+                # description first, research typology cited after.
+                "bl_description": (
+                    f"{spec.get('description', '')} "
+                    f"[{spec.get('research_ref', '')}]".strip()
+                    if spec.get("research_ref")
+                    else spec.get("description", "")
+                ),
                 "bl_options": {"REGISTER", "UNDO"},
                 "execute": _make_execute(preset_id),
                 "poll": classmethod(

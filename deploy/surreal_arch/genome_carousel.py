@@ -69,6 +69,25 @@ class SURREAL_ARCH_PT_genome_carousel(Panel):
             icon="CHECKMARK",
         )
 
+        # Dress rail — Bagapie ivy (thin bridge) + Nikki material, one click.
+        # Forms stay in their panels; the hub only routes (Bagapie parity:
+        # hub holds headliners, sliders live on the active object).
+        try:
+            from .capabilities import status_line as _cap_status
+            dress = layout.row(align=True)
+            dress.scale_y = 1.1
+            if hasattr(bpy.types, "SURREAL_ARCH_OT_ivy_scatter"):
+                dress.operator(
+                    "surreal_arch.ivy_scatter", text="Ivy", icon="PARTICLES"
+                )
+            if hasattr(bpy.types, "SURREAL_ARCH_OT_nikki_mat_apply"):
+                dress.operator(
+                    "surreal_arch.nikki_mat_apply", text="Nikki Mat", icon="MATERIAL"
+                )
+            dress.label(text=_cap_status("bagapie"), icon="BLANK1")
+        except Exception:
+            pass
+
         # D: legacy Properties drawer banner — A keeps it hidden unless Preferences toggled
         try:
             layout.separator(factor=0.3)
