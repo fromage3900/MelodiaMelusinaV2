@@ -44,6 +44,31 @@ Modular world export for UE5 **Hierarchical Instanced Static Mesh (HISM)** place
 | `transform` | float[4][4] | yes | `matrix_world` row-major (Blender convention) |
 | `ue_material_hint` | string | yes | Logical slot name → project MI path via `ROLE_UE_HINTS` |
 | `static_mesh_path` | string | no | UE asset path after FBX import (filled by importer) |
+| `lod_group` | string | no | UE LOD group name |
+| `stream_priority` | int | no | Stream band. Convention: 0 hero, 1 near HISM, 2 scatter, 3 far |
+| `gameplay_tags` | string[] | no | Authored tags (`WP_PrimaryRoute`, …) |
+| `id` | string | no (required by GMM apply-gate at schema_version ≥ 2) | Stable instance id |
+| `sector_id` | string | no | Sector tile id (schema_version 2) |
+| `biome_tags` | string[] | no | Biome / music-field tags (schema_version 2) |
+| `payload_class` | string | no | `hero` / `hism` / `scatter` / `impostor` (schema_version 2) |
+
+## Optional schema_version 2 root fields
+
+All omitted on v1 files. `additionalProperties` stays false — add keys to `Config/world_schema.json`, do not smuggle.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `seed` | int | Deterministic sector/biome seed |
+| `sector_id` | string | This file's chunk id |
+| `parent_world_root` | string | Parent `world_root` when this file is a tile |
+| `biome_tags` | string[] | Authored biome tags |
+| `stages` | object[] | Lookdev packs (`id` day/night/vapor + PPV/MPC/material paths). No geometry regen |
+| `tiles` | object[] | Child `{sector_id, manifest_path}` sector files |
+| `scatter_kits` | object[] | `collections` → PCGEx / `setup_pcg_universal` graph |
+| `payload_rules` | object | Unload distances in metres |
+| `style_genome` | object | Already emitted by `export.py`; now schema-legal |
+
+Realtime conductor: [`deploy/realtime_world_conductor.py`](realtime_world_conductor.py). Pipeline: [`Docs/WorldGen/REALTIME_CONVERGED_PIPELINE.md`](../Docs/WorldGen/REALTIME_CONVERGED_PIPELINE.md).
 
 ## HISM group (derived)
 
@@ -103,3 +128,4 @@ import_world_manifest.import_manifest(r"G:\...\SurrealPlan_Castle_WorldRoot.worl
 | schema_version | Changes |
 |----------------|---------|
 | 1 | Initial: instances, hism_groups, ROLE_UE_HINTS paths |
+| 2 | Optional realtime / NMS-scale fields (`seed`, `sector_id`, `biome_tags`, `stages`, `tiles`, `scatter_kits`, `payload_rules`, instance `id` / `payload_class`). Format stays `surreal_arch_world_v1`. v1 files remain valid. |

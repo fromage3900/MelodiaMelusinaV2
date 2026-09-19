@@ -1,0 +1,58 @@
+{
+  "format": "surreal_arch_world_v1",
+  "schema_version": 2,
+  "coordinate_system": "blender_z_up",
+  "style": "ZEN_SHRINE",
+  "plan": "SurrealPlan_ShorewakeRoji",
+  "world_root": "Shorewake_WorldRoot",
+  "parent_world_root": "Shorewake_WorldRoot",
+  "compose_mode": "COLLECTION",
+  "seed": 3900,
+  "sector_id": "shorewake.east_01",
+  "biome_tags": ["sea_above", "zen_roji"],
+  "instance_count": 1,
+  "instances": [
+    {
+      "id": "shorewake-east-torii-0",
+      "role": "gate",
+      "lib": "_lib_ZEN_TORII",
+      "object": "Torii_East_01",
+      "plan_face": 0,
+      "transform": [
+        [1.0, 0.0, 0.0, 12.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_ToriiVermillion",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/Shorewake_WorldRoot/SM_Torii",
+      "lod_group": "LargeProp",
+      "stream_priority": 0,
+      "gameplay_tags": ["WP_LandmarkClear"],
+      "sector_id": "shorewake.east_01",
+      "biome_tags": ["zen_roji"],
+      "payload_class": "hero"
+    }
+  ],
+  "hism_groups": [
+    {
+      "role": "gate",
+      "lib": "_lib_ZEN_TORII",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_ToriiVermillion",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/Shorewake_WorldRoot/SM_Torii",
+      "instance_count": 1,
+      "lod_group": "LargeProp",
+      "stream_priority": 0,
+      "sector_id": "shorewake.east_01",
+      "transforms": [
+        [
+          [1.0, 0.0, 0.0, 12.0],
+          [0.0, 1.0, 0.0, 0.0],
+          [0.0, 0.0, 1.0, 0.0],
+          [0.0, 0.0, 0.0, 1.0]
+        ]
+      ]
+    }
+  ],
+  "collections": ["Shorewake_East_Roji"]
+}

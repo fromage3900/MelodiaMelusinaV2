@@ -1,0 +1,105 @@
+{
+  "format": "surreal_arch_world_v1",
+  "schema_version": 2,
+  "coordinate_system": "blender_z_up",
+  "style": "ZEN_SHRINE",
+  "plan": "SurrealPlan_ShorewakeRoji",
+  "world_root": "Shorewake_WorldRoot",
+  "compose_mode": "COLLECTION",
+  "seed": 3900,
+  "sector_id": "shorewake.root",
+  "biome_tags": ["sea_above", "zen_roji", "vapor_reef"],
+  "instance_count": 1,
+  "instances": [
+    {
+      "id": "shorewake-root-lantern-0",
+      "role": "sacred",
+      "lib": "_lib_ZEN_LANTERN",
+      "object": "Lantern_Root_01",
+      "plan_face": 0,
+      "transform": [
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_HondenSanctum",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/Shorewake_WorldRoot/SM_Lantern",
+      "lod_group": "SmallProp",
+      "stream_priority": 1,
+      "gameplay_tags": ["WP_PrimaryRoute"],
+      "sector_id": "shorewake.root",
+      "biome_tags": ["zen_roji"],
+      "payload_class": "hism"
+    }
+  ],
+  "hism_groups": [
+    {
+      "role": "sacred",
+      "lib": "_lib_ZEN_LANTERN",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_HondenSanctum",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/Shorewake_WorldRoot/SM_Lantern",
+      "instance_count": 1,
+      "lod_group": "SmallProp",
+      "stream_priority": 1,
+      "sector_id": "shorewake.root",
+      "transforms": [
+        [
+          [1.0, 0.0, 0.0, 0.0],
+          [0.0, 1.0, 0.0, 0.0],
+          [0.0, 0.0, 1.0, 0.0],
+          [0.0, 0.0, 0.0, 1.0]
+        ]
+      ]
+    }
+  ],
+  "collections": ["Shorewake_Root_Roji"],
+  "scatter_kits": [
+    {
+      "collection": "Shorewake_Root_Roji",
+      "graph_path": "/Game/EnvSandbox/PCG/Universal/PCG_Universal_Foliage",
+      "pcgex": true
+    }
+  ],
+  "stages": [
+    {
+      "id": "day",
+      "label": "Morning Shorewake",
+      "ppv_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/PPV_NikkiDream",
+      "mpc_palette": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_cymatics": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+      "material_pack": "/Game/EnvSandbox/Materials/Instances/Environment/Zen"
+    },
+    {
+      "id": "night",
+      "label": "Moon Roji",
+      "ppv_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/PPV_NikkiDream",
+      "mpc_palette": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_cymatics": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+      "material_pack": "/Game/EnvSandbox/Materials/Instances/Environment/Zen"
+    },
+    {
+      "id": "vapor",
+      "label": "Vapor Reef",
+      "ppv_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/PPV_NikkiDream",
+      "mpc_palette": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+      "mpc_cymatics": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+      "material_pack": "/Game/EnvSandbox/Materials/Instances/Environment/Zen"
+    }
+  ],
+  "tiles": [
+    {
+      "sector_id": "shorewake.east_01",
+      "manifest_path": "surreal_arch_world_v2_sector_east.world.json",
+      "seed": 3900,
+      "stream_priority": 1,
+      "biome_tags": ["sea_above", "zen_roji"]
+    }
+  ],
+  "payload_rules": {
+    "hero_keep_m": 250.0,
+    "hism_unload_m": 180.0,
+    "scatter_unload_m": 90.0,
+    "impostor_keep_m": 2000.0
+  }
+}

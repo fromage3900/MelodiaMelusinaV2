@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-17 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-19 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -65,6 +65,7 @@ instance or invent a new world signal system.
 | Resonance Ecology processor and instance material bridge | **LIVE PROVEN on 1 Sea Above graph; reusable editor tooling for the remaining graphs** - current state records `PCG_East_PhyllotaxisCourtyard` at 140 instances with Resonance 0.030-0.925 and one custom float; [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) records placement/runtime pass and no parallel graph | `Content/Python/pcg/resonance_ecology_processor.py`, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Content/Python/pcg/test_resonance_ecology.py`, existing Resonance Cathedral/Sea Above graphs | Cymatic ecology bands, musical density, material variants and resonance-driven geometry/scatter | Hardcoded biome bands, per-asset custom scripts, or another PCG enrichment authority |
 | World Field Bus Resonance/Tension contract | **SCAFFOLDED / SOURCE CONTRACT - not LIVE PROVEN** - `MelodiaWorldFieldBus.*` defines `ResonanceN/M`, `Tension`, `BeatPulse` and position sampling; [`world_field_bus_probe_2026-09-02.json`](Saved/Audit/world_field_bus_probe_2026-09-02.json) says SCAFFOLD and the PIE note records parameter-name alignment still open | `UWorldFieldBus`, `MelodiaCymaticsSubsystem`, `MelodiaOceanologyWaterBridgeSubsystem` | A shared future field for cymatic water, PCG and material consumers once the contract is closed | Another global bus, guessed MPC parameters, or claiming the current scaffold is a live contract |
 | Sea Above musical PCG proof | **LIVE PROVEN (scoped) / not full route certification** - [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) is `PLACEMENT_RUNTIME_PASS`; current state records 1 of 9 Resonance Ecology graphs. [`P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json`](Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json) is `PASS_SCOPED`, with visible-frame/focused-player/package work still open | `LV_SeaAbove_Prototype`, existing PCG graph authorities, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json` | Author a musical biome or setpiece now, while keeping the uninterrupted player route and visual-capture boundary honest | A new Sea Above world framework or a claim that every graph/consumer is already live |
+| Realtime converged world-compiler conductor | **SCAFFOLDED / SOURCE-TOOL PROVEN; not LIVE PROVEN** - `surreal_arch_world_v1` `schema_version` 2 optional sector/seed/stages/payload fields validate offline; `deploy/realtime_world_conductor.py --once` diffs dirty HISM groups and writes `Saved/Audit/realtime_world_conductor_status.json`. No UE hot-reimport, World Partition, or Houdini-in-editor receipt | [`Docs/WorldGen/REALTIME_CONVERGED_PIPELINE.md`](Docs/WorldGen/REALTIME_CONVERGED_PIPELINE.md), [`Docs/WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md`](Docs/WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md), [`Config/world_schema.json`](Config/world_schema.json), [`deploy/realtime_world_conductor.py`](deploy/realtime_world_conductor.py), [`deploy/start_realtime_world_loop.ps1`](deploy/start_realtime_world_loop.ps1) | Watch Blender/Houdini world manifests and reimport dirty HISM groups without a full five-agent rebuild; keep lookdev stage packs off the geometry path | A sixth Monolith agent, a parallel world format, merging this into `Tools/world_compiler.py`, or claiming live streaming proof |
 
 #### Houdini, Hython and Copernicus production lane
 
@@ -127,7 +128,7 @@ have their own evidence.
 | Side quest | Chapter scaffold + Quill + stable IDs + existing reward/save owners |
 | New rhythm ability | Existing rhythm execution + JRPG Skill/command path |
 | Musical biome | Cymatics -> Resonance/PCG data -> UE PCG + material/Niagara consumers; remember the broader World Field Bus is scaffolded |
-| Procedural environment | UE PCG/Python and/or Houdini Engine/Hython, with the current proof label |
+| Procedural environment | UE PCG/Python and/or Houdini Engine/Hython, with the current proof label; `surreal_arch_world_v1` + `deploy/realtime_world_conductor.py` for incremental HISM (scaffold, not live-proven) |
 | New cymatic material | Copernicus/Hython map family + existing toon/material/MPC contracts |
 | Outfit mechanic | Wardrobe subsystem + existing capability/Convergence hooks |
 | UI polish or new screen | `melodia-ui-artist` skill + tokens + existing UI ownership |

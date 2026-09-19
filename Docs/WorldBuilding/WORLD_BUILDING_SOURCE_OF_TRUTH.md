@@ -229,6 +229,9 @@ Hard no's:
 | [`Docs/Pipeline/PIPELINE.md`](../Pipeline/PIPELINE.md) | Blender / MCP plumbing (supporting) |
 | [`Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md`](../Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md) | Engineering encyclopedia (supporting) |
 | [`Docs/Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md`](../Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md) | Chapter-bible / lookdev campaign (supporting) |
+| [`Docs/WorldGen/REALTIME_CONVERGED_PIPELINE.md`](../WorldGen/REALTIME_CONVERGED_PIPELINE.md) | Realtime world-compiler stage graph (LookDev → Author → Compile → Dress → Place → Stream). Scaffold; not live UE proof |
+| [`deploy/SURREAL_WORLD_MANIFEST.md`](../../deploy/SURREAL_WORLD_MANIFEST.md) | `surreal_arch_world_v1` producer/consumer contract |
+| [`Docs/WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md`](../WorldGen/USE_CASES_WORLD_COMPILER_2026-09.md) | Six concrete compiler jobs (Sea Above refresh, Zen HISM, Copernicus, PCGEx, lookdev stages, greybox→hero) |
 | [`CAPSTONE_NOW.md`](../../CAPSTONE_NOW.md) | Immediate production queue |
 
 Dated handoffs, research packets, and superseded pipeline plans are memory. They do not override this page.

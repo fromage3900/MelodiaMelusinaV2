@@ -122,12 +122,18 @@ def route_workflow(workflow_type: str, payload: dict) -> dict:
         "render_portfolio": {
             "sequence": ["geometry", "material", "placement", "integration"],
             "description": "Capture renders and build portfolio",
-        }
+        },
+        "realtime_world": {
+            "sequence": ["integration"],
+            "description": "Hot-reimport dirty HISM groups via deploy/realtime_world_conductor.py (compose with start_world_loop.ps1; not a sixth agent)",
+        },
     }
     
     workflow = routing.get(workflow_type)
     if not workflow:
         return {"error": "Unknown workflow type", "type": workflow_type}
+
+    AGENT_MEMORY_DIR.mkdir(parents=True, exist_ok=True)
     
     # Log workflow start
     workflow_log = {
@@ -238,7 +244,8 @@ def main():
         print("  --once      Run single check")
         print("  --daemon    Run continuous monitoring")
         print("  --workflow <type>  Route workflow")
-        print("\nAvailable workflows:", list(route_workflow("", {})).keys() if False else "build_environment, evolve_content, audit_system, render_portfolio")
+        print("\nAvailable workflows: build_environment, evolve_content, audit_system, render_portfolio, realtime_world")
+        print("realtime_world composes with deploy/realtime_world_conductor.py; it does not replace start_world_loop.ps1")
 
 
 if __name__ == "__main__":

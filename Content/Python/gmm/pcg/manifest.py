@@ -6,7 +6,7 @@ import math
 from typing import Any
 
 FORMAT_ID = "surreal_arch_world_v1"
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 2  # optional realtime/NMS fields live on v2; v1 files omit them. JSON: Config/world_schema.json
 COORDINATE_SYSTEM = "blender_z_up_meters"
 
 

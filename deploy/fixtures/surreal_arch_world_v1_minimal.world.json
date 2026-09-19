@@ -1,0 +1,77 @@
+{
+  "format": "surreal_arch_world_v1",
+  "schema_version": 1,
+  "coordinate_system": "blender_z_up",
+  "style": "WESTERN_CASTLE",
+  "plan": "SurrealPlan_Castle",
+  "world_root": "SurrealPlan_Castle_WorldRoot",
+  "compose_mode": "COLLECTION",
+  "instance_count": 2,
+  "instances": [
+    {
+      "role": "wall",
+      "lib": "_lib_KEEP",
+      "object": "Wall_01",
+      "plan_face": 0,
+      "transform": [
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Wall",
+      "lod_group": "LargeProp",
+      "stream_priority": 1
+    },
+    {
+      "role": "gate",
+      "lib": "_lib_KEEP",
+      "object": "Gate_01",
+      "plan_face": 1,
+      "transform": [
+        [1.0, 0.0, 0.0, 4.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_ContactRimHero",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Gate",
+      "lod_group": "LargeProp",
+      "stream_priority": 0
+    }
+  ],
+  "hism_groups": [
+    {
+      "role": "wall",
+      "lib": "_lib_KEEP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Wall",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [1.0, 0.0, 0.0, 0.0],
+          [0.0, 1.0, 0.0, 0.0],
+          [0.0, 0.0, 1.0, 0.0],
+          [0.0, 0.0, 0.0, 1.0]
+        ]
+      ]
+    },
+    {
+      "role": "gate",
+      "lib": "_lib_KEEP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Show_ContactRimHero",
+      "static_mesh_path": "/Game/EnvSandbox/WorldImport/SurrealPlan_Castle_WorldRoot/SM_Gate",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [1.0, 0.0, 0.0, 4.0],
+          [0.0, 1.0, 0.0, 0.0],
+          [0.0, 0.0, 1.0, 0.0],
+          [0.0, 0.0, 0.0, 1.0]
+        ]
+      ]
+    }
+  ],
+  "collections": ["SurrealPlan_Castle_Composed"]
+}

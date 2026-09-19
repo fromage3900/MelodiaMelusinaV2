@@ -1,23 +1,120 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Surreal World Manifest",
+  "description": "surreal_arch_world_v1 producer/consumer contract. schema_version 1 is the original required set. schema_version 2 adds optional realtime / No-Mans-Sky-scale fields; v1 files remain valid because every new field is optional. Format stays surreal_arch_world_v1 — do not invent a parallel format.",
   "type": "object",
   "required": ["format", "schema_version", "coordinate_system", "instance_count", "instances"],
+  "additionalProperties": false,
   "properties": {
-    "format": {"type": "string", "enum": ["surreal_arch_world_v1"]},
-    "schema_version": {"type": "integer", "minimum": 1},
+    "format": {
+      "type": "string",
+      "enum": ["surreal_arch_world_v1"]
+    },
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2,
+      "description": "1 = original Blender export. 2 = optional sector/seed/stages/payload fields; GMM apply-gate also expects instance id when version >= 2."
+    },
     "coordinate_system": {"type": "string"},
     "style": {"type": "string"},
     "plan": {"type": "string"},
-    "world_root": {"type": "string"},
+    "world_root": {
+      "type": "string",
+      "description": "Authoring root name. Sector tiles keep this as the parent world and set sector_id."
+    },
     "compose_mode": {"type": "string"},
     "instance_count": {"type": "integer", "minimum": 0},
+    "seed": {
+      "type": "integer",
+      "description": "Optional. Deterministic sector/biome seed. Omit on v1 files."
+    },
+    "sector_id": {
+      "type": "string",
+      "description": "Optional. Chunk id for a tiled world (e.g. shorewake.east_01). Omit on a single-root v1 export."
+    },
+    "parent_world_root": {
+      "type": "string",
+      "description": "Optional. Parent world_root when this file is a sector tile."
+    },
+    "biome_tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Optional. Authored biome / music-field tags (e.g. sea_above, zen_roji, vapor_reef)."
+    },
+    "style_genome": {
+      "type": "object",
+      "description": "Optional. Already emitted by deploy/surreal_world/export.py; allowed so additionalProperties:false does not reject live exports."
+    },
+    "stages": {
+      "type": "array",
+      "description": "Optional lookdev stage packs (day/night/vapor). Applied as PPV/MPC/material packs without regenerating geometry.",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "ppv_path": {"type": "string"},
+          "mpc_palette": {"type": "string"},
+          "mpc_cymatics": {"type": "string"},
+          "material_pack": {"type": "string"}
+        }
+      }
+    },
+    "tiles": {
+      "type": "array",
+      "description": "Optional. Chunked child manifests. Root file lists tiles; each tile is its own surreal_arch_world_v1 file.",
+      "items": {
+        "type": "object",
+        "required": ["sector_id", "manifest_path"],
+        "additionalProperties": false,
+        "properties": {
+          "sector_id": {"type": "string"},
+          "manifest_path": {"type": "string"},
+          "seed": {"type": "integer"},
+          "stream_priority": {"type": "integer"},
+          "biome_tags": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "scatter_kits": {
+      "type": "array",
+      "description": "Optional. PCGEx / setup_pcg_universal graphs driven by manifest collections.",
+      "items": {
+        "type": "object",
+        "required": ["collection", "graph_path"],
+        "additionalProperties": false,
+        "properties": {
+          "collection": {"type": "string"},
+          "graph_path": {"type": "string"},
+          "pcgex": {"type": "boolean"}
+        }
+      }
+    },
+    "payload_rules": {
+      "type": "object",
+      "description": "Optional. Distance bands in metres for hero / HISM / scatter / impostor payload and unload.",
+      "additionalProperties": false,
+      "properties": {
+        "hero_keep_m": {"type": "number"},
+        "hism_unload_m": {"type": "number"},
+        "scatter_unload_m": {"type": "number"},
+        "impostor_keep_m": {"type": "number"}
+      }
+    },
     "instances": {
       "type": "array",
       "items": {
         "type": "object",
         "required": ["role", "lib", "object", "transform"],
+        "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "Optional on schema_version 1. GMM apply-gate requires it when schema_version >= 2."
+          },
           "role": {"type": "string"},
           "lib": {"type": "string"},
           "object": {"type": "string"},
@@ -32,19 +129,44 @@
           "static_mesh_path": {"type": "string"},
           "lod_group": {"type": "string"},
           "stream_priority": {"type": "integer"},
-          "gameplay_tags": {"type": "array", "items": {"type": "string"}}
-        },
-        "additionalProperties": false
+          "gameplay_tags": {"type": "array", "items": {"type": "string"}},
+          "sector_id": {"type": "string"},
+          "biome_tags": {"type": "array", "items": {"type": "string"}},
+          "payload_class": {
+            "type": "string",
+            "description": "Optional. hero | hism | scatter | impostor."
+          }
+        }
       }
     },
     "hism_groups": {
       "type": "array",
-      "items": {"type": "object"}
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {"type": "string"},
+          "lib": {"type": "string"},
+          "ue_material_hint": {"type": "string"},
+          "static_mesh_path": {"type": "string"},
+          "instance_count": {"type": "integer", "minimum": 0},
+          "transforms": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+              "minItems": 4,
+              "maxItems": 4
+            }
+          },
+          "lod_group": {"type": "string"},
+          "stream_priority": {"type": "integer"},
+          "sector_id": {"type": "string"}
+        }
+      }
     },
     "collections": {
       "type": "array",
       "items": {"type": "string"}
     }
-  },
-  "additionalProperties": false
+  }
 }
