@@ -257,6 +257,7 @@ Tools/*
 !Tools/t3d_blueprint_injector.py
 !Tools/t3d_material_curve_injector.py
 !Tools/t3d_niagara_injector.py
+!Tools/rewire_morning_fx.py
 !Tools/t3d_anim_injector.py
 !Tools/t3d_mesh_lod_injector.py
 !Tools/nl_to_blueprint.py
@@ -443,6 +444,12 @@ deploy/OLLAMA_*_STOP
 !Content/Melodia/Cymatics/FarawayAlabasterDrape/
 !Content/Melodia/VFX/
 !Content/Melodia/VFX/EffectTypes/
+!Content/Melodia/VFX/NS_Morning_*.uasset
+!Content/Melodia/VFX/NS_Melodia_CursorTrail.uasset
+!Content/Melodia/VFX/NS_Melusina_Glint.uasset
+!Content/Melodia/VFX/NS_Melusina_ImpactBurst.uasset
+!Content/Melodia/VFX/Materials/
+!Content/Melodia/VFX/Materials/**
 !Content/Melodia/_PROJECT/
 !Content/Melodia/_PROJECT/04_Materials/
 !Content/Melodia/_PROJECT/04_Materials/PostProcess/
