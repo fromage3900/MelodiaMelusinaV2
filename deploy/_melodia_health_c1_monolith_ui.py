@@ -63,6 +63,18 @@ def main():
         return 1
     check("import monolith + surreal_arch", True)
 
+    # Mimic Blender's real enable order: the monolith's own register() runs FIRST
+    # (that is what registers SURREAL_ARCH_PT_panel and the N-tab panels), THEN
+    # register_overhaul() retires the monolith N-tab panels while keeping the Core
+    # UI and the demoted PROPERTIES drawer. Skipping monolith.register() measured
+    # the harness, not the product: SURREAL_ARCH_PT_panel could never exist, so
+    # the escape-hatch assertion failed for the wrong reason (2026-09-18).
+    try:
+        monolith.register()
+        check("monolith.register() runs", True)
+    except Exception as exc:
+        check("monolith.register() runs", False, repr(exc))
+
     try:
         register_overhaul(monolith)
     except Exception as exc:

@@ -179,24 +179,55 @@ def mesh_boolean_node(tree, loc, operation, mesh_a, mesh_b):
     return node, out
 
 
+# ---------------------------------------------------------------------------
+# Link-failure recorder (silent-no-op visibility)
+#
+# `link_sockets` / `link_float_to_vector` must not raise mid-build (one dropped
+# link should not kill a whole 800-node tree), but a link that silently fails is
+# exactly the defect class that shipped bad geometry before: 19 distinct
+# (tree, class) pairs across 18 builders on 2026-09-18, all invisible to the
+# gate. This records each drop so a health script can surface them. Set
+# LINK_STRICT = True to turn them into hard errors once the trees are clean.
+# ---------------------------------------------------------------------------
+_LINK_FAILURES: dict[str, list[str]] = {}
+LINK_STRICT = False
+
+
+def reset_link_failures() -> None:
+    _LINK_FAILURES.clear()
+
+
+def link_failures() -> dict[str, list[str]]:
+    """{tree_name: [message, ...]} for every socket link silently dropped so far."""
+    return {name: list(msgs) for name, msgs in _LINK_FAILURES.items()}
+
+
+def _record_link_failure(tree, message: str) -> None:
+    _LINK_FAILURES.setdefault(getattr(tree, "name", "?"), []).append(message)
+    if LINK_STRICT:
+        raise RuntimeError("strict link failure: " + message)
+
+
 def link_sockets(tree, from_socket, to_socket):
-    """Link two sockets. Logs mismatches at debug level for troubleshooting."""
+    """Link two sockets. Records + logs mismatches (never raises unless LINK_STRICT)."""
     if from_socket is None or to_socket is None:
-        log.warning(
-            "link_sockets: one or both sockets are None (tree=%s, from=%s, to=%s)",
+        msg = "link_sockets: one or both sockets are None (tree=%s, from=%s, to=%s)" % (
             getattr(tree, "name", "?"), from_socket, to_socket,
         )
+        log.warning(msg)
+        _record_link_failure(tree, msg)
         return
     try:
         tree.links.new(from_socket, to_socket)
     except Exception as exc:
-        log.warning(
-            "link_sockets: cannot link %s → %s in %s — %s",
+        msg = "link_sockets: cannot link %s -> %s in %s -- %s" % (
             getattr(from_socket, "name", "?"),
             getattr(to_socket, "name", "?"),
             getattr(tree, "name", "?"),
             exc,
         )
+        log.warning(msg)
+        _record_link_failure(tree, msg)
 
 
 def color_node(node, tag="default"):
@@ -909,10 +940,11 @@ def link_float_to_vector(tree, source_sock, target_node, target_input_name, comp
         return
     vec_sock = target_node.inputs.get(target_input_name)
     if vec_sock is None:
-        log.warning(
-            "link_float_to_vector: '%s' input not found on node '%s'",
+        msg = "link_float_to_vector: '%s' input not found on node '%s'" % (
             target_input_name, getattr(target_node, "name", "?"),
         )
+        log.warning(msg)
+        _record_link_failure(tree, msg)
         return
 
     # Reuse an existing bridge for this vector socket. Rebuilding a complete
