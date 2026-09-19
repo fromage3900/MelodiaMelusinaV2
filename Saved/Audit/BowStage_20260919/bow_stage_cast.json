@@ -1,0 +1,90 @@
+{
+ "harp_bow": {
+  "class": "StaticMesh",
+  "path": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07",
+  "origin": [
+   -1.61,
+   4.97,
+   0.78
+  ],
+  "extent": [
+   3.94,
+   11.03,
+   48.05
+  ],
+  "materials": [
+   "MI_T_Houdini_ChladniAcoustic_UltravioletVelvet",
+   "MI_Melusina_Outline_004",
+   "<Struct 'StaticMaterial' (0x0000022D6ABFC900) {material_interface: None, materia",
+   "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree",
+   "MI_T_Melusina_PorcelainMusicBox_KintsugiLapis",
+   "MI_T_Houdini_VoronoiCrystal_PinkSapphire",
+   "MI_crystal1",
+   "MI_Strings",
+   "MI_T_Melusina_CathedralPearl_MarbleTile"
+  ],
+  "sockets_sockets": "ERR StaticMesh: Property 'Sockets' for attribute 'sockets' on 'StaticMesh' is protected and cannot be re",
+  "num_verts": "25515"
+ },
+ "harp_arrow": {
+  "class": "StaticMesh",
+  "path": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Arrow_R07",
+  "origin": [
+   0.0,
+   30.97,
+   0.13
+  ],
+  "extent": [
+   1.98,
+   31.03,
+   1.45
+  ],
+  "materials": [
+   "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree",
+   "MI_Melusina_Outline_004",
+   "MI_T_Houdini_VoronoiCrystal_PinkSapphire",
+   "MI_crystal1",
+   "<Struct 'StaticMaterial' (0x0000022D6ABF6100) {material_interface: None, materia"
+  ],
+  "sockets_sockets": "ERR StaticMesh: Property 'Sockets' for attribute 'sockets' on 'StaticMesh' is protected and cannot be re",
+  "num_verts": "1961"
+ },
+ "env_bow": {
+  "class": "StaticMesh",
+  "path": "/Game/EnvSandbox/Meshes/Environment/weapon-bow/StaticMeshes/weapon-bow",
+  "origin": [
+   -3.84,
+   10.44,
+   23.94
+  ],
+  "extent": [
+   5.95,
+   10.44,
+   23.94
+  ],
+  "materials": [
+   "MI_Melodia_Stub_Toon"
+  ],
+  "sockets_sockets": "ERR StaticMesh: Property 'Sockets' for attribute 'sockets' on 'StaticMesh' is protected and cannot be re",
+  "num_verts": "106"
+ },
+ "env_arrow": {
+  "class": "StaticMesh",
+  "path": "/Game/EnvSandbox/Meshes/Environment/arrow",
+  "origin": [
+   32.64,
+   0.0,
+   49.27
+  ],
+  "extent": [
+   66.41,
+   7.63,
+   7.63
+  ],
+  "materials": [
+   "MI_arrow"
+  ],
+  "sockets_sockets": "ERR StaticMesh: Property 'Sockets' for attribute 'sockets' on 'StaticMesh' is protected and cannot be re",
+  "num_verts": "72"
+ }
+}

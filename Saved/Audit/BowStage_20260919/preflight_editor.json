@@ -1,0 +1,25 @@
+{
+ "editor_world": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning",
+ "dirty_content": [
+  "/Game/Melodia/VFX/NS_Melusina_Glint",
+  "/Game/Melodia/VFX/NS_Melodia_CursorTrail",
+  "/Oceanology_Plugin/Effects/Particles/Water/NS_OceanologyBubbles",
+  "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_DustShafts",
+  "/Game/Melodia/VFX/NS_Morning_PetalDrift",
+  "/Game/Melodia/VFX/NS_Melusina_ImpactBurst",
+  "/Game/Melodia/VFX/NS_Morning_WindRibbon",
+  "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_BeatBurst",
+  "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_PollenSparkle",
+  "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_WoolMotes",
+  "/Game/Melodia/VFX/NS_Morning_PollenMote",
+  "/Game/Melodia/VFX/NS_Morning_PondMist",
+  "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_FluidSplash",
+  "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_HybridSparkles",
+  "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_MotionTrails",
+  "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_PetalCascade",
+  "/Game/Melodia/VFX/NS_Morning_PollenSparkle",
+  "/Game/Melodia/VFX/NS_Morning_WindFront",
+  "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_MistSheet"
+ ],
+ "dirty_maps": []
+}
