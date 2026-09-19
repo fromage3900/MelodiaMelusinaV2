@@ -6,7 +6,7 @@ describes. Handoffs, plans, receipts and session notes go in the commit or PR me
 new file.
 
 **Updated:** 2026-09-18 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
-Tonight lookdev: `WC_Lookdev_waterline_dolly` respawned at recipe loc `[-3100,200,180]` look `[-2300,1550,80]` (roll 0), not the east/house pose `(-500,1400,350)`. Probe records `BrushifyIsland_*` + `WC_EscherWalk_*` z; bedroom/classic_arch/Sphere3D/`WC_DellFloor` stay null. Dressing is three low-weight Brushify species on walks+island skirts; flowers remain `speedtree_meadow` on island crowns only. Receipt [`Saved/Audit/camera_dressing_closeout_2026-09-18.json`](Saved/Audit/camera_dressing_closeout_2026-09-18.json).
+World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` **PASS** (preflight, band MIs, table, spawner_counts, fx, lookdev stills). Meadow on **BrushifyIsland_*** SpeedTree + Brushify dressing on walks/skirts — not Sphere3D. Proof `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-19.json`. Board: `Saved/Audit/Screens/wc_morning_rainbow_bloom_{waterline_dolly,website_oblique,website_top,website_south,south_fix}_2026-09-19.png`. Hue stills may still read muted if live wind MPC scalars are 0 (response 0.5 MAX, no MPC write). Do not ship old black `south_cluster`.
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -216,6 +216,27 @@ MCP regression, Ollama daemon stress — not only game tests).
 
 ## 3. Open
 
+### Melusina skirt and bow attack polish — execution plan, 2026-09-19
+
+Owner target: Unreal gameplay and Unreal renders. Keep `SK_Melusina_V2_Body`,
+`ABP_Melusina_Current`, the shared skirt skeleton and wardrobe leader-pose ownership.
+
+1. Capture a baseline in one editor: idle, locomotion/turn/stop, bow draw, release,
+   recovery. Read current skirt node, collision limits, animation bindings and weapon sockets.
+   The 2026-09-15 tip/warm-up changes are asset evidence only until motion is inspected.
+2. Fix observed skirt defects at their cause: collision placement and leg interaction,
+   then response/settling only where the capture demonstrates a problem. Preserve authored silhouette.
+3. Polish the actual gameplay bow animation binding and grip/string/arrow alignment;
+   verify anticipation, draw hold, release, follow-through and recovery in sequence.
+4. Capture front/three-quarter and side motion in Unreal, including a full attack and
+   locomotion-to-attack transition. Pass requires no visible leg penetration, startup pop,
+   persistent oscillation, detached grip, or release/arrow timing mismatch.
+5. Save and reread each changed asset; repeat the motion after restart. Keep baseline,
+   final clips and machine-readable evidence under `Saved/Audit/`. No completion claim
+   from stills or successful property writes alone.
+
+Execution: baseline pending editor startup; no physics or animation asset modified yet.
+
 ### Stabilization — 2026-09-13
 
 | Item | Source / evidence | Remaining owner decision or proof |
@@ -225,7 +246,7 @@ MCP regression, Ollama daemon stress — not only game tests).
 | Chapter reuse | `Tools/scaffold_chapter.py`, `Chapters/_template/{quill,maps,encounters,rewards}`, and four-beat `03_tide_listening` source. Generator validates gated IDs against the actual DA before writing; numbered chapter folders are automatically tested. | Full QSC contract FAILS on existing SkiffDeparture `quest.shorewake.passage`, `flag.shorewake.passage`, `reward.skiff_passage`. Resolve those IDs and reward binding through the canonical DA in the editor; import the example and prove both choices/revisit/save-load in `MelodiaIntegrationMap`. Scaffold regression passes; no PIE claim. |
 | UI staleness | Read-only `melodia-ui-artist` audit: rhythm HUD and four Quill widgets have palette colours. P0 candidates: `BP_MelodiaBattleUI` RhythmGradeText/SongPickLabel white; stock `BP_BattleUI` KeyboardLegend `#F2D69E`; `WBP_MainMenu` near-palette text; `WBP_MenuButton` label `#F2D69E`. | Editor reopened externally during audit; ownership pending, no widgets changed. Remaining candidates include `BP_MelodiaDefeatDialogue` near-black text, `BP_MelodiaVictoryDialogue` zero-alpha text (check runtime bindings), Foundation parchment/button styling. White image tints and transparent shadows are not automatically defects. |
 | G: saved-state mirror | `Tools/mirror_saved_project.ps1` defaults to dry-run; scoped `/MIR`, destination/junction checks, cache/binary/Blender-autosave exclusions. Includes Content (Frozen + Cinematics), Config, Source, Plugins, Saved/Audit, Chapters, specs, Tools and design tokens. Dry logs: `%TEMP%/melodia-mirror-20260913/`. | Proposed destination `G:/BS_GodFile_Mirror/20260913`; initial dry run 119.75 GiB / 55,549 files plus project descriptor, zero failures/extras. Real run awaits owner approval and a saved, closed, stable source. This mirrors the saved local tree, including uncommitted assets; it is not a claim that local tree equals main. |
-| World Compiler close-out (2026-09-17) | Rainbow bloom is on `SM_PM3D_Sphere3D*` islands via SpeedTree PCG (not bedroom boards, not `WC_DellFloor` grass shelf, not Gaea mesh, not Landscape). Proof: `Saved/Audit/world_compiler_morning_rainbow_bloom_islands_2026-09-17.json`. | Judge wind hue-reveal weight at PIE (stills read dark teal). Substrate Toon PARK/ADOPT-as-variant. Do not treat the grass shelf or bedroom as meadow authority. |
+| World Compiler close-out (2026-09-19) | Live `--skip-scaffold --fx --lookdev` **PASS**. BrushifyIsland SpeedTree + walk dressing; Niagara children forged/placed; lookdev board recaptured (waterline_dolly / website_oblique / top / south / south_fix). | Hue may still read muted if Cymatics wind scalars stay 0 (do not write MPC). Substrate Toon PARK. Recruiter caption: compiler meadow on Brushify, frozen PPV, hue-reveal unproven until PIE wind. |
 
 C++ and its asset closure passed a closed-editor UE 5.8 Development build (460/460 actions).
 Offline contract suites: 22/22 PASS; collapse/scaffold regression tests: 2/2 PASS. The broader
