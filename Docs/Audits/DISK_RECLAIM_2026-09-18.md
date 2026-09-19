@@ -104,3 +104,29 @@ churn-checked: G: free stable across 20 s), then verified byte-for-byte with a n
 - Sources removed by `/MOVE`; pointer files left at the old locations
   (`C:\Users\froma\Backups\_MOVED_TO_G_20260918.txt`, `C:\EnvironmentPortfolio\_ARCHIVE_GIT_MOVED_TO_G_20260918.txt`).
 - **C: free 66 GB → 124 GB.** Session total so far: 6.4 GB → 124 GB (≈ +118 GB).
+
+## 6. Batch 2 executed — 2026-09-18 late evening (non-UE items only)
+
+| Item | Action | Freed |
+|---|---|---|
+| JetBrains old-version caches + logs (`Rider2026.1`, `IntelliJIdea2026.1`, `WebStorm2026.1`, every product `log`/`logs`) | deleted — live `Rider2026.2` (12.9 GB local + 3.3 GB roaming) deliberately untouched | 2.86 GB |
+| `Worktrees/melodia-issue51-f1f2-0915` | diff saved to `G:\_relocated\patches\issue51-worktree-20260918.patch` (6.5 MB), then removed | 23.55 GB |
+| `.claude/worktrees/magical-williamson-a3534a` (detached HEAD) | diff saved (363 KB), then removed | 3.17 GB |
+| `.claude/worktrees/p0-morning-dungeon-hop` | diff saved (1.5 KB), then removed | 0.19 GB |
+| `~/.local/share/opencode/opencode.db` (+ `-wal`, `-shm`) | archived to `G:\_relocated\opencode-sessions-20260918\` (byte sizes verified at destination), local copies removed | 18.80 GB |
+
+**C: free 124 GB → 165 GB.** Worktrees left: main + `.claude/worktrees/eyewear-editorial-0912` (locked, active).
+
+**Deferred by owner instruction ("no UE"):** UE DDC + Zen (~25 GB) — still needs a window with the editor closed.
+
+**Junctions repaired.** `C:\EnvironmentPortfolio\{harp_bow_pipeline, BS_GodFile_studio, Imports}` were
+junctions pointing at the dead `D:\_relocated\*`. Re-pointed to their verified counterparts under
+`G:\EnvironmentPortfolio_Snapshot_20260918\` (resolution probe: 78 / 85 / 7 entries visible).
+`_archive` is left dangling on `D:\_relocated\_archive` on purpose — its snapshot counterpart is empty,
+so nothing is there to point at. Owner call: say where that content lives, or delete the link.
+
+Receipts: per-item freed sizes from the driver's own before/after walk
+(`%LOCALAPPDATA%\Temp\disk-dive-20260918\batch2_nonue.py`, `batch2b_worktrees.py`), opencode move log
+`opencode_archive_log.txt`, junction script `repoint_junctions.ps1`.
+
+Session totals: **C: 6.4 GB → 165 GB free** (LFS prune 35.0 · worktrees 52.3 · batch-1 move 58.0 · caches 3.7 · opencode archive 18.8).
