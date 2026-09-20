@@ -1,0 +1,167 @@
+[t=000.0s ENTER_FIELD] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.88
+World: SOFT_WIND 0.57
+Alt: TURN_TO_PLAYER 0.09
+src: jev-live
+
+[t=002.0s ENTER_FIELD] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.89
+World: SOFT_WIND 0.57
+Alt: TURN_TO_PLAYER 0.09
+src: jev-live
+
+[t=004.0s ENTER_FIELD] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.87
+World: SOFT_WIND 0.60
+Alt: TURN_TO_PLAYER 0.10
+src: jev-live
+
+[t=006.0s ENTER_FIELD] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.89
+World: SOFT_WIND 0.57
+Alt: TURN_TO_PLAYER 0.08
+src: jev-live
+
+[t=008.0s ENTER_FIELD] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.89
+World: SOFT_WIND 0.63
+Alt: TURN_TO_PLAYER 0.09
+src: jev-live
+
+[t=010.0s APPROACH] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.82
+World: SOFT_WIND 0.72
+Alt: TURN_TO_PLAYER 0.12
+src: jev-live
+
+[t=012.0s APPROACH] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.89
+World: SOFT_WIND 0.69
+Alt: TURN_TO_PLAYER 0.08
+src: jev-live
+
+[t=014.0s APPROACH] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.83
+World: SOFT_WIND 0.72
+Alt: TURN_TO_PLAYER 0.12
+src: jev-live
+
+[t=016.0s APPROACH] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.69
+World: SOFT_WIND 0.80
+Alt: TURN_TO_PLAYER 0.30
+src: jev-live
+
+[t=018.0s APPROACH] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.64
+World: SOFT_WIND 0.77
+Alt: TURN_TO_PLAYER 0.34
+src: jev-live
+
+[t=020.0s WIND] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 1.00
+World: SOFT_WIND 0.49
+Alt: GRAZE 0.00
+src: jev-live
+
+[t=022.0s WIND] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 1.00
+World: SOFT_WIND 0.52
+Alt: GRAZE 0.00
+src: jev-live
+
+[t=024.0s WIND] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.99
+World: SOFT_WIND 0.51
+Alt: CHORAL_SWAY 0.01
+src: jev-live
+
+[t=026.0s WIND] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.99
+World: SOFT_WIND 0.54
+Alt: CHORAL_SWAY 0.01
+src: jev-live
+
+[t=028.0s WIND] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.98
+World: SOFT_WIND 0.44
+Alt: CHORAL_SWAY 0.01
+src: jev-live
+
+[t=030.0s RESONANCE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: FOLLOW_WIND 0.77
+World: SOFT_WIND 0.54
+Alt: TURN_TO_PLAYER 0.16
+src: jev-live
+
+[t=032.0s RESONANCE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: FOLLOW_WIND 0.83
+World: GOLD_CYMATICS 0.56
+Alt: TURN_TO_PLAYER 0.12
+src: jev-live
+
+[t=034.0s RESONANCE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: FOLLOW_WIND 0.85
+World: GOLD_CYMATICS 0.76
+Alt: TURN_TO_PLAYER 0.08
+src: jev-live
+
+[t=036.0s RESONANCE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: SPIRAL_FORMATION 0.68
+World: GOLD_CYMATICS 0.87
+Alt: TURN_TO_PLAYER 0.29
+src: jev-live
+
+[t=038.0s RESONANCE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: SPIRAL_FORMATION 0.76
+World: GOLD_CYMATICS 0.82
+Alt: TURN_TO_PLAYER 0.18
+src: jev-live
+
+[t=040.0s SETTLE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.33
+World: SOFT_WIND 0.42
+Alt: GRAZE 0.31
+src: jev-live
+
+[t=042.0s SETTLE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.39
+World: SOFT_WIND 0.42
+Alt: GRAZE 0.25
+src: jev-live
+
+[t=044.0s SETTLE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.34
+World: SOFT_WIND 0.41
+Alt: GRAZE 0.32
+src: jev-live
+
+[t=046.0s SETTLE] src=jev-live
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.32
+World: SOFT_WIND 0.38
+Alt: GRAZE 0.29
+src: jev-live

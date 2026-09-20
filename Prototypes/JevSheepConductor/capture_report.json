@@ -1,0 +1,892 @@
+{
+  "evaluations": [
+    {
+      "t": 0.0,
+      "beat": "ENTER_FIELD",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.86,
+        "probabilities": {
+          "GRAZE": 0.88,
+          "TURN_TO_PLAYER": 0.09,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.02,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "GRAZE",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.48,
+        "probabilities": {
+          "NONE": 0.43,
+          "SOFT_WIND": 0.57,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": true
+      }
+    },
+    {
+      "t": 2.0,
+      "beat": "ENTER_FIELD",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.87,
+        "probabilities": {
+          "GRAZE": 0.89,
+          "TURN_TO_PLAYER": 0.09,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.01,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.48,
+        "probabilities": {
+          "NONE": 0.43,
+          "SOFT_WIND": 0.57,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 4.0,
+      "beat": "ENTER_FIELD",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.85,
+        "probabilities": {
+          "GRAZE": 0.87,
+          "TURN_TO_PLAYER": 0.1,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.02,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.52,
+        "probabilities": {
+          "NONE": 0.4,
+          "SOFT_WIND": 0.6,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 6.0,
+      "beat": "ENTER_FIELD",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.88,
+        "probabilities": {
+          "GRAZE": 0.89,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.02,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.48,
+        "probabilities": {
+          "NONE": 0.43,
+          "SOFT_WIND": 0.57,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 8.0,
+      "beat": "ENTER_FIELD",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.86,
+        "probabilities": {
+          "GRAZE": 0.89,
+          "TURN_TO_PLAYER": 0.09,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.01,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.55,
+        "probabilities": {
+          "NONE": 0.37,
+          "SOFT_WIND": 0.63,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 10.0,
+      "beat": "APPROACH",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.81,
+        "probabilities": {
+          "GRAZE": 0.82,
+          "TURN_TO_PLAYER": 0.12,
+          "CHORAL_SWAY": 0.02,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.02,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.01,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.01
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.66,
+        "probabilities": {
+          "NONE": 0.28,
+          "SOFT_WIND": 0.72,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 12.0,
+      "beat": "APPROACH",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.86,
+        "probabilities": {
+          "GRAZE": 0.89,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.01,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.01
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.62,
+        "probabilities": {
+          "NONE": 0.31,
+          "SOFT_WIND": 0.69,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 14.0,
+      "beat": "APPROACH",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.81,
+        "probabilities": {
+          "GRAZE": 0.83,
+          "TURN_TO_PLAYER": 0.12,
+          "CHORAL_SWAY": 0.02,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.02,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.01
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.66,
+        "probabilities": {
+          "NONE": 0.28,
+          "SOFT_WIND": 0.72,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 16.0,
+      "beat": "APPROACH",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.64,
+        "probabilities": {
+          "GRAZE": 0.69,
+          "TURN_TO_PLAYER": 0.3,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.76,
+        "probabilities": {
+          "NONE": 0.19,
+          "SOFT_WIND": 0.8,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.01
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 18.0,
+      "beat": "APPROACH",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.58,
+        "probabilities": {
+          "GRAZE": 0.64,
+          "TURN_TO_PLAYER": 0.34,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.01
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.72,
+        "probabilities": {
+          "NONE": 0.22,
+          "SOFT_WIND": 0.77,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.01
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 20.0,
+      "beat": "WIND",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.99,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 1.0,
+          "CHORAL_SWAY": 0.0,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.37,
+        "probabilities": {
+          "NONE": 0.15,
+          "SOFT_WIND": 0.49,
+          "LAVENDER_PALETTE": 0.36,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 22.0,
+      "beat": "WIND",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 1.0,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 1.0,
+          "CHORAL_SWAY": 0.0,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.41,
+        "probabilities": {
+          "NONE": 0.14,
+          "SOFT_WIND": 0.52,
+          "LAVENDER_PALETTE": 0.34,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 24.0,
+      "beat": "WIND",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.99,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.99,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.39,
+        "probabilities": {
+          "NONE": 0.13,
+          "SOFT_WIND": 0.51,
+          "LAVENDER_PALETTE": 0.36,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.0
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 26.0,
+      "beat": "WIND",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.99,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.99,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.47,
+        "probabilities": {
+          "NONE": 0.1,
+          "SOFT_WIND": 0.54,
+          "LAVENDER_PALETTE": 0.34,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.01,
+          "RESONANCE_RIPPLE": 0.01
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 28.0,
+      "beat": "WIND",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.98,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.98,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.01,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.0,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.34,
+        "probabilities": {
+          "NONE": 0.15,
+          "SOFT_WIND": 0.44,
+          "LAVENDER_PALETTE": 0.39,
+          "GOLD_CYMATICS": 0.0,
+          "FLOWER_HUE_SHIFT": 0.01,
+          "RESONANCE_RIPPLE": 0.01
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 30.0,
+      "beat": "RESONANCE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "FOLLOW_WIND",
+        "confidence": 0.74,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.16,
+          "CHORAL_SWAY": 0.04,
+          "FOLLOW_WIND": 0.77,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.01,
+          "RESONANCE_PULSE": 0.02,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "FOLLOW_WIND",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.44,
+        "probabilities": {
+          "NONE": 0.03,
+          "SOFT_WIND": 0.54,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.38,
+          "FLOWER_HUE_SHIFT": 0.02,
+          "RESONANCE_RIPPLE": 0.03
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 32.0,
+      "beat": "RESONANCE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "FOLLOW_WIND",
+        "confidence": 0.81,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.12,
+          "CHORAL_SWAY": 0.03,
+          "FOLLOW_WIND": 0.83,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.01,
+          "RESONANCE_PULSE": 0.01,
+          "CRESCENDO_BURST": 0.0,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "FOLLOW_WIND",
+        "switched": false
+      },
+      "world": {
+        "choice": "GOLD_CYMATICS",
+        "confidence": 0.48,
+        "probabilities": {
+          "NONE": 0.01,
+          "SOFT_WIND": 0.38,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.56,
+          "FLOWER_HUE_SHIFT": 0.01,
+          "RESONANCE_RIPPLE": 0.04
+        },
+        "displayed": "GOLD_CYMATICS",
+        "switched": true
+      }
+    },
+    {
+      "t": 34.0,
+      "beat": "RESONANCE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "FOLLOW_WIND",
+        "confidence": 0.83,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.01,
+          "FOLLOW_WIND": 0.85,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.03,
+          "RESONANCE_PULSE": 0.02,
+          "CRESCENDO_BURST": 0.01,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "FOLLOW_WIND",
+        "switched": false
+      },
+      "world": {
+        "choice": "GOLD_CYMATICS",
+        "confidence": 0.71,
+        "probabilities": {
+          "NONE": 0.01,
+          "SOFT_WIND": 0.18,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.76,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.05
+        },
+        "displayed": "GOLD_CYMATICS",
+        "switched": false
+      }
+    },
+    {
+      "t": 36.0,
+      "beat": "RESONANCE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "SPIRAL_FORMATION",
+        "confidence": 0.63,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.29,
+          "CHORAL_SWAY": 0.02,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.68,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.01,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "SPIRAL_FORMATION",
+        "switched": true
+      },
+      "world": {
+        "choice": "GOLD_CYMATICS",
+        "confidence": 0.84,
+        "probabilities": {
+          "NONE": 0.01,
+          "SOFT_WIND": 0.06,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.87,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.06
+        },
+        "displayed": "GOLD_CYMATICS",
+        "switched": false
+      }
+    },
+    {
+      "t": 38.0,
+      "beat": "RESONANCE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "SPIRAL_FORMATION",
+        "confidence": 0.73,
+        "probabilities": {
+          "GRAZE": 0.0,
+          "TURN_TO_PLAYER": 0.18,
+          "CHORAL_SWAY": 0.02,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.76,
+          "RESONANCE_PULSE": 0.0,
+          "CRESCENDO_BURST": 0.04,
+          "RETURN_TO_IDLE": 0.0
+        },
+        "displayed": "SPIRAL_FORMATION",
+        "switched": false
+      },
+      "world": {
+        "choice": "GOLD_CYMATICS",
+        "confidence": 0.79,
+        "probabilities": {
+          "NONE": 0.01,
+          "SOFT_WIND": 0.06,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.82,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.11
+        },
+        "displayed": "GOLD_CYMATICS",
+        "switched": false
+      }
+    },
+    {
+      "t": 40.0,
+      "beat": "SETTLE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.25,
+        "probabilities": {
+          "GRAZE": 0.31,
+          "TURN_TO_PLAYER": 0.33,
+          "CHORAL_SWAY": 0.18,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.02,
+          "RESONANCE_PULSE": 0.03,
+          "CRESCENDO_BURST": 0.09,
+          "RETURN_TO_IDLE": 0.04
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.31,
+        "probabilities": {
+          "NONE": 0.38,
+          "SOFT_WIND": 0.42,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.01,
+          "FLOWER_HUE_SHIFT": 0.01,
+          "RESONANCE_RIPPLE": 0.18
+        },
+        "displayed": "SOFT_WIND",
+        "switched": true
+      }
+    },
+    {
+      "t": 42.0,
+      "beat": "SETTLE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.31,
+        "probabilities": {
+          "GRAZE": 0.25,
+          "TURN_TO_PLAYER": 0.39,
+          "CHORAL_SWAY": 0.18,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.02,
+          "RESONANCE_PULSE": 0.05,
+          "CRESCENDO_BURST": 0.1,
+          "RETURN_TO_IDLE": 0.01
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.31,
+        "probabilities": {
+          "NONE": 0.38,
+          "SOFT_WIND": 0.42,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.01,
+          "FLOWER_HUE_SHIFT": 0.01,
+          "RESONANCE_RIPPLE": 0.18
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 44.0,
+      "beat": "SETTLE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.24,
+        "probabilities": {
+          "GRAZE": 0.32,
+          "TURN_TO_PLAYER": 0.34,
+          "CHORAL_SWAY": 0.18,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.03,
+          "RESONANCE_PULSE": 0.03,
+          "CRESCENDO_BURST": 0.06,
+          "RETURN_TO_IDLE": 0.04
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.29,
+        "probabilities": {
+          "NONE": 0.39,
+          "SOFT_WIND": 0.41,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.01,
+          "FLOWER_HUE_SHIFT": 0.01,
+          "RESONANCE_RIPPLE": 0.18
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 46.0,
+      "beat": "SETTLE",
+      "source": "jev-live",
+      "reason": "jev system_one 2xChoice, full distribution preserved",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.23,
+        "probabilities": {
+          "GRAZE": 0.29,
+          "TURN_TO_PLAYER": 0.32,
+          "CHORAL_SWAY": 0.18,
+          "FOLLOW_WIND": 0.0,
+          "PART_PATH": 0.0,
+          "SPIRAL_FORMATION": 0.03,
+          "RESONANCE_PULSE": 0.04,
+          "CRESCENDO_BURST": 0.09,
+          "RETURN_TO_IDLE": 0.05
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.32,
+        "probabilities": {
+          "NONE": 0.44,
+          "SOFT_WIND": 0.38,
+          "LAVENDER_PALETTE": 0.0,
+          "GOLD_CYMATICS": 0.01,
+          "FLOWER_HUE_SHIFT": 0.0,
+          "RESONANCE_RIPPLE": 0.17
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    }
+  ]
+}

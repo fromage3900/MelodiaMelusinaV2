@@ -1,0 +1,232 @@
+{
+ "event": "Jev prototype lane restored from session records after files went missing (Prototypes/Jev* /*.py)",
+ "date": "2026-09-20",
+ "provenance": {
+  "source": "Hermes state.db message history (sessions 20260919_143848_ec7a9a, 20260919_180058_81aa6f, 20260919_212702_ee4a58, 20260919_225926_d9754b) + session request dumps",
+  "method": "replay of original write_file + patch tool calls in id order; two extra recoveries: LIVE_JEV_DUET_REVIEW.md from a stored read result; scenario_capture.py caller fix replayed from the original terminal heredoc (msg 117656) - post-fix counts match the original session's verification ('remaining old sites: 0', 'sslr uses: 8')",
+  "verification": {
+   "jev_sheep_conductor.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "jev_gaze_director.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "jev_bow_director.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "jev_p0_triage.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "jev_fl_conductor.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "fl_snapshot.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "conductor_bridge.py": "bytecode_equal_vs_surviving_pyc TRUE",
+   "tests": {
+    "test_jev_sheep_conductor.py": "19 passed, 0 failed",
+    "test_jev_gaze_director.py": "22 passed, 0 failed"
+   }
+  }
+ },
+ "restored_files": {
+  "Prototypes/JevBowConductor/jev_bow_director.py": {
+   "bytes": 12708
+  },
+  "Prototypes/JevBowConductor/README.md": {
+   "bytes": 2669
+  },
+  "Prototypes/JevBowConductor/scenario_bow_capture.py": {
+   "bytes": 4126
+  },
+  "Prototypes/JevBowConductor/test_jev_bow_director.py": {
+   "bytes": 3493
+  },
+  "Prototypes/JevFLConductor/conductor_bridge.py": {
+   "bytes": 9132
+  },
+  "Prototypes/JevFLConductor/fl_snapshot.py": {
+   "bytes": 4280
+  },
+  "Prototypes/JevFLConductor/jev_fl_conductor.py": {
+   "bytes": 14911
+  },
+  "Prototypes/JevFLConductor/jev_fl_cue.example.json": {
+   "bytes": 1728
+  },
+  "Prototypes/JevFLConductor/README.md": {
+   "bytes": 2370
+  },
+  "Prototypes/JevFLConductor/test_jev_fl_conductor.py": {
+   "bytes": 4896
+  },
+  "Prototypes/JevP0Triage/assemble_p0_state.py": {
+   "bytes": 2289
+  },
+  "Prototypes/JevP0Triage/jev_p0_triage.py": {
+   "bytes": 9773
+  },
+  "Prototypes/JevP0Triage/README.md": {
+   "bytes": 1517
+  },
+  "Prototypes/JevP0Triage/select_showcase_identity.py": {
+   "bytes": 4808
+  },
+  "Prototypes/JevP0Triage/test_jev_p0_triage.py": {
+   "bytes": 3690
+  },
+  "Prototypes/JevSheepChoir/synth_bleats.py": {
+   "bytes": 4101
+  },
+  "Prototypes/JevSheepConductor/capture_log.txt": {
+   "bytes": 3496
+  },
+  "Prototypes/JevSheepConductor/capture_report.json": {
+   "bytes": 24865
+  },
+  "Prototypes/JevSheepConductor/jev_gaze_director.py": {
+   "bytes": 8807
+  },
+  "Prototypes/JevSheepConductor/JEV_GAZE_STAGING.md": {
+   "bytes": 3420
+  },
+  "Prototypes/JevSheepConductor/jev_sheep_conductor.py": {
+   "bytes": 18437
+  },
+  "Prototypes/JevSheepConductor/LIVE_JEV_DUET_REVIEW.md": {
+   "bytes": 3824
+  },
+  "Prototypes/JevSheepConductor/live_shadow_capture_log.txt": {
+   "bytes": 8145
+  },
+  "Prototypes/JevSheepConductor/live_shadow_report.json": {
+   "bytes": 25672
+  },
+  "Prototypes/JevSheepConductor/README.md": {
+   "bytes": 3859
+  },
+  "Prototypes/JevSheepConductor/scenario_capture.py": {
+   "bytes": 5672
+  },
+  "Prototypes/JevSheepConductor/shadow_duet.py": {
+   "bytes": 15781
+  },
+  "Prototypes/JevSheepConductor/sheep_truth_probe.py": {
+   "bytes": 3556
+  },
+  "Prototypes/JevSheepConductor/test_jev_gaze_director.py": {
+   "bytes": 3907
+  },
+  "Prototypes/JevSheepConductor/test_jev_sheep_conductor.py": {
+   "bytes": 3514
+  },
+  "Prototypes/Web/ChoralSheepCymatics/fleece.css": {
+   "bytes": 4694
+  },
+  "Prototypes/Web/ChoralSheepCymatics/fleece.js": {
+   "bytes": 25035
+  },
+  "Prototypes/Web/ChoralSheepCymatics/index.html": {
+   "bytes": 3237
+  },
+  "Prototypes/Web/ChoralSheepCymatics/membrane.js": {
+   "bytes": 4496
+  },
+  "Prototypes/Web/ChoralSheepCymatics/README.md": {
+   "bytes": 3553
+  },
+  "Prototypes/Web/ChoralSheepCymatics/test_order.js": {
+   "bytes": 1184
+  },
+  "Prototypes/Web/InkBreathResonance/index.html": {
+   "bytes": 35719
+  },
+  "Prototypes/Web/InkBreathResonance/README.md": {
+   "bytes": 575
+  },
+  "Prototypes/Web/MelodiaFolio3D/index.html": {
+   "bytes": 19446
+  },
+  "Prototypes/Web/MelodiaFolio3D/mailbox.json": {
+   "bytes": 1169
+  },
+  "Prototypes/Web/MelodiaFolio3D/mara.html": {
+   "bytes": 16566
+  },
+  "Prototypes/Web/MelodiaFolio3D/models.json": {
+   "bytes": 1771
+  },
+  "Prototypes/Web/MelodiaFolio3D/README.md": {
+   "bytes": 5250
+  },
+  "Prototypes/Web/MelodiaFolio3D/weapons.html": {
+   "bytes": 38573
+  },
+  "Prototypes/Web/MusicKey3D/index.html": {
+   "bytes": 26591
+  },
+  "Prototypes/Web/MusicKey3D/README.md": {
+   "bytes": 3470
+  },
+  "Prototypes/Web/_Recovered/PR61SharedThree/melodia-three-constellation.js": {
+   "bytes": 11764
+  },
+  "Prototypes/Web/_Recovered/PR61SharedThree/melodia-three-core.js": {
+   "bytes": 7289
+  },
+  "Prototypes/Web/_Recovered/PR61SharedThree/melodia-three-orrery.js": {
+   "bytes": 6330
+  },
+  "Prototypes/Web/_Recovered/PR61SharedThree/melodia-three-starfield.js": {
+   "bytes": 9098
+  },
+  "Prototypes/Web/_Recovered/PR61SharedThree/melodia-three.css": {
+   "bytes": 3999
+  },
+  "Prototypes/Web/_Recovered/PR61SharedThree/README.md": {
+   "bytes": 598
+  }
+ },
+ "runs": {
+  "capture": {
+   "command": "python Prototypes/JevSheepConductor/scenario_capture.py",
+   "result": "24 evals, src=jev-live (TYPESAFE_API_KEY present), wrote capture_log.txt + capture_report.json"
+  },
+  "duet": {
+   "command": "python Prototypes/JevSheepConductor/shadow_duet.py",
+   "log": "Saved/Audit/choral_sheep/jev_live_duet_run_2026-09-20.log",
+   "result": "see live_shadow_report.json"
+  }
+ },
+ "key_handling": "TYPESAFE_API_KEY read from shell env only; never written to source, logs, evidence or git. Rotate after session.",
+ "hashes": {
+  "jev_sheep_conductor.py": "98558597372e11c9623cc5c7592cebfd",
+  "scenario_capture.py": "763bdfac0e3fb0af5623bb063cb9794c",
+  "shadow_duet.py": "d250d6d1026539a86cbb9ad66648bc48",
+  "capture_report.json": "a929ed428b064eee8a7c9e7df1987b02"
+ },
+ "extra_tests": {
+  "test_jev_bow_director.py": "26 passed, 0 failed",
+  "test_jev_p0_triage.py": "10 tests OK (unittest)",
+  "test_jev_fl_conductor.py": "11 passed (pytest via uv)"
+ },
+ "duet_metrics": {
+  "evals": 24,
+  "flock_agreement": 0.458,
+  "world_agreement": 0.583,
+  "joint_agreement": 0.417,
+  "jev_mean_confidence": {
+   "flock": 0.776,
+   "world": 0.596
+  },
+  "hysteresis_held_flock_ticks": [
+   42.0,
+   44.0
+  ],
+  "golden_candidates": [
+   "t=18 world: fallback LAVENDER_PALETTE vs Jev SOFT_WIND (0.76)",
+   "t=22-28 flock: fallback CHORAL_SWAY/FOLLOW_WIND vs Jev TURN_TO_PLAYER (0.98-1.00)",
+   "t=30-34 flock: fallback RESONANCE_PULSE/SPIRAL_FORMATION vs Jev FOLLOW_WIND (0.79-0.84)"
+  ]
+ },
+ "artifacts": {
+  "review": "Prototypes/JevSheepConductor/LIVE_JEV_DUET_REVIEW.md",
+  "side_by_side": "Prototypes/JevSheepConductor/live_shadow_capture_log.txt",
+  "report": "Prototypes/JevSheepConductor/live_shadow_report.json",
+  "capture": [
+   "Prototypes/JevSheepConductor/capture_log.txt",
+   "Prototypes/JevSheepConductor/capture_report.json"
+  ],
+  "duet_stdout_log": "Saved/Audit/choral_sheep/jev_live_duet_run_2026-09-20.log"
+ },
+ "userpref_backup": "Saved/Audit/choral_sheep/backups/userpref_2026-09-20_1549.blend (copy of C:/Users/froma/AppData/Roaming/Blender Foundation/Blender/5.2/config/userpref.blend)"
+}
