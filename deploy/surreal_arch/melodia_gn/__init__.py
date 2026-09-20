@@ -79,6 +79,7 @@ from . import materials_kit  # noqa: F401 - materials absorbed (P2)
 from . import filigree_kit  # noqa: F401 - filigree absorbed (P2)  # noqa: F401 - misc props absorbed (P2)  # noqa: F401 - walls absorbed from monolith (P2)  # noqa: F401 - core forms absorbed from monolith (P2)  # noqa: F401 - euro-classical absorbed from monolith (P2)  # noqa: F401 - experimental+2 core-forms absorbed (P2)  # noqa: F401 - civic absorbed from monolith (P2)  # noqa: F401  # noqa: F401 - 7 effect passes absorbed from monolith (P2)  # noqa: F401 - 70 effect passes absorbed from monolith (P2)
 from . import greybox_port  # noqa: F401 - greybox room/corridor convergence
 from . import house_dress  # noqa: F401 - mh_* dressing builders (piano walk, sheet rail, lanterns...) - unified house module: genome room shell (mh6) + AAA kit (cornice/dentil/scallop/lissajous)
+from . import paris_wall_detail  # noqa: F401 - Paris wall/slab detail close-out builders
 from .melodia_city_gen import (  # noqa: F401 - Melodia City Gen kit (register via register_builder)
     build_city_house_cell, build_city_avenue, build_city_block,
     build_city_plan_round, build_city_plan_salon, build_city_plan_courtyard,
