@@ -16,7 +16,7 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 ## Quick Start
 
-1. Read [AGENT_START_HERE.md](AGENT_START_HERE.md) and [CAPSTONE_NOW.md](CAPSTONE_NOW.md) before expanding scope.
+1. Read [CURRENT_STATE.md](CURRENT_STATE.md) and [DOC_INDEX.md](DOC_INDEX.md) before expanding scope.
 2. Review [README.md](README.md) to choose your onboarding path.
 3. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
 4. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
