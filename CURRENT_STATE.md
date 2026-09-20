@@ -352,7 +352,7 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 | Accessory / WebGL website lane (isolated) | [`Website/fromage-webgl-kit/`](Website/fromage-webgl-kit/) — floral atelier + commerce embed, DCC `KHR_materials_variants` GLBs. Not the recruiter site. Cloud cannot push `my-site` (403). |
 | `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
 
-**The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.
+**The game repo is private; `my-site` is public.** Non-sensitive school/career planning may live only under the explicitly scoped `Humber_FinalYear_Prep/` namespace when the owner wants Git-backed agent access. Never commit student numbers, private account addresses, credentials/tokens, identity or verification documents, payment data, account-recovery data, or client-confidential material. Keep `my-site` recruiter-safe and public-facing only.
 
 - **Route maps:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` →
   `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` →
