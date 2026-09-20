@@ -8,9 +8,11 @@ Usage:
     python deploy/_sync_addon_to_blender_5_2.py
     python deploy/_sync_addon_to_blender_5_2.py --check
     python deploy/_sync_addon_to_blender_5_2.py --source-root C:\\explicit\\MelodiaMelusinaV2
+    python deploy/_sync_addon_to_blender_5_2.py --allow-live-only-delete
 
 --source-root is the only way to override the current checkout. There is no implicit
-machine-specific source path.
+machine-specific source path. A normal install refuses to remove managed files that exist
+only in the live addon; --allow-live-only-delete is the explicit destructive override.
 """
 from __future__ import annotations
 
@@ -52,6 +54,14 @@ def parse_args() -> argparse.Namespace:
         "--source-root",
         default="",
         help="Explicit Melodia repository root. By default the checkout containing this script wins.",
+    )
+    parser.add_argument(
+        "--allow-live-only-delete",
+        action="store_true",
+        help=(
+            "Destructive override: permit sync to remove files under managed addon packages "
+            "that exist live but not in the selected checkout."
+        ),
     )
     return parser.parse_args()
 
@@ -127,6 +137,32 @@ def live_manifest(project_root: Path) -> tuple[dict[str, str], list[str]]:
     return present, missing
 
 
+def live_only_files(project_root: Path) -> list[str]:
+    """Return managed live-addon files that do not exist in the checkout.
+
+    These are the files package replacement would otherwise silently delete. The scan is
+    intentionally limited to PACKAGE_NAMES so unrelated Blender addons are never treated
+    as Melodia Studio output.
+    """
+    expected = expected_manifest(project_root)
+    extras: list[str] = []
+    for package_name in PACKAGE_NAMES:
+        live_root = ADDON_ROOT / package_name
+        if not live_root.is_dir():
+            continue
+        for path in live_root.rglob("*"):
+            if not path.is_file():
+                continue
+            if any(part in IGNORED_NAMES for part in path.parts):
+                continue
+            if path.suffix.lower() in IGNORED_SUFFIXES:
+                continue
+            rel = str(path.relative_to(ADDON_ROOT)).replace("\\", "/")
+            if rel not in expected:
+                extras.append(rel)
+    return sorted(extras)
+
+
 def provenance(project_root: Path, manifest: dict[str, str]) -> dict:
     return {
         "schema": "melodia.blender_live_sync.v1",
@@ -184,17 +220,57 @@ def verify(project_root: Path, *, require_provenance: bool = True) -> bool:
         print(f"STALE live files ({len(mismatched)}):")
         for rel in mismatched[:20]:
             print(f"  {rel}")
+
+    live_only = live_only_files(project_root)
+    if live_only:
+        print(
+            f"LIVE-ONLY managed files ({len(live_only)}): present in AppData but absent "
+            "from this checkout; a package replacement would delete them:"
+        )
+        for rel in live_only[:20]:
+            print(f"  {rel}")
+        if len(live_only) > 20:
+            print(f"  ... and {len(live_only) - 20} more")
+
     if require_provenance and not provenance_ok:
         print("STALE/MISSING provenance: live addon is not stamped from this exact checkout + HEAD.")
 
-    ok = not missing and not mismatched and (provenance_ok or not require_provenance)
+    ok = (
+        not missing
+        and not mismatched
+        and not live_only
+        and (provenance_ok or not require_provenance)
+    )
     print("LIVE ADDON SYNC: OK" if ok else "LIVE ADDON SYNC: OUT OF DATE")
     return ok
 
 
-def sync(project_root: Path) -> bool:
+def sync(project_root: Path, *, allow_live_only_delete: bool = False) -> bool:
     deploy = project_root / "deploy"
     ADDON_ROOT.mkdir(parents=True, exist_ok=True)
+
+    live_only = live_only_files(project_root)
+    if live_only and not allow_live_only_delete:
+        print(
+            "REFUSING TO SYNC: managed live-only files exist and package replacement "
+            "would delete them.",
+            file=sys.stderr,
+        )
+        for rel in live_only:
+            print(f"  {rel}", file=sys.stderr)
+        print(
+            "Recover or intentionally remove those files first. If deletion is deliberate, "
+            "rerun with --allow-live-only-delete.",
+            file=sys.stderr,
+        )
+        return False
+    if live_only:
+        print(
+            f"WARNING: --allow-live-only-delete permits deletion of {len(live_only)} "
+            "managed live-only file(s):"
+        )
+        for rel in live_only:
+            print(f"  {rel}")
 
     print(f"Source checkout: {project_root}")
     print(f"Source branch:   {git_text(project_root, 'branch', '--show-current') or '(detached)'}")
@@ -247,7 +323,12 @@ def main() -> int:
         print("ERROR: APPDATA is not set; cannot locate Blender live addons.", file=sys.stderr)
         return 2
 
-    return 0 if (verify(project_root) if args.check else sync(project_root)) else 1
+    if args.check:
+        return 0 if verify(project_root) else 1
+    return 0 if sync(
+        project_root,
+        allow_live_only_delete=args.allow_live_only_delete,
+    ) else 1
 
 
 if __name__ == "__main__":
