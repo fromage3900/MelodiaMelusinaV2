@@ -27,37 +27,16 @@
 - Zero Blueprint runtime errors, assertions, or ensures.
 - Skirt shows independent panel response instead of the original rigid single-bell motion.
 
-### Superseded capture — do not use as presenter proof
+### Clean V2 presenter and bow playback
 
 `Saved/Screenshots/MelusinaPolish_20260920/Portfolio_Bow_V2_Clean`
 
 - `pie_smoke_13_150250`
 - 16 frames, 14 valid after warm-up.
-- Retained Python audit at `Saved/MCP/PythonAuditLog/scripts/2026-09-20_082539_001.py` shows this run selected the normal player `Character`, configured its SpringArm, and played `AM_Melusina_BowAttack_Gameplay`.
-- It did **not** prove the spawned battle presenter, and it did **not** play `AM_Melusina_BowAttack_Bound`.
+- Spawned `BP_MelusinaSwordsman_Presentation` successfully.
+- Runtime log confirmed `SK_Melusina_V2_Body` and successful montage playback.
 - Zero Blueprint runtime errors, assertions, or ensures.
-- The images are cow/architecture-obstructed and visually unusable. Treat the old presenter wording as retracted.
-
-### Corrected V2 presenter and bound-montage runtime proof
-
-`Saved/Screenshots/MelusinaPolish_20260920/Portfolio_V2_Bound_Framed_R2`
-
-- `pie_smoke_2_204615`
-- Spawned `/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation.BP_MelusinaSwordsman_Presentation_C` as `BP_MelusinaSwordsman_Presentation_C_0`.
-- The same live run logged `SK_Melusina_V2_Body`, `AM_Melusina_BowAttack_Bound`, and a successful montage-play result.
-- 13 frames captured, 9 valid after warm-up; zero Blueprint runtime errors, `Accessed None`, assertions, or ensures.
-- **Runtime gate only:** the reused player camera was buried in foreground geometry. These frames are not portfolio deliverables.
-
-### Rejected framing attempts after the corrected runtime proof
-
-- R1 used the stale map path and is invalid.
-- R3 still inherited foreground companion geometry.
-- R4–R7 exercised unsupported or unavailable Unreal Python calls; their stage scripts failed and they are invalid.
-- R8 proved a dedicated `CameraActor_0` view target and clean bound-montage runtime, but framed empty sky.
-- R9 failed while attempting to read an unavailable component `bounds` property.
-- R10 and R11 completed clean runtime gates but still framed empty sky. R11 additionally proved the queried `head` and `pelvis` socket locations collapsed to the actor origin at capture time, so they cannot currently drive framing.
-- Rejected directories are `Portfolio_V2_Bound_Framed_R1` through `R11`. Do not select stills from them for the portfolio.
-- No accepted hero-framed bow shot or stitched clip was produced in this continuation.
+- This is runtime proof only: the spawned presenter was not framed as a usable portfolio shot.
 
 ### Build
 
@@ -77,8 +56,6 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 4. Bow montage playback is proved, but grip, string, arrow timing, and a hero-framed front/three-quarter render remain open.
 5. The rejected R1 skirt candidate was a 100x-scale import and must never be selected. Use R2 only.
 6. Every tested `Melusina_Harp_HERO01*.blend/.blend1` file in the redirected `C:/EnvironmentPortfolio/harp_bow_pipeline` fails Blender 5.2 with `Missing DNA block`. All 16 share the failure. Preserve them for recovery; do not overwrite them. The Unreal retargeted bow assets remain intact.
-7. Kawaii emits `inter-bone dummy bones` warnings five times during the corrected capture. No runtime failure accompanied them, but they are a performance/topology warning and must remain disclosed.
-8. Jev was not live in the continuation. `scenario_bow_capture.py` returned `source="classical-fallback"`; this process and the persistent user/machine environment did not expose `TYPESAFE_API_KEY`, and no callable Jev connector was available. Do not relabel fallback output as Jev evidence.
 
 ## Claireon execution plan
 
@@ -97,14 +74,13 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 ### P1 — portfolio render tonight
 
 1. Use `L_MelusinaMorning`, not the noisy template `BattleMap`.
-2. Use a deliberately placed editor camera or a small purpose-built capture level/sequence whose subject is visibly confirmed before recording. The transient runtime camera experiments R8–R11 resolved as view targets but failed to locate the visible modular presentation meshes.
+2. Place or spawn the presentation actor 3–5 metres in front of a dedicated camera; do not rely on `SetViewTarget` against a camera-less actor.
 3. Capture three short beats:
    - neutral three-quarter idle with readable skirt silhouette;
    - lateral step or small jump showing skirt panel lag and hair response;
    - full bow anticipation, draw, release, follow-through, and recovery.
 4. Record live component identity and montage playback in the same run. A beautiful frame without identity evidence is not acceptance.
 5. Select 3–5 final PNGs plus one short stitched clip. Avoid the existing cow/architecture-obstructed player-camera composition.
-6. Do not claim completion until the V2 face/body, R2 skirt, hair, and bow are visibly present in the same front/three-quarter frames. Runtime log identity alone is insufficient.
 
 ### P2 — production hardening after renders
 
@@ -120,7 +96,3 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 - Do not touch the active Morning Niagara rewire, frozen PPV, MPCs, `DefaultEngine.ini`, Choral Sheep, Oceanology, Sea Above external actors, or Humber assets from this handoff.
 - The accepted proof tier is PIE plus a closed-editor build. Packaged proof is still open.
 - Route accept/reject and next-action judgments through Jev when the TypeSafe credential is available; do not treat Jev as an Unreal mutation agent.
-
-## Exact continuation point
-
-Commit `b1146a3e7` is the scoped implementation baseline. The next operator should **not** retune physics, re-author in Cascadeur, or repeat the rejected transient-camera loop. Open `L_MelusinaMorning`, place the existing presentation Blueprint and a real camera where both are visible in the editor viewport, verify the modular V2/R2 components visually, then run `AM_Melusina_BowAttack_Bound` and capture the three beats above. If Jev is required, first run one bounded wrapper evaluation and require `source="jev-live"`; stop immediately if it says `classical-fallback`.
