@@ -11,7 +11,7 @@
 1. `README.md`
 2. `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
 3. `CURRENT_STATE.md`
-4. `TODO.md`
+4. `DOC_INDEX.md`
 5. `SYSTEM_MAP.md`
 6. the Chapter / tool / subsystem doc you are actually touching
 
@@ -323,7 +323,6 @@ The evergreen architecture matters **now** because it changes stable IDs, save m
 
 - `README.md`
 - `CURRENT_STATE.md`
-- `TODO.md`
 - `DOC_INDEX.md`
 - `SYSTEM_MAP.md`
 - `DATA_FLOW.md`
