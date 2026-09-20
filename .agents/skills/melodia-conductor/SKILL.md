@@ -34,6 +34,7 @@ If the owner already named the level/asset/system and the task is clear, route a
 | UI/dialogue/widget styling and visual polish | `melodia-ui-artist` | `melodia-design-system/tokens.json` |
 | `.usf` / `.ush` shader source work in Rider | `melodia-shader-rider` | the consuming material/presentation contract only if needed |
 | Static-mesh inventory / duplicates / naming proposal | `melodia-mesh-catalog` | read-only asset scope named by owner |
+| AWS cost analysis, billing, budget review, subscription check | `aws-cost-billing-audit` | skill at `~/.local/hermes/skills/devops/aws-cost-billing-audit/` — AWS CLI must be authenticated first. Check SSO expiry via `aws sts get-caller-identity --profile default`; if expired, `aws configure sso --profile default`. The bedrock profile is locked down and cannot access billing data. |
 
 If no skill fits, use the relevant durable subsystem contract directly. **Do not invent a new skill/framework merely because routing is imperfect.** Add a durable skill only after repeated real tasks show the same specialized workflow.
 

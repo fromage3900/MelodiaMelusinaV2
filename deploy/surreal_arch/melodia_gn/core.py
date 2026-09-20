@@ -1215,6 +1215,8 @@ CATEGORY_META: dict[str, dict] = {
     "melusina_house": {"label": "Melusina House",     "icon": "HOME"},
     "zen_kit":     {"label": "Zen Kit",               "icon": "LIGHT_AREA"},
     "nikki_decor": {"label": "Nikki Decor",           "icon": "DECORATE"},
+    "decor":       {"label": "Cute Decor",            "icon": "DECORATE"},
+    "escher":      {"label": "Escher Math",           "icon": "NODETREE"},
 }
 
 

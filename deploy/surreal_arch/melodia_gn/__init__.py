@@ -121,6 +121,11 @@ from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only
 from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import eyewear  # noqa: F401 - Eyewear: CAD-level frame front from ISO 8624 boxing measurements
+from . import cute_decor  # noqa: F401 - Cute decor: 14 charm/dangle/tassel builders (laptop lane 2026-09-17)
+from . import sheep_bell  # noqa: F401 - Choral Sheep collar bell (whimsical AAA sheep lane)
+from . import escher_decor  # noqa: F401 - Escher math decor: hyperbolic window, Penrose, Mobius, tessellation
+from . import study_ground  # noqa: F401 - MEL_study_ground audio-reactive ground plane
+from . import audio_architecture  # noqa: F401 - MEL_audio_facade + MEL_audio_landscape
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 

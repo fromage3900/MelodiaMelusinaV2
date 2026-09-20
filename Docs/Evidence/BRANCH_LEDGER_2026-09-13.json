@@ -72960,5 +72960,104 @@
       ],
       "recommendation": "reconcile selected files; never merge wholesale"
     }
-  ]
+  ],
+  "worktrees_2026-09-17": {
+    "captured_utc": "2026-09-17T20:50:00Z",
+    "rule": "recommendations only; never worktree remove / branch -D / prune without owner",
+    "rows": [
+      {
+        "path": "C:/EnvironmentPortfolio/BS_GodFile",
+        "branch": "cleanup/pbr-twin-landing-2026-09-10",
+        "head": "38b5d964",
+        "commits_ahead_of_main": 122,
+        "diffstat_vs_main": "2146 files changed",
+        "open_pr": null,
+        "recommendation": "KEEP",
+        "note": "current working tree. After owner-approved scoped PRs, switch to a fresh branch and let this die."
+      },
+      {
+        "path": "C:/EnvironmentPortfolio/BS_GodFile_studio",
+        "branch": "collab/desktop/integrate-laptop-2026-09-06",
+        "head": "44ec2d39",
+        "commits_ahead_of_main": 121,
+        "diffstat_vs_main": "111 files changed",
+        "open_pr": null,
+        "recommendation": "DIFF-FIRST",
+        "note": "full duplicate of the project dir. Compare unique commits vs main before git worktree remove."
+      },
+      {
+        "path": "C:/EnvironmentPortfolio/BS_GodFile/.claude/worktrees/eyewear-editorial-0912",
+        "branch": "feature/eyewear-editorial-20260912",
+        "head": "5432b250",
+        "commits_ahead_of_main": 40,
+        "diffstat_vs_main": "53 files changed",
+        "open_pr": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/205",
+        "locked": true,
+        "recommendation": "KEEP",
+        "note": "live eyewear lane; also PR #194 on a sibling branch."
+      },
+      {
+        "path": "C:/Users/froma/Worktrees/melodia-issue51-f1f2-0915",
+        "branch": "fix/issue-51-restore-idempotency-2026-09-09",
+        "head": "5e765fa0",
+        "commits_ahead_of_main": 1,
+        "diffstat_vs_main": "3 files changed",
+        "open_pr": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/144",
+        "recommendation": "KEEP",
+        "note": "Issue #51 live lane."
+      },
+      {
+        "path": "C:/Users/froma/Worktrees/melodia-evidence-audits-0917",
+        "branch": "docs/melusina-morning-audits-2026-09-17",
+        "head": "d232626a",
+        "commits_ahead_of_main": 63,
+        "diffstat_vs_main": "1401 files changed",
+        "open_pr": null,
+        "recommendation": "DIFF-FIRST",
+        "note": "large vs main; likely overlaps this working tree. Diff before prune."
+      },
+      {
+        "path": "C:/EnvironmentPortfolio/_worktrees/canonical-agent-context-repair-0914",
+        "branch": "codex/canonical-agent-context-repair-20260914",
+        "head": "6be00f88",
+        "commits_ahead_of_main": 19,
+        "diffstat_vs_main": "185 files changed",
+        "open_pr": null,
+        "recommendation": "KEEP",
+        "note": "clean tree, 19 unique commits; keep until owner diffs the 185 files."
+      },
+      {
+        "path": "C:/EnvironmentPortfolio/BS_GodFile/.claude/worktrees/p0-morning-dungeon-hop",
+        "branch": "llm/fromage/BS_GodFile/p0-morning-dungeon-hop",
+        "head": "00fe8700",
+        "commits_ahead_of_main": 1,
+        "diffstat_vs_main": "3 files changed",
+        "open_pr": null,
+        "recommendation": "DIFF-FIRST"
+      },
+      {
+        "path": "C:/EnvironmentPortfolio/BS_GodFile/.claude/worktrees/magical-williamson-a3534a",
+        "branch": null,
+        "detached": true,
+        "head": "f17fa3a5",
+        "commits_ahead_of_main": 0,
+        "diffstat_vs_main": "empty",
+        "open_pr": null,
+        "recommendation": "PRUNE",
+        "note": "detached, 0 unique commits vs main."
+      },
+      {
+        "path": "C:/Users/froma/AppData/Local/Temp/bg_main_check",
+        "branch": null,
+        "detached": true,
+        "locked": "initializing",
+        "head": "15f03403",
+        "commits_ahead_of_main": 0,
+        "diffstat_vs_main": "empty",
+        "open_pr": null,
+        "recommendation": "PRUNE",
+        "note": "temp locked detached; 0 unique commits."
+      }
+    ]
+  }
 }

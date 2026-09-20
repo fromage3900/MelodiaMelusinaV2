@@ -30,24 +30,24 @@
  },
  "files": {
   "BRASS_PATINA_BaseColor.png": {
-   "sha12": "01bb8492aa9c",
-   "std": 51.16
+   "sha12": "110f58484d31",
+   "std": 51.37
   },
   "BRASS_PATINA_Metallic.png": {
-   "sha12": "f5a544d030cf",
-   "std": 36.79
+   "sha12": "9501a7698822",
+   "std": 39.03
   },
   "BRASS_PATINA_Normal.png": {
-   "sha12": "2be35a1c89ff",
+   "sha12": "2ced6ab1768a",
    "std": 60.14
   },
   "BRASS_PATINA_Roughness.png": {
-   "sha12": "71028858c6a0",
-   "std": 20.78
+   "sha12": "c8fdd304fd29",
+   "std": 21.92
   },
   "HULL_PLANK_BaseColor.png": {
-   "sha12": "9344d3861d24",
-   "std": 17.65
+   "sha12": "32496a5a0984",
+   "std": 19.54
   },
   "HULL_PLANK_Emission.png": {
    "sha12": "7acc3b974d53",
@@ -58,32 +58,32 @@
    "std": 0.0
   },
   "HULL_PLANK_Normal.png": {
-   "sha12": "b445e59e8d8c",
-   "std": 60.15
+   "sha12": "26a5f5ba8bc8",
+   "std": 60.16
   },
   "HULL_PLANK_Roughness.png": {
-   "sha12": "fe3219695ab2",
-   "std": 10.76
+   "sha12": "f1a230874cfc",
+   "std": 11.45
   },
   "PLATE_OAK_BaseColor.png": {
-   "sha12": "e0c72c90f377",
-   "std": 35.04
+   "sha12": "89afc2edc364",
+   "std": 35.03
   },
   "PLATE_OAK_Metallic.png": {
    "sha12": "804aff6f2b1d",
    "std": 0.0
   },
   "PLATE_OAK_Normal.png": {
-   "sha12": "aca1e3802aea",
-   "std": 60.23
+   "sha12": "8932ee56d31c",
+   "std": 60.24
   },
   "PLATE_OAK_Roughness.png": {
-   "sha12": "c6354bd7fb02",
-   "std": 10.3
+   "sha12": "8efef615d149",
+   "std": 10.17
   },
   "SAIL_DAMASK_BaseColor.png": {
-   "sha12": "344b3ebfc791",
-   "std": 9.78
+   "sha12": "563e1e8ee752",
+   "std": 9.69
   },
   "SAIL_DAMASK_Metallic.png": {
    "sha12": "0f4b1668d119",
