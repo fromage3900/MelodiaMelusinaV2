@@ -14,7 +14,7 @@ import traceback
 
 import bpy
 
-REPO = r"P:/MelodiaMelusinaV2-Laptop"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APPDATA_ADDONS = os.path.join(os.environ["APPDATA"], "Blender Foundation",
                               "Blender", "5.2", "scripts", "addons")
 BASELINE = os.path.join(REPO, "Tools", "registry_baseline.json")
@@ -27,6 +27,8 @@ KNOWN_DUPLICATES = {
 }
 # Files that must be byte-identical across the checkout and the live install.
 CONVERGED_FILES = [
+    ("deploy/surreal_arch/melodia_gn/paris_wall_detail.py",
+     "surreal_arch/melodia_gn/paris_wall_detail.py"),
     ("deploy/surreal_arch/melodia_gn/nikki_decor.py",
      "surreal_arch/melodia_gn/nikki_decor.py"),
     ("deploy/surreal_arch/melodia_gn/nikki_musical_decorations.py",
