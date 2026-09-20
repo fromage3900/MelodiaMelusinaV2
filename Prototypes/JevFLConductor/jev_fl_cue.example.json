@@ -1,0 +1,30 @@
+{
+  "_comment": "EXAMPLE cue config for the Jev FL conductor. Copy to jev_fl_cue.json and fill track indices from the DUPLICATED test cue (never the production project). Track indices are FL mixer indices (0 = master). Presets are mute maps: 'mute' lists tracks to mute, 'unmute' lists tracks to unmute, applied via mixer_set_mute only. HOLD is always a no-op. Every index in presets must belong to a whitelisted stem group, else the bridge refuses the preset.",
+  "cue_name": "EXAMPLE-MelodiaCue-DUP",
+  "phrase_bars": 2,
+  "beats_per_bar": 4,
+  "ending_bar": 32,
+  "authored_sections": [
+    {"from_bar": 1, "to_bar": 8, "name": "verse"},
+    {"from_bar": 9, "to_bar": 24, "name": "chorus"},
+    {"from_bar": 25, "to_bar": 32, "name": "outro"}
+  ],
+  "master_track": 0,
+  "stem_groups": {
+    "VOICE_OR_CHOIR": [1],
+    "RHYTHM": [2, 3],
+    "ATMOSPHERE": [4],
+    "RESONANCE": [5]
+  },
+  "initial_preset": "FULL_CHORUS",
+  "presets": {
+    "HOLD": {"mute": [], "unmute": [], "note": "No change."},
+    "THIN": {"mute": [3, 4, 5], "unmute": [1, 2], "note": "Voice + core groove only."},
+    "BUILD": {"mute": [5], "unmute": [1, 2, 3, 4], "note": "Next authored layer on, resonance held back."},
+    "BLOOM": {"mute": [3], "unmute": [1, 2, 4, 5], "note": "Atmosphere + resonance open around voice and groove."},
+    "RESTRAIN": {"mute": [5], "unmute": [1, 2, 4], "note": "Tension without the peak: air under voice, no resonance wash."},
+    "DROP_TO_VOICE": {"mute": [2, 3, 4, 5], "unmute": [1], "note": "Voice-led state."},
+    "FULL_CHORUS": {"mute": [], "unmute": [1, 2, 3, 4, 5], "note": "Predefined full arrangement state."},
+    "SETTLE": {"mute": [2, 3, 5], "unmute": [1, 4], "note": "Authored resolution state."}
+  }
+}
