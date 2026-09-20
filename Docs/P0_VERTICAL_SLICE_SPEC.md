@@ -8,10 +8,11 @@ version: 0.1
 > **SUPERSEDED AS ACTIVE P0 SCOPE — 2026-08-24.** This file is retained as the historical
 > economy/song-family expansion design snapshot authored on 2026-08-23. Its nine core tasks,
 > HUD additions, dungeon route, enemy, and quest chain are **deferred until after P0**; they are
-> not instructions for the current shipping lane. The current authority is
-> [`Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md),
-> with the machine-readable queue in [`P0_TASK_LEDGER.json`](P0_TASK_LEDGER.json). Current P0
-> closes the existing First Dream authorities and proof gates before it adds gameplay breadth.
+> not instructions for the current shipping lane. The current status / priority authority is
+> [`../CURRENT_STATE.md`](../CURRENT_STATE.md). Runtime gate evidence is recorded by the local
+> `Saved/gate_ledger.json` / Echo tooling, and the current golden-run contract is
+> `specs/p0/core_p0_dream_golden_run.v1.json`. The former handoff and task-ledger paths were
+> intentionally removed in the documentation collapse; do not recreate them.
 
 This document locks the gameplay and integration requirements for the P0 playable vertical slice of **Melodia**. The goal is an **ASAP end-to-end loop** that proves the core “emotion modifier + economy + rhythm skills” pipeline.
 
