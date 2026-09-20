@@ -285,7 +285,7 @@ issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_
    the stale-write guard move to P1 unless an audit finds a real race.
 2. *Re-prove on current `main`.* Restart proof (save → quit → relaunch → load, real input) and a
    packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
-3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
+3. *Close.* Refresh this file, run the surviving project/Git health checks (`python Tools/project_health.py` and `python Tools/git_ok.py`), then close #51 with receipts.
 
 **PR cleanup, 2026-09-16:** #215 (VFX flipbook closure) refreshed onto `main`, static + LFS gates
 green, merged as `88248226` — all 73 `Content/_PROJECT/VFX` files are LFS-backed on the remote.
@@ -313,15 +313,11 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
 Choral Sheep is the capstone lane.
 
-1. **Choral Sheep UE proof.** Verify deformation; bind one C-root fleece response on the approved
-   Nikki-derived Cymatics path (`MI_ChoralSheep_Body` → `M_Master_Toon_Character`, Chladni as a
-   child, not a replacement shader); capture REST → ROOT_C → hit → REST. Visual lock: Board 06 +
-   the two WebPs in `Docs/References/VisualBoards/2026-09-08/ChoralSheep/`. Context:
-   `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`.
-2. **UE ↔ TD proof.** One real OSC `:9000` and/or Spout connection. Do not rebuild the TD scene.
-3. **One 5–10 s AE sequence** — Creature → Motif → Harmony → World. Only then promote to the site.
+1. **Finish the current render batch.** Prioritize presentable hero frames / graded evidence over infrastructure work.
+2. **Lookdev the selected shots/assets to presentation quality.** Use the existing material, lighting, PPV, foliage, cymatics, and environment systems; do not open a new framework lane.
+3. **Publish the approved visual updates to `my-site`.** Replace/update portfolio evidence and renders only; keep navigation/design-system changes bounded to defects that block the presentation.
 
-Then: the 3–5 minute playable Shorewake route (`Chapters/02_shorewake_calling/`), then Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
+After today’s art pass: Choral Sheep UE fleece/deformation proof → UE ↔ TD proof → one 5–10 s AE Creature → Motif → Harmony → World sequence → 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
 
 **Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
 or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
