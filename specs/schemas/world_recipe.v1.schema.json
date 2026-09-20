@@ -86,7 +86,14 @@
           },
           "weight": {"type": "number", "exclusiveMinimum": 0},
           "variants": {"type": "integer", "minimum": 1, "default": 3},
-          "height_class": {"type": "integer", "minimum": 0, "maximum": 2}
+          "height_class": {"type": "integer", "minimum": 0, "maximum": 2},
+          "scale_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+          "ground_labels": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "description": "Actor-label prefixes this species may snap onto. Flowers: BrushifyIsland_ only. Dressing: WC_EscherWalk_ plus optional island skirts."
+          }
         }
       }
     },

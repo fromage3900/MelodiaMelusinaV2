@@ -26,7 +26,14 @@ MOTION_KEYS = (
     "stretch",
     "sway",
 )
-REPORT = Path("G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/speedtree_wind_reset.json")
+def _report_path() -> Path:
+    try:
+        return Path(unreal.Paths.project_dir()) / "Saved" / "Audit" / "speedtree_wind_reset.json"
+    except Exception:
+        return Path(r"C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/speedtree_wind_reset.json")
+
+
+REPORT = _report_path()
 
 
 def _is_motion(name: str) -> bool:
