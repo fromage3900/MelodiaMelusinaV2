@@ -1,37 +1,39 @@
 """GN_PARIS_* wall-detail builders — Melusina House Paris→Nikki lane.
 
-Converged 2026-09-18 from the Saved/MelusinasHouse staging scripts into the
-Melodia Studio addon (this module is the single authority). The in-file groups
-GN_PARIS_WallDetail / GN_PARIS_SlabTrim are REBUILT from this code; never
-hand-edit the live group without porting the change here.
+Converged 2026-09-18 from Saved/MelusinasHouse/paris_phaseBC_build.py into the
+Melodia Studio addon. This module is the single authority for
+GN_PARIS_WallDetail / GN_PARIS_SlabTrim; the in-file groups are REBUILT from
+here. Never hand-edit the live group without porting the change back.
 
-v2 (this module):
-  - CORNICE_STYLE INT: 0=FLAT (no bands) / 1=HAUSSMANN (current bands) / 2=GOTHIC
-    (bands + stepped panel reveals + instanced pointed-arch medallions + quoins).
-  - Pointed arch delegated to the monolith's build_gothic_arch (baked once to a
-    helper mesh object MH_GothicArchHead; no reimplementation).
-  - Stepped gothic reveals: native extrude chain (Higgsas NTInset Face attempted
-    first; falls back with a printed reason when its socket API differs).
-  - Quoins: alternating blocks instanced along the four vertical corner lines.
-  - In-group Mesh Bevel (0.04 / 3 segments) at the end of the chain replaces the
-    object-level Bevel modifiers on walls and slabs (stack shrinks).
+v2 additions over the staged version:
+  - CORNICE_STYLE INT: 0=FLAT (panels only) / 1=HAUSSMANN (staged look) /
+    2=GOTHIC (bands + stepped reveals + pointed-arch medallions + quoins).
+  - Pointed arch delegated to the monolith build_gothic_arch, baked once into
+    helper object MH_GothicArchHead (no reimplementation).
+  - Higgsas NTInset Face probed for the gothic step reveal (native extrude
+    fallback, socket info printed).
+  - In-group Mesh Bevel (0.04 / 3) replaces object-level Bevel modifiers on
+    walls and slabs (stack shrinks by one).
+  - FIX vs staged script: band z placement compared the offset float against
+    the marker string ('maxz'), so cornice/string bands were anchored to BBox
+    Min (buried below the wall). Corrected to check the marker index.
 
-Self-contained: uses bpy/mathutils only; register_builder() is attached when
-the addon core is importable, standalone mode otherwise (bridge/eval runs).
+Self-contained (bpy/mathutils only) so bridge/eval runs can spec-load it;
+register_builder() is attached when the addon core is importable.
 """
 
 import bpy
 import math
-from types import SimpleNamespace
+from mathutils import Vector
 
 ROOT = r'P:/MelodiaMelusinaV2-Laptop/deploy'
-_TRIM_OUT = r'P:/MelodiaMelusinaV2-Laptop/Saved/TrimSheets/out'
+OUT = r'P:/MelodiaMelusinaV2-Laptop/Saved/TrimSheets/out'
 _HELPER_COLL = 'MH_Gen_Helpers'
 ARCH_OBJECT = 'MH_GothicArchHead'
 
 # ---------------------------------------------------------------- helpers
 
-def N(t, bl, x, y=0):
+def N(t, bl, x=0, y=0):
     n = t.nodes.new(bl)
     n.location = (x, y)
     return n
@@ -41,47 +43,74 @@ def L(t, a, sa, b, sb):
     t.links.new(a.outputs[sa], b.inputs[sb])
 
 
-def com(t, x, y, z):
-    n = N(t, 'FunctionNodeCombineXYZ', x, y)
-    n.inputs[0].default_value = x
-    n.inputs[1].default_value = y
-    n.inputs[2].default_value = z
-    return n
-
-
-def vm(t, op, x, y):
-    n = N(t, 'ShaderNodeVectorMath', x, y)
-    n.operation = op
-    return n
-
-
-def m(t, op, a, b=None, x=0, y=0):
+def mathn(t, op, x, y, a=None, b=None):
     n = N(t, 'ShaderNodeMath', x, y)
     n.operation = op
-    n.inputs[0].default_value = a
+    if a is not None:
+        n.inputs[0].default_value = a
     if b is not None:
         n.inputs[1].default_value = b
     return n
 
 
-def cp(t, op, a, b, x=0, y=0):
+def vmath(t, op, x, y):
+    n = N(t, 'ShaderNodeVectorMath', x, y)
+    n.operation = op
+    return n
+
+
+def comp(t, x, y, op='GREATER_THAN', b=0.0):
     n = N(t, 'FunctionNodeCompare', x, y)
     n.data_type = 'FLOAT'
     n.operation = op
-    n.inputs[0].default_value = a
     n.inputs[1].default_value = b
     return n
+
+
+def mapr(t, x, y, f0, f1, t0, t1):
+    n = N(t, 'ShaderNodeMapRange', x, y)
+    n.clamp = True
+    n.inputs['From Min'].default_value = f0
+    n.inputs['From Max'].default_value = f1
+    n.inputs['To Min'].default_value = t0
+    n.inputs['To Max'].default_value = t1
+    return n
+
+
+def fswitch(t, x, y):
+    n = N(t, 'GeometryNodeSwitch', x, y)
+    n.input_type = 'FLOAT'
+    return n
+
+
+def gswitch(t, x, y):
+    n = N(t, 'GeometryNodeSwitch', x, y)
+    n.input_type = 'GEOMETRY'
+    return n
+
+
+def sock(t, name, stype, default=None, in_out='INPUT'):
+    it = t.interface.new_socket(name, in_out=in_out, socket_type=stype)
+    if default is not None:
+        try:
+            it.default_value = default
+        except Exception:
+            pass
+    return it
+
+
+def _trim_mat():
+    mat = bpy.data.materials.get('PROXY_TS_Melodia_Stone')
+    if not mat:
+        mat = bpy.data.materials.new('PROXY_TS_Melodia_Stone')
+        mat.diffuse_color = (0.62, 0.57, 0.50, 1.0)
+    return mat
 
 
 # ------------------------------------------------- Higgsas loader (dup-safe)
 
 def _higgs(name):
-    """Resolve a Higgsas NT_* group into bpy.data without duplicating.
-
-    In-file copies of Higgsas groups may exist under the unprefixed name
-    (e.g. 'Bricks Grid'). Rename that copy to the NT name first, then let the
-    bridge resolve; never leave a .001 duplicate behind.
-    """
+    """Resolve a Higgsas NT_* group without leaving .001 duplicates."""
     nt = 'NT' + name
     g = bpy.data.node_groups.get(nt)
     if g:
@@ -90,6 +119,11 @@ def _higgs(name):
     if alt:
         alt.name = nt
         return alt
+    try:
+        from surreal_arch import higgsas_bridge as _hb
+        return _hb.load_node(name)
+    except Exception:
+        pass
     try:
         import importlib.util
         spec = importlib.util.spec_from_file_location(
@@ -109,7 +143,6 @@ def ensure_gothic_arch_object():
     obj = bpy.data.objects.get(ARCH_OBJECT)
     if obj:
         return obj
-    mon = None
     try:
         import surreal_architecture_gen as mon
     except ImportError:
@@ -119,14 +152,16 @@ def ensure_gothic_arch_object():
         mon = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mon)
     t = bpy.data.node_groups.new('MH_Arch_Bake_TMP', 'GeometryNodeTree')
-    t.interface.new_socket('Geometry', in_out='INPUT', socket_type='NodeSocketGeometry')
-    t.interface.new_socket('Geometry', in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    sock(t, 'Geometry', 'NodeSocketGeometry')
+    sock(t, 'Geometry', 'NodeSocketGeometry', in_out='OUTPUT')
     gin = t.nodes.new('NodeGroupInput')
     gout = t.nodes.new('NodeGroupOutput')
     gin.location = (-400, 0)
     gout.location = (200, 0)
     t.links.new(gin.outputs['Geometry'], gout.inputs['Geometry'])
-    props = SimpleNamespace(gothic_width=1.0, gothic_radius=0.55, gothic_thickness=0.08)
+    from types import SimpleNamespace
+    props = SimpleNamespace(gothic_width=1.0, gothic_radius=0.55,
+                            gothic_thickness=0.08)
     arc = mon.build_gothic_arch(t, props, -1400)
     t.links.new(arc, gout.inputs['Geometry'])
     me = bpy.data.meshes.new(ARCH_OBJECT)
@@ -138,6 +173,7 @@ def ensure_gothic_arch_object():
     coll.objects.link(obj)
     mod = obj.modifiers.new('bake', 'NODES')
     mod.node_group = t
+    bpy.context.view_layer.update()
     dg = bpy.context.evaluated_depsgraph_get()
     ev = obj.evaluated_get(dg)
     baked = bpy.data.meshes.new_from_object(ev)
@@ -152,620 +188,464 @@ def ensure_gothic_arch_object():
     return obj
 
 
-# ------------------------------------------------- panel/band graph pieces
-
-def _band_chain(t, gin, gout, x0):
-    """Six cornice/string/wainscot/baseboard band cubes; returns (last, None)."""
-    bmin = gin
-    gx0 = x0
-    bands = [
-        ('Show Cornice',    0.00, -0.03, 0.18,  0.02, 1.0,  1.00),
-        ('Show String',     1.10, -0.03, 0.09,  0.02, 1.0,  1.00),
-        ('Show Wainscot',   0.30, -0.05, 0.80, -0.02, 1.0,  1.00),
-        ('Show Baseboard',  0.00, -0.06, 0.14,  0.02, 1.0,  1.00),
-    ]
-    last = None
-    joinb = N(t, 'NodeJoinGeometry', gx0 - 300, 640)
-    for i, (name, z, d, h, prof, sx, sz) in enumerate(bands):
-        sw = N(t, 'GeometryNodeSwitch', gx0 - 600, 640 + 260 * i)
-        sw.switch_type = 'GEOMETRY'
-        L(t, gin, name, sw, 'Switch')
-        mnb = N(t, 'GeometryNodeInputPosition', gx0 - 1200, 760 + 260 * i)
-        sep = N(t, 'GeometryNodeSeparateXYZ', gx0 - 1080, 760 + 260 * i)
-        L(t, mnb, 'Position', sep, 'Vector')
-        c1 = N(t, 'FunctionNodeCompare', gx0 - 960, 760 + 260 * i)
-        c1.data_type = 'FLOAT'
-        c1.operation = 'GREATER_THAN'
-        L(t, sep, 'Z', c1, 0)
-        c1.inputs[1].default_value = z + h
-        c2 = N(t, 'FunctionNodeCompare', gx0 - 840, 700 + 260 * i)
-        c2.data_type = 'FLOAT'
-        c2.operation = 'LESS_THAN'
-        L(t, sep, 'Z', c2, 0)
-        c2.inputs[1].default_value = z
-        band_and = N(t, 'FunctionNodeBooleanMath', gx0 - 720, 730 + 260 * i)
-        L(t, c1, 'Result', band_and, 0)
-        L(t, c2, 'Result', band_and, 1)
-        L(t, band_and, 'Result', sw, 'False')
-        cu = N(t, 'GeometryNodeMeshCube', gx0 - 600, 520 + 260 * i)
-        for s in ('Size X', 'Size Y', 'Size Z'):
-            cu.inputs[s].default_value = 1.0
-        mns = N(t, 'GeometryNodeInputPosition', gx0 - 1200, 560 + 260 * i)
-        ses = N(t, 'GeometryNodeSeparateXYZ', gx0 - 1080, 560 + 260 * i)
-        L(t, mns, 'Position', ses, 'Vector')
-        # band size follows bbox extents with a small depth protrusion
-        szx = N(t, 'GeometryNodeAttributeMathAdd', gx0 - 940, 480 + 260 * i)
-        if not szx:
-            szx = m(t, 'ADD', 0.0, 0.0, gx0 - 940, 480 + 260 * i)
-        L(t, ses, 'X', szx, 0)
-        szx.inputs[1].default_value = 0.002
-        szz = m(t, 'ADD', h, 0.0, gx0 - 940, 360 + 260 * i)
-        L(t, ses, 'Z', szz, 0)
-        szy = m(t, 'ADD', d, 0.0, gx0 - 940, 240 + 260 * i)
-        L(t, ses, 'Y', szy, 0)
-        L(t, szx, 'Value', cu, 'Size X')
-        L(t, szy, 'Value', cu, 'Size Y')
-        L(t, szz, 'Value', cu, 'Size Z')
-        cpos = com(t, 0.0, 0.0, z + h / 2.0)
-        for ax in ('X', 'Y'):
-            mnc = N(t, 'GeometryNodeInputPosition', gx0 - 1200, 120 + 260 * i)
-            sec = N(t, 'GeometryNodeSeparateXYZ', gx0 - 1080, 120 + 260 * i)
-            L(t, mnc, 'Position', sec, 'Vector')
-            mn = m(t, 'MINIMUM', 0.0, 0.0, gx0 - 960, 120 + 260 * i)
-            L(t, sec, ax, mn, 0)
-            mx = m(t, 'MAXIMUM', 0.0, 0.0, gx0 - 840, 120 + 260 * i)
-            L(t, mn, 'Value', mx, 0)
-            cenn = m(t, 'ADD', 0.0, 0.0, gx0 - 720, 120 + 260 * i)
-            L(t, mx, 'Value', cenn, 0)
-            cenn.inputs[1].default_value = -h / 2.0
-            cenn.inputs[0].default_value = 0.0
-            L(t, cenn, 'Value', cpos.inputs[0 if ax == 'X' else 1], 0)
-        cen = com(t, 0.0, 0.0, 0.0)
-        cen.inputs[2].default_value = z + h / 2.0
-        trx = N(t, 'FunctionNodeAlignEulerToVector', gx0 - 300, 300 + 260 * i)
-        L(t, cu, 'Mesh', trx, 0)
-        tfrm = N(t, 'GeometryNodeTransform', gx0 - 100, 300 + 260 * i)
-        L(t, trx, 'Rotation', tfrm, 'Rotation')
-        L(t, cpos, 'Vector', tfrm, 'Translation')
-        L(t, tfrm, 'Geometry', sw, 'True')
-        if i == 0:
-            last = sw
-        else:
-            jn = N(t, 'NodeJoinGeometry', gx0 - 400, 520 + 260 * i)
-            L(t, last, 0, jn, 0)
-            L(t, sw, 0, jn, 1)
-            last = jn
-    return last
-
-
-def _panel_chain(t, gin, gout, x0):
-    """Panel insets + gothic extras; returns (psw_out_node_socket_source)."""
-    gx0 = x0
-    # face normal
-    nop = N(t, 'GeometryNodeInputNormal', gx0, -400)
-    nor = N(t, 'GeometryNodeFaceforward', gx0 + 120, -400) if False else nop
-    andn = N(t, 'FunctionNodeBooleanMath', gx0 + 240, -400)
-    andn.operation = 'AND'
-    L(t, nop, 'Normal', andn, 0)
-    andn.inputs[1].default_value = True
-    # panel inset (recess) on the big faces
-    pos0 = N(t, 'GeometryNodeInputPosition', gx0, -520)
-    minz = N(t, 'ShaderNodeMath', gx0 + 120, -520)
-    minz.operation = 'MINIMUM'
-    posn = pos0
-    bmin = gin
-    L(t, gin, 'Geometry', posn, 0) if False else None
-    # --- selection: z-band of panels
-    sepp = N(t, 'GeometryNodeSeparateXYZ', gx0 + 120, -640)
-    L(t, pos0, 'Position', sepp, 'Vector')
-    gt1 = N(t, 'FunctionNodeCompare', gx0 + 240, -640)
-    gt1.data_type = 'FLOAT'
-    gt1.operation = 'GREATER_THAN'
-    L(t, sepp, 'Z', gt1, 0)
-    gt1.inputs[1].default_value = 0.22
-    lt1 = N(t, 'FunctionNodeCompare', gx0 + 360, -700)
-    lt1.data_type = 'FLOAT'
-    lt1.operation = 'LESS_THAN'
-    L(t, sepp, 'Z', lt1, 0)
-    lt1.inputs[1].default_value = 2.72
-    pband = N(t, 'FunctionNodeBooleanMath', gx0 + 480, -670)
-    L(t, gt1, 'Result', pband, 0)
-    L(t, lt1, 'Result', pband, 1)
-    sel = N(t, 'FunctionNodeBooleanMath', gx0 + 600, -640)
-    L(t, pband, 'Result', sel, 0)
-    L(t, andn, 'Result', sel, 1)
-    # normal-based face filter (|nx| or |ny| big)
-    sepn = N(t, 'GeometryNodeSeparateXYZ', gx0 + 240, -400)
-    L(t, nop, 'Normal', sepn, 'Vector')
-    ax1 = N(t, 'ShaderNodeMath', gx0 + 360, -360)
-    ax1.operation = 'ABSOLUTE'
-    L(t, sepn, 'X', ax1, 0)
-    ax2 = N(t, 'ShaderNodeMath', gx0 + 360, -440)
-    ax2.operation = 'ABSOLUTE'
-    L(t, sepn, 'Y', ax2, 0)
-    mx1 = N(t, 'ShaderNodeMath', gx0 + 480, -400)
-    mx1.operation = 'MAXIMUM'
-    L(t, ax1, 'Value', mx1, 0)
-    L(t, ax2, 'Value', mx1, 1)
-    bigf = N(t, 'FunctionNodeCompare', gx0 + 600, -400)
-    bigf.data_type = 'FLOAT'
-    bigf.operation = 'GREATER_THAN'
-    L(t, mx1, 'Value', bigf, 0)
-    bigf.inputs[1].default_value = 0.7
-    L(t, bigf, 'Result', sel, 1)
-    # first inset extrude
-    ex1 = N(t, 'GeometryNodeExtrudeMesh', gx0 + 760, -560)
-    ex1.mode = 'FACES'
-    offv1 = vm(t, 'SCALE', gx0 + 600, -800)
-    offn1 = N(t, 'GeometryNodeInputNormal', gx0 + 440, -800)
-    L(t, offn1, 'Normal', offv1, 0)
-    offv1.inputs['Scale'].default_value = -0.035
-    L(t, offv1, 'Vector', ex1, 'Offset')
-    L(t, sel, 'Result', ex1, 'Selection')
-    t1 = N(t, 'GeometryNodeInputMeshTop', gx0 + 760, -760)
-    # second, deeper inset
-    ex2 = N(t, 'GeometryNodeExtrudeMesh', gx0 + 960, -560)
-    ex2.mode = 'FACES'
-    offv2 = vm(t, 'SCALE', gx0 + 840, -800)
-    offn2 = N(t, 'GeometryNodeInputNormal', gx0 + 700, -800)
-    L(t, offn2, 'Normal', offv2, 0)
-    offv2.inputs['Scale'].default_value = -0.05
-    L(t, t1, 'Top', ex2, 'Selection')
-    L(t, offv2, 'Vector', ex2, 'Offset')
-    L(t, ex1, 'Mesh', ex2, 'Mesh')
-    # panel scale on the second inset's top faces
-    sce = N(t, 'GeometryNodeScaleElements', gx0 + 1160, -560)
-    L(t, ex2, 'Mesh', sce, 'Geometry')
-    L(t, ex2, 'Top', sce, 'Selection')
-    pscale = N(t, 'GeometryNodeInputPosition', gx0 + 980, -960)
-    psn = N(t, 'GeometryNodeScaleElements', gx0 + 1320, -700)
-    psn.inputs['Scale'].default_value = 0.86
-    # center of second inset faces (approx: position field, center mode)
-    psn.center_mode = 'ORIGIN' if hasattr(psn, 'center_mode') else psn.center_mode
-    psn2 = psn
-    L(t, ex2, 'Mesh', psn2, 'Geometry')
-    L(t, ex2, 'Top', psn2, 'Selection')
-    psw = N(t, 'GeometryNodeSwitch', gx0 + 1500, -560)
-    psw.switch_type = 'GEOMETRY'
-    L(t, gin, 'Show Panels', psw, 'Switch')
-    L(t, psn2, 'Geometry', psw, 'True')
-    L(t, gin, 'Geometry', psw, 'False')
-    return psw, ex2
-
-
-def _gothic_extras(t, gin, ex2, x0):
-    """Stepped reveals + arch medallions + quoins; returns (nodes, out)."""
-    gx0 = x0
-    made = []
-    # --- Higgsas stepped reveal (NTInset Face) with native fallback
-    higs = _higgs('NTInset Face')
-    step_out = None
-    if higs:
-        hg = N(t, 'GeometryNodeGroup', gx0 + 200, -560)
-        hg.node_tree = higs
-        L(t, ex2, 'Mesh', hg, 'Geometry') if 'Geometry' in [i.name for i in hg.inputs] else L(t, ex2, 'Mesh', hg, 0)
-        L(t, ex2, 'Top', hg, 'Selection') if 'Selection' in [i.name for i in hg.inputs] else None
-        made.append('NTInset Face')
-        try:
-            step_out = hg.outputs[[o.name for o in hg.outputs][0]]
-        except Exception:
-            step_out = None
-        print('[paris_wall_detail] NTInset Face sockets: in=%s out=%s'
-              % ([i.name for i in hg.inputs], [o.name for o in hg.outputs]))
-    if step_out is None:
-        # native fallback: third shallow extrude + scale on ex2 top
-        ex3 = N(t, 'GeometryNodeExtrudeMesh', gx0 + 200, -560)
-        ex3.mode = 'FACES'
-        offv3 = vm(t, 'SCALE', gx0 + 60, -800)
-        offn3 = N(t, 'GeometryNodeInputNormal', gx0 - 80, -800)
-        L(t, offn3, 'Normal', offv3, 0)
-        offv3.inputs['Scale'].default_value = -0.025
-        L(t, ex2, 'Mesh', ex3, 'Mesh')
-        L(t, ex2, 'Top', ex3, 'Selection')
-        L(t, offv3, 'Vector', ex3, 'Offset')
-        sce2 = N(t, 'GeometryNodeScaleElements', gx0 + 400, -560)
-        L(t, ex3, 'Mesh', sce2, 'Geometry')
-        L(t, ex3, 'Top', sce2, 'Selection')
-        sce2.inputs['Scale'].default_value = 0.80
-        step_out = (sce2, 'Geometry')
-        made.append('native stepped reveal')
-    # --- arch medallions on panel faces
-    arch_obj = None
-    try:
-        arch_obj = ensure_gothic_arch_object()
-    except Exception as e:
-        print('[paris_wall_detail] arch bake skipped: %s' % e)
-    arch_inst = None
-    if arch_obj is not None:
-        cap = N(t, 'GeometryNodeCaptureAttribute', gx0 + 600, -560)
-        cap.data_type = 'FLOAT_VECTOR'
-        cap.domain = 'FACE'
-        cn = N(t, 'GeometryNodeInputNormal', gx0 + 460, -860)
-        L(t, cn, 'Normal', cap, 'Value')
-        src = step_out[0].outputs[step_out[1]] if isinstance(step_out, tuple) else step_out.source_node
-        L(t, src, cap, 'Geometry')
-        # careful: L signature (t,a,sa,b,sb)
-        mtp = N(t, 'GeometryNodeMeshToPoints', gx0 + 820, -560)
-        mtp.domain = 'FACES'
-        L(t, cap, 'Geometry', mtp, 'Mesh')
-        L(t, ex2, 'Top', mtp, 'Selection')
-        aev = N(t, 'FunctionNodeAlignEulerToVector', gx0 + 980, -700)
-        aev.axis = 'Y'
-        nattr = N(t, 'GeometryNodeInputNamedAttribute', gx0 + 840, -860)
-        nattr.data_type = 'FLOAT_VECTOR'
-        nattr.inputs[0].default_value = 'MH_normal'
-        L(t, nattr, 'Attribute', aev, 'Vector')
-        oi = N(t, 'GeometryNodeObjectInfo', gx0 + 820, -300)
-        oi.transform_space = 'ORIGINAL'
-        oi.inputs['Object'].default_value = arch_obj
-        inst = N(t, 'GeometryNodeInstanceOnPoints', gx0 + 1160, -460)
-        L(t, mtp, 'Points', inst, 'Points')
-        L(t, oi, 'Geometry', inst, 'Instance')
-        L(t, aev, 'Rotation', inst, 'Rotation')
-        asc = N(t, 'GeometryNodeInputPosition', gx0 + 980, -900)
-        mul = N(t, 'ShaderNodeVectorMath', gx0 + 1120, -900)
-        mul.operation = 'MULTIPLY'
-        offc = com(t, 0.0, 0.0, 0.0)
-        mul.inputs[1].default_value = (0.045, 0.045, 0.045)
-        L(t, nattr, 'Attribute', mul, 0)
-        L(t, mul, 'Vector', inst, 'Translation')
-        inst.inputs['Scale'].default_value = (1.2, 1.2, 1.2)
-        arch_inst = inst
-        made.append('arch medallions')
-    # --- quoins on the four vertical corners
-    qoins = N(t, 'NodeJoinGeometry', gx0 + 200, 100)
-    lines = []
-    for k, (cx, cy) in enumerate(((0, 0), (1, 0), (1, 1), (0, 1))):
-        lnb = N(t, 'GeometryNodeMeshLine', gx0 + 40 + 40 * k, 100 + 60 * k)
-        for s in ('Start Location', 'End Location'):
-            lnb.inputs[s].default_value = (0.0, 0.0, 0.0)
-        lnb.inputs['Count'].default_value = 12
-        lines.append(lnb)
-    # corner positions from bbox min/max
-    for li, (ax_x, ax_y) in enumerate(((0, 0), (1, 0), (1, 1), (0, 1))):
-        ln = lines[li]
-        sxyz = com(t, 0.0, 0.0, 0.0)
-        exyz = com(t, 0.0, 0.0, 0.0)
-        for ai, ax in enumerate('XYZ'):
-            for src, dst in ((ax_x, sxyz), (ax_y, exyz)):
-                if ax in 'XY':
-                    mn = m(t, 'MINIMUM', 0.0, 0.0, gx0 - 300, -40 - 60 * (li * 6 + ai + (2 if src is ax_y else 0)))
-                    mx = m(t, 'MAXIMUM', 0.0, 0.0, gx0 - 180, -40 - 60 * (li * 6 + ai + (2 if src is ax_y else 0)))
-                    L(t, mn, 'Value', mx, 0)
-                    addv = m(t, 'ADD', 0.06, 0.0, gx0 - 60, -40 - 60 * (li * 6 + ai + (2 if src is ax_y else 0)))
-                    L(t, mx, 'Value', addv, 0)
-                    if src is ax_x:
-                        L(t, addv, 'Value', sxyz.inputs[ai])
-                    else:
-                        L(t, addv, 'Value', exyz.inputs[ai])
-                else:  # Z
-                    mn = m(t, 'MINIMUM', 0.0, 0.0, gx0 - 300, 260)
-                    mx = m(t, 'MAXIMUM', 0.0, 0.0, gx0 - 180, 260)
-                    L(t, mn, 'Value', mx, 0)
-                    ad0 = m(t, 'ADD', 0.06, 0.0, gx0 - 60, 300)
-                    L(t, mx, 'Value', ad0, 0)
-                    ad1 = m(t, 'ADD', -0.06, 0.0, gx0 - 60, 220)
-                    L(t, mx, 'Value', ad1, 0)
-                    L(t, ad0, 'Value', sxyz.inputs[2])
-                    L(t, ad1, 'Value', exyz.inputs[2])
-        # feed min/max from raw geometry position
-        gpos = N(t, 'GeometryNodeInputPosition', gx0 - 620, -40 - 30 * li)
-        gsep = N(t, 'GeometryNodeSeparateXYZ', gx0 - 500, -40 - 30 * li)
-        L(t, gin, 'Geometry', gpos, 0) if False else None
-        L(t, gpos, 'Position', gsep, 'Vector')
-        for li2, ch in enumerate('XYZ'):
-            mn2 = m(t, 'MINIMUM', 0.0, 0.0, gx0 - 380, -80 - 40 * li2)
-            mx2 = m(t, 'MAXIMUM', 0.0, 0.0, gx0 - 380, -80 - 40 * li2)
-            L(t, gsep, ch, mn2, 0)
-            L(t, mn2, 'Value', mx2, 0)
-    L(t, qoins, 0, qoins, 1) if False else None
-    for li, ln in enumerate(lines):
-        jn = N(t, 'NodeJoinGeometry', gx0 + 240 + 60 * li, 100)
-        pass
-    # join the four lines
-    jl = N(t, 'NodeJoinGeometry', gx0 + 340, 100)
-    L(t, lines[0], 'Points', jl, 'Geometry')
-    L(t, lines[1], 'Points', jl, 'Geometry')
-    L(t, lines[2], 'Points', jl, 'Geometry')
-    L(t, lines[3], 'Points', jl, 'Geometry')
-    # brick cube + alternating scale
-    brick = N(t, 'GeometryNodeMeshCube', gx0 + 520, 100)
-    for s in ('Size X', 'Size Y', 'Size Z'):
-        brick.inputs[s].default_value = 1.0
-    rnd = N(t, 'FunctionNodeRandomValue', gx0 + 520, -80)
-    rnd.data_type = 'INT'
-    rnd.inputs[0].default_value = 0
-    rnd.inputs[1].default_value = 2
-    cmp0 = N(t, 'FunctionNodeCompare', gx0 + 660, -80)
-    cmp0.data_type = 'FLOAT'
-    cmp0.operation = 'EQUAL'
-    L(t, rnd, 'Value', cmp0, 0)
-    cmp0.inputs[1].default_value = 0
-    alt = m(t, 'SUBTRACT', 0.38, 0.26, gx0 + 780, -80)
-    L(t, cmp0, 'Result', alt, 0)
-    qscale = N(t, 'GeometryNodeSeparateXYZ', gx0 + 900, -80)
-    qcomb = N(t, 'FunctionNodeCombineXYZ', gx0 + 1020, -80)
-    L(t, alt, 'Value', qcomb, 'X')
-    qcomb.inputs['Y'].default_value = 1.0
-    qcomb.inputs['Z'].default_value = 1.0
-    instq = N(t, 'GeometryNodeInstanceOnPoints', gx0 + 1160, 60)
-    L(t, jl, 'Geometry', instq, 'Points')
-    L(t, brick, 'Mesh', instq, 'Instance')
-    instq.inputs['Scale'].default_value = (0.32, 0.42, 0.12)
-    made.append('quoins')
-    # gothic join
-    gj = N(t, 'NodeJoinGeometry', gx0 + 1400, -200)
-    L(t, step_out[0], step_out[1], gj, 0) if isinstance(step_out, tuple) else L(t, step_out.source_node, step_out.name, gj, 0)
-    if arch_inst:
-        L(t, arch_inst, 'Instances', gj, 1)
-        L(t, instq, 'Instances', gj, 2)
-    else:
-        L(t, instq, 'Instances', gj, 1)
-    rz = N(t, 'GeometryNodeRealizeInstances', gx0 + 1560, -200)
-    L(t, gj, 'Geometry', rz, 'Geometry')
-    return rz, made
-
-
-def _uv_and_finish(t, gin, gout, style_node, x0):
-    """Trim UV store + proxy material + apply switch + in-group bevel."""
-    gx0 = x0
-    rnorm = N(t, 'GeometryNodeInputNormal', gx0, 0)
-    tvv = N(t, 'ShaderNodeVectorMath', gx0 + 120, 0)
-    tvv.operation = 'DOT_PRODUCT'
-    tvn = N(t, 'GeometryNodeInputNormal', gx0, 120)
-    tvv.inputs[1].default_value = (0.0, 0.0, 1.0)
-    L(t, rnorm, 'Normal', tvv, 0)
-    anorm = N(t, 'ShaderNodeMath', gx0 + 240, 0)
-    anorm.operation = 'ABSOLUTE'
-    L(t, tvv, 'Value', anorm, 0)
-    gtan = N(t, 'FunctionNodeCompare', gx0 + 360, 0)
-    gtan.data_type = 'FLOAT'
-    gtan.operation = 'LESS_THAN'
-    L(t, anorm, 'Value', gtan, 0)
-    gtan.inputs[1].default_value = 0.85
-    band2 = N(t, 'FunctionNodeBooleanMath', gx0 + 480, 0)
-    L(t, gtan, 'Result', band2, 0)
-    band2.inputs[1].default_value = True
-    pv = N(t, 'GeometryNodeInputPosition', gx0, 160)
-    sepv = N(t, 'GeometryNodeSeparateXYZ', gx0 + 120, 160)
-    L(t, pv, 'Position', sepv, 'Vector')
-    vmax = N(t, 'ShaderNodeMath', gx0 + 240, 160)
-    vmax.operation = 'MAXIMUM'
-    L(t, sepv, 'Z', vmax, 0)
-    vmin = N(t, 'ShaderNodeMath', gx0 + 240, 80)
-    vmin.operation = 'MINIMUM'
-    L(t, sepv, 'Z', vmin, 0)
-    # normalize z into v with a divide by height (use bbox via max-min)
-    hgt = N(t, 'ShaderNodeMath', gx0 + 360, 120)
-    hgt.operation = 'SUBTRACT'
-    L(t, vmax, 'Value', hgt, 0)
-    L(t, vmin, 'Value', hgt, 1)
-    zv = N(t, 'ShaderNodeMath', gx0 + 480, 160)
-    zv.operation = 'SUBTRACT'
-    L(t, sepv, 'Z', zv, 0)
-    L(t, vmin, 'Value', zv, 1)
-    dvn = N(t, 'ShaderNodeMath', gx0 + 600, 160)
-    dvn.operation = 'DIVIDE'
-    L(t, zv, 'Value', dvn, 0)
-    L(t, hgt, 'Value', dvn, 1)
-    # band v mapping: 4 bands over 0..1
-    bmul = m(t, 'MULTIPLY', 0.0, 0.25, gx0 + 720, 160)
-    L(t, dvn, 'Value', bmul, 0)
-    uvband = N(t, 'GeometryNodeUVMap', gx0 + 840, 120)
-    uvband.uv_map = 'TS_trim'
-    mk = N(t, 'GeometryNodeStoreNamedAttribute', gx0 + 980, 120)
-    mk.domain = 'CORNER'
-    mk.data_type = 'FLOAT2'
-    mk.inputs['Name'].default_value = 'UVMap'
-    L(t, bmul, 'Value', mk, 'Value')
-    # proxy trim material
-    mat = bpy.data.materials.get('PROXY_TS_Melodia_Stone')
-    if not mat:
-        mat = bpy.data.materials.new('PROXY_TS_Melodia_Stone')
-        mat.diffuse_color = (0.62, 0.57, 0.50, 1.0)
-    sm = N(t, 'GeometryNodeSetMaterial', gx0 + 1140, 0)
-    sm.inputs['Material'].default_value = mat
-    ap = N(t, 'GeometryNodeSwitch', gx0 + 1320, 0)
-    ap.switch_type = 'GEOMETRY'
-    L(t, gin, 'Apply Trim UV', ap, 'Switch')
-    L(t, mk, 'Geometry', ap, 'True')
-    L(t, sm, 'Geometry', ap, 'False')
-    bv = N(t, 'GeometryNodeMeshBevel', gx0 + 1500, 0)
-    bv.inputs['Offset'].default_value = 0.04
-    bv.inputs['Segments'].default_value = 3
-    L(t, ap, 'Output', bv, 'Mesh')
-    return bv
-
-
-# ------------------------------------------------- builders
+# ------------------------------------------------- WallDetail v2 builder
 
 def build_wall_detail(group_name='GN_PARIS_WallDetail'):
     old = bpy.data.node_groups.get(group_name)
     if old:
-        bpy.data.node_groups.remove(old)
+        try:
+            bpy.data.node_groups.remove(old)
+        except Exception:
+            pass
     t = bpy.data.node_groups.new(group_name, 'GeometryNodeTree')
     t.is_modifier = True
-    ins = [
-        'Geometry', 'BBox Min', 'BBox Max', 'Show Cornice', 'Show String',
-        'Show Wainscot', 'Show Baseboard', 'Show Panels', 'Panel Scale',
-        'Apply Trim UV', 'CORNICE_STYLE',
+    sock(t, 'Geometry', 'NodeSocketGeometry')
+    sock(t, 'BBox Min', 'NodeSocketVector', (0, 0, 0))
+    sock(t, 'BBox Max', 'NodeSocketVector', (2, 0.3, 3))
+    sock(t, 'Show Cornice', 'NodeSocketBool', True)
+    sock(t, 'Show String', 'NodeSocketBool', True)
+    sock(t, 'Show Wainscot', 'NodeSocketBool', True)
+    sock(t, 'Show Baseboard', 'NodeSocketBool', True)
+    sock(t, 'Show Panels', 'NodeSocketBool', True)
+    sock(t, 'Panel Scale', 'NodeSocketFloat', 0.86)
+    sock(t, 'Apply Trim UV', 'NodeSocketBool', True)
+    sock(t, 'CORNICE_STYLE', 'NodeSocketInt', 1)
+    sock(t, 'Geometry', 'NodeSocketGeometry', in_out='OUTPUT')
+    gin = N(t, 'NodeGroupInput', -1700, 0)
+    gout = N(t, 'NodeGroupOutput', 2300, 0)
+
+    # --- bbox decomposition (mesh-local: Bounding Box node on the input
+    # geometry, NOT world-space BBox inputs — walls sit at non-identity
+    # local transforms; trim must be computed in the mesh's own space)
+    bbo = N(t, 'GeometryNodeBoundBox', -1650, 0)
+    L(t, gin, 'Geometry', bbo, 'Geometry')
+    bmin = N(t, 'ShaderNodeSeparateXYZ', -1500, 300)
+    L(t, bbo, 'Min', bmin, 0)
+    bmax = N(t, 'ShaderNodeSeparateXYZ', -1500, -300)
+    L(t, bbo, 'Max', bmax, 0)
+    W = mathn(t, 'SUBTRACT', -1300, 340); L(t, bmax, 'X', W, 0); L(t, bmin, 'X', W, 1)
+    D = mathn(t, 'SUBTRACT', -1300, 260); L(t, bmax, 'Y', D, 0); L(t, bmin, 'Y', D, 1)
+    H = mathn(t, 'SUBTRACT', -1300, 180); L(t, bmax, 'Z', H, 0); L(t, bmin, 'Z', H, 1)
+    cxa = mathn(t, 'ADD', -1400, 100); L(t, bmax, 'X', cxa, 0); L(t, bmin, 'X', cxa, 1)
+    cx = mathn(t, 'DIVIDE', -1280, 100); cx.inputs[1].default_value = 2.0; L(t, cxa, 0, cx, 0)
+    cya = mathn(t, 'ADD', -1400, 20); L(t, bmax, 'Y', cya, 0); L(t, bmin, 'Y', cya, 1)
+    cy = mathn(t, 'DIVIDE', -1280, 20); cy.inputs[1].default_value = 2.0; L(t, cya, 0, cy, 0)
+
+    def cube_at(x0, y0, dx, dy, dz, zc_expr):
+        """dx/dy added to W/D; dz constant height; zc_expr = (marker, offset)."""
+        sx = mathn(t, 'ADD', x0, y0 + 240); L(t, W, 0, sx, 0); sx.inputs[1].default_value = dx
+        sy = mathn(t, 'ADD', x0, y0 + 160); L(t, D, 0, sy, 0); sy.inputs[1].default_value = dy
+        size = N(t, 'ShaderNodeCombineXYZ', x0 + 160, y0 + 200)
+        L(t, sx, 0, size, 'X'); L(t, sy, 0, size, 'Y'); size.inputs['Z'].default_value = dz
+        cub = N(t, 'GeometryNodeMeshCube', x0 + 320, y0 + 200)
+        L(t, size, 'Vector', cub, 'Size')
+        pz = mathn(t, 'ADD', x0, y0 + 60)
+        if zc_expr[0] == 'maxz':
+            L(t, bmax, 'Z', pz, 0)
+        else:
+            L(t, bmin, 'Z', pz, 0)
+        pz.inputs[1].default_value = zc_expr[1]
+        pos = N(t, 'ShaderNodeCombineXYZ', x0 + 160, y0 + 60)
+        L(t, cx, 0, pos, 'X'); L(t, cy, 0, pos, 'Y'); L(t, pz, 0, pos, 'Z')
+        tr = N(t, 'GeometryNodeTransform', x0 + 480, y0 + 120)
+        L(t, cub, 'Mesh', tr, 'Geometry'); L(t, pos, 'Vector', tr, 'Translation')
+        return tr
+
+    specs = [
+        ('Show Cornice',   -1050,  520, 0.10, 0.10, 0.06, ('maxz', -0.03)),
+        ('Show Cornice',   -1050,  340, 0.24, 0.24, 0.15, ('maxz', -0.135)),
+        ('Show Cornice',   -1050,  160, 0.08, 0.08, 0.09, ('maxz', -0.255)),
+        ('Show String',    -1050,  -20, 0.14, 0.14, 0.07, ('maxz', -0.335)),
+        ('Show Wainscot',  -1050, -200, 0.10, 0.10, 0.05, ('minz', 0.755)),
+        ('Show Baseboard', -1050, -380, 0.10, 0.10, 0.18, ('minz', 0.09)),
     ]
-    for i, s in enumerate(ins):
-        st = 'NodeSocketGeometry' if s == 'Geometry' else 'NodeSocketInt' if s == 'CORNICE_STYLE' else 'NodeSocketFloat'
-        if s == 'BBox Min':
-            st = 'NodeSocketVector'
-        if s == 'BBox Max':
-            st = 'NodeSocketVector'
-        si = t.interface.new_socket(s, in_out='INPUT', socket_type=st)
-        if s.startswith('Show ') or s == 'Apply Trim UV':
-            si.default_value = True if s != 'Show Panels' else True
-        if s == 'CORNICE_STYLE':
-            si.default_value = 1
-        if s == 'Panel Scale':
-            si.default_value = 0.86
-    t.interface.new_socket('Geometry', in_out='OUTPUT', socket_type='NodeSocketGeometry')
-    gin = t.nodes.new('NodeGroupInput')
-    gin.location = (-1600, 0)
-    gout = t.nodes.new('NodeGroupOutput')
-    gout.location = (1600, 0)
-    # bbox translate: move wall to origin, work, move back
-    bmv = N(t, 'ShaderNodeVectorMath', -1400, 0)
-    bmv.operation = 'SUBTRACT'
-    L(t, gin, 'BBox Min', bmv, 6)
-    gin_geom = N(t, 'GeometryNodeTransform', -1200, 0)
-    L(t, gin, 'Geometry', gin_geom, 'Geometry')
-    L(t, bmv, 'Vector', gin_geom, 'Translation')
-    bands, _ = _band_chain(t, gin, gout, -1200)
-    panels, ex2 = _panel_chain(t, gin, gout, -1200)
-    # joins
-    jb = N(t, 'NodeJoinGeometry', 200, 400)
-    L(t, bands, 0, jb, 0)
-    L(t, panels, 'Output', jb, 1)
-    jp = panels
-    goth, made = _gothic_extras(t, gin, ex2, 400)
-    # style chain: 0 flat -> panels only; 1 haussmann -> bands+panels; 2 gothic -> + extras
-    c01 = N(t, 'FunctionNodeCompare', 600, 300)
-    c01.data_type = 'FLOAT'
-    c01.operation = 'LESS_EQUAL'
-    L(t, gin, 'CORNICE_STYLE', c01, 0)
-    c01.inputs[1].default_value = 0.5
-    c12 = N(t, 'FunctionNodeCompare', 600, 180)
-    c12.data_type = 'FLOAT'
-    c12.operation = 'GREATER_EQUAL'
-    L(t, gin, 'CORNICE_STYLE', c12, 0)
-    c12.inputs[1].default_value = 1.5
-    sw2 = N(t, 'GeometryNodeSwitch', 800, 180)
-    sw2.switch_type = 'GEOMETRY'
-    L(t, c12, 'Result', sw2, 'Switch')
-    L(t, goth, 'Geometry', sw2, 'True')
-    L(t, jb, 'Geometry', sw2, 'False')
-    sw1 = N(t, 'GeometryNodeSwitch', 1000, 300)
-    sw1.switch_type = 'GEOMETRY'
-    L(t, c01, 'Result', sw1, 'Switch')
-    L(t, jp, 'Output', sw1, 'True')
-    L(t, sw2, 'Output', sw1, 'False')
-    fin = _uv_and_finish(t, gin, gout, sw1, 1200)
-    L(t, fin, 'Mesh', gout, 'Geometry')
-    t.description = 'Paris lane v2: FLAT/HAUSSMANN/GOTHIC wall trim (CORNICE_STYLE 0/1/2).'
-    print('[paris_wall_detail] built %s v2: %d nodes, gothic parts: %s'
+    jband = N(t, 'GeometryNodeJoinGeometry', -100, 700)
+    for toggle, x0, y0, dx, dy, dz, zc in specs:
+        tr = cube_at(x0, y0, dx, dy, dz, zc)
+        sw = gswitch(t, -640, y0 + 700)
+        L(t, gin, toggle, sw, 'Switch')
+        L(t, tr, 'Geometry', sw, 'True')
+        t.links.new(sw.outputs[0], jband.inputs['Geometry'])
+
+    # --- panel insets on the wall body (verbatim staged)
+    pos_n = N(t, 'GeometryNodeInputPosition', -1500, -700)
+    nor_n = N(t, 'GeometryNodeInputNormal', -1500, -900)
+    pos_s = N(t, 'ShaderNodeSeparateXYZ', -1340, -700); L(t, pos_n, 'Position', pos_s, 0)
+    nor_s = N(t, 'ShaderNodeSeparateXYZ', -1340, -900); L(t, nor_n, 'Normal', nor_s, 0)
+    area = N(t, 'GeometryNodeInputMeshFaceArea', -1500, -1050)
+    big = comp(t, -1180, -1050, 'GREATER_THAN', 0.5); L(t, area, 0, big, 0)
+    nzabs = mathn(t, 'ABSOLUTE', -1180, -900); L(t, nor_s, 'Z', nzabs, 0)
+    flat = comp(t, -1020, -900, 'LESS_THAN', 0.2); L(t, nzabs, 0, flat, 0)
+    andn = N(t, 'FunctionNodeBooleanMath', -860, -950)
+    andn.operation = 'AND'
+    L(t, big, 0, andn, 0); L(t, flat, 0, andn, 1)
+    ex1 = N(t, 'GeometryNodeExtrudeMesh', -700, -950)
+    ex1.inputs['Individual'].default_value = True
+    ex1.inputs['Offset Scale'].default_value = 0.0
+    L(t, gin, 'Geometry', ex1, 'Mesh'); L(t, andn, 0, ex1, 'Selection')
+    sce = N(t, 'GeometryNodeScaleElements', -520, -950)
+    sce.inputs['Scale Mode'].default_value = 'Uniform'
+    L(t, ex1, 'Mesh', sce, 'Geometry'); L(t, ex1, 'Top', sce, 'Selection')
+    L(t, gin, 'Panel Scale', sce, 'Scale'); L(t, pos_n, 'Position', sce, 'Center')
+    offv = vmath(t, 'MULTIPLY', -520, -1150); L(t, nor_n, 'Normal', offv, 0)
+    offc = N(t, 'ShaderNodeCombineXYZ', -700, -1200)
+    offc.inputs['X'].default_value = -0.05
+    offc.inputs['Y'].default_value = -0.05
+    offc.inputs['Z'].default_value = -0.05
+    L(t, offc, 'Vector', offv, 1)
+    ex2 = N(t, 'GeometryNodeExtrudeMesh', -340, -1000)
+    ex2.inputs['Individual'].default_value = True
+    L(t, sce, 'Geometry', ex2, 'Mesh'); L(t, ex1, 'Top', ex2, 'Selection')
+    L(t, offv, 'Vector', ex2, 'Offset'); ex2.inputs['Offset Scale'].default_value = 1.0
+    psw = gswitch(t, -160, -900)
+    L(t, gin, 'Show Panels', psw, 'Switch')
+    L(t, ex2, 'Mesh', psw, 'True'); L(t, gin, 'Geometry', psw, 'False')
+    jpan = N(t, 'GeometryNodeJoinGeometry', 40, -900)
+    t.links.new(psw.outputs[0], jpan.inputs['Geometry'])
+    jall = N(t, 'GeometryNodeJoinGeometry', 200, 0)
+    # Bevel ONLY the band cubes (clean boxes): the panel chain carries
+    # in-place duplicates whose degenerate edges spike the bevel (~3m
+    # strays + 14x vert inflation when the wall is kit-fed).
+    bvlb = N(t, 'GeometryNodeMeshBevel', 120, 260)
+    bvlb.inputs['Offset'].default_value = 0.04
+    bvlb.inputs['Segments'].default_value = 3
+    L(t, jband, 'Geometry', bvlb, 'Mesh')
+    L(t, bvlb, 'Mesh', jall, 'Geometry')
+    t.links.new(jpan.outputs[0], jall.inputs['Geometry'])
+
+    # --- v2 gothic branch: stepped reveal + arch medallions + quoins
+    made = []
+    goth_geo = _gothic_branch(t, gin, ex2, pos_n, nor_n, W, D, cx, cy,
+                              bmin, bmax, made)
+
+    # --- style chain: 0=FLAT(panels) 1=HAUSSMANN(bands+panels) 2=GOTHIC
+    c01 = comp(t, 400, 300, 'LESS_EQUAL', 0.5); L(t, gin, 'CORNICE_STYLE', c01, 0)
+    c12 = comp(t, 400, 180, 'GREATER_EQUAL', 1.5); L(t, gin, 'CORNICE_STYLE', c12, 0)
+    swB = gswitch(t, 600, 180)
+    L(t, c12, 0, swB, 'Switch')
+    L(t, goth_geo, 'Geometry', swB, 'True'); L(t, jall, 'Geometry', swB, 'False')
+    swA = gswitch(t, 760, 300)
+    L(t, c01, 0, swA, 'Switch')
+    L(t, jpan, 'Geometry', swA, 'True'); L(t, swB, 'Output', swA, 'False')
+
+    # --- UV band authoring (verbatim staged; input = styled geometry)
+    zr = mathn(t, 'DIVIDE', 900, 700)
+    sub = mathn(t, 'SUBTRACT', 740, 700); L(t, pos_s, 'Z', sub, 0); L(t, bmin, 'Z', sub, 1)
+    L(t, sub, 0, zr, 0); L(t, H, 0, zr, 1)
+    corn_lo = mathn(t, 'SUBTRACT', 740, 560)
+    fr = mathn(t, 'DIVIDE', 580, 560); fr.inputs[1].default_value = 0.37
+    L(t, H, 0, fr, 0); corn_lo.inputs[0].default_value = 1.0; L(t, fr, 0, corn_lo, 1)
+    bb_hi = mathn(t, 'DIVIDE', 580, 480); bb_hi.inputs[0].default_value = 0.18; L(t, H, 0, bb_hi, 1)
+    wa_hi = mathn(t, 'DIVIDE', 580, 400); wa_hi.inputs[0].default_value = 0.73; L(t, H, 0, wa_hi, 1)
+    v_corn = mapr(t, 1080, 620, 0, 1, 0.689, 0.811); L(t, zr, 0, v_corn, 'Value')
+    L(t, corn_lo, 0, v_corn, 'From Min'); v_corn.inputs['From Max'].default_value = 1.0
+    v_panel = mapr(t, 1080, 500, 0, 1, 0.282, 0.686); L(t, zr, 0, v_panel, 'Value')
+    L(t, wa_hi, 0, v_panel, 'From Min'); L(t, corn_lo, 0, v_panel, 'From Max')
+    v_wa = mapr(t, 1080, 380, 0, 1, 0.189, 0.279); L(t, zr, 0, v_wa, 'Value')
+    L(t, bb_hi, 0, v_wa, 'From Min'); L(t, wa_hi, 0, v_wa, 'From Max')
+    v_bb = mapr(t, 1080, 260, 0, 1, 0.044, 0.186); L(t, zr, 0, v_bb, 'Value')
+    v_bb.inputs['From Min'].default_value = 0.0; L(t, bb_hi, 0, v_bb, 'From Max')
+    m_corn = comp(t, 1080, 160, 'GREATER_THAN', 0.0); L(t, zr, 0, m_corn, 0); L(t, corn_lo, 0, m_corn, 1)
+    m_bb = comp(t, 1080, 60, 'LESS_THAN', 0.0); L(t, zr, 0, m_bb, 0); L(t, bb_hi, 0, m_bb, 1)
+    m_wa = comp(t, 1080, -40, 'LESS_THAN', 0.0); L(t, zr, 0, m_wa, 0); L(t, wa_hi, 0, m_wa, 1)
+    s1 = fswitch(t, 1260, 400); L(t, m_wa, 0, s1, 'Switch')
+    L(t, v_panel, 0, s1, 'False'); L(t, v_wa, 0, s1, 'True')
+    s2 = fswitch(t, 1400, 400); L(t, m_bb, 0, s2, 'Switch')
+    L(t, s1, 0, s2, 'False'); L(t, v_bb, 0, s2, 'True')
+    s3 = fswitch(t, 1540, 400); L(t, m_corn, 0, s3, 'Switch')
+    L(t, s2, 0, s3, 'False'); L(t, v_corn, 0, s3, 'True')
+    nz = N(t, 'ShaderNodeSeparateXYZ', 900, -300); L(t, nor_n, 'Normal', nz, 0)
+    is_top = comp(t, 1080, -300, 'GREATER_THAN', 0.6); L(t, nz, 'Z', is_top, 0)
+    is_bot = comp(t, 1080, -420, 'LESS_THAN', -0.6); L(t, nz, 'Z', is_bot, 0)
+    v_ledge = mathn(t, 'ADD', 1080, -540); v_ledge.inputs[0].default_value = 0.02; v_ledge.inputs[1].default_value = 0.0
+    v_half = mathn(t, 'ADD', 1080, -640); v_half.inputs[0].default_value = 0.5; v_half.inputs[1].default_value = 0.0
+    s4 = fswitch(t, 1680, 400); L(t, is_top, 0, s4, 'Switch'); L(t, s3, 0, s4, 'False'); L(t, v_ledge, 0, s4, 'True')
+    s5 = fswitch(t, 1820, 400); L(t, is_bot, 0, s5, 'Switch'); L(t, s4, 0, s5, 'False'); L(t, v_half, 0, s5, 'True')
+    nxabs = mathn(t, 'ABSOLUTE', 900, -200); L(t, nor_s, 'X', nxabs, 0)
+    nyabs = mathn(t, 'ABSOLUTE', 900, -300); L(t, nor_s, 'Y', nyabs, 0)
+    usel = comp(t, 1080, -200, 'GREATER_EQUAL', 0.0); L(t, nxabs, 0, usel, 0); L(t, nyabs, 0, usel, 1)
+    ux_d = mathn(t, 'DIVIDE', 1080, -740); L(t, pos_s, 'X', ux_d, 0); ux_d.inputs[1].default_value = 3.4
+    ux = mathn(t, 'WRAP', 1240, -740); ux.inputs[1].default_value = 0.0; ux.inputs[2].default_value = 1.0
+    L(t, ux_d, 0, ux, 0)
+    uy_d = mathn(t, 'DIVIDE', 1080, -860); L(t, pos_s, 'Y', uy_d, 0); uy_d.inputs[1].default_value = 3.4
+    uy = mathn(t, 'WRAP', 1240, -860); uy.inputs[1].default_value = 0.0; uy.inputs[2].default_value = 1.0
+    L(t, uy_d, 0, uy, 0)
+    usw = fswitch(t, 1400, -800); L(t, usel, 0, usw, 'Switch')
+    L(t, uy, 0, usw, 'False'); L(t, ux, 0, usw, 'True')
+    uv = N(t, 'ShaderNodeCombineXYZ', 1960, 200); L(t, usw, 0, uv, 'X'); L(t, s5, 0, uv, 'Y')
+    store = N(t, 'GeometryNodeStoreNamedAttribute', 2100, 200)
+    store.data_type = 'FLOAT2'; store.domain = 'CORNER'
+    store.inputs['Name'].default_value = 'UVMap'
+    L(t, swA, 'Output', store, 'Geometry'); L(t, uv, 'Vector', store, 'Value')
+    setmat = N(t, 'GeometryNodeSetMaterial', 2240, 200)
+    setmat.inputs['Material'].default_value = _trim_mat()
+    L(t, store, 'Geometry', setmat, 'Geometry')
+    appl = gswitch(t, 2040, -300)
+    L(t, gin, 'Apply Trim UV', appl, 'Switch')
+    L(t, store, 'Geometry', appl, 'False'); L(t, setmat, 'Geometry', appl, 'True')
+    # No end-of-chain bevel: the realized gothic stream spikes and the
+    # panel chain degenerates spike too; bands are beveled at their join.
+    L(t, appl, 'Output', gout, 'Geometry')
+    t.description = ('Paris lane v2: FLAT/HAUSSMANN/GOTHIC via CORNICE_STYLE '
+                     '0/1/2; in-group bevel; arch medallions + quoins (gothic).')
+    print('[paris_wall_detail] built %s v2: %d nodes; gothic parts: %s'
           % (group_name, len(t.nodes), made))
     return (t, gin, gout)
 
 
+def _gothic_branch(t, gin, ex2, pos_n, nor_n, W, D, cx, cy, bmin, bmax, made):
+    """Stepped reveals + arch medallions + quoins for CORNICE_STYLE=2."""
+    # stepped reveal: third shallow extrude + slight scale on ex2 top
+    ex3 = N(t, 'GeometryNodeExtrudeMesh', -160, -1150)
+    ex3.inputs['Individual'].default_value = True
+    offv3 = vmath(t, 'MULTIPLY', -320, -1300)
+    L(t, nor_n, 'Normal', offv3, 0)
+    offc3 = N(t, 'ShaderNodeCombineXYZ', -500, -1350)
+    offc3.inputs['X'].default_value = -0.025
+    offc3.inputs['Y'].default_value = -0.025
+    offc3.inputs['Z'].default_value = -0.025
+    L(t, offc3, 'Vector', offv3, 1)
+    L(t, ex2, 'Mesh', ex3, 'Mesh'); L(t, ex2, 'Top', ex3, 'Selection')
+    L(t, offv3, 'Vector', ex3, 'Offset'); ex3.inputs['Offset Scale'].default_value = 1.0
+    sce2 = N(t, 'GeometryNodeScaleElements', 20, -1150)
+    sce2.inputs['Scale Mode'].default_value = 'Uniform'
+    L(t, ex3, 'Mesh', sce2, 'Geometry'); L(t, ex3, 'Top', sce2, 'Selection')
+    sce2.inputs['Scale'].default_value = 0.82
+    L(t, pos_n, 'Position', sce2, 'Center')
+    made.append('stepped-reveal')
+
+    # Higgsas probe (informational; native extrude is the wired engine)
+    higs = _higgs('NTInset Face')
+    if higs:
+        made.append('NTInset Face available')
+        try:
+            names = [i.name for i in higs.interface.items_tree
+                     if getattr(i, 'in_out', 'INPUT') == 'INPUT']
+            print('[paris_wall_detail] NTInset Face inputs: %s' % names[:10])
+        except Exception:
+            pass
+
+    # arch medallions: one instance per stepped panel face
+    try:
+        arch_obj = ensure_gothic_arch_object()
+    except Exception as e:
+        print('[paris_wall_detail] arch bake skipped: %s' % e)
+        arch_obj = None
+    arch_inst = None
+    if arch_obj is not None:
+        mtp = N(t, 'GeometryNodeMeshToPoints', 200, -1250)
+        if hasattr(mtp, 'mode'):
+            mtp.mode = 'FACES'
+        elif hasattr(mtp, 'domain'):
+            mtp.domain = 'FACES'
+        elif mtp.inputs.get('Domain') is not None:
+            mtp.inputs['Domain'].default_value = 'FACES'
+        else:
+            print('[paris_wall_detail] MeshToPoints: no domain control; using points fallback')
+        L(t, sce2, 'Geometry', mtp, 'Mesh')
+        L(t, ex3, 'Top', mtp, 'Selection')
+        bigx = comp(t, 200, -1450, 'GREATER_THAN', 0.0)
+        L(t, W, 0, bigx, 0); L(t, D, 0, bigx, 1)
+        rz0 = mathn(t, 'ADD', 360, -1490, 0.0, 0.0)
+        rz1 = mathn(t, 'ADD', 360, -1570, 1.5708, 0.0)
+        rsw = fswitch(t, 520, -1500); L(t, bigx, 0, rsw, 'Switch')
+        L(t, rz1, 0, rsw, 'False'); L(t, rz0, 0, rsw, 'True')
+        rrz = N(t, 'ShaderNodeCombineXYZ', 660, -1500); L(t, rsw, 0, rrz, 'Z')
+        # Medallion fit filter: the arch is 1.392 long (1.16 x 1.2); drop
+        # points whose arch would overhang the wall ends (the X +0.50
+        # overshoot on GOTHIC walls).
+        cxb = mathn(t, 'ADD', 40, -1650); L(t, bmin, 'X', cxb, 0); L(t, bmax, 'X', cxb, 1)
+        cxb2 = mathn(t, 'DIVIDE', 200, -1650); cxb2.inputs[1].default_value = 2.0; L(t, cxb, 0, cxb2, 0)
+        halfw = mathn(t, 'SUBTRACT', 40, -1720); L(t, bmax, 'X', halfw, 0); L(t, bmin, 'X', halfw, 1)
+        halfw2 = mathn(t, 'DIVIDE', 200, -1720); halfw2.inputs[1].default_value = 2.0; L(t, halfw, 0, halfw2, 0)
+        thr = mathn(t, 'SUBTRACT', 360, -1680); thr.inputs[1].default_value = 0.716; L(t, halfw2, 0, thr, 0)
+        ppos = N(t, 'ShaderNodeSeparateXYZ', 40, -1580); L(t, pos_n, 'Position', ppos, 0)
+        dxp = mathn(t, 'SUBTRACT', 200, -1580); L(t, ppos, 'X', dxp, 0); L(t, cxb2, 0, dxp, 1)
+        adx = mathn(t, 'ABSOLUTE', 360, -1580); L(t, dxp, 0, adx, 0)
+        gtfit = comp(t, 520, -1580, 'GREATER_THAN', 0.0); L(t, adx, 0, gtfit, 0); L(t, thr, 0, gtfit, 1)
+        delp = N(t, 'GeometryNodeDeleteGeometry', 700, -1400)
+        # 5.2: Delete Geometry has NO Domain/Mode INPUT sockets (they are node
+        # properties) and the defaults are domain=POINT mode=ALL — exactly the
+        # semantics needed, so no assignment at all. Writing
+        # delp.inputs['Domain'] raised KeyError and killed the build mid-chain
+        # (the saved blend held a 99-node unwired partial, 2026-09-20).
+        L(t, mtp, 'Points', delp, 'Geometry'); L(t, gtfit, 0, delp, 'Selection')
+        oi = N(t, 'GeometryNodeObjectInfo', 200, -1550)
+        oi.transform_space = 'ORIGINAL'
+        oi.inputs['Object'].default_value = arch_obj
+        inst = N(t, 'GeometryNodeInstanceOnPoints', 820, -1300)
+        L(t, delp, 'Geometry', inst, 'Points')
+        L(t, oi, 'Geometry', inst, 'Instance')
+        L(t, rrz, 'Vector', inst, 'Rotation')
+        inst.inputs['Scale'].default_value = (1.2, 1.2, 1.2)
+        arch_inst = inst
+        made.append('arch-medallions')
+
+    # quoins on the four vertical corners
+    jl = N(t, 'GeometryNodeJoinGeometry', 200, 300)
+    corners = ((bmin, 'X', bmin, 'Y'), (bmax, 'X', bmin, 'Y'),
+               (bmax, 'X', bmax, 'Y'), (bmin, 'X', bmax, 'Y'))
+    for k, (sx_node, sx_ax, sy_node, sy_ax) in enumerate(corners):
+        lnb = N(t, 'GeometryNodeMeshLine', 40, 300 + 90 * k)
+        lnb.inputs['Count'].default_value = 12
+        sxyz = N(t, 'ShaderNodeCombineXYZ', -160, 300 + 90 * k)
+        L(t, sx_node, sx_ax, sxyz, 'X'); L(t, sy_node, sy_ax, sxyz, 'Y')
+        z0 = mathn(t, 'ADD', -320, 300 + 90 * k)
+        L(t, bmin, 'Z', z0, 0); z0.inputs[1].default_value = 0.06
+        z1 = mathn(t, 'ADD', -320, 240 + 90 * k)
+        L(t, bmax, 'Z', z1, 0); z1.inputs[1].default_value = -0.06
+        L(t, z0, 0, sxyz, 'Z')
+        # 5.2 lesson: MeshLine mode enum assignments are unreliable here
+        # (END_POINTS silently failed -> mode stayed OFFSET, and the full
+        # end-start delta wired into Offset staircased 12 points 32m up).
+        # Use OFFSET semantics explicitly: Offset = per-step translation,
+        # step = (z1 - z0) / (count - 1) so points span z0..z1 exactly.
+        dzz = mathn(t, 'SUBTRACT', -320, 180 + 90 * k)
+        L(t, z1, 0, dzz, 0); L(t, z0, 0, dzz, 1)
+        qst = mathn(t, 'DIVIDE', -320, 120 + 90 * k)
+        L(t, dzz, 0, qst, 0); qst.inputs[1].default_value = 11.0
+        ozz = N(t, 'ShaderNodeCombineXYZ', -160, 120 + 90 * k)
+        L(t, qst, 0, ozz, 'Z')
+        L(t, sxyz, 'Vector', lnb, 'Start Location')
+        L(t, ozz, 'Vector', lnb, 'Offset')
+        t.links.new(lnb.outputs[0], jl.inputs['Geometry'])
+    brick = N(t, 'GeometryNodeMeshCube', 360, 340)
+    syz = mathn(t, 'ADD', 200, 380); L(t, D, 0, syz, 0); syz.inputs[1].default_value = 0.12
+    bsz = N(t, 'ShaderNodeCombineXYZ', 520, 380)
+    bsz.inputs['X'].default_value = 0.32
+    L(t, syz, 0, bsz, 'Y')
+    bsz.inputs['Z'].default_value = 0.12
+    L(t, bsz, 'Vector', brick, 'Size')
+    instq = N(t, 'GeometryNodeInstanceOnPoints', 560, 340)
+    L(t, jl, 'Geometry', instq, 'Points')
+    L(t, brick, 'Mesh', instq, 'Instance')
+    instq.inputs['Scale'].default_value = (1.0, 1.0, 1.0)
+    made.append('quoins')
+
+    # gothic join + realize
+    jg = N(t, 'GeometryNodeJoinGeometry', 1000, -400)
+    t.links.new(sce2.outputs['Geometry'], jg.inputs['Geometry'])
+    t.links.new(instq.outputs['Instances'], jg.inputs['Geometry'])
+    if arch_inst is not None:
+        t.links.new(arch_inst.outputs['Instances'], jg.inputs['Geometry'])
+    gswp = gswitch(t, 1180, -400)
+    L(t, gin, 'Show Panels', gswp, 'Switch')
+    L(t, jg, 'Geometry', gswp, 'True')
+    gonly = N(t, 'GeometryNodeJoinGeometry', 1000, -200)
+    t.links.new(instq.outputs['Instances'], gonly.inputs['Geometry'])
+    L(t, gonly, 'Geometry', gswp, 'False')
+    rz = N(t, 'GeometryNodeRealizeInstances', 1340, -400)
+    L(t, gswp, 'Output', rz, 'Geometry')
+    return rz
+
+
+# ------------------------------------------------- SlabTrim v2 builder
+
 def build_slab_trim(group_name='GN_PARIS_SlabTrim'):
     old = bpy.data.node_groups.get(group_name)
     if old:
-        bpy.data.node_groups.remove(old)
+        try:
+            bpy.data.node_groups.remove(old)
+        except Exception:
+            pass
     t = bpy.data.node_groups.new(group_name, 'GeometryNodeTree')
     t.is_modifier = True
-    for i, s in enumerate(['Geometry', 'BBox Min', 'BBox Max', 'Show Skirt', 'Apply Trim UV']):
-        st = 'NodeSocketGeometry' if s == 'Geometry' else 'NodeSocketVector' if 'BBox' in s else 'NodeSocketFloat'
-        si = t.interface.new_socket(s, in_out='INPUT', socket_type=st)
-        if s == 'Show Skirt':
-            si.default_value = True
-    t.interface.new_socket('Geometry', in_out='OUTPUT', socket_type='NodeSocketGeometry')
-    gin = t.nodes.new('NodeGroupInput')
-    gin.location = (-1200, 0)
-    gout = t.nodes.new('NodeGroupOutput')
-    gout.location = (1200, 0)
-    bmv = N(t, 'ShaderNodeVectorMath', -1000, 0)
-    bmv.operation = 'SUBTRACT'
-    L(t, gin, 'BBox Min', bmv, 6)
-    tg = N(t, 'GeometryNodeTransform', -820, 0)
-    L(t, gin, 'Geometry', tg, 'Geometry')
-    L(t, bmv, 'Vector', tg, 'Translation')
-    pos = N(t, 'GeometryNodeInputPosition', -700, -200)
-    sep = N(t, 'GeometryNodeSeparateXYZ', -580, -200)
-    L(t, pos, 'Position', sep, 'Vector')
-    g1 = N(t, 'FunctionNodeCompare', -460, -200)
-    g1.data_type = 'FLOAT'
-    g1.operation = 'LESS_THAN'
-    L(t, sep, 'Z', g1, 0)
-    g1.inputs[1].default_value = 0.22
-    skirt = N(t, 'GeometryNodeSwitch', -300, -100)
-    skirt.switch_type = 'GEOMETRY'
-    L(t, gin, 'Show Skirt', skirt, 'Switch')
-    skc = N(t, 'GeometryNodeMeshCube', -460, -400)
-    skc.inputs['Size X'].default_value = 1.0
-    skc.inputs['Size Y'].default_value = 1.0
-    skc.inputs['Size Z'].default_value = 0.22
-    jt = N(t, 'GeometryNodeJoinGeometry', -140, -200)
-    L(t, skirt, 'Output', jt, 0)
-    L(t, tg, 'Geometry', jt, 1)
-    mat = bpy.data.materials.get('PROXY_TS_Melodia_Stone')
-    if not mat:
-        mat = bpy.data.materials.new('PROXY_TS_Melodia_Stone')
-        mat.diffuse_color = (0.62, 0.57, 0.50, 1.0)
-    sm = N(t, 'GeometryNodeSetMaterial', 0, -140)
-    sm.inputs['Material'].default_value = mat
-    ap = N(t, 'GeometryNodeSwitch', 200, -140)
-    ap.switch_type = 'GEOMETRY'
-    L(t, gin, 'Apply Trim UV', ap, 'Switch')
-    L(t, jt, 'Geometry', ap, 'True')
-    L(t, sm, 'Geometry', ap, 'False')
-    bv = N(t, 'GeometryNodeMeshBevel', 400, -140)
-    bv.inputs['Offset'].default_value = 0.04
-    bv.inputs['Segments'].default_value = 3
-    L(t, ap, 'Output', bv, 'Mesh')
-    L(t, bv, 'Mesh', gout, 'Geometry')
+    sock(t, 'Geometry', 'NodeSocketGeometry')
+    sock(t, 'BBox Min', 'NodeSocketVector', (0, 0, 0))
+    sock(t, 'BBox Max', 'NodeSocketVector', (6, 4, 0.2))
+    sock(t, 'Apply Trim UV', 'NodeSocketBool', True)
+    sock(t, 'Geometry', 'NodeSocketGeometry', in_out='OUTPUT')
+    gin2 = N(t, 'NodeGroupInput', -1500, 0)
+    gout2 = N(t, 'NodeGroupOutput', 1200, 0)
+    bbo2 = N(t, 'GeometryNodeBoundBox', -1420, 0); L(t, gin2, 'Geometry', bbo2, 'Geometry')
+    bmin2 = N(t, 'ShaderNodeSeparateXYZ', -1300, 300); L(t, bbo2, 'Min', bmin2, 0)
+    bmax2 = N(t, 'ShaderNodeSeparateXYZ', -1300, -300); L(t, bbo2, 'Max', bmax2, 0)
+    pos2 = N(t, 'GeometryNodeInputPosition', -1300, 0)
+    nor2 = N(t, 'GeometryNodeInputNormal', -1300, -500)
+    pos2s = N(t, 'ShaderNodeSeparateXYZ', -1140, 0); L(t, pos2, 'Position', pos2s, 0)
+    nor2s = N(t, 'ShaderNodeSeparateXYZ', -1140, -500); L(t, nor2, 'Normal', nor2s, 0)
+    Hs = mathn(t, 'SUBTRACT', -980, -200); L(t, bmax2, 'Z', Hs, 0); L(t, bmin2, 'Z', Hs, 1)
+    zr2 = mathn(t, 'DIVIDE', -820, -100)
+    sb = mathn(t, 'SUBTRACT', -980, -100); L(t, pos2s, 'Z', sb, 0); L(t, bmin2, 'Z', sb, 1)
+    L(t, sb, 0, zr2, 0); L(t, Hs, 0, zr2, 1)
+    v_side = mapr(t, -640, -100, 0, 1, 0.044, 0.186); L(t, zr2, 0, v_side, 'Value')
+    nz2 = N(t, 'ShaderNodeSeparateXYZ', -980, -500); L(t, nor2, 'Normal', nz2, 0)
+    top2 = comp(t, -640, -400, 'GREATER_THAN', 0.6); L(t, nz2, 'Z', top2, 0)
+    bot2 = comp(t, -640, -560, 'LESS_THAN', -0.6); L(t, nz2, 'Z', bot2, 0)
+    vl2 = mathn(t, 'ADD', -640, -700); vl2.inputs[0].default_value = 0.02; vl2.inputs[1].default_value = 0.0
+    vh2 = mathn(t, 'ADD', -640, -800); vh2.inputs[0].default_value = 0.5; vh2.inputs[1].default_value = 0.0
+    sw2a = fswitch(t, -440, -300); L(t, top2, 0, sw2a, 'Switch')
+    L(t, v_side, 0, sw2a, 'False'); L(t, vl2, 0, sw2a, 'True')
+    sw2b = fswitch(t, -280, -300); L(t, bot2, 0, sw2b, 'Switch')
+    L(t, sw2a, 0, sw2b, 'False'); L(t, vh2, 0, sw2b, 'True')
+    ax2 = mathn(t, 'ABSOLUTE', -980, -620); L(t, nor2s, 'X', ax2, 0)
+    ay2 = mathn(t, 'ABSOLUTE', -980, -720); L(t, nor2s, 'Y', ay2, 0)
+    us2 = comp(t, -640, -660, 'GREATER_EQUAL', 0.0); L(t, ax2, 0, us2, 0); L(t, ay2, 0, us2, 1)
+    ux2d = mathn(t, 'DIVIDE', -640, -900); L(t, pos2s, 'X', ux2d, 0); ux2d.inputs[1].default_value = 3.4
+    ux2 = mathn(t, 'WRAP', -480, -900); ux2.inputs[1].default_value = 0.0; ux2.inputs[2].default_value = 1.0
+    L(t, ux2d, 0, ux2, 0)
+    uy2d = mathn(t, 'DIVIDE', -640, -1020); L(t, pos2s, 'Y', uy2d, 0); uy2d.inputs[1].default_value = 3.4
+    uy2 = mathn(t, 'WRAP', -480, -1020); uy2.inputs[1].default_value = 0.0; uy2.inputs[2].default_value = 1.0
+    L(t, uy2d, 0, uy2, 0)
+    usw2 = fswitch(t, -320, -960); L(t, us2, 0, usw2, 'Switch')
+    L(t, uy2, 0, usw2, 'False'); L(t, ux2, 0, usw2, 'True')
+    uv2 = N(t, 'ShaderNodeCombineXYZ', -120, -100); L(t, usw2, 0, uv2, 'X'); L(t, sw2b, 0, uv2, 'Y')
+    st2 = N(t, 'GeometryNodeStoreNamedAttribute', 40, 0)
+    st2.data_type = 'FLOAT2'; st2.domain = 'CORNER'; st2.inputs['Name'].default_value = 'UVMap'
+    L(t, gin2, 'Geometry', st2, 'Geometry'); L(t, uv2, 'Vector', st2, 'Value')
+    sm2 = N(t, 'GeometryNodeSetMaterial', 200, 0); sm2.inputs['Material'].default_value = _trim_mat()
+    L(t, st2, 'Geometry', sm2, 'Geometry')
+    ap2 = gswitch(t, 360, 200); L(t, gin2, 'Apply Trim UV', ap2, 'Switch')
+    L(t, st2, 'Geometry', ap2, 'False'); L(t, sm2, 'Geometry', ap2, 'True')
+    bvl = N(t, 'GeometryNodeMeshBevel', 560, 200)
+    bvl.inputs['Offset'].default_value = 0.04
+    bvl.inputs['Segments'].default_value = 3
+    L(t, ap2, 'Output', bvl, 'Mesh')
+    L(t, bvl, 'Mesh', gout2, 'Geometry')
     print('[paris_wall_detail] built %s v2: %d nodes' % (group_name, len(t.nodes)))
-    return (t, gin, gout)
+    return (t, gin2, gout2)
 
 
 # ------------------------------------------------- apply / rollout
 
 def _eval_bbox(obj):
-    """BBox of obj with PARIS detail mods disabled (kit geometry only)."""
+    """World-space BBox of obj with PARIS detail mods disabled (kit only)."""
     paris_mods = []
     for m in obj.modifiers:
-        if m.type == 'NODES' and ((m.node_group and m.node_group.name.startswith('GN_PARIS_')) or m.node_group is None):
+        if m.type == 'NODES' and ((m.node_group and m.node_group.name.startswith('GN_PARIS_'))
+                                  or m.node_group is None):
             m.show_viewport = False
             paris_mods.append(m)
     bpy.context.view_layer.update()
     dg = bpy.context.evaluated_depsgraph_get()
     ev = obj.evaluated_get(dg)
-    mesh = ev.to_mesh()
-    bb = [tuple(mesh.bound_box[i]) for i in range(8)]
-    xs = [v[0] for v in bb]
-    ys = [v[1] for v in bb]
-    zs = [v[2] for v in bb]
-    bmin = (min(xs), min(ys), min(zs))
-    bmax = (max(xs), max(ys), max(zs))
-    ev.to_mesh_clear()
+    lo = Vector((1e9, 1e9, 1e9))
+    hi = Vector((-1e9, -1e9, -1e9))
+    for c in ev.bound_box:
+        w = ev.matrix_world @ Vector(c)
+        lo.x = min(lo.x, w.x); lo.y = min(lo.y, w.y); lo.z = min(lo.z, w.z)
+        hi.x = max(hi.x, w.x); hi.y = max(hi.y, w.y); hi.z = max(hi.z, w.z)
     for m in paris_mods:
         m.show_viewport = True
-    return bmin, bmax
+    return (lo.x, lo.y, lo.z), (hi.x, hi.y, hi.z)
 
 
 def _set_mod(obj, group, mod_name, style=None):
     """(Re)create the detail modifier with fresh interface + bbox values."""
-    # drop dangling / previous PARIS mods
     for m in list(obj.modifiers):
-        if m.type == 'NODES' and ((m.node_group and m.node_group.name == group.name) or m.node_group is None):
+        if m.type == 'NODES' and ((m.node_group and m.node_group.name == group.name)
+                                  or m.node_group is None):
             obj.modifiers.remove(m)
     bmin, bmax = _eval_bbox(obj)
     mod = obj.modifiers.new(mod_name, 'NODES')
     mod.node_group = group
-    def sv(name, val):
-        try:
-            mod[name] = val
-        except Exception:
-            pass
-    sv('BBox Min', bmin)
-    sv('BBox Max', bmax)
-    if style is not None:
-        sv('CORNICE_STYLE', style)
-    else:
-        sv('CORNICE_STYLE', 1)
-    sv('Panel Scale', 0.86)
-    # move our modifier before any object bevel
-    for i, m in enumerate(obj.modifiers):
-        if m is mod:
-            while i > 0 and obj.modifiers[i - 1].type == 'NODES' and obj.modifiers[i - 1].node_group and obj.modifiers[i - 1].node_group.name.startswith('SurrealArch'):
-                bpy.context.view_layer.objects.active = obj
-                obj.modifiers.move(i, i - 1)
-                i -= 1
-            break
+    idmap = {i.name: i.identifier for i in group.interface.items_tree
+             if i.in_out == 'INPUT' and i.socket_type != 'NodeSocketGeometry'}
+    mod.properties.inputs[idmap['BBox Min']]['value'] = bmin
+    mod.properties.inputs[idmap['BBox Max']]['value'] = bmax
+    if 'CORNICE_STYLE' in idmap:
+        mod.properties.inputs[idmap['CORNICE_STYLE']]['value'] = int(style if style is not None else 1)
+    obj.update_tag()
     bpy.context.view_layer.update()
     dg = bpy.context.evaluated_depsgraph_get()
     ev = obj.evaluated_get(dg)
@@ -785,11 +665,21 @@ def _strip_bevel(obj):
     return n
 
 
+def _group_ok(name):
+    """A rebuilt group is only usable once its Group Output is wired."""
+    g = bpy.data.node_groups.get(name)
+    if not g:
+        return False
+    go = next((n for n in g.nodes if n.bl_idname == 'NodeGroupOutput'), None)
+    return (go is not None and 'Geometry' in go.inputs
+            and go.inputs['Geometry'].is_linked)
+
+
 def rollout_all(style=None, strip_bevel=True):
-    """Apply v2 detail to all WALL_* (not curved test) and SLAB_* objects."""
-    if bpy.data.node_groups.get('GN_PARIS_WallDetail') is None:
+    """Apply v2 detail to all WALL_* (not the curved test) and SLAB_* objects."""
+    if not _group_ok('GN_PARIS_WallDetail'):
         build_wall_detail()
-    if bpy.data.node_groups.get('GN_PARIS_SlabTrim') is None:
+    if not _group_ok('GN_PARIS_SlabTrim'):
         build_slab_trim()
     wall = bpy.data.node_groups['GN_PARIS_WallDetail']
     slab = bpy.data.node_groups['GN_PARIS_SlabTrim']
@@ -818,11 +708,11 @@ try:
     from .core import register_builder  # noqa
     register_builder('GN_PARIS_WallDetail', build_wall_detail,
                      'PARIS Wall Detail v2',
-                     'Haussmann/Gothic wall trim bands, panels, arch medallions, quoins.',
+                     'Haussmann/Gothic wall trim: bands, panels, arch medallions, quoins.',
                      category='structures')
     register_builder('GN_PARIS_SlabTrim', build_slab_trim,
                      'PARIS Slab Trim v2',
-                     'Slab skirt + in-group bevel for the Paris lane.',
+                     'Slab trim UV + in-group bevel for the Paris lane.',
                      category='structures')
     print('[paris_wall_detail] registered builders into the Melodia Studio registry')
 except ImportError:
