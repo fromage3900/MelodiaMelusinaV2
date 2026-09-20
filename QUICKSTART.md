@@ -185,7 +185,7 @@ Wardrobe / Convergence consequence
 checkpoint / save / restore
 ```
 
-Use `_VERTICAL_SLICE_SCOPE.md` and the current golden-run spec for the exact route.
+Use `CURRENT_STATE.md` for current status and `specs/p0/core_p0_dream_golden_run.v1.json` for the golden-run route.
 
 ---
 
@@ -326,7 +326,7 @@ The evergreen architecture matters **now** because it changes stable IDs, save m
 - `DOC_INDEX.md`
 - `SYSTEM_MAP.md`
 - `DATA_FLOW.md`
-- `_VERTICAL_SLICE_SCOPE.md`
+- `specs/p0/core_p0_dream_golden_run.v1.json`
 - `TEST_READY.md`
 
 > **Goal: make adding journeys routine and reopening the engine exceptional.** ♪
