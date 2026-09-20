@@ -153,32 +153,32 @@ def view_git():
 
 
 def view_gates():
-    lines = header("FOUNDATION GATES", "parsed from _VERTICAL_SLICE_SCOPE.md checkboxes")
-    path = os.path.join(PROJECT, "_VERTICAL_SLICE_SCOPE.md")
-    if not os.path.exists(path):
-        lines.append("  _VERTICAL_SLICE_SCOPE.md not found")
+    lines = header("FOUNDATION GATES", "latest local Saved/gate_ledger.json observations")
+    ledger = _ledger_latest()
+    if "_error" in ledger:
+        lines.append(f"  gate ledger: {ledger['_error']}")
         return lines
-    text = open(path, encoding="utf-8").read()
-    done = re.findall(r"^- \[x\] (.+)$", text, re.M | re.I)
-    todo = re.findall(r"^- \[ \] (.+)$", text, re.M)
-    total = len(done) + len(todo)
-    pct = (len(done) / total * 100) if total else 0
-    filled = int(pct / 100 * 40)
-    lines += [
-        f"  {len(done)}/{total} complete  ({pct:.0f}%)",
-        f"  [{'#' * filled}{'.' * (40 - filled)}]",
-        "",
-        "  OPEN:",
-    ]
-    for t in todo:
-        clean = re.sub(r"\*\*|`", "", t).strip()
-        lines.append(f"    [ ] {clean[:70]}")
-    lines += ["", "  DONE:"]
-    for t in done:
-        clean = re.sub(r"\*\*|`", "", t).strip()
-        lines.append(f"    [x] {clean[:70]}")
-    return lines
+    if not ledger:
+        lines += [
+            "  local Saved/gate_ledger.json is not present in this checkout.",
+            "  committed status authority: CURRENT_STATE.md",
+        ]
+        return lines
 
+    rows = []
+    for gid, rec in sorted(ledger.items()):
+        if gid.startswith("_"):
+            continue
+        status = (rec or {}).get("last_status") or (rec or {}).get("status") or "open"
+        date = (rec or {}).get("date", "")
+        rows.append((gid, str(status).upper(), date))
+
+    passed = sum(1 for _gid, status, _date in rows if status == "PASS")
+    lines.append(f"  latest rows: {passed}/{len(rows)} PASS")
+    lines.append("")
+    for gid, status, date in rows:
+        lines.append(f"  [{status:<4}] {gid:<32} {date}")
+    return lines
 
 def view_baselines():
     lines = header("VERIFICATION BASELINES", "the records the gates compare against")
@@ -336,17 +336,7 @@ def view_integration():
         if note:
             lines.append(f"                note: {note}")
 
-    # Summary of the scope doc gates (compact), then narrative detail.
-    path = os.path.join(PROJECT, "_VERTICAL_SLICE_SCOPE.md")
-    if os.path.exists(path):
-        try:
-            text = open(path, encoding="utf-8").read()
-        except OSError:
-            text = ""
-        done = len(re.findall(r"^- \[x\] (.+)$", text, re.M | re.I))
-        todo = len(re.findall(r"^- \[ \] (.+)$", text, re.M))
-        pct = (done / (done + todo) * 100) if (done + todo) else 0
-        lines.append(f"  scope checkboxes: {done}/{done + todo} checked ({pct:.0f}%)")
+    lines += ["", "  current committed status authority: CURRENT_STATE.md"]
     return lines
 
 
