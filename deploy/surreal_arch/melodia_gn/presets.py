@@ -3896,6 +3896,9 @@ BRANDS: dict[str, dict[str, Any]] = {
                      "note": "Rotated mansard attic over a Haussmann arcade."},
                     {"builder": "MEL_escher_penrose_stairs", "preset": "CLASSIC_LOOP",
                      "note": "Garnier grand stair, closed into a Penrose loop."},
+                    {"builder": "GN_PARIS_EscherLadder", "preset": "MI_BELVEDERE_LADDER",
+                     "note": "The ladder that visibly fails to meet its own landing "
+                             "(join error is the dial)."},
                     {"builder": "MEL_hyperbolic_window", "preset": "POINCARE_SALON",
                      "note": "Circle-Limit glazing at reading-room scale."},
                     {"builder": "GN_PARIS_WallDetail", "preset": "MI_GOTHIC_CHAPEL",
@@ -4030,6 +4033,60 @@ def export_brand_pack(brand_id: str, pack_id: str) -> dict:
     payload["reference_set"] = list(info.get("reference_set") or [])
     payload["palette"] = list(info.get("palette") or [])
     return payload
+
+
+# Maison Impossible - the Belvedere ladder (paris_escher_ladder.py).
+# Join Error is the impossibility dial: 0.0 = the ladder honestly meets the
+# landing, + = it overshoots, - = it falls short. Floating Steps are treads the
+# stringer does not reach, so they hang in the air.
+BUILDERS_PRESETS["GN_PARIS_EscherLadder"] = {
+    "label": "PARIS Escher Ladder",
+    "preset_labels": {
+        "MI_BELVEDERE_LADDER": "Belvedere Ladder",
+        "MI_HONEST_LADDER": "Honest Ladder",
+        "MI_SERVANT_LADDER": "Servant's Ladder",
+        "MI_DEEP_FALL": "Deep Fall",
+    },
+    "preset_descriptions": {
+        "MI_BELVEDERE_LADDER": "The impossible read: overtakes the landing by 0.3m, "
+                               "top three treads unsupported.",
+        "MI_HONEST_LADDER": "Working ladder - join meets the landing exactly, "
+                            "every tread supported.",
+        "MI_SERVANT_LADDER": "Steep narrow back-stair, no railing, no mansard.",
+        "MI_DEEP_FALL": "Falls 0.6m short of the landing with six treads past the "
+                        "stringer - the Piranesi read.",
+    },
+    "presets": {
+        "MI_BELVEDERE_LADDER": {
+            "Ladder Height": 3.2, "Ladder Lean": 0.18, "Rung Count": 12,
+            "Ladder Width": 0.75, "Rung Depth": 0.30, "Rung Thickness": 0.05,
+            "Join Error": 0.30, "Floating Steps": 3, "Landing Depth": 1.6,
+            "Landing Thickness": 0.18, "Mansard Landing": True,
+            "Railing": True, "Rail Height": 0.95,
+        },
+        "MI_HONEST_LADDER": {
+            "Ladder Height": 3.2, "Ladder Lean": 0.18, "Rung Count": 12,
+            "Ladder Width": 0.75, "Rung Depth": 0.30, "Rung Thickness": 0.05,
+            "Join Error": 0.0, "Floating Steps": 0, "Landing Depth": 1.6,
+            "Landing Thickness": 0.18, "Mansard Landing": True,
+            "Railing": True, "Rail Height": 0.95,
+        },
+        "MI_SERVANT_LADDER": {
+            "Ladder Height": 2.6, "Ladder Lean": 0.06, "Rung Count": 16,
+            "Ladder Width": 0.50, "Rung Depth": 0.22, "Rung Thickness": 0.04,
+            "Join Error": 0.0, "Floating Steps": 0, "Landing Depth": 0.9,
+            "Landing Thickness": 0.12, "Mansard Landing": False,
+            "Railing": False, "Rail Height": 0.85,
+        },
+        "MI_DEEP_FALL": {
+            "Ladder Height": 3.6, "Ladder Lean": 0.22, "Rung Count": 14,
+            "Ladder Width": 0.90, "Rung Depth": 0.34, "Rung Thickness": 0.06,
+            "Join Error": -0.60, "Floating Steps": 6, "Landing Depth": 2.0,
+            "Landing Thickness": 0.22, "Mansard Landing": True,
+            "Railing": True, "Rail Height": 1.05,
+        },
+    },
+}
 
 
 def main() -> None:

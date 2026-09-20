@@ -62,7 +62,7 @@ these six swatches — that is what makes them feel like one brand.
 
 | Pack | Steps | Intent |
 |---|---|---|
-| `MI_SALON_IMPOSSIBLE` | 4 resolved | Hero interior: Belvedere loggia + Penrose stair + Circle-Limit window + chapel walls |
+| `MI_SALON_IMPOSSIBLE` | 5 resolved | Hero interior: Belvedere loggia + Penrose stair + **Belvedere ladder** + Circle-Limit window + chapel walls |
 | `MI_COUR_D_HONNEUR` | 4 resolved, 1 pending | Courtyard: Haussmann bay + slab + Mobius rail + relief panels; pending `GN_PARIS_FountainLoop` |
 | `MI_MAISON_NUIT` | 4 resolved, 1 pending | Night pass: duality tiling + gold tribar + max-density window + lit channel; pending `GN_PARIS_DayNightFacade` |
 
@@ -94,12 +94,63 @@ find. On 2026-09-20 it found 2 (`MEL_allee_ribbon`, `MEL_column`) — one a
 byte-identical copy, one a *different* curated set shadowed for months with no
 reader. Both removed; the curation is preserved as notes on the authority.
 
+## Track A, builder 1: `GN_PARIS_EscherLadder` (shipped 2026-09-20)
+
+The Belvedere ladder, extracted from `MEL_escher_belvedere` (where it existed
+only as an inseparable part of the loggia) into a reusable Parisian device:
+stone flight + mansard landing + wrought-iron handrail.
+
+**Why not a "Parisian Penrose stair".** That was the original plan for builder
+1, and it was dropped on evidence: `MEL_escher_penrose_stairs` already ships
+Runs / Run Length / Steps per Run / Step Rise / Railings / Second Loop / Loop
+Offset / Wobble / Seed. A Parisian twin would have been a *parallel
+implementation of identical geometry* — the defect class this repo forbids.
+The ladder is a different device with a different defect: one **open** flight
+whose **top join** is wrong, versus N runs closed into a loop.
+
+**The impossibility is a parameter.** `Join Error` is the vertical distance by
+which the ladder fails to meet the landing (the landing stays where the
+building says it should):
+
+| Join Error | Read |
+|---|---|
+| `0.0` | an honest working ladder — the top rung meets the landing |
+| `+` | it overshoots the landing surface |
+| `-` | it falls short (the Piranesi read) |
+
+`Floating Steps` gives the stringer its *own* length while the rungs keep
+going, so the top N treads are unsupported and hang — done with maths on the
+existing sockets, not a second geometry chain.
+
+**Verification** (`deploy/_melodia_health_paris_ladder.py`, headless Blender):
+builds clean, `link_failures()` empty, all 13 params present, evaluates to
+152 verts / 110 polys, and Join Error changes *no* vertex count (it slides the
+ladder rather than rebuilding it).
+
+Two defects this caught that a green build would have shipped:
+
+1. **Degenerate handrails.** The rail profile was a *Mesh* Circle. It links
+   without complaint, and Curve to Mesh then emits a 2-vertex "rail" with no
+   tube. The link recorder could not see this — the link really is made; only
+   the geometry is empty. It surfaced as a **vertex-count delta** (railing cost
+   4 verts instead of 32) and is fixed by taking a *Curve* circle profile, the
+   `aesthetic_fx.py` house pattern. The health script now asserts the delta.
+2. **A lying check.** The first version read param names from the group-input
+   node's outputs and reported all 13 missing while `set_param()` was setting
+   them fine. Params live on the tree interface — read it there.
+
+**Not yet wired:** the one-line `from . import paris_escher_ladder` in
+`melodia_gn/__init__.py`. That file is being edited by a concurrent lane, so the
+module self-registers on import and the wiring is left to that lane rather than
+risking a lost line in someone else's buffer.
+
 ## Next
 
-1. `GN_PARIS_*` Track A builders (PenroseStair, BelvedereMansard, FountainLoop,
-   MobiusBalcony, DayNightFacade, HyperbolicRose, PenroseArch,
-   MetamorphosisFrieze) — fill the 2 pending slots, then mark them resolved.
+1. Remaining `GN_PARIS_*` Track A builders — FountainLoop and DayNightFacade
+   first (they are the two reserved slots already referenced by the packs),
+   then Mansard, MobiusBalcony, HyperbolicRose, PenroseArch, MetamorphosisFrieze.
+   Each lands with 2-3 presets and its own health script assertions.
 2. Brand-pack apply operator + hub brand row (needs a Blender session to
-   validate; not shipped blind).
-3. Preset-gap pass for the remaining hero/sku builders so the pack surface — not
-   the raw registry — is the browsable product.
+   validate end to end; not shipped blind).
+3. Preset-gap pass for the remaining hero/sku builders so the pack surface —
+   not the raw registry — is the browsable product.
