@@ -15,13 +15,10 @@
 // beat_in_bar exists on the JSON schema but is not on this wire; BeatInBar
 // stays 0. Unknown addresses are ignored.
 //
-// Choral Sheep consumer (OWED BP bind — Monolith :9316 down 2026-09-20):
-//   BP_ChoralSheep BeginPlay → GetGameInstance → GetSubsystem
-//   UMelodiaPhraseBusSubsystem → bind OnPhraseBoundary (or OnPhraseState).
-//   When a Jev directive is current (for_bar <= Bar) AND sheep is
-//   RESONANCE_PULSE or CRESCENDO_BURST, call existing TryBeginHarmonize.
-//   HOLD / TURN_TO_PLAYER / SPIRAL_FORMATION are not C++ motion. layout_seed
-//   is a WC key pick only (see LAYOUT_SEEDS in directive_schema.py).
+// Choral Sheep consumer: existing TryBeginHarmonize (PIE 2026-09-20).
+// Bind OnPhraseBoundary from BP after closed-editor UBT of RecvFrom ingest.
+// HOLD / TURN_TO_PLAYER / SPIRAL_FORMATION are not C++ motion. layout_seed
+// is a WC key pick only (see LAYOUT_SEEDS in directive_schema.py).
 
 #pragma once
 

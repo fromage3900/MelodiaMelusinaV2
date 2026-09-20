@@ -777,6 +777,64 @@ def _fx_pack(b: dict) -> dict | None:
     return json.loads(p.read_text(encoding="utf-8-sig")) if p.exists() else None
 
 
+# CSV column stays spawn_multiplier; instance override uses pack User.* names.
+_FX_SPAWN_USER_BY_KIND = {
+    "petal": "PetalSpawnMultiplier",
+    "pollen": "MoteSpawnMultiplier",
+    "mist": "MistDensity",
+    "windfront": "WindFrontVisible",
+    "wind": "WindFrontVisible",
+    "dust": "MoteSpawnMultiplier",
+    "dustshafts": "MoteSpawnMultiplier",
+}
+_FX_SPAWN_USER_BY_SYSTEM = {
+    "NS_Morning_PetalDrift": "PetalSpawnMultiplier",
+    "NS_Morning_PollenSparkle": "MoteSpawnMultiplier",
+    "NS_Morning_PondMist": "MistDensity",
+    "NS_Morning_WindFront": "WindFrontVisible",
+    "NS_Morning_DustShafts": "MoteSpawnMultiplier",
+}
+_FX_SPAWN_USER_PACK_KEYS = (
+    "PetalSpawnMultiplier",
+    "MoteSpawnMultiplier",
+    "MistDensity",
+    "WindFrontVisible",
+)
+
+
+def _fx_system_basename(sys_path: str) -> str:
+    base = (sys_path or "").rstrip("/").rsplit("/", 1)[-1]
+    return base.split(".", 1)[0] if base else ""
+
+
+def _fx_spawn_user_param(kind: str, sys_path: str, pack: dict | None) -> str | None:
+    """Map fx_kind / NS path to the pack User float WC should set on the actor."""
+    kind_l = (kind or "").strip().lower()
+    if kind_l in _FX_SPAWN_USER_BY_KIND:
+        return _FX_SPAWN_USER_BY_KIND[kind_l]
+    base = _fx_system_basename(sys_path)
+    if base in _FX_SPAWN_USER_BY_SYSTEM:
+        return _FX_SPAWN_USER_BY_SYSTEM[base]
+    if not pack:
+        return None
+    rec = None
+    for system in pack.get("systems") or []:
+        if system.get("id") == kind_l:
+            rec = system
+            break
+        tgt = _fx_system_basename(system.get("target") or "")
+        if tgt and tgt == base:
+            rec = system
+            break
+    if not rec:
+        return None
+    ups = rec.get("user_params") or {}
+    for key in _FX_SPAWN_USER_PACK_KEYS:
+        if key in ups:
+            return key
+    return None
+
+
 def _duplicate_named(src: str, dst: str) -> tuple[object | None, dict]:
     rec = {"src": src, "dst": dst}
     if not src or src.startswith("material_of:"):
@@ -945,6 +1003,7 @@ def step_fx_materials(b: dict) -> dict:
 def step_fx_place(b: dict) -> dict:
     ue = b["manifest"]["ue_lane"]
     rows = _rows(b["dir"] / "fx_anchors.csv")
+    pack = _fx_pack(b)
     svc, actors = _actors()
     removed = 0
     for a in _tagged(actors, ue["actor_tag"]):
@@ -980,18 +1039,23 @@ def step_fx_place(b: dict) -> dict:
                 comp.set_editor_property(prop, False)
             except Exception:
                 pass
+        spawn_param = _fx_spawn_user_param(kind, sys_path, pack)
         try:
             band = int(r["band"])
             if band >= 0:
                 tint = b["dressing"]["bands"][band]["tint"]
                 comp.set_variable_linear_color("BandHue", unreal.LinearColor(tint[0], tint[1], tint[2], 1.0))
             comp.set_variable_float("HueSeed", float(r["hue_seed"]))
-            comp.set_variable_float("SpawnMultiplier", float(r["spawn_multiplier"]))
+            if spawn_param:
+                # Pack User.* identity (PetalSpawnMultiplier / MoteSpawnMultiplier / MistDensity / WindFrontVisible).
+                # CSV column remains spawn_multiplier. Never write SpawnMultiplier or an MPC.
+                comp.set_variable_float(spawn_param, float(r["spawn_multiplier"]))
         except Exception:
             pass
         placed.append({
             "anchor": r["anchor_id"], "label": actor.get_actor_label(), "system": sys_path,
             "loc": [float(r["x"]), float(r["y"]), float(r["z"])], "cast_shadow": 0,
+            "spawn_user_param": spawn_param,
         })
     return {"removed_previous": removed, "placed": placed, "blocked": blocked, "anchors_in_csv": len(rows)}
 
