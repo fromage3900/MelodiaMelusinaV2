@@ -1,0 +1,167 @@
+[t=000.0s ENTER_FIELD] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=002.0s ENTER_FIELD] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=004.0s ENTER_FIELD] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=006.0s ENTER_FIELD] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=008.0s ENTER_FIELD] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=010.0s APPROACH] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=012.0s APPROACH] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=014.0s APPROACH] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=016.0s APPROACH] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: GRAZE 0.36
+World: SOFT_WIND 0.41
+Alt: TURN_TO_PLAYER 0.08
+src: classical-fallback
+
+[t=018.0s APPROACH] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.53
+World: LAVENDER_PALETTE 0.50
+Alt: GRAZE 0.07
+src: classical-fallback
+
+[t=020.0s WIND] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: TURN_TO_PLAYER 0.08
+World: LAVENDER_PALETTE 0.07
+Alt: GRAZE 0.10
+src: classical-fallback
+
+[t=022.0s WIND] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: CHORAL_SWAY 0.35
+World: SOFT_WIND 0.65
+Alt: GRAZE 0.10
+src: classical-fallback
+
+[t=024.0s WIND] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: CHORAL_SWAY 0.35
+World: SOFT_WIND 0.41
+Alt: GRAZE 0.10
+src: classical-fallback
+
+[t=026.0s WIND] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: FOLLOW_WIND 0.39
+World: FLOWER_HUE_SHIFT 0.55
+Alt: CHORAL_SWAY 0.23
+src: classical-fallback
+
+[t=028.0s WIND] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: FOLLOW_WIND 0.39
+World: FLOWER_HUE_SHIFT 0.55
+Alt: CHORAL_SWAY 0.23
+src: classical-fallback
+
+[t=030.0s RESONANCE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: RESONANCE_PULSE 0.39
+World: SOFT_WIND 0.41
+Alt: CHORAL_SWAY 0.23
+src: classical-fallback
+
+[t=032.0s RESONANCE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: RESONANCE_PULSE 0.27
+World: SOFT_WIND 0.41
+Alt: CHORAL_SWAY 0.16
+src: classical-fallback
+
+[t=034.0s RESONANCE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: SPIRAL_FORMATION 0.53
+World: GOLD_CYMATICS 0.56
+Alt: GRAZE 0.07
+src: classical-fallback
+
+[t=036.0s RESONANCE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: SPIRAL_FORMATION 0.53
+World: GOLD_CYMATICS 0.56
+Alt: GRAZE 0.07
+src: classical-fallback
+
+[t=038.0s RESONANCE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: CRESCENDO_BURST 0.54
+World: RESONANCE_RIPPLE 0.49
+Alt: SPIRAL_FORMATION 0.26
+src: classical-fallback
+
+[t=040.0s SETTLE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: CRESCENDO_BURST 0.06
+World: RESONANCE_RIPPLE 0.12
+Alt: GRAZE 0.26
+src: classical-fallback
+
+[t=042.0s SETTLE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: RETURN_TO_IDLE 0.33
+World: SOFT_WIND 0.41
+Alt: GRAZE 0.26
+src: classical-fallback
+
+[t=044.0s SETTLE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: RETURN_TO_IDLE 0.33
+World: SOFT_WIND 0.41
+Alt: GRAZE 0.26
+src: classical-fallback
+
+[t=046.0s SETTLE] src=classical-fallback
+JEV SHEEP CONDUCTOR
+Behavior: RETURN_TO_IDLE 0.33
+World: SOFT_WIND 0.41
+Alt: GRAZE 0.26
+src: classical-fallback

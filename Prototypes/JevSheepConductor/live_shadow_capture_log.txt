@@ -1,0 +1,119 @@
+[t=000.0s ENTER_FIELD] beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=0.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.87 (alt TURN_TO_PLAYER 0.11) world=SOFT_WIND 0.55 (alt NONE 0.45)
+  COMPARE  flock=exact world=exact
+
+[t=002.0s ENTER_FIELD] beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=2.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.86 (alt TURN_TO_PLAYER 0.10) world=SOFT_WIND 0.59 (alt NONE 0.41)
+  COMPARE  flock=exact world=exact
+
+[t=004.0s ENTER_FIELD] beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=4.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.87 (alt TURN_TO_PLAYER 0.10) world=SOFT_WIND 0.54 (alt NONE 0.46)
+  COMPARE  flock=exact world=exact
+
+[t=006.0s ENTER_FIELD] beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=6.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.92 (alt TURN_TO_PLAYER 0.06) world=SOFT_WIND 0.62 (alt NONE 0.38)
+  COMPARE  flock=exact world=exact
+
+[t=008.0s ENTER_FIELD] beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=8.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.90 (alt TURN_TO_PLAYER 0.08) world=SOFT_WIND 0.58 (alt NONE 0.42)
+  COMPARE  flock=exact world=exact
+
+[t=010.0s APPROACH] beat=APPROACH dist=25.0m move=walk bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=10.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.87 (alt TURN_TO_PLAYER 0.09) world=SOFT_WIND 0.72 (alt NONE 0.28)
+  COMPARE  flock=exact world=exact
+
+[t=012.0s APPROACH] beat=APPROACH dist=20.4m move=walk bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=12.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.89 (alt TURN_TO_PLAYER 0.08) world=SOFT_WIND 0.71 (alt NONE 0.29)
+  COMPARE  flock=exact world=exact
+
+[t=014.0s APPROACH] beat=APPROACH dist=15.799999999999999m move=walk bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=14.0s interact=none
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.84 (alt TURN_TO_PLAYER 0.11) world=SOFT_WIND 0.71 (alt NONE 0.28)
+  COMPARE  flock=exact world=exact
+
+[t=016.0s APPROACH] beat=APPROACH dist=11.200000000000001m move=still bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=16.0s interact=approached
+  FALLBACK flock=GRAZE 0.36 world=SOFT_WIND 0.41
+  JEV      flock=GRAZE 0.58 (alt TURN_TO_PLAYER 0.41) world=SOFT_WIND 0.78 (alt NONE 0.21)
+  COMPARE  flock=exact world=exact
+
+[t=018.0s APPROACH] beat=APPROACH dist=6.599999999999998m move=still bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=18.0s interact=approached
+  FALLBACK flock=TURN_TO_PLAYER 0.53 world=LAVENDER_PALETTE 0.50
+  JEV      flock=GRAZE 0.63 (alt TURN_TO_PLAYER 0.35) world=SOFT_WIND 0.75 (alt NONE 0.24)
+  COMPARE  flock=disagree world=disagree
+
+[t=020.0s WIND] beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.3 pal=lavender_wash sslr=2.0s interact=approached
+  FALLBACK flock=TURN_TO_PLAYER 0.08 world=LAVENDER_PALETTE 0.07
+  JEV      flock=TURN_TO_PLAYER 1.00 (alt GRAZE 0.00) world=SOFT_WIND 0.58 (alt LAVENDER_PALETTE 0.28)
+  COMPARE  flock=exact world=disagree
+
+[t=022.0s WIND] beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.4 pal=lavender_wash sslr=4.0s interact=approached
+  FALLBACK flock=CHORAL_SWAY 0.35 world=SOFT_WIND 0.66
+  JEV      flock=TURN_TO_PLAYER 1.00 (alt GRAZE 0.00) world=SOFT_WIND 0.51 (alt LAVENDER_PALETTE 0.37)
+  COMPARE  flock=disagree world=exact
+
+[t=024.0s WIND] beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.5 pal=lavender_wash sslr=2.0s interact=approached
+  FALLBACK flock=CHORAL_SWAY 0.35 world=SOFT_WIND 0.41
+  JEV      flock=TURN_TO_PLAYER 0.99 (alt CHORAL_SWAY 0.01) world=SOFT_WIND 0.53 (alt LAVENDER_PALETTE 0.34)
+  COMPARE  flock=disagree world=exact
+
+[t=026.0s WIND] beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.6 pal=lavender_wash sslr=4.0s interact=approached
+  FALLBACK flock=FOLLOW_WIND 0.39 world=FLOWER_HUE_SHIFT 0.55
+  JEV      flock=TURN_TO_PLAYER 0.99 (alt CHORAL_SWAY 0.01) world=SOFT_WIND 0.47 (alt LAVENDER_PALETTE 0.38)
+  COMPARE  flock=disagree world=disagree
+
+[t=028.0s WIND] beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.7 pal=lavender_wash sslr=2.0s interact=approached
+  FALLBACK flock=FOLLOW_WIND 0.39 world=FLOWER_HUE_SHIFT 0.55
+  JEV      flock=TURN_TO_PLAYER 0.98 (alt CHORAL_SWAY 0.01) world=SOFT_WIND 0.48 (alt LAVENDER_PALETTE 0.37)
+  COMPARE  flock=disagree world=disagree
+
+[t=030.0s RESONANCE] beat=RESONANCE dist=6.0m move=still bpm=0.6 beatE=0.6 reso=0.55 wind=0.5 pal=gold_shimmer sslr=4.0s interact=approached
+  FALLBACK flock=RESONANCE_PULSE 0.39 world=SOFT_WIND 0.41
+  JEV      flock=FOLLOW_WIND 0.78 (alt TURN_TO_PLAYER 0.16) world=SOFT_WIND 0.53 (alt GOLD_CYMATICS 0.41)
+  COMPARE  flock=disagree world=exact
+
+[t=032.0s RESONANCE] beat=RESONANCE dist=6.0m move=still bpm=0.6599999999999999 beatE=0.6699999999999999 reso=0.6300000000000001 wind=0.45999999999999996 pal=gold_shimmer sslr=2.0s interact=approached
+  FALLBACK flock=RESONANCE_PULSE 0.27 world=SOFT_WIND 0.41
+  JEV      flock=FOLLOW_WIND 0.81 (alt TURN_TO_PLAYER 0.14) world=GOLD_CYMATICS 0.55 (alt SOFT_WIND 0.39)
+  COMPARE  flock=disagree world=disagree
+
+[t=034.0s RESONANCE] beat=RESONANCE dist=6.0m move=still bpm=0.72 beatE=0.74 reso=0.7100000000000001 wind=0.42 pal=gold_shimmer sslr=4.0s interact=approached
+  FALLBACK flock=SPIRAL_FORMATION 0.53 world=GOLD_CYMATICS 0.56
+  JEV      flock=FOLLOW_WIND 0.78 (alt TURN_TO_PLAYER 0.13) world=GOLD_CYMATICS 0.74 (alt SOFT_WIND 0.18)
+  COMPARE  flock=disagree world=exact
+
+[t=036.0s RESONANCE] beat=RESONANCE dist=6.0m move=still bpm=0.78 beatE=0.8099999999999999 reso=0.79 wind=0.38 pal=gold_shimmer sslr=2.0s interact=approached
+  FALLBACK flock=SPIRAL_FORMATION 0.53 world=GOLD_CYMATICS 0.56
+  JEV      flock=SPIRAL_FORMATION 0.71 (alt TURN_TO_PLAYER 0.26) world=GOLD_CYMATICS 0.85 (alt SOFT_WIND 0.07)
+  COMPARE  flock=exact world=exact
+
+[t=038.0s RESONANCE] beat=RESONANCE dist=6.0m move=still bpm=0.84 beatE=0.8799999999999999 reso=0.8700000000000001 wind=0.33999999999999997 pal=gold_shimmer sslr=4.0s interact=approached
+  FALLBACK flock=CRESCENDO_BURST 0.55 world=RESONANCE_RIPPLE 0.49
+  JEV      flock=SPIRAL_FORMATION 0.76 (alt TURN_TO_PLAYER 0.19) world=GOLD_CYMATICS 0.83 (alt RESONANCE_RIPPLE 0.09)
+  COMPARE  flock=compatible world=compatible
+
+[t=040.0s SETTLE] beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=2.0s interact=none
+  FALLBACK flock=CRESCENDO_BURST 0.06 world=RESONANCE_RIPPLE 0.12
+  JEV      flock=TURN_TO_PLAYER 0.33 (alt GRAZE 0.30) world=SOFT_WIND 0.43 (alt NONE 0.40)
+  COMPARE  flock=lowconf world=disagree
+
+[t=042.0s SETTLE] beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=4.0s interact=none
+  FALLBACK flock=RETURN_TO_IDLE 0.33 world=SOFT_WIND 0.41
+  JEV      flock=TURN_TO_PLAYER 0.29 (alt GRAZE 0.37) world=SOFT_WIND 0.45 (alt NONE 0.39)
+  COMPARE  flock=lowconf world=exact
+
+[t=044.0s SETTLE] beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=2.0s interact=none
+  FALLBACK flock=RETURN_TO_IDLE 0.33 world=SOFT_WIND 0.41
+  JEV      flock=TURN_TO_PLAYER 0.36 (alt GRAZE 0.30) world=SOFT_WIND 0.44 (alt NONE 0.39)
+  COMPARE  flock=lowconf world=exact
+
+[t=046.0s SETTLE] beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=4.0s interact=none
+  FALLBACK flock=RETURN_TO_IDLE 0.33 world=SOFT_WIND 0.41
+  JEV      flock=TURN_TO_PLAYER 0.29 (alt GRAZE 0.33) world=SOFT_WIND 0.43 (alt NONE 0.41)
+  COMPARE  flock=lowconf world=exact

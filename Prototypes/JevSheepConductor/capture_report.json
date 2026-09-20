@@ -1,0 +1,892 @@
+{
+  "evaluations": [
+    {
+      "t": 0.0,
+      "beat": "ENTER_FIELD",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": true
+      }
+    },
+    {
+      "t": 2.0,
+      "beat": "ENTER_FIELD",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 4.0,
+      "beat": "ENTER_FIELD",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 6.0,
+      "beat": "ENTER_FIELD",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 8.0,
+      "beat": "ENTER_FIELD",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 10.0,
+      "beat": "APPROACH",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 12.0,
+      "beat": "APPROACH",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 14.0,
+      "beat": "APPROACH",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 16.0,
+      "beat": "APPROACH",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "GRAZE",
+        "confidence": 0.359,
+        "probabilities": {
+          "GRAZE": 0.359,
+          "TURN_TO_PLAYER": 0.08,
+          "CHORAL_SWAY": 0.08,
+          "FOLLOW_WIND": 0.08,
+          "PART_PATH": 0.08,
+          "SPIRAL_FORMATION": 0.08,
+          "RESONANCE_PULSE": 0.08,
+          "CRESCENDO_BURST": 0.08,
+          "RETURN_TO_IDLE": 0.08
+        },
+        "displayed": "GRAZE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 18.0,
+      "beat": "APPROACH",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.534,
+        "probabilities": {
+          "GRAZE": 0.072,
+          "TURN_TO_PLAYER": 0.534,
+          "CHORAL_SWAY": 0.056,
+          "FOLLOW_WIND": 0.056,
+          "PART_PATH": 0.056,
+          "SPIRAL_FORMATION": 0.056,
+          "RESONANCE_PULSE": 0.056,
+          "CRESCENDO_BURST": 0.056,
+          "RETURN_TO_IDLE": 0.056
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": true
+      },
+      "world": {
+        "choice": "LAVENDER_PALETTE",
+        "confidence": 0.497,
+        "probabilities": {
+          "NONE": 0.067,
+          "SOFT_WIND": 0.235,
+          "LAVENDER_PALETTE": 0.497,
+          "GOLD_CYMATICS": 0.067,
+          "FLOWER_HUE_SHIFT": 0.067,
+          "RESONANCE_RIPPLE": 0.067
+        },
+        "displayed": "LAVENDER_PALETTE",
+        "switched": true
+      }
+    },
+    {
+      "t": 20.0,
+      "beat": "WIND",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "TURN_TO_PLAYER",
+        "confidence": 0.351,
+        "probabilities": {
+          "GRAZE": 0.101,
+          "TURN_TO_PLAYER": 0.078,
+          "CHORAL_SWAY": 0.351,
+          "FOLLOW_WIND": 0.078,
+          "PART_PATH": 0.078,
+          "SPIRAL_FORMATION": 0.078,
+          "RESONANCE_PULSE": 0.078,
+          "CRESCENDO_BURST": 0.078,
+          "RETURN_TO_IDLE": 0.078
+        },
+        "displayed": "TURN_TO_PLAYER",
+        "switched": false
+      },
+      "world": {
+        "choice": "LAVENDER_PALETTE",
+        "confidence": 0.655,
+        "probabilities": {
+          "NONE": 0.069,
+          "SOFT_WIND": 0.655,
+          "LAVENDER_PALETTE": 0.069,
+          "GOLD_CYMATICS": 0.069,
+          "FLOWER_HUE_SHIFT": 0.069,
+          "RESONANCE_RIPPLE": 0.069
+        },
+        "displayed": "LAVENDER_PALETTE",
+        "switched": false
+      }
+    },
+    {
+      "t": 22.0,
+      "beat": "WIND",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "CHORAL_SWAY",
+        "confidence": 0.351,
+        "probabilities": {
+          "GRAZE": 0.101,
+          "TURN_TO_PLAYER": 0.078,
+          "CHORAL_SWAY": 0.351,
+          "FOLLOW_WIND": 0.078,
+          "PART_PATH": 0.078,
+          "SPIRAL_FORMATION": 0.078,
+          "RESONANCE_PULSE": 0.078,
+          "CRESCENDO_BURST": 0.078,
+          "RETURN_TO_IDLE": 0.078
+        },
+        "displayed": "CHORAL_SWAY",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.655,
+        "probabilities": {
+          "NONE": 0.069,
+          "SOFT_WIND": 0.655,
+          "LAVENDER_PALETTE": 0.069,
+          "GOLD_CYMATICS": 0.069,
+          "FLOWER_HUE_SHIFT": 0.069,
+          "RESONANCE_RIPPLE": 0.069
+        },
+        "displayed": "SOFT_WIND",
+        "switched": true
+      }
+    },
+    {
+      "t": 24.0,
+      "beat": "WIND",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "CHORAL_SWAY",
+        "confidence": 0.351,
+        "probabilities": {
+          "GRAZE": 0.101,
+          "TURN_TO_PLAYER": 0.078,
+          "CHORAL_SWAY": 0.351,
+          "FOLLOW_WIND": 0.078,
+          "PART_PATH": 0.078,
+          "SPIRAL_FORMATION": 0.078,
+          "RESONANCE_PULSE": 0.078,
+          "CRESCENDO_BURST": 0.078,
+          "RETURN_TO_IDLE": 0.078
+        },
+        "displayed": "CHORAL_SWAY",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 26.0,
+      "beat": "WIND",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "FOLLOW_WIND",
+        "confidence": 0.386,
+        "probabilities": {
+          "GRAZE": 0.067,
+          "TURN_TO_PLAYER": 0.052,
+          "CHORAL_SWAY": 0.234,
+          "FOLLOW_WIND": 0.386,
+          "PART_PATH": 0.052,
+          "SPIRAL_FORMATION": 0.052,
+          "RESONANCE_PULSE": 0.052,
+          "CRESCENDO_BURST": 0.052,
+          "RETURN_TO_IDLE": 0.052
+        },
+        "displayed": "FOLLOW_WIND",
+        "switched": true
+      },
+      "world": {
+        "choice": "FLOWER_HUE_SHIFT",
+        "confidence": 0.547,
+        "probabilities": {
+          "NONE": 0.074,
+          "SOFT_WIND": 0.157,
+          "LAVENDER_PALETTE": 0.074,
+          "GOLD_CYMATICS": 0.074,
+          "FLOWER_HUE_SHIFT": 0.547,
+          "RESONANCE_RIPPLE": 0.074
+        },
+        "displayed": "FLOWER_HUE_SHIFT",
+        "switched": true
+      }
+    },
+    {
+      "t": 28.0,
+      "beat": "WIND",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "FOLLOW_WIND",
+        "confidence": 0.386,
+        "probabilities": {
+          "GRAZE": 0.067,
+          "TURN_TO_PLAYER": 0.052,
+          "CHORAL_SWAY": 0.234,
+          "FOLLOW_WIND": 0.386,
+          "PART_PATH": 0.052,
+          "SPIRAL_FORMATION": 0.052,
+          "RESONANCE_PULSE": 0.052,
+          "CRESCENDO_BURST": 0.052,
+          "RETURN_TO_IDLE": 0.052
+        },
+        "displayed": "FOLLOW_WIND",
+        "switched": false
+      },
+      "world": {
+        "choice": "FLOWER_HUE_SHIFT",
+        "confidence": 0.547,
+        "probabilities": {
+          "NONE": 0.074,
+          "SOFT_WIND": 0.157,
+          "LAVENDER_PALETTE": 0.074,
+          "GOLD_CYMATICS": 0.074,
+          "FLOWER_HUE_SHIFT": 0.547,
+          "RESONANCE_RIPPLE": 0.074
+        },
+        "displayed": "FLOWER_HUE_SHIFT",
+        "switched": false
+      }
+    },
+    {
+      "t": 30.0,
+      "beat": "RESONANCE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "RESONANCE_PULSE",
+        "confidence": 0.386,
+        "probabilities": {
+          "GRAZE": 0.067,
+          "TURN_TO_PLAYER": 0.052,
+          "CHORAL_SWAY": 0.234,
+          "FOLLOW_WIND": 0.052,
+          "PART_PATH": 0.052,
+          "SPIRAL_FORMATION": 0.052,
+          "RESONANCE_PULSE": 0.386,
+          "CRESCENDO_BURST": 0.052,
+          "RETURN_TO_IDLE": 0.052
+        },
+        "displayed": "RESONANCE_PULSE",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": true
+      }
+    },
+    {
+      "t": 32.0,
+      "beat": "RESONANCE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "RESONANCE_PULSE",
+        "confidence": 0.343,
+        "probabilities": {
+          "GRAZE": 0.046,
+          "TURN_TO_PLAYER": 0.036,
+          "CHORAL_SWAY": 0.162,
+          "FOLLOW_WIND": 0.036,
+          "PART_PATH": 0.036,
+          "SPIRAL_FORMATION": 0.343,
+          "RESONANCE_PULSE": 0.267,
+          "CRESCENDO_BURST": 0.036,
+          "RETURN_TO_IDLE": 0.036
+        },
+        "displayed": "RESONANCE_PULSE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.413,
+        "probabilities": {
+          "NONE": 0.044,
+          "SOFT_WIND": 0.413,
+          "LAVENDER_PALETTE": 0.044,
+          "GOLD_CYMATICS": 0.413,
+          "FLOWER_HUE_SHIFT": 0.044,
+          "RESONANCE_RIPPLE": 0.044
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 34.0,
+      "beat": "RESONANCE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "SPIRAL_FORMATION",
+        "confidence": 0.534,
+        "probabilities": {
+          "GRAZE": 0.072,
+          "TURN_TO_PLAYER": 0.056,
+          "CHORAL_SWAY": 0.056,
+          "FOLLOW_WIND": 0.056,
+          "PART_PATH": 0.056,
+          "SPIRAL_FORMATION": 0.534,
+          "RESONANCE_PULSE": 0.056,
+          "CRESCENDO_BURST": 0.056,
+          "RETURN_TO_IDLE": 0.056
+        },
+        "displayed": "SPIRAL_FORMATION",
+        "switched": true
+      },
+      "world": {
+        "choice": "GOLD_CYMATICS",
+        "confidence": 0.559,
+        "probabilities": {
+          "NONE": 0.059,
+          "SOFT_WIND": 0.206,
+          "LAVENDER_PALETTE": 0.059,
+          "GOLD_CYMATICS": 0.559,
+          "FLOWER_HUE_SHIFT": 0.059,
+          "RESONANCE_RIPPLE": 0.059
+        },
+        "displayed": "GOLD_CYMATICS",
+        "switched": true
+      }
+    },
+    {
+      "t": 36.0,
+      "beat": "RESONANCE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "SPIRAL_FORMATION",
+        "confidence": 0.534,
+        "probabilities": {
+          "GRAZE": 0.072,
+          "TURN_TO_PLAYER": 0.056,
+          "CHORAL_SWAY": 0.056,
+          "FOLLOW_WIND": 0.056,
+          "PART_PATH": 0.056,
+          "SPIRAL_FORMATION": 0.534,
+          "RESONANCE_PULSE": 0.056,
+          "CRESCENDO_BURST": 0.056,
+          "RETURN_TO_IDLE": 0.056
+        },
+        "displayed": "SPIRAL_FORMATION",
+        "switched": false
+      },
+      "world": {
+        "choice": "GOLD_CYMATICS",
+        "confidence": 0.559,
+        "probabilities": {
+          "NONE": 0.059,
+          "SOFT_WIND": 0.206,
+          "LAVENDER_PALETTE": 0.059,
+          "GOLD_CYMATICS": 0.559,
+          "FLOWER_HUE_SHIFT": 0.059,
+          "RESONANCE_RIPPLE": 0.059
+        },
+        "displayed": "GOLD_CYMATICS",
+        "switched": false
+      }
+    },
+    {
+      "t": 38.0,
+      "beat": "RESONANCE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "CRESCENDO_BURST",
+        "confidence": 0.545,
+        "probabilities": {
+          "GRAZE": 0.035,
+          "TURN_TO_PLAYER": 0.027,
+          "CHORAL_SWAY": 0.027,
+          "FOLLOW_WIND": 0.027,
+          "PART_PATH": 0.027,
+          "SPIRAL_FORMATION": 0.257,
+          "RESONANCE_PULSE": 0.027,
+          "CRESCENDO_BURST": 0.545,
+          "RETURN_TO_IDLE": 0.027
+        },
+        "displayed": "CRESCENDO_BURST",
+        "switched": true
+      },
+      "world": {
+        "choice": "RESONANCE_RIPPLE",
+        "confidence": 0.495,
+        "probabilities": {
+          "NONE": 0.032,
+          "SOFT_WIND": 0.11,
+          "LAVENDER_PALETTE": 0.032,
+          "GOLD_CYMATICS": 0.3,
+          "FLOWER_HUE_SHIFT": 0.032,
+          "RESONANCE_RIPPLE": 0.495
+        },
+        "displayed": "RESONANCE_RIPPLE",
+        "switched": true
+      }
+    },
+    {
+      "t": 40.0,
+      "beat": "SETTLE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "CRESCENDO_BURST",
+        "confidence": 0.334,
+        "probabilities": {
+          "GRAZE": 0.26,
+          "TURN_TO_PLAYER": 0.058,
+          "CHORAL_SWAY": 0.058,
+          "FOLLOW_WIND": 0.058,
+          "PART_PATH": 0.058,
+          "SPIRAL_FORMATION": 0.058,
+          "RESONANCE_PULSE": 0.058,
+          "CRESCENDO_BURST": 0.058,
+          "RETURN_TO_IDLE": 0.334
+        },
+        "displayed": "CRESCENDO_BURST",
+        "switched": false
+      },
+      "world": {
+        "choice": "RESONANCE_RIPPLE",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "RESONANCE_RIPPLE",
+        "switched": false
+      }
+    },
+    {
+      "t": 42.0,
+      "beat": "SETTLE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "RETURN_TO_IDLE",
+        "confidence": 0.334,
+        "probabilities": {
+          "GRAZE": 0.26,
+          "TURN_TO_PLAYER": 0.058,
+          "CHORAL_SWAY": 0.058,
+          "FOLLOW_WIND": 0.058,
+          "PART_PATH": 0.058,
+          "SPIRAL_FORMATION": 0.058,
+          "RESONANCE_PULSE": 0.058,
+          "CRESCENDO_BURST": 0.058,
+          "RETURN_TO_IDLE": 0.334
+        },
+        "displayed": "RETURN_TO_IDLE",
+        "switched": true
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": true
+      }
+    },
+    {
+      "t": 44.0,
+      "beat": "SETTLE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "RETURN_TO_IDLE",
+        "confidence": 0.334,
+        "probabilities": {
+          "GRAZE": 0.26,
+          "TURN_TO_PLAYER": 0.058,
+          "CHORAL_SWAY": 0.058,
+          "FOLLOW_WIND": 0.058,
+          "PART_PATH": 0.058,
+          "SPIRAL_FORMATION": 0.058,
+          "RESONANCE_PULSE": 0.058,
+          "CRESCENDO_BURST": 0.058,
+          "RETURN_TO_IDLE": 0.334
+        },
+        "displayed": "RETURN_TO_IDLE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    },
+    {
+      "t": 46.0,
+      "beat": "SETTLE",
+      "source": "classical-fallback",
+      "reason": "no TYPESAFE_API_KEY; classical heuristic fallback (not Jev evidence)",
+      "flock": {
+        "choice": "RETURN_TO_IDLE",
+        "confidence": 0.334,
+        "probabilities": {
+          "GRAZE": 0.26,
+          "TURN_TO_PLAYER": 0.058,
+          "CHORAL_SWAY": 0.058,
+          "FOLLOW_WIND": 0.058,
+          "PART_PATH": 0.058,
+          "SPIRAL_FORMATION": 0.058,
+          "RESONANCE_PULSE": 0.058,
+          "CRESCENDO_BURST": 0.058,
+          "RETURN_TO_IDLE": 0.334
+        },
+        "displayed": "RETURN_TO_IDLE",
+        "switched": false
+      },
+      "world": {
+        "choice": "SOFT_WIND",
+        "confidence": 0.411,
+        "probabilities": {
+          "NONE": 0.118,
+          "SOFT_WIND": 0.411,
+          "LAVENDER_PALETTE": 0.118,
+          "GOLD_CYMATICS": 0.118,
+          "FLOWER_HUE_SHIFT": 0.118,
+          "RESONANCE_RIPPLE": 0.118
+        },
+        "displayed": "SOFT_WIND",
+        "switched": false
+      }
+    }
+  ]
+}

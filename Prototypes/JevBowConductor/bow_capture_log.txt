@@ -1,0 +1,139 @@
+[t=000.0s STRINGING] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.99
+Loose: hold 0.07
+Alt: LOWER_BOW 0.01
+src: jev-live
+
+[t=002.0s STRINGING] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.99
+Loose: hold 0.08
+Alt: LOWER_BOW 0.01
+src: jev-live
+
+[t=004.0s STRINGING] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.99
+Loose: hold 0.08
+Alt: LOWER_BOW 0.01
+src: jev-live
+
+[t=006.0s STRINGING] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.99
+Loose: hold 0.09
+Alt: LOWER_BOW 0.01
+src: jev-live
+
+[t=008.0s DRAW] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.86
+Loose: hold 0.16
+Alt: BOW_V1 0.13
+src: jev-live
+
+[t=010.0s DRAW] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.86
+Loose: hold 0.15
+Alt: BOW_V1 0.12
+src: jev-live
+
+[t=012.0s DRAW] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.90
+Loose: hold 0.13
+Alt: BOW_V1 0.09
+src: jev-live
+
+[t=014.0s DRAW] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.88
+Loose: hold 0.13
+Alt: BOW_V1 0.11
+src: jev-live
+
+[t=016.0s HOLD] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V1 0.69
+Loose: hold 0.46
+Alt: IDLE_READY 0.27
+src: jev-live
+
+[t=018.0s HOLD] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V1 0.74
+Loose: hold 0.47
+Alt: IDLE_READY 0.23
+src: jev-live
+
+[t=020.0s HOLD] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V1 0.77
+Loose: hold 0.52
+Alt: IDLE_READY 0.20
+src: jev-live
+
+[t=022.0s HOLD] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V1 0.73
+Loose: hold 0.53
+Alt: IDLE_READY 0.23
+src: jev-live
+
+[t=024.0s LOOSE] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V2 0.55
+Loose: hold 0.54
+Alt: IDLE_READY 0.28
+src: jev-live
+
+[t=026.0s LOOSE] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V2 0.58
+Loose: hold 0.54
+Alt: IDLE_READY 0.25
+src: jev-live
+
+[t=028.0s LOOSE] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V2 0.71
+Loose: YES 0.63
+Alt: IDLE_READY 0.17
+src: jev-live
+
+[t=030.0s LOOSE] src=jev-live
+JEV BOW CONDUCTOR
+Bow: BOW_V2 0.72
+Loose: YES 0.66
+Alt: IDLE_READY 0.17
+src: jev-live
+
+[t=032.0s LOWER] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.80
+Loose: hold 0.12
+Alt: LOWER_BOW 0.14
+src: jev-live
+
+[t=034.0s LOWER] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.80
+Loose: hold 0.12
+Alt: LOWER_BOW 0.16
+src: jev-live
+
+[t=036.0s LOWER] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.77
+Loose: hold 0.12
+Alt: LOWER_BOW 0.18
+src: jev-live
+
+[t=038.0s LOWER] src=jev-live
+JEV BOW CONDUCTOR
+Bow: IDLE_READY 0.79
+Loose: hold 0.12
+Alt: LOWER_BOW 0.16
+src: jev-live

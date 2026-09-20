@@ -1,0 +1,41 @@
+{
+  "sheep_bp": "/Game/Melodia/Companions/ChoralSheep/BP_ChoralSheep",
+  "calls": [
+    {
+      "label": "sheep-cdo",
+      "tool": "blueprint_query",
+      "action": "get_cdo_properties",
+      "head": "ERROR:Missing required parameter: asset_path"
+    },
+    {
+      "label": "sheep-graphs",
+      "tool": "blueprint_query",
+      "action": "get_graph_data",
+      "head": "ERROR:Blueprint not found: "
+    },
+    {
+      "label": "sheep-bones",
+      "tool": "mesh_query",
+      "action": "get_bones",
+      "head": "ERROR:Unknown action: mesh.get_bones \u2014 call monolith_discover(\"mesh\") to enumerate valid actions in this namespace. Did you mean: get_mesh_bounds, get_scene_bounds, get_actor_info?"
+    },
+    {
+      "label": "sheep-abp-graphs",
+      "tool": "blueprint_query",
+      "action": "get_graph_data",
+      "head": "ERROR:Blueprint not found: "
+    },
+    {
+      "label": "actors-/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+      "tool": "editor_query",
+      "action": "get_level_actors",
+      "head": "ERROR:Unknown action: editor.get_level_actors \u2014 call monolith_discover(\"editor\") to enumerate valid actions in this namespace. Did you mean: get_build_errors, get_recent_logs, get_log_stats?"
+    },
+    {
+      "label": "actors-/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+      "tool": "editor_query",
+      "action": "get_level_actors",
+      "head": "ERROR:Unknown action: editor.get_level_actors \u2014 call monolith_discover(\"editor\") to enumerate valid actions in this namespace. Did you mean: get_build_errors, get_recent_logs, get_log_stats?"
+    }
+  ]
+}

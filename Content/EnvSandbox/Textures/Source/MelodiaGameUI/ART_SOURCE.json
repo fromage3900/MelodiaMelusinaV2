@@ -1,0 +1,48 @@
+{
+  "art_source": "figma_batch_o_baroque",
+  "locked_at": "2026-07-16T16:20:00+00:00",
+  "ornate_slots": [
+    "T_Melodia_ElementWheel.png",
+    "T_Melodia_FiligreeCorner.png",
+    "T_Melodia_FiligreeCrest_Finale.png",
+    "T_Melodia_FiligreeDivider.png",
+    "T_Melodia_FiligreeGradeHalo.png",
+    "T_Melodia_FiligreeGradeHalo_Good.png",
+    "T_Melodia_FiligreeGradeHalo_Great.png",
+    "T_Melodia_FiligreeGradeHalo_Miss.png",
+    "T_Melodia_FiligreeGradeHalo_Perfect.png",
+    "T_Melodia_FiligreeLaneRail.png",
+    "T_Melodia_Hitline.png",
+    "T_Melodia_NoteHead.png",
+    "T_Melodia_NoteHeadBeam.png",
+    "T_Melodia_ScrollBorderRail.png",
+    "T_Melodia_SheetParchment.png",
+    "T_Melodia_StaffTile.png"
+  ],
+  "baroque_slots": [
+    "T_Melodia_FiligreeBatchO_Baroque.png",
+    "T_Melodia_FiligreeCornerBaroque.png",
+    "T_Melodia_FiligreeDividerScroll.png",
+    "T_Melodia_FiligreeCrestBaroque.png",
+    "T_Melodia_FiligreeMedallionRosette.png",
+    "T_Melodia_FiligreeBraceVolute.png"
+  ],
+  "note": "Baroque set from Game/FiligreeBatchO_Baroque (58:716). SoftMG / SheetMusicHUD bind via .is-baroque.",
+  "figma_file": "Yx8ud7n39NdWZvnNvo4Xlf",
+  "figma_components": [
+    "Game/MusicalFiligree",
+    "Game/NoteGlyph",
+    "Game/PlaybackHead",
+    "Game/SheetMusicRoll",
+    "Game/FiligreeBatchO",
+    "Game/FiligreeBatchO_Baroque"
+  ],
+  "figma_nodes": {
+    "FiligreeBatchO_Baroque": "58:716",
+    "CornerBaroque": "58:606",
+    "DividerScroll": "58:633",
+    "CrestBaroque": "58:664",
+    "MedallionRosette": "58:689",
+    "BraceVolute": "58:704"
+  }
+}

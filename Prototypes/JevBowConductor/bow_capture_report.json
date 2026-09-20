@@ -1,0 +1,464 @@
+{
+  "evaluations": [
+    {
+      "t": 0.0,
+      "beat": "STRINGING",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.99,
+        "probabilities": {
+          "IDLE_READY": 0.99,
+          "BOW_V1": 0.0,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.07
+    },
+    {
+      "t": 2.0,
+      "beat": "STRINGING",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.99,
+        "probabilities": {
+          "IDLE_READY": 0.99,
+          "BOW_V1": 0.0,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.08
+    },
+    {
+      "t": 4.0,
+      "beat": "STRINGING",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.99,
+        "probabilities": {
+          "IDLE_READY": 0.99,
+          "BOW_V1": 0.0,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.08
+    },
+    {
+      "t": 6.0,
+      "beat": "STRINGING",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.99,
+        "probabilities": {
+          "IDLE_READY": 0.99,
+          "BOW_V1": 0.0,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.09
+    },
+    {
+      "t": 8.0,
+      "beat": "DRAW",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.83,
+        "probabilities": {
+          "IDLE_READY": 0.86,
+          "BOW_V1": 0.13,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.16
+    },
+    {
+      "t": 10.0,
+      "beat": "DRAW",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.84,
+        "probabilities": {
+          "IDLE_READY": 0.86,
+          "BOW_V1": 0.12,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.02
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.15
+    },
+    {
+      "t": 12.0,
+      "beat": "DRAW",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.88,
+        "probabilities": {
+          "IDLE_READY": 0.9,
+          "BOW_V1": 0.09,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.13
+    },
+    {
+      "t": 14.0,
+      "beat": "DRAW",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.86,
+        "probabilities": {
+          "IDLE_READY": 0.88,
+          "BOW_V1": 0.11,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.01
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.13
+    },
+    {
+      "t": 16.0,
+      "beat": "HOLD",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V1",
+        "confidence": 0.64,
+        "probabilities": {
+          "IDLE_READY": 0.27,
+          "BOW_V1": 0.69,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.04
+        },
+        "displayed": "BOW_V1",
+        "switched": true
+      },
+      "loose": false,
+      "loose_p": 0.46
+    },
+    {
+      "t": 18.0,
+      "beat": "HOLD",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V1",
+        "confidence": 0.68,
+        "probabilities": {
+          "IDLE_READY": 0.23,
+          "BOW_V1": 0.74,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.03
+        },
+        "displayed": "BOW_V1",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.47
+    },
+    {
+      "t": 20.0,
+      "beat": "HOLD",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V1",
+        "confidence": 0.73,
+        "probabilities": {
+          "IDLE_READY": 0.2,
+          "BOW_V1": 0.77,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.03
+        },
+        "displayed": "BOW_V1",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.52
+    },
+    {
+      "t": 22.0,
+      "beat": "HOLD",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V1",
+        "confidence": 0.67,
+        "probabilities": {
+          "IDLE_READY": 0.23,
+          "BOW_V1": 0.73,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.04
+        },
+        "displayed": "BOW_V1",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.53
+    },
+    {
+      "t": 24.0,
+      "beat": "LOOSE",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V2",
+        "confidence": 0.48,
+        "probabilities": {
+          "IDLE_READY": 0.28,
+          "BOW_V1": 0.1,
+          "BOW_V2": 0.55,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.01,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.06
+        },
+        "displayed": "BOW_V2",
+        "switched": true
+      },
+      "loose": false,
+      "loose_p": 0.54
+    },
+    {
+      "t": 26.0,
+      "beat": "LOOSE",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V2",
+        "confidence": 0.51,
+        "probabilities": {
+          "IDLE_READY": 0.25,
+          "BOW_V1": 0.08,
+          "BOW_V2": 0.58,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.01,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.08
+        },
+        "displayed": "BOW_V2",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.54
+    },
+    {
+      "t": 28.0,
+      "beat": "LOOSE",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V2",
+        "confidence": 0.65,
+        "probabilities": {
+          "IDLE_READY": 0.17,
+          "BOW_V1": 0.07,
+          "BOW_V2": 0.71,
+          "BOW_POLISHED": 0.0,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.05
+        },
+        "displayed": "BOW_V2",
+        "switched": false
+      },
+      "loose": true,
+      "loose_p": 0.63
+    },
+    {
+      "t": 30.0,
+      "beat": "LOOSE",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "BOW_V2",
+        "confidence": 0.67,
+        "probabilities": {
+          "IDLE_READY": 0.17,
+          "BOW_V1": 0.05,
+          "BOW_V2": 0.72,
+          "BOW_POLISHED": 0.01,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.05
+        },
+        "displayed": "BOW_V2",
+        "switched": false
+      },
+      "loose": true,
+      "loose_p": 0.66
+    },
+    {
+      "t": 32.0,
+      "beat": "LOWER",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.76,
+        "probabilities": {
+          "IDLE_READY": 0.8,
+          "BOW_V1": 0.02,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.04,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.14
+        },
+        "displayed": "IDLE_READY",
+        "switched": true
+      },
+      "loose": false,
+      "loose_p": 0.12
+    },
+    {
+      "t": 34.0,
+      "beat": "LOWER",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.76,
+        "probabilities": {
+          "IDLE_READY": 0.8,
+          "BOW_V1": 0.02,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.02,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.16
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.12
+    },
+    {
+      "t": 36.0,
+      "beat": "LOWER",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.72,
+        "probabilities": {
+          "IDLE_READY": 0.77,
+          "BOW_V1": 0.01,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.04,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.18
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.12
+    },
+    {
+      "t": 38.0,
+      "beat": "LOWER",
+      "source": "jev-live",
+      "reason": "jev system_one Choice+Noul, full distribution preserved",
+      "bow": {
+        "choice": "IDLE_READY",
+        "confidence": 0.75,
+        "probabilities": {
+          "IDLE_READY": 0.79,
+          "BOW_V1": 0.02,
+          "BOW_V2": 0.0,
+          "BOW_POLISHED": 0.03,
+          "BOW_GAMEPLAY": 0.0,
+          "BOW_BOUND": 0.0,
+          "LOWER_BOW": 0.16
+        },
+        "displayed": "IDLE_READY",
+        "switched": false
+      },
+      "loose": false,
+      "loose_p": 0.12
+    }
+  ]
+}
