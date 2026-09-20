@@ -11,6 +11,8 @@ Repositories:
 - Portfolio SSOT: `fromage3900/my-site`
 - Current Infold-targeted portfolio packet on `my-site/main`: PR #34 / `619faa2d121e8e6d25755236e987b461e8aec7c6`
 - Canonical shortlist: `Humber_FinalYear_Prep/Career/APPLICATION_STRIKE_LEDGER_2026-09-17.md`
+- Canonical email / outreach queue: `Humber_FinalYear_Prep/Career/HERMES_OUTREACH_EMAIL_QUEUE_2026-09-20.md`
+- Recovered vendor / education email drafts: `Humber_FinalYear_Prep/Career/HERMES_EMAIL_DRAFTS_RECOVERED_2026-09-09.md`
 
 Do not resurrect the old deleted `Docs/Career` directory wholesale.
 
