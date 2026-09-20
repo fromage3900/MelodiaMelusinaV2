@@ -3,20 +3,28 @@
 
     python Tools/world_compiler_ue_driver.py Saved/WorldCompiler/morning_rainbow_bloom_3900 [--fx] [--reload] [--no-cleanup]
 
+Required spatial preflight (agent, not a new framework): before any WC / PCG /
+Monolith spatial edit, run ``scene_context_cycle.begin()`` in the already-open
+editor; after the edit, ``scene_context_cycle.end()``. Tools:
+``Content/Python/scene_context_snapshot.py`` and ``scene_context_cycle.py``.
+Packets under ``Saved/Audit/SceneContext/`` are ephemeral evidence, not status.
+One editor only — Monolith ``http://127.0.0.1:9316/mcp``. Do not start a second
+editor or a second spatial AI.
+
 Each step is a separate ``editor.run_python`` call so PCG generation, saves and
 reloads land on real frame boundaries (no ``time.sleep`` inside the editor).
 The driver:
 
-  1. preflight            (abort unless the recipe's level is open)
-  2. ensure row struct    (Monolith blueprint.create_user_defined_struct, once)
-  3. cleanup              (tagged actors + known rainbow husks)
-  4. materials            (7 band MIs, BaseTint only)
-  5. table                (fill DT_<recipe>_Points from points.csv)
-  6. volume + generate    (only if the owner-authored template graph exists)
-  7. count                (poll until 'generated' and counts stable, max ~60 s)
-  8. save
-  9. --reload: Monolith mesh.load_level -> count again
- 10. --fx: fx_materials, fx_place, fx_audit
+    1. preflight            (abort unless the recipe's level is open)
+    2. ensure row struct    (Monolith blueprint.create_user_defined_struct, once)
+    3. cleanup              (tagged actors + known rainbow husks)
+    4. materials            (7 band MIs, BaseTint only)
+    5. table                (fill DT_<recipe>_Points from points.csv)
+    6. volume + generate    (only if the owner-authored template graph exists)
+    7. count                (poll until 'generated' and counts stable, max ~60 s)
+    8. save
+    9. --reload: Monolith mesh.load_level -> count again
+   10. --fx: fx_materials, fx_place, fx_audit
 
 Writes Saved/Audit/world_compiler_<recipe>_proof_<date>.json with every step's
 payload and the gate verdicts. Never touches PCG graph structure, MPCs or masters.
@@ -167,6 +175,9 @@ def main() -> int:
     status = call("monolith_status", {})
     proof["monolith"] = {k: status.get(k) for k in ("version", "port", "uptime") if isinstance(status, dict)}
 
+    # Spatial edits (volume / generate / fx / lookdev) assume the agent already
+    # ran scene_context_cycle.begin() on this same editor (127.0.0.1:9316).
+    # This driver does not wrap a new spatial framework; end() after the run.
     pre = run_step(bundle_dir, "preflight")
     proof["steps"]["preflight"] = pre
     if not pre.get("ok_to_proceed"):

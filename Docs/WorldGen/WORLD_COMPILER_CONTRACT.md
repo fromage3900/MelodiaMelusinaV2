@@ -58,20 +58,20 @@ Schema: [`specs/schemas/world_recipe.v1.schema.json`](../../specs/schemas/world_
   "recipe_id": "morning_rainbow_bloom",
   "world_seed": 3900,
   "identity": {"mode_id": "ionian", "root_pitch_class": 0, "bpm": 96, "movement_id": "petal_cantata"},
-  "place": {
+    "place": {
     "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
-    "anchor_cm": [-950.0, 2300.0, -615.4],
-    "up_axis_offset_cm": 4.0,
+    "anchor_cm": [-2300.0, 1442.0, 0.0],
+    "up_axis_offset_cm": 8.0,
     "clearance": {
       "circles": [{"label": "pond", "center_cm": [-950.0, 2300.0], "radius_cm": 260.0}],
       "capsules": [{"label": "wake_path", "a_cm": [1435.0, 2321.0], "b_cm": [-888.0, 2140.0], "radius_cm": 110.0}]
     }
   },
-  "field": {"kind": "radial_bands", "band_count": 7, "inner_radius_cm": 260.0, "band_width_cm": 180.0,
-            "density_per_m2": 1.6, "phyllotaxis_angle_rad": 2.399963, "chladni": {"modes": [[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]], "threshold": 0.35}},
-  "species": [ {"species_id": "meadow_bloom", "mesh": "/Game/EnvSandbox/Meshes/Environment/flower_redA/StaticMeshes/flower_redA",
-                "meshes": ["/Game/EnvSandbox/Meshes/Environment/flower_redA/StaticMeshes/flower_redA", "...9 variants"],
-                "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowPetal_", "weight": 1.0} ],
+  "field": {"kind": "radial_bands", "band_count": 7, "inner_radius_cm": 200.0, "band_width_cm": 250.0,
+            "sector_deg": [0.0, 360.0], "density_per_m2": 3.5, "phyllotaxis_angle_rad": 2.399963,
+            "chladni": {"modes": [[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]], "threshold": 0.35}},
+  "species": [ {"species_id": "speedtree_meadow", "ground_labels": ["BrushifyIsland_"],
+                "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_", "weight": 1.0} ],
   "palette": {"bands": [{"label": "B0_Red", "tint": [1.0, 0.18, 0.22]}, "..."]},
   "fx": {"pack": "specs/niagara/morning_hero_fx_pack.v1.json", "anchors_per_band": {"petal": 1, "pollen": 1}, "mist_anchors": 2, "windfront_anchors": 1},
   "signal": {"source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette", "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
@@ -89,9 +89,18 @@ Rules:
 - `clearance` masks are honoured by **both** plant points and FX anchors. Circles remove points inside; capsules remove points within `radius_cm` of the segment.
 - `field.kind` is `radial_bands` in v1. Other kinds (`chunk_grid`, `path_ribbon`) are additive schema versions, not edits to v1.
 - `species[].band_mi_prefix + palette.bands[b].label` must resolve to an existing MI in the UE lane; the compiler only writes the *path string*.
-- `terrain.kind: "ground_probe"` makes placement **height-aware and ground-aware**: `world_compiler_ue.py probe_ground` line-traces a `probe_step_cm` grid inside `probe_radius_cm` and writes `recipes/ground/<recipe_id>_ground_probe.json`; the ecology stage then keeps only cells whose hit z lies in `walkable_z_cm` (excluding `exclude_actor_classes`), and writes the hit z (+`up_axis_offset_cm`) into `Position`. The UE template graph additionally projects onto world geometry (World Ray Hit + Projection), so the count gate uses a 95 % survival tolerance in this mode. `field.sector_deg [center, half_width]` restricts the phyllotaxis sweep to the arc where ground exists.
+- `terrain.kind: "ground_probe"` makes placement **height-aware and ground-aware**: `world_compiler_ue.py probe_ground` line-traces a `probe_step_cm` grid inside `probe_radius_cm` and writes `recipes/ground/<recipe_id>_ground_probe.json`; the ecology stage then keeps only cells whose hit z lies in `walkable_z_cm` (excluding `exclude_actor_classes`), and writes the hit z (+`up_axis_offset_cm`) into `Position`. The UE template graph additionally projects onto world geometry (World Ray Hit + Projection), so the count gate uses a 95 % survival tolerance in this mode. `field.sector_deg [center, half_width]` restricts the phyllotaxis sweep to the arc where ground exists. Live Morning placement is **not** a bedroom-floor arc — see the geometry rule below.
 
-**Ground finding for `L_MelusinaMorning` (09-17, from the 2.6 km probe grid):** there is no dell floor. The "pond centroid" `(-950, 2300)` derived from the sheep trigger and WoolMotes actors sits over **open water / void** (the Oceanology lake surface at z -1823 does not register traces; the rock spheres under it are submerged). The only plantable ground within 26 m is the bedroom floor (`SM_classic_arch_24..27`, z -611, ~1.4 x 1.6 km) plus steep rock (z -680..-1400) to its north and south. The Morning recipe therefore uses `inner_radius 1000 / band_width 200 / sector_deg [0, 40]` so the seven bands arc across the floor from the pond side toward the bed. Owner decision recorded as open: keep the field in the room (trove plan open question #2) or dress a real dell floor around the lake (no new landscape; Houdini/GN mesh terrain) and re-run `probe_ground`.
+**Live Morning geometry (`recipes/morning_rainbow_bloom.v1.json`, close-out 2026-09-19 PASS):**
+
+| Band | Plantable ground | Never plant |
+|---|---|---|
+| Flowers (`speedtree_meadow`) | `BrushifyIsland_*` only | bedroom / `SM_classic_arch_*` / `Sphere3D` / `WC_DellFloor` / Landscape |
+| Dressing (`brushify_overgrowth` / `brushify_roots` / `brushify_bush`) | `WC_EscherWalk_*` plus island skirts | a second meadow, Engine cubes, Houdini as live player geo |
+
+The recipe keepout includes `bedroom_keepout` (center ~`[900, 2300]`, radius 1100 cm), pond water, bed, sheep rest, and wake-path capsules. Do not invent a new meadow. Compile stays CLI: `python Tools/world_compiler.py compile recipes/morning_rainbow_bloom.v1.json` then `python Tools/world_compiler_ue_driver.py Saved/WorldCompiler/morning_rainbow_bloom_3900 --skip-scaffold --fx --lookdev`.
+
+**Historical 09-17 probe (do not follow):** a 2.6 km grid found no dell floor; the pond centroid `(-950, 2300)` sits over open water / void, and the only nearby hit then was the bedroom floor (`SM_classic_arch_24..27`). That probe predates BrushifyIsland targeting and the bedroom keepout. Agents that still arc seven bands across the bedroom are following this stale note.
 
 ---
 
@@ -181,6 +190,27 @@ Anchors respect the same clearance masks as points. The UE lane places `NiagaraA
 
 The compiler never imports `unreal`. `Content/Python/world_compiler_ue.py` is the *consumer* and runs only inside the editor (Monolith `editor.run_python` or `UnrealEditor-Cmd`).
 
+### 6.0 Spatial preflight (required)
+
+Any World Compiler, PCG, or Monolith **spatial** edit (points, volumes, dressing, lookdev cameras, actor moves, graph generate, island/walk placement) requires the existing scene-context cycle in the **already-open** editor **before** the first mutation and **after** the change. This is not a new framework.
+
+```text
+CURRENT_STATE + this contract
+  -> scene_context_cycle.begin()
+  -> inspect packet + live editor
+  -> bounded WC/PCG/Monolith change
+  -> scene_context_cycle.end()
+  -> falsify route / silhouette / PCG / scale
+  -> owner judges viewport
+```
+
+| Tool | Role |
+|---|---|
+| [`Content/Python/scene_context_snapshot.py`](../../Content/Python/scene_context_snapshot.py) | one compact live 3D packet |
+| [`Content/Python/scene_context_cycle.py`](../../Content/Python/scene_context_cycle.py) | `begin()` / `end()` before/after + `scene_context_diff.json` |
+
+Packets land under `Saved/Audit/SceneContext/<LevelName>/` and are **ephemeral evidence**, not status. One editor, one writer: Monolith **`127.0.0.1:9316`** only. A second editor logs to `Saved/Logs/BS_GodFile_2.log`. Skip-scaffold / `--fx` / `--lookdev` close-out still counts as a spatial edit: run the cycle around the driver, do not invent a second spatial AI.
+
 1. Fill `points.csv` into DataTable `/Game/Melodia/WorldCompiler/DT_<recipe_id>_Points` (row struct `S_WorldCompilerPoint`) with `DataTableFunctionLibrary.fill_data_table_from_csv_string`. The template graph's `Load Data Table` node points at that fixed asset path; the compiler never sets graph parameters, it only replaces rows. (`PCGGraphInstance` parameter overrides are not Python-settable in 5.8; the fixed path is the honest design.)
 2. Verify/forge band MIs (`MI_RainbowPetal_B0..B6`, parent `M_Master_Toon_Universal`, only `BaseTint` differs). Never edit the parent. When `palette.wind` is set, also forge the wind hue-reveal family (`MI_RainbowPetal_Wind_B0..B6`, parent `M_MelodiaPlant_Wind` -- the Muse-brief plant master that already calls `MF_MelodiaWindHueReveal` and reads `MPC_Melodia_Palette.WindDirX/WindDirY/WindStrength`). `palette.active_lane` chooses which family the `material` column names; the compiler never edits either parent and never writes a collection parameter. Signal chain verified live 09-17: palette lanes declared (source), `UMelodiaCymaticsWriterSubsystem` forwards `Cymatic_WindDirX/Y/WindStrength`, driver lanes declared. Wind A/B (`Saved/Audit/Screens/world_compiler_morning_wind_*`): undriven == natural albedo, driven east vs north differ; the reveal is subtle at the MF's 0.5 weight under night lighting -- owner judges weight at PIE.
 3. Place **one** bounded `PCGVolume` (label `WC_<recipe_id>_Field`, tag `WorldCompiler.<compile_id>`) at `place.anchor_cm`, scaled to the outer radius, with the template graph `PCG_WorldCompiler_PointField`. The `template_scaffold` step builds and wires that graph and **verifies every edge by reading the pins back** (`edges_verified` in the step record); anything unverified is written to `owner_todo`. Root cause of the 09-15 "silent `add_edge` no-op": the graph Output node's *input* pin is labelled `Out` (it mirrors the graph output), not `In`; `add_edge(..., out_node, "In")` returns True and creates nothing. Read the label, never guess it. Re-running deletes tagged actors first.
@@ -249,6 +279,8 @@ Compiler-specific hard no's:
 - no writes to `MPC_Melodia_Palette` or `MPC_Cymatics_Driver` (the palette writer and `UMelodiaCymaticsWriterSubsystem` are the only writers)
 - no new material master per effect; band MIs share one parent, FX MIs share the four hero parents
 - no uniform density: `hero_weight` and `density_class` exist so the compiler produces an envelope around authored moments, never a carpet
+- no bedroom / Sphere3D / `WC_DellFloor` meadow; flowers stay on `BrushifyIsland_*`, dressing on `WC_EscherWalk_*` plus island skirts
+- no skipping `scene_context_cycle.begin/end` around spatial WC/PCG/Monolith edits; no second Monolith / second editor
 
 ---
 

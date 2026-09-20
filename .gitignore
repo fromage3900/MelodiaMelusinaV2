@@ -284,6 +284,23 @@ Tools/*
 !Tools/test_world_compiler.py
 !Tools/world_compiler_ue_driver.py
 !Tools/triage_working_tree.py
+# Live performance + capture lanes (2026-09-20). Tools/* was swallowing
+# listening_field / phrase_bridge / live_source, so Jev work never entered git.
+# Same for the collapsed-path guard pair (already tracked; keep them addable).
+!Tools/listening_field/
+!Tools/listening_field/**
+!Tools/phrase_bridge/
+!Tools/phrase_bridge/**
+!Tools/live_source/
+!Tools/live_source/**
+Tools/listening_field/**/__pycache__/
+Tools/phrase_bridge/**/__pycache__/
+Tools/live_source/**/__pycache__/
+Tools/listening_field/**/*.pyc
+Tools/phrase_bridge/**/*.pyc
+Tools/live_source/**/*.pyc
+!Tools/guard_collapsed_paths.py
+!Tools/test_guard_collapsed_paths.py
 # Agent infrastructure 2026-08-11 (intake fan-out tooling)
 !Tools/model_router.py
 !Tools/playtest_harness.py
