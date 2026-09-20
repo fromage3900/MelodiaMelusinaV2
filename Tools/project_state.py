@@ -46,21 +46,10 @@ WIDTH = 78
 # every doc in the repo. See the summary line in view_staleness() for the
 # corrected wording.
 DOC_SUBJECTS = {
-    "AGENT_START_HERE.md": [
-        "CURRENT_STATE.md",
-        "TODO.md",
-        "REPOSITORY_AUTHORITY.md",
-    ],
     "CURRENT_STATE.md": [
         "Source/BS_GodFile/MelodiaIntegration",
-        "Docs/P0_TASK_LEDGER.json",
-    ],
-    "TODO.md": [
-        "Docs/P0_TASK_LEDGER.json",
-        "Source/BS_GodFile/MelodiaIntegration",
-    ],
-    "_VERTICAL_SLICE_SCOPE.md": [
-        "Source/BS_GodFile/MelodiaIntegration",
+        "Saved/gate_ledger.json",
+        "SYSTEM_MAP.md",
     ],
     "Plugins/Monolith/Docs/MONOLITH_GUIDE.md": [
         "Tools/bp_live_path.py",
@@ -73,28 +62,8 @@ DOC_SUBJECTS = {
     "README.md": [
         "Source/BS_GodFile",
     ],
-    "COLLABORATOR_SETUP.md": [
-        "Tools",
-        "specs",
-    ],
     "Docs/AGENT_TOOLS.md": [
         "Tools",
-    ],
-    "Docs/echo/campaign_01_rhythm_damage_delta.md": [
-        "specs/echo_pipeline.json",
-        "Tools/echo_run.py",
-    ],
-    "Docs/echo/campaign_02_save_round_trip.md": [
-        "specs/echo_pipeline.json",
-        "Tools/echo_run.py",
-    ],
-    "Docs/echo/campaign_03_package_launch.md": [
-        "specs/echo_pipeline.json",
-        "Tools/echo_run.py",
-    ],
-    "Docs/echo/campaign_04_result_matrix.md": [
-        "specs/echo_pipeline.json",
-        "Tools/echo_run.py",
     ],
 }
 
