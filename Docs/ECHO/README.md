@@ -85,7 +85,8 @@ Each gameplay/audiovisual gate links to a campaign doc under `Docs/ECHO/`:
 
 ## Integration with lane_dispatcher
 
-`Tools/lane_dispatcher.py` reads the **queue** from `_VERTICAL_SLICE_SCOPE.md`
-(flat list) and the **DAG** from `specs/echo_topo.json` (topological). The `plan`
-command schedules flat queue items; the `topo` subcommand dispatches eligible DAG
-nodes to model lanes. Both feed into the same `Saved/dispatch_report.md` output.
+`Tools/lane_dispatcher.py` reads the **current owner queue** from `CURRENT_STATE.md`
+(§4, “Owner queue — now”) and the **DAG** from `specs/echo_topo.json` (topological).
+Historical handoffs and the collapsed `_VERTICAL_SLICE_SCOPE.md` are not default queue
+inputs. Use `--queue` only for an owner-named scoped override. Both paths feed the same
+`Saved/dispatch_report.md` output.
