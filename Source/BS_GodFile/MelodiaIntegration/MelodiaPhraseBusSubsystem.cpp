@@ -120,10 +120,18 @@ bool UMelodiaPhraseBusSubsystem::PollSocket(float DeltaSeconds)
 	(void)DeltaSeconds;
 	if (!Socket) { return false; }
 
+	ISocketSubsystem* Sockets = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM);
+	if (!Sockets)
+	{
+		return false;
+	}
 	uint8 Buffer[2048];
 	int32 BytesRead = 0;
-	// FSocket::Recv returns bool (success). Drain the datagram queue.
-	while (Socket->Recv(Buffer, sizeof(Buffer), BytesRead) && BytesRead > 0)
+	TSharedRef<FInternetAddr> Source = Sockets->CreateInternetAddr();
+	// Unconnected datagram sockets must RecvFrom. Recv() returns false on
+	// WSAEWOULDBLOCK *and* on unconnected UDP in this UE socket wrapper, so
+	// packets never reached Parse. Drain with RecvFrom.
+	while (Socket->RecvFrom(Buffer, sizeof(Buffer), BytesRead, *Source) && BytesRead > 0)
 	{
 		ParseOscPacket(Buffer, BytesRead);
 		LastPacketTime = FPlatformTime::Seconds();

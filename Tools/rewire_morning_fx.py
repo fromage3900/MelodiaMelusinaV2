@@ -5,7 +5,7 @@ Usage:
   python Tools/rewire_morning_fx.py --effect <id>
 
 Ids: census, dump, retire-orphans, parked, pollen, mist, petal, wind,
-     sheep-lake, ensemble
+     sheep-lake, ensemble, bind-user
 """
 from __future__ import annotations
 
@@ -606,6 +606,12 @@ def effect_parked():
     rec["dust_bind"] = _bind_all_renderers(SYS["dust"], dest_mat)
     rec["dust_effect_type"] = nq("set_effect_type", {"asset_path": SYS["dust"], "effect_type": EFFECT_TYPE})
     rec["dust_bounds"] = set_bounds(SYS["dust"], 400)
+    dust_names, _ = list_emitter_names(SYS["dust"])
+    dust_primary = "Motes" if "Motes" in dust_names else (dust_names[0] if dust_names else None)
+    rec["dust_emitters"] = dust_names
+    if dust_primary:
+        rec["dust_user_mote"] = ensure_user(SYS["dust"], "MoteSpawnMultiplier", "float", "1.0")
+        rec["dust_bind_spawn"] = bind_input(SYS["dust"], dust_primary, "SpawnRate", "SpawnRate", "User.MoteSpawnMultiplier")
     rec["dust_gate"] = gate(SYS["dust"], "/Game/Melodia/")
     rec["retarget_dust"] = ue("retarget", "FX_Morning_DustShafts_Threshold", SYS["dust"])
     rec["retarget_bed"] = ue("retarget", "FX_Morning_Bed_PollenSparkle", SYS["pollen"])
@@ -818,6 +824,7 @@ def effect_wind():
         rec["user_vis"] = ensure_user(path, "WindFrontVisible", "float", "1.0")
         rec["user_hue"] = ensure_user(path, "HueSeed", "float", "0.0")
         rec["user_band"] = ensure_user(path, "BandHue", "LinearColor", None)
+        rec["bind_vis"] = bind_input(path, leader, "SpawnRate", "SpawnRate", "User.WindFrontVisible")
         rec["bounds"] = set_bounds(path, 500, leader)
         rec["effect_type"] = nq("set_effect_type", {"asset_path": path, "effect_type": EFFECT_TYPE})
     rec["gate"] = gate(path, "MI_Morning_WindFront")
@@ -947,6 +954,110 @@ def effect_ensemble():
 
 KEEP_TICKING = list(HEROES.values()) + ["BP_ChoralSheep"]
 
+# Pack User.* binds only — no isolate/stills, no EnvSandbox parent edits, no MPC writes.
+BIND_USER_SPECS = (
+    {
+        "id": "petal",
+        "path": SYS["petal"],
+        "param": "PetalSpawnMultiplier",
+        "default": "0.4",
+        "prefer_emitter": ("PetalLoop",),
+    },
+    {
+        "id": "pollen",
+        "path": SYS["pollen"],
+        "param": "MoteSpawnMultiplier",
+        "default": "1.0",
+        "prefer_emitter": ("Motes",),
+    },
+    {
+        "id": "mist",
+        "path": SYS["mist"],
+        "param": "MistDensity",
+        "default": "0.45",
+        "prefer_emitter": (),
+    },
+    {
+        "id": "wind",
+        "path": SYS["wind"],
+        "param": "WindFrontVisible",
+        "default": "1.0",
+        "prefer_emitter": ("Gust_Leader", "Gust", "Ribbon_Trail_Leader"),
+        "module": "SpawnBurst_Instantaneous",
+        "input": "Spawn Count",
+    },
+    {
+        "id": "dust",
+        "path": SYS["dust"],
+        "param": "MoteSpawnMultiplier",
+        "default": "1.0",
+        "prefer_emitter": ("Motes",),
+    },
+)
+
+
+def _pick_emitter(names, prefer):
+    for cand in prefer:
+        if cand in names:
+            return cand
+    return names[0] if names else None
+
+
+def effect_bind_user():
+    """Ensure pack User floats exist and bind SpawnRate on Melodia children."""
+    rec = {"systems": [], "mpc_writes": False, "hue_reveal": "pie_wind_only"}
+    all_ok = True
+    for spec in BIND_USER_SPECS:
+        path = spec["path"]
+        names, _ = list_emitter_names(path)
+        primary = _pick_emitter(names, spec["prefer_emitter"])
+        entry = {
+            "id": spec["id"],
+            "path": path,
+            "param": spec["param"],
+            "emitters": names,
+            "primary": primary,
+        }
+        if not primary:
+            entry["error"] = "no_emitter"
+            entry["ok"] = False
+            all_ok = False
+            rec["systems"].append(entry)
+            continue
+        entry["user"] = ensure_user(path, spec["param"], "float", spec["default"])
+        targets = [n for n in spec["prefer_emitter"] if n in names] or [primary]
+        binds = []
+        bound = False
+        module_name_s = spec.get("module") or "SpawnRate"
+        input_name = spec.get("input") or "SpawnRate"
+        for em in targets:
+            brec = bind_input(path, em, module_name_s, input_name, f"User.{spec['param']}")
+            binds.append({"emitter": em, **brec})
+            sets = brec.get("set") or []
+            has_err = any(isinstance(item, dict) and item.get("error") for item in sets)
+            for item in sets:
+                if isinstance(item, dict) and item.get("error"):
+                    continue
+                text = str(item.get("result") or item.get("message") or item)
+                if "Bound" in text:
+                    bound = True
+            if int(brec.get("hits") or 0) > 0 and not has_err:
+                bound = True
+        entry["bind_spawn"] = binds
+        entry["bound"] = bound
+        err, msgs, _, _ = save_compile(path)
+        entry["compile_errors"] = err
+        entry["compile_msgs"] = msgs[:4]
+        entry["ok"] = bool(entry["bound"]) and err == 0
+        if not entry["ok"]:
+            all_ok = False
+        rec["systems"].append(entry)
+    rec["pass"] = all_ok
+    rec["ok"] = all_ok
+    rec["live_bind"] = True
+    write_json(AUDIT / f"niagara_rewire_bind_user_{STAMP}.json", rec)
+    return rec
+
 
 def _treatment(label, path):
     if label in HEROES.values():
@@ -986,6 +1097,8 @@ HANDLERS = {
     "audit-sheep-lake": effect_sheep_lake,
     "ensemble": effect_ensemble,
     "ensemble-proof": effect_ensemble,
+    "bind-user": effect_bind_user,
+    "bind-user-params": effect_bind_user,
 }
 
 
