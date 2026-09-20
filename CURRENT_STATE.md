@@ -274,6 +274,112 @@ with bounds-ratio scale compensation and a `LABEL_PREFIX` filter for concurrent 
 `Content/Python/` if kept. Jev set-dress direction: `swap_meshes_in_place` 0.81, but manual fixup
 expected 0.84, focus on camera frames 0.83, achievable-today 0.91/3 ("one good shot").
 
+### Morning greybox unit defect — found and repaired, 2026-09-20 (Claireon session)
+
+**Root cause: `/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Cube_1m` has a 1-unit (1 cm) bounding box
+despite its "1m" name.** Any script that scales it expecting a 1 m cube produces geometry at 1/100
+intended size. This is an asset defect, not a script defect — which is why the split in
+`L_MelusinaMorning` fell exactly along authorship: every agent/compiler-placed `WC_*` cluster was
+sub-centimetre, while every hand-placed actor (`gate` 435 cm, `monument` 1290 cm, `SM_classic_arch`
+2036 cm, walls 604–698 cm) was correctly sized. Positions were always correct; only scale was wrong.
+
+Measured before repair: 189 greybox actors, **146 of them under 10 cm** —
+`WC_GreySpire_Helix` treads at 0.6 × 0.4 × 1.0 cm, `WC_GreyRoad_*` at 2.0 cm,
+`WC_GreyGrotto_Pillar` 2.5 cm, `WC_WalkPath_Belvedere` 2.0 cm, `WC_GreySpire_Chamber` 5.0 cm.
+The spire helix has therefore never been visible in any shot. This corrects the 2026-09-20 audit
+entry above, which read "56% greybox" as a *dressing* problem: most of that greybox was invisible.
+
+**Repaired in-editor (see "not in git" below).**
+- 88 `WC_GreySpire_Helix` treads: mesh swapped `SM_Greybox_Cube_1m` → `SM_ATL_Palace_Cornice`,
+  then sized to the measured spiral and yawed to its tangent — centre (198, 1637), radius 275 cm,
+  25 cm rise, 5.30°/step, 68 steps/turn, 1.28 turns, Z 954→3133 (21.8 m). Tread 34 cm run /
+  150 cm width / 14 cm thick. It is now an actual walkable staircase.
+- 58 remaining sub-10 cm actors rescaled ×100 to authored metre sizes. Roads land at
+  2 m × 1 m × 20 cm slabs spaced ~225 cm — they tile into continuous walkable paths, confirming
+  the ×100 hypothesis exactly. Level now has **zero** sub-10 cm greybox actors.
+- `WC_HeroCorner_NorthDress_Cam` was standing *inside* the spiral (116 cm from centre, radius
+  275 cm) — that is why the corner framed nothing usable. Moved to (935, 2153, 1750) looking back
+  at the staircase. The other three corners were not touched.
+
+**Two save traps, both hit this session — read before editing actors from Python.**
+1. `EditorLoadingAndSavingUtils.save_current_level()` returns `True` and writes **nothing** for a
+   World Partition level. Each actor is its own package under `Content/__ExternalActors__/`.
+2. Transform/mesh edits made through Python (`set_actor_scale3d`, `set_static_mesh`, …) **do not
+   mark their package dirty**, so `save_packages(pkgs, only_dirty=True)` also returns `True` and
+   skips everything. Both calls reported success while 157 actor packages sat unwritten on disk.
+   The working call is `save_packages(pkgs, False)` — `only_dirty=False` — in chunks of ≤60 to stay
+   inside the 30 s MCP socket timeout. Verify by file mtime, never by the return value.
+
+**This level's geometry is not in git and cannot be committed from here.** `.gitignore:224`
+ignores `Content/__ExternalActors__/*`, unignoring only `EnvSandbox/Monoliths/**`. All 157 saved
+`L_MelusinaMorning` actor packages, and `SM_Greybox_Cube_1m.uasset` itself, are untracked. The
+repair is on disk in the editor only. `.gitignore` is on the never-touch list; widening that rule
+to cover `Melodia/Levels/` is an owner decision, not an agent one.
+
+**Open:** 101 correctly-sized greybox actors still await the Atlantis mesh swap (roads →
+`Floor`/`Base`, grotto pillars → `Columns`, gate → `Arch`, monument → `Fountain`). The underlying
+asset defect in `SM_Greybox_Cube_1m` is **not** fixed — it will reproduce on the next script that
+scales it. Fix the asset's import scale, or have placement code divide by its measured bounds
+rather than assuming 100 units.
+
+### Morning dressing + staging pass — 2026-09-20 (Claireon session, unattended)
+
+Follows the unit-defect repair above. All changes saved and verified by file mtime
+(352 actor packages written). Captures: `Saved/Screenshots/MorningDress_2026-09-20/`.
+
+**Atlantis dressing (47 outdoor `WC_*` actors).** Roads and walkpaths (`WC_GreyRoad_*` 22,
+`WC_WalkPath_Belvedere*` 13) → `SM_ATL_Palace_FloorA`; `WC_GreyGrotto_Pillar` ×8 →
+`ColumnsC` (uniform, matched on height); `WC_GreyGrotto` ×2 → `IvyWallC`;
+`WC_GreySpire_Chamber` ×6 → `IvyWallB`. All transform-preserving via bounds-ratio
+compensation. House-interior greybox (`wall`, `corner`, `large`, `medium`, `small`,
+`GB_Morning*`) deliberately **not** touched. Note prior sessions had already dressed
+`WC_PhyloWalk_*` and `WC_SpireRamp_*` in the same Atlantis palette — these picks match it.
+
+**`WC_SpireRamp_Landing` normalised.** All 8 shared one scale (0.573) across three meshes with
+very different native bounds, so they ranged 768 cm to **5856 cm** and two were rotated
+near-vertical — a 58 m plate 7 m from the NorthDress lens, and the wall-in-the-sky in frame.
+All 8 now `FloorA`, flat (pitch/roll zeroed, yaw kept), uniform 766 × 768.
+
+**Spire staircase connected and staged.** Its foot was at Z 954 with the terrace above it at
+~1190, so the first ten treads were buried. Raised all 88 by +240 (foot 1194, top 3373). Added
+`Morning/Spire/Base`: 4 × `ColumnsC` at 950 cm on a R=470 ring, plus `WC_SpireBase_GateArch_00`
+(`ArchC`, 1150 cm) on the south-west approach.
+
+**WestRim belvedere (new).** That corner was clean but empty. Built on the `BrushifyIsland_09`
+plateau (flat at Z 1203, the same island the rainbow-bloom field occupies, so meadow + belvedere
+now read as one hero location): `PergolaA`, 4 × `ColumnsC`, `FountainA`, 3 × `TreeC` — 9 actors
+in `Morning/WestRim/Belvedere`, each ground-locked by line trace.
+
+**World Outliner organised.** 330 actors filed into `Morning/{Spire,Paths,House,Grotto,EscherWalk,
+Cameras,Dressing,WestRim}` sub-folders.
+
+**All four hero cameras reframed** (originals recorded here for restore):
+
+| Camera | Original | Now |
+|---|---|---|
+| NorthDress | (100, 1700, 1410) y37 p−19 — *inside the stairwell* | (−1615, 792, 2150) y25 p6 |
+| EastBank | (−2000, 2120, 2925) y−47 p−15 | (2350, 1180, 1850) y168 p−7 |
+| WestRim | (−2550, 1480, 2516) y148 p−56 | (−4750, 350, 1780) y25 p−9 |
+| MeadowChorus | (−3698, 342, 786) y38 p−20 | (−3450, 880, 1330) y31 p6 |
+
+**Two findings left alone, deliberately, for the owner's call.**
+1. `RainbowBloom_R` (folder `Melodia/Morning/Rainbow`) is a HISM of 20 `Petal_petal_mid_2`
+   instances at ~199 × 175 × 291 **m** each, actor bounds 608 × 191 × 662 m, centred 12 km south
+   at (188, −10755, −1265). Actor scale is 1.0, so the size is baked into the instance transforms.
+   At that size it renders as flat untextured magenta. It is authored, not obviously broken, so it
+   was not rescaled — but it is the largest single object in the level by an order of magnitude.
+   The `WC_morning_rainbow_bloom_Field` PCG output is by contrast healthy (flowers 18–95 cm,
+   bushes 1–4 m, overgrowth 2–4 m).
+2. The magenta cast over the Brushify islands is **not** a material override — all three island
+   actors carry stock unmodified `MI_FloatingMountain_0*`. It therefore comes from the PPV/MPC
+   layer, which this handoff puts off-limits, so it was not investigated further.
+
+**Editor note.** A modal dialog *"This asset editor has no docked tabs"* reopens constantly and
+blocks MCP on every save; close that asset-editor window. `AutomationLibrary.take_high_res_screenshot`
+never wrote a file in this session — `claireon.slate_screenshot(target="level_viewport")` works and
+is what produced every capture (it lands under the **engine** Binaries dir, not the project, so copy
+it back).
+
 ### Melusina skirt and bow attack polish — execution plan, 2026-09-19
 
 Owner target: Unreal gameplay and Unreal renders. Keep `SK_Melusina_V2_Body`,

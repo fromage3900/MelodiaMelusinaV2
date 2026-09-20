@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p0.task_ledger.v2",
-  "as_of": "2026-09-18",
+  "as_of": "2026-09-20",
   "authority": {
     "status": "P0_CONVERGENCE_AND_PROOF_OPEN",
     "authoritative_handoff": "Docs/Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md",
@@ -704,6 +704,86 @@
       "Python UE API cannot see inside UDS-keyed TMaps; Monolith get_cdo_properties/set_cdo_property with dry_run+strict is the safe path (enemyList spawn struct verified, fleeChance applied).",
       "Timed-out Monolith calls mean a modal save loop or a heavy query on the game thread: check Rider logs for MODAL_OPEN, wait, never kill.",
       "New .uasset files under Content/* gitignore need git add -f (one-time, documented); the 4 slime assets were force-added so the committed chain resolves."
+    ]
+  },
+  "melusina_skirt_hair_bow_polish_2026_09_20": {
+    "status": "RUNTIME_PROVEN_SCOPED",
+    "runtime_identity": "Player and spawned battle presenter use SK_Melusina_V2_Body; battle presenter no longer uses legacy SK_Melusina.",
+    "skirt": "R2 smooth-chain candidate bound in player and battle wardrobe. Blender audit: rigid vertex fraction 10.9295% -> 0.39%; mean kilt influences 2.583433 -> 4.593782. Four original material slots restored. Clean deterministic jump PIE passed.",
+    "hair": "Kawaii tune saved: Damping .18, Stiffness .08, WorldDampingLocation .50, WorldDampingRotation .50, LimitAngle 60. Clean deterministic jump PIE passed. Structural ceiling remains: 73 independent two-bone strand chains.",
+    "bow": "AM_Melusina_BowAttack_Bound played successfully on the spawned V2 battle presentation in clean L_MelusinaMorning PIE; capture did not frame the spawned presenter and is runtime proof only.",
+    "evidence": [
+      "Saved/Screenshots/MelusinaPolish_20260920/SkirtR2_HairTune_R3",
+      "Saved/Screenshots/MelusinaPolish_20260920/Portfolio_Bow_V2_Clean"
+    ],
+    "build": "PASS: closed-editor BS_GodFileEditor Win64 Development, 8/8 actions, 2026-09-20.",
+    "source_recovery_hold": "All 16 Melusina_Harp_HERO01 .blend/.blend1 files in the redirected harp_bow_pipeline fail Blender 5.2 with Missing DNA block. Do not overwrite; recover separately."
+  },
+  "morning_greybox_unit_defect_2026-09-20": {
+    "status": "REPAIRED_IN_EDITOR_ASSET_DEFECT_STILL_OPEN",
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+    "root_cause": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Cube_1m has a 1-unit (1 cm) bounding box despite its '1m' name; any script scaling it as a 1 m cube produces 1/100 size geometry.",
+    "evidence": "Defect fell exactly along authorship: all WC_* agent/compiler-placed clusters sub-centimetre (helix treads 0.6x0.4x1.0 cm, roads 2.0 cm, grotto pillars 2.5 cm); all hand-placed actors correct (gate 435 cm, monument 1290 cm, SM_classic_arch 2036 cm). Positions were always correct - scale only.",
+    "repaired": [
+      "88 WC_GreySpire_Helix treads swapped to SM_ATL_Palace_Cornice and sized to the measured spiral (centre 198/1637, radius 275 cm, 25 cm rise, 5.30 deg/step, 1.28 turns, Z 954-3133); tread 34 cm run / 150 cm width / 14 cm thick; now a walkable staircase.",
+      "58 remaining sub-10 cm greybox actors rescaled x100 to authored metre sizes; roads land at 2 m x 1 m x 20 cm spaced ~225 cm and tile into continuous paths.",
+      "WC_HeroCorner_NorthDress_Cam moved out of the spiral interior (was 116 cm from centre, radius 275 cm) to (935, 2153, 1750).",
+      "Level verified: zero sub-10 cm greybox actors remain (101 greybox actors total)."
+    ],
+    "still_open": [
+      "SM_Greybox_Cube_1m import scale is NOT fixed - the defect reproduces on the next script that scales it.",
+      "101 correctly-sized greybox actors still await the Atlantis mesh swap.",
+      "Three hero-corner PCG graphs (WestRim/EastBank/NorthDress) remain graph-side dead - unrelated to this defect."
+    ],
+    "not_in_git": "gitignore:224 ignores Content/__ExternalActors__/* (unignoring only EnvSandbox/Monoliths/**). All 157 saved L_MelusinaMorning actor packages and SM_Greybox_Cube_1m.uasset are untracked; this repair exists on disk in the editor only. Widening that rule is an owner decision.",
+    "save_traps": [
+      "EditorLoadingAndSavingUtils.save_current_level() returns True and writes nothing for a World Partition level.",
+      "Python transform/mesh edits do not mark their package dirty, so save_packages(pkgs, only_dirty=True) also returns True and skips everything.",
+      "Working call: save_packages(pkgs, False) in chunks of <=60 to stay inside the 30 s MCP socket timeout. Verify by file mtime, never by return value."
+    ]
+  },
+  "morning_dressing_staging_2026-09-20": {
+    "status": "DRESSING_PASS_LANDED_SAVED_NOT_IN_GIT",
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+    "verification": "352 external actor packages written, verified by file mtime (not by save return value).",
+    "captures": "Saved/Screenshots/MorningDress_2026-09-20/",
+    "dressed": [
+      "WC_GreyRoad_* (22) and WC_WalkPath_Belvedere* (13) -> SM_ATL_Palace_FloorA",
+      "WC_GreyGrotto_Pillar (8) -> ColumnsC uniform-by-height; WC_GreyGrotto (2) -> IvyWallC; WC_GreySpire_Chamber (6) -> IvyWallB",
+      "House-interior greybox deliberately untouched."
+    ],
+    "normalised": "WC_SpireRamp_Landing: all 8 shared scale 0.573 across three meshes of different native bounds, giving 768-5856 cm and two near-vertical. All 8 now FloorA, flat, uniform 766x768.",
+    "staged": [
+      "Spire staircase raised +240 so its foot sits on the terrace (was buried: foot Z 954 vs terrace ~1190).",
+      "Morning/Spire/Base: 4x ColumnsC at 950 cm on R=470 ring + WC_SpireBase_GateArch_00 (ArchC 1150 cm).",
+      "Morning/WestRim/Belvedere: PergolaA + 4x ColumnsC + FountainA + 3x TreeC on BrushifyIsland_09 plateau (Z 1203), all ground-locked by line trace."
+    ],
+    "organised": "330 actors filed into Morning/{Spire,Paths,House,Grotto,EscherWalk,Cameras,Dressing,WestRim} outliner folders.",
+    "hero_cameras_reframed": {
+      "NorthDress": {
+        "original": "(100,1700,1410) yaw 37 pitch -19 - was inside the stairwell",
+        "now": "(-1615,792,2150) yaw 25 pitch 6"
+      },
+      "EastBank": {
+        "original": "(-2000,2120,2925) yaw -47 pitch -15",
+        "now": "(2350,1180,1850) yaw 168 pitch -7"
+      },
+      "WestRim": {
+        "original": "(-2550,1480,2516) yaw 148 pitch -56",
+        "now": "(-4750,350,1780) yaw 25 pitch -9"
+      },
+      "MeadowChorus": {
+        "original": "(-3698,342,786) yaw 38 pitch -20",
+        "now": "(-3450,880,1330) yaw 31 pitch 6"
+      }
+    },
+    "left_for_owner": [
+      "RainbowBloom_R: HISM of 20 Petal_petal_mid_2 instances at ~199x175x291 m each; actor bounds 608x191x662 m centred (188,-10755,-1265); actor scale 1.0 so size is baked into instance transforms. Authored, not obviously broken - NOT rescaled. Renders as flat untextured magenta at that size.",
+      "Magenta cast on Brushify islands is NOT a material override (stock MI_FloatingMountain_0* on all three); it comes from the PPV/MPC layer, which the handoff puts off-limits."
+    ],
+    "editor_notes": [
+      "Modal 'This asset editor has no docked tabs' reopens constantly and blocks MCP on every save.",
+      "AutomationLibrary.take_high_res_screenshot never wrote a file; claireon.slate_screenshot(target='level_viewport') works but lands under the engine Binaries dir."
     ]
   }
 }
