@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-17 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-20 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -306,6 +306,8 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 "not enough space"; cook to G:.
 
 ## 4. Owner queue — now
+
+**Today’s owner focus (2026-09-20): renders → lookdev → bounded website asset/content updates.** Finish the art and publish the approved results; documentation/Git reconciliation is maintenance-only and must not interrupt production. Website work means updating finished renders and portfolio evidence, not reopening the site redesign.
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
