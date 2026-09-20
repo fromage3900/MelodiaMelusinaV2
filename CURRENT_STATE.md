@@ -10,7 +10,7 @@ World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` *
 Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-09-20**: Uni parents off `L_MelusinaMorning` actors; Melodia children `NS_Morning_{PetalDrift,PollenSparkle,PondMist,WindFront,DustShafts}` + parked Glint/Impact. `rewire_morning_fx.py --effect bind-user` bound SpawnRate→`User.PetalSpawnMultiplier` / `MoteSpawnMultiplier` / `MistDensity` and WindFront `Gust_Leader` SpawnBurst `Spawn Count`→`User.WindFrontVisible`. Proof `Saved/Audit/niagara_rewire_bind-user_summary_2026-09-20.json`. No MPC writes. Hue-reveal remains PIE wind only.
 **Git 2026-09-20:** Isolated landing on `feature/morning-closeout-2026-09-20` (PR #249). Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, `BP_ChoralSheep`, Oceanology, Humber stay parked off this PR. Never dump the `wip/pre-restart-working-tree-2026-09-19` dirty tree. Never robocopy/junction/overwrite `harp_bow_pipeline`.
 **Front-door freeze 2026-09-20:** §7 traps expanded. WC bedroom-floor band arc patched to the live BrushifyIsland recipe. Listening Field spec restored from `Tools/listening_field` + `Tools/phrase_bridge`. `.gitignore` `Tools/*` no longer swallows `listening_field` / `phrase_bridge` / `live_source`.
-**Listening Field 2026-09-20:** `UMelodiaPhraseBusSubsystem` is in the live editor (DLL 2026-09-20 15:18). PIE binds UDP `:9000`. Python `Tools/phrase_bridge` sent `,isifsfi` / `,ii`. GetCurrentState stayed 0 — live `Recv()` does not ingest unconnected datagrams; `RecvFrom` is patched in `.cpp` and needs a **closed-editor UBT** (do not build while the editor is open). Choral Sheep consumer is existing `TryBeginHarmonize`. Jev never mutates the editor.
+**Listening Field 2026-09-20:** `UMelodiaPhraseBusSubsystem` is in the live editor. Closed-editor `BS_GodFileEditor Win64 Development` **PASS 2026-09-20 17:48** (`UnrealEditor-BS_GodFile.dll` 3,232,768 bytes, `RecvFrom` ingest). Prior PIE bind was UDP `:9000`; python `phrase_bridge` sent `,isifsfi` / `,ii` but GetCurrentState stayed 0 on the 15:18 `Recv()` DLL. Re-open the editor and re-send to prove ingest. Choral Sheep consumer is existing `TryBeginHarmonize`. Jev never mutates the editor. Do not UBT while the editor is open.
 **Owner-queue proofs 2026-09-20:** Fleece REST vs HIT on the approved Nikki path (`MI_ChoralSheep_Body`→`M_Master_Toon_Character`, child Chladni + `T_Chladni_C_ROOT`). Stills `Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`. 8s beat `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. AE JSX `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx` — headless AfterFX dies on GPU3 while Unreal holds the adapter. Do not rebuild the TD scene.
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
@@ -442,9 +442,9 @@ Choral Sheep is the capstone lane.
    (`MI_ChoralSheep_Body` → `M_Master_Toon_Character`, Chladni child + `T_Chladni_C_ROOT`). PIE
    `ApplyChoralSheepDefinition` / `TryBeginHarmonize` / weight 1.0→0.0 re-proven. Next: owner
    pixel-judge the stills against Board 06. Do not invent a sheep AI.
-2. **UE ↔ TD proof.** Phrase bus listens on editor UDP `:9000`. Python `phrase_bridge` sent the
-   contract packets. Parse/readback waits on closed-editor UBT of the `RecvFrom` patch. Do not
-   rebuild the TD scene. Do not UBT while this editor is open.
+2. **UE ↔ TD proof.** Phrase bus `RecvFrom` is in the 17:48 DLL. Re-open the editor, PIE, send
+   `phrase_bridge` to `:9000`, and read GetCurrentState. Do not rebuild the TD scene. Do not UBT
+   while the editor is open.
 3. **One 5–10 s AE sequence** — 8s Creature→Motif→Harmony→World mp4 is at
    `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. JSX:
    `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx`. Headless AfterFX
@@ -536,7 +536,7 @@ Stale-agent damage classes (read these before any WC / Jev / Blender / git work)
 - **Ghost spec / wrong phrase bridge.** Durable spec is [`Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md`](Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md), restored from the Python schemas. `Content/Python/resonant_world_phrase_bridge.py` is MIDI ecology, not Jev.
 - **gitignore `Tools/*` swallowing live lanes.** `Tools/listening_field/`, `Tools/phrase_bridge/`, and `Tools/live_source/` must stay un-ignored (`!Tools/<dir>/` + `!Tools/<dir>/**`). That swallow is why Jev work appeared to “get deleted from git” — it was never tracked. Also keep `!Tools/guard_collapsed_paths.py` and `!Tools/test_guard_collapsed_paths.py`. Do not `git add` Frozen/MPC/EnvSandbox dumps to compensate.
 - **Skip `scene_context_cycle`.** Any WC / PCG / Monolith spatial edit requires `scene_context_cycle.begin()` before the first mutation and `end()` after, in the already-open editor. Tools: `Content/Python/scene_context_snapshot.py`, `Content/Python/scene_context_cycle.py`. One editor, Monolith `127.0.0.1:9316` only. Packets under `Saved/Audit/SceneContext/` are ephemeral evidence, not status.
-- **UBT while the editor is open.** Phrase-bus `RecvFrom` waits for a closed-editor build. Stale DLL is how OSC readback stays at bar 0.
+- **UBT while the editor is open.** Closed-editor builds only. A stale `UnrealEditor-BS_GodFile.dll` is how OSC readback stays at bar 0.
 
 ---
 
