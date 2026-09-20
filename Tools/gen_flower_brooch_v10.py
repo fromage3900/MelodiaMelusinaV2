@@ -2744,6 +2744,16 @@ if bg is not None:
                     "pin_len_mm": round(span * S * 100.0, 2)}
                 print("[%s] final: verts=%d polys=%d dims(mm)=%s" % (
                     tname, m_b["nv"], m_b["nf"], m_b["mm"]))
+                # v11.3: genome-selected silhouette preset (additive crown; 'flower' = none)
+                try:
+                    import brooch_silhouettes as _sil
+                    _pre = _sil.active_preset(r)
+                    if _pre != "flower":
+                        _sil_info = _sil.build_silhouette(_pre, hero=ob)
+                        stats[tname]["silhouette"] = _pre
+                        stats[tname]["sil_span"] = round(_sil_info["span_after"], 4)
+                except Exception:
+                    print("SILHOUETTE %s warn:\n%s" % (gid, traceback.format_exc()))
             except Exception:
                 print("BUILD %s RAISED:\n%s" % (gid, traceback.format_exc()))
 
@@ -2895,6 +2905,15 @@ try:
     print("backup written: preV10run_%s" % _stamp)
 except Exception as _exc:
     print("backup warn:", repr(_exc)[:90])
+try:
+    # addon load-handlers (deep_paint et al) re-create a hidden temp_obj every session;
+    # purge it before every save so builder runs never re-persist the leftover.
+    _tmp = bpy.data.objects.get("temp_obj")
+    if _tmp is not None:
+        bpy.data.objects.remove(_tmp, do_unlink=True)
+        print("temp_obj purged before save")
+except Exception as _exc:
+    print("temp purge warn:", repr(_exc)[:90])
 try:
     bpy.ops.wm.save_mainfile()
     print("SAVED", bpy.data.filepath)
