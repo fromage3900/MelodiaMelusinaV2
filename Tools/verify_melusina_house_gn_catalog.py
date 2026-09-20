@@ -20,6 +20,11 @@ EXPECTED_FOUNDATION = [
     "MEL_mh_foundation_master",
 ]
 
+EXPECTED_PARIS = [
+    "GN_PARIS_WallDetail",
+    "GN_PARIS_SlabTrim",
+]
+
 HOUSE_MODULES = [
     ROOT / "deploy/surreal_arch/melodia_gn/melusina_house_foundation.py",
     ROOT / "deploy/surreal_arch/melodia_gn/melodia_house.py",
@@ -50,6 +55,13 @@ def main() -> int:
 
     check("dedicated category", '"melusina_house"' in core)
     check("foundation module imported", "melusina_house_foundation" in init)
+    paris_text = read(ROOT / "deploy/surreal_arch/melodia_gn/paris_wall_detail.py")
+    check("Paris detail module exists", bool(paris_text))
+    check("Paris detail module imported", "paris_wall_detail" in init)
+    check("Paris detail module has no laptop drive hardcode",
+          "P:/MelodiaMelusinaV2-Laptop" not in paris_text)
+    for builder_id in EXPECTED_PARIS:
+        check(f"Paris builder source: {builder_id}", builder_id in paris_text)
     check("root start-here exists", bool(start))
     check("DOC_INDEX discovery", "MELUSINA_HOUSE_GN_START_HERE.md" in index)
     check("Blender cockpit discovery", "MELUSINA_HOUSE_GN_START_HERE.md" in cockpit)
@@ -69,6 +81,7 @@ def main() -> int:
         "schema": "melodia.melusina_house_gn_catalog_verify.v1",
         "ok": not errors,
         "expected_foundation": EXPECTED_FOUNDATION,
+        "expected_paris": EXPECTED_PARIS,
         "registered_house_ids_found": house_ids,
         "checks": checks,
         "errors": errors,
