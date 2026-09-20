@@ -27,9 +27,10 @@ Read these in this order:
 2. `deploy/surreal_arch/melodia_gn/melodia_house.py`
 3. `deploy/surreal_arch/melodia_gn/melusina_house.py`
 4. `deploy/surreal_arch/melodia_gn/house_dress.py`
-5. `deploy/surreal_arch/melodia_gn/__init__.py`
-6. `deploy/surreal_arch/melodia_gn/core.py`
-7. `deploy/surreal_arch/melodia_gn/presets.py`
+5. `deploy/surreal_arch/melodia_gn/paris_wall_detail.py`
+6. `deploy/surreal_arch/melodia_gn/__init__.py`
+7. `deploy/surreal_arch/melodia_gn/core.py`
+8. `deploy/surreal_arch/melodia_gn/presets.py`
 
 Detailed integration notes:
 `Docs/MelodiaStudio/MELUSINA_HOUSE_GN_BUILDER_INTEGRATION_2026-09-04.md`
@@ -71,6 +72,23 @@ MEL_mh_aaa_dentil
 MEL_mh_aaa_scallop_uv
 MEL_mh_aaa_lissajous_pearl
 ```
+
+### Paris wall / slab detail
+
+```text
+GN_PARIS_WallDetail
+GN_PARIS_SlabTrim
+```
+
+The Paris close-out builders are source-authored in `paris_wall_detail.py` and registered by the
+addon `__init__.py`. Their durable invariants are: derive trim bounds from input geometry in
+mesh-local space; keep WallDetail bevel scoped to clean band geometry; use explicit per-step quoin
+offsets; filter medallion points to the wall width; and treat Blender 5.2 Delete Geometry
+Domain/Mode as node properties rather than input sockets.
+
+Any change to this module must pass the pure source verifier, a Blender 5.2 Melodia Studio census,
+the addon gate, and live-install re-stamp/check before promotion. Do not copy the old laptop branch
+or its plan/audit packet wholesale to get these builders.
 
 ### House dressing
 
@@ -119,6 +137,10 @@ From repo root:
 
 ```powershell
 python Tools/verify_melusina_house_gn_catalog.py
+
+# Blender 5.2 promotion gates for registry-changing work:
+blender --background --factory-startup --python Tools/melodia_studio_census.py
+blender --background --factory-startup --python Tools/verify_addon.py
 ```
 
 Then in Blender 5.2:
