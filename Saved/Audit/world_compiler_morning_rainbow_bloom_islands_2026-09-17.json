@@ -1,0 +1,79 @@
+{
+  "schema": "melodia.world_compiler_island_field.v1",
+  "recorded_at_utc": "2026-09-18T00:02:25.630313+00:00",
+  "verdict": "PASS",
+  "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+  "compile_id": "morning_rainbow_bloom_3900",
+  "authority": "World Compiler CLI + PCG_WorldCompiler_PointField (no second meadow)",
+  "placement": "SM_PM3D_Sphere3D* island meshes west/south of pond, outside bedroom keepout",
+  "not_used": {
+    "bedroom_boards": "SM_classic_arch_* excluded by label and walkable_z",
+    "grass_shelf": "WC_DellFloor_* destroyed (remaining=0)",
+    "gaea_mesh_terrain": "not staged; islands had enough nearly-horizontal area",
+    "landscape_actor": "never"
+  },
+  "gaea_available_if_needed": {
+    "note": "Fallback not taken. Existing Gaea mesh-terrain OBJs (not Landscape) remain at Saved/Audit/gaea_setups_normals_smoke_20260901/*/ue_handoff/*_MeshTerrain_129.obj and the 1025 pipeline in Content/Python/stage_highres_gaea_mesh_terrain_import.py.",
+    "example": "Saved/Audit/gaea_setups_normals_smoke_20260901/sakura_terrace/ue_handoff/sakura_terrace_MeshTerrain_129.obj"
+  },
+  "probe": {
+    "named_sphere_islands": 11,
+    "islandish_hits": 69,
+    "dell_at_probe_time": 159,
+    "bedroom_hits_skipped": 12
+  },
+  "dell_destroy": {
+    "dell_remaining": 0,
+    "spheres": 11,
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning"
+  },
+  "compile": {
+    "points": 1174,
+    "plantable_cells": 1818,
+    "species": [
+      "GenericFlower1",
+      "GenericFlowerTall"
+    ],
+    "active_lane": "wind",
+    "parent_mi": "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1"
+  },
+  "pcg": {
+    "instances": 1166,
+    "in_bedroom_keepout": 0,
+    "z_cm": [
+      -1775.2,
+      -706.3
+    ],
+    "xy_min": [
+      -5576.1,
+      -2585.3
+    ],
+    "xy_max": [
+      -586.1,
+      6314.0
+    ],
+    "dell_remaining": 0,
+    "volume_pinned": {
+      "loc": [
+        -950.0,
+        2300.0,
+        -1225.0
+      ],
+      "scale": [
+        54.4,
+        54.4,
+        9.95
+      ]
+    }
+  },
+  "stills": [
+    "Saved/Audit/Screens/wc_morning_rainbow_bloom_island_west_dolly_2026-09-18.png",
+    "Saved/Audit/Screens/wc_morning_rainbow_bloom_island_west_top_2026-09-18.png",
+    "Saved/Audit/Screens/wc_morning_rainbow_bloom_archipelago_oblique_2026-09-18.png",
+    "Saved/Audit/Screens/wc_morning_rainbow_bloom_pond_to_islands_2026-09-18.png",
+    "Saved/Audit/Screens/wc_morning_rainbow_bloom_south_cluster_2026-09-18.png"
+  ],
+  "driver_proof": "Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-17.json",
+  "git": "not landed",
+  "editor": "left open; UBT not required"
+}

@@ -1,6 +1,6 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-14
+**Last Updated:** 2026-09-17
 **Scope:** stable runtime/state lifecycle for an evergreen single-player game  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -84,6 +84,34 @@ Starskiff owns vehicle/traversal runtime state. Only stable long-term facts shou
 
 ### Convergence
 Convergence reads durable/authoritative inputs and derives relationship state or authored response. Derived values should be recomputable unless there is a specific reason they must become durable facts.
+
+### Audio / cymatic presentation routing
+
+Presentation signals use one writer per MPC surface:
+
+```text
+audio / gameplay / approved external source semantics
+        ↓
+UMelodiaAudioReactivePresentationSubsystem
+        ↓
+MPC_Melodia_Palette        (source/audio-reactivity surface)
+        ↓
+UMelodiaCymaticsSubsystem  (read-only evaluator)
+        ↓
+UMelodiaCymaticsWriterSubsystem
+        ↓
+MPC_Cymatics_Driver        (derived cymatic presentation surface)
+        ↓
+materials / Niagara / water / other read-only consumers
+```
+
+Hard rules:
+
+- `UMelodiaAudioReactivePresentationSubsystem` is the continuous writer for `MPC_Melodia_Palette`;
+- `UMelodiaCymaticsWriterSubsystem` is the sole writer for `MPC_Cymatics_Driver`;
+- `UMelodiaCymaticsSubsystem` evaluates/reads the source surface and does not become another MPC writer;
+- new source semantics such as wind direction/strength belong upstream of the driver and must preserve this single-writer chain;
+- `WorldField.ResonanceN/M` and `WorldField.Tension` are field/bus semantics, not names to invent as MPC parameters.
 
 ---
 

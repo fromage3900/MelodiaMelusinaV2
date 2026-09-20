@@ -1,0 +1,552 @@
+{
+  "Colors": {
+    "primitives.ivory.50": {
+      "Hex": "#FCFBF8",
+      "Description": "Moonlight White"
+    },
+    "primitives.ivory.100": {
+      "Hex": "#F7F4EF",
+      "Description": "Ivory (default paper)"
+    },
+    "primitives.ivory.200": {
+      "Hex": "#EFEAE1",
+      "Description": ""
+    },
+    "primitives.ivory.300": {
+      "Hex": "#E3DACE",
+      "Description": ""
+    },
+    "primitives.plum.500": {
+      "Hex": "#6E6080",
+      "Description": ""
+    },
+    "primitives.plum.600": {
+      "Hex": "#463A54",
+      "Description": ""
+    },
+    "primitives.plum.700": {
+      "Hex": "#2E2438",
+      "Description": ""
+    },
+    "primitives.plum.800": {
+      "Hex": "#241B2E",
+      "Description": "Midnight Plum"
+    },
+    "primitives.plum.900": {
+      "Hex": "#1C1426",
+      "Description": ""
+    },
+    "primitives.gold.100": {
+      "Hex": "#F0E6D2",
+      "Description": ""
+    },
+    "primitives.gold.300": {
+      "Hex": "#DDC79B",
+      "Description": ""
+    },
+    "primitives.gold.500": {
+      "Hex": "#C9A86A",
+      "Description": "Champagne Gold"
+    },
+    "primitives.gold.700": {
+      "Hex": "#A7884E",
+      "Description": ""
+    },
+    "primitives.lavender.100": {
+      "Hex": "#E8E4F2",
+      "Description": ""
+    },
+    "primitives.lavender.300": {
+      "Hex": "#C2BAE0",
+      "Description": ""
+    },
+    "primitives.lavender.500": {
+      "Hex": "#9F94C6",
+      "Description": "Lavender"
+    },
+    "primitives.sakura.100": {
+      "Hex": "#F5E8EA",
+      "Description": ""
+    },
+    "primitives.sakura.300": {
+      "Hex": "#E7C9CE",
+      "Description": "Dusty Sakura"
+    },
+    "primitives.sakura.500": {
+      "Hex": "#D6A9B0",
+      "Description": ""
+    },
+    "primitives.astral.100": {
+      "Hex": "#E5EAF5",
+      "Description": ""
+    },
+    "primitives.astral.300": {
+      "Hex": "#8AA9D6",
+      "Description": ""
+    },
+    "primitives.astral.500": {
+      "Hex": "#3C5C9E",
+      "Description": "Astral Blue (HoYoverse night accent)"
+    },
+    "primitives.astral.700": {
+      "Hex": "#26365E",
+      "Description": "Deep astral (dark raised surface)"
+    },
+    "primitives.astral.900": {
+      "Hex": "#141A30",
+      "Description": "Astral Night (dark-mode base)"
+    },
+    "primitives.iris.100": {
+      "Hex": "#ECE6F4",
+      "Description": ""
+    },
+    "primitives.iris.300": {
+      "Hex": "#A99AD0",
+      "Description": ""
+    },
+    "primitives.iris.500": {
+      "Hex": "#6E5AA6",
+      "Description": "Iris / Amethyst (Honkai-leaning violet)"
+    },
+    "primitives.slate.200": {
+      "Hex": "#D5D8DE",
+      "Description": ""
+    },
+    "primitives.slate.300": {
+      "Hex": "#AEB4BF",
+      "Description": ""
+    },
+    "primitives.slate.400": {
+      "Hex": "#828A98",
+      "Description": ""
+    },
+    "primitives.slate.500": {
+      "Hex": "#5A6170",
+      "Description": "Slate Grey"
+    },
+    "primitives.slate.700": {
+      "Hex": "#3C414B",
+      "Description": ""
+    },
+    "primitives.status.success": {
+      "Hex": "#5E8B7E",
+      "Description": ""
+    },
+    "primitives.status.warning": {
+      "Hex": "#B8862F",
+      "Description": ""
+    },
+    "primitives.status.error": {
+      "Hex": "#A85751",
+      "Description": ""
+    },
+    "primitives.status.info": {
+      "Hex": "#6B7CA8",
+      "Description": ""
+    },
+    "semantic-light.color.surface.base": {
+      "Hex": "#F7F4EF",
+      "Description": ""
+    },
+    "semantic-light.color.surface.raised": {
+      "Hex": "#FCFBF8",
+      "Description": ""
+    },
+    "semantic-light.color.surface.sunken": {
+      "Hex": "#EFEAE1",
+      "Description": ""
+    },
+    "semantic-light.color.surface.inverse": {
+      "Hex": "#241B2E",
+      "Description": ""
+    },
+    "semantic-light.color.text.primary": {
+      "Hex": "#241B2E",
+      "Description": ""
+    },
+    "semantic-light.color.text.secondary": {
+      "Hex": "#5A6170",
+      "Description": ""
+    },
+    "semantic-light.color.text.tertiary": {
+      "Hex": "#828A98",
+      "Description": ""
+    },
+    "semantic-light.color.text.inverse": {
+      "Hex": "#FCFBF8",
+      "Description": ""
+    },
+    "semantic-light.color.text.accent": {
+      "Hex": "#A7884E",
+      "Description": ""
+    },
+    "semantic-light.color.border.subtle": {
+      "Hex": "#E3DACE",
+      "Description": ""
+    },
+    "semantic-light.color.border.default": {
+      "Hex": "#D5D8DE",
+      "Description": ""
+    },
+    "semantic-light.color.border.strong": {
+      "Hex": "#AEB4BF",
+      "Description": ""
+    },
+    "semantic-light.color.accent.primary": {
+      "Hex": "#C9A86A",
+      "Description": ""
+    },
+    "semantic-light.color.accent.secondary": {
+      "Hex": "#9F94C6",
+      "Description": ""
+    },
+    "semantic-light.color.accent.tertiary": {
+      "Hex": "#E7C9CE",
+      "Description": ""
+    },
+    "semantic-light.color.accent.astral": {
+      "Hex": "#3C5C9E",
+      "Description": ""
+    },
+    "semantic-light.color.accent.iris": {
+      "Hex": "#6E5AA6",
+      "Description": ""
+    },
+    "semantic-light.color.rule.gold": {
+      "Hex": "#C9A86A",
+      "Description": ""
+    },
+    "semantic-light.color.feedback.success": {
+      "Hex": "#5E8B7E",
+      "Description": ""
+    },
+    "semantic-light.color.feedback.warning": {
+      "Hex": "#B8862F",
+      "Description": ""
+    },
+    "semantic-light.color.feedback.error": {
+      "Hex": "#A85751",
+      "Description": ""
+    },
+    "semantic-light.color.feedback.info": {
+      "Hex": "#6B7CA8",
+      "Description": ""
+    },
+    "semantic-dark.color.surface.base": {
+      "Hex": "#141A30",
+      "Description": ""
+    },
+    "semantic-dark.color.surface.raised": {
+      "Hex": "#26365E",
+      "Description": ""
+    },
+    "semantic-dark.color.surface.sunken": {
+      "Hex": "#1C1426",
+      "Description": ""
+    },
+    "semantic-dark.color.surface.inverse": {
+      "Hex": "#F7F4EF",
+      "Description": ""
+    },
+    "semantic-dark.color.text.primary": {
+      "Hex": "#FCFBF8",
+      "Description": ""
+    },
+    "semantic-dark.color.text.secondary": {
+      "Hex": "#AEB4BF",
+      "Description": ""
+    },
+    "semantic-dark.color.text.tertiary": {
+      "Hex": "#828A98",
+      "Description": ""
+    },
+    "semantic-dark.color.text.inverse": {
+      "Hex": "#141A30",
+      "Description": ""
+    },
+    "semantic-dark.color.text.accent": {
+      "Hex": "#DDC79B",
+      "Description": ""
+    },
+    "semantic-dark.color.border.subtle": {
+      "Hex": "#26365E",
+      "Description": ""
+    },
+    "semantic-dark.color.border.default": {
+      "Hex": "#3C5C9E",
+      "Description": ""
+    },
+    "semantic-dark.color.border.strong": {
+      "Hex": "#6E5AA6",
+      "Description": ""
+    },
+    "semantic-dark.color.accent.primary": {
+      "Hex": "#C9A86A",
+      "Description": ""
+    },
+    "semantic-dark.color.accent.secondary": {
+      "Hex": "#C2BAE0",
+      "Description": ""
+    },
+    "semantic-dark.color.accent.tertiary": {
+      "Hex": "#E7C9CE",
+      "Description": ""
+    },
+    "semantic-dark.color.accent.astral": {
+      "Hex": "#8AA9D6",
+      "Description": ""
+    },
+    "semantic-dark.color.accent.iris": {
+      "Hex": "#A99AD0",
+      "Description": ""
+    },
+    "semantic-dark.color.rule.gold": {
+      "Hex": "#C9A86A",
+      "Description": ""
+    },
+    "semantic-dark.color.feedback.success": {
+      "Hex": "#5E8B7E",
+      "Description": ""
+    },
+    "semantic-dark.color.feedback.warning": {
+      "Hex": "#B8862F",
+      "Description": ""
+    },
+    "semantic-dark.color.feedback.error": {
+      "Hex": "#A85751",
+      "Description": ""
+    },
+    "semantic-dark.color.feedback.info": {
+      "Hex": "#6B7CA8",
+      "Description": ""
+    }
+  },
+  "Spacing": {
+    "global.space.4": {
+      "Value": 4,
+      "Description": ""
+    },
+    "global.space.8": {
+      "Value": 8,
+      "Description": ""
+    },
+    "global.space.16": {
+      "Value": 16,
+      "Description": ""
+    },
+    "global.space.24": {
+      "Value": 24,
+      "Description": ""
+    },
+    "global.space.32": {
+      "Value": 32,
+      "Description": ""
+    },
+    "global.space.48": {
+      "Value": 48,
+      "Description": ""
+    },
+    "global.space.64": {
+      "Value": 64,
+      "Description": ""
+    },
+    "global.space.96": {
+      "Value": 96,
+      "Description": ""
+    },
+    "global.space.128": {
+      "Value": 128,
+      "Description": ""
+    }
+  },
+  "Radius": {
+    "global.radius.none": {
+      "Value": 0,
+      "Description": ""
+    },
+    "global.radius.sm": {
+      "Value": 2,
+      "Description": ""
+    },
+    "global.radius.md": {
+      "Value": 4,
+      "Description": ""
+    },
+    "global.radius.lg": {
+      "Value": 8,
+      "Description": ""
+    },
+    "global.radius.pill": {
+      "Value": 999,
+      "Description": ""
+    }
+  },
+  "Typography": {
+    "global.type.display-xl": {
+      "FontFamily": "{global.fontFamilies.display}",
+      "FontSize": 72,
+      "FontWeight": "Light",
+      "LineHeight": 76,
+      "LetterSpacing": "-2%",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.display-large": {
+      "FontFamily": "{global.fontFamilies.display}",
+      "FontSize": 56,
+      "FontWeight": "Light",
+      "LineHeight": 60,
+      "LetterSpacing": "-2%",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.title-project": {
+      "FontFamily": "{global.fontFamilies.display}",
+      "FontSize": 40,
+      "FontWeight": "Regular",
+      "LineHeight": 44,
+      "LetterSpacing": "-1%",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.header-section": {
+      "FontFamily": "{global.fontFamilies.display}",
+      "FontSize": 28,
+      "FontWeight": "Medium",
+      "LineHeight": 34,
+      "LetterSpacing": "0",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.header-sub": {
+      "FontFamily": "{global.fontFamilies.body}",
+      "FontSize": 20,
+      "FontWeight": "SemiBold",
+      "LineHeight": 28,
+      "LetterSpacing": "0",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.body-large": {
+      "FontFamily": "{global.fontFamilies.body}",
+      "FontSize": 18,
+      "FontWeight": "Regular",
+      "LineHeight": 30,
+      "LetterSpacing": "0",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.body-default": {
+      "FontFamily": "{global.fontFamilies.body}",
+      "FontSize": 16,
+      "FontWeight": "Regular",
+      "LineHeight": 26,
+      "LetterSpacing": "0",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.caption": {
+      "FontFamily": "{global.fontFamilies.body}",
+      "FontSize": 13,
+      "FontWeight": "Regular",
+      "LineHeight": 18,
+      "LetterSpacing": "1%",
+      "TextCase": "none",
+      "Description": ""
+    },
+    "global.type.label-technical": {
+      "FontFamily": "{global.fontFamilies.mono}",
+      "FontSize": 12,
+      "FontWeight": "Medium",
+      "LineHeight": 16,
+      "LetterSpacing": "8%",
+      "TextCase": "uppercase",
+      "Description": ""
+    },
+    "global.type.metadata": {
+      "FontFamily": "{global.fontFamilies.mono}",
+      "FontSize": 11,
+      "FontWeight": "Regular",
+      "LineHeight": 14,
+      "LetterSpacing": "6%",
+      "TextCase": "uppercase",
+      "Description": ""
+    }
+  },
+  "Effects": {
+    "global.shadow.sm": {
+      "X": 0.0,
+      "Y": 1.0,
+      "Blur": 2.0,
+      "Spread": 0.0,
+      "Color": "rgba(36,27,46,0.06)",
+      "Type": "boxShadow",
+      "Description": ""
+    },
+    "global.shadow.md": {
+      "X": 0.0,
+      "Y": 8.0,
+      "Blur": 24.0,
+      "Spread": 0.0,
+      "Color": "rgba(36,27,46,0.10)",
+      "Type": "boxShadow",
+      "Description": ""
+    },
+    "global.glow.gold": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Blur": 16.0,
+      "Spread": 0.0,
+      "Color": "rgba(201,168,106,0.45)",
+      "Type": "boxShadow",
+      "Description": "HoYoverse glow \u2014 brand mark + one hero element only"
+    },
+    "global.glow.astral": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Blur": 20.0,
+      "Spread": 0.0,
+      "Color": "rgba(60,92,158,0.50)",
+      "Type": "boxShadow",
+      "Description": "Astral glow for dark-night hero plates"
+    }
+  },
+  "GameColors": {
+    "VoidPlate": "#1C1426",
+    "ParchmentField": "rgba(46,36,56,0.92)",
+    "ParchmentFill_Start": "#F0E6D2",
+    "ParchmentFill_End": "#DDC79B",
+    "GoldBorder": "rgba(201,168,106,0.8)",
+    "GoldText": "#DDC79B",
+    "IriCyan": "#8AA9D6",
+    "PlumButton": "rgba(70,58,84,0.95)",
+    "Ink": "#241B2E",
+    "CardGold": "rgba(221,199,155,0.95)"
+  },
+  "KeybindColors": {
+    "Interact": "#D6A9B0",
+    "Attack": "#C9A86A",
+    "Skill": "#9F94C6",
+    "Ultimate": "#6E5AA6",
+    "Menu": "#F0E6D2",
+    "Back": "#241B2E"
+  },
+  "SparkleTiers": {
+    "Full": {
+      "Density": 1.0,
+      "Motion": "enabled"
+    },
+    "Soft": {
+      "Density": 0.5,
+      "Motion": "enabled"
+    },
+    "Chrome": {
+      "Density": 0.25,
+      "Motion": "enabled"
+    },
+    "Off": {
+      "Density": 0.0,
+      "Motion": "disabled"
+    }
+  }
+}

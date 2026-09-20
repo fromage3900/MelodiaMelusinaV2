@@ -1,0 +1,47 @@
+{
+  "schema": "melodia.world_compiler_lookdev.v1",
+  "recorded_at_utc": "2026-09-17T23:21:32Z",
+  "recipe_id": "morning_rainbow_bloom",
+  "world_seed": 3900,
+  "compile_stays_cli": "python Tools/world_compiler.py compile recipes/morning_rainbow_bloom.v1.json && python Tools/world_compiler_ue_driver.py Saved/WorldCompiler/morning_rainbow_bloom_3900 --lookdev",
+  "ubt": {
+    "target": "BS_GodFileEditor Win64 Development",
+    "result": "Succeeded",
+    "seconds": 932.42,
+    "uworld_recipe": "Source/BS_GodFile/MelodiaIntegration/WorldRecipe.h"
+  },
+  "bookmark": "/Game/Melodia/WorldCompiler/DA_MorningRainbowBloom",
+  "euw": "/Game/Melodia/WorldCompiler/EUW_WorldCompiler",
+  "panel": "Content/Python/world_compiler_panel.py",
+  "menu": "LevelEditor.MainMenu.WorldCompiler",
+  "pcg_ism": {
+    "instances_total": 487,
+    "expected_total": 488,
+    "match": true,
+    "volume": "WC_morning_rainbow_bloom_Field"
+  },
+  "houdini_overlays": {
+    "labels": ["Houdini_RainbowBloom_3900", "HoudiniEngine_RainbowBloom_3900"],
+    "present": false,
+    "note": "Already absent from L_MelusinaMorning; PCG ISM is the only field."
+  },
+  "wind_writer": "UMelodiaCymaticsWriterSubsystem already forwards Cymatic_WindDirX/Y/WindStrength",
+  "shots": [
+    {"name": "dolly_waterline", "file": "Saved/Audit/Screens/wc_morning_rainbow_bloom_dolly_waterline_2026-09-17.png", "bytes": 2645823},
+    {"name": "top_down", "file": "Saved/Audit/Screens/wc_morning_rainbow_bloom_top_down_2026-09-17.png", "bytes": 3217801},
+    {"name": "high_oblique", "file": "Saved/Audit/Screens/wc_morning_rainbow_bloom_high_oblique_2026-09-17.png", "bytes": 3250038},
+    {"name": "wake_path", "file": "Saved/Audit/Screens/wc_morning_rainbow_bloom_wake_path_2026-09-17.png", "bytes": 2780356},
+    {"name": "hero_sheep", "file": "Saved/Audit/Screens/wc_morning_rainbow_bloom_hero_sheep_2026-09-17.png", "bytes": 2334170}
+  ],
+  "gates": {
+    "ubt": "PASS",
+    "recipe_lookdev_cameras": "PASS",
+    "pcg_ism_only_field": "PASS",
+    "stills": "PASS",
+    "da_bookmark": "PASS",
+    "euw": "PASS",
+    "compile_not_in_euw": "PASS"
+  },
+  "verdict": "PASS",
+  "owner_open": ["floor vs dell", "wind hue-reveal weight at PIE"]
+}

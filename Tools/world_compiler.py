@@ -1,0 +1,891 @@
+#!/usr/bin/env python3
+"""Melodia World Compiler -- deterministic offline compiler for seed-driven worlds.
+
+Contract: Docs/WorldGen/WORLD_COMPILER_CONTRACT.md
+Recipe schema: specs/schemas/world_recipe.v1.schema.json
+Bundle schema: specs/schemas/world_compiler_bundle.v1.schema.json
+
+    python Tools/world_compiler.py compile recipes/morning_rainbow_bloom.v1.json
+    python Tools/world_compiler.py validate recipes/morning_rainbow_bloom.v1.json
+    python Tools/world_compiler.py show Saved/WorldCompiler/morning_rainbow_bloom_3900
+
+The compiler is a thin orchestrator over existing modules:
+
+    identity  -> Content/Python/resonant_world_generator.py      (reused)
+    terrain   -> Tools/terrain_handoff.py                        (reused, optional)
+    ecology   -> this file (radial Chladni band field + clearance masks)   NEW
+    dressing  -> recipe species table (+ resonant_world_asset_constellation when --constellation)
+    signal    -> byte-level lane check against the two MPC assets (read-only)
+    chapter   -> Tools/scaffold_chapter.py                       (reused, optional)
+    bundle    -> this file + Tools/evidence_envelope.py           NEW
+
+Hard rules (see contract section 8): never ``import unreal``; never edit PCG
+graph structure; never write to an MPC; same recipe + same compiler version
+=> byte-identical tables and manifest SHA.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import dataclasses
+import hashlib
+import io
+import json
+import math
+import sys
+from pathlib import Path
+from typing import Any
+
+COMPILER_VERSION = "world_compiler_v1.0"
+ROOT = Path(__file__).resolve().parents[1]
+CONTENT_PY = ROOT / "Content" / "Python"
+for _p in (str(ROOT / "Tools"), str(CONTENT_PY)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+import resonant_world_generator as rwg  # noqa: E402  (reused identity module)
+
+try:
+    from pcg.resonance_ecology_processor import derive as _resonance_derive  # noqa: E402
+except Exception:  # pragma: no cover - fallback keeps the compiler runnable
+    _resonance_derive = None
+
+POINT_COLUMNS = [
+    "point_id", "x", "y", "z", "yaw", "scale", "species_id", "variant_id", "band", "mode_n", "mode_m",
+    "cluster_id", "hue_seed", "wind_phase", "wind_response", "sparkle_response", "hero_weight",
+    "height_class", "density_class", "Resonance", "EcologyClass", "MaterialVariant", "ScaleBias",
+    # NOTE: UE FNames are case-insensitive, so no column may differ from another only by case
+    # ("Scale" vs "scale" collided in the DataTable -> the vector column read back the float).
+    "mesh", "material", "StemMaterial", "Position", "Rotation", "Scale3D",
+]
+FX_COLUMNS = [
+    "anchor_id", "fx_kind", "band", "x", "y", "z", "hue_seed", "spawn_multiplier", "bounds_cm",
+    "system", "material_instance",
+]
+GOLDEN_ANGLE = 2.399963229728653
+PARASTICHY = 13
+FLOAT_FMT = "{:.3f}"
+
+
+# ----------------------------------------------------------------------------- helpers
+
+def _sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def _sha256_file(path: Path) -> str:
+    return _sha256_bytes(path.read_bytes())
+
+
+def _f(value: float) -> str:
+    text = FLOAT_FMT.format(float(value))
+    return "0.000" if text == "-0.000" else text
+
+
+def _u(seed: int, *parts: object) -> float:
+    """Deterministic 0..1 for a recipe coordinate (NMS-style sub-seeding)."""
+    return rwg.stable_float(seed, "world_compiler", *parts)
+
+
+def _lerp(a: float, b: float, t: float) -> float:
+    return a + (b - a) * t
+
+
+def _clamp01(v: float) -> float:
+    return 0.0 if v < 0.0 else (1.0 if v > 1.0 else v)
+
+
+def _soft_path(game_path: str) -> str:
+    """'/Game/A/B' -> '/Game/A/B.B' (UE soft object path form)."""
+    if not game_path or "." in game_path.rsplit("/", 1)[-1]:
+        return game_path
+    return f"{game_path}.{game_path.rsplit('/', 1)[-1]}"
+
+
+def _stage(status: str, module: str = "", note: str = "", errors: list[str] | None = None) -> dict[str, Any]:
+    out: dict[str, Any] = {"status": status}
+    if module:
+        out["module"] = module
+    if note:
+        out["note"] = note
+    if errors:
+        out["errors"] = errors
+    return out
+
+
+# ----------------------------------------------------------------------------- recipe
+
+def load_recipe(path: Path) -> tuple[dict[str, Any], bytes]:
+    raw = path.read_bytes()
+    recipe = json.loads(raw.decode("utf-8"))
+    return recipe, raw
+
+
+def validate_recipe(recipe: dict[str, Any]) -> list[str]:
+    """Schema validation via jsonschema when available, plus semantic checks."""
+    errors: list[str] = []
+    schema_path = ROOT / "specs" / "schemas" / "world_recipe.v1.schema.json"
+    try:
+        import jsonschema  # type: ignore
+
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        validator = jsonschema.Draft202012Validator(schema)
+        for err in sorted(validator.iter_errors(recipe), key=lambda e: list(e.path)):
+            loc = "/".join(str(p) for p in err.path) or "<root>"
+            errors.append(f"schema: {loc}: {err.message}")
+    except ImportError:
+        for key in ("schema", "recipe_id", "world_seed", "identity", "place", "field", "species", "palette", "signal"):
+            if key not in recipe:
+                errors.append(f"missing required key: {key}")
+        if recipe.get("schema") != "melodia.world_recipe.v1":
+            errors.append("schema must be melodia.world_recipe.v1")
+    if errors:
+        return errors
+
+    field = recipe["field"]
+    bands = recipe["palette"]["bands"]
+    if len(bands) != field["band_count"]:
+        errors.append(f"palette.bands has {len(bands)} entries but field.band_count is {field['band_count']}")
+    modes = (field.get("chladni") or {}).get("modes")
+    if modes is not None and len(modes) != field["band_count"]:
+        errors.append(f"field.chladni.modes has {len(modes)} entries but field.band_count is {field['band_count']}")
+    for band_index, band in enumerate(bands):
+        if not band["label"].startswith(f"B{band_index}_"):
+            errors.append(f"palette.bands[{band_index}].label must start with B{band_index}_")
+    mode_id = recipe["identity"].get("mode_id")
+    if mode_id and mode_id not in rwg.MODE_LIBRARY:
+        errors.append(f"identity.mode_id {mode_id} not in MODE_LIBRARY")
+    movement_id = recipe["identity"].get("movement_id")
+    if movement_id and movement_id not in rwg.WORLD_MOVEMENT_LIBRARY:
+        errors.append(f"identity.movement_id {movement_id} not in WORLD_MOVEMENT_LIBRARY")
+    for text in json.dumps(recipe).split('"'):
+        if len(text) > 2 and text[1] == ":" and text[2] in "\\/":
+            errors.append(f"workstation path in recipe: {text}")
+    weights = sum(s["weight"] for s in recipe["species"])
+    if weights <= 0:
+        errors.append("species weights must sum to > 0")
+    return errors
+
+
+# ----------------------------------------------------------------------------- identity
+
+def stage_identity(recipe: dict[str, Any]) -> dict[str, Any]:
+    ident = recipe.get("identity", {})
+    config = rwg.WorldConfig.from_seed(
+        recipe["world_seed"],
+        root_pitch_class=ident.get("root_pitch_class"),
+        mode_id=ident.get("mode_id"),
+        bpm=ident.get("bpm"),
+    )
+    if ident.get("movement_id"):
+        config = dataclasses.replace(config, movement_id=ident["movement_id"])
+    cx, cy = ident.get("chunk", [0, 0])
+    chunk = rwg.chunk_manifest(config, int(cx), int(cy), include_voxels=False)
+    return {
+        "generator_version": rwg.GENERATOR_VERSION,
+        "world": config.to_dict(),
+        "chunk": chunk,
+        "world_partition_chunk_size_cm": rwg.WORLD_PARTITION_CHUNK_SIZE_CM,
+    }
+
+
+# ----------------------------------------------------------------------------- ecology
+
+@dataclasses.dataclass
+class Clearance:
+    circles: list[dict[str, Any]]
+    capsules: list[dict[str, Any]]
+
+    @classmethod
+    def from_recipe(cls, recipe: dict[str, Any]) -> "Clearance":
+        c = (recipe.get("place") or {}).get("clearance") or {}
+        return cls(list(c.get("circles") or []), list(c.get("capsules") or []))
+
+    def blocked(self, x: float, y: float) -> str | None:
+        for circle in self.circles:
+            cx, cy = circle["center_cm"]
+            if math.hypot(x - cx, y - cy) < circle["radius_cm"]:
+                return circle["label"]
+        for cap in self.capsules:
+            if _segment_distance(x, y, cap["a_cm"], cap["b_cm"]) < cap["radius_cm"]:
+                return cap["label"]
+        return None
+
+    def hero_weight(self, x: float, y: float, falloff_cm: float) -> float:
+        best = 0.0
+        for circle in self.circles:
+            cx, cy = circle["center_cm"]
+            d = math.hypot(x - cx, y - cy) - circle["radius_cm"]
+            if falloff_cm <= 0:
+                continue
+            best = max(best, _clamp01(1.0 - d / falloff_cm))
+        return best
+
+
+def _segment_distance(px: float, py: float, a: list[float], b: list[float]) -> float:
+    ax, ay = a
+    bx, by = b
+    dx, dy = bx - ax, by - ay
+    length_sq = dx * dx + dy * dy
+    if length_sq == 0:
+        return math.hypot(px - ax, py - ay)
+    t = _clamp01(((px - ax) * dx + (py - ay) * dy) / length_sq)
+    return math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+
+
+def chladni(u: float, v: float, n: int, m: int) -> float:
+    """Square-plate Chladni figure on unit coordinates u,v in [0,1]; nodal lines at 0."""
+    return math.cos(n * math.pi * u) * math.cos(m * math.pi * v) - math.cos(m * math.pi * u) * math.cos(n * math.pi * v)
+
+
+def _pick_species(recipe: dict[str, Any], r: float) -> dict[str, Any]:
+    species = recipe["species"]
+    total = sum(s["weight"] for s in species)
+    acc = 0.0
+    for s in species:
+        acc += s["weight"] / total
+        if r <= acc:
+            return s
+    return species[-1]
+
+
+def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str, Any]:
+    seed = int(recipe["world_seed"])
+    rid = recipe["recipe_id"]
+    field = recipe["field"]
+    place = recipe["place"]
+    ax, ay, az = place["anchor_cm"]
+    z = az + float(place.get("up_axis_offset_cm", 4.0))
+    clearance = Clearance.from_recipe(recipe)
+    band_count = int(field["band_count"])
+    r0 = float(field["inner_radius_cm"])
+    width = float(field["band_width_cm"])
+    density = float(field["density_per_m2"])
+    golden = float(field.get("phyllotaxis_angle_rad", GOLDEN_ANGLE))
+    jitter = float(field.get("radial_jitter_cm", 18.0))
+    s_lo, s_hi = field.get("scale_range", [0.5, 1.1])
+    chl = field.get("chladni") or {}
+    modes = chl.get("modes") or [[2 + b, 3 + b] for b in range(band_count)]
+    threshold = float(chl.get("threshold", 0.35))
+    outer_radius = r0 + width * band_count
+    plate = float(chl.get("plate_size_cm", outer_radius * 2.0 + 200.0))
+    hero_falloff = float(field.get("hero_falloff_cm", 600.0))
+    bands_palette = recipe["palette"]["bands"]
+    chunk_seed = int(identity["chunk"]["stable_seed"])
+    ground = load_ground_mask(recipe)
+    up = float(place.get("up_axis_offset_cm", 4.0))
+    # optional angular sector [center_deg, half_width_deg]: concentrate the phyllotaxis where ground exists
+    sector = field.get("sector_deg")
+    sector_frac = 1.0 if not sector else _clamp01(float(sector[1]) / 180.0)
+
+    points: list[dict[str, Any]] = []
+    band_rows: list[dict[str, Any]] = []
+    removed_clearance = 0
+    removed_chladni = 0
+    removed_ground = 0
+    point_id = 0
+
+    for b in range(band_count):
+        r_in = r0 + b * width
+        r_out = r_in + width
+        area_m2 = math.pi * (r_out * r_out - r_in * r_in) / 10_000.0 * sector_frac
+        n_target = max(1, int(round(area_m2 * density)))
+        phase = _u(seed, rid, "band_phase", b) * 2.0 * math.pi
+        n, m = int(modes[b][0]), int(modes[b][1])
+        kept = 0
+        for i in range(n_target):
+            t = (i + 0.5) / n_target
+            r = math.sqrt(r_in * r_in + t * (r_out * r_out - r_in * r_in))
+            r += _lerp(-jitter, jitter, _u(seed, rid, "jitter", b, i))
+            theta = phase + i * golden
+            if sector:
+                # fold the golden-angle sweep into the sector so the spiral stays low-discrepancy
+                span = 2.0 * math.radians(float(sector[1]))
+                theta = math.radians(float(sector[0])) - span / 2.0 + (theta % (2.0 * math.pi)) / (2.0 * math.pi) * span
+            x = ax + r * math.cos(theta)
+            y = ay + r * math.sin(theta)
+            if ground is not None:
+                gz = ground.ground_z(x, y)
+                if gz is None:
+                    removed_ground += 1
+                    continue
+                z = gz + up
+            u = _clamp01((x - ax) / plate + 0.5)
+            v = _clamp01((y - ay) / plate + 0.5)
+            fig = abs(chladni(u, v, n, m))
+            weight = 1.0 - _clamp01(fig)
+            keep_p = max(threshold, weight * weight)
+            if _u(seed, rid, "chladni_keep", b, i) > keep_p:
+                removed_chladni += 1
+                continue
+            if clearance.blocked(x, y):
+                removed_clearance += 1
+                continue
+            species = _pick_species(recipe, _u(seed, rid, "species", b, i))
+            # palette.active_lane picks which band-MI family the 'material' column names
+            wind_lane = recipe["palette"].get("wind") or {}
+            material_prefix = (wind_lane.get("mi_prefix") if recipe["palette"].get("active_lane") == "wind" and wind_lane
+                               else species.get("band_mi_prefix", ""))
+            meshes = list(species.get("meshes") or [species["mesh"]])
+            variants = int(species.get("variants", len(meshes) if species.get("meshes") else 3))
+            variant_id = rwg.stable_int(seed, "world_compiler", rid, "variant", b, i) % variants
+            if _resonance_derive is not None:
+                resonance, ecology_class, material_variant, scale_bias = _resonance_derive(
+                    x, y, r, chunk_seed, z_lo=r0, z_hi=outer_radius
+                )
+            else:  # pragma: no cover
+                resonance = _u(seed, rid, "res", b, i)
+                ecology_class = 0 if resonance < 0.33 else (1 if resonance < 0.66 else 2)
+                material_variant = int(resonance * 3) % 3
+                scale_bias = 0.75 + 0.6 * resonance
+            height_class = int(species.get("height_class", 1))
+            density_class = 2 if weight > 0.66 else (1 if weight > 0.33 else 0)
+            hero_w = clearance.hero_weight(x, y, hero_falloff)
+            scale = _lerp(float(s_lo), float(s_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
+            points.append({
+                "point_id": point_id,
+                "x": x, "y": y, "z": z,
+                "yaw": _u(seed, rid, "yaw", b, i) * 360.0,
+                "scale": scale,
+                "species_id": species["species_id"],
+                "variant_id": variant_id,
+                "band": b,
+                "mode_n": n, "mode_m": m,
+                "cluster_id": i % PARASTICHY,
+                "hue_seed": _clamp01((b + 0.5) / band_count + _lerp(-0.04, 0.04, _u(seed, rid, "hue", b, i))),
+                "wind_phase": _u(seed, rid, "wind_phase", b, i),
+                "wind_response": _lerp(0.55, 1.0, _u(seed, rid, "wind_resp", b, i)) * (1.0 if height_class else 0.7),
+                "sparkle_response": _clamp01(0.2 + 0.6 * resonance),
+                "hero_weight": hero_w,
+                "height_class": height_class,
+                "density_class": density_class,
+                "Resonance": resonance,
+                "EcologyClass": ecology_class,
+                "MaterialVariant": b,  # band index selects the band MI in the spawner
+                "ScaleBias": scale_bias,
+                # Soft object paths so PCGMeshSelectorByAttribute + material-override-by-attribute
+                # make the owner's template graph fully data-driven (no per-species graph edits).
+                "mesh": _soft_path(meshes[variant_id % len(meshes)]),
+                "material": _soft_path(f"{material_prefix}{bands_palette[b]['label']}") if material_prefix else "",
+                "StemMaterial": (
+                    _soft_path(f"{material_prefix}{bands_palette[b]['label']}")
+                    if species.get("stem_material") == "__band__" and material_prefix
+                    else (_soft_path(species["stem_material"]) if species.get("stem_material") else "")
+                ),
+                # UE struct-typed mirrors so PCG's Load Data Table maps them to $Position/$Rotation/$Scale directly.
+                "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
+                "Rotation": f"(Pitch=0.000,Yaw={_f(_u(seed, rid, 'yaw', b, i) * 360.0)},Roll=0.000)",
+                "Scale3D": f"(X={_f(scale)},Y={_f(scale)},Z={_f(scale)})",
+            })
+            point_id += 1
+            kept += 1
+        band_rows.append({
+            "band": b,
+            "label": bands_palette[b]["label"],
+            "tint": bands_palette[b]["tint"],
+            "inner_radius_cm": r_in,
+            "outer_radius_cm": r_out,
+            "mode_n": n, "mode_m": m,
+            "target_count": n_target,
+            "point_count": kept,
+        })
+
+    anchors, fx_removed = _fx_anchors(recipe, band_rows, clearance, az + up, ground=ground, sector=sector)
+    return {
+        "points": points,
+        "bands": band_rows,
+        "fx_anchors": anchors,
+        "outer_radius_cm": outer_radius,
+        "plate_size_cm": plate,
+        "removed_by_clearance": removed_clearance,
+        "removed_by_chladni": removed_chladni,
+        "removed_by_ground": removed_ground,
+        "ground_mask": None if ground is None else {"plantable_cells": len(ground.cells), "plantable_area_m2": round(ground.area_m2(), 1)},
+        "sector_deg": sector,
+        "fx_removed_by_clearance": fx_removed,
+    }
+
+
+def _load_fx_pack(recipe: dict[str, Any]) -> dict[str, Any] | None:
+    fx = recipe.get("fx") or {}
+    pack = fx.get("pack")
+    if not pack:
+        return None
+    path = ROOT / pack
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _fx_anchors(recipe: dict[str, Any], bands: list[dict[str, Any]], clearance: Clearance, z: float, *,
+                ground: "GroundMask | None" = None, sector: list[float] | None = None) -> tuple[list[dict[str, Any]], int]:
+    fx = recipe.get("fx") or {}
+    if not fx:
+        return [], 0
+
+    def in_sector(angle: float) -> float:
+        if not sector:
+            return angle
+        span = 2.0 * math.radians(float(sector[1]))
+        return math.radians(float(sector[0])) - span / 2.0 + (angle % (2.0 * math.pi)) / (2.0 * math.pi) * span
+    seed = int(recipe["world_seed"])
+    rid = recipe["recipe_id"]
+    ax, ay, _ = recipe["place"]["anchor_cm"]
+    pack = _load_fx_pack(recipe) or {"systems": []}
+    systems = {s["id"]: s for s in pack.get("systems", [])}
+    bounds = float(fx.get("bounds_cm", 400))
+    wind = fx.get("wind_dir", [1.0, 0.0])
+    wl = math.hypot(*wind) or 1.0
+    wind = [wind[0] / wl, wind[1] / wl]
+    removed = 0
+    anchors: list[dict[str, Any]] = []
+
+    def place(kind: str, band: int, radius: float, angle: float, hue: float, mult: float) -> None:
+        nonlocal removed
+        sysrec = systems.get(kind, {})
+        for attempt in range(16):
+            a = in_sector(angle + attempt * math.radians(37.0))
+            x = ax + radius * math.cos(a)
+            y = ay + radius * math.sin(a)
+            if clearance.blocked(x, y):
+                continue
+            zz = z
+            if ground is not None:
+                gz = ground.ground_z(x, y)
+                if gz is None and kind != "mist":  # mist may hover over the water edge
+                    continue
+                zz = (gz if gz is not None else z - 4.0) + 4.0
+            mi = sysrec.get("material_instance") or (f"{sysrec.get('material_instance_prefix', '')}{band}" if band >= 0 else "")
+            anchors.append({
+                "anchor_id": f"fx_{kind}_{band if band >= 0 else 'x'}_{len([q for q in anchors if q['fx_kind'] == kind])}",
+                "fx_kind": kind,
+                "band": band,
+                "x": x, "y": y, "z": zz + (60.0 if kind in ("petal", "pollen") else 10.0),
+                "hue_seed": hue,
+                "spawn_multiplier": mult,
+                "bounds_cm": float(sysrec.get("fixed_bounds_cm", bounds)),
+                "system": sysrec.get("target", ""),
+                "material_instance": mi,
+            })
+            return
+        removed += 1
+
+    per_band = fx.get("anchors_per_band") or {}
+    for row in bands:
+        b = row["band"]
+        mid_r = (row["inner_radius_cm"] + row["outer_radius_cm"]) * 0.5
+        base_angle = _u(seed, rid, "fx_angle", b) * 2.0 * math.pi
+        hue = (b + 0.5) / max(1, len(bands))
+        for kind, count in per_band.items():
+            for k in range(int(count)):
+                place(kind, b, mid_r, base_angle + k * math.pi, hue, 1.0)
+    inner = bands[0]["inner_radius_cm"] if bands else 260.0
+    for k in range(int(fx.get("mist_anchors", 0))):
+        place("mist", -1, inner + 40.0, _u(seed, rid, "mist_angle", k) * 2.0 * math.pi, 0.0, 1.0)
+    outer = bands[-1]["outer_radius_cm"] if bands else 1500.0
+    for k in range(int(fx.get("windfront_anchors", 0))):
+        upwind = math.atan2(-wind[1], -wind[0])
+        place("windfront", -1, max(inner + 80.0, outer - 400.0), upwind + k * math.radians(25.0), 0.0, 1.0)
+    return anchors, removed
+
+
+# ----------------------------------------------------------------------------- dressing / signal / terrain / chapter
+
+def stage_dressing(recipe: dict[str, Any], ecology: dict[str, Any], *, constellation: bool) -> tuple[dict[str, Any], dict[str, Any]]:
+    palette = recipe["palette"]
+    species_rows = []
+    for s in recipe["species"]:
+        prefix = s.get("band_mi_prefix")
+        species_rows.append({
+            "species_id": s["species_id"],
+            "mesh": s["mesh"],
+            "meshes": list(s.get("meshes") or [s["mesh"]]),
+            "weight": s["weight"],
+            "variants": int(s.get("variants", len(s["meshes"]) if s.get("meshes") else 3)),
+            "height_class": int(s.get("height_class", 1)),
+            "band_material_instances": [f"{prefix}{band['label']}" for band in palette["bands"]] if prefix else [],
+        })
+    wind = palette.get("wind") or {}
+    band_count = len(palette["bands"])
+    table = {
+        "schema": "melodia.world_compiler_dressing.v1",
+        "parent_master": palette.get("parent_master"),
+        "tint_parameter": palette.get("tint_parameter", "BaseTint"),
+        "active_lane": palette.get("active_lane", "static"),
+        "bands": [{"band": b["band"], "label": b["label"], "tint": b["tint"],
+                   "material_instance": f"{recipe['species'][0].get('band_mi_prefix', '')}{b['label']}"} for b in ecology["bands"]],
+        # Wind hue-reveal family: same seven tints, parented to a master that already binds
+        # MF_MelodiaWindHueReveal and reads the palette Wind* lanes. Undriven == natural albedo.
+        "wind_lane": ({
+            "parent": wind["parent"],
+            "tint_parameter": wind.get("tint_parameter", "MelodiaWindRevealTint"),
+            "hue_seed_parameter": wind.get("hue_seed_parameter", "MelodiaWindHueSeed"),
+            "response_parameter": wind.get("response_parameter", "MelodiaWindResponse"),
+            "response": float(wind.get("response", 1.0)),
+            "scalar_overrides": dict(wind.get("scalar_overrides") or {}),
+            "static_switches_off": list(wind.get("static_switches_off") or []),
+            "texture_overrides": dict(wind.get("texture_overrides") or {}),
+            "bands": [{"band": b["band"], "label": b["label"], "tint": b["tint"],
+                       "hue_seed": (b["band"] + 0.5) / band_count,
+                       "material_instance": f"{wind['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
+        } if wind else None),
+        "species": species_rows,
+        "packer_attributes": ["hue_seed", "Resonance", "wind_response", "sparkle_response"],
+        "source": "recipe",
+    }
+    note = "species/band table from recipe"
+    status = "PASS"
+    if constellation:
+        try:
+            import resonant_world_asset_constellation as rwac  # noqa: E402
+
+            ident = recipe.get("identity", {})
+            cx, cy = ident.get("chunk", [0, 0])
+            table["constellation"] = rwac.build_asset_constellation(
+                ROOT, int(recipe["world_seed"]), movement_id=ident.get("movement_id"), chunk_x=int(cx), chunk_y=int(cy)
+            )
+            table["source"] = "recipe+constellation"
+            note = "species/band table from recipe; asset constellation attached (machine-dependent inventory)"
+        except Exception as exc:  # pragma: no cover
+            note = f"constellation unavailable: {exc}"
+            status = "EXPECTED_FAIL"
+    return table, _stage(status, "recipe species table" + (" + resonant_world_asset_constellation" if constellation else ""), note)
+
+
+def _uasset_for(game_path: str) -> Path:
+    rel = game_path.replace("/Game/", "Content/", 1)
+    return ROOT / (rel + ".uasset")
+
+
+def stage_signal(recipe: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    sig = recipe["signal"]
+    checks = []
+    errors = []
+    for role, key in (("driver", "driver_mpc"), ("source", "source_mpc")):
+        path = _uasset_for(sig[key])
+        exists = path.exists()
+        data = path.read_bytes() if exists else b""
+        lfs_pointer = data.startswith(b"version https://git-lfs.github.com/spec/v1")
+        lanes = sig["lanes"] if role == "driver" else [lane.replace("Cymatic_", "") for lane in sig["lanes"] if lane.startswith("Cymatic_Wind")]
+        for lane in lanes:
+            present = (lane.encode("ascii") in data) if exists and not lfs_pointer else None
+            status = "PASS" if present else ("SKIPPED" if present is None else "FAIL")
+            if status == "FAIL":
+                errors.append(f"{role} MPC lacks lane {lane}")
+            checks.append({"mpc": sig[key], "role": role, "lane": lane, "status": status,
+                           "note": "" if present is not None else ("asset missing" if not exists else "LFS pointer; hydrate to check")})
+    mf = sig.get("material_function")
+    mf_exists = _uasset_for(mf).exists() if mf else None
+    bindings = {
+        "schema": "melodia.world_compiler_signal_bindings.v1",
+        "writer": "UMelodiaCymaticsWriterSubsystem (only driver writer); palette writer is UMelodiaAudioReactivePresentationSubsystem",
+        "source_mpc": sig["source_mpc"],
+        "driver_mpc": sig["driver_mpc"],
+        "material_function": mf,
+        "material_function_present": mf_exists,
+        "lane_checks": checks,
+        "consumers": {
+            "band_material_instances": {"reads": sig["lanes"], "via": "parent master collection-parameter nodes; MF_MelodiaWindHueReveal consumes WindDir/WindStrength inputs"},
+            "instance_custom_data": {"hue_seed": "MF_MelodiaWindHueReveal.PerInstanceHueSeed", "wind_response": "MF_MelodiaWindHueReveal.ResponseAmount", "Resonance": "Cymatic emissive scale weight"},
+            "niagara": "specs/niagara/morning_hero_fx_pack.v1.json materials[].mpc_lanes",
+        },
+        "rule": "compiler never writes a collection parameter",
+    }
+    status = "FAIL" if errors else ("PASS" if all(c["status"] == "PASS" for c in checks) else "SKIPPED")
+    return bindings, _stage(status, "byte-level lane check", f"{sum(c['status']=='PASS' for c in checks)}/{len(checks)} lanes present", errors or None)
+
+
+@dataclasses.dataclass
+class GroundMask:
+    """Nearest-cell lookup over a line-trace grid written by world_compiler_ue.py probe_ground."""
+    step: float
+    cells: dict[tuple[int, int], float]  # (ix, iy) -> ground z for plantable cells only
+    origin: tuple[float, float]
+    total_cells: int
+
+    @classmethod
+    def from_probe(cls, doc: dict[str, Any], z_lo: float, z_hi: float, exclude_classes: set[str]) -> "GroundMask":
+        step = float(doc["step_cm"])
+        cx, cy = doc["center_cm"]
+        radius = float(doc["radius_cm"])
+        ox, oy = cx - radius, cy - radius
+        cells: dict[tuple[int, int], float] = {}
+        for x, y, z, _label, acls in doc["rows"]:
+            lab = str(_label or "")
+            # Bedroom kit floors and the rejected grass shelf are never plantable,
+            # even if they fall inside walkable_z.
+            if lab.startswith("WC_DellFloor") or lab.startswith("WC_EscherWalk") or "classic_arch" in lab.lower():
+                continue
+            if "Sphere3D" in lab or lab.startswith("SM_PM3D"):
+                continue
+            if lab and not lab.startswith("BrushifyIsland_"):
+                continue
+            if z is None or not (z_lo <= z <= z_hi) or (acls in exclude_classes):
+                continue
+            cells[(int(round((x - ox) / step)), int(round((y - oy) / step)))] = float(z)
+        return cls(step, cells, (ox, oy), len(doc["rows"]))
+
+    def ground_z(self, x: float, y: float) -> float | None:
+        ix = int(round((x - self.origin[0]) / self.step))
+        iy = int(round((y - self.origin[1]) / self.step))
+        return self.cells.get((ix, iy))
+
+    def area_m2(self) -> float:
+        return len(self.cells) * (self.step * self.step) / 10_000.0
+
+
+def load_ground_mask(recipe: dict[str, Any]) -> GroundMask | None:
+    terrain = recipe.get("terrain") or {}
+    if terrain.get("kind") != "ground_probe":
+        return None
+    path = ROOT / terrain["probe"]
+    doc = json.loads(path.read_text(encoding="utf-8-sig"))
+    z_lo, z_hi = terrain.get("walkable_z_cm") or [-1e9, 1e9]
+    return GroundMask.from_probe(doc, float(z_lo), float(z_hi), set(terrain.get("exclude_actor_classes") or []))
+
+
+def stage_terrain(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    terrain = recipe.get("terrain")
+    if terrain and terrain.get("kind") == "ground_probe":
+        try:
+            mask = load_ground_mask(recipe)
+            doc = json.loads((ROOT / terrain["probe"]).read_text(encoding="utf-8-sig"))
+            info = {"kind": "ground_probe", "probe": terrain["probe"], "level": doc.get("level"), "recorded_at_utc": doc.get("recorded_at_utc"),
+                    "cells": mask.total_cells, "plantable_cells": len(mask.cells), "plantable_area_m2": round(mask.area_m2(), 1),
+                    "walkable_z_cm": terrain.get("walkable_z_cm"), "exclude_actor_classes": terrain.get("exclude_actor_classes") or [],
+                    "probe_radius_cm": terrain.get("probe_radius_cm"), "probe_step_cm": terrain.get("probe_step_cm"),
+                    "hit_classes": doc.get("classes")}
+            status = "PASS" if mask.cells else "FAIL"
+            return info, _stage(status, "Content/Python/world_compiler_ue.py:probe_ground", f"{len(mask.cells)} plantable cells / {mask.total_cells}",
+                                None if mask.cells else ["ground probe has no plantable cells"])
+        except Exception as exc:
+            return {"kind": "ground_probe", "probe": terrain.get("probe"), "error": str(exc)}, _stage("FAIL", "ground_probe", "", [str(exc)])
+    if not terrain or not terrain.get("handoff"):
+        return None, _stage("SKIPPED", "Tools/terrain_handoff.py", "recipe.terrain is null")
+    try:
+        import terrain_handoff as th  # noqa: E402
+
+        doc, _ = th._load_doc(str(ROOT / terrain["handoff"]))
+        unified = th.convert_document(doc)
+        problems = th.validate_handoff(unified)
+        status = "PASS" if not problems else "FAIL"
+        return {"handoff": terrain["handoff"], "unified": unified, "problems": problems}, _stage(status, "Tools/terrain_handoff.py", "", problems or None)
+    except Exception as exc:
+        return {"handoff": terrain["handoff"], "error": str(exc)}, _stage("FAIL", "Tools/terrain_handoff.py", "", [str(exc)])
+
+
+def stage_chapter(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    chapter = recipe.get("chapter")
+    if not chapter or not chapter.get("chapter"):
+        return None, _stage("SKIPPED", "Tools/scaffold_chapter.py", "recipe.chapter is null")
+    if not chapter.get("create"):
+        return {"chapter": chapter["chapter"], "created": False}, _stage("PASS", "Tools/scaffold_chapter.py", "reference only; create=false")
+    try:
+        import scaffold_chapter as sc  # noqa: E402
+
+        target = sc.scaffold(chapter["chapter"])
+        return {"chapter": chapter["chapter"], "created": True, "path": str(target.relative_to(ROOT)).replace("\\", "/")}, _stage("PASS", "Tools/scaffold_chapter.py")
+    except FileExistsError as exc:
+        return {"chapter": chapter["chapter"], "created": False, "note": str(exc)}, _stage("PASS", "Tools/scaffold_chapter.py", "already exists")
+    except Exception as exc:
+        return {"chapter": chapter["chapter"], "error": str(exc)}, _stage("FAIL", "Tools/scaffold_chapter.py", "", [str(exc)])
+
+
+# ----------------------------------------------------------------------------- bundle
+
+def _csv_bytes(columns: list[str], rows: list[dict[str, Any]]) -> bytes:
+    buf = io.StringIO()
+    writer = csv.writer(buf, lineterminator="\n")
+    writer.writerow(columns)
+    for row in rows:
+        out = []
+        for col in columns:
+            val = row[col]
+            out.append(_f(val) if isinstance(val, float) else str(val))
+        writer.writerow(out)
+    return buf.getvalue().encode("utf-8")
+
+
+def _json_bytes(obj: Any) -> bytes:
+    return (json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False) + "\n").encode("utf-8")
+
+
+def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constellation: bool = False, write_envelope: bool = True) -> dict[str, Any]:
+    recipe, raw = load_recipe(recipe_path)
+    errors = validate_recipe(recipe)
+    if errors:
+        raise ValueError("recipe invalid:\n  " + "\n  ".join(errors))
+    compile_id = f"{recipe['recipe_id']}_{int(recipe['world_seed'])}"
+    out_dir = (out_root or (ROOT / "Saved" / "WorldCompiler")) / compile_id
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    stages: dict[str, dict[str, Any]] = {}
+    identity = stage_identity(recipe)
+    stages["identity"] = _stage("PASS", "Content/Python/resonant_world_generator.py", f"movement {identity['world']['movement_id']}, mode {identity['world']['mode_id']}")
+    terrain, stages["terrain"] = stage_terrain(recipe)
+    ecology = stage_ecology(recipe, identity)
+    eco_errors = [f"band {b['band']} has zero points" for b in ecology["bands"] if b["point_count"] == 0]
+    stages["ecology"] = _stage("FAIL" if eco_errors else "PASS", "Tools/world_compiler.py:stage_ecology",
+                               f"{len(ecology['points'])} points, {len(ecology['fx_anchors'])} fx anchors", eco_errors or None)
+    dressing, stages["dressing"] = stage_dressing(recipe, ecology, constellation=constellation)
+    signal, stages["signal"] = stage_signal(recipe)
+    chapter, stages["chapter"] = stage_chapter(recipe)
+
+    files: dict[str, bytes] = {
+        "points.csv": _csv_bytes(POINT_COLUMNS, ecology["points"]),
+        "fx_anchors.csv": _csv_bytes(FX_COLUMNS, ecology["fx_anchors"]),
+        "dressing_table.json": _json_bytes(dressing),
+        "signal_bindings.json": _json_bytes(signal),
+        "identity.json": _json_bytes(identity),
+    }
+    if terrain is not None:
+        files["terrain.json"] = _json_bytes(terrain)
+    if chapter is not None:
+        files["chapter.json"] = _json_bytes(chapter)
+    for name, data in files.items():
+        (out_dir / name).write_bytes(data)
+
+    tables = {
+        name: {
+            "path": name,
+            "sha256": _sha256_bytes(data),
+            "rows": (len(ecology["points"]) if name == "points.csv" else len(ecology["fx_anchors"]) if name == "fx_anchors.csv" else 1),
+            **({"columns": POINT_COLUMNS} if name == "points.csv" else {"columns": FX_COLUMNS} if name == "fx_anchors.csv" else {}),
+        }
+        for name, data in files.items()
+    }
+    hard_fail = any(s["status"] == "FAIL" for k, s in stages.items() if k in ("identity", "ecology", "dressing"))
+    soft_fail = any(s["status"] == "FAIL" for s in stages.values())
+    stages["bundle"] = _stage("PASS", "Tools/world_compiler.py:compile_recipe", f"{len(files)} tables")
+    manifest = {
+        "schema": "melodia.world_compiler_bundle.v1",
+        "compiler_version": COMPILER_VERSION,
+        "compile_id": compile_id,
+        "recipe_id": recipe["recipe_id"],
+        "world_seed": int(recipe["world_seed"]),
+        "recipe_sha256": _sha256_bytes(raw),
+        "status": "FAIL" if hard_fail else ("EXPECTED_FAIL" if soft_fail else "PASS"),
+        "stages": stages,
+        "identity": {"movement_id": identity["world"]["movement_id"], "mode_id": identity["world"]["mode_id"],
+                     "root_note": identity["world"]["root_note"], "bpm": identity["world"]["bpm"],
+                     "chunk_stable_seed": identity["chunk"]["stable_seed"], "motif_id": identity["chunk"]["motif_id"]},
+        "place": {
+            "level": recipe["place"]["level"],
+            "anchor_cm": recipe["place"]["anchor_cm"],
+            "clearance_applied": {"circles": len(Clearance.from_recipe(recipe).circles), "capsules": len(Clearance.from_recipe(recipe).capsules)},
+            "outer_radius_cm": ecology["outer_radius_cm"],
+            "plate_size_cm": ecology["plate_size_cm"],
+            "sector_deg": ecology["sector_deg"],
+            "ground_mask": ecology["ground_mask"],
+        },
+        "terrain": terrain,
+        "bands": [{**b, "material_instance": dressing["bands"][b["band"]]["material_instance"]} for b in ecology["bands"]],
+        "tables": tables,
+        "counts": {
+            "points_total": len(ecology["points"]),
+            "points_removed_by_clearance": ecology["removed_by_clearance"],
+            "points_removed_by_chladni": ecology["removed_by_chladni"],
+            "points_removed_by_ground": ecology["removed_by_ground"],
+            "fx_anchors_total": len(ecology["fx_anchors"]),
+            "fx_anchors_removed_by_clearance": ecology["fx_removed_by_clearance"],
+        },
+        "ue_lane": {
+            "data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_Points",
+            "row_struct": "/Game/Melodia/WorldCompiler/S_WorldCompilerPoint",
+            "pcg_template_graph": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_PointField",
+            "pcg_volume_label": f"WC_{recipe['recipe_id']}_Field",
+            "actor_tag": f"WorldCompiler.{compile_id}",
+            "fx_pack": (recipe.get("fx") or {}).get("pack", ""),
+            # Positional: index == static-mesh material slot. Slot 0 (stem) is overridden with the
+            # neutral StemMaterial column so the band MI in 'material' lands on slot 1 (petals).
+            "material_override_attributes": (
+                ["StemMaterial", "material"] if any(s.get("stem_material") for s in recipe["species"]) else ["material"]
+            ),
+        },
+        "notes": [
+            "compiler never imports unreal; UE lane is Content/Python/world_compiler_ue.py",
+            "template graph is owner-authored and reads the fixed DataTable path; Python only fills rows",
+            "MaterialVariant == band index; 'mesh'/'material' soft paths drive PCGMeshSelectorByAttribute",
+        ],
+    }
+    manifest_bytes = _json_bytes(manifest)
+    (out_dir / "manifest.json").write_bytes(manifest_bytes)
+    manifest["manifest_sha256"] = _sha256_bytes(manifest_bytes)
+
+    if write_envelope:
+        try:
+            import evidence_envelope as ev  # noqa: E402
+
+            envelope = ev.make_envelope(
+                kind="static",
+                status="pass" if manifest["status"] in ("PASS", "EXPECTED_FAIL") else "fail",
+                producer="Tools/world_compiler.py",
+                check_name="world_compiler.compile",
+                check_status="pass" if manifest["status"] == "PASS" else ("hold" if manifest["status"] == "EXPECTED_FAIL" else "fail"),
+                note=f"{compile_id}: {manifest['counts']['points_total']} points, manifest sha {manifest['manifest_sha256'][:12]}",
+                gate_id="world_compiler.offline",
+                subject={"compile_id": compile_id, "recipe": str(recipe_path.relative_to(ROOT)).replace("\\", "/") if recipe_path.is_relative_to(ROOT) else recipe_path.name},
+                artifacts=[str((out_dir / n).relative_to(ROOT)).replace("\\", "/") for n in list(files) + ["manifest.json"]],
+            )
+            ev.write_envelope(envelope, out_dir / "evidence_envelope.json")
+        except Exception as exc:  # pragma: no cover
+            (out_dir / "evidence_envelope.error.txt").write_text(str(exc), encoding="utf-8")
+
+    manifest["out_dir"] = str(out_dir)
+    return manifest
+
+
+# ----------------------------------------------------------------------------- CLI
+
+def _print_summary(manifest: dict[str, Any]) -> None:
+    print(f"compile_id : {manifest['compile_id']}   status {manifest['status']}   {manifest['compiler_version']}")
+    print(f"identity   : {manifest['identity']}")
+    print(f"out_dir    : {manifest.get('out_dir', '')}")
+    print(f"manifest   : sha {manifest.get('manifest_sha256', '')[:16]}")
+    for name, stage in manifest["stages"].items():
+        print(f"  {name:9} {stage['status']:14} {stage.get('note', '')}")
+    print(f"{'band':>4} {'label':12} {'r_in':>7} {'r_out':>7} {'mode':>6} {'target':>7} {'kept':>6}")
+    for b in manifest["bands"]:
+        print(f"{b['band']:>4} {b['label']:12} {b['inner_radius_cm']:>7.0f} {b['outer_radius_cm']:>7.0f} {b['mode_n']}x{b['mode_m']:<4} {b['target_count']:>7} {b['point_count']:>6}")
+    c = manifest["counts"]
+    print(f"points {c['points_total']}  (clearance -{c['points_removed_by_clearance']}, chladni -{c['points_removed_by_chladni']}, ground -{c['points_removed_by_ground']})  fx anchors {c['fx_anchors_total']} (-{c['fx_anchors_removed_by_clearance']})")
+    for name, t in manifest["tables"].items():
+        print(f"  {name:22} rows {t['rows']:>6}  sha {t['sha256'][:16]}")
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = parser.add_subparsers(dest="cmd", required=True)
+    p_compile = sub.add_parser("compile", help="compile a recipe into Saved/WorldCompiler/<compile_id>/")
+    p_compile.add_argument("recipe", type=Path)
+    p_compile.add_argument("--out-root", type=Path, default=None)
+    p_compile.add_argument("--constellation", action="store_true", help="attach resonant_world_asset_constellation (machine-dependent)")
+    p_compile.add_argument("--no-envelope", action="store_true")
+    p_compile.add_argument("--json", action="store_true", help="print the manifest as JSON")
+    p_validate = sub.add_parser("validate", help="validate a recipe against the schema and semantic rules")
+    p_validate.add_argument("recipe", type=Path)
+    p_show = sub.add_parser("show", help="summarise an existing bundle")
+    p_show.add_argument("bundle_dir", type=Path)
+    args = parser.parse_args(argv)
+
+    if args.cmd == "validate":
+        recipe, _ = load_recipe(args.recipe)
+        errors = validate_recipe(recipe)
+        print("\n".join(errors) if errors else f"recipe OK: {recipe['recipe_id']} seed {recipe['world_seed']}")
+        return 1 if errors else 0
+    if args.cmd == "show":
+        manifest = json.loads((args.bundle_dir / "manifest.json").read_text(encoding="utf-8"))
+        manifest["out_dir"] = str(args.bundle_dir)
+        manifest["manifest_sha256"] = _sha256_file(args.bundle_dir / "manifest.json")
+        _print_summary(manifest)
+        return 0
+    manifest = compile_recipe(args.recipe, out_root=args.out_root, constellation=args.constellation, write_envelope=not args.no_envelope)
+    if args.json:
+        print(json.dumps(manifest, indent=2, sort_keys=True))
+    else:
+        _print_summary(manifest)
+    return 0 if manifest["status"] in ("PASS", "EXPECTED_FAIL") else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
