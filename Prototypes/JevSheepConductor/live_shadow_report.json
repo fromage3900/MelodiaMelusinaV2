@@ -1,0 +1,866 @@
+{
+  "evaluations": [
+    {
+      "t": 0.0,
+      "beat": "ENTER_FIELD",
+      "input": "beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=0.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.9,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.08,
+        "world": "SOFT_WIND",
+        "world_prob": 0.59,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.41,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 2.0,
+      "beat": "ENTER_FIELD",
+      "input": "beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=2.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.89,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.09,
+        "world": "SOFT_WIND",
+        "world_prob": 0.57,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.43,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 4.0,
+      "beat": "ENTER_FIELD",
+      "input": "beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=4.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.87,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.1,
+        "world": "SOFT_WIND",
+        "world_prob": 0.57,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.43,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 6.0,
+      "beat": "ENTER_FIELD",
+      "input": "beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=6.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.9,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.08,
+        "world": "SOFT_WIND",
+        "world_prob": 0.6,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.4,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 8.0,
+      "beat": "ENTER_FIELD",
+      "input": "beat=ENTER_FIELD dist=25.0m move=walk bpm=0.2 beatE=0.2 reso=0.1 wind=0.2 pal=neutral sslr=8.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.92,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.06,
+        "world": "SOFT_WIND",
+        "world_prob": 0.55,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.45,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 10.0,
+      "beat": "APPROACH",
+      "input": "beat=APPROACH dist=25.0m move=walk bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=10.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.89,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.08,
+        "world": "SOFT_WIND",
+        "world_prob": 0.75,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.25,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 12.0,
+      "beat": "APPROACH",
+      "input": "beat=APPROACH dist=20.4m move=walk bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=12.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.88,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.08,
+        "world": "SOFT_WIND",
+        "world_prob": 0.71,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.29,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 14.0,
+      "beat": "APPROACH",
+      "input": "beat=APPROACH dist=15.799999999999999m move=walk bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=14.0s interact=none",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.84,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.11,
+        "world": "SOFT_WIND",
+        "world_prob": 0.7,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.3,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 16.0,
+      "beat": "APPROACH",
+      "input": "beat=APPROACH dist=11.200000000000001m move=still bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=16.0s interact=approached",
+      "fallback": {
+        "flock": "GRAZE",
+        "flock_prob": 0.359,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.61,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.37,
+        "world": "SOFT_WIND",
+        "world_prob": 0.76,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.23,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 18.0,
+      "beat": "APPROACH",
+      "input": "beat=APPROACH dist=6.599999999999998m move=still bpm=0.25 beatE=0.3 reso=0.25 wind=0.25 pal=neutral sslr=18.0s interact=approached",
+      "fallback": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.534,
+        "world": "LAVENDER_PALETTE",
+        "world_prob": 0.497,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "LAVENDER_PALETTE"
+      },
+      "jev": {
+        "flock": "GRAZE",
+        "flock_prob": 0.64,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.33,
+        "world": "SOFT_WIND",
+        "world_prob": 0.76,
+        "world_alt": "NONE",
+        "world_alt_prob": 0.23,
+        "cand_flock": "GRAZE",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "disagree"
+      }
+    },
+    {
+      "t": 20.0,
+      "beat": "WIND",
+      "input": "beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.3 pal=lavender_wash sslr=2.0s interact=approached",
+      "fallback": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.078,
+        "world": "LAVENDER_PALETTE",
+        "world_prob": 0.069,
+        "cand_flock": "CHORAL_SWAY",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 1.0,
+        "flock_alt": "GRAZE",
+        "flock_alt_prob": 0.0,
+        "world": "SOFT_WIND",
+        "world_prob": 0.55,
+        "world_alt": "LAVENDER_PALETTE",
+        "world_alt_prob": 0.3,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "disagree"
+      }
+    },
+    {
+      "t": 22.0,
+      "beat": "WIND",
+      "input": "beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.4 pal=lavender_wash sslr=4.0s interact=approached",
+      "fallback": {
+        "flock": "CHORAL_SWAY",
+        "flock_prob": 0.351,
+        "world": "SOFT_WIND",
+        "world_prob": 0.655,
+        "cand_flock": "CHORAL_SWAY",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 1.0,
+        "flock_alt": "GRAZE",
+        "flock_alt_prob": 0.0,
+        "world": "SOFT_WIND",
+        "world_prob": 0.54,
+        "world_alt": "LAVENDER_PALETTE",
+        "world_alt_prob": 0.34,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 24.0,
+      "beat": "WIND",
+      "input": "beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.5 pal=lavender_wash sslr=2.0s interact=approached",
+      "fallback": {
+        "flock": "CHORAL_SWAY",
+        "flock_prob": 0.351,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "CHORAL_SWAY",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.99,
+        "flock_alt": "CHORAL_SWAY",
+        "flock_alt_prob": 0.01,
+        "world": "SOFT_WIND",
+        "world_prob": 0.53,
+        "world_alt": "LAVENDER_PALETTE",
+        "world_alt_prob": 0.33,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 26.0,
+      "beat": "WIND",
+      "input": "beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.6 pal=lavender_wash sslr=4.0s interact=approached",
+      "fallback": {
+        "flock": "FOLLOW_WIND",
+        "flock_prob": 0.386,
+        "world": "FLOWER_HUE_SHIFT",
+        "world_prob": 0.547,
+        "cand_flock": "FOLLOW_WIND",
+        "cand_world": "FLOWER_HUE_SHIFT"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.99,
+        "flock_alt": "CHORAL_SWAY",
+        "flock_alt_prob": 0.01,
+        "world": "SOFT_WIND",
+        "world_prob": 0.48,
+        "world_alt": "LAVENDER_PALETTE",
+        "world_alt_prob": 0.39,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "disagree"
+      }
+    },
+    {
+      "t": 28.0,
+      "beat": "WIND",
+      "input": "beat=WIND dist=5.0m move=still bpm=0.4 beatE=0.5 reso=0.3 wind=0.7 pal=lavender_wash sslr=2.0s interact=approached",
+      "fallback": {
+        "flock": "FOLLOW_WIND",
+        "flock_prob": 0.386,
+        "world": "FLOWER_HUE_SHIFT",
+        "world_prob": 0.547,
+        "cand_flock": "FOLLOW_WIND",
+        "cand_world": "FLOWER_HUE_SHIFT"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.98,
+        "flock_alt": "CHORAL_SWAY",
+        "flock_alt_prob": 0.01,
+        "world": "SOFT_WIND",
+        "world_prob": 0.43,
+        "world_alt": "LAVENDER_PALETTE",
+        "world_alt_prob": 0.42,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "disagree"
+      }
+    },
+    {
+      "t": 30.0,
+      "beat": "RESONANCE",
+      "input": "beat=RESONANCE dist=6.0m move=still bpm=0.6 beatE=0.6 reso=0.55 wind=0.5 pal=gold_shimmer sslr=4.0s interact=approached",
+      "fallback": {
+        "flock": "RESONANCE_PULSE",
+        "flock_prob": 0.386,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "RESONANCE_PULSE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "FOLLOW_WIND",
+        "flock_prob": 0.79,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.15,
+        "world": "SOFT_WIND",
+        "world_prob": 0.52,
+        "world_alt": "GOLD_CYMATICS",
+        "world_alt_prob": 0.41,
+        "cand_flock": "FOLLOW_WIND",
+        "cand_world": "SOFT_WIND",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 32.0,
+      "beat": "RESONANCE",
+      "input": "beat=RESONANCE dist=6.0m move=still bpm=0.6599999999999999 beatE=0.6699999999999999 reso=0.6300000000000001 wind=0.45999999999999996 pal=gold_shimmer sslr=2.0s interact=approached",
+      "fallback": {
+        "flock": "RESONANCE_PULSE",
+        "flock_prob": 0.267,
+        "world": "SOFT_WIND",
+        "world_prob": 0.413,
+        "cand_flock": "SPIRAL_FORMATION",
+        "cand_world": "GOLD_CYMATICS"
+      },
+      "jev": {
+        "flock": "FOLLOW_WIND",
+        "flock_prob": 0.84,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.12,
+        "world": "GOLD_CYMATICS",
+        "world_prob": 0.62,
+        "world_alt": "SOFT_WIND",
+        "world_alt_prob": 0.32,
+        "cand_flock": "FOLLOW_WIND",
+        "cand_world": "GOLD_CYMATICS",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "disagree"
+      }
+    },
+    {
+      "t": 34.0,
+      "beat": "RESONANCE",
+      "input": "beat=RESONANCE dist=6.0m move=still bpm=0.72 beatE=0.74 reso=0.7100000000000001 wind=0.42 pal=gold_shimmer sslr=4.0s interact=approached",
+      "fallback": {
+        "flock": "SPIRAL_FORMATION",
+        "flock_prob": 0.534,
+        "world": "GOLD_CYMATICS",
+        "world_prob": 0.559,
+        "cand_flock": "SPIRAL_FORMATION",
+        "cand_world": "GOLD_CYMATICS"
+      },
+      "jev": {
+        "flock": "FOLLOW_WIND",
+        "flock_prob": 0.81,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.11,
+        "world": "GOLD_CYMATICS",
+        "world_prob": 0.69,
+        "world_alt": "SOFT_WIND",
+        "world_alt_prob": 0.23,
+        "cand_flock": "FOLLOW_WIND",
+        "cand_world": "GOLD_CYMATICS",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "disagree",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 36.0,
+      "beat": "RESONANCE",
+      "input": "beat=RESONANCE dist=6.0m move=still bpm=0.78 beatE=0.8099999999999999 reso=0.79 wind=0.38 pal=gold_shimmer sslr=2.0s interact=approached",
+      "fallback": {
+        "flock": "SPIRAL_FORMATION",
+        "flock_prob": 0.534,
+        "world": "GOLD_CYMATICS",
+        "world_prob": 0.559,
+        "cand_flock": "SPIRAL_FORMATION",
+        "cand_world": "GOLD_CYMATICS"
+      },
+      "jev": {
+        "flock": "SPIRAL_FORMATION",
+        "flock_prob": 0.7,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.27,
+        "world": "GOLD_CYMATICS",
+        "world_prob": 0.83,
+        "world_alt": "RESONANCE_RIPPLE",
+        "world_alt_prob": 0.09,
+        "cand_flock": "SPIRAL_FORMATION",
+        "cand_world": "GOLD_CYMATICS",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "exact",
+        "world": "exact"
+      }
+    },
+    {
+      "t": 38.0,
+      "beat": "RESONANCE",
+      "input": "beat=RESONANCE dist=6.0m move=still bpm=0.84 beatE=0.8799999999999999 reso=0.8700000000000001 wind=0.33999999999999997 pal=gold_shimmer sslr=4.0s interact=approached",
+      "fallback": {
+        "flock": "CRESCENDO_BURST",
+        "flock_prob": 0.545,
+        "world": "RESONANCE_RIPPLE",
+        "world_prob": 0.495,
+        "cand_flock": "CRESCENDO_BURST",
+        "cand_world": "RESONANCE_RIPPLE"
+      },
+      "jev": {
+        "flock": "SPIRAL_FORMATION",
+        "flock_prob": 0.77,
+        "flock_alt": "TURN_TO_PLAYER",
+        "flock_alt_prob": 0.18,
+        "world": "GOLD_CYMATICS",
+        "world_prob": 0.84,
+        "world_alt": "RESONANCE_RIPPLE",
+        "world_alt_prob": 0.09,
+        "cand_flock": "SPIRAL_FORMATION",
+        "cand_world": "GOLD_CYMATICS",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "compatible",
+        "world": "compatible"
+      }
+    },
+    {
+      "t": 40.0,
+      "beat": "SETTLE",
+      "input": "beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=2.0s interact=none",
+      "fallback": {
+        "flock": "CRESCENDO_BURST",
+        "flock_prob": 0.058,
+        "world": "RESONANCE_RIPPLE",
+        "world_prob": 0.118,
+        "cand_flock": "RETURN_TO_IDLE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.37,
+        "flock_alt": "GRAZE",
+        "flock_alt_prob": 0.31,
+        "world": "NONE",
+        "world_prob": 0.4,
+        "world_alt": "SOFT_WIND",
+        "world_alt_prob": 0.4,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "NONE",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "lowconf",
+        "world": "lowconf"
+      }
+    },
+    {
+      "t": 42.0,
+      "beat": "SETTLE",
+      "input": "beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=4.0s interact=none",
+      "fallback": {
+        "flock": "RETURN_TO_IDLE",
+        "flock_prob": 0.334,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "RETURN_TO_IDLE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.333,
+        "flock_alt": "GRAZE",
+        "flock_alt_prob": 0.333,
+        "world": "NONE",
+        "world_prob": 0.45,
+        "world_alt": "SOFT_WIND",
+        "world_alt_prob": 0.4,
+        "cand_flock": "GRAZE",
+        "cand_world": "NONE",
+        "hysteresis_held_flock": true,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "lowconf",
+        "world": "compatible"
+      }
+    },
+    {
+      "t": 44.0,
+      "beat": "SETTLE",
+      "input": "beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=2.0s interact=none",
+      "fallback": {
+        "flock": "RETURN_TO_IDLE",
+        "flock_prob": 0.334,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "RETURN_TO_IDLE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.34,
+        "flock_alt": "GRAZE",
+        "flock_alt_prob": 0.36,
+        "world": "NONE",
+        "world_prob": 0.44,
+        "world_alt": "SOFT_WIND",
+        "world_alt_prob": 0.41,
+        "cand_flock": "GRAZE",
+        "cand_world": "NONE",
+        "hysteresis_held_flock": true,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "lowconf",
+        "world": "compatible"
+      }
+    },
+    {
+      "t": 46.0,
+      "beat": "SETTLE",
+      "input": "beat=SETTLE dist=8.0m move=still bpm=0.2 beatE=0.2 reso=0.15 wind=0.2 pal=neutral sslr=4.0s interact=none",
+      "fallback": {
+        "flock": "RETURN_TO_IDLE",
+        "flock_prob": 0.334,
+        "world": "SOFT_WIND",
+        "world_prob": 0.411,
+        "cand_flock": "RETURN_TO_IDLE",
+        "cand_world": "SOFT_WIND"
+      },
+      "jev": {
+        "flock": "TURN_TO_PLAYER",
+        "flock_prob": 0.36,
+        "flock_alt": "GRAZE",
+        "flock_alt_prob": 0.34,
+        "world": "NONE",
+        "world_prob": 0.42,
+        "world_alt": "SOFT_WIND",
+        "world_alt_prob": 0.41,
+        "cand_flock": "TURN_TO_PLAYER",
+        "cand_world": "NONE",
+        "hysteresis_held_flock": false,
+        "hysteresis_held_world": false
+      },
+      "comparison": {
+        "flock": "lowconf",
+        "world": "compatible"
+      }
+    }
+  ],
+  "metrics": {
+    "n_evaluations": 24,
+    "flock_agreement": 11,
+    "flock_agreement_rate": 0.458,
+    "world_agreement": 14,
+    "world_agreement_rate": 0.583,
+    "joint_agreement": 10,
+    "joint_agreement_rate": 0.417,
+    "jev_mean_flock_conf": 0.776,
+    "jev_mean_world_conf": 0.596,
+    "lowest_confidence": [
+      {
+        "t": 42.0,
+        "channel": "flock",
+        "choice": "TURN_TO_PLAYER",
+        "prob": 0.333
+      },
+      {
+        "t": 44.0,
+        "channel": "flock",
+        "choice": "TURN_TO_PLAYER",
+        "prob": 0.34
+      },
+      {
+        "t": 46.0,
+        "channel": "flock",
+        "choice": "TURN_TO_PLAYER",
+        "prob": 0.36
+      },
+      {
+        "t": 40.0,
+        "channel": "flock",
+        "choice": "TURN_TO_PLAYER",
+        "prob": 0.37
+      },
+      {
+        "t": 40.0,
+        "channel": "world",
+        "choice": "NONE",
+        "prob": 0.4
+      },
+      {
+        "t": 46.0,
+        "channel": "world",
+        "choice": "NONE",
+        "prob": 0.42
+      }
+    ],
+    "hysteresis_held_flock_ticks": [
+      42.0,
+      44.0
+    ],
+    "hysteresis_held_world_ticks": [],
+    "high_conf_disagreements": [
+      {
+        "t": 18.0,
+        "channel": "world",
+        "fallback": "LAVENDER_PALETTE",
+        "jev": "SOFT_WIND",
+        "jev_prob": 0.76
+      },
+      {
+        "t": 22.0,
+        "channel": "flock",
+        "fallback": "CHORAL_SWAY",
+        "jev": "TURN_TO_PLAYER",
+        "jev_prob": 1.0
+      },
+      {
+        "t": 24.0,
+        "channel": "flock",
+        "fallback": "CHORAL_SWAY",
+        "jev": "TURN_TO_PLAYER",
+        "jev_prob": 0.99
+      },
+      {
+        "t": 26.0,
+        "channel": "flock",
+        "fallback": "FOLLOW_WIND",
+        "jev": "TURN_TO_PLAYER",
+        "jev_prob": 0.99
+      },
+      {
+        "t": 28.0,
+        "channel": "flock",
+        "fallback": "FOLLOW_WIND",
+        "jev": "TURN_TO_PLAYER",
+        "jev_prob": 0.98
+      },
+      {
+        "t": 30.0,
+        "channel": "flock",
+        "fallback": "RESONANCE_PULSE",
+        "jev": "FOLLOW_WIND",
+        "jev_prob": 0.79
+      },
+      {
+        "t": 32.0,
+        "channel": "flock",
+        "fallback": "RESONANCE_PULSE",
+        "jev": "FOLLOW_WIND",
+        "jev_prob": 0.84
+      },
+      {
+        "t": 34.0,
+        "channel": "flock",
+        "fallback": "SPIRAL_FORMATION",
+        "jev": "FOLLOW_WIND",
+        "jev_prob": 0.81
+      }
+    ],
+    "first_candidate_change": {
+      "fallback_flock": 18.0,
+      "jev_flock": 20.0,
+      "fallback_world": 18.0,
+      "jev_world": 32.0
+    }
+  }
+}
