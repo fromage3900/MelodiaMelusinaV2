@@ -275,6 +275,10 @@ Tools/*
 !Tools/graph_reachability.py
 !Tools/ui_lint.py
 !Tools/melodia_studio_census.py
+!Tools/melodia_studio_pathbind.py
+!Tools/melodia_studio_source_gate.py
+!Tools/melodia_studio_live_gate.py
+!Tools/test_melodia_studio_pathbind.py
 !Tools/higgsas_gate.py
 !Tools/record_gate.py
 !Tools/echo_run.py
