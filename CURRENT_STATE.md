@@ -8,7 +8,7 @@ new file.
 **Updated:** 2026-09-20 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` **PASS**. Meadow on **BrushifyIsland_*** SpeedTree + walk dressing — not Sphere3D. Proof `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-19.json`. Board: `Saved/Audit/Screens/wc_morning_rainbow_bloom_{waterline_dolly,website_oblique,website_top,website_south,south_fix}_2026-09-19.png`.
 Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-09-20**: Uni parents off `L_MelusinaMorning` actors; Melodia children `NS_Morning_{PetalDrift,PollenSparkle,PondMist,WindFront,DustShafts}` + parked Glint/Impact. `rewire_morning_fx.py --effect bind-user` bound SpawnRate→`User.PetalSpawnMultiplier` / `MoteSpawnMultiplier` / `MistDensity` and WindFront `Gust_Leader` SpawnBurst `Spawn Count`→`User.WindFrontVisible`. Proof `Saved/Audit/niagara_rewire_bind-user_summary_2026-09-20.json`. No MPC writes. Hue-reveal remains PIE wind only.
-**Git 2026-09-20:** Isolated landing on `feature/morning-closeout-2026-09-20` (PR #249). Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, `BP_ChoralSheep`, Oceanology, Humber stay parked off this PR. Never dump the `wip/pre-restart-working-tree-2026-09-19` dirty tree. Never robocopy/junction/overwrite `harp_bow_pipeline`.
+**Git 2026-09-20:** Morning WC close-out is on `main` (PR #249, merge `dd643af9`). WIP tree `wip/pre-restart-working-tree-2026-09-19` remains parked recovery at `C:/EnvironmentPortfolio/BS_GodFile` — never dump it, never `git checkout main` onto that dirty tree. Later chapters add new `recipes/*.v1.json` and new `WC_*_Field` / `DT_*` on their own levels, never a second compiler. Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, `BP_ChoralSheep`, Oceanology, Humber stay parked. Never robocopy/junction/overwrite `harp_bow_pipeline`.
 **Front-door freeze 2026-09-20:** §7 traps expanded. WC bedroom-floor band arc patched to the live BrushifyIsland recipe. Listening Field spec restored from `Tools/listening_field` + `Tools/phrase_bridge`. `.gitignore` `Tools/*` no longer swallows `listening_field` / `phrase_bridge` / `live_source`.
 **Listening Field 2026-09-20:** `UMelodiaPhraseBusSubsystem` is in the live editor. Closed-editor `BS_GodFileEditor Win64 Development` **PASS 2026-09-20 17:48** (`UnrealEditor-BS_GodFile.dll` 3,232,768 bytes, `RecvFrom` ingest). Prior PIE bind was UDP `:9000`; python `phrase_bridge` sent `,isifsfi` / `,ii` but GetCurrentState stayed 0 on the 15:18 `Recv()` DLL. Re-open the editor and re-send to prove ingest. Choral Sheep consumer is existing `TryBeginHarmonize`. Jev never mutates the editor. Do not UBT while the editor is open.
 **Owner-queue proofs 2026-09-20:** Fleece REST vs HIT on the approved Nikki path (`MI_ChoralSheep_Body`→`M_Master_Toon_Character`, child Chladni + `T_Chladni_C_ROOT`). Stills `Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`. 8s beat `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. AE JSX `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx` — headless AfterFX dies on GPU3 while Unreal holds the adapter. Do not rebuild the TD scene.
@@ -434,26 +434,18 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 
 ## 4. Owner queue — now
 
-**Today’s owner focus (2026-09-20): renders → lookdev → bounded website asset/content updates.** Finish the art and publish the approved results; documentation/Git reconciliation is maintenance-only and must not interrupt production. Website work means updating finished renders and portfolio evidence, not reopening the site redesign.
+**Next session (WC baseline is on `main`):** editor cutover to a clean tree, OSC ingest proof, AE JSX with Unreal closed. Do not checkout `main` on dirty `BS_GodFile`. Horizon Eater is later, not this queue.
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
 Choral Sheep is the capstone lane.
 
-1. **Choral Sheep UE proof.** REST vs HIT fleece captured 2026-09-20 on the approved Nikki path
-   (`MI_ChoralSheep_Body` → `M_Master_Toon_Character`, Chladni child + `T_Chladni_C_ROOT`). PIE
-   `ApplyChoralSheepDefinition` / `TryBeginHarmonize` / weight 1.0→0.0 re-proven. Next: owner
-   pixel-judge the stills against Board 06. Do not invent a sheep AI.
-2. **UE ↔ TD proof.** Phrase bus `RecvFrom` is in the 17:48 DLL. Re-open the editor, PIE, send
-   `phrase_bridge` to `:9000`, and read GetCurrentState. Do not rebuild the TD scene. Do not UBT
-   while the editor is open.
-3. **One 5–10 s AE sequence** — 8s Creature→Motif→Harmony→World mp4 is at
-   `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. JSX:
-   `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx`. Headless AfterFX
-   2026 cannot init GPU3 while Unreal holds the adapter — run the JSX after the editor is closed,
-   then promote to the site.
+1. **Editor cutover.** Point the next Unreal session at the clean checkout (`C:/EnvironmentPortfolio/_wt_morning_closeout` now tracking `main`, or a fresh `origin/main` worktree). One editor, one Monolith `:9316`. Do **not** `git checkout main` inside `C:/EnvironmentPortfolio/BS_GodFile` while the 205-file WIP tree is dirty. Leave `wip/pre-restart-working-tree-2026-09-19` as recovery; uncommitted files stay uncommitted. Copy UltraDynamicSky / Humber / session VFX **outside** git if they must be kept — reset of the old folder is a named later step.
+2. **OSC ingest PIE.** After RecvFrom is loaded from the 17:48 DLL (`UnrealEditor-BS_GodFile.dll` 3,232,768 bytes), send `phrase_bridge` → `:9000` and read GetCurrentState. Do not UBT while the editor is open. Do not rebuild the TD scene.
+3. **AE JSX.** Run `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx` only after Unreal is closed (GPU3). 8s beat is at `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. Then promote to the site.
+4. **Horizon Eater later.** Specs already target `LV_SeaAbove_Prototype`, not Morning. New chapter = new `recipes/*.v1.json` + compile + new `WC_*_Field` / `DT_*` on that level. Morning Brushify field is frozen `--skip-scaffold` regression. No `HE_Filter_*` on `L_MelusinaMorning`. No second compiler. No unfreeze Morning PPV.
 
-After today’s art pass: Choral Sheep UE fleece/deformation proof → UE ↔ TD proof → one 5–10 s AE Creature → Motif → Harmony → World sequence → 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
+Fleece REST vs HIT stills (`Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`) are captured; owner pixel-judge against Board 06 remains. Then: 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
 
 **Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
 or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
@@ -532,13 +524,15 @@ Stale-agent damage classes (read these before any WC / Jev / Blender / git work)
 - **Bedroom / Sphere3D meadow.** Live Morning field is flowers on `BrushifyIsland_*` only; dressing on `WC_EscherWalk_*` plus island skirts; bedroom keepout in `recipes/morning_rainbow_bloom.v1.json`. Do not plant `SM_classic_arch_*`, `Sphere3D`, `WC_DellFloor`, or invent a second meadow. Older WC-contract bedroom-floor numbers are historical probe notes, not the live recipe.
 - **Second authorities.** No second World Compiler, MPC writer, Niagara framework, battle manager, phrase bus, Jev, or Monolith.
 - **MPC/PPV writes** to “fix” muted hue or lookdev. Hue-reveal proof is PIE wind, not a writer. Frozen PPV stays frozen.
-- **Dirty-tree dump.** Isolated PRs only. Morning closeout is `feature/morning-closeout-2026-09-20` (PR #249). Park Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, and Humber. Never dump `C:/EnvironmentPortfolio/BS_GodFile` wip onto git.
+- **Dirty-tree dump.** Isolated PRs only. Morning closeout is **on `main`** (PR #249). Park Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, and Humber. Never dump `C:/EnvironmentPortfolio/BS_GodFile` wip onto git. Do not `git checkout main` onto that dirty tree.
+- **Horizon Eater later, not a rebuild.** Specs (`specs/horizon_eater/HORIZON_EATER_DESIGN.md`, `Docs/Monoliths/P3_HORIZON_EATER_PLAN_2026-08-29.md`) target `LV_SeaAbove_Prototype`, not Morning. There is no `recipes/horizon_eater_*.json`. Morning recipe + `WC_morning_rainbow_bloom_Field` + `PCG_WorldCompiler_PointField` + `DT_morning_rainbow_bloom_Points` are **read-only regression**; maintenance uses `--skip-scaffold` only. New place = new `world_recipe.v1` + `python Tools/world_compiler.py compile` + same UE driver + a **new** `WC_*_Field` / `DT_*` on the new level. `PCG_HorizonEater_FilterFlow`, Oceanology SLW, fog/LOD, and `Content/Python/add_horizon_eater_mpc_params.py` stay presentation / one-time MPC authoring — not a second World Compiler. Runtime HorizonEat still goes through `UMelodiaAudioReactivePresentationSubsystem`. Never call that script from `world_compiler*.py`. Do not spawn `HE_Filter_*` debug meshes on `L_MelusinaMorning`. Do not unfreeze Morning PPV to “see” the eater.
 - **Blender / G: junctions.** Do not robocopy, junction, or overwrite `harp_bow_pipeline`. Open `C:\EnvironmentPortfolio\MELUSINABACKUPBECAUSEAIAGENTSARERETARDED.blend` (Sep 5, verified) or the v22 recovered stage. Headless Blender: `--factory-startup`.
 - **Jev confusion.** Jev (`Tools/listening_field/jev_director.py`) is a director over allowlisted sheep/world/`layout_seed` options. It does not drive UE, compile meadows, or MCP-move actors. `recipes/jev_showcase_bloom.v1.json` is a World Compiler recipe whose name is unrelated.
 - **Ghost spec / wrong phrase bridge.** Durable spec is [`Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md`](Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md), restored from the Python schemas. `Content/Python/resonant_world_phrase_bridge.py` is MIDI ecology, not Jev.
 - **gitignore `Tools/*` swallowing live lanes.** `Tools/listening_field/`, `Tools/phrase_bridge/`, and `Tools/live_source/` must stay un-ignored (`!Tools/<dir>/` + `!Tools/<dir>/**`). That swallow is why Jev work appeared to “get deleted from git” — it was never tracked. Also keep `!Tools/guard_collapsed_paths.py` and `!Tools/test_guard_collapsed_paths.py`. Do not `git add` Frozen/MPC/EnvSandbox dumps to compensate.
 - **Skip `scene_context_cycle`.** Any WC / PCG / Monolith spatial edit requires `scene_context_cycle.begin()` before the first mutation and `end()` after, in the already-open editor. Tools: `Content/Python/scene_context_snapshot.py`, `Content/Python/scene_context_cycle.py`. One editor, Monolith `127.0.0.1:9316` only. Packets under `Saved/Audit/SceneContext/` are ephemeral evidence, not status.
 - **UBT while the editor is open.** Closed-editor builds only. A stale `UnrealEditor-BS_GodFile.dll` is how OSC readback stays at bar 0.
+- **Retired rainbow_*.py.** `Content/Python/rainbow_*.py` stay gone. Morning scatter is `Tools/world_compiler.py` + `recipes/morning_rainbow_bloom.v1.json` only.
 
 ---
 
