@@ -61,11 +61,11 @@ That single fact is the whole reason the shirt has no physics. It is an art/rig 
 | RootBone | `c_kilt_master_x` | `HairExp_Rig` |
 | Alpha / LODThreshold | 1.0 / −1 | 1.0 / −1 |
 | Gravity | (0,0,−120) world-space | (0,0,−120) world-space |
-| PhysicsSettings | damp 0.30, stiff 0.18, wDampLoc 0.80, wDampRot ~0.3, radius ~2, limitAngle | damp 0.30, stiff 0.07, wDampLoc 0.65, wDampRot 0.30, radius 2, limitAngle 75 |
+| PhysicsSettings | damp 0.30, stiff 0.18, wDampLoc 0.80, wDampRot ~0.3, radius ~2, limitAngle | **damp 0.18, stiff 0.08, wDampLoc 0.50, wDampRot 0.50, radius 2, limitAngle 60** |
 | Collision | `DA_Melusina_SkirtCollisionLimits` + `SK_Melusina_PhysicsAsset` | `DA_Melusina_HairCollisionLimits` |
-| Wind | on, scale 0.45 | on, scale 0.35 |
+| Wind | on, scale 0.45 | **on, scale 0.20** |
 | **DummyBoneLength** | **3.0** (was 0.0 — fixed today) | 3.0 |
-| **bNeedWarmUp** | **true** (was false — fixed today) | **true** (was false — fixed today) |
+| **bNeedWarmUp** | **true** (was false — fixed today) | **true, 20 frames** (was false — fixed today) |
 | SyncBones | `[]` — unused | `[]` — unused |
 
 > **WRONG BEFORE:** an earlier report claimed hair gravity was `(0,0,0)` and that this was why the hair
@@ -82,7 +82,7 @@ That single fact is the whole reason the shirt has no physics. It is an art/rig 
    first activation. Teleports were already fine (`ResetDynamics` sets the flag via
    `bUseWarmUpWhenResetDynamics`) — only the FIRST activation popped, which on this route is every level load.
 
-**Not visually verified.** See §5 for why.
+**Hair parameter tune LIVE PIE PROVEN 2026-09-21.** V13 captured 20 frames / 19 valid after warm-up with zero runtime errors. Live Monolith readback matches `specs/anim_presets/melusina_hair_physics.json`; evidence is `Saved/Audit/melusina_hair_physics_{live_probe,finalization}_20260921.json`. The hair silhouette is stable and intentionally subtle. Its remaining broad-lock rigidity is topology debt, not a reason to keep changing damping.
 
 ---
 

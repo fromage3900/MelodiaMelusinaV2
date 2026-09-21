@@ -1,0 +1,7 @@
+{
+  "schema": "melodia.melusina_hair_physics_gate.v1",
+  "ok": true,
+  "errors": [],
+  "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+  "profile": "melodia.melusina_hair_physics.v1"
+}

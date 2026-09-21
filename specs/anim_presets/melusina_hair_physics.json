@@ -1,0 +1,32 @@
+{
+  "schema": "melodia.melusina_hair_physics.v1",
+  "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+  "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
+  "node": "AnimGraphNode_KawaiiPhysics_1",
+  "root_bone": "HairExp_Rig",
+  "settings": {
+    "damping": 0.18,
+    "stiffness": 0.08,
+    "world_damping_location": 0.5,
+    "world_damping_rotation": 0.5,
+    "limit_angle": 60.0,
+    "radius": 2.0,
+    "gravity": [0.0, 0.0, -120.0],
+    "enable_wind": true,
+    "wind_scale": 0.2,
+    "dummy_bone_length": 3.0,
+    "bone_subdivision_count": 1,
+    "need_warm_up": true,
+    "warm_up_frames": 20
+  },
+  "evidence": {
+    "capture": "Saved/Audit/melusina_portfolio_capture_20260921_v13.json",
+    "valid_frames_after_warmup": 19,
+    "runtime_errors": 0
+  },
+  "boundary": {
+    "status": "final_parameter_tune",
+    "topology_rebuilt": false,
+    "note": "The shallow strand hierarchy limits internal lock deformation; parameter tuning cannot create missing joints."
+  }
+}

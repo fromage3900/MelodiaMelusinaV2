@@ -1,0 +1,32 @@
+{
+  "schema": "melodia.melusina_hair_physics_probe.v1",
+  "timestamp_local": "2026-09-21",
+  "source": "live-editor-monolith-9316",
+  "editor_pid": 41036,
+  "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+  "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
+  "node_count": 1,
+  "nodes": [
+    {
+      "name": "AnimGraphNode_KawaiiPhysics_1",
+      "root_bone": "HairExp_Rig",
+      "additional_root_bones": "[]",
+      "dummy_bone_length": 3.0,
+      "need_warm_up": true,
+      "warm_up_frames": 20,
+      "bone_subdivision_count": 1,
+      "gravity": [0.0, 0.0, -120.0],
+      "enable_wind": true,
+      "wind_scale": 0.20000000298023224,
+      "physics_settings": {
+        "damping": 0.18000000715255737,
+        "stiffness": 0.07999999821186066,
+        "world_damping_location": 0.5,
+        "world_damping_rotation": 0.5,
+        "radius": 2.0,
+        "limit_angle": 60.0
+      }
+    }
+  ],
+  "ok": true
+}
