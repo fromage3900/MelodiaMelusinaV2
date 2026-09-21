@@ -1,0 +1,101 @@
+{
+  "schema": "melodia.melusina_hair_source_audit.v1",
+  "blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Exports\\PortfolioStages\\Melodia_Portfolio_Stage_v18_SIR_VISIBLE_work.blend",
+  "object_count": 400,
+  "relevant_objects": [
+    {
+      "name": "FF_MelusinaHair_Domain",
+      "type": "MESH",
+      "parent": null,
+      "vertex_count": 8,
+      "hair_vertex_groups": [],
+      "armature_modifiers": []
+    },
+    {
+      "name": "FF_MelusinaHair_Drip",
+      "type": "MESH",
+      "parent": null,
+      "vertex_count": 482,
+      "hair_vertex_groups": [],
+      "armature_modifiers": []
+    },
+    {
+      "name": "FF_MelusinaHair_Sheet",
+      "type": "MESH",
+      "parent": null,
+      "vertex_count": 8,
+      "hair_vertex_groups": [],
+      "armature_modifiers": []
+    },
+    {
+      "name": "Hair Strand",
+      "type": "CURVES",
+      "parent": "Melusina"
+    },
+    {
+      "name": "Hair Strand.003",
+      "type": "CURVES",
+      "parent": null
+    },
+    {
+      "name": "Hair Strand.005",
+      "type": "CURVES",
+      "parent": null
+    },
+    {
+      "name": "Hair Strand.006",
+      "type": "CURVES",
+      "parent": "Melusina.001"
+    },
+    {
+      "name": "Hair Strand.008",
+      "type": "CURVES",
+      "parent": null
+    },
+    {
+      "name": "Hair Strand.009",
+      "type": "CURVES",
+      "parent": "Melusina.001"
+    },
+    {
+      "name": "LF_TipDrip_Hair_Strand.002",
+      "type": "MESH",
+      "parent": null,
+      "vertex_count": 42,
+      "hair_vertex_groups": [],
+      "armature_modifiers": []
+    },
+    {
+      "name": "LF_TipDrip_Hair_Strand.004",
+      "type": "MESH",
+      "parent": null,
+      "vertex_count": 42,
+      "hair_vertex_groups": [],
+      "armature_modifiers": []
+    },
+    {
+      "name": "LF_TipDrip_Hair_Strand.007",
+      "type": "MESH",
+      "parent": null,
+      "vertex_count": 42,
+      "hair_vertex_groups": [],
+      "armature_modifiers": []
+    },
+    {
+      "name": "NOTE_WaterHair",
+      "type": "EMPTY",
+      "parent": null
+    }
+  ],
+  "armatures": [
+    {
+      "name": "character_rig",
+      "bone_count": 759
+    },
+    {
+      "name": "SirMelodious_rig",
+      "bone_count": 408
+    }
+  ],
+  "flip_domains": []
+}
