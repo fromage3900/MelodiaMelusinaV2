@@ -71,14 +71,44 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 
 ## Known limitations — do not overclaim
 
+## 2026-09-21 portfolio capture continuation (supersedes the rejected-camera continuation above)
+
+- Jev was live for the bounded artistic choice: `source=jev-live`, choice `BOW_V2`, confidence/probability `0.69`, loose motion accepted. No classical fallback was used for this decision.
+- Added the isolated capture level `/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture`. It contains the presentation actor, clean lighting/camera, the R2 skirt actor, and the WaveHarp bow actor; it avoids the Morning map's pathological `NS_Morning_WindFront` particle allocation.
+- Root cause of the visibly hiked shoulders was measured in `/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttackV2_A_RangeAttack`: `c_shoulder_l/r` remain at reference pose for all 40 keys, while deform tracks `shoulder_l/r` carry the large rotations. This is baked animation/retarget pose, not KawaiiPhysics or V2 mesh placement.
+- Created `/Game/Melodia/Characters/Melusina/Portfolio/A_Melusina_BowAttackV2_PortfolioShoulders` as a capture-only duplicate. Only `shoulder_l` and `shoulder_r` rotations are slerped 55% toward their reference rotations; all other tracks remain from the bound V2 bow source.
+- The generated persistent montage container was rejected because it reported duration `0`; it was deleted. The accepted capture plays the corrected sequence through `ABP_Melusina_Current`'s `DefaultSlot` using a dynamic montage, preserving the montage/slot evaluation path without mutating the production bound montage or source sequence.
+- Accepted run: `Saved/Screenshots/MelusinaPortfolio_20260921/V13` (`MELUSINA_PORTFOLIO_V13_READY`). It captured 20 PNGs, 19 valid after warm-up, with `captured_ok=true` and `ok=true`; zero Blueprint runtime errors, `Accessed None`, assertions, ensures, or Python tracebacks.
+- V13 visibly contains `SK_Melusina_V2_Body`, `SK_Melusina_V2_Skirt_R2_SmoothChains`, the tuned WaterHair mesh, and attached `SM_ME_WaveHarp_Bow_R07` in the same PIE frames. Representative review frames: `frame_003.png`, `frame_008.png`, and `frame_013.png`.
+- Remaining warnings are exactly two Kawaii `inter-bone dummy bones` warnings per run (body skirt root and hair). They did not produce a runtime failure, but remain topology/performance debt.
+- Visual limitation: V13 is a clean technical portfolio proof against a minimal sky/black stage, not final beauty lighting. The bow is visible but reads small and ornate from this rear three-quarter angle; a front three-quarter beauty camera and final environment composite remain desirable, not required to re-prove the rig.
+
+### Claireon continuation from the accepted state
+
+1. Start from `L_MelusinaPortfolioCapture`; do not return to `L_MelusinaMorning` until `NS_Morning_WindFront` is bounded.
+2. Preserve the production `AM_Melusina_BowAttack_Bound` and original source. Treat `A_Melusina_BowAttackV2_PortfolioShoulders` as a render-only correction candidate pending animator approval.
+3. For a beauty pass, change camera/light/environment only. Do not retune skirt or hair; their simultaneous live PIE presentation is already proved by V13.
+4. If promoting the shoulder fix, rebuild a proper persistent montage from the corrected sequence in-editor and confirm non-zero duration before replacing any binding.
+5. Keep Cascadeur out of tonight's path. The defect is isolated to two deform shoulder curves and does not justify re-authoring the clip.
+
+### 2026-09-21 WaveHarp orientation and transform verification
+
+- Jev-live evaluated the five-beat presentation and selected the authored progression `IDLE_READY -> BOW_V1 -> BOW_V2`; release crossed the Jev yes gate only at the resonance peak. This was a live TypeSafe evaluation, not fallback.
+- The R07 Unreal export contains three independent static meshes: Harp, Bow, and Arrow. Neither `SM_ME_WaveHarp_Bow_R07` nor the harp/bow pair has any Unreal referencer implementing a transform. R08 currently contains only `SM_ME_WaveHarp_Arrow_R08`; there is no R08 harp or bow mesh.
+- The old bow attachment was indeed wrong: the guessed socket-local `roll=90` made the bow read backwards/small. A six-orientation PIE sweep proved that socket-local Euler guesses alternate between edge-on, horizontal, and loop-like silhouettes.
+- Accepted draw orientation: attach the R07 bow to `hand_l`, keep scale `0.9`, then align it at the draw beat to world rotation `(pitch=0, yaw=90, roll=0)`. This keeps the bow vertical and its plane aligned with the firing axis. The three-quarter proof camera is `(260,-240,115)`, yaw `137`.
+- Accepted staged transform proof: `Saved/Screenshots/MelusinaPortfolio_20260921/WaveHarpTransform_V3`. The run starts with the R07 harp visible, swaps visibility to the R07 bow at `t=1.0s`, starts the corrected V2 attack, and applies the accepted bow orientation at `t=1.4s`.
+- Runtime result: 20 captured frames, 19 valid after warm-up, `captured_ok=true`, `ok=true`, both delayed probes fired with `python_ok=true`, and zero Blueprint runtime errors, `Accessed None`, assertions, ensures, or Python tracebacks. The two known Kawaii topology warnings remain.
+- Honest proof boundary: **harp -> bow form switching works in the UE capture harness; the original continuous Blender transformation does not yet exist in UE.** The source document describes a driver/shape-key rig (`Bow_Deployment`, `Flex_Draw`, `Draw`, deployment empties), but the damaged Blender sources prevent re-export and the current UE assets are static snapshots. Do not describe the visibility swap as a morph.
+
 1. Hair is parameter-improved, not re-rigged. Its skeleton is 73 independent two-bone strand chains under `hair_root`, leaving only one simulated joint per strand. True flowing hair requires a new multi-segment hair rig and redistributed weights.
 2. The R2 skirt currently carries its imported companion skeleton and physics asset. Leader-pose runtime passed because the bone order matches, but a later production consolidation should reimport the corrected weights against the canonical Melusina skeleton or explicitly bless the duplicate skeleton.
 3. The stock `/Game/TurnBasedJRPGTemplate/Maps/BattleMap` emits unrelated template errors and does not naturally spawn this presenter. Do not use that map as a clean proof environment until its battle bootstrap is repaired.
-4. Bow montage playback is proved, but grip, string, arrow timing, and a hero-framed front/three-quarter render remain open.
+4. Bow motion and attachment are proved in V13 through a `DefaultSlot` dynamic montage derived from the bound V2 source. Grip, string, arrow timing, and a front three-quarter beauty render remain open.
 5. The rejected R1 skirt candidate was a 100x-scale import and must never be selected. Use R2 only.
 6. Every tested `Melusina_Harp_HERO01*.blend/.blend1` file in the redirected `C:/EnvironmentPortfolio/harp_bow_pipeline` fails Blender 5.2 with `Missing DNA block`. All 16 share the failure. Preserve them for recovery; do not overwrite them. The Unreal retargeted bow assets remain intact.
-7. Kawaii emits `inter-bone dummy bones` warnings five times during the corrected capture. No runtime failure accompanied them, but they are a performance/topology warning and must remain disclosed.
-8. Jev was not live in the continuation. `scenario_bow_capture.py` returned `source="classical-fallback"`; this process and the persistent user/machine environment did not expose `TYPESAFE_API_KEY`, and no callable Jev connector was available. Do not relabel fallback output as Jev evidence.
+7. The accepted V13/WaveHarp runs retain two known Kawaii `inter-bone dummy bones` topology warnings (body/skirt root and hair). No runtime failure accompanied them, but they remain disclosed topology/performance debt.
+8. The older continuation used classical fallback, but the 2026-09-21 continuation obtained a real `source=jev-live` result. Preserve that distinction in any audit summary.
 
 ## Claireon execution plan
 
@@ -96,8 +126,8 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 
 ### P1 — portfolio render tonight
 
-1. Use `L_MelusinaMorning`, not the noisy template `BattleMap`.
-2. Use a deliberately placed editor camera or a small purpose-built capture level/sequence whose subject is visibly confirmed before recording. The transient runtime camera experiments R8–R11 resolved as view targets but failed to locate the visible modular presentation meshes.
+1. Use `/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture`, not `L_MelusinaMorning` or the noisy template `BattleMap`.
+2. Preserve the accepted subject placement and use a deliberately placed front three-quarter beauty camera. The transient runtime camera experiments R8–R11 resolved as view targets but failed to locate the visible modular presentation meshes; V13 supersedes them.
 3. Capture three short beats:
    - neutral three-quarter idle with readable skirt silhouette;
    - lateral step or small jump showing skirt panel lag and hair response;
@@ -123,4 +153,4 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 
 ## Exact continuation point
 
-Commit `b1146a3e7` is the scoped implementation baseline. The next operator should **not** retune physics, re-author in Cascadeur, or repeat the rejected transient-camera loop. Open `L_MelusinaMorning`, place the existing presentation Blueprint and a real camera where both are visible in the editor viewport, verify the modular V2/R2 components visually, then run `AM_Melusina_BowAttack_Bound` and capture the three beats above. If Jev is required, first run one bounded wrapper evaluation and require `source="jev-live"`; stop immediately if it says `classical-fallback`.
+The scoped implementation and proof assets are on `main`. The canonical render entrypoint is `/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture`; do **not** return to `L_MelusinaMorning`, retune physics, re-author in Cascadeur, or repeat the rejected transient-camera loop tonight. For final beauty frames, change only camera, lighting, and environment dressing while preserving the V2 body, R2 skirt, tuned WaterHair, corrected shoulder sequence, `hand_l` attachment, and accepted bow orientation. Any later promotion of the capture-only shoulder correction into gameplay requires animator approval and a persistent non-zero-duration montage. Require `source="jev-live"` for any new Jev-directed choice and label fallback honestly.

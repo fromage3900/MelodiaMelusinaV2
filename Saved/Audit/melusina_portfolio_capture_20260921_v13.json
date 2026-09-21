@@ -1,0 +1,52 @@
+{
+  "schema": "melodia.portfolio_capture.v1",
+  "timestamp_local": "2026-09-21",
+  "map": "/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture",
+  "output_dir": "Saved/Screenshots/MelusinaPortfolio_20260921/V13",
+  "runtime": {
+    "marker": "MELUSINA_PORTFOLIO_V13_READY",
+    "frame_count": 20,
+    "valid_frames_after_warmup": 19,
+    "captured_ok": true,
+    "gate_ok": true,
+    "blueprint_runtime_errors": 0,
+    "accessed_none": 0,
+    "assertions": 0,
+    "ensures": 0,
+    "python_tracebacks": 0,
+    "kawaii_inter_bone_warning_count": 2
+  },
+  "identity": {
+    "body": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+    "skirt": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains",
+    "hair_component": "WaterHairMesh",
+    "bow": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07",
+    "anim_blueprint": "ABP_Melusina_Current",
+    "slot": "DefaultSlot",
+    "production_bound_montage_preserved": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Bound",
+    "capture_sequence": "/Game/Melodia/Characters/Melusina/Portfolio/A_Melusina_BowAttackV2_PortfolioShoulders"
+  },
+  "shoulder_fix": {
+    "cause": "Animated deform shoulder_l and shoulder_r rotations; c_shoulder_l and c_shoulder_r remained at reference pose for all 40 keys.",
+    "capture_only": true,
+    "rotation_slerp_toward_reference": 0.55,
+    "production_assets_mutated": false,
+    "playback": "Dynamic montage through DefaultSlot because the generated persistent montage reported zero duration and was deleted."
+  },
+  "jev": {
+    "source": "jev-live",
+    "choice": "BOW_V2",
+    "confidence": 0.69,
+    "loose_motion": true
+  },
+  "representative_frames": [
+    "frame_003.png",
+    "frame_008.png",
+    "frame_013.png"
+  ],
+  "limitations": [
+    "Minimal proof stage, not final beauty environment lighting.",
+    "Rear three-quarter framing; bow reads small and ornate.",
+    "Kawaii body and hair topology warnings remain disclosed."
+  ]
+}
