@@ -2,8 +2,7 @@
 
 **Authority for routing:** `Tools/model_router.py` `POLICY` dict.  
 **Authority for agent behaviour:** `_AGENT_WORKING_AGREEMENT.md` + `AGENTS.md` Core Vision.  
-**Gameplay queue:** `_VERTICAL_SLICE_SCOPE.md` / `Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md`  
-(platform/website queue `NEXT_ACTIONS.md` is **not** gameplay authority).
+**Current queue:** `CURRENT_STATE.md` § “Owner queue — now”. Historical handoffs and the collapsed vertical-slice scope are context only; they are not current task authority.
 
 ---
 
@@ -43,7 +42,7 @@ Quill dialogue → allowlisted encounter → JRPG battle (Melusina) → typed re
   → Quill resumes once → exploration / checkpoint
 ```
 
-Product shape (`_VERTICAL_SLICE_SCOPE.md`): Persona-lite, readable decisions, intentional
+Product shape (durable gameplay decisions + `CURRENT_STATE.md`): Persona-lite, readable decisions, intentional
 feedback. If a mechanic does not improve decisions, feedback, attachment, or flow — defer it.
 
 **Agents must not:** invent parallel combat authority, rebuild JRPG in MelodiaCore, expand

@@ -1,11 +1,10 @@
 # Orchestra Convergence — which implementation owns which pillar
 
 **Date:** 2026-08-20
-**Authority:** [`../../PROJECT.md`](../../PROJECT.md)
+**Current status authority:** [`../CURRENT_STATE.md`](../CURRENT_STATE.md)
 **Companion:** [`ORCHESTRA_CONTRACT_2026-08-20.md`](ORCHESTRA_CONTRACT_2026-08-20.md) (the seams)
 
-> **Reconciled 2026-08-24.** Current execution authority is
-> [`Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+> **Historical snapshot.** The 2026-08-24 execution handoff named here was removed in the documentation collapse. For current execution status, proof level, and priorities use [`../CURRENT_STATE.md`](../CURRENT_STATE.md).
 > Two August 20 source claims below have since changed: `UMelodiaJRPGBattleOverlaySubsystem` is
 > now a retired compatibility observer that creates no widgets, and
 > `UMelodiaPCGNarrativeChallengeBridgeComponent` now implements the Piano-to-Narrative edge.

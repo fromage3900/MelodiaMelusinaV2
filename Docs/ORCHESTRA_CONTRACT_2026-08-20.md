@@ -1,12 +1,11 @@
 # Orchestra Contract — how the pillars meet the authority layers
 
 **Date:** 2026-08-20
-**Authority:** [`../../PROJECT.md`](../../PROJECT.md)
+**Current status authority:** [`../CURRENT_STATE.md`](../CURRENT_STATE.md)
 **Companion:** [`ORCHESTRA_CONVERGENCE_2026-08-20.md`](ORCHESTRA_CONVERGENCE_2026-08-20.md) (which implementation owns what)
 **Modelled on:** [`BLUEPRINT_WIRING_CONTRACT_2026-08-07.md`](BLUEPRINT_WIRING_CONTRACT_2026-08-07.md) — same discipline: every claim traces to a source line or a graph export.
 
-> **Reconciled 2026-08-24.** Current execution authority is
-> [`Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md`](Handoffs/MELODIA_CONVERGENCE_CLOSEOUT_AND_P0_PLAN_2026-08-24.md).
+> **Historical snapshot.** The 2026-08-24 execution handoff named here was removed in the documentation collapse. For current execution status, proof level, and priorities use [`../CURRENT_STATE.md`](../CURRENT_STATE.md).
 > Current source has one Melodia battle-widget creator: the old overlay is a retired no-widget
 > observer. The Piano-to-Narrative challenge adapter is also source-built. These changes do not
 > close `hud_single_writer` or `music_world_key`; live widget identity, host/level attachment,

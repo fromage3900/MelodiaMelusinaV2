@@ -5,7 +5,7 @@
 
 > **C++ decides what is true. Blueprints assemble and present. Materials / Niagara / audio visualize. TouchDesigner performs. A new world is content over this stack, not a new subsystem.**
 
-These four owner diagrams are **one stacked contract**, not four independent systems. Visual boards live in [`Docs/References/WorldBuilding/`](../References/WorldBuilding/). Runtime evidence still lives in [`MELODIA_TECHNICAL_VERTICAL_SLICE.md`](../../MELODIA_TECHNICAL_VERTICAL_SLICE.md) and [`CURRENT_STATE.md`](../../CURRENT_STATE.md). Sheep lookdev still obeys [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](../References/ChoralSheepCapstone/AGENT_CONTEXT.md) (Board 06 + Nikki Cymatics).
+These four owner diagrams are **one stacked contract**, not four independent systems. Visual boards live in [`Docs/References/WorldBuilding/`](../References/WorldBuilding/). Current runtime status and evidence pointers live in [`CURRENT_STATE.md`](../../CURRENT_STATE.md). Sheep lookdev still obeys [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](../References/ChoralSheepCapstone/AGENT_CONTEXT.md) (Board 06 + Nikki Cymatics).
 
 ```mermaid
 flowchart TD
@@ -229,6 +229,6 @@ Hard no's:
 | [`Docs/Pipeline/PIPELINE.md`](../Pipeline/PIPELINE.md) | Blender / MCP plumbing (supporting) |
 | [`Docs/Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md`](../Pipelines/MELODIA_CYMATICS_MONOLITH_HOUDINI_EMERGING3D_PIPELINE.md) | Engineering encyclopedia (supporting) |
 | [`Docs/Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md`](../Production/WORLDBUILDING_LOOKDEV_PLAN_2026-09-06.md) | Chapter-bible / lookdev campaign (supporting) |
-| [`CAPSTONE_NOW.md`](../../CAPSTONE_NOW.md) | Immediate production queue |
+| [`CURRENT_STATE.md`](../../CURRENT_STATE.md) | Current production queue / blockers / evidence level |
 
 Dated handoffs, research packets, and superseded pipeline plans are memory. They do not override this page.

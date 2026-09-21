@@ -412,7 +412,7 @@ issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_
    the stale-write guard move to P1 unless an audit finds a real race.
 2. *Re-prove on current `main`.* Restart proof (save → quit → relaunch → load, real input) and a
    packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
-3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
+3. *Close.* Refresh this file, run the surviving project/Git health checks (`python Tools/project_health.py` and `python Tools/git_ok.py`), then close #51 with receipts.
 
 **PR cleanup, 2026-09-16:** #215 (VFX flipbook closure) refreshed onto `main`, static + LFS gates
 green, merged as `88248226` — all 73 `Content/_PROJECT/VFX` files are LFS-backed on the remote.
@@ -434,6 +434,8 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 
 ## 4. Owner queue — now
 
+**Today’s owner focus (2026-09-20): renders → lookdev → bounded website asset/content updates.** Finish the art and publish the approved results; documentation/Git reconciliation is maintenance-only and must not interrupt production. Website work means updating finished renders and portfolio evidence, not reopening the site redesign.
+
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
 Choral Sheep is the capstone lane.
@@ -451,7 +453,7 @@ Choral Sheep is the capstone lane.
    2026 cannot init GPU3 while Unreal holds the adapter — run the JSX after the editor is closed,
    then promote to the site.
 
-Then: the 3–5 minute playable Shorewake route (`Chapters/02_shorewake_calling/`), then Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
+After today’s art pass: Choral Sheep UE fleece/deformation proof → UE ↔ TD proof → one 5–10 s AE Creature → Motif → Harmony → World sequence → 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
 
 **Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
 or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
@@ -482,7 +484,7 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 | Accessory / WebGL website lane (isolated) | [`Website/fromage-webgl-kit/`](Website/fromage-webgl-kit/) — floral atelier + commerce embed, DCC `KHR_materials_variants` GLBs. Not the recruiter site. Cloud cannot push `my-site` (403). |
 | `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
 
-**The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.
+**The game repo is private; `my-site` is public.** Non-sensitive school/career planning may live only under the explicitly scoped `Humber_FinalYear_Prep/` namespace when the owner wants Git-backed agent access. Never commit student numbers, private account addresses, credentials/tokens, identity or verification documents, payment data, account-recovery data, or client-confidential material. Keep `my-site` recruiter-safe and public-facing only.
 
 - **Route maps:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` →
   `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` →

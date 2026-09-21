@@ -11,7 +11,7 @@
 1. `README.md`
 2. `Docs/Strategy/MELODIA_ENDLESS_JOURNEY_NORTH_STAR_2026-09-02.md`
 3. `CURRENT_STATE.md`
-4. `TODO.md`
+4. `DOC_INDEX.md`
 5. `SYSTEM_MAP.md`
 6. the Chapter / tool / subsystem doc you are actually touching
 
@@ -185,7 +185,7 @@ Wardrobe / Convergence consequence
 checkpoint / save / restore
 ```
 
-Use `_VERTICAL_SLICE_SCOPE.md` and the current golden-run spec for the exact route.
+Use `CURRENT_STATE.md` for current status and `specs/p0/core_p0_dream_golden_run.v1.json` for the golden-run route.
 
 ---
 
@@ -323,11 +323,10 @@ The evergreen architecture matters **now** because it changes stable IDs, save m
 
 - `README.md`
 - `CURRENT_STATE.md`
-- `TODO.md`
 - `DOC_INDEX.md`
 - `SYSTEM_MAP.md`
 - `DATA_FLOW.md`
-- `_VERTICAL_SLICE_SCOPE.md`
+- `specs/p0/core_p0_dream_golden_run.v1.json`
 - `TEST_READY.md`
 
 > **Goal: make adding journeys routine and reopening the engine exceptional.** ♪

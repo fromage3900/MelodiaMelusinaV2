@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Lane Dispatcher - route queue items to the right model lane.
 
-Gameplay queue authority (in order, first that exists + yields items):
-  1. Docs/Handoffs/CORE_GAMEPLAY_CLOSEOUT_PLAN_2026-08-11.md
-  2. Docs/Handoffs/CORE_SYSTEMS_HANDOFF_2026-08-10.md  (## 2. Execution order)
-  3. _VERTICAL_SLICE_SCOPE.md
-  4. NEXT_ACTIONS.md  (platform/website - last resort; not gameplay SSOT)
+Default queue authority:
+  CURRENT_STATE.md (## 4. Owner queue — now)
+
+Historical handoffs and the collapsed vertical-slice scope are not consulted by default.
+Use --queue only when the owner explicitly names a scoped alternate queue.
 
 Classifies each item and assigns the best model lane via model_router policy.
 Read-only: writes Saved/dispatch_report.md, never mutates the queue.
@@ -29,10 +29,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 REPORT = os.path.join(ROOT, "Saved", "dispatch_report.md")
 
 QUEUE_CANDIDATES = [
-    os.path.join(ROOT, "Docs", "Handoffs", "CORE_GAMEPLAY_CLOSEOUT_PLAN_2026-08-11.md"),
-    os.path.join(ROOT, "Docs", "Handoffs", "CORE_SYSTEMS_HANDOFF_2026-08-10.md"),
-    os.path.join(ROOT, "_VERTICAL_SLICE_SCOPE.md"),
-    os.path.join(ROOT, "NEXT_ACTIONS.md"),
+    os.path.join(ROOT, "CURRENT_STATE.md"),
 ]
 
 # Order matters for ties: prefer narrower classes listed first among equals via best_n.
@@ -150,6 +147,8 @@ def parse_queue_file(path):
     with open(path, encoding="utf-8") as fh:
         lines = fh.readlines()
     name = os.path.basename(path).lower()
+    if name == "current_state.md":
+        return _parse_numbered(lines, [r"Owner queue"])
     if "closeout" in name:
         steps = _parse_steps(lines)
         if steps:

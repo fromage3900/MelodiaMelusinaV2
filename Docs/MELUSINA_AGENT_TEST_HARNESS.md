@@ -2,7 +2,7 @@
 
 > **What this document is (revised 2026-08-20).** A **technical appendix to the Melodia Melusina
 > game** — how one person builds at team velocity. The subject is the game; the harness is the
-> method. Authority: [`../../PROJECT.md`](../../PROJECT.md).
+> method. Current status authority: [`../CURRENT_STATE.md`](../CURRENT_STATE.md).
 >
 > **The AI tooling is a tool.** It exists to produce game artifacts. It is not the product, and
 > nothing here sets project direction.
