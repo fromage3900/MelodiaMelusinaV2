@@ -8,11 +8,9 @@ Usage:
     python deploy/_sync_addon_to_blender_5_2.py
     python deploy/_sync_addon_to_blender_5_2.py --check
     python deploy/_sync_addon_to_blender_5_2.py --source-root C:\\explicit\\MelodiaMelusinaV2
-    python deploy/_sync_addon_to_blender_5_2.py --allow-live-only-delete
 
 --source-root is the only way to override the current checkout. There is no implicit
-machine-specific source path. A normal install refuses to remove managed files that exist
-only in the live addon; --allow-live-only-delete is the explicit destructive override.
+machine-specific source path.
 """
 from __future__ import annotations
 
@@ -56,12 +54,9 @@ def parse_args() -> argparse.Namespace:
         help="Explicit Melodia repository root. By default the checkout containing this script wins.",
     )
     parser.add_argument(
-        "--allow-live-only-delete",
+        "--force",
         action="store_true",
-        help=(
-            "Destructive override: permit sync to remove files under managed addon packages "
-            "that exist live but not in the selected checkout."
-        ),
+        help="Allow the install to delete live-only files. Default: refuse and list them first.",
     )
     return parser.parse_args()
 
@@ -138,19 +133,22 @@ def live_manifest(project_root: Path) -> tuple[dict[str, str], list[str]]:
 
 
 def live_only_files(project_root: Path) -> list[str]:
-    """Return managed live-addon files that do not exist in the checkout.
+    """Files in the live addon under the MANAGED destinations that are absent from
+    the checkout.
 
-    These are the files package replacement would otherwise silently delete. The scan is
-    intentionally limited to PACKAGE_NAMES so unrelated Blender addons are never treated
-    as Melodia Studio output.
+    These are exactly the files `sync()`'s rmtree+copytree would silently destroy.
+    `verify()` used to compare checkout -> live only, so it could not see them and
+    reported the live copy as "ahead" instead of "about to lose work" (freeze doc
+    section 3.2). Scoped to the four managed packages only -- other addons in the
+    shared addons dir (melodia_studio, melodia_aura, ...) are never touched here.
     """
     expected = expected_manifest(project_root)
-    extras: list[str] = []
+    live_only: list[str] = []
     for package_name in PACKAGE_NAMES:
-        live_root = ADDON_ROOT / package_name
-        if not live_root.is_dir():
+        dest_root = ADDON_ROOT / package_name
+        if not dest_root.is_dir():
             continue
-        for path in live_root.rglob("*"):
+        for path in dest_root.rglob("*"):
             if not path.is_file():
                 continue
             if any(part in IGNORED_NAMES for part in path.parts):
@@ -159,8 +157,8 @@ def live_only_files(project_root: Path) -> list[str]:
                 continue
             rel = str(path.relative_to(ADDON_ROOT)).replace("\\", "/")
             if rel not in expected:
-                extras.append(rel)
-    return sorted(extras)
+                live_only.append(rel)
+    return sorted(live_only)
 
 
 def provenance(project_root: Path, manifest: dict[str, str]) -> dict:
@@ -220,12 +218,11 @@ def verify(project_root: Path, *, require_provenance: bool = True) -> bool:
         print(f"STALE live files ({len(mismatched)}):")
         for rel in mismatched[:20]:
             print(f"  {rel}")
-
     live_only = live_only_files(project_root)
     if live_only:
         print(
-            f"LIVE-ONLY managed files ({len(live_only)}): present in AppData but absent "
-            "from this checkout; a package replacement would delete them:"
+            f"LIVE-ONLY files ({len(live_only)}) - present live, absent from the checkout. "
+            "A plain sync would DELETE these:"
         )
         for rel in live_only[:20]:
             print(f"  {rel}")
@@ -235,42 +232,45 @@ def verify(project_root: Path, *, require_provenance: bool = True) -> bool:
     if require_provenance and not provenance_ok:
         print("STALE/MISSING provenance: live addon is not stamped from this exact checkout + HEAD.")
 
-    ok = (
-        not missing
-        and not mismatched
-        and not live_only
-        and (provenance_ok or not require_provenance)
-    )
+    ok = not missing and not mismatched and (provenance_ok or not require_provenance)
     print("LIVE ADDON SYNC: OK" if ok else "LIVE ADDON SYNC: OUT OF DATE")
     return ok
 
 
-def sync(project_root: Path, *, allow_live_only_delete: bool = False) -> bool:
+def sync(project_root: Path, *, force: bool = False) -> bool:
     deploy = project_root / "deploy"
     ADDON_ROOT.mkdir(parents=True, exist_ok=True)
 
     live_only = live_only_files(project_root)
-    if live_only and not allow_live_only_delete:
-        print(
-            "REFUSING TO SYNC: managed live-only files exist and package replacement "
-            "would delete them.",
-            file=sys.stderr,
-        )
+    if live_only and not force:
+        print("REFUSING TO SYNC: live-only files exist under the managed addon dirs.", file=sys.stderr)
+        print("The install rmtree+copytree would DELETE these files:", file=sys.stderr)
         for rel in live_only:
             print(f"  {rel}", file=sys.stderr)
         print(
-            "Recover or intentionally remove those files first. If deletion is deliberate, "
-            "rerun with --allow-live-only-delete.",
+            "Back them up (Saved/Recovery/) or fold them into the checkout, then re-run.\n"
+            "Use --force ONLY if you intend to delete them.",
             file=sys.stderr,
         )
         return False
-    if live_only:
-        print(
-            f"WARNING: --allow-live-only-delete permits deletion of {len(live_only)} "
-            "managed live-only file(s):"
-        )
+    if live_only and force:
+        print(f"WARNING: --force given; {len(live_only)} live-only file(s) will be DELETED:")
         for rel in live_only:
             print(f"  {rel}")
+
+    try:
+        from _melodia_preflight import blender_processes
+
+        procs = blender_processes() or []
+        if procs:
+            gates = sum(1 for p in procs if p["gate"])
+            print(
+                f"WARNING: {len(procs)} blender.exe running ({gates} gate, "
+                f"{len(procs) - gates} interactive). The freeze ritual says sync with "
+                "Blender CLOSED; a live session keeps stale bytecode until it is reloaded."
+            )
+    except Exception:
+        pass
 
     print(f"Source checkout: {project_root}")
     print(f"Source branch:   {git_text(project_root, 'branch', '--show-current') or '(detached)'}")
@@ -325,10 +325,7 @@ def main() -> int:
 
     if args.check:
         return 0 if verify(project_root) else 1
-    return 0 if sync(
-        project_root,
-        allow_live_only_delete=args.allow_live_only_delete,
-    ) else 1
+    return 0 if sync(project_root, force=args.force) else 1
 
 
 if __name__ == "__main__":

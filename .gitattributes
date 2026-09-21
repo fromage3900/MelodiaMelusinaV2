@@ -1,7 +1,6 @@
 # ==============================================================================
 # Melodia BS_GodFile Project Git & LFS Configuration
 # AAA Gacha Live-Ops Standard — Atomic Asset Locking & Line Ending Governance
-
 # Default auto line ending handling
 * text=auto
 .gitattributes text eol=lf
@@ -64,3 +63,4 @@
 *.so     filter=lfs diff=lfs merge=lfs -text lockable
 *.dylib  filter=lfs diff=lfs merge=lfs -text lockable
 Content/Melodia/Companions/ChoralSheep/choralsheephi.assbin filter=lfs diff=lfs merge=lfs -text
+Saved/MelusinasHouse/FlowerBrooch.blend filter=lfs diff=lfs merge=lfs -text

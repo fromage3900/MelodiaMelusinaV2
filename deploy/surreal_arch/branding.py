@@ -111,3 +111,30 @@ def unify_npanel_categories() -> list[str]:
         except Exception:
             pass
     return fixed
+
+
+def audit_monolith_ui_retired(strict_space: str = "VIEW_3D") -> list[str]:
+    """Assert-mode audit (C3): monolith-module panels still registered.
+
+    Returns bl_idnames of Panel classes whose __module__ is the monolith's
+    and which are still registered on bpy.types — i.e. the C1 retire missed
+    them. The PROPERTIES-space legacy drawer (SURREAL_ARCH_PT_panel) and the
+    Core-owned carousel are excluded by design. Never raises; callers log.
+    Modern Primitive (modern_primitive in __module__) is never claimed.
+    """
+    import bpy
+
+    problems: list[str] = []
+    for cls in list(bpy.types.Panel.__subclasses__()):
+        mod = getattr(cls, "__module__", "") or ""
+        if "modern_primitive" in mod:
+            continue
+        if mod != "surreal_architecture_gen":
+            continue
+        bid = getattr(cls, "bl_idname", "") or cls.__name__
+        if bid in ("SURREAL_ARCH_PT_panel", "SURREAL_ARCH_PT_genome_carousel"):
+            continue
+        if getattr(cls, "bl_space_type", None) != strict_space:
+            continue
+        problems.append(bid)
+    return sorted(problems)

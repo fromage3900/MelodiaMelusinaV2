@@ -33,12 +33,19 @@ def _add_sound_param(tree, name="Sound"):
     return tree.interface.new_socket(name=name, in_out="INPUT", socket_type="NodeSocketSound")
 
 
-def _sample_band(tree, gin, loc, low, high):
+def _sample_band(tree, gin, loc, low, high, use_scene_time=False):
     sample = safe_node(tree, "GeometryNodeSampleSoundFrequencies", loc)
     if sample is None:
         raise RuntimeError("Blender 5.2 Sample Sound Frequencies node is unavailable")
     link_sockets(tree, gin.outputs["Sound"], sample.inputs["Sound"])
-    link_sockets(tree, gin.outputs["Time"], sample.inputs["Time"])
+    if use_scene_time:
+        # Drive the sample position from the scene timeline so frames actually
+        # animate. A static Time value freezes the sample -> static geometry,
+        # which renders as "identical" frames (the 2026-09-14 false positive).
+        t_node = safe_node(tree, "GeometryNodeInputSceneTime", (loc[0], loc[1] - 160))
+        link_sockets(tree, t_node.outputs["Seconds"], sample.inputs["Time"])
+    else:
+        link_sockets(tree, gin.outputs["Time"], sample.inputs["Time"])
     link_sockets(tree, low, sample.inputs["Low"])
     link_sockets(tree, high, sample.inputs["High"])
     sample.inputs["All Channels"].default_value = True
@@ -111,7 +118,7 @@ def build_audio_spectrum_terrain(group_name="MEL_audio_spectrum_terrain"):
     link_sockets(tree, gin.outputs["Resolution Y"], grid.inputs["Vertices Y"])
     pos = safe_node(tree, "GeometryNodeInputPosition", (-700, -130))
     low, high = _map_frequency(tree, gin, pos.outputs["Position"], (-500, -100))
-    amp = _sample_band(tree, gin, (-80, -80), low, high)
+    amp = _sample_band(tree, gin, (-80, -80), low, high, use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (120, -80)); gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0]); link_sockets(tree, gin.outputs["Audio Gain"], gain.inputs[1])
     height = safe_node(tree, "ShaderNodeMath", (300, -80)); height.operation = "MULTIPLY"
@@ -158,7 +165,7 @@ def build_audio_spectrum_towers(group_name="MEL_audio_spectrum_towers"):
     link_sockets(tree, line.outputs["Mesh"], points.inputs["Mesh"])
     pos = safe_node(tree, "GeometryNodeInputPosition", (-700, -160))
     low, high = _map_frequency(tree, gin, pos.outputs["Position"], (-500, -140))
-    amp = _sample_band(tree, gin, (-60, -120), low, high)
+    amp = _sample_band(tree, gin, (-60, -120), low, high, use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (130, -120)); gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0]); link_sockets(tree, gin.outputs["Audio Gain"], gain.inputs[1])
     h = safe_node(tree, "ShaderNodeMath", (310, -120)); h.operation = "MULTIPLY"
@@ -211,7 +218,8 @@ def build_audio_radial_field(group_name="MEL_audio_radial_field"):
     link_sockets(tree, mapped.outputs["Result"], bw.inputs[0]); link_sockets(tree, gin.outputs["Band Width"], bw.inputs[1])
     hi = safe_node(tree, "ShaderNodeMath", (80, -180)); hi.operation = "ADD"
     link_sockets(tree, mapped.outputs["Result"], hi.inputs[0]); link_sockets(tree, bw.outputs[0], hi.inputs[1])
-    amp = _sample_band(tree, gin, (260, -150), mapped.outputs["Result"], hi.outputs[0])
+    amp = _sample_band(tree, gin, (260, -150), mapped.outputs["Result"], hi.outputs[0],
+                       use_scene_time=True)
     gain = safe_node(tree, "ShaderNodeMath", (450, -150)); gain.operation = "MULTIPLY"
     link_sockets(tree, amp, gain.inputs[0]); link_sockets(tree, gin.outputs["Audio Gain"], gain.inputs[1])
     height = safe_node(tree, "ShaderNodeMath", (630, -150)); height.operation = "MULTIPLY"

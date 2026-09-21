@@ -1,0 +1,368 @@
+typing.get_type_hints failed with: CHROME_OT_set_preset
+Traceback (most recent call last):
+  File "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\Lib\typing.py", line 2476, in get_type_hints
+    value = _eval_type(value, base_globals, base_locals, base.__type_params__)
+  File "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\Lib\typing.py", line 474, in _eval_type
+    return t._evaluate(globalns, localns, type_params, recursive_guard=recursive_guard)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\Lib\typing.py", line 1074, in _evaluate
+    eval(self.__forward_code__, globalns, localns),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+NameError: name 'bpy' is not defined
+BlenderMCP: cannot start server in background mode (blender -b) - commands would never execute
+BlenderMCP: run Blender with a GUI, or use a virtual display: xvfb-run -a blender
+BlenderMCP addon registered
+module changed on disk: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_studio\\__init__.py' reloading...
+[Surreal Architecture] surreal_world patch skipped: No module named 'jsonschema'
+[SurrealOS] merged 29 grammar graph(s); genomes=33
+[paris_wall_detail] registered builders into the Melodia Studio registry
+register_class(...):
+Info: Registering add-on preferences class: 'MelodiaStudioPrefsProductId', bl_idname 'melodia_studio' has been registered before, unregistering previous
+[Surreal Architecture] world operators skipped: No module named 'jsonschema'
+[Surreal Architecture] melusina_portrait props skipped: register_class(...): already registered as a subclass 'MPR_SceneSettings'
+[Melodia Studio] C1 retired 33 monolith N-tab panels
+[Melodia Studio] monolith UI still registered: ['SURREAL_ARCH_PT_plan_edit_floating']
+[Surreal Architecture] surreal_world patch skipped: No module named 'jsonschema'
+[SurrealOS] merged 29 grammar graph(s); genomes=33
+[Surreal Architecture Generator v2.131.0] Registered - UI search, Gothic/Romanesque kit, snap overlay
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+[INFO] 00:53:47 - Deep Paint addon initialized
+ValueError: bpy_struct "NODE_OT_tree_importer" registration error: 'io_panel_properties' PointerProperty could not register because this type doesn't support data-block properties
+[32m00:53:53.856 [INFO ] sverchok core\__init__.py:258 - Initializing Sverchok logging (level=INFO). Blender version=5.2.1 LTS, Sverchok version=v1.4.0[0m
+Will not initialize shaders in the background mode
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\melodia_utils.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch_bak\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_greybox\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_os\\__init__.py'
+Warning: add-on missing 'bl_info', this can cause poor performance!: 'C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_world\\__init__.py'
+[1;31m ______ _    _ _______  ______ _______ _     _  _____  _     _[0m
+[1;31m/______  \  /  |______ |_____/ |       |_____| |     | |____/ [0m
+[1;31m______/   \/   |______ |    \_ |_____  |     | |_____| |    \_[0m
+[1;31minitialized.[0m
+[INFO] 00:53:54 - Set unified paint settings to True
+[INFO] 00:53:54 - Set VPaint brush to white
+[INFO] 00:53:54 - Set TexPaint brush to white
+[INFO] 00:53:54 - Loading **Deep Paint** keymap data
+[INFO] 00:53:54 - Trying to disable conflicted keymaps
+[INFO] 00:53:54 - No Deep Paint user settings available, proceed with the default
+00:13.453  blend            | Read blend: "P:\MelodiaMelusinaV2-Laptop\Saved\MelusinasHouse\FlowerBrooch.blend"
+[INFO] 00:53:56 - Set unified paint settings to True
+[INFO] 00:53:56 - Set VPaint brush to white
+[INFO] 00:53:56 - Set TexPaint brush to white
+[INFO] 00:53:56 - Loading **Deep Paint** keymap data
+[INFO] 00:53:56 - Trying to disable conflicted keymaps
+[INFO] 00:53:56 - No Deep Paint user settings available, proceed with the default
+[33m00:54:00.550 [WARNING] py.warnings C:\Program Files\Blender Foundation\Blender 5.2\5.2\python\Lib\warnings.py:110 - P:\MelodiaMelusinaV2-Laptop\Tools\gen_flower_brooch_v10.py:291: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+[0m
+=== gen_flower_brooch_v7 (final refined: cast SDF finish + sampled seating + hardware v7) ===
+file: P:\MelodiaMelusinaV2-Laptop\Saved\MelusinasHouse\FlowerBrooch.blend
+scene units: 1 unit = 10 cm (100 mm), display mm
+Info: Saved copy as "FlowerBrooch_20260920_005357.blend"
+backup(ops copy): P:/MelodiaMelusinaV2-Laptop/Saved/Accessories/brooch_lab/backups\FlowerBrooch_20260920_005357.blend
+frame pinned to 1 for measurement (scene was on frame 80; restored at end)
+--- genome melodia_brooch_v1 (target 60.0 mm) ---
+removed previous GN_FlowerBrooch_v10
+[GN_FlowerBrooch_v10] interface sockets: 40 | target 60.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2800 catch_x=0.2800 pin_z=-0.0795 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_v10; inputs synced 39/39
+  [v10] dangles: 8 | rim 0.310 | links 3 x 0.011 | drop 0.015 | sway 12.0 deg @ 0.70
+[GN_BroochDangles_v10] dangles tree built: 471 nodes | 8 chains | sway 12.0 deg @ 0.70
+dangles modifier 'GN_Dangles': node_group None -> GN_BroochDangles_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_v10] pass A gold nominal 83.83 mm -> Real Scale 0.71573
+removed previous GN_FlowerBrooch_v10
+[GN_FlowerBrooch_v10] interface sockets: 40 | target 60.0 mm | S=0.71573
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2641 catch_x=0.2641 pin_z=-0.0855 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_v10; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+  [v10] dangles: 8 | rim 0.310 | links 3 x 0.011 | drop 0.015 | sway 12.0 deg @ 0.70
+[GN_BroochDangles_v10] dangles tree built: 471 nodes | 8 chains | sway 12.0 deg @ 0.70
+dangles modifier 'GN_Dangles': node_group None -> GN_BroochDangles_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10
+petal outline pass mirrored (values copied from the hero)
+  gold dims [59.72, 60.0, 21.41] mm (target 60.0, err 0.0%)
+[GN_FlowerBrooch_v10] final: verts=106815 polys=112334 dims(mm)=[59.72, 60.0, 21.41]
+--- genome melodia_brooch_mini_v1 (target 32.0 mm) ---
+removed previous GN_FlowerBrooch_v10_mini
+[GN_FlowerBrooch_v10_mini] interface sockets: 40 | target 32.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.1800 catch_x=0.1800 pin_z=-0.0700 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_mini] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_v10 -> GN_FlowerBrooch_v10_mini; inputs synced 39/39
+[GN_BroochPetals_v10_mini] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_v10 -> GN_BroochPetals_v10_mini
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_v10_mini] pass A gold nominal 59.11 mm -> Real Scale 0.54136
+removed previous GN_FlowerBrooch_v10_mini
+[GN_FlowerBrooch_v10_mini] interface sockets: 40 | target 32.0 mm | S=0.54136
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.1461 catch_x=0.1461 pin_z=-0.0827 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_mini] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_v10_mini; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+[GN_BroochPetals_v10_mini] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10_mini
+petal outline pass mirrored (values copied from the hero)
+  gold dims [32.0, 31.98, 11.27] mm (target 32.0, err 0.0%)
+[GN_FlowerBrooch_v10_mini] final: verts=71871 polys=76444 dims(mm)=[32.0, 31.98, 12.42]
+--- genome melodia_brooch_halo_v1 (target 50.0 mm) ---
+removed previous GN_FlowerBrooch_v10_halo
+[GN_FlowerBrooch_v10_halo] interface sockets: 40 | target 50.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2400 catch_x=0.2400 pin_z=-0.0740 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_halo] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_v10_mini -> GN_FlowerBrooch_v10_halo; inputs synced 39/39
+[GN_BroochPetals_v10_halo] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_v10_mini -> GN_BroochPetals_v10_halo
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_v10_halo] pass A gold nominal 63.38 mm -> Real Scale 0.78889
+removed previous GN_FlowerBrooch_v10_halo
+[GN_FlowerBrooch_v10_halo] interface sockets: 40 | target 50.0 mm | S=0.78889
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2293 catch_x=0.2293 pin_z=-0.0780 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_halo] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_v10_halo; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+[GN_BroochPetals_v10_halo] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10_halo
+petal outline pass mirrored (values copied from the hero)
+  gold dims [50.0, 50.0, 10.04] mm (target 50.0, err 0.0%)
+[GN_FlowerBrooch_v10_halo] final: verts=138359 polys=149942 dims(mm)=[50.0, 50.0, 12.64]
+--- genome melodia_brooch_comet_v1 (target 68.0 mm) ---
+removed previous GN_FlowerBrooch_v10_comet
+[GN_FlowerBrooch_v10_comet] interface sockets: 40 | target 68.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2200 catch_x=0.2200 pin_z=-0.0740 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_comet] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_v10_halo -> GN_FlowerBrooch_v10_comet; inputs synced 39/39
+[GN_BroochPetals_v10_comet] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_v10_halo -> GN_BroochPetals_v10_comet
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_v10_comet] pass A gold nominal 83.99 mm -> Real Scale 0.80962
+removed previous GN_FlowerBrooch_v10_comet
+[GN_FlowerBrooch_v10_comet] interface sockets: 40 | target 68.0 mm | S=0.80962
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2106 catch_x=0.2106 pin_z=-0.0775 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_comet] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_v10_comet; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+[GN_BroochPetals_v10_comet] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10_comet
+petal outline pass mirrored (values copied from the hero)
+  gold dims [56.93, 68.0, 41.2] mm (target 68.0, err 0.0%)
+[GN_FlowerBrooch_v10_comet] final: verts=54277 polys=58289 dims(mm)=[56.93, 68.0, 41.2]
+--- genome melodia_brooch_nova_v1 (target 55.0 mm) ---
+removed previous GN_FlowerBrooch_v10_nova
+[GN_FlowerBrooch_v10_nova] interface sockets: 40 | target 55.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2600 catch_x=0.2600 pin_z=-0.0770 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_nova] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_v10_comet -> GN_FlowerBrooch_v10_nova; inputs synced 39/39
+[GN_BroochPetals_v10_nova] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_v10_comet -> GN_BroochPetals_v10_nova
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_v10_nova] pass A gold nominal 69.80 mm -> Real Scale 0.78797
+removed previous GN_FlowerBrooch_v10_nova
+[GN_FlowerBrooch_v10_nova] interface sockets: 40 | target 55.0 mm | S=0.78797
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2492 catch_x=0.2492 pin_z=-0.0810 (units, pre-scale)
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_v10_nova] built: 434 nodes, 595 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_v10_nova; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+[GN_BroochPetals_v10_nova] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10_nova
+petal outline pass mirrored (values copied from the hero)
+  gold dims [53.24, 55.0, 20.53] mm (target 55.0, err 0.0%)
+[GN_FlowerBrooch_v10_nova] final: verts=111159 polys=118791 dims(mm)=[53.24, 55.0, 20.53]
+--- genome melodia_gala_tide_v1 (target 62.0 mm) ---
+removed previous GN_FlowerBrooch_gala_tide_v10
+[GN_FlowerBrooch_gala_tide_v10] interface sockets: 40 | target 62.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2800 catch_x=0.2800 pin_z=-0.0795 (units, pre-scale)
+  [v10] centre = EMPTY SOCKET (reliquary) size 0.075
+  [v10] gems: ring=10 r=0.210 size=0.032 | centre=0.075 | parts=4
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_gala_tide_v10] built: 483 nodes, 657 links
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_v10_nova -> GN_FlowerBrooch_gala_tide_v10; inputs synced 39/39
+  [v10] dangles: 10 | rim 0.320 | links 3 x 0.011 | drop 0.015 | sway 12.0 deg @ 0.70
+[GN_BroochDangles_gala_tide_v10] dangles tree built: 587 nodes | 10 chains | sway 12.0 deg @ 0.70
+dangles modifier 'GN_Dangles': node_group GN_BroochDangles_v10 -> GN_BroochDangles_gala_tide_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_gala_tide_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_v10_nova -> GN_BroochPetals_gala_tide_v10
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_gala_tide_v10] pass A gold nominal 82.84 mm -> Real Scale 0.74843
+removed previous GN_FlowerBrooch_gala_tide_v10
+[GN_FlowerBrooch_gala_tide_v10] interface sockets: 40 | target 62.0 mm | S=0.74843
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2666 catch_x=0.2666 pin_z=-0.0845 (units, pre-scale)
+  [v10] centre = EMPTY SOCKET (reliquary) size 0.075
+  [v10] gems: ring=10 r=0.210 size=0.032 | centre=0.075 | parts=4
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_gala_tide_v10] built: 483 nodes, 657 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_gala_tide_v10; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+  [v10] dangles: 10 | rim 0.320 | links 3 x 0.011 | drop 0.015 | sway 12.0 deg @ 0.70
+[GN_BroochDangles_gala_tide_v10] dangles tree built: 587 nodes | 10 chains | sway 12.0 deg @ 0.70
+dangles modifier 'GN_Dangles': node_group None -> GN_BroochDangles_gala_tide_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_gala_tide_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_gala_tide_v10
+petal outline pass mirrored (values copied from the hero)
+  gold dims [61.46, 62.0, 21.02] mm (target 62.0, err 0.0%)
+[GN_FlowerBrooch_gala_tide_v10] final: verts=104484 polys=109576 dims(mm)=[61.46, 62.0, 21.02]
+--- genome melodia_gala_umbra_v1 (target 58.0 mm) ---
+removed previous GN_FlowerBrooch_gala_umbra_v10
+[GN_FlowerBrooch_gala_umbra_v10] interface sockets: 40 | target 58.0 mm | S=1.00000
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2700 catch_x=0.2700 pin_z=-0.0795 (units, pre-scale)
+  [v10] centre = prong-set gem size 0.068
+  [v10] gems: ring=9 r=0.205 size=0.030 | centre=0.068 | parts=7
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_gala_umbra_v10] built: 494 nodes, 671 links
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_gala_tide_v10 -> GN_FlowerBrooch_gala_umbra_v10; inputs synced 39/39
+  [v10] dangles: 8 | rim 0.310 | links 3 x 0.011 | drop 0.014 | sway 10.0 deg @ 0.60
+[GN_BroochDangles_gala_umbra_v10] dangles tree built: 471 nodes | 8 chains | sway 10.0 deg @ 0.60
+dangles modifier 'GN_Dangles': node_group GN_BroochDangles_gala_tide_v10 -> GN_BroochDangles_gala_umbra_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_gala_umbra_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_gala_tide_v10 -> GN_BroochPetals_gala_umbra_v10
+petal outline pass mirrored (values copied from the hero)
+[GN_FlowerBrooch_gala_umbra_v10] pass A gold nominal 84.13 mm -> Real Scale 0.68941
+removed previous GN_FlowerBrooch_gala_umbra_v10
+[GN_FlowerBrooch_gala_umbra_v10] interface sockets: 40 | target 58.0 mm | S=0.68941
+  [accent] surface snap wired (proximity + nearest-surface normal)
+  [hw] hinge_x=-0.2520 catch_x=0.2520 pin_z=-0.0863 (units, pre-scale)
+  [v10] centre = prong-set gem size 0.068
+  [v10] gems: ring=9 r=0.205 size=0.030 | centre=0.068 | parts=7
+  uv method warn: AttributeError("'NodeSocketMenu' object has no attribute 'enum_items'")
+  [bloom] static body (bloom=False): the body tree carries no SceneTime by design
+[GN_FlowerBrooch_gala_umbra_v10] built: 494 nodes, 671 links
+modifier 'GN_Brooch': node_group None -> GN_FlowerBrooch_gala_umbra_v10; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+  [v10] dangles: 8 | rim 0.310 | links 3 x 0.011 | drop 0.014 | sway 10.0 deg @ 0.60
+[GN_BroochDangles_gala_umbra_v10] dangles tree built: 471 nodes | 8 chains | sway 10.0 deg @ 0.60
+dangles modifier 'GN_Dangles': node_group None -> GN_BroochDangles_gala_umbra_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_gala_umbra_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_gala_umbra_v10
+petal outline pass mirrored (values copied from the hero)
+  gold dims [51.82, 58.0, 18.08] mm (target 58.0, err 0.0%)
+[GN_FlowerBrooch_gala_umbra_v10] final: verts=95272 polys=100039 dims(mm)=[51.82, 58.0, 17.26]
+modifier 'GN_Brooch': node_group GN_FlowerBrooch_gala_umbra_v10 -> GN_FlowerBrooch_v10; inputs synced 39/39
+Bevel_Detail: width=0.045 segments=3 angle=35 clamp=True
+FINAL attach -> GN_FlowerBrooch_v10: verts=106815 polys=112334 dims(mm)=[59.72, 60.0, 21.41] per_mat={'MID_Pin': [45.53, 3.5, 2.85], 'MID_Bead_Pearl': [46.32, 49.25, 9.39], 'MID_Bead_Pave': [44.53, 44.53, 3.13], 'MID_Metal_Setting': [38.79, 38.79, 8.32], 'MID_Metal_Body': [46.82, 46.76, 3.34], 'MID_Metal_Dome': [31.49, 31.49, 7.87], 'MID_Metal_Petal': [59.72, 60.0, 21.41]}
+  [v10] dangles: 8 | rim 0.310 | links 3 x 0.011 | drop 0.015 | sway 12.0 deg @ 0.70
+[GN_BroochDangles_v10] dangles tree built: 471 nodes | 8 chains | sway 12.0 deg @ 0.70
+dangles modifier 'GN_Dangles': node_group GN_BroochDangles_gala_umbra_v10 -> GN_BroochDangles_v10
+dangle outline pass mirrored (values copied from the hero)
+  [v10] dangles: 8 | rim 0.310 | links 3 x 0.011 | drop 0.015 | sway 12.0 deg @ 0.70
+[GN_BroochDangles_v10] dangles tree built: 471 nodes | 8 chains | sway 12.0 deg @ 0.70
+dangles modifier 'GN_Dangles': node_group None -> GN_BroochDangles_v10
+dangle outline pass mirrored (values copied from the hero)
+  [dangles] split solve: span 64.2 mm -> RS 0.9349 (want 60.0 mm)
+dangles modifier 'GN_Dangles': node_group GN_BroochDangles_v10 -> GN_BroochDangles_v10
+dangle outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group GN_BroochPetals_gala_umbra_v10 -> GN_BroochPetals_v10
+petal outline pass mirrored (values copied from the hero)
+[GN_BroochPetals_v10] petals tree built: 217 nodes | flutter amp=0.05 rate=0.7
+petals modifier 'GN_Petals': node_group None -> GN_BroochPetals_v10
+petal outline pass mirrored (values copied from the hero)
+  [petals] split solve: span 83.9 mm -> RS 0.7870 (want 66.0 mm)
+petals modifier 'GN_Petals': node_group GN_BroochPetals_v10 -> GN_BroochPetals_v10
+petal outline pass mirrored (values copied from the hero)
+sparkle modifier GN_Sparkles attached to FlowerBrooch_Sparkles
+FINAL dangles -> FlowerBrooch_Dangles: verts=13136 polys=13312 dims(mm)=[60.0, 23.98, 9.94] per_mat={'MID_Bead_Pearl': [59.78, 22.68, 2.35], 'MID_Metal_Chain': [59.41, 23.69, 5.9]}
+live discipline: outline Freeze Frames -> 1 (divide guard)
+--- summary (real mm) ---
+  GN_FlowerBrooch_v10 target=60.0mm S=0.7157 nominal=83.83mm final=[59.72, 60.0, 21.41]mm per_mat={'MID_Pin': [45.53, 3.5, 2.85], 'MID_Bead_Pearl': [46.32, 49.25, 9.39], 'MID_Bead_Pave': [44.53, 44.53, 3.13], 'MID_Metal_Setting': [38.79, 38.79, 8.32], 'MID_Metal_Body': [46.82, 46.76, 3.34], 'MID_Metal_Dome': [31.49, 31.49, 7.87], 'MID_Metal_Petal': [59.72, 60.0, 21.41]} pin={'hinge_to_catch_mm': 37.81, 'pin_len_mm': 41.31}
+  GN_FlowerBrooch_v10_mini target=32.0mm S=0.5414 nominal=59.11mm final=[32.0, 31.98, 12.42]mm per_mat={'MID_Pin': [23.54, 3.5, 2.85], 'MID_Bead': [26.14, 26.87, 8.39], 'MID_Petal': [32.0, 31.98, 11.27]} pin={'hinge_to_catch_mm': 15.82, 'pin_len_mm': 19.32}
+  GN_FlowerBrooch_v10_halo target=50.0mm S=0.7889 nominal=63.38mm final=[50.0, 50.0, 12.64]mm per_mat={'MID_Pin': [43.9, 3.5, 2.85], 'MID_Bead': [49.28, 49.28, 8.32], 'MID_Petal': [50.0, 50.0, 10.04]} pin={'hinge_to_catch_mm': 36.18, 'pin_len_mm': 39.68}
+  GN_FlowerBrooch_v10_comet target=68.0mm S=0.8096 nominal=83.99mm final=[56.93, 68.0, 41.2]mm per_mat={'MID_Pin': [41.83, 3.5, 2.85], 'MID_Bead': [51.42, 60.56, 19.99], 'MID_Petal': [56.93, 68.0, 41.2]} pin={'hinge_to_catch_mm': 34.1, 'pin_len_mm': 37.6}
+  GN_FlowerBrooch_v10_nova target=55.0mm S=0.7880 nominal=69.80mm final=[53.24, 55.0, 20.53]mm per_mat={'MID_Pin': [47.0, 3.5, 2.85], 'MID_Bead': [47.86, 49.97, 14.38], 'MID_Petal': [53.24, 55.0, 20.53]} pin={'hinge_to_catch_mm': 39.28, 'pin_len_mm': 42.78}
+  GN_FlowerBrooch_gala_tide_v10 target=62.0mm S=0.7484 nominal=82.84mm final=[61.46, 62.0, 21.02]mm per_mat={'MID_Petal': [61.46, 62.0, 21.02], 'MID_Gem_Tide': [35.08, 33.36, 2.97], 'MID_Pin': [47.62, 3.5, 2.85], 'MID_Bead': [48.4, 50.79, 14.46]} pin={'hinge_to_catch_mm': 39.9, 'pin_len_mm': 43.4}
+  GN_FlowerBrooch_gala_umbra_v10 target=58.0mm S=0.6894 nominal=84.13mm final=[51.82, 58.0, 17.26]mm per_mat={'MID_Petal': [51.82, 58.0, 17.02], 'MID_Gem_Arcane': [8.63, 8.63, 6.56], 'MID_Gem_Umbral': [30.56, 30.83, 2.56], 'MID_Pin': [42.47, 3.5, 2.85], 'MID_Bead': [41.8, 46.53, 12.42]} pin={'hinge_to_catch_mm': 34.74, 'pin_len_mm': 38.24}
+wrote BUILD_REPORT_V10.txt
+trees in file: ['GN_BroochDangles_gala_tide_v10', 'GN_BroochDangles_gala_umbra_v10', 'GN_BroochDangles_v10', 'GN_FlowerBrooch_gala_tide_v10', 'GN_FlowerBrooch_gala_tide_v8', 'GN_FlowerBrooch_gala_tide_v9', 'GN_FlowerBrooch_gala_umbra_v10', 'GN_FlowerBrooch_gala_umbra_v8', 'GN_FlowerBrooch_gala_umbra_v9', 'GN_FlowerBrooch_v10', 'GN_FlowerBrooch_v10_comet', 'GN_FlowerBrooch_v10_halo', 'GN_FlowerBrooch_v10_mini', 'GN_FlowerBrooch_v10_nova', 'GN_FlowerBrooch_v5', 'GN_FlowerBrooch_v5_comet', 'GN_FlowerBrooch_v5_halo', 'GN_FlowerBrooch_v5_mini', 'GN_FlowerBrooch_v5_nova', 'GN_FlowerBrooch_v6', 'GN_FlowerBrooch_v6_comet', 'GN_FlowerBrooch_v6_halo', 'GN_FlowerBrooch_v6_mini', 'GN_FlowerBrooch_v6_nova', 'GN_FlowerBrooch_v7', 'GN_FlowerBrooch_v7_comet', 'GN_FlowerBrooch_v7_halo', 'GN_FlowerBrooch_v7_mini', 'GN_FlowerBrooch_v7_nova', 'GN_FlowerBrooch_v8', 'GN_FlowerBrooch_v8_comet', 'GN_FlowerBrooch_v8_halo', 'GN_FlowerBrooch_v8_mini', 'GN_FlowerBrooch_v8_nova', 'GN_FlowerBrooch_v9', 'GN_FlowerBrooch_v9_comet', 'GN_FlowerBrooch_v9_halo', 'GN_FlowerBrooch_v9_mini', 'GN_FlowerBrooch_v9_nova']
+frame restored to 80
+backup written: preV10run_20260920_005541
+Info: Saved "FlowerBrooch.blend"
+SAVED P:\MelodiaMelusinaV2-Laptop\Saved\MelusinasHouse\FlowerBrooch.blend
+=== done ===
+BlenderMCP server stopped
+BlenderMCP addon unregistered
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit
+EXIT:0

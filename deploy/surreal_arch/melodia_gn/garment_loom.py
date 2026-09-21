@@ -56,7 +56,7 @@ def build_garment_uv_unwrap(group_name="MEL_garment_uv_unwrap"):
     geo = gin.outputs["Geometry"]
     # Compute normalized XZ angle + Y height -> UV
     pos = safe_node(tree, "GeometryNodeInputPosition", (0, 0))
-    comb = safe_node(tree, "GeometryNodeSeparateXYZ", (-180, 0))
+    comb = safe_node(tree, "ShaderNodeSeparateXYZ", (-180, 0))
     link_sockets(tree, pos.outputs["Position"], comb.inputs["Vector"])
     # cylindrical U = atan2(x,z) normalized ; V = y norm (range clamp)
     atan = safe_node(tree, "ShaderNodeMath", (0, -120))
@@ -136,7 +136,7 @@ def build_garment_loom_variation(group_name="MEL_garment_loom_variation"):
         pass
     link_sockets(tree, pos.outputs["Position"], noise.inputs["Vector"])
     # fold along height (local Y), drape along the noise field
-    comb = safe_node(tree, "GeometryNodeSeparateXYZ", (-240, -100))
+    comb = safe_node(tree, "ShaderNodeSeparateXYZ", (-240, -100))
     link_sockets(tree, pos.outputs["Position"], comb.inputs["Vector"])
     y = comb.outputs["Y"]
     fold_f = safe_node(tree, "ShaderNodeMath", (-240, -220))

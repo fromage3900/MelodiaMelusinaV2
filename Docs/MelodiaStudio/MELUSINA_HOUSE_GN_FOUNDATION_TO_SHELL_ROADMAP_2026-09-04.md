@@ -43,14 +43,24 @@ Do not call the new foundation builders visually proven until that smoke exists.
 
 | Layer | Source | Registered | Category / presets | Blender 5.2 smoke | Artist approved |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Foundation Pod | ✓ | ✓ | ✓ | pending | pending |
-| Foundation Cluster | ✓ | ✓ | ✓ | pending | pending |
-| Foundation Porch | ✓ | ✓ | ✓ | pending | pending |
-| Foundation Master | ✓ | ✓ | ✓ | pending | pending |
+| Foundation Pod | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 | pending |
+| Foundation Cluster | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 | pending |
+| Foundation Porch | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 | pending |
+| Foundation Master | ✓ | ✓ | ✓ | headless bounds proof 2026-09-06 (Round vs Wide presets drive footprint) | pending |
+| `MEL_mh_roof_ribbon` (P1) | ✓ | ✓ | ✓ (MAIN_WHALE_BACK / WING_ROOF / PORCH_ROOF) | headless construct + preset-response proof 2026-09-06 | pending |
+| `MEL_mh_opening_family` (Packet C) | ✓ | ✓ | ✓ (ROUND_WINDOW / TALL_DOOR / PALLADIAN) | headless construct + preset-response proof 2026-09-16 (`opening_family_headless_smoke_v1_2026-09-16.json`, `ok: true`, Blender 5.2.1 LTS) | pending |
 | `MEL_mh6_room_shell` | ✓ | ✓ | ✓ | re-smoke with new foundation | pending composition |
 | `MEL_melusina_house_round_interior` | ✓ | ✓ | ✓ | re-smoke with new foundation | pending composition |
 | AAA trim family | ✓ | ✓ | ✓ | existing family | defer until silhouette |
 | House dressing family | ✓ | ✓ | ✓ | existing family | defer until silhouette |
+
+Headless 5.2 evidence (all under `Saved/Audit/melusina_house/`):
+`foundation_headless_smoke_v4_2026-09-06.json` (foundation registry + construct + preset response, `ok: true`),
+`roof_ribbon_headless_smoke_v5_2026-09-06.json` (roof registry + construct + preset response, `ok: true`),
+`opening_family_headless_smoke_v1_2026-09-16.json` (opening registry + construct + preset response, `ok: true`),
+`sync_check_2026-09-06*.txt` (AppData byte-sync 234/234 at HEAD 15f03403).
+Blender 5.2 note recorded there: `GeometryNodeMeshLine.count_mode` enum is `('TOTAL','RESOLUTION')` and
+NODES modifiers pin interface defaults at attach time (no IDProperties bag).
 
 Proof ladder:
 
@@ -353,10 +363,12 @@ If **no**, stay in structure.
 
 ```text
 NOW
-├─ Blender smoke: MEL_mh_foundation_master
-├─ MEL_mh_roof_ribbon
-├─ MEL_mh_opening_family
-└─ MEL_mh_porch_stair
+├─ MEL_mh_porch_stair (Packet D)
+├─ Blender smoke: MEL_mh_foundation_master + roof + openings artist pass
+└─ integrated clay silhouette proof (Packet E)
+
+DONE 2026-09-16
+└─ MEL_mh_opening_family (Packet C) — source + presets + headless smoke ok
 
 NEXT
 ├─ integrated clay silhouette proof

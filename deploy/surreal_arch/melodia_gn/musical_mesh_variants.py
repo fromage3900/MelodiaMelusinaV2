@@ -227,10 +227,16 @@ def build_musical_pulse_variant(group_name="MEL_musical_pulse_variant"):
     link_sockets(tree, sock(delta, "Vector", outputs=True), sock(dist, "Vector"))
 
     # Pulse = exp(-decay * |dist - speed*time|)
-    # Simplified: pulse = exp(-decay * abs(dist - pulse_phase))
+    # Variant Morph is the phase OFFSET in seconds; scene time is added BEFORE
+    # the multiply, so at t = 0 the phase is Variant Morph * Pulse Speed exactly
+    # as it was before time existed - Animated off reproduces the old geometry,
+    # and the travelling wave the comment above describes actually travels.
+    from .time import add_time_to_phase
+    phase_offset = add_time_to_phase(
+        tree, gin, sock(gin, "Variant Morph", outputs=True), (bx + 700, by - 240))
     pulse_phase = safe_node(tree, "ShaderNodeMath", (bx + 800, by))
     pulse_phase.operation = "MULTIPLY"
-    link_sockets(tree, sock(gin, "Variant Morph", outputs=True), pulse_phase.inputs[0])
+    link_sockets(tree, phase_offset, pulse_phase.inputs[0])
     link_sockets(tree, sock(gin, "Pulse Speed", outputs=True), pulse_phase.inputs[1])
 
     diff = safe_node(tree, "ShaderNodeMath", (bx + 1000, by))

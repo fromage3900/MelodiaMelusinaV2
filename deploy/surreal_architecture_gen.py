@@ -21,7 +21,7 @@ bl_info = {
     "blender": (5, 2, 0),
     "author": "Melodia Team",
     "description": "Procedural surreal architecture with style genomes, greybox kits, GN builders, and game pipeline. 56 styles, 173 GN builders, 12 GN Stack categories, 8 architectural groups.",
-    "version": (2, 131, 0),
+    "version": (2, 132, 0),
     "location": "View3D > Sidebar > Melodia Studio",
     "category": "Geometry Nodes",
 }

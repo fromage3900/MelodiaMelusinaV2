@@ -179,24 +179,55 @@ def mesh_boolean_node(tree, loc, operation, mesh_a, mesh_b):
     return node, out
 
 
+# ---------------------------------------------------------------------------
+# Link-failure recorder (silent-no-op visibility)
+#
+# `link_sockets` / `link_float_to_vector` must not raise mid-build (one dropped
+# link should not kill a whole 800-node tree), but a link that silently fails is
+# exactly the defect class that shipped bad geometry before: 19 distinct
+# (tree, class) pairs across 18 builders on 2026-09-18, all invisible to the
+# gate. This records each drop so a health script can surface them. Set
+# LINK_STRICT = True to turn them into hard errors once the trees are clean.
+# ---------------------------------------------------------------------------
+_LINK_FAILURES: dict[str, list[str]] = {}
+LINK_STRICT = False
+
+
+def reset_link_failures() -> None:
+    _LINK_FAILURES.clear()
+
+
+def link_failures() -> dict[str, list[str]]:
+    """{tree_name: [message, ...]} for every socket link silently dropped so far."""
+    return {name: list(msgs) for name, msgs in _LINK_FAILURES.items()}
+
+
+def _record_link_failure(tree, message: str) -> None:
+    _LINK_FAILURES.setdefault(getattr(tree, "name", "?"), []).append(message)
+    if LINK_STRICT:
+        raise RuntimeError("strict link failure: " + message)
+
+
 def link_sockets(tree, from_socket, to_socket):
-    """Link two sockets. Logs mismatches at debug level for troubleshooting."""
+    """Link two sockets. Records + logs mismatches (never raises unless LINK_STRICT)."""
     if from_socket is None or to_socket is None:
-        log.warning(
-            "link_sockets: one or both sockets are None (tree=%s, from=%s, to=%s)",
+        msg = "link_sockets: one or both sockets are None (tree=%s, from=%s, to=%s)" % (
             getattr(tree, "name", "?"), from_socket, to_socket,
         )
+        log.warning(msg)
+        _record_link_failure(tree, msg)
         return
     try:
         tree.links.new(from_socket, to_socket)
     except Exception as exc:
-        log.warning(
-            "link_sockets: cannot link %s → %s in %s — %s",
+        msg = "link_sockets: cannot link %s -> %s in %s -- %s" % (
             getattr(from_socket, "name", "?"),
             getattr(to_socket, "name", "?"),
             getattr(tree, "name", "?"),
             exc,
         )
+        log.warning(msg)
+        _record_link_failure(tree, msg)
 
 
 def color_node(node, tag="default"):
@@ -707,12 +738,26 @@ def new_geometry_tree(name):
     """
     old = bpy.data.node_groups.get(name)
     if old is not None:
+        # Reuse the datablock and purge its contents instead of removing it:
+        # bpy.data.node_groups.remove() orphans every live modifier that
+        # references the tree (their node_group becomes None and their geometry
+        # silently collapses — 2026-09-16).
         try:
-            bpy.data.node_groups.remove(old)
-            log.debug("new_geometry_tree: replaced existing tree '%s'", name)
+            for node in list(old.nodes):
+                old.nodes.remove(node)
+            for item in list(old.interface.items_tree):
+                old.interface.remove(item)
+            tree = old
+            log.debug("new_geometry_tree: reused and purged existing tree '%s'", name)
         except Exception as exc:
-            log.warning("new_geometry_tree: cannot remove old tree '%s' — %s", name, exc)
-    tree = bpy.data.node_groups.new(name, "GeometryNodeTree")
+            log.warning("new_geometry_tree: cannot purge old tree '%s' — %s", name, exc)
+            try:
+                bpy.data.node_groups.remove(old)
+            except Exception:
+                pass
+            tree = bpy.data.node_groups.new(name, "GeometryNodeTree")
+    else:
+        tree = bpy.data.node_groups.new(name, "GeometryNodeTree")
     try:
         tree.is_modifier = True
     except Exception:
@@ -847,10 +892,11 @@ def link_float_to_vector(tree, source_sock, target_node, target_input_name, comp
         return
     vec_sock = target_node.inputs.get(target_input_name)
     if vec_sock is None:
-        log.warning(
-            "link_float_to_vector: '%s' input not found on node '%s'",
+        msg = "link_float_to_vector: '%s' input not found on node '%s'" % (
             target_input_name, getattr(target_node, "name", "?"),
         )
+        log.warning(msg)
+        _record_link_failure(tree, msg)
         return
 
     # Reuse an existing bridge for this vector socket. Rebuilding a complete
@@ -1025,7 +1071,19 @@ def apply_universal_music_pass(tree, gin, geom, loc=(2400, 0)):
     """Radial harmonic pulse - same math as monolith add_universal_music_pass.
 
     Gated by Music Influence (skip wiring warp when socket missing).
+
+    Scene time (2026-09-18): the two sine arguments now carry a gated time
+    addend from `melodia_gn.time`, so the pulse moves on the scene timeline
+    instead of only when Convergence Mode's `frame_change_post` handler writes
+    socket values. `Animated` (default on) / `Time Scale` control it; both are
+    idempotent params, and Animated off or Time Scale 0 reproduces the pre-time
+    geometry exactly, so bake/export/fingerprint stay deterministic. This adds
+    nodes (one SceneTime + 2-3 Math per call) - it is no longer a defaults-only
+    pass. Amplitude is unchanged, so the measured prop-scale opt-out
+    (_PROP_SCALE_PREFIXES / Tools/music_pulse_audit.py) still holds.
     """
+    from .time import add_time_to_phase
+
     inf = gin.outputs.get("Music Influence")
     if inf is None or geom is None:
         return geom
@@ -1041,9 +1099,10 @@ def apply_universal_music_pass(tree, gin, geom, loc=(2400, 0)):
         link_sockets(tree, fa, z_freq.inputs[1])
     else:
         z_freq.inputs[1].default_value = 2.0
+    z_phase = add_time_to_phase(tree, gin, z_freq.outputs[0], (x + 400, y + 320))
     sine_z = safe_node(tree, "ShaderNodeMath", (x + 600, y + 200))
     sine_z.operation = "SINE"
-    link_sockets(tree, z_freq.outputs[0], sine_z.inputs[0])
+    link_sockets(tree, z_phase, sine_z.inputs[0])
     atan2 = safe_node(tree, "ShaderNodeMath", (x + 400, y))
     atan2.operation = "ARCTAN2"
     link_sockets(tree, sep.outputs["Y"], atan2.inputs[0])
@@ -1056,9 +1115,10 @@ def apply_universal_music_pass(tree, gin, geom, loc=(2400, 0)):
         link_sockets(tree, fb, a_freq.inputs[1])
     else:
         a_freq.inputs[1].default_value = 3.0
+    a_phase = add_time_to_phase(tree, gin, a_freq.outputs["Value"], (x + 600, y - 180))
     sine_a = safe_node(tree, "ShaderNodeMath", (x + 800, y))
     sine_a.operation = "SINE"
-    link_sockets(tree, a_freq.outputs["Value"], sine_a.inputs[0])
+    link_sockets(tree, a_phase, sine_a.inputs[0])
     addn = safe_node(tree, "ShaderNodeMath", (x + 800, y + 100))
     addn.operation = "ADD"
     link_sockets(tree, sine_z.outputs[0], addn.inputs[0])
@@ -1215,6 +1275,8 @@ CATEGORY_META: dict[str, dict] = {
     "melusina_house": {"label": "Melusina House",     "icon": "HOME"},
     "zen_kit":     {"label": "Zen Kit",               "icon": "LIGHT_AREA"},
     "nikki_decor": {"label": "Nikki Decor",           "icon": "DECORATE"},
+    "decor":       {"label": "Decor",                 "icon": "DECORATE"},
+    "escher":      {"label": "Escher Math",           "icon": "NODETREE"},
 }
 
 

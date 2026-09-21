@@ -1,0 +1,152 @@
+{
+  "id": "melodia_brooch_v2",
+  "family": "Brooch",
+  "verticality": 0.55,
+  "symmetry": 0.56,
+  "ornament_density": 0.72,
+  "structural_logic": 0.62,
+  "organic_growth": 0.62,
+  "cosmic_influence": 0.18,
+  "module_sequence": [
+    "base_plate_v11",
+    "crown_petals",
+    "pave_milgrain",
+    "filigree_rings",
+    "dome_boss",
+    "pin_hardware",
+    "dangles",
+    "sparkles",
+    "silhouette_preset"
+  ],
+  "compose_style": "BROOCH_REGALIA",
+  "default_graph": "GN_FlowerBrooch_v10",
+  "lineage": {
+    "note": "GN-only since 2026-09-16 (Sverchok retired)",
+    "graphs": [
+      "GN_FlowerBrooch_v10",
+      "GN_BroochDangles_v10",
+      "GN_BroochPetals_v10",
+      "GN_Brooch_Sparkles_v7",
+      "GN_BroochSil_*"
+    ]
+  },
+  "traits": {
+    "phyllotaxis": {
+      "angle_deg": 137.5077,
+      "radius_law": "sqrt",
+      "spread": 0.22
+    },
+    "crown": {
+      "petal_count": 13,
+      "petal_profile": "round",
+      "petal_len": 0.3,
+      "petal_wid": 0.09,
+      "petal_thk": 0.025,
+      "inner_size": 0.45,
+      "tilt_deg": 26.0,
+      "cup": 1.0,
+      "rise": 0.05,
+      "chaos": 0.22
+    },
+    "accents": {
+      "size": 0.015,
+      "lift": 0.01
+    },
+    "pave": {
+      "site_count": 80,
+      "border_inner": 0.255,
+      "border_outer": 0.295,
+      "bead_radius": 0.017,
+      "voronoi_domain_radius": 0.22
+    },
+    "center_bead": {
+      "radius": 0.065,
+      "z_squash": 0.55
+    },
+    "dangles": {
+      "count": 8,
+      "rim_frac": 0.97,
+      "links": 3,
+      "link_radius": 0.011,
+      "link_thick": 0.0028,
+      "terminal": "pearl",
+      "terminal_size": 0.015,
+      "sway_deg": 12.0,
+      "rate": 0.7,
+      "arc_deg": 150,
+      "arc_center_deg": 270
+    },
+    "filigree": {
+      "petal_count": 13,
+      "petal_len": 0.05,
+      "petal_wid": 0.022,
+      "taper_deg": 48.0,
+      "z_cap": 0.012
+    },
+    "hardware": {
+      "plate_radius": 0.32,
+      "plate_depth": 0.025,
+      "plate_z": -0.052,
+      "stem_radius": 0.01,
+      "stem_depth": 0.34,
+      "stem_at": [
+        0.0,
+        0.07,
+        -0.076
+      ],
+      "hinge_radius": 0.016,
+      "hinge_depth": 0.035,
+      "hinge_at": [
+        -0.175,
+        0.07,
+        -0.076
+      ],
+      "clasp_size": [
+        0.03,
+        0.02,
+        0.03
+      ],
+      "clasp_at": [
+        0.175,
+        0.07,
+        -0.076
+      ],
+      "merge_distance": 0.001
+    },
+    "materials": {
+      "petal": "MID_Petal",
+      "bead": "MID_Bead",
+      "pin": "MID_Pin",
+      "metal_petal": "MID_Metal_Petal",
+      "metal_dome": "MID_Metal_Dome",
+      "metal_body": "MID_Metal_Body",
+      "metal_setting": "MID_Metal_Setting",
+      "metal_chain": "MID_Metal_Chain",
+      "bead_pearl": "MID_Bead_Pearl",
+      "bead_pave": "MID_Bead_Pave"
+    },
+    "fabrication": {
+      "dxf_scale": 100,
+      "layer": "Sverchok_Pol_0",
+      "units": "mm",
+      "kerf": 0.002
+    },
+    "size": {
+      "real_mm": 60,
+      "basis": "overall_width"
+    }
+  },
+  "prop_defaults": {
+    "object": "FlowerBrooch"
+  },
+  "silhouette": {
+    "active": "flower",
+    "available": [
+      "flower",
+      "star_citadel",
+      "lissajous_veil"
+    ],
+    "span_factor": 1.15,
+    "note": "additive crown built by Tools/brooch_silhouettes.py; flower = no extra object"
+  }
+}
