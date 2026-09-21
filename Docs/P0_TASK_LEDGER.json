@@ -711,13 +711,15 @@
     "runtime_identity": "Player and spawned battle presenter use SK_Melusina_V2_Body; battle presenter no longer uses legacy SK_Melusina.",
     "skirt": "R2 smooth-chain candidate bound in player and battle wardrobe. Blender audit: rigid vertex fraction 10.9295% -> 0.39%; mean kilt influences 2.583433 -> 4.593782. Four original material slots restored. Clean deterministic jump PIE passed.",
     "hair": "Kawaii tune saved: Damping .18, Stiffness .08, WorldDampingLocation .50, WorldDampingRotation .50, LimitAngle 60. Clean deterministic jump PIE passed. Structural ceiling remains: 73 independent two-bone strand chains.",
-    "bow": "AM_Melusina_BowAttack_Bound played successfully on the spawned V2 battle presentation in clean L_MelusinaMorning PIE; capture did not frame the spawned presenter and is runtime proof only.",
+    "bow": "CORRECTED: AM_Melusina_BowAttack_Bound played successfully on the spawned V2 battle presentation in clean L_MelusinaMorning PIE at pie_smoke_2_204615. Portfolio_Bow_V2_Clean was audited and retracted as presenter proof because its retained Python drove the normal player and AM_Melusina_BowAttack_Gameplay. Portfolio_V2_Bound_Framed_R1-R11 are rejected diagnostics; no hero-framed portfolio bow shot or clip exists yet.",
     "evidence": [
       "Saved/Screenshots/MelusinaPolish_20260920/SkirtR2_HairTune_R3",
-      "Saved/Screenshots/MelusinaPolish_20260920/Portfolio_Bow_V2_Clean"
+      "Saved/Screenshots/MelusinaPolish_20260920/Portfolio_V2_Bound_Framed_R2"
     ],
     "build": "PASS: closed-editor BS_GodFileEditor Win64 Development, 8/8 actions, 2026-09-20.",
-    "source_recovery_hold": "All 16 Melusina_Harp_HERO01 .blend/.blend1 files in the redirected harp_bow_pipeline fail Blender 5.2 with Missing DNA block. Do not overwrite; recover separately."
+    "source_recovery_hold": "All 16 Melusina_Harp_HERO01 .blend/.blend1 files in the redirected harp_bow_pipeline fail Blender 5.2 with Missing DNA block. Do not overwrite; recover separately.",
+    "capture_handoff": "Commit b1146a3e7 is the implementation baseline. Next: place the existing presentation Blueprint and a real camera visibly in L_MelusinaMorning, capture idle/motion/full bound bow beats, and require V2 body plus R2 skirt plus hair plus bow in the same front or three-quarter frames. Do not repeat the transient runtime camera R1-R11 loop.",
+    "warnings": "Kawaii emitted inter-bone dummy bones x5 without runtime failure. Jev wrapper reported classical-fallback because no live credential/connector was exposed; this is not Jev evidence."
   },
   "morning_greybox_unit_defect_2026-09-20": {
     "status": "REPAIRED_IN_EDITOR_ASSET_DEFECT_STILL_OPEN",
