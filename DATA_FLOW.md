@@ -1,6 +1,6 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-17
+**Last Updated:** 2026-09-21
 **Scope:** stable runtime/state lifecycle for an evergreen single-player game  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -289,6 +289,40 @@ This is the scalable unit the project should optimize for.
 
 ---
 
-## 10. Governing principle
+## 10. Production worldbuilding authoring flow
+
+Procedural authoring now follows one directional promotion path:
+
+```text
+design intent / reference
++ recipe / chapter data
++ optional DCC source
+        ↓
+source validation
+        ↓
+Tools/world_compiler.py or scoped DCC export
+        ↓
+tracked bundle / source artifact
+        ↓
+world_compiler_ue_driver.py / existing UE import + PCG
+        ↓
+material / Niagara / level presentation
+        ↓
+existing runtime owner signals
+        ↓
+visible world response
+        ↓
+scene-context + runtime evidence
+        ↓
+main
+```
+
+The compiler and DCC tools author *what exists and where*; runtime owners determine *what it means now*. A runtime colour or cymatic response proves that the generated world is consuming the presentation signal chain—it does not make the compiler an MPC writer. World recipes, GN builders and PCG graphs extend content vocabulary; they must not multiply durable-state or signal authorities.
+
+For an interactive spatial edit, branch movement is frozen while the editor is open. The authoring session begins from current green `main`, uses one writer, captures evidence, closes the editor, and only then performs integration/merge work.
+
+---
+
+## 11. Governing principle
 
 > **New content extends the vocabulary of durable facts and authored relationships; it does not multiply state authorities.**
