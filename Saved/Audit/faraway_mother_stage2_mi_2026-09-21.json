@@ -1,0 +1,342 @@
+{
+  "schema": "melodia.faraway_mother.stage2_mi.v1",
+  "generated_at": "2026-09-21T17:32:29.973069+00:00",
+  "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "mpc_policy": "consume_only",
+  "parents": {
+    "nikki": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+    "universal": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+    "alpha": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_Alpha"
+  },
+  "mis": {
+    "MI_Mother_Mantle": {
+      "path": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
+      "status": "reused",
+      "wire": {
+        "family": "FarawayNightVelvet",
+        "textures": {
+          "BaseColor": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_BaseColor",
+            "import": "imported",
+            "bound": false
+          },
+          "Normal": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Normal",
+            "import": "imported",
+            "bound": false
+          },
+          "ORM": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_ORM",
+            "import": "imported",
+            "bound": false
+          },
+          "Roughness": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Roughness",
+            "import": "imported",
+            "bound": false
+          },
+          "Metallic": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Metallic",
+            "import": "imported",
+            "bound": false
+          },
+          "Height": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Height",
+            "import": "imported",
+            "bound": false
+          },
+          "Emissive": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Emissive",
+            "import": "imported",
+            "bound": false
+          },
+          "Sheen": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Sheen",
+            "import": "imported",
+            "bound": false
+          },
+          "Iridescence": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Iridescence",
+            "import": "imported",
+            "bound": false
+          },
+          "Opacity": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayNightVelvet/T_Cymatic_FarawayNightVelvet_Opacity",
+            "import": "imported",
+            "bound": false
+          },
+          "AO": "missing_png"
+        },
+        "scalars": {
+          "sheen": {
+            "name": "NikkiPearlSheen",
+            "value": 0.4
+          },
+          "pastel": {
+            "name": "NikkiPastelStrength",
+            "value": 0.55
+          }
+        },
+        "updated": true
+      }
+    },
+    "MI_Mother_Gown": {
+      "path": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+      "status": "reused",
+      "wire": {
+        "family": "FarawayCelestialSilk",
+        "textures": {
+          "BaseColor": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_BaseColor",
+            "import": "imported",
+            "bound": false
+          },
+          "Normal": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Normal",
+            "import": "imported",
+            "bound": false
+          },
+          "ORM": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_ORM",
+            "import": "imported",
+            "bound": false
+          },
+          "Roughness": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Roughness",
+            "import": "imported",
+            "bound": false
+          },
+          "Metallic": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Metallic",
+            "import": "imported",
+            "bound": false
+          },
+          "Height": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Height",
+            "import": "imported",
+            "bound": false
+          },
+          "Emissive": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Emissive",
+            "import": "imported",
+            "bound": false
+          },
+          "Sheen": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Sheen",
+            "import": "imported",
+            "bound": false
+          },
+          "Iridescence": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Iridescence",
+            "import": "imported",
+            "bound": false
+          },
+          "Opacity": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayCelestialSilk/T_Cymatic_FarawayCelestialSilk_Opacity",
+            "import": "imported",
+            "bound": false
+          },
+          "AO": "missing_png"
+        },
+        "scalars": {
+          "sheen": {
+            "name": "NikkiPearlSheen",
+            "value": 0.55
+          },
+          "pastel": {
+            "name": "NikkiPastelStrength",
+            "value": 0.65
+          }
+        },
+        "updated": true
+      }
+    },
+    "MI_Mother_Veil": {
+      "path": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil",
+      "status": "reused",
+      "wire": {
+        "family": "FarawayAquaLace",
+        "textures": {
+          "BaseColor": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_BaseColor",
+            "import": "imported",
+            "bound": false
+          },
+          "Normal": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Normal",
+            "import": "imported",
+            "bound": false
+          },
+          "ORM": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_ORM",
+            "import": "imported",
+            "bound": false
+          },
+          "Roughness": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Roughness",
+            "import": "imported",
+            "bound": false
+          },
+          "Metallic": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Metallic",
+            "import": "imported",
+            "bound": false
+          },
+          "Height": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Height",
+            "import": "imported",
+            "bound": false
+          },
+          "Emissive": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Emissive",
+            "import": "imported",
+            "bound": false
+          },
+          "Sheen": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Sheen",
+            "import": "imported",
+            "bound": false
+          },
+          "Iridescence": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Iridescence",
+            "import": "imported",
+            "bound": false
+          },
+          "Opacity": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayAquaLace/T_Cymatic_FarawayAquaLace_Opacity",
+            "import": "imported",
+            "bound": false
+          },
+          "AO": "missing_png"
+        },
+        "scalars": {
+          "sheen": {
+            "name": "NikkiPearlSheen",
+            "value": 0.45
+          },
+          "pastel": {
+            "name": "NikkiPastelStrength",
+            "value": 0.6
+          }
+        },
+        "updated": true
+      }
+    },
+    "MI_Mother_Corset": {
+      "path": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset",
+      "status": "reused",
+      "wire": {
+        "family": "FarawayGildedRidge",
+        "textures": {
+          "BaseColor": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_BaseColor",
+            "import": "imported",
+            "bound": false
+          },
+          "Normal": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Normal",
+            "import": "imported",
+            "bound": false
+          },
+          "ORM": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_ORM",
+            "import": "imported",
+            "bound": false
+          },
+          "Roughness": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Roughness",
+            "import": "imported",
+            "bound": false
+          },
+          "Metallic": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Metallic",
+            "import": "imported",
+            "bound": false
+          },
+          "Height": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Height",
+            "import": "imported",
+            "bound": false
+          },
+          "Emissive": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Emissive",
+            "import": "imported",
+            "bound": false
+          },
+          "Sheen": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Sheen",
+            "import": "imported",
+            "bound": false
+          },
+          "Iridescence": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Iridescence",
+            "import": "imported",
+            "bound": false
+          },
+          "Opacity": {
+            "path": "/Game/EnvSandbox/Textures/Copernicus/Faraway/FarawayGildedRidge/T_Cymatic_FarawayGildedRidge_Opacity",
+            "import": "imported",
+            "bound": false
+          },
+          "AO": "missing_png"
+        },
+        "scalars": {
+          "sheen": {
+            "name": "NikkiPearlSheen",
+            "value": 0.35
+          },
+          "pastel": {
+            "name": "NikkiPastelStrength",
+            "value": 0.5
+          }
+        },
+        "updated": true
+      }
+    }
+  },
+  "alabaster_fix": {
+    "error": "mi_missing"
+  },
+  "applied": [
+    {
+      "actor": "FM_Ridge_HeadSilhouette_01",
+      "mi": "MI_Mother_Mantle",
+      "ok": true
+    },
+    {
+      "actor": "FM_Ridge_Fabric_02",
+      "mi": "MI_Mother_Gown",
+      "ok": true
+    },
+    {
+      "actor": "FM_Hair_Cascade_03",
+      "mi": "MI_Mother_Veil",
+      "ok": true
+    },
+    {
+      "actor": "FM_Ridge_Fabric_04",
+      "mi": "MI_Mother_Gown",
+      "ok": true
+    },
+    {
+      "actor": "FM_Valley_Shoulder_05",
+      "mi": "MI_Mother_Corset",
+      "ok": true
+    },
+    {
+      "actor": "FM_Valley_Torso_06",
+      "mi": "MI_Mother_Corset",
+      "ok": true
+    },
+    {
+      "actor": "FM_Haze_Limbs_07",
+      "skipped": "uses_MoonChiffon"
+    }
+  ],
+  "ok": true,
+  "save": {
+    "ok": true,
+    "detail": "dirty"
+  },
+  "level_saved": true
+}

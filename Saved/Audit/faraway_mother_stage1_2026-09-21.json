@@ -1,0 +1,393 @@
+{
+  "schema": "melodia.faraway_mother.stage1_height_aware.v1",
+  "generated_at": "2026-09-21T17:30:34.787052+00:00",
+  "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "seed": 20260829,
+  "manifest": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\faraway_mother_height_aware_pcg.json",
+  "manifest_sha256": "239ff4f41e63e326fceb45a09dbf0c5b05b8bf88fa4d327d177ec664f5bb75ea",
+  "no_new_landscape": true,
+  "morning_untouched": true,
+  "save": {
+    "packages": 1,
+    "saved": 1
+  },
+  "reload_ok": true,
+  "world": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype.LV_FarawayMother_Prototype",
+  "placements": [
+    {
+      "id": "FM_Ridge_HeadSilhouette_01",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        0,
+        9000
+      ],
+      "raycast_z": null,
+      "z_offset": 45.0,
+      "final_z": 38.95,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Spire",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_mother_head_silhouette",
+      "yaw": 0,
+      "scale": [
+        3.5,
+        2.2,
+        2.0
+      ]
+    },
+    {
+      "id": "FM_Ridge_Fabric_02",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        1200,
+        5500
+      ],
+      "raycast_z": null,
+      "z_offset": 30.0,
+      "final_z": 24.82,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchesA",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_terrain_fabric_ridge",
+      "yaw": 18,
+      "scale": [
+        4.2,
+        2.8,
+        1.15
+      ]
+    },
+    {
+      "id": "FM_Hair_Cascade_03",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        -900,
+        6200
+      ],
+      "raycast_z": null,
+      "z_offset": 80.0,
+      "final_z": 62.07,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_EscherWaterfall",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_cascade_hair_ribbon",
+      "yaw": -22,
+      "scale": [
+        1.6,
+        4.5,
+        1.0
+      ]
+    },
+    {
+      "id": "FM_Ridge_Fabric_04",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        -2600,
+        1800
+      ],
+      "raycast_z": null,
+      "z_offset": 25.0,
+      "final_z": 22.98,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_terrain_fabric_ridge",
+      "yaw": 35,
+      "scale": [
+        0.95,
+        0.95,
+        0.75
+      ]
+    },
+    {
+      "id": "FM_Valley_Shoulder_05",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        0,
+        -800
+      ],
+      "raycast_z": null,
+      "z_offset": -60.0,
+      "final_z": -45.49,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Merged",
+      "builder": "MEL_valley_depression",
+      "yaw": -8,
+      "scale": [
+        5.2,
+        5.2,
+        0.32
+      ]
+    },
+    {
+      "id": "FM_Valley_Torso_06",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        400,
+        -4200
+      ],
+      "raycast_z": null,
+      "z_offset": -85.0,
+      "final_z": -92.29,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Cluster",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Merged",
+      "builder": "MEL_valley_depression",
+      "yaw": 12,
+      "scale": [
+        5.8,
+        4.2,
+        0.28
+      ]
+    },
+    {
+      "id": "FM_Haze_Limbs_07",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        0,
+        -7800
+      ],
+      "raycast_z": null,
+      "z_offset": 180.0,
+      "final_z": 167.96,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Tower",
+      "material": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayMoonChiffon",
+      "data_layer": "DL_FarawayMother_Haze",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_moon_haze_volume",
+      "yaw": 45,
+      "scale": [
+        2.8,
+        2.8,
+        1.6
+      ]
+    }
+  ],
+  "z_log": [
+    {
+      "id": "FM_Ridge_HeadSilhouette_01",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        0,
+        9000
+      ],
+      "raycast_z": null,
+      "z_offset": 45.0,
+      "final_z": 38.95,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Spire",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_mother_head_silhouette",
+      "yaw": 0,
+      "scale": [
+        3.5,
+        2.2,
+        2.0
+      ]
+    },
+    {
+      "id": "FM_Ridge_Fabric_02",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        1200,
+        5500
+      ],
+      "raycast_z": null,
+      "z_offset": 30.0,
+      "final_z": 24.82,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchesA",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_terrain_fabric_ridge",
+      "yaw": 18,
+      "scale": [
+        4.2,
+        2.8,
+        1.15
+      ]
+    },
+    {
+      "id": "FM_Hair_Cascade_03",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        -900,
+        6200
+      ],
+      "raycast_z": null,
+      "z_offset": 80.0,
+      "final_z": 62.07,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_EscherWaterfall",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_cascade_hair_ribbon",
+      "yaw": -22,
+      "scale": [
+        1.6,
+        4.5,
+        1.0
+      ]
+    },
+    {
+      "id": "FM_Ridge_Fabric_04",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        -2600,
+        1800
+      ],
+      "raycast_z": null,
+      "z_offset": 25.0,
+      "final_z": 22.98,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Atlantis/SM_ATL_Palace_ArchA",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_terrain_fabric_ridge",
+      "yaw": 35,
+      "scale": [
+        0.95,
+        0.95,
+        0.75
+      ]
+    },
+    {
+      "id": "FM_Valley_Shoulder_05",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        0,
+        -800
+      ],
+      "raycast_z": null,
+      "z_offset": -60.0,
+      "final_z": -45.49,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_ReefCluster",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Merged",
+      "builder": "MEL_valley_depression",
+      "yaw": -8,
+      "scale": [
+        5.2,
+        5.2,
+        0.32
+      ]
+    },
+    {
+      "id": "FM_Valley_Torso_06",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        400,
+        -4200
+      ],
+      "raycast_z": null,
+      "z_offset": -85.0,
+      "final_z": -92.29,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Cluster",
+      "material": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset",
+      "data_layer": "DL_FarawayMother_Fabric",
+      "hlod_layer": "HLOD_FarawayMother_Merged",
+      "builder": "MEL_valley_depression",
+      "yaw": 12,
+      "scale": [
+        5.8,
+        4.2,
+        0.28
+      ]
+    },
+    {
+      "id": "FM_Haze_Limbs_07",
+      "status": "placed_fallback_manifest_z",
+      "xy": [
+        0,
+        -7800
+      ],
+      "raycast_z": null,
+      "z_offset": 180.0,
+      "final_z": 167.96,
+      "hit": false,
+      "detail": "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'|fallback_manifest_final_z",
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_Tower",
+      "material": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_FarawayMoonChiffon",
+      "data_layer": "DL_FarawayMother_Haze",
+      "hlod_layer": "HLOD_FarawayMother_Instanced",
+      "builder": "MEL_moon_haze_volume",
+      "yaw": 45,
+      "scale": [
+        2.8,
+        2.8,
+        1.6
+      ]
+    }
+  ],
+  "verify": {
+    "lvl_exists": true,
+    "ground_present": true,
+    "player_present": true,
+    "placed_ids_present": [
+      "FM_Ridge_HeadSilhouette_01",
+      "FM_Ridge_Fabric_02",
+      "FM_Hair_Cascade_03",
+      "FM_Ridge_Fabric_04",
+      "FM_Valley_Shoulder_05",
+      "FM_Valley_Torso_06",
+      "FM_Haze_Limbs_07"
+    ],
+    "placed_ids_missing": [],
+    "z_reread": {
+      "FM_Ridge_HeadSilhouette_01": 38.95,
+      "FM_Ridge_Fabric_02": 24.82,
+      "FM_Hair_Cascade_03": 62.07,
+      "FM_Ridge_Fabric_04": 22.98,
+      "FM_Valley_Shoulder_05": -45.49,
+      "FM_Valley_Torso_06": -92.29,
+      "FM_Haze_Limbs_07": 167.96
+    },
+    "actor_count": 10,
+    "ground_probe": [
+      null,
+      false,
+      "miss|single_q1:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery';single_q2:SystemLibrary: Failed to convert parameter 'trace_channel' when calling function 'KismetSystemLibrary.LineTraceSingle' on 'Default__KismetSystemLibrary'\n  TypeError: NativizeProperty: Cannot nativize 'DrawDebugTrace' as 'TraceChannel' (ByteProperty)\n    TypeError: NativizeEnumEntry: Cannot nativize 'DrawDebugTrace' as 'TraceTypeQuery'"
+    ]
+  },
+  "pcg_world_actor": "absent \u2014 note for assembly pass",
+  "ok": true,
+  "notes": [
+    "No Landscape created",
+    "Raycast Visibility 50000\u2192-50000; fallback to manifest final_z if miss (logged)",
+    "Non-greybox meshes from faraway_mother_height_aware_pcg.json"
+  ]
+}
