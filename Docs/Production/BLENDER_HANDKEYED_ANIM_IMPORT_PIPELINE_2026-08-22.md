@@ -1,5 +1,27 @@
 # Blender Hand-Keyed Animation Import Pipeline — BS_GodFile (canonical)
 
+## 2026-09-21 canonical presentation gate
+
+All bow retarget manifests declare `presentation_profile=melusina_bow_v1` and
+pass `Tools/animation_import_pipeline/pipeline.py presentation-gate`; guarded
+promotion rejects the manifest unless its UE report embeds that passing gate.
+The authority is
+`specs/anim_presets/melusina_retarget_presentation_contract.json`.
+
+The gate preserves the verified V2 body, R2 skirt, `ABP_Melusina_Current`,
+`DefaultSlot`, `hand_l` bow attachment, 0.9 scale, and draw-beat world rotation
+`(pitch=0, yaw=90, roll=0)`. It rejects the measured hiked-shoulder failure
+signature—static `c_shoulder_l/r` controller tracks combined with animated
+`shoulder_l/r` deform tracks—unless a normalization was applied and visually
+reviewed. It also rejects zero-duration montages and unsupported continuous
+harp-to-bow morph claims.
+
+The 55% shoulder slerp in
+`A_Melusina_BowAttackV2_PortfolioShoulders` remains a capture-only reference.
+It is deliberately not applied to every retargeted clip: production promotion
+requires a fresh UE probe and visual approval so intentional shoulder acting
+is never flattened by a global repair.
+
 **Established:** 2026-08-22, from live evidence (see `Docs/Evidence/2026-08-22_melusina_idle_glide/`)
 **Applies to:** owner hand-keyed clips authored on `character_rig` in the Melodia stage blends
 (v16+), NLA track per clip (e.g. `idle_animation`).

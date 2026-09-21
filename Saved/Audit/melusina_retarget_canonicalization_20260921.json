@@ -1,0 +1,32 @@
+{
+  "schema": "melodia.melusina_retarget_canonicalization.v1",
+  "date": "2026-09-21",
+  "decision": {
+    "source": "jev-live",
+    "choice": "CONTRACT_AND_FAIL_CLOSED_GATE",
+    "confidence": 1.0,
+    "probabilities": {
+      "AUTO_APPLY_55_PERCENT_SHOULDER_SLERP": 0.0,
+      "CONTRACT_AND_FAIL_CLOSED_GATE": 1.0,
+      "DOCS_ONLY": 0.0
+    }
+  },
+  "canonical_contract": "specs/anim_presets/melusina_retarget_presentation_contract.json",
+  "gate": "Tools/animation_import_pipeline/presentation_gate.py",
+  "cli": "python Tools/animation_import_pipeline/pipeline.py presentation-gate --probe Saved/Audit/<clip>_presentation_probe.json",
+  "policy": {
+    "bow_manifest_profile": "melusina_bow_v1",
+    "promotion_requires_embedded_passing_gate": true,
+    "capture_shoulder_slerp_is_global_mutation": false,
+    "continuous_harp_bow_morph_proven": false
+  },
+  "verification": {
+    "presentation_gate_tests": "6 passed",
+    "jev_bow_conductor_tests": "26 passed",
+    "reference_gate_ok": true,
+    "reference_gate_promotion_allowed": false,
+    "json_parse": "passed",
+    "diff_check": "passed"
+  },
+  "broader_suite_note": "Tools/test_melusina_animation_library.py remains 16/19 in this clean worktree: one absent owner-normalized FBX and two absent rollback-marker-directory failures. These are outside the presentation-gate change and were not promoted to passing claims."
+}

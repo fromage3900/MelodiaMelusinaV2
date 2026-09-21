@@ -45,6 +45,7 @@ Source FBX ──► Pre-flight ──► Import onto ──► Batch retarget �
 | `Content/Python/mual_headless_blendspace_promotion.py` | Explicit fallback when the interactive editor owns the package but Monolith is temporarily unavailable; snapshots, replaces one verified speed-zero sample, saves, and verifies in UE | `Content/Python/` |
 | `pie_smoke.py` | Existing MelodiaIntegrationMap PIE evidence producer | `Tools/animation_import_pipeline/` |
 | `foot_contact_audit.py` | Read-only Monolith foot-plant/contact evidence audit; optional sidecar update | `Tools/animation_import_pipeline/` |
+| `presentation_gate.py` | Fail-closed shoulder, montage-duration, V2/R2 identity, bow orientation, and harp/bow proof-boundary gate | `Tools/animation_import_pipeline/` |
 | `Tools/export_melusina_animation_source.py` | ARP operator bake, approved bone-map normalization, helper filtering, 30 FPS/cm animation-only FBX export without saving the stage | `Tools/` |
 | `Tools/probe_melusina_stage_actions.py` | Read-only action/NLA inventory used to distinguish authored locomotion from the solved ARP idle | `Tools/` |
 
@@ -145,9 +146,18 @@ python Tools/animation_import_pipeline/pipeline.py live-promotion \
 
 # 9. Verify the working system; do not bypass the guarded promoter with a
 #    direct live-skeleton or generic injector write.
+python Tools/animation_import_pipeline/pipeline.py presentation-gate --probe Saved/Audit/<clip>_presentation_probe.json
 python Tools/anim_diagnostic.py
 python Content/Python/audit_melusina_integration.py
 ```
+
+Bow clips declare `"presentation_profile": "melusina_bow_v1"` in their v2
+manifest and must embed the successful gate report as
+`ue_report.presentation_gate` before production promotion. The contract is
+`specs/anim_presets/melusina_retarget_presentation_contract.json`. It rejects
+the known hiked-shoulder signature, zero-duration montages, the old backwards
+bow orientation, and any continuous-morph claim. The proven 55% shoulder
+slerp is a capture reference, not an automatic mutation recipe.
 
 ## Legacy v1 Sidecar Compatibility
 

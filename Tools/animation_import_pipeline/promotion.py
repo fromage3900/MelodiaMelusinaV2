@@ -68,6 +68,13 @@ def build_plan(
         blockers.append("rollback backup marker directory is missing")
     if manifest.get("root_motion") not in {"in_place", "root"}:
         errors.append("root-motion policy is missing")
+    presentation_profile = manifest.get("presentation_profile")
+    if presentation_profile:
+        if presentation_profile != "melusina_bow_v1":
+            errors.append("unsupported presentation profile")
+        presentation_gate = ue_report.get("presentation_gate") or {}
+        if presentation_gate.get("profile") != presentation_profile or presentation_gate.get("ok") is not True:
+            blockers.append("canonical Melusina bow presentation gate has not passed")
     if contact.get("status") != "passed":
         blockers.append("foot/contact marker audit has not passed")
     if contact.get("status") == "passed" and audited_consumer and audited_consumer != consumer:
@@ -78,6 +85,7 @@ def build_plan(
         "consumer": consumer,
         "manifest_clip_id": manifest.get("clip_id"),
         "contact_audit_consumer": audited_consumer,
+        "presentation_profile": presentation_profile or None,
         "errors": errors,
         "blockers": blockers,
         "promotion_allowed": False,

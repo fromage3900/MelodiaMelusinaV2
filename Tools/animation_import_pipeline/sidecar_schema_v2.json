@@ -37,6 +37,7 @@
     "notify_contract": {"type": "array"},
     "promotion_target": {"type": "string"},
     "promotion_targets": {"type": "array", "items": {"type": "string"}},
+    "presentation_profile": {"enum": ["melusina_bow_v1"]},
     "speed_evidence": {
       "type": "object",
       "properties": {

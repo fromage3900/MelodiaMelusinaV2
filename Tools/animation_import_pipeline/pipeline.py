@@ -213,6 +213,18 @@ def cmd_contact_audit(args: argparse.Namespace) -> int:
     return contact_audit_main(forwarded)
 
 
+def cmd_presentation_gate(args: argparse.Namespace) -> int:
+    from presentation_gate import main as presentation_gate_main
+    forwarded: list[str] = []
+    if args.probe:
+        forwarded.extend(["--probe", str(args.probe)])
+    if args.contract:
+        forwarded.extend(["--contract", str(args.contract)])
+    if args.output:
+        forwarded.extend(["--output", str(args.output)])
+    return presentation_gate_main(forwarded)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", type=Path, default=PROJECT_ROOT)
@@ -287,6 +299,11 @@ def main(argv: list[str] | None = None) -> int:
     contact_parser.add_argument("--apply", action="store_true")
     contact_parser.add_argument("--output", type=Path)
     contact_parser.set_defaults(func=cmd_contact_audit)
+    presentation_parser = sub.add_parser("presentation-gate")
+    presentation_parser.add_argument("--probe", type=Path)
+    presentation_parser.add_argument("--contract", type=Path)
+    presentation_parser.add_argument("--output", type=Path)
+    presentation_parser.set_defaults(func=cmd_presentation_gate)
     args = parser.parse_args(argv)
     return args.func(args)
 
