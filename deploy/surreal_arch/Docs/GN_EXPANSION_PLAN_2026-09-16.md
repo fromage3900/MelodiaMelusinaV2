@@ -7,6 +7,13 @@ install synced — **gate 6/6 PASS, census PASS**. Evidence:
 `Saved/Audit/gate_2026-09-16_final.log`, `Saved/Audit/census_2026-09-16_final.json`,
 `Saved/Audit/SESSION_CLOSEOUT_2026-09-16.md`. The §1 text below is the as-found record.
 
+**Correction (2026-09-20):** The "gate 6/6 PASS" claim was true on 09-16 but the gate
+regressed to 5/6 on 09-20 due to `GN_PARIS_WallDetail` hitting 5.2's `MeshToPoints`
+socket drift (`'Domain' in mtp.inputs` → KeyError). Fixed in
+`deploy/surreal_arch/melodia_gn/paris_wall_detail.py:441` (`.get()` guard). Gate
+re-run after sync: **6/6 PASS** (`Saved/Audit/gate_addon_20260920c.txt`). Registry
+count is now 593 (not 589).
+
 **Supersedes:** [`GN_EXPANSION_PLAN_2026-08-17.md`](GN_EXPANSION_PLAN_2026-08-17.md) (keep both as history).
 **Regime:** under the 2026-09-11 semester freeze — tag `melodia-studio-freeze-2026-09-11`;
 gate `Tools/verify_addon.py`; baseline `Tools/registry_baseline.json`.
