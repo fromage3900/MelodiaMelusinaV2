@@ -38,7 +38,7 @@ for SIL in $SILS; do
     find Saved/Audit -maxdepth 1 -name 'sky_*.png' -newer "$MK" -exec mv {} "$RAWD"/ \;
     rm -f "$MK"
   done
-  if python Tools/brooch_website/variant_convert.py "$RAWD" "Saved/Website/Brooch/stills_variants" "sil_${SIL}" >> "$LOG" 2>&1; then
+  if python Tools/brooch_website/variant_convert.py "$RAWD" "Website/Brooch/stills_variants" "sil_${SIL}" >> "$LOG" 2>&1; then
     say "convert $SIL OK"
   else
     say "convert $SIL FAIL"

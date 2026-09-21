@@ -9,7 +9,7 @@ from PIL import Image
 SRC = sys.argv[sys.argv.index("--src") + 1] if "--src" in sys.argv else (
     sys.argv[1] if len(sys.argv) > 1 else r"P:/MelodiaMelusinaV2-Laptop/Saved/Audit")
 DST = sys.argv[sys.argv.index("--dst") + 1] if "--dst" in sys.argv else (
-    sys.argv[2] if len(sys.argv) > 2 else r"P:/MelodiaMelusinaV2-Laptop/Saved/Website/Brooch/stills_variants")
+    sys.argv[2] if len(sys.argv) > 2 else r"P:/MelodiaMelusinaV2-Laptop/Website/Brooch/stills_variants")
 PREFIX = sys.argv[sys.argv.index("--prefix") + 1] if "--prefix" in sys.argv else (
     sys.argv[3] if len(sys.argv) > 3 else "sil")
 
