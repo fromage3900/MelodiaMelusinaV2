@@ -1,0 +1,980 @@
+{
+  "format": "surreal_arch_world_v1",
+  "schema_version": 1,
+  "coordinate_system": "blender_z_up",
+  "style": "CASTLE",
+  "plan": "SurrealPlan_Castle",
+  "world_root": "WorldRoot_Castle_ProofB",
+  "compose_mode": "COLLECTION",
+  "instance_count": 15,
+  "instances": [
+    {
+      "role": "gate",
+      "lib": "_lib_GATE",
+      "object": "inst_gate_01",
+      "plan_face": 1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_ContactRimHero",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_classic_arch_13"
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "object": "inst_tower_nw",
+      "plan_face": 0,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -6.0,
+          -6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05"
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "object": "inst_tower_ne",
+      "plan_face": 0,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          6.0,
+          -6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05"
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "object": "inst_tower_se",
+      "plan_face": 0,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          6.0,
+          6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05"
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "object": "inst_tower_sw",
+      "plan_face": 0,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -6.0,
+          6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05"
+    },
+    {
+      "role": "large",
+      "lib": "_lib_KEEP",
+      "object": "inst_keep_01",
+      "plan_face": 2,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_A"
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "object": "inst_wall_n",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3"
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "object": "inst_wall_e",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3"
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "object": "inst_wall_s",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -6.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3"
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "object": "inst_wall_w",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -6.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3"
+    },
+    {
+      "role": "monument",
+      "lib": "_lib_BANNER",
+      "object": "inst_banner_01",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          2.0,
+          -5.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pillar_03"
+    },
+    {
+      "role": "medium",
+      "lib": "_lib_BAILEY",
+      "object": "inst_bailey_hut_01",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -3.0,
+          2.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_B"
+    },
+    {
+      "role": "medium",
+      "lib": "_lib_BAILEY",
+      "object": "inst_bailey_hut_02",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          3.0,
+          2.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_B"
+    },
+    {
+      "role": "small",
+      "lib": "_lib_PROP",
+      "object": "inst_crate_01",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -1.0,
+          -4.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Cube_1m"
+    },
+    {
+      "role": "small",
+      "lib": "_lib_PROP",
+      "object": "inst_crate_02",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          -4.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Cube_1m"
+    }
+  ],
+  "hism_groups": [
+    {
+      "role": "gate",
+      "lib": "_lib_GATE",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_ContactRimHero",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_classic_arch_13",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            -6.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05",
+      "instance_count": 4,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -6.0,
+            -6.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            6.0,
+            -6.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            6.0,
+            6.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -6.0,
+            6.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "large",
+      "lib": "_lib_KEEP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_A",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3",
+      "instance_count": 4,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            6.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            -6.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -6.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "monument",
+      "lib": "_lib_BANNER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pillar_03",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            2.0,
+            -5.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "medium",
+      "lib": "_lib_BAILEY",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_B",
+      "instance_count": 2,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -3.0,
+            2.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            3.0,
+            2.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "small",
+      "lib": "_lib_PROP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Cube_1m",
+      "instance_count": 2,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            -4.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            -4.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    }
+  ],
+  "collections": [
+    "SurrealWorld_Castle"
+  ]
+}

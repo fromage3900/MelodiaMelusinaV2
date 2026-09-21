@@ -1,0 +1,205 @@
+{
+  "schema": "melodia.hero_corners_plan.v1",
+  "generated_at": "2026-09-20T03:00:14.001398+00:00",
+  "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+  "shot_audit": {
+    "keep_direction": [
+      "earlier mid-morning oblique/south composition",
+      "Nikki rim beginning to read on oblique"
+    ],
+    "blockers": [
+      "Flower mid-distance wash to grey/white \u2014 GhostLotus/color read still weak",
+      "Magenta blotches read as shader errors not band color",
+      "Walk POV still sells ground more than chorus",
+      "Hybrid Nikki \u2260 full Universal toon beauty yet"
+    ],
+    "material_status": "M_MelodiaPlant_Wind_NikkiToon + Rim/Sparkle/Pearl GREEN (Material Artist verified)"
+  },
+  "corners": [
+    {
+      "id": "MeadowChorus",
+      "title": "Meadow Chorus",
+      "band_hint": "full ROYGBIV rainbow field",
+      "dress_notes": "Keep as hero chorus; dress path into frame; kill magenta rock blotches in FOV",
+      "pcg": {
+        "ok": true,
+        "label": "WC_morning_rainbow_bloom_Field",
+        "reused": true,
+        "graph": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_PointField"
+      },
+      "cam": {
+        "ok": true,
+        "label": "WC_HeroCorner_MeadowChorus_Cam",
+        "loc": [
+          -3197.7891296870193,
+          742.0292591384089,
+          585.8552380996416
+        ],
+        "yaw": 37.87498474121096,
+        "pitch": -20.222000122070316,
+        "fov": 58.0
+      }
+    },
+    {
+      "id": "WestRim",
+      "title": "West Rim",
+      "band_hint": "Red/Violet heavy (rim silhouette)",
+      "dress_notes": "Silhouette against sky; add 2\u20133 rocks + mist; sparse flowers",
+      "graph": {
+        "path": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_WestRim",
+        "created": true,
+        "source": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_PointField",
+        "exists": true
+      },
+      "pcg": {
+        "ok": true,
+        "label": "WC_HeroCorner_WestRim_PCG",
+        "loc": [
+          -3200.0,
+          1880.0,
+          1285.5474603176117
+        ],
+        "scale": [
+          4.0,
+          4.0,
+          3.0
+        ],
+        "ground": "BrushifyIsland_09",
+        "graph": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_WestRim",
+        "assigned": true,
+        "generate": true
+      },
+      "cam": {
+        "ok": true,
+        "label": "WC_HeroCorner_WestRim_Cam",
+        "loc": [
+          -2550.0,
+          1480.0,
+          2515.5119824409485
+        ],
+        "yaw": 148.3925018310547,
+        "pitch": -55.963554382324205,
+        "fov": 55.0
+      }
+    },
+    {
+      "id": "EastBank",
+      "title": "East Bank",
+      "band_hint": "Gold/Green walk-adjacent",
+      "dress_notes": "Connect to EscherWalk spur_westbank; PortfolioDress already nearby",
+      "graph": {
+        "path": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_EastBank",
+        "created": true,
+        "source": "/Game/EnvSandbox/PCG/Universal/PCG_MeadowBloom",
+        "exists": true
+      },
+      "pcg": {
+        "ok": true,
+        "label": "WC_HeroCorner_EastBank_PCG",
+        "loc": [
+          -1450.0,
+          1520.0,
+          2585.4988741874695
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          2.8
+        ],
+        "ground": "WC_PortfolioDress_12_S_Overgrowth_01",
+        "graph": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_EastBank",
+        "assigned": true,
+        "generate": true
+      },
+      "cam": {
+        "ok": true,
+        "label": "WC_HeroCorner_EastBank_Cam",
+        "loc": [
+          -1950.0,
+          2070.0,
+          2905.4988741874695
+        ],
+        "yaw": -47.726310729980455,
+        "pitch": -16.487491607666005,
+        "fov": 60.0
+      }
+    },
+    {
+      "id": "NorthDress",
+      "title": "North Dressing",
+      "band_hint": "Memory dressing / cooler indigo",
+      "dress_notes": "Reuse Morning_Dressing PCG mood; stage props along approach from landing",
+      "graph": {
+        "path": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_NorthDress",
+        "created": true,
+        "source": "/Game/Melodia/PCG/PCG_Morning_MemoryDressing",
+        "exists": true
+      },
+      "pcg": {
+        "ok": true,
+        "label": "WC_HeroCorner_NorthDress_PCG",
+        "loc": [
+          900.0,
+          2300.0,
+          959.6878039836884
+        ],
+        "scale": [
+          5.0,
+          5.0,
+          3.5
+        ],
+        "ground": "Houdini_RainbowBloom_3900",
+        "graph": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_NorthDress",
+        "assigned": true,
+        "generate": true
+      },
+      "cam": {
+        "ok": true,
+        "label": "WC_HeroCorner_NorthDress_Cam",
+        "loc": [
+          100.0,
+          1700.0,
+          1409.6878039836884
+        ],
+        "yaw": 36.86989593505861,
+        "pitch": -19.29004669189454,
+        "fov": 52.0
+      }
+    }
+  ],
+  "shots": [
+    {
+      "id": "MeadowChorus",
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_MeadowChorus_2026-09-20.png",
+      "bytes": 2933610
+    },
+    {
+      "id": "WestRim",
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_WestRim_2026-09-20.png",
+      "bytes": 2387227
+    },
+    {
+      "id": "EastBank",
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_EastBank_2026-09-20.png",
+      "bytes": 2842296
+    },
+    {
+      "id": "NorthDress",
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_NorthDress_2026-09-20.png",
+      "bytes": 2026043
+    }
+  ],
+  "collaboration": {
+    "you_dress": "Meshes / props / path dressing per corner dress_notes; tell me when a corner is ready to recapture",
+    "i_own": "PCG volumes/graphs, hero cams, UDS soft stills, captures, material dials with Material Artist",
+    "do_not": "More random cams; edit PPV_NikkiDream; SquishWPO on SpeedTree"
+  },
+  "next_steps": [
+    "1. You stage/dress WestRim + EastBank first (clearest new focal volumes)",
+    "2. I recapture those two when you ping ready",
+    "3. Together tighten MeadowChorus color-read (ROYGBIV) with Material Artist if wash persists",
+    "4. NorthDress last \u2014 furthest from meadow cluster, needs most set dressing",
+    "5. Lock final 4 website plates only after each corner has intentional dress"
+  ],
+  "level_saved": true
+}

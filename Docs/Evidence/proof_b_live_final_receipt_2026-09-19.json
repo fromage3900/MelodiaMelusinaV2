@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-09-19T18:58:20.745596+00:00",
+  "generated_by": "proof_b_live_final_receipt",
+  "ok": true,
+  "live_ue_apply": "success",
+  "castle_instances_applied": 15,
+  "zen_instances_applied": 8,
+  "total_actors": 23,
+  "import_results": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\proof_b_live_import_results.json",
+  "notes": [
+    "Live apply via import_world_manifest spawned StaticMeshActors for all castle+zen instances.",
+    "ROLE_UE_HINTS present on fixtures and offline-validated; importer does not assign materials yet.",
+    "True HISM component spawn from hism_groups remains a follow-up.",
+    "Patched import_world_manifest.py to soft-skip jsonschema when UE Python lacks it."
+  ],
+  "sample_actors": [
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_gate_01",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015635075",
+      "role": "gate",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_classic_arch_13",
+      "location_cm": [
+        0.0,
+        -600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_tower_nw",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015660076",
+      "role": "corner_tower",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05",
+      "location_cm": [
+        -600.0,
+        -600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_tower_ne",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015672077",
+      "role": "corner_tower",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05",
+      "location_cm": [
+        600.0,
+        -600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_tower_se",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015688078",
+      "role": "corner_tower",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05",
+      "location_cm": [
+        600.0,
+        600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_tower_sw",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015698079",
+      "role": "corner_tower",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05",
+      "location_cm": [
+        -600.0,
+        600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_keep_01",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015714080",
+      "role": "large",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_A",
+      "location_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_wall_n",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015838081",
+      "role": "wall",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3",
+      "location_cm": [
+        0.0,
+        600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_wall_e",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015853082",
+      "role": "wall",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3",
+      "location_cm": [
+        600.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_wall_s",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015866083",
+      "role": "wall",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3",
+      "location_cm": [
+        0.0,
+        -600.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_wall_w",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015876084",
+      "role": "wall",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3",
+      "location_cm": [
+        -600.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_banner_01",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015889085",
+      "role": "monument",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pillar_03",
+      "location_cm": [
+        200.0,
+        -500.0,
+        0.0
+      ]
+    },
+    {
+      "manifest": "SurrealPlan_Castle_ProofB.world.json",
+      "object": "inst_bailey_hut_01",
+      "actor": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CAC390303_2015904086",
+      "role": "medium",
+      "mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_B",
+      "location_cm": [
+        -300.0,
+        200.0,
+        0.0
+      ]
+    }
+  ]
+}

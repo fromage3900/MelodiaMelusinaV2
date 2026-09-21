@@ -1,0 +1,165 @@
+{
+  "schema": "melodia.hero_corners_pcg_integration.v1",
+  "generated_at": "2026-09-20T03:04:07.917599+00:00",
+  "integrate": {
+    "WestRim": {
+      "ok": true,
+      "dest": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_WestRim",
+      "source": "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_MandalaBloom",
+      "why": "PCGEx CreateShapes/Circle; silhouette-friendly; not PointField DT-dependent",
+      "volume": "WC_HeroCorner_WestRim_PCG",
+      "runtime": {
+        "assigned": true,
+        "generate": true,
+        "graph": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_WestRim"
+      }
+    },
+    "EastBank": {
+      "ok": true,
+      "dest": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_EastBank",
+      "source": "/Game/EnvSandbox/PCG/Universal/PCG_MeadowBloom",
+      "why": "Surface sampler + density + prune \u2014 Gold/Green meadow without DT",
+      "volume": "WC_HeroCorner_EastBank_PCG",
+      "runtime": {
+        "assigned": true,
+        "generate": true,
+        "graph": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_EastBank"
+      }
+    },
+    "NorthDress": {
+      "ok": true,
+      "dest": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_NorthDress",
+      "source": "/Game/EnvSandbox/PCG/Universal/PCG_OrnamentalDetail",
+      "why": "Rich dress scatter; replaces thin 3-node MemoryDressing clone",
+      "volume": "WC_HeroCorner_NorthDress_PCG",
+      "runtime": {
+        "assigned": true,
+        "generate": true,
+        "graph": "/Game/Melodia/WorldCompiler/HeroCorners/PCG_HeroCorner_NorthDress"
+      }
+    },
+    "MeadowChorus": {
+      "kept": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_PointField",
+      "why": "KEEP \u2014 rainbow DT authority; do not replace with PCGex",
+      "volume": "WC_morning_rainbow_bloom_Field",
+      "runtime": {
+        "kept_pointfield": true
+      }
+    }
+  },
+  "companions": {
+    "WestRim": {
+      "assigned": true,
+      "generate": true,
+      "graph": "/Game/EnvSandbox/PCG/Universal/PCG_RockScatter",
+      "ok": true,
+      "label": "WC_HeroCorner_WestRim_PCG_Companion"
+    },
+    "EastBank": {
+      "assigned": true,
+      "generate": true,
+      "graph": "/Game/EnvSandbox/PCG/Universal/PCG_PathScatter",
+      "ok": true,
+      "label": "WC_HeroCorner_EastBank_PCG_Companion"
+    },
+    "NorthDress": {
+      "assigned": true,
+      "generate": true,
+      "graph": "/Game/EnvSandbox/PCG/Universal/PCG_Universal_RockScatter",
+      "ok": true,
+      "label": "WC_HeroCorner_NorthDress_PCG_Companion"
+    }
+  },
+  "cams": {
+    "MeadowChorus": {
+      "ok": true,
+      "label": "WC_HeroCorner_MeadowChorus_Cam",
+      "loc": [
+        -3697.7891296870193,
+        342.02925913840886,
+        785.8552380996416
+      ],
+      "yaw": 38.157226562500014,
+      "pitch": -19.771472930908207,
+      "fov": 52.0
+    },
+    "WestRim": {
+      "ok": true,
+      "label": "WC_HeroCorner_WestRim_Cam",
+      "loc": [
+        -2500.0,
+        1430.0,
+        1685.5474603176117
+      ],
+      "yaw": 147.2647705078125,
+      "pitch": -18.596612930297855,
+      "fov": 55
+    },
+    "EastBank": {
+      "ok": true,
+      "label": "WC_HeroCorner_EastBank_Cam",
+      "loc": [
+        -2000.0,
+        2120.0,
+        2925.4988741874695
+      ],
+      "yaw": -47.489551544189446,
+      "pitch": -15.125052452087397,
+      "fov": 58
+    },
+    "NorthDress": {
+      "ok": true,
+      "label": "WC_HeroCorner_NorthDress_Cam",
+      "loc": [
+        0.0,
+        1650.0,
+        1439.6878039836884
+      ],
+      "yaw": 35.83765411376953,
+      "pitch": -17.96641159057618,
+      "fov": 52
+    }
+  },
+  "shots": [
+    {
+      "id": "MeadowChorus",
+      "bytes": 3331261,
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_MeadowChorus_pcgint_2026-09-20.png"
+    },
+    {
+      "id": "WestRim",
+      "bytes": 2013990,
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_WestRim_pcgint_2026-09-20.png"
+    },
+    {
+      "id": "EastBank",
+      "bytes": 2882337,
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_EastBank_pcgint_2026-09-20.png"
+    },
+    {
+      "id": "NorthDress",
+      "bytes": 2518631,
+      "file": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Portfolio\\Hero\\MelusinaMorning\\HeroCorners\\hero_corner_NorthDress_pcgint_2026-09-20.png"
+    }
+  ],
+  "beauty_hidden": 22,
+  "level_saved": true,
+  "use": {
+    "MeadowChorus": "KEEP PointField (rainbow DT). No PCGex replace.",
+    "WestRim": "PCG_Nikki_MandalaBloom (PCGEx shapes) + RockScatter companion",
+    "EastBank": "PCG_MeadowBloom + PathScatter companion",
+    "NorthDress": "PCG_OrnamentalDetail + Universal_RockScatter companion"
+  },
+  "skip_for_morning_meadow": [
+    "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ArpeggioBridge",
+    "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_XylophoneTrail",
+    "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_ResonanceCathedral",
+    "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_CrystalHarpGrove"
+  ],
+  "also_good_later": [
+    "/Game/EnvSandbox/PCG/Styles/Sakura/PCG_Nikki_PhyllotaxisGarden_Walkable",
+    "/Game/EnvSandbox/PCG/Universal/PCG_MeadowFalloff",
+    "/Game/EnvSandbox/PCG/Universal/PCG_WaterEdgeScatter",
+    "/Game/EnvSandbox/PCG/Musical/Hero/PCG_Hero_BellTreeGarden"
+  ]
+}

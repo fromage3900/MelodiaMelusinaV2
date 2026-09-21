@@ -39,7 +39,7 @@ DEST = "/Game/Melodia/DataStuctures"
 
 TABLES = {
     "DT_MelodySlime_Enemies": {
-        "row_struct": "FMelodiaSlimeEnemyRow",
+        "row_struct": "MelodiaSlimeEnemyRow",
         "identity_field": "enemy_id",
         "fields": {
             "enemy_id": "string",
@@ -54,7 +54,7 @@ TABLES = {
         "expected_count": 48,
     },
     "DT_MelodySlime_Skills": {
-        "row_struct": "FMelodiaSlimeSkillRow",
+        "row_struct": "MelodiaSlimeSkillRow",
         "identity_field": "skill_id",
         "fields": {
             "skill_id": "string",
@@ -67,10 +67,10 @@ TABLES = {
             "note_pitches": "int_array",
             "note_durations": "float_array",
         },
-        "expected_count": 24,
+        "expected_count": 31,
     },
     "DT_MelodySlime_RoomMods": {
-        "row_struct": "FMelodiaSlimeRoomModRow",
+        "row_struct": "MelodiaSlimeRoomModRow",
         "identity_field": "blessing_id",
         "fields": {
             "blessing_id": "string",

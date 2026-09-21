@@ -1,0 +1,551 @@
+{
+  "format": "surreal_arch_world_v1",
+  "schema_version": 1,
+  "coordinate_system": "blender_z_up",
+  "style": "ZEN_SHRINE",
+  "plan": "SurrealPlan_ZenTemple",
+  "world_root": "WorldRoot_ZenShrine_ProofB",
+  "compose_mode": "COLLECTION",
+  "instance_count": 8,
+  "instances": [
+    {
+      "role": "gate",
+      "lib": "_lib_TORII",
+      "object": "inst_torii_01",
+      "plan_face": 0,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          -8.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_ToriiVermillion",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Torii"
+    },
+    {
+      "role": "sacred",
+      "lib": "_lib_HONDEN",
+      "object": "inst_honden_01",
+      "plan_face": 1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_TeaHouse"
+    },
+    {
+      "role": "large",
+      "lib": "_lib_KEEP",
+      "object": "inst_moss_mass_01",
+      "plan_face": 1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -3.0,
+          3.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_A"
+    },
+    {
+      "role": "large",
+      "lib": "_lib_KEEP",
+      "object": "inst_moss_mass_02",
+      "plan_face": 1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          3.0,
+          3.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_A"
+    },
+    {
+      "role": "monument",
+      "lib": "_lib_LANTERN",
+      "object": "inst_lantern_01",
+      "plan_face": 1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -2.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_SakuraDrift",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pole"
+    },
+    {
+      "role": "monument",
+      "lib": "_lib_LANTERN",
+      "object": "inst_lantern_02",
+      "plan_face": 1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          2.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_SakuraDrift",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pole"
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "object": "inst_wall_01",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -5.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3"
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "object": "inst_corner_01",
+      "plan_face": -1,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -6.0,
+          -8.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05"
+    }
+  ],
+  "hism_groups": [
+    {
+      "role": "gate",
+      "lib": "_lib_TORII",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_ToriiVermillion",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Torii",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            -8.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "sacred",
+      "lib": "_lib_HONDEN",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_Karesansui",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_TeaHouse",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            2.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "large",
+      "lib": "_lib_KEEP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_MossGarden",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_BuildingBlock_A",
+      "instance_count": 2,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -3.0,
+            3.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            3.0,
+            3.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "monument",
+      "lib": "_lib_LANTERN",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_SakuraDrift",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pole",
+      "instance_count": 2,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -2.0,
+            1.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            2.0,
+            1.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Wall_4x3",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -5.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    },
+    {
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "static_mesh_path": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Column_05",
+      "instance_count": 1,
+      "transforms": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -6.0,
+            -8.0,
+            0.0,
+            1.0
+          ]
+        ]
+      ]
+    }
+  ],
+  "collections": [
+    "SurrealWorld_ZenShrine"
+  ]
+}

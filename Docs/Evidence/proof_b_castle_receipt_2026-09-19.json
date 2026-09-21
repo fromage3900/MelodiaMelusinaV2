@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-09-19T18:52:00.435095+00:00",
+  "generated_by": "build_and_validate_proof_b_castle.py",
+  "ok": true,
+  "project_root": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "manifest": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\proof_b_castle\\SurrealPlan_Castle_ProofB.world.json",
+  "schema_errors": [],
+  "hints_ok": true,
+  "missing_mi": [],
+  "hism_group_count": 7,
+  "instance_count": 15,
+  "style": "CASTLE",
+  "plan": "SurrealPlan_Castle",
+  "role_ue_hints_used": {
+    "large": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+    "medium": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+    "small": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+    "wall": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+    "corner_tower": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+    "gate": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_ContactRimHero",
+    "monument": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff"
+  },
+  "pair_with_zen": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\proof_b_zen_shrine\\SurrealPlan_ZenShrine_ProofB.world.json",
+  "import_dry_plan": [
+    {
+      "object": "inst_gate_01",
+      "role": "gate",
+      "lib": "_lib_GATE",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_ContactRimHero",
+      "location_cm": [
+        0.0,
+        -600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_tower_nw",
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "location_cm": [
+        -600.0,
+        -600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_tower_ne",
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "location_cm": [
+        600.0,
+        -600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_tower_se",
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "location_cm": [
+        600.0,
+        600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_tower_sw",
+      "role": "corner_tower",
+      "lib": "_lib_TOWER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "location_cm": [
+        -600.0,
+        600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_keep_01",
+      "role": "large",
+      "lib": "_lib_KEEP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "location_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_wall_n",
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "location_cm": [
+        0.0,
+        600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_wall_e",
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "location_cm": [
+        600.0,
+        0.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_wall_s",
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "location_cm": [
+        0.0,
+        -600.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_wall_w",
+      "role": "wall",
+      "lib": "_lib_WALL",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_Trimsheet_HeavyWear",
+      "location_cm": [
+        -600.0,
+        0.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_banner_01",
+      "role": "monument",
+      "lib": "_lib_BANNER",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+      "location_cm": [
+        200.0,
+        -500.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_bailey_hut_01",
+      "role": "medium",
+      "lib": "_lib_BAILEY",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "location_cm": [
+        -300.0,
+        200.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_bailey_hut_02",
+      "role": "medium",
+      "lib": "_lib_BAILEY",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "location_cm": [
+        300.0,
+        200.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_crate_01",
+      "role": "small",
+      "lib": "_lib_PROP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "location_cm": [
+        -100.0,
+        -400.0,
+        0.0
+      ],
+      "apply_ready": false
+    },
+    {
+      "object": "inst_crate_02",
+      "role": "small",
+      "lib": "_lib_PROP",
+      "ue_material_hint": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_Default",
+      "location_cm": [
+        100.0,
+        -400.0,
+        0.0
+      ],
+      "apply_ready": false
+    }
+  ],
+  "live_ue_apply": "blocked_editor_not_running",
+  "path_note": "export.py ROLE_UE_HINTS uses Environment/Stylized for Show_* MIs; on-disk Show_Default/ContactRimHero/StoneCliff live under Showcase/. Fixture uses Showcase paths that exist.",
+  "hism_note": "7 HISM groups by (role,lib). Live --apply still needs static_mesh_path + UE editor; true HISM spawn still pending."
+}

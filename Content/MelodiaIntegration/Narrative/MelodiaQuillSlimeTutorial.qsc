@@ -1,0 +1,65 @@
+@ Start
+
+- Melusina
+  A melody slime — and it's keeping time. Stay close, and sing when I sing.
+
+- Sir Melodious
+  Watch its pulse. Strike on the rising wave, and mind the downbeat.
+
+$ Notify melodia:battle:melodia_slime_tutorial
+
+? if: {melodia_battle_result} == victory
+
+  - Melusina
+    The wave broke in our favor. The dream remembers this song.
+
+  $ melodia_slime_tutorial_resolved = on
+  $ Notify melodia:quest:quest.slime_tutorial.first_tide
+  $ Notify melodia:reward:reward.slime_tutorial.tidecall
+
+? else:
+
+  ? if: {melodia_battle_result} == defeat
+
+    - Sir Melodious
+      The tide pulled us under. Breathe, and we shall catch the next wave.
+
+    $ melodia_slime_tutorial_resolved = on
+
+  ? else:
+
+    ? if: {melodia_battle_result} == fled
+
+      - Sir Melodious
+        We stepped back in good time. The slime keeps its rhythm for our return.
+
+      $ melodia_slime_tutorial_resolved = on
+
+    ? else:
+
+      - Sir Melodious
+        The battle could not begin. The dream remains open, waiting for a safer return.
+
+    ? endif
+
+  ? endif
+
+? endif
+
+@ Finish
+
+? if: {melodia_slime_tutorial_resolved} == on
+
+  $ Notify melodia:flag:flag.slime_tutorial.completed:true
+
+  - .
+    The first tide resolves. Melusina wakes with its melody safely remembered.
+
+? else:
+
+  - .
+    The unfinished tide fades, leaving a path back to its first note.
+
+? endif
+
+$ End

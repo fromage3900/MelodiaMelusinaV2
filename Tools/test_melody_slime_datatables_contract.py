@@ -24,7 +24,7 @@ def main() -> int:
         name: len(source["rows"]) for name, source in sources.items()
     } == {
         "DT_MelodySlime_Enemies": 48,
-        "DT_MelodySlime_Skills": 24,
+        "DT_MelodySlime_Skills": 31,
         "DT_MelodySlime_RoomMods": 21,
     }
 
