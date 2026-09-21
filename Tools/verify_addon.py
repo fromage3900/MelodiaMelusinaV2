@@ -1,7 +1,11 @@
 """Melodia Studio addon gate. Run:
      blender.exe --background --factory-startup --python Tools/verify_addon.py
+     blender.exe --background --factory-startup --python Tools/verify_addon.py -- --source-root <checkout>
 Exits non-zero on any failure. Prints one GATE line per assertion.
 See Docs/Production/MELODIA_STUDIO_FREEZE_2026-09-11.md section 4.
+
+Without --source-root this is the historical LIVE/AppData freeze gate, not SOURCE
+proof. SOURCE proof is Tools/melodia_studio_source_gate.py.
 """
 import collections
 import glob
@@ -11,13 +15,49 @@ import os
 import re
 import sys
 import traceback
+from pathlib import Path
 
 import bpy
 
-REPO = r"P:/MelodiaMelusinaV2-Laptop"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APPDATA_ADDONS = os.path.join(os.environ["APPDATA"], "Blender Foundation",
                               "Blender", "5.2", "scripts", "addons")
 BASELINE = os.path.join(REPO, "Tools", "registry_baseline.json")
+_TOOLS = os.path.dirname(os.path.abspath(__file__))
+if _TOOLS not in sys.path:
+    sys.path.insert(0, _TOOLS)
+
+
+def _argv_value(flag: str) -> str:
+    if flag not in sys.argv:
+        return ""
+    idx = sys.argv.index(flag)
+    if idx + 1 >= len(sys.argv):
+        raise SystemExit(f"{flag} requires a path")
+    return sys.argv[idx + 1]
+
+
+_SOURCE_ROOT = _argv_value("--source-root")
+_SOURCE_MODE = bool(_SOURCE_ROOT) or "--source" in sys.argv
+if _SOURCE_MODE:
+    from melodia_studio_pathbind import SourceBindError, bind_checkout_deploy
+
+    try:
+        _BIND = bind_checkout_deploy(Path(_SOURCE_ROOT or REPO))
+    except SourceBindError as exc:
+        print("GATE RESULT: FAIL (source bind)")
+        print(exc)
+        raise SystemExit(1) from exc
+    IMPORT_ROOT = str(_BIND.deploy_root)
+    GN_PY_GLOB = os.path.join(IMPORT_ROOT, "surreal_arch", "melodia_gn", "*.py")
+    print("VERIFY_ADDON MODE: SOURCE")
+    print("VERIFY_ADDON deploy:", IMPORT_ROOT)
+else:
+    if APPDATA_ADDONS not in sys.path:
+        sys.path.insert(0, APPDATA_ADDONS)
+    IMPORT_ROOT = APPDATA_ADDONS
+    GN_PY_GLOB = os.path.join(APPDATA_ADDONS, "surreal_arch", "melodia_gn", "*.py")
+    print("VERIFY_ADDON MODE: LIVE/HISTORICAL (not SOURCE proof)")
 
 # Duplicate-id clusters that predate the 2026-09-11 freeze. A NEW one fails the
 # gate; these two are recorded debt, not sanctioned design.
@@ -27,6 +67,8 @@ KNOWN_DUPLICATES = {
 }
 # Files that must be byte-identical across the checkout and the live install.
 CONVERGED_FILES = [
+    ("deploy/surreal_arch/melodia_gn/paris_wall_detail.py",
+     "surreal_arch/melodia_gn/paris_wall_detail.py"),
     ("deploy/surreal_arch/melodia_gn/nikki_decor.py",
      "surreal_arch/melodia_gn/nikki_decor.py"),
     ("deploy/surreal_arch/melodia_gn/nikki_musical_decorations.py",
@@ -58,10 +100,15 @@ def md5(p):
 
 
 # ---- A: registry imports; every builder builds -----------------------------
-if APPDATA_ADDONS not in sys.path:
-    sys.path.insert(0, APPDATA_ADDONS)
 try:
     from surreal_arch.melodia_gn.core import GROUP_BUILDERS, CATEGORY_META
+    if _SOURCE_MODE:
+        import surreal_arch.melodia_gn as _gn_mod
+        _gn_file = Path(_gn_mod.__file__).resolve()
+        if not _gn_file.samefile(_BIND.gn_init):
+            raise RuntimeError(
+                "SOURCE origin mismatch: %s vs %s" % (_gn_file, _BIND.gn_init)
+            )
     ids = sorted(GROUP_BUILDERS)
     errs = []
     for k in ids:
@@ -95,7 +142,7 @@ except Exception as e:
 
 # ---- C: duplicate-id clusters ---------------------------------------------
 owners = collections.defaultdict(set)
-for p in glob.glob(os.path.join(APPDATA_ADDONS, "surreal_arch", "melodia_gn", "*.py")):
+for p in glob.glob(GN_PY_GLOB):
     src = open(p, encoding="utf-8", errors="replace").read()
     for i in set(re.findall(r"register_builder\(\s*[\r\n ]*[\"']([^\"']+)[\"']", src)):
         owners[i].add(os.path.basename(p))
