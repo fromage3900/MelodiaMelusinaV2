@@ -33,14 +33,14 @@ Trace authority clock ([`bridge.py`](../../Tools/phrase_bridge/bridge.py)): **80
 
 Phrase packets move as OSC 1.0 over **UDP `127.0.0.1:9000`**. Encoder: [`Tools/phrase_bridge/osc_min.py`](../../Tools/phrase_bridge/osc_min.py) (stdlib only). Addresses:
 
-| Address | Payload |
-|---|---|
-| `/melodia/phrase/state` | `phrase_index:int`, `section:str`, `bar:int`, `energy:float`, `energy_trend:str`, `confidence:float`, `boundary_pulse:int 0/1` |
-| `/melodia/phrase/boundary` | `phrase_index:int`, `bar:int` (sent once at the start of a pulsed bar) |
+| Address | Typetag | On-wire size | Payload |
+|---|---|---|---|
+| `/melodia/phrase/state` | `,isifsfi` | 72 B | `phrase_index:int`, `section:str`, `bar:int`, `energy:float`, `energy_trend:str`, `confidence:float`, `boundary_pulse:int 0/1` |
+| `/melodia/phrase/boundary` | `,ii` | 40 B | `phrase_index:int`, `bar:int` (sent once at the start of a pulsed bar) |
 
-UE consumer is **transport-only**: [`MelodiaPhraseBusSubsystem`](../../Source/BS_GodFile/MelodiaIntegration/MelodiaPhraseBusSubsystem.h) listens on port **9000**, republishes on the game thread, and **never** writes MPCs, Niagara, sheep, or World Compiler data. Consumers subscribe to delegates and stay single-writer on their own surfaces. Silence timeout default: **6 s** (two bars at 80 BPM). Implementing the `.cpp` is a separate lane; this spec does not change because the `.cpp` lands.
+UE consumer is **transport-only**: [`MelodiaPhraseBusSubsystem`](../../Source/BS_GodFile/MelodiaIntegration/MelodiaPhraseBusSubsystem.h) listens on **UDP `127.0.0.1:9000`**, republishes on the game thread, and **never** writes MPCs, Niagara, sheep, or World Compiler data. Consumers subscribe to delegates and stay single-writer on their own surfaces. Silence timeout default: **6 s** (two bars at 80 BPM).
 
-Do not invent a second OSC port for this bus.
+**Live ingest is `RecvFrom`** on the unconnected datagram socket. `Recv()` is the retired bug (packets never reached Parse; GetCurrentState stayed bar 0 / energy 0.0). **LIVE PROVEN 2026-09-20:** PIE `UEDPIE_0_L_MelusinaMorning`, loaded `UnrealEditor-BS_GodFile.dll` 3,232,768 bytes mtime 2026-09-20 17:48:36, GetCurrentState bar 0/energy 0.0 → bar 10/energy 0.92 (phrase_index 4, CLIMAX, RISING). Session proof lives only in [`CURRENT_STATE.md`](../../CURRENT_STATE.md). The `.cpp` is landed; this spec stays transport-only. Do not revive `Recv()`. Do not invent a second OSC port or a second phrase bus.
 
 ---
 
@@ -128,6 +128,7 @@ Jev chooses **which** seed. World Compiler + `PCG_WorldCompiler_PointField` rema
 ## 7. Hard no's
 
 - No editor writes from Jev (no MCP actor moves, no `compile`, no MPC/PPV).
-- No second phrase schema, second director, or second OSC port for this bus.
+- No second phrase schema, second director, second PhraseBus, or second OSC port for this bus.
+- No `Recv()` ingest and no treating GetCurrentState bar 0 as current debt.
 - No treating `resonant_world_phrase_bridge.py` or `jev_showcase_bloom` as this system.
 - Unallowlisted sheep/world/seed values become no-ops; they are not prompts to invent content.

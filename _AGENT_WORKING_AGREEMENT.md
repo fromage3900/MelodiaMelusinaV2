@@ -48,6 +48,18 @@ Canonical tools:
 
 The generated files under `Saved/Audit/SceneContext/` are ephemeral evidence, **not** a new status system.
 
+For Listening Field / phrase / Jev (same already-open editor, Monolith `127.0.0.1:9316` only):
+
+```text
+CURRENT_STATE + LISTENING_FIELD_SPEC
+  -> PhraseBus RecvFrom on UDP 127.0.0.1:9000 (LIVE PROVEN 2026-09-20)
+  -> Jev director only (Tools/listening_field/jev_director.py)
+  -> existing TryBeginHarmonize / authored layout_seed pick
+  -> stop
+```
+
+Jev never mutates Unreal, never compiles a meadow, and never MCP-moves actors. Do not revive `Recv()`. `resonant_world_phrase_bridge.py` is MIDI ecology; `recipes/jev_showcase_bloom.v1.json` is an unrelated World Compiler recipe. Morning World Compiler stays BrushifyIsland + `--skip-scaffold`; bedroom / `SM_classic_arch_*` / Sphere3D / `WC_DellFloor` are never current plantable ground.
+
 A normal agent should not need to understand the whole project before doing a bounded task. The orchestration goal is:
 
 > **give the right agent the smallest true context that lets it act correctly, then make the result prove itself.**
