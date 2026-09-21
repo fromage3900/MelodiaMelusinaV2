@@ -14,6 +14,7 @@
   "contract": "specs/anim_presets/melusina_hair_physics.json",
   "live_probe": "Saved/Audit/melusina_hair_physics_live_probe_20260921.json",
   "motion_proof": "Saved/Audit/melusina_portfolio_capture_20260921_v13.json",
+  "source_audit": "Saved/Audit/melusina_hair_source_audit_20260921.json",
   "result": {
     "canonical_values_match_live_editor": true,
     "idempotent_apply_changed_asset": false,
@@ -23,5 +24,5 @@
     "topology_rebuilt": false
   },
   "visual_review": "V13 frames 003, 008, and 013 retain a coherent silhouette without explosive motion; internal movement remains deliberately subtle.",
-  "boundary": "The broad-lock rigidity is a shallow-rig limitation. A later multi-segment re-rig is a new asset task, not another damping adjustment."
+  "boundary": "The healthy v18 stage has Hair Strand curves and FLIP helpers but no HairExp/deeper hair armature to promote. Broad-lock rigidity is a shallow-rig limitation; a later multi-segment re-rig is new asset work, not another damping adjustment."
 }
