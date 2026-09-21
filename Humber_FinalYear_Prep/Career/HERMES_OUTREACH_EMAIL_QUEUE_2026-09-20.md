@@ -11,6 +11,7 @@ This file exists because the September 12 documentation collapse removed the ear
 1. `HERMES_HANDOFF_2026-09-17.md` — career/application missions and truth rules.
 2. `HERMES_EMAIL_DRAFTS_RECOVERED_2026-09-09.md` — recovered paste-ready education/vendor drafts from merged PR #146.
 3. `Applications_2026-09/APPLICATION_STATUS.md` — active application queue.
+4. `HERMES_RESUME_TARGETING_2026-09-21.md` — current Canada/GTA resume variants and role corrections.
 
 ## Non-negotiable send rules
 
@@ -67,7 +68,15 @@ These lanes were discussed but were not fully materialized in the recovered Sept
 
 Application-specific emails remain owned by the current role files and `HERMES_HANDOFF_2026-09-17.md`.
 
-Current priority roles:
+Current Canada / GTA additions (2026-09-21):
+- Torn Banner Studios — Senior Environment Artist
+- People Can Fly — Senior Level Artist
+- GameSim / Keywords — Environment Artist talent pipeline
+- Certain Affinity — Senior Material Artist
+- Torn Banner Studios — Senior Technical Artist
+- ngx — Unreal Environment Artist contract (verify direct employer route first)
+
+Existing international / campus lanes remain active:
 - Infold Games — 2027 Art & Visual Design
 - Awe Interactive — Junior Environment Artist
 - Skydance Animation — Junior Environment Surfacing Artist
