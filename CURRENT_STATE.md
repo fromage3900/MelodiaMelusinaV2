@@ -221,6 +221,76 @@ MCP regression, Ollama daemon stress — not only game tests).
 
 ## 3. Open
 
+### Day closeout + state audit — 2026-09-21 15:30 (Claireon session)
+
+**Handoffs (written at owner request):**
+- [`Docs/Handoffs/PORTFOLIO_RENDERS_HANDOFF_2026-09-21.md`](Docs/Handoffs/PORTFOLIO_RENDERS_HANDOFF_2026-09-21.md):
+  no frame yet from the canonical camera; all 340 of today's stills are proof frames.
+- [`Docs/Handoffs/LOOKDEV_HANDOFF_2026-09-21.md`](Docs/Handoffs/LOOKDEV_HANDOFF_2026-09-21.md):
+  Melusina hair/wardrobe/bow, Shorewake swap, Faraway Mother, Blender composition, re-export.
+
+**Measured state at 15:30:**
+- Build: closed-editor `BS_GodFileEditor Win64 Development` **PASS 15:06** (game, MelodiaCore,
+  MelodiaWardrobe rebuilt). Standalone PIE must be re-applied.
+- Git: branch `lookdev/frequency-ecology-20260921` is **11 ahead / 111 behind `origin/main`**. The
+  working tree has 166 modified / 39 deleted / 147 untracked files, most from earlier sessions.
+- **`Config/DefaultEngine.ini` is modified (never-touch file):** `DefaultFeatureAntiAliasing=1` was
+  removed, on the note that `r.AntiAliasingMethod=1` under `[SystemSettings]` carries it. This changes
+  render AA; the owner decides it. It is excluded from the closeout commits.
+- `EnvSandbox/VFX/Materials`: 26 flat MI/M files deleted, with new untracked `Instances/`, `Systems/`,
+  `Templates/`. This looks like a reorganisation; verify before committing the deletions.
+- Deleted external actors: 7 in `LV_SeaAbove_Prototype`, 6 in `L_MelusinaMorning`. Not from this
+  session. Verify they were intended.
+
+**Open, in order:** (1) Shorewake catalog pass + PIE proof (owner, now); (2) first canonical beauty
+frame; (3) Faraway Stage 2b texture bind; (4) enemy meshes for battle shots; (5) Blender composition
+Phase 1 (owner GO); (6) root-motion re-export; (7) the §4 queue (Choral Sheep stills, UE↔TD proof,
+AE sequence).
+
+### C++ rebuild pass 1 — Sail capability + jump/glide — 2026-09-21 14:45 (Claireon session; BUILT — closed-editor `BS_GodFileEditor Win64 Development` **PASS 2026-09-21**, 117 s)
+
+Plan: `Docs/Production/MELODIA_CPP_GAMEPLAY_ROADMAP.md` steps W1–W3, T1–T5. Jev (`jev-1.13.0`, `jev-live`)
+audited the plan in three rounds; each gap it forced was real and is folded in below. Final ruling was a
+near tie (hold 0.41 / execute 0.38, readiness 2.25/3). Its last candidate check rated "nothing missing"
+0.02, but every candidate it flagged is resolved.
+
+- **Sail capability.** `EMelodiaFormCapability::Sail` (appended), `MelodiaTraversalCapability::Sail` =
+  `capability.melodia.sail`, mapped in `QueryTraversalCapability`. Starskiff `RequiredCapabilityId`
+  default → sail; `CanBoard` reads the **capability only** (the flag now only gates form availability).
+  None of the 3 placed Starskiffs or `BP_Starskiff_MK2` serialize `RequiredCapabilityId`, so they
+  inherit the new default. Manifest `capability_unlocked` → `capability.melodia.sail`, `_stale_fields` cleared.
+- **Jump/glide.** Jump fires on press; release calls `StopJumping` (variable height). Holding past the
+  apex glides via `RequestTraversalMode(Glide)`; pressing in the air also glides. Windup deleted fully:
+  component, `IMelodiaTraversalStateProvider::IsJumpWindingUp`, `bRuntimeIsJumpWindup`. No BP or ABP read any of it
+  (778 BPs scanned). `ABP_Melusina_Current`'s `JumpWindup` state is gated by `bIsCrouched` and is untouched.
+  `Tools/wire_melusina_jump_windup.py` / `fix_jump_windup_abp.py` are now stale.
+- **Editor data, saved 14:42:** `BP_MelusinaJRPGCharacter.JumpMaxHoldTime` 0.0 → **0.25** (with 0 the
+  hold did nothing). Backups: `Saved/Backups/CppRebuild_2026-09-21/`.
+- **Owner target (14:50):** at the dock the QSC fires → the Shorewake outfit swaps on → she can ride
+  the Starskiff → she sails. Proven chain: `MelodiaQuillShorewake.qsc` `questcomplete` →
+  `reward.shorewake_weave` → wardrobe grants `Cos_ShorewakeDress` (`UnlockRewardId` already matches;
+  same `SK_Melusina_Skeleton`). **New:** `AMelodiaStarskiffPawn::BoardOnFlagId` (default
+  `flag.sea_above.starskiff_ready`) boards the nearest player when that flag turns true. The QSC now sets
+  that flag on the line **after** `questcomplete`, so the dress (and Sail) is already on when boarding runs.
+  QSC reimported and saved 14:51. Dock QSC in P0 Sea Above: `SeaAbove_QuillTrigger_Shorewake` next to
+  `SeaAbove_Starskiff_MK2`. **Morning test rig:** added `Morning_QuillTrigger_ShorewakeDock_Test`
+  (Shorewake QSC, 100 uu from the Morning `BP_Starskiff_MK2`), saved 14:51.
+- **Whole-outfit swap (owner 14:58: everything except boots and hat).** New
+  `FMelodiaCosmeticRecord::ReplacedSlots`. Equipping clears those slots in the record, and equipping into a
+  replaced slot takes the replacing garment off. `ApplyWardrobeState` keeps replaced slots empty over
+  defaults, so the swap survives a reload. The hat is not a wardrobe slot, so it is never touched.
+- **After the build (needs the new enum + field):** in `DA_MelodiaCosmeticCatalog` add
+  `form.melusina.shorewake` {**Glide + Sail**; flags `flag.quest.shorewake_completed`,
+  `flag.sea_above.starskiff_ready`}. Glide is included because the V2 Accessories item that carries
+  `form.first_resonance_echo` comes off with the swap. Set `Cos_ShorewakeDress`: `ResonantFormId` → that
+  form, `bAutoEquipOnUnlock` true, `ReplacedSlots` [Shirt, Accessories] (Skirt is its own slot; Boots
+  stay). **Until this lands the Starskiff cannot be boarded.** Then re-apply Standalone PIE, run
+  `Melodia.*`, and smoke test in Morning at the test trigger. The Sea Above trigger→skiff distance is
+  unmeasured: if boarding logs `blocked`, raise that skiff's `BoardingRadius`.
+- **Deferred:** W4 Sail transform proc (the transform component keys off glide state and no sea-form
+  geometry exists, so this needs content). W5 is already done: `BeginPlay` applies `DefaultGarmentMeshes`.
+  O1–O4 Oceanology get their own build.
+
 ### CANONICAL Melusina presentation state — 2026-09-21 (Claireon session)
 
 **This is the reference state for Melusina renders. Start from it; do not re-derive it.**
@@ -278,6 +348,17 @@ Client mode cannot see `BP_BattleController_C` or the player character at all, a
 - `BP_EnemyUnit_MelodySlime`: `SkeletalMeshAsset = None` — no mesh at all. Separately `SM_MelodySlime`
   has bounds `(2.97, 2.47, 2.11)` (~6 uu against Melusina's ~170) and uses placeholder
   `Material_002` while `MI_MelodySlime_Body` sits unused beside it.
+- PC-wide asset sweep 2026-09-21 (G:, D:, Downloads, filename-level): MelodySlime source chain
+  exists outside UE — `MelodySlime1.blend` (11.7 MB) in `G:\BlenderArchive\` (+ `D:\_FromG_Archive`
+  copy), `Exports\MelodySlime\SM_MelodySlime.{fbx 28.8 KB, glb 12.8 KB}` in-workspace (2026-08-29),
+  `SM_MelodySlime_{Forte,Tide}.obj` (~201 KB each) in `G:\EnvironmentPortfolio\wix\models\`
+  (+ site-backup copy), `MelodySlime1.fbx` (27.9 KB) + `slimebasicnormals.obj` (18.2 MB) in
+  `D:\Downloads_Organized\Downloads\3D_And_Game_Assets\`, `MelodySlimenormals.fbx` (11.2 MB) in
+  `D:\_FromG_Archive\2026-07-12\Unsorted Review\`. CosmicReaver sculpt EXISTS:
+  `C:\Users\froma\Downloads\cosmicreaverlowpolybase.usdz` (1,175,926 bytes, 2026-09-21,
+  contains `cosmicdaddyfinal.usdc`) — not yet imported to UE; no `*reaver*` file anywhere else
+  on G:/D:/workspace. Caution: `SM_MelodySlime_Forte.obj` head shows repeated identical
+  vertices — verify geometry before import. Zero `*reaver*` filename hits outside that usdz.
 
 **Corrections to earlier records.** `melodia_animation_validate_bindings` reports
 "NO POSE OUTPUT PINS" for `ABP_Melusina_Battle` and `ABP_Zundamon_Battle` — **false positive**; both

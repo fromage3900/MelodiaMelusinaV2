@@ -63,6 +63,16 @@ void UMelodiaWardrobeComponent::ApplyWardrobeState()
 				EquipGarment(Pair.Key, nullptr);
 			}
 		}
+
+		// Slots an equipped garment replaces stay empty; defaults must not fill them.
+		for (const EMelodiaWardrobeSlot Replaced : Wardrobe->GetReplacedSlots())
+		{
+			if (!ClaimedSlots.Contains(Replaced))
+			{
+				ClaimedSlots.Add(Replaced);
+				EquipGarment(Replaced, nullptr);
+			}
+		}
 	}
 
 	// Fixed V2 defaults are presentation-only references. They are applied
@@ -309,7 +319,9 @@ bool UMelodiaWardrobeComponent::EquipCosmetic(const FName CosmeticId)
 	// reporting success with a state the player cannot see.
 	if (IsSlotShowingMesh(Slot, Mesh))
 	{
-		ApplyBodyRegionVisibility();
+		// Re-derive every slot from the record: the equip may have cleared replaced slots
+		// or taken off a garment that replaced this one.
+		ApplyWardrobeState();
 		return true;
 	}
 
