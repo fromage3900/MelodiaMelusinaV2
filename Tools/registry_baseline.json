@@ -3971,6 +3971,19 @@
     0.1
    ]
   },
+  "MEL_skirt_hem_charm": {
+   "ok": true,
+   "verts": 191,
+   "bbox": [
+    2.001,
+    2.001,
+    0.031
+   ]
+  },
+  "MEL_skirt_hem_dangl_row": {
+   "ok": false,
+   "error": "empty geometry"
+  },
   "MEL_sky_observatory": {
    "ok": true,
    "verts": 5291,
@@ -6549,7 +6562,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 597,
+  "package_count": 599,
   "monolith_count": 209
  }
 }
