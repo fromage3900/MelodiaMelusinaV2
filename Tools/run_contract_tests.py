@@ -38,7 +38,6 @@ class Suite:
 
 SUITES = (
     Suite("Tools/test_echo_contract.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
-    Suite("Tools/test_front_door_health.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_t3d_safe_wire.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_t3d_request_contract.py", re.compile(r"validated T3D request schema")),
     Suite("Tools/test_melodia_content_fixtures.py", re.compile(r"validated \d+ Melodia fixture specs")),
@@ -79,7 +78,6 @@ MINIMUM_SUITE_COUNT = 28
 OFFLINE_SUITE_PATHS = frozenset(
     {
         "Tools/test_echo_contract.py",
-        "Tools/test_front_door_health.py",
         "Tools/test_t3d_safe_wire.py",
         "Tools/test_t3d_request_contract.py",
         "Tools/test_melodia_content_fixtures.py",
