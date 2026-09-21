@@ -12,6 +12,7 @@ Repositories:
 - Current Infold-targeted portfolio packet on `my-site/main`: PR #34 / `619faa2d121e8e6d25755236e987b461e8aec7c6`
 - Canonical shortlist: `Humber_FinalYear_Prep/Career/APPLICATION_STRIKE_LEDGER_2026-09-17.md`
 - Canonical email / outreach queue: `Humber_FinalYear_Prep/Career/HERMES_OUTREACH_EMAIL_QUEUE_2026-09-20.md`
+- Current Canada/GTA resume targeting: `Humber_FinalYear_Prep/Career/HERMES_RESUME_TARGETING_2026-09-21.md`
 - Recovered vendor / education email drafts: `Humber_FinalYear_Prep/Career/HERMES_EMAIL_DRAFTS_RECOVERED_2026-09-09.md`
 
 Do not resurrect the old deleted `Docs/Career` directory wholesale.
@@ -43,6 +44,27 @@ Strong evidence themes:
 - Melodia Melusina as independent production / portfolio evidence
 
 Do not lead with agentic workflow, commit count, backend architecture, or AI tooling unless a technical reviewer explicitly benefits from it.
+
+---
+
+## Canada / GTA refresh — 2026-09-21
+
+Before the older missions below, read `HERMES_RESUME_TARGETING_2026-09-21.md`.
+
+Current Canadian execution order:
+1. Torn Banner — Senior Environment Artist — **APPLY NOW / stretch on seniority**
+2. People Can Fly — Senior Level Artist — **APPLY NOW / remote Canada**
+3. GameSim / Keywords — Environment Artist — **TALENT PIPELINE, not immediate vacancy**
+4. Certain Affinity — Senior Material Artist — **targeted material-art stretch**
+5. Torn Banner — Senior Technical Artist — **technical moonshot**
+6. ngx — Unreal Environment Artist — **contract; verify direct employer route first**
+
+Corrections from the live 2026-09-21 pass:
+- Torn Banner's target title is **Senior Environment Artist**.
+- Certain Affinity's current official GTA listing is **Senior Material Artist**; do not target the expired September **Advanced Material Artist** mirror as if it were current.
+- GameSim explicitly labels the Environment Artist listing a **talent pipeline**, not an immediate vacancy.
+
+For these roles, produce role-specific resume deltas from the current master positioning. Do not invent seniority to satisfy title gates.
 
 ---
 
