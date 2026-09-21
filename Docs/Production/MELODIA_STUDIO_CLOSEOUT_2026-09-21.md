@@ -24,9 +24,10 @@ Owner pull-ready. Branch: `collab/laptop/brooch-sky-20260917`.
    loglines. C1 gate now carries `OWNER_KEPT_PANELS` and reads PASS with the exception.
 2. 19 dropped-link trees → fix-or-hide, then `LINK_STRICT` + gate wiring.
 3. Track A builders 2–8 — FountainLoop + DayNightFacade **DONE 2026-09-21**: both proven
-   (`_melodia_health_track_a.py` problems=0: construction, link failures empty, Wobble
-   neutrality, Duality 0/0.5/1 slider, preset keys), presets in (audit 152/472), all three
-   brand packs 5/5. Builders 3–8 remain.
+   (`deploy/_melodia_health_track_a.py` problems=0: construction, link failures empty, Wobble
+   neutrality, Duality 0/0.5/1 slider, preset keys — full log:
+   `Saved/Audit/TRACK_A_HEALTH_2026-09-21.md`, 21/21 PASS), presets in (audit 152/472),
+   all three brand packs 5/5. Builders 3–8 remain.
 
 ## PC pull
 
