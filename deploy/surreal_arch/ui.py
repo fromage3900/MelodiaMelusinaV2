@@ -1,4 +1,4 @@
-"""UI search, filtered picker, and VIEW_3D panels."""
+﻿"""UI search, filtered picker, and VIEW_3D panels."""
 
 from __future__ import annotations
 
@@ -441,10 +441,14 @@ def draw_level_design(layout, context, monolith):
     draw_bagapie_ivy_row(layout, context)
     research = layout.box()
     research.label(text="Research presets", icon="BOOKMARKS")
+    # Bagapie parity trait 4: big-button one-click row; research_ref rides
+    # as tooltip (wired at registration), tweak-after on active sliders.
     r1 = research.row(align=True)
+    r1.scale_y = 1.2
     r1.operator("surreal_arch.preset_research_romanesque_cloister_arcade", text="Cloister")
     r1.operator("surreal_arch.preset_research_brutalist_pilotis_hall", text="Pilotis")
     r2 = research.row(align=True)
+    r2.scale_y = 1.2
     r2.operator("surreal_arch.preset_research_venetian_loggia_bay", text="Loggia")
     r2.operator("surreal_arch.preset_research_scifi_pressure_door_airlock", text="Airlock")
     tools = layout.box()

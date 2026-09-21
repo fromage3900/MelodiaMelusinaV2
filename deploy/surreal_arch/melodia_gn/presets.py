@@ -25,6 +25,17 @@ Public API:
     export_builder_preset(builder_id, preset_name) -> dict (metadata + params)
     export_all_presets_json(path)-> str (path written)
     audit_presets()              -> dict report (reads GROUP_METADATA lazily)
+
+Brand layer (Maison Impossible):
+    brands()                     -> list[str]
+    brand_info(brand_id)         -> dict (label, tagline, reference_set, palette)
+    brand_packs(brand_id)        -> dict (pack_id -> pack)
+    resolve_brand_pack(b, p)     -> dict (steps + pending + unresolved)
+    export_brand_pack(b, p)      -> dict (resolved pack + brand identity)
+
+A brand pack stores NO param values — only (builder, preset) references — so it
+can never drift from BUILDERS_PRESETS. Resolve, then drive `mel_gn.apply_preset`
+(stack.py) once per step.
 """
 
 from __future__ import annotations
@@ -111,6 +122,42 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
             "ROUND_BAROQUE_DEFAULT": {"Center Width": 5.4, "Center Depth": 4.8, "Side Width": 3.7, "Side Depth": 3.4, "Side Spread": 4.1, "Rear Width": 4.2, "Rear Depth": 3.2, "Rear Offset": 3.8, "Porch Width": 5.2, "Porch Depth": 2.3, "Porch Offset": 4.4, "Tower Radius": 1.15, "Tower X": 5.1, "Tower Y": 1.6, "Foundation Height": 0.36, "Bevel": 0.06},
             "COMPACT_DOLLHOUSE": {"Center Width": 4.6, "Center Depth": 4.0, "Side Width": 3.0, "Side Depth": 2.8, "Side Spread": 3.4, "Rear Width": 3.6, "Rear Depth": 2.8, "Rear Offset": 3.1, "Porch Width": 4.2, "Porch Depth": 1.8, "Porch Offset": 3.8, "Tower Radius": 0.9, "Tower X": 4.2, "Tower Y": 1.4, "Foundation Height": 0.32, "Bevel": 0.05},
             "WIDE_SALON": {"Center Width": 6.6, "Center Depth": 5.2, "Side Width": 3.9, "Side Depth": 3.5, "Side Spread": 4.8, "Rear Width": 4.6, "Rear Depth": 3.4, "Rear Offset": 4.0, "Porch Width": 6.0, "Porch Depth": 2.6, "Porch Offset": 4.8, "Tower Radius": 1.3, "Tower X": 5.7, "Tower Y": 1.8, "Foundation Height": 0.38, "Bevel": 0.07},
+        },
+    },
+    "MEL_mh_roof_ribbon": {
+        "label": "MH Roof Ribbon",
+        "preset_labels": {
+            "MAIN_WHALE_BACK": "Main Whale-back",
+            "WING_ROOF": "Wing Roof",
+            "PORCH_ROOF": "Porch Roof",
+        },
+        "preset_descriptions": {
+            "MAIN_WHALE_BACK": "Broad main whale-back roof, roof-rise heavy, curled eaves.",
+            "WING_ROOF": "Narrow lower wing roof with light lift for offsets.",
+            "PORCH_ROOF": "Wide, shallow porch roof hugging the arrival slab.",
+        },
+        "presets": {
+            "MAIN_WHALE_BACK": {"Roof Width": 12.0, "Roof Depth": 5.0, "Roof Rise": 2.55, "Eave Curl": 0.45, "End Lift": 0.65, "Thickness": 0.12, "Asymmetry": 0.25, "Preview Density": 48},
+            "WING_ROOF": {"Roof Width": 4.0, "Roof Depth": 3.0, "Roof Rise": 1.7, "Eave Curl": 0.3, "End Lift": 0.35, "Thickness": 0.08, "Asymmetry": 0.35, "Preview Density": 24},
+            "PORCH_ROOF": {"Roof Width": 5.2, "Roof Depth": 2.0, "Roof Rise": 1.1, "Eave Curl": 0.5, "End Lift": 0.6, "Thickness": 0.1, "Asymmetry": 0.1, "Preview Density": 16},
+        },
+    },
+    "MEL_mh_opening_family": {
+        "label": "MH Opening Family",
+        "preset_labels": {
+            "ROUND_WINDOW": "Round Window",
+            "TALL_DOOR": "Tall Door",
+            "PALLADIAN": "Palladian Arch",
+        },
+        "preset_descriptions": {
+            "ROUND_WINDOW": "Standard round-Baroque window with soft jamb and keystone.",
+            "TALL_DOOR": "Entry-scale arched door for the porch facade.",
+            "PALLADIAN": "Wide motif arch for salon and grotto openings.",
+        },
+        "presets": {
+            "ROUND_WINDOW": {"Opening Width": 1.1, "Opening Height": 1.6, "Jamb Width": 0.12, "Frame Depth": 0.35, "Sill Height": 0.12, "Keystone Scale": 0.6, "Bevel": 0.02, "Arch Segments": 32, "Keystone": True},
+            "TALL_DOOR": {"Opening Width": 1.25, "Opening Height": 2.6, "Jamb Width": 0.14, "Frame Depth": 0.42, "Sill Height": 0.08, "Keystone Scale": 0.75, "Bevel": 0.02, "Arch Segments": 40, "Keystone": True},
+            "PALLADIAN": {"Opening Width": 2.3, "Opening Height": 1.3, "Jamb Width": 0.16, "Frame Depth": 0.45, "Sill Height": 0.16, "Keystone Scale": 0.9, "Bevel": 0.025, "Arch Segments": 48, "Keystone": True},
         },
     },
     "MEL_audio_spectrum_terrain": {
@@ -308,34 +355,10 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # 2026-09-20 dedupe: a duplicate MEL_allee_ribbon block sat here, byte-identical
+    # to the one below. Python kept the later copy, so this was dead data that every
+    # runtime consumer was blind to. Removed (deploy/_melodia_preset_audit.py).
     # ribbon.py - MEL_allee_ribbon (effects)
-    "MEL_allee_ribbon": {
-        "label": "Allee Ribbon",
-        "preset_labels": {
-            "GARDEN_ALLEE": "Garden Allee",
-            "CEREMONY_AXIS": "Ceremony Axis",
-            "MEADOW_S": "Meadow S",
-        },
-        "preset_descriptions": {
-            "GARDEN_ALLEE": "Default cherry-allee walk: gentle S, crowned camber.",
-            "CEREMONY_AXIS": "Straight wide axis for sando-to-porch approach.",
-            "MEADOW_S": "Strong meadow curve with higher crown for runoff.",
-        },
-        "presets": {
-            "GARDEN_ALLEE": {
-                "Segments": 48, "Length": 8.0, "Path Width": 2.2,
-                "S-Curve": 1.0, "Camber": 0.08, "Thickness": 0.12,
-            },
-            "CEREMONY_AXIS": {
-                "Segments": 32, "Length": 10.0, "Path Width": 2.6,
-                "S-Curve": 0.0, "Camber": 0.05, "Thickness": 0.12,
-            },
-            "MEADOW_S": {
-                "Segments": 64, "Length": 12.0, "Path Width": 1.8,
-                "S-Curve": 1.8, "Camber": 0.12, "Thickness": 0.1,
-            },
-        },
-    },
 
     # ribbon.py - MEL_allee_ribbon (effects)
     "MEL_allee_ribbon": {
@@ -592,34 +615,11 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # profiles.py - MEL_column (profiles)
-    "MEL_column": {
-        "label": "Column",
-        "preset_labels": {
-            "DORIC_SOBER": "Sober Doric",
-            "FLUTED_IONIC": "Fluted Ionic",
-            "PILASTER_SLIM": "Slim Pilaster",
-        },
-        "preset_descriptions": {
-            "DORIC_SOBER": "16-sided unfluted column with modest caps.",
-            "FLUTED_IONIC": "Tall 20-sided fluted column with tall capital.",
-            "PILASTER_SLIM": "Narrow flat pilaster for wall reads.",
-        },
-        "presets": {
-            "DORIC_SOBER": {
-                "Height": 3.0, "Radius": 0.22, "Sides": 16, "Fluted": False,
-                "Capital Height": 0.12, "Base Height": 0.08,
-            },
-            "FLUTED_IONIC": {
-                "Height": 4.0, "Radius": 0.18, "Sides": 20, "Fluted": True,
-                "Capital Height": 0.2, "Base Height": 0.12,
-            },
-            "PILASTER_SLIM": {
-                "Height": 2.4, "Radius": 0.1, "Sides": 8, "Fluted": False,
-                "Capital Height": 0.08, "Base Height": 0.05,
-            },
-        },
-    },
+    # 2026-09-20 dedupe: a DIFFERENT, earlier MEL_column block sat here and was
+    # silently shadowed by the authoritative entry further down this file (Python
+    # keeps the last key, so nothing ever read this copy). Removed; the curation
+    # is preserved as a note on the authority rather than lost.
+    # profiles.py - MEL_column (authoritative entry below)
 
     # pcg_integration.py - MEL_pcg_water_tags_v2 (set_dressing)
     "MEL_pcg_water_tags_v2": {
@@ -2676,6 +2676,11 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
     },
 
     # profiles.py — column
+    # AUTHORITY (2026-09-20 dedupe): an earlier, different MEL_column block sat
+    # near line 632 and was shadowed by this one for months with no reader.
+    # Its distinct values, kept for reference: DORIC_SOBER Radius 0.22 / Sides 16
+    # / Capital 0.12 / Base 0.08 · FLUTED_IONIC Sides 20 · PILASTER_SLIM
+    # Height 2.4 / Radius 0.1 / Sides 8. Edit THIS entry; never add a second copy.
     "MEL_column": {
         "label": "Column",
         "preset_labels": {
@@ -3699,6 +3704,452 @@ BUILDERS_PRESETS["MEL_city_corridors"] = {
 }
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# Maison Impossible — Parisian × Escher brand layer (2026-09-20)
+# ═══════════════════════════════════════════════════════════════════════════
+# The Escher math quartet (escher_decor.py) shipped with NO curated presets, so
+# the brand packs had nothing to point at. Filled here, socket names taken from
+# the builders' own add_*_param calls — never invented.
+# Reference set (locked): Haussmann system, Garnier, Guimard, Viollet-le-Duc /
+# Sainte-Chapelle, Bofill; Escher devices; Piranesi (mood). See
+# Docs/Production/MAISON_IMPOSSIBLE_2026-09-20.md
+
+BUILDERS_PRESETS["MEL_hyperbolic_window"] = {
+    "label": "Hyperbolic Window",
+    "preset_labels": {
+        "POINCARE_SALON": "Poincare Salon",
+        "LIMIT_ROSE": "Circle Limit Rose",
+        "DEEP_FIELD": "Deep Field",
+    },
+    "preset_descriptions": {
+        "POINCARE_SALON": "Reading-room scale tiling: fewer, larger tiles.",
+        "LIMIT_ROSE": "Canonical Escher Circle Limit density.",
+        "DEEP_FIELD": "Max rings/sectors - infinite density at the boundary.",
+    },
+    "presets": {
+        "POINCARE_SALON": {"Ring Count": 8, "Sectors": 12, "Disk Radius": 0.7, "Tile Scale": 0.06},
+        "LIMIT_ROSE": {"Ring Count": 6, "Sectors": 8, "Disk Radius": 0.5, "Tile Scale": 0.08},
+        "DEEP_FIELD": {"Ring Count": 12, "Sectors": 16, "Disk Radius": 0.9, "Tile Scale": 0.04},
+    },
+}
+
+BUILDERS_PRESETS["MEL_penrose_triangle"] = {
+    "label": "Penrose Triangle",
+    "preset_labels": {
+        "TRIBAR_CANON": "Canonical Tribar",
+        "SLIM_TRIBAR": "Slim Tribar",
+        "TWISTED_TRIBAR": "Twisted Tribar",
+    },
+    "preset_descriptions": {
+        "TRIBAR_CANON": "The canonical impossible tribar in gold.",
+        "SLIM_TRIBAR": "Longer, thinner beams - deco inlay register.",
+        "TWISTED_TRIBAR": "Twist angle engaged so the joints disagree.",
+    },
+    "presets": {
+        "TRIBAR_CANON": {"Beam Width": 0.04, "Beam Length": 0.3, "Twist Angle": 0.0},
+        "SLIM_TRIBAR": {"Beam Width": 0.025, "Beam Length": 0.45, "Twist Angle": 0.0},
+        "TWISTED_TRIBAR": {"Beam Width": 0.05, "Beam Length": 0.3, "Twist Angle": 0.35},
+    },
+}
+
+
+BUILDERS_PRESETS["MEL_mobius_strip"] = {
+    "label": "Mobius Strip",
+    "preset_labels": {
+        "RAILING_RIBBON": "Railing Ribbon",
+        "DOUBLE_TWIST": "Double Twist",
+        "MONUMENT_BAND": "Monument Band",
+    },
+    "preset_descriptions": {
+        "RAILING_RIBBON": "Balcony-rail scale band - the Guimard iron line.",
+        "DOUBLE_TWIST": "Two half-twists, longer run: foyer chandelier band.",
+        "MONUMENT_BAND": "Wide heavy band for arch soffits and monument friezes.",
+    },
+    "presets": {
+        "RAILING_RIBBON": {"Strip Width": 0.04, "Strip Length": 0.6, "Twist Count": 1, "Segments": 96},
+        "DOUBLE_TWIST": {"Strip Width": 0.05, "Strip Length": 0.8, "Twist Count": 2, "Segments": 128},
+        "MONUMENT_BAND": {"Strip Width": 0.09, "Strip Length": 0.4, "Twist Count": 1, "Segments": 64},
+    },
+}
+
+BUILDERS_PRESETS["MEL_escher_tessellation"] = {
+    "label": "Escher Tessellation",
+    "preset_labels": {
+        "DAY_AND_NIGHT": "Day and Night",
+        "FINE_MOSAIC": "Fine Mosaic",
+        "BOLD_RELIEF": "Bold Relief",
+    },
+    "preset_descriptions": {
+        "DAY_AND_NIGHT": "The duality plate: interlocking bird/fish grid.",
+        "FINE_MOSAIC": "Dense small tiles - facade relief at distance.",
+        "BOLD_RELIEF": "Large sunk panels for courtyard walls.",
+    },
+    "presets": {
+        "DAY_AND_NIGHT": {"Tile Size": 0.05, "Grid X": 8, "Grid Y": 8, "Pattern": 0},
+        "FINE_MOSAIC": {"Tile Size": 0.03, "Grid X": 14, "Grid Y": 14, "Pattern": 1},
+        "BOLD_RELIEF": {"Tile Size": 0.09, "Grid X": 6, "Grid Y": 6, "Pattern": 2},
+    },
+}
+
+
+# PARIS lane (paris_wall_detail.py). Socket names are that module's own sock()
+# calls: BBox Min/Max, Show Cornice/String/Wainscot/Baseboard/Panels, Panel
+# Scale, Apply Trim UV, CORNICE_STYLE (0=FLAT 1=HAUSSMANN 2=GOTHIC).
+BUILDERS_PRESETS["GN_PARIS_WallDetail"] = {
+    "label": "PARIS Wall Detail",
+    "preset_labels": {
+        "MI_COUR_D_HONNEUR": "Cour d'Honneur Bay",
+        "MI_GOTHIC_CHAPEL": "Gothic Chapel Wall",
+        "MI_STRIPPED_MODERN": "Stripped Modern",
+    },
+    "preset_descriptions": {
+        "MI_COUR_D_HONNEUR": "Haussmann bay: full cornice line, panels, wainscot.",
+        "MI_GOTHIC_CHAPEL": "Gothic mode - bands, stepped reveals, medallions, quoins.",
+        "MI_STRIPPED_MODERN": "Flat panels only: the sober Bofill read.",
+    },
+    "presets": {
+        "MI_COUR_D_HONNEUR": {
+            "BBox Min": (0.0, 0.0, 0.0), "BBox Max": (3.0, 0.35, 3.2),
+            "Show Cornice": True, "Show String": True, "Show Wainscot": True,
+            "Show Baseboard": True, "Show Panels": True, "Panel Scale": 0.9,
+            "Apply Trim UV": True, "CORNICE_STYLE": 1,
+        },
+        "MI_GOTHIC_CHAPEL": {
+            "BBox Min": (0.0, 0.0, 0.0), "BBox Max": (2.2, 0.4, 4.2),
+            "Show Cornice": True, "Show String": True, "Show Wainscot": True,
+            "Show Baseboard": True, "Show Panels": True, "Panel Scale": 0.8,
+            "Apply Trim UV": True, "CORNICE_STYLE": 2,
+        },
+        "MI_STRIPPED_MODERN": {
+            "BBox Min": (0.0, 0.0, 0.0), "BBox Max": (2.0, 0.25, 2.8),
+            "Show Cornice": False, "Show String": False, "Show Wainscot": False,
+            "Show Baseboard": False, "Show Panels": True, "Panel Scale": 0.95,
+            "Apply Trim UV": True, "CORNICE_STYLE": 0,
+        },
+    },
+}
+
+BUILDERS_PRESETS["GN_PARIS_SlabTrim"] = {
+    "label": "PARIS Slab Trim",
+    "preset_labels": {
+        "MI_SALON_SLAB": "Salon Slab",
+        "MI_BALCONY_SLAB": "Balcony Slab",
+        "MI_GRAND_SLAB": "Grand Slab",
+    },
+    "preset_descriptions": {
+        "MI_SALON_SLAB": "Standard salon floor slab with trim UV applied.",
+        "MI_BALCONY_SLAB": "Thin outdoor slab for Haussmann balconies.",
+        "MI_GRAND_SLAB": "Oversized slab for halls and stair landings.",
+    },
+    "presets": {
+        "MI_SALON_SLAB": {"BBox Min": (0.0, 0.0, 0.0), "BBox Max": (6.0, 4.0, 0.2), "Apply Trim UV": True},
+        "MI_BALCONY_SLAB": {"BBox Min": (0.0, 0.0, 0.0), "BBox Max": (3.0, 1.2, 0.12), "Apply Trim UV": True},
+        "MI_GRAND_SLAB": {"BBox Min": (0.0, 0.0, 0.0), "BBox Max": (8.0, 6.0, 0.28), "Apply Trim UV": True},
+    },
+}
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Brand layer — Maison Impossible (2026-09-20)
+# ═══════════════════════════════════════════════════════════════════════════
+# Reference-only by design: a pack NEVER stores param values. It points at
+# (builder_id, preset_name) pairs that already live in BUILDERS_PRESETS, so a
+# pack cannot drift from the presets it names. This is what lets the addon
+# present three curated rooms instead of 600 builders — the trim mechanism is
+# hide-behind-taste, never delete-behind-it.
+
+BRAND_SCHEMA_VERSION = 1
+
+BRANDS: dict[str, dict[str, Any]] = {
+    "maison_impossible": {
+        "label": "Maison Impossible",
+        "tagline": "Haussmann geometry, impossible logic",
+        "product_line": "Parisian Escher Atelier",
+        "reference_set": [
+            "Haussmann system (Second Empire immeuble, street grammar)",
+            "Charles Garnier (Opera Garnier: stair as theatre)",
+            "Hector Guimard (Metro entrances: whiplash iron)",
+            "Viollet-le-Duc / Sainte-Chapelle (rayonnant tracery)",
+            "Ricardo Bofill (Les Espaces d'Abraxas: surreal classical at scale)",
+            "M.C. Escher (Belvedere, Ascending and Descending, Waterfall, "
+            "Relativity, Day and Night, Circle Limit, Metamorphosis)",
+            "Piranesi (Carceri - mood reference only, not an architect)",
+        ],
+        "palette": [
+            "Lutetian limestone cream",
+            "zinc / slate mansard blue-grey",
+            "wrought-iron near-black green",
+            "gold leaf accent",
+            "Garnier red + mirror (interiors)",
+            "night mode: deep blue + warm window light",
+        ],
+        "packs": {
+            "MI_SALON_IMPOSSIBLE": {
+                "label": "Salon Impossible",
+                "description": (
+                    "The hero interior: an impossible loggia, a stair that never "
+                    "arrives, and a wall of Circle-Limit window — Garnier dressed "
+                    "as Escher, in one click."
+                ),
+                "refs": [
+                    {"builder": "MEL_escher_belvedere", "preset": "CANONICAL_LOGGIA",
+                     "note": "Rotated mansard attic over a Haussmann arcade."},
+                    {"builder": "MEL_escher_penrose_stairs", "preset": "CLASSIC_LOOP",
+                     "note": "Garnier grand stair, closed into a Penrose loop."},
+                    {"builder": "GN_PARIS_EscherLadder", "preset": "MI_BELVEDERE_LADDER",
+                     "note": "The ladder that visibly fails to meet its own landing "
+                             "(join error is the dial)."},
+                    {"builder": "MEL_hyperbolic_window", "preset": "POINCARE_SALON",
+                     "note": "Circle-Limit glazing at reading-room scale."},
+                    {"builder": "GN_PARIS_WallDetail", "preset": "MI_GOTHIC_CHAPEL",
+                     "note": "Chapel-mode walls: the Sainte-Chapelle read."},
+                ],
+            },
+            "MI_COUR_D_HONNEUR": {
+                "label": "Cour d'Honneur",
+                "description": (
+                    "The courtyard ensemble: Haussmann bays, stone slab, a Mobius "
+                    "balcony rail, and tessellated relief walls — Bofill's housing "
+                    "scale done in limestone."
+                ),
+                "refs": [
+                    {"builder": "GN_PARIS_WallDetail", "preset": "MI_COUR_D_HONNEUR",
+                     "note": "The bay type everything else is measured against."},
+                    {"builder": "GN_PARIS_SlabTrim", "preset": "MI_SALON_SLAB",
+                     "note": "Ground plane + trim UV."},
+                    {"builder": "MEL_mobius_strip", "preset": "RAILING_RIBBON",
+                     "note": "Guimard iron line, one continuous rail."},
+                    {"builder": "MEL_escher_tessellation", "preset": "BOLD_RELIEF",
+                     "note": "Sunk relief panels on the courtyard walls."},
+                    {"builder": "GN_PARIS_FountainLoop",
+                     "preset": "MI_COURTYARD_DAY",
+                     "note": "Track A builder: self-feeding basin loop."},
+                ],
+            },
+            "MI_MAISON_NUIT": {
+                "label": "Maison Nuit",
+                "description": (
+                    "The night pass: duality tiling lit against deep blue, a gold "
+                    "tribar, and a hyperbolic window at maximum density."
+                ),
+                "refs": [
+                    {"builder": "MEL_escher_tessellation", "preset": "DAY_AND_NIGHT",
+                     "note": "The duality plate as a lit facade grid."},
+                    {"builder": "MEL_penrose_triangle", "preset": "TRIBAR_CANON",
+                     "note": "Gold tribar inlay over the entrance."},
+                    {"builder": "MEL_hyperbolic_window", "preset": "DEEP_FIELD",
+                     "note": "Maximum density glazing for night silhouette."},
+                    {"builder": "MEL_escher_waterfall", "preset": "IMPOSSIBLE_TRIBAR",
+                     "note": "Self-feeding channel, lit warm."},
+                    {"builder": "GN_PARIS_DayNightFacade", "preset": "MI_NUIT",
+                     "note": "Track A builder: light/dark duality slider."},
+                ],
+            },
+        },
+    },
+}
+
+
+def brands() -> list[str]:
+    """Sorted ids of every registered brand."""
+    return sorted(BRANDS)
+
+
+def brand_info(brand_id: str) -> dict:
+    """Full brand record: label, tagline, reference_set, palette, packs."""
+    brand = BRANDS.get(brand_id)
+    if brand is None:
+        raise KeyError(f"presets: unknown brand '{brand_id}'")
+    return brand
+
+
+def brand_packs(brand_id: str) -> dict:
+    """The brand's pack map (pack_id -> pack dict); {} when it has none."""
+    return brand_info(brand_id).get("packs", {}) or {}
+
+
+def brand_pack_names(brand_id: str) -> list[str]:
+    """Pack ids for one brand, in declaration order."""
+    return list(brand_packs(brand_id))
+
+
+def resolve_brand_pack(brand_id: str, pack_id: str) -> dict:
+    """Resolve a pack's refs into concrete (builder, preset, params) steps.
+
+    The apply path is `mel_gn.apply_preset` (stack.py), called once per step:
+    it matches a preset's params onto the tree's INPUT sockets BY NAME, so each
+    step's `params` here is directly usable. Refs authored with pending=True
+    (builders not yet built) are reported in `pending`, never silently dropped,
+    and a ref that no longer resolves lands in `unresolved` instead of raising.
+    """
+    pack = brand_packs(brand_id).get(pack_id)
+    if pack is None:
+        raise KeyError(f"presets: unknown pack '{brand_id}/{pack_id}'")
+
+    steps: list[dict] = []
+    pending: list[dict] = []
+    unresolved: list[dict] = []
+    for ref in pack.get("refs") or []:
+        bid = ref.get("builder")
+        pname = ref.get("preset")
+        if ref.get("pending"):
+            pending.append({"builder": bid, "preset": pname,
+                            "note": ref.get("note", "")})
+            continue
+        entry = BUILDERS_PRESETS.get(bid)
+        params = (entry or {}).get("presets", {}).get(pname)
+        if params is None:
+            unresolved.append({"builder": bid, "preset": pname,
+                               "note": ref.get("note", "")})
+            continue
+        steps.append({
+            "builder": bid,
+            "preset": pname,
+            "label": (entry.get("preset_labels") or {}).get(pname, pname),
+            "params": dict(params),
+            "note": ref.get("note", ""),
+        })
+
+    return {
+        "schema_version": BRAND_SCHEMA_VERSION,
+        "brand": brand_id,
+        "brand_label": brand_info(brand_id).get("label", brand_id),
+        "pack": pack_id,
+        "pack_label": pack.get("label", pack_id),
+        "description": pack.get("description", ""),
+        "steps": steps,
+        "pending": pending,
+        "unresolved": unresolved,
+    }
+
+
+def export_brand_pack(brand_id: str, pack_id: str) -> dict:
+    """Brand pack plus the brand's identity, for docs/CI/hub payloads."""
+    payload = resolve_brand_pack(brand_id, pack_id)
+    info = brand_info(brand_id)
+    payload["tagline"] = info.get("tagline", "")
+    payload["product_line"] = info.get("product_line", "")
+    payload["reference_set"] = list(info.get("reference_set") or [])
+    payload["palette"] = list(info.get("palette") or [])
+    return payload
+
+
+# Maison Impossible - the Belvedere ladder (paris_escher_ladder.py).
+# Join Error is the impossibility dial: 0.0 = the ladder honestly meets the
+# landing, + = it overshoots, - = it falls short. Floating Steps are treads the
+# stringer does not reach, so they hang in the air.
+BUILDERS_PRESETS["GN_PARIS_EscherLadder"] = {
+    "label": "PARIS Escher Ladder",
+    "preset_labels": {
+        "MI_BELVEDERE_LADDER": "Belvedere Ladder",
+        "MI_HONEST_LADDER": "Honest Ladder",
+        "MI_SERVANT_LADDER": "Servant's Ladder",
+        "MI_DEEP_FALL": "Deep Fall",
+    },
+    "preset_descriptions": {
+        "MI_BELVEDERE_LADDER": "The impossible read: overtakes the landing by 0.3m, "
+                               "top three treads unsupported.",
+        "MI_HONEST_LADDER": "Working ladder - join meets the landing exactly, "
+                            "every tread supported.",
+        "MI_SERVANT_LADDER": "Steep narrow back-stair, no railing, no mansard.",
+        "MI_DEEP_FALL": "Falls 0.6m short of the landing with six treads past the "
+                        "stringer - the Piranesi read.",
+    },
+    "presets": {
+        "MI_BELVEDERE_LADDER": {
+            "Ladder Height": 3.2, "Ladder Lean": 0.18, "Rung Count": 12,
+            "Ladder Width": 0.75, "Rung Depth": 0.30, "Rung Thickness": 0.05,
+            "Join Error": 0.30, "Floating Steps": 3, "Landing Depth": 1.6,
+            "Landing Thickness": 0.18, "Mansard Landing": True,
+            "Railing": True, "Rail Height": 0.95,
+        },
+        "MI_HONEST_LADDER": {
+            "Ladder Height": 3.2, "Ladder Lean": 0.18, "Rung Count": 12,
+            "Ladder Width": 0.75, "Rung Depth": 0.30, "Rung Thickness": 0.05,
+            "Join Error": 0.0, "Floating Steps": 0, "Landing Depth": 1.6,
+            "Landing Thickness": 0.18, "Mansard Landing": True,
+            "Railing": True, "Rail Height": 0.95,
+        },
+        "MI_SERVANT_LADDER": {
+            "Ladder Height": 2.6, "Ladder Lean": 0.06, "Rung Count": 16,
+            "Ladder Width": 0.50, "Rung Depth": 0.22, "Rung Thickness": 0.04,
+            "Join Error": 0.0, "Floating Steps": 0, "Landing Depth": 0.9,
+            "Landing Thickness": 0.12, "Mansard Landing": False,
+            "Railing": False, "Rail Height": 0.85,
+        },
+        "MI_DEEP_FALL": {
+            "Ladder Height": 3.6, "Ladder Lean": 0.22, "Rung Count": 14,
+            "Ladder Width": 0.90, "Rung Depth": 0.34, "Rung Thickness": 0.06,
+            "Join Error": -0.60, "Floating Steps": 6, "Landing Depth": 2.0,
+            "Landing Thickness": 0.22, "Mansard Landing": True,
+            "Railing": True, "Rail Height": 1.05,
+        },
+    },
+}
+
+
+# Paris Track A - the courtyard fountain (paris_track_a.py).
+# Wobble is the only effect dial and is neutral at 0.0; the rest are structural.
+BUILDERS_PRESETS["GN_PARIS_FountainLoop"] = {
+    "label": "PARIS Fountain Loop",
+    "preset_labels": {
+        "MI_COURTYARD_DAY": "Courtyard Day",
+        "MI_COURTYARD_STILL": "Courtyard Still",
+        "MI_COURTYARD_TOUR": "Grand Tour Basin",
+    },
+    "preset_descriptions": {
+        "MI_COURTYARD_DAY": "The pack slot: day-lit courtyard basin, ring at full rise.",
+        "MI_COURTYARD_STILL": "Still water - wobble 0, low ring, wide stone basin.",
+        "MI_COURTYARD_TOUR": "Grand tour scale: deep basin, tall self-feeding ring, lively wobble.",
+    },
+    "presets": {
+        "MI_COURTYARD_DAY": {
+            "Basin Radius": 0.9, "Basin Depth": 0.35, "Loop Rise": 0.85,
+            "Stream Radius": 0.06, "Wobble": 0.04, "Basin Segments": 48,
+        },
+        "MI_COURTYARD_STILL": {
+            "Basin Radius": 1.1, "Basin Depth": 0.28, "Loop Rise": 0.55,
+            "Stream Radius": 0.05, "Wobble": 0.0, "Basin Segments": 64,
+        },
+        "MI_COURTYARD_TOUR": {
+            "Basin Radius": 1.4, "Basin Depth": 0.5, "Loop Rise": 1.4,
+            "Stream Radius": 0.09, "Wobble": 0.1, "Basin Segments": 64,
+        },
+    },
+}
+
+# Paris Track A - the duality facade (paris_track_a.py).
+# Duality slides the day plate (light tiles forward) through the flat Escher
+# plate (0.5) to the night plate (dark tiles forward).
+BUILDERS_PRESETS["GN_PARIS_DayNightFacade"] = {
+    "label": "PARIS Day-Night Facade",
+    "preset_labels": {
+        "MI_NUIT": "Maison Nuit",
+        "MI_JOUR": "Maison Jour",
+        "MI_PLATE": "Escher Plate",
+    },
+    "preset_descriptions": {
+        "MI_NUIT": "The pack slot: dark tiles forward at full density - the night read.",
+        "MI_JOUR": "Day plate: light tiles forward, sober limestone relief.",
+        "MI_PLATE": "Duality 0.5 - the flat woodcut plate, every tile equal.",
+    },
+    "presets": {
+        "MI_NUIT": {
+            "Facade Width": 3.0, "Facade Height": 3.2, "Tiles X": 12, "Tiles Y": 14,
+            "Relief": 0.06, "Duality": 1.0,
+        },
+        "MI_JOUR": {
+            "Facade Width": 3.0, "Facade Height": 3.2, "Tiles X": 12, "Tiles Y": 14,
+            "Relief": 0.06, "Duality": 0.0,
+        },
+        "MI_PLATE": {
+            "Facade Width": 2.4, "Facade Height": 2.4, "Tiles X": 16, "Tiles Y": 16,
+            "Relief": 0.04, "Duality": 0.5,
+        },
+    },
+}
+
+
 def main() -> None:
     report = audit_presets()
     print("[Melodia GN presets] audit:")
@@ -3718,6 +4169,20 @@ def main() -> None:
         print(f"  builders_without_presets ({len(missing)}):")
         for bid in missing:
             print(f"    {bid}")
+
+    # Brand layer - Maison Impossible
+    brand_ids = brands()
+    print(f"[Melodia GN presets] brands ({len(brand_ids)}):")
+    for brand_id in brand_ids:
+        info = brand_info(brand_id)
+        print(f"  {info.get('label', brand_id)} - {info.get('tagline', '')}")
+        for pack_id in brand_pack_names(brand_id):
+            pack = resolve_brand_pack(brand_id, pack_id)
+            pend = f", {len(pack['pending'])} pending" if pack["pending"] else ""
+            bad = (f", {len(pack['unresolved'])} UNRESOLVED"
+                   if pack["unresolved"] else "")
+            print(f"    {pack_id} ({pack['pack_label']}): "
+                  f"{len(pack['steps'])} steps{pend}{bad}")
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ def _draw_studio_prefs(layout, prefs):
     layout.prop(prefs, "higgsas_library_path")
     layout.prop(prefs, "synthia_addon_path")
     col = layout.column(align=True)
-    for name in ("beavel", "synthia", "higgsas", "sverchok"):
+    for name in ("beavel", "synthia", "higgsas", "sverchok", "bagapie"):
         col.label(text=capabilities.status_line(name))
 
 

@@ -2,7 +2,7 @@
 # Tools/BlenderAddons/melodia_studio/
 
 bl_info = {
-    "name": "Melodia Studio",
+    "name": "Melodia Studio — MIDI World",
     "author": "fromage3900",
     "version": (1, 5, 0),
     "blender": (4, 0, 0),

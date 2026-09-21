@@ -484,7 +484,7 @@ def build_harp_kora(group_name="MEL_harp_kora"):
     add_bool_param(tree, "Realize for export", False)
 
     bx, by = 0, 0
-    sphere = safe_node(tree, "GeometryNodeUVSphere", (bx - 760, by))
+    sphere = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 760, by))
     try:
         sphere.inputs["Segments"].default_value = 32
         sphere.inputs["Rings"].default_value = 16

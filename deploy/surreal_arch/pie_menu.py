@@ -138,10 +138,17 @@ class SURREAL_ARCH_MT_pie_main(bpy.types.Menu):
         col2.operator("surreal_arch.toggle_snap_overlay", text="Snap Overlay", icon="HIDE_OFF")
         # 5 - SW : Export
         pie.operator("surreal_arch.export_ue5", text="Export UE5", icon="EXPORT")
-        # 3 - SE : Plan / Graph
+        # 3 - SE : Dress + Plan (thin Bagapie bridge: ivy single + RQ batch
+        # dry-run; Sakura plan shares the wedge — 8-wedge cap respected)
         col3 = pie.column()
+        col3.operator("surreal_arch.ivy_scatter", text="Ivy", icon="PARTICLES")
+        col3.operator(
+            "surreal_arch.ivy_scatter_review_queue",
+            text="RQ Ivy Batch",
+            icon="OUTLINER_OB_GROUP_INSTANCE",
+        )
         if has_props:
-            col3.operator("surreal_arch.spawn_graph_zen_sakura_walk", text="Sakura Walk", icon="OUTLINER_OB_GROUP_INSTANCE")
+            col3.operator("surreal_arch.spawn_graph_zen_sakura_walk", text="Sakura Walk", icon="WORLD")
         else:
             col3.label(text="Select mesh", icon="ERROR")
         col3.operator("surreal_arch.plan_spawn_zen_sakura", text="Zen Sakura Plan", icon="WORLD")
@@ -311,6 +318,10 @@ def _ctx_menu_draw(self, context):
     layout.operator("surreal_arch.pie_menu", text="Melodia Pie  (Shift+Q)", icon="SHADERFX")
     layout.operator("surreal_arch.pie_room", text="Room Shape Pie  (Alt+Q)", icon="MESH_CUBE")
     layout.operator("surreal_arch.pie_window", text="Window Pie  (Ctrl+Shift+Q)", icon="WINDOW")
+    # Thin Bagapie bridge: guarded so a missing Bagapie extension can never
+    # break the object context menu (same pattern as pie_score above).
+    if hasattr(bpy.ops.surreal_arch, "ivy_scatter"):
+        layout.operator("surreal_arch.ivy_scatter", text="Ivy (Bagapie)", icon="PARTICLES")
     # pie_score is owned by music_ui.py — guard so a failed music registration
     # cannot break the object context menu.
     if hasattr(bpy.ops.surreal_arch, "pie_score"):

@@ -70,6 +70,14 @@ def synthia_addon_hint() -> str:
 
 def is_available(name: str) -> bool:
     name = name.lower()
+    if name == "bagapie":
+        # Single probe shared with bagapie_bridge.bagapie_available (thin
+        # bridge: Bagapie owns the ops, Melodia only guards + routes).
+        try:
+            from .bagapie_bridge import bagapie_available
+            return bool(bagapie_available())
+        except Exception:
+            return False
     if name == "beavel":
         return hasattr(bpy.ops.mesh, "beavel_operator")
     if name == "synthia":

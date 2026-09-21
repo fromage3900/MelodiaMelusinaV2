@@ -32,7 +32,7 @@ import bpy
 from .core import (
     safe_node, link_sockets, label_tree,
     new_geometry_tree, add_float_param, add_int_param, add_bool_param,
-    register_builder,
+    register_builder, mesh_boolean_node,
 )
 from .house_dress import _ensure_material, _ensure_all_materials
 
@@ -941,7 +941,395 @@ def build_mh_aaa_lissajous_pearl(group_name="MEL_mh_aaa_lissajous_pearl"):
     return (tree, gin, gout)
 
 
+# ---------------------------------------------------------------------------
+# 5. Whale-back roof ribbon (MEL_mh_roof_ribbon) - P1 house shell
+#    Ridge curve -> whale-back displace (rise, eave curl, end lift, asymmetry)
+#    -> profile sweep via Curve to Mesh -> thickness extrude -> bevel -> smooth.
+#    Main / wing / porch roof variants are pure parameter presets; no shingles
+#    live inside this builder (see MEL_mh_shingle_distributor).
+# ---------------------------------------------------------------------------
+
+def _math_op(tree, loc, operation, a, b):
+    n = safe_node(tree, "ShaderNodeMath", loc)
+    try:
+        n.operation = operation
+        if hasattr(a, "id_data"):
+            link_sockets(tree, a, n.inputs[0])
+        else:
+            n.inputs[0].default_value = float(a)
+        if hasattr(b, "id_data"):
+            link_sockets(tree, b, n.inputs[1])
+        else:
+            n.inputs[1].default_value = float(b)
+    except Exception:
+        pass
+    return n.outputs[0]
+
+
+def build_mh_roof_ribbon(group_name="MEL_mh_roof_ribbon"):
+    tree, gin, gout = new_geometry_tree(group_name)
+    add_float_param(tree, "Roof Width", 9.0, 1.0, 24.0)
+    add_float_param(tree, "Roof Depth", 6.0, 0.5, 12.0)
+    add_float_param(tree, "Roof Rise", 2.55, 0.1, 8.0)
+    add_float_param(tree, "Eave Curl", 0.45, 0.0, 3.0)
+    add_float_param(tree, "End Lift", 0.65, 0.0, 3.0)
+    add_float_param(tree, "Thickness", 0.12, 0.01, 0.8)
+    add_float_param(tree, "Asymmetry", 0.25, -1.0, 1.0)
+    add_int_param(tree, "Preview Density", 48, 8, 256)
+
+    # 1. ridge along Y: Mesh Line -> Mesh to Curve (proven 5.2 pattern)
+    line = safe_node(tree, "GeometryNodeMeshLine", (0, 0))
+    try:
+        line.mode = "OFFSET"
+        line.count_mode = "TOTAL"
+    except Exception:
+        pass
+    _link(tree, gin.outputs["Preview Density"], line.inputs["Count"])
+    m2c = safe_node(tree, "GeometryNodeMeshToCurve", (180, 0))
+    _link(tree, line.outputs["Mesh"], m2c.inputs["Mesh"])
+
+    # 2. whale-back displace: t in [-1,1] across the ridge (by index)
+    idx = safe_node(tree, "GeometryNodeInputIndex", (0, -160))
+    cm1 = _math_op(tree, (0, -320), "SUBTRACT", gin.outputs["Preview Density"], 1.0)
+    t = _math_op(tree, (160, -320), "DIVIDE", idx.outputs[0], cm1)
+    t = _math_op(tree, (320, -320), "MULTIPLY", t, 2.0)
+    t = _math_op(tree, (480, -320), "SUBTRACT", t, 1.0)
+    t2 = _math_op(tree, (320, -400), "MULTIPLY", t, t)
+    t4 = _math_op(tree, (480, -400), "MULTIPLY", t2, t2)
+    dome = _math_op(tree, (320, -600), "SUBTRACT", 1.0, t2)
+    _asym_t = _math_op(tree, (160, -720), "MULTIPLY", gin.outputs["Asymmetry"], t)
+    _asym_t = _math_op(tree, (320, -720), "ADD", 1.0, _asym_t)
+    body = _math_op(tree, (480, -720), "MULTIPLY", dome, _asym_t)
+    rise = _math_op(tree, (640, -720), "MULTIPLY", body, gin.outputs["Roof Rise"])
+    lift = _math_op(tree, (640, -560), "MULTIPLY", t4, gin.outputs["End Lift"])
+    curl = _math_op(tree, (640, -430), "MULTIPLY", t4, gin.outputs["Eave Curl"])
+    curl = _math_op(tree, (640, -320), "MULTIPLY", curl, 1.5)
+    z = _math_op(tree, (800, -560), "ADD", rise, lift)
+    z = _math_op(tree, (960, -560), "ADD", z, curl)
+    yw = _math_op(tree, (800, -720), "MULTIPLY", t, gin.outputs["Roof Width"])
+    combine = safe_node(tree, "ShaderNodeCombineXYZ", (960, -220))
+    try:
+        combine.inputs["X"].default_value = 0.0
+    except Exception:
+        pass
+    _link(tree, yw, combine.inputs["Y"])
+    _link(tree, z, combine.inputs["Z"])
+    sp = safe_node(tree, "GeometryNodeSetPosition", (1120, -220))
+    _link(tree, m2c.outputs["Curve"], sp.inputs["Geometry"])
+    _link(tree, combine.outputs[0], sp.inputs["Position"])
+
+    # 3. profile: 2-point Mesh Line along X -> Mesh to Curve -> scaled by Depth
+    profile = safe_node(tree, "GeometryNodeMeshLine", (1320, 520))
+    try:
+        profile.mode = "OFFSET"
+        profile.count_mode = "TOTAL"
+        profile.inputs["Count"].default_value = 2
+        profile.inputs["Offset"].default_value = (1.0, 0.0, 0.0)
+    except Exception:
+        pass
+    pm2c = safe_node(tree, "GeometryNodeMeshToCurve", (1480, 520))
+    _link(tree, profile.outputs["Mesh"], pm2c.inputs["Mesh"])
+    depth_v = safe_node(tree, "ShaderNodeCombineXYZ", (1320, 420))
+    _link(tree, gin.outputs["Roof Depth"], depth_v.inputs["X"])
+    try:
+        depth_v.inputs["Y"].default_value = 1.0
+        depth_v.inputs["Z"].default_value = 1.0
+    except Exception:
+        pass
+    half_d = _math_op(tree, (1120, 700), "MULTIPLY", gin.outputs["Roof Depth"], -0.5)
+    trans_d = safe_node(tree, "ShaderNodeCombineXYZ", (1280, 700))
+    _link(tree, half_d, trans_d.inputs["X"])
+    profile_xf = safe_node(tree, "GeometryNodeTransform", (1640, 520))
+    _link(tree, pm2c.outputs["Curve"], profile_xf.inputs["Geometry"])
+    _link(tree, depth_v.outputs[0], profile_xf.inputs["Scale"])
+    _link(tree, trans_d.outputs[0], profile_xf.inputs["Translation"])
+
+    c2m = safe_node(tree, "GeometryNodeCurveToMesh", (1560, -220))
+    _link(tree, sp.outputs["Geometry"], c2m.inputs["Curve"])
+    _link(tree, profile_xf.outputs["Geometry"], c2m.inputs["Profile Curve"])
+
+    # 5. thickness extrude (along Z), bevel, smooth
+    thick_v = safe_node(tree, "ShaderNodeCombineXYZ", (1560, -40))
+    _link(tree, gin.outputs["Thickness"], thick_v.inputs["Z"])
+    try:
+        thick_v.inputs["X"].default_value = 0.0
+        thick_v.inputs["Y"].default_value = 0.0
+    except Exception:
+        pass
+    extrude = safe_node(tree, "GeometryNodeExtrudeMesh", (1720, -220))
+    _link(tree, c2m.outputs["Mesh"], extrude.inputs["Mesh"])
+    _link(tree, thick_v.outputs[0], extrude.inputs["Offset"])
+    bev = safe_node(tree, "GeometryNodeMeshBevel", (1880, -220))
+    _link(tree, extrude.outputs["Mesh"], bev.inputs["Mesh"])
+    try:
+        bev.inputs["Offset"].default_value = 0.02
+        bev.inputs["Segments"].default_value = 2
+    except Exception:
+        pass
+    smooth = safe_node(tree, "GeometryNodeSetShadeSmooth", (2040, -220))
+    _link(tree, bev.outputs["Mesh"], smooth.inputs["Mesh"])
+    try:
+        smooth.inputs["Shade Smooth"].default_value = True
+    except Exception:
+        pass
+
+    _link(tree, smooth.outputs["Mesh"], gout.inputs["Geometry"])
+    label_tree(tree, group_name, [
+        {"title": "Whale-back Ribbon Roof", "nodes": ("Mesh Line", "Set Position", "Curve to Mesh", "Extrude Mesh", "Mesh Bevel"), "role": "geometry"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
+    return (tree, gin, gout)
+
+
+# ---------------------------------------------------------------------------
+# 6. Round-Baroque opening family (MEL_mh_opening_family) - Packet C shell
+#    One parametric arched opening unit: outer arch silhouette minus inner
+#    void, optional keystone, sill. ROUND_WINDOW / TALL_DOOR / PALLADIAN are
+#    pure parameter presets; no cutter distribution lives here (facade arrays
+#    belong to the room shell / PCG layers).
+# ---------------------------------------------------------------------------
+
+def _arch_silhouette(tree, loc, width_s, height_s, depth_s, segments_s):
+    """Rectangle + half-disc arch silhouette in XZ, extruded along Y. Base at Z=0."""
+    bx, by = loc
+    dims = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 160, by + 160))
+    _link(tree, width_s, dims.inputs["X"])
+    _link(tree, depth_s, dims.inputs["Y"])
+    _link(tree, height_s, dims.inputs["Z"])
+    half_h = safe_node(tree, "ShaderNodeMath", (bx - 160, by))
+    try:
+        half_h.operation = 'MULTIPLY'
+        _link(tree, height_s, half_h.inputs[0])
+        half_h.inputs[1].default_value = 0.5
+    except Exception:
+        pass
+    base = safe_node(tree, "ShaderNodeCombineXYZ", (bx, by - 160))
+    try:
+        base.inputs["X"].default_value = 0.0
+        base.inputs["Y"].default_value = 0.0
+    except Exception:
+        pass
+    _link(tree, half_h.outputs[0], base.inputs["Z"])
+    rect = safe_node(tree, "GeometryNodeMeshCube", (bx, by))
+    _link(tree, dims.outputs[0], rect.inputs["Size"])
+    rect_xf = safe_node(tree, "GeometryNodeTransform", (bx + 200, by))
+    _link(tree, rect.outputs["Mesh"], rect_xf.inputs["Geometry"])
+    _link(tree, base.outputs[0], rect_xf.inputs["Translation"])
+
+    half_w = safe_node(tree, "ShaderNodeMath", (bx - 160, by - 320))
+    try:
+        half_w.operation = 'MULTIPLY'
+        _link(tree, width_s, half_w.inputs[0])
+        half_w.inputs[1].default_value = 0.5
+    except Exception:
+        pass
+    disc = safe_node(tree, "GeometryNodeMeshCylinder", (bx, by - 320))
+    _link(tree, segments_s, disc.inputs["Vertices"])
+    _link(tree, half_w.outputs[0], disc.inputs["Radius"])
+    _link(tree, depth_s, disc.inputs["Depth"])
+    rot = safe_node(tree, "ShaderNodeCombineXYZ", (bx, by - 480))
+    try:
+        rot.inputs["X"].default_value = math.pi / 2.0
+        rot.inputs["Y"].default_value = 0.0
+        rot.inputs["Z"].default_value = 0.0
+    except Exception:
+        pass
+    disc_xf = safe_node(tree, "GeometryNodeTransform", (bx + 200, by - 320))
+    _link(tree, disc.outputs["Mesh"], disc_xf.inputs["Geometry"])
+    _link(tree, rot.outputs[0], disc_xf.inputs["Rotation"])
+    top = safe_node(tree, "ShaderNodeCombineXYZ", (bx, by - 640))
+    try:
+        top.inputs["X"].default_value = 0.0
+        top.inputs["Y"].default_value = 0.0
+    except Exception:
+        pass
+    _link(tree, height_s, top.inputs["Z"])
+    link_sockets(tree, top.outputs[0], disc_xf.inputs["Translation"])
+
+    _node, out = mesh_boolean_node(tree, (bx + 440, by - 160), 'UNION',
+                                   rect_xf.outputs["Geometry"],
+                                   disc_xf.outputs["Geometry"])
+    return out
+
+
+def build_mh_opening_family(group_name="MEL_mh_opening_family"):
+    tree, gin, gout = new_geometry_tree(group_name)
+    add_float_param(tree, "Opening Width", 1.1, 0.2, 6.0)
+    add_float_param(tree, "Opening Height", 1.6, 0.05, 8.0)
+    add_float_param(tree, "Jamb Width", 0.12, 0.0, 0.6)
+    add_float_param(tree, "Frame Depth", 0.35, 0.05, 1.5)
+    add_float_param(tree, "Sill Height", 0.12, 0.0, 0.5)
+    add_float_param(tree, "Keystone Scale", 0.6, 0.0, 2.0)
+    add_float_param(tree, "Bevel", 0.02, 0.0, 0.1)
+    add_int_param(tree, "Arch Segments", 32, 8, 128)
+    add_bool_param(tree, "Keystone", True)
+
+    W = gin.outputs["Opening Width"]
+    H = gin.outputs["Opening Height"]
+    J = gin.outputs["Jamb Width"]
+    D = gin.outputs["Frame Depth"]
+    KS = gin.outputs["Keystone Scale"]
+    seg = gin.outputs["Arch Segments"]
+
+    def _mul(socket, factor, loc):
+        n = safe_node(tree, "ShaderNodeMath", loc)
+        try:
+            n.operation = 'MULTIPLY'
+            _link(tree, socket, n.inputs[0])
+            n.inputs[1].default_value = float(factor)
+        except Exception:
+            pass
+        return n.outputs[0]
+
+    def _mul2(a, b, loc):
+        n = safe_node(tree, "ShaderNodeMath", loc)
+        try:
+            n.operation = 'MULTIPLY'
+            _link(tree, a, n.inputs[0])
+            _link(tree, b, n.inputs[1])
+        except Exception:
+            pass
+        return n.outputs[0]
+
+    def _add(socket, delta, loc):
+        n = safe_node(tree, "ShaderNodeMath", loc)
+        try:
+            n.operation = 'ADD'
+            _link(tree, socket, n.inputs[0])
+            n.inputs[1].default_value = float(delta)
+        except Exception:
+            pass
+        return n.outputs[0]
+
+    # outer silhouette = W + 2*J wide; inner void punches 0.2 past the depth
+    two_j = _mul(J, 2.0, (-560, -240))
+    outer_w_node = safe_node(tree, "ShaderNodeMath", (-400, -240))
+    try:
+        outer_w_node.operation = 'ADD'
+        _link(tree, W, outer_w_node.inputs[0])
+        _link(tree, two_j, outer_w_node.inputs[1])
+    except Exception:
+        pass
+    outer_w = outer_w_node.outputs[0]
+    inner_d = _add(D, 0.2, (-400, -360))
+
+    outer = _arch_silhouette(tree, (0, 300), outer_w, H, D, seg)
+    inner = _arch_silhouette(tree, (0, -420), W, H, inner_d, seg)
+    _bool_node, frame = mesh_boolean_node(tree, (680, -40), 'DIFFERENCE', outer, inner)
+
+    # keystone at the arch apex, gated by a Switch on the Keystone bool
+    kbase = _mul(W, 0.3, (680, -300))
+    kw = _mul2(kbase, KS, (840, -300))
+    kwh = _mul(kw, 1.5, (1000, -300))
+    kdepth = _add(D, 0.08, (1000, -420))
+    half_w = _mul(W, 0.5, (1160, -560))
+    kposz = safe_node(tree, "ShaderNodeMath", (1320, -560))
+    try:
+        kposz.operation = 'ADD'
+        _link(tree, H, kposz.inputs[0])
+        _link(tree, half_w, kposz.inputs[1])
+    except Exception:
+        pass
+    kdim = safe_node(tree, "ShaderNodeCombineXYZ", (1160, -360))
+    _link(tree, kw, kdim.inputs["X"])
+    _link(tree, kdepth, kdim.inputs["Y"])
+    _link(tree, kwh, kdim.inputs["Z"])
+    kpos = safe_node(tree, "ShaderNodeCombineXYZ", (1320, -460))
+    try:
+        kpos.inputs["X"].default_value = 0.0
+        kpos.inputs["Y"].default_value = 0.0
+    except Exception:
+        pass
+    _link(tree, kposz.outputs[0], kpos.inputs["Z"])
+    kcube = safe_node(tree, "GeometryNodeMeshCube", (1480, -360))
+    _link(tree, kdim.outputs[0], kcube.inputs["Size"])
+    kxf = safe_node(tree, "GeometryNodeTransform", (1640, -360))
+    _link(tree, kcube.outputs["Mesh"], kxf.inputs["Geometry"])
+    _link(tree, kpos.outputs[0], kxf.inputs["Translation"])
+    keystone_geo = None
+    switch = safe_node(tree, "GeometryNodeSwitch", (1800, -360))
+    if switch is not None:
+        try:
+            switch.input_type = 'GEOMETRY'
+        except Exception:
+            pass
+        try:
+            _link(tree, gin.outputs["Keystone"], switch.inputs["Switch"])
+        except Exception:
+            pass
+        try:
+            _link(tree, kxf.outputs["Geometry"], switch.inputs["True"])
+        except Exception:
+            pass
+        try:
+            keystone_geo = switch.outputs["Output"]
+        except Exception:
+            keystone_geo = None
+    else:
+        keystone_geo = kxf.outputs["Geometry"]
+
+    # sill under the opening
+    sow = _add(outer_w, 0.12, (680, 200))
+    sdep = _add(D, 0.08, (680, 120))
+    shh = _mul(gin.outputs["Sill Height"], 0.5, (680, 40))
+    sdim = safe_node(tree, "ShaderNodeCombineXYZ", (840, 200))
+    _link(tree, sow, sdim.inputs["X"])
+    _link(tree, sdep, sdim.inputs["Y"])
+    _link(tree, gin.outputs["Sill Height"], sdim.inputs["Z"])
+    spos = safe_node(tree, "ShaderNodeCombineXYZ", (840, 60))
+    try:
+        spos.inputs["X"].default_value = 0.0
+        spos.inputs["Y"].default_value = 0.0
+    except Exception:
+        pass
+    _link(tree, shh, spos.inputs["Z"])
+    scube = safe_node(tree, "GeometryNodeMeshCube", (1000, 200))
+    _link(tree, sdim.outputs[0], scube.inputs["Size"])
+    sxf = safe_node(tree, "GeometryNodeTransform", (1160, 200))
+    _link(tree, scube.outputs["Mesh"], sxf.inputs["Geometry"])
+    _link(tree, spos.outputs[0], sxf.inputs["Translation"])
+
+    parts = [frame, keystone_geo, sxf.outputs["Geometry"]]
+    joined = parts[0]
+    y = -40
+    for part in parts[1:]:
+        if part is None:
+            continue
+        _jn, joined = mesh_boolean_node(tree, (1980, y), 'UNION', joined, part)
+        y -= 160
+
+    bev = safe_node(tree, "GeometryNodeMeshBevel", (2340, -40))
+    _link(tree, joined, bev.inputs["Mesh"])
+    try:
+        _link(tree, gin.outputs["Bevel"], bev.inputs["Offset"])
+        bev.inputs["Segments"].default_value = 2
+    except Exception:
+        pass
+    smooth = safe_node(tree, "GeometryNodeSetShadeSmooth", (2500, -40))
+    _link(tree, bev.outputs["Mesh"], smooth.inputs["Mesh"])
+    try:
+        smooth.inputs["Shade Smooth"].default_value = True
+    except Exception:
+        pass
+
+    _link(tree, smooth.outputs["Mesh"], gout.inputs["Geometry"])
+    label_tree(tree, group_name, [
+        {"title": "Round-Baroque Opening Family", "nodes": ("Mesh Cube", "Mesh Cylinder", "Mesh Boolean", "Transform"), "role": "geometry"},
+        {"title": "Keystone / Sill", "nodes": ("Switch",), "role": "instance"},
+        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+    ])
+    return (tree, gin, gout)
+
+
 def _register_all():
+    register_builder(
+        "MEL_mh_roof_ribbon", build_mh_roof_ribbon,
+        "MH Roof Ribbon", "Whale-back ribbon roof: ridge curve swept into a sheet with eave curl, end lift and asymmetry. Main/wing/porch roof variants are pure presets; no shingles inside.",
+        category="melusina_house")
+    register_builder(
+        "MEL_mh_opening_family", build_mh_opening_family,
+        "MH Opening Family", "Round-Baroque arched opening unit with jamb, sill and optional keystone. Window/door/Palladian variants are pure presets; facade arrays live in the shell/PCG layers.",
+        category="melusina_house")
     register_builder(
         "MEL_mh_aaa_cornice", build_mh_aaa_cornice,
         "MH AAA Cornice", "Stepped cornice/string-course ring, swept + beveled.",

@@ -1,0 +1,2 @@
+loop=detail sky=editorial_dark frames=96 fps=24 res=1080x1350 samples=64 dangle_rate=1.2500
+frames dir: P:/MelodiaMelusinaV2-Laptop/Saved/Website/Brooch\frames

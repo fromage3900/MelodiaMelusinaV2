@@ -59,6 +59,73 @@ def _wire_trim_box_wrapper(monolith):
     monolith._gb_box = _gb_box_trim_zones
 
 
+_MONOLITH_UI_PANEL_PREFIXES = ("SURREAL_ARCH_PT_",)
+_MONOLITH_UI_KEEP_IDS = frozenset({
+    # The Modifier-tab drawer is demoted (hidden unless prefs hatch), not
+    # unregistered — it lives in PROPERTIES space, not the N-tab.
+    "SURREAL_ARCH_PT_panel",
+    # The carousel hub is Core-owned UI (genome_carousel.py registers its own
+    # class under the same bl_idname); never unregister the Core class.
+    "SURREAL_ARCH_PT_genome_carousel",
+})
+
+
+def _monolith_ui_panel_names(monolith) -> list[str]:
+    """Bl-panel class names owned by the monolith module (N-tab UI only).
+
+    Structural rule, not a snapshot: any Panel subclass whose __module__ is
+    the monolith's gets retired from the N-tab. SurrealArchProperties,
+    operators, build_* fns, dispatch maps and the melodia_gn route are
+    untouched — this only retires UI classes.
+    """
+    names: list[str] = []
+    mono_mod = getattr(monolith, "__name__", "surreal_architecture_gen")
+    for key in dir(monolith):
+        if not key.startswith(_MONOLITH_UI_PANEL_PREFIXES):
+            continue
+        if key in _MONOLITH_UI_KEEP_IDS:
+            continue
+        cls = getattr(monolith, key, None)
+        if not isinstance(cls, type):
+            continue
+        try:
+            if not issubclass(cls, bpy.types.Panel):
+                continue
+        except Exception:
+            continue
+        if getattr(cls, "__module__", "") != mono_mod:
+            continue
+        names.append(key)
+    return sorted(names)
+
+
+def _retire_monolith_ui_panels() -> list[str]:
+    """Unregister monolith-owned N-tab panels from bpy.types (C1).
+
+    Runs inside register_overhaul AFTER _EXTRA_CLASSES (Core UI) is up, so
+    the N-tab never goes empty. Idempotent. The prefs hatch
+    (show_legacy_modifier_panel) does NOT reshow these — it only governs the
+    demoted PROPERTIES-space drawer (SURREAL_ARCH_PT_panel), which was never
+    unregistered.
+    """
+    retired: list[str] = []
+    for key in list(_MONOLITH_UI_KEEP_IDS):
+        _ = key  # keep-set documented above; nothing to do per key
+    import surreal_architecture_gen as mono
+    for key in _monolith_ui_panel_names(mono):
+        cls = getattr(bpy.types, key, None)
+        if cls is None:
+            continue
+        try:
+            bpy.utils.unregister_class(cls)
+            retired.append(key)
+        except Exception:
+            pass
+    if retired:
+        print(f"[Melodia Studio] C1 retired {len(retired)} monolith N-tab panels")
+    return retired
+
+
 def _legacy_modifier_panel_enabled(context) -> bool:
     addons = getattr(getattr(context, "preferences", None), "addons", None)
     if addons is None:
@@ -856,6 +923,17 @@ def register_overhaul(monolith):
         unify_npanel_categories()
     except Exception as exc:
         print(f"[Surreal Architecture] unify_npanel_categories skipped: {exc}")
+    try:
+        retired = _retire_monolith_ui_panels()
+        try:
+            from .branding import audit_monolith_ui_retired
+            problems = audit_monolith_ui_retired()
+            if problems:
+                print(f"[Melodia Studio] monolith UI still registered: {problems}")
+        except Exception as exc:
+            print(f"[Melodia Studio] monolith UI audit skipped: {exc}")
+    except Exception as exc:
+        print(f"[Melodia Studio] monolith UI retire skipped: {exc}")
     try:
         register_pie_menu_with_keymaps()
     except Exception as exc:

@@ -525,14 +525,17 @@ def build_chime_aeolian_wall(group_name="MEL_chime_aeolian_wall"):
         link_sockets(tree, gin.outputs["Height M"], d_in)
 
     line = safe_node(tree, "GeometryNodeMeshLine", (bx - 380, by + 260))
-    try:
-        line.mode = "END_POINTS"
-    except Exception:
-        pass
+    # Blender 5.2.1 GeometryNodeMeshLine exposes Count / Resolution / Start
+    # Location / Offset - there is NO "End Location" socket, and assigning
+    # `mode = "END_POINTS"` succeeds silently WITHOUT adding one (probed live by
+    # deploy/_probe_mesh_line.py). This link therefore used to no-op: the wall
+    # never spanned its Width M. Link the socket that actually exists, and keep
+    # the legacy name as a fallback for older builds.
     c_in = sock(line, "Count")
     if c_in is not None:
         link_sockets(tree, gin.outputs["String Count"], c_in)
-    link_float_to_vector(tree, gin.outputs["Width M"], line, "End Location", component=0)
+    end_input = "Offset" if sock(line, "Offset") is not None else "End Location"
+    link_float_to_vector(tree, gin.outputs["Width M"], line, end_input, component=0)
     pts = safe_node(tree, "GeometryNodeMeshToPoints", (bx - 180, by + 260))
     link_sockets(tree, line.outputs["Mesh"], sock(pts, "Mesh") or pts.inputs[0])
 
@@ -541,9 +544,15 @@ def build_chime_aeolian_wall(group_name="MEL_chime_aeolian_wall"):
     link_sockets(tree, str_cyl.outputs["Mesh"], sock(inst, "Instance"))
 
     # Wind displacement: sine(index * k + phase) * amplitude on Y
+    # Wind Phase is the phase OFFSET; scene time is added to it so a builder
+    # named for wind sway actually sways (it had no time authority at all).
+    # At t = 0 this is byte-identical to the previous static wiring.
+    from .time import add_time_to_phase
+    wind_phase = add_time_to_phase(
+        tree, gin, gin.outputs["Wind Phase"], (bx + 60, by - 320))
     idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 60, by - 120))
     k = _math(tree, "MULTIPLY", (bx + 60, by - 200), idx.outputs["Index"], 0.7)
-    phased = _math(tree, "ADD", (bx + 220, by - 200), k.outputs[0], gin.outputs["Wind Phase"])
+    phased = _math(tree, "ADD", (bx + 220, by - 200), k.outputs[0], wind_phase)
     sine = safe_node(tree, "ShaderNodeMath", (bx + 380, by - 200))
     if sine is not None:
         sine.operation = "SINE"

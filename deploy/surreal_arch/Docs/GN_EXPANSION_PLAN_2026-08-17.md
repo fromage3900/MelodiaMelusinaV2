@@ -1,5 +1,6 @@
 # Melodia GN expansion plan — 2026-08-17
 
+**Superseded by:** [GN_EXPANSION_PLAN_2026-09-16.md](GN_EXPANSION_PLAN_2026-09-16.md) (keep this as history).
 **Supersedes for next work:** [GN_EXPANSION_PLAN_2026-08-12.md](GN_EXPANSION_PLAN_2026-08-12.md) (keep as history).  
 **Freeze baseline:** 165 / 12. **Live after greybox pass:** 169 / 12. **Live after musical heroes:** **173 / 12** (music +3 SKUs, Structures +1). Set Dressing stays 39.
 

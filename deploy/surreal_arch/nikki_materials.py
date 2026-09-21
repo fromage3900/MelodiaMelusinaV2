@@ -288,6 +288,10 @@ class SURREAL_ARCH_OT_nikki_mat_apply(bpy.types.Operator):
         return obj is not None and obj.type == "MESH"
 
     def invoke(self, context, event):
+        # Bagapie one-click rule: DREAM default applies immediately on first
+        # click; the dialog only appears on repeat-invoke for tweaks.
+        if self.variant == "DREAM" and self.apply_to_all_selected:
+            return self.execute(context)
         return context.window_manager.invoke_props_dialog(self, width=340)
 
     def execute(self, context):

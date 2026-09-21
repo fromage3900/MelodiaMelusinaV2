@@ -1,0 +1,117 @@
+{
+  "id": "melodia_brooch_comet_v1",
+  "family": "Brooch",
+  "verticality": 0.7,
+  "symmetry": 0.35,
+  "ornament_density": 0.5,
+  "structural_logic": 0.35,
+  "organic_growth": 0.75,
+  "cosmic_influence": 0.75,
+  "module_sequence": [
+    "crown_petals",
+    "accent_pearls",
+    "pave_border",
+    "center_bead",
+    "dome_boss",
+    "pin_assembly"
+  ],
+  "compose_style": "BROOCH_COMET",
+  "default_graph": "GN_FlowerBrooch_v5_comet",
+  "lineage": {
+    "gn_crown": "GN_FlowerBrooch_v4",
+    "sverchok": {
+      "pave": "SV_Pave_02",
+      "filigree": "SV_Filigree_03",
+      "cut_layout": "SV_Export_04"
+    }
+  },
+  "traits": {
+    "phyllotaxis": {
+      "angle_deg": 137.5077,
+      "radius_law": "sqrt",
+      "spread": 0.26
+    },
+    "crown": {
+      "petal_count": 8,
+      "petal_profile": "pointed",
+      "petal_len": 0.36,
+      "petal_wid": 0.06,
+      "petal_thk": 0.02,
+      "inner_size": 0.35,
+      "tilt_deg": 44.0,
+      "cup": 0.6,
+      "rise": 0.03,
+      "chaos": 0.3
+    },
+    "accents": {
+      "size": 0.018,
+      "lift": 0.012
+    },
+    "pave": {
+      "site_count": 40,
+      "border_inner": 0.2,
+      "border_outer": 0.24,
+      "bead_radius": 0.015,
+      "voronoi_domain_radius": 0.2
+    },
+    "center_bead": {
+      "radius": 0.055,
+      "z_squash": 0.55
+    },
+    "filigree": {
+      "petal_count": 8,
+      "petal_len": 0.05,
+      "petal_wid": 0.022,
+      "taper_deg": 48.0,
+      "z_cap": 0.012
+    },
+    "hardware": {
+      "plate_radius": 0.26,
+      "plate_depth": 0.022,
+      "plate_z": -0.048,
+      "stem_radius": 0.009,
+      "stem_depth": 0.3,
+      "stem_at": [
+        0.0,
+        0.06,
+        -0.07
+      ],
+      "hinge_radius": 0.014,
+      "hinge_depth": 0.032,
+      "hinge_at": [
+        -0.15,
+        0.06,
+        -0.07
+      ],
+      "clasp_size": [
+        0.028,
+        0.018,
+        0.028
+      ],
+      "clasp_at": [
+        0.15,
+        0.06,
+        -0.07
+      ],
+      "merge_distance": 0.001
+    },
+    "materials": {
+      "petal": "MID_Petal",
+      "bead": "MID_Bead",
+      "pin": "MID_Pin"
+    },
+    "fabrication": {
+      "dxf_scale": 100,
+      "layer": "Sverchok_Pol_0",
+      "units": "mm",
+      "kerf": 0.002
+    },
+    "size": {
+      "real_mm": 68,
+      "basis": "overall_width"
+    }
+  },
+  "prop_defaults": {
+    "object": "FlowerBrooch"
+  }
+}
