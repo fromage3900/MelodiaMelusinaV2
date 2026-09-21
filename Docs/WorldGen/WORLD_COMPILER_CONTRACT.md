@@ -42,7 +42,7 @@ Determinism rule: the same recipe (byte-identical) compiled by the same compiler
 
 | 08-30 system | Compiler form | Status |
 |---|---|---|
-| `MIDI_WORLD_GRAMMAR` | `recipe.motif` input: a `melodia_roll_field_v1` path or a phrase manifest handled by `resonant_world_phrase_bridge.py`; the `ecology` stage may read `bar/beat/pitch` to bias band phase | input contract carried forward |
+| `MIDI_WORLD_GRAMMAR` | `recipe.motif` input: a `melodia_roll_field_v1` path or a phrase manifest handled by `resonant_world_phrase_bridge.py`; the `ecology` stage may read `bar/beat/pitch` to bias band phase | MIDI ecology only — not Jev, not PhraseBus OSC (`Tools/phrase_bridge/` + `UMelodiaPhraseBusSubsystem` `RecvFrom` on `:9000`) |
 | `MONOLITH_INFLUENCE` | optional `recipe.influence[]` fields (`monolith_id`, `influence`, `anatomy_role`, `foreshadow_level`) copied onto points as attributes | schema only; no deformation |
 | `REGION_HISTORY` | `melodia_region_history_v1` event list, passed through to the bundle untouched | schema only |
 
@@ -177,12 +177,12 @@ Row struct: `/Game/Melodia/WorldCompiler/S_WorldCompilerPoint` (User Defined Str
 | `band` | int | -1 for band-less anchors |
 | `x`, `y`, `z` | float cm | level-space |
 | `hue_seed` | float | band hue phase |
-| `spawn_multiplier` | float | artist ceiling (`PetalSpawnMultiplier`, `MoteSpawnMultiplier`, `MistDensity`) |
+| `spawn_multiplier` | float | CSV artist ceiling. The UE lane writes pack User names: `User.PetalSpawnMultiplier` / `User.MoteSpawnMultiplier` / `User.MistDensity` / `User.WindFrontVisible`. Never a generic `SpawnMultiplier`. |
 | `bounds_cm` | float | fixed bounds the UE lane applies (300..500) |
 | `system` | string | NS asset path from the FX pack |
 | `material_instance` | string | MI path the UE lane forges (`MI_Morning_<Kind>_B<band>`) |
 
-Anchors respect the same clearance masks as points. The UE lane places `NiagaraActor`s tagged `WorldCompiler.<compile_id>` and deletes prior-tagged actors before re-placing. Niagara never goes through PCG spawners in v1.
+Anchors respect the same clearance masks as points. The UE lane places `NiagaraActor`s tagged `WorldCompiler.<compile_id>` and deletes prior-tagged actors before re-placing. Niagara never goes through PCG spawners in v1. `step_fx_place` writes those pack User names from the CSV column; do not bind `SpawnMultiplier`.
 
 ---
 
@@ -281,6 +281,8 @@ Compiler-specific hard no's:
 - no uniform density: `hero_weight` and `density_class` exist so the compiler produces an envelope around authored moments, never a carpet
 - no bedroom / Sphere3D / `WC_DellFloor` meadow; flowers stay on `BrushifyIsland_*`, dressing on `WC_EscherWalk_*` plus island skirts
 - no skipping `scene_context_cycle.begin/end` around spatial WC/PCG/Monolith edits; no second Monolith / second editor
+- no generic Niagara `SpawnMultiplier`; WC FX writes pack User names only
+- no Jev compile / MCP actor moves; PhraseBus is `RecvFrom` transport on `:9000`, not a second compiler
 
 ---
 
