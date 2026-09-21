@@ -53,7 +53,7 @@ RawArt/MelusinasHouse/                  LFS-locked .blend handoff surface
   ├─ MelusinasHouse_V7_Base.blend       canonical editable house source
   └─ Intermediates/                     recovered greybox→v6 archaeology (see its README)
 Tools/verify_full_registry.py           per-builder headless harness
-Tools/registry_baseline.json            403 package ids + 209 monolith ids — the regression gate
+`Tools/registry_baseline.json`            593 package ids + 209 monolith ids — the regression gate
 Saved/Audit/melusinashouse/             evidence drops (renders, verify JSON/logs)
 Docs/MelodiaStudio/                     this lane's living docs (plan, roadmap, overview)
 Docs/Music/                             music-kit inventories (Splice samples)
@@ -77,7 +77,7 @@ Lockable: `*.blend`, `.fbx`, `.uasset`, `.umap` (.gitattributes:25–34).
 ## Standing rituals
 
 1. **Discovery before creation** — grep registry + GROUP_BUILDERS + monolith props
-   before writing any new builder. (268 package builders, 209 monolith ids exist; the
+   before writing any new builder. (593 package builders, 209 monolith ids exist; the
    V5 study found six parallel-authority clusters — do not add a seventh.)
 2. **Prose is not a ledger row** — every gate flips to `PASS <date>` only with an
    evidence path under `Saved/Audit/`.
@@ -95,4 +95,4 @@ Lockable: `*.blend`, `.fbx`, `.uasset`, `.umap` (.gitattributes:25–34).
 | Pipeline overview written | PASS 2026-09-06 | this file; every path above confirmed via `git ls-files` on `pipeline/melodia-studio-3d` |
 | integration.py restored | PASS 2026-09-06 | blob `b7fe7f10` at `deploy/surreal_arch/integration.py`; 908 lines, ast parse clean; carried by `5862f539` |
 | V0 re-proof run | PARTIAL 2026-09-06 — guard/openings PASS, strict identity awaits tolerance call | `Tools/house_v0_shell_proof.py`; `Saved/Audit/melusinashouse/v0_proof_last.json` |
-| Registry regression gate | BASELINE 466/209 ids refreshed post-merge — 352 pkg ok, 208/209 mono, 0 regressions | `Tools/registry_baseline.json` (9 known errors unchanged) |
+| Registry regression gate | BASELINE 593/209 ids refreshed post-merge — 593 pkg ok, 209/209 mono, 0 regressions | `Tools/registry_baseline.json` (0 known errors) |

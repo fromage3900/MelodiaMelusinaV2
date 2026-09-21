@@ -88,8 +88,9 @@ guarded bridge (`bagapie_bridge.py`): one pie leaf (`Ivy`) plus the carousel sta
 
 Geometry-Node builders register into `GROUP_BUILDERS` / `GROUP_METADATA` /
 `CATEGORY_META` (`deploy/surreal_arch/melodia_gn/`). Current live registry after this
-close-out: **591 builders across 28 categories**, 0 build errors, 2 recorded duplicate-id
-clusters (`MEL_arch`, `MEL_ogee_arch` — pre-freeze debt, not design).
+close-out: **593 builders across 28 categories**, 0 build errors, 2 recorded duplicate-id
+clusters (`MEL_escher_belvedere` / `MEL_gb_escher_belvedere`, `MEL_escher_waterfall` /
+`MEL_gb_escher_waterfall` — pre-freeze debt, not design).
 
 - Time-driven builders use the **single time seam** (`melodia_gn/time.py`): the group
   exposes **Animated / Time Scale / Time Offset**; `Animated = False` (or Time Scale = 0)
@@ -133,5 +134,5 @@ python deploy/_sync_addon_to_blender_5_2.py --check
 
 Gate A–F and what each proves is documented in
 `Docs/Production/MELODIA_STUDIO_FREEZE_2026-09-11.md` §4 (note: its B/C numbers are the
-09-11 snapshot; the current tree is green at 591/28/2). The close-out record for this
+09-11 snapshot; the current tree is green at 593/28/2). The close-out record for this
 date is `Saved/Audit/melodia_studio_closeout_2026-09-18.md`.
