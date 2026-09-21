@@ -1057,6 +1057,15 @@ if bpy is not None:
                     _chrome.chrome_header(layout, "Studio", "MIDI  ->  Walkable Ground  |  Field-Wins", pillar="cathedral", icon_key="starlight")
                 except Exception:
                     pass
+                # Canon version line - the panel always reports the live product
+                # version (source: surreal_architecture_gen bl_info), so "which
+                # build am I running" is never archaeology again.
+                try:
+                    from surreal_architecture_gen import bl_info as _sag_bl_info
+                    _v = ".".join(str(x) for x in _sag_bl_info.get("version", (0, 0, 0)))
+                    layout.label(text=f"Melodia Studio  v{_v}", icon="CHECKMARK")
+                except Exception:
+                    pass
             else:
                 # fallback: health hint (one line, not noisy)
                 if _mu is not None:
