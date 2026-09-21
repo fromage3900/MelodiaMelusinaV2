@@ -1,0 +1,51 @@
+{
+  "schema": "melodia.melusina_pipeline_closeout.v1",
+  "date": "2026-09-21",
+  "branch": "main",
+  "decision": {
+    "source": "jev-live",
+    "choice": "ISOLATED_SCOPED_CHERRYPICK_AND_CANON_ENTRYPOINT",
+    "confidence": 1.0,
+    "probabilities": {
+      "DOCS_ONLY_NO_ASSETS": 0.0,
+      "ISOLATED_SCOPED_CHERRYPICK_AND_CANON_ENTRYPOINT": 1.0,
+      "MERGE_ENTIRE_WIP_BRANCH": 0.0
+    }
+  },
+  "canonical_entrypoint": "/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture",
+  "canonical_assets": {
+    "body": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+    "skirt": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains",
+    "animation_blueprint": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "capture_sequence": "/Game/Melodia/Characters/Melusina/Portfolio/A_Melusina_BowAttackV2_PortfolioShoulders",
+    "bow": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07"
+  },
+  "accepted_transform": {
+    "socket": "hand_l",
+    "scale": 0.9,
+    "draw_world_rotation_pitch_yaw_roll": [0.0, 90.0, 0.0]
+  },
+  "proof": {
+    "portfolio_capture": "Saved/Audit/melusina_portfolio_capture_20260921_v13.json",
+    "waveharp_transform": "Saved/Audit/melusina_waveharp_transform_20260921_v3.json",
+    "valid_frames_each": 19,
+    "captured_frames_each": 20,
+    "runtime_errors": 0,
+    "tier": "LIVE_PIE_PROVEN",
+    "packaged_proven": false
+  },
+  "boundaries": [
+    "The harp-to-bow presentation is a staged visibility swap between static Unreal assets, not a continuous morph.",
+    "The shoulder correction is capture-only and does not replace the production montage.",
+    "Two known Kawaii inter-bone dummy-bone topology warnings remain disclosed.",
+    "Damaged Blender sources report Missing DNA block and must not be overwritten."
+  ],
+  "excluded_from_closeout": [
+    "Morning and Niagara lanes",
+    "PhraseBus and Listening Field lanes",
+    "Choral Sheep",
+    "dirty WaveHarp mesh edits from the parked owner checkout",
+    "continuous harp-to-bow morph",
+    "Cascadeur re-authoring"
+  ]
+}

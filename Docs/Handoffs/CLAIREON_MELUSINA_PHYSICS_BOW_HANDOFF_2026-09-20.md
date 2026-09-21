@@ -107,7 +107,7 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 4. Bow motion and attachment are proved in V13 through a `DefaultSlot` dynamic montage derived from the bound V2 source. Grip, string, arrow timing, and a front three-quarter beauty render remain open.
 5. The rejected R1 skirt candidate was a 100x-scale import and must never be selected. Use R2 only.
 6. Every tested `Melusina_Harp_HERO01*.blend/.blend1` file in the redirected `C:/EnvironmentPortfolio/harp_bow_pipeline` fails Blender 5.2 with `Missing DNA block`. All 16 share the failure. Preserve them for recovery; do not overwrite them. The Unreal retargeted bow assets remain intact.
-7. Kawaii emits `inter-bone dummy bones` warnings five times during the corrected capture. No runtime failure accompanied them, but they are a performance/topology warning and must remain disclosed.
+7. The accepted V13/WaveHarp runs retain two known Kawaii `inter-bone dummy bones` topology warnings (body/skirt root and hair). No runtime failure accompanied them, but they remain disclosed topology/performance debt.
 8. The older continuation used classical fallback, but the 2026-09-21 continuation obtained a real `source=jev-live` result. Preserve that distinction in any audit summary.
 
 ## Claireon execution plan
@@ -126,8 +126,8 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 
 ### P1 — portfolio render tonight
 
-1. Use `L_MelusinaMorning`, not the noisy template `BattleMap`.
-2. Use a deliberately placed editor camera or a small purpose-built capture level/sequence whose subject is visibly confirmed before recording. The transient runtime camera experiments R8–R11 resolved as view targets but failed to locate the visible modular presentation meshes.
+1. Use `/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture`, not `L_MelusinaMorning` or the noisy template `BattleMap`.
+2. Preserve the accepted subject placement and use a deliberately placed front three-quarter beauty camera. The transient runtime camera experiments R8–R11 resolved as view targets but failed to locate the visible modular presentation meshes; V13 supersedes them.
 3. Capture three short beats:
    - neutral three-quarter idle with readable skirt silhouette;
    - lateral step or small jump showing skirt panel lag and hair response;
@@ -153,4 +153,4 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 
 ## Exact continuation point
 
-Commit `b1146a3e7` is the scoped implementation baseline. The next operator should **not** retune physics, re-author in Cascadeur, or repeat the rejected transient-camera loop. Open `L_MelusinaMorning`, place the existing presentation Blueprint and a real camera where both are visible in the editor viewport, verify the modular V2/R2 components visually, then run `AM_Melusina_BowAttack_Bound` and capture the three beats above. If Jev is required, first run one bounded wrapper evaluation and require `source="jev-live"`; stop immediately if it says `classical-fallback`.
+The scoped implementation and proof assets are on `main`. The canonical render entrypoint is `/Game/Melodia/Characters/Melusina/Portfolio/L_MelusinaPortfolioCapture`; do **not** return to `L_MelusinaMorning`, retune physics, re-author in Cascadeur, or repeat the rejected transient-camera loop tonight. For final beauty frames, change only camera, lighting, and environment dressing while preserving the V2 body, R2 skirt, tuned WaterHair, corrected shoulder sequence, `hand_l` attachment, and accepted bow orientation. Any later promotion of the capture-only shoulder correction into gameplay requires animator approval and a persistent non-zero-duration montage. Require `source="jev-live"` for any new Jev-directed choice and label fallback honestly.
