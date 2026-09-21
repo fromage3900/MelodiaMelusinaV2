@@ -19,9 +19,14 @@ Owner pull-ready. Branch: `collab/laptop/brooch-sky-20260917`.
 
 ## Known-open (not claimed done)
 
-1. C1 monolith-UI retire — health 6/7 (`plan_edit_floating` keep-vs-retire = owner design call).
+1. C1 monolith-UI retire — RESOLVED 2026-09-21, owner ruling: `plan_edit_floating`
+   (Studio Plan editor) is KEPT — no successor surface exists; it feeds beat boards /
+   loglines. C1 gate now carries `OWNER_KEPT_PANELS` and reads PASS with the exception.
 2. 19 dropped-link trees → fix-or-hide, then `LINK_STRICT` + gate wiring.
-3. Track A builders 2–8 (FountainLoop + DayNightFacade fill the 2 pending pack slots).
+3. Track A builders 2–8 — FountainLoop + DayNightFacade **DONE 2026-09-21**: both proven
+   (`_melodia_health_track_a.py` problems=0: construction, link failures empty, Wobble
+   neutrality, Duality 0/0.5/1 slider, preset keys), presets in (audit 152/472), all three
+   brand packs 5/5. Builders 3–8 remain.
 
 ## PC pull
 

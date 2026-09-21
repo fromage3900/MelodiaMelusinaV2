@@ -90,6 +90,7 @@ from . import core_forms_kit  # noqa: F401
 from . import core_forms_port  # noqa: F401 - tower, organic, hybrid, curved_wall, building
 from . import walls_kit  # noqa: F401
 from . import paris_wall_detail  # noqa: F401 - Paris lane v2 (Melusina study)
+from . import paris_track_a  # noqa: F401 - Track A: FountainLoop + DayNightFacade (owner queue 2026-09-21)
 from . import buildings_kit  # noqa: F401 - buildings absorbed (P2)
 from . import misc_props_kit  # noqa: F401
 from . import materials_kit  # noqa: F401 - materials absorbed (P2)

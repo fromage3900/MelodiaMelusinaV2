@@ -3922,7 +3922,7 @@ BRANDS: dict[str, dict[str, Any]] = {
                     {"builder": "MEL_escher_tessellation", "preset": "BOLD_RELIEF",
                      "note": "Sunk relief panels on the courtyard walls."},
                     {"builder": "GN_PARIS_FountainLoop",
-                     "preset": "MI_COURTYARD_DAY", "pending": True,
+                     "preset": "MI_COURTYARD_DAY",
                      "note": "Track A builder: self-feeding basin loop."},
                 ],
             },
@@ -3942,7 +3942,6 @@ BRANDS: dict[str, dict[str, Any]] = {
                     {"builder": "MEL_escher_waterfall", "preset": "IMPOSSIBLE_TRIBAR",
                      "note": "Self-feeding channel, lit warm."},
                     {"builder": "GN_PARIS_DayNightFacade", "preset": "MI_NUIT",
-                     "pending": True,
                      "note": "Track A builder: light/dark duality slider."},
                 ],
             },
@@ -4084,6 +4083,68 @@ BUILDERS_PRESETS["GN_PARIS_EscherLadder"] = {
             "Join Error": -0.60, "Floating Steps": 6, "Landing Depth": 2.0,
             "Landing Thickness": 0.22, "Mansard Landing": True,
             "Railing": True, "Rail Height": 1.05,
+        },
+    },
+}
+
+
+# Paris Track A - the courtyard fountain (paris_track_a.py).
+# Wobble is the only effect dial and is neutral at 0.0; the rest are structural.
+BUILDERS_PRESETS["GN_PARIS_FountainLoop"] = {
+    "label": "PARIS Fountain Loop",
+    "preset_labels": {
+        "MI_COURTYARD_DAY": "Courtyard Day",
+        "MI_COURTYARD_STILL": "Courtyard Still",
+        "MI_COURTYARD_TOUR": "Grand Tour Basin",
+    },
+    "preset_descriptions": {
+        "MI_COURTYARD_DAY": "The pack slot: day-lit courtyard basin, ring at full rise.",
+        "MI_COURTYARD_STILL": "Still water - wobble 0, low ring, wide stone basin.",
+        "MI_COURTYARD_TOUR": "Grand tour scale: deep basin, tall self-feeding ring, lively wobble.",
+    },
+    "presets": {
+        "MI_COURTYARD_DAY": {
+            "Basin Radius": 0.9, "Basin Depth": 0.35, "Loop Rise": 0.85,
+            "Stream Radius": 0.06, "Wobble": 0.04, "Basin Segments": 48,
+        },
+        "MI_COURTYARD_STILL": {
+            "Basin Radius": 1.1, "Basin Depth": 0.28, "Loop Rise": 0.55,
+            "Stream Radius": 0.05, "Wobble": 0.0, "Basin Segments": 64,
+        },
+        "MI_COURTYARD_TOUR": {
+            "Basin Radius": 1.4, "Basin Depth": 0.5, "Loop Rise": 1.4,
+            "Stream Radius": 0.09, "Wobble": 0.1, "Basin Segments": 64,
+        },
+    },
+}
+
+# Paris Track A - the duality facade (paris_track_a.py).
+# Duality slides the day plate (light tiles forward) through the flat Escher
+# plate (0.5) to the night plate (dark tiles forward).
+BUILDERS_PRESETS["GN_PARIS_DayNightFacade"] = {
+    "label": "PARIS Day-Night Facade",
+    "preset_labels": {
+        "MI_NUIT": "Maison Nuit",
+        "MI_JOUR": "Maison Jour",
+        "MI_PLATE": "Escher Plate",
+    },
+    "preset_descriptions": {
+        "MI_NUIT": "The pack slot: dark tiles forward at full density - the night read.",
+        "MI_JOUR": "Day plate: light tiles forward, sober limestone relief.",
+        "MI_PLATE": "Duality 0.5 - the flat woodcut plate, every tile equal.",
+    },
+    "presets": {
+        "MI_NUIT": {
+            "Facade Width": 3.0, "Facade Height": 3.2, "Tiles X": 12, "Tiles Y": 14,
+            "Relief": 0.06, "Duality": 1.0,
+        },
+        "MI_JOUR": {
+            "Facade Width": 3.0, "Facade Height": 3.2, "Tiles X": 12, "Tiles Y": 14,
+            "Relief": 0.06, "Duality": 0.0,
+        },
+        "MI_PLATE": {
+            "Facade Width": 2.4, "Facade Height": 2.4, "Tiles X": 16, "Tiles Y": 16,
+            "Relief": 0.04, "Duality": 0.5,
         },
     },
 }

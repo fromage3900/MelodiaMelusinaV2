@@ -85,8 +85,13 @@ def main():
     # 1. no monolith-owned VIEW_3D panel survives.
     from surreal_arch.branding import audit_monolith_ui_retired
     remaining = audit_monolith_ui_retired()
-    check("zero monolith N-tab panels registered", not remaining,
-          f"still live: {remaining}" if remaining else "retired cleanly")
+    # Owner ruling 2026-09-21: the Studio Plan editor stays. It is the only
+    # floating plan-edit surface (beat boards / loglines) and has no successor.
+    OWNER_KEPT_PANELS = {"SURREAL_ARCH_PT_plan_edit_floating"}
+    unexpected = [p for p in remaining if p not in OWNER_KEPT_PANELS]
+    check("zero monolith N-tab panels registered", not unexpected,
+          f"still live: {unexpected}" if unexpected else
+          (f"owner-kept exception: {sorted(remaining)}" if remaining else "retired cleanly"))
 
     # 2. the Core product UI survived.
     missing_core = [p for p in REQUIRED_CORE_PANELS
