@@ -22,23 +22,26 @@ SCHEMA_VERSION = 1
 COORDINATE_SYSTEM = "blender_z_up"
 
 MATERIALS_ROOT = "/Game/EnvSandbox/Materials/Instances/Environment"
+# Show_* showcase MIs live under Showcase/, not Environment/Stylized/.
+SHOWCASE_ROOT = "/Game/EnvSandbox/Materials/Instances/Showcase"
 
 ROLE_UE_HINTS = {
-    "large": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
-    "medium": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
-    "small": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
+    "large": f"{SHOWCASE_ROOT}/MI_Show_StoneCliff",
+    "medium": f"{SHOWCASE_ROOT}/MI_Show_Default",
+    "small": f"{SHOWCASE_ROOT}/MI_Show_Default",
     "wall": f"{MATERIALS_ROOT}/Stylized/MI_Trimsheet_HeavyWear",
-    "corner_tower": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
-    "gate": f"{MATERIALS_ROOT}/Stylized/MI_Show_ContactRimHero",
-    "monument": f"{MATERIALS_ROOT}/Stylized/MI_Show_StoneCliff",
+    "corner_tower": f"{SHOWCASE_ROOT}/MI_Show_StoneCliff",
+    "gate": f"{SHOWCASE_ROOT}/MI_Show_ContactRimHero",
+    "monument": f"{SHOWCASE_ROOT}/MI_Show_StoneCliff",
     "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_Karesansui",
-    "joined_mesh": f"{MATERIALS_ROOT}/Stylized/MI_Show_Default",
+    "joined_mesh": f"{SHOWCASE_ROOT}/MI_Show_Default",
 }
 
 STYLE_ROLE_OVERRIDES = {
     "ZEN_SHRINE": {
         "gate": f"{MATERIALS_ROOT}/Zen/MI_Zen_ToriiVermillion",
-        "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_HondenSanctum",
+        # MI_Zen_HondenSanctum is not on disk yet; keep Karesansui until authored.
+        "sacred": f"{MATERIALS_ROOT}/Zen/MI_Zen_Karesansui",
         "large": f"{MATERIALS_ROOT}/Zen/MI_Zen_MossGarden",
         "monument": f"{MATERIALS_ROOT}/Zen/MI_Zen_SakuraDrift",
     },
@@ -49,7 +52,7 @@ logger = logging.getLogger(__name__)
 
 def material_hint(style, role):
     overrides = STYLE_ROLE_OVERRIDES.get(style, {})
-    return overrides.get(role, ROLE_UE_HINTS.get(role, f"{MATERIALS_ROOT}/Stylized/MI_Show_Default"))
+    return overrides.get(role, ROLE_UE_HINTS.get(role, f"{SHOWCASE_ROOT}/MI_Show_Default"))
 
 
 def _matrix_list(obj):

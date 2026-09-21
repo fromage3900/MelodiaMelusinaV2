@@ -1,20 +1,20 @@
 {
   "schema": "melodia.copernatic_cymatic_parallax.v2",
   "seed": 20260831,
-  "size": "2048x2048",
-  "frames": 1,
+  "size": "1024x1024",
+  "frames": 8,
   "variants": {
-    "FirstLightDawn": {
+    "SlimeTideChoir": {
       "outputs": [
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_BaseColor.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Normal.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Roughness.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Metallic.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Height.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_ORM.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Emissive.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Iridescence.png",
-        "Saved/Audit/copernicus_cymatic/FirstLightDawn/T_Cymatic_FirstLightDawn_Opacity.png"
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_BaseColor.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Normal.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Roughness.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Metallic.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Height.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_ORM.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Emissive.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Iridescence.png",
+        "Saved/Audit/copernicus_cymatic/SlimeTideChoir/T_Cymatic_SlimeTideChoir_Opacity.png"
       ]
     }
   },

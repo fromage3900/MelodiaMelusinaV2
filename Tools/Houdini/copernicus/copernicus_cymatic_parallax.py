@@ -283,6 +283,14 @@ VARIANTS = {
         rough_fleece=0.85, rough_lullaby=0.45, rough_moss=0.65,
         glow_intensity=0.40, fleece_freq=9, chladni_modes=[(9, 13), (15, 17), (21, 19)],
     ),
+    "SlimeTideChoir": dict(
+        tide_deep=(18, 64, 84), tide=(64, 192, 204), tide_hi=(150, 230, 235),
+        pearl=(235, 245, 245), lilac=(150, 110, 190),
+        glow=(140, 240, 255),
+        rough_tide=0.32, rough_pearl=0.18, rough_node=0.10,
+        glow_intensity=0.70, crawl_speed=1.0, node_count=28,
+        chladni_modes=[(12, 18), (18, 27), (30, 15)],
+    ),
 }
 
 # === Math helpers ===
@@ -432,6 +440,44 @@ def _assemble(h, w, basecolor, rough, metallic, height, emissive, iri, opacity):
         "Iridescence": to_u8(iri * 255),
         "Opacity": to_u8(opacity * 255),
     }
+
+def build_slime_tide_choir(h, w, frame, total_frames):
+    """MelodySlime signature skin: Tide jelly, nodal-line glow nodes, phase crawl."""
+    p = VARIANTS["SlimeTideChoir"]
+    phase = frame / max(total_frames, 1) * 2 * np.pi
+    crawl = phase * p["crawl_speed"]
+    modes = p["chladni_modes"]
+    phases = [crawl, crawl * 0.7 + 1.1, crawl * 1.3 + 2.2]
+    weights = [0.5, 0.3, 0.2]
+    pattern = cymatic_chladni(h, w, modes, phases, weights)
+    # Glow gathers on the nodal lines, where the sand would settle
+    nodal = 1.0 - smoothstep(0.0, 0.12, np.abs(pattern - 0.5) * 2.0)
+    # Drifting song-nodes
+    rng = np.random.RandomState(SEED + 77)
+    nodes = np.zeros((h, w), np.float32)
+    for i in range(p["node_count"]):
+        bx = rng.randint(0, w)
+        by = rng.randint(0, h)
+        cx = (bx + int(np.sin(crawl + i * 1.7) * w * 0.02)) % w
+        cy = (by + int(np.cos(crawl * 0.8 + i * 1.1) * h * 0.02)) % h
+        sz = rng.randint(max(4, min(h, w) // 60), max(8, min(h, w) // 22))
+        nodes += crystal_shape(h, w, cx, cy, sz, 6, crawl * 0.2 + i)
+    nodes = np.clip(nodes, 0, 1)
+    jelly = fbm_noise(h, w, 12, 4, SEED + 5)
+    height = pattern * 0.45 + nodes * 0.35 + jelly * 0.20
+    base = mix(col(p["tide_deep"]), col(p["tide"]), jelly)
+    base = mix(base, col(p["tide_hi"]), smoothstep(0.6, 0.95, pattern) * 0.6)
+    base = mix(base, col(p["pearl"]), nodes * 0.55)
+    rough = mix(p["rough_tide"], p["rough_pearl"], nodes)
+    rough = mix(rough, p["rough_node"], nodal * 0.5)
+    tw = 0.65 + 0.35 * np.sin(crawl * 2.0 + pattern * 12.0)
+    emissive = mask_color(np.clip(nodal * 0.8 + nodes, 0, 1) * smoothstep(0.25, 0.75, tw),
+                          col(p["glow"]) * p["glow_intensity"])
+    iri_field = np.clip(nodes * 0.7 + smoothstep(0.5, 0.9, pattern) * 0.4, 0, 1)
+    iri = mix(col(p["pearl"]) * 0.35, col(p["lilac"]),
+              np.clip(nodes + nodal * 0.3, 0, 1)) * (0.25 + 0.75 * iri_field[:, :, None])
+    return _assemble(h, w, base, rough, np.zeros((h, w), np.float32), height,
+                     emissive, iri, np.ones((h, w), np.float32))
 
 # === Variant builders ===
 
@@ -1547,6 +1593,7 @@ BUILDERS = {
     "FarawayNacreVeil": build_faraway_nacre_veil,
     "FarawayMoonChiffon": build_faraway_moon_chiffon,
     "FarawayLullabyFleece": build_faraway_lullaby_fleece,
+    "SlimeTideChoir": build_slime_tide_choir,
 }
 
 def main():

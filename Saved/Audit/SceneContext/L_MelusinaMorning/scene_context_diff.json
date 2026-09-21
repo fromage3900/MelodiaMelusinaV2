@@ -1,0 +1,419 @@
+{
+  "schema": "melodia.scene_context_diff.v1",
+  "authority": "Ephemeral spatial evidence only; not project status or gameplay authority.",
+  "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning",
+  "summary": {
+    "prioritized_actors_added": 5,
+    "prioritized_actors_removed": 3,
+    "prioritized_actors_changed": 0,
+    "pcg_actors_changed": 0,
+    "route_or_exclusion_membership_changed": false,
+    "actor_count_before": 195,
+    "actor_count_after": 200
+  },
+  "world_bounds_before": {
+    "min": {
+      "x": -9369289221.256,
+      "y": -9369288589.765,
+      "z": -10538806833.854
+    },
+    "max": {
+      "x": 9369288278.744,
+      "y": 9369286410.235,
+      "z": 9390708166.146
+    },
+    "center": {
+      "x": -471.256,
+      "y": -1089.765,
+      "z": -574049333.854
+    },
+    "size_cm": {
+      "x": 18738577500.0,
+      "y": 18738575000.0,
+      "z": 19929515000.0
+    }
+  },
+  "world_bounds_after": {
+    "min": {
+      "x": -9369289221.256,
+      "y": -9369288589.765,
+      "z": -10538806833.854
+    },
+    "max": {
+      "x": 9369288278.744,
+      "y": 9369286410.235,
+      "z": 9390708166.146
+    },
+    "center": {
+      "x": -471.256,
+      "y": -1089.765,
+      "z": -574049333.854
+    },
+    "size_cm": {
+      "x": 18738577500.0,
+      "y": 18738575000.0,
+      "z": 19929515000.0
+    }
+  },
+  "viewport_before": {
+    "location": {
+      "x": -3311.383,
+      "y": 646.74,
+      "z": 1494.125
+    },
+    "rotation": {
+      "pitch": 37.875,
+      "yaw": -0.0,
+      "roll": -8.971
+    }
+  },
+  "viewport_after": {
+    "location": {
+      "x": -3311.383,
+      "y": 646.74,
+      "z": 1494.125
+    },
+    "rotation": {
+      "pitch": 37.875,
+      "yaw": -0.0,
+      "roll": -8.971
+    }
+  },
+  "added": [
+    {
+      "label": "FX_BowStage_PondMist",
+      "class": "NiagaraActor",
+      "selected": false,
+      "folder": "BowStage",
+      "tags": [],
+      "location": {
+        "x": -2500.0,
+        "y": 200.0,
+        "z": 60.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2384.0,
+          "y": 200.0,
+          "z": 60.0
+        },
+        "extent": {
+          "x": 244.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 488.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "L_BowStage_CoolLight",
+      "class": "PointLight",
+      "selected": false,
+      "folder": "BowStage",
+      "tags": [],
+      "location": {
+        "x": -2700.0,
+        "y": 200.0,
+        "z": 300.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2700.0,
+          "y": 200.0,
+          "z": 300.0
+        },
+        "extent": {
+          "x": 128.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 256.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "SM_BowStage_ArrowRack",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "BowStage",
+      "tags": [],
+      "location": {
+        "x": -2890.0,
+        "y": 150.0,
+        "z": 150.0
+      },
+      "rotation": {
+        "pitch": 8.5,
+        "yaw": 0.0,
+        "roll": -0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2890.02,
+          "y": 180.965,
+          "z": 150.132
+        },
+        "extent": {
+          "x": 2.169,
+          "y": 31.035,
+          "z": 1.73
+        },
+        "size_cm": {
+          "x": 4.337,
+          "y": 62.069,
+          "z": 3.46
+        }
+      },
+      "static_mesh": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Arrow_R07.SM_ME_WaveHarp_Arrow_R07"
+    },
+    {
+      "label": "SM_BowStage_Bow",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "BowStage",
+      "tags": [],
+      "location": {
+        "x": -2900.0,
+        "y": 185.0,
+        "z": 165.0
+      },
+      "rotation": {
+        "pitch": 8.5,
+        "yaw": 0.0,
+        "roll": -0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2901.709,
+          "y": 189.969,
+          "z": 165.529
+        },
+        "extent": {
+          "x": 10.996,
+          "y": 11.032,
+          "z": 48.103
+        },
+        "size_cm": {
+          "x": 21.993,
+          "y": 22.064,
+          "z": 96.207
+        }
+      },
+      "static_mesh": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07.SM_ME_WaveHarp_Bow_R07"
+    },
+    {
+      "label": "SM_BowStage_Catcher",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "BowStage",
+      "tags": [],
+      "location": {
+        "x": -2100.0,
+        "y": 250.0,
+        "z": 170.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 0.5,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2100.0,
+          "y": 250.0,
+          "z": 170.0
+        },
+        "extent": {
+          "x": 25.0,
+          "y": 150.0,
+          "z": 150.0
+        },
+        "size_cm": {
+          "x": 50.0,
+          "y": 300.0,
+          "z": 300.0
+        }
+      },
+      "static_mesh": "/Engine/BasicShapes/Cube.Cube"
+    }
+  ],
+  "removed": [
+    {
+      "label": "HoudiniEngine_RainbowBloom_3900",
+      "class": "HoudiniAssetActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "WorldCompiler.houdini_engine_rainbow_bloom"
+      ],
+      "location": {
+        "x": -950.0,
+        "y": 2300.0,
+        "z": -611.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -950.0,
+          "y": 2300.0,
+          "z": -611.0
+        },
+        "extent": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        },
+        "size_cm": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    {
+      "label": "MeshPartition",
+      "class": "MeshPartition",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -40.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "extent": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size_cm": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      }
+    },
+    {
+      "label": "ArrowScale_Stock",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 1330.0,
+        "y": 2200.0,
+        "z": -550.3
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 0.15,
+        "y": 0.15,
+        "z": 0.15
+      },
+      "bounds": {
+        "origin": {
+          "x": 1330.0,
+          "y": 2200.0,
+          "z": -550.3
+        },
+        "extent": {
+          "x": 7.5,
+          "y": 7.5,
+          "z": 7.5
+        },
+        "size_cm": {
+          "x": 15.0,
+          "y": 15.0,
+          "z": 15.0
+        }
+      },
+      "static_mesh": "/Engine/BasicShapes/Sphere.Sphere"
+    }
+  ],
+  "changed": [],
+  "pcg_changes": [],
+  "route_or_exclusion_added": [],
+  "route_or_exclusion_removed": [],
+  "review_questions": [
+    "Did the intended landmark/silhouette improve from the same camera?",
+    "Did any PCG count or graph change unexpectedly?",
+    "Did route/no-scatter/landmark-clear membership change intentionally?",
+    "Did the edit preserve human-scale traversal clearance?",
+    "Are added/removed actors expected and promotable?"
+  ],
+  "limitations": [
+    "Actor diffs cover the prioritized spatial-context set, not every actor in the level.",
+    "Visual quality still requires owner/editor judgment from before/after captures."
+  ]
+}

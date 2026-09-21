@@ -6,6 +6,12 @@ describes. Handoffs, plans, receipts and session notes go in the commit or PR me
 new file.
 
 **Updated:** 2026-09-20 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` **PASS**. Meadow on **BrushifyIsland_*** SpeedTree + walk dressing — not Sphere3D. Proof `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-19.json`. Board: `Saved/Audit/Screens/wc_morning_rainbow_bloom_{waterline_dolly,website_oblique,website_top,website_south,south_fix}_2026-09-19.png`.
+Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-09-20**: Uni parents off `L_MelusinaMorning` actors; Melodia children `NS_Morning_{PetalDrift,PollenSparkle,PondMist,WindFront,DustShafts}` + parked Glint/Impact. `rewire_morning_fx.py --effect bind-user` bound SpawnRate→`User.PetalSpawnMultiplier` / `MoteSpawnMultiplier` / `MistDensity` and WindFront `Gust_Leader` SpawnBurst `Spawn Count`→`User.WindFrontVisible`. Proof `Saved/Audit/niagara_rewire_bind-user_summary_2026-09-20.json`. No MPC writes. Hue-reveal remains PIE wind only.
+**Git 2026-09-20:** Morning WC close-out is on `main` (PR #249, merge `dd643af9`). WIP tree `wip/pre-restart-working-tree-2026-09-19` remains parked recovery at `C:/EnvironmentPortfolio/BS_GodFile` — never dump it, never `git checkout main` onto that dirty tree. Later chapters add new `recipes/*.v1.json` and new `WC_*_Field` / `DT_*` on their own levels, never a second compiler. Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, `BP_ChoralSheep`, Oceanology, Humber stay parked. Never robocopy/junction/overwrite `harp_bow_pipeline`.
+**Front-door freeze 2026-09-20:** §7 traps expanded. WC bedroom-floor band arc patched to the live BrushifyIsland recipe. Listening Field spec restored from `Tools/listening_field` + `Tools/phrase_bridge`. `.gitignore` `Tools/*` no longer swallows `listening_field` / `phrase_bridge` / `live_source`.
+**Listening Field 2026-09-20:** `UMelodiaPhraseBusSubsystem` is in the live editor. Closed-editor `BS_GodFileEditor Win64 Development` **PASS 2026-09-20 17:48** (`UnrealEditor-BS_GodFile.dll` 3,232,768 bytes, `RecvFrom` ingest). Prior PIE bind was UDP `:9000`; python `phrase_bridge` sent `,isifsfi` / `,ii` but GetCurrentState stayed 0 on the 15:18 `Recv()` DLL. Re-open the editor and re-send to prove ingest. Choral Sheep consumer is existing `TryBeginHarmonize`. Jev never mutates the editor. Do not UBT while the editor is open.
+**Owner-queue proofs 2026-09-20:** Fleece REST vs HIT on the approved Nikki path (`MI_ChoralSheep_Body`→`M_Master_Toon_Character`, child Chladni + `T_Chladni_C_ROOT`). Stills `Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`. 8s beat `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. AE JSX `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx` — headless AfterFX dies on GPU3 while Unreal holds the adapter. Do not rebuild the TD scene.
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
@@ -46,10 +52,10 @@ problems. They do not require another gameplay framework or another authority.
 | QuillScript narrative and encounter authoring | **LIVE PROVEN (scoped)** - authored `MelodiaQuillSmoke` drives the integration proof; the allowlist contract is checked by [`test_qsc_allowlist_contract.py`](Content/Python/Tests/test_qsc_allowlist_contract.py) | `Plugins/QuillScript/`, `Content/MelodiaIntegration/Narrative/*.qsc`, `UMelodiaNarrativeSubsystem`, `/Game/MelodiaIntegration/Config/DA_MelodiaIntegrationConfig` | Dialogue, choices, encounter intent, consequence and reward content | A new dialogue runtime, quest authority, or parallel notification bus |
 | Chapter scaffold and stable IDs | **SOURCE + CONTRACT PROVEN; existing package has a known validation failure** - [`scaffold_chapter.py`](Tools/scaffold_chapter.py), [`test_scaffold_chapter.py`](Tools/test_scaffold_chapter.py), [`test_melodia_chapter_content_package_contract.py`](Tools/test_melodia_chapter_content_package_contract.py), `Chapters/_template/`; scaffold regression passes, while existing Shorewake IDs still fail the broader QSC contract | `Chapters/_template/{quill,maps,encounters,rewards}`, `Tools/scaffold_chapter.py`, `specs/progression/` | New Chapters, side quests, creature Episodes and reusable encounter/reward packages with gated IDs | A new chapter loader or hand-authored ID convention; validate the IDs and use the scaffold |
 | Quill encounter -> JRPG battle -> rhythm -> typed result -> Quill resumes once | **LIVE PROVEN (scoped owner seams)** - [`ue_level_building_coinsheet_2026-09-01.json`](Saved/Audit/ue_level_building_coinsheet_2026-09-01.json) records `battle_integration_map` pass for unavailable/victory/defeat/fled, typed results and exactly-once Quill resume; the separate `rhython_grade_to_result` row proves grade-to-damage. This is not a fresh packaged golden run | `MelodiaExternalJRPGBridgeSubsystem`, `MelodiaNarrativeSubsystem::CompleteBattle` / `ResumeQuillOnce`, `MelodiaIntegrationMap`, `MelodiaQuillSmoke` | Boss battles, normal encounters, authored phase consequences, rewards and checkpoints | A new battle manager, transition graph, combat result type, or second Quill resume path |
-| Rhythm grade affects authoritative JRPG combat | **LIVE PROVEN** - `FMelodiaRhythmGradeBoundaryTest`, the `rhython_grade_to_result` ledger row, and `MelodiaRhythmCombatSubsystem` verify Q/W/O/P grade data reaches the stock skill damage path | `Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.cpp`, authored `UMelodiaRhythmSkillDefinition` / skill data | New rhythm skills, attacks, patterns, grade-driven damage, healing or resource effects | A second damage formula, rhythm combat authority, or bespoke boss combat framework |
+| Rhythm grade affects authoritative JRPG combat | **LIVE PROVEN** - `FMelodiaRhythmGradeBoundaryTest`, the `rhython_grade_to_result` ledger row, and `MelodiaRhythmCombatSubsystem` verify Q/W/O/P grade data reaches the stock skill damage path. 2026-09-17: `DA_CrescendoWave`, `DA_DissonantSilence`, `DA_DownbeatBreak`, `DA_HarmonyShield`, `DA_TempoShift` existed fully authored but were never wired into `RegisterSkill` in `BP_MelodiaJRPGGameInstance` (only `DA_CadenceStrike`/`DA_ResonantArc`/`DA_LullabyMend` were) — added the missing `RegisterSkill` calls; live PIE confirms all 8 skill IDs now resolve via `MelodiaRhythmCombatSubsystem::find_skill` on fresh boot. Full in-battle rhythm-prompt UI feel-test still blocked by an unrelated pre-existing `BP_BattleController`/`BP_BattleBase` bug (`battleUI`/`playerUnits` never populate outside the normal encounter-trigger flow, causing a runaway loop in `GetReadyUnitsBasedOnSpeed`) | `Source/BS_GodFile/MelodiaIntegration/MelodiaRhythmCombatSubsystem.cpp`, authored `UMelodiaRhythmSkillDefinition` / skill data, `Content/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameInstance` | New rhythm skills, attacks, patterns, grade-driven damage, healing or resource effects | A second damage formula, rhythm combat authority, or bespoke boss combat framework |
 | Wardrobe, traversal and gameplay capability hooks | **LIVE PROVEN + RESTART PROVEN baseline** - `wardrobe_equip_roundtrip`, `wardrobe_gameplay_hook`, [`P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md`](Docs/Evidence/P0_EXPLORATION_WARDROBE_GLIDE_PORTAL_PROBE_2026-08-31.md), and the restart slot proof pass | `Plugins/MelodiaWardrobe/`, `UMelodiaWardrobeSubsystem`, `MelodiaTraversalComponent`, wardrobe catalog manifests | Outfit abilities, traversal gates, creature/world relationships and battle/rhythm affordances | A new outfit inventory, equipment owner, traversal capability registry, or cosmetic-only workaround |
 | Music-as-key world unlock | **LIVE PROVEN (scoped)** - the coinsheet receipt records one idempotent Piano phrase -> typed world result -> visible route; [`music_world_key_real_input_2026-08-31.json`](Docs/Evidence/music_world_key_real_input_2026-08-31.json) and [`P0_REAL_INPUT_PROBE_2026-09-09.json`](Docs/Evidence/P0_REAL_INPUT_PROBE_2026-09-09.json) provide route/input evidence | `Content/Melodia/_PROJECT/Blueprints/Gameplay/BP_MusicManager.uasset`, `MelodiaMusicClockSubsystem`, Quill world-result path, `Content/Python/build_pcg_piano.py` | Musical world puzzles, phrase-locked routes, keys, shrines and side-quest progression | A new puzzle framework, second music clock, or one-off door/route authority |
-| Choral Sheep companion and Harmonize | **LIVE PROVEN (PIE behavior); visual fleece response still owed** - [`CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_MORNING_PROBE_2026-09-13.json), [`CHORAL_SHEEP_ABP_LOCOMOTION_PROOF_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_ABP_LOCOMOTION_PROOF_2026-09-13.json), and [`CHORAL_SHEEP_RETARGET_DEFORMATION_PROOF_2026-09-13.json`](Docs/Evidence/CHORAL_SHEEP_RETARGET_DEFORMATION_PROOF_2026-09-13.json) plus current Sheep assets prove definition -> begin -> ramp -> decay and locomotion; the receipts explicitly leave the lit fleece capture open | `Content/Melodia/Companions/ChoralSheep/`, `BP_ChoralSheep`, `DA_ChoralSheepDefinition`, `MelodiaCompanionComponent`, `TryBeginHarmonize` | Creature Episodes, companion abilities, creature reactions and harmony moments | A new companion framework, ad-hoc creature state, or rig reopening without a current defect |
+| Choral Sheep companion and Harmonize | **LIVE PROVEN (PIE behavior + REST/HIT fleece stills 2026-09-20)** - 2026-09-13 morning probe plus 2026-09-20 `ApplyChoralSheepDefinition` true / `TryBeginHarmonize` true / weight 1.0→0.0. Visual lock: `MI_ChoralSheep_Body` → `M_Master_Toon_Character`; child `MI_ChoralSheep_Body_Chladni_C` + `T_Chladni_C_ROOT`. REST still is dark wool; HIT still shows blue Chladni contours (`Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`) | `Content/Melodia/Companions/ChoralSheep/`, `BP_ChoralSheep`, `DA_ChoralSheepDefinition`, `MelodiaCompanionComponent`, `TryBeginHarmonize` | Creature Episodes, companion abilities, creature reactions and harmony moments | A new companion framework, ad-hoc creature state, or rig reopening without a current defect |
 | Save, checkpoint and reward ownership | **LIVE/RESTART PROVEN for the baseline; long-chain repeat proof remains open** - `UMelodiaNarrativeSubsystem` owns authored checkpoints/consequences and exactly-once transactions; stock JRPG owns its save state; [`ue_level_building_coinsheet_2026-09-01.json`](Saved/Audit/ue_level_building_coinsheet_2026-09-01.json) records wardrobe restore. Issue #51 remains the explicit long-chain gate | `MelodiaNarrativeSubsystem`, `MelodiaSaveRecoverySubsystem`, `MelodiaSaveSlotLibrary`, `BP_JRPGSaveGame`, canonical reward/flag paths | Checkpoints, reward claims, side-quest completion, route restoration and durable episode history | Direct SaveGame writes, duplicate reward registries, or a new save authority |
 
 #### Procedural worldbuilding and musical fields
@@ -65,6 +71,7 @@ instance or invent a new world signal system.
 | Resonance Ecology processor and instance material bridge | **LIVE PROVEN on 1 Sea Above graph; reusable editor tooling for the remaining graphs** - current state records `PCG_East_PhyllotaxisCourtyard` at 140 instances with Resonance 0.030-0.925 and one custom float; [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) records placement/runtime pass and no parallel graph | `Content/Python/pcg/resonance_ecology_processor.py`, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Content/Python/pcg/test_resonance_ecology.py`, existing Resonance Cathedral/Sea Above graphs | Cymatic ecology bands, musical density, material variants and resonance-driven geometry/scatter | Hardcoded biome bands, per-asset custom scripts, or another PCG enrichment authority |
 | World Field Bus Resonance/Tension contract | **SCAFFOLDED / SOURCE CONTRACT - not LIVE PROVEN** - `MelodiaWorldFieldBus.*` defines `ResonanceN/M`, `Tension`, `BeatPulse` and position sampling; [`world_field_bus_probe_2026-09-02.json`](Saved/Audit/world_field_bus_probe_2026-09-02.json) says SCAFFOLD and the PIE note records parameter-name alignment still open | `UWorldFieldBus`, `MelodiaCymaticsSubsystem`, `MelodiaOceanologyWaterBridgeSubsystem` | A shared future field for cymatic water, PCG and material consumers once the contract is closed | Another global bus, guessed MPC parameters, or claiming the current scaffold is a live contract |
 | Sea Above musical PCG proof | **LIVE PROVEN (scoped) / not full route certification** - [`SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json`](Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json) is `PLACEMENT_RUNTIME_PASS`; current state records 1 of 9 Resonance Ecology graphs. [`P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json`](Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json) is `PASS_SCOPED`, with visible-frame/focused-player/package work still open | `LV_SeaAbove_Prototype`, existing PCG graph authorities, `Content/Python/pcg/apply_resonance_to_sea_above.py`, `Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json` | Author a musical biome or setpiece now, while keeping the uninterrupted player route and visual-capture boundary honest | A new Sea Above world framework or a claim that every graph/consumer is already live |
+| Resonant World generator + World Compiler | **SOURCE/TOOL PROVEN + LIVE PROVEN scoped on `L_MelusinaMorning`** — flowers on **BrushifyIsland_*** only; dressing (`brushify_overgrowth` / `brushify_roots` / `brushify_bush`) on `WC_EscherWalk_*` plus island skirts. Bedroom / classic_arch / Sphere3D / `WC_DellFloor` never plantable. 2026-09-18 compile **1090** points (971 flowers + 119 dressing) / **1079** PCG ISMs; `WC_morning_rainbow_bloom_Field` pinned to island AABB. `WC_Lookdev_waterline_dolly` at `[-3100,200,180]` roll 0. No Landscape, no PCG graph rewrite, no MPC/PPV writes. Compile stays CLI. Proof [`world_compiler_morning_rainbow_bloom_proof_2026-09-18.json`](Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-18.json), close-out [`camera_dressing_closeout_2026-09-18.json`](Saved/Audit/camera_dressing_closeout_2026-09-18.json). Substrate Toon A/B remains PARK. | [`WORLD_COMPILER_CONTRACT.md`](Docs/WorldGen/WORLD_COMPILER_CONTRACT.md) §6.1, `Tools/world_compiler.py`, `Content/Python/world_compiler_ue.py`, `Content/Python/world_compiler_panel.py`, `recipes/morning_rainbow_bloom.v1.json`, `Content/Python/resonant_world_generator.py`, `Tools/terrain_handoff.py`, `Tools/scaffold_chapter.py` | Compile a recipe into PCG-driven dressing (point field + band MIs + signal bindings) without a new authority | A new scatter framework, Python-wired PCG graphs per species, `new_object` ISMs, a second MPC writer, a second compiler inside EUW, Houdini Engine as a live overlay |
 
 #### Houdini, Hython and Copernicus production lane
 
@@ -119,6 +126,49 @@ phrase, dialogue, consequence and reward through those entry points; do not desi
 rhythm framework. Keep the packaged golden-run and long-chain persistence gates separate until they
 have their own evidence.
 
+**Tutorial instance — Melody Slime first tide (authored 2026-09-18, PIE proof still owed):**
+`SlimeTideCurrent` + `Chart_Tide_Wave` transcribed to `DA_MelodySlimeTutorialSongs` ("Tide Wave",
+12 eighth-notes, 128 BPM) + `DA_TideWave` (`tide_wave`, auto-discovered by the subsystem scan) +
+`BP_MelusinaTidecall` (stock skill, PetalCadence behavior) mapped in `StockSkillRhythmIds` (6/6
+entries preserved) + `MelodiaQuillSlimeTutorial` (30 compiled statements, battle/quest/reward/flag
+notifies verified) with allowlisted `melodia_slime_tutorial` / `quest.slime_tutorial.first_tide` /
+`reward.slime_tutorial.tidecall` / `flag.slime_tutorial.completed`. MorningIntro carries
+`mel_perch_01` + `mel_battle_entry` voice cues (compiled). `BP_MelodySlimeTutorialBattle` roster is
+`{slime: chance 1.0, lvl 1}` with `fleeChance 100`. Wired 2026-09-18 (commit 593ef613e):
+battle actor tagged `melodia_slime_tutorial` (actor package force-added, one-time),
+`Morning_QuillTrigger_SlimeTutorial` placed at the battle actor in the persistent level with
+`QuillScriptToPlay` resolved to the tutorial QSC, map + 3 external packages saved, dirty 0,
+pushed 0 0. Still owed: Tidecall display-text check + the real-input PIE
+proof (victory/defeat/flee + exactly-once resume). `MI_MelodySlime_Body` (toon master, Tide tint,
+canonical Chladni, `BeatAccent 1.5`) is presentation-ready; the unit still wears the mannequin
+until the visual swap is judged. Breath wired 2026-09-18: tick-driven squash-and-stretch on
+`SlimeMesh` (`Sin(time)` through mirrored `MapRangeClamped` ±5%, XY swell against Z settle,
+parent Tick preserved, 0 errored BPs); beat-pulse rides the existing driver→master path.
+Skin bound 2026-09-18: `SlimeMesh.OverrideMaterials[0]` now wears `MI_MelodySlime_Body`
+(the mesh slot alone wore plain `Material_002`); master carries the full reactive
+vocabulary (`BeatAccent`, `Chladni*`, `HarmonizeActive`, 31 params).
+
+**Zundamon battle unit + Morning exploration platform crossing (authored 2026-09-18):**
+`ABP_Zundamon_Battle` (`target_skeleton = SK_Zundamon_Skeleton`, duplicated from the stock
+`A_BattleAnimationBlueprint`) plus `AM_Zundamon_Attack`/`AM_Zundamon_GetHit` montages are compiled
+and saved. `BP_WeakEnemy`'s `BeginPlay` now sets `SkeletalMeshAsset`/`AnimInstanceClass` to the real
+Zundamon mesh/ABP (a per-child graph override, not a CDO write, so the shared `BP_UnitBase` parent
+and its other children stay untouched); live PIE confirms `BP_WeakEnemy_C_*` spawns with the real
+mesh. **Known gap:** `Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/*` is excluded by
+`.gitignore` (line 178), so `BP_WeakEnemy`'s wiring cannot be committed — it exists only on this
+machine's disk and must be redone if that file is ever lost. `L_MelusinaMorning`'s ~46-piece
+`WC_EscherWalk_*` blockout was redesigned into one continuous golden-ratio spiral (φ-scaled radius
+per turn, five Fibonacci-fraction clearings) connecting the real `BrushifyIsland` terrain, with
+`BP_Starskiff_MK2` relocated to water level at the spiral's base. The four pre-existing, never-wired
+`MelodiaMovingPlatform` actors near the spiral's summit spur (previously default blockout values,
+`bAutoStart=false`) are now a real crossing: repositioned into a bridge line to a new landing piece,
+`bAutoStart=true`, staggered `TravelDuration` (1.6-2.6s) so their vertical ping-pong drifts out of
+phase over time — confirmed moving via two live PIE position reads (DedicatedServer net mode, no
+relay/Blueprint-graph wiring needed). Zundapal/`BP_Enemy_StoneGolem` also has a real imported mesh
+(`SK_Zundapal`, single-node embedded animation, no retarget — 38 vs 82 bones, by design) but
+`Content/Melodia/Enemies/**` is entirely outside the `.gitignore` allowlist (owner decision: leave
+it out of git for now), so none of that is trackable either.
+
 ### WHAT TO REACH FOR
 
 | User asks for... | Reach for... |
@@ -126,7 +176,7 @@ have their own evidence.
 | New boss | Quill + Phoenix/JRPG + existing rhythm seam + authored skill/data |
 | Side quest | Chapter scaffold + Quill + stable IDs + existing reward/save owners |
 | New rhythm ability | Existing rhythm execution + JRPG Skill/command path |
-| Musical biome | Cymatics -> Resonance/PCG data -> UE PCG + material/Niagara consumers; remember the broader World Field Bus is scaffolded |
+| Musical biome | Cymatics -> Resonance/PCG data -> World Compiler recipe -> UE PCG + material/Niagara consumers; remember the broader World Field Bus is scaffolded |
 | Procedural environment | UE PCG/Python and/or Houdini Engine/Hython, with the current proof label |
 | New cymatic material | Copernicus/Hython map family + existing toon/material/MPC contracts |
 | Outfit mechanic | Wardrobe subsystem + existing capability/Convergence hooks |
@@ -171,6 +221,80 @@ MCP regression, Ollama daemon stress — not only game tests).
 
 ## 3. Open
 
+### Morning level pass + Jev lane repair — 2026-09-20 (Claireon session)
+
+**Landed on disk, uncommitted.** `recipes/morning_rainbow_bloom.v1.json`: `hero_falloff_cm`
+2000→1000 and `palette.wind.response` 0.5→0.85. Outer radius is 1950 cm
+(`inner 200 + 7 × 250`), so a 2000 cm falloff never engaged — every band ran at uniform
+`density_per_m2 3.5` to the edge, the carpet the compiler contract forbids. `sector_deg` left
+at 360° deliberately: four of five lookdev cameras sit south of the anchor looking *across* the
+disc, so a wedge would read as a cut edge. Re-run
+`Tools/world_compiler_ue_driver.py Saved/WorldCompiler/morning_rainbow_bloom_3900 --lookdev`.
+Wind hue-reveal chain is **proven working** (A/B `Saved/Audit/Screens/world_compiler_morning_wind_*_2026-09-17.png`
+shows real hue shift undriven vs driven-east) but those plates are night-lit and predate the
+`bedroom_keepout` clearance circle — judge the new weight in morning light, not against them.
+
+**Jev lane repaired, uncommitted.** `typesafe-sdk==0.7.0` was **not installed**, so every Jev call
+silently degraded to `classical-fallback` through a swallowed `ImportError` — it read as designed
+degradation, not breakage. `Prototypes/JevP0Triage/jev_p0_triage.py` and `select_showcase_identity.py`
+were still on the pre-v1 API (`from typesafe import`, `client.ask`, `.selection`, `.probability`);
+ported to `typesafe_sdk` / `system_one` / `Choice|Noul|Score` / `.choice` / `.noul`. All 9 prototypes
+now scan clean; tests 10/10 and 26/26; both verified `jev-live`. Live triage on real state returned
+`HOLD_FOR_OWNER 0.58` / needs-human `0.89` / capture `L0` against gate staleness 38 d and 1914 dirty
+files — the classical fallback it had been silently using said the opposite (`RUN_PIE_SMOKE 0.91`).
+
+**Morning audit (read-only; nothing saved).** 647 actors / 465 StaticMeshActors / 456 meshed /
+64 unique meshes / **56% greybox** (143 × `SM_Greybox_Cube_1m`). 22 duplicate groups = 88 actors,
+every group exactly ×4 at one identical transform on round 100-unit grid coords (paste or script run
+four times), 66 redundant; plus 9 empty StaticMeshActors. **Cleanup was executed (647→572, verified
+0 duplicate groups / 0 empty) but left unsaved and lost on a level switch — redo it and save in the
+same pass.** Vertical layout is fine (79 m span, well layered). Jev ranked greybox dominance top at
+0.82 (conf 0.77) but scored it **not** disqualifying (0.32); rated the 83 squashed `WC_EscherWalk_*`
+overgrowth actors 0.65 *intentional* — leave them alone.
+
+**Hero corners: three of four dead, and it is graph-side, not placement.** Only MeadowChorus
+generates (791). WestRim / EastBank / NorthDress generate 0. Volume geometry is ruled out by test:
+all three were moved onto their own cameras' focal centres and grown from 58–138 m³ to 4 800 m³ and
+still produced 0, then reverted to original transforms. Causes: `PCG_HeroCorner_WestRim` runs
+`GetSplineData` → `PCGExSampleNearestSpline` and the level contains **zero spline actors**;
+`PCG_HeroCorner_EastBank` (3 chains) and `PCG_HeroCorner_NorthDress` (18 chains) are
+`SurfaceSampler` → `FilterDataByTag` whose filters are not matching (58 distinct tags exist, so tags
+are not the shortage). Separately `PCG_Escher_FloatingStairways_Morning` and
+`PCG_Escher_PenroseShrine_Morning` have degenerate **0×0×0** bounds.
+
+**Tooling facts for the next session.** `ClaireonSettings.DisabledPIENetModes` was
+`['Standalone','ListenServer']`; `Standalone` was removed **in memory only** — Python exposes no
+`save_config` on that class, so it reverts on editor restart and must be set in Editor Preferences →
+Plugins → Claireon → PIE to persist. Client net mode cannot reach the local player, so PIE proof is
+impossible without Standalone. `bAutoSaveBeforeDeferredActions=True` writes an external actor package
+into the open level on PIE start. Editor crashed `EXCEPTION_ACCESS_VIOLATION` in
+`UnrealEditor-StaticMeshEditor.dll` via Slate at 19:04:39 (open Static Mesh Editor window, not Python).
+A ready-to-run in-place greybox→Atlantis swap exists in the session scratchpad — transform-preserving
+with bounds-ratio scale compensation and a `LABEL_PREFIX` filter for concurrent dressing; promote to
+`Content/Python/` if kept. Jev set-dress direction: `swap_meshes_in_place` 0.81, but manual fixup
+expected 0.84, focus on camera frames 0.83, achievable-today 0.91/3 ("one good shot").
+
+### Melusina skirt and bow attack polish — execution plan, 2026-09-19
+
+Owner target: Unreal gameplay and Unreal renders. Keep `SK_Melusina_V2_Body`,
+`ABP_Melusina_Current`, the shared skirt skeleton and wardrobe leader-pose ownership.
+
+1. Capture a baseline in one editor: idle, locomotion/turn/stop, bow draw, release,
+   recovery. Read current skirt node, collision limits, animation bindings and weapon sockets.
+   The 2026-09-15 tip/warm-up changes are asset evidence only until motion is inspected.
+2. Fix observed skirt defects at their cause: collision placement and leg interaction,
+   then response/settling only where the capture demonstrates a problem. Preserve authored silhouette.
+3. Polish the actual gameplay bow animation binding and grip/string/arrow alignment;
+   verify anticipation, draw hold, release, follow-through and recovery in sequence.
+4. Capture front/three-quarter and side motion in Unreal, including a full attack and
+   locomotion-to-attack transition. Pass requires no visible leg penetration, startup pop,
+   persistent oscillation, detached grip, or release/arrow timing mismatch.
+5. Save and reread each changed asset; repeat the motion after restart. Keep baseline,
+   final clips and machine-readable evidence under `Saved/Audit/`. No completion claim
+   from stills or successful property writes alone.
+
+Execution 2026-09-20: V2 is the battle-presentation body; the bound bow montage plays in PIE. Skirt Kawaii uses reversible `SK_Melusina_V2_Skirt_R2_SmoothChains` (rigid vertices 10.93% -> 0.39%). Hair tune `Damping=.18` / `Stiffness=.08` — source rig is still 73 two-bone chains. Proof: `Saved/Screenshots/MelusinaPolish_20260920/`. Do not overwrite `harp_bow_pipeline` husks. `Polish_20260919` clips + `ABP_Melusina_Current` are in git on this PR.
+
 ### Repository/status reconciliation — 2026-09-17
 
 - **Historical cleanup lane resolved.** PR #201 was superseded by merged #213; accidental resurrection PR #230 was closed unmerged. `cleanup/pbr-twin-landing-2026-09-10` is provenance only: never use it as a repository-health proxy or wholesale merge source. Salvage named unique work through scoped branches only.
@@ -186,6 +310,9 @@ MCP regression, Ollama daemon stress — not only game tests).
 | Chapter reuse | `Tools/scaffold_chapter.py`, `Chapters/_template/{quill,maps,encounters,rewards}`, and four-beat `03_tide_listening` source. Generator validates gated IDs against the actual DA before writing; numbered chapter folders are automatically tested. | Full QSC contract FAILS on existing SkiffDeparture `quest.shorewake.passage`, `flag.shorewake.passage`, `reward.skiff_passage`. Resolve those IDs and reward binding through the canonical DA in the editor; import the example and prove both choices/revisit/save-load in `MelodiaIntegrationMap`. Scaffold regression passes; no PIE claim. |
 | UI staleness | Read-only `melodia-ui-artist` audit: rhythm HUD and four Quill widgets have palette colours. #227 resolved the shared UE `GameColors` / `KeybindColors` token drift against the design-token SSOT. Remaining P0 candidates include `BP_MelodiaBattleUI` RhythmGradeText/SongPickLabel white, stock `BP_BattleUI` authored text, `WBP_MainMenu`, and `WBP_MenuButton`. | Treat remaining candidates as reachability/runtime-binding checks before edits. `BP_MelodiaDefeatDialogue`, `BP_MelodiaVictoryDialogue`, and Foundation parchment/button styling still need targeted review; white image tints and transparent shadows are not automatically defects. |
 | G: saved-state mirror | `Tools/mirror_saved_project.ps1` defaults to dry-run; scoped `/MIR`, destination/junction checks, cache/binary/Blender-autosave exclusions. Includes Content (Frozen + Cinematics), Config, Source, Plugins, Saved/Audit, Chapters, specs, Tools and design tokens. Dry logs: `%TEMP%/melodia-mirror-20260913/`. | Proposed destination `G:/BS_GodFile_Mirror/20260913`; initial dry run 119.75 GiB / 55,549 files plus project descriptor, zero failures/extras. Real run awaits owner approval and a saved, closed, stable source. This mirrors the saved local tree, including uncommitted assets; it is not a claim that local tree equals main. |
+| World Compiler close-out (2026-09-19) | Live `--skip-scaffold --fx --lookdev` **PASS**. BrushifyIsland SpeedTree + walk dressing; Niagara children forged/placed; lookdev board recaptured (waterline_dolly / website_oblique / top / south / south_fix). | Hue may still read muted if Cymatics wind scalars stay 0 (do not write MPC). Substrate Toon PARK. Recruiter caption: compiler meadow on Brushify, frozen PPV, hue-reveal unproven until PIE wind. |
+| Morning Niagara rewire (2026-09-19) | Disk **14:49** + live bind **PASS 2026-09-20**. `rewire_morning_fx.py --effect bind-user`: Petal/Pollen/Mist/Dust SpawnRate plus WindFront `Gust_Leader` `Spawn Count` → `User.WindFrontVisible`. WC `step_fx_place` writes pack User names. | Hue-reveal is PIE wind only (no MPC). PondMist `*001` cleanup remains. Do not edit EnvSandbox parents. Do not UBT while the editor is open. |
+| Git close-out (2026-09-20) | Isolated batches on `feature/morning-closeout-2026-09-20` (PR #249); `origin/main` merged in a clean worktree. Morning umap/OFPA/PCG/ABP kept ours (09-19 rewire + HeroCorners + bow). | Park Frozen/MPC/`DefaultEngine.ini`/Humber/EnvSandbox dumps. Do not dump the WIP dirty tree. Do not merge `feature/b-castle-zen-hism-2026-09-19` as the Niagara tip. |
 
 C++ and its asset closure passed a closed-editor UE 5.8 Development build (460/460 actions).
 Offline contract suites: 22/22 PASS; collapse/scaffold regression tests: 2/2 PASS. The broader
@@ -307,17 +434,18 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 
 ## 4. Owner queue — now
 
-**Today’s owner focus (2026-09-20): renders → lookdev → bounded website asset/content updates.** Finish the art and publish the approved results; documentation/Git reconciliation is maintenance-only and must not interrupt production. Website work means updating finished renders and portfolio evidence, not reopening the site redesign.
+**Next session (WC baseline is on `main`):** editor cutover to a clean tree, OSC ingest proof, AE JSX with Unreal closed. Do not checkout `main` on dirty `BS_GodFile`. Horizon Eater is later, not this queue.
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
 Choral Sheep is the capstone lane.
 
-1. **Finish the current render batch.** Prioritize presentable hero frames / graded evidence over infrastructure work.
-2. **Lookdev the selected shots/assets to presentation quality.** Use the existing material, lighting, PPV, foliage, cymatics, and environment systems; do not open a new framework lane.
-3. **Publish the approved visual updates to `my-site`.** Replace/update portfolio evidence and renders only; keep navigation/design-system changes bounded to defects that block the presentation.
+1. **Editor cutover.** Point the next Unreal session at the clean checkout (`C:/EnvironmentPortfolio/_wt_morning_closeout` now tracking `main`, or a fresh `origin/main` worktree). One editor, one Monolith `:9316`. Do **not** `git checkout main` inside `C:/EnvironmentPortfolio/BS_GodFile` while the 205-file WIP tree is dirty. Leave `wip/pre-restart-working-tree-2026-09-19` as recovery; uncommitted files stay uncommitted. Copy UltraDynamicSky / Humber / session VFX **outside** git if they must be kept — reset of the old folder is a named later step.
+2. **OSC ingest PIE.** After RecvFrom is loaded from the 17:48 DLL (`UnrealEditor-BS_GodFile.dll` 3,232,768 bytes), send `phrase_bridge` → `:9000` and read GetCurrentState. Do not UBT while the editor is open. Do not rebuild the TD scene.
+3. **AE JSX.** Run `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx` only after Unreal is closed (GPU3). 8s beat is at `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. Then promote to the site.
+4. **Horizon Eater later.** Specs already target `LV_SeaAbove_Prototype`, not Morning. New chapter = new `recipes/*.v1.json` + compile + new `WC_*_Field` / `DT_*` on that level. Morning Brushify field is frozen `--skip-scaffold` regression. No `HE_Filter_*` on `L_MelusinaMorning`. No second compiler. No unfreeze Morning PPV.
 
-After today’s art pass: Choral Sheep UE fleece/deformation proof → UE ↔ TD proof → one 5–10 s AE Creature → Motif → Harmony → World sequence → 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
+Fleece REST vs HIT stills (`Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`) are captured; owner pixel-judge against Board 06 remains. Then: 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
 
 **Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
 or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
@@ -389,6 +517,22 @@ counts if it adds playable or presentable minutes, or removes a real blocker.
 - **Monolith `run_python` cannot sleep** — `time.sleep` is intercepted and PCG `generate()` is async, so
   instance counts read in the same call race generation.
 - **Headless Blender hangs on user add-ons** — pass `--factory-startup` for `-b` inspection/bake runs.
+
+Stale-agent damage classes (read these before any WC / Jev / Blender / git work):
+
+- **Collapsed docs.** Never resurrect paths deleted in `08a608bc`. CI: `Tools/guard_collapsed_paths.py`. Never wholesale-merge `cleanup/pbr-twin-landing-2026-09-10`. Recover old docs with `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
+- **Bedroom / Sphere3D meadow.** Live Morning field is flowers on `BrushifyIsland_*` only; dressing on `WC_EscherWalk_*` plus island skirts; bedroom keepout in `recipes/morning_rainbow_bloom.v1.json`. Do not plant `SM_classic_arch_*`, `Sphere3D`, `WC_DellFloor`, or invent a second meadow. Older WC-contract bedroom-floor numbers are historical probe notes, not the live recipe.
+- **Second authorities.** No second World Compiler, MPC writer, Niagara framework, battle manager, phrase bus, Jev, or Monolith.
+- **MPC/PPV writes** to “fix” muted hue or lookdev. Hue-reveal proof is PIE wind, not a writer. Frozen PPV stays frozen.
+- **Dirty-tree dump.** Isolated PRs only. Morning closeout is **on `main`** (PR #249). Park Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, and Humber. Never dump `C:/EnvironmentPortfolio/BS_GodFile` wip onto git. Do not `git checkout main` onto that dirty tree.
+- **Horizon Eater later, not a rebuild.** Specs (`specs/horizon_eater/HORIZON_EATER_DESIGN.md`, `Docs/Monoliths/P3_HORIZON_EATER_PLAN_2026-08-29.md`) target `LV_SeaAbove_Prototype`, not Morning. There is no `recipes/horizon_eater_*.json`. Morning recipe + `WC_morning_rainbow_bloom_Field` + `PCG_WorldCompiler_PointField` + `DT_morning_rainbow_bloom_Points` are **read-only regression**; maintenance uses `--skip-scaffold` only. New place = new `world_recipe.v1` + `python Tools/world_compiler.py compile` + same UE driver + a **new** `WC_*_Field` / `DT_*` on the new level. `PCG_HorizonEater_FilterFlow`, Oceanology SLW, fog/LOD, and `Content/Python/add_horizon_eater_mpc_params.py` stay presentation / one-time MPC authoring — not a second World Compiler. Runtime HorizonEat still goes through `UMelodiaAudioReactivePresentationSubsystem`. Never call that script from `world_compiler*.py`. Do not spawn `HE_Filter_*` debug meshes on `L_MelusinaMorning`. Do not unfreeze Morning PPV to “see” the eater.
+- **Blender / G: junctions.** Do not robocopy, junction, or overwrite `harp_bow_pipeline`. Open `C:\EnvironmentPortfolio\MELUSINABACKUPBECAUSEAIAGENTSARERETARDED.blend` (Sep 5, verified) or the v22 recovered stage. Headless Blender: `--factory-startup`.
+- **Jev confusion.** Jev (`Tools/listening_field/jev_director.py`) is a director over allowlisted sheep/world/`layout_seed` options. It does not drive UE, compile meadows, or MCP-move actors. `recipes/jev_showcase_bloom.v1.json` is a World Compiler recipe whose name is unrelated.
+- **Ghost spec / wrong phrase bridge.** Durable spec is [`Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md`](Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md), restored from the Python schemas. `Content/Python/resonant_world_phrase_bridge.py` is MIDI ecology, not Jev.
+- **gitignore `Tools/*` swallowing live lanes.** `Tools/listening_field/`, `Tools/phrase_bridge/`, and `Tools/live_source/` must stay un-ignored (`!Tools/<dir>/` + `!Tools/<dir>/**`). That swallow is why Jev work appeared to “get deleted from git” — it was never tracked. Also keep `!Tools/guard_collapsed_paths.py` and `!Tools/test_guard_collapsed_paths.py`. Do not `git add` Frozen/MPC/EnvSandbox dumps to compensate.
+- **Skip `scene_context_cycle`.** Any WC / PCG / Monolith spatial edit requires `scene_context_cycle.begin()` before the first mutation and `end()` after, in the already-open editor. Tools: `Content/Python/scene_context_snapshot.py`, `Content/Python/scene_context_cycle.py`. One editor, Monolith `127.0.0.1:9316` only. Packets under `Saved/Audit/SceneContext/` are ephemeral evidence, not status.
+- **UBT while the editor is open.** Closed-editor builds only. A stale `UnrealEditor-BS_GodFile.dll` is how OSC readback stays at bar 0.
+- **Retired rainbow_*.py.** `Content/Python/rainbow_*.py` stay gone. Morning scatter is `Tools/world_compiler.py` + `recipes/morning_rainbow_bloom.v1.json` only.
 
 ---
 

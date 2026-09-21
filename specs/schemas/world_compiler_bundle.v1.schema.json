@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/world_compiler_bundle.v1.schema.json",
+  "title": "Melodia World Compiler bundle manifest v1",
+  "description": "manifest.json written by Tools/world_compiler.py. Supersedes melodia_world_compiler_output_v0. See Docs/WorldGen/WORLD_COMPILER_CONTRACT.md section 3.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "compiler_version", "compile_id", "recipe_id", "world_seed", "recipe_sha256", "status", "stages", "place", "bands", "tables", "counts", "ue_lane"],
+  "properties": {
+    "schema": {"const": "melodia.world_compiler_bundle.v1"},
+    "compiler_version": {"type": "string"},
+    "compile_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*_[0-9]+$"},
+    "recipe_id": {"type": "string"},
+    "world_seed": {"type": "integer"},
+    "recipe_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"$ref": "#/$defs/status"},
+    "stages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "terrain", "ecology", "dressing", "signal", "chapter", "bundle"],
+      "properties": {
+        "identity": {"$ref": "#/$defs/stage"},
+        "terrain": {"$ref": "#/$defs/stage"},
+        "ecology": {"$ref": "#/$defs/stage"},
+        "dressing": {"$ref": "#/$defs/stage"},
+        "signal": {"$ref": "#/$defs/stage"},
+        "chapter": {"$ref": "#/$defs/stage"},
+        "bundle": {"$ref": "#/$defs/stage"}
+      }
+    },
+    "identity": {"type": "object"},
+    "place": {
+      "type": "object",
+      "required": ["level", "anchor_cm"],
+      "properties": {
+        "level": {"type": "string"},
+        "anchor_cm": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+        "clearance_applied": {"type": "object"},
+        "sector_deg": {"type": ["array", "null"], "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "ground_mask": {"type": ["object", "null"], "properties": {"plantable_cells": {"type": "integer"}, "plantable_area_m2": {"type": "number"}}}
+      }
+    },
+    "terrain": {"type": ["object", "null"], "description": "terrain stage output: ground_probe summary or terrain_handoff unified doc"},
+    "bands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["band", "label", "tint", "inner_radius_cm", "outer_radius_cm", "mode_n", "mode_m", "point_count"],
+        "properties": {
+          "band": {"type": "integer"},
+          "label": {"type": "string"},
+          "tint": {"type": "array", "items": {"type": "number"}},
+          "inner_radius_cm": {"type": "number"},
+          "outer_radius_cm": {"type": "number"},
+          "mode_n": {"type": "integer"},
+          "mode_m": {"type": "integer"},
+          "point_count": {"type": "integer", "minimum": 0},
+          "material_instance": {"type": "string"}
+        }
+      }
+    },
+    "tables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "sha256", "rows"],
+        "properties": {"path": {"type": "string"}, "sha256": {"type": "string"}, "rows": {"type": "integer"}, "columns": {"type": "array", "items": {"type": "string"}}}
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": ["points_total", "points_removed_by_clearance", "fx_anchors_total"],
+      "properties": {
+        "points_total": {"type": "integer"},
+        "points_removed_by_clearance": {"type": "integer"},
+        "points_removed_by_chladni": {"type": "integer"},
+        "fx_anchors_total": {"type": "integer"},
+        "fx_anchors_removed_by_clearance": {"type": "integer"}
+      }
+    },
+    "ue_lane": {
+      "type": "object",
+      "required": ["data_table", "pcg_template_graph", "pcg_volume_label", "actor_tag"],
+      "properties": {
+        "data_table": {"type": "string"},
+        "row_struct": {"type": "string"},
+        "pcg_template_graph": {"type": "string"},
+        "pcg_volume_label": {"type": "string"},
+        "actor_tag": {"type": "string"},
+        "fx_pack": {"type": "string"},
+        "material_override_attributes": {"type": "array", "items": {"type": "string"}, "description": "Positional: index == static-mesh material slot on the spawner's ByAttribute selector"}
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "status": {"type": "string", "enum": ["PASS", "FAIL", "SKIPPED", "EXPECTED_FAIL"]},
+    "stage": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "module": {"type": "string"},
+        "note": {"type": "string"},
+        "errors": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

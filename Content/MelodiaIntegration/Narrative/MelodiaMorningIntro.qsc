@@ -7,6 +7,8 @@
 - Melusina
   The perch is empty again. I know a small absence can fill a whole room.
 
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_perch_01} 0.9
+
 - Melusina
   Sir flew off for snacks again. He does that. He always comes back.
 
@@ -40,6 +42,11 @@
 
 - Melusina
   I'll keep the seat warm. Arriving late isn't the same as being unwanted.
+
+- Melusina
+  The dream is restless. Stay close, and sing when I sing.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_battle_entry} 0.9
 
 $ %melodia_morning_sir.BeginWindowDeparture
 $ End

@@ -1,0 +1,8 @@
+BEFORE: C: free = 55.85 GB
+1. Moved 133 file(s), 5.05 GB -> D:\downloads_from_C
+2. Cleared npm cache (0.31 GB) - regenerable
+2. Cleared uv cache (0.33 GB) - regenerable
+3. Cleared CrashDumps (0.18 GB)
+4. Temp C:\Users\froma\AppData\Local\Temp: removed 0 stale item(s), 0.00 GB
+4. Temp C:\Windows\Temp: removed 0 stale item(s), 0.00 GB
+AFTER : C: free = 61.84 GB   (delta +5.99 GB)

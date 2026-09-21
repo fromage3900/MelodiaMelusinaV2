@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-19T18:45:14.299984+00:00",
+  "generated_by": "build_and_validate_proof_b.py",
+  "ok": true,
+  "project_root": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "manifest": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\proof_b_zen_shrine\\SurrealPlan_ZenShrine_ProofB.world.json",
+  "schema_errors": [],
+  "hints_ok": true,
+  "missing_mi": [],
+  "hism_group_count": 6,
+  "instance_count": 8,
+  "style": "ZEN_SHRINE",
+  "plan": "SurrealPlan_ZenTemple",
+  "sacred_fallback": true,
+  "corner_tower_hint_override": "/Game/EnvSandbox/Materials/Instances/Showcase/MI_Show_StoneCliff",
+  "corner_tower_note": "export.py ROLE_UE_HINTS points corner_tower at .../Stylized/MI_Show_StoneCliff but the asset lives under .../Showcase/MI_Show_StoneCliff. Proof fixture uses the Showcase path that exists on disk.",
+  "honden_note": "STYLE_ROLE_OVERRIDES ZEN_SHRINE sacred expects MI_Zen_HondenSanctum (missing); proof uses MI_Zen_Karesansui per default ROLE_UE_HINTS sacred.",
+  "live_ue_apply": "blocked_editor_not_running",
+  "hism_note": "Manifest hism_groups present (grouped by role+lib). import_world_manifest.py currently spawns StaticMeshActors on --apply when static_mesh_path is set. True HierarchicalInstancedStaticMesh spawn is the remaining live gap for full B.",
+  "next_live_steps": [
+    "Open BS_GodFile in UE 5.8",
+    "Fill static_mesh_path on instances (WorldExport role FBX or existing meshes)",
+    "py Content/Python/import_world_manifest.py --manifest Saved/Audit/proof_b_zen_shrine/SurrealPlan_ZenShrine_ProofB.world.json",
+    "Re-run with --apply once meshes are filled",
+    "Optionally patch export.py ROLE_UE_HINTS corner_tower + ZEN_SHRINE sacred to existing MI paths"
+  ],
+  "export_py_fix_needed": {
+    "corner_tower": "Stylized -> Showcase for MI_Show_StoneCliff",
+    "ZEN_SHRINE.sacred": "MI_Zen_HondenSanctum missing; keep Karesansui or create HondenSanctum MI"
+  }
+}
