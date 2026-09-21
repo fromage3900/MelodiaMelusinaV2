@@ -1,0 +1,37 @@
+{
+  "schema": "melodia.waveharp_transform_capture.v1",
+  "timestamp_local": "2026-09-21",
+  "jev": {
+    "source": "jev-live",
+    "phrase": ["IDLE_READY", "BOW_V1", "BOW_V2"],
+    "release_gate": "yes only at resonance peak"
+  },
+  "assets": {
+    "harp": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Harp_R07",
+    "bow": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07",
+    "arrow": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Arrow_R07",
+    "ue_transform_referencer_found": false
+  },
+  "accepted_bow_attachment": {
+    "socket": "hand_l",
+    "scale": [0.9, 0.9, 0.9],
+    "draw_world_rotation": {"pitch": 0.0, "yaw": 90.0, "roll": 0.0},
+    "camera": {"location": [260.0, -240.0, 115.0], "yaw": 137.0}
+  },
+  "capture": {
+    "output_dir": "Saved/Screenshots/MelusinaPortfolio_20260921/WaveHarpTransform_V3",
+    "frame_count": 20,
+    "valid_frames_after_warmup": 19,
+    "captured_ok": true,
+    "gate_ok": true,
+    "swap_probe": {"at_seconds": 1.0, "fired": true, "python_ok": true},
+    "orientation_probe": {"at_seconds": 1.4, "fired": true, "python_ok": true},
+    "runtime_errors": 0,
+    "kawaii_inter_bone_warning_count": 2
+  },
+  "proof_boundary": {
+    "ue_form_swap_verified": true,
+    "continuous_shape_key_morph_verified": false,
+    "reason": "Unreal contains separate static snapshots and no transform referencer; the documented Blender driver and shape-key rig was not exported and its current source files fail with Missing DNA block."
+  }
+}

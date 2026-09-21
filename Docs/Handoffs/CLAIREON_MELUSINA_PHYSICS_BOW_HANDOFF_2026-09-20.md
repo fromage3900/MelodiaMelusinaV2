@@ -91,6 +91,16 @@ Result: **Succeeded**, 8/8 actions, 40.79 seconds. The editor was deliberately l
 4. If promoting the shoulder fix, rebuild a proper persistent montage from the corrected sequence in-editor and confirm non-zero duration before replacing any binding.
 5. Keep Cascadeur out of tonight's path. The defect is isolated to two deform shoulder curves and does not justify re-authoring the clip.
 
+### 2026-09-21 WaveHarp orientation and transform verification
+
+- Jev-live evaluated the five-beat presentation and selected the authored progression `IDLE_READY -> BOW_V1 -> BOW_V2`; release crossed the Jev yes gate only at the resonance peak. This was a live TypeSafe evaluation, not fallback.
+- The R07 Unreal export contains three independent static meshes: Harp, Bow, and Arrow. Neither `SM_ME_WaveHarp_Bow_R07` nor the harp/bow pair has any Unreal referencer implementing a transform. R08 currently contains only `SM_ME_WaveHarp_Arrow_R08`; there is no R08 harp or bow mesh.
+- The old bow attachment was indeed wrong: the guessed socket-local `roll=90` made the bow read backwards/small. A six-orientation PIE sweep proved that socket-local Euler guesses alternate between edge-on, horizontal, and loop-like silhouettes.
+- Accepted draw orientation: attach the R07 bow to `hand_l`, keep scale `0.9`, then align it at the draw beat to world rotation `(pitch=0, yaw=90, roll=0)`. This keeps the bow vertical and its plane aligned with the firing axis. The three-quarter proof camera is `(260,-240,115)`, yaw `137`.
+- Accepted staged transform proof: `Saved/Screenshots/MelusinaPortfolio_20260921/WaveHarpTransform_V3`. The run starts with the R07 harp visible, swaps visibility to the R07 bow at `t=1.0s`, starts the corrected V2 attack, and applies the accepted bow orientation at `t=1.4s`.
+- Runtime result: 20 captured frames, 19 valid after warm-up, `captured_ok=true`, `ok=true`, both delayed probes fired with `python_ok=true`, and zero Blueprint runtime errors, `Accessed None`, assertions, ensures, or Python tracebacks. The two known Kawaii topology warnings remain.
+- Honest proof boundary: **harp -> bow form switching works in the UE capture harness; the original continuous Blender transformation does not yet exist in UE.** The source document describes a driver/shape-key rig (`Bow_Deployment`, `Flex_Draw`, `Draw`, deployment empties), but the damaged Blender sources prevent re-export and the current UE assets are static snapshots. Do not describe the visibility swap as a morph.
+
 1. Hair is parameter-improved, not re-rigged. Its skeleton is 73 independent two-bone strand chains under `hair_root`, leaving only one simulated joint per strand. True flowing hair requires a new multi-segment hair rig and redistributed weights.
 2. The R2 skirt currently carries its imported companion skeleton and physics asset. Leader-pose runtime passed because the bone order matches, but a later production consolidation should reimport the corrected weights against the canonical Melusina skeleton or explicitly bless the duplicate skeleton.
 3. The stock `/Game/TurnBasedJRPGTemplate/Maps/BattleMap` emits unrelated template errors and does not naturally spawn this presenter. Do not use that map as a clean proof environment until its battle bootstrap is repaired.
