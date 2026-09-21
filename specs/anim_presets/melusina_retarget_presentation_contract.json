@@ -1,0 +1,39 @@
+{
+  "schema": "melodia.melusina_retarget_presentation.v1",
+  "profile": "melusina_bow_v1",
+  "target": {
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "body": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+    "skirt": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains",
+    "anim_blueprint": "ABP_Melusina_Current",
+    "slot": "DefaultSlot"
+  },
+  "shoulders": {
+    "controller_tracks": ["c_shoulder_l", "c_shoulder_r"],
+    "deform_tracks": ["shoulder_l", "shoulder_r"],
+    "reject_static_controller_with_animated_deform": true,
+    "normalization_requires_visual_review": true,
+    "reference_capture_asset": "/Game/Melodia/Characters/Melusina/Portfolio/A_Melusina_BowAttackV2_PortfolioShoulders",
+    "reference_slerp_toward_bind_pose": 0.55,
+    "reference_is_capture_only": true
+  },
+  "montage": {
+    "require_positive_duration_seconds": true,
+    "production_asset": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Bound",
+    "capture_uses_dynamic_default_slot_montage": true
+  },
+  "bow": {
+    "asset": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07",
+    "socket": "hand_l",
+    "scale": [0.9, 0.9, 0.9],
+    "draw_world_rotation_pitch_yaw_roll": [0.0, 90.0, 0.0]
+  },
+  "harp_to_bow": {
+    "implementation": "static_mesh_visibility_swap",
+    "continuous_morph_proven": false
+  },
+  "evidence": {
+    "portfolio_capture": "Saved/Audit/melusina_portfolio_capture_20260921_v13.json",
+    "waveharp_transform": "Saved/Audit/melusina_waveharp_transform_20260921_v3.json"
+  }
+}

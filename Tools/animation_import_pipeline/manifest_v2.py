@@ -167,6 +167,7 @@ def to_v2_manifest(raw: dict[str, Any], source_file: str | Path = "", *, status:
         "status": final_status,
         "status_reasons": list(raw.get("status_reasons") or reasons),
         "promotion_target": str(raw.get("promotion_target") or ""),
+        "presentation_profile": str(raw.get("presentation_profile") or ""),
         "notify_contract": list(raw.get("notify_contract") or []),
         "foot_contact_audit": (
             dict(raw.get("foot_contact_audit"))
@@ -230,6 +231,8 @@ def validate_v2(manifest: dict[str, Any]) -> list[str]:
         errors.append("root_motion must be in_place or root")
     if manifest.get("consumer") not in CONSUMERS:
         errors.append("consumer is not a supported UE consumer")
+    if manifest.get("presentation_profile") not in {None, "", "melusina_bow_v1"}:
+        errors.append("presentation_profile is not supported")
     if not isinstance(manifest.get("loop"), bool):
         errors.append("loop must be boolean")
     if manifest.get("animation_only") is not True:

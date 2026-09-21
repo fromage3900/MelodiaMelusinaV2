@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.melusina_retarget_reference_gate.v1",
+  "profile": "melusina_bow_v1",
+  "ok": true,
+  "promotion_allowed": false,
+  "reference_only": true,
+  "errors": [],
+  "evidence": [
+    "C:\\EnvironmentPortfolio\\_wt_morning_closeout\\Saved\\Audit\\melusina_portfolio_capture_20260921_v13.json",
+    "C:\\EnvironmentPortfolio\\_wt_morning_closeout\\Saved\\Audit\\melusina_waveharp_transform_20260921_v3.json"
+  ]
+}
