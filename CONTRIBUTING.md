@@ -17,12 +17,13 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 ## Quick Start
 
 1. Read [CURRENT_STATE.md](CURRENT_STATE.md) and [DOC_INDEX.md](DOC_INDEX.md) before expanding scope.
-2. Review [README.md](README.md) to choose your onboarding path.
-3. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
-4. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
+2. Run `python Tools/git_ok.py`, verify the latest `main` Echo run is green, and cut one scoped branch from current `main`. Do not start production from a stale PR/recovery branch.
+3. Review [README.md](README.md) to choose your onboarding path.
+4. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
+5. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
   chosen lane. `Exports/` is also seeded in the local Perforce pilot; use Git for the project checkout
   until the shared Perforce server and cutover are announced.
-5. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
+6. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
 
 ---
 
@@ -31,6 +32,24 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 `main` is canonical durable game/runtime/capstone truth. Feature branches are scoped work, not competing project state.
 
 Read [Docs/Production/BRANCH_WORKSTATION_POLICY.md](Docs/Production/BRANCH_WORKSTATION_POLICY.md) before merge, salvage, deletion, or machine-specific branch work.
+
+### Default contribution mode: content production
+
+Melodia's stable systems are now infrastructure for authored work. Prefer the existing seam that already owns the problem:
+
+| Goal | Default authoring seam | Do not add |
+|---|---|---|
+| New environment / world slice | recipe + World Compiler + existing UE PCG | second compiler / parallel world authority |
+| Reactive world look | existing audio-reactive → cymatics writer chain + material/Niagara consumers | direct MPC writers |
+| Blender/GN set dressing | Melodia Studio/GN source → fresh-main promotion PR | wholesale workstation-branch merge |
+| Encounter / boss / side quest | Quill + Phoenix + rhythm + existing consequence/save owners | new battle/quest/save framework |
+| Lookdev / VFX polish | existing master materials, instances, Niagara, frozen PPV rules | one-off master/framework per effect |
+
+A contribution that changes architecture must name the current owner seam, show the blocking requirement, and explain why authored content cannot express it.
+
+### Editor-heavy session rule
+
+For UE/Blender lookdev and worldbuilding, cut a short-lived `feature/<intent>-<date>` branch from green `main`. Do not merge/rebase/switch branches while live editor state is open. Commit intentional slices, close the editor, run the relevant proof + Echo/LFS gates, merge, and start the next session from refreshed `main`.
 
 ### No unrequested cleanup
 

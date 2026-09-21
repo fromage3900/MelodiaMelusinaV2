@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-14
+**Last Updated:** 2026-09-21
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -70,6 +70,37 @@ side quest, creature Episode, outfit ability, musical world puzzle, or procedura
 uses the owners and entry points above. Before changing architecture, ask whether the experience can
 be expressed as content through `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`. If yes,
 author it. Architecture work requires a demonstrated blocker against a named owner seam.
+
+### Production authoring plane (verified 2026-09-21)
+
+The project now has a stable authoring plane above the runtime owners. These tools create or transform content; they do **not** become gameplay/state authorities.
+
+```text
+reference / design lock
+        ↓
+Blender / Geometry Nodes / Houdini / authored world recipe
+        ↓
+source validation + provenance
+        ↓
+World Compiler / scoped import / UE-native PCG
+        ↓
+levels • PCG instances • materials • Niagara • animation presentation
+        ↓
+existing runtime-owner signals
+        ↓
+player-visible world response
+        ↓
+runtime / restart / packaged evidence
+        ↓
+main
+```
+
+Rules:
+- `Tools/world_compiler.py` compiles authored world data; it does not own runtime truth or write MPC state;
+- UE PCG/material/Niagara are presentation/content consumers of existing gameplay/audio/world semantics;
+- Melodia Studio / GN is a DCC authoring source and must be selectively promoted into the production spine;
+- a successful generator run is SOURCE/EDITOR evidence until the resulting UE content is exercised live;
+- new worlds normally add recipes, assets, chapter data and lookdev—not another compiler or state subsystem.
 
 This page is runtime-ownership detail. [`Docs/Architecture/CURRENT_SYSTEM_MAP.md`](Docs/Architecture/CURRENT_SYSTEM_MAP.md) is a duplicate snapshot, not a second authority.
 

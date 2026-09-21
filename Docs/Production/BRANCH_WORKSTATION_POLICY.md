@@ -2,12 +2,30 @@
 
 **Status:** CANONICAL OPERATING POLICY  
 **Date:** 2026-09-08  
-**Updated:** 2026-09-12  
+**Updated:** 2026-09-21  
 **Authority:** `main` remains the only canonical game/runtime/capstone branch.
 
 This policy exists to make Git infrastructure boring and predictable.
 
 For **current** priorities, blockers, and assigned work, read `CURRENT_STATE.md`. This file defines durable branch/workstation behavior only.
+
+## 0. Production-spine rule
+
+`main` is not a shared scratch branch and no longer functions as an experiment aggregator. It is the green production spine from which authored sessions start and to which proven slices return.
+
+```text
+green main
+→ one bounded intent
+→ one scoped branch
+→ author / validate / capture evidence
+→ PR + required gates
+→ main
+→ next bounded intent
+```
+
+During an interactive Unreal/Blender session, the checked-out branch must not move underneath live editor state. Do not merge, rebase, reset, or let background agents switch branches while the editor owns unsaved work. Close the editor before integration work.
+
+A stale branch with useful source is never “updated” by wholesale merging current main into its history and then merging it back. Extract the named unique delta onto a fresh-main promotion branch.
 
 ## 1. Branch classes
 
@@ -28,6 +46,8 @@ main
 → merge
 → prune when safe
 ```
+**Promotion subtype.** A stale source/workstation/recovery lane may remain useful, but it is not an active merge target. Promotion means: identify the exact unique files/intent, cut a fresh branch from current green `main`, transplant only those deltas, re-run current gates, then merge the fresh branch. The stale source branch remains provenance until deletion is separately proven safe.
+
 
 ### CANONIZED
 
@@ -108,6 +128,21 @@ Before merging:
 8. merge only the scoped intended work.
 
 Never use a wholesale recovery/workstation merge as a shortcut to “sync everything.”
+
+## 3.1 Production session lifecycle
+
+For lookdev, level dressing, World Compiler work, animation presentation, VFX, or other editor-heavy production:
+
+1. verify current `main` is green and run `python Tools/git_ok.py`;
+2. cut one short-lived `feature/<intent>-<date>` branch from current `main`;
+3. make LFS-managed assets writable before the first editor save;
+4. keep one editor / one writer and freeze branch movement for the interactive session;
+5. commit by reviewable visual/system slice, never the whole workstation dirty tree;
+6. close the editor before UBT, AE, rebases, merges, or destructive sync;
+7. run the lane-specific proof plus Echo/LFS gates;
+8. merge the scoped PR, then begin the next session from refreshed green `main`.
+
+Long-lived branches are reserved for explicit WORKSTATION, RECOVERY, or OPERATIONAL roles. A lookdev/worldbuilding feature branch should normally die after its slice lands.
 
 ## 4. Cleanup discipline
 
