@@ -439,26 +439,21 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 
 ## 4. Owner queue — now
 
-**Next session (WC baseline is on `main`):** editor cutover to a clean tree, OSC ingest proof, AE JSX with Unreal closed. Do not checkout `main` on dirty `BS_GodFile`. Horizon Eater is later, not this queue.
+**Convergence close-out only.** Do not start another framework, compiler, synchronization scheme, material authority, or broad polish sweep while this queue is open. Each item has one exit condition; once met, close it and move on.
 
-**Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
-stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
-Choral Sheep is the capstone lane.
+1. **Restore a trustworthy green baseline.** Reconcile the Echo contract runner with the current collapsed-doc/path policy. PR #265 proved that resurrecting the retired front-door files is the wrong fix; do not merge it as written. **Exit:** Echo Static Gates passes on current `main` without restoring intentionally collapsed paths.
+2. **Land the atomic current-main deltas.** Re-run and review #257 and #259–#264 only after item 1 is green. Merge only the named unique delta from each PR; no opportunistic additions. #263 is the canonical landing candidate for the repaired Melusina skirt R1 SmoothChains. **Exit:** accepted deltas are on `main`, rejected/superseded PRs are closed, and no unique reviewed commit is stranded.
+3. **Canonize the runtime World Compiler colour-response proof.** The World Compiler itself is already canonical on main; this task is evidence capture only. Record one bounded PIE/runtime receipt showing compiled geometry/material colour response through the existing WC/runtime presentation seam. Do not alter the frozen Morning compiler architecture, add another MPC writer, or create another compiler. **Exit:** the proof is tracked and §2 can honestly mark the specific runtime colour-response seam LIVE PROVEN from Git evidence.
+4. **Verify Melodia Studio synchronization, do not redesign it.** Use the main sync guard introduced at `1833701b`; compare the intended Studio/GN source set across the live PC/laptop lanes before any destructive sync. Preserve live-only Blender sources. **Exit:** named canonical Studio/GN sources are verified present/current on their intended lane and any mismatch is isolated rather than overwritten.
+5. **Collapse House/Paris GN reconciliation.** Treat #256 as the current candidate. Compare #251/#248 only for genuinely unique reviewed intent; do not wholesale-merge their ancestry. **Exit:** surviving House/Paris GN work is represented by main or one explicit current lane, and superseded reconciliation PRs are closed.
+6. **Prove the skirt fix after landing.** After #263 (or its reviewed replacement) lands, perform one clean-editor physics check on the canonical Melusina asset and capture the minimal evidence required to promote the claim. No rig redesign or unrelated animation polish. **Exit:** skirt physics is represented on main with a reproducible proof level stated in §2.
+7. **Return to the graded owner queue.** Once 1–6 are closed, resume the existing capstone-facing work: OSC ingest PIE → Sheep REST/HIT pixel judge → AE JSX with Unreal closed → 3–5 minute Shorewake route → Issue #51. Horizon Eater / Issue #221 remains later and must not interrupt convergence.
 
-1. **Editor cutover.** Point the next Unreal session at the clean checkout (`C:/EnvironmentPortfolio/_wt_morning_closeout` now tracking `main`, or a fresh `origin/main` worktree). One editor, one Monolith `:9316`. Do **not** `git checkout main` inside `C:/EnvironmentPortfolio/BS_GodFile` while the 205-file WIP tree is dirty. Leave `wip/pre-restart-working-tree-2026-09-19` as recovery; uncommitted files stay uncommitted. Copy UltraDynamicSky / Humber / session VFX **outside** git if they must be kept — reset of the old folder is a named later step.
-2. **OSC ingest PIE.** After RecvFrom is loaded from the 17:48 DLL (`UnrealEditor-BS_GodFile.dll` 3,232,768 bytes), send `phrase_bridge` → `:9000` and read GetCurrentState. Do not UBT while the editor is open. Do not rebuild the TD scene.
-3. **AE JSX.** Run `C:/MelodiaTouchDesigner/ae/ship_queue_creature_motif_harmony_world.jsx` only after Unreal is closed (GPU3). 8s beat is at `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s.mp4`. Then promote to the site.
-4. **Horizon Eater later.** Specs already target `LV_SeaAbove_Prototype`, not Morning. New chapter = new `recipes/*.v1.json` + compile + new `WC_*_Field` / `DT_*` on that level. Morning Brushify field is frozen `--skip-scaffold` regression. No `HE_Filter_*` on `L_MelusinaMorning`. No second compiler. No unfreeze Morning PPV.
+**Task filter:** during convergence, a new task enters this queue only if it (a) repairs the canonical baseline, (b) lands already-proven unique work, (c) captures missing evidence for an existing claim, or (d) prevents destructive workstation/asset loss. Everything else waits.
 
-Fleece REST vs HIT stills (`Saved/Audit/Screens/ship_queue_fleece_{REST,HIT}_v2_clean.png`) are captured; owner pixel-judge against Board 06 remains. Then: 3–5 minute Shorewake route (`Chapters/02_shorewake_calling/`) → Issue #51. **After those capstone-facing closures**, Issue #221 (`World Engine Slice — persistent compiled movement`) is the next major procedural-worldbuilding milestone; do not pull it ahead of graded proof.
+**Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the stable technical proof (protect and polish only). Shorewake Calling is the semester artwork. Choral Sheep is the capstone lane.
 
-**Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
-or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
-
-**Not now:** git archaeology, new frameworks or second authorities, website redesign (showcase soft
-freeze since 2026-09-07), or research sweeps. Keep status changes in this file and do not create
-another status, handoff, plan, receipt, or session-note document. Oracle / Thirteenth Note
-(`Docs/Strategy/ORACLE_*`) is a gated end-of-semester stretch.
+**Not now:** git archaeology beyond the named comparisons, new frameworks or second authorities, broad website redesign, research sweeps, Horizon Eater expansion, Morning architecture changes, or opportunistic refactors. Keep status changes in this file and do not create another status, handoff, plan, receipt, or session-note document.
 
 ---
 
