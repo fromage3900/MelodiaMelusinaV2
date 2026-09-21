@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-import bpy
 import math
+from collections.abc import Callable
+from typing import TypeAlias, TypedDict
+
+import bpy
 
 from .logging import log
 
@@ -1187,8 +1190,21 @@ def add_mesh_torus_linked(tree, loc, major_radius_sock, minor_radius_sock,
 # Builder registry — populated by each module via register_builder()
 # ═══════════════════════════════════════════════════════════════════════
 
-GROUP_BUILDERS: dict[str, callable] = {}
-GROUP_METADATA: dict[str, dict] = {}
+BuilderFn: TypeAlias = Callable[..., object]
+
+
+class BuilderMeta(TypedDict):
+    label: str
+    description: str
+    category: str
+    builder: BuilderFn
+    hidden: bool
+    role: str
+    params: object | None
+
+
+GROUP_BUILDERS: dict[str, BuilderFn] = {}
+GROUP_METADATA: dict[str, BuilderMeta] = {}
 
 CATEGORY_META: dict[str, dict] = {
     "eyewear": {"label": "Eyewear", "icon": "MESH_CIRCLE"},
@@ -1218,8 +1234,16 @@ CATEGORY_META: dict[str, dict] = {
 }
 
 
-def register_builder(tree_name, builder_fn, label, description="", category="",
-                     hidden=False, role="sku", params=None):
+def register_builder(
+    tree_name: str,
+    builder_fn: BuilderFn,
+    label: str,
+    description: str = "",
+    category: str = "",
+    hidden: bool = False,
+    role: str = "sku",
+    params: object | None = None,
+) -> None:
     """Register a GN tree builder into the global registry.
 
     hidden=True keeps the live id (RQ / blends) but omits it from GN Stack.
@@ -1232,7 +1256,12 @@ def register_builder(tree_name, builder_fn, label, description="", category="",
     themselves with a real geometry socket and return `tree` only, which skips the
     wrapper auto-apply (the explicit call is authoritative).
     """
-    def _labeled_builder(*args, **kwargs):
+    if not tree_name:
+        raise ValueError("register_builder requires a non-empty tree_name")
+    if not callable(builder_fn):
+        raise TypeError(f"{tree_name}: builder_fn is not callable")
+
+    def _labeled_builder(*args: object, **kwargs: object) -> object:
         result = builder_fn(*args, **kwargs)
         tree = result[0] if isinstance(result, (tuple, list)) else result
         gin = result[1] if isinstance(result, (tuple, list)) and len(result) > 1 else None

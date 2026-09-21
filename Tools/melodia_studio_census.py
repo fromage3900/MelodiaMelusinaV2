@@ -22,17 +22,47 @@ import sys
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASELINE = os.path.join(REPO_ROOT, "Tools", "registry_baseline.json")
+_TOOLS = os.path.dirname(os.path.abspath(__file__))
+if _TOOLS not in sys.path:
+    sys.path.insert(0, _TOOLS)
 
-# Live-install first, fall back to repo deploy tree (matches installer stamp path).
-_ADDON_ROOTS = [
-    os.path.expandvars(
-        r"%APPDATA%\Blender Foundation\Blender\5.2\scripts\addons"),
-    os.path.join(REPO_ROOT, "deploy"),
-]
-for root in _ADDON_ROOTS:
-    if os.path.isdir(os.path.join(root, "surreal_arch")):
-        sys.path.insert(0, root)
-        break
+
+def _argv_value(flag):
+    if flag not in sys.argv:
+        return ""
+    idx = sys.argv.index(flag)
+    if idx + 1 >= len(sys.argv):
+        raise SystemExit("%s requires a path" % flag)
+    return sys.argv[idx + 1]
+
+
+_SOURCE_ROOT = _argv_value("--source-root")
+_SOURCE_MODE = bool(_SOURCE_ROOT) or "--source" in sys.argv
+if _SOURCE_MODE:
+    from pathlib import Path as _Path
+
+    from melodia_studio_pathbind import SourceBindError, bind_checkout_deploy
+
+    try:
+        _BIND = bind_checkout_deploy(_Path(_SOURCE_ROOT or REPO_ROOT))
+    except SourceBindError as exc:
+        print("CENSUS RESULT: FAIL")
+        print("CENSUS source bind failed:", exc)
+        raise SystemExit(1) from exc
+    print("CENSUS MODE: SOURCE")
+    print("CENSUS deploy:", _BIND.deploy_root)
+else:
+    # Historical freeze census: live-install first. Not SOURCE proof.
+    _ADDON_ROOTS = [
+        os.path.expandvars(
+            r"%APPDATA%\Blender Foundation\Blender\5.2\scripts\addons"),
+        os.path.join(REPO_ROOT, "deploy"),
+    ]
+    for root in _ADDON_ROOTS:
+        if os.path.isdir(os.path.join(root, "surreal_arch")):
+            sys.path.insert(0, root)
+            break
+    print("CENSUS MODE: LIVE/HISTORICAL (not SOURCE proof)")
 
 
 def normalized_dup_clusters(ids):
@@ -48,6 +78,17 @@ def normalized_dup_clusters(ids):
 def main():
     from surreal_arch.melodia_gn.core import (  # noqa: E402
         GROUP_BUILDERS, GROUP_METADATA, CATEGORY_META)
+
+    if _SOURCE_MODE:
+        from pathlib import Path as _Path
+
+        import surreal_arch.melodia_gn as _gn_mod
+
+        _gn_file = _Path(_gn_mod.__file__).resolve()
+        if not _gn_file.samefile(_BIND.gn_init):
+            print("CENSUS RESULT: FAIL")
+            print("CENSUS SOURCE origin mismatch:", _gn_file, "vs", _BIND.gn_init)
+            return 1
 
     ids = sorted(GROUP_BUILDERS.keys())
     print("CENSUS total builders:", len(ids))

@@ -86,6 +86,8 @@ def main() -> int:
         "checks": checks,
         "errors": errors,
     }
+    print("NOTE: catalog verifier greps checkout text; it is NOT Melodia Studio SOURCE proof.")
+    print("SOURCE proof is Tools/melodia_studio_source_gate.py under Blender with AppData stripped.")
     print(json.dumps(report, indent=2))
     return 0 if not errors else 1
 
