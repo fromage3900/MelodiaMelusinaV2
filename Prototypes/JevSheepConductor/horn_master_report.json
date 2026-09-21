@@ -1,0 +1,41 @@
+{
+ "marker": "HORN-MASTER-DECIDED",
+ "source": "classical-fallback",
+ "reason": "no TYPESAFE_API_KEY in environment; deterministic criteria-weighted fallback ranked the authored options. Set the hermeskey as TYPESAFE_API_KEY and rerun for jev-live provenance.",
+ "choice": "LISSAJOUS_CHORD",
+ "confidence": 0.9604,
+ "probabilities": {
+  "FILIGREE_HERITAGE": 0.0372,
+  "ANATOMICAL_KERATIN": 0.0,
+  "LISSAJOUS_CHORD": 0.9604,
+  "FILIGREE_LISSAJOUS_HYBRID": 0.0024
+ },
+ "scores_raw": {
+  "FILIGREE_HERITAGE": 1.7,
+  "ANATOMICAL_KERATIN": -1.7,
+  "LISSAJOUS_CHORD": 3.0,
+  "FILIGREE_LISSAJOUS_HYBRID": 0.6
+ },
+ "ranked": [
+  "LISSAJOUS_CHORD",
+  "FILIGREE_HERITAGE",
+  "FILIGREE_LISSAJOUS_HYBRID",
+  "ANATOMICAL_KERATIN"
+ ],
+ "options": [
+  "FILIGREE_HERITAGE",
+  "ANATOMICAL_KERATIN",
+  "LISSAJOUS_CHORD",
+  "FILIGREE_LISSAJOUS_HYBRID"
+ ],
+ "state": {
+  "gold_family_present": true,
+  "wool_amp_lane_live": true,
+  "baa_wavs_present": true,
+  "lissajous_driver_live": true,
+  "mp3_reactive_lane_live": true,
+  "ue_export_is_target": true,
+  "poly_budget_conscious": true,
+  "no_new_material_master": true
+ }
+}

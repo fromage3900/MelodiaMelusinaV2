@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.npc_scaffold.v1",
+  "npc_id": "zundamon",
+  "asset_name": "Zundamon",
+  "display_name": "Zundamon",
+  "role": "Quest",
+  "skeletal_mesh": "/Game/Melodia/Characters/Zundamon/SK_Zundamon.SK_Zundamon",
+  "static_mesh": null,
+  "dialogue_keys": [],
+  "behavior_tag": null,
+  "notes": "ZunZun family member 1 of 7 (SSS LLC Tohoku Zunko & Zundamon Project; non-commercial use covered). Quest hub / first NPC / shopkeeper; role set to Quest (shopkeeper aspect noted, single-valued enum). Only family member with a real SK_ mesh: SK_Zundamon (skeleton SK_Zundamon_Skeleton, 43 AnimSequences + 2 AnimMontages, ABP_Zundamon/_Battle, IK_Zundamon + RTG_Melusina_to_Zundamon). Voice: VOICEVOX speaker 3, 20 lines staged under Audio/ (voice_manifest.json). Legacy shell exists at /Game/Melodia/Characters/Zundamon/BP_Zundamon_NPC (parent Character, data-only, mesh+ABP wired) — the scaffold pair is the gameplay contract; retire the legacy shell only with owner sign-off (see Saved/Audit/zunzun_family_audit.json). Lookdev gap: SK_Zundamon material slots currently report engine defaults while MI_Zundamon_* exist. dialogue_keys left empty: QuillScript owns dialogue ids; zun_* ids are VOICEVOX voice lines, not Quill keys."
+}

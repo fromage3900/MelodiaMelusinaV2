@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.npc_scaffold.v1",
+  "npc_id": "ellettra_vell",
+  "asset_name": "EllettraVell",
+  "display_name": "Ellettra Vell",
+  "role": "Ambient",
+  "skeletal_mesh": "/Game/Melodia/Characters/MaraVell/SK_Mara_Vell_Body.SK_Mara_Vell_Body",
+  "static_mesh": null,
+  "dialogue_keys": [],
+  "behavior_tag": null,
+  "notes": "First user of the NPC scaffold lane (2026-09-20). Mesh lives in the MaraVell character folder; role stays Ambient until her gameplay role is authored. Quill dialogue keys land when her first scene is written."
+}

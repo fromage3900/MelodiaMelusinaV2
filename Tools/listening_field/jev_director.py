@@ -76,34 +76,55 @@ class Director:
     # ---- Jev path ----
     def jev_decide(self, s: PhraseState, accumulator: float, entering_climax: bool) -> Directive:
         """One batched System One request; falls back per-question on failure."""
-        from typesafe_sdk import TypeSafeClient  # deferred: optional dep
+        from typesafe_sdk import Choice, Score, TypeSafeClient  # deferred: optional dep
 
         state = {
             "phrase": s.to_dict(),
             "resonance_accumulator": accumulator,
             "authored_seeds": LAYOUT_SEEDS,
         }
-        questions = []
-        for qid in ("sheep_next", "world_next", "restraint_amount"):
-            q = dict(JEV_QUESTIONS[qid])
-            q["id"] = qid
-            questions.append(q)
+        questions = {}
+        q = JEV_QUESTIONS["sheep_next"]
+        questions["sheep_next"] = Choice(
+            instructions=q["instructions"],
+            criteria={opt: None for opt in q["options"]},
+        )
+        q = JEV_QUESTIONS["world_next"]
+        questions["world_next"] = Choice(
+            instructions=q["instructions"],
+            criteria={opt: None for opt in q["options"]},
+        )
+        q = JEV_QUESTIONS["restraint_amount"]
+        levels = q["levels"]
+        level_descriptions = {
+            "full_hold": "nothing moves",
+            "held_breath": "subtle drift only, response visibly capped",
+            "partial": "some wind and color",
+            "open": "wind and flowers move freely",
+            "full_release": "everything blooms at once",
+        }
+        questions["restraint_amount"] = Score(
+            instructions=q["instructions"],
+            criteria=[level_descriptions[level] for level in levels],
+        )
         if entering_climax:
-            seed_q = dict(JEV_QUESTIONS["layout_seed"])
-            seed_q["id"] = "layout_seed"
-            questions.append(seed_q)
+            q = JEV_QUESTIONS["layout_seed"]
+            questions["layout_seed"] = Choice(
+                instructions=q["instructions"],
+                criteria={opt: None for opt in q["options"]},
+            )
 
         with TypeSafeClient() as client:
-            result = client.system_one.create(state=state, questions=questions)
+            result = client.system_one(state=state, questions=questions)
 
-        answers = {q.id: a for q, a in zip(result.questions, result.answers)}
-        sheep = answers["sheep_next"].answer
-        world = answers["world_next"].answer
-        level = answers["restraint_amount"].answer
-        restraint = RESTRAINT_LEVEL_VALUES.get(level, 0.5)
-        seed = answers.get("layout_seed")
-        seed = seed.answer if seed is not None and seed.answer in LAYOUT_SEEDS else None
-        conf = min(a.confidence for a in answers.values())
+        sheep = result.choices["sheep_next"].choice
+        world = result.choices["world_next"].choice
+        score = result.scores["restraint_amount"].score  # weighted average, may be fractional
+        index = min(max(int(round(score)), 0), len(levels) - 1)
+        restraint = RESTRAINT_LEVEL_VALUES.get(levels[index], 0.5)
+        seed_answer = result.choices.get("layout_seed")
+        seed = seed_answer.choice if seed_answer is not None and seed_answer.choice in LAYOUT_SEEDS else None
+        conf = min(getattr(a, "confidence", 1.0) for a in result.answers.values())
         return sanitize(Directive(s.bar + 1, sheep, world, restraint, seed, "jev", conf))
 
     def decide(self, s: PhraseState, accumulator: float) -> Directive:

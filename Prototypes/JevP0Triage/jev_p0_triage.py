@@ -137,45 +137,43 @@ def _try_jev_live(state: P0State) -> Optional[TriageDecision]:
     if not key:
         return None
     try:
-        from typesafe import TypeSafeClient  # type: ignore
-    except Exception:
+        from typesafe_sdk import Choice, Noul, Score, TypeSafeClient
+    except ImportError:
         return None
     try:
-        client = TypeSafeClient(api_key=key)
-        resp = client.ask(
-            state=state.to_jev_state(),
-            questions={
-                "next": {
-                    "type": "choice",
-                    "instructions": "Pick the single best next P0 verification step from the authored set.",
-                    "criteria": NEXT_ACTION_CRITERIA,
+        questions = {
+            "next": Choice(
+                instructions="Pick the single best next P0 verification step from the authored set.",
+                criteria=NEXT_ACTION_CRITERIA,
+            ),
+            "human": Noul(
+                instructions="Should an owner decide before spending editor/cook time?",
+                criteria={
+                    "true": NEEDS_HUMAN_CRITERIA,
+                    "false": "The state is unambiguous enough to proceed without the owner.",
                 },
-                "human": {
-                    "type": "noul",
-                    "instructions": "Should an owner decide before spending editor/cook time?",
-                    "criteria": NEEDS_HUMAN_CRITERIA,
-                },
-                "capture": {
-                    "type": "score",
-                    "instructions": "How publish-ready is the current capture set?",
-                    "criteria": CAPTURE_READY_LEVELS,
-                },
-            },
-        )
-        nxt = resp.answers["next"]
-        hum = resp.answers["human"]
-        cap = resp.answers["capture"]
-        action = nxt.selection if nxt.selection in NEXT_ACTIONS else "HOLD_FOR_OWNER"
+            ),
+            "capture": Score(
+                instructions="How publish-ready is the current capture set?",
+                criteria=CAPTURE_READY_LEVELS,
+            ),
+        }
+        with TypeSafeClient(api_key=key) as client:
+            resp = client.system_one(state=state.to_jev_state(), questions=questions)
+        nxt = resp.choices["next"]
+        hum = resp.nouls["human"]
+        cap = resp.scores["capture"]
+        action = nxt.choice if nxt.choice in NEXT_ACTIONS else "HOLD_FOR_OWNER"
         probs = {k: float(v) for k, v in (nxt.probabilities or {}).items() if k in NEXT_ACTIONS}
         if action not in probs:
             probs[action] = float(nxt.confidence or 0.5)
         return TriageDecision(
             action=action, action_probs=probs,
-            needs_human=bool(hum.probability is not None and hum.probability > 0.5),
-            needs_human_prob=float(hum.probability or 0.0),
-            capture_score=int(cap.score or 0),
+            needs_human=bool(hum.noul > 0.5),
+            needs_human_prob=float(hum.noul),
+            capture_score=max(0, min(len(CAPTURE_READY_LEVELS) - 1, int(round(cap.score or 0)))),
             capture_probs=[float(p) for p in (cap.probabilities or [])],
-            source="jev-live", reason="typesafe System One 2xChoice+Noul+Score",
+            source="jev-live", reason="typesafe System One Choice+Noul+Score",
             confidence=float(nxt.confidence or 0.0),
         )
     except Exception as exc:  # service failure is not a decision

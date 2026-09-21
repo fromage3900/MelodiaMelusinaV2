@@ -42,7 +42,7 @@
       "threshold": 0.35,
       "plate_size_cm": 11000.0
     },
-    "hero_falloff_cm": 2000.0
+    "hero_falloff_cm": 1000.0
   },
   "species": [
     {
@@ -109,7 +109,7 @@
       "tint_parameter": "MelodiaWindRevealTint",
       "hue_seed_parameter": "MelodiaWindHueSeed",
       "response_parameter": "MelodiaWindResponse",
-      "response": 0.5,
+      "response": 0.85,
       "static_switches_off": [],
       "texture_overrides": {},
       "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only."

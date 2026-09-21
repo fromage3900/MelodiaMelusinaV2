@@ -25,7 +25,10 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     },
     {
       "source_id": "SD_02_PetalPriestess",
@@ -52,7 +55,36 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": true,
+      "status": "staged",
+      "missing": false,
+      "relative_path": "VRoidHub/SD_02_PetalPriestess.vrm",
+      "size_bytes": 21771408,
+      "sha256": "e5ccb3422ec536b4606d7b6eeb23c6f618c0c01937abcd5fdef3194c61c8abd9",
+      "embedded_vrm_meta": {
+        "format": "VRM 0.0",
+        "licenseName": "Other",
+        "author": "",
+        "title": "",
+        "license_url": "https://hub.vroid.com/license?allowed_to_use_user=everyone&characterization_allowed_user=everyone&corporate_commercial_use=allow&credit=necessary&modification=allow&personal_commercial_use=profit&redistribution=disallow&sexual_expression=allow&version=1&violent_expression=allow",
+        "terms": "attribution required | corporate commercial use allow | individual commercial use allow | redistribution disallow | alterations allow"
+      },
+      "attribution_required": true,
+      "license_terms": "attribution required | corporate commercial use allow | individual commercial use allow | redistribution disallow | alterations allow",
+      "license_source": "embedded VRM 0.x meta in the .vrm (licenseName=Other + hub license URL) and the VRoid Hub model page conditions",
+      "npc_id": "sd_02_petal_priestess",
+      "hub_model_id_status": "present — hub page verified 2026-09-20; file-to-page association UNVERIFIED (see verification.file_to_page_association)",
+      "hub_page_title": "千駄ヶ谷渋(銀髪)_VerDRC_ドレス",
+      "creator_user_url": "https://hub.vroid.com/en/users/29412175",
+      "attribution_status": "required",
+      "attribution": "でし丸 (VRoid Hub) — 千駄ヶ谷渋(銀髪)_VerDRC_ドレス — https://hub.vroid.com/en/characters/5797560527492042401/models/2250106079207890660",
+      "verification": {
+        "checked_utc": "2026-09-20",
+        "hub_page": "exists — by でし丸; page conditions: attribution required, corporate use allow, individual commercial use allow, redistribution disallow, alterations allow",
+        "file_to_page_association": "UNVERIFIED — the embedded VRM 0.x meta carries an empty author/title and no model id",
+        "manifest_conflict": "Content/NPCs/VRM_Sources/VRoidStudio/SD_02_PetalPriestess.vrm.json describes a planned VRoid Studio build (Melodia Team); it does not describe this staged file (a VRoid Hub download: VRM 0.0, licenseName=Other, hub license URL)"
+      }
     },
     {
       "source_id": "SD_03_BlossomGuide",
@@ -79,7 +111,10 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     },
     {
       "source_id": "SD_04_FlowerMerchant",
@@ -106,7 +141,10 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     },
     {
       "source_id": "CW_01_StarWeaver",
@@ -133,7 +171,36 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": true,
+      "status": "staged",
+      "missing": false,
+      "relative_path": "VRoidHub/CW_01_StarWeaver.vrm",
+      "size_bytes": 21774596,
+      "sha256": "6c4805dead12fd579ddbdf2ee5467f84949b1aad327f06144ea2ddf9139810c7",
+      "embedded_vrm_meta": {
+        "format": "VRM 0.0",
+        "licenseName": "Other",
+        "author": "",
+        "title": "",
+        "license_url": "https://hub.vroid.com/license?allowed_to_use_user=everyone&characterization_allowed_user=everyone&corporate_commercial_use=allow&credit=necessary&modification=allow&personal_commercial_use=profit&redistribution=disallow&sexual_expression=allow&version=1&violent_expression=allow",
+        "terms": "attribution required | corporate commercial use allow | individual commercial use allow | redistribution disallow | alterations allow"
+      },
+      "attribution_required": true,
+      "license_terms": "attribution required | corporate commercial use allow | individual commercial use allow | redistribution disallow | alterations allow",
+      "license_source": "embedded VRM 0.x meta in the .vrm (licenseName=Other + hub license URL) and the VRoid Hub model page conditions",
+      "npc_id": "cw_01_star_weaver",
+      "hub_model_id_status": "present — hub page verified 2026-09-20; file-to-page association UNVERIFIED (see verification.file_to_page_association)",
+      "hub_page_title": "千駄ヶ谷渋(銀髪)_VerDRC_黒ドレス",
+      "creator_user_url": "https://hub.vroid.com/en/users/29412175",
+      "attribution_status": "required",
+      "attribution": "でし丸 (VRoid Hub) — 千駄ヶ谷渋(銀髪)_VerDRC_黒ドレス — https://hub.vroid.com/en/characters/5797560527492042401/models/2484206052570862499",
+      "verification": {
+        "checked_utc": "2026-09-20",
+        "hub_page": "exists — by でし丸; page conditions: attribution required, corporate use allow, individual commercial use allow, redistribution disallow, alterations allow",
+        "file_to_page_association": "UNVERIFIED — the embedded VRM 0.x meta carries an empty author/title and no model id",
+        "manifest_conflict": "Content/NPCs/VRM_Sources/VRoidStudio/CW_01_StarWeaver.vrm.json describes a planned VRoid Studio build (Melodia Team); it does not describe this staged file (a VRoid Hub download: VRM 0.0, licenseName=Other, hub license URL)"
+      }
     },
     {
       "source_id": "CW_02_VoidSeamstress",
@@ -160,7 +227,10 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     },
     {
       "source_id": "CW_03_AstralScribe",
@@ -187,7 +257,10 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     },
     {
       "source_id": "MD_01_TwilightDancer",
@@ -196,11 +269,11 @@
       "local_path": "VRoidHub/MD_01_TwilightDancer.vrm",
       "filename": "MD_01_TwilightDancer.vrm",
       "author": "VRoid Hub Creator (TODO: add name)",
-      "license": "cc_by_4_0",
-      "license_url": "https://hub.vroid.com/characters/XXXXXXXX",
+      "license": "custom",
+      "license_url": "https://hub.vroid.com/license?allowed_to_use_user=everyone&characterization_allowed_user=everyone&corporate_commercial_use=allow&credit=necessary&modification=allow&personal_commercial_use=profit&redistribution=disallow&sexual_expression=allow&version=1&violent_expression=allow",
       "commercial_ok": true,
-      "hub_url": "https://hub.vroid.com/characters/XXXXXXXX",
-      "hub_model_id": "XXXXXXXX",
+      "hub_url": "",
+      "hub_model_id": "",
       "body_type": "willowy",
       "base_hair_color": "#8AA9D6",
       "base_eye_color": "#C9A86A",
@@ -214,7 +287,37 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": true,
+      "status": "staged",
+      "missing": false,
+      "relative_path": "VRoidHub/MD_01_TwilightDancer.vrm",
+      "size_bytes": 18512292,
+      "sha256": "7c44ececcaef8aed74693413c01d27ea4ea978c4fd98f6e76dd72d0bef9f93c1",
+      "embedded_vrm_meta": {
+        "format": "VRM 0.0",
+        "licenseName": "Other",
+        "author": "",
+        "title": "",
+        "license_url": "https://hub.vroid.com/license?allowed_to_use_user=everyone&characterization_allowed_user=everyone&corporate_commercial_use=allow&credit=necessary&modification=allow&personal_commercial_use=profit&redistribution=disallow&sexual_expression=allow&version=1&violent_expression=allow",
+        "terms": "attribution required | corporate commercial use allow | individual commercial use allow | redistribution disallow | alterations allow"
+      },
+      "attribution_required": true,
+      "license_terms": "attribution required | corporate commercial use allow | individual commercial use allow | redistribution disallow | alterations allow",
+      "license_source": "embedded VRM 0.x meta in the .vrm (licenseName=Other + hub license URL) and the VRoid Hub model page conditions",
+      "license_before_correction": "cc_by_4_0",
+      "npc_id": "md_01_twilight_dancer",
+      "hub_model_id_status": "unresolved — manifest carries the placeholder 'XXXXXXXX' and the embedded VRM meta has an empty author/title, so the hub page cannot be identified from the file",
+      "hub_page_title": "",
+      "creator_user_url": "",
+      "attribution_status": "unresolved — do not write a credit line until the creator is identified",
+      "attribution": "",
+      "verification": {
+        "checked_utc": "2026-09-20",
+        "hub_page": "NOT IDENTIFIED — no page can be cited yet",
+        "file_to_page_association": "UNVERIFIED — creator unknown",
+        "manifest_conflict": "Content/NPCs/VRM_Sources/VRoidHub/MD_01_TwilightDancer.vrm.json is itself a placeholder ('TODO: add name', 'XXXXXXXX', 'Replace XXXXXXXX with actual model ID')"
+      }
     },
     {
       "source_id": "MD_02_WindWalker",
@@ -241,7 +344,11 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true,
+      "hub_model_id_status": "placeholder — resolve before import"
     },
     {
       "source_id": "MD_03_ZephyrChampion",
@@ -268,7 +375,10 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     },
     {
       "source_id": "SD_05_EternalGardener",
@@ -295,16 +405,28 @@
       "import_path": "",
       "bone_count": 0,
       "tri_count": 0,
-      "audit_passed": false
+      "audit_passed": false,
+      "on_disk": false,
+      "status": "missing_source_file",
+      "missing": true
     }
   ],
   "validation": {
     "total": 11,
     "commercial_ok": 11,
-    "needs_attribution": 9,
+    "needs_attribution": 5,
+    "attribution_required_staged": 3,
+    "unresolved_attribution_staged": 1,
     "non_commercial": 0,
     "unknown": 0,
-    "issues": []
+    "issues": [
+      "MD_02_WindWalker: hub_model_id is still the placeholder 'XXXXXXXX'",
+      "MD_01_TwilightDancer: creator not identified — credit line cannot be written yet (manifest placeholder + empty author in the embedded VRM meta)",
+      "MD_01_TwilightDancer: license corrected cc_by_4_0 -> custom — the embedded VRM meta says licenseName 'Other' with a VRoid Hub per-model license URL (credit required, redistribution disallowed); no CC-BY evidence exists",
+      "SD_02_PetalPriestess: Content/NPCs/VRM_Sources/VRoidStudio/SD_02_PetalPriestess.vrm.json describes a planned VRoid Studio build, not the staged VRoid Hub file (see verification.manifest_conflict)",
+      "CW_01_StarWeaver: Content/NPCs/VRM_Sources/VRoidStudio/CW_01_StarWeaver.vrm.json describes a planned VRoid Studio build, not the staged VRoid Hub file (see verification.manifest_conflict)",
+      "8 of 11 sources have no .vrm on disk (on_disk=false); only the three VRoidHub/ files are staged"
+    ]
   },
   "counts": {
     "total": 11,
@@ -314,9 +436,42 @@
       "MirageDancer": 3
     },
     "by_type": {
-      "vroid_studio": 6,
-      "vroid_hub": 3,
+      "vroid_studio": 4,
+      "vroid_hub": 5,
       "custom_blender": 2
     }
+  },
+  "on_disk": {
+    "count": 3,
+    "source_ids": [
+      "SD_02_PetalPriestess",
+      "CW_01_StarWeaver",
+      "MD_01_TwilightDancer"
+    ],
+    "missing_count": 8,
+    "missing_source_ids": [
+      "SD_01_SakuraMaiden",
+      "SD_03_BlossomGuide",
+      "SD_04_FlowerMerchant",
+      "CW_02_VoidSeamstress",
+      "CW_03_AstralScribe",
+      "MD_02_WindWalker",
+      "MD_03_ZephyrChampion",
+      "SD_05_EternalGardener"
+    ]
+  },
+  "provenance": {
+    "updated_utc": "2026-09-20T21:30:00+00:00",
+    "updated_by": "npc_vrm_intake lane (file-only; no editor access)",
+    "evidence": [
+      "embedded VRM 0.x meta parsed from each staged .vrm GLB JSON chunk",
+      "VRoid Hub model pages fetched 2026-09-20 (creator name, conditions of use)",
+      "Content/NPCs/VRM_Sources/**/*.vrm.json manifests (some describe planned, not delivered, models)",
+      "sha256 + size computed from the staged files"
+    ],
+    "notes": [
+      "validation/counts in this file describe THIS file's content; the previous blocks were stale (they reflected vrm_source.py's hardcoded list, which still calls SD_02/CW_01 'vroid_studio')."
+    ],
+    "regeneration_warning": "Content/Python/gmm/npc/vrm_source.py keeps a parallel hardcoded copy of these sources and its export_registry() rewrites this file WITHOUT the on_disk / sha256 / attribution / verification fields, and with different source_type+license values. Treat this JSON as the registry authority for intake; re-apply the provenance fields if export_registry() is ever run."
   }
 }

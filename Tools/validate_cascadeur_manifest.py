@@ -29,7 +29,9 @@ IDENTIFIER = re.compile(r"[A-Za-z0-9][A-Za-z0-9_]{0,63}\Z")
 def _validate(path: Path, expected_skeleton: str) -> dict[str, Any]:
     result: dict[str, Any] = {"path": str(path), "ok": False, "errors": [], "warnings": []}
     try:
-        value = json.loads(path.read_text(encoding="utf-8"))
+        # utf-8-sig: the Cascadeur/PowerShell export path writes a BOM;
+        # encoding tolerance only — every schema check below stays identical.
+        value = json.loads(path.read_text(encoding="utf-8-sig"))
     except (OSError, json.JSONDecodeError) as exc:
         result["errors"].append(str(exc))
         return result

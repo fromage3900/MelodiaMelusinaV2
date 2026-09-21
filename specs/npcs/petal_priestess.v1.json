@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.npc_scaffold.v1",
+  "npc_id": "petal_priestess",
+  "asset_name": "PetalPriestess",
+  "display_name": "Petal Priestess",
+  "role": "Ambient",
+  "skeletal_mesh": "/Game/NPCs/Imported/SakuraDreamer/SK_SD_02_PetalPriestess.SK_SD_02_PetalPriestess",
+  "static_mesh": null,
+  "dialogue_keys": [],
+  "behavior_tag": null,
+  "notes": "First VRM4U-imported NPC (2026-09-20). Mesh is the VRM4U import of Content/NPCs/VRM_Sources/VRoidHub/SD_02_PetalPriestess.vrm (147 bones, 15 MToon material slots, 55 morph targets). Role stays Ambient until her gameplay role is authored; Quill dialogue keys land when her first scene is written."
+}
