@@ -260,11 +260,11 @@
         },
         {
           "name": "MF_MeluPaintBase",
-          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaintBase",
+          "ue_path": "/Game/_PROJECT/04_Materials/Functions/MF_MeluPaintBase",
           "file": "materials/MF_MeluPaintBase.t3d",
-          "payload_bytes": 31780,
+          "payload_bytes": 30766,
           "nodes": 27,
-          "sha256": "867cc6d2a95301df4d34a782fd032f86057da0aa3cf0c472919b72e5562365a6",
+          "sha256": "0590ceec5aca1bc09eebaffd8133d9b6e67872dea6bacdd97179ee3dde170005",
           "tags": [
             "melusina"
           ],
@@ -272,11 +272,11 @@
         },
         {
           "name": "MF_MeluPaletteColors",
-          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors",
+          "ue_path": "/Game/_PROJECT/04_Materials/Functions/MF_MeluPaletteColors",
           "file": "materials/MF_MeluPaletteColors.t3d",
-          "payload_bytes": 9715,
+          "payload_bytes": 9435,
           "nodes": 9,
-          "sha256": "8ee3b1bbcb3c9a6770efc5a8eb2757c2650f6229a0dd78c6da64a8f8fd346de1",
+          "sha256": "f5e9044579ac9d76920abcc5ef30f3aa206133cb3e2ad54209122ef38b7cd230",
           "tags": [
             "melusina"
           ],
@@ -284,11 +284,11 @@
         },
         {
           "name": "MF_MeluSparkle",
-          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluSparkle",
+          "ue_path": "/Game/_PROJECT/04_Materials/Functions/MF_MeluSparkle",
           "file": "materials/MF_MeluSparkle.t3d",
-          "payload_bytes": 20229,
+          "payload_bytes": 19549,
           "nodes": 19,
-          "sha256": "7746e341c1638cbaab9e1477f114531ac6382d77181accf30882d6701e6ec451",
+          "sha256": "0cf2ae069a15d9a041554fa13fae4d7cf35da603de65f4483c2d2d59709a5133",
           "tags": [
             "melusina"
           ],
@@ -296,11 +296,11 @@
         },
         {
           "name": "MF_MeluTemporalJitter",
-          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTemporalJitter",
+          "ue_path": "/Game/_PROJECT/04_Materials/Functions/MF_MeluTemporalJitter",
           "file": "materials/MF_MeluTemporalJitter.t3d",
-          "payload_bytes": 12641,
+          "payload_bytes": 12237,
           "nodes": 12,
-          "sha256": "24d54778a2dbbcb83e17b9dcb7694239453d768776da30148983f775cdb5e65f",
+          "sha256": "ee5a3ca8517b59fbe3f3a1e93d3d027b0ea62588f853fc2a1a6bd69a831c5ff4",
           "tags": [
             "melusina"
           ],
@@ -308,11 +308,11 @@
         },
         {
           "name": "MF_MeluTriplanar",
-          "ue_path": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MeluTriplanar",
+          "ue_path": "/Game/_PROJECT/04_Materials/Functions/MF_MeluTriplanar",
           "file": "materials/MF_MeluTriplanar.t3d",
-          "payload_bytes": 21970,
+          "payload_bytes": 21242,
           "nodes": 20,
-          "sha256": "b94258ba190bfd8c5a499708502f02cd05596f28bf06a5a57f0fcf2deae99cb3",
+          "sha256": "27a0ba43925ff85a672da12c4af9a9b2cf9d5c0845a1ae7f85ba57e1ae569a0c",
           "tags": [
             "melusina"
           ],
@@ -427,7 +427,7 @@
         }
       ],
       "count": 27,
-      "payload_bytes": 2219764,
+      "payload_bytes": 2216658,
       "nodes": 1893
     },
     "Parameter Collections": {
@@ -641,7 +641,7 @@
       "nodes": 17
     }
   },
-  "total_payload_bytes": 5502398,
+  "total_payload_bytes": 5499292,
   "total_nodes": 4334,
   "format": "raw T3D payload text (LF). Metadata lives in this catalog, not in the files.",
   "note_retired": "M_Master_Nikki + M_Master_Toon_Cosmic retired 2026-09-05 by Line A master convergence (commits 40d13289/69251852); their instances reparented onto the M_Master_Toon_Universal family. 6 other assets re-baselined via --update after the same convergence."

@@ -37,8 +37,16 @@ The five rules, in full, binding, outranking everything else in this file:
 
 **You are scope-creeping if:** you are three tool calls in and haven't changed the thing yet; you
 are reading logs to confirm something the owner stated; you are writing a ranking or comparison
-table for a one-line fix; you are proposing a design where the ask was a repair.
+table for a one-line fix; you are proposing a design where the ask was a repair; you are spawning
+a subagent for a task the owner scoped in one sentence; you are asking a multi-option question when
+the blocker fits in one sentence with one question; you are updating a doc nobody asked you to update.
 → Stop, make the change, build it, report in three lines.
+
+**The 2026-09-21 failure, so it is not repeated.** The ask was mesh placement and screenshots. The
+session produced three Explore agents, a collision audit, a Jev capability investigation, a
+four-option decision matrix and two doc rewrites — and almost no placement and no screenshots. Caution
+became inaction, and inaction got written up at length instead of reported in a line. Finding that a
+plan is wrong is a one-sentence report plus the next action, not a deliverable.
 
 **Done = the change is made, it builds, you said what you changed.** Nothing else.
 
@@ -84,6 +92,39 @@ No AI agent may modify these without `SKIP_PROTECTION=1` or explicit human instr
    - `deploy/AGENT_LOOP_STOP_*`
 
 2. **GPT may be actively working** on `Content/Melodia/Characters/` and `Content/Python/`. If git status shows those files modified, coordinate before writing to them.
+
+3. **Editor crash traps (found 2026-09-21 — each one cost a live editor).**
+   - **Source control must stay `Provider=None`** (`Saved/Config/WindowsEditor/SourceControlSettings.ini`).
+     With `Git`, the editor runs `git add` on every `asset_move`, hits `.gitignore`, and throws
+     `FATAL: SEH exception 0x00004000`.
+   - **Never call `asset_fixup_redirectors`.** Hard-crashed the editor, no log flush. Redirectors are
+     harmless; leave them.
+   - **Test one asset move end-to-end before batching.** `/Game/` paths derived from *filenames* are
+     wrong where filename ≠ asset object name, and a batch turns that into N failures.
+
+4. **Do NOT execute `Saved/Audit/mesh_reorg_execution_plan_2026-08-30.md`.** Its merge premises were
+   measured false on 2026-09-21: Greybox_Kit 94 colliding names / 0 identical, Library 254 / 0,
+   `_PROJECT` 134 shared with only 7 identical. No side is authoritative and `Content/EnvSandbox/*`
+   is gitignored, so a merge destroys content with no git undo. Evidence:
+   `Saved/Audit/mesh_merge_collisions_2026-09-21.json`. Canonical `_PROJECT` is `/Game/_PROJECT/`.
+
+5. **Jev ranks authored options; it cannot audit a level.** No Unreal import, no `--level` argument.
+   Verify the `source` field is `jev-live` / `jev` — `TYPESAFE_API_KEY` is set at User scope but is
+   not inherited by every shell, and a missing key returns a confident `classical-fallback` with no
+   log line. That is not Jev evidence.
+
+6. **Use Standalone PIE, not Client.** `UClaireonSettings::DisabledPIENetModes` is set in the C++
+   constructor, so **every rebuild re-disables Standalone**. Re-apply after any build — the one-line
+   command is in `CURRENT_STATE.md` §3 (2026-09-21). In Client mode Claireon cannot see
+   `BP_BattleController_C` or the player character at all, and `BP_JRPGPlayerController` throws two
+   `Accessed None` that are net-mode artifacts, not bugs.
+
+7. **Melusina renders start from the canonical state**, not from scratch:
+   `L_MelusinaPortfolioCapture` + `CAM_Melusina_BeautyFront34` + the corrected-shoulder capture clip
+   (`A_Melusina_BowAttackV2_PortfolioShoulders` as a dynamic montage on `DefaultSlot`), **not**
+   `AM_Melusina_BowAttack_Bound`, which carries the hiked shoulders. Her front is **-X/+Y**. Full
+   detail and the wardrobe/hair fixes are in `CURRENT_STATE.md` §3 (2026-09-21) — read it before
+   touching her presentation, and do not re-derive findings recorded there.
 
 ---
 
