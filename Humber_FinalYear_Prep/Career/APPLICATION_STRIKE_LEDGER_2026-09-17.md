@@ -14,7 +14,31 @@
 - The website should lead with art and worldbuilding; deep pipeline / agentic / infrastructure material is supporting evidence, not the opening pitch.
 - Every application must be checked against the live employer listing immediately before submission.
 
-## Strike order
+## Canada / GTA live refresh — 2026-09-21
+
+**Resume authority for this refresh:** [HERMES_RESUME_TARGETING_2026-09-21.md](HERMES_RESUME_TARGETING_2026-09-21.md)
+
+This block supersedes the older local-Canada ordering below; the international / campus lanes remain active.
+
+| Priority | Target | Current signal | Action |
+|---|---|---|---|
+| **P0-CAN** | **Torn Banner — Senior Environment Artist** | Ontario remote; UE5 + Substance + ZBrush; PCG / Nanite / Lumen / Blueprint bonuses; CAD $105K–$135K shown | **APPLY NOW** with Environment Artist variant; seniority stretch |
+| **P0-CAN** | **People Can Fly — Senior Level Artist** | Remote Canada; Unreal playable levels / world geometry / composition; current SmartRecruiters page | **APPLY NOW** with Level Artist variant |
+| **P1-CAN** | **GameSim / Keywords — Environment Artist** | Remote Canada; excellent Unreal / environment stack; explicitly **talent pipeline**, not immediate vacancy | Enter pipeline after live P0 roles |
+| **P1-CAN** | **Certain Affinity — Senior Material Artist** | Official GTA role current; UE5 / Substance / ZBrush / PBR; 2+ shipped AAA material-title gap | Targeted material-art stretch |
+| **P1-CAN** | **Torn Banner — Senior Technical Artist** | Ontario remote; UE5 / Houdini / Python / HLSL / C++ / optimization; 5+ years + shipped AA/AAA gap | Technical moonshot after Environment role |
+| **P2-CAN** | **ngx — Unreal Environment Artist** | Remote Canada contract; current third-party listings; CAD $45–$65/h shown | Verify direct employer apply route first |
+
+Corrections:
+- Use **Senior Environment Artist** for Torn Banner.
+- Use **Senior Material Artist** for Certain Affinity's current GTA opening. The recent **Advanced Material Artist** mirror is stale/expired.
+- Do not describe GameSim as an immediate vacancy; the employer labels it a talent-pipeline posting.
+
+The application strategy remains: apply above nominal title level where task overlap is strong, but never fabricate professional chronology or shipped-title credits.
+
+---
+
+## Previous / international strike order
 
 ### P0 — Infold Games — 2027 Campus Recruitment / Art & Visual Design
 
