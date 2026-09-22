@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia World Delta v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "world_id",
+    "revision",
+    "source_authority",
+    "non_authoritative_fixture",
+    "changes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "melodia.world_delta/v1"
+    },
+    "world_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_authority": {
+      "enum": [
+        "game-save-export",
+        "fixture"
+      ]
+    },
+    "non_authoritative_fixture": {
+      "type": "boolean"
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "value"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domain": {
+            "enum": [
+              "gameplay_export",
+              "presentation",
+              "ecology",
+              "world_compiler_input"
+            ]
+          },
+          "value": {}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}
