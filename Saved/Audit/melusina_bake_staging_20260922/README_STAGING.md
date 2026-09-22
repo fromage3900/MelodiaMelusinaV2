@@ -1,84 +1,98 @@
 # Melusina Bake Staging Lane — 2026-09-22 (hair + eyes for Copernicus + FLIP)
 
-Owner ask: stage UV-unwrapped hair + eyes for tonight's Copernicus and FLIP bakes.
-Status: STAGED AND VERIFIED. Copernicus maps DONE. FLIP full bake RUNNING (background).
+Owner ask: stage UV-unwrapped hair + eyes for tonight's Copernicus and FLIP bakes,
+then contact-sheet review, polish, render, and UE import staging.
+Final state: ALL LANES DONE + VERIFIED (lit render completing overnight on its own).
 
-## Sources (never modified)
-- Live GUI session (owner's, read-only): C:/EnvironmentPortfolio/harp_bow_pipeline/Melusina_Harp_HERO01_ArcherPoseV09_ARP_R08_WIP_20260912.blend
-- Staging copy (this lane): harp_wip_stage_src.blend (2.39 GB disk copy of the above)
-- FLIP bake-gen copy: harp_FLIP_bake_gen1.blend (res 72, frames 1-240, full cache configured)
+## Sources & copies
+- Canonical: C:/EnvironmentPortfolio/harp_bow_pipeline/Melusina_Harp_HERO01_ArcherPoseV09_ARP_R08_WIP_20260912.blend
+  (2.39 GB, owner's GUI session PID 6812 held it live all night — never touched).
+- Staging copy (never saved, read-only probes): harp_wip_stage_src.blend
+- Prep blends: harp_FLIP_bake_gen1.blend (smoke-verified bake config), harp_render_prep_gen1.blend
+  (iris AO + FLIP sequence), harp_render_prep_gen2.blend (FINAL: per-mesh AO water materials + 3-point rig).
 
 ## UV verdicts (staging_probe.json)
-- Hair render meshes Hair Strand.004 / .007 / .010: primary sets shp_uv_map + shp_uv_hair LIVE;
-  shp_uv_flys / shp_uv_orn ZERO (secondary, unused tonight). 146 hair vgroups each.
-- R_Iris.001 / R_Iris.002 / R_Eyelash: UVMap LIVE (full range).
-- NO left-side iris/cornea mesh objects exist in this WIP (left eye likely a body-mesh
-  material region on Melusina_Base / Melusina.001). Only R-side staged. Owner call later.
+- Hair Strand.004/.007/.010: shp_uv_map + shp_uv_hair live; shp_uv_flys/orn zero-filled (unused).
+  146 hair vgroups each.
+- R_Iris.001/.002 + R_Eyelash: full-range UVs. NO L-side iris/cornea mesh exists in this
+  WIP (left eye likely a body-mesh material region on Melusina_Base / Melusina.001) — owner gate G-A.
 
-## Staged geometry (obj/)
-- Melusina_HairA_Strand004.obj (manual v2 writer, vertex-class uv)
-- Melusina_HairB_Strand007.obj (manual v2 writer, vertex-class uv)
-- Melusina_HairC_Strand010.obj, Melusina_IrisA_R1.obj, Melusina_IrisB_R2.obj,
-  Melusina_Eyelash_R.obj (Blender exporter)
+## OBJ staging (obj/)
+- Melusina_HairA_Strand004 / HairB_Strand007: manual v2 writer (one v per unique position,
+  per-corner vt/vn -> Houdini reads VERTEX-class uv).
+- HairC_Strand010, IrisA_R1, IrisB_R2, Eyelash_R: Blender exporter (clean).
+- Blender C++ wm.obj_export wrote 0-byte OBJs for HairA/B silently — bypassed, not fixed.
 
-## Copernicus bakes — DONE (copernicus_out/<stem>/T_<stem>_{BaseColor,Normal,Emission,Roughness}.png)
-- 24 PNGs, 1024x1024 (Apprentice cap), seed 20260922, chain = proven dress-bake clone
-  (File SOP -> VEX thickness/curvature -> 64-ray AO -> bakegeometrytextures::2.0 UVfill
-  -> per-channel -> OIDN denoise -> /out image ROPs).
-- Verified: copernicus_bake_verify.json — fresh mtimes, 4 distinct shas per mesh,
-  zero duplicates across meshes, real per-channel pixel spread.
-- Manifest: copernicus_bake_manifest.json (HIP per mesh in hip/).
+## Copernicus bakes (copernicus_out/<stem>/T_<stem>_{BaseColor,Normal,Emission,Roughness}.png)
+- 24 PNGs, 1024 (Apprentice cap), seed 20260922, proven dress-bake chain via token
+  replacement (copernicus_bake_hair_eyes_v2.py, merged to Tools/Houdini/copernicus/).
+- v2 fixes: TWO bakers (baker exposes exactly one custom output, index 11); thickness =
+  two-sided rays (>=8 mm offset, sub-10 mm = honest 0.5 fallback) baked MERGED across the
+  3 hair meshes with quadrant-padded UVs (thickn_merge_bake.py; HairB std 0.057 real
+  variation, HairA/C open at 8 mm -> 0.5 fallback); HairB AO gamma-lift re-bake
+  (hairB_ao_restore.py; auto-levels REJECTED — p99 was 0, would have made a binary mask).
+- Iris AO plausible; iris/eyelash thickness = honest 0.5 (thickness not meaningful on shells).
+- CLOSEOUT VERIFY: final_bake_verify.json — PASS on all 24 (real channels: fresh mtime,
+  square, distinct shas, real spread; Roughness fallback maps validated as exactly
+  0.5-flat, dup-check relaxed ONLY for byte-identical honest fallbacks).
 
 ## FLIP bakes
-- Smoke PASS at res 48 (20/20 non-empty bobjs, fluid growing per frame): flip_config_smoke_evidence.json
-- Known blockers fixed on the bake-gen copy: unhidden participants, x2.5 emitter bulk
-  (FF_Drip/FF_Sheet are the only inflows; LF_TipDrip_* are TYPE_NONE GN props),
-  non-mesh (CURVES) participants deactivated, frame range via TIMELINE mode.
-- Engine manifest confirmed: Hair Strand.004/.007 are obstacles (hair collision live).
-- FULL BAKE: res 72, frames 1-240 -> C:/EnvironmentPortfolio/FlipCache/hair_hero_20260922/
-  running headless (PID 27840); evidence on completion: flip_full_bake_evidence.json
-- Smoke caches (superseded): hair_hero_20260922_smoke{,2}
+- Smoke-first at res 48 PASS (20/20 non-empty; res 24 = sub-voxel zero-fluid trap).
+- Blockers fixed: frame_range_custom read-only -> FRAME_RANGE_TIMELINE; CURVES participant
+  crash -> non-MESH participants deactivated; stale cache rmtree before every bake;
+  emitter x2.5 bulk (FF_Drip/FF_Sheet only inflows; hair meshes = obstacles, confirmed
+  in engine manifest). Cache: C:/EnvironmentPortfolio/FlipCache/hair_hero_20260922/
+- FULL: res 72, frames 1-240 -> flip_full_bake_evidence.json: 480/480 bobj non-empty,
+  fluid to ~33k verts/frame. Smoke caches superseded: hair_hero_20260922_smoke{,2}
+  (first is a Windows-lock orphan; harmless).
 
-## Render lane — LIT RERUN (final state 2026-09-22 evening)
-- Contact-sheet review drove fixes: thickness re-baked via MERGED cross-strand bake
-  (quadrant-padded UVs; HairB real variation, A/C honest 0.5 fallback), HairB AO restored
-  (auto-levels rejected — p99 was 0; gamma-lifted re-bake is the keeper).
-- Prep gen2 = per-mesh water materials with baked AO in emission (kills the "purple
-  jelly"), 3-point rig 6x-strengthened after vision review, SUBJECT-CROP exposure gate
-  (full-frame gate lied — sky dominated). Vision pass: GO.
-- Lit 240-frame render running on gen2 (Cycles 48 samples + adaptive 0.02, OPTIX);
-  notify on completion, then render_sequence_evidence.json + regenerated sheet.
+## Render lane (final)
+- Contact sheets: contact_sheets/copernicus_maps_sheet.png + render_sequence_sheet.png;
+  vision-reviewed; findings drove every fix below. Sheets regenerate at render completion.
+- EEVEE headless BANNED for animation (nvoglv64.dll EXCEPTION_ACCESS_VIOLATION ~4 frames;
+  single stills fine). Sequence: Cycles OPTIX->CUDA->CPU, 48 samples + adaptive 0.02 + OIDN.
+- Prep gen2: per-mesh water materials Water_Advance_AO_{A,B,C} with each mesh's baked AO
+  multiplied into emission (0.85) — strand-depth variation; FLIP meshes keep the authored
+  material (single water writer; variants are render-lane only, gate G-C documented).
+- Lighting: 3-point rig x6 after vision review caught the full-frame exposure gate lying
+  (sky dominated) -> SUBJECT-CROP gate (mean 0.10-0.32); second vision pass: GO.
+- Output: Saved/PIE/melusina_hair_flip_20260922/frame_####.png, 240 frames, Cam_Turntable,
+  1920x1080. Unlit dusk frames deleted at lit launch (gate G-B).
+- Known pre-existing defect (not tonight's): G:\Material.021_Normal.png missing
+  (0.05% magenta, non-hero) -> texture-relink lane.
+
+## UE import staging
+- Exports/MelusinaBakeStaging_20260922/UE_import/: 24/24 textures (contract names),
+  IMPORT_MANIFEST.json (sRGB OFF all channels; TC_Normalmap/TC_Masks), RUNBOOK (W1 maps
+  on existing SK meshes — no re-import; W2 FLIP via Alembic geometry cache, Nanite OFF,
+  collision NONE; W3 what NOT to import). Versioned copies: ue_import_manifest_copy.json,
+  ue_import_runbook_copy.md. Alembic exporter staged: flip_alembic_export.py.
+
+## Where things live now (merged to main)
 - PR #299: docs/plans/MELUSINA_WATERHAIR_BAKE_RENDER_POLISH_PLAN_2026-09-22.md
-- UE bundle STAGED: Exports/MelusinaBakeStaging_20260922/UE_import/ (24/24 textures +
-  IMPORT_MANIFEST.json + RUNBOOK; no mesh re-imports; FLIP via staged Alembic script).
+- PR #300: lane README + evidence JSONs (Saved/Audit/...), hython drivers
+  (Tools/Houdini/copernicus/), Blender harness (Tools/Blender/melusina_bake_staging_20260922/).
+- Large binaries stay on disk by convention: staging/prep blends, map PNGs, render frames.
+
+## Open items (owner-gated / queued)
+- G-A left eye: body-material region or new mesh? (blocks left-eye bake/wiring)
+- G-B dusk frames: deleted at lit launch (default; say so if you wanted them kept)
+- G-C water material render variants: render-lane only, never the authored master
+- R5 queue: hair UV island-padding pass (normal-map bleed), FLIP Alembic export + U2 import,
+  G: texture relink, flipbook lookdev wiring (grandmaster W6/W7).
 
 ## Trap ledger (new lessons paid for tonight)
-1. Blender C++ wm.obj_export writes 0-byte OBJs for some meshes (HairA/B) with no error;
-   healthy evaluated geometry, unrelated to materials/hidden flags. Manual OBJ writer
-   bypasses it deterministically.
-- Iris AO (Copernicus BaseColor maps) multiplied into Base Color of Material.015 /
-  Material.023 / Iris.002 — the only safe wiring tonight; the water hair material is
-  fully procedural (Fresnel/PBR/noise groups) and stays authored (single water writer).
-- FLIP: 240 surface meshes imported into collection FLIPMeshes with the Water
-  (Advance).002 material, visibility keyed to their own frame. 0 particle-only files.
-- Camera: scene's authored Cam_Turntable. Output: Saved/PIE/melusina_hair_flip_20260922/frame_####.png
-- ENGINE NOTE: EEVEE headless crashes nvoglv64.dll on the animation loop
-  (EXCEPTION_ACCESS_VIOLATION after ~4 frames; single frames render fine). Sequence
-  renders on Cycles (OPTIX fallback chain), 64 samples + OIDN denoise.
-- Known pre-existing defect (not tonight's blocker): G:\Material.021_Normal.png missing
-  (0.05% magenta in frame, non-hero material) — hand to the texture-relink lane.
-- Verify on completion: render_sequence_evidence.json (count, motion diffs, stats).
-
-## Trap ledger (new lessons paid for tonight)
-1. Blender C++ wm.obj_export writes 0-byte OBJs for some meshes (HairA/B) with no error;
-   healthy evaluated geometry, unrelated to materials/hidden flags. Manual OBJ writer
-   bypasses it deterministically.
-2. bakegeometrytextures::2.0 bakes FLAT when the imported uv attribute is POINT-class.
-   One-vt-per-v-line OBJs produce point-class uv; Blender-style per-corner vt produces
-   vertex-class uv and bakes correctly. HairC (Blender exporter) baked; v1 manual did not.
-3. FLIP DomainSimulationProperties.frame_range_custom is read-only — use
-   FRAME_RANGE_TIMELINE + scene.frame_start/frame_end.
-4. FLIP exporter dies on non-MESH participants ("Exported object not found: <Hair Strand.002>")
-   — deactivate flip participation on CURVES/EMPTY objects before any bake.
-5. Res 24 smoke leaves an x2.5-bulked 4.2 cm drip at 1.17 voxels -> silent zero fluid.
-   Smoke at res 48+ for cm-scale drips; full bake res 72 = 3.5 voxels.
+1. Blender C++ wm.obj_export can write 0-byte OBJs silently (healthy geometry; material
+   renames/mute don't help) -> hand-rolled writer.
+2. bakegeometrytextures::2.0 bakes FLAT on point-class uv; VERTEX-class required
+   (one-vt-per-v-line = point-class; Blender per-corner vt = vertex-class).
+3. Baker exposes exactly ONE custom output (11); a second custom signal needs a second baker.
+4. One-sided thickness rays self-hit open sheets at ~0 or find nothing; two-sided rays +
+   >=8 mm offset + MERGED sibling bake is the honest signal. uvtransform parms are
+   sx/sy/sz + tx/ty/tz, not "scale"/"t".
+5. Auto-levels on a map whose p99 is already 0 makes a binary mask — check percentiles first.
+6. EEVEE headless animation crashes the NV GL driver; Cycles OPTIX is the stable path.
+7. Full-frame exposure gates lie when sky dominates; gate the subject crop, then EYES.
+8. FLIP: frame_range_custom is read-only (FRAME_RANGE_TIMELINE + scene.frame_start/end);
+   deactivate non-MESH participants ("Exported object not found"); res 24 smokes an
+   x2.5-bulked cm drip at 1.17 voxels = silent zero fluid (res 48 smoke / 72 full).
