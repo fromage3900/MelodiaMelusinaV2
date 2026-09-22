@@ -16,7 +16,7 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 ## Quick Start
 
-1. Read [CURRENT_STATE.md](CURRENT_STATE.md) and [DOC_INDEX.md](DOC_INDEX.md) before expanding scope.
+1. Read [CURRENT_STATE.md](CURRENT_STATE.md), [DOC_INDEX.md](DOC_INDEX.md), and [Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md) before expanding scope.
 2. Run `python Tools/git_ok.py`, verify the latest `main` Echo run is green, and cut one scoped branch from current `main`. Do not start production from a stale PR/recovery branch.
 3. Review [README.md](README.md) to choose your onboarding path.
 4. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
@@ -44,6 +44,9 @@ Melodia's stable systems are now infrastructure for authored work. Prefer the ex
 | Blender/GN set dressing | Melodia Studio/GN source → fresh-main promotion PR | wholesale workstation-branch merge |
 | Encounter / boss / side quest | Quill + Phoenix + rhythm + existing consequence/save owners | new battle/quest/save framework |
 | Lookdev / VFX polish | existing master materials, instances, Niagara, frozen PPV rules | one-off master/framework per effect |
+| Houdini / Hython source generation | deterministic tools under `Tools/Houdini/` + manifested outputs -> existing UE/world lane | Houdini as runtime authority / untracked one-off DCC pipeline |
+| Melusina Rokoko mocap | Blender retarget/root-motion export -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing ABP/state owner | manual production FBX drag/drop / second skeleton/import lane |
+| UE C++ engineering | JetBrains Rider owner/usages discovery -> focused native edit -> correct UBT/test/runtime evidence | C++ rewrite of an existing content/Python/Blueprint-owned lane |
 
 A contribution that changes architecture must name the current owner seam, show the blocking requirement, and explain why authored content cannot express it.
 

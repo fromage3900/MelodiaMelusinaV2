@@ -1,5 +1,7 @@
 # Rider 2026.2 workflows for Sea Above P0 closeout
 
+> **Historical research note.** The canonical current Rider workflow is [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](../Production/RIDER_UE58_CANONICAL_WORKFLOW.md). Use this file for the Sea Above experiment context only; its "tonight" order and tool assumptions are not current project instructions. `CURRENT_STATE.md` is status authority.
+
 **Purpose:** use only Rider workflows that directly shorten a remaining P0 proof. Rider is the C++
 and inspection surface; Unreal remains the asset, PIE and runtime authority.
 

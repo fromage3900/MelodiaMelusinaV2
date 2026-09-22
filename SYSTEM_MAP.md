@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-21
+**Last Updated:** 2026-09-22
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -101,6 +101,10 @@ Rules:
 - Melodia Studio / GN is a DCC authoring source and must be selectively promoted into the production spine;
 - a successful generator run is SOURCE/EDITOR evidence until the resulting UE content is exercised live;
 - new worlds normally add recipes, assets, chapter data and lookdev—not another compiler or state subsystem.
+- [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md) is the canonical workflow router across this authoring plane;
+- Hython under `Tools/Houdini/` forges deterministic DCC source assets/data; those outputs enter UE through the existing import/world-authoring lanes rather than owning runtime state;
+- Rokoko performance capture enters through Blender retarget/root-motion export and the guarded `Content/Python/import_rokoko_mocap_batch.py` importer, then binds to the existing Melusina animation owner;
+- JetBrains Rider is the preferred native C++ discovery/debug/test surface; it does not replace UE runtime evidence or turn content work into a C++ rewrite.
 
 This page is runtime-ownership detail. [`Docs/Architecture/CURRENT_SYSTEM_MAP.md`](Docs/Architecture/CURRENT_SYSTEM_MAP.md) is a duplicate snapshot, not a second authority.
 

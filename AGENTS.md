@@ -1,12 +1,28 @@
 # BS_GodFile agent context
 
-**Front-door review:** 2026-09-17 against `main` at `7770b1a8f1e3506dad9c6038dee7912b64e689d1` (post #236).
+**Front-door review:** 2026-09-22 against `main` at `9445bcbd6caf87de233118d48af63b6e0299959c` (post #283).
 
 ## STATUS — one document
 
 [`CURRENT_STATE.md`](CURRENT_STATE.md) is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
 **Historical branch guard:** PR #201 is resolved/superseded by merged #213; PR #230 was closed unmerged. `cleanup/pbr-twin-landing-2026-09-10` is provenance only — never use it as a current health proxy or wholesale merge source.
+
+
+## Production-tool front door — READ BEFORE CHOOSING A NEW FRAMEWORK
+
+The canonical workflow router is [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md).
+
+Use it to select the existing lane before writing code:
+
+- **worldbuilding:** recipe -> `Tools/world_compiler.py` -> existing UE driver; no second compiler or scatter framework;
+- **Houdini:** deterministic Hython tools under `Tools/Houdini/` forge source assets/data; they do not own runtime world state;
+- **Rokoko/Melusina mocap:** Blender retarget/root-motion FBX -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing animation owner;
+- **UE C++:** JetBrains Rider is the preferred navigation/debug/test surface; follow [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md);
+- **editor mutation:** one Unreal Editor, one Monolith writer, inspect -> mutate -> assert -> save;
+- **status:** only `CURRENT_STATE.md` may declare what is currently proven/open.
+
+If an old research/handoff file suggests creating a parallel implementation, the current front door wins unless a fresh blocker is demonstrated.
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
@@ -126,30 +142,19 @@ intentionally gitignored, do not track it.
 
 ---
 
-## 🚀 Rider & UE 5.8 Engineering Protocols (IDE & Engine Maximization)
+## 🚀 Rider & UE 5.8 Engineering Protocols
 
-Maximize productivity and eliminate silent defects by using JetBrains Rider and Unreal Engine 5.8 native systems to their full capacity:
+Canonical runbook: [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md).
 
-### 1. JetBrains Rider Superpowers
-- **Blueprint Reflection & Code Vision:** Rider parses `.uasset` binary files in the background. Look at Code Vision lenses above `UCLASS`, `UFUNCTION`, and `UPROPERTY` declarations for derived Blueprint counts, asset usages, and overridden CDO property values without starting the editor.
-- **RiderLink Live Test Running:** Run `IMPLEMENT_SIMPLE_AUTOMATION_TEST` suites directly from the C++ gutter icon in Rider against the running editor session via RiderLink. Avoid heavy commandlet restarts when validating logic.
-- **Modern Pointer Standards:** Upgrade legacy raw `UObject*` member pointers in headers to `TObjectPtr<T>` (use Rider's `Alt+Enter` quick-fix) to ensure engine garbage-collection barrier tracking.
-- **IWYU & Include Pruning:** Use Rider's Unreal IWYU inspection to strip unneeded `#include` directives and prevent unity-build symbol pollution.
-- **Shader Authoring:** Edit `.usf` and `.ush` shaders directly in Rider with full syntax validation, macro expansion, and semantic highlighting. As of 2026-08-28 this is backed by a real module — `Source/MelodiaShader` (`Type: Runtime`, `LoadingPhase: PostConfigInit`), with the shader source under `Source/MelodiaShader/Shaders/`. `PostConfigInit` is required, not cosmetic: a module that registers a virtual shader directory must load before the shader compiler runs. Adding or renaming a module here needs a **closed-editor** `Build.bat` pass — Live Coding cannot register new reflected types.
-- **Static Analysis & Quality Gates:** Run `qodana.yaml` with the `QDJB` profile to catch memory leaks, missing reflection tags, and uninitialized properties before code reaches review.
+Use Rider to **find the real owner, make a smaller native change, run the right build, and prove it in Unreal**.
 
-### 2. Unreal Engine 5.8 Architectural Standards
-- **Hierarchical `FGameplayTag` over raw `FName`:** For puzzle networks, quest IDs, and combat event channels, prefer `FGameplayTag` (`Melodia.Water.Network.*`, `Melodia.Rhythm.*`) instead of raw `FName` strings. Tags provide IDE auto-complete, compile-time validation, and eliminate typo-induced silent no-ops.
-- **StateTree for Flow & Combat Logic:** Use UE 5.8 StateTree (built on `StructUtils`) for quest progression, NPC behaviors, and dialog branching. It is lightweight, deterministic, and avoids spaghetti Blueprint execution chains.
-- **World Partition Data Layers:** Use non-destructive Data Layers (`DL_Lighting_Day`, `DL_Lighting_Night`, `DL_PCG_Foliage`) in showcase levels (`L_KaleidoNave`, `L_FallenMoon`) to switch environment and cinematic passes without duplicating maps.
-- **CommonUI Input Routing:** Route player interactions through `CommonActivatableWidget` and CommonUI input routing to handle auto-focus, gamepad/keyboard legends, and back-button stacks cleanly.
-- **CPU Profiling Instrumentation:** Wrap performance-critical tick loops, rhythm calculations, and subsystem queries in `TRACE_CPUPROFILER_EVENT_SCOPE(Name)` for immediate visualization in Unreal Insights (`.utrace`).
-- **Native Editor Data Validation:** Implement C++ `UEditorValidatorSubsystem` rules to enforce asset safety rules (texture compression, Substrate inputs, socket bindings) on save.
-
-### 3. Melodia MCP & Monolith Multi-Agent Protocol
-- **Single Editor Lock:** All editor-mutating tools (Monolith, T3D injectors, PIE runners) must serialize through a single holder. Never run competing MCP instances on the same graph or level.
-- **Discover Before Declaring Impossible:** Query Monolith's 1330+ actions (`monolith_discover`) before claiming an editor capability cannot be automated.
-- **Safe Reflection over Python Wrapping:** Never inspect user-defined enums (like `D_DamageType`) via raw Python `load_blueprint_class()`; use Monolith's C++ reflection queries (`get_cdo_properties`, `get_graph_data`) to prevent fatal Python glue crashes.
+Core rules:
+- use Unreal-aware Find Usages / reflected-asset navigation before adding a competing API;
+- close Unreal and run a real `BS_GodFileEditor Win64 Development` build for reflected declarations, modules, Build.cs, generated headers, shader-directory registration, and load-topology changes;
+- RiderLink/focused automation proves the native test only — restart, PIE-input and packaged acceptance still require their own evidence;
+- use the native debugger and Unreal Insights on the existing owner seam before redesigning for performance;
+- edit tracked `.usf/.ush` in Rider, but UE shader compilation + visible capture is the runtime proof;
+- do not rewrite World Compiler, Rokoko ingestion, Blueprint ownership, or editor automation in C++ simply because Rider makes C++ convenient.
 
 ---
 
