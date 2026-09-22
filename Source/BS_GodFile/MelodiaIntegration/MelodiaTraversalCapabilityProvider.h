@@ -37,6 +37,9 @@ namespace MelodiaTraversalCapability
 
 	/** Sustained swim. */
 	inline const FName Swim{TEXT("capability.melodia.swim")};
+
+	/** Board and pilot the Starskiff. */
+	inline const FName Sail{TEXT("capability.melodia.sail")};
 }
 
 class BS_GODFILE_API IMelodiaTraversalCapabilityProvider

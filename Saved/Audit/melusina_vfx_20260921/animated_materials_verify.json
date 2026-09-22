@@ -1,6 +1,6 @@
 {
   "schema": "melodia.animated_materials.v1",
-  "generated": "2026-09-22T13:51:59",
+  "generated": "2026-09-22T00:57:23",
   "run_mode": "cook",
   "script": "Tools/Houdini/copernicus/animated_materials_20260922.py",
   "helper_module": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py",
@@ -8,15 +8,15 @@
   "out_dir": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\EnvSandbox\\Textures\\MelusinaAnimated\\20260922",
   "seed": 20260922,
   "ring_phase_offset_deg": 120.0,
-  "elapsed_s": 183.64,
+  "elapsed_s": 10.3,
   "totals": {
     "sequences": 8,
     "frames_expected": 352,
     "frames_present": 352,
     "frames_missing": 0,
     "all_complete": true,
-    "frames_written": 352,
-    "frames_skipped": 0
+    "frames_written": 0,
+    "frames_skipped": 352
   },
   "structure_gate": {
     "method": "native 512 crop (no resampling) + 2D FFT, max power across channels",
@@ -40,41 +40,41 @@
           [
             28,
             18.29,
-            109.4
+            109.3
           ],
           [
             29,
             17.66,
-            109.4
+            109.3
           ],
           [
             27,
             18.96,
-            109.4
+            109.3
           ]
         ],
         "ny_top3_periods_px": [
           [
             3,
             170.67,
-            106.0
+            105.9
           ],
           [
             4,
             128.0,
-            99.1
+            99.0
           ],
           [
             28,
             18.29,
-            96.7
+            96.6
           ]
         ],
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          23.84,
-          19.14
+          23.85,
+          19.05
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -92,47 +92,47 @@
           0,
           24
         ],
-        "nx_dominant_period_px": 64.0,
+        "nx_dominant_period_px": 85.33,
         "ny_dominant_period_px": 18.29,
         "nx_top3_periods_px": [
           [
-            7,
-            73.14,
-            119.8
-          ],
-          [
             6,
             85.33,
-            119.8
+            119.7
           ],
           [
             8,
             64.0,
-            119.8
+            119.7
+          ],
+          [
+            7,
+            73.14,
+            119.7
           ]
         ],
         "ny_top3_periods_px": [
           [
             28,
             18.29,
-            115.5
+            115.4
           ],
           [
             29,
             17.66,
-            115.5
+            115.4
           ],
           [
             27,
             18.96,
-            115.5
+            115.3
           ]
         ],
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          14.6,
-          18.22
+          14.9,
+          17.59
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -150,51 +150,51 @@
           0,
           24
         ],
-        "nx_dominant_period_px": 85.33,
-        "ny_dominant_period_px": 17.66,
+        "nx_dominant_period_px": 170.67,
+        "ny_dominant_period_px": 170.67,
         "nx_top3_periods_px": [
           [
-            6,
-            85.33,
-            120.3
+            3,
+            170.67,
+            121.2
           ],
           [
-            7,
-            73.14,
-            120.1
+            4,
+            128.0,
+            121.1
           ],
           [
             5,
             102.4,
-            120.1
+            120.7
           ]
         ],
         "ny_top3_periods_px": [
           [
-            29,
-            17.66,
-            117.7
+            3,
+            170.67,
+            116.9
           ],
           [
-            28,
-            18.29,
-            117.7
+            10,
+            51.2,
+            112.9
           ],
           [
-            27,
-            18.96,
-            117.6
+            4,
+            128.0,
+            112.8
           ]
         ],
-        "nx_crest_period_px": 18.29,
-        "ny_crest_period_px": 17.66,
+        "nx_crest_period_px": 25.6,
+        "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          10.69,
-          13.79
+          9.21,
+          7.88
         ],
         "crest_present": true,
         "alias_dominates": false,
-        "min_period_px": 17.66,
+        "min_period_px": 170.67,
         "passes_gt_2px": true
       },
       "rings_ring0_iridescence": {
@@ -421,8 +421,8 @@
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          12.51,
-          19.77
+          12.46,
+          19.78
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -479,8 +479,8 @@
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          15.68,
-          19.95
+          15.61,
+          19.91
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -505,11 +505,11 @@
         1024
       ],
       "square": true,
-      "bytes_min": 798758,
-      "bytes_max": 835759,
+      "bytes_min": 722633,
+      "bytes_max": 764355,
       "bytes_nonzero": true,
-      "sha1_first": "64ddf59087bb539ad7cf9df1e0b8713db0ae0795",
-      "sha1_last": "fbb187895ed9165deb5eed1b862df668e53b84af",
+      "sha1_first": "2e2e93824f5d27a843bcfd427bd1e236c39662dc",
+      "sha1_last": "e10c283cc98405b946244dc0ce4c4d553374d6ba",
       "cycles": 1,
       "loop_closure": true,
       "structure": {
@@ -529,41 +529,41 @@
           [
             28,
             18.29,
-            109.4
+            109.3
           ],
           [
             29,
             17.66,
-            109.4
+            109.3
           ],
           [
             27,
             18.96,
-            109.4
+            109.3
           ]
         ],
         "ny_top3_periods_px": [
           [
             3,
             170.67,
-            106.0
+            105.9
           ],
           [
             4,
             128.0,
-            99.1
+            99.0
           ],
           [
             28,
             18.29,
-            96.7
+            96.6
           ]
         ],
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          23.84,
-          19.14
+          23.85,
+          19.05
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -586,11 +586,11 @@
         1024
       ],
       "square": true,
-      "bytes_min": 1685119,
-      "bytes_max": 1775988,
+      "bytes_min": 1526938,
+      "bytes_max": 1613689,
       "bytes_nonzero": true,
-      "sha1_first": "054548456d4b978ae1c71f30a2559e61fec5f468",
-      "sha1_last": "feb7426e238969dc38505cf81343258b561e483e",
+      "sha1_first": "748976d008d574c446abec965de434f8d846c8e7",
+      "sha1_last": "49586b34edfc32cce03c054f96e15510d4dbf876",
       "cycles": 1,
       "loop_closure": true,
       "structure": {
@@ -604,47 +604,47 @@
           0,
           24
         ],
-        "nx_dominant_period_px": 64.0,
+        "nx_dominant_period_px": 85.33,
         "ny_dominant_period_px": 18.29,
         "nx_top3_periods_px": [
           [
-            7,
-            73.14,
-            119.8
-          ],
-          [
             6,
             85.33,
-            119.8
+            119.7
           ],
           [
             8,
             64.0,
-            119.8
+            119.7
+          ],
+          [
+            7,
+            73.14,
+            119.7
           ]
         ],
         "ny_top3_periods_px": [
           [
             28,
             18.29,
-            115.5
+            115.4
           ],
           [
             29,
             17.66,
-            115.5
+            115.4
           ],
           [
             27,
             18.96,
-            115.5
+            115.3
           ]
         ],
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          14.6,
-          18.22
+          14.9,
+          17.59
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -667,11 +667,11 @@
         1024
       ],
       "square": true,
-      "bytes_min": 1233084,
-      "bytes_max": 1376147,
+      "bytes_min": 945999,
+      "bytes_max": 1301301,
       "bytes_nonzero": true,
-      "sha1_first": "1c7fd2598af12c4189e48eaca9fd71e5b3a7a344",
-      "sha1_last": "ea936f67b01c73013fdba868b329b4e51abae68c",
+      "sha1_first": "4bca6fda9ae49fcb999ada2409a689df066ff329",
+      "sha1_last": "518d9cf759ce030f38bedf9dfb376f96fed6412e",
       "cycles": 1,
       "loop_closure": true,
       "structure": {
@@ -685,51 +685,51 @@
           0,
           24
         ],
-        "nx_dominant_period_px": 85.33,
-        "ny_dominant_period_px": 17.66,
+        "nx_dominant_period_px": 170.67,
+        "ny_dominant_period_px": 170.67,
         "nx_top3_periods_px": [
           [
-            6,
-            85.33,
-            120.3
+            3,
+            170.67,
+            121.2
           ],
           [
-            7,
-            73.14,
-            120.1
+            4,
+            128.0,
+            121.1
           ],
           [
             5,
             102.4,
-            120.1
+            120.7
           ]
         ],
         "ny_top3_periods_px": [
           [
-            29,
-            17.66,
-            117.7
+            3,
+            170.67,
+            116.9
           ],
           [
-            28,
-            18.29,
-            117.7
+            10,
+            51.2,
+            112.9
           ],
           [
-            27,
-            18.96,
-            117.6
+            4,
+            128.0,
+            112.8
           ]
         ],
-        "nx_crest_period_px": 18.29,
-        "ny_crest_period_px": 17.66,
+        "nx_crest_period_px": 25.6,
+        "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          10.69,
-          13.79
+          9.21,
+          7.88
         ],
         "crest_present": true,
         "alias_dominates": false,
-        "min_period_px": 17.66,
+        "min_period_px": 170.67,
         "passes_gt_2px": true
       }
     },
@@ -991,11 +991,11 @@
         512
       ],
       "square": true,
-      "bytes_min": 501720,
-      "bytes_max": 508117,
+      "bytes_min": 502163,
+      "bytes_max": 508233,
       "bytes_nonzero": true,
-      "sha1_first": "26e65815acfe466cab65dbc8d65105c2f1e32ccb",
-      "sha1_last": "149a7fa6b5732bc3cac849194027dbc208aa953d",
+      "sha1_first": "16803f3d50583441f8a121647435558f6f696387",
+      "sha1_last": "b97fac9b603782fcc2851fdb72e6aeae230b8562",
       "cycles": 1,
       "loop_closure": true,
       "structure": {
@@ -1048,8 +1048,8 @@
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          12.51,
-          19.77
+          12.46,
+          19.78
         ],
         "crest_present": true,
         "alias_dominates": false,
@@ -1072,11 +1072,11 @@
         512
       ],
       "square": true,
-      "bytes_min": 207110,
-      "bytes_max": 243679,
+      "bytes_min": 206858,
+      "bytes_max": 243797,
       "bytes_nonzero": true,
-      "sha1_first": "563ff52e9bcfef6308936bebfb4e0330acd507e2",
-      "sha1_last": "de8fa89e8d7c03b8c1045419f45ab082bb5f31b1",
+      "sha1_first": "33d3adb18922c8079eba44d9394d452c09c831a5",
+      "sha1_last": "f375d5f419a54e31754c4fc3398335ef6c005abf",
       "cycles": 1,
       "loop_closure": true,
       "structure": {
@@ -1129,8 +1129,8 @@
         "nx_crest_period_px": 18.29,
         "ny_crest_period_px": 18.29,
         "crest_band_prominence_db": [
-          15.68,
-          19.95
+          15.61,
+          19.91
         ],
         "crest_present": true,
         "alias_dominates": false,

@@ -1,0 +1,25 @@
+{
+ "hosts": [
+  {
+   "host": "Hair Strand.004",
+   "area_m2": 0.458,
+   "density_set": 262,
+   "eval_verts": 4616,
+   "globs_added": 1512
+  },
+  {
+   "host": "Hair Strand.007",
+   "area_m2": 10.0011,
+   "density_set": 9,
+   "eval_verts": 27480,
+   "globs_added": 1080
+  },
+  {
+   "host": "Hair Strand.010",
+   "area_m2": 0.1782,
+   "density_set": 842,
+   "eval_verts": 9708,
+   "globs_added": 2148
+  }
+ ]
+}
