@@ -1,6 +1,6 @@
 # Rokoko → Melusina Pipeline — Evidence & Blendspace Audit (2026-09-22)
 
-Status authority for the Rokoko mocap lane. Evidence-backed; every claim has a command that re-derives it.
+**Role:** evidence-backed reference for the Rokoko mocap lane; every claim has a command that re-derives it. `CURRENT_STATE.md` remains the only project status authority. Canonical workflow routing lives in `Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`.
 
 ## 1. Pipeline state — GREEN
 
