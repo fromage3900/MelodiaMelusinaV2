@@ -1,0 +1,27 @@
+{
+ "schema": "melodia.thickn_merge.v1",
+ "merged": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_bake_staging_20260922/copernicus_out/_merged_hair_thickn.png",
+ "quadrants": {
+  "Melusina_HairA_Strand004": {
+   "png": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_bake_staging_20260922/copernicus_out/Melusina_HairA_Strand004/T_Melusina_HairA_Strand004_Roughness.png",
+   "std": 0.0007,
+   "mean": 0.502
+  },
+  "Melusina_HairB_Strand007": {
+   "png": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_bake_staging_20260922/copernicus_out/Melusina_HairB_Strand007/T_Melusina_HairB_Strand007_Roughness.png",
+   "std": 0.0572,
+   "mean": 0.508
+  },
+  "Melusina_HairC_Strand010": {
+   "png": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/melusina_bake_staging_20260922/copernicus_out/Melusina_HairC_Strand010/T_Melusina_HairC_Strand010_Roughness.png",
+   "std": 0.0121,
+   "mean": 0.501
+  }
+ },
+ "hairB_ao_levels": {
+  "p1": 0.0,
+  "p99": 0.0,
+  "std_after": 0.0697,
+  "mean_after": 0.005
+ }
+}

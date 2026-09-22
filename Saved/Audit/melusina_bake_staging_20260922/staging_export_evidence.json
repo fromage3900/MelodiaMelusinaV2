@@ -1,0 +1,123 @@
+{
+ "schema": "melodia.bake_staging_export.v1",
+ "source_copy": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\harp_wip_stage_src.blend",
+ "out_dir": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj",
+ "exports": [
+  {
+   "object": "Hair Strand.004",
+   "stem": "Melusina_HairA_Strand004",
+   "obj": null,
+   "size_bytes": 0,
+   "verts": 3104,
+   "polys": 3024,
+   "uv_sets": {
+    "shp_uv_map": "LIVE",
+    "shp_uv_hair": "LIVE",
+    "shp_uv_flys": "ZERO",
+    "shp_uv_orn": "ZERO"
+   },
+   "exported_uv": "shp_uv_map",
+   "materials": [
+    "Water (Advance).002",
+    "Cosmos",
+    "Outline Shader *.003"
+   ],
+   "verdict": "EXPORT_FAILED"
+  },
+  {
+   "object": "Hair Strand.007",
+   "stem": "Melusina_HairB_Strand007",
+   "obj": null,
+   "size_bytes": 0,
+   "verts": 26400,
+   "polys": 25290,
+   "uv_sets": {
+    "shp_uv_map": "LIVE",
+    "shp_uv_hair": "LIVE",
+    "shp_uv_flys": "ZERO",
+    "shp_uv_orn": "ZERO"
+   },
+   "exported_uv": "shp_uv_map",
+   "materials": [
+    "EMPTY_SLOT",
+    "Water (Advance).002",
+    "Outline Shader *.001"
+   ],
+   "verdict": "EXPORT_FAILED"
+  },
+  {
+   "object": "Hair Strand.010",
+   "stem": "Melusina_HairC_Strand010",
+   "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj\\Melusina_HairC_Strand010.obj",
+   "size_bytes": 1257110,
+   "verts": 7560,
+   "polys": 7380,
+   "uv_sets": {
+    "shp_uv_map": "LIVE",
+    "shp_uv_hair": "LIVE",
+    "shp_uv_flys": "ZERO",
+    "shp_uv_orn": "ZERO"
+   },
+   "exported_uv": "shp_uv_map",
+   "materials": [
+    "Water (Advance).002"
+   ],
+   "verdict": "EXPORTED"
+  },
+  {
+   "object": "R_Iris.001",
+   "stem": "Melusina_IrisA_R1",
+   "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj\\Melusina_IrisA_R1.obj",
+   "size_bytes": 35197,
+   "verts": 256,
+   "polys": 252,
+   "uv_sets": {
+    "UVMap": "LIVE"
+   },
+   "exported_uv": "UVMap",
+   "materials": [
+    "Material.015"
+   ],
+   "verdict": "EXPORTED"
+  },
+  {
+   "object": "R_Iris.002",
+   "stem": "Melusina_IrisB_R2",
+   "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj\\Melusina_IrisB_R2.obj",
+   "size_bytes": 35046,
+   "verts": 256,
+   "polys": 252,
+   "uv_sets": {
+    "UVMap": "LIVE"
+   },
+   "exported_uv": "UVMap",
+   "materials": [
+    "Material.023",
+    "Iris.002"
+   ],
+   "verdict": "EXPORTED"
+  },
+  {
+   "object": "R_Eyelash",
+   "stem": "Melusina_Eyelash_R",
+   "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj\\Melusina_Eyelash_R.obj",
+   "size_bytes": 747652,
+   "verts": 3000,
+   "polys": 2880,
+   "uv_sets": {
+    "UVMap": "LIVE"
+   },
+   "exported_uv": "UVMap",
+   "materials": [
+    "Halftone Circles & Circles (3 Inputs).001",
+    "Material.015",
+    "Outline"
+   ],
+   "verdict": "EXPORTED"
+  }
+ ],
+ "left_eye_census": {
+  "l_side_eye_meshes_found": [],
+  "note": "Only R_Iris.001/.002 + R_Eyelash exist as separate eye meshes in this WIP; left iris may be a material region on the body mesh (Melusina_Base / Melusina.001)."
+ }
+}

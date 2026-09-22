@@ -1,0 +1,168 @@
+{
+ "schema": "melodia.flip_bake_gen.v1",
+ "source": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\harp_wip_stage_src.blend",
+ "bake_gen": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\harp_FLIP_bake_gen1.blend",
+ "cache_smoke": "C:\\EnvironmentPortfolio\\FlipCache\\hair_hero_20260922_smoke2",
+ "cache_full": "C:\\EnvironmentPortfolio\\FlipCache\\hair_hero_20260922",
+ "addon_enabled": true,
+ "num_domains": 1,
+ "roles": {
+  "FF_MelusinaHair_Domain": "TYPE_DOMAIN",
+  "FF_MelusinaHair_Drip": "TYPE_INFLOW",
+  "FF_MelusinaHair_Sheet": "TYPE_INFLOW",
+  "LF_TipDrip_Hair_Strand.002": "TYPE_NONE",
+  "LF_TipDrip_Hair_Strand.004": "TYPE_NONE",
+  "LF_TipDrip_Hair_Strand.007": "TYPE_NONE"
+ },
+ "domain_object": "FF_MelusinaHair_Domain",
+ "unhidden": [
+  "cs_user_c_thigh_b.l",
+  "cs_user_c_thigh_b.r",
+  "cs_user_c_thigh_b_dupli_001.l",
+  "cs_user_c_thigh_b_dupli_001.r",
+  "FF_MelusinaHair_Domain",
+  "FF_MelusinaHair_Sheet",
+  "Melusina.001",
+  "Retopo_Melusina_002",
+  "SheepWreathCollar_EXPORT"
+ ],
+ "deactivated_nonmesh": [
+  "Hair Strand.002:CURVES"
+ ],
+ "bulk_x2.5": {
+  "FF_MelusinaHair_Drip": [
+   0.88,
+   0.88,
+   1.58
+  ],
+  "FF_MelusinaHair_Sheet": [
+   2.5,
+   2.5,
+   2.5
+  ],
+  "LF_TipDrip_Hair_Strand.002": [
+   2.5,
+   2.5,
+   2.5
+  ],
+  "LF_TipDrip_Hair_Strand.004": [
+   2.5,
+   2.5,
+   2.5
+  ],
+  "LF_TipDrip_Hair_Strand.007": [
+   2.5,
+   2.5,
+   2.5
+  ]
+ },
+ "smoke": {
+  "dirs": [
+   "C:\\EnvironmentPortfolio\\FlipCache\\hair_hero_20260922_smoke2\\export\\flipdata.sim"
+  ],
+  "frames": {
+   "000001.bobj": {
+    "bytes": 10688,
+    "num_verts": 298,
+    "empty": false
+   },
+   "000002.bobj": {
+    "bytes": 11120,
+    "num_verts": 310,
+    "empty": false
+   },
+   "000003.bobj": {
+    "bytes": 12704,
+    "num_verts": 354,
+    "empty": false
+   },
+   "000004.bobj": {
+    "bytes": 14792,
+    "num_verts": 412,
+    "empty": false
+   },
+   "000005.bobj": {
+    "bytes": 16952,
+    "num_verts": 472,
+    "empty": false
+   },
+   "000006.bobj": {
+    "bytes": 19472,
+    "num_verts": 542,
+    "empty": false
+   },
+   "000007.bobj": {
+    "bytes": 23216,
+    "num_verts": 646,
+    "empty": false
+   },
+   "000008.bobj": {
+    "bytes": 26240,
+    "num_verts": 730,
+    "empty": false
+   },
+   "000009.bobj": {
+    "bytes": 30776,
+    "num_verts": 856,
+    "empty": false
+   },
+   "000010.bobj": {
+    "bytes": 36176,
+    "num_verts": 1006,
+    "empty": false
+   },
+   "preview000001.bobj": {
+    "bytes": 608,
+    "num_verts": 18,
+    "empty": false
+   },
+   "preview000002.bobj": {
+    "bytes": 608,
+    "num_verts": 18,
+    "empty": false
+   },
+   "preview000003.bobj": {
+    "bytes": 680,
+    "num_verts": 20,
+    "empty": false
+   },
+   "preview000004.bobj": {
+    "bytes": 824,
+    "num_verts": 24,
+    "empty": false
+   },
+   "preview000005.bobj": {
+    "bytes": 896,
+    "num_verts": 26,
+    "empty": false
+   },
+   "preview000006.bobj": {
+    "bytes": 1040,
+    "num_verts": 30,
+    "empty": false
+   },
+   "preview000007.bobj": {
+    "bytes": 1184,
+    "num_verts": 34,
+    "empty": false
+   },
+   "preview000008.bobj": {
+    "bytes": 1328,
+    "num_verts": 38,
+    "empty": false
+   },
+   "preview000009.bobj": {
+    "bytes": 1544,
+    "num_verts": 44,
+    "empty": false
+   },
+   "preview000010.bobj": {
+    "bytes": 1760,
+    "num_verts": 50,
+    "empty": false
+   }
+  }
+ },
+ "smoke_verdict": "PASS",
+ "bake_gen_saved": true
+}
