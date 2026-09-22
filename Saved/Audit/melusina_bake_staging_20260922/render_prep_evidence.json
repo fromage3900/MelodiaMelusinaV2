@@ -1,0 +1,36 @@
+{
+ "schema": "melodia.render_prep.v1",
+ "prep_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\harp_render_prep_gen1.blend",
+ "render_dir": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\PIE\\melusina_hair_flip_20260922",
+ "iris_ao_wiring": [
+  {
+   "material": "Material.015",
+   "verdict": "WIRED",
+   "ao": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\copernicus_out\\Melusina_IrisA_R1\\T_Melusina_IrisA_R1_BaseColor.png",
+   "had_basecolor_link": true
+  },
+  {
+   "material": "Material.023",
+   "verdict": "WIRED",
+   "ao": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\copernicus_out\\Melusina_IrisB_R2\\T_Melusina_IrisB_R2_BaseColor.png",
+   "had_basecolor_link": true
+  },
+  {
+   "material": "Iris.002",
+   "verdict": "WIRED",
+   "ao": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\copernicus_out\\Melusina_IrisB_R2\\T_Melusina_IrisB_R2_BaseColor.png",
+   "had_basecolor_link": true
+  }
+ ],
+ "bobj_frames": 240,
+ "flip_imported": 240,
+ "flip_skipped_particle_files": 0,
+ "camera": "Cam_Turntable",
+ "render_filepath": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\PIE\\melusina_hair_flip_20260922\\frame_",
+ "prep_saved": true,
+ "verify_still": {
+  "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\PIE\\melusina_hair_flip_20260922\\frame_0120.png",
+  "bytes": 0,
+  "verdict": "RENDER_FAILED"
+ }
+}

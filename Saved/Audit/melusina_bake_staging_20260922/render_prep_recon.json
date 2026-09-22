@@ -1,0 +1,500 @@
+{
+ "schema": "melodia.render_prep_recon.v1",
+ "source": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\harp_wip_stage_src.blend",
+ "render": {
+  "engine": "BLENDER_EEVEE",
+  "res": [
+   1920,
+   1080,
+   100
+  ],
+  "fps": 24,
+  "filepath": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_vfx_20260921\\wings_rings_evidence_20260921.png",
+  "frame_range": [
+   1,
+   240
+  ],
+  "film_transparent": false
+ },
+ "cameras": [
+  {
+   "name": "Cam_Back",
+   "type": "PERSP",
+   "lens": 55.0,
+   "loc": [
+    0.0,
+    5.16,
+    1.35
+   ]
+  },
+  {
+   "name": "Cam_Beauty",
+   "type": "PERSP",
+   "lens": 45.0,
+   "loc": [
+    5.09,
+    -6.19,
+    1.55
+   ]
+  },
+  {
+   "name": "Cam_Front",
+   "type": "PERSP",
+   "lens": 55.0,
+   "loc": [
+    0.0,
+    -4.8,
+    1.35
+   ]
+  },
+  {
+   "name": "Cam_GripProof",
+   "type": "PERSP",
+   "lens": 85.0,
+   "loc": [
+    0.88,
+    -0.91,
+    0.93
+   ]
+  },
+  {
+   "name": "Cam_Low",
+   "type": "PERSP",
+   "lens": 42.0,
+   "loc": [
+    2.35,
+    -3.35,
+    0.38
+   ]
+  },
+  {
+   "name": "Cam_Macro",
+   "type": "PERSP",
+   "lens": 90.0,
+   "loc": [
+    0.85,
+    -1.7,
+    1.46
+   ]
+  },
+  {
+   "name": "Cam_Macro.Miraland",
+   "type": "PERSP",
+   "lens": 115.0,
+   "loc": [
+    -0.13,
+    -2.96,
+    1.56
+   ]
+  },
+  {
+   "name": "Cam_Turntable",
+   "type": "PERSP",
+   "lens": 52.0,
+   "loc": [
+    3.6,
+    -4.6,
+    1.6
+   ]
+  },
+  {
+   "name": "Cam_Turntable.001",
+   "type": "PERSP",
+   "lens": 52.0,
+   "loc": [
+    3.6,
+    -4.6,
+    1.6
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Cam_OrthoFront",
+   "type": "ORTHO",
+   "lens": 58.0,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Cam_OrthoSide",
+   "type": "ORTHO",
+   "lens": 58.0,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Cam_Presentation",
+   "type": "PERSP",
+   "lens": 55.0,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Cam_QA_Front",
+   "type": "ORTHO",
+   "lens": 50.0,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Cam_QA_Side",
+   "type": "ORTHO",
+   "lens": 50.0,
+   "loc": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "zenlantern_Camera",
+   "type": "PERSP",
+   "lens": 50.0,
+   "loc": [
+    0.0,
+    -0.0,
+    -1.4
+   ]
+  }
+ ],
+ "materials": {
+  "Water (Advance).002": {
+   "use_nodes": true,
+   "nodes": [
+    {
+     "name": "Frame",
+     "type": "FRAME",
+     "label": "Ctrl+H to Unhide this node"
+    },
+    {
+     "name": "Math.001",
+     "type": "MATH",
+     "label": ""
+    },
+    {
+     "name": "Mix",
+     "type": "MIX",
+     "label": ""
+    },
+    {
+     "name": "Emission",
+     "type": "EMISSION",
+     "label": ""
+    },
+    {
+     "name": "Math",
+     "type": "MATH",
+     "label": ""
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "Group",
+     "type": "GROUP",
+     "label": "",
+     "group": "Fresnel (Hard).002"
+    },
+    {
+     "name": "Group.001",
+     "type": "GROUP",
+     "label": "",
+     "group": "Fresnel (Soft).002"
+    },
+    {
+     "name": "Group.003",
+     "type": "GROUP",
+     "label": "",
+     "group": "PBR.002"
+    },
+    {
+     "name": "Group.002",
+     "type": "GROUP",
+     "label": "",
+     "group": "Water (Advance).002"
+    },
+    {
+     "name": "Group.004",
+     "type": "GROUP",
+     "label": "",
+     "group": "Noise Texture (Komikaze).004"
+    },
+    {
+     "name": "Linear Gradient (Halftone)",
+     "type": "GROUP",
+     "label": "",
+     "group": "Linear Gradient (Halftone).005"
+    }
+   ],
+   "users": [
+    "Hair Strand.004",
+    "Hair Strand.007",
+    "Hair Strand.010"
+   ]
+  },
+  "Material.015": {
+   "use_nodes": true,
+   "nodes": [
+    {
+     "name": "Principled BSDF",
+     "type": "BSDF_PRINCIPLED",
+     "label": "",
+     "inputs": [
+      "Base Color",
+      "Metallic",
+      "Roughness",
+      "IOR",
+      "Alpha",
+      "Thin Wall",
+      "Normal",
+      "Weight",
+      "Diffuse Roughness",
+      "Subsurface Weight",
+      "Subsurface Radius",
+      "Subsurface Scale",
+      "Subsurface IOR",
+      "Subsurface Anisotropy",
+      "Specular IOR Level",
+      "Specular Tint",
+      "Anisotropic",
+      "Anisotropic Rotation",
+      "Tangent",
+      "Transmission Weight"
+     ]
+    },
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "Group",
+     "type": "GROUP",
+     "label": "",
+     "group": "Linear Gradient (Halftone).006"
+    },
+    {
+     "name": "Specular Star.001",
+     "type": "GROUP",
+     "label": "",
+     "group": "Specular Star.001"
+    },
+    {
+     "name": "Mix Shader",
+     "type": "MIX_SHADER",
+     "label": ""
+    },
+    {
+     "name": "Image Texture",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_BaseColor.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_BaseColor.png"
+    },
+    {
+     "name": "Image Texture.001",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Emission.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Emission.png"
+    },
+    {
+     "name": "Image Texture.002",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Normal.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Normal.png"
+    },
+    {
+     "name": "Normal Map",
+     "type": "NORMAL_MAP",
+     "label": ""
+    },
+    {
+     "name": "Image Texture.003",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Alpha.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Alpha.png"
+    }
+   ],
+   "users": [
+    "R_Eyelash",
+    "R_Iris.001"
+   ]
+  },
+  "Material.023": {
+   "use_nodes": true,
+   "nodes": [
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "Principled BSDF",
+     "type": "BSDF_PRINCIPLED",
+     "label": "",
+     "inputs": [
+      "Base Color",
+      "Metallic",
+      "Roughness",
+      "IOR",
+      "Alpha",
+      "Thin Wall",
+      "Normal",
+      "Weight",
+      "Diffuse Roughness",
+      "Subsurface Weight",
+      "Subsurface Radius",
+      "Subsurface Scale",
+      "Subsurface IOR",
+      "Subsurface Anisotropy",
+      "Specular IOR Level",
+      "Specular Tint",
+      "Anisotropic",
+      "Anisotropic Rotation",
+      "Tangent",
+      "Transmission Weight"
+     ]
+    },
+    {
+     "name": "Image Texture",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_BaseColor.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_BaseColor.png"
+    },
+    {
+     "name": "Image Texture.001",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Emission.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Emission.png"
+    },
+    {
+     "name": "Image Texture.002",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Normal.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Normal.png"
+    },
+    {
+     "name": "Normal Map",
+     "type": "NORMAL_MAP",
+     "label": ""
+    },
+    {
+     "name": "Image Texture.003",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Alpha.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Alpha.png"
+    },
+    {
+     "name": "Mix Shader",
+     "type": "MIX_SHADER",
+     "label": ""
+    },
+    {
+     "name": "Specular Star.002",
+     "type": "GROUP",
+     "label": "",
+     "group": "Specular Star.002"
+    }
+   ],
+   "users": [
+    "R_Iris.002"
+   ]
+  },
+  "Iris.002": {
+   "use_nodes": true,
+   "nodes": [
+    {
+     "name": "Material Output",
+     "type": "OUTPUT_MATERIAL",
+     "label": ""
+    },
+    {
+     "name": "Principled BSDF",
+     "type": "BSDF_PRINCIPLED",
+     "label": "",
+     "inputs": [
+      "Base Color",
+      "Metallic",
+      "Roughness",
+      "IOR",
+      "Alpha",
+      "Thin Wall",
+      "Normal",
+      "Weight",
+      "Diffuse Roughness",
+      "Subsurface Weight",
+      "Subsurface Radius",
+      "Subsurface Scale",
+      "Subsurface IOR",
+      "Subsurface Anisotropy",
+      "Specular IOR Level",
+      "Specular Tint",
+      "Anisotropic",
+      "Anisotropic Rotation",
+      "Tangent",
+      "Transmission Weight"
+     ]
+    },
+    {
+     "name": "Image Texture",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_BaseColor.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_BaseColor.png"
+    },
+    {
+     "name": "Image Texture.001",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Emission.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Emission.png"
+    },
+    {
+     "name": "Image Texture.002",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Normal.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Normal.png"
+    },
+    {
+     "name": "Normal Map",
+     "type": "NORMAL_MAP",
+     "label": ""
+    },
+    {
+     "name": "Image Texture.003",
+     "type": "TEX_IMAGE",
+     "label": "",
+     "image": "Material.020_Alpha.png",
+     "image_path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Imports\\MelusinaTextures\\Material.020_Alpha.png"
+    }
+   ],
+   "users": [
+    "R_Iris.002"
+   ]
+  }
+ },
+ "world": {
+  "nodes": true
+ }
+}
