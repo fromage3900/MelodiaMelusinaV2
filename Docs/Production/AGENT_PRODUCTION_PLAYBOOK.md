@@ -22,7 +22,7 @@ Default assumption: **Melodia already has enough architecture to author content.
 
 | Task | Canonical first choice | Do not replace with |
 |---|---|---|
-| Procedural world / biome / dressing | World Compiler recipe -> CLI compile -> UE driver | ad-hoc scatter Python, a second PCG graph framework, direct actor spam |
+| Procedural world / biome / dressing | World Compiler recipe -> CLI compile -> UE driver | ad-hoc scatter Python, a second PCG graph framework, direct actor spam |\n| Universe-scale mission / persistent world evolution | `Tools/universe_foundry.py` genome+exported-delta -> Hermes mission DAG -> existing owners | second World Compiler, AI-authored save truth, agent swarm mutating editors directly |
 | Houdini geometry/material batch work | Hython under `Tools/Houdini/` | runtime UE authority, untracked one-off shelf tools |
 | Rokoko / Melusina mocap | Blender retarget/export -> guarded UE importer | raw FBX drag/drop, alternate skeleton import lane |
 | UE C++ / reflected API | JetBrains Rider + closed-editor UBT where required | blind text edits followed only by Live Coding |
