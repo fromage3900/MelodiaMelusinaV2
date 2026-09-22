@@ -567,6 +567,17 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the stable technical proof (protect and polish only). Shorewake Calling is the semester artwork. Choral Sheep is the capstone lane.
 
+**Owner override — 2026-09-22 showcase day:** until tonight's portfolio showcase capture is finished, the queue is **presentation-first and sheep-first**. Agents must shorten the path to finished images rather than open new systems work.
+
+Today, in order:
+1. **Finish the updated Choral Sheep bakes** and preserve the already-proven companion/Harmonize/runtime owners. Do not reopen the rig unless a current bake/import defect requires it.
+2. **Hand-authored sculpt polish only:** small reusable wool-clump variants, hero face/silhouette polish, and at most one small resonance collar/bell/medallion detail if it can be finished and used tonight. No new creature framework or procedural wool system.
+3. **Ingest and verify the approved bake** in the existing sheep material/presentation lane: normal response, silhouette, fleece readability, Chladni/rest-hit presentation, and closeup quality. Fix visible defects; do not redesign architecture.
+4. **Stage exactly three portfolio proofs:** one environmental wide, one chorus/ensemble medium, and one hero/detail closeup. A short reactive/motion clip is optional only after the three stills exist.
+5. **Promote only approved renders to the portfolio** through the existing my-site sendoff-freeze exceptions. Website work today is bounded to render promotion, legibility/accessibility/contact/social-preview correctness, stale factual copy, and critical deployment issues — not redesign.
+
+**Explicitly parked until the showcase capture is safe:** Universe Foundry expansion, Faraway Mother integration work, Issue #51 engineering closure, Horizon Eater, new AI/tool research, broad worldbuilding, new Three.js toys, global site redesign, typography-system changes, and speculative refactors. An agent may touch one of these only if it is a direct blocker to today's sheep/render/site path.
+
 1. **Cut a clean session branch.** Run `python Tools/git_ok.py`; fetch current green `main`; create one scoped branch such as `feature/lookdev-melusinas-study-20260921` or `feature/world-melusinas-study-20260921`. Never author directly on `main`, and never start the session from a stale integration/recovery branch.
 2. **Freeze live-state movement while authoring.** One Unreal editor, one Monolith `:9316`, no background agent branch switching, no rebase/merge under an open editor. Clear LFS read-only flags before the first save. Any WC/PCG/Monolith spatial mutation runs `scene_context_cycle.begin()` / `end()`.
 3. **Build through canonical seams.** Worldbuilding = recipe/data + `Tools/world_compiler.py` + existing UE driver/PCG/material/Niagara consumers. Runtime colour/audio response stays on the existing presentation/MPC writer chain. Blender/GN source work is promoted deliberately through Melodia Studio; #256 remains a source lane until its SOURCE/LIVE promotion gates pass. No second compiler, MPC writer, Niagara framework, battle manager, save authority, or synchronization scheme.
