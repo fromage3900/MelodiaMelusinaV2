@@ -113,6 +113,9 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Wardrobe")
 	EMelodiaWardrobeSlot GetSlotForCosmetic(FName CosmeticId) const;
 
+	/** Slots the currently equipped set replaces (see FMelodiaCosmeticRecord::ReplacedSlots). */
+	TSet<EMelodiaWardrobeSlot> GetReplacedSlots() const;
+
 	/**
 	 * Union of HiddenBodyRegionIds across the CURRENTLY equipped set, resolved from
 	 * catalog records at call time (Nikki-translation §6 precompute tier).

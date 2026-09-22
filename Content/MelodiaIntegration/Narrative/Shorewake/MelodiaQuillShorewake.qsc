@@ -27,12 +27,12 @@
 $ Notify melodia:item:give:item.outfit.shorewake:1
 $ Notify melodia:stat:intent.shorewake.resonance:melodia_resonance:5
 $ Notify melodia:flag:flag.quest.shorewake_completed:true
-$ Notify melodia:flag:flag.sea_above.starskiff_ready:true
 
 - Sir Melodious
   The resonance holds! The Starskiff is anchored at the overlook mooring and ready for your command.
 
 $ Notify melodia:questcomplete:quest.shorewake.initiation:flag.quest.shorewake_completed:reward.shorewake_weave:intent.shorewake.complete:checkpoint.shorewake.complete
+$ Notify melodia:flag:flag.sea_above.starskiff_ready:true
 
 @ Finish
 

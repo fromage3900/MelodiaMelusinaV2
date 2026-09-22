@@ -224,10 +224,33 @@ bool UMelodiaWardrobeSubsystem::EquipCosmetic(const FName CosmeticId)
 	const EMelodiaWardrobeSlot Slot = Catalogued->Slot;
 
 	FMelodiaNarrativeRecord Record = Narrative->GetNarrativeRecord();
+
+	// Replacement is symmetric: this garment clears the slots it replaces, and any
+	// equipped garment that replaces this slot comes off.
+	const UMelodiaCosmeticCatalog* Catalog = GetCatalog();
+	TArray<EMelodiaWardrobeSlot> Cleared;
+	for (const TPair<EMelodiaWardrobeSlot, FName>& Pair : Record.EquippedCosmeticIds)
+	{
+		const FMelodiaCosmeticRecord* Equipped = Catalog ? Catalog->FindById(Pair.Value) : nullptr;
+		if (Pair.Key != Slot
+			&& (Catalogued->ReplacedSlots.Contains(Pair.Key) || (Equipped && Equipped->ReplacedSlots.Contains(Slot))))
+		{
+			Cleared.Add(Pair.Key);
+		}
+	}
+	for (const EMelodiaWardrobeSlot ClearedSlot : Cleared)
+	{
+		Record.EquippedCosmeticIds.Remove(ClearedSlot);
+	}
 	Record.EquippedCosmeticIds.Add(Slot, CosmeticId);
 	Narrative->RestoreNarrativeRecord(Record);
 
-	UE_LOG(LogTemp, Log, TEXT("MELODIA_WARDROBE equipped %s into slot %d."), *CosmeticId.ToString(), static_cast<int32>(Slot));
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_WARDROBE equipped %s into slot %d (cleared %d replaced slots)."),
+		*CosmeticId.ToString(), static_cast<int32>(Slot), Cleared.Num());
+	for (const EMelodiaWardrobeSlot ClearedSlot : Cleared)
+	{
+		OnWardrobeChanged.Broadcast(ClearedSlot, NAME_None);
+	}
 	OnWardrobeChanged.Broadcast(Slot, CosmeticId);
 	return true;
 }
@@ -405,6 +428,24 @@ EMelodiaWardrobeSlot UMelodiaWardrobeSubsystem::GetSlotForCosmetic(const FName C
 	}
 	const FMelodiaCosmeticRecord* Record = Catalog->FindById(CosmeticId);
 	return Record ? Record->Slot : EMelodiaWardrobeSlot::Body;
+}
+
+TSet<EMelodiaWardrobeSlot> UMelodiaWardrobeSubsystem::GetReplacedSlots() const
+{
+	TSet<EMelodiaWardrobeSlot> Replaced;
+	const UMelodiaCosmeticCatalog* Catalog = GetCatalog();
+	if (!Catalog || !Narrative)
+	{
+		return Replaced;
+	}
+	for (const TPair<EMelodiaWardrobeSlot, FName>& Pair : Narrative->GetNarrativeRecord().EquippedCosmeticIds)
+	{
+		if (const FMelodiaCosmeticRecord* Record = Catalog->FindById(Pair.Value))
+		{
+			Replaced.Append(Record->ReplacedSlots);
+		}
+	}
+	return Replaced;
 }
 
 FMelodiaCosmeticCompatibility UMelodiaWardrobeSubsystem::GetCosmeticCompatibility(const FName CosmeticId) const
@@ -683,6 +724,10 @@ bool UMelodiaWardrobeSubsystem::QueryTraversalCapability(
 	else if (CapabilityId == MelodiaTraversalCapability::Swim)
 	{
 		Capability = EMelodiaFormCapability::Swim;
+	}
+	else if (CapabilityId == MelodiaTraversalCapability::Sail)
+	{
+		Capability = EMelodiaFormCapability::Sail;
 	}
 	else
 	{
