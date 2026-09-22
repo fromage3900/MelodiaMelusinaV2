@@ -12,6 +12,8 @@
 - `Docs/Research/UE58_EXPLORATION_WORLD_BUILDING_RESEARCH_2026-08-29.md`
 - `Docs/RIDER_JUNIE_UNREAL_WORKFLOW_2026-08-28.md`
 
+This document is **HISTORICAL**. The extracted undated contract is [`Docs/WorldGen/WORLD_COMPILER_CONTRACT.md`](../WorldGen/WORLD_COMPILER_CONTRACT.md) (2026-09-17). Keep this file as a dated execution record; do not treat it as current status.
+
 This document is the **tomorrow-on-PC handoff**, not the full canonical Houdini bible. If this proves useful, extract the stable contracts into an undated canonical doc later. Keep this file as a dated execution record.
 
 ---

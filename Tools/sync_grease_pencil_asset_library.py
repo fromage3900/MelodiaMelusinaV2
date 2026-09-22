@@ -22,12 +22,15 @@ from pathlib import Path
 import bpy
 
 USER_LIB = Path(r"C:\Users\froma\OneDrive\Documents\Blender\Assets")
-PROJECT_LIB = Path(r"G:\EnvironmentPortfolio\BS_GodFile\Assets\GreasePencil")
+_REPO_ROOT = Path(r"C:\EnvironmentPortfolio\BS_GodFile")
+_G_PROJECT = Path(r"G:\EnvironmentPortfolio\BS_GodFile\Assets\GreasePencil")
+# G: is the removable USB drive; its BS_GodFile tree is usually absent -> fall back
+# to the repo-local (gitignored) Assets/GreasePencil so the sync never litters G:.
+PROJECT_LIB = _G_PROJECT if _G_PROJECT.parent.exists() else _REPO_ROOT / "Assets" / "GreasePencil"
+_G_AUDIT = Path(r"G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\grease_pencil_asset_inventory.json")
+AUDIT = _G_AUDIT if _G_AUDIT.parent.exists() else _REPO_ROOT / "Saved" / "Audit" / "grease_pencil_asset_inventory.json"
 ESSENTIALS_SRC = Path(
-    r"C:\Program Files\Blender Foundation\Blender 5.1\5.1\datafiles\assets\brushes"
-)
-AUDIT = Path(
-    r"G:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\grease_pencil_asset_inventory.json"
+    r"C:\Program Files\Blender Foundation\Blender 5.2\5.2\datafiles\assets\brushes"
 )
 
 GP_BLENDS = [

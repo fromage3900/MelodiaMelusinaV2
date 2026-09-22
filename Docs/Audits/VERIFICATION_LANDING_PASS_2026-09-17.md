@@ -66,3 +66,17 @@ Heatmap tooling: scripts in Content/Python + Tools/PCG + Figma UI heatmap textur
 ## Phase E
 
 Docs/Audits trackable copies created. my-site evidence branch push attempted in same pass.
+
+## Final landing proof (ET, pass close)
+
+| Landing | Branch | Remote SHA | Verdict |
+|---------|--------|------------|---------|
+| my-site heroes | `evidence/melusina-morning-heroes-2026-09-17` | `99b0cf8089242559083d29370cff2e201f272dd0` | **REMOTE-BRANCH** (not main; staged-only) |
+| Melodia audits (prefer) | `docs/melusina-morning-audits-2026-09-17` | `89588d619fc4b66a0214ec74187661f7b0f94e9d` | **REMOTE docs-only** (7 files) |
+| Melodia fat hazard | `cleanup/pbr-twin-landing-2026-09-10` | `38b5d964805dfbcd6a3a96a6232c3c30c7d1bdf7` | **DO NOT treat as docs PR** (Content + audits) |
+| Saved/ SemesterEvidence | gitignored | n/a | **LOCAL-ONLY** |
+| TD canon | `main` local `a1ad774` / origin `d739833` | ahead 5 | **LOCAL ahead, not pushed this pass** |
+
+PR links:
+- https://github.com/fromage3900/my-site/pull/new/evidence/melusina-morning-heroes-2026-09-17
+- https://github.com/fromage3900/MelodiaMelusinaV2/pull/new/docs/melusina-morning-audits-2026-09-17

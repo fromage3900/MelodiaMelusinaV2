@@ -1,4 +1,11 @@
-# SEM 5 Timetable & Key Dates — Fall 2026 (verified 2026-09-08 ~23:00 EDT)
+# SEM 5 Timetable & Key Dates — Fall 2026 (DegreeWorks refresh 2026-09-21; prior Banner read 2026-09-09)
+
+## DegreeWorks 2026-09-21 (user's signed-in Chrome, read by agent — freshest truth)
+- Data refreshed 09/21/2026 2:17 AM; audit date 09/11/2026 (audit lags refresh — a Banner add after Sep 11 needs Process New Audit to appear).
+- Program Animation - 3D · Class Semester 4 · 78% · 29 of 37 courses · 8 still needed.
+- IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9.
+- STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ANMN 306 Capstone 1 · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
+- ⚠️ Vs Sep 9 Banner (which showed 302 registered): DegreeWorks In-progress has NO 302. Either dropped or audit-stale — confirm in Banner Active Registrations before acting on 302.
 
 ## Enrolled courses (source: Blackboard Ultra learn.humber.ca, term 202670, live read tonight)
 

@@ -32,26 +32,33 @@ def resolve_reference(value, tokens):
         return current
     return value
 
-def flatten_tokens(tokens, prefix=""):
-    """Flatten nested token structure to dot-notation keys"""
+def flatten_tokens(node, prefix="", root=None):
+    """Flatten nested token structure to dot-notation keys.
+
+    Always resolve {ref} paths against the document root so semantic tokens
+    can alias primitives (e.g. {primitives.ivory.100}).
+    """
+    if root is None:
+        root = node
     flat = {}
-    
-    for key, value in tokens.items():
+
+    for key, value in node.items():
+        if key.startswith("\$"):
+            continue
         full_key = f"{prefix}.{key}" if prefix else key
-        
+
         if isinstance(value, dict):
-            # Check if this is a token with value/type
             if "value" in value and "type" in value:
                 flat[full_key] = {
-                    "value": resolve_reference(value["value"], tokens),
+                    "value": resolve_reference(value["value"], root),
                     "type": value["type"],
                     "description": value.get("description", "")
                 }
             else:
-                # Recurse into nested structure
-                flat.update(flatten_tokens(value, full_key))
-    
+                flat.update(flatten_tokens(value, full_key, root))
+
     return flat
+
 
 def generate_ue_structure(flat_tokens):
     """Convert flattened tokens to UE-friendly structure"""

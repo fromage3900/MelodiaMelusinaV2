@@ -4,7 +4,7 @@
 
 ## Logline
 > _Example: "A lonely lighthouse keeper trades light for music to guide a lost airship."_
-Your logline: _______________________________________________
+Your logline: "At a sleeping starskiff mooring, Melusina trades her lantern light for music to wake the shore and open the route."
 
 ## Asset List
 | # | Asset | Type | Poly budget | Status | Owner | File name |
@@ -25,8 +25,11 @@ Your logline: _______________________________________________
 ## Shots (for Capstone 1 → 2)
 | Shot | Duration | Action | Needs |
 |---|---|---|---|
-| S01 | 5s | Establishing |  |
-| S02 | 8s | Hero acting |  |
-| S03 | 7s | Climax |  |
+| S01 | 5s | Mooring wide, asleep | Sea Above set, skiff, reef |
+| S02 | 4s | Melusina at rail | Hero acting |
+| S03 | 7s | Lantern fails, lyre out | Lantern prop, lyre prop |
+| S04 | 8s | Two phrases, reef wakes | Reef bells, water answer |
+| S05 | 7s | Skiff wakes, boarding | Skiff, rope, push-off |
+| S06 | 10s | Crossing + shore opens | Wide route, far shore glow |
 
 Fill this and your Capstone 1 schedule locks (see Tracker.xlsx Capstone sheet).

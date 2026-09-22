@@ -1,4 +1,4 @@
-﻿# Receipt - Nikki leftover validate + HeightBlend reparent list - 2026-09-09
+# Receipt - Nikki leftover validate + HeightBlend reparent list - 2026-09-09
 
 **Status:** VALIDATE PASS + parent lists FILLED (exact soft-paths)  
 **Owner lane:** Melodia study bot (docs / #158) · **Live fill:** New Bot 2026-09-09  
@@ -81,3 +81,11 @@ Prior audit "19/37" is superseded by this live registry dump.
 - Agents: validate / list only — never `save_packages` / `recompile_material`.
 - Owner Ctrl+S for intentional saves.
 - One concern per PR off **main**.
+
+---
+
+## Delta — 2026-09-17 ~17:45 ET (docs stamp)
+
+- Live `validate_material` on Nikki authority: **0 hard** (cleared vs earlier 1 hard at ~14:52). Warnings remain (~152). **Owner Ctrl+S** still owed on dirty packages before disk SHIP claim.
+- HeightBlend live parent census: **27** MIs (New Bot 14:52 + 17:45). Sep 9 §D SSOT remains **28** (includes SCRATCH). Morning **35** retired.
+- #158 leftover ownership unchanged; Enhanced SDF stays QUARANTINE (orthogonal).

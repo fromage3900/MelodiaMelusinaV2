@@ -55,3 +55,26 @@ in daily briefs except the two live dates (Sep 14 / Oct 9).
 - [ ] OpenAI Codex Student + GitHub Education pack — same login pattern, same night
 - [ ] Payment/SAFA verification of the "3 credits" + Fall scholarship application
 - [ ] Capstone logline + shot rows in Capstone_Walkthrough_AssetList.md
+- [x] Capstone logline + shots S01-S06 (locked in file; tracker marked LOCKED 2026-09-17)
+
+---
+## 2026-09-22 late session (DegreeWorks live read + WRIT 200 draft)
+VERIFIED (user's signed-in Chrome, DegreeWorks WEB31, agent-read):
+- Data refreshed 09/21/2026; audit date 09/11/2026 (audit lags — Banner adds after Sep 11 need Process New Audit).
+- Animation-3D · Semester 4 · 78% · 29/37 courses · 8 still needed.
+- IN-PROGRESS Fall 2026: 301, 304, 305, 309 (309 LANDED since Sep 9).
+- STILL NEEDED: 302 3D Art 5 · 306 Capstone 1 · WRIT 200 · ANMN 254 · GNED attr · 351/354/355.
+- 302 DISCREPANCY: Banner Sep 9 showed 302 registered (CRN 6365); DegreeWorks In-progress has no 302. Re-check Banner Active Registrations before acting.
+- 306 NOT yet in DegreeWorks In-progress (capstone Blackboard sync still pending and/or audit-stale).
+- Timetable stamped: SEM5_TIMETABLE_2026-09.md got a DegreeWorks 09-21 section (top).
+WRIT 200 REQUEST (drafted, NEVER sent):
+- File: Humber_FinalYear_Prep/WRIT200_Add_Request_DRAFT_2026-09-22.md (late-add framing, Sep 14 passed; includes 302/306 + part-time/OSAP flags).
+- Gmail attempt: harness browser has NO Google session (sign-in wall verified); vault EMPTY; no gws CLI. Compose opened in USER's Gmail (personal) with To=anmn@humber.ca typed; Subject/Body NOT typed (owner denied the type step); Ctrl+S never run — check Drafts (was 29) for stray/duplicate before redoing.
+WORKSPACE OAUTH (not done): google-workspace skill loaded; --check=NOT_AUTHENTICATED; triage answered (Full Workspace, no Adv Protection); Downloads + machine swept — no client-secret/token to reuse. Next: owner supplies client-secret JSON path, OR agent drives console clicks leaving owner only Allow+paste (offered, awaiting word).
+NEXT SESSION FIRST MOVES: 1) confirm 302 in Banner Active Registrations; 2) Process New Audit in DegreeWorks for 306; 3) finish/send WRIT 200 draft; 4) resume OAuth only if owner re-asks.
+
+## 2026-09-22 disk session (banked, NOT finished)
+- C: 21.7 → 21.5 free (live UE+Blender+Chrome drank back nearly all gains). D: 122, G: 86 free.
+- DONE: Downloads 3.63 GB moved to D:\downloads (verified, folder rebuilt); Rider rolled logs 0.22; uv cache 1.1 (90k files).
+- ALREADY GONE: Twinmotion2026.1 + DuetNightAbyss (only stale Epic manifests remain) — option 2 paid 0.
+- BANKED FOR EDITOR-CLOSED PASS: UE shader cache 26.5 GB (LocalAppData\UnrealEngine — hands off while open); Rider resharper-host 5.3 GB (stale since Jul, reindex cost); Rider acp-agents 2.6 GB (ask first). pagefile confirmed capped 8 GB. Skill windows-disk-sweep patched with these targets.

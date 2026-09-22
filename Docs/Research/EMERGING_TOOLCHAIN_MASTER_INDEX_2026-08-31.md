@@ -100,6 +100,13 @@ that does not validate is not UE-ready; a new lane schema without a converter is
 defect. Contract: `Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`. Evidence:
 `Saved/Audit/terrain_handoffs/`.
 
+**5d. Melodia World Compiler (added 2026-09-17):** a deterministic offline compiler
+(`Tools/world_compiler.py`) that turns a recipe into a validated bundle (points, dressing,
+signal bindings, chapter scaffolding). UE lane is `Content/Python/world_compiler_ue.py`
+(never imported by the compiler). Contract: `Docs/WorldGen/WORLD_COMPILER_CONTRACT.md`.
+Morning proof: `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-17.json`.
+The 08-30 scaffold is HISTORICAL; this is the extracted undated contract.
+
 ## 6. Houdini execution plan (executable, reviewed)
 
 `Docs/Houdini/MARA_P0_P3_HOUDINI_EXECUTION_PLAN_2026-08-29.md` — Mara + P0–P3. HDA families:

@@ -56,3 +56,11 @@ Full map: [LABEL_MAP_2026-09-09.md](LABEL_MAP_2026-09-09.md). Process: label →
 
 
 
+
+
+## Cross-links (2026-09-17)
+
+- Nikki-style PCG/terrain/heatmap: `Saved/Audit/NIKKI_STYLE_PCG_TERRAIN_HEATMAP_AUDIT_2026-09-17.md`
+- TD render pipeline: `Saved/Audit/TD_RENDER_PIPELINE_AUDIT_2026-09-17.md`
+- Melusina Morning curated: `Saved/SemesterEvidence/2026-W38/MelusinaMorning_VFX/2026-09-17/`
+

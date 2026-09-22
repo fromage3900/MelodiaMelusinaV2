@@ -4,7 +4,7 @@
 
 | Phase | Milestone | Due | Status | Notes |
 |---|---|---|---|---|
-| Pre-prod | Story / logline + beat board | Sem5 Wk1-2 | ☐ | Keep to 60-90 sec |
+| Pre-prod | Story / logline + beat board | Sem5 Wk1-2 | LOCKED 2026-09-17 | Shorewake Calling, 60-90s, board in Humber_FinalYear_Prep/ANMN301_Animatic/SHOREWAKE_BEAT_BOARD.md |
 | Pre-prod | Animatic + sound scratch | Sem5 Wk3-4 | ☐ | Get faculty sign-off |
 | Pre-prod | Asset list + schedule locked | Sem5 Wk4 | ☐ | Model/rig/texture owners |
 | Production | Blocked animation (stepped) | Sem5 Wk6-8 | ☐ | Dailies every Friday |

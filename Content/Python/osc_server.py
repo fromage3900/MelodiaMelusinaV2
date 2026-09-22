@@ -347,10 +347,34 @@ def _handle_burst(address: str, values: list):
 
 
 def _handle_wind(address: str, values: list):
-    """Handle /niagara/wind (vec3)."""
+    """Handle /niagara/wind and /melodia/wind (vec3).
+
+    Canonical destination is the palette wind lane pair (WindDirX/WindDirY +
+    WindStrength), per the 2026-09-16 Muse brief P4: publish the whole vector
+    and let the mesh response read a real direction.
+
+    The old body wrote `abs(vals[0])` only, so a -X gust and a +X gust were
+    indistinguishable and Y was discarded outright. The direction is now
+    normalized-XY + magnitude, guarded against a near-zero vector before the
+    divide. The SakuraDream write is retained for the older EnvSandbox
+    consumers that still sample that collection; it is not the flower-field
+    authority.
+    """
     vals = [float(v) for v in values[:3]]
-    if len(vals) >= 1:
-        _set_mpc_scalar("SakuraDream", "WindStrength", abs(vals[0]))
+    if not vals:
+        return
+    x = vals[0]
+    y = vals[1] if len(vals) > 1 else 0.0
+    z = vals[2] if len(vals) > 2 else 0.0
+
+    strength = (x * x + y * y + z * z) ** 0.5
+    if strength > 1e-6:
+        _set_mpc_scalar("PortfolioAudio", "WindDirX", x / strength)
+        _set_mpc_scalar("PortfolioAudio", "WindDirY", y / strength)
+    _set_mpc_scalar("PortfolioAudio", "WindStrength", strength)
+
+    # Legacy lane (MPC_SakuraDream) -- kept, semantics unchanged.
+    _set_mpc_scalar("SakuraDream", "WindStrength", abs(x))
 
 
 def _handle_fabric(address: str, values: list):
@@ -405,6 +429,7 @@ _ROUTES = {
     "/niagara/mote/rate":       _handle_mote_rate,
     "/niagara/burst":           _handle_burst,
     "/niagara/wind":            _handle_wind,
+    "/melodia/wind":            _handle_wind,
     "/time/cycle":              _handle_day_night,
     "/time/beat":               _handle_beat,
     "/melodia/audio/bass":      _handle_melodia_audio,
@@ -470,8 +495,21 @@ def start_bridge(port: int = OSC_LISTEN_PORT):
     return True
 
 
-def stop_bridge():
-    """Stop the OSC bridge."""
+def stop_bridge() -> None:
+    """Stop the OSC bridge.
+
+    DANGER -- read before calling this from a Monolith run_python / editor
+    console: on 2026-09-17 02:51 UTC, calling this while the editor was up
+    triggered a fatal engine assert 20 ms later and killed the editor session:
+
+        Assertion failed: bWasFound
+        SlateApplication.cpp:3315  FSlateApplication::GeneratePathToWidgetChecked
+
+    `_stop_tick()` below calls unreal.unregister_slate_post_tick_callback, and
+    the engine check() it trips is NOT a Python exception -- the try/except in
+    `_stop_tick` cannot suppress it, and no unsaved package survives the process
+    death. Prefer leaving the bridge running, or stop it by closing the editor.
+    """
     global _server_running
     _server_running = False
     _stop_tick()

@@ -112,7 +112,8 @@ from . import garment_smart_bevel  # noqa: F401 - recovered 2026-09-11 (was live
 from . import garment_trim_uv  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import garment_vertex_ao  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import gold_light_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
-from . import melusina_house_foundation  # noqa: F401 - recovered 2026-09-11 (was live-only)
+
+from . import garment_ribbon  # noqa: F401 - garment ribbon trail bands (catenary sag + harmonic wave)from . import melusina_house_foundation  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import music_euro_remainder  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import musical_mesh_variants  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import nikki_advanced_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
@@ -121,6 +122,13 @@ from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only
 from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import eyewear  # noqa: F401 - Eyewear: CAD-level frame front from ISO 8624 boxing measurements
+from . import cute_decor  # noqa: F401 - Cute decor: 14 charm/dangle/tassel builders (laptop lane 2026-09-17)
+from . import sheep_bell  # noqa: F401 - Choral Sheep collar bell (whimsical AAA sheep lane)
+from . import escher_decor  # noqa: F401 - Escher math decor: hyperbolic window, Penrose, Mobius, tessellation
+from . import study_ground  # noqa: F401 - MEL_study_ground audio-reactive ground plane
+from . import audio_architecture  # noqa: F401 - MEL_audio_facade + MEL_audio_landscape
+from . import reaver_wings  # noqa: F401 - CosmicReaver parametric wing family (spar/membrane/dangles)
+from . import angel_wings  # noqa: F401 - parametric angel feather wings (row + pair)
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 

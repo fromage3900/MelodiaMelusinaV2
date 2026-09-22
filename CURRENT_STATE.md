@@ -19,6 +19,8 @@ Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-0
 
 **Eyelash MI 2026-09-22 (owner-ordered, saved):** `MI_Melusina_Eyelash` created from `M_Master_Toon_Character` with one override (`BaseTint` near-black); both `SM_R_Eyelash` slots (794 + 830 tris) repointed from the FBX-import placeholder materials to it. Saved packages verified, dirty 0. Still owed: socket to `head_x`, portfolio + runtime staging, blink-drive proof.
 
+**Iris sparkle+ORM 2026-09-22 (owner-ordered, saved):** both toon masters have zero Flipbook/SubUV nodes (graph-read), so the flipbook-atlas bind was cut per plan; fallback shipped instead. `MI_Melusina_IRISFRONT_001` (V2 body slot 4) + `MI_Staging_Iris` (staging discs): twinkle scalars on (`SparkleIntensity` 0.3, `TwinkleSpeed` 1.5, `Threshold` 0.65, `Contrast` 1.0, `DriftSpeed` 0.08; first pass at 0.6/0.35 rendered full-noise, retuned after preview proof). IRISFRONT `RoughnessMap`/`MetallicMap`/`EmissiveMap` off `T_Neutral_*` onto the real `Material020` iris maps. No packed iris ORM exists anywhere on disk, and no `T_Iris` rough/metal family exists, so remaining ORM slots stay neutral (stated, not silently promoted). Preview stills `Saved/Screenshots/Monolith/20260922_0036{31,51}_MI_*.png`; both packages saved, dirty 0. Motion (twinkle drift) is runtime-only; stills prove the starry state, not the animation.
+
 ---
 
 ## 1. What the game is
