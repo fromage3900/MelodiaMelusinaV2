@@ -29,9 +29,9 @@
 // ---------------------------------------------------------------------------
 // Save-schema migration (Decision 013)
 //
-// This is the highest-value test in the file. RestoreNarrativeRecord RESETS any
-// record it cannot migrate, so a broken migration path silently destroys player
-// saves rather than failing loudly.
+// This is the highest-value test in the file. RestoreNarrativeRecord must refuse
+// any record it cannot migrate without mutating the currently running canonical
+// record, so a broken migration path fails closed instead of destroying history.
 // ---------------------------------------------------------------------------
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(
@@ -154,6 +154,118 @@ bool FMelodiaNarrativeRecordDefaultsTest::RunTest(const FString& Parameters)
 	TestTrue(
 		TEXT("Every version below CurrentVersion has a migration path"),
 		UMelodiaNarrativeSubsystem::MigrateRecord(Previous));
+
+	return true;
+}
+
+// ---------------------------------------------------------------------------
+// Restore atomicity + repeat-load idempotency (Issue #51)
+//
+// These stay world-free on purpose. They pin the canonical record transaction
+// itself; PIE/restart/package evidence is still required for derived rebuilds.
+// ---------------------------------------------------------------------------
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaNarrativeRestoreAtomicityTest,
+	"Melodia.Integration.NarrativeRecord.RestoreAtomicity",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaNarrativeRestoreAtomicityTest::RunTest(const FString& Parameters)
+{
+	UGameInstance* OwningGameInstance = NewObject<UGameInstance>(GetTransientPackage());
+	UMelodiaNarrativeSubsystem* Subsystem = NewObject<UMelodiaNarrativeSubsystem>(OwningGameInstance);
+
+	FMelodiaNarrativeRecord Existing;
+	Existing.Flags.Add(TEXT("flag.existing_progress"), true);
+	Existing.ConsumedIntentIds.Add(TEXT("intent.existing_progress"));
+	Existing.SocialStats.Add(TEXT("melodia_harmony"), 3);
+	Existing.OwnedCosmeticIds.Add(TEXT("Cos_Accessories_MelusinaV2"));
+	Existing.EquippedCosmeticIds.Add(
+		EMelodiaWardrobeSlot::Accessories,
+		TEXT("Cos_Accessories_MelusinaV2"));
+
+	TestTrue(TEXT("Baseline canonical record restores"), Subsystem->RestoreNarrativeRecord(Existing));
+
+	FMelodiaNarrativeRecord Incompatible;
+	Incompatible.Version = FMelodiaNarrativeRecord::CurrentVersion + 1;
+	Incompatible.Flags.Add(TEXT("flag.must_not_commit"), true);
+	Incompatible.SocialStats.Add(TEXT("melodia_harmony"), 999);
+
+	TestFalse(TEXT("Future record is refused"), Subsystem->RestoreNarrativeRecord(Incompatible));
+
+	const FMelodiaNarrativeRecord After = Subsystem->GetNarrativeRecord();
+	TestEqual(TEXT("Refused restore preserves version"), After.Version, Existing.Version);
+	TestTrue(TEXT("Refused restore preserves existing flag"), After.Flags.FindRef(TEXT("flag.existing_progress")));
+	TestFalse(TEXT("Refused restore does not commit candidate flag"), After.Flags.Contains(TEXT("flag.must_not_commit")));
+	TestTrue(TEXT("Refused restore preserves consumed intent"),
+		After.ConsumedIntentIds.Contains(TEXT("intent.existing_progress")));
+	TestEqual(TEXT("Refused restore preserves social stat"),
+		After.SocialStats.FindRef(TEXT("melodia_harmony")), 3);
+	TestTrue(TEXT("Refused restore preserves wardrobe ownership"),
+		After.OwnedCosmeticIds.Contains(TEXT("Cos_Accessories_MelusinaV2")));
+	TestEqual(TEXT("Refused restore preserves equipped accessory"),
+		After.EquippedCosmeticIds.FindRef(EMelodiaWardrobeSlot::Accessories),
+		FName(TEXT("Cos_Accessories_MelusinaV2")));
+
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaNarrativeRepeatRestoreTest,
+	"Melodia.Integration.NarrativeRecord.RepeatRestoreIdempotent",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaNarrativeRepeatRestoreTest::RunTest(const FString& Parameters)
+{
+	UGameInstance* OwningGameInstance = NewObject<UGameInstance>(GetTransientPackage());
+	UMelodiaNarrativeSubsystem* Subsystem = NewObject<UMelodiaNarrativeSubsystem>(OwningGameInstance);
+
+	FMelodiaNarrativeRecord Candidate;
+	Candidate.Flags.Add(TEXT("challenge.first_resonance_echo.completed"), true);
+	Candidate.Flags.Add(TEXT("flag.sea_above.starskiff_ready"), true);
+	Candidate.ConsumedIntentIds.Add(TEXT("intent.challenge.first_resonance_echo.complete"));
+	Candidate.ConsumedRewardIds.Add(TEXT("reward.first_resonance_echo"));
+	Candidate.OwnedCosmeticIds.Add(TEXT("Cos_Accessories_MelusinaV2"));
+	Candidate.EquippedCosmeticIds.Add(
+		EMelodiaWardrobeSlot::Accessories,
+		TEXT("Cos_Accessories_MelusinaV2"));
+	Candidate.SocialStats.Add(TEXT("melodia_harmony"), 5);
+	Candidate.SpawnContext.Add(TEXT("LV_SeaAbove_Prototype"), TEXT("StarskiffMooring"));
+	Candidate.LastEncounterId = TEXT("encounter.first_dream");
+	Candidate.LastEncounterCommandId = TEXT("command.first_dream.harmony");
+	Candidate.LastEncounterOutcome = EMelodiaBattleResult::Victory;
+
+	TestTrue(TEXT("First restore succeeds"), Subsystem->RestoreNarrativeRecord(Candidate));
+	const FMelodiaNarrativeRecord First = Subsystem->GetNarrativeRecord();
+
+	TestTrue(TEXT("Second restore of same candidate succeeds"), Subsystem->RestoreNarrativeRecord(Candidate));
+	const FMelodiaNarrativeRecord Second = Subsystem->GetNarrativeRecord();
+
+	TestEqual(TEXT("Repeat restore keeps flag count stable"), Second.Flags.Num(), First.Flags.Num());
+	TestEqual(TEXT("Repeat restore keeps intent count stable"), Second.ConsumedIntentIds.Num(), First.ConsumedIntentIds.Num());
+	TestEqual(TEXT("Repeat restore keeps reward count stable"), Second.ConsumedRewardIds.Num(), First.ConsumedRewardIds.Num());
+	TestEqual(TEXT("Repeat restore keeps owned-cosmetic count stable"), Second.OwnedCosmeticIds.Num(), First.OwnedCosmeticIds.Num());
+	TestEqual(TEXT("Repeat restore keeps equipped-slot count stable"), Second.EquippedCosmeticIds.Num(), First.EquippedCosmeticIds.Num());
+	TestEqual(TEXT("Repeat restore keeps social-stat count stable"), Second.SocialStats.Num(), First.SocialStats.Num());
+	TestEqual(TEXT("Repeat restore keeps spawn-context count stable"), Second.SpawnContext.Num(), First.SpawnContext.Num());
+
+	TestTrue(TEXT("Convergence challenge fact survives repeat restore"),
+		Second.Flags.FindRef(TEXT("challenge.first_resonance_echo.completed")));
+	TestTrue(TEXT("Starskiff readiness fact survives repeat restore"),
+		Second.Flags.FindRef(TEXT("flag.sea_above.starskiff_ready")));
+	TestTrue(TEXT("Consumed intent remains singular"),
+		Second.ConsumedIntentIds.Contains(TEXT("intent.challenge.first_resonance_echo.complete")));
+	TestTrue(TEXT("Consumed reward remains singular"),
+		Second.ConsumedRewardIds.Contains(TEXT("reward.first_resonance_echo")));
+	TestEqual(TEXT("Equipped accessory is unchanged"),
+		Second.EquippedCosmeticIds.FindRef(EMelodiaWardrobeSlot::Accessories),
+		FName(TEXT("Cos_Accessories_MelusinaV2")));
+	TestEqual(TEXT("Harmony is unchanged"), Second.SocialStats.FindRef(TEXT("melodia_harmony")), 5);
+	TestEqual(TEXT("Starskiff spawn context is unchanged"),
+		Second.SpawnContext.FindRef(TEXT("LV_SeaAbove_Prototype")),
+		FName(TEXT("StarskiffMooring")));
+	TestEqual(TEXT("Encounter receipt is unchanged"), Second.LastEncounterId, Candidate.LastEncounterId);
+	TestEqual(TEXT("Encounter result is unchanged"), Second.LastEncounterOutcome, EMelodiaBattleResult::Victory);
 
 	return true;
 }
