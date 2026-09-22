@@ -43,6 +43,10 @@ Pass means the node is writing. The silhouette is still **73 two-bone strands**.
 
 **Same build — jump/glide input:** grounded Jump on press, `StopJumping` on release so `JumpMaxHoldTime` can hold, no next-tick stop, no `MaxWalkSpeed` zero on that path; while falling, held jump requests Glide once (`bAwaitingGlideTap` removed). Feel pass stays the owner's.
 
+**Closeout commit (local, not pushed):** `19fa3bab7`. Handoff: [`Docs/Handoffs/MELUSINA_HAIR_JUMP_CLOSEOUT_2026-09-22.md`](Docs/Handoffs/MELUSINA_HAIR_JUMP_CLOSEOUT_2026-09-22.md).
+
+**Tonight / next (not this commit):** eye the Morning still for seat; re-read `bBoneSubdivisionCollisionOnly` live (disk ABP still reported `true` on reopen); multi-segment hair re-rig for real flow; owner jump feel; root-motion locomotion re-export; cornea / fingers / environment. Do not retune Kawaii to fake curvature.
+
 ---
 
 ## 1. What the game is
