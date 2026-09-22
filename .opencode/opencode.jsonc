@@ -1,11 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  // Ponytail UE5.8 (installed 2026-08-28 from git: github.com/prielgaier/ponytail-ue58,
-  // vendored read-only at Tools/vendor/ponytail-ue58, MIT). Injects the "lazy Unreal
-  // senior" ruleset (Tools/vendor/ponytail-ue58/AGENTS.md) every turn and adds the
-  // /ponytail, /ponytail-review, /ponytail-audit commands. The .mjs resolves its
-  // hooks/ and skills/ relative to its own file, so the vendor path works as-is.
+  // CANONICAL RIDER ENGINEERING COCKPIT: Ponytail UE5.8 is the project UE-agent
+  // discipline layer for OpenCode-in-Rider. The checkout is machine-local at
+  // Tools/vendor/ponytail-ue58 (ignored by Tools/*); verify/rehydrate it with
+  // deploy/verify_rider_cockpit.ps1 [-InstallPonytail]. It injects the UE-aware
+  // "lazy senior" ruleset and /ponytail, /ponytail-review, /ponytail-audit commands.
+  // AGENTS.md / CURRENT_STATE.md / subsystem contracts still outrank vendor rules.
   "plugin": ["./Tools/vendor/ponytail-ue58/.opencode/plugins/ponytail.mjs"],
 
   // Default model (set 2026-08-14). Qwen3 Coder Next on bedrock-mantle: coder-tuned,
@@ -88,7 +89,7 @@
   "agent": {
     "build": {
       "mode": "primary",
-      "description": "First Dream P0 build -- B3/B4/B7 rhythm-battle grade + ledger evidence",
+      "description": "Canonical Melodia Rider/Ponytail engineering executor. Stay on the assigned branch; no switch/merge/rebase/reset/clean/commit unless explicitly authorized. Use existing owners, Qodana, UBT, RiderLink and UE evidence.",
       "permission": {
         "edit": "ask",
         "bash": "allow"
@@ -96,7 +97,7 @@
     },
     "plan": {
       "mode": "primary",
-      "description": "Readonly planning / review for First Dream closeout",
+      "description": "Readonly Rider/Ponytail planning and review. Inspect reflected/Blueprint ownership first; use Jev for bounded judgment when needed; do not mutate Git branch or Unreal state.",
       "permission": {
         "edit": "deny",
         "bash": "ask"
@@ -105,13 +106,13 @@
   },
 
   "mcp": {
-    // Rider hot for UE import tonight — one Editor on 9316, Blender Surreal on 9317.
+    // Canonical editor bridge: exactly one Unreal Editor / one Monolith writer on 9316.
     "monolith": {
       "type": "remote",
       "url": "http://127.0.0.1:9316/mcp",
       "enabled": true
     },
-    // Blender SurrealArch MCP — enabled for musical kit v2 + Gaea tonight.
+    // Blender MCP remains a DCC companion surface; it does not gain Unreal/editor authority.
     "blender-mcp": {
       "type": "remote",
       "url": "http://127.0.0.1:9317",
