@@ -37,7 +37,7 @@ class Suite:
 
 
 SUITES = (
-    Suite("Prototypes/EchoReflex/test_echo_reflex.py", re.compile(r"Ran\\s+11 tests.*\\bOK\\b", re.S)),
+    Suite("Prototypes/EchoReflex/test_echo_reflex.py", re.compile(r"Ran\s+11 tests.*\bOK\b", re.S)),
     Suite("Tools/test_echo_contract.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_t3d_safe_wire.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_t3d_request_contract.py", re.compile(r"validated T3D request schema")),
