@@ -1,0 +1,70 @@
+{
+  "schema": "melodia.world_genome/v1",
+  "world_id": "faraway_mother",
+  "seed": 3900,
+  "level_path": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+  "identity": {
+    "root_pitch_class": 2,
+    "mode": "dorian",
+    "bpm": 72,
+    "beats_per_bar": 6,
+    "motif_id": "faraway_mother_lament",
+    "emotional_arc": [
+      "grief",
+      "curiosity"
+    ]
+  },
+  "spatial": {
+    "bounds_uu": [
+      -400000,
+      -400000,
+      400000,
+      400000
+    ],
+    "field_basis": {
+      "type": "chladni",
+      "mode_n": 3,
+      "mode_m": 5
+    }
+  },
+  "content": {
+    "pcg_manifest": "specs/pcg/faraway_mother_pcg_manifest.v1.json",
+    "world_compiler_recipe": null,
+    "resonance_integration_spec": "Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md",
+    "heart_gate_challenge": "challenge.mother_heart_gate",
+    "heart_gate_reward": "reward.wardrobe.mother_velvet_mantle"
+  },
+  "decision_points": [
+    {
+      "id": "hero_resolution_visual",
+      "question": "Which authored presentation strategy best expresses the Heart Gate resolution without changing gameplay truth?",
+      "candidates": [
+        "SILK_BLOOM",
+        "PEARL_RELEASE",
+        "LACE_AFTERIMAGE",
+        "HOLD"
+      ]
+    },
+    {
+      "id": "post_resolution_ecology_emphasis",
+      "question": "Which authored ecology emphasis should be promoted after a resolved seam when the game-save export permits it?",
+      "candidates": [
+        "PEARL_MOTHS",
+        "BROCADE_FLOWERS",
+        "SILK_VINES",
+        "HOLD"
+      ]
+    }
+  ],
+  "acceptance": {
+    "required_proofs": [
+      "deterministic_mission_recompile",
+      "real_hython_static_field_manifest",
+      "td_world_field_replay",
+      "td_field_received_and_world_aligned_in_ue",
+      "fabric_niagara_heart_gate_share_one_field",
+      "td_disconnected_gameplay_still_functions",
+      "one_exported_player_delta_survives_destroy_and_regenerate"
+    ]
+  }
+}

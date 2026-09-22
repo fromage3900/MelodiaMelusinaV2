@@ -55,6 +55,7 @@ SUITES = (
     Suite("Tools/test_art_gates_authority.py", re.compile(r"Ran\s+4 tests.*\bOK\b", re.S)),
     Suite("Tools/test_artdrop_archive.py", re.compile(r"Ran\s+3 tests.*\bOK\b", re.S)),
     Suite("Tools/test_faraway_mother_pcg.py", re.compile(r"Ran\s+5 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_universe_foundry.py", re.compile(r"Ran\s+7 tests.*\bOK\b", re.S)),
     Suite("Tools/test_optical_lod_lookdev.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_melodia_package_launch_contract.py", re.compile(r"validated Melusina package-launch montage contract")),
     Suite("Tools/test_mcp_policy.py", re.compile(r"mcp-policy-tests:\s+\d+/\d+ passed")),
@@ -69,7 +70,7 @@ SUITES = (
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 28
+MINIMUM_SUITE_COUNT = 29
 
 # These suites are self-contained in a Git checkout. The remaining suites
 # require Perforce-synced content, materialized LFS binaries, ignored local MCP
@@ -93,6 +94,7 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Tools/test_art_gates_authority.py",
         "Tools/test_artdrop_archive.py",
         "Tools/test_faraway_mother_pcg.py",
+        "Tools/test_universe_foundry.py",
         "Tools/test_mcp_policy.py",
         "Tools/test_evidence_envelope.py",
         "Tools/test_ollama_health.py",
@@ -101,7 +103,7 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Docs/T3D_Baseline/test_canonical.py",
     }
 )
-MINIMUM_OFFLINE_SUITE_COUNT = 22
+MINIMUM_OFFLINE_SUITE_COUNT = 23
 
 
 def run_suite(suite: Suite) -> dict[str, object]:

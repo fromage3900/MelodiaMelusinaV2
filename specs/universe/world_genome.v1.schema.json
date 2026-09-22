@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia World Genome v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "world_id",
+    "seed",
+    "level_path",
+    "identity",
+    "spatial",
+    "content",
+    "decision_points",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "melodia.world_genome/v1"
+    },
+    "world_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "level_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "root_pitch_class",
+        "mode",
+        "bpm",
+        "beats_per_bar",
+        "motif_id",
+        "emotional_arc"
+      ],
+      "properties": {
+        "root_pitch_class": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 11
+        },
+        "mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bpm": {
+          "type": "integer",
+          "minimum": 40,
+          "maximum": 220
+        },
+        "beats_per_bar": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "motif_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "emotional_arc": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "spatial": {
+      "type": "object",
+      "required": [
+        "bounds_uu",
+        "field_basis"
+      ],
+      "properties": {
+        "bounds_uu": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "number"
+          }
+        },
+        "field_basis": {
+          "type": "object",
+          "required": [
+            "type",
+            "mode_n",
+            "mode_m"
+          ],
+          "properties": {
+            "type": {
+              "const": "chladni"
+            },
+            "mode_n": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mode_m": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "pcg_manifest",
+        "world_compiler_recipe",
+        "resonance_integration_spec"
+      ],
+      "properties": {
+        "pcg_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "world_compiler_recipe": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resonance_integration_spec": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "decision_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "question",
+          "candidates"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "required_proofs"
+      ],
+      "properties": {
+        "required_proofs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
