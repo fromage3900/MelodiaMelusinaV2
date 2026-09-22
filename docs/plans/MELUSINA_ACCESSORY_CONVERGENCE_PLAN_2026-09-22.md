@@ -1,12 +1,13 @@
-# Melusina Accessory Convergence Plan — Blender ↔ UE, Nikki bar (2026-09-22)
+# Melusina Runtime Look Convergence — Existing World/Universe Geometry Pipeline (2026-09-22)
 
 > **For Hermes:** Read the verified map (§1) before executing any wave. Every claim
 > below was verified live on 2026-09-22 (Monolith run_python on the open editor +
 > header reads + headless Blender dumps). This plan supersedes the v5 U6 approach of
 > a standalone `DA_MelusinaFX_Accessories` system — see G1.
 >
-> Scope: UE + Blender ONLY. Bar: Infinity Nikki (soft painterly toon, layered cloth
-> with visible physics, wardrobe-as-fantasy). Non-goal: any new parallel equip system.
+> Scope: converge Melusina's updated Blender/GN garment and accessory geometry through the **existing canonical DCC → Hython/Houdini → World/Universe Compiler → UE validation/runtime presentation pipeline**. TouchDesigner remains the existing semantic/show-control presentation consumer; it does not become a garment runtime owner. Bar: Infinity Nikki (soft painterly toon, layered cloth with visible physics, wardrobe-as-fantasy).
+>
+> **Hard redirect (owner, 2026-09-22): do not create a garment compiler, accessory runtime, look-preset runtime, fabric runtime, parallel catalog, or second equip system.** `UMelodiaWardrobeComponent` remains gameplay/save/equip authority. World/Universe compilation remains geometry/build authority. Existing Hython/Houdini garment/Vellum/VAT tooling remains fabric-generation authority. Existing material/cymatics/MPC and TD semantic lanes remain presentation consumers. This PR only supplies garment/accessory recipes, manifests, adapters, validation and evidence into those owners.
 
 ## 1. Verified correspondence map
 
@@ -41,41 +42,93 @@
 - **G4 — no intake contract.** `TMP_*` prefixes, unit_scale 0.1 FBX, SM_-vs-SK_ lane ambiguity (rigid static vs skinned garment) — each import re-litigates the conventions. The v1 eyewear lane already proved the grammar (named heroes, finish variants, contact sheets); it was never written down as a contract.
 - **G5 — material handoff is ad hoc.** Toon masters (`M_Master_Toon_Character`) + the animated flipbook set (`MelusinaAnimated/20260922`: wings ×3, rings ×3, globs ×2, 352 frames verified) have no written wiring recipe per accessory class (v5 U2 says "extend the existing families" — the how is tribal).
 
-## 2. Convergence plan (waves)
+## 2. Redirected convergence plan — use the pipeline we already own
 
-### C0 — Write the accessory intake contract (repo doc, ~1 page, S)
-- Slot vocabulary = `EMelodiaWardrobeSlot` (+ the FX attachment spec below); skeleton rule: wardrobe-lane garments MUST share `SK_Melusina_Skeleton` (leader-pose copies by index — foreign skeleton silently deforms); naming `SK_/SM_ + family + variant`, `TMP_` never leaves Blender; FBX recipe: unit_scale 0.1 + bounds gate (wings ≈ 230 UE units); materials: one parent from the toon-master family, MI params gated via MEL reflection helpers; every piece ships with an audit JSON (source blend, bounds, morph list, slot/attachment spec).
-- This is the artifact that kills G4 permanently.
+### Authority graph — no new systems
 
-### C1 — GN kit sync (A4, Blender-closed window, M)
-- Repo is authority: land the 12 AppData-only modules via the `higgsas_gate.py` pattern → deploy copy. Unblocks `wardrobe_kit` + `garment_ribbon` for every lane.
+```text
+Blender / melodia_gn source + authored silhouette
+        |
+        v
+tracked garment/accessory recipe + provenance manifest
+        |
+        +--> Hython / Houdini
+        |      - deterministic geometry processing
+        |      - Vellum/offline fabric where tier requires it
+        |      - VAT/cache/export where already specified
+        |      - cymatic/material maps through existing generators
+        |
+        v
+World / Universe Compiler geometry contract
+        |
+        v
+UE import / semantic enrichment / validation
+        |
+        +--> UMelodiaWardrobeComponent = equip/save/runtime identity authority
+        +--> existing material + MPC/cymatics consumers = reactive presentation
+        +--> existing TD OSC/show-control lane = external/live presentation consumer
+        |
+        v
+runtime + render evidence
+```
 
-### C2 — Author the body-region morph tier (Blender → UE, M/L — the biggest Nikki win)
-- On the V2 body (a COPY first): shape keys per the `REGION_BANDS` vocabulary of `Tools/wardrobe_intersection_audit.py` (torso band, arm bands, leg bands at the tool's arm-radius fraction) → export through the guarded FBX lane → morph targets appear on `SK_Melusina_V2_Body`.
-- Evidence: `ApplyBodyRegionVisibility()` collapse/expand JSON + before/after PIE stills (shirt equipped, regions collapsed exactly under it).
-- This turns the clipping contract from no-op to live and is prerequisite for any true layered-Nikki look.
+The wardrobe does **not** compile geometry. The World/Universe Compiler does **not** own saves/equipment. TD does **not** own gameplay. Hython/Houdini does **not** create a parallel runtime. Each existing owner keeps its boundary.
 
-### C3 — One catalog, two delivery mechanisms (UE C++, closed-editor build, M)
-- Extend `UMelodiaCosmeticDefinition` with an optional attachment record: `SocketName`, `StaticMesh`, `MotionSpec` (rate/axis per piece — rings: outer +0.6, mid −0.42, inner +0.78 rad/s, Blueprint/tick, classical only). `EquipCosmetic`/`ApplyCosmeticPresentation` dispatch: same-skeleton garment → leader-pose slot (existing path, untouched); attachment record → spawn socketed static on `FX_WingRoot`/`FX_RingStack` (v5 U1–U5 geometry, unchanged).
-- The regalia, eyewear heroes, and brooch become catalog rows — one system, one save authority, no `DA_MelusinaFX_Accessories`.
-- Rule 15/21: header change = full closed-editor build before any editor work that day.
-- Recon first: locate the live `UMelodiaCosmeticCatalog` DataAsset (or author the first one) and verify `FindCosmeticsWithDanglingForm` returns empty.
+### R0 — Tonight: converge the current Melusina look, do not architect a replacement
+- Freeze the known-good V2 body/skeleton/runtime. Work from copies/derived garment geometry only.
+- Treat the updated Blender static/skinned meshes and current GN silhouette work as source candidates for the existing geometry pipeline.
+- Produce the smallest recipe/manifest needed for the current shirt/skirt/accessory/regalia set, with source blend, GN/Hython operation, output class (skeletal garment / rigid attachment / VAT hero cloth), material family, bounds and expected wardrobe slot/socket.
+- Compile/import through existing guarded paths, bind the resulting assets to the **existing** wardrobe/runtime presentation surfaces, and capture a cohesive hero render state tonight.
+- The approved hero state is evidence/configuration for existing systems; **do not introduce a new `LookPreset` runtime class or DataAsset merely to store it.**
 
-### C4 — Regalia landing (UE, depends on C3 or owner-simplified variant)
-- v5 U1–U5 verbatim (import `MelusinaFX_regalia_wings_rings_eval.fbx` → `/Game/Melusina/FX/Regalia20260922/`, Nanite wings ON rings OFF, collision NONE; sockets; duplicated capture map) — then the pieces attach through the catalog, not bespoke blueprints.
-- Materials per C0 recipe: iridescent/brass placeholders from house masters; the 20260922 flipbooks wire as image-sequence samplers in the next lookdev pass (v5 U2 note).
+### R1 — Canonicalize the GN source lane
+- Re-measure and sync the AppData-only `melodia_gn` modules (`wardrobe_kit`, `garment_ribbon`, etc.) into repo authority using the established deployment gate.
+- GN is an authoring front-end to the same geometry recipe contract, not a wardrobe runtime.
+- Generated variants must be reproducible from tracked parameters/manifests so Universe/World compilation can request them later.
 
-### C5 — Intersection audit integration (repo + UE, S after C2)
-- Run `wardrobe_intersection_audit.py` per new garment at intake (contract requirement from C0); commit the compatibility JSON beside the catalog; `ApplyBodyRegionVisibility` consumes it at runtime.
-- Proof: equip shirt+skirt+regalia set → one PIE capture, zero visible clipping at the covered regions, `GetAppliedBodyRegionHides()` mirrors the expected set.
+### R2 — Route fabric by the existing universal garment tiers
+- Reuse `Docs/Art/UNIVERSAL_GARMENT_FABRIC_DRAPERY_2026-09-02.md` and `Docs/Art/CYMATIC_GARMENT_NIKKI_PIPELINE_2026-09-02.md`; do not design another cloth framework.
+- Structured body pieces remain skeletal/bone-driven; cheap secondary motion remains existing WPO; hero cloth uses the already-defined offline Hython/Houdini Vellum → VAT/cache route when warranted.
+- Runtime Unreal should consume the compiled result. Do **not** attempt runtime Houdini/Vellum generation.
+- Cymatic/iridescence/emissive outputs continue through the existing material family and single MPC/audio-reactive writer.
+
+### R3 — Make garments a World/Universe Compiler geometry domain
+- Extend the **existing** compiler recipe/schema only as narrowly required to describe character-attached geometry: source recipe, generated outputs, skeleton/slot or socket binding, fabric tier/cache, material family and evidence.
+- Reuse the same deterministic compile semantics used for world geometry: source → recipe → compiled artifact/manifest → UE apply/validate → readback.
+- A future outfit/silhouette change should therefore be a different recipe/parameter set through the same compiler, not a new subsystem.
+- This is the long-term Infinity-Nikki-style lane: GN/Hython can vary hem length, skirt volume, ribbon density, sleeve profile, ornament density and other authored parameters; the compiler materializes approved variants; Wardrobe equips them.
+
+### R4 — Runtime binding stays thin
+- `UMelodiaWardrobeComponent` remains the sole gameplay/save/equip authority for garments/cosmetics.
+- Same-skeleton compiled garments bind through the existing garment slot path.
+- Rigid compiled geometry binds through existing/approved socket attachment seams. If a tiny adapter is genuinely missing, add only the minimum adapter after proving the compiler output cannot bind through an existing seam; **do not create a second accessory catalog or bespoke runtime geometry manager.**
+- Body-region hide/intersection data should be compiler/intake metadata consumed by the existing `ApplyBodyRegionVisibility()` contract.
+
+### R5 — TD / reactive presentation is downstream, not another authority
+- Preserve the canonical TD boundary: game ↔ TD semantic/show-control on UDP `:9000`; TD may visualize garment/form/material state and drive approved presentation channels but never owns equip/save/geometry truth.
+- Reuse existing OSC/MPC/cymatics semantics for live reactive cloth/material presentation where useful.
+- Any TD/Hython bridge used for generation must emit a deterministic artifact/recipe/evidence back into the canonical game pipeline rather than leaving runtime truth inside a `.toe`.
+
+### R6 — Prove one complete garment compilation
+The long-term gate is one end-to-end proof, preferably the current Melusina hero skirt/look:
+1. tracked Blender/GN source;
+2. deterministic Hython/Houdini processing where required;
+3. World/Universe Compiler recipe + manifest;
+4. UE import/apply through the existing guarded surface;
+5. existing Wardrobe binding;
+6. material/cymatic presentation;
+7. runtime readback + hero render;
+8. restart proof before calling the garment path production-ready.
+
+That proof becomes the template for future outfit silhouettes rather than creating per-outfit infrastructure.
 
 ## 3. Owner gates
 
 | Gate | Question |
 |---|---|
-| G-A | C3 direction approved: catalog gains an optional attachment record (C++ change + closed-editor build) instead of v5's standalone `DA_MelusinaFX_Accessories`? |
-| G-B | First catalog families: FX regalia (wings/rings), eyewear heroes, brooch — which order? |
-| G-C | C2 body-morph pass runs on a copy and lands via the guarded FBX lane — confirm the V2 body intake path before any touch |
+| G-A | Does this change reuse an existing World/Universe Compiler, Hython/Houdini, Wardrobe, material/MPC or TD seam? If yes, extend that seam; reject parallel ownership. |
+| G-B | For tonight, does the change visibly improve the current Melusina render without destabilizing the known-good V2 body/skeleton? If not, park it after showcase. |
+| G-C | For long-term outfit work, can the silhouette be represented as tracked GN/Hython recipe parameters + compiled artifacts while Wardrobe remains equip authority? That is the required direction. |
 
 ## 4. Traps encoded
 
