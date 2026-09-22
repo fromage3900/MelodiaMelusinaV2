@@ -171,7 +171,7 @@ Agent output, planner claims, Jev confidence, subprocess exit 0, or a screenshot
 
 ## 10. Canary safety boundary
 
-`Prototypes/EchoReflex/echo_reflex.py` v0 is preview-only.
+`Prototypes/EchoReflex/echo_reflex.py` v0 is preview-first, with an explicit read-only execution tier.
 
 It currently implements:
 
@@ -184,11 +184,13 @@ It currently implements:
 - fail-closed ambiguity when Jev is unavailable;
 - `HOLD`, `REPLAN`, and `COMPLETE`;
 - human-review classification;
-- execution preview.
+- execution preview;
+- explicit `--execute-readonly` for registry-approved `mutation=none` capabilities;
+- repo-path/prefix/suffix checks and captured subprocess/read evidence.
 
-It does **not** execute arbitrary commands, mutate Unreal, write Git, write the Echo ledger, auto-merge, or expose arbitrary shell text to Astra/Jev.
+It does **not** execute arbitrary commands, execute mutation-class capabilities, mutate Unreal, write Git, write the Echo ledger, auto-merge, or expose arbitrary shell text to Astra/Jev.
 
-Real execution should be promoted one capability at a time, beginning with deterministic read-only actions.
+Mutation execution should be promoted one capability at a time only after the read-only canary is proven.
 
 ## 11. First proof target
 
