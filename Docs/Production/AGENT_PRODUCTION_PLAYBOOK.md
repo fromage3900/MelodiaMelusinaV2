@@ -26,6 +26,9 @@ Default assumption: **Melodia already has enough architecture to author content.
 | Houdini geometry/material batch work | Hython under `Tools/Houdini/` | runtime UE authority, untracked one-off shelf tools |
 | Rokoko / Melusina mocap | Blender retarget/export -> guarded UE importer | raw FBX drag/drop, alternate skeleton import lane |
 | UE C++ / reflected API | JetBrains Rider + closed-editor UBT where required | blind text edits followed only by Live Coding |
+| Focused native/editor automation test | RiderLink against the single intended editor session | bespoke one-off test bridge when RiderLink can run the test |
+| Native/shader static analysis | Qodana via tracked `qodana.yaml` (`QDJB`) | ad-hoc linter setup that bypasses the project profile |
+| Bounded judgment / orchestration | Jev with explicit candidates + criteria + provenance | unconstrained planner inventing new authorities or mutating the editor directly |
 | Blueprint/editor mutation | one Unreal Editor + Monolith | multiple editors, competing MCP writers, persistent Python world refs |
 | Audio-reactive world presentation | existing PhraseBus / MPC / cymatics consumers | second OSC semantic bus or second MPC writer |
 | Blender procedural authoring | Melodia Studio 2.132.0 / GN source | copied legacy addon trees or stale laptop install as authority |
@@ -281,7 +284,38 @@ Rider inspection is excellent discovery evidence. Runtime behavior still require
 
 ---
 
-# 6. One editor, one mutation surface
+# 6. Always-available decision and engineering services
+
+These are canonical surfaces, not occasional experiments:
+
+### Jev
+
+Use [`JEV_CANONICAL_WORKFLOW.md`](JEV_CANONICAL_WORKFLOW.md) whenever the missing ingredient is judgment rather than deterministic validation.
+
+Jev should receive a bounded state packet, authored candidate set and explicit criteria. Preserve the selected option, `source=jev-live`, confidence/distribution and reason. The relevant owner then executes the choice and deterministic evidence verifies it.
+
+### RiderLink
+
+RiderLink is the preferred focused live-editor bridge for native automation tests when one healthy editor session is the intended context. Use the test already defined in source; do not create another RPC/test harness merely because an agent cannot find the RiderLink path.
+
+RiderLink proves the focused test. Process-death/relaunch, real player input and packaged behavior remain separate acceptance classes.
+
+### Qodana
+
+The tracked `qodana.yaml` is the canonical static-analysis configuration:
+
+- `ide: QDJB`;
+- `qodana.recommended`;
+- project-owned C++/shader scope with generated/vendor/plugin exclusions;
+- repository failure thresholds.
+
+Run the configured Qodana gate as a normal pre-review layer for relevant native/shader changes. Do not replace it with a new analyzer profile unless the tracked configuration itself is the task.
+
+Qodana is static evidence, not runtime evidence.
+
+---
+
+# 7. One editor, one mutation surface
 
 For editor-mutating work:
 
@@ -314,7 +348,7 @@ scene_context_cycle.begin()
 
 ---
 
-# 7. Evidence ladder — say exactly what was proven
+# 8. Evidence ladder — say exactly what was proven
 
 Use these labels carefully:
 
@@ -339,7 +373,7 @@ Screenshots are presentation evidence unless paired with assertions that prove t
 
 ---
 
-# 8. Agent handoff contract
+# 9. Agent handoff contract
 
 When handing work to another agent, provide:
 
@@ -360,7 +394,7 @@ Do not send an agent a vague mission like "improve procedural generation." Send 
 
 ---
 
-# 9. Fast recipes
+# 10. Fast recipes
 
 ## A. New musical environment slice
 
@@ -400,18 +434,18 @@ Do not send an agent a vague mission like "improve procedural generation." Send 
 
 1. Find the existing owner seam in Rider.
 2. Search usages / Blueprint references before adding API.
-3. Make the smallest native change.
-4. Close editor for reflected/module changes.
-5. Build Development Editor.
-6. Run focused automation.
-7. Launch one editor.
-8. Execute runtime proof.
-9. Attach logs/receipts.
-10. Update `CURRENT_STATE.md` only when status changed.
+3. Ask Jev only if a bounded implementation/test strategy decision remains ambiguous.
+4. Make the smallest native change.
+5. Run the tracked Qodana profile on the relevant native/shader scope.
+6. Close editor for reflected/module changes and build Development Editor.
+7. Use RiderLink for the smallest focused live-editor automation test when appropriate.
+8. Execute the required UE runtime proof.
+9. Add restart/packaged evidence when the acceptance gate requires it.
+10. Attach logs/receipts and update `CURRENT_STATE.md` only when status changed.
 
 ---
 
-# 10. Things agents should stop doing
+# 11. Things agents should stop doing
 
 - rebuilding already-proven systems because an old handoff says "TODO";
 - treating old branches as authority;

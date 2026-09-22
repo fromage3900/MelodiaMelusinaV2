@@ -9,6 +9,8 @@ For anything involving **what is true now, what is blocked, or what to do next**
 - [`CURRENT_STATE.md`](CURRENT_STATE.md) — only current status / priority / blocker / open-work authority.
 - [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md) — canonical task router for World Compiler, Hython, Rokoko, Rider and editor mutation workflows.
 - [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md) — canonical JetBrains Rider + UE5.8 engineering runbook.
+- [`Docs/Production/JEV_CANONICAL_WORKFLOW.md`](Docs/Production/JEV_CANONICAL_WORKFLOW.md) — canonical always-available Jev decision/orchestration runbook; Jev chooses/directs while existing owners execute.
+- [`qodana.yaml`](qodana.yaml) — canonical Qodana `QDJB` static-analysis profile; RiderLink is covered by the Rider runbook as the focused live-editor automation bridge.
 - [`SYSTEM_MAP.md`](SYSTEM_MAP.md) — runtime ownership and stable system architecture.
 - [`DATA_FLOW.md`](DATA_FLOW.md) — how state/data move through the runtime.
 - [`Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md`](Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md) — cross-repo and cross-lane routing contract.

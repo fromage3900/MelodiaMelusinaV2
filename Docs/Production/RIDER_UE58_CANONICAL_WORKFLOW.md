@@ -4,7 +4,7 @@
 **Status authority:** `CURRENT_STATE.md`.  
 **Runtime authority:** Unreal Editor / packaged build, not the IDE.
 
-Rider is the preferred C++ navigation, inspection, debugger and focused-test surface. Use it to reduce uncertainty before touching engine state.
+Rider is the preferred C++ navigation, inspection and debugger surface. **RiderLink and Qodana are canonical always-available companions:** RiderLink is the focused live-editor automation bridge; Qodana is the tracked static-analysis quality gate. Use the trio routinely to reduce uncertainty before touching or promoting engine state.
 
 ---
 
@@ -49,14 +49,17 @@ Do not call a reflected/module change green because Live Coding accepted it.
 
 ---
 
-## 3. Focused automation from Rider
+## 3. RiderLink — canonical focused live-editor test bridge
+
+RiderLink is assumed available as part of the normal Melodia engineering workflow.
 
 For native tests such as `IMPLEMENT_SIMPLE_AUTOMATION_TEST`:
 
 - prefer the smallest relevant test group;
-- use Rider/RiderLink against the single intended editor session when appropriate;
+- use RiderLink against the single intended editor session whenever live-editor context is appropriate;
+- launch the existing test from Rider rather than inventing another RPC/test harness;
 - record the exact test path and result;
-- use commandlet/headless execution when a clean isolated process is the acceptance condition.
+- use commandlet/headless execution only when a clean isolated process is itself part of the acceptance condition.
 
 Examples of useful focused families include Melodia integration, Wardrobe, runtime persistence and chapter-specific tests. Use the current test names from source rather than copying stale commands from old reports.
 
@@ -153,17 +156,43 @@ Do not optimize a guessed bottleneck based only on static inspection.
 
 ---
 
-## 10. Qodana/static analysis
+## 10. Qodana — canonical static-analysis gate
 
-Static analysis is a review layer, not runtime certification.
+Qodana is an always-available canonical quality layer for Melodia native/shader work.
 
-Use the repository's tracked configuration and exclude generated/vendor code. Because prior research documented uncertainty between local JetBrains profiles/modes, validate the actual installed invocation before canonizing a command.
+The repository already tracks the authority at `qodana.yaml`:
 
-Do not block an urgent proven runtime fix on speculative IDE tooling configuration. Do not publish a "clean" claim from a scan that silently excluded the edited module.
+- `ide: QDJB`;
+- profile `qodana.recommended`;
+- explicit C++ inspection set;
+- generated/content/vendor/plugin exclusions;
+- failure thresholds of critical 0 / high 5 / any 30.
+
+Use that tracked configuration rather than inventing a per-agent lint profile. Run Qodana as a normal pre-review gate for changes in the owned native/shader surface, then investigate findings in Rider.
+
+Qodana is static-analysis evidence, not runtime certification. A clean Qodana run does not replace UBT, RiderLink/focused tests, PIE, restart or packaged proof.
 
 ---
 
-## 11. Rider + World Compiler
+## 11. Rider + Jev
+
+Jev is the canonical decision/orchestration companion when native work presents a real bounded judgment call: implementation strategy, test ordering, risk/cost tradeoff, or next verification action.
+
+Correct shape:
+
+```text
+Rider discovers the real owner and constraints
+  -> Jev selects among bounded legal strategies when judgment is needed
+  -> Rider implements the selected strategy
+  -> Qodana + UBT + RiderLink/focused tests
+  -> Unreal runtime evidence
+```
+
+Jev never substitutes for compiler/test results and does not mutate the editor directly. See `Docs/Production/JEV_CANONICAL_WORKFLOW.md`.
+
+---
+
+## 12. Rider + World Compiler
 
 Rider should help agents understand the C++/editor boundaries around World Compiler, not tempt them to rewrite it natively.
 
@@ -181,7 +210,7 @@ A biome or setpiece is normally recipe/data/content work, not a C++ task.
 
 ---
 
-## 12. Rider + Rokoko
+## 13. Rider + Rokoko
 
 Rokoko animation ingestion is not a Rider-owned pipeline.
 
@@ -193,7 +222,7 @@ Do not replace it with native import code because Rider makes C++ convenient.
 
 ---
 
-## 13. Before opening a PR
+## 14. Before opening a PR
 
 For native work, report:
 
