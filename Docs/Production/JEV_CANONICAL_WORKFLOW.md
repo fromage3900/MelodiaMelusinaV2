@@ -186,7 +186,7 @@ The experimental Echo Reflex layer applies this contract to project-wide mission
 - mission schema: `specs/schemas/echo_reflex_mission.v1.schema.json`;
 - canary controller/tests: `Prototypes/EchoReflex/`.
 
-Echo Reflex is **not yet a production executor**. Its v0 boundary is preview-only: deterministic code computes legal transitions, Jev may select only among those transitions, and existing owners remain the only mutation surfaces.
+Echo Reflex is **not yet a production mutation executor**. Its v0 boundary is preview-first with explicit registry-approved read-only execution: deterministic code computes legal transitions, Jev may select only among those transitions, and existing owners remain the only mutation surfaces.
 
 The intended long-term split is:
 
