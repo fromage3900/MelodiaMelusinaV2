@@ -1,5 +1,21 @@
 # Melusina UE Close-Out Plan v5 — Stage the Regalia in UE 5.8
 
+> **Status 2026-09-22 (audit — read before executing):** this plan died with its
+> session and was never executed; resurrected verbatim by cherry-pick of the orphaned
+> plans commit `4dafa5fdc` → `dc9251365` on `docs/melusina-ue-closeout-plan-v5`
+> (source lane `lookdev/frequency-ecology-20260921` is parked, not a merge target).
+> Verified state: NO U-step started (no `/Game/Melusina/FX/Regalia20260922/`, no
+> `Saved/Audit/melusina_vfx_20260921/ue_stage/`). Inputs still valid:
+> `Exports/MelusinaFX_20260922/` intact (eval FBX + 4 GLBs, 00:43 mtimes). U0
+> correction: `Docs/Handoffs/PORTFOLIO_RENDERS_HANDOFF_2026-09-21.md` is MISSING
+> (handoffs parked to `Saved/Audit/`) — the capture map is the canon
+> `L_MelusinaPortfolioCapture` (CURRENT_STATE 2026-09-21 entry). Stale below: the
+> 00:50 editor (PID 49788) is gone; a different editor has been up since 03:49 —
+> re-verify the single-instance lock before any editor work. Companion files in the
+> same commit: unfinished-tasks addendum (A1–A16 + B1–B12), plans v2–v4, convergence,
+> KIMI re-export. Related open loop: the wings-emissive vein fix (01:12) is in the
+> generator script on disk but was never re-cooked, re-verified, or committed.
+
 > **For Hermes:** Prereqs already true: FBX+GLBs staged at
 > `Exports/MelusinaFX_20260922/` (contents verified), Blender-side staging done
 > (portfolio stage v24_MFX, Accessory Studio v2_MFX, viewer wiring — no push).
