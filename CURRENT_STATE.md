@@ -30,6 +30,21 @@ Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-0
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
+## CANONICAL WORKING MELUSINA HAIR PIPELINE
+
+Owner confirmed the hair physics are working. Kawaii stays on the chains. The hair root follows the body socket. Leader pose on the hair stays off. This pass did not retune Kawaii and did not change the idle anim class.
+
+Measured on `BP_MelusinaSwordsman_Presentation0` in `L_MelusinaPortfolioCapture`, and written onto the hair templates of `BP_MelusinaSwordsman_Presentation`, `BP_MelusinaJRPGCharacter`, and `BP_Melusina`:
+
+- Mesh `SK_MelusinaHair`, skeleton `SK_Melusina_Hair_Skeleton`, anim blueprint `ABP_Melusina_WaterHair`. Body anim class on the presenter is `ABP_Melusina_Current`. Hair leader pose is empty. Tick option is Always Tick Pose. Update Animation in Editor is on.
+- Socket `head_x` on `MelusinaPresentationMesh` (`SK_Melusina_V2_Body`). Runtime templates parent `WaterHairMesh` to `CharacterMesh0` on the same socket.
+- Base head-bind inverse kept: relative (0, 144.229, -15.897), roll -90. Socket-space nudge applied on top: (0.0001, -0.0297, -0.0031), so the saved relative is (0.0001, 144.1994, -15.9001), roll -90.
+- Scalp bone `hair_root` to body `head_x` after that nudge: **0.0034 cm**. Head world (-0.3373, 15.9362, 144.2348), scalp world (-0.3373, 15.9362, 144.2382).
+- Post-nudge chain sample, seated the whole time: `A_DEF_hair_bbone_000` at world time 3575.86 s was translation delta 0.0 cm, yaw 0.0, socket world (-1.3826, 31.4136, 174.1629). At world time 3645.19 s (69 s later) those three values were unchanged. A second seated pair 8 s apart (world 4383.88 s and 4392.22 s) was also delta 0.0 cm, yaw 0.0, socket world (-1.3826, 31.4136, 174.1637) both times. The bone did not move. That frozen pose is not the physics record.
+- Sleeves are `SK_Melusina_V2_Shirt` on `SK_Melusina_Skeleton` (same skeleton as the body), leader-posed to `MelusinaPresentationMesh`; `arm_stretch_l` was 113.7372 cm off the body arm before that leader restore and 0.0 cm after. The two runtime blueprints have no shirt component; their wardrobe still spawns that mesh onto the body at BeginPlay.
+- Presenter `WardrobeSlot_Shirt` leader is `MelusinaPresentationMesh`. The inherited `SkeletalMesh` slot on the presentation blueprint has no mesh and is hidden. It was not deleted.
+- `CAM_Melusina_BeautyFront34` is not in the capture level. No still was taken.
+
 ---
 
 ## 1. What the game is
