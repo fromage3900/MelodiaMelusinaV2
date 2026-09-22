@@ -1,0 +1,117 @@
+{
+  "$schema": "melodia.echo_reflex_capabilities.v1",
+  "version": 1,
+  "status": "canary-preview-only",
+  "purpose": "Closed capability handles over existing Melodia owners. Echo Reflex v0 previews these handlers; it does not execute them or write the gate ledger.",
+  "rules": [
+    "A capability id is a handle to an existing owner, never a new authority.",
+    "Jev may select only mission nodes whose capability ids are present here.",
+    "Capability selection is not authorization; policy/resource checks run before execution.",
+    "ue_editor and repo_write mutations require explicit human review in the v0 contract."
+  ],
+  "capabilities": [
+    {
+      "id": "project.read_current_state",
+      "owner": "CURRENT_STATE.md",
+      "kind": "deterministic",
+      "mutation": "none",
+      "resources": [],
+      "auto_execute": false,
+      "executor": {"type": "read_file", "path": "CURRENT_STATE.md"},
+      "evidence": ["content_hash"]
+    },
+    {
+      "id": "echo.topo_schedule",
+      "owner": "Echo",
+      "kind": "deterministic",
+      "mutation": "none",
+      "resources": [],
+      "auto_execute": false,
+      "executor": {"type": "python", "argv": ["Tools/echo_topo.py", "schedule", "--json"]},
+      "evidence": ["exit_code", "stdout_json"]
+    },
+    {
+      "id": "echo.static_gates",
+      "owner": "Echo",
+      "kind": "deterministic",
+      "mutation": "none",
+      "resources": ["ue_editor_reader"],
+      "auto_execute": false,
+      "executor": {"type": "python", "argv": ["Tools/echo_run.py", "run", "static_gates"]},
+      "evidence": ["exit_code", "gate_output"]
+    },
+    {
+      "id": "world.validate_recipe",
+      "owner": "World Compiler",
+      "kind": "deterministic",
+      "mutation": "none",
+      "resources": [],
+      "auto_execute": false,
+      "executor": {"type": "python_template", "argv": ["Tools/world_compiler.py", "validate", "{recipe}"]},
+      "arguments": {"recipe": {"type": "repo_path", "allowed_prefixes": ["recipes/"], "suffixes": [".json"]}},
+      "evidence": ["exit_code", "validation_report"]
+    },
+    {
+      "id": "world.compile_recipe",
+      "owner": "World Compiler",
+      "kind": "deterministic",
+      "mutation": "saved_output",
+      "resources": [],
+      "auto_execute": false,
+      "executor": {"type": "python_template", "argv": ["Tools/world_compiler.py", "compile", "{recipe}"]},
+      "arguments": {"recipe": {"type": "repo_path", "allowed_prefixes": ["recipes/"], "suffixes": [".json"]}},
+      "evidence": ["exit_code", "bundle_manifest", "manifest_hash"]
+    },
+    {
+      "id": "world.apply_bundle",
+      "owner": "World Compiler UE lane",
+      "kind": "deterministic",
+      "mutation": "ue_editor",
+      "resources": ["ue_editor_writer"],
+      "auto_execute": false,
+      "executor": {"type": "python_template", "argv": ["Tools/world_compiler_ue_driver.py", "{bundle}"]},
+      "arguments": {"bundle": {"type": "repo_path", "allowed_prefixes": ["Saved/WorldCompiler/"]}},
+      "evidence": ["scene_context_before", "ue_apply_report", "scene_context_after"]
+    },
+    {
+      "id": "hython.run_registered_tool",
+      "owner": "Hython",
+      "kind": "specialist",
+      "mutation": "saved_output",
+      "resources": ["houdini_license"],
+      "auto_execute": false,
+      "executor": {"type": "registered_hython_tool"},
+      "evidence": ["tool_manifest", "exit_code", "output_hashes"]
+    },
+    {
+      "id": "model.delegate_code",
+      "owner": "model_router / specialist worker",
+      "kind": "generative",
+      "mutation": "repo_write",
+      "resources": ["repo_writer"],
+      "auto_execute": false,
+      "executor": {"type": "specialist_agent", "task_class": "code"},
+      "evidence": ["scoped_diff", "tests", "worker_provenance"]
+    },
+    {
+      "id": "monolith.scoped_editor_action",
+      "owner": "Monolith",
+      "kind": "editor",
+      "mutation": "ue_editor",
+      "resources": ["ue_editor_writer"],
+      "auto_execute": false,
+      "executor": {"type": "monolith_registered_action"},
+      "evidence": ["pre_readback", "mutation_result", "post_assertion"]
+    },
+    {
+      "id": "owner.visual_review",
+      "owner": "Brennan",
+      "kind": "human",
+      "mutation": "human",
+      "resources": [],
+      "auto_execute": false,
+      "executor": {"type": "human"},
+      "evidence": ["owner_verdict"]
+    }
+  ]
+}
