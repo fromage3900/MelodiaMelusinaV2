@@ -206,7 +206,28 @@ The Morning recipe in the fixture is only a known compiler input used to prove t
 
 After this is green, replace that placeholder with the real `MelusinasStudyDecorated` / Studio / World Compiler path, still stopping before uncontrolled editor mutation.
 
-## 12. Promotion criteria
+## 12. Canary commands
+
+```powershell
+# contract tests
+python Prototypes/EchoReflex/test_echo_reflex.py
+
+# validate the fixture against the capability registry
+python Prototypes/EchoReflex/echo_reflex.py validate Prototypes/EchoReflex/example_melusinas_study_canary.v1.json
+
+# prove fail-closed ambiguity without Jev
+python Prototypes/EchoReflex/echo_reflex.py next Prototypes/EchoReflex/example_melusinas_study_canary.v1.json --no-jev
+
+# with TYPESAFE_API_KEY set, let Jev choose only among the two legal root nodes
+python Prototypes/EchoReflex/echo_reflex.py next Prototypes/EchoReflex/example_melusinas_study_canary.v1.json
+
+# execute a selected read-only node only when it is allowlisted mutation=none
+python Prototypes/EchoReflex/echo_reflex.py next Prototypes/EchoReflex/example_melusinas_study_canary.v1.json --execute-readonly
+```
+
+The fixture intentionally presents two independent root nodes. Without Jev it should HOLD. With Jev it should select one legal node, preserve `source=jev-live` + confidence/distribution, and optionally execute only if that selected capability is allowlisted read-only.
+
+## 13. Promotion criteria
 
 Do not call Echo Reflex production infrastructure until:
 
