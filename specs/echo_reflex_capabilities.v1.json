@@ -1,8 +1,8 @@
 {
   "$schema": "melodia.echo_reflex_capabilities.v1",
   "version": 1,
-  "status": "canary-preview-only",
-  "purpose": "Closed capability handles over existing Melodia owners. Echo Reflex v0 previews these handlers; it does not execute them or write the gate ledger.",
+  "status": "canary-readonly-execution",
+  "purpose": "Closed capability handles over existing Melodia owners. Echo Reflex v0 may execute only explicitly allowlisted read-only handlers; it never executes mutation capabilities or writes the gate ledger.",
   "rules": [
     "A capability id is a handle to an existing owner, never a new authority.",
     "Jev may select only mission nodes whose capability ids are present here.",
@@ -16,7 +16,7 @@
       "kind": "deterministic",
       "mutation": "none",
       "resources": [],
-      "auto_execute": false,
+      "auto_execute": true,
       "executor": {"type": "read_file", "path": "CURRENT_STATE.md"},
       "evidence": ["content_hash"]
     },
@@ -26,7 +26,7 @@
       "kind": "deterministic",
       "mutation": "none",
       "resources": [],
-      "auto_execute": false,
+      "auto_execute": true,
       "executor": {"type": "python", "argv": ["Tools/echo_topo.py", "schedule", "--json"]},
       "evidence": ["exit_code", "stdout_json"]
     },
@@ -46,7 +46,7 @@
       "kind": "deterministic",
       "mutation": "none",
       "resources": [],
-      "auto_execute": false,
+      "auto_execute": true,
       "executor": {"type": "python_template", "argv": ["Tools/world_compiler.py", "validate", "{recipe}"]},
       "arguments": {"recipe": {"type": "repo_path", "allowed_prefixes": ["recipes/"], "suffixes": [".json"]}},
       "evidence": ["exit_code", "validation_report"]
