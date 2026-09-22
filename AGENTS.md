@@ -19,6 +19,9 @@ Use it to select the existing lane before writing code:
 - **Houdini:** deterministic Hython tools under `Tools/Houdini/` forge source assets/data; they do not own runtime world state;
 - **Rokoko/Melusina mocap:** Blender retarget/root-motion FBX -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing animation owner;
 - **UE C++:** JetBrains Rider is the preferred navigation/debug/test surface; follow [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md);
+- **RiderLink:** always-available focused live-editor automation bridge for native tests; use it before inventing a custom test harness when a single-editor session is the right proof surface;
+- **Qodana:** always-available static-analysis gate through tracked `qodana.yaml` (`ide: QDJB`); run it as a normal native/shader quality layer, not an optional experiment;
+- **Jev:** always-available canonical judgment/orchestration service for bounded authored choices and next-action selection; follow [`Docs/Production/JEV_CANONICAL_WORKFLOW.md`](Docs/Production/JEV_CANONICAL_WORKFLOW.md). Jev chooses/directs; existing owners execute;
 - **editor mutation:** one Unreal Editor, one Monolith writer, inspect -> mutate -> assert -> save;
 - **status:** only `CURRENT_STATE.md` may declare what is currently proven/open.
 
@@ -151,7 +154,9 @@ Use Rider to **find the real owner, make a smaller native change, run the right 
 Core rules:
 - use Unreal-aware Find Usages / reflected-asset navigation before adding a competing API;
 - close Unreal and run a real `BS_GodFileEditor Win64 Development` build for reflected declarations, modules, Build.cs, generated headers, shader-directory registration, and load-topology changes;
-- RiderLink/focused automation proves the native test only — restart, PIE-input and packaged acceptance still require their own evidence;
+- RiderLink is the default focused live-editor test bridge for suitable native automation; its availability is canonical, not opportunistic;
+- Qodana via the tracked `qodana.yaml` / `QDJB` profile is the canonical static-analysis quality gate for native/shader work;
+- RiderLink/Qodana evidence does not replace restart, PIE-input or packaged acceptance when those are required;
 - use the native debugger and Unreal Insights on the existing owner seam before redesigning for performance;
 - edit tracked `.usf/.ush` in Rider, but UE shader compilation + visible capture is the runtime proof;
 - do not rewrite World Compiler, Rokoko ingestion, Blueprint ownership, or editor automation in C++ simply because Rider makes C++ convenient.
