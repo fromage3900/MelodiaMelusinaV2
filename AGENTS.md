@@ -19,6 +19,7 @@ Use it to select the existing lane before writing code:
 - **Houdini:** deterministic Hython tools under `Tools/Houdini/` forge source assets/data; they do not own runtime world state;
 - **Rokoko/Melusina mocap:** Blender retarget/root-motion FBX -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing animation owner;
 - **UE C++:** JetBrains Rider is the preferred navigation/debug/test surface; follow [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md);
+- **Rider engineering cockpit:** Rider + OpenCode + machine-local Ponytail UE5.8 + Qodana + RiderLink + Monolith + Jev is the canonical native-agent stack; follow [`Docs/Production/RIDER_PONYTAIL_ENGINEERING_COCKPIT.md`](Docs/Production/RIDER_PONYTAIL_ENGINEERING_COCKPIT.md) and run `deploy/verify_rider_cockpit.ps1` before write-capable cockpit sessions;
 - **RiderLink:** always-available focused live-editor automation bridge for native tests; use it before inventing a custom test harness when a single-editor session is the right proof surface;
 - **Qodana:** always-available static-analysis gate through tracked `qodana.yaml` (`ide: QDJB`); run it as a normal native/shader quality layer, not an optional experiment;
 - **Jev:** always-available canonical judgment/orchestration service for bounded authored choices and next-action selection; follow [`Docs/Production/JEV_CANONICAL_WORKFLOW.md`](Docs/Production/JEV_CANONICAL_WORKFLOW.md). Jev chooses/directs; existing owners execute;
@@ -148,11 +149,16 @@ intentionally gitignored, do not track it.
 ## 🚀 Rider & UE 5.8 Engineering Protocols
 
 Canonical runbook: [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md).
+Canonical cockpit: [`Docs/Production/RIDER_PONYTAIL_ENGINEERING_COCKPIT.md`](Docs/Production/RIDER_PONYTAIL_ENGINEERING_COCKPIT.md).
+
 
 Use Rider to **find the real owner, make a smaller native change, run the right build, and prove it in Unreal**.
 
 Core rules:
-- use Unreal-aware Find Usages / reflected-asset navigation before adding a competing API;
+- use Unreal-aware Find Usages / Code Vision / Blueprint usages, delegate bindings and gameplay-tag usages before adding or deleting reflected API;
+- run Rider/UHT inspections as an inner-loop gate for reflected declarations before Qodana/UBT;
+- use OpenCode-in-Rider with Ponytail for UE-aware implementation/review; `/ponytail-review` is the preferred pre-PR agent review when the local plugin is available;
+- cockpit agents stay on the assigned Git branch/head and may not switch/merge/rebase/reset/clean/commit unless explicitly authorized;
 - close Unreal and run a real `BS_GodFileEditor Win64 Development` build for reflected declarations, modules, Build.cs, generated headers, shader-directory registration, and load-topology changes;
 - RiderLink is the default focused live-editor test bridge for suitable native automation; its availability is canonical, not opportunistic;
 - Qodana via the tracked `qodana.yaml` / `QDJB` profile is the canonical static-analysis quality gate for native/shader work;
