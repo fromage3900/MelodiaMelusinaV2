@@ -15,7 +15,18 @@
         "gn_builders": "16 builders in Content/Python/gmm/melodia/faraway_mother/",
         "pbr_suites": "6 PBR suites in Content/Textures/FarawayMother_Suites/ (47 PNG+uasset pairs)",
         "hero_meshes": "3 hero meshes in Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/",
-        "missing": "faraway_onboarding_guide.md, GN_TAXONOMY update to 238+ builders, hython pipeline integration"
+        "missing": "P1 convergence still unproven: real Hython static-field cook/manifest; TD world_field replay; TD OUT_SHOW_FIELD -> UE receiver/alignment canary; three-consumer PIE proof."
+      },
+      "planning_update_2026_09_22": {
+        "status": "planned_not_proven",
+        "integration_spec": "Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md",
+        "closure_shape": "PCG static field basis -> Hython deterministic field/drape assets -> TD/Embody OUT_SHOW_FIELD -> proven UE field receiver -> fabric + Niagara + Heart Gate/path presentation",
+        "first_decisive_gate": "TD OUT_SHOW_FIELD visibly received and world/UV aligned in LV_FarawayMother_Prototype",
+        "agent_split": {
+          "Muse": "MelodiaMelusinaV2: Hython static field pack + UE receiver/consumers/evidence",
+          "Gemini": "MelodiaTouchDesigner: existing world_field scene + deterministic replay + OUT_SHOW_FIELD/evidence"
+        },
+        "authority_guard": "UE remains gameplay/save/world-consequence authority; TD presentation-only; Hython offline forge; no second compiler/MPC writer/OSC semantic bridge."
       }
     },
     {
@@ -48,18 +59,18 @@
       }
     },
     {
-          "id": "STARSKIFF_MOVEMENT",
-          "status": "close_to_pass_pending_commit_and_pie",
-          "contract": "Starskiff MK2 pawn with boarding, movement, input, and traversal consumer.",
-          "evidence": {
-            "pawn_cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.cpp (committed 42cb25d7)",
-            "pawn_h": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h (committed 42cb25d7)",
-            "blueprint": "BP_Starskiff_MK2 (content/melodiaintegration/blueprints/bp_starskiff_mk2.uasset, dirty)",
-            "boarding": "TryBoard/CanBoard/Disembark implemented; RequestBoatTraversal delegates to UMelodiaTravelSubsystem",
-            "reconcile": "starskiff_pawn_reconcile_2026-09-01.json proves ledger 'no movement component' claim was INCORRECT",
-            "remaining": "UBT closed-editor rebuild + PIE boarding/movement/disembark validation"
-          }
-        }
+      "id": "STARSKIFF_MOVEMENT",
+      "status": "close_to_pass_pending_commit_and_pie",
+      "contract": "Starskiff MK2 pawn with boarding, movement, input, and traversal consumer.",
+      "evidence": {
+        "pawn_cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.cpp (committed 42cb25d7)",
+        "pawn_h": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h (committed 42cb25d7)",
+        "blueprint": "BP_Starskiff_MK2 (content/melodiaintegration/blueprints/bp_starskiff_mk2.uasset, dirty)",
+        "boarding": "TryBoard/CanBoard/Disembark implemented; RequestBoatTraversal delegates to UMelodiaTravelSubsystem",
+        "reconcile": "starskiff_pawn_reconcile_2026-09-01.json proves ledger 'no movement component' claim was INCORRECT",
+        "remaining": "UBT closed-editor rebuild + PIE boarding/movement/disembark validation"
+      }
+    }
   ],
   "current_source_truth": {
     "p0_status": "All 8 gates pass (rhythm_owner, hud_single_writer, rhythm_grade_to_result, wardrobe_equip_roundtrip, wardrobe_gameplay_hook, music_world_key, static_gates, battle_integration_map)",
