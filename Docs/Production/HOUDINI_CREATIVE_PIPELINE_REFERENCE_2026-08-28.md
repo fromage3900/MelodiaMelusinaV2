@@ -1,5 +1,7 @@
 # Houdini Creative Pipeline — Reference for Agents
 
+> **Current routing:** start with [`AGENT_PRODUCTION_PLAYBOOK.md`](AGENT_PRODUCTION_PLAYBOOK.md). This file preserves verified Houdini/Hython behavior and caveats; it does not assert the current machine license/session or live UE status. Probe those before execution and record the result.
+
 **Date:** 2026-08-28
 **Status:** PROVEN — every fact below was verified by a live run this session (hython 22.0.368,
 Apprentice tier). This is the long-term "how we use Houdini creatively" document. It is a
