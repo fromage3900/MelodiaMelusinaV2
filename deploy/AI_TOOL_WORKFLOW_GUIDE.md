@@ -1,5 +1,7 @@
 # AI Tool Workflow Guide - Multi-Agent Production Environment
 
+> **Legacy inventory / compatibility reference.** Do not use this file to choose current project architecture, models, website paths, or runtime owners. New agents start with `AGENTS.md`, `CURRENT_STATE.md`, and [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](../Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md). The playbook owns current routing for World Compiler, Hython, Rokoko, Rider and editor mutation.
+
 ## Overview
 This guide documents the recommended replacement workflow for Cursor with unreliable local models. You now have multiple MCP-compatible options that can handle both Blender/Unreal automation and HTML website updates.
 
