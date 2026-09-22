@@ -222,5 +222,65 @@ class EchoReflexTests(unittest.TestCase):
                 er.load_registry(path)
 
 
+    def test_readonly_file_execution_is_explicit_and_hashed(self):
+        reg = {
+            "read": {
+                "id": "read",
+                "mutation": "none",
+                "resources": [],
+                "auto_execute": True,
+                "executor": {
+                    "type": "read_file",
+                    "path": "CURRENT_STATE.md",
+                },
+            }
+        }
+        m = mission([
+            {
+                "id": "a",
+                "capability": "read",
+                "depends_on": [],
+            }
+        ])
+        er.validate_mission(m, reg)
+        status, evidence = er.execute_readonly(
+            m, reg, "a"
+        )
+        self.assertEqual("PASS", status)
+        self.assertEqual("CURRENT_STATE.md", evidence["path"])
+        self.assertEqual(64, len(evidence["sha256"]))
+
+    def test_readonly_executor_refuses_mutation(self):
+        reg = {
+            "edit": {
+                "id": "edit",
+                "mutation": "ue_editor",
+                "resources": ["ue_editor_writer"],
+                "auto_execute": True,
+                "executor": {"type": "x"},
+            }
+        }
+        m = mission([
+            {
+                "id": "a",
+                "capability": "edit",
+                "depends_on": [],
+            }
+        ])
+        er.validate_mission(m, reg)
+        with self.assertRaises(er.ReflexError):
+            er.execute_readonly(m, reg, "a")
+
+    def test_repo_path_rejects_escape(self):
+        with self.assertRaises(er.ReflexError):
+            er._safe_repo_path(
+                "../outside.json",
+                {
+                    "allowed_prefixes": ["recipes/"],
+                    "suffixes": [".json"],
+                },
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
