@@ -6,9 +6,9 @@
 
 ![Unreal Engine 5.8](https://img.shields.io/badge/Unreal_Engine-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
 ![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
-![Assets](https://img.shields.io/badge/uasset-1%2C988_tracked_%2F_24%2C128_local-5e3a8c)
-![Maps](https://img.shields.io/badge/umap-25_tracked_%2F_233_local-3a5a3a)
-![Plugins](https://img.shields.io/badge/Plugins-16_project-8c3a3a)
+![Assets](https://img.shields.io/badge/uasset-5%2C399_tracked_%2F_21%2C501_local-5e3a8c)
+![Maps](https://img.shields.io/badge/umap-56_tracked_%2F_238_local-3a5a3a)
+![Plugins](https://img.shields.io/badge/Plugins-19_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
 > **Status:** [CURRENT_STATE.md](CURRENT_STATE.md) is the only status document — what works and at what evidence level, what is open, the owner queue, repositories and workstations. This README describes the project; it does not track status.
@@ -20,7 +20,7 @@
 - **Resume:** https://fromage3900.github.io/my-site/wix/resume.html
 - **Current state and queue:** [CURRENT_STATE.md](CURRENT_STATE.md)
 
-> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered at 10 GiB and the live payload is 9.19 GB. A fresh clone retrieves the 1,988 curated `.uasset` files rather than all 24,128 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on Git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md).
+> **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered (check Settings → Billing) and the live payload at HEAD is 13.3 GB. A fresh clone retrieves the 5,399 curated `.uasset` files rather than all 21,501 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on Git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md). Branch hygiene: the branch census, prune receipts, and KEEP decisions live in `Docs/Audits/BRANCH_PRUNE_RECEIPT_2026-09-21.md` and `Saved/Audit/git_health_*.md` (evidence, may be absent from a fresh clone) — read them before re-reviewing old branches.
 
 ♪ **Solo-developed rhythm-JRPG vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
 
@@ -134,11 +134,11 @@ The six-phase route below is the proven **First Dream integration song** used to
 |---|---|
 | `Content/Melodia/` | Gameplay assets: levels, characters, save game structures, audio, configuration |
 | `Content/EnvSandbox/` | Production environments, Substrate toon materials, PCG scatter ecosystems |
-| `Source/BS_GodFile/` | 137 C++ source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
-| `Tools/` | 151 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
+| `Source/BS_GodFile/` | 180 C++/header source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
+| `Tools/` | 532 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
 | `deploy/` | MCP server implementations (`melodia_mcp_server.py`, `agent_bridge_mcp.py`), daemons, build graphs |
-| `specs/` | 87 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
-| `Plugins/` | 15 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
+| `specs/` | 161 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
+| `Plugins/` | 19 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
 | `Docs/` | Architecture, pipelines, research, evidence, art references, and credits |
 | `Saved/` | Gate ledgers (`gate_ledger.json`), audit manifests, and test execution reports |
 
