@@ -3,7 +3,8 @@
 **Purpose:** add an adaptive decision layer to the existing Melodia Echo pipeline without creating a second project authority, editor surface, world compiler, or agent framework.  
 **Status authority:** `CURRENT_STATE.md`.  
 **Execution authority:** existing owners only (Echo, World Compiler, Monolith, Hython, Rider/RiderLink, guarded importers, specialist workers, and the human owner).  
-**Canary implementation:** `Prototypes/EchoReflex/`.
+**Canary implementation:** `Prototypes/EchoReflex/`.  
+**Agent execution entrypoint:** [`Prototypes/EchoReflex/AGENT_EXECUTION_BRIEF.md`](../../Prototypes/EchoReflex/AGENT_EXECUTION_BRIEF.md) — cold-start mission for Muse/Kimi/Claude/Codex; execute this before proposing further architecture.
 
 ## 1. Architecture
 
