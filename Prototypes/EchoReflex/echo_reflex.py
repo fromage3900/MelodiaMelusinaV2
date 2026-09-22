@@ -13,8 +13,10 @@ Adaptive controller layered on top of Melodia's existing Echo contracts.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -445,6 +447,139 @@ def preview_node(
     }
 
 
+
+def _safe_repo_path(value: Any, spec: dict[str, Any]) -> str:
+    if not isinstance(value, str) or not value:
+        raise ReflexError("path argument must be a non-empty string")
+    rel = Path(value.replace("\\", "/"))
+    if rel.is_absolute() or ".." in rel.parts:
+        raise ReflexError(f"unsafe repo path: {value!r}")
+    norm = rel.as_posix()
+    prefixes = spec.get("allowed_prefixes", [])
+    if prefixes and not any(norm.startswith(prefix) for prefix in prefixes):
+        raise ReflexError(f"path outside allowed prefixes: {norm}")
+    suffixes = spec.get("suffixes", [])
+    if suffixes and not any(norm.endswith(suffix) for suffix in suffixes):
+        raise ReflexError(f"path has disallowed suffix: {norm}")
+    return norm
+
+
+def _render_python_argv(
+    node: dict[str, Any],
+    cap: dict[str, Any],
+) -> list[str]:
+    executor = cap.get("executor", {})
+    kind = executor.get("type")
+    if kind not in {"python", "python_template"}:
+        raise ReflexError(f"executor {kind!r} is not a Python read-only action")
+
+    args = node.get("args", {})
+    declared = cap.get("arguments", {})
+    unknown = sorted(set(args) - set(declared))
+    if unknown:
+        raise ReflexError(f"undeclared capability arguments: {unknown}")
+
+    resolved: dict[str, str] = {}
+    for name, arg_spec in declared.items():
+        if name not in args:
+            raise ReflexError(f"missing required capability argument: {name}")
+        if arg_spec.get("type") == "repo_path":
+            resolved[name] = _safe_repo_path(args[name], arg_spec)
+        else:
+            raise ReflexError(f"unsupported argument type for {name}")
+
+    argv = []
+    for token in executor.get("argv", []):
+        if not isinstance(token, str):
+            raise ReflexError("executor argv entries must be strings")
+        argv.append(token.format(**resolved))
+    if not argv:
+        raise ReflexError("empty Python executor argv")
+
+    script = _safe_repo_path(
+        argv[0],
+        {"allowed_prefixes": ["Tools/", "Content/Python/"], "suffixes": [".py"]},
+    )
+    if not (ROOT / script).is_file():
+        raise ReflexError(f"registered Python tool does not exist: {script}")
+    argv[0] = script
+    return argv
+
+
+def execute_readonly(
+    mission: dict[str, Any],
+    registry: dict[str, dict[str, Any]],
+    node_id: str,
+    timeout: int = 120,
+) -> tuple[str, dict[str, Any]]:
+    """Execute only registry-approved mutation=none capabilities.
+
+    This is intentionally narrower than a general executor. It cannot execute
+    repo writes, editor writes, specialist agents, Hython, or human actions.
+    """
+    nodes = _node_map(mission)
+    if node_id not in nodes:
+        raise ReflexError(f"unknown node {node_id}")
+    node = nodes[node_id]
+    cap = registry[node["capability"]]
+
+    if cap.get("mutation", "none") != "none":
+        raise ReflexError("read-only executor refused a mutating capability")
+    if not cap.get("auto_execute", False):
+        raise ReflexError("capability is not allowlisted for read-only auto execution")
+
+    executor = cap.get("executor", {})
+    kind = executor.get("type")
+
+    if kind == "read_file":
+        rel = _safe_repo_path(
+            executor.get("path"),
+            {"allowed_prefixes": ["CURRENT_STATE.md", "Docs/", "specs/"]},
+        )
+        path = (ROOT / rel).resolve()
+        try:
+            path.relative_to(ROOT.resolve())
+        except ValueError as exc:
+            raise ReflexError("read_file escaped repository root") from exc
+        data = path.read_bytes()
+        return "PASS", {
+            "kind": "read_file",
+            "path": rel,
+            "bytes": len(data),
+            "sha256": hashlib.sha256(data).hexdigest(),
+        }
+
+    if kind in {"python", "python_template"}:
+        argv = _render_python_argv(node, cap)
+        try:
+            run = subprocess.run(
+                [sys.executable, *argv],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+        except subprocess.TimeoutExpired as exc:
+            return "FAIL", {
+                "kind": kind,
+                "argv": argv,
+                "error": "timeout",
+                "timeout_seconds": timeout,
+                "stdout": (exc.stdout or "")[-16000:],
+                "stderr": (exc.stderr or "")[-16000:],
+            }
+        evidence = {
+            "kind": kind,
+            "argv": argv,
+            "exit_code": run.returncode,
+            "stdout": run.stdout[-16000:],
+            "stderr": run.stderr[-16000:],
+        }
+        return ("PASS" if run.returncode == 0 else "FAIL"), evidence
+
+    raise ReflexError(f"executor type {kind!r} is not allowed by read-only v0")
+
+
 def mark(
     mission: dict[str, Any],
     state: dict[str, Any],
@@ -504,7 +639,30 @@ def _cmd_next(args: argparse.Namespace) -> int:
         out["preview"] = preview_node(
             mission, registry, decision.node_id
         )
+        if args.execute_readonly and not decision.needs_human:
+            try:
+                status, evidence = execute_readonly(
+                    mission, registry, decision.node_id,
+                    timeout=args.timeout,
+                )
+            except ReflexError as exc:
+                out["execution"] = {
+                    "status": "REFUSED",
+                    "reason": str(exc),
+                }
+            else:
+                mark(
+                    mission, state, decision.node_id,
+                    status, evidence,
+                )
+                out["execution"] = {
+                    "status": status,
+                    "evidence": evidence,
+                }
+                out["updated_state"] = state
     print(json.dumps(out, indent=2))
+    if out.get("execution", {}).get("status") == "FAIL":
+        return 1
     return 0 if decision.action in {
         "SELECT", "COMPLETE"
     } else 2
@@ -548,6 +706,12 @@ def main() -> int:
     p.add_argument("mission")
     p.add_argument("--state")
     p.add_argument("--no-jev", action="store_true")
+    p.add_argument(
+        "--execute-readonly",
+        action="store_true",
+        help="execute only registry-approved mutation=none capabilities",
+    )
+    p.add_argument("--timeout", type=int, default=120)
     p.set_defaults(func=_cmd_next)
 
     args = ap.parse_args()
