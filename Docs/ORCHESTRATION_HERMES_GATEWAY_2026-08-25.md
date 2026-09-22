@@ -149,6 +149,24 @@ compensate; no parallel authority over the same surface; never run destructive g
 
 ---
 
+## 7. Universe Foundry mission dispatch
+
+For world-scale production, Hermes may consume the deterministic mission emitted by `Tools/universe_foundry.py`. The mission DAG does not replace Hermes memory/gates and does not execute tools itself; it gives Hermes a content-addressed set of legal specialist jobs, dependencies, stop conditions and evidence requirements.
+
+Faraway Mother World Zero:
+
+```bash
+python Tools/universe_foundry.py compile \
+  --genome specs/universe/faraway_mother.world_genome.v1.json \
+  --delta specs/universe/faraway_mother.resolved_demo.world_delta.v1.json
+```
+
+Hermes dispatches ready tasks through existing lanes. Jev is called only for tasks whose `owner=jev`, and those tasks always carry closed candidate sets. A fixture delta may exercise orchestration but may not certify persistence.
+
+Durable contract: `Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md`.
+
+---
+
 ### Evidence
 
 - `deploy/orchestrate/delegate.sh` — delegation router (tested; claude/kimi invoked, auth-gated).
