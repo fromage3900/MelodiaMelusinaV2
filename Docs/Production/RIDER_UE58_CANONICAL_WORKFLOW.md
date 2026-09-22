@@ -3,6 +3,7 @@
 **Purpose:** production runbook for UE C++ work in Melodia.  
 **Status authority:** `CURRENT_STATE.md`.  
 **Runtime authority:** Unreal Editor / packaged build, not the IDE.
+**Canonical agent cockpit:** [`RIDER_PONYTAIL_ENGINEERING_COCKPIT.md`](RIDER_PONYTAIL_ENGINEERING_COCKPIT.md).
 
 Rider is the preferred C++ navigation, inspection and debugger surface. **RiderLink and Qodana are canonical always-available companions:** RiderLink is the focused live-editor automation bridge; Qodana is the tracked static-analysis quality gate. Use the trio routinely to reduce uncertainty before touching or promoting engine state.
 
@@ -20,6 +21,45 @@ Before adding a class, function, tag, subsystem or module:
 
 A missing text match is not proof that a Blueprint-facing API is unused. Prefer Unreal-aware usage discovery over grep alone for reflected symbols.
 
+---
+
+## 1.5 UHT-aware inspection
+
+For reflected UE declarations, Rider's UnrealHeaderTool-aware analysis is part of the canonical inner loop.
+
+Use it before the build rung for:
+
+- `UCLASS` / `USTRUCT` / `UENUM` declarations;
+- `UFUNCTION` / `UPROPERTY` changes;
+- Blueprint-native / implementable events;
+- reflected containers and metadata;
+- generated-header-sensitive changes.
+
+Required shape:
+
+```text
+edit -> Rider/UHT inspection clean -> Qodana -> UBT when required -> RiderLink -> runtime
+```
+
+Do not wait for a full build to discover a reflection error Rider can already surface.
+
+---
+
+## 1.6 Blueprint-aware architectural discovery
+
+Treat Rider's Unreal-aware usage index as an architectural query surface, not just navigation.
+
+Before adding, renaming, moving or deleting reflected API, inspect:
+
+- derived Blueprint classes;
+- Blueprint implementations/overrides;
+- usages of `UFUNCTION` / `UPROPERTY`;
+- Blueprint-authored property overrides;
+- delegate bindings;
+- gameplay-tag usages;
+- module and include ownership.
+
+This matters in Melodia because text search cannot prove absence from Blueprint assets and duplicate short asset names have existed. A grep miss is not dead-code evidence.
 ---
 
 ## 2. Build mode decision
@@ -65,6 +105,40 @@ Examples of useful focused families include Melodia integration, Wardrobe, runti
 
 Rider test success proves the native test. It does not replace a process-restart, PIE-input or packaged proof when those are the acceptance criteria.
 
+---
+
+## 3.1 Persistent Rider test sessions
+
+The repository has enough native automation that focused Rider sessions should be reused by subsystem rather than reconstructed ad hoc.
+
+Recommended session families:
+
+- **Integration:** `Melodia.Integration.*`;
+- **Rhythm / music:** current `Melodia.Rhythm*` and `Melodia.MusicClock.*` tests;
+- **Wardrobe / traversal:** current Wardrobe and Magical Transform test families;
+- **Gameplay core:** progression, quest, NPC, economy and core-rule families;
+- **Persistence:** current save/restore/idempotency families discovered from source.
+
+Use Rider's test discovery as the current name authority. Do not copy stale test names from old handoffs.
+
+RiderLink is appropriate when the running editor is intentionally part of the test context. Use isolated commandlet/process execution when process isolation is itself the acceptance condition.
+---
+
+## 3.2 Ponytail/OpenCode agent discipline
+
+When delegating native implementation/review from inside Rider, use the canonical cockpit rather than a context-free coding agent:
+
+`Rider -> OpenCode -> Ponytail UE5.8 -> Qodana/UBT/RiderLink -> UE proof`.
+
+Preflight:
+
+```powershell
+.\deploy\verify_rider_cockpit.ps1
+```
+
+Ponytail is machine-local at `Tools/vendor/ponytail-ue58`; the tracked OpenCode config references its plugin. A fresh clone can explicitly rehydrate it with `-InstallPonytail`.
+
+Git safety is mandatory: the cockpit owns the assigned branch/head only. No autonomous switch, merge, rebase, reset, clean or commit unless the task explicitly authorizes it.
 ---
 
 ## 4. Native debugger workflow
@@ -227,6 +301,9 @@ Do not replace it with native import code because Rider makes C++ convenient.
 For native work, report:
 
 - existing owner modified;
+- cockpit preflight branch/head recorded for agent-driven native work;
+- Ponytail review/audit used when applicable;
+- Rider/UHT inspection clean for reflected changes;
 - Rider/usage discovery performed;
 - whether reflected/module declarations changed;
 - exact build target and result;
