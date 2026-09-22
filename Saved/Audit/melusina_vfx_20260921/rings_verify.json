@@ -1,0 +1,75 @@
+{
+ "dir": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_vfx_20260921",
+ "dirty_now": true,
+ "wings": {
+  "location": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "modifiers": [
+   [
+    "Angel Wings",
+    "MEL_angel_wing_pair"
+   ]
+  ],
+  "verts": 640,
+  "x": [
+   -1.17,
+   1.16
+  ],
+  "z": [
+   1.26,
+   2.01
+  ]
+ },
+ "rings": [
+  {
+   "name": "FX_ClockworkRing_Outer",
+   "exists": true,
+   "group": "MEL_clockwork_arc_ring_outer",
+   "verts": 2136,
+   "x": [
+    -0.893,
+    0.893
+   ],
+   "z": [
+    0.759,
+    2.541
+   ],
+   "moves": true
+  },
+  {
+   "name": "FX_ClockworkRing_Mid",
+   "exists": true,
+   "group": "MEL_clockwork_arc_ring_mid",
+   "verts": 1812,
+   "x": [
+    -0.691,
+    0.691
+   ],
+   "z": [
+    0.969,
+    2.331
+   ],
+   "moves": true
+  },
+  {
+   "name": "FX_ClockworkRing_Inner",
+   "exists": true,
+   "group": "MEL_clockwork_arc_ring_inner",
+   "verts": 1482,
+   "x": [
+    -0.504,
+    0.51
+   ],
+   "z": [
+    1.145,
+    2.159
+   ],
+   "moves": true
+  }
+ ],
+ "rings_ok": true,
+ "png": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_vfx_20260921\\wings_rings_evidence_20260921.png"
+}
