@@ -176,3 +176,27 @@ Rokoko guarded lane = performance-capture ingestion
 The goal is composition, not replacement.
 
 **Jev decides where judgment is needed; deterministic tools prove what can be proven; existing owners execute.**
+
+## 10. Echo Reflex canary
+
+The experimental Echo Reflex layer applies this contract to project-wide mission routing:
+
+- durable contract: `Docs/Production/ECHO_REFLEX_CONTRACT.md`;
+- capability registry: `specs/echo_reflex_capabilities.v1.json`;
+- mission schema: `specs/schemas/echo_reflex_mission.v1.schema.json`;
+- canary controller/tests: `Prototypes/EchoReflex/`.
+
+Echo Reflex is **not yet a production executor**. Its v0 boundary is preview-only: deterministic code computes legal transitions, Jev may select only among those transitions, and existing owners remain the only mutation surfaces.
+
+The intended long-term split is:
+
+```text
+Astra / human = plan or replan the mission DAG
+Echo/policy   = decide what transitions are legal
+Jev           = resolve bounded ambiguity among legal transitions
+specialists   = execute through existing owners
+evidence      = determine whether the transition actually succeeded
+owner         = retain visual/gameplay promotion judgment
+```
+
+Do not bypass the normal Jev provenance contract simply because the choice was made inside Echo Reflex.
