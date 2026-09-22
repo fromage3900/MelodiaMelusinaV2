@@ -30,9 +30,9 @@ Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-0
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
-## CANONICAL WORKING MELUSINA HAIR PIPELINE
+## MELUSINA HAIR SEAT AND SLEEVES SAVED — CHAIN SAMPLE STILL FROZEN
 
-Owner confirmed the hair physics are working. Kawaii stays on the chains. The hair root follows the body socket. Leader pose on the hair stays off. This pass did not retune Kawaii and did not change the idle anim class.
+The hair seat and the sleeves are saved, and the chain sample is still frozen. `A_DEF_hair_bbone_000` stayed at translation delta 0.0 cm and yaw 0.0 from world time 5151.90 s to 5184.23 s, socket world (-1.3827, 31.4136, 174.1654) both times. Kawaii stays on the chains. The hair root follows the body socket. Leader pose on the hair stays off. This pass did not retune Kawaii and did not change the idle anim class.
 
 Measured on `BP_MelusinaSwordsman_Presentation0` in `L_MelusinaPortfolioCapture`, and written onto the hair templates of `BP_MelusinaSwordsman_Presentation`, `BP_MelusinaJRPGCharacter`, and `BP_Melusina`:
 
