@@ -26,6 +26,7 @@ Default assumption: **Melodia already has enough architecture to author content.
 | Houdini geometry/material batch work | Hython under `Tools/Houdini/` | runtime UE authority, untracked one-off shelf tools |
 | Rokoko / Melusina mocap | Blender retarget/export -> guarded UE importer | raw FBX drag/drop, alternate skeleton import lane |
 | UE C++ / reflected API | JetBrains Rider + closed-editor UBT where required | blind text edits followed only by Live Coding |
+| UE native agent implementation/review | Rider + OpenCode + Ponytail cockpit | generic agent session with no Unreal/reflection context or branch lock |
 | Focused native/editor automation test | RiderLink against the single intended editor session | bespoke one-off test bridge when RiderLink can run the test |
 | Native/shader static analysis | Qodana via tracked `qodana.yaml` (`QDJB`) | ad-hoc linter setup that bypasses the project profile |
 | Bounded judgment / orchestration | Jev with explicit candidates + criteria + provenance | unconstrained planner inventing new authorities or mutating the editor directly |
@@ -249,9 +250,18 @@ Never:
 Detailed runbook:
 `Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`
 
+Canonical agent cockpit:
+`Docs/Production/RIDER_PONYTAIL_ENGINEERING_COCKPIT.md`
+
+Run `deploy/verify_rider_cockpit.ps1` before a write-capable OpenCode/Ponytail session.
+
 Rider is the primary C++ reasoning, navigation, debugger and test surface. Unreal remains the runtime/asset authority.
 
 ### Use Rider first for
+
+- UHT-aware inspection of reflected declarations before the build rung;
+- Blueprint-aware Code Vision / Find Usages, delegate bindings and gameplay-tag usages as architectural discovery;
+- OpenCode + Ponytail when delegating native implementation or review inside Rider;
 
 - Find Usages across reflected C++ and Blueprint references;
 - `UCLASS` / `UFUNCTION` / `UPROPERTY` navigation and Blueprint usage discovery;
@@ -432,16 +442,18 @@ Do not send an agent a vague mission like "improve procedural generation." Send 
 
 ## D. UE C++ change
 
-1. Find the existing owner seam in Rider.
-2. Search usages / Blueprint references before adding API.
-3. Ask Jev only if a bounded implementation/test strategy decision remains ambiguous.
-4. Make the smallest native change.
-5. Run the tracked Qodana profile on the relevant native/shader scope.
-6. Close editor for reflected/module changes and build Development Editor.
-7. Use RiderLink for the smallest focused live-editor automation test when appropriate.
-8. Execute the required UE runtime proof.
-9. Add restart/packaged evidence when the acceptance gate requires it.
-10. Attach logs/receipts and update `CURRENT_STATE.md` only when status changed.
+1. Run `deploy/verify_rider_cockpit.ps1` and record branch/head.
+2. Find the existing owner seam in Rider using Unreal-aware usages/Code Vision/Blueprint references.
+3. Use Ponytail audit/review if the seam is unfamiliar or architecture-sensitive.
+4. Ask Jev only if a bounded legal strategy decision remains ambiguous.
+5. Make the smallest native change in Rider/OpenCode.
+6. Clear Rider/UHT inspections for reflected declarations.
+7. Run the tracked Qodana profile on the relevant native/shader scope.
+8. Close the editor and run Development Editor UBT when reflection/module topology requires it.
+9. Use RiderLink for the smallest focused live-editor automation test when appropriate.
+10. Execute the required UE runtime proof; add restart/packaged proof when required.
+11. Run `/ponytail-review` when the local plugin is available, address/park findings, and only then open the PR.
+12. Update `CURRENT_STATE.md` only when status actually changed.
 
 ---
 
@@ -455,6 +467,8 @@ Do not send an agent a vague mission like "improve procedural generation." Send 
 - using manual FBX import instead of the guarded Rokoko importer;
 - using Houdini as a runtime world authority;
 - using Live Coding as proof of reflected/module changes;
+- running generic UE coding agents without the Rider/Ponytail cockpit when that lane is available;
+- allowing OpenCode/Ponytail background Git operations to switch branches or commit implicitly;
 - skipping World Compiler recipes and hand-placing procedural content in code;
 - adding a second save/combat/UI/audio/world compiler owner;
 - writing a new status document instead of updating `CURRENT_STATE.md`.
