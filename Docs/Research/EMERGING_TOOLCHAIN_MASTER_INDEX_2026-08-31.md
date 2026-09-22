@@ -121,6 +121,87 @@ Tiers 1–3 implemented (`MelodiaAudioReactivePresentationSubsystem`); audio→g
 Unreal MCP, Mesh Terrain+PCG), Tier B (Dash, LiquiGen, EmberGen, Toolbag, Gaea, World Creator, PVE),
 Tier C/D (RTX, neural, Procedura, Magpie). **Every test uses the required-result template; ADOPT/PARK/REJECT gates.**
 
+## 8a. Agent harness / MCP trench sweep — 2026-09-22
+
+**Status for every item in this section: RESEARCH / WATCH unless a PRESENT row elsewhere explicitly says otherwise.**
+This is the owner-approved "install twelve things" research queue, not permission to replace canonical Melodia
+authorities. The goal is to make models replaceable workers around the existing World Compiler, Hython,
+Rider/Qodana, gameplay owners, evidence gates, and Jev director — not to create twelve competing frameworks.
+
+### The twelve candidates
+
+| # | Tool / harness | What it adds | Melodia-shaped use | Canary / boundary |
+|---|---|---|---|---|
+| 1 | **Epic Unreal MCP (UE 5.8, Experimental)** | Engine-native local MCP server + Toolset Registry; AllToolsets exposes actor, lighting, material, Slate, automation and other editor tools; dedicated PCG guidance exists | Native UE control surface and eventual custom Melodia toolsets | Enable only in an Unreal Sandbox / disposable canary first. Calls execute serially on the game thread. **Never overlap tool calls or let native Unreal MCP and Monolith mutate the same graph/asset transaction.** Source: https://dev.epicgames.com/documentation/unreal-engine/unreal-mcp-in-unreal-editor |
+| 2 | **per-simmons/unreal-agent-harness** | UE 5.8 agent recipes, viewport capture decoding and a see → act → check → fix QA loop around Epic's Unreal MCP | Steal the visual-verification pattern so an agent proves a world/edit looks right instead of merely reporting tool success | Quarry patterns; do not wholesale import city/Cesium assumptions. Validate viewport capture + compact evidence on one canary level. Source: https://github.com/per-simmons/unreal-agent-harness |
+| 3 | **Pi coding agent** | Small, extensible coding-agent core designed to be composed rather than treated as a monolith | Candidate lightweight runtime beneath Jev-directed specialist work | Test in a disposable clone with no UE writer attached. Prefer project-local config and explicit permissions. Source: https://pi.dev/ |
+| 4 | **pi-muselinn-harness** | Adds concurrent subagents, goal/budget lifecycle, plan mode, permission chain, background tasks, cron, hooks, todos and skills to Pi | Strong candidate for the missing **Melodia Orchestrator runtime**: Jev emits bounded jobs; Pi/Muselinn dispatches specialists | Third-party package can execute code. Review source before install. First canary = three read-only/repo-safe specialists with a concurrency cap; no editor mutation. Source: https://pi.dev/packages/pi-muselinn-harness |
+| 5 | **SUNRNEHUI Agent Harness v10** | Provider-neutral portable handoff/acceptance layer: native / portable / audited modes with compact contract, event log and capsule | Cross-model continuity across Codex / Claude / Grok / Qwen-style workers without another giant status document | **Pattern to adopt before framework.** Map portable state to Melodia's existing SSOT; never make capsule/status files authoritative over CURRENT_STATE.md. Source: https://github.com/SUNRNEHUI/agent-harness |
+| 6 | **GameStudio** | Provider-neutral game-dev studio brain with specialist agents, skills, hooks, rules and Unreal/Three.js coverage | A **skill quarry** for UE, technical-art, VFX/shader, QA, Three.js and asset-pipeline specialist definitions | Do not install all 55 agents / 182 skills into production. Diff and selectively port a small set into existing `.agents/skills` / `.claude/skills`, rewritten against Melodia authorities. Source: https://github.com/bullish0x/GameStudio |
+| 7 | **JTCHE/houdini-mcp** | Houdini node/geometry inspection and edit, HDA, cook/render/PDG, viewport capture, Python/HScript/VEX, offline docs; can start headless Hython | Gives a Houdini specialist actual perception + execution around the existing Hython/Copernicus forge | Canary on a **copy** of an existing cymatics network: inspect → modify → cook → capture → export → report. Never let it make Houdini the runtime world authority. Source: https://github.com/JTCHE/houdini-mcp |
+| 8 | **johnsabath/touchdesigner-mcp** | Self-contained TD MCP surface for Python execution, OP inspection, DAT access and visual capture | Turn the concert / OSC / Spout / reactive lane into a first-class specialist worker with visual evidence | Load in a copy of the TD project first; read/inspect before write. Preserve the existing runtime OSC/Spout contracts. Source: https://github.com/johnsabath/touchdesigner-mcp |
+| 9 | **Microsoft Agent Framework Harness** | Batteries-included harness with loop, planning/todos, state/context, approvals, background agents, shell/filesystem tools and telemetry | Heavier alternative to Pi for a durable multi-agent Melodia Mission Control | Prototype outside production repo first. Judge it on orchestration/evidence value, not feature count. Do not duplicate CURRENT_STATE, task authority, or existing model router. Sources: https://learn.microsoft.com/agent-framework/agents/harness and https://devblogs.microsoft.com/agent-framework/the-microsoft-agent-framework-harness-is-now-released/ |
+| 10 | **OpenAI Codex App Server** | Exposes the Codex harness as an embeddable service / protocol surface with persistent agent threads, tool events and approvals | Candidate Codex worker backend beneath Jev/orchestrator instead of treating a Codex UI session as the architecture | Use as a worker interface, not another project authority. Validate one bounded repo task and one resumable handoff before deeper integration. Source: https://openai.com/index/unlocking-the-codex-harness/ |
+| 11 | **Claude Managed Agents** | Stateful/versioned agents with tools, MCP servers, skills, persistent sessions, sandbox environments and multiagent coordinator declarations | Candidate cloud specialist fleet for expensive planning/review lanes while local DCC execution remains machine-side | Beta surface. Start with read-only planner/reviewer agents; secrets stay in vault/auth surfaces, never Git. Do not let cloud sessions directly compete with the one-editor writer rule. Source: https://platform.claude.com/docs/en/managed-agents/overview |
+| 12 | **goose (AAIF)** | Local open-source agent with CLI/Desktop/API, 70+ MCP extensions, provider choice, recipes, subagents, permissions/sandboxing and ACP support | Excellent interoperability canary: can Melodia package a reusable mission recipe that runs against different model providers? | Test a **read-only Melodia audit recipe** first. If adopted, recipes describe jobs; they do not supersede AGENTS.md, CURRENT_STATE.md or the Production Playbook. Source: https://block.github.io/goose/ |
+
+### The intended Melodia shape
+
+```text
+owner intent
+    ↓
+Jev / high-reasoning planner
+    ↓ typed mission + acceptance criteria
+orchestrator runtime (Pi+Muselinn OR MAF; benchmark before choosing)
+    ├── repo/code worker       (Codex / Claude / Qwen / Grok / local)
+    ├── Houdini specialist     (Hython + optional Houdini MCP)
+    ├── TouchDesigner worker   (optional TD MCP)
+    ├── web / Three.js worker  (existing website lane)
+    └── verifier/reviewer      (independent model where useful)
+             ↓
+capability surfaces
+    ├── Git / shell / Rider / Qodana
+    ├── World Compiler + existing Python/Hython tools
+    └── ONE serialized Unreal mutation owner per transaction
+             ↓
+existing Melodia evidence gates / ledger / CURRENT_STATE
+```
+
+**Key rule:** parallelize **thinking, inspection, generation and verification**. Serialize **stateful DCC/editor
+mutation** when the target cannot safely accept concurrent writes. In Unreal, Epic explicitly documents MCP
+tool execution on the game thread as serial; Melodia's stronger local rule still wins: one editor and one
+chosen writer owns a mutation transaction.
+
+### Install/test ladder — yes, all twelve, but in waves
+
+**Wave A — low-blast-radius harnesses / continuity:** Pi → pi-muselinn-harness → Agent Harness v10 →
+goose. Success means the same bounded repo-safe mission can be planned, delegated, resumed and accepted
+without creating a second project-status authority.
+
+**Wave B — specialist capability surfaces:** Epic Unreal MCP → unreal-agent-harness patterns →
+Houdini MCP → TouchDesigner MCP. Success means each DCC can complete **inspect → bounded mutation →
+capture/verify → evidence** on sandbox/copied content. No production asset is the first test target.
+
+**Wave C — heavier orchestration / remote worker backends:** GameStudio skill quarry → Microsoft Agent
+Framework Harness → Codex App Server → Claude Managed Agents. Success means one useful specialist or
+handoff capability survives integration without importing a second architecture, second task ledger, or
+second gameplay/world authority.
+
+### Promotion gate
+
+A candidate moves from WATCH toward PRESENT only when all are true:
+
+1. **One named Melodia job is measurably easier or safer** than with the existing stack.
+2. It obeys the existing authority graph — especially World Compiler/Hython ownership and one Unreal writer.
+3. It produces compact evidence that another agent can verify.
+4. Uninstall/rollback is understood.
+5. Credentials and machine-local config stay out of Git.
+6. The result is recorded against an existing project gate/SSOT rather than creating a parallel status system.
+
+**Default outcome is PARK, not integration.** Twelve experiments are welcome; twelve permanent daemons are not.
+
+---
+
 ## 9. Anti-duplication checklist (read before proposing)
 
 1. Is the system in §1 (PRESENT)? Extend it, don't rebuild. Especially: audio writer (single), music clock.
