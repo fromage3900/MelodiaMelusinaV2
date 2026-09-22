@@ -11,7 +11,9 @@
 
 UMelodiaHairComponent::UMelodiaHairComponent()
 {
-	PrimaryComponentTick.bCanEverTick = false;
+	// Kawaii evaluates inside TickComponent. Leaving this false keeps the
+	// component out of the tick manager, so the strands stay on the ref pose.
+	PrimaryComponentTick.bCanEverTick = true;
 	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	SetGenerateOverlapEvents(false);
 
