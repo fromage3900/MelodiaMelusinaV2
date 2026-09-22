@@ -11,7 +11,11 @@
 
 UMelodiaHairComponent::UMelodiaHairComponent()
 {
-	PrimaryComponentTick.bCanEverTick = false;
+	// The skeletal mesh evaluates its AnimBP from this tick. Kawaii itself has
+	// no tick group; TG_PrePhysics is when that evaluation runs. The AnimBP is
+	// still not installed here.
+	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.TickGroup = TG_PrePhysics;
 	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	SetGenerateOverlapEvents(false);
 
@@ -30,6 +34,64 @@ UMelodiaHairComponent::UMelodiaHairComponent()
 		// ticking before BindToOwnerMesh() assigns its SourceMeshComponent.
 		HairAnimClass = HairAnim.Class;
 	}
+}
+
+void UMelodiaHairComponent::OnRegister()
+{
+	Super::OnRegister();
+	BindEditorSourceMesh();
+}
+
+void UMelodiaHairComponent::BindEditorSourceMesh()
+{
+	// Editor worlds only. Game worlds, including PIE, take BindToOwnerMesh().
+	const UWorld* World = GetWorld();
+	if (!World || World->IsGameWorld())
+	{
+		return;
+	}
+
+	// The AnimBP must already be instanced. Do not install it, and do not call
+	// InitAnim: re-init clears Kawaii warm-up.
+	UAnimInstance* HairAnimInstance = GetAnimInstance();
+	if (!IsValid(HairAnimInstance))
+	{
+		return;
+	}
+
+	const UClass* HairInstanceClass = HairAnimInstance->GetClass();
+	const bool bIsWaterHair = (HairAnimClass && HairInstanceClass->IsChildOf(HairAnimClass))
+		|| HairInstanceClass->GetName().Contains(TEXT("ABP_Melusina_WaterHair"));
+	if (!bIsWaterHair)
+	{
+		return;
+	}
+
+	USkeletalMeshComponent* BodyMesh = Cast<USkeletalMeshComponent>(GetAttachParent());
+	if (!IsValid(BodyMesh))
+	{
+		return;
+	}
+
+	const FString ParentName = BodyMesh->GetName();
+	const bool bAcceptedBody = ParentName.Contains(TEXT("MelusinaPresentationMesh"))
+		|| ParentName.Equals(TEXT("CharacterMesh0"));
+	if (!bAcceptedBody)
+	{
+		return;
+	}
+
+	FObjectPropertyBase* SourceMeshProperty =
+		FindFProperty<FObjectPropertyBase>(HairInstanceClass, TEXT("SourceMeshComponent"));
+	if (!SourceMeshProperty)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MelodiaHairComponent: hair AnimBP is missing SourceMeshComponent."));
+		return;
+	}
+
+	// Source assignment only. Leave the saved relative, the mannequin, and the
+	// battle SkeletalMesh redirect untouched.
+	SourceMeshProperty->SetObjectPropertyValue_InContainer(HairAnimInstance, BodyMesh);
 }
 
 void UMelodiaHairComponent::BeginPlay()

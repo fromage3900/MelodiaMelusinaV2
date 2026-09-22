@@ -187,7 +187,6 @@ private:
 	void BindTraversalInput();
 	void HandleJumpPressed();
 	void HandleJumpReleased();
-	void FinishReleasedJump();
 	void HandleSprintPressed();
 	void HandleSprintReleased();
 	void HandleStrafePressed();
@@ -221,8 +220,10 @@ private:
 	bool bWingPresentationOwnedExternally = false;
 	bool bIsGliding = false;
 	bool bJumpWindingUp = false;
-	bool bAwaitingGlideTap = false;
-	bool bJumpHasLeftGround = false;
+	/** Physical jump-button hold. ACharacter::bPressedJump clears when JumpMaxHoldTime elapses. */
+	bool bJumpInputHeld = false;
+	/** One glide request per continuous hold while falling. */
+	bool bHeldFallGlideRequested = false;
 	bool bSprintInputHeld = false;
 	bool bIsSprinting = false;
 	bool bIsDashing = false;
@@ -347,7 +348,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Movement", meta=(ClampMin="0.05", ClampMax="1.0"))
 	float DashPersistSeconds = 0.22f;
 
-	/** Duration used to normalize the poise animation; release always jumps once. */
+	/** Duration used to normalize the poise visual. Jump force does not scale with it. */
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Input", meta=(ClampMin="0.05", ClampMax="2.0"))
 	float JumpWindupVisualDuration = 0.4f;
 

@@ -314,17 +314,16 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 
 	UpdateWaterState(DeltaTime);
 
-	if (bAwaitingGlideTap)
+	// A held jump that has left the ground requests glide once. Releasing ends the
+	// ACharacter hold via StopJumping; it does not arm a second tap.
+	if (Movement->IsMovingOnGround())
 	{
-		if (!Movement->IsMovingOnGround())
-		{
-			bJumpHasLeftGround = true;
-		}
-		else if (bJumpHasLeftGround)
-		{
-			bAwaitingGlideTap = false;
-			bJumpHasLeftGround = false;
-		}
+		bHeldFallGlideRequested = false;
+	}
+	else if (bJumpInputHeld && !bHeldFallGlideRequested && !bIsGliding && !bIsSwimming && !bIsDiving && Movement->IsFalling())
+	{
+		bHeldFallGlideRequested = true;
+		RequestTraversalMode(EMelodiaTraversalMode::Glide);
 	}
 
 	// Glide logic
@@ -340,8 +339,7 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 		if (Movement->IsMovingOnGround())
 		{
 			StopGlide();
-			bAwaitingGlideTap = false;
-			bJumpHasLeftGround = false;
+			bHeldFallGlideRequested = false;
 			return;
 		}
 
@@ -505,47 +503,20 @@ void UMelodiaTraversalComponent::HandleJumpPressed()
 		return;
 	}
 
+	bJumpInputHeld = true;
+	bHeldFallGlideRequested = false;
+
 	if (Movement->IsMovingOnGround())
 	{
-		BeginJumpWindup();
-		return;
-	}
-
-	if (bAwaitingGlideTap)
-	{
-		bAwaitingGlideTap = false;
-		RequestTraversalMode(EMelodiaTraversalMode::Glide);
+		OwnerCharacter->Jump();
 	}
 }
 
 void UMelodiaTraversalComponent::HandleJumpReleased()
 {
-	if (!bJumpWindingUp)
-	{
-		return;
-	}
-
-	if (!OwnerCharacter.IsValid() || !Movement.IsValid() || !IsTraversalMovementAllowed(this) || !Movement->IsMovingOnGround())
-	{
-		CancelJumpWindup();
-		return;
-	}
-
-	CancelJumpWindup();
-	OwnerCharacter->Jump();
-	bAwaitingGlideTap = true;
-	bJumpHasLeftGround = false;
-
-	if (UWorld* World = GetWorld())
-	{
-		World->GetTimerManager().SetTimerForNextTick(
-			FTimerDelegate::CreateUObject(this, &UMelodiaTraversalComponent::FinishReleasedJump));
-	}
-}
-
-void UMelodiaTraversalComponent::FinishReleasedJump()
-{
-	if (OwnerCharacter.IsValid())
+	const bool bEndJumpHold = bJumpInputHeld;
+	bJumpInputHeld = false;
+	if (bEndJumpHold && OwnerCharacter.IsValid())
 	{
 		OwnerCharacter->StopJumping();
 	}
@@ -724,8 +695,8 @@ void UMelodiaTraversalComponent::CancelTraversalState()
 	bSprintInputHeld = false;
 	SetSprinting(false);
 	CancelJumpWindup();
-	bAwaitingGlideTap = false;
-	bJumpHasLeftGround = false;
+	bJumpInputHeld = false;
+	bHeldFallGlideRequested = false;
 	bIsDashing = false;
 	DashPersistTimer.Invalidate();
 	if (OwnerCharacter.IsValid())

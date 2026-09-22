@@ -27,11 +27,13 @@ public:
 	// runtime correction that only manifests on Play.
 
 protected:
+	virtual void OnRegister() override;
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void OnUnregister() override;
 
 private:
+	void BindEditorSourceMesh();
 	void BindToOwnerMesh();
 	void RestoreOwnerMeshReference();
 
@@ -39,12 +41,14 @@ private:
 	 * Hair AnimBP class, resolved in the constructor but NOT installed there.
 	 *
 	 * Installing the anim instance in the constructor makes the AnimBP tick from
-	 * the first frame, while SourceMeshComponent is only assigned in
-	 * BindToOwnerMesh() -- which BeginPlay deliberately defers one tick so the
-	 * battle adapter's mesh swap completes first. Those intervening frames ticked
-	 * the graph with a null source mesh. The class is cached here and installed in
-	 * BindToOwnerMesh(), so the graph has no instance to tick until the same call
-	 * stack that populates its source mesh runs.
+	 * the first frame, while SourceMeshComponent is assigned in BindToOwnerMesh()
+	 * -- which BeginPlay deliberately defers one tick so the battle adapter's mesh
+	 * swap completes first. Those intervening frames ticked the graph with a null
+	 * source mesh. The class is cached here and installed in BindToOwnerMesh(), so
+	 * the game graph has no instance to tick until the same call stack that
+	 * populates its source mesh runs. Editor worlds do not install it either:
+	 * BindEditorSourceMesh() only writes SourceMeshComponent when this AnimBP is
+	 * already instanced.
 	 */
 	UPROPERTY()
 	TSubclassOf<UAnimInstance> HairAnimClass;
