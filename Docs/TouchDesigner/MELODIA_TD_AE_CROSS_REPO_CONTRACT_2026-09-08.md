@@ -99,6 +99,23 @@ Durable principle:
 
 > **one semantic music language, multiple execution contexts.**
 
+## 4a. Optional TD -> Unreal visual-field return path
+
+The semantic bridge is not required to be one-way. TouchDesigner may return a **presentation-only visual field** to Unreal when a game slice benefits from a shared spatial visual response.
+
+Rules:
+
+- schema/semantic authority remains in the game repo;
+- TD may return textures/fields, never gameplay/save/quest truth;
+- the return transport (for example local GPU texture exchange) is not considered present until visibly proven in the actual UE project;
+- transport-specific TD nodes stay at the output edge; the scene keeps a transport-independent named output;
+- Unreal consumers may use the returned field for material, Niagara, lighting, fog or similar presentation only;
+- loss of TD/transport must fail soft and must not block gameplay;
+- do not create a second OSC semantic bridge, MPC writer or world authority to support the return path.
+
+The first production target for this pattern is Faraway Mother P1. Durable integration spec:
+`Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md`.
+
 ## 5. Choral Sheep usage
 
 Choral Sheep / Chladni Fleece is a consumer of the existing architecture, not a new bridge.

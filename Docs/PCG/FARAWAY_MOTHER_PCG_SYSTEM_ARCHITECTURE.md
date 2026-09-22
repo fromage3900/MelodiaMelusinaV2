@@ -129,3 +129,23 @@ python Content/Python/faraway_mother_pcg_assembly.py
 # Live Unreal Editor staging (when inside UE Python environment)
 python Content/Python/faraway_mother_pcg_assembly.py --apply
 ```
+
+
+---
+
+## 7. P1 Resonance-Field Convergence — 2026-09-22
+
+The P1 closure path is now defined by
+[`Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md`](../Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md).
+
+This is a **convergence task**, not a new Faraway framework:
+
+- the deterministic PCG manifest remains the source for the existing Chladni/tension geography;
+- Hython rasterizes/forges deterministic static field assets and drape/VDM source data from that same basis;
+- TouchDesigner/Embody interprets live semantic music state into a presentation-only `OUT_SHOW_FIELD`;
+- Unreal receives that field only after a real receiver canary, then lets bounded material/Niagara/Heart-Gate presentation consumers sample it;
+- Unreal remains authoritative for the Heart Gate challenge, traversal reward, gameplay, save state and world consequence.
+
+**First decisive gate:** prove `TD OUT_SHOW_FIELD -> UE texture/render target -> debug plane` with correct Faraway world/UV alignment. Do not fan the field out to production consumers until that is visibly proven.
+
+**Do not add:** a second World Compiler, a second OSC semantic listener, another MPC/audio writer, a second Faraway PCG architecture, or runtime Houdini cooking.
