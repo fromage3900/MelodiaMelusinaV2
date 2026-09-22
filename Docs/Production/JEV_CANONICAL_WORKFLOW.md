@@ -144,7 +144,7 @@ Jev chooses the next bounded action. The specialist agent/tool executes it. Evid
 
 This prevents a planner from becoming another implementation authority.
 
-## 8. When not to ask Jev
+## 7a. Jev + Universe Foundry\n\nUniverse Foundry may emit Jev tasks from authored World Genome decision points. Each task must carry a closed candidate set. Jev selects; it does not generate world data or execute the selected mutation.\n\nCanonical flow:\n\n\`\`\`text\nWorld Genome decision point\n  -> Jev selects one authored candidate + confidence/distribution\n  -> Hermes routes the now-bounded specialist task\n  -> existing World Compiler / Hython / TD / UE owner executes\n  -> independent evidence returns to the mission DAG\n\`\`\`\n\nContract: [\`UNIVERSE_FOUNDRY_CONTRACT.md\`](UNIVERSE_FOUNDRY_CONTRACT.md).\n\n## 8. When not to ask Jev
 
 Do not spend a judgment call on:
 
