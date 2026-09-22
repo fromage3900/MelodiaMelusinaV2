@@ -7,7 +7,7 @@ Adaptive controller layered on top of Melodia's existing Echo contracts.
 - Code computes legal/eligible nodes and enforces resources/policy.
 - Jev may choose among already-legal eligible nodes.
 - Existing owners execute; this canary never invents shell commands.
-- v0 is preview-only and never writes the Echo gate ledger.
+- v0 is preview-first; explicit execution is limited to allowlisted read-only capabilities and never writes the Echo gate ledger.
 """
 
 from __future__ import annotations
@@ -442,7 +442,7 @@ def preview_node(
         "auto_execute": bool(cap.get("auto_execute", False)),
         "acceptance": node.get("acceptance", []),
         "note": (
-            "preview only; v0 does not execute or write gate ledger"
+            "preview-first; use --execute-readonly only for registry-approved mutation=none capabilities"
         ),
     }
 
