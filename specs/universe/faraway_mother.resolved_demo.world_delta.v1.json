@@ -1,0 +1,26 @@
+{
+  "schema": "melodia.world_delta/v1",
+  "world_id": "faraway_mother",
+  "revision": 1,
+  "source_authority": "fixture",
+  "non_authoritative_fixture": true,
+  "changes": [
+    {
+      "id": "heart_gate_resolved_demo",
+      "domain": "gameplay_export",
+      "value": {
+        "challenge_id": "challenge.mother_heart_gate",
+        "state": "resolved",
+        "note": "Fixture only. A real run must export this consequence from the canonical UE save/gameplay owner."
+      }
+    },
+    {
+      "id": "resolved_seam_presentation",
+      "domain": "presentation",
+      "value": {
+        "world_response": "coherent",
+        "afterimage": "enabled"
+      }
+    }
+  ]
+}
