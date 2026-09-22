@@ -37,6 +37,7 @@ class Suite:
 
 
 SUITES = (
+    Suite("Prototypes/EchoReflex/test_echo_reflex.py", re.compile(r"Ran\\s+11 tests.*\\bOK\\b", re.S)),
     Suite("Tools/test_echo_contract.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_t3d_safe_wire.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_t3d_request_contract.py", re.compile(r"validated T3D request schema")),
@@ -69,7 +70,7 @@ SUITES = (
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 28
+MINIMUM_SUITE_COUNT = 29
 
 # These suites are self-contained in a Git checkout. The remaining suites
 # require Perforce-synced content, materialized LFS binaries, ignored local MCP
@@ -77,6 +78,7 @@ MINIMUM_SUITE_COUNT = 28
 # to the PC/editor validation lane rather than hosted PR CI.
 OFFLINE_SUITE_PATHS = frozenset(
     {
+        "Prototypes/EchoReflex/test_echo_reflex.py",
         "Tools/test_echo_contract.py",
         "Tools/test_t3d_safe_wire.py",
         "Tools/test_t3d_request_contract.py",
@@ -101,7 +103,7 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Docs/T3D_Baseline/test_canonical.py",
     }
 )
-MINIMUM_OFFLINE_SUITE_COUNT = 22
+MINIMUM_OFFLINE_SUITE_COUNT = 23
 
 
 def run_suite(suite: Suite) -> dict[str, object]:
