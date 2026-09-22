@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-20 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-21 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` **PASS**. Meadow on **BrushifyIsland_*** SpeedTree + walk dressing — not Sphere3D. Proof `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-19.json`. Board: `Saved/Audit/Screens/wc_morning_rainbow_bloom_{waterline_dolly,website_oblique,website_top,website_south,south_fix}_2026-09-19.png`.
 Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-09-20**: Uni parents off `L_MelusinaMorning` actors; Melodia children `NS_Morning_{PetalDrift,PollenSparkle,PondMist,WindFront,DustShafts}` + parked Glint/Impact. `rewire_morning_fx.py --effect bind-user` bound SpawnRate→`User.PetalSpawnMultiplier` / `MoteSpawnMultiplier` / `MistDensity` and WindFront `Gust_Leader` SpawnBurst `Spawn Count`→`User.WindFrontVisible`. Proof `Saved/Audit/niagara_rewire_bind-user_summary_2026-09-20.json`. No MPC writes. Hue-reveal remains PIE wind only.
 **Git 2026-09-20:** Isolated landing only. Do **not** dump the dirty tree. Park Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, Oceanology, Humber. Morning closeout is `feature/morning-closeout-2026-09-20` (PR #249). Never robocopy/junction/overwrite `harp_bow_pipeline`.
@@ -14,6 +14,10 @@ Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-0
 **harp_bow_pipeline junction incident 2026-09-20 (RESOLVED):** `C:\EnvironmentPortfolio\harp_bow_pipeline` was a junction to `G:\EnvironmentPortfolio_Snapshot_20260918\harp_bow_pipeline` whose 11 `.blend` files (all `Melusina_Harp_HERO01_*` incl. the `pre_rokoko_live` checkpoint) are robocopy-truncated zero-filled husks — Sep 8–12 Rev02/ArcherPose/BowPose staged work initially reported unrecoverable; **recovered late 2026-09-20** — an intact full-data copy was found at `D:\_relocated\harp_bow_pipeline` and all 21 `.blend` files were restored to the C: folder with no overwrites (`verify_blend.py` 21/21 OK; Rev02 opens + renders — 971 objects, EEVEE `Cam_Beauty` proof `harp_bow_pipeline/HERO01_Rev02_recovery_render_proof.png`; receipt `Saved/Audit/mocap/harp_recovery_2026-09-20.json`). D: stays master; G: left untouched as evidence. Junction replaced with a real C: folder holding one DNA-verified base (`Melusina_HERO01_Base_Sep5_Recovery.blend`, copy of the Sep 5 backup, verified AFTER copy) + 15 evidence PNGs + `HERO01_UE_RENDER_PROGRESS.md`. Intake gate: `python Tools/mocap/verify_blend.py <file-or-dir>` — rejects zero-filled husks, handles zstd-compressed blends. **v23 grandmaster is zstd, NOT a husk** (opened live 3× 09-20; skeleton FBX + rig-gate receipts from it valid). **Correction to the A2 note above: RecvFrom closed-editor UBT ran 17:48 — `UnrealEditor-BS_GodFile.dll` stamped; PIE ingest still owed on reopen.** Cascadeur inbox: 43 manifests all legacy Quaternius/UAL1 Lane-B (validator BOM-fixed to `utf-8-sig`); `SC_Melusina_Golden.casc` unauthored; binding source `Tools/Cascadeur/Melusina/SK_Melusina_Skeleton_Cascadeur.fbx` exported (760 nodes verified). Rokoko `character_rig_RokokoLive` confirmed absent from v23 (receipt `Saved/Audit/mocap/rig_gate_2026-09-20.json`) — rebuild before next suit session; `Tools/mocap/` = rig_gate, export_take, export_skeleton_fbx, verify_blend.
 **Pre-collapse docs:** every deleted handoff/plan/report is recoverable with
 `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
+
+**Showcase prep 2026-09-21 (not committed):** Phase E measured `WaterHairMesh` on `L_MelusinaPortfolioCapture`: chain bones stayed **0.0 cm** off the reference pose while Update Animation in Editor was on and the editor world advanced 2.04 s. That checkbox is transient, so the later reload cleared it. `UMelodiaHairComponent` constructs with `bCanEverTick` false; the instance flag was set true and the capture level was saved with `LevelEditorSubsystem.save_current_level`. The shirt slot was already present (`SK_Melusina_V2_Shirt`, visible, scale 1, leader-posed to `MelusinaPresentationMesh`, spine match 0 cm). Hair was not leader-posed and Kawaii was not retuned. The editor world then went null with four dirty Morning external actors, so the transient flag was not turned back on. Still, other levels, and cook were skipped. One editor was already open on `L_MelusinaPortfolioCapture` (Monolith `127.0.0.1:9316`). `WaterHairMesh` was already Update Animation in Editor off and Always Tick Pose. `Staging_R_Iris_003_L` and `Staging_R_Iris_004_R` were already detached; their scale was set to 1,1,1. The capture map is dirty. The agent did not save it — owner Ctrl+S. The eight Sir Melodious staging meshes are not in the open level, and their offsets were not recovered. Audits are not L2. Capture: 76 material slots, 10 bad parents (4 MatineeCam engine materials, 4 material-instance parents, 2 empty), 10 missing texture overrides on the harp and bow. None of the eight `NS_Melusina_*` systems use the `Content/Melodia/_PROJECT` flipbook authority; both flipbook copies measure Grid 4x4 and FlipFPS 15. Globules uses `ENV_StorybookAmbientVFX`. Globules, Splash, and Ripple each have 2 missing-bytecode diagnostics. Kawaii numbers match the accepted tune and the hair tick flags match; the Kawaii root is `HairExp_Rig`. The other five levels were not loaded. No render proof and no cook. Receipts: `Saved/Audit/showcase_prep_2026-09-21/`.
+
+**Eyelash MI 2026-09-22 (owner-ordered, saved):** `MI_Melusina_Eyelash` created from `M_Master_Toon_Character` with one override (`BaseTint` near-black); both `SM_R_Eyelash` slots (794 + 830 tris) repointed from the FBX-import placeholder materials to it. Saved packages verified, dirty 0. Still owed: socket to `head_x`, portfolio + runtime staging, blink-drive proof.
 
 ---
 
@@ -221,6 +225,21 @@ MCP regression, Ollama daemon stress — not only game tests).
 
 ## 3. Open
 
+### Beauty_V1 attach + still — 2026-09-21 16:00 (rejected)
+
+`Portfolio_WaveHarp_Bow` is on `hand_l` at scale 0.9, world yaw 90. The still at
+`Saved/Screenshots/MelusinaPortfolio_20260922/Beauty_V1/Beauty_V1.png` is not a portfolio frame.
+It was shot in PIE with `A_Melusina_BowAttackV2_PortfolioShoulders`, which puts the hiked-shoulder
+deform tracks back on the presenter, and it hid `Portfolio_WaveHarp_Harp`. Owner stopped both.
+At 16:05 the harp actor `hidden` flag and mesh visibility were turned back on in the live
+viewer. That unhide was not confirmed saved. PIE was off. A `WaveHarpTransform` still was not
+taken: plan mode blocked the capture script. PIE in this level is allowed only when it is the
+capture itself. Do not play `AM_Melusina_BowAttack_Bound`,
+`A_Melusina_BowAttackV2_A_RangeAttack`, or `A_Melusina_BowAttackV2_PortfolioShoulders`.
+Receipt of the rejected shot: `Saved/Audit/beauty_v1_attach_capture_20260921.json`.
+
+At 16:08 the editor presenter had `SK_Melusina_V2_Shirt`, Boots, and Accessories assigned in `DefaultGarmentMeshes` and no slot components. `EquipGarment` created visible `WardrobeSlot_*` components for those three. The skirt slot was left empty; `Portfolio_R2_Skirt` stays the standalone actor. No eye or iris mesh exists on the presenter. `MI_Melusina_IRISFRONT_001` is a material slot on `SK_Melusina_V2_Body`. The eye components are Niagara sparkles, not eyeballs. No still was shot. `Portfolio_WaveHarp_Harp` stayed visible (`hidden` false, mesh visible). The capture level was saved.
+
 ### Day closeout + state audit — 2026-09-21 15:30 (Claireon session)
 
 **Handoffs (written at owner request):**
@@ -358,7 +377,48 @@ Client mode cannot see `BP_BattleController_C` or the player character at all, a
   `C:\Users\froma\Downloads\cosmicreaverlowpolybase.usdz` (1,175,926 bytes, 2026-09-21,
   contains `cosmicdaddyfinal.usdc`) — not yet imported to UE; no `*reaver*` file anywhere else
   on G:/D:/workspace. Caution: `SM_MelodySlime_Forte.obj` head shows repeated identical
-  vertices — verify geometry before import. Zero `*reaver*` filename hits outside that usdz.
+   vertices — verify geometry before import. Zero `*reaver*` filename hits outside that usdz.
+   Owner 2026-09-21: rig `.blend` for neither character locatable on disk (full G:/D:/Downloads/
+   C-workspace sweep incl. Blender recent-files, temp autosaves, `*daddy*/*boss*/*bionicle*`
+   names) — presumed lost, rebuild queued. Reaver usdz is unrigged (`cosmicdaddyfinal.usdc`,
+   no Skel/joints), so mesh survives, rig does not. Owner 2026-09-21: Reaver rig rebuild
+   will use Auto-Rig Pro with its UE preset (retarget base stays stock `SK_Mannequin`).
+   Studio staged 2026-09-21: `G:\BlenderArchive\CosmicReaver_Studio.blend` (10.4 MB, Blender 5.2,
+   headless-verified reload) — USDZ base as `reaver_LOW` (82k faces: 81,991 quads, 4 stray tris at
+   crown/hip mirror pairs, 0 non-manifold, fresh `UVMap` baseline, Z-up, feet at z=0, 2.87 m boss
+   scale), GN `RV_Hygiene/Seams/LissajousRail/CagePush` (fake-user pinned), CAGE with UVs +
+   `cage_push`, shape keys `sk_battle_roar/cape_billow/crown_flare` driver-bound to scoped props
+   (`sil_*`, `sk_*`), `RV_BAKE_CONTRACT` text (Substance/UDIM/4K→2K).    HIGH slot empty awaiting
+   owner sculpts; UDIM per-part split + ARP rig still owner-side. Detail pass 2026-09-21:
+   ornament library linked (`SM_Orn_TrebleClef` 1360v normalized 0.40 m, `SM_Orn_TorusKnot`
+   3993v 0.18 m, `SM_Orn_MelodyToken_Water` 198v 0.15 m), `RV_Place_Clef/Knot` GN instancing
+   tangent-aligned ornaments on crown (3:2, 24) + chest (5:4, 32) Lissajous rails —    56 instances
+   evaluated live. 4 isolated tris remain (crown/hip mirror pairs, coords logged, 30 s knife fix).
+   S1 extravagant-detail pass 2026-09-21 (`CosmicReaver_Studio_S1_retopo_detail.blend`, same bytes):
+   measured anatomy (arms span z~1.15, shoulders x+-0.35 z~1.3-1.5, crown r=0.25) drove grounded
+   trims — circlet r=0.28, pauldron rings r=0.10 at (+-0.25,0.02,1.44) — plus ONE damage core
+   (left-pauldron gouge, 2994 faces, `wear` FACE attribute), bevel-weight edge language (5640 hero
+   + 2908 std edges, Bevel modifier), Higgsas groups appended (`Lissajous Curve` live on waist sash
+   rail z=1.35, `Even Curve to Mesh` + cable profile + `Edge Angle Selection` staged). Quad Remesher
+   engine runs rc=0 silent headless (no output without GUI/license session) — 45k retopo stays a
+   one-click owner-side job (45k / X-sym / hard-edge detect); mesh held at 82k clean quads.
+   Wing system 2026-09-21 (owner: 4–6 wings, feminine variants, dangling ornaments, BOTH
+   symmetry reads, display+traversal hybrid): parametric GN family landed as
+   `deploy/surreal_arch/melodia_gn/reaver_wings.py` — `MEL_RV_wing_spar_rail`
+   (Lissajous A:B spar skeleton, Bionicle cylinder sweep, `Horror Wound`/`Wound Side`
+   bake-lane wear attr), `MEL_RV_wing_membrane` (drape + `Glide Camber` traversal hook,
+   no gameplay writes), `MEL_RV_wing_dangles` (self-contained pearl/bead/mixed chains,
+   no external library dependency) + 4 presets (`RV4_SYMMETRIC_BEAUTY`,
+   `RV6_HORROR_ASYM`, `RV4_FEMININE_PEARL`, `RV5_HYBRID_GLIDE`) as dials, never tree
+   copies. Headless Blender 5.2.1 **PASS** (45/33/29 nodes, eval 52/388/1036 verts,
+   preset keys match sockets): `Saved/Audit/reaver_wings_headless_2026-09-21.json`.
+   Pre-existing breakage (not this change): branch `__init__.py` imports 5 laptop-lane
+   modules (`cute_decor`, `sheep_bell`, `escher_decor`, `study_ground`,
+   `audio_architecture`) whose files live only on laptop branches (verified
+   `origin/collab/laptop/brooch-sky-20260917`, `study-decor-escher-2026-09-14`) —
+   package import needs those promoted; wing proof stubbed them test-only. Still
+   owner-side: HIGH sculpts, 45k retopo click, ARP rig, Studio-file application,
+   carrier parenting, UE import.
 
 **Corrections to earlier records.** `melodia_animation_validate_bindings` reports
 "NO POSE OUTPUT PINS" for `ABP_Melusina_Battle` and `ABP_Zundamon_Battle` — **false positive**; both
