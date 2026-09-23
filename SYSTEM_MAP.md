@@ -186,6 +186,7 @@ flowchart LR
   FOUNDRY --> MISSION["Mission DAG<br/>hashes, owners, dependencies, required proof"]
   MISSION --> JEV["Jev<br/>closed authored choices only"]
   MISSION --> HERMES["Hermes<br/>dispatch only"]
+  JEV -->|choice + confidence| HERMES
   HERMES --> AUTHORS["Existing World Compiler / PCG<br/>Hython, TD, Unreal content lanes"]
   AUTHORS --> CONTENT["Authored level, challenge, reward,<br/>material and VFX content"]
   CONTENT -.->|authored IDs / existing contracts| RUNTIME["Quill / Wardrobe / world presentation<br/>Melusina encounters the result in play"]
