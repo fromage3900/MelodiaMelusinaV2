@@ -98,6 +98,22 @@ This section only records live state and the owner's order for tonight.
 
 Hero cameras are owner-framed; the `CAM_Hero_*` actors are placeholders.
 
+## WEBSITE CONTACT SHEETS — bounded plan, 2026-09-23 night (Jev `jev-1.13.0`)
+
+Goal: three upload-ready sheets tonight; no new systems.
+- **Sheets `THREE_SHEETS` (0.69):**
+  - **S1, Melusina character:** front, ¾, side and back full body; a face close-up; a fabric detail. Blink proof is already done.
+  - **S2, `L_MelusinaMorning`:** the meadow, spiral, rim overlook, house and FX.
+  - **S3, Faraway Mother crystals:** the 3 existing `FM_Cam_UF_*` plus 3 more.
+- **Capture `PIE_CAPTURE_WITH_FILL_LIGHT` (0.54 vs lit-only 0.45):** the proven PIE frame capture. S1 gets one temporary fill light spawned only in the PIE world, never saved. MRQ is out (0.01; untested tonight).
+- **Framing `SCRIPTED_ORBIT_CHARACTER_OWNER_ENV` (0.88):** a deterministic orbit around the pawn for S1. S2/S3 views are owner-framed; each one is saved as a CineCamera from the viewport. The `CAM_Hero_*` placeholders get replaced.
+- **Format `GRID_3x2_2400W_JPG` (0.66):** 6 tiles, 2400 px wide, JPG, titled captions. Output to `Saved/Portfolio/ContactSheets_20260923/` (Saved stays local by design).
+- **Gates:**
+  - Wait for the `M_Master_Nikki` shader compile before any capture (reparent→capture crash rule).
+  - One PIE session per sheet.
+  - The owner eyeballs each sheet before upload.
+- **Known gap:** the body mesh's slot 3 gets `MI_Melusina_sleeve_003` through a BP component override, so it stays toon until that override is repointed.
+
 ## CANONICAL MELUSINA BLUEPRINT FAMILY — 2026-09-22
 
 **Ultimate means the existing runtime class:** `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`. Keep its asset name and current game-mode selection. Do not create a second `BP_Ultimate_Melusina` or move working locomotion/Rokoko, Universe Foundry, wardrobe, or Niagara behavior into a parallel owner. The owner confirms locomotion, Rokoko, and the required Foundry integrations are proven and working; this review accepted that status and did not rerun their gates.
