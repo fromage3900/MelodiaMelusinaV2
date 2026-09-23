@@ -67,6 +67,28 @@ Pass means the node is writing. The silhouette is still **73 two-bone strands**.
 
 **Closeout commit (local, not pushed):** `19fa3bab7`. Handoff: [`Docs/Handoffs/MELUSINA_HAIR_JUMP_CLOSEOUT_2026-09-22.md`](Docs/Handoffs/MELUSINA_HAIR_JUMP_CLOSEOUT_2026-09-22.md).
 
+## MELUSINA RENDER-POLISH PLAN — 2026-09-23 (Jev `jev-1.13.0`)
+
+**Live inventory (PIE, runtime `BP_MelusinaJRPGCharacter`):**
+- **Niagara:** **19** components, **all active at idle**. Ambient: 6 Globules on the hair tips, `EyeSparkle_L/R` on `master_eye_L/R`. Action/skill: SwingTrail, Splash, Glint, Arc, Superposition (`hand_r`), Ripple, Sigil, ProviderSigil (`foot_l`), Dust, EntropyDust, ChaosDrift (root).
+- **Hair:** `WaterHairMesh` on `MI_Melusina_WaterHair_v10` ×4.
+- **FLIP drip:** `WaterHairFlipCache` exists but is **empty**.
+- **Body/wardrobe:** Shirt/Boots/Accessories slots; eyes `EyeIrises` + `EyeLashes`.
+- **Props:** violin visible, wand hidden.
+
+**Order `VFX_THEN_HAIR_THEN_LIGHT` (0.64):**
+1. **VFX (`AMBIENT_ONLY_AUTOACTIVATE`, 0.76).**
+   - Keep Globules + EyeSparkles auto-active.
+   - Set `auto_activate` off on the 11 action/skill systems.
+   - Gate first: confirm each has an existing activation path (skill/traversal/Niagara bridge). One with no path would go dark forever, so leave it and list it.
+   - Then render a one-sheet contact of the ambient set on her in PIE.
+2. **Hair material: `TUNE_V10_PARAMS_ONLY` vs `DEFER` tied at 0.43. The owner asked for hair material updates → tune.**
+   - Improve `MI_Melusina_WaterHair_v10` through its existing params.
+   - No master edit; the baked-map import (`IMPORT_BAKED_MAPS_INTO_V10_MI` 0.14) stays out until the parent exposes texture params.
+3. **Face light: `SHOT_FACING_ONLY` 0.54 vs one BP fill/rim light 0.46. Owner call.** The default is shot facing (sun behind camera); the owner frames the hero cameras.
+- **FLIP drip layer: `DEFER_FLIP_AFTER_RENDERS` (0.93).**
+- **Other open items:** remove the capture-map `Staging_Iris_*`/`Staging_Lash_Pair` copies. Blink comes later. Hero cameras are owner-framed; the `CAM_Hero_*` actors in `Cameras/Hero` are placeholders (auto-placement failed: the spiral's middle is under island 10's overhang).
+
 ## CANONICAL MELUSINA BLUEPRINT FAMILY — 2026-09-22
 
 **Ultimate means the existing runtime class:** `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`. Keep its asset name and current game-mode selection. Do not create a second `BP_Ultimate_Melusina` or move working locomotion/Rokoko, Universe Foundry, wardrobe, or Niagara behavior into a parallel owner. The owner confirms locomotion, Rokoko, and the required Foundry integrations are proven and working; this review accepted that status and did not rerun their gates.
