@@ -97,6 +97,14 @@ This section only records live state and the owner's order for tonight.
    - **Fix:** four `AnimGraphNode_ModifyBone_0..3` in `ABP_Melusina_WaterHair` between LocalToComponent and Kawaii: additive rotation in `hair_root` space, (Pitch 8.7, Yaw 23.2, Roll −2.5) ≈ 25° about her lateral axis, which moves the bang tips ~4.5 cm back per 20°. Kawaii still simulates from the lifted pose. Compiled and saved.
    - **Proof:** unlit before/after, forehead and both eyes clear (`Saved/Audit/melusina_blink_20260923/bangs_before_after.png`).
    - **Hair material:** Jev `MI_OF_M_MASTER_NIKKI` 0.99 (no new master; a dedicated hair master deferred to post-render as a Nikki function layer, 0.93); slot split `WATER_SLOT_STAYS_WATER` 0.64.
+1c. **Hair on `M_Master_Nikki` — DONE 2026-09-23.** A PIE slot-debug found that slot 0 `Water(Advance)` is the visible bulk of the hair; `Cosmos` and outline slot 2 barely render. Jev re-ruled with that fact: `MAIN_SLOT0_TO_NIKKI_KEEP_WATER_ON_COSMOS` 0.91, `PEARL_IRIDESCENT_AQUA` 0.95. New `MI_Melusina_Nikki_Hair`:
+   - `Albedo` = `WhiteSquareTexture` (without it the master's `DefaultTexture` checker showed)
+   - `BaseTint` (0.62, 0.88, 1.0)
+   - PearlSheen (values from `MI_Nikki_Show_PearlSheen`)
+   - Iridescence 0.35
+   - ShadowDream
+
+   `SK_MelusinaHair` slots: 0 → Nikki hair, 1 → `MI_Melusina_WaterHair_v10` (untouched), 2 and 3 → `MI_Melusina_Outline_005` (the dark strand edges now draw). Lit PIE proof in `Saved/Audit/melusina_blink_20260923/nikki_hair_lit.png`. Still open: the face reads dark in lit shots.
 2. **Nikki masters on Melusina's materials.** Move the fabric slots to MIs of `M_Master_Nikki`: shirt `MI_Melusina_Material_008`, sleeve, shawl, bow, front panel, gloves. Keep skin, face, outline and eye on the toon family; the hair MI stays hands off. Duplicate before change and preserve params. Owner confirms the slot list.
 3. **Imports:** regalia (v5 U1–U3 verbatim), flipbook wiring (v4 H3 / convergence C4 materials), baked maps (guarded importer). Each has its own evidence JSON.
 4. **VFX idle set:** confirm activation paths, then `auto_activate` off for action systems.
