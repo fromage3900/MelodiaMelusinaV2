@@ -31,24 +31,24 @@
       },
       {
         "id": "MELUSINA_HAIR_EYE_BAKES",
-        "status": "source_ready_ue_open",
+        "status": "existing_import_audited_material_tether_open",
         "deliverable": "Stage the 24 manifest-matched hair/eye maps in new Unreal paths and bind approved material instances to the existing body/hair components.",
-        "evidence": ["Exports/MelusinaBakeStaging_20260922/UE_import/IMPORT_MANIFEST.json", "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation"],
-        "remaining_gate": "Single-editor import receipt, exact slot/material binding, and Morning PIE visual review."
+        "evidence": ["Exports/MelusinaBakeStaging_20260922/UE_import/IMPORT_MANIFEST.json", "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation", "Saved/Audit/melusina_bake_staging_20260922/existing_copernicus_import_audit.json records 24/24 existing imports", "Saved/Audit/melusina_bake_staging_20260922/material_texture_tether_receipt_20260923.json audits the canonical material slots"],
+        "remaining_gate": "Choose the approved render target for the Copernicus maps, then bind through that existing material lane and perform Morning PIE visual review; do not replace procedural water hair with strand maps."
       },
       {
         "id": "MELUSINA_WATER_HAIR_DRIPS",
-        "status": "source_proven_ue_open",
+        "status": "live_pie_proven_trim_candidate_open",
         "deliverable": "Import the approved 240-frame single-track Alembic as a supporting Geometry Cache for drips from existing water hair.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json", "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json"],
-        "remaining_gate": "Unreal import, scale/timing/silhouette alignment with WaterHairMesh, attachment, and restart playback proof."
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json", "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json records live Morning PIE playback on WaterHairFlipCache", "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json records an animated pool-trim candidate", "Saved/Audit/melusina_bake_staging_20260922/hair_bind_transform_audit_20260923.json records the preserved inverse-bind offset"],
+        "remaining_gate": "Review the trimmed candidate against WaterHairMesh in fresh Morning PIE and only then promote it over the current attached cache; spatial alignment and visual acceptance remain open."
       },
       {
         "id": "MELUSINA_NIAGARA_CONTACT_SHEET",
-        "status": "open",
+        "status": "isolated_sheet_created_runtime_open",
         "deliverable": "One labeled isolated-preview card per 13 unique attached Niagara systems, with component role and verified emitter state.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json inventories 13 systems and 19 mounts offline"],
-        "remaining_gate": "Fresh 13-system editor previews, contact sheet, and separate runtime attachment review."
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json inventories 13 systems and 19 mounts offline", "Saved/Audit/melusina_bake_staging_20260922/niagara_contact_sheet_receipt_20260923.json records the labeled 13-card sheet; isolated cards are black/context-dependent"],
+        "remaining_gate": "Fresh runtime attachment review in Morning PIE; the isolated sheet is a diagnostic card set, not proof that every attached effect is visually readable in context."
       },
       {
         "id": "MELUSINA_FOUNDRY_BOUNDARY",

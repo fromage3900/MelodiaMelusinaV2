@@ -170,7 +170,7 @@ inventory, quest log, combat result, or save record.
 | System | Agent entry point | Ownership boundary |
 |---|---|---|
 | Runtime identity and body | `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`, `CharacterMesh0`, `ABP_Melusina_Current` | Keep the existing GameMode selection and animation owner. |
-| Water hair and drips | `WaterHairMesh` + `ABP_Melusina_WaterHair` on `head_x`; approved FLIP Geometry Cache is a staged supporting drip layer | Verify alignment/playback before attaching drips; do not replace the working strand mesh or zero its inverse bind. |
+| Water hair and drips | `WaterHairMesh` + `ABP_Melusina_WaterHair` on `head_x`; `WaterHairFlipCache` now uses the approved `GC_MelusinaHairFlip_20260922` and is live in Morning PIE | Keep the authored inverse-bind offset. A separate Geometry Nodes candidate trims the pool below `z=0.45m`; promote it only after fresh Morning PIE silhouette review. |
 | Outfits and traversal | `UMelodiaWardrobeSubsystem` → `UMelodiaWardrobeComponent` → `MelodiaTraversalComponent` | Inventory/equip truth stays in Wardrobe; traversal executes capabilities. |
 | Narrative and battle | QuillScript → `UMelodiaNarrativeSubsystem` → external JRPG bridge → Phoenix/rhythm → typed result back to narrative | Quill owns authored consequence; Phoenix owns damage/turns; rhythm grades the selected action once. |
 | Convergence and UI | Existing Convergence seams; `UMelodiaUIBridgeSubsystem` | Interpret and display owned state; do not store a second copy of it. |
