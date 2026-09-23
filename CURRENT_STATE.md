@@ -111,6 +111,15 @@ This section only records live state and the owner's order for tonight.
 
 Hero cameras are owner-framed; the `CAM_Hero_*` actors are placeholders.
 
+## STAGING GOAL — owner-approved 2026-09-23 night ("stage all of it; doll-rig beginnings in use; stage wings + clockwork rings")
+Everything goes on the canonical runtime `BP_MelusinaJRPGCharacter` (no second pawn, no new framework). Each step is saved + committed separately and PIE-verified; materials are MIs of `M_Master_Nikki`.
+- **G1 Doll-rig beginnings:** the 12 `Portfolio/Staging_20260923/DollBall_*` (the doll-kit's porcelain ball joints; they share the eye meshes' character model space) become components on her joint bones (shoulder/elbow/wrist/hip/knee/ankle L/R), with model→bone relative transforms derived like the eyes (scale 9.2556), and a new porcelain MI. The full 15-segment `MEL_DollRig` body stays in Blender (different skeleton).
+- **G2 Brows:** `Melusina_Brows_Export_20260922_L/R` + `MI_Melusina_Brows_Dark` on `head_x`, same model→face transform as `EyeIrises`.
+- **G3 Regalia (v5 U1–U5):** import `Exports/MelusinaFX_20260922/MelusinaFX_regalia_wings_rings_eval.fbx` → `/Game/Melusina/FX/Regalia20260922/`; attach the wings and 3 clockwork rings behind her upper back; rings spin via RotatingMovement (outer +0.6, mid −0.42, inner +0.78 rad/s); Nikki MIs as placeholders.
+- **G4 Idle VFX:** `auto_activate` off only for the action systems with a verified activation path.
+- **G5 Body slot-3 sleeve override** → `MI_Melusina_Nikki_sleeve_003`.
+- **G6 Evidence:** PIE stills + refreshed S1 draft.
+
 ## GOAL WHILE OWNER OFFLINE — 2026-09-23 ~19:20 (Jev `jev-1.13.0`)
 The owner chose **face option 3**: leave the face tonight, since shots are mostly third-person; face-SDF shading comes after the renders.
 - **Autonomous now:**
