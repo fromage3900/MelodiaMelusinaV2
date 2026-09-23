@@ -203,6 +203,28 @@ Channels:
 
 The baker is offline source-data tooling. It never imports Unreal.
 
+### 7.1 Canonical run (verified 2026-09-22)
+
+```powershell
+& "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe" `
+  Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py
+```
+
+Defaults: `--res 1024 --seed 3900 --mode-n 3 --mode-m 5`, output `Saved/Audit/houdini_faraway_mother/`.
+
+Expected SHA-256 (hython and CPython must both reproduce these byte-for-byte):
+
+| File | SHA-256 |
+|---|---|
+| `T_FarawayMother_StaticField_RGBA.png` | `c84fc22eba156579f634bdfe93fda88a384e2b6722108c5d0178df7245d6dea7` |
+| `T_FarawayMother_StaticField_preview.png` | `e01173f21ee1def0a34a24382b057e82cec06948874709541a14896b8ea4146c` |
+
+Accept a run only if `resonance_field_manifest.json` reports `authority_crosscheck.passes=true` and the hashes above match. A hash change means the Faraway PCG math or the baker changed; re-verify and update this table in the same commit.
+
+Evidence: `Saved/Audit/universe_foundry_hython_canon_20260922.json`.
+
+Known gap: the manifest does not yet record the source game commit SHA (resonance-field spec §5).
+
 ## 8. Player-history rule
 
 The target long-term property is:

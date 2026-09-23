@@ -1,0 +1,57 @@
+{
+  "schema": "melodia.evidence/universe_foundry_hython_canon/v1",
+  "date": "2026-09-22",
+  "source_commit": "9ecde493f (origin/main, via git archive; generator unchanged since PR #288)",
+  "generator": "Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py",
+  "command": "hython Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py [--out-dir DIR]  (defaults: --res 1024 --seed 3900 --mode-n 3 --mode-m 5)",
+  "runtimes": {
+    "hython": "Houdini 22.0.368 (hou 22.0.368)",
+    "cpython": "system python + numpy + Pillow"
+  },
+  "runs": [
+    {
+      "id": "canon",
+      "runtime": "hython",
+      "out": "Saved/Audit/houdini_faraway_mother/"
+    },
+    {
+      "id": "hython_a",
+      "runtime": "hython",
+      "out": "scratch"
+    },
+    {
+      "id": "hython_b",
+      "runtime": "hython",
+      "out": "scratch"
+    },
+    {
+      "id": "cpython",
+      "runtime": "cpython",
+      "out": "scratch"
+    }
+  ],
+  "hashes": {
+    "T_FarawayMother_StaticField_RGBA.png": "c84fc22eba156579f634bdfe93fda88a384e2b6722108c5d0178df7245d6dea7",
+    "T_FarawayMother_StaticField_preview.png": "e01173f21ee1def0a34a24382b057e82cec06948874709541a14896b8ea4146c"
+  },
+  "results": {
+    "all_runs_byte_identical": true,
+    "hashes_match_manifest": true,
+    "authority_crosscheck": {
+      "passes": true,
+      "max_chladni_abs_error": 0.0,
+      "max_tension_abs_error": 0.0,
+      "sample_count": 4
+    },
+    "foundry_tests": "7/7 OK",
+    "mission_id": "faraway_mother-b030500dd9fb7205",
+    "mission_tasks": 11
+  },
+  "not_proven": [
+    "UE import/sampling + alignment",
+    "TD OUT_SHOW_FIELD return",
+    "three-consumer response",
+    "game-save-export persistence"
+  ],
+  "known_gap": "resonance_field_manifest.json does not record the source game commit SHA required by FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC \u00a75"
+}
