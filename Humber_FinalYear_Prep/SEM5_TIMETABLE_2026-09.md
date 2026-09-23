@@ -1,4 +1,26 @@
-# SEM 5 Timetable & Key Dates — Fall 2026 (verified 2026-09-08 ~23:00 EDT)
+# SEM 5 Timetable & Key Dates — Fall 2026 (DegreeWorks refresh 2026-09-21; prior Banner read 2026-09-09)
+
+## DegreeWorks 2026-09-21 (user's signed-in Chrome, read by agent — freshest truth)
+- Data refreshed 09/21/2026 2:17 AM; audit date 09/11/2026 (audit lags refresh — a Banner add after Sep 11 needs Process New Audit to appear).
+- Program Animation - 3D · Class Semester 4 · 78% · 29 of 37 courses · 8 still needed.
+- IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9.
+- STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ANMN 306 Capstone 1 · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
+- ⚠️ Vs Sep 9 Banner (which showed 302 registered): DegreeWorks In-progress has NO 302. Either dropped or audit-stale — confirm in Banner Active Registrations before acting on 302.
+
+## Banner Active Registrations — 2026-09-22 (owner-pasted, live read) — CURRENT AUTHORITY
+| Course | Code/Section | Cr | CRN | Type | Registered |
+|---|---|---|---|---|---|
+| Animation Art 5 | ANMN 304 **0NB** | 3 | **6368** | Classroom Instruction | 09/09/2026 |
+| Animation History | ANMN 305 0NB | 3 | 6370 | Classroom Instruction | 07/30/2026 |
+| Career Connections | ANMN 309 0NA | 3 | 6373 | Classroom Instruction (S/U graded) | 09/09/2026 |
+| Life Drawing for Animation 5 | ANMN 301 0NB | 3 | 6364 | Classroom Instruction | 07/30/2026 |
+
+- SUPERSEDES the Sep 9 Banner section below. Changes vs Sep 9: **302 3D Art 5 DROPPED** (DegreeWorks discrepancy resolved — it was real, not audit-stale) · **304 flipped 0NA→0NB, CRN 6367→6368** · **309 ADDED** (CRN 6373) — exactly the four DegreeWorks showed as in-progress 09-21.
+- Day/time/room are NOT in this view — the Schedule Details grid on the same page (or the Teams invite) is the only source. Room never captured as of 2026-09-22.
+
+## 2026-09-22 (restored after overnight loss)
+- The DegreeWorks section above was stamped 09-21; the file reverted overnight (lost the section). Restored verbatim from session record 20260921_235228_3acd5b — nothing re-asked of the owner.
+- Tue class at 11:30 = OWNER'S own statement (2026-09-21: "i have class tmrw at 1130 right"). Candidate: ANMN 301 (doc: "else at class Tuesday") or ANMN 304 (Weekly_Routine Tue morning). ROOM HAS NEVER BEEN CAPTURED by any session/file — only Banner View Timetable or the Teams calendar invite holds it.
 
 ## Enrolled courses (source: Blackboard Ultra learn.humber.ca, term 202670, live read tonight)
 

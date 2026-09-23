@@ -293,8 +293,8 @@ def _jev_ask(state: ConductorState, timeout: float = 20.0) -> Optional[Decision]
                     ),
                 },
             )
-        flock_a = resp.choices["flock_response"]
-        world_a = resp.choices["world_accompaniment"]
+        flock_a = resp.answers["flock_response"]
+        world_a = resp.answers["world_accompaniment"]
         flock_dist = _norm_dist(dict(flock_a.probabilities or {}), FLOCK_OPTIONS)
         world_dist = _norm_dist(dict(world_a.probabilities or {}), WORLD_OPTIONS)
         flock_choice = str(flock_a.choice)
