@@ -67,27 +67,32 @@ Pass means the node is writing. The silhouette is still **73 two-bone strands**.
 
 **Closeout commit (local, not pushed):** `19fa3bab7`. Handoff: [`Docs/Handoffs/MELUSINA_HAIR_JUMP_CLOSEOUT_2026-09-22.md`](Docs/Handoffs/MELUSINA_HAIR_JUMP_CLOSEOUT_2026-09-22.md).
 
-## MELUSINA RENDER-POLISH PLAN — 2026-09-23 (Jev `jev-1.13.0`)
+## MELUSINA RENDER-POLISH PLAN — 2026-09-23 (reconciled with the existing plans)
 
-**Live inventory (PIE, runtime `BP_MelusinaJRPGCharacter`):**
-- **Niagara:** **19** components, **all active at idle**. Ambient: 6 Globules on the hair tips, `EyeSparkle_L/R` on `master_eye_L/R`. Action/skill: SwingTrail, Splash, Glint, Arc, Superposition (`hand_r`), Ripple, Sigil, ProviderSigil (`foot_l`), Dust, EntropyDust, ChaosDrift (root).
-- **Hair:** `WaterHairMesh` on `MI_Melusina_WaterHair_v10` ×4.
-- **FLIP drip:** `WaterHairFlipCache` exists but is **empty**.
-- **Body/wardrobe:** Shirt/Boots/Accessories slots; eyes `EyeIrises` + `EyeLashes`.
-- **Props:** violin visible, wand hidden.
+**Authorities, not replaced:**
+- `Docs/Plans/MELUSINA_AAA_LOOKDEV_GRANDMASTER_PLAN_2026-09-22.md` (v7 gating list, waves W0–W8)
+- `docs/plans/MELUSINA_ACCESSORY_CONVERGENCE_PLAN_2026-09-22.md` (`8f19f6485`: C0–C5, one wardrobe catalog)
+- `.hermes/plans/2026-09-22_005015-melusina-ue-closeout-v5.md` (`dc9251365`: regalia U1–U8)
+- `.hermes/plans/…v4-nikki-lissajous-closeout.md` (Nikki fabric bar N1–N4)
+- `Docs/Plans/INFINITY_NIKKI_LOOKDEV_PLAN_2026-09-22.md` (L1–L5)
 
-**Order `VFX_THEN_HAIR_THEN_LIGHT` (0.64):**
-1. **VFX (`AMBIENT_ONLY_AUTOACTIVATE`, 0.76).**
-   - Keep Globules + EyeSparkles auto-active.
-   - Set `auto_activate` off on the 11 action/skill systems.
-   - Gate first: confirm each has an existing activation path (skill/traversal/Niagara bridge). One with no path would go dark forever, so leave it and list it.
-   - Then render a one-sheet contact of the ambient set on her in PIE.
-2. **Hair material: `TUNE_V10_PARAMS_ONLY` vs `DEFER` tied at 0.43. The owner asked for hair material updates → tune.**
-   - Improve `MI_Melusina_WaterHair_v10` through its existing params.
-   - No master edit; the baked-map import (`IMPORT_BAKED_MAPS_INTO_V10_MI` 0.14) stays out until the parent exposes texture params.
-3. **Face light: `SHOT_FACING_ONLY` 0.54 vs one BP fill/rim light 0.46. Owner call.** The default is shot facing (sun behind camera); the owner frames the hero cameras.
-- **FLIP drip layer: `DEFER_FLIP_AFTER_RENDERS` (0.93).**
-- **Other open items:** remove the capture-map `Staging_Iris_*`/`Staging_Lash_Pair` copies. Blink comes later. Hero cameras are owner-framed; the `CAM_Hero_*` actors in `Cameras/Hero` are placeholders (auto-placement failed: the spiral's middle is under island 10's overhang).
+This section only records live state and the owner's order for tonight.
+
+**Live state (PIE, runtime `BP_MelusinaJRPGCharacter`, 2026-09-23):**
+- **Materials:** every body/wardrobe/iris MI is a child of `M_Master_Toon_Universal`; `MI_Melusina_Eyelash` is on `M_Master_Toon_Character`; the hair is `MI_Melusina_WaterHair_v10` on `M_Water_Master_Grand_v10_Substrate` (HANDS OFF per v7). **No Melusina MI is on the revived `M_Master_Nikki` fabric master yet.**
+- **Blink:** the body has `eyeBlinkLeft/Right` morphs and the ABP curves animate (0→1 observed), but no blink has been seen. The static `EyeIrises`/`EyeLashes` don't deform with the lids.
+- **Regalia (v5 U1):** `Exports/MelusinaFX_20260922/MelusinaFX_regalia_wings_rings_eval.fbx` is not imported; `/Game/Melusina/FX/Regalia20260922` doesn't exist. The animated flipbooks are imported (`/Game/EnvSandbox/Textures/MelusinaAnimated/20260922`) but not wired (v4 H3).
+- **Baked hair/eye maps:** 24 maps are staged, and the guarded importer has not run.
+- **FLIP drip:** another lane staged drip-bind stills 09-23 (`Saved/Audit/melusina_bake_staging_20260922/canonical_morning_pie_stage_*drip*`); `WaterHairFlipCache` is present but empty on the pawn.
+- **VFX:** 19 Niagara components, all active at idle (11 are action/skill systems).
+
+**Owner order (2026-09-23 evening):**
+1. **Blink working.** Diagnose the curve→morph path, then make the static iris/lash read correctly through a blink. v7 W3 cornea-onto-`DEF_eye` is the long-term fix.
+2. **Nikki masters on Melusina's materials.** Move the fabric slots to MIs of `M_Master_Nikki`: shirt `MI_Melusina_Material_008`, sleeve, shawl, bow, front panel, gloves. Keep skin, face, outline and eye on the toon family; the hair MI stays hands off. Duplicate before change and preserve params. Owner confirms the slot list.
+3. **Imports:** regalia (v5 U1–U3 verbatim), flipbook wiring (v4 H3 / convergence C4 materials), baked maps (guarded importer). Each has its own evidence JSON.
+4. **VFX idle set:** confirm activation paths, then `auto_activate` off for action systems.
+
+Hero cameras are owner-framed; the `CAM_Hero_*` actors are placeholders.
 
 ## CANONICAL MELUSINA BLUEPRINT FAMILY — 2026-09-22
 
