@@ -92,6 +92,11 @@ This section only records live state and the owner's order for tonight.
    - **Proof:** unlit close-up frames show a full open→half→closed→half→open cycle, and the lids fully cover the seated `EyeIrises`; a forced-morph A/B matches (`Saved/Audit/melusina_blink_20260923/`).
    - **Trap:** the idle clip carries no `eyeBlink` keys. Blink length is `min(dt,0.045)/0.18` per tick, so at the ~3 fps of a PIE capture it stretches to about 1 s — that's not a bug. `BlinkAlpha` is a variable, and `get_curve_value('BlinkAlpha')` always reads 0.
    - **Still open:** v7 W3 cornea-onto-`DEF_eye` stays long-term (for eye-look).
+1b. **Fringe off the face — DONE 2026-09-23 (owner option A).**
+   - **Finding:** no strand joint sits in front of her face (every root is ≥3.5 cm behind the eye plane). The card geometry of the four front bangs, `A_DEF_hair_bbone_000/006/010/012`, crossed her eyes. So a Kawaii face sphere would have done nothing on 2-bone strands (the v7 re-rig limitation).
+   - **Fix:** four `AnimGraphNode_ModifyBone_0..3` in `ABP_Melusina_WaterHair` between LocalToComponent and Kawaii: additive rotation in `hair_root` space, (Pitch 8.7, Yaw 23.2, Roll −2.5) ≈ 25° about her lateral axis, which moves the bang tips ~4.5 cm back per 20°. Kawaii still simulates from the lifted pose. Compiled and saved.
+   - **Proof:** unlit before/after, forehead and both eyes clear (`Saved/Audit/melusina_blink_20260923/bangs_before_after.png`).
+   - **Hair material:** Jev `MI_OF_M_MASTER_NIKKI` 0.99 (no new master; a dedicated hair master deferred to post-render as a Nikki function layer, 0.93); slot split `WATER_SLOT_STAYS_WATER` 0.64.
 2. **Nikki masters on Melusina's materials.** Move the fabric slots to MIs of `M_Master_Nikki`: shirt `MI_Melusina_Material_008`, sleeve, shawl, bow, front panel, gloves. Keep skin, face, outline and eye on the toon family; the hair MI stays hands off. Duplicate before change and preserve params. Owner confirms the slot list.
 3. **Imports:** regalia (v5 U1–U3 verbatim), flipbook wiring (v4 H3 / convergence C4 materials), baked maps (guarded importer). Each has its own evidence JSON.
 4. **VFX idle set:** confirm activation paths, then `auto_activate` off for action systems.
