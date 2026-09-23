@@ -71,6 +71,22 @@ uses the owners and entry points above. Before changing architecture, ask whethe
 be expressed as content through `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`. If yes,
 author it. Architecture work requires a demonstrated blocker against a named owner seam.
 
+### Melusina character assembly (canonized 2026-09-23)
+
+`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter` is the canonical exploration
+heroine and carries the **Ultimate** designation without an asset rename or duplicate class.
+It composes the existing locomotion/Rokoko animation, wardrobe, traversal, and attached Niagara
+presentation systems. `/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` has a
+separate battle-presentation role. The two old character roots are documentation-first deprecation
+candidates; skills and the room shell are different content roles. See `CURRENT_STATE.md` for exact
+paths, referencer caveats, and proof tiers.
+
+`Tools/universe_foundry.py` is the authoring compiler for content entering existing runtime
+contracts. It is not a pawn component or second gameplay authority. Keep the current Niagara
+systems as presentation components rather than creating another VFX framework. A polished heroine
+should read coherently across exploration and battle, with a visible face, silhouette, outfit,
+and motion language.
+
 ### Production authoring plane (verified 2026-09-21)
 
 The project now has a stable authoring plane above the runtime owners. These tools create or transform content; they do **not** become gameplay/state authorities.

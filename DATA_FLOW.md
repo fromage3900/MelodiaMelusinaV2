@@ -79,6 +79,18 @@ Melodia rhythm receives an authored/selected action context and returns executio
 ### Wardrobe
 Wardrobe owns owned/equipped outfit state. Equipped identity can expose traversal capability and feed Convergence interpretation.
 
+### Melusina runtime character and presentation
+`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter` is the canonical exploration
+character, selected by the integration game mode on configured route maps. **Ultimate** names this
+existing role, not a new class. The Blueprint composes the established locomotion/Rokoko animation,
+wardrobe, traversal, and Niagara presentation owners. Universe Foundry compiles authored content
+for existing gameplay contracts; it is not a pawn-side runtime manager.
+
+`/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` is a distinct battle
+presentation actor. Older `BP_Melusina` character roots are reversible deprecation candidates,
+pending fresh referencer checks. The six skill Blueprints and room-shell actor retain their own
+content roles. The full inventory and live-proof boundary are in `CURRENT_STATE.md`.
+
 ### Starskiff
 Starskiff owns vehicle/traversal runtime state. Only stable long-term facts should enter canonical persistence; transient transforms/velocities should normally be rebuilt from checkpoints/authoring state.
 
