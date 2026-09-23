@@ -87,6 +87,31 @@ systems as presentation components rather than creating another VFX framework. A
 should read coherently across exploration and battle, with a visible face, silhouette, outfit,
 and motion language.
 
+#### Melusina Blueprint family
+
+The eleven `BP_Melusina*` assets have different jobs. The arrows below show role and selection,
+not inheritance. This is the quick route for choosing an asset before opening a Blueprint.
+
+```mermaid
+flowchart TB
+  GM["BP_MelodiaJRPGGameMode"] -->|exploration default pawn| HERO["BP_MelusinaJRPGCharacter<br/>one playable / Ultimate runtime unit"]
+
+  BATTLE["BP_MelusinaSwordsman_Presentation<br/>separate battle actor; keep"]
+
+  subgraph CONTENT["Other Melusina-named content; keep in its own role"]
+    SKILLS["Six skill Blueprints<br/>TrueStrike, Tidecall, PetalCadence,<br/>LullabyMend, FocusAttack, DoubleHit"]
+    ROOM["BP_MelusinaRoomShell<br/>room / PCG content"]
+  end
+
+  subgraph LEGACY["Character roots; reversible deprecation candidates"]
+    OLD["/Game/Characters/Melusina/BP_Melusina"]
+    SMOKE["/Game/Melodia/Characters/Melusina/bp_melusina<br/>smoke route"]
+  end
+```
+
+The legacy roots require fresh hard/soft referencer and route checks before any move or deletion.
+The six skill Blueprints and room shell are content assets, not alternative playable pawns.
+
 #### Melusina runtime system diagram
 
 This is the **canonical visual map** for Melusina work. Read each box as an owner or assembled

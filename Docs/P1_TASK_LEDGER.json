@@ -9,6 +9,7 @@
   "melusina_work": {
     "scope_as_of": "2026-09-23",
     "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
+    "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
     "current_status_authority": "CURRENT_STATE.md",
     "runtime_unit": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
     "designation": "Ultimate is the existing runtime Blueprint, without a rename or duplicate pawn.",
@@ -18,7 +19,7 @@
         "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
         "status": "source_documented",
         "deliverable": "One canonical visual map of runtime assembly, QuillScript/JRPG/rhythm, wardrobe/traversal, cymatics, and Universe Foundry boundaries.",
-        "evidence": ["SYSTEM_MAP.md#melusina-runtime-system-diagram", "SYSTEM_MAP.md#universe-foundry-integration-boundary"],
+        "evidence": ["SYSTEM_MAP.md#melusina-blueprint-family", "SYSTEM_MAP.md#melusina-runtime-system-diagram", "SYSTEM_MAP.md#universe-foundry-integration-boundary"],
         "remaining_gate": "Promote the reviewed documentation to main; keep CURRENT_STATE.md as the only live-status authority."
       },
       {
