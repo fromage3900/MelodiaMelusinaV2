@@ -87,7 +87,11 @@ This section only records live state and the owner's order for tonight.
 - **VFX:** 19 Niagara components, all active at idle (11 are action/skill systems).
 
 **Owner order (2026-09-23 evening):**
-1. **Blink working.** Diagnose the curve→morph path, then make the static iris/lash read correctly through a blink. v7 W3 cornea-onto-`DEF_eye` is the long-term fix.
+1. **Blink — WORKING, PIE-proven 2026-09-23.**
+   - **Chain:** the ABP `BlueprintThreadSafeUpdateAnimation` timer (a blink every 3.5 s, `BlinkPhase` over 0.18 s, `BlinkAlpha = p(1−p)·4`) → `AnimGraphNode_ModifyCurve_1` (Blend, Alpha = `BlinkAlpha`) → `eyeBlinkLeft/Right`. All 120 skeleton curves are morph-flagged → the `eyeBlink*` morphs on `SK_Melusina_V2_Body`.
+   - **Proof:** unlit close-up frames show a full open→half→closed→half→open cycle, and the lids fully cover the seated `EyeIrises`; a forced-morph A/B matches (`Saved/Audit/melusina_blink_20260923/`).
+   - **Trap:** the idle clip carries no `eyeBlink` keys. Blink length is `min(dt,0.045)/0.18` per tick, so at the ~3 fps of a PIE capture it stretches to about 1 s — that's not a bug. `BlinkAlpha` is a variable, and `get_curve_value('BlinkAlpha')` always reads 0.
+   - **Still open:** v7 W3 cornea-onto-`DEF_eye` stays long-term (for eye-look).
 2. **Nikki masters on Melusina's materials.** Move the fabric slots to MIs of `M_Master_Nikki`: shirt `MI_Melusina_Material_008`, sleeve, shawl, bow, front panel, gloves. Keep skin, face, outline and eye on the toon family; the hair MI stays hands off. Duplicate before change and preserve params. Owner confirms the slot list.
 3. **Imports:** regalia (v5 U1–U3 verbatim), flipbook wiring (v4 H3 / convergence C4 materials), baked maps (guarded importer). Each has its own evidence JSON.
 4. **VFX idle set:** confirm activation paths, then `auto_activate` off for action systems.
