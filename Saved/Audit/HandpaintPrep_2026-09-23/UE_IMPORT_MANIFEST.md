@@ -34,5 +34,16 @@ Proposed Content layout (new folders, follow existing MI_Universal_Lookdev_* con
    sRGB on BaseColor/Emissive only.
 5. Lookdev pass in the L_FallenMoon / L_KaleidoNave context per CURRENT_STATE lookdev lane.
 
-Audit trail: prep reports + polish reports in each staging folder; Phase 3 polish audit in
-`Saved/KimiWork/HandpaintPrep_2026-09-23/MANIFEST.md`.
+Audit trail: prep reports + polish reports + vcol reports in each staging folder; Phases 1–5a audit in
+`Saved/Audit/HandpaintPrep_2026-09-23/HANDPAINT_PREP_CLOSEOUT_2026-09-23.md` (commit 60f3e0609).
+
+## Vertex color contract (Phase 5a — present on ALL paint-target FBX)
+
+Every paint-target FBX carries exactly one color attribute, `vcol_melodia`
+(BYTE_COLOR, corner domain — verified by FBX round-trip re-import):
+- **R** = wear mask (inverted Cycles AO bake) → grunge/wear layers in Substance and UE
+- **G** = decoration density (GN/PCG scatter mask; 1.0 on authored zones: lantern eaves, cross arm tips, token rims, chest lid, petals)
+- **B** = audio-reactivity weight (height falloff 0..1) → UE vertex color node → pulse amplitude (read-only vs MPC_Melodia_Palette)
+- **A** = emissive zones (lantern fire box, cross crystal, slime core, chest cavity, reaver torso, flower centers)
+UE import: enable vertex-color import; sample `vcol_melodia` as the single color set (stale layers were stripped 2026-09-23 so channel 0 is unambiguous). sRGB OFF.
+FBX were re-exported after this contract — sizes in the table above are pre-vcol; staging folder holds the vcol-carrying files.
