@@ -203,6 +203,10 @@ keeps the TD-to-Unreal field return and multi-consumer PIE proof open. `world_co
 null, so the mission includes a recipe-authoring task. No Melusina-specific world genome or direct
 pawn reference exists under `specs/universe/`. The owner confirms the needed gameplay integrations
 work; this source review does not rerun them or promote Faraway Mother's open mission gates.
+The Faraway genome and PCG sources name `challenge.mother_heart_gate` and
+`reward.wardrobe.mother_velvet_mantle`, but those exact IDs were not found in checked-in `.qsc`
+sources or `specs/wardrobe/wardrobe_catalog_source.v1.json`. A binary Unreal asset may bind them;
+resolve the IDs in the editor before claiming a playable Faraway challenge-to-outfit handoff.
 
 ### Production authoring plane (verified 2026-09-21)
 

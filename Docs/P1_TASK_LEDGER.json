@@ -55,7 +55,7 @@
         "status": "source_reviewed",
         "deliverable": "Route authored world content through the existing Foundry mission compiler and gameplay owners, with no pawn-owned Foundry manager.",
         "evidence": ["Tools/universe_foundry.py builds a deterministic mission DAG", "specs/universe/faraway_mother.world_genome.v1.json is the only checked-in world genome", "Saved/UniverseFoundry/faraway_mother/faraway_mother-b030500dd9fb7205/mission.json uses a non-authoritative fixture delta"],
-        "remaining_gate": "For a new Melusina world, validate authored IDs and a real gameplay-exported delta through Quill, Wardrobe, and world consumers. The Faraway Mother integration spec keeps its TD-to-Unreal field return and multi-consumer PIE proof open, and the genome has a null World Compiler recipe."
+        "remaining_gate": "For a new Melusina world, validate authored IDs and a real gameplay-exported delta through Quill, Wardrobe, and world consumers. Faraway's Heart Gate and mantle IDs have no matching checked-in QSC or wardrobe catalog source entry; check binary/editor bindings before claiming a playable handoff. The Faraway Mother integration spec keeps its TD-to-Unreal field return and multi-consumer PIE proof open, and the genome has a null World Compiler recipe."
       },
       {
         "id": "MELUSINA_LEGACY_BLUEPRINT_ROOTS",
