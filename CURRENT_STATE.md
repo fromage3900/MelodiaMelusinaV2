@@ -407,6 +407,16 @@ MCP regression, Ollama daemon stress — not only game tests).
 
 ## 3. Open
 
+### Melusina steampunk doll-kit — landed articulation, presentation polish queue — 2026-09-23 (Blender lane; commit `b222ea7c0`)
+
+Blender-only build (no UE). Working file `C:/EnvironmentPortfolio/harp_bow_pipeline/Melusina_DollKit_WIP_20260923.blend`; combined export `Melusina_DollKit_20260923.glb` (43 MB, same folder, outside this repo). Pipeline scripts `deploy/surreal_arch/dollkit_pipeline/` (p0–p4, headless, gate-per-phase); receipts `Saved/Audit/*_done.json` all `pass: true`.
+
+**Landed, gate-proven:** 15 voxel-remesh segments (192k verts, all-quad); 14 porcelain ball joints + GN brass rivet rings + 4 gear caps; z-fighting killed by twin-face deletion (P1 duplicated the partition boundary into both segments; 4,193 b-side faces removed, 0 coincident pairs); rigid one-bone skinning on a clean 15-bone `MEL_DollRig` whose pivots were derived from segment geometry (the ARP duplicate was unusable: archer action + constraints + arms-down rest vs T-pose mesh); articulation swept ±design-range on all 14 joints with no collision (elbow closes to 0.18 mm at +60° = mechanical limit, comfortable ~45°); Smart UV on all segments.
+
+**Nikki-bar critique (what fails the lens):** voxel facets read as unfinished clay, not glazed bisque; gear caps render as oversized black star blobs (steel has no environment to bounce, teeth read as spikes); rivet rings sit INSIDE the shell/ball interface — invisible from outside; waist + neck balls are buried by the torso overlap and read as seam lines, not joints; balls butt against flat open rims — no cup read (the actual doll-socket magic); twin-deletion rim scars show as dark lines (wrist/hand transition); everything judged in gray workbench — porcelain/brass values unproven.
+
+**Polish queue (updated goal: "porcelain-and-brass BJD that survives an Infinity Nikki close-up"):** P5 material/beauty pass (porcelain SSS warmth, warm anisotropic brass, EEVEE hero renders); P6 hardware redesign (real cog-profile gears, rings re-seated proud at ball equators, cuffs over rim scars — also closes the open cuff-sizing question); P7 socket cups via `doll_socket.py` boolean lanes per segment end (EXACT, per-segment — never full-body) + waist/neck balls enlarged to sit proud; P8 render-time subdivision for porcelain finish (base mesh stays rigid-gated); P9 rim chamfers for flexion clearance (from the 0.18 mm elbow finding); P2c marionette tension cords (visual storytelling, optional). Copernicus bakes blocked: no Copernicus API in the installed Blender 5.2 build (`has_bpy_copernicus: false`); socket materials already carry bake-ready IDs.
+
 ### Beauty_V1 attach + still — 2026-09-21 16:00 (rejected)
 
 `Portfolio_WaveHarp_Bow` is on `hand_l` at scale 0.9, world yaw 90. The still at
