@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-22
+**Last Updated:** 2026-09-23
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -86,6 +86,97 @@ contracts. It is not a pawn component or second gameplay authority. Keep the cur
 systems as presentation components rather than creating another VFX framework. A polished heroine
 should read coherently across exploration and battle, with a visible face, silhouette, outfit,
 and motion language.
+
+#### Melusina runtime system diagram
+
+This is the **canonical visual map** for Melusina work. Read each box as an owner or assembled
+component; an arrow means a defined handoff, not that one system has absorbed the other's state.
+For current pass/fail status, read `CURRENT_STATE.md`; for Melusina work gates, read
+`Docs/P1_TASK_LEDGER.json` → `melusina_work`.
+
+```mermaid
+flowchart TB
+  GM["BP_MelodiaJRPGGameMode<br/>selects exploration pawn"] --> HERO["BP_MelusinaJRPGCharacter<br/>canonical runtime / Ultimate"]
+
+  subgraph ASSEMBLY["One Melusina runtime pawn"]
+    BODY["CharacterMesh0<br/>V2 body + ABP_Melusina_Current"]
+    HAIR["WaterHairMesh<br/>water hair + hair AnimBP on head_x"]
+    GARMENTS["MelodiaWardrobeComponent<br/>visible garment slots"]
+    TRAVEL["MelodiaTraversalComponent<br/>jump / glide behavior"]
+    FX["Niagara components<br/>13 systems across 19 mounts"]
+  end
+  HERO --> BODY
+  HERO --> HAIR
+  HERO --> GARMENTS
+  HERO --> TRAVEL
+  HERO --> FX
+
+  MOTION["Rokoko / authored locomotion clips"] -.->|existing animation path| BODY
+  WARDROBE["Wardrobe subsystem<br/>owned + equipped outfit truth"] --> GARMENTS
+  WARDROBE -->|capability / identity| TRAVEL
+  HAIR -->|strand-bone mounts| FX
+
+  QUILL["QuillScript<br/>authored dialogue + encounter intent"] --> NARRATIVE["MelodiaNarrativeSubsystem<br/>facts, consequences, rewards, checkpoints"]
+  NARRATIVE -->|encounter request| BRIDGE["External JRPG bridge"]
+  BRIDGE --> JRPG["Phoenix / TurnBased JRPG<br/>turns, targets, damage, result"]
+  HERO -->|player action| JRPG
+  JRPG -->|selected action| RHYTHM["Melodia rhythm execution<br/>timing / grade"]
+  RHYTHM -->|grade on same action| JRPG
+  JRPG -->|typed terminal result| NARRATIVE
+  NARRATIVE --> SAVE["Canonical narrative + stock JRPG save owners"]
+
+  AUDIO["Audio-reactive presentation<br/>one palette writer"] --> PALETTE["MPC_Melodia_Palette"]
+  PALETTE --> CYMATICS["MelodiaCymaticsSubsystem<br/>read-only evaluation"]
+  CYMATICS --> DRIVER["MelodiaCymaticsWriterSubsystem<br/>one driver writer"]
+  DRIVER --> CONSUMERS["MPC_Cymatics_Driver<br/>materials / water / selected VFX consumers"]
+```
+
+**How to read the map:** Melusina's Blueprint assembles the playable body, existing animation,
+water hair, wardrobe visuals, traversal, and Niagara mounts. QuillScript, JRPG combat, rhythm,
+wardrobe inventory, save, and cymatics keep their own owners; the pawn participates in their
+contracts. The cymatics arrow to VFX describes the available presentation lane, **not** proof that
+each of the 13 attached systems samples the driver. `BP_MelusinaSwordsman_Presentation` is a
+separate battle actor, not a second exploration pawn or a parent of this one. The two old
+`BP_Melusina` character roots are reversible deprecation candidates pending fresh referencer checks.
+Convergence interprets outfit, narrative, rhythm, and world signals through their existing owners;
+the UI Bridge displays those owners' state and remains the sole UI writer. Neither adds a second
+inventory, quest log, combat result, or save record.
+
+| System | Agent entry point | Ownership boundary |
+|---|---|---|
+| Runtime identity and body | `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`, `CharacterMesh0`, `ABP_Melusina_Current` | Keep the existing GameMode selection and animation owner. |
+| Water hair and drips | `WaterHairMesh` + `ABP_Melusina_WaterHair` on `head_x`; approved FLIP Geometry Cache is a staged supporting drip layer | Verify alignment/playback before attaching drips; do not replace the working strand mesh or zero its inverse bind. |
+| Outfits and traversal | `UMelodiaWardrobeSubsystem` → `UMelodiaWardrobeComponent` → `MelodiaTraversalComponent` | Inventory/equip truth stays in Wardrobe; traversal executes capabilities. |
+| Narrative and battle | QuillScript → `UMelodiaNarrativeSubsystem` → external JRPG bridge → Phoenix/rhythm → typed result back to narrative | Quill owns authored consequence; Phoenix owns damage/turns; rhythm grades the selected action once. |
+| Convergence and UI | Existing Convergence seams; `UMelodiaUIBridgeSubsystem` | Interpret and display owned state; do not store a second copy of it. |
+| World response | Audio palette → read-only Cymatics → dedicated driver writer → materials/water/eligible Niagara | Keep one writer per palette/driver; confirm each consumer separately. |
+| Character FX | 13 `NS_Melusina_*` systems on 19 Blueprint component mounts | Reuse mounted systems; isolated previews and runtime attachment require separate proof. |
+
+#### Universe Foundry integration boundary
+
+```mermaid
+flowchart LR
+  GENOME["World Genome<br/>authored world identity + content IDs"] --> FOUNDRY["Tools/universe_foundry.py<br/>deterministic compiler"]
+  DELTA["Exported world delta<br/>from existing gameplay/save owners"] --> FOUNDRY
+  FOUNDRY --> MISSION["Mission DAG<br/>hashes, owners, dependencies, required proof"]
+  MISSION --> JEV["Jev<br/>closed authored choices only"]
+  MISSION --> HERMES["Hermes<br/>dispatch only"]
+  HERMES --> AUTHORS["Existing World Compiler / PCG<br/>Hython, TD, Unreal content lanes"]
+  AUTHORS --> CONTENT["Authored level, challenge, reward,<br/>material and VFX content"]
+  CONTENT -.->|authored IDs / existing contracts| RUNTIME["Quill / Wardrobe / world presentation<br/>Melusina encounters the result in play"]
+```
+
+Foundry creates **work instructions and content inputs**, never a component or manager on
+`BP_MelusinaJRPGCharacter`. The checked-in example is `faraway_mother`: its genome names the
+Heart Gate challenge and wardrobe reward, and its compiled mission assigns Jev, Hermes, PCG,
+Hython, TouchDesigner, and Unreal tasks. That example uses a `non_authoritative_fixture` delta;
+its mission JSON is a compilation receipt, not proof of a real saved-world round trip. The genome's
+`resonance_integration_spec` points to
+`Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md`; that spec explicitly
+keeps the TD-to-Unreal field return and multi-consumer PIE proof open. `world_compiler_recipe` is
+null, so the mission includes a recipe-authoring task. No Melusina-specific world genome or direct
+pawn reference exists under `specs/universe/`. The owner confirms the needed gameplay integrations
+work; this source review does not rerun them or promote Faraway Mother's open mission gates.
 
 ### Production authoring plane (verified 2026-09-21)
 

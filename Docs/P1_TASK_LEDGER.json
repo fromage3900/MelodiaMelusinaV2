@@ -6,6 +6,65 @@
     "scope": "Post-P0 expansion: Faraway Mother formalization, cymatics promotion, audio-reactive materials, Shorewake quest, Starskiff movement system.",
     "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct."
   },
+  "melusina_work": {
+    "scope_as_of": "2026-09-23",
+    "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
+    "current_status_authority": "CURRENT_STATE.md",
+    "runtime_unit": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "designation": "Ultimate is the existing runtime Blueprint, without a rename or duplicate pawn.",
+    "proof_policy": "A diagram, source inventory, Jev choice, or imported asset is not live PIE, restart, or packaged proof.",
+    "work_items": [
+      {
+        "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
+        "status": "source_documented",
+        "deliverable": "One canonical visual map of runtime assembly, QuillScript/JRPG/rhythm, wardrobe/traversal, cymatics, and Universe Foundry boundaries.",
+        "evidence": ["SYSTEM_MAP.md#melusina-runtime-system-diagram", "SYSTEM_MAP.md#universe-foundry-integration-boundary"],
+        "remaining_gate": "Promote the reviewed documentation to main; keep CURRENT_STATE.md as the only live-status authority."
+      },
+      {
+        "id": "MELUSINA_MORNING_RUNTIME_PORTRAIT",
+        "status": "open",
+        "deliverable": "A readable Unreal PIE portrait of the possessed canonical pawn in L_MelusinaMorning, with face, existing water hair, wardrobe, and held prop visible.",
+        "evidence": ["Saved/Audit/hair_canon_20260922/runtime_pie_b.json proves a prior Morning runtime hair/identity scope", "Saved/Audit/melusina_bake_staging_20260922/jev_canonical_portrait_first_slice_20260923.json is directional only"],
+        "remaining_gate": "Fresh Morning PIE identity and view-target receipt plus visually accepted screenshot; no portfolio-stage substitution."
+      },
+      {
+        "id": "MELUSINA_HAIR_EYE_BAKES",
+        "status": "source_ready_ue_open",
+        "deliverable": "Stage the 24 manifest-matched hair/eye maps in new Unreal paths and bind approved material instances to the existing body/hair components.",
+        "evidence": ["Exports/MelusinaBakeStaging_20260922/UE_import/IMPORT_MANIFEST.json", "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation"],
+        "remaining_gate": "Single-editor import receipt, exact slot/material binding, and Morning PIE visual review."
+      },
+      {
+        "id": "MELUSINA_WATER_HAIR_DRIPS",
+        "status": "source_proven_ue_open",
+        "deliverable": "Import the approved 240-frame single-track Alembic as a supporting Geometry Cache for drips from existing water hair.",
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json", "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json"],
+        "remaining_gate": "Unreal import, scale/timing/silhouette alignment with WaterHairMesh, attachment, and restart playback proof."
+      },
+      {
+        "id": "MELUSINA_NIAGARA_CONTACT_SHEET",
+        "status": "open",
+        "deliverable": "One labeled isolated-preview card per 13 unique attached Niagara systems, with component role and verified emitter state.",
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json inventories 13 systems and 19 mounts offline"],
+        "remaining_gate": "Fresh 13-system editor previews, contact sheet, and separate runtime attachment review."
+      },
+      {
+        "id": "MELUSINA_FOUNDRY_BOUNDARY",
+        "status": "source_reviewed",
+        "deliverable": "Route authored world content through the existing Foundry mission compiler and gameplay owners, with no pawn-owned Foundry manager.",
+        "evidence": ["Tools/universe_foundry.py builds a deterministic mission DAG", "specs/universe/faraway_mother.world_genome.v1.json is the only checked-in world genome", "Saved/UniverseFoundry/faraway_mother/faraway_mother-b030500dd9fb7205/mission.json uses a non-authoritative fixture delta"],
+        "remaining_gate": "For a new Melusina world, validate authored IDs and a real gameplay-exported delta through Quill, Wardrobe, and world consumers. The Faraway Mother integration spec keeps its TD-to-Unreal field return and multi-consumer PIE proof open, and the genome has a null World Compiler recipe."
+      },
+      {
+        "id": "MELUSINA_LEGACY_BLUEPRINT_ROOTS",
+        "status": "deprecation_candidate",
+        "deliverable": "Retain the canonical runtime pawn and the separate battle presenter while classifying old BP_Melusina roots for reversible retirement.",
+        "evidence": ["CURRENT_STATE.md — Canonical Melusina Blueprint and portfolio gate"],
+        "remaining_gate": "Fresh hard/soft referencer and route checks before any asset move or deletion."
+      }
+    ]
+  },
   "active_p1_gates": [
     {
       "id": "FARAWAY_MOTHER_P1_PRESENT",

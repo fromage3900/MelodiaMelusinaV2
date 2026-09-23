@@ -322,7 +322,9 @@ Implementation rules:
   authority. `/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` remains a separate
   battle-presentation role. Universe Foundry authors content for existing runtime contracts; do not
   create another pawn, animation controller, pawn-owned Foundry manager, or Niagara framework.
-  See `CURRENT_STATE.md` for the full Blueprint inventory and current evidence gates.
+  Use [`SYSTEM_MAP.md` → Melusina runtime system diagram](SYSTEM_MAP.md#melusina-runtime-system-diagram)
+  as the canonical visual owner map and `Docs/P1_TASK_LEDGER.json` → `melusina_work` for scoped
+  work gates. See `CURRENT_STATE.md` for the full Blueprint inventory and current evidence tiers.
 - One writer owns each UI/audio surface. Extend the existing UI bridge, audio-reactive palette,
   cymatic driver, and Niagara/flipbook consumers instead of introducing parallel writers.
 - MelodiaCore remains presentation/integration-only; ACFU and Conversation2D are excluded.
