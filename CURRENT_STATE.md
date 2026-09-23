@@ -122,6 +122,11 @@ The owner chose **face option 3**: leave the face tonight, since shots are mostl
   - regalia FBX import (0.66)
   - S3 Faraway level switch (0.96)
 - **Owner-framed:** the S2 Morning views.
+- **RESULT (autonomous hour):**
+  - **S1 draft:** `Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT.jpg` (2400×972, 3×2, captioned). Third-person follow-cam in PIE with her facing down-sun. Tiles: meadow crest, golden-spiral ascent (placed on tread instance 22), toward home, gazebo approach, wind through the bloom, rim overlook (weakest; swap candidate). Raw frames are in `S1_gameplay_raw*/`. The Choral Sheep companion is visible beside her.
+  - **Seen:** a dark teardrop shows through the back of her hair in several tiles, likely the inner `Cosmos` water slot between strands.
+  - **Traps:** in PIE the `BP_Morning_GoldenSpiral` spline reads as its 2-point default, but the generated treads are intact, so place things via the ISM instances. The island-09 top (z ≈ 1203) is the most photogenic walkable meadow.
+  - **Face-SDF (read-only):** `M_Master_Toon_Universal` exposes `FaceSDF_Texture` (+ `bFaceSDF_UV1`), but **no face-SDF texture exists in the project**. Option 2 needs a face-shadow SDF bake + UV1 first, so it's post-render.
 
 ## WEBSITE CONTACT SHEETS — bounded plan, 2026-09-23 night (Jev `jev-1.13.0`)
 
