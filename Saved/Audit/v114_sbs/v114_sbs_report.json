@@ -180,17 +180,19 @@
   "harness": {
     "canonical_builder": "P:/MelodiaMelusinaV2-Laptop/Tools/brooch_silhouettes.py",
     "canonical_builder_sha256_16": "adc1b3c9dce26122",
-    "script": "P:\\MelodiaMelusinaV2-Laptop\\Tools\\brooch_sbs_render_v11_4.py",
+    "script": "P:/MelodiaMelusinaV2-Laptop/Tools/brooch_sbs_render_v11_4.py",
     "sha256_16": "8af7708c10c7d792"
   },
   "higgsas_probe": {
     "bridge_file": "C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\higgsas_bridge.py",
     "bridge_import_ok": true,
     "error": null,
-    "library_exists": false,
-    "library_path": "C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\RawArt\\BlenderLibraries\\Higgsas\\Blender 5.0 Higgsas Geo Node Groups v13.blend",
-    "lissajous_groups": [],
-    "loaded": false,
+    "library_exists": true,
+    "library_path": "P:/MelodiaMelusinaV2-Laptop\\RawArt\\BlenderLibraries\\Higgsas\\Blender 5.0 Higgsas Geo Node Groups v13.blend",
+    "lissajous_groups": [
+      "Lissajous Curve"
+    ],
+    "loaded": "NTLissajous Curve",
     "repo_candidate": "P:\\MelodiaMelusinaV2-Laptop\\RawArt\\BlenderLibraries\\Higgsas\\Blender 5.0 Higgsas Geo Node Groups v13.blend",
     "repo_candidate_exists": true,
     "repo_root": "P:\\MelodiaMelusinaV2-Laptop"
@@ -207,26 +209,26 @@
   "scene_file": "P:\\MelodiaMelusinaV2-Laptop\\Saved\\MelusinasHouse\\FlowerBrooch.blend",
   "scene_mtime": "2026-09-20T16:15:06",
   "schema": "melodia.brooch.sil_evidence",
-  "shot_finished": "2026-09-23T15:56:06",
-  "shot_requested": "2026-09-23T15:55:46",
+  "shot_finished": "2026-09-23T16:49:40",
+  "shot_requested": "2026-09-23T16:49:17",
   "shots": [
     {
-      "bytes": 1828481,
+      "bytes": 1828473,
       "file": "v114_sbs_front.png",
       "kind": "beauty",
       "lens_mm": 55.0,
-      "mtime": "2026-09-23T15:55:55",
+      "mtime": "2026-09-23T16:49:27",
       "px": [
         1600,
         1000
       ]
     },
     {
-      "bytes": 1915436,
+      "bytes": 1915066,
       "file": "v114_sbs_tq.png",
       "kind": "beauty",
       "lens_mm": 55.0,
-      "mtime": "2026-09-23T15:56:00",
+      "mtime": "2026-09-23T16:49:33",
       "px": [
         1600,
         1000
@@ -257,7 +259,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 412,
       "min_axis_px": 355,
-      "mtime": "2026-09-23T15:56:03",
+      "mtime": "2026-09-23T16:49:35",
       "polarity": "dark",
       "px": [
         1600,
@@ -291,7 +293,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 69,
       "min_axis_px": 53,
-      "mtime": "2026-09-23T15:56:04",
+      "mtime": "2026-09-23T16:49:37",
       "polarity": "dark",
       "px": [
         256,
@@ -325,7 +327,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 40,
       "min_axis_px": 24,
-      "mtime": "2026-09-23T15:56:05",
+      "mtime": "2026-09-23T16:49:38",
       "polarity": "dark",
       "px": [
         128,
@@ -359,7 +361,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 23,
       "min_axis_px": 9,
-      "mtime": "2026-09-23T15:56:05",
+      "mtime": "2026-09-23T16:49:40",
       "polarity": "dark",
       "px": [
         64,
@@ -435,7 +437,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 40,
       "min_axis_px": 24,
-      "mtime": "2026-09-23T15:56:05",
+      "mtime": "2026-09-23T16:49:38",
       "polarity": "dark",
       "px": [
         128,
@@ -469,7 +471,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 412,
       "min_axis_px": 355,
-      "mtime": "2026-09-23T15:56:03",
+      "mtime": "2026-09-23T16:49:35",
       "polarity": "dark",
       "px": [
         1600,
@@ -503,7 +505,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 69,
       "min_axis_px": 53,
-      "mtime": "2026-09-23T15:56:04",
+      "mtime": "2026-09-23T16:49:37",
       "polarity": "dark",
       "px": [
         256,
@@ -537,7 +539,7 @@
       "kind": "silhouette",
       "max_column_gap_px": 23,
       "min_axis_px": 9,
-      "mtime": "2026-09-23T15:56:05",
+      "mtime": "2026-09-23T16:49:40",
       "polarity": "dark",
       "px": [
         64,
