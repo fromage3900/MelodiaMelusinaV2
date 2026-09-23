@@ -2,8 +2,7 @@
 
 **Author:** Melodia study bot (docs / #158 lane — ownership **not** stolen)
 **Source:** New Bot Melodia materials clean-loop (Wednesday ~5:52pm ET)
-**Constraints:** no save_packages / 
-ecompile_material; docs-only PR; #158 Nikki leftover / HeightBlend ownership **not** stolen.
+**Constraints:** no save_packages / `recompile_material`; docs-only PR; #158 Nikki leftover / HeightBlend ownership **not** stolen.
 **Prior fold-in:** [MATERIALS_CLEAN_LOOP_STUDY_FOLDIN_2026-09-18_1100.md](MATERIALS_CLEAN_LOOP_STUDY_FOLDIN_2026-09-18_1100.md) · LABEL_MAP link stamped as Clean-loop 0923
 
 ## Live pass summary
@@ -40,6 +39,5 @@ ecompile_material; docs-only PR; #158 Nikki leftover / HeightBlend ownership **n
 ## Hard rules honored
 
 - No Content/.uasset edits in the docs PR
-- No save_packages / 
-ecompile_material
+- No save_packages / `recompile_material`
 - Branch prefix docs/
