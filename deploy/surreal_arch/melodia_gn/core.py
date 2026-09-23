@@ -1035,6 +1035,13 @@ _PROP_SCALE_PREFIXES = (
     "MEL_nikki_wall_beads",
     "MEL_nikki_legacy_",
     "MEL_aest_zen_bonsai",  # +2.6%
+    # Doll-kit family (2026-09-23, Jev audit F1): joints are 11-40 mm parts with
+    # sub-mm socket clearances; a 20 mm radial pulse destroys seating and the
+    # articulation gate. Influence defaults OFF; raise per-render when wanted.
+    "MEL_dollkit_",
+    "MEL_doll_socket",
+    "MEL_bionic_joint",
+    "MEL_gnj_",
 )
 
 
