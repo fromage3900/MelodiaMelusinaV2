@@ -111,6 +111,18 @@ This section only records live state and the owner's order for tonight.
 
 Hero cameras are owner-framed; the `CAM_Hero_*` actors are placeholders.
 
+## GOAL WHILE OWNER OFFLINE — 2026-09-23 ~19:20 (Jev `jev-1.13.0`)
+The owner chose **face option 3**: leave the face tonight, since shots are mostly third-person; face-SDF shading comes after the renders.
+- **Autonomous now:**
+  - S1 third-person gameplay tiles, PIE-only with no saves: follow camera at meadow/spiral/rim/house, her facing down-sun, assembled as a 3×2 2400w JPG draft.
+  - Read-only face-SDF (`bFaceSDF_UV1`) check.
+- **Deferred to the owner (Jev):**
+  - idle-VFX auto-activate trim (0.75)
+  - BP body slot-3 sleeve override → Nikki (0.69)
+  - regalia FBX import (0.66)
+  - S3 Faraway level switch (0.96)
+- **Owner-framed:** the S2 Morning views.
+
 ## WEBSITE CONTACT SHEETS — bounded plan, 2026-09-23 night (Jev `jev-1.13.0`)
 
 Goal: three upload-ready sheets tonight; no new systems.
