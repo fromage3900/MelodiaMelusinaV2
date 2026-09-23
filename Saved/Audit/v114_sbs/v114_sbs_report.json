@@ -1,0 +1,634 @@
+{
+  "assertions": [
+    {
+      "detail": {
+        "lissajous_veil": -0.0,
+        "star_citadel": -0.0
+      },
+      "id": "sizing_within_0p5pct",
+      "pass": true
+    },
+    {
+      "detail": {
+        "GN_BroochSil_Citadel": 83,
+        "GN_BroochSil_Veil": 85
+      },
+      "id": "both_sil_trees_present",
+      "pass": true
+    },
+    {
+      "detail": {
+        "GN_BroochSil_Citadel": 27,
+        "GN_BroochSil_Veil": 3
+      },
+      "id": "v114_detail_inline_in_tree",
+      "pass": true
+    },
+    {
+      "detail": {
+        "lissajous_veil": {
+          "boundary": 0,
+          "loose_edges": 0,
+          "loose_verts": 0,
+          "non_manifold": 0
+        },
+        "star_citadel": {
+          "boundary": 0,
+          "loose_edges": 0,
+          "loose_verts": 0,
+          "non_manifold": 0
+        }
+      },
+      "id": "census_closed_manifold",
+      "pass": true
+    },
+    {
+      "detail": {
+        "GN_BroochSil_Citadel": [
+          {
+            "material": "SIL_Gold",
+            "node": "set material"
+          }
+        ],
+        "GN_BroochSil_Veil": [
+          {
+            "material": "SIL_Gold",
+            "node": "set material"
+          }
+        ]
+      },
+      "id": "sil_setmaterial_resolves",
+      "pass": true
+    },
+    {
+      "detail": {
+        "128": 11516,
+        "1600": 1217590,
+        "256": 39276,
+        "64": 3685
+      },
+      "id": "sil_frames_written",
+      "pass": true
+    },
+    {
+      "detail": {
+        "128": {
+          "backdrop_modal": 0.9,
+          "corner": 0.8941
+        },
+        "1600": {
+          "backdrop_modal": 0.9,
+          "corner": 0.8941
+        },
+        "256": {
+          "backdrop_modal": 0.9,
+          "corner": 0.8941
+        },
+        "64": {
+          "backdrop_modal": 0.9,
+          "corner": 0.8941
+        }
+      },
+      "id": "sil_backdrop_white",
+      "pass": true
+    },
+    {
+      "detail": {
+        "128": false,
+        "1600": false,
+        "256": false,
+        "64": false
+      },
+      "id": "sil_framing_inside_frame",
+      "pass": true
+    },
+    {
+      "detail": {
+        "64": {
+          "ink_bbox_px": [
+            7,
+            28,
+            58,
+            36
+          ],
+          "ink_pct": 2.124,
+          "min_axis_px": 9
+        }
+      },
+      "id": "icon_legible_at_64px",
+      "pass": true
+    },
+    {
+      "detail": {
+        "128": {
+          "ink_pct": 3.351,
+          "max_column_gap_px": 40
+        }
+      },
+      "id": "two_subjects_separated_at_128",
+      "pass": true
+    }
+  ],
+  "assertions_summary": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 10,
+    "total": 10
+  },
+  "blender": "5.2.1 LTS",
+  "census": {
+    "hero": {
+      "boundary_edges": 4152,
+      "edges": 486510,
+      "faces": 249993,
+      "loose_edges": 0,
+      "loose_verts": 0,
+      "materials": [
+        "MID_Petal"
+      ],
+      "non_manifold_edges": 11763,
+      "verts": 236130
+    },
+    "lissajous_veil": {
+      "boundary_edges": 0,
+      "edges": 7540,
+      "faces": 3770,
+      "loose_edges": 0,
+      "loose_verts": 0,
+      "materials": [
+        "SIL_Gold"
+      ],
+      "non_manifold_edges": 0,
+      "verts": 3776
+    },
+    "star_citadel": {
+      "boundary_edges": 0,
+      "edges": 3712,
+      "faces": 1856,
+      "loose_edges": 0,
+      "loose_verts": 0,
+      "materials": [
+        "SIL_Gold"
+      ],
+      "non_manifold_edges": 0,
+      "verts": 1920
+    }
+  },
+  "engine_active": "BLENDER_EEVEE",
+  "engine_requested": "BLENDER_EEVEE",
+  "evidence_version": "v11.4-1",
+  "harness": {
+    "canonical_builder": "P:/MelodiaMelusinaV2-Laptop/Tools/brooch_silhouettes.py",
+    "canonical_builder_sha256_16": "adc1b3c9dce26122",
+    "script": "P:\\MelodiaMelusinaV2-Laptop\\Tools\\brooch_sbs_render_v11_4.py",
+    "sha256_16": "8af7708c10c7d792"
+  },
+  "higgsas_probe": {
+    "bridge_file": "C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\higgsas_bridge.py",
+    "bridge_import_ok": true,
+    "error": null,
+    "library_exists": false,
+    "library_path": "C:\\Users\\brenn\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\RawArt\\BlenderLibraries\\Higgsas\\Blender 5.0 Higgsas Geo Node Groups v13.blend",
+    "lissajous_groups": [],
+    "loaded": false,
+    "repo_candidate": "P:\\MelodiaMelusinaV2-Laptop\\RawArt\\BlenderLibraries\\Higgsas\\Blender 5.0 Higgsas Geo Node Groups v13.blend",
+    "repo_candidate_exists": true,
+    "repo_root": "P:\\MelodiaMelusinaV2-Laptop"
+  },
+  "plate": {
+    "center": [
+      -0.036179,
+      0.00894
+    ],
+    "span": 0.822382,
+    "top_z": 0.595822
+  },
+  "samples_active": 64,
+  "scene_file": "P:\\MelodiaMelusinaV2-Laptop\\Saved\\MelusinasHouse\\FlowerBrooch.blend",
+  "scene_mtime": "2026-09-20T16:15:06",
+  "schema": "melodia.brooch.sil_evidence",
+  "shot_finished": "2026-09-23T15:56:06",
+  "shot_requested": "2026-09-23T15:55:46",
+  "shots": [
+    {
+      "bytes": 1828481,
+      "file": "v114_sbs_front.png",
+      "kind": "beauty",
+      "lens_mm": 55.0,
+      "mtime": "2026-09-23T15:55:55",
+      "px": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "bytes": 1915436,
+      "file": "v114_sbs_tq.png",
+      "kind": "beauty",
+      "lens_mm": 55.0,
+      "mtime": "2026-09-23T15:56:00",
+      "px": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 1217590,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_1600.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0785,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        52,
+        663,
+        1581,
+        1017
+      ],
+      "ink_col_runs": 2,
+      "ink_h_px": 355,
+      "ink_max": 0.02,
+      "ink_pct": 7.852,
+      "ink_px": 201009,
+      "ink_w_px": 1530,
+      "kind": "silhouette",
+      "max_column_gap_px": 412,
+      "min_axis_px": 355,
+      "mtime": "2026-09-23T15:56:03",
+      "polarity": "dark",
+      "px": [
+        1600,
+        1600
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    },
+    {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 39276,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_256.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0524,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        11,
+        107,
+        251,
+        159
+      ],
+      "ink_col_runs": 2,
+      "ink_h_px": 53,
+      "ink_max": 0.02,
+      "ink_pct": 5.244,
+      "ink_px": 3437,
+      "ink_w_px": 241,
+      "kind": "silhouette",
+      "max_column_gap_px": 69,
+      "min_axis_px": 53,
+      "mtime": "2026-09-23T15:56:04",
+      "polarity": "dark",
+      "px": [
+        256,
+        256
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    },
+    {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 11516,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_128.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0335,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        9,
+        54,
+        119,
+        77
+      ],
+      "ink_col_runs": 4,
+      "ink_h_px": 24,
+      "ink_max": 0.02,
+      "ink_pct": 3.351,
+      "ink_px": 549,
+      "ink_w_px": 111,
+      "kind": "silhouette",
+      "max_column_gap_px": 40,
+      "min_axis_px": 24,
+      "mtime": "2026-09-23T15:56:05",
+      "polarity": "dark",
+      "px": [
+        128,
+        128
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    },
+    {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 3685,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_64.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0212,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        7,
+        28,
+        58,
+        36
+      ],
+      "ink_col_runs": 3,
+      "ink_h_px": 9,
+      "ink_max": 0.02,
+      "ink_pct": 2.124,
+      "ink_px": 87,
+      "ink_w_px": 52,
+      "kind": "silhouette",
+      "max_column_gap_px": 23,
+      "min_axis_px": 9,
+      "mtime": "2026-09-23T15:56:05",
+      "polarity": "dark",
+      "px": [
+        64,
+        64
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    }
+  ],
+  "sil_pass": {
+    "flatten_material": "SIL_Flatten_v114",
+    "floor_hidden": true,
+    "hidden_names": [
+      "BroochFloor_Stage",
+      "FlowerBrooch",
+      "FlowerBrooch_Dangles",
+      "FlowerBrooch_Petals",
+      "FlowerBrooch_Sparkles"
+    ],
+    "lights_hidden": [
+      "_LAB_key",
+      "_LAB_rimL",
+      "_LAB_rimR",
+      "_LAB_spark",
+      "_LAB_under"
+    ],
+    "non_sil_meshes_hidden": 5,
+    "recipe": "BROOCH_V11_SILHOUETTE_PLAN_2026-09-17 section 0",
+    "restored": {
+      "lights": [
+        "_LAB_key",
+        "_LAB_rimL",
+        "_LAB_rimR",
+        "_LAB_spark",
+        "_LAB_under"
+      ],
+      "meshes": 5,
+      "world": "Sky Night"
+    },
+    "set_material_nodes_rewired": 2,
+    "sil_trees_present": [
+      "GN_BroochSil_Citadel",
+      "GN_BroochSil_Veil"
+    ],
+    "view_transform": "Standard",
+    "white_world": "SIL_White_v114",
+    "world_prev": "Sky Night"
+  },
+  "sil_trees_preexisting_in_blend": [],
+  "silhouette": {
+    "128": {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 11516,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_128.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0335,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        9,
+        54,
+        119,
+        77
+      ],
+      "ink_col_runs": 4,
+      "ink_h_px": 24,
+      "ink_max": 0.02,
+      "ink_pct": 3.351,
+      "ink_px": 549,
+      "ink_w_px": 111,
+      "kind": "silhouette",
+      "max_column_gap_px": 40,
+      "min_axis_px": 24,
+      "mtime": "2026-09-23T15:56:05",
+      "polarity": "dark",
+      "px": [
+        128,
+        128
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    },
+    "1600": {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 1217590,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_1600.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0785,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        52,
+        663,
+        1581,
+        1017
+      ],
+      "ink_col_runs": 2,
+      "ink_h_px": 355,
+      "ink_max": 0.02,
+      "ink_pct": 7.852,
+      "ink_px": 201009,
+      "ink_w_px": 1530,
+      "kind": "silhouette",
+      "max_column_gap_px": 412,
+      "min_axis_px": 355,
+      "mtime": "2026-09-23T15:56:03",
+      "polarity": "dark",
+      "px": [
+        1600,
+        1600
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    },
+    "256": {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 39276,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_256.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0524,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        11,
+        107,
+        251,
+        159
+      ],
+      "ink_col_runs": 2,
+      "ink_h_px": 53,
+      "ink_max": 0.02,
+      "ink_pct": 5.244,
+      "ink_px": 3437,
+      "ink_w_px": 241,
+      "kind": "silhouette",
+      "max_column_gap_px": 69,
+      "min_axis_px": 53,
+      "mtime": "2026-09-23T15:56:04",
+      "polarity": "dark",
+      "px": [
+        256,
+        256
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    },
+    "64": {
+      "backdrop_modal": 0.9,
+      "bright_margin": 0.1,
+      "bytes": 3685,
+      "corner": 0.8941,
+      "file": "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/v114_sbs/v114_sbs_sil_64.png",
+      "frac_bright": 0.0,
+      "frac_dark": 0.0212,
+      "frame_max": 0.902,
+      "frame_min": 0.0,
+      "ink_bbox_px": [
+        7,
+        28,
+        58,
+        36
+      ],
+      "ink_col_runs": 3,
+      "ink_h_px": 9,
+      "ink_max": 0.02,
+      "ink_pct": 2.124,
+      "ink_px": 87,
+      "ink_w_px": 52,
+      "kind": "silhouette",
+      "max_column_gap_px": 23,
+      "min_axis_px": 9,
+      "mtime": "2026-09-23T15:56:05",
+      "polarity": "dark",
+      "px": [
+        64,
+        64
+      ],
+      "touch_edge": false,
+      "touch_edge_sides": []
+    }
+  },
+  "sizing": {
+    "lissajous_veil": {
+      "object": "FlowerBrooch_SilVeil",
+      "overshoot_pct": -0.0,
+      "scale": 2.671581,
+      "span_after": 0.94574,
+      "span_before": 0.354,
+      "want": 0.94574
+    },
+    "star_citadel": {
+      "object": "FlowerBrooch_SilCitadel",
+      "overshoot_pct": -0.0,
+      "scale": 1.705421,
+      "span_after": 0.94574,
+      "span_before": 0.554549,
+      "want": 0.94574
+    }
+  },
+  "trees": {
+    "GN_BroochSil_Citadel": {
+      "detail_count": 27,
+      "detail_nodes": [
+        "v114 arch 0",
+        "v114 arch 1",
+        "v114 arch 2",
+        "v114 arch 3",
+        "v114 arch 4",
+        "v114 arch 5",
+        "v114 arch 6",
+        "v114 arch 7",
+        "v114 arch join",
+        "v114 arch xf 0",
+        "v114 arch xf 1",
+        "v114 arch xf 2",
+        "v114 arch xf 3",
+        "v114 arch xf 4",
+        "v114 arch xf 5",
+        "v114 arch xf 6",
+        "v114 arch xf 7",
+        "v114 facets flat",
+        "v114 groove mesh 0",
+        "v114 groove mesh 1",
+        "v114 groove path 0",
+        "v114 groove path 1",
+        "v114 groove prof 0",
+        "v114 groove prof 1",
+        "v114 step mesh",
+        "v114 step path",
+        "v114 step prof"
+      ],
+      "node_count": 83,
+      "set_material": [
+        {
+          "material": "SIL_Gold",
+          "node": "set material"
+        }
+      ]
+    },
+    "GN_BroochSil_Veil": {
+      "detail_count": 3,
+      "detail_nodes": [
+        "v114 veil echo mesh",
+        "v114 veil echo path",
+        "v114 veil echo prof"
+      ],
+      "node_count": 85,
+      "set_material": [
+        {
+          "material": "SIL_Gold",
+          "node": "set material"
+        }
+      ]
+    }
+  },
+  "trio": {
+    "center": [
+      -0.036179,
+      0.00894,
+      0.774035
+    ],
+    "gap_x": 0.863501,
+    "size": 2.672742
+  },
+  "want_span": 0.94574
+}

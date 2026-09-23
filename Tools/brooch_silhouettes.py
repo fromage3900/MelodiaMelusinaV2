@@ -12,6 +12,8 @@
 #
 # Nothing here executes at import time.
 import math
+import os
+import sys
 
 import bpy
 from mathutils import Vector
@@ -163,11 +165,114 @@ def build_citadel():
     j2 = mk(t, 'GeometryNodeJoinGeometry', "join all", (1600, -300))
     L(j, "Geometry", j2, "Geometry")
     L(c2m, "Mesh", j2, "Geometry")
-    L(j2, "Geometry", go, "Geometry")
+    # v11.4 elegant-mechanical: stepped rim band (concentric sweep, smaller
+    # profile = assembled-metal read, no boolean) + twin guilloche groove rails.
+    ring2 = mk(t, 'GeometryNodeCurvePrimitiveCircle', "v114 step path", (1750, -900))
+    dn(ring2, "Radius", 0.150)
+    dn(ring2, "Resolution", 64)
+    prof2 = mk(t, 'GeometryNodeCurvePrimitiveCircle', "v114 step prof", (1750, -1060))
+    dn(prof2, "Radius", 0.006)
+    dn(prof2, "Resolution", 6)
+    c2m2 = mk(t, 'GeometryNodeCurveToMesh', "v114 step mesh", (1950, -980))
+    L(ring2, "Curve", c2m2, "Curve")
+    L(prof2, "Curve", c2m2, "Profile Curve")
+    L(c2m2, "Mesh", j2, "Geometry")
+    for k, (rr, pr) in enumerate(((0.141, 0.0018), (0.159, 0.0018))):
+        gp = mk(t, 'GeometryNodeCurvePrimitiveCircle', "v114 groove path %d" % k, (1750, -1200 - 160 * k))
+        dn(gp, "Radius", rr)
+        dn(gp, "Resolution", 96)
+        gpr = mk(t, 'GeometryNodeCurvePrimitiveCircle', "v114 groove prof %d" % k, (1750, -1360 - 160 * k))
+        dn(gpr, "Radius", pr)
+        dn(gpr, "Resolution", 4)
+        gm = mk(t, 'GeometryNodeCurveToMesh', "v114 groove mesh %d" % k, (1950, -1280 - 160 * k))
+        L(gp, "Curve", gm, "Curve")
+        L(gpr, "Curve", gm, "Profile Curve")
+        L(gm, "Mesh", j2, "Geometry")
+    # gothic-arch void markers: 8 small flat panels between the rays (negative-
+    # space signature at icon scale; additive markers, never a plate boolean).
+    arch_join = mk(t, 'GeometryNodeJoinGeometry', "v114 arch join", (2150, -700))
+    for i in range(8):
+        pa = math.radians(i * 45.0 + 22.5)
+        cube = mk(t, 'GeometryNodeMeshCube', "v114 arch %d" % i, (1950, -500 - 120 * (i % 4)))
+        dn(cube, "Size", (0.018, 0.010, 0.020))
+        xf = mk(t, 'GeometryNodeTransform', "v114 arch xf %d" % i, (2150, -500 - 120 * (i % 4)))
+        L(cube, "Mesh", xf, "Geometry")
+        dn(xf, "Translation", (0.150 * math.cos(pa), 0.150 * math.sin(pa), 0.016))
+        dn(xf, "Rotation", (0.0, 0.0, pa))
+        L(xf, "Geometry", arch_join, "Geometry")
+    L(arch_join, "Geometry", j2, "Geometry")
+    # crisp facet shading for the crown.
+    shade = mk(t, 'GeometryNodeSetShadeSmooth', "v114 facets flat", (2350, -300))
+    try:
+        shade.inputs["Shade Smooth"].default_value = False
+    except Exception as exc:
+        print("  warn v114 shade (%r)" % (exc,))
+    L(j2, "Geometry", shade, "Geometry")
+    L(shade, "Geometry", go, "Geometry")
     return t
 
 
 # ------------------------------------------------------------------- veil ----
+# Optional Higgsas path probe. The manual lissajous below is CANONICAL; Higgsas is an
+# extra that is never required. This records state so a render report can state exactly
+# which path produced the wire instead of printing a bare boolean that reads like a
+# failure (2026-09-22: "VEIL: higgsas Lissajous Curve loaded: False" was mistaken for a
+# build defect — nothing in the tree consumed the node).
+HIGGSAS_STATUS = {}
+
+
+def higgsas_lissajous_state():
+    """Read-only capability record for the optional Higgsas 'Lissajous Curve' group."""
+    st = {"bridge_import_ok": False, "bridge_file": None, "library_path": None,
+          "library_exists": False, "lissajous_groups": [], "loaded": False, "error": None}
+    try:
+        from surreal_arch.capabilities import higgsas_library_path
+        from surreal_arch.higgsas_bridge import load_node
+    except Exception as exc:
+        st["error"] = "import: %r" % (exc,)
+        return st
+    st["bridge_import_ok"] = True
+    st["bridge_file"] = getattr(sys.modules.get("surreal_arch.higgsas_bridge"),
+                                "__file__", None)
+    try:
+        path = higgsas_library_path()
+        st["library_path"] = path
+        st["library_exists"] = os.path.exists(path)
+        if st["library_exists"]:
+            with bpy.data.libraries.load(path, link=False) as (src, _dst):
+                st["lissajous_groups"] = [n for n in src.node_groups
+                                          if "lissajous" in n.lower()]
+    except Exception as exc:
+        st["error"] = "library: %r" % (exc,)
+    # The bridge that answers above is the one Blender's addons dir provides, and
+    # capabilities._REPO_ROOT is derived from that installed file's location — so on an
+    # installed copy the repo-relative candidate becomes .../Blender/5.2/scripts/RawArt/...
+    # and reports missing even though the library sits in the repo. Measured 2026-09-23:
+    # addon-resolved=False while repo file = 20,565,027 bytes. Probe the repo candidate
+    # directly so the record states both, without mutating sys.path (shadowing the addon
+    # for the rest of the session would leak into the house GN lanes).
+    try:
+        repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        cand = os.path.join(repo, "RawArt", "BlenderLibraries", "Higgsas",
+                            os.path.basename(path or ""))
+        st["repo_root"] = repo
+        st["repo_candidate"] = cand
+        st["repo_candidate_exists"] = os.path.exists(cand)
+    except Exception as exc:
+        st["repo_candidate_error"] = repr(exc)
+    # Bridge contract: call with the NT-prefixed name. v1.3 dropped the prefix and
+    # higgsas_bridge.load_node resolves NT<Name> -> <Name>. The bare name is tried as a
+    # documented fallback so an older library still resolves.
+    for cand in ("NTLissajous Curve", "Lissajous Curve"):
+        try:
+            if load_node(cand) is not None:
+                st["loaded"] = cand
+                break
+        except Exception as exc:
+            st["error"] = "load(%s): %r" % (cand, exc)
+    return st
+
+
 def build_veil():
     """Three woven 3D lissajous wires (3:2:5) + beads at every 12th node + a base ring.
 
@@ -175,12 +280,14 @@ def build_veil():
     node is attempted via the bridge and skipped cleanly when unavailable.
     """
     t, gi, go = tree_new("GN_BroochSil_Veil")
-    try:
-        from surreal_arch.higgsas_bridge import load_node
-        hg = load_node("Lissajous Curve")
-        print("VEIL: higgsas Lissajous Curve loaded:", hg is not None)
-    except Exception as exc:
-        print("VEIL: higgsas bridge unavailable (%r) -- manual lissajous" % (exc,))
+    HIGGSAS_STATUS.clear()
+    HIGGSAS_STATUS.update(higgsas_lissajous_state())
+    print("VEIL: manual lissajous = canonical path (higgsas never required)")
+    print("VEIL: higgsas probe bridge_import_ok=%s library_exists=%s lissajous_groups=%s "
+          "loaded=%s" % (HIGGSAS_STATUS["bridge_import_ok"],
+                         HIGGSAS_STATUS["library_exists"],
+                         HIGGSAS_STATUS["lissajous_groups"],
+                         HIGGSAS_STATUS["loaded"]))
 
     def manual_veil(i, delta, radius, z0, ampz, n=240):
         line = mk(t, 'GeometryNodeMeshLine', "m line %d" % i, (300, -200 - 300 * i))
@@ -238,6 +345,15 @@ def build_veil():
         c2m = mk(t, 'GeometryNodeCurveToMesh', "wire mesh %d" % i, (2180, -360 - 300 * i))
         L(c2c, "Curve", c2m, "Curve")
         L(prof, "Curve", c2m, "Profile Curve")
+        # v11.4: the wire path is an OPEN MeshLine -> MeshToCurve, so the sweep leaves two
+        # uncapped tube ends per wire. Measured 2026-09-23: 3 wires x 2 ends x 4 profile
+        # edges = the 24 boundary / 24 non-manifold edges the census gate caught. The
+        # citadel's sweeps ride closed circle paths and were already 0/0. Close them where
+        # they are made; the census check stays strict rather than being scoped down.
+        try:
+            c2m.inputs["Fill Caps"].default_value = True
+        except Exception as exc:
+            print("  warn wire fill caps %d (%r)" % (i, exc))
         veils.append((c2m, "Mesh"))
         bead = mk(t, 'GeometryNodeMeshUVSphere', "bead %d" % i, (2000, -620 - 300 * i))
         dn(bead, "Radius", 0.0085)
@@ -267,6 +383,17 @@ def build_veil():
     for src, ss in veils:
         L(src, ss, j, "Geometry")
     L(rc2m, "Mesh", j, "Geometry")
+    # v11.4 elegant-mechanical: hairline echo rail under the base ring.
+    rp = mk(t, 'GeometryNodeCurvePrimitiveCircle', "v114 veil echo path", (2600, -1500))
+    dn(rp, "Radius", 0.158)
+    dn(rp, "Resolution", 96)
+    rpr = mk(t, 'GeometryNodeCurvePrimitiveCircle', "v114 veil echo prof", (2600, -1640))
+    dn(rpr, "Radius", 0.0022)
+    dn(rpr, "Resolution", 4)
+    rm = mk(t, 'GeometryNodeCurveToMesh', "v114 veil echo mesh", (2800, -1570))
+    L(rp, "Curve", rm, "Curve")
+    L(rpr, "Curve", rm, "Profile Curve")
+    L(rm, "Mesh", j, "Geometry")
     L(j, "Geometry", go, "Geometry")
     return t
 
@@ -349,3 +476,153 @@ def active_preset(genome):
         return "flower"
     a = sil.get("active", "flower")
     return a if a in PRESETS else "flower"
+
+
+# ---------------------------------------------------------------- evidence ----
+# Shared evidence emitters for the silhouette harnesses (v11.4). One definition, called
+# by whichever harness renders, so a stage render and an sbs render emit the same report
+# shape and neither drifts into its own dialect. Born 2026-09-22 from the pinned evidence
+# standard: "frames without a report are not evidence" and "the committed harness must be
+# the harness that ran". See AGENTS.md -> Evidence standard.
+EVIDENCE_VERSION = "v11.4-1"
+
+
+def mesh_census(ob):
+    """Evaluated-mesh census for one object: counts + material ids.
+
+    boundary_edges / non_manifold_edges are the two numbers the silhouette gate claims;
+    materials is the list that proves the in-tree SetMaterial still resolves (a metals
+    tree routes through SetMaterial, so editing Principled does nothing).
+    """
+    import bmesh
+    dg = bpy.context.evaluated_depsgraph_get()
+    ev = ob.evaluated_get(dg)
+    me = ev.to_mesh()
+    bm = bmesh.new()
+    bm.from_mesh(me)
+    out = {
+        "verts": len(bm.verts),
+        "edges": len(bm.edges),
+        "faces": len(bm.faces),
+        "boundary_edges": sum(1 for e in bm.edges if e.is_boundary),
+        "non_manifold_edges": sum(1 for e in bm.edges if not e.is_manifold),
+        "loose_verts": sum(1 for v in bm.verts if not v.link_edges),
+        "loose_edges": sum(1 for e in bm.edges if not e.link_faces),
+        "materials": [m.name if m is not None else None for m in ob.data.materials],
+    }
+    bm.free()
+    ev.to_mesh_clear()
+    return out
+
+
+def ink_report(fname, polarity="dark", ink_max=0.02, bright_margin=0.10):
+    """Read a rendered PNG back and measure the ink field.
+
+    Polarity matters and is NOT guessable: the V11 flatten recipe rewires the in-tree
+    SIL_Gold to a BLACK Emission node, so on that pass the objects are the dark minority
+    against a bright backdrop — the opposite of a light-on-black mask. Measured
+    2026-09-22 on v114_sbs_sil_*: backdrop modal 0.44, dark corners 0.196 (vignette),
+    objects exactly 0.0. A blanket `pixel > 0.02` counts the whole backdrop as ink.
+
+    Reports BOTH fractions plus the backdrop/corner readings, so the record states the
+    raw evidence rather than only the interpretation. bbox / min_axis / gap are computed
+    on the selected mask only. Only meaningful for passes where the subject is one flat
+    value: on a lit beauty shot this describes the frame, not the object.
+
+    numpy is bundled with Blender; the project's system python has neither numpy nor PIL.
+    """
+    import numpy as np
+    img = bpy.data.images.load(fname, check_existing=False)
+    try:
+        w, h = img.size
+        buf = np.empty(w * h * 4, dtype=np.float32)
+        img.pixels.foreach_get(buf)
+        g = buf.reshape(h, w, 4)[:, :, :3].max(axis=2)
+        vals, counts = np.unique(np.round(g, 2), return_counts=True)
+        modal = float(vals[int(np.argmax(counts))])
+        corner = float(g[0, 0])
+        mask = (g < ink_max) if polarity == "dark" else (g > modal + bright_margin)
+        rec = {"file": fname, "px": [w, h], "polarity": polarity,
+               "ink_max": ink_max, "bright_margin": bright_margin,
+               "backdrop_modal": round(modal, 4), "corner": round(corner, 4),
+               "frame_min": round(float(g.min()), 4),
+               "frame_max": round(float(g.max()), 4),
+               "frac_dark": round(float((g < ink_max).mean()), 4),
+               "frac_bright": round(float((g > modal + bright_margin).mean()), 4),
+               "ink_px": int(mask.sum()), "ink_pct": round(100.0 * float(mask.mean()), 3),
+               "ink_bbox_px": None, "ink_w_px": 0, "ink_h_px": 0,
+               "min_axis_px": 0, "max_column_gap_px": 0, "ink_col_runs": 0,
+               # Framing: does the ink reach the frame border? A subject cropped by the
+               # frame invalidates every bbox/legibility number below it. Sides are named
+               # by buffer axis on purpose — Blender's pixel buffer is bottom-up, so
+               # "row_min" is the bottom of the image and a top/bottom label would be a
+               # guess. Added 2026-09-22 after the assertion read the key and died on
+               # KeyError, which cost the whole report (frames, no report = not evidence).
+               "touch_edge": False, "touch_edge_sides": []}
+        if not mask.any():
+            return rec
+        cols = np.flatnonzero(mask.any(axis=0))
+        rows = np.flatnonzero(mask.any(axis=1))
+        x0, x1 = int(cols[0]), int(cols[-1])
+        y0, y1 = int(rows[0]), int(rows[-1])
+        gap = run = runs = 0
+        for has_ink in mask[:, x0:x1 + 1].any(axis=0):
+            if has_ink:
+                gap = max(gap, run)
+                if run:
+                    runs += 1
+                run = 0
+            else:
+                run += 1
+        hits = []
+        if x0 <= 0:
+            hits.append("col_min")
+        if x1 >= w - 1:
+            hits.append("col_max")
+        if y0 <= 0:
+            hits.append("row_min")
+        if y1 >= h - 1:
+            hits.append("row_max")
+        rec.update({"ink_bbox_px": [x0, y0, x1, y1],
+                    "ink_w_px": x1 - x0 + 1, "ink_h_px": y1 - y0 + 1,
+                    "min_axis_px": int(min(x1 - x0 + 1, y1 - y0 + 1)),
+                    "max_column_gap_px": int(gap), "ink_col_runs": runs + 1,
+                    "touch_edge": bool(hits), "touch_edge_sides": hits})
+        return rec
+    finally:
+        bpy.data.images.remove(img)
+
+
+def tree_detail_nodes(tree):
+    """Report the v11.4 in-tree detail and the SetMaterial ids that actually resolve.
+
+    A metals tree routes the surface through SetMaterial, so the node ids here — not
+    `obj.data.materials` — are what proves the silhouette objects carry a material at all.
+    """
+    nodes = [n.name for n in tree.nodes]
+    detail = sorted(n for n in nodes if n.lower().startswith("v114"))
+    mats = []
+    for n in tree.nodes:
+        if n.bl_idname == 'GeometryNodeSetMaterial':
+            m = n.inputs['Material'].default_value
+            mats.append({"node": n.name, "material": m.name if m else None})
+    return {"node_count": len(nodes), "detail_nodes": detail,
+            "detail_count": len(detail), "set_material": mats}
+
+
+def report_assert(payload, aid, ok, detail):
+    """Append one assertion row to payload['assertions'] and return the boolean."""
+    payload.setdefault("assertions", []).append(
+        {"id": aid, "pass": bool(ok), "detail": detail})
+    return bool(ok)
+
+
+def write_report(path, payload):
+    """Write the assertion report next to the frames (rule 3) as UTF-8 JSON."""
+    import json
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, indent=2, sort_keys=True)
+        fh.write("\n")
+    print("[report]", path)
+    return path
+
