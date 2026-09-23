@@ -424,6 +424,13 @@ def step_count(b: dict) -> dict:
     band_by_mi = {r["material_instance"].split("/")[-1]: r["band"] for r in b["dressing"]["bands"]}
     for r in (b["dressing"].get("wind_lane") or {}).get("bands", []):
         band_by_mi[r["material_instance"].split("/")[-1]] = r["band"]
+    rows = _rows(b["dir"] / "points.csv")
+    # The flower kit has one band MI per mesh variant. Include suffixes such as
+    # _Tall from the compiled rows so the count covers the entire flower field.
+    for r in rows:
+        mat = (r.get("material") or "").strip()
+        if "MI_RainbowSpeedTree_" in mat:
+            band_by_mi[mat.split(".")[0].split("/")[-1]] = int(r["band"])
     flower_per_band: dict[str, int] = {}
     dressing_by_mi: dict[str, int] = {}
     comps = 0
@@ -453,7 +460,6 @@ def step_count(b: dict) -> dict:
                 key = slot_names[0] if slot_names else "none"
                 dressing_by_mi[key] = dressing_by_mi.get(key, 0) + n
                 dressing_total += n
-    rows = _rows(b["dir"] / "points.csv")
     expected_flowers = {}
     expected_dressing = 0
     for r in rows:
@@ -1000,6 +1006,62 @@ def step_fx_materials(b: dict) -> dict:
     return {"results": results}
 
 
+def step_glitter_materials(b: dict) -> dict:
+    """Forge the glitter tint family (one MI per band) under the glitter master.
+
+    Lane mirror of _forge_wind_lane for the palette.glitter block: the compiler
+    only names MIs and tint values; the parent (layer colors, scalars, switches)
+    is never edited and no collection parameter is written.
+    """
+    lane = (b["dressing"] or {}).get("glitter_lane")
+    if not lane:
+        return {"skipped": True, "note": "no palette.glitter in recipe"}
+    parent_path = lane["parent"]
+    parent = AL.load_asset(parent_path)
+    if not parent:
+        return {"error": f"glitter parent missing: {parent_path}", "blocked": True}
+    params = list(lane.get("tint_parameters") or [])
+    shades = list(lane.get("shade_steps") or [1.0])
+    tools = unreal.AssetToolsHelpers.get_asset_tools()
+    made = []
+    for band in lane["bands"]:
+        path = band["material_instance"]
+        folder, name = path.rsplit("/", 1)
+        rec = {"band": band["band"], "mi": path}
+        try:
+            if AL.does_asset_exist(path):
+                mi = AL.load_asset(path)
+                rec["existed"] = True
+            else:
+                if not AL.does_directory_exist(folder):
+                    AL.make_directory(folder)
+                mi = tools.create_asset(name, folder, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+                mi.set_editor_property("parent", parent)
+                rec["created"] = True
+            cur = mi.get_editor_property("parent")
+            if not cur or cur.get_path_name().split(".")[0] != parent_path:
+                mi.set_editor_property("parent", parent)
+                rec["parent_set"] = True
+            r, g, bl = (float(band["tint"][0]), float(band["tint"][1]), float(band["tint"][2]))
+            set_params = []
+            for idx, param in enumerate(params):
+                step = float(shades[idx % len(shades)]) if shades else 1.0
+                MEL.set_material_instance_vector_parameter_value(
+                    mi, param, unreal.LinearColor(min(4.0, r * step), min(4.0, g * step), min(4.0, bl * step), 1.0))
+                set_params.append(param)
+            rec["tint_params"] = set_params
+            for k, v in ((lane.get("scalar_overrides") or {}).items()):
+                MEL.set_material_instance_scalar_parameter_value(mi, k, float(v))
+            rec["scalar_overrides"] = dict(lane.get("scalar_overrides") or {})
+            MEL.update_material_instance(mi)
+            rec["saved"] = AL.save_asset(path, only_if_is_dirty=True)
+        except Exception as exc:
+            rec["error"] = str(exc)[:300]
+        made.append(rec)
+    return {"parent": parent_path, "band_mis": made,
+            "all_ok": all("error" not in r for r in made) and len(made) == 7}
+
+
 def step_fx_place(b: dict) -> dict:
     ue = b["manifest"]["ue_lane"]
     rows = _rows(b["dir"] / "fx_anchors.csv")
@@ -1300,6 +1362,7 @@ STEPS = {
     "preflight": step_preflight,
     "cleanup": step_cleanup,
     "materials": step_materials,
+    "glitter_materials": step_glitter_materials,
     "table": step_table,
     "volume": step_volume,
     "generate": step_generate,

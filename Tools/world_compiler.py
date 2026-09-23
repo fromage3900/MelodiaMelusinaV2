@@ -264,6 +264,9 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
     golden = float(field.get("phyllotaxis_angle_rad", GOLDEN_ANGLE))
     jitter = float(field.get("radial_jitter_cm", 18.0))
     s_lo, s_hi = field.get("scale_range", [0.5, 1.1])
+    # Per-species scale_range overrides the field default (a species without one
+    # keeps the legacy global behavior). Pre-glitter recipes pin the field value
+    # on every species, so outputs stay byte-identical; see the recipe.
     chl = field.get("chladni") or {}
     modes = chl.get("modes") or [[2 + b, 3 + b] for b in range(band_count)]
     threshold = float(chl.get("threshold", 0.35))
@@ -322,13 +325,23 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 removed_clearance += 1
                 continue
             species = _pick_species(recipe, _u(seed, rid, "species", b, i))
-            # palette.active_lane picks which band-MI family the 'material' column names
+            # palette.active_lane picks which band-MI family the 'material' column names.
+            # A species-level band_mi_prefix wins (glitter/detail families); otherwise the
+            # wind lane prefix applies when active, else the (legacy) species prefix.
+            # For all pre-glitter recipes the flower prefix equals the wind prefix and
+            # dressing species carry no prefix, so outputs are byte-identical.
             wind_lane = recipe["palette"].get("wind") or {}
-            material_prefix = (wind_lane.get("mi_prefix") if recipe["palette"].get("active_lane") == "wind" and wind_lane
-                               else species.get("band_mi_prefix", ""))
+            material_prefix = (species.get("band_mi_prefix")
+                               or (wind_lane.get("mi_prefix") if recipe["palette"].get("active_lane") == "wind" and wind_lane
+                                   else ""))
             meshes = list(species.get("meshes") or [species["mesh"]])
             variants = int(species.get("variants", len(meshes) if species.get("meshes") else 3))
             variant_id = rwg.stable_int(seed, "world_compiler", rid, "variant", b, i) % variants
+            # species.mesh_mi_suffixes (parallel to meshes) picks each mesh's own band MI, e.g. "_Tall"
+            # so a card mesh gets the band MI that carries its texture atlas.
+            mesh_mi_suffixes = list(species.get("mesh_mi_suffixes") or [])
+            band_mi = (f"{material_prefix}{bands_palette[b]['label']}"
+                       f"{mesh_mi_suffixes[variant_id % len(meshes)] if mesh_mi_suffixes else ''}")
             if _resonance_derive is not None:
                 resonance, ecology_class, material_variant, scale_bias = _resonance_derive(
                     x, y, r, chunk_seed, z_lo=r0, z_hi=outer_radius
@@ -341,7 +354,8 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
             height_class = int(species.get("height_class", 1))
             density_class = 2 if weight > 0.66 else (1 if weight > 0.33 else 0)
             hero_w = clearance.hero_weight(x, y, hero_falloff)
-            scale = _lerp(float(s_lo), float(s_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
+            sp_lo, sp_hi = species.get("scale_range", [s_lo, s_hi])
+            scale = _lerp(float(sp_lo), float(sp_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
             points.append({
                 "point_id": point_id,
                 "x": x, "y": y, "z": z,
@@ -366,9 +380,9 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 # Soft object paths so PCGMeshSelectorByAttribute + material-override-by-attribute
                 # make the owner's template graph fully data-driven (no per-species graph edits).
                 "mesh": _soft_path(meshes[variant_id % len(meshes)]),
-                "material": _soft_path(f"{material_prefix}{bands_palette[b]['label']}") if material_prefix else "",
+                "material": _soft_path(band_mi) if material_prefix else "",
                 "StemMaterial": (
-                    _soft_path(f"{material_prefix}{bands_palette[b]['label']}")
+                    _soft_path(band_mi)
                     if species.get("stem_material") == "__band__" and material_prefix
                     else (_soft_path(species["stem_material"]) if species.get("stem_material") else "")
                 ),
@@ -529,6 +543,16 @@ def stage_dressing(recipe: dict[str, Any], ecology: dict[str, Any], *, constella
                        "hue_seed": (b["band"] + 0.5) / band_count,
                        "material_instance": f"{wind['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
         } if wind else None),
+        # Glitter detail family: same seven tints on the glitter master, one MI per
+        # band for species whose band_mi_prefix matches. Parent scalars/switches stay.
+        "glitter_lane": ({
+            "parent": glitter["parent"],
+            "tint_parameters": list(glitter.get("tint_parameters") or ["FastLayerColor", "MidLayerColor", "DeepLayerColor"]),
+            "shade_steps": list(glitter.get("shade_steps") or [1.0]),
+            "scalar_overrides": dict(glitter.get("scalar_overrides") or {}),
+            "bands": [{"band": b["band"], "label": b["label"], "tint": b["tint"],
+                       "material_instance": f"{glitter['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
+        } if (glitter := palette.get("glitter")) else None),
         "species": species_rows,
         "packer_attributes": ["hue_seed", "Resonance", "wind_response", "sparkle_response"],
         "source": "recipe",

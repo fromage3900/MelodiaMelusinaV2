@@ -135,11 +135,11 @@ def test_attribute_ranges():
                 v = float(r[col])
                 assert 0.0 <= v <= 1.0, (col, v)
             assert 0.0 <= float(r["yaw"]) < 360.0
-            s_lo, s_hi = recipe["field"]["scale_range"]
-            assert s_lo * 0.85 <= float(r["scale"]) <= s_hi * 1.0 + 1e-6
+            species = {s["species_id"]: s for s in recipe["species"]}[r["species_id"]]
+            s_lo, s_hi = species.get("scale_range", recipe["field"]["scale_range"])
+            assert s_lo * 0.85 <= float(r["scale"]) <= s_hi * 1.0 + 1e-6, (r["species_id"], r["scale"])
             assert int(r["EcologyClass"]) in (0, 1, 2)
             assert int(r["MaterialVariant"]) == int(r["band"])
-            species = {s["species_id"]: s for s in recipe["species"]}[r["species_id"]]
             meshes = species.get("meshes") or [species["mesh"]]
             assert r["mesh"].split(".")[0] in meshes  # mesh follows variant_id
             assert int(r["variant_id"]) < int(species.get("variants", len(meshes)))

@@ -52,8 +52,10 @@
         "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
         "/Game/EnvSandbox/Library/FoliageCards/GenericFlowerTall"
       ],
+      "mesh_mi_suffixes": ["", "_Tall"],
       "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
       "stem_material": "__band__",
+      "scale_range": [0.85, 1.45],
       "weight": 1.0,
       "variants": 2,
       "height_class": 1,
@@ -97,6 +99,18 @@
       "variants": 2,
       "height_class": 0,
       "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
+    },
+    {
+      "species_id": "melody_glitter",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": ["/Game/EnvSandbox/SM_MelodyToken"],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.05,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [0.06, 0.14],
+      "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
     }
   ],
   "palette": {
@@ -113,6 +127,14 @@
       "static_switches_off": [],
       "texture_overrides": {},
       "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only."
+    },
+    "glitter": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "tint_parameters": ["BaseTint"],
+      "shade_steps": [1.0],
+      "scalar_overrides": {"SparkleIntensity": 0.5, "SparkleScale": 160.0},
+      "note": "Melody-token pile tint family on the approved toon parent (MI_MelodyToken_Water precedent). Parent graph untouched; forged by the UE glitter_materials step."
     },
     "bands": [
       {"label": "B0_Red", "tint": [1.0, 0.18, 0.22]},
