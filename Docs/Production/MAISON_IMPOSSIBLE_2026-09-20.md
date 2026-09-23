@@ -63,8 +63,8 @@ these six swatches — that is what makes them feel like one brand.
 | Pack | Steps | Intent |
 |---|---|---|
 | `MI_SALON_IMPOSSIBLE` | 5 resolved | Hero interior: Belvedere loggia + Penrose stair + **Belvedere ladder** + Circle-Limit window + chapel walls |
-| `MI_COUR_D_HONNEUR` | 4 resolved, 1 pending | Courtyard: Haussmann bay + slab + Mobius rail + relief panels; pending `GN_PARIS_FountainLoop` |
-| `MI_MAISON_NUIT` | 4 resolved, 1 pending | Night pass: duality tiling + gold tribar + max-density window + lit channel; pending `GN_PARIS_DayNightFacade` |
+| `MI_COUR_D_HONNEUR` | 5 resolved | Courtyard: Haussmann bay + slab + Mobius rail + relief panels + **Fountain Loop** |
+| `MI_MAISON_NUIT` | 5 resolved | Night pass: duality tiling + gold tribar + max-density window + lit channel + **Day-Night Facade** |
 
 ## API
 
@@ -144,11 +144,45 @@ Two defects this caught that a green build would have shipped:
 module self-registers on import and the wiring is left to that lane rather than
 risking a lost line in someone else's buffer.
 
+## Track A, builders 2-3: FountainLoop + DayNightFacade (shipped 2026-09-22)
+
+Both reserved slots are now real builders, each with 3-4 presets and its own
+headless health script. Build record + evidence:
+`Saved/Audit/PARIS_TRACKA_BUILDERS_2_3_2026-09-22.md`.
+
+**`GN_PARIS_FountainLoop`** — the courtyard fountain, carrying the Escher device
+as a dial: `Loop Error` is the vertical distance by which the self-feeding
+channel's mouth misses its own spout (0.0 = meets; + = overshoots; - = never
+arrives), and `Feed Rise` is the channel's own arch height. 23 params (flutes,
+scallop bosses, bead rim, tiers, crown spikes, ripples, streams, droplets).
+Health: `deploy/_melodia_health_paris_fountain_loop.py` — problems=0 PASS;
+tier slots delete cleanly, Self Feed removes the channel, Loop Error slides it
+(no rebuild).
+
+**`GN_PARIS_DayNightFacade`** — the day/night duality as a slider: `Night Mix`
+0→1 lights the windows from the TOP FLOOR DOWN, dark panes recessed vs lit
+panes popped proud with brass trim; the roofline carries two interlocking bird
+flocks (`Bird Lock`). 31 params (shutters swing a full 180°, balcony bands,
+dentils, seeded geranium boxes, portal + oculus). Health:
+`deploy/_melodia_health_paris_daynight_facade.py` — problems=0 PASS; Night Mix
+extremes safe, every toggle removes geometry, Shutter Open swings without
+rebuilding.
+
+Two defects the harnesses caught that a green build would have shipped: a
+`NEGATE` math op that silently defaulted to ADD (flower boxes above the
+windows), and the water disc buried inside the solid drum. Details in the
+build record.
+
+The ladder's `__init__.py` wiring (left pending on 2026-09-20) is now closed;
+registry 593 → 596, gate 6/6, census clean.
+
 ## Next
 
-1. Remaining `GN_PARIS_*` Track A builders — FountainLoop and DayNightFacade
-   first (they are the two reserved slots already referenced by the packs),
-   then Mansard, MobiusBalcony, HyperbolicRose, PenroseArch, MetamorphosisFrieze.
+1. Remaining `GN_PARIS_*` Track A builders — MobiusBalcony, HyperbolicRose
+   (Mansard, PenroseArch and MetamorphosisFrieze shipped 2026-09-23, along
+   with the BRUTALIST pair OfficeBlock + CubicleFarm; see
+   `CLOSEOUT_PLAN_2026-09-23.md` and
+   `Saved/Audit/BRUTALIST_AND_STAGE_2026-09-23.md`).
    Each lands with 2-3 presets and its own health script assertions.
 2. Brand-pack apply operator + hub brand row (needs a Blender session to
    validate end to end; not shipped blind).

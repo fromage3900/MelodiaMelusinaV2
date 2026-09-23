@@ -22,6 +22,13 @@ Owner pull-ready. Branch: `collab/laptop/brooch-sky-20260917`.
 1. C1 monolith-UI retire — health 6/7 (`plan_edit_floating` keep-vs-retire = owner design call).
 2. 19 dropped-link trees → fix-or-hide, then `LINK_STRICT` + gate wiring.
 3. Track A builders 2–8 (FountainLoop + DayNightFacade fill the 2 pending pack slots).
+   UPDATE 2026-09-22: builders 2–3 shipped (FountainLoop + DayNightFacade, packs
+   now 5/5/5; ladder wiring closed, registry 596).
+   UPDATE 2026-09-23: builders 4–6 shipped (Mansard, PenroseArch,
+   MetamorphosisFrieze; registry 601) + the BRUTALIST lane opened
+   (OfficeBlock, CubicleFarm) and the showcase stage file landed
+   (`Saved/Blend/MELODIA_GN_SHOWCASE_2026-09-23.blend`). Remaining: MobiusBalcony,
+   HyperbolicRose — sequence in `CLOSEOUT_PLAN_2026-09-23.md`.
 
 ## PC pull
 

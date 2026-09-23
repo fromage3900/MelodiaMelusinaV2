@@ -90,6 +90,14 @@ from . import core_forms_kit  # noqa: F401
 from . import core_forms_port  # noqa: F401 - tower, organic, hybrid, curved_wall, building
 from . import walls_kit  # noqa: F401
 from . import paris_wall_detail  # noqa: F401 - Paris lane v2 (Melusina study)
+from . import paris_escher_ladder  # noqa: F401 - Track A: Belvedere ladder device
+from . import paris_fountain_loop  # noqa: F401 - Track A: self-feeding courtyard fountain
+from . import paris_daynight_facade  # noqa: F401 - Track A: day/night duality facade
+from . import paris_mansard  # noqa: F401 - Track A: Haussmann roof band
+from . import paris_penrose_arch  # noqa: F401 - Track A: tribar doorway
+from . import paris_metamorphosis_frieze  # noqa: F401 - Track A: morph band
+from . import brutalist_office  # noqa: F401 - BRUTALIST: office block
+from . import brutalist_cubicles  # noqa: F401 - BRUTALIST: cubicle farm
 from . import buildings_kit  # noqa: F401 - buildings absorbed (P2)
 from . import misc_props_kit  # noqa: F401
 from . import materials_kit  # noqa: F401 - materials absorbed (P2)

@@ -1,0 +1,138 @@
+{
+  "stamp": "2026-09-23",
+  "blend": "P:\\MelodiaMelusinaV2-Laptop\\Saved\\Blend\\MELODIA_GN_SHOWCASE_2026-09-23.blend",
+  "collections": {
+    "MI_EscherLadder": [
+      {
+        "object": "STAGE_EscherLadder",
+        "builder": "GN_PARIS_EscherLadder",
+        "preset": null,
+        "nodes": 98,
+        "params": 21,
+        "verts": 152,
+        "position": [
+          -44.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "MI_FountainLoop": [
+      {
+        "object": "STAGE_FountainLoop",
+        "builder": "GN_PARIS_FountainLoop",
+        "preset": null,
+        "nodes": 382,
+        "params": 31,
+        "verts": 14482,
+        "position": [
+          -26.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "MI_DayNightFacade": [
+      {
+        "object": "STAGE_DayNightFacade",
+        "builder": "GN_PARIS_DayNightFacade",
+        "preset": "MI_CREPUSCULE",
+        "nodes": 407,
+        "params": 39,
+        "verts": 13704,
+        "position": [
+          -2.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "MI_Mansard": [
+      {
+        "object": "STAGE_Mansard",
+        "builder": "GN_PARIS_Mansard",
+        "preset": null,
+        "nodes": 272,
+        "params": 25,
+        "verts": 1192,
+        "position": [
+          19.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "MI_PenroseArch": [
+      {
+        "object": "STAGE_PenroseArch",
+        "builder": "GN_PARIS_PenroseArch",
+        "preset": "MI_ARCH_TRIBAR",
+        "nodes": 185,
+        "params": 27,
+        "verts": 144,
+        "position": [
+          36.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "MI_MetamorphosisFrieze": [
+      {
+        "object": "STAGE_MetamorphosisFrieze",
+        "builder": "GN_PARIS_MetamorphosisFrieze",
+        "preset": "MI_MORPH_SEAM",
+        "nodes": 156,
+        "params": 23,
+        "verts": 11152,
+        "position": [
+          50.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "BR_OfficeBlock": [
+      {
+        "object": "STAGE_OfficeBlock",
+        "builder": "GN_BRUTALIST_OfficeBlock",
+        "preset": "BR_OFFICE_CIVIC",
+        "nodes": 254,
+        "params": 25,
+        "verts": 904,
+        "position": [
+          -18.0,
+          -30.0,
+          0.0
+        ]
+      }
+    ],
+    "BR_CubicleFarm": [
+      {
+        "object": "STAGE_CubicleFarm",
+        "builder": "GN_BRUTALIST_CubicleFarm",
+        "preset": "BR_CUBICLE_CANON",
+        "nodes": 321,
+        "params": 26,
+        "verts": 2098,
+        "position": [
+          12.0,
+          -30.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -44.68626016378403,
+      -36.273881912231445,
+      -0.44999998807907104
+    ],
+    "max": [
+      54.029603004455566,
+      3.105374574661255,
+      25.60000228881836
+    ]
+  }
+}
