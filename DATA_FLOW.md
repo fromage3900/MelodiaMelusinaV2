@@ -1,6 +1,6 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-21
+**Last Updated:** 2026-09-22
 **Scope:** stable runtime/state lifecycle for an evergreen single-player game  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -78,6 +78,29 @@ Melodia rhythm receives an authored/selected action context and returns executio
 
 ### Wardrobe
 Wardrobe owns owned/equipped outfit state. Equipped identity can expose traversal capability and feed Convergence interpretation.
+
+### Melusina runtime character and presentation
+The runtime character authority is the existing `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`, selected by `BP_MelodiaJRPGGameMode` on configured route maps. Its movement uses the existing locomotion/Rokoko animation authority. Universe Foundry authors content for existing runtime contracts. The BP composes those owners; it does not replace them with duplicate movement, animation, or Foundry systems. Current proof/status belongs in `CURRENT_STATE.md`.
+
+```text
+Universe Foundry authored output
+        ↓
+existing content/gameplay contracts
+        ↓
+BP_MelusinaJRPGCharacter + current animation authority
+        ↓
+wardrobe / traversal / 13 attached Niagara presentation systems
+        ↓
+exploration heroine
+
+existing character + animation assets
+        ↓
+BP_MelusinaSwordsman_Presentation
+        ↓
+battle presentation role
+```
+
+`BP_MelusinaSwordsman_Presentation` stays separate from the exploration pawn. The word **Ultimate** names the canonical role of the existing runtime BP; it does not name a new class. Two legacy character roots are reversible deprecation candidates from the prior live reference inspection; the smoke BP package is spelled lowercase on disk and is retired only together with its orphan game mode after a fresh reference check. Skill BPs and the room-shell actor remain their own content roles.
 
 ### Starskiff
 Starskiff owns vehicle/traversal runtime state. Only stable long-term facts should enter canonical persistence; transient transforms/velocities should normally be rebuilt from checkpoints/authoring state.

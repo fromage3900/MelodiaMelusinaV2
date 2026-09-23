@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-21
+**Last Updated:** 2026-09-22
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -70,6 +70,14 @@ side quest, creature Episode, outfit ability, musical world puzzle, or procedura
 uses the owners and entry points above. Before changing architecture, ask whether the experience can
 be expressed as content through `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`. If yes,
 author it. Architecture work requires a demonstrated blocker against a named owner seam.
+
+### Melusina character assembly (canonized 2026-09-22)
+
+`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter` is the one runtime exploration character and carries the **Ultimate** designation without an asset rename or duplicate class. Its game-mode default-pawn selection, existing locomotion/Rokoko animation authority, wardrobe, traversal, and attached Niagara components remain their established owners. Current proof/status belongs in `CURRENT_STATE.md`.
+
+`/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` remains the separate battle/presentation role. The two old root `BP_Melusina` assets are documentation-first, reversible deprecation candidates; the legacy smoke BP is paired with its orphan game mode. Skills and the room shell are content roles, not alternate characters. See `CURRENT_STATE.md` for the complete inventory and exact asset paths.
+
+`Tools/universe_foundry.py` authors content for existing runtime contracts. It does not become a pawn component, gameplay authority, or runtime manager. Keep the current 13 Niagara systems as presentation components of the canonical BP; do not create another VFX orchestration layer. The Infinity Nikki bar is one coherent heroine across exploration and battle, with readable face/silhouette and a consistent outfit/motion language.
 
 ### Production authoring plane (verified 2026-09-21)
 
