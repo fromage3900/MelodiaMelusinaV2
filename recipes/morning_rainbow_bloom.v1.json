@@ -277,7 +277,8 @@
           "sample_cm": 40.0
         },
         "mesh": "/Game/EnvSandbox/Meshes/OrnamentMusical/SM_Orn_PearlJewel",
-        "scale": 0.06
+        "scale": 0.06,
+        "material_instance": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen"
       },
       {
         "decor_id": "pearl_lissajous",
@@ -293,7 +294,8 @@
           "sample_cm": 30.0
         },
         "mesh": "/Game/EnvSandbox/Meshes/OrnamentMusical/SM_Orn_PearlJewel",
-        "scale": 0.08
+        "scale": 0.08,
+        "material_instance": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen"
       },
       {
         "decor_id": "flower_phyllotaxis",

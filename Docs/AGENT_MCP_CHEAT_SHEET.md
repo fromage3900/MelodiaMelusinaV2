@@ -22,7 +22,7 @@ Monolith silent? Check for `MODAL_OPEN` in the editor log before killing — it 
 
 | Role | Path |
 |---|---|
-| Integration GameMode (now configured for HUD) | `/Game/Melodia/_PROJECT/BP_MelodiaGameMode` |
+| Integration GameMode | `/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode` |
 | Integration PlayerController | `/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGController_Config` |
 | Integration Pawn (explore) | `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter` |
 | Integration Map | `/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap` |
@@ -149,8 +149,8 @@ State output: `Saved/Echo/state.txt`
 | `save_packages` crash on `.umap` | Monolith bug with map saving | Use Ctrl+S in editor |
 | Asset "disappears" | In-session `delete_asset` hiding it | Force rescan: `ar.scan_paths_synchronous([folder], force_rescan=True)` |
 | `get_cdo_properties` shows `None` for components | Monolith can't resolve Blueprint-instanced component pointers | Use `get_components` instead |
-| Melusina naked in combat | `MelusinaPresentationMesh` using body-only mesh | Set to `SK_Melusina` (full character) |
-| Rhythm HUD not showing | GameMode has wrong HUD class | Set `BP_MelodiaGameMode.HUDWidgetClass = WBP_Battle_Rhythm` |
+| Historical Melusina battle wardrobe symptom | Earlier workaround may be stale | Check `CURRENT_STATE.md` before changing assets; do not apply the old `SK_Melusina` workaround without current runtime evidence |
+| Rhythm HUD not showing | Active JRPG GameMode has wrong HUD class | Check `BP_MelodiaJRPGGameMode.HUDWidgetClass = WBP_Battle_Rhythm` |
 | Anim instance crash at `NativeUpdateAnimation` | `UMelodiaLocomotionAnimInstance` null traversal interface | Already fixed in current source (line 36 constructor pattern) |
 
 ---

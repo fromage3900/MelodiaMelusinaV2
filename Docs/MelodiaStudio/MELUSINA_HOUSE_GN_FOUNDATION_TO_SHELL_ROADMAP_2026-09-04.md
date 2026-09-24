@@ -1,4 +1,6 @@
 # 𝄞 Melusina House GN — Foundation → Shell Builder Roadmap
+> **Updated 2026-09-24:** For the unified Melusina GN plan (character/DollKit lane + House lane), see `Docs/Plans/MELUSINA_GN_PLAN_2026-09-24.md` (twin SSOT: `Saved/Audit/MELUSINA_GN_PLAN_2026-09-24.md`). This roadmap remains the House-detail next-work doc; **House shell batch is still the house next work** (visual foundation smoke, room_shell compose, porch_stair). Character/DollKit GN does not replace that queue.
+
 
 **Date:** 2026-09-04  
 **Status:** current implementation roadmap  
