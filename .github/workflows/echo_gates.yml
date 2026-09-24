@@ -12,7 +12,10 @@ on:
     paths:
       - 'Source/**'
       - 'Plugins/**/Source/**'
-      - 'Content/Python/**'
+      - 'Content/**'
+      - 'Plugins/**/Content/**'
+      - 'Config/**'
+      - '.gitattributes'
       - 'specs/**'
       - 'Tools/**'
       - 'deploy/**'
