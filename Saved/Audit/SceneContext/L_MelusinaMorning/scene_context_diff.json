@@ -3,13 +3,13 @@
   "authority": "Ephemeral spatial evidence only; not project status or gameplay authority.",
   "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning",
   "summary": {
-    "prioritized_actors_added": 5,
-    "prioritized_actors_removed": 3,
-    "prioritized_actors_changed": 0,
-    "pcg_actors_changed": 0,
+    "prioritized_actors_added": 0,
+    "prioritized_actors_removed": 0,
+    "prioritized_actors_changed": 4,
+    "pcg_actors_changed": 1,
     "route_or_exclusion_membership_changed": false,
-    "actor_count_before": 195,
-    "actor_count_after": 200
+    "actor_count_before": 216,
+    "actor_count_after": 216
   },
   "world_bounds_before": {
     "min": {
@@ -57,352 +57,463 @@
   },
   "viewport_before": {
     "location": {
-      "x": -3311.383,
-      "y": 646.74,
-      "z": 1494.125
+      "x": 905.298,
+      "y": 1861.265,
+      "z": -461.635
     },
     "rotation": {
-      "pitch": 37.875,
-      "yaw": -0.0,
-      "roll": -8.971
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0
     }
   },
   "viewport_after": {
     "location": {
-      "x": -3311.383,
-      "y": 646.74,
-      "z": 1494.125
+      "x": -2300.0,
+      "y": 1440.0,
+      "z": 3200.0
     },
     "rotation": {
-      "pitch": 37.875,
-      "yaw": -0.0,
-      "roll": -8.971
+      "pitch": -89.804,
+      "yaw": 45.0,
+      "roll": 0.0
     }
   },
-  "added": [
+  "added": [],
+  "removed": [],
+  "changed": [
     {
-      "label": "FX_BowStage_PondMist",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "BowStage",
-      "tags": [],
-      "location": {
-        "x": -2500.0,
-        "y": 200.0,
-        "z": 60.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2384.0,
-          "y": 200.0,
-          "z": 60.0
+      "key": "PCGVolume::WC_HeroCorner_NorthDress_PCG_Companion",
+      "location_delta_cm": 0.0,
+      "rotation_changed": false,
+      "scale_changed": false,
+      "tags_changed": true,
+      "static_mesh_changed": false,
+      "before": {
+        "label": "WC_HeroCorner_NorthDress_PCG_Companion",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "Morning/Cameras/HeroCorners",
+        "tags": [
+          "HeroCorner",
+          "HeroCorner.NorthDress",
+          "HeroCornerCompanion",
+          "Portfolio"
+        ],
+        "location": {
+          "x": 1675.188,
+          "y": 8428.399,
+          "z": -1227.847
         },
-        "extent": {
-          "x": 244.0,
-          "y": 128.0,
-          "z": 128.0
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
         },
-        "size_cm": {
-          "x": 488.0,
-          "y": 256.0,
-          "z": 256.0
+        "scale": {
+          "x": 1.82,
+          "y": 1.82,
+          "z": 1.43
+        },
+        "bounds": {
+          "origin": {
+            "x": 1645.279,
+            "y": 8428.399,
+            "z": -1227.847
+          },
+          "extent": {
+            "x": 214.974,
+            "y": 182.0,
+            "z": 143.0
+          },
+          "size_cm": {
+            "x": 429.949,
+            "y": 364.0,
+            "z": 286.0
+          }
+        },
+        "static_mesh": "/Game/Greybox_Kit/SM_SM_Rock_2.SM_SM_Rock_2",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183278116.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 2
+        }
+      },
+      "after": {
+        "label": "WC_HeroCorner_NorthDress_PCG_Companion",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "Morning/Cameras/HeroCorners",
+        "tags": [
+          "AutoBlend_HasPrimitiveData",
+          "HeroCorner",
+          "HeroCorner.NorthDress",
+          "HeroCornerCompanion",
+          "Portfolio"
+        ],
+        "location": {
+          "x": 1675.188,
+          "y": 8428.399,
+          "z": -1227.847
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
+        },
+        "scale": {
+          "x": 1.82,
+          "y": 1.82,
+          "z": 1.43
+        },
+        "bounds": {
+          "origin": {
+            "x": 1645.279,
+            "y": 8428.399,
+            "z": -1227.847
+          },
+          "extent": {
+            "x": 214.974,
+            "y": 182.0,
+            "z": 143.0
+          },
+          "size_cm": {
+            "x": 429.949,
+            "y": 364.0,
+            "z": 286.0
+          }
+        },
+        "static_mesh": "/Game/Greybox_Kit/SM_SM_Rock_2.SM_SM_Rock_2",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183278116.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 2
         }
       }
     },
     {
-      "label": "L_BowStage_CoolLight",
-      "class": "PointLight",
-      "selected": false,
-      "folder": "BowStage",
-      "tags": [],
-      "location": {
-        "x": -2700.0,
-        "y": 200.0,
-        "z": 300.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2700.0,
-          "y": 200.0,
-          "z": 300.0
+      "key": "PCGVolume::WC_HeroCorner_WestRim_PCG",
+      "location_delta_cm": 0.0,
+      "rotation_changed": false,
+      "scale_changed": false,
+      "tags_changed": true,
+      "static_mesh_changed": false,
+      "before": {
+        "label": "WC_HeroCorner_WestRim_PCG",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "Morning/Cameras/HeroCorners",
+        "tags": [
+          "HeroCorner",
+          "HeroCorner.WestRim",
+          "Portfolio"
+        ],
+        "location": {
+          "x": -4851.053,
+          "y": 682.618,
+          "z": 42.852
         },
-        "extent": {
-          "x": 128.0,
-          "y": 128.0,
-          "z": 128.0
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
         },
-        "size_cm": {
-          "x": 256.0,
-          "y": 256.0,
-          "z": 256.0
+        "scale": {
+          "x": 1.235,
+          "y": 1.235,
+          "z": 0.741
+        },
+        "bounds": {
+          "origin": {
+            "x": -4843.285,
+            "y": 689.195,
+            "z": 45.553
+          },
+          "extent": {
+            "x": 2094.296,
+            "y": 2060.866,
+            "z": 118.963
+          },
+          "size_cm": {
+            "x": 4188.592,
+            "y": 4121.731,
+            "z": 237.925
+          }
+        },
+        "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Rock_A.SM_Greybox_Rock_A",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC540303_2020487931.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 160
+        }
+      },
+      "after": {
+        "label": "WC_HeroCorner_WestRim_PCG",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "Morning/Cameras/HeroCorners",
+        "tags": [
+          "AutoBlend_HasPrimitiveData",
+          "HeroCorner",
+          "HeroCorner.WestRim",
+          "Portfolio"
+        ],
+        "location": {
+          "x": -4851.053,
+          "y": 682.618,
+          "z": 42.852
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
+        },
+        "scale": {
+          "x": 1.235,
+          "y": 1.235,
+          "z": 0.741
+        },
+        "bounds": {
+          "origin": {
+            "x": -4843.285,
+            "y": 689.195,
+            "z": 45.553
+          },
+          "extent": {
+            "x": 2094.296,
+            "y": 2060.866,
+            "z": 118.963
+          },
+          "size_cm": {
+            "x": 4188.592,
+            "y": 4121.731,
+            "z": 237.925
+          }
+        },
+        "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Rock_A.SM_Greybox_Rock_A",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC540303_2020487931.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 160
         }
       }
     },
     {
-      "label": "SM_BowStage_ArrowRack",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "BowStage",
-      "tags": [],
-      "location": {
-        "x": -2890.0,
-        "y": 150.0,
-        "z": 150.0
-      },
-      "rotation": {
-        "pitch": 8.5,
-        "yaw": 0.0,
-        "roll": -0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2890.02,
-          "y": 180.965,
-          "z": 150.132
+      "key": "PCGVolume::WC_HeroCorner_WestRim_PCG_Companion",
+      "location_delta_cm": 0.0,
+      "rotation_changed": false,
+      "scale_changed": false,
+      "tags_changed": true,
+      "static_mesh_changed": false,
+      "before": {
+        "label": "WC_HeroCorner_WestRim_PCG_Companion",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "Morning/Cameras/HeroCorners",
+        "tags": [
+          "HeroCorner",
+          "HeroCorner.WestRim",
+          "HeroCornerCompanion",
+          "Portfolio"
+        ],
+        "location": {
+          "x": -3083.797,
+          "y": 1704.116,
+          "z": 1221.038
         },
-        "extent": {
-          "x": 2.169,
-          "y": 31.035,
-          "z": 1.73
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
         },
-        "size_cm": {
-          "x": 4.337,
-          "y": 62.069,
-          "z": 3.46
+        "scale": {
+          "x": 1.43,
+          "y": 1.43,
+          "z": 1.3
+        },
+        "bounds": {
+          "origin": {
+            "x": -3083.797,
+            "y": 1704.116,
+            "z": 1221.038
+          },
+          "extent": {
+            "x": 143.0,
+            "y": 143.0,
+            "z": 130.0
+          },
+          "size_cm": {
+            "x": 286.0,
+            "y": 286.0,
+            "z": 260.0
+          }
+        },
+        "static_mesh": "/Game/Greybox_Kit/SM_Block_Cube_1.SM_Block_Cube_1",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183048114.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 4
         }
       },
-      "static_mesh": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Arrow_R07.SM_ME_WaveHarp_Arrow_R07"
+      "after": {
+        "label": "WC_HeroCorner_WestRim_PCG_Companion",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "Morning/Cameras/HeroCorners",
+        "tags": [
+          "AutoBlend_HasPrimitiveData",
+          "HeroCorner",
+          "HeroCorner.WestRim",
+          "HeroCornerCompanion",
+          "Portfolio"
+        ],
+        "location": {
+          "x": -3083.797,
+          "y": 1704.116,
+          "z": 1221.038
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
+        },
+        "scale": {
+          "x": 1.43,
+          "y": 1.43,
+          "z": 1.3
+        },
+        "bounds": {
+          "origin": {
+            "x": -3083.797,
+            "y": 1704.116,
+            "z": 1221.038
+          },
+          "extent": {
+            "x": 143.0,
+            "y": 143.0,
+            "z": 130.0
+          },
+          "size_cm": {
+            "x": 286.0,
+            "y": 286.0,
+            "z": 260.0
+          }
+        },
+        "static_mesh": "/Game/Greybox_Kit/SM_Block_Cube_1.SM_Block_Cube_1",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183048114.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 4
+        }
+      }
     },
     {
-      "label": "SM_BowStage_Bow",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "BowStage",
-      "tags": [],
-      "location": {
-        "x": -2900.0,
-        "y": 185.0,
-        "z": 165.0
-      },
-      "rotation": {
-        "pitch": 8.5,
-        "yaw": 0.0,
-        "roll": -0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2901.709,
-          "y": 189.969,
-          "z": 165.529
+      "key": "PCGVolume::WC_morning_rainbow_bloom_Field",
+      "location_delta_cm": 0.0,
+      "rotation_changed": false,
+      "scale_changed": false,
+      "tags_changed": true,
+      "static_mesh_changed": false,
+      "before": {
+        "label": "WC_morning_rainbow_bloom_Field",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "None",
+        "tags": [
+          "WorldCompiler.morning_rainbow_bloom_3900"
+        ],
+        "location": {
+          "x": -3838.742,
+          "y": 417.225,
+          "z": -889.783
         },
-        "extent": {
-          "x": 10.996,
-          "y": 11.032,
-          "z": 48.103
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
         },
-        "size_cm": {
-          "x": 21.993,
-          "y": 22.064,
-          "z": 96.207
+        "scale": {
+          "x": 36.488,
+          "y": 28.461,
+          "z": 23.154
+        },
+        "bounds": {
+          "origin": {
+            "x": -2601.63,
+            "y": 1410.241,
+            "z": -1802.857
+          },
+          "extent": {
+            "x": 6694.019,
+            "y": 7019.127,
+            "z": 4905.086
+          },
+          "size_cm": {
+            "x": 13388.037,
+            "y": 14038.255,
+            "z": 9810.171
+          }
+        },
+        "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC770403_1673063001.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 1085
         }
       },
-      "static_mesh": "/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07.SM_ME_WaveHarp_Bow_R07"
-    },
-    {
-      "label": "SM_BowStage_Catcher",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "BowStage",
-      "tags": [],
-      "location": {
-        "x": -2100.0,
-        "y": 250.0,
-        "z": 170.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 0.5,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2100.0,
-          "y": 250.0,
-          "z": 170.0
+      "after": {
+        "label": "WC_morning_rainbow_bloom_Field",
+        "class": "PCGVolume",
+        "selected": false,
+        "folder": "None",
+        "tags": [
+          "AutoBlend_HasPrimitiveData",
+          "WorldCompiler.morning_rainbow_bloom_3900"
+        ],
+        "location": {
+          "x": -3838.742,
+          "y": 417.225,
+          "z": -889.783
         },
-        "extent": {
-          "x": 25.0,
-          "y": 150.0,
-          "z": 150.0
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
         },
-        "size_cm": {
-          "x": 50.0,
-          "y": 300.0,
-          "z": 300.0
+        "scale": {
+          "x": 36.488,
+          "y": 28.461,
+          "z": 23.154
+        },
+        "bounds": {
+          "origin": {
+            "x": -3838.742,
+            "y": 417.225,
+            "z": -889.783
+          },
+          "extent": {
+            "x": 3648.844,
+            "y": 2846.144,
+            "z": 2315.439
+          },
+          "size_cm": {
+            "x": 7297.687,
+            "y": 5692.288,
+            "z": 4630.879
+          }
+        },
+        "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
+        "pcg": {
+          "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC800403_2142798611.PCG Component.PCGGraphInstance",
+          "generated_instance_count": 1085
         }
-      },
-      "static_mesh": "/Engine/BasicShapes/Cube.Cube"
+      }
     }
   ],
-  "removed": [
+  "pcg_changes": [
     {
-      "label": "HoudiniEngine_RainbowBloom_3900",
-      "class": "HoudiniAssetActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.houdini_engine_rainbow_bloom"
-      ],
-      "location": {
-        "x": -950.0,
-        "y": 2300.0,
-        "z": -611.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -950.0,
-          "y": 2300.0,
-          "z": -611.0
-        },
-        "extent": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "size_cm": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        }
-      }
-    },
-    {
-      "label": "MeshPartition",
-      "class": "MeshPartition",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -40.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "extent": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "size_cm": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        }
-      }
-    },
-    {
-      "label": "ArrowScale_Stock",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": 1330.0,
-        "y": 2200.0,
-        "z": -550.3
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 0.15,
-        "y": 0.15,
-        "z": 0.15
-      },
-      "bounds": {
-        "origin": {
-          "x": 1330.0,
-          "y": 2200.0,
-          "z": -550.3
-        },
-        "extent": {
-          "x": 7.5,
-          "y": 7.5,
-          "z": 7.5
-        },
-        "size_cm": {
-          "x": 15.0,
-          "y": 15.0,
-          "z": 15.0
-        }
-      },
-      "static_mesh": "/Engine/BasicShapes/Sphere.Sphere"
+      "key": "PCGVolume::WC_morning_rainbow_bloom_Field",
+      "instance_count_before": 1085,
+      "instance_count_after": 1085,
+      "instance_count_delta": 0,
+      "graph_before": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC770403_1673063001.PCG Component.PCGGraphInstance",
+      "graph_after": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC800403_2142798611.PCG Component.PCGGraphInstance",
+      "location_delta_cm": 0.0
     }
   ],
-  "changed": [],
-  "pcg_changes": [],
   "route_or_exclusion_added": [],
   "route_or_exclusion_removed": [],
   "review_questions": [
