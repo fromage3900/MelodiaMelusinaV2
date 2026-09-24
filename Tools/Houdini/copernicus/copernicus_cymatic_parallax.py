@@ -19,12 +19,23 @@ Pure numpy pipeline. Produces parallax-ready height + 9 PBR maps per variant:
 from __future__ import annotations
 import argparse
 import json
+import sys
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageFilter
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+_CONTENT_PYTHON = PROJECT_ROOT / "Content" / "Python"
+if str(_CONTENT_PYTHON) not in sys.path:
+    sys.path.insert(0, str(_CONTENT_PYTHON))
+from resonant_world_generator import stable_int
+
 SEED = 20260831
+
+
+def variant_seed(variant_name: str, frame: int = 0) -> int:
+    """Stable numpy-compatible seed shared with the Resonant World identity lane."""
+    return stable_int(SEED, "copernicus_cymatic_parallax", variant_name, frame) % (2**32 - 1)
 
 VARIANTS = {
     "CymaticMarble": dict(
@@ -871,7 +882,7 @@ def _build_glitter_pile(h, w, frame, total_frames, variant_name):
     bg = np.broadcast_to(col(p["bg"]), (h, w, 3)).copy()
 
     # Create scattered flake positions
-    rng = np.random.RandomState(abs(hash(variant_name)) % 10000 + frame)
+    rng = np.random.RandomState(variant_seed(variant_name, frame))
     n_flakes = p["flake_density"]
     flake_min, flake_max = p["flake_size_range"]
 
@@ -912,7 +923,7 @@ def _build_glitter_pile(h, w, frame, total_frames, variant_name):
     metallic = flake_mask * p["metallic_flake"]
 
     # Emissive: subtle sparkle on flakes
-    sparkle = warped_fbm(h, w, 8, 3, 0.4, abs(hash(variant_name)) % 10000 + frame)
+    sparkle = warped_fbm(h, w, 8, 3, 0.4, variant_seed(variant_name, frame))
     emissive = mask_color(flake_mask * smoothstep(0.4, 0.9, sparkle),
                           col(p["flake_colors"][0]) * p["glow_intensity"] * 0.6)
 
