@@ -1,0 +1,331 @@
+{
+  "schema": "melodia.hermes_specialist_fleet_candidates/v1",
+  "generated": "2026-09-23",
+  "status": "research_setup_candidates_not_live_policy",
+  "authority": {
+    "orchestrator": "Hermes",
+    "bounded_decision": "Jev",
+    "runtime_truth": "existing Melodia owners",
+    "live_routing": "Tools/model_router.py",
+    "promotion_requires_owner_approval": true
+  },
+  "candidates": [
+    {
+      "id": "muse-spark-1.3",
+      "vendor": "Meta",
+      "surface": "api",
+      "priority": "P0",
+      "proposed_roles": [
+        "frontier_plan",
+        "frontier_review",
+        "multimodal_review"
+      ],
+      "base_url": "https://api.meta.ai/v1",
+      "model_id": "muse-spark-1.3",
+      "secret_env": "MODEL_API_KEY",
+      "official_sources": [
+        "https://research.meta.ai/blog/introducing-muse-spark-1-3",
+        "https://dev.meta.ai/docs/models",
+        "https://dev.meta.ai/docs/quickstart"
+      ],
+      "canaries": [
+        "B0",
+        "B1",
+        "B3",
+        "B4"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "muse-code-1.2.1",
+      "vendor": "Meta",
+      "surface": "cli",
+      "priority": "P0",
+      "proposed_roles": [
+        "code_executor"
+      ],
+      "host_constraint": "official installer macOS/Linux; use WSL on Windows",
+      "official_sources": [
+        "https://dev.meta.ai/docs/muse-code/changelog"
+      ],
+      "canaries": [
+        "B2"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "muse-glimmer",
+      "vendor": "Meta",
+      "surface": "local_model",
+      "priority": "P2",
+      "proposed_roles": [
+        "local_observer"
+      ],
+      "secret_env": null,
+      "official_sources": [
+        "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model"
+      ],
+      "canaries": [
+        "B1",
+        "B5"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "muse-voice-transcribe",
+      "vendor": "Meta",
+      "surface": "speech_api",
+      "priority": "P3",
+      "proposed_roles": [
+        "speech_ingest"
+      ],
+      "official_sources": [
+        "https://research.meta.ai/blog/introducing-muse-voice-transcribe"
+      ],
+      "canaries": [
+        "speech_critique"
+      ],
+      "status": "specialist_candidate"
+    },
+    {
+      "id": "muse-realtime-avatar",
+      "vendor": "Meta",
+      "surface": "realtime_avatar",
+      "priority": "P3",
+      "proposed_roles": [
+        "avatar_lab"
+      ],
+      "official_sources": [
+        "https://research.meta.ai/blog/bringing-your-muse-to-life"
+      ],
+      "canaries": [
+        "avatar_noncanonical"
+      ],
+      "status": "watch"
+    },
+    {
+      "id": "mimo-v2.6-pro",
+      "vendor": "Xiaomi MiMo",
+      "surface": "api",
+      "priority": "P0",
+      "proposed_roles": [
+        "frontier_plan",
+        "code_executor"
+      ],
+      "base_url": "https://api.xiaomimimo.com/v1",
+      "model_id": "mimo-v2.6-pro",
+      "secret_env": "MIMO_API_KEY",
+      "official_sources": [
+        "https://mimo.mi.com/docs/en-US/news/latest/v2-6",
+        "https://mimo.mi.com/docs/en-US/tokenplan/integration/hermes-agent"
+      ],
+      "canaries": [
+        "B0",
+        "B1",
+        "B2",
+        "B4"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "mimo-v2.6-pro-ultraspeed",
+      "vendor": "Xiaomi MiMo",
+      "surface": "api",
+      "priority": "P0",
+      "proposed_roles": [
+        "fast_subagent",
+        "latency_decision_canary"
+      ],
+      "base_url": "https://api.xiaomimimo.com/v1",
+      "model_id": "mimo-v2.6-pro-ultraspeed",
+      "secret_env": "MIMO_API_KEY",
+      "official_sources": [
+        "https://mimo.mi.com/docs/en-US/news/latest/v2-6"
+      ],
+      "canaries": [
+        "B0",
+        "B5",
+        "jev_closed_set_latency"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "step-5-preview",
+      "vendor": "StepFun",
+      "surface": "api",
+      "priority": "P1",
+      "proposed_roles": [
+        "frontier_plan"
+      ],
+      "base_url": "https://api.stepfun.ai/v1",
+      "model_id": null,
+      "discover_model_id_at_setup": true,
+      "secret_env": "STEP_API_KEY",
+      "official_sources": [
+        "https://platform.stepfun.ai/"
+      ],
+      "canaries": [
+        "B0",
+        "B1",
+        "B4"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "swe-2",
+      "vendor": "Cognition",
+      "surface": "devin_cli",
+      "priority": "P1",
+      "proposed_roles": [
+        "code_executor"
+      ],
+      "secret_env": null,
+      "official_sources": [
+        "https://cognition.com/blog/swe-2"
+      ],
+      "canaries": [
+        "B2"
+      ],
+      "status": "research_candidate"
+    },
+    {
+      "id": "qwen3.8-omni-flash",
+      "vendor": "QwenCloud",
+      "surface": "multimodal_api",
+      "priority": "P1",
+      "proposed_roles": [
+        "multimodal_review"
+      ],
+      "model_id": "qwen3.8-omni-flash",
+      "official_sources": [
+        "https://docs.qwencloud.com/changelog/models",
+        "https://qwen.ai/research/qwen3.8-livetranslate"
+      ],
+      "canaries": [
+        "B0",
+        "B3"
+      ],
+      "status": "specialist_candidate"
+    },
+    {
+      "id": "happyoyster-1.0-adventure",
+      "vendor": "QwenCloud",
+      "surface": "world_model_api",
+      "priority": "P1",
+      "proposed_roles": [
+        "world_ideation"
+      ],
+      "model_id": "happyoyster-1.0-adventure",
+      "official_sources": [
+        "https://docs.qwencloud.com/developer-guides/getting-started/world-model/happyoyster-guide",
+        "https://docs.qwencloud.com/api-reference/world-model/happyoyster-integration-flow"
+      ],
+      "canaries": [
+        "faraway_world_ideation"
+      ],
+      "status": "specialist_candidate"
+    },
+    {
+      "id": "happyoyster-1.0-directing",
+      "vendor": "QwenCloud",
+      "surface": "world_model_api",
+      "priority": "P1",
+      "proposed_roles": [
+        "world_ideation",
+        "previs"
+      ],
+      "model_id": "happyoyster-1.0-directing",
+      "official_sources": [
+        "https://docs.qwencloud.com/developer-guides/getting-started/world-model/happyoyster-guide"
+      ],
+      "canaries": [
+        "faraway_directing"
+      ],
+      "status": "specialist_candidate"
+    },
+    {
+      "id": "happyoyster-1.0-acting",
+      "vendor": "QwenCloud",
+      "surface": "world_model_api",
+      "priority": "P2",
+      "proposed_roles": [
+        "character_previs"
+      ],
+      "model_id": "happyoyster-1.0-acting",
+      "official_sources": [
+        "https://docs.qwencloud.com/developer-guides/getting-started/world-model/happyoyster-guide"
+      ],
+      "canaries": [
+        "character_noncanonical"
+      ],
+      "status": "specialist_candidate"
+    },
+    {
+      "id": "qwen-image-2.1",
+      "vendor": "Qwen",
+      "surface": "image_model",
+      "priority": "P2",
+      "proposed_roles": [
+        "image_variants"
+      ],
+      "official_sources": [
+        "https://qwen.ai/research/qwen3.8-livetranslate"
+      ],
+      "canaries": [
+        "transparent_filigree_variants"
+      ],
+      "status": "specialist_candidate"
+    },
+    {
+      "id": "fugu-max",
+      "vendor": "Sakana AI",
+      "surface": "orchestration_service",
+      "priority": "P2",
+      "proposed_roles": [
+        "orchestrator_benchmark"
+      ],
+      "official_sources": [
+        "https://sakana.ai/fugu-max-release/"
+      ],
+      "canaries": [
+        "B4_orchestration_comparison"
+      ],
+      "status": "watch"
+    },
+    {
+      "id": "fugu-ultra-v2",
+      "vendor": "Sakana AI",
+      "surface": "orchestration_service",
+      "priority": "P2",
+      "proposed_roles": [
+        "orchestrator_benchmark"
+      ],
+      "official_sources": [
+        "https://sakana.ai/fugu-max-release/"
+      ],
+      "canaries": [
+        "B4_orchestration_comparison"
+      ],
+      "status": "watch"
+    },
+    {
+      "id": "mercury-2.5",
+      "vendor": "Inception",
+      "surface": "api",
+      "priority": "P1",
+      "proposed_roles": [
+        "fast_subagent"
+      ],
+      "secret_env": "INCEPTION_API_KEY",
+      "official_sources": [
+        "https://www.inceptionlabs.ai/blog/introducing-mercury-2-5",
+        "https://www.inceptionlabs.ai/models"
+      ],
+      "canaries": [
+        "B0",
+        "B5"
+      ],
+      "status": "research_candidate"
+    }
+  ]
+}
