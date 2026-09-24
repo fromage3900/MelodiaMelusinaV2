@@ -18,9 +18,9 @@
 
 ## Steps
 
-### G0 — License (owner, blocking)
-The archive carries a `vfxMed` folder and config left over from an unrelated `UltraGameTemplate` project: it is a re-shared copy, not a Fab download. This is a paid portfolio/livelihood project, so buy or confirm the Fab license for "Massive World" before anything from the pack is committed. Until then G1 runs in a staging project only; nothing enters BS_GodFile git.
-- **Gate:** Fab order/library entry exists for the owner account.
+### G0 — License — CLEARED 2026-09-24
+Owner confirmed the pack is paid for; the `.rar` is the owner's local copy. The owner stages the license entry in `Docs/CREDITS.md`.
+- **Gate:** `Docs/CREDITS.md` carries the Massive World entry before the G2 commit.
 
 ### G1 — Stage and upgrade outside the repo
 - Extract to `C:/EnvironmentPortfolio/_staging/MassiveWorld/` (outside BS_GodFile; never inside `Content/`). Prefer the Fab vault copy once G0 lands.
