@@ -32,7 +32,9 @@ PCGEx stays the structural engine (clusters, paths, room shells, Escher/Baroque/
 - Add `PCG_Core_Exclude`: difference against tagged actors (`PCGExclude`: paths, lake, hero footprints). Fixes flowers/crystals overlapping the meadow canonical and paths.
 - **Gate:** the three live biome volumes regenerate to the same counts (992 / 205 / 25) with 0 PCG errors.
 
-### C2 — One mesh-list authority (owner decision)
+- **C1 DONE 2026-09-24 ~19:03:** `/Game/Melodia/PCG/Core/` `PCG_Core_DensityFromData` (Density param pin → grid/jitter/noise/thin overrides), `PCG_Core_GroundProject`, `PCG_Core_TransformFromData`, `PCG_Core_SpawnByAttribute`; biome core is now a composition (per category: rename chain → Density → Ground → DA match → Xform → Spawn). Jitter moved to wrapper data (`JitMin_/JitMax_`). Gate passed: 992 / 205 / 25 identical per mesh, grounded, DA scale/yaw, 0 PCG errors, live A/B (shard thin 0.9 → 0 shards) proves no stale cache. `PCG_Core_Exclude` not built; `PCG_Core_PathCarve` staged but carves nothing as a subgraph (open).
+
+### C2 — One mesh-list authority — DECIDED: PCGExMeshCollection (owner 2026-09-24, Jev 0.84)
 - `PDA_Vegetation` has no material field, so rainbow MIs can't be expressed. `PCGExMeshCollection` supports per-entry material overrides, weights and variations.
 - **Recommendation:** make `PCGExMeshCollection` the mesh authority; the biome DA keeps category structure + transform ranges and points each category at a collection. The core reads collection entries (PCGEx asset-collection-to-set) instead of raw `Mesh` fields.
 - **Gate:** meadow flowers spawn with rainbow `MI_RainbowSpeedTree`/meadow MIs through a collection; `PCG_Meadow_RainbowBloom` (canonical meadow) reproduced by a wrapper → then retire it.
