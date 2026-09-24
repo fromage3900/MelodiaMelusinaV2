@@ -317,21 +317,24 @@ def _register_world_compiler() -> None:
 
 def startup():
     if m is None:
-        print("[init_unreal] LiveLink module not found, skipping startup", flush=True)
-        return
-    if hasattr(m, "startup"):
-        m.startup()
-    register_livelink_menus()
+        print("[init_unreal] LiveLink module not found, skipping LiveLink only", flush=True)
+    else:
+        if hasattr(m, "startup"):
+            m.startup()
+        register_livelink_menus()
+        unreal.log(
+            "[LiveLink] v3.1 loaded — LiveLink menu has Start/Stop/Status "
+            "(no floating panel; start Blender server first)"
+        )
     _register_gmm()
     _register_osc_bridge()
     _register_agent_bridge()
     _register_world_compiler()
-    unreal.log(
-        "[LiveLink] v3.1 loaded — LiveLink menu has Start/Stop/Status "
-        "(no floating panel; start Blender server first)"
-    )
 
 
 def shutdown():
     if m is not None and hasattr(m, "shutdown"):
         m.shutdown()
+
+
+startup()

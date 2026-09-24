@@ -192,9 +192,9 @@
     "layout": {
       "kind": "mandala",
       "center_cm": [
-        600.0,
-        2400.0,
-        -610.0
+        -4800.0,
+        0.0,
+        -82.0
       ],
       "order": 6,
       "rotation_deg": 0.0,
@@ -235,7 +235,8 @@
           "MEL_mh_aaa_cornice",
           "MEL_mh_aaa_dentil",
           "MEL_greybox_doorway"
-        ]
+        ],
+        "material_instance": "/Game/EnvSandbox/Materials/Instances/Architecture/Atlantis/MI_Arch_KB3D_ATL_StoneA"
       },
       "lantern_post": {
         "builder_id": "MEL_lantern_post",
@@ -243,7 +244,8 @@
           40.0,
           40.0
         ],
-        "face": "center"
+        "face": "center",
+        "material_instance": "/Game/Melodia/Characters/Melusina/DollKit/MI_DollKit_Nikki_Brass"
       }
     },
     "walkways": [
@@ -273,7 +275,9 @@
           "attach_height_cm": 280.0,
           "sag_ratio": 0.08,
           "sample_cm": 40.0
-        }
+        },
+        "mesh": "/Game/EnvSandbox/Meshes/OrnamentMusical/SM_Orn_PearlJewel",
+        "scale": 0.06
       },
       {
         "decor_id": "pearl_lissajous",
@@ -287,7 +291,9 @@
           "height_cm": 520.0,
           "z_amp_cm": 40.0,
           "sample_cm": 30.0
-        }
+        },
+        "mesh": "/Game/EnvSandbox/Meshes/OrnamentMusical/SM_Orn_PearlJewel",
+        "scale": 0.08
       },
       {
         "decor_id": "flower_phyllotaxis",
@@ -297,7 +303,10 @@
           "count": 144,
           "inner_radius_cm": 340.0,
           "radius_cm": 560.0
-        }
+        },
+        "mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+        "material_instance": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_B3_Green",
+        "scale": 0.9
       }
     ],
     "kit": {

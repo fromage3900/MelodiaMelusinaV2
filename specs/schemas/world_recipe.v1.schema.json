@@ -310,7 +310,11 @@
                 "type": "string",
                 "pattern": "^/Game/"
               },
-              "material_instance": {
+              "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "material_instance": {
                 "type": "string",
                 "pattern": "^/Game/"
               },
@@ -377,7 +381,11 @@
                 "type": "string",
                 "pattern": "^/Game/"
               },
-              "material_instance": {
+              "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "material_instance": {
                 "type": "string",
                 "pattern": "^/Game/"
               }
@@ -470,7 +478,11 @@
                 "type": "string",
                 "pattern": "^/Game/"
               },
-              "material_instance": {
+              "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "material_instance": {
                 "type": "string",
                 "pattern": "^/Game/"
               }

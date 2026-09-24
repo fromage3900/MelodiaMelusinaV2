@@ -722,7 +722,7 @@ SLOT_COLUMNS = [
     "footprint_w_cm", "footprint_d_cm", "interior", "roof_type", "mesh", "material",
 ]
 CURVE_COLUMNS = [
-    "curve_uid", "curve_id", "kind", "index", "x", "y", "z", "yaw", "builder_id", "mesh", "material",
+    "curve_uid", "curve_id", "kind", "index", "x", "y", "z", "yaw", "scale", "builder_id", "mesh", "material",
 ]
 
 
@@ -752,7 +752,8 @@ def _mandala_slots(structures: dict[str, Any]) -> list[dict[str, Any]]:
                 "footprint_w_cm": float(fw), "footprint_d_cm": float(fd),
                 "interior": int(bool(slot.get("interior", False))),
                 "roof_type": (slot.get("roof") or {}).get("type", ""),
-                "mesh": _soft_path(slot.get("mesh") or (f"{kit}/SM_{ring['slot']}" if kit else "")),
+                # Interchange GLB import lays each kit piece out as <kit>/SM_<slot>/StaticMeshes/SM_<slot>
+                "mesh": _soft_path(slot.get("mesh") or (f"{kit}/SM_{ring['slot']}/StaticMeshes/SM_{ring['slot']}" if kit else "")),
                 "material": _soft_path(slot.get("material_instance", "")),
             })
     return rows
@@ -796,6 +797,7 @@ def _curve_rows(structures: dict[str, Any], slots: list[dict[str, Any]], seed: i
             rows.append({
                 "curve_uid": f"{curve_id}_{i:03d}", "curve_id": curve_id, "kind": kind, "index": i,
                 "x": x, "y": y, "z": z, "yaw": math.degrees(math.atan2(ny - y, nx - x)) % 360.0,
+                "scale": float(decor.get("scale", 1.0)),
                 "builder_id": decor.get("builder_id", ""), "mesh": _soft_path(decor.get("mesh", "")),
                 "material": _soft_path(decor.get("material_instance", "")),
             })
