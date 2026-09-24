@@ -60,12 +60,12 @@ evidence (bake_manifest.json + Saved/Audit/houdini_foundry/) → mission DAG
 | Bake outputs | `Saved/HoudiniFoundry/<recipe_id>_<seed>/[tiles/<tile_id>/]` | **not tracked** (`Saved/` ignored); large caches stay here or on the college scratch drive |
 | Bake manifest | `Saved/HoudiniFoundry/<recipe_id>_<seed>/bake_manifest.json` | copy into evidence |
 | Evidence | `Saved/Audit/houdini_foundry/<recipe_id>/` — manifest copy, probe JSON, logs, ≤ 1 MB previews | tracked with `git add -f` |
-| HDAs | `hda/<Name>_<major.minor>.hda` | tracked (small binaries; not LFS — owner decides before a large one) |
+| HDAs | `hda/<Name>_<major.minor>.hda` | tracked through Git LFS on this branch; project-authored `hda/**` only |
 | New Hython scripts | `Tools/Houdini/<family>/` | tracked with `git add -f` (see `Tools/*` rule) |
 | UE assets | `/Game/Melodia/HoudiniFoundry/<Product>/` (new) or the existing prefix a recipe names | normal UE save; LFS |
 
 ## Artifact policy (from `.gitattributes`/`.gitignore` as they stand; both are owner-only files)
 
 - **Track:** Python/Hython, HDAs, schemas, recipes, docs, manifests, hashes, small evidence, small representative previews.
-- **Do not commit:** VDB sequences, FLIP/Vellum caches, `.bgeo.sc` caches, PDG intermediates, multi-GB EXR stacks. `.vdb`/`.hda`/`.hip`/`.bgeo*` are **not** LFS-routed today, so any large one would bloat plain git.
+- **Do not commit:** VDB sequences, FLIP/Vellum caches, `.bgeo.sc` caches, PDG intermediates, multi-GB EXR stacks. New project-authored `hda/**` files are LFS-routed; existing/legacy `.vdb`, `.hip*`, vendor `.hda`, and `.bgeo*` are not blanket-migrated and must not be added casually.
 - **Where large outputs live:** the college machine's local scratch under `Saved/HoudiniFoundry/` during the day. Before leaving, copy the final baked products you want to keep (not caches) to the owner's transfer drive, and list them with sha256 in the manifest so they can be re-verified on the PC.
