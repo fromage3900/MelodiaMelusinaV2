@@ -6,6 +6,14 @@ describes. Handoffs, plans, receipts and session notes go in the commit or PR me
 new file.
 
 **Updated:** 2026-09-24 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Tree reconcile 2026-09-24 (editor down, disk=saved):** the 52 modified files on
+`fix/melusina-wings-emissive-veins` were committed in five themed batches (docs+recipe; Melusina
+character/Nikki saves; Morning+lookdev saves incl. maps; EnvSandbox MIs; Morning scene-context
+audit JSON). Held for owner: deletion of `Content/EnvSandbox/PCG/House/PCG_RainbowBloom_Test.uasset`
+(origin/main still has it) and the `.codex/config.toml` `unreal-mcp @ 127.0.0.1:8000` addition
+(second-MCP-surface rule). Pre-existing case collision noted: `BP_Melusina.uasset`/`bp_melusina.uasset`
+both tracked in HEAD (also on origin) but the case-insensitive disk holds one file matching only
+the lowercase entry; the uppercase pointer stays modified — do NOT stage it, owner call.
 **Melusina E1–E8 continuation — 2026-09-24 (Blender diagnostic proof):** Fresh Cycles renders of evaluated SurfaceDetail keeper meshes expose detached ball/rim assemblies: neck center separation 60.18 mm; shoulder_L 142.62 mm. Existing ball radii are 26/24 mm, while the P9 station receipt specifies 35/42 mm. E1 is not ready for taste approval; reconcile legacy `MEL_dk2_*`/ball meshes with P9 procedural station authority before further refinement. Evidence: `Saved/Audit/melusina_doll_surface_20260924/E1_seating_discrepancy.json`, `E1_material_preview.json`, and `stills_e1/E1_{neck,shoulder_l}_material_cycles.png`; reproducible capture script `_e1_material_preview.py`. Ashlotte criteria: exposed ceramic articulation, distinct metal cuffs, readable cog silhouette. Orianna criteria: joint proportions and existing 15-bone station map. E2–E8 remain open. Source geometry and hero WIP were not saved or changed by this diagnostic pass; no UE proof claimed.
 **Morning close-out observation — 2026-09-24 (saved state, transient PIE only):** Fresh
 `/Game/Melodia/Levels/Opening/L_MelusinaMorning` PIE spawned exactly one possessed
