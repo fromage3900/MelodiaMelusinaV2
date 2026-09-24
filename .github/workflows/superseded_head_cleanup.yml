@@ -1,0 +1,44 @@
+name: One-shot superseded PR head cleanup
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    name: Delete superseded PR heads
+    if: ${{ contains(github.event.head_commit.message, '[superseded-head-cleanup]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Delete verified superseded refs
+        env:
+          BRANCHES: |
+            docs/pi-hermes-universe-foundry-launch-20260922
+            docs/melusina-canon-20260923
+            docs/melusina-lookdev-grandmaster-20260922
+            chore/remove-branch-graveyard-cleanup-workflow-20260924
+            chore/prune-superseded-pr-heads-20260924
+        run: |
+          set -euo pipefail
+          failures=0
+          while IFS= read -r branch; do
+            [[ -z "$branch" ]] && continue
+            if git ls-remote --exit-code --heads origin "refs/heads/$branch" >/dev/null 2>&1; then
+              if git push origin --delete "$branch"; then
+                echo "DELETED $branch"
+              else
+                echo "FAILED $branch" >&2
+                failures=$((failures + 1))
+              fi
+            else
+              echo "ALREADY_ABSENT $branch"
+            fi
+          done <<< "$BRANCHES"
+          [[ "$failures" -eq 0 ]]
