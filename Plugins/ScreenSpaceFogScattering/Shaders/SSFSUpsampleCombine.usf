@@ -1,0 +1,70 @@
+// Copyright 2025 Dmitry Karpukhin. All Rights Reserved.
+
+#include "SSFSCommon.ush"
+
+#ifndef PERMUTATION_QUALITY_PRESET
+#define PERMUTATION_QUALITY_PRESET 2
+#endif
+
+float2 InputSize;
+Texture2D PreviousTexture;
+float Radius;
+RWTexture2D<float4> Output;
+
+float3 Upsample(Texture2D Texture, SamplerState Sampler, float2 UV, float2 PixelSize)
+{
+#if PERMUTATION_QUALITY_PRESET == 0 || PERMUTATION_QUALITY_PRESET == 1
+	const float2 Coords[5] = {
+		float2(-1.0f,  1.0f), float2(1.0f,  1.0f),
+		float2(0.0f,   0.0f),
+		float2(-1.0f, -1.0f), float2(1.0f, -1.0f)
+	};
+	
+	const float Weights[5] = {
+		0.125f, 0.125f,
+		0.5f,
+		0.125f, 0.125f
+	};
+
+	const int SampleCount = 5;
+#elif PERMUTATION_QUALITY_PRESET == 2 || PERMUTATION_QUALITY_PRESET == 3
+	const float2 Coords[9] = {
+		float2(-1.0f,  1.0f), float2(0.0f,  1.0f), float2(1.0f,  1.0f),
+		float2(-1.0f,  0.0f), float2(0.0f,  0.0f), float2(1.0f,  0.0f),
+		float2(-1.0f, -1.0f), float2(0.0f, -1.0f), float2(1.0f, -1.0f)
+	};
+
+	const float Weights[9] = {
+		0.0625f, 0.125f, 0.0625f,
+		0.125f,  0.25f,  0.125f,
+		0.0625f, 0.125f, 0.0625f
+	};
+
+	const int SampleCount = 9;
+#endif
+	
+	float3 Color = float3(0.0f, 0.0f, 0.0f);
+
+	UNROLL
+	for(int i = 0; i < SampleCount; i++)
+	{
+		const float2 CurrentUV = UV + Coords[i] * PixelSize;
+		Color += Weights[i] * Texture2DSampleLevel(Texture, Sampler, CurrentUV, 0).rgb;
+	}
+
+	return Color;
+}
+
+[numthreads(GROUP_SIZE, GROUP_SIZE, 1)]
+void UpsampleCombineCS(uint2 DispatchThreadId : SV_DispatchThreadID)
+{
+	const float2 UV = (DispatchThreadId + 0.5) * InputViewport_ViewportSizeInverse * InputViewport_ViewportSize / InputSize;
+	const float2 PixelSize = 1.0f / InputSize;
+
+	const float3 CurrentColor = Texture2DSampleLevel(InputTexture, InputSampler, UV, 0).rgb;
+	const float3 PreviousColor = Upsample(PreviousTexture, InputSampler, UV, PixelSize);
+
+	float3 OutColor = lerp(CurrentColor, PreviousColor, Radius);
+	
+	Output[DispatchThreadId] = float4(OutColor, 1);
+}

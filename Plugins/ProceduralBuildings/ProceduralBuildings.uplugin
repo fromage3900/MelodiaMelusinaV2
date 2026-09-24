@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Procedural Buildings",
+	"Description": "ADynamicBuilding: in-editor procedural building from UDynamicMesh / Geometry Script (UE5-Procedural-Building example, MIT, ported 5.0 -> 5.8).",
+	"Category": "Geometry",
+	"CreatedBy": "UE5-Procedural-Building (ported)",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.8.0",
+	"CanContainContent": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "ProceduralBuildings",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "GeometryScripting",
+			"Enabled": true
+		}
+	]
+}

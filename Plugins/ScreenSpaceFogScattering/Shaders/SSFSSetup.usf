@@ -1,0 +1,156 @@
+// Copyright 2025 Dmitry Karpukhin. All Rights Reserved.
+
+#include "SSFSCommon.ush"
+#include "/Engine/Private/SkyAtmosphereCommon.ush"
+
+// Firstly we have to initialize the FogStruct impostor and only then we call the Height Fog functions
+#include "/Engine/Generated/UniformBuffers/FogStructSSFS.ush"
+#define FogStruct FogStructSSFS
+#include "/Engine/Private/HeightFogCommon.ush"
+
+// Engine version defines for better compatibility
+#define ENGINE_VERSION_MAJOR
+#define ENGINE_VERSION_MINOR
+
+Texture2D DepthTex;
+Texture2D HeterogeneousVolumeTex;
+Texture2D VolumetricCloudTex;
+
+float Intensity;
+float SkyAtmosphereIntensity;
+float VolumetricCloudIntensity;
+float VolumetricFogILSIntensity;
+RWTexture2D<float4> Output;
+
+// This is a mod to "CombineVolumetricFog" from HeightFogCommon.ush that adds 
+// desaturated volumetric fog color to the density for the better blending
+float4 CombineVolumetricFogSSFS(float4 GlobalFog, float3 VolumeUV, uint EyeIndex, float SceneDepth)
+{
+	float4 VolumetricFogLookup = float4(0, 0, 0, 1);
+
+#if PERMUTATION_SUPPORT_VOLUMETRIC_FOG
+	float VolFogStartDistance = 0.0f;
+	if (FogStruct.ApplyVolumetricFog > 0)
+	{
+#if INSTANCED_STEREO
+		if (EyeIndex == 0)
+		{
+			VolFogStartDistance = FogStruct.VolumetricFogStartDistance;
+			VolumetricFogLookup = Texture3DSampleLevel(FogStruct.IntegratedLightScattering, SharedIntegratedLightScatteringSampler, VolumeUV, 0);
+		}
+		else
+		{
+			VolFogStartDistance = FogStructISR.VolumetricFogStartDistance;
+			VolumetricFogLookup = Texture3DSampleLevel(FogStructISR.IntegratedLightScattering, SharedIntegratedLightScatteringSampler, VolumeUV, 0);
+		}
+#else
+		VolFogStartDistance = FogStruct.VolumetricFogStartDistance;
+		VolumetricFogLookup = Texture3DSampleLevel(FogStruct.IntegratedLightScattering, SharedIntegratedLightScatteringSampler, VolumeUV, 0);
+#endif
+
+		// IntegratedLightScattering is pre-exposed, remove pre exposure now so that it can correctly be applied later
+		//VolumetricFogLookup.rgb *= View.OneOverPreExposure;
+	}
+
+	// Do not apply the Froxel volumetric texture in front of the fog start distance. (the soft fading occur in FinalIntegrationCS).
+	// We go with a quickly increasing step function because the soft fade in from start distance occurs in FinalIntegrationCS.
+	VolumetricFogLookup = lerp(float4(0, 0, 0, 1), VolumetricFogLookup, saturate((SceneDepth - VolFogStartDistance) * 100000000.0f));
+
+	float DesaturatedVolumetricFog = SimpleTonemap(Luminance(VolumetricFogLookup.rgb) * VolumetricFogILSIntensity);
+	VolumetricFogLookup.a -= DesaturatedVolumetricFog;
+#endif
+
+	// Visualize depth distribution
+	//VolumetricFogLookup.rgb += .1f * frac(min(ZSlice, 1.0f) / View.VolumetricFogInvGridSize.z);
+
+	return float4(VolumetricFogLookup.rgb + GlobalFog.rgb * VolumetricFogLookup.a, VolumetricFogLookup.a * GlobalFog.a);
+}
+
+[numthreads(GROUP_SIZE, GROUP_SIZE, 1)]
+void SetupCS(uint2 DispatchThreadId : SV_DispatchThreadID)
+{
+	ResolvedView = ResolveView();
+	
+	const float2 SceneColorUV = (float2(InputViewport_ViewportMin) + (DispatchThreadId + 0.5)) * InputViewport_ExtentInverse;
+	const float2 UV = (DispatchThreadId + 0.5) * InputViewport_ViewportSizeInverse;
+
+	float3 SceneColor = Texture2DSample(InputTexture, InputSampler, SceneColorUV);
+	SceneColor = max(SceneColor, float3(0, 0, 0)); // prevents from getting NaN values from SceneColor by the engine
+
+	const float DeviceZ = Texture2DSample(DepthTex, InputSampler, SceneColorUV).r;
+	const float SceneDepth = ConvertFromDeviceZ(DeviceZ);
+	
+	float3 WorldPositionRelativeToCamera = SvPositionToTranslatedWorld(float4(DispatchThreadId.xy, max(1.5e-10, DeviceZ), 1.0));
+	float3 WorldPosition = WorldPositionRelativeToCamera + ResolvedView.TranslatedWorldCameraOrigin - LWCHackToFloat(ResolvedView.PreViewTranslation);
+
+	const float4 HeightFogOpacity = CalculateHeightFog(WorldPositionRelativeToCamera);
+	float4 FinalFog = HeightFogOpacity;
+
+#if PERMUTATION_SUPPORT_VOLUMETRIC_FOG
+	if (FogStruct.ApplyVolumetricFog > 0) 
+	{
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION <= 3
+		float3 VolumeUV = ComputeVolumeUV(LWCPromote(WorldPosition), ResolvedView.WorldToClip);
+#else
+		float3 VolumeUV = ComputeVolumeUV_DEPRECATED(WorldPosition, DFHackToFloat(PrimaryView.WorldToClip));
+#endif
+		FinalFog = CombineVolumetricFogSSFS(HeightFogOpacity, VolumeUV, 0, SceneDepth);
+	}
+#endif
+
+	// Alpha channel needs to be inverted
+	FinalFog.a = saturate(1 - FinalFog.a);
+
+	float4 SkyAtmosphereFog = float4(0, 0, 0, 0);
+
+#if PERMUTATION_SUPPORT_AERIAL_PERSPECTIVE
+
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION <= 3
+	float4 NDCPosition = LWCMultiply(LWCPromote(float4(WorldPosition, 1.0f)), PrimaryView.WorldToClip);
+#else
+	float4 NDCPosition = mul(float4(WorldPosition.xyz, 1), DFHackToFloat(PrimaryView.WorldToClip));
+#endif
+	
+	SkyAtmosphereFog = GetAerialPerspectiveLuminanceTransmittance(
+		ResolvedView.RealTimeReflectionCapture, View.SkyAtmosphereCameraAerialPerspectiveVolumeSizeAndInvSize,
+		NDCPosition, (WorldPositionRelativeToCamera.xyz - ResolvedView.TranslatedWorldCameraOrigin)*CM_TO_SKY_UNIT,
+		View.CameraAerialPerspectiveVolume, View.CameraAerialPerspectiveVolumeSampler,
+		View.SkyAtmosphereCameraAerialPerspectiveVolumeDepthResolutionInv,
+		View.SkyAtmosphereCameraAerialPerspectiveVolumeDepthResolution,
+		View.SkyAtmosphereAerialPerspectiveStartDepthKm,
+		View.SkyAtmosphereCameraAerialPerspectiveVolumeDepthSliceLengthKm,
+		View.SkyAtmosphereCameraAerialPerspectiveVolumeDepthSliceLengthKmInv,
+		View.OneOverPreExposure, 1.0 / 0.00001f);
+	
+	SkyAtmosphereFog.a = saturate(1 - SkyAtmosphereFog.a) * SkyAtmosphereIntensity;
+#endif
+
+	float4 HeterogeneousVolume = float4(0, 0, 0, 0);
+	
+#if PERMUTATION_SUPPORT_HETEROGENEOUS_VOLUME
+	HeterogeneousVolume = Texture2DSample(HeterogeneousVolumeTex, InputSampler, SceneColorUV);
+
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 5
+	// in 5.5+ the density got inverted
+	HeterogeneousVolume.a = saturate(1 - HeterogeneousVolume.a);
+#endif
+	
+#endif
+
+	float4 VolumetricCloud = float4(0, 0, 0, 0);
+
+#if PERMUTATION_SUPPORT_VOLUMETRIC_CLOUD
+
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6
+	VolumetricCloud = Texture2DSample(VolumetricCloudTex, InputSampler, SceneColorUV);
+#else
+	VolumetricCloud = Texture2DSample(VolumetricCloudTex, InputSampler, UV);
+#endif
+	
+	VolumetricCloud.a = saturate(1 - VolumetricCloud.a) * VolumetricCloudIntensity;
+#endif
+	
+	FinalFog = saturate((FinalFog + SkyAtmosphereFog + HeterogeneousVolume + VolumetricCloud) * Intensity);
+	
+	Output[DispatchThreadId] = float4(SceneColor * SimpleTonemap(FinalFog.a), SimpleTonemap(FinalFog.a));
+}
