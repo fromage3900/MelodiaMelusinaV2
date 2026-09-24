@@ -162,14 +162,62 @@ Use for multimodal defect/evidence packets. No editor mutation.
 
 ### HappyOyster
 
-Use Faraway Mother as the first canary:
-- approved first-frame image;
-- fixed prompt;
-- Adventure/Directing session;
-- capture artifacts;
-- extract three bounded design candidates;
-- hand those candidates to Jev;
-- do not import generated world output as canonical game content.
+Use Faraway Mother as the first canary, but **Jev audits both before and after the run**.
+
+#### J0 — preflight
+
+Luna/Hermes assembles:
+- approved 16:9 first-frame image;
+- one fixed HappyOyster prompt;
+- exact model/surface intended;
+- duration/cost bound;
+- artifact-capture plan;
+- statement that Oyster output is noncanonical.
+
+Create a Jev task with:
+- `closed_set=true`
+- candidates:
+  - `PROCEED`
+  - `HOLD_MISSING_EVIDENCE`
+
+Jev must return:
+- selected candidate;
+- source/evidence refs;
+- confidence;
+- distribution/reasoning metadata supported by the Jev interface.
+
+If Jev returns `HOLD_MISSING_EVIDENCE`, STOP the Oyster run and fix the missing packet. Jev may not invent a third option.
+
+#### O1 — Luna operates Oyster
+
+Only after `PROCEED`:
+- use Adventure first;
+- use Directing only for bounded variations of the same world;
+- run 5–10 minutes or the owner-set limit;
+- capture screenshots/video/session artifacts where available;
+- log visual wins, coherence failures, generic/noisy output, traversal observations, and cost/latency if exposed;
+- do not implement anything.
+
+#### J1 — result audit
+
+Luna reduces the evidence to exactly:
+- `CANDIDATE_A`
+- `CANDIDATE_B`
+- `CANDIDATE_C`
+- `PARK_OYSTER`
+
+Each candidate must contain:
+- concise visual/spatial idea;
+- evidence artifact refs;
+- why it may help Melodia;
+- likely existing owner: World Compiler/PCG, Hython/Houdini, material/Niagara, or level composition;
+- uncertainty / failure notes.
+
+Create a second Jev task with that exact closed set. Jev selects one candidate only and may not invent implementation details.
+
+Then STOP for owner review.
+
+No Oyster-generated asset or Jev selection becomes canonical game content without owner approval and normal Melodia evidence gates.
 
 ### Qwen-Image
 
