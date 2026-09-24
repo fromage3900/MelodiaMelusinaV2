@@ -1,0 +1,26 @@
+{
+  "built_at": "2026-09-24T03:46:24",
+  "source_blend": "ZenLantern_V2_L1L2_vcol_charmfix.blend",
+  "working_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\KimiWork\\HandpaintPrep_2026-09-23\\02_ZenLantern\\ZenLantern_V2_L3_morphs.blend",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\KimiWork\\HandpaintPrep_2026-09-23\\02_ZenLantern\\substance\\meshes\\ZenLantern_V2_L3_morphs.fbx",
+  "export_object": "zenlantern_V2_L3",
+  "verts": 15670,
+  "faces": 15572,
+  "shape_keys": [
+    "Basis",
+    "SK_FlameBreath",
+    "SK_RoofLift",
+    "SK_CharmSway_L",
+    "SK_CharmSway_R",
+    "SK_DawnDusk"
+  ],
+  "max_delta_m": {
+    "SK_FlameBreath": 0.14016952617634446,
+    "SK_RoofLift": 0.1900000591969639,
+    "SK_CharmSway_L": 0.4619654466586398,
+    "SK_CharmSway_R": 0.46175157963598545,
+    "SK_DawnDusk": 0.02618583621082332
+  },
+  "charms_joined": 10,
+  "paint_original_untouched": true
+}
