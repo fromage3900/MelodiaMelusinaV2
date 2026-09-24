@@ -11,7 +11,8 @@ For anything involving **what is true now, what is blocked, or what to do next**
 - [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md) — canonical JetBrains Rider + UE5.8 engineering runbook.
 - [`Docs/Production/JEV_CANONICAL_WORKFLOW.md`](Docs/Production/JEV_CANONICAL_WORKFLOW.md) — canonical always-available Jev decision/orchestration runbook; Jev chooses/directs while existing owners execute.
 - [`qodana.yaml`](qodana.yaml) — canonical Qodana `QDJB` static-analysis profile; RiderLink is covered by the Rider runbook as the focused live-editor automation bridge.
-- [`SYSTEM_MAP.md`](SYSTEM_MAP.md) — runtime ownership and stable system architecture.
+- [`SYSTEM_MAP.md`](SYSTEM_MAP.md) — runtime ownership and stable system architecture, including the [canonical Melusina system diagram](SYSTEM_MAP.md#melusina-runtime-system-diagram) and [Universe Foundry boundary](SYSTEM_MAP.md#universe-foundry-integration-boundary).
+- [`Docs/P1_TASK_LEDGER.json`](Docs/P1_TASK_LEDGER.json) → `melusina_work` — Melusina work gates and links to their evidence; current status still comes from `CURRENT_STATE.md`.
 - [`DATA_FLOW.md`](DATA_FLOW.md) — how state/data move through the runtime.
 - [`Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md`](Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md) — cross-repo and cross-lane routing contract.
 
