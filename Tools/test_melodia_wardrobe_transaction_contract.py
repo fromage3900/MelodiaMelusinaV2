@@ -201,7 +201,7 @@ def main() -> int:
         "dynamically created garment components are registered with the owning actor",
     )
     check(
-        ordered(create, "RegisterComponent", "AddInstanceComponent"),
+        ordered(create, "RegisterComponent", "OwningActor->AddInstanceComponent"),
         "component is registered before being added to the actor's instance list",
     )
     check(
