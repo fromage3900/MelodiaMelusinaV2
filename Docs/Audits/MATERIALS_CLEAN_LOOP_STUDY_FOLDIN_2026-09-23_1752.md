@@ -13,7 +13,7 @@
 | M_Master_Nikki_Landscape | Landscape authority unchanged |
 | Landscape instances census | **8 Nikki / 7 HeightBlend** (replaces stale 9 Nikki / 27 HeightBlend notes) |
 | Cymatics MIs created | /Game/Melodia/Cymatics/MelodiaRoseVelvet/MI_MelodiaRoseVelvet + /Game/Melodia/Cymatics/MelodiaSapphireGlass/MI_MelodiaSapphireGlass on Nikki Master |
-| Ctrl+S | Owner pending for the two new MIs (disk folders + textures exist under Content/Melodia/Cymatics/; MI packages may be local-only until Ctrl+S) |
+| Persistence | Owner confirmed both new MIs were saved in-editor after this pass; the `.uasset` packages are still absent from GitHub `main`, so Git/LFS sync remains pending |
 | Flat_* | Dropped from TextureWeight=0 open queue (intentional pure-color MIs, not a bug) |
 | Copernicus Melodia* **12** gap | Replaced with Cymatics reality: RoseVelvet / SapphireGlass / FarawayAlabasterDrape (**Faraway still MI-less**) |
 | Ornament Enhanced | Remains **QUARANTINE** |
@@ -25,10 +25,10 @@
 - **#158** ownership **not** stolen (HeightBlend / Nikki leftover lane stays theirs).
 - **#241** already merged (2026-09-18 clean-loop fold-in) — skip / no reopen.
 
-## Persist owed (owner Ctrl+S)
+## Source-control sync owed
 
-1. MI_MelodiaRoseVelvet
-2. MI_MelodiaSapphireGlass
+1. MI_MelodiaRoseVelvet — saved locally; package not yet present on GitHub `main`
+2. MI_MelodiaSapphireGlass — saved locally; package not yet present on GitHub `main`
 3. Prior persist list: SurrealFabric lookdev MIs + MF_FlipbookScrub; Brushify/Toon dirty packs; ECV mesh slot manual assigns; Melodia Static_Glint drop Content Flipbook depends_on
 
 ## Docs touch (this PR)
