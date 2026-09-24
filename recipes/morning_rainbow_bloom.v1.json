@@ -187,5 +187,122 @@
       {"name": "website_south", "loc_cm": [-600.0, -100.0, 700.0], "look_cm": [-2100.0, 1650.0, -80.0], "fov": 62, "exposure_bias": 1.5},
       {"name": "south_fix", "loc_cm": [-800.0, 0.0, 900.0], "look_cm": [-2100.0, 1650.0, -50.0], "fov": 62, "exposure_bias": 1.75}
     ]
+  },
+  "structures": {
+    "layout": {
+      "kind": "mandala",
+      "center_cm": [
+        600.0,
+        2400.0,
+        -610.0
+      ],
+      "order": 6,
+      "rotation_deg": 0.0,
+      "rings": [
+        {
+          "slot": "hero_house",
+          "radius_cm": 0.0,
+          "count": 1
+        },
+        {
+          "slot": "lantern_post",
+          "radius_cm": 820.0,
+          "count": 6,
+          "phase_deg": 30.0
+        }
+      ]
+    },
+    "slots": {
+      "hero_house": {
+        "builder_id": "MEL_city_house_cell",
+        "preset": "Charming_Cottage",
+        "params": {
+          "Show Interior": true,
+          "Show Roof": false,
+          "Tower": false
+        },
+        "roof": {
+          "authority": "SurrealRoof",
+          "type": "onion"
+        },
+        "interior": true,
+        "footprint_cm": [
+          550.0,
+          400.0
+        ],
+        "face": "outward",
+        "decor_builders": [
+          "MEL_mh_aaa_cornice",
+          "MEL_mh_aaa_dentil",
+          "MEL_greybox_doorway"
+        ]
+      },
+      "lantern_post": {
+        "builder_id": "MEL_lantern_post",
+        "footprint_cm": [
+          40.0,
+          40.0
+        ],
+        "face": "center"
+      }
+    },
+    "walkways": [
+      {
+        "walkway_id": "plaza_ring",
+        "kind": "ring",
+        "radius_cm": 600.0,
+        "width_cm": 220.0,
+        "sample_cm": 120.0
+      },
+      {
+        "walkway_id": "door_spokes",
+        "kind": "spoke",
+        "inner_radius_cm": 320.0,
+        "radius_cm": 820.0,
+        "width_cm": 160.0,
+        "sample_cm": 120.0
+      }
+    ],
+    "decor": [
+      {
+        "decor_id": "lantern_catenary",
+        "builder_id": "NTDynamic Catenary Splines",
+        "curve": {
+          "kind": "catenary",
+          "ring": 1,
+          "attach_height_cm": 280.0,
+          "sag_ratio": 0.08,
+          "sample_cm": 40.0
+        }
+      },
+      {
+        "decor_id": "pearl_lissajous",
+        "builder_id": "MEL_mh_aaa_lissajous_pearl",
+        "curve": {
+          "kind": "lissajous",
+          "a": 3,
+          "b": 2,
+          "delta_deg": 90.0,
+          "radius_cm": 420.0,
+          "height_cm": 520.0,
+          "z_amp_cm": 40.0,
+          "sample_cm": 30.0
+        }
+      },
+      {
+        "decor_id": "flower_phyllotaxis",
+        "builder_id": "MEL_lissajous_ribbon",
+        "curve": {
+          "kind": "phyllotaxis",
+          "count": 144,
+          "inner_radius_cm": 340.0,
+          "radius_cm": 560.0
+        }
+      }
+    ],
+    "kit": {
+      "ue_path": "/Game/Melodia/Kit/MorningPlaza",
+      "export": "glb"
+    }
   }
 }
