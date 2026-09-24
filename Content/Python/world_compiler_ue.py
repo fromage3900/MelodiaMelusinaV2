@@ -209,7 +209,53 @@ def step_materials(b: dict) -> dict:
         except Exception as exc:
             rec["error"] = str(exc)[:300]
         results.append(rec)
-    out = {"parent": d["parent_master"], "band_mis": results, "active_lane": d.get("active_lane", "static")}
+    # Species may declare distinct band_mi_prefix families (e.g. GlassgardenCoral +
+    # GlassgardenKelp). Forge any MI path that points.csv references but dressing.bands missed.
+    seen = {r["mi"] for r in results}
+    extra = []
+    points = b["dir"] / "points.csv"
+    if points.is_file():
+        for row in _rows(points):
+            path = (row.get("material") or "").strip().split(".")[0]
+            if not path or path in seen:
+                continue
+            seen.add(path)
+            folder, name = path.rsplit("/", 1)
+            # Prefer band tint from dressing.bands when band index matches.
+            try:
+                band_i = int(row.get("band", 0))
+            except Exception:
+                band_i = 0
+            tint = next((bd["tint"] for bd in d["bands"] if int(bd["band"]) == band_i), None)
+            if tint is None and d["bands"]:
+                tint = d["bands"][0]["tint"]
+            if tint is None:
+                tint = [1.0, 1.0, 1.0]
+            rec = {"band": band_i, "mi": path, "from_points": True}
+            try:
+                if AL.does_asset_exist(path):
+                    rec["existed"] = True
+                    mi = AL.load_asset(path)
+                else:
+                    if not AL.does_directory_exist(folder):
+                        AL.make_directory(folder)
+                    mi = tools.create_asset(name, folder, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+                    rec["created"] = True
+                current_parent = mi.get_editor_property("parent")
+                if not current_parent or current_parent.get_path_name().split(".")[0] != d["parent_master"]:
+                    mi.set_editor_property("parent", parent)
+                    rec["parent_set"] = True
+                r, g, bl = tint
+                MEL.set_material_instance_vector_parameter_value(mi, tint_param, unreal.LinearColor(r, g, bl, 1.0))
+                rec["tint"] = [r, g, bl]
+                MEL.update_material_instance(mi)
+                rec["saved"] = AL.save_asset(path, only_if_is_dirty=True)
+            except Exception as exc:
+                rec["error"] = str(exc)[:300]
+            extra.append(rec)
+            results.append(rec)
+    out = {"parent": d["parent_master"], "band_mis": results, "active_lane": d.get("active_lane", "static"),
+           "extra_from_points": len(extra)}
     if d.get("wind_lane"):
         out["wind_lane"] = _forge_wind_lane(d["wind_lane"])
     return out
@@ -429,8 +475,11 @@ def step_count(b: dict) -> dict:
     # _Tall from the compiled rows so the count covers the entire flower field.
     for r in rows:
         mat = (r.get("material") or "").strip()
-        if "MI_RainbowSpeedTree_" in mat:
-            band_by_mi[mat.split(".")[0].split("/")[-1]] = int(r["band"])
+        if not mat:
+            continue
+        mi_name = mat.split(".")[0].split("/")[-1]
+        # Flower kit + dressing families (GlassgardenCoral/Kelp, glitter, etc.)
+        band_by_mi[mi_name] = int(r["band"])
     flower_per_band: dict[str, int] = {}
     dressing_by_mi: dict[str, int] = {}
     comps = 0
@@ -469,18 +518,37 @@ def step_count(b: dict) -> dict:
         else:
             expected_dressing += 1
     tolerance = 0.95 if (m.get("terrain") or {}).get("kind") == "ground_probe" else 1.0
-    flower_ok = {
-        k: flower_per_band.get(k, 0) >= int(v * tolerance)
-        for k, v in expected_flowers.items()
-    }
+    expected_total = m["counts"]["points_total"]
+    if expected_flowers:
+        expected_per_band = expected_flowers
+        flower_ok = {
+            k: flower_per_band.get(k, 0) >= int(v * tolerance)
+            for k, v in expected_per_band.items()
+        }
+        match = bool(expected_per_band) and all(flower_ok.values())
+    else:
+        # Dressing-only recipes (Glassgarden etc.): band MIs are matched via band_by_mi
+        # and counted in flower_per_band (historical flower-kit field name).
+        expected_per_band = {}
+        for r in rows:
+            expected_per_band[str(r["band"])] = expected_per_band.get(str(r["band"]), 0) + 1
+        flower_ok = {
+            k: flower_per_band.get(k, 0) >= int(v * tolerance)
+            for k, v in expected_per_band.items()
+        }
+        match = (
+            bool(expected_per_band)
+            and all(flower_ok.values())
+            and total >= int(expected_total * tolerance)
+        )
     return {
         "generated": generated, "ism_components": comps, "instances_total": total,
-        "per_band": flower_per_band, "expected_per_band": expected_flowers,
+        "per_band": flower_per_band, "expected_per_band": expected_per_band,
         "dressing_by_mi": dressing_by_mi, "dressing_instances": dressing_total,
         "expected_dressing": expected_dressing, "flower_instances": flower_total,
-        "expected_total": m["counts"]["points_total"],
+        "expected_total": expected_total,
         "tolerance": tolerance, "per_band_ok": flower_ok,
-        "match": bool(expected_flowers) and all(flower_ok.values()),
+        "match": match,
     }
 
 
