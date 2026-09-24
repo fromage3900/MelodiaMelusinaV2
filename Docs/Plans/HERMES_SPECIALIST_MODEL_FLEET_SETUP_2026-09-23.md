@@ -301,15 +301,32 @@ Hermes use:
 
 Released 2026-09-11; Fugu focuses on orchestrating pools of open/specialist models.
 
-Official:
+Current first-party setup/access:
+- https://console.sakana.ai/get-started
+- https://console.sakana.ai/models
 - https://sakana.ai/fugu-max-release/
+
+Access:
+- base: `https://api.sakana.ai/v1`
+- secret: `SAKANA_API_KEY`
+- OpenAI-compatible Responses, Chat Completions, and Models APIs are documented;
+- Anthropic-compatible Messages API is also documented;
+- `fugu-max` is the stable alias for the current Max line;
+- `fugu-ultra` is the stable alias for the current Ultra line (currently Ultra v2.0);
+- setup must query `/v1/models` and record the actually exposed model ids instead of relying only on aliases.
+
+Official Codex support now exists. Sakana's one-line installer is documented for Ubuntu/macOS; on native Windows use the documented manual Codex setup or the direct API. Keep Fugu in an isolated `fugu` Codex profile and do **not** replace the owner's normal Codex/Hermes defaults during a canary.
 
 Hermes use:
 - benchmark **routing strategy**, not replace Hermes by default;
 - give Fugu and Hermes the same immutable mission packet;
-- compare model selection, calls, latency, cost, retries, evidence quality, and accepted result.
+- compare decomposition quality, existing-owner reuse, latency, cost/usage when actually reported, retries, evidence quality, and accepted result;
+- first project-specific benchmark: selected HappyOyster Glassgarden evidence -> one bounded `FUGU_GLASSGARDEN_DAG`.
 
-Do not integrate permanently until there is an official programmable access surface appropriate for this repo and it beats the existing Hermes route on a real task.
+Setup rule:
+- direct API or isolated Codex-profile connectivity is allowed now that a first-party programmable surface is documented;
+- no `Tools/model_router.py` edit, permanent Hermes-provider change, or production routing promotion from connectivity alone;
+- permanent adoption still requires the normal canary/promotion rules and must beat or usefully complement the existing Hermes route on a real task.
 
 ### 2.8 Inception lane
 
