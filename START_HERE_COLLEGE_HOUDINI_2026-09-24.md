@@ -118,9 +118,9 @@ Heavy bakes run beside interactive gates; never make Brennan watch a cook. Two-l
 
 - **Plugin/build mismatch** (B1) and **UE/project availability** (B2) decide how much of Gate 1 can close at college.
 - **`Tools/*` and `Saved/` are gitignored.** New scripts and evidence silently drop out of commits unless force-added. Check with `git status --ignored`.
-- **`.hda`/`.vdb`/`.hip`/`.bgeo*` are not LFS-routed.** Keep committed binaries small, and leave caches off-repo.
+- **Project-authored `hda/**` assets are LFS-routed on this branch.** Legacy/vendor `.hda`, existing `.vdb`/`.hip*`, and `.bgeo*` remain outside the new rule so existing plain-Git blobs are not retroactively reclassified. Keep caches off-repo; migrate legacy binaries only as a separate explicit job.
 - **`reef_common.py` is not in git.** Nine `sea_above_reef` scripts plus `copernicus_dress_bake.py` fail from a clean clone. None is on the P0 path.
-- **`copernicus_cymatic_parallax.py` seeds with `hash()`**, so it is not reproducible across processes. Don't trust bit-identical regen; fixing it is ask-first.
+- **`copernicus_cymatic_parallax.py` now uses canonical `resonant_world_generator.stable_int`.** New regenerations from this branch are process-stable; older outputs made with Python `hash()` are not assumed bit-identical.
 - **"8 km" is Faraway Mother.** Sea Above bounds must be measured (Gate 4 step 1) before tiling.
 - Apprentice-era limits (FBX/Alembic export blocked, watermarked renders) should not apply with the college licence. Re-probe export routes anyway and record which one cooked.
 
