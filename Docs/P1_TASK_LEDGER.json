@@ -38,10 +38,10 @@
       },
       {
         "id": "MELUSINA_WATER_HAIR_DRIPS",
-        "status": "live_pie_proven_trim_candidate_open",
-        "deliverable": "Import the approved 240-frame single-track Alembic as a supporting Geometry Cache for drips from existing water hair.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json", "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json records live Morning PIE playback on WaterHairFlipCache", "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json records an animated pool-trim candidate", "Saved/Audit/melusina_bake_staging_20260922/hair_bind_transform_audit_20260923.json records the preserved inverse-bind offset"],
-        "remaining_gate": "Review the trimmed candidate against WaterHairMesh in fresh Morning PIE and only then promote it over the current attached cache; spatial alignment and visual acceptance remain open."
+        "status": "trimmed_cache_bound_locally_post_scale_visual_gate_open",
+        "deliverable": "Use the approved 240-frame, pool-trimmed Geometry Cache as a supporting drip layer on the canonical pawn's existing water hair.",
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json", "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json records earlier live Morning PIE playback", "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json records animated pool-trim output", "CURRENT_STATE.md records the local binding under WaterHairMesh, existing MI v10, identity local transform, and saved 0.01 component scale"],
+        "remaining_gate": "Fresh low-memory L_MelusinaMorning PIE after the saved 0.01 scale: verify scaled bounds against head_x, visible parent hair, cache playback, and readable drips; then promote only the exact cache dependency and its source provenance. The trimmed Geometry Cache remains untracked in the active content checkout."
       },
       {
         "id": "MELUSINA_NIAGARA_CONTACT_SHEET",
