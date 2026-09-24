@@ -6,6 +6,74 @@
     "scope": "Post-P0 expansion: Faraway Mother formalization, cymatics promotion, audio-reactive materials, Shorewake quest, Starskiff movement system.",
     "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct."
   },
+  "melusina_work": {
+    "scope_as_of": "2026-09-23",
+    "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
+    "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
+    "foundry_boundary_visualization": "SYSTEM_MAP.md#universe-foundry-integration-boundary",
+    "current_status_authority": "CURRENT_STATE.md",
+    "runtime_unit": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "designation": "Ultimate is the existing runtime Blueprint; keep its name and current GameMode selection.",
+    "owner_confirmed_baselines": ["locomotion", "Rokoko", "Universe Foundry integrations"],
+    "proof_policy": "Owner confirmation, source/editor state, live PIE, restart, and packaged proof are distinct; do not promote one tier into another.",
+    "closeout_order": [
+      "Keep the existing runtime pawn and subsystem owners; do not create parallel authorities.",
+      "Verify the saved trimmed drip-cache candidate in fresh L_MelusinaMorning PIE, including bounds, full-cycle and restart playback, movement-follow, and visible silhouette.",
+      "Complete the character portrait and in-context VFX review; keep Copernicus maps on hold until a compatible named material target is approved.",
+      "Promote only exact reviewed assets and dependencies; keep legacy-root retirement and mixed concurrent WIP outside this slice."
+    ],
+    "work_items": [
+      {
+        "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
+        "status": "source_documented",
+        "deliverable": "One visual map of runtime assembly, QuillScript/JRPG/rhythm, Wardrobe/traversal, Cymatics, and Universe Foundry boundaries.",
+        "evidence": ["SYSTEM_MAP.md#melusina-blueprint-family", "SYSTEM_MAP.md#melusina-runtime-system-diagram", "SYSTEM_MAP.md#universe-foundry-integration-boundary"],
+        "remaining_gate": "Keep CURRENT_STATE.md as the only live-status authority and revise the map only when an owner boundary changes."
+      },
+      {
+        "id": "MELUSINA_MORNING_RUNTIME_PORTRAIT",
+        "status": "draft_capture_face_readability_open",
+        "deliverable": "A reviewed Morning PIE portrait of the single possessed canonical pawn with readable face, hair/drips, wardrobe, and held prop.",
+        "evidence": ["Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT.jpg is a gameplay contact-sheet draft", "Saved/Audit/melusina_blink_20260923/nikki_hair_lit.png proves the newer hair MI renders but the face remains dark"],
+        "remaining_gate": "Fresh L_MelusinaMorning PIE identity/view-target receipt, face and silhouette readability under gameplay lighting, full-body three-quarter view, and Jev review of the actual captures."
+      },
+      {
+        "id": "MELUSINA_HAIR_EYE_BAKES",
+        "status": "24_imported_material_tether_open",
+        "deliverable": "Review the 24 imported Copernicus hair/eye maps and bind only an approved subset through an existing compatible mesh/material lane.",
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/existing_copernicus_import_audit.json records 24/24 imports", "Saved/Audit/melusina_bake_staging_20260922/material_texture_tether_receipt_20260923.json records zero runtime Copernicus texture references and a render-bind gate", "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation"],
+        "remaining_gate": "Name a compatible existing mesh/slot/MI target, verify UV/channel/color-space compatibility, then compile, reload, and accept a Morning comparison. Do not force strand maps onto procedural water hair or add a master to consume them."
+      },
+      {
+        "id": "MELUSINA_WATER_HAIR_DRIPS",
+        "status": "trimmed_candidate_saved_in_bp_fresh_pie_open",
+        "deliverable": "Use the pool-trimmed 240-frame Geometry Cache as a supporting drip layer beneath existing water hair only after runtime review.",
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json proves Blender candidate round-trip at sampled frames", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_trimmed_ue_import_20260923.json records a saved one-track UE cache candidate", "CURRENT_STATE.md records Monolith disk-backed confirmation that the canonical BP template references the trimmed cache at identity local transform, scale 0.01, looping, with MI_Melusina_WaterHair_v10", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json is LIVE PIE proof for the older untrimmed cache only"],
+        "remaining_gate": "Fresh single-writer L_MelusinaMorning PIE of the saved candidate: verify effective world transform and bounds across the full cycle, restart playback, follow during a short walk/turn/stop, retain visible parent hair, and capture Jev-accepted readable drips with no pool. The candidate .uasset is untracked; promote only its exact dependency and provenance after all gates pass."
+      },
+      {
+        "id": "MELUSINA_NIAGARA_CONTEXT_REVIEW",
+        "status": "inventory_present_context_review_open",
+        "deliverable": "Review the existing 13 unique Niagara systems across 19 mounts in context without creating another FX framework.",
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json", "Saved/Audit/melusina_bake_staging_20260922/niagara_contact_sheet_receipt_20260923.json records context-dependent/black isolated cards"],
+        "remaining_gate": "Verify relevant emitter states and readable in-context behavior in Morning PIE; isolated previews do not prove runtime presentation."
+      },
+      {
+        "id": "MELUSINA_FOUNDRY_BOUNDARY",
+        "status": "owner_confirmed_existing_boundary",
+        "deliverable": "Keep Universe Foundry as the authoring compiler; route outputs through current World Compiler and gameplay/runtime owners.",
+        "evidence": ["SYSTEM_MAP.md#universe-foundry-integration-boundary", "Tools/universe_foundry.py", "Owner confirms required Melusina Foundry integrations are proven and working"],
+        "remaining_gate": "No Melusina rerun required. Keep Faraway Mother's separate fixture-delta and TD-to-Unreal field-return gaps scoped to that example; do not add a pawn-side Foundry manager."
+      },
+      {
+        "id": "MELUSINA_LEGACY_BLUEPRINT_ROOTS",
+        "status": "reversible_deprecation_candidates_unchanged",
+        "deliverable": "Retain the canonical runtime pawn, battle presenter, skills, and room/PCG actor in their distinct roles.",
+        "evidence": ["CURRENT_STATE.md — Canonical Melusina Blueprint Family"],
+        "remaining_gate": "Legacy retirement is outside this close-out. Before any future move, save fresh hard/soft referencer and live-route receipts."
+      }
+    ]
+  },
   "active_p1_gates": [
     {
       "id": "FARAWAY_MOTHER_P1_PRESENT",

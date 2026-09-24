@@ -5,7 +5,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-22 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-23 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` **PASS**. Meadow on **BrushifyIsland_*** SpeedTree + walk dressing — not Sphere3D. Proof `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-19.json`. Board: `Saved/Audit/Screens/wc_morning_rainbow_bloom_{waterline_dolly,website_oblique,website_top,website_south,south_fix}_2026-09-19.png`.
 Morning Niagara rewire **2026-09-19 14:49 disk** + **User-param bind PASS 2026-09-20**: Uni parents off `L_MelusinaMorning` actors; Melodia children `NS_Morning_{PetalDrift,PollenSparkle,PondMist,WindFront,DustShafts}` + parked Glint/Impact. `rewire_morning_fx.py --effect bind-user` bound SpawnRate→`User.PetalSpawnMultiplier` / `MoteSpawnMultiplier` / `MistDensity` and WindFront `Gust_Leader` SpawnBurst `Spawn Count`→`User.WindFrontVisible`. Proof `Saved/Audit/niagara_rewire_bind-user_summary_2026-09-20.json`. No MPC writes. Hue-reveal remains PIE wind only.
 **Git 2026-09-22 (09-21 audit + convergence — read `Saved/Audit/git_health_2026-09-21.md` and `Docs/Audits/BRANCH_PRUNE_RECEIPT_2026-09-21.md` BEFORE re-reviewing any branch):** PR #281 merged owner-directed (main tip `dea0522ac`), but its own body's proof ladder — closed-editor build, focused NarrativeRecord automation, editor-process restart/repeat-load, packaged restart, fresh golden run — is **not** discharged, so **Issue #51 stays OPEN**. Zero unpushed commits on any lane: frequency-ecology tip `0e1963b1d` carries the 09-21 doc commits (CURRENT_STATE session records, handoffs parked to `Saved/Audit/`, audit + receipt); `codex/game-state-2026-09-04-checkpoint` (4 commits) and `codex/snapshot-prep-20260914` were re-pushed after their remote ref had been deleted — stale tracking refs are how that was caught. Pruned per receipt (SHAs recoverable there, no gc run): 6 remote refs (`fix/runtime-gameplay-closure-20260921` + its recut head via gh, `docs/production-spine-paradigm-20260921`, `fix/retire-front-door-suite-20260921`, `docs/canonize-converged-project-state-20260920`, `feature/house-gn-paris-20260920`) and 7 local parity twins. **KEEP decisions, not backlog:** `backup/*`, `recovery/*`, `collab/laptop/*`, `feature/harp-recovery-2026-09-20` (live worktree), and the Tier-3 pre-collapse families (`cursor/*`, old `codex/*`, `backup/pr166`-class) — each needs its own content check + receipt before any prune; do not bulk-delete. Open convergence: the frequency-ecology lane is 145 behind main and its diff drags pre-collapse docs — land it via PR with rebase-class conflict handling when showcase prep settles, not before. Isolated landing only; do **not** dump the dirty tree (Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, Oceanology, Humber stay parked; currently 147 M / 41 D / 146 ??). Never robocopy/junction/overwrite `harp_bow_pipeline`.
@@ -79,11 +79,11 @@ Pass means the node is writing. The silhouette is still **73 two-bone strands**.
 This section only records live state and the owner's order for tonight.
 
 **Live state (PIE, runtime `BP_MelusinaJRPGCharacter`, 2026-09-23):**
-- **Materials:** every body/wardrobe/iris MI is a child of `M_Master_Toon_Universal`; `MI_Melusina_Eyelash` is on `M_Master_Toon_Character`; the hair is `MI_Melusina_WaterHair_v10` on `M_Water_Master_Grand_v10_Substrate` (HANDS OFF per v7). **No Melusina MI is on the revived `M_Master_Nikki` fabric master yet.**
+- **Materials:** the latest lit Morning PIE hair proof shows `SK_MelusinaHair` slot 0 → `MI_Melusina_Nikki_Hair` (`M_Master_Nikki`), slot 1 → existing `MI_Melusina_WaterHair_v10` (`M_Water_Master_Grand_v10_Substrate`), slots 2/3 → `MI_Melusina_Outline_005`. Keep this split; do not restore the older all-water-v10 assignment. Body/skin/eyes remain on their toon lane; body slot-3 sleeve has its own Nikki override. Face readability in lit shots remains open.
 - **Blink:** the body has `eyeBlinkLeft/Right` morphs and the ABP curves animate (0→1 observed), but no blink has been seen. The static `EyeIrises`/`EyeLashes` don't deform with the lids.
 - **Regalia (v5 U1):** `Exports/MelusinaFX_20260922/MelusinaFX_regalia_wings_rings_eval.fbx` is not imported; `/Game/Melusina/FX/Regalia20260922` doesn't exist. The animated flipbooks are imported (`/Game/EnvSandbox/Textures/MelusinaAnimated/20260922`) but not wired (v4 H3).
-- **Baked hair/eye maps:** 24 maps are staged, and the guarded importer has not run.
-- **FLIP drip:** another lane staged drip-bind stills 09-23 (`Saved/Audit/melusina_bake_staging_20260922/canonical_morning_pie_stage_*drip*`); `WaterHairFlipCache` is present but empty on the pawn.
+- **Baked hair/eye maps:** 24 manifest-matched maps are imported locally. The current tether audit found zero Copernicus map references on the audited runtime MIs; a named compatible render target and material review remain open. `final_bake_verify.json` retains the HairB BaseColor self-occlusion limitation.
+- **FLIP drip:** the trimmed 240-frame candidate is imported and referenced by the saved canonical BP template as `WaterHairFlipCache`, under the existing hair component, identity local transform, scale 0.01, looping enabled, with `MI_Melusina_WaterHair_v10`. This is saved-template evidence, not fresh PIE proof. The older `flip_cache_live_success_20260923.json` proves the untrimmed cache only; candidate bounds, restart/movement playback, and visible-drip acceptance remain open.
 - **VFX:** 19 Niagara components, all active at idle (11 are action/skill systems).
 
 **Owner order (2026-09-23 evening):**
@@ -182,11 +182,13 @@ The current disk scan lists 11 matching `BP_Melusina*` `.uasset` paths. The smok
 **Visual and bake work still open.** Build one contact sheet for the 13 attached systems,
 showing full systems and enabled/disabled emitters (including the three Globules sockets and
 paired EyeSparkles). Blender staging has 24 hair/eye maps and 240 numbered FLIP frames; the bake
-evidence's 480 nonempty BOBJ count includes 240 preview files, so neither number is UE import
-proof. `final_bake_verify.json` is `pass=false` / `pass_with_limitations=true`: HairB BaseColor
-remains a measured self-occlusion limitation.
+evidence's 480 nonempty BOBJ count includes 240 preview files, so those counts alone are not UE
+import proof. The existing import audit separately records 24/24 map imports, while the material
+tether receipt leaves render binding open. `final_bake_verify.json` is
+`pass=false` / `pass_with_limitations=true`: HairB BaseColor remains a measured self-occlusion
+limitation.
 
-**FLIP archive gate 2026-09-22 — Blender PASS, UE import still owed.** The earlier
+**FLIP archive gate — source and candidate import pass; fresh candidate PIE still open.** The earlier
 `flip_surface_sequence.abc` includes 240 per-frame names plus `Camera` and `Cube`; the first
 isolated-scene `flip_surface_sequence_single_track.abc` is static at frames 1/120/240; and the
 Geometry Nodes `flip_surface_sequence_gn_single_track.abc` imported as 240 mesh tracks. All three
@@ -202,29 +204,36 @@ the local import runbook under `Exports/MelusinaBakeStaging_20260922/UE_import/`
 Git; promote the exporter deliberately before claiming a reproducible checked-in tool. Isolated
 three-quarter renders at frames 1/60/120/180/240 show a vertical fluid column spreading into a
 broad pool, consistent with the staged FLIP Drip/Sheet inflows. The owner clarified this is the
-**drip layer of her water hair**, not replacement strand geometry. Corrected live Jev choice
-(`jev_flip_role_choice_corrected.json`, confidence 1.0) supersedes an earlier choice framed as
-strand hair: stage one Geometry Cache after the editor writer slot clears, preview alignment,
-timing, scale, silhouette, and restart playback with the existing WaterHairMesh, then attach it
-to the canonical pawn only if those gates pass. The old v22 importer treats Geometry Cache as
-the hair body and allows replacement; it is not the importer for this supporting drip layer. Review
-images are under
+**drip layer of her water hair**, not replacement strand geometry. The approved source is one
+animated 240-frame Alembic track. Blender trim receipt
+`flip_alembic_trim_validation_20260923.json` records pool removal below z=0.45 m and sampled
+round-trip PASS. UE import receipt `flip_cache_trimmed_ue_import_20260923.json` records the saved
+one-track candidate. A current Monolith disk-backed query confirms the canonical BP template
+references `GC_MelusinaHairFlip_TrimmedZ045_20260923`, at identity local transform and scale 0.01,
+looping with `MI_Melusina_WaterHair_v10`; the BP itself is clean at HEAD. The cache `.uasset` is
+still untracked. In contrast, `flip_cache_live_success_20260923.json` is LIVE PIE evidence for the
+older untrimmed `GC_MelusinaHairFlip_20260922` and leaves alignment/visual acceptance open. Do not
+reuse that receipt as proof of the trimmed candidate. Its fresh Morning PIE gate must measure
+effective world bounds across the full cycle, verify playback/restart and following during a short
+walk/turn/stop, keep parent hair visible, and capture a readable drip silhouette with no pool.
+Preserve the authored `WaterHairMesh` inverse-bind offset. The old v22 importer treats Geometry
+Cache as replacement hair and is not the importer for this supporting drip layer. Blender source
+reviews remain under
 `Saved/Audit/melusina_bake_staging_20260922/contact_sheets/flip_archive_samples/`.
 
-The current Blender sequence has all 240 numbered frames, a fresh review sheet at `Saved/Audit/melusina_bake_staging_20260922/contact_sheets/render_sequence_sheet_final_20260922.png`, and a `render_sequence_evidence.json` receipt reporting PASS for frame presence and measured motion. It is not a portfolio render: the heroine reads as a dark silhouette, her face is obscured by the hair, and the harp sits detached at frame right. Live Jev selected a runtime face-first capture slice (confidence 0.970; redacted receipt `Saved/Audit/melusina_bake_staging_20260922/jev_visual_choice.json`) before committing source hair, material, or prop repairs. Use the existing portfolio capture setup and assess those repairs from the truthful Unreal image. Read-only inspection of `harp_wip_stage_src.blend` at frame 60 found `Hair Strand.004/.007/.010` parented to `character_rig` with object origins `(0,0,0)`, matching the body mesh's rig-root origin while their geometry bounds sit around the head. This is standard skinned-mesh space, not evidence of a bad pivot. Preserve the runtime inverse-bind attachment offset; correct the face readability/material and harp placement through their owning source/shot, not by zeroing the hair origin or adding a runtime compensation.
+The current Blender sequence has all 240 numbered frames, a fresh review sheet at `Saved/Audit/melusina_bake_staging_20260922/contact_sheets/render_sequence_sheet_final_20260922.png`, and a `render_sequence_evidence.json` receipt reporting PASS for frame presence and measured motion. It is not a portfolio render: the heroine reads as a dark silhouette, her face is obscured by the hair, and the harp sits detached at frame right. Live Jev selected a runtime face-first capture slice (confidence 0.970; redacted receipt `Saved/Audit/melusina_bake_staging_20260922/jev_visual_choice.json`) before committing source hair, material, or prop repairs. Assess any remaining repair from a truthful canonical-pawn image captured in `L_MelusinaMorning` PIE, per the owner's route instruction. Read-only inspection of `harp_wip_stage_src.blend` at frame 60 found `Hair Strand.004/.007/.010` parented to `character_rig` with object origins `(0,0,0)`, matching the body mesh's rig-root origin while their geometry bounds sit around the head. This is standard skinned-mesh space, not evidence of a bad pivot. Preserve the runtime inverse-bind attachment offset; correct the face readability/material and harp placement through their owning source/shot, not by zeroing the hair origin or adding a runtime compensation.
 
-The U2 Blender archive gate passed; UE import remains unverified. The last editor query found no
-texture parameters on the named water master or water-hair MI, so import of the 24 staged textures
-can proceed separately from material wiring. A guarded offline draft importer is staged at
-`Saved/Audit/melusina_bake_staging_20260922/ue_import_approved_bakes_20260922.py`: explicit
-preflight/textures/cache phases pin the approved source hashes, require empty new package paths,
-and preserve the existing BP, meshes, MIs, and level. It has not run. Do not invent a new master
-or runtime material owner.
-An Unreal Editor and Monolith are live, but another Claireon/MCP lane owns that editor; the
-latest read-only handoff reported five dirty packages, including `ABP_Melusina_Current`. Asset
-import, Niagara previews, and the runtime portrait await a confirmed single-editor writer slot.
-No locomotion, Rokoko, or Universe Foundry retest is
-required by the owner-confirmed status.
+The U2 Blender archive gate and the local 24-map import audit passed. Material tether receipt
+`material_texture_tether_receipt_20260923.json` reports no Copernicus map references in the audited
+runtime MIs; keep those maps on hold until an existing compatible mesh/slot/material target is
+selected and reviewed. Do not create a new master to consume them. Monolith disk-backed reads
+verified the saved drip-cache component, but its editor endpoint currently reports Unreal Editor
+not running; a prior handoff records another Claireon/MCP lane as editor owner. Confirm the single
+writer slot before opening or mutating Unreal. The trimmed candidate, full Niagara context review,
+and accepted canonical-pawn portrait still need fresh `L_MelusinaMorning` PIE evidence. The lit
+hair still proves the newer Nikki hair MI renders, but the face remains dark and is not portrait
+acceptance. No locomotion, Rokoko, or Universe Foundry integration retest is required by the
+owner-confirmed status.
 
 For the Niagara sheet, no saved full-system image of the 13 attached systems was found in the current targeted preview/screenshot folders; the 2026-09-21 `audit_niagara.json` is structural only (`isolated_preview_non_black: null`). The offline 13-system/22-emitter card manifest is `Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json`; it keeps enabled/disabled counts null and separates runtime component names from presentation-only sockets. Capture one consistently framed Monolith `preview_system` image per unique system, then build 13 labeled cards with the BP component role, verified socket, and live enabled/disabled emitter counts. Label these as isolated previews, not runtime proof. Paired EyeSparkles and the three Globules mounts are repeated uses of shared systems and remain intentional. The unattached `NS_Melusina_ImpactBurst` and `Melusina_WaterFX` are separate retirement candidates only after fresh reference and gameplay-cue checks. Under the Infinity Nikki lens, prioritize FX that read as responsive character cues and reveal the magical field; do not merge effects based on structural similarity alone.
 
