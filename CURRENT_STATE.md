@@ -119,6 +119,13 @@ Everything goes on the canonical runtime `BP_MelusinaJRPGCharacter` (no second p
 - **G4 Idle VFX:** `auto_activate` off only for the action systems with a verified activation path.
 - **G5 Body slot-3 sleeve override** → `MI_Melusina_Nikki_sleeve_003`.
 - **G6 Evidence:** PIE stills + refreshed S1 draft.
+- **RESULTS (2026-09-23 night):**
+  - **G1 DONE** (`105493272`, `c17c105b2`). The doll-kit GLB is imported to `/Game/Melodia/Characters/Melusina/DollKit` (15 segments on `MEL_DollRig`, 16 balls, 4 gears); `IK_MEL_DollRig` + `RTG_Melusina_to_DollRig`; her CuteIdle is retargeted; `BP_MelusinaDollKit_Preview` (segments play the retargeted idle, balls and gears socketed at inverse-rest offsets, Nikki porcelain/brass MIs). `DollKit_Preview_Melusina` stands on the island-09 meadow of `L_MelusinaMorning`, animated in PIE. Jev: import+retarget+preview 0.88. Trap: Interchange import leaves assets unsaved — save the dirty `/DollKit` packages explicitly.
+  - **G2 REMOVED:** the staged brows (R-head model space) don't land on the V2 face without a fit pass. The components were added and then deleted; the fit is a follow-up.
+  - **G3 DONE** (`16616c245`, `ad004db23`). Regalia imported to `/Game/Melusina/FX/Regalia20260922` (force-added; `Content/*` is ignored), ×10 FBX units, under `RegaliaRoot` (= the body-mesh frame 0,0,−73 yaw −90), brass rings, pearl wings, NoCollision. The ring halo reads behind her upper back in every gameplay frame. The spin (3 RotatingMovement, pivot at ring centre, BeginPlay `SetUpdatedComponent`) starts correctly but **stalls after ~0.8 s** in PIE — follow-up. The wings carrier doesn't read yet (thin, same pearl as the hair).
+  - **G4 NOT APPLIED — no activation path exists:** the 11 action/skill Niagara components are only attached at BeginPlay; there are zero Activate nodes in the BP and zero C++ refs. Turning auto-activate off would make them dark forever. The owner decides: keep them, or wire activation to skills.
+  - **G5 DONE** (`5778f9d98`): body slot 3 → `MI_Melusina_Nikki_sleeve_003`.
+  - **G6:** `Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT_v2.jpg` (halo + doll companion).
 
 ## GOAL WHILE OWNER OFFLINE — 2026-09-23 ~19:20 (Jev `jev-1.13.0`)
 The owner chose **face option 3**: leave the face tonight, since shots are mostly third-person; face-SDF shading comes after the renders.
