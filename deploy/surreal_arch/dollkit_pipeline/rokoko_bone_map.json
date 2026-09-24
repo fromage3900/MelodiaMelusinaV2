@@ -1,0 +1,28 @@
+{
+ "note": "Rokoko Inbox takes are Mixamo-skeleton FBX (mixamorig:*, 65 bones, frames 1-91, armature scale 0.1). One-way retarget source for MEL_DollRig motion tests; fingers/toes/head unmapped (doll rig has none).",
+ "mixamo_to_mel_dollrig": {
+  "mixamorig:Hips": "spine_01.x",
+  "mixamorig:Spine2": "spine_03.x",
+  "mixamorig:Neck": "neck.x",
+  "mixamorig:LeftArm": "arm.l",
+  "mixamorig:LeftForeArm": "forearm.l",
+  "mixamorig:LeftHand": "hand.l",
+  "mixamorig:RightArm": "arm.r",
+  "mixamorig:RightForeArm": "forearm.r",
+  "mixamorig:RightHand": "hand.r",
+  "mixamorig:LeftUpLeg": "thigh.l",
+  "mixamorig:LeftLeg": "leg.l",
+  "mixamorig:LeftFoot": "foot.l",
+  "mixamorig:RightUpLeg": "thigh.r",
+  "mixamorig:RightLeg": "leg.r",
+  "mixamorig:RightFoot": "foot.r"
+ },
+ "takes": [
+  "A_Rokoko_WalkElegant.fbx",
+  "A_Rokoko_GlideForward.fbx",
+  "A_Rokoko_BowDraw_v1.fbx",
+  "A_Rokoko_BowDraw_v2.fbx",
+  "A_Rokoko_BowKneelAim.fbx"
+ ],
+ "retarget_scale_note": "doll ~1.45m vs mixamo armature at 0.1 scale: apply rotation-capture with rest-pose delta, not raw world positions"
+}
