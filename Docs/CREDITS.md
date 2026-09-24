@@ -28,7 +28,7 @@ License key:
 | Brushify – Floating Islands | **Joe Garth (Brushify Ltd)** | https://www.fab.com/listings/097af450-268d-4691-9502-aeb3714fbda7 · https://www.brushify.io | Marketplace EULA | Floating-island kits, modular rocks, fog cards (`Content/Brushify - Floating Islands`) |
 | Magician's Library Environment & VFX Pack | **Coreb Games** | https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8 | Marketplace EULA | Desks, lanterns, glass boxes, shelves migrated under `EnvSandbox/Library/Migrated/MagiciansLibrary` |
 | Turn-Based jRPG Template | **Phoenix Market** | https://www.fab.com/listings/fe140454-1e7f-49eb-bd29-cf5588ce3ed1 | Marketplace EULA | Party / turns / skills / battle / quest / save framework (`Content/TurnBasedJRPGTemplate`). Template UI art credited by its author to OpenGameArt users: *melle, paul-wortmann, unnamed, pauliuw, evilence* |
-| Art of Shader — Stylized Post Process Pack | **Sameek Kundu** | https://forums.unrealengine.com/t/art-of-shader-stylized-post-process-pack/142950 | Marketplace EULA (vfxMed distribution) | Stylized post-process showcase + shader examples (`Content/ArtOfShader`) |
+| Art of Shader — Stylized Post Process Pack | **Sameek Kundu** | https://forums.unrealengine.com/t/art-of-shader-stylized-post-process-pack/142950 | Marketplace EULA| Stylized post-process showcase + shader examples (`Content/ArtOfShader`) |
 | ZBrush/SP — 70 Japanese Ornament Alphas | **Jonas Ronnegard** | https://www.artstation.com/marketplace/p/NNDo/zbrush-sp-70-japanese-ornament-alphas | ArtStation Standard License | Japanese ornament alpha/trim textures (`Content/Textures`, `Content/EnvSandbox/Textures_Shared`) |
 
 ## 🌳 CC0 / open-source environments & 3D art
