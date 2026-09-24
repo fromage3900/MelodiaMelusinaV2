@@ -211,3 +211,45 @@ A candidate moves from WATCH toward PRESENT only when all are true:
 5. Is the field-name you want already in §5 (World Field Bus / SpeedTree bridge)? Reuse the contract.
 6. Editor: one instance, one :9316. Batch saves `unattended:true`. No `Content/_PROJECT/` writes.
 7. Evidence: offline probe + live PIE + ledger row. Prose is not a row.
+
+## 8b. Specialist model fleet trench sweep — 2026-09-23
+
+**Status:** RESEARCH / SETUP CANDIDATES. None of the entries below become PRESENT or production-routed by appearing here.
+
+Durable setup plan:
+`Docs/Plans/HERMES_SPECIALIST_MODEL_FLEET_SETUP_2026-09-23.md`
+
+Machine-readable candidate registry:
+`specs/orchestration/hermes_specialist_fleet.candidates.v1.json`
+
+First-party-verified candidate families:
+
+| Candidate | Research role | Integration shape | Status |
+|---|---|---|---|
+| Muse Spark 1.3 | long-context planner/reviewer, multimodal review | Meta Model API / Muse Code | RESEARCH |
+| Muse Code 1.2.1 | MCP-aware coding worker | WSL CLI on Windows | RESEARCH |
+| Muse Glimmer | local persistent observer | local open-weight model | WATCH |
+| Muse Voice Transcribe | critique / spoken-note ingestion | speech specialist | WATCH |
+| Muse Realtime Avatar | character-presence lab | realtime avatar specialist | WATCH |
+| MiMo V2.6 Pro | general agent challenger | OpenAI/Anthropic-compatible API; first-party Hermes guide | RESEARCH — priority |
+| MiMo V2.6 Pro UltraSpeed | latency / fast subagent canary | same MiMo API family | RESEARCH |
+| Step 5 Preview | frontier planner challenger | StepFun OpenAI-compatible API | RESEARCH |
+| SWE-2 | coding implementation specialist | Devin Desktop/CLI | RESEARCH |
+| Qwen3.8-Omni-Flash | gameplay/video/audio inspection | multimodal API | RESEARCH |
+| HappyOyster Adventure / Directing / Acting | walkable world ideation / previs | QwenCloud world-model APIs | RESEARCH — specialist |
+| Qwen-Image-2.1 | transparent filigree / alpha / decal ideation | image specialist | WATCH |
+| Fugu Max / Ultra v2 | orchestration-vs-Hermes comparison | vendor orchestration surface | WATCH |
+| Mercury 2.5 | high-frequency low-latency subagent | OpenAI-compatible API | RESEARCH |
+
+Promotion rule: **benchmark first, route second**. A successful connectivity probe is not evidence of Melodia fit.
+
+Do not:
+- replace Hermes with Fugu from a single demo;
+- replace Jev with a low-latency model;
+- let HappyOyster write canonical World Genome / UE state;
+- treat SWE-2 as a generic HTTP model unless Cognition documents that access;
+- hard-code Step 5's model id before the current API exposes/confirms it;
+- store provider keys in Git;
+- add every candidate as a permanent daemon.
+
+Default outcome remains **PARK or SPECIALIST**, not fleet inflation.
