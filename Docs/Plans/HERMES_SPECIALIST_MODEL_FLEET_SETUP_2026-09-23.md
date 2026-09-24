@@ -270,12 +270,17 @@ Authority rule:
 > HappyOyster may propose visual/spatial possibilities. It never writes canonical World Genome, gameplay state, or UE world truth directly.
 
 Recommended Faraway Mother canary:
-1. export one approved 16:9 first-frame image;
-2. give HappyOyster the existing Faraway Mother genome **as creative context only**;
-3. explore/direct bounded variations;
-4. capture observations;
-5. Jev receives a closed authored candidate set extracted from those observations;
-6. Hython / World Compiler / UE build any accepted idea deterministically.
+1. Luna prepares one approved 16:9 first-frame image, one fixed Oyster prompt, a time/cost bound, and the evidence-capture checklist;
+2. Luna converts readiness into the closed Jev preflight set `PROCEED | HOLD_MISSING_EVIDENCE`;
+3. Jev audits the packet and selects one preflight candidate with source/confidence/distribution;
+4. only on `PROCEED`, Luna operates HappyOyster Adventure first and Directing only if needed;
+5. Luna captures artifacts and observations without declaring a winner;
+6. Luna reduces the useful findings to exactly three authored candidates `CANDIDATE_A | CANDIDATE_B | CANDIDATE_C`, plus `PARK_OYSTER`;
+7. Jev audits the evidence and selects **one** member of that closed set with source/confidence/distribution;
+8. the owner reviews Jev's bounded decision before any production implementation;
+9. Hython / World Compiler / UE may reproduce an owner-approved idea deterministically through existing authority.
+
+Jev is the **bounded audit/decision layer**, not a creative generator. It may not invent a fourth idea, rewrite Oyster output, or mutate implementation state.
 
 #### Qwen-Image-2.1 — SPECIALIST WATCH
 
@@ -718,13 +723,31 @@ Canary:
 ### HappyOyster Adventure / Directing
 
 Canary:
-- Faraway Mother first-frame;
-- one fixed world prompt;
-- 10 minutes bounded exploration/directing;
-- export video/artifacts;
-- extract **3 closed candidate observations**;
-- Jev may choose among those candidates;
-- no generated asset is automatically imported into UE.
+
+**J0 — Jev preflight audit**
+- Luna assembles first-frame, fixed prompt, duration/cost bound, capture checklist, and explicit authority note;
+- authored closed set: `PROCEED | HOLD_MISSING_EVIDENCE`;
+- Jev selects one candidate and returns source/confidence/distribution;
+- `HOLD_MISSING_EVIDENCE` stops the run until Luna fixes the packet.
+
+**O1 — Oyster exploration**
+- on `PROCEED`, Luna runs Adventure first;
+- 5–10 minutes bounded exploration/directing;
+- export screenshots/video/session artifacts where available;
+- record failures/noise as evidence;
+- Luna does not promote or implement anything.
+
+**J1 — Jev result audit**
+- Luna extracts exactly three implementation-independent ideas from the evidence;
+- closed set: `CANDIDATE_A | CANDIDATE_B | CANDIDATE_C | PARK_OYSTER`;
+- each candidate must include evidence refs, visual/spatial claim, likely existing Melodia owner, and explicit uncertainty;
+- Jev selects exactly one and returns source/confidence/distribution;
+- Jev may not invent a candidate or implementation.
+
+**Owner gate**
+- the owner reviews the selected candidate;
+- no generated asset is automatically imported into UE;
+- implementation, if approved, returns to World Compiler / Hython / PCG / material / level-composition owners.
 
 ### Fugu Max / Ultra v2
 
@@ -753,6 +776,36 @@ Canary:
 Canary:
 - optional noncanonical Melusina presentation test from approved reference media;
 - no gameplay/animation pipeline replacement.
+
+## 9b. Jev audit pattern for generative sidecars
+
+Use this pattern whenever a specialist generates open-ended creative output (world models, image models, avatar/previs systems):
+
+```text
+Luna/Hermes prepares bounded packet
+        |
+        v
+Jev preflight audit
+PROCEED | HOLD_MISSING_EVIDENCE
+        |
+        v
+specialist generates/explores
+        |
+        v
+Luna/Hermes captures evidence
+and authors a closed candidate set
+        |
+        v
+Jev result audit / bounded selection
+        |
+        v
+owner approval
+        |
+        v
+existing deterministic Melodia owner
+```
+
+The producing specialist never grades itself. Jev never invents candidates. The owner remains the final promotion/implementation gate.
 
 ## 10. Changes explicitly forbidden during setup
 
