@@ -82,9 +82,15 @@ class HoudiniFoundryTests(unittest.TestCase):
             out = work / "field.bin"
             out.write_bytes(b"melodia")
             rel = out.relative_to(ROOT).as_posix()
+            recipe = hf.load_json(CATHEDRAL_RECIPE)
             manifest = {
-                "schema": hf.MANIFEST_SCHEMA, "recipe_id": "t", "recipe_sha256": "0" * 64, "seed": 1,
-                "houdini_version": "22.0.368", "tool": {"path": "x", "git_sha": "y"}, "status": "PASS",
+                "schema": hf.MANIFEST_SCHEMA,
+                "recipe_id": recipe["recipe_id"],
+                "recipe_sha256": hf.uf.content_hash(recipe),
+                "seed": recipe["seed"],
+                "houdini_version": "22.0.368",
+                "tool": {"path": "Tools/Houdini/foundry/houdini_foundry.py", "git_sha": "test"},
+                "status": "PASS",
                 "outputs": [{"path": rel, "sha256": hf.sha256_file(out), "bytes": 7}],
             }
             mpath = work / "bake_manifest.json"
@@ -92,6 +98,31 @@ class HoudiniFoundryTests(unittest.TestCase):
             self.assertEqual([], hf.verify_manifest(mpath))
             out.write_bytes(b"melodiA")
             self.assertTrue(any("sha256 mismatch" in e for e in hf.verify_manifest(mpath)))
+        finally:
+            shutil.rmtree(work, ignore_errors=True)
+
+
+    def test_verify_rejects_stale_recipe_hash(self):
+        work = ROOT / "Saved" / "HoudiniFoundry" / "_unittest_hash"
+        work.mkdir(parents=True, exist_ok=True)
+        try:
+            out = work / "field.bin"
+            out.write_bytes(b"melodia")
+            rel = out.relative_to(ROOT).as_posix()
+            recipe = hf.load_json(CATHEDRAL_RECIPE)
+            manifest = {
+                "schema": hf.MANIFEST_SCHEMA,
+                "recipe_id": recipe["recipe_id"],
+                "recipe_sha256": "0" * 64,
+                "seed": recipe["seed"],
+                "houdini_version": "22.0.368",
+                "tool": {"path": "Tools/Houdini/foundry/houdini_foundry.py", "git_sha": "test"},
+                "status": "PASS",
+                "outputs": [{"path": rel, "sha256": hf.sha256_file(out), "bytes": 7}],
+            }
+            mpath = work / "bake_manifest.json"
+            mpath.write_text(json.dumps(manifest), encoding="utf-8")
+            self.assertTrue(any("recipe_sha256 mismatch" in e for e in hf.verify_manifest(mpath)))
         finally:
             shutil.rmtree(work, ignore_errors=True)
 
