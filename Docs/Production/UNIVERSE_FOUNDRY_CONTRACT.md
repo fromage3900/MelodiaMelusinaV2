@@ -152,6 +152,46 @@ Jev may not:
 
 The selected decision becomes context for the specialist that already owns the resulting work.
 
+## 5b. External creative-sidecar audit pattern
+
+External generative systems such as world models may be used as **non-authoritative ideation sidecars** only.
+
+They sit outside the deterministic Foundry mission:
+
+```text
+Hermes/Luna bounded experiment packet
+    |
+    v
+Jev preflight closed-set audit
+    |
+    v
+external creative sidecar
+    |
+    v
+captured artifacts / observations
+    |
+    v
+Hermes/Luna authored closed candidates
+    |
+    v
+Jev result selection
+    |
+    v
+owner approval
+    |
+    v
+existing World Compiler / Hython / PCG / UE owner
+```
+
+For these experiments:
+
+- preflight candidates should normally include `PROCEED` and a hold/reject option;
+- result candidates must be authored from captured evidence before Jev sees them;
+- include `PARK_<SYSTEM>` when "none of these are worth carrying forward" is a legitimate outcome;
+- Jev may select and audit but may not synthesize a new creative candidate;
+- the external system may not write World Genome, World Delta, mission DAG, save state, or Unreal content directly;
+- the producing system's output is evidence/ideation, never acceptance.
+
 ## 6. Faraway Mother World Zero
 
 Faraway Mother is the v0.1 vertical slice because it already has:

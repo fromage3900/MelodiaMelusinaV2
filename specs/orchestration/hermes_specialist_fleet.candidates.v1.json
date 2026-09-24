@@ -221,9 +221,25 @@
         "https://docs.qwencloud.com/api-reference/world-model/happyoyster-integration-flow"
       ],
       "canaries": [
-        "faraway_world_ideation"
+        "jev_preflight",
+        "faraway_world_ideation",
+        "jev_result_audit"
       ],
-      "status": "specialist_candidate"
+      "status": "specialist_candidate",
+      "decision_contract": {
+        "preflight": [
+          "PROCEED",
+          "HOLD_MISSING_EVIDENCE"
+        ],
+        "result": [
+          "CANDIDATE_A",
+          "CANDIDATE_B",
+          "CANDIDATE_C",
+          "PARK_OYSTER"
+        ],
+        "closed_set": true,
+        "owner_approval_after_jev": true
+      }
     },
     {
       "id": "happyoyster-1.0-directing",
@@ -239,7 +255,8 @@
         "https://docs.qwencloud.com/developer-guides/getting-started/world-model/happyoyster-guide"
       ],
       "canaries": [
-        "faraway_directing"
+        "bounded_directing_after_adventure",
+        "jev_result_audit"
       ],
       "status": "specialist_candidate"
     },
