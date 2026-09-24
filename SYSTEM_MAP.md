@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-23
+**Last Updated:** 2026-09-24
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -127,12 +127,14 @@ flowchart TB
     BODY["CharacterMesh0<br/>V2 body + ABP_Melusina_Current"]
     HAIR["WaterHairMesh<br/>water hair + hair AnimBP on head_x"]
     GARMENTS["MelodiaWardrobeComponent<br/>visible garment slots"]
+    REGALIA["Regalia_Wings + 3 rings<br/>OSC/MPC-driven decoration"]
     TRAVEL["MelodiaTraversalComponent<br/>jump / glide behavior"]
     FX["Niagara components<br/>13 systems across 19 mounts"]
   end
   HERO --> BODY
   HERO --> HAIR
   HERO --> GARMENTS
+  HERO --> REGALIA
   HERO --> TRAVEL
   HERO --> FX
 
@@ -140,6 +142,8 @@ flowchart TB
   WARDROBE["Wardrobe subsystem<br/>owned + equipped outfit truth"] --> GARMENTS
   WARDROBE -->|capability / identity| TRAVEL
   HAIR -->|strand-bone mounts| FX
+
+  CONTROL["Existing OSC/MPC control route<br/>owner-confirmed"] -->|appearance / spin signals| REGALIA
 
   QUILL["QuillScript<br/>authored dialogue + encounter intent"] --> NARRATIVE["MelodiaNarrativeSubsystem<br/>facts, consequences, rewards, checkpoints"]
   NARRATIVE -->|encounter request| BRIDGE["External JRPG bridge"]
@@ -157,7 +161,9 @@ flowchart TB
 ```
 
 **How to read the map:** Melusina's Blueprint assembles the playable body, existing animation,
-water hair, wardrobe visuals, traversal, and Niagara mounts. QuillScript, JRPG combat, rhythm,
+water hair, wardrobe visuals, OSC/MPC-driven Regalia decoration, traversal, and Niagara mounts. The
+owner confirms Regalia appearance and spin are working; the 2026-09-24 cache isolation only
+identified which mesh lane produced the captured pale forms. QuillScript, JRPG combat, rhythm,
 wardrobe inventory, save, and cymatics keep their own owners; the pawn participates in their
 contracts. The cymatics arrow to VFX describes the available presentation lane, **not** proof that
 each of the 13 attached systems samples the driver. `BP_MelusinaSwordsman_Presentation` is a
@@ -171,6 +177,7 @@ inventory, quest log, combat result, or save record.
 |---|---|---|
 | Runtime identity and body | `/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`, `CharacterMesh0`, `ABP_Melusina_Current` | Keep the existing GameMode selection and animation owner. |
 | Water hair and drips | `WaterHairMesh` + `ABP_Melusina_WaterHair` on `head_x`; the saved canonical BP references `GC_MelusinaHairFlip_TrimmedZ045_20260923` under the hair component at scale `0.01`, looping, with `MI_Melusina_WaterHair_v10` | Saved-template assignment is confirmed. The existing LIVE PIE receipt covers the older cache; verify candidate bounds, full-cycle/restart playback, movement-follow, and visible drip silhouette in fresh `L_MelusinaMorning` PIE before visual acceptance or cache promotion. |
+| Regalia decoration | `Regalia_Wings`, `Regalia_RingOuter`, `Regalia_RingMid`, `Regalia_RingInner` on the canonical pawn; owner confirms appearance/spin use the existing OSC/MPC route | Intentional runtime decoration. Keep visible in whole-character lookdev; cache isolation identified source geometry but did not test or reject signal control. |
 | Outfits and traversal | `UMelodiaWardrobeSubsystem` → `UMelodiaWardrobeComponent` → `MelodiaTraversalComponent` | Inventory/equip truth stays in Wardrobe; traversal executes capabilities. |
 | Narrative and battle | QuillScript → `UMelodiaNarrativeSubsystem` → external JRPG bridge → Phoenix/rhythm → typed result back to narrative | Quill owns authored consequence; Phoenix owns damage/turns; rhythm grades the selected action once. |
 | Convergence and UI | Existing Convergence seams; `UMelodiaUIBridgeSubsystem` | Interpret and display owned state; do not store a second copy of it. |

@@ -7,7 +7,7 @@
     "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct."
   },
   "melusina_work": {
-    "scope_as_of": "2026-09-23",
+    "scope_as_of": "2026-09-24",
     "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
     "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
     "foundry_boundary_visualization": "SYSTEM_MAP.md#universe-foundry-integration-boundary",
@@ -26,16 +26,16 @@
       {
         "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
         "status": "source_documented",
-        "deliverable": "One visual map of runtime assembly, QuillScript/JRPG/rhythm, Wardrobe/traversal, Cymatics, and Universe Foundry boundaries.",
+      "deliverable": "One visual map of runtime assembly including OSC/MPC-driven Regalia, QuillScript/JRPG/rhythm, Wardrobe/traversal, Cymatics, and Universe Foundry boundaries.",
         "evidence": ["SYSTEM_MAP.md#melusina-blueprint-family", "SYSTEM_MAP.md#melusina-runtime-system-diagram", "SYSTEM_MAP.md#universe-foundry-integration-boundary"],
         "remaining_gate": "Keep CURRENT_STATE.md as the only live-status authority and revise the map only when an owner boundary changes."
       },
       {
         "id": "MELUSINA_MORNING_RUNTIME_PORTRAIT",
-        "status": "draft_capture_face_readability_open",
+        "status": "fresh_morning_pie_identity_proven_portrait_held",
         "deliverable": "A reviewed Morning PIE portrait of the single possessed canonical pawn with readable face, hair/drips, wardrobe, and held prop.",
-        "evidence": ["Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT.jpg is a gameplay contact-sheet draft", "Saved/Audit/melusina_blink_20260923/nikki_hair_lit.png proves the newer hair MI renders but the face remains dark"],
-        "remaining_gate": "Fresh L_MelusinaMorning PIE identity/view-target receipt, face and silhouette readability under gameplay lighting, full-body three-quarter view, and Jev review of the actual captures."
+        "evidence": ["Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT.jpg is a gameplay contact-sheet draft", "Saved/Audit/melusina_blink_20260923/nikki_hair_lit.png proves the newer hair MI renders but the face remains dark", "Saved/Audit/melusina_bake_staging_20260922/canonical_morning_pie_stage.json proves the 2026-09-24 Morning PIE pawn/body/hair identity with transient camera", "Saved/Audit/melusina_bake_staging_20260922/morning_drip_cycle_20260924/ contains the fresh static-camera capture; Jev reviewed later frames and held portrait acceptance for dark/occluded face and cluttered framing", "Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json records proof limits and gate state"],
+        "remaining_gate": "Capture lit readable face close-up, three-quarter full body, and gameplay-lighting view from a correctly framed fresh Morning PIE; review actual captures with Jev. Identity passes, visual acceptance remains HOLD."
       },
       {
         "id": "MELUSINA_HAIR_EYE_BAKES",
@@ -46,10 +46,17 @@
       },
       {
         "id": "MELUSINA_WATER_HAIR_DRIPS",
-        "status": "trimmed_candidate_saved_in_bp_fresh_pie_open",
+        "status": "trimmed_candidate_live_binding_proven_visual_hold",
         "deliverable": "Use the pool-trimmed 240-frame Geometry Cache as a supporting drip layer beneath existing water hair only after runtime review.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json proves Blender candidate round-trip at sampled frames", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_trimmed_ue_import_20260923.json records a saved one-track UE cache candidate", "CURRENT_STATE.md records Monolith disk-backed confirmation that the canonical BP template references the trimmed cache at identity local transform, scale 0.01, looping, with MI_Melusina_WaterHair_v10", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json is LIVE PIE proof for the older untrimmed cache only"],
-        "remaining_gate": "Fresh single-writer L_MelusinaMorning PIE of the saved candidate: verify effective world transform and bounds across the full cycle, restart playback, follow during a short walk/turn/stop, retain visible parent hair, and capture Jev-accepted readable drips with no pool. The candidate .uasset is untracked; promote only its exact dependency and provenance after all gates pass."
+        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json proves Blender candidate round-trip at sampled frames", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_candidate_all_frames_bounds_20260924.json measures all 240 Blender source frames; all are nonempty, object-local z is 0.4500-1.4185 m, and source hash matches the trimmed Alembic", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_trimmed_ue_import_20260923.json records a saved one-track UE cache candidate", "Fresh transient Morning PIE `pie_smoke_5_235802` confirms candidate path, WaterHairMesh parent, identity relative transform, scale 0.01, one track, 10.0-second duration, playing and looping; details in Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json", "The cache-hidden comparison left the long forms visible; hiding the four existing Regalia meshes removed them. Owner confirms these are intentional OSC/MPC-driven decorations. The Regalia-hidden/cache-visible comparison was too close and poorly framed to judge the drip silhouette.", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json is LIVE PIE proof for the older untrimmed cache only"],
+        "remaining_gate": "Measure post-scale Unreal bounds across all 240 frames against head/hair bounds; capture a complete loop and explicit fresh restart; prove follow during player-controlled walk/turn/stop with parent hair visible; then secure Jev visual acceptance. The current candidate remains untracked and unpromoted."
+      },
+      {
+        "id": "MELUSINA_REGALIA_OSC_MPC_PRESENTATION",
+        "status": "owner_confirmed_working_intentional_runtime_presentation",
+        "deliverable": "Keep the canonical pawn's wings and three rings as intentional decoration, with appearance and spin driven by the existing OSC/MPC integration.",
+        "evidence": ["Owner confirms the Regalia decorations and OSC/MPC-driven appearance/spin are proven and working.", "Fresh Morning PIE component inventory finds Regalia_Wings, Regalia_RingOuter, Regalia_RingMid, and Regalia_RingInner on the canonical pawn.", "Transient cache isolation shows the pale forms in that capture belong to Regalia geometry; it does not evaluate or disprove the OSC/MPC control route. See Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json."],
+        "remaining_gate": "No rerun is required for this closeout. Keep Regalia present during whole-character lookdev; when its control route changes, audit the existing OSC source, MPC writer/parameters, and runtime consumers without adding another authority."
       },
       {
         "id": "MELUSINA_NIAGARA_CONTEXT_REVIEW",

@@ -23,9 +23,11 @@ the full-system lookdev; the isolation only attributes those forms to Regalia in
 With Regalia hidden and the candidate cache visible, no clear drip silhouette was discernible in
 the close/poorly framed capture, so cache visual acceptance remains unresolved. Jev reviewed the
 unisolated frames and held portrait/cache acceptance: face remains dark and partly occluded.
-Full-cycle bounds, explicit restart, player-controlled movement-follow, and an accepted ordinary-
-lighting portrait remain open. Keep the existing cache assignment unchanged and unpromoted. Detailed
-receipt and frame paths:
+The Alembic source is now measured on all 240 Blender frames; all are nonempty and object-local
+z bounds are 0.4500–1.4185 m, matching the 0.45 m trim rule. This is source-space evidence, not UE
+world bounds; cache-to-head bounds, explicit restart, player-controlled movement-follow, and an
+accepted ordinary-lighting portrait remain open. Keep the existing cache assignment unchanged and
+unpromoted. Detailed receipt and frame paths:
 `Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json`.
 
 World Compiler live close-out **2026-09-19**: `--skip-scaffold --fx --lookdev` **PASS**. Meadow on **BrushifyIsland_*** SpeedTree + walk dressing — not Sphere3D. Proof `Saved/Audit/world_compiler_morning_rainbow_bloom_proof_2026-09-19.json`. Board: `Saved/Audit/Screens/wc_morning_rainbow_bloom_{waterline_dolly,website_oblique,website_top,website_south,south_fix}_2026-09-19.png`.
@@ -106,7 +108,7 @@ This section only records live state and the owner's order for tonight.
 - **Blink:** PIE-proven 2026-09-23: the ABP curves animate `eyeBlinkLeft/Right` (0→1), and the lids cover the static `EyeIrises`/`EyeLashes`; see the proof below. Do not describe the blink as unseen.
 - **Regalia decoration:** fresh runtime inventory finds `Regalia_Wings`, `Regalia_RingOuter`, `Regalia_RingMid`, and `Regalia_RingInner` on the canonical pawn. The owner confirms OSC/MPC-driven appearance and spin are intended and working. The cache isolation showed the pale forms in that capture were Regalia geometry; it did not test or invalidate their signal route. Keep this decoration visible in whole-character lookdev. The current cache-only comparison was too close and poorly framed to judge the drip layer.
 - **Baked hair/eye maps:** 24 manifest-matched maps are imported locally. The current tether audit found zero Copernicus map references on the audited runtime MIs; a named compatible render target and material review remain open. `final_bake_verify.json` retains the HairB BaseColor self-occlusion limitation.
-- **FLIP drip:** the trimmed 240-frame candidate is imported and referenced by the saved canonical BP template as `WaterHairFlipCache`, under the existing hair component, identity local transform, scale 0.01, looping enabled, with `MI_Melusina_WaterHair_v10`. Fresh PIE confirms the candidate is playing as one 10-second track. Bounds over all frames, explicit restart, player-controlled movement-follow, and visible-drip acceptance remain open; the earlier live receipt covers only the untrimmed cache.
+- **FLIP drip:** the trimmed 240-frame candidate is imported and referenced by the saved canonical BP template as `WaterHairFlipCache`, under the existing hair component, identity local transform, scale 0.01, looping enabled, with `MI_Melusina_WaterHair_v10`. Fresh PIE confirms the candidate is playing as one 10-second track. Blender measured every source frame (all nonempty, object-local z 0.4500–1.4185 m; `Saved/Audit/melusina_bake_staging_20260922/flip_cache_candidate_all_frames_bounds_20260924.json`). Direct Unreal world bounds against head/hair, explicit restart, player-controlled movement-follow, and visible-drip acceptance remain open; the earlier live receipt covers only the untrimmed cache.
 - **VFX:** 19 Niagara components, all active at idle (11 are action/skill systems).
 
 **Owner order (2026-09-23 evening):**
