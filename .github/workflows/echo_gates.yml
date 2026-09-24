@@ -88,6 +88,9 @@ jobs:
       - name: Execute offline contract suites
         run: python Tools/run_contract_tests.py --offline --ci
 
+      - name: Houdini Foundry contract tests
+        run: python Tools/Houdini/foundry/test_houdini_foundry.py
+
       - name: Project health scorecard (offline slice)
         run: python Tools/health.py --offline --json
 
