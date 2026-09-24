@@ -32,6 +32,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[3]
 SPEC_DIR = ROOT / "specs" / "houdini_foundry"
+RECIPE_DIR = ROOT / "recipes" / "houdini_foundry"
 CHANNELS_PATH = SPEC_DIR / "field_atlas_channels.v1.json"
 OUTPUT_ROOT = "Saved/HoudiniFoundry"
 EVIDENCE_ROOT = "Saved/Audit/houdini_foundry"
@@ -271,6 +272,19 @@ def build_plan(recipe: dict[str, Any]) -> dict[str, Any]:
 
 
 # ----------------------------------------------------------------------------- manifest verification
+def _recipes_for_id(recipe_id: str) -> list[tuple[Path, dict[str, Any]]]:
+    """Resolve a committed Foundry recipe by id without trusting the manifest."""
+    matches: list[tuple[Path, dict[str, Any]]] = []
+    for path in sorted(RECIPE_DIR.glob("*.json")):
+        try:
+            data = load_json(path)
+        except (OSError, json.JSONDecodeError):
+            continue
+        if data.get("schema") == RECIPE_SCHEMA and data.get("recipe_id") == recipe_id:
+            matches.append((path, data))
+    return matches
+
+
 
 def verify_manifest(manifest_path: Path) -> list[str]:
     manifest = load_json(manifest_path)
@@ -284,6 +298,35 @@ def verify_manifest(manifest_path: Path) -> list[str]:
         return errors
     if manifest["status"] not in MANIFEST_STATUS:
         errors.append(f"status must be one of {MANIFEST_STATUS}")
+
+    recipe_matches = _recipes_for_id(str(manifest["recipe_id"]))
+    if len(recipe_matches) != 1:
+        errors.append(
+            f"recipe_id must resolve to exactly one committed recipe: {manifest['recipe_id']} "
+            f"(found {len(recipe_matches)})"
+        )
+    else:
+        recipe_path, recipe = recipe_matches[0]
+        expected_recipe_hash = uf.content_hash(recipe)
+        if manifest["recipe_sha256"] != expected_recipe_hash:
+            errors.append(
+                f"recipe_sha256 mismatch for {recipe_path.relative_to(ROOT).as_posix()}: "
+                f"manifest={manifest['recipe_sha256']} expected={expected_recipe_hash}"
+            )
+        if manifest["seed"] != recipe["seed"]:
+            errors.append(
+                f"seed mismatch for {recipe_path.relative_to(ROOT).as_posix()}: "
+                f"manifest={manifest['seed']} expected={recipe['seed']}"
+            )
+
+    tool = manifest.get("tool", {})
+    if not isinstance(tool, dict) or not _is_repo_relative(str(tool.get("path", ""))):
+        errors.append("tool.path must be a repo-relative path")
+    elif not (ROOT / str(tool["path"])).exists():
+        errors.append(f"tool.path does not exist: {tool['path']}")
+    if not isinstance(tool, dict) or not str(tool.get("git_sha", "")).strip():
+        errors.append("tool.git_sha is required")
+
     if manifest["status"] == "PASS" and not manifest["outputs"]:
         errors.append("PASS manifest must list outputs")
     for output in manifest["outputs"]:
