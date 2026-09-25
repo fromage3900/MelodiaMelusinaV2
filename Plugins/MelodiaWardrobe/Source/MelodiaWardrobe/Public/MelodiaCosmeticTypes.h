@@ -28,8 +28,9 @@ enum class EMelodiaCosmeticRarity : uint8
 /**
  * A traversal capability a Resonant Form may unlock.
  *
- * These are the capabilities UMelodiaTraversalComponent ACTUALLY implements today
- * (glide with stamina, dash, swim) -- not aspirational ones. Adding a value here
+ * These are the capabilities the traversal authorities ACTUALLY implement today
+ * (glide with stamina, dash, swim on UMelodiaTraversalComponent; sail on
+ * AMelodiaStarskiffPawn boarding) -- not aspirational ones. Adding a value here
  * without a matching implementation creates a form that promises something the
  * traversal authority cannot deliver.
  */
@@ -38,7 +39,8 @@ enum class EMelodiaFormCapability : uint8
 {
 	Glide,
 	Dash,
-	Swim
+	Swim,
+	Sail
 };
 
 /**
@@ -193,6 +195,13 @@ struct MELODIAWARDROBE_API FMelodiaCosmeticRecord
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe")
 	EMelodiaWardrobeSlot Slot = EMelodiaWardrobeSlot::Body;
+
+	/**
+	 * Other slots this garment replaces -- a full dress clears Shirt and Accessories.
+	 * Equipping it unequips them; equipping into one of them takes this garment off.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe")
+	TArray<EMelodiaWardrobeSlot> ReplacedSlots;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Wardrobe")
 	EMelodiaCosmeticRarity Rarity = EMelodiaCosmeticRarity::Common;

@@ -11,6 +11,10 @@
 #include "MelodiaOpeningFlowSubsystem.h"
 #include "MelodiaPacingSubsystem.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMaterialLibrary.h"
+#include "Materials/MaterialParameterCollection.h"
+#include "MelodiaRhythmReactivitySubsystem.h"
+#include "Sound/SoundBase.h"
 #include "TimerManager.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -18,6 +22,20 @@ AMelodiaSirMelodiousIntroActor::AMelodiaSirMelodiousIntroActor()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = false;
+
+	// Duet voice: the palette bird chirps, answered pitch-shifted to her note.
+	static const TCHAR* ChirpPaths[] = {
+		TEXT("/Game/Audio/Aud_Source/fx_Amb_SoundScape/Birds/amb_ss_palette_bird01_mid_01.amb_ss_palette_bird01_mid_01"),
+		TEXT("/Game/Audio/Aud_Source/fx_Amb_SoundScape/Birds/amb_ss_palette_bird01_mid_03.amb_ss_palette_bird01_mid_03"),
+		TEXT("/Game/Audio/Aud_Source/fx_Amb_SoundScape/Birds/amb_ss_palette_bird01_mid_05.amb_ss_palette_bird01_mid_05")};
+	for (const TCHAR* ChirpPath : ChirpPaths)
+	{
+		ConstructorHelpers::FObjectFinder<USoundBase> Chirp(ChirpPath);
+		if (Chirp.Succeeded())
+		{
+			AnswerChirps.Add(Chirp.Object);
+		}
+	}
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
 	ReunionTrigger = CreateDefaultSubobject<USphereComponent>(TEXT("ReunionTrigger"));
@@ -80,6 +98,12 @@ void AMelodiaSirMelodiousIntroActor::BeginPlay()
 {
 	Super::BeginPlay();
 	ReunionTrigger->OnComponentBeginOverlap.AddDynamic(this, &AMelodiaSirMelodiousIntroActor::HandleReunionOverlap);
+	if (UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+	{
+		Reactivity->OnNotePlayed.AddUniqueDynamic(this, &AMelodiaSirMelodiousIntroActor::HandleNotePlayed);
+	}
+	DuetPalette = LoadObject<UMaterialParameterCollection>(nullptr,
+		TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"));
 	if (UMelodiaOpeningFlowSubsystem* Flow = UMelodiaOpeningFlowSubsystem::Get(this))
 	{
 		Flow->BeginMorning();
@@ -228,6 +252,7 @@ bool AMelodiaSirMelodiousIntroActor::BeginWindowDeparture()
 void AMelodiaSirMelodiousIntroActor::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	TickDuetAnswer(DeltaSeconds);
 	if (!bDepartureActive)
 	{
 		return;
@@ -264,9 +289,9 @@ void AMelodiaSirMelodiousIntroActor::Tick(const float DeltaSeconds)
 			TScriptInterface<IMelodiaTravelProvider> Travel = Locator->GetTravelProvider();
 			if (Travel.GetObject())
 			{
-				UE_LOG(LogTemp, Warning, TEXT("MELUSINA_DEPARTURE: Departure animation complete, routing TravelTo(%s) via authority locator"),
-					*DepartureDestinationLevel.ToString());
-				bRoutedThroughAuthority = Travel->TravelTo(DepartureDestinationLevel, NAME_None);
+				UE_LOG(LogTemp, Warning, TEXT("MELUSINA_DEPARTURE: Departure animation complete, routing TravelTo(%s, %s) via authority locator"),
+					*DepartureDestinationLevel.ToString(), *DepartureSpawnTag.ToString());
+				bRoutedThroughAuthority = Travel->TravelTo(DepartureDestinationLevel, DepartureSpawnTag);
 			}
 		}
 
@@ -276,5 +301,57 @@ void AMelodiaSirMelodiousIntroActor::Tick(const float DeltaSeconds)
 				*DepartureDestinationLevel.ToString());
 			UGameplayStatics::OpenLevel(this, DepartureDestinationLevel);
 		}
+	}
+}
+
+void AMelodiaSirMelodiousIntroActor::HandleNotePlayed(const int32 MidiNote, const EMelodiaRhythmGrade Grade)
+{
+	PendingAnswerNote = MidiNote;
+	PendingAnswerGrade = Grade;
+	PendingAnswerWait = 0.0f;
+	LastDuetBeatPhase = DuetPalette
+		? UKismetMaterialLibrary::GetScalarParameterValue(this, DuetPalette, TEXT("BeatPhase")) : 0.0f;
+	SetActorTickEnabled(true);
+}
+
+void AMelodiaSirMelodiousIntroActor::TickDuetAnswer(const float DeltaSeconds)
+{
+	if (PendingAnswerNote < 0)
+	{
+		return;
+	}
+	PendingAnswerWait += DeltaSeconds;
+	const float BeatPhase = DuetPalette
+		? UKismetMaterialLibrary::GetScalarParameterValue(this, DuetPalette, TEXT("BeatPhase")) : 0.0f;
+	const bool bOnBeat = BeatPhase < LastDuetBeatPhase;
+	LastDuetBeatPhase = BeatPhase;
+	if (!bOnBeat && PendingAnswerWait < MaxAnswerWaitSeconds)
+	{
+		return;
+	}
+
+	// His answer sits an interval above her note; the chirp is pitched relative to
+	// middle C so the call and response keep the same interval across the lanes.
+	const int32 AnswerNote = PendingAnswerNote + AnswerIntervalSemitones;
+	const float Pitch = FMath::Clamp(FMath::Pow(2.0f, (AnswerNote - 72) / 12.0f), 0.5f, 2.0f);
+	float Volume = 0.35f;
+	switch (PendingAnswerGrade)
+	{
+	case EMelodiaRhythmGrade::Perfect: Volume = 1.0f; break;
+	case EMelodiaRhythmGrade::Great:   Volume = 0.8f; break;
+	case EMelodiaRhythmGrade::Good:    Volume = 0.6f; break;
+	default: break;
+	}
+	if (AnswerChirps.Num() > 0)
+	{
+		USoundBase* Chirp = AnswerChirps[((AnswerNote % AnswerChirps.Num()) + AnswerChirps.Num()) % AnswerChirps.Num()];
+		UGameplayStatics::PlaySoundAtLocation(this, Chirp, GetActorLocation(), Volume, Pitch);
+	}
+	UE_LOG(LogTemp, Log, TEXT("MELUSINA_SIR_ANSWER call=%d answer=%d pitch=%.3f volume=%.2f start=%s wait=%.3fs"),
+		PendingAnswerNote, AnswerNote, Pitch, Volume, bOnBeat ? TEXT("beat") : TEXT("timeout"), PendingAnswerWait);
+	PendingAnswerNote = -1;
+	if (!bDepartureActive)
+	{
+		SetActorTickEnabled(false);
 	}
 }

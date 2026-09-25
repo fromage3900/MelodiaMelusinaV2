@@ -1,6 +1,6 @@
 // Copyright Melodia. Transport authority for the Listening Field phrase bus.
 //
-// Receives melodia.phrase/v1 state over OSC/UDP 127.0.0.1:9000 (see
+// Receives melodia.phrase/v1 state over OSC/UDP 127.0.0.1:9002 (see
 // Tools/phrase_bridge/ and Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md)
 // and republishes it on the game thread. TRANSPORT ONLY: this subsystem
 // never writes MPCs, never drives Niagara, never moves sheep, never compiles
@@ -101,7 +101,7 @@ public:
 	virtual void Deinitialize() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Phrase Bus")
-	void StartListening(int32 Port = 9000);
+	void StartListening(int32 Port = 9002);
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Phrase Bus")
 	void StopListening();

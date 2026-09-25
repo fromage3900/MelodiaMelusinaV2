@@ -172,6 +172,9 @@ public:
      */
     static UMultiWorldManager & GetInstance(const UObject * context);
 
+    /** Override USubsystem::ShouldCreateSubsystem */
+    virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+
     /** Override USubsystem::Initialize */
     virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 

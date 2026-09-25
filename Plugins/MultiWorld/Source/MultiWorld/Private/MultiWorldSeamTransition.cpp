@@ -30,6 +30,12 @@ UMultiWorldSeamTransition::UMultiWorldSeamTransition()
     UMGEffetLayerClass = WBPClassFinder.Class;
 }
 
+bool UMultiWorldSeamTransition::ShouldCreateSubsystem(UObject* Outer) const
+{
+    // Depends on UMultiWorldManager; exist exactly when it does.
+    return GetDefault<UMultiWorldManager>()->ShouldCreateSubsystem(Outer);
+}
+
 void UMultiWorldSeamTransition::Initialize(FSubsystemCollectionBase& Collection)
 {
     Super::Initialize(Collection);

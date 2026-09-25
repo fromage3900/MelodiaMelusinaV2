@@ -4,7 +4,12 @@
 #include "Animation/AnimBlueprintGeneratedClass.h"
 #include "Engine/SkeletalMesh.h"
 #include "Engine/World.h"
+#include "ExternalForces/KawaiiPhysicsExternalForce_Basic.h"
 #include "GameFramework/Character.h"
+#include "GameplayTagContainer.h"
+#include "KawaiiPhysicsLibrary.h"
+#include "MelodiaMusicClockSubsystem.h"
+#include "StructUtils/InstancedStruct.h"
 #include "TimerManager.h"
 #include "UObject/ConstructorHelpers.h"
 #include "UObject/UnrealType.h"
@@ -320,4 +325,49 @@ void UMelodiaHairComponent::RestoreOwnerMeshReference()
 	RedirectedPresentationMesh.Reset();
 	bOriginalMechanicsMeshWasVisible = true;
 	bOriginalMechanicsMeshWasHiddenInGame = false;
+}
+
+void UMelodiaHairComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+	FActorComponentTickFunction* ThisTickFunction)
+{
+	// Queue the force before the tick evaluates the hair AnimBP, so Kawaii
+	// consumes it this frame.
+	ApplyMusicForce();
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+void UMelodiaHairComponent::ApplyMusicForce()
+{
+	const UWorld* World = GetWorld();
+	const AActor* Owner = GetOwner();
+	if (!World || !World->IsGameWorld() || !Owner || !GetAnimInstance())
+	{
+		return;
+	}
+
+	const float Pulse = UMelodiaMusicClockSubsystem::GetMusicPulse(this);
+	const float BeatPhase = UMelodiaMusicClockSubsystem::GetMusicBeatPhase(this);
+	if (BeatPhase < LastMusicBeatPhase)
+	{
+		bMusicSwayRight = !bMusicSwayRight;
+	}
+	LastMusicBeatPhase = BeatPhase;
+
+	// Rests carry no pulse: add nothing and let the simulation settle.
+	if (Pulse <= KINDA_SMALL_NUMBER)
+	{
+		return;
+	}
+
+	// World space, relative to her facing, so the sway reads the same from any
+	// camera and does not depend on the hair skeleton's authored axes.
+	const FVector Side = Owner->GetActorRightVector() * (bMusicSwayRight ? 1.0f : -1.0f);
+	FKawaiiPhysics_ExternalForce_Basic Force;
+	Force.ExternalForceSpace = EExternalForceSpace::WorldSpace;
+	Force.ForceDir = (Side * MusicSwayForce + FVector::UpVector * MusicLiftForce) * Pulse;
+
+	TArray<FInstancedStruct> Forces;
+	Forces.Add(FInstancedStruct::Make(Force));
+	FGameplayTagContainer NoFilter;
+	UKawaiiPhysicsLibrary::AddExternalForcesToComponent(this, Forces, this, NoFilter, false, true);
 }

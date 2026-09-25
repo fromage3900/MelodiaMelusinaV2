@@ -100,6 +100,7 @@ public:
     UMultiWorldSeamTransition();
 
 	// Begin USubsystem
+    virtual bool ShouldCreateSubsystem(UObject* Outer) const override; ///< Override
     virtual void Initialize(FSubsystemCollectionBase& Collection) override; ///< Override
 	// End USubsystem
 

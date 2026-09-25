@@ -26,7 +26,7 @@ PROJECT_ROOT = os.environ.get(
 TD_MCP_PORT = 9870
 UE_OSC_PORT = 8000
 TD_OSC_PORT = 9000
-BLENDER_OSC_PORT = 9000
+BLENDER_OSC_PORT = 9001
 
 SENTINEL_PATH = os.path.join(PROJECT_ROOT, "Saved", "Audit", "AGENT_LOOP_TICK_td_orch")
 OSC_ROUTING_PATH = os.path.join(PROJECT_ROOT, "deploy", "osc_routing.json")

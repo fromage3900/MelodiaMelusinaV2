@@ -25,7 +25,7 @@ REPORT_PATH = os.path.join(PROJECT_ROOT, r"BS_GodFile\Saved\Audit\osc_validation
 
 UE_OSC_PORT = 8000
 TD_OSC_PORT = 9000
-BLENDER_OSC_PORT = 9000
+BLENDER_OSC_PORT = 9001
 
 
 def _check_port(port, label):

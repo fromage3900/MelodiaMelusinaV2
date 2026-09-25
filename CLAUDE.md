@@ -162,6 +162,19 @@ procedural tools author world/content variation; they are not a second gameplay 
 
 **Current focus and queue:** [`CURRENT_STATE.md`](CURRENT_STATE.md) §4.
 
+**Melusina asset pipeline (2026-09-25).** Edit only the working copy
+`harp_bow_pipeline/Melusina_Harp_HERO01_ArcherPoseV09_ARP_R09_HotPass.blend`; R08 is canonical and
+untouched. Export with `Tools/melusina_export_dryrun.py` → staging only, check with
+`Tools/validate_melusina_staged_fbx.py`, contract in `Tools/melusina_export_contract.json`.
+**Reimport onto the live UE meshes is blocked** (no anim instance → T-pose) — see `CURRENT_STATE.md`
+before trying again; never reimport over a live mesh without a `.uasset` backup.
+
+**Delegation.** Jev's ruling (2026-09-25): tiered — cheap/local workers for bulk mechanical work,
+Sonnet subagents for scoped rig/editor-adjacent work, the main session plans and verifies. Delegated
+output is not evidence: on 2026-09-25 a subagent reported a "smooth" SDF bake whose image was
+scattered dots. Look at the artifact yourself. Never let a subagent write to the blend or editor the
+main session is using.
+
 **Agent tooling — Unreal MCP surfaces.** They are registered in the workspace-level
 `C:/EnvironmentPortfolio/.mcp.json`, not in this repo's `.mcp.json` (which lists only `agent_bridge`,
 `claireon` and `melodia`). Verified 2026-09-14:

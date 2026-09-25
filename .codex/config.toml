@@ -90,3 +90,4 @@ args = ['C:\Users\froma\AppData\Roaming\npm\node_modules\ollama-mcp\dist\index.j
 
 [mcp_servers.ollama-mcp.env]
 OLLAMA_HOST = "http://127.0.0.1:11434"
+

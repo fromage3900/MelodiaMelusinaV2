@@ -13,6 +13,20 @@ class USoundClass;
 class FSocket;
 class FInternetAddr;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FMelodiaNotePlayed, int32, MidiNote, EMelodiaRhythmGrade, Grade);
+
+/** Dynamic materials created for one performance-surface component. */
+class UTexture;
+
+USTRUCT()
+struct FMelodiaPerformanceSurfaceMaterials
+{
+	GENERATED_BODY()
+
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UMaterialInstanceDynamic>> Materials;
+};
+
 USTRUCT(BlueprintType)
 struct FMelodiaRhythmReactivitySignal
 {
@@ -37,6 +51,12 @@ struct FMelodiaRhythmReactivitySignal
 	 * Presentation-only (Decision 033). Never feeds damage or results.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float TensionSustain = 0.0f;
+	/** Last played note's pitch class (0 = C .. 11 = B), -1 before any note. Selects the performance-surface Chladni figure. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") int32 LastPitchClass = -1;
+	/** Grade of the last individually judged note (per-note, unlike the command-level LastRhythmGrade). */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") EMelodiaRhythmGrade LastNoteGrade = EMelodiaRhythmGrade::Miss;
+	/** 1 on each judged note, decaying; blooms the performance-surface figure. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Reactivity") float NotePulse = 0.0f;
 	/**
 	 * Continuous dissonance register derived from TensionSustain:
 	 * 0 = Clear, 1 = Strain, 2 = Rupture. Maps onto the existing
@@ -77,6 +97,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|Reactivity")
 	void NotifyBeat(float InBPM, float InBeatPhase = 0.0f);
 
+	/** A single judged note: its pitch picks the Chladni figure on performance surfaces, its grade how brightly it blooms. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Reactivity")
+	void NotifyPlayedNote(int32 MidiNote, EMelodiaRhythmGrade Grade);
+
 	UFUNCTION(BlueprintCallable, Category="Melodia|Reactivity")
 	void NotifyCommandResolved(EMelodiaRhythmGrade Grade, float InCommandEnergy, float InComboNormalized, float InCrescendoNormalized, uint8 InRhythmElement);
 
@@ -107,6 +131,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|Reactivity")
 	void RegisterReactiveMeshComponent(UPrimitiveComponent* MeshComponent);
 
+	/** Registers a garment as a performance surface: the player's last rhythm grade plays back
+	 * on it as a Chladni figure (whole-number modes = clean nodal lines on Perfect/Great,
+	 * fractional modes = broken figures on Good/Miss) that blooms with each graded command.
+	 * Re-registering the same component replaces its entries (garment swaps). Outline shell
+	 * slots are skipped so the ink line never carries the pattern. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Reactivity")
+	void RegisterPerformanceSurface(UPrimitiveComponent* MeshComponent);
+
 	/** Presentation-only CustomDepth/stencil bridge for outline materials. A value of 0 disables
 	 * the pass; positive values enable it and select the owner's preset (typically 1/2/3).
 	 * This helper does not choose interaction mappings or affect gameplay authority. */
@@ -115,6 +147,10 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category="Melodia|Reactivity")
 	FMelodiaRhythmReactivityChanged OnSignalChanged;
+
+	/** Each individually judged note, for presentation listeners (Sir Melodious answers it). */
+	UPROPERTY(BlueprintAssignable, Category="Melodia|Reactivity")
+	FMelodiaNotePlayed OnNotePlayed;
 
 private:
 	/** Seconds between at-rest publishes, so TouchDesigner can tell a live-but-idle
@@ -140,6 +176,16 @@ private:
 
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<UMaterialInstanceDynamic>> ReactiveDynamicMaterials;
+
+	/** Performance surfaces (garments), keyed by the owning component so a swap replaces them. */
+	UPROPERTY(Transient)
+	TMap<TObjectPtr<UPrimitiveComponent>, FMelodiaPerformanceSurfaceMaterials> PerformanceSurfaces;
+
+	void PublishToPerformanceSurfaces() const;
+
+	/** The 12 baked pitch-class Chladni figures (C..B), loaded once. */
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UTexture>> PitchClassFigures;
 
 	/** Resolved once in Initialize() instead of LoadObject-by-path on every
 	 * SetMPCScalar call (was 14x/frame via the unconditional per-tick Publish). */

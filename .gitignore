@@ -196,6 +196,11 @@ Content/TurnBasedJRPGTemplate/Blueprints/Units/EnemyUnits/*
 !Content/Melodia/UI/
 Content/Melodia/UI/*
 !Content/Melodia/UI/Quill/
+# Token-owned typography family used by the tracked Quill WBPs.
+!Content/Melodia/UI/Fonts/
+Content/Melodia/UI/Fonts/*
+!Content/Melodia/UI/Fonts/InterTokens/
+!Content/Melodia/UI/Fonts/InterTokens/**
 
 !Content/EnvSandbox/
 Content/EnvSandbox/*

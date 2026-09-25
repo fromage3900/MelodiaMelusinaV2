@@ -29,16 +29,16 @@ Trace authority clock ([`bridge.py`](../../Tools/phrase_bridge/bridge.py)): **80
 
 ---
 
-## 2. Transport — UDP OSC `:9000` only
+## 2. Transport — UDP OSC `:9002` only
 
-Phrase packets move as OSC 1.0 over **UDP `127.0.0.1:9000`**. Encoder: [`Tools/phrase_bridge/osc_min.py`](../../Tools/phrase_bridge/osc_min.py) (stdlib only). Addresses:
+Phrase packets move as OSC 1.0 over **UDP `127.0.0.1:9002`**. Encoder: [`Tools/phrase_bridge/osc_min.py`](../../Tools/phrase_bridge/osc_min.py) (stdlib only). Addresses:
 
 | Address | Typetag | On-wire size | Payload |
 |---|---|---|---|
 | `/melodia/phrase/state` | `,isifsfi` | 72 B | `phrase_index:int`, `section:str`, `bar:int`, `energy:float`, `energy_trend:str`, `confidence:float`, `boundary_pulse:int 0/1` |
 | `/melodia/phrase/boundary` | `,ii` | 40 B | `phrase_index:int`, `bar:int` (sent once at the start of a pulsed bar) |
 
-UE consumer is **transport-only**: [`MelodiaPhraseBusSubsystem`](../../Source/BS_GodFile/MelodiaIntegration/MelodiaPhraseBusSubsystem.h) listens on **UDP `127.0.0.1:9000`**, republishes on the game thread, and **never** writes MPCs, Niagara, sheep, or World Compiler data. Consumers subscribe to delegates and stay single-writer on their own surfaces. Silence timeout default: **6 s** (two bars at 80 BPM).
+UE consumer is **transport-only**: [`MelodiaPhraseBusSubsystem`](../../Source/BS_GodFile/MelodiaIntegration/MelodiaPhraseBusSubsystem.h) listens on **UDP `127.0.0.1:9002`**, republishes on the game thread, and **never** writes MPCs, Niagara, sheep, or World Compiler data. Consumers subscribe to delegates and stay single-writer on their own surfaces. Silence timeout default: **6 s** (two bars at 80 BPM).
 
 **Live ingest is `RecvFrom`** on the unconnected datagram socket. `Recv()` is the retired bug (packets never reached Parse; GetCurrentState stayed bar 0 / energy 0.0). **LIVE PROVEN 2026-09-20:** PIE `UEDPIE_0_L_MelusinaMorning`, loaded `UnrealEditor-BS_GodFile.dll` 3,232,768 bytes mtime 2026-09-20 17:48:36, GetCurrentState bar 0/energy 0.0 → bar 10/energy 0.92 (phrase_index 4, CLIMAX, RISING). Session proof lives only in [`CURRENT_STATE.md`](../../CURRENT_STATE.md). The `.cpp` is landed; this spec stays transport-only. Do not revive `Recv()`. Do not invent a second OSC port or a second phrase bus.
 

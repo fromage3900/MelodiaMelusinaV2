@@ -120,6 +120,20 @@ UMultiWorldManager & UMultiWorldManager::GetInstance(const UObject * context)
     return *result;
 }
 
+bool UMultiWorldManager::ShouldCreateSubsystem(UObject* Outer) const
+{
+    // In the editor only PIE game instances own the PlayWorld. Standalone game
+    // instances (automation, editor utilities) must not get a manager, or
+    // FixupEditorEngine writes their world into GEditor->PlayWorld.
+    if (GIsEditor)
+    {
+        const UGameInstance* GameInstance = Cast<UGameInstance>(Outer);
+        const FWorldContext* WorldContext = GameInstance ? GameInstance->GetWorldContext() : nullptr;
+        return WorldContext && WorldContext->WorldType == EWorldType::PIE;
+    }
+    return Super::ShouldCreateSubsystem(Outer);
+}
+
 void UMultiWorldManager::Initialize(FSubsystemCollectionBase& Collection)
 {
     UGameInstance* GameInstance = GetGameInstance();

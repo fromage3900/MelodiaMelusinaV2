@@ -218,6 +218,22 @@ void UMelodiaJRPGPresentationRhythmComponent::HandleRhythmSessionCompleted(const
 void UMelodiaJRPGPresentationRhythmComponent::HandleLaneHitJudged(
 	const int32 LaneIndex, const EMelodiaSkillGrade Grade, const float TimingErrorMs)
 {
+	// Each judged lane note plays back on Melusina's performance surfaces. The highway
+	// carries lanes, not pitches, so the four lanes voice her motif: C, E, G, B (Cmaj7).
+	if (UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+	{
+		static constexpr int32 LaneMotif[4] = {60, 64, 67, 71};
+		EMelodiaRhythmGrade NoteGrade = EMelodiaRhythmGrade::Miss;
+		switch (Grade)
+		{
+		case EMelodiaSkillGrade::Perfect:	NoteGrade = EMelodiaRhythmGrade::Perfect;	break;
+		case EMelodiaSkillGrade::Great:		NoteGrade = EMelodiaRhythmGrade::Great;		break;
+		case EMelodiaSkillGrade::Good:		NoteGrade = EMelodiaRhythmGrade::Good;		break;
+		case EMelodiaSkillGrade::Miss:		break;
+		}
+		Reactivity->NotifyPlayedNote(LaneMotif[((LaneIndex % 4) + 4) % 4], NoteGrade);
+	}
+
 	if (Grade == EMelodiaSkillGrade::Miss && !bSpawnLaneHitOnMiss)
 	{
 		return;

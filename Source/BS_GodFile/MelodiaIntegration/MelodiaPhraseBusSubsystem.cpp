@@ -58,7 +58,7 @@ namespace
 void UMelodiaPhraseBusSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
-	StartListening(9000);
+	StartListening(9002);
 }
 
 void UMelodiaPhraseBusSubsystem::Deinitialize()
