@@ -1,0 +1,50 @@
+{
+  "schema": "melodia.jev_houdini_session_audit.v1",
+  "date": "2026-09-24T17:51:15",
+  "state": {
+    "hda_asset_exists": true,
+    "hda_git_tracked": false,
+    "placeholder_actor_present": true,
+    "engine_license_leased": false,
+    "license_server_reachable": true,
+    "license_class_verified": false,
+    "smoke_offline_green": true,
+    "hython_built_hda_today": true,
+    "cathedral_meshes_imported": 8,
+    "cathedral_mi_pending": true,
+    "editor_open_now": true,
+    "owner_present": true,
+    "session_hours": 3.0
+  },
+  "decision": {
+    "first_block": "LICENSE_AND_SMOKE_FIRST",
+    "first_block_probs": {
+      "EVIDENCE_HARNESS_FIRST": 0.03,
+      "CATHEDRAL_HDA_FIRST": 0.0,
+      "ARPEGGIO_COOK_FIRST": 0.06,
+      "LICENSE_AND_SMOKE_FIRST": 0.91
+    },
+    "riskiest": "LICENSE_CLASS_COMPAT",
+    "riskiest_probs": {
+      "HDA_PARAM_DRIFT": 0.0,
+      "LICENSE_CLASS_COMPAT": 0.98,
+      "MUSICAL_GATE_MISMATCH": 0.0,
+      "NONE_MATERIAL": 0.0,
+      "COLLEGE_ACCESS_ONLY": 0.02
+    },
+    "needs_human": true,
+    "needs_human_prob": 0.76,
+    "readiness": 2,
+    "readiness_label": "All assets staged + offline smoke green; cook blocked by license with a named fix (lease + class check).",
+    "readiness_probs": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "source": "jev-live",
+    "reason": "typesafe System One Choice+Choice+Noul+Score, one call",
+    "confidence": 0.88
+  }
+}
