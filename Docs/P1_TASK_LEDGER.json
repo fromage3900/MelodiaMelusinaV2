@@ -2,9 +2,11 @@
   "schema": "melodia.p1.task_ledger.v1",
   "as_of": "2026-09-24",
   "authority": {
-    "status": "P1_EXPANSION_ACTIVE",
-    "scope": "Post-P0 expansion: Faraway Mother formalization, cymatics promotion, audio-reactive materials, Shorewake quest, Starskiff movement system.",
-    "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct."
+    "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
+    "scope": "2026-09-24 evening: execute the bounded lookdev_work queue. Existing World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime systems are consume/maintain-only unless a named blocker cannot be represented through an existing owner.",
+    "evidence_policy": "Source presence, offline proof, live proof, packaged proof, and owner visual acceptance are distinct.",
+    "procedural_system_policy": "PARKED_CONSUME_ONLY",
+    "execution_rule": "Do not open new PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Use existing systems only to deliver a named visible proof from lookdev_work."
   },
   "melusina_work": {
     "scope_as_of": "2026-09-23",
