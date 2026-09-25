@@ -1,0 +1,102 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "faraway_mother_crystal_detail",
+  "world_seed": 3900,
+  "identity": {
+    "mode_id": "dorian",
+    "root_pitch_class": 2,
+    "bpm": 72,
+    "chunk": [0, 0]
+  },
+  "place": {
+    "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+    "anchor_cm": [0.0, 0.0, 0.0],
+    "up_axis_offset_cm": 4.0,
+    "clearance": {
+      "circles": [
+        {"label": "heart_gate_keepout", "center_cm": [0.0, 0.0], "radius_cm": 12000.0}
+      ]
+    }
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 4,
+    "inner_radius_cm": 12000.0,
+    "band_width_cm": 8000.0,
+    "density_per_m2": 0.000025,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 180.0,
+    "scale_range": [0.85, 1.4],
+    "chladni": {
+      "modes": [[3, 5], [3, 5], [3, 5], [3, 5]],
+      "threshold": 0.35,
+      "plate_size_cm": 800000.0
+    },
+    "hero_falloff_cm": 10000.0
+  },
+  "species": [
+    {
+      "species_id": "faraway_crystal_cluster",
+      "mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_A",
+      "meshes": [
+        "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_A",
+        "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_B",
+        "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_C"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Materials/MI_FarawayCrystal_",
+      "scale_range": [0.85, 1.4],
+      "weight": 0.7,
+      "variants": 3,
+      "height_class": 2
+    },
+    {
+      "species_id": "faraway_crystal_shard",
+      "mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Shard_A",
+      "meshes": [
+        "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Shard_A",
+        "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Shard_B"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Materials/MI_FarawayCrystal_",
+      "scale_range": [0.9, 1.6],
+      "weight": 0.3,
+      "variants": 2,
+      "height_class": 1
+    }
+  ],
+  "palette": {
+    "bands": [
+      {"label": "B0_Rosegold", "tint": [0.96, 0.72, 0.64]},
+      {"label": "B1_Pearl", "tint": [1.0, 0.88, 0.75]},
+      {"label": "B2_Lavender", "tint": [0.68, 0.64, 0.94]},
+      {"label": "B3_Glacier", "tint": [0.44, 0.72, 0.94]}
+    ],
+    "parent_master": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Materials/MI_FloatingCrystal_Iridescent",
+    "tint_parameter": "BaseTint",
+    "active_lane": "static"
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": [
+      "Cymatic_BeatPulse",
+      "Cymatic_BassIntensity",
+      "Cymatic_MidIntensity",
+      "Cymatic_EmissiveScale",
+      "Cymatic_IridescenceShift",
+      "Cymatic_UVDistortion",
+      "Cymatic_ModeN",
+      "Cymatic_ModeM"
+    ]
+  },
+  "terrain": null,
+  "chapter": null,
+  "motif": null,
+  "influence": [],
+  "region_history": null,
+  "muse": {
+    "brief": "Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md",
+    "scope": "Additive, non-applied crystal-detail canary. The native 120-point Faraway PCG manifest remains the geography and builder authority.",
+    "placement_gate": "No UE apply until a fresh Faraway level scene-context cycle and ground probe establish plantable ground and keepouts.",
+    "material_gate": "Band materials inherit MI_FloatingCrystal_Iridescent and override BaseTint only; inspect world_compiler_ue.py texture handling before any material forge."
+  }
+}
