@@ -323,6 +323,91 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
+    # garment_ribbon.py - MEL_garm_ribbon_trail (decor)
+    "MEL_garm_ribbon_trail": {
+        "label": "Garment Ribbon Trail",
+        "preset_labels": {
+            "HEM_WHISPER": "Hem Whisper",
+            "FESTIVAL_SWAG": "Festival Swag",
+            "STARLIT_TATTER": "Starlit Tatter",
+        },
+        "preset_descriptions": {
+            "HEM_WHISPER": "Subtle short bands kissing the hem line.",
+            "FESTIVAL_SWAG": "Deep bows and generous motion - stage-ready.",
+            "STARLIT_TATTER": "Many thin streaming bands, strong scatter.",
+        },
+        "presets": {
+            "HEM_WHISPER": {
+                "Ribbon Count": 10, "Hang Length": 0.28, "Sag": 0.35,
+                "Wave Count": 2.0, "Wave Amp": 0.04, "Ribbon Width": 0.03,
+                "Jitter": 0.2, "Spin Variety": 0.5, "Segments": 32,
+            },
+            "FESTIVAL_SWAG": {
+                "Ribbon Count": 22, "Hang Length": 0.5, "Sag": 0.75,
+                "Wave Count": 3.5, "Wave Amp": 0.08, "Ribbon Width": 0.045,
+                "Jitter": 0.35, "Spin Variety": 0.9, "Segments": 40,
+            },
+            "STARLIT_TATTER": {
+                "Ribbon Count": 34, "Hang Length": 0.65, "Sag": 0.55,
+                "Wave Count": 5.5, "Wave Amp": 0.11, "Ribbon Width": 0.022,
+                "Jitter": 0.5, "Spin Variety": 1.0, "Segments": 48,
+            },
+        },
+    },
+
+    # angel_wings.py - MEL_angel_wing_* (decor)
+    "MEL_angel_wing_feather_row": {
+        "label": "Angel Wing Feather Row",
+        "preset_labels": {
+            "SERAPH_REST": "Seraph at Rest",
+            "SERAPH_SPREAD": "Seraph Spread",
+            "VEIL_SMALL": "Veil of Small Feathers",
+        },
+        "preset_descriptions": {
+            "SERAPH_REST": "Folded-at-rest row: 14 feathers, gentle rise and droop.",
+            "SERAPH_SPREAD": "Wide spread: 22 feathers, tall arc, strong fan.",
+            "VEIL_SMALL": "Short soft row for shoulder veils and collars.",
+        },
+        "presets": {
+            "SERAPH_REST": {
+                "Feather Count": 14, "Span": 0.85, "Rise": 0.45,
+                "Blade Length": 0.42, "Blade Width": 0.028, "Droop": 0.16,
+                "Fan Angle": 0.5, "Taper Power": 1.6, "Size Min": 0.35,
+                "Segments": 16, "Side": 1,
+            },
+            "SERAPH_SPREAD": {
+                "Feather Count": 22, "Span": 1.4, "Rise": 0.7,
+                "Blade Length": 0.55, "Blade Width": 0.032, "Droop": 0.1,
+                "Fan Angle": 0.8, "Taper Power": 1.8, "Size Min": 0.3,
+                "Segments": 20, "Side": 1,
+            },
+            "VEIL_SMALL": {
+                "Feather Count": 10, "Span": 0.6, "Rise": 0.3,
+                "Blade Length": 0.3, "Blade Width": 0.02, "Droop": 0.22,
+                "Fan Angle": 0.35, "Taper Power": 1.4, "Size Min": 0.45,
+                "Segments": 12, "Side": 1,
+            },
+        },
+    },
+    "MEL_angel_wing_pair": {
+        "label": "Angel Wing Pair",
+        "preset_labels": {
+            "SERAPH_PAIR_REST": "Seraph Pair at Rest",
+            "SERAPH_PAIR_HIGH": "Seraph Pair, High Root",
+            "SERAPH_PAIR_LOW": "Seraph Pair, Low Root",
+        },
+        "preset_descriptions": {
+            "SERAPH_PAIR_REST": "Symmetric pair at the default spine root.",
+            "SERAPH_PAIR_HIGH": "Root lifted toward the shoulder blades.",
+            "SERAPH_PAIR_LOW": "Root dropped toward the mid-back.",
+        },
+        "presets": {
+            "SERAPH_PAIR_REST": {"Root Height": 0.12, "Root Back": -0.06},
+            "SERAPH_PAIR_HIGH": {"Root Height": 0.26, "Root Back": -0.09},
+            "SERAPH_PAIR_LOW": {"Root Height": 0.02, "Root Back": -0.04},
+        },
+    },
+
     # ribbon.py - MEL_ribbon_curve (effects)
     "MEL_ribbon_curve": {
         "label": "Ribbon Curve",
