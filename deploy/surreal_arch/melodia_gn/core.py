@@ -1283,6 +1283,8 @@ CATEGORY_META: dict[str, dict] = {
     "zen_kit":     {"label": "Zen Kit",               "icon": "LIGHT_AREA"},
     "nikki_decor": {"label": "Nikki Decor",           "icon": "DECORATE"},
     "decor":       {"label": "Decor",                 "icon": "DECORATE"},
+    "reaver":      {"label": "Reaver Wings",          "icon": "MOD_DECIM"},     # added 2026-09-25: reaver_wings.py
+    "bionic":      {"label": "Bionic Joints",         "icon": "MESH_CIRCLE"},   # added 2026-09-25: bionic_joint.py
     "escher":      {"label": "Escher Math",           "icon": "NODETREE"},
 }
 
