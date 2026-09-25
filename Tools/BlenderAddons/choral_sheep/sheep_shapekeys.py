@@ -49,9 +49,13 @@ BL_IDNAME = "MELODIA_PT_sheep_shapekeys"
 
 
 def _find_sheep_mesh(context):
-    """Prefer selected Skin_* mesh, else the Sheep_/Skin_ body mesh."""
+    """Prefer the staged armature-bound dense body (S4, 2026-09-24), then
+    selected Skin_* mesh, then the classic Sheep_/Skin_ body mesh."""
     if context.active_object and context.active_object.type == "MESH":
         return context.active_object
+    staged = bpy.data.objects.get("MrSheepFinal_HD")  # gn_v2 S1-freeze dense body
+    if staged is not None and staged.type == "MESH":
+        return staged
     for o in context.scene.objects:
         if o.type == "MESH" and o.name.startswith("Skin_"):
             return o
