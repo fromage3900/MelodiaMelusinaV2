@@ -29,7 +29,7 @@ def main() -> int:
         print("[HDA] Run: & \"C:\\Program Files\\Side Effects Software\\Houdini 22.0.368\\bin\\hython.exe\" Content/Python/create_hda_arpeggio_stair.py", file=sys.stderr)
         return 2
 
-    print(f"[HDA] Houdini {hou.applicationVersionString()}  hou {hou.__version__}")
+    print(f"[HDA] Houdini {hou.applicationVersionString()}")
     out: Path = args.out
     out.parent.mkdir(parents=True, exist_ok=True)
 
