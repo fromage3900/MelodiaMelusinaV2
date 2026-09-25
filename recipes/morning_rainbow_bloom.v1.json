@@ -101,15 +101,39 @@
       "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
     },
     {
+      "species_id": "melody_glitter_soft",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": ["/Game/EnvSandbox/SM_MelodyToken"],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.02,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [0.05, 0.09],
+      "ground_labels": ["BrushifyIsland_"]
+    },
+    {
       "species_id": "melody_glitter",
       "mesh": "/Game/EnvSandbox/SM_MelodyToken",
       "meshes": ["/Game/EnvSandbox/SM_MelodyToken"],
       "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
       "stem_material": "__band__",
-      "weight": 0.05,
+      "weight": 0.02,
       "variants": 1,
       "height_class": 0,
       "scale_range": [0.06, 0.14],
+      "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
+    },
+    {
+      "species_id": "melody_glitter_blaze",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": ["/Game/EnvSandbox/SM_MelodyToken"],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.015,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [0.1, 0.2],
       "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
     }
   ],
