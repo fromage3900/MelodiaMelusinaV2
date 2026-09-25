@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#171225" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="description" content="Melodia — Resonant Wilds: a mobile open-world rhythm ARPG built on Melodia Melusina's UE rules, skills and enemy data." />
+  <title>Melodia — Resonant Wilds</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <canvas id="overlay"></canvas>
+
+  <div id="hud" class="hidden">
+    <div id="tl">
+      <div id="portrait"><span id="lvl">1</span></div>
+      <div id="bars">
+        <div class="bar hp"><div id="hpfill"></div><div id="shieldfill"></div><span id="hptext"></span></div>
+        <div id="sp"></div>
+        <div class="bar xp"><div id="xpfill"></div></div>
+        <div id="wallet"><span id="gold">0</span><span id="shards">0</span><span id="notes">0</span></div>
+      </div>
+    </div>
+
+    <div id="tc">
+      <div id="zone"></div>
+      <div id="metro"></div>
+      <div id="dyn"><span id="dynmark">pp</span><div id="cresbar"><div id="cresfill"></div></div></div>
+      <div id="combo"></div>
+    </div>
+
+    <div id="tr">
+      <div id="mapwrap"><canvas id="minimap" width="240" height="240"></canvas><div id="gs">GS 0</div></div>
+      <div id="menu">
+        <button data-panel="wardrobe" title="Wardrobe (I)">👗<i id="newdot"></i></button>
+        <button data-panel="skills" title="Skills (K)">♫</button>
+        <button data-panel="map" title="Map (M)">🗺</button>
+        <button data-panel="bounties" title="Bounties (B)">📜<i id="bountydot"></i></button>
+        <button data-panel="settings" title="Settings">⚙</button>
+      </div>
+      <div id="tracker"></div>
+    </div>
+
+    <div id="objective"></div>
+    <div id="riftbar" class="hidden"><div class="label"><span id="riftlabel">Rift</span><span id="rifttime"></span></div><div class="bar"><div id="riftfill"></div></div></div>
+    <div id="bossbar" class="hidden"><div id="bossname"></div><div class="bar"><div id="bossfill"></div></div><div class="tbar"><div id="bosstough"></div></div></div>
+
+    <div id="joyzone"></div>
+    <div id="joy" class="hidden"><div id="joyknob"></div></div>
+
+    <div id="actions">
+      <button id="btnAttack" class="act"><div id="approach"></div><span>⚔</span></button>
+      <button class="act skill" data-i="0"><b></b><em></em><i class="cd"></i><small></small></button>
+      <button class="act skill" data-i="1"><b></b><em></em><i class="cd"></i><small></small></button>
+      <button class="act skill" data-i="2"><b></b><em></em><i class="cd"></i><small></small></button>
+      <button class="act skill" data-i="3"><b></b><em></em><i class="cd"></i><small></small></button>
+      <button id="btnDodge" class="act"><span>⤳</span><i class="cd"></i></button>
+      <button id="btnEncore" class="act"><span>ENCORE</span><i id="encfill"></i></button>
+    </div>
+    <div id="gradeflash"></div>
+    <button id="btnInteract" class="hidden"></button>
+    <div id="compass" class="hidden"><i>➤</i><span></span></div>
+
+    <div id="toasts"></div>
+    <div id="banner"><div id="bannerTitle"></div><div id="bannerSub"></div></div>
+    <div id="hint" class="hidden"></div>
+  </div>
+
+  <div id="shrine" class="hidden">
+    <div class="shrinebox">
+      <div class="shrinetitle">Music-Key Shrine</div>
+      <div id="shrinephase">Listen…</div>
+      <div id="shrinecall" class="slots"></div>
+      <div id="shrineresp" class="slots"></div>
+      <button id="shrinetap">♪ TAP</button>
+    </div>
+  </div>
+
+  <div id="death" class="hidden">
+    <div class="deathbox">
+      <div class="deathtitle">The melody fades…</div>
+      <div class="deathsub">Melusina will return at an attuned pylon. Nothing is lost.</div>
+      <button id="respawn" class="primary">Rise again ♪</button>
+    </div>
+  </div>
+
+  <div id="panel" class="hidden">
+    <div id="panelhead"><div id="tabs"></div><button id="closepanel" aria-label="Close">✕</button></div>
+    <div id="panelbody"></div>
+  </div>
+
+  <div id="title">
+    <div class="titlebox">
+      <div class="titlekicker">Melodia Melusina</div>
+      <h1>Resonant Wilds</h1>
+      <div class="titlesub">An open-world rhythm ARPG. Every swing, skill and dodge lands on the beat.</div>
+      <div id="loadstate">Tuning the world…</div>
+      <button id="play" class="primary" disabled>Tap to play ♪</button>
+      <div class="titlefoot">🎧 Sound on · Built from the UE project's rules, skills, enemies and biomes</div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
