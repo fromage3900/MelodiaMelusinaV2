@@ -10,22 +10,23 @@ That means the cost lever is not "commit less often". It is:
 
 ## Hybrid transition status
 
-Git remains authoritative for text, code, configuration, documentation, tools, and automation. Perforce
-is being introduced for lock-sensitive and large creative assets. The local pilot has seeded 50 files at
-`//melodia/Exports/...` in Perforce change `2`; Git copies remain until backup and clean-machine cutover
-validation. `Content/` has not moved. One source-control owner per path is mandatory after cutover.
+Git remains authoritative for text, code, configuration, documentation, tools, automation, and the
+explicit `Content/Python/` editor/PCG source tree. Perforce is **active pilot** for lock-sensitive and
+large creative assets; UE 5.8 is connected and source-control operations are working in-editor.
+`//melodia/Exports/...` is seeded. Full creative-root cutover is still gated by the ownership contract.
 
-The Windows Scheduled Task `Melodia Source Control Triage` runs
-`Tools/source_control_triage.py` every 12 hours in report-only mode. It classifies binary and Perforce
-paths as review-only. An explicit manifest at `specs/source_control_batches.json` is required before
-`--commit-ready` can create a text-only isolated Git commit.
+`Content/` is therefore intentionally split by ownership: `Content/Python/` remains Git source while
+binary Unreal/world content is targeted to Perforce. One effective source-control owner per path is
+mandatory. Run `python Tools/triage_working_tree.py --print-paths` for read-only working-tree triage.
+The historical `Tools/source_control_triage.py` helper is no longer tracked; do not rely on its old
+`--commit-ready` workflow. `specs/source_control_batches.json` is an owner-review manifest only.
 
 ## The rules
 
 1. **Text is cheap; binaries are expensive.**
-   - `Source/`, `Config/`, `Docs/`, `Tools/`, `deploy/` scripts, `.md`, `.py`,
-     `.json`, `.ini`, `.uproject`: commit early, commit often, one concern per
-     commit. These never touch LFS billing.
+   - `Source/`, `Config/`, `Docs/`, `Tools/`, `deploy/`, `Content/Python/` scripts,
+     and other Git-owned `.md`/`.py`/`.json`/`.ini`/`.uproject` source: commit early,
+     commit often, one concern per commit. These do not belong in the Perforce creative-content cutover.
 2. **One LFS change = one commit, immediately.**
    - Every commit that touches a `.uasset`/`.umap`/`.fbx`/`.png`/`.wav` pushes
      the **entire new file version** to LFS storage. Editing a 500 MB uasset
