@@ -417,6 +417,29 @@ def build_mission(genome: dict[str, Any], delta: dict[str, Any]) -> dict[str, An
 
     tasks.append(
         _task(
+            "ue_beauty_feed_live",
+            "F_UNREAL_CANARY",
+            "muse_ue",
+            ["td_world_field"],
+            "Unreal/single-editor-single-writer",
+            "The canon UE_Beauty Spout2 sender is registered from the droppable sender actor and TD lookdev_comp shows the live feed.",
+            [
+                "beauty_feed_assets_ok",
+                "spout_sender_registered_UE_Beauty",
+                "td_spout_in_capture",
+            ],
+            command=None,
+            brief=(
+                "One sender name (UE_Beauty), one droppable actor "
+                "(BP_UE_BeautySender over RT_UE_Beauty); never embed the sender "
+                "in a production map and never invent a second sender name. "
+                "Prove registration before claiming the live-lookdev lane."
+            ),
+        )
+    )
+
+    tasks.append(
+        _task(
             "ue_field_receiver_canary",
             "F_UNREAL_CANARY",
             "muse_ue",
@@ -524,6 +547,7 @@ def build_mission(genome: dict[str, Any], delta: dict[str, Any]) -> dict[str, An
                 "runtime Houdini authority",
                 "second OSC semantic bridge",
                 "second MPC/audio writer",
+                "second beauty-feed sender (UE_Beauty is the single name)",
             ],
         },
         "world": {

@@ -506,6 +506,57 @@
         }
       }
     },
+    "beauty": {
+      "description": "Optional. Live UE->TouchDesigner beauty feed over Spout2 (sender UE_Beauty). Absent => compiler emits no beauty tables (existing bundles byte-identical).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sender_name",
+        "render_target",
+        "sender_bp"
+      ],
+      "properties": {
+        "sender_name": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+          "description": "Spout sender name. UE_Beauty is the single reserved name (SIGNAL_VOCABULARY_2026-09-25); any other name fails the beauty stage."
+        },
+        "render_target": {
+          "type": "string",
+          "pattern": "^/Game/",
+          "description": "TextureRenderTarget2D game path, e.g. /Game/Melodia/Lookdev/RT_UE_Beauty"
+        },
+        "sender_bp": {
+          "type": "string",
+          "pattern": "^/Game/",
+          "description": "Droppable sender actor Blueprint, e.g. /Game/Melodia/Lookdev/BP_UE_BeautySender. Never embed the sender in a production map."
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1920
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1080
+        },
+        "capture_source": {
+          "enum": [
+            "SCS_FinalColorLDR",
+            "SCS_SceneColorHDR"
+          ],
+          "default": "SCS_FinalColorLDR"
+        },
+        "startup_policy": {
+          "enum": [
+            "Editor_Game",
+            "Game_Only"
+          ],
+          "default": "Editor_Game"
+        }
+      }
+    },
     "lookdev": {
       "type": "object",
       "additionalProperties": false,

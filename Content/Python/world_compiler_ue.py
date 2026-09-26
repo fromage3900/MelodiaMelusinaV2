@@ -1519,8 +1519,44 @@ def step_structures_place(b: dict) -> dict:
     return {"host": host_label, "removed_previous": removed, "slots": placed_slots, "curves": placed_curves}
 
 
+def step_beauty(b: dict) -> dict:
+    """Live-lookdev proof for the canon UE->TD Spout2 feed (recipe.beauty -> ue_lane.beauty_feed).
+
+    Read-only: verifies the render target + sender actor exist, the RT matches the
+    contracted resolution, and the Spout2 plugin classes are reflected. Frame
+    delivery itself is proven by the TD lookdev_comp Spout In intake, never here.
+    """
+    feed = (b["manifest"].get("ue_lane") or {}).get("beauty_feed")
+    if not feed:
+        return {"skipped": "manifest ue_lane.beauty_feed absent (recipe.beauty not authored)"}
+    rt_path = feed["render_target"].split(".")[0]
+    bp_path = feed["sender_bp"].split(".")[0]
+    rec: dict = {
+        "sender_name": feed["sender_name"],
+        "render_target": rt_path,
+        "sender_bp": bp_path,
+        "plugin": feed.get("plugin"),
+    }
+    rec["rt_exists"] = bool(AL.does_asset_exist(rt_path))
+    rec["bp_exists"] = bool(AL.does_asset_exist(bp_path))
+    rt = AL.load_asset(rt_path) if rec["rt_exists"] else None
+    if rt is not None:
+        try:
+            rec["rt_size"] = [int(rt.get_editor_property("size_x")), int(rt.get_editor_property("size_y"))]
+            rec["rt_format"] = str(rt.get_editor_property("render_target_format"))
+        except Exception as exc:
+            rec["rt_read_error"] = str(exc)[:200]
+    rec["size_match"] = rec.get("rt_size") == [int(feed["width"]), int(feed["height"])]
+    rec["plugin_loaded"] = hasattr(unreal, "SpoutSenderComponent")
+    if not rec["plugin_loaded"]:
+        rec["plugin_note"] = "Spout2_DX12 not reflected: restart the editor with the plugin enabled, then rerun"
+    rec["assets_ok"] = bool(rec["rt_exists"] and rec["bp_exists"] and rec.get("size_match"))
+    return rec
+
+
 STEPS = {
     "preflight": step_preflight,
+    "beauty": step_beauty,
     "structures_place": step_structures_place,
     "cleanup": step_cleanup,
     "materials": step_materials,

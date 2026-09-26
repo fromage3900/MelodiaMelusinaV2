@@ -141,7 +141,7 @@ Status and scope: [`CURRENT_STATE.md`](CURRENT_STATE.md).
 
 **Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
 deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
-beatmap_author|quill_author|asset_qa|anim_bindings`). Router: `python Tools/model_router.py pick
+beatmap_author|quill_author|asset_qa|anim_bindings|spout_beauty`). Router: `python Tools/model_router.py pick
 <class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
 Gameplay queue: [`CURRENT_STATE.md`](CURRENT_STATE.md) §4. The handoff files this line used to point
 at were removed in the 2026-09-10 docs collapse.
@@ -158,9 +158,10 @@ at were removed in the 2026-09-10 docs collapse.
 | `quill_author` | QuillScript dialogue + 7-verb notifications | Emit an unallowlisted id |
 | `asset_qa` | art/credits/bp gates, triage | Fabricate a file path |
 | `anim_bindings` | ABP state machine + pose binding checks | Write `.uasset` |
+| `spout_beauty` | Live UE→TD lookdev via the canon Spout2 `UE_Beauty` sender | Second sender name / second beauty writer |
 
-**Every lane must not:** build a fifth wardrobe track, a fourth rhythm path, or a second HUD
-writer. Converge onto the named owner. A new parallel implementation is a defect, not progress.
+**Every lane must not:** build a fifth wardrobe track, a fourth rhythm path, a second HUD
+writer, or a second beauty-feed sender. Converge onto the named owner. A new parallel implementation is a defect, not progress.
 
 **UI/visual-artist work:** load `.claude/skills/melodia-ui-artist/SKILL.md` (the equivalent
 `.agents/skills/melodia-ui-artist/SKILL.md` is also present) — it carries the
@@ -365,6 +366,9 @@ Implementation rules:
 - Integration map: `/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap`
 - Save record field: `melodiaNarrativeRecord` on `/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGSaveGame`
 - QuillScript plugin: `Plugins/QuillScript/`
+- Beauty-feed plugin: `Plugins/UE5_Spout2_DX12/` (Spout2_DX12 v2.1.1, re-clone per machine — `Binaries/` is gitignored)
+- Beauty render target: `/Game/Melodia/Lookdev/RT_UE_Beauty` (1920×1080, RGBA8)
+- Beauty sender actor: `/Game/Melodia/Lookdev/BP_UE_BeautySender` (droppable; SceneCapture → RT; Spout sender name `UE_Beauty`, the single reserved name — never embed in a production map, never invent a second name)
 
 ## Stable notification contract
 

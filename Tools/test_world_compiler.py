@@ -234,6 +234,72 @@ def test_structures_mandala_slots_and_curves():
             assert min(float(c["z"]) for c in chain) < top - 1.0
     assert set(bake["slots"]) == set(st["slots"])
 
+def test_beauty_absent_emits_no_beauty_tables():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe.pop("beauty", None)
+    with tempfile.TemporaryDirectory() as td:
+        path = Path(td) / "no_beauty.v1.json"
+        path.write_text(json.dumps(recipe), encoding="utf-8")
+        manifest, out = _compile(Path(td), path)
+    assert "beauty" not in manifest["stages"]
+    assert not any(name.startswith("beauty") for name in manifest["tables"])
+    assert "beauty_feed" not in manifest["ue_lane"]
+
+
+def test_beauty_canon_defaults_match_live_contract():
+    assert wc.BEAUTY_CANON["sender_name"] == "UE_Beauty"
+    assert wc.BEAUTY_CANON["render_target"] == "/Game/Melodia/Lookdev/RT_UE_Beauty"
+    assert wc.BEAUTY_CANON["sender_bp"] == "/Game/Melodia/Lookdev/BP_UE_BeautySender"
+    assert (wc.BEAUTY_CANON["width"], wc.BEAUTY_CANON["height"]) == (1920, 1080)
+    assert wc.BEAUTY_CANON["capture_source"] == "SCS_FinalColorLDR"
+
+
+def test_beauty_present_emits_feed():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe["beauty"] = {
+        "sender_name": "UE_Beauty",
+        "render_target": wc.BEAUTY_CANON["render_target"],
+        "sender_bp": wc.BEAUTY_CANON["sender_bp"],
+    }
+    assert wc.validate_recipe(recipe) == []
+    with tempfile.TemporaryDirectory() as td:
+        path = Path(td) / "with_beauty.v1.json"
+        path.write_text(json.dumps(recipe), encoding="utf-8")
+        manifest, out = _compile(Path(td), path)
+        stage = manifest["stages"]["beauty"]
+        # FAIL only when the canon uassets are missing from this checkout's disk.
+        assert stage["status"] in ("PASS", "FAIL")
+        if stage["status"] == "FAIL":
+            assert any("missing on disk" in e for e in stage["errors"])
+        feed = json.loads((out / "beauty_feed.json").read_text(encoding="utf-8"))
+        assert feed["schema"] == "melodia.beauty_feed.v1"
+        assert feed["sender_name"] == "UE_Beauty"
+        assert (feed["width"], feed["height"]) == (1920, 1080)
+        assert manifest["ue_lane"]["beauty_feed"]["sender_name"] == "UE_Beauty"
+        assert manifest["tables"]["beauty_feed.json"]["rows"] == 1
+
+
+def test_beauty_rejects_second_sender_name():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe["beauty"] = {
+        "sender_name": "UE_Beauty_2",
+        "render_target": wc.BEAUTY_CANON["render_target"],
+        "sender_bp": wc.BEAUTY_CANON["sender_bp"],
+    }
+    feed, stage = wc.stage_beauty(recipe)
+    assert stage["status"] == "FAIL"
+    assert any("UE_Beauty" in e for e in stage["errors"])
+
+
+def test_beauty_rejects_bad_paths():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe["beauty"] = {"sender_name": "UE Beauty", "render_target": "RT_UE_Beauty", "sender_bp": ""}
+    errors = wc.validate_recipe(recipe)
+    assert any("sender_name" in e and "beauty" in e for e in errors)
+    assert any("render_target" in e and "beauty" in e for e in errors)
+    assert any("sender_bp" in e and "beauty" in e for e in errors)
+
+
 if __name__ == "__main__":
     failures = 0
     for name, fn in sorted(globals().items()):
