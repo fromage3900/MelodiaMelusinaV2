@@ -1,0 +1,1301 @@
+{
+  "schema": "melodia.branch_retirement_census/v1",
+  "generated_date": "2026-09-25",
+  "base_main_sha": "6777d4a7458880575ea59e515ef47ad7e2b7c11c",
+  "policy_issue": 327,
+  "destructive_action_performed": false,
+  "counts": {
+    "HOLD_BACKUP": 5,
+    "CANONIZED_CANDIDATE": 45,
+    "ACTIVE": 5,
+    "UNKNOWN": 4,
+    "SALVAGE_HOLD": 26,
+    "WORKSTATION_HOLD": 5,
+    "P4_CONTENT_RECOVERY": 8
+  },
+  "entries": [
+    {
+      "branch": "backup/laptop-longterm-pre-salvage-20260910",
+      "head_sha": "825fb91c92038f61965c0bb8e102d225f5b465b3",
+      "classification": "HOLD_BACKUP",
+      "reason": "backup/provenance ref; destructive approval required",
+      "pull_requests": []
+    },
+    {
+      "branch": "backup/pr166-pre-assbin-history-clean-20260910",
+      "head_sha": "110b0e4637d60545f2435b83158476360ccdb0e9",
+      "classification": "HOLD_BACKUP",
+      "reason": "backup/provenance ref; destructive approval required",
+      "pull_requests": []
+    },
+    {
+      "branch": "backup/pr179-pre-scope-clean-20260911",
+      "head_sha": "f48c67ff49826081cf378da05a5fa586cda328f9",
+      "classification": "HOLD_BACKUP",
+      "reason": "backup/provenance ref; destructive approval required",
+      "pull_requests": []
+    },
+    {
+      "branch": "backup/pr187-pre-refresh-20260911",
+      "head_sha": "6d6e96237b03f58ae1a25cc5e6ebbdbfc1c0a595",
+      "classification": "HOLD_BACKUP",
+      "reason": "backup/provenance ref; destructive approval required",
+      "pull_requests": []
+    },
+    {
+      "branch": "backup/pr190-pre-refresh-20260912",
+      "head_sha": "69b4f5d7daa1ff0dfb0685eb3768f5b947e58644",
+      "classification": "HOLD_BACKUP",
+      "reason": "backup/provenance ref; destructive approval required",
+      "pull_requests": []
+    },
+    {
+      "branch": "chore/figma-token-sync-20260922",
+      "head_sha": "df70bc2cfeedde4e91409d031f48fbbcf0ea6b4a",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 297,
+          "state": "closed",
+          "merged": true,
+          "title": "chore(ui): sync Grandmaster Figma variables to token SSOT",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/297"
+        }
+      ]
+    },
+    {
+      "branch": "claude/open-world-three-js-game-icm254",
+      "head_sha": "9bbd937c276b583d4b813267d3d015b65e177bd5",
+      "classification": "ACTIVE",
+      "reason": "open pull request",
+      "pull_requests": [
+        {
+          "number": 324,
+          "state": "open",
+          "merged": false,
+          "title": "feat(web): Resonant Wilds — three.js mobile open-world rhythm ARPG",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/324"
+        }
+      ]
+    },
+    {
+      "branch": "cleanup/melusina-gen3-accessories-hair-2026-09-10",
+      "head_sha": "952c3fac9ac352899c044141f43d834952db9611",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 178,
+          "state": "closed",
+          "merged": true,
+          "title": "content(melusina): accessories to gen-3 Blender set + V2 slot surgery (selective)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/178"
+        }
+      ]
+    },
+    {
+      "branch": "cleanup/track-design-system-2026-09-10",
+      "head_sha": "952c3fac9ac352899c044141f43d834952db9611",
+      "classification": "UNKNOWN",
+      "reason": "no PR evidence found; compare before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "cleanup/world-compiler-tracking-2026-09-18",
+      "head_sha": "cebfab909afa635266e358693417141a1f273a35",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 243,
+          "state": "closed",
+          "merged": true,
+          "title": "tracking(world-compiler): close the ignore shadows for the compiled-world lane",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/243"
+        }
+      ]
+    },
+    {
+      "branch": "codex/agent-frontdoor-contract-20260914",
+      "head_sha": "cb0ed2b554f89a3837b095af76c30db8b24b1423",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 216,
+          "state": "closed",
+          "merged": false,
+          "title": "governance(agent): make content-first composition the repo default",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/216"
+        }
+      ]
+    },
+    {
+      "branch": "codex/game-state-2026-09-04-checkpoint",
+      "head_sha": "eb0db91d7e2a6d0687c9d576f093c3497ac9fa81",
+      "classification": "UNKNOWN",
+      "reason": "no PR evidence found; compare before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "codex/snapshot-prep-20260914",
+      "head_sha": "e71027a598092027eff17ed8a9a27a8597435259",
+      "classification": "UNKNOWN",
+      "reason": "no PR evidence found; compare before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "collab/desktop/integrate-laptop-2026-09-06",
+      "head_sha": "44ec2d39e570027fb7baef8b658ad6094193079e",
+      "classification": "WORKSTATION_HOLD",
+      "reason": "workstation/collaboration provenance; inspect before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "collab/eyewear-front-20260912",
+      "head_sha": "77160ef7c15ae262f7d94a2ffbaf1dbf3960ade0",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 194,
+          "state": "closed",
+          "merged": false,
+          "title": "collab(eyewear): MEL_eyewear_front — CAD frame front from ISO 8624 boxing measurements",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/194"
+        }
+      ]
+    },
+    {
+      "branch": "collab/laptop/chladni-foundry-20260909",
+      "head_sha": "d041bb5893c6e6739a2bbfc841438b595ad80233",
+      "classification": "WORKSTATION_HOLD",
+      "reason": "workstation/collaboration provenance; inspect before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "collab/laptop/ollama-lane-contract-20260909",
+      "head_sha": "e5ce66b62c7dc4cfe1970e6c631f2f3083df415b",
+      "classification": "WORKSTATION_HOLD",
+      "reason": "workstation/collaboration provenance; inspect before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "collab/laptop/studio-integration-20260909",
+      "head_sha": "aaaf24dcf8366bf80c092589319e9eacb91cb35d",
+      "classification": "WORKSTATION_HOLD",
+      "reason": "workstation/collaboration provenance; inspect before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "collab/laptop/study-20260909",
+      "head_sha": "e379118747d1aa7cd78454b9a314e016071d1295",
+      "classification": "WORKSTATION_HOLD",
+      "reason": "workstation/collaboration provenance; inspect before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "cursor/editorial-composition-4e2b",
+      "head_sha": "4bbe683ed04195cd22249099345c687ba5ba5bb5",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 143,
+          "state": "closed",
+          "merged": false,
+          "title": "Portfolio composition overlay: Museum Quiet and Pearl Constellation",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/143"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/gamecolors-ssot-685a",
+      "head_sha": "47bf4b93e0150a274364ca926ad31881e18f3e56",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 227,
+          "state": "closed",
+          "merged": true,
+          "title": "fix(ui): retarget UE GameColors/KeybindColors to token SSOT",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/227"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/industrial-final-polish-9850",
+      "head_sha": "f92ccc0e95a0db342cabbbee56970829a121ab79",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 176,
+          "state": "closed",
+          "merged": false,
+          "title": "docs(strategy): preserve industrial final capture pack for $10k listing",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/176"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/model-viewer-twin-9850",
+      "head_sha": "ef910dcbb1a2c720f34a420bb54f6620ecae8455",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 219,
+          "state": "closed",
+          "merged": true,
+          "title": "Isolate website WebGL kit with DCC eyewear variants",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/219"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/monochrome-submit-playbook-9850",
+      "head_sha": "544c62ccfb9443e1a33c1238d701d183193419fc",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 175,
+          "state": "closed",
+          "merged": false,
+          "title": "[SUPERSEDED BY #176] docs(strategy): monochrome industrial submit pack for today",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/175"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/protect-nikki-masters-efb1",
+      "head_sha": "ab79499b647f4bf0e5362375d7169f6a63b2dd9b",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 139,
+          "state": "closed",
+          "merged": false,
+          "title": "fix(git): restore Nikki master and block both-parent merge drops",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/139"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/realtime-world-compiler-b196",
+      "head_sha": "6a9d25680fb54eff5a6fb2b3ad458121a99a9369",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 248,
+          "state": "closed",
+          "merged": false,
+          "title": "Test edit",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/248"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/session-closeout-truth-sweep-8c1a",
+      "head_sha": "227e3362875d1bb52d01557ec92581d0bd012ed6",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 233,
+          "state": "closed",
+          "merged": false,
+          "title": "docs(audit): 2026-09-17 closeout truth sweep after #229/#32 merge",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/233"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/student-benefits-enrollment-c2ab",
+      "head_sha": "78a1a213cdb383d3e5d79b4b57ab6a8c39832a58",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 147,
+          "state": "closed",
+          "merged": false,
+          "title": "Hermes student-benefits closeout sheet (land on main)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/147"
+        },
+        {
+          "number": 146,
+          "state": "closed",
+          "merged": true,
+          "title": "Student benefits enrollment ledger (Kiro, Codex, GitHub, Autodesk, …)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/146"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/toon-reconvert-closeout-1ecb",
+      "head_sha": "b8d4b9356470fef01f14a7fb04618ed446a78306",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 236,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(materials): TOON reconvert closeout 2026-09-17",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/236"
+        }
+      ]
+    },
+    {
+      "branch": "cursor/vfx-niagara-inventory-fixa-7e0e",
+      "head_sha": "4cca74f924683eafdd950bba0216b20ad412b3d8",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 228,
+          "state": "closed",
+          "merged": false,
+          "title": "docs(vfx): closeout handoff + Fix A / SurrealFabric / BeatPulse playbooks",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/228"
+        }
+      ]
+    },
+    {
+      "branch": "docs/canon-rider-ponytail-cockpit-20260922",
+      "head_sha": "d90357e244b4252412a693d29a7877e422dea221",
+      "classification": "UNKNOWN",
+      "reason": "no PR evidence found; compare before retirement",
+      "pull_requests": []
+    },
+    {
+      "branch": "docs/career-relocation-strikes-20260917",
+      "head_sha": "6f096c812bbc75e17576707c5b2bd965a7748b3d",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 240,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(career): add Madrid and Wrocław relocation strike queue",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/240"
+        }
+      ]
+    },
+    {
+      "branch": "docs/career-strike-plan-20260917",
+      "head_sha": "4a133fbeb162ac6fa21d78155b11da6dbf519bf8",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 235,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(career): canonicalize current job strike queue for Hermes",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/235"
+        }
+      ]
+    },
+    {
+      "branch": "docs/current-state-nonvolatile-git-status-20260924",
+      "head_sha": "b841655dfe82c562841c8fdbe0b54f58e031fa6e",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 323,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(state): make git operating status non-volatile",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/323"
+        }
+      ]
+    },
+    {
+      "branch": "docs/current-state-reconcile-20260924-evening",
+      "head_sha": "26f57376fb1bd68adcde4605d10859909a978182",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 322,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(state): reconcile Sep 24 evening production queue",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/322"
+        }
+      ]
+    },
+    {
+      "branch": "docs/disk-reclaim-2026-09-18",
+      "head_sha": "070abb0d239d1fdc09b51a9a7483d46fbe02655f",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 245,
+          "state": "closed",
+          "merged": false,
+          "title": "docs/disk reclaim 2026 09 18",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/245"
+        },
+        {
+          "number": 244,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(audit): disk reclaim 2026-09-18 — C: 6.4 → 66 GB free",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/244"
+        }
+      ]
+    },
+    {
+      "branch": "docs/disk-reclaim-b1-2026-09-18",
+      "head_sha": "a04016d872138adbbf9413d7c8258dbbe5fe760d",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 246,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(disk): batch 1 executed — 59.3 GB moved to G: (C: 66 -> 124 GB free)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/246"
+        }
+      ]
+    },
+    {
+      "branch": "docs/disk-reclaim-b2-2026-09-18",
+      "head_sha": "fae16bea66afb6738c5ec55262cb99ad1adb6eff",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 247,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(disk): batch 2 — 41 GB more off C: (worktrees, JetBrains, opencode DB) + junction repair",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/247"
+        }
+      ]
+    },
+    {
+      "branch": "docs/emerging-procedural-sweep-20260925",
+      "head_sha": "7149cb4f3a993133a48d5cbea4e59c9d54cd1e8a",
+      "classification": "ACTIVE",
+      "reason": "open pull request",
+      "pull_requests": [
+        {
+          "number": 326,
+          "state": "open",
+          "merged": false,
+          "title": "docs(research): repo-aware procedural worldbuilding sweep 05",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/326"
+        }
+      ]
+    },
+    {
+      "branch": "docs/github-reusability-audit-2026-09-18",
+      "head_sha": "93c967379a94746fb1a020c3bc0fb150ea5de111",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 242,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(audit): GitHub reusability audit 2026-09-18",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/242"
+        }
+      ]
+    },
+    {
+      "branch": "docs/grok-fugu-setup-canary-20260924",
+      "head_sha": "83033f67ecdad5f1940d80451d358722cf26ca81",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 319,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(fugu): prepare Grok setup and Glassgarden canary",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/319"
+        }
+      ]
+    },
+    {
+      "branch": "docs/handpaint-ladder-closeout-20260924",
+      "head_sha": "ee1bc52dc59795efabfc17529be5baa00333ccf6",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 320,
+          "state": "closed",
+          "merged": true,
+          "title": "docs: Melusina handpaint ladder closeout 2026-09-24",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/320"
+        }
+      ]
+    },
+    {
+      "branch": "docs/hermes-specialist-fleet-20260923",
+      "head_sha": "139525bad0162ea1b9176da56bb446f488518428",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 313,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(hermes): formalize specialist model fleet setup",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/313"
+        }
+      ]
+    },
+    {
+      "branch": "docs/ledger-verify-2026-09-13",
+      "head_sha": "12afefc73e0fbf5444dd7113c0aa837c7ec28429",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 212,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(state): ledger for 2026-09-13 Sheep, PPV freeze, hero stencil, VFX pass",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/212"
+        }
+      ]
+    },
+    {
+      "branch": "docs/luna-mimo-grok-launch-20260924",
+      "head_sha": "dc12ac7c6f4445ab09427a8938d5b60696be5345",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 318,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(luna): add MiMo canary and Grok Bot launcher mission",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/318"
+        }
+      ]
+    },
+    {
+      "branch": "docs/materials-clean-loop-foldin-2026-09-23",
+      "head_sha": "18f93e66053ac429649239b0b1296811936eba8d",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 305,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(materials): clean-loop fold-in 2026-09-23 Nikki SHIP + Cymatics MIs",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/305"
+        }
+      ]
+    },
+    {
+      "branch": "docs/materials-convergence-gap-hunt-2026-09-17",
+      "head_sha": "94dd82ca10f20ff98975bf1549645702de068a93",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 234,
+          "state": "closed",
+          "merged": true,
+          "title": "docs: materials convergence gap hunt 2026-09-17",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/234"
+        }
+      ]
+    },
+    {
+      "branch": "docs/melusina-canon-20260923",
+      "head_sha": "e8620f4293d556071d155107b46ca71fedc73fa1",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 303,
+          "state": "closed",
+          "merged": false,
+          "title": "Canonize Melusina runtime architecture and visual work gates",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/303"
+        }
+      ]
+    },
+    {
+      "branch": "docs/melusina-lookdev-grandmaster-20260922",
+      "head_sha": "e18bbb22aeb394140d3cae7a64afda69160c1e42",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 293,
+          "state": "closed",
+          "merged": false,
+          "title": "docs(plans): Melusina AAA lookdev grandmaster plan v7 (owner gating list)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/293"
+        }
+      ]
+    },
+    {
+      "branch": "docs/melusina-morning-audits-2026-09-17",
+      "head_sha": "861a9adb015413ed141772b2b275c597b31d4568",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 229,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(audit): Melusina Morning 2026-09-17 session closeout + audits",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/229"
+        }
+      ]
+    },
+    {
+      "branch": "docs/nikki-lookdev-plan-20260922",
+      "head_sha": "e16321901b0e9ea6043adb56350acdd524ebaefa",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 296,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(handoff): Nikki lookdev plan + 2026-09-22 session consolidation",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/296"
+        }
+      ]
+    },
+    {
+      "branch": "docs/oyster-jev-decision-gates-20260924",
+      "head_sha": "287a764e3800be1679e8ddd57fe0da1314046037",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 314,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(oyster): route HappyOyster canary through Jev audit gates",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/314"
+        }
+      ]
+    },
+    {
+      "branch": "docs/p1-faraway-resonance-field-20260922",
+      "head_sha": "bfe46c4e85d069bfe1cae75fadda808069b86b81",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 287,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(p1): canonize Faraway Mother resonance-field convergence",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/287"
+        }
+      ]
+    },
+    {
+      "branch": "docs/package-a-materials-org-2026-09-17",
+      "head_sha": "2411a5778875b7bb3c756258b1b2689e1003ee2d",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 231,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(materials): Package A Materials org closeout 2026-09-17",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/231"
+        }
+      ]
+    },
+    {
+      "branch": "docs/package-b-niagara-aaa-2026-09-17",
+      "head_sha": "9c604d6723db0f8b952517085f3c7c1a08ad5638",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 232,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(vfx): Package B Niagara AAA playbooks (BeatBurst/HybridSparkles/PetalCascade)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/232"
+        }
+      ]
+    },
+    {
+      "branch": "docs/saint-last-reply-concept-20260915",
+      "head_sha": "b3a9c829afdc8d5270666e038d917e80689b2ad9",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 218,
+          "state": "closed",
+          "merged": false,
+          "title": "docs(art): canonize Saint of the Last Reply concept surface",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/218"
+        }
+      ]
+    },
+    {
+      "branch": "docs/saint-last-reply-refresh-20260916",
+      "head_sha": "461b486b59f4c2bdbcb8f5344e1dfad7912bc2f5",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 222,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(art): canonize Saint of the Last Reply concept surface",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/222"
+        }
+      ]
+    },
+    {
+      "branch": "docs/showcase-day-lock-20260922",
+      "head_sha": "d3ddb3395a7adac0225d68b916ef811bd381c50e",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 289,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(state): lock September 22 showcase-day queue",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/289"
+        }
+      ]
+    },
+    {
+      "branch": "docs/skills-tooltip-motion-authoring-20260917",
+      "head_sha": "8137ef006fa0e0f8b480f13392121ee60b7a842a",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 226,
+          "state": "closed",
+          "merged": false,
+          "title": "docs(ui): codify skill tooltip + Figma Motion authoring kit",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/226"
+        }
+      ]
+    },
+    {
+      "branch": "docs/state-reconcile-20260917",
+      "head_sha": "fd3ae4b7086f1adf7725d9885be55ab3f6451052",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 237,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(state): reconcile Sep 17 closures and canonical signal flow",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/237"
+        }
+      ]
+    },
+    {
+      "branch": "docs/state-reconcile-followup-20260917",
+      "head_sha": "4f21e5b9b3d9f83ac99257bdb25fba7de407cf5b",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 238,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(state): record #233 closeout",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/238"
+        }
+      ]
+    },
+    {
+      "branch": "docs/ui-vfx-contract-cleanup-20260917",
+      "head_sha": "59a85fa6cf6dacec26b18c6a8933dca6925acd87",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 239,
+          "state": "closed",
+          "merged": true,
+          "title": "docs(ui/vfx): salvage durable contracts and retire stale review lanes",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/239"
+        }
+      ]
+    },
+    {
+      "branch": "feat/echo-reflex-canary-20260922",
+      "head_sha": "fd1f3692cd2a366082580cd897b0ebc76e188285",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 286,
+          "state": "closed",
+          "merged": false,
+          "title": "Echo Reflex: Astra-plan / Jev-control orchestration canary",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/286"
+        }
+      ]
+    },
+    {
+      "branch": "feat/universe-foundry-v0-1-20260922",
+      "head_sha": "e60a351f6080921b54fd089e227c2cc15accda93",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 288,
+          "state": "closed",
+          "merged": true,
+          "title": "feat(foundry): add Universe Foundry v0.1 mission compiler",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/288"
+        }
+      ]
+    },
+    {
+      "branch": "feature/choral-sheep-root-c-material-proof-2026-09-08",
+      "head_sha": "2d6ada9d50264d72b47c062ca5e96fd8cefea00f",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 149,
+          "state": "closed",
+          "merged": false,
+          "title": "Choral Sheep audio-reactive fleece (Nikki-base wool + cymatics bus + morning proof)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/149"
+        },
+        {
+          "number": 134,
+          "state": "closed",
+          "merged": true,
+          "title": "Canonize Choral Sheep P0 probe + persistence handoff",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/134"
+        }
+      ]
+    },
+    {
+      "branch": "feature/eyewear-editorial-20260912",
+      "head_sha": "5432b2509d308f5a69af3aafc5dc5fa8bf91727a",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 205,
+          "state": "closed",
+          "merged": false,
+          "title": "feat(eyewear): parametric editorial family — weld, base curve, COLOR_0, UV, export gate, 6-hero drop",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/205"
+        }
+      ]
+    },
+    {
+      "branch": "feature/eyewear-editorial-salvage-20260916",
+      "head_sha": "19e0c5fd3899771a9cd9d9b59d54d08268054567",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 223,
+          "state": "closed",
+          "merged": false,
+          "title": "feat(eyewear): salvage #205's editorial pass onto current main",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/223"
+        }
+      ]
+    },
+    {
+      "branch": "feature/eyewear-editorial-salvage-refresh-20260916",
+      "head_sha": "c8a645e0b900e7b8e693648a6e568c1c7bc305e8",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 225,
+          "state": "closed",
+          "merged": true,
+          "title": "feat(eyewear): refresh editorial salvage on current main",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/225"
+        }
+      ]
+    },
+    {
+      "branch": "feature/frequency-ecology-20260921",
+      "head_sha": "4e07832ced2bf491364e5f307901f16f672cf999",
+      "classification": "SALVAGE_HOLD",
+      "reason": "no PR; potentially unique production work",
+      "pull_requests": []
+    },
+    {
+      "branch": "feature/harp-recovery-2026-09-20",
+      "head_sha": "e649dd8b872c99b4925b3c5ab2de02ec856ee579",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 269,
+          "state": "closed",
+          "merged": false,
+          "title": "recover(harp): record harp_bow_pipeline recovery — 21/21 blends verified, Rev02 opens + renders",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/269"
+        }
+      ]
+    },
+    {
+      "branch": "feature/house-gn-paris-recut-20260921",
+      "head_sha": "e42493d2b97f8f1a4e6165e37245b892c9175d3f",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 279,
+          "state": "closed",
+          "merged": false,
+          "title": "PROMOTION (re-cut): Paris GN + Melodia Studio SOURCE/LIVE gates onto fresh main",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/279"
+        }
+      ]
+    },
+    {
+      "branch": "feature/music-visualizer-20260913",
+      "head_sha": "35095ccc251ef21fca696a6bcd570c8e1e693091",
+      "classification": "SALVAGE_HOLD",
+      "reason": "no PR; potentially unique production work",
+      "pull_requests": []
+    },
+    {
+      "branch": "feature/resonance-astrolabe-r0",
+      "head_sha": "ab8bccbec0aa194384e91528e041068d80d345ca",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 145,
+          "state": "closed",
+          "merged": false,
+          "title": "feat: start Resonance Astrolabe R0 silhouette milestone",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/145"
+        }
+      ]
+    },
+    {
+      "branch": "feature/universe-foundry-ue-staging-20260922",
+      "head_sha": "417c29ce7dbf8473d135e46ac573e3a23e16519b",
+      "classification": "SALVAGE_HOLD",
+      "reason": "no PR; potentially unique production work",
+      "pull_requests": []
+    },
+    {
+      "branch": "fix/archive-cosmo-pre-expansion-snapshot-20260921",
+      "head_sha": "76a9a9f1965d7d28cc69c0441a485e8a7c6f8aa1",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 271,
+          "state": "closed",
+          "merged": true,
+          "title": "Archive pre-expansion Cosmo snapshot outside material spine",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/271"
+        }
+      ]
+    },
+    {
+      "branch": "fix/choral-sheep-da-companion-role-2026-09-13",
+      "head_sha": "bff9ca927571fed101203b34ef1922ef8e3c65dd",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 209,
+          "state": "closed",
+          "merged": true,
+          "title": "feat(sheep): land the canonical body, locomotion ABP, retarget chain and Companion role",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/209"
+        }
+      ]
+    },
+    {
+      "branch": "fix/choral-sheep-follow-velocity-bakeuv-2026-09-13",
+      "head_sha": "05077c78fcd68902d512b4cff0abdaeb1889504a",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 210,
+          "state": "closed",
+          "merged": true,
+          "title": "fix(sheep+melodia): follow velocity + ABP speed driver, packed UVs, PPV TSR freeze, hero stencil, Sheep VFX",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/210"
+        }
+      ]
+    },
+    {
+      "branch": "fix/issue-51-restore-idempotency-2026-09-09",
+      "head_sha": "5e765fa0d45573cf980d937d393745a2b15d6c5d",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 144,
+          "state": "closed",
+          "merged": false,
+          "title": "fix(save): close Issue #51 restore atomicity + repeat-load invariant",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/144"
+        }
+      ]
+    },
+    {
+      "branch": "fix/melusina-hero-stencil-2026-09-13",
+      "head_sha": "f9c2504f28bc2b99da0e267356d6be812c2232cb",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 211,
+          "state": "closed",
+          "merged": true,
+          "title": "fix(melusina): hair and wardrobe meshes inherit the body's hero stencil",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/211"
+        }
+      ]
+    },
+    {
+      "branch": "fix/melusina-wings-emissive-veins",
+      "head_sha": "ab6555ee6d4faf909472086a45c32e519cc24a30",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 291,
+          "state": "closed",
+          "merged": true,
+          "title": "fix(houdini): wings-emissive vein pass - chladni as embellishment, interlace as carrier",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/291"
+        }
+      ]
+    },
+    {
+      "branch": "fix/restore-front-door-contract-20260920",
+      "head_sha": "e9a156c84dea9b85eaf92dcbee78a7cd93eb822d",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 265,
+          "state": "closed",
+          "merged": false,
+          "title": "Restore front-door health contract removed from main",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/265"
+        }
+      ]
+    },
+    {
+      "branch": "fix/terrain-handoff-convergence-20260912",
+      "head_sha": "3d36f0b4efcde3311af255114263d3afca056ab7",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 200,
+          "state": "closed",
+          "merged": false,
+          "title": "fix(ci): unblock self-hosted UE runner queue + terrain-handoff suite into offline contract floor",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/200"
+        }
+      ]
+    },
+    {
+      "branch": "governance/content-first-refresh-20260916",
+      "head_sha": "4eada00ed83e3d2bbc2626689c47989a12b8261f",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 220,
+          "state": "closed",
+          "merged": true,
+          "title": "governance(agent): make content-first composition the repo default",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/220"
+        }
+      ]
+    },
+    {
+      "branch": "governance/content-python-git-authority-20260925",
+      "head_sha": "cfe8f639c73383c23e1592d27ef0e5c3f7c7e092",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 328,
+          "state": "closed",
+          "merged": true,
+          "title": "governance: protect Content/Python during Perforce cutover",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/328"
+        }
+      ]
+    },
+    {
+      "branch": "governance/perforce-active-pilot-20260925",
+      "head_sha": "73f001498b3a0fad336a131945bcd37e4cc644cb",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 325,
+          "state": "closed",
+          "merged": true,
+          "title": "governance: formalize Perforce active pilot cutover state",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/325"
+        }
+      ]
+    },
+    {
+      "branch": "governance/world-atlas-convergence-20260925",
+      "head_sha": "6777d4a7458880575ea59e515ef47ad7e2b7c11c",
+      "classification": "ACTIVE",
+      "reason": "canonical or current convergence lane",
+      "pull_requests": []
+    },
+    {
+      "branch": "integration/morning-closeout-20260916",
+      "head_sha": "0047f201bcdc0940ad2aced54f40fc63d7efdeeb",
+      "classification": "CANONIZED_CANDIDATE",
+      "reason": "merged PR evidence exists; verify no later unique commits before deletion",
+      "pull_requests": [
+        {
+          "number": 224,
+          "state": "closed",
+          "merged": true,
+          "title": "feat(morning): land 09-12..09-16 working-branch content on main (filtered)",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/224"
+        }
+      ]
+    },
+    {
+      "branch": "main",
+      "head_sha": "6777d4a7458880575ea59e515ef47ad7e2b7c11c",
+      "classification": "ACTIVE",
+      "reason": "canonical or current convergence lane",
+      "pull_requests": []
+    },
+    {
+      "branch": "prep/houdini-foundry-college-2026-09-24",
+      "head_sha": "59e6a00152f7bdeb642e30dd4662ab45993b7b47",
+      "classification": "ACTIVE",
+      "reason": "open pull request",
+      "pull_requests": [
+        {
+          "number": 321,
+          "state": "open",
+          "merged": false,
+          "title": "Houdini Foundry Day prep: college execution pack + deterministic bake contracts",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/321"
+        }
+      ]
+    },
+    {
+      "branch": "reconcile/pr250-house-gn-20260920",
+      "head_sha": "83d53a55d1eafffd1c79dc1c74386e5580d915a5",
+      "classification": "SALVAGE_HOLD",
+      "reason": "PR history exists but no merged PR proves this head canonized",
+      "pull_requests": [
+        {
+          "number": 251,
+          "state": "closed",
+          "merged": false,
+          "title": "Reconcile House GN Paris wall-detail close-out onto current main",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/251"
+        }
+      ]
+    },
+    {
+      "branch": "recovery/bowstage-2026-09-19",
+      "head_sha": "2bae488580a5ed2544f8b7bc5128c953b6a0a41c",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    },
+    {
+      "branch": "recovery/harp-receipt-current-main-20260921",
+      "head_sha": "ebd1f035832a0c0cf5128ad14e753e3ee8054930",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": [
+        {
+          "number": 276,
+          "state": "closed",
+          "merged": true,
+          "title": "Promote verified harp recovery evidence onto current main",
+          "url": "https://github.com/fromage3900/MelodiaMelusinaV2/pull/276"
+        }
+      ]
+    },
+    {
+      "branch": "recovery/lookdev-frequency-ecology-20260921",
+      "head_sha": "31ab823673a2dc3233e93e05436ff7794ff2d268",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    },
+    {
+      "branch": "recovery/morning-niagara-rewire-2026-09-19",
+      "head_sha": "61ff9fcad02cc84276d46f20f4f233985f6082d1",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    },
+    {
+      "branch": "recovery/p0-morning-dungeon-hop-2026-09-10",
+      "head_sha": "00fe870056d738c3bf317eb7864d6c521d08ac02",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    },
+    {
+      "branch": "recovery/pr250-house-gn-20260920",
+      "head_sha": "594041d99b62c51714f3728deadb7479488bb13f",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    },
+    {
+      "branch": "recovery/pre-restart-working-tree-2026-09-19",
+      "head_sha": "74d9f936f804e001ee1b7256ef2363c657e19f68",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    },
+    {
+      "branch": "recovery/studio-typed-source-live-gates-20260920",
+      "head_sha": "0aaa83a348a0872cc0b76d519408874b7028a5a4",
+      "classification": "P4_CONTENT_RECOVERY",
+      "reason": "recovery lane; selective salvage plus UE/Perforce verification required",
+      "pull_requests": []
+    }
+  ]
+}
