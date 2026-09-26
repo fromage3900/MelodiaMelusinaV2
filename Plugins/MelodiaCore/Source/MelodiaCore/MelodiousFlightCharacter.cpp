@@ -9,7 +9,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PlayerController.h"
+#include "EngineUtils.h"
 #include "MelodiaPartySubsystem.h"
+#include "SirPerchPoint.h"
 
 AMelodiousFlightCharacter::AMelodiousFlightCharacter()
 {
@@ -27,9 +29,10 @@ AMelodiousFlightCharacter::AMelodiousFlightCharacter()
 	// so his import/retarget work can iterate without touching C++.
 
 	// CameraBoom/FollowCamera are created by AMelodiaCharacterBase; tune the
-	// flight framing here (wider arm, flatter pitch than ground exploration).
-	CameraBoom->TargetArmLength = 520.0f;
-	CameraBoom->SetRelativeRotation(FRotator(-12.0f, 0.0f, 0.0f));
+	// flight framing here. H-4: a 520-unit arm made the cockatoo read as a
+	// speck, so the arm is pulled in and the pitch flattened.
+	CameraBoom->TargetArmLength = 300.0f;
+	CameraBoom->SetRelativeRotation(FRotator(-8.0f, 0.0f, 0.0f));
 }
 
 void AMelodiousFlightCharacter::BeginPlay()
@@ -127,7 +130,10 @@ void AMelodiousFlightCharacter::OnMoveTriggered(const FInputActionValue& Value)
 	{
 		return;
 	}
-	// Fly along the full camera direction, pitch included.
+	// Any steering input is a takeoff: leave the perch, then fly along the
+	// full camera direction, pitch included.
+	LeavePerch();
+	SecondsSinceSteering = 0.0f;
 	const FVector Forward = Controller->GetControlRotation().Vector();
 	AddMovementInput(Forward, MoveValue);
 }
@@ -139,6 +145,8 @@ void AMelodiousFlightCharacter::OnMoveRightTriggered(const FInputActionValue& Va
 	{
 		return;
 	}
+	LeavePerch();
+	SecondsSinceSteering = 0.0f;
 	const FRotator YawOnly(0.0f, Controller->GetControlRotation().Yaw, 0.0f);
 	AddMovementInput(FRotationMatrix(YawOnly).GetUnitAxis(EAxis::Y), MoveValue);
 }
@@ -152,16 +160,127 @@ void AMelodiousFlightCharacter::OnLookTriggered(const FInputActionValue& Value)
 
 void AMelodiousFlightCharacter::OnAscendTriggered(const FInputActionValue& Value)
 {
+	LeavePerch();
+	SecondsSinceSteering = 0.0f;
 	AddMovementInput(FVector::UpVector, 1.0f);
 }
 
 void AMelodiousFlightCharacter::OnBoostStarted()
 {
+	bIsBoosting = true;
+	// A boost is a deliberate departure, not a rest state.
+	LeavePerch();
+	SecondsSinceSteering = 0.0f;
 	GetCharacterMovement()->MaxFlySpeed = BoostSpeed;
 }
 
 void AMelodiousFlightCharacter::OnBoostCompleted()
 {
+	bIsBoosting = false;
 	GetCharacterMovement()->MaxFlySpeed = CruiseSpeed;
+}
+
+void AMelodiousFlightCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if (bIsPerched)
+	{
+		// Perched birds stay perched until the player steers; the takeoff is
+		// driven from the input handlers so it happens on the same frame the
+		// stick moves, not one tick later.
+		return;
+	}
+
+	SecondsSinceSteering += DeltaSeconds;
+	if (!bIsBoosting && SecondsSinceSteering >= PerchIdleDelay)
+	{
+		TryLandOnNearestPerch();
+	}
+}
+
+ASirPerchPoint* AMelodiousFlightCharacter::FindNearestPerch(float& OutDistance) const
+{
+	OutDistance = -1.0f;
+
+	const UWorld* World = GetWorld();
+	if (!World)
+	{
+		return nullptr;
+	}
+
+	const FVector SearchOrigin = GetActorLocation();
+	const float MaxDistanceSquared = FMath::Square(PerchSearchRadius);
+	float BestDistanceSquared = MaxDistanceSquared;
+	ASirPerchPoint* Best = nullptr;
+
+	for (TActorIterator<ASirPerchPoint> It(World); It; ++It)
+	{
+		ASirPerchPoint* Candidate = *It;
+		if (!IsValid(Candidate))
+		{
+			continue;
+		}
+		// Measure to the landing spot, not the actor pivot: a perch authored
+		// with an offset must attract the bird to where it will actually sit.
+		const float DistanceSquared = FVector::DistSquared(SearchOrigin, Candidate->GetLandingLocation());
+		if (DistanceSquared <= BestDistanceSquared)
+		{
+			BestDistanceSquared = DistanceSquared;
+			Best = Candidate;
+		}
+	}
+
+	if (Best)
+	{
+		OutDistance = FMath::Sqrt(BestDistanceSquared);
+	}
+	return Best;
+}
+
+bool AMelodiousFlightCharacter::TryLandOnNearestPerch()
+{
+	if (bIsPerched)
+	{
+		return true;
+	}
+
+	float Distance = 0.0f;
+	ASirPerchPoint* Perch = FindNearestPerch(Distance);
+	if (!Perch)
+	{
+		return false;
+	}
+
+	// Teleport onto the spot so he settles instead of overshooting it, and
+	// keep MOVE_Flying so there is no gravity/falling transition to tune.
+	SetActorLocation(Perch->GetLandingLocation(), false, nullptr, ETeleportType::TeleportPhysics);
+	SetActorRotation(Perch->GetLandingRotation());
+
+	if (UCharacterMovementComponent* Movement = GetCharacterMovement())
+	{
+		Movement->SetMovementMode(MOVE_Flying);
+		Movement->StopMovementImmediately();
+		Movement->Velocity = FVector::ZeroVector;
+	}
+
+	CurrentPerch = Perch;
+	bIsPerched = true;
+	SecondsSinceSteering = 0.0f;
+
+	UE_LOG(LogTemp, Verbose, TEXT("Melodia: Sir perched on %s at %s (%.0f units)."),
+		*GetNameSafe(Perch), *Perch->GetLandingLocation().ToCompactString(), Distance);
+	return true;
+}
+
+void AMelodiousFlightCharacter::LeavePerch()
+{
+	if (!bIsPerched)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Verbose, TEXT("Melodia: Sir left perch %s."), *GetNameSafe(CurrentPerch));
+	CurrentPerch = nullptr;
+	bIsPerched = false;
 }
 
