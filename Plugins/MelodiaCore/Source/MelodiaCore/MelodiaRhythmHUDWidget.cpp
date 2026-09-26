@@ -20,6 +20,42 @@ namespace
 		Brush.SetResourceObject(Texture);
 		return Brush;
 	}
+
+	// HL1-HL5 cue palette. Same design tokens the note boxes already use, so a grade
+	// reads identically whether it is a note, a ring, or the judgement pop.
+	FLinearColor GradeColor(const EMelodiaRhythmGrade Grade, const float Alpha)
+	{
+		switch (Grade)
+		{
+		case EMelodiaRhythmGrade::Perfect: return FLinearColor(0.368627f, 0.545098f, 0.494118f, Alpha); // feedback.success
+		case EMelodiaRhythmGrade::Great:   return FLinearColor(0.541176f, 0.662745f, 0.839216f, Alpha); // accent.astral
+		case EMelodiaRhythmGrade::Good:    return FLinearColor(0.721569f, 0.525490f, 0.184314f, Alpha); // feedback.warning
+		default:                           return FLinearColor(0.658824f, 0.341176f, 0.317647f, Alpha); // feedback.error
+		}
+	}
+
+	/** The judgement arrives as text (SetJudgment); this is the widget's only grade source. */
+	EMelodiaRhythmGrade GradeFromText(const FString& Text)
+	{
+		if (Text.Contains(TEXT("Perfect"), ESearchCase::IgnoreCase)) { return EMelodiaRhythmGrade::Perfect; }
+		if (Text.Contains(TEXT("Great"), ESearchCase::IgnoreCase))   { return EMelodiaRhythmGrade::Great; }
+		if (Text.Contains(TEXT("Good"), ESearchCase::IgnoreCase))    { return EMelodiaRhythmGrade::Good; }
+		return EMelodiaRhythmGrade::Miss;
+	}
+
+	/** Four thin boxes = a ring. Slate has no ring primitive and a filled box would read
+	 *  as another note, which is exactly the confusion HL2 is meant to remove. */
+	void PaintRing(FSlateWindowElementList& OutDrawElements, const FGeometry& Geometry, const int32 Layer,
+		const FVector2D Center, const float Size, const float Thickness, const FLinearColor Color,
+		const FSlateBrush& Brush)
+	{
+		const float Half = Size * 0.5f;
+		const FVector2D Origin(Center.X - Half, Center.Y - Half);
+		FSlateDrawElement::MakeBox(OutDrawElements, Layer, Geometry.ToPaintGeometry(FVector2D(Size, Thickness), FSlateLayoutTransform(Origin)), &Brush, ESlateDrawEffect::None, Color);
+		FSlateDrawElement::MakeBox(OutDrawElements, Layer, Geometry.ToPaintGeometry(FVector2D(Size, Thickness), FSlateLayoutTransform(FVector2D(Origin.X, Origin.Y + Size - Thickness))), &Brush, ESlateDrawEffect::None, Color);
+		FSlateDrawElement::MakeBox(OutDrawElements, Layer, Geometry.ToPaintGeometry(FVector2D(Thickness, Size), FSlateLayoutTransform(Origin)), &Brush, ESlateDrawEffect::None, Color);
+		FSlateDrawElement::MakeBox(OutDrawElements, Layer, Geometry.ToPaintGeometry(FVector2D(Thickness, Size), FSlateLayoutTransform(FVector2D(Origin.X + Size - Thickness, Origin.Y))), &Brush, ESlateDrawEffect::None, Color);
+	}
 }
 
 UMelodiaRhythmHUDWidget* UMelodiaRhythmHUDWidget::FindFirst(const UObject* WorldContextObject)
@@ -337,13 +373,54 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 			ToughFill);
 	}
 
-	// --- Judgment text (center, fades out) ---
+	// --- Judgment text (center): HL1 -- beat-locked grade pop ---
 	{
-		const float TimeSinceJudgment = GetHUDTimeSeconds() - LastPulseTime;
-		if (TimeSinceJudgment < 1.5f && !LastJudgmentText.IsEmpty())
+		// The pop owns its timestamp now. It used to read LastPulseTime, which DoPulse
+		// rewrites on every beat, so a beat landing mid-pop restarted the fade and every
+		// judgement appeared to linger and flicker.
+		const float PopAge = GetHUDTimeSeconds() - LastGradePopTime;
+		const float Motion = GetMotionAmplitude();
+		// Beat-locked timeline scaled by the live tempo (117 / 234 / 469 / 703 ms at 128 BPM):
+		// 0-1/8 anticipation to overshoot, 1/8-1/4 settle to rest, hold to the beat, fade.
+		const float AnticipateEnd = FMath::Max(0.03f, SecondsPerBeat * 0.25f);
+		const float SettleEnd = AnticipateEnd * 2.0f;
+		const float HoldEnd = FMath::Max(SettleEnd + 0.03f, SecondsPerBeat);
+		const float FadeEnd = HoldEnd + FMath::Max(0.05f, SecondsPerBeat * 0.5f);
+
+		if (PopAge >= 0.0f && PopAge < FadeEnd && !LastJudgmentText.IsEmpty())
 		{
-			const float Alpha = FMath::Clamp(1.0f - TimeSinceJudgment / 1.5f, 0.0f, 1.0f);
-			const float Scale = 1.0f + TimeSinceJudgment * 0.15f;
+			float Scale = 1.0f;
+			float Alpha = 1.0f;
+			if (PopAge < AnticipateEnd)
+			{
+				Scale = FMath::Lerp(0.85f, 1.18f, PopAge / AnticipateEnd);
+			}
+			else if (PopAge < SettleEnd)
+			{
+				Scale = FMath::Lerp(1.18f, 1.0f, (PopAge - AnticipateEnd) / (SettleEnd - AnticipateEnd));
+			}
+			else if (PopAge >= HoldEnd)
+			{
+				Alpha = FMath::Clamp(1.0f - (PopAge - HoldEnd) / (FadeEnd - HoldEnd), 0.0f, 1.0f);
+			}
+			// MotionTier=Off keeps the text readable and drops the motion, matching the
+			// rest of the cue set.
+			Scale = 1.0f + (Scale - 1.0f) * Motion;
+
+			const FVector2D PopCenter(W * 0.5f, H * 0.45f);
+			const FLinearColor PopColor = GradeColor(LastPopGrade, Alpha);
+
+			// Perfect adds a ring flash that expands with the pop and is gone by the settle.
+			if (LastPopGrade == EMelodiaRhythmGrade::Perfect && PopAge < SettleEnd)
+			{
+				const float RingT = FMath::Clamp(PopAge / SettleEnd, 0.0f, 1.0f);
+				PaintRing(OutDrawElements, AllottedGeometry, CurrentLayer + 1, PopCenter,
+					150.0f * Scale * (1.0f + 0.5f * RingT),
+					FMath::Max(1.0f, 3.0f * (1.0f - RingT)),
+					GradeColor(EMelodiaRhythmGrade::Perfect, Alpha * (1.0f - RingT) * 0.8f),
+					WhiteBrush);
+			}
+
 			UTexture2D* GradeTexture = nullptr;
 			const FString GradeText = LastJudgmentText.ToString();
 			if (GradeText.Equals(TEXT("Perfect"), ESearchCase::IgnoreCase)) GradeTexture = GradePerfectTexture;
@@ -356,15 +433,15 @@ void UMelodiaRhythmHUDWidget::PaintBattleHUD(FSlateWindowElementList& OutDrawEle
 				const FSlateBrush GradeBrush = MakeTextureBrush(GradeTexture);
 				const FVector2D GradeSize(220.0f * Scale, 64.0f * Scale);
 				FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
-					AllottedGeometry.ToPaintGeometry(GradeSize, FSlateLayoutTransform(FVector2D(W * 0.5f - GradeSize.X * 0.5f, H * 0.45f - GradeSize.Y * 0.5f))),
+					AllottedGeometry.ToPaintGeometry(GradeSize, FSlateLayoutTransform(FVector2D(PopCenter.X - GradeSize.X * 0.5f, PopCenter.Y - GradeSize.Y * 0.5f))),
 					&GradeBrush, ESlateDrawEffect::None, FLinearColor(1.0f, 1.0f, 1.0f, Alpha));
 			}
 			else
 			{
 				const FSlateFontInfo Font = FCoreStyle::GetDefaultFontStyle("Bold", FMath::RoundToInt(28.0f * Scale));
 				FSlateDrawElement::MakeText(OutDrawElements, CurrentLayer + 2,
-					AllottedGeometry.ToPaintGeometry(FVector2D(200.0f, 40.0f), FSlateLayoutTransform(FVector2D(W * 0.5f - 100.0f, H * 0.45f - 20.0f))),
-					GradeText, Font, ESlateDrawEffect::None, FLinearColor(0.988235f, 0.984314f, 0.972549f, Alpha)); // text.primary, grade texture missing
+					AllottedGeometry.ToPaintGeometry(FVector2D(200.0f, 40.0f), FSlateLayoutTransform(FVector2D(PopCenter.X - 100.0f, PopCenter.Y - 20.0f))),
+					GradeText, Font, ESlateDrawEffect::None, PopColor);
 			}
 		}
 	}
@@ -443,7 +520,20 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 	const float TopY = FMath::Max(0.0f, HitLineY - HighwayApproachHeight);
 	const float ApproachH = HitLineY - TopY;
 
-	// One background column per lane, so the lane boundaries are visible at rest.
+	// HL4: the hit line pulses on the beat. Phase comes from the beat position the driver
+	// already pushes -- the same music clock the orrery chassis reads -- so this adds no
+	// second audio reader. The pulse decays over 1/8 note at the current BPM: a heartbeat,
+	// not a strobe.
+	const float Motion = GetMotionAmplitude();
+	const float Now = GetHUDTimeSeconds();
+	const float BeatPhase = HighwayBeatPosition - FMath::FloorToFloat(HighwayBeatPosition);
+	const float PulseDecay = FMath::Max(0.03f, SecondsPerBeat * 0.25f);
+	const float Pulse = Motion * FMath::Clamp(1.0f - (BeatPhase * SecondsPerBeat) / PulseDecay, 0.0f, 1.0f);
+
+	// HL2: lane columns. At rest they alternate shade; for 1/8 note after a hit, the lane
+	// the player just cleared flashes in its grade colour, so the flash and the ring agree
+	// about what happened.
+	const float LaneFlashLife = FMath::Max(0.04f, SecondsPerBeat * 0.25f);
 	for (int32 Lane = 0; Lane < LaneCount; ++Lane)
 	{
 		const float LaneX = RowLeft + Lane * LaneW;
@@ -453,16 +543,42 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 			AllottedGeometry.ToPaintGeometry(FVector2D(LaneW - 2.0f, ApproachH), FSlateLayoutTransform(FVector2D(LaneX + 1.0f, TopY))),
 			HighwayBackgroundTexture ? &HighwayBrush : &WhiteBrush, ESlateDrawEffect::None,
 			FLinearColor(0.06f, 0.04f, 0.1f, Shade));
+
+		if (LaneFlashTimes.IsValidIndex(Lane))
+		{
+			const float FlashAge = Now - LaneFlashTimes[Lane];
+			if (FlashAge >= 0.0f && FlashAge < LaneFlashLife)
+			{
+				FLinearColor FlashColor = SparkleTint;
+				for (int32 BurstIndex = HighwayBursts.Num() - 1; BurstIndex >= 0; --BurstIndex)
+				{
+					if (HighwayBursts[BurstIndex].LaneIndex == Lane)
+					{
+						FlashColor = GradeColor(HighwayBursts[BurstIndex].Grade, 1.0f);
+						break;
+					}
+				}
+
+				const float FlashAlpha = Motion * (1.0f - FlashAge / LaneFlashLife) * 0.35f;
+				FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
+					AllottedGeometry.ToPaintGeometry(FVector2D(LaneW - 2.0f, ApproachH), FSlateLayoutTransform(FVector2D(LaneX + 1.0f, TopY))),
+					HighwayBackgroundTexture ? &HighwayBrush : &WhiteBrush, ESlateDrawEffect::None,
+					FLinearColor(FlashColor.R, FlashColor.G, FlashColor.B, FlashAlpha));
+			}
+		}
 	}
 
-	// Hit line spans the whole row — this is the "press now" reference.
+	// Hit line spans the whole row — this is the "press now" reference. It thickens and
+	// brightens on the beat, so the moment to press is legible without watching a metronome.
+	const float HitLineThickness = 3.0f + 4.0f * Pulse;
 	FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 1,
-		AllottedGeometry.ToPaintGeometry(FVector2D(RowWidth, 3.0f), FSlateLayoutTransform(FVector2D(RowLeft, HitLineY))),
+		AllottedGeometry.ToPaintGeometry(FVector2D(RowWidth, HitLineThickness), FSlateLayoutTransform(FVector2D(RowLeft, HitLineY - HitLineThickness * 0.5f + 1.5f))),
 		HitLineTexture ? &HitLineBrush : &WhiteBrush, ESlateDrawEffect::None,
-		FLinearColor(1.0f, 1.0f, 1.0f, 0.9f));
+		FLinearColor(1.0f, 1.0f, 1.0f, FMath::Clamp(0.75f + 0.25f * Pulse, 0.0f, 1.0f)));
 
 	// Notes
 	const float NoteSize = HighwayNoteSize;
+	const float CueLife = FMath::Max(0.08f, SecondsPerBeat * 0.5f); // 1/4 note: ring / miss drift
 	for (const FMelodiaHighwayNote& Note : HighwayNotes)
 	{
 		const float BeatOffset = Note.TargetBeat - HighwayBeatPosition;
@@ -471,36 +587,108 @@ void UMelodiaRhythmHUDWidget::PaintNoteHighway(FSlateWindowElementList& OutDrawE
 			continue;
 		}
 
+		// HL2/HL3: a resolved note no longer draws as a note. A hit is represented by its
+		// ring and lane flash (drawn below); a miss drops away dimmed in the record loop.
+		// Without this, a hit and a miss were visually identical, which was the whole
+		// complaint about the highway reading flat.
+		if (Note.bResolved)
+		{
+			const FMelodiaHighwayResolved* Record = ResolvedNotes.FindByPredicate([&Note](const FMelodiaHighwayResolved& Resolved)
+			{
+				return Resolved.LaneIndex == Note.LaneIndex && FMath::IsNearlyEqual(Resolved.TargetBeat, Note.TargetBeat, 0.01f);
+			});
+			if (Record || Note.bCountsAsHit)
+			{
+				continue; // already played out; the ring or the drift owns it now
+			}
+
+			// No record: a driver that hands us notes already resolved. Keep the old
+			// static dim block rather than draw nothing at all.
+			const int32 Lane = FMath::Clamp(Note.LaneIndex, 0, LaneCount - 1);
+			const float Normalized = FMath::Clamp(BeatOffset / FMath::Max(0.1f, HighwayScrollBeatsAhead), 0.0f, 1.0f);
+			const float DimX = RowLeft + (Lane + 0.5f) * LaneW - NoteSize * 0.5f;
+			const float DimY = HitLineY - Normalized * ApproachH - NoteSize * 0.5f;
+			FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
+				AllottedGeometry.ToPaintGeometry(FVector2D(NoteSize, NoteSize), FSlateLayoutTransform(FVector2D(DimX, DimY))),
+				NoteHeadTexture ? &NoteBrush : &WhiteBrush, ESlateDrawEffect::None,
+				GradeColor(Note.Grade, 0.35f));
+			continue;
+		}
+
 		// 0 = at the hit line, 1 = at the top of the approach. Time maps to distance,
 		// so a steady BPM gives steady visual speed.
 		const float Normalized = FMath::Clamp(BeatOffset / FMath::Max(0.1f, HighwayScrollBeatsAhead), 0.0f, 1.0f);
 		const int32 Lane = FMath::Clamp(Note.LaneIndex, 0, LaneCount - 1);
-		const float NoteX = RowLeft + (Lane + 0.5f) * LaneW - NoteSize * 0.5f;
-		const float NoteY = HitLineY - Normalized * ApproachH - NoteSize * 0.5f;
+		const float LaneCenterX = RowLeft + (Lane + 0.5f) * LaneW;
 
-		FLinearColor NoteColor;
-		if (Note.bResolved)
-		{
-			switch (Note.Grade)
-			{
-			case EMelodiaRhythmGrade::Perfect: NoteColor = FLinearColor(0.368627f, 0.545098f, 0.494118f, 0.6f); break; // feedback.success
-			case EMelodiaRhythmGrade::Great:   NoteColor = FLinearColor(0.541176f, 0.662745f, 0.839216f, 0.5f); break; // accent.astral
-			case EMelodiaRhythmGrade::Good:    NoteColor = FLinearColor(0.721569f, 0.525490f, 0.184314f, 0.4f); break; // feedback.warning
-			default:                           NoteColor = FLinearColor(0.658824f, 0.341176f, 0.317647f, 0.3f); break; // feedback.error
-			}
-		}
-		else
-		{
-			NoteColor = SparkleTint;
-		}
+		// HL5: inside the last 1/8 note the note grows and brightens, so the press moment
+		// is readable before arrival rather than only after the grade lands.
+		const float ApproachWindow = FMath::Max(0.05f, SecondsPerBeat * 0.25f);
+		const float TimeToLine = BeatOffset * SecondsPerBeat;
+		const float Approach = (BeatOffset <= 0.25f)
+			? 1.0f - FMath::Clamp(TimeToLine / ApproachWindow, 0.0f, 1.0f)
+			: 0.0f;
+
+		const float DrawSize = NoteSize * (1.0f + 0.2f * Approach * Motion);
+		const float Brighten = 1.0f + 0.35f * Approach * Motion;
+		const FLinearColor NoteColor(
+			FMath::Min(1.0f, SparkleTint.R * Brighten),
+			FMath::Min(1.0f, SparkleTint.G * Brighten),
+			FMath::Min(1.0f, SparkleTint.B * Brighten),
+			SparkleTint.A);
 
 		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
-			AllottedGeometry.ToPaintGeometry(FVector2D(NoteSize, NoteSize), FSlateLayoutTransform(FVector2D(NoteX, NoteY))),
+			AllottedGeometry.ToPaintGeometry(FVector2D(DrawSize, DrawSize), FSlateLayoutTransform(FVector2D(LaneCenterX - DrawSize * 0.5f, HitLineY - Normalized * ApproachH - DrawSize * 0.5f))),
 			NoteHeadTexture ? &NoteBrush : &WhiteBrush, ESlateDrawEffect::None,
 			NoteColor);
 	}
 
-	CurrentLayer += 3;
+	// HL3: misses drift down past the hit line and dim out. Keyed off the resolution
+	// record, not the note, because the stock driver drops the note on the same frame it
+	// resolves -- there would be nothing left to animate.
+	for (const FMelodiaHighwayResolved& Record : ResolvedNotes)
+	{
+		if (Record.bCountsAsHit)
+		{
+			continue;
+		}
+		const float Age = Now - Record.ResolveTime;
+		if (Age < 0.0f || Age > CueLife)
+		{
+			continue;
+		}
+		const int32 Lane = FMath::Clamp(Record.LaneIndex, 0, LaneCount - 1);
+		const float LaneCenterX = RowLeft + (Lane + 0.5f) * LaneW;
+		const float T = FMath::Clamp(Age / CueLife, 0.0f, 1.0f);
+		const float Size = NoteSize * (1.0f - 0.25f * T);
+		const float Drift = Motion * T * 56.0f;
+		FSlateDrawElement::MakeBox(OutDrawElements, CurrentLayer + 2,
+			AllottedGeometry.ToPaintGeometry(FVector2D(Size, Size), FSlateLayoutTransform(FVector2D(LaneCenterX - Size * 0.5f, HitLineY - Size * 0.5f + Drift))),
+			NoteHeadTexture ? &NoteBrush : &WhiteBrush, ESlateDrawEffect::None,
+			GradeColor(EMelodiaRhythmGrade::Miss, 0.45f * (1.0f - T)));
+	}
+
+	// HL2: hit bursts — a ring expands out of the hit line in the lane that scored, in the
+	// grade's colour, and is gone in 1/4 note. This is the "you hit it" that was missing.
+	for (const FMelodiaHighwayBurst& Burst : HighwayBursts)
+	{
+		const float Age = Now - Burst.StartTime;
+		if (Age < 0.0f || Age > CueLife)
+		{
+			continue;
+		}
+		const int32 Lane = FMath::Clamp(Burst.LaneIndex, 0, LaneCount - 1);
+		const float LaneCenterX = RowLeft + (Lane + 0.5f) * LaneW;
+		const float T = FMath::Clamp(Age / CueLife, 0.0f, 1.0f);
+		const float RingSize = NoteSize * (1.0f + 1.6f * T * Motion);
+		PaintRing(OutDrawElements, AllottedGeometry, CurrentLayer + 3,
+			FVector2D(LaneCenterX, HitLineY), RingSize,
+			FMath::Max(1.0f, 3.0f * (1.0f - T)),
+			GradeColor(Burst.Grade, (1.0f - T) * 0.85f),
+			WhiteBrush);
+	}
+
+	CurrentLayer += 4;
 }
 
 void UMelodiaRhythmHUDWidget::PaintFloatingCombatTexts(FSlateWindowElementList& OutDrawElements, const FGeometry& AllottedGeometry, int32& CurrentLayer) const
@@ -544,7 +732,78 @@ void UMelodiaRhythmHUDWidget::SetHUDMode_Implementation(const EMelodiaHUDMode Ne
 void UMelodiaRhythmHUDWidget::SetJudgment_Implementation(const FText& NewText)
 {
 	LastJudgmentText = NewText;
-	LastPulseTime = GetHUDTimeSeconds();
+	// HL1: the pop owns its own timestamp. This used to write LastPulseTime, which
+	// DoPulse rewrites on every beat -- so a beat landing mid-pop restarted the fade,
+	// and every judgement appeared to linger. LastPulseTime stays the DoPulse heartbeat
+	// (it is BlueprintReadOnly, so a widget can still read pulse timing); the pop no
+	// longer shares it.
+	LastGradePopTime = GetHUDTimeSeconds();
+	LastPopGrade = GradeFromText(NewText.ToString());
+
+	// HL2, the other half of the pairing. UMelodiaRhythmCombatSubsystem drops a resolved
+	// note from the array on one tick and posts its grade on another, so a grade landing
+	// just AFTER a note vanished is still that note's grade. Without this the prompt only
+	// ever paired grade-then-vanish, and every hit read as a miss (13 of 13 in the
+	// 2026-09-26 gate run, with zero rings). Upgrade the most recent provisional miss
+	// inside the window instead of recording it as a miss twice.
+	if (LastPopGrade != EMelodiaRhythmGrade::Miss)
+	{
+		const float PairWindow = FMath::Max(0.12f, SecondsPerBeat * 0.5f);
+		int32 UpgradeIndex = INDEX_NONE;
+		for (int32 Index = 0; Index < ResolvedNotes.Num(); ++Index)
+		{
+			const FMelodiaHighwayResolved& Candidate = ResolvedNotes[Index];
+			if (Candidate.bCountsAsHit || Candidate.Grade != EMelodiaRhythmGrade::Miss)
+			{
+				continue;
+			}
+			if (FMath::Abs(LastGradePopTime - Candidate.ResolveTime) > PairWindow)
+			{
+				continue;
+			}
+			UpgradeIndex = Index;
+		}
+
+		if (ResolvedNotes.IsValidIndex(UpgradeIndex))
+		{
+			FMelodiaHighwayResolved& Upgraded = ResolvedNotes[UpgradeIndex];
+			Upgraded.bCountsAsHit = true;
+			Upgraded.Grade = LastPopGrade;
+			Upgraded.ResolveTime = LastGradePopTime;
+
+			FMelodiaHighwayBurst Burst;
+			Burst.LaneIndex = Upgraded.LaneIndex;
+			Burst.StartTime = LastGradePopTime;
+			Burst.Grade = LastPopGrade;
+			HighwayBursts.Add(Burst);
+			++TotalHitBursts;
+
+			if (LaneFlashTimes.Num() < HighwayLaneCount)
+			{
+				LaneFlashTimes.SetNumZeroed(HighwayLaneCount);
+			}
+			if (LaneFlashTimes.IsValidIndex(Upgraded.LaneIndex))
+			{
+				LaneFlashTimes[Upgraded.LaneIndex] = LastGradePopTime;
+			}
+
+			UE_LOG(LogTemp, Log, TEXT("HL_CUE burst lane=%d beat=%.3f grade=%d via=late_grade"),
+				Upgraded.LaneIndex, Upgraded.TargetBeat, static_cast<int32>(LastPopGrade));
+		}
+	}
+}
+
+bool UMelodiaRhythmHUDWidget::TryConsumeFreshGrade(const float WindowSeconds)
+{
+	const float Age = GetHUDTimeSeconds() - LastGradePopTime;
+	if (LastGradePopTime <= LastConsumedGradeTime || Age < 0.0f || Age > WindowSeconds)
+	{
+		return false;
+	}
+	// One grade event pairs with one resolving note; a second vanish inside the same
+	// window is a miss, not a replay of the same hit.
+	LastConsumedGradeTime = LastGradePopTime;
+	return true;
 }
 
 void UMelodiaRhythmHUDWidget::DoPulse_Implementation()
@@ -617,10 +876,136 @@ void UMelodiaRhythmHUDWidget::SetEnemyBreakGauge_Implementation(const float Curr
 
 void UMelodiaRhythmHUDWidget::SetNoteHighwayActive_Implementation(const bool bActive, const TArray<FMelodiaHighwayNote>& Notes, const float BeatPosition, const float ScrollBeatsAhead)
 {
+	const float Now = GetHUDTimeSeconds();
+
+	// Lock every cue below to the music clock instead of a hardcoded 128 BPM: the push
+	// carries the authoritative beat position, so its slope IS seconds-per-beat.
+	if (bNoteHighwayActive && LastSampledBeatPosition > -999.0f)
+	{
+		const float DeltaBeats = BeatPosition - LastSampledBeatPosition;
+		const float DeltaSeconds = Now - LastBeatSampleTime;
+		if (DeltaBeats > 0.01f && DeltaBeats < 4.0f && DeltaSeconds > 0.0f)
+		{
+			const float Estimate = DeltaSeconds / DeltaBeats;
+			if (Estimate > 0.1f && Estimate < 2.0f)
+			{
+				SecondsPerBeat = FMath::Lerp(SecondsPerBeat, Estimate, 0.25f);
+			}
+		}
+	}
+	LastSampledBeatPosition = BeatPosition;
+	LastBeatSampleTime = Now;
+
+	// HL2/HL3: react to each note resolving exactly once. Two signals can carry it:
+	//  - the flag path -- a driver that pushes the note with bResolved set, and
+	//  - the edge path -- UMelodiaRhythmCombatSubsystem filters resolved notes out
+	//    before PushHighwayToHUD, so for that driver a note vanishing from the array
+	//    IS the resolution, and its disappearance is all the widget will ever see.
+	if (bNoteHighwayActive)
+	{
+		const auto RecordResolution = [this, Now](const int32 LaneIndex, const float TargetBeat, const bool bCountsAsHit, const EMelodiaRhythmGrade Grade)
+		{
+			FMelodiaHighwayResolved Record;
+			Record.LaneIndex = LaneIndex;
+			Record.TargetBeat = TargetBeat;
+			Record.ResolveTime = Now;
+			Record.bCountsAsHit = bCountsAsHit;
+			Record.Grade = Grade;
+			ResolvedNotes.Add(Record);
+
+			if (bCountsAsHit)
+			{
+				FMelodiaHighwayBurst Burst;
+				Burst.LaneIndex = LaneIndex;
+				Burst.StartTime = Now;
+				Burst.Grade = Grade;
+				HighwayBursts.Add(Burst);
+			++TotalHitBursts;
+
+				if (LaneFlashTimes.Num() < HighwayLaneCount)
+				{
+					LaneFlashTimes.SetNumZeroed(HighwayLaneCount);
+				}
+				if (LaneFlashTimes.IsValidIndex(LaneIndex))
+				{
+					LaneFlashTimes[LaneIndex] = Now;
+				}
+
+				// Timestamped proof of the HL2 hit path. The ring and the lane flash live
+				// 1/8 note, which is shorter than any remote poll, so the moment itself has
+				// to be recorded where it happens.
+				UE_LOG(LogTemp, Log, TEXT("HL_CUE burst lane=%d beat=%.3f grade=%d"), LaneIndex, TargetBeat, static_cast<int32>(Grade));
+			}
+			else
+			{
+				UE_LOG(LogTemp, Log, TEXT("HL_CUE miss lane=%d beat=%.3f"), LaneIndex, TargetBeat);
+			}
+		};
+
+		for (const FMelodiaHighwayNote& Note : Notes)
+		{
+			if (!Note.bResolved)
+			{
+				continue;
+			}
+			const bool bKnown = ResolvedNotes.ContainsByPredicate([&Note](const FMelodiaHighwayResolved& R)
+			{
+				return R.LaneIndex == Note.LaneIndex && FMath::IsNearlyEqual(R.TargetBeat, Note.TargetBeat, 0.01f);
+			});
+			if (!bKnown)
+			{
+				RecordResolution(Note.LaneIndex, Note.TargetBeat, Note.bCountsAsHit, Note.Grade);
+			}
+		}
+
+		for (const FMelodiaHighwayNote& Previous : PreviousHighwayNotes)
+		{
+			if (Previous.bResolved)
+			{
+				continue;
+			}
+			const bool bStillPresent = Notes.ContainsByPredicate([&Previous](const FMelodiaHighwayNote& Note)
+			{
+				return Note.LaneIndex == Previous.LaneIndex && FMath::IsNearlyEqual(Note.TargetBeat, Previous.TargetBeat, 0.01f);
+			});
+			if (bStillPresent)
+			{
+				continue;
+			}
+
+			// A grade event landing in the same window is the only evidence that this
+			// vanish was earned rather than dropped; without one it reads as a miss.
+			const float PairWindow = FMath::Max(0.05f, SecondsPerBeat * 0.25f);
+			const bool bHit = TryConsumeFreshGrade(PairWindow);
+			RecordResolution(Previous.LaneIndex, Previous.TargetBeat, bHit, bHit ? LastPopGrade : EMelodiaRhythmGrade::Miss);
+		}
+
+		// Drop what has finished playing out (the ring/drift life).
+		const float CueLife = FMath::Max(0.08f, SecondsPerBeat * 0.5f);
+		HighwayBursts.RemoveAll([Now, CueLife](const FMelodiaHighwayBurst& Burst)
+		{
+			return Now - Burst.StartTime > CueLife;
+		});
+		ResolvedNotes.RemoveAll([Now, CueLife](const FMelodiaHighwayResolved& Record)
+		{
+			return Now - Record.ResolveTime > CueLife;
+		});
+	}
+	else
+	{
+		// Inactive highway: nothing to animate, and stale cues must not survive a restart.
+		HighwayBursts.Reset();
+		ResolvedNotes.Reset();
+		LaneFlashTimes.Reset();
+		LastSampledBeatPosition = -1000.0f;
+		LastBeatSampleTime = -1000.0f;
+	}
+
 	bNoteHighwayActive = bActive;
 	HighwayNotes = Notes;
 	HighwayBeatPosition = BeatPosition;
 	HighwayScrollBeatsAhead = ScrollBeatsAhead;
+	PreviousHighwayNotes = Notes;
 }
 
 void UMelodiaRhythmHUDWidget::ShowActionPrompt_Implementation(const FString& PromptText)

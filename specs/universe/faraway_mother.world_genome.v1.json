@@ -29,7 +29,7 @@
   },
   "content": {
     "pcg_manifest": "specs/pcg/faraway_mother_pcg_manifest.v1.json",
-    "world_compiler_recipe": null,
+    "world_compiler_recipe": "recipes/faraway_mother_crystal_detail.v1.json",
     "resonance_integration_spec": "Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md",
     "heart_gate_challenge": "challenge.mother_heart_gate",
     "heart_gate_reward": "reward.wardrobe.mother_velvet_mantle"

@@ -135,11 +135,11 @@ def test_attribute_ranges():
                 v = float(r[col])
                 assert 0.0 <= v <= 1.0, (col, v)
             assert 0.0 <= float(r["yaw"]) < 360.0
-            s_lo, s_hi = recipe["field"]["scale_range"]
-            assert s_lo * 0.85 <= float(r["scale"]) <= s_hi * 1.0 + 1e-6
+            species = {s["species_id"]: s for s in recipe["species"]}[r["species_id"]]
+            s_lo, s_hi = species.get("scale_range", recipe["field"]["scale_range"])
+            assert s_lo * 0.85 <= float(r["scale"]) <= s_hi * 1.0 + 1e-6, (r["species_id"], r["scale"])
             assert int(r["EcologyClass"]) in (0, 1, 2)
             assert int(r["MaterialVariant"]) == int(r["band"])
-            species = {s["species_id"]: s for s in recipe["species"]}[r["species_id"]]
             meshes = species.get("meshes") or [species["mesh"]]
             assert r["mesh"].split(".")[0] in meshes  # mesh follows variant_id
             assert int(r["variant_id"]) < int(species.get("variants", len(meshes)))
@@ -192,6 +192,47 @@ def test_retired_rainbow_scripts_are_gone():
     leftovers = sorted(p.name for p in (ROOT / "Content" / "Python").glob("rainbow_*.py"))
     assert leftovers == [], f"retire into Tools/world_compiler.py: {leftovers}"
 
+
+
+def test_structures_absent_emits_no_structure_tables():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe.pop("structures", None)
+    with tempfile.TemporaryDirectory() as td:
+        path = Path(td) / "no_structures.v1.json"
+        path.write_text(json.dumps(recipe), encoding="utf-8")
+        manifest, out = _compile(Path(td), path)
+    assert "structures" not in manifest["stages"]
+    assert not any(name.startswith("structure") for name in manifest["tables"])
+    assert "structures" not in manifest["ue_lane"]
+
+
+def test_structures_mandala_slots_and_curves():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    st = recipe["structures"]
+    with tempfile.TemporaryDirectory() as td:
+        manifest, out = _compile(Path(td))
+        slots = _rows(out / "structure_slots.csv")
+        curves = _rows(out / "structure_curves.csv")
+        bake = json.loads((out / "structures_bake.json").read_text(encoding="utf-8"))
+    assert manifest["stages"]["structures"]["status"] == "PASS"
+    assert len(slots) == sum(r.get("count", st["layout"]["order"]) for r in st["layout"]["rings"])
+    cx, cy, cz = st["layout"]["center_cm"]
+    for row in slots:
+        ring = st["layout"]["rings"][int(row["ring"])]
+        r = math.hypot(float(row["x"]) - cx, float(row["y"]) - cy)
+        assert abs(r - ring["radius_cm"]) < 0.01, row["slot_uid"]
+        assert row["builder_id"].startswith(("MEL_", "NT"))
+    for decor in st["decor"]:
+        pts = [c for c in curves if c["curve_id"].startswith(decor["decor_id"])]
+        assert pts, decor["decor_id"]
+        if decor["curve"]["kind"] == "phyllotaxis":
+            assert len(pts) == decor["curve"]["count"]
+        if decor["curve"]["kind"] == "catenary":
+            chain = [c for c in pts if c["curve_id"] == decor["decor_id"] + "_0"]
+            top = cz + decor["curve"]["attach_height_cm"]
+            assert abs(float(chain[0]["z"]) - top) < 0.01 and abs(float(chain[-1]["z"]) - top) < 0.01
+            assert min(float(c["z"]) for c in chain) < top - 1.0
+    assert set(bake["slots"]) == set(st["slots"])
 
 if __name__ == "__main__":
     failures = 0

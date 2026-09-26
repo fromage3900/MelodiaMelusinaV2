@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 26,
+	"VersionName": "1.11.1",
+	"FriendlyName": "MultiWorld",
+	"Description": "Support for multiple UWorld instances in the same application, simultaneously.",
+	"Category": "Other",
+	"CreatedBy": "UNAmedia",
+	"CreatedByURL": "https://www.unamedia.com",
+	"DocsURL": "https://www.unamedia.com/ue5-multiworld/api/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/483ac00af8284f5683b904219c4e9c45",
+	"SupportURL": "https://www.unamedia.com",
+	"EngineVersion": "5.8.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "MultiWorld",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		}
+	]
+}

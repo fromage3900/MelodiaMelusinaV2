@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "MelodiaCoreRulesLibrary.h"
 #include "MelodiaSirMelodiousIntroActor.generated.h"
 
 class USkeletalMeshComponent;
@@ -10,6 +11,8 @@ class USphereComponent;
 class UPointLightComponent;
 class UPrimitiveComponent;
 class AActor;
+class USoundBase;
+class UMaterialParameterCollection;
 struct FHitResult;
 
 /**
@@ -72,6 +75,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Opening|Departure", meta=(AllowedClasses="/Script/Engine.World"))
 	FName DepartureDestinationLevel = TEXT("/Game/EnvSandbox/Environments/L_KaleidoNave");
 
+	/** Actor tag of the authored arrival PlayerStart in the destination level. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Opening|Departure")
+	FName DepartureSpawnTag = TEXT("Arrive_FromDreamstate");
+
 	/** Dissonance procs from actual distance to Sir as he flies away, not a fixed
 	 * trigger volume - "losing power because she's away from her companion."
 	 * Fractions of DepartureOffset's length (0-1). */
@@ -87,7 +94,31 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Opening|Departure")
 	bool BeginWindowDeparture();
 
+	/** Duet: Sir answers each note Melusina plays with a chirp on the next beat. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Sir Melodious|Duet")
+	TArray<TObjectPtr<USoundBase>> AnswerChirps;
+
+	/** Interval (semitones) of his answer above her note. 7 = a fifth. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Sir Melodious|Duet")
+	int32 AnswerIntervalSemitones = 7;
+
+	/** Longest wait for the answering beat; in silence he still answers. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Sir Melodious|Duet", meta=(ClampMin="0.0"))
+	float MaxAnswerWaitSeconds = 0.75f;
+
 private:
+	UFUNCTION()
+	void HandleNotePlayed(int32 MidiNote, EMelodiaRhythmGrade Grade);
+	void TickDuetAnswer(float DeltaSeconds);
+
+	UPROPERTY(Transient)
+	TObjectPtr<UMaterialParameterCollection> DuetPalette;
+
+	int32 PendingAnswerNote = -1;
+	EMelodiaRhythmGrade PendingAnswerGrade = EMelodiaRhythmGrade::Miss;
+	float PendingAnswerWait = 0.0f;
+	float LastDuetBeatPhase = 0.0f;
+
 	void HandleDepartureDelayElapsed();
 	void UpdateDissonanceFromDistance(const FVector& SirLocation) const;
 	bool bReunionTriggered = false;

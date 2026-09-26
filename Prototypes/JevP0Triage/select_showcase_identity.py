@@ -45,25 +45,25 @@ def _jev_live(state: dict) -> dict | None:
     if not os.environ.get("TYPESAFE_API_KEY"):
         return None
     try:
-        from typesafe import TypeSafeClient
+        from typesafe_sdk import TypeSafeClient
     except Exception:
         return None
     try:
-        client = TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"])
-        resp = client.ask(
-            state=state,
-            questions={"identity": {
-                "type": "choice",
-                "instructions": (
-                    "Pick one authored musical identity for a new showcase bloom "
-                    "level. Prefer visibly new but calm: same meadow family, no "
-                    "busy frames. State carries the site context and constraints."
-                ),
-                "criteria": CRITERIA,
-            }},
-        )
+        with TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"]) as client:
+            resp = client.system_one(
+                state=state,
+                questions={"identity": {
+                    "type": "choice",
+                    "instructions": (
+                        "Pick one authored musical identity for a new showcase bloom "
+                        "level. Prefer visibly new but calm: same meadow family, no "
+                        "busy frames. State carries the site context and constraints."
+                    ),
+                    "criteria": CRITERIA,
+                }},
+            )
         ans = resp.answers["identity"]
-        sel = ans.selection if ans.selection in CANDIDATES else "dusk_dorian"
+        sel = ans.choice if ans.choice in CANDIDATES else "dusk_dorian"
         return {"selection": sel,
                 "probs": {k: float(v) for k, v in (ans.probabilities or {}).items()
                           if k in CANDIDATES},

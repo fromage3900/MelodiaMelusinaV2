@@ -218,6 +218,28 @@ public:
 
 	// ── Timing and shape ──────────────────────────────────────────────────────
 
+	/**
+	 * Costume mode: accessories stay revealed at rest regardless of the trigger
+	 * capability, and every outfit change plays the transformation as a flourish
+	 * (dissolve in from zero on the beat). Off keeps the capability-driven wings.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|MagicalTransform|Trigger")
+	bool bRevealAtRest = false;
+
+	/**
+	 * When true, a wardrobe-triggered reveal/conceal waits for the next beat and
+	 * starts on it, so the transformation lands on the music's cadence.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|MagicalTransform|Timing")
+	bool bStartOnBeat = true;
+
+	/**
+	 * Longest wait for that beat. In silence BeatPhase never advances, and the
+	 * transformation must still complete unscored, so it starts after this.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|MagicalTransform|Timing", meta=(ClampMin="0.0", ClampMax="4.0", EditCondition="bStartOnBeat"))
+	float MaxCadenceWaitSeconds = 0.75f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|MagicalTransform|Timing", meta=(ClampMin="0.05", ClampMax="20.0"))
 	float RevealDurationSeconds = 2.4f;
 
@@ -398,6 +420,16 @@ private:
 	void ApplyPose(const FMelodiaMagicalTransformPose& Pose);
 
 	/** cos^2(BeatPhase * pi) from the palette MPC, or 0 with no music clock. */
+	float ReadBeatPhase() const;
+	/** Starts Reveal/Conceal now, or queues it for the next beat when bStartOnBeat. */
+	void RequestTransition(bool bReveal);
+	void TickPendingTransition(float DeltaSeconds);
+
+	/** 0 = none, 1 = reveal, 2 = conceal, 3 = costume flourish, waiting for the next beat. */
+	uint8 PendingTransition = 0;
+	float PendingWaitSeconds = 0.0f;
+	float LastSeenBeatPhase = 0.0f;
+
 	float ReadBeatPulse() const;
 
 	void SetPhase(EMelodiaMagicalTransformPhase NewPhase);

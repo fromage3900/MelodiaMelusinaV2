@@ -1,0 +1,33 @@
+{
+  "when": "2026-09-24T22:11 local",
+  "scope": "live PIE, game world L_MelusinaMorning (UEDPIE), editor PID 55032, my controlled run",
+  "pawn": "BP_MelusinaJRPGCharacter_C_1",
+  "hair_component": "WaterHairMesh",
+  "attach": {
+    "parent": "CharacterMesh0",
+    "rel": [
+      1e-06,
+      144.229815,
+      -15.897099
+    ],
+    "rot_roll": -90.0
+  },
+  "canonical_match": true,
+  "distance_head_socket_cm": 145.1,
+  "distance_samples": 7,
+  "distance_stable": true,
+  "also_parented_to": [
+    "HatMesh",
+    "WardrobeSlot_Shirt",
+    "WardrobeSlot_Boots",
+    "WardrobeSlot_Accessories",
+    "-> all CharacterMesh0"
+  ],
+  "frames": {
+    "dir": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\PIE\\hair_attach_20260924",
+    "count": 21,
+    "all_distinct": true,
+    "lit_mean_130": true
+  },
+  "note": "orchestrator receipt lost to a stdout pipe cut; samples recovered from editor log"
+}

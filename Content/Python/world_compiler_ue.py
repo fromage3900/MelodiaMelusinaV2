@@ -209,7 +209,53 @@ def step_materials(b: dict) -> dict:
         except Exception as exc:
             rec["error"] = str(exc)[:300]
         results.append(rec)
-    out = {"parent": d["parent_master"], "band_mis": results, "active_lane": d.get("active_lane", "static")}
+    # Species may declare distinct band_mi_prefix families (e.g. GlassgardenCoral +
+    # GlassgardenKelp). Forge any MI path that points.csv references but dressing.bands missed.
+    seen = {r["mi"] for r in results}
+    extra = []
+    points = b["dir"] / "points.csv"
+    if points.is_file():
+        for row in _rows(points):
+            path = (row.get("material") or "").strip().split(".")[0]
+            if not path or path in seen:
+                continue
+            seen.add(path)
+            folder, name = path.rsplit("/", 1)
+            # Prefer band tint from dressing.bands when band index matches.
+            try:
+                band_i = int(row.get("band", 0))
+            except Exception:
+                band_i = 0
+            tint = next((bd["tint"] for bd in d["bands"] if int(bd["band"]) == band_i), None)
+            if tint is None and d["bands"]:
+                tint = d["bands"][0]["tint"]
+            if tint is None:
+                tint = [1.0, 1.0, 1.0]
+            rec = {"band": band_i, "mi": path, "from_points": True}
+            try:
+                if AL.does_asset_exist(path):
+                    rec["existed"] = True
+                    mi = AL.load_asset(path)
+                else:
+                    if not AL.does_directory_exist(folder):
+                        AL.make_directory(folder)
+                    mi = tools.create_asset(name, folder, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+                    rec["created"] = True
+                current_parent = mi.get_editor_property("parent")
+                if not current_parent or current_parent.get_path_name().split(".")[0] != d["parent_master"]:
+                    mi.set_editor_property("parent", parent)
+                    rec["parent_set"] = True
+                r, g, bl = tint
+                MEL.set_material_instance_vector_parameter_value(mi, tint_param, unreal.LinearColor(r, g, bl, 1.0))
+                rec["tint"] = [r, g, bl]
+                MEL.update_material_instance(mi)
+                rec["saved"] = AL.save_asset(path, only_if_is_dirty=True)
+            except Exception as exc:
+                rec["error"] = str(exc)[:300]
+            extra.append(rec)
+            results.append(rec)
+    out = {"parent": d["parent_master"], "band_mis": results, "active_lane": d.get("active_lane", "static"),
+           "extra_from_points": len(extra)}
     if d.get("wind_lane"):
         out["wind_lane"] = _forge_wind_lane(d["wind_lane"])
     return out
@@ -424,6 +470,16 @@ def step_count(b: dict) -> dict:
     band_by_mi = {r["material_instance"].split("/")[-1]: r["band"] for r in b["dressing"]["bands"]}
     for r in (b["dressing"].get("wind_lane") or {}).get("bands", []):
         band_by_mi[r["material_instance"].split("/")[-1]] = r["band"]
+    rows = _rows(b["dir"] / "points.csv")
+    # The flower kit has one band MI per mesh variant. Include suffixes such as
+    # _Tall from the compiled rows so the count covers the entire flower field.
+    for r in rows:
+        mat = (r.get("material") or "").strip()
+        if not mat:
+            continue
+        mi_name = mat.split(".")[0].split("/")[-1]
+        # Flower kit + dressing families (GlassgardenCoral/Kelp, glitter, etc.)
+        band_by_mi[mi_name] = int(r["band"])
     flower_per_band: dict[str, int] = {}
     dressing_by_mi: dict[str, int] = {}
     comps = 0
@@ -453,7 +509,6 @@ def step_count(b: dict) -> dict:
                 key = slot_names[0] if slot_names else "none"
                 dressing_by_mi[key] = dressing_by_mi.get(key, 0) + n
                 dressing_total += n
-    rows = _rows(b["dir"] / "points.csv")
     expected_flowers = {}
     expected_dressing = 0
     for r in rows:
@@ -463,18 +518,37 @@ def step_count(b: dict) -> dict:
         else:
             expected_dressing += 1
     tolerance = 0.95 if (m.get("terrain") or {}).get("kind") == "ground_probe" else 1.0
-    flower_ok = {
-        k: flower_per_band.get(k, 0) >= int(v * tolerance)
-        for k, v in expected_flowers.items()
-    }
+    expected_total = m["counts"]["points_total"]
+    if expected_flowers:
+        expected_per_band = expected_flowers
+        flower_ok = {
+            k: flower_per_band.get(k, 0) >= int(v * tolerance)
+            for k, v in expected_per_band.items()
+        }
+        match = bool(expected_per_band) and all(flower_ok.values())
+    else:
+        # Dressing-only recipes (Glassgarden etc.): band MIs are matched via band_by_mi
+        # and counted in flower_per_band (historical flower-kit field name).
+        expected_per_band = {}
+        for r in rows:
+            expected_per_band[str(r["band"])] = expected_per_band.get(str(r["band"]), 0) + 1
+        flower_ok = {
+            k: flower_per_band.get(k, 0) >= int(v * tolerance)
+            for k, v in expected_per_band.items()
+        }
+        match = (
+            bool(expected_per_band)
+            and all(flower_ok.values())
+            and total >= int(expected_total * tolerance)
+        )
     return {
         "generated": generated, "ism_components": comps, "instances_total": total,
-        "per_band": flower_per_band, "expected_per_band": expected_flowers,
+        "per_band": flower_per_band, "expected_per_band": expected_per_band,
         "dressing_by_mi": dressing_by_mi, "dressing_instances": dressing_total,
         "expected_dressing": expected_dressing, "flower_instances": flower_total,
-        "expected_total": m["counts"]["points_total"],
+        "expected_total": expected_total,
         "tolerance": tolerance, "per_band_ok": flower_ok,
-        "match": bool(expected_flowers) and all(flower_ok.values()),
+        "match": match,
     }
 
 
@@ -1000,6 +1074,62 @@ def step_fx_materials(b: dict) -> dict:
     return {"results": results}
 
 
+def step_glitter_materials(b: dict) -> dict:
+    """Forge the glitter tint family (one MI per band) under the glitter master.
+
+    Lane mirror of _forge_wind_lane for the palette.glitter block: the compiler
+    only names MIs and tint values; the parent (layer colors, scalars, switches)
+    is never edited and no collection parameter is written.
+    """
+    lane = (b["dressing"] or {}).get("glitter_lane")
+    if not lane:
+        return {"skipped": True, "note": "no palette.glitter in recipe"}
+    parent_path = lane["parent"]
+    parent = AL.load_asset(parent_path)
+    if not parent:
+        return {"error": f"glitter parent missing: {parent_path}", "blocked": True}
+    params = list(lane.get("tint_parameters") or [])
+    shades = list(lane.get("shade_steps") or [1.0])
+    tools = unreal.AssetToolsHelpers.get_asset_tools()
+    made = []
+    for band in lane["bands"]:
+        path = band["material_instance"]
+        folder, name = path.rsplit("/", 1)
+        rec = {"band": band["band"], "mi": path}
+        try:
+            if AL.does_asset_exist(path):
+                mi = AL.load_asset(path)
+                rec["existed"] = True
+            else:
+                if not AL.does_directory_exist(folder):
+                    AL.make_directory(folder)
+                mi = tools.create_asset(name, folder, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+                mi.set_editor_property("parent", parent)
+                rec["created"] = True
+            cur = mi.get_editor_property("parent")
+            if not cur or cur.get_path_name().split(".")[0] != parent_path:
+                mi.set_editor_property("parent", parent)
+                rec["parent_set"] = True
+            r, g, bl = (float(band["tint"][0]), float(band["tint"][1]), float(band["tint"][2]))
+            set_params = []
+            for idx, param in enumerate(params):
+                step = float(shades[idx % len(shades)]) if shades else 1.0
+                MEL.set_material_instance_vector_parameter_value(
+                    mi, param, unreal.LinearColor(min(4.0, r * step), min(4.0, g * step), min(4.0, bl * step), 1.0))
+                set_params.append(param)
+            rec["tint_params"] = set_params
+            for k, v in ((lane.get("scalar_overrides") or {}).items()):
+                MEL.set_material_instance_scalar_parameter_value(mi, k, float(v))
+            rec["scalar_overrides"] = dict(lane.get("scalar_overrides") or {})
+            MEL.update_material_instance(mi)
+            rec["saved"] = AL.save_asset(path, only_if_is_dirty=True)
+        except Exception as exc:
+            rec["error"] = str(exc)[:300]
+        made.append(rec)
+    return {"parent": parent_path, "band_mis": made,
+            "all_ok": all("error" not in r for r in made) and len(made) == 7}
+
+
 def step_fx_place(b: dict) -> dict:
     ue = b["manifest"]["ue_lane"]
     rows = _rows(b["dir"] / "fx_anchors.csv")
@@ -1296,10 +1426,105 @@ def step_fx_audit(b: dict) -> dict:
     return {"effect_type_required": et_path, "systems": out, "all_exist": all(r["exists"] for r in out)}
 
 
+def _soft_asset(path: str):
+    return unreal.load_asset(path.split(".")[0]) if path else None
+
+
+def _add_instance_component(actor, cls, name: str):
+    """Add a component to a placed actor instance (add_component_by_class is not exposed)."""
+    sub = unreal.get_engine_subsystem(unreal.SubobjectDataSubsystem)
+    handles = sub.k2_gather_subobject_data_for_instance(actor)
+    params = unreal.AddNewSubobjectParams(parent_handle=handles[0], new_class=cls, blueprint_context=None)
+    handle, fail = sub.add_new_subobject(params)
+    if not fail.is_empty():
+        raise RuntimeError(f"add {cls.__name__} to {_label(actor)}: {fail}")
+    sub.rename_subobject(handle, unreal.Text(name))
+    return unreal.SubobjectDataBlueprintFunctionLibrary.get_object(unreal.SubobjectDataBlueprintFunctionLibrary.get_data(handle))
+
+
+def _ground_z(world, x: float, y: float, ignore: list) -> float | None:
+    hit = unreal.SystemLibrary.line_trace_single(world, unreal.Vector(x, y, 50000.0), unreal.Vector(x, y, -50000.0),
+                                                 unreal.TraceTypeQuery.ECC_VISIBILITY, False, ignore,
+                                                 unreal.DrawDebugTrace.NONE, True)
+    return hit.to_tuple()[4].z if hit else None
+
+
+GROUND_SNAPPED_CURVE_KINDS = ("phyllotaxis",)  # ground cover; lissajous/catenary keep authored height
+
+
+def step_structures_place(b: dict) -> dict:
+    """Stage the recipe `structures` on one BP_MelodiaPCGControl host: slots -> baked kit meshes,
+    decor curves -> one ISM per curve. Layout changes = recompile + rerun (event-driven);
+    per-frame motion lives in the kit MIs reading the MPC. The PCG template stays owner-authored."""
+    ue = b["manifest"]["ue_lane"]
+    st = ue.get("structures")
+    if not st:
+        return {"skipped": "bundle has no structures"}
+    recipe = _recipe_json(b)
+    cx, cy, cz = recipe["structures"]["layout"]["center_cm"]
+    svc, actors = _actors()
+    host_label = f"WC_{b['manifest']['recipe_id']}_Structures"
+    removed = [(_label(a), svc.destroy_actor(a))[0] for a in actors if _label(a).startswith(host_label)]
+    host_cls = unreal.load_class(None, st["control_actor_class"] + "." + st["control_actor_class"].rsplit("/", 1)[-1] + "_C")
+    host = svc.spawn_actor_from_class(host_cls, unreal.Vector(cx, cy, cz))
+    host.set_actor_label(host_label)
+    host.set_folder_path("WorldCompiler/Structures")
+    host.tags = [unreal.Name(ue["actor_tag"]), unreal.Name("WorldCompiler.Structures")]
+
+    world = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
+    spawned = [host]
+    placed_slots = []
+    for row in _rows(b["dir"] / "structure_slots.csv"):
+        gz = _ground_z(world, float(row["x"]), float(row["y"]), spawned)
+        if gz is not None:
+            row["z"] = str(gz)
+        mesh = _soft_asset(row["mesh"])
+        if mesh is None:
+            placed_slots.append({"slot_uid": row["slot_uid"], "error": f"missing mesh {row['mesh']}"})
+            continue
+        a = svc.spawn_actor_from_object(mesh, _vec(row), unreal.Rotator(0.0, 0.0, float(row["yaw"])))
+        spawned.append(a)
+        a.set_actor_label(f"{host_label}_{row['slot_uid']}_{row['slot_id']}")
+        a.set_folder_path("WorldCompiler/Structures")
+        a.tags = [unreal.Name(ue["actor_tag"]), unreal.Name("WorldCompiler.Structures")]
+        if row["material"]:
+            a.static_mesh_component.set_material(0, _soft_asset(row["material"]))
+        a.attach_to_actor(host, "", unreal.AttachmentRule.KEEP_WORLD, unreal.AttachmentRule.KEEP_WORLD, unreal.AttachmentRule.KEEP_WORLD, False)
+        placed_slots.append({"slot_uid": row["slot_uid"], "label": _label(a)})
+
+    curves: dict[str, list[dict]] = {}
+    for row in _rows(b["dir"] / "structure_curves.csv"):
+        curves.setdefault(row["curve_id"], []).append(row)
+    placed_curves = {}
+    for cid, rows in curves.items():
+        mesh = _soft_asset(rows[0]["mesh"])
+        if mesh is None:
+            placed_curves[cid] = "no mesh (path only)"
+            continue
+        ism = _add_instance_component(host, unreal.InstancedStaticMeshComponent, f"ISM_{cid}")
+        ism.set_static_mesh(mesh)
+        if rows[0]["material"]:
+            ism.set_material(ism.get_num_materials() - 1, _soft_asset(rows[0]["material"]))
+        ism.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION)
+        base = unreal.Transform(unreal.Vector(cx, cy, cz))
+        for r in rows:
+            if r["kind"] in GROUND_SNAPPED_CURVE_KINDS:
+                gz = _ground_z(world, float(r["x"]), float(r["y"]), spawned)
+                if gz is not None:
+                    r["z"] = str(gz)
+            s = float(r["scale"])
+            xf = unreal.Transform(_vec(r), unreal.Rotator(0.0, 0.0, float(r["yaw"])), unreal.Vector(s, s, s))
+            ism.add_instance(xf, True)
+        placed_curves[cid] = ism.get_instance_count()
+    return {"host": host_label, "removed_previous": removed, "slots": placed_slots, "curves": placed_curves}
+
+
 STEPS = {
     "preflight": step_preflight,
+    "structures_place": step_structures_place,
     "cleanup": step_cleanup,
     "materials": step_materials,
+    "glitter_materials": step_glitter_materials,
     "table": step_table,
     "volume": step_volume,
     "generate": step_generate,

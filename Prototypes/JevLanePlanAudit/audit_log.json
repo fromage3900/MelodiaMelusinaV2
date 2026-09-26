@@ -1,0 +1,52 @@
+{
+  "schema": "melodia.jev_lane_plan_audit.v1",
+  "date": "2026-09-24T14:25:35",
+  "state": {
+    "hair_spp_exists": false,
+    "hair_bakes_imported_ue": 24,
+    "hair_runtime_mi_tethers": 0,
+    "hair_staging_fbx_ok": true,
+    "sheep_stages_done": "S0,S1,S2,S3a,S3b,S3b3,S3c",
+    "sheep_next_stage": "S4_shapekeys",
+    "sheep_ue_anims": 6,
+    "sheep_abp_proof_date": "2026-09-13",
+    "sheep_donor_rtg": true,
+    "sir_rigged_sks": 2,
+    "sir_retargated_clips": 1,
+    "sir_rtg_chains": 2,
+    "sir_abp_exists": true,
+    "owner_present": true,
+    "time_budget_hours": 8.0
+  },
+  "decision": {
+    "order": "SHEEP_FIRST",
+    "order_probs": {
+      "SIR_FIRST": 0.03,
+      "HAIR_FIRST": 0.22,
+      "SHEEP_FIRST": 0.73,
+      "PARALLEL_ALL": 0.02
+    },
+    "riskiest": "SIR_CLIP_SOURCES",
+    "riskiest_probs": {
+      "SIR_CLIP_SOURCES": 0.5,
+      "UE_WIRING_TRIVIAL": 0.4,
+      "SHEEP_S4_PANEL": 0.08,
+      "HAIR_UV_ATLAS": 0.02,
+      "NONE_MATERIAL": 0.0
+    },
+    "needs_human": false,
+    "needs_human_prob": 0.5,
+    "readiness": 2,
+    "readiness_label": "Receipts exist for most steps; consumer wiring unproven.",
+    "readiness_probs": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "source": "jev-live",
+    "reason": "typesafe System One Choice+Choice+Noul+Score, one call",
+    "confidence": 0.64
+  }
+}

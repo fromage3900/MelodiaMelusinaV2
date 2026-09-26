@@ -4,16 +4,23 @@
 #include "Animation/AnimBlueprintGeneratedClass.h"
 #include "Engine/SkeletalMesh.h"
 #include "Engine/World.h"
+#include "ExternalForces/KawaiiPhysicsExternalForce_Basic.h"
 #include "GameFramework/Character.h"
+#include "GameplayTagContainer.h"
+#include "KawaiiPhysicsLibrary.h"
+#include "MelodiaMusicClockSubsystem.h"
+#include "StructUtils/InstancedStruct.h"
 #include "TimerManager.h"
 #include "UObject/ConstructorHelpers.h"
 #include "UObject/UnrealType.h"
 
 UMelodiaHairComponent::UMelodiaHairComponent()
 {
-	// Kawaii evaluates inside TickComponent. Leaving this false keeps the
-	// component out of the tick manager, so the strands stay on the ref pose.
+	// The skeletal mesh evaluates its AnimBP from this tick. Kawaii itself has
+	// no tick group; TG_PrePhysics is when that evaluation runs. The AnimBP is
+	// still not installed here.
 	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.TickGroup = TG_PrePhysics;
 	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	SetGenerateOverlapEvents(false);
 
@@ -32,6 +39,64 @@ UMelodiaHairComponent::UMelodiaHairComponent()
 		// ticking before BindToOwnerMesh() assigns its SourceMeshComponent.
 		HairAnimClass = HairAnim.Class;
 	}
+}
+
+void UMelodiaHairComponent::OnRegister()
+{
+	Super::OnRegister();
+	BindEditorSourceMesh();
+}
+
+void UMelodiaHairComponent::BindEditorSourceMesh()
+{
+	// Editor worlds only. Game worlds, including PIE, take BindToOwnerMesh().
+	const UWorld* World = GetWorld();
+	if (!World || World->IsGameWorld())
+	{
+		return;
+	}
+
+	// The AnimBP must already be instanced. Do not install it, and do not call
+	// InitAnim: re-init clears Kawaii warm-up.
+	UAnimInstance* HairAnimInstance = GetAnimInstance();
+	if (!IsValid(HairAnimInstance))
+	{
+		return;
+	}
+
+	const UClass* HairInstanceClass = HairAnimInstance->GetClass();
+	const bool bIsWaterHair = (HairAnimClass && HairInstanceClass->IsChildOf(HairAnimClass))
+		|| HairInstanceClass->GetName().Contains(TEXT("ABP_Melusina_WaterHair"));
+	if (!bIsWaterHair)
+	{
+		return;
+	}
+
+	USkeletalMeshComponent* BodyMesh = Cast<USkeletalMeshComponent>(GetAttachParent());
+	if (!IsValid(BodyMesh))
+	{
+		return;
+	}
+
+	const FString ParentName = BodyMesh->GetName();
+	const bool bAcceptedBody = ParentName.Contains(TEXT("MelusinaPresentationMesh"))
+		|| ParentName.Equals(TEXT("CharacterMesh0"));
+	if (!bAcceptedBody)
+	{
+		return;
+	}
+
+	FObjectPropertyBase* SourceMeshProperty =
+		FindFProperty<FObjectPropertyBase>(HairInstanceClass, TEXT("SourceMeshComponent"));
+	if (!SourceMeshProperty)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MelodiaHairComponent: hair AnimBP is missing SourceMeshComponent."));
+		return;
+	}
+
+	// Source assignment only. Leave the saved relative, the mannequin, and the
+	// battle SkeletalMesh redirect untouched.
+	SourceMeshProperty->SetObjectPropertyValue_InContainer(HairAnimInstance, BodyMesh);
 }
 
 void UMelodiaHairComponent::BeginPlay()
@@ -260,4 +325,49 @@ void UMelodiaHairComponent::RestoreOwnerMeshReference()
 	RedirectedPresentationMesh.Reset();
 	bOriginalMechanicsMeshWasVisible = true;
 	bOriginalMechanicsMeshWasHiddenInGame = false;
+}
+
+void UMelodiaHairComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+	FActorComponentTickFunction* ThisTickFunction)
+{
+	// Queue the force before the tick evaluates the hair AnimBP, so Kawaii
+	// consumes it this frame.
+	ApplyMusicForce();
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+void UMelodiaHairComponent::ApplyMusicForce()
+{
+	const UWorld* World = GetWorld();
+	const AActor* Owner = GetOwner();
+	if (!World || !World->IsGameWorld() || !Owner || !GetAnimInstance())
+	{
+		return;
+	}
+
+	const float Pulse = UMelodiaMusicClockSubsystem::GetMusicPulse(this);
+	const float BeatPhase = UMelodiaMusicClockSubsystem::GetMusicBeatPhase(this);
+	if (BeatPhase < LastMusicBeatPhase)
+	{
+		bMusicSwayRight = !bMusicSwayRight;
+	}
+	LastMusicBeatPhase = BeatPhase;
+
+	// Rests carry no pulse: add nothing and let the simulation settle.
+	if (Pulse <= KINDA_SMALL_NUMBER)
+	{
+		return;
+	}
+
+	// World space, relative to her facing, so the sway reads the same from any
+	// camera and does not depend on the hair skeleton's authored axes.
+	const FVector Side = Owner->GetActorRightVector() * (bMusicSwayRight ? 1.0f : -1.0f);
+	FKawaiiPhysics_ExternalForce_Basic Force;
+	Force.ExternalForceSpace = EExternalForceSpace::WorldSpace;
+	Force.ForceDir = (Side * MusicSwayForce + FVector::UpVector * MusicLiftForce) * Pulse;
+
+	TArray<FInstancedStruct> Forces;
+	Forces.Add(FInstancedStruct::Make(Force));
+	FGameplayTagContainer NoFilter;
+	UKawaiiPhysicsLibrary::AddExternalForcesToComponent(this, Forces, this, NoFilter, false, true);
 }

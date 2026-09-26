@@ -34,17 +34,17 @@ struct FMelodiaRhythmWindows
 {
 	GENERATED_BODY()
 
-	/** +/-90 ms ΓÇö canonical per FOUNDATION 4A. */
+	/** +/-45 ms. Tightened from 90 on 2026-09-26 once player calibration existed (Interface Dossier BEAT-01). */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm")
-	float PerfectWindowMs = 90.0f;
+	float PerfectWindowMs = 45.0f;
 
-	/** +/-120 ms ΓÇö intermediate tier between Perfect and Good. */
+	/** +/-80 ms -- intermediate tier between Perfect and Good. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm")
-	float GreatWindowMs = 120.0f;
+	float GreatWindowMs = 80.0f;
 
-	/** +/-160 ms ΓÇö canonical per FOUNDATION 4A. */
+	/** +/-120 ms. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm")
-	float GoodWindowMs = 160.0f;
+	float GoodWindowMs = 120.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Rhythm")
 	float LatencyOffsetMs = 0.0f;
@@ -136,6 +136,14 @@ public:
 
 	UFUNCTION(BlueprintPure, Category="Melodia|Rhythm")
 	static FMelodiaRhythmGradeResult GradeInputFromTimingErrorMs(float TimingErrorMs, FMelodiaRhythmWindows Windows);
+
+	/** The player's measured audio/input latency in ms (positive = they hear/press late). Persisted by
+	 * UMelodiaGameUserSettings; every timing measurement subtracts it from a SIGNED error. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Rhythm")
+	static float GetPlayerCalibrationOffsetMs();
+
+	UFUNCTION(BlueprintCallable, Category="Melodia|Rhythm")
+	static void SetPlayerCalibrationOffsetMs(float OffsetMs);
 
 	UFUNCTION(BlueprintPure, Category="Melodia|Rhythm")
 	static float GetRhythmCombatMultiplier(EMelodiaRhythmGrade Grade, int32 ComboCount = 0, float ComboBonusPerHit = 0.05f);

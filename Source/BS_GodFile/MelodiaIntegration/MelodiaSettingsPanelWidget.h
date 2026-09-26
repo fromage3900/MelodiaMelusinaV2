@@ -43,6 +43,13 @@ protected:
 	UPROPERTY(meta=(BindWidgetOptional))
 	TObjectPtr<UButton> Btn_TabControls;
 
+	/** Opens the latency calibration screen (Controls tab). */
+	UPROPERTY(meta=(BindWidgetOptional))
+	TObjectPtr<UButton> Btn_Calibrate;
+
+	UFUNCTION()
+	void HandleCalibrateClicked();
+
 	UFUNCTION()
 	void HandleMasterVolumeChanged(float Value);
 	UFUNCTION()

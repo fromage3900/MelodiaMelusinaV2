@@ -77,6 +77,7 @@
           "species_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
           "mesh": {"type": "string", "pattern": "^/Game/", "description": "Default mesh (also the dressing-table headline mesh)."},
           "meshes": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^/Game/"}, "description": "Optional per-variant mesh list; variant_id % len(meshes) selects. When present, variants defaults to len(meshes)."},
+          "mesh_mi_suffixes": {"type": "array", "items": {"type": "string"}, "description": "Optional, parallel to meshes: suffix appended to the band MI name for that mesh (e.g. \"_Tall\") so each card mesh uses the band MI carrying its own texture atlas."},
           "band_mi_prefix": {"type": "string", "pattern": "^/Game/"},
           "stem_material": {
             "oneOf": [
@@ -136,6 +137,20 @@
             "texture_overrides": {"type": "object", "additionalProperties": {"type": "string"}},
             "note": {"type": "string"}
           }
+        },
+        "glitter": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["parent", "mi_prefix"],
+          "description": "Glitter detail lane (melody-token piles). The parent already exposes per-layer colors; the compiler only names MIs and their tint values. Forged by the UE glitter_materials step; read by species whose band_mi_prefix matches mi_prefix.",
+          "properties": {
+            "parent": {"type": "string", "pattern": "^/Game/"},
+            "mi_prefix": {"type": "string", "pattern": "^/Game/"},
+            "tint_parameters": {"type": "array", "items": {"type": "string"}, "minItems": 1, "default": ["FastLayerColor", "MidLayerColor", "DeepLayerColor"]},
+            "shade_steps": {"type": "array", "items": {"type": "number", "minimum": 0, "maximum": 2}, "minItems": 1, "maxItems": 8, "default": [1.0, 0.85, 0.7], "description": "Per-tint_parameter brightness multiplier, parallel to tint_parameters; gives the pile depth variation without touching parent scalars."},
+            "scalar_overrides": {"type": "object", "additionalProperties": {"type": "number"}, "description": "Optional scalar params set verbatim on every band MI (e.g. sparkle intensity on the toon parent)."},
+            "note": {"type": "string"}
+          }
         }
       }
     },
@@ -176,6 +191,321 @@
     "influence": {"type": "array", "items": {"type": "object", "required": ["monolith_id", "influence"], "properties": {"monolith_id": {"type": "string"}, "influence": {"type": "number", "minimum": 0, "maximum": 1}, "anatomy_role": {"type": "string"}, "foreshadow_level": {"type": "integer", "minimum": 0, "maximum": 5}}}},
     "region_history": {"type": ["object", "null"]},
     "muse": {"type": "object"},
+    "structures": {
+      "description": "Optional. Mandala/spiral structure layout: MEL GN builder slots (Blender bake -> GLB kit) + walkway and decor curves (Lissajous, catenary, phyllotaxis). Absent => compiler emits no structure tables (existing bundles byte-identical).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layout",
+        "slots"
+      ],
+      "properties": {
+        "layout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "center_cm",
+            "rings"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "mandala"
+              ]
+            },
+            "center_cm": {
+              "$ref": "#/$defs/vec3"
+            },
+            "order": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "rotation_deg": {
+              "type": "number"
+            },
+            "rings": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "slot",
+                  "radius_cm"
+                ],
+                "properties": {
+                  "slot": {
+                    "type": "string"
+                  },
+                  "radius_cm": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "phase_deg": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "slots": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "builder_id"
+            ],
+            "properties": {
+              "builder_id": {
+                "type": "string",
+                "pattern": "^(MEL_|NT)"
+              },
+              "preset": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object"
+              },
+              "roof": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "authority": {
+                    "enum": [
+                      "SurrealRoof"
+                    ]
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                }
+              },
+              "interior": {
+                "type": "boolean"
+              },
+              "footprint_cm": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "face": {
+                "enum": [
+                  "center",
+                  "outward",
+                  "tangent"
+                ]
+              },
+              "mesh": {
+                "type": "string",
+                "pattern": "^/Game/"
+              },
+              "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "material_instance": {
+                "type": "string",
+                "pattern": "^/Game/"
+              },
+              "decor_builders": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^(MEL_|NT)"
+                }
+              }
+            }
+          }
+        },
+        "walkways": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "radius_cm"
+            ],
+            "properties": {
+              "walkway_id": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "ring",
+                  "spoke",
+                  "spiral"
+                ]
+              },
+              "radius_cm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "inner_radius_cm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "width_cm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "turns": {
+                "type": "number"
+              },
+              "rise_cm": {
+                "type": "number"
+              },
+              "phase_deg": {
+                "type": "number"
+              },
+              "sample_cm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "builder_id": {
+                "type": "string",
+                "pattern": "^(MEL_|NT)"
+              },
+              "mesh": {
+                "type": "string",
+                "pattern": "^/Game/"
+              },
+              "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "material_instance": {
+                "type": "string",
+                "pattern": "^/Game/"
+              }
+            }
+          }
+        },
+        "decor": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "decor_id",
+              "curve"
+            ],
+            "properties": {
+              "decor_id": {
+                "type": "string"
+              },
+              "builder_id": {
+                "type": "string",
+                "pattern": "^(MEL_|NT)"
+              },
+              "curve": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "lissajous",
+                      "catenary",
+                      "phyllotaxis"
+                    ]
+                  },
+                  "sample_cm": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "a": {
+                    "type": "number"
+                  },
+                  "b": {
+                    "type": "number"
+                  },
+                  "delta_deg": {
+                    "type": "number"
+                  },
+                  "radius_cm": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "inner_radius_cm": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "height_cm": {
+                    "type": "number"
+                  },
+                  "z_amp_cm": {
+                    "type": "number"
+                  },
+                  "ring": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "attach_height_cm": {
+                    "type": "number"
+                  },
+                  "sag_cm": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "sag_ratio": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "angle_rad": {
+                    "type": "number"
+                  }
+                }
+              },
+              "mesh": {
+                "type": "string",
+                "pattern": "^/Game/"
+              },
+              "scale": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "material_instance": {
+                "type": "string",
+                "pattern": "^/Game/"
+              }
+            }
+          }
+        },
+        "kit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ue_path": {
+              "type": "string",
+              "pattern": "^/Game/"
+            },
+            "export": {
+              "enum": [
+                "glb"
+              ]
+            }
+          }
+        }
+      }
+    },
     "lookdev": {
       "type": "object",
       "additionalProperties": false,

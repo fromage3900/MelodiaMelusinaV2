@@ -1,0 +1,22 @@
+// Copyright 2025 Dmitry Karpukhin. All Rights Reserved.
+
+#include "SSFSCommon.ush"
+
+Texture2D ScatteringTexture;
+Texture2D SetupTexture;
+RWTexture2D<float4> Output;
+
+[numthreads(GROUP_SIZE, GROUP_SIZE, 1)]
+void RecombineCS(uint2 DispatchThreadId : SV_DispatchThreadID)
+{
+	const float2 SceneColorUV = (float2(InputViewport_ViewportMin) + (DispatchThreadId + 0.5)) * InputViewport_ExtentInverse;
+	const float2 UV = (DispatchThreadId + 0.5) * InputViewport_ViewportSizeInverse;
+
+	const float4 SceneColor = Texture2DSample(InputTexture, InputSampler, SceneColorUV);
+	const float3 ScatteringColor = Texture2DSample(ScatteringTexture, InputSampler, UV);
+	const float HeightFog = Texture2DSample(SetupTexture, InputSampler, UV).a;
+	
+	float3 OutColor = lerp(SceneColor.rgb, ScatteringColor, InverseSimpleTonemap(HeightFog));
+
+	Output[InputViewport_ViewportMin + DispatchThreadId] = float4(OutColor, SceneColor.a);
+}

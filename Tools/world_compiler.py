@@ -264,6 +264,9 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
     golden = float(field.get("phyllotaxis_angle_rad", GOLDEN_ANGLE))
     jitter = float(field.get("radial_jitter_cm", 18.0))
     s_lo, s_hi = field.get("scale_range", [0.5, 1.1])
+    # Per-species scale_range overrides the field default (a species without one
+    # keeps the legacy global behavior). Pre-glitter recipes pin the field value
+    # on every species, so outputs stay byte-identical; see the recipe.
     chl = field.get("chladni") or {}
     modes = chl.get("modes") or [[2 + b, 3 + b] for b in range(band_count)]
     threshold = float(chl.get("threshold", 0.35))
@@ -322,13 +325,23 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 removed_clearance += 1
                 continue
             species = _pick_species(recipe, _u(seed, rid, "species", b, i))
-            # palette.active_lane picks which band-MI family the 'material' column names
+            # palette.active_lane picks which band-MI family the 'material' column names.
+            # A species-level band_mi_prefix wins (glitter/detail families); otherwise the
+            # wind lane prefix applies when active, else the (legacy) species prefix.
+            # For all pre-glitter recipes the flower prefix equals the wind prefix and
+            # dressing species carry no prefix, so outputs are byte-identical.
             wind_lane = recipe["palette"].get("wind") or {}
-            material_prefix = (wind_lane.get("mi_prefix") if recipe["palette"].get("active_lane") == "wind" and wind_lane
-                               else species.get("band_mi_prefix", ""))
+            material_prefix = (species.get("band_mi_prefix")
+                               or (wind_lane.get("mi_prefix") if recipe["palette"].get("active_lane") == "wind" and wind_lane
+                                   else ""))
             meshes = list(species.get("meshes") or [species["mesh"]])
             variants = int(species.get("variants", len(meshes) if species.get("meshes") else 3))
             variant_id = rwg.stable_int(seed, "world_compiler", rid, "variant", b, i) % variants
+            # species.mesh_mi_suffixes (parallel to meshes) picks each mesh's own band MI, e.g. "_Tall"
+            # so a card mesh gets the band MI that carries its texture atlas.
+            mesh_mi_suffixes = list(species.get("mesh_mi_suffixes") or [])
+            band_mi = (f"{material_prefix}{bands_palette[b]['label']}"
+                       f"{mesh_mi_suffixes[variant_id % len(meshes)] if mesh_mi_suffixes else ''}")
             if _resonance_derive is not None:
                 resonance, ecology_class, material_variant, scale_bias = _resonance_derive(
                     x, y, r, chunk_seed, z_lo=r0, z_hi=outer_radius
@@ -341,7 +354,8 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
             height_class = int(species.get("height_class", 1))
             density_class = 2 if weight > 0.66 else (1 if weight > 0.33 else 0)
             hero_w = clearance.hero_weight(x, y, hero_falloff)
-            scale = _lerp(float(s_lo), float(s_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
+            sp_lo, sp_hi = species.get("scale_range", [s_lo, s_hi])
+            scale = _lerp(float(sp_lo), float(sp_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
             points.append({
                 "point_id": point_id,
                 "x": x, "y": y, "z": z,
@@ -366,9 +380,9 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 # Soft object paths so PCGMeshSelectorByAttribute + material-override-by-attribute
                 # make the owner's template graph fully data-driven (no per-species graph edits).
                 "mesh": _soft_path(meshes[variant_id % len(meshes)]),
-                "material": _soft_path(f"{material_prefix}{bands_palette[b]['label']}") if material_prefix else "",
+                "material": _soft_path(band_mi) if material_prefix else "",
                 "StemMaterial": (
-                    _soft_path(f"{material_prefix}{bands_palette[b]['label']}")
+                    _soft_path(band_mi)
                     if species.get("stem_material") == "__band__" and material_prefix
                     else (_soft_path(species["stem_material"]) if species.get("stem_material") else "")
                 ),
@@ -529,6 +543,16 @@ def stage_dressing(recipe: dict[str, Any], ecology: dict[str, Any], *, constella
                        "hue_seed": (b["band"] + 0.5) / band_count,
                        "material_instance": f"{wind['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
         } if wind else None),
+        # Glitter detail family: same seven tints on the glitter master, one MI per
+        # band for species whose band_mi_prefix matches. Parent scalars/switches stay.
+        "glitter_lane": ({
+            "parent": glitter["parent"],
+            "tint_parameters": list(glitter.get("tint_parameters") or ["FastLayerColor", "MidLayerColor", "DeepLayerColor"]),
+            "shade_steps": list(glitter.get("shade_steps") or [1.0]),
+            "scalar_overrides": dict(glitter.get("scalar_overrides") or {}),
+            "bands": [{"band": b["band"], "label": b["label"], "tint": b["tint"],
+                       "material_instance": f"{glitter['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
+        } if (glitter := palette.get("glitter")) else None),
         "species": species_rows,
         "packer_attributes": ["hue_seed", "Resonance", "wind_response", "sparkle_response"],
         "source": "recipe",
@@ -691,6 +715,187 @@ def stage_chapter(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[s
         return {"chapter": chapter["chapter"], "error": str(exc)}, _stage("FAIL", "Tools/scaffold_chapter.py", "", [str(exc)])
 
 
+# ----------------------------------------------------------------------------- structures
+
+SLOT_COLUMNS = [
+    "slot_uid", "slot_id", "ring", "index", "builder_id", "preset", "x", "y", "z", "yaw",
+    "footprint_w_cm", "footprint_d_cm", "interior", "roof_type", "mesh", "material",
+]
+CURVE_COLUMNS = [
+    "curve_uid", "curve_id", "kind", "index", "x", "y", "z", "yaw", "scale", "builder_id", "mesh", "material",
+]
+
+
+def _mandala_slots(structures: dict[str, Any]) -> list[dict[str, Any]]:
+    """n-fold rings of slots around the layout centre; yaw faces outward/centre/tangent."""
+    layout = structures["layout"]
+    cx, cy, cz = layout["center_cm"]
+    order = int(layout.get("order", 1))
+    base = math.radians(float(layout.get("rotation_deg", 0.0)))
+    kit = structures.get("kit", {}).get("ue_path", "")
+    rows: list[dict[str, Any]] = []
+    for ring_index, ring in enumerate(layout["rings"]):
+        slot = structures["slots"][ring["slot"]]
+        count = int(ring.get("count", order))
+        radius = float(ring["radius_cm"])
+        phase = math.radians(float(ring.get("phase_deg", 0.0)))
+        for i in range(count):
+            a = base + phase + 2.0 * math.pi * i / count
+            x, y = cx + radius * math.cos(a), cy + radius * math.sin(a)
+            facing = slot.get("face", "center")
+            yaw_rad = a + (math.pi if facing == "center" else 0.0 if facing == "outward" else math.pi / 2.0)
+            fw, fd = slot.get("footprint_cm", [0.0, 0.0])
+            rows.append({
+                "slot_uid": f"R{ring_index}_{i:02d}", "slot_id": ring["slot"], "ring": ring_index, "index": i,
+                "builder_id": slot["builder_id"], "preset": slot.get("preset", ""),
+                "x": x, "y": y, "z": float(cz), "yaw": math.degrees(yaw_rad) % 360.0,
+                "footprint_w_cm": float(fw), "footprint_d_cm": float(fd),
+                "interior": int(bool(slot.get("interior", False))),
+                "roof_type": (slot.get("roof") or {}).get("type", ""),
+                # Interchange GLB import lays each kit piece out as <kit>/SM_<slot>/StaticMeshes/SM_<slot>
+                "mesh": _soft_path(slot.get("mesh") or (f"{kit}/SM_{ring['slot']}/StaticMeshes/SM_{ring['slot']}" if kit else "")),
+                "material": _soft_path(slot.get("material_instance", "")),
+            })
+    return rows
+
+
+def _catenary(p0: tuple[float, float, float], p1: tuple[float, float, float], sag: float, n: int) -> list[tuple[float, float, float]]:
+    """Hanging chain between two equal-height-ish points; a from bisection on a*cosh(L/2a)-a = sag."""
+    (x0, y0, z0), (x1, y1, z1) = p0, p1
+    span = math.hypot(x1 - x0, y1 - y0)
+    if span < 1e-3 or sag <= 0.0:
+        return [(_lerp(x0, x1, t), _lerp(y0, y1, t), _lerp(z0, z1, t)) for t in (i / n for i in range(n + 1))]
+    lo, hi = 1e-3, 1e7
+    for _ in range(200):
+        mid = 0.5 * (lo + hi)
+        if mid * math.cosh(span / (2.0 * mid)) - mid > sag:
+            lo = mid
+        else:
+            hi = mid
+    a = 0.5 * (lo + hi)
+    pts = []
+    for i in range(n + 1):
+        t = i / n
+        s = (t - 0.5) * span
+        drop = a * math.cosh(span / (2.0 * a)) - a * math.cosh(s / a)
+        pts.append((_lerp(x0, x1, t), _lerp(y0, y1, t), _lerp(z0, z1, t) - drop))
+    return pts
+
+
+def _sample_count(length_cm: float, sample_cm: float) -> int:
+    return max(2, int(math.ceil(length_cm / max(sample_cm, 1.0))))
+
+
+def _curve_rows(structures: dict[str, Any], slots: list[dict[str, Any]], seed: int) -> list[dict[str, Any]]:
+    layout = structures["layout"]
+    cx, cy, cz = layout["center_cm"]
+    rows: list[dict[str, Any]] = []
+
+    def emit(curve_id: str, kind: str, pts: list[tuple[float, float, float]], decor: dict[str, Any]) -> None:
+        for i, (x, y, z) in enumerate(pts):
+            nx, ny = (pts[i + 1][0], pts[i + 1][1]) if i + 1 < len(pts) else (x + (x - pts[i - 1][0]), y + (y - pts[i - 1][1]))
+            rows.append({
+                "curve_uid": f"{curve_id}_{i:03d}", "curve_id": curve_id, "kind": kind, "index": i,
+                "x": x, "y": y, "z": z, "yaw": math.degrees(math.atan2(ny - y, nx - x)) % 360.0,
+                "scale": float(decor.get("scale", 1.0)),
+                "builder_id": decor.get("builder_id", ""), "mesh": _soft_path(decor.get("mesh", "")),
+                "material": _soft_path(decor.get("material_instance", "")),
+            })
+
+    for w_index, walk in enumerate(structures.get("walkways", [])):
+        sample = float(walk.get("sample_cm", 100.0))
+        kind = walk["kind"]
+        cid = walk.get("walkway_id", f"walk{w_index}")
+        if kind == "ring":
+            r = float(walk["radius_cm"])
+            n = _sample_count(2.0 * math.pi * r, sample)
+            pts = [(cx + r * math.cos(2 * math.pi * i / n), cy + r * math.sin(2 * math.pi * i / n), cz) for i in range(n + 1)]
+        elif kind == "spoke":
+            r0, r1 = float(walk["inner_radius_cm"]), float(walk["radius_cm"])
+            pts = []
+            for k in range(int(layout.get("order", 1))):
+                a = math.radians(float(layout.get("rotation_deg", 0.0)) + float(walk.get("phase_deg", 0.0))) + 2 * math.pi * k / int(layout.get("order", 1))
+                n = _sample_count(r1 - r0, sample)
+                emit(f"{cid}_{k}", "spoke", [(cx + _lerp(r0, r1, i / n) * math.cos(a), cy + _lerp(r0, r1, i / n) * math.sin(a), cz) for i in range(n + 1)], walk)
+            continue
+        else:  # spiral: golden log spiral, rising rise_cm over turns
+            r0, r1 = float(walk["inner_radius_cm"]), float(walk["radius_cm"])
+            turns = float(walk.get("turns", 1.0))
+            n = _sample_count(math.pi * (r0 + r1) * turns, sample)
+            pts = []
+            for i in range(n + 1):
+                t = i / n
+                a = 2 * math.pi * turns * t
+                r = r0 * (r1 / r0) ** t
+                pts.append((cx + r * math.cos(a), cy + r * math.sin(a), cz + float(walk.get("rise_cm", 0.0)) * t))
+        emit(cid, kind, pts, walk)
+
+    for decor in structures.get("decor", []):
+        curve = decor["curve"]
+        kind = curve["kind"]
+        sample = float(curve.get("sample_cm", 60.0))
+        did = decor["decor_id"]
+        if kind == "lissajous":
+            ra, rb = float(curve.get("a", 3)), float(curve.get("b", 2))
+            delta = math.radians(float(curve.get("delta_deg", 90.0)))
+            R = float(curve["radius_cm"])
+            h, amp = float(curve.get("height_cm", 0.0)), float(curve.get("z_amp_cm", 0.0))
+            n = _sample_count(2 * math.pi * R * max(ra, rb), sample)
+            pts = [(cx + R * math.sin(ra * t + delta), cy + R * math.sin(rb * t), cz + h + amp * math.sin((ra + rb) * t))
+                   for t in (2 * math.pi * i / n for i in range(n + 1))]
+            emit(did, kind, pts, decor)
+        elif kind == "catenary":
+            ring = int(curve.get("ring", 0))
+            ring_slots = [s for s in slots if s["ring"] == ring]
+            attach = float(curve.get("attach_height_cm", 300.0))
+            for k, s0 in enumerate(ring_slots):
+                s1 = ring_slots[(k + 1) % len(ring_slots)]
+                if len(ring_slots) < 2 or (s1 is s0):
+                    break
+                p0, p1 = (s0["x"], s0["y"], s0["z"] + attach), (s1["x"], s1["y"], s1["z"] + attach)
+                span = math.hypot(p1[0] - p0[0], p1[1] - p0[1])
+                sag = float(curve.get("sag_cm", 0.0)) or span * float(curve.get("sag_ratio", 0.08))
+                emit(f"{did}_{k}", kind, _catenary(p0, p1, sag, _sample_count(span, sample)), decor)
+        elif kind == "phyllotaxis":
+            count = int(curve["count"])
+            r0, r1 = float(curve.get("inner_radius_cm", 0.0)), float(curve["radius_cm"])
+            ang = float(curve.get("angle_rad", GOLDEN_ANGLE))
+            pts = []
+            for i in range(count):
+                t = math.sqrt((i + 0.5) / count)
+                r = _lerp(r0, r1, t)
+                a = i * ang + _u(seed, did, i) * 1e-3
+                pts.append((cx + r * math.cos(a), cy + r * math.sin(a), cz))
+            emit(did, kind, pts, decor)
+    return rows
+
+
+def stage_structures(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    """Mandala slots + walkway/decor curves + Blender GN bake jobs. Optional: absent => no tables."""
+    structures = recipe.get("structures")
+    if not structures:
+        return None, [], [], _stage("SKIPPED", "Tools/world_compiler.py:stage_structures", "recipe.structures absent")
+    errors = [f"layout.rings[{i}].slot '{r['slot']}' not in slots" for i, r in enumerate(structures["layout"]["rings"])
+              if r["slot"] not in structures["slots"]]
+    if errors:
+        return None, [], [], _stage("FAIL", "Tools/world_compiler.py:stage_structures", "", errors)
+    slots = _mandala_slots(structures)
+    curves = _curve_rows(structures, slots, int(recipe["world_seed"]))
+    kit = structures.get("kit", {})
+    bake = {
+        "schema": "melodia.structures_bake.v1",
+        "note": "Blender 5.2 + melodia_gn registry; export GLB, Interchange-import, save packages (no automated FBX)",
+        "kit_ue_path": kit.get("ue_path", ""),
+        "export": kit.get("export", "glb"),
+        "slots": {sid: {k: v for k, v in slot.items() if k not in ("face",)} for sid, slot in sorted(structures["slots"].items())},
+        "decor": [{"decor_id": d["decor_id"], "builder_id": d.get("builder_id", ""), "curve_kind": d["curve"]["kind"],
+                   "curve_ids": sorted({c["curve_id"] for c in curves if c["curve_id"].startswith(d["decor_id"])})}
+                  for d in structures.get("decor", [])],
+    }
+    note = f"{len(slots)} slots, {len({c['curve_id'] for c in curves})} curves ({len(curves)} samples)"
+    return bake, slots, curves, _stage("PASS", "Tools/world_compiler.py:stage_structures", note)
+
+
 # ----------------------------------------------------------------------------- bundle
 
 def _csv_bytes(columns: list[str], rows: list[dict[str, Any]]) -> bytes:
@@ -730,6 +935,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
     dressing, stages["dressing"] = stage_dressing(recipe, ecology, constellation=constellation)
     signal, stages["signal"] = stage_signal(recipe)
     chapter, stages["chapter"] = stage_chapter(recipe)
+    bake, slot_rows, curve_rows, structures_stage = stage_structures(recipe)
+    if recipe.get("structures"):
+        stages["structures"] = structures_stage
 
     files: dict[str, bytes] = {
         "points.csv": _csv_bytes(POINT_COLUMNS, ecology["points"]),
@@ -742,15 +950,25 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         files["terrain.json"] = _json_bytes(terrain)
     if chapter is not None:
         files["chapter.json"] = _json_bytes(chapter)
+    if bake is not None:
+        files["structure_slots.csv"] = _csv_bytes(SLOT_COLUMNS, slot_rows)
+        files["structure_curves.csv"] = _csv_bytes(CURVE_COLUMNS, curve_rows)
+        files["structures_bake.json"] = _json_bytes(bake)
     for name, data in files.items():
         (out_dir / name).write_bytes(data)
 
+    table_shape = {
+        "points.csv": (len(ecology["points"]), POINT_COLUMNS),
+        "fx_anchors.csv": (len(ecology["fx_anchors"]), FX_COLUMNS),
+        "structure_slots.csv": (len(slot_rows), SLOT_COLUMNS),
+        "structure_curves.csv": (len(curve_rows), CURVE_COLUMNS),
+    }
     tables = {
         name: {
             "path": name,
             "sha256": _sha256_bytes(data),
-            "rows": (len(ecology["points"]) if name == "points.csv" else len(ecology["fx_anchors"]) if name == "fx_anchors.csv" else 1),
-            **({"columns": POINT_COLUMNS} if name == "points.csv" else {"columns": FX_COLUMNS} if name == "fx_anchors.csv" else {}),
+            "rows": table_shape.get(name, (1, None))[0],
+            **({"columns": table_shape[name][1]} if name in table_shape else {}),
         }
         for name, data in files.items()
     }
@@ -801,6 +1019,13 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
             "material_override_attributes": (
                 ["StemMaterial", "material"] if any(s.get("stem_material") for s in recipe["species"]) else ["material"]
             ),
+            **({"structures": {
+                "slot_data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_StructureSlots",
+                "curve_data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_StructureCurves",
+                "pcg_template_graph": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_Structures",
+                "control_actor_class": "/Game/EnvSandbox/PCG/Universal/BP_MelodiaPCGControl",
+                "kit_ue_path": (recipe["structures"].get("kit") or {}).get("ue_path", ""),
+            }} if bake is not None else {}),
         },
         "notes": [
             "compiler never imports unreal; UE lane is Content/Python/world_compiler_ue.py",

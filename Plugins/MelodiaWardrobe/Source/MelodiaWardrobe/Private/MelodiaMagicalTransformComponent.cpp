@@ -349,6 +349,11 @@ bool UMelodiaMagicalTransformComponent::IsTriggerCapabilityActive() const
 {
 	const UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(this);
 
+	if (bRevealAtRest)
+	{
+		return true;
+	}
+
 	// Fail closed, matching the wardrobe's own capability contract: no authority
 	// means no capability, so the wings stay off rather than appearing for free.
 	return Wardrobe && Wardrobe->IsCapabilityActive(TriggerCapability, CapabilityContextId);
@@ -362,6 +367,16 @@ void UMelodiaMagicalTransformComponent::HandleWardrobeChanged(
 	if (AccessoryWardrobeSlots.Contains(Slot))
 	{
 		ResolveBindings();
+	}
+
+	// Costume mode: the outfit change itself is the transformation, replayed on the beat.
+	if (bRevealAtRest && Phase == EMelodiaMagicalTransformPhase::Revealed)
+	{
+		PendingTransition = 3;
+		PendingWaitSeconds = 0.0f;
+		LastSeenBeatPhase = ReadBeatPhase();
+		UpdateTickEnabled();
+		return;
 	}
 
 	SyncToWardrobeState(/*bAllowAnimation=*/true);
@@ -379,7 +394,7 @@ void UMelodiaMagicalTransformComponent::SyncToWardrobeState(const bool bAllowAni
 	{
 		if (bAllowAnimation)
 		{
-			PlayReveal();
+			RequestTransition(true);
 		}
 		else
 		{
@@ -391,7 +406,7 @@ void UMelodiaMagicalTransformComponent::SyncToWardrobeState(const bool bAllowAni
 	{
 		if (bAllowAnimation)
 		{
-			PlayConceal();
+			RequestTransition(false);
 		}
 		else
 		{
@@ -486,13 +501,14 @@ void UMelodiaMagicalTransformComponent::UpdateTickEnabled()
 	const bool bFlareSettled = FMath::IsNearlyEqual(
 		GlideFlareAlpha, bGlideFlareTarget ? 1.0f : 0.0f, UE_KINDA_SMALL_NUMBER);
 
-	SetComponentTickEnabled(IsTransitioning() || !bFlareSettled);
+	SetComponentTickEnabled(IsTransitioning() || !bFlareSettled || PendingTransition != 0);
 }
 
 void UMelodiaMagicalTransformComponent::TickComponent(
 	const float DeltaTime, const ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	TickPendingTransition(DeltaTime);
 	AdvanceTransform(DeltaTime);
 }
 
@@ -542,6 +558,58 @@ FMelodiaMagicalTransformPose UMelodiaMagicalTransformComponent::EvaluateCurrentP
 	}
 
 	return Pose;
+}
+
+void UMelodiaMagicalTransformComponent::RequestTransition(const bool bReveal)
+{
+	if (!bStartOnBeat)
+	{
+		bReveal ? PlayReveal() : PlayConceal();
+		return;
+	}
+	PendingTransition = bReveal ? 1 : 2;
+	PendingWaitSeconds = 0.0f;
+	LastSeenBeatPhase = ReadBeatPhase();
+	UpdateTickEnabled();
+}
+
+void UMelodiaMagicalTransformComponent::TickPendingTransition(const float DeltaSeconds)
+{
+	if (PendingTransition == 0)
+	{
+		return;
+	}
+	PendingWaitSeconds += DeltaSeconds;
+	const float BeatPhase = ReadBeatPhase();
+	const bool bOnBeat = BeatPhase < LastSeenBeatPhase;
+	LastSeenBeatPhase = BeatPhase;
+	if (!bOnBeat && PendingWaitSeconds < MaxCadenceWaitSeconds)
+	{
+		return;
+	}
+
+	const uint8 Transition = PendingTransition;
+	PendingTransition = 0;
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_TRANSFORM_CADENCE %s start=%s wait=%.3fs"),
+		Transition == 3 ? TEXT("flourish") : (Transition == 1 ? TEXT("reveal") : TEXT("conceal")),
+		bOnBeat ? TEXT("beat") : TEXT("timeout"), PendingWaitSeconds);
+	if (Transition == 3)
+	{
+		// Replay from zero: the accessories dissolve in on the downbeat.
+		SnapToPhase(EMelodiaMagicalTransformPhase::Dormant);
+		PlayReveal();
+	}
+	else
+	{
+		Transition == 1 ? PlayReveal() : PlayConceal();
+	}
+}
+
+float UMelodiaMagicalTransformComponent::ReadBeatPhase() const
+{
+	return PaletteCollection
+		? UKismetMaterialLibrary::GetScalarParameterValue(GetWorld(), PaletteCollection, GBeatPhaseParameter)
+		: 0.0f;
 }
 
 float UMelodiaMagicalTransformComponent::ReadBeatPulse() const

@@ -179,7 +179,9 @@ bool UMelodiaRhythmExecutionComponent::TryHitCurrentNote()
 	}
 
 	const float BeatPosition = GetCurrentBeatPosition();
-	const float TimingErrorMs = FMath::Abs(BeatPosition - Note.TargetBeat) * GetBeatLengthSeconds() * 1000.0f;
+	// Signed (positive = late) so the player's calibration can correct it before grading takes the magnitude.
+	const float TimingErrorMs = (BeatPosition - Note.TargetBeat) * GetBeatLengthSeconds() * 1000.0f
+		- UMelodiaCoreRulesLibrary::GetPlayerCalibrationOffsetMs();
 
 	const FMelodiaRhythmGradeResult GradeResult = UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(TimingErrorMs, RhythmWindows);
 	Note.Grade = GradeResult.Grade;
@@ -256,8 +258,9 @@ bool UMelodiaRhythmExecutionComponent::TryHitNoteInLane(int32 LaneIndex)
 			continue;
 		}
 
-		const float RawErrorMs = FMath::Abs(BeatPosition - Note.TargetBeat) * BeatLengthSeconds * 1000.0f;
-		const float CorrectedErrorMs = FMath::Abs(RawErrorMs - RhythmWindows.LatencyOffsetMs);
+		const float SignedErrorMs = (BeatPosition - Note.TargetBeat) * BeatLengthSeconds * 1000.0f
+			- UMelodiaCoreRulesLibrary::GetPlayerCalibrationOffsetMs();
+		const float CorrectedErrorMs = FMath::Abs(SignedErrorMs - RhythmWindows.LatencyOffsetMs);
 		if (CorrectedErrorMs <= RhythmWindows.GoodWindowMs && CorrectedErrorMs < BestCorrectedErrorMs)
 		{
 			BestCorrectedErrorMs = CorrectedErrorMs;

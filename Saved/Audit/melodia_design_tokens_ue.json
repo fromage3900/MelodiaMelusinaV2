@@ -1,15 +1,15 @@
 {
   "Colors": {
     "primitives.ivory.50": {
-      "Hex": "#FCFBF8",
+      "Hex": "#FFF8EE",
       "Description": "Moonlight White"
     },
     "primitives.ivory.100": {
-      "Hex": "#F7F4EF",
+      "Hex": "#F8ECD6",
       "Description": "Ivory (default paper)"
     },
     "primitives.ivory.200": {
-      "Hex": "#EFEAE1",
+      "Hex": "#F3E6C8",
       "Description": ""
     },
     "primitives.ivory.300": {
@@ -145,15 +145,15 @@
       "Description": ""
     },
     "semantic-light.color.surface.base": {
-      "Hex": "#F7F4EF",
+      "Hex": "#F8ECD6",
       "Description": ""
     },
     "semantic-light.color.surface.raised": {
-      "Hex": "#FCFBF8",
+      "Hex": "#FFF8EE",
       "Description": ""
     },
     "semantic-light.color.surface.sunken": {
-      "Hex": "#EFEAE1",
+      "Hex": "#F3E6C8",
       "Description": ""
     },
     "semantic-light.color.surface.inverse": {
@@ -173,7 +173,7 @@
       "Description": ""
     },
     "semantic-light.color.text.inverse": {
-      "Hex": "#FCFBF8",
+      "Hex": "#FFF8EE",
       "Description": ""
     },
     "semantic-light.color.text.accent": {
@@ -245,11 +245,11 @@
       "Description": ""
     },
     "semantic-dark.color.surface.inverse": {
-      "Hex": "#F7F4EF",
+      "Hex": "#F8ECD6",
       "Description": ""
     },
     "semantic-dark.color.text.primary": {
-      "Hex": "#FCFBF8",
+      "Hex": "#FFF8EE",
       "Description": ""
     },
     "semantic-dark.color.text.secondary": {
@@ -318,6 +318,86 @@
     },
     "semantic-dark.color.feedback.info": {
       "Hex": "#6B7CA8",
+      "Description": ""
+    },
+    "portfolio.color.void": {
+      "Hex": "#0D1224",
+      "Description": ""
+    },
+    "portfolio.color.celestial-deep": {
+      "Hex": "#0D1224",
+      "Description": ""
+    },
+    "portfolio.color.astral-surface": {
+      "Hex": "#1A1F3A",
+      "Description": ""
+    },
+    "portfolio.color.plum-surface": {
+      "Hex": "#2A3055",
+      "Description": ""
+    },
+    "portfolio.color.iri.cyan": {
+      "Hex": "#66D9FF",
+      "Description": ""
+    },
+    "portfolio.color.iri.gold": {
+      "Hex": "#FFE666",
+      "Description": ""
+    },
+    "portfolio.color.iri.purple": {
+      "Hex": "#CC99FF",
+      "Description": ""
+    },
+    "portfolio.color.iri.magenta": {
+      "Hex": "#FF6EB4",
+      "Description": ""
+    },
+    "portfolio.color.iri.pearl": {
+      "Hex": "#F0DCF0",
+      "Description": ""
+    },
+    "portfolio.color.ink": {
+      "Hex": "rgba(236,234,244,0.92)",
+      "Description": ""
+    },
+    "portfolio.color.muted": {
+      "Hex": "rgba(236,234,244,0.66)",
+      "Description": ""
+    },
+    "portfolio.color.line": {
+      "Hex": "rgba(201,168,106,0.34)",
+      "Description": ""
+    },
+    "portfolio.color.motif.sakura": {
+      "Hex": "rgba(255,110,180,0.55)",
+      "Description": ""
+    },
+    "portfolio.color.motif.cosmic": {
+      "Hex": "rgba(102,217,255,0.55)",
+      "Description": ""
+    },
+    "portfolio.color.motif.grotto": {
+      "Hex": "rgba(201,168,106,0.58)",
+      "Description": ""
+    },
+    "portfolio.color.motif.orrery": {
+      "Hex": "rgba(204,153,255,0.55)",
+      "Description": ""
+    },
+    "pillar-sakura.color.motif.accent": {
+      "Hex": "rgba(255,110,180,0.55)",
+      "Description": ""
+    },
+    "pillar-cosmic.color.motif.accent": {
+      "Hex": "rgba(102,217,255,0.55)",
+      "Description": ""
+    },
+    "pillar-grotto.color.motif.accent": {
+      "Hex": "rgba(201,168,106,0.58)",
+      "Description": ""
+    },
+    "pillar-orrery.color.motif.accent": {
+      "Hex": "rgba(204,153,255,0.55)",
       "Description": ""
     }
   },

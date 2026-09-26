@@ -316,6 +316,41 @@ void UMelodiaRhythmReactivitySubsystem::RegisterReactiveMeshComponent(UPrimitive
 	}
 }
 
+void UMelodiaRhythmReactivitySubsystem::RegisterPerformanceSurface(UPrimitiveComponent* MeshComponent)
+{
+	if (!MeshComponent)
+	{
+		return;
+	}
+	if (PitchClassFigures.IsEmpty())
+	{
+		static const TCHAR* Names[12] = {TEXT("C"), TEXT("Cs"), TEXT("D"), TEXT("Ds"), TEXT("E"), TEXT("F"),
+			TEXT("Fs"), TEXT("G"), TEXT("Gs"), TEXT("A"), TEXT("As"), TEXT("B")};
+		for (const TCHAR* Name : Names)
+		{
+			const FString Path = FString::Printf(TEXT("/Game/Melodia/Companions/ChoralSheep/Textures/Chladni/T_Chladni_PC_%s.T_Chladni_PC_%s"), Name, Name);
+			PitchClassFigures.Add(LoadObject<UTexture>(nullptr, *Path));
+		}
+	}
+
+	FMelodiaPerformanceSurfaceMaterials& Entry = PerformanceSurfaces.FindOrAdd(MeshComponent);
+	Entry.Materials.Reset();
+	const int32 NumSlots = MeshComponent->GetNumMaterials();
+	for (int32 SlotIndex = 0; SlotIndex < NumSlots; ++SlotIndex)
+	{
+		// The outline shell shares the toon master; the pattern belongs on the cloth only.
+		const UMaterialInterface* Material = MeshComponent->GetMaterial(SlotIndex);
+		if (!Material || Material->GetName().Contains(TEXT("Outline")))
+		{
+			continue;
+		}
+		if (UMaterialInstanceDynamic* MID = MeshComponent->CreateAndSetMaterialInstanceDynamic(SlotIndex))
+		{
+			Entry.Materials.Add(MID);
+		}
+	}
+}
+
 void UMelodiaRhythmReactivitySubsystem::SetReactiveStencil(UPrimitiveComponent* MeshComponent, const int32 StencilValue)
 {
 	if (!MeshComponent)
@@ -344,6 +379,54 @@ void UMelodiaRhythmReactivitySubsystem::PublishToReactiveMaterials() const
 		MID->SetScalarParameterValue(TEXT("Iridescence"), Signal.BeatPulse);
 		MID->SetScalarParameterValue(TEXT("TemporalStrength"), Signal.CommandEnergy);
 		MID->SetScalarParameterValue(TEXT("ParallaxStrength"), Signal.BeatPulse);
+	}
+}
+
+void UMelodiaRhythmReactivitySubsystem::NotifyPlayedNote(const int32 MidiNote, const EMelodiaRhythmGrade Grade)
+{
+	Signal.LastPitchClass = ((MidiNote % 12) + 12) % 12;
+	Signal.LastNoteGrade = Grade;
+	Signal.NotePulse = 1.0f;
+	Publish();
+	OnNotePlayed.Broadcast(MidiNote, Grade);
+}
+
+void UMelodiaRhythmReactivitySubsystem::PublishToPerformanceSurfaces() const
+{
+	if (PerformanceSurfaces.IsEmpty() || Signal.LastPitchClass < 0)
+	{
+		return;
+	}
+
+	// The note's pitch class draws its own baked Chladni figure; the grade sets how brightly it
+	// blooms, and a Miss draws it off-scale so the figure reads broken rather than resolved.
+	UTexture* Figure = PitchClassFigures.IsValidIndex(Signal.LastPitchClass) ? PitchClassFigures[Signal.LastPitchClass].Get() : nullptr;
+	float Brightness = 0.35f;
+	float Scale = 1.37f;
+	switch (Signal.LastNoteGrade)
+	{
+	case EMelodiaRhythmGrade::Perfect: Brightness = 2.0f;  Scale = 1.0f; break;
+	case EMelodiaRhythmGrade::Great:   Brightness = 1.4f;  Scale = 1.0f; break;
+	case EMelodiaRhythmGrade::Good:    Brightness = 0.8f;  Scale = 1.12f; break;
+	default: break;
+	}
+
+	for (const TPair<TObjectPtr<UPrimitiveComponent>, FMelodiaPerformanceSurfaceMaterials>& Pair : PerformanceSurfaces)
+	{
+		for (const TObjectPtr<UMaterialInstanceDynamic>& MID : Pair.Value.Materials)
+		{
+			if (!MID)
+			{
+				continue;
+			}
+			if (Figure)
+			{
+				MID->SetTextureParameterValue(TEXT("ChladniMask"), Figure);
+			}
+			MID->SetScalarParameterValue(TEXT("ChladniScale"), Scale);
+			MID->SetScalarParameterValue(TEXT("CymaticAmplitude"), Signal.NotePulse);
+			MID->SetScalarParameterValue(TEXT("Cymatic_EmissiveScale"), Brightness);
+		}
 	}
 }
 
@@ -379,6 +462,7 @@ void UMelodiaRhythmReactivitySubsystem::Publish()
 	SetMPCScalar(TEXT("CozyBloom"), Signal.CozyBloom);
 
 	PublishToReactiveMaterials();
+	PublishToPerformanceSurfaces();
 
 	// OSC: existing beat routes.
 	SendOSCFloat(TEXT("/rhythm/beat_pulse"), Signal.BeatPulse);

@@ -291,3 +291,13 @@ Compiler-specific hard no's:
 ## 9. Expansion path (data, not code)
 
 Same CLI, different recipe: a Sea Above chunk (`field.kind: chunk_grid`, hierarchical PCG grids 51200 / 25600 / 12800), a Shorewake chapter package via the `chapter` stage, Melusina outfit voicing per movement via `resonant_world_wardrobe_bridge.py`. Each is a new `field.kind` schema version and a recipe file; none is a compiler rewrite.
+
+### 9.1 Detail families (landed: `melody_glitter`, 2026-09-23)
+
+A second MI family inside one recipe needs no graph or authority change:
+
+- Species-level `band_mi_prefix` wins over the `palette.active_lane` prefix (flowers already carry the wind prefix verbatim, dressing carries none, so legacy output is byte-identical).
+- Species-level `scale_range` overrides `field.scale_range` (pin the field value on existing species when introducing this).
+- `palette.glitter` (schema-optional, mirrors `palette.wind`) emits `dressing_table.glitter_lane`; the UE `glitter_materials` step forges one MI per band (tint params + optional scalar overrides, parent graph untouched).
+- Detail MIs share one existing parent and differ only in tint/scalars — never a new master per effect.
+- **Warm the mesh:** a never-before-generated species mesh is still compiling on first generate (`Waiting for static meshes to be ready`) and the selector silently falls back per-point — always generate twice and recount per MI family before capturing.

@@ -583,6 +583,7 @@ void APCGHeroMusicGraphHost::ApplyNoteToScore(const FPCGHeroMusicNoteEvent& Even
 		const int32 JudgedNotes = ScoreState.HitCount + ScoreState.MissCount;
 		const float Accuracy = JudgedNotes > 0 ? static_cast<float>(ScoreState.HitCount) / static_cast<float>(JudgedNotes) : 0.0f;
 		const float ComboNormalized = FMath::Clamp(static_cast<float>(ScoreState.Streak) / 12.0f, 0.0f, 1.0f);
+		Reactivity->NotifyPlayedNote(Event.MidiNote, Event.Grade);
 		Reactivity->NotifyCommandResolved(Event.Grade, PresentationScalar, ComboNormalized, Accuracy, 0);
 	}
 }

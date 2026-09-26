@@ -5,6 +5,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/SkeletalMesh.h"
 #include "Materials/MaterialInterface.h"
+#include "MelodiaRhythmReactivitySubsystem.h"
+#include "Engine/World.h"
 #include "GameFramework/Character.h"
 
 UMelodiaWardrobeComponent::UMelodiaWardrobeComponent()
@@ -282,6 +284,16 @@ void UMelodiaWardrobeComponent::EquipGarment(const EMelodiaWardrobeSlot Slot, US
 		SlotComp->SetSkeletalMesh(GarmentMesh);
 	}
 	SlotComp->SetVisibility(true);
+
+	// The skirt is Melusina's performance surface: her rhythm grades play back on it as
+	// Chladni figures. Re-registered on every garment change so the new cloth carries it.
+	if (Slot == EMelodiaWardrobeSlot::Skirt && GetWorld() && GetWorld()->IsGameWorld())
+	{
+		if (UMelodiaRhythmReactivitySubsystem* Reactivity = GetWorld()->GetSubsystem<UMelodiaRhythmReactivitySubsystem>())
+		{
+			Reactivity->RegisterPerformanceSurface(SlotComp);
+		}
+	}
 }
 
 bool UMelodiaWardrobeComponent::EquipCosmetic(const FName CosmeticId)
@@ -420,10 +432,10 @@ void UMelodiaWardrobeComponent::UnequipSlot(const EMelodiaWardrobeSlot Slot)
 	{
 		Wardrobe->UnequipSlot(Slot);
 	}
-	EquipGarment(Slot, nullptr);
-	// The unequipped garment may have been the only claim on a body region; the
-	// remaining equipped set decides what stays collapsed.
-	ApplyBodyRegionVisibility();
+	// Re-derive every slot from the record: taking off a garment that replaced other
+	// slots (a full dress) must bring their defaults back, and the remaining equipped
+	// set decides which body regions stay collapsed.
+	ApplyWardrobeState();
 }
 
 USkeletalMeshComponent* UMelodiaWardrobeComponent::GetSlotComponent(const EMelodiaWardrobeSlot Slot) const

@@ -1,0 +1,103 @@
+// Copyright 2025 Dmitry Karpukhin. All Rights Reserved.
+
+#include "SSFSCommon.ush"
+
+#ifndef PERMUTATION_QUALITY_PRESET
+#define PERMUTATION_QUALITY_PRESET 2
+#endif
+
+#ifndef PERMUTATION_LUMINANCE_WEIGHTING
+#define PERMUTATION_LUMINANCE_WEIGHTING 1
+#endif
+
+float2 InputSize;
+float HighQuality;
+float LuminanceWeighting;
+RWTexture2D<float4> Output;
+
+float3 Downsample(Texture2D Texture, SamplerState Sampler, float2 UV, float2 PixelSize)
+{
+#if PERMUTATION_QUALITY_PRESET == 0
+	const float2 Coords[4] = {
+		float2(-1.0f,  1.0f), float2(1.0f,  1.0f),
+		float2(-1.0f, -1.0f), float2(1.0f, -1.0f)
+	};
+
+	const float Weights[4] = {
+		0.25f, 0.25f,
+		0.25f, 0.25f
+	};
+
+	const int SampleCount = 4;
+#elif PERMUTATION_QUALITY_PRESET == 1 || PERMUTATION_QUALITY_PRESET == 2
+	const float2 Coords[8] = {
+		float2(-1.0f,  1.0f), float2(1.0f,   1.0f),
+		float2(-1.0f, -1.0f), float2(1.0f,  -1.0f),
+		float2(0.0f,   2.0f), float2(2.0f,   0.0f),
+		float2(0.0f,  -2.0f), float2(-2.0f,  0.0f)
+	};
+
+	const float Weights[8] = {
+		0.125f, 0.125f,
+		0.125f, 0.125f,
+		0.125f, 0.125f,
+		0.125f, 0.125f
+	};
+
+	const int SampleCount = 8;
+#elif PERMUTATION_QUALITY_PRESET == 3
+	const float2 Coords[13] = {
+		float2(-1.0f,  1.0f), float2(1.0f,  1.0f),
+		float2(-1.0f, -1.0f), float2(1.0f, -1.0f),
+		float2(-2.0f, 2.0f), float2(0.0f, 2.0f), float2(2.0f, 2.0f),
+		float2(-2.0f, 0.0f), float2(0.0f, 0.0f), float2(2.0f, 0.0f),
+		float2(-2.0f,-2.0f), float2(0.0f,-2.0f), float2(2.0f,-2.0f)
+	};
+	
+	const float Weights[13] = {
+		0.125f, 0.125f,
+		0.125f, 0.125f,
+		0.0555555f, 0.0555555f, 0.0555555f,
+		0.0555555f, 0.0555555f, 0.0555555f,
+		0.0555555f, 0.0555555f, 0.0555555f
+	};
+
+	const int SampleCount = 13;
+#endif
+	float3 OutColor = float3(0.0f, 0.0f, 0.0f);
+		
+	// Apply Karis Average Luminance Weighting
+#if PERMUTATION_LUMINANCE_WEIGHTING
+	float Weight = 0.0;
+	
+	UNROLL
+	for(int i = 0; i < SampleCount; i++)
+	{
+		const float2 CurrentUV = UV + Coords[i] * PixelSize;
+		const float3 CurrentColor = Texture2DSample(Texture, Sampler, CurrentUV).rgb;
+		const float LuminanceWeight = 1.0 / (Luminance(CurrentColor) + 1.0);
+		OutColor += CurrentColor * LuminanceWeight;
+		Weight += LuminanceWeight;
+	}
+	OutColor /= Weight;
+#else
+	UNROLL
+	for(int i = 0; i < SampleCount; i++)
+	{
+		const float2 CurrentUV = UV + Coords[i] * PixelSize;
+		OutColor += Texture2DSample(Texture, Sampler, CurrentUV).rgb * Weights[i];
+	}
+#endif
+	return OutColor;
+}
+
+[numthreads(GROUP_SIZE, GROUP_SIZE, 1)]
+void DownsampleCS(uint2 DispatchThreadId : SV_DispatchThreadID)
+{
+	const float2 UV = (DispatchThreadId + 0.5) * InputViewport_ViewportSizeInverse * InputViewport_ViewportSize / InputSize;
+	const float2 PixelSize = 1.0f / InputSize;
+
+	float3 OutColor = Downsample(InputTexture, InputSampler, UV, PixelSize);
+	
+	Output[DispatchThreadId] = float4(OutColor, 1);
+}

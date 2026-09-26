@@ -31,6 +31,8 @@ Status values:
 | `__ExternalActors__` / `__ExternalObjects__` | Level actors derived from covered sources (ED level, first-party levels) | Epic Games + fromage3900 | https://fab.com/s/7ee8c5704aaa | mixed | verified |
 | `Python` (_Content/Python_) | Tooling scripts | first-party | first-party | Owner | verified |
 | `MelodiaIntegration` | First-party C++ bridge blueprints & config (narrative→JRPG) | fromage3900 | first-party | Owner | verified |
+| `Melusina` | First-party Melusina regalia FX (wings + clockwork rings, Regalia20260922) | fromage3900 | first-party | Owner | verified |
+| `Massive` | Massive World (now Calysto World) — logic-only PCG subset (`PDA_Vegetation`, `ST_Vegetation`, `ST_PlaceOfInterest`, `PCG_VegetationTransform`); see `Docs/CREDITS.md` | Qwerty Studio | https://www.fab.com/listings/8631308a-67a3-4e20-b3e4-74be19813f77 | Marketplace EULA | pending |
 | `Cinematics` | Melusina water-hair flip cache + GC | fromage3900 | first-party | Owner | verified |
 | `NPCs` | SakuraDreamer + GMM/VRoid staged characters | GMM creator + SSS LLC (Zunko family) | https://hub.vroid.com · https://zunko.jp | Per-model / SSS terms | verified |
 | `Content` (nested mirror dir) | Duplicate-tree mirror (`Content/Content`) | N/A — technical mirror | N/A | n/a | n/a |

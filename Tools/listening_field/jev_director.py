@@ -83,26 +83,37 @@ class Director:
             "resonance_accumulator": accumulator,
             "authored_seeds": LAYOUT_SEEDS,
         }
-        questions = []
-        for qid in ("sheep_next", "world_next", "restraint_amount"):
-            q = dict(JEV_QUESTIONS[qid])
-            q["id"] = qid
-            questions.append(q)
-        if entering_climax:
-            seed_q = dict(JEV_QUESTIONS["layout_seed"])
-            seed_q["id"] = "layout_seed"
-            questions.append(seed_q)
+        # JEV_QUESTIONS is the authored table (old wire format); adapt to the
+        # current typesafe_sdk question schema at the boundary.
+        questions: dict[str, dict[str, Any]] = {}
+        for qid, spec in JEV_QUESTIONS.items():
+            if qid == "layout_seed" and not entering_climax:
+                continue
+            q = dict(spec)
+            options = q.pop("options", None)
+            if options is not None:
+                q["criteria"] = {option: None for option in options}
+            levels = q.pop("levels", None)
+            if levels is not None:
+                q["criteria"] = list(levels)
+            questions[qid] = q
 
         with TypeSafeClient() as client:
-            result = client.system_one.create(state=state, questions=questions)
+            result = client.system_one(state=state, questions=questions)
 
-        answers = {q.id: a for q, a in zip(result.questions, result.answers)}
-        sheep = answers["sheep_next"].answer
-        world = answers["world_next"].answer
-        level = answers["restraint_amount"].answer
+        answers = result.answers
+        sheep = answers["sheep_next"].choice
+        world = answers["world_next"].choice
+        restraint_levels = JEV_QUESTIONS["restraint_amount"]["levels"]
+        score_idx = int(answers["restraint_amount"].score or 0)
+        level = (
+            restraint_levels[score_idx]
+            if 0 <= score_idx < len(restraint_levels)
+            else "partial"
+        )
         restraint = RESTRAINT_LEVEL_VALUES.get(level, 0.5)
         seed = answers.get("layout_seed")
-        seed = seed.answer if seed is not None and seed.answer in LAYOUT_SEEDS else None
+        seed = seed.choice if seed is not None and seed.choice in LAYOUT_SEEDS else None
         conf = min(a.confidence for a in answers.values())
         return sanitize(Directive(s.bar + 1, sheep, world, restraint, seed, "jev", conf))
 

@@ -1,0 +1,287 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "glassgarden_shoals_reef_bloom",
+  "world_seed": 240924,
+  "identity": {
+    "mode_id": "lydian",
+    "root_pitch_class": 5,
+    "bpm": 76,
+    "movement_id": "liquid_cathedral",
+    "chunk": [
+      0,
+      0
+    ]
+  },
+  "place": {
+    "level": "/Game/EnvSandbox/Monoliths/GlassgardenShoals/Prototype/LV_Glassgarden_Shoals",
+    "anchor_cm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "up_axis_offset_cm": 6.0,
+    "clearance": {
+      "circles": [
+        {
+          "label": "deep_pupil_keepout",
+          "center_cm": [
+            0.0,
+            0.0
+          ],
+          "radius_cm": 1800.0
+        },
+        {
+          "label": "starskiff_corridor_pad",
+          "center_cm": [
+            4200.0,
+            0.0
+          ],
+          "radius_cm": 900.0
+        }
+      ],
+      "capsules": [
+        {
+          "label": "starskiff_corridor",
+          "a_cm": [
+            1800.0,
+            0.0
+          ],
+          "b_cm": [
+            7200.0,
+            0.0
+          ],
+          "radius_cm": 420.0
+        }
+      ]
+    }
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 6,
+    "inner_radius_cm": 2000.0,
+    "band_width_cm": 900.0,
+    "sector_deg": [
+      0.0,
+      360.0
+    ],
+    "density_per_m2": 0.012,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 80.0,
+    "scale_range": [
+      0.7,
+      1.35
+    ],
+    "chladni": {
+      "modes": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "threshold": 0.32,
+      "plate_size_cm": 16000.0
+    },
+    "hero_falloff_cm": 3500.0
+  },
+  "species": [
+    {
+      "species_id": "coral_staghorn",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn",
+      "meshes": [
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Staghorn",
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Fan"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_GlassgardenCoral_",
+      "weight": 0.45,
+      "variants": 2,
+      "height_class": 1,
+      "scale_range": [
+        0.55,
+        1.1
+      ]
+    },
+    {
+      "species_id": "coral_brain_table",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain",
+      "meshes": [
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Brain",
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Coral_Table"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_GlassgardenCoral_",
+      "weight": 0.3,
+      "variants": 2,
+      "height_class": 0,
+      "scale_range": [
+        0.7,
+        1.4
+      ]
+    },
+    {
+      "species_id": "kelp_veil",
+      "mesh": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall",
+      "meshes": [
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Tall",
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Mid",
+        "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/SM_Kelp_Cluster"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_GlassgardenKelp_",
+      "weight": 0.25,
+      "variants": 3,
+      "height_class": 2,
+      "scale_range": [
+        0.8,
+        1.5
+      ]
+    }
+  ],
+  "palette": {
+    "bands": [
+      {
+        "label": "B0_Turquoise",
+        "tint": [
+          0.2,
+          0.78,
+          0.72
+        ]
+      },
+      {
+        "label": "B1_Aqua",
+        "tint": [
+          0.25,
+          0.65,
+          0.9
+        ]
+      },
+      {
+        "label": "B2_Iridescent",
+        "tint": [
+          0.55,
+          0.85,
+          0.95
+        ]
+      },
+      {
+        "label": "B3_Sand",
+        "tint": [
+          0.9,
+          0.82,
+          0.62
+        ]
+      },
+      {
+        "label": "B4_Abyss",
+        "tint": [
+          0.12,
+          0.22,
+          0.45
+        ]
+      },
+      {
+        "label": "B5_CoralRose",
+        "tint": [
+          0.92,
+          0.45,
+          0.55
+        ]
+      }
+    ],
+    "parent_master": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Materials/MI_SeaAbove_CoralSkin",
+    "tint_parameter": "BaseTint",
+    "active_lane": "static"
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": [
+      "Cymatic_BeatPulse",
+      "Cymatic_BassIntensity",
+      "Cymatic_MidIntensity",
+      "Cymatic_EmissiveScale",
+      "Cymatic_IridescenceShift",
+      "Cymatic_UVDistortion",
+      "Cymatic_ModeN",
+      "Cymatic_ModeM"
+    ]
+  },
+  "terrain": null,
+  "chapter": null,
+  "motif": null,
+  "influence": [],
+  "region_history": null,
+  "muse": {
+    "brief": "Saved/Audit/GlassgardenShoals/GOAL_JEV_HYTHON_WORLDCOMPILER_2026-09-24.md",
+    "scope": "Additive Glassgarden Shoals dedicated level. Radial reef bands + deep-pupil keepout + Starskiff corridor. No eye mesh/statue/face/outline. place.level is LV_Glassgarden_Shoals.",
+    "placement_gate": "No UE apply until scene-context cycle + ground probe on LV_Glassgarden_Shoals. Dedicated Glassgarden map; do not place into LV_SeaAbove_Prototype.",
+    "material_gate": "Band MI prefixes are declarative path strings; forge only via gated UE lane later. Parent MI_SeaAbove_CoralSkin; tint BaseTint only.",
+    "restraint": "Dedicated Glassgarden Shoals prototype level; SeaAbove left intact; shared Reef mesh/MI asset refs only; no eye mesh/statue/face/outline"
+  },
+  "lookdev": {
+    "cameras": [
+      {
+        "name": "ground_reef",
+        "loc_cm": [
+          3200.0,
+          -800.0,
+          120.0
+        ],
+        "look_cm": [
+          1200.0,
+          0.0,
+          40.0
+        ],
+        "fov": 62,
+        "exposure_bias": 0.8
+      },
+      {
+        "name": "elevated_overlook",
+        "loc_cm": [
+          0.0,
+          -6500.0,
+          2800.0
+        ],
+        "look_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fov": 55,
+        "exposure_bias": 0.6
+      },
+      {
+        "name": "starskiff_corridor",
+        "loc_cm": [
+          5500.0,
+          -400.0,
+          180.0
+        ],
+        "look_cm": [
+          2500.0,
+          0.0,
+          40.0
+        ],
+        "fov": 58,
+        "exposure_bias": 0.7
+      }
+    ]
+  }
+}

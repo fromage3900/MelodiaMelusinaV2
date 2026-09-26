@@ -42,4 +42,8 @@ public:
 
 	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category="HUD", meta=(ClampMin="0.8", ClampMax="1.3"))
 	float UIScale = 1.0f;
+
+	/** Measured audio/input latency (ms, positive = late), set by the calibration screen. */
+	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category="Rhythm", meta=(ClampMin="-250.0", ClampMax="250.0"))
+	float CalibrationOffsetMs = 0.0f;
 };

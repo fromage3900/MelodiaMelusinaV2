@@ -1,0 +1,148 @@
+{
+  "schema": "melodia.jev_pcg_convergence_audit.v1",
+  "date": "2026-09-24T18:49:14",
+  "state": {
+    "project_pcg_graphs": 191,
+    "graphs_using_pcgex": 42,
+    "graphs_placed_in_levels": 36,
+    "graphs_unreferenced": 114,
+    "style_graph_folders": {
+      "Baroque": 35,
+      "Escher": 19,
+      "WP": 16,
+      "Sakura": 9,
+      "SeaAbove": 9
+    },
+    "pcgex_mesh_collections": 12,
+    "pcg_graph_instances": 1,
+    "graph_user_params_scriptable": false,
+    "bp_pcg_hosts": [
+      "BP_Morning_GoldenSpiral",
+      "BP_MelusinaRoomShell",
+      "BP_PCG_LargeAssembly (engine demo)",
+      "BP_PCG_SmallAssembly (engine demo)"
+    ],
+    "massive_biome_core_live": {
+      "volumes": 3,
+      "instances": [
+        992,
+        205,
+        25
+      ],
+      "density_in_wrapper_data": true
+    },
+    "biome_da_has_material_field": false,
+    "curve_system": "WC_Corridor_* Actor+SplineComponent spines (3, 20-33 m, hub at Dell) consumed by PCGExSampleNearestSpline (WestRim) and PCG_SplinePath",
+    "room_system": "PCG_MelusinaRoomShell_PCGex via BP_MelusinaRoomShell (1 live, SalonA)",
+    "plugins_enabled": [
+      "PCG",
+      "PCGExtendedToolkit",
+      "PCGPrimitives (Grammar, Buildings, City examples)",
+      "PCGBiomeCore",
+      "PCGGeometryScriptInterop",
+      "PCGWaterInterop"
+    ],
+    "morning_has_landscape": false,
+    "dead_or_broken_in_morning": [
+      "EastBank/NorthDress hero corners 0 output",
+      "Penrose/Escher 0x0x0 volumes",
+      "MemoryDressing deactivated",
+      "NorthDress companion over empty space",
+      "WestRim main 160 greybox rocks",
+      "coral/kelp point field"
+    ],
+    "owner_goal": "Reusable corridor/passageway framework; PCGEx builds houses and diorama scenery; defined curves carve pathways; BP PCG hosts staged and updated project-wide"
+  },
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "answers": {
+    "structure_engine": {
+      "type": "choice",
+      "choice": "EXTEND_ROOMSHELL",
+      "confidence": 0.16,
+      "probabilities": {
+        "HYBRID_GRAMMAR_ON_PCGEX": 0.3,
+        "PCG_PRIMITIVES_GRAMMAR": 0.12,
+        "PCGEX_CLUSTERS": 0.21,
+        "EXTEND_ROOMSHELL": 0.37
+      }
+    },
+    "path_authority": {
+      "type": "choice",
+      "choice": "SPLINE_SPINES",
+      "confidence": 0.47,
+      "probabilities": {
+        "SPLINE_SPINES": 0.6,
+        "SPLINE_PLUS_PCGEX_REFINE": 0.4,
+        "PCGEX_PATHS": 0.0,
+        "MANIFEST_CURVES": 0.0
+      }
+    },
+    "mesh_authority": {
+      "type": "choice",
+      "choice": "PCGEX_COLLECTIONS",
+      "confidence": 0.78,
+      "probabilities": {
+        "PCGEX_COLLECTIONS": 0.85,
+        "BIOME_DA": 0.03,
+        "DA_POINTS_TO_COLLECTIONS": 0.12
+      }
+    },
+    "bp_host_pattern": {
+      "type": "choice",
+      "choice": "GRAPH_INSTANCE_PARAMS",
+      "confidence": 0.7,
+      "probabilities": {
+        "DATA_ASSET_PER_BP": 0.15,
+        "BP_ATTRIBUTE_PIN": 0.05,
+        "GRAPH_INSTANCE_PARAMS": 0.8
+      }
+    },
+    "first_step": {
+      "type": "choice",
+      "choice": "CORRIDOR_SCHEMA_PROTOTYPE",
+      "confidence": 0.4,
+      "probabilities": {
+        "C1_EXTRACT_PRIMITIVES": 0.04,
+        "CORRIDOR_SCHEMA_PROTOTYPE": 0.55,
+        "ARCHIVE_DEAD_GRAPHS": 0.2,
+        "FIX_MORNING_DEAD_VOLUMES": 0.21
+      }
+    },
+    "riskiest": {
+      "type": "choice",
+      "choice": "SCRIPTING_GAPS",
+      "confidence": 0.88,
+      "probabilities": {
+        "STYLE_GRAPH_COUPLING": 0.0,
+        "NO_LANDSCAPE_GROUND": 0.03,
+        "SCRIPTING_GAPS": 0.91,
+        "SCOPE": 0.04,
+        "PCGEX_VERSION_DRIFT": 0.02
+      }
+    },
+    "needs_owner": {
+      "type": "noul",
+      "noul": 0.37
+    },
+    "readiness": {
+      "type": "score",
+      "score": 2.52,
+      "confidence": 0.56,
+      "legend": {
+        "0": "Nothing reusable exists.",
+        "1": "Pieces exist but disconnected.",
+        "2": "Shared core exists for scatter; structure/paths ad hoc.",
+        "3": "Scatter + paths share primitives; structure ad hoc.",
+        "4": "Scatter, paths, structure and BP hosts all share one schema."
+      },
+      "probabilities": {
+        "0": 0.0,
+        "1": 0.08,
+        "2": 0.34,
+        "3": 0.55,
+        "4": 0.02
+      }
+    }
+  }
+}

@@ -296,63 +296,34 @@
     {
       "id": "fugu-max",
       "vendor": "Sakana AI",
-      "surface": "api_or_codex_profile",
+      "surface": "orchestration_service",
       "priority": "P2",
       "proposed_roles": [
         "orchestrator_benchmark"
       ],
       "official_sources": [
-        "https://console.sakana.ai/get-started",
-        "https://console.sakana.ai/models",
         "https://sakana.ai/fugu-max-release/"
       ],
       "canaries": [
-        "B0",
-        "B4_orchestration_comparison",
-        "glassgarden_dag_comparison"
+        "B4_orchestration_comparison"
       ],
-      "status": "research_candidate",
-      "base_url": "https://api.sakana.ai/v1",
-      "model_id": "fugu-max",
-      "secret_env": "SAKANA_API_KEY",
-      "supported_apis": [
-        "responses",
-        "chat_completions",
-        "models",
-        "anthropic_messages"
-      ],
-      "host_notes": "Official one-line installer supports Ubuntu/macOS; native Windows uses documented manual Codex setup or direct API. Keep canary isolated from normal Codex/Hermes defaults."
+      "status": "watch"
     },
     {
       "id": "fugu-ultra-v2",
       "vendor": "Sakana AI",
-      "surface": "api_or_codex_profile",
+      "surface": "orchestration_service",
       "priority": "P2",
       "proposed_roles": [
         "orchestrator_benchmark"
       ],
       "official_sources": [
-        "https://console.sakana.ai/get-started",
-        "https://console.sakana.ai/models",
         "https://sakana.ai/fugu-max-release/"
       ],
       "canaries": [
-        "B0",
-        "B4_orchestration_comparison",
-        "glassgarden_dag_comparison"
+        "B4_orchestration_comparison"
       ],
-      "status": "research_candidate",
-      "base_url": "https://api.sakana.ai/v1",
-      "model_id": "fugu-ultra",
-      "resolves_currently_to": "fugu-ultra-v2.0",
-      "secret_env": "SAKANA_API_KEY",
-      "supported_apis": [
-        "responses",
-        "chat_completions",
-        "models",
-        "anthropic_messages"
-      ],
-      "host_notes": "Use only after Fugu Max canary unless owner explicitly requests the higher-cost benchmark. Keep setup isolated from normal Codex/Hermes defaults."
+      "status": "watch"
     },
     {
       "id": "mercury-2.5",

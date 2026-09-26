@@ -10,7 +10,16 @@
 #include "MelodiaAuthorityLocator.h"
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaNarrativeSubsystem.h"
+#include "MultiWorldManager.h"
+#include "MultiWorldStatics.h"
+#include "UObject/SoftObjectPath.h"
 #include "UObject/UObjectGlobals.h"
+
+namespace
+{
+	/** cpp-only transition guard; avoids changing the GameInstance subsystem layout. */
+	TSet<UMelodiaTravelSubsystem*> GMultiWorldTransitions;
+}
 
 void UMelodiaTravelSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -46,6 +55,7 @@ void UMelodiaTravelSubsystem::Deinitialize()
 	}
 
 	TravellingToLevelId = NAME_None;
+	GMultiWorldTransitions.Remove(this);
 	Super::Deinitialize();
 }
 
@@ -105,6 +115,12 @@ void UMelodiaTravelSubsystem::HandleTravelRequested(const FName LevelId)
 		return;
 	}
 
+	if (GMultiWorldTransitions.Contains(this))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVEL rejected: a MultiWorld transition is already in flight"));
+		return;
+	}
+
 	TravellingToLevelId = LevelId;
 	const FName SpawnTag = GetPendingSpawnTag(LevelId);
 
@@ -113,9 +129,98 @@ void UMelodiaTravelSubsystem::HandleTravelRequested(const FName LevelId)
 
 	OnTravelStarted.Broadcast(LevelId, SpawnTag);
 
-	// OpenLevel, not LoadStreamLevel. The previous transition component used
-	// LoadStreamLevel, which streams a sublevel into the current world and cannot
-	// work for a standalone map.
+	// This is the MultiWorld seam. Morning is deliberately the main world:
+	// when we enter KaleidoNave the main-world package stays loaded and its
+	// PlayerController/UI state remains available for the return switch.
+	const FString MorningMapName(TEXT("/Game/Melodia/Levels/Opening/L_MelusinaMorning"));
+	const FString KaleidoMapName(TEXT("/Game/EnvSandbox/Environments/L_KaleidoNave"));
+	const FName KaleidoWorldName(TEXT("Melodia_KaleidoNave"));
+
+	if (LevelId.ToString() == MorningMapName)
+	{
+		UMultiWorldManager* MultiWorld = GetGameInstance()
+			? GetGameInstance()->GetSubsystem<UMultiWorldManager>()
+			: nullptr;
+		if (!MultiWorld)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVEL rejected: MultiWorld manager unavailable (level=%s)"), *LevelId.ToString());
+			return;
+		}
+
+		GMultiWorldTransitions.Add(this);
+		UE_LOG(LogTemp, Log, TEXT("MELODIA_TRAVEL_MULTIWORLD_RETURN level=%s spawn_tag=%s"),
+			*LevelId.ToString(), *SpawnTag.ToString());
+
+		MultiWorld->RequestSwitchWorld(MultiWorld->GetMainWorldHandle(), [this, MultiWorld, ArrivedLevelId = LevelId](bool bSwitched)
+		{
+			if (!bSwitched)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVEL_MULTIWORLD_RETURN failed: could not switch to Morning"));
+				TravellingToLevelId = NAME_None;
+				GMultiWorldTransitions.Remove(this);
+				return;
+			}
+
+				TravellingToLevelId = ArrivedLevelId;
+				HandlePostLoadMap(UMultiWorldStatics::GetWorldPtr(MultiWorld->GetActiveWorldHandle()));
+		});
+		return;
+	}
+
+	if (LevelId.ToString() == KaleidoMapName)
+	{
+		UMultiWorldManager* MultiWorld = GetGameInstance()
+			? GetGameInstance()->GetSubsystem<UMultiWorldManager>()
+			: nullptr;
+		if (!MultiWorld)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVEL rejected: MultiWorld manager unavailable (level=%s)"), *LevelId.ToString());
+			return;
+		}
+
+		FMultiWorldLoadParameters LoadParams;
+		LoadParams.WorldName = KaleidoWorldName;
+		LoadParams.bAutoInitializeWorld = true;
+		LoadParams.bStartWithTickEnabled = false;
+		LoadParams.bAutoHandleWidgets = true;
+		LoadParams.bAutoHandleInputMode = true;
+		LoadParams.bCreateDedicatedAudioDevice = true;
+
+		GMultiWorldTransitions.Add(this);
+		UE_LOG(LogTemp, Log, TEXT("MELODIA_TRAVEL_MULTIWORLD_LOAD level=%s spawn_tag=%s world_name=%s"),
+			*LevelId.ToString(), *SpawnTag.ToString(), *KaleidoWorldName.ToString());
+
+		TSoftObjectPtr<UWorld> MapAsset{FSoftObjectPath(KaleidoMapName)};
+		MultiWorld->LoadWorldAsync(MapAsset, LoadParams,
+			[this, MultiWorld, ArrivedLevelId = LevelId](bool bLoaded, FMultiWorldHandle WorldHandle, FMultiWorldLoadParameters)
+			{
+				if (!bLoaded || !MultiWorld)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVEL_MULTIWORLD_LOAD failed: KaleidoNave did not load"));
+					TravellingToLevelId = NAME_None;
+					GMultiWorldTransitions.Remove(this);
+					return;
+				}
+
+				MultiWorld->RequestSwitchWorld(WorldHandle, [this, ArrivedLevelId, WorldHandle](bool bSwitched)
+				{
+					if (!bSwitched)
+					{
+						UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVEL_MULTIWORLD_LOAD failed: could not switch to KaleidoNave"));
+						TravellingToLevelId = NAME_None;
+						GMultiWorldTransitions.Remove(this);
+						return;
+					}
+
+					TravellingToLevelId = ArrivedLevelId;
+					HandlePostLoadMap(UMultiWorldStatics::GetWorldPtr(WorldHandle));
+				});
+			});
+		return;
+	}
+
+	// Ordinary destinations retain the engine's unload-and-load behavior.
+	// Only the Morning/KaleidoNave pair above is a live secondary-world seam.
 	UGameplayStatics::OpenLevel(World, LevelId);
 }
 
@@ -127,16 +232,32 @@ void UMelodiaTravelSubsystem::HandlePostLoadMap(UWorld* LoadedWorld)
 		return;
 	}
 
+	// A MultiWorld package load can fire the engine's post-load delegate before
+	// the plugin switches the active world. Only the explicit active-handle world
+	// may complete the transition; ordinary OpenLevel uses the same callback.
+	UWorld* ActiveWorld = nullptr;
+	if (UMultiWorldManager* MultiWorld = GetGameInstance()
+		? GetGameInstance()->GetSubsystem<UMultiWorldManager>()
+		: nullptr)
+	{
+		ActiveWorld = UMultiWorldStatics::GetWorldPtr(MultiWorld->GetActiveWorldHandle());
+	}
+	if (GMultiWorldTransitions.Contains(this) && LoadedWorld != ActiveWorld)
+	{
+		return;
+	}
+
 	const FName ArrivedLevelId = TravellingToLevelId;
 	TravellingToLevelId = NAME_None;
+	GMultiWorldTransitions.Remove(this);
 
 	// Force-clear input contexts on arrival. Widgets do not survive a level change,
 	// so anything still stacked is orphaned and would otherwise strand the player in
 	// dialogue or menu input with no owner left to release it. Any leak is logged
 	// with the name of whatever pushed it.
 	if (UMelodiaInputContextSubsystem* Input = GetGameInstance()
-			? GetGameInstance()->GetSubsystem<UMelodiaInputContextSubsystem>()
-			: nullptr)
+		? GetGameInstance()->GetSubsystem<UMelodiaInputContextSubsystem>()
+		: nullptr)
 	{
 		Input->ClearAllContexts(FString::Printf(TEXT("travel arrival: %s"), *ArrivedLevelId.ToString()));
 	}

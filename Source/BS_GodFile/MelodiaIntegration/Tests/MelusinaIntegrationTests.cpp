@@ -3,6 +3,7 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
+#include "../MelodiaHairComponent.h"
 #include "../MelusinaSorrowSeamComponent.h"
 #include "../MelodiaNarrativeTypes.h"
 #include "../MelodiaNarrativeSubsystem.h"
@@ -35,6 +36,30 @@ bool FMelusinaSorrowSeamConstantsTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("SorrowSeam component can tick"), CDO->PrimaryComponentTick.bCanEverTick);
 	TestEqual(TEXT("SorrowSeam ticks in TG_PostPhysics"), CDO->PrimaryComponentTick.TickGroup, TG_PostPhysics);
 	TestEqual(TEXT("MendLerpSpeed default is 1.5f"), CDO->MendLerpSpeed, 1.5f);
+
+	return true;
+}
+
+// ---------------------------------------------------------------------------
+// Melusina Hair Tick Defaults
+// ---------------------------------------------------------------------------
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelusinaHairTickDefaultsTest,
+	"Melodia.Melusina.Hair.TickDefaults",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelusinaHairTickDefaultsTest::RunTest(const FString& Parameters)
+{
+	const UMelodiaHairComponent* CDO = GetDefault<UMelodiaHairComponent>();
+	if (!CDO)
+	{
+		AddError(TEXT("Could not obtain UMelodiaHairComponent CDO."));
+		return false;
+	}
+
+	TestTrue(TEXT("Hair component can tick"), CDO->PrimaryComponentTick.bCanEverTick);
+	TestEqual(TEXT("Hair ticks in TG_PrePhysics"), CDO->PrimaryComponentTick.TickGroup, TG_PrePhysics);
 
 	return true;
 }

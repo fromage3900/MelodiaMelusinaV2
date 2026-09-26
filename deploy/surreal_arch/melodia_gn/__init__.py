@@ -131,6 +131,10 @@ from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only
 from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import eyewear  # noqa: F401 - Eyewear: CAD-level frame front from ISO 8624 boxing measurements
+from . import angel_wings  # noqa: F401 - Angel wing pair + feather row builders (was live-only, untracked)
+from . import garment_ribbon  # noqa: F401 - Garment ribbon trail builders (was live-only, untracked)
+from . import reaver_wings  # noqa: F401 - Reaver wing builders (was live-only, untracked)
+from . import bionic_joint  # noqa: F401 - Bionic joint / ball-seat builder (was live-only, untracked)
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 

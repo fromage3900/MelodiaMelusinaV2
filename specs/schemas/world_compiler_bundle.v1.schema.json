@@ -25,7 +25,8 @@
         "dressing": {"$ref": "#/$defs/stage"},
         "signal": {"$ref": "#/$defs/stage"},
         "chapter": {"$ref": "#/$defs/stage"},
-        "bundle": {"$ref": "#/$defs/stage"}
+        "bundle": {"$ref": "#/$defs/stage"},
+        "structures": {"$ref": "#/$defs/stage"}
       }
     },
     "identity": {"type": "object"},
@@ -88,6 +89,7 @@
         "pcg_volume_label": {"type": "string"},
         "actor_tag": {"type": "string"},
         "fx_pack": {"type": "string"},
+        "structures": {"type": "object", "description": "Present only when the recipe has structures: slot/curve DataTables, structures PCG template, BP_MelodiaPCGControl class, GLB kit path"},
         "material_override_attributes": {"type": "array", "items": {"type": "string"}, "description": "Positional: index == static-mesh material slot on the spawner's ByAttribute selector"}
       }
     },
