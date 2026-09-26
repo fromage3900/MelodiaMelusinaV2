@@ -147,6 +147,7 @@ POLICY = {
     # store is on a 32 MB/s HDD, so a 9 GB tag needs ~5 min and a 21 GB tag ~11 min to
     # page in cold. Drive production lanes with LLM_REQUEST_TIMEOUT=1200.
     "wardrobe_catalog": [
+        ("qwen3-coder:30b", "local", "installed; qwen2.5-coder:7b no longer pulled"),
         ("qwen2.5-coder:7b", "local", "7/8, 100% surface adherence; coherent smoke test"),
         ("qwen3.8-27b", "local", "larger local fallback (~11 min cold load)"),
         ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
@@ -157,11 +158,13 @@ POLICY = {
         ("mistralai/mistral-medium-3-5", "openrouter", "cloud fallback only"),
     ],
     "quill_author": [
+        ("muse-glimmer:30b", "local", "installed tag name (ollama list 2026-09-26)"),
         ("muse-glimmer-30b", "local", "narrative-weighted; QuillScript dialogue drafts"),
         ("muse-glimmer-30b-cpu", "local", "CPU build when VRAM is held by the editor"),
         ("mistralai/mistral-medium-3-5", "openrouter", "cloud fallback only"),
     ],
     "asset_qa": [
+        ("qwen3-coder:30b", "local", "installed; qwen2.5-coder:7b no longer pulled"),
         ("qwen2.5-coder:7b", "local", "art/credits/bp gate triage - only verified-coherent coder tag"),
         ("deepseek-r1:14b", "local", "reasoning fallback for triage"),
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free wide-context fallback"),
@@ -172,6 +175,7 @@ POLICY = {
         ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
     ],
     "triage": [
+        ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
         # Free rotation 2026-09-02: deepseek (opencode-go) → nous → meituan ; local fallback last
         ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan (switched)"),
         ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
@@ -181,6 +185,7 @@ POLICY = {
         ("moonshotai/kimi-k3-free", "tokenrouter", "slow but strong fallback"),
     ],
     "audit": [
+        ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
         ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan"),
         ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free heavy fallback"),
@@ -189,18 +194,22 @@ POLICY = {
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
     "code": [
+        ("qwen.qwen3-coder-next", "bedrock", "Mantle coder, verified live 2026-09-26"),
         ("deepseek/deepseek-v4-flash", "openrouter", "default coder"),
         ("mistralai/codestral-2508", "openrouter", "code specialist"),
         ("qwen3-coder:14b", "local", "local code daemon"),
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
     "cpp": [
+        ("qwen.qwen3-coder-480b-a35b-instruct", "bedrock", "Mantle heavy C++"),
+        ("qwen.qwen3-coder-next", "bedrock", "Mantle coder, verified live 2026-09-26"),
         ("deepseek/deepseek-v4-pro", "openrouter", "stronger C++/UE reasoning"),
         ("deepseek/deepseek-v4-flash", "openrouter", "fast C++ fallback"),
         ("qwen3-coder:32b", "local", "local C++ if 24GB+ VRAM"),
         ("devstral-small", "local", "agentic multi-file local"),
     ],
     "mcp": [
+        ("qwen.qwen3-coder-next", "bedrock", "Mantle agentic, verified live 2026-09-26"),
         ("x-ai/grok-4.5", "openrouter", "MCP multi-step plans"),
         ("mistralai/mistral-medium-3-5", "openrouter", "tool-orchestration fallback"),
         ("qwen3-coder-next", "local", "local agentic MCP (80A3)"),
@@ -212,15 +221,18 @@ POLICY = {
         ("qwen3-coder:14b", "local", "grade reports only - never record pass alone"),
     ],
     "author": [
+        ("heretic-27b:latest", "local", "installed; local creative drafts"),
         ("mistralai/mistral-medium-3-5", "openrouter", "creative/agentic frontier"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "free fallback"),
         ("qwen3:8b", "local", "local dialogue drafts"),
     ],
     "deep": [
+        ("qwen.qwen3-235b-a22b-2507", "bedrock", "Mantle long reasoning, verified live 2026-09-26"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "SLOW but strong: long complex tasks"),
         ("mistralai/mistral-medium-3-5", "openrouter", "frontier fallback"),
     ],
     "review": [
+        ("qwen.qwen3-235b-a22b-2507", "bedrock", "Mantle fresh-eyes, verified live 2026-09-26"),
         ("x-ai/grok-4.5", "openrouter", "fresh-eyes verifier"),
         ("meta/muse-spark-1.2", "openrouter", "multimodal review"),
         ("mistralai/mistral-medium-3-5", "openrouter", "frontier fallback"),
@@ -234,12 +246,14 @@ POLICY = {
         ("meta/muse-spark-1.2", "openrouter", "video input (age-confirm first)"),
     ],
     "daemon": [
+        ("qwen3-coder:30b", "local", "installed 2026-09-26 (ollama list)"),
         ("qwen3-coder:14b", "local", "overnight code/audit loops (16GB+)"),
         ("qwen3:8b", "local", "overnight triage/docs (8GB)"),
         ("qwen3-coder-next", "local", "agentic daemon if pulled"),
         ("gpt-oss:20b", "local", "alt local free-weight"),
     ],
     "docs": [
+        ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
         ("deepseek/deepseek-v4-flash", "openrouter", "handoff/fold-in prose"),
         ("qwen3:8b", "local", "local docs daemon"),
         ("openai/gpt-oss-20b:free", "openrouter", "free fallback"),

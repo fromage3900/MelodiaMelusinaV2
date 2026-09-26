@@ -38,6 +38,11 @@ if ($Mode -eq 'preflight') {
     if (-not $AllowEditor -and $live.Count -gt 0) { $blockers += 'LiveCodingConsole running' }
     $proxies = @(Get-Process -Name 'monolith_proxy' -ErrorAction SilentlyContinue)
     if ($proxies.Count -gt 1) { $blockers += "$($proxies.Count) monolith_proxy processes (another session attached?)" }
+    # 2026-09-26: a loaded 18 GB Ollama model pushed the cook's UBA to 82/85.6 GB commit -> cl.exe C1001.
+    if (Get-Command ollama -ErrorAction SilentlyContinue) {
+        $loaded = @(ollama ps 2>$null | Select-Object -Skip 1 | Where-Object { $_.Trim() })
+        if ($loaded.Count -gt 0) { $blockers += "Ollama model(s) resident -- ollama stop them before a build/cook: $($loaded -join '; ')" }
+    }
     $locked = @()
     if (-not $AllowEditor) {
         foreach ($dll in Get-ChildItem (Join-Path $Root 'Binaries\Win64') -Filter 'UnrealEditor-BS_GodFile*.dll' -ErrorAction SilentlyContinue) {
@@ -69,7 +74,8 @@ if ($Mode -eq 'package') {
     $log = Join-Path $Audit 'package.log'
     # No -map=: MapsToCook in DefaultGame.ini decides, same as the 09-03 package_launch row.
     & $Uat BuildCookRun "-project=$Uproject" -noP4 -platform=Win64 -clientconfig=Development `
-        -build -cook -stage -pak -iostore -archive "-archivedirectory=$Archive" -unattended -utf8output *>&1 |
+        -build -cook -stage -pak -iostore -archive "-archivedirectory=$Archive" -unattended -utf8output `
+        '-ubtargs=-MaxParallelActions=6' *>&1 |
         Tee-Object -FilePath $log | Select-String -Pattern 'BUILD SUCCESSFUL|AutomationTool exiting|Error:' | ForEach-Object { $_.Line }
     $code = $LASTEXITCODE
     Write-Receipt 'package.json' ([ordered]@{ exit_code = $code; archive = $Archive; log = $log; at = (Get-Date -Format s) })

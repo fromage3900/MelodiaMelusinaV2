@@ -3,15 +3,19 @@
 # Do not commit secrets or API keys here.
 
 [provider]
-# Set after: jcode login --provider <claude|openai|copilot|gemini|...>
-# default_provider = "openai"
+# Provider profiles are added by deploy/setup_agent_lanes.ps1 (jcode provider add ...):
+#   mantle-code  -> https://bedrock-mantle.us-east-1.api.aws/v1  qwen.qwen3-coder-next
+#   mantle-fast  -> https://bedrock-mantle.us-east-1.api.aws/v1  zai.glm-4.7-flash
+#   mantle-deep  -> https://bedrock-mantle.us-east-1.api.aws/v1  qwen.qwen3-235b-a22b-2507
+#   ollama-local -> http://127.0.0.1:11434/v1                    qwen3-coder:30b
+# Key: env AWS_BEARER_TOKEN_BEDROCK (Bedrock Mantle API key). Claude is not enabled on this account.
+# Lane policy: .jcode/swarm-prompt.md ; model choice: python Tools/model_router.py pick <class>
 
 [features]
 swarm = true
 memory = true
 
 [agents]
-# Modest until LFS + editor contention is understood
 concurrency_cap = 6
 
 # Optional later (v2): phone/WebSocket gateway on LAN/Tailscale

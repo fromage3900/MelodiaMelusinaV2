@@ -1405,9 +1405,12 @@ Run in one sitting, editor-exclusive (no second `UnrealEditor`, no foreign `mono
 3. Restart proof — **owner at keyboard:** play to real state (flag, quest step, water puzzle), then
    `python Tools/issue51_restart_proof.py capture --save` → quit editor → relaunch → Continue →
    `python Tools/issue51_restart_proof.py verify` (writes `restart_proof.json`; exit 0 = PASS).
-4. Packaged proof — `Tools/issue51_ladder.ps1 package` **started 2026-09-26** (→
-   `G:\melodia_packages\P0_Closeout_20260926`, log `Saved/Audit/issue51_ladder_20260926/package.log`, UTF-16);
-   then `…ladder.ps1 launch` → `launch.json`. First Hermes canary candidate (orchestrator plan H2).
+4. Packaged proof — `Tools/issue51_ladder.ps1 package` (→ `G:\melodia_packages\P0_Closeout_<date>`, log
+   `Saved/Audit/issue51_ladder_<date>/package.log`, UTF-16), then `…ladder.ps1 launch` → `launch.json`.
+   **2026-09-26 attempt FAILED on memory, not code:** UBA hit 82/85.6 GB commit (an 18 GB Ollama model was
+   loading alongside) → `cl.exe` C1001 in `Module.VRM4URender.cpp`. The script now passes
+   `-ubtargs=-MaxParallelActions=6` and `preflight` blocks while any Ollama model is resident. Re-run with
+   nothing else heavy running. First Hermes canary candidate (orchestrator plan H2).
 5. `Tools/echo_run.py record` fresh rows for `runtime`, `rhythm_grade_to_result`,
    `hud_single_writer`, `rhythm_owner`, `save_load`, `repeat_consume`, `package_launch`.
 6. Close #51 with: commit SHAs, automation report path, restart JSON, package log, ledger row ids.
@@ -1431,6 +1434,12 @@ owner before running it. `ladder.ps1 preflight` flags 2 stale `monolith_proxy` (
 - **Orchestration:** Hermes runs long jobs, Jev routes, Claude verifies —
   `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md` (H0 owner-side: new Bedrock key — the old
   one returns 403; Hermes config edits listed there). Hermes reads `AGENTS.md` → its BINDING RULES block.
+- **Model lanes (verified live 2026-09-26):** Bedrock **Mantle** `https://bedrock-mantle.us-east-1.api.aws/v1`,
+  env `AWS_BEARER_TOKEN_BEDROCK` — `qwen.qwen3-coder-next`/`480b` (code), `zai.glm-4.7-flash` (fast),
+  `qwen.qwen3-235b-a22b-2507` (deep/review); Claude on this account → `permission_error`. Local Ollama:
+  `qwen3-coder:30b`, `muse-glimmer:30b`, `heretic-27b`, `qwen3:8b`. Router `Tools/model_router.py` picks these
+  first; jcode swarm policy `.jcode/swarm-prompt.md`, Fleet 1 in `.jcode/coordinator-bootstrap.md`, one-time
+  `deploy/setup_agent_lanes.ps1`. `Saved/router_ledger.jsonl` was checked into p4 read-only — kept p4-open.
 
 **Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
 `M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);

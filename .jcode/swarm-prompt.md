@@ -2,123 +2,62 @@
 >
 > Dated handoffs, old task queues, session notes, recovery docs, and historical snapshots are not task authority. Do not create replacements for them; current status belongs in `CURRENT_STATE.md` and session narrative belongs in the PR/commit body.
 
-# MelodiaMelusinaV2 swarm policy
+# MelodiaMelusinaV2 swarm policy (rewritten 2026-09-26)
 
-You are in the Melodia / Environment Portfolio repo (`BS_GodFile`, UE 5.8 + Blender 5.2 LTS).
-Use **light-swarm** only: the root/coordinator spawns workers; workers must **not** spawn children.
-Prefer the shared checkout — do **not** create git worktrees unless the coordinator explicitly requests isolation for a risky refactor.
+Binding rules: `AGENTS.md` → "BINDING RULES" and `CLAUDE.md`. Orchestration design:
+`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md` (Hermes runs, Jev routes, Claude verifies).
+The PGA/MPA/PPA/WIA/SQA/WEB/MUSE roles were retired by Decision 002 — workers are **lanes**, not owners.
 
-Read first: `CURRENT_STATE.md`, `_AGENT_WORKING_AGREEMENT.md`, `AGENTS.md` (Core vision + model lanes),
-`Docs/Production/MODEL_LANES_2026-08-12.md`, `Docs/PhoneOps/NORTH_STAR.md`, and
-`Docs/PhoneOps/BACKLOG.md`. For gameplay ownership use `SYSTEM_MAP.md` / `DATA_FLOW.md`; do not treat historical handoffs or old scope snapshots as current task authority.
+## Shape
 
-## Coordinator duties
+- **Light swarm:** the coordinator spawns workers; workers never spawn children. Cap **6** live workers.
+- **One worker = one git worktree** on its own branch, cut from `origin/main`
+  (`GIT_LFS_SKIP_SMUDGE=1 git worktree add -b <lane>/<task>-<date> <path> origin/main`).
+  No two workers share a checkout; no overlapping write paths.
+- **Workers return a patch, never land it.** No `/commit` to shared branches, no push, merge, rebase,
+  reset or PR — the owner approves each git/p4 operation (git pipeline law). A worker may commit
+  inside its own worktree branch so the patch is reviewable; that branch is never pushed by the swarm.
+- **No editor.** Swarm workers get no Monolith / Claireon / UE access and never launch Unreal. The
+  editor belongs to one agent at a time (Hermes-in-Claireon or a Claude session) — editor tasks are
+  handed back to the coordinator as a packet, not attempted.
+- **Text/code only:** Python, C++ source, docs, specs, tests, Blender `-b` scripts. No `.uasset`/`.umap`
+  writes, no `Content/` binaries, no material masters, no `Config/` edits.
 
-- Own the shared swarm plan: scopes, assignments, approvals.
-- Cap live workers at **6** unless the human raises the limit.
-- One clear task per worker; **no overlapping write paths**.
-- Prefer Green/Yellow work (docs, audits, bounded Python). Red-lane needs human approval.
-- Ban parallel edits to material masters (`setup_master_universal.py` force-regenerate, landscape/water masters, live `.uasset` masters).
-- After workers finish: reconcile reports, assign SQA verify when needed, then `/commit` in logical chunks.
-- External publish (Gumroad, public site, `store_live`) stays human-approved.
-- Cursor cloud / phone agents remain a separate PR lane — do not fight them on the same files without coordination.
-- Do not create new handoff, status, scorecard, session-note, or dated planning Markdown files. Current status updates `CURRENT_STATE.md`; lasting knowledge updates an existing durable contract/spec/reference; session narrative stays in PR/commit messages.
+## Lanes (model choice = `python Tools/model_router.py pick <class>`)
+
+| Lane | Router class | First pick (verified 2026-09-26) | Use |
+|---|---|---|---|
+| `code` | `code` / `cpp` | Mantle `qwen.qwen3-coder-next` / `qwen3-coder-480b` | tools, harness fixes, tests, C++ |
+| `fast` | `docs` / `triage` / `audit` | Mantle `zai.glm-4.7-flash` | docs, log triage, manifests |
+| `deep` | `deep` / `review` | Mantle `qwen.qwen3-235b-a22b-2507` | long reasoning, independent review |
+| `local` | `daemon` / `author` / `quill_author` | Ollama `qwen3-coder:30b` / `heretic-27b` / `muse-glimmer:30b` | free overnight / drafts |
+
+Mantle key: env `AWS_BEARER_TOKEN_BEDROCK` (never in the repo). Claude is **not** available on this
+Bedrock account. Setup: `deploy/setup_agent_lanes.ps1`.
+
+## Task packet (coordinator writes one per worker)
+
+`id` · `lane` · `goal` · `may_write` (path globs) · `must_not` · `done_when` (a file the verifier can
+open: test output, JSON, image, diff) · `worktree` · `budget` (turns).
 
 ## Completion report (required)
 
-Every worker’s final response must include:
-
 1. **Outcome:** done | blocked | partial
-2. **Changes:** paths touched (or “none — read-only”)
-3. **Validation:** what you ran or checked
-4. **Blockers / follow-ups:** anything for the coordinator
+2. **Branch/worktree + changed paths** (or "none — read-only")
+3. **Validation:** exact commands run and their result; the artifact path for `done_when`
+4. **Blockers / follow-ups**
 
-Do not end with only “done”.
+A report is not evidence. The verifier (Claude or the `review` lane) opens the artifact before anything
+is accepted.
 
-## Red lines (all roles)
+## Red lines (all lanes)
 
-- No Sakura hero composition / `L_SakuraPath` art direction edits.
-- No writes under `Content/_PROJECT/`.
-- No destructive deletes without human Red approval.
-- No bulk `.uasset` / `.umap` churn in swarm v1 — prefer Python/docs/deploy; asset saves go through a single Integration/desktop session.
-- If code shifts under you (another agent edited a file you read): inspect the diff; stop on ownership conflict; DM the coordinator.
-
-## Spawn templates
-
-When spawning, paste the matching block as the worker’s scope prompt (light-swarm, report back to coordinator).
-
-### PGA — Procedural Geometry
-
-```text
-Role: PGA. Light-swarm worker. Do not spawn children.
-May write: deploy/surreal_os/, deploy/surreal_greybox/, deploy/surreal_architecture_gen.py, deploy/surreal_arch/, research/
-Must not: Content/Python/ material or PCG masters, Content/_PROJECT/, Sakura level composition.
-Done: implement assigned genome/grammar/docs slice; run relevant deploy verify if applicable; completion report.
-```
-
-### MPA — Material Pipeline
-
-```text
-Role: MPA. Light-swarm worker. Do not spawn children.
-May write: Content/Python/setup_master_*.py, Content/Python/material_lib.py, Content/Python/setup_material_functions.py, Content/Python/apply_*.py, Content/Python/universal_instance_presets.py, Tools/MaterialMaker/, Docs/** material docs
-Must not: regenerate masters in parallel with other MPA workers; PCG builders; Sakura composition; Content/_PROJECT/
-Prefer: audits, manifests, instance presets, reports — not live .uasset master rewrites unless explicitly assigned alone.
-Done: completion report with validation (script dry-run, audit JSON, or readback notes).
-```
-
-### PPA — Procedural Placement
-
-```text
-Role: PPA. Light-swarm worker. Do not spawn children.
-May write: Content/Python/pcg_*.py, Content/Python/setup_pcg_*.py, Content/EnvSandbox/PCG/ docs/README, Docs/** PCG docs
-Must not: material master rewrites; Content/_PROJECT/
-Done: assigned PCG builder/docs/audit task; completion report.
-```
-
-### WIA — World Integration
-
-```text
-Role: WIA. Light-swarm worker. Do not spawn children.
-May write: deploy/surreal_world/, Content/Python/import_world_manifest.py, Content/Python/setup_template_showcase.py, Content/Python/setup_*_mpc.py, Tools/BlenderLiveLink/ (if present), Content/Python/monolith_mcp_client.py
-Must not: style genome taxonomy without PGA; Content/_PROJECT/
-Monolith MCP (editor open): use project MCP "monolith" via stdio proxy; otherwise document exact handoff in the completion report / PR body rather than creating a new handoff file.
-Done: completion report; note if UE was required and unavailable.
-```
-
-### SQA — QA & Sentinel
-
-```text
-Role: SQA. Light-swarm worker. Do not spawn children.
-May write: existing durable QA specs/contracts when the task explicitly requires a lasting change; Content/Python/audit_*.py; machine-readable evidence under established Saved/Audit paths when writable.
-Must not: production Content art; clear *_LOOP_STOP without diagnosis + coordinator approval; create a new prose audit/status report by default.
-Prefer: deploy/run_verify.ps1, deploy/_mcp_verify_*.py (read/run), report failures to coordinator/PR body.
-Done: completion report with verify outcomes.
-```
-
-### WEB — Portfolio / PhoneOps
-
-```text
-Role: WEB. Light-swarm worker. Do not spawn children.
-May write: wix/, Docs/PhoneOps/, DOC_INDEX.md, _github_deploy/generated/ configs, melodia-design-system/ (site only)
-Must not: force-push main; flip store_live; Gumroad/external publish; Content/_PROJECT/
-Done: completion report; no external publish.
-```
-
-### MUSE — OpenCode / Rider / Muse Code lane
-
-```text
-Role: MUSE. Light-swarm worker. Do not spawn children.
-Lane map: jcode = parallel repo swarm; OpenCode-in-Rider = C++/PIE gameplay IDE lane; Muse Code = Meta terminal agent (WSL).
-May write: .opencode/, existing durable production/tooling contracts, deploy/*opencode*, deploy/*muse*
-Must not: create dated handoff docs; Content/_PROJECT/, Sakura / L_SakuraPath composition, bulk .uasset / .umap churn, overlapping MelodiaCore .cpp with a live Rider session without coordinator lock.
-Prefer: OpenCode project config, Muse lane contracts, lane start scripts, Rider shortcut notes -- not production Content art.
-UE: do not start Unreal from this role; leave editor start to human / Integration.
-Done: assigned OpenCode/Muse/Rider lane wiring or durable docs; completion report; note PATH checks for jcode + opencode (muse via WSL if used).
-```
-
-## Task graph style
-
-1. Coordinator creates plan nodes: role + path glob + Done definition.
-2. Worker implements within scope.
-3. SQA checks Done definition when the task mutates production code.
-4. Coordinator integrates and commits.
+- Never-touch table in `CLAUDE.md` (`.gitignore`, `.gitattributes`, `Config/Default*.ini`,
+  `MF_MeshBlend_*`, `deploy/run_verify.ps1`); `L_SakuraPath` / `L_MelusinaMorning` composition;
+  `Content/_PROJECT/`; `MelodiaIntegrationMap` layout.
+- No destructive deletes; no clearing `deploy/*_LOOP_STOP` files.
+- No new handoff / status / scorecard / session-note / plan files: status → `CURRENT_STATE.md`
+  (coordinator only), narrative → the patch description.
+- No new router, orchestrator, lease or lane framework — extend `Tools/model_router.py` and the
+  orchestrator plan.
+- If code shifts under you: stop, report the conflict to the coordinator.

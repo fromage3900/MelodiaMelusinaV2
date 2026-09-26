@@ -1,13 +1,9 @@
 {
   "mcpServers": {
-    "monolith": {
-      "command": "Plugins/Monolith/Scripts/monolith_proxy.bat",
-      "args": []
-    },
-    "agent_bridge": {
+    "melodia": {
       "command": "C:/Python314/python.exe",
       "args": [
-        "C:/EnvironmentPortfolio/BS_GodFile/deploy/agent_bridge_mcp.py"
+        "C:/EnvironmentPortfolio/BS_GodFile/deploy/melodia_mcp_server.py"
       ]
     }
   }
