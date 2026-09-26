@@ -68,7 +68,11 @@
         "deepseek.v3.2":                      { "name": "DeepSeek v3.2 -- reasoning coder" },
         "mistral.devstral-2-123b":            { "name": "Devstral 2 -- code specialist" },
         "moonshotai.kimi-k2-thinking":        { "name": "Kimi K2 Thinking -- long reasoning" },
-        "moonshotai.kimi-k2.5":               { "name": "Kimi K2.5" }
+        "moonshotai.kimi-k2.5":               { "name": "Kimi K2.5" },
+        // Re-verified live 2026-09-26 (new Mantle key): coder-next, coder-480b, glm-4.7-flash, qwen3-235b.
+        // Claude on Mantle -> permission_error (account not cleared) -- do not add it here.
+        "zai.glm-4.7-flash":                  { "name": "GLM 4.7 Flash -- fast/bulk" },
+        "qwen.qwen3-235b-a22b-2507":          { "name": "Qwen3 235B -- deep/review" }
       }
     },
     "ollama": {
@@ -77,10 +81,11 @@
         "baseURL": "http://127.0.0.1:11434/v1"
       },
       "models": {
-        "qwen2.5:14b": { "name": "Qwen2.5 14B -- heavy code/reasoning" },
-        "qwen2.5-coder:7b": { "name": "Qwen2.5 Coder 7B -- fast code" },
-        "deepseek-r1:14b": { "name": "DeepSeek R1 14B -- reasoning" },
-        "hermes3:latest": { "name": "Hermes 3 -- general" }
+        // Installed per `ollama list` 2026-09-26. Stop them (`ollama stop <tag>`) before a UE build/cook.
+        "qwen3-coder:30b": { "name": "Qwen3 Coder 30B -- local code" },
+        "qwen3:8b": { "name": "Qwen3 8B -- local triage" },
+        "muse-glimmer:30b": { "name": "Muse Glimmer 30B -- local narrative/general" },
+        "heretic-27b:latest": { "name": "Heretic 27B -- local creative drafts" }
       }
     }
   },

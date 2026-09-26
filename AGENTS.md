@@ -26,7 +26,9 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
   a result. A subagent once reported a "smooth" SDF bake that was scattered dots.
 - **Orchestration.** Hermes runs long jobs, Jev routes, Claude verifies — the one plan is
   [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md).
-  Extend it; do not start a parallel orchestration/router/lease framework.
+  Extend it; do not start a parallel orchestration/router/lease framework. Model choice =
+  `Tools/model_router.py` classes; parallel repo work = jcode swarm under `.jcode/swarm-prompt.md`
+  (one worktree per worker, patches only, no editor access).
 - **Do the job asked** (`_AGENT_WORKING_AGREEMENT.md`): the request is the scope; queue work comes
   from `CURRENT_STATE.md` §4, not from new audits.
 

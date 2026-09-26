@@ -1,5 +1,11 @@
 # Melodia × jcode Swarm Pipeline
 
+> **Current (2026-09-26):** roles retired → lanes; one worktree per worker; patches only, no `/commit`;
+> no editor MCP for workers. Policy `.jcode/swarm-prompt.md`, Fleet 1 packets
+> `.jcode/coordinator-bootstrap.md`, lanes `deploy/setup_agent_lanes.ps1` + `Tools/model_router.py`,
+> design `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`. Recipes A/B and the role table
+> below are historical.
+
 **Status:** Implemented (harness in-repo). Run Recipes A/B on the Windows UE box to validate.
 
 Target pattern: [jcode swarm](https://jcode.sh/swarm) — many coding agents in **one repo**, optimistic concurrency, code-shift notifications, coordinator → workers (not N git worktrees by default).

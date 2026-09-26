@@ -49,9 +49,11 @@ new model survey.
  Hermes runtime ── kanban card = Task Packet ──► Jev router (system_one, closed sets)
    │                                              → lane · model tier · needs_editor · verify_kind
    ├─ worker lanes (Hermes subagents / CLIs)
-   │    bulk_mechanical   → Bedrock Haiku-class  (log triage, manifests, renames, reports)
-   │    scoped_editor     → Bedrock Sonnet-class (editor-adjacent, holds EDITOR LEASE)
-   │    hard_review       → Bedrock Opus-class   (independent review of a worker result)
+   │    (lanes = Tools/model_router.py classes; Claude is NOT enabled on this Bedrock account)
+   │    fast / bulk       → Mantle zai.glm-4.7-flash          (docs, triage, audit)
+   │    code              → Mantle qwen.qwen3-coder-next / 480b (tools, tests, C++)
+   │    deep / review     → Mantle qwen.qwen3-235b-a22b-2507   (long reasoning, independent review)
+   │    scoped_editor     → Hermes-in-Claireon, holds EDITOR LEASE (one at a time)
    │    offline_bulk      → local Ollama via agent_bridge (free, overnight)
    │    gateway_chat      → Nous glm-5.3-flash   (status, phone replies)
    ├─ tools: Claireon (HTTP, read-only default) · melodia MCP · shell (ladder scripts, UAT, Blender -b)
@@ -67,7 +69,8 @@ new model survey.
 1. **Task Packet** — `Tools/agent_router/task_packet.schema.json`: `id, goal, done_when[], inputs[],
    surfaces[], mutation_scope (none|files|editor|git), artifacts_expected[], budget_usd, max_turns`.
    One packet = one kanban card. `done_when` must name a file a verifier can open.
-2. **Jev router** — `Tools/agent_router/route.py`: one `system_one` call per packet, closed sets only
+2. **Jev router** — a `route` subcommand on the EXISTING `Tools/model_router.py` (do not add a second
+   router): one `system_one` call per packet, closed sets only
    (lane, tier, needs_editor, verify_kind ∈ {artifact_open, test_log, image_look, diff_review}). Records
    the model string; `classical-fallback` ⇒ card goes to the owner, never auto-dispatched.
 3. **Editor lease** — `Saved/Agents/editor.lease` (holder, session, surface, expires_at). One holder at a
@@ -79,13 +82,14 @@ new model survey.
 
 ## Phases
 - **H0 Plumbing (≈45 min, owner at keyboard for AWS console).**
-  a. AWS console → Bedrock → *Model access*: enable the Claude Haiku/Sonnet/Opus-class models in us-east-1.
+  a. DONE 2026-09-26: new Bedrock **Mantle** key works (`https://bedrock-mantle.us-east-1.api.aws/v1`,
+     env `AWS_BEARER_TOKEN_BEDROCK`); Qwen/GLM/gpt-oss verified; Claude → permission_error (skip).
   b. Hermes config: `bedrock.discovery.enabled: true` (discover ids — do not hard-code), add
      `fallback_providers: [bedrock]`, per-lane models under `auxiliary`/profiles.
   c. `mcp_servers.claireon: {url: http://127.0.0.1:60162/mcp}`; enable `melodia`; start the Claireon proxy.
   d. Smoke: Hermes calls Claireon `tool_search` (read-only) with the editor up, then again across an editor
      restart (proxy proof). Receipt `Saved/Audit/hermes_h0/`.
-- **H1 Router + lease (Claude Code builds, ≈2 h).** Schema, `route.py`, lease util + a 20-line Hermes skill
+- **H1 Router + lease (jcode Fleet 1 packet 3).** `model_router.py route`, `Tools/agent_lease.py` + a 20-line Hermes skill
   that reads packets from kanban, calls the router, dispatches. Offline tests: routing is deterministic on a
   fixture packet set; lease refuses a second holder and honours STOP files.
 - **H2 Canary (Jev 0.90): packaged cook + launch + log triage.** Packet: run
@@ -100,7 +104,9 @@ new model survey.
   Monolith *(Jev pick)*; (b) Hermes may mutate through Claireon when it holds the lease; (c) no editor for
   Hermes at all.
 - **D2 Bedrock budget:** monthly cap + per-packet `budget_usd` default (suggest $2 bulk / $10 scoped).
-- **D3 Which Bedrock models** are enabled in the account (console step H0a).
+- ~~D3 Which Bedrock models~~ — answered 2026-09-26: Mantle open models yes, Claude no.
+- **Fleet:** jcode swarm policy + Fleet 1 packets: `.jcode/swarm-prompt.md`, `.jcode/coordinator-bootstrap.md`;
+  lanes registered by `deploy/setup_agent_lanes.ps1`; goal `.hermes/plans/2026-09-26_jcode-fleet-goal.md`.
 
 ## Guardrails every worker prompt inherits (Hermes context file)
 Never-touch table and Red list from `CLAUDE.md`; git law (worktree patches only); `MelodiaIntegrationMap`
