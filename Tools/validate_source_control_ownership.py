@@ -22,8 +22,29 @@ def covers(root: str, path: str) -> bool:
     return path == root.rstrip("/") or path.startswith(root.rstrip("/") + "/")
 
 
+CUTOVER_STATES = ("planned", "active_pilot", "production", "cutover_complete")
+
+
 def validate(data: dict, check_files: bool = False) -> list[str]:
     errors: list[str] = []
+    state = data.get("cutover_state")
+    if state not in CUTOVER_STATES:
+        errors.append(f"cutover_state must be one of {CUTOVER_STATES}: {state!r}")
+    evidence = data.get("cutover_evidence", {})
+    if state in ("active_pilot", "production", "cutover_complete"):
+        for key in ("ue_source_control_connected", "ue_source_control_operations"):
+            status = evidence.get(key, {}).get("status") if isinstance(evidence, dict) else None
+            if status not in ("owner_confirmed", "repo_recorded", "verified"):
+                errors.append(f"{state} requires evidence for {key}")
+    if state in ("production", "cutover_complete"):
+        for key in ("world_partition_roundtrip", "second_workspace_roundtrip"):
+            status = evidence.get(key, {}).get("status") if isinstance(evidence, dict) else None
+            if status != "verified":
+                errors.append(f"{state} requires verified {key}")
+    if state == "cutover_complete":
+        status = evidence.get("git_dual_ownership_cleared", {}).get("status") if isinstance(evidence, dict) else None
+        if status != "verified":
+            errors.append("cutover_complete requires verified git_dual_ownership_cleared")
     authorities = data.get("authorities")
     if not isinstance(authorities, dict) or not authorities.get("git") or not authorities.get("perforce"):
         return ["manifest must define git and perforce authorities"]

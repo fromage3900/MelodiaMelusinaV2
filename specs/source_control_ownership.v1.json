@@ -1,15 +1,29 @@
 {
   "schema": "bs-godfile.source-control-ownership.v1",
-  "cutover_state": "planned",
+  "cutover_state": "active_pilot",
   "purpose": "Single ownership contract for Git engineering files and Perforce creative content.",
   "authorities": {
     "git": {
       "description": "Mergeable engineering, project configuration, automation, and documentation.",
-      "roots": [".github/", "Config/", "Docs/", "Plugins/", "Source/", "Tools/", "deploy/", "specs/", "BS_GodFile.uproject"]
+      "roots": [
+        ".github/",
+        "Config/",
+        "Docs/",
+        "Plugins/",
+        "Source/",
+        "Tools/",
+        "deploy/",
+        "specs/",
+        "BS_GodFile.uproject"
+      ]
     },
     "perforce": {
       "description": "Active Unreal content, world-partition packages, exports, and irreplaceable source art.",
-      "roots": ["Content/", "Exports/", "RawArt/"]
+      "roots": [
+        "Content/",
+        "Exports/",
+        "RawArt/"
+      ]
     }
   },
   "level_bundles": [
@@ -37,10 +51,45 @@
     "Level maps and their External Actors/External Objects are Perforce-owned as one bundle.",
     "No Content/, Exports/, or RawArt/ path may be added to a Git batch."
   ],
-  "required_external_roots": ["Content/__ExternalActors__/", "Content/__ExternalObjects__/"],
+  "required_external_roots": [
+    "Content/__ExternalActors__/",
+    "Content/__ExternalObjects__/"
+  ],
   "archive": {
     "active_sync": "perforce",
     "recovery_class": "S3 Glacier Deep Archive",
     "archive_unit": "compressed milestone bundle with manifest and SHA-256 checksums"
+  },
+  "cutover_states": {
+    "planned": "Perforce topology and ownership are designed, but the Unreal production client has not been proven against the depot.",
+    "active_pilot": "Unreal Engine is connected to Perforce and source-control operations are working; migration may still have Git/LFS overlap and incomplete cross-workspace proof.",
+    "production": "Perforce is the normal production authority for declared creative roots, including proven World Partition and second-workspace round trips.",
+    "cutover_complete": "Declared Perforce roots have no remaining Git ownership and all cutover gates pass."
+  },
+  "cutover_evidence": {
+    "ue_source_control_connected": {
+      "status": "owner_confirmed",
+      "date": "2026-09-25",
+      "note": "UE 5.8 is connected to Perforce."
+    },
+    "ue_source_control_operations": {
+      "status": "owner_confirmed",
+      "date": "2026-09-25",
+      "note": "Source-control operations are working in the Unreal Editor."
+    },
+    "exports_seeded": {
+      "status": "repo_recorded",
+      "path": "//melodia/Exports/..."
+    },
+    "world_partition_roundtrip": {
+      "status": "pending"
+    },
+    "second_workspace_roundtrip": {
+      "status": "pending"
+    },
+    "git_dual_ownership_cleared": {
+      "status": "pending",
+      "check": "python Tools/validate_source_control_ownership.py --check-cutover"
+    }
   }
 }
