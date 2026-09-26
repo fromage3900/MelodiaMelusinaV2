@@ -1388,6 +1388,27 @@ issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_
    packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
 3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
 
+**Ready-to-close ladder — 2026-09-26 (supersedes phases 0–3 above; plan `.hermes/plans/2026-09-26_p0-closeout-prep-goal.md`).**
+**Merged 2026-09-26:** PR #332 (#51 source: `ValidateIntrinsicRecord` on direct `RestoreNarrativeRecord`,
+New Game clears live water; tests `NarrativeRecord.DirectRestoreRefusesInvalid` + `.NewGameWaterCarryover`;
+headless Melodia 104/106, known 2) → `e2218e4d7`; PR #333 (wings-veins line into `main`, + foundry test
+for the authored Faraway Mother recipe, + SOURCES_MATRIX rows `Massive`/`Melusina`) → `872c981a3`.
+p4 CL 226: `ABP_Melusina_Current` dead `JumpWindup` state + `bJumpWindup` removed (`main`'s traversal
+drops `GetJumpWindupNormalized`), Compendium WBP, orrery Codex button, `Btn_Calibrate`, Compendium DA entries.
+Run in one sitting, editor-exclusive (no second `UnrealEditor`, no foreign `monolith_proxy`, DLLs unlocked;
+`Tools/issue51_ladder.ps1 preflight`):
+1. ~~Push + PR #51 branch and the integration PR; merge on green.~~ Done (above).
+2. On current `main`: closed-editor UBT (`-MaxParallelActions=6`) → headless `UnrealEditor-Cmd
+   -NullRHI -DisablePlugins=Monolith` `Melodia.` suite (expect 104/106 or better).
+3. Restart proof: save → quit → relaunch → load, real input; compare vector must include water
+   `PuzzleRevision`/`CompletedPuzzleIds` and Quill variables (script still owed, C2).
+4. Packaged proof: cook to `G:\melodia_packages\`, no `-map=` (script still owed, C2).
+5. `Tools/echo_run.py record` fresh rows for `runtime`, `rhythm_grade_to_result`,
+   `hud_single_writer`, `rhythm_owner`, `save_load`, `repeat_consume`, `package_launch`.
+6. Close #51 with: commit SHAs, automation report path, restart JSON, package log, ledger row ids.
+Known harness debt before step 5: Monolith index reindex, `frames_captured 0` on PIE smoke, and the
+regression battle-trigger check must reuse the highway gate's tagged-contract battle start.
+
 **Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
 `M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);
 a second, differently-shaped 18-node BellTree generation under `Morning_Dell_Banks`; shirt
