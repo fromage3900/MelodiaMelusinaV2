@@ -7,6 +7,8 @@ new file.
 
 **Updated:** 2026-09-25 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 
+**VCS sync point, 2026-09-25:** p4 depot `//Melodia` CL 222 ↔ git `ec5ace363` (branch `fix/melusina-wings-emissive-veins`, pushed to origin). CL 222 = 210 files (adds/deletes via `reconcile`, content via `diff -se`) in a changelist separate from the live lane's default-CL opens. 9 UI-study PNGs under `Content/UI/` remain git-only until their folder names drop trailing spaces — Windows-illegal segments that git created and p4d cannot mkdir. Nightly depot checkpoint → `G:\perforce_backup` (job `p4-nightly-checkpoint`, 04:00, md5-verified).
+
 **2026-09-25 session closeout — Melusina signature pass (owner: "take the wins"; NOTHING COMMITTED):**
 - **Live and saved:** S1 hair sway on the music · S2 per-note pitch-class Chladni on the skirt · S3 outfit transforms land on the beat (`MagicalTransform`, costume mode) · S4 Sir Melodious answers her notes · whole-outfit swap (`ReplacedSlots`) · skirt Kawaii collision + 64-link ring constraints · OSC ports converged (phrase bus **:9002**, Blender **:9001**) · MultiWorld subsystems PIE-only (headless 101/103).
 - **S5 silhouette gate:** `Saved/Portfolio/Silhouette_20260925/` — Default reads strongly; Shorewake passes but reads weaker (puff sleeves + narrow A-line).
