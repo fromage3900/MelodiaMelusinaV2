@@ -1398,16 +1398,39 @@ drops `GetJumpWindupNormalized`), Compendium WBP, orrery Codex button, `Btn_Cali
 Run in one sitting, editor-exclusive (no second `UnrealEditor`, no foreign `monolith_proxy`, DLLs unlocked;
 `Tools/issue51_ladder.ps1 preflight`):
 1. ~~Push + PR #51 branch and the integration PR; merge on green.~~ Done (above).
-2. On current `main`: closed-editor UBT (`-MaxParallelActions=6`) → headless `UnrealEditor-Cmd
-   -NullRHI -DisablePlugins=Monolith` `Melodia.` suite (expect 104/106 or better).
-3. Restart proof: save → quit → relaunch → load, real input; compare vector must include water
-   `PuzzleRevision`/`CompletedPuzzleIds` and Quill variables (script still owed, C2).
-4. Packaged proof: cook to `G:\melodia_packages\`, no `-map=` (script still owed, C2).
+2. ~~On current `main`: closed-editor UBT → headless `Melodia.` suite.~~ **Done 2026-09-26 on `e6c14c7b3`:**
+   build Succeeded (224 s); **104/106** (fails = known `Roguelike.Functional.ThreeStagePhysicalRoute` +
+   `.TwentyFiveGenerationSoak`); all `NarrativeRecord.*` incl. the two #51 tests + `WaterGameplay.StateAndSave`
+   pass. Receipts `Saved/Audit/issue51_ladder_20260926/{build_main.log,tests_main.log,automation/}`.
+3. Restart proof — **owner at keyboard:** play to real state (flag, quest step, water puzzle), then
+   `python Tools/issue51_restart_proof.py capture --save` → quit editor → relaunch → Continue →
+   `python Tools/issue51_restart_proof.py verify` (writes `restart_proof.json`; exit 0 = PASS).
+4. Packaged proof — `Tools/issue51_ladder.ps1 package` **started 2026-09-26** (→
+   `G:\melodia_packages\P0_Closeout_20260926`, log `Saved/Audit/issue51_ladder_20260926/package.log`, UTF-16);
+   then `…ladder.ps1 launch` → `launch.json`. First Hermes canary candidate (orchestrator plan H2).
 5. `Tools/echo_run.py record` fresh rows for `runtime`, `rhythm_grade_to_result`,
    `hud_single_writer`, `rhythm_owner`, `save_load`, `repeat_consume`, `package_launch`.
 6. Close #51 with: commit SHAs, automation report path, restart JSON, package log, ledger row ids.
 Known harness debt before step 5: Monolith index reindex, `frames_captured 0` on PIE smoke, and the
 regression battle-trigger check must reuse the highway gate's tagged-contract battle start.
+`Tools/regression_suite.py` load_levels the shared editor (Morning, KaleidoNave) and runs PIE — tell the
+owner before running it. `ladder.ps1 preflight` flags 2 stale `monolith_proxy` (09-24/09-25 sessions).
+
+**Workspace state after 2026-09-26 (so nobody reinvents it):**
+- This checkout tracks **`main`** (moved off `fix/melusina-wings-emissive-veins`, which is fully merged via
+  #333 + #334 — do not build on it). Local p4-managed edits kept: Morning external actors (p4 default CL),
+  `ABP_ChoralSheep` (p4 CL 224, owner), `BP_Melusina`.
+- **p4 CL 227 pending (not submitted):** `main`'s 09-22 versions of `L_KaleidoNave`, `BP_BattleController`,
+  `MelodiaQuillShorewake.{qsc,uasset}` so p4 matches `main`. Submit after the ladder passes.
+- 32 untracked files that collided with `main` were moved (not deleted) to
+  `C:/Users/froma/Worktrees/_checkout_backup_20260926/`; 4 differ from `main`'s copies
+  (`final_bake_verify.json`, `ue_import_manifest_copy.json`, `flip_alembic_export.py`, old
+  `test_universe_foundry.py`) — owner to keep or discard.
+- Worktrees: `bsg_issue51_20260926`, `bsg_integration_20260926` (merged; the integration one had plugin
+  junctions — removed), `bsg_ladder_20260926`. All branches merged; safe to `git worktree remove`.
+- **Orchestration:** Hermes runs long jobs, Jev routes, Claude verifies —
+  `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md` (H0 owner-side: new Bedrock key — the old
+  one returns 403; Hermes config edits listed there). Hermes reads `AGENTS.md` → its BINDING RULES block.
 
 **Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
 `M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);

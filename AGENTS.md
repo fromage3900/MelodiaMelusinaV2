@@ -6,6 +6,30 @@
 
 [`CURRENT_STATE.md`](CURRENT_STATE.md) is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
+## BINDING RULES — every agent (Hermes, Codex, Claude, subagents)
+
+Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here. **Read
+[`CLAUDE.md`](CLAUDE.md) in full before acting**; where the two differ, `CLAUDE.md` wins.
+
+- **Git pipeline law.** `origin/main` is canonical. No branch, commit, merge, rebase, reset or push
+  without explicit owner permission for that operation plus a written plan stated first. Never
+  `reset --hard`, `checkout -- .`, `clean`, force-push or rewrite history. Workers produce patches in
+  a worktree; the owner approves every git/p4 operation.
+- **Never touch** `.gitignore`, `.gitattributes`, `Config/DefaultEngine.ini`, `Config/DefaultGame.ini`,
+  `Content/Materials/MF_MeshBlend_*`, `deploy/run_verify.ps1`. Ask before any `Config/` or
+  `Content/Materials/` edit. `L_SakuraPath` / `L_MelusinaMorning` changes are ask-first.
+- **One editor, one mutating surface.** Never run two MCP surfaces (Claireon, Monolith, …) against the
+  editor at once. `MelodiaIntegrationMap` is the cluttered test level: never tidy it, never
+  `load_level` away from it uninvited; PIE stop → immediate `load_level` crashes the editor.
+  Save approved editor work immediately. Never bulk `load_asset` (use Asset Registry tags).
+- **Delegated output is not evidence.** Open the artifact (image, log, JSON) yourself before claiming
+  a result. A subagent once reported a "smooth" SDF bake that was scattered dots.
+- **Orchestration.** Hermes runs long jobs, Jev routes, Claude verifies — the one plan is
+  [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md).
+  Extend it; do not start a parallel orchestration/router/lease framework.
+- **Do the job asked** (`_AGENT_WORKING_AGREEMENT.md`): the request is the scope; queue work comes
+  from `CURRENT_STATE.md` §4, not from new audits.
+
 **Historical branch guard:** PR #201 is resolved/superseded by merged #213; PR #230 was closed unmerged. `cleanup/pbr-twin-landing-2026-09-10` is provenance only — never use it as a current health proxy or wholesale merge source.
 
 
