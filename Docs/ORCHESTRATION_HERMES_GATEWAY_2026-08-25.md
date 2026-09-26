@@ -1,5 +1,9 @@
 # Hermes Gateway & Multi-CLI Orchestration
 
+> **Current wiring (2026-09-26):** [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](../.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md)
+> — Hermes runtime · Jev router · Claude verifier · editor lease · Bedrock/local lanes. This file stays
+> the gateway/CLI reference; do not build a second router from it.
+
 **Status:** 2026-08-25 · Hermes Agent v0.20.5
 **Author:** fromage3900 / Hermes orchestrator lane
 

@@ -173,7 +173,10 @@ before trying again; never reimport over a live mesh without a `.uasset` backup.
 Sonnet subagents for scoped rig/editor-adjacent work, the main session plans and verifies. Delegated
 output is not evidence: on 2026-09-25 a subagent reported a "smooth" SDF bake whose image was
 scattered dots. Look at the artifact yourself. Never let a subagent write to the blend or editor the
-main session is using.
+main session is using. **Long jobs go to Hermes** (Jev routes, Claude verifies):
+[`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md)
+is the one orchestration plan — extend it, never start a parallel one. Hermes reads `AGENTS.md` (not
+this file), so binding rules added here must be mirrored in its "BINDING RULES" block.
 
 **Agent tooling — Unreal MCP surfaces.** They are registered in the workspace-level
 `C:/EnvironmentPortfolio/.mcp.json`, not in this repo's `.mcp.json` (which lists only `agent_bridge`,

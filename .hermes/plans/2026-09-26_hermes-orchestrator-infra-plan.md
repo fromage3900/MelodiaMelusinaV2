@@ -1,0 +1,111 @@
+# PLAN — Hermes orchestrator: Jev routes, Hermes runs, Bedrock powers, Claude verifies (2026-09-26)
+
+Owner ask: "route these big tasks to a Hermes agent … use my Hermes agent in Claireon as well as AWS
+Bedrock … a Jev orchestrator system that delegates tasks wisely." Builds on
+`Docs/ORCHESTRATION_HERMES_GATEWAY_2026-08-25.md` (Hermes owns plan/ledger/delivery; CLIs are hands) and
+`Docs/Plans/HERMES_SPECIALIST_MODEL_FLEET_SETUP_2026-09-23.md` (lane map). This plan is the wiring, not a
+new model survey.
+
+## Jev ruling (live `jev-1.13.0`, 2026-09-26)
+| Question | Ruling | Conf |
+|---|---|---|
+| Topology | **Hermes runtime · Jev routes · Claude verifies** | 0.96 |
+| First canary | **Packaged cook + launch + log triage** | 0.90 |
+| Bedrock role | Tiered primary for Hermes workers | 0.60 |
+| Git authority | Worktree patch only; owner approves each op (already law) | 0.55 |
+| Editor access | Hermes gets Claireon read-only; mutation only via a Monolith **editor lease** | **0.40 — owner decides (D1)** |
+
+## Verified starting point (on disk, 2026-09-26)
+- Hermes installed (`%LOCALAPPDATA%/hermes`): kanban + dispatch DB, sessions, subagents (cap 50), gateway
+  (Discord), default model `nous / z-ai/glm-5.3-flash`, `fallback_providers: []`.
+- **Bedrock already authenticated** (2026-09-05): bearer token in Hermes `.env`, `bedrock.region us-east-1`,
+  `bedrock.discovery.enabled: false`.
+- Hermes MCP client speaks **HTTP + bearer** (`tools/mcp_tool_transport.py`). Its `mcp_servers` has only
+  `melodia` (disabled). No Claireon, no Monolith.
+- Claireon: HTTP MCP at `127.0.0.1:60162` (stable per checkout, `Saved/Claireon/MCPServer.json`); optional
+  always-on **proxy** (`-EnableMCPProxy` / `Scripts/Utilities/Start-MCPProxy.ps1`) keeps that port alive across
+  editor restarts — the property long Hermes jobs need. Claireon's panel launch button only starts `claude`;
+  "Hermes in Claireon" = Hermes as a Claireon MCP client (no plugin change needed).
+- Jev: `typesafe_sdk.TypeSafeClient().system_one(state, questions{criteria})` in the Hermes venv.
+
+## Status 2026-09-26 (end of session) — H0 in progress, owner-side
+- **Bedrock key is dead:** runtime Converse → 403 "Please make sure your API Key is valid"; catalog list
+  403; Mantle `/v1/models` 401. Owner: new API key (us-east-1) + Model access for the Qwen/Flash-class
+  and Claude-class models → save into Hermes `.env`.
+- **Hermes config edits are owner-applied** (Claude Code's auto-mode classifier blocks agent-config writes):
+  `delegation` → `model: muse-glimmer:30b`, `provider: custom`, `base_url: http://127.0.0.1:11434/v1`,
+  `api_key: ollama` (alternates on disk: `heretic-27b:latest`, `qwen3-coder:30b`, `qwen3:8b`,
+  `granite4.2:3b/8b`); `mcp_servers.claireon: {url: http://127.0.0.1:60162/mcp}`; `melodia.enabled: true`.
+  Backup first: `backups/config.yaml.pre-claireon-20260926`.
+- Then `hermes --tui` from `BS_GodFile` = Hermes in Claireon (AGENTS.md binding rules load automatically).
+  Until the lease exists: **one agent on the editor at a time** — owner-policed.
+- Next build step: H1 (router + lease) — not started.
+
+## Architecture
+```
+ Owner (phone/Discord/terminal)
+   │  task ask
+   ▼
+ Hermes runtime ── kanban card = Task Packet ──► Jev router (system_one, closed sets)
+   │                                              → lane · model tier · needs_editor · verify_kind
+   ├─ worker lanes (Hermes subagents / CLIs)
+   │    bulk_mechanical   → Bedrock Haiku-class  (log triage, manifests, renames, reports)
+   │    scoped_editor     → Bedrock Sonnet-class (editor-adjacent, holds EDITOR LEASE)
+   │    hard_review       → Bedrock Opus-class   (independent review of a worker result)
+   │    offline_bulk      → local Ollama via agent_bridge (free, overnight)
+   │    gateway_chat      → Nous glm-5.3-flash   (status, phone replies)
+   ├─ tools: Claireon (HTTP, read-only default) · melodia MCP · shell (ladder scripts, UAT, Blender -b)
+   ▼
+ Result packet + artifacts in Saved/Audit/<task_id>/
+   ▼
+ Verifier = Claude Code (owner quota spent on judgment only): opens the ARTIFACT, not the report
+   ▼
+ Owner approves any git / p4 / publish op
+```
+
+## The four mechanisms (the only new code)
+1. **Task Packet** — `Tools/agent_router/task_packet.schema.json`: `id, goal, done_when[], inputs[],
+   surfaces[], mutation_scope (none|files|editor|git), artifacts_expected[], budget_usd, max_turns`.
+   One packet = one kanban card. `done_when` must name a file a verifier can open.
+2. **Jev router** — `Tools/agent_router/route.py`: one `system_one` call per packet, closed sets only
+   (lane, tier, needs_editor, verify_kind ∈ {artifact_open, test_log, image_look, diff_review}). Records
+   the model string; `classical-fallback` ⇒ card goes to the owner, never auto-dispatched.
+3. **Editor lease** — `Saved/Agents/editor.lease` (holder, session, surface, expires_at). One holder at a
+   time for any editor mutation; Claude Code sessions honour it too. Lease is refused when a
+   `deploy/*_LOOP_STOP` file exists or a modal is open (`MODAL_OPEN` in the log). PIE/load_level only by
+   the holder. This is how "never two surfaces on one graph" becomes enforced instead of remembered.
+4. **Verify gate** — a card moves to Done only after the verifier writes `verified.json`
+   (who, what artifact was opened, pass/fail). Hermes self-reports never close a card.
+
+## Phases
+- **H0 Plumbing (≈45 min, owner at keyboard for AWS console).**
+  a. AWS console → Bedrock → *Model access*: enable the Claude Haiku/Sonnet/Opus-class models in us-east-1.
+  b. Hermes config: `bedrock.discovery.enabled: true` (discover ids — do not hard-code), add
+     `fallback_providers: [bedrock]`, per-lane models under `auxiliary`/profiles.
+  c. `mcp_servers.claireon: {url: http://127.0.0.1:60162/mcp}`; enable `melodia`; start the Claireon proxy.
+  d. Smoke: Hermes calls Claireon `tool_search` (read-only) with the editor up, then again across an editor
+     restart (proxy proof). Receipt `Saved/Audit/hermes_h0/`.
+- **H1 Router + lease (Claude Code builds, ≈2 h).** Schema, `route.py`, lease util + a 20-line Hermes skill
+  that reads packets from kanban, calls the router, dispatches. Offline tests: routing is deterministic on a
+  fixture packet set; lease refuses a second holder and honours STOP files.
+- **H2 Canary (Jev 0.90): packaged cook + launch + log triage.** Packet: run
+  `Tools/issue51_ladder.ps1 package` then `launch`, triage `BS_GodFile.log` with the bulk lane, write
+  `launch.json` + a triage note. Claude verifies by opening `launch.json` and the log lines it cites.
+  Pass = card closes with no Claude tokens spent on the 30+ min cook.
+- **H3 Widen.** Regression-harness repair (`frames_captured 0`, battle-trigger via tagged contract), nightly
+  read-only audits (Hermes cron), bulk Blender `-b` passes, Figma kit export. Phone status via the gateway.
+
+## Owner decisions
+- **D1 Editor access** (Jev 0.40): (a) Hermes read-only Claireon, mutation only under the lease via
+  Monolith *(Jev pick)*; (b) Hermes may mutate through Claireon when it holds the lease; (c) no editor for
+  Hermes at all.
+- **D2 Bedrock budget:** monthly cap + per-packet `budget_usd` default (suggest $2 bulk / $10 scoped).
+- **D3 Which Bedrock models** are enabled in the account (console step H0a).
+
+## Guardrails every worker prompt inherits (Hermes context file)
+Never-touch table and Red list from `CLAUDE.md`; git law (worktree patches only); `MelodiaIntegrationMap`
+is not tidied and not loaded away from; no `load_asset` bulk loads (registry tags); save approved editor
+work immediately; no PIE→load_level; delegated output is not evidence.
+
+Note: `%LOCALAPPDATA%/hermes/bedrock_setup_complete.txt` prints a prefix of the Bedrock bearer token in
+plain text — delete that line or the file.
