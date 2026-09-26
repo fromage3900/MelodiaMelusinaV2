@@ -11,12 +11,21 @@
 
 namespace
 {
-	const FLinearColor Pearl(0.96f, 0.93f, 0.90f, 1.0f);
-	const FLinearColor Rose(0.91f, 0.71f, 0.63f, 1.0f);
-	const FLinearColor Lavender(0.73f, 0.65f, 0.94f, 0.7f);
-	const FLinearColor Cyan(0.62f, 0.91f, 0.97f, 1.0f);
-	const FLinearColor Ember(1.0f, 0.45f, 0.45f, 1.0f);
-	const FLinearColor Night(0.043f, 0.035f, 0.125f, 0.72f);
+	// Scoped so a unity build cannot merge these with the identical names in
+	// MelodiaCalibrationWidget.cpp's anonymous namespace; both files landing in one
+	// blob is a C2374/C2086 redefinition error for the whole module. The values are
+	// deliberately per-file (lavender and night carry different alphas here), so this
+	// is a scope fix, not a shared palette.
+	namespace MinimapPalette
+	{
+		const FLinearColor Pearl(0.96f, 0.93f, 0.90f, 1.0f);
+		const FLinearColor Rose(0.91f, 0.71f, 0.63f, 1.0f);
+		const FLinearColor Lavender(0.73f, 0.65f, 0.94f, 0.7f);
+		const FLinearColor Cyan(0.62f, 0.91f, 0.97f, 1.0f);
+		const FLinearColor Ember(1.0f, 0.45f, 0.45f, 1.0f);
+		const FLinearColor Night(0.043f, 0.035f, 0.125f, 0.72f);
+	}
+	using namespace MinimapPalette;
 
 	FLinearColor MarkerColor(const EMelodiaMinimapMarkerType Type)
 	{

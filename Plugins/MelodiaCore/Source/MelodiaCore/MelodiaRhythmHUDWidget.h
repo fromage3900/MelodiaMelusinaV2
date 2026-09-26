@@ -43,6 +43,47 @@ struct FMelodiaFloatingCombatText
 	float LateralSeed = 0.0f;
 };
 
+/** HL2: one hit-burst ring still ringing at the hit line in a lane. */
+USTRUCT(BlueprintType)
+struct FMelodiaHighwayBurst
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	int32 LaneIndex = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	float StartTime = -1000.0f;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	EMelodiaRhythmGrade Grade = EMelodiaRhythmGrade::Miss;
+};
+
+/** HL2/HL3: a note we have already reacted to, so the cue fires exactly once.
+ *  Records both the flag path (a driver that pushes resolved notes) and the
+ *  disappearance path (UMelodiaRhythmCombatSubsystem filters resolved notes out
+ *  before the push, so absence is the only signal that reaches us). */
+USTRUCT(BlueprintType)
+struct FMelodiaHighwayResolved
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	int32 LaneIndex = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	float TargetBeat = 0.0f;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	float ResolveTime = -1000.0f;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	bool bCountsAsHit = false;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD")
+	EMelodiaRhythmGrade Grade = EMelodiaRhythmGrade::Miss;
+};
+
 UCLASS(Blueprintable)
 class MELODIACORE_API UMelodiaRhythmHUDWidget : public UUserWidget
 {
@@ -281,6 +322,52 @@ public:
 	/** F-b: call on a Perfect-grade hit to drive the NoteTrailIri cue. */
 	UFUNCTION(BlueprintCallable, Category="Melodia|Rhythm HUD|Motion")
 	void NotifyPerfectHit();
+
+	// --- Highway motion cues (HL1-HL5) ---
+	// Beat-locked at the clock's BPM: 1/8 = 117 ms, 1/4 = 234 ms, beat = 469 ms at 128 BPM.
+	// Every amplitude is scaled by GetMotionAmplitude() so MotionTier=Off stays a true no-op.
+
+	/** HL1: the grade pop owns its timestamp. SetJudgment used to write LastPulseTime,
+	 *  which DoPulse also writes on every beat -- so a beat landing mid-pop restarted
+	 *  its fade and the judgement lingered/flickered. Ownership is now explicit. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	float LastGradePopTime = -1000.0f;
+
+	/** Grade of the last judgement; drives the pop colour and the Perfect ring flash. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	EMelodiaRhythmGrade LastPopGrade = EMelodiaRhythmGrade::Miss;
+
+	/** HL2: per-lane hit flash start time; a lane column brightens for 117 ms. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	TArray<float> LaneFlashTimes;
+
+	/** HL2: rings expanding at the hit line, 234 ms each. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	TArray<FMelodiaHighwayBurst> HighwayBursts;
+
+	/** HL2/HL3: notes already reacted to (kept 234 ms so the miss can drop away). */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	TArray<FMelodiaHighwayResolved> ResolvedNotes;
+
+	/** Notes seen on the previous push, so a disappearance can be detected. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	TArray<FMelodiaHighwayNote> PreviousHighwayNotes;
+
+	/** Seconds per beat, tracked from the pushed beat position. Beat-lock base for HL1-HL5. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	float SecondsPerBeat = 0.46875f; // 128 BPM default (1/4 note)
+
+	/** Last beat position sampled, for the SecondsPerBeat estimate. */
+	float LastSampledBeatPosition = -1000.0f;
+
+	/** Wall time of the last beat sample, paired with LastSampledBeatPosition. */
+	float LastBeatSampleTime = -1000.0f;
+
+	/** Last grade pop already paired with a resolving note, so one hit cannot be replayed. */
+	float LastConsumedGradeTime = -1000.0f;
+
+	/** True when a grade event is fresh enough to be paired with a note resolving now. */
+	bool TryConsumeFreshGrade(float WindowSeconds);
 
 private:
 	int32 BeatCountForBassProxy = 0;
