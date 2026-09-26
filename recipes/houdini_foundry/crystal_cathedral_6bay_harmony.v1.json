@@ -1,0 +1,62 @@
+{
+  "schema": "melodia.houdini_foundry_recipe.v1",
+  "recipe_id": "crystal_cathedral_6bay_harmony",
+  "product": "crystal_cathedral",
+  "seed": 20260901,
+  "status": "staged",
+  "description": "Gate 2: regenerate the tracked 6-bay Harmony crystal cathedral from the existing Hython source with the exact params in Saved/Audit/cathedral/crystal_cathedral_manifest.json, then promote into HDA_Melodia_CrystalCathedral.",
+  "source": {
+    "kind": "pure_python",
+    "path": "Tools/Houdini/cathedral/build_crystal_cathedral.py",
+    "extends": "Tools/Houdini/cathedral/build_fractal_cathedral.py"
+  },
+  "params": {
+    "depth": 4,
+    "span": 10.0,
+    "height": 20.0,
+    "tracery": 0.85,
+    "bays": 6,
+    "crystal": 0.85,
+    "facets": 12,
+    "expected": {
+      "SM_P4_Cathedral_Crystal": {
+        "verts": 2706,
+        "faces": 2101
+      },
+      "SM_P4_Cathedral_Crystal_Rose": {
+        "verts": 1032,
+        "faces": 290
+      }
+    }
+  },
+  "outputs": [
+    {
+      "name": "SM_P4_Cathedral_Crystal.obj",
+      "format": "obj",
+      "note": "LFS-tracked extension; not on main today"
+    },
+    {
+      "name": "SM_P4_Cathedral_Crystal_Rose.obj",
+      "format": "obj"
+    },
+    {
+      "name": "crystal_cathedral_manifest.json",
+      "format": "json",
+      "track_in_git": true
+    }
+  ],
+  "ue_target": {
+    "consumer": "static_mesh",
+    "asset_path_prefix": "/Game/EnvSandbox/Meshes/Cathedral_Houdini/",
+    "existing_assets": [
+      "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_Crystal_6Bays_Harmony",
+      "/Game/EnvSandbox/Meshes/Cathedral_Houdini/SM_P4_Cathedral_Crystal_Rose_6Bays"
+    ],
+    "integration_gate": "Gate 2 (03_CRYSTAL_CATHEDRAL_HDA.md)",
+    "note": "Check deploy/ loop STOP files before writing under /Game/EnvSandbox/. Sea Above 00_CANON/Cathedral placement is owner-authored: do not move it."
+  },
+  "authority": {
+    "runtime_owner": "UE static mesh + existing PCG_Hero_ResonanceCathedral song graph",
+    "writes_mpc": false
+  }
+}

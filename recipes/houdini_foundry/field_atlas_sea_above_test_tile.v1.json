@@ -1,0 +1,74 @@
+{
+  "schema": "melodia.houdini_foundry_recipe.v1",
+  "recipe_id": "field_atlas_sea_above_test_tile",
+  "product": "field_atlas",
+  "seed": 3900,
+  "status": "staged",
+  "description": "Gates 3-4: ONE Sea Above test tile through HDA_Foundry_FieldAtlas. Supplemental world intelligence only -- never replaces authored terrain.",
+  "source": {
+    "kind": "hda",
+    "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+    "exists_on_main": false,
+    "extends": "Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py (RGBA + hash pattern)"
+  },
+  "params": {
+    "resolution_px": 512,
+    "channels": [
+      "height",
+      "slope",
+      "curvature",
+      "concavity",
+      "convexity",
+      "exposure",
+      "flow",
+      "sediment",
+      "debris",
+      "wetness",
+      "shore_influence",
+      "cliff",
+      "hero_weight",
+      "resonance"
+    ]
+  },
+  "region": {
+    "level": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+    "bounds_cm": [
+      -3450.0,
+      -3900.0,
+      2550.0,
+      4100.0
+    ],
+    "bounds_source": "NavMeshBoundsVolume in Docs/Evidence/SEA_ABOVE_LEVEL_ORGANIZATION_2026-09-01.json (player route only). Re-measure the owner-authored landscape bounds at college before Gate 5.",
+    "tile_size_cm": 12800.0,
+    "gutter_cm": 1280.0,
+    "only_tiles": [
+      "tx-001_ty+000"
+    ]
+  },
+  "outputs": [
+    {
+      "name": "field_atlas_<tile>_<channel>.exr",
+      "format": "exr (32f linear, one channel per file)"
+    },
+    {
+      "name": "field_atlas_<tile>_preview.png",
+      "format": "png",
+      "track_in_git": true
+    },
+    {
+      "name": "bake_manifest.json",
+      "format": "json",
+      "track_in_git": true
+    }
+  ],
+  "ue_target": {
+    "consumer": "texture",
+    "asset_path_prefix": "/Game/Melodia/HoudiniFoundry/FieldAtlas/",
+    "integration_gate": "Gate 4 (05_SEA_ABOVE_TILE_BAKE.md)",
+    "note": "First consumer is a read-only debug material/decal or PCG attribute sample on one existing Sea Above graph -- no graph rewrite."
+  },
+  "authority": {
+    "runtime_owner": "existing Sea Above PCG graphs + World Compiler (future field.kind chunk_grid)",
+    "writes_mpc": false
+  }
+}
