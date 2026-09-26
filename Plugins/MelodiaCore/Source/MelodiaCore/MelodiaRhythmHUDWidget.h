@@ -345,6 +345,11 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
 	TArray<FMelodiaHighwayBurst> HighwayBursts;
 
+	/** HL2: bursts spawned since construction. Rings live 234 ms, so a sampled test can miss
+	 *  every one of them; this count is what proves the cue fired. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
+	int32 TotalHitBursts = 0;
+
 	/** HL2/HL3: notes already reacted to (kept 234 ms so the miss can drop away). */
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Rhythm HUD|Highway")
 	TArray<FMelodiaHighwayResolved> ResolvedNotes;

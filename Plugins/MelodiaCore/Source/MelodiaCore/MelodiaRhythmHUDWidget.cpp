@@ -776,6 +776,7 @@ void UMelodiaRhythmHUDWidget::SetJudgment_Implementation(const FText& NewText)
 			Burst.StartTime = LastGradePopTime;
 			Burst.Grade = LastPopGrade;
 			HighwayBursts.Add(Burst);
+			++TotalHitBursts;
 
 			if (LaneFlashTimes.Num() < HighwayLaneCount)
 			{
@@ -919,6 +920,7 @@ void UMelodiaRhythmHUDWidget::SetNoteHighwayActive_Implementation(const bool bAc
 				Burst.StartTime = Now;
 				Burst.Grade = Grade;
 				HighwayBursts.Add(Burst);
+			++TotalHitBursts;
 
 				if (LaneFlashTimes.Num() < HighwayLaneCount)
 				{
