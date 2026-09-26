@@ -2,7 +2,7 @@
   "version": "1.1",
   "generated": "2026-09-02",
   "branch": "feature/touchdesigner-mcp-integration",
-  "description": "OSC routing schema for TouchDesigner \u2194 Blender \u2194 Unreal Engine bridge. All agents reference this schema. Port 9000 is SINGLE source of truth for TD\u2194UE (TD CHOP bass/mid/treble + UE beat_pulse/beat_phase). Do NOT create second channel on 9870.",
+  "description": "OSC routing schema for TouchDesigner \u2194 Blender \u2194 Unreal Engine bridge. SUPERSEDED ON PORTS/ROUTING 2026-09-25: the live port truth is BS_GodFile/Docs/Production/SIGNAL_VOCABULARY_2026-09-25.md + MelodiaTouchDesigner/docs/PORTS.md. :9000 is UE->TD send-only; phrase bus listens on :9002; TD->UE inbound is a NEW port (Foundry Phase F); no sender exists on :8000 and none will be added. Signal payloads below remain the schema reference.",
   "routes": {
     "audio": {
       "melusina_pitch": {

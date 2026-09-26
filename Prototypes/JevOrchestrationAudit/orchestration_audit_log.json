@@ -1,0 +1,56 @@
+{
+  "schema": "melodia.jev_orchestration_audit.v1",
+  "date": "2026-09-25T21:48:12",
+  "state": {
+    "music_clock_single_authority": true,
+    "fake_spectrum_lanes": 3,
+    "assets_bound_to_fake_lanes": 89,
+    "phrase_bus_ue_listener_port": 9002,
+    "phrase_bus_ingest_proven_pie": true,
+    "native_ue_listener_on_9000_td_lane": false,
+    "lane_hit_judged_bindings_found": 0,
+    "ue_spout_plugin_present": false,
+    "td_real_band_chains": 5,
+    "td_conductor_bus_channels": 22,
+    "td_out_ue_port": 9000,
+    "td_out_blender_port": 9001,
+    "td_phase_e_world_field_done": true,
+    "td_world_field_spout_sender": "TD_Faraway_WorldField 128x128",
+    "td_ports_md_forbids_8000": true,
+    "fl_live_routing": "Voicemeeter scripted, awaiting live run",
+    "ports_md_still_canonises_9000_for_phrase": true,
+    "osc_routing_json_dated": "2026-09-02",
+    "osc_routing_predates_port_move": true,
+    "foundry_phase_F_open": true,
+    "foundry_phases_A_to_E_done": true,
+    "world_compiler_signal_stage": "contract check only, no audio",
+    "world_compiler_live_proven_scope": true,
+    "jev_key_present": true,
+    "verified_by": "canonical-repo probes, studio, 2026-09-25"
+  },
+  "decision": {
+    "first": "O1_PORT_VOCAB_RECONCILE",
+    "first_probs": {
+      "O4_CORE_AMBIENCE": 0.0,
+      "O3_PHASE_F_RECEIVER": 0.0,
+      "O1_PORT_VOCAB_RECONCILE": 1.0,
+      "O2_BEAT_HITS": 0.0,
+      "O5_FL_LIVE_RUN": 0.0
+    },
+    "riskiest": "A_9000_COLLISION_RESOLVED",
+    "riskiest_probs": {
+      "A_9000_COLLISION_RESOLVED": 0.41,
+      "A_ZERO_BINDING_CENSUS_REAL": 0.26,
+      "A_SPOUT_NATIVE_FEASIBLE": 0.04,
+      "A_FAKE_LANES_TOLERATED": 0.2,
+      "A_FOUNDRY_EVIDENCE_SUFFICIENT": 0.09
+    },
+    "needs_human": false,
+    "needs_human_prob": 0.32,
+    "human_reason": "",
+    "readiness": 1,
+    "readiness_label": "1 - seams exist on one side only (TD broadcasts or UE authors, not both)",
+    "source": "jev-live",
+    "reason": "typesafe System One choice+choice+noul+score, one call"
+  }
+}
