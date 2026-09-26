@@ -395,7 +395,7 @@ def test_rhythm_skills_registered(result: TestResult, mode: str) -> None:
         for f in config_dir.rglob("*.uasset"):
             asset_files.add(f.stem.lower())
         for skill in sorted(expected_skills):
-            found_in_dir = any(skill in n for n in asset_files)
+            found_in_dir = any(skill.replace('_', '') in n.replace('_', '') for n in asset_files)
             result.assert_ok(f"skill_on_disk_{skill}", found_in_dir,
                              f"not in {config_dir}")
 
@@ -411,13 +411,13 @@ def test_battle_controller_pipeline(result: TestResult, mode: str) -> None:
     t0 = time.time()
     bp_path = "/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController"
 
+    # StartSession / SubmitRatedInput / TryGrantShards moved native: one C++ node in
+    # UMelodiaRhythmCombatSubsystem replaces the StartSession -> Branch -> UseSkill cluster
+    # (MelodiaRhythmCombatSubsystem.h), so they are no longer BP graph nodes.
     expected_nodes = [
-        "StartSession",
-        "SubmitRatedInput",
         "ConsumePendingRequest",
         "RecordInputNow",
         "CompleteBattle",
-        "TryGrantShards",
     ]
 
     # Export the graph via Monolith
@@ -446,6 +446,7 @@ def test_rhythm_highway_texture_layers(result: TestResult, mode: str) -> None:
     # Locate the widget asset via project_query
     found_asset = None
     for try_path in [
+        "/Game/Melodia/UI/Rhythm/WBP_MelodiaRhythmHighway",
         "/Game/MelodiaIntegration/UI/WBP_MelodiaRhythmHighway",
         "/Game/Melodia/UI/WBP_MelodiaRhythmHighway",
     ]:

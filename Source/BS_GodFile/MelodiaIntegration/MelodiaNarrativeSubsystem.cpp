@@ -765,6 +765,25 @@ bool UMelodiaNarrativeSubsystem::MigrateRecord(FMelodiaNarrativeRecord& Record)
 	return true;
 }
 
+bool UMelodiaNarrativeSubsystem::ValidateIntrinsicRecord(const FMelodiaNarrativeRecord& Candidate, FString& OutReason)
+{
+	for (const TPair<EMelodiaWardrobeSlot, FName>& EquippedPair : Candidate.EquippedCosmeticIds)
+	{
+		if (EquippedPair.Value.IsNone())
+		{
+			OutReason = TEXT("wardrobe_equipped_none");
+			return false;
+		}
+		if (!Candidate.OwnedCosmeticIds.Contains(EquippedPair.Value))
+		{
+			OutReason = FString::Printf(TEXT("wardrobe_equipped_not_owned cosmetic=%s"), *EquippedPair.Value.ToString());
+			return false;
+		}
+	}
+	OutReason.Reset();
+	return true;
+}
+
 bool UMelodiaNarrativeSubsystem::RestoreNarrativeRecord(const FMelodiaNarrativeRecord& Record)
 {
 	FMelodiaNarrativeRecord Migrated = Record;
@@ -772,6 +791,14 @@ bool UMelodiaNarrativeSubsystem::RestoreNarrativeRecord(const FMelodiaNarrativeR
 	{
 		// Refuse an incompatible candidate without touching the currently running
 		// canonical record. A failed load must never turn valid history into defaults.
+		return Reject(TEXT("RestoreNarrativeRecord"), EMelodiaIntentFailure::IncompatibleSave);
+	}
+	// Direct Blueprint callers reach here without the slot-library preflight, so the
+	// intrinsic invariants are checked at the mutation point itself.
+	FString ValidationFailure;
+	if (!ValidateIntrinsicRecord(Migrated, ValidationFailure))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MELODIA_LOAD RestoreNarrativeRecord refused: %s"), *ValidationFailure);
 		return Reject(TEXT("RestoreNarrativeRecord"), EMelodiaIntentFailure::IncompatibleSave);
 	}
 

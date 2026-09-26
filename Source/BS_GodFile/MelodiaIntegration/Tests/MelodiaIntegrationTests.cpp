@@ -18,6 +18,9 @@
 #include "../MelodiaMusicClockSubsystem.h"
 #include "../MelodiaJRPGPresentationRhythmComponent.h"
 #include "../MelodiaIntegrationConfig.h"
+#include "../MelodiaSaveSlotLibrary.h"
+#include "../MelodiaWaterGameplaySubsystem.h"
+#include "Kismet/GameplayStatics.h"
 #include "MelodiaIntegrationTestSink.h"
 #include "Misc/AutomationTest.h"
 #include "Engine/GameInstance.h"
@@ -698,6 +701,99 @@ bool FMelodiaNarrativeIntentTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("State contains social stats"), State.Contains(TEXT("Tempo:42")));
 	}
 
+	return true;
+}
+
+// ---------------------------------------------------------------------------
+// Issue #51 closure: direct restore validation + New Game water carryover
+// ---------------------------------------------------------------------------
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaNarrativeDirectRestoreValidationTest,
+	"Melodia.Integration.NarrativeRecord.DirectRestoreRefusesInvalid",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaNarrativeDirectRestoreValidationTest::RunTest(const FString& Parameters)
+{
+	UGameInstance* OwningGameInstance = NewObject<UGameInstance>(GetTransientPackage());
+	UMelodiaNarrativeSubsystem* Subsystem = NewObject<UMelodiaNarrativeSubsystem>(OwningGameInstance);
+
+	FMelodiaNarrativeRecord Existing;
+	Existing.Flags.Add(TEXT("flag.existing_progress"), true);
+	TestTrue(TEXT("Baseline restores"), Subsystem->RestoreNarrativeRecord(Existing));
+
+	// Equipped-but-not-owned used to pass a direct BlueprintCallable restore because only
+	// the slot-library preflight checked it.
+	FMelodiaNarrativeRecord NotOwned;
+	NotOwned.Flags.Add(TEXT("flag.must_not_commit"), true);
+	NotOwned.EquippedCosmeticIds.Add(EMelodiaWardrobeSlot::Accessories, TEXT("Cos_Never_Owned"));
+	TestFalse(TEXT("Equipped-not-owned candidate is refused"), Subsystem->RestoreNarrativeRecord(NotOwned));
+
+	FMelodiaNarrativeRecord EquippedNone;
+	EquippedNone.EquippedCosmeticIds.Add(EMelodiaWardrobeSlot::Hat, NAME_None);
+	TestFalse(TEXT("Equipped-none candidate is refused"), Subsystem->RestoreNarrativeRecord(EquippedNone));
+
+	const FMelodiaNarrativeRecord After = Subsystem->GetNarrativeRecord();
+	TestTrue(TEXT("Refusal keeps existing flag"), After.Flags.FindRef(TEXT("flag.existing_progress")));
+	TestFalse(TEXT("Refusal commits nothing from the candidate"), After.Flags.Contains(TEXT("flag.must_not_commit")));
+	TestEqual(TEXT("Refusal leaves equipment untouched"), After.EquippedCosmeticIds.Num(), 0);
+
+	FString Reason;
+	TestFalse(TEXT("Shared predicate agrees"), UMelodiaNarrativeSubsystem::ValidateIntrinsicRecord(NotOwned, Reason));
+	TestTrue(TEXT("Predicate names the failure"), Reason.StartsWith(TEXT("wardrobe_equipped_not_owned")));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaNewGameWaterCarryoverTest,
+	"Melodia.Integration.NarrativeRecord.NewGameWaterCarryover",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaNewGameWaterCarryoverTest::RunTest(const FString& Parameters)
+{
+	// A real standalone game instance (subsystems initialised, no PIE), so this runs
+	// headless instead of silently skipping like a PIE-world test would.
+	UGameInstance* GameInstance = NewObject<UGameInstance>(GEngine);
+	GameInstance->InitializeStandalone();
+	// InitializeStandalone registers a Game world context that Shutdown() leaves behind; a
+	// leaked context becomes GetCurrentPlayWorld() for every later test in the run.
+	auto TearDown = [GameInstance]()
+	{
+		UWorld* StandaloneWorld = GameInstance->GetWorld();
+		GameInstance->Shutdown();
+		if (StandaloneWorld)
+		{
+			GEngine->DestroyWorldContext(StandaloneWorld);
+			StandaloneWorld->DestroyWorld(false);
+		}
+	};
+	UMelodiaWaterGameplaySubsystem* Water = GameInstance->GetSubsystem<UMelodiaWaterGameplaySubsystem>();
+	UMelodiaNarrativeSubsystem* Narrative = GameInstance->GetSubsystem<UMelodiaNarrativeSubsystem>();
+	if (!TestNotNull(TEXT("Water subsystem"), Water) || !TestNotNull(TEXT("Narrative subsystem"), Narrative))
+	{
+		TearDown();
+		return false;
+	}
+
+	// Simulate progress from a previous session still live in memory.
+	FMelodiaWaterGameplaySaveData Previous;
+	Previous.PuzzleRevision = 7;
+	Water->RestoreSaveState(Previous);
+	FMelodiaWaterGameplaySaveData Live;
+	Water->CaptureSaveState(Live);
+	TestEqual(TEXT("Previous-session water is live before New Game"), Live.PuzzleRevision, 7);
+
+	const FString Slot = TEXT("MelodiaTest_NewGameWaterCarryover");
+	const bool bCreated = UMelodiaSaveSlotLibrary::CreateCanonicalJRPGSlot(GameInstance->GetWorld(), Slot, 0);
+	TestTrue(TEXT("New Game slot is created"), bCreated);
+	TestEqual(TEXT("New Game record carries no previous water progress"),
+		Narrative->GetNarrativeRecord().WaterGameplayState.PuzzleRevision, 0);
+	FMelodiaWaterGameplaySaveData AfterNewGame;
+	Water->CaptureSaveState(AfterNewGame);
+	TestEqual(TEXT("Live water state is cleared by New Game"), AfterNewGame.PuzzleRevision, 0);
+
+	UGameplayStatics::DeleteGameInSlot(Slot, 0);
+	TearDown();
 	return true;
 }
 
