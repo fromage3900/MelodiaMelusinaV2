@@ -137,7 +137,9 @@ Allowed types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `styl
 ## Source Control Workflow
 
 Git is the authority for `Source/`, `Plugins/`, `Config/`, `Tools/`, `Docs/`, `deploy/`, `specs/`,
-and project metadata. Perforce is the intended authority for large and lock-sensitive art paths.
+project metadata, and **`Content/Python/` editor/PCG automation source**. Perforce is the intended
+authority for large and lock-sensitive creative content. The nested Git exception is explicit in
+`specs/source_control_ownership.v1.json`; do not migrate `Content/Python/` into Perforce.
 
 Current state: **`active_pilot`**. UE 5.8 is connected to Perforce and source-control operations are
 working in-editor; `//melodia/Exports/...` is seeded. This is production-capable pilot evidence, but it is
@@ -152,13 +154,14 @@ Cutover states are intentionally explicit:
 - `cutover_complete`: `python Tools/validate_source_control_ownership.py --check-cutover` passes and no target Perforce path remains Git-owned.
 
 - Do not modify an asset through both Git and Perforce.
-- Do not add `Content/`, `Exports/`, or `RawArt/` to an automated Git commit batch.
-- Before committing text-only work, run `python Tools/source_control_triage.py` to review its batch.
-- To commit an approved isolated batch, add exact paths to `specs/source_control_batches.json`, mark the
-  batch `ready`, then run `python Tools/source_control_triage.py --commit-ready <batch-name>`.
+- Do not add Perforce-owned `Content/`, `Exports/`, or `RawArt/` paths to an automated Git commit batch.
+  `Content/Python/` is the explicit Git-owned exception.
+- Before committing mixed working-tree work, run `python Tools/triage_working_tree.py --print-paths`.
+  It is report-only: it never stages, commits, pushes, deletes, resets, or stashes.
+- `specs/source_control_batches.json` is retained as an owner-reviewed batch manifest only; it does not
+  authorize a commit by itself.
 
-The scheduled task `Melodia Source Control Triage` produces this report every 12 hours without staging,
-committing, pushing, or deleting files. The canonical cutover state and evidence gates live in
+The canonical cutover state and evidence gates live in
 [`specs/source_control_ownership.v1.json`](specs/source_control_ownership.v1.json) and are enforced by
 [`Tools/validate_source_control_ownership.py`](Tools/validate_source_control_ownership.py).
 

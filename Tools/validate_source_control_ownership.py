@@ -22,6 +22,14 @@ def covers(root: str, path: str) -> bool:
     return path == root.rstrip("/") or path.startswith(root.rstrip("/") + "/")
 
 
+def excluded(path: str, exclusions: list[str]) -> bool:
+    return any(covers(root, path) for root in exclusions)
+
+
+def perforce_owns(path: str, p4_roots: list[str], p4_exclusions: list[str]) -> bool:
+    return any(covers(root, path) for root in p4_roots) and not excluded(path, p4_exclusions)
+
+
 CUTOVER_STATES = ("planned", "active_pilot", "production", "cutover_complete")
 
 
@@ -54,14 +62,30 @@ def validate(data: dict, check_files: bool = False) -> list[str]:
         if not isinstance(raw, list) or not raw or any(not isinstance(x, str) or not x for x in raw):
             errors.append(f"{name} authority must have non-empty string roots")
         roots[name] = [norm(x) for x in (raw or [])]
-    for git in roots.get("git", []):
-        for p4 in roots.get("perforce", []):
-            if covers(git, p4) or covers(p4, git):
-                errors.append(f"dual ownership overlap: {git!r} and {p4!r}")
-    required = data.get("required_external_roots", [])
     p4_roots = roots.get("perforce", [])
+    raw_exclusions = authorities["perforce"].get("exclude_roots", [])
+    if not isinstance(raw_exclusions, list) or any(not isinstance(x, str) or not x for x in raw_exclusions):
+        errors.append("perforce exclude_roots must be a list of non-empty strings")
+        raw_exclusions = []
+    p4_exclusions = [norm(x) for x in raw_exclusions]
+    git_roots = roots.get("git", [])
+
+    for exclusion in p4_exclusions:
+        if not any(covers(p4, exclusion) for p4 in p4_roots):
+            errors.append(f"Perforce exclusion is outside Perforce roots: {exclusion!r}")
+        if not any(covers(git, exclusion) or covers(exclusion, git) for git in git_roots):
+            errors.append(f"Perforce exclusion has no Git authority: {exclusion!r}")
+
+    for git in git_roots:
+        for p4 in p4_roots:
+            overlaps = covers(git, p4) or covers(p4, git)
+            allowed_nested_git = covers(p4, git) and excluded(git, p4_exclusions)
+            if overlaps and not allowed_nested_git:
+                errors.append(f"dual ownership overlap: {git!r} and {p4!r}")
+
+    required = data.get("required_external_roots", [])
     for required_root in required:
-        if not any(covers(root, required_root) for root in p4_roots):
+        if not perforce_owns(required_root, p4_roots, p4_exclusions):
             errors.append(f"required external root is not Perforce-owned: {required_root}")
     bundles = data.get("level_bundles")
     if not isinstance(bundles, list) or len(bundles) != 3:
@@ -80,7 +104,7 @@ def validate(data: dict, check_files: bool = False) -> list[str]:
             path = bundle.get(field)
             if not isinstance(path, str) or not path:
                 errors.append(f"{name or '<unnamed>'} missing {field}")
-            elif not any(covers(root, path) for root in p4_roots):
+            elif not perforce_owns(path, p4_roots, p4_exclusions):
                 errors.append(f"{name or '<unnamed>'} {field} is not Perforce-owned: {path}")
             elif check_files:
                 target = ROOT / path.rstrip("/")
@@ -91,7 +115,9 @@ def validate(data: dict, check_files: bool = False) -> list[str]:
 
 def validate_git_cutover(data: dict) -> list[str]:
     """Prove that no target-Perforce path remains tracked by Git."""
-    p4_roots = data["authorities"]["perforce"]["roots"]
+    authority = data["authorities"]["perforce"]
+    p4_roots = authority["roots"]
+    p4_exclusions = [norm(x) for x in authority.get("exclude_roots", [])]
     proc = subprocess.run(
         ["git", "ls-files", "--", *p4_roots],
         cwd=ROOT,
@@ -101,7 +127,10 @@ def validate_git_cutover(data: dict) -> list[str]:
     )
     if proc.returncode != 0:
         return [f"git ownership query failed: {proc.stderr.strip() or proc.returncode}"]
-    conflicts = [line for line in proc.stdout.splitlines() if line.strip()]
+    conflicts = [
+        line for line in proc.stdout.splitlines()
+        if line.strip() and perforce_owns(line.strip(), p4_roots, p4_exclusions)
+    ]
     if not conflicts:
         return []
     sample = ", ".join(conflicts[:5])

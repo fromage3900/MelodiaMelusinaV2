@@ -4,7 +4,7 @@
   "purpose": "Single ownership contract for Git engineering files and Perforce creative content.",
   "authorities": {
     "git": {
-      "description": "Mergeable engineering, project configuration, automation, and documentation.",
+      "description": "Mergeable engineering, project configuration, automation, documentation, and editor automation source under Content/Python/.",
       "roots": [
         ".github/",
         "Config/",
@@ -14,15 +14,19 @@
         "Tools/",
         "deploy/",
         "specs/",
-        "BS_GodFile.uproject"
+        "BS_GodFile.uproject",
+        "Content/Python/"
       ]
     },
     "perforce": {
-      "description": "Active Unreal content, world-partition packages, exports, and irreplaceable source art.",
+      "description": "Active Unreal binary content, world-partition packages, exports, and irreplaceable source art; explicit Git source exceptions are excluded.",
       "roots": [
         "Content/",
         "Exports/",
         "RawArt/"
+      ],
+      "exclude_roots": [
+        "Content/Python/"
       ]
     }
   },
@@ -47,9 +51,10 @@
     }
   ],
   "forbidden_dual_ownership": [
-    "A path may match exactly one authority; Git and Perforce roots must never overlap.",
+    "A path may match exactly one effective authority. A Git root nested under a Perforce root is valid only when the same path is explicitly excluded from Perforce.",
+    "Content/Python/ is Git-owned engineering/editor-automation source and must not be migrated into Perforce as creative binary content.",
     "Level maps and their External Actors/External Objects are Perforce-owned as one bundle.",
-    "No Content/, Exports/, or RawArt/ path may be added to a Git batch."
+    "No Perforce-owned Content/, Exports/, or RawArt/ path may be added to a Git batch."
   ],
   "required_external_roots": [
     "Content/__ExternalActors__/",
@@ -90,6 +95,14 @@
     "git_dual_ownership_cleared": {
       "status": "pending",
       "check": "python Tools/validate_source_control_ownership.py --check-cutover"
+    },
+    "git_source_exception_audit": {
+      "status": "repo_verified",
+      "date": "2026-09-25",
+      "paths": [
+        "Content/Python/"
+      ],
+      "note": "Canonical PCG, World Compiler UE/editor automation, importers, and other editor tooling remain Git-owned source during creative-content cutover."
     }
   }
 }
