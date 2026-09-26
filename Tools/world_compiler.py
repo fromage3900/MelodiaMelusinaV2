@@ -164,6 +164,22 @@ def validate_recipe(recipe: dict[str, Any]) -> list[str]:
     weights = sum(s["weight"] for s in recipe["species"])
     if weights <= 0:
         errors.append("species weights must sum to > 0")
+    beauty = recipe.get("beauty")
+    if beauty is not None:
+        for key in ("sender_name", "render_target", "sender_bp"):
+            if not beauty.get(key):
+                errors.append(f"beauty.{key} is required when recipe.beauty is present")
+        name = beauty.get("sender_name") or ""
+        if name and (not name[0].isalpha() or not name.replace("_", "").isalnum()):
+            errors.append(f"beauty.sender_name {name!r} must match ^[A-Za-z][A-Za-z0-9_]*$")
+        for key in ("render_target", "sender_bp"):
+            path = beauty.get(key) or ""
+            if path and not path.startswith("/Game/"):
+                errors.append(f"beauty.{key} {path!r} must be a /Game/ path")
+        for key in ("width", "height"):
+            dim = beauty.get(key)
+            if dim is not None and (not isinstance(dim, int) or isinstance(dim, bool) or dim < 1):
+                errors.append(f"beauty.{key} must be a positive integer")
     return errors
 
 
@@ -715,6 +731,64 @@ def stage_chapter(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[s
         return {"chapter": chapter["chapter"], "error": str(exc)}, _stage("FAIL", "Tools/scaffold_chapter.py", "", [str(exc)])
 
 
+# ----------------------------------------------------------------------------- beauty feed
+
+# Canon live-lookdev contract (CURRENT_STATE.md): one Spout2 sender name for the
+# whole project. The compiler enforces the name and emits the feed contract; the
+# UE lane (Content/Python/world_compiler_ue.py `beauty` step) proves the assets live.
+BEAUTY_CANON = {
+    "sender_name": "UE_Beauty",
+    "render_target": "/Game/Melodia/Lookdev/RT_UE_Beauty",
+    "sender_bp": "/Game/Melodia/Lookdev/BP_UE_BeautySender",
+    "width": 1920,
+    "height": 1080,
+    "capture_source": "SCS_FinalColorLDR",
+    "startup_policy": "Editor_Game",
+    "plugin": {
+        "name": "Spout2_DX12",
+        "version": "2.1.1",
+        "source": "https://github.com/GPUbrainStorm/UE5_Spout2_DX12",
+    },
+}
+
+
+def stage_beauty(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Optional live beauty-feed contract. Absent => no tables (bundles byte-identical)."""
+    beauty = recipe.get("beauty")
+    if not beauty:
+        return None, _stage("SKIPPED", "Tools/world_compiler.py:stage_beauty", "recipe.beauty absent")
+    errors: list[str] = []
+    cfg = {**{k: v for k, v in BEAUTY_CANON.items() if k != "plugin"}, **beauty}
+    if cfg["sender_name"] != BEAUTY_CANON["sender_name"]:
+        errors.append(
+            f"beauty.sender_name {cfg['sender_name']!r} is not the canon name "
+            f"{BEAUTY_CANON['sender_name']!r}: one sender name per project, no second beauty writer"
+        )
+    assets: dict[str, dict[str, Any]] = {}
+    for role, key in (("render_target", "render_target"), ("sender_actor", "sender_bp")):
+        uasset = _uasset_for(cfg[key])
+        present = uasset.exists()
+        assets[role] = {"path": cfg[key], "uasset": str(uasset.relative_to(ROOT)).replace("\\", "/"), "present": present}
+        if not present:
+            errors.append(f"beauty.{key} missing on disk: {cfg[key]}")
+    feed = {
+        "schema": "melodia.beauty_feed.v1",
+        "sender_name": cfg["sender_name"],
+        "render_target": _soft_path(cfg["render_target"]),
+        "sender_bp": _soft_path(cfg["sender_bp"]),
+        "width": int(cfg["width"]),
+        "height": int(cfg["height"]),
+        "capture_source": cfg["capture_source"],
+        "startup_policy": cfg["startup_policy"],
+        "plugin": BEAUTY_CANON["plugin"],
+        "assets": assets,
+        "live_verify": "Content/Python/world_compiler_ue.py `beauty` step (RT dims + sender wiring + plugin reflected); TD lookdev_comp Spout In proves frames",
+    }
+    status = "FAIL" if errors else "PASS"
+    note = f"sender {cfg['sender_name']} {cfg['width']}x{cfg['height']} via {cfg['sender_bp']}"
+    return feed, _stage(status, "Tools/world_compiler.py:stage_beauty", note, errors or None)
+
+
 # ----------------------------------------------------------------------------- structures
 
 SLOT_COLUMNS = [
@@ -938,6 +1012,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
     bake, slot_rows, curve_rows, structures_stage = stage_structures(recipe)
     if recipe.get("structures"):
         stages["structures"] = structures_stage
+    beauty, beauty_stage = stage_beauty(recipe)
+    if recipe.get("beauty"):
+        stages["beauty"] = beauty_stage
 
     files: dict[str, bytes] = {
         "points.csv": _csv_bytes(POINT_COLUMNS, ecology["points"]),
@@ -954,6 +1031,8 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         files["structure_slots.csv"] = _csv_bytes(SLOT_COLUMNS, slot_rows)
         files["structure_curves.csv"] = _csv_bytes(CURVE_COLUMNS, curve_rows)
         files["structures_bake.json"] = _json_bytes(bake)
+    if beauty is not None:
+        files["beauty_feed.json"] = _json_bytes(beauty)
     for name, data in files.items():
         (out_dir / name).write_bytes(data)
 
@@ -1026,6 +1105,16 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
                 "control_actor_class": "/Game/EnvSandbox/PCG/Universal/BP_MelodiaPCGControl",
                 "kit_ue_path": (recipe["structures"].get("kit") or {}).get("ue_path", ""),
             }} if bake is not None else {}),
+            **({"beauty_feed": {
+                "sender_name": beauty["sender_name"],
+                "render_target": beauty["render_target"],
+                "sender_bp": beauty["sender_bp"],
+                "width": beauty["width"],
+                "height": beauty["height"],
+                "capture_source": beauty["capture_source"],
+                "startup_policy": beauty["startup_policy"],
+                "plugin": beauty["plugin"]["name"],
+            }} if beauty is not None else {}),
         },
         "notes": [
             "compiler never imports unreal; UE lane is Content/Python/world_compiler_ue.py",

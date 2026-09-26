@@ -24,7 +24,10 @@ The driver:
     7. count                (poll until 'generated' and counts stable, max ~60 s)
     8. save
     9. --reload: Monolith mesh.load_level -> count again
-   10. --fx: fx_materials, fx_place, fx_audit
+    10. --fx: fx_materials, fx_place, fx_audit
+    11. beauty (automatic when the bundle carries ue_lane.beauty_feed):
+        render target + sender actor + Spout2 plugin reflected (frames proven
+        by the TD lookdev_comp Spout In intake, never by this driver)
 
 Writes Saved/Audit/world_compiler_<recipe>_proof_<date>.json with every step's
 payload and the gate verdicts. Never touches PCG graph structure, MPCs or masters.
@@ -248,6 +251,14 @@ def main() -> int:
         shots = proof["steps"]["lookdev_capture"].get("shots") or []
         proof["gates"]["lookdev_stills"] = "PASS" if shots and all(s.get("bytes", 0) > 0 for s in shots) else "FAIL"
         proof["steps"]["lookdev_save"] = run_step(bundle_dir, "save")
+
+    if manifest.get("ue_lane", {}).get("beauty_feed"):
+        proof["steps"]["beauty"] = run_step(bundle_dir, "beauty")
+        bstep = proof["steps"]["beauty"]
+        if bstep.get("skipped") or bstep.get("error"):
+            proof["gates"]["beauty_feed"] = "SKIPPED" if bstep.get("skipped") else "FAIL"
+        else:
+            proof["gates"]["beauty_feed"] = "PASS" if bstep.get("assets_ok") and bstep.get("plugin_loaded") else "FAIL"
 
     hard = [g for g in proof["gates"].values() if g in ("FAIL", "TIMEOUT")]
     return _finish(proof, recipe_id, 1 if hard else 0)
