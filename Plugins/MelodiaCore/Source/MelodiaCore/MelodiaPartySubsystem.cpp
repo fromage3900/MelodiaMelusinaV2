@@ -128,6 +128,13 @@ void UMelodiaPartySubsystem::SetActiveIndex(const int32 NewIndex, APlayerControl
 	}
 
 	APawn* OldPawn = PC->GetPawn();
+	// The pawn being left is the roster member at ActiveIndex. Index 0 is spawned by the game mode
+	// (stock BP_JRPGCharacterBase child) and never self-registers, so without this Sir -> Melusina
+	// finds no pawn and no class for slot 0 and the switch back silently does nothing.
+	if (OldPawn && !(SpawnedPawns.IsValidIndex(ActiveIndex) && IsValid(SpawnedPawns[ActiveIndex])))
+	{
+		RegisterPawn(OldPawn, ActiveIndex);
+	}
 	FTransform HandoffAt = OldPawn ? OldPawn->GetActorTransform() : FTransform::Identity;
 	HandoffAt.AddToTranslation(FVector(0.0f, 0.0f, 150.0f));
 	HandoffAt.SetScale3D(FVector::OneVector);

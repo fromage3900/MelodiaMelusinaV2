@@ -81,3 +81,50 @@ chat route unsupported, Responses route timed out — unproven.
 ## Order
 G1b (owner, now) → G1a + G2a + L2 (fleet, parallel) → S1 → L1 → S2/S3 → L3 golden run → L4.
 **Done =** G1 closed, G2 findings verified, S1 + L2 proven, D1/D2 answered, L3 scheduled.
+
+## Execution log — 2026-09-26 afternoon (Claude session; editor on `MelodiaIntegrationMap`)
+- **S1 DONE + bug fixed.** Recruit → switch → fly worked, but **Sir → Melusina silently did nothing**: index 0
+  (game-mode-spawned `BP_MelusinaJRPGCharacter`, stock `BP_JRPGCharacterBase` child) never self-registers and
+  roster slot 0 has no class, so `EnsurePawn(0)` returned null. Fix in `UMelodiaPartySubsystem::SetActiveIndex`:
+  register the pawn being left at `ActiveIndex` when that slot is empty. Live Coding patch OK; PIE round-trip
+  Melusina→Sir→Melusina→Sir→Melusina: possession + view target follow every hop, `MOVE_FLYING` on Sir,
+  no Accessed None / BP runtime errors. Camera boom (520 uu) makes the cockatoo read small → tune in S3.
+- **L2 verified (and the real G4 gap found).** `DT_MelodySlime_Enemies` 48 rows (`MelodiaSlimeEnemyRow`),
+  `_Skills` 31, `_RoomMods` 21 — import fine, **but zero referencers**: no `UMelodiaRoguelikeEncounterDefinition`
+  asset exists, room `EnemyPool`s are empty (`RD_BossArena_V1` custom data = bare `RoguelikeRoomCustomData`,
+  `RD_MelodiaGrove_V1` none). Only enemy asset: `/Game/Melodia/Enemies/CrystalShard/BP_CrystalShard_SlimePlaceholder`.
+  24 `RD_*` rooms + `BP_RoguelikeDungeonGenerator` + `BP_DungeonFloorManager` + `BP_MelodiaDungeonRunCoordinator` exist.
+- Pre-existing, not P0: CDO warnings — `MelodiaTokenPickup` can't find `MI_MelodyToken_Heart`,
+  `MelodiaSmokeCharacter` can't find `/Game/Melodia/Characters/Melusina/SK_Melusina`.
+
+## Jev ruling for the next sessions (live `jev-1.13.0`)
+| Question | Ruling | Conf |
+|---|---|---|
+| Re-run the packaged cook | **after slime wiring**, so the package proves the loop | **0.91** |
+| First Hermes-in-Claireon task | author slime encounter defs + room pools | 0.56 |
+| Sir perch vs dungeon wiring | perch first | 0.45 (conflicts with row 2 — row 2 wins) |
+| Slime wiring method | hand-author ~6 representative encounters first | 0.29 (weak — owner may override) |
+
+## HERMES RUNBOOK — follow in order, one task per session, stop on any red flag
+Start every session: `git fetch && git status` (must be `main` == `origin/main`), read `AGENTS.md` BINDING RULES,
+confirm exactly one `UnrealEditor` process and that the open level is `MelodiaIntegrationMap` (closed-editor
+tasks: `Tools\issue51_ladder.ps1 preflight` instead). Access GI subsystems in PIE Python via
+`unreal.find_object(None, gi.get_path_name()+'.<SubsystemClass>_0')` (`gi.get_subsystem` is not exposed).
+1. **H-1 Slime encounters (editor, content-only).** Create `/Game/Melodia/Roguelike/Encounters/ENC_Slime_<Row>`
+   `UMelodiaRoguelikeEncounterDefinition` for 6 rows spanning elements/tiers (pick from `DT_MelodySlime_Enemies`,
+   e.g. `SlimeForteTide`, `SlimeForteFestivo`, + 4 others), `EnemyId` = row name, `EnemyClass` =
+   `BP_CrystalShard_SlimePlaceholder_C`, `MinimumTier` from the row. Add them to the run definition's
+   `Encounters` and give 3 combat `RD_*` rooms a custom-data subclass whose `EnemyPool` lists those ids.
+   Save immediately. **Done when:** Asset Registry shows 6 ENC assets + DT referencers > 0; artifact = JSON dump.
+2. **H-2 Coordinator in the dungeon map (editor, owner D2 names the map).** Place
+   `BP_MelodiaDungeonRunCoordinator` (+ `MelodiaFirstDungeonGate`). PIE: complete a run → `NotifySirRescued`
+   returns true → Sir recruited without the MorningIntro stand-in. Artifact = log lines + screenshot.
+3. **H-3 Packaged proof (closed editor).** `ollama stop <all>` → `Tools\issue51_ladder.ps1 preflight` →
+   `package` → `launch`. Artifact = `Saved/Audit/issue51_ladder_<date>/launch.json`.
+4. **H-4 Sir perch (code lane + editor verify).** `AMelodiousFlightCharacter`: land on `Perch`-tagged surfaces
+   (owner D1), `MOVE_Walking` + ABP perch bool, Space takes off; shorten the boom for a cockatoo. Test
+   `Melodia.Flight.PerchLandTakeoff`. Flight clip into `ABP_SirMelodious` (Jev 0.9).
+5. **Owner-only:** restart proof (#51 rung 3, real keys), calibration tap-run, Morning p4 default-CL edits.
+**Red flags → stop and report:** a second editor/agent on the editor; any `.uasset` outside the task's paths
+dirtied; `Accessed None`/BP runtime errors after a change; a need to touch `Config/`, masters, `L_SakuraPath`
+or `L_MelusinaMorning` layout; any git/p4 push/submit (owner approves).
