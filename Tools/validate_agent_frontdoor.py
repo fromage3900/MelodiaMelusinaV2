@@ -25,6 +25,10 @@ AGENTS = ROOT / "AGENTS.md"
 STATE = ROOT / "CURRENT_STATE.md"
 SYSTEM_MAP = ROOT / "SYSTEM_MAP.md"
 DATA_FLOW = ROOT / "DATA_FLOW.md"
+PLAYBOOK = ROOT / "Docs" / "Production" / "AGENT_PRODUCTION_PLAYBOOK.md"
+RIDER_RUNBOOK = ROOT / "Docs" / "Production" / "RIDER_UE58_CANONICAL_WORKFLOW.md"
+JEV_RUNBOOK = ROOT / "Docs" / "Production" / "JEV_CANONICAL_WORKFLOW.md"
+QODANA = ROOT / "qodana.yaml"
 
 
 def read(path: Path) -> str:
@@ -55,6 +59,10 @@ agents = read(AGENTS)
 state = read(STATE)
 system_map = read(SYSTEM_MAP)
 data_flow = read(DATA_FLOW)
+playbook = read(PLAYBOOK)
+rider_runbook = read(RIDER_RUNBOOK)
+jev_runbook = read(JEV_RUNBOOK)
+qodana = read(QODANA)
 
 # 1) The first-read operating mode must be content-first, not prototype archaeology.
 require(agents, r"core\s+(?:already\s+)?works|working\s+core", "AGENTS.md")
@@ -87,12 +95,46 @@ for label, pattern in required_state_signals.items():
     if not re.search(pattern, state, re.IGNORECASE):
         fail(f"CURRENT_STATE.md: capability surface lost {label} signal /{pattern}/")
 
-# 4) The runtime architecture must still teach renewable-content-over-stable-core.
+# 4) The canonical production-tool router must remain discoverable and name the current lanes.
+for text, where in ((agents, "AGENTS.md"), (state, "CURRENT_STATE.md")):
+    require(text, r"AGENT_PRODUCTION_PLAYBOOK\.md", where)
+    require(text, r"world_compiler\.py|World Compiler", where)
+    require(text, r"Hython|hython", where)
+    require(text, r"Rokoko", where)
+    require(text, r"Rider", where)
+    require(text, r"RiderLink", where)
+    require(text, r"Qodana|qodana\.yaml", where)
+    require(text, r"Jev", where)
+
+for pattern, label in (
+    (r"world_compiler\.py", "World Compiler CLI"),
+    (r"Tools/Houdini/", "Hython tool family"),
+    (r"import_rokoko_mocap_batch\.py", "guarded Rokoko importer"),
+    (r"RIDER_UE58_CANONICAL_WORKFLOW\.md", "Rider runbook"),
+    (r"one Unreal Editor|one editor", "single-editor rule"),
+):
+    if not re.search(pattern, playbook, re.IGNORECASE):
+        fail(f"AGENT_PRODUCTION_PLAYBOOK.md: missing {label} signal /{pattern}/")
+
+require(rider_runbook, r"BS_GodFileEditor Win64 Development", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(rider_runbook, r"reflected|UCLASS|UFUNCTION|UPROPERTY", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(rider_runbook, r"World Compiler", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(rider_runbook, r"Rokoko", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(rider_runbook, r"RiderLink", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(rider_runbook, r"Qodana", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(rider_runbook, r"Jev", "RIDER_UE58_CANONICAL_WORKFLOW.md")
+require(jev_runbook, r"always-available|canonical production service", "JEV_CANONICAL_WORKFLOW.md")
+require(jev_runbook, r"source=jev-live", "JEV_CANONICAL_WORKFLOW.md")
+require(jev_runbook, r"existing owner|owners execute|does not directly mutate", "JEV_CANONICAL_WORKFLOW.md")
+require(qodana, r"ide:\s*QDJB", "qodana.yaml")
+require(qodana, r"qodana\.recommended", "qodana.yaml")
+
+# 5) The runtime architecture must still teach renewable-content-over-stable-core.
 require(system_map, r"stable runtime ownership beneath renewable authored content", "SYSTEM_MAP.md")
 require(system_map, r"content integration problem", "SYSTEM_MAP.md")
 require(data_flow, r"New content extends the vocabulary", "DATA_FLOW.md")
 
-# 5) Guard the most important compositional affordance: working battle content should be
+# 6) Guard the most important compositional affordance: working battle content should be
 # represented as Quill -> JRPG/Phoenix -> rhythm -> result/consequence rather than a new combat system.
 flow_blob = "\n".join((state, system_map, data_flow))
 for pattern, label in (
@@ -113,4 +155,4 @@ if FAILURES:
     sys.exit(1)
 
 print("AGENT FRONT-DOOR CONTRACT: PASS")
-print("Fresh-agent context exposes the content-first capability surface and stable owners.")
+print("Fresh-agent context exposes the content-first capability surface, stable owners, and canonical World Compiler/Hython/Rokoko/Rider/RiderLink/Qodana/Jev router.")

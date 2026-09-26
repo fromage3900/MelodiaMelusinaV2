@@ -1,0 +1,29 @@
+{
+ "schema": "melodia.bake_staging_manual_export.v1",
+ "results": [
+  {
+   "object": "Hair Strand.004",
+   "stem": "Melusina_HairA_Strand004",
+   "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj\\Melusina_HairA_Strand004.obj",
+   "size_bytes": 1169590,
+   "verts_written": 10916,
+   "uvs_written": 10916,
+   "faces_written": 5544,
+   "nan_positions": 0,
+   "nan_uvs": 0,
+   "verdict": "EXPORTED"
+  },
+  {
+   "object": "Hair Strand.007",
+   "stem": "Melusina_HairB_Strand007",
+   "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_bake_staging_20260922\\obj\\Melusina_HairB_Strand007.obj",
+   "size_bytes": 4664202,
+   "verts_written": 34920,
+   "uvs_written": 34920,
+   "faces_written": 27090,
+   "nan_positions": 0,
+   "nan_uvs": 0,
+   "verdict": "EXPORTED"
+  }
+ ]
+}

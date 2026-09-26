@@ -1,5 +1,7 @@
 # World Compiler Contract
 
+> **Agent entry:** use [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](../Production/AGENT_PRODUCTION_PLAYBOOK.md) to route work into this contract. `CURRENT_STATE.md` remains status authority. This contract owns compiled-world interfaces; it is not a second status surface.
+
 **Status:** CANONICAL DATA CONTRACT (undated; supersedes the dated scaffold)  
 **Extracted from:** [`Docs/Houdini/MELODIA_WORLD_COMPILER_TOMORROW_SCAFFOLD_2026-08-30.md`](../Houdini/MELODIA_WORLD_COMPILER_TOMORROW_SCAFFOLD_2026-08-30.md) ("extract the stable contracts into an undated canonical doc later"), [`specs/resonant_world_manifest.v1.json`](../../specs/resonant_world_manifest.v1.json), [`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`](TERRAIN_HANDOFF_CONTRACT.md), [`Docs/Production/PCG/README.md`](../Production/PCG/README.md), and the Muse flower-field brief (2026-09-16).  
 **Authority above this page:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](../WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md). Status of any compiled world is recorded only in [`CURRENT_STATE.md`](../../CURRENT_STATE.md).

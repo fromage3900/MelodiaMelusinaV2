@@ -1,0 +1,21 @@
+{
+ "schema": "melodia.flip_full_bake.v1",
+ "config": {
+  "resolution": 72,
+  "frame_range": [
+   1,
+   240
+  ],
+  "cache": "C:\\EnvironmentPortfolio\\FlipCache\\hair_hero_20260922"
+ },
+ "bobj_count": 480,
+ "non_empty": 480,
+ "verdict": "PASS",
+ "sample_verts": [
+  33106,
+  33126,
+  33272,
+  33364,
+  33380
+ ]
+}

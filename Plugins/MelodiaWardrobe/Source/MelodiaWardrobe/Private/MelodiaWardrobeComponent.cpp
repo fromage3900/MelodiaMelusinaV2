@@ -123,8 +123,53 @@ void UMelodiaWardrobeComponent::ApplyWardrobeState()
 
 USkeletalMeshComponent* UMelodiaWardrobeComponent::GetBodyMesh() const
 {
-	const ACharacter* OwningCharacter = Cast<ACharacter>(GetOwner());
-	return OwningCharacter ? OwningCharacter->GetMesh() : nullptr;
+	// A Character owns its body mesh directly; this is the player path.
+	if (const ACharacter* OwningCharacter = Cast<ACharacter>(GetOwner()))
+	{
+		if (USkeletalMeshComponent* CharacterMesh = OwningCharacter->GetMesh())
+		{
+			return CharacterMesh;
+		}
+	}
+
+	// Battle and portfolio presenters are plain AActors, not Characters, so the cast above
+	// returns null and every garment then fails IsGarmentSkeletonCompatible against a null
+	// body -- which is why the presenter rendered with no shirt, boots or accessories while
+	// its DefaultGarmentMeshes were fully configured. Resolve by component name first: a
+	// presenter may also carry a template mannequin on its root SkeletalMesh component, and
+	// picking that would compare garments against UE4_Mannequin_Skeleton and refuse them all.
+	const AActor* OwningActor = GetOwner();
+	if (!OwningActor)
+	{
+		return nullptr;
+	}
+
+	TArray<USkeletalMeshComponent*> Candidates;
+	OwningActor->GetComponents<USkeletalMeshComponent>(Candidates);
+
+	static const TCHAR* PreferredNames[] = { TEXT("MelusinaPresentationMesh"), TEXT("CharacterMesh0") };
+	for (const TCHAR* Preferred : PreferredNames)
+	{
+		for (USkeletalMeshComponent* Candidate : Candidates)
+		{
+			if (Candidate && Candidate->GetSkeletalMeshAsset() && Candidate->GetName() == Preferred)
+			{
+				return Candidate;
+			}
+		}
+	}
+
+	// Last resort: the first component that actually has a mesh. Components with no asset
+	// are skipped so a cleared placeholder slot never wins over the real body.
+	for (USkeletalMeshComponent* Candidate : Candidates)
+	{
+		if (Candidate && Candidate->GetSkeletalMeshAsset())
+		{
+			return Candidate;
+		}
+	}
+
+	return nullptr;
 }
 
 bool UMelodiaWardrobeComponent::IsGarmentSkeletonCompatible(const USkeletalMesh* GarmentMesh) const
@@ -155,15 +200,18 @@ USkeletalMeshComponent* UMelodiaWardrobeComponent::FindOrCreateSlotComponent(
 		return *Existing;
 	}
 
-	ACharacter* OwningCharacter = Cast<ACharacter>(GetOwner());
+	// Owner is addressed as AActor, not ACharacter: presenters are plain Actors and a
+	// Character cast here would refuse to build any slot for them. NewObject and
+	// AddInstanceComponent below both take AActor, so nothing else needs a Character.
+	AActor* OwningActor = GetOwner();
 	USkeletalMeshComponent* BodyMesh = GetBodyMesh();
-	if (!OwningCharacter || !BodyMesh)
+	if (!OwningActor || !BodyMesh)
 	{
 		return nullptr;
 	}
 
 	const FName ComponentName = *FString::Printf(TEXT("WardrobeSlot_%s"), *UEnum::GetValueAsString(Slot));
-	USkeletalMeshComponent* SlotComp = NewObject<USkeletalMeshComponent>(OwningCharacter, ComponentName);
+	USkeletalMeshComponent* SlotComp = NewObject<USkeletalMeshComponent>(OwningActor, ComponentName);
 
 	// Garments are pure presentation. A SkeletalMeshComponent defaults to query+physics
 	// collision, so without this each equipped piece added an extra collider to the
@@ -195,7 +243,7 @@ USkeletalMeshComponent* UMelodiaWardrobeComponent::FindOrCreateSlotComponent(
 	// Register with the actor's instance-component list. NewObject + RegisterComponent
 	// alone leaves the component outside the owner's bookkeeping: it does not appear in
 	// GetComponents(), is not serialised with the actor, and is not torn down with it.
-	OwningCharacter->AddInstanceComponent(SlotComp);
+	OwningActor->AddInstanceComponent(SlotComp);
 
 	SlotComponents.Add(Slot, SlotComp);
 	return SlotComp;

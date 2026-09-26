@@ -1,4 +1,4 @@
-# Model Access Guide — Bedrock, Hermes/Ollama, New HF Models
+> **2026-09-23 update:** This older access guide remains useful for existing provider mechanics, but new specialist-model setup must also read `Docs/Plans/HERMES_SPECIALIST_MODEL_FLEET_SETUP_2026-09-23.md`. Do not infer current model availability from the August model lists below. The September plan records current first-party-verified Muse 1.3, MiMo 2.6, Step 5 Preview, SWE-2, Qwen3.8 Omni/HappyOyster, Fugu and Mercury candidates.\n\n# Model Access Guide — Bedrock, Hermes/Ollama, New HF Models
 
 Date: 2026-08-15
 Machine: Windows 11, this repo at `C:\EnvironmentPortfolio\BS_GodFile`

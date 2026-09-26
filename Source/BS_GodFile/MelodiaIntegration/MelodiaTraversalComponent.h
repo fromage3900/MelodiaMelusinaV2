@@ -82,13 +82,6 @@ public:
 	bool IsGliding() const { return bIsGliding; }
 
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
-	bool IsJumpWindingUp() const { return bJumpWindingUp; }
-
-	/** Visual windup progress; jump force is intentionally not charge-dependent. */
-	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
-	float GetJumpWindupNormalized() const;
-
-	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	bool IsSprinting() const { return bIsSprinting; }
 
 	/** True during the brief dash impulse window (ground, or mid-air while gliding). */
@@ -191,8 +184,6 @@ private:
 	void HandleSprintReleased();
 	void HandleStrafePressed();
 	void HandleDivePressed();
-	void BeginJumpWindup();
-	void CancelJumpWindup();
 	void SetSprinting(bool bShouldSprint);
 	void ApplyCurrentMovementSpeed();
 	bool IsCapabilityAvailableForMode(EMelodiaTraversalMode RequestedMode, FName& OutBlockReason) const;
@@ -219,11 +210,8 @@ private:
 	/** Set via SetWingPresentationOwnedExternally; see that function for why. */
 	bool bWingPresentationOwnedExternally = false;
 	bool bIsGliding = false;
-	bool bJumpWindingUp = false;
-	/** Physical jump-button hold. ACharacter::bPressedJump clears when JumpMaxHoldTime elapses. */
-	bool bJumpInputHeld = false;
-	/** One glide request per continuous hold while falling. */
-	bool bHeldFallGlideRequested = false;
+	/** Jump pressed on the ground and still held: glide starts at the apex. */
+	bool bGlideHoldArmed = false;
 	bool bSprintInputHeld = false;
 	bool bIsSprinting = false;
 	bool bIsDashing = false;
@@ -240,7 +228,6 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Traversal|Capabilities",
 		meta=(AllowPrivateAccess="true"))
 	FName TraversalCapabilityContextId = NAME_None;
-	double JumpWindupStartedAt = -1.0;
 	float SavedGravityScale = 1.0f;
 	float SavedAirControl = 0.35f;
 	float SavedMaxWalkSpeed = 0.0f;
@@ -347,10 +334,6 @@ private:
 	/** How long the dash skeletally reads (stamina-presentation window). */
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Movement", meta=(ClampMin="0.05", ClampMax="1.0"))
 	float DashPersistSeconds = 0.22f;
-
-	/** Duration used to normalize the poise visual. Jump force does not scale with it. */
-	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Input", meta=(ClampMin="0.05", ClampMax="2.0"))
-	float JumpWindupVisualDuration = 0.4f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.05", ClampMax="1.0"))
 	float GlideGravityScale = 0.16f;

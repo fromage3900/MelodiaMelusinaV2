@@ -20,7 +20,7 @@
   },
   "resonant_form": {
     "form_id": "form.melusina.shorewake",
-    "capability_unlocked": "SeaAboveResonance",
+    "capability_unlocked": "capability.melodia.sail",
     "required_flags": [
       "flag.quest.shorewake_completed",
       "flag.sea_above.starskiff_ready"
@@ -30,8 +30,5 @@
     "can_board_starskiff": true,
     "sea_above_buoyancy_active": true
   },
-  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds",
-  "_stale_fields": [
-    "resonant_form.capability_unlocked — no matching traversal capability id exists; boarding is actually gated by flag.sea_above.starskiff_ready OR capability.melodia.glide, see MelodiaStarskiffPawn.cpp"
-  ]
+  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds"
 }

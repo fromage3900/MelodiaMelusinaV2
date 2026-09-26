@@ -7,7 +7,12 @@ For anything involving **what is true now, what is blocked, or what to do next**
 ## Start here
 
 - [`CURRENT_STATE.md`](CURRENT_STATE.md) — only current status / priority / blocker / open-work authority.
-- [`SYSTEM_MAP.md`](SYSTEM_MAP.md) — runtime ownership and stable system architecture.
+- [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md) — canonical task router for World Compiler, Hython, Rokoko, Rider and editor mutation workflows.
+- [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md) — canonical JetBrains Rider + UE5.8 engineering runbook.
+- [`Docs/Production/JEV_CANONICAL_WORKFLOW.md`](Docs/Production/JEV_CANONICAL_WORKFLOW.md) — canonical always-available Jev decision/orchestration runbook; Jev chooses/directs while existing owners execute.
+- [`qodana.yaml`](qodana.yaml) — canonical Qodana `QDJB` static-analysis profile; RiderLink is covered by the Rider runbook as the focused live-editor automation bridge.
+- [`SYSTEM_MAP.md`](SYSTEM_MAP.md) — runtime ownership and stable system architecture, including the [canonical Melusina system diagram](SYSTEM_MAP.md#melusina-runtime-system-diagram) and [Universe Foundry boundary](SYSTEM_MAP.md#universe-foundry-integration-boundary).
+- [`Docs/P1_TASK_LEDGER.json`](Docs/P1_TASK_LEDGER.json) → `melusina_work` — Melusina work gates and links to their evidence; current status still comes from `CURRENT_STATE.md`.
 - [`DATA_FLOW.md`](DATA_FLOW.md) — how state/data move through the runtime.
 - [`Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md`](Docs/Production/CANONICAL_PROJECT_PIPELINE_2026-09-08.md) — cross-repo and cross-lane routing contract.
 
@@ -24,6 +29,8 @@ For anything involving **what is true now, what is blocked, or what to do next**
 
 ## Worldbuilding / procedural environment
 
+- [`Docs/WorldGen/WORLD_COMPILER_CONTRACT.md`](Docs/WorldGen/WORLD_COMPILER_CONTRACT.md) — canonical compiled-world recipe/bundle/UE-driver contract; compile stays CLI.
+- [`Docs/Production/HOUDINI_CREATIVE_PIPELINE_REFERENCE_2026-08-28.md`](Docs/Production/HOUDINI_CREATIVE_PIPELINE_REFERENCE_2026-08-28.md) — Hython/Houdini production caveats and verified export behavior; status still comes from `CURRENT_STATE.md`.
 - [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) — chapter/world ownership and sound-to-form contract.
 - [`Docs/Production/PCG/README.md`](Docs/Production/PCG/README.md) — canonical UE5.8 PCG authoring contract, including the validated Python Data Processor → semantic metadata → native PCG → per-instance material-data workflow used by Resonance Ecology / Sea Above.
 - [`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`](Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md) — durable intake contract for terrain-authoring lanes before UE world integration.
@@ -39,6 +46,7 @@ For anything involving **what is true now, what is blocked, or what to do next**
 ## Animation / performance capture
 
 - [`Docs/CASCADEUR_MELUSINA_PIPELINE_2026-08-07.md`](Docs/CASCADEUR_MELUSINA_PIPELINE_2026-08-07.md) — canonical Melusina Cascadeur / performance-capture authoring contract.
+- [`Docs/Handoffs/ROKOKO_MELUSINA_ANIM_EVIDENCE_2026-09-22.md`](Docs/Handoffs/ROKOKO_MELUSINA_ANIM_EVIDENCE_2026-09-22.md) — evidence-backed Rokoko -> Blender -> guarded UE import lane; use with the production playbook, not as a second status authority.
 
 ## TouchDesigner / After Effects
 

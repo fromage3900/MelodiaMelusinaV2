@@ -96,7 +96,4 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Traversal")
 	virtual bool IsSprinting() const = 0;
-
-	UFUNCTION(BlueprintCallable, Category = "Melodia|Traversal")
-	virtual bool IsJumpWindingUp() const = 0;
 };

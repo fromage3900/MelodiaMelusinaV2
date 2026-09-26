@@ -24,6 +24,20 @@ void AMelodiaStarskiffPawn::BeginPlay()
 	{
 		Movement->UpdatedComponent = GetRootComponent();
 	}
+	const UGameInstance* GI = GetGameInstance();
+	if (UMelodiaNarrativeSubsystem* Narrative = GI ? GI->GetSubsystem<UMelodiaNarrativeSubsystem>() : nullptr)
+	{
+		Narrative->OnFlagChanged.AddUniqueDynamic(this, &AMelodiaStarskiffPawn::HandleFlagChanged);
+	}
+}
+
+void AMelodiaStarskiffPawn::HandleFlagChanged(FName FlagId, bool bValue)
+{
+	if (bValue && !BoardOnFlagId.IsNone() && FlagId == BoardOnFlagId && !bBoarded)
+	{
+		const bool bBoardedNow = TryBoardNearestPlayer();
+		UE_LOG(LogTemp, Log, TEXT("MELODIA_STARSKIFF flag %s -> board %s"), *FlagId.ToString(), bBoardedNow ? TEXT("ok") : TEXT("blocked"));
+	}
 }
 
 void AMelodiaStarskiffPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -52,13 +66,12 @@ bool AMelodiaStarskiffPawn::CanBoard(AActor* InteractingActor, FName& OutBlockRe
 		return false;
 	}
 
+	// Boarding reads the capability only. flag.sea_above.starskiff_ready gates whether the
+	// Shorewake form is available (its RequiredFlagIds), so the outfit is load-bearing.
 	const UGameInstance* GI = GetGameInstance();
-	const UMelodiaNarrativeSubsystem* Narrative = GI ? GI->GetSubsystem<UMelodiaNarrativeSubsystem>() : nullptr;
-	const bool bReadyFlag = Narrative && Narrative->GetNarrativeRecord().Flags.FindRef(TEXT("flag.sea_above.starskiff_ready"));
 	const UMelodiaTraversalCapabilityRegistry* Registry = GI ? GI->GetSubsystem<UMelodiaTraversalCapabilityRegistry>() : nullptr;
 	FName CapabilityReason;
-	const bool bCapabilityReady = Registry && Registry->QueryCapability(RequiredCapabilityId, TraversalCapabilityContextId, CapabilityReason);
-	if (!bReadyFlag && !bCapabilityReady)
+	if (!Registry || !Registry->QueryCapability(RequiredCapabilityId, TraversalCapabilityContextId, CapabilityReason))
 	{
 		OutBlockReason = CapabilityReason.IsNone() ? FName(TEXT("starskiff_not_unlocked")) : CapabilityReason;
 		return false;

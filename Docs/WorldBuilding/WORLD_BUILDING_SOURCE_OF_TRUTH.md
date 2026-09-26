@@ -5,6 +5,10 @@
 
 > **C++ decides what is true. Blueprints assemble and present. Materials / Niagara / audio visualize. TouchDesigner performs. A new world is content over this stack, not a new subsystem.**
 
+## World inventory
+
+[**Melodia World Atlas**](../WorldAtlas/README.md) is the canonical inventory/provenance index for named worlds, routes, evidence rungs, source-control bundles and production entry points. It does **not** replace this architecture authority, `CURRENT_STATE.md`, World Compiler, Universe Foundry, UE PCG, or gameplay/save owners.
+
 These four owner diagrams are **one stacked contract**, not four independent systems. Visual boards live in [`Docs/References/WorldBuilding/`](../References/WorldBuilding/). Current runtime status and evidence pointers live in [`CURRENT_STATE.md`](../../CURRENT_STATE.md). Sheep lookdev still obeys [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](../References/ChoralSheepCapstone/AGENT_CONTEXT.md) (Board 06 + Nikki Cymatics).
 
 ```mermaid

@@ -11,9 +11,9 @@ Run:
   python Tools/triage_working_tree.py --print-paths   # also list every path per bucket
   python Tools/triage_working_tree.py --out <path>
 
-Reuses ``changed_paths`` from Tools/source_control_triage.py and the collapse
-commit from Tools/guard_collapsed_paths.py so there is one status parser and
-one collapse authority.
+Parses Git porcelain status locally and reuses the collapse commit from
+Tools/guard_collapsed_paths.py. This file is intentionally self-contained:
+the older Tools/source_control_triage.py helper is no longer tracked.
 """
 from __future__ import annotations
 
@@ -29,7 +29,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "Tools"))
 
 from guard_collapsed_paths import COLLAPSE  # noqa: E402
-from source_control_triage import changed_paths  # noqa: E402
 
 EXT_CLASS = {
     ".uasset": "uasset",
@@ -95,6 +94,32 @@ def _git(*args: str) -> str:
     return subprocess.run(
         ["git", "-C", str(ROOT), *args], text=True, capture_output=True, check=False
     ).stdout
+
+
+def changed_paths() -> list[dict[str, str]]:
+    """Return porcelain-v1 status rows without mutating the working tree."""
+    raw = subprocess.run(
+        ["git", "-C", str(ROOT), "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+        capture_output=True,
+        check=False,
+    ).stdout
+    fields = [part.decode("utf-8", errors="surrogateescape") for part in raw.split(b"\0") if part]
+    rows: list[dict[str, str]] = []
+    i = 0
+    while i < len(fields):
+        record = fields[i]
+        i += 1
+        if len(record) < 4:
+            continue
+        status = record[:2]
+        path = record[3:]
+        rows.append({"status": status, "path": path})
+        if "R" in status or "C" in status:
+            # Porcelain -z emits a second field for the source path. The first
+            # path is the destination/current path and is the one we classify.
+            if i < len(fields):
+                i += 1
+    return rows
 
 
 def _collapsed_paths() -> set[str]:

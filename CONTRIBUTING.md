@@ -16,13 +16,14 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 ## Quick Start
 
-1. Read [CURRENT_STATE.md](CURRENT_STATE.md) and [DOC_INDEX.md](DOC_INDEX.md) before expanding scope.
+1. Read [CURRENT_STATE.md](CURRENT_STATE.md), [DOC_INDEX.md](DOC_INDEX.md), and [Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md) before expanding scope.
 2. Run `python Tools/git_ok.py`, verify the latest `main` Echo run is green, and cut one scoped branch from current `main`. Do not start production from a stale PR/recovery branch.
 3. Review [README.md](README.md) to choose your onboarding path.
 4. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
-5. **Engineers & Researchers:** Clone the repository and pull only the Git LFS assets needed for the
-  chosen lane. `Exports/` is also seeded in the local Perforce pilot; use Git for the project checkout
-  until the shared Perforce server and cutover are announced.
+5. **Engineers & Researchers:** Clone the repository for engineering/configuration work. Perforce is now
+  in **active pilot**: UE 5.8 is connected and source-control operations are working. `Exports/` is
+  seeded in the depot. Do not assume full creative-root cutover yet; check
+  `specs/source_control_ownership.v1.json` before deciding whether Git/LFS or Perforce owns an asset.
 6. Execute `deploy/validate_setup.ps1` (or `python Tools/test_melodia_mcp.py`) to verify your local environment health.
 
 ---
@@ -44,6 +45,9 @@ Melodia's stable systems are now infrastructure for authored work. Prefer the ex
 | Blender/GN set dressing | Melodia Studio/GN source → fresh-main promotion PR | wholesale workstation-branch merge |
 | Encounter / boss / side quest | Quill + Phoenix + rhythm + existing consequence/save owners | new battle/quest/save framework |
 | Lookdev / VFX polish | existing master materials, instances, Niagara, frozen PPV rules | one-off master/framework per effect |
+| Houdini / Hython source generation | deterministic tools under `Tools/Houdini/` + manifested outputs -> existing UE/world lane | Houdini as runtime authority / untracked one-off DCC pipeline |
+| Melusina Rokoko mocap | Blender retarget/root-motion export -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing ABP/state owner | manual production FBX drag/drop / second skeleton/import lane |
+| UE C++ engineering | JetBrains Rider owner/usages discovery -> focused native edit -> correct UBT/test/runtime evidence | C++ rewrite of an existing content/Python/Blueprint-owned lane |
 
 A contribution that changes architecture must name the current owner seam, show the blocking requirement, and explain why authored content cannot express it.
 
@@ -133,18 +137,33 @@ Allowed types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `styl
 ## Source Control Workflow
 
 Git is the authority for `Source/`, `Plugins/`, `Config/`, `Tools/`, `Docs/`, `deploy/`, `specs/`,
-and project metadata. Perforce is the intended authority for large and lock-sensitive art paths.
-The local pilot has seeded `//melodia/Exports/...`, but it is not a shared collaborator server yet.
+project metadata, and **`Content/Python/` editor/PCG automation source**. Perforce is the intended
+authority for large and lock-sensitive creative content. The nested Git exception is explicit in
+`specs/source_control_ownership.v1.json`; do not migrate `Content/Python/` into Perforce.
+
+Current state: **`active_pilot`**. UE 5.8 is connected to Perforce and source-control operations are
+working in-editor; `//melodia/Exports/...` is seeded. This is production-capable pilot evidence, but it is
+not yet a claim that all `Content/`, `Exports/`, and `RawArt/` paths have completed cutover.
+
+Cutover states are intentionally explicit:
+
+`planned → active_pilot → production → cutover_complete`
+
+- `active_pilot`: UE↔Perforce works; Git/LFS overlap or missing cross-workspace proof may remain.
+- `production`: declared creative roots use Perforce normally, with World Partition and second-workspace round trips verified.
+- `cutover_complete`: `python Tools/validate_source_control_ownership.py --check-cutover` passes and no target Perforce path remains Git-owned.
 
 - Do not modify an asset through both Git and Perforce.
-- Do not add `Content/`, `Exports/`, or `RawArt/` to an automated Git commit batch.
-- Before committing text-only work, run `python Tools/source_control_triage.py` to review its batch.
-- To commit an approved isolated batch, add exact paths to `specs/source_control_batches.json`, mark the
-  batch `ready`, then run `python Tools/source_control_triage.py --commit-ready <batch-name>`.
+- Do not add Perforce-owned `Content/`, `Exports/`, or `RawArt/` paths to an automated Git commit batch.
+  `Content/Python/` is the explicit Git-owned exception.
+- Before committing mixed working-tree work, run `python Tools/triage_working_tree.py --print-paths`.
+  It is report-only: it never stages, commits, pushes, deletes, resets, or stashes.
+- `specs/source_control_batches.json` is retained as an owner-reviewed batch manifest only; it does not
+  authorize a commit by itself.
 
-The scheduled task `Melodia Source Control Triage` produces this report every 12 hours without staging,
-committing, pushing, or deleting files. Perforce setup and cutover conditions are recorded in
-[Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md](Docs/PERFORCE_MIGRATION_PLAN_2026-08-13.md).
+The canonical cutover state and evidence gates live in
+[`specs/source_control_ownership.v1.json`](specs/source_control_ownership.v1.json) and are enforced by
+[`Tools/validate_source_control_ownership.py`](Tools/validate_source_control_ownership.py).
 
 ---
 

@@ -1,0 +1,2027 @@
+{
+  "task": "F1 FLIP Fluids smoke bake - Melusina water hair",
+  "generated": "2026-09-22T00:37:15",
+  "blend": "C:/EnvironmentPortfolio/harp_bow_pipeline/Melodina_FLIP_bake_gen1.blend",
+  "cache_dir": "C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/flip_cache_melusina_waterhair_smoke",
+  "load_mode": "append-subset (full open OOM'd)",
+  "params": {
+    "resolution": 24,
+    "frame_start": 1,
+    "frame_end": 10,
+    "save_blend": false
+  },
+  "phases": [
+    {
+      "phase": "addon_enabled",
+      "t": "00:37:15",
+      "elapsed_s": 0.3,
+      "seconds": 0.3
+    },
+    {
+      "phase": "objects_appended",
+      "t": "00:37:19",
+      "elapsed_s": 4.0,
+      "appended": 8,
+      "seconds": 3.6
+    },
+    {
+      "phase": "inventory",
+      "t": "00:37:19",
+      "elapsed_s": 4.0
+    },
+    {
+      "phase": "bounds_computed",
+      "t": "00:37:19",
+      "elapsed_s": 4.1,
+      "inside_expected": true,
+      "union": {
+        "min": [
+          -0.38621,
+          -0.4238,
+          0.73512
+        ],
+        "max": [
+          0.39586,
+          0.25264,
+          1.88669
+        ],
+        "size": [
+          0.78208,
+          0.67644,
+          1.15157
+        ]
+      }
+    },
+    {
+      "phase": "domain_placed",
+      "t": "00:37:19",
+      "elapsed_s": 4.1,
+      "encloses": true,
+      "voxel": 0.06957
+    },
+    {
+      "phase": "objects_configured",
+      "t": "00:37:19",
+      "elapsed_s": 4.4
+    },
+    {
+      "phase": "domain_settings_applied",
+      "t": "00:37:19",
+      "elapsed_s": 4.5,
+      "resolution": 24,
+      "cache": "C:\\EnvironmentPortfolio\\BS_GodFile\\KitbashExport\\flip_cache_melusina_waterhair_smoke"
+    },
+    {
+      "phase": "bake_finished",
+      "t": "00:37:42",
+      "elapsed_s": 27.6,
+      "seconds": 23.1,
+      "op": "{'FINISHED'}"
+    },
+    {
+      "phase": "cache_verified",
+      "t": "00:37:42",
+      "elapsed_s": 27.6,
+      "success": true,
+      "bobj": 20,
+      "nonzero": 20
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "log": [
+    "addon enabled in 0.30s",
+    "appended 8 objects in 3.6s | not-object/absent names: []",
+    "target FF_MelusinaHair_Domain type=MESH verts=8 polys=6 parent=None mods=[] ff={'is_active': True, 'object_type': 'TYPE_DOMAIN'}",
+    "target FF_MelusinaHair_Drip type=MESH verts=482 polys=512 parent=None mods=[] ff={'is_active': True, 'object_type': 'TYPE_INFLOW'}",
+    "target FF_MelusinaHair_Sheet type=MESH verts=8 polys=6 parent=None mods=[] ff={'is_active': True, 'object_type': 'TYPE_INFLOW'}",
+    "target Hair Strand.004 type=MESH verts=3104 polys=3024 parent=character_rig mods=[('ARMATURE', 'character_rig')] ff={'is_active': True, 'object_type': 'TYPE_OBSTACLE'}",
+    "target Hair Strand.007 type=MESH verts=26400 polys=25290 parent=character_rig mods=[('ARMATURE', 'character_rig')] ff={'is_active': True, 'object_type': 'TYPE_OBSTACLE'}",
+    "target Hair Strand.010 type=MESH verts=7560 polys=7380 parent=character_rig mods=[('ARMATURE', 'character_rig')] ff={'is_active': False, 'object_type': 'TYPE_NONE'}",
+    "bounds f1 Hair Strand.004 [-0.2699, -0.3731, 0.9791] -> [0.228, -0.187, 1.7348]",
+    "bounds f1 Hair Strand.007 [-0.3862, -0.3357, 0.7351] -> [0.3959, 0.2526, 1.8867]",
+    "bounds f1 Hair Strand.010 [-0.1389, -0.4238, 1.464] -> [0.1399, -0.2802, 1.7732]",
+    "bounds f1 FF_MelusinaHair_Drip [-0.0602, -0.1319, 1.2729] -> [-0.0182, -0.0899, 1.3489]",
+    "bounds f10 Hair Strand.004 [-0.2699, -0.3731, 0.9791] -> [0.228, -0.187, 1.7348]",
+    "bounds f10 Hair Strand.007 [-0.3862, -0.3357, 0.7351] -> [0.3959, 0.2526, 1.8867]",
+    "bounds f10 Hair Strand.010 [-0.1389, -0.4238, 1.464] -> [0.1399, -0.2802, 1.7732]",
+    "bounds f10 FF_MelusinaHair_Drip [-0.0602, -0.1319, 1.2729] -> [-0.0182, -0.0899, 1.3489]",
+    "union bounds: {'min': [-0.38621, -0.4238, 0.73512], 'max': [0.39586, 0.25264, 1.88669], 'size': [0.78208, 0.67644, 1.15157]} sanity: {'expected_region': {'min': (-0.5, -0.5, 0.0), 'max': (0.5, 0.5, 2.5)}, 'inside_expected_region': True}",
+    "domain placement: {'local_mesh_size': [1.1, 1.1, 1.4], 'target_min': [-0.50352, -0.52526, 0.61996], 'target_max': [0.51317, 0.35411, 2.28974], 'applied_scale': [0.92427, 0.79943, 1.1927], 'applied_location': [0.00482, -0.08558, -0.45346], 'animation_cleared': False, 'evaluated_world_min': [-0.50352, -0.52526, 0.61996], 'evaluated_world_max': [0.51317, 0.35411, 2.28974], 'encloses_hair_and_drip': True, 'longest_side': 1.66977, 'voxel_size_at_res24': 0.06957, 'drip_max_dim': 0.076, 'drip_over_voxel': 1.092}",
+    "obstacle Hair Strand.004 pre={'object_type': 'TYPE_OBSTACLE', 'export_animated_mesh': False} -> {'op_return': None, 'is_active': True, 'object_type': 'TYPE_OBSTACLE', 'pre': {'object_type': 'TYPE_OBSTACLE', 'export_animated_mesh': False}, 'export_animated_mesh': True, 'verts': 3104}",
+    "obstacle Hair Strand.007 pre={'object_type': 'TYPE_OBSTACLE', 'export_animated_mesh': False} -> {'op_return': None, 'is_active': True, 'object_type': 'TYPE_OBSTACLE', 'pre': {'object_type': 'TYPE_OBSTACLE', 'export_animated_mesh': False}, 'export_animated_mesh': True, 'verts': 26400}",
+    "obstacle Hair Strand.010 pre={'object_type': 'TYPE_NONE', 'export_animated_mesh': False} -> {'op_return': \"{'FINISHED'}\", 'is_active': True, 'object_type': 'TYPE_OBSTACLE', 'pre': {'object_type': 'TYPE_NONE', 'export_animated_mesh': False}, 'export_animated_mesh': True, 'verts': 7560}",
+    "sheet untouched: {'object_type': 'TYPE_INFLOW', 'is_active': True, 'note': 'file already had this proxy as an inflow; task spec did not ask to change it, so it was left alone'}",
+    "domain settings: {'resolution': 24, 'preview_resolution': 12, 'frame_range_mode': 'FRAME_RANGE_TIMELINE', 'get_frame_range': [1, 10], 'scene_frames': [1, 10], 'cache_directory': 'C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/flip_cache_melusina_waterhair_smoke', 'cache_abspath': 'C:\\\\EnvironmentPortfolio\\\\BS_GodFile\\\\KitbashExport\\\\flip_cache_melusina_waterhair_smoke', 'export_directory_name': 'export', 'export_filename': 'flipdata.sim', 'grid_voxel_size_tooltip': True, 'grid_dimensions_tooltip': True}",
+    "addon view: {'num_domain_objects': 1, 'domain_object': 'FF_MelusinaHair_Domain', 'inflow_objects': ['FF_MelusinaHair_Drip', 'FF_MelusinaHair_Sheet'], 'obstacle_objects': ['Hair Strand.004', 'Hair Strand.007', 'Hair Strand.010'], 'domain_in_active_scene': True}",
+    "starting bake_fluid_simulation_cmd() ...",
+    "bake returned {'FINISHED'} in 23.1 s | {'op_return': \"{'FINISHED'}\", 'wall_time_s': 23.1, 'num_baked_frames': 0, 'bake_progress': 0.0, 'is_bake_cancelled': False, 'is_simulation_running': False, 'export_success': True, 'export_filepath': 'C:\\\\EnvironmentPortfolio\\\\BS_GodFile\\\\KitbashExport\\\\flip_cache_melusina_waterhair_smoke\\\\export\\\\flipdata.sim', 'mem_after_bake': {'ok': 0, 'ws_gb': 0.0, 'peak_ws_gb': 0.0, 'commit_gb': 0.0, 'peak_commit_gb': 0.0, 'sys_commit_avail_gb': 3.19, 'sys_phys_avail_gb': 16.69}}",
+    "cache verify: 50 files, 20 .bobj (20 non-zero) frames=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] missing=[] total=0.2 KB",
+    "engine log untitled.txt: 37564 chars; 'Simulation Ended': False; 'TERMINATED': False"
+  ],
+  "memory": {
+    "addon_enabled": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.21,
+      "sys_phys_avail_gb": 16.94
+    },
+    "objects_appended": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.72,
+      "sys_phys_avail_gb": 17.26
+    },
+    "inventory": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.72,
+      "sys_phys_avail_gb": 17.26
+    },
+    "bounds_computed": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.71,
+      "sys_phys_avail_gb": 17.25
+    },
+    "domain_placed": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.71,
+      "sys_phys_avail_gb": 17.24
+    },
+    "objects_configured": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.56,
+      "sys_phys_avail_gb": 17.19
+    },
+    "domain_settings_applied": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.56,
+      "sys_phys_avail_gb": 17.18
+    },
+    "bake_finished": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.19,
+      "sys_phys_avail_gb": 16.69
+    },
+    "cache_verified": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.19,
+      "sys_phys_avail_gb": 16.7
+    },
+    "final": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.19,
+      "sys_phys_avail_gb": 16.73
+    }
+  },
+  "introspection": {
+    "blender": "5.2.1 LTS",
+    "flip_fluid_add_properties": [
+      {
+        "identifier": "rna_type",
+        "type": "POINTER",
+        "is_required": false,
+        "default": "n/a: AttributeError(\"'PointerProperty' object has no attribute 'default'\")",
+        "description": "RNA type definition"
+      }
+    ],
+    "bake_fluid_simulation_cmd_properties": [
+      "rna_type"
+    ],
+    "domain_subgroups": [
+      "rna_type",
+      "name",
+      "render",
+      "bake",
+      "simulation",
+      "cache",
+      "particles",
+      "surface",
+      "whitewater",
+      "world",
+      "presets",
+      "materials",
+      "advanced",
+      "debug",
+      "stats",
+      "mesh_cache",
+      "property_registry",
+      "domain_settings_tabbed_panel_view",
+      "is_updated_to_flip_fluids_version_180"
+    ],
+    "domain_simulation_properties": [
+      "rna_type",
+      "name",
+      "frame_range_mode",
+      "frame_range_custom",
+      "update_settings_on_resume",
+      "mesh_reexport_type_filter",
+      "enable_savestates",
+      "savestate_interval",
+      "delete_outdated_savestates",
+      "delete_outdated_meshes",
+      "selected_savestate",
+      "selected_savestate_int",
+      "resolution",
+      "preview_resolution",
+      "auto_preview_resolution",
+      "lock_cell_size",
+      "fluid_boundary_collisions",
+      "fluid_open_boundary_width",
+      "frame_rate_mode",
+      "frame_rate_custom",
+      "time_scale_mode",
+      "time_scale_object_soft_body",
+      "time_scale_object_cloth",
+      "time_scale_object_fluid",
+      "time_scale",
+      "locked_cell_size",
+      "frame_start",
+      "frame_end",
+      "more_bake_settings_expanded",
+      "skip_mesh_reexport_expanded",
+      "simulation_resolution_expanded",
+      "grid_info_expanded",
+      "simulation_method_expanded",
+      "world_scale_expanded",
+      "boundary_collisions_expanded",
+      "frame_rate_and_time_scale_expanded",
+      "last_selected_savestate_int",
+      "selected_savestate_int_label",
+      "current_isize",
+      "current_jsize",
+      "current_ksize",
+      "current_dx",
+      "savestate_isize",
+      "savestate_jsize",
+      "savestate_ksize",
+      "savestate_dx",
+      "upscale_trigger_factor",
+      "upscale_resolution_tooltip",
+      "grid_voxels_tooltip",
+      "grid_dimensions_tooltip",
+      "grid_voxel_size_tooltip",
+      "grid_voxel_count_tooltip"
+    ],
+    "domain_cache_properties": [
+      "rna_type",
+      "name",
+      "cache_directory",
+      "default_cache_directory",
+      "move_cache_directory",
+      "rename_cache_directory",
+      "copy_cache_directory",
+      "clear_cache_directory_logs",
+      "clear_cache_directory_export",
+      "logfile_name",
+      "linked_geometry_directory",
+      "is_cache_directory_set",
+      "cache_directory_expanded",
+      "link_exported_geometry_expanded",
+      "cache_operators_expanded"
+    ],
+    "domain_bake_properties": [
+      "rna_type",
+      "name",
+      "is_export_operator_running",
+      "is_export_operator_cancelled",
+      "export_progress",
+      "export_stage",
+      "export_filename",
+      "export_directory_name",
+      "export_filepath",
+      "export_success",
+      "is_simulation_running",
+      "bake_progress",
+      "is_bake_initialized",
+      "is_bake_cancelled",
+      "num_baked_frames",
+      "is_autosave_available",
+      "is_autosave_last_frame",
+      "is_safe_to_exit",
+      "autosave_frame_id",
+      "autosave_frame",
+      "original_frame_start"
+    ],
+    "inflow_properties": [
+      "rna_type",
+      "name",
+      "is_enabled",
+      "substep_emissions",
+      "inflow_velocity",
+      "append_object_velocity",
+      "append_object_velocity_influence",
+      "priority",
+      "inflow_velocity_mode",
+      "inflow_speed",
+      "inflow_axis_mode",
+      "target_object",
+      "export_animated_target",
+      "constrain_fluid_velocity",
+      "source_id",
+      "viscosity",
+      "lifetime",
+      "lifetime_variance",
+      "color",
+      "export_animated_mesh",
+      "skip_reexport",
+      "force_reexport_on_next_bake",
+      "property_registry",
+      "disabled_in_viewport_tooltip"
+    ],
+    "obstacle_properties": [
+      "rna_type",
+      "name",
+      "is_enabled",
+      "is_inversed",
+      "export_animated_mesh",
+      "skip_reexport",
+      "force_reexport_on_next_bake",
+      "friction",
+      "velocity_scale",
+      "whitewater_influence",
+      "dust_emission_strength",
+      "sheeting_strength",
+      "mesh_expansion",
+      "property_registry",
+      "disabled_in_viewport_tooltip"
+    ],
+    "object_type_enum_values": [
+      "TYPE_NONE",
+      "TYPE_DOMAIN",
+      "TYPE_FLUID",
+      "TYPE_OBSTACLE",
+      "TYPE_INFLOW",
+      "TYPE_OUTFLOW",
+      "TYPE_FORCE_FIELD"
+    ],
+    "note": "flip_fluid_add exposes no kwargs (bl_rna.properties == ['rna_type']); it flags the ACTIVE object via obj.flip_fluid.is_active. addon_utils.enable needs default_set=True headless (register() reads prefs.addons['flip_fluids_addon'])."
+  },
+  "append": {
+    "requested": [
+      "FF_MelusinaHair_Domain",
+      "FF_MelusinaHair_Drip",
+      "FF_MelusinaHair_Sheet",
+      "Hair Strand.004",
+      "Hair Strand.007",
+      "Hair Strand.010",
+      "SirMelodious_rig",
+      "rig"
+    ],
+    "appended": [
+      "FF_MelusinaHair_Domain",
+      "FF_MelusinaHair_Drip",
+      "FF_MelusinaHair_Sheet",
+      "Hair Strand.004",
+      "Hair Strand.007",
+      "Hair Strand.010",
+      "SirMelodious_rig",
+      "rig"
+    ],
+    "not_present_as_objects": [],
+    "seconds": 3.6,
+    "hair_rig_present": true
+  },
+  "target_inventory": {
+    "FF_MelusinaHair_Domain": {
+      "name": "FF_MelusinaHair_Domain",
+      "type": "MESH",
+      "hide_viewport": true,
+      "hide_render": true,
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [],
+      "location": [
+        -0.03916,
+        -0.1109,
+        -1.15098
+      ],
+      "scale": [
+        1.49868,
+        1.45768,
+        1.53868
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [],
+      "actions": false,
+      "verts": 8,
+      "polys": 6,
+      "ff": {
+        "is_active": true,
+        "object_type": "TYPE_DOMAIN"
+      }
+    },
+    "FF_MelusinaHair_Drip": {
+      "name": "FF_MelusinaHair_Drip",
+      "type": "MESH",
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [],
+      "location": [
+        -0.03916,
+        -0.1109,
+        1.31091
+      ],
+      "scale": [
+        0.35,
+        0.35,
+        0.63336
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [],
+      "actions": false,
+      "verts": 482,
+      "polys": 512,
+      "ff": {
+        "is_active": true,
+        "object_type": "TYPE_INFLOW"
+      }
+    },
+    "FF_MelusinaHair_Sheet": {
+      "name": "FF_MelusinaHair_Sheet",
+      "type": "MESH",
+      "hide_viewport": true,
+      "hide_render": true,
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [],
+      "location": [
+        0.0,
+        -0.22,
+        1.67443
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [],
+      "actions": false,
+      "verts": 8,
+      "polys": 6,
+      "ff": {
+        "is_active": true,
+        "object_type": "TYPE_INFLOW"
+      }
+    },
+    "Hair Strand.004": {
+      "name": "Hair Strand.004",
+      "type": "MESH",
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "character_rig",
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [
+        {
+          "name": "Armature",
+          "type": "ARMATURE",
+          "target": "character_rig"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [],
+      "actions": false,
+      "verts": 3104,
+      "polys": 3024,
+      "ff": {
+        "is_active": true,
+        "object_type": "TYPE_OBSTACLE"
+      }
+    },
+    "Hair Strand.007": {
+      "name": "Hair Strand.007",
+      "type": "MESH",
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "character_rig",
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [
+        {
+          "name": "Armature",
+          "type": "ARMATURE",
+          "target": "character_rig"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [],
+      "actions": false,
+      "verts": 26400,
+      "polys": 25290,
+      "ff": {
+        "is_active": true,
+        "object_type": "TYPE_OBSTACLE"
+      }
+    },
+    "Hair Strand.010": {
+      "name": "Hair Strand.010",
+      "type": "MESH",
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": "character_rig",
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [
+        {
+          "name": "Armature",
+          "type": "ARMATURE",
+          "target": "character_rig"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [],
+      "actions": false,
+      "verts": 7560,
+      "polys": 7380,
+      "ff": {
+        "is_active": false,
+        "object_type": "TYPE_NONE"
+      }
+    }
+  },
+  "rig_inventory": {
+    "SirMelodious_rig": {
+      "name": "SirMelodious_rig",
+      "type": "ARMATURE",
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [],
+      "location": [
+        -0.93962,
+        0.08921,
+        1.23355
+      ],
+      "scale": [
+        0.10676,
+        0.10676,
+        0.10676
+      ],
+      "rotation_euler": [
+        0.0,
+        -0.0,
+        0.32762
+      ],
+      "drivers": [
+        "pose.bones[\"forearm.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"forearm.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"forearm.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"forearm.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"hand.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"hand.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"hand.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"hand.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"hand.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"hand.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"hand.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"hand.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"arm.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"forearm.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"forearm.l\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"arm.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"forearm.l\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"forearm.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"arm.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"arm.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"arm.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"arm.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"forearm.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"forearm.r\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"forearm.r\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"forearm.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"arm.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"arm.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"hand.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"hand.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"forearm_ik.r\"].constraints[\"IK\"].influence",
+        "pose.bones[\"forearm_ik.l\"].constraints[\"IK\"].influence",
+        "pose.bones[\"arm_ik_nostr.r\"].scale",
+        "pose.bones[\"arm_ik_nostr.r\"].scale",
+        "pose.bones[\"arm_ik_nostr.r\"].scale",
+        "pose.bones[\"c_arm_fk.r\"].scale",
+        "pose.bones[\"c_arm_fk.r\"].scale",
+        "pose.bones[\"c_arm_fk.r\"].scale",
+        "pose.bones[\"c_arm_fk.l\"].scale",
+        "pose.bones[\"c_arm_fk.l\"].scale",
+        "pose.bones[\"c_arm_fk.l\"].scale",
+        "pose.bones[\"arm_ik_nostr.l\"].scale",
+        "pose.bones[\"arm_ik_nostr.l\"].scale",
+        "pose.bones[\"arm_ik_nostr.l\"].scale",
+        "pose.bones[\"thigh.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"thigh.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"thigh.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"ik_rot\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"ik_scale\"].influence",
+        "pose.bones[\"toes_01.l\"].constraints[\"ik_rot\"].influence",
+        "pose.bones[\"toes_01.l\"].constraints[\"ik_scale\"].influence",
+        "pose.bones[\"leg_ik.r\"].constraints[\"autostretch\"].influence",
+        "pose.bones[\"leg_ik.l\"].constraints[\"autostretch\"].influence",
+        "pose.bones[\"thigh_ik_nostr.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr.l\"].scale",
+        "pose.bones[\"thigh_ik_nostr.l\"].scale",
+        "pose.bones[\"thigh_ik_nostr.l\"].scale",
+        "pose.bones[\"c_thigh_fk.l\"].scale",
+        "pose.bones[\"c_thigh_fk.l\"].scale",
+        "pose.bones[\"c_thigh_fk.l\"].scale",
+        "pose.bones[\"c_thigh_fk.r\"].scale",
+        "pose.bones[\"c_thigh_fk.r\"].scale",
+        "pose.bones[\"c_thigh_fk.r\"].scale",
+        "pose.bones[\"toes_01.l\"].constraints[\"fk_rot\"].influence",
+        "pose.bones[\"toes_01.l\"].constraints[\"fk_scale\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"fk_rot\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"fk_scale\"].influence",
+        "pose.bones[\"c_stretch_arm.l\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"c_stretch_arm.r\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"c_stretch_leg.l\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"c_stretch_leg.r\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"foot_pole.l\"].location",
+        "pose.bones[\"foot_pole.r\"].location",
+        "pose.bones[\"head_scale_fix.x\"].constraints[\"Child Of\"].influence",
+        "pose.bones[\"leg_ik_nostr.l\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"leg_ik_nostr.r\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"forearm_ik_nostr.l\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"forearm_ik_nostr.r\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"c_leg_pole.l\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_leg_pole.l\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_leg_pole.r\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_leg_pole.r\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_arms_pole.l\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_arms_pole.l\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_arms_pole.r\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_arms_pole.r\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"head_scale_fix.x\"].constraints[\"Child Of_traj\"].influence",
+        "pose.bones[\"thigh_twist.l\"].rotation_euler",
+        "pose.bones[\"thigh_twist.r\"].rotation_euler",
+        "pose.bones[\"arm_twist_twk.r\"].rotation_euler",
+        "pose.bones[\"arm_twist_twk.l\"].rotation_euler",
+        "pose.bones[\"c_hand_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_hand_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arms_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arms_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arms_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arms_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arms_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arms_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_forearm_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_forearm_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_forearm_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_forearm_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_forearm_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_forearm_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_arm_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"arm_stretch.r\"].bbone_curveinx",
+        "pose.bones[\"arm_stretch.r\"].bbone_curveinz",
+        "pose.bones[\"arm_stretch.r\"].bbone_curveoutx",
+        "pose.bones[\"arm_stretch.r\"].bbone_curveoutz",
+        "pose.bones[\"arm_stretch.r\"].bbone_scalein",
+        "pose.bones[\"arm_stretch.r\"].bbone_scalein",
+        "pose.bones[\"arm_stretch.r\"].bbone_scalein",
+        "pose.bones[\"arm_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"arm_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"arm_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"arm_stretch.r\"].bbone_rollin",
+        "pose.bones[\"arm_stretch.r\"].bbone_rollout",
+        "pose.bones[\"arm_stretch.r\"].bbone_easein",
+        "pose.bones[\"arm_stretch.r\"].bbone_easeout",
+        "pose.bones[\"forearm_stretch.r\"].bbone_curveinx",
+        "pose.bones[\"forearm_stretch.r\"].bbone_curveinz",
+        "pose.bones[\"forearm_stretch.r\"].bbone_curveoutx",
+        "pose.bones[\"forearm_stretch.r\"].bbone_curveoutz",
+        "pose.bones[\"forearm_stretch.r\"].bbone_scalein",
+        "pose.bones[\"forearm_stretch.r\"].bbone_scalein",
+        "pose.bones[\"forearm_stretch.r\"].bbone_scalein",
+        "pose.bones[\"forearm_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"forearm_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"forearm_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"forearm_stretch.r\"].bbone_rollin",
+        "pose.bones[\"forearm_stretch.r\"].bbone_rollout",
+        "pose.bones[\"forearm_stretch.r\"].bbone_easein",
+        "pose.bones[\"forearm_stretch.r\"].bbone_easeout",
+        "pose.bones[\"arm_stretch.l\"].bbone_curveinx",
+        "pose.bones[\"arm_stretch.l\"].bbone_curveinz",
+        "pose.bones[\"arm_stretch.l\"].bbone_curveoutx",
+        "pose.bones[\"arm_stretch.l\"].bbone_curveoutz",
+        "pose.bones[\"arm_stretch.l\"].bbone_scalein",
+        "pose.bones[\"arm_stretch.l\"].bbone_scalein",
+        "pose.bones[\"arm_stretch.l\"].bbone_scalein",
+        "pose.bones[\"arm_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"arm_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"arm_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"arm_stretch.l\"].bbone_rollin",
+        "pose.bones[\"arm_stretch.l\"].bbone_rollout",
+        "pose.bones[\"arm_stretch.l\"].bbone_easein",
+        "pose.bones[\"arm_stretch.l\"].bbone_easeout",
+        "pose.bones[\"forearm_stretch.l\"].bbone_curveinx",
+        "pose.bones[\"forearm_stretch.l\"].bbone_curveinz",
+        "pose.bones[\"forearm_stretch.l\"].bbone_curveoutx",
+        "pose.bones[\"forearm_stretch.l\"].bbone_curveoutz",
+        "pose.bones[\"forearm_stretch.l\"].bbone_scalein",
+        "pose.bones[\"forearm_stretch.l\"].bbone_scalein",
+        "pose.bones[\"forearm_stretch.l\"].bbone_scalein",
+        "pose.bones[\"forearm_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"forearm_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"forearm_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"forearm_stretch.l\"].bbone_rollin",
+        "pose.bones[\"forearm_stretch.l\"].bbone_rollout",
+        "pose.bones[\"forearm_stretch.l\"].bbone_easein",
+        "pose.bones[\"forearm_stretch.l\"].bbone_easeout",
+        "pose.bones[\"thigh_stretch.l\"].bbone_curveinx",
+        "pose.bones[\"thigh_stretch.l\"].bbone_curveinz",
+        "pose.bones[\"thigh_stretch.l\"].bbone_curveoutx",
+        "pose.bones[\"thigh_stretch.l\"].bbone_curveoutz",
+        "pose.bones[\"thigh_stretch.l\"].bbone_scalein",
+        "pose.bones[\"thigh_stretch.l\"].bbone_scalein",
+        "pose.bones[\"thigh_stretch.l\"].bbone_scalein",
+        "pose.bones[\"thigh_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"thigh_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"thigh_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"thigh_stretch.l\"].bbone_rollin",
+        "pose.bones[\"thigh_stretch.l\"].bbone_rollout",
+        "pose.bones[\"thigh_stretch.l\"].bbone_easein",
+        "pose.bones[\"thigh_stretch.l\"].bbone_easeout",
+        "pose.bones[\"leg_stretch.l\"].bbone_curveinx",
+        "pose.bones[\"leg_stretch.l\"].bbone_curveinz",
+        "pose.bones[\"leg_stretch.l\"].bbone_curveoutx",
+        "pose.bones[\"leg_stretch.l\"].bbone_curveoutz",
+        "pose.bones[\"leg_stretch.l\"].bbone_scalein",
+        "pose.bones[\"leg_stretch.l\"].bbone_scalein",
+        "pose.bones[\"leg_stretch.l\"].bbone_scalein",
+        "pose.bones[\"leg_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"leg_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"leg_stretch.l\"].bbone_scaleout",
+        "pose.bones[\"leg_stretch.l\"].bbone_rollin",
+        "pose.bones[\"leg_stretch.l\"].bbone_rollout",
+        "pose.bones[\"leg_stretch.l\"].bbone_easein",
+        "pose.bones[\"leg_stretch.l\"].bbone_easeout",
+        "pose.bones[\"thigh_stretch.r\"].bbone_curveinx",
+        "pose.bones[\"thigh_stretch.r\"].bbone_curveinz",
+        "pose.bones[\"thigh_stretch.r\"].bbone_curveoutx",
+        "pose.bones[\"thigh_stretch.r\"].bbone_curveoutz",
+        "pose.bones[\"thigh_stretch.r\"].bbone_scalein",
+        "pose.bones[\"thigh_stretch.r\"].bbone_scalein",
+        "pose.bones[\"thigh_stretch.r\"].bbone_scalein",
+        "pose.bones[\"thigh_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"thigh_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"thigh_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"thigh_stretch.r\"].bbone_rollin",
+        "pose.bones[\"thigh_stretch.r\"].bbone_rollout",
+        "pose.bones[\"thigh_stretch.r\"].bbone_easein",
+        "pose.bones[\"thigh_stretch.r\"].bbone_easeout",
+        "pose.bones[\"leg_stretch.r\"].bbone_curveinx",
+        "pose.bones[\"leg_stretch.r\"].bbone_curveinz",
+        "pose.bones[\"leg_stretch.r\"].bbone_curveoutx",
+        "pose.bones[\"leg_stretch.r\"].bbone_curveoutz",
+        "pose.bones[\"leg_stretch.r\"].bbone_scalein",
+        "pose.bones[\"leg_stretch.r\"].bbone_scalein",
+        "pose.bones[\"leg_stretch.r\"].bbone_scalein",
+        "pose.bones[\"leg_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"leg_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"leg_stretch.r\"].bbone_scaleout",
+        "pose.bones[\"leg_stretch.r\"].bbone_rollin",
+        "pose.bones[\"leg_stretch.r\"].bbone_rollout",
+        "pose.bones[\"leg_stretch.r\"].bbone_easein",
+        "pose.bones[\"leg_stretch.r\"].bbone_easeout",
+        "pose.bones[\"spline_03.x\"].constraints[\"Spline IK\"].y_scale_mode",
+        "pose.bones[\"spline_03.x\"].constraints[\"Spline IK\"].xz_scale_mode",
+        "pose.bones[\"spline_03.x\"].constraints[\"Spline IK\"].bulge"
+      ],
+      "actions": true,
+      "ff": {
+        "is_active": false,
+        "object_type": "TYPE_NONE"
+      }
+    },
+    "rig": {
+      "name": "rig",
+      "type": "ARMATURE",
+      "hide_viewport": false,
+      "hide_render": false,
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ],
+      "modifiers": [],
+      "location": [
+        2.53967,
+        0.0,
+        0.01951
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "drivers": [
+        "pose.bones[\"thigh.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"thigh.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"thigh.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"leg.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"leg.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"ik_rot\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"ik_scale\"].influence",
+        "pose.bones[\"toes_01.l\"].constraints[\"ik_rot\"].influence",
+        "pose.bones[\"toes_01.l\"].constraints[\"ik_scale\"].influence",
+        "pose.bones[\"leg_ik.r\"].constraints[\"autostretch\"].influence",
+        "pose.bones[\"leg_ik.l\"].constraints[\"autostretch\"].influence",
+        "pose.bones[\"thigh_ik_nostr.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr.l\"].scale",
+        "pose.bones[\"thigh_ik_nostr.l\"].scale",
+        "pose.bones[\"thigh_ik_nostr.l\"].scale",
+        "pose.bones[\"c_thigh_fk.l\"].scale",
+        "pose.bones[\"c_thigh_fk.l\"].scale",
+        "pose.bones[\"c_thigh_fk.l\"].scale",
+        "pose.bones[\"c_thigh_fk.r\"].scale",
+        "pose.bones[\"c_thigh_fk.r\"].scale",
+        "pose.bones[\"c_thigh_fk.r\"].scale",
+        "pose.bones[\"toes_01.l\"].constraints[\"fk_rot\"].influence",
+        "pose.bones[\"toes_01.l\"].constraints[\"fk_scale\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"fk_rot\"].influence",
+        "pose.bones[\"toes_01.r\"].constraints[\"fk_scale\"].influence",
+        "pose.bones[\"c_stretch_leg.l\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"c_stretch_leg.r\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"foot_pole.l\"].location",
+        "pose.bones[\"foot_pole.r\"].location",
+        "pose.bones[\"head_scale_fix.x\"].constraints[\"Child Of\"].influence",
+        "pose.bones[\"thigh_dupli_001.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"thigh_dupli_001.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"leg_dupli_001.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"leg_dupli_001.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"leg_dupli_001.l\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"foot_dupli_001.l\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"foot_dupli_001.l\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"foot_dupli_001.l\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"thigh_dupli_001.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh_dupli_001.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"leg_dupli_001.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"leg_dupli_001.l\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"leg_dupli_001.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot_dupli_001.l\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot_dupli_001.l\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"toes_01_dupli_001.l\"].constraints[\"ik_rot\"].influence",
+        "pose.bones[\"toes_01_dupli_001.l\"].constraints[\"ik_scale\"].influence",
+        "pose.bones[\"leg_ik_dupli_001.l\"].constraints[\"autostretch\"].influence",
+        "pose.bones[\"thigh_ik_nostr_dupli_001.l\"].scale",
+        "pose.bones[\"thigh_ik_nostr_dupli_001.l\"].scale",
+        "pose.bones[\"thigh_ik_nostr_dupli_001.l\"].scale",
+        "pose.bones[\"c_thigh_fk_dupli_001.l\"].scale",
+        "pose.bones[\"c_thigh_fk_dupli_001.l\"].scale",
+        "pose.bones[\"c_thigh_fk_dupli_001.l\"].scale",
+        "pose.bones[\"toes_01_dupli_001.l\"].constraints[\"fk_rot\"].influence",
+        "pose.bones[\"toes_01_dupli_001.l\"].constraints[\"fk_scale\"].influence",
+        "pose.bones[\"c_stretch_leg_dupli_001.l\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"foot_pole_dupli_001.l\"].location",
+        "pose.bones[\"thigh_dupli_001.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"thigh_dupli_001.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"leg_dupli_001.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"leg_dupli_001.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"leg_dupli_001.r\"].constraints[\"Stretch To\"].influence",
+        "pose.bones[\"foot_dupli_001.r\"].constraints[\"rotIK\"].influence",
+        "pose.bones[\"foot_dupli_001.r\"].constraints[\"scaleIK\"].influence",
+        "pose.bones[\"foot_dupli_001.r\"].constraints[\"locIK\"].influence",
+        "pose.bones[\"thigh_dupli_001.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"thigh_dupli_001.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"leg_dupli_001.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"leg_dupli_001.r\"].constraints[\"locFK\"].influence",
+        "pose.bones[\"leg_dupli_001.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot_dupli_001.r\"].constraints[\"scaleFK\"].influence",
+        "pose.bones[\"foot_dupli_001.r\"].constraints[\"rotFK\"].influence",
+        "pose.bones[\"toes_01_dupli_001.r\"].constraints[\"ik_rot\"].influence",
+        "pose.bones[\"toes_01_dupli_001.r\"].constraints[\"ik_scale\"].influence",
+        "pose.bones[\"leg_ik_dupli_001.r\"].constraints[\"autostretch\"].influence",
+        "pose.bones[\"thigh_ik_nostr_dupli_001.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr_dupli_001.r\"].scale",
+        "pose.bones[\"thigh_ik_nostr_dupli_001.r\"].scale",
+        "pose.bones[\"c_thigh_fk_dupli_001.r\"].scale",
+        "pose.bones[\"c_thigh_fk_dupli_001.r\"].scale",
+        "pose.bones[\"c_thigh_fk_dupli_001.r\"].scale",
+        "pose.bones[\"toes_01_dupli_001.r\"].constraints[\"fk_rot\"].influence",
+        "pose.bones[\"toes_01_dupli_001.r\"].constraints[\"fk_scale\"].influence",
+        "pose.bones[\"c_stretch_leg_dupli_001.r\"].constraints[\"Copy Location\"].influence",
+        "pose.bones[\"foot_pole_dupli_001.r\"].location",
+        "pose.bones[\"c_eyelid_base.l\"].constraints[\"Copy Rotation\"].influence",
+        "pose.bones[\"c_eyelid_base.r\"].constraints[\"Copy Rotation\"].influence",
+        "pose.bones[\"c_lips_bot_offset.r\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_bot_offset.l\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_top_01_offset.l\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_bot_01_offset.l\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_bot_01_offset.r\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_bot_offset.x\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_smile_offset.r\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_smile_offset.l\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_top_offset.x\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_top_01_offset.r\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_top_offset.r\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_top_offset.l\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"jaw_ret_bone.x\"].scale",
+        "pose.bones[\"leg_ik_nostr.l\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"leg_ik_nostr.r\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"leg_ik_nostr_dupli_001.l\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"leg_ik_nostr_dupli_001.r\"].constraints[\"IK\"].pole_angle",
+        "pose.bones[\"c_leg_pole.l\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_leg_pole.l\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_leg_pole.r\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_leg_pole.r\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_leg_pole_dupli_001.l\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_leg_pole_dupli_001.l\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_leg_pole_dupli_001.r\"].constraints[\"Child Of_local\"].influence",
+        "pose.bones[\"c_leg_pole_dupli_001.r\"].constraints[\"Child Of_global\"].influence",
+        "pose.bones[\"c_eye.r\"].constraints[\"Damped Track\"].influence",
+        "pose.bones[\"c_eye.l\"].constraints[\"Damped Track\"].influence",
+        "pose.bones[\"head_scale_fix.x\"].constraints[\"Child Of_traj\"].influence",
+        "pose.bones[\"thigh_twist.l\"].rotation_euler",
+        "pose.bones[\"thigh_twist.r\"].rotation_euler",
+        "pose.bones[\"thigh_twist_dupli_001.l\"].rotation_euler",
+        "pose.bones[\"thigh_twist_dupli_001.r\"].rotation_euler",
+        "pose.bones[\"thigh_b_ik03_dupli_001.l\"].constraints[\"IK\"].influence",
+        "pose.bones[\"thigh_b_ik03_dupli_001.r\"].constraints[\"IK\"].influence",
+        "pose.bones[\"thigh_b_ik03.r\"].constraints[\"IK\"].influence",
+        "pose.bones[\"thigh_b_ik03.l\"].constraints[\"IK\"].influence",
+        "pose.bones[\"c_lips_corner_mini_offset.l\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_lips_corner_mini_offset.r\"].constraints[\"Copy Transforms\"].influence",
+        "pose.bones[\"c_foot_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_roll_cursor_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_foot_01_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_pole_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_leg_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_toes_fk_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"c_thigh_ik_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line_dupli_001.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line_dupli_001.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.r\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.l\"].custom_shape_scale_xyz",
+        "pose.bones[\"leg_pole_line.l\"].custom_shape_scale_xyz"
+      ],
+      "actions": false,
+      "ff": {
+        "is_active": false,
+        "object_type": "TYPE_NONE"
+      }
+    }
+  },
+  "bounds": {
+    "Hair Strand.004": {
+      "f1": {
+        "min": [
+          -0.26992,
+          -0.3731,
+          0.97906
+        ],
+        "max": [
+          0.22804,
+          -0.18697,
+          1.73482
+        ],
+        "size": [
+          0.49796,
+          0.18613,
+          0.75576
+        ]
+      },
+      "f10": {
+        "min": [
+          -0.26992,
+          -0.3731,
+          0.97906
+        ],
+        "max": [
+          0.22804,
+          -0.18697,
+          1.73482
+        ],
+        "size": [
+          0.49796,
+          0.18613,
+          0.75576
+        ]
+      }
+    },
+    "Hair Strand.007": {
+      "f1": {
+        "min": [
+          -0.38621,
+          -0.33566,
+          0.73512
+        ],
+        "max": [
+          0.39586,
+          0.25264,
+          1.88669
+        ],
+        "size": [
+          0.78208,
+          0.58831,
+          1.15157
+        ]
+      },
+      "f10": {
+        "min": [
+          -0.38621,
+          -0.33566,
+          0.73512
+        ],
+        "max": [
+          0.39586,
+          0.25264,
+          1.88669
+        ],
+        "size": [
+          0.78208,
+          0.58831,
+          1.15157
+        ]
+      }
+    },
+    "Hair Strand.010": {
+      "f1": {
+        "min": [
+          -0.13893,
+          -0.4238,
+          1.46397
+        ],
+        "max": [
+          0.13993,
+          -0.28019,
+          1.77321
+        ],
+        "size": [
+          0.27886,
+          0.14361,
+          0.30924
+        ]
+      },
+      "f10": {
+        "min": [
+          -0.13893,
+          -0.4238,
+          1.46397
+        ],
+        "max": [
+          0.13993,
+          -0.28019,
+          1.77321
+        ],
+        "size": [
+          0.27886,
+          0.14361,
+          0.30924
+        ]
+      }
+    },
+    "FF_MelusinaHair_Drip": {
+      "f1": {
+        "min": [
+          -0.06016,
+          -0.1319,
+          1.2729
+        ],
+        "max": [
+          -0.01816,
+          -0.0899,
+          1.34891
+        ],
+        "size": [
+          0.042,
+          0.042,
+          0.076
+        ]
+      },
+      "f10": {
+        "min": [
+          -0.06016,
+          -0.1319,
+          1.2729
+        ],
+        "max": [
+          -0.01816,
+          -0.0899,
+          1.34891
+        ],
+        "size": [
+          0.042,
+          0.042,
+          0.076
+        ]
+      }
+    }
+  },
+  "union_bounds": {
+    "min": [
+      -0.38621,
+      -0.4238,
+      0.73512
+    ],
+    "max": [
+      0.39586,
+      0.25264,
+      1.88669
+    ],
+    "size": [
+      0.78208,
+      0.67644,
+      1.15157
+    ]
+  },
+  "bounds_sanity_check": {
+    "expected_region": {
+      "min": [
+        -0.5,
+        -0.5,
+        0.0
+      ],
+      "max": [
+        0.5,
+        0.5,
+        2.5
+      ]
+    },
+    "inside_expected_region": true
+  },
+  "domain_placement": {
+    "local_mesh_size": [
+      1.1,
+      1.1,
+      1.4
+    ],
+    "target_min": [
+      -0.50352,
+      -0.52526,
+      0.61996
+    ],
+    "target_max": [
+      0.51317,
+      0.35411,
+      2.28974
+    ],
+    "applied_scale": [
+      0.92427,
+      0.79943,
+      1.1927
+    ],
+    "applied_location": [
+      0.00482,
+      -0.08558,
+      -0.45346
+    ],
+    "animation_cleared": false,
+    "evaluated_world_min": [
+      -0.50352,
+      -0.52526,
+      0.61996
+    ],
+    "evaluated_world_max": [
+      0.51317,
+      0.35411,
+      2.28974
+    ],
+    "encloses_hair_and_drip": true,
+    "longest_side": 1.66977,
+    "voxel_size_at_res24": 0.06957,
+    "drip_max_dim": 0.076,
+    "drip_over_voxel": 1.092
+  },
+  "objects_configured": {
+    "domain": {
+      "op_return": null,
+      "is_active": true,
+      "object_type": "TYPE_DOMAIN"
+    },
+    "inflow": {
+      "op_return": null,
+      "is_active": true,
+      "object_type": "TYPE_INFLOW",
+      "pre_inflow_velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pre_is_enabled": true,
+      "velocity_seeded_by_this_run": true,
+      "inflow_velocity": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "is_enabled": true,
+      "substep_emissions": 1
+    },
+    "obstacles": {
+      "Hair Strand.004": {
+        "op_return": null,
+        "is_active": true,
+        "object_type": "TYPE_OBSTACLE",
+        "pre": {
+          "object_type": "TYPE_OBSTACLE",
+          "export_animated_mesh": false
+        },
+        "export_animated_mesh": true,
+        "verts": 3104
+      },
+      "Hair Strand.007": {
+        "op_return": null,
+        "is_active": true,
+        "object_type": "TYPE_OBSTACLE",
+        "pre": {
+          "object_type": "TYPE_OBSTACLE",
+          "export_animated_mesh": false
+        },
+        "export_animated_mesh": true,
+        "verts": 26400
+      },
+      "Hair Strand.010": {
+        "op_return": "{'FINISHED'}",
+        "is_active": true,
+        "object_type": "TYPE_OBSTACLE",
+        "pre": {
+          "object_type": "TYPE_NONE",
+          "export_animated_mesh": false
+        },
+        "export_animated_mesh": true,
+        "verts": 7560
+      }
+    },
+    "sheet_left_as_authored": {
+      "object_type": "TYPE_INFLOW",
+      "is_active": true,
+      "note": "file already had this proxy as an inflow; task spec did not ask to change it, so it was left alone"
+    }
+  },
+  "domain_settings": {
+    "resolution": 24,
+    "preview_resolution": 12,
+    "frame_range_mode": "FRAME_RANGE_TIMELINE",
+    "get_frame_range": [
+      1,
+      10
+    ],
+    "scene_frames": [
+      1,
+      10
+    ],
+    "cache_directory": "C:/EnvironmentPortfolio/BS_GodFile/KitbashExport/flip_cache_melusina_waterhair_smoke",
+    "cache_abspath": "C:\\EnvironmentPortfolio\\BS_GodFile\\KitbashExport\\flip_cache_melusina_waterhair_smoke",
+    "export_directory_name": "export",
+    "export_filename": "flipdata.sim",
+    "grid_voxel_size_tooltip": true,
+    "grid_dimensions_tooltip": true
+  },
+  "addon_view_of_objects": {
+    "num_domain_objects": 1,
+    "domain_object": "FF_MelusinaHair_Domain",
+    "inflow_objects": [
+      "FF_MelusinaHair_Drip",
+      "FF_MelusinaHair_Sheet"
+    ],
+    "obstacle_objects": [
+      "Hair Strand.004",
+      "Hair Strand.007",
+      "Hair Strand.010"
+    ],
+    "domain_in_active_scene": true
+  },
+  "cache_state_pre_bake": [],
+  "bake": {
+    "op_return": "{'FINISHED'}",
+    "wall_time_s": 23.1,
+    "num_baked_frames": 0,
+    "bake_progress": 0.0,
+    "is_bake_cancelled": false,
+    "is_simulation_running": false,
+    "export_success": true,
+    "export_filepath": "C:\\EnvironmentPortfolio\\BS_GodFile\\KitbashExport\\flip_cache_melusina_waterhair_smoke\\export\\flipdata.sim",
+    "mem_after_bake": {
+      "ok": 0,
+      "ws_gb": 0.0,
+      "peak_ws_gb": 0.0,
+      "commit_gb": 0.0,
+      "peak_commit_gb": 0.0,
+      "sys_commit_avail_gb": 3.19,
+      "sys_phys_avail_gb": 16.69
+    }
+  },
+  "cache_verification": {
+    "exists": true,
+    "files": [
+      {
+        "rel": "./flipstats.data",
+        "bytes": 78540,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/000001.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/000002.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/000003.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/000004.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/000005.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/000006.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/000007.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/000008.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/000009.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/000010.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/bounds000001.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/bounds000002.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/bounds000003.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/bounds000004.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/bounds000005.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/bounds000006.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/bounds000007.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/bounds000008.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/bounds000009.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/bounds000010.bbox",
+        "bytes": 230,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/finished000001.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/finished000002.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/finished000003.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/finished000004.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/finished000005.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/finished000006.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/finished000007.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/finished000008.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/finished000009.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/finished000010.txt",
+        "bytes": 6,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/preview000001.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/preview000002.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "bakefiles/preview000003.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/preview000004.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:39"
+      },
+      {
+        "rel": "bakefiles/preview000005.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/preview000006.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:40"
+      },
+      {
+        "rel": "bakefiles/preview000007.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/preview000008.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:41"
+      },
+      {
+        "rel": "bakefiles/preview000009.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "bakefiles/preview000010.bobj",
+        "bytes": 8,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "export/export_data.sqlite3",
+        "bytes": 13340672,
+        "mtime": "2026-09-22T00:37:30"
+      },
+      {
+        "rel": "export/flipdata.sim",
+        "bytes": 40855,
+        "mtime": "2026-09-22T00:37:30"
+      },
+      {
+        "rel": "logs/untitled.txt",
+        "bytes": 38381,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "savestates/autosave/autosave.state",
+        "bytes": 1036,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "savestates/autosave/marker_particle_position.data",
+        "bytes": 0,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "savestates/autosave/marker_particle_velocity.data",
+        "bytes": 0,
+        "mtime": "2026-09-22T00:37:42"
+      },
+      {
+        "rel": "savestates/autosave000001/autosave.state",
+        "bytes": 1035,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "savestates/autosave000001/marker_particle_position.data",
+        "bytes": 0,
+        "mtime": "2026-09-22T00:37:38"
+      },
+      {
+        "rel": "savestates/autosave000001/marker_particle_velocity.data",
+        "bytes": 0,
+        "mtime": "2026-09-22T00:37:38"
+      }
+    ],
+    "tree": {
+      ".": 1,
+      "bakefiles": 40,
+      "export": 2,
+      "logs": 1,
+      "savestates": 0,
+      "savestates/autosave": 3,
+      "savestates/autosave000001": 3,
+      "temp": 0
+    },
+    "listing": [
+      "000001.bobj",
+      "000002.bobj",
+      "000003.bobj",
+      "000004.bobj",
+      "000005.bobj",
+      "000006.bobj",
+      "000007.bobj",
+      "000008.bobj",
+      "000009.bobj",
+      "000010.bobj",
+      "bounds000001.bbox",
+      "bounds000002.bbox",
+      "bounds000003.bbox",
+      "bounds000004.bbox",
+      "bounds000005.bbox",
+      "bounds000006.bbox",
+      "bounds000007.bbox",
+      "bounds000008.bbox",
+      "bounds000009.bbox",
+      "bounds000010.bbox",
+      "finished000001.txt",
+      "finished000002.txt",
+      "finished000003.txt",
+      "finished000004.txt",
+      "finished000005.txt",
+      "finished000006.txt",
+      "finished000007.txt",
+      "finished000008.txt",
+      "finished000009.txt",
+      "finished000010.txt",
+      "preview000001.bobj",
+      "preview000002.bobj",
+      "preview000003.bobj",
+      "preview000004.bobj",
+      "preview000005.bobj",
+      "preview000006.bobj",
+      "preview000007.bobj",
+      "preview000008.bobj",
+      "preview000009.bobj",
+      "preview000010.bobj"
+    ],
+    "bobj_count": 20,
+    "bobj_nonzero": 20,
+    "bobj_total_bytes": 160,
+    "frames_present": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "frames_expected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "missing_frames": [],
+    "newest_mtime": "2026-09-22T00:37:42",
+    "file_count": 50,
+    "engine_logs": {
+      "untitled.txt": {
+        "bytes": 37564,
+        "tail": "arker Particle Attributes\n22-Sep-2026 00h37m42s BEGIN       Generate Output Data\n22-Sep-2026 00h37m42s COMPLETE    Generate Output Data\n22-Sep-2026 00h37m42s BEGIN       Generate Surface Mesh\n22-Sep-2026 00h37m42s COMPLETE    Generate Surface Mesh\n\n*** Time Step Stats ***\n\nFluid Particles:   0\nFluid Cells:       0\n\nStep Update Time:   0.077\n\n*** Frame Timing Stats ***\n\nUpdate Obstacle Objects                 0.031s    39.7%  ||||||||||||||||||||||||\nUpdate Liquid Level Set                 0.000s     0.0%  |\nAdvect Velocity Field                   0.000s     0.0%  |\nSave Velocity Field                     0.000s     0.0%  |\nCalculate Surface Curvature             0.000s     0.0%  |\nApply Force Fields                      0.000s     0.0%  |\nApply Viscosity                         0.000s     0.0%  |\nSolve Pressure System                   0.000s     0.0%  |\nConstrain Velocity Fields               0.047s    60.3%  |||||||||||||||||||||||||||||||||||||\nSimulate Diffuse Material               0.000s     0.0%  |\nUpdate Sheet Seeding                    0.000s     0.0%  |\nUpdate Marker Particle Attributes       0.000s     0.0%  |\nDelete Saved Velocity Field             0.000s     0.0%  |\nAdvance Marker Particles                0.000s     0.0%  |\nUpdate Fluid Objects                    0.000s     0.0%  |\nOutput Simulation Data                  0.000s     0.0%  |\nGenerate Surface Mesh                   0.000s     0.0%  |\n\nPerformance Score:   -1\n\nFrame Time:   0.077\nTotal Time:   8.25\n\n"
+      }
+    }
+  },
+  "smoke_bake_success": true,
+  "wall_time_s": 27.6
+}

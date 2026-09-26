@@ -1,0 +1,105 @@
+{
+ "schema": "melodia.bake_staging_reexport.v2",
+ "renamed_materials": [
+  {
+   "old": "Cloud Shader *.001",
+   "new": "Cloud_Shader__star_.001"
+  },
+  {
+   "old": "Cloud Shader *.002",
+   "new": "Cloud_Shader__star_.002"
+  },
+  {
+   "old": "Cloud Shader *.005",
+   "new": "Cloud_Shader__star_.005"
+  },
+  {
+   "old": "Outline Shader *.001",
+   "new": "Outline_Shader__star_.001"
+  },
+  {
+   "old": "Outline Shader *.002",
+   "new": "Outline_Shader__star_.002"
+  },
+  {
+   "old": "Outline Shader *.003",
+   "new": "Outline_Shader__star_.003"
+  },
+  {
+   "old": "Outline Shader *.004",
+   "new": "Outline_Shader__star_.004"
+  },
+  {
+   "old": "Outline Shader *.005",
+   "new": "Outline_Shader__star_.005"
+  },
+  {
+   "old": "Outline Shader *.006",
+   "new": "Outline_Shader__star_.006"
+  },
+  {
+   "old": "Outline Shader *.007",
+   "new": "Outline_Shader__star_.007"
+  },
+  {
+   "old": "Outline Shader *.008",
+   "new": "Outline_Shader__star_.008"
+  },
+  {
+   "old": "Outline Shader *.013",
+   "new": "Outline_Shader__star_.013"
+  },
+  {
+   "old": "Outline Shader *.022",
+   "new": "Outline_Shader__star_.022"
+  },
+  {
+   "old": "Outline Shader *.023",
+   "new": "Outline_Shader__star_.023"
+  },
+  {
+   "old": "Outline Shader *.024",
+   "new": "Outline_Shader__star_.024"
+  },
+  {
+   "old": "Outline Shader *.025",
+   "new": "Outline_Shader__star_.025"
+  },
+  {
+   "old": "Outline Shader *.026",
+   "new": "Outline_Shader__star_.026"
+  },
+  {
+   "old": "Outline Shader *.027",
+   "new": "Outline_Shader__star_.027"
+  },
+  {
+   "old": "Outline Shader *.028",
+   "new": "Outline_Shader__star_.028"
+  },
+  {
+   "old": "Outline Shader *.030",
+   "new": "Outline_Shader__star_.030"
+  },
+  {
+   "old": "Outline Shader *.032",
+   "new": "Outline_Shader__star_.032"
+  },
+  {
+   "old": "Tree Shader *",
+   "new": "Tree_Shader__star_"
+  }
+ ],
+ "results": [
+  {
+   "object": "Hair Strand.004",
+   "stem": "Melusina_HairA_Strand004",
+   "verdict": "EXPORT_FAILED"
+  },
+  {
+   "object": "Hair Strand.007",
+   "stem": "Melusina_HairB_Strand007",
+   "verdict": "EXPORT_FAILED"
+  }
+ ]
+}

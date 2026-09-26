@@ -49,12 +49,14 @@ SUITES = (
     Suite("Tools/test_melodia_blessing_burden_contract.py", re.compile(r"validated Blessing/Burden contract")),
     Suite("Tools/test_melodia_wardrobe_transaction_contract.py", re.compile(r"validated Melodia wardrobe transaction contract")),
     Suite("Tools/test_melusina_skin_topology_contract.py", re.compile(r"validated Melusina skin topology contract")),
-    Suite("Tools/test_validate_source_control_ownership.py", re.compile(r"source-control ownership validator contract \(4 assertions\)")),
+    Suite("Tools/test_validate_source_control_ownership.py", re.compile(r"source-control ownership validator contract \(9 assertions\)")),
+    Suite("Tools/test_world_atlas.py", re.compile(r"world atlas contract tests \(8 assertions\)")),
     Suite("Tools/test_guard_protected_assets.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_git_ok.py", re.compile(r"===\s+(\d+)/(\d+) passed ===")),
     Suite("Tools/test_art_gates_authority.py", re.compile(r"Ran\s+4 tests.*\bOK\b", re.S)),
     Suite("Tools/test_artdrop_archive.py", re.compile(r"Ran\s+3 tests.*\bOK\b", re.S)),
     Suite("Tools/test_faraway_mother_pcg.py", re.compile(r"Ran\s+5 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_universe_foundry.py", re.compile(r"Ran\s+7 tests.*\bOK\b", re.S)),
     Suite("Tools/test_optical_lod_lookdev.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_melodia_package_launch_contract.py", re.compile(r"validated Melusina package-launch montage contract")),
     Suite("Tools/test_mcp_policy.py", re.compile(r"mcp-policy-tests:\s+\d+/\d+ passed")),
@@ -69,7 +71,7 @@ SUITES = (
 
 # This is intentionally independent of len(SUITES): removing a suite must make
 # the gate fail instead of lowering its own coverage floor.
-MINIMUM_SUITE_COUNT = 28
+MINIMUM_SUITE_COUNT = 30
 
 # These suites are self-contained in a Git checkout. The remaining suites
 # require Perforce-synced content, materialized LFS binaries, ignored local MCP
@@ -88,11 +90,13 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Tools/test_melodia_bp_registry_contract.py",
         "Tools/test_melodia_wardrobe_transaction_contract.py",
         "Tools/test_validate_source_control_ownership.py",
+        "Tools/test_world_atlas.py",
         "Tools/test_guard_protected_assets.py",
         "Tools/test_git_ok.py",
         "Tools/test_art_gates_authority.py",
         "Tools/test_artdrop_archive.py",
         "Tools/test_faraway_mother_pcg.py",
+        "Tools/test_universe_foundry.py",
         "Tools/test_mcp_policy.py",
         "Tools/test_evidence_envelope.py",
         "Tools/test_ollama_health.py",
@@ -101,7 +105,7 @@ OFFLINE_SUITE_PATHS = frozenset(
         "Docs/T3D_Baseline/test_canonical.py",
     }
 )
-MINIMUM_OFFLINE_SUITE_COUNT = 22
+MINIMUM_OFFLINE_SUITE_COUNT = 24
 
 
 def run_suite(suite: Suite) -> dict[str, object]:

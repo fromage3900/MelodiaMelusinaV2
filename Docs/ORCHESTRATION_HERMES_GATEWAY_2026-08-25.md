@@ -149,6 +149,49 @@ compensate; no parallel authority over the same surface; never run destructive g
 
 ---
 
+## 7. Universe Foundry mission dispatch
+
+For world-scale production, Hermes may consume the deterministic mission emitted by `Tools/universe_foundry.py`. The mission DAG does not replace Hermes memory/gates and does not execute tools itself; it gives Hermes a content-addressed set of legal specialist jobs, dependencies, stop conditions and evidence requirements.
+
+Faraway Mother World Zero:
+
+```bash
+python Tools/universe_foundry.py compile \
+  --genome specs/universe/faraway_mother.world_genome.v1.json \
+  --delta specs/universe/faraway_mother.resolved_demo.world_delta.v1.json
+```
+
+Hermes dispatches ready tasks through existing lanes. Jev is called only for tasks whose `owner=jev`, and those tasks always carry closed candidate sets. A fixture delta may exercise orchestration but may not certify persistence.
+
+Durable contract: `Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md`.
+
+---
+
+## 8. Specialist model fleet setup — 2026-09-23
+
+The current setup/benchmark plan for new model specialists is:
+
+`Docs/Plans/HERMES_SPECIALIST_MODEL_FLEET_SETUP_2026-09-23.md`
+
+Machine-readable candidates:
+
+`specs/orchestration/hermes_specialist_fleet.candidates.v1.json`
+
+Rules:
+
+- this is **not live routing policy**;
+- do not modify `Tools/model_router.py` merely because a provider connects;
+- run the plan's canaries and record cost/latency/evidence first;
+- credentials remain outside Git;
+- restore the previous Hermes default after provider canaries unless the owner explicitly promotes a candidate;
+- modality-specific systems (HappyOyster, image, voice, avatar) receive purpose-built sidecars rather than being forced into a text chat router;
+- first recommended setup canary is MiMo V2.6 Pro because Xiaomi publishes a first-party Hermes Agent integration guide;
+- Muse Code runs through WSL on the Windows workstation unless Meta publishes a supported native Windows path.
+
+Promotion remains owner-approved and evidence-backed.
+
+---
+
 ### Evidence
 
 - `deploy/orchestrate/delegate.sh` — delegation router (tested; claude/kimi invoked, auth-gated).

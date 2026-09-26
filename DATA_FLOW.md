@@ -1,6 +1,6 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-21
+**Last Updated:** 2026-09-22
 **Scope:** stable runtime/state lifecycle for an evergreen single-player game  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -79,6 +79,18 @@ Melodia rhythm receives an authored/selected action context and returns executio
 ### Wardrobe
 Wardrobe owns owned/equipped outfit state. Equipped identity can expose traversal capability and feed Convergence interpretation.
 
+### Melusina runtime character and presentation
+`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter` is the canonical exploration
+character, selected by the integration game mode on configured route maps. **Ultimate** names this
+existing role, not a new class. The Blueprint composes the established locomotion/Rokoko animation,
+wardrobe, traversal, and Niagara presentation owners. Universe Foundry compiles authored content
+for existing gameplay contracts; it is not a pawn-side runtime manager.
+
+`/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` is a distinct battle
+presentation actor. Older `BP_Melusina` character roots are reversible deprecation candidates,
+pending fresh referencer checks. The six skill Blueprints and room-shell actor retain their own
+content roles. The full inventory and live-proof boundary are in `CURRENT_STATE.md`.
+
 ### Starskiff
 Starskiff owns vehicle/traversal runtime state. Only stable long-term facts should enter canonical persistence; transient transforms/velocities should normally be rebuilt from checkpoints/authoring state.
 
@@ -112,6 +124,84 @@ Hard rules:
 - `UMelodiaCymaticsSubsystem` evaluates/reads the source surface and does not become another MPC writer;
 - new source semantics such as wind direction/strength belong upstream of the driver and must preserve this single-writer chain;
 - `WorldField.ResonanceN/M` and `WorldField.Tension` are field/bus semantics, not names to invent as MPC parameters.
+
+---
+
+## 2.5 Production authoring ingress
+
+These are content/tool ingress paths into the runtime owners above. They do not create new runtime authorities.
+
+### Compiled world content
+
+```text
+authored recipe / curated source assets
+        ↓
+Tools/world_compiler.py validate + compile
+        ↓
+Saved/WorldCompiler/<recipe>_<seed> bundle
+        ↓
+Tools/world_compiler_ue_driver.py / Content/Python/world_compiler_ue.py
+        ↓
+DataTable + existing data-driven PCG + materials/Niagara
+        ↓
+existing gameplay/audio/world signals
+        ↓
+PIE / reload / packaged evidence as required
+```
+
+The compiler stays offline and never writes gameplay truth or MPC state.
+
+### Houdini / Hython source generation
+
+```text
+deterministic Hython tool under Tools/Houdini/
+        ↓
+manifested mesh / texture / field / cache output
+        ↓
+curated UE import or World Compiler input
+        ↓
+existing PCG/material/level consumer
+        ↓
+UE proof
+```
+
+A Hython cook is SOURCE/TOOL evidence. It is not a live Unreal proof and Houdini Engine is not a second world compiler.
+
+### Rokoko / Melusina animation
+
+```text
+Rokoko Studio Vision take
+        ↓
+Blender retarget / repair
+        ↓
+root-motion FBX
+        ↓
+Content/Python/import_rokoko_mocap_batch.py
+        ↓
+SK_Melusina_Skeleton + existing ABP/state owner
+        ↓
+PIE actor/movement proof
+```
+
+The guarded importer validates skeleton identity and centimetre scale. Import success alone does not prove the clip is bound or playing correctly.
+
+### Native C++ / Rider
+
+```text
+Rider owner/usages discovery
+        ↓
+smallest change in existing native owner
+        ↓
+closed-editor Development Editor build when reflection/module topology changed
+        ↓
+focused automation
+        ↓
+single-editor PIE/runtime proof
+        ↓
+restart / packaged proof when the acceptance gate requires it
+```
+
+Rider inspection and tests reduce uncertainty; Unreal remains runtime authority.
 
 ---
 

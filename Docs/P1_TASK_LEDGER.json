@@ -1,10 +1,99 @@
 {
   "schema": "melodia.p1.task_ledger.v1",
-  "as_of": "2026-09-02",
+  "as_of": "2026-09-24",
   "authority": {
-    "status": "P1_EXPANSION_ACTIVE",
-    "scope": "Post-P0 expansion: Faraway Mother formalization, cymatics promotion, audio-reactive materials, Shorewake quest, Starskiff movement system.",
-    "evidence_policy": "Source presence, offline proof, live proof, and packaged proof are distinct."
+    "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
+    "scope": "2026-09-24 evening: execute the bounded lookdev_work queue. Existing World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime systems are consume/maintain-only unless a named blocker cannot be represented through an existing owner.",
+    "evidence_policy": "Source presence, offline proof, live proof, packaged proof, and owner visual acceptance are distinct.",
+    "procedural_system_policy": "PARKED_CONSUME_ONLY",
+    "execution_rule": "Do not open new PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Use existing systems only to deliver a named visible proof from lookdev_work."
+  },
+  "melusina_work": {
+    "scope_as_of": "2026-09-23",
+    "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
+    "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
+    "current_status_authority": "CURRENT_STATE.md",
+    "runtime_unit": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "designation": "Ultimate is the existing runtime Blueprint, without a rename or duplicate pawn.",
+    "proof_policy": "A diagram, source inventory, Jev choice, or imported asset is not live PIE, restart, or packaged proof.",
+    "work_items": [
+      {
+        "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
+        "status": "source_documented",
+        "deliverable": "One canonical visual map of runtime assembly, QuillScript/JRPG/rhythm, wardrobe/traversal, cymatics, and Universe Foundry boundaries.",
+        "evidence": [
+          "SYSTEM_MAP.md#melusina-blueprint-family",
+          "SYSTEM_MAP.md#melusina-runtime-system-diagram",
+          "SYSTEM_MAP.md#universe-foundry-integration-boundary"
+        ],
+        "remaining_gate": "Promote the reviewed documentation to main; keep CURRENT_STATE.md as the only live-status authority."
+      },
+      {
+        "id": "MELUSINA_MORNING_RUNTIME_PORTRAIT",
+        "status": "open",
+        "deliverable": "A readable Unreal PIE portrait of the possessed canonical pawn in L_MelusinaMorning, with face, existing water hair, wardrobe, and held prop visible.",
+        "evidence": [
+          "Saved/Audit/hair_canon_20260922/runtime_pie_b.json proves a prior Morning runtime hair/identity scope",
+          "Saved/Audit/melusina_bake_staging_20260922/jev_canonical_portrait_first_slice_20260923.json is directional only"
+        ],
+        "remaining_gate": "Fresh Morning PIE identity and view-target receipt plus visually accepted screenshot; no portfolio-stage substitution."
+      },
+      {
+        "id": "MELUSINA_HAIR_EYE_BAKES",
+        "status": "existing_import_audited_material_tether_open",
+        "deliverable": "Stage the 24 manifest-matched hair/eye maps in new Unreal paths and bind approved material instances to the existing body/hair components.",
+        "evidence": [
+          "Exports/MelusinaBakeStaging_20260922/UE_import/IMPORT_MANIFEST.json",
+          "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation",
+          "Saved/Audit/melusina_bake_staging_20260922/existing_copernicus_import_audit.json records 24/24 existing imports",
+          "Saved/Audit/melusina_bake_staging_20260922/material_texture_tether_receipt_20260923.json audits the canonical material slots"
+        ],
+        "remaining_gate": "Choose the approved render target for the Copernicus maps, then bind through that existing material lane and perform Morning PIE visual review; do not replace procedural water hair with strand maps."
+      },
+      {
+        "id": "MELUSINA_WATER_HAIR_DRIPS",
+        "status": "live_pie_proven_trim_candidate_open",
+        "deliverable": "Import the approved 240-frame single-track Alembic as a supporting Geometry Cache for drips from existing water hair.",
+        "evidence": [
+          "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json",
+          "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json",
+          "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json records live Morning PIE playback on WaterHairFlipCache",
+          "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json records an animated pool-trim candidate",
+          "Saved/Audit/melusina_bake_staging_20260922/hair_bind_transform_audit_20260923.json records the preserved inverse-bind offset"
+        ],
+        "remaining_gate": "Review the trimmed candidate against WaterHairMesh in fresh Morning PIE and only then promote it over the current attached cache; spatial alignment and visual acceptance remain open."
+      },
+      {
+        "id": "MELUSINA_NIAGARA_CONTACT_SHEET",
+        "status": "isolated_sheet_created_runtime_open",
+        "deliverable": "One labeled isolated-preview card per 13 unique attached Niagara systems, with component role and verified emitter state.",
+        "evidence": [
+          "Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json inventories 13 systems and 19 mounts offline",
+          "Saved/Audit/melusina_bake_staging_20260922/niagara_contact_sheet_receipt_20260923.json records the labeled 13-card sheet; isolated cards are black/context-dependent"
+        ],
+        "remaining_gate": "Fresh runtime attachment review in Morning PIE; the isolated sheet is a diagnostic card set, not proof that every attached effect is visually readable in context."
+      },
+      {
+        "id": "MELUSINA_FOUNDRY_BOUNDARY",
+        "status": "source_reviewed",
+        "deliverable": "Route authored world content through the existing Foundry mission compiler and gameplay owners, with no pawn-owned Foundry manager.",
+        "evidence": [
+          "Tools/universe_foundry.py builds a deterministic mission DAG",
+          "specs/universe/faraway_mother.world_genome.v1.json is the only checked-in world genome",
+          "Saved/UniverseFoundry/faraway_mother/faraway_mother-b030500dd9fb7205/mission.json uses a non-authoritative fixture delta"
+        ],
+        "remaining_gate": "For a new Melusina world, validate authored IDs and a real gameplay-exported delta through Quill, Wardrobe, and world consumers. Faraway's Heart Gate and mantle IDs have no matching checked-in QSC or wardrobe catalog source entry; check binary/editor bindings before claiming a playable handoff. The Faraway Mother integration spec keeps its TD-to-Unreal field return and multi-consumer PIE proof open, and the genome has a null World Compiler recipe."
+      },
+      {
+        "id": "MELUSINA_LEGACY_BLUEPRINT_ROOTS",
+        "status": "deprecation_candidate",
+        "deliverable": "Retain the canonical runtime pawn and the separate battle presenter while classifying old BP_Melusina roots for reversible retirement.",
+        "evidence": [
+          "CURRENT_STATE.md — Canonical Melusina Blueprint and portfolio gate"
+        ],
+        "remaining_gate": "Fresh hard/soft referencer and route checks before any asset move or deletion."
+      }
+    ]
   },
   "melusina_work": {
     "scope_as_of": "2026-09-24",
@@ -90,7 +179,18 @@
         "gn_builders": "16 builders in Content/Python/gmm/melodia/faraway_mother/",
         "pbr_suites": "6 PBR suites in Content/Textures/FarawayMother_Suites/ (47 PNG+uasset pairs)",
         "hero_meshes": "3 hero meshes in Content/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Meshes/",
-        "missing": "faraway_onboarding_guide.md, GN_TAXONOMY update to 238+ builders, hython pipeline integration"
+        "missing": "P1 convergence still unproven: real Hython static-field cook/manifest; TD world_field replay; TD OUT_SHOW_FIELD -> UE receiver/alignment canary; three-consumer PIE proof."
+      },
+      "planning_update_2026_09_22": {
+        "status": "planned_not_proven",
+        "integration_spec": "Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md",
+        "closure_shape": "PCG static field basis -> Hython deterministic field/drape assets -> TD/Embody OUT_SHOW_FIELD -> proven UE field receiver -> fabric + Niagara + Heart Gate/path presentation",
+        "first_decisive_gate": "TD OUT_SHOW_FIELD visibly received and world/UV aligned in LV_FarawayMother_Prototype",
+        "agent_split": {
+          "Muse": "MelodiaMelusinaV2: Hython static field pack + UE receiver/consumers/evidence",
+          "Gemini": "MelodiaTouchDesigner: existing world_field scene + deterministic replay + OUT_SHOW_FIELD/evidence"
+        },
+        "authority_guard": "UE remains gameplay/save/world-consequence authority; TD presentation-only; Hython offline forge; no second compiler/MPC writer/OSC semantic bridge."
       }
     },
     {
@@ -123,18 +223,18 @@
       }
     },
     {
-          "id": "STARSKIFF_MOVEMENT",
-          "status": "close_to_pass_pending_commit_and_pie",
-          "contract": "Starskiff MK2 pawn with boarding, movement, input, and traversal consumer.",
-          "evidence": {
-            "pawn_cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.cpp (committed 42cb25d7)",
-            "pawn_h": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h (committed 42cb25d7)",
-            "blueprint": "BP_Starskiff_MK2 (content/melodiaintegration/blueprints/bp_starskiff_mk2.uasset, dirty)",
-            "boarding": "TryBoard/CanBoard/Disembark implemented; RequestBoatTraversal delegates to UMelodiaTravelSubsystem",
-            "reconcile": "starskiff_pawn_reconcile_2026-09-01.json proves ledger 'no movement component' claim was INCORRECT",
-            "remaining": "UBT closed-editor rebuild + PIE boarding/movement/disembark validation"
-          }
-        }
+      "id": "STARSKIFF_MOVEMENT",
+      "status": "close_to_pass_pending_commit_and_pie",
+      "contract": "Starskiff MK2 pawn with boarding, movement, input, and traversal consumer.",
+      "evidence": {
+        "pawn_cpp": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.cpp (committed 42cb25d7)",
+        "pawn_h": "Source/BS_GodFile/MelodiaIntegration/MelodiaStarskiffPawn.h (committed 42cb25d7)",
+        "blueprint": "BP_Starskiff_MK2 (content/melodiaintegration/blueprints/bp_starskiff_mk2.uasset, dirty)",
+        "boarding": "TryBoard/CanBoard/Disembark implemented; RequestBoatTraversal delegates to UMelodiaTravelSubsystem",
+        "reconcile": "starskiff_pawn_reconcile_2026-09-01.json proves ledger 'no movement component' claim was INCORRECT",
+        "remaining": "UBT closed-editor rebuild + PIE boarding/movement/disembark validation"
+      }
+    }
   ],
   "current_source_truth": {
     "p0_status": "All 8 gates pass (rhythm_owner, hud_single_writer, rhythm_grade_to_result, wardrobe_equip_roundtrip, wardrobe_gameplay_hook, music_world_key, static_gates, battle_integration_map)",
@@ -230,5 +330,154 @@
     "deliverables": {
       "p1_task_ledger": "Docs/P1_TASK_LEDGER.json — 5 active P1 gates (FarawayMother, Cymatics, AudioReactive, Shorewake, Starskiff)"
     }
+  },
+  "lookdev_work": {
+    "scope_as_of": "2026-09-24",
+    "status": "owner_bounded_lookdev_active",
+    "current_status_authority": "CURRENT_STATE.md",
+    "scope": "Owner-facing visual convergence tasks only. These tasks may consume existing runtime/procedural systems but do not create new gameplay, material-master, Niagara, World Compiler, or Foundry authorities.",
+    "proof_policy": "Owner visual acceptance, source presence, live PIE proof, and packaged proof are distinct. A pretty still does not promote a runtime system; a runtime receipt does not substitute for owner visual judgment.",
+    "fatigue_rule": "Prefer one-frame or one-A/B visual decisions. If judgment quality drops, stop authoring and switch to capture, export, evidence, or documentation.",
+    "work_items": [
+      {
+        "id": "LOOKDEV_OWNER_01_CHORAL_SHEEP_FLEECE_JUDGE",
+        "priority": 1,
+        "status": "owner_judgment_open",
+        "deliverable": "Lock the Choral Sheep fleece response by choosing or rejecting the existing REST vs HIT look from the approved Board 06 visual language.",
+        "owner_actions": [
+          "Compare Saved/Audit/Screens/ship_queue_fleece_REST_v2_clean.png and ship_queue_fleece_HIT_v2_clean.png against Board 06 and the two owner-approved Sheep WebPs.",
+          "Judge creature readability first, then Chladni visibility, pearl/blush/lilac balance, cyan restraint, and whether the beat response reads without becoming generic neon.",
+          "Record PASS, TUNE, or REJECT with at most three named visual symptoms."
+        ],
+        "boundaries": [
+          "Keep MI_ChoralSheep_Body -> M_Master_Toon_Character as final material authority.",
+          "Keep MI_ChoralSheep_Body_Chladni_C as the Chladni child using T_Chladni_C_ROOT.",
+          "Do not revive M_Chorus_Wool_Master or invent a replacement Sheep shader."
+        ],
+        "acceptance": "One owner verdict with no more than three concrete tune requests; if PASS, no further Sheep material redesign is opened.",
+        "evidence": [
+          "Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md",
+          "Docs/Handoffs/NIKKI_LOOKDEV_PLAN_2026-09-22.md",
+          "Saved/Audit/AE/ship_queue_beat_8s/"
+        ],
+        "stop_condition": "Stop after the owner verdict. Technical follow-up becomes a separate bounded task."
+      },
+      {
+        "id": "LOOKDEV_OWNER_02_MELUSINA_SIMPLE_DIFFUSE_M1",
+        "priority": 2,
+        "status": "in_flight",
+        "deliverable": "Push SBS_Melusina_SimpleDiffuse from its completed M0 scaffold to one visually accepted M1 ZenLantern proof.",
+        "owner_actions": [
+          "Deepen only the color stack, gouache normal-from-height, cymatic fork, and explicit Melodia masks needed for the M1 test.",
+          "Re-cook the real SBSAR and refresh the Painter shelf.",
+          "Apply it to ZenLantern and judge the six player-facing tests: thumbnail palette, close gouache relief, cymatic whisper, beat glance, wear story, decoration lane."
+        ],
+        "boundaries": [
+          "Do not fork a per-asset material graph.",
+          "Do not replace the approved Nikki/Melodia NPR UE parent architecture.",
+          "Do not treat the fill engine as a replacement for the handpaint/SMS paint slot.",
+          "No fake SBSAR/SPSM artifacts."
+        ],
+        "acceptance": "ZenLantern passes tests 1-6 in GOAL_INFINITY_NIKKI_BAR.md or the task returns one concise failure list for the next pass.",
+        "evidence": [
+          "Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/GOAL_INFINITY_NIKKI_BAR.md",
+          "Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/GOAL_V2_GO.md"
+        ],
+        "stop_condition": "Stop after one re-cook + ZenLantern judgment cycle; do not roll directly into the remaining eight HandpaintPrep assets."
+      },
+      {
+        "id": "LOOKDEV_OWNER_03_MELUSINA_CANONICAL_PORTRAIT",
+        "priority": 3,
+        "status": "open_after_current_identity_state",
+        "deliverable": "Capture one readable canonical Melusina Morning portrait that shows the current face, procedural water hair, wardrobe, and held prop without reopening broad character-system work.",
+        "owner_actions": [
+          "Use the existing Morning runtime pawn and current approved beauty-camera lane.",
+          "Frame one waist-up or three-quarter portrait with face and silhouette readable before effects.",
+          "Judge only four things: face read, hair silhouette, material hierarchy, and accessory/prop balance."
+        ],
+        "boundaries": [
+          "No hair or skirt physics retuning during the portrait task.",
+          "No new pawn, material master, PPV identity, or wardrobe architecture.",
+          "WaterHair material remains hands-off unless a separately proven defect blocks the frame."
+        ],
+        "acceptance": "One owner-accepted screenshot plus a fresh Morning PIE identity/view-target receipt.",
+        "evidence": [
+          "Docs/P1_TASK_LEDGER.json#melusina_work",
+          "docs/plans/MELUSINA_AAA_LOOKDEV_GRANDMASTER_PLAN_2026-09-22.md",
+          "Saved/Audit/hair_canon_20260922/runtime_pie_b.json"
+        ],
+        "stop_condition": "If the frame exposes a technical blocker, name the blocker and stop; do not solve unrelated W1-W4 rigging inside this lookdev task."
+      },
+      {
+        "id": "LOOKDEV_OWNER_04_CRYSTAL_CATHEDRAL_AB",
+        "priority": 4,
+        "status": "open",
+        "deliverable": "Produce one controlled Crystal Cathedral A/B that settles the hero visual direction before the future full-license HDA/Foundry promotion.",
+        "owner_actions": [
+          "Regenerate or use the existing fractal/crystal cathedral source and current CrystalCathedral/GlitterCrystal material family.",
+          "Compare two variants only: restrained crystal growth versus hero crystal growth.",
+          "Judge silhouette, bay rhythm, rose-window readability, crystal clustering, iridescence, and whether musical structure is visible without visual noise."
+        ],
+        "boundaries": [
+          "Do not rebuild the cathedral architecture from zero.",
+          "Do not begin the full Song Cathedral/HDA/PDG implementation in this lookdev task.",
+          "Preserve Tools/Houdini/cathedral/build_fractal_cathedral.py and build_crystal_cathedral.py as current procedural source."
+        ],
+        "acceptance": "Choose A or B and record 3-5 parameter-direction notes that can later become HDA defaults.",
+        "evidence": [
+          "Tools/Houdini/cathedral/build_fractal_cathedral.py",
+          "Tools/Houdini/cathedral/build_crystal_cathedral.py",
+          "Saved/Audit/cathedral/crystal_cathedral_manifest.json",
+          "Saved/Audit/cathedral/song_chord_cathedral_both_2026-09-01.md"
+        ],
+        "stop_condition": "Stop after the A/B choice; engineering the production HDA remains a college/full-license Foundry task."
+      },
+      {
+        "id": "LOOKDEV_OWNER_05_GLITTER_PILE_HERO_PROOF",
+        "priority": 5,
+        "status": "open",
+        "deliverable": "Create one hero Glitter Pile material/particle proof that defines the desired visual target for the later Houdini deposition -> Niagara system.",
+        "owner_actions": [
+          "Use the existing Melodia glitter shader/Copernicus family as the baseline rather than inventing a new master.",
+          "Capture one close hero angle and one medium-distance read.",
+          "Judge discrete flake read, glint intermittency, iridescence restraint, pile depth, and whether the material reads as physical glitter rather than emissive noise."
+        ],
+        "boundaries": [
+          "This is a visual target, not the full physical deposition implementation.",
+          "Do not create a second glitter material framework.",
+          "Do not convert all glitter to live Niagara particles."
+        ],
+        "acceptance": "One accepted still pair plus a short target note for future Houdini grain density/shell/unstable-particle behavior.",
+        "evidence": [
+          "Source/MelodiaShader/Shaders/MelodiaNikkiCommon.ush",
+          "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py",
+          "Saved/Audit/glitter_verification_2026-08-30.json"
+        ],
+        "stop_condition": "Stop once the visual target is defined; Houdini deposition and SVT/Niagara integration stay separate."
+      },
+      {
+        "id": "LOOKDEV_OWNER_06_SEA_ABOVE_MACRO_VARIATION_PLATE",
+        "priority": 6,
+        "status": "open",
+        "deliverable": "Make one Sea Above environment plate that proves macro variation and material hierarchy using existing terrain/PCG/material assets before building the generalized FieldAtlas system.",
+        "owner_actions": [
+          "Choose one small readable Sea Above zone, not the full 8 km landscape.",
+          "Art-direct no more than three correlated variation signals such as wet/dry value, roughness/iridescence, and ecology or mist density.",
+          "Capture before/after from the same camera."
+        ],
+        "boundaries": [
+          "No whole-world rebake.",
+          "No new landscape authority, new World Compiler, or new material master.",
+          "Do not use unrelated random noise for every channel; the plate should test correlated environmental variation."
+        ],
+        "acceptance": "The after plate reads less tiled/repetitive than the before plate while preserving route/silhouette readability; record the three useful signals for future FieldAtlas work.",
+        "evidence": [
+          "Docs/Research/SEA_ABOVE_INTEGRATION_2026-09-01.md",
+          "Content/Python/build_sea_above_pcg_integration.py",
+          "Docs/WorldGen/WORLD_COMPILER_CONTRACT.md"
+        ],
+        "stop_condition": "Stop after one zone and one camera A/B; generalized Houdini FieldAtlas remains a separate full-license task."
+      }
+    ]
   }
 }

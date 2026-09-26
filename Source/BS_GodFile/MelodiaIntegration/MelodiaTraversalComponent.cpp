@@ -102,17 +102,6 @@ void UMelodiaTraversalComponent::BeginPlay()
 	SetWingPresentation(false);
 }
 
-float UMelodiaTraversalComponent::GetJumpWindupNormalized() const
-{
-	if (!bJumpWindingUp || JumpWindupStartedAt < 0.0 || JumpWindupVisualDuration <= UE_SMALL_NUMBER)
-	{
-		return 0.0f;
-	}
-
-	const double CurrentTime = GetWorld() ? GetWorld()->GetTimeSeconds() : JumpWindupStartedAt;
-	return FMath::Clamp(static_cast<float>((CurrentTime - JumpWindupStartedAt) / JumpWindupVisualDuration), 0.0f, 1.0f);
-}
-
 float UMelodiaTraversalComponent::GetGlideStaminaNormalized() const
 {
 	return MaxGlideStamina > UE_SMALL_NUMBER
@@ -314,15 +303,10 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 
 	UpdateWaterState(DeltaTime);
 
-	// A held jump that has left the ground requests glide once. Releasing ends the
-	// ACharacter hold via StopJumping; it does not arm a second tap.
-	if (Movement->IsMovingOnGround())
+	// Held jump: once she passes the apex with the button still down, glide.
+	if (bGlideHoldArmed && !bIsGliding && !Movement->IsMovingOnGround() && Movement->Velocity.Z <= 0.0f)
 	{
-		bHeldFallGlideRequested = false;
-	}
-	else if (bJumpInputHeld && !bHeldFallGlideRequested && !bIsGliding && !bIsSwimming && !bIsDiving && Movement->IsFalling())
-	{
-		bHeldFallGlideRequested = true;
+		bGlideHoldArmed = false;
 		RequestTraversalMode(EMelodiaTraversalMode::Glide);
 	}
 
@@ -339,7 +323,7 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 		if (Movement->IsMovingOnGround())
 		{
 			StopGlide();
-			bHeldFallGlideRequested = false;
+			bGlideHoldArmed = false;
 			return;
 		}
 
@@ -503,20 +487,21 @@ void UMelodiaTraversalComponent::HandleJumpPressed()
 		return;
 	}
 
-	bJumpInputHeld = true;
-	bHeldFallGlideRequested = false;
-
 	if (Movement->IsMovingOnGround())
 	{
+		// Jump on press; holding extends height through the character's JumpMaxHoldTime.
 		OwnerCharacter->Jump();
+		bGlideHoldArmed = true;
+		return;
 	}
+
+	RequestTraversalMode(EMelodiaTraversalMode::Glide);
 }
 
 void UMelodiaTraversalComponent::HandleJumpReleased()
 {
-	const bool bEndJumpHold = bJumpInputHeld;
-	bJumpInputHeld = false;
-	if (bEndJumpHold && OwnerCharacter.IsValid())
+	bGlideHoldArmed = false;
+	if (OwnerCharacter.IsValid())
 	{
 		OwnerCharacter->StopJumping();
 	}
@@ -525,7 +510,7 @@ void UMelodiaTraversalComponent::HandleJumpReleased()
 void UMelodiaTraversalComponent::HandleSprintPressed()
 {
 	bSprintInputHeld = true;
-	if (IsTraversalMovementAllowed(this) && !bJumpWindingUp)
+	if (IsTraversalMovementAllowed(this))
 	{
 		SetSprinting(true);
 	}
@@ -544,12 +529,7 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 		return;
 	}
 
-	// Never dash during jump windup, nor twice within the cooldown window.
-	if (bJumpWindingUp || !Movement.IsValid())
-	{
-		return;
-	}
-
+	// Never dash twice within the cooldown window.
 	const double Now = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0;
 	if (Now < DashCooldownUntilTime)
 	{
@@ -638,36 +618,9 @@ void UMelodiaTraversalComponent::FinishDash()
 	// only the instantaneous velocity impulse.
 }
 
-void UMelodiaTraversalComponent::BeginJumpWindup()
-{
-	if (bJumpWindingUp || !Movement.IsValid())
-	{
-		return;
-	}
-
-	bJumpWindingUp = true;
-	JumpWindupStartedAt = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0;
-	SetSprinting(false);
-	Movement->StopMovementImmediately();
-	Movement->MaxWalkSpeed = 0.0f;
-}
-
-void UMelodiaTraversalComponent::CancelJumpWindup()
-{
-	if (!bJumpWindingUp)
-	{
-		return;
-	}
-
-	bJumpWindingUp = false;
-	JumpWindupStartedAt = -1.0;
-	SetSprinting(bSprintInputHeld && IsTraversalMovementAllowed(this));
-	ApplyCurrentMovementSpeed();
-}
-
 void UMelodiaTraversalComponent::SetSprinting(bool bShouldSprint)
 {
-	const bool bNewSprinting = bShouldSprint && !bJumpWindingUp && IsTraversalMovementAllowed(this);
+	const bool bNewSprinting = bShouldSprint && IsTraversalMovementAllowed(this);
 	if (bIsSprinting == bNewSprinting)
 	{
 		ApplyCurrentMovementSpeed();
@@ -680,7 +633,7 @@ void UMelodiaTraversalComponent::SetSprinting(bool bShouldSprint)
 
 void UMelodiaTraversalComponent::ApplyCurrentMovementSpeed()
 {
-	if (!Movement.IsValid() || bJumpWindingUp)
+	if (!Movement.IsValid())
 	{
 		return;
 	}
@@ -694,9 +647,7 @@ void UMelodiaTraversalComponent::CancelTraversalState()
 	StopDive();
 	bSprintInputHeld = false;
 	SetSprinting(false);
-	CancelJumpWindup();
-	bJumpInputHeld = false;
-	bHeldFallGlideRequested = false;
+	bGlideHoldArmed = false;
 	bIsDashing = false;
 	DashPersistTimer.Invalidate();
 	if (OwnerCharacter.IsValid())

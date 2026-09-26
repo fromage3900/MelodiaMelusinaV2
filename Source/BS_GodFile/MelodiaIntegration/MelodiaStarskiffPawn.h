@@ -23,7 +23,7 @@ public:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Starskiff|Traversal")
-	FName RequiredCapabilityId = TEXT("capability.melodia.glide");
+	FName RequiredCapabilityId = TEXT("capability.melodia.sail");
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Starskiff|Traversal")
 	FName TraversalCapabilityContextId = TEXT("active_traversal_context");
@@ -36,6 +36,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Starskiff|Traversal")
 	FName DefaultDestinationSpawnTag = NAME_None;
+
+	/**
+	 * When this narrative flag turns true, the nearest player boards. The dock QSC sets it as
+	 * its last line, after its reward has equipped the Sail form. None disables.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Starskiff|Traversal")
+	FName BoardOnFlagId = TEXT("flag.sea_above.starskiff_ready");
 
 	UFUNCTION(BlueprintPure, Category="Melodia|Starskiff|Traversal")
 	bool IsBoarded() const { return bBoarded; }
@@ -57,6 +64,9 @@ public:
 	bool RequestBoatTraversal(FName DestinationMap = NAME_None, FName DestinationSpawnTag = NAME_None);
 
 private:
+	UFUNCTION()
+	void HandleFlagChanged(FName FlagId, bool bValue);
+
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 

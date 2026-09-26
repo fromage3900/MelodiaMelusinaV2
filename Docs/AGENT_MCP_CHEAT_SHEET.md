@@ -150,7 +150,7 @@ State output: `Saved/Echo/state.txt`
 | Asset "disappears" | In-session `delete_asset` hiding it | Force rescan: `ar.scan_paths_synchronous([folder], force_rescan=True)` |
 | `get_cdo_properties` shows `None` for components | Monolith can't resolve Blueprint-instanced component pointers | Use `get_components` instead |
 | Historical Melusina battle wardrobe symptom | Earlier workaround may be stale | Check `CURRENT_STATE.md` before changing assets; do not apply the old `SK_Melusina` workaround without current runtime evidence |
-| Rhythm HUD not showing | Active JRPG GameMode has wrong HUD class | Check `BP_MelodiaJRPGGameMode.HUDWidgetClass = WBP_Battle_Rhythm` |
+| Rhythm HUD not showing | Active mode or UI binding is wrong | Inspect the configured JRPG GameMode and UI bridge; do not apply the orphan `BP_MelodiaGameMode` workaround by rote |
 | Anim instance crash at `NativeUpdateAnimation` | `UMelodiaLocomotionAnimInstance` null traversal interface | Already fixed in current source (line 36 constructor pattern) |
 
 ---

@@ -12,7 +12,10 @@ on:
     paths:
       - 'Source/**'
       - 'Plugins/**/Source/**'
-      - 'Content/Python/**'
+      - 'Content/**'
+      - 'Plugins/**/Content/**'
+      - 'Config/**'
+      - '.gitattributes'
       - 'specs/**'
       - 'Tools/**'
       - 'deploy/**'
@@ -95,6 +98,10 @@ jobs:
         run: python Tools/credits_gate.py
 
       - name: LFS budget and pointer gates
+        # Asset-sync health is independent of contract/art failures. Keep this
+        # signal visible even when an earlier gate fails, while still failing
+        # the job if the LFS audit itself is unhealthy.
+        if: ${{ always() && !cancelled() }}
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_BRANCH: ${{ github.head_ref }}
