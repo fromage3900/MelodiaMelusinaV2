@@ -1389,14 +1389,15 @@ issue for the Morning PPV/exposure, not a P0 blocker. Stills: `Docs/Evidence/P0_
 3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
 
 **Ready-to-close ladder — 2026-09-26 (supersedes phases 0–3 above; plan `.hermes/plans/2026-09-26_p0-closeout-prep-goal.md`).**
-Branches, none pushed: `fix/issue-51-closure-2026-09-26` `a756738e3` (from `origin/main 893141ea6`;
-`ValidateIntrinsicRecord` on direct `RestoreNarrativeRecord`, New Game clears live water; tests
-`NarrativeRecord.DirectRestoreRefusesInvalid` + `.NewGameWaterCarryover`; headless Melodia 104/106,
-known 2) and `merge/wings-veins-into-main-2026-09-26` `f7cfd89a5` (this branch + `origin/main`,
-0 behind). `ABP_Melusina_Current`'s dead `JumpWindup` state + `bJumpWindup` var removed 09-26 (no
-transition was ever wired; `main`'s traversal drops `GetJumpWindupNormalized`) — saved, needs p4 submit.
-Run in one sitting, editor-exclusive (no second `UnrealEditor`, no foreign `monolith_proxy`, DLLs unlocked):
-1. Owner go → push + PR #51 branch and the integration PR; merge on green.
+**Merged 2026-09-26:** PR #332 (#51 source: `ValidateIntrinsicRecord` on direct `RestoreNarrativeRecord`,
+New Game clears live water; tests `NarrativeRecord.DirectRestoreRefusesInvalid` + `.NewGameWaterCarryover`;
+headless Melodia 104/106, known 2) → `e2218e4d7`; PR #333 (wings-veins line into `main`, + foundry test
+for the authored Faraway Mother recipe, + SOURCES_MATRIX rows `Massive`/`Melusina`) → `872c981a3`.
+p4 CL 226: `ABP_Melusina_Current` dead `JumpWindup` state + `bJumpWindup` removed (`main`'s traversal
+drops `GetJumpWindupNormalized`), Compendium WBP, orrery Codex button, `Btn_Calibrate`, Compendium DA entries.
+Run in one sitting, editor-exclusive (no second `UnrealEditor`, no foreign `monolith_proxy`, DLLs unlocked;
+`Tools/issue51_ladder.ps1 preflight`):
+1. ~~Push + PR #51 branch and the integration PR; merge on green.~~ Done (above).
 2. On current `main`: closed-editor UBT (`-MaxParallelActions=6`) → headless `UnrealEditor-Cmd
    -NullRHI -DisablePlugins=Monolith` `Melodia.` suite (expect 104/106 or better).
 3. Restart proof: save → quit → relaunch → load, real input; compare vector must include water
