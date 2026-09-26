@@ -1459,6 +1459,8 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 G3 Sir Melodious switch → perch (existing `UMelodiaPartySubsystem` + `AMelodiousFlightCharacter`), G4 P0 dungeon
 loop with melody slimes (existing roguelike subsystem; `MelodiaDungeonRunCoordinator` placed in no map yet).
 Owner decisions D1 (perch surfaces) and D2 (P0 dungeon map) block S3 and L1.
+**09-26 afternoon:** Sir party switch **fixed + PIE-proven** (Sir→Melusina was a silent no-op; `UMelodiaPartySubsystem::SetActiveIndex`).
+Slime data verified but **unwired** (0 encounter defs, empty room pools) — next = HERMES RUNBOOK H-1 in the goal file (Jev 0.56); cook re-run after it (Jev 0.91).
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
