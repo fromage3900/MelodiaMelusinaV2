@@ -1,5 +1,7 @@
 #include "MelodiaGameUserSettings.h"
 
+#include "MelodiaCoreRulesLibrary.h"
+
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundClass.h"
 #include "Sound/SoundMix.h"
@@ -23,6 +25,8 @@ void UMelodiaGameUserSettings::ApplyMelodiaPreferences(const UObject* WorldConte
 	MusicVolume = FMath::Clamp(MusicVolume, 0.0f, 1.0f);
 	SFXVolume = FMath::Clamp(SFXVolume, 0.0f, 1.0f);
 	UIScale = FMath::Clamp(UIScale, 0.8f, 1.3f);
+	CalibrationOffsetMs = FMath::Clamp(CalibrationOffsetMs, -250.0f, 250.0f);
+	UMelodiaCoreRulesLibrary::SetPlayerCalibrationOffsetMs(CalibrationOffsetMs);
 
 	if (WorldContextObject)
 	{

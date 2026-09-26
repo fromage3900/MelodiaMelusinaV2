@@ -28,22 +28,21 @@ bool FMelodiaRhythmRulesTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("20 ms grades Perfect"), Perfect.Grade, EMelodiaRhythmGrade::Perfect);
 	TestEqual(TEXT("Perfect multiplier is capped at 1.5"), Perfect.CombatMultiplier, 1.5f);
 	TestTrue(TEXT("Perfect counts as hit"), Perfect.bCountsAsHit);
-	TestEqual(TEXT("Perfect boundary is inclusive"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(90.0f, Windows).Grade, EMelodiaRhythmGrade::Perfect);
-	TestEqual(TEXT("Just outside Perfect becomes Great"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(90.01f, Windows).Grade, EMelodiaRhythmGrade::Great);
-	TestEqual(TEXT("Great boundary is inclusive"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(120.0f, Windows).Grade, EMelodiaRhythmGrade::Great);
-	TestEqual(TEXT("Just outside Great becomes Good"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(120.01f, Windows).Grade, EMelodiaRhythmGrade::Good);
-	TestEqual(TEXT("Good boundary is inclusive"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(160.0f, Windows).Grade, EMelodiaRhythmGrade::Good);
-	TestEqual(TEXT("Just outside Good becomes Miss"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(160.01f, Windows).Grade, EMelodiaRhythmGrade::Miss);
-	TestEqual(TEXT("Early and late inputs grade symmetrically"), UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(-90.0f, Windows).Grade, UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(90.0f, Windows).Grade);
+	const float P = Windows.PerfectWindowMs, G = Windows.GreatWindowMs, D = Windows.GoodWindowMs;
+	TestTrue(TEXT("Windows are ordered Perfect < Great < Good"), P < G && G < D);
+	auto GradeAt = [&Windows](float Ms) { return UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(Ms, Windows).Grade; };
+	TestEqual(TEXT("Perfect boundary is inclusive"), GradeAt(P), EMelodiaRhythmGrade::Perfect);
+	TestEqual(TEXT("Just outside Perfect becomes Great"), GradeAt(P + 0.01f), EMelodiaRhythmGrade::Great);
+	TestEqual(TEXT("Great boundary is inclusive"), GradeAt(G), EMelodiaRhythmGrade::Great);
+	TestEqual(TEXT("Just outside Great becomes Good"), GradeAt(G + 0.01f), EMelodiaRhythmGrade::Good);
+	TestEqual(TEXT("Good boundary is inclusive"), GradeAt(D), EMelodiaRhythmGrade::Good);
+	TestEqual(TEXT("Just outside Good becomes Miss"), GradeAt(D + 0.01f), EMelodiaRhythmGrade::Miss);
+	TestEqual(TEXT("Early and late inputs grade symmetrically"), GradeAt(-P), GradeAt(P));
+	TestEqual(TEXT("Mid-Great grades Great"), GradeAt((P + G) * 0.5f), EMelodiaRhythmGrade::Great);
+	TestEqual(TEXT("Mid-Good grades Good"), GradeAt((G + D) * 0.5f), EMelodiaRhythmGrade::Good);
 
-	const FMelodiaRhythmGradeResult Great = UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(110.0f, Windows);
-	TestEqual(TEXT("110 ms grades Great"), Great.Grade, EMelodiaRhythmGrade::Great);
-
-	const FMelodiaRhythmGradeResult Good = UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(140.0f, Windows);
-	TestEqual(TEXT("140 ms grades Good"), Good.Grade, EMelodiaRhythmGrade::Good);
-
-	const FMelodiaRhythmGradeResult Miss = UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(220.0f, Windows);
-	TestEqual(TEXT("220 ms grades Miss"), Miss.Grade, EMelodiaRhythmGrade::Miss);
+	const FMelodiaRhythmGradeResult Miss = UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(D + 60.0f, Windows);
+	TestEqual(TEXT("Well past Good grades Miss"), Miss.Grade, EMelodiaRhythmGrade::Miss);
 	TestEqual(TEXT("Miss multiplier follows generated accessibility rule"), Miss.CombatMultiplier, MelodiaRulesGen::MissMultiplier);
 	TestFalse(TEXT("Miss does not count as hit"), Miss.bCountsAsHit);
 

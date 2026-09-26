@@ -40,6 +40,8 @@
 #include "../MelodiaPersonaTypes.h"
 #include "../MelodiaRhythmSkillDefinition.h"
 #include "../MelodiaStockContract.h"
+#include "../MelodiaOverworldHUDWidget.h"
+#include "NiagaraEffectType.h"
 #include "Misc/AutomationTest.h"
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "AssetRegistry/ARFilter.h"
@@ -454,6 +456,44 @@ bool FMelodiaWiringStockContractTest::RunTest(const FString& Parameters)
 	}
 
 	return BrokenCount == 0;
+}
+
+// The overworld HUD reads party vitals from the JRPG template by name (there is no typed seam).
+// If the template renames any of these, the HUD would silently show zeros -- so fail here instead.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaOverworldHUDTemplateContractTest,
+	"Melodia.Wiring.OverworldHUDTemplateContract",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaOverworldHUDTemplateContractTest::RunTest(const FString& Parameters)
+{
+	auto HasIntPrefix = [](const UStruct* Struct, const TCHAR* Prefix)
+	{
+		for (TFieldIterator<FIntProperty> It(Struct); It; ++It)
+		{
+			if (It->GetName().StartsWith(Prefix)) { return true; }
+		}
+		return false;
+	};
+	using W = UMelodiaOverworldHUDWidget;
+	const UClass* PC = LoadClass<UObject>(nullptr, TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Controllers/BP_JRPGPlayerController.BP_JRPGPlayerController_C"));
+	if (!TestNotNull(TEXT("BP_JRPGPlayerController loads"), PC)) { return false; }
+	const FMapProperty* Map = FindFProperty<FMapProperty>(PC, W::PlayerUnitsProperty);
+	if (!TestNotNull(TEXT("playerUnits map exists"), Map)) { return false; }
+	TestNotNull(TEXT("playerUnits key is a class"), CastField<FClassProperty>(Map->KeyProp));
+	const FStructProperty* Value = CastField<FStructProperty>(Map->ValueProp);
+	if (!TestNotNull(TEXT("playerUnits value is a struct"), Value)) { return false; }
+	TestTrue(TEXT("unit data has currentHP"), HasIntPrefix(Value->Struct, W::CurrentHPPrefix));
+	TestTrue(TEXT("unit data has curentMP"), HasIntPrefix(Value->Struct, W::CurrentMPPrefix));
+	TestTrue(TEXT("unit data has Exp"), HasIntPrefix(Value->Struct, W::ExpPrefix));
+
+	const UClass* Unit = LoadClass<UObject>(nullptr, TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Units/BP_UnitBase.BP_UnitBase_C"));
+	if (!TestNotNull(TEXT("BP_UnitBase loads"), Unit)) { return false; }
+	const FStructProperty* Stats = FindFProperty<FStructProperty>(Unit, W::FirstLevelStatsProperty);
+	if (!TestNotNull(TEXT("firstLevelStats exists"), Stats)) { return false; }
+	TestTrue(TEXT("stats have maxHP"), HasIntPrefix(Stats->Struct, W::MaxHPPrefix));
+	TestTrue(TEXT("stats have maxMP"), HasIntPrefix(Stats->Struct, W::MaxMPPrefix));
+	return true;
 }
 
 #endif // WITH_EDITOR && WITH_DEV_AUTOMATION_TESTS

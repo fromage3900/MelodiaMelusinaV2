@@ -1,4 +1,6 @@
 #include "MelodiaMusicClockSubsystem.h"
+#include "MelodiaCoreRulesLibrary.h"
+#include "MelodiaGameUserSettings.h"
 
 #include "Engine/World.h"
 #include "Engine/Engine.h"
@@ -117,6 +119,11 @@ void UMelodiaMusicClockSubsystem::Deinitialize()
 void UMelodiaMusicClockSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
+	// Restore the player's saved calibration before any input is measured.
+	if (const UMelodiaGameUserSettings* Settings = UMelodiaGameUserSettings::Get())
+	{
+		SetCalibrationOffsetMs(Settings->CalibrationOffsetMs);
+	}
 	EnsureBattleControllerMusicClock();
 }
 
@@ -498,12 +505,17 @@ float UMelodiaMusicClockSubsystem::GetTimingErrorMsToNearestBeat() const
 
 	const float BeatPosition = Time.Source == EMelodiaMusicClockSource::Harmonix ? Time.TotalBeats : Time.BeatInBar;
 	const float ErrorInBeats = SignedFractionToNearest(BeatPosition);
-	return ErrorInBeats * Time.SecondsPerBeat * 1000.0f - CalibrationOffsetMs;
+	return ErrorInBeats * Time.SecondsPerBeat * 1000.0f - UMelodiaCoreRulesLibrary::GetPlayerCalibrationOffsetMs();
 }
 
 void UMelodiaMusicClockSubsystem::SetCalibrationOffsetMs(float InOffsetMs)
 {
-	CalibrationOffsetMs = FMath::Clamp(InOffsetMs, -500.0f, 500.0f);
+	UMelodiaCoreRulesLibrary::SetPlayerCalibrationOffsetMs(InOffsetMs);
+}
+
+float UMelodiaMusicClockSubsystem::GetCalibrationOffsetMs() const
+{
+	return UMelodiaCoreRulesLibrary::GetPlayerCalibrationOffsetMs();
 }
 
 bool UMelodiaMusicClockSubsystem::TickClock(float DeltaTime)

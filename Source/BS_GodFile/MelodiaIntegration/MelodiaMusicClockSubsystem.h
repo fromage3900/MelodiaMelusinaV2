@@ -261,7 +261,7 @@ public:
 	void SetCalibrationOffsetMs(float InOffsetMs);
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|Music Clock")
-	float GetCalibrationOffsetMs() const { return CalibrationOffsetMs; }
+	float GetCalibrationOffsetMs() const;
 
 	/** Beat boundary crossed.  BeatNumber is running; BeatInBar is zero-based within the bar. */
 	UPROPERTY(BlueprintAssignable, Category = "Melodia|Music Clock")
@@ -301,7 +301,6 @@ private:
 	FTSTicker::FDelegateHandle TickerHandle;
 
 	EMelodiaMusicClockSource ReportedSource = EMelodiaMusicClockSource::None;
-	float CalibrationOffsetMs = 0.0f;
 
 	/** Quartz-only beat-edge detection; unused while Harmonix drives events. */
 	int32 LastQuartzBeatIndex = -1;

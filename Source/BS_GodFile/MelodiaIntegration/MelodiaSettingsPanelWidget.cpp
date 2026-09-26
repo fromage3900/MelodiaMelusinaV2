@@ -1,5 +1,7 @@
 #include "MelodiaSettingsPanelWidget.h"
 
+#include "MelodiaCalibrationWidget.h"
+
 #include "Components/CheckBox.h"
 #include "Components/Button.h"
 #include "Components/Slider.h"
@@ -33,6 +35,7 @@ void UMelodiaSettingsPanelWidget::NativeConstruct()
 	if (Btn_TabDisplay) Btn_TabDisplay->OnClicked.AddUniqueDynamic(this, &ThisClass::ShowDisplayTab);
 	if (Btn_TabAccessibility) Btn_TabAccessibility->OnClicked.AddUniqueDynamic(this, &ThisClass::ShowAccessibilityTab);
 	if (Btn_TabControls) Btn_TabControls->OnClicked.AddUniqueDynamic(this, &ThisClass::ShowControlsTab);
+	if (Btn_Calibrate) Btn_Calibrate->OnClicked.AddUniqueDynamic(this, &ThisClass::HandleCalibrateClicked);
 	SetActiveTab(0);
 }
 
@@ -92,3 +95,8 @@ void UMelodiaSettingsPanelWidget::ShowAudioTab() { SetActiveTab(0); }
 void UMelodiaSettingsPanelWidget::ShowDisplayTab() { SetActiveTab(1); }
 void UMelodiaSettingsPanelWidget::ShowAccessibilityTab() { SetActiveTab(2); }
 void UMelodiaSettingsPanelWidget::ShowControlsTab() { SetActiveTab(3); }
+
+void UMelodiaSettingsPanelWidget::HandleCalibrateClicked()
+{
+	UMelodiaCalibrationWidget::Open(this);
+}

@@ -77,6 +77,21 @@ FMelodiaRhythmGradeResult UMelodiaCoreRulesLibrary::GradeInputFromBeatPosition(c
 	return GradeInputFromTimingErrorMs(TimingErrorMs, Windows);
 }
 
+namespace
+{
+	float GPlayerCalibrationOffsetMs = 0.0f;
+}
+
+float UMelodiaCoreRulesLibrary::GetPlayerCalibrationOffsetMs()
+{
+	return GPlayerCalibrationOffsetMs;
+}
+
+void UMelodiaCoreRulesLibrary::SetPlayerCalibrationOffsetMs(const float OffsetMs)
+{
+	GPlayerCalibrationOffsetMs = FMath::Clamp(OffsetMs, -250.0f, 250.0f);
+}
+
 FMelodiaRhythmGradeResult UMelodiaCoreRulesLibrary::GradeInputFromTimingErrorMs(const float TimingErrorMs, const FMelodiaRhythmWindows Windows)
 {
 	const float CorrectedErrorMs = FMath::Max(0.0f, FMath::Abs(TimingErrorMs - Windows.LatencyOffsetMs));
