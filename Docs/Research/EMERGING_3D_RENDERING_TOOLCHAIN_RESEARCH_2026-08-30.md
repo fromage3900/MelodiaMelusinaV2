@@ -520,3 +520,24 @@ RTX Kit -> isolated renderer R&D only
 8. **Do not clone Infinity Nikki proprietary technology.** Reproduce the production principle using stock UE/Houdini where possible.
 9. **Prefer representation tricks over giant runtime simulations.**
 10. **The winning tool is the one that creates more finished Melodia per hour, not the one with the most advanced demo reel.**
+
+
+---
+
+## 2026-09-25 repo-aware procedural-worldbuilding delta
+
+The original tool catalog remains useful background, but procedural-worldbuilding recommendations must now be filtered through the newer production state.
+
+Detailed delta:
+
+[EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_05_2026-09-25.md](EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_05_2026-09-25.md)
+
+Key correction to older research assumptions:
+
+- PCG Python semantic enrichment + material variation is already production-proven.
+- World Compiler + PCG ecology/presentation is already active infrastructure.
+- Houdini/Hython and Copernicus are already canonical source lanes.
+- UE 5.8 Mesh Terrain is already represented by a Melodia P0 source/handoff path.
+- broad procedural architecture is currently parked; new research should improve art direction, fidelity, deterministic evidence, or iteration speed through bounded canaries.
+
+Highest-value current experiments are PCG Manual Editing/Data Overrides, COP HDA texture iteration in Unreal, local-statistics anti-tiling, and iso-contour terrain source authoring.
