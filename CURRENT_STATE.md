@@ -1461,6 +1461,7 @@ loop with melody slimes (existing roguelike subsystem; `MelodiaDungeonRunCoordin
 Owner decisions D1 (perch surfaces) and D2 (P0 dungeon map) block S3 and L1.
 **09-26 afternoon:** Sir party switch **fixed + PIE-proven** (Sir→Melusina was a silent no-op; `UMelodiaPartySubsystem::SetActiveIndex`).
 Slime data verified but **unwired** (0 encounter defs, empty room pools) — next = HERMES RUNBOOK H-1 in the goal file (Jev 0.56); cook re-run after it (Jev 0.91).
+H-1 part A done: 6 `ENC_Slime*` + `DA_RunArchetype_SlimeCore` saved; part B (tagged `Encounter_Slime*` battles) needs D2. D1 = authored `BP_SirPerch`.
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
