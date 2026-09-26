@@ -110,18 +110,25 @@ Start every session: `git fetch && git status` (must be `main` == `origin/main`)
 confirm exactly one `UnrealEditor` process and that the open level is `MelodiaIntegrationMap` (closed-editor
 tasks: `Tools\issue51_ladder.ps1 preflight` instead). Access GI subsystems in PIE Python via
 `unreal.find_object(None, gi.get_path_name()+'.<SubsystemClass>_0')` (`gi.get_subsystem` is not exposed).
-1. **H-1 Slime encounters (editor, content-only).** Create `/Game/Melodia/Roguelike/Encounters/ENC_Slime_<Row>`
-   `UMelodiaRoguelikeEncounterDefinition` for 6 rows spanning elements/tiers (pick from `DT_MelodySlime_Enemies`,
-   e.g. `SlimeForteTide`, `SlimeForteFestivo`, + 4 others), `EnemyId` = row name, `EnemyClass` =
-   `BP_CrystalShard_SlimePlaceholder_C`, `MinimumTier` from the row. Add them to the run definition's
-   `Encounters` and give 3 combat `RD_*` rooms a custom-data subclass whose `EnemyPool` lists those ids.
-   Save immediately. **Done when:** Asset Registry shows 6 ENC assets + DT referencers > 0; artifact = JSON dump.
+1. **H-1 Slime encounters — PART A DONE 2026-09-26 (Claude, saved):** `/Game/Melodia/Roguelike/Encounters/ENC_Slime{Fortissimo,
+   TideCurrent,GaleTroupe,SorcererSweep,RadianceWaltz,Stalagmite}` (lowest-HP row of 6 elements; Umbral later) +
+   `/Game/Melodia/Roguelike/Archetypes/DA_RunArchetype_SlimeCore` (`Encounters` = those 6, `Rooms` empty → the run
+   falls back to the physically validated Grove rooms). **Real runtime chain (read from source — room `EnemyPool`
+   is NOT on it):** `AMelodiaDungeonRunCoordinator.RunArchetype` → `ApplyArchetype` → archetype `Encounters` →
+   `EnemyIds` → stage `EnemyId` → every `AMelodiaEncounterTrigger` in the room → bridge
+   `StartTaggedJRPGBattle("Encounter_<EnemyId>")` → a level actor **tagged `Encounter_<EnemyId>`** (stock
+   `BP_InteractionBattle` carrying its own `offLevelBattleData` + `enemyList`; same contract as the highway gate's
+   `melodia_smoke_encounter`). Unknown tag ⇒ "Stock JRPG bridge refused encounter" and no battle.
+   **PART B (needs owner D2 = dungeon map):** in that map, 6 `BP_InteractionBattle` actors tagged
+   `Encounter_Slime<Row>`, enemy list = the template slime unit(s) under `Content/_PROJECT/Characters/Enemies`
+   (tint/scale per element later); set the placed coordinator's `RunArchetype` = `DA_RunArchetype_SlimeCore`.
+   **Done when:** PIE run log shows `EnemyId=Slime…` for stage 1 and "Encounter routed to tagged stock JRPG battle (Slime…)".
 2. **H-2 Coordinator in the dungeon map (editor, owner D2 names the map).** Place
    `BP_MelodiaDungeonRunCoordinator` (+ `MelodiaFirstDungeonGate`). PIE: complete a run → `NotifySirRescued`
    returns true → Sir recruited without the MorningIntro stand-in. Artifact = log lines + screenshot.
 3. **H-3 Packaged proof (closed editor).** `ollama stop <all>` → `Tools\issue51_ladder.ps1 preflight` →
    `package` → `launch`. Artifact = `Saved/Audit/issue51_ladder_<date>/launch.json`.
-4. **H-4 Sir perch (code lane + editor verify).** `AMelodiousFlightCharacter`: land on `Perch`-tagged surfaces
+4. **H-4 Sir perch — owner D1 = authored perch BPs (2026-09-26).** One content class `BP_SirPerch` (`/Game/Melodia/Characters/SirMelodious/Perch/`): a `PerchPoint` scene component (landing spot + facing), actor tag `Perch`, optional glint VFX. `AMelodiousFlightCharacter` gains a land input: nearest `Perch`-tagged actor within ~300 uu → snap to its `PerchPoint`, `MOVE_Walking`, ABP perch bool; Space takes off. Place 3–5 in Morning (fence, bell tree, roof) — ask first, Morning is Red. `AMelodiousFlightCharacter`: land on `Perch`-tagged surfaces
    (owner D1), `MOVE_Walking` + ABP perch bool, Space takes off; shorten the boom for a cockatoo. Test
    `Melodia.Flight.PerchLandTakeoff`. Flight clip into `ABP_SirMelodious` (Jev 0.9).
 5. **Owner-only:** restart proof (#51 rung 3, real keys), calibration tap-run, Morning p4 default-CL edits.
