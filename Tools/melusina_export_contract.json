@@ -1,0 +1,110 @@
+{
+  "schema": "melodia.melusina_export_contract.v1",
+  "canonical_blend_name": "Melusina_Harp_HERO01_ArcherPoseV09_ARP_R08_WIP_20260912.blend",
+  "working_blend_name": "Melusina_Harp_HERO01_ArcherPoseV09_ARP_R09_HotPass.blend",
+  "rig": "character_rig",
+  "ue_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+  "export": {
+    "tool": "Auto-Rig Pro Game Engine export, Unreal preset",
+    "units": "centimetres (scene unit scale 0.1 -> export scale corrected)",
+    "leaf_bones": false,
+    "deform_only": true,
+    "morph_targets": true,
+    "bone_naming": "ARP Unreal naming (head.x -> head_x)",
+    "out_dir": "C:/EnvironmentPortfolio/BS_GodFile/Exports/MelusinaClothes/V2/"
+  },
+  "remove_armatures": [
+    "character_rig.002"
+  ],
+  "parts": {
+    "body": {
+      "objects": [
+        "Melusina_Base"
+      ],
+      "morphs": [
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyesCloseL",
+        "eyesCloseR"
+      ],
+      "ue_asset": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body"
+    },
+    "skirt": {
+      "objects": [
+        "Melusina_Skirt",
+        "Melusina_SkirtPanel",
+        "NurbsCurve_profile.001"
+      ],
+      "weights": {
+        "prefixes": [
+          "c_kilt_",
+          "kilt_",
+          "root.x",
+          "c_root",
+          "thigh",
+          "c_thigh",
+          "bbones_01.x",
+          "spine_01",
+          "thigh_twist"
+        ],
+        "exact": []
+      },
+      "ue_asset": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains"
+    },
+    "hair": {
+      "objects": [
+        "Hair Strand.004",
+        "Hair Strand.007",
+        "Hair Strand.010"
+      ],
+      "weights": {
+        "prefixes": [
+          "DEF_hair_bbone",
+          "hair_",
+          "c_hair",
+          "head.x"
+        ],
+        "exact": []
+      },
+      "ue_asset": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair"
+    },
+    "garments": {
+      "objects": [
+        "MelusinaShirt",
+        "Melusina_Sleeve",
+        "Melusina_Gloves",
+        "Melusina_Shawl",
+        "Melusina_FrontPanel",
+        "Retopo_boot 2.001",
+        "Retopo_boot 2.002",
+        "PM3D_Cube3D1.001"
+      ],
+      "object_scales": {
+        "MelusinaShirt": 0.01
+      }
+    },
+    "face_parts": {
+      "objects": [
+        "L_Eyebrow",
+        "R_Eyebrow",
+        "R_Eyelash",
+        "R_Iris.002"
+      ]
+    },
+    "rigid": {
+      "objects": [
+        "Retopo_tophat!.001",
+        "Melusina_Bow"
+      ]
+    }
+  },
+  "notes": [
+    "2026-09-25: NurbsCurve_profile.001 (metal hip trim, 66-78 cm, Metal 2 (Matcap)) and PM3D_Cube3D1.001 (chest glitter gem) exist in the canonical blend but in no UE mesh; added so H9 exports them. Retopo_starfrill is the hat's star frill, not a skirt part.",
+    "Blender heights: scene unit scale 0.1 -> 1 BU = 10 cm.",
+    "2026-09-25 owner: hip trim uses MI_Preset_NikkiGemstone (M_Master_Nikki)."
+  ],
+  "material_map": {
+    "NurbsCurve_profile.001/Metal 2 (Matcap).002": "/Game/EnvSandbox/Materials/Instances/Presentation/MI_Preset_NikkiGemstone",
+    "NurbsCurve_profile.001/Outline.005": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005"
+  }
+}
