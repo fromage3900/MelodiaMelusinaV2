@@ -38,7 +38,9 @@
     "Tools/test_universe_foundry.py",
     "Docs/WorldGen/WORLD_COMPILER_CONTRACT.md",
     "Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md",
-    "Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md"
+    "Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md",
+    "Tools/Houdini/floating_crystals/build_floating_crystals.py",
+    "Tools/Houdini/vdm_fabric_mountains/faraway_alignment_diagnostic.py"
   ],
   "worlds": [
     {
@@ -155,7 +157,9 @@
       "evidence_refs": [
         "specs/universe/faraway_mother.world_genome.v1.json",
         "Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md",
-        "Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md"
+        "Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md",
+        "Tools/Houdini/floating_crystals/build_floating_crystals.py",
+        "Tools/Houdini/vdm_fabric_mountains/faraway_alignment_diagnostic.py"
       ]
     },
     {
