@@ -1,0 +1,220 @@
+{
+  "schema": "melodia.world_atlas/v1",
+  "title": "Melodia World Atlas",
+  "subtitle": "An indexed archive of places reached through resonance.",
+  "purpose": "Canonical inventory of Melodia worlds, routes, evidence and production provenance. This is an index, not a runtime, compiler, save system or second world authority.",
+  "status_authority": "CURRENT_STATE.md",
+  "source_control_authority": "specs/source_control_ownership.v1.json",
+  "branch_census": "specs/branch_retirement_census_2026-09-25.json",
+  "evidence_rungs": [
+    "SOURCE_PRESENT",
+    "SOURCE_BUILT",
+    "LIVE_PROVEN",
+    "RESTART_PROVEN",
+    "PACKAGED_PROVEN",
+    "PORTFOLIO_APPROVED"
+  ],
+  "production_spine": {
+    "world_atlas": "Inventory and provenance only; never mutates a world.",
+    "universe_foundry": "Deterministic mission compiler above existing owners; not a world generator or runtime.",
+    "world_compiler": "Deterministic authored-world compilation and PCG-facing world data.",
+    "houdini_foundry": "Offline Hython/Houdini procedural forge and bake producer; not runtime authority.",
+    "melodia_studio": "Canonical Blender/Geometry Nodes procedural source and builders.",
+    "ue_pcg": "Existing UE PCG graphs and runtime/editor consumers compose generated/authored content.",
+    "perforce": "Heavy and lock-sensitive creative content under the active-pilot ownership contract.",
+    "git": "Code, contracts, schemas, tests, docs and Content/Python editor automation source."
+  },
+  "protected_git_entry_points": [
+    "Content/Python/pcg/resonance_ecology_processor.py",
+    "Content/Python/pcg/apply_resonance_to_sea_above.py",
+    "Content/Python/pcg/test_resonance_ecology.py",
+    "Content/Python/integrate_hero_corner_pcg_2026-09-20.py",
+    "Content/Python/world_compiler_ue.py",
+    "Content/Python/world_compiler_panel.py",
+    "Tools/world_compiler.py",
+    "Tools/world_compiler_ue_driver.py",
+    "Tools/test_world_compiler.py",
+    "Tools/universe_foundry.py",
+    "Tools/test_universe_foundry.py",
+    "Docs/WorldGen/WORLD_COMPILER_CONTRACT.md",
+    "Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md",
+    "Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md",
+    "Tools/Houdini/floating_crystals/build_floating_crystals.py",
+    "Tools/Houdini/vdm_fabric_mountains/faraway_alignment_diagnostic.py"
+  ],
+  "worlds": [
+    {
+      "world_id": "melusinas_morning",
+      "display_name": "Melusina's Morning",
+      "aliases": [
+        "L_MelusinaMorning"
+      ],
+      "kind": "route_world",
+      "route_order": 0,
+      "evidence": {
+        "rung": "LIVE_PROVEN",
+        "scope": "World Compiler/PCG dressing is live-proven in scoped L_MelusinaMorning work; this does not promote every presentation/runtime subsystem."
+      },
+      "ue": {
+        "package_path": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+        "repo_map_path": "Content/Melodia/Levels/Opening/L_MelusinaMorning.umap",
+        "checked_in": true,
+        "source_control_bundle": "L_MelusinaMorning"
+      },
+      "systems": [
+        "world_compiler",
+        "ue_pcg"
+      ],
+      "recipes": [
+        "recipes/morning_rainbow_bloom.v1.json"
+      ],
+      "evidence_refs": [
+        "CURRENT_STATE.md",
+        "Docs/WorldGen/WORLD_COMPILER_CONTRACT.md"
+      ]
+    },
+    {
+      "world_id": "sea_above",
+      "display_name": "Sea Above",
+      "aliases": [
+        "P0 Sea Above",
+        "LV_SeaAbove_Prototype"
+      ],
+      "kind": "route_world",
+      "route_order": 1,
+      "evidence": {
+        "rung": "LIVE_PROVEN",
+        "scope": "Scoped musical-PCG/cymatics proof; one Resonance Ecology graph certified, not full-route/package certification."
+      },
+      "ue": {
+        "package_path": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype",
+        "repo_map_path": "Content/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype.umap",
+        "checked_in": true,
+        "source_control_bundle": "LV_SeaAbove_Prototype"
+      },
+      "systems": [
+        "ue_pcg",
+        "resonance_ecology"
+      ],
+      "recipes": [],
+      "evidence_refs": [
+        "Docs/Evidence/SEA_ABOVE_LANDSCAPE_GAMEPLAY_PCG_INTEGRATION_2026-09-01.json",
+        "Docs/Evidence/P0_SEA_ABOVE_CYMATICS_LIVE_2026-09-01.json",
+        "Content/Python/pcg/apply_resonance_to_sea_above.py"
+      ]
+    },
+    {
+      "world_id": "kaleido_nave",
+      "display_name": "Kaleido Nave",
+      "aliases": [
+        "L_KaleidoNave"
+      ],
+      "kind": "route_world",
+      "route_order": 2,
+      "evidence": {
+        "rung": "SOURCE_PRESENT",
+        "scope": "Canonical route map is checked in; Atlas does not infer a higher runtime proof rung from route membership alone."
+      },
+      "ue": {
+        "package_path": "/Game/EnvSandbox/Environments/L_KaleidoNave",
+        "repo_map_path": "Content/EnvSandbox/Environments/L_KaleidoNave.umap",
+        "checked_in": true,
+        "source_control_bundle": "L_KaleidoNave"
+      },
+      "systems": [
+        "ue_pcg"
+      ],
+      "recipes": [],
+      "evidence_refs": [
+        "CURRENT_STATE.md"
+      ]
+    },
+    {
+      "world_id": "faraway_mother",
+      "display_name": "Faraway Mother",
+      "aliases": [
+        "P1 Faraway Mother",
+        "World Zero"
+      ],
+      "kind": "monolith_world",
+      "route_order": null,
+      "evidence": {
+        "rung": "SOURCE_PRESENT",
+        "scope": "World Genome, Faraway PCG architecture and Universe Foundry/Hython source exist; the staged UE prototype map is not on current main and real Hython/TD/save-regeneration proof remains open."
+      },
+      "ue": {
+        "package_path": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+        "repo_map_path": null,
+        "checked_in": false,
+        "source_control_bundle": null
+      },
+      "systems": [
+        "universe_foundry",
+        "houdini_foundry",
+        "ue_pcg"
+      ],
+      "recipes": [],
+      "evidence_refs": [
+        "specs/universe/faraway_mother.world_genome.v1.json",
+        "Docs/PCG/FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md",
+        "Docs/Production/UNIVERSE_FOUNDRY_CONTRACT.md",
+        "Tools/Houdini/floating_crystals/build_floating_crystals.py",
+        "Tools/Houdini/vdm_fabric_mountains/faraway_alignment_diagnostic.py"
+      ]
+    },
+    {
+      "world_id": "glassgarden_shoals",
+      "display_name": "Glassgarden Shoals",
+      "aliases": [
+        "The Reef That Looks Back",
+        "Reef That Looks Back"
+      ],
+      "kind": "deferred_monolith",
+      "route_order": null,
+      "evidence": {
+        "rung": "SOURCE_PRESENT",
+        "scope": "Canon/deferred concept and orchestration canary only; no current-main UE world implementation is claimed."
+      },
+      "ue": {
+        "package_path": null,
+        "repo_map_path": null,
+        "checked_in": false,
+        "source_control_bundle": null
+      },
+      "systems": [
+        "world_atlas"
+      ],
+      "recipes": [],
+      "evidence_refs": [
+        "Docs/Art/DAILY_CANON_AUDIT_2026-08-29.md",
+        "Docs/Prompts/GROK_FUGU_SETUP_AND_GLASSGARDEN_CANARY_2026-09-24.md"
+      ]
+    },
+    {
+      "world_id": "monolithic_ecology",
+      "display_name": "Monolithic Ecology",
+      "aliases": [
+        "Monolith Ecology"
+      ],
+      "kind": "world_family",
+      "route_order": null,
+      "evidence": {
+        "rung": "SOURCE_PRESENT",
+        "scope": "Visual-board/world-language concept; no standalone current-main map or runtime proof is claimed."
+      },
+      "ue": {
+        "package_path": null,
+        "repo_map_path": null,
+        "checked_in": false,
+        "source_control_bundle": null
+      },
+      "systems": [
+        "world_atlas"
+      ],
+      "recipes": [],
+      "evidence_refs": [
+        "Docs/References/VisualBoards/2026-09-08/README.md"
+      ]
+    }
+  ]
+}

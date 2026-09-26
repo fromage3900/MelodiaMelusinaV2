@@ -41,3 +41,22 @@ toolchain/
 2. Authoring-only dependencies are safer than runtime dependencies; prefer baked UE-native outputs.
 3. One benchmark asset per tool; record version/license/export format before use.
 4. Every test ends in **Adopt / Park / Reject**; undocumented "maybe later" becomes Park.
+
+
+---
+
+## Latest repo-aware procedural-worldbuilding sweep — 2026-09-25
+
+Start with [EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_05_2026-09-25.md](EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_05_2026-09-25.md) before proposing new Unreal/Houdini/PCG environment R&D.
+
+It explicitly filters current research against the implemented Melodia baseline. In particular, the following are **not new experiments anymore**: PCG Python semantic enrichment, Resonance-driven per-instance material data, generic Houdini->UE procedural work, World Compiler ecology dressing, and the existence of a Mesh Terrain source pipeline.
+
+Current bounded research order:
+
+1. PCG Manual Editing / Data Overrides;
+2. Houdini 22 Copernicus HDA -> Unreal texture iteration;
+3. local-statistics anti-tiling for large surfaces;
+4. iso-contour terrain authoring feeding existing terrain handoff;
+5. stochastic erosion / InfiniteDiffusion / neural-material ideas only as parked offline R&D.
+
+The current production ledger still parks broad procedural-system expansion. These are canaries, not new authorities.

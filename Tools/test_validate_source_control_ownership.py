@@ -23,19 +23,40 @@ def main():
     check(not ownership.validate(DATA, check_files=False), "ownership manifest must be internally valid")
     overlap = copy.deepcopy(DATA)
     overlap["authorities"]["git"]["roots"].append("Content/Shared/")
-    check(any("dual ownership overlap" in e for e in ownership.validate(overlap)), "overlap must fail")
+    check(any("dual ownership overlap" in e for e in ownership.validate(overlap)), "undeclared overlap must fail")
+    check(
+        ownership.perforce_owns("Content/Melodia/Foo.uasset", ["Content/"], ["Content/Python/"]),
+        "ordinary Content must remain Perforce-owned",
+    )
+    check(
+        not ownership.perforce_owns("Content/Python/pcg/tool.py", ["Content/"], ["Content/Python/"]),
+        "Content/Python must be excluded from Perforce",
+    )
     missing = copy.deepcopy(DATA)
     missing["level_bundles"][0].pop("external_objects")
     check(any("missing external_objects" in e for e in ownership.validate(missing)), "missing external root must fail")
+    bad_state = copy.deepcopy(DATA)
+    bad_state["cutover_state"] = "magic"
+    check(any("cutover_state must be one of" in e for e in ownership.validate(bad_state)), "unknown cutover state must fail")
+    premature = copy.deepcopy(DATA)
+    premature["cutover_state"] = "production"
+    check(any("world_partition_roundtrip" in e for e in ownership.validate(premature)), "production needs WP proof")
     with mock.patch.object(ownership.subprocess, "run") as run:
         run.return_value = ownership.subprocess.CompletedProcess(
-            args=[], returncode=0, stdout="Content/A.uasset\n", stderr=""
+            args=[], returncode=0, stdout="Content/Python/pcg/tool.py\n", stderr=""
+        )
+        check(
+            not ownership.validate_git_cutover(DATA),
+            "Git-owned Content/Python must not block creative-content cutover",
+        )
+        run.return_value = ownership.subprocess.CompletedProcess(
+            args=[], returncode=0, stdout="Content/A.uasset\nContent/Python/pcg/tool.py\n", stderr=""
         )
         check(
             any("cutover incomplete" in e for e in ownership.validate_git_cutover(DATA)),
-            "remaining Git-owned Content must fail cutover",
+            "remaining Git-owned Perforce content must fail cutover",
         )
-    print("PASS: source-control ownership validator contract (4 assertions)")
+    print("PASS: source-control ownership validator contract (9 assertions)")
 
 
 if __name__ == "__main__":

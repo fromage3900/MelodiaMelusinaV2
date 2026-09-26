@@ -253,3 +253,42 @@ Do not:
 - add every candidate as a permanent daemon.
 
 Default outcome remains **PARK or SPECIALIST**, not fleet inflation.
+
+
+---
+
+## 9. Procedural worldbuilding research delta — 2026-09-25
+
+**Latest detailed sweep:** [EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_05_2026-09-25.md](EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_05_2026-09-25.md)
+
+This sweep was performed against current Git state rather than generic tool availability.
+
+### Baseline now considered solved / present
+
+- UE 5.8 PCG Python semantic enrichment;
+- `Resonance / EcologyClass / MaterialVariant / ScaleBias` metadata production;
+- native spawner + per-instance custom-data material response;
+- World Compiler procedural ecology/presentation in `L_MelusinaMorning`;
+- canonical Houdini/Hython offline forge;
+- Copernicus batch texture/mask generation;
+- Gaea/DEM -> metric source -> UE 5.8 Mesh Terrain P0 path.
+
+Do **not** return these as new-tech recommendations without a materially different capability.
+
+### Current research priority
+
+| Candidate | Status | Why it survives the repo-aware filter |
+|---|---|---|
+| **UE 5.8 PCG Manual Editing / Data Overrides** | **TEST NOW / Experimental** | Adds non-destructive artist override over generated PCG; targets the procedural-vs-authored composition problem rather than adding another generator |
+| **Houdini 22 COP HDA in Unreal** | **TEST NOW** | Could collapse texture lookdev round-trip while keeping existing Melodia material authority and Hython batch lane |
+| **Local-statistics texture synthesis / filtering** | **TEST SOON** | Targets large-surface repetition beyond current triplanar/randomization controls |
+| **Iso-contour terrain authoring** | **TEST SOON** | Artist-first macro-composition representation that can feed the existing terrain handoff rather than replacing it |
+| **Stochastic geomorphological transport** | **OFFLINE R&D** | Potentially richer flow/deposition masks for existing Gaea/Hython/PCG consumers |
+| **InfiniteDiffusion / Terrain Diffusion** | **RESEARCH ONLY** | Deterministic unbounded learned terrain is strategically interesting, but must remain an offline source/ideation sidecar |
+| **Richer procedural material data enhancement** | **PATTERN QUARRY** | Use layered physical-prior ideas; do not add a neural material runtime |
+| **GPU PCG / Custom HLSL** | **BENCHMARK WHEN PROFILED** | Existing PCG contract already reserves this for dense/Python-bound graphs; no new architecture needed |
+
+### Production constraint
+
+`Docs/P1_TASK_LEDGER.json` currently parks broad procedural-system expansion. The table above is an R&D queue only. Any implementation should be a disposable or bounded canary that consumes existing World Compiler / PCG / Hython / material owners.
+
