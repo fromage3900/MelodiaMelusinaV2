@@ -1631,6 +1631,44 @@ packages, so there is no in-memory loss vector. 5 git stashes exist from deliber
 (09-19 → 09-23), which are parked work, not lost work. Plan of record, including the exact p4 reconcile list
 and the deliberate non-actions, is in the runbook's **C-2 PLAN OF RECORD**.
 
+**RESEARCH 2026-09-26 — the room-cook question is now MECHANISM-PROVEN, and a bigger defect fell out.**
+
+**1. The rooms genuinely will not cook (authoritative, not inferred).** `Plugins/ProceduralDungeon/Source/
+ProceduralDungeon/Public/RoomData.h:45` declares `TSoftObjectPtr<UWorld> Level {nullptr};`. Epic's own
+guidance is that soft references **do not** put a target in the cooker's reachability path: without a hard
+reference chain, an Asset Manager registration, or an "Additional Asset Directories To Cook" entry, the
+softly-referenced package is excluded and resolves to null in a build. The chain here is: the generator holds
+`TArray<URoomData*>` — a **hard** reference, so the `RD_*` assets cook — but each `RD_*` reaches its `L_*` level
+only through that soft pointer. So the room levels are excluded. This is the mechanism behind Jev's 0.55 risk.
+*Precision:* this proves the mechanism, not the package contents. Only a green `-stage -pak` run can confirm
+the artifact, and that is still the pending proof.
+
+**2. The 8 Asset Manager `AlwaysCook` rules for the roguelike match ZERO assets.** `DefaultEngine.ini`
+registers `MelodiaRoom`, `MelodiaEncounter`, `MelodiaDifficulty`, `MelodiaRunArchetype`, `MelodiaMutator`,
+`MelodiaReward`, `MelodiaRewardPool`, `MelodiaContentPack` — all with `CookRule=AlwaysCook` — but every one
+points at a `Definitions/<Type>` subdirectory. **None of those eight directories exists.** The real layout is
+`Roguelike/{Archetypes, Blueprints, DataTables, Definitions, Encounters, RoomData, Rooms}`:
+
+| Configured scan dir | Reality |
+|---|---|
+| `Definitions/Rooms` | does not exist (levels live in `Roguelike/Rooms`) |
+| `Definitions/Encounters` | does not exist (encounters live in `Roguelike/Encounters`) |
+| `Definitions/Runs` | does not exist (archetypes live in `Roguelike/Archetypes`) |
+| `Definitions/Difficulty` | does not exist (`DD_SlimeCore` sits directly in `Definitions/`) |
+| `Definitions/{Mutators,Rewards,RewardPools,ContentPacks}` | do not exist |
+
+`RoomData/` and `Rooms/` have **no rule at all**. So the safety net intended to cover exactly this class of
+runtime-only content is inert, and the definitions cook today only because they are hard-referenced from the
+archetype arrays and battle-anchor rosters — which is fragile and incidental, not designed.
+
+**Consequence for the two fixes.** The drafted
+`+DirectoriesToAlwaysCook=(Path="/Game/Melodia/Roguelike")` is the correct *immediate* remedy: it covers
+`Rooms/`, `RoomData/`, `Encounters/`, `Archetypes/` and `Definitions/` in one line and needs no per-type
+bookkeeping. The *durable* remedy is to repoint the 8 Asset Manager rules at the directories that exist (or
+move the assets under the configured ones) — that is next-phase work and is deliberately **not** bundled into a
+two-line closeout, because changing cook rules and fixing a shared template Blueprint in the same pass makes
+neither reviewable.
+
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
 Choral Sheep is the capstone lane.
