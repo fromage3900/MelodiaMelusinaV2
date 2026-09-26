@@ -281,6 +281,39 @@ external actor). No `chmod`/`attrib` around Perforce (writes p4-controlled conte
 push (owner approves; Jev's guidance is to hold). No claim that the room-cook question is answered — two
 attempts to prove it were invalid and the decisive artifact does not exist.
 
+## NEXT PHASE — recommended order (2026-09-26 night, derived from the research above)
+
+**Phase N1 — make the cook rules true (do this before any more content authoring).**
+The roguelike cook safety net is inert: 8 `AlwaysCook` Asset Manager rules point at `Definitions/<Type>`
+directories that do not exist, and `RoomData/` + `Rooms/` have no rule at all. Decide once, then apply
+consistently — either repoint the rules at the real folders, or move the assets under the configured ones.
+Moving content churns 12+ p4 assets and every reference to them; repointing config churns one file. **Repoint
+the config.** Then verify with a real `-stage -pak` and an actual pak listing, not a log grep. Keep the
+`DirectoriesToAlwaysCook` line as a belt-and-braces floor for `Rooms/` specifically, since the levels are the
+one thing the dungeon cannot run without.
+
+**Phase N2 — close the dungeon loop properly.**
+Only two of 22 room levels are generator-ready; the other 20 have no exits/entrances, which is why
+`MelodiaRoguelikeRunSubsystem` only trusts `RD_MelodiaGrove_V1/V2`. Options in order of cost: author doors
+between existing rooms (cheapest, unblocks more of the pool), or promote PCG dressing on `BossArena` off its
+Greybox-style graph (the visual win). Decide whether the P0 run should be 3 stages of 2 validated rooms or
+widen the validated set first — that choice changes whether N2 is content or tech.
+
+**Phase N3 — the possess defect, and the party subsystem question.**
+The Possess guard is a one-node change and is the only thing between 105/108 and green; it is deliberately not
+bundled with cook-rule work. Separately, establish whether
+`UMelodiaJRPGPartyBootstrapSubsystem::TrySeedPresentationUnit` runs at all — it logs nothing even with its gate
+fixed, so the runtime swap may be dead code and the CDO data fix may be the only thing carrying the party. One
+`UE_LOG` in `Initialize` plus a build answers it. If the subsystem is dead, decide explicitly whether to
+revive it or delete it, because a silently-dead subsystem is how the original gate bug survived.
+
+**Phase N4 — only after the cook is green.**
+The owner's `L_MelusinaMorning` deleted external actor is the last cook blocker and is their call. Once the
+package is green, H-3 is provable and the P0 closeout can be declared on evidence rather than inference.
+
+**Standing rule for all of it:** p4 first for content. Every content asset authored in this project is
+single-copy on one disk until p4 has it, and that has now been true across multiple sessions.
+
 ### Carried-forward defects (do not silently absorb)
 - **Single-copy exposure:** 12 content assets exist only in this working tree until step 1 lands. This is the
   highest-consequence open item in the project right now, and it outranks the red suite.
