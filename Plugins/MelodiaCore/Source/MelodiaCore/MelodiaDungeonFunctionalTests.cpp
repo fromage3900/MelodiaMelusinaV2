@@ -226,8 +226,11 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 
 bool FMelodiaThreeStagePhysicalRouteTest::RunTest(const FString& Parameters)
 {
-    // CommonUI's stock viewport warning is unrelated to dungeon correctness but is promoted to an automation error.
-    AddExpectedError(TEXT("Using CommonUI without a CommonGameViewportClient"), EAutomationExpectedErrorFlags::Contains, 1);
+    // UE 5.8 no longer emits CommonUI's "Using CommonUI without a
+    // CommonGameViewportClient" warning for this project's configuration, so the
+    // old expected-error entry is gone rather than left demanding a message that
+    // never arrives. If the viewport config ever regresses, the warning returns
+    // as a genuine unexpected error, which is the signal worth having.
     ADD_LATENT_AUTOMATION_COMMAND(FEditorLoadMap(TEXT("/Game/ZenForestTest")));
     ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
     ADD_LATENT_AUTOMATION_COMMAND(FMelodiaThreeStagePhysicalRouteCommand(this));
@@ -243,7 +246,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(
 
 bool FMelodiaTwentyFiveGenerationSoakTest::RunTest(const FString& Parameters)
 {
-    AddExpectedError(TEXT("Using CommonUI without a CommonGameViewportClient"), EAutomationExpectedErrorFlags::Contains, 1);
+    // See the note in FMelodiaThreeStagePhysicalRouteTest::RunTest: UE 5.8 does
+    // not emit the CommonUI viewport warning this test used to expect.
     ADD_LATENT_AUTOMATION_COMMAND(FEditorLoadMap(TEXT("/Game/ZenForestTest")));
     ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
     ADD_LATENT_AUTOMATION_COMMAND(FMelodiaThreeStagePhysicalRouteCommand(this, true));

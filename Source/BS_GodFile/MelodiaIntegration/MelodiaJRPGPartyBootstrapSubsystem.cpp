@@ -12,7 +12,6 @@
 
 namespace
 {
-	constexpr TCHAR PresentationControllerClassName[] = TEXT("BP_MelodiaJRPGController_Config_C");
 	constexpr TCHAR PresentationUnitClassPath[] = TEXT("/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation.BP_MelusinaSwordsman_Presentation_C");
 	constexpr TCHAR StockSwordsmanUnitClassPath[] = TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_SwordsmanPlayerUnit.BP_SwordsmanPlayerUnit_C");
 	constexpr TCHAR SirMelodiousUnitClassPath[] = TEXT("/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit.BP_SirMelodiousPlayerUnit_C");
@@ -98,6 +97,29 @@ namespace
 			}
 		}
 		return EStockPartyMembership::Absent;
+	}
+
+	/**
+	 * Is this one of the Melodia integration's stock JRPG controllers?
+	 *
+	 * The presentation swap is only safe on a Melodia controller, because it
+	 * rewrites the stock party roster. Matching one hardcoded class name was
+	 * wrong twice over: BP_MelodiaJRPGController_Config and
+	 * BP_MelodiaJRPGPlayerController are siblings under the template's
+	 * BP_JRPGPlayerController, and BP_MelodiaJRPGGameMode - the project's
+	 * GlobalDefaultGameMode - spawns the latter. So the check declined the live
+	 * controller on every map, returned false without a word, and left the
+	 * stock Swordsman in the party. Because that unit's mesh is the template's
+	 * SK_Mannequin, Melusina fought bare while the fully authored
+	 * BP_MelusinaSwordsman_Presentation (SK_Melusina_V2_Body/Shirt/Skirt/Boots)
+	 * sat unused. Owning package is the stable identity here and survives a
+	 * rename of either Blueprint.
+	 */
+	bool IsMelodiaIntegrationController(const APlayerController* Controller)
+	{
+		return Controller
+			&& Controller->GetClass()->GetOutermost()->GetName().StartsWith(
+				TEXT("/Game/MelodiaIntegration/"), ESearchCase::IgnoreCase);
 	}
 
 	bool AddToPartyThroughStockController(APlayerController* Controller, UClass* UnitClass)
@@ -380,8 +402,13 @@ bool UMelodiaJRPGPartyBootstrapSubsystem::TrySeedPresentationUnit()
 	}
 
 	APlayerController* Controller = World->GetFirstPlayerController();
-	if (!Controller || !Controller->GetClass()->GetName().Equals(PresentationControllerClassName))
+	if (!IsMelodiaIntegrationController(Controller))
 	{
+		// Never decline in silence again: a bare "return false" here is what let
+		// the stock mannequin reach the battle with nobody noticing.
+		UE_LOG(LogTemp, Warning,
+			TEXT("Melodia JRPG party bootstrap left the stock party untouched: controller '%s' is not a Melodia integration controller, so the presentation unit was not seeded."),
+			Controller ? *Controller->GetClass()->GetName() : TEXT("<none>"));
 		return false;
 	}
 

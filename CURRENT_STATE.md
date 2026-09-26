@@ -1458,10 +1458,216 @@ requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly f
 — G1 PCG loss check (verified: nothing lost; owner's Morning edits unsubmitted in p4 default CL), G2 24 h review,
 G3 Sir Melodious switch → perch (existing `UMelodiaPartySubsystem` + `AMelodiousFlightCharacter`), G4 P0 dungeon
 loop with melody slimes (existing roguelike subsystem; `MelodiaDungeonRunCoordinator` placed in no map yet).
-Owner decisions D1 (perch surfaces) and D2 (P0 dungeon map) block S3 and L1.
+D1 answered = authored `BP_SirPerch`; D2 answered 09-26 evening = the procedural room levels (`RD_*`/`L_*`) are the P0 dungeon, expanded with PCG — ZenForestTest stays exploration. S3/L1 retargeted accordingly.
 **09-26 afternoon:** Sir party switch **fixed + PIE-proven** (Sir→Melusina was a silent no-op; `UMelodiaPartySubsystem::SetActiveIndex`).
 Slime data verified but **unwired** (0 encounter defs, empty room pools) — next = HERMES RUNBOOK H-1 in the goal file (Jev 0.56); cook re-run after it (Jev 0.91).
-H-1 part A done: 6 `ENC_Slime*` + `DA_RunArchetype_SlimeCore` saved; part B (tagged `Encounter_Slime*` battles) needs D2. D1 = authored `BP_SirPerch`.
+H-1 part A done: 6 `ENC_Slime*` + `DA_RunArchetype_SlimeCore` saved; part B (tagged `Encounter_Slime*` battles) retargeted to the dungeon run world per D2. D1 = authored `BP_SirPerch`.
+
+**09-26 evening — H-1/H-2 DONE and PIE-proven (Hermes).** The slime data is now *used*, not just present.
+Wired in `ZenForestTest` through Monolith (map p4-opened, saved, unsubmitted): coordinator `RunArchetype` =
+`DA_RunArchetype_SlimeCore`; **8** stock `BP_InteractionBattle` anchors, each exactly one `Encounter_<id>` tag with a
+real roster — 6 slimes (`BP_EnemyUnit_MelodySlime_C`), `Encounter_SakuraPhantom` (stage-0 threshold, stock
+`BP_WeakEnemy_C`), `Encounter_CosmicSentinel` (final stage, stock `BP_BossEnemy_C`).
+New data assets `Content/Melodia/Roguelike/Definitions/`: `DR_Grove_Threshold`, `DR_Grove_ResonantBridge`
+(`UMelodiaRoomDefinition` → `RD_MelodiaGrove_V1/V2` + `Level` + `TopologyTags` + `StableId`) and `DD_SlimeCore`
+(`UMelodiaDifficultyDefinition`, curves still empty = runtime tuning, not a validation gate).
+Archetype authored to **1 act × 3 stages** (its unedited 2×6 default set `StagesPerDungeon=12` and broke the
+3-stage P0 contract at `MelodiaRoguelikeRunSubsystem.cpp:443`); 6 `ENC_Slime*` repointed off
+`BP_CrystalShard_SlimePlaceholder` onto the real slime unit.
+**Proof** — `Melodia.Roguelike.Functional.ThreeStagePhysicalRoute` in PIE on ZenForestTest: no archetype validation
+errors; recipe `stage 0 SakuraThreshold/SakuraPhantom → stage 1 Grove/SlimeRadianceWaltz → stage 2
+Grove/CosmicSentinel`; `Melodia run: dungeon complete - Sir Melodious reunion spawned.`; the three gameplay
+assertions (Complete phase, endless offer, `bSirMelodiousAvailable`) all pass. **Result={Success}.**
+The test was red before that for a non-gameplay reason: it carried `AddExpectedError("Using CommonUI without a
+CommonGameViewportClient", Contains, 1)`, a UE 5.5 warning 5.8 no longer emits. Setting the count to 0 does *not*
+work — UE still demands the message occur and fails with "Expected suppressed ... did not occur". The entries were
+**removed** from both cases in `MelodiaDungeonFunctionalTests.cpp`; if the viewport config ever regresses, the
+warning returns as a genuine unexpected error.
+**H-4 DONE (Hermes).** `ASirPerchPoint` (new, `SirPerchPoint.h/.cpp`; `LandingOffset`/`bFaceAlongPerch`/`PerchFacing`
++ designer-assigned, mesh-less `Glint`) + perch API on `AMelodiousFlightCharacter` (idle `Tick` auto-lands,
+any steer/ascend/boost takes off, `FindNearestPerch` measures to the *landing spot*, boost suppresses the idle
+perch) + camera arm 520→300 (H-4 tuning). Test `Melodia.FlightTests.SirPerchLandTakeoff`
+(`MelodiaPerchTests.cpp`, own throwaway world — never the open map) — **Result={Success}** first run.
+Closed-editor build green (26.9 s first, 6.5 s after the test-harness fix).
+**Suite 2026-09-26 evening: `Automation RunTests Melodia.` = 106/107 pass.** The one failure is
+`Melodia.Roguelike.Functional.TwentyFiveGenerationSoak`, and it is a **wall-clock timeout, not a logic defect**:
+it resolved the archetype and slimes correctly, generated all 25 endless rooms (`depth 0 → 24`, `act 8 stage 26`)
+with zero generation rejections, then tripped the test's own 240 s budget at 3–5 FPS
+(`MelodiaDungeonFunctionalTests.cpp:31`). NOT changed — the budget is machine-speed dependent, so raising it is
+the owner's call, not a silent gate edit.
+**Known non-blocking noise in the log:** `LogPython: AttributeError: 'AssetData' object has no attribute
+'tags_and_values'` from an ad-hoc editor probe; unrelated to the C++ suites.
+**Open next:** H-3 packaged cook (Jev 0.91) — **and note `MapsToCook` lists no `L_*` room level and
+`/Game/Melodia/Roguelike` is not in `DirectoriesToAlwaysCook`**, while the dungeon streams those rooms by soft
+path. Check the packaged output before proposing any `Config/DefaultGame.ini` line (ask-first file).
+and the non-Grove rooms still have no exits, which is why the runtime only trusts `RD_MelodiaGrove_V1/V2`
+(`MelodiaRoguelikeRunSubsystem.cpp:59`). PCG expansion of the room levels is the next authoring pass.
+
+**09-26 night — NAKED MELUSINA: diagnosed in three parts; party fix proven.**
+Not an art problem: `BP_MelusinaSwordsman_Presentation` is fully authored (`SK_Melusina_V2_Body/_Shirt/_Skirt_R2/
+_Boots/_Accessories`, both ABPs, her VFX). (1) **C++:** `TrySeedPresentationUnit` gated its Swordsman→presentation
+swap on one hardcoded name `BP_MelodiaJRPGController_Config_C`, but the GameMode spawns the sibling
+`BP_MelodiaJRPGPlayerController` — it declined on every map and returned false silently. Now matches the
+controller's owning package `/Game/MelodiaIntegration/` and logs instead of declining. (2) **Data (the real
+cause):** live PIE probe showed `partyMembers=[Sir]` only, from `BP_MelodiaJRPGPlayerController`'s **CDO
+defaults** — Melusina was in no roster, and the stock Swordsman was gone too, so the swap had nothing to swap.
+That BP is now p4-opened and its default `playerUnits` carries the presentation unit beside Sir (package grew
+98675→98883 bytes, both refs verified on disk). Test `Melodia.Integration.Functional.PartyPresentationUnit` failed
+those assertions before the fix and **passes them after**. (3) **NEW, OPEN:** with a second unit fielded, the
+stock pawn's possess graph null-derefs `AIController` in `BP_JRPGCharacterBase` — shared template content, not
+edited unattended; needs an owner decision (null-guard the node vs give the unit's pawn an AI controller).
+Also unexplained: `TrySeedPresentationUnit` logs nothing even with the gate fixed, so that subsystem may never be
+invoked on this path — the data fix is what carries the party.
+
+**Jev plan-audit of this closeout (`source=jev-live`, one `system_one` call, closed option sets):**
+AIController fix → **`DEFER_TO_OWNER` 0.70** (unit-scoped 0.27 vs stock-template guard 0.03) ·
+next block → `FIX_AICONTROLLER_THEN_SUITE` 0.49 vs `COOK_FIRST` 0.41 (conf 0.32, near-tie) ·
+riskiest → **`ROOM_LEVELS_NOT_COOKED` 0.55** (template regression 0.24, cook memory 0.21) ·
+**Owner gate noul 0.93** · readiness **1 = "risky"**. Consequences: the AIController block is **not** executed
+unattended (owner-gated) and is handed over with evidence; Jev independently sides with the unit-scoped fix over
+editing shared stock template content; and the dominant risk is the **cook**, which needs no approval — so the
+packaged cook is the block being executed. Full distributions + script path in the runbook's C-0 section.
+
+**Cook result 2026-09-26 20:5x — H-3 advances, then stops on ONE owner-owned asset.**
+1. **My own bug, now fixed:** the game target failed to link with `LNK2001`/`LNK2019` on
+   `Z_Construct_UClass_ASirPerchPoint` / `~ASirPerchPoint`. The tell: `SirPerchPoint.cpp.obj` existed for
+   `UnrealGame` but **`SirPerchPoint.gen.cpp.obj` did not** — UHT had written the gen file (16:14) yet the
+   cached plan `Intermediate/Build/Win64/x64/BS_GodFile/Development/Makefile.bin` never scheduled it, and
+   `grep -c 'SirPerchPoint.gen.cpp'` in that cache returned 0. Deleting that regenerable cache fixed it; the
+   recipe is now in the `melodia-backend` skill.
+2. **Build: `Result: Succeeded`.** Link clean.
+3. **Cook: 4228/4228 packages, 0 remaining, 21m38s — then `Failure - 1 error(s)`, ExitCode=25.** The single
+   error is the owner's level, not the dungeon:
+   `L_MelusinaMorning.umap ... imports class /Script/MeshPartition.MeshPartition, which is in a module that is
+   not available on the platform` — the level whose external actor is **deleted in the working set**. This is
+   the same level flagged in `git status` as a deleted `L_MelusinaMorning` external actor, so the cook cannot
+   go green until that reference is re-saved or the delete is resolved. **Not touched: it is the owner's work.**
+4. **Targeted dungeon cook is GREEN, and the room-level question is STILL OPEN (honest status).**
+   `-map=/Game/ZenForestTest` (build skipped, `L_MelusinaMorning` excluded) cooked **2920/2920 packages,
+   0 remaining, `Success - 0 error(s), 132 warning(s)`, `AutomationTool exiting ExitCode=0`**. That proves the
+   cook pipeline itself works on this box and that the earlier failure was *only* the `L_MelusinaMorning`
+   error plus the link bug.
+   **What it does not prove:** that the rooms cook. The cook log names `ZenForestTest` 16 times and the
+   `L_*` room levels / `L_BossArena` **0** times each, and `MapsToCook` lists no room level while
+   `/Game/Melodia/Roguelike` is absent from `DirectoriesToAlwaysCook` — strongly suggestive, but the decisive
+   artifact **does not exist**: that run wrote **zero** `.umap` files anywhere (its log references
+   `Metadata/ValidationCookArtifact`, i.e. a validation-style cook with no staged output). A
+   `strings`/grep check of the older `AssetRegistry.bin` was also invalid — it found neither the rooms nor a
+   known-cooked map, so it proved nothing. **So: do not report the room-cook question as answered.** Settling it
+   requires the full `-stage -pak` package to go green, which requires resolving `L_MelusinaMorning` first.
+   Note the MSYS trap when invoking UAT here: `cmd //c "...RunUAT.bat..."` prints the Windows banner and exits 0
+   without running anything — use a `.bat` wrapper executed as `./wrapper.bat` with `MSYS_NO_PATHCONV=1`.
+
+**Full `Melodia.` suite 2026-09-26 21:34–21:40 — 108 tests, 105 pass, 3 fail, and ALL THREE share ONE
+root cause.** `PartyPresentationUnit`, `ThreeStagePhysicalRoute` **and** `TwentyFiveGenerationSoak` each fail
+with the same `PIE: Blueprint Runtime Error: "Accessed None trying to read (real) property AIController"`. The
+soak's old 240 s timeout is now joined by this error, and the route test — green earlier in the session — is red
+for this reason alone, **not** because the dungeon broke. Cause: the party fix is correct (Melusina is fielded
+and dressed, both of that test's own assertions pass) but it made a latent stock bug reachable, and automation
+promotes Blueprint runtime errors to test failures. **One fix should recover all three.**
+
+**The defect, fully diagnosed.** In `/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacterBase`
+EventGraph, on the Possess event:
+- `K2Node_CallFunction_20` = `AIBlueprintHelperLibrary.GetAIController(Self)` (ControlledActor ← `K2Node_Self_1`)
+- → `K2Node_VariableSet_0` "Set AIController" (member variable)
+- → `K2Node_VariableGet_7` "Get AIController" → `K2Node_CallFunction_21.self`
+
+`K2Node_CallFunction_21` is **`Controller.Possess`** ("Possess — Target is Controller"). `GetAIController`
+returns **None** when the possessor is a *PlayerController* rather than an AIController, so the graph calls
+`Possess` on None. The stock pawn assumes it is always AI-possessed. **Fix: branch on the AIController member
+being valid after `K2Node_VariableSet_0`, and only then execute into `K2Node_CallFunction_21`.** That is a
+one-node graph guard, not a redesign.
+
+**This guard is unusually safe to apply, verified from the pin data:** `K2Node_CallFunction_21.then` has
+`"connected_to": []` — the Possess call is a **terminal node**, nothing downstream consumes it. So inserting a
+`K2Node_Branch` between `K2Node_VariableSet_0.then` and `K2Node_CallFunction_21.execute`, with the condition fed
+by an `IsValid` check on the AIController member and the **false path left unconnected**, cannot change any
+downstream behaviour. Monolith has the required actions (`add_node`, `connect_pins`, `add_property_access`,
+`add_nodes_bulk`, `batch_execute`, `compile_blueprint`). Dry-run it on a writable copy before touching the
+shared template asset, and re-run `Melodia.` afterwards expecting 107–108/108.
+
+**BLOCKED ON ONE OWNER ACTION — `p4 login`.** Both remaining changes are fully specified and ready but cannot be
+applied: the Perforce session has expired, and both target files are `-r--r--r--`:
+- `Config/DefaultGame.ini` — add `+DirectoriesToAlwaysCook=(Path="/Game/Melodia/Roguelike")` (the drafted
+  comment is in the runbook; this is what forces the streamed `L_*` room levels into the package).
+- `Content/TurnBasedJRPGTemplate/.../BP_JRPGCharacterBase.uasset` — the Possess null-guard above.
+Do **not** work around this with `chmod`/`attrib`: that writes Perforce-controlled content outside Perforce and
+creates the confusing "saved but not checked out" state. Note Jev ranked the stock-BP edit at only 0.03 versus
+0.27 for a unit-scoped fix, but the graph evidence has since shown the unit-scoped route is not actually
+available — the stock pawn is the possessor of record — so the ranking is superseded by the wiring.
+
+**Jev on-track audit, second pass (`source=jev-live`, after the suite ran and the possess graph was read):**
+
+| Question | Call | Confidence | Distribution |
+|---|---|---|---|
+| Next action | **`WAIT_FOR_P4_THEN_EXECUTE`** | **0.78** | WAIT 0.84 · HOLD_AND_ESCALATE 0.13 · FIND_NO_P4_ROUTE 0.02 · REVERT_PARTY_FIX 0.01 |
+| Commit now | **`HOLD_NO_COMMIT_YET`** | 0.49 | HOLD 0.65 · SOURCE_AND_DOCS_ONLY 0.34 · COMMIT_ALL_ELEVEN 0.01 |
+| Riskiest | **`P4_NEVER_CLEARED`** | 0.75 | P4 0.80 · ROOMS_STILL_UNCOOKED 0.11 · PARTY_FIX_UNPROVEN 0.05 · DUAL_VCS 0.04 |
+| Owner gate | **noul 0.90 — gated** | — | gated |
+| On track | **1 = "at_risk"** | — | 1.0 on that level |
+
+(This pass uses a different readiness scale than the first, so the two scores are **not** comparable; only the
+distributions within each pass are meaningful.) What it endorses: the plan as proposed scores **0.84 at 0.78
+confidence**, and both escape hatches are rejected outright — engineering around Perforce scores **0.02** and
+reverting the correct party fix scores **0.01**. Holding the staged set uncommitted scores 0.65. The dominant
+risk is not technical: it is the Perforce login never happening (0.80), which is why the closeout reads
+"at_risk" while the underlying work — dungeon run proven, root cause found and fixed with a regression test,
+build green, targeted cook green — is done.
+
+**State audit at the same time (no drift):** `main == origin/main` at `77b7d40f9`, nothing committed · 11 files
+staged by explicit filename, never `git add -A` · all of the owner's Morning work still unstaged, including the
+deleted `L_MelusinaMorning` external actor still ` D` · editor up, Monolith responsive, 0 real load errors (the 4
+boot-log hits are `aqProf`/`VtuneApi`/`WinPixGpuCapturer` profiler probes) · p4 still expired. Of the 22 assets
+modified today only **12 are this task's**; the other 10 belong to other lanes/the owner and are deliberately
+unclaimed and unstaged.
+
+**SOURCE-CONTROL TRUTH, 2026-09-26 ~21:5x (verified, not assumed).** Prior lanes' last-24 h work **is**
+committed and merged: 34 commits, 9 merges, `main == origin/main` at `77b7d40f9`. **This session's work is
+not.** Nothing of tonight's is committed — 11 files are **staged only**; nothing has been submitted to p4 (the
+session is expired); and of the 12 content assets this task touched, **12/12 are on disk but 0 have a second
+copy**, because `Content/*` is gitignored at `.gitignore:113`. **So the working tree is the only copy of that
+work, and that — not the red suite — is the highest-consequence open item in the project.** Editor has 0 dirty
+packages, so there is no in-memory loss vector. 5 git stashes exist from deliberate earlier parks
+(09-19 → 09-23), which are parked work, not lost work. Plan of record, including the exact p4 reconcile list
+and the deliberate non-actions, is in the runbook's **C-2 PLAN OF RECORD**.
+
+**RESEARCH 2026-09-26 — the room-cook question is now MECHANISM-PROVEN, and a bigger defect fell out.**
+
+**1. The rooms genuinely will not cook (authoritative, not inferred).** `Plugins/ProceduralDungeon/Source/
+ProceduralDungeon/Public/RoomData.h:45` declares `TSoftObjectPtr<UWorld> Level {nullptr};`. Epic's own
+guidance is that soft references **do not** put a target in the cooker's reachability path: without a hard
+reference chain, an Asset Manager registration, or an "Additional Asset Directories To Cook" entry, the
+softly-referenced package is excluded and resolves to null in a build. The chain here is: the generator holds
+`TArray<URoomData*>` — a **hard** reference, so the `RD_*` assets cook — but each `RD_*` reaches its `L_*` level
+only through that soft pointer. So the room levels are excluded. This is the mechanism behind Jev's 0.55 risk.
+*Precision:* this proves the mechanism, not the package contents. Only a green `-stage -pak` run can confirm
+the artifact, and that is still the pending proof.
+
+**2. The 8 Asset Manager `AlwaysCook` rules for the roguelike match ZERO assets.** `DefaultEngine.ini`
+registers `MelodiaRoom`, `MelodiaEncounter`, `MelodiaDifficulty`, `MelodiaRunArchetype`, `MelodiaMutator`,
+`MelodiaReward`, `MelodiaRewardPool`, `MelodiaContentPack` — all with `CookRule=AlwaysCook` — but every one
+points at a `Definitions/<Type>` subdirectory. **None of those eight directories exists.** The real layout is
+`Roguelike/{Archetypes, Blueprints, DataTables, Definitions, Encounters, RoomData, Rooms}`:
+
+| Configured scan dir | Reality |
+|---|---|
+| `Definitions/Rooms` | does not exist (levels live in `Roguelike/Rooms`) |
+| `Definitions/Encounters` | does not exist (encounters live in `Roguelike/Encounters`) |
+| `Definitions/Runs` | does not exist (archetypes live in `Roguelike/Archetypes`) |
+| `Definitions/Difficulty` | does not exist (`DD_SlimeCore` sits directly in `Definitions/`) |
+| `Definitions/{Mutators,Rewards,RewardPools,ContentPacks}` | do not exist |
+
+`RoomData/` and `Rooms/` have **no rule at all**. So the safety net intended to cover exactly this class of
+runtime-only content is inert, and the definitions cook today only because they are hard-referenced from the
+archetype arrays and battle-anchor rosters — which is fragile and incidental, not designed.
+
+**Consequence for the two fixes.** The drafted
+`+DirectoriesToAlwaysCook=(Path="/Game/Melodia/Roguelike")` is the correct *immediate* remedy: it covers
+`Rooms/`, `RoomData/`, `Encounters/`, `Archetypes/` and `Definitions/` in one line and needs no per-type
+bookkeeping. The *durable* remedy is to repoint the 8 Asset Manager rules at the directories that exist (or
+move the assets under the configured ones) — that is next-phase work and is deliberately **not** bundled into a
+two-line closeout, because changing cook rules and fixing a shared template Blueprint in the same pass makes
+neither reviewable.
 
 **Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
 stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
