@@ -7,6 +7,7 @@
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaSaveRecoverySubsystem.h"
 #include "MelodiaTravelSubsystem.h"
+#include "MelodiaWaterGameplaySubsystem.h"
 #include "UObject/UnrealType.h"
 
 namespace
@@ -19,39 +20,6 @@ namespace
 	UMelodiaSaveRecoverySubsystem* GetRecovery(const UObject* WorldContextObject)
 	{
 		return UMelodiaSaveRecoverySubsystem::Get(WorldContextObject);
-	}
-
-	/**
-	 * Validate invariants that belong to the canonical record itself before the
-	 * stock JRPG load event is allowed to mutate runtime state.
-	 *
-	 * Keep this deliberately module-neutral: catalog existence, authored meshes
-	 * and cosmetic-to-slot semantics belong to MelodiaWardrobe and must not be
-	 * pulled into BS_GodFile through a reverse dependency. The persistence layer
-	 * can still prove the intrinsic invariant that an equipped persistent ID is
-	 * non-empty and is part of the same record's owned set.
-	 */
-	bool ValidateIntrinsicNarrativeRecord(const FMelodiaNarrativeRecord& Candidate, FString& OutReason)
-	{
-		for (const TPair<EMelodiaWardrobeSlot, FName>& EquippedPair : Candidate.EquippedCosmeticIds)
-		{
-			if (EquippedPair.Value.IsNone())
-			{
-				OutReason = TEXT("wardrobe_equipped_none");
-				return false;
-			}
-
-			if (!Candidate.OwnedCosmeticIds.Contains(EquippedPair.Value))
-			{
-				OutReason = FString::Printf(
-					TEXT("wardrobe_equipped_not_owned cosmetic=%s"),
-					*EquippedPair.Value.ToString());
-				return false;
-			}
-		}
-
-		OutReason.Reset();
-		return true;
 	}
 
 	/** Validate without calling RestoreNarrativeRecord, which may reset state on an incompatible version. */
@@ -81,7 +49,7 @@ namespace
 		}
 
 		FString ValidationFailure;
-		if (!ValidateIntrinsicNarrativeRecord(Candidate, ValidationFailure))
+		if (!UMelodiaNarrativeSubsystem::ValidateIntrinsicRecord(Candidate, ValidationFailure))
 		{
 			UE_LOG(LogTemp, Warning,
 				TEXT("MELODIA_LOAD candidate rejected: %s"),
@@ -299,6 +267,12 @@ bool UMelodiaSaveSlotLibrary::CreateCanonicalJRPGSlot(const UObject* WorldContex
 	// subsystem, then copy that canonical record into the stock save object before
 	// the stock serializer writes it. No combat or reward state is touched here.
 	Narrative->ResetNarrativeRecord();
+	// SyncNarrativeRecordToSave captures LIVE water state into the record, so a New Game
+	// started mid-session would persist the previous run's puzzles. Clear it first (#51).
+	if (UMelodiaWaterGameplaySubsystem* Water = GameInstance->GetSubsystem<UMelodiaWaterGameplaySubsystem>())
+	{
+		Water->ResetWaterGameplayState();
+	}
 	USaveGame* NewSave = UGameplayStatics::CreateSaveGameObject(SaveGameClass);
 	if (!NewSave || !Narrative->SyncNarrativeRecordToSave(NewSave))
 	{
