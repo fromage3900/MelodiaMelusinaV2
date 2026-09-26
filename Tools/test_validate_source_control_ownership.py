@@ -27,6 +27,12 @@ def main():
     missing = copy.deepcopy(DATA)
     missing["level_bundles"][0].pop("external_objects")
     check(any("missing external_objects" in e for e in ownership.validate(missing)), "missing external root must fail")
+    bad_state = copy.deepcopy(DATA)
+    bad_state["cutover_state"] = "magic"
+    check(any("cutover_state must be one of" in e for e in ownership.validate(bad_state)), "unknown cutover state must fail")
+    premature = copy.deepcopy(DATA)
+    premature["cutover_state"] = "production"
+    check(any("world_partition_roundtrip" in e for e in ownership.validate(premature)), "production needs WP proof")
     with mock.patch.object(ownership.subprocess, "run") as run:
         run.return_value = ownership.subprocess.CompletedProcess(
             args=[], returncode=0, stdout="Content/A.uasset\n", stderr=""
@@ -35,7 +41,7 @@ def main():
             any("cutover incomplete" in e for e in ownership.validate_git_cutover(DATA)),
             "remaining Git-owned Content must fail cutover",
         )
-    print("PASS: source-control ownership validator contract (4 assertions)")
+    print("PASS: source-control ownership validator contract (6 assertions)")
 
 
 if __name__ == "__main__":
