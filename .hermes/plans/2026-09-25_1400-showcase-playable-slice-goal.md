@@ -1,0 +1,19 @@
+# GOAL — Showcase playable slice: "Melusina answers the tide" (2026-09-25, owner: "make the runtime UI active, tune feel, use our systems for real gameplay")
+
+**Principle:** content-first (CLAUDE.md). Author through existing entry points; no new frameworks, no second authorities. Every step ends in a live PIE check + HighResShot. One editor, Monolith as the one writer.
+
+**The 3–5 min loop (Shorewake route legs 0–4, `Chapters/02_shorewake_calling/route.md`):**
+Morning (Sir duet, S4) → KaleidoNave terrace → tide-line trigger → **on-beat Shorewake transformation** (S3) → SeaAbove quay → **reef_choir rhythm battle** (WBP_Battle_Rhythm; skirt plays each note's Chladni figure, S2; hair sways, S1) → typed result → lyre phrase opens the route → quest complete.
+
+## Order
+
+- **P1 — Feel blockers (measure, then fix the cause).** Golden run on MelodiaIntegrationMap with the markers log; measure battle-start stall (was 3.25 s) and the UI font hitch (was 320 ms, G:/ Syne font path). Fix the cause (font asset path / preload), not a loading screen. Also: `BP_SavePointBase.saveUI` Accessed None. Gate: battle start < 0.5 s, 0 Accessed None.
+- **P2 — Runtime UI live in the route.** `WBP_Battle_Rhythm` is the primary HUD (the only one on disk). Verify it spawns on battle entry in the route maps (not only the Integration map), lane hits read on the beat, grade pop visible. Gate: HUD capture mid-battle with a Perfect.
+- **P2b — Overworld HUD from the Figma (`Content/UI/Canonical gameplay HUD.svg` + `HUD system and states.svg`, 2026-09-25).** One new `WBP_Melodia_OverworldHUD` (one writer for the overworld HUD surface), built with Monolith `build_ui_from_spec`, reusing Foundation button/panel widgets. Regions per Figma: minimap (top-down SceneCapture2D → render target, circular mask, area name + N) · quest card (persona quest, motif progress) · title + resonance bar · system row 1/2/J/Esc → `WBP_MelodiaSettings` / `WBP_QuestJournal` · Vitality + Resonance bars (Phoenix party HP, mana economy) · Q/E/R/F skill buttons with the 10 states (cooldown numeric, locked, charged) · control hints · `WBP_MelodiaInteractionPrompt`. Icons: export Figma glyphs as PNG → textures. Style: quiet glass / resonance cyan / rose-gold enamel; ignore stale `WidgetStyleSheet.json`. Hidden during battle (WBP_Battle_Rhythm owns that surface). Gate: PIE capture on Morning with live HP/resonance values and a real cooldown ticking. **Layout: owner chose Figma as drawn (2026-09-25).** Progress: UI layer rendered without the background painting at 2x (headless Edge, transparent) → 14 icon crops in `Saved/Staging/HUD_Figma_20260925/` (+ `_contact.png`); panels/bars/text to be native UMG, not baked. Crop caveats: Q is the focused state, E has "4.2" cooldown baked, minimap ring includes faint area text — re-crop from a state-edited SVG when polishing. Next: import to `/Game/Melodia/UI/HUD/Textures` (UI group, no mips/streaming), then build the widget.
+- **P3 — Wire legs 0–1.** Place `ShorewakeCallingTrigger_01` on KaleidoNave terrace (additive); fire `melodia:flag:flag.shorewake.calling` → wardrobe swap via `MagicalTransform` (lands on the downbeat). Resolve KaleidoNave's 5 missing dependencies first. Gate: PIE log `MELODIA_TRANSFORM_CADENCE` + Shorewake visible.
+- **P4 — Legs 2–3: reef encounter.** Travel to `LV_SeaAbove_Prototype` via the single travel path; `encounter.shorewake.reef_choir` (allowlisted) starts the rhythm battle; typed result resumes Quill once. Gate: repeat-consume safe.
+- **P5 — Feel pass (numbers, not vibes).** Tune timing windows, hit-stop on Perfect, camera punch, grade→skirt bloom brightness, Sir's answer volume. Record before/after values in this file.
+- **P6 — Capture.** 60–90 s showcase clip (ffmpeg; AE headless is dead) + 4 stills.
+
+## Out of scope tonight
+Melusina reimport (blocked, parked) · face SDF · locomotion rebuild (feet may slide — frame shots around it).
