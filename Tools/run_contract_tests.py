@@ -56,7 +56,7 @@ SUITES = (
     Suite("Tools/test_art_gates_authority.py", re.compile(r"Ran\s+4 tests.*\bOK\b", re.S)),
     Suite("Tools/test_artdrop_archive.py", re.compile(r"Ran\s+3 tests.*\bOK\b", re.S)),
     Suite("Tools/test_faraway_mother_pcg.py", re.compile(r"Ran\s+5 tests.*\bOK\b", re.S)),
-    Suite("Tools/test_universe_foundry.py", re.compile(r"Ran\s+7 tests.*\bOK\b", re.S)),
+    Suite("Tools/test_universe_foundry.py", re.compile(r"Ran\s+8 tests.*\bOK\b", re.S)),
     Suite("Tools/test_optical_lod_lookdev.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_melodia_package_launch_contract.py", re.compile(r"validated Melusina package-launch montage contract")),
     Suite("Tools/test_mcp_policy.py", re.compile(r"mcp-policy-tests:\s+\d+/\d+ passed")),

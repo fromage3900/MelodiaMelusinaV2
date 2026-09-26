@@ -42,8 +42,16 @@ class UniverseFoundryTests(unittest.TestCase):
             self.assertTrue(task["jev_decision"]["closed_set"])
             self.assertGreaterEqual(len(task["jev_decision"]["candidates"]), 2)
 
-    def test_missing_recipe_creates_data_authoring_task_not_new_compiler(self):
+    def test_authored_recipe_is_validated_by_world_compiler(self):
         mission = uf.build_mission(self.genome, self.delta)
+        task = next(t for t in mission["tasks"] if t["id"] == "world_recipe_ready")
+        self.assertEqual("world_compiler", task["owner"])
+        self.assertIn(self.genome["content"]["world_compiler_recipe"], task["command"])
+
+    def test_missing_recipe_creates_data_authoring_task_not_new_compiler(self):
+        genome = json.loads(json.dumps(self.genome))
+        genome["content"]["world_compiler_recipe"] = None
+        mission = uf.build_mission(genome, self.delta)
         task = next(t for t in mission["tasks"] if t["id"] == "world_recipe_ready")
         self.assertEqual("world_content_specialist", task["owner"])
         self.assertIn("World Compiler recipe", task["done_when"])
