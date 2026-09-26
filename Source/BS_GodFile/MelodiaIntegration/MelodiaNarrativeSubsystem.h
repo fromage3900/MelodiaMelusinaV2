@@ -190,6 +190,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration|Save")
 	static bool MigrateRecord(UPARAM(ref) FMelodiaNarrativeRecord& Record);
 
+	/**
+	 * Invariants that belong to the canonical record itself: every equipped persistent ID is
+	 * non-empty and owned by the same record. Module-neutral on purpose -- catalog existence and
+	 * cosmetic-to-slot semantics belong to MelodiaWardrobe. The one predicate used by both the
+	 * slot-library load preflight and RestoreNarrativeRecord (Issue #51).
+	 */
+	static bool ValidateIntrinsicRecord(const FMelodiaNarrativeRecord& Candidate, FString& OutReason);
+
 	// --- Persona-lite persistent state -------------------------------------
 	// These live on the narrative record because it is the project's single
 	// persistence seam. Systems that own their semantics (Persona, travel) read
