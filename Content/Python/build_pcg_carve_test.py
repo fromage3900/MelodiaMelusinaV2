@@ -375,5 +375,3 @@ def run_wrapped(subgraph_path: str = None, overlap: bool = True, track_bounds: b
         json.dump(receipt, f, indent=1)
     ELL.save_current_level()
     return receipt
-
-
