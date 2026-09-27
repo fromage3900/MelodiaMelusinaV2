@@ -24,11 +24,14 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
   Save approved editor work immediately. Never bulk `load_asset` (use Asset Registry tags).
 - **Delegated output is not evidence.** Open the artifact (image, log, JSON) yourself before claiming
   a result. A subagent once reported a "smooth" SDF bake that was scattered dots.
-- **Orchestration.** Hermes runs long jobs, Jev routes, Claude verifies — the one plan is
+- **Orchestration & Model Tier Discipline.** Hermes runs long jobs, Jev routes, Claude verifies — the one plan is
   [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md).
-  Extend it; do not start a parallel orchestration/router/lease framework. Model choice =
-  `Tools/model_router.py` classes; parallel repo work = jcode swarm under `.jcode/swarm-prompt.md`
-  (one worktree per worker, patches only, no editor access).
+  Extend it; do not start a parallel orchestration/router/lease framework. Model tiers are governed by
+  [`Docs/Production/MODEL_ROUTING_CANON.md`](Docs/Production/MODEL_ROUTING_CANON.md) and
+  [`specs/orchestration/model_tiers.v1.json`](specs/orchestration/model_tiers.v1.json). Before dispatching or spending
+  frontier calls, query `python Tools/model_router.py tier <task>`; lower-tier bulk work must not burn frontier tokens,
+  and local/bulk tiers must not alter `Source/**`, schemas, or contracts. Parallel repo work = jcode swarm
+  under `.jcode/swarm-prompt.md` (one worktree per worker, patches only, no editor access).
 - **Do the job asked** (`_AGENT_WORKING_AGREEMENT.md`): the request is the scope; queue work comes
   from `CURRENT_STATE.md` §4, not from new audits.
 

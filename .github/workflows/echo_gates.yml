@@ -82,6 +82,9 @@ jobs:
       - name: Validate content-first agent front door
         run: python Tools/validate_agent_frontdoor.py
 
+      - name: Validate model tier orchestration specification
+        run: python Tools/validate_model_tiers.py
+
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json
 
