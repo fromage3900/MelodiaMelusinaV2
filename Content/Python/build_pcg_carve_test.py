@@ -377,19 +377,3 @@ def run_wrapped(subgraph_path: str = None, overlap: bool = True, track_bounds: b
     return receipt
 
 
-def apply_to_staged(overlap: bool, track_bounds: bool) -> dict:
-    """Apply a proven GetSpline flag combination to the staged
-    PCG_Core_PathCarve (0 referencers — nothing live consumes it) and save.
-    Call ONLY with a sandbox-proven combination."""
-    import unreal
-
-    EAL = unreal.EditorAssetLibrary
-    staged = EAL.load_asset(STAGED)
-    if staged is None:
-        return {"error": f"staged graph missing: {STAGED}"}
-    for n in list(staged.nodes):
-        if n.get_settings().get_class().get_name() == "PCGGetSplineSettings":
-            n.get_settings().set_editor_property("components_must_overlap_self", bool(overlap))
-            n.get_settings().set_editor_property("track_actors_only_within_bounds", bool(track_bounds))
-    EAL.save_asset(STAGED)
-    return {"staged": STAGED, "overlap": bool(overlap), "track_bounds": bool(track_bounds), "saved": True}
