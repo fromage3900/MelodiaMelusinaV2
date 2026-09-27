@@ -19,12 +19,23 @@ Pure numpy pipeline. Produces parallax-ready height + 9 PBR maps per variant:
 from __future__ import annotations
 import argparse
 import json
+import sys
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageFilter
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+_CONTENT_PYTHON = PROJECT_ROOT / "Content" / "Python"
+if str(_CONTENT_PYTHON) not in sys.path:
+    sys.path.insert(0, str(_CONTENT_PYTHON))
+from resonant_world_generator import stable_int
+
 SEED = 20260831
+
+
+def variant_seed(variant_name: str, frame: int = 0) -> int:
+    """Stable numpy-compatible seed shared with the Resonant World identity lane."""
+    return stable_int(SEED, "copernicus_cymatic_parallax", variant_name, frame) % (2**32 - 1)
 
 VARIANTS = {
     "CymaticMarble": dict(
@@ -871,7 +882,7 @@ def _build_glitter_pile(h, w, frame, total_frames, variant_name):
     bg = np.broadcast_to(col(p["bg"]), (h, w, 3)).copy()
 
     # Create scattered flake positions
-    rng = np.random.RandomState(abs(hash(variant_name)) % 10000 + frame)
+    rng = np.random.RandomState(variant_seed(variant_name, frame))
     n_flakes = p["flake_density"]
     flake_min, flake_max = p["flake_size_range"]
 
@@ -912,7 +923,7 @@ def _build_glitter_pile(h, w, frame, total_frames, variant_name):
     metallic = flake_mask * p["metallic_flake"]
 
     # Emissive: subtle sparkle on flakes
-    sparkle = warped_fbm(h, w, 8, 3, 0.4, abs(hash(variant_name)) % 10000 + frame)
+    sparkle = warped_fbm(h, w, 8, 3, 0.4, variant_seed(variant_name, frame))
     emissive = mask_color(flake_mask * smoothstep(0.4, 0.9, sparkle),
                           col(p["flake_colors"][0]) * p["glow_intensity"] * 0.6)
 
@@ -1169,7 +1180,7 @@ def _build_new_variant(h, w, frame, total_frames, variant_name):
     phase = frame / max(total_frames, 1) * 2 * np.pi
     # Chladni field
     cym = cymatic_chladni(h, w, freqs=[(8, 12), (15, 10), (22, 18)], phases=[phase*0.5, phase*0.7+1.1, phase*0.3+2.2], weights=[1.0, 0.6, 0.4])
-    warp = warped_fbm(h, w, 12, 4, 0.25, SEED + hash(variant_name) % 1000)
+    warp = warped_fbm(h, w, 12, 4, 0.25, variant_seed(variant_name, frame))
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     nx, ny = xx / w, yy / h
 
@@ -1290,7 +1301,7 @@ def _build_faraway_variant(h, w, frame, total_frames, variant_name):
     cym = cymatic_chladni(h, w, freqs=modes,
                           phases=[phase * (0.35 + i * 0.22) + i * 1.1 for i in range(len(modes))],
                           weights=[1.0, 0.6, 0.4][:len(modes)])
-    warp = warped_fbm(h, w, 16, 4, 0.25, SEED + hash(variant_name) % 1000)
+    warp = warped_fbm(h, w, 16, 4, 0.25, variant_seed(variant_name, frame))
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     nx, ny = xx / w, yy / h
 

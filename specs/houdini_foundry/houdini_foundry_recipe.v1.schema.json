@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Houdini Foundry recipe v1",
+  "description": "One deterministic Houdini bake: what the existing Hython/HDA source bakes, with which seed and params, where outputs and evidence land, and which existing UE owner consumes it. Enforced by Tools/Houdini/foundry/houdini_foundry.py validate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "recipe_id",
+    "product",
+    "seed",
+    "status",
+    "source",
+    "params",
+    "outputs",
+    "ue_target",
+    "authority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "melodia.houdini_foundry_recipe.v1"
+    },
+    "recipe_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "product": {
+      "enum": [
+        "hda_engine_smoke",
+        "crystal_cathedral",
+        "field_atlas",
+        "deposition",
+        "flow_volume",
+        "volumetric_ecology",
+        "ocean_intelligence",
+        "copernicus_field",
+        "vellum_textile"
+      ]
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+    },
+    "status": {
+      "enum": [
+        "staged",
+        "source_proven",
+        "live_proven"
+      ],
+      "description": "staged = never cooked from this recipe. Only CURRENT_STATE.md promotes proof levels."
+    },
+    "description": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "kind",
+        "path"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "hython_script",
+            "hda",
+            "pure_python"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "description": "repo-relative"
+        },
+        "exists_on_main": {
+          "type": "boolean",
+          "default": true,
+          "description": "false only for an HDA/script to be authored at college"
+        },
+        "extends": {
+          "type": "string",
+          "description": "existing family this source extends rather than replaces"
+        }
+      }
+    },
+    "params": {
+      "type": "object",
+      "description": "product params; field products require params.channels from field_atlas_channels.v1.json"
+    },
+    "region": {
+      "type": "object",
+      "required": [
+        "level",
+        "bounds_cm",
+        "tile_size_cm"
+      ],
+      "properties": {
+        "level": {
+          "type": "string",
+          "pattern": "^/Game/"
+        },
+        "bounds_cm": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "[xmin,ymin,xmax,ymax] level space"
+        },
+        "bounds_source": {
+          "type": "string"
+        },
+        "tile_size_cm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gutter_cm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "only_tiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "restrict plan to these tile ids (test-first)"
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "format"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "track_in_git": {
+            "type": "boolean",
+            "default": false
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ue_target": {
+      "type": "object",
+      "required": [
+        "consumer",
+        "integration_gate"
+      ],
+      "properties": {
+        "consumer": {
+          "enum": [
+            "static_mesh",
+            "texture",
+            "world_compiler_points",
+            "pcg_graph",
+            "niagara_system",
+            "material_instance",
+            "offline_only"
+          ]
+        },
+        "asset_path_prefix": {
+          "type": "string",
+          "pattern": "^/Game/"
+        },
+        "existing_assets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "integration_gate": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "runtime_owner",
+        "writes_mpc"
+      ],
+      "properties": {
+        "runtime_owner": {
+          "type": "string"
+        },
+        "writes_mpc": {
+          "const": false
+        },
+        "mission_task": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

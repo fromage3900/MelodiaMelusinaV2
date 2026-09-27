@@ -1,0 +1,356 @@
+{
+  "schema": "melodia.houdini_foundry_field_channels.v1",
+  "status": "PROPOSED VOCABULARY -- additive; does not modify world_compiler_point_row.v1 or world_recipe.v1",
+  "rules": [
+    "A channel marked existing must keep the existing name/meaning when it lands in an existing consumer (points.csv columns keep their exact case: Resonance, hero_weight, sparkle_response).",
+    "A proposed channel enters World Compiler only through a new additive schema version (e.g. world_compiler_point_row.v2 / field.kind chunk_grid), never by editing v1.",
+    "Rasters are linear, normalised to the stated range, level-XY aligned, and carry their bounds/tile id in the bake manifest.",
+    "No channel is ever written to MPC_Melodia_Palette or MPC_Cymatics_Driver."
+  ],
+  "channels": [
+    {
+      "name": "height",
+      "range": "float cm",
+      "meaning": "terrain/geometry height sample",
+      "existing_name": "points.csv z / terrain_handoff heightfield_png16",
+      "status": "existing",
+      "note": "reuse; never replaces authored terrain"
+    },
+    {
+      "name": "slope",
+      "range": "0..1",
+      "meaning": "surface steepness (0 flat, 1 vertical)",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "curvature",
+      "range": "-1..1",
+      "meaning": "signed mean curvature",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "Copernicus dress lane already bakes curvature for meshes; same sign convention"
+    },
+    {
+      "name": "concavity",
+      "range": "0..1",
+      "meaning": "positive part of curvature (hollows)",
+      "existing_name": "dress_geometry_attrs concave",
+      "status": "existing",
+      "note": "same meaning as the existing SOP VEX attr"
+    },
+    {
+      "name": "convexity",
+      "range": "0..1",
+      "meaning": "negative part of curvature (ridges)",
+      "existing_name": "dress_geometry_attrs convex",
+      "status": "existing",
+      "note": "same meaning as the existing SOP VEX attr"
+    },
+    {
+      "name": "cavity",
+      "range": "0..1",
+      "meaning": "occlusion-style crevice mask",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "exposure",
+      "range": "0..1",
+      "meaning": "sky/wind openness",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "flow",
+      "range": "0..1",
+      "meaning": "accumulated flow magnitude (erosion/water)",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "flowdir",
+      "range": "vec2 unit",
+      "meaning": "flow direction in level XY",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "stored as two channels flowdir_x/flowdir_y in rasters"
+    },
+    {
+      "name": "sediment",
+      "range": "0..1",
+      "meaning": "deposited sediment",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "debris",
+      "range": "0..1",
+      "meaning": "debris/talus accumulation",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "wetness",
+      "range": "0..1",
+      "meaning": "surface wetness reach",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "distinct from humidity"
+    },
+    {
+      "name": "humidity",
+      "range": "0..1",
+      "meaning": "ambient moisture",
+      "existing_name": "WorldField.Moisture (Faraway static field B channel)",
+      "status": "existing",
+      "note": "reuse the existing Faraway name when baking into the static-field RGBA"
+    },
+    {
+      "name": "macro",
+      "range": "0..1",
+      "meaning": "large-scale variation noise",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "micro",
+      "range": "0..1",
+      "meaning": "small-scale variation noise",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "accumulation",
+      "range": "0..1",
+      "meaning": "generic deposition result (glitter/snow/petals)",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "HDA_Foundry_Deposition primary output"
+    },
+    {
+      "name": "wind_x",
+      "range": "-1..1",
+      "meaning": "baked prevailing wind X",
+      "existing_name": "name-aligned with MPC lane Cymatic_WindDirX",
+      "status": "existing",
+      "note": "BAKED DATA ONLY -- never written to any MPC; runtime wind stays on the existing writer chain"
+    },
+    {
+      "name": "wind_y",
+      "range": "-1..1",
+      "meaning": "baked prevailing wind Y",
+      "existing_name": "name-aligned with MPC lane Cymatic_WindDirY",
+      "status": "existing",
+      "note": "BAKED DATA ONLY -- never written to any MPC"
+    },
+    {
+      "name": "wind_strength",
+      "range": "0..1",
+      "meaning": "baked wind strength",
+      "existing_name": "name-aligned with MPC lane Cymatic_WindStrength",
+      "status": "existing",
+      "note": "BAKED DATA ONLY -- never written to any MPC"
+    },
+    {
+      "name": "sparkle",
+      "range": "0..1",
+      "meaning": "sparkle habitat/ceiling",
+      "existing_name": "points.csv sparkle_response",
+      "status": "existing",
+      "note": "when emitted as point attr use sparkle_response"
+    },
+    {
+      "name": "resonance",
+      "range": "0..1",
+      "meaning": "Resonance Ecology field",
+      "existing_name": "points.csv Resonance / WorldField.ResonanceBase",
+      "status": "existing",
+      "note": "compute via Content/Python/pcg/resonance_ecology_processor.derive where possible; points use the exact column name Resonance"
+    },
+    {
+      "name": "tension",
+      "range": "0..1",
+      "meaning": "musical tension field",
+      "existing_name": "WorldField.Tension (Faraway static field R channel)",
+      "status": "existing",
+      "note": ""
+    },
+    {
+      "name": "hero_weight",
+      "range": "0..1",
+      "meaning": "1 near authored hero moments",
+      "existing_name": "points.csv hero_weight",
+      "status": "existing",
+      "note": "identical semantics"
+    },
+    {
+      "name": "zone_id",
+      "range": "int",
+      "meaning": "authored zone index",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "biome_id",
+      "range": "int",
+      "meaning": "biome eligibility index",
+      "existing_name": "points.csv EcologyClass (0..2) for the Resonance Ecology classes",
+      "status": "proposed",
+      "note": "new ids must not collide with EcologyClass semantics"
+    },
+    {
+      "name": "mist",
+      "range": "0..1",
+      "meaning": "mist density (volumetric ecology)",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "volume channel"
+    },
+    {
+      "name": "pollen",
+      "range": "0..1",
+      "meaning": "pollen density (volumetric ecology)",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "volume channel"
+    },
+    {
+      "name": "bioluminescence",
+      "range": "0..1",
+      "meaning": "bioluminescent habitat",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "volume channel"
+    },
+    {
+      "name": "reef_pigment",
+      "range": "0..1",
+      "meaning": "reef pigment habitat",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "volume/surface channel"
+    },
+    {
+      "name": "temperature",
+      "range": "0..1",
+      "meaning": "normalised temperature",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "volume channel"
+    },
+    {
+      "name": "sparkle_habitat",
+      "range": "0..1",
+      "meaning": "volumetric sparkle habitat",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "volume twin of sparkle"
+    },
+    {
+      "name": "shore_influence",
+      "range": "0..1",
+      "meaning": "distance-to-shoreline falloff",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "cliff",
+      "range": "0..1",
+      "meaning": "cliff mask",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "wave_direction",
+      "range": "vec2 unit",
+      "meaning": "baked dominant wave direction",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence"
+    },
+    {
+      "name": "wave_amplitude",
+      "range": "0..1",
+      "meaning": "baked wave amplitude",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence"
+    },
+    {
+      "name": "surface_velocity",
+      "range": "vec3 cm/s",
+      "meaning": "baked surface velocity",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence / flow_volume"
+    },
+    {
+      "name": "foam_probability",
+      "range": "0..1",
+      "meaning": "whitewater likelihood",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence"
+    },
+    {
+      "name": "shore_hit",
+      "range": "0..1",
+      "meaning": "wave impact frequency at shore",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence"
+    },
+    {
+      "name": "wetness_reach",
+      "range": "0..1",
+      "meaning": "max wet line from waves",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence"
+    },
+    {
+      "name": "wake_corridor",
+      "range": "0..1",
+      "meaning": "traversal wake corridor mask",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "ocean_intelligence"
+    },
+    {
+      "name": "mist_spawn",
+      "range": "0..1",
+      "meaning": "Niagara mist spawn weight",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "feeds existing NS_Uni_WaterMist via anchors/textures, not a new system"
+    },
+    {
+      "name": "whitewater_spawn",
+      "range": "0..1",
+      "meaning": "Niagara whitewater spawn weight",
+      "existing_name": null,
+      "status": "proposed",
+      "note": ""
+    },
+    {
+      "name": "velocity",
+      "range": "vec3 cm/s",
+      "meaning": "vector field for Niagara sampling",
+      "existing_name": null,
+      "status": "proposed",
+      "note": "flow_volume"
+    }
+  ]
+}
