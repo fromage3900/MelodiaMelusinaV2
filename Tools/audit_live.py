@@ -2,6 +2,8 @@
 Live material audit script for SK_Melusina - Substrate Toon compliance.
 Connects to Monolith MCP at http://127.0.0.1:9316/mcp and Unreal Editor.
 """
+
+from mcp_client import post_envelope
 import json, os, sys, urllib.request, urllib.error
 from pathlib import Path
 from datetime import datetime
@@ -20,10 +22,8 @@ def monolith(tool, action, params=None):
             "arguments": {"action": action, **(params or {})}
         }
     }).encode()
-    req = urllib.request.Request(MONOLITH_URL, body, {"Content-Type": "application/json"})
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            data = json.loads(resp.read())
+        data = post_envelope(body, timeout=120)
     except Exception as e:
         return {"isError": True, "error": str(e)}
     if data.get("error"):

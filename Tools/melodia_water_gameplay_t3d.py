@@ -8,7 +8,9 @@ operation, saves, and emits a rollback/provenance report. The existing
 parameterized patterns remain the source of T3D payloads; this module owns the
 water-specific target manifest and safety gates.
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import argparse
 import hashlib
@@ -69,10 +71,10 @@ def _call(action: str, params: dict[str, Any], timeout: int = 180) -> dict[str, 
         "method": "tools/call",
         "params": {"name": "blueprint_query", "arguments": {"action": action, **params}},
     }).encode()
-    request = Request(MONOLITH_URL, data=body, headers={"Content-Type": "application/json"})
-    with urlopen(request, timeout=timeout) as response:
-        envelope = json.loads(response.read().decode())
-    text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
+    data = post_envelope(body, timeout=timeout)
+    if "error" in data:
+        raise RuntimeError(data["error"])
+    text = data.get("result", {}).get("content", [{}])[0].get("text", "")
     return json.loads(text) if text else {}
 
 

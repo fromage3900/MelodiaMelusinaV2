@@ -6,7 +6,9 @@ Usage:
     python Tools/apply_melusina_vfx.py          # apply presets
     python Tools/apply_melusina_vfx.py --log     # just read last log
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import json
 import os
@@ -52,11 +54,10 @@ def mcp_call(tool: str, **kwargs) -> dict:
         "method": "tools/call",
         "params": {"name": tool, "arguments": kwargs},
     }).encode()
-    req = urllib.request.Request(
-        MONOLITH_URL, data=body, headers={"Content-Type": "application/json"}
-    )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return json.loads(resp.read().decode())
+    data = post_envelope(body, timeout=120)
+    if "error" in data:
+        return {"error": data["error"]}
+    return data
 
 
 def run_py(script: str) -> dict:

@@ -20,7 +20,9 @@ Run:  python Tools/wind_lane_chain_proof.py [--map /Game/...] [--no-pie]
 Writes: Saved/Audit/wind_lane_chain_proof.json
 Exits non-zero on any failed assertion.
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import argparse
 import json
@@ -50,10 +52,10 @@ DRIVER = "/Game/Melodia/Cymatics/MPC_Cymatics_Driver.MPC_Cymatics_Driver"
 def rpc(method: str, params: dict | None = None, rid: int = 1):
     payload = json.dumps({"jsonrpc": "2.0", "id": rid, "method": method,
                           "params": params or {}}).encode()
-    req = Request(MONOLITH, data=payload,
-                  headers={"Content-Type": "application/json"})
-    with urlopen(req, timeout=180) as resp:
-        return json.loads(resp.read().decode())
+    result = post_envelope(payload, timeout=180)
+    if "error" in result:
+        return {"_error": result["error"]}
+    return result
 
 
 def editor(action: str, **args):

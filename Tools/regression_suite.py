@@ -13,7 +13,9 @@ Usage:
     python Tools/regression_suite.py --quick
     python Tools/regression_suite.py --full
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import argparse
 import base64
@@ -56,15 +58,8 @@ def _next_id() -> int:
 def _post(method: str, params: dict | None = None, *, timeout: float = 120.0) -> dict:
     payload = {"jsonrpc": "2.0", "id": _next_id(), "method": method, "params": params or {}}
     data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        MONOLITH_URL,
-        data=data,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        body = resp.read().decode("utf-8")
-    return json.loads(body)
+    data = post_envelope(data, timeout=timeout)
+    return data
 
 
 def _call_tool(name: str, arguments: dict, *, timeout: float = 120.0) -> dict:
@@ -103,15 +98,13 @@ def monolith_status() -> dict:
 
 def fetch_fingerprint(asset_path: str, mode: str = "topology") -> dict | None:
     payload = json.dumps({"action": "get_graph_fingerprint", "asset_path": asset_path, "mode": mode}).encode()
-    req = urllib.request.Request(
-        MONOLITH_URL_RAW,
-        data=payload,
-        headers={"Content-Type": "application/json"},
-    )
     try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            return json.loads(resp.read().decode())
-    except (urllib.error.URLError, json.JSONDecodeError):
+        data = post_envelope(payload, timeout=15, endpoint=MONOLITH_URL_RAW)
+        if "error" in data:
+            return None
+        text = data.get("result", {}).get("content", [{}])[0].get("text", "")
+        return json.loads(text) if text else None
+    except (urllib.error.URLError, json.JSONDecodeError, TypeError):
         return None
 
 

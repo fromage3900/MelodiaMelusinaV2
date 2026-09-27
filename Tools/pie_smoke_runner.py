@@ -9,7 +9,9 @@ Usage:
         --console-script WalkLoop BowLoop ^
         --name melusina_walk_smoke
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import argparse
 import json
@@ -38,15 +40,8 @@ def _next_id() -> int:
 def _post(method: str, params: dict | None = None, *, timeout: float = 120.0) -> dict:
     payload = {"jsonrpc": "2.0", "id": _next_id(), "method": method, "params": params or {}}
     data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        MONOLITH_URL,
-        data=data,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        body = resp.read().decode("utf-8")
-    return json.loads(body)
+    data = post_envelope(data, timeout=timeout)
+    return data
 
 
 def _call_tool(name: str, arguments: dict, *, timeout: float = 120.0) -> dict:
