@@ -470,6 +470,10 @@ def step_count(b: dict) -> dict:
     band_by_mi = {r["material_instance"].split("/")[-1]: r["band"] for r in b["dressing"]["bands"]}
     for r in (b["dressing"].get("wind_lane") or {}).get("bands", []):
         band_by_mi[r["material_instance"].split("/")[-1]] = r["band"]
+    # Glitter/detail families read as dressing, never flowers, even though
+    # their MIs sit in band_by_mi for band attribution.
+    glitter_names = {r["material_instance"].split("/")[-1]
+                     for r in (b["dressing"].get("glitter_lane") or {}).get("bands", [])}
     rows = _rows(b["dir"] / "points.csv")
     # The flower kit has one band MI per mesh variant. Include suffixes such as
     # _Tall from the compiled rows so the count covers the entire flower field.
@@ -498,10 +502,17 @@ def step_count(b: dict) -> dict:
                 continue
             # Petal slot is 1 on the flower kit; stem slot 0 is often a band MI too (stem_material __band__).
             slot_names = [c.get_material(i).get_name() if c.get_material(i) else "none" for i in range(c.get_num_materials())]
-            flower_slot = next((s for s in slot_names if s in band_by_mi), None)
+            flower_slot = next((s for s in slot_names if s in band_by_mi and s not in glitter_names), None)
+            glitter_slot = next((s for s in slot_names if s in glitter_names), None)
             comps += 1
             total += n
-            if flower_slot is not None:
+            if glitter_slot is not None:
+                # Glitter/detail family: dressing bucket only (per-MI counts
+                # carry the band info); never inflates the flower band match.
+                key = glitter_slot
+                dressing_by_mi[key] = dressing_by_mi.get(key, 0) + n
+                dressing_total += n
+            elif flower_slot is not None:
                 band = str(band_by_mi[flower_slot])
                 flower_per_band[band] = flower_per_band.get(band, 0) + n
                 flower_total += n
@@ -1127,7 +1138,7 @@ def step_glitter_materials(b: dict) -> dict:
             rec["error"] = str(exc)[:300]
         made.append(rec)
     return {"parent": parent_path, "band_mis": made,
-            "all_ok": all("error" not in r for r in made) and len(made) == 7}
+            "all_ok": all("error" not in r for r in made) and len(made) == len(lane["bands"])}
 
 
 def step_fx_place(b: dict) -> dict:
