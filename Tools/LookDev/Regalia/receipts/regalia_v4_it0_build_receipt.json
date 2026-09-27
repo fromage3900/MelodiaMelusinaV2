@@ -1,0 +1,145 @@
+{
+ "params": {
+  "c_h": 0.015,
+  "c_th": 0.0026,
+  "c_rail": 0.0013,
+  "c_clear": 0.003,
+  "c_front_above_brow": 0.01,
+  "c_tilt": 0.055,
+  "c_stone": 0.03,
+  "t_h": 0.012,
+  "t_z0": 1.6058,
+  "t_tilt": 22.0,
+  "t_span": 96.0,
+  "t_stone": 0.032,
+  "loop_h": 0.016,
+  "loop_w": 0.012,
+  "loop_r": 0.0011,
+  "hair_into": 0.004
+ },
+ "notes": [
+  "earrings/necklace unchanged from v3_final; v3 ring headpieces removed in this file"
+ ],
+ "her": {
+  "brow_top": 1.6257,
+  "top": 1.8356,
+  "ear_top_z": 1.5938,
+  "axis": [
+   -0.0049,
+   -0.1319,
+   1.6657
+  ]
+ },
+ "circlet": {
+  "bald": {
+   "samples": 240,
+   "loops": 14,
+   "front_centre": [
+    -0.0049,
+    -0.3575,
+    1.6433
+   ],
+   "front_normal": [
+    -0.0002,
+    -0.9995,
+    0.0326
+   ],
+   "stone_len_mm": 30.0,
+   "band_h_mm": 15.0,
+   "band_th_mm": 2.6,
+   "z_front": 1.6432,
+   "z_back": 1.5882,
+   "z_side": 1.6157,
+   "path_len_mm": 1248.2,
+   "skin_penetrating_verts": [
+    0,
+    6142
+   ]
+  },
+  "hair": {
+   "samples": 240,
+   "loops": 14,
+   "front_centre": [
+    -0.0054,
+    -0.4099,
+    1.643
+   ],
+   "front_normal": [
+    -0.1801,
+    -0.9817,
+    -0.0613
+   ],
+   "stone_len_mm": 30.0,
+   "band_h_mm": 15.0,
+   "band_th_mm": 2.6,
+   "z_front": 1.6432,
+   "z_back": 1.5882,
+   "z_side": 1.6157,
+   "path_len_mm": 2010.8,
+   "skin_penetrating_verts": [
+    0,
+    6142
+   ]
+  }
+ },
+ "tiara": {
+  "bald": {
+   "samples": 160,
+   "loops": 11,
+   "top_foot": [
+    -0.0024,
+    -0.2016,
+    1.8284
+   ],
+   "stone_len_mm": 32.0,
+   "spire_k": 1.143,
+   "spire_tip_z": 1.9144,
+   "ends": [
+    [
+     -0.1858,
+     -0.1047,
+     1.5882
+    ],
+    [
+     0.1771,
+     -0.1047,
+     1.5881
+    ]
+   ],
+   "band_h_mm": 12.0,
+   "skin_penetrating_verts": [
+    5,
+    4713
+   ]
+  },
+  "hair": {
+   "samples": 160,
+   "loops": 11,
+   "top_foot": [
+    -0.002,
+    -0.2171,
+    1.8596
+   ],
+   "stone_len_mm": 32.0,
+   "spire_k": 1.143,
+   "spire_tip_z": 1.9456,
+   "ends": [
+    [
+     -0.3173,
+     -0.0996,
+     1.5754
+    ],
+    [
+     0.3224,
+     -0.099,
+     1.5739
+    ]
+   ],
+   "band_h_mm": 12.0,
+   "skin_penetrating_verts": [
+    0,
+    4713
+   ]
+  }
+ }
+}

@@ -1,0 +1,200 @@
+{
+  "date": "2026-09-25",
+  "house_package": "C:\\Users\\froma\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\surreal_arch\\melodia_gn\\__init__.py",
+  "pieces": [
+    {
+      "label": "circlet",
+      "tree": "MEL_regalia_circlet",
+      "nodes": 79,
+      "links": 106,
+      "head_hw": 0.2042,
+      "house_groups": [
+        "MEL_auto_bevel",
+        "MEL_filigree_corner_volute",
+        "MEL_filigree_spiral",
+        "MEL_gold_ornament_strip",
+        "MEL_nikki_crystal",
+        "MEL_shell_thicken"
+      ],
+      "has_dead_input_normal": false,
+      "music_sockets": [
+        "Music Influence",
+        "Musical Amplitude",
+        "Musical Freq A",
+        "Musical Freq B"
+      ],
+      "music_pass_nodes": [],
+      "dials": [
+        "Geometry",
+        "Music Influence",
+        "Musical Amplitude",
+        "Musical Freq A",
+        "Musical Freq B",
+        "Arc Span",
+        "Arc Samples",
+        "Band Width",
+        "Band Depth",
+        "Volute Count",
+        "Scroll Count",
+        "Scroll Turns",
+        "Gem Count",
+        "Crown Rise",
+        "Crest Points",
+        "Bead Count",
+        "Stone",
+        "Gold",
+        "Size",
+        "Band Thickness",
+        "Rim Bevel"
+      ],
+      "evaluated": {
+        "verts": 37186,
+        "min": [
+          -0.26529,
+          -0.40996,
+          1.53443
+        ],
+        "max": [
+          0.24611,
+          0.10203,
+          1.63071
+        ],
+        "dims": [
+          0.5114,
+          0.51199,
+          0.09628
+        ]
+      },
+      "centre": [
+        -0.00959,
+        -0.15396,
+        1.58257
+      ],
+      "target_centre": [
+        -0.0044,
+        -0.1335,
+        1.56
+      ],
+      "centre_err_mm": [
+        -5.2,
+        -20.5,
+        22.6
+      ],
+      "width_ratio_vs_head": 1.252
+    },
+    {
+      "label": "tiara",
+      "tree": "MEL_regalia_tiara",
+      "nodes": 143,
+      "links": 172,
+      "head_hw": 0.11325,
+      "house_groups": [
+        "MEL_auto_bevel.001",
+        "MEL_filigree_corner_volute",
+        "MEL_filigree_spiral",
+        "MEL_gold_ornament_strip",
+        "MEL_nikki_crystal",
+        "MEL_shell_thicken.001",
+        "MEL_star_finial",
+        "MEL_star_finial.001",
+        "MEL_star_finial.002",
+        "MEL_star_finial.003",
+        "MEL_star_finial.004",
+        "MEL_star_finial.005"
+      ],
+      "has_dead_input_normal": false,
+      "music_sockets": [
+        "Music Influence",
+        "Musical Amplitude",
+        "Musical Freq A",
+        "Musical Freq B"
+      ],
+      "music_pass_nodes": [],
+      "dials": [
+        "Geometry",
+        "Music Influence",
+        "Musical Amplitude",
+        "Musical Freq A",
+        "Musical Freq B",
+        "Arc Span",
+        "Arc Samples",
+        "Band Width",
+        "Band Depth",
+        "Volute Count",
+        "Scroll Count",
+        "Scroll Turns",
+        "Gem Count",
+        "Crown Rise",
+        "Crest Points",
+        "Bead Count",
+        "Stone",
+        "Gold",
+        "Size",
+        "Band Thickness",
+        "Rim Bevel"
+      ],
+      "evaluated": {
+        "verts": 38598,
+        "min": [
+          -0.14973,
+          -0.28748,
+          1.75362
+        ],
+        "max": [
+          0.13519,
+          -0.00221,
+          1.89486
+        ],
+        "dims": [
+          0.28492,
+          0.28527,
+          0.14124
+        ]
+      },
+      "centre": [
+        -0.00727,
+        -0.14485,
+        1.82424
+      ],
+      "target_centre": [
+        -0.0044,
+        -0.1335,
+        1.8
+      ],
+      "centre_err_mm": [
+        -2.9,
+        -11.3,
+        24.2
+      ],
+      "width_ratio_vs_head": 1.258
+    }
+  ],
+  "gates": {
+    "circlet_constructs": true,
+    "circlet_no_dead_input_normal": true,
+    "circlet_music_pass_not_applied": true,
+    "circlet_composes_house": true,
+    "circlet_dials_ranged": true,
+    "circlet_seated_z_band_5mm": true,
+    "circlet_z_extent_sane": true,
+    "circlet_stays_flat": true,
+    "circlet_seated_x_60mm": true,
+    "circlet_nape_gap_offset_ok": true,
+    "circlet_width_sane": true,
+    "tiara_constructs": true,
+    "tiara_no_dead_input_normal": true,
+    "tiara_music_pass_not_applied": true,
+    "tiara_composes_house": true,
+    "tiara_dials_ranged": true,
+    "tiara_seated_z_band_5mm": true,
+    "tiara_z_extent_sane": true,
+    "tiara_has_crown_rise": true,
+    "tiara_seated_x_60mm": true,
+    "tiara_nape_gap_offset_ok": true,
+    "tiara_width_sane": true
+  },
+  "gates_passed": 22,
+  "gates_total": 22,
+  "status": "PASS_BAROQUE",
+  "failed": []
+}

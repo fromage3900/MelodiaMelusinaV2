@@ -1,0 +1,315 @@
+{
+ "pieces": {
+  "circlet": {
+   "gold_verts": 37128,
+   "house_stone_faces_removed": 68,
+   "bevel_offsets": [
+    [
+     "MEL_auto_bevel",
+     "Mesh Bevel",
+     {
+      "Start Left Offset": 0.0,
+      "Start Right Offset": 0.0,
+      "End Left Offset": 0.0,
+      "End Right Offset": 0.0
+     }
+    ]
+   ],
+   "floating_finials_removed_(verts,gap_mm)": [],
+   "stone": "Aquamarine Dream",
+   "stone_center": [
+    0.0013,
+    -0.364,
+    1.567
+   ],
+   "stone_len_mm": 36.0,
+   "house_stone_bbox_mm": [
+    50.5,
+    44.4,
+    64.3
+   ],
+   "stone_object_slot": "V2_Stone_Aquamarine_Dream",
+   "stone_slot_link": "OBJECT"
+  },
+  "tiara": {
+   "gold_verts": 38240,
+   "house_stone_faces_removed": 68,
+   "bevel_offsets": [
+    [
+     "MEL_auto_bevel.001",
+     "Mesh Bevel",
+     {
+      "Start Left Offset": 0.0,
+      "Start Right Offset": 0.0,
+      "End Left Offset": 0.0,
+      "End Right Offset": 0.0
+     }
+    ]
+   ],
+   "floating_finials_removed_(verts,gap_mm)": [
+    [
+     40,
+     5.9
+    ],
+    [
+     40,
+     33.6
+    ],
+    [
+     40,
+     55.4
+    ],
+    [
+     40,
+     55.4
+    ],
+    [
+     40,
+     33.6
+    ],
+    [
+     40,
+     5.9
+    ],
+    [
+     10,
+     7.5
+    ],
+    [
+     10,
+     35.2
+    ],
+    [
+     10,
+     57.0
+    ],
+    [
+     10,
+     57.0
+    ],
+    [
+     10,
+     35.2
+    ],
+    [
+     10,
+     7.5
+    ]
+   ],
+   "stone": "Aquamarine Dream",
+   "stone_center": [
+    -0.0012,
+    -0.2631,
+    1.813
+   ],
+   "stone_len_mm": 28.0,
+   "house_stone_bbox_mm": [
+    29.1,
+    25.9,
+    36.5
+   ],
+   "stone_object_slot": "V2_Stone_Aquamarine_Dream",
+   "stone_slot_link": "OBJECT"
+  },
+  "earrings": {
+   "house_islands_removed_sizes": [
+    1024,
+    12,
+    1024,
+    12,
+    1024,
+    12,
+    1024,
+    12
+   ],
+   "studs_kept": 2,
+   "stud_centres": {
+    "L": [
+     0.1369,
+     -0.1635,
+     1.5316
+    ],
+    "R": [
+     -0.1449,
+     -0.1629,
+     1.5292
+    ]
+   },
+   "drop_len_mm": 16.0,
+   "stone": "Void Orchid"
+  },
+  "necklace": {
+   "beads_kept": 34,
+   "islands_removed_sizes": [
+    16,
+    128,
+    1024
+   ],
+   "cord": "continuous NURBS through all beads + front droop, r=1.1 mm",
+   "bail_on_cord_gap_mm": 0.46,
+   "pendant_len_mm": 25.0,
+   "stone": "Void Orchid",
+   "pendant_centre": [
+    0.0,
+    -0.0865,
+    1.2669
+   ],
+   "gap_deg": 100.0,
+   "gap_ends": [
+    [
+     -0.0628,
+     -0.0647,
+     1.3132
+    ],
+    [
+     0.0628,
+     -0.0647,
+     1.3132
+    ]
+   ]
+  }
+ },
+ "notes": [],
+ "house_package": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\pkg\\surreal_arch\\__init__.py",
+ "dangles_z_clamp": {
+  "build_star_dangl": {
+   "before_mm": [
+    54.3,
+    57.1,
+    1003.0
+   ],
+   "after_mm": [
+    54.3,
+    57.1,
+    33.0
+   ],
+   "islands_clamped": 1
+  },
+  "build_lace_dangl": {
+   "before_mm": [
+    60.0,
+    80.0,
+    1005.0
+   ],
+   "after_mm": [
+    60.0,
+    80.0,
+    40.0
+   ],
+   "islands_clamped": 7
+  },
+  "build_tassel_dangl": {
+   "before_mm": [
+    1666.0,
+    1665.9,
+    1750.0
+   ],
+   "after_mm": [
+    1666.0,
+    1665.9,
+    1750.0
+   ],
+   "islands_clamped": 0
+  }
+ },
+ "house_crystal_drop_sweep_(islands:verts,[mm])": {
+  "0.012": [
+   [
+    1024,
+    [
+     20.0,
+     20.0,
+     4.0
+    ]
+   ],
+   [
+    12,
+    [
+     4.3,
+     3.7,
+     3.6
+    ]
+   ]
+  ],
+  "0.015": [
+   [
+    1024,
+    [
+     20.0,
+     20.0,
+     4.0
+    ]
+   ],
+   [
+    12,
+    [
+     5.4,
+     4.7,
+     4.5
+    ]
+   ]
+  ],
+  "0.02": [
+   [
+    1024,
+    [
+     20.0,
+     20.0,
+     4.0
+    ]
+   ],
+   [
+    12,
+    [
+     7.2,
+     6.2,
+     6.0
+    ]
+   ]
+  ]
+ },
+ "object_slots": {
+  "circlet_stone": [
+   [
+    "OBJECT",
+    "V2_Stone_Aquamarine_Dream"
+   ]
+  ],
+  "earL_stone_drop": [
+   [
+    "OBJECT",
+    "V2_Stone_Void_Orchid"
+   ]
+  ],
+  "earL_stone_round": [
+   [
+    "OBJECT",
+    "V2_Stone_Void_Orchid"
+   ]
+  ],
+  "earR_stone_drop": [
+   [
+    "OBJECT",
+    "V2_Stone_Void_Orchid"
+   ]
+  ],
+  "earR_stone_round": [
+   [
+    "OBJECT",
+    "V2_Stone_Void_Orchid"
+   ]
+  ],
+  "necklace_pendant": [
+   [
+    "OBJECT",
+    "V2_Stone_Void_Orchid"
+   ]
+  ],
+  "tiara_stone": [
+   [
+    "OBJECT",
+    "V2_Stone_Aquamarine_Dream"
+   ]
+  ]
+ }
+}

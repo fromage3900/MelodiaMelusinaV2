@@ -1,0 +1,188 @@
+{
+ "notes": [
+  "earrings/necklace unchanged in size; earrings translated to the new ears",
+  "stones scaled with pieces; tiara spire/stone/bezel scaled uniformly about the spire foot; gold scaled non-uniformly to fit the head"
+ ],
+ "head_old_mm": [
+  397.2,
+  445.1,
+  505.0
+ ],
+ "circlet_old": {
+  "outer_mm": [
+   508.8,
+   510.2
+  ],
+  "inner_x_y_mm": [
+   324.2,
+   null
+  ],
+  "inner_mean_diam_mm": 335.6,
+  "angle_bins": 64,
+  "head_section_mm": [
+   397.1,
+   445.0
+  ],
+  "band_rel_height": 0.434
+ },
+ "tiara_old": {
+  "outer_mm": [
+   283.1,
+   284.1
+  ],
+  "inner_x_y_mm": [
+   181.9,
+   null
+  ],
+  "inner_mean_diam_mm": 188.1,
+  "angle_bins": 64,
+  "head_section_mm": [
+   231.5,
+   259.4
+  ],
+  "band_rel_height": 0.893
+ },
+ "tiara_bezel": {
+  "type": "pear tube ring r=0.9 mm + 3 claw prongs (pre-scale)",
+  "replaced": "tiara_bezel (oval torus)"
+ },
+ "head_new_mm": [
+  150.0,
+  200.0,
+  225.0
+ ],
+ "head_new_min_max": [
+  [
+   -0.075,
+   -0.132,
+   1.405
+  ],
+  [
+   0.075,
+   0.068,
+   1.63
+  ]
+ ],
+ "circlet_fit": {
+  "old_inner_x_y_mm": [
+   324.2,
+   347.0
+  ],
+  "target_inner_x_y_mm": [
+   156.0,
+   206.0
+  ]
+ },
+ "circlet_new": {
+  "scale_xyz": [
+   0.4812,
+   0.5937,
+   0.5375
+  ],
+  "stone_scale": 0.5128,
+  "outer_mm": [
+   244.8,
+   302.9,
+   26.2
+  ],
+  "inner_x_y_mm": [
+   161.0,
+   null
+  ],
+  "inner_mean_diam_mm": 178.8,
+  "head_section_mm": [
+   142.1,
+   189.5
+  ],
+  "settle_dz_from_fit_mm": 40.5,
+  "head_penetrating_verts": 1043,
+  "band_rel_height": 0.614,
+  "stone_bbox_mm": [
+   14.4,
+   12.3,
+   18.0
+  ],
+  "stone_len_mm": 18.0
+ },
+ "tiara_new": {
+  "scale_xyz": [
+   0.5475,
+   0.6514,
+   0.5994
+  ],
+  "stone_scale": 0.5994,
+  "outer_mm": [
+   155.0,
+   185.0,
+   16.9
+  ],
+  "inner_x_y_mm": [
+   102.5,
+   null
+  ],
+  "inner_mean_diam_mm": 112.1,
+  "head_section_mm": [
+   95.2,
+   127.0
+  ],
+  "settle_dz_from_fit_mm": -1.5,
+  "head_penetrating_verts": 0,
+  "band_rel_height": 0.886,
+  "stone_bbox_mm": [
+   11.6,
+   11.2,
+   16.4
+  ],
+  "stone_len_mm": 16.4
+ },
+ "earL_moved_mm": [
+  -57.9,
+  141.5,
+  -32.1
+ ],
+ "earR_moved_mm": [
+  65.9,
+  140.9,
+  -29.7
+ ],
+ "materials": {
+  "V2_Stone_Aquamarine_Dream": {
+   "base": [
+    0.52,
+    0.78,
+    1.0
+   ],
+   "absorb": [
+    0.52,
+    0.78,
+    1.0
+   ],
+   "density_per_m": 14.0,
+   "dispersion": 0.15
+  },
+  "V2_Stone_Void_Orchid": {
+   "base": [
+    0.72,
+    0.42,
+    0.92
+   ],
+   "absorb": [
+    0.74,
+    0.36,
+    0.86
+   ],
+   "density_per_m": 70.0,
+   "dispersion": 0.08
+  }
+ },
+ "tube_caps": {
+  "circlet_gold": {
+   "boundary_edges": 384,
+   "caps": 48
+  },
+  "tiara_gold": {
+   "boundary_edges": 384,
+   "caps": 48
+  }
+ }
+}

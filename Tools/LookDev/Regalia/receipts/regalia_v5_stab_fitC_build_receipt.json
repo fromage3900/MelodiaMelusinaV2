@@ -1,0 +1,156 @@
+{
+ "params": {
+  "c_h": 0.0165,
+  "c_th": 0.0026,
+  "c_rail": 0.0013,
+  "c_clear": 0.0025,
+  "c_front_above_brow": 0.01,
+  "c_tilt": 0.09,
+  "c_stone": 0.03,
+  "t_h": 0.013,
+  "t_z0": 1.6058,
+  "t_tilt": 18.0,
+  "t_span": 96.0,
+  "t_stone": 0.032,
+  "loop_h": 0.016,
+  "loop_w": 0.012,
+  "loop_r": 0.0011,
+  "hair_into": 0.004,
+  "hair_lift": 0.003,
+  "pinch_dmax": 0.06,
+  "pinch_fall": 0.7,
+  "fil_len": 0.013,
+  "fil_wf": 0.55
+ },
+ "notes": [
+  "circlet tilt reduced to clear ear tops: D=0.076"
+ ],
+ "her": {
+  "brow_top": 1.6257,
+  "top": 1.8356,
+  "ear_top_z": 1.5938,
+  "axis": [
+   -0.0049,
+   -0.1319,
+   1.6657
+  ]
+ },
+ "v5": {
+  "counts": {
+   "circlet_bald": {
+    "verts": 15366,
+    "faces": 18292,
+    "tris": 30732,
+    "quads": 12440,
+    "plate_tris": 4508,
+    "cdt_merged": 0,
+    "cdt_new_verts": 0,
+    "face_build_fail": 0,
+    "topo_hash": "78a2b1a5d5460062",
+    "ks": 0.9934,
+    "ku": 1.1,
+    "checks": {
+     "non_manifold_edges": 0,
+     "boundary_edges": 0,
+     "zero_area_faces": 0,
+     "loose_verts": 0,
+     "self_intersect_pairs": 0,
+     "shells": 1
+    },
+    "stone_centre": [
+     -0.0049,
+     -0.3547,
+     1.6544
+    ],
+    "stone_normal": [
+     0.0052,
+     -0.9629,
+     0.2697
+    ],
+    "axis_x": -0.0049,
+    "path_len_mm": 1231.8,
+    "stone_tris": 126,
+    "export_tris_total": 30858,
+    "skin_penetrating_verts": [
+     0,
+     7683
+    ]
+   },
+   "tiara_bald": {
+    "verts": 8534,
+    "faces": 10071,
+    "tris": 17064,
+    "quads": 6963,
+    "plate_tris": 2450,
+    "cdt_merged": 0,
+    "cdt_new_verts": 0,
+    "face_build_fail": 0,
+    "topo_hash": "584b55a261dfb566",
+    "ks": 1.0013,
+    "ku": 1.0833,
+    "checks": {
+     "non_manifold_edges": 0,
+     "boundary_edges": 0,
+     "zero_area_faces": 0,
+     "loose_verts": 0,
+     "self_intersect_pairs": 0,
+     "shells": 1
+    },
+    "path_len_mm": 720.9,
+    "top_foot": [
+     -0.0051,
+     -0.1851,
+     1.8314
+    ],
+    "export_tris_total": 19894,
+    "skin_penetrating_verts": [
+     3,
+     4621
+    ]
+   }
+  },
+  "checks": {},
+  "fingerprint": {
+   "circlet_bald": {
+    "verts": 15366,
+    "faces": 18292,
+    "tris": 30732,
+    "quads": 12440,
+    "plate_tris": 4508,
+    "cdt_merged": 0,
+    "cdt_new_verts": 0,
+    "face_build_fail": 0,
+    "topo_hash": "78a2b1a5d5460062",
+    "checks": {
+     "non_manifold_edges": 0,
+     "boundary_edges": 0,
+     "zero_area_faces": 0,
+     "loose_verts": 0,
+     "self_intersect_pairs": 0,
+     "shells": 1
+    }
+   },
+   "tiara_bald": {
+    "verts": 8534,
+    "faces": 10071,
+    "tris": 17064,
+    "quads": 6963,
+    "plate_tris": 2450,
+    "cdt_merged": 0,
+    "cdt_new_verts": 0,
+    "face_build_fail": 0,
+    "topo_hash": "584b55a261dfb566",
+    "checks": {
+     "non_manifold_edges": 0,
+     "boundary_edges": 0,
+     "zero_area_faces": 0,
+     "loose_verts": 0,
+     "self_intersect_pairs": 0,
+     "shells": 1
+    }
+   }
+  }
+ },
+ "circlet": {},
+ "tiara": {}
+}

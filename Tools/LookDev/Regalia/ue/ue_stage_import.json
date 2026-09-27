@@ -1,0 +1,143 @@
+{
+ "stage": "import",
+ "t": "19:35:03",
+ "created": [
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Circlet.SM_Regalia_v4_Circlet",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Tiara.SM_Regalia_v4_Tiara",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Earrings.SM_Regalia_v4_Earrings",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Necklace.SM_Regalia_v4_Necklace"
+ ],
+ "saved": [],
+ "notes": [
+  "imported SM_Regalia_v4_Circlet ['/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Circlet.SM_Regalia_v4_Circlet']",
+  "imported SM_Regalia_v4_Tiara ['/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Tiara.SM_Regalia_v4_Tiara']",
+  "imported SM_Regalia_v4_Earrings ['/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Earrings.SM_Regalia_v4_Earrings']",
+  "imported SM_Regalia_v4_Necklace ['/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Necklace.SM_Regalia_v4_Necklace']"
+ ],
+ "errors": [
+  "EXC Traceback (most recent call last):\n  File \"<string>\", line 201, in <module>\n  File \"<string>\", line 53, in stage_import\nAttributeError: 'Package' object has no attribute 'is_dirty'\n"
+ ],
+ "bounds": {
+  "SM_Regalia_v4_Circlet": {
+   "min": [
+    -17.112384796142578,
+    -8.874672889709473,
+    155.95420837402344
+   ],
+   "max": [
+    17.074316024780273,
+    37.16720962524414,
+    165.65447998046875
+   ],
+   "expected": [
+    [
+     -17.112,
+     -8.875,
+     155.954
+    ],
+    [
+     17.074,
+     37.167,
+     165.654
+    ]
+   ],
+   "max_dev_cm": 0.000479980468753638,
+   "slots": [
+    "MS_Gold",
+    "MS_GemAqua"
+   ],
+   "tris": 174330
+  },
+  "SM_Regalia_v4_Tiara": {
+   "min": [
+    -18.985994338989258,
+    9.852387428283691,
+    158.14718627929688
+   ],
+   "max": [
+    19.11121368408203,
+    20.80634880065918,
+    191.71878051757812
+   ],
+   "expected": [
+    [
+     -18.986,
+     9.852,
+     158.147
+    ],
+    [
+     19.111,
+     20.806,
+     191.719
+    ]
+   ],
+   "max_dev_cm": 0.0003874282836910936,
+   "slots": [
+    "MS_Gold",
+    "MS_GemAqua"
+   ],
+   "tris": 120498
+  },
+  "SM_Regalia_v4_Earrings": {
+   "min": [
+    -19.143938064575195,
+    9.25728988647461,
+    143.4420166015625
+   ],
+   "max": [
+    19.955598831176758,
+    13.6693115234375,
+    154.72613525390625
+   ],
+   "expected": [
+    [
+     -19.144,
+     9.257,
+     143.442
+    ],
+    [
+     19.956,
+     13.669,
+     154.726
+    ]
+   ],
+   "max_dev_cm": 0.00040116882324170433,
+   "slots": [
+    "MS_Gold",
+    "MS_GemPurple"
+   ],
+   "tris": 21048
+  },
+  "SM_Regalia_v4_Necklace": {
+   "min": [
+    -11.872191429138184,
+    3.576120138168335,
+    120.30255889892578
+   ],
+   "max": [
+    11.978140830993652,
+    26.431385040283203,
+    136.80804443359375
+   ],
+   "expected": [
+    [
+     -11.872,
+     3.576,
+     120.303
+    ],
+    [
+     11.978,
+     26.431,
+     136.808
+    ]
+   ],
+   "max_dev_cm": 0.0004411010742160215,
+   "slots": [
+    "MS_Gold",
+    "MS_GemPurple"
+   ],
+   "tris": 99166
+  }
+ },
+ "folder_assets": "[\"/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Circlet.SM_Regalia_v4_Circlet\", \"/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Earrings.SM_Regalia_v4_Earrings\", \"/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Necklace.SM_Regalia_v4_Necklace\", \"/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Tiara.SM_Regalia_v4_Tiara\"]"
+}

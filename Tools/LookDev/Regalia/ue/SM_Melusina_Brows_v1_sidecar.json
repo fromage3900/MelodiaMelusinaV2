@@ -1,0 +1,30 @@
+{
+ "src": "C:\\EnvironmentPortfolio\\harp_bow_pipeline\\Melusina_Brows_Export_20260922.fbx",
+ "src_objects": [
+  "L_Eyebrow",
+  "R_Eyebrow"
+ ],
+ "scale_applied": 10.0,
+ "verts": 340,
+ "tris": 672,
+ "slots": [
+  "MS_Brows"
+ ],
+ "bbox_ue_bcm": [
+  [
+   -8.749,
+   32.588,
+   160.474
+  ],
+  [
+   8.749,
+   35.014,
+   162.376
+  ]
+ ],
+ "attach_bone": "head_x",
+ "attach_like": "SM_Regalia_v4_Circlet (ue_attach_v4.json)",
+ "material": "reuse MI_Melusina_Brows_Dark (read-only reference, not modified)",
+ "check": "rest-corrected MEL3 brow proxies in regalia_v3_final.blend agree within ~2 mm",
+ "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\eyebrows\\SM_Melusina_Brows_v1.fbx"
+}
