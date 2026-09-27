@@ -152,7 +152,11 @@ BUILDER_SURFACES = {
     "GN_BRUTALIST_CityBlock": {
         "Massing Material": "concrete",
         "Ground Material": "asphalt",
-        "Glazing Material": "glass",
+        # "glazing", not "glass": `set_material_slots` resolves surfaces through
+        # `bmat.SURFACES` and reports an unknown key as MISSING. Measured
+        # 2026-09-26 - the city ran a whole review pass with this socket unwired
+        # because the key was guessed rather than read off the library.
+        "Glazing Material": "glazing",
     },
     "GN_BRUTALIST_Roof": {
         "Roof Material": "concrete",
@@ -243,17 +247,31 @@ for bid, coll_name, ob_name, preset, px, py, surface, look in LAYOUT:
               % (ob_name, sock, val, "" if ok else "(SOCKET NOT FOUND)"))
 
     coll = ensure_collection(coll_name, root)
+    # Wire the Material sockets and set the object's materials BEFORE the
+    # modifier exists. Measured defect, 2026-09-26: creating the modifier and
+    # forcing an update while these sockets were still None made the modifier
+    # capture None as an INSTANCE value, and an instance value outranks the
+    # group-interface default forever after. The interface then reads as wired,
+    # the audit's socket check passes, and every face still renders unstamped -
+    # verified by deleting and re-adding the modifier, which made the split
+    # appear on the identical object (hist {0:738} -> {0:102, 1:60, 2:576}).
+    wire = bmat.set_material_slots(tree, BUILDER_SURFACES.get(bid, {}), look)
     me = bpy.data.meshes.new(ob_name + "_mesh")
     ob = bpy.data.objects.new(ob_name, me)
     coll.objects.link(ob)
     ob.location = (px, py, 0.0)
+    slots = bmat.assign_surfaces(ob, list(dict.fromkeys(
+        [surface] + list(BUILDER_SURFACES.get(bid, {}).values()))), look)
     mod = ob.modifiers.new("GN", "NODES")
     mod.node_group = tree
     bpy.context.view_layer.update()
     verts, lo, hi = eval_stats(ob)
-    wire = bmat.set_material_slots(tree, BUILDER_SURFACES.get(bid, {}), look)
-    slots = bmat.assign_surfaces(ob, list(dict.fromkeys(
-        [surface] + list(BUILDER_SURFACES.get(bid, {}).values()))), look)
+    # Record the decision ON the object, so the .blend explains itself and the
+    # MATGATE audit can compare what an object *carries* against what it was
+    # *asked* for, without trusting a sibling manifest that may be stale.
+    ob["brutalist_builder"] = bid
+    ob["brutalist_surfaces"] = ", ".join(slots)
+    ob["brutalist_socket_missing"] = "; ".join(wire["missing"])
     if wire["missing"]:
         print("[br-stage] material sockets unwired on %s: %s"
               % (ob_name, "; ".join(wire["missing"])))

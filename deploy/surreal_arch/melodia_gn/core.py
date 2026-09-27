@@ -1014,6 +1014,21 @@ def add_string_param(tree, name, default="", description=""):
     return make_group_input(tree, "NodeSocketString", name, default)
 
 
+def add_material_param(tree, name, default=None, description=""):
+    """Material group input. Added 2026-09-25.
+
+    `make_group_input` is generic over socket type, so this is a one-liner in the
+    same shape as add_string_param - it did NOT exist before, and the brutalist
+    city builder needs it to give massing and ground different materials inside
+    ONE object (the topology audit measured mats=1 on every preset).
+
+    Default None means "unset": a Set Material node with an unconnected/None
+    material leaves faces on slot 0, so a caller that ignores this input gets
+    byte-identical geometry to before.
+    """
+    return make_group_input(tree, "NodeSocketMaterial", name, default)
+
+
 
 def mesh_line_to_curve(tree, loc, mesh_sock):
     """Convert a Mesh Line / Mesh Circle into a curve for Curve-to-Mesh."""

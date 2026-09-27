@@ -1,0 +1,60 @@
+{
+ "checks": [
+  {
+   "name": "C1_surface_library",
+   "status": "PASS",
+   "detail": "14 surfaces, 14 unique stems"
+  },
+  {
+   "name": "C1b_finish_sets",
+   "status": "PASS",
+   "detail": "BOARD_FORM=['concrete', 'precast'] VEINED=['alabaster', 'terrazzo']"
+  },
+  {
+   "name": "C2_no_skipped_inputs",
+   "status": "PASS",
+   "detail": "28 materials built, every requested socket landed"
+  },
+  {
+   "name": "C3_authored_colour",
+   "status": "PASS",
+   "detail": "all 28 resolve to their authored colour"
+  },
+  {
+   "name": "C4_chroma_survives",
+   "status": "PASS",
+   "detail": "every chromatic surface still reads chromatic"
+  },
+  {
+   "name": "C5_finish_follows_origin",
+   "status": "PASS",
+   "detail": "board marks only on poured surfaces"
+  },
+  {
+   "name": "C6_looks_differ",
+   "status": "PASS",
+   "detail": "Komikaze adds nodes on all 14 surfaces"
+  },
+  {
+   "name": "C7_detects_defect_C",
+   "status": "PASS",
+   "detail": "underscore kwarg -> 1 new skip(s); resolved colour [0.8, 0.8, 0.8] vs authored 0.60/0.59/0.55"
+  },
+  {
+   "name": "C8_detects_defect_A",
+   "status": "PASS",
+   "detail": "raw greyscale detail -> kind=opaque terminal=TEX_WAVE (gate requires 'opaque')"
+  },
+  {
+   "name": "C9_wiring_path",
+   "status": "PASS",
+   "detail": "2 sockets set, 1 missing reported, slots=['BR_Concrete', 'BR_Asphalt']"
+  },
+  {
+   "name": "C10_instance_value_trap",
+   "status": "PASS",
+   "detail": "socket set after first evaluation -> faces=6 stamped=[]; modifier rebuilt -> faces=6 stamped=['BR_Concrete']"
+  }
+ ],
+ "failures": 0
+}
