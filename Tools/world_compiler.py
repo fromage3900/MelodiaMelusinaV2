@@ -164,6 +164,10 @@ def validate_recipe(recipe: dict[str, Any]) -> list[str]:
     weights = sum(s["weight"] for s in recipe["species"])
     if weights <= 0:
         errors.append("species weights must sum to > 0")
+    known_species = {s["species_id"] for s in recipe["species"]}
+    for arc in (field.get("trail_arcs") or []):
+        if arc.get("species_id") not in known_species:
+            errors.append(f"field.trail_arcs species {arc.get('species_id')!r} is not a recipe species")
     beauty = recipe.get("beauty")
     if beauty is not None:
         for key in ("sender_name", "render_target", "sender_bp"):
@@ -265,6 +269,44 @@ def _pick_species(recipe: dict[str, Any], r: float) -> dict[str, Any]:
     return species[-1]
 
 
+def _glitter_brightness(recipe: dict[str, Any]) -> tuple[list[float], str]:
+    """(brightness_steps, glitter mi_prefix) for the palette.glitter lane.
+
+    Absent/empty -> ([1.0], prefix-or-""): every MI keeps its canonical
+    `{mi_prefix}{label}` name and every point references it, so pre-shade
+    recipes compile byte-identical.
+    """
+    glitter = recipe["palette"].get("glitter") or {}
+    steps = list(glitter.get("brightness_steps") or [1.0])
+    return steps, str(glitter.get("mi_prefix") or "")
+
+
+def _glitter_mi_name(mi_prefix: str, label: str, brightness: float) -> str:
+    """Canonical name for brightness == 1.0 (existing MIs keep working);
+    `_L<pct>` suffix otherwise (BRT70 reads darker, BRT140 hotter)."""
+    if brightness == 1.0:
+        return f"{mi_prefix}{label}"
+    return f"{mi_prefix}{label}_L{int(round(brightness * 100.0))}"
+
+
+def _wind_suffixes(recipe: dict[str, Any], wind: dict[str, Any]) -> list[str]:
+    """Ordered unique mesh_mi_suffixes across species on the wind prefix.
+
+    Lets every band MI variant the points reference (e.g. tall cards with
+    their own atlas) carry the lane's tint/response/overrides. No suffixed
+    species -> [""] -> legacy seven MIs, byte-identical.
+    """
+    prefix = wind.get("mi_prefix") or ""
+    seen: list[str] = []
+    for s in recipe["species"]:
+        if prefix and s.get("band_mi_prefix") != prefix:
+            continue
+        for sfx in (s.get("mesh_mi_suffixes") or []):
+            if sfx not in seen:
+                seen.append(sfx)
+    return seen or [""]
+
+
 def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str, Any]:
     seed = int(recipe["world_seed"])
     rid = recipe["recipe_id"]
@@ -356,8 +398,14 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
             # species.mesh_mi_suffixes (parallel to meshes) picks each mesh's own band MI, e.g. "_Tall"
             # so a card mesh gets the band MI that carries its texture atlas.
             mesh_mi_suffixes = list(species.get("mesh_mi_suffixes") or [])
-            band_mi = (f"{material_prefix}{bands_palette[b]['label']}"
-                       f"{mesh_mi_suffixes[variant_id % len(meshes)] if mesh_mi_suffixes else ''}")
+            bri_steps, glitter_prefix = _glitter_brightness(recipe)
+            bri = 1.0
+            if material_prefix and glitter_prefix and material_prefix == glitter_prefix and len(bri_steps) > 1:
+                bri = float(bri_steps[rwg.stable_int(seed, "world_compiler", rid, "shade", b, i) % len(bri_steps)])
+                band_mi = _glitter_mi_name(material_prefix, bands_palette[b]['label'], bri)
+            else:
+                band_mi = (f"{material_prefix}{bands_palette[b]['label']}"
+                           f"{mesh_mi_suffixes[variant_id % len(meshes)] if mesh_mi_suffixes else ''}")
             if _resonance_derive is not None:
                 resonance, ecology_class, material_variant, scale_bias = _resonance_derive(
                     x, y, r, chunk_seed, z_lo=r0, z_hi=outer_radius
@@ -372,10 +420,16 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
             hero_w = clearance.hero_weight(x, y, hero_falloff)
             sp_lo, sp_hi = species.get("scale_range", [s_lo, s_hi])
             scale = _lerp(float(sp_lo), float(sp_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
+            # Flat-lay (fairy dust): species opt into lying at light-catching
+            # angles. Absent keys -> pitch 0.000, the legacy Rotation string.
+            pitch_base = float(species.get("pitch_deg", 0.0))
+            pitch_jit = float(species.get("pitch_jitter_deg", 0.0))
+            pitch = pitch_base + _lerp(-pitch_jit, pitch_jit, _u(seed, rid, "pitch", b, i)) if pitch_jit else pitch_base
+            yaw_deg = _u(seed, rid, "yaw", b, i) * 360.0
             points.append({
                 "point_id": point_id,
                 "x": x, "y": y, "z": z,
-                "yaw": _u(seed, rid, "yaw", b, i) * 360.0,
+                "yaw": yaw_deg,
                 "scale": scale,
                 "species_id": species["species_id"],
                 "variant_id": variant_id,
@@ -404,7 +458,7 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 ),
                 # UE struct-typed mirrors so PCG's Load Data Table maps them to $Position/$Rotation/$Scale directly.
                 "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
-                "Rotation": f"(Pitch=0.000,Yaw={_f(_u(seed, rid, 'yaw', b, i) * 360.0)},Roll=0.000)",
+                "Rotation": f"(Pitch={_f(pitch)},Yaw={_f(yaw_deg)},Roll=0.000)",
                 "Scale3D": f"(X={_f(scale)},Y={_f(scale)},Z={_f(scale)})",
             })
             point_id += 1
@@ -419,6 +473,94 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
             "target_count": n_target,
             "point_count": kept,
         })
+
+    # Trail arcs (fairy-dust spill trails): deliberate arcs, not phyllotaxis.
+    # cluster_id >= 900 marks trail rows (normal range is [0, PARASTICHY)).
+    # Absent `field.trail_arcs` -> zero rows, byte-identical output.
+    for a, arc in enumerate(recipe["field"].get("trail_arcs") or []):
+        tracer = next(s for s in recipe["species"] if s["species_id"] == arc["species_id"])
+        tmeshes = list(tracer.get("meshes") or [tracer["mesh"]])
+        tvariants = int(tracer.get("variants", len(tmeshes) if tracer.get("meshes") else 3))
+        tprefix = tracer.get("band_mi_prefix") or ""
+        t_lo, t_hi = tracer.get("scale_range", [s_lo, s_hi])
+        tpitch = float(tracer.get("pitch_deg", 0.0))
+        tpitch_jit = float(tracer.get("pitch_jitter_deg", 0.0))
+        tcount = int(arc["count"])
+        twidth = float(arc.get("width_cm", 40.0))
+        trad = float(arc["radius_cm"])
+        tcenter = math.radians(float(arc["angle_center_deg"]))
+        tspan = math.radians(float(arc["span_deg"]))
+        for k in range(tcount):
+            t = (k + 0.5) / tcount
+            ang = tcenter + (t - 0.5) * tspan + _lerp(-0.06, 0.06, _u(seed, rid, "tangle", a, k))
+            rr = trad + _lerp(-twidth, twidth, _u(seed, rid, "trad", a, k))
+            x = ax + rr * math.cos(ang)
+            y = ay + rr * math.sin(ang)
+            if ground is not None:
+                gz = ground.ground_z(x, y)
+                if gz is None:
+                    removed_ground += 1
+                    continue
+                z = gz + up
+            if clearance.blocked(x, y):
+                removed_clearance += 1
+                continue
+            tb = min(band_count - 1, max(0, int((rr - r0) // width)))
+            tn, tm = int(modes[tb][0]), int(modes[tb][1])
+            tvariant = rwg.stable_int(seed, "world_compiler", rid, "tvariant", a, k) % tvariants
+            tsuffixes = list(tracer.get("mesh_mi_suffixes") or [])
+            bri_steps, glitter_prefix = _glitter_brightness(recipe)
+            if tprefix and glitter_prefix and tprefix == glitter_prefix and len(bri_steps) > 1:
+                tbri = float(bri_steps[rwg.stable_int(seed, "world_compiler", rid, "tshade", a, k) % len(bri_steps)])
+                tband_mi = _glitter_mi_name(tprefix, bands_palette[tb]['label'], tbri)
+            else:
+                tband_mi = f"{tprefix}{bands_palette[tb]['label']}{tsuffixes[tvariant % len(tsuffixes)] if tsuffixes else ''}"
+            tyaw = _u(seed, rid, "tyaw", a, k) * 360.0
+            tpitch_k = tpitch + _lerp(-tpitch_jit, tpitch_jit, _u(seed, rid, "tpitch", a, k)) if tpitch_jit else tpitch
+            tscale = _lerp(float(t_lo), float(t_hi), _u(seed, rid, "tscale", a, k))
+            thero = clearance.hero_weight(x, y, hero_falloff)
+            tscale *= 0.85 + 0.15 * thero
+            if _resonance_derive is not None:
+                tres, teclass, _, tscale_bias = _resonance_derive(x, y, rr, chunk_seed, z_lo=r0, z_hi=outer_radius)
+            else:  # pragma: no cover
+                tres = _u(seed, rid, "tres", a, k)
+                teclass = 0 if tres < 0.33 else (1 if tres < 0.66 else 2)
+                tscale_bias = 0.75 + 0.6 * tres
+            theight = int(tracer.get("height_class", 1))
+            points.append({
+                "point_id": point_id,
+                "x": x, "y": y, "z": z,
+                "yaw": tyaw,
+                "scale": tscale,
+                "species_id": tracer["species_id"],
+                "variant_id": tvariant,
+                "band": tb,
+                "mode_n": tn, "mode_m": tm,
+                "cluster_id": 900 + a,
+                "hue_seed": _clamp01((tb + 0.5) / band_count + _lerp(-0.04, 0.04, _u(seed, rid, "thue", a, k))),
+                "wind_phase": _u(seed, rid, "twind_phase", a, k),
+                "wind_response": _lerp(0.55, 1.0, _u(seed, rid, "twind_resp", a, k)) * (1.0 if theight else 0.7),
+                "sparkle_response": _clamp01(0.2 + 0.6 * tres),
+                "hero_weight": thero,
+                "height_class": theight,
+                "density_class": 2,
+                "Resonance": tres,
+                "EcologyClass": teclass,
+                "MaterialVariant": tb,
+                "ScaleBias": tscale_bias,
+                "mesh": _soft_path(tmeshes[tvariant % len(tmeshes)]),
+                "material": _soft_path(tband_mi) if tprefix else "",
+                "StemMaterial": (
+                    _soft_path(tband_mi)
+                    if tracer.get("stem_material") == "__band__" and tprefix
+                    else (_soft_path(tracer["stem_material"]) if tracer.get("stem_material") else "")
+                ),
+                "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
+                "Rotation": f"(Pitch={_f(tpitch_k)},Yaw={_f(tyaw)},Roll=0.000)",
+                "Scale3D": f"(X={_f(tscale)},Y={_f(tscale)},Z={_f(tscale)})",
+            })
+            point_id += 1
+            band_rows[tb]["point_count"] += 1
 
     anchors, fx_removed = _fx_anchors(recipe, band_rows, clearance, az + up, ground=ground, sector=sector)
     return {
@@ -546,6 +688,9 @@ def stage_dressing(recipe: dict[str, Any], ecology: dict[str, Any], *, constella
                    "material_instance": f"{recipe['species'][0].get('band_mi_prefix', '')}{b['label']}"} for b in ecology["bands"]],
         # Wind hue-reveal family: same seven tints, parented to a master that already binds
         # MF_MelodiaWindHueReveal and reads the palette Wind* lanes. Undriven == natural albedo.
+        # Mesh-variant suffixes (e.g. "_Tall" cards carrying their own atlas) expand the
+        # lane so every band MI the points reference gets tint/response/overrides.
+        # Species without suffixes -> [""] -> legacy seven, byte-identical.
         "wind_lane": ({
             "parent": wind["parent"],
             "tint_parameter": wind.get("tint_parameter", "MelodiaWindRevealTint"),
@@ -557,17 +702,26 @@ def stage_dressing(recipe: dict[str, Any], ecology: dict[str, Any], *, constella
             "texture_overrides": dict(wind.get("texture_overrides") or {}),
             "bands": [{"band": b["band"], "label": b["label"], "tint": b["tint"],
                        "hue_seed": (b["band"] + 0.5) / band_count,
-                       "material_instance": f"{wind['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
+                       "material_instance": f"{wind['mi_prefix']}{b['label']}{sfx}"}
+                      for b in ecology["bands"] for sfx in _wind_suffixes(recipe, wind)],
         } if wind else None),
-        # Glitter detail family: same seven tints on the glitter master, one MI per
-        # band for species whose band_mi_prefix matches. Parent scalars/switches stay.
+        # Glitter detail family: same seven tints on the glitter master, expanded by
+        # brightness_steps (default [1.0] -> one MI per band, legacy names).
+        # brightness == 1.0 keeps the canonical `{mi_prefix}{label}` MI; other
+        # steps get `_L<pct>` suffixes with pre-scaled tints (the UE forge
+        # writes lane tints verbatim, so scaling happens here, once).
+        # Parent scalars/switches stay untouched.
         "glitter_lane": ({
             "parent": glitter["parent"],
             "tint_parameters": list(glitter.get("tint_parameters") or ["FastLayerColor", "MidLayerColor", "DeepLayerColor"]),
             "shade_steps": list(glitter.get("shade_steps") or [1.0]),
             "scalar_overrides": dict(glitter.get("scalar_overrides") or {}),
-            "bands": [{"band": b["band"], "label": b["label"], "tint": b["tint"],
-                       "material_instance": f"{glitter['mi_prefix']}{b['label']}"} for b in ecology["bands"]],
+            "brightness_steps": list(glitter.get("brightness_steps") or [1.0]),
+            "bands": [{"band": b["band"], "label": b["label"],
+                       "tint": [min(4.0, c * step) for c in b["tint"]],
+                       "brightness": step,
+                       "material_instance": _glitter_mi_name(glitter['mi_prefix'], b['label'], step)}
+                      for b in ecology["bands"] for step in (glitter.get("brightness_steps") or [1.0])],
         } if (glitter := palette.get("glitter")) else None),
         "species": species_rows,
         "packer_attributes": ["hue_seed", "Resonance", "wind_response", "sparkle_response"],

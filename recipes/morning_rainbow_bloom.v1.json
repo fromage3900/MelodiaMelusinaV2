@@ -42,7 +42,12 @@
       "threshold": 0.35,
       "plate_size_cm": 11000.0
     },
-    "hero_falloff_cm": 1000.0
+    "hero_falloff_cm": 1000.0,
+    "trail_arcs": [
+      {"species_id": "melody_glitter_fairy", "angle_center_deg": 50.0, "span_deg": 80.0, "radius_cm": 600.0, "count": 24, "width_cm": 80.0},
+      {"species_id": "melody_glitter_fairy", "angle_center_deg": 180.0, "span_deg": 60.0, "radius_cm": 1300.0, "count": 20, "width_cm": 60.0},
+      {"species_id": "melody_glitter_fairy", "angle_center_deg": 300.0, "span_deg": 60.0, "radius_cm": 1400.0, "count": 16, "width_cm": 80.0}
+    ]
   },
   "species": [
     {
@@ -135,6 +140,20 @@
       "height_class": 0,
       "scale_range": [0.1, 0.2],
       "ground_labels": ["WC_EscherWalk_", "BrushifyIsland_"]
+    },
+    {
+      "species_id": "melody_glitter_fairy",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": ["/Game/EnvSandbox/SM_MelodyToken"],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.03,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [0.03, 0.06],
+      "pitch_deg": 90.0,
+      "pitch_jitter_deg": 12.0,
+      "ground_labels": ["BrushifyIsland_", "WC_EscherWalk_"]
     }
   ],
   "palette": {
@@ -147,18 +166,19 @@
       "tint_parameter": "MelodiaWindRevealTint",
       "hue_seed_parameter": "MelodiaWindHueSeed",
       "response_parameter": "MelodiaWindResponse",
-      "response": 0.85,
+      "response": 0.3,
       "static_switches_off": [],
       "texture_overrides": {},
-      "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only."
+      "scalar_overrides": {"SharedBend": 0.15},
+      "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only. Wind calm 2026-09-27 (Jev F_CALM_CHILDREN 1.0): response 0.3 + SharedBend 0.15 on children ONLY (B2 outlier 0.75 normalized); parent MI_Plant_Flower_GenericFlower1 SharedBend 5.96 untouchable."
     },
     "glitter": {
       "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
       "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
       "tint_parameters": ["BaseTint"],
-      "shade_steps": [1.0],
+      "brightness_steps": [0.7, 1.0, 1.4],
       "scalar_overrides": {"SparkleIntensity": 0.5, "SparkleScale": 160.0},
-      "note": "Melody-token pile tint family on the approved toon parent (MI_MelodyToken_Water precedent). Parent graph untouched; forged by the UE glitter_materials step."
+      "note": "Melody-token pile tint family on the approved toon parent (MI_MelodyToken_Water precedent). Parent graph untouched; forged by the UE glitter_materials step. brightness_steps: 1.0 keeps canonical names, 0.7/1.4 get _L70/_L140 for per-point glint variance (Jev glitter audit 2026-09-27, F_FAIRY_TRAILS_COMPILER 0.95)."
     },
     "bands": [
       {"label": "B0_Red", "tint": [1.0, 0.18, 0.22]},

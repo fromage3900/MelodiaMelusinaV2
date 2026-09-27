@@ -53,6 +53,23 @@
         "radial_jitter_cm": {"type": "number", "minimum": 0, "default": 18.0},
         "scale_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2, "default": [0.5, 1.1]},
         "sector_deg": {"$ref": "#/$defs/vec2", "description": "Optional [center_deg, half_width_deg] (0 = +X, CCW). Folds the phyllotaxis sweep into that arc so density targets are spent where ground exists."},
+        "trail_arcs": {
+          "type": "array",
+          "description": "Optional deliberate spill-trail arcs (fairy-dust trails). Each emits count points along an arc; filtered by the same ground mask + clearance as scatter (no chladni thinning). cluster_id >= 900 marks trail rows.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["species_id", "angle_center_deg", "span_deg", "radius_cm", "count"],
+            "properties": {
+              "species_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+              "angle_center_deg": {"type": "number"},
+              "span_deg": {"type": "number", "exclusiveMinimum": 0},
+              "radius_cm": {"type": "number", "minimum": 0},
+              "count": {"type": "integer", "minimum": 1},
+              "width_cm": {"type": "number", "minimum": 0, "default": 40.0}
+            }
+          }
+        },
         "chladni": {
           "type": "object",
           "additionalProperties": false,
@@ -89,6 +106,8 @@
           "variants": {"type": "integer", "minimum": 1, "default": 3},
           "height_class": {"type": "integer", "minimum": 0, "maximum": 2},
           "scale_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+          "pitch_deg": {"type": "number", "default": 0.0, "description": "Base pitch written into the point Rotation column (0 = legacy upright). Fairy dust uses 90 to lie flat at light-catching angles."},
+          "pitch_jitter_deg": {"type": "number", "minimum": 0, "default": 0.0, "description": "Deterministic +/- jitter around pitch_deg."},
           "ground_labels": {
             "type": "array",
             "minItems": 1,
@@ -148,6 +167,7 @@
             "mi_prefix": {"type": "string", "pattern": "^/Game/"},
             "tint_parameters": {"type": "array", "items": {"type": "string"}, "minItems": 1, "default": ["FastLayerColor", "MidLayerColor", "DeepLayerColor"]},
             "shade_steps": {"type": "array", "items": {"type": "number", "minimum": 0, "maximum": 2}, "minItems": 1, "maxItems": 8, "default": [1.0, 0.85, 0.7], "description": "Per-tint_parameter brightness multiplier, parallel to tint_parameters; gives the pile depth variation without touching parent scalars."},
+            "brightness_steps": {"type": "array", "items": {"type": "number", "minimum": 0, "maximum": 4}, "minItems": 1, "maxItems": 8, "default": [1.0], "description": "Per-point MI brightness variants: the lane forges one MI per band per step (brightness 1.0 keeps the canonical name, others get _L<pct>), and glitter points pick a step deterministically. Absent = one MI per band, legacy names."},
             "scalar_overrides": {"type": "object", "additionalProperties": {"type": "number"}, "description": "Optional scalar params set verbatim on every band MI (e.g. sparkle intensity on the toon parent)."},
             "note": {"type": "string"}
           }
