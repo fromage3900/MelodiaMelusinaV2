@@ -31,6 +31,8 @@ ROOT_MCP = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "..", ".mcp.json"))
 LEDGER = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "Saved", "router_ledger.jsonl"))
 # Local models on a cold load can exceed 90s before first token, especially the
 # 21-30 GB tags. Override with LLM_REQUEST_TIMEOUT when driving production lanes.
+TIERS_SPEC = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "specs", "orchestration", "model_tiers.v1.json"))
+
 REQUEST_TIMEOUT = int(os.environ.get("LLM_REQUEST_TIMEOUT", "90"))
 
 LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
@@ -339,6 +341,44 @@ def pick(task_class, detail=False):
         return
     print(POLICY[task_class][0][0])
 
+def pick_task(task_name, detail=False):
+    if not os.path.exists(TIERS_SPEC):
+        sys.exit("tiers spec not found: %s" % TIERS_SPEC)
+    with open(TIERS_SPEC, "r", encoding="utf-8") as fh:
+        spec = json.load(fh)
+    routing = spec.get("routing_matrix", {})
+    if task_name not in routing:
+        sys.exit("unknown task: %s (available: %s)" % (task_name, " ".join(sorted(routing.keys()))))
+    entry = routing[task_name]
+    tier_id = entry.get("tier", "UNKNOWN")
+    tier_map = {t["id"]: t for t in spec.get("tiers", []) if isinstance(t, dict) and "id" in t}
+    tier_info = tier_map.get(tier_id, {})
+    if detail:
+        print("Task:       %s" % task_name)
+        print("Tier:       %s (%s)" % (tier_id, tier_info.get("label", "")))
+        print("Intent:     %s" % tier_info.get("intent", ""))
+        print("Profile:    %s" % tier_info.get("cost_profile", ""))
+        print("Primary:    %s (%s)" % (entry.get("model_primary"), entry.get("provider_primary")))
+        print("Fallback:   %s (%s)" % (entry.get("model_fallback"), entry.get("provider_fallback")))
+        print("Timeout:    %ss" % entry.get("timeout_s"))
+        print("Rationale:  %s" % entry.get("rationale"))
+        return
+    print("%s (%s)" % (entry.get("model_primary"), tier_id))
+
+
+def list_tasks():
+    if not os.path.exists(TIERS_SPEC):
+        sys.exit("tiers spec not found: %s" % TIERS_SPEC)
+    with open(TIERS_SPEC, "r", encoding="utf-8") as fh:
+        spec = json.load(fh)
+    routing = spec.get("routing_matrix", {})
+    print("%-28s %-6s %-32s %s" % ("TASK", "TIER", "PRIMARY MODEL", "PROVIDER"))
+    print("-" * 80)
+    for t_name in sorted(routing.keys()):
+        r = routing[t_name]
+        print("%-28s %-6s %-32s %s" % (t_name, r.get("tier"), r.get("model_primary"), r.get("provider_primary")))
+
+
 
 def run_chat(task_class, prompt, system=None, json_out=False, attempt=0, max_tokens=2000,
              timeout=None):
@@ -462,6 +502,11 @@ def main():
     p_ledger.add_argument("--tail", type=int, default=20)
     p_cost = sub.add_parser("cost")
     sub.add_parser("classes")
+    p_tier = sub.add_parser("tier")
+    p_tier.add_argument("task_name")
+    p_tier.add_argument("--detail", action="store_true")
+    sub.add_parser("tasks")
+
     args = ap.parse_args()
 
     if args.cmd == "pick":
@@ -482,6 +527,11 @@ def main():
     elif args.cmd == "classes":
         for name in sorted(POLICY):
             print("%-14s %s" % (name, POLICY[name][0][0]))
+    elif args.cmd == "tier":
+        pick_task(args.task_name, detail=args.detail)
+    elif args.cmd == "tasks":
+        list_tasks()
+
 
 
 if __name__ == "__main__":

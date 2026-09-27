@@ -1,0 +1,470 @@
+{
+  "schema": "melodia.model_tiers/v1",
+  "title": "Melodia Model Tier Registry",
+  "generated": "2026-09-26",
+  "status": "policy_registry_read_only",
+  "purpose": "Machine-readable tier policy that tells an autonomous agent fleet WHICH class of model a task packet may use, so frontier spend lands on architectural decisions and cheap/free models carry the easy work. This registry selects models; it never becomes a second orchestrator, router or lease framework.",
+  "authority": {
+    "live_routing": "Tools/model_router.py",
+    "task_class_policy": "Tools/model_router.py",
+    "routing_canon": "Docs/Production/MODEL_ROUTING_CANON.md",
+    "orchestration_plan": ".hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md",
+    "swarm_policy": ".jcode/swarm-prompt.md",
+    "current_status": "CURRENT_STATE.md",
+    "evidence_authority": "Tools/echo_run.py (gate ledger)"
+  },
+  "rules": {
+    "deterministic": "Routing is a pure function of the packet plus this registry. No randomness, no model voting, no free-form judgement.",
+    "extend_not_replace": "Extend Tools/model_router.py. No second router, orchestrator, lease or lane framework may be created.",
+    "no_self_certification": "The tier that produced an artifact never accepts it. Acceptance is T1_VERIFIER or a human/gate script.",
+    "no_silent_paid_fallback": "A local-only or bulk lane must fail loudly rather than reach a paid endpoint.",
+    "one_editor_writer": "A stronger model does not relax the single-editor / single-mutation-surface rule; editor mutation needs the lease.",
+    "delegated_output_is_not_evidence": "A report is not evidence; the verifier opens the artifact (AGENTS.md binding rule).",
+    "widest_tier_wins": "When a packet matches several escalation triggers, the most restrictive (highest) tier wins.",
+    "demote_after_proof": "A repeated task shape that clears promotion_evidence at the same tier three times may be re-tiered one step cheaper by an owner-reviewed registry edit."
+  },
+  "verification_kinds": [
+    "artifact_open",
+    "test_log",
+    "image_look",
+    "diff_review",
+    "log_cite",
+    "none"
+  ],
+  "escalation_triggers": [
+    {
+      "id": "module_graph",
+      "required_tier": "T0_ARCHITECT",
+      "why": "Module/Build.cs/uproject/plugin changes are architectural: they alter the reflected build graph for everyone.",
+      "path_globs": [
+        "Source/**/Build.cs",
+        "Source/**/*.Build.cs",
+        "BS_GodFile.uproject",
+        "Plugins/**/*.uplugin",
+        "Plugins/**/*.Build.cs"
+      ],
+      "goal_keywords": []
+    },
+    {
+      "id": "never_touch_table",
+      "required_tier": "T0_ARCHITECT",
+      "why": "The CLAUDE.md never-touch table is owner-sign-off only, enforced by .githooks/pre-commit (SKIP_PROTECTION).",
+      "path_globs": [
+        ".gitignore",
+        ".gitattributes",
+        "Config/**",
+        "deploy/run_verify.ps1",
+        "Content/Materials/MF_MeshBlend_*"
+      ],
+      "goal_keywords": []
+    },
+    {
+      "id": "persistence_contract",
+      "required_tier": "T0_ARCHITECT",
+      "why": "Save format, USTRUCT layout and restore semantics are runtime compatibility contracts (Issue #51 class).",
+      "path_globs": [
+        "Source/**/MelodiaSave*",
+        "Source/**/MelodiaNarrative*",
+        "specs/**/save*"
+      ],
+      "goal_keywords": [
+        "save format",
+        "save slot",
+        "serialize",
+        "deserializ",
+        "savegame",
+        "backward compatib",
+        "migration"
+      ]
+    },
+    {
+      "id": "public_api_surface",
+      "required_tier": "T0_ARCHITECT",
+      "why": "A new/renamed public subsystem, interface or base class is an architecture decision with downstream owners.",
+      "path_globs": [],
+      "goal_keywords": [
+        "new subsystem",
+        "new module",
+        "new interface",
+        "module boundary",
+        "architecture",
+        "refactor the owner",
+        "replace the owner",
+        "second authority"
+      ]
+    },
+    {
+      "id": "schema_change",
+      "required_tier": "T0_ARCHITECT",
+      "why": "Schemas and v1 contracts are consumed by compilers, drivers and gates; a silent edit breaks producers.",
+      "path_globs": [
+        "specs/**/*.schema.json",
+        "specs/**/*.v1.json",
+        "specs/**/*contract*.json"
+      ],
+      "goal_keywords": []
+    },
+    {
+      "id": "world_composition",
+      "required_tier": "T0_ARCHITECT",
+      "why": "L_SakuraPath / L_MelusinaMorning composition and Content/_PROJECT are ask-first owner surfaces.",
+      "path_globs": [
+        "Content/_PROJECT/**",
+        "Content/**/L_MelusinaMorning*",
+        "Content/**/L_SakuraPath*"
+      ],
+      "goal_keywords": []
+    },
+    {
+      "id": "vcs_operation",
+      "required_tier": "T0_ARCHITECT",
+      "why": "Git pipeline law: no branch/commit/merge/rebase/reset/push and no p4 submit without explicit owner permission.",
+      "path_globs": [
+        ".githooks/**",
+        ".gitattributes"
+      ],
+      "goal_keywords": [
+        "merge",
+        "rebase",
+        "force push",
+        "p4 submit",
+        "changelist submit",
+        "branch strateg"
+      ]
+    },
+    {
+      "id": "secret_or_credential",
+      "required_tier": "T0_ARCHITECT",
+      "why": "Secrets never enter Git; provider keys live in env or ~/.hermes.",
+      "path_globs": [
+        ".env",
+        ".env.*",
+        ".mcp.json",
+        "deploy/*secrets*"
+      ],
+      "goal_keywords": [
+        "api key",
+        "bearer token",
+        "credential",
+        "rotate the key"
+      ]
+    },
+    {
+      "id": "editor_mutation",
+      "required_tier": "T1_VERIFIER",
+      "why": "Editor mutation is lease-gated and must be verified by opening the artifact; it is never a swarm lane.",
+      "path_globs": [
+        "Content/**/*.uasset",
+        "Content/**/*.umap"
+      ],
+      "goal_keywords": [
+        "in the editor",
+        "run pie",
+        "save the level",
+        "blueprint graph"
+      ]
+    },
+    {
+      "id": "independent_verification",
+      "required_tier": "T1_VERIFIER",
+      "why": "Any artifact claimed as evidence needs a verifier that is not its producer.",
+      "path_globs": [],
+      "goal_keywords": [
+        "verify",
+        "prove",
+        "certif",
+        "accept the artifact",
+        "falsif"
+      ]
+    }
+  ],
+  "cheap_tier_eligible": [
+    {
+      "id": "docs_prose",
+      "why": "Documentation prose, fold-in edits and link repair are reviewable by diff and cheap to redo.",
+      "globs": ["Docs/**/*.md", "*.md", "README.md"],
+      "max_risk": "reversible"
+    },
+    {
+      "id": "log_triage",
+      "why": "Reading a long log and citing lines is bounded, verifiable and does not mutate the engine.",
+      "globs": ["Saved/**/*.log", "Saved/**/*.json"],
+      "max_risk": "read_only"
+    },
+    {
+      "id": "manifest_and_index",
+      "why": "Manifests, indexes and dataset rows are data edits under an existing schema.",
+      "globs": ["specs/**/*.json", "Docs/**/*.json", "Imports/**/*.json"],
+      "max_risk": "reversible"
+    },
+    {
+      "id": "test_fixtures",
+      "why": "Fixture data and expected-output files sit behind a contract test that fails on a wrong edit.",
+      "globs": ["Tools/fixtures/**", "Fixtures/**", "specs/**/fixtures/**"],
+      "max_risk": "reversible"
+    },
+    {
+      "id": "tool_scaffold_under_contract",
+      "why": "A tool with an existing offline contract test may be extended by a cheap lane; the test is the guard rail.",
+      "globs": ["Tools/*.py", "Content/Python/**/*.py"],
+      "max_risk": "reversible",
+      "requires_existing_test": true
+    }
+  ],
+  "tiers": [
+    {
+      "id": "T0_ARCHITECT",
+      "label": "Frontier architect",
+      "intent": "Make and record the architectural decision: module graph, persistence format, public owner surface, contract/schema, migration or convergence strategy. Produce a decision spec (ADR) the cheaper tiers then execute mechanically.",
+      "cost_profile": "frontier_paid",
+      "default_classes": ["cpp", "deep", "orchestrator"],
+      "may_write": [
+        "Docs/Production/**",
+        "Docs/Research/**",
+        ".hermes/plans/**"
+      ],
+      "must_not": [
+        "accept its own artifact as evidence",
+        "land a git or p4 operation without explicit owner permission",
+        "invent a second world/save/routing/orchestration authority",
+        "write Content/** binaries or Config/** directly"
+      ],
+      "context_policy": {
+        "include": [
+          "CURRENT_STATE.md",
+          "SYSTEM_MAP.md",
+          "DATA_FLOW.md",
+          "Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md",
+          "the named owner files for the decision"
+        ],
+        "max_files": 40,
+        "max_tokens": 200000
+      },
+      "evidence": {
+        "required": ["decision_spec"],
+        "verify_kind": "diff_review",
+        "verified_by": "T1_VERIFIER"
+      },
+      "budget_usd_default": 10.0,
+      "budget_usd_max": 40.0,
+      "handoff": "A written decision spec naming the exact files, the owner it extends, the must-not list and the acceptance check. Cheap tiers execute it; they never re-decide it."
+    },
+    {
+      "id": "T1_VERIFIER",
+      "label": "Independent verifier",
+      "intent": "Open the artifact and try to falsify it. Fresh eyes on someone else's output, or on a frontier decision before it becomes law.",
+      "cost_profile": "paid",
+      "default_classes": ["review", "vision", "playtest"],
+      "may_write": [
+        "Saved/Audit/**",
+        "Saved/reports/**"
+      ],
+      "must_not": [
+        "be the producer of the artifact it grades",
+        "record a gate pass where a human or gate script is required",
+        "soften a failure into a success"
+      ],
+      "context_policy": {
+        "include": [
+          "the artifact itself",
+          "the contract it must satisfy",
+          "the producer's completion report"
+        ],
+        "max_files": 15,
+        "max_tokens": 120000
+      },
+      "evidence": {
+        "required": ["verification_receipt"],
+        "verify_kind": "artifact_open",
+        "verified_by": "owner or gate script"
+      },
+      "budget_usd_default": 5.0,
+      "budget_usd_max": 20.0,
+      "handoff": "A receipt naming what was opened, what was measured, pass/fail and the residual uncertainty. Never a prose summary of the producer's report."
+    },
+    {
+      "id": "T2_EXECUTOR",
+      "label": "Bounded executor",
+      "intent": "Implement an already-decided change inside a declared write fence: tools, harness fixes, C++ touching one named owner, tests, offline scripts.",
+      "cost_profile": "cheap_paid",
+      "default_classes": ["code", "mcp"],
+      "may_write": [
+        "Source/BS_GodFile/**",
+        "Content/Python/**",
+        "Tools/**",
+        "Docs/**"
+      ],
+      "must_not": [
+        "change the module graph, Build.cs or .uproject",
+        "re-open a decided architecture",
+        "write Content/** binaries, Config/** or the never-touch table",
+        "edit CURRENT_STATE.md"
+      ],
+      "context_policy": {
+        "include": [
+          "the decision spec",
+          "may_write paths",
+          "the named owner header/impl",
+          "the existing test for the touched tool"
+        ],
+        "max_files": 20,
+        "max_tokens": 60000
+      },
+      "evidence": {
+        "required": ["test_log", "diff"],
+        "verify_kind": "test_log",
+        "verified_by": "T1_VERIFIER or gate script"
+      },
+      "budget_usd_default": 2.0,
+      "budget_usd_max": 10.0,
+      "handoff": "A patch plus the exact command and its raw output. No narrative claim beyond the log."
+    },
+    {
+      "id": "T3_BULK",
+      "label": "Bulk / easy work",
+      "intent": "The 80% that is not a decision: docs prose, log triage, manifests, indexes, fixtures, dataset rows, summarizing a long file, mechanical refactors guarded by an existing test.",
+      "cost_profile": "free_tier",
+      "default_classes": ["docs", "audit", "triage"],
+      "may_write": [
+        "Docs/**/*.md",
+        "specs/**/*.json",
+        "Tools/**",
+        "Tools/fixtures/**",
+        "Saved/Audit/**"
+      ],
+      "must_not": [
+        "write Source/**",
+        "touch Config/**, .uproject, Build.cs or the never-touch table",
+        "edit CURRENT_STATE.md",
+        "change a schema, contract or public API",
+        "accept its own artifact"
+      ],
+      "context_policy": {
+        "include": [
+          "the citation list, not the repo",
+          "the file(s) it edits",
+          "the cheap_tier_eligible entry that authorises it"
+        ],
+        "max_files": 8,
+        "max_tokens": 32000
+      },
+      "evidence": {
+        "required": ["cited_artifact"],
+        "verify_kind": "log_cite",
+        "verified_by": "T1_VERIFIER or the existing contract test"
+      },
+      "budget_usd_default": 2.0,
+      "budget_usd_max": 5.0,
+      "handoff": "A diff whose every claim cites a file and line, or an artifact path the verifier can open. Cheap lanes must be reversible."
+    },
+    {
+      "id": "T4_LOCAL",
+      "label": "Local / free daemon",
+      "intent": "Zero-cost volume and unattended work: overnight daemons, drafts, production-lane content that is gate-accepted, offline sweeps. Local-first so production content never needs the network.",
+      "cost_profile": "free_local",
+      "default_classes": ["daemon", "author", "wardrobe_catalog", "beatmap_author", "quill_author", "asset_qa", "anim_bindings"],
+      "may_write": [
+        "Saved/**",
+        "Imports/**",
+        "generated/**"
+      ],
+      "must_not": [
+        "reach a paid cloud endpoint (no silent bill)",
+        "record a ledger pass for its own output",
+        "write Content/** binaries or Config/**",
+        "take the editor lock unattended"
+      ],
+      "context_policy": {
+        "include": [
+          "the task contract",
+          "the allowlist it must obey",
+          "the artifact path it writes"
+        ],
+        "max_files": 6,
+        "max_tokens": 32000
+      },
+      "evidence": {
+        "required": ["offline_probe_json"],
+        "verify_kind": "artifact_open",
+        "verified_by": "human or gate script (echo_run.py record)"
+      },
+      "budget_usd_default": 0.0,
+      "budget_usd_max": 0.0,
+      "handoff": "An artifact plus an offline probe result. A local lane never closes a gate on its own word."
+    }
+  ],
+  "routing_matrix": {
+    "architecture_decision": {
+      "tier": "T0_ARCHITECT",
+      "model_primary": "claude-sonnet-4-6",
+      "provider_primary": "anthropic",
+      "model_fallback": "claude-opus-4-5",
+      "provider_fallback": "anthropic",
+      "timeout_s": 120,
+      "rationale": "Cross-subsystem contracts, public API mutations, boundary governance. Requires maximal reasoning depth and non-hallucinatory invariant adherence."
+    },
+    "cpp_core_implementation": {
+      "tier": "T2_EXECUTOR",
+      "model_primary": "deepseek-coder-v2-0724",
+      "provider_primary": "openrouter",
+      "model_fallback": "claude-sonnet-3-7",
+      "provider_fallback": "anthropic",
+      "timeout_s": 90,
+      "rationale": "High-depth C++ UE idioms, macro awareness (UPROPERTY/UFUNCTION), pointer safety, engine lifecycle hooks."
+    },
+    "shader_hlsl_rendering": {
+      "tier": "T2_EXECUTOR",
+      "model_primary": "deepseek-coder-v2-0724",
+      "provider_primary": "openrouter",
+      "model_fallback": "gpt-4o",
+      "provider_fallback": "openrouter",
+      "timeout_s": 90,
+      "rationale": "HLSL, Substrate slabs, Nanite custom depth, Niagara render modules, post-process material passes."
+    },
+    "ui_widget_implementation": {
+      "tier": "T2_EXECUTOR",
+      "model_primary": "claude-sonnet-3-7",
+      "provider_primary": "anthropic",
+      "model_fallback": "gpt-4o",
+      "provider_fallback": "openrouter",
+      "timeout_s": 90,
+      "rationale": "Slate/UMG widget layout hierarchies, event-driven binding, responsive container anchors."
+    },
+    "test_generation": {
+      "tier": "T3_BULK",
+      "model_primary": "deepseek-v3",
+      "provider_primary": "openrouter",
+      "model_fallback": "gemini-2-5-flash",
+      "provider_fallback": "openrouter",
+      "timeout_s": 60,
+      "rationale": "Headless contract test fixtures, assertion coverage, parametrization of input cases."
+    },
+    "doc_indexing_synthesis": {
+      "tier": "T3_BULK",
+      "model_primary": "gemini-2-5-flash",
+      "provider_primary": "openrouter",
+      "model_fallback": "claude-3-5-haiku",
+      "provider_fallback": "anthropic",
+      "timeout_s": 45,
+      "rationale": "Massive context ingestion, rapid documentation indexing, doc frontmatter alignment, cross-file bibliography synthesis."
+    },
+    "git_vcs_automation": {
+      "tier": "T4_LOCAL",
+      "model_primary": "ollama/qwen2.5-coder:7b",
+      "provider_primary": "local",
+      "model_fallback": "deterministic",
+      "provider_fallback": "local",
+      "timeout_s": 30,
+      "rationale": "Local-only, zero-cost commit message generation, pre-commit linting, status checks, branch health verification."
+    },
+    "atlas_validation": {
+      "tier": "T4_LOCAL",
+      "model_primary": "deterministic",
+      "provider_primary": "local",
+      "model_fallback": "deterministic",
+      "provider_fallback": "local",
+      "timeout_s": 15,
+      "rationale": "Strict Python schema validation, disk-state integrity checks, zero-hallucination deterministic script enforcement."
+    }
+  }
+}

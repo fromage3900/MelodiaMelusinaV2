@@ -49,12 +49,12 @@ new model survey.
  Hermes runtime ── kanban card = Task Packet ──► Jev router (system_one, closed sets)
    │                                              → lane · model tier · needs_editor · verify_kind
    ├─ worker lanes (Hermes subagents / CLIs)
-   │    (lanes = Tools/model_router.py classes; Claude is NOT enabled on this Bedrock account)
-   │    fast / bulk       → Mantle zai.glm-4.7-flash          (docs, triage, audit)
-   │    code              → Mantle qwen.qwen3-coder-next / 480b (tools, tests, C++)
-   │    deep / review     → Mantle qwen.qwen3-235b-a22b-2507   (long reasoning, independent review)
+   │    (lanes resolved via specs/orchestration/model_tiers.v1.json + Tools/model_router.py tier/tasks; Claude is NOT enabled on this Bedrock account)
+   │    T3 / fast / bulk  → Mantle zai.glm-4.7-flash          (docs, triage, audit, manifests)
+   │    T2 / code         → Mantle qwen.qwen3-coder-next / 480b (tools, tests, C++)
+   │    T1 / deep review  → Mantle qwen.qwen3-235b-a22b-2507   (long reasoning, independent review)
    │    scoped_editor     → Hermes-in-Claireon, holds EDITOR LEASE (one at a time)
-   │    offline_bulk      → local Ollama via agent_bridge (free, overnight)
+   │    T4 / offline_bulk → local Ollama via agent_bridge (free, overnight, zero cloud spend)
    │    gateway_chat      → Nous glm-5.3-flash   (status, phone replies)
    ├─ tools: Claireon (HTTP, read-only default) · melodia MCP · shell (ladder scripts, UAT, Blender -b)
    ▼
