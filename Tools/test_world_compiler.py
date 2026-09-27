@@ -300,6 +300,147 @@ def test_beauty_rejects_bad_paths():
     assert any("sender_bp" in e and "beauty" in e for e in errors)
 
 
+def _parse_rotation(rot: str) -> dict[str, float]:
+    vals: dict[str, float] = {}
+    for part in rot.strip("()").split(","):
+        k, v = part.split("=")
+        vals[k] = float(v)
+    return vals
+
+
+def test_glitter_brightness_expands_mis():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    assert wc.validate_recipe(recipe) == []
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        lane = json.loads((out / "dressing_table.json").read_text(encoding="utf-8"))["glitter_lane"]
+    steps = recipe["palette"]["glitter"]["brightness_steps"]
+    assert len(lane["bands"]) == 7 * len(steps)
+    names = [b["material_instance"] for b in lane["bands"]]
+    assert len(set(names)) == len(names), "MI names must be unique"
+    prefix = recipe["palette"]["glitter"]["mi_prefix"]
+    for b in recipe["palette"]["bands"]:
+        canon = f"{prefix}{b['label']}"
+        assert canon in names, f"canonical MI preserved: {canon}"
+    for b in lane["bands"]:
+        base = next(t for t in recipe["palette"]["bands"] if t["label"] == b["label"])["tint"]
+        for c, t in zip(base, b["tint"]):
+            assert abs(t - min(4.0, c * b["brightness"])) < 1e-6, b["material_instance"]
+
+
+def test_glitter_points_reference_forged_mis():
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        lane = json.loads((out / "dressing_table.json").read_text(encoding="utf-8"))["glitter_lane"]
+        forged = {b["material_instance"] for b in lane["bands"]}
+        for r in _rows(out / "points.csv"):
+            if r["species_id"].startswith("melody_glitter"):
+                mat = r["material"].split(".")[0]
+                assert mat in forged, (r["point_id"], mat)
+
+
+def test_fairy_flat_lay_and_scale():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    fairy = next(s for s in recipe["species"] if s["species_id"] == "melody_glitter_fairy")
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        rows = [r for r in _rows(out / "points.csv") if r["species_id"] == "melody_glitter_fairy"]
+    assert rows, "fairy species must emit points"
+    lo, hi = fairy["scale_range"]
+    for r in rows:
+        assert lo * 0.85 <= float(r["scale"]) <= hi * 1.0 + 1e-6, (r["point_id"], r["scale"])
+        pitch = _parse_rotation(r["Rotation"])["Pitch"]
+        assert fairy["pitch_deg"] - fairy["pitch_jitter_deg"] - 1e-6 <= pitch <= fairy["pitch_deg"] + fairy["pitch_jitter_deg"] + 1e-6, (r["point_id"], pitch)
+
+
+def test_trail_arcs_emit_marked_rows():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    arcs = recipe["field"]["trail_arcs"]
+    ax, ay, _ = recipe["place"]["anchor_cm"]
+    clearance = wc.Clearance.from_recipe(recipe)
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        rows = [r for r in _rows(out / "points.csv") if int(r["cluster_id"]) >= 900]
+    assert rows, "trail arcs must emit rows"
+    total = sum(a["count"] for a in arcs)
+    assert len(rows) <= total, "trails only lose rows to ground/clearance"
+    assert len(rows) >= total * 0.5, "trails must mostly survive"
+    for r in rows:
+        arc = arcs[int(r["cluster_id"]) - 900]
+        assert r["species_id"] == arc["species_id"]
+        d = math.hypot(float(r["x"]) - ax, float(r["y"]) - ay)
+        assert abs(d - arc["radius_cm"]) <= arc["width_cm"] + 0.01, (r["point_id"], d)
+        assert clearance.blocked(float(r["x"]), float(r["y"])) is None, r["point_id"]
+
+
+def test_trail_rejects_unknown_species():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe["field"]["trail_arcs"] = [
+        {"species_id": "nope_not_real", "angle_center_deg": 0.0, "span_deg": 10.0, "radius_cm": 500.0, "count": 3}
+    ]
+    assert any("trail_arcs" in e for e in wc.validate_recipe(recipe))
+
+
+def test_absent_glitter_keys_legacy_output():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    recipe["species"] = [s for s in recipe["species"] if s["species_id"] != "melody_glitter_fairy"]
+    for s in recipe["species"]:
+        s.pop("pitch_deg", None)
+        s.pop("pitch_jitter_deg", None)
+    recipe["field"].pop("trail_arcs", None)
+    recipe["palette"]["glitter"].pop("brightness_steps", None)
+    assert wc.validate_recipe(recipe) == []
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "legacy_glitter.v1.json"
+        path.write_text(json.dumps(recipe), encoding="utf-8")
+        manifest, out = _compile(Path(tmp), path)
+        lane = json.loads((out / "dressing_table.json").read_text(encoding="utf-8"))["glitter_lane"]
+        rows = _rows(out / "points.csv")
+    prefix = recipe["palette"]["glitter"]["mi_prefix"]
+    assert len(lane["bands"]) == 7
+    assert [b["material_instance"] for b in lane["bands"]] == [f"{prefix}{b['label']}" for b in recipe["palette"]["bands"]]
+    assert not [r for r in rows if int(r["cluster_id"]) >= 900]
+    for r in rows:
+        assert _parse_rotation(r["Rotation"])["Pitch"] == 0.0, r["point_id"]
+
+
+def test_wind_lane_covers_mesh_variants():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    assert wc.validate_recipe(recipe) == []
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        lane = json.loads((out / "dressing_table.json").read_text(encoding="utf-8"))["wind_lane"]
+    names = [b["material_instance"] for b in lane["bands"]]
+    assert len(names) == len(set(names)), "wind MI names must be unique"
+    prefix = recipe["palette"]["wind"]["mi_prefix"]
+    for b in recipe["palette"]["bands"]:
+        assert f"{prefix}{b['label']}" in names, f"canonical wind MI preserved: {b['label']}"
+    # Every suffixed mesh variant the points reference must have a forged twin
+    # carrying the same tint + the lane response/overrides.
+    for r_suffix in ("_Tall",):
+        twins = [b for b in lane["bands"] if b["material_instance"].endswith(r_suffix)]
+        assert len(twins) == len(recipe["palette"]["bands"]), r_suffix
+        for t in twins:
+            base = next(b for b in lane["bands"] if b["material_instance"] == t["material_instance"][: -len(r_suffix)])
+            assert t["tint"] == base["tint"] and t["band"] == base["band"], t["material_instance"]
+    assert lane["response"] == recipe["palette"]["wind"]["response"]
+    assert lane["scalar_overrides"] == (recipe["palette"]["wind"].get("scalar_overrides") or {})
+
+
+def test_wind_absent_suffixes_legacy_seven():
+    recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
+    for s in recipe["species"]:
+        s.pop("mesh_mi_suffixes", None)
+    assert wc.validate_recipe(recipe) == []
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "no_suffix.v1.json"
+        path.write_text(json.dumps(recipe), encoding="utf-8")
+        manifest, out = _compile(Path(tmp), path)
+        lane = json.loads((out / "dressing_table.json").read_text(encoding="utf-8"))["wind_lane"]
+    prefix = recipe["palette"]["wind"]["mi_prefix"]
+    assert [b["material_instance"] for b in lane["bands"]] == [f"{prefix}{b['label']}" for b in recipe["palette"]["bands"]]
+
+
 if __name__ == "__main__":
     failures = 0
     for name, fn in sorted(globals().items()):
