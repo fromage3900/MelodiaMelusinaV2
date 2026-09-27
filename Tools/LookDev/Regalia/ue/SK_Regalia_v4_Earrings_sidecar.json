@@ -1,0 +1,225 @@
+{
+ "space": "Blender REST world (head.x posed->rest), UE=(x,-y,z)*100 (component space of SK_Melusina_V2_Body up to the solved similarity)",
+ "attach_bone": "head_x",
+ "attach_like": "SM_Regalia_v4_Earrings (ue_attach_v4.json attach entry)",
+ "slots": [
+  "MS_Gold",
+  "MS_GemPurple"
+ ],
+ "verts": 10540,
+ "tris": 21048,
+ "bones": {
+  "earrings_root": {
+   "parent": null,
+   "head_ue_bcm": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "tail_ue_bcm": [
+    0.0,
+    -0.0,
+    2.0
+   ]
+  },
+  "ear_L_root": {
+   "parent": "earrings_root",
+   "head_ue_bcm": [
+    18.7288,
+    10.8921,
+    153.4993
+   ],
+   "tail_ue_bcm": [
+    18.7288,
+    10.8921,
+    152.4565
+   ]
+  },
+  "ear_L_dangle_01": {
+   "parent": "ear_L_root",
+   "head_ue_bcm": [
+    18.7148,
+    10.8938,
+    152.4565
+   ],
+   "tail_ue_bcm": [
+    18.6917,
+    10.8965,
+    149.55
+   ]
+  },
+  "ear_L_dangle_02": {
+   "parent": "ear_L_dangle_01",
+   "head_ue_bcm": [
+    18.6917,
+    10.8965,
+    149.55
+   ],
+   "tail_ue_bcm": [
+    18.6853,
+    10.8973,
+    148.8016
+   ]
+  },
+  "ear_L_dangle_03": {
+   "parent": "ear_L_dangle_02",
+   "head_ue_bcm": [
+    18.6853,
+    10.8973,
+    148.8016
+   ],
+   "tail_ue_bcm": [
+    18.6758,
+    10.3642,
+    144.7542
+   ]
+  },
+  "ear_R_root": {
+   "parent": "earrings_root",
+   "head_ue_bcm": [
+    -17.9171,
+    12.4425,
+    152.1871
+   ],
+   "tail_ue_bcm": [
+    -17.9171,
+    12.4425,
+    151.1443
+   ]
+  },
+  "ear_R_dangle_01": {
+   "parent": "ear_R_root",
+   "head_ue_bcm": [
+    -17.9311,
+    12.4441,
+    151.1443
+   ],
+   "tail_ue_bcm": [
+    -17.9542,
+    12.4469,
+    148.2378
+   ]
+  },
+  "ear_R_dangle_02": {
+   "parent": "ear_R_dangle_01",
+   "head_ue_bcm": [
+    -17.9542,
+    12.4469,
+    148.2378
+   ],
+   "tail_ue_bcm": [
+    -17.9606,
+    12.4476,
+    147.4895
+   ]
+  },
+  "ear_R_dangle_03": {
+   "parent": "ear_R_dangle_02",
+   "head_ue_bcm": [
+    -17.9606,
+    12.4476,
+    147.4895
+   ],
+   "tail_ue_bcm": [
+    -17.9701,
+    11.9146,
+    143.442
+   ]
+  }
+ },
+ "parts": {
+  "earL_stud": {
+   "bone": "ear_L_root",
+   "verts": 1106
+  },
+  "earL_ring1": {
+   "bone": "ear_L_dangle_01",
+   "verts": 768
+  },
+  "earL_stone_round": {
+   "bone": "ear_L_dangle_01",
+   "verts": 65
+  },
+  "earL_bezel": {
+   "bone": "ear_L_dangle_01",
+   "verts": 768
+  },
+  "earL_loopTop": {
+   "bone": "ear_L_dangle_01",
+   "verts": 768
+  },
+  "earL_loopBot": {
+   "bone": "ear_L_dangle_01",
+   "verts": 768
+  },
+  "earL_ring2": {
+   "bone": "ear_L_dangle_02",
+   "verts": 768
+  },
+  "earL_cap": {
+   "bone": "ear_L_dangle_03",
+   "verts": 194
+  },
+  "earL_stone_drop": {
+   "bone": "ear_L_dangle_03",
+   "verts": 65
+  },
+  "earR_stud": {
+   "bone": "ear_R_root",
+   "verts": 1106
+  },
+  "earR_ring1": {
+   "bone": "ear_R_dangle_01",
+   "verts": 768
+  },
+  "earR_stone_round": {
+   "bone": "ear_R_dangle_01",
+   "verts": 65
+  },
+  "earR_bezel": {
+   "bone": "ear_R_dangle_01",
+   "verts": 768
+  },
+  "earR_loopTop": {
+   "bone": "ear_R_dangle_01",
+   "verts": 768
+  },
+  "earR_loopBot": {
+   "bone": "ear_R_dangle_01",
+   "verts": 768
+  },
+  "earR_ring2": {
+   "bone": "ear_R_dangle_02",
+   "verts": 768
+  },
+  "earR_cap": {
+   "bone": "ear_R_dangle_03",
+   "verts": 194
+  },
+  "earR_stone_drop": {
+   "bone": "ear_R_dangle_03",
+   "verts": 65
+  }
+ },
+ "weights": "rigid 1.0, one bone per part",
+ "kawaii_suggest": {
+  "root_bones": [
+   "ear_L_root",
+   "ear_R_root"
+  ],
+  "damping": 0.6,
+  "stiffness": 0.15,
+  "world_damping_location": 0.8,
+  "world_damping_rotation": 0.8,
+  "radius_cm": 0.3,
+  "gravity": [
+   0,
+   0,
+   -981
+  ],
+  "limit_angle_deg": 50,
+  "colliders": "optional sphere on neck_x/jaw: skip v1"
+ },
+ "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\earrings_physics\\SK_Regalia_v4_Earrings.fbx",
+ "fbx_bytes": 435756
+}
