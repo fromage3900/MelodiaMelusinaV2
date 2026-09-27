@@ -5,7 +5,9 @@ Runs without the editor by reading config files and checking disk assets.
 If Monolith (port 9316) is reachable, it also performs live registry checks.
 Output: Saved/Audit/battle_static_<timestamp>.json
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import configparser
 import json
@@ -102,9 +104,7 @@ def read_maps_to_cook() -> list[str]:
 def monolith_reachable() -> bool:
     try:
         body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}).encode()
-        req = urllib.request.Request(MCP, data=body, headers={"Content-Type": "application/json"}, method="POST")
-        with urllib.request.urlopen(req, timeout=3) as resp:
-            return resp.status == 200
+        data = post_envelope(body, timeout=3)
     except Exception:
         return False
 
@@ -112,9 +112,7 @@ def monolith_reachable() -> bool:
 def monolith_call(tool: str, args: dict[str, Any]) -> Any:
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": tool, "arguments": args}}).encode()
-    req = urllib.request.Request(MCP, data=body, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        data = json.loads(resp.read().decode())
+    data = post_envelope(body, timeout=30)
     result = data.get("result", {})
     if result.get("isError"):
         raise RuntimeError(result.get("content", [{}])[0].get("text", "unknown"))

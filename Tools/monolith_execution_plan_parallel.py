@@ -31,7 +31,9 @@ Usage:
 
 Requires: editor running with Monolith 0.20.3 on 9316. No writes happen without --execute.
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 import argparse
 import json
 import sys
@@ -158,9 +160,7 @@ def mcp_post(payload: dict, timeout=10):
     import urllib.request
     import json as _json
     data = _json.dumps(payload).encode()
-    req = urllib.request.Request("http://127.0.0.1:9316/mcp", data=data, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return _json.loads(r.read().decode())
+    return post_envelope(data, timeout=timeout)
 
 
 def main():

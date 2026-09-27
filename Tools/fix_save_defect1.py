@@ -14,6 +14,8 @@ Fix:
   5. Compile
 """
 
+from mcp_client import post_envelope
+
 import json, os, subprocess, sys, time, urllib.request
 
 MCP_URL = "http://127.0.0.1:9316/mcp"
@@ -40,12 +42,7 @@ def monolith(method, args, timeout=30):
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": method, "arguments": args}
     })
-    req = urllib.request.Request(
-        MCP_URL, data=body.encode(),
-        headers={"Content-Type": "application/json"}
-    )
-    resp = urllib.request.urlopen(req, timeout=timeout)
-    data = json.loads(resp.read().decode())
+    data = post_envelope(body.encode(), timeout=timeout)
     return data.get("result", {}).get("content", [{}])[0].get("text", "")
 
 

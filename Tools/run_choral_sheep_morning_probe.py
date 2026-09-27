@@ -12,6 +12,8 @@ Flow (ONE PIE session, map file never saved):
 Usage: python Tools/run_choral_sheep_morning_probe.py
 Evidence: Docs/Evidence/CHORAL_SHEEP_MORNING_PROBE_<date>.json
 """
+
+from mcp_client import post_envelope
 import json
 import time
 import urllib.request
@@ -25,16 +27,18 @@ MAP = "/Game/Melodia/Levels/Opening/L_MelusinaMorning"
 def mcall(tool, args):
     p = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
          "params": {"name": tool, "arguments": args}}
-    req = urllib.request.Request(MONOLITH_URL, data=json.dumps(p).encode(),
-                                 headers={"Content-Type": "application/json"})
-    res = json.loads(urllib.request.urlopen(req, timeout=90).read().decode())
-    return res.get("result", {}).get("content", [{}])[0].get("text", "{}")
+    return post_envelope(json.dumps(p).encode(), timeout=90)
 
 
 def ed(action, **kw):
     raw = mcall("editor_query", {"action": action, **kw})
+    if isinstance(raw, dict) and "error" in raw:
+        return raw
     try:
-        return json.loads(raw)
+        result = raw.get("result", {})
+        content = result.get("content") or []
+        text = content[0].get("text", "") if content else ""
+        return json.loads(text) if text else raw
     except Exception:
         return {"_raw": raw}
 

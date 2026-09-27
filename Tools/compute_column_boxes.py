@@ -8,7 +8,9 @@ annotate_master_columns.py consumes in-editor.
 Usage (editor open):
   python Tools/compute_column_boxes.py
 """
+
 from __future__ import annotations
+from mcp_client import post_envelope
 
 import json
 import sys
@@ -39,10 +41,10 @@ def call_tool(name: str, arguments: dict, timeout: int = 180) -> dict:
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": name, "arguments": arguments},
     }).encode()
-    req = Request(MONOLITH_URL, data=payload, headers={"Content-Type": "application/json"})
-    with urlopen(req, timeout=timeout) as resp:
-        envelope = json.loads(resp.read().decode())
-    text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
+    data = post_envelope(payload, timeout=timeout)
+    if "error" in data:
+        raise RuntimeError(data["error"])
+    text = data.get("result", {}).get("content", [{}])[0].get("text", "")
     return json.loads(text)
 
 

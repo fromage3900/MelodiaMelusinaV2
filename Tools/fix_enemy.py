@@ -1,10 +1,10 @@
+from mcp_client import post_envelope
+
 import json, urllib.request
 MCP='http://127.0.0.1:9316/mcp'
 def call(tool,args):
     b=json.dumps({'jsonrpc':'2.0','id':1,'method':'tools/call','params':{'name':tool,'arguments':args}}).encode()
-    req=urllib.request.Request(MCP,data=b,headers={'Content-Type':'application/json'})
-    return json.loads(urllib.request.urlopen(req,timeout=20).read())
-
+    return post_envelope(b, timeout=20)
 # Find a working battle with enemyList>0 to copy
 code = r'''
 import json, unreal

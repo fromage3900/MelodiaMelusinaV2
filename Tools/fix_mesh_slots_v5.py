@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Fix SK_Melusina material slots using correct SkeletalMaterial struct."""
+
+from mcp_client import post_envelope
 import json, sys, urllib.request
 
 MCP = "http://127.0.0.1:9316/mcp"
 
 def monolith(tool, args, timeout=60):
     body = json.dumps({"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":tool,"arguments":args}}).encode()
-    req = urllib.request.Request(MCP, data=body, headers={"Content-Type":"application/json"})
-    resp = urllib.request.urlopen(req, timeout=timeout)
-    data = json.loads(resp.read().decode())
+    data = post_envelope(body, timeout=timeout)
     result = data.get("result",{})
     if result.get("isError"):
         return "ERROR:" + result.get("content",[{}])[0].get("text","")
