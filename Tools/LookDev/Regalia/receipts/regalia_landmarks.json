@@ -1,0 +1,66 @@
+{
+ "source": "Melusina_Base, live session MCP 9876, 18891 verts",
+ "measured_utc_date": "2026-09-25",
+ "overall": {
+  "z_min": -0.1867,
+  "z_max": 1.8356
+ },
+ "she_faces": "-Y",
+ "brow": {
+  "z": 1.56,
+  "width": 0.4084,
+  "depth": 0.4594,
+  "centre": [
+   -0.0044,
+   -0.1335
+  ]
+ },
+ "crown": {
+  "z": 1.8,
+  "width": 0.2265
+ },
+ "neck": {
+  "z": 1.368,
+  "width": 0.1425
+ },
+ "ear_bones_world": {
+  "c_ear_01.l": [
+   0.1369,
+   -0.1635,
+   1.5316
+  ],
+  "c_ear_01.r": [
+   -0.1449,
+   -0.1629,
+   1.5292
+  ]
+ },
+ "rig": {
+  "armature": "character_rig",
+  "bones": 1124,
+  "anchor_bones": [
+   "c_head.x",
+   "c_neck.x",
+   "c_shoulder.l",
+   "c_shoulder.r",
+   "c_ear_01.l",
+   "c_ear_01.r"
+  ]
+ },
+ "NOTE": "BONE PARENTING IS UNSAFE HERE: parenting the circlet to c_head.x threw it to y=-1.72, about 1.5 m off the skull. Parent to the rig OBJECT (identity transform) instead -- the tree bakes world space.",
+ "circlet": {
+  "tree": "MEL_melusina_circlet",
+  "verts": 5586,
+  "min": [
+   -0.2618,
+   -0.4316,
+   1.5407
+  ],
+  "max": [
+   0.2554,
+   0.165,
+   1.5934
+  ],
+  "dials": 22
+ }
+}

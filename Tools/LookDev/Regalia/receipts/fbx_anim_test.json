@@ -1,0 +1,36 @@
+{
+  "fbx_bytes": 25692,
+  "objects": {
+    "BONE_MARKER": {
+      "found": true,
+      "sampled": true,
+      "verts": 4,
+      "has_modifier": false,
+      "modifiers": [],
+      "centre_f1": [
+        -0.25,
+        -0.055
+      ],
+      "centre_f30": [
+        -0.26814,
+        -0.055
+      ],
+      "centre_f60": [
+        0.24946,
+        -0.055
+      ],
+      "travel_f1_to_f60_m": 0.49946,
+      "moved": true
+    },
+    "GN_MARKER": {
+      "found": true,
+      "sampled": false,
+      "note": "no geometry to measure"
+    }
+  },
+  "VERDICT": {
+    "bone_anim_survives_fbx": true,
+    "bone_marker_kept_modifier": false,
+    "gn_time_is_static": true
+  }
+}

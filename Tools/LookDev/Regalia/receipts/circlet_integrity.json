@@ -1,0 +1,87 @@
+{
+ "gates": {
+  "tree_built": true,
+  "emits_geometry": true,
+  "dial_contract": true,
+  "wraps_width": true,
+  "wraps_depth": true,
+  "band_height_slim": true,
+  "centred_xy": true,
+  "at_brow": true,
+  "outside_head": true,
+  "not_buried": true,
+  "ornament_spread": true,
+  "nape_gap_open": true,
+  "has_gold_material": true,
+  "vert_budget": true
+ },
+ "measure": {
+  "verts": 5586,
+  "min": [
+   -0.2618,
+   -0.4316,
+   1.5407
+  ],
+  "max": [
+   0.2554,
+   0.165,
+   1.5934
+  ],
+  "dims": [
+   0.5172,
+   0.5967,
+   0.0527
+  ],
+  "centre": [
+   -0.0032,
+   -0.1333,
+   1.5671
+  ],
+  "centre_err_mm": [
+   1.2,
+   0.2,
+   7.1
+  ],
+  "head_half_width": 0.204,
+  "band_radius": 0.2101,
+  "radius_range": [
+   0.2014,
+   0.2756
+  ],
+  "prox_12mm_ratio": 0.1219,
+  "buried_ratio": 0.0,
+  "buried_verts": 0,
+  "ornament_buckets_30deg": {
+   "0": 567,
+   "30": 159,
+   "60": 630,
+   "90": 630,
+   "120": 606,
+   "150": 558,
+   "240": 594,
+   "270": 630,
+   "300": 618,
+   "330": 594
+  },
+  "buckets_occupied": [
+   0,
+   30,
+   60,
+   90,
+   120,
+   150,
+   240,
+   270,
+   300,
+   330
+  ],
+  "nape_gap_open": true,
+  "dials": 22,
+  "nodes": 45,
+  "links": 69
+ },
+ "gates_passed": 14,
+ "gates_total": 14,
+ "failed": [],
+ "status": "PASS_CIRCLET"
+}

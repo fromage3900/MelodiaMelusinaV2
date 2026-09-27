@@ -1,0 +1,175 @@
+{
+ "notes": [
+  "hair meshes appended but hidden (hair_main rises 51 mm above the scalp; bangs cover the forehead)"
+ ],
+ "fit": {
+  "circlet": {
+   "extra_scale_vs_v2d_xyz": [
+    2.546,
+    2.381,
+    2.464
+   ],
+   "band_z": 1.6557,
+   "her_section_mm": [
+    333.4,
+    440.0
+   ],
+   "v2d_inner_mm": [
+    141.4,
+    198.8
+   ],
+   "grow_steps_2pct": 3,
+   "dy_mm": -24.0,
+   "penetrating_verts": 0,
+   "z_and_stone_scale": 2.231,
+   "outer_mm": [
+    623.5,
+    721.2,
+    58.4
+   ],
+   "stone_len_mm": 40.2,
+   "overhang_compression": {
+    "band_keep_mm": 34.0,
+    "factor": 0.45,
+    "verts_moved": 29766,
+    "max_pull_mm": 60.8,
+    "carried_mm": {
+     "displacement_mm": 54.8,
+     "objects": [
+      "circlet_stone",
+      "circlet_bezel"
+     ]
+    },
+    "outer_after_mm": [
+     535.4,
+     622.0,
+     58.4
+    ]
+   },
+   "penetrating_after_compress": 0
+  },
+  "tiara": {
+   "extra_scale_vs_v2d_xyz": [
+    2.725,
+    2.187,
+    2.456
+   ],
+   "band_z": 1.8054,
+   "her_section_mm": [
+    227.6,
+    245.1
+   ],
+   "v2d_inner_mm": [
+    88.4,
+    118.5
+   ],
+   "grow_steps_2pct": 2,
+   "dy_mm": -8.0,
+   "penetrating_verts": 0,
+   "z_and_stone_scale": 2.231,
+   "outer_mm": [
+    422.3,
+    404.7,
+    37.7
+   ],
+   "stone_len_mm": 36.5,
+   "settle_dz_mm": -0.5,
+   "penetrating_after_settle": 0,
+   "overhang_compression": {
+    "band_keep_mm": 28.0,
+    "factor": 0.5,
+    "verts_moved": 26820,
+    "max_pull_mm": 34.5,
+    "carried_mm": {
+     "displacement_mm": 4.7,
+     "objects": [
+      "tiara_stone",
+      "tiara_spire_arm_L",
+      "tiara_spire_arm_R",
+      "tiara_spire_finial",
+      "tiara_spire_tip",
+      "tiara_spire_curl_L",
+      "tiara_spire_curl_R",
+      "tiara_bezel_pear",
+      "tiara_bezel_prong",
+      "tiara_bezel_prong.001",
+      "tiara_bezel_prong.002"
+     ]
+    },
+    "outer_after_mm": [
+     369.4,
+     363.7,
+     37.7
+    ]
+   },
+   "penetrating_after_compress": 0
+  },
+  "earrings": {
+   "scale": 2.231,
+   "sides": {
+    "earL": {
+     "lobe": [
+      0.1802,
+      -0.1074,
+      1.5278
+     ],
+     "stud_at": [
+      0.1832,
+      -0.1094,
+      1.5367
+     ]
+    },
+    "earR": {
+     "lobe": [
+      -0.1801,
+      -0.1229,
+      1.5115
+     ],
+     "stud_at": [
+      -0.1831,
+      -0.1249,
+      1.5204
+     ]
+    }
+   },
+   "ear_verts_found": 4549
+  },
+  "necklace": {
+   "scale": 1.373,
+   "neck_section_at_1.40_mm": [
+    172.9,
+    158.5
+   ],
+   "v2d_inner_mean_mm": 142.6,
+   "settle_dz_mm": -13.0,
+   "hit_limit": false,
+   "pendant_len_mm": 34.3,
+   "pendant_centre": [
+    -0.0024,
+    -0.2536,
+    1.2201
+   ]
+  }
+ },
+ "appended": [
+  "MEL3_body_Melusina_Base",
+  "MEL3_brow_L_Eyebrow",
+  "MEL3_brow_R_Eyebrow",
+  "MEL3_eye_R_Iris_001",
+  "MEL3_eye_R_Iris_002",
+  "MEL3_hair_bangs_Hair_Strand_010",
+  "MEL3_hair_front_Hair_Strand_004",
+  "MEL3_hair_main_Hair_Strand_007",
+  "MEL3_lash_R_Eyelash"
+ ],
+ "materials": "matte overrides: skin (0.80,0.65,0.57) r0.55 sss0.08; brows/lashes dark; eye white/iris; her toon materials not used",
+ "her_head": {
+  "top_z": 1.8354,
+  "brow_top_z": 1.6257,
+  "section_at_brow+40mm_mm": [
+   334.6,
+   435.1
+  ],
+  "k_head_vs_150mm_adult": 2.231
+ }
+}

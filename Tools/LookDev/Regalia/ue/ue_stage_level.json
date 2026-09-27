@@ -1,0 +1,14 @@
+{
+ "stage": "level",
+ "t": "19:36:13",
+ "created": [],
+ "saved": [],
+ "notes": [],
+ "errors": [
+  "current map has unsaved changes -> NOT switching level (would prompt). dirty: ['/Game/ZenForestTest']"
+ ],
+ "level_before": "/Game/ZenForestTest.ZenForestTest",
+ "dirty_maps_before": [
+  "/Game/ZenForestTest"
+ ]
+}

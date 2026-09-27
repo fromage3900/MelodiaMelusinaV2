@@ -1,0 +1,528 @@
+{
+ "src": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\regalia_v4_it2.blend",
+ "unit_scale_src": 1.0,
+ "pieces": {
+  "SM_Regalia_v4_Circlet": {
+   "collection": "REG_circlet_hair",
+   "objects": 48,
+   "verts": 87229,
+   "tris": 174332,
+   "slots": [
+    "MS_Gold",
+    "MS_GemAqua"
+   ],
+   "object_names": [
+    "circlet_hair_band",
+    "circlet_hair_rail_top",
+    "circlet_hair_rail_bot",
+    "circlet_hair_fil_016_1",
+    "circlet_hair_fil_016_-1",
+    "circlet_hair_bead_016",
+    "circlet_hair_fil_032_1",
+    "circlet_hair_fil_032_-1",
+    "circlet_hair_bead_032",
+    "circlet_hair_fil_048_1",
+    "circlet_hair_fil_048_-1",
+    "circlet_hair_bead_048",
+    "circlet_hair_fil_064_1",
+    "circlet_hair_fil_064_-1",
+    "circlet_hair_bead_064",
+    "circlet_hair_fil_080_1",
+    "circlet_hair_fil_080_-1",
+    "circlet_hair_bead_080",
+    "circlet_hair_fil_096_1",
+    "circlet_hair_fil_096_-1",
+    "circlet_hair_bead_096",
+    "circlet_hair_fil_112_1",
+    "circlet_hair_fil_112_-1",
+    "circlet_hair_bead_112",
+    "circlet_hair_fil_128_1",
+    "circlet_hair_fil_128_-1",
+    "circlet_hair_bead_128",
+    "circlet_hair_fil_144_1",
+    "circlet_hair_fil_144_-1",
+    "circlet_hair_bead_144",
+    "circlet_hair_fil_160_1",
+    "circlet_hair_fil_160_-1",
+    "circlet_hair_bead_160",
+    "circlet_hair_fil_176_1",
+    "circlet_hair_fil_176_-1",
+    "circlet_hair_bead_176",
+    "circlet_hair_fil_192_1",
+    "circlet_hair_fil_192_-1",
+    "circlet_hair_bead_192",
+    "circlet_hair_fil_208_1",
+    "circlet_hair_fil_208_-1",
+    "circlet_hair_bead_208",
+    "circlet_hair_fil_224_1",
+    "circlet_hair_fil_224_-1",
+    "circlet_hair_bead_224",
+    "circlet_hair_stone",
+    "circlet_hair_collet_rim",
+    "circlet_hair_collet_cup"
+   ],
+   "skipped": [],
+   "src_materials": {
+    "MS_Gold": [
+     "V2_Gold"
+    ],
+    "MS_GemAqua": [
+     "V2_Stone_Aquamarine_Dream"
+    ]
+   },
+   "bbox_blender_bu": [
+    [
+     -0.17574085295200348,
+     -0.37225833535194397,
+     1.5598763227462769
+    ],
+    [
+     0.16613806784152985,
+     0.08822460472583771,
+     1.6563866138458252
+    ]
+   ],
+   "bbox_ue_bcm": [
+    [
+     -17.574,
+     -8.822,
+     155.988
+    ],
+    [
+     16.614,
+     37.226,
+     165.639
+    ]
+   ],
+   "stone_centre_ue_bcm": [
+    -0.491,
+    36.789,
+    164.35
+   ],
+   "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\SM_Regalia_v4_Circlet.fbx",
+   "fbx_bytes": 3775084
+  },
+  "SM_Regalia_v4_Tiara": {
+   "collection": "REG_tiara_hair",
+   "objects": 41,
+   "verts": 60345,
+   "tris": 120502,
+   "slots": [
+    "MS_Gold",
+    "MS_GemAqua"
+   ],
+   "object_names": [
+    "tiara_hair_band",
+    "tiara_hair_rail_1",
+    "tiara_hair_rail_-1",
+    "tiara_hair_end_0",
+    "tiara_hair_end_159",
+    "tiara_hair_fil_012_1",
+    "tiara_hair_fil_012_-1",
+    "tiara_hair_bead_012",
+    "tiara_hair_fil_025_1",
+    "tiara_hair_fil_025_-1",
+    "tiara_hair_bead_025",
+    "tiara_hair_fil_038_1",
+    "tiara_hair_fil_038_-1",
+    "tiara_hair_bead_038",
+    "tiara_hair_fil_051_1",
+    "tiara_hair_fil_051_-1",
+    "tiara_hair_bead_051",
+    "tiara_hair_fil_064_1",
+    "tiara_hair_fil_064_-1",
+    "tiara_hair_bead_064",
+    "tiara_hair_fil_103_1",
+    "tiara_hair_fil_103_-1",
+    "tiara_hair_bead_103",
+    "tiara_hair_fil_116_1",
+    "tiara_hair_fil_116_-1",
+    "tiara_hair_bead_116",
+    "tiara_hair_fil_129_1",
+    "tiara_hair_fil_129_-1",
+    "tiara_hair_bead_129",
+    "tiara_hair_fil_142_1",
+    "tiara_hair_fil_142_-1",
+    "tiara_hair_bead_142",
+    "tiara_hair_spire_arm_-1",
+    "tiara_hair_spire_curl_-1",
+    "tiara_hair_spire_arm_1",
+    "tiara_hair_spire_curl_1",
+    "tiara_hair_spire_finial",
+    "tiara_hair_spire_tip",
+    "tiara_hair_spire_foot",
+    "tiara_hair_stone",
+    "tiara_hair_bezel_pear"
+   ],
+   "skipped": [],
+   "src_materials": {
+    "MS_Gold": [
+     "V2_Gold"
+    ],
+    "MS_GemAqua": [
+     "V2_Stone_Aquamarine_Dream"
+    ]
+   },
+   "bbox_blender_bu": [
+    [
+     -0.19437271356582642,
+     -0.2088688611984253,
+     1.5831483602523804
+    ],
+    [
+     0.18662039935588837,
+     -0.09906233847141266,
+     1.9172242879867554
+    ]
+   ],
+   "bbox_ue_bcm": [
+    [
+     -19.437,
+     9.906,
+     158.315
+    ],
+    [
+     18.662,
+     20.887,
+     191.722
+    ]
+   ],
+   "stone_centre_ue_bcm": [
+    -0.235,
+    20.179,
+    186.327
+   ],
+   "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\SM_Regalia_v4_Tiara.fbx",
+   "fbx_bytes": 2601756
+  },
+  "SM_Regalia_v4_Earrings": {
+   "collection": "REG_earrings",
+   "objects": 18,
+   "verts": 10540,
+   "tris": 21048,
+   "slots": [
+    "MS_Gold",
+    "MS_GemPurple"
+   ],
+   "object_names": [
+    "earL_stud",
+    "earL_ring1",
+    "earL_stone_round",
+    "earL_bezel",
+    "earL_loopTop",
+    "earL_loopBot",
+    "earL_ring2",
+    "earL_cap",
+    "earL_stone_drop",
+    "earR_stud",
+    "earR_ring1",
+    "earR_stone_round",
+    "earR_bezel",
+    "earR_loopTop",
+    "earR_loopBot",
+    "earR_ring2",
+    "earR_cap",
+    "earR_stone_drop"
+   ],
+   "skipped": [],
+   "src_materials": {
+    "MS_Gold": [
+     "V2_Gold"
+    ],
+    "MS_GemPurple": [
+     "V2_Stone_Void_Orchid"
+    ]
+   },
+   "bbox_blender_bu": [
+    [
+     -0.1953733116388321,
+     -0.13716237246990204,
+     1.4329948425292969
+    ],
+    [
+     0.19549910724163055,
+     -0.09298688173294067,
+     1.5489459037780762
+    ]
+   ],
+   "bbox_ue_bcm": [
+    [
+     -19.537,
+     9.299,
+     143.299
+    ],
+    [
+     19.55,
+     13.716,
+     154.895
+    ]
+   ],
+   "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\SM_Regalia_v4_Earrings.fbx",
+   "fbx_bytes": 353276
+  },
+  "SM_Regalia_v4_Necklace": {
+   "collection": "REG_necklace",
+   "objects": 5,
+   "verts": 49655,
+   "tris": 99166,
+   "slots": [
+    "MS_Gold",
+    "MS_GemPurple"
+   ],
+   "object_names": [
+    "necklace_beads",
+    "necklace_cord",
+    "necklace_bail",
+    "necklace_cap",
+    "necklace_pendant"
+   ],
+   "skipped": [],
+   "src_materials": {
+    "MS_Gold": [
+     "V2_Gold"
+    ],
+    "MS_GemPurple": [
+     "V2_Stone_Void_Orchid"
+    ]
+   },
+   "bbox_blender_bu": [
+    [
+     -0.1209663674235344,
+     -0.2645058333873749,
+     1.202981948852539
+    ],
+    [
+     0.11754544079303741,
+     -0.036067135632038116,
+     1.3681886196136475
+    ]
+   ],
+   "bbox_ue_bcm": [
+    [
+     -12.097,
+     3.607,
+     120.298
+    ],
+    [
+     11.755,
+     26.451,
+     136.819
+    ]
+   ],
+   "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\SM_Regalia_v4_Necklace.fbx",
+   "fbx_bytes": 1970044
+  },
+  "SM_Regalia_v4_Circlet_BaldFit": {
+   "collection": "REG_circlet_bald",
+   "objects": 48,
+   "verts": 87229,
+   "tris": 174332,
+   "slots": [
+    "MS_Gold",
+    "MS_GemAqua"
+   ],
+   "object_names": [
+    "circlet_bald_band",
+    "circlet_bald_rail_top",
+    "circlet_bald_rail_bot",
+    "circlet_bald_fil_016_1",
+    "circlet_bald_fil_016_-1",
+    "circlet_bald_bead_016",
+    "circlet_bald_fil_032_1",
+    "circlet_bald_fil_032_-1",
+    "circlet_bald_bead_032",
+    "circlet_bald_fil_048_1",
+    "circlet_bald_fil_048_-1",
+    "circlet_bald_bead_048",
+    "circlet_bald_fil_064_1",
+    "circlet_bald_fil_064_-1",
+    "circlet_bald_bead_064",
+    "circlet_bald_fil_080_1",
+    "circlet_bald_fil_080_-1",
+    "circlet_bald_bead_080",
+    "circlet_bald_fil_096_1",
+    "circlet_bald_fil_096_-1",
+    "circlet_bald_bead_096",
+    "circlet_bald_fil_112_1",
+    "circlet_bald_fil_112_-1",
+    "circlet_bald_bead_112",
+    "circlet_bald_fil_128_1",
+    "circlet_bald_fil_128_-1",
+    "circlet_bald_bead_128",
+    "circlet_bald_fil_144_1",
+    "circlet_bald_fil_144_-1",
+    "circlet_bald_bead_144",
+    "circlet_bald_fil_160_1",
+    "circlet_bald_fil_160_-1",
+    "circlet_bald_bead_160",
+    "circlet_bald_fil_176_1",
+    "circlet_bald_fil_176_-1",
+    "circlet_bald_bead_176",
+    "circlet_bald_fil_192_1",
+    "circlet_bald_fil_192_-1",
+    "circlet_bald_bead_192",
+    "circlet_bald_fil_208_1",
+    "circlet_bald_fil_208_-1",
+    "circlet_bald_bead_208",
+    "circlet_bald_fil_224_1",
+    "circlet_bald_fil_224_-1",
+    "circlet_bald_bead_224",
+    "circlet_bald_stone",
+    "circlet_bald_collet_rim",
+    "circlet_bald_collet_cup"
+   ],
+   "skipped": [],
+   "src_materials": {
+    "MS_Gold": [
+     "V2_Gold"
+    ],
+    "MS_GemAqua": [
+     "V2_Stone_Aquamarine_Dream"
+    ]
+   },
+   "bbox_blender_bu": [
+    [
+     -0.17275692522525787,
+     -0.3692583739757538,
+     1.5598763227462769
+    ],
+    [
+     0.16315411031246185,
+     0.08522459119558334,
+     1.6563866138458252
+    ]
+   ],
+   "bbox_ue_bcm": [
+    [
+     -17.276,
+     -8.522,
+     155.988
+    ],
+    [
+     16.315,
+     36.926,
+     165.639
+    ]
+   ],
+   "stone_centre_ue_bcm": [
+    -0.491,
+    36.489,
+    164.35
+   ],
+   "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\SM_Regalia_v4_Circlet_BaldFit.fbx",
+   "fbx_bytes": 3774732
+  },
+  "SM_Regalia_v4_Tiara_BaldFit": {
+   "collection": "REG_tiara_bald",
+   "objects": 41,
+   "verts": 60345,
+   "tris": 120502,
+   "slots": [
+    "MS_Gold",
+    "MS_GemAqua"
+   ],
+   "object_names": [
+    "tiara_bald_band",
+    "tiara_bald_rail_1",
+    "tiara_bald_rail_-1",
+    "tiara_bald_end_0",
+    "tiara_bald_end_159",
+    "tiara_bald_fil_012_1",
+    "tiara_bald_fil_012_-1",
+    "tiara_bald_bead_012",
+    "tiara_bald_fil_025_1",
+    "tiara_bald_fil_025_-1",
+    "tiara_bald_bead_025",
+    "tiara_bald_fil_038_1",
+    "tiara_bald_fil_038_-1",
+    "tiara_bald_bead_038",
+    "tiara_bald_fil_051_1",
+    "tiara_bald_fil_051_-1",
+    "tiara_bald_bead_051",
+    "tiara_bald_fil_064_1",
+    "tiara_bald_fil_064_-1",
+    "tiara_bald_bead_064",
+    "tiara_bald_fil_103_1",
+    "tiara_bald_fil_103_-1",
+    "tiara_bald_bead_103",
+    "tiara_bald_fil_116_1",
+    "tiara_bald_fil_116_-1",
+    "tiara_bald_bead_116",
+    "tiara_bald_fil_129_1",
+    "tiara_bald_fil_129_-1",
+    "tiara_bald_bead_129",
+    "tiara_bald_fil_142_1",
+    "tiara_bald_fil_142_-1",
+    "tiara_bald_bead_142",
+    "tiara_bald_spire_arm_-1",
+    "tiara_bald_spire_curl_-1",
+    "tiara_bald_spire_arm_1",
+    "tiara_bald_spire_curl_1",
+    "tiara_bald_spire_finial",
+    "tiara_bald_spire_tip",
+    "tiara_bald_spire_foot",
+    "tiara_bald_stone",
+    "tiara_bald_bezel_pear"
+   ],
+   "skipped": [],
+   "src_materials": {
+    "MS_Gold": [
+     "V2_Gold"
+    ],
+    "MS_GemAqua": [
+     "V2_Stone_Aquamarine_Dream"
+    ]
+   },
+   "bbox_blender_bu": [
+    [
+     -0.19138255715370178,
+     -0.20774510502815247,
+     1.5834474563598633
+    ],
+    [
+     0.183633491396904,
+     -0.0991852879524231,
+     1.9144428968429565
+    ]
+   ],
+   "bbox_ue_bcm": [
+    [
+     -19.138,
+     9.919,
+     158.345
+    ],
+    [
+     18.363,
+     20.775,
+     191.444
+    ]
+   ],
+   "fbx": "C:\\EnvironmentPortfolio\\_lookdev_work\\regalia_v2\\ue_export_v4\\SM_Regalia_v4_Tiara_BaldFit.fbx",
+   "fbx_bytes": 2602124
+  }
+ },
+ "anchors": {
+  "necklace_pendant": [
+   -0.237,
+   25.771,
+   122.014
+  ]
+ },
+ "all_material_names": [
+  "MH_MAT_Ornament_Gold",
+  "MS_GemAqua",
+  "MS_GemPurple",
+  "MS_Gold",
+  "REGALIA_STONE",
+  "SurrealArch_Gold",
+  "V2_Gold",
+  "V2_Stone_Aquamarine_Dream",
+  "V2_Stone_Void_Orchid",
+  "V3_Brow_Lash",
+  "V3_Eye_Iris",
+  "V3_Eye_White",
+  "V3_Hair_Clay",
+  "V3_Skin_LightMatte",
+  "V4_Hair_WaterClay"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "stage": "materials",
+ "t": "19:35:43",
+ "created": [
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_Gold",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_GemAqua",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_GemPurple",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_Pearl"
+ ],
+ "saved": [
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_GemAqua",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_GemPurple",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_Gold",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/M_Regalia_v4_Pearl",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Circlet",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Earrings",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Necklace",
+  "/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Tiara"
+ ],
+ "notes": [
+  "slots SM_Regalia_v4_Circlet [('MS_Gold', 'Gold'), ('MS_GemAqua', 'GemAqua')]",
+  "slots SM_Regalia_v4_Tiara [('MS_Gold', 'Gold'), ('MS_GemAqua', 'GemAqua')]",
+  "slots SM_Regalia_v4_Earrings [('MS_Gold', 'Gold'), ('MS_GemPurple', 'GemPurple')]",
+  "slots SM_Regalia_v4_Necklace [('MS_Gold', 'Gold'), ('MS_GemPurple', 'GemPurple')]"
+ ],
+ "errors": []
+}
