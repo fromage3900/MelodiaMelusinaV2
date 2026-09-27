@@ -26,6 +26,9 @@ For anything involving **what is true now, what is blocked, or what to do next**
 - [`.claude/skills/melodia-world-builder/SKILL.md`](.claude/skills/melodia-world-builder/SKILL.md) / [`.agents/skills/melodia-world-builder/SKILL.md`](.agents/skills/melodia-world-builder/SKILL.md) — spatially aware world/PCG/environment runbook using the begin → build → end cycle.
 - [`Docs/Production/BRANCH_WORKSTATION_POLICY.md`](Docs/Production/BRANCH_WORKSTATION_POLICY.md) — branch classes, workstation roles, cleanup and promotion rules.
 - [`Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md`](Docs/Production/LAPTOP_PROCEDURAL_LANE_2026-09-11.md) — durable ASUS/Blender/GN/DCC lane contract.
+- [`Docs/Production/MODEL_ROUTING_CANON.md`](Docs/Production/MODEL_ROUTING_CANON.md) — canonical model tier router policy (Nikki-grade multi-agent fleet: T0 Frontier through T4 Local).
+- [`specs/orchestration/model_tiers.v1.json`](specs/orchestration/model_tiers.v1.json) — machine-readable model tiering and task routing contract.
+
 
 ## Worldbuilding / procedural environment
 

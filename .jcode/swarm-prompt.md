@@ -23,14 +23,16 @@ The PGA/MPA/PPA/WIA/SQA/WEB/MUSE roles were retired by Decision 002 — workers 
 - **Text/code only:** Python, C++ source, docs, specs, tests, Blender `-b` scripts. No `.uasset`/`.umap`
   writes, no `Content/` binaries, no material masters, no `Config/` edits.
 
-## Lanes (model choice = `python Tools/model_router.py pick <class>`)
+## Lanes (model choice = `python Tools/model_router.py tier <task>` or `pick <class>`)
 
-| Lane | Router class | First pick (verified 2026-09-26) | Use |
-|---|---|---|---|
-| `code` | `code` / `cpp` | Mantle `qwen.qwen3-coder-next` / `qwen3-coder-480b` | tools, harness fixes, tests, C++ |
-| `fast` | `docs` / `triage` / `audit` | Mantle `zai.glm-4.7-flash` | docs, log triage, manifests |
-| `deep` | `deep` / `review` | Mantle `qwen.qwen3-235b-a22b-2507` | long reasoning, independent review |
-| `local` | `daemon` / `author` / `quill_author` | Ollama `qwen3-coder:30b` / `heretic-27b` / `muse-glimmer:30b` | free overnight / drafts |
+Model tiers and allowable write paths are governed by [`specs/orchestration/model_tiers.v1.json`](../specs/orchestration/model_tiers.v1.json) and [`Docs/Production/MODEL_ROUTING_CANON.md`](../Docs/Production/MODEL_ROUTING_CANON.md). Swarm workers operate in T2 (Executor), T3 (Bulk), or T4 (Local) only — never T0.
+
+| Lane | Router class / task | First pick (verified 2026-09-26) | Tier | Use |
+|---|---|---|---|---|
+| `code` | `code` / `cpp` (`cpp_core_implementation`) | Mantle `qwen.qwen3-coder-next` / `qwen3-coder-480b` | T2 | tools, harness fixes, tests, C++ |
+| `fast` | `docs` / `triage` (`doc_indexing_synthesis`) | Mantle `zai.glm-4.7-flash` | T3 | docs, log triage, manifests, fixtures |
+| `deep` | `deep` / `review` | Mantle `qwen.qwen3-235b-a22b-2507` | T1 | long reasoning, independent verification |
+| `local` | `daemon` / `author` (`git_vcs_automation`) | Ollama `qwen3-coder:30b` / `heretic-27b` / `qwen2.5-coder:7b` | T4 | free overnight / drafts / local git |
 
 Mantle key: env `AWS_BEARER_TOKEN_BEDROCK` (never in the repo). Claude is **not** available on this
 Bedrock account. Setup: `deploy/setup_agent_lanes.ps1`.

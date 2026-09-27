@@ -131,5 +131,13 @@ if [ "${SKIP_PROTECTION:-0}" != "1" ]; then
   fi
 fi
 
+echo "==> [pre-commit] Validating model tiers specification..."
+if [ -f "Tools/validate_model_tiers.py" ]; then
+  python Tools/validate_model_tiers.py || {
+    echo "ERROR: [pre-commit] Model tiers validation failed (specs/orchestration/model_tiers.v1.json)"
+    exit 1
+  }
+fi
+
 echo "==> [pre-commit] Validation passed."
 exit 0

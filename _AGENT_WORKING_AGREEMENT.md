@@ -96,6 +96,10 @@ the origin", that is ground truth. Do not go verify it. Do not read logs to chec
 Reviews, audits, refactors and "while I was in there" cleanups happen only when explicitly asked
 for. If you spot something real while fixing, note it in **one sentence** at the end and move on.
 
+### 6. Tiered model selection is required; frontier spend requires architectural justification.
+
+Agents must not burn frontier tokens on routine, mechanical, or documentation tasks. Model tiers are governed by `specs/orchestration/model_tiers.v1.json` and `python Tools/model_router.py tier <task>`. Only tasks with an authorized escalation trigger (ADR/public schema change, multi-subsystem contract) may be dispatched to Tier 0 (Frontier); bulk code, tests, docs, and git automation belong to Tiers 2–4.
+
 ---
 
 ## Stop conditions — you are scope-creeping if any of these are true
