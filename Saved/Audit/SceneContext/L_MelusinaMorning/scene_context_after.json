@@ -1,11 +1,11 @@
 {
   "schema": "melodia.scene_context.v1",
-  "generated_at_utc": "2026-09-24T17:17:19.141737+00:00",
+  "generated_at_utc": "2026-09-27T01:24:25.043280+00:00",
   "authority": "Ephemeral spatial context only. CURRENT_STATE.md and durable subsystem contracts remain authoritative.",
   "level": {
     "name": "L_MelusinaMorning",
     "path": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning",
-    "actor_count": 242,
+    "actor_count": 217,
     "world_bounds": {
       "min": {
         "x": -9369289221.256,
@@ -31,13 +31,13 @@
   },
   "viewport": {
     "location": {
-      "x": -2414.537,
-      "y": 1694.947,
-      "z": 1347.981
+      "x": -2688.209,
+      "y": 6233.925,
+      "z": -1341.062
     },
     "rotation": {
-      "pitch": -24.403,
-      "yaw": -179.861,
+      "pitch": -16.29,
+      "yaw": -62.036,
       "roll": 0.0
     }
   },
@@ -59,7 +59,6 @@
     "BP_ChoralSheep_C": 1,
     "BP_EnemySpawnLocation_C": 1,
     "BP_KaleidoNaveArrivalTrigger_C": 5,
-    "BP_MelodiaPCGControl_C": 2,
     "BP_MelodiaSirMelodiousMorningIntro_C": 1,
     "BP_MelodiaTravelVolume_C": 1,
     "BP_MelodySlimeEncounter_Test_C": 1,
@@ -80,17 +79,17 @@
     "MeshPartition": 6,
     "ModifierActor": 3,
     "NavMeshBoundsVolume": 1,
-    "NiagaraActor": 29,
+    "NiagaraActor": 15,
     "OceanologyLake": 1,
     "OceanologyManager": 1,
-    "PCGVolume": 11,
+    "PCGVolume": 13,
     "PCGWorldActor": 1,
     "PlayerStart": 1,
     "PointLight": 7,
     "PostProcessVolume": 1,
     "RecastNavMesh": 1,
     "SpotLight": 1,
-    "StaticMeshActor": 118,
+    "StaticMeshActor": 107,
     "Ultra_Dynamic_Sky_C": 1,
     "WindDirectionalSource": 1,
     "WorldDataLayers": 1,
@@ -98,18 +97,15 @@
   },
   "selected_actors": [
     {
-      "label": "WC_morning_rainbow_bloom_Field",
-      "class": "PCGVolume",
+      "label": "PPV_NikkiDream",
+      "class": "PostProcessVolume",
       "selected": true,
       "folder": "None",
-      "tags": [
-        "AutoBlend_HasPrimitiveData",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
+      "tags": [],
       "location": {
-        "x": -3838.742,
-        "y": 417.225,
-        "z": -889.783
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
       },
       "rotation": {
         "pitch": 0.0,
@@ -117,83 +113,31 @@
         "roll": 0.0
       },
       "scale": {
-        "x": 36.488,
-        "y": 28.461,
-        "z": 23.154
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
       },
       "bounds": {
         "origin": {
-          "x": -3838.742,
-          "y": 417.225,
-          "z": -889.783
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
         },
         "extent": {
-          "x": 3648.844,
-          "y": 2846.144,
-          "z": 2315.439
+          "x": 100.0,
+          "y": 100.0,
+          "z": 100.0
         },
         "size_cm": {
-          "x": 7297.687,
-          "y": 5692.288,
-          "z": 4630.879
+          "x": 200.0,
+          "y": 200.0,
+          "z": 200.0
         }
-      },
-      "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
-      "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC800403_2142798611.PCG Component.PCGGraphInstance",
-        "generated_instance_count": 1085
       }
     }
   ],
   "route_and_exclusion_actors": [],
   "pcg_actors": [
-    {
-      "label": "WC_morning_rainbow_bloom_Field",
-      "class": "PCGVolume",
-      "selected": true,
-      "folder": "None",
-      "tags": [
-        "AutoBlend_HasPrimitiveData",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3838.742,
-        "y": 417.225,
-        "z": -889.783
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 36.488,
-        "y": 28.461,
-        "z": 23.154
-      },
-      "bounds": {
-        "origin": {
-          "x": -3838.742,
-          "y": 417.225,
-          "z": -889.783
-        },
-        "extent": {
-          "x": 3648.844,
-          "y": 2846.144,
-          "z": 2315.439
-        },
-        "size_cm": {
-          "x": 7297.687,
-          "y": 5692.288,
-          "z": 4630.879
-        }
-      },
-      "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
-      "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC800403_2142798611.PCG Component.PCGGraphInstance",
-        "generated_instance_count": 1085
-      }
-    },
     {
       "label": "WC_HeroCorner_WestRim_PCG",
       "class": "PCGVolume",
@@ -206,8 +150,8 @@
         "Portfolio"
       ],
       "location": {
-        "x": -4851.053,
-        "y": 682.618,
+        "x": -5307.053,
+        "y": -359.382,
         "z": 42.852
       },
       "rotation": {
@@ -216,28 +160,28 @@
         "roll": 0.0
       },
       "scale": {
-        "x": 1.235,
-        "y": 1.235,
-        "z": 0.741
+        "x": 0.83,
+        "y": 0.83,
+        "z": 0.498
       },
       "bounds": {
         "origin": {
-          "x": -4843.285,
-          "y": 689.195,
-          "z": 45.553
+          "x": -5282.601,
+          "y": -374.396,
+          "z": 32.54
         },
         "extent": {
-          "x": 2094.296,
-          "y": 2060.866,
-          "z": 118.963
+          "x": 2056.19,
+          "y": 2061.264,
+          "z": 114.373
         },
         "size_cm": {
-          "x": 4188.592,
-          "y": 4121.731,
-          "z": 237.925
+          "x": 4112.379,
+          "y": 4122.529,
+          "z": 228.745
         }
       },
-      "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Rock_A.SM_Greybox_Rock_A",
+      "static_mesh": "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_04.SM_KikuyuGrass_04",
       "pcg": {
         "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC540303_2020487931.PCG Component.PCGGraphInstance",
         "generated_instance_count": 160
@@ -338,6 +282,56 @@
       }
     },
     {
+      "label": "WC_HeroCorner_WestRim_PCG_Companion",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "Morning/Cameras/HeroCorners",
+      "tags": [
+        "AutoBlend_HasPrimitiveData",
+        "HeroCorner",
+        "HeroCorner.WestRim",
+        "HeroCornerCompanion",
+        "Portfolio"
+      ],
+      "location": {
+        "x": -3083.797,
+        "y": 1704.116,
+        "z": 1221.038
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.43,
+        "y": 1.43,
+        "z": 1.3
+      },
+      "bounds": {
+        "origin": {
+          "x": -3023.289,
+          "y": 1681.62,
+          "z": 1221.038
+        },
+        "extent": {
+          "x": 242.591,
+          "y": 165.495,
+          "z": 130.0
+        },
+        "size_cm": {
+          "x": 485.182,
+          "y": 330.991,
+          "z": 260.0
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Meshes/Environment/Rock01_Art.Rock01_Art",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183048114.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 25
+      }
+    },
+    {
       "label": "WC_HeroCorner_NorthDress_PCG_Companion",
       "class": "PCGVolume",
       "selected": false,
@@ -381,60 +375,10 @@
           "z": 286.0
         }
       },
-      "static_mesh": "/Game/Greybox_Kit/SM_SM_Rock_2.SM_SM_Rock_2",
+      "static_mesh": "/Game/Greybox_Kit/SM_SM_Rock_3.SM_SM_Rock_3",
       "pcg": {
         "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183278116.PCG Component.PCGGraphInstance",
         "generated_instance_count": 2
-      }
-    },
-    {
-      "label": "WC_HeroCorner_WestRim_PCG_Companion",
-      "class": "PCGVolume",
-      "selected": false,
-      "folder": "Morning/Cameras/HeroCorners",
-      "tags": [
-        "AutoBlend_HasPrimitiveData",
-        "HeroCorner",
-        "HeroCorner.WestRim",
-        "HeroCornerCompanion",
-        "Portfolio"
-      ],
-      "location": {
-        "x": -3083.797,
-        "y": 1704.116,
-        "z": 1221.038
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.43,
-        "y": 1.43,
-        "z": 1.3
-      },
-      "bounds": {
-        "origin": {
-          "x": -3083.797,
-          "y": 1704.116,
-          "z": 1221.038
-        },
-        "extent": {
-          "x": 143.0,
-          "y": 143.0,
-          "z": 130.0
-        },
-        "size_cm": {
-          "x": 286.0,
-          "y": 286.0,
-          "z": 260.0
-        }
-      },
-      "static_mesh": "/Game/Greybox_Kit/SM_Block_Cube_1.SM_Block_Cube_1",
-      "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183048114.PCG Component.PCGGraphInstance",
-        "generated_instance_count": 4
       }
     },
     {
@@ -529,6 +473,99 @@
       }
     },
     {
+      "label": "WC_morning_rainbow_bloom_Field",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "AutoBlend_HasPrimitiveData",
+        "WorldCompiler.morning_rainbow_bloom_3900"
+      ],
+      "location": {
+        "x": -3838.742,
+        "y": 2093.626,
+        "z": -1578.43
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 36.488,
+        "y": 45.225,
+        "z": 30.041
+      },
+      "bounds": {
+        "origin": {
+          "x": -3838.742,
+          "y": 2093.626,
+          "z": -1578.43
+        },
+        "extent": {
+          "x": 3648.844,
+          "y": 4522.545,
+          "z": 3004.086
+        },
+        "size_cm": {
+          "x": 7297.687,
+          "y": 9045.09,
+          "z": 6008.173
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC810503_1565809822.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 1133
+      }
+    },
+    {
+      "label": "Massive_Biome_Meadow",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "PCG/MassiveWorld",
+      "tags": [
+        "AutoBlend_HasPrimitiveData"
+      ],
+      "location": {
+        "x": -2200.0,
+        "y": 1600.0,
+        "z": 550.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 15.0,
+        "y": 14.0,
+        "z": 8.5
+      },
+      "bounds": {
+        "origin": {
+          "x": -2179.1,
+          "y": 1727.301,
+          "z": 550.0
+        },
+        "extent": {
+          "x": 1561.924,
+          "y": 1575.137,
+          "z": 850.0
+        },
+        "size_cm": {
+          "x": 3123.848,
+          "y": 3150.273,
+          "z": 1700.0
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Meshes/Environment/Bush01_Art.Bush01_Art",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CACD60403_1370923719.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 992
+      }
+    },
+    {
       "label": "PCG_MelodiaOpening_Morning_Dressing",
       "class": "PCGVolume",
       "selected": false,
@@ -577,6 +614,52 @@
       }
     },
     {
+      "label": "Massive_Biome_CrystalGarden",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "PCG/MassiveWorld",
+      "tags": [
+        "AutoBlend_HasPrimitiveData"
+      ],
+      "location": {
+        "x": -2651.164,
+        "y": 1327.209,
+        "z": 1225.656
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 7.672,
+        "y": 7.7,
+        "z": 5.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2575.9,
+          "y": 1245.061,
+          "z": 1225.656
+        },
+        "extent": {
+          "x": 978.951,
+          "y": 874.995,
+          "z": 500.0
+        },
+        "size_cm": {
+          "x": 1957.901,
+          "y": 1749.989,
+          "z": 1000.0
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_A.SM_FloatingCrystal_Cluster_A",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CACD80403_1753274072.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 205
+      }
+    },
+    {
       "label": "Meadow_PCG_Canonical",
       "class": "PCGVolume",
       "selected": false,
@@ -585,7 +668,7 @@
         "AutoBlend_HasPrimitiveData"
       ],
       "location": {
-        "x": -3191.64,
+        "x": -1961.64,
         "y": 1910.961,
         "z": 450.915
       },
@@ -601,18 +684,18 @@
       },
       "bounds": {
         "origin": {
-          "x": -3188.338,
-          "y": 1905.3,
+          "x": -1962.663,
+          "y": 1916.336,
           "z": 450.915
         },
         "extent": {
-          "x": 421.962,
-          "y": 426.158,
+          "x": 419.577,
+          "y": 425.893,
           "z": 300.0
         },
         "size_cm": {
-          "x": 843.925,
-          "y": 852.316,
+          "x": 839.154,
+          "y": 851.785,
           "z": 600.0
         }
       },
@@ -666,50 +749,6 @@
       }
     },
     {
-      "label": "BP_Morning_GoldenSpiral",
-      "class": "BP_Morning_GoldenSpiral_C",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": -1200.0,
-        "y": 1850.0,
-        "z": 0.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -1062.421,
-          "y": 1602.202,
-          "z": -10.474
-        },
-        "extent": {
-          "x": 892.572,
-          "y": 1154.126,
-          "z": 609.677
-        },
-        "size_cm": {
-          "x": 1785.143,
-          "y": 2308.252,
-          "z": 1219.355
-        }
-      },
-      "static_mesh": "/Game/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_FloorA.SM_ATL_Palace_FloorA",
-      "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_Morning_GoldenSpiral_C_UAID_7C5758FA1CAC4A0403_1627749079.PCG.PCGGraphInstance",
-        "generated_instance_count": 51
-      }
-    },
-    {
       "label": "WC_HouseRoomShell_SalonA",
       "class": "BP_MelusinaRoomShell_C",
       "selected": false,
@@ -757,22 +796,17 @@
         "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaRoomShell_C_UAID_7C5758FA1CAC620303_1913396775.PCG.PCGGraphInstance",
         "generated_instance_count": 0
       }
-    }
-  ],
-  "spatial_context_actors": [
+    },
     {
-      "label": "WC_morning_rainbow_bloom_Field",
-      "class": "PCGVolume",
-      "selected": true,
+      "label": "BP_Morning_GoldenSpiral",
+      "class": "BP_Morning_GoldenSpiral_C",
+      "selected": false,
       "folder": "None",
-      "tags": [
-        "AutoBlend_HasPrimitiveData",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
+      "tags": [],
       "location": {
-        "x": -3838.742,
-        "y": 417.225,
-        "z": -889.783
+        "x": -1200.0,
+        "y": 1850.0,
+        "z": 0.0
       },
       "rotation": {
         "pitch": 0.0,
@@ -780,31 +814,71 @@
         "roll": 0.0
       },
       "scale": {
-        "x": 36.488,
-        "y": 28.461,
-        "z": 23.154
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
       },
       "bounds": {
         "origin": {
-          "x": -3838.742,
-          "y": 417.225,
-          "z": -889.783
+          "x": -1150.0,
+          "y": 1850.0,
+          "z": 0.0
         },
         "extent": {
-          "x": 3648.844,
-          "y": 2846.144,
-          "z": 2315.439
+          "x": 50.0,
+          "y": 0.0,
+          "z": 0.0
         },
         "size_cm": {
-          "x": 7297.687,
-          "y": 5692.288,
-          "z": 4630.879
+          "x": 100.0,
+          "y": 0.0,
+          "z": 0.0
         }
       },
-      "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
       "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC800403_2142798611.PCG Component.PCGGraphInstance",
-        "generated_instance_count": 1085
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_Morning_GoldenSpiral_C_UAID_7C5758FA1CAC4A0403_1627749079.PCG.PCGGraphInstance",
+        "generated_instance_count": 0
+      }
+    }
+  ],
+  "spatial_context_actors": [
+    {
+      "label": "PPV_NikkiDream",
+      "class": "PostProcessVolume",
+      "selected": true,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "extent": {
+          "x": 100.0,
+          "y": 100.0,
+          "z": 100.0
+        },
+        "size_cm": {
+          "x": 200.0,
+          "y": 200.0,
+          "z": 200.0
+        }
       }
     },
     {
@@ -819,8 +893,8 @@
         "Portfolio"
       ],
       "location": {
-        "x": -4851.053,
-        "y": 682.618,
+        "x": -5307.053,
+        "y": -359.382,
         "z": 42.852
       },
       "rotation": {
@@ -829,28 +903,28 @@
         "roll": 0.0
       },
       "scale": {
-        "x": 1.235,
-        "y": 1.235,
-        "z": 0.741
+        "x": 0.83,
+        "y": 0.83,
+        "z": 0.498
       },
       "bounds": {
         "origin": {
-          "x": -4843.285,
-          "y": 689.195,
-          "z": 45.553
+          "x": -5282.601,
+          "y": -374.396,
+          "z": 32.54
         },
         "extent": {
-          "x": 2094.296,
-          "y": 2060.866,
-          "z": 118.963
+          "x": 2056.19,
+          "y": 2061.264,
+          "z": 114.373
         },
         "size_cm": {
-          "x": 4188.592,
-          "y": 4121.731,
-          "z": 237.925
+          "x": 4112.379,
+          "y": 4122.529,
+          "z": 228.745
         }
       },
-      "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Rock_A.SM_Greybox_Rock_A",
+      "static_mesh": "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_04.SM_KikuyuGrass_04",
       "pcg": {
         "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC540303_2020487931.PCG Component.PCGGraphInstance",
         "generated_instance_count": 160
@@ -951,6 +1025,56 @@
       }
     },
     {
+      "label": "WC_HeroCorner_WestRim_PCG_Companion",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "Morning/Cameras/HeroCorners",
+      "tags": [
+        "AutoBlend_HasPrimitiveData",
+        "HeroCorner",
+        "HeroCorner.WestRim",
+        "HeroCornerCompanion",
+        "Portfolio"
+      ],
+      "location": {
+        "x": -3083.797,
+        "y": 1704.116,
+        "z": 1221.038
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.43,
+        "y": 1.43,
+        "z": 1.3
+      },
+      "bounds": {
+        "origin": {
+          "x": -3023.289,
+          "y": 1681.62,
+          "z": 1221.038
+        },
+        "extent": {
+          "x": 242.591,
+          "y": 165.495,
+          "z": 130.0
+        },
+        "size_cm": {
+          "x": 485.182,
+          "y": 330.991,
+          "z": 260.0
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Meshes/Environment/Rock01_Art.Rock01_Art",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183048114.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 25
+      }
+    },
+    {
       "label": "WC_HeroCorner_NorthDress_PCG_Companion",
       "class": "PCGVolume",
       "selected": false,
@@ -994,60 +1118,10 @@
           "z": 286.0
         }
       },
-      "static_mesh": "/Game/Greybox_Kit/SM_SM_Rock_2.SM_SM_Rock_2",
+      "static_mesh": "/Game/Greybox_Kit/SM_SM_Rock_3.SM_SM_Rock_3",
       "pcg": {
         "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183278116.PCG Component.PCGGraphInstance",
         "generated_instance_count": 2
-      }
-    },
-    {
-      "label": "WC_HeroCorner_WestRim_PCG_Companion",
-      "class": "PCGVolume",
-      "selected": false,
-      "folder": "Morning/Cameras/HeroCorners",
-      "tags": [
-        "AutoBlend_HasPrimitiveData",
-        "HeroCorner",
-        "HeroCorner.WestRim",
-        "HeroCornerCompanion",
-        "Portfolio"
-      ],
-      "location": {
-        "x": -3083.797,
-        "y": 1704.116,
-        "z": 1221.038
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.43,
-        "y": 1.43,
-        "z": 1.3
-      },
-      "bounds": {
-        "origin": {
-          "x": -3083.797,
-          "y": 1704.116,
-          "z": 1221.038
-        },
-        "extent": {
-          "x": 143.0,
-          "y": 143.0,
-          "z": 130.0
-        },
-        "size_cm": {
-          "x": 286.0,
-          "y": 286.0,
-          "z": 260.0
-        }
-      },
-      "static_mesh": "/Game/Greybox_Kit/SM_Block_Cube_1.SM_Block_Cube_1",
-      "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC550303_1183048114.PCG Component.PCGGraphInstance",
-        "generated_instance_count": 4
       }
     },
     {
@@ -1142,6 +1216,99 @@
       }
     },
     {
+      "label": "WC_morning_rainbow_bloom_Field",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "AutoBlend_HasPrimitiveData",
+        "WorldCompiler.morning_rainbow_bloom_3900"
+      ],
+      "location": {
+        "x": -3838.742,
+        "y": 2093.626,
+        "z": -1578.43
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 36.488,
+        "y": 45.225,
+        "z": 30.041
+      },
+      "bounds": {
+        "origin": {
+          "x": -3838.742,
+          "y": 2093.626,
+          "z": -1578.43
+        },
+        "extent": {
+          "x": 3648.844,
+          "y": 4522.545,
+          "z": 3004.086
+        },
+        "size_cm": {
+          "x": 7297.687,
+          "y": 9045.09,
+          "z": 6008.173
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CAC810503_1565809822.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 1133
+      }
+    },
+    {
+      "label": "Massive_Biome_Meadow",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "PCG/MassiveWorld",
+      "tags": [
+        "AutoBlend_HasPrimitiveData"
+      ],
+      "location": {
+        "x": -2200.0,
+        "y": 1600.0,
+        "z": 550.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 15.0,
+        "y": 14.0,
+        "z": 8.5
+      },
+      "bounds": {
+        "origin": {
+          "x": -2179.1,
+          "y": 1727.301,
+          "z": 550.0
+        },
+        "extent": {
+          "x": 1561.924,
+          "y": 1575.137,
+          "z": 850.0
+        },
+        "size_cm": {
+          "x": 3123.848,
+          "y": 3150.273,
+          "z": 1700.0
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Meshes/Environment/Bush01_Art.Bush01_Art",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CACD60403_1370923719.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 992
+      }
+    },
+    {
       "label": "PCG_MelodiaOpening_Morning_Dressing",
       "class": "PCGVolume",
       "selected": false,
@@ -1190,6 +1357,52 @@
       }
     },
     {
+      "label": "Massive_Biome_CrystalGarden",
+      "class": "PCGVolume",
+      "selected": false,
+      "folder": "PCG/MassiveWorld",
+      "tags": [
+        "AutoBlend_HasPrimitiveData"
+      ],
+      "location": {
+        "x": -2651.164,
+        "y": 1327.209,
+        "z": 1225.656
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 7.672,
+        "y": 7.7,
+        "z": 5.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2575.9,
+          "y": 1245.061,
+          "z": 1225.656
+        },
+        "extent": {
+          "x": 978.951,
+          "y": 874.995,
+          "z": 500.0
+        },
+        "size_cm": {
+          "x": 1957.901,
+          "y": 1749.989,
+          "z": 1000.0
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_A.SM_FloatingCrystal_Cluster_A",
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.PCGVolume_UAID_7C5758FA1CACD80403_1753274072.PCG Component.PCGGraphInstance",
+        "generated_instance_count": 205
+      }
+    },
+    {
       "label": "Meadow_PCG_Canonical",
       "class": "PCGVolume",
       "selected": false,
@@ -1198,7 +1411,7 @@
         "AutoBlend_HasPrimitiveData"
       ],
       "location": {
-        "x": -3191.64,
+        "x": -1961.64,
         "y": 1910.961,
         "z": 450.915
       },
@@ -1214,18 +1427,18 @@
       },
       "bounds": {
         "origin": {
-          "x": -3188.338,
-          "y": 1905.3,
+          "x": -1962.663,
+          "y": 1916.336,
           "z": 450.915
         },
         "extent": {
-          "x": 421.962,
-          "y": 426.158,
+          "x": 419.577,
+          "y": 425.893,
           "z": 300.0
         },
         "size_cm": {
-          "x": 843.925,
-          "y": 852.316,
+          "x": 839.154,
+          "y": 851.785,
           "z": 600.0
         }
       },
@@ -1406,7 +1619,7 @@
       "tags": [],
       "location": {
         "x": 1278.8,
-        "y": 3207.129,
+        "y": 3579.129,
         "z": -301.21
       },
       "rotation": {
@@ -1422,7 +1635,7 @@
       "bounds": {
         "origin": {
           "x": 1278.8,
-          "y": 3207.129,
+          "y": 3579.129,
           "z": -301.21
         },
         "extent": {
@@ -1948,50 +2161,6 @@
       "static_mesh": "/Engine/EditorMeshes/MatineeCam_SM.MatineeCam_SM"
     },
     {
-      "label": "BP_Morning_GoldenSpiral",
-      "class": "BP_Morning_GoldenSpiral_C",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": -1200.0,
-        "y": 1850.0,
-        "z": 0.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -1062.421,
-          "y": 1602.202,
-          "z": -10.474
-        },
-        "extent": {
-          "x": 892.572,
-          "y": 1154.126,
-          "z": 609.677
-        },
-        "size_cm": {
-          "x": 1785.143,
-          "y": 2308.252,
-          "z": 1219.355
-        }
-      },
-      "static_mesh": "/Game/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_FloorA.SM_ATL_Palace_FloorA",
-      "pcg": {
-        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_Morning_GoldenSpiral_C_UAID_7C5758FA1CAC4A0403_1627749079.PCG.PCGGraphInstance",
-        "generated_instance_count": 51
-      }
-    },
-    {
       "label": "WC_HouseRoomShell_SalonA",
       "class": "BP_MelusinaRoomShell_C",
       "selected": false,
@@ -2039,92 +2208,6 @@
         "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaRoomShell_C_UAID_7C5758FA1CAC620303_1913396775.PCG.PCGGraphInstance",
         "generated_instance_count": 0
       }
-    },
-    {
-      "label": "WC_morning_rainbow_bloom_Structures_R0_00_hero_house",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "WorldCompiler/Structures",
-      "tags": [
-        "WorldCompiler.Structures",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": 600.0,
-        "y": 2400.0,
-        "z": -610.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": 599.958,
-          "y": 2398.093,
-          "z": -453.36
-        },
-        "extent": {
-          "x": 278.583,
-          "y": 200.73,
-          "z": 163.36
-        },
-        "size_cm": {
-          "x": 557.166,
-          "y": 401.459,
-          "z": 326.72
-        }
-      },
-      "static_mesh": "/Game/Melodia/Kit/MorningPlaza/SM_hero_house/StaticMeshes/SM_hero_house.SM_hero_house"
-    },
-    {
-      "label": "WC_morning_rainbow_bloom_Structures_R0_00_hero_house",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "WorldCompiler/Structures",
-      "tags": [
-        "WorldCompiler.Structures",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -4800.0,
-        "y": 0.0,
-        "z": -82.368
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -4800.042,
-          "y": -1.907,
-          "z": 74.272
-        },
-        "extent": {
-          "x": 278.583,
-          "y": 200.73,
-          "z": 163.36
-        },
-        "size_cm": {
-          "x": 557.166,
-          "y": 401.459,
-          "z": 326.72
-        }
-      },
-      "static_mesh": "/Game/Melodia/Kit/MorningPlaza/SM_hero_house/StaticMeshes/SM_hero_house.SM_hero_house"
     },
     {
       "label": "BP_Starskiff_MK2",
@@ -2205,6 +2288,49 @@
         }
       },
       "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_classic_arch_13.SM_classic_arch_13"
+    },
+    {
+      "label": "BP_Morning_GoldenSpiral",
+      "class": "BP_Morning_GoldenSpiral_C",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": -1200.0,
+        "y": 1850.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -1150.0,
+          "y": 1850.0,
+          "z": 0.0
+        },
+        "extent": {
+          "x": 50.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size_cm": {
+          "x": 100.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "pcg": {
+        "graph": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_Morning_GoldenSpiral_C_UAID_7C5758FA1CAC4A0403_1627749079.PCG.PCGGraphInstance",
+        "generated_instance_count": 0
+      }
     },
     {
       "label": "GroupActor",
@@ -2326,6 +2452,171 @@
       "static_mesh": "/Game/_ThirdParty/UltraDynamicSky/Meshes/EditorLabels/ClockDisk.ClockDisk"
     },
     {
+      "label": "MeshProjectModifier2",
+      "class": "ModifierActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": -9870.0,
+        "y": 9570.0,
+        "z": -2010.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -5001.0,
+          "y": 4851.0,
+          "z": -1071.0
+        },
+        "extent": {
+          "x": 5001.0,
+          "y": 4851.0,
+          "z": 1071.0
+        },
+        "size_cm": {
+          "x": 10002.0,
+          "y": 9702.0,
+          "z": 2142.0
+        }
+      }
+    },
+    {
+      "label": "BrushifyIsland_11",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "WorldCompiler.brushify_island"
+      ],
+      "location": {
+        "x": -3731.862,
+        "y": 3737.693,
+        "z": -1897.294
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 15.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 0.203,
+        "y": 0.203,
+        "z": 0.203
+      },
+      "bounds": {
+        "origin": {
+          "x": -3483.87,
+          "y": 3736.928,
+          "z": -2793.413
+        },
+        "extent": {
+          "x": 2989.124,
+          "y": 2729.243,
+          "z": 1589.103
+        },
+        "size_cm": {
+          "x": 5978.247,
+          "y": 5458.487,
+          "z": 3178.206
+        }
+      },
+      "static_mesh": "/Game/Brushify/Meshes/FloatingIslands/FloatingIsland_04/S_FloatingMountain_04.S_FloatingMountain_04"
+    },
+    {
+      "label": "BrushifyIsland_12",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "WorldCompiler.brushify_island"
+      ],
+      "location": {
+        "x": -13553.862,
+        "y": 9781.693,
+        "z": -1284.294
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 15.0,
+        "roll": -0.0
+      },
+      "scale": {
+        "x": 0.203,
+        "y": 0.203,
+        "z": 0.203
+      },
+      "bounds": {
+        "origin": {
+          "x": -13305.87,
+          "y": 9780.928,
+          "z": -2180.413
+        },
+        "extent": {
+          "x": 2989.124,
+          "y": 2729.243,
+          "z": 1589.103
+        },
+        "size_cm": {
+          "x": 5978.247,
+          "y": 5458.487,
+          "z": 3178.206
+        }
+      },
+      "static_mesh": "/Game/Brushify/Meshes/FloatingIslands/FloatingIsland_04/S_FloatingMountain_04.S_FloatingMountain_04"
+    },
+    {
+      "label": "BrushifyIsland_13",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "WorldCompiler.brushify_island"
+      ],
+      "location": {
+        "x": -16541.862,
+        "y": 9781.693,
+        "z": -545.294
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": -85.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 0.203,
+        "y": 0.203,
+        "z": 0.203
+      },
+      "bounds": {
+        "origin": {
+          "x": -16585.68,
+          "y": 9537.601,
+          "z": -1441.413
+        },
+        "extent": {
+          "x": 2362.049,
+          "y": 2696.144,
+          "z": 1589.103
+        },
+        "size_cm": {
+          "x": 4724.097,
+          "y": 5392.288,
+          "z": 3178.206
+        }
+      },
+      "static_mesh": "/Game/Brushify/Meshes/FloatingIslands/FloatingIsland_04/S_FloatingMountain_04.S_FloatingMountain_04"
+    },
+    {
       "label": "BrushifyIsland_9",
       "class": "StaticMeshActor",
       "selected": false,
@@ -2392,59 +2683,19 @@
         "origin": {
           "x": -2470.0,
           "y": 1482.0,
-          "z": 310.0
+          "z": -165.0
         },
         "extent": {
           "x": 2470.0,
           "y": 2470.0,
-          "z": 920.0
+          "z": 1395.0
         },
         "size_cm": {
           "x": 4940.0,
           "y": 4940.0,
-          "z": 1840.0
+          "z": 2790.0
         }
       }
-    },
-    {
-      "label": "SM_CanyonSandstoneRidge_01",
-      "class": "StaticMeshActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": -7435.312,
-        "y": 2525.171,
-        "z": -2387.877
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": -110.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 20.52,
-        "y": 10.26,
-        "z": 20.52
-      },
-      "bounds": {
-        "origin": {
-          "x": -7430.738,
-          "y": 2527.22,
-          "z": -1605.091
-        },
-        "extent": {
-          "x": 1787.274,
-          "y": 3279.651,
-          "z": 965.333
-        },
-        "size_cm": {
-          "x": 3574.548,
-          "y": 6559.303,
-          "z": 1930.666
-        }
-      },
-      "static_mesh": "/Game/Megascans/3D_Assets/CanyonSandstoneRidge/SM_CanyonSandstoneRidge_01.SM_CanyonSandstoneRidge_01"
     },
     {
       "label": "SM_CanyonSandstoneRidge_2",
@@ -2525,6 +2776,45 @@
         }
       },
       "static_mesh": "/Game/Megascans/3D_Assets/CanyonSandstoneRidge/SM_CanyonSandstoneRidge_01.SM_CanyonSandstoneRidge_01"
+    },
+    {
+      "label": "MeshProjectModifier3",
+      "class": "ModifierActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": -6020.0,
+        "y": -2570.0,
+        "z": -100.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -3076.0,
+          "y": -1351.0,
+          "z": -100.0
+        },
+        "extent": {
+          "x": 3076.0,
+          "y": 1351.0,
+          "z": 132.0
+        },
+        "size_cm": {
+          "x": 6152.0,
+          "y": 2702.0,
+          "z": 264.0
+        }
+      }
     },
     {
       "label": "WC_NavMeshBounds_WestIslands",
@@ -2646,44 +2936,44 @@
       "static_mesh": "/Game/SurrealRocks/StaticMeshes/SM_PM3D_Sphere3D1.SM_PM3D_Sphere3D1"
     },
     {
-      "label": "SM_MassiveSandstoneCliff_01",
+      "label": "SM_CanyonSandstoneRidge_01",
       "class": "StaticMeshActor",
       "selected": false,
       "folder": "None",
       "tags": [],
       "location": {
-        "x": -2609.515,
-        "y": 3103.47,
-        "z": -1344.673
+        "x": -9880.312,
+        "y": 2525.171,
+        "z": -2387.877
       },
       "rotation": {
         "pitch": 0.0,
-        "yaw": -120.0,
+        "yaw": -90.0,
         "roll": 0.0
       },
       "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
+        "x": 20.52,
+        "y": 10.26,
+        "z": 20.52
       },
       "bounds": {
         "origin": {
-          "x": -2622.712,
-          "y": 3213.801,
-          "z": 89.619
+          "x": -9876.715,
+          "y": 2528.661,
+          "z": -1605.091
         },
         "extent": {
-          "x": 1402.645,
-          "y": 1626.188,
-          "z": 1506.289
+          "x": 728.132,
+          "y": 3225.114,
+          "z": 965.333
         },
         "size_cm": {
-          "x": 2805.289,
-          "y": 3252.377,
-          "z": 3012.578
+          "x": 1456.264,
+          "y": 6450.227,
+          "z": 1930.666
         }
       },
-      "static_mesh": "/Game/Megascans/3D_Assets/MassiveSandstoneCliff/SM_MassiveSandstoneCliff_01.SM_MassiveSandstoneCliff_01"
+      "static_mesh": "/Game/Megascans/3D_Assets/CanyonSandstoneRidge/SM_CanyonSandstoneRidge_01.SM_CanyonSandstoneRidge_01"
     },
     {
       "label": "SparkleZone_Meadow",
@@ -2884,48 +3174,6 @@
       }
     },
     {
-      "label": "WC_Corridor_C_to_D",
-      "class": "Actor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "PCG_Spline",
-        "PathSpline"
-      ],
-      "location": {
-        "x": -1607.76,
-        "y": 3667.668,
-        "z": 476.663
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": 94.74,
-          "y": 4433.168,
-          "z": -365.337
-        },
-        "extent": {
-          "x": 1830.5,
-          "y": 893.5,
-          "z": 970.0
-        },
-        "size_cm": {
-          "x": 3661.0,
-          "y": 1787.0,
-          "z": 1940.0
-        }
-      }
-    },
-    {
       "label": "Morning_SirMelodious_STATIC_INTRO",
       "class": "BP_MelodiaSirMelodiousMorningIntro_C",
       "selected": false,
@@ -3045,6 +3293,48 @@
         }
       },
       "static_mesh": "/Game/Greybox_Kit/SM_gazebo.SM_gazebo"
+    },
+    {
+      "label": "WC_Corridor_C_to_D",
+      "class": "Actor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "PCG_Spline",
+        "PathSpline"
+      ],
+      "location": {
+        "x": -1836.587,
+        "y": 3672.235,
+        "z": 331.493
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -366.587,
+          "y": 3864.735,
+          "z": -510.507
+        },
+        "extent": {
+          "x": 1598.0,
+          "y": 829.5,
+          "z": 970.0
+        },
+        "size_cm": {
+          "x": 3196.0,
+          "y": 1659.0,
+          "z": 1940.0
+        }
+      }
     },
     {
       "label": "BrushifyIsland_02",
@@ -3780,45 +4070,6 @@
       }
     },
     {
-      "label": "Staging_ProcBuilding_BackTower",
-      "class": "DynamicBuilding",
-      "selected": false,
-      "folder": "Staging/ProceduralBuildings",
-      "tags": [],
-      "location": {
-        "x": -3507.82,
-        "y": 11146.681,
-        "z": -1852.249
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": -160.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3507.82,
-          "y": 11146.681,
-          "z": -652.249
-        },
-        "extent": {
-          "x": 858.748,
-          "y": 858.748,
-          "z": 1200.0
-        },
-        "size_cm": {
-          "x": 1717.495,
-          "y": 1717.495,
-          "z": 2400.0
-        }
-      }
-    },
-    {
       "label": "SM_classic_arch_13",
       "class": "StaticMeshActor",
       "selected": false,
@@ -3857,49 +4108,6 @@
         }
       },
       "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_classic_arch_13.SM_classic_arch_13"
-    },
-    {
-      "label": "WC_morning_rainbow_bloom_Structures",
-      "class": "BP_MelodiaPCGControl_C",
-      "selected": false,
-      "folder": "WorldCompiler/Structures",
-      "tags": [
-        "WorldCompiler.Structures",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -4800.0,
-        "y": 0.0,
-        "z": -82.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -4800.0,
-          "y": 0.0,
-          "z": 136.8
-        },
-        "extent": {
-          "x": 713.87,
-          "y": 823.729,
-          "z": 346.8
-        },
-        "size_cm": {
-          "x": 1427.74,
-          "y": 1647.458,
-          "z": 693.6
-        }
-      },
-      "static_mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1.GenericFlower1"
     },
     {
       "label": "SM_room_2",
@@ -5383,6 +5591,123 @@
       }
     },
     {
+      "label": "GlitterGlint_MeadowSpill",
+      "class": "NiagaraActor",
+      "selected": false,
+      "folder": "Staging/GlitterGlint",
+      "tags": [],
+      "location": {
+        "x": -2043.7,
+        "y": 1923.7,
+        "z": 607.2
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -2043.7,
+          "y": 1923.7,
+          "z": 607.2
+        },
+        "extent": {
+          "x": 400.0,
+          "y": 400.0,
+          "z": 400.0
+        },
+        "size_cm": {
+          "x": 800.0,
+          "y": 800.0,
+          "z": 800.0
+        }
+      }
+    },
+    {
+      "label": "GlitterGlint_SkirtHollow",
+      "class": "NiagaraActor",
+      "selected": false,
+      "folder": "Staging/GlitterGlint",
+      "tags": [],
+      "location": {
+        "x": -1705.7,
+        "y": 257.5,
+        "z": 96.3
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -1705.7,
+          "y": 257.5,
+          "z": 96.3
+        },
+        "extent": {
+          "x": 400.0,
+          "y": 400.0,
+          "z": 400.0
+        },
+        "size_cm": {
+          "x": 800.0,
+          "y": 800.0,
+          "z": 800.0
+        }
+      }
+    },
+    {
+      "label": "GlitterGlint_WalkwayTrail",
+      "class": "NiagaraActor",
+      "selected": false,
+      "folder": "Staging/GlitterGlint",
+      "tags": [],
+      "location": {
+        "x": -3558.2,
+        "y": 1511.1,
+        "z": 287.8
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -3558.2,
+          "y": 1511.1,
+          "z": 287.8
+        },
+        "extent": {
+          "x": 400.0,
+          "y": 400.0,
+          "z": 400.0
+        },
+        "size_cm": {
+          "x": 800.0,
+          "y": 800.0,
+          "z": 800.0
+        }
+      }
+    },
+    {
       "label": "WC_Corridor_A_to_B",
       "class": "Actor",
       "selected": false,
@@ -5583,90 +5908,6 @@
       "static_mesh": "/Game/EnvSandbox/Meshes/Atlantis_PivotFixed/SM_ATL_Palace_FloorA.SM_ATL_Palace_FloorA"
     },
     {
-      "label": "WC_NS_Morning_mist_fx_mist_x_0",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.mist",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2062.063,
-        "y": 1473.404,
-        "z": 1214.9
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2007.063,
-          "y": 1473.404,
-          "z": 1214.9
-        },
-        "extent": {
-          "x": 305.0,
-          "y": 250.0,
-          "z": 250.0
-        },
-        "size_cm": {
-          "x": 610.0,
-          "y": 500.0,
-          "z": 500.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_mist_fx_mist_x_1",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.mist",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2487.052,
-        "y": 1291.629,
-        "z": 1216.5
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2432.052,
-          "y": 1291.629,
-          "z": 1216.5
-        },
-        "extent": {
-          "x": 305.0,
-          "y": 250.0,
-          "z": 250.0
-        },
-        "size_cm": {
-          "x": 610.0,
-          "y": 500.0,
-          "z": 500.0
-        }
-      }
-    },
-    {
       "label": "WC_NS_Morning_PondMist",
       "class": "NiagaraActor",
       "selected": false,
@@ -5692,48 +5933,6 @@
           "x": -1865.0,
           "y": 1650.0,
           "z": -200.0
-        },
-        "extent": {
-          "x": 305.0,
-          "y": 250.0,
-          "z": 250.0
-        },
-        "size_cm": {
-          "x": 610.0,
-          "y": 500.0,
-          "z": 500.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_windfront_fx_windfront_x_0",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.windfront",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -750.0,
-        "y": 1442.0,
-        "z": 576.1
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -695.0,
-          "y": 1442.0,
-          "z": 576.1
         },
         "extent": {
           "x": 305.0,
@@ -6341,300 +6540,6 @@
       "static_mesh": "/Game/SurrealRocks/StaticMeshes/SM_PM3D_Sphere3D1.SM_PM3D_Sphere3D1"
     },
     {
-      "label": "WC_NS_Morning_petal_fx_petal_0_0",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2594.489,
-        "y": 1304.519,
-        "z": 1267.2
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2514.489,
-          "y": 1304.519,
-          "z": 1267.2
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_petal_fx_petal_1_1",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2363.538,
-        "y": 2013.479,
-        "z": 634.6
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2283.538,
-          "y": 2013.479,
-          "z": 634.6
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_petal_fx_petal_2_2",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3124.007,
-        "y": 1401.534,
-        "z": 1267.8
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3044.007,
-          "y": 1401.534,
-          "z": 1267.8
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_petal_fx_petal_3_3",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3097.365,
-        "y": 2162.995,
-        "z": 635.4
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3017.365,
-          "y": 2162.995,
-          "z": 635.4
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_petal_fx_petal_4_4",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2590.586,
-        "y": 2734.743,
-        "z": 621.4
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2510.586,
-          "y": 2734.743,
-          "z": 621.4
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_petal_fx_petal_5_5",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3871.884,
-        "y": 1541.028,
-        "z": 339.5
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3791.884,
-          "y": 1541.028,
-          "z": 339.5
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_petal_fx_petal_6_6",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.petal",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -4123.93,
-        "y": 1379.502,
-        "z": 260.6
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -4043.93,
-          "y": 1379.502,
-          "z": 260.6
-        },
-        "extent": {
-          "x": 280.0,
-          "y": 200.0,
-          "z": 200.0
-        },
-        "size_cm": {
-          "x": 560.0,
-          "y": 400.0,
-          "z": 400.0
-        }
-      }
-    },
-    {
       "label": "WC_NS_Morning_PetalDrift",
       "class": "NiagaraActor",
       "selected": false,
@@ -6832,300 +6737,6 @@
           "x": 600.0,
           "y": 300.0,
           "z": 440.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_0_0",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2594.489,
-        "y": 1304.519,
-        "z": 1267.2
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2501.989,
-          "y": 1304.519,
-          "z": 1267.2
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_1_1",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2363.538,
-        "y": 2013.479,
-        "z": 634.6
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2271.038,
-          "y": 2013.479,
-          "z": 634.6
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_2_2",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3124.007,
-        "y": 1401.534,
-        "z": 1267.8
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3031.507,
-          "y": 1401.534,
-          "z": 1267.8
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_3_3",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3097.365,
-        "y": 2162.995,
-        "z": 635.4
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3004.865,
-          "y": 2162.995,
-          "z": 635.4
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_4_4",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -2590.586,
-        "y": 2734.743,
-        "z": 621.4
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -2498.086,
-          "y": 2734.743,
-          "z": 621.4
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_5_5",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -3871.884,
-        "y": 1541.028,
-        "z": 339.5
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -3779.384,
-          "y": 1541.028,
-          "z": 339.5
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
-        }
-      }
-    },
-    {
-      "label": "WC_NS_Morning_pollen_fx_pollen_6_6",
-      "class": "NiagaraActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [
-        "WorldCompiler.fx.pollen",
-        "WorldCompiler.morning_rainbow_bloom_3900"
-      ],
-      "location": {
-        "x": -4123.93,
-        "y": 1379.502,
-        "z": 260.6
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -4031.43,
-          "y": 1379.502,
-          "z": 260.6
-        },
-        "extent": {
-          "x": 267.5,
-          "y": 175.0,
-          "z": 175.0
-        },
-        "size_cm": {
-          "x": 535.0,
-          "y": 350.0,
-          "z": 350.0
         }
       }
     },
@@ -7594,9 +7205,9 @@
       "folder": "None",
       "tags": [],
       "location": {
-        "x": -2297.789,
+        "x": -674.789,
         "y": 1442.029,
-        "z": 415.855
+        "z": 533.855
       },
       "rotation": {
         "pitch": 25.0,
@@ -7610,9 +7221,9 @@
       },
       "bounds": {
         "origin": {
-          "x": -2236.127,
+          "x": -613.127,
           "y": 1442.029,
-          "z": 438.822
+          "z": 556.822
         },
         "extent": {
           "x": 189.662,
@@ -7881,9 +7492,9 @@
         "SetDress"
       ],
       "location": {
-        "x": -803.627,
-        "y": 1667.721,
-        "z": 567.974
+        "x": -846.857,
+        "y": 1683.872,
+        "z": 553.402
       },
       "rotation": {
         "pitch": 0.0,
@@ -7897,9 +7508,9 @@
       },
       "bounds": {
         "origin": {
-          "x": -821.908,
-          "y": 1663.32,
-          "z": 638.305
+          "x": -865.138,
+          "y": 1679.472,
+          "z": 623.734
         },
         "extent": {
           "x": 142.998,
@@ -7913,84 +7524,6 @@
         }
       },
       "static_mesh": "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Medium.S_GenericBush_Medium"
-    },
-    {
-      "label": "MeshProjectModifier2",
-      "class": "ModifierActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": -9870.0,
-        "y": 9570.0,
-        "z": -2010.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -9870.0,
-          "y": 9570.0,
-          "z": -2010.0
-        },
-        "extent": {
-          "x": 132.0,
-          "y": 132.0,
-          "z": 10000.0
-        },
-        "size_cm": {
-          "x": 264.0,
-          "y": 264.0,
-          "z": 20000.0
-        }
-      }
-    },
-    {
-      "label": "MeshProjectModifier3",
-      "class": "ModifierActor",
-      "selected": false,
-      "folder": "None",
-      "tags": [],
-      "location": {
-        "x": -6020.0,
-        "y": -2570.0,
-        "z": -100.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      },
-      "bounds": {
-        "origin": {
-          "x": -6020.0,
-          "y": -2570.0,
-          "z": -100.0
-        },
-        "extent": {
-          "x": 132.0,
-          "y": 132.0,
-          "z": 10000.0
-        },
-        "size_cm": {
-          "x": 264.0,
-          "y": 264.0,
-          "z": 20000.0
-        }
-      }
     },
     {
       "label": "BP_BattleController",
@@ -8147,12 +7680,544 @@
           "z": 256.0
         }
       }
+    },
+    {
+      "label": "L_BowStage_CoolLight",
+      "class": "PointLight",
+      "selected": false,
+      "folder": "BowStage",
+      "tags": [],
+      "location": {
+        "x": -3312.012,
+        "y": -38.157,
+        "z": 642.472
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -3312.012,
+          "y": -38.157,
+          "z": 642.472
+        },
+        "extent": {
+          "x": 128.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 256.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "LT_Melodia_Morning_Bed",
+      "class": "PointLight",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "Bedroom",
+        "Melodia",
+        "Wake"
+      ],
+      "location": {
+        "x": -180.0,
+        "y": -90.0,
+        "z": 190.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -180.0,
+          "y": -90.0,
+          "z": 190.0
+        },
+        "extent": {
+          "x": 128.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 256.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "LT_Melodia_Morning_Sir",
+      "class": "PointLight",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "Bedroom",
+        "Melodia",
+        "SirMelodious"
+      ],
+      "location": {
+        "x": -800.0,
+        "y": -330.0,
+        "z": 230.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -800.0,
+          "y": -330.0,
+          "z": 230.0
+        },
+        "extent": {
+          "x": 128.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 256.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "MEL_Ambience_ElectricDreams",
+      "class": "AmbientSound",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 1355.3,
+        "y": 1461.3,
+        "z": -602.6
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 1355.3,
+          "y": 1461.3,
+          "z": -602.6
+        },
+        "extent": {
+          "x": 128.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 256.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "PointLight",
+      "class": "PointLight",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": -292.028,
+        "y": 1003.269,
+        "z": 317.443
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -292.028,
+          "y": 1003.269,
+          "z": 317.443
+        },
+        "extent": {
+          "x": 128.0,
+          "y": 128.0,
+          "z": 128.0
+        },
+        "size_cm": {
+          "x": 256.0,
+          "y": 256.0,
+          "z": 256.0
+        }
+      }
+    },
+    {
+      "label": "GB_Morning_WakeRug",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "Bedroom",
+        "Melodia",
+        "WakeZone"
+      ],
+      "location": {
+        "x": -220.0,
+        "y": -40.0,
+        "z": 8.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 55.0,
+        "y": 55.0,
+        "z": 5.0
+      },
+      "bounds": {
+        "origin": {
+          "x": -220.0,
+          "y": -40.0,
+          "z": 8.0
+        },
+        "extent": {
+          "x": 110.0,
+          "y": 110.0,
+          "z": 0.75
+        },
+        "size_cm": {
+          "x": 220.0,
+          "y": 220.0,
+          "z": 1.5
+        }
+      },
+      "static_mesh": "/Game/Greybox_Kit/SM_Greybox_Floor_4x4.SM_Greybox_Floor_4x4"
+    },
+    {
+      "label": "large",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "extent": {
+          "x": 71.356,
+          "y": 117.529,
+          "z": 50.0
+        },
+        "size_cm": {
+          "x": 142.712,
+          "y": 235.057,
+          "z": 100.0
+        }
+      },
+      "static_mesh": "/Game/Greybox_Kit/SM_Greybox_BuildingBlock_A.SM_Greybox_BuildingBlock_A"
+    },
+    {
+      "label": "large",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 300.0,
+        "y": 300.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 300.0,
+          "y": 300.0,
+          "z": 0.0
+        },
+        "extent": {
+          "x": 71.356,
+          "y": 117.529,
+          "z": 50.0
+        },
+        "size_cm": {
+          "x": 142.712,
+          "y": 235.057,
+          "z": 100.0
+        }
+      },
+      "static_mesh": "/Game/Greybox_Kit/SM_Greybox_BuildingBlock_A.SM_Greybox_BuildingBlock_A"
+    },
+    {
+      "label": "Easel03_Art",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 1600.0,
+        "y": 3220.0,
+        "z": -610.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 130.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.302,
+        "y": 1.302,
+        "z": 1.302
+      },
+      "bounds": {
+        "origin": {
+          "x": 1617.783,
+          "y": 3234.974,
+          "z": -488.151
+        },
+        "extent": {
+          "x": 70.525,
+          "y": 72.347,
+          "z": 121.849
+        },
+        "size_cm": {
+          "x": 141.05,
+          "y": 144.694,
+          "z": 243.697
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Meshes/Environment/Easel03_Art.Easel03_Art"
+    },
+    {
+      "label": "GB_Morning_ResonancePlinth",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [
+        "Bedroom",
+        "InteractionZone",
+        "Melodia",
+        "SirMelodious"
+      ],
+      "location": {
+        "x": 160.0,
+        "y": 130.0,
+        "z": 65.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 35.0,
+        "y": 35.0,
+        "z": 18.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 160.0,
+          "y": 130.0,
+          "z": 65.0
+        },
+        "extent": {
+          "x": 70.0,
+          "y": 70.0,
+          "z": 2.7
+        },
+        "size_cm": {
+          "x": 140.0,
+          "y": 140.0,
+          "z": 5.4
+        }
+      },
+      "static_mesh": "/Game/Greybox_Kit/SM_Greybox_Floor_4x4.SM_Greybox_Floor_4x4"
+    },
+    {
+      "label": "monument",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 200.0,
+        "y": -790.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 199.682,
+          "y": -789.997,
+          "z": 2.387
+        },
+        "extent": {
+          "x": 69.381,
+          "y": 69.406,
+          "z": 645.049
+        },
+        "size_cm": {
+          "x": 138.762,
+          "y": 138.812,
+          "z": 1290.097
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pole.SM_Greybox_Pole"
+    },
+    {
+      "label": "monument",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 950.0,
+        "y": -1170.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 949.682,
+          "y": -1169.997,
+          "z": 2.387
+        },
+        "extent": {
+          "x": 69.381,
+          "y": 69.406,
+          "z": 645.049
+        },
+        "size_cm": {
+          "x": 138.762,
+          "y": 138.812,
+          "z": 1290.097
+        }
+      },
+      "static_mesh": "/Game/EnvSandbox/Greybox_Kit/SM_Greybox_Pole.SM_Greybox_Pole"
+    },
+    {
+      "label": "SM_wallhi",
+      "class": "StaticMeshActor",
+      "selected": false,
+      "folder": "None",
+      "tags": [],
+      "location": {
+        "x": 772.0,
+        "y": 3316.0,
+        "z": -375.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "scale": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 110.0
+      },
+      "bounds": {
+        "origin": {
+          "x": 772.681,
+          "y": 3315.96,
+          "z": -381.958
+        },
+        "extent": {
+          "x": 302.048,
+          "y": 16.311,
+          "z": 275.004
+        },
+        "size_cm": {
+          "x": 604.095,
+          "y": 32.622,
+          "z": 550.008
+        }
+      },
+      "static_mesh": "/Game/_PROJECT/houseassets/SM_wallhi.SM_wallhi"
     }
   ],
   "truncation": {
     "spatial_context_limit": 180,
     "pcg_limit": 64,
-    "all_actor_count": 242
+    "all_actor_count": 217
   },
   "agent_preflight": [
     "Read CURRENT_STATE.md plus the relevant durable lane contract.",
