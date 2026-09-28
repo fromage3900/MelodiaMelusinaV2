@@ -34,6 +34,13 @@
 *.usda   filter=lfs diff=lfs merge=lfs -text lockable
 *.usdc   filter=lfs diff=lfs merge=lfs -text lockable
 *.obj    filter=lfs diff=lfs merge=lfs -text lockable
+# Project-authored Houdini Digital Assets.
+# Scoped to hda/** so legacy/vendor HoudiniEngine binaries already committed as
+# ordinary Git blobs are not retroactively reclassified without a migration.
+hda/**/*.hda   filter=lfs diff=lfs merge=lfs -text lockable
+hda/**/*.hdalc filter=lfs diff=lfs merge=lfs -text lockable
+hda/**/*.hdanc filter=lfs diff=lfs merge=lfs -text lockable
+hda/**/*.otl   filter=lfs diff=lfs merge=lfs -text lockable
 # Textures & High-Bit Depth Render Sequences
 *.png    filter=lfs diff=lfs merge=lfs -text lockable
 *.jpg    filter=lfs diff=lfs merge=lfs -text lockable

@@ -1,0 +1,71 @@
+{
+  "schema": "melodia.houdini_foundry_recipe.v1",
+  "recipe_id": "deposition_glitter_pile_reference",
+  "product": "deposition",
+  "seed": 20260924,
+  "status": "staged",
+  "description": "Gate 6: Glitter Pile reference for HDA_Foundry_Deposition. Houdini distribution -> baked field -> UE -> Niagara behaviour for active grains only.",
+  "source": {
+    "kind": "hda",
+    "path": "hda/HDA_Foundry_Deposition_1.0.hda",
+    "exists_on_main": false,
+    "extends": "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py _build_glitter_pile (texture-only precedent)"
+  },
+  "params": {
+    "grain_count": 200000,
+    "grain_radius_cm": 0.15,
+    "gravity": [
+      0,
+      0,
+      -981
+    ],
+    "wind": [
+      0,
+      0,
+      0
+    ],
+    "source_shape": "point_pour",
+    "channels": [
+      "accumulation",
+      "sparkle",
+      "flow"
+    ]
+  },
+  "outputs": [
+    {
+      "name": "SM_GlitterPile_Rest.obj",
+      "format": "obj",
+      "note": "hero resting mesh"
+    },
+    {
+      "name": "glitter_active_points.csv",
+      "format": "csv",
+      "track_in_git": true,
+      "note": "unstable/shell grains only (<= 5k) for Niagara spawn"
+    },
+    {
+      "name": "glitter_density_<channel>.exr",
+      "format": "exr"
+    },
+    {
+      "name": "glitter_density.vdb",
+      "format": "vdb",
+      "note": "low-res density volume; never commit large sequences"
+    },
+    {
+      "name": "bake_manifest.json",
+      "format": "json",
+      "track_in_git": true
+    }
+  ],
+  "ue_target": {
+    "consumer": "niagara_system",
+    "asset_path_prefix": "/Game/Melodia/HoudiniFoundry/Deposition/",
+    "integration_gate": "Gate 6 (06_DEPOSITION_GLITTER.md)",
+    "note": "Static bulk = baked mesh/texture. Niagara reads glitter_active_points via an existing canonical system/effect type (Docs/VFX/README.md); no new Niagara framework."
+  },
+  "authority": {
+    "runtime_owner": "canonical Niagara stack + static mesh",
+    "writes_mpc": false
+  }
+}
