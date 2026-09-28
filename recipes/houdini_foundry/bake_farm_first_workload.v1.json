@@ -1,0 +1,11 @@
+{
+  "schema": "melodia.houdini_foundry_bake_request.v1",
+  "request_id": "foundry_day_2026_09_24_first_workload",
+  "mission_ref": null,
+  "recipes": [
+    "recipes/houdini_foundry/crystal_cathedral_6bay_harmony.v1.json",
+    "recipes/houdini_foundry/field_atlas_sea_above_test_tile.v1.json"
+  ],
+  "stop_on_fail": true,
+  "note": "Gate 10 first TOP_Foundry_BakeFarm workload. mission_ref stays null until a Universe Foundry genome for Sea Above exists (only Faraway Mother is authored)."
+}
