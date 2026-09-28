@@ -3,6 +3,7 @@
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
+#include "MelodiaHybridEncounterComponent.h"
 #include "MelodiaJRPGPostBattleLibrary.h"
 #include "MelodiaSaveRecoverySubsystem.h"
 #include "MelodiaNarrativeSubsystem.h"
@@ -73,8 +74,107 @@ void UMelodiaExternalJRPGBridgeSubsystem::Initialize(FSubsystemCollectionBase& C
 
 void UMelodiaExternalJRPGBridgeSubsystem::Deinitialize()
 {
+	ClearWorldClaim();
+	CompletedWorldEncounters.Reset();
 	UnbindActiveBattle();
 	Super::Deinitialize();
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::HasUniqueWorldEncounter(
+	const UMelodiaHybridEncounterComponent* Encounter, const FName EncounterId) const
+{
+	UWorld* World = GetWorld();
+	AActor* Target = IsValid(Encounter) ? Encounter->GetEncounterTarget() : nullptr;
+	if (!World || EncounterId.IsNone() || !IsValid(Target) || Target->GetWorld() != World
+		|| Encounter->GetEncounterId() != EncounterId)
+	{
+		return false;
+	}
+
+	int32 MatchingComponents = 0;
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		AActor* Actor = *It;
+		// A tagged stock battle actor with this identity would create a second
+		// combat state. The claimed world target may carry its own identity tag.
+		if (Actor != Target && Actor->ActorHasTag(EncounterId))
+		{
+			return false;
+		}
+
+		TArray<UMelodiaHybridEncounterComponent*> Components;
+		Actor->GetComponents(Components);
+		for (UMelodiaHybridEncounterComponent* Candidate : Components)
+		{
+			if (IsValid(Candidate) && Candidate->GetEncounterId() == EncounterId)
+			{
+				++MatchingComponents;
+				if (Candidate != Encounter || Candidate->GetEncounterTarget() != Actor)
+				{
+					return false;
+				}
+			}
+		}
+	}
+	return MatchingComponents == 1;
+}
+
+void UMelodiaExternalJRPGBridgeSubsystem::ClearWorldClaim()
+{
+	ClaimedWorldEncounter.Reset();
+	ClaimedWorldEncounterId = NAME_None;
+	bWorldClaimAccepted = false;
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::CompleteWorldEncounter(
+	UMelodiaHybridEncounterComponent* Encounter, const EMelodiaBattleResult Result)
+{
+	if (!IsValid(Encounter))
+	{
+		return false;
+	}
+	const FObjectKey EncounterKey(Encounter);
+	const FName EncounterId = Encounter->GetEncounterId();
+	if (!IsValid(NarrativeSubsystem) || IsValid(ActiveBattleActor)
+		|| !ClaimedWorldEncounterId.IsNone() || CompletedWorldEncounters.Contains(EncounterKey)
+		|| NarrativeSubsystem->IsBattlePending()
+		|| !HasUniqueWorldEncounter(Encounter, EncounterId))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Melodia world encounter completion rejected for %s: claim, target, or narrative state is invalid."),
+			*EncounterId.ToString());
+		return false;
+	}
+
+	// StartBattle broadcasts synchronously. Install the claim first so the
+	// existing stock listener can recognize this one world-owned encounter.
+	ClaimedWorldEncounter = Encounter;
+	ClaimedWorldEncounterId = EncounterId;
+	bWorldClaimAccepted = false;
+	const bool bStarted = NarrativeSubsystem->StartBattle(EncounterId);
+	const bool bRouted = bStarted && bWorldClaimAccepted && !IsValid(ActiveBattleActor)
+		&& NarrativeSubsystem->IsBattlePending()
+		&& NarrativeSubsystem->GetPendingEncounterId() == EncounterId;
+	if (!bRouted)
+	{
+		ClearWorldClaim();
+		if (NarrativeSubsystem->GetPendingEncounterId() == EncounterId)
+		{
+			NarrativeSubsystem->AbortPendingBattle(TEXT("world encounter could not claim narrative battle"));
+		}
+		return false;
+	}
+
+	const bool bCompleted = NarrativeSubsystem->CompleteBattle(Result);
+	if (bCompleted)
+	{
+		CompletedWorldEncounters.Add(EncounterKey);
+	}
+	ClearWorldClaim();
+	if (!bCompleted && NarrativeSubsystem->GetPendingEncounterId() == EncounterId)
+	{
+		NarrativeSubsystem->AbortPendingBattle(TEXT("world encounter completion failed"));
+	}
+	return bCompleted;
 }
 
 bool UMelodiaExternalJRPGBridgeSubsystem::StartTaggedJRPGBattle(const FName EncounterId)
@@ -164,6 +264,24 @@ bool UMelodiaExternalJRPGBridgeSubsystem::StartTaggedJRPGBattle(const FName Enco
 
 void UMelodiaExternalJRPGBridgeSubsystem::HandleNarrativeBattleRequested(FName EncounterId)
 {
+	if (!ClaimedWorldEncounterId.IsNone() && ClaimedWorldEncounterId == EncounterId)
+	{
+		if (!IsValid(ActiveBattleActor)
+			&& IsValid(NarrativeSubsystem)
+			&& NarrativeSubsystem->GetPendingEncounterId() == EncounterId
+			&& HasUniqueWorldEncounter(ClaimedWorldEncounter.Get(), EncounterId))
+		{
+			bWorldClaimAccepted = true;
+			return;
+		}
+
+		// Never fall through to stock for a claimed request. The caller aborts
+		// after the synchronous multicast returns, allowing every presentation
+		// listener to observe request then abort in the same order.
+		bWorldClaimAccepted = false;
+		return;
+	}
+
 	if (!StartTaggedJRPGBattle(EncounterId))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Melodia JRPG bridge: OnBattleRequested(%s) could not start tagged battle."), *EncounterId.ToString());
