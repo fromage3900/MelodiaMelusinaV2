@@ -8,7 +8,9 @@ Changes:
   3. WBP_MainMenu:       already "MelodiaJRPGSlot0" - verify only
 """
 
-import json, os, subprocess, sys, time, urllib.request
+from mcp_client import post_envelope
+
+import json, os, subprocess, sys, time
 
 MCP_URL = "http://127.0.0.1:9316/mcp"
 PROXY = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -30,12 +32,7 @@ def monolith(method, args, timeout=30):
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": method, "arguments": args}
     })
-    req = urllib.request.Request(
-        MCP_URL, data=body.encode(),
-        headers={"Content-Type": "application/json"}
-    )
-    resp = urllib.request.urlopen(req, timeout=timeout)
-    data = json.loads(resp.read().decode())
+    data = post_envelope(body.encode(), timeout=timeout, raise_on_error=True)
     return data.get("result", {}).get("content", [{}])[0].get("text", "")
 
 

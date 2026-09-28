@@ -10,6 +10,8 @@ water-specific target manifest and safety gates.
 """
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import argparse
 import hashlib
 import json
@@ -17,7 +19,6 @@ import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
-from urllib.request import Request, urlopen
 
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
@@ -69,9 +70,7 @@ def _call(action: str, params: dict[str, Any], timeout: int = 180) -> dict[str, 
         "method": "tools/call",
         "params": {"name": "blueprint_query", "arguments": {"action": action, **params}},
     }).encode()
-    request = Request(MONOLITH_URL, data=body, headers={"Content-Type": "application/json"})
-    with urlopen(request, timeout=timeout) as response:
-        envelope = json.loads(response.read().decode())
+    envelope = post_envelope(body, timeout=timeout, raise_on_error=True)
     text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
     return json.loads(text) if text else {}
 

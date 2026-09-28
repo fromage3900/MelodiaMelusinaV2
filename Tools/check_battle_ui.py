@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Check battle UI and rhythm highway paths."""
-import json, sys, urllib.request
+
+from mcp_client import post_envelope
+import json, sys
 
 MCP = "http://127.0.0.1:9316/mcp"
 def monolith(tool, args, timeout=30):
     body = json.dumps({"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":tool,"arguments":args}}).encode()
-    req = urllib.request.Request(MCP, data=body, headers={"Content-Type":"application/json"})
-    resp = urllib.request.urlopen(req, timeout=timeout)
-    data = json.loads(resp.read().decode())
+    data = post_envelope(body, timeout=timeout, raise_on_error=True)
     result = data.get("result",{})
     if result.get("isError"):
         return "ERROR:" + result.get("content",[{}])[0].get("text","")

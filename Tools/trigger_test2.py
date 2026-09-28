@@ -1,9 +1,10 @@
-import json, urllib.request, time
+
+from mcp_client import post_envelope
+import json, time
 MCP='http://127.0.0.1:9316/mcp'
 def call(tool,args,timeout=20):
     b=json.dumps({'jsonrpc':'2.0','id':1,'method':'tools/call','params':{'name':tool,'arguments':args}}).encode()
-    req=urllib.request.Request(MCP,data=b,headers={'Content-Type':'application/json'})
-    return json.loads(urllib.request.urlopen(req,timeout=timeout).read())
+    return post_envelope(b, timeout=timeout, raise_on_error=True)
 
 code = r'''
 import json, unreal

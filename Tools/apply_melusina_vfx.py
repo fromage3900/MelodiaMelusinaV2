@@ -8,10 +8,11 @@ Usage:
 """
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import json
 import os
 import sys
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -52,11 +53,7 @@ def mcp_call(tool: str, **kwargs) -> dict:
         "method": "tools/call",
         "params": {"name": tool, "arguments": kwargs},
     }).encode()
-    req = urllib.request.Request(
-        MONOLITH_URL, data=body, headers={"Content-Type": "application/json"}
-    )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return json.loads(resp.read().decode())
+    return post_envelope(body, timeout=120, raise_on_error=True)
 
 
 def run_py(script: str) -> dict:

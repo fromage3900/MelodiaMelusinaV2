@@ -12,7 +12,9 @@ Usage:
     python Tools/metrics_dashboard.py --open       # Open in browser after write
 """
 
-import json, os, sys, time, urllib.request, webbrowser
+from mcp_client import post_envelope
+
+import json, os, sys, time, webbrowser
 from pathlib import Path
 from datetime import datetime
 
@@ -28,10 +30,7 @@ def monolith(action, args=None):
     body = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
             "params": {"name": action, "arguments": args or {}}}
     try:
-        req = urllib.request.Request(MONOLITH, data=json.dumps(body).encode(),
-                                     headers={"Content-Type": "application/json"})
-        resp = urllib.request.urlopen(req, timeout=5)
-        return json.loads(resp.read().decode())
+        return post_envelope(json.dumps(body).encode(), timeout=5, raise_on_error=True)
     except Exception:
         return {}
 

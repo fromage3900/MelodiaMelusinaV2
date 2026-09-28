@@ -24,7 +24,8 @@ import datetime as dt
 import json
 import pathlib
 import sys
-import urllib.request
+
+from mcp_client import post_envelope
 
 MCP = "http://127.0.0.1:9316/mcp"
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -111,9 +112,7 @@ print("__MARK__" + json.dumps(out, sort_keys=True))
 def monolith(tool: str, args: dict, timeout: int = 120) -> dict:
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": tool, "arguments": args}}).encode()
-    req = urllib.request.Request(MCP, data=body, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        result = json.loads(resp.read().decode()).get("result", {})
+    result = post_envelope(body, timeout=timeout, raise_on_error=True).get("result", {})
     text = (result.get("content") or [{}])[0].get("text", "")
     if result.get("isError"):
         raise RuntimeError(f"monolith {tool}: {text[:400]}")

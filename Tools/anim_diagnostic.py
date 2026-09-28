@@ -2,10 +2,11 @@
 """Diagnose Melusina Animation Blueprint for T-pose and animation issues via Monolith MCP."""
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import json
 import sys
 from pathlib import Path
-from urllib.request import Request, urlopen
 from urllib.error import URLError
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
@@ -22,15 +23,8 @@ def monolith_call(tool: str, arguments: dict) -> dict:
         "method": "tools/call",
         "params": {"name": tool, "arguments": arguments},
     }
-    req = Request(
-        MONOLITH_URL,
-        data=json.dumps(body).encode(),
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
     try:
-        with urlopen(req, timeout=60) as resp:
-            data = json.loads(resp.read().decode())
+        data = post_envelope(json.dumps(body).encode(), timeout=60, raise_on_error=True)
     except (URLError, TimeoutError, json.JSONDecodeError) as e:
         return {"_error": f"Monolith unreachable: {e}"}
 

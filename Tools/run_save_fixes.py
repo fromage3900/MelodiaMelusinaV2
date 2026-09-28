@@ -1,4 +1,6 @@
-import urllib.request, json, sys
+
+from mcp_client import post_envelope
+import json, sys
 
 MCP_URL = 'http://127.0.0.1:9316/mcp'
 LOG = []
@@ -12,9 +14,8 @@ def call_monolith(action, **kwargs):
         'jsonrpc': '2.0', 'id': 1, 'method': 'tools/call',
         'params': {'name': 'blueprint_query', 'arguments': {'action': action, **kwargs}}
     }).encode()
-    req = urllib.request.Request(MCP_URL, data=body, headers={'Content-Type': 'application/json'})
     try:
-        resp = json.loads(urllib.request.urlopen(req, timeout=60).read())
+        resp = post_envelope(body, timeout=60, raise_on_error=True)
         return resp
     except Exception as e:
         return {'isError': True, 'error': str(e)}
@@ -25,9 +26,8 @@ def editor_run_python(script_code):
         'jsonrpc': '2.0', 'id': 1, 'method': 'tools/call',
         'params': {'name': 'editor_query', 'arguments': {'action': 'run_python', 'command': script_code}}
     }).encode()
-    req = urllib.request.Request(MCP_URL, data=body, headers={'Content-Type': 'application/json'})
     try:
-        resp = json.loads(urllib.request.urlopen(req, timeout=120).read())
+        resp = post_envelope(body, timeout=120, raise_on_error=True)
         return resp
     except Exception as e:
         return {'isError': True, 'error': str(e)}

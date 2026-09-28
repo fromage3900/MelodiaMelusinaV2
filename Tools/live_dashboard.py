@@ -9,7 +9,9 @@ Usage:
     python Tools/live_dashboard.py --watch  # Auto-refresh every 2s
     python Tools/live_dashboard.py --open   # Open in browser
 """
-import json, sys, os, time, urllib.request, webbrowser
+
+from mcp_client import post_envelope
+import json, sys, os, time, webbrowser
 from pathlib import Path
 from datetime import datetime
 
@@ -19,10 +21,7 @@ def monolith(action, args=None):
     body = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
             "params": {"name": action, "arguments": args or {}}}
     try:
-        req = urllib.request.Request(MONOLITH, data=json.dumps(body).encode(),
-                                     headers={"Content-Type": "application/json"})
-        resp = urllib.request.urlopen(req, timeout=5)
-        return json.loads(resp.read().decode())
+        return post_envelope(json.dumps(body).encode(), timeout=5, raise_on_error=True)
     except:
         return {}
 

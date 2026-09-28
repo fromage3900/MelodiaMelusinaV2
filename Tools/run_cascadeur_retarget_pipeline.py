@@ -31,13 +31,14 @@ REQUIREMENTS
 """
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import argparse
 import json
 import os
 import subprocess
 import sys
 import tempfile
-import urllib.request
 import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,10 +66,8 @@ MCP_URL = "http://localhost:9316/mcp"
 
 def mcp_call(method: str, params: dict, timeout: int = 120) -> dict:
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
-    req = urllib.request.Request(MCP_URL, data=body, headers={"Content-Type": "application/json"})
     try:
-        resp = urllib.request.urlopen(req, timeout=timeout)
-        return json.loads(resp.read())
+        return post_envelope(body, timeout=timeout, raise_on_error=True)
     except urllib.error.URLError as e:
         return {"result": {"isError": True, "content": [{"text": str(e)}]}}
     except Exception as e:

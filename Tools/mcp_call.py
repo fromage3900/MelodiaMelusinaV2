@@ -4,9 +4,10 @@ Usage:
   python Tools/mcp_call.py run_python <command_file>
   python Tools/mcp_call.py <tool> <action> <params_json_file>
 """
+
+from mcp_client import post_envelope
 import json
 import sys
-import urllib.request
 
 URL = "http://127.0.0.1:9316/mcp"
 
@@ -14,8 +15,7 @@ URL = "http://127.0.0.1:9316/mcp"
 def call(name, arguments):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": name, "arguments": arguments}}).encode()
-    req = urllib.request.Request(URL, body, {"Content-Type": "application/json"})
-    return json.loads(urllib.request.urlopen(req, timeout=600).read())
+    return post_envelope(body, timeout=600, raise_on_error=True)
 
 
 def main():

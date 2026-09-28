@@ -2,7 +2,9 @@
 Apply fixes to SK_Melusina material instances based on live audit findings.
 Connects to Monolith MCP at http://127.0.0.1:9316/mcp.
 """
-import json, sys, urllib.request
+
+from mcp_client import post_envelope
+import json, sys
 from pathlib import Path
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
@@ -13,10 +15,8 @@ def monolith(tool, action, params=None):
         "method": "tools/call",
         "params": {"name": tool, "arguments": {"action": action, **(params or {})}}
     }).encode()
-    req = urllib.request.Request(MONOLITH_URL, body, {"Content-Type": "application/json"})
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            data = json.loads(resp.read())
+        data = post_envelope(body, timeout=120, raise_on_error=True)
     except Exception as e:
         return {"isError": True, "error": str(e)}
     if data.get("error"):

@@ -15,6 +15,9 @@ Usage:
 Launches detached overnight via:
   setsid -f python Tools/overnight_persona_pie_loop.py --loop --interval 600 </dev/null >>/tmp/persona_loop.log 2>&1
 """
+
+from mcp_client import post_envelope
+
 import time, json, datetime
 from pathlib import Path
 import sys
@@ -46,10 +49,8 @@ def wait_for_monolith(timeout=120):
     while time.time() < deadline:
         try:
             data = json.dumps({"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"monolith_status","arguments":{}}}).encode()
-            req = urllib.request.Request(url, data=data, headers={"Content-Type":"application/json"})
-            with urllib.request.urlopen(req, timeout=5) as r:
-                if r.status == 200:
-                    return True
+            post_envelope(data, timeout=5, raise_on_error=True)
+            return True
         except:
             pass
         time.sleep(2)

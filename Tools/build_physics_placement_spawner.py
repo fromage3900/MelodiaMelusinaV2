@@ -5,7 +5,9 @@ Drop-and-settle physics placement spawner:
   BeginPlay -> Set Simulate Physics (self = PlacementMesh, bSimulate = true)
 Component: PlacementMesh (StaticMeshComponent, root, pillow1, Movable).
 """
-import json, sys, os, urllib.request
+
+from mcp_client import post_envelope
+import json, sys, os
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
 BP = "/Game/EnvSandbox/Blueprints/BP_PhysicsPlacementSpawner"
@@ -13,11 +15,8 @@ BP = "/Game/EnvSandbox/Blueprints/BP_PhysicsPlacementSpawner"
 def monolith(tool, args, timeout=60):
     body = {"jsonrpc":"2.0","id":1,"method":"tools/call",
             "params":{"name":tool,"arguments":args}}
-    req = urllib.request.Request(MONOLITH_URL, data=json.dumps(body).encode(),
-                                 headers={"Content-Type":"application/json"})
     try:
-        resp = urllib.request.urlopen(req, timeout=timeout)
-        data = json.loads(resp.read().decode())
+        data = post_envelope(json.dumps(body).encode(), timeout=timeout, raise_on_error=True)
         res = data.get("result", {})
         if res.get("isError"):
             return "ERROR:" + str(res.get("content"))[:500]

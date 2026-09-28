@@ -82,6 +82,130 @@ def monolith(method, args=None, timeout=30):
     return joined
 
 
+def _encode_body(body):
+    """Serialize a JSON-RPC body exactly as the hand-rolled version did.
+
+    Accepts a dict, a JSON str, or pre-serialized bytes: several migrated
+    helpers recovered their Request(data=...) expression, which is often
+    `json.dumps(body).encode()`. json.dumps() of bytes raises TypeError,
+    so anything already serialized is passed through untouched.
+    """
+    if isinstance(body, (bytes, bytearray)):
+        return bytes(body)
+    if isinstance(body, str):
+        return body.encode()
+    return json.dumps(body).encode()
+
+
+def _post(body, timeout=30, endpoint=None, headers=None):
+    """Send `body` to Monolith; return (response_bytes, transport_error).
+
+    Bytes rather than text on purpose: callers differ in how strictly they
+    decode (json.loads wants strict UTF-8, the SSE scanners want "replace"),
+    and that choice belongs to the caller, not the transport.
+    """
+    merged = {"Content-Type": "application/json"}
+    merged.update(headers or {})
+    req = urllib.request.Request(endpoint or MONOLITH_URL,
+                                 data=_encode_body(body), headers=merged)
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.read(), None
+    except (urllib.error.URLError, OSError) as e:
+        return None, e
+
+
+def post_text(body, timeout=30, endpoint=None, raise_on_error=False, headers=None):
+    """POST a JSON-RPC body and return the raw response text.
+
+    Sibling of post_envelope() for the endpoints that may answer as SSE
+    ("data: {...}" lines). post_envelope() parses the response as JSON and
+    cannot recover such a stream, so callers that scan the lines themselves
+    (monolith_probe, get_hlsl_schema) post through here instead.
+
+    `headers` is merged over {"Content-Type": "application/json"}; passing
+    {"Accept": "application/json, text/event-stream"} reproduces the request
+    the hand-rolled version sent, byte for byte.
+
+    raise_on_error=True propagates transport failures instead of returning "",
+    matching the urlopen() behaviour these call sites were migrated from.
+    """
+    raw, err = _post(body, timeout=timeout, endpoint=endpoint, headers=headers)
+    if err is not None:
+        if raise_on_error:
+            raise err
+        return ""
+    return raw.decode("utf-8", "replace")
+
+
+def post_envelope(body, timeout=30, endpoint=None, raise_on_error=False, headers=None):
+    """POST a pre-built JSON-RPC body dict and return the parsed response.
+
+    Transport-only sibling of monolith_raw(). It exists so scripts that
+    hand-build their own envelope (tool/arguments shapes the higher-level
+    helpers do not model) can converge on one HTTP implementation without
+    changing their own parsing logic. Same signature contract as
+    _call_envelope(), but the caller supplies the body.
+
+    Accepts a dict, a JSON str, or pre-serialized bytes (see _encode_body).
+
+    raise_on_error=True propagates connection/decoding failures instead of
+    returning {"error": ...}. Callers that used urlopen() directly got an
+    exception on a dead endpoint, so migrated sites opt in to keep their own
+    try/except (and their own fallbacks) working exactly as before.
+    """
+    raw, err = _post(body, timeout=timeout, endpoint=endpoint, headers=headers)
+    try:
+        if err is not None:
+            raise err
+        return json.loads(raw.decode())
+    except (urllib.error.URLError, OSError, json.JSONDecodeError) as e:
+        if raise_on_error:
+            raise
+        return {"error": str(e)}
+
+
+def monolith_raw(method, args=None, timeout=30):
+    """Call an MCP tool and return the fully parsed JSON-RPC envelope as a dict.
+
+    Unlike monolith(), which flattens MCP text content to a string, this keeps
+    the structured response (result.content, result.isError, structuredContent)
+    that migration targets need when replacing hand-rolled urllib JSON-RPC.
+    Returns {"_error": reason} when the transport or JSON layer fails.
+    """
+    envelope = _call_envelope("tools/call", {"name": method, "arguments": args or {}}, timeout=timeout)
+    if "error" in envelope:
+        return {"_error": str(envelope["error"])}
+    return envelope
+
+
+def monolith_call(tool, arguments, timeout=60):
+    """Dict-in/dict-out convenience wrapper around monolith_raw().
+
+    Mirrors the historical shape returned by the hand-rolled helpers this
+    replaces: unwraps result.content, json-parses the text payload when
+    possible, and reports failures under "_error" / "_raw_text".
+    """
+    envelope = monolith_raw(tool, arguments, timeout=timeout)
+    if "_error" in envelope:
+        return envelope
+
+    result = envelope.get("result", {})
+    if result.get("isError"):
+        content = result.get("content") or []
+        msg = content[0].get("text", "MCP error") if content else "MCP error"
+        return {"_error": msg}
+
+    content = result.get("content") or []
+    if content and content[0].get("type") == "text":
+        raw = content[0].get("text", "")
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return {"_raw_text": raw}
+    return result
+
+
 def discover(namespace, timeout=30):
     """List MCP tools for a namespace (e.g. "blueprint" -> blueprint_query).
 

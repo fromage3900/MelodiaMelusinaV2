@@ -4,8 +4,9 @@ stops PIE, writes evidence JSON.
 """
 import json
 import time
-import urllib.request
 from pathlib import Path
+
+from mcp_client import post_envelope
 
 PROJECT_ROOT = Path("C:/EnvironmentPortfolio/BS_GodFile")
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
@@ -18,16 +19,12 @@ def call_editor(action, timeout=300, **kwargs):
     payload = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                "params": {"name": "editor_query",
                           "arguments": {"action": action, **kwargs}}}
-    req = urllib.request.Request(
-        MONOLITH_URL, data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        res = json.loads(resp.read().decode("utf-8"))
-        raw = res.get("result", {}).get("content", [{}])[0].get("text", "{}")
-        try:
-            return json.loads(raw)
-        except Exception:
-            return raw
+    res = post_envelope(json.dumps(payload).encode("utf-8"), timeout=timeout, raise_on_error=True)
+    raw = res.get("result", {}).get("content", [{}])[0].get("text", "{}")
+    try:
+        return json.loads(raw)
+    except Exception:
+        return raw
 
 
 print("1. load level")

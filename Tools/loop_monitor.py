@@ -8,6 +8,8 @@ Usage:
     python Tools/loop_monitor.py --watch  # Live-update every 2 seconds
     python Tools/loop_monitor.py --html   # Generate HTML dashboard
 """
+
+from mcp_client import post_envelope
 import json, sys, os, time, subprocess, webbrowser
 from pathlib import Path
 from datetime import datetime
@@ -15,14 +17,10 @@ from datetime import datetime
 MONOLITH = "http://127.0.0.1:9316/mcp"
 
 def monolith(action, args=None):
-    import urllib.request
     body = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
             "params": {"name": action, "arguments": args or {}}}
     try:
-        req = urllib.request.Request(MONOLITH, data=json.dumps(body).encode(),
-                                     headers={"Content-Type": "application/json"})
-        resp = urllib.request.urlopen(req, timeout=10)
-        return json.loads(resp.read().decode())
+        return post_envelope(json.dumps(body).encode(), timeout=10, raise_on_error=True)
     except Exception as e:
         return {"error": str(e)}
 

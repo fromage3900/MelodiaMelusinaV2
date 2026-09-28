@@ -1,8 +1,9 @@
+
+from mcp_client import post_envelope
 import argparse
 import json
 import sys
 from pathlib import Path
-from urllib.request import Request, urlopen
 from urllib.error import URLError
 
 MONOLITH_URL = "http://localhost:9316/mcp"
@@ -40,10 +41,8 @@ def fetch_fingerprint(asset_path: str, mode: str = "topology") -> dict | None:
         "method": "tools/call",
         "params": {"name": "blueprint_query", "arguments": arguments},
     }).encode()
-    req = Request(MONOLITH_URL, data=payload, headers={"Content-Type": "application/json"})
     try:
-        with urlopen(req, timeout=15) as resp:
-            envelope = json.loads(resp.read().decode())
+        envelope = post_envelope(payload, timeout=15, raise_on_error=True)
         text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
         return json.loads(text)
     except URLError as e:
@@ -117,10 +116,8 @@ def _call_tool(method: str, arguments: dict) -> str | None:
         "method": "tools/call",
         "params": {"name": method, "arguments": arguments},
     }).encode()
-    req = Request(MONOLITH_URL, data=payload, headers={"Content-Type": "application/json"})
     try:
-        with urlopen(req, timeout=15) as resp:
-            envelope = json.loads(resp.read().decode())
+        envelope = post_envelope(payload, timeout=15, raise_on_error=True)
         text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
         return text
     except (URLError, json.JSONDecodeError, TypeError) as e:

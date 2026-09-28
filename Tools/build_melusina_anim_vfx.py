@@ -1,4 +1,4 @@
-﻿"""Build the Melusina ABP-driven VFX set (Infinity Nikki lens).
+"""Build the Melusina ABP-driven VFX set (Infinity Nikki lens).
 
 Systems created (all quiet at rest, driven by User.* params the ABPs write):
   NS_Melusina_EyeSparkle  - SDF star on master_eye_L/R (body), User.MelusinaSparkleRate
@@ -12,10 +12,11 @@ Requires Monolith at http://127.0.0.1:9316/mcp (exactly one listener).
 """
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import argparse
 import json
 import sys
-from urllib.request import Request, urlopen
 
 MONOLITH = "http://127.0.0.1:9316/mcp"
 VFX = "/Game/Melodia/VFX"
@@ -36,9 +37,7 @@ def mc(tool: str, action: str, params: dict) -> dict:
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": tool, "arguments": {"action": action, "params": params}},
     }).encode()
-    req = Request(MONOLITH, data=body, headers={"Content-Type": "application/json"})
-    with urlopen(req, timeout=120) as resp:
-        envelope = json.loads(resp.read().decode())
+    envelope = post_envelope(body, timeout=120, raise_on_error=True)
     content = envelope.get("result", {}).get("content") or []
     if content:
         return {"text": content[0].get("text", "")}

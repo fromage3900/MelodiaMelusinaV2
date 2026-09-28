@@ -20,6 +20,8 @@ chaos, swarm, pbit, entropy, cellular, commit-reveal, oracle.
 """
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import argparse
 import json
 import sys
@@ -73,15 +75,12 @@ MONOLITH = "http://127.0.0.1:9316/mcp"
 
 
 def mcp(tool: str, action: str, params: dict) -> dict:
-    import urllib.request
 
     body = json.dumps({
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": tool, "arguments": {"action": action, "params": params}},
     }).encode()
-    req = urllib.request.Request(MONOLITH, data=body, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        envelope = json.loads(resp.read().decode())
+    envelope = post_envelope(body, timeout=60, raise_on_error=True)
     content = envelope.get("result", {}).get("content") or []
     return json.loads(content[0]["text"]) if content else envelope
 
@@ -97,14 +96,10 @@ def draw_local(seed: int, candidates: list[dict], backend: str) -> dict:
 
 
 def draw_http(url: str, seed: int, candidates: list[dict], backend: str) -> dict:
-    import urllib.request
 
     payload = json.dumps({"job_type": "rank_layouts", "seed": seed, "candidates": candidates,
                           "backend": backend}).encode()
-    req = urllib.request.Request(f"{url}/rank_layouts", data=payload,
-                                 headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        return json.loads(resp.read().decode())
+    return post_envelope(payload, timeout=15, raise_on_error=True)
 
 
 def publish_mpc(choice: float, qseed: float, qbackend: float, color: tuple, pulse: float) -> None:

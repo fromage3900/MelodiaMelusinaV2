@@ -10,11 +10,12 @@ Usage (editor open):
 """
 from __future__ import annotations
 
+from mcp_client import post_envelope
+
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.request import Request, urlopen
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -39,9 +40,7 @@ def call_tool(name: str, arguments: dict, timeout: int = 180) -> dict:
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": name, "arguments": arguments},
     }).encode()
-    req = Request(MONOLITH_URL, data=payload, headers={"Content-Type": "application/json"})
-    with urlopen(req, timeout=timeout) as resp:
-        envelope = json.loads(resp.read().decode())
+    envelope = post_envelope(payload, timeout=timeout, raise_on_error=True)
     text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
     return json.loads(text)
 
