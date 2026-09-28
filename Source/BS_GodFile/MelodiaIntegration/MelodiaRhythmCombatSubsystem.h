@@ -308,40 +308,20 @@ private:
 	static void InvokeStockUseSkill(UObject* StockSkill);
 
 	/**
-	 * Fold the latched rhythm scalar into the stock damage calculation by scaling
-	 * the attacking unit's minAttack/maxAttack immediately before the deferred
-	 * UseSkill dispatch.
+	 * No second writer of the grade scalar.
 	 *
-	 * This is the C++ owner of the rhythm -> stock-damage edge. It deliberately
-	 * does NOT call BP_BattleController::DealDamage: the stock attack montage's
-	 * notify already calls it, and a second call would double-apply damage. Stock
-	 * computes damage from the attacker's own attack stats, so scaling those is
-	 * the one place a scalar reaches the stock calculation without a suppressing
-	 * mechanism on the other path.
+	 * BP_BattleController is the single application point. Both of its damage
+	 * sites -- the melee montage's damage notify and the projectile-hit handler --
+	 * pass GetPendingDamageMultiplier() straight into DealDamage's
+	 * damageMultiplier input and then call ClearPendingDamageMultiplier(). It owns
+	 * the moment the scalar has to be applied and the moment it is spent.
 	 *
-	 * Restore is lazy rather than timed. The damage notify fires asynchronously
-	 * inside the montage, so restoring straight after dispatch would restore
-	 * before damage landed; instead the scale lives for the turn it buffed and is
-	 * undone by the next Apply, by InvalidateSession, or at Deinitialize. Every
-	 * exit therefore restores, and the stats cannot drift across a battle.
-	 *
-	 * A scalar of 1.0 is identity and applies nothing at all.
+	 * Scaling the attacking unit's minAttack/maxAttack here as well double-applied
+	 * the scalar: Great became 1.20 * 1.20 = 1.44x and Perfect 1.45^2 = 2.10x.
+	 * A rhythm skill is authored in DataAssets, so the grade ladder is content.
+	 * Do not re-add an attack-stat scale, a second DealDamage call, or any other
+	 * route for the grade to reach stock damage.
 	 */
-	void ApplyRhythmAttackScalar();
-
-	/** Undo ApplyRhythmAttackScalar if a scale is currently applied. Idempotent. */
-	void RestoreRhythmAttackScalar();
-
-	/** The unit whose attack stats are currently scaled, or null when none is. */
-	UPROPERTY(Transient)
-	TWeakObjectPtr<UObject> ScaledAttackUnit;
-
-	/** Pre-scale attack stats, valid only while bAttackScalarApplied. */
-	int32 SavedMinAttack = 0;
-	int32 SavedMaxAttack = 0;
-
-	/** True between Apply and Restore. Guards against restoring stale values. */
-	bool bAttackScalarApplied = false;
 
 	/**
 	 * The pending deferral. This pointer IS the guard: it is cleared before
