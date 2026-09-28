@@ -1,0 +1,99 @@
+{
+  "schema": "melodia.jev_material_polish_audit.v1",
+  "state": {
+    "total_material_instances": 4201,
+    "total_material_masters": 749,
+    "active_masters_with_mis": 289,
+    "orphan_masters_zero_mis": 460,
+    "universal_master_dominance_pct": 57.46,
+    "universal_master_mi_count": 2414,
+    "fluid_ninja_surface_mis": 280,
+    "toon_foliage_mis": 117,
+    "nikki_master_mis": 41,
+    "toon_sdf_mis": 76,
+    "water_broken_master": "M_Water_Master_Grand_v6 (Missing ComponentMask input)",
+    "water_production_master": "M_Water_Master_Grand_v10_Upgrade",
+    "ppv_stack_authoritative": [
+      [
+        "MI_StorybookOutline_GameplayStandard",
+        1.0
+      ],
+      [
+        "MI_MeluColorGrade_GameplayStandard",
+        0.69
+      ],
+      [
+        "MI_MelodiaInk_GameplayStandard",
+        1.0
+      ]
+    ],
+    "ppv_dead_references": [
+      "M_PP_ToonOutline",
+      "M_PP_StorybookVines_Inst"
+    ],
+    "flipbook_master_canonical": "M_Niagara_MelodiaFlipbook (Fix A SubUV)",
+    "glitter_master_deprecated": "M_Glitter_WorldAligned (Flat-White Invariant)",
+    "rhythm_orphan_masters": [
+      "M_RhythmSurface_Pulse",
+      "M_AudioReactive_BaseMaster"
+    ],
+    "timestamp": "2026-09-28T17:22:06.191906+00:00",
+    "source": "jev-live"
+  },
+  "decision": {
+    "first": "F_PRUNE_AND_CONVERGE_ORPHANS",
+    "first_probs": {
+      "F_PRUNE_AND_CONVERGE_ORPHANS": 0.92,
+      "F_SUBSTRATE_UNIFICATION_PASS": 0.04,
+      "F_MPC_RHYTHM_EXPANSION": 0.03,
+      "F_HOLD_OBSERVATIONAL": 0.01
+    },
+    "riskiest": "A_WATER_REGRESSION_IN_SHIPPING_LEVELS",
+    "riskiest_probs": {
+      "A_DYNAMIC_SOFT_REFERENCE": 0.35,
+      "A_WATER_REGRESSION_IN_SHIPPING_LEVELS": 0.5,
+      "A_PPV_PRESET_CLOBBER": 0.1,
+      "A_DDC_COMPILE_OVERHEAD": 0.05
+    },
+    "readiness": 1,
+    "readiness_label": "1 - Diagnosed: Orphan catalog mapped, water bug isolated, PPV stack identified",
+    "confidence": 0.94,
+    "reason": "Audited facts show 460 orphan masters (61.4% of all masters in repo) are completely unreferenced by any MI. M_Master_Toon_Universal carries 57.5% of all MIs (2,414 instances). Broken M_Water_Master_Grand_v6 must be retired in favor of v10_Upgrade to eliminate SM6 compile failures. Quarantine and consolidation onto proven canonical masters is the single highest ROI path to project stability and fast DDC cooks.",
+    "source": "jev-live"
+  },
+  "plan": {
+    "phase_1_stubs_quarantine": {
+      "title": "Phase 1: Quarantine & Deprecate 460 Orphan Masters",
+      "actions": [
+        "Catalog all 460 zero-MI orphan masters into Docs/Reports/ORPHAN_MASTERS_REGISTRY_2026-09-28.json",
+        "Quarantine dead MooaToon/Advanced/ (14), MooaToon/Asteroids/ (4), and JRPG boilerplate (58)",
+        "Retire legacy M_Glitter_WorldAligned in favor of M_Master_Toon_Universal stepped brightness instances",
+        "Deprecate dead PPV references in build_ppv_nikkidream.py and apply_post_process_stack_levels.py"
+      ]
+    },
+    "phase_2_water_system_convergence": {
+      "title": "Phase 2: Canonical Water Master Consolidation (v10_Upgrade)",
+      "actions": [
+        "Fix PCD3D_SM6 compile failure on M_Water_Master_Grand_v6 (missing ComponentMask input) or redirect references to v10",
+        "Lock M_Water_Master_Grand_v10_Upgrade as the Single Source of Truth for all water MIs",
+        "Verify water interaction in L_CelestialPond, L_MelusinaMorning, and LV_SeaAbove_Prototype"
+      ]
+    },
+    "phase_3_substrate_and_toon_polish": {
+      "title": "Phase 3: Substrate Toon BSDF Polish & MPC Binding",
+      "actions": [
+        "Validate M_Master_Toon_Universal Nikki chain (DreamGrade, RimGlow, Sparkle, IridescenceSheen)",
+        "Standardize 7-band stepped MIs (_L70, _L100, _L140) across all World Compiler biomes",
+        "Bind orphan rhythm master parameters to MPC_Portfolio_Audio (128 BPM beatgrid) and MPC_MelodiaInk"
+      ]
+    },
+    "phase_4_headless_verification": {
+      "title": "Phase 4: Headless Shader Cook & Multi-Level Render Verification",
+      "actions": [
+        "Run headless shader cook check with -nullRHI to ensure 0 compile warnings across active masters",
+        "Capture contact sheet plates across showcase environments to confirm no visual regressions",
+        "Record final machine receipt in Saved/Audit/material_systems_polish_audit_receipt.json"
+      ]
+    }
+  }
+}
