@@ -1,0 +1,46 @@
+{
+  "schema": "melodia.houdini_foundry_recipe.v1",
+  "recipe_id": "hda_engine_smoke_arpeggio_stair",
+  "product": "hda_engine_smoke",
+  "seed": 1337,
+  "status": "staged",
+  "description": "Gate 1 / P0: reuse the existing ArpeggioStair HDA generator for the custom-HDA -> Houdini Engine -> UE5.8 cook -> bake -> save -> reload -> audit proof. Not a second smoke architecture.",
+  "source": {
+    "kind": "hython_script",
+    "path": "Content/Python/create_hda_arpeggio_stair.py",
+    "extends": "Docs/WorldGen/HOUDINI_ENGINE_SMOKE_SPEC_2026-08-27.md section 4"
+  },
+  "params": {
+    "stepCount": 16,
+    "laneCount": 4,
+    "stepSpacing": 200.0,
+    "laneSpacing": 150.0,
+    "baseMidiNote": 60,
+    "scale": "major",
+    "heightPerDegree": 15.0,
+    "hda_out": "hda/ArpeggioStair_1.0.hda"
+  },
+  "outputs": [
+    {
+      "name": "ArpeggioStair_1.0.hda",
+      "format": "hda",
+      "track_in_git": true,
+      "note": "small binary HDA; not covered by .gitattributes LFS rules -- owner decides LFS before commit"
+    },
+    {
+      "name": "bake_manifest.json",
+      "format": "json",
+      "track_in_git": true
+    }
+  ],
+  "ue_target": {
+    "consumer": "static_mesh",
+    "asset_path_prefix": "/Game/Melodia/HoudiniFoundry/HDA/",
+    "integration_gate": "Gate 1 (02_HDA_ENGINE_PROOF.md)",
+    "note": "Bake to a dedicated smoke map or an additive labelled fixture in MelodiaIntegrationMap -- owner chooses at college (ask-first)."
+  },
+  "authority": {
+    "runtime_owner": "UE static mesh actors (baked); no runtime HDA cook",
+    "writes_mpc": false
+  }
+}
