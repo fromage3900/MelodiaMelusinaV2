@@ -119,4 +119,97 @@ bool FMelodiaRhythmGradeBoundaryTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+// The grade ladder is the combat feel: a clean session is worth 45% more damage
+// than a sloppy one. These are the exact authored numbers stock will apply,
+// pinned so a balance edit has to be a deliberate change to a failing test
+// rather than a silent drift nobody measures.
+//
+// The SingleApplication part matters for correctness. The value the subsystem
+// latches is what BP_BattleController hands to DealDamage, so it must be the
+// grade multiplier itself -- applied once. BaseMagnitude > 1 exists so a
+// compounded implementation (scalar folded in twice) cannot produce the same
+// number: 2.0 * 0.70 = 1.40, never 0.98.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FMelodiaRhythmGradeLadderExactTest, "Melodia.RhythmCombat.GradeLadderExact", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FMelodiaRhythmGradeLadderExactTest::RunTest(const FString& Parameters)
+{
+	UGameInstance* GI = nullptr;
+	UWorld* World = GEngine ? GEngine->GetCurrentPlayWorld() : nullptr;
+	bool bCreatedStandaloneWorld = false;
+
+	if (!World && GEngine)
+	{
+		GI = NewObject<UGameInstance>(GEngine);
+		GI->InitializeStandalone(TEXT("MelodiaRhythmGradeLadderTestWorld"));
+		World = GI->GetWorld();
+		bCreatedStandaloneWorld = true;
+	}
+
+	if (!World)
+	{
+		return true;
+	}
+
+	UMelodiaRhythmCombatSubsystem* Subsystem = UMelodiaRhythmCombatSubsystem::Get(World);
+	if (!Subsystem)
+	{
+		AddError(TEXT("RhythmCombatSubsystem not present in the world."));
+		if (bCreatedStandaloneWorld && GI && World)
+		{
+			GI->Shutdown();
+			GEngine->DestroyWorldContext(World);
+			World->DestroyWorld(false);
+		}
+		return false;
+	}
+
+	// The authored ladder, asserted literally. Miss is deliberately below 1.0
+	// (Decision 016 removed the turn-order penalty, not the damage scaling).
+	const UMelodiaRhythmSkillDefinition* Defaults = NewObject<UMelodiaRhythmSkillDefinition>(World);
+	TestEqual(TEXT("Miss scalar"), Defaults->DamageMultipliers.Miss, 0.70f);
+	TestEqual(TEXT("Good scalar"), Defaults->DamageMultipliers.Good, 1.00f);
+	TestEqual(TEXT("Great scalar"), Defaults->DamageMultipliers.Great, 1.20f);
+	TestEqual(TEXT("Perfect scalar"), Defaults->DamageMultipliers.Perfect, 1.45f);
+
+	// BaseMagnitude 2.0 makes a double application visible in the latch.
+	UMelodiaRhythmSkillDefinition* Skill = NewObject<UMelodiaRhythmSkillDefinition>(World);
+	Skill->SkillId = TEXT("Test_GradeLadderStrike");
+	Skill->EffectType = EMelodiaRhythmEffectType::Damage;
+	Skill->BaseMagnitude = 2.0f;
+	Subsystem->RegisterSkill(Skill);
+
+	// FinishSession is the closing path: it aggregates the session itself and
+	// submits the result internally. Calling SubmitRatedInput first would set
+	// bResultAccepted and make the close a no-op -- that is a duplicate-submit
+	// guard, not a second route in.
+	Subsystem->InvalidateSession();
+	const int32 SessionId = Subsystem->StartSession(Skill->SkillId);
+	TestNotEqual(TEXT("Session starts"), SessionId, 0);
+	TestTrue(TEXT("Session closes"), Subsystem->FinishSession());
+
+	// A session with no connected presses aggregates to Miss, so the latch is
+	// the single application: base x grade, once. 2.0 x 0.70 = 1.40, never 0.98.
+	TestEqual(
+		TEXT("Latched scalar is base x grade exactly once (2.0 x 0.70 = 1.40, never 0.98)"),
+		Subsystem->GetPendingDamageMultiplier(), 1.40f, 0.001f);
+
+	// Spending the scalar is the stock controller's job; the subsystem's
+	// ClearPendingDamageMultiplier must return it to identity so a stale grade
+	// can never ride a later hit.
+	Subsystem->ClearPendingDamageMultiplier();
+	TestEqual(
+		TEXT("Spent scalar returns to identity"),
+		Subsystem->GetPendingDamageMultiplier(), 1.0f, 0.001f);
+
+	Subsystem->InvalidateSession();
+
+	if (bCreatedStandaloneWorld && GI && World)
+	{
+		GI->Shutdown();
+		GEngine->DestroyWorldContext(World);
+		World->DestroyWorld(false);
+	}
+
+	return true;
+}
+
 #endif // WITH_DEV_AUTOMATION_TESTS
