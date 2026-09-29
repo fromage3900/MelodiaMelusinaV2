@@ -214,6 +214,18 @@ That turns one school day into two overlapping production lanes rather than a se
 
 ## 11. Cline execution contract — Humber Git + P4 sync
 
+**Primary command:** `deploy/sync_humber_project.ps1`. This is now the canonical orchestrator; use the detailed gates below only to diagnose a failed run.
+
+Cline should first run:
+
+    .\deploy\sync_humber_project.ps1 -Mode Check
+
+Then, for an actual synchronization:
+
+    .\deploy\sync_humber_project.ps1 -Mode Sync -P4Port "<PRIVATE_HOME_HOST>:1666" -P4User "<P4_USER>" -ApplyP4
+
+If P4V or the shell already has P4PORT/P4USER configured, the explicit P4Port/P4User arguments may be omitted. The script reuses those settings, creates a machine-specific Humber client, verifies the P4 ownership exclusion for Content/Python, previews all three creative roots, and only then applies the depot sync.
+
 This is the executable handoff for a coding agent working on an authorized Humber lab machine.
 
 ### Objective
