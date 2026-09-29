@@ -15,6 +15,7 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
   without explicit owner permission for that operation plus a written plan stated first. Never
   `reset --hard`, `checkout -- .`, `clean`, force-push or rewrite history. Workers produce patches in
   a worktree; the owner approves every git/p4 operation.
+- **Disposable branch law.** Never resume, reopen, or push new work to a closed/superseded feature branch. Before owner-approved branch creation, fetch current `origin/main` and create a new single-purpose branch from that tip. If a lane is more than 8 commits behind `origin/main`, stop feature work: preserve the bounded intended delta, reconverge it onto a fresh branch from current main, verify the effective diff, and retire the stale lane. Do not merge a stale lane forward merely to keep it alive. `feature/spout-beauty-2026-09-26` is permanently retired.
 - **Never touch** `.gitignore`, `.gitattributes`, `Config/DefaultEngine.ini`, `Config/DefaultGame.ini`,
   `Content/Materials/MF_MeshBlend_*`, `deploy/run_verify.ps1`. Ask before any `Config/` or
   `Content/Materials/` edit. `L_SakuraPath` / `L_MelusinaMorning` changes are ask-first.
