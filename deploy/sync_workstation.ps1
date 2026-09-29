@@ -119,7 +119,7 @@ function Get-LfsInclude {
             return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/**"
         }
         "HumberSemester" {
-            return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/SeaAbove/**,Content/EnvSandbox/Materials/Masters/**,Content/EnvSandbox/Materials/ToonProfiles/**"
+            return "Content/Melodia/Levels/**,Content/Melodia/PCG/**,Content/MelodiaIntegration/**,Content/Characters/**,Content/Melodia/Characters/**,Content/TurnBasedJRPGTemplate/Blueprints/Battle/**,Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns/**,Content/EnvSandbox/Environments/**,Content/EnvSandbox/PCG/**,Content/EnvSandbox/Monoliths/SeaAbove/**,Content/EnvSandbox/Materials/Masters/**,Content/EnvSandbox/Materials/ToonProfiles/**,RawArt/MelusinaArcherHarp/**,hda/**"
         }
         default {
             return ""
@@ -319,6 +319,21 @@ $lfsPullAttempted = $false
 $lfsPullSucceeded = $null
 $lfsInclude = Get-LfsInclude -Profile $LfsProfile
 
+# Humber's sparse clone must expose the authoring-source handoff paths before
+# LFS hydration. Without this, a "successful" semester sync can still leave
+# the preserved Blender/Houdini sources absent from the worktree.
+if ($Mode -eq "Sync" -and $LfsProfile -eq "HumberSemester") {
+    $sparseEnabled = (Invoke-Git -Arguments @("config", "--bool", "core.sparseCheckout") -AllowFailure).Text
+    if ($sparseEnabled -eq "true") {
+        Write-Host "Adding Humber authoring-source paths to sparse checkout..." -ForegroundColor Cyan
+        $sparseAdd = Invoke-Git -Arguments @("sparse-checkout", "add", "RawArt/MelusinaArcherHarp", "hda") -AllowFailure
+        if ($sparseAdd.Code -ne 0) {
+            $state = "sparse-checkout-error"
+            $recommended = "Could not expose RawArt/MelusinaArcherHarp and hda in the Humber sparse checkout."
+        }
+    }
+}
+
 if ($Mode -eq "Sync" -and $LfsProfile -ne "None") {
     if (-not $lfsAvailable) {
         $lfsPullSucceeded = $false
@@ -339,6 +354,31 @@ if ($Mode -eq "Sync" -and $LfsProfile -ne "None") {
         if (-not $lfsPullSucceeded) {
             $state = "lfs-error"
             $recommended = "Git refs may be synchronized, but LFS hydration failed. Inspect the report before opening Unreal/Blender."
+        } elseif ($LfsProfile -eq "HumberSemester") {
+            $requiredHumberSources = @(
+                "RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend",
+                "hda/ArpeggioStair_1.0.hda"
+            )
+            $missingRequiredSources = @()
+            foreach ($relative in $requiredHumberSources) {
+                $full = Join-Path $ProjectRoot ($relative -replace "/", "\")
+                if (-not (Test-Path -LiteralPath $full -PathType Leaf)) {
+                    $missingRequiredSources += $relative
+                    continue
+                }
+
+                # A hydrated LFS object must not still be the tiny pointer text.
+                $firstLine = Get-Content -LiteralPath $full -TotalCount 1 -ErrorAction SilentlyContinue
+                if ($firstLine -eq "version https://git-lfs.github.com/spec/v1") {
+                    $missingRequiredSources += $relative
+                }
+            }
+
+            if ($missingRequiredSources.Count -gt 0) {
+                $lfsPullSucceeded = $false
+                $state = "humber-source-missing"
+                $recommended = "Humber sync is incomplete; required authoring source is still absent or an LFS pointer: " + ($missingRequiredSources -join ", ")
+            }
         }
     }
 }
