@@ -5,7 +5,9 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-28 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-29 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+
+**Workstation canon, 2026-09-29:** `G:\` is the owner's portable SSD and may host the **complete runnable Melodia project** for direct work at home or Humber. Treat a healthy project root on `G:\` as a valid primary working copy, not as archive-only or backup-only storage. Git/LFS/P4 provide synchronization and version history around that working copy; separately named mirror, checkpoint, or backup folders on `G:\` remain archival according to their own labels.
 
 **VCS sync point, 2026-09-25:** p4 depot `//Melodia` CL 222 ↔ git `ec5ace363` (branch `fix/melusina-wings-emissive-veins`, pushed to origin). CL 222 = 210 files (adds/deletes via `reconcile`, content via `diff -se`) in a changelist separate from the live lane's default-CL opens. 9 UI-study PNGs under `Content/UI/` remain git-only until their folder names drop trailing spaces — Windows-illegal segments that git created and p4d cannot mkdir. Nightly depot checkpoint → `G:\perforce_backup` (job `p4-nightly-checkpoint`, 04:00, md5-verified).
 
