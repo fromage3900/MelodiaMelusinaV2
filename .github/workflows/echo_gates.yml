@@ -46,6 +46,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Reject stale or retired feature branches
+        if: github.event_name == 'pull_request'
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          git fetch origin main --no-tags
+          python Tools/guard_branch_lifecycle.py --base origin/main --max-behind 8
+
       - name: Reject collapsed-path resurrection
         if: github.event_name == 'pull_request'
         env:
