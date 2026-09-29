@@ -100,7 +100,8 @@ Write-Host "Git LFS:    $LfsAvailable"
 Write-Host "UE 5.8:     $UnrealAvailable"
 Write-Host "Blender:    $BlenderExe"
 Write-Host "Free disk:  $FreeGB GB"
-Write-Host "Report:     $ReportPath"\nWrite-Host "Hardware:   $HardwareReport"
+Write-Host "Report:     $ReportPath"
+Write-Host "Hardware:   $HardwareReport"
 
 if (-not $GitAvailable -or -not $LfsAvailable) { exit 1 }
 if ($Mode -eq "Prepare" -and $Branch -ne "main") { exit 1 }
