@@ -44,7 +44,7 @@ public:
 
 private:
 	bool bIntentPollInFlight = false;
-	FDelegateHandle IntentPollTicker;
+	FTSTicker::FDelegateHandle IntentPollTicker;
 	TArray<double> RecentIntentTimes;
 
 	void PublishWorldLocation(const UWorld& World);

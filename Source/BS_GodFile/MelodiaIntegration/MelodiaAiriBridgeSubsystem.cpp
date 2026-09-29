@@ -236,23 +236,23 @@ void UMelodiaAiriBridgeSubsystem::HandlePollResponse(const FString& ResponseBody
 		return;
 	}
 
-	const TSharedPtr<FJsonValue>* IntentValue = nullptr;
-	if (!(*Payload)->TryGetField(TEXT("intent"), IntentValue) || !IntentValue || !IntentValue->IsValid())
+	const TSharedPtr<FJsonValue> IntentValue = (*Payload)->TryGetField(TEXT("intent"));
+	if (!IntentValue.IsValid())
 	{
 		RejectIntent(TEXT("missing-intent-field"));
 		return;
 	}
-	if ((*IntentValue)->Type == EJson::Null)
+	if (IntentValue->Type == EJson::Null)
 	{
 		return;
 	}
-	if ((*IntentValue)->Type != EJson::Object)
+	if (IntentValue->Type != EJson::Object)
 	{
 		RejectIntent(TEXT("intent-not-object"));
 		return;
 	}
 
-	ApplyDebugIntent((*IntentValue)->AsObject());
+	ApplyDebugIntent(IntentValue->AsObject());
 }
 
 bool UMelodiaAiriBridgeSubsystem::ApplyDebugIntent(const TSharedPtr<FJsonObject>& Intent)
