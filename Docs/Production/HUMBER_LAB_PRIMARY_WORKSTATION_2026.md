@@ -211,3 +211,211 @@ A lab session is high-efficiency when it ends with both:
 2. at least one long job ready for the home PC to execute.
 
 That turns one school day into two overlapping production lanes rather than a serial workflow.
+
+## 11. Cline execution contract — Humber Git + P4 sync
+
+This is the executable handoff for a coding agent working on an authorized Humber lab machine.
+
+### Objective
+
+Bring the Humber workstation to the safest available project state without destroying local work or inventing a new source-control topology.
+
+Mandatory order:
+
+1. establish a healthy Git checkout;
+2. synchronize to origin/main;
+3. hydrate only the HumberSemester Git LFS profile;
+4. inspect local workstation/tool readiness;
+5. test whether the home Perforce service is privately reachable;
+6. only if that private route passes, create/use a distinct Humber P4 client and preview its sync;
+7. perform the P4 sync only after the preview is clean and ownership exclusions are correct.
+
+### Hard safety rules
+
+Cline must STOP instead of improvising if any gate fails.
+
+Do not run destructive Git cleanup/reset/rebase operations, git add -A, p4 reconcile, p4 submit, p4 unshelve, broad writable-bit changes, or any public exposure of the P4 port. Do not bypass Humber admin/security restrictions.
+
+Do not reuse the home workstation client Melodia_ws on the Humber PC. Every machine gets its own P4 client root.
+
+### Gate A — recover or create the Git checkout
+
+If a usable clone already exists, do not reclone it. Run:
+
+    git status --short
+    git remote -v
+    git branch --show-current
+    git rev-parse HEAD
+    git lfs version
+
+If the checkout is dirty, HOLD and report the exact files.
+
+If there is no usable checkout, use a partial clone with LFS smudging disabled so the lab machine does not download the historical binary universe during clone:
+
+    $env:GIT_LFS_SKIP_SMUDGE = "1"
+    git clone --filter=blob:none --no-checkout https://github.com/fromage3900/MelodiaMelusinaV2.git C:\MelodiaMelusinaV2
+    cd C:\MelodiaMelusinaV2
+    git sparse-checkout init --cone
+    git sparse-checkout set .github Config Docs Plugins Source Tools deploy specs BS_GodFile.uproject Content/Python Content/Melodia/Levels Content/Melodia/PCG Content/MelodiaIntegration Content/Characters Content/Melodia/Characters Content/TurnBasedJRPGTemplate/Blueprints/Battle Content/TurnBasedJRPGTemplate/Blueprints/EnemyExplorePawns Content/EnvSandbox/Environments Content/EnvSandbox/PCG Content/EnvSandbox/Monoliths/SeaAbove Content/EnvSandbox/Materials/Masters Content/EnvSandbox/Materials/ToonProfiles
+    git checkout main
+    git lfs install
+    git config core.hooksPath .githooks
+
+If authentication, pack transfer, long paths, disk space, or school-network policy blocks the clone, HOLD and report the exact command plus final error lines. Do not keep retrying random clone strategies.
+
+### Gate B — Humber bootstrap check
+
+From the repository root:
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\deploy\humber_lab_bootstrap.ps1 -Mode Check
+
+Expected reports:
+
+    Saved/Workstation/<machine>-humber-lab.json
+    Saved/Workstation/<machine>-workstation-report.json
+
+Required before Prepare:
+
+- Git available;
+- Git LFS available;
+- origin resolves to fromage3900/MelodiaMelusinaV2;
+- worktree clean;
+- enough free disk exists for the semester slice.
+
+### Gate C — Git + semester hydration
+
+When Gate B is clean and the user is in an authorized Humber session:
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\deploy\humber_lab_bootstrap.ps1 -Mode Prepare -IConfirmAuthorizedUse
+
+This delegates to:
+
+    .\deploy\sync_workstation.ps1 -Mode Sync -LfsProfile HumberSemester
+
+PASS requires:
+
+- branch = main;
+- sync state = synced;
+- ahead/behind = 0 / 0 against origin/main;
+- no dirty files created by synchronization;
+- HumberSemester LFS pull reports success.
+
+If any fail, HOLD before opening Unreal.
+
+### Gate D — P4 client/tool readiness
+
+The current production references use depot //Melodia and the home workstation talks to its local p4d at 127.0.0.1:1666.
+
+That address is not valid from Humber.
+
+Inspect only:
+
+    Get-Command p4 -ErrorAction SilentlyContinue
+    p4 -V
+    p4 set
+
+If p4 is unavailable, P4 remains HOLD while Git/LFS may still be usable.
+
+A private route to the home machine is required before P4 sync. Use only an owner-approved private VPN/tunnel already permitted on the lab machine. Never expose TCP 1666 publicly.
+
+Once a private home address/name is known:
+
+    Test-NetConnection <PRIVATE_HOME_HOST> -Port 1666
+
+If this fails, STOP: P4 transport is not ready. Do not point P4V at localhost and do not guess another public endpoint.
+
+### Gate E — authenticate to remote P4
+
+Only after Gate D passes:
+
+    p4 set P4PORT=<PRIVATE_HOME_HOST>:1666
+    p4 set P4USER=<OWNER_P4_USER>
+    p4 info -s
+    p4 login -s
+    p4 changes -m 1 //Melodia/...
+
+If the ticket is missing/expired, the owner performs the normal login interactively. Cline must not store credentials in Git, docs, scripts, or logs.
+
+### Gate F — distinct Humber workspace
+
+Create a machine-specific client name:
+
+    $Client = "Melodia_Humber_$env:COMPUTERNAME"
+    p4 set P4CLIENT=$Client
+    p4 client -o $Client
+
+The client root should be the same local project root used by Git.
+
+The effective view must honor the ownership contract:
+
+    //Melodia/Content/...            //<HUMBER_CLIENT>/Content/...
+    -//Melodia/Content/Python/...    //<HUMBER_CLIENT>/Content/Python/...
+    //Melodia/Exports/...            //<HUMBER_CLIENT>/Exports/...
+    //Melodia/RawArt/...             //<HUMBER_CLIENT>/RawArt/...
+
+Content/Python remains Git-owned and must stay excluded from P4.
+
+Verify before sync:
+
+    p4 client -o $Client
+    p4 where //Melodia/Content/...
+    p4 where //Melodia/Content/Python/...
+
+Content/Python must resolve as excluded/unmapped.
+
+### Gate G — preview before P4 sync
+
+Never make the first Humber P4 operation a blind sync.
+
+Preview:
+
+    p4 sync -n //Melodia/Content/...
+    p4 sync -n //Melodia/Exports/...
+    p4 sync -n //Melodia/RawArt/...
+
+Review for unexpected deletes, paths outside creative roots, Content/Python, collisions with dirty local files, or an unexpectedly huge historical payload.
+
+If anything is suspicious, HOLD and show the preview summary to the owner.
+
+If the preview is clean and the owner approves:
+
+    p4 sync //Melodia/Content/...
+    p4 sync //Melodia/Exports/...
+    p4 sync //Melodia/RawArt/...
+
+### Important current limitation
+
+A Humber sync from depot head does not prove that every latest home-machine creative edit is remotely available.
+
+The current repository state records intentional held/open Perforce work plus a shelved changelist in addition to depot state. Do not submit, unshelve, or reconcile those merely to make Humber match.
+
+Truthful readiness states:
+
+- Git/main: ready through the existing Humber bootstrap and workstation sync tooling.
+- Git LFS HumberSemester: ready to attempt once the clone is healthy.
+- P4 client tooling: ready if P4 CLI/P4V exists on the lab machine.
+- P4 remote transport: HOLD until private connectivity to home p4d is proven.
+- Latest held home P4 edits: not automatically part of a depot-head Humber sync.
+
+### Cline completion report
+
+Cline finishes by reporting this checklist with command evidence:
+
+    [ ] Git checkout healthy
+    [ ] origin points to fromage3900/MelodiaMelusinaV2
+    [ ] main == origin/main
+    [ ] worktree clean
+    [ ] Git LFS available
+    [ ] HumberSemester hydration succeeded
+    [ ] Humber workstation report generated
+    [ ] P4 CLI available
+    [ ] private home P4 route reachable
+    [ ] P4 login valid
+    [ ] unique Humber P4 client configured
+    [ ] Content/Python excluded from P4
+    [ ] p4 sync preview clean
+    [ ] depot-head P4 sync completed
+    [ ] no held/shelved owner work was mutated
+
+If the P4 network gate is unavailable, the correct result is a successful Git/LFS setup plus an explicit P4 HOLD, not an improvised workaround.
+
