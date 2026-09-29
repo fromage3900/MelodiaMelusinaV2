@@ -364,16 +364,18 @@ The effective view must honor the ownership contract:
     -//Melodia/Content/Python/...    //<HUMBER_CLIENT>/Content/Python/...
     //Melodia/Exports/...            //<HUMBER_CLIENT>/Exports/...
     //Melodia/RawArt/...             //<HUMBER_CLIENT>/RawArt/...
+    -//Melodia/RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend //<HUMBER_CLIENT>/RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend
 
-Content/Python remains Git-owned and must stay excluded from P4.
+Content/Python remains Git-owned and must stay excluded from P4. The standalone Rev08 WaveHarp handoff is also an explicit Git-LFS exception inside RawArt; larger source-art files in RawArt remain Perforce-owned.
 
 Verify before sync:
 
     p4 client -o $Client
     p4 where //Melodia/Content/...
     p4 where //Melodia/Content/Python/...
+    p4 where //Melodia/RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend
 
-Content/Python must resolve as excluded/unmapped.
+Content/Python and the standalone Rev08 WaveHarp handoff must resolve as excluded/unmapped.
 
 ### Gate G — preview before P4 sync
 
