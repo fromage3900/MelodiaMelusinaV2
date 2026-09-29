@@ -323,7 +323,8 @@ private:
 	bool bApplyExplorationRotationTuning = true;
 
 	/** Horizontal dash impulse applied along the current movement input direction
-	 *  (falls back to facing when idle). Ctrl-triggered; mid-air valid while gliding. */
+	 *  (falls back to facing when idle). Alt-triggered via MelodiaTraversalStrafe;
+	 *  mid-air valid while gliding. Plays AM_Melusina_Roll on the mesh (DefaultSlot). */
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Movement", meta=(ClampMin="100.0", ClampMax="2000.0"))
 	float DashImpulse = 900.0f;
 
