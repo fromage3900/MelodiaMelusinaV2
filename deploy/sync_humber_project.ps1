@@ -200,6 +200,24 @@ if (-not (Command-Exists "p4")) {
 }
 $report.p4.available = $true
 
+# Reuse an endpoint/user already configured by P4V or the shell when possible.
+if ([string]::IsNullOrWhiteSpace($P4Port) -and -not [string]::IsNullOrWhiteSpace($env:P4PORT)) {
+    $P4Port = $env:P4PORT
+}
+if ([string]::IsNullOrWhiteSpace($P4User) -and -not [string]::IsNullOrWhiteSpace($env:P4USER)) {
+    $P4User = $env:P4USER
+}
+if ([string]::IsNullOrWhiteSpace($P4Port)) {
+    $configuredPort = (@(& p4 set P4PORT 2>&1 | ForEach-Object { [string]$_ }) -join "")
+    if ($configuredPort -match "^P4PORT=([^ ]+)") { $P4Port = $Matches[1] }
+}
+if ([string]::IsNullOrWhiteSpace($P4User)) {
+    $configuredUser = (@(& p4 set P4USER 2>&1 | ForEach-Object { [string]$_ }) -join "")
+    if ($configuredUser -match "^P4USER=([^ ]+)") { $P4User = $Matches[1] }
+}
+$report.p4.requested_port = $P4Port
+$report.p4.user = $P4User
+
 if ([string]::IsNullOrWhiteSpace($P4Port)) {
     $report.p4.hold_reason = "No reachable P4 endpoint supplied. Set MELODIA_P4PORT or pass -P4Port host:1666."
     $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $ReportPath -Encoding UTF8
