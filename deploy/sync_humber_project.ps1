@@ -86,6 +86,7 @@ View:
     -//Melodia/Content/Python/... //$P4Client/Content/Python/...
     //Melodia/Exports/... //$P4Client/Exports/...
     //Melodia/RawArt/... //$P4Client/RawArt/...
+    -//Melodia/RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend //$P4Client/RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend
 "@
 }
 
@@ -291,7 +292,7 @@ if ($specCode -ne 0) {
 }
 $report.p4.client_ready = $true
 
-# Verify Content/Python is excluded.
+# Verify Git-owned exceptions are excluded from P4.
 $wherePython = Invoke-P4 -Arguments @("where","//Melodia/Content/Python/...") -AllowFailure
 $report.p4.content_python_where = $wherePython.Text
 $pythonExcluded = ($wherePython.Code -ne 0) -or ($wherePython.Text -match "not in client view|excluded|^-")
@@ -300,6 +301,18 @@ if (-not $pythonExcluded) {
     $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $ReportPath -Encoding UTF8
     Write-Host "P4: HOLD — Content/Python is not safely excluded." -ForegroundColor Red
     Write-Host $wherePython.Text
+    exit 13
+}
+
+$WaveHarpDepot = "//Melodia/RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend"
+$whereWaveHarp = Invoke-P4 -Arguments @("where",$WaveHarpDepot) -AllowFailure
+$report.p4.waveharp_where = $whereWaveHarp.Text
+$waveHarpExcluded = ($whereWaveHarp.Code -ne 0) -or ($whereWaveHarp.Text -match "not in client view|excluded|^-")
+if (-not $waveHarpExcluded) {
+    $report.p4.hold_reason = "Git-LFS WaveHarp handoff appears mapped in P4; ownership contract violation."
+    $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $ReportPath -Encoding UTF8
+    Write-Host "P4: HOLD — Git-owned WaveHarp source is not safely excluded." -ForegroundColor Red
+    Write-Host $whereWaveHarp.Text
     exit 13
 }
 
@@ -313,12 +326,20 @@ foreach ($target in $previewTargets) {
 }
 
 $pythonLeak = @($previewLines | Where-Object { $_ -match "(?i)Content[/\\]Python" })
+$waveHarpLeak = @($previewLines | Where-Object { $_ -match "(?i)ME_WaveHarp_Rev08_UEAxisRibbonFix\.blend" })
 $report.p4.preview_count = $previewLines.Count
 $report.p4.preview_sample = @($previewLines | Select-Object -First 80)
 $report.p4.preview_python_leaks = $pythonLeak
+$report.p4.preview_waveharp_leaks = $waveHarpLeak
 
-if ($previewFailed -or $pythonLeak.Count -gt 0) {
-    $report.p4.hold_reason = if ($pythonLeak.Count -gt 0) { "P4 preview contains Git-owned Content/Python." } else { "One or more P4 preview commands failed." }
+if ($previewFailed -or $pythonLeak.Count -gt 0 -or $waveHarpLeak.Count -gt 0) {
+    if ($pythonLeak.Count -gt 0) {
+        $report.p4.hold_reason = "P4 preview contains Git-owned Content/Python."
+    } elseif ($waveHarpLeak.Count -gt 0) {
+        $report.p4.hold_reason = "P4 preview contains the Git-LFS WaveHarp handoff."
+    } else {
+        $report.p4.hold_reason = "One or more P4 preview commands failed."
+    }
     $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $ReportPath -Encoding UTF8
     Write-Host "P4: HOLD — preview not clean." -ForegroundColor Red
     exit 14
