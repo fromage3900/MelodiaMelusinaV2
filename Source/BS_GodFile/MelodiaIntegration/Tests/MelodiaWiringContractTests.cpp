@@ -46,7 +46,9 @@
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "AssetRegistry/ARFilter.h"
 #include "Engine/Blueprint.h"
+#include "Engine/MemberReference.h"
 #include "Materials/MaterialInterface.h"
+#include "K2Node_CallFunction.h"
 #include "EdGraph/EdGraph.h"
 #include "EdGraph/EdGraphNode.h"
 #include "UObject/SoftObjectPath.h"
@@ -188,6 +190,121 @@ bool FMelodiaWiringBattleUICreatedTest::RunTest(const FString& Parameters)
 		TEXT("BP_BattleController constructs BP_BattleUI. If this fails, the rhythm highway, "
 			 "Q/W/O/P lane input and keyboard focus are all unreachable regardless of how they are wired."),
 		bFound);
+
+	return true;
+}
+
+// ---------------------------------------------------------------------------
+// The rhythm grade scalar must reach stock damage through exactly one path.
+//
+// On 2026-09-28 two writers of the same scalar were live at the same time:
+// BP_BattleController fed GetPendingDamageMultiplier() into DealDamage's
+// damageMultiplier on both damage sites, AND
+// UMelodiaRhythmCombatSubsystem scaled the attacking unit's minAttack/maxAttack
+// before dispatch so the stock calculation would pick it up. The C++ side was
+// written believing the Blueprint's multiplier input was still 1.0. It was not,
+// so a Great hit dealt 1.20 * 1.20 and a Perfect 1.45 * 1.45. The PIE run that
+// should have caught it saturated on a 16 HP target, so the error number was
+// never observed -- the defect was found by reading the graph, not by playing.
+//
+// BP_BattleController is now the single application point: it holds the moment
+// the scalar has to be applied (montage damage notify, projectile hit) and the
+// moment it is spent (Clear Pending Damage Multiplier). These assertions fail if
+// a damage site is ever left on an unconnected default multiplier -- the state
+// that invited the second writer in the first place -- or if a second consumer
+// of the scalar appears.
+// ---------------------------------------------------------------------------
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaWiringRhythmScalarSingleApplicationTest,
+	"Melodia.Wiring.RhythmScalar.SingleApplication",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaWiringRhythmScalarSingleApplicationTest::RunTest(const FString& Parameters)
+{
+	using namespace MelodiaWiringContract;
+
+	UBlueprint* Controller = LoadChecked<UBlueprint>(*this, BattleControllerPath);
+	if (!Controller)
+	{
+		return false;
+	}
+
+	int32 DealDamageSites = 0;
+	int32 SitesDrivenByScalar = 0;
+	int32 ScalarReads = 0;
+	int32 ScalarReadsWired = 0;
+	int32 ScalarClears = 0;
+
+	TArray<UEdGraph*> Graphs;
+	Controller->GetAllGraphs(Graphs);
+
+	for (const UEdGraph* Graph : Graphs)
+	{
+		if (!Graph) { continue; }
+		for (const UEdGraphNode* Node : Graph->Nodes)
+		{
+			if (!Node) { continue; }
+
+			// Identify call sites by the referenced UFunction name, not by the
+			// node's display title: ListView titles are editor-formatted and come
+			// back empty in a commandlet, which would make every assertion below
+			// vacuously pass.
+			const UK2Node_CallFunction* Call = Cast<UK2Node_CallFunction>(Node);
+			const FName Function = Call ? Call->FunctionReference.GetMemberName() : NAME_None;
+
+			const bool bDealDamage = Function == TEXT("DealDamage");
+			const bool bScalarRead = Function == TEXT("GetPendingDamageMultiplier");
+			const bool bScalarClear = Function == TEXT("ClearPendingDamageMultiplier");
+
+			if (bDealDamage)
+			{
+				++DealDamageSites;
+				for (const UEdGraphPin* Pin : Node->Pins)
+				{
+					if (Pin && Pin->PinName == TEXT("damageMultiplier") && Pin->LinkedTo.Num() > 0)
+					{
+						++SitesDrivenByScalar;
+					}
+				}
+			}
+
+			if (bScalarRead)
+			{
+				++ScalarReads;
+				for (const UEdGraphPin* Pin : Node->Pins)
+				{
+					if (!Pin || Pin->Direction != EGPD_Output) { continue; }
+					for (const UEdGraphPin* Linked : Pin->LinkedTo)
+					{
+						if (Linked && Linked->PinName == TEXT("damageMultiplier"))
+						{
+							++ScalarReadsWired;
+						}
+					}
+				}
+			}
+
+			if (bScalarClear)
+			{
+				++ScalarClears;
+			}
+		}
+	}
+
+	TestTrue(TEXT("BP_BattleController has at least one Deal Damage site"), DealDamageSites > 0);
+	TestEqual(
+		TEXT("Every Deal Damage site takes the latched rhythm scalar. A site left on the "
+			 "1.0 default is what made a second writer look necessary."),
+		SitesDrivenByScalar, DealDamageSites);
+	TestEqual(
+		TEXT("Every GetPendingDamageMultiplier read feeds a damageMultiplier input and "
+			 "nothing else -- an extra consumer applies the grade twice to one hit."),
+		ScalarReadsWired, ScalarReads);
+	TestTrue(
+		TEXT("The scalar is spent after use (Clear Pending Damage Multiplier present), so "
+			 "one grade cannot be applied to a later hit."),
+		ScalarClears > 0);
 
 	return true;
 }

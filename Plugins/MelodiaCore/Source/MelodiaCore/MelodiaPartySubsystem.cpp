@@ -105,6 +105,17 @@ void UMelodiaPartySubsystem::SwitchToNext(APlayerController* PC)
 {
 	if (!PC || PartyPawnClasses.Num() < 2 || !bSirMelodiousExplorationUnlocked)
 	{
+		// Ctrl is wired end to end: LeftControl -> IA_Flight_PartySwitch ->
+		// OnPartySwitch -> here. The only reason a press can do nothing is one of
+		// these three conditions, and all three used to fail silently, which is
+		// indistinguishable from an unwired key. Name the actual cause instead.
+		// Deliberately does not unlock itself: exploration flight is gated on the
+		// stock JRPG party actually containing Sir, and that is a gameplay
+		// decision, not a wiring fallback.
+		UE_LOG(LogTemp, Warning,
+			TEXT("Melodia party switch declined: no_controller=%d roster_size=%d sir_unlocked=%d "
+				 "(sir_unlocked turns true only once stock partyMembers confirms Sir was recruited)"),
+			PC ? 0 : 1, PartyPawnClasses.Num(), bSirMelodiousExplorationUnlocked ? 1 : 0);
 		return;
 	}
 	const int32 NextIndex = (ActiveIndex + 1) % PartyPawnClasses.Num();

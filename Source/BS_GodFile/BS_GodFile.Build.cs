@@ -44,6 +44,10 @@ public class BS_GodFile : ModuleRules
 			PrivateDependencyModuleNames.AddRange(new string[] {
 				"UnrealEd",
 				"AssetTools",
+				// UK2Node_CallFunction, for the wiring-contract tests that identify
+				// Blueprint call sites by their referenced UFunction name. Editor-only;
+				// the tests are behind WITH_EDITOR && WITH_DEV_AUTOMATION_TESTS.
+				"BlueprintGraph",
 				"NiagaraEditor",
 				"PCGEditor",
 				"MeshPartition",

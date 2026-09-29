@@ -2,6 +2,9 @@
 
 #include "Components/InputComponent.h"
 #include "Components/MeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Animation/AnimInstance.h"
+#include "Animation/AnimMontage.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "GameFramework/Character.h"
@@ -561,6 +564,29 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 
 	bIsDashing = true;
 	DashCooldownUntilTime = Now + DashCooldownSeconds;
+
+	// Presentation: roll on the canonical skeleton. DefaultSlot sits between the
+	// locomotion state machine and the Kawaii pass in ABP_Melusina_Current, so the
+	// montage reads over movement without touching the state machine. Static cache
+	// keeps this a body-only change (no class layout change); the asset path is
+	// fixed and matches the verified on-disk montage on SK_Melusina_Skeleton.
+	// IsDashing() stays the future invulnerability query for the dodge slice.
+	static TWeakObjectPtr<UAnimMontage> DashRollMontage;
+	if (!DashRollMontage.IsValid())
+	{
+		DashRollMontage = Cast<UAnimMontage>(StaticLoadObject(UAnimMontage::StaticClass(), nullptr,
+			TEXT("/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll.AM_Melusina_Roll")));
+	}
+	if (UAnimMontage* Roll = DashRollMontage.Get())
+	{
+		if (USkeletalMeshComponent* Mesh = OwnerCharacter->GetMesh())
+		{
+			if (UAnimInstance* Anim = Mesh->GetAnimInstance())
+			{
+				Anim->Montage_Play(Roll, 1.0f);
+			}
+		}
+	}
 
 	if (UWorld* World = GetWorld())
 	{

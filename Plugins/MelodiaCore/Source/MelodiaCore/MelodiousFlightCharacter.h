@@ -68,6 +68,19 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Perch")
 	bool bIsPerched = false;
 
+	/**
+	 * BlueprintPure reader for bIsPerched.
+	 *
+	 * ABP_SirMelodious drives its Perch state from this. An Anim Blueprint cannot
+	 * read a UPROPERTY that lives on the pawn: the only node that read a property
+	 * off an arbitrary object reference (K2Node_VariableGetter) no longer exists in
+	 * UE 5.8, and K2Node_VariableGet only allocates pins for variables the AnimBP
+	 * itself declares. So a BlueprintReadOnly UPROPERTY is unreachable from the ABP
+	 * without an accessor. This is that accessor.
+	 */
+	UFUNCTION(BlueprintPure, Category="Melodia|Perch")
+	bool IsPerched() const { return bIsPerched; }
+
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Perch")
 	TObjectPtr<ASirPerchPoint> CurrentPerch = nullptr;
 
