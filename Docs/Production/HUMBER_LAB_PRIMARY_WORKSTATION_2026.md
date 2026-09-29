@@ -2,6 +2,7 @@
 
 **Status:** ACTIVE SEMESTER WORKFLOW  
 **Primary interactive workstation:** authorized Humber lab PC during class/lab sessions  
+**Portable full-project workspace:** owner-controlled `G:` SSD; may run the complete project directly at home or Humber when mounted  
 **Secondary interactive workstation:** ASUS Nitro laptop  
 **Dedicated long-job worker:** home Windows workstation  
 **Git baseline:** protected `main`; "Humber is primary" refers to the machine role, not permission to bypass branch/PR discipline.
@@ -27,6 +28,18 @@ origin/main or short-lived task branch
 ```
 
 The home PC is not the place you must physically sit to make progress. It is the machine that keeps working after the artistic decision has already been made.
+
+### Portable `G:` full-project workspace
+
+`G:` is a portable SSD that can hold and run the **entire Melodia project**. It is not inherently an archive, backup-only drive, or subordinate mirror. When the SSD is mounted on an authorized home or Humber machine and its project root is healthy, that existing full project copy is a valid working root for Unreal, Blender, Houdini, and repository tooling.
+
+Operational rule:
+
+1. Prefer the healthy full project already present on `G:` over creating another school-machine clone just to satisfy a drive-letter assumption.
+2. Run repo-relative tooling from that project root; the scripts derive `ProjectRoot` from their own location and should not require the project to live on `C:`.
+3. Use Git/LFS/P4 to synchronize/version the portable project where appropriate, but do not treat network synchronization as a prerequisite for opening or using an already-complete `G:` copy.
+4. Before unplugging or moving the SSD, close Unreal/Blender/Houdini and any process actively writing project files, then eject the drive normally.
+5. A separately named backup on `G:` may still be archival; the presence of archival copies does not make the drive itself archive-only.
 
 ## 2. What stays on the Humber workstation
 
@@ -106,11 +119,15 @@ Unreal temporal rendering depends on prior-frame history, so a shot is the small
 
 ### Before starting at Humber
 
+If the portable `G:` SSD is mounted and already contains the complete working Melodia project, **use that project root first**. Do not reclone to `C:` merely because the workstation is different. From the actual project root on `G:` (or another owner-approved location), run:
+
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\deploy\humber_lab_bootstrap.ps1 -Mode Prepare -IConfirmAuthorizedUse
 ```
 
-The normal synchronization target is `origin/main`. After the machine is synchronized, create/use a **small task branch** for actual authored changes when the task is more than a trivial doc-only correction.
+If no healthy portable/full checkout is available, fall back to the clone/recovery procedure in Gate A below.
+
+The normal synchronization target is `origin/main`. Git/LFS/P4 synchronize and version the workspace; they do not define whether a complete `G:` project copy is usable. After synchronization, keep authored changes bounded and follow the repository's current Git rules.
 
 ### Sending work home
 
@@ -252,7 +269,9 @@ Do not reuse the home workstation client Melodia_ws on the Humber PC. Every mach
 
 ### Gate A — recover or create the Git checkout
 
-If a usable clone already exists, do not reclone it. Run:
+First check for the owner-controlled portable full-project SSD. If `G:` is mounted and contains the complete Melodia project/repository, treat that as the existing checkout and work from its actual project root. **Do not copy or reclone it to `C:` solely to normalize the drive letter.**
+
+If a usable checkout already exists on `G:`, `C:`, or another owner-approved path, do not reclone it. Run:
 
     git status --short
     git remote -v
