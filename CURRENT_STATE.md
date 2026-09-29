@@ -5,7 +5,9 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-27 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-29 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+
+**AIRI bridge P0 work (isolated branch, 2026-09-29): PARTIAL / source tests pass, live proof open.** The opt-in, non-shipping `UMelodiaAiriBridgeSubsystem` emits a semantic world-location event asynchronously and accepts only an allowlisted AIRI ACT emotion into debug state. A loopback Node relay sends transient AIRI `context:update` events and listens for assistant output markers; protocol, tests, card generator, and architecture docs are scoped to `feat/melusina-airi-bridge-p0`. `npm test` passed 12/12. The UE 5.8 build attempt stalled without UBT output and was stopped; compilation, live AIRI receipt/response, and PIE offline behavior remain unverified. See [`Docs/AIRI/MELUSINA_AIRI_P0_STATUS.md`](Docs/AIRI/MELUSINA_AIRI_P0_STATUS.md). No production hero asset is part of the bridge changes; a separately dirty 130-byte `BP_Melusina.uasset` LFS-pointer path is left untouched and excluded from staging.
 
 **VCS sync point, 2026-09-25:** p4 depot `//Melodia` CL 222 ↔ git `ec5ace363` (branch `fix/melusina-wings-emissive-veins`, pushed to origin). CL 222 = 210 files (adds/deletes via `reconcile`, content via `diff -se`) in a changelist separate from the live lane's default-CL opens. 9 UI-study PNGs under `Content/UI/` remain git-only until their folder names drop trailing spaces — Windows-illegal segments that git created and p4d cannot mkdir. Nightly depot checkpoint → `G:\perforce_backup` (job `p4-nightly-checkpoint`, 04:00, md5-verified).
 
