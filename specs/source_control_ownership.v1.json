@@ -15,7 +15,8 @@
         "deploy/",
         "specs/",
         "BS_GodFile.uproject",
-        "Content/Python/"
+        "Content/Python/",
+        "RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend"
       ]
     },
     "perforce": {
@@ -26,7 +27,8 @@
         "RawArt/"
       ],
       "exclude_roots": [
-        "Content/Python/"
+        "Content/Python/",
+        "RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend"
       ]
     }
   },
@@ -100,9 +102,10 @@
       "status": "repo_verified",
       "date": "2026-09-25",
       "paths": [
-        "Content/Python/"
+        "Content/Python/",
+        "RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend"
       ],
-      "note": "Canonical PCG, World Compiler UE/editor automation, importers, and other editor tooling remain Git-owned source during creative-content cutover."
+      "note": "Canonical PCG/editor automation remains Git-owned under Content/Python/. The standalone WaveHarp Rev08 handoff blend is an explicit Git-LFS exception inside RawArt; larger hero/source-art files remain Perforce-owned."
     }
   }
 }
