@@ -5,9 +5,11 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-27 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-09-28 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 
 **VCS sync point, 2026-09-25:** p4 depot `//Melodia` CL 222 ↔ git `ec5ace363` (branch `fix/melusina-wings-emissive-veins`, pushed to origin). CL 222 = 210 files (adds/deletes via `reconcile`, content via `diff -se`) in a changelist separate from the live lane's default-CL opens. 9 UI-study PNGs under `Content/UI/` remain git-only until their folder names drop trailing spaces — Windows-illegal segments that git created and p4d cannot mkdir. Nightly depot checkpoint → `G:\perforce_backup` (job `p4-nightly-checkpoint`, 04:00, md5-verified).
+
+**VCS sync, 2026-09-28 night:** `feature/spout-beauty-2026-09-26` converged with its remote (merge `0ae755764`, 6 ahead / 0 behind): Sir 6-clip import + ABP driver, rhythm single-writer fix, WaveHarp/archery/HUD, VFX audit, Monolith-transport + Houdini-foundry landings. `origin/main` tip `4bd7f74f3` (docs-only portfolio plan) not yet merged in. Perforce: 4 intentional HOLD opens (CLs 264/265/267) + shelved CL 235; ticket valid, sync up-to-date. D:/G: mirrors: fresh DryRun pending, Apply waits on an editor-close window (script guard).
 
 **VCS review, 2026-09-27:** Git PRs #343 (`b8b99bac4`, World Compiler source), #344 (`b14aefacf`, model routing), and #345 (`815b8068f`, Regalia lookdev package) merged in separate batches with proof limits in each PR. The live `feature/spout-beauty-2026-09-26` checkout still contains other local edits and untracked assets; these merges do not close that queue. Perforce typemap now defaults new `.uasset`, `.umap`, `.blend`, and `.fbx` files under `//Melodia` to `binary+l`; 103 already-open binary files were reopened with exclusive-open metadata. CL 237 contains six World Compiler text revisions that were already identical to depot head before submit; it changed no content. The remaining default changelist and depot-wide reconciliation remain open and require targeted review.
 
