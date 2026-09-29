@@ -82,8 +82,14 @@ def monolith(method, args=None, timeout=30):
     return joined
 
 
-def _encode_body(body):
-    """Serialize a JSON-RPC body exactly as the hand-rolled version did.
+def post_envelope(body, timeout=30, endpoint=None):
+    """POST a pre-built JSON-RPC body dict and return the parsed response.
+
+    Transport-only sibling of monolith_raw(). It exists so scripts that
+    hand-build their own envelope (tool/arguments shapes the higher-level
+    helpers do not model) can converge on one HTTP implementation without
+    changing their own parsing logic. Same signature contract as
+    _call_envelope, but the caller supplies the body.
 
     Accepts a dict, a JSON str, or pre-serialized bytes: several migrated
     helpers recovered their Request(data=...) expression, which is often
@@ -91,77 +97,20 @@ def _encode_body(body):
     so anything already serialized is passed through untouched.
     """
     if isinstance(body, (bytes, bytearray)):
-        return bytes(body)
-    if isinstance(body, str):
-        return body.encode()
-    return json.dumps(body).encode()
-
-
-def _post(body, timeout=30, endpoint=None, headers=None):
-    """Send `body` to Monolith; return (response_bytes, transport_error).
-
-    Bytes rather than text on purpose: callers differ in how strictly they
-    decode (json.loads wants strict UTF-8, the SSE scanners want "replace"),
-    and that choice belongs to the caller, not the transport.
-    """
-    merged = {"Content-Type": "application/json"}
-    merged.update(headers or {})
-    req = urllib.request.Request(endpoint or MONOLITH_URL,
-                                 data=_encode_body(body), headers=merged)
+        data = bytes(body)
+    elif isinstance(body, str):
+        data = body.encode()
+    else:
+        data = json.dumps(body).encode()
+    req = urllib.request.Request(
+        endpoint or MONOLITH_URL,
+        data=data,
+        headers={"Content-Type": "application/json"},
+    )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return resp.read(), None
-    except (urllib.error.URLError, OSError) as e:
-        return None, e
-
-
-def post_text(body, timeout=30, endpoint=None, raise_on_error=False, headers=None):
-    """POST a JSON-RPC body and return the raw response text.
-
-    Sibling of post_envelope() for the endpoints that may answer as SSE
-    ("data: {...}" lines). post_envelope() parses the response as JSON and
-    cannot recover such a stream, so callers that scan the lines themselves
-    (monolith_probe, get_hlsl_schema) post through here instead.
-
-    `headers` is merged over {"Content-Type": "application/json"}; passing
-    {"Accept": "application/json, text/event-stream"} reproduces the request
-    the hand-rolled version sent, byte for byte.
-
-    raise_on_error=True propagates transport failures instead of returning "",
-    matching the urlopen() behaviour these call sites were migrated from.
-    """
-    raw, err = _post(body, timeout=timeout, endpoint=endpoint, headers=headers)
-    if err is not None:
-        if raise_on_error:
-            raise err
-        return ""
-    return raw.decode("utf-8", "replace")
-
-
-def post_envelope(body, timeout=30, endpoint=None, raise_on_error=False, headers=None):
-    """POST a pre-built JSON-RPC body dict and return the parsed response.
-
-    Transport-only sibling of monolith_raw(). It exists so scripts that
-    hand-build their own envelope (tool/arguments shapes the higher-level
-    helpers do not model) can converge on one HTTP implementation without
-    changing their own parsing logic. Same signature contract as
-    _call_envelope(), but the caller supplies the body.
-
-    Accepts a dict, a JSON str, or pre-serialized bytes (see _encode_body).
-
-    raise_on_error=True propagates connection/decoding failures instead of
-    returning {"error": ...}. Callers that used urlopen() directly got an
-    exception on a dead endpoint, so migrated sites opt in to keep their own
-    try/except (and their own fallbacks) working exactly as before.
-    """
-    raw, err = _post(body, timeout=timeout, endpoint=endpoint, headers=headers)
-    try:
-        if err is not None:
-            raise err
-        return json.loads(raw.decode())
+            return json.loads(resp.read().decode())
     except (urllib.error.URLError, OSError, json.JSONDecodeError) as e:
-        if raise_on_error:
-            raise
         return {"error": str(e)}
 
 

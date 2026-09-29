@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Melodia Houdini Foundry bake manifest v1",
+  "description": "Written by the baking Hython tool next to its outputs (Saved/HoudiniFoundry/<recipe_id>_<seed>/bake_manifest.json). Manifests are outputs, never inputs; Tools/Houdini/foundry/houdini_foundry.py verify re-derives every hash.",
+  "type": "object",
+  "required": [
+    "schema",
+    "recipe_id",
+    "recipe_sha256",
+    "seed",
+    "houdini_version",
+    "tool",
+    "outputs",
+    "status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "melodia.houdini_foundry_bake_manifest.v1"
+    },
+    "recipe_id": {
+      "type": "string"
+    },
+    "recipe_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "universe_foundry.content_hash(recipe)"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "tile_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "houdini_version": {
+      "type": "string",
+      "description": "hou.applicationVersionString() of the cook, e.g. 22.0.368"
+    },
+    "license_category": {
+      "type": "string"
+    },
+    "tool": {
+      "type": "object",
+      "required": [
+        "path",
+        "git_sha"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "git_sha": {
+          "type": "string"
+        },
+        "hda_version": {
+          "type": "string"
+        }
+      }
+    },
+    "params": {
+      "type": "object"
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "repo-relative"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "bytes": {
+            "type": "integer"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ue": {
+      "type": "object",
+      "description": "filled by the UE gate, never by Hython",
+      "properties": {
+        "engine_version": {
+          "type": "string"
+        },
+        "houdini_engine_plugin_version": {
+          "type": "string"
+        },
+        "baked_asset_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "saved": {
+          "type": "boolean"
+        },
+        "reloaded_equal": {
+          "type": "boolean"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "HOLD"
+      ]
+    },
+    "failure_log": {
+      "type": "string"
+    }
+  }
+}

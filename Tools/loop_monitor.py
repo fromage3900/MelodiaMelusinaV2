@@ -17,10 +17,12 @@ from datetime import datetime
 MONOLITH = "http://127.0.0.1:9316/mcp"
 
 def monolith(action, args=None):
+    import urllib.request
     body = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
             "params": {"name": action, "arguments": args or {}}}
     try:
-        return post_envelope(json.dumps(body).encode(), timeout=10, raise_on_error=True)
+        data = post_envelope(json.dumps(body).encode(), timeout=10)
+        return data
     except Exception as e:
         return {"error": str(e)}
 

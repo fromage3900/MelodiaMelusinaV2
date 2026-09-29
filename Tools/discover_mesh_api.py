@@ -2,13 +2,13 @@
 """Discover correct API to set materials on SkeletalMesh in UE5.8."""
 
 from mcp_client import post_envelope
-import json, sys
+import json, sys, urllib.request
 
 MCP = "http://127.0.0.1:9316/mcp"
 
 def monolith(tool, args, timeout=30):
     body = json.dumps({"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":tool,"arguments":args}}).encode()
-    data = post_envelope(body, timeout=timeout, raise_on_error=True)
+    data = post_envelope(body, timeout=timeout)
     result = data.get("result",{})
     if result.get("isError"):
         return "ERROR:" + result.get("content",[{}])[0].get("text","")

@@ -9,14 +9,16 @@ Usage:
         --console-script WalkLoop BowLoop ^
         --name melusina_walk_smoke
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import argparse
 import json
 import sys
 import time
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -38,7 +40,8 @@ def _next_id() -> int:
 def _post(method: str, params: dict | None = None, *, timeout: float = 120.0) -> dict:
     payload = {"jsonrpc": "2.0", "id": _next_id(), "method": method, "params": params or {}}
     data = json.dumps(payload).encode("utf-8")
-    return post_envelope(data, timeout=timeout, raise_on_error=True)
+    data = post_envelope(data, timeout=timeout)
+    return data
 
 
 def _call_tool(name: str, arguments: dict, *, timeout: float = 120.0) -> dict:

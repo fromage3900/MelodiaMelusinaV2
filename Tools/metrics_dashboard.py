@@ -14,7 +14,7 @@ Usage:
 
 from mcp_client import post_envelope
 
-import json, os, sys, time, webbrowser
+import json, os, sys, time, urllib.request, webbrowser
 from pathlib import Path
 from datetime import datetime
 
@@ -30,7 +30,8 @@ def monolith(action, args=None):
     body = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
             "params": {"name": action, "arguments": args or {}}}
     try:
-        return post_envelope(json.dumps(body).encode(), timeout=5, raise_on_error=True)
+        data = post_envelope(json.dumps(body).encode(), timeout=5)
+        return data if "error" not in data else {}
     except Exception:
         return {}
 

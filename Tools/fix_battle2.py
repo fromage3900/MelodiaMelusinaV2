@@ -1,11 +1,10 @@
-
 from mcp_client import post_envelope
-import json
+
+import json, urllib.request
 MCP='http://127.0.0.1:9316/mcp'
 def call(tool,args):
     b=json.dumps({'jsonrpc':'2.0','id':1,'method':'tools/call','params':{'name':tool,'arguments':args}}).encode()
-    return post_envelope(b, timeout=25, raise_on_error=True)
-
+    return post_envelope(b, timeout=25)
 code = r'''
 import json, unreal
 actors = unreal.EditorLevelLibrary.get_all_level_actors()

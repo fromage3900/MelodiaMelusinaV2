@@ -18,8 +18,8 @@ Usage:
 Backends: classical-baseline, qsharp-simulator (2 candidates only), qiskit-aer,
 chaos, swarm, pbit, entropy, cellular, commit-reveal, oracle.
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import argparse
@@ -75,14 +75,17 @@ MONOLITH = "http://127.0.0.1:9316/mcp"
 
 
 def mcp(tool: str, action: str, params: dict) -> dict:
+    import urllib.request
 
     body = json.dumps({
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": tool, "arguments": {"action": action, "params": params}},
     }).encode()
-    envelope = post_envelope(body, timeout=60, raise_on_error=True)
-    content = envelope.get("result", {}).get("content") or []
-    return json.loads(content[0]["text"]) if content else envelope
+    data = post_envelope(body, timeout=60)
+    if "error" in data:
+        raise RuntimeError(data["error"])
+    content = data.get("result", {}).get("content") or []
+    return json.loads(content[0]["text"]) if content else data
 
 
 def draw_local(seed: int, candidates: list[dict], backend: str) -> dict:
@@ -96,10 +99,14 @@ def draw_local(seed: int, candidates: list[dict], backend: str) -> dict:
 
 
 def draw_http(url: str, seed: int, candidates: list[dict], backend: str) -> dict:
+    import urllib.request
 
     payload = json.dumps({"job_type": "rank_layouts", "seed": seed, "candidates": candidates,
                           "backend": backend}).encode()
-    return post_envelope(payload, timeout=15, raise_on_error=True)
+    req = urllib.request.Request(f"{url.rstrip('/')}/rank_layouts", data=payload,
+                                 headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=15) as response:
+        return json.loads(response.read().decode("utf-8"))
 
 
 def publish_mpc(choice: float, qseed: float, qbackend: float, color: tuple, pulse: float) -> None:

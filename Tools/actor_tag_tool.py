@@ -1,18 +1,23 @@
 import argparse
 import json
 import sys
+import urllib.request
 import urllib.error
-
-from mcp_client import post_envelope
 
 MONOLITH_URL = "http://localhost:9316"
 
 
 def send_to_monolith(command: str) -> dict:
-    payload = {"action": "run_python", "command": command}
+    payload = json.dumps({"action": "run_python", "command": command}).encode("utf-8")
+    req = urllib.request.Request(
+        MONOLITH_URL,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
     try:
-        return post_envelope(payload, timeout=120, raise_on_error=True,
-                             endpoint=MONOLITH_URL)
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except urllib.error.URLError as e:
         print(f"Error connecting to Monolith at {MONOLITH_URL}: {e}", file=sys.stderr)
         sys.exit(1)

@@ -10,7 +10,7 @@ Changes:
 
 from mcp_client import post_envelope
 
-import json, os, subprocess, sys, time
+import json, os, subprocess, sys, time, urllib.request
 
 MCP_URL = "http://127.0.0.1:9316/mcp"
 PROXY = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -32,7 +32,7 @@ def monolith(method, args, timeout=30):
         "jsonrpc": "2.0", "id": 1, "method": "tools/call",
         "params": {"name": method, "arguments": args}
     })
-    data = post_envelope(body.encode(), timeout=timeout, raise_on_error=True)
+    data = post_envelope(body.encode(), timeout=timeout)
     return data.get("result", {}).get("content", [{}])[0].get("text", "")
 
 

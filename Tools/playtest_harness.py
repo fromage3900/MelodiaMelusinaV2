@@ -28,6 +28,7 @@ import os
 import subprocess
 import sys
 import time
+import urllib.request
 
 MCP = "http://127.0.0.1:9316/mcp"
 SAVED = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Saved"))
@@ -48,7 +49,7 @@ BP_TRIES = [
 def monolith(tool, args, timeout=60):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": tool, "arguments": args}}).encode()
-    data = post_envelope(body, timeout=timeout, raise_on_error=True)
+    data = post_envelope(body, timeout=timeout)
     result = data.get("result", {})
     if result.get("isError"):
         text = result.get("content", [{}])[0].get("text", "")

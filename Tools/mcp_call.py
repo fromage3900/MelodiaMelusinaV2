@@ -8,6 +8,7 @@ Usage:
 from mcp_client import post_envelope
 import json
 import sys
+import urllib.request
 
 URL = "http://127.0.0.1:9316/mcp"
 
@@ -15,8 +16,7 @@ URL = "http://127.0.0.1:9316/mcp"
 def call(name, arguments):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": name, "arguments": arguments}}).encode()
-    return post_envelope(body, timeout=600, raise_on_error=True)
-
+    return post_envelope(body, timeout=600)
 
 def main():
     if sys.argv[1] == "run_python":

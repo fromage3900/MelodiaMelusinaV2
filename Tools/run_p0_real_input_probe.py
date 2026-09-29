@@ -2,11 +2,11 @@ import json
 import os
 import shutil
 import time
+import urllib.request
 from pathlib import Path
 
-from mcp_client import post_envelope
-
 PROJECT_ROOT = Path("C:/EnvironmentPortfolio/BS_GodFile")
+MONOLITH_URL = "http://127.0.0.1:9316/mcp"
 SCREENSHOTS_DIR = PROJECT_ROOT / "Saved" / "Screenshots" / "WindowsEditor"
 AUDIT_DIR = PROJECT_ROOT / "Saved" / "Audit" / "p0_real_input_run"
 AUDIT_DIR.mkdir(parents=True, exist_ok=True)
@@ -24,12 +24,18 @@ def call_editor(action, **kwargs):
             }
         }
     }
-    res = post_envelope(json.dumps(payload).encode("utf-8"), timeout=45, raise_on_error=True)
-    raw = res.get("result", {}).get("content", [{}])[0].get("text", "{}")
-    try:
-        return json.loads(raw)
-    except Exception:
-        return raw
+    req = urllib.request.Request(
+        MONOLITH_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"}
+    )
+    with urllib.request.urlopen(req, timeout=45) as resp:
+        res = json.loads(resp.read().decode("utf-8"))
+        raw = res.get("result", {}).get("content", [{}])[0].get("text", "{}")
+        try:
+            return json.loads(raw)
+        except Exception:
+            return raw
 
 def call_fn(target, function, args=None, allow_non_callable=True, component_name=None):
     kwargs = {

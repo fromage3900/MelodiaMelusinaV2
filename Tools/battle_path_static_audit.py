@@ -5,8 +5,8 @@ Runs without the editor by reading config files and checking disk assets.
 If Monolith (port 9316) is reachable, it also performs live registry checks.
 Output: Saved/Audit/battle_static_<timestamp>.json
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import configparser
@@ -14,6 +14,7 @@ import json
 import os
 import sys
 import time
+import urllib.request
 from pathlib import Path
 from typing import Any
 
@@ -103,8 +104,7 @@ def read_maps_to_cook() -> list[str]:
 def monolith_reachable() -> bool:
     try:
         body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}).encode()
-        post_envelope(body, timeout=3, raise_on_error=True)
-        return True
+        data = post_envelope(body, timeout=3)
     except Exception:
         return False
 
@@ -112,7 +112,7 @@ def monolith_reachable() -> bool:
 def monolith_call(tool: str, args: dict[str, Any]) -> Any:
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                        "params": {"name": tool, "arguments": args}}).encode()
-    data = post_envelope(body, timeout=30, raise_on_error=True)
+    data = post_envelope(body, timeout=30)
     result = data.get("result", {})
     if result.get("isError"):
         raise RuntimeError(result.get("content", [{}])[0].get("text", "unknown"))

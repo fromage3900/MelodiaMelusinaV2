@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Diagnose Melusina Animation Blueprint for T-pose and animation issues via Monolith MCP."""
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import json
 import sys
 from pathlib import Path
+from urllib.request import Request, urlopen
 from urllib.error import URLError
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
@@ -24,7 +25,7 @@ def monolith_call(tool: str, arguments: dict) -> dict:
         "params": {"name": tool, "arguments": arguments},
     }
     try:
-        data = post_envelope(json.dumps(body).encode(), timeout=60, raise_on_error=True)
+        data = post_envelope(json.dumps(body).encode(), timeout=60)
     except (URLError, TimeoutError, json.JSONDecodeError) as e:
         return {"_error": f"Monolith unreachable: {e}"}
 

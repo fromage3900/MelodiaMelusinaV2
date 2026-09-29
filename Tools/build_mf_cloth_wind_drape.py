@@ -17,7 +17,7 @@ Inputs (FunctionInputs, exposed on MaterialFunctionCall):
   FoldingAmount  float   (0 = off)
   DrapeMask      float   (0..1 area mask; 0 cancels everything)
 """
-import json, sys, os
+import json, sys, os, urllib.request
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Content", "Python"))
 import unreal  # noqa: E402

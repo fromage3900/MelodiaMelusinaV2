@@ -1,6 +1,6 @@
-
 from mcp_client import post_envelope
-import json, sys
+
+import urllib.request, json, sys
 
 MCP_URL = 'http://127.0.0.1:9316/mcp'
 LOG = []
@@ -15,8 +15,10 @@ def call_monolith(action, **kwargs):
         'params': {'name': 'blueprint_query', 'arguments': {'action': action, **kwargs}}
     }).encode()
     try:
-        resp = post_envelope(body, timeout=60, raise_on_error=True)
-        return resp
+        data = post_envelope(body, timeout=60)
+        if "error" in data:
+            return {'isError': True, 'error': data['error']}
+        return data
     except Exception as e:
         return {'isError': True, 'error': str(e)}
 
@@ -27,8 +29,10 @@ def editor_run_python(script_code):
         'params': {'name': 'editor_query', 'arguments': {'action': 'run_python', 'command': script_code}}
     }).encode()
     try:
-        resp = post_envelope(body, timeout=120, raise_on_error=True)
-        return resp
+        data = post_envelope(body, timeout=120)
+        if "error" in data:
+            return {'isError': True, 'error': data['error']}
+        return data
     except Exception as e:
         return {'isError': True, 'error': str(e)}
 

@@ -34,12 +34,11 @@ payload and the gate verdicts. Never touches PCG graph structure, MPCs or master
 """
 from __future__ import annotations
 
-from mcp_client import post_envelope
-
 import argparse
 import json
 import sys
 import time
+import urllib.request
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -51,13 +50,20 @@ _rpc_id = [0]
 
 def _rpc(method: str, params: dict, timeout: int = 180) -> dict:
     _rpc_id[0] += 1
-    body = {"jsonrpc": "2.0", "id": _rpc_id[0], "method": method, "params": params}
-    try:
-        return post_envelope(body, timeout=timeout, raise_on_error=True)
-    except json.JSONDecodeError:
-        # Not parseable as the JSON-RPC envelope (this used to walk `data:`
-        # SSE frames and fall back to the raw body text).
-        return {"_raw": f"non-JSON response from {MONOLITH}"}
+    req = urllib.request.Request(
+        MONOLITH,
+        data=json.dumps({"jsonrpc": "2.0", "id": _rpc_id[0], "method": method, "params": params}).encode(),
+        headers={"Content-Type": "application/json", "Accept": "application/json, text/event-stream"},
+        method="POST",
+    )
+    raw = urllib.request.urlopen(req, timeout=timeout).read().decode("utf-8", "replace")
+    for line in raw.splitlines():
+        line = line.strip()
+        if line.startswith("data:"):
+            line = line[5:].strip()
+        if line.startswith("{"):
+            return json.loads(line)
+    return {"_raw": raw[:2000]}
 
 
 def call(tool: str, args: dict, timeout: int = 180):

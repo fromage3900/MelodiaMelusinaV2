@@ -13,8 +13,8 @@ Usage:
     python Tools/regression_suite.py --quick
     python Tools/regression_suite.py --full
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import argparse
@@ -25,6 +25,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -57,7 +58,8 @@ def _next_id() -> int:
 def _post(method: str, params: dict | None = None, *, timeout: float = 120.0) -> dict:
     payload = {"jsonrpc": "2.0", "id": _next_id(), "method": method, "params": params or {}}
     data = json.dumps(payload).encode("utf-8")
-    return post_envelope(data, timeout=timeout, raise_on_error=True)
+    data = post_envelope(data, timeout=timeout)
+    return data
 
 
 def _call_tool(name: str, arguments: dict, *, timeout: float = 120.0) -> dict:
@@ -97,8 +99,12 @@ def monolith_status() -> dict:
 def fetch_fingerprint(asset_path: str, mode: str = "topology") -> dict | None:
     payload = json.dumps({"action": "get_graph_fingerprint", "asset_path": asset_path, "mode": mode}).encode()
     try:
-        return post_envelope(payload, timeout=15, raise_on_error=True)
-    except (urllib.error.URLError, json.JSONDecodeError):
+        data = post_envelope(payload, timeout=15, endpoint=MONOLITH_URL_RAW)
+        if "error" in data:
+            return None
+        text = data.get("result", {}).get("content", [{}])[0].get("text", "")
+        return json.loads(text) if text else None
+    except (urllib.error.URLError, json.JSONDecodeError, TypeError):
         return None
 
 

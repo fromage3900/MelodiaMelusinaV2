@@ -1,9 +1,10 @@
-
 from mcp_client import post_envelope
+
 import argparse
 import json
 import sys
 from pathlib import Path
+from urllib.request import Request, urlopen
 from urllib.error import URLError
 
 MONOLITH_URL = "http://localhost:9316/mcp"
@@ -42,10 +43,12 @@ def fetch_fingerprint(asset_path: str, mode: str = "topology") -> dict | None:
         "params": {"name": "blueprint_query", "arguments": arguments},
     }).encode()
     try:
-        envelope = post_envelope(payload, timeout=15, raise_on_error=True)
-        text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
+        data = post_envelope(payload, timeout=15)
+        if "error" in data:
+            raise RuntimeError(data["error"])
+        text = data.get("result", {}).get("content", [{}])[0].get("text", "")
         return json.loads(text)
-    except URLError as e:
+    except (URLError, RuntimeError) as e:
         print(f"  [ERROR] Monolith unreachable for {asset_path}: {e}", file=sys.stderr)
         return None
     except (json.JSONDecodeError, TypeError) as e:
@@ -117,10 +120,12 @@ def _call_tool(method: str, arguments: dict) -> str | None:
         "params": {"name": method, "arguments": arguments},
     }).encode()
     try:
-        envelope = post_envelope(payload, timeout=15, raise_on_error=True)
-        text = envelope.get("result", {}).get("content", [{}])[0].get("text", "")
+        data = post_envelope(payload, timeout=15)
+        if "error" in data:
+            raise RuntimeError(data["error"])
+        text = data.get("result", {}).get("content", [{}])[0].get("text", "")
         return text
-    except (URLError, json.JSONDecodeError, TypeError) as e:
+    except (URLError, RuntimeError, json.JSONDecodeError, TypeError) as e:
         print(f"  [ERROR] Monolith unreachable: {e}", file=sys.stderr)
         return None
 

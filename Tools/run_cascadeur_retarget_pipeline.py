@@ -29,8 +29,8 @@ REQUIREMENTS
 - Blender 5.2 accessible as `blender` on PATH
 - RTG_Source_to_Melusina IK retargeter already created in UE
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import argparse
@@ -39,6 +39,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import urllib.request
 import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
@@ -67,7 +68,10 @@ MCP_URL = "http://localhost:9316/mcp"
 def mcp_call(method: str, params: dict, timeout: int = 120) -> dict:
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
     try:
-        return post_envelope(body, timeout=timeout, raise_on_error=True)
+        data = post_envelope(body, timeout=timeout)
+        if "error" in data:
+            return {"result": {"isError": True, "content": [{"text": data["error"]}]}}
+        return data
     except urllib.error.URLError as e:
         return {"result": {"isError": True, "content": [{"text": str(e)}]}}
     except Exception as e:

@@ -6,13 +6,14 @@ Usage:
     python Tools/apply_melusina_vfx.py          # apply presets
     python Tools/apply_melusina_vfx.py --log     # just read last log
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from mcp_client import post_envelope
 
 import json
 import os
 import sys
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -53,7 +54,10 @@ def mcp_call(tool: str, **kwargs) -> dict:
         "method": "tools/call",
         "params": {"name": tool, "arguments": kwargs},
     }).encode()
-    return post_envelope(body, timeout=120, raise_on_error=True)
+    data = post_envelope(body, timeout=120)
+    if "error" in data:
+        return {"error": data["error"]}
+    return data
 
 
 def run_py(script: str) -> dict:

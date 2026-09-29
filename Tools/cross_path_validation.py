@@ -27,9 +27,6 @@ Usage:
   python Tools/cross_path_validation.py --report Saved/Audit/cross_path_validation_report.json
 """
 from __future__ import annotations
-
-from mcp_client import post_envelope
-
 import argparse
 import json
 import sys
@@ -137,6 +134,8 @@ def check_hython(variant_filter=None):
 
 def check_monolith(variant_filter=None):
     import socket
+    import urllib.request
+    import urllib.error
     import json as _json
     results: list[CheckResult] = []
     s = socket.socket()
@@ -149,9 +148,11 @@ def check_monolith(variant_filter=None):
         return results
     try:
         payload = _json.dumps({"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "monolith_status", "arguments": {}}}).encode()
-        body = post_envelope(payload, timeout=5, raise_on_error=True)
-        inner = _json.loads(body["result"]["content"][0]["text"])
-        results.append(CheckResult("monolith/status", "PASS", f"v{inner['version']} {inner['total_actions']} actions port={inner['server_port']}", "running", f"v{inner['version']}"))
+        req = urllib.request.Request("http://127.0.0.1:9316/mcp", data=payload, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=5) as r:
+            body = _json.loads(r.read().decode())
+            inner = _json.loads(body["result"]["content"][0]["text"])
+            results.append(CheckResult("monolith/status", "PASS", f"v{inner['version']} {inner['total_actions']} actions port={inner['server_port']}", "running", f"v{inner['version']}"))
     except Exception as e:
         results.append(CheckResult("monolith/status", "ERROR", str(e)))
     results.append(CheckResult("monolith/project_search", "SKIP", "project asset search requires Phase A; run monolith_execution_plan_parallel.py Phase A first", MONOLITH_MATERIAL_PREFIX, "not yet executed"))

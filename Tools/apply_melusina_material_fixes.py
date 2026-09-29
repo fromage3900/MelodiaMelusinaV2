@@ -4,7 +4,7 @@ Connects to Monolith MCP at http://127.0.0.1:9316/mcp.
 """
 
 from mcp_client import post_envelope
-import json, sys
+import json, sys, urllib.request
 from pathlib import Path
 
 MONOLITH_URL = "http://127.0.0.1:9316/mcp"
@@ -16,7 +16,7 @@ def monolith(tool, action, params=None):
         "params": {"name": tool, "arguments": {"action": action, **(params or {})}}
     }).encode()
     try:
-        data = post_envelope(body, timeout=120, raise_on_error=True)
+        data = post_envelope(body, timeout=120)
     except Exception as e:
         return {"isError": True, "error": str(e)}
     if data.get("error"):
