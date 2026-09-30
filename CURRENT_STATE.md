@@ -196,6 +196,21 @@ P4 reconcile zero, ticket healthy, editor single on :9316. ZenForest rebuild ful
 band seeds/counts; all duplication sources present on disk) — editor lane just follows it.
 Ahead-8 on protected `main`, all state commits, all listed per D3.
 
+**Backup verified + full sweep executed, 2026-09-30 (owner-ordered):** `G:\perforce_backup`
+md5-OK on all 4 checkpoints with complete journal chain (checkpoint.7 + journal.7 = latest
+restorable point; restore = fresh p4d + `p4d -jr`). Git: 40 tracked mods (`6e240822e`) + 47 new
+work files (`4709e37f6` — AIRI, hybrid, run configs, Shorewake takes, WaterHair cache, polish
+audit; `.run/.venv`, the hook-forbidden airi-card zip, and Windows-unindexable `Content/UI`
+trailing-space dirs excluded with reasons). P4: default CL submitted as **CL 269** (gemstone
+family, WaveHarp trial set, toon profiles, regen bundle, Regalia/Glitter/Cathedral edits;
+phantom `_304FilmSpine` opens reverted — tree vanished mid-submit). Numbered HOLDs untouched:
+264 (template BPs REVIEW) · 265 (uproject HOLD) · 267 (integration map shared) · 268 (cleanup
+delete, needs confirm). **Agent-caused editor crash owned:** my Morning PIE smoke
+(`pie_smoke_1_225627`) crashed the editor at 06:03 UTC in `MonolithPieSmokeSession::FireActorSetup`
+— teardown had reported OK first. Crash autosaves exist (`Saved/Autosaves`, incl. Sir CamFlap,
+WaveHarp, Morning externals) — left for owner restore on relaunch, untouched. No relaunch from
+this lane; the 1:43 AM crash was an unrelated InRHITexture ensure.
+
 **ACFU recovery and bounded archery runtime test, 2026-09-30 (supersedes the earlier disk-hunt verdict):** A complete UE 5.8 copy exists at `D:/_melusina_combat_audit_20260927/5.8/ACFU_UE58_v4.3.5.rar`; `7z t` passed. With explicit owner approval to use existing main, restored all 4,996 files into the absent `Plugins/AscentCombatFramework/` directory. Plugin version 4.3.5 / EngineVersion 5.8.0 and binary BuildId 55116800 match the running UE 5.8 installation. One editor (PID 47428) was launched directly into `/Game/Melodia/CombatTrial/L_ZenForestACFTrial` with `-EnablePlugins=AscentCombatFramework`; live registry contains 1,444 plugin assets. No project/config enablement or production combat adoption was made.
 
 **LIVE PROJECTILE PROVEN / LIVE HIT PROVEN — DIRECT INVOCATION TEST, not player archery:** PIE possesses `BP_MelusinaACFHybrid` with `ACFPlayerControllerBP` and `ABP_Melusina_Current`. Existing aim function directly activates aim; injected ACFAimInput/ACFShootInput did not establish a working player action path. Saved pawn has no current weapon, no starting inventory, no default ability set, and no CharacterInitDataAsset. Three disposable, data-only CombatTrial assets configure the existing native shooting/projectile code: `BP_WaveHarpProofBow`, `BP_WaveHarpProofArrowItem`, `BP_WaveHarpProofArrowActor` (each compiled with 0 errors / 0 warnings). Temporary PIE setup attaches R07 bow to hand_l at scale 0.9, world rotation pitch 0 / yaw 90 / roll 0, and plays the existing bow montage (1.3 seconds). Native shooting spawns one visible projectile 123.69 cm from the pawn, owner/instigator/item owner Melusina, velocity `[4000,0,0]`, RootComp sphere collision, 5-second miss lifespan. R07 arrow geometry extends along local +Y; the test projectile mesh uses relative yaw -90 so its visual axis and actor travel both point +X. One native sphere hit callback reaches `BP_ACFTrialEnemy_C_0`; projectile stops and cleans up. This isolates projectile mechanics with ammo consumption disabled on the test bow; it does not grant or bind draw/release abilities.
