@@ -31,19 +31,41 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# Native tools (git, python) write progress to stderr. With $ErrorActionPreference='Stop',
+# PowerShell promotes that to a terminating error and aborts the script mid-way -- which is
+# exactly what happened on the first run here. All native calls therefore go through this
+# helper: stderr becomes captured output, and only the exit code decides success.
+function Invoke-Native {
+    param([string]$Exe, [string[]]$Arguments, [switch]$AllowFail)
+    $prev = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        $lines = @(& $Exe @Arguments 2>&1 | ForEach-Object { [string]$_ })
+        $code = if ($null -ne $LASTEXITCODE) { [int]$LASTEXITCODE } else { 0 }
+    } finally {
+        $ErrorActionPreference = $prev
+    }
+    if (-not $AllowFail -and $code -ne 0) {
+        throw "$Exe $($Arguments -join ' ') failed (exit $code)`n$($lines -join [Environment]::NewLine)"
+    }
+    return [pscustomobject]@{ Code = $code; Lines = $lines }
+}
+
 $Root = Split-Path -Parent $PSScriptRoot
 $Worktrees = Join-Path (Split-Path -Parent $Root) "_worktrees"
+$Registry = Join-Path $Root "Tools\agent_lane_registry.py"
 $LaneSlug = ($Lane -replace '[^A-Za-z0-9\-_]', '-').ToLower()
 $LanePath = Join-Path $Worktrees "lane-$LaneSlug"
 $LaneRef = "refs/agents/$LaneSlug"
 
-if (-not (Test-Path (Join-Path $Root "Tools\agent_lane_registry.py"))) {
+if (-not (Test-Path $Registry)) {
     throw "Tools/agent_lane_registry.py is missing; run this from the repository root."
 }
 
 Write-Host "==> lane '$LaneSlug'  task='$Task'  base=$Base" -ForegroundColor Cyan
 & git -C $Root fetch --prune origin 2>&1 | Out-String | Write-Verbose
-$BaseSha = (& git -C $Root rev-parse $Base).Trim()
+Invoke-Native git @('-C', $Root, 'fetch', '--prune', 'origin') -AllowFail | Out-Null
+$BaseSha = (Invoke-Native git @('-C', $Root, 'rev-parse', $Base)).Lines[0].Trim()
 Write-Host "    base sha $BaseSha"
 
 if (Test-Path $LanePath) {
@@ -56,24 +78,27 @@ if (Test-Path $LanePath) {
     # GIT_LFS_SKIP_SMUDGE avoids pulling gigabytes of LFS payload into a lane that may
     # not need it. Text/code lanes are the common case.
     $env:GIT_LFS_SKIP_SMUDGE = "1"
-    & git -C $Root worktree add --detach $LanePath $BaseSha 2>&1 | ForEach-Object { Write-Host "    $_" }
-    if ($LASTEXITCODE -ne 0) { throw "git worktree add failed ($LASTEXITCODE)" }
+    $add = Invoke-Native git @('-C', $Root, 'worktree', 'add', '--detach', $LanePath, $BaseSha)
+    $add.Lines | ForEach-Object { Write-Host "    $_" }
     Write-Host "    worktree $LanePath (detached at $($BaseSha.Substring(0,8)))"
 }
 
-& git -C $LanePath update-ref $LaneRef $BaseSha 2>&1 | Out-Null
+Invoke-Native git @('-C', $LanePath, 'update-ref', $LaneRef, $BaseSha) | Out-Null
 
-$initArgs = @("Tools/agent_lane_registry.py", "init", "--lane", $LaneSlug,
+$initArgs = @($Registry, "init", "--lane", $LaneSlug,
               "--worktree", $LanePath, "--branch", $LaneRef)
 if ($Tier) { $initArgs += @("--tier", $Tier) }
-& python @initArgs
+(Invoke-Native python $initArgs).Lines | ForEach-Object { Write-Host "    $_" }
 
 if ($Paths.Count -gt 0 -or $Globs.Count -gt 0) {
-    $claimArgs = @("Tools/agent_lane_registry.py", "claim", "--lane", $LaneSlug)
+    $claimArgs = @($Registry, "claim", "--lane", $LaneSlug)
     foreach ($p in $Paths) { $claimArgs += @("--path", $p) }
     foreach ($g in $Globs) { $claimArgs += @("--glob", $g) }
-    & python @claimArgs
-    if ($LASTEXITCODE -ne 0) { throw "claim was refused; another live lane owns one of those paths." }
+    $claim = Invoke-Native python $claimArgs -AllowFail
+    $claim.Lines | ForEach-Object { Write-Host "    $_" }
+    if ($claim.Code -ne 0) {
+        throw "claim was refused; another live lane owns one of those paths."
+    }
 }
 
 Write-Host ""
