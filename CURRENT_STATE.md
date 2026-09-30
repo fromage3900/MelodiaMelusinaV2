@@ -135,6 +135,20 @@ mtime verify. Follow-up (not this lane): `__ExternalActors__` vs `__ExternalObje
 packages — registry discards `_Auto` dupes alphabetically today; needs a deliberate dedupe pass,
 never blind disk deletes.
 
+**Phase 0 done — orphan scanner live, 2026-09-30:** `.gitignore` untouched (protected; the
+Content blanket + surgical allowlist verified intentional — UDS/material lines are a promotion
+queue, not a bug). New `Tools/orphan_scan.py`: git-untracked (including ignored paths) minus
+machine-local rules minus P4 depot manifest = the exact single-copy set; linked worktrees
+excluded as separate authorities. First full run (`Saved/Audit/orphan_scan_20260929_234935.json`):
+114,880 untracked → 51,092 machine-local → 42,119 depot-backed → 8 staged → **21,660 orphans
+(30 GB)**. Composition: ~20k vendor/first-party `Plugins/*` files (Claireon, PCGExtended, Monolith,
+VRM4U, Oceanology, and first-party QuillScript/MelodiaCore/MelodiaWardrobe/MultiWorld — none in
+depot), `_github_deploy` (regenerable site output), plus small `Imports/Environment`, `Content/UI`,
+`Tools`, `Products/Builds` sets. Known caveats: non-ASCII depot paths (Bézier) false-positive;
+`p4 opened`-but-unsubmitted counts as orphan (correct — open is not safe, submit is). Next:
+per-tree verdicts (Phase 1) — first-party plugins + vendor pins to depot, `_github_deploy` accepted
+regenerable, small sets reviewed file-by-file.
+
 **ACFU plugin verdict, 2026-09-30 (multi-disk hunt):** not uninstalled — deleted in the Sept 29
 wipe with the other untracked files (was `?? Plugins/AscentCombatFramework/`, never in depot, no
 second copy). Only other copy on any disk: `D:\Downloads_Organized\...\ACFU_UE5.7` = version
