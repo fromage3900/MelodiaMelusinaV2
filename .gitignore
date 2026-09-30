@@ -647,3 +647,22 @@ deploy/OLLAMA_*_STOP
 !Content/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_DropletRing.uasset
 !Content/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_SplashBurst.uasset
 !Content/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_GlobuleCluster.uasset
+
+# ---------------------------------------------------------------------------
+# Agent runtime + lane state (added 2026-09-30)
+#
+# Several agents share this checkout. Their scratch state and lane bookkeeping are
+# machine-local: committing them creates noise and conflicts, and lane descriptors
+# contain absolute worktree paths that must never be shared.
+#
+# Deliberately NOT ignored: .hermes/plans/. Plans are documentation; hiding them from
+# `git status` is how the 2026-09-27 and 2026-09-28 plans were lost with an untracked
+# checkout and were never recoverable. They stay visible so they get committed.
+#
+# See Docs/Production/MULTI_AGENT_LANES.md
+.pi/
+.hermes-tmp.*
+.codex/.hermes-tmp.*
+_agent_tmp/
+.agents/lanes/
+.agents/claims/
