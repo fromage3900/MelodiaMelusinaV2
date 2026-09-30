@@ -46,19 +46,24 @@ GRANDMASTER_OUTLINE_MI = (
     "MI_Outline_Grandmaster_Gameplay"
 )
 
-GAMEPLAY_STACK = (
-    (GRANDMASTER_OUTLINE_MI, 1.0),
-    (
-        "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/"
-        "MI_MeluColorGrade_GameplayStandard",
-        0.69,
-    ),
-    (
-        "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/"
-        "MI_MelodiaInk_GameplayStandard",
-        1.0,
-    ),
+# Canonical frozen shipping assets (narrow closure approved 2026-09-14)
+FROZEN_OUTLINE_MI = (
+    "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen"
 )
+FROZEN_GRADE_MI = (
+    "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MeluColorGrade_Frozen"
+)
+FROZEN_INK_MI = (
+    "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MelodiaInk_Frozen"
+)
+
+FROZEN_STACK = (
+    (FROZEN_OUTLINE_MI, 1.0),
+    (FROZEN_GRADE_MI, 0.69),
+    (FROZEN_INK_MI, 1.0),
+)
+
+GAMEPLAY_STACK = FROZEN_STACK
 
 # Runtime ownership: these are read-only from the material/PPV side.
 AUDIO_PALETTE = (

@@ -99,7 +99,11 @@ def file_mean_luma(path: Path) -> float:
 
 
 def plate_quality(path: Path) -> dict[str, Any]:
-    """Score a still: reject black + flat void-only plates (no swatch)."""
+    """Score a still: reject black + flat void-only plates (no swatch).
+
+    Uses standard library struct + zlib to reliably inspect PNG scanlines
+    even in embedded Unreal Python environments without PIL/Pillow.
+    """
     try:
         from PIL import Image
 
@@ -110,42 +114,102 @@ def plate_quality(path: Path) -> dict[str, Any]:
             return {"luma": 0.0, "uniq": 0, "ok": False, "reason": "empty"}
         luma = sum((0.2126 * r + 0.7152 * g + 0.0722 * b) for r, g, b in px) / len(px)
         uniq = len(set(px))
+        max_luma = max((0.2126 * r + 0.7152 * g + 0.0722 * b) for r, g, b in px)
         clipped = sum(1 for r, g, b in px if r >= 250 and g >= 250 and b >= 250) / len(px)
-        # Solid void / empty studio ≈ uniq < ~30 on 64² sample
-        ok = luma >= 12.0 and uniq >= 48 and clipped < 0.78
+        ok = luma >= 18.0 and uniq >= 80 and max_luma >= 45.0 and clipped < 0.85
         reason = None
-        if luma < 12.0:
+        if luma < 18.0:
             reason = "too_dark"
-        elif uniq < 48:
+        elif uniq < 80:
             reason = "too_flat"
-        elif clipped >= 0.78:
+        elif max_luma < 45.0:
+            reason = "no_highlights"
+        elif clipped >= 0.85:
             reason = "overexposed"
         return {
-            "luma": luma,
+            "luma": round(luma, 2),
+            "max_luma": round(max_luma, 2),
             "uniq": uniq,
             "clipped_ratio": round(clipped, 4),
             "ok": ok,
             "reason": reason,
         }
+    except Exception:
+        pass
+
+    # Standard-library fallback: inspect PNG scanlines using struct + zlib
+    try:
+        import struct
+        import zlib
+
+        with open(path, "rb") as f:
+            sig = f.read(8)
+            if sig != b"\x89PNG\r\n\x1a\n":
+                return {"luma": 0.0, "uniq": 0, "ok": False, "reason": "not_png"}
+            idat = bytearray()
+            width = height = None
+            while True:
+                chunk = f.read(8)
+                if len(chunk) < 8:
+                    break
+                length, chunk_type = struct.unpack(">I4s", chunk)
+                data = f.read(length)
+                f.read(4)  # crc
+                if chunk_type == b"IHDR":
+                    width, height, bit_depth, color_type = struct.unpack(">IIBB", data[:10])
+                elif chunk_type == b"IDAT":
+                    idat.extend(data)
+                elif chunk_type == b"IEND":
+                    break
+
+            if not idat or not width or not height:
+                return {"luma": 0.0, "uniq": 0, "ok": False, "reason": "png_corrupt"}
+
+            raw = zlib.decompress(bytes(idat))
+            row_len = 1 + width * 4
+            samples = []
+            step = max(1, height // 64)
+            for y in range(0, height, step):
+                row_start = y * row_len + 1
+                for x in range(0, width, max(1, width // 64)):
+                    px_idx = row_start + x * 4
+                    if px_idx + 2 < len(raw):
+                        r, g, b = raw[px_idx], raw[px_idx + 1], raw[px_idx + 2]
+                        samples.append((r, g, b))
+
+            if not samples:
+                return {"luma": 0.0, "uniq": 0, "ok": False, "reason": "no_samples"}
+
+            lumas = [(0.2126 * r + 0.7152 * g + 0.0722 * b) for r, g, b in samples]
+            mean_l = sum(lumas) / len(lumas)
+            max_l = max(lumas)
+            uniq = len(set(samples))
+            ok = mean_l >= 18.0 and uniq >= 80 and max_l >= 45.0
+            reason = None
+            if mean_l < 18.0:
+                reason = "too_dark"
+            elif uniq < 80:
+                reason = "too_flat"
+            elif max_l < 45.0:
+                reason = "no_highlights"
+
+            return {
+                "luma": round(mean_l, 2),
+                "max_luma": round(max_l, 2),
+                "uniq": uniq,
+                "ok": ok,
+                "reason": reason,
+            }
     except Exception as exc:
-        try:
-            size = path.stat().st_size
-        except Exception:
-            size = 0
-        return {
-            "luma": 40.0 if size > 120_000 else 0.0,
-            "uniq": -1,
-            "ok": size > 120_000,
-            "reason": f"pil:{exc}",
-        }
+        return {"luma": 0.0, "uniq": 0, "ok": False, "reason": f"inspect_err:{exc}"}
 
 
 def _warmup(world, camera=None) -> None:
     import unreal
 
     cmds = [
-        "r.ForceHighestMip 1",
-        "r.Streaming.FullyLoadUsedTextures 1",
+        "r.Streaming.PoolSize 3000",
+        "r.Shadow.Virtual.Enable 0",
         "r.ScreenPercentage 100",
     ]
     for cmd in cmds:
@@ -160,8 +224,8 @@ def _warmup(world, camera=None) -> None:
                 les.pilot_level_actor(camera)
     except Exception:
         pass
-    # Pump a few frames so materials stream + PPV applies
-    for _ in range(12):
+    # Settle frames so materials stream + PPV applies
+    for _ in range(6):
         try:
             unreal.SystemLibrary.execute_console_command(world, "Stat None")
         except Exception:
@@ -173,12 +237,7 @@ def _capture_sources():
     import unreal
 
     names = [
-        # The portfolio output is a display-referred PNG.  Prefer LDR so the
-        # render target/export path cannot reinterpret HDR values as white.
         "SCS_FINAL_COLOR_LDR",
-        "SCS_FINAL_TONE_CURVE_HDR",
-        "SCS_FINAL_COLOR_HDR",
-        "SCS_SCENE_COLOR_HDR",
         "SCS_BASE_COLOR",
     ]
     out = []

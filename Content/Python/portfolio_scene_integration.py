@@ -7,9 +7,9 @@ UDS_WEATHER_BP = f"{UDS_ROOT}/Blueprints/Ultra_Dynamic_Weather"
 TAG_UDS_SKY = "UDS_Sky"
 TAG_UDS_WEATHER = "UDS_Weather"
 
-PP_OUTLINE = "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard.MI_StorybookOutline_GameplayStandard"  # 2026-08-26 drift fix
+PP_OUTLINE = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen.MI_StorybookOutline_Frozen"
 PP_VINES = "/Game/EnvSandbox/Materials/PostProcess/M_PP_StorybookVines.M_PP_StorybookVines"
-PP_VINES_INST = "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_GameplayStandard.MI_StorybookOutline_GameplayStandard"  # 2026-08-26 drift fix: shared with PP_OUTLINE
+PP_VINES_INST = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen.MI_StorybookOutline_Frozen"
 
 
 def _load_bp_class(asset_path: str):

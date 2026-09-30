@@ -4,7 +4,7 @@
   "product": "deposition",
   "seed": 20260924,
   "status": "staged",
-  "description": "Gate 6: Glitter Pile reference for HDA_Foundry_Deposition. Houdini distribution -> baked field -> UE -> Niagara behaviour for active grains only.",
+  "description": "Gate 6: author and bake one bounded Glitter Pile through HDA_Foundry_Deposition, then integrate its static bulk and sparse active shell with the established Petal Niagara lifecycle and existing glitter material family.",
   "source": {
     "kind": "hda",
     "path": "hda/HDA_Foundry_Deposition_1.0.hda",
@@ -29,7 +29,33 @@
       "accumulation",
       "sparkle",
       "flow"
-    ]
+    ],
+    "loop_contract": {
+      "static_bulk": "Bake the resting pile once as SM_GlitterPile_Rest plus accumulation/sparkle/flow fields. The 200000 source grains are not runtime Niagara particles.",
+      "active_shell": {
+        "source": "glitter_active_points.csv",
+        "max_live_grains": 5000,
+        "niagara_system": "/Game/Melodia/HoudiniFoundry/Deposition/NS_GlitterPileLoop",
+        "emitter": "ActiveShellLoop",
+        "lifecycle": "Use one bounded long-lived pile loop: seeded active grains may lift, flutter, and return to their baked rest positions; recycle or kill/respawn within the same finite set so cycles never accumulate particles.",
+        "loop_phase": "Deterministic seed and normalized looping phase; verify at least three cycles, pause/resume, and restart against the same baked pile."
+      },
+      "material_loop": {
+        "material_instance": "/Game/Melodia/HoudiniFoundry/Deposition/MI_GlitterPileLoop",
+        "glitter_material_family": [
+          "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+          "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling"
+        ],
+        "default_parent": "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+        "petal_lifecycle_references": [
+          "/Game/EnvSandbox/VFX/Materials/M_Niagara_PetalPile",
+          "/Game/EnvSandbox/VFX/Materials/M_Niagara_PetalMesh_Loop",
+          "/Game/EnvSandbox/VFX/Materials/Functions/MF_MelodiaPetalLifecycle"
+        ],
+        "rule": "Use the Petal assets as loop/lifecycle references only. Keep glitter on an existing glitter master and its instances; do not assign petal cards or atlas materials to the grains or make a new material master."
+      },
+      "beat_response": "Use an existing Niagara user parameter or established BeatPulse route only when the selected owner already supplies it. Do not add an MPC writer or audio bridge for this effect."
+    }
   },
   "outputs": [
     {
@@ -62,7 +88,17 @@
     "consumer": "niagara_system",
     "asset_path_prefix": "/Game/Melodia/HoudiniFoundry/Deposition/",
     "integration_gate": "Gate 6 (06_DEPOSITION_GLITTER.md)",
-    "note": "Static bulk = baked mesh/texture. Niagara reads glitter_active_points via an existing canonical system/effect type (Docs/VFX/README.md); no new Niagara framework."
+    "existing_assets": [
+      "/Game/Melodia/VFX/NS_Morning_PetalDrift",
+      "/Game/Melodia/VFX/NS_Morning_GlitterGlint",
+      "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_PetalCascade",
+      "/Game/EnvSandbox/VFX/Materials/M_Niagara_PetalPile",
+      "/Game/EnvSandbox/VFX/Materials/M_Niagara_PetalMesh_Loop",
+      "/Game/EnvSandbox/VFX/Materials/Functions/MF_MelodiaPetalLifecycle",
+      "/Game/EnvSandbox/Materials/Masters/M_Glitter_Enhanced_Master",
+      "/Game/EnvSandbox/Materials/Masters/M_Glitter_UltimateSparkling"
+    ],
+    "note": "Static bulk = baked mesh/texture. NS_GlitterPileLoop owns only the <=5000 active shell, with one ActiveShellLoop emitter; MI_GlitterPileLoop defaults to M_Glitter_Enhanced_Master. Use existing Petal loop/settle behavior as the lifecycle reference and NS_Morning_GlitterGlint as a separate glint accent. These are one bounded project effect and instance, not a second framework or master."
   },
   "authority": {
     "runtime_owner": "canonical Niagara stack + static mesh",

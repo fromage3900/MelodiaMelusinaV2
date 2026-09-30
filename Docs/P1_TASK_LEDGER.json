@@ -3,10 +3,10 @@
   "as_of": "2026-09-24",
   "authority": {
     "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
-    "scope": "2026-09-24 evening: execute the bounded lookdev_work queue. Existing World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime systems are consume/maintain-only unless a named blocker cannot be represented through an existing owner.",
+    "scope": "2026-09-24 bounded lookdev queue plus the owner-directed 2026-09-29 school scope: one P0 Sea Above FieldAtlas tile, the existing Faraway Mother resonance-field integration, and the named Gate 6 Glitter Pile system. Other World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime work remains consume/maintain-only.",
     "evidence_policy": "Source presence, offline proof, live proof, packaged proof, and owner visual acceptance are distinct.",
-    "procedural_system_policy": "PARKED_CONSUME_ONLY",
-    "execution_rule": "Do not open new PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Use existing systems only to deliver a named visible proof from lookdev_work."
+    "procedural_system_policy": "BOUNDED_OWNER_APPROVED_SCHOOL_GATES",
+    "execution_rule": "Do not open general PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Execute only the named P0 test-tile, Faraway Mother field, and Gate 6 Glitter Pile gates using their existing owners and contracts."
   },
   "melusina_work": {
     "scope_as_of": "2026-09-23",
@@ -335,7 +335,7 @@
     "scope_as_of": "2026-09-24",
     "status": "owner_bounded_lookdev_active",
     "current_status_authority": "CURRENT_STATE.md",
-    "scope": "Owner-facing visual convergence tasks only. These tasks may consume existing runtime/procedural systems but do not create new gameplay, material-master, Niagara, World Compiler, or Foundry authorities.",
+    "scope": "Owner-facing visual convergence tasks plus the owner-directed 2026-09-29 school Gate 6 Glitter Pile completion. That named task may add one bounded Niagara system and one instance of an existing glitter master; it does not authorize a new framework or any general gameplay, material-master, World Compiler, or Foundry authority.",
     "proof_policy": "Owner visual acceptance, source presence, live PIE proof, and packaged proof are distinct. A pretty still does not promote a runtime system; a runtime receipt does not substitute for owner visual judgment.",
     "fatigue_rule": "Prefer one-frame or one-A/B visual decisions. If judgment quality drops, stop authoring and switch to capture, export, evidence, or documentation.",
     "work_items": [
@@ -436,24 +436,28 @@
         "id": "LOOKDEV_OWNER_05_GLITTER_PILE_HERO_PROOF",
         "priority": 5,
         "status": "open",
-        "deliverable": "Create one hero Glitter Pile material/particle proof that defines the desired visual target for the later Houdini deposition -> Niagara system.",
+        "deliverable": "Complete the named Houdini deposition Glitter Pile and its bounded long-lived Niagara/material loop, using the established Petal lifecycle systems as behavior references and the existing glitter master family for shading.",
         "owner_actions": [
-          "Use the existing Melodia glitter shader/Copernicus family as the baseline rather than inventing a new master.",
-          "Capture one close hero angle and one medium-distance read.",
-          "Judge discrete flake read, glint intermittency, iridescence restraint, pile depth, and whether the material reads as physical glitter rather than emissive noise."
+          "At school, probe the Houdini license, author the missing HDA_Foundry_Deposition_1.0.hda from recipes/houdini_foundry/deposition_glitter_pile_reference.v1.json, and bake a seeded static resting mesh, density fields, compact active-point sample, and hash manifest.",
+          "Keep the full 200000-grain solve offline; create /Game/Melodia/HoudiniFoundry/Deposition/NS_GlitterPileLoop with one ActiveShellLoop emitter fed by at most 5000 active shell grains. Recycle within that fixed set so particles never accumulate across cycles.",
+          "Use NS_Morning_PetalDrift, NS_ChoralSheep_PetalCascade, M_Niagara_PetalPile, M_Niagara_PetalMesh_Loop, and MF_MelodiaPetalLifecycle as loop/settle references. Keep Petal atlas materials on Petal effects.",
+          "Create MI_GlitterPileLoop under the same Deposition folder with M_Glitter_Enhanced_Master as its default parent; keep NS_Morning_GlitterGlint as the glint accent. Do not add a material master, Niagara framework, MPC writer, or audio bridge.",
+          "Capture close and medium reads after three cycles plus pause/resume/restart; judge discrete flake read, glint intermittency, iridescence restraint, pile depth, stable live count, and rest-pile alignment."
         ],
         "boundaries": [
-          "This is a visual target, not the full physical deposition implementation.",
-          "Do not create a second glitter material framework.",
-          "Do not convert all glitter to live Niagara particles."
+          "This owner-approved scope completes Gate 6 only; do not expand it into a general deposition or Niagara framework.",
+          "Do not simulate all 200000 grains live or allow a loop to accumulate particles.",
+          "Keep the P0 golden-run contract and Faraway Mother field/gameplay authorities separate from this presentation effect."
         ],
-        "acceptance": "One accepted still pair plus a short target note for future Houdini grain density/shell/unstable-particle behavior.",
+        "acceptance": "One verified deterministic bake manifest, a resting bulk mesh plus <=5000 active shell grains, a stable long-lived Niagara loop using the existing glitter material family, and an owner-accepted close/medium still pair.",
         "evidence": [
+          "recipes/houdini_foundry/deposition_glitter_pile_reference.v1.json",
+          "recipes/houdini_foundry/README.md#school-run-order-p0-faraway-mother-glitter-pile",
           "Source/MelodiaShader/Shaders/MelodiaNikkiCommon.ush",
           "Tools/Houdini/copernicus/copernicus_cymatic_parallax.py",
           "Saved/Audit/glitter_verification_2026-08-30.json"
         ],
-        "stop_condition": "Stop once the visual target is defined; Houdini deposition and SVT/Niagara integration stay separate."
+        "stop_condition": "Stop after Gate 6 bake, bounded UE loop integration, and owner visual acceptance. Keep SVT or other bulk-volume work parked unless this named bake proves it necessary."
       },
       {
         "id": "LOOKDEV_OWNER_06_SEA_ABOVE_MACRO_VARIATION_PLATE",

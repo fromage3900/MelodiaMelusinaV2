@@ -5,9 +5,29 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-09-29 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
-
 **Workstation canon, 2026-09-29:** `G:\` is the owner's portable SSD and may host the **complete runnable Melodia project** for direct work at home or Humber. Treat a healthy project root on `G:\` as a valid primary working copy, not as archive-only or backup-only storage. Git/LFS/P4 provide synchronization and version history around that working copy; separately named mirror, checkpoint, or backup folders on `G:\` remain archival according to their own labels.
+
+**Updated:** 2026-09-30 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+
+**G: portable SSD canonized, 2026-09-30 (read-only inventory, nothing deleted/moved):**
+`Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
+`Docs/Production/PORTABLE_SSD_WORKSTATION_G_2026-09-30.md` — G: is overflow/transport/school-kit
+only (nightly p4 checkpoint `G:\perforce_backup` untouched, school kit `G:\BS_GodFile_School_20260925\`
++ manifest current, bulk-art staging, no launches, no wholesale promote-back). Big trees awaiting
+one owner decision each: `EnvironmentPortfolio/` 160 GB (stale, do-not-launch) ·
+`MelodiaMelusina/` 130 GB · `EnvironmentPortfolio_Snapshot_20260918/` 98 GB · `_relocated/` 89 GB
+(review `patches/` first) · `melodia_backup/` 28 GB (restore-check first). Phase-1 delete candidates
+(~24 GB, needs explicit owner approval): loose root `tmp*`/`Untitled.blend*` (~11 GB) ·
+`_temp_relocated/` (~12 GB) · `_cache_relocated/` (~1.3 GB). `ueprojects/` (52 GB reference templates)
+and `melodia_models/` (77 GB pending imports) stay. Root-stays-clean rule: new drops go in
+`G:\_Transport_<date>_<intent>\`.
+
+**Read-only Git/worktree reconciliation, 2026-09-29 (no Perforce or Unreal/TD check):** The primary checkout is `feature/spout-beauty-2026-09-26` at `0b2da9e3d`, in sync with its upstream. Before this edit, the index was clean and the working tree had 13 tracked paths modified and 506 untracked paths; this update adds one unstaged tracked change (`CURRENT_STATE.md`). These are snapshot counts, not approval to stage, submit, clean, or delete. `Plugins/AscentCombatFramework/` is untracked and has no ignore match; `.gitignore` is protected. Linked worktrees: `converge/hybrid-combat-bridge-2026-09-28` is 4 ahead / 1 behind `origin/main`; `_worktrees/world-compiler-20260927` is 1 behind `origin/main` with `Content/Melodia/Characters/Melusina/BP_Melusina.uasset` modified; locked `feature/eyewear-editorial-20260912` has a modified audit receipt and untracked `run_out*` directories. No worktree was modified or synchronized by this check.
+
+**ACFU status reconciliation pending, 2026-09-29:** The untracked `.hermes/plans/2026-09-29_acfu-bow-arrow-live-test-plan.md` reports proof and open-gate claims for `/Game/Melodia/CombatTrial`. This pass did not verify those claims against receipts or a live editor, so no ACFU gate is promoted here. Bring only verified current/open status into this document before treating that plan as current status. The dated Perforce and runtime records below retain their original evidence dates; this Git-only check does not renew them.
+
+**Branch state corrected, 2026-09-30:** The primary checkout had been left on `feature/spout-beauty-2026-09-26`, which was superseded by PR #364 (`0fc57e035`) and is fully contained in `origin/main` (0 ahead / 22 behind). It is now on `main` at `1cc2d5d17` == `origin/main`. No branch was created; `main` was already checked out in `_worktrees/world-compiler-20260927`, so `git switch --ignore-other-worktrees main` was used. The branch's remaining tracked working-tree edits were committed as `21c0bef99` and cherry-picked forward onto `main`.
+
 
 **VCS sync point, 2026-09-25:** p4 depot `//Melodia` CL 222 ↔ git `ec5ace363` (branch `fix/melusina-wings-emissive-veins`, pushed to origin). CL 222 = 210 files (adds/deletes via `reconcile`, content via `diff -se`) in a changelist separate from the live lane's default-CL opens. 9 UI-study PNGs under `Content/UI/` remain git-only until their folder names drop trailing spaces — Windows-illegal segments that git created and p4d cannot mkdir. Nightly depot checkpoint → `G:\perforce_backup` (job `p4-nightly-checkpoint`, 04:00, md5-verified).
 
