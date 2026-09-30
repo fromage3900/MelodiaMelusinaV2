@@ -43,6 +43,20 @@ local + listed) · D4=LEAVE_UNTRACKED (`.pi/` untouched). Execution order: merge
 → merged remote lanes → stash-park identity + drop → docs/cursor/recovery lanes by per-ref diff
 gate (empty-diff or content-on-main only). Every delete one ref per command, never glob.
 
+**Branch janitor executed 2026-09-30 (measured):** local 29 → 28 branches; remote refs 144 → 133.
+Deleted 1 merged local (`feature/melusina-jev-weapon-bridge-20260928`, ancestor-proven, remote kept)
+and 13 remote refs: 11 merged lanes (5 docs/*, 1 feature, 5 fix/integration) + 2 stash-park dupes
+(`recovery/stash-park-20260928-0/4`, blob-identical to kept `stash@{5}`/`stash@{9}` per D2).
+**HELD with reasons:** `chore/branch-lifecycle-guard-20260929` (server rejects the delete — branch-name
+prefix rule; needs owner/repo-admin exception) · `recovery/stash-park-20260928-1/2/3` (partial overlap
+with `stash@{6}`/`stash@{7}`/`stash@{8}` only: 194/387, 77/84 with 7 SeaAbove-external drift files,
+110/119 — not identity-proven) · `stash@{0}`/`stash@{1}` (7/10 and 5/8 files differ from
+`origin/main` — pre-merge safety, partially unlanded) · `stash@{2}`/`@{3}`/`@{4}`/`@{6}`/`@{7}`/`@{8}`
+(unpaired or partial-match parked work) · `legacy-melodia/*`, `backup/*`, all worktree-linked refs,
+`collab/laptop/longterm` (never-delete classes). Live lanes moved during the pass
+(`hybrid-combat-reconverge` advanced on remote) — untouched. Ahead commit stays local + listed per D3;
+`.pi/` untouched per D4.
+
 **Read-only Git/worktree reconciliation, 2026-09-29 (no Perforce or Unreal/TD check):** The primary checkout is `feature/spout-beauty-2026-09-26` at `0b2da9e3d`, in sync with its upstream. Before this edit, the index was clean and the working tree had 13 tracked paths modified and 506 untracked paths; this update adds one unstaged tracked change (`CURRENT_STATE.md`). These are snapshot counts, not approval to stage, submit, clean, or delete. `Plugins/AscentCombatFramework/` is untracked and has no ignore match; `.gitignore` is protected. Linked worktrees: `converge/hybrid-combat-bridge-2026-09-28` is 4 ahead / 1 behind `origin/main`; `_worktrees/world-compiler-20260927` is 1 behind `origin/main` with `Content/Melodia/Characters/Melusina/BP_Melusina.uasset` modified; locked `feature/eyewear-editorial-20260912` has a modified audit receipt and untracked `run_out*` directories. No worktree was modified or synchronized by this check.
 
 **ACFU status reconciliation pending, 2026-09-29:** The untracked `.hermes/plans/2026-09-29_acfu-bow-arrow-live-test-plan.md` reports proof and open-gate claims for `/Game/Melodia/CombatTrial`. This pass did not verify those claims against receipts or a live editor, so no ACFU gate is promoted here. Bring only verified current/open status into this document before treating that plan as current status. The dated Perforce and runtime records below retain their original evidence dates; this Git-only check does not renew them.
