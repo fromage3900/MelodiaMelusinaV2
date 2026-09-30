@@ -49,6 +49,17 @@ while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
                 exit 1
             fi
             ;;
+        refs/tags/*)
+            : # tags carry no branch policy
+            ;;
+        *)
+            # Added 2026-09-30. Agent lanes pin their work with refs under refs/agents/*,
+            # which are NOT branches. This loop previously inspected only refs/heads/*,
+            # so a refs/agents/* push would have skipped both the branch-name policy and
+            # the LFS budget gate below it. Deny anything that is not a branch or a tag.
+            printf '%s\n' "BLOCKED: only refs/heads/* and refs/tags/* may be pushed (got '$remote_ref')." >&2
+            exit 1
+            ;;
     esac
 done <"$input_file"
 

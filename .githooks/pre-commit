@@ -19,6 +19,25 @@ done
 # zero-byte files, and common junk artifacts.
 # Updated 2026-08-07: added 0-byte/junk-file detection (Scope C tooling gate).
 
+# 0. Agent lane discipline (added 2026-09-30).  See Docs/Production/MULTI_AGENT_LANES.md
+#
+# Several agents share this repository. Before this check existed, two of them could
+# commit onto `main` from the primary checkout, which moved HEAD under whichever one was
+# not looking, and untracked work was repeatedly lost. `main` is not a working branch:
+# work happens in a lane worktree and lands through the integrator.
+#
+# Overrides, each explicit and greppable:
+#   ALLOW_MAIN_COMMIT=1  a deliberate integrator commit on main
+#   SKIP_LANE_GUARD=1    bypass this whole block
+if [ "${SKIP_LANE_GUARD:-0}" != "1" ] && [ -f Tools/agent_lane_registry.py ]; then
+  PY=""
+  command -v python >/dev/null 2>&1 && PY=python
+  [ -n "$PY" ] || { command -v python3 >/dev/null 2>&1 && PY=python3; }
+  if [ -n "$PY" ]; then
+    "$PY" Tools/agent_lane_registry.py guard || exit 1
+  fi
+fi
+
 echo "==> [pre-commit] Running LFS/size/junk validation..."
 
 # 1. Check for files > 50MB that are NOT tracked by LFS
