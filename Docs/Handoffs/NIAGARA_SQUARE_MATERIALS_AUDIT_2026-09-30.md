@@ -47,3 +47,21 @@ From [`Saved/Audit/reimport_fresh_receipt.json`](file:///c:/EnvironmentPortfolio
 ```
 
 All modified `.uasset` packages have been saved cleanly to disk with zero file sharing conflicts before UE launch.
+
+---
+
+## 3. Level-Specific Audit & Substrate FrontMaterial Trap (L_MelusinaMorning)
+
+During in-level runtime inspection of all 35 Niagara components across 16 systems in `L_MelusinaMorning`, a critical Substrate-specific trap was discovered and resolved:
+
+### The Substrate FrontMaterial Trap in `M_Niagara_Morning_PetalCard`
+- **Defect:** All 8 petal drift actors (`WC_NS_Morning_petal_fx_petal_*` running `NS_Morning_PetalDrift`) rendered solid opaque pink/white squares.
+- **Root Cause:** In `M_Niagara_Morning_PetalCard`, a `MaterialExpressionSubstrateToonBSDF` was connected to the `FrontMaterial` root output. In Unreal Engine 5.8 with `r.Substrate=True`, when `FrontMaterial` is connected, Substrate takes precedence and ignores the standard `OpacityMask` pin. Because the Substrate Toon BSDF node has no Coverage input and only had `ParticleColor.RGB * Tint` connected to `BaseColor`, Substrate evaluated the quad with 100% opaque coverage, rendering flat rectangular billboard cards instead of the procedural petal SDF.
+- **Resolution:** Deleted `MaterialExpressionSubstrateToonBSDF_0`, disconnected `FrontMaterial`, and reconnected `OpacityMask <- PetalSDF Mask * ParticleColor.A` and `EmissiveColor <- Add_0`. Substrate now automatically compiles the legacy Masked material outputs into a properly masked Substrate Slab.
+
+### Additional Remediations Applied Across Level Systems
+1. **`M_Niagara_Morning_PollenMote`:** Added analytic radial boundary falloff `saturate(1.0 - length(UV - 0.5) * 2.0)` multiplying `op = mask * life * radialFalloff` across all 7 `NS_Morning_PollenSparkle` actors.
+2. **`M_Niagara_Morning_MistSheet`:** Added `RadialFalloff` custom HLSL node multiplied into `Opacity` before `DepthFade` across all 3 `NS_Morning_PondMist` actors.
+3. **`NS_Morning_WindRibbon`:** Replaced deprecated `M_SakuraPetal` renderer on emitter `E_OmnidirectionalPetalBurst` with `MI_Morning_Petal_B0`.
+4. **`M_Niagara_MelodiaFlipbook`:** Injected analytic radial boundary falloff `saturate(1.0 - length(UV - 0.5) * 2.0)` multiplying `Opacity` directly, eliminating sub-cell bleeding and card-edge square clamping across `NS_Melodia_CursorTrail`, `NS_Melusina_ImpactBurst`, `NS_Melusina_Glint`, `NS_ChoralSheep_BeatBurst`, and `NS_ChoralSheep_WoolMotes`.
+5. **`M_SDF_StarburstGem`:** Added radial boundary falloff `inside *= saturate(1.0 - length(uv) * 2.0)` and normalized `UVScale` to `1.0` so SDFs center correctly on quads in `NS_Uni_PollenSparkle` and `NS_Morning_PollenMote`.

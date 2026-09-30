@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p1.task_ledger.v1",
-  "as_of": "2026-09-24",
+  "as_of": "2026-09-30",
   "authority": {
     "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
     "scope": "2026-09-24 bounded lookdev queue plus the owner-directed 2026-09-29 school scope: one P0 Sea Above FieldAtlas tile, the existing Faraway Mother resonance-field integration, and the named Gate 6 Glitter Pile system. Other World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime work remains consume/maintain-only.",
@@ -17,6 +17,18 @@
     "designation": "Ultimate is the existing runtime Blueprint, without a rename or duplicate pawn.",
     "proof_policy": "A diagram, source inventory, Jev choice, or imported asset is not live PIE, restart, or packaged proof.",
     "work_items": [
+      {
+        "id": "MELUSINA_PLAYER_BOW_ARCHERY",
+        "status": "owner_accepted",
+        "deliverable": "Player-driven bow archery in PIE: aim, draw, release, real arrow travel, collision, and authoritative HP.",
+        "evidence": [
+          "Owner playtest acceptance, 2026-09-30: 'I already did it. The bow works.'",
+          "Docs/Handoffs/MELUSINA_SHOWCASE_RENDER_HANDOFF_2026-09-30.md",
+          "Saved/Audit/OWNER_BOW_PLAYTEST_ACCEPTED_2026-09-30.md",
+          "Merge resolved as d939f07a6 (2026-09-30 17:18 ET)"
+        ],
+        "remaining_gate": "Packaged-build proof only; the WaveHarp combat HUD is tracked separately."
+      },
       {
         "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
         "status": "source_documented",
