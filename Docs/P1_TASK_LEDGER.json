@@ -493,6 +493,96 @@
           "Docs/WorldGen/WORLD_COMPILER_CONTRACT.md"
         ],
         "stop_condition": "Stop after one zone and one camera A/B; generalized Houdini FieldAtlas remains a separate full-license task."
+      },
+      {
+        "id": "LOOKDEV_ASAP_01_REGALIA_GEM_COOLDOWN",
+        "priority": 1,
+        "status": "open",
+        "owner": "New Bot",
+        "added": "2026-09-30",
+        "deliverable": "Cool the regalia gems: Void Orchid necklace/earrings and Aquamarine circlet to sparkle ~1.4, iridescence ~1.8, with tinted (non-white) highlight and sparkle colours. Instance params only.",
+        "evidence": [
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/CLOSEOUT_2026-09-30.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/HANDOFF_NOTE_StudyBot_2026-09-30.md",
+          "commit cfd75ed72 (docs), 41c464a07 (Render2026 + Morning PPV)"
+        ],
+        "remaining_gate": "Owner Ctrl+S, then a visual check on the Morning pawn."
+      },
+      {
+        "id": "LOOKDEV_ASAP_02_REGALIA_GEM_SLOT_FIX",
+        "priority": 2,
+        "status": "open",
+        "owner": "New Bot",
+        "added": "2026-09-30",
+        "deliverable": "Point SM_Regalia_v4_Necklace's gem slot at MI_Gemstone_VoidOrchid_Necklace (currently on the Earrings MI). SK_Regalia_v4_Earrings is still on M_Regalia_v4_GemPurple; migrating it needs bUsedWithSkeletalMesh on M_Master_Gemstone (shader rebuild).",
+        "evidence": [
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/CLOSEOUT_2026-09-30.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/HANDOFF_NOTE_StudyBot_2026-09-30.md",
+          "commit cfd75ed72 (docs), 41c464a07 (Render2026 + Morning PPV)"
+        ],
+        "remaining_gate": "Necklace slot swap is routine. Earrings migration waits on the owner's call on the master usage flag."
+      },
+      {
+        "id": "LOOKDEV_ASAP_03_MORNING_SCRATCH_GEM_REPLACE",
+        "priority": 3,
+        "status": "open",
+        "owner": "New Bot",
+        "added": "2026-09-30",
+        "deliverable": "In L_MelusinaMorning, replace _Scratch/MI_GemstoneTest_Inst with a new MI_Gemstone_Morning_ShardAccent, and swap the placed M_SDF_StarburstGem for MI_SDF_StarburstGem_Default.",
+        "evidence": [
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/CLOSEOUT_2026-09-30.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/HANDOFF_NOTE_StudyBot_2026-09-30.md",
+          "commit cfd75ed72 (docs), 41c464a07 (Render2026 + Morning PPV)"
+        ],
+        "remaining_gate": "No _Scratch or bare-master references left in Morning; owner Ctrl+S."
+      },
+      {
+        "id": "LOOKDEV_ASAP_04_MAGENTA_SHRUB_UNDERSIDES",
+        "priority": 4,
+        "status": "open",
+        "owner": "New Bot or 💧",
+        "added": "2026-09-30",
+        "deliverable": "Check MI_Bush01/04/08_Art undersides under the Render2026 grade; halve the tint or add a no-shadow fill light if they read magenta.",
+        "evidence": [
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/CLOSEOUT_2026-09-30.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/HANDOFF_NOTE_StudyBot_2026-09-30.md",
+          "commit cfd75ed72 (docs), 41c464a07 (Render2026 + Morning PPV)"
+        ],
+        "remaining_gate": "Visual check in the Render2026 frame; fix only if needed."
+      },
+      {
+        "id": "LOOKDEV_ASAP_05_FINAL_RENDER_LEVEL_PREP",
+        "priority": 5,
+        "status": "open",
+        "owner": "💧",
+        "added": "2026-09-30",
+        "deliverable": "Before final renders: Sea Above cameras moved out of geometry and PPV enabled with the Render2026 swap; KaleidoNave ink and camera rotations checked; L_FallenMoon +1.5 EV checked visually and tuned by ±0.5.",
+        "evidence": [
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/CLOSEOUT_2026-09-30.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/HANDOFF_NOTE_StudyBot_2026-09-30.md",
+          "commit cfd75ed72 (docs), 41c464a07 (Render2026 + Morning PPV)"
+        ],
+        "remaining_gate": "Done before the final hero renders."
+      },
+      {
+        "id": "LOOKDEV_ASAP_06_EXTERNALACTORS_GITIGNORE",
+        "priority": 6,
+        "status": "open",
+        "owner": "Owner",
+        "added": "2026-09-30",
+        "deliverable": "Content/__ExternalActors__/EnvSandbox/* is gitignored, so the saved Fallen Moon volume (and future Sea Above/Kaleido map edits) can't be committed.",
+        "evidence": [
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/CLOSEOUT_2026-09-30.md",
+          "Saved/Audit/OutlineGradeStudy_2026-09-30/HANDOFF_NOTE_StudyBot_2026-09-30.md",
+          "commit cfd75ed72 (docs), 41c464a07 (Render2026 + Morning PPV)"
+        ],
+        "remaining_gate": "Owner decides whether to narrow the ignore rule."
       }
     ]
   }

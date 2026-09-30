@@ -1,5 +1,18 @@
 # Melodia Melusina — Current State
 
+## ASAP LOOKDEV QUEUE - gems, levels, gitignore - 2026-09-30
+
+Owner-requested, do as soon as possible. Ledger: `Docs/P1_TASK_LEDGER.json#lookdev_work` (`LOOKDEV_ASAP_01`-`06`). Detail: `Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md`, `CLOSEOUT_2026-09-30.md`, `HANDOFF_NOTE_StudyBot_2026-09-30.md` (docs commit `cfd75ed72`; Render2026 + Morning PPV in `41c464a07`).
+
+1. **Regalia gem cooldown (New Bot):** Void Orchid necklace/earrings and Aquamarine circlet to sparkle ~1.4, iridescence ~1.8, tinted highlight/sparkle colours.
+2. **Regalia gem slots (New Bot):** `SM_Regalia_v4_Necklace` gem slot is on the Earrings MI; switch to `MI_Gemstone_VoidOrchid_Necklace`. `SK_Regalia_v4_Earrings` is still on `M_Regalia_v4_GemPurple`; migrating it needs skeletal-mesh usage on `M_Master_Gemstone` (shader rebuild), owner's call.
+3. **Morning scratch gems (New Bot):** replace `_Scratch/MI_GemstoneTest_Inst` with a new `MI_Gemstone_Morning_ShardAccent`; swap placed `M_SDF_StarburstGem` for `MI_SDF_StarburstGem_Default`.
+4. **Magenta shrub undersides (New Bot or 💧):** check `MI_Bush01/04/08_Art` under the Render2026 grade; halve the tint or add a no-shadow fill if needed.
+5. **Final-render level prep (💧, before final renders):** Sea Above cameras out of geometry and PPV enabled with the Render2026 swap; KaleidoNave ink and camera rotations; Fallen Moon +1.5 EV visual check, tune ±0.5.
+6. **Gitignore (owner decision):** `Content/__ExternalActors__/EnvSandbox/*` is ignored, so the saved Fallen Moon volume and future Sea Above/Kaleido map edits can't be committed.
+
+Also saved, not yet checked visually: New Bot's Morning shard cooldown (`MI_Copernicus_CrystalCathedral`, `MI_FloatingCrystal_Iridescent`).
+
 ## OWNER PLAYTEST ACCEPTED - player bow archery - 2026-09-30
 
 - **Status:** Owner-accepted. Brennan played it in PIE and confirmed on 2026-09-30 that the bow works. This is canonical and supersedes the "direct invocation test, not player archery" caveat for the bow, and the "leave the editor alone until the playtest is done" gate in `Docs/Handoffs/MELUSINA_SHOWCASE_RENDER_HANDOFF_2026-09-30.md`.
