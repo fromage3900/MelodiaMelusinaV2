@@ -9,11 +9,12 @@ new file.
 
 **Updated:** 2026-09-30 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 
-**G: portable SSD canonized, 2026-09-30 (read-only inventory, nothing deleted/moved):**
+**G: portable SSD inventoried, 2026-09-30 (read-only, nothing deleted/moved):**
 `Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
-`Docs/Production/PORTABLE_SSD_WORKSTATION_G_2026-09-30.md` — G: is overflow/transport/school-kit
-only (nightly p4 checkpoint `G:\perforce_backup` untouched, school kit `G:\BS_GodFile_School_20260925\`
-+ manifest current, bulk-art staging, no launches, no wholesale promote-back). Big trees awaiting
+`Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` (portable full-project workspace; use a
+healthy G: root first, never launch from stale/snapshot copies, no wholesale promote-back).
+Untouched: nightly p4 checkpoint `G:\perforce_backup`; school kit `G:\BS_GodFile_School_20260925\`
++ manifest; `_disk_reclaim_20260926/` rescue. Big trees awaiting
 one owner decision each: `EnvironmentPortfolio/` 160 GB (stale, do-not-launch) ·
 `MelodiaMelusina/` 130 GB · `EnvironmentPortfolio_Snapshot_20260918/` 98 GB · `_relocated/` 89 GB
 (review `patches/` first) · `melodia_backup/` 28 GB (restore-check first). Phase-1 delete candidates
