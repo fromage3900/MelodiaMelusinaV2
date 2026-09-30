@@ -13,6 +13,7 @@
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaRhythmCombatSubsystem.h"
 #include "MelodiaRhythmHUDWidget.h"
+#include "MelodiaWaveHarpHUDWidget.h"
 #include "MelodiaBattleResultsWidget.h"
 #include "MelodiaBattleSession.h"
 
@@ -136,6 +137,7 @@ void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UMelodiaUIBridgeSubsystem::Deinitialize()
 {
+	ReleaseWorldCombatUI();
 	RemoveBattleUIInternal();
 
 	if (NarrativeSubsystem)
@@ -164,6 +166,46 @@ void UMelodiaUIBridgeSubsystem::Deinitialize()
 	BattleSession = nullptr;
 
 	Super::Deinitialize();
+}
+
+void UMelodiaUIBridgeSubsystem::EnsureWorldCombatUI(APlayerController* Player, bool bSequence)
+{
+	if (!Player || !Player->IsLocalController() || IsMelodiaUIActive()) return;
+	if (!WorldCombatHUD || WorldCombatHUD->GetWorld() != Player->GetWorld())
+	{
+		ReleaseWorldCombatUI();
+		WorldCombatHUD = CreateWidget<UMelodiaWaveHarpHUDWidget>(Player);
+		if (WorldCombatHUD)
+		{
+			WorldCombatHUD->SetVisibility(ESlateVisibility::HitTestInvisible);
+			WorldCombatHUD->AddToViewport(90);
+		}
+	}
+	if (bSequence && !WorldRhythmHUD)
+	{
+		WorldRhythmHUD = CreateWidget<UMelodiaRhythmHUDWidget>(Player);
+		if (WorldRhythmHUD)
+		{
+			WorldRhythmHUD->SetVisibility(ESlateVisibility::HitTestInvisible);
+			WorldRhythmHUD->AddToViewport(85);
+			if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(WorldRhythmHUD);
+		}
+	}
+	else if (!bSequence && WorldRhythmHUD)
+	{
+		if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(nullptr);
+		WorldRhythmHUD->RemoveFromParent(); WorldRhythmHUD = nullptr;
+	}
+}
+void UMelodiaUIBridgeSubsystem::ReleaseWorldCombatUI()
+{
+	if (WorldCombatHUD) WorldCombatHUD->RemoveFromParent();
+	if (WorldRhythmHUD)
+	{
+		if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(nullptr);
+		WorldRhythmHUD->RemoveFromParent();
+	}
+	WorldCombatHUD = nullptr; WorldRhythmHUD = nullptr;
 }
 
 UUserWidget* UMelodiaUIBridgeSubsystem::CreateMelodiaBattleUI(TSubclassOf<UUserWidget> MelodiaWidgetClass)

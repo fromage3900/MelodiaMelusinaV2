@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "MelodiaNarrativeTypes.h"
+#include "MelodiaRhythmCombatTypes.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "UObject/ObjectKey.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.generated.h"
@@ -41,6 +42,19 @@ public:
 	/** Route one completed world encounter through the existing typed narrative outcome. */
 	bool CompleteWorldEncounter(UMelodiaHybridEncounterComponent* Encounter, EMelodiaBattleResult Result);
 
+	/** Bind stock combat-stat objects (live units or authored class defaults).
+	 * They supply stats only: their HP is never read or written by this route.
+	 * CalculateDamage remains the existing stock Blueprint function. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
+	bool BindWorldDamageResolver(UMelodiaHybridEncounterComponent* Encounter,
+		UObject* StockAttacker, UObject* StockDefenderStats, UObject* StockSkill, int32 PureDamage = 0);
+
+	void UnbindWorldDamageResolver(UMelodiaHybridEncounterComponent* Encounter);
+
+	/** FLOW uses the same stock resolver with identity rhythm scaling. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
+	bool ResolveWorldFlowAttack(UMelodiaHybridEncounterComponent* Encounter);
+
 	UFUNCTION(BlueprintPure, Category = "Melodia|JRPG Bridge")
 	bool IsJRPGBattleActive() const { return IsValid(ActiveBattleActor); }
 
@@ -52,10 +66,23 @@ private:
 	void HandleBattleOver(uint8 BattleResult);
 	UFUNCTION()
 	void HandleNarrativeBattleRequested(FName EncounterId);
+	UFUNCTION()
+	void HandleWorldEffectRequested(AActor* Target, const FMelodiaRhythmEffectRequest& Request);
+
+	struct FWorldDamageBinding
+	{
+		TWeakObjectPtr<UMelodiaHybridEncounterComponent> Encounter;
+		TWeakObjectPtr<UObject> Attacker;
+		TWeakObjectPtr<UObject> DefenderStats;
+		TWeakObjectPtr<UObject> Skill;
+		int32 PureDamage = 0;
+	};
+	bool InvokeStockDamageResolver(const FWorldDamageBinding& Binding, double Multiplier, int32& OutDamage);
+	TMap<FObjectKey, FWorldDamageBinding> WorldDamageBindings;
+	bool bResolvingStockDamage = false;
 
 	void UnbindActiveBattle();
 	bool HasUniqueWorldEncounter(const UMelodiaHybridEncounterComponent* Encounter, FName EncounterId) const;
-	void ClearWorldClaim();
 	UPROPERTY(Transient)
 	TObjectPtr<AActor> ActiveBattleActor;
 
@@ -63,8 +90,4 @@ private:
 	TObjectPtr<class UMelodiaNarrativeSubsystem> NarrativeSubsystem;
 
 	FName ActiveEncounterId;
-	FName ClaimedWorldEncounterId;
-	TWeakObjectPtr<UMelodiaHybridEncounterComponent> ClaimedWorldEncounter;
-	bool bWorldClaimAccepted = false;
-	TSet<FObjectKey> CompletedWorldEncounters;
 };

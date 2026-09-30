@@ -13,6 +13,13 @@ Fixes, in-memory on the live level's PostProcessVolume(s):
 Game-worlds only. Nothing is deleted from disk; the audit JSON records every
 entry before/after so nothing is silent.
 
+2026-09-30 correction: the grade re-weight path used to mutate FWeightedBlendable
+struct COPIES, which is a silent no-op in UE Python. The script therefore reported
+weight_after=0.69 while the volume kept its original weight, which is the origin of
+the long-standing grade-weight drift. It now rebuilds each entry with
+unreal.WeightedBlendable(...). Always confirm with a FRESH read of the volume --
+never trust the list object you just wrote.
+
 Run in the UE editor (Monolith run_python): fix_ppv_stack.main()
 Writes: Saved/Audit/ppv_stack_fix_2026-08-29.json
 """
@@ -70,7 +77,13 @@ def fix_level_ppvs(world):
                 entry["action"] = "reweighted"
                 entry["weight_after"] = CANONICAL_WEIGHT
                 reweighted.append(entry)
-                e.set_editor_property("weight", CANONICAL_WEIGHT)
+                # Rebuild the entry from scratch. Iterating a TArray of structs yields
+                # value COPIES in UE Python, so `e.set_editor_property("weight", ...)`
+                # only mutated the copy: the old code logged weight_after=0.69 and
+                # reported success while the volume kept its original weight. Fixed
+                # 2026-09-30 after the live PPV was found drifting off the canonical
+                # grade weight it claimed to have applied.
+                e = unreal.WeightedBlendable(CANONICAL_WEIGHT, obj)
             entries.append(entry)
             kept.append(e)
         new_wb = unreal.WeightedBlendables()

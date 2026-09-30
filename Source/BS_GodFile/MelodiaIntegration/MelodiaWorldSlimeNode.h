@@ -44,6 +44,17 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Hybrid")
 	int32 KillCount = 0;
 
+	/** Existing stock authored stat/skill definitions. Defaults are stat views;
+	 * no unit is spawned and their HP is never used as encounter state. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock")
+	TSubclassOf<AActor> StockAttackerDefinition;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock")
+	TSubclassOf<AActor> StockDefenderDefinition;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock")
+	TSubclassOf<AActor> StockSkillDefinition;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock", meta=(ClampMin="0"))
+	int32 StockPureDamage = 0;
+
 	UFUNCTION(BlueprintPure, Category="Melodia|Hybrid")
 	bool IsPlayerInTargetRange(const APawn* PlayerPawn) const;
 

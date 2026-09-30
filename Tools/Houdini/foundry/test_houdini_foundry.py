@@ -86,7 +86,7 @@ class HoudiniFoundryTests(unittest.TestCase):
             manifest = {
                 "schema": hf.MANIFEST_SCHEMA,
                 "recipe_id": recipe["recipe_id"],
-                "recipe_sha256": hf.uf.content_hash(recipe),
+                "recipe_sha256": hf.content_hash(recipe),
                 "seed": recipe["seed"],
                 "houdini_version": "22.0.368",
                 "tool": {"path": "Tools/Houdini/foundry/houdini_foundry.py", "git_sha": "test"},

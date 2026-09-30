@@ -57,6 +57,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
 	bool ExitSequence();
 
+	/** Deliberately invalidate unresolved phrase damage and restore input. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
+	bool CancelSequence();
+
+	UFUNCTION(BlueprintPure, Category="Melodia|Hybrid")
+	int32 GetSequenceSessionId() const { return SequenceSessionId; }
+
 	/** Forward lane input to the project's sole rhythm grader. */
 	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
 	EMelodiaSkillGrade RegisterSequenceLaneHit(int32 LaneIndex);
@@ -93,4 +100,5 @@ private:
 	FMelodiaInputContextHandle RhythmInputHandle;
 	int32 SequenceSessionId = 0;
 	int32 PendingEffectSessionId = 0;
+	bool bSequenceEffectConsumed = false;
 };
