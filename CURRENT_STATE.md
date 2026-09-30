@@ -23,13 +23,22 @@ constants pointing into a `Candidates/Profiles/` folder that does not exist (rem
 imported them; the eyewear worktree keeps its own untouched copy); `bind_ppv_audio_contract.py`
 graded against two hardcoded `Candidates/Profiles/…GameplayStandard` paths that have never existed,
 so it could not pass on any level — it now derives all three blendables from `GAMEPLAY_STACK`
-(verified: outline 1.0 / grade 0.69 / ink 1.0 all resolve to real files). **Still open, needs one
-editor session:** ZenForestTest's live stack is not the frozen stack — slot 1 is `MI_StarryNight_VanGogh`,
-an **MD_SURFACE** material in a post-process blendable that UE silently drops, slot 2 grade is live
-0.18 against the canonical 0.69. The live actor is labelled `PPV_Dreamprint_Candidate` while five
-scripts (`build_ppv_nikkidream`, `apply_dream_candidate_ppv`, `apply_zenforest_v5_outline`,
-`finalize_ppv_for_shipping`, `audit_nikki_render_post_process`) look up `PPV_NikkiDream` and would
-find nothing. `MI_MeluColorGrade_Frozen` and `MI_StorybookOutline_Frozen` were both written
+(verified: outline 1.0 / grade 0.69 / ink 1.0 all resolve to real files). **RETRACTED, two claims in
+this entry were false** (owner challenge, 2026-09-30; both re-tested and disproven): (1) the live PPV
+actor is **not** labelled `PPV_Dreamprint_Candidate` — that string appears in **zero** files
+project-wide, and `ZenForestTest.umap` carries exactly one PPV label, `PPV_NikkiDream`, so the five
+scripts that look it up (`build_ppv_nikkidream`, `apply_dream_candidate_ppv`,
+`apply_zenforest_v5_outline`, `finalize_ppv_for_shipping`, `audit_nikki_render_post_process`) do
+find it; (2) ZenForestTest has **no** MD_SURFACE slot and **no** 0.18 grade — `StarryNight`,
+`MeluColorGrade` and `MelodiaInk` are all absent from the map bytes, and its one PPV blendable is
+`MI_StorybookOutline_Premium_Hero_Dream`. Both came from hardcoded prose inside
+`melodia_material_audit`, which I reported as disk-verified when I had only string-scanned.
+**Method note, the trap that produced both errors:** ripgrep-backed `search_files` **skips binary
+files**, so it cannot prove a `.uasset`/`.umap` reference is absent — use `rg -a` (or a byte scan) for
+that. And never test membership as `"X" in token_set` when the real token is a longer path string;
+`"MeluColorGrade" in toks` reads False on a map that genuinely contains the grade. Substring-test the
+joined blob. ZenForestTest has no `__ExternalActors__` dir, so the map file is the whole level.
+**Still open:** `MI_MeluColorGrade_Frozen` and `MI_StorybookOutline_Frozen` were both written
 2026-09-28 15:31, after the 09-16 freeze date, so "frozen" is not a true baseline — that mtime is
 the rollback question. Duplicate same-name assets remain: `MPC_Melodia_Palette` (13,471 B in
 `Melodia/_PROJECT`, C++ target vs 7,142 B in `_PROJECT`), `M_PP_MeluColorGrade` (EnvSandbox/Masters
@@ -52,7 +61,23 @@ STATIC provenance, `known_issue` now self-corrects to CONTRADICTED when a live r
 note, and `melodia_ppv_report`'s canonical stack was repointed from the never-existed
 `*_PortfolioHero` set to the frozen triple. `specs/mcp/melodia_mcp_tools.v1.json` is p4 read-only, so
 the `audio_reactivity_gap` field name was kept for spec compatibility while its value now reports
-no gap; rename the field and the spec together on the next `p4 edit`.
+no gap; rename the field and the spec together on the next `p4 edit`. **The one real surviving
+defect, the Dreamprint ink lane, now wider than first stated:** `MPC_MelodiaInk` declares eight
+`Ink*` scalars and every stored default is 0. A **binary-inclusive** `rg -a` sweep of all of
+`Content/` (required — `search_files` skips binaries and cannot prove this) finds exactly nine
+assets and seven Python files referencing it: the collection, `M_PP_MelodiaInk_Frozen`,
+`MI_MelodiaInk_Frozen`, `M_PP_MeluColorGrade`, `M_PP_MeluColorGrade_Frozen`,
+`MI_MeluColorGrade_Frozen`, plus the authoring scripts. **No Blueprint, no C++, no runtime writer
+anywhere** — the grade chain samples it too, not just the ink. Same defect shape as the
+NPC_Melodia_Palette lane already fixed in that same file. **C++ written, NOT built:** the existing
+single writer `UMelodiaAudioReactivePresentationSubsystem` now also publishes four beat-mirroring
+scalars to it (`InkReact`/`InkBass` ← combat intensity, `InkMid` ← ImpactPulse, `InkTreble` ←
+BeatPulseValue — value-identical copies, no new curve). Deliberately **not** written:
+`InkHueShift`, `InkAccentTint`, `InkSyncVision` (art direction, owner call) and `InkMasterWeight`
+(blend weight is owned by the PPV actor) — same rule that keeps `TrebleIntensity` unwritten on the
+palette. Still unproven: the four are unconfirmed as scalars vs vectors (bytes cannot settle it;
+reflection can), nothing is compiled, and no render has shown the ink moving. Requires a full
+closed-editor build — three UE processes were holding the DLL on 2026-09-30.
 
 **G: portable SSD inventoried, 2026-09-30 (read-only, nothing deleted/moved):**
 `Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
@@ -160,6 +185,16 @@ AIRI + HybridEncounter sources → git (owner live work, their commit). First-pa
 regenerable. `Products/Builds` (30) → accepted rebuildable (owner confirms). `Imports/Environment`
 (87) → sampled review next. No submit, stage, or commit of anyone else's work from this lane —
 verdicts only; execution is owner-gated per set.
+
+**While-waiting watch, 2026-09-30:** `Imports/Environment` orphans = 87 PNGs (Kenney CC0 patterns
++ retro-piano glTF textures) → accepted re-downloadable. All 10 stashes readable (file counts
+10/8/2/1/1/3/194/84/110/1 — match the park-overlap analysis; local `recovery/stash-park-*`
+branches still present, only their remote dupes were deleted). Git steady (133 remotes, 27 local,
+10 stashes — one local branch fewer than the janitor close; another lane's removal, not mine).
+P4 reconcile zero, ticket healthy, editor single on :9316. ZenForest rebuild fully specified from
+`zenforest_pcg_expand.json` (L1 15-entry collection + DA-dupe counts + L2 retarget + L3
+band seeds/counts; all duplication sources present on disk) — editor lane just follows it.
+Ahead-8 on protected `main`, all state commits, all listed per D3.
 
 **ACFU plugin verdict, 2026-09-30 (multi-disk hunt):** not uninstalled — deleted in the Sept 29
 wipe with the other untracked files (was `?? Plugins/AscentCombatFramework/`, never in depot, no
