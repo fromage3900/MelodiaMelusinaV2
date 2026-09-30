@@ -8,6 +8,9 @@ new file.
 **Workstation canon, 2026-09-29:** `G:\` is the owner's portable SSD and may host the **complete runnable Melodia project** for direct work at home or Humber. Treat a healthy project root on `G:\` as a valid primary working copy, not as archive-only or backup-only storage. Git/LFS/P4 provide synchronization and version history around that working copy; separately named mirror, checkpoint, or backup folders on `G:\` remain archival according to their own labels.
 
 **Updated:** 2026-09-30 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Owner workflow authority (2026-09-29; supersedes every older branch, lane, detached-worktree, and PR workflow in this document):** Use the existing local `main` checkout as the only project work lane. Do not create or switch branches, lane refs, detached checkouts, linked worktrees, clones, GitHub branches, or pull requests for project work. Do not route around a dirty or occupied `main`; make scoped edits there and preserve all existing work. Git inspection is read-only unless the owner explicitly requests an exact Git operation. Retiring a specifically named worktree/branch requires a verified recovery snapshot first and removal of only that named item after checking editor/build ownership.
+
+**Detached checkout retired, 2026-09-29:** `C:\EnvironmentPortfolio\_worktrees\world-compiler-20260927` was removed after preserving its 50 status paths, staged/unstaged diffs, Git index/worktree metadata, 67 ignored cache files, and SHA-256 manifest at `C:\EnvironmentPortfolio\_recovery\world-compiler-20260927_pre-remove_20260929_211402`. No editor/build process was using it. Its detached HEAD `b557440941350bfc4243024d8578a5186932843a` remains reachable from the existing local tracking ref `origin/docs/session-closeout-law-20260930` at cleanup time. This archive preserves the checkout's game work; those files are outside the hybrid-combat slice, not unrelated to Melodia.
 
 **G: portable SSD inventoried, 2026-09-30 (read-only, nothing deleted/moved):**
 `Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
@@ -30,9 +33,9 @@ move): 5 named blends, `SC_Melusina_Golden.casc`, `ZundamonsKitchenWORKINGBASELI
 logs + LFS receipt kept. **HELD:** `G:\_cache_relocated\` is a live Codex runtime install
 (`codex-runtimes\codex-primary-runtime`, locked DLLs) — not dead cache, left untouched.
 `b5574409` (closeout law + G: entry) is local-only: direct push to `main` is branch-protected,
-and no new branch will be cut for it — it rides the next reviewed PR or an owner-unlocked push.
+and the earlier plan to route it through a new PR branch is superseded by the owner main-only workflow above.
 
-**Branch janitor canonized + executing, 2026-09-30 (Jev-decided, owner blanket approval):**
+**Historical branch janitor authorization, 2026-09-30 (snapshot only; future-work authority superseded by the owner main-only rule above):**
 Inventory: 29 local branches, ~128 remote refs not contained in `origin/main` (16 merged),
 10 stashes (5 duplicating `recovery/stash-park-*` remotes), 7 linked worktrees (live, untouchable).
 Protected never-delete: `collab/laptop/longterm`, `backup/*`, `legacy-melodia/*`, anything
@@ -44,6 +47,26 @@ local + listed) · D4=LEAVE_UNTRACKED (`.pi/` untouched). Execution order: merge
 gate (empty-diff or content-on-main only). Every delete one ref per command, never glob.
 
 **Branch janitor executed 2026-09-30 (measured):** local 29 → 28 branches; remote refs 144 → 133.
+
+**Morning-staging loss + recovery, 2026-09-30 (measured, P4-proven):** ~2,816 depot-tracked files
+were deleted from disk Sept 29 ~8:40 PM EDT (Mocap dir mtime; no Recycle Bin — direct delete).
+Prime suspect: a lane ran `git clean -fd` — git sees P4-tracked binaries as untracked junk, so the
+git lens killed the P4 authority's files. This was NOT git-branch damage (nothing uncommitted was
+lost to a branch move) and NOT the branch-janitor deletes above (those were remote refs only,
+all merge/dupe-proven). **Recovered via depot (`p4 sync -f`, reconcile now zero):** all 2,816 —
+UltraDynamicSky tree (2 → 260+ files), ~70 Rokoko mocap clips (Mocap 20 → 90 files), higgsfield
+skills, Reference sets, Tools/Cascadeur, specs, Bézier trim texture, log backups, SapphireGlass
+MI base. **Permanently lost (never in depot, never in git, no backup):** ZenForest trio
+(`DA_`/`PCG_Biome_ZenForest`, `PC_ZenForest_Scatter`) + NoBackface variants, Sept 26–28 builder
+scripts (`build_pcg_zenforest_biome`, `corridor_proof`, `morning_site`, `roomshell_proxy`,
+`import_morningplaza_kit`, contact-sheet/probe scripts), Sept 27 glitter editor outputs (NS asset,
+3 glint placements, 2 mid-ring isles, DT 1135 refill), SapphireGlass Sept-28 edit content (base
+restored; the edit must be re-applied — its `p4 revert` of a dead open record was the only way to
+unblock the restore). **Rebuild vehicles that survive:** Rokoko Inbox FBXs (guarded re-import),
+`recipes/morning_rainbow_bloom.v1.json` (glitter design intact), `Saved/Audit/zenforest_pcg_expand.json`
+(rebuild spec), scene-context receipt (exact glint/isle coords). Standing rule from this: no lane
+ever runs `git clean` or bulk deletes on this tree — git-untracked ≠ unimportant while P4 owns the
+binaries; P4 `reconcile -n` is the only deletion-preview authority.
 Deleted 1 merged local (`feature/melusina-jev-weapon-bridge-20260928`, ancestor-proven, remote kept)
 and 13 remote refs: 11 merged lanes (5 docs/*, 1 feature, 5 fix/integration) + 2 stash-park dupes
 (`recovery/stash-park-20260928-0/4`, blob-identical to kept `stash@{5}`/`stash@{9}` per D2).
