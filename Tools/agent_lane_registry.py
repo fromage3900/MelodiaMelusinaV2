@@ -37,10 +37,36 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-LANES_DIR = ROOT / ".agents" / "lanes"
 DEFAULT_TTL_MINUTES = 30
+_SCHEMA = "melodia.agent_lane.v1"
+SCHEMA = _SCHEMA
 
-SCHEMA = "melodia.agent_lane.v1"
+# Lane descriptors live in the SHARED git dir, not in the working tree.
+#
+# First cut put them under `.agents/lanes/` in the checkout. That is wrong: the guard
+# runs from *inside a lane worktree*, and that path is gitignored, so the worktree has no
+# descriptors and every claim check silently passed. `<common-git-dir>/agents/lanes/` is
+# shared by the primary and every worktree, is never tracked, and needs no ignore rule.
+_LANES_DIR_CACHE: Path | None = None
+
+
+def lanes_dir() -> Path:
+    global _LANES_DIR_CACHE
+    if _LANES_DIR_CACHE is not None:
+        return _LANES_DIR_CACHE
+    try:
+        out = subprocess.run(
+            ["git", "rev-parse", "--git-common-dir"],
+            cwd=ROOT, capture_output=True, check=False,
+        )
+        raw = out.stdout.decode("utf-8", "replace").strip()
+    except OSError:
+        raw = ""
+    base = Path(raw) if raw else Path(".git")
+    if not base.is_absolute():
+        base = (ROOT / base).resolve()
+    _LANES_DIR_CACHE = base / "agents" / "lanes"
+    return _LANES_DIR_CACHE
 
 # Paths only the integrator/owner may write. Mirrors specs/source_control_ownership.v1.json
 # "single_writer"; duplicated here so the hook does not have to parse that file.
@@ -67,7 +93,7 @@ def _lane_path(lane_id: str) -> Path:
     safe = lane_id.strip().lower().replace("\\", "-").replace("/", "-")
     if not safe:
         raise ValueError("lane id must not be empty")
-    return LANES_DIR / f"{safe}.json"
+    return lanes_dir() / f"{safe}.json"
 
 
 def load_lane(lane_id: str) -> dict[str, Any] | None:
@@ -81,17 +107,18 @@ def load_lane(lane_id: str) -> dict[str, Any] | None:
 
 
 def save_lane(lane: dict[str, Any]) -> Path:
-    LANES_DIR.mkdir(parents=True, exist_ok=True)
+    lanes_dir().mkdir(parents=True, exist_ok=True)
     path = _lane_path(str(lane["lane"]))
     path.write_text(json.dumps(lane, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return path
 
 
 def all_lanes() -> list[dict[str, Any]]:
-    if not LANES_DIR.exists():
+    root = lanes_dir()
+    if not root.exists():
         return []
     lanes = []
-    for path in sorted(LANES_DIR.glob("*.json")):
+    for path in sorted(root.glob("*.json")):
         try:
             lanes.append(json.loads(path.read_text(encoding="utf-8")))
         except (OSError, json.JSONDecodeError):
