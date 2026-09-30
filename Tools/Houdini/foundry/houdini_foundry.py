@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Houdini Foundry contract tool -- recipe validation, tile planning, bake-manifest verification.
 
-Contract: Docs/Houdini/FoundryDay_2026-09-24/README.md
+Contract: Docs/Houdini/FOUNDRY_GATE_CONTRACT.md
 Schemas:  specs/houdini_foundry/
 Recipes:  recipes/houdini_foundry/
 
@@ -64,8 +64,66 @@ def _load_module(name: str, path: Path):
     return module
 
 
-rwg = _load_module("resonant_world_generator", ROOT / "Content" / "Python" / "resonant_world_generator.py")
-uf = _load_module("universe_foundry", ROOT / "Tools" / "universe_foundry.py")
+# The seed and hash helpers live outside this repo on the main workstation. They are
+# resolved LAZILY so that ``probe`` -- and any schema-only validation -- still runs on a
+# machine that has neither file. Loading them at import time meant every subcommand,
+# including Gate 0's probe, died with an ImportError before argparse ever ran.
+#
+# There is still exactly ONE seeding and hashing implementation: these are the same
+# source files, never a reimplementation. Resolution order is repo-relative, then the
+# vendored copy, then an env override, then the canonical workstation path.
+VENDOR_ROOT = ROOT / "Tools" / "vendor"
+_ENV_ROOT = os.environ.get("HOUDINI_FOUNDRY_ROOT", "").strip()
+EXTERNAL_ROOTS: tuple[Path, ...] = tuple(
+    root for root in (
+        Path(_ENV_ROOT) if _ENV_ROOT else None,
+        Path("C:/EnvironmentPortfolio/BS_GodFile"),
+    ) if root is not None
+)
+
+_HELPERS: dict[str, Any] = {}
+_MISSING_HELPERS: dict[str, list[str]] = {}
+
+
+class FoundryDependencyError(RuntimeError):
+    """A seed/hash helper could not be located on this machine."""
+
+
+def _helper_relative(name: str) -> Path:
+    if name == "resonant_world_generator":
+        return Path("Content") / "Python" / "resonant_world_generator.py"
+    return Path("Tools") / "universe_foundry.py"
+
+
+def _helper_candidates(name: str) -> list[Path]:
+    rel = _helper_relative(name)
+    candidates = [ROOT / rel, VENDOR_ROOT / rel.name]
+    candidates.extend(root / rel for root in EXTERNAL_ROOTS)
+    return candidates
+
+
+def _helper(name: str):
+    """Resolve a seed/hash helper once, or raise FoundryDependencyError."""
+    if name in _HELPERS:
+        return _HELPERS[name]
+    tried: list[str] = []
+    for candidate in _helper_candidates(name):
+        tried.append(str(candidate))
+        if candidate.exists():
+            _HELPERS[name] = _load_module(name, candidate)
+            return _HELPERS[name]
+    _MISSING_HELPERS[name] = tried
+    raise FoundryDependencyError(f"{name} not found; tried: " + ", ".join(tried))
+
+
+def stable_int(seed: int, *parts: object) -> int:
+    """Delegates to resonant_world_generator.stable_int (single seeding scheme)."""
+    return _helper("resonant_world_generator").stable_int(seed, *parts)
+
+
+def content_hash(payload: Any) -> str:
+    """Delegates to universe_foundry.content_hash (single hashing scheme)."""
+    return _helper("universe_foundry").content_hash(payload)
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -83,7 +141,7 @@ def sha256_file(path: Path) -> str:
 
 
 def derive_seed(seed: int, *parts: object) -> int:
-    return rwg.stable_int(seed, "houdini_foundry", *parts) % SEED_MOD
+    return stable_int(seed, "houdini_foundry", *parts) % SEED_MOD
 
 
 def _is_repo_relative(value: str) -> bool:
@@ -257,7 +315,7 @@ def build_plan(recipe: dict[str, Any]) -> dict[str, Any]:
     plan = {
         "schema": "melodia.houdini_foundry_plan.v1",
         "recipe_id": recipe["recipe_id"],
-        "recipe_sha256": uf.content_hash(recipe),
+        "recipe_sha256": content_hash(recipe),
         "product": recipe["product"],
         "seed": recipe["seed"],
         "source": recipe["source"],
@@ -307,7 +365,7 @@ def verify_manifest(manifest_path: Path) -> list[str]:
         )
     else:
         recipe_path, recipe = recipe_matches[0]
-        expected_recipe_hash = uf.content_hash(recipe)
+        expected_recipe_hash = content_hash(recipe)
         if manifest["recipe_sha256"] != expected_recipe_hash:
             errors.append(
                 f"recipe_sha256 mismatch for {recipe_path.relative_to(ROOT).as_posix()}: "
@@ -456,7 +514,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out")
     p.set_defaults(func=cmd_probe)
     args = parser.parse_args(argv)
-    return args.func(args)
+    try:
+        return args.func(args)
+    except FoundryDependencyError as exc:
+        # Degrade to a HOLD rather than a traceback: the seed/hash helpers are absent on
+        # the school mirror, and Gate 0's ``probe`` must still be runnable there.
+        print(f"HOLD: seed/hash helper unavailable -- {exc}")
+        print("HOLD: set HOUDINI_FOUNDRY_ROOT, or add Tools/vendor/universe_foundry.py "
+              "and Content/Python/resonant_world_generator.py")
+        return 2
 
 
 if __name__ == "__main__":

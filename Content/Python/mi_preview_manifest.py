@@ -291,6 +291,35 @@ def _entries_from_water_v10() -> list[dict[str, Any]]:
     ]
 
 
+def _entries_from_gemstone_and_glitter() -> list[dict[str, Any]]:
+    gemstone_names = [
+        "MI_Gemstone_CelestialDiamond",
+        "MI_Gemstone_Aquamarine_Circlet",
+        "MI_Gemstone_VoidOrchid_Earrings",
+        "MI_Gemstone_RosyQuartz_Chladni",
+    ]
+    glitter_names = [
+        "GlitterCrystal",
+        "GlitterGold",
+        "GlitterHolographic",
+        "GlitterIridescent",
+        "GlitterRainbow",
+    ]
+    cymatics_names = [
+        ("MI_HeroGem_Cymatic", "/Game/EnvSandbox/Materials/Instances/Copernicus"),
+        ("MI_MelodiaSapphireGlass", "/Game/Melodia/Cymatics/MelodiaSapphireGlass"),
+        ("MI_Copernicus_CrystalCathedral", "/Game/EnvSandbox/Materials/Instances/Copernicus"),
+    ]
+    rows = []
+    for g in gemstone_names:
+        rows.append(route_preview(name=g, profile="TP_Gemstone", source="gemstone_master", folder="/Game/EnvSandbox/Materials/Instances/Gemstone"))
+    for gl in glitter_names:
+        rows.append(route_preview(name=gl, profile="TP_Gemstone", source="glitter_family", folder="/Game/EnvSandbox/Materials/Instances/Glitter"))
+    for cy, fld in cymatics_names:
+        rows.append(route_preview(name=cy, profile="TP_Gemstone", source="cymatics_family", folder=fld))
+    return rows
+
+
 def build_manifest() -> dict[str, Any]:
     entries = _dedupe(
         _entries_from_nikki_priority()
@@ -299,6 +328,7 @@ def build_manifest() -> dict[str, Any]:
         + _entries_from_sdf_batch()
         + _entries_from_audit()
         + _entries_from_water_v10()
+        + _entries_from_gemstone_and_glitter()
     )
     return {
         "generated_at": _now_iso(),
