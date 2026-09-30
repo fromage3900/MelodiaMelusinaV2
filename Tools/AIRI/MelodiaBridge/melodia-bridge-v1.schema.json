@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:melodia:schemas:airi-bridge:v1",
+  "title": "Melodia AIRI Bridge v1 envelope",
+  "description": "Versioned transport envelope. Unknown event types with a valid envelope are ignored for forward compatibility; recognized payloads are validated by protocol.mjs.",
+  "type": "object",
+  "required": ["id", "type", "version", "timestamp", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9._:-]+$" },
+    "type": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "version": { "const": 1 },
+    "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "payload": { "type": "object" }
+  },
+  "allOf": [
+    { "if": { "properties": { "type": { "const": "melodia.world.location" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/worldLocation" } } } },
+    { "if": { "properties": { "type": { "const": "melodia.world.phase" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/worldPhase" } } } },
+    { "if": { "properties": { "type": { "const": "melodia.melusina.state" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/melusinaState" } } } },
+    { "if": { "properties": { "type": { "const": "melodia.rhythm.combo" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/rhythmCombo" } } } },
+    { "if": { "properties": { "type": { "const": "melodia.sir_melodious.distance" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/sirMelodiousDistance" } } } },
+    { "if": { "properties": { "type": { "const": "melusina.emote" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/emoteIntent/properties/payload" } } } }
+  ],
+  "$defs": {
+    "worldLocation": {
+      "type": "object",
+      "required": ["location"],
+      "additionalProperties": false,
+      "properties": { "location": { "$ref": "#/$defs/label" } }
+    },
+    "worldPhase": {
+      "type": "object",
+      "required": ["phase"],
+      "additionalProperties": false,
+      "properties": { "phase": { "enum": ["exploration", "rhythm", "combat", "narrative"] } }
+    },
+    "melusinaState": {
+      "type": "object",
+      "required": ["state"],
+      "additionalProperties": false,
+      "properties": { "state": { "enum": ["Exploring", "Interacting", "Performing", "InRhythm", "InCombat", "Unavailable"] } }
+    },
+    "rhythmCombo": {
+      "type": "object",
+      "required": ["combo", "accuracy"],
+      "additionalProperties": false,
+      "properties": {
+        "combo": { "type": "integer", "minimum": 0 },
+        "accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+        "instrument": { "$ref": "#/$defs/label" }
+      }
+    },
+    "sirMelodiousDistance": {
+      "type": "object",
+      "required": ["distance_cm"],
+      "additionalProperties": false,
+      "properties": {
+        "distance_cm": { "type": "number", "minimum": 0, "maximum": 100000 },
+        "state": { "enum": ["nearby", "following", "distant", "unavailable"] }
+      }
+    },
+    "emoteIntent": {
+      "type": "object",
+      "required": ["id", "type", "version", "timestamp", "payload"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[A-Za-z0-9._:-]+$" },
+        "type": { "const": "melusina.emote" },
+        "version": { "const": 1 },
+        "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+        "payload": {
+          "type": "object",
+          "required": ["emotion"],
+          "additionalProperties": false,
+          "properties": { "emotion": { "enum": ["neutral", "happy", "curious", "sad", "surprised", "determined"] } }
+        }
+      }
+    },
+    "intentPollResponse": {
+      "type": "object",
+      "required": ["type", "version", "timestamp", "payload"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "melodia.bridge.intent_poll" },
+        "version": { "const": 1 },
+        "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+        "payload": {
+          "type": "object",
+          "required": ["intent", "queueDepth", "rejected", "airiConnected"],
+          "additionalProperties": false,
+          "properties": {
+            "intent": { "anyOf": [{ "$ref": "#/$defs/emoteIntent" }, { "type": "null" }] },
+            "queueDepth": { "type": "integer", "minimum": 0, "maximum": 8 },
+            "rejected": { "type": "integer", "minimum": 0 },
+            "airiConnected": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "label": { "type": "string", "minLength": 1, "maxLength": 80 }
+  }
+}
