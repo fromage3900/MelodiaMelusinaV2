@@ -1,0 +1,824 @@
+{
+ "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CrystalCathedral": {
+  "IridescenceIntensity": 0.6,
+  "EmissiveScale": 0.25,
+  "TextureWeight": 1,
+  "Roughness": 0.025,
+  "GemIndexRefraction": 1.65,
+  "AbsorptionDensity": 1.8,
+  "DispersionIntensity": 0.8,
+  "DispersionSpread": 0.05,
+  "SparkleIntensity": 0.9,
+  "FacetIntensity": 0.95,
+  "FacetFrequency": 8,
+  "NikkiIridescence": 0.8,
+  "NikkiPastelBloom": 0.08,
+  "BaseTint": {
+   "R": 0.88,
+   "G": 0.92,
+   "B": 1,
+   "A": 1
+  },
+  "AbsorptionColor": {
+   "R": 0.15,
+   "G": 0.3,
+   "B": 0.6,
+   "A": 1
+  },
+  "NikkiPastelRampHigh": {
+   "R": 0.86,
+   "G": 0.89,
+   "B": 0.95,
+   "A": 1
+  },
+  "SparkleColor": {
+   "R": 0.85,
+   "G": 0.88,
+   "B": 0.95,
+   "A": 1
+  },
+  "Albedo": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_BaseColor.T_Cymatic_CrystalCathedral_BaseColor",
+  "EmissiveMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Emissive.T_Cymatic_CrystalCathedral_Emissive",
+  "HeightMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Height.T_Cymatic_CrystalCathedral_Height",
+  "MetallicMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Metallic.T_Cymatic_CrystalCathedral_Metallic",
+  "NormalMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Normal.T_Cymatic_CrystalCathedral_Normal",
+  "ORM": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_ORM.T_Cymatic_CrystalCathedral_ORM",
+  "RoughnessMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Roughness.T_Cymatic_CrystalCathedral_Roughness"
+ },
+ "/Game/EnvSandbox/Materials/Instances/Gemstone/MI_Gemstone_VoidOrchid_Necklace": {
+  "GemIndexRefraction": 1.77,
+  "Roughness": 0.022,
+  "FacetDepth": 0.65,
+  "FacetFrequency": 6,
+  "FacetSharpness": 3.8,
+  "DispersionSpread": 0.052,
+  "DispersionIntensity": 1.1,
+  "AbsorptionDensity": 3.2,
+  "NikkiFabricSheen": 0.6,
+  "NikkiIridescence": 3.5,
+  "SparkleIntensity": 2.5,
+  "EmissiveFloor": 0.12,
+  "BaseTint": {
+   "R": 0.92,
+   "G": 0.82,
+   "B": 1,
+   "A": 1
+  },
+  "AbsorptionColor": {
+   "R": 0.35,
+   "G": 0.12,
+   "B": 0.65,
+   "A": 1
+  },
+  "NikkiIrisTint": {
+   "R": 1,
+   "G": 0.85,
+   "B": 0.95,
+   "A": 1
+  },
+  "CymaticsNodalTint": {
+   "R": 0.85,
+   "G": 0.6,
+   "B": 1,
+   "A": 1
+  }
+ },
+ "/Game/EnvSandbox/Materials/Instances/Gemstone/MI_Gemstone_VoidOrchid_Earrings": {
+  "GemIndexRefraction": 1.77,
+  "Roughness": 0.022,
+  "FacetDepth": 0.65,
+  "FacetFrequency": 6,
+  "FacetSharpness": 3.8,
+  "DispersionSpread": 0.052,
+  "DispersionIntensity": 1.1,
+  "AbsorptionDensity": 3.2,
+  "NikkiFabricSheen": 0.6,
+  "NikkiIridescence": 3.5,
+  "SparkleIntensity": 2.5,
+  "EmissiveFloor": 0.12,
+  "BaseTint": {
+   "R": 0.92,
+   "G": 0.82,
+   "B": 1,
+   "A": 1
+  },
+  "AbsorptionColor": {
+   "R": 0.35,
+   "G": 0.12,
+   "B": 0.65,
+   "A": 1
+  },
+  "NikkiIrisTint": {
+   "R": 1,
+   "G": 0.85,
+   "B": 0.95,
+   "A": 1
+  },
+  "CymaticsNodalTint": {
+   "R": 0.85,
+   "G": 0.6,
+   "B": 1,
+   "A": 1
+  }
+ },
+ "/Game/EnvSandbox/Materials/Instances/Gemstone/MI_Gemstone_Aquamarine_Circlet": {
+  "GemIndexRefraction": 1.58,
+  "Roughness": 0.018,
+  "FacetDepth": 0.55,
+  "FacetFrequency": 5,
+  "FacetSharpness": 4,
+  "DispersionSpread": 0.038,
+  "DispersionIntensity": 0.9,
+  "AbsorptionDensity": 2.5,
+  "NikkiFabricSheen": 0.55,
+  "NikkiIridescence": 3,
+  "SparkleIntensity": 2.2,
+  "EmissiveFloor": 0.08,
+  "BaseTint": {
+   "R": 0.82,
+   "G": 0.96,
+   "B": 1,
+   "A": 1
+  },
+  "AbsorptionColor": {
+   "R": 0.08,
+   "G": 0.55,
+   "B": 0.85,
+   "A": 1
+  },
+  "NikkiIrisTint": {
+   "R": 0.85,
+   "G": 0.98,
+   "B": 1,
+   "A": 1
+  },
+  "CymaticsNodalTint": {
+   "R": 0.5,
+   "G": 0.95,
+   "B": 1,
+   "A": 1
+  }
+ },
+ "/Game/EnvSandbox/Materials/Instances/Gemstone/MI_Gemstone_CelestialDiamond": {
+  "GemIndexRefraction": 2.42,
+  "Roughness": 0.012,
+  "FacetDepth": 0.75,
+  "FacetFrequency": 8,
+  "FacetSharpness": 5,
+  "DispersionSpread": 0.075,
+  "DispersionIntensity": 1.8,
+  "AbsorptionDensity": 0.6,
+  "NikkiFabricSheen": 0.4,
+  "NikkiIridescence": 4.5,
+  "SparkleIntensity": 3,
+  "EmissiveFloor": 0.05,
+  "BaseTint": {
+   "R": 0.98,
+   "G": 0.99,
+   "B": 1,
+   "A": 1
+  },
+  "AbsorptionColor": {
+   "R": 0.85,
+   "G": 0.92,
+   "B": 1,
+   "A": 1
+  },
+  "NikkiIrisTint": {
+   "R": 1,
+   "G": 1,
+   "B": 1,
+   "A": 1
+  },
+  "CymaticsNodalTint": {
+   "R": 0.9,
+   "G": 0.95,
+   "B": 1,
+   "A": 1
+  }
+ },
+ "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_HeroGem_Cymatic": {
+  "TextureWeight": 1,
+  "LayerA_TextureWeight": 1,
+  "LayerB_TextureWeight": 1,
+  "LayerBaseHeightScale": 0.08,
+  "LayerA_ParallaxScale": 0.03,
+  "LayerB_ParallaxScale": 0.05,
+  "LayerA_NormalStrength": 1,
+  "LayerB_NormalStrength": 1,
+  "NormalStrength": 1,
+  "Roughness": 0.02,
+  "GemstoneRoughness": 0.18,
+  "DreamPulseSpeed": 0.85,
+  "DreamPulseAmp": 0.22,
+  "EmissiveMapIntensity": 1.35,
+  "AudioReactAmount": 1,
+  "GemIndexRefraction": 1.77,
+  "AbsorptionDensity": 2.8,
+  "CymaticsFrequency": 8,
+  "CymaticsHarmonicOrder": 5,
+  "CymaticsStrength": 0.65,
+  "DispersionIntensity": 0.9,
+  "SparkleIntensity": 2.5,
+  "FacetIntensity": 0.85,
+  "BaseTint": {
+   "R": 0.45,
+   "G": 0.75,
+   "B": 1,
+   "A": 1
+  },
+  "GemstoneTint": {
+   "R": 1.35,
+   "G": 1.45,
+   "B": 2,
+   "A": 1
+  },
+  "EmissiveMapTint": {
+   "R": 1,
+   "G": 0.98,
+   "B": 1.05,
+   "A": 1
+  },
+  "AbsorptionColor": {
+   "R": 0.05,
+   "G": 0.2,
+   "B": 0.65,
+   "A": 1
+  },
+  "CymaticsNodalTint": {
+   "R": 0.4,
+   "G": 0.85,
+   "B": 1,
+   "A": 1
+  },
+  "Albedo": "None",
+  "NormalMap": "None",
+  "ORM": "None",
+  "HeightMap": "None",
+  "EmissiveMap": "None",
+  "MetallicMap": "None",
+  "RoughnessMap": "None",
+  "LayerB_HeightMap": "None",
+  "LayerB_NormalMap": "None"
+ },
+ "/Game/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Bush01_Art": {
+  "TextureWeight": 1,
+  "LayerA_TextureWeight": 1,
+  "Roughness": 0.8,
+  "ShadowDreamStrength": 0.3,
+  "ShadowSoftness": 1.2,
+  "RampPosMid": 0.5,
+  "ShadowRampPosMid": 0.5,
+  "PaletteRampStrength": 0.28,
+  "RampStrength": 0.28,
+  "DetailTiling": 12.06,
+  "Stack2_Tiling": 1.012,
+  "Stack3_Tiling": 1.57,
+  "FaceSDF_Tiling": 1.296,
+  "RoughnessScale": 1.18,
+  "RoughnessBias": 0,
+  "LayerRoughnessBlend": 0.925,
+  "LayerCRoughnessBlend": 1.169,
+  "IridescenceRoughnessAtten": 0,
+  "GoldRoughness": 0.196,
+  "WetnessRoughness": 0.128,
+  "ImpastoRoughness": 0.353,
+  "DFContactRoughness": 0.921,
+  "TriplanarBlend_Roughness": 0,
+  "GemstoneRoughness": 0.023,
+  "Stack2_Roughness": 0.565,
+  "Stack3_Roughness": 0.12,
+  "GlowIntensity": 0,
+  "InnerGlowIntensity": 0,
+  "InnerGlowWidth": 1.328,
+  "TransformGlow": 3.183,
+  "DitherEdgeGlow": 2.367,
+  "MadokaGlowAmount": 0,
+  "ShadowDreamTint": {
+   "R": 0.82,
+   "G": 0.45,
+   "B": 0.68,
+   "A": 1
+  },
+  "PaletteRampLow": {
+   "R": 0.687,
+   "G": 0.548,
+   "B": 0.767,
+   "A": 1
+  },
+  "ConstellationRampLow": {
+   "R": 0.643,
+   "G": 0.554,
+   "B": 0.773,
+   "A": 1
+  },
+  "MadokaRampLow": {
+   "R": 0.741,
+   "G": 0.649,
+   "B": 0.834,
+   "A": 1
+  },
+  "IttoRampLow": {
+   "R": 0.735,
+   "G": 0.616,
+   "B": 0.824,
+   "A": 1
+  },
+  "RampLow": {
+   "R": 0.85,
+   "G": 0.4,
+   "B": 0.62,
+   "A": 1
+  },
+  "ShadowRampLow": {
+   "R": 0.85,
+   "G": 0.4,
+   "B": 0.62,
+   "A": 1
+  },
+  "PaletteRampMid": {
+   "R": 0.928,
+   "G": 0.776,
+   "B": 0.715,
+   "A": 1
+  },
+  "ConstellationRampMid": {
+   "R": 0.927,
+   "G": 0.791,
+   "B": 0.71,
+   "A": 1
+  },
+  "MadokaRampMid": {
+   "R": 0.951,
+   "G": 0.853,
+   "B": 0.784,
+   "A": 1
+  },
+  "RampMid": {
+   "R": 0.78,
+   "G": 0.55,
+   "B": 0.82,
+   "A": 1
+  },
+  "ShadowRampMid": {
+   "R": 0.78,
+   "G": 0.55,
+   "B": 0.82,
+   "A": 1
+  },
+  "PaletteRampHigh": {
+   "R": 0.978,
+   "G": 0.963,
+   "B": 1,
+   "A": 1
+  },
+  "ConstellationRampHigh": {
+   "R": 0.972,
+   "G": 0.957,
+   "B": 0.986,
+   "A": 1
+  },
+  "MadokaRampHigh": {
+   "R": 0.971,
+   "G": 0.968,
+   "B": 0.981,
+   "A": 1
+  },
+  "IttoRampHigh": {
+   "R": 0.973,
+   "G": 0.959,
+   "B": 0.966,
+   "A": 1
+  },
+  "RampHigh": {
+   "R": 0.6,
+   "G": 0.78,
+   "B": 0.95,
+   "A": 1
+  },
+  "ShadowRampHigh": {
+   "R": 0.6,
+   "G": 0.78,
+   "B": 0.95,
+   "A": 1
+  },
+  "GoldEmissive": {
+   "R": 0.761,
+   "G": 0.925,
+   "B": 1,
+   "A": 1
+  },
+  "EmissiveMapTint": {
+   "R": 0.822,
+   "G": 0.988,
+   "B": 0.967,
+   "A": 1
+  },
+  "IridescenceTint": {
+   "R": 0.759,
+   "G": 0.666,
+   "B": 0.511,
+   "A": 1
+  },
+  "Albedo": "None",
+  "NormalMap": "None",
+  "MetallicMap": "None",
+  "ORM": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+  "HeightMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height.T_Neutral_Height",
+  "RoughnessMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness.T_Neutral_Roughness",
+  "EmissiveMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic"
+ },
+ "/Game/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Bush04_Art": {
+  "TextureWeight": 1,
+  "LayerA_TextureWeight": 1,
+  "Roughness": 0.8,
+  "ShadowDreamStrength": 0.3,
+  "ShadowSoftness": 1.2,
+  "RampPosMid": 0.5,
+  "ShadowRampPosMid": 0.5,
+  "PaletteRampStrength": 0.28,
+  "RampStrength": 0.28,
+  "DetailTiling": 12.716,
+  "Stack2_Tiling": 1.372,
+  "Stack3_Tiling": 1.461,
+  "FaceSDF_Tiling": 1.563,
+  "RoughnessScale": 1.053,
+  "RoughnessBias": 0,
+  "LayerRoughnessBlend": 0.958,
+  "LayerCRoughnessBlend": 0.95,
+  "IridescenceRoughnessAtten": 0,
+  "GoldRoughness": 0.214,
+  "WetnessRoughness": 0.141,
+  "ImpastoRoughness": 0.295,
+  "DFContactRoughness": 0.766,
+  "TriplanarBlend_Roughness": 0,
+  "GemstoneRoughness": 0.025,
+  "Stack2_Roughness": 0.484,
+  "Stack3_Roughness": 0.101,
+  "GlowIntensity": 0,
+  "InnerGlowIntensity": 0,
+  "InnerGlowWidth": 1.331,
+  "TransformGlow": 3.254,
+  "DitherEdgeGlow": 2.868,
+  "MadokaGlowAmount": 0,
+  "ShadowDreamTint": {
+   "R": 0.82,
+   "G": 0.45,
+   "B": 0.68,
+   "A": 1
+  },
+  "PaletteRampLow": {
+   "R": 0.697,
+   "G": 0.605,
+   "B": 0.807,
+   "A": 1
+  },
+  "ConstellationRampLow": {
+   "R": 0.633,
+   "G": 0.531,
+   "B": 0.788,
+   "A": 1
+  },
+  "MadokaRampLow": {
+   "R": 0.674,
+   "G": 0.543,
+   "B": 0.803,
+   "A": 1
+  },
+  "IttoRampLow": {
+   "R": 0.727,
+   "G": 0.596,
+   "B": 0.793,
+   "A": 1
+  },
+  "RampLow": {
+   "R": 0.85,
+   "G": 0.4,
+   "B": 0.62,
+   "A": 1
+  },
+  "ShadowRampLow": {
+   "R": 0.85,
+   "G": 0.4,
+   "B": 0.62,
+   "A": 1
+  },
+  "PaletteRampMid": {
+   "R": 0.938,
+   "G": 0.772,
+   "B": 0.722,
+   "A": 1
+  },
+  "ConstellationRampMid": {
+   "R": 0.913,
+   "G": 0.715,
+   "B": 0.646,
+   "A": 1
+  },
+  "MadokaRampMid": {
+   "R": 0.924,
+   "G": 0.752,
+   "B": 0.728,
+   "A": 1
+  },
+  "RampMid": {
+   "R": 0.78,
+   "G": 0.55,
+   "B": 0.82,
+   "A": 1
+  },
+  "ShadowRampMid": {
+   "R": 0.78,
+   "G": 0.55,
+   "B": 0.82,
+   "A": 1
+  },
+  "PaletteRampHigh": {
+   "R": 0.966,
+   "G": 0.983,
+   "B": 0.996,
+   "A": 1
+  },
+  "ConstellationRampHigh": {
+   "R": 0.961,
+   "G": 0.982,
+   "B": 0.999,
+   "A": 1
+  },
+  "MadokaRampHigh": {
+   "R": 0.971,
+   "G": 0.947,
+   "B": 0.976,
+   "A": 1
+  },
+  "IttoRampHigh": {
+   "R": 0.97,
+   "G": 0.95,
+   "B": 0.998,
+   "A": 1
+  },
+  "RampHigh": {
+   "R": 0.6,
+   "G": 0.78,
+   "B": 0.95,
+   "A": 1
+  },
+  "ShadowRampHigh": {
+   "R": 0.6,
+   "G": 0.78,
+   "B": 0.95,
+   "A": 1
+  },
+  "GoldEmissive": {
+   "R": 1,
+   "G": 0.9,
+   "B": 0.745,
+   "A": 1
+  },
+  "EmissiveMapTint": {
+   "R": 1,
+   "G": 0.895,
+   "B": 0.733,
+   "A": 1
+  },
+  "IridescenceTint": {
+   "R": 0.602,
+   "G": 0.557,
+   "B": 0.78,
+   "A": 1
+  },
+  "Albedo": "None",
+  "NormalMap": "None",
+  "MetallicMap": "None",
+  "ORM": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+  "HeightMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height.T_Neutral_Height",
+  "RoughnessMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness.T_Neutral_Roughness",
+  "EmissiveMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic"
+ },
+ "/Game/EnvSandbox/Meshes/Environment/AvatarGarden/Materials/MI_Bush08_Art": {
+  "TextureWeight": 1,
+  "LayerA_TextureWeight": 1,
+  "Roughness": 0.8,
+  "ShadowDreamStrength": 0.3,
+  "ShadowSoftness": 1.2,
+  "RampPosMid": 0.5,
+  "ShadowRampPosMid": 0.5,
+  "PaletteRampStrength": 0.28,
+  "RampStrength": 0.28,
+  "DetailTiling": 13.651,
+  "Stack2_Tiling": 1.07,
+  "Stack3_Tiling": 1.584,
+  "FaceSDF_Tiling": 1.688,
+  "RoughnessScale": 1.179,
+  "RoughnessBias": 0,
+  "LayerRoughnessBlend": 1.059,
+  "LayerCRoughnessBlend": 1.102,
+  "IridescenceRoughnessAtten": 0,
+  "GoldRoughness": 0.199,
+  "WetnessRoughness": 0.132,
+  "ImpastoRoughness": 0.352,
+  "DFContactRoughness": 0.988,
+  "TriplanarBlend_Roughness": 0,
+  "GemstoneRoughness": 0.023,
+  "Stack2_Roughness": 0.489,
+  "Stack3_Roughness": 0.109,
+  "GlowIntensity": 0,
+  "InnerGlowIntensity": 0,
+  "InnerGlowWidth": 1.304,
+  "TransformGlow": 3.669,
+  "DitherEdgeGlow": 3.178,
+  "MadokaGlowAmount": 0,
+  "ShadowDreamTint": {
+   "R": 0.82,
+   "G": 0.45,
+   "B": 0.68,
+   "A": 1
+  },
+  "PaletteRampLow": {
+   "R": 0.738,
+   "G": 0.631,
+   "B": 0.836,
+   "A": 1
+  },
+  "ConstellationRampLow": {
+   "R": 0.748,
+   "G": 0.631,
+   "B": 0.822,
+   "A": 1
+  },
+  "MadokaRampLow": {
+   "R": 0.791,
+   "G": 0.687,
+   "B": 0.877,
+   "A": 1
+  },
+  "IttoRampLow": {
+   "R": 0.689,
+   "G": 0.57,
+   "B": 0.8,
+   "A": 1
+  },
+  "RampLow": {
+   "R": 0.85,
+   "G": 0.4,
+   "B": 0.62,
+   "A": 1
+  },
+  "ShadowRampLow": {
+   "R": 0.85,
+   "G": 0.4,
+   "B": 0.62,
+   "A": 1
+  },
+  "PaletteRampMid": {
+   "R": 0.878,
+   "G": 0.712,
+   "B": 0.647,
+   "A": 1
+  },
+  "ConstellationRampMid": {
+   "R": 0.944,
+   "G": 0.799,
+   "B": 0.691,
+   "A": 1
+  },
+  "MadokaRampMid": {
+   "R": 0.98,
+   "G": 0.833,
+   "B": 0.776,
+   "A": 1
+  },
+  "RampMid": {
+   "R": 0.78,
+   "G": 0.55,
+   "B": 0.82,
+   "A": 1
+  },
+  "ShadowRampMid": {
+   "R": 0.78,
+   "G": 0.55,
+   "B": 0.82,
+   "A": 1
+  },
+  "PaletteRampHigh": {
+   "R": 0.997,
+   "G": 0.973,
+   "B": 0.953,
+   "A": 1
+  },
+  "ConstellationRampHigh": {
+   "R": 0.967,
+   "G": 0.964,
+   "B": 0.979,
+   "A": 1
+  },
+  "MadokaRampHigh": {
+   "R": 0.992,
+   "G": 0.961,
+   "B": 0.957,
+   "A": 1
+  },
+  "IttoRampHigh": {
+   "R": 0.971,
+   "G": 0.976,
+   "B": 0.935,
+   "A": 1
+  },
+  "RampHigh": {
+   "R": 0.6,
+   "G": 0.78,
+   "B": 0.95,
+   "A": 1
+  },
+  "ShadowRampHigh": {
+   "R": 0.6,
+   "G": 0.78,
+   "B": 0.95,
+   "A": 1
+  },
+  "GoldEmissive": {
+   "R": 0.747,
+   "G": 0.97,
+   "B": 0.995,
+   "A": 1
+  },
+  "EmissiveMapTint": {
+   "R": 1,
+   "G": 0.925,
+   "B": 0.736,
+   "A": 1
+  },
+  "IridescenceTint": {
+   "R": 0.611,
+   "G": 0.565,
+   "B": 0.781,
+   "A": 1
+  },
+  "Albedo": "None",
+  "NormalMap": "None",
+  "MetallicMap": "None",
+  "ORM": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+  "HeightMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height.T_Neutral_Height",
+  "RoughnessMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness.T_Neutral_Roughness",
+  "EmissiveMap": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic"
+ },
+ "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Materials/MI_FloatingCrystal_Iridescent": {
+  "TextureWeight": 0.541,
+  "Roughness": 1.262,
+  "RoughnessScale": 1.536,
+  "RoughnessBias": -0.013,
+  "EmissiveMapIntensity": 0.3,
+  "LayerA_TextureWeight": 2,
+  "LayerA_NormalStrength": 1.32,
+  "NormalStrength": 0.675,
+  "TemporalStrength": 1.51,
+  "WindSpeed": 0.971,
+  "NoiseScale": 20.992,
+  "SmearStrength": 0.942,
+  "BoilIntensity": 0,
+  "RimPower": 16,
+  "RimIntensity": 1,
+  "DreamPulseAmp": 0.22,
+  "DreamPulseSpeed": 0.85,
+  "Iridescence": 0,
+  "IridescencePower": 0,
+  "IridescenceCycles": 3,
+  "GemstoneRoughness": 0.05,
+  "Cymatic_ModeN": 3,
+  "Cymatic_ModeM": 5,
+  "AudioReactAmount": 1,
+  "RefractionDepthBias": 0,
+  "BaseTint": {
+   "R": 0.55,
+   "G": 0.6,
+   "B": 0.85,
+   "A": 1
+  },
+  "RimColor": {
+   "R": 0.8,
+   "G": 0.9,
+   "B": 1,
+   "A": 1
+  },
+  "IridescenceTint": {
+   "R": 1,
+   "G": 1,
+   "B": 1,
+   "A": 1
+  },
+  "GemstoneTint": {
+   "R": 1.35,
+   "G": 1.45,
+   "B": 2,
+   "A": 1
+  },
+  "Albedo": "/Game/_ThirdParty/UltraDynamicSky/Textures/LensFlares/Rainbow_Ring.Rainbow_Ring",
+  "NormalMap": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Textures/T_FloatingCrystal_Normal.T_FloatingCrystal_Normal",
+  "ORM": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_ORM.T_Cymatic_CrystalCathedral_ORM",
+  "HeightMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Height.T_Cymatic_CrystalCathedral_Height",
+  "RoughnessMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Roughness.T_Cymatic_CrystalCathedral_Roughness",
+  "MetallicMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Metallic.T_Cymatic_CrystalCathedral_Metallic",
+  "EmissiveMap": "/Game/EnvSandbox/Textures/Copernicus/CrystalCathedral/T_Cymatic_CrystalCathedral_Emissive.T_Cymatic_CrystalCathedral_Emissive"
+ },
+ "MASTER_PARAMS": []
+}

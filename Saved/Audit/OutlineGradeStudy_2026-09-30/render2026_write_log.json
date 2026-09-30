@@ -1,0 +1,57 @@
+[
+ [
+  "create_material_instance",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_StorybookOutline_Render2026",
+  "{'asset_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_StorybookOutline_Render2026.MI_StorybookOutline_Render2026', 'asset_name': 'MI_StorybookOutline_Render2026', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/M_PP_StorybookOutline_Render2026.M"
+ ],
+ [
+  "create_material_instance",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_StorybookOutline_Render2026_FallenMoon",
+  "{'asset_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_StorybookOutline_Render2026_FallenMoon.MI_StorybookOutline_Render2026_FallenMoon', 'asset_name': 'MI_StorybookOutline_Render2026_FallenMoon', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/M"
+ ],
+ [
+  "duplicate_material",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MelodiaInk_Render2026",
+  "{'source_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MelodiaInk_Frozen', 'dest_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MelodiaInk_Render2026', 'asset_class': 'MaterialInstanceConstant'}"
+ ],
+ [
+  "set_instance_parameters",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MelodiaInk_Render2026",
+  "{'asset_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MelodiaInk_Render2026', 'set_count': 4, 'results': [{'name': 'InkHalftone', 'type': 'scalar', 'success': True}, {'name': 'InkStrength', 'type': 'scalar', 'success': True}, {'name': 'InkHatch', 'type': 'scalar', 'success': "
+ ],
+ [
+  "duplicate_material",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Render2026",
+  "{'source_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MeluColorGrade_Frozen', 'dest_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Render2026', 'asset_class': 'MaterialInstanceConstant'}"
+ ],
+ [
+  "set_instance_parameters",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Render2026",
+  "{'asset_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Render2026', 'set_count': 4, 'results': [{'name': 'ShadowLift', 'type': 'scalar', 'success': True}, {'name': 'HighlightSoft', 'type': 'scalar', 'success': True}, {'name': 'VignetteBaseIntensity', 'type': 'sc"
+ ],
+ [
+  "create_material_instance",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Render2026_FallenMoon",
+  "{'asset_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Render2026_FallenMoon.MI_MeluColorGrade_Render2026_FallenMoon', 'asset_name': 'MI_MeluColorGrade_Render2026_FallenMoon', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_Melu"
+ ],
+ [
+  "create_material_instance",
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_Premium_Hero",
+  "{'asset_path': '/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_Premium_Hero.MI_StorybookOutline_Premium_Hero', 'asset_name': 'MI_StorybookOutline_Premium_Hero', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_StorybookOutline_Render20"
+ ],
+ [
+  "create_material_instance",
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_Outline_PremiumV3_Hero",
+  "{'asset_path': '/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_Outline_PremiumV3_Hero.MI_Outline_PremiumV3_Hero', 'asset_name': 'MI_Outline_PremiumV3_Hero', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_StorybookOutline_Render2026.MI_StorybookOutlin"
+ ],
+ [
+  "create_material_instance",
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StarryNight_Hero",
+  "{'asset_path': '/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StarryNight_Hero.MI_StarryNight_Hero', 'asset_name': 'MI_StarryNight_Hero', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StarryNight_Frozen.MI_StarryNight_Frozen', 'scalar_overrides': 0, 'v"
+ ],
+ [
+  "create_material_instance",
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_PortfolioHero",
+  "{'asset_path': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_PortfolioHero.MI_MeluColorGrade_PortfolioHero', 'asset_name': 'MI_MeluColorGrade_PortfolioHero', 'parent_material': '/Game/Melodia/_PROJECT/04_Materials/PostProcess/Render2026/MI_MeluColorGrade_Rend"
+ ]
+]
