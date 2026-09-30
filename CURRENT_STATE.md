@@ -70,18 +70,28 @@ binaries; P4 `reconcile -n` is the only deletion-preview authority.
 
 **Morning intactness + rebuild kickoff, 2026-09-30:** disk-level Morning is back to depot truth +
 Sept 24–28 file set: 247 externals (48 restored), map file, 21 glitter MIs, template graph package,
-glitter recipe intact. Still absent (never reached disk Sept 27): 3 glint actors, 2 mid-ring isles,
-`NS_Morning_GlitterGlint`, DT 1135 refill (disk DT = Sept 26 copy), ZenForest trio + NoBackface
+glitter recipe intact. **CORRECTION — glints/isles were never lost, 2026-09-30 live-proven:**
+the Sept 27 placements live in `Content/__ExternalObjects__/Melodia/Levels/Opening/L_MelusinaMorning/`
+(117 pkgs, newest Sept 27), not `__ExternalActors__` — that dir difference is why disk-grep declared
+them missing. Live editor census (single editor PID 41460, :9316, 0 dirty / 0 errored, Morning PIE
+smoke 0 errors): all 3 GlitterGlints + both Meadow_Isle09 + Massive volumes present at recorded
+coords to <1 cm (SkirtHollow (-1706,258,96) · WalkwayTrail (-3558,1511,288) · MeadowSpill
+(-2044,1924,607) · Isle09 West/East exact). Full WC_NS_Morning_* FX suite live. Still genuinely
+absent: `NS_Morning_GlitterGlint` asset, DT 1135 refill (disk DT = Sept 26 copy), ZenForest trio +
+NoBackface
 variants, Sept 26–28 Python builders (`zenforest_biome`, `corridor_proof`, `morning_site`,
 `roomshell_proxy`, `import_morningplaza_kit`, contact-sheet/probes), `SOULS_ACTION_COMBAT_*` docs,
 Sept 27–28 Jev audit JSONs (substance quoted here; raw files gone), Sir CamFlap clips + Ruffles/Tie
 + Perch (rebuild via `Saved/Audit/sir_melodious_anims_20260924/author_sir_clips.py`), SapphireGlass
 Sept-28 edit content. **Regen green headless:** recipe validates, `test_world_compiler.py` 29/29
 PASS, fresh bundle compiled after `p4 edit` of the read-only Sept-24 bundle dir → **1135 points,
-sha 4253ad21, fx 17 @ 9e5c33be** — byte-faithful to the Sept 27 design. **Queued for the editor
-lane:** DT refill → NS re-forge from StarSparkle → generate + reflection recount → glint/isle
-re-placement at recorded coords → immediate save + mtime verify. No editor running now; no
-editor-side step was taken from this lane.
+sha 4253ad21, fx 17 @ 9e5c33be** — byte-faithful to the Sept 27 design. **P4-staged audit 2026-09-30:** 63/64 opens present on disk (newest = regen bundle); only
+`M_Master_Gemstone` missing (family functions + 5 MIs + Sept-28 preview PNG survive as rebuild
+guide). **Queued for the editor
+lane:** DT refill → NS re-forge from StarSparkle → generate + reflection recount → immediate save +
+mtime verify. Follow-up (not this lane): `__ExternalActors__` vs `__ExternalObjects__` duplicate
+packages — registry discards `_Auto` dupes alphabetically today; needs a deliberate dedupe pass,
+never blind disk deletes.
 Deleted 1 merged local (`feature/melusina-jev-weapon-bridge-20260928`, ancestor-proven, remote kept)
 and 13 remote refs: 11 merged lanes (5 docs/*, 1 feature, 5 fix/integration) + 2 stash-park dupes
 (`recovery/stash-park-20260928-0/4`, blob-identical to kept `stash@{5}`/`stash@{9}` per D2).
