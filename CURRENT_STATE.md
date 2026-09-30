@@ -32,6 +32,17 @@ logs + LFS receipt kept. **HELD:** `G:\_cache_relocated\` is a live Codex runtim
 `b5574409` (closeout law + G: entry) is local-only: direct push to `main` is branch-protected,
 and no new branch will be cut for it — it rides the next reviewed PR or an owner-unlocked push.
 
+**Branch janitor canonized + executing, 2026-09-30 (Jev-decided, owner blanket approval):**
+Inventory: 29 local branches, ~128 remote refs not contained in `origin/main` (16 merged),
+10 stashes (5 duplicating `recovery/stash-park-*` remotes), 7 linked worktrees (live, untouchable).
+Protected never-delete: `collab/laptop/longterm`, `backup/*`, `legacy-melodia/*`, anything
+worktree-linked. Jev verdict (local qwen3:8b — remote router endpoint 404, labeled fallback, conf
+0.8): D1=SMALL_BATCH (≤10 deletes, re-verify between) · D2=KEEP_STASH_DROP_BRANCH (keep local
+stashes, drop remote dupes after diff-identity proof) · D3=LEAVE_LOCAL_LISTED (ahead commit stays
+local + listed) · D4=LEAVE_UNTRACKED (`.pi/` untouched). Execution order: merged local branch(es)
+→ merged remote lanes → stash-park identity + drop → docs/cursor/recovery lanes by per-ref diff
+gate (empty-diff or content-on-main only). Every delete one ref per command, never glob.
+
 **Read-only Git/worktree reconciliation, 2026-09-29 (no Perforce or Unreal/TD check):** The primary checkout is `feature/spout-beauty-2026-09-26` at `0b2da9e3d`, in sync with its upstream. Before this edit, the index was clean and the working tree had 13 tracked paths modified and 506 untracked paths; this update adds one unstaged tracked change (`CURRENT_STATE.md`). These are snapshot counts, not approval to stage, submit, clean, or delete. `Plugins/AscentCombatFramework/` is untracked and has no ignore match; `.gitignore` is protected. Linked worktrees: `converge/hybrid-combat-bridge-2026-09-28` is 4 ahead / 1 behind `origin/main`; `_worktrees/world-compiler-20260927` is 1 behind `origin/main` with `Content/Melodia/Characters/Melusina/BP_Melusina.uasset` modified; locked `feature/eyewear-editorial-20260912` has a modified audit receipt and untracked `run_out*` directories. No worktree was modified or synchronized by this check.
 
 **ACFU status reconciliation pending, 2026-09-29:** The untracked `.hermes/plans/2026-09-29_acfu-bow-arrow-live-test-plan.md` reports proof and open-gate claims for `/Game/Melodia/CombatTrial`. This pass did not verify those claims against receipts or a live editor, so no ACFU gate is promoted here. Bring only verified current/open status into this document before treating that plan as current status. The dated Perforce and runtime records below retain their original evidence dates; this Git-only check does not renew them.
