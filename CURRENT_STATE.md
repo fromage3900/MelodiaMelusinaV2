@@ -12,6 +12,48 @@ new file.
 
 **Detached checkout retired, 2026-09-29:** `C:\EnvironmentPortfolio\_worktrees\world-compiler-20260927` was removed after preserving its 50 status paths, staged/unstaged diffs, Git index/worktree metadata, 67 ignored cache files, and SHA-256 manifest at `C:\EnvironmentPortfolio\_recovery\world-compiler-20260927_pre-remove_20260929_211402`. No editor/build process was using it. Its detached HEAD `b557440941350bfc4243024d8578a5186932843a` remains reachable from the existing local tracking ref `origin/docs/session-closeout-law-20260930` at cleanup time. This archive preserves the checkout's game work; those files are outside the hybrid-combat slice, not unrelated to Melodia.
 
+**PPV/MPC authority audit, 2026-09-30 (read-only disk + depot, no editor mutation):** the Sept 29
+staging delete did **not** touch post-process or MPC — `p4 reconcile -n -a` is clean on all three
+trees (`Content/_PROJECT/04_Materials/PostProcess/...`, `Content/Melodia/_PROJECT/04_Materials/...`,
+`Content/EnvSandbox/Materials/PostProcess/...`) and the frozen shipping triple is present. Fixed this
+pass, all text-side: `MelodiaNeuralHeroMaterialSubsystem.cpp` loaded `/Game/Melodia/MPC_Melodia_Palette`
+(a path that has never existed on disk; the other 7 references use the real
+`/Game/Melodia/_PROJECT/04_Materials/…`); `ppv_contract.py` exported two dead `GRANDMASTER_OUTLINE_*`
+constants pointing into a `Candidates/Profiles/` folder that does not exist (removed — nothing
+imported them; the eyewear worktree keeps its own untouched copy); `bind_ppv_audio_contract.py`
+graded against two hardcoded `Candidates/Profiles/…GameplayStandard` paths that have never existed,
+so it could not pass on any level — it now derives all three blendables from `GAMEPLAY_STACK`
+(verified: outline 1.0 / grade 0.69 / ink 1.0 all resolve to real files). **Still open, needs one
+editor session:** ZenForestTest's live stack is not the frozen stack — slot 1 is `MI_StarryNight_VanGogh`,
+an **MD_SURFACE** material in a post-process blendable that UE silently drops, slot 2 grade is live
+0.18 against the canonical 0.69. The live actor is labelled `PPV_Dreamprint_Candidate` while five
+scripts (`build_ppv_nikkidream`, `apply_dream_candidate_ppv`, `apply_zenforest_v5_outline`,
+`finalize_ppv_for_shipping`, `audit_nikki_render_post_process`) look up `PPV_NikkiDream` and would
+find nothing. `MI_MeluColorGrade_Frozen` and `MI_StorybookOutline_Frozen` were both written
+2026-09-28 15:31, after the 09-16 freeze date, so "frozen" is not a true baseline — that mtime is
+the rollback question. Duplicate same-name assets remain: `MPC_Melodia_Palette` (13,471 B in
+`Melodia/_PROJECT`, C++ target vs 7,142 B in `_PROJECT`), `M_PP_MeluColorGrade` (EnvSandbox/Masters
+vs `_PROJECT/PostProcess`), and a 14 KB `Content/LV_SeaAbove_Prototype.umap` stub shadowing the
+608 KB real one. **Audio reactivity is NOT broken:** the chain is
+`UMelodiaAudioReactivePresentationSubsystem` → `MPC_Melodia_Palette` → `UMelodiaCymaticsWriterSubsystem`
+(reads the palette, writes `Cymatic_*`) → `MPC_Cymatics_Driver` (BeatPulse, Cymatic_BeatPulse,
+Cymatic_BassIntensity, Cymatic_MidIntensity, Cymatic_EmissiveScale, Cymatic_UVDistortion, wind
+vectors) → materials/`MelodiaWindHueReveal.ush`/Niagara. The palette's *scalars* are read by C++,
+not directly by materials, which is why the palette looks unread. **The "audio-reactivity gap" was a
+false positive, now measured and closed:** `melodia_material_audit` printed a hardcoded string
+asserting "no surface material reads any of them; only M_PP_MelodiaInk consumes audio and it does
+not compile" — a canned literal, not a measurement, and it cited
+`/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk`, a path absent from disk (only
+`.../PostProcess/Frozen/M_PP_MelodiaInk_Frozen` exists) while stamping `source: "live"` on all-null
+fields. Repointed at the real master, it now measures **`is_compiled: true`, 75 expressions, 226 PS
+instructions** — it compiles clean, so the whole "broken ink → broken audio" chain was never true.
+Fixed the tool to measure instead of assert: `measured_this_call` distinguishes read values from
+STATIC provenance, `known_issue` now self-corrects to CONTRADICTED when a live read outranks the old
+note, and `melodia_ppv_report`'s canonical stack was repointed from the never-existed
+`*_PortfolioHero` set to the frozen triple. `specs/mcp/melodia_mcp_tools.v1.json` is p4 read-only, so
+the `audio_reactivity_gap` field name was kept for spec compatibility while its value now reports
+no gap; rename the field and the spec together on the next `p4 edit`.
+
 **G: portable SSD inventoried, 2026-09-30 (read-only, nothing deleted/moved):**
 `Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
 `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` (portable full-project workspace; use a
@@ -92,6 +134,17 @@ lane:** DT refill → NS re-forge from StarSparkle → generate + reflection rec
 mtime verify. Follow-up (not this lane): `__ExternalActors__` vs `__ExternalObjects__` duplicate
 packages — registry discards `_Auto` dupes alphabetically today; needs a deliberate dedupe pass,
 never blind disk deletes.
+
+**ACFU plugin verdict, 2026-09-30 (multi-disk hunt):** not uninstalled — deleted in the Sept 29
+wipe with the other untracked files (was `?? Plugins/AscentCombatFramework/`, never in depot, no
+second copy). Only other copy on any disk: `D:\Downloads_Organized\...\ACFU_UE5.7` = version
+**4.2.3 for UE 5.7**, NOT the installed 4.3.5/UE5.8 build the Sept 28 review proved loading — not
+a substitute without a source rebuild. No Fab vault copy, no local Fab entitlement (vault holds
+only LXR/White castle/Victorian/Paper/UDS). Recovery = owner re-downloads 4.3.5 from Fab under
+their account. Trial BPs (6 files, G0/G1/G2 receipts intact) stay untouched meanwhile — 0 errored
+BPs currently, do not open them without the plugin. **Git/P4 stable while owner stages live:**
+ticket valid, 10 stashes intact, remote count steady, P4 opens 26 (+regen bundle), reconcile zero;
+owner's live dirty work (ToonProfiles et al.) untouched. Editor single (PID 41460, :9316).
 
 **Roll mechanics + remote-branch survey, 2026-09-30 (measured):** Melusina roll/dash-roll is
 INTACT — `AM_Melusina_Roll.uasset` present (depot-tracked), traversal dash-roll code committed and
