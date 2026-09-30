@@ -92,6 +92,19 @@ lane:** DT refill → NS re-forge from StarSparkle → generate + reflection rec
 mtime verify. Follow-up (not this lane): `__ExternalActors__` vs `__ExternalObjects__` duplicate
 packages — registry discards `_Auto` dupes alphabetically today; needs a deliberate dedupe pass,
 never blind disk deletes.
+
+**Roll mechanics + remote-branch survey, 2026-09-30 (measured):** Melusina roll/dash-roll is
+INTACT — `AM_Melusina_Roll.uasset` present (depot-tracked), traversal dash-roll code committed and
+working tree clean, Dodge mocap clips restored; only live PIE proof is owed. Remote survey:
+`hybrid-slime-dash-roll-clean` held zero unique content (4/4 files blob-identical to `main` via
+`d40300316` reconverge) → ref deleted. `hybrid-combat-reconverge` + `humber-source-handoff` at 0
+ahead (fully landed). Real unique work outstanding, review-not-delete:
+`melusina-jev-weapon-bridge` (89 files: foundry schemas, HDA tiles, weapon bridge),
+`fix/state-doc-and-foundry-gate0` (23 files: ledger, foundry runner, test script, glitter
+deposition ref), `docs/recover-foundryday-gates` (16 files, +866 — overlaps `aa2d130e8` topic,
+needs content compare). **Gap:** `collab/laptop/longterm` exists as NO ref anywhere (landed via
+merges `89707560f`/`b3a61105f`) — contract names it preserved; owner call whether to re-pin the
+ref or amend the contract.
 Deleted 1 merged local (`feature/melusina-jev-weapon-bridge-20260928`, ancestor-proven, remote kept)
 and 13 remote refs: 11 merged lanes (5 docs/*, 1 feature, 5 fix/integration) + 2 stash-park dupes
 (`recovery/stash-park-20260928-0/4`, blob-identical to kept `stash@{5}`/`stash@{9}` per D2).
