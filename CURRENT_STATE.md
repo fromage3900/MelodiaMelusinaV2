@@ -149,6 +149,18 @@ depot), `_github_deploy` (regenerable site output), plus small `Imports/Environm
 per-tree verdicts (Phase 1) — first-party plugins + vendor pins to depot, `_github_deploy` accepted
 regenerable, small sets reviewed file-by-file.
 
+**Phase 1 verdicts, 2026-09-30 (scanner-classified, nothing submitted):** `CombatTrial/*`
+(5 BPs + map — single-copy; `BP_MelusinaACFTrial` itself reads depot-backed) → depot-submit with
+the trial. Gemstone family (9) → already P4-open for add (owner staging, submit is theirs).
+`Content/UI` design PNG/SVG (42) → git candidates. IMPERFECTER pack (5) + Zundamon BGM (2) →
+depot (version pins, not re-download roulette). `.run/*.xml` (7) → git (shared tooling).
+AIRI + HybridEncounter sources → git (owner live work, their commit). First-party plugins
+(QuillScript/MelodiaCore/MelodiaWardrobe/MultiWorld/Monolith) → depot first; vendor plugin pins
+→ depot after (30 GB total — that is what the depot is for). `_github_deploy` → accepted
+regenerable. `Products/Builds` (30) → accepted rebuildable (owner confirms). `Imports/Environment`
+(87) → sampled review next. No submit, stage, or commit of anyone else's work from this lane —
+verdicts only; execution is owner-gated per set.
+
 **ACFU plugin verdict, 2026-09-30 (multi-disk hunt):** not uninstalled — deleted in the Sept 29
 wipe with the other untracked files (was `?? Plugins/AscentCombatFramework/`, never in depot, no
 second copy). Only other copy on any disk: `D:\Downloads_Organized\...\ACFU_UE5.7` = version
