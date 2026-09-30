@@ -11,24 +11,7 @@
 Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here. **Read
 [`CLAUDE.md`](CLAUDE.md) in full before acting**; where the two differ, `CLAUDE.md` wins.
 
-- **Git pipeline law.** `origin/main` is canonical. No branch, commit, merge, rebase, reset or push
-  without explicit owner permission for that operation plus a written plan stated first. Never
-  `reset --hard`, `checkout -- .`, `clean`, force-push or rewrite history. Workers produce patches in
-  a worktree; the owner approves every git/p4 operation.
-  **Standing authorization (2026-09-30).** Requiring permission for *every* commit is what produced a
-  permanently dirty tree, unpushable local commits sitting on `main`, and two agents moving `HEAD`
-  under each other. That is settled now: work in a lane
-  ([`Docs/Production/MULTI_AGENT_LANES.md`](Docs/Production/MULTI_AGENT_LANES.md)) — committing inside
-  your **own** lane needs no permission, and the integrator landing a lane needs no permission. Do not
-  ask. Explicit owner permission is still required for anything that can lose work: `reset --hard`,
-  `checkout -- .`, `clean`, force-push, history rewrite, deleting a branch or ref, and any p4 submit.
-- **Agents do not create branches (2026-09-30).** A lane pins its work with `refs/agents/<lane>` — a
-  ref, not a branch — so it never appears in `git branch` and never accumulates.
-  `deploy/new_agent_lane.ps1` creates the lane worktree on a detached HEAD plus that ref. The
-  integrator creates one temporary branch per landing and deletes it in the same run. The
-  "create a new single-purpose branch" step in the next rule applies to the **integrator and the
-  owner**, not to workers.
-- **Disposable branch law.** Never resume, reopen, or push new work to a closed/superseded feature branch. Before owner-approved branch creation, fetch current `origin/main` and create a new single-purpose branch from that tip. If a lane is more than 8 commits behind `origin/main`, stop feature work: preserve the bounded intended delta, reconverge it onto a fresh branch from current main, verify the effective diff, and retire the stale lane. Do not merge a stale lane forward merely to keep it alive. `feature/spout-beauty-2026-09-26` is permanently retired.
+- **Main-only project workflow (owner directive, 2026-09-29; binding until the owner changes it in writing).** Use the existing local `main` checkout. Do not create or switch branches, lane refs, detached checkouts, linked worktrees, clones, GitHub branches, or pull requests for project work. Do not route around a dirty or occupied `main`; make scoped edits there and preserve every existing change. Do not fetch, push, merge, rebase, reset, stash, clean, stage, commit, delete refs, or spawn another checkout/agent unless the owner explicitly requests that exact operation. Read-only Git inspection is fine. When the owner explicitly asks to retire a named worktree or branch, first make and verify a recoverable snapshot of its tracked, staged, unstaged, untracked, and relevant ignored work; check that no editor/build process owns it; then remove only that named item. Do not treat old branch-per-task, lane, or PR instructions below as current authority.
 - **Portable G: workspace law.** `G:` is an owner-controlled portable SSD and may contain the **complete runnable Melodia project**, not merely a backup or archive. When `G:` is mounted and contains a valid Melodia checkout/project root, inspect and use that root before cloning or reconstructing another workspace on `C:`. The SSD may be carried between home and Humber and used directly for Unreal/Blender/Houdini work when the host machine permits it. Git, Git LFS, and Perforce remain synchronization/version-history layers; they are not prerequisites for opening or working from a complete portable project copy. Do not describe `G:` as archive-only, backup-only, or a disposable mirror unless the owner explicitly says that specific copy is archival. Scripts and instructions should remain repo-root-relative so the project can run from `G:` or another authorized drive letter without path rewrites.
 - **Never touch** `.gitignore`, `.gitattributes`, `Config/DefaultEngine.ini`, `Config/DefaultGame.ini`,
   `Content/Materials/MF_MeshBlend_*`, `deploy/run_verify.ps1`. Ask before any `Config/` or

@@ -62,6 +62,26 @@ private:
 	TObjectPtr<UMaterialParameterCollection> AudioParameterCollection;
 
 	/**
+	 * MPC_MelodiaInk is the Dreamprint ink lane of the shipping post-process
+	 * stack: MI_MelodiaInk_Frozen and MI_MeluColorGrade_Frozen both sample it
+	 * (verified from asset refs 2026-09-30). It declares eight Ink* parameters
+	 * -- InkReact, InkBass, InkMid, InkTreble, InkMasterWeight, InkHueShift,
+	 * InkSyncVision, InkAccentTint -- and until now nothing in game code ever
+	 * wrote it, so the ink layer sat at its authored defaults for the whole
+	 * runtime. Same defect shape as the Niagara lane above.
+	 *
+	 * Only the four beat-mirroring scalars are published. InkHueShift,
+	 * InkAccentTint and InkSyncVision are deliberately left at their authored
+	 * values: they are art-direction parameters, and activating them is a look
+	 * change that needs an owner call, not a drive-by fix (same rule that
+	 * keeps "TrebleIntensity" unwritten on the palette). InkMasterWeight is
+	 * held at 1.0 for the same reason -- the blend weight is owned by the PPV
+	 * actor, not by audio.
+	 */
+	UPROPERTY(Transient)
+	TObjectPtr<UMaterialParameterCollection> InkParameterCollection;
+
+	/**
 	 * Niagara counterpart of AudioParameterCollection. Niagara cannot read a Material
 	 * Parameter Collection, so the beat namespace must be published twice: once to the
 	 * MPC for materials and once here for FX. NPC_Melodia_Palette declares 64 parameters

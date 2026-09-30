@@ -1,11 +1,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MelodiaNarrativeTypes.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "UObject/ObjectKey.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.generated.h"
 
 class AActor;
 class UGameInstance;
+class UMelodiaHybridEncounterComponent;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaExternalJRPGBattleStarted, FName, EncounterId);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaExternalJRPGBattleEnded, uint8, BattleResult);
@@ -35,6 +38,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|JRPG Bridge")
 	bool StartTaggedJRPGBattle(FName EncounterId);
 
+	/** Route one completed world encounter through the existing typed narrative outcome. */
+	bool CompleteWorldEncounter(UMelodiaHybridEncounterComponent* Encounter, EMelodiaBattleResult Result);
+
 	UFUNCTION(BlueprintPure, Category = "Melodia|JRPG Bridge")
 	bool IsJRPGBattleActive() const { return IsValid(ActiveBattleActor); }
 
@@ -48,6 +54,8 @@ private:
 	void HandleNarrativeBattleRequested(FName EncounterId);
 
 	void UnbindActiveBattle();
+	bool HasUniqueWorldEncounter(const UMelodiaHybridEncounterComponent* Encounter, FName EncounterId) const;
+	void ClearWorldClaim();
 	UPROPERTY(Transient)
 	TObjectPtr<AActor> ActiveBattleActor;
 
@@ -55,4 +63,8 @@ private:
 	TObjectPtr<class UMelodiaNarrativeSubsystem> NarrativeSubsystem;
 
 	FName ActiveEncounterId;
+	FName ClaimedWorldEncounterId;
+	TWeakObjectPtr<UMelodiaHybridEncounterComponent> ClaimedWorldEncounter;
+	bool bWorldClaimAccepted = false;
+	TSet<FObjectKey> CompletedWorldEncounters;
 };

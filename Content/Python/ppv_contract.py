@@ -38,14 +38,6 @@ LOOKDEV_REGRESSION_LEVELS = (
 # SHIPPING_LEVELS.  New code should use the explicit name above.
 SHIPPING_LEVELS = GAMEPLAY_PPV_CERTIFICATION_LEVELS
 
-GRANDMASTER_OUTLINE_MATERIAL = (
-    "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_Outline_Grandmaster"
-)
-GRANDMASTER_OUTLINE_MI = (
-    "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/"
-    "MI_Outline_Grandmaster_Gameplay"
-)
-
 # Canonical frozen shipping assets (narrow closure approved 2026-09-14)
 FROZEN_OUTLINE_MI = (
     "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen"
