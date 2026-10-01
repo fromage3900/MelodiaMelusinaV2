@@ -1,0 +1,502 @@
+{
+ "schema": "melodia.resonant_wilds_music.v1",
+ "source": "Prototypes/Web/MelodiaResonantWilds/js/design.js",
+ "voicing": "root,3rd,5th,octave,9th",
+ "info_array": "bpm,meter,key",
+ "zones": [
+  {
+   "id": "hub",
+   "name": "Shorewake Village",
+   "bpm": 90,
+   "meter": 4,
+   "key": 60,
+   "mode": "major",
+   "style": "morning",
+   "prog": [
+    [
+     0,
+     "maj"
+    ],
+    [
+     5,
+     "maj"
+    ],
+    [
+     9,
+     "min"
+    ],
+    [
+     7,
+     "maj"
+    ]
+   ],
+   "movement": null,
+   "midi_preset": null,
+   "chords_midi": [
+    [
+     60,
+     64,
+     67,
+     72,
+     74
+    ],
+    [
+     65,
+     69,
+     72,
+     77,
+     79
+    ],
+    [
+     69,
+     72,
+     76,
+     81,
+     83
+    ],
+    [
+     67,
+     71,
+     74,
+     79,
+     81
+    ]
+   ],
+   "motif_midi": []
+  },
+  {
+   "id": "sakura_terrace",
+   "name": "Petal Cantata \u2014 Sakura Terrace",
+   "bpm": 96,
+   "meter": 3,
+   "key": 62,
+   "mode": "major",
+   "style": "waltz",
+   "prog": [
+    [
+     0,
+     "maj"
+    ],
+    [
+     9,
+     "min"
+    ],
+    [
+     5,
+     "maj"
+    ],
+    [
+     7,
+     "maj"
+    ]
+   ],
+   "motif": [
+    0,
+    2,
+    4,
+    7,
+    4,
+    2
+   ],
+   "movement": "petal_cantata",
+   "midi_preset": "waltz_garden_waltz",
+   "chords_midi": [
+    [
+     62,
+     66,
+     69,
+     74,
+     76
+    ],
+    [
+     71,
+     74,
+     78,
+     83,
+     85
+    ],
+    [
+     67,
+     71,
+     74,
+     79,
+     81
+    ],
+    [
+     69,
+     73,
+     76,
+     81,
+     83
+    ]
+   ],
+   "motif_midi": [
+    74,
+    76,
+    78,
+    81,
+    78,
+    76
+   ]
+  },
+  {
+   "id": "liquid_cathedral",
+   "name": "Liquid Cathedral \u2014 River Basin",
+   "bpm": 108,
+   "meter": 4,
+   "key": 63,
+   "mode": "major",
+   "style": "cathedral",
+   "prog": [
+    [
+     0,
+     "maj"
+    ],
+    [
+     7,
+     "maj"
+    ],
+    [
+     9,
+     "min"
+    ],
+    [
+     5,
+     "maj"
+    ]
+   ],
+   "motif": [
+    0,
+    4,
+    7,
+    11,
+    9,
+    7
+   ],
+   "movement": "liquid_cathedral",
+   "midi_preset": "cathedral_wide_crystalline",
+   "chords_midi": [
+    [
+     63,
+     67,
+     70,
+     75,
+     77
+    ],
+    [
+     70,
+     74,
+     77,
+     82,
+     84
+    ],
+    [
+     72,
+     75,
+     79,
+     84,
+     86
+    ],
+    [
+     68,
+     72,
+     75,
+     80,
+     82
+    ]
+   ],
+   "motif_midi": [
+    75,
+    79,
+    82,
+    86,
+    84,
+    82
+   ]
+  },
+  {
+   "id": "fugue_grotto",
+   "name": "Fugue Grotto \u2014 Collapsed Gullies",
+   "bpm": 120,
+   "meter": 4,
+   "key": 62,
+   "mode": "minor",
+   "style": "fugue",
+   "prog": [
+    [
+     0,
+     "min"
+    ],
+    [
+     8,
+     "maj"
+    ],
+    [
+     3,
+     "maj"
+    ],
+    [
+     10,
+     "maj"
+    ]
+   ],
+   "motif": [
+    0,
+    3,
+    7,
+    5,
+    3,
+    2
+   ],
+   "movement": "fugue_grotto",
+   "midi_preset": "fugue_maze_fugue",
+   "chords_midi": [
+    [
+     62,
+     65,
+     69,
+     74,
+     76
+    ],
+    [
+     70,
+     74,
+     77,
+     82,
+     84
+    ],
+    [
+     65,
+     69,
+     72,
+     77,
+     79
+    ],
+    [
+     72,
+     76,
+     79,
+     84,
+     86
+    ]
+   ],
+   "motif_midi": [
+    74,
+    77,
+    81,
+    79,
+    77,
+    76
+   ]
+  },
+  {
+   "id": "cadence_crystal_ridge",
+   "name": "Cadence Cathedral \u2014 Crystal Ridge",
+   "bpm": 132,
+   "meter": 4,
+   "key": 57,
+   "mode": "minor",
+   "style": "toccata",
+   "prog": [
+    [
+     0,
+     "min"
+    ],
+    [
+     5,
+     "min"
+    ],
+    [
+     7,
+     "maj"
+    ],
+    [
+     0,
+     "min"
+    ]
+   ],
+   "motif": [
+    0,
+    7,
+    12,
+    10,
+    7,
+    3
+   ],
+   "movement": "cadence_cathedral",
+   "midi_preset": "toccata_spires_toccata",
+   "chords_midi": [
+    [
+     57,
+     60,
+     64,
+     69,
+     71
+    ],
+    [
+     62,
+     65,
+     69,
+     74,
+     76
+    ],
+    [
+     64,
+     68,
+     71,
+     76,
+     78
+    ],
+    [
+     57,
+     60,
+     64,
+     69,
+     71
+    ]
+   ],
+   "motif_midi": [
+    69,
+    76,
+    81,
+    79,
+    76,
+    72
+   ]
+  },
+  {
+   "id": "aurora_glacier",
+   "name": "Aurora Glacier \u2014 Glacial Fugue",
+   "bpm": 84,
+   "meter": 4,
+   "key": 66,
+   "mode": "minor",
+   "style": "glacial",
+   "prog": [
+    [
+     0,
+     "min"
+    ],
+    [
+     8,
+     "maj"
+    ],
+    [
+     5,
+     "min"
+    ],
+    [
+     7,
+     "maj"
+    ]
+   ],
+   "motif": [
+    0,
+    5,
+    7,
+    8,
+    7,
+    3
+   ],
+   "movement": "aurora_glacier",
+   "midi_preset": "glacial_fugue",
+   "chords_midi": [
+    [
+     66,
+     69,
+     73,
+     78,
+     80
+    ],
+    [
+     74,
+     78,
+     81,
+     86,
+     88
+    ],
+    [
+     71,
+     74,
+     78,
+     83,
+     85
+    ],
+    [
+     73,
+     77,
+     80,
+     85,
+     87
+    ]
+   ],
+   "motif_midi": [
+    78,
+    83,
+    85,
+    86,
+    85,
+    81
+   ]
+  },
+  {
+   "id": "rift",
+   "name": "Resonance Rift",
+   "meter": 4,
+   "key": 61,
+   "mode": "minor",
+   "style": "rift",
+   "prog": [
+    [
+     0,
+     "min"
+    ],
+    [
+     1,
+     "maj"
+    ],
+    [
+     8,
+     "maj"
+    ],
+    [
+     7,
+     "maj"
+    ]
+   ],
+   "movement": null,
+   "midi_preset": null,
+   "chords_midi": [
+    [
+     61,
+     64,
+     68,
+     73,
+     75
+    ],
+    [
+     62,
+     66,
+     69,
+     74,
+     76
+    ],
+    [
+     69,
+     73,
+     76,
+     81,
+     83
+    ],
+    [
+     68,
+     72,
+     75,
+     80,
+     82
+    ]
+   ],
+   "motif_midi": []
+  }
+ ]
+}
