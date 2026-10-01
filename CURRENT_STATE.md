@@ -125,6 +125,8 @@ palette. Still unproven: the four are unconfirmed as scalars vs vectors (bytes c
 reflection can), nothing is compiled, and no render has shown the ink moving. Requires a full
 closed-editor build — three UE processes were holding the DLL on 2026-09-30.
 
+**Capstone retrospective:** [Sep 2–30 milestone and reflection package](Docs/Semester/CAPSTONE_MILESTONE_REFLECTIONS_2026-09-02_TO_2026-09-30.md) is a historical submission-prep snapshot; this file remains current-status authority, and the official Humber brief/rubric are pending.
+
 **G: portable SSD inventoried, 2026-09-30 (read-only, nothing deleted/moved):**
 `Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
 `Docs/Production/HUMBER_LAB_PRIMARY_WORKSTATION_2026.md` (portable full-project workspace; use a
