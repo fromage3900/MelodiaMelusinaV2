@@ -304,24 +304,13 @@ private:
 	 * uses for the stock StartBattle. UseSkill takes no parameters beyond self, so
 	 * a zero-size parameter block is passed; a signature that grew parameters is a
 	 * hard error rather than a silently defaulted call.
+	 *
+	 * BP_BattleController is the single damage application point. Its montage
+	 * notify and projectile-hit paths pass GetPendingDamageMultiplier() into
+	 * DealDamage.damageMultiplier, then clear the latch. Scaling the attacker's
+	 * minAttack/maxAttack here as well would apply the rhythm grade twice.
 	 */
 	static void InvokeStockUseSkill(UObject* StockSkill);
-
-	/**
-	 * No second writer of the grade scalar.
-	 *
-	 * BP_BattleController is the single application point. Both of its damage
-	 * sites -- the melee montage's damage notify and the projectile-hit handler --
-	 * pass GetPendingDamageMultiplier() straight into DealDamage's
-	 * damageMultiplier input and then call ClearPendingDamageMultiplier(). It owns
-	 * the moment the scalar has to be applied and the moment it is spent.
-	 *
-	 * Scaling the attacking unit's minAttack/maxAttack here as well double-applied
-	 * the scalar: Great became 1.20 * 1.20 = 1.44x and Perfect 1.45^2 = 2.10x.
-	 * A rhythm skill is authored in DataAssets, so the grade ladder is content.
-	 * Do not re-add an attack-stat scale, a second DealDamage call, or any other
-	 * route for the grade to reach stock damage.
-	 */
 
 	/**
 	 * The pending deferral. This pointer IS the guard: it is cleared before
