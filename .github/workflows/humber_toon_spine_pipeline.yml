@@ -1,0 +1,54 @@
+name: Humber Toon Spine Pipeline Verification
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - 'specs/humber_toon_spine/**'
+      - 'Humber_FinalYear_Prep/**'
+      - 'Tools/verify_git_consistency.py'
+      - 'Tools/dogfood_toon_spine.py'
+      - '.github/workflows/humber_toon_spine_pipeline.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  toon_spine_verify:
+    name: Toon Spine & Team Staging Dogfood
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify Git Consistency and LFS Configuration
+        run: |
+          python Tools/verify_git_consistency.py
+
+      - name: Run Toon Spine Dogfood Test Suite
+        run: |
+          python Tools/dogfood_toon_spine.py --verbose
+
+      - name: Validate JSON Schema for Toon Spine Manifest
+        run: |
+          python -c "
+          import json
+          manifest = json.load(open('specs/humber_toon_spine/humber_toon_spine_manifest.v1.json', encoding='utf-8'))
+          assert manifest['team_size'] == 14, f'Expected 14 team members, got {manifest[\"team_size\"]}'
+          assert len(manifest['staging_slots']) == 14, f'Expected 14 staging slots, got {len(manifest[\"staging_slots\"])}'
+          assert len(manifest['shot_deck']) >= 5, 'Shot deck must contain at least 5 shots'
+          print('✅ JSON Schema validation and team staging assertions passed.')
+          "

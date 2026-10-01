@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0.0",
+  "project_name": "Melodia Humber Toon Spine Capstone",
+  "academic_context": "Humber AN311 Sem 5/6 Capstone + Portfolio Reel",
+  "team_size": 14,
+  "framing_standard": {
+    "aspect_ratio": "16:9",
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "portfolio_sheet_resolution": {
+      "width": 1600,
+      "height": 2000
+    },
+    "frame_rate": 24.0,
+    "safe_zones": {
+      "action_safe_percent": 93,
+      "title_safe_percent": 90,
+      "rule_of_thirds_grid": true,
+      "character_eye_line_ratio": 0.618
+    },
+    "color_space": "ACEScg / AgX Punchy",
+    "shading_pipeline": {
+      "master_toon": "M_Master_Toon_Universal",
+      "toon_profile": "TP_Melusina",
+      "shadow_tint_hex": "#352D40",
+      "hatching_pattern": "T_HatchPattern"
+    }
+  },
+  "shot_deck": [
+    {
+      "shot_id": "SH010",
+      "name": "establish_world",
+      "camera": "Cam_Turntable.001",
+      "focal_length_mm": 24.0,
+      "framing_type": "Extreme Wide / Establishing",
+      "duration_sec": 4.0,
+      "frame_start": 1,
+      "frame_end": 96,
+      "framing_intent": "Deep wide composition establishing architecture, atmosphere, and silhouette."
+    },
+    {
+      "shot_id": "SH020",
+      "name": "reveal_profile",
+      "camera": "Cam_Back",
+      "focal_length_mm": 35.0,
+      "framing_type": "Wide Follow / Medium Long",
+      "duration_sec": 3.0,
+      "frame_start": 97,
+      "frame_end": 168,
+      "framing_intent": "Follow perspective framing hero silhouette against atmospheric depth."
+    },
+    {
+      "shot_id": "SH030",
+      "name": "water_rise",
+      "camera": "Cam_Low",
+      "focal_length_mm": 28.0,
+      "framing_type": "Low Angle Hero Vista",
+      "duration_sec": 3.5,
+      "frame_start": 169,
+      "frame_end": 252,
+      "framing_intent": "Low horizon framing ground contact, boots grounded through floor plane, water wave expansion."
+    },
+    {
+      "shot_id": "SH040",
+      "name": "dialogue_medium",
+      "camera": "Cam_Beauty",
+      "focal_length_mm": 50.0,
+      "framing_type": "Medium Shot (Waist Up)",
+      "duration_sec": 4.0,
+      "frame_start": 253,
+      "frame_end": 348,
+      "framing_intent": "Standard narrative framing, eye line at upper third, clear hands and costume details."
+    },
+    {
+      "shot_id": "SH050",
+      "name": "macro_emotion",
+      "camera": "Cam_Macro",
+      "focal_length_mm": 85.0,
+      "framing_type": "Extreme Close-Up / Portrait",
+      "duration_sec": 3.0,
+      "frame_start": 349,
+      "frame_end": 420,
+      "framing_intent": "Facial close-up highlighting eyes, warm-violet (#352D40) halftone shadow ramp, and micro-expressions."
+    },
+    {
+      "shot_id": "SH060",
+      "name": "hero_rig_action",
+      "camera": "Cam_Front",
+      "focal_length_mm": 50.0,
+      "framing_type": "Full Body Hero Action",
+      "duration_sec": 5.0,
+      "frame_start": 421,
+      "frame_end": 540,
+      "framing_intent": "Reel Shot 6 hero dynamic performance with matched audio beats and hand keyframe alignment."
+    },
+    {
+      "shot_id": "SH070",
+      "name": "song_release",
+      "camera": "Cam_Turntable",
+      "focal_length_mm": 40.0,
+      "framing_type": "Orbiting Medium Shot",
+      "duration_sec": 3.5,
+      "frame_start": 541,
+      "frame_end": 624,
+      "framing_intent": "Smooth rotational sweep capturing cymatic fabric flow and rhythm synchronization."
+    },
+    {
+      "shot_id": "SH080",
+      "name": "bow_finale",
+      "camera": "Cam_Beauty",
+      "focal_length_mm": 50.0,
+      "framing_type": "Medium Full Shot / Resolution",
+      "duration_sec": 4.0,
+      "frame_start": 625,
+      "frame_end": 720,
+      "framing_intent": "Final pose resolving into title card, honoring the 3 simple dissolves rule from brief."
+    }
+  ],
+  "staging_slots": [
+    {
+      "slot_id": 1,
+      "assigned_role": "Director / Capstone Lead",
+      "subfolder": "01_Preprod/Story",
+      "required_prefixes": ["DOC_", "STORY_", "BEAT_"],
+      "lfs_tracked": false
+    },
+    {
+      "slot_id": 2,
+      "assigned_role": "Storyboard & Animatic Artist",
+      "subfolder": "01_Preprod/Storyboard",
+      "required_prefixes": ["SB_", "PNL_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 3,
+      "assigned_role": "Concept Art & Visual Reference Lead",
+      "subfolder": "01_Preprod/References",
+      "required_prefixes": ["REF_", "CON_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 4,
+      "assigned_role": "Hero Character Modeler",
+      "subfolder": "02_Assets/Models/Characters",
+      "required_prefixes": ["CH_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 5,
+      "assigned_role": "Environment & Architecture Modeler",
+      "subfolder": "02_Assets/Models/Environments",
+      "required_prefixes": ["EN_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 6,
+      "assigned_role": "Key Props Modeler",
+      "subfolder": "02_Assets/Models/Props",
+      "required_prefixes": ["PR_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 7,
+      "assigned_role": "Character Rigger (Body & Face)",
+      "subfolder": "02_Assets/Rigs/Character",
+      "required_prefixes": ["RIG_CH_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 8,
+      "assigned_role": "Prop & Mechanical Rigger",
+      "subfolder": "02_Assets/Rigs/Props",
+      "required_prefixes": ["RIG_PR_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 9,
+      "assigned_role": "Toon Shader & Surfacing Technical Artist",
+      "subfolder": "02_Assets/Materials",
+      "required_prefixes": ["M_", "MI_", "TP_", "T_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 10,
+      "assigned_role": "Lead Character Animator (Acting/Dialogue)",
+      "subfolder": "03_Scenes/Animation/Acting",
+      "required_prefixes": ["SC_ACT_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 11,
+      "assigned_role": "Action & Camera Layout Animator",
+      "subfolder": "03_Scenes/Animation/Action",
+      "required_prefixes": ["SC_ACTN_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 12,
+      "assigned_role": "Lighting & Lookdev Artist",
+      "subfolder": "03_Scenes/Lighting",
+      "required_prefixes": ["LGT_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 13,
+      "assigned_role": "VFX & Compositing Artist",
+      "subfolder": "04_Renders/Compositing",
+      "required_prefixes": ["FX_", "COMP_"],
+      "lfs_tracked": true
+    },
+    {
+      "slot_id": 14,
+      "assigned_role": "Editor & Audio/Soundtrack Coordinator",
+      "subfolder": "05_Edit/Sequences",
+      "required_prefixes": ["ED_", "VSE_", "AUD_"],
+      "lfs_tracked": true
+    }
+  ]
+}

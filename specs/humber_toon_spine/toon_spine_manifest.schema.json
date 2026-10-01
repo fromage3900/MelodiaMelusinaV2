@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HumberToonSpineManifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_name",
+    "team_size",
+    "framing_standard",
+    "shot_deck",
+    "staging_slots"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "project_name": { "type": "string" },
+    "team_size": { "type": "integer" },
+    "framing_standard": {
+      "type": "object",
+      "required": ["aspect_ratio", "resolution", "frame_rate", "safe_zones", "color_space"],
+      "properties": {
+        "aspect_ratio": { "type": "string" },
+        "resolution": {
+          "type": "object",
+          "required": ["width", "height"],
+          "properties": {
+            "width": { "type": "integer" },
+            "height": { "type": "integer" }
+          }
+        },
+        "frame_rate": { "type": "number" },
+        "safe_zones": { "type": "object" },
+        "color_space": { "type": "string" }
+      }
+    },
+    "shot_deck": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["shot_id", "name", "camera", "focal_length_mm", "framing_type", "duration_sec", "framing_intent"],
+        "properties": {
+          "shot_id": { "type": "string" },
+          "name": { "type": "string" },
+          "camera": { "type": "string" },
+          "focal_length_mm": { "type": "number" },
+          "framing_type": { "type": "string" },
+          "duration_sec": { "type": "number" },
+          "framing_intent": { "type": "string" }
+        }
+      }
+    },
+    "staging_slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slot_id", "assigned_role", "subfolder", "required_prefixes", "lfs_tracked"],
+        "properties": {
+          "slot_id": { "type": "integer" },
+          "assigned_role": { "type": "string" },
+          "subfolder": { "type": "string" },
+          "required_prefixes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "lfs_tracked": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}
