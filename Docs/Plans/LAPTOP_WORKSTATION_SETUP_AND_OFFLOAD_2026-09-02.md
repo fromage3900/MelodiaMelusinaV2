@@ -75,7 +75,7 @@ Get-Volume |
 | 48 GB+ RAM and a suitable discrete GPU | **Full candidate** | Consider broader UE/editor use only after the validator, C++ build, and one clean editor launch pass. This is still not permission to duplicate the entire art library. |
 | Unknown/weak GPU or nearly full SSD | **Worker-first** | Treat it as a CPU/tooling node until the GPU and free space are confirmed. |
 
-GPU matters more than the product name for Lumen/Nanite and high-resolution rendering. Compare the measured adapter against Epic's current [Unreal hardware and software specifications](https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine) before assigning rendering work.
+GPU matters more than the product name for Lumen/Nanite and high-resolution rendering. Compare the measured adapter against Epic's current Unreal hardware and software specifications before assigning rendering work.
 
 ## 4. Install order
 
@@ -144,7 +144,7 @@ Install the toolchain before the first plugin build. The laptop does not need to
 4. Allow Rider's UnrealLink/RiderLink integration when Unreal prompts for it.
 5. Keep Rider as the primary C++/Unreal IDE so the project has one code navigation and refactoring authority.
 
-JetBrains' [Unreal Engine Rider documentation](https://www.jetbrains.com/help/rider/Working_with_Unreal_Engine.html) is the current reference for RiderLink, Blueprint support, debugging, and Unreal project integration.
+JetBrains' Unreal Engine Rider documentation is the current reference for RiderLink, Blueprint support, debugging, and Unreal project integration.
 
 ### 4.6 VS Code
 
@@ -421,8 +421,8 @@ The current configured service ports are in `Config/paths.json`; their presence 
 
 ## References
 
-- [Melodia Quick Start](../../QUICKSTART.md)
-- [Melodia Collaborator Setup](../../COLLABORATOR_SETUP.md)
-- [Epic Unreal hardware and software specifications](https://dev.epicgames.com/documentation/en-us/unreal-engine/hardware-and-software-specifications-for-unreal-engine)
-- [JetBrains Rider for Unreal Engine](https://www.jetbrains.com/help/rider/Working_with_Unreal_Engine.html)
-- [Git LFS](https://git-lfs.com/)
+- Melodia Quick Start
+- Melodia Collaborator Setup
+- Epic Unreal hardware and software specifications
+- JetBrains Rider for Unreal Engine
+- Git LFS

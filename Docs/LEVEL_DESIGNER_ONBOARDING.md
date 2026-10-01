@@ -7,7 +7,7 @@ This is the shortest safe path from checkout to a validated greybox contribution
 1. Install UE 5.8, Git LFS, and VS 2022 Desktop development with C++.
 2. Clone the repository and run `bash deploy/collaborator_onboarding.sh lightweight`.
 3. Open `BS_GodFile.uproject`.
-4. Read [COLLABORATION_WORKFLOW.md](COLLABORATION_WORKFLOW.md).
+4. Read COLLABORATION_WORKFLOW.md.
 5. Use `L_MelusinaMorning` for the opening route or
    `L_KaleidoNave` for tracked PCG/look-dev work.
 
@@ -58,6 +58,6 @@ put final hero composition into PCG, commit `Saved/`, or claim visual validation
 from a headless structural check alone.
 
 Photogrammetry / Twinmotion imports are a **side lane** only — see
-[Docs/Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md](Production/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md).
+Docs/Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md.
 Land under `/Game/EnvSandbox/Scans/` or `…/Imports/Twinmotion/`, retarget to
 Melodia toon materials, and prove in `L_Template` before touching live maps.

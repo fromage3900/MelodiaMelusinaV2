@@ -4,12 +4,12 @@
 
 ## STATUS — one document
 
-[`CURRENT_STATE.md`](CURRENT_STATE.md) is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
+`CURRENT_STATE.md` is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
 ## BINDING RULES — every agent (Hermes, Codex, Claude, subagents)
 
 Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here. **Read
-[`CLAUDE.md`](CLAUDE.md) in full before acting**; where the two differ, `CLAUDE.md` wins.
+`CLAUDE.md` in full before acting**; where the two differ, `CLAUDE.md` wins.
 
 - **Main-only project workflow (owner directive, 2026-09-29; binding until the owner changes it in writing).** Use the existing local `main` checkout. Do not create or switch branches, lane refs, detached checkouts, linked worktrees, clones, GitHub branches, or pull requests for project work. Do not route around a dirty or occupied `main`; make scoped edits there and preserve every existing change. Do not fetch, push, merge, rebase, reset, stash, clean, stage, commit, delete refs, or spawn another checkout/agent unless the owner explicitly requests that exact operation. Read-only Git inspection is fine. When the owner explicitly asks to retire a named worktree or branch, first make and verify a recoverable snapshot of its tracked, staged, unstaged, untracked, and relevant ignored work; check that no editor/build process owns it; then remove only that named item. Do not treat old branch-per-task, lane, or PR instructions below as current authority.
 - **Portable G: workspace law.** `G:` is an owner-controlled portable SSD and may contain the **complete runnable Melodia project**, not merely a backup or archive. When `G:` is mounted and contains a valid Melodia checkout/project root, inspect and use that root before cloning or reconstructing another workspace on `C:`. The SSD may be carried between home and Humber and used directly for Unreal/Blender/Houdini work when the host machine permits it. Git, Git LFS, and Perforce remain synchronization/version-history layers; they are not prerequisites for opening or working from a complete portable project copy. Do not describe `G:` as archive-only, backup-only, or a disposable mirror unless the owner explicitly says that specific copy is archival. Scripts and instructions should remain repo-root-relative so the project can run from `G:` or another authorized drive letter without path rewrites.
@@ -23,10 +23,10 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
 - **Delegated output is not evidence.** Open the artifact (image, log, JSON) yourself before claiming
   a result. A subagent once reported a "smooth" SDF bake that was scattered dots.
 - **Orchestration & Model Tier Discipline.** Hermes runs long jobs, Jev routes, Claude verifies — the one plan is
-  [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md).
+  `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`.
   Extend it; do not start a parallel orchestration/router/lease framework. Model tiers are governed by
-  [`Docs/Production/MODEL_ROUTING_CANON.md`](Docs/Production/MODEL_ROUTING_CANON.md) and
-  [`specs/orchestration/model_tiers.v1.json`](specs/orchestration/model_tiers.v1.json). Before dispatching or spending
+  `Docs/Production/MODEL_ROUTING_CANON.md` and
+  `specs/orchestration/model_tiers.v1.json`. Before dispatching or spending
   frontier calls, query `python Tools/model_router.py tier <task>`; lower-tier bulk work must not burn frontier tokens,
   and local/bulk tiers must not alter `Source/**`, schemas, or contracts. Parallel repo work = jcode swarm
   under `.jcode/swarm-prompt.md` (one worktree per worker, patches only, no editor access).
@@ -38,17 +38,17 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
 
 ## Production-tool front door — READ BEFORE CHOOSING A NEW FRAMEWORK
 
-The canonical workflow router is [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md).
+The canonical workflow router is `Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`.
 
 Use it to select the existing lane before writing code:
 
 - **worldbuilding:** recipe -> `Tools/world_compiler.py` -> existing UE driver; no second compiler or scatter framework;
 - **Houdini:** deterministic Hython tools under `Tools/Houdini/` forge source assets/data; they do not own runtime world state;
 - **Rokoko/Melusina mocap:** Blender retarget/root-motion FBX -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing animation owner;
-- **UE C++:** JetBrains Rider is the preferred navigation/debug/test surface; follow [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md);
+- **UE C++:** JetBrains Rider is the preferred navigation/debug/test surface; follow `Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`;
 - **RiderLink:** always-available focused live-editor automation bridge for native tests; use it before inventing a custom test harness when a single-editor session is the right proof surface;
 - **Qodana:** always-available static-analysis gate through tracked `qodana.yaml` (`ide: QDJB`); run it as a normal native/shader quality layer, not an optional experiment;
-- **Jev:** always-available canonical judgment/orchestration service for bounded authored choices and next-action selection; follow [`Docs/Production/JEV_CANONICAL_WORKFLOW.md`](Docs/Production/JEV_CANONICAL_WORKFLOW.md). Jev chooses/directs; existing owners execute;
+- **Jev:** always-available canonical judgment/orchestration service for bounded authored choices and next-action selection; follow `Docs/Production/JEV_CANONICAL_WORKFLOW.md`. Jev chooses/directs; existing owners execute;
 - **editor mutation:** one Unreal Editor, one Monolith writer, inspect -> mutate -> assert -> save;
 - **status:** only `CURRENT_STATE.md` may declare what is currently proven/open.
 
@@ -56,7 +56,7 @@ If an old research/handoff file suggests creating a parallel implementation, the
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
-See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
+See `_AGENT_WORKING_AGREEMENT.md` — binding. Do the job asked, ship it, stop; never compensate, kill means delete; owner's statements are ground truth; fix ≠ review.
 
 ---
 
@@ -74,9 +74,9 @@ Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` 
 
 ## Toolchain discovery — read first before any emerging-toolchain / render / audio work
 
-> **Read [`CURRENT_STATE.md`](CURRENT_STATE.md) → `PROVEN CREATIVE CAPABILITY SURFACE` first.** It is the
+> **Read `CURRENT_STATE.md` → `PROVEN CREATIVE CAPABILITY SURFACE` first.** It is the
 > live status authority and tells you which affordances are live-proven, source/tool-proven, or scaffolded.
-> Then use [`Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md)
+> Then use `Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`
 > as the detailed inventory for SpeedTree, Houdini/Copernicus, PCG, cymatics, audio reactivity and external tools.
 > The index is a reference inventory, not a second status authority. Extend PRESENT lanes, finish SCAFFOLDED
 > lanes with evidence, and never promote research-only or external work as live.
@@ -138,13 +138,13 @@ proof remains separately tracked in `CURRENT_STATE.md`.
 
 Shape: OMORI. Music-as-key: Zelda. Visual/wardrobe bar: Infinity Nikki.
 
-Status and scope: [`CURRENT_STATE.md`](CURRENT_STATE.md).
+Status and scope: `CURRENT_STATE.md`.
 
 **Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
 deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
 beatmap_author|quill_author|asset_qa|anim_bindings|spout_beauty`). Router: `python Tools/model_router.py pick
-<class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
-Gameplay queue: [`CURRENT_STATE.md`](CURRENT_STATE.md) §4. The handoff files this line used to point
+<class> --detail`. Policy + local daemon models: `Docs/Production/MODEL_LANES_2026-08-12.md`.
+Gameplay queue: `CURRENT_STATE.md` §4. The handoff files this line used to point
 at were removed in the 2026-09-10 docs collapse.
 
 | Class | Use for | Must not |
@@ -175,7 +175,7 @@ intentionally gitignored, do not track it.
 
 ## 🚀 Rider & UE 5.8 Engineering Protocols
 
-Canonical runbook: [`Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`](Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md).
+Canonical runbook: `Docs/Production/RIDER_UE58_CANONICAL_WORKFLOW.md`.
 
 Use Rider to **find the real owner, make a smaller native change, run the right build, and prove it in Unreal**.
 
@@ -305,7 +305,7 @@ looked correct in every graph read:
 
 Full reference (toon profiles, Niagara MPC, inject snippets, `ci_gates.json`, Monolith
 blueprint/material/editor/project/niagara actions):
-[`Docs/Production/T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md).
+`Docs/Production/T3D_MONOLITH_REFERENCE.md`.
 
 ---
 
@@ -350,7 +350,7 @@ Implementation rules:
   authority. `/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation` remains a separate
   battle-presentation role. Universe Foundry authors content for existing runtime contracts; do not
   create another pawn, animation controller, pawn-owned Foundry manager, or Niagara framework.
-  Use [`SYSTEM_MAP.md` → Melusina runtime system diagram](SYSTEM_MAP.md#melusina-runtime-system-diagram)
+  Use `SYSTEM_MAP.md` → Melusina runtime system diagram
   as the canonical visual owner map and `Docs/P1_TASK_LEDGER.json` → `melusina_work` for scoped
   work gates. See `CURRENT_STATE.md` for the full Blueprint inventory and current evidence tiers.
 - One writer owns each UI/audio surface. Extend the existing UI bridge, audio-reactive palette,
@@ -553,15 +553,15 @@ plausible to a folder outside `Content/` first.
 
 ## 5. jcode Swarm (parallel coding lane)
 
-Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
+Primary **repo-side** parallel coding uses jcode light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
 
-*   **Policy:** [`.jcode/swarm-prompt.md`](.jcode/swarm-prompt.md) — PGA/MPA/PPA/WIA/SQA/WEB/MUSE spawn scopes, concurrency cap 6, no recursive worker spawning.
-*   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste [`.jcode/coordinator-bootstrap.md`](.jcode/coordinator-bootstrap.md).
-*   **MCP:** [`.jcode/mcp.json`](.jcode/mcp.json) → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
+*   **Policy:** `.jcode/swarm-prompt.md` — PGA/MPA/PPA/WIA/SQA/WEB/MUSE spawn scopes, concurrency cap 6, no recursive worker spawning.
+*   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste `.jcode/coordinator-bootstrap.md`.
+*   **MCP:** `.jcode/mcp.json` → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
 *   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
-*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md).
+*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via `.opencode/opencode.jsonc` + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via `Docs/Production/MUSE_CODE_LANE_2026-08-11.md`.
 *   **Keep running:** surreal/world/`run_verify` production loops.
 *   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
 *   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.
 
-Full guide: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](Docs/PhoneOps/JCODE_SWARM_PIPELINE.md) · [`.jcode/README.md`](.jcode/README.md)
+Full guide: Docs/PhoneOps/JCODE_SWARM_PIPELINE.md · `.jcode/README.md`

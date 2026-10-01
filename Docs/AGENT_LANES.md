@@ -1,6 +1,6 @@
 # Agent lanes
 
-Split out of `AGENTS.md` on 2026-08-13. **Read [`AGENTS.md`](../AGENTS.md) first.**
+Split out of `AGENTS.md` on 2026-08-13. **Read `AGENTS.md` first.**
 
 ## How work is partitioned
 
@@ -58,8 +58,8 @@ verify them, and do not schedule work to re-prove them.
 
 ## Current lane dispatch
 
-Live partition: [`Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`](Production/MODEL_LANES_2026-08-12.md)
-· paste prompts [`PARALLEL_SESSIONS_2026-08-12.md`](Production/PARALLEL_SESSIONS_2026-08-12.md).
+Live partition: `Docs/Handoffs/PARALLEL_LANES_2026-08-12.md`
+· paste prompts `PARALLEL_SESSIONS_2026-08-12.md`.
 History: `PARALLEL_LANES_2026-08-08.md`.
 
 **Never write a PID into a lane prompt.** On 2026-08-12/13 the editor turned over twice
@@ -68,15 +68,15 @@ process. Say "the one running editor" and have the reader run `Get-Process Unrea
 
 ## 5. jcode Swarm (parallel coding lane)
 
-Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
+Primary **repo-side** parallel coding uses jcode light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
 
-*   **Policy:** [`.jcode/swarm-prompt.md`](../.jcode/swarm-prompt.md) — PGA/MPA/PPA/WIA/SQA/WEB/MUSE spawn scopes, concurrency cap 6, no recursive worker spawning.
-*   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste [`.jcode/coordinator-bootstrap.md`](../.jcode/coordinator-bootstrap.md).
-*   **MCP:** [`.jcode/mcp.json`](../.jcode/mcp.json) → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
+*   **Policy:** `.jcode/swarm-prompt.md` — PGA/MPA/PPA/WIA/SQA/WEB/MUSE spawn scopes, concurrency cap 6, no recursive worker spawning.
+*   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste `.jcode/coordinator-bootstrap.md`.
+*   **MCP:** `.jcode/mcp.json` → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
 *   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
-*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](../.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Production/MUSE_CODE_LANE_2026-08-11.md). Tonight prep: [`Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`](Production/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md).
+*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via `.opencode/opencode.jsonc` + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via `Docs/Production/MUSE_CODE_LANE_2026-08-11.md`. Tonight prep: `Docs/Handoffs/TONIGHT_FIRST_DREAM_OPENCODE_2026-08-11.md`.
 *   **Keep running:** surreal/world/`run_verify` production loops.
 *   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
 *   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.
 
-Full guide: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](PhoneOps/JCODE_SWARM_PIPELINE.md) · [`.jcode/README.md`](../.jcode/README.md)
+Full guide: Docs/PhoneOps/JCODE_SWARM_PIPELINE.md · `.jcode/README.md`

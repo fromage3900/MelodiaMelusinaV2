@@ -1,12 +1,12 @@
 # Model Routing Canon — tiers, frontier discipline, cheap-model leverage
 
 **Created:** 2026-09-26
-**Registry (machine-readable):** [`specs/orchestration/model_tiers.v1.json`](../../specs/orchestration/model_tiers.v1.json)
-**Live routing:** [`Tools/model_router.py`](../../Tools/model_router.py) — `pick`, `chat`, `tier`, `tasks`, `test`, `ledger`, `cost`, `classes`
-**Validator:** [`Tools/validate_model_tiers.py`](../../Tools/validate_model_tiers.py) · **Tests:** [`Tools/test_model_tiers.py`](../../Tools/test_model_tiers.py)
-**Orchestration plan (extend, never replace):** [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](../../.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md)
-**Swarm lane policy:** [`.jcode/swarm-prompt.md`](../../.jcode/swarm-prompt.md) · **Status authority:** [`CURRENT_STATE.md`](../../CURRENT_STATE.md)
-**Class-level model policy (per-class fallback chains):** [`MODEL_LANES_2026-08-12.md`](MODEL_LANES_2026-08-12.md)
+**Registry (machine-readable):** `specs/orchestration/model_tiers.v1.json`
+**Live routing:** `Tools/model_router.py` — `pick`, `chat`, `tier`, `tasks`, `test`, `ledger`, `cost`, `classes`
+**Validator:** `Tools/validate_model_tiers.py` · **Tests:** `Tools/test_model_tiers.py`
+**Orchestration plan (extend, never replace):** `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`
+**Swarm lane policy:** `.jcode/swarm-prompt.md` · **Status authority:** `CURRENT_STATE.md`
+**Class-level model policy (per-class fallback chains):** `MODEL_LANES_2026-08-12.md`
 
 ---
 

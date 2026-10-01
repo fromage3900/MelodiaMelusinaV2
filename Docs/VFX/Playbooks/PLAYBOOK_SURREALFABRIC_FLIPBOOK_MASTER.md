@@ -44,7 +44,7 @@ not fake a 6×5 chop on a single frame.
   (it wipes the graph). HLSL / `create_custom_hlsl_node` on **new** functions only.
 - No Monolith `save_packages` / `recompile_material`. Owner **Ctrl+S**.
 - If Niagara samples this master: follow
-  [`PLAYBOOK_FLIPBOOK_FIXA.md`](PLAYBOOK_FLIPBOOK_FIXA.md) (SubUV off, SubImage 1×1).
+  [`PLAYBOOK_FLIPBOOK_FIXA.md`](../PLAYBOOK_FLIPBOOK_FIXA.md) (SubUV off, SubImage 1×1).
 
 Spec sibling: `specs/materials/MF_FlipbookScrub.v1.json`.
 Atlas-gap evidence: [`../../Audits/SURREALFABRIC_NORMAL_ORM_INVENTORY_2026-09-17.md`](../../Audits/SURREALFABRIC_NORMAL_ORM_INVENTORY_2026-09-17.md).

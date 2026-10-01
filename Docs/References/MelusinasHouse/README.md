@@ -1,6 +1,6 @@
 # Melusina’s House — Modeling References
 
-> **Canonical plan:** [`../../../melusinashouseplan.md`](../../../melusinashouseplan.md)  
+> **Canonical plan:** `../../../melusinashouseplan.md`  
 > **Hermes search token:** `melusinashouseplan`
 
 These are the current working concept references for the **rounder pink/blue Baroque / Rococo** version of Melusina’s house.
@@ -11,8 +11,8 @@ They are visual targets, not measured architectural drawings. When a small pictu
 
 After the canonical root plan, use these two implementation packets:
 
-1. [`../../Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](../../Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — roof ribbons, scallop shingles, windows/doors, Rocaille + Melusina Loop, railings, tower, grotto, drapes, shell crests, attributes, promotion rules and build order.
-2. [`../../Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](../../Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — Resonant Salon, bedroom, Wardrobe Rotunda, Listening Stair, Crescent Balcony, kitchen, Blue Room, Listening Tower, acoustic gather/guide/release metadata and debug flow.
+1. `../../Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md` — roof ribbons, scallop shingles, windows/doors, Rocaille + Melusina Loop, railings, tower, grotto, drapes, shell crests, attributes, promotion rules and build order.
+2. `../../Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md` — Resonant Salon, bedroom, Wardrobe Rotunda, Listening Stair, Crescent Balcony, kitchen, Blue Room, Listening Tower, acoustic gather/guide/release metadata and debug flow.
 
 Key implementation rule:
 
@@ -27,7 +27,7 @@ Reuse the existing Melodia Studio builder catalog before adding new global build
 
 ### 1. Exterior silhouette + palette
 
-![Round Baroque pink/blue exterior](REF_01_EXTERIOR_ROUND_BAROQUE_PINK_BLUE.jpg)
+!Round Baroque pink/blue exterior
 
 **`REF_01_EXTERIOR_ROUND_BAROQUE_PINK_BLUE.jpg`**
 
@@ -41,7 +41,7 @@ Use for:
 
 ### 2. Geometry Nodes decomposition
 
-![Geometry Nodes build sheet](REF_02_GEOMETRY_NODES_BUILD_SHEET.jpg)
+!Geometry Nodes build sheet
 
 **`REF_02_GEOMETRY_NODES_BUILD_SHEET.jpg`**
 
@@ -54,7 +54,7 @@ Use for:
 
 ### 3. Cutaway + interior flow
 
-![Cutaway and interior flow](REF_03_CUTAWAY_INTERIOR_FLOW.jpg)
+!Cutaway and interior flow
 
 **`REF_03_CUTAWAY_INTERIOR_FLOW.jpg`**
 
