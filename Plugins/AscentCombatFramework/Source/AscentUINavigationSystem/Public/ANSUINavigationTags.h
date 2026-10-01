@@ -1,0 +1,51 @@
+// Copyright (C) Developed by Pask, Published by Dark Tower Interactive SRL 2026. All Rights Reserved.
+
+#pragma once
+
+#include "NativeGameplayTags.h"
+
+namespace FANSNavigationTag
+{
+	// --- UI Layer tags (used by RegisterLayer / SpawnInGameWidget) ---
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Layer_HUD);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Layer_Default);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Layer_Popup);
+
+	// --- UI Widget tags (used by SpawnWidgetByTag / Widget Registry Data Asset) ---
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_DialogueWidget);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_WorldDialogue);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_ChestWidget);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Vendor);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Crafting);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_InGameMenu);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_PauseMenu);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_HUD);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Mainmenu);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_FastTravel);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Deposit);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_SkillTree);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Companions);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Building);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Buildable);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Interactable);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Checkpoint);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Combat);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Widget_Targeting);
+
+	// --- UI Action tags ---
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_AddMarker);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Apply);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Cancel);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_CenterOnPlayer);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Confirm);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Continue);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_DropItem);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Next);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_NextCharacter);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_NextTab);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Previous);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_PreviousCharacter);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_PreviousTab);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(UI_Action_Reset);
+
+}
