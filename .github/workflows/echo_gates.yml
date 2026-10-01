@@ -94,6 +94,9 @@ jobs:
       - name: Validate model tier orchestration specification
         run: python Tools/validate_model_tiers.py
 
+      - name: Validate Git health enforcement contract
+        run: python Tools/validate_git_health_contract.py
+
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json
 
