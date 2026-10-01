@@ -71,3 +71,12 @@ jobs:
             Write-Host "##[error]Ruff format check failed"
             exit $LASTEXITCODE
           }
+
+      - name: Documentation stability gate
+        shell: powershell
+        run: |
+          python Tools/doc_lint.py --ci
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "##[error]Documentation stability check failed"
+            exit $LASTEXITCODE
+          }

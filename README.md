@@ -135,7 +135,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 | `Content/Melodia/` | Gameplay assets: levels, characters, save game structures, audio, configuration |
 | `Content/EnvSandbox/` | Production environments, Substrate toon materials, PCG scatter ecosystems |
 | `Source/BS_GodFile/` | 203 C++/header source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
-| `Tools/` | 1564 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
+| `Tools/` | 1566 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
 | `deploy/` | MCP server implementations (`melodia_mcp_server.py`, `agent_bridge_mcp.py`), daemons, build graphs |
 | `specs/` | 175 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
 | `Plugins/` | 25 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
