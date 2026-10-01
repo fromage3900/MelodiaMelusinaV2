@@ -1,0 +1,100 @@
+{
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "state": {
+    "goal": "Tonight: playable Morning slime archery with a musical five-shot chain and readable silhouette.",
+    "evidence": "Owner accepted real player bow PIE; latest feel tuning compiled successfully in UE 5.8. Morning range and new variants are not yet PIE tested.",
+    "candidates": {
+      "BALANCED": {
+        "aim_arm_length": 320.0,
+        "aim_socket_offset": [
+          0,
+          70,
+          30
+        ],
+        "aim_blend_seconds": 0.12,
+        "draw_ready_seconds": 0.8,
+        "minimum_shot_interval": 0.25,
+        "chord_chain_window": 1.25,
+        "chord_intervals": [
+          0,
+          4,
+          7,
+          11
+        ],
+        "chord_name": "C major 7",
+        "arrow_trail_intensity": 0.6
+      },
+      "BRIGHT_ARPEGGIO": {
+        "aim_arm_length": 340.0,
+        "aim_socket_offset": [
+          0,
+          80,
+          35
+        ],
+        "aim_blend_seconds": 0.09,
+        "draw_ready_seconds": 0.6,
+        "minimum_shot_interval": 0.18,
+        "chord_chain_window": 1.6,
+        "chord_intervals": [
+          0,
+          4,
+          7,
+          9
+        ],
+        "chord_name": "C major 6",
+        "arrow_trail_intensity": 0.45
+      },
+      "WIDE_MOON": {
+        "aim_arm_length": 380.0,
+        "aim_socket_offset": [
+          0,
+          85,
+          40
+        ],
+        "aim_blend_seconds": 0.18,
+        "draw_ready_seconds": 1.0,
+        "minimum_shot_interval": 0.28,
+        "chord_chain_window": 1.8,
+        "chord_intervals": [
+          0,
+          3,
+          7,
+          10
+        ],
+        "chord_name": "C minor 7",
+        "arrow_trail_intensity": 0.35
+      }
+    },
+    "constraints": [
+      "Same pawn, projectile, stock damage resolver and single target HP.",
+      "Five consecutive shots form the named chord; each remains a manual release.",
+      "No auto aim, random projectile spread, bonus damage, second grader or extra save.",
+      "Jev selects offline at test boundaries. Existing UE component executes selected values.",
+      "No claim of vision: this state contains source values and operator observations only."
+    ],
+    "helper_sha256": "620fa616df003e78b77e905bb8a1efd6127fc05c76c638c25fd9ebfb7ddb34f6"
+  },
+  "answers": {
+    "first_variant": {
+      "type": "choice",
+      "choice": "BALANCED",
+      "confidence": 0.41,
+      "probabilities": {
+        "BRIGHT_ARPEGGIO": 0.38,
+        "WIDE_MOON": 0.01,
+        "BALANCED": 0.61
+      }
+    },
+    "comparison": {
+      "type": "choice",
+      "choice": "BALANCED_VS_BRIGHT",
+      "confidence": 1.0,
+      "probabilities": {
+        "BALANCED_VS_BRIGHT": 1.0,
+        "BRIGHT_VS_WIDE": 0.0,
+        "BALANCED_VS_WIDE": 0.0
+      }
+    }
+  }
+}

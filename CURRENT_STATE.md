@@ -1,5 +1,13 @@
 # Melodia Melusina — Current State
 
+## Owner / Muse / Rider takeover — archery checkpoint, 2026-09-30
+
+Owner requested quota closeout and scoped local commits. Worker prompt: `Docs/Handoffs/MUSE_ARCHERY_RIDER_TAKEOVER_20260930.md`. Root is handing animation/editor ownership to the owner's Muse worker; no corrected bow clip or ABP graph edit was promoted. Important live-data defect: BowDraw_v2 root keys report scale100, canonical root is scale1; hand FK at1.4s inherits scale100. Evidence: `Saved/Audit/HybridPlayable_20260930/AnimationPoseDiagnostics.json` and `AnimGraphBefore.json`. Correct a candidate copy before binding; do not rerun the raw-source retargeter on these direct-target exports.
+
+Local checkpoints: `8652f6c8c` Kawaii collision source-tag fix + regression; `7525e1964` WaveHarp feel/chord/audio assets + generator + closed Morning variants; `fa4b6e50e` explicitly WIP compact HUD and stricter FPS harness. Hooks passed. Last UE5.8 full build succeeded34.73s; automation43Success +7SuccessWithWarnings,0Failed,0NotRun. This predates the HUD65% scale edit; that edit remains unbuilt/unseen. FPS harness patch is offline-validated only; `--performance-only` avoids PNG readbacks, uses its own session CSV and rejects incomplete/bad receipts. No current60fps certification, animation-repair, fresh chord/damage, GOOD/PERFECT, restart or packaged acceptance is claimed.
+
+Existing `Plugins/Developer/RiderLink` is present. Muse owns animation candidates/current ABP; Rider owner coordinates native binding/build and fresh real-input Morning proof. Root performed a fingerprint no-op resave, not graph surgery; current dirty ABP/map packages remain out of these commits. Existing staged document renames and other dirty content were preserved. Practice range fixture/folder remain local uncommitted; validate ground/reachability before promotion. Sheep placement and Sir party-class replacement remain unfinished, with exact seams in the worker prompt. Restored ACFU vendor directory is local/uncommitted and is not a production damage authority. No push or extra branch/worktree was made.
+
 ## ASAP LOOKDEV QUEUE - gems, levels, gitignore - 2026-09-30
 
 Owner-requested, do as soon as possible. Ledger: `Docs/P1_TASK_LEDGER.json#lookdev_work` (`LOOKDEV_ASAP_01`-`06`). Detail: `Saved/Audit/OutlineGradeStudy_2026-09-30/GEM_LOOKDEV_PLAN.md`, `CLOSEOUT_2026-09-30.md`, `HANDOFF_NOTE_StudyBot_2026-09-30.md` (docs commit `cfd75ed72`; Render2026 + Morning PPV in `41c464a07`).
@@ -19,7 +27,10 @@ Also saved, not yet checked visually: New Bot's Morning shard cooldown (`MI_Cope
 - **Merge:** The merge the handoff described (`97b2b02ba` onto `c69945c30`) is resolved as merge commit `d939f07a6` (2026-09-30 17:18 ET). `.git/MERGE_HEAD` no longer exists. The working tree still has unrelated dirty paths, which this receipt leaves untouched.
 - **Still open (unchanged):** packaged-build proof, and the WaveHarp combat HUD build and Morning test.
 - **Receipt:** `Saved/Audit/OWNER_BOW_PLAYTEST_ACCEPTED_2026-09-30.md` (twin in `Docs/Plans/`).
+- **Animation repair planned with Jev (latest owner playtest):** Brennan reports broken archery retarget posing. Live import metadata for both bound draw/release sequences names `Fire_Shotgun_Hip.fbx`; the component freezes the original full-body `DefaultSlot` attack at 0.45 s and uses a different release clip at 1.6x. The existing full-action `BowDraw_v2` mocap candidate is present on `SK_Melusina_Skeleton` (2.833 s, root motion enabled), but its pose quality and release coverage are unproven. Live Jev selected existing bow-source evaluation/repair first, an authored bow hold, then upper-body blending in `ABP_Melusina_Current`; author only any demonstrated missing beat. Verify source-rig compatibility before retargeting, stage in-place candidates before binding, and preserve locomotion plus downstream physics. Acceptance is fresh Morning player-input draw/hold/release, moving aim, 4–6-shot chain and cancel recovery with hand/bow contact, no pose snap or runtime errors. No animation assets or ABP changed for this planning pass. Receipt: `Saved/Audit/HybridPlayable_20260930/JevArcheryRetargetPlan.json` (`jev-1.13.0`).
 
+
+- **Bow candidate provenance clarified:** `import_rokoko_mocap_batch.py` identifies BowDraw v1/v2 and BowKneelAim as direct-target 465-bone exports. Evaluate those clips without another IK retarget pass; `RTG_Mocap_to_Melusina_Current` belongs to the separate raw-source pipeline. BowDraw_v2 export records about 4 cm net root travel; any in-place candidate must remove actual baked travel, not merely switch extraction off. Jev's receipt was refreshed with this distinction.
 
 **This is the only status document.** If any other file states what works, what is open, or what
 to do next, that file is wrong: fix this one instead. Update it in the same commit as the change it
