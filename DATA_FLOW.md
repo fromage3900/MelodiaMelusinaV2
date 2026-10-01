@@ -1,6 +1,6 @@
 # Technical Data Flow — Melodia Melusina
 
-**Last Updated:** 2026-09-22
+**Last Updated:** 2026-10-01
 **Scope:** stable runtime/state lifecycle for an evergreen single-player game  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -93,6 +93,43 @@ content roles. The full inventory and live-proof boundary are in `CURRENT_STATE.
 
 ### Starskiff
 Starskiff owns vehicle/traversal runtime state. Only stable long-term facts should enter canonical persistence; transient transforms/velocities should normally be rebuilt from checkpoints/authoring state.
+
+---
+
+## 2.25 FLOW / SEQUENCE migration contract — owner-directed target
+
+The October 1 gameplay goal is to test whether Melodia's player-facing combat/exploration presentation should converge on two modes while preserving the existing authority rules.
+
+```text
+FLOW
+canonical Melusina pawn
+  → traversal / dodge / WaveHarp realtime input
+  → world encounter interaction
+  → authoritative shared damage/effect resolution
+  → same encounter HP
+  → continued world control
+
+SEQUENCE
+same encounter
+  → deliberate EnterSequence
+  → existing Melodia rhythm session
+  → timing / grade
+  → typed effect request
+  → the same authoritative damage/effect resolution
+  → same encounter HP
+  → ExitSequence
+  → FLOW
+
+encounter completion
+  → existing typed narrative result
+  → exactly-once consequence / reward / checkpoint
+```
+
+The word **shared** is load-bearing. The migration must discover or extract one canonical damage/effect calculation boundary that both stock battle and realtime world interaction can use. A FLOW attack may not carry a copied damage formula, and a SEQUENCE phrase may not accept a synthetic final number as production proof.
+
+Until that seam is proven in runtime, Phoenix / TurnBased JRPG remains the production combat authority. FLOW/SEQUENCE is therefore a **candidate data-flow evolution**, not permission to fork party, HP, inventory, save, targeting, rhythm, or narrative ownership. PR #367 demonstrates the intended presentation/session shape but leaves the production resolver-to-world-target seam open; it is reference only.
+
+Promotion evidence must show the canonical pawn, real input, target identity, HP before/after, the authoritative resolved value, exactly one application, no duplicate encounter actor, and successful return to ordinary control. A FLOW → SEQUENCE → FLOW claim additionally needs exactly one rhythm session/effect request and the same target/HP across the transition.
 
 ### Convergence
 Convergence reads durable/authoritative inputs and derives relationship state or authored response. Derived values should be recomputable unless there is a specific reason they must become durable facts.
