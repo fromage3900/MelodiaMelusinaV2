@@ -1,7 +1,7 @@
 # Melodia Studio — Gate 3 UI unlock
 
 **Status:** Unlocked (2026-07-12)  
-**Prerequisite:** [`Saved/Audit/melodia_studio_gate2_ready.json`](../Saved/Audit/melodia_studio_gate2_ready.json) `ok: true`
+**Prerequisite:** [`Saved/Audit/melodia_studio_gate2_ready.json`](Saved/Audit/melodia_studio_gate2_ready.json) `ok: true`
 
 Detailed UI integration (panel IA, Figma icons/tokens, demoting legacy monolith draws) is a **separate pass**. Do not mix it into branding/sync work.
 

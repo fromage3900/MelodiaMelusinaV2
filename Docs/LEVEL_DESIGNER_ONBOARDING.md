@@ -58,6 +58,6 @@ put final hero composition into PCG, commit `Saved/`, or claim visual validation
 from a headless structural check alone.
 
 Photogrammetry / Twinmotion imports are a **side lane** only — see
-[Docs/Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md](Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md).
+[Docs/Handoffs/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md](Production/TWINMOTION_REALITYSCAN_SIDE_LANE_2026-08-13.md).
 Land under `/Game/EnvSandbox/Scans/` or `…/Imports/Twinmotion/`, retarget to
 Melodia toon materials, and prove in `L_Template` before touching live maps.

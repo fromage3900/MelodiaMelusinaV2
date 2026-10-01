@@ -1,8 +1,8 @@
 # Melodia Melusina — Blender cockpit (cine + assets)
 
-**Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on [`_SESSION_HANDOFF.md`](../_SESSION_HANDOFF.md).
+**Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on [`_SESSION_HANDOFF.md`](Handoffs/SESSION_HANDOFF.md).
 
-**Melusina House GN — current builder entrypoint:** [`MELUSINA_HOUSE_GN_START_HERE.md`](../MELUSINA_HOUSE_GN_START_HERE.md) — registered `MEL_mh_*` IDs, dedicated GN Stack category, foundation-first workflow and verifier.\n\n**Visual/design packet:** [`melusinashouseplan`](../melusinashouseplan.md) — pink/blue round-Baroque modeling intent and references. Treat `GN_MH_*` names there as scene-local concepts, not registry IDs. ♪
+**Melusina House GN — current builder entrypoint:** [`MELUSINA_HOUSE_GN_START_HERE.md`](../MELUSINA_HOUSE_GN_START_HERE.md) — registered `MEL_mh_*` IDs, dedicated GN Stack category, foundation-first workflow and verifier.\n\n**Visual/design packet:** [`melusinashouseplan`](References/MelusinasHouse/melusinashouseplan.md) — pink/blue round-Baroque modeling intent and references. Treat `GN_MH_*` names there as scene-local concepts, not registry IDs. ♪
 
 ## Open in 30 seconds
 
@@ -80,9 +80,9 @@ Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Au
 
 **Sections bug (fixed):** Health could show `builders=165` while GN Stack categories stayed empty (`TREE_CATEGORIES` import alias). Rebuild now mutates containers in place; `stack.py` reads `core.TREE_*`.
 
-**Workflow after live v22:** [`Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md`](Handoffs/WORKFLOW_UNIFY_2026-08-12.md) — five doors, GN visual review on `GN_Review_Grid`, freeze Set Dressing.
+**Workflow after live v22:** [`Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md`](Production/WORKFLOW_UNIFY_2026-08-12.md) — five doors, GN visual review on `GN_Review_Grid`, freeze Set Dressing.
 
-Lanes: [BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md). Remaining: **B3 editable ornaments** on live v22. Cam_Beauty (B2-live) landed 2026-08-13 — live site https://fromage3900.github.io/my-site/.
+Lanes: [BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Production/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md). Remaining: **B3 editable ornaments** on live v22. Cam_Beauty (B2-live) landed 2026-08-13 — live site https://fromage3900.github.io/my-site/.
 
 ## Ports (do not mix these up)
 
@@ -209,8 +209,8 @@ Stage review: `MusicalOrnaments_Review` collection on v4. Shot hint: `--subject 
 
 ## Related docs
 
-- Stage toggles: [`KitbashExport/STAGE_README_v4.md`](../KitbashExport/STAGE_README_v4.md)
+- Stage toggles: [`KitbashExport/STAGE_README_v4.md`](References/KitbashExport/STAGE_README_v4.md)
 - Character / wardrobe: [`MELUSINA_BLENDER_WARDROBE_SSOT.md`](MELUSINA_BLENDER_WARDROBE_SSOT.md)
 - Live Link: [`Docs/BLENDER_LIVELINK.md`](BLENDER_LIVELINK.md)
-- Ornament sell plan: [`Docs/ORNAMENT_KITBASH_SELL_PLAN.md`](ORNAMENT_KITBASH_SELL_PLAN.md)
-- World JSON (layout, not SKU): [`Docs/BLENDER_UE_WORLD_PIPELINE.md`](BLENDER_UE_WORLD_PIPELINE.md)
+- Ornament sell plan: [`Docs/ORNAMENT_KITBASH_SELL_PLAN.md`](References/KitbashExport/ORNAMENT_KITBASH_SELL_PLAN.md)
+- World JSON (layout, not SKU): [`Docs/BLENDER_UE_WORLD_PIPELINE.md`](Production/BLENDER_UE_WORLD_PIPELINE.md)

@@ -4,7 +4,7 @@
 **Status:** Plan / mapping only — no UMG authored, read-only pass (live UE session owned by another worker; no git commit)
 **Grandmaster Figma:** https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled · key `Yx8ud7n39NdWZvnNvo4Xlf` · page **12 Game UI**
 **Essential UI board:** `Melodia/EssentialUI` (`69:767`)
-**Depends on:** [MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md](MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md) · [ZUNDAMON_NPC_SPEC.md](ZUNDAMON_NPC_SPEC.md) · [scaffold_melodia_wbp_atoms.py](../Content/Python/scaffold_melodia_wbp_atoms.py) · [melodia_essential_ui_figma_20260716.md](../Saved/Audit/melodia_essential_ui_figma_20260716.md)
+**Depends on:** [MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md](Production/MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md) · [ZUNDAMON_NPC_SPEC.md](ZUNDAMON_NPC_SPEC.md) · [scaffold_melodia_wbp_atoms.py](../Content/Python/scaffold_melodia_wbp_atoms.py) · [melodia_essential_ui_figma_20260716.md](Saved/Audit/melodia_essential_ui_figma_20260716.md)
 **Backing code:** `Plugins/MelodiaCore/Source/MelodiaCore/`
 
 > Purpose: give an implementer a per-panel path from **Figma frame (node-id) → target WBP → composed atoms → concrete game data binding → sparkle/motion hookup → Desktop/Mobile handling**, plus the recommended first vertical slice and the decisions/blockers that must be resolved before any UMG is authored.
@@ -296,7 +296,7 @@ Author it behind a **minimal `WBP_MainMenu` shell** so it is reachable (Load Gam
 
 ## 7. Row F — First-Slice Essentials (desktop) wiring (2026-07-17)
 
-Focused desktop pass for the documented [first 20-minute vertical slice](MELODIA_FIRST_20_MINUTES_VERTICAL_SLICE.md). Board `Melodia/EssentialUI` row `Row F` = `79:1783`. Node audit: [melodia_essential_ui_rowF_20260717.md](../Saved/Audit/melodia_essential_ui_rowF_20260717.md). The full JRPG suite (Shop/Bestiary/CharacterStatus/WorldMap/Crafting/Achievements/Party/Inventory) is **deferred** per the slice doc's deferral list.
+Focused desktop pass for the documented [first 20-minute vertical slice](Production/MELODIA_FIRST_20_MINUTES_VERTICAL_SLICE.md). Board `Melodia/EssentialUI` row `Row F` = `79:1783`. Node audit: [melodia_essential_ui_rowF_20260717.md](Saved/Audit/melodia_essential_ui_rowF_20260717.md). The full JRPG suite (Shop/Bestiary/CharacterStatus/WorldMap/Crafting/Achievements/Party/Inventory) is **deferred** per the slice doc's deferral list.
 
 | Figma panel (node) | Target WBP | Primary binding (system) | New C++ needed? |
 |---|---|---|---|
