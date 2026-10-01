@@ -9,11 +9,13 @@ socket shows up as a wrong name rather than as silent empty geometry.
 The guide geometry is IDENTICAL in both cases (the same scene curve object),
 so the only variable is which route the switch selects.
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001

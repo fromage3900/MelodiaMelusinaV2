@@ -4,11 +4,13 @@ The audit measured a 1836 mm displacement on a 2332 mm diagonal with Musical Amp
 0.02 - which caps the offset vector at 40 mm. So something amplifies it downstream.
 This measures the actual bounding box both ways and dumps the Set Position nodes.
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001
