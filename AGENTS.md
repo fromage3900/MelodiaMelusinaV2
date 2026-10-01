@@ -114,6 +114,21 @@ Use the exact evidence levels in `CURRENT_STATE.md`. The scoped battle and grade
 are live-proven; a fresh packaged golden run and the long-chain persistence proof are separate
 open gates, not reasons to reopen the owners.
 
+### Owner-directed runtime migration — 2026-10-01
+
+Today's gameplay-engineering direction is **playable proof before canonization**. Do not dismiss FLOW/SEQUENCE work as stale merely because the stable map is still JRPG-first, and do not declare it canonical merely because a prototype exists.
+
+- **FLOW** means continuous world play on the canonical `BP_MelusinaJRPGCharacter`: traversal, dodge, aim/draw/release, WaveHarp and realtime encounter interaction.
+- **SEQUENCE** means a deliberate authored musical-time state that uses the existing Melodia rhythm execution and then returns to FLOW.
+- Both modes must share **one encounter identity, one HP owner, one damage/effect authority, one rhythm grader and one durable narrative outcome path**.
+- Recover recent local/P4/runtime work first. Prefer one visible end-to-end playable interaction over broad architecture work.
+- PR #367 is reference/provenance only. Never merge, rebase, revive or wholesale cherry-pick it.
+- ACFU remains R&D unless the owner explicitly promotes it after a convincing runtime proof.
+- Choral Sheep remains the non-combat capstone lane and must not be coupled to the combat migration.
+- If runtime proof shows the stable owner map is genuinely wrong for the desired game, report the smallest owner-boundary change required; do not silently fork the authority.
+
+The first promotion proof should be approximately: canonical Melusina → real FLOW input → WaveHarp/action hit → authoritative resolved damage → same world target/HP → readable feedback → continued movement. Add FLOW → SEQUENCE → FLOW only after FLOW itself is real.
+
 ## Default decision rule - author content before changing architecture
 
 Before changing architecture, ask:
@@ -129,7 +144,7 @@ owner seam.
 The surface already supports authoring boss battles, rhythm skills/attacks, side quests, encounters,
 creature episodes, outfit abilities, and musical world puzzles without another gameplay framework.
 
-The integrated rhythm-JRPG loop remains the production spine:
+The integrated rhythm-JRPG loop remains the **production authority spine until the owner-directed FLOW/SEQUENCE promotion gate passes**:
 
 **Stable ownership - never rebuilt, wrapped, or competed with:**
 - **QuillScript** is the narrative authoring authority. `UMelodiaNarrativeSubsystem` is the runtime
