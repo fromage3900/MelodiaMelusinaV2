@@ -3,9 +3,11 @@
 For the desktop peer agent and for the next laptop session. Read
 `AGENT_START_HERE.md` first; this file only covers what changed today.
 
-Branch: **`collab/laptop/session-2026-10-01`** (additive, 4 commits on
+Branch: **`collab/laptop/session-2026-10-01`** (additive, 6 commits on
 `35ea2666`). `main` and `origin/main` are **byte-identical to before this
 session** — verified, not assumed.
+
+**Start here, then §5b.** The animatic is the only item with a clock on it.
 
 ---
 
@@ -95,8 +97,36 @@ the old file to `Saved/Audit/registry_baseline_pre_officeprops_2026-10-01.json`.
 | `main` / `origin/main` | unchanged, verified by hash |
 | 4 stashes | intact |
 
+## 5b. ANMN301 animatic — NOT submittable (detail in its own doc)
+
+Full write-up: **`Docs/Production/ANMN301_ANIMATIC_READINESS_2026-10-01.md`**
+Commit: `6abfbc38`
+
+Container is exact — 1920x1080, 24 fps, 1560 frames, 65.000 s, h264, silent,
+correct title card, 19 numbered panels, VSE coverage 1560/1560.
+
+The character does not read in panels 11/12/16/17. Root cause is **not** framing:
+
+    ARM2 VERDICT BONES_DO_NOTHING
+
+The bone matrix rotates; `EXPORT_Body` does not move a vertex. Skin is intact
+(164/164 groups, 55852 weighted verts, 0 empty). `EXPORT_Body` xspan 0.46 vs
+zspan 2.0 is not a human shape, and the stage blend has 212 objects / zero
+armatures / no `EXPORT_*` meshes — the character exists only via the runtime
+append in `animatic_fix.py`.
+
+Fastest settle: open live Blender (PID 18036, MCP 127.0.0.1:9876), load
+`proxy/SHOREWAKE_proxy_v02_storyboard.blend`, select `EXPORT_Body`, pose
+`c_arm_fk_l`. Four headless probes did not answer this; ten seconds of viewport
+will.
+
+Also open: the committed MP4 (19.6 MB, `c0063d1c`) and the working-tree MP4
+(24.5 MB) are different files. Both pass spec. Owner decides which to keep.
+
 ## 6. Not done, in priority order
 
+0. **ANMN301 character readability** (§5b) — hard deadline **Fri Oct 9, 5 PM**.
+   The 19.6 vs 24.5 MB MP4 choice rides on this.
 1. `.gitignore` review (§3) — **blocking**, and it can bite via `git add -A`
 2. addon sync + baseline re-cut (§4)
 3. `git push` — **not performed.** No push was authorised
