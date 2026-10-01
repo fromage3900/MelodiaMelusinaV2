@@ -56,10 +56,21 @@ void FAnimNode_KawaiiPhysics::ApplyLimitsDataAsset(const FBoneContainer& Require
 
 	if (LimitsDataAsset)
 	{
-		SphericalLimitsData.Append(LimitsDataAsset->SphericalLimits);
-		CapsuleLimitsData.Append(LimitsDataAsset->CapsuleLimits);
-		BoxLimitsData.Append(LimitsDataAsset->BoxLimits);
-		PlanarLimitsData.Append(LimitsDataAsset->PlanarLimits);
+		// Script-authored and older assets can retain the AnimNode source tag.
+		// Tag runtime copies by their actual source so live refresh replaces
+		// them instead of accumulating another copy on every editor evaluation.
+		auto AppendAssetLimits = [](auto& Targets, const auto& Source)
+		{
+			for (const auto& Limit : Source)
+			{
+				auto& Copy = Targets.Add_GetRef(Limit);
+				Copy.SourceType = ECollisionSourceType::DataAsset;
+			}
+		};
+		AppendAssetLimits(SphericalLimitsData, LimitsDataAsset->SphericalLimits);
+		AppendAssetLimits(CapsuleLimitsData, LimitsDataAsset->CapsuleLimits);
+		AppendAssetLimits(BoxLimitsData, LimitsDataAsset->BoxLimits);
+		AppendAssetLimits(PlanarLimitsData, LimitsDataAsset->PlanarLimits);
 
 		Initialize(SphericalLimitsData);
 		Initialize(CapsuleLimitsData);
