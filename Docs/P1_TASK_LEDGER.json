@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p1.task_ledger.v1",
-  "as_of": "2026-10-01",
+  "as_of": "2026-09-24",
   "authority": {
     "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
     "scope": "2026-09-24 bounded lookdev queue plus the owner-directed 2026-09-29 school scope: one P0 Sea Above FieldAtlas tile, the existing Faraway Mother resonance-field integration, and the named Gate 6 Glitter Pile system. Other World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime work remains consume/maintain-only.",
@@ -9,7 +9,7 @@
     "execution_rule": "Do not open general PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Execute only the named P0 test-tile, Faraway Mother field, and Gate 6 Glitter Pile gates using their existing owners and contracts."
   },
   "melusina_work": {
-    "scope_as_of": "2026-09-24",
+    "scope_as_of": "2026-10-01",
     "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
     "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
     "foundry_boundary_visualization": "SYSTEM_MAP.md#universe-foundry-integration-boundary",
@@ -19,16 +19,36 @@
     "owner_confirmed_baselines": [
       "locomotion",
       "Rokoko",
-      "Universe Foundry integrations"
+      "Universe Foundry integrations",
+      "normal gameplay movement/input",
+      "WaveHarp runtime gameplay path"
     ],
     "proof_policy": "Owner confirmation, source/editor state, live PIE, restart, and packaged proof are distinct; do not promote one tier into another.",
     "closeout_order": [
       "Keep the existing runtime pawn and subsystem owners; do not create parallel authorities.",
-      "Verify the saved trimmed drip-cache candidate in fresh L_MelusinaMorning PIE, including bounds, full-cycle and restart playback, movement-follow, and visible silhouette.",
-      "Complete the character portrait and in-context VFX review; keep Copernicus maps on hold until a compatible named material target is approved.",
+      "Complete the canonical V2 WaveHarp animation presentation on the existing working gameplay path: aim -> draw -> stable hold -> release/loose -> follow-through, with hand/string contact, root/pelvis and foot stability, attachment continuity, and a clean return to locomotion.",
+      "Validate the animation pass with real player input in fresh L_MelusinaMorning PIE, stationary and moving. Ordinary movement/input and the WaveHarp runtime path are owner-verified baselines; treat them as regression sanity checks, not blocker archaeology.",
+      "Then resume the bounded character portrait, drip-cache, and in-context VFX reviews; keep Copernicus maps on hold until a compatible named material target is approved.",
       "Promote only exact reviewed assets and dependencies; keep legacy-root retirement and mixed concurrent WIP outside this slice."
     ],
     "work_items": [
+      {
+        "id": "MELUSINA_WAVEHARP_ANIMATION_CONVERGENCE",
+        "status": "active_animation_presentation_open",
+        "deliverable": "Preserve the already-working canonical Melusina gameplay/WaveHarp path while finishing the V2 bow presentation: aim -> draw -> stable hold -> release/loose -> follow-through, hand/string contact, stable root/pelvis/feet, attachment continuity, and clean return to locomotion.",
+        "evidence": [
+          "Owner confirms ordinary gameplay movement/input and the WaveHarp runtime path work outside modal QuillScript/menu state.",
+          "36e089c7c preserves the tested V2 draw binding, retarget references, and importer safeguards.",
+          "121862ae lands the corrected in-place bow-hold clip while leaving the original candidate untouched.",
+          "CURRENT_STATE.md — Melusina V2 animation convergence closeout / Muse handoff — 2026-10-01"
+        ],
+        "boundaries": [
+          "Do not reopen controller, Enhanced Input, QuillScript, combat, damage, save, or pawn authority unless a fresh non-modal gameplay run reproduces a real defect.",
+          "Do not create another runtime pawn, AnimBP authority, retarget system, or damage path.",
+          "Treat movement and WaveHarp gameplay as regression baselines; the active task is animation/retarget presentation quality."
+        ],
+        "remaining_gate": "Real-input Morning PIE visual acceptance for corrected aim/draw/hold/release/loose/follow-through, plausible hand/string contact, stable pelvis/feet and attachment, and clean return to locomotion; then closed-editor build/readback and one clean capture. Packaged/restart proof remains a separate tier."
+      },
       {
         "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
         "status": "source_documented",
@@ -436,23 +456,22 @@
     ]
   },
   "hybrid_runtime_convergence": {
-    "status": "validation_ready_draft_pr",
-    "authority": "PR #388 is the only convergence candidate. PR #367 remains historical provenance and must not be revived.",
-    "baseline_main": "bd4662b95d678e229dbec86198030bc45e397a68",
-    "candidate_head": "2754569641e646e62bed02d93538a78c768f5e12",
+    "status": "refreshed_on_current_main_pending_runtime_validation",
+    "authority": "PR #388 is the only active hybrid convergence candidate. PR #367 is historical provenance and must not be revived.",
+    "baseline_main": "be84c294ee38b060c47dcf943becd395b1c26613",
     "evidence": [
-      "Echo Static Gates PASS",
-      "GitHub mergeable=true",
-      "10 source/test files only; no binary or LFS asset changes"
+      "Hybrid source delta re-overlaid onto current main after Git/P4 closure work",
+      "No binary/LFS files are part of the hybrid delta",
+      "Runtime validation remains required"
     ],
     "next_actions": [
-      "Run the UE5.8 C++ build and relevant automation tests.",
-      "Run one PIE vertical-slice smoke test: FLOW -> encounter -> rhythm/sequence -> resolution -> return to traversal.",
-      "Verify one gameplay authority handles each transition and that the encounter returns cleanly to traversal.",
-      "If runtime validation passes, mark PR #388 ready and merge it to main.",
-      "After #388 lands on main, archive #367 as superseded provenance."
+      "Run UE5.8 C++ build and relevant automation tests.",
+      "Run PIE: FLOW -> encounter -> rhythm/sequence -> resolution -> traversal return.",
+      "Verify no duplicate gameplay authority, stuck encounter state, or failed traversal return.",
+      "If validation passes, mark #388 ready and merge.",
+      "After #388 lands, archive #367 as superseded provenance."
     ],
-    "agent_rule": "Do not create another combat bridge or revive #367. Validate and finish #388 before opening new architecture work.",
-    "candidate_head_note": "Documentation updates advance the branch head; validate the live PR head before execution rather than treating this SHA as immutable."
+    "agent_rule": "Do not create another combat bridge or revive #367. Validate and finish #388 first.",
+    "candidate_head_note": "Use the live PR head; documentation/gate commits may advance it."
   }
 }
