@@ -1,10 +1,20 @@
 # SEM 5 Timetable & Key Dates — Fall 2026 (DegreeWorks refresh 2026-09-21; prior Banner read 2026-09-09)
 
+## ✅ 2026-10-01 — ANMN 306 Capstone 1 IS REGISTERED (owner-confirmed)
+
+**Owner confirmed 306 is registered on 2026-10-01.** It no longer belongs in the
+"still needed" list below. Every 306-related blocker in the prep docs is closed.
+
+- Status source: **owner statement** + **Blackboard live read 2026-10-01** (course present as ANMN-306-0NB, CRN 6372, instructors Cory Avery + Terry Posthumus). Not yet re-read in Banner — a pasted Active Registrations row would close the loop.
+- Consequence: Capstone 1 work (animatic, Choral Sheep, Shorewake) is attached to a real
+  course. The tracker's Pre-prod rows that were "gated on registration" are unblocked.
+- **Capstone 1 brief (received 2026-09-30):** grade = 6 mentor meetings (3 pre-midterm, 3 post; meet 3 of 4 mentors twice). Signed PDF feedback form per meeting; submit journal due 12/18/26. Mentor list + booking links: Blackboard > ANMN 306 > Mentor Meetings folder.
+
 ## DegreeWorks 2026-09-21 (user's signed-in Chrome, read by agent — freshest truth)
 - Data refreshed 09/21/2026 2:17 AM; audit date 09/11/2026 (audit lags refresh — a Banner add after Sep 11 needs Process New Audit to appear).
 - Program Animation - 3D · Class Semester 4 · 78% · 29 of 37 courses · 8 still needed.
-- IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9.
-- STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ANMN 306 Capstone 1 · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
+- IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9. **→ 306 landed 2026-10-01 (owner-confirmed).**
+- STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ~~ANMN 306 Capstone 1~~ **REGISTERED 2026-10-01** · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
 - ⚠️ Vs Sep 9 Banner (which showed 302 registered): DegreeWorks In-progress has NO 302. Either dropped or audit-stale — confirm in Banner Active Registrations before acting on 302.
 
 ## Banner Active Registrations — 2026-09-22 (owner-pasted, live read) — CURRENT AUTHORITY
