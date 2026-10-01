@@ -224,7 +224,12 @@ bool FMelodiaWiringRhythmScalarSingleApplicationTest::RunTest(const FString& Par
 {
 	using namespace MelodiaWiringContract;
 
-	UBlueprint* Controller = LoadChecked<UBlueprint>(*this, BattleControllerPath);
+	// Fully qualified deliberately. MelodiaStockContract.cpp declares its own
+	// BattleControllerPath (with the _C class suffix) in an anonymous namespace,
+	// and the unity build puts both files in one translation unit, so the bare
+	// name is ambiguous. This path is the UBlueprint asset, not the generated
+	// class, so it must be this constant and not that one.
+	UBlueprint* Controller = LoadChecked<UBlueprint>(*this, MelodiaWiringContract::BattleControllerPath);
 	if (!Controller)
 	{
 		return false;
