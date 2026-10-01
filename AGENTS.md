@@ -20,8 +20,9 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
   this machine, so a p4 submit is history-tracked, NOT off-machine — GitHub is the only offsite
   copy.** Never call a p4 submit a backup. Full picture:
   [`STORAGE_ARCHITECTURE_2026-10-01.md`](Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
-  **KNOWN ISSUE (pre-dates 2026-10-01): this file is ~46 KB against a 32 KB agent-context budget
-  and is being served trimmed. Trim it, or move detail into linked docs.**
+  **This file was over the 32 KB agent-context budget and being served truncated. Trimmed
+  2026-10-01 to 30,659 bytes by relocating three sections to linked docs — no rule was deleted.
+  If you add to it, keep the total under 32,768.**
   **Standing authorization (2026-09-30).** Requiring permission for *every* commit is what produced a
   permanently dirty tree, unpushable local commits sitting on `main`, and two agents moving `HEAD`
   under each other. That is settled now: work in a lane
@@ -138,79 +139,21 @@ The first promotion proof should be approximately: canonical Melusina → real F
 
 ## Default decision rule - author content before changing architecture
 
-Before changing architecture, ask:
-
 > Can the requested experience be authored using the systems listed in
 > `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`?
 
 If yes, author the content. Do not alter architecture. A boss, side quest, rhythm skill, cymatic
 biome, wardrobe ability, and procedural setpiece are normally content/data authored through the
 existing seams. Architecture work requires a demonstrated blocker recorded against the relevant
-owner seam.
+owner seam. A new parallel implementation is a defect, not progress.
 
-The surface already supports authoring boss battles, rhythm skills/attacks, side quests, encounters,
-creature episodes, outfit abilities, and musical world puzzles without another gameplay framework.
+**Full authority map, stable ownership list, model-lane table, and the UI-artist skill pointer:
+[`AUTHORING_AUTHORITY_AND_MODEL_LANES.md`](Docs/Production/AUTHORING_AUTHORITY_AND_MODEL_LANES.md)** —
+binding, read before gameplay or lane work. Pick a task class with
+`python Tools/model_router.py pick <class> --detail`; gameplay queue is `CURRENT_STATE.md` §4.
 
-The integrated rhythm-JRPG loop remains the **production authority spine until the owner-directed FLOW/SEQUENCE promotion gate passes**:
-
-**Stable ownership - never rebuilt, wrapped, or competed with:**
-- **QuillScript** is the narrative authoring authority. `UMelodiaNarrativeSubsystem` is the runtime
-  bridge and owns authored narrative facts, consequences, checkpoints, and exactly-once progression
-  transactions; it does not resolve stock combat.
-- **TurnBased JRPG / Phoenix** owns party, turns, targeting, skills, action resolution, damage,
-  inventory, terminal battle results, and stock gameplay save state.
-- **Rhythm** executes on the selected JRPG action. Grade may affect the authoritative result, but
-  rhythm does not create a second combat transaction or damage authority.
-- **Wardrobe** owns owned/equipped fashion state and exposes the existing traversal, battle, rhythm,
-  and Convergence capability hooks.
-- **One writer per UI/audio surface.** `UMelodiaUIBridgeSubsystem` owns the Melodia UI surface;
-  `UMelodiaAudioReactivePresentationSubsystem` owns the canonical audio palette. Cymatics reads
-  that palette and its dedicated driver contract; it does not become a second audio writer.
-- **MelodiaCore** is an integration/presentation layer, not a competing combat or save authority.
-  ACFU and Conversation2D remain excluded.
-
-**The four pillars converge onto those two layers.** Rhythm input rides *on top of* JRPG command
-input - same Attack/Skill/Item/Flee decisions, timed. Wardrobe is a core pillar (outfits carry
-presentation *and* gameplay meaning). UI has one writer per surface. World puzzle is music-as-key
-and its Piano-to-Narrative edge has a scoped live-proven world-unlock path. Deeper route/package
-proof remains separately tracked in `CURRENT_STATE.md`.
-
-Shape: OMORI. Music-as-key: Zelda. Visual/wardrobe bar: Infinity Nikki.
-
-Status and scope: [`CURRENT_STATE.md`](CURRENT_STATE.md).
-
-**Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
-deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
-beatmap_author|quill_author|asset_qa|anim_bindings|spout_beauty`). Router: `python Tools/model_router.py pick
-<class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
-Gameplay queue: [`CURRENT_STATE.md`](CURRENT_STATE.md) §4. The handoff files this line used to point
-at were removed in the 2026-09-10 docs collapse.
-
-| Class | Use for | Must not |
-|---|---|---|
-| `cpp` | MelodiaIntegration C++ | Rebuild JRPG in MelodiaCore |
-| `mcp` | Monolith multi-step (one editor) | Second MCP surface on same graph |
-| `playtest` | Real-input `runtime` gate | Probe-only ledger `pass` |
-| `daemon` | Overnight local loops (Ollama) | `.uasset` writes / gate certification |
-| `audit` | bp_sweep / static gates | Compensating flags for real defects |
-| `wardrobe_catalog` | Outfit rows against the catalog contract | Invent slots or bypass `MelodiaWardrobeSubsystem` |
-| `beatmap_author` | Rhythm beat maps | Make rhythm a second combat authority |
-| `quill_author` | QuillScript dialogue + 7-verb notifications | Emit an unallowlisted id |
-| `asset_qa` | art/credits/bp gates, triage | Fabricate a file path |
-| `anim_bindings` | ABP state machine + pose binding checks | Write `.uasset` |
-| `spout_beauty` | Live UE→TD lookdev via the canon Spout2 `UE_Beauty` sender | Second sender name / second beauty writer |
-
-**Every lane must not:** build a fifth wardrobe track, a fourth rhythm path, a second HUD
-writer, or a second beauty-feed sender. Converge onto the named owner. A new parallel implementation is a defect, not progress.
-
-**UI/visual-artist work:** load `.claude/skills/melodia-ui-artist/SKILL.md` (the equivalent
-`.agents/skills/melodia-ui-artist/SKILL.md` is also present) — it carries the
-real token SSOT (`melodia-design-system/tokens.json`), the Quill dialogue WBP chain
-(`Content/Melodia/UI/Quill/`, tracked), the `ui_style_audit.py` inventory flow, and the
-editor-driven apply workflow. Do not hand-edit `.uasset`; `Content/Melodia/UI/Textures/` is
-intentionally gitignored, do not track it.
-
----
+The rhythm-JRPG loop is the **production authority spine until the owner-directed FLOW/SEQUENCE
+promotion gate passes.** Shape: OMORI. Music-as-key: Zelda. Wardrobe bar: Infinity Nikki.
 
 ## 🚀 Rider & UE 5.8 Engineering Protocols
 
@@ -230,125 +173,31 @@ Core rules:
 
 ---
 
-## T3D Wiring Pipeline (Automation Pipeline)
+## T3D / Echo Automation Pipeline
 
-### Pipeline Overview
-```
+```text
 Spec Change → T3D Inject → Compile → Fingerprint → Regression Test → Promote
 ```
 
-### Echo orchestration (added 2026-08-09)
+**Full reference: [`T3D_PIPELINE_FULL_REFERENCE.md`](Docs/Production/T3D_PIPELINE_FULL_REFERENCE.md)**
+(tool tables, verification tools, evidence standard, defect classes) and
+[`T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md) (spec recipes,
+Monolith action tables, `ci_gates.json`).
 
-The pipeline above now has one runnable face and one evidence ledger — model
-HoYoverse's in-house "Echo" AI platform: agents author content, gates score it,
-nothing is believed without a ledger row.
-
-- Manifest: `specs/echo_pipeline.json` (stages: author → spec_validate → inject
-  → compile → static_gates → runtime_gates → record → promote)
-- Runner: `Tools/echo_run.py` — `list`, `status`, `run static_gates`,
-  `validate-spec <file>`, `record <gate-id> pass|fail`
-- Control panel: `Tools/project_state.py --view integration` (four completion
-  gates ledger-backed) and `--view staleness` (docs older than their subject
-  are UNVERIFIED, not wrong). Output also at `Saved/Echo/state.txt`.
-- Contract: a lane/agent is "done" only when the gate it claims has a ledger
-  row. See `Docs/ECHO_PIPELINE_2026-08-09.md`.
-
-### Core Tools (Already Built)
-| Tool | Purpose | Entry Point |
-|------|---------|-------------|
-| `t3d_blueprint_injector.py` | Batch inject Blueprint subgraphs via T3D | `T3DBlueprintInjector.inject_into()` |
-| `bp_regression_checker.py` | Graph fingerprinting + baseline comparison (fixed 2026-08-06: JSON-RPC envelope to `http://localhost:9316/mcp`) | `fetch_fingerprint()`, `compare_fingerprints()` |
-| `continuous_loop.py` | Auto-detect → T3D fix → verify loop | `ContinuousLoop.check_and_fix()` |
-| `nl_to_blueprint.py` | NL → LLM → spec → inject → verify | `main()` with `--bp` + `--prompt` |
-| `pie_smoke_runner.py` | Headless PIE + Monolith polling | `PieSmokeRunner.run()` / `main()` |
-| `regression_suite.py` | Quick/full OOD passes | `run_suite()` |
-| `t3d_material_curve_injector.py` | Inject material curves, scalars, colors, textures via Monolith | `T3DMaterialCurveInjector.apply_toon_profile_spec()` |
-| `t3d_material_inject_demo.py` | Demo: apply TP_Melusina spec with read/apply/verify | `main()` with `--read`, `--verify`, `--all` |
-
-### Verification tools (added 2026-08-08)
-
-Read-only. Each answers a question that a compile, a fingerprint and a smoke test all
-answer wrongly.
-
-| Tool | Question it answers |
-|------|---------------------|
-| `bp_live_path.py` | Is this asset reachable from a configured entry point? `LIVE` / `ORPHAN` / `AMBIGUOUS(n)`. Catches the "perfectly wired graph nothing instantiates" defect. |
-| `bp_sweep.py` | Project-wide audit for five shipped defect classes: shadowed parent events, empty-bodied events, dead exec islands, unreachable assets, duplicate short names. |
-| `ui_style_audit.py` | What fonts/colours/paddings are actually authored across every widget, and what is the smallest token set covering them. |
-| `t3d_dashboard.py` | Where the material-spine complexity lives (offline; `--live` adds drift). |
-| `project_state.py` | Derived project state + doc staleness radar. Reads state, never prose. |
-| `graph_reachability.py` | Dead exec islands *inside* a graph. Complements `bp_live_path` — a graph can pass this and still be an asset nothing constructs. |
-| `rhythm_battle_runtime_probe.py` | Direct-invocation driver for the stock-skill rhythm seam (subsystem + controller events called straight from Python). **Not** gate evidence — see below. |
-
-Two of these have committed assertions because loosening a check is how you blind one:
-`Docs/T3D_Baseline/test_canonical.py` and `Tools/test_ui_style_audit.py`. Run them after
-touching the corresponding tool.
-
-### Evidence standard — runtime/rhythm gates (2026-08-11; scoped claims still matter)
-
-The current scoped `battle_integration_map` and `rhython_grade_to_result` rows are real evidence
-for the owner seams above. This section remains intentionally stricter about a new player-input,
-restart, or packaged claim: those proofs cannot be inferred from the scoped rows.
-
-The `runtime` completion gate (rhythm→damage delta, campaign
-`Docs/ECHO/campaign_01_rhythm_damage_delta.md`) was reported "certified" with none of the
-following in place. Inherit the standard, not the claim:
-
-1. **A gate is certified only when `record_gate.py <id> pass` has a ledger row.** The Echo
-   contract already says this; on 2026-08-10 a "rhythm gate runtime-certified" claim was made
-   while `Saved/gate_ledger.json` had no row for it and `Saved/Echo/state.txt` still showed
-   `runtime` OPEN. Prose in a session log is not a ledger row.
-2. **Probe-injected calls are not play evidence.** Calling
-   `subsystem.register_lane_hit()` / `controller.use_skill()` from Python proves the native
-   seam responds when invoked — it does NOT prove a player pressing Q/W/O/P sees a highway.
-   The campaign's acceptance requires real keyboard input through `BP_BattleUI::OnKeyDown`
-   (or a documented `InputKey` injection path into the focused widget). A probe-only green
-   run is a HOLD, and the campaign doc's record command must not be run from it.
-3. **Frames without a report are not evidence.** PNG captures with no accompanying JSON
-   (state assertions, damage numbers, error counts) and no committed verifier cannot be
-   re-checked. Save the assertion report next to the frames, and keep the harness that
-   produced both.
-4. **The committed harness must be the harness that ran.** The 2026-08-10 probe committed
-   at `Content/Python/rhythm_battle_runtime_probe.py` crashed on entry
-   (`skill_class` referenced from `start_petal_cadence` but only defined inside
-   `prepare_petal_cadence`), so the claimed "certified" runs used a driver that was never
-   committed. Unreproducible evidence is unusable — fix the probe, then rerun.
-5. **The HUD is shared, and the owning lane clears.** `UMelodiaRhythmHUDWidget` is driven by
-   both the ambient `UMelodiaBattleSession`/execution-component sync lane and the stock
-   `UMelodiaRhythmCombatSubsystem::PushHighwayToHUD`. The ambient lane must only clear a
-   highway it set (`bExecutionDrivingHighway`); an unconditional
-   `SetNoteHighwayActive(false, …)` every tick erased the other integration's notes one
-   frame after they were pushed. Same family as sibling-graph drift — two writers on one
-   surface with no ownership.
-
-### The defect classes these exist for
-
-Every one of these reached main and survived review, because the thing that was wrong
-looked correct in every graph read:
-
-- **Shadowed events.** A child Blueprint re-declares a parent's custom event with an empty
-  body. The child's version replaces the parent's in the generated class, so callers hit a
-  stub. `BP_MelodiaBattleUI` had ten, including `ShowBattleUI` — which is why the battle UI
-  never appeared. Compiles clean, fingerprints clean, smoke-tests clean.
-- **Unreachable graphs.** `BP_BattleUI` had a live exec chain nothing constructed. A lane
-  remap landed on a component only an unconfigured GameMode adds.
-- **Sibling-graph drift.** `OnKeyDown` was remapped to Q/W/O/P while `OnKeyUp` stayed on
-  D/F/J/K, so lanes latched lit. A fingerprint covers one graph; contracts span several.
-- **Duplicate short names.** Substring assertions pass against either copy. There are
-  currently two `BP_BattleUI` and a 33-asset mirror at
-  `Content/MelodiaIntegration/Content_MelodiaIntegration/`.
-- **Silent no-op.** Travel via allowlist, `StartSession` on an unregistered skill, and an
-  unallowlisted Quill id all fail by returning nothing.
-
-### Specs, injection recipes, CI gates, Monolith action tables
-
-Full reference (toon profiles, Niagara MPC, inject snippets, `ci_gates.json`, Monolith
-blueprint/material/editor/project/niagara actions):
-[`Docs/Production/T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md).
-
----
-
-Read this file before changing gameplay integration.
+- **Ledger, not prose.** A lane is "done" only when `record_gate.py <id> pass` has a row.
+  Manifest `specs/echo_pipeline.json`; runner `Tools/echo_run.py`; control panel
+  `Tools/project_state.py --view integration | staleness`. Contract: `Docs/ECHO_PIPELINE_2026-08-09.md`.
+- **Read-only verifiers, each answering a question a compile cannot:**
+  `bp_live_path.py` (is it reachable at all?), `bp_sweep.py` (five shipped defect classes),
+  `graph_reachability.py` (dead islands *inside* a graph), `ui_style_audit.py`, `t3d_dashboard.py`.
+  `Docs/T3D_Baseline/test_canonical.py` and `Tools/test_ui_style_audit.py` have committed
+  assertions — loosening a check is how you blind one. Run them after touching those tools.
+- **A probe is not play evidence.** Real-input runtime claims need real input through
+  `BP_BattleUI::OnKeyDown` (or a documented injection path), an accompanying JSON assertion
+  report, and the committed harness being the harness that ran. A probe-only green run is a HOLD.
+- **The HUD is shared.** `UMelodiaRhythmHUDWidget` has two drivers; the ambient lane must only
+  clear a highway it set (`bExecutionDrivingHighway`). Two writers on one surface with no
+  ownership is the defect class this whole section exists to prevent.
 
 ## Quantum usage
 
@@ -491,104 +340,53 @@ plausible to a folder outside `Content/` first.
 
 ## Safe working rules
 
-1. Check `list_errored_blueprints` and dirty packages before editing.
-2. Do not save existing portfolio/Melodia maps or unrelated materials.
-3. Duplicate before changing template assets.
-4. Prefer one small, verifiable change per session.
-5. Use the filesystem backup at `CompatibilityLabs/ProductionPreIntegrationBackup_2026-07-26` for rollback — the working tree is ~151 GB of largely-unversioned art and a `git clean -fd` or `checkout -- .` would destroy it permanently; the git object store itself is healthy (verified by `git fsck --full` in 2026-08-28).
-6. Static graph inspection is not runtime proof.
-7. **One editor instance. Always.** On 2026-08-08 three ran concurrently on this project:
-   five crash reports in one hour, assets changing mid-edit, and 39 unsaved packages lost to
-   a forced kill. Check `Get-Process UnrealEditor` and that port 9316 has exactly one
-   listener before any editor work. Decision 025 forbids two MCP surfaces on one graph; this
-   is the same hazard one level up.
-8. **`MODAL_OPEN` in the log is not a hang.** A modal dialog blocks the game thread, so
-   Monolith goes silent and Windows reports "Not Responding". Grep for it before concluding
-   the editor is dead — killing it there costs every unsaved package for nothing. An FBX
-   import dialog caused exactly this today.
-9. **Verify by re-reading.** `success: true` only means nothing threw. `save_asset` returned
-   inconclusive at least once; confirm via `list_dirty_packages`.
-10. **Search both name forms.** `UnitHasEnoughMP` vs `Unit Has Enough MP` — node instance
-    titles are spaced. A substring search on the identifier form missed a live macro and
-    produced a confidently wrong "this macro is never called" conclusion.
-11. **`ORPHAN` means prove it, not delete it.** `bp_live_path` cannot see `TSoftObjectPtr`
-    (Decision 049) or `.umap` actor references (Decisions 020/029d/037a).
-12. **A committed export is an output, not an input.** Verifiers here re-derive from the
-    live graph every run; do not add a script that asserts against a stored export. The one
-    exception is `bp_regression_checker.py`, whose baseline is therefore tracked at
-    `Docs/T3D_Baseline/bp_fingerprints.json` and hard-fails when missing.
-13. **A variable-reference census misses expose-on-spawn pins.** `find_variable_references`
-    counts `K2Node_VariableSet` nodes only. On 2026-08-09 this produced a confident
-    "`BP_BattleUI::battleController` has 4 reads and 0 writes" — false: `K2Node_CreateWidget`
-    writes it through an expose-on-spawn input pin. Before declaring a property unwritten,
-    check CreateWidget/SpawnActor nodes that construct the object.
-14. **Verify the editor lock directly; never trust a report of it.** Attempt a write-open on
-    `Binaries/Win64/UnrealEditor-BS_GodFile.dll`. Twice on 2026-08-09 a lane reported the DLL
-    locked when it was writable, and the real blocker was a compile error that would have
-    failed the build the moment anyone tried. A "blocked on the editor" claim from another
-    lane is a hypothesis, not a fact.
-15. **Live Coding cannot introduce new imports.** `.cpp`-only edits hot-patch fine
-    (`editor_query live_compile`). The moment a change calls a symbol the compiled binary
-    never imported, it fails with no useful message in the editor log. Any header change —
-    new class, new `UFUNCTION`, new `UPROPERTY` — always needs a full closed-editor build.
-16. **Do not hand-build engine data structures.** A runtime `UMidiFile` carrying only a tempo
-    change crashed the editor (`EXCEPTION_ACCESS_VIOLATION` reading `0x4` inside HarmonixMidi)
-    because a valid song map also needs `Init(ticksPerQuarter)` and a **bar map**. Copy the
-    engine's own construction path — `UMusicClockComponent::MakeDefaultSongMap()` — or use a
-    properly imported asset. Guarding around a malformed structure is the wrong fix.
-17. **Parallelise research, never the editor.** Six read-only explorer agents ran concurrently
-    on 2026-08-09 with no incident because none touched the editor. Source/C++ work also
-    parallelises — it builds while the editor is closed. All editor work (PIE, CDO edits, T3D,
-    graph reads) must serialise through one holder. Another MCP server does not help; Monolith
-    runs in-process, so a second surface is a second writer on the same lock.
-18. **The allowlist does NOT fail closed in editor builds.** `bRelaxedAllowlistInEditor = true`
-    on `DA_MelodiaIntegrationConfig` lets unregistered narrative ids pass with a warning in
-    every non-shipping build; it fails closed only in `UE_BUILD_SHIPPING`. An authored typo
-    therefore works in PIE and breaks in a packaged demo. Run a verification pass with it off.
-19. **`Content/_ThirdParty/TurnBasedJRPGTemplate/` is not a pristine copy** — 156 Blueprints vs
-    205/206, missing whole subsystems, and its `BP_BattleController` was edited after copying.
-    The trustworthy stock reference is the standalone project at
-    `CompatibilityLabs/TurnBasedJRPGUE58`. Copy **node clusters, never whole files**: live
-    `BP_BattleUI` is 667KB vs 457KB stock, and that difference is authored rhythm-HUD work.
-20. **A dump cannot prove absence.** On 2026-08-09 a full string dump of
-    `DA_MelodiaIntegrationConfig` concluded `StockSkillRhythmIds` had "no such property and no
-    `MapProperty`", and the whole rhythm investigation was built on that. It had an entry the
-    entire time. This is rule 13 generalised: **census and dump methods can confirm presence,
-    never absence.** To establish that something is missing, read it through reflection —
-    `get_cdo_properties`, not a text search of the asset.
-21. **"The build is green" decays into a lie.** Adaptive unity keeps recently-changed files in
-    separate translation units, so a tree can build incrementally for days while being
-    unbuildable from clean. On 2026-08-10 three of four blockers were unity-build symbol
-    collisions (two anonymous-namespace constants, one third-party plugin pair) that only
-    appeared on a full rebuild. **Do a full closed-editor build before trusting a green claim,
-    and before starting editor work** — discovering it after an hour in the editor wastes the
-    session. Fix collisions by qualifying the name or, for vendored plugins, `bUseUnity =
-    false` on that module only.
-22. **A file existing is not a file compiling.** `MelodiaJRPGPostBattleLibrary.cpp` sat in the
-    tree for a day looking like finished work; it had never once compiled — a UE 5.7 include
-    path, a typed accessor called on a base `FProperty*`, and `&` of a temporary. Before
-    planning around code another lane left behind, **build it**. Note UE 5.8 moved
-    `UserDefinedStruct.h` from `Engine/` to CoreUObject's `StructUtils/`.
-23. **Check Monolith's own namespace before declaring something impossible.** Moving actors
-    between levels is `mesh_query manage_sublevel {sub_action: "move_actors"}`. On 2026-08-10 an
-    agent burned an hour on `EditorLevelUtils` (both variants demand a `LevelStreaming`
-    destination, so neither can target the persistent level) and `ACTOR COPY`/`ACTOR PASTE`
-    (no-ops headlessly, via both the Python console and `run_console_command`), then wrote
-    "cannot be automated" into a handoff — with the correct action sitting in a `monolith_discover`
-    result already in context. **1330 actions across 24 namespaces: search the list before
-    concluding a capability is absent.** Related trap: `manage_sublevel` takes actor *names*,
-    not labels, and names repeat across levels (`StaticMeshActor_1`, `PointLight_0`, `PCGVolume_0`
-    all exist in more than one). Move unambiguous actors first and verify per-level counts after
-    every batch — a silent no-op and a silent wrong-actor move look identical from the return value.
-24. **A level actor listing aggregates sublevels.** `get_level_actors` reports actors from
-    streaming sublevels alongside the persistent level, which is how "the encounter actor is in
-    `L_KaleidoNave`" survived a session — it is in `L_Melodia_Dreamstate`, streamed in. The
-    distinction is load-bearing: a sublevel that is not set to load at startup is **absent from
-    the PIE world**. Read the `sublevel` field, and confirm at runtime with a tag probe.
+**Full text with rationale and incident history:
+[`UNREAL_EDITOR_SAFE_RULES_FULL.md`](Docs/Production/UNREAL_EDITOR_SAFE_RULES_FULL.md)** — all 26
+rules are binding; read it before editor work. Index of the ones that bite hardest:
 
-25. **Cron jobs sharing the same `workdir` lock each other out.** Two daemons with `workdir: C:\EnvironmentPortfolio\BS_GodFile` will deadlock on the TERMINAL_CWD write lock — the second job times out after 660s with `TimeoutError`. Fix: remove `workdir` from the job config (use absolute paths in prompts) or stagger schedules so they never overlap.
+**Destroying work (never run, even "to undo something"):** `git clean -fd`/`-fdx` (bulk `Content/`
+is untracked and unrecoverable), `git checkout -- .` (destroys other lanes' uncommitted work),
+`delete_asset` on anything you did not create, FBX import over an existing asset (leaves a dead
+redirector). Ask the owner first; there is no situation where an agent runs these unprompted.
 
-26. **`Saved/Audit/*.json` commits are allowed.** Daemon-produced specs and audit reports in `Saved/Audit/` are explicitly allowlisted in `.githooks/pre-commit` (line 68: `grep -Ev '^Saved/Audit/.*\.(json|md)\$'`). They do not need owner sign-off to commit.
+**Editor safety:** one editor instance, always (three at once cost 39 unsaved packages on
+2026-08-08 — check `Get-Process UnrealEditor` and that port 9316 has one listener). `MODAL_OPEN`
+in the log is a modal dialog, not a hang; grep before killing the editor. **Parallelise research
+and C++ freely; serialise all editor work through one holder.** Never trust a report that
+something is "blocked by the editor" — write-open the DLL and see for yourself.
+
+**Evidence:** `success: true` only means nothing threw — verify by re-reading
+(`list_dirty_packages`). Static graph inspection is not runtime proof. A **dump cannot prove
+absence** — a string dump of `DA_MelodiaIntegrationConfig` once produced a confident, wrong
+"this property doesn't exist" and an investigation built on it. Use reflection
+(`get_cdo_properties`), not text search, to establish that something is missing. Likewise a
+variable-reference census misses expose-on-spawn pins, and a **committed export is an output,
+not an input** — verifiers re-derive from the live graph every run.
+
+**Builds:** "the build is green" decays into a lie — adaptive unity hides symbol collisions that
+only appear on a full rebuild, so do a full closed-editor build before trusting green and before
+starting editor work. A file existing is not a file compiling: **build code another lane left
+before planning around it.** Live Coding cannot introduce new imports; any header change needs
+a full closed-editor build.
+
+**Blueprint/asset archaeology:** search both name forms (`UnitHasEnoughMP` vs `Unit Has Enough MP`
+— node titles are spaced, and a miss once produced a confidently wrong "never called").
+`ORPHAN` means prove it, not delete it. A level actor listing **aggregates streaming sublevels**,
+so read the `sublevel` field — a sublevel not set to load at startup is absent from PIE. Copy node
+clusters, never whole files, from template projects: `Content/_ThirdParty/TurnBasedJRPGTemplate/`
+is not pristine and the live `BP_BattleUI` delta is authored work. Check Monolith's own namespace
+(1,330 actions / 24 namespaces) before concluding a capability is impossible.
+
+**Config/runtime:** the narrative allowlist does **not** fail closed in editor builds
+(`bRelaxedAllowlistInEditor = true`), so an authored typo works in PIE and breaks packaged — verify
+with it off. Never hand-build engine data structures (a malformed `UMidiFile` crashed the editor);
+copy the engine's own construction path. Do not touch anything under
+`Content/TurnBasedJRPGTemplate/Blueprints/Skills/` from Python — it kills the editor fatally;
+use Monolith's native `blueprint_query` instead.
+
+**Housekeeping:** `Saved/Audit/*.json` is allowlisted in the pre-commit hook and needs no
+sign-off. Two cron jobs sharing one `workdir` deadlock on the TERMINAL_CWD lock — drop `workdir`
+or stagger them.
 
 ## 5. jcode Swarm (parallel coding lane)
 
