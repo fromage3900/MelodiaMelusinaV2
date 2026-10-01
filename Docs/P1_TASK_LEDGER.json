@@ -439,7 +439,7 @@
     "status": "validation_ready_draft_pr",
     "authority": "PR #388 is the only convergence candidate. PR #367 remains historical provenance and must not be revived.",
     "baseline_main": "bd4662b95d678e229dbec86198030bc45e397a68",
-    "candidate_head": "849e1ce148b3a134bc533f40a01ada34f9cc2ea3",
+    "candidate_head": "2754569641e646e62bed02d93538a78c768f5e12",
     "evidence": [
       "Echo Static Gates PASS",
       "GitHub mergeable=true",
@@ -452,6 +452,7 @@
       "If runtime validation passes, mark PR #388 ready and merge it to main.",
       "After #388 lands on main, archive #367 as superseded provenance."
     ],
-    "agent_rule": "Do not create another combat bridge or revive #367. Validate and finish #388 before opening new architecture work."
+    "agent_rule": "Do not create another combat bridge or revive #367. Validate and finish #388 before opening new architecture work.",
+    "candidate_head_note": "Documentation updates advance the branch head; validate the live PR head before execution rather than treating this SHA as immutable."
   }
 }
