@@ -1,0 +1,30 @@
+{
+  "_comment": "UNDERTOW Jev conductor cue. Mixer indices follow the Sophie Material Engine Serum 2 lanes: 1=Brass, 2=Strings, 3=Perc, 4=Vocal, 5=GND/SUB. Adjust to the actual duplicated cue project before the live run. Tempo lives in the FL project (128 BPM / A minor for the game build).",
+  "cue_name": "UNDERTOW-JEV-CUE-DUP",
+  "phrase_bars": 2,
+  "beats_per_bar": 4,
+  "ending_bar": 32,
+  "authored_sections": [
+    {"from_bar": 1, "to_bar": 8, "name": "verse"},
+    {"from_bar": 9, "to_bar": 24, "name": "chorus"},
+    {"from_bar": 25, "to_bar": 32, "name": "outro"}
+  ],
+  "master_track": 0,
+  "stem_groups": {
+    "VOICE_OR_CHOIR": [4],
+    "RHYTHM": [1, 3],
+    "ATMOSPHERE": [2],
+    "RESONANCE": [5]
+  },
+  "initial_preset": "FULL_CHORUS",
+  "presets": {
+    "HOLD": {"mute": [], "unmute": [], "note": "No change."},
+    "THIN": {"mute": [2, 3, 5], "unmute": [1, 4], "note": "Vocal + brass core only."},
+    "BUILD": {"mute": [5], "unmute": [1, 2, 3, 4], "note": "Layer up, sub held back."},
+    "BLOOM": {"mute": [3], "unmute": [1, 2, 4, 5], "note": "Strings + sub bloom around voice, perc out."},
+    "RESTRAIN": {"mute": [5], "unmute": [1, 2, 4], "note": "Tension without the sub wash."},
+    "DROP_TO_VOICE": {"mute": [1, 2, 3, 5], "unmute": [4], "note": "Voice-led state."},
+    "FULL_CHORUS": {"mute": [], "unmute": [1, 2, 3, 4, 5], "note": "Full arrangement."},
+    "SETTLE": {"mute": [1, 3, 5], "unmute": [2, 4], "note": "Resolution: voice + strings."}
+  }
+}
