@@ -1,0 +1,372 @@
+{
+  "schema": "melodia.figmapng.staging.v1",
+  "generated_date": "2026-10-01",
+  "source": {
+    "figma_file_key": "wroE3kZTyOVXpjVlJw5Y6g",
+    "figma_url": "https://www.figma.com/design/wroE3kZTyOVXpjVlJw5Y6g",
+    "page": "02 · COMPONENT LIBRARY",
+    "export_contract": "PNG @2x, transparent, trimmed to component frame; no baked text or keys."
+  },
+  "palette": {
+    "indigo": "#0B0920",
+    "indigo_2": "#17123A",
+    "pearl": "#F4EEE6",
+    "rose_gold": "#E8B4A0",
+    "lavender": "#B9A6F0",
+    "cyan": "#9EE7F7",
+    "bow_rose": "#FF93B5",
+    "champagne": "#F2D08B"
+  },
+  "motion_ms": {
+    "snap": 117,
+    "ripple": 234,
+    "handoff": 469
+  },
+  "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+  "hydrated_png_dir": "Saved/Staging/BowHUD_v4",
+  "payload_encoding": "base64-png",
+  "entries": [
+    {
+      "token": "OuterFiligree",
+      "figma_name": "Game/BowMandala/OuterFiligree",
+      "figma_node_id": "5:2",
+      "native_size": [
+        220,
+        220
+      ],
+      "export_scale": 2,
+      "export_size": [
+        440,
+        440
+      ],
+      "filename": "T_UI_BowHUD_OuterFiligree.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_OuterFiligree.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_OuterFiligree.T_UI_BowHUD_OuterFiligree",
+      "no_baked_text": true
+    },
+    {
+      "token": "InnerScore",
+      "figma_name": "Game/BowMandala/InnerScore",
+      "figma_node_id": "6:2",
+      "native_size": [
+        174,
+        174
+      ],
+      "export_scale": 2,
+      "export_size": [
+        348,
+        348
+      ],
+      "filename": "T_UI_BowHUD_InnerScore.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_InnerScore.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_InnerScore.T_UI_BowHUD_InnerScore",
+      "no_baked_text": true
+    },
+    {
+      "token": "CoreStar",
+      "figma_name": "Game/BowMandala/CoreStar",
+      "figma_node_id": "6:31",
+      "native_size": [
+        78,
+        78
+      ],
+      "export_scale": 2,
+      "export_size": [
+        156,
+        156
+      ],
+      "filename": "T_UI_BowHUD_CoreStar.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_CoreStar.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_CoreStar.T_UI_BowHUD_CoreStar",
+      "no_baked_text": true
+    },
+    {
+      "token": "PerfectCrest",
+      "figma_name": "Game/BowMandala/PerfectCrest",
+      "figma_node_id": "6:38",
+      "native_size": [
+        54,
+        72
+      ],
+      "export_scale": 2,
+      "export_size": [
+        108,
+        144
+      ],
+      "filename": "T_UI_BowHUD_PerfectCrest.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_PerfectCrest.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_PerfectCrest.T_UI_BowHUD_PerfectCrest",
+      "no_baked_text": true
+    },
+    {
+      "token": "ModeCrest",
+      "figma_name": "Game/BowFrame/OrnateModeCrest",
+      "figma_node_id": "6:70",
+      "native_size": [
+        122,
+        36
+      ],
+      "export_scale": 2,
+      "export_size": [
+        244,
+        72
+      ],
+      "filename": "T_UI_BowHUD_ModeCrest.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_ModeCrest.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_ModeCrest.T_UI_BowHUD_ModeCrest",
+      "no_baked_text": true
+    },
+    {
+      "token": "PromptCartouche",
+      "figma_name": "Game/BowFrame/OrnatePromptCartouche",
+      "figma_node_id": "6:49",
+      "native_size": [
+        270,
+        54
+      ],
+      "export_scale": 2,
+      "export_size": [
+        540,
+        108
+      ],
+      "filename": "T_UI_BowHUD_PromptCartouche.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_PromptCartouche.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_PromptCartouche.T_UI_BowHUD_PromptCartouche",
+      "no_baked_text": true
+    },
+    {
+      "token": "TargetCartouche",
+      "figma_name": "Game/BowFrame/OrnateTargetCartouche",
+      "figma_node_id": "6:60",
+      "native_size": [
+        226,
+        66
+      ],
+      "export_scale": 2,
+      "export_size": [
+        452,
+        132
+      ],
+      "filename": "T_UI_BowHUD_TargetCartouche.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_TargetCartouche.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_TargetCartouche.T_UI_BowHUD_TargetCartouche",
+      "no_baked_text": true
+    },
+    {
+      "token": "ReleaseCrest",
+      "figma_name": "Game/BowPerfect/ReleaseCrest",
+      "figma_node_id": "6:153",
+      "native_size": [
+        74,
+        74
+      ],
+      "export_scale": 2,
+      "export_size": [
+        148,
+        148
+      ],
+      "filename": "T_UI_BowHUD_ReleaseCrest.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_ReleaseCrest.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_ReleaseCrest.T_UI_BowHUD_ReleaseCrest",
+      "no_baked_text": true
+    },
+    {
+      "token": "ScoreBloomTerminal",
+      "figma_name": "Game/BowPerfect/ScoreBloomTerminal",
+      "figma_node_id": "6:142",
+      "native_size": [
+        132,
+        96
+      ],
+      "export_scale": 2,
+      "export_size": [
+        264,
+        192
+      ],
+      "filename": "T_UI_BowHUD_ScoreBloomTerminal.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_ScoreBloomTerminal.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_ScoreBloomTerminal.T_UI_BowHUD_ScoreBloomTerminal",
+      "no_baked_text": true
+    },
+    {
+      "token": "EdgeGlint",
+      "figma_name": "Game/BowPolish/EdgeGlint",
+      "figma_node_id": "14:169",
+      "native_size": [
+        48,
+        12
+      ],
+      "export_scale": 2,
+      "export_size": [
+        96,
+        24
+      ],
+      "filename": "T_UI_BowHUD_EdgeGlint.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_EdgeGlint.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_EdgeGlint.T_UI_BowHUD_EdgeGlint",
+      "no_baked_text": true
+    },
+    {
+      "token": "FeatherTick",
+      "figma_name": "Game/BowPolish/FeatherTick",
+      "figma_node_id": "14:163",
+      "native_size": [
+        58,
+        22
+      ],
+      "export_scale": 2,
+      "export_size": [
+        116,
+        44
+      ],
+      "filename": "T_UI_BowHUD_FeatherTick.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_FeatherTick.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_FeatherTick.T_UI_BowHUD_FeatherTick",
+      "no_baked_text": true
+    },
+    {
+      "token": "PearlJoint",
+      "figma_name": "Game/BowPolish/PearlJoint",
+      "figma_node_id": "14:156",
+      "native_size": [
+        18,
+        18
+      ],
+      "export_scale": 2,
+      "export_size": [
+        36,
+        36
+      ],
+      "filename": "T_UI_BowHUD_PearlJoint.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_PearlJoint.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_PearlJoint.T_UI_BowHUD_PearlJoint",
+      "no_baked_text": true
+    },
+    {
+      "token": "StorybookCorner",
+      "figma_name": "Game/BowStorybook/Corner",
+      "figma_node_id": "6:76",
+      "native_size": [
+        180,
+        132
+      ],
+      "export_scale": 2,
+      "export_size": [
+        360,
+        264
+      ],
+      "filename": "T_UI_BowHUD_StorybookCorner.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_StorybookCorner.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_StorybookCorner.T_UI_BowHUD_StorybookCorner",
+      "no_baked_text": true
+    },
+    {
+      "token": "StorybookGlint",
+      "figma_name": "Game/BowStorybook/Glint",
+      "figma_node_id": "6:131",
+      "native_size": [
+        18,
+        18
+      ],
+      "export_scale": 2,
+      "export_size": [
+        36,
+        36
+      ],
+      "filename": "T_UI_BowHUD_StorybookGlint.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_StorybookGlint.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_StorybookGlint.T_UI_BowHUD_StorybookGlint",
+      "no_baked_text": true
+    },
+    {
+      "token": "ShellStarDivider",
+      "figma_name": "Game/BowStorybook/ShellStarDivider",
+      "figma_node_id": "6:110",
+      "native_size": [
+        920,
+        88
+      ],
+      "export_scale": 2,
+      "export_size": [
+        1840,
+        176
+      ],
+      "filename": "T_UI_BowHUD_ShellStarDivider.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_ShellStarDivider.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_ShellStarDivider.T_UI_BowHUD_ShellStarDivider",
+      "no_baked_text": true
+    },
+    {
+      "token": "Cursor_Default",
+      "figma_name": "Game/Cursor/CelestialQuill · Default",
+      "figma_node_id": "6:160",
+      "native_size": [
+        60,
+        66
+      ],
+      "export_scale": 2,
+      "export_size": [
+        120,
+        132
+      ],
+      "filename": "T_UI_BowHUD_Cursor_Default.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_Cursor_Default.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_Cursor_Default.T_UI_BowHUD_Cursor_Default",
+      "no_baked_text": true
+    },
+    {
+      "token": "Cursor_Hover",
+      "figma_name": "Game/Cursor/CelestialQuill · Hover",
+      "figma_node_id": "6:174",
+      "native_size": [
+        60,
+        66
+      ],
+      "export_scale": 2,
+      "export_size": [
+        120,
+        132
+      ],
+      "filename": "T_UI_BowHUD_Cursor_Hover.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_Cursor_Hover.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_Cursor_Hover.T_UI_BowHUD_Cursor_Hover",
+      "no_baked_text": true
+    },
+    {
+      "token": "Cursor_Pressed",
+      "figma_name": "Game/Cursor/CelestialQuill · Pressed",
+      "figma_node_id": "6:188",
+      "native_size": [
+        60,
+        66
+      ],
+      "export_scale": 2,
+      "export_size": [
+        120,
+        132
+      ],
+      "filename": "T_UI_BowHUD_Cursor_Pressed.png",
+      "png_b64": "pipeline/figma/bow_hud_v4/png_b64/T_UI_BowHUD_Cursor_Pressed.png.b64",
+      "ue_dest": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4",
+      "ue_asset": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4/T_UI_BowHUD_Cursor_Pressed.T_UI_BowHUD_Cursor_Pressed",
+      "no_baked_text": true
+    }
+  ]
+}
