@@ -554,10 +554,8 @@ bool UMelodiaRhythmCombatSubsystem::FinishSession()
 	{
 		DeferredSkill = nullptr;
 
-		// No scalar is applied here. Stock's damage sites read the latched
-		// PendingDamageMultiplier themselves (montage damage notify and
-		// projectile-hit handler), then clear it. Dispatching stock behaviour on
-		// the call stack is the whole job of this subsystem at this point.
+		// Stock's damage notify and projectile-hit handler read the latched
+		// multiplier and apply it through DealDamage exactly once.
 		InvokeStockUseSkill(SkillToUse);
 	}
 
