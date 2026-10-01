@@ -48,6 +48,12 @@ For graph edits, follow the required export -> fingerprint -> mutate -> compile 
 
 ## Loose ends explicitly owed
 
+## Bounded next-session stack
+
+The live editor snapshot for this pass is clean: zero errored Blueprints, zero dirty UE packages, no active compile, and no PIE. The full risk/visual stack is in `Saved/Audit/HybridPlayable_20260930/BoundedRiskAudit.json`.
+
+Run the stack in this order: closed-editor build and one Morning smoke; HUD65% idle/aim/target captures; one camera framing variant; one arrow hand-to-spawn/trail check; ground-check and frame the existing slime; five real releases plus one FLOW→SEQUENCE→FLOW authority proof; then foreground `fps60_harness.py --performance-only`. This keeps the quick wins reversible and produces evidence in the same session. Do not tune shared Niagara, alter hero assets, touch Muse's active ABP, or change combat/save authorities during this pass.
+
 - Foreground60fps certification and acceptable Niagara travel rendering remain unproven. Last measured foreground frame was26.11ms (~38fps), not a p95 pass. Kawaii collision accumulation was fixed and tested; do not retune hero physics to hide remaining cost.
 - HUD65% compact scaling remains an unbuilt/unseen source iteration. Check anchors, readability and duplicate reticles against `MorningHUDBeforeCleanup.png` and the owner's latest Figma board; do not call it approved.
 - Choral sheep uses canonical mesh at identity relative transform. Measure bounds-bottom against a ground trace; correct a proven actor/follow-height defect, not the mesh offset. No placement fix was completed.
