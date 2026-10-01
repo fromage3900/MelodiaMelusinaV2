@@ -124,7 +124,14 @@ df -h /d                                                  # depot disk headroom
 | Change | Was | Contents | Verified |
 |---|---|---|---|
 | **271** | CL 271 | 16 `L_MelusinaMorning` external actors that had **no second copy** | `p4 files` answers all 16 at `#1 - add change 271`; the `no such file` condition is gone |
-| **272** | CL 270 | AscentCombatFramework plugin, **2,711 files** (Source 1154 / Content 1446 / Config 11 / Resources 98) | `p4 files //Melodia/main/Plugins/AscentCombatFramework/...` = 2711; **0** `Binaries/`/`Intermediate/`/`.pdb`/`.dll` in the depot |
+| **272** | CL 270 | AscentCombatFramework plugin, **2,712 files** (Source 1154 / Content 1446 / Config 11 / Resources 98, plus `ACF Discord Tutorial.txt` whose space-in-name made `p4 files` word-split and report a phantom 2,711) | `p4 files //Melodia/main/Plugins/AscentCombatFramework/...` = 2711 + the spaced-name file = **2712**; **0** `Binaries/`/`Intermediate/`/`.pdb`/`.dll` in the depot |
+| **273** | submitted | 123 `Content/` files that had no p4 copy — Choral Sheep audio bank (73), Chladni textures, Kawaii VFX MIs, EdgeDesat post-process, the forged `A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace`, Sea Above prototype actors | all 123 read back at `#1 - add change 273`; 18.2 MB; pure adds |
+| **275** | submitted | `Melusina.airi-card.zip` — the last true single-copy file. The git pre-commit hook rejects zips, Perforce does not | resolves at `#1 - add change 275` |
+| **276** | submitted | Melusina animation archive — 63 files / 13.9 MB: `LegacyRetargets_20261001`, `Retarget/_Archive`, `MelusinaFinal` manifest | **63/63 on disk == 63/63 in depot, 0 missing** |
+
+**The Perforce server root is `D:\perforce\root` on this machine.** A submit is history-tracked,
+not off-machine; GitHub is the only offsite copy. See
+[`STORAGE_ARCHITECTURE_2026-10-01.md`](../../Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
 
 Perforce renumbered CL 270 → **change 272** on submit. That is normal `p4 submit` behaviour,
 not a second submission — `p4 changes -s submitted -m 3` shows 272 and 271 only.
