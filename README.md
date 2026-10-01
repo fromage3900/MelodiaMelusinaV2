@@ -26,6 +26,12 @@
 
 ---
 
+## Current Runtime Handoff — 2026-10-01
+
+> **Evening agent base:** finish validation of draft PR #388 (`converge/hybrid-flow-367-20261001`) before opening new combat architecture work. The branch is based on `main@bd4662b95d678e229dbec86198030bc45e397a68`; Echo Static Gates pass and GitHub reports it mergeable. PR #367 is historical provenance only — do not rebase, merge, or revive it.
+>
+> **Remaining gate:** UE5.8 C++/automation validation plus one PIE smoke route: FLOW → encounter → rhythm/sequence → resolution → traversal return. If that passes, promote #388 from draft, merge it, then archive #367 as superseded. The exact checklist is recorded in [Docs/P1_TASK_LEDGER.json](Docs/P1_TASK_LEDGER.json) under `hybrid_runtime_convergence`.
+
 ## ♪ Core Architecture: Two Authorities & Four Pillars
 
 The Melodia engine architecture converges four distinct gameplay systems onto two authoritative layers:
