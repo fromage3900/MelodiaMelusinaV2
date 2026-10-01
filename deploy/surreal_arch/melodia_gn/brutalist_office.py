@@ -376,7 +376,13 @@ def build_brutalist_office_block(group_name="GN_BRUTALIST_OfficeBlock"):
     out = N(tree, 'GeometryNodeJoinGeometry', bx + 3600, by - 3000)
     for node in parts:
         L(tree, node, out_name(node, 'Geometry', 'Mesh'), out, 'Geometry')
-    L(tree, out, 'Geometry', gout, 'Geometry')
+    # UV CHANNEL - see brutalist_city.py for the full rationale. The two
+    # projection OPERATORS are unavailable in 5.2 (unregistered / active-object
+    # only), but a UV is just a CORNER-domain FLOAT2 named "UVMap" attribute,
+    # and StoreNamedAttribute writes it from inside the group.
+    from . import brutalist_uv as _buv
+    if _buv.add_box_uv(tree, out.outputs[0], gout) is None:
+        L(tree, out, 'Geometry', gout, 'Geometry')
 
     return tree, gin, gout
 

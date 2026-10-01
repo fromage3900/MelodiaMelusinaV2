@@ -209,7 +209,21 @@ def _record_link_failure(tree, message: str) -> None:
 
 
 def link_sockets(tree, from_socket, to_socket):
-    """Link two sockets. Records + logs mismatches (never raises unless LINK_STRICT)."""
+    """Link two sockets. Records + logs mismatches (never raises unless LINK_STRICT).
+
+    A SELF-LINK IS REJECTED HERE. Added 2026-09-30 after
+    brutalist_city._build_facade did
+        link_sockets(tree, n_bays_z_r.outputs[0], n_bays_z_r.inputs[0])
+    instead of n_bays_z -> n_bays_z_r. Blender ACCEPTS that without complaint:
+    it is a legal cycle, not an error, so nothing in this function raised and
+    `link_failures` stayed empty. The whole city group then evaluated to 0 verts
+    and Blender logged "Cannot evaluate node group" - while every existing
+    health probe reported 0 verts and blamed the facade dials.
+
+    It is caught here because a cycle is a defect at LINK time, and this is the
+    only place that sees both endpoints. `find_link_cycles` (below) is the
+    belt-and-braces check for cycles longer than one node.
+    """
     if from_socket is None or to_socket is None:
         msg = "link_sockets: one or both sockets are None (tree=%s, from=%s, to=%s)" % (
             getattr(tree, "name", "?"), from_socket, to_socket,
@@ -217,6 +231,27 @@ def link_sockets(tree, from_socket, to_socket):
         log.warning(msg)
         _record_link_failure(tree, msg)
         return
+    try:
+        fn = getattr(from_socket, "node", None)
+        tn = getattr(to_socket, "node", None)
+        # `==` NOT `is`. Blender's RNA hands back a NEW Python wrapper on every
+        # attribute access, so `out.node is in.node` is False even when both
+        # sockets belong to the same node - which is exactly the comparison a
+        # self-link guard must get right, and exactly how the first version of
+        # this guard silently passed everything (proved by
+        # Saved/Audit/_test_cycle_guard_2026-09-30.txt).
+        if fn is not None and tn is not None and fn == tn:
+            msg = ("link_sockets: SELF-LINK on %r (out %r -> in %r) - this is a "
+                   "cycle; Blender accepts it and then cannot evaluate the "
+                   "group" % (
+                       getattr(fn, "name", "?"),
+                       getattr(from_socket, "name", "?"),
+                       getattr(to_socket, "name", "?")))
+            log.warning(msg)
+            _record_link_failure(tree, msg)
+            return
+    except Exception:
+        pass
     try:
         tree.links.new(from_socket, to_socket)
     except Exception as exc:
@@ -228,6 +263,58 @@ def link_sockets(tree, from_socket, to_socket):
         )
         log.warning(msg)
         _record_link_failure(tree, msg)
+
+
+def find_link_cycles(tree):
+    """Return a list of human-readable dependency cycles in `tree`.
+
+    The self-link guard in `link_sockets` catches a node linked to itself. This
+    catches the longer form - A -> B -> A - which is equally fatal to evaluation
+    and equally invisible to a "did the link succeed" check, because Blender
+    accepts both without error.
+
+    Reported as "a -> b -> a" so a failure names the exact nodes to break.
+    Returns [] when the graph is acyclic. Never raises: a tree with no usable
+    links is reported as acyclic rather than crashing the health script.
+    """
+    try:
+        edges = {}
+        for link in tree.links:
+            src = getattr(getattr(link, "from_node", None), "name", None)
+            dst = getattr(getattr(link, "to_node", None), "name", None)
+            if src is None or dst is None:
+                continue
+            edges.setdefault(src, []).append(dst)
+    except Exception:
+        return []
+
+    cycles = []
+    seen_state = {}          # node -> 1 (on stack) / 2 (done)
+    stack = []
+
+    def walk(node):
+        seen_state[node] = 1
+        stack.append(node)
+        for nxt in edges.get(node, ()):
+            state = seen_state.get(nxt, 0)
+            if state == 1:                      # back edge -> cycle
+                try:
+                    cut = stack.index(nxt)
+                except ValueError:
+                    cut = 0
+                cyc = stack[cut:] + [nxt]
+                desc = " -> ".join(cyc)
+                if desc not in cycles:
+                    cycles.append(desc)
+            elif state == 0:
+                walk(nxt)
+        stack.pop()
+        seen_state[node] = 2
+
+    for name in list(edges.keys()):
+        if seen_state.get(name, 0) == 0:
+            walk(name)
+    return cycles
 
 
 def color_node(node, tag="default"):
@@ -1342,6 +1429,7 @@ CATEGORY_META: dict[str, dict] = {
     "nikki_decor": {"label": "Nikki Decor",           "icon": "DECORATE"},
     "decor":       {"label": "Decor",                 "icon": "DECORATE"},
     "escher":      {"label": "Escher Math",           "icon": "NODETREE"},
+    "office_props": {"label": "Office Props",          "icon": "PROP_OFF"},
 }
 
 

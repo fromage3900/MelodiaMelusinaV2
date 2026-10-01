@@ -98,6 +98,11 @@ from . import paris_penrose_arch  # noqa: F401 - Track A: tribar doorway
 from . import paris_metamorphosis_frieze  # noqa: F401 - Track A: morph band
 from . import brutalist_office  # noqa: F401 - BRUTALIST: office block
 from . import brutalist_cubicles  # noqa: F401 - BRUTALIST: cubicle farm
+from . import brutalist_city  # noqa: F401 - BRUTALIST: 2D city block massing
+from . import brutalist_roofs  # noqa: F401 - BRUTALIST: roof system (6 styles)
+from . import office_props  # noqa: F401 - OFFICE: film interior prop kit
+from . import higgsas_pipeline  # noqa: F401 - single Higgsas loader (replaces 4 copies)
+
 from . import buildings_kit  # noqa: F401 - buildings absorbed (P2)
 from . import misc_props_kit  # noqa: F401
 from . import materials_kit  # noqa: F401 - materials absorbed (P2)
