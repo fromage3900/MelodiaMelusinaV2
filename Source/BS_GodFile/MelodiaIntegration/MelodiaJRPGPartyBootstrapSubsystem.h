@@ -5,6 +5,9 @@
 #include "MelodiaOpeningFlowSubsystem.h"
 #include "MelodiaJRPGPartyBootstrapSubsystem.generated.h"
 
+class UWorld;
+struct FActorsInitializedParams;
+
 /**
  * One-way integration adapter: seeds Melusina through the stock JRPG controller's
  * AddPlayerUnit API.  It deliberately owns neither turn flow nor party state.
@@ -28,6 +31,8 @@ public:
 
 private:
 	void HandlePostLoadMap(UWorld* LoadedWorld);
+	void HandleWorldInitializedActors(const FActorsInitializedParams& Params);
+	void QueueSeedForWorld(UWorld* World);
 	void SeedOnNextTick();
 	bool TrySeedPresentationUnit();
 	void TryRecruitSirMelodious();
@@ -54,5 +59,8 @@ private:
 	void HandleNarrativeFlagChanged(FName FlagId, bool bValue);
 
 	bool bSeededForCurrentWorld = false;
+	TWeakObjectPtr<UWorld> SeededWorld;
+	TWeakObjectPtr<UWorld> SeedQueuedWorld;
 	FDelegateHandle PostLoadMapHandle;
+	FDelegateHandle WorldInitializedActorsHandle;
 };

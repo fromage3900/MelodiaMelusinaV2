@@ -64,6 +64,39 @@ The Node relay binds to `127.0.0.1:8765` by default.
 
 Unreal uses asynchronous `FHttpModule` calls with one-second timeouts and polls every two seconds only when started with `-MelodiaAiriBridge`. It never waits on the relay from the game thread. A missing relay means no event delivery and no intent; ordinary game logic and saves continue independently.
 
+## AIRI authoring proposals (separate workbench surface)
+
+Developer proposals do **not** use the `melodia.*` game protocol or the game relay. The source
+scaffold is `Tools/AIRI/ClaireonWorkbench/authoring-gate.mjs`, a pure validation and receipt module;
+it is not connected to AIRI, Claireon, Unreal, Git, or Perforce. It accepts only
+`asset.inspect` and `asset.propose_change` proposal kinds, for scoped `/Game/Melodia/...` or
+`/Game/MelodiaIntegration/...` targets, and rejects maps, levels, ABPs, protected Melusina assets,
+path traversal, console/Python execution, and source-control operations.
+
+Eligibility requires an explicit released editor owner and asset owner, with source control marked
+read-only. An accepted receipt is `OWNER_REVIEW_REQUIRED`, includes a canonical SHA-256 proposal
+digest, and records `executed: false`; duplicate submission is idempotent and ID reuse with changed
+content is rejected. No AIRI output can create an approval. A human must inspect the exact proposal
+and use Claireon's existing catalog/workflow separately. This gate does not issue Claireon calls,
+write assets, save packages, or authorize Git/P4 changes. The wider workbench remains observer →
+proposal → owner executes; only the proposal gate has source scaffolding in this slice.
+
+Claireon's `python_execute` runs editor Python with filesystem and network access, so it is not an
+allowlisted operation and is not exposed by this proposal gate. Do not treat a proposal receipt as
+live UE proof or as authority to invoke an editor tool.
+
+## ElevenLabs speech audition adapter
+
+`Tools/AIRI/MelusinaVoicebank/voicebank.mjs` is a separate spoken-line audition adapter, not a
+singing voicebank trainer or a runtime voice integration. It accepts authored text and a configured
+ElevenLabs voice ID; it accepts no source-audio upload, voice-cloning, or training input. The
+supported current v4 model IDs are `eleven_v4` and `eleven_v4_turbo`; use the official model list and
+TTS API contract linked in the architecture doc. Requests are dry-run by default and keep the API
+key in `ELEVENLABS_API_KEY` outside the repository. The artifact writer emits an MP3 and a hashed
+`AUDITION_ONLY_NOT_APPROVED` receipt and refuses to overwrite an existing output. No candidate is
+promoted to the production voicebank or AIRI/UE runtime without provenance review and owner
+listening.
+
 ## Authority and rejection behavior
 
 The schema does not grant authority. Unreal validates the poll envelope, exact intent type, UUID, version, timestamp, exact payload keys, allowlisted emotion, and local rate limit before updating a debug property. It has no console, Blueprint reflection, filesystem, shell, save, spawn/destroy, actor-property, combat, or narrative executor path. Any future visible/gameplay intent needs its owning deterministic/authored gate (including Jev where that system owns the decision) and separate tests before it can execute.

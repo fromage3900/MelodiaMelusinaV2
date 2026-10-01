@@ -58,23 +58,49 @@ def import_animation(fbx_path: Path, destination_name: str) -> list[str]:
     options.set_editor_property("import_animations", True)
     options.set_editor_property("import_materials", False)
     options.set_editor_property("import_textures", False)
+    try:
+        # animation-only intent: the Interchange pipeline needs this flag or
+        # a meshless FBX imports nothing ("nothing to import from the provided
+        # source data"). Mirrors import_rokoko_mocap_batch.py (proven 2026-09-21).
+        options.set_editor_property("mesh_type_to_import", unreal.FBXImportType.FBXIT_ANIMATION)
+    except Exception:
+        pass
     task.set_editor_property("options", options)
 
     unreal.AssetToolsHelpers.get_asset_tools().import_asset_tasks([task])
     return list(task.get_editor_property("imported_object_paths") or [])
 
 
+FRAGMENT_MARKERS = ("Base_Layer", "_clip_")
+
+
+def _quarantine_flags(asset: str, duration: float) -> list[str]:
+    """Phase-4 import hygiene (2026-10-01): flag finger/toe fragment takes and
+    degenerate clips at ingest. Flagged entries go in report['quarantine'] —
+    nothing is auto-deleted; removal stays an explicit owner + p4 decision."""
+    flags = []
+    lowered = asset.lower()
+    if any(m.lower() in lowered for m in FRAGMENT_MARKERS):
+        flags.append("fragment_take")
+    if duration <= 0:
+        flags.append("empty_clip")
+    return flags
+
+
 def _sequence_report(path: str) -> dict:
     sequence = unreal.EditorAssetLibrary.load_asset(_asset_path(path))
     if not sequence:
         return {"asset": path, "loaded": False}
+    duration = float(sequence.get_editor_property("sequence_length"))
+    asset = _asset_path(path)
     return {
-        "asset": _asset_path(path),
+        "asset": asset,
         "loaded": True,
         "skeleton": str(sequence.get_editor_property("skeleton")) if sequence.get_editor_property("skeleton") else "",
-        "duration": float(sequence.get_editor_property("sequence_length")),
+        "duration": duration,
         "rate_scale": float(sequence.get_editor_property("rate_scale")),
         "loop": bool(sequence.get_editor_property("loop")),
+        "quarantine": _quarantine_flags(asset, duration),
     }
 
 

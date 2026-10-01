@@ -5,7 +5,8 @@
 - Program Animation - 3D · Class Semester 4 · 78% · 29 of 37 courses · 8 still needed.
 - IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9.
 - STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ANMN 306 Capstone 1 · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
-- ⚠️ Vs Sep 9 Banner (which showed 302 registered): DegreeWorks In-progress has NO 302. Either dropped or audit-stale — confirm in Banner Active Registrations before acting on 302.
+- ✅ **RESOLVED 2026-09-30:** Owner confirmed access to both ANMN 302 (3D Art 5) and ANMN 306 (Capstone 1). DegreeWorks discrepancy resolved — both courses now active.
+- ✅ **CAPSTONE 1 BRIEF RECEIVED 2026-09-30:** 6 mentor meetings required (3 pre-midterm, 3 post-midterm). Must meet 3 of 4 mentors twice. Grade cumulative out of 6. PDF feedback form per meeting. Mentors: Posthumus, Avery, Neale, Par, Hallett.
 
 ## Banner Active Registrations — 2026-09-22 (owner-pasted, live read) — CURRENT AUTHORITY
 | Course | Code/Section | Cr | CRN | Type | Registered |

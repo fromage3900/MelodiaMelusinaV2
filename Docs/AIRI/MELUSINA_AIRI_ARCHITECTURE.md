@@ -1,6 +1,8 @@
 # Melusina ↔ AIRI bridge architecture
 
-**Status:** P0 design and development-only source slice; no live AIRI/PIE proof yet.
+**Status:** P0 remains PARTIAL; the game bridge has no live AIRI/PIE proof. Claireon workbench and
+ElevenLabs v4 voice audition adapters are separate source-only scaffolds; neither has live runtime
+integration or owner approval.
 **Reviewed:** 2026-09-29 · **Target:** UE 5.8 and current AIRI Server SDK 0.12.0-beta.5.
 
 ## Authority map
@@ -66,17 +68,53 @@ Before any intent gains visible or gameplay effects, route it through the approp
 
 The bridge sends only session context; AIRI memory is not a source of truth. If a future shared service is introduced, it needs an explicit field-level ownership and consent contract before either runtime can write it.
 
+## AIRI Oracle and Claireon workbench boundary
+
+The future Oracle is an observer of explicitly supplied UE/session facts. It may summarize those
+facts, surface unknowns, propose a named owner-system route, and coordinate a review; it cannot
+invent current narrative truth, write canonical memory, or become a second rhythm, combat, save, or
+narrative authority. Game facts still arrive through their existing owner seams and remain transient
+when passed into AIRI.
+
+The separate workbench follows the existing owner handoff: read-only `project.status`,
+`project.diff`, `project.context`, and `ue.status`, plus `ue.propose`. The new
+`Tools/AIRI/ClaireonWorkbench/authoring-gate.mjs` implements only deterministic validation and
+proposal receipts. Its allowlist is `asset.inspect` and `asset.propose_change`, targeting scoped
+Melodia package paths; it explicitly denies raw Python, console, arbitrary asset/path, and
+source-control operations. A proposal can be eligible only when both editor and asset ownership
+are released and the source-control mode is read-only. Receipts bind the exact proposal digest,
+remain `OWNER_REVIEW_REQUIRED`, and always say `executed: false`. The module has no network or
+Claireon client, no approval endpoint, and no asset-write route. The human reviews the exact target
+and operation, then separately operates the approved Claireon catalog tool. Git/P4 mutation still
+requires a distinct exact owner request. This is a source scaffold, not a live workbench or PIE
+proof.
+
+Claireon's documented MCP surface is `tool_search` plus `python_execute`; the latter grants full
+editor Python, filesystem, and network access. The AIRI path does not call or expose it. Keep the
+Claireon port local and firewall-protected according to the plugin's security guidance.
+
 ## Character and avatar path
 
 `Tools/AIRI/MelusinaCard/generate_card.py` reads the existing persona soul, voice bible, and dream-state prologue, records their hashes, and emits the AIRI card package. The package is a projection: update canonical docs first, then regenerate. It does not contain game saves or runtime state.
 
 For a later VRM, derive a lightweight companion from an approved character source in Blender. Retain identity-defining silhouette and facial expression; remove UE-specific controllers, gameplay sockets, FluidNinja/runtime effects, and nonportable material dependencies; reduce geometry/material count; bake needed textures; map a humanoid VRM skeleton and expression set; validate scale, axes, eye/mouth motion, and AIRI desktop display. Keep the production UE rig untouched and make source selection an explicit future asset gate.
 
-Keep voice provider swappable. The future speech lane can use AIRI’s configured Speech module with a provider endpoint (including an OpenAI-compatible/custom endpoint where supported); transcription remains independently configured through Hearing. The production Melusina voice source and approval gates remain outside the card and bridge, and no new voice model is trained or promoted here.
+Keep voice provider swappable. AIRI's configured Speech module and Hearing transcription remain
+separate from game state and the game bridge. The standalone `Tools/AIRI/MelusinaVoicebank/voicebank.mjs`
+provides a dry-run-by-default ElevenLabs spoken-line audition request adapter and local hashed
+artifact receipt. It supports the current ElevenLabs `eleven_v4` and `eleven_v4_turbo` TTS model IDs;
+it does not clone/train a voice, upload source audio, or call the provider unless a future caller
+explicitly enables network access. Credentials are read from `ELEVENLABS_API_KEY` and are never
+written into source or receipts. Outputs remain `AUDITION_ONLY_NOT_APPROVED`; owner audition and
+provenance review are required before any promotion. This is not a singing-bank pipeline.
+
+Official provider references: [ElevenLabs models](https://elevenlabs.io/docs/overview/models),
+[ElevenLabs create speech API](https://elevenlabs.io/docs/api-reference/text-to-speech/convert),
+and [ElevenLabs v4 Text to Speech guide](https://elevenlabs.io/docs/eleven-creative/playground/text-to-speech).
 
 ## P1 sequence
 
-1. Build the UE editor target in the isolated branch and fix any engine-version compile errors.
+1. In an owner-approved closed-editor window on the existing `main` checkout, build the UE editor target and fix any engine-version compile errors.
 2. Install the pinned Node dependency; run the relay beside AIRI; launch PIE in `L_MelusinaMorning` with `-MelodiaAiriBridge` and verify that AIRI receives `Melodia's Morning` as transient context.
 3. In an ordinary AIRI conversation, request a subtle expression and verify the generated ACT marker reaches the relay, then verify UE validation, rate limit, and debug-only receipt.
 4. Repeat with AIRI/relay absent and confirm normal PIE startup and gameplay continue with no blocking request.

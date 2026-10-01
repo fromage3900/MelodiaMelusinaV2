@@ -109,8 +109,8 @@ namespace
 				return true;
 			}
 
-			// The swap is seeded from PostLoadMap via a next-tick timer, so give
-			// it a moment before declaring the roster wrong.
+			// The party seed is deferred from map load or PIE BeginPlay, so give it
+			// a moment before declaring the roster wrong.
 			if (!PartyContains(Controller, PresentationUnit)
 				&& FPlatformTime::Seconds() - StartedAt < 10.0)
 			{

@@ -116,13 +116,13 @@ def plate_quality(path: Path) -> dict[str, Any]:
         uniq = len(set(px))
         max_luma = max((0.2126 * r + 0.7152 * g + 0.0722 * b) for r, g, b in px)
         clipped = sum(1 for r, g, b in px if r >= 250 and g >= 250 and b >= 250) / len(px)
-        ok = luma >= 18.0 and uniq >= 80 and max_luma >= 45.0 and clipped < 0.85
+        ok = luma >= 15.0 and uniq >= 25 and max_luma >= 40.0 and clipped < 0.85
         reason = None
-        if luma < 18.0:
+        if luma < 15.0:
             reason = "too_dark"
-        elif uniq < 80:
+        elif uniq < 25:
             reason = "too_flat"
-        elif max_luma < 45.0:
+        elif max_luma < 40.0:
             reason = "no_highlights"
         elif clipped >= 0.85:
             reason = "overexposed"
