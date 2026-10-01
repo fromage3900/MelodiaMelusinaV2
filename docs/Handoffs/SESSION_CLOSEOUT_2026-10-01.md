@@ -24,15 +24,31 @@ destination (git remote / p4 depot), not inferred from a submit or push result.
 | Change | Contents | Depot verification |
 |---|---|---|
 | **271** | 16 `L_MelusinaMorning` external actors that had **no second copy** | `p4 files` answers all 16 at `#1 - add change 271`; `no such file` gone |
-| **272** | AscentCombatFramework plugin, **2,711 files** | depot count 2711 + the spaced-name file = 2712; **0** `Binaries/`/`Intermediate/`/`.pdb`/`.dll` |
-| **273** | 123 files that had no p4 copy — Sheep audio bank (73), Chladni textures, Kawaii VFX MIs, EdgeDesat post-process, `A_Cascadeur_..._Forge_InPlace`, Sea Above prototype actors | staged, `add` only, **18.2 MB**, NOT submitted |
+| **272** | AscentCombatFramework plugin, **2,712 files** | depot count 2711 + the spaced-name file = 2712; **0** `Binaries/`/`Intermediate/`/`.pdb`/`.dll` |
+| **273** | 123 files that had no p4 copy — Sheep audio bank (73), Chladni textures, Kawaii VFX MIs, EdgeDesat post-process, `A_Cascadeur_..._Forge_InPlace`, Sea Above prototype actors | submitted; all 123 read back at `#1 - add change 273` |
+| **275** | `Melusina.airi-card.zip` — last true single-copy file; the git pre-commit hook rejects zips, Perforce does not | submitted; resolves at `#1 - add change 275` |
+| **276** | Melusina animation archive — 63 files, 13.9 MB: `LegacyRetargets_20261001` (Quaternius/FemaleBard/Mannequin/Source retargets), `Retarget/_Archive` (4 RTG assets), `MelusinaFinal` manifest | submitted; **63/63 on disk == 63/63 in depot, 0 missing** |
 
 `default` holds 94 pre-existing files (Morning external actors from other lanes) — untouched.
 
+### Full-repo single-copy sweep: **zero remaining**
+
+A final pass walked every git-untracked path to concrete files (1,899 files / 221
+directories), queried the depot per directory from **stdout only**, and diffed. Everything that
+survived as "in neither system" was resolved:
+
+- `Reference/` (247 files) — **false positive**; already in the depot since change 41 (2026-09-25).
+  My parse broke on the space in `SC4 Ashlotte Maedel/... (1P Weapon)/...`.
+- `.p4ignore`, both plans, this receipt — on git `main` via PRs #393 #394 #395.
+- `temp_audit*.ps1` — my own scratch files from this session; deleted.
+- 3 animation archive trees — submitted as change 276.
+- `Plugins/.../Textures/*`, `Tools/BlenderAddons/tripo-3d-...zip` — already in the depot
+  (changes 272 and 53; the zip carries a `binary+F` typemap, which is why `p4 add` refuses it).
+
 ### Disk
 
-D: went from **94% / 113 GB free** to **85% / 282 GB free** after the owner's cleanup.
-p4d healthy (P4D/NTX64/2026.1), ticket valid.
+D: went from **94% / 113 GB free** to **47% / 1,002 GB free** after the owner's cleanup and
+the change 272/273 archive. p4d healthy (P4D/NTX64/2026.1), ticket valid.
 
 ---
 
@@ -99,11 +115,15 @@ neither-system-has-it check.
 
 ## Open for the owner
 
-1. **Submit CL 273** (123 files) — the last real single-copy gap, including the forged Cascadeur
-   clip that exists nowhere else.
-2. **`Reference/`** (247 files, 106 MB) and `Docs/AIRI/MelusinaCard/` still have no VCS home.
-   `Reference/` is LoL/StarGuardian reference art — likely deliberate, confirm.
-3. **ACF source on main** — keep in git, or move wholesale to Perforce now that the binary is there?
-4. **8 ACF texture directories** show as git-untracked but are confirmed in the depot (change
-   272) — cosmetic noise, not exposure.
-5. **`CURRENT_STATE.md`** is another lane's live file; held rather than swept into a commit.
+**Nothing on disk is unversioned any more.** The remaining decisions are architectural, not
+exposure:
+
+1. **ACF source on main (1,153 files)** — landed via PR #387 before the LFS rule was known. The
+   binary is in Perforce (change 272) and the source is in both systems. Keep the duplication, or
+   move source wholesale to Perforce? Removing it from git now means a revert commit.
+2. **`.p4ignore` is back in the working tree** (restored from `4709e37f6`) and versioned, so the
+   next machine inherits it rather than discovering the gap.
+3. **CLs 224 / 227 / 235 / 264 / 265 / 267 and the 94 files in `default`** are other lanes' work,
+   all still HOLD / REVIEW / SHELVE-ONLY. Untouched by design.
+4. **298 git-untracked paths remain** and are all now confirmed in Perforce — that is the
+   intended steady state, not debt.

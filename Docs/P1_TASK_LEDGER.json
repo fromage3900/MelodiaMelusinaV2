@@ -454,24 +454,5 @@
         "stop_condition": "Stop after one zone and one camera A/B; generalized Houdini FieldAtlas remains a separate full-license task."
       }
     ]
-  },
-  "hybrid_runtime_convergence": {
-    "status": "refreshed_on_current_main_pending_runtime_validation",
-    "authority": "PR #388 is the only active hybrid convergence candidate. PR #367 is historical provenance and must not be revived.",
-    "baseline_main": "be84c294ee38b060c47dcf943becd395b1c26613",
-    "evidence": [
-      "Hybrid source delta re-overlaid onto current main after Git/P4 closure work",
-      "No binary/LFS files are part of the hybrid delta",
-      "Runtime validation remains required"
-    ],
-    "next_actions": [
-      "Run UE5.8 C++ build and relevant automation tests.",
-      "Run PIE: FLOW -> encounter -> rhythm/sequence -> resolution -> traversal return.",
-      "Verify no duplicate gameplay authority, stuck encounter state, or failed traversal return.",
-      "If validation passes, mark #388 ready and merge.",
-      "After #388 lands, archive #367 as superseded provenance."
-    ],
-    "agent_rule": "Do not create another combat bridge or revive #367. Validate and finish #388 first.",
-    "candidate_head_note": "Use the live PR head; documentation/gate commits may advance it."
   }
 }

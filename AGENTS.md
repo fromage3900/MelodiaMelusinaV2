@@ -15,6 +15,13 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
   without explicit owner permission for that operation plus a written plan stated first. Never
   `reset --hard`, `checkout -- .`, `clean`, force-push or rewrite history. Workers produce patches in
   a worktree; the owner approves every git/p4 operation.
+  **Storage architecture (2026-10-01).** Git carries code/docs/plans; Perforce carries bulk binary
+  (`Content/`, dropped plugins, `Reference/`). **The Perforce server root is `D:\perforce\root` on
+  this machine, so a p4 submit is history-tracked, NOT off-machine — GitHub is the only offsite
+  copy.** Never call a p4 submit a backup. Full picture:
+  [`STORAGE_ARCHITECTURE_2026-10-01.md`](Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
+  **KNOWN ISSUE (pre-dates 2026-10-01): this file is ~46 KB against a 32 KB agent-context budget
+  and is being served trimmed. Trim it, or move detail into linked docs.**
   **Standing authorization (2026-09-30).** Requiring permission for *every* commit is what produced a
   permanently dirty tree, unpushable local commits sitting on `main`, and two agents moving `HEAD`
   under each other. That is settled now: work in a lane
