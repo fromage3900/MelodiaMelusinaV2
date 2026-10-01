@@ -84,8 +84,8 @@
     },
     {
       "path": "CURRENT_STATE.md",
-      "bytes": 375203,
-      "sha256": "7a69e6466a38d2a4b9fc4a5d3d5f54879446093743b51c83e11ff42f7a3e2b77"
+      "bytes": 375469,
+      "sha256": "623129ab36ccd3a5c1baee7a9dce792b1903f2cfeee7b3b41e9047454b9ca571"
     },
     {
       "path": "draw_binding_repair.json",
@@ -159,6 +159,9 @@
       "Content/Python/headless_retarget_mocap.py"
     ],
     "scope": "Known tested changes only; concurrent notes retained in working tree",
-    "archive_and_html": "Local only; repository pre-commit policy"
+    "archive_and_html": "Local only; repository pre-commit policy",
+    "existing_checkout_branch": "docs/honcho-discord-sync",
+    "implementation_commit": "36e089c7c3d271e2df87dab724692e8b73ace27c",
+    "landed_on_main": false
   }
 }
