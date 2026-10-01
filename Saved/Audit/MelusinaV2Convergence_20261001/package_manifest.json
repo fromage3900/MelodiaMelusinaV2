@@ -1,0 +1,167 @@
+{
+  "head_before_closeout": "01f64439e6707b91d704486889d9166d1fb0672a",
+  "changed_paths": [
+    "Content/Melodia/Mocap/Retarget/IK_Melusina_Body_Current.uasset",
+    "Content/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current.uasset",
+    "Content/Melodia/Characters/Melusina/IK_Melusina_Body.uasset",
+    "Content/Melodia/Characters/Melusina/Retarget/RTG_UE4Mannequin_To_Melusina.uasset",
+    "Content/Melodia/Characters/Melusina/Animations/AM_RangeAttack.uasset",
+    "Content/Python/import_rokoko_mocap.py",
+    "Content/Python/headless_retarget_mocap.py",
+    "CURRENT_STATE.md"
+  ],
+  "gameplay_notify_experiment_restored_exactly": true,
+  "files": [
+    {
+      "path": "After/Content/Melodia/Characters/Melusina/Animations/AM_RangeAttack.uasset",
+      "bytes": 12746,
+      "sha256": "bea5a9e5dc2bdf31a6c4dd01a332540632459537c103df857f08e00eaa538855"
+    },
+    {
+      "path": "After/Content/Melodia/Characters/Melusina/IK_Melusina_Body.uasset",
+      "bytes": 356975,
+      "sha256": "5cc71a8dcf6f62fd3cb7499f4820f1a9f3585e68c0c807aeba6ec9e79bb252dc"
+    },
+    {
+      "path": "After/Content/Melodia/Characters/Melusina/Retarget/RTG_UE4Mannequin_To_Melusina.uasset",
+      "bytes": 21782,
+      "sha256": "c35d72cb8ed76c6640a61412daf2535792d5bce158fa71d4e6d2fa1b0d229516"
+    },
+    {
+      "path": "After/Content/Melodia/Mocap/Retarget/IK_Melusina_Body_Current.uasset",
+      "bytes": 357113,
+      "sha256": "7afe41934b82a12eec5358bdbc18b9d60bcc0730645bc72135a804e7814dd321"
+    },
+    {
+      "path": "After/Content/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current.uasset",
+      "bytes": 19259,
+      "sha256": "f7df0176f18232dddb37a4349839dc6c4dd2104a04e96bba018ca69940949be7"
+    },
+    {
+      "path": "After/Content/Python/headless_retarget_mocap.py",
+      "bytes": 4589,
+      "sha256": "63fcc64e19bc5acce442f6ca1d47438af32de69f5cec0e047b4e851f6fd7b1aa"
+    },
+    {
+      "path": "After/Content/Python/import_rokoko_mocap.py",
+      "bytes": 7470,
+      "sha256": "8d1d75e39d338eabd9adbea0ff747d8decd8e861a127ce37a9f5327e4724e5d3"
+    },
+    {
+      "path": "authored_pose_samples.json",
+      "bytes": 34830,
+      "sha256": "de8ce974edfb49ba07a476d9ef13e572833c674dbdcc1d5565fa66d07a5ca29c"
+    },
+    {
+      "path": "Before/AM_Melusina_BowAttack_Gameplay.uasset",
+      "bytes": 7423,
+      "sha256": "4a622aeddfac4ef76ed1af8a807228f4cffd2ff163bd5b54fabf97a9d99a8546"
+    },
+    {
+      "path": "Before/AM_RangeAttack.uasset",
+      "bytes": 14069,
+      "sha256": "dc574fbdd439443aa56df2f14f8d444dcce2fc23fd61b53e760050d7b9d31de1"
+    },
+    {
+      "path": "Before/IK_Melusina_Body.uasset",
+      "bytes": 356936,
+      "sha256": "c36c6f99e92993917e69d4c50c7af7706d415f02b00fff99ce944124006bfe77"
+    },
+    {
+      "path": "Before/IK_Melusina_Body_Current.uasset",
+      "bytes": 357059,
+      "sha256": "48ef9be4d7d69f7811b716964a2d55a76f7e3c45aff1a8f7f522a0e6f5d2e4c5"
+    },
+    {
+      "path": "Before/RTG_Mocap_to_Melusina_Current.uasset",
+      "bytes": 19232,
+      "sha256": "4778424ec9b01d36ccbbdc12dae629f0e5b9044d4d58d703dcd442d5f526aa2a"
+    },
+    {
+      "path": "Before/RTG_UE4Mannequin_To_Melusina.uasset",
+      "bytes": 21755,
+      "sha256": "e99b6d426f763b34b45459161594c60757235621581f66a07b550a50be44e1f1"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 375469,
+      "sha256": "623129ab36ccd3a5c1baee7a9dce792b1903f2cfeee7b3b41e9047454b9ca571"
+    },
+    {
+      "path": "draw_binding_repair.json",
+      "bytes": 955,
+      "sha256": "b540860930f74b0cf9cc22c63aebde446b5c09d878713653344e1b0a04f89b43"
+    },
+    {
+      "path": "melusina-animation-pipeline.html",
+      "bytes": 6335,
+      "sha256": "980a622a2370ffc75d65cedf674bda01ccc0d16307b05e40f0adc233d7b67eb5"
+    },
+    {
+      "path": "QuillWardrobeInputCancellation.json",
+      "bytes": 640,
+      "sha256": "1f7f486d6f91e8a896b9e7720d33f2896df00fd8c8b4b3ac5727c26ab5f3d669"
+    },
+    {
+      "path": "RelevantRuntimeLog.log",
+      "bytes": 9036,
+      "sha256": "d39e4cf24ddfab75c8c35d7841c5ba3bbebf250ae214611c86207564db3e58d1"
+    },
+    {
+      "path": "retarget_reference_repair.json",
+      "bytes": 9269,
+      "sha256": "9a9f4d7643b8c0032018137b927c92ca934e9551df43396313a75b34e2b35be3"
+    },
+    {
+      "path": "V2DrawCorrected_Diagnostic.png",
+      "bytes": 3922185,
+      "sha256": "91719f34e29594784f5fec98d097f2a3037d951784e56c51f95ea55f7968c488"
+    },
+    {
+      "path": "V2RuntimeAfterQuillCancellation.json",
+      "bytes": 68778,
+      "sha256": "3d0d5ea24a138eee3e684f534c0dd6bf8b9b300b5e4cc2cb2a5dbbdbeb5ce808"
+    },
+    {
+      "path": "V2RuntimePoseAfterDrawRepair.json",
+      "bytes": 68601,
+      "sha256": "b4acebbc0e7b8e6a729272db8fe66f866b2366780f1a6d002693df91507fc1cb"
+    },
+    {
+      "path": "V2RuntimePoseProbe.json",
+      "bytes": 67347,
+      "sha256": "4e344775def0f8af3a6dc62c155491fbb317b67e75010ad30b54086d4da0b086"
+    },
+    {
+      "path": "V2RuntimePoseStockPartySwap.json",
+      "bytes": 68695,
+      "sha256": "69356cdc8ca630575f2ebf6e62788ddfca54faf8f63a50fe870180fc20763860"
+    },
+    {
+      "path": "V2RuntimePoseWithoutSkillNotify.json",
+      "bytes": 78549,
+      "sha256": "cdb7f3327a6fa6cad22321ddd4d90c1400a5590bbc7c0ec02f4bb7451b153613"
+    },
+    {
+      "path": "V2ShoulderComparison.json",
+      "bytes": 12617,
+      "sha256": "e442ba685de398fa57a445037fc65bdff20bcdbe037888e0330fb9a400d9982b"
+    }
+  ],
+  "closeout_recovery": {
+    "historical_snapshot": "a03956f72",
+    "snapshot_is_ancestor": false,
+    "restored_verified_paths": [
+      "Content/Melodia/Characters/Melusina/Animations/AM_RangeAttack.uasset",
+      "Content/Melodia/Characters/Melusina/IK_Melusina_Body.uasset",
+      "Content/Melodia/Characters/Melusina/Retarget/RTG_UE4Mannequin_To_Melusina.uasset",
+      "Content/Python/import_rokoko_mocap.py",
+      "Content/Python/headless_retarget_mocap.py"
+    ],
+    "scope": "Known tested changes only; concurrent notes retained in working tree",
+    "archive_and_html": "Local only; repository pre-commit policy",
+    "existing_checkout_branch": "docs/honcho-discord-sync",
+    "implementation_commit": "36e089c7c3d271e2df87dab724692e8b73ace27c",
+    "landed_on_main": false
+  }
+}

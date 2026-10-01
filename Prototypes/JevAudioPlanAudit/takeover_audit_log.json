@@ -1,0 +1,67 @@
+{
+  "schema": "melodia.jev_audio_takeover_audit.v1",
+  "date": "2026-09-25T14:19:47",
+  "state": {
+    "editor_running": true,
+    "editor_pid": 1228,
+    "monolith_listeners": 1,
+    "pie_level_open": "L_MelusinaMorning",
+    "dirty_content_packages": 0,
+    "dirty_map_externals": 2,
+    "hit_component_compiles": true,
+    "hit_component_linked": true,
+    "first_build_result": "Succeeded (5 actions, 39.4s)",
+    "single_slot_revision_built": false,
+    "revision_blocked_by_livecoding": true,
+    "parameters_set_before_play": true,
+    "binds_on_lane_hit_judged": true,
+    "metasound_blocks_that_resolve": 2,
+    "metasound_blocks_probed": 60,
+    "synth_blocks_resolving": 0,
+    "synthesis_plugin_enabled": true,
+    "enabled_plugins_total": 372,
+    "graph_property_protected": true,
+    "project_sfx_assets": 27,
+    "project_sfx_gameplay": 0,
+    "real_spectrum_analysis_hits": 0,
+    "fake_spectrum_lane_count": 3,
+    "assets_bound_to_fake_lanes": 89,
+    "tension_duck_writes_scl_ambience": true,
+    "orphan_ambience_beds": 2,
+    "td_band_bridge_ue_receiver": false,
+    "fl_studio_state": "installed, zero projects/presets/plugins",
+    "g7_reimport_status": "BLOCKED twice, reverted, disk byte-identical to backup",
+    "overworld_hud_status": "widget built, 14 icons imported, PIE verify incomplete"
+  },
+  "decision": {
+    "hit_graph_route": "SAMPLE_VIA_PROVEN_BLOCKS",
+    "hit_graph_probs": {
+      "SAMPLE_VIA_PROVEN_BLOCKS": 0.88,
+      "GUI_HAND_AUTHOR": 0.11,
+      "CPLUSPLUS_REGISTRY_DUMP": 0.01,
+      "DEFER_P2_CONTENT": 0.0
+    },
+    "first_move": "P3_AMBIENCE_WIRING",
+    "first_move_probs": {
+      "CLOSED_EDITOR_REBUILD": 0.1,
+      "P3_AMBIENCE_WIRING": 0.49,
+      "P1_REAL_SIGNAL": 0.02,
+      "OVERWORLD_HUD_FINISH": 0.02,
+      "G7_REIMPORT_DEBUG": 0.37
+    },
+    "riskiest": "SCL_AMBIENCE_TWO_WRITERS",
+    "riskiest_probs": {
+      "EDITOR_SINGLE_WRITER": 0.03,
+      "SCL_AMBIENCE_TWO_WRITERS": 0.47,
+      "METASOUND_AUTHORING_ROUTE": 0.04,
+      "NONE_BLOCKING": 0.0,
+      "FAKE_SPECTRUM_LANES": 0.46
+    },
+    "needs_human": false,
+    "needs_human_prob": 0.41,
+    "readiness": 2,
+    "readiness_label": "2 - a subsystem compiles and runs against a written contract",
+    "source": "jev-live",
+    "reason": "typesafe System One choice+choice+choice+noul+score, one call"
+  }
+}
