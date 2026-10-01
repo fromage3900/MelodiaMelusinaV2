@@ -1,99 +1,12 @@
 {
   "schema": "melodia.p1.task_ledger.v1",
-  "as_of": "2026-09-24",
+  "as_of": "2026-10-01",
   "authority": {
     "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
     "scope": "2026-09-24 bounded lookdev queue plus the owner-directed 2026-09-29 school scope: one P0 Sea Above FieldAtlas tile, the existing Faraway Mother resonance-field integration, and the named Gate 6 Glitter Pile system. Other World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime work remains consume/maintain-only.",
     "evidence_policy": "Source presence, offline proof, live proof, packaged proof, and owner visual acceptance are distinct.",
     "procedural_system_policy": "BOUNDED_OWNER_APPROVED_SCHOOL_GATES",
     "execution_rule": "Do not open general PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Execute only the named P0 test-tile, Faraway Mother field, and Gate 6 Glitter Pile gates using their existing owners and contracts."
-  },
-  "melusina_work": {
-    "scope_as_of": "2026-09-23",
-    "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
-    "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
-    "current_status_authority": "CURRENT_STATE.md",
-    "runtime_unit": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
-    "designation": "Ultimate is the existing runtime Blueprint, without a rename or duplicate pawn.",
-    "proof_policy": "A diagram, source inventory, Jev choice, or imported asset is not live PIE, restart, or packaged proof.",
-    "work_items": [
-      {
-        "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
-        "status": "source_documented",
-        "deliverable": "One canonical visual map of runtime assembly, QuillScript/JRPG/rhythm, wardrobe/traversal, cymatics, and Universe Foundry boundaries.",
-        "evidence": [
-          "SYSTEM_MAP.md#melusina-blueprint-family",
-          "SYSTEM_MAP.md#melusina-runtime-system-diagram",
-          "SYSTEM_MAP.md#universe-foundry-integration-boundary"
-        ],
-        "remaining_gate": "Promote the reviewed documentation to main; keep CURRENT_STATE.md as the only live-status authority."
-      },
-      {
-        "id": "MELUSINA_MORNING_RUNTIME_PORTRAIT",
-        "status": "open",
-        "deliverable": "A readable Unreal PIE portrait of the possessed canonical pawn in L_MelusinaMorning, with face, existing water hair, wardrobe, and held prop visible.",
-        "evidence": [
-          "Saved/Audit/hair_canon_20260922/runtime_pie_b.json proves a prior Morning runtime hair/identity scope",
-          "Saved/Audit/melusina_bake_staging_20260922/jev_canonical_portrait_first_slice_20260923.json is directional only"
-        ],
-        "remaining_gate": "Fresh Morning PIE identity and view-target receipt plus visually accepted screenshot; no portfolio-stage substitution."
-      },
-      {
-        "id": "MELUSINA_HAIR_EYE_BAKES",
-        "status": "existing_import_audited_material_tether_open",
-        "deliverable": "Stage the 24 manifest-matched hair/eye maps in new Unreal paths and bind approved material instances to the existing body/hair components.",
-        "evidence": [
-          "Exports/MelusinaBakeStaging_20260922/UE_import/IMPORT_MANIFEST.json",
-          "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation",
-          "Saved/Audit/melusina_bake_staging_20260922/existing_copernicus_import_audit.json records 24/24 existing imports",
-          "Saved/Audit/melusina_bake_staging_20260922/material_texture_tether_receipt_20260923.json audits the canonical material slots"
-        ],
-        "remaining_gate": "Choose the approved render target for the Copernicus maps, then bind through that existing material lane and perform Morning PIE visual review; do not replace procedural water hair with strand maps."
-      },
-      {
-        "id": "MELUSINA_WATER_HAIR_DRIPS",
-        "status": "live_pie_proven_trim_candidate_open",
-        "deliverable": "Import the approved 240-frame single-track Alembic as a supporting Geometry Cache for drips from existing water hair.",
-        "evidence": [
-          "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_export_animated_single_track_evidence.json",
-          "Saved/Audit/melusina_bake_staging_20260922/jev_flip_role_choice_corrected.json",
-          "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json records live Morning PIE playback on WaterHairFlipCache",
-          "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json records an animated pool-trim candidate",
-          "Saved/Audit/melusina_bake_staging_20260922/hair_bind_transform_audit_20260923.json records the preserved inverse-bind offset"
-        ],
-        "remaining_gate": "Review the trimmed candidate against WaterHairMesh in fresh Morning PIE and only then promote it over the current attached cache; spatial alignment and visual acceptance remain open."
-      },
-      {
-        "id": "MELUSINA_NIAGARA_CONTACT_SHEET",
-        "status": "isolated_sheet_created_runtime_open",
-        "deliverable": "One labeled isolated-preview card per 13 unique attached Niagara systems, with component role and verified emitter state.",
-        "evidence": [
-          "Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json inventories 13 systems and 19 mounts offline",
-          "Saved/Audit/melusina_bake_staging_20260922/niagara_contact_sheet_receipt_20260923.json records the labeled 13-card sheet; isolated cards are black/context-dependent"
-        ],
-        "remaining_gate": "Fresh runtime attachment review in Morning PIE; the isolated sheet is a diagnostic card set, not proof that every attached effect is visually readable in context."
-      },
-      {
-        "id": "MELUSINA_FOUNDRY_BOUNDARY",
-        "status": "source_reviewed",
-        "deliverable": "Route authored world content through the existing Foundry mission compiler and gameplay owners, with no pawn-owned Foundry manager.",
-        "evidence": [
-          "Tools/universe_foundry.py builds a deterministic mission DAG",
-          "specs/universe/faraway_mother.world_genome.v1.json is the only checked-in world genome",
-          "Saved/UniverseFoundry/faraway_mother/faraway_mother-b030500dd9fb7205/mission.json uses a non-authoritative fixture delta"
-        ],
-        "remaining_gate": "For a new Melusina world, validate authored IDs and a real gameplay-exported delta through Quill, Wardrobe, and world consumers. Faraway's Heart Gate and mantle IDs have no matching checked-in QSC or wardrobe catalog source entry; check binary/editor bindings before claiming a playable handoff. The Faraway Mother integration spec keeps its TD-to-Unreal field return and multi-consumer PIE proof open, and the genome has a null World Compiler recipe."
-      },
-      {
-        "id": "MELUSINA_LEGACY_BLUEPRINT_ROOTS",
-        "status": "deprecation_candidate",
-        "deliverable": "Retain the canonical runtime pawn and the separate battle presenter while classifying old BP_Melusina roots for reversible retirement.",
-        "evidence": [
-          "CURRENT_STATE.md — Canonical Melusina Blueprint and portfolio gate"
-        ],
-        "remaining_gate": "Fresh hard/soft referencer and route checks before any asset move or deletion."
-      }
-    ]
   },
   "melusina_work": {
     "scope_as_of": "2026-09-24",
@@ -103,7 +16,11 @@
     "current_status_authority": "CURRENT_STATE.md",
     "runtime_unit": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
     "designation": "Ultimate is the existing runtime Blueprint; keep its name and current GameMode selection.",
-    "owner_confirmed_baselines": ["locomotion", "Rokoko", "Universe Foundry integrations"],
+    "owner_confirmed_baselines": [
+      "locomotion",
+      "Rokoko",
+      "Universe Foundry integrations"
+    ],
     "proof_policy": "Owner confirmation, source/editor state, live PIE, restart, and packaged proof are distinct; do not promote one tier into another.",
     "closeout_order": [
       "Keep the existing runtime pawn and subsystem owners; do not create parallel authorities.",
@@ -115,57 +32,91 @@
       {
         "id": "MELUSINA_CANONICAL_SYSTEM_MAP",
         "status": "source_documented",
-      "deliverable": "One visual map of runtime assembly including OSC/MPC-driven Regalia, QuillScript/JRPG/rhythm, Wardrobe/traversal, Cymatics, and Universe Foundry boundaries.",
-        "evidence": ["SYSTEM_MAP.md#melusina-blueprint-family", "SYSTEM_MAP.md#melusina-runtime-system-diagram", "SYSTEM_MAP.md#universe-foundry-integration-boundary"],
+        "deliverable": "One visual map of runtime assembly including OSC/MPC-driven Regalia, QuillScript/JRPG/rhythm, Wardrobe/traversal, Cymatics, and Universe Foundry boundaries.",
+        "evidence": [
+          "SYSTEM_MAP.md#melusina-blueprint-family",
+          "SYSTEM_MAP.md#melusina-runtime-system-diagram",
+          "SYSTEM_MAP.md#universe-foundry-integration-boundary"
+        ],
         "remaining_gate": "Keep CURRENT_STATE.md as the only live-status authority and revise the map only when an owner boundary changes."
       },
       {
         "id": "MELUSINA_MORNING_RUNTIME_PORTRAIT",
         "status": "fresh_morning_pie_identity_proven_portrait_held",
         "deliverable": "A reviewed Morning PIE portrait of the single possessed canonical pawn with readable face, hair/drips, wardrobe, and held prop.",
-        "evidence": ["Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT.jpg is a gameplay contact-sheet draft", "Saved/Audit/melusina_blink_20260923/nikki_hair_lit.png proves the newer hair MI renders but the face remains dark", "Saved/Audit/melusina_bake_staging_20260922/canonical_morning_pie_stage.json proves the 2026-09-24 Morning PIE pawn/body/hair identity with transient camera", "Saved/Audit/melusina_bake_staging_20260922/morning_drip_cycle_20260924/ contains the fresh static-camera capture; Jev reviewed later frames and held portrait acceptance for dark/occluded face and cluttered framing", "Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json records proof limits and gate state"],
+        "evidence": [
+          "Saved/Portfolio/ContactSheets_20260923/S1_Melusina_Gameplay_DRAFT.jpg is a gameplay contact-sheet draft",
+          "Saved/Audit/melusina_blink_20260923/nikki_hair_lit.png proves the newer hair MI renders but the face remains dark",
+          "Saved/Audit/melusina_bake_staging_20260922/canonical_morning_pie_stage.json proves the 2026-09-24 Morning PIE pawn/body/hair identity with transient camera",
+          "Saved/Audit/melusina_bake_staging_20260922/morning_drip_cycle_20260924/ contains the fresh static-camera capture; Jev reviewed later frames and held portrait acceptance for dark/occluded face and cluttered framing",
+          "Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json records proof limits and gate state"
+        ],
         "remaining_gate": "Capture lit readable face close-up, three-quarter full body, and gameplay-lighting view from a correctly framed fresh Morning PIE; review actual captures with Jev. Identity passes, visual acceptance remains HOLD."
       },
       {
         "id": "MELUSINA_HAIR_EYE_BAKES",
         "status": "24_imported_material_tether_open",
         "deliverable": "Review the 24 imported Copernicus hair/eye maps and bind only an approved subset through an existing compatible mesh/material lane.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/existing_copernicus_import_audit.json records 24/24 imports", "Saved/Audit/melusina_bake_staging_20260922/material_texture_tether_receipt_20260923.json records zero runtime Copernicus texture references and a render-bind gate", "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation"],
+        "evidence": [
+          "Saved/Audit/melusina_bake_staging_20260922/existing_copernicus_import_audit.json records 24/24 imports",
+          "Saved/Audit/melusina_bake_staging_20260922/material_texture_tether_receipt_20260923.json records zero runtime Copernicus texture references and a render-bind gate",
+          "Saved/Audit/melusina_bake_staging_20260922/final_bake_verify.json records the HairB BaseColor limitation"
+        ],
         "remaining_gate": "Name a compatible existing mesh/slot/MI target, verify UV/channel/color-space compatibility, then compile, reload, and accept a Morning comparison. Do not force strand maps onto procedural water hair or add a master to consume them."
       },
       {
         "id": "MELUSINA_WATER_HAIR_DRIPS",
         "status": "trimmed_candidate_live_binding_proven_visual_hold",
         "deliverable": "Use the pool-trimmed 240-frame Geometry Cache as a supporting drip layer beneath existing water hair only after runtime review.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json proves Blender candidate round-trip at sampled frames", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_candidate_all_frames_bounds_20260924.json measures all 240 Blender source frames; all are nonempty, object-local z is 0.4500-1.4185 m, and source hash matches the trimmed Alembic", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_trimmed_ue_import_20260923.json records a saved one-track UE cache candidate", "Fresh transient Morning PIE `pie_smoke_5_235802` confirms candidate path, WaterHairMesh parent, identity relative transform, scale 0.01, one track, 10.0-second duration, playing and looping; details in Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json", "The cache-hidden comparison left the long forms visible; hiding the four existing Regalia meshes removed them. Owner confirms these are intentional OSC/MPC-driven decorations. The Regalia-hidden/cache-visible comparison was too close and poorly framed to judge the drip silhouette.", "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json is LIVE PIE proof for the older untrimmed cache only"],
+        "evidence": [
+          "Saved/Audit/melusina_bake_staging_20260922/flip_alembic_trim_validation_20260923.json proves Blender candidate round-trip at sampled frames",
+          "Saved/Audit/melusina_bake_staging_20260922/flip_cache_candidate_all_frames_bounds_20260924.json measures all 240 Blender source frames; all are nonempty, object-local z is 0.4500-1.4185 m, and source hash matches the trimmed Alembic",
+          "Saved/Audit/melusina_bake_staging_20260922/flip_cache_trimmed_ue_import_20260923.json records a saved one-track UE cache candidate",
+          "Fresh transient Morning PIE `pie_smoke_5_235802` confirms candidate path, WaterHairMesh parent, identity relative transform, scale 0.01, one track, 10.0-second duration, playing and looping; details in Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json",
+          "The cache-hidden comparison left the long forms visible; hiding the four existing Regalia meshes removed them. Owner confirms these are intentional OSC/MPC-driven decorations. The Regalia-hidden/cache-visible comparison was too close and poorly framed to judge the drip silhouette.",
+          "Saved/Audit/melusina_bake_staging_20260922/flip_cache_live_success_20260923.json is LIVE PIE proof for the older untrimmed cache only"
+        ],
         "remaining_gate": "Measure post-scale Unreal bounds across all 240 frames against head/hair bounds; capture a complete loop and explicit fresh restart; prove follow during player-controlled walk/turn/stop with parent hair visible; then secure Jev visual acceptance. The current candidate remains untracked and unpromoted."
       },
       {
         "id": "MELUSINA_REGALIA_OSC_MPC_PRESENTATION",
         "status": "owner_confirmed_working_intentional_runtime_presentation",
         "deliverable": "Keep the canonical pawn's wings and three rings as intentional decoration, with appearance and spin driven by the existing OSC/MPC integration.",
-        "evidence": ["Owner confirms the Regalia decorations and OSC/MPC-driven appearance/spin are proven and working.", "Fresh Morning PIE component inventory finds Regalia_Wings, Regalia_RingOuter, Regalia_RingMid, and Regalia_RingInner on the canonical pawn.", "Transient cache isolation shows the pale forms in that capture belong to Regalia geometry; it does not evaluate or disprove the OSC/MPC control route. See Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json."],
+        "evidence": [
+          "Owner confirms the Regalia decorations and OSC/MPC-driven appearance/spin are proven and working.",
+          "Fresh Morning PIE component inventory finds Regalia_Wings, Regalia_RingOuter, Regalia_RingMid, and Regalia_RingInner on the canonical pawn.",
+          "Transient cache isolation shows the pale forms in that capture belong to Regalia geometry; it does not evaluate or disprove the OSC/MPC control route. See Saved/Audit/melusina_bake_staging_20260922/morning_closeout_observation_20260924.json."
+        ],
         "remaining_gate": "No rerun is required for this closeout. Keep Regalia present during whole-character lookdev; when its control route changes, audit the existing OSC source, MPC writer/parameters, and runtime consumers without adding another authority."
       },
       {
         "id": "MELUSINA_NIAGARA_CONTEXT_REVIEW",
         "status": "inventory_present_context_review_open",
         "deliverable": "Review the existing 13 unique Niagara systems across 19 mounts in context without creating another FX framework.",
-        "evidence": ["Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json", "Saved/Audit/melusina_bake_staging_20260922/niagara_contact_sheet_receipt_20260923.json records context-dependent/black isolated cards"],
+        "evidence": [
+          "Saved/Audit/melusina_bake_staging_20260922/niagara_capture_manifest_20260923.json",
+          "Saved/Audit/melusina_bake_staging_20260922/niagara_contact_sheet_receipt_20260923.json records context-dependent/black isolated cards"
+        ],
         "remaining_gate": "Verify relevant emitter states and readable in-context behavior in Morning PIE; isolated previews do not prove runtime presentation."
       },
       {
         "id": "MELUSINA_FOUNDRY_BOUNDARY",
         "status": "owner_confirmed_existing_boundary",
         "deliverable": "Keep Universe Foundry as the authoring compiler; route outputs through current World Compiler and gameplay/runtime owners.",
-        "evidence": ["SYSTEM_MAP.md#universe-foundry-integration-boundary", "Tools/universe_foundry.py", "Owner confirms required Melusina Foundry integrations are proven and working"],
+        "evidence": [
+          "SYSTEM_MAP.md#universe-foundry-integration-boundary",
+          "Tools/universe_foundry.py",
+          "Owner confirms required Melusina Foundry integrations are proven and working"
+        ],
         "remaining_gate": "No Melusina rerun required. Keep Faraway Mother's separate fixture-delta and TD-to-Unreal field-return gaps scoped to that example; do not add a pawn-side Foundry manager."
       },
       {
         "id": "MELUSINA_LEGACY_BLUEPRINT_ROOTS",
         "status": "reversible_deprecation_candidates_unchanged",
         "deliverable": "Retain the canonical runtime pawn, battle presenter, skills, and room/PCG actor in their distinct roles.",
-        "evidence": ["CURRENT_STATE.md — Canonical Melusina Blueprint Family"],
+        "evidence": [
+          "CURRENT_STATE.md — Canonical Melusina Blueprint Family"
+        ],
         "remaining_gate": "Legacy retirement is outside this close-out. Before any future move, save fresh hard/soft referencer and live-route receipts."
       }
     ]
@@ -483,5 +434,24 @@
         "stop_condition": "Stop after one zone and one camera A/B; generalized Houdini FieldAtlas remains a separate full-license task."
       }
     ]
+  },
+  "hybrid_runtime_convergence": {
+    "status": "validation_ready_draft_pr",
+    "authority": "PR #388 is the only convergence candidate. PR #367 remains historical provenance and must not be revived.",
+    "baseline_main": "bd4662b95d678e229dbec86198030bc45e397a68",
+    "candidate_head": "849e1ce148b3a134bc533f40a01ada34f9cc2ea3",
+    "evidence": [
+      "Echo Static Gates PASS",
+      "GitHub mergeable=true",
+      "10 source/test files only; no binary or LFS asset changes"
+    ],
+    "next_actions": [
+      "Run the UE5.8 C++ build and relevant automation tests.",
+      "Run one PIE vertical-slice smoke test: FLOW -> encounter -> rhythm/sequence -> resolution -> return to traversal.",
+      "Verify one gameplay authority handles each transition and that the encounter returns cleanly to traversal.",
+      "If runtime validation passes, mark PR #388 ready and merge it to main.",
+      "After #388 lands on main, archive #367 as superseded provenance."
+    ],
+    "agent_rule": "Do not create another combat bridge or revive #367. Validate and finish #388 before opening new architecture work."
   }
 }
