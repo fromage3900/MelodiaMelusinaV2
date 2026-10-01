@@ -257,7 +257,7 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
  if (!FindCombat()) return L;
 
  const FVector2D Size = G.GetLocalSize();
- const float S = (Size.Y / DesignH) * LayoutScale;                 // design px -> slate units
+ const float S = (Size.Y / DesignH) * LayoutScale * .65f;          // compact frame for a full-screen viewport
  const FVector2D C = Size * .5;
  const auto At = [&](FVector2D Design) { return C + (Design - DesignCenter) * S; };
  const float T117 = Beat * .25f, T234 = Beat * .5f, T469 = Beat, T703 = Beat * 1.5f, T50 = Beat * (50.f / 469.f);
@@ -322,7 +322,7 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
   const FVector2D Box = DesignSize * S;
   const FSlateRoundedBoxBrush Rounded(Ink, Box.Y * .5f, Tint(Outline, .9f), FMath::Max(1.f, S * .6f));
   FSlateDrawElement::MakeBox(E, Layer, G.ToPaintGeometry(Box, FSlateLayoutTransform(Center - Box * .5)), &Rounded,
-   ESlateDrawEffect::None, Tint(FLinearColor::White, Alpha));
+   ESlateDrawEffect::None, Tint(Ink, Alpha));
  };
 
  const int32 LBack = L + 1, LRet = L + 2, LTop = L + 3, LText = L + 4, LFx = L + 5;
