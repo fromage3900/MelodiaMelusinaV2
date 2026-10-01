@@ -1,7 +1,21 @@
 # Two-Workstation Sync Contract — 2026-09-04
 
 **Machines:** main Windows workstation + ASUS Nitro laptop  
-**Authority:** Git/Git LFS for the current project checkout; Perforce remains a local pilot and is not the cross-machine transport yet.
+**Authority:** Git/Git LFS for the current project checkout; Perforce is a local pilot and is not the cross-machine transport yet.
+
+> **Updated 2026-10-01 — read this before relying on the line above.** Perforce is no longer a
+> "pilot": it holds the bulk binary layer (AscentCombatFramework, the Choral Sheep audio bank,
+> the animation archive, `Reference/`, all bulk `Content/`) across changes 271–276. Two facts
+> that change how this contract reads:
+>
+> 1. **The Perforce server root is `D:\perforce\root` on the main workstation.** It is not
+>    cross-machine, so it cannot serve as the laptop's transport — the original conclusion still
+>    holds, and now for a stronger reason than "pilot."
+> 2. **It is also not an off-machine backup.** Both Perforce and the working tree live on this
+>    machine; only GitHub is offsite. A Perforce submit protects against lost *edits*, not a
+>    lost disk.
+>
+> Full picture: [`STORAGE_ARCHITECTURE_2026-10-01.md`](STORAGE_ARCHITECTURE_2026-10-01.md).
 
 ## The rule
 
