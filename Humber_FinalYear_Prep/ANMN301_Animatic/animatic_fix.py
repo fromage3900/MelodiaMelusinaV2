@@ -59,12 +59,37 @@ REDO = {
     ),
     "16": dict(  # shore route opens — dark water parts, far shore glows
         cam="CAM_Wide",
-        pose={"c_head_x": (0, -0.35, 0)}, glide_x=-2.4,
+        # Two defects, both proven by this script's own log:
+        #  * "c_head_x" is NOT a bone in this rig. Probed all 464: the neck
+        #    controls are c_neck_x / c_neck_master_x / c_subneck_1_x / neck_x.
+        #    apply_pose() logged nothing for it, so the head stayed in REST.
+        #  * no arm was posed at all, and this rig's rest pose is a T-POSE —
+        #    which is exactly what the panel review saw.
+        # She reaches toward the far shore as it lights.
+        pose={"c_neck_x": (-0.10, -0.18, 0.0),
+              "c_spine_03_x": (0.10, 0, 0),
+              "c_arm_fk_l": (0.18, 0.0, 0.30),
+              "c_arm_fk_r": (0.34, 0.0, -0.55),
+              "c_forearm_fk_l": (-0.30, 0, 0),
+              "c_forearm_fk_r": (-0.72, 0, 0),
+              "c_hand_fk_l": (0.10, 0, 0),
+              "c_hand_fk_r": (0.20, 0, 0)},
+        glide_x=-2.4,
         sun=6.0, water=4.0, lantern=4.0,
     ),
     "17": dict(  # arrival look-back — mooring behind, awake
         cam="CAM_Intimate",
-        pose={"c_head_x": (0, -0.35, 0)},
+        # Same two defects. The beat board says "awake" — she has just arrived
+        # and is looking back at the mooring, so the arms come down and hold,
+        # and the neck carries the look.
+        pose={"c_neck_x": (0.0, -0.30, 0.0),
+              "c_spine_02_x": (-0.06, 0, 0),
+              "c_arm_fk_l": (0.30, 0.0, 0.22),
+              "c_arm_fk_r": (0.22, 0.0, -0.26),
+              "c_forearm_fk_l": (-0.55, 0, 0),
+              "c_forearm_fk_r": (-0.42, 0, 0),
+              "c_hand_fk_l": (0.15, 0, 0),
+              "c_hand_fk_r": (0.10, 0, 0)},
         sun=6.0, water=4.0, lantern=4.0,
     ),
 }
@@ -338,41 +363,47 @@ def set_light(sun, water, lantern):
 
 
 def aim_camera(cam, target, distance=None):
-    """Point the camera at the character, preserving its current direction
-    distance. The three shot cameras were authored for the SKIFF, framing the
-    hull at 3-7u — which leaves a 1.7u figure at the edge of frame or outside
-    it entirely. Rather than re-author three cameras blind, keep each one's
-    position and look-at direction but re-aim at the character and pull in to a
-    storyboard-appropriate distance.
+    """Point the camera at the character and frame her properly.
 
-    This is the actual fix for "0 of 6 panels show the character": she was
-    rendered correctly, correctly scaled, correctly posed — and framed out.
+    History of this function, because both earlier versions were wrong:
+      v1 kept the camera's original Z offset. After the character was scaled
+         to 1.7u she sits far below a hull authored around 1.0u, so every shot
+         framed her low and left, clipped by the bottom edge.
+      v2 aimed at her centre but never checked the result. Measured coverage
+         was 3-8% with every bounding box anchored to the lower-left.
+
+    What actually works: place the camera at a fixed elevation above her
+    mid-height, at `distance` on a horizontal bearing derived from the
+    camera's ORIGINAL position (so each shot keeps its authored side), and
+    aim at her chest. Then verify.
     """
     import mathutils
     if cam is None or target is None:
         return
-    loc = mathutils.Vector(target)
-    # Preserve the camera's existing elevation angle so the staging intent
-    # (low waterline for SkiffClose, high for Wide) survives.
-    cur = cam.matrix_world.translation.copy()
-    direction = (loc - cur)
-    if direction.length < 1e-4:
-        return
-    keep_z = (loc - cur).z
-    horiz = mathutils.Vector((direction.x, direction.y, 0.0))
-    if horiz.length < 1e-4:
-        horiz = mathutils.Vector((0.0, -1.0, 0.0))
-    horiz.normalize()
     dist = distance if distance else 3.2
-    new_loc = mathutils.Vector((loc.x, loc.y, 0.0)) - horiz * dist
-    new_loc.z = loc.z + keep_z
+    # Bearing from the camera's authored position, so CAM_Intimate stays on
+    # its side of the boat and CAM_SkiffClose keeps its low, close angle.
+    cur = cam.matrix_world.translation.copy()
+    bearing = mathutils.Vector((cur.x - target.x, cur.y - target.y, 0.0))
+    if bearing.length < 1e-4:
+        bearing = mathutils.Vector((0.0, -1.0, 0.0))
+    bearing.normalize()
+
+    # Elevation is a FRACTION OF HER HEIGHT, not an absolute offset. A seated
+    # 1.7u figure read from slightly above the eyeline puts her head near the
+    # upper third and her whole body inside the frame.
+    elev = 0.22 * 1.7
+    new_loc = mathutils.Vector((
+        target.x + bearing.x * dist,
+        target.y + bearing.y * dist,
+        target.z + elev,
+    ))
     cam.location = new_loc
-    # Look at the character's mid-height, not her feet.
-    aim = mathutils.Vector((loc.x, loc.y, loc.z + 0.15))
+    aim = mathutils.Vector((target.x, target.y, target.z + 0.10))
     d = (aim - new_loc).normalized()
     cam.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
     bpy.context.view_layer.update()
-    log("  aim %s -> loc %s looking at %s (dist %.2f)"
+    log("  aim %s -> loc %s, chest %s, dist %.2f"
         % (cam.name, tuple(round(v, 2) for v in new_loc),
            tuple(round(v, 2) for v in aim), dist))
 
@@ -475,6 +506,19 @@ def verify_framing(rig, cam):
         log("  FRAMING FAIL character occupies only %.1f%% of frame - too small "
             "to read as a character" % fill)
         return False
+    # Centering: a subject hugging an edge reads as an accident even when the
+    # coverage number looks fine. Both earlier aim versions produced boxes
+    # pinned to the lower-left corner. Require the centre of her extent to sit
+    # near the middle of the frame.
+    cx = (xmin + xmax) / 2.0
+    cy = (ymin + ymax) / 2.0
+    offx = abs(cx) / half_w
+    offy = abs(cy) / half_h
+    log("  FRAMING centre offset x=%.0f%% y=%.0f%% of half-frame" % (offx * 100, offy * 100))
+    if offx > 0.85 or offy > 0.85:
+        log("  FRAMING FAIL character is off-centre (%.0f%%, %.0f%%) - she "
+            "reads as clipped by the frame edge" % (offx * 100, offy * 100))
+        return False
     return True
 
 
@@ -510,6 +554,28 @@ def set_camera(name):
 
 def main():
     os.makedirs(OUT_PANELS, exist_ok=True)
+    # panels_v4 is OUR render output, but it sits inside an LFS-tracked tree and
+    # burn_cards.py's copy step re-applies git's read-only flag to everything it
+    # touches. A read-only target makes bpy.ops.render.render() raise
+    # "cannot save" AFTER the frame is computed, so the run dies on shot one
+    # having logged a passing FRAMING line. Clear the flag up front and assert
+    # it, rather than discovering it one wasted render at a time.
+    for f in os.listdir(OUT_PANELS):
+        fp = os.path.join(OUT_PANELS, f)
+        try:
+            os.chmod(fp, 0o666)
+        except OSError as e:
+            log("chmod failed %s: %s" % (fp, e))
+    probe = os.path.join(OUT_PANELS, ".writable")
+    try:
+        with open(probe, "w") as fh:
+            fh.write("ok")
+        os.remove(probe)
+        log("output dir writable: %s" % OUT_PANELS)
+    except OSError as e:
+        log("FATAL output dir NOT writable: %s" % e)
+        raise SystemExit(1)
+
     bpy.ops.wm.open_mainfile(filepath=STAGE)
     scn = bpy.context.scene
     # 5.2 exposes the legacy EEVEE identifier; the *_NEXT enum arrived in 4.2
