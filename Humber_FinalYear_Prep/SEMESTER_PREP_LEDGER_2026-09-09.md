@@ -11,8 +11,8 @@ work is pre-staged so each deadline is a polish, not a panic.
 | Lane | State | Evidence |
 |---|---|---|
 | Schedule truth | ✅ | Banner-verified 4-of-6; Desk widget renders week + countdown live |
-| Missing courses (306/309) | 🔴 OPEN | Add-by **Sep 14**. Paste-ready Teams message in ANMN301_REEL_COURSE_BRIEF (co-req argument). Owner sends. |
-| COE/OSAP part-time error | 🟡 | Raised in same Cory message. Payment/OSAP check still behind NTID password wall. |
+| Missing courses (306/309) | ✅ CLOSED 2026-10-01 | **309 added Sep 9. 306 Capstone 1 owner-confirmed registered 2026-10-01.** Add-by deadline (Sep 14) no longer a risk. Source = owner statement, not a pasted Banner row; ask for the row if a CRN/section is ever needed. |
+| COE/OSAP part-time error | 🟡 | Raised in same Cory message. Payment/OSAP check still behind NTID password wall. **Re-check status — that message may have been sent alongside the 306/309 request.** |
 | Applications | ✅ drafts | 9 composed, 0 sent (verified Sent-folder empty). Current application/send work is routed through `Career/HERMES_HANDOFF_2026-09-17.md` + `Career/HERMES_OUTREACH_EMAIL_QUEUE_2026-09-20.md` |
 | Git spine | ✅ | GIT_TIMELINE_SEM5.md: W1→W15 map, branch policy, Friday squash/tag, Sunday verify |
 | Autonomous runners | ✅ | 8:30 daily brief · Sun 19:00 review + 3 MUSTS · Mon 9:00 role scout · all feed WEEKLY_LOG.md → Desk |
@@ -82,7 +82,7 @@ Rule of thumb: free ≥120 GB on C: before Dec renders.
 - **304 (Par)** — "content on the way"; nothing pre-staged is possible.
 - **305 (Corbett) History** — week-1 notes live; the unread Discussion = first cheap grade point.
   Critical Path PDF on shell → read, fill deadlines into tracker.
-- **306 Capstone 1** — gated on registration. When it lands: tracker's Pre-prod rows already map W1-W4.
+- **306 Capstone 1** — ✅ registered 2026-10-01 (owner-confirmed). Tracker's Pre-prod rows already map W1-W4; they are now live work, not blocked work.
 - **309 Career Connections** — resume + variants pipeline is tracked under `Humber_FinalYear_Prep/Career/`. Its deliverables are ~80% pre-made.
 
 ## 4) Standing weekly rhythm (already running)
