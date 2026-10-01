@@ -9,6 +9,47 @@ import unreal
 MAP = '/Game/Melodia/CombatTrial/L_HybridWaveHarpPlaytest'
 MORNING = '/Game/Melodia/Levels/Opening/L_MelusinaMorning'
 
+# Closed authored candidates for Jev. These tune the existing player component
+# in PIE only; target stats, projectile mechanics and durable outcomes are fixed.
+VARIANTS = {
+    'BALANCED': dict(aim_arm_length=320.0, aim_socket_offset=(0,70,30), aim_blend_seconds=.12,
+                     draw_ready_seconds=.8, minimum_shot_interval=.25, chord_chain_window=1.25,
+                     chord_intervals=(0,4,7,11), chord_name='C major 7', arrow_trail_intensity=.6),
+    'BRIGHT_ARPEGGIO': dict(aim_arm_length=340.0, aim_socket_offset=(0,80,35), aim_blend_seconds=.09,
+                           draw_ready_seconds=.6, minimum_shot_interval=.18, chord_chain_window=1.6,
+                           chord_intervals=(0,4,7,9), chord_name='C major 6', arrow_trail_intensity=.45),
+    'WIDE_MOON': dict(aim_arm_length=380.0, aim_socket_offset=(0,85,40), aim_blend_seconds=.18,
+                     draw_ready_seconds=1.0, minimum_shot_interval=.28, chord_chain_window=1.8,
+                     chord_intervals=(0,3,7,10), chord_name='C minor 7', arrow_trail_intensity=.35),
+}
+
+
+def apply_variant(name):
+    """Apply one known feel/music candidate to the real player between attacks.
+
+    This never calls aim/draw/release or substitutes for a player-input test.
+    Restart PIE to restore authored defaults. No package is saved.
+    """
+    if name not in VARIANTS:
+        raise ValueError('Unknown candidate: ' + str(name))
+    worlds = unreal.EditorLevelLibrary.get_pie_worlds(False)
+    if len(worlds) != 1 or 'L_MelusinaMorning' not in worlds[0].get_path_name():
+        raise RuntimeError('Expected one Morning PIE world')
+    pawn = unreal.GameplayStatics.get_player_pawn(worlds[0], 0)
+    component = pawn.get_component_by_class(unreal.MelodiaWaveHarpCombatComponent) if pawn else None
+    if component is None:
+        raise RuntimeError('The possessed pawn has no live WaveHarp component')
+    if component.is_in_sequence() or component.is_drawing() or component.is_aiming():
+        raise RuntimeError('Return to idle FLOW before changing candidate')
+    values = VARIANTS[name]
+    for key, value in values.items():
+        if key == 'aim_socket_offset': value = unreal.Vector(*value)
+        elif key == 'chord_intervals': value = unreal.Vector4(*value)
+        component.set_editor_property(key, value)
+    readback = {key: str(component.get_editor_property(key)) for key in values}
+    unreal.log('MELODIA_VARIANT_APPLIED name=' + name + ' pawn=' + pawn.get_path_name() + ' values=' + str(readback))
+    return readback
+
 
 def _stock_definitions():
     """Author valid test stats; the stock resolver still owns every calculation."""

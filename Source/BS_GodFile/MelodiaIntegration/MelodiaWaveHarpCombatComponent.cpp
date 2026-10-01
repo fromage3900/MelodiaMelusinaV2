@@ -5,6 +5,7 @@
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaRhythmCombatSubsystem.h"
 #include "MelodiaUIBridgeSubsystem.h"
+#include "MelodiaAudioReactivePresentationSubsystem.h"
 #include "MelodiaWorldSlimeNode.h"
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimInstance.h"
@@ -13,6 +14,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/Character.h"
@@ -50,7 +52,12 @@ void UMelodiaWaveHarpCombatComponent::BeginPlay()
  }
  AttackMontage = LoadObject<UAnimMontage>(nullptr, TEXT("/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Gameplay.AM_Melusina_BowAttack_Gameplay"));
  DrawMontage = LoadObject<UAnimMontage>(nullptr, TEXT("/Game/Melodia/Characters/Melusina/Animations/AM_RangeAttack.AM_RangeAttack"));
- ShotNote = LoadObject<USoundBase>(nullptr, TEXT("/Game/Melodia/CombatTrial/Audio/SW_WaveHarpTrial_C4.SW_WaveHarpTrial_C4"));
+ ShotNote = LoadObject<USoundBase>(nullptr, TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4"));
+ for (const TCHAR* Family : {TEXT("Cmaj7"), TEXT("Cmaj6"), TEXT("Cm7")})
+ {
+  const FString Path = FString::Printf(TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_%s_Complete.SW_WaveHarp_%s_Complete"), Family, Family);
+  ChordFlourishes.Add(LoadObject<USoundBase>(nullptr, *Path));
+ }
  UpdateWeaponVisibility();
 }
 void UMelodiaWaveHarpCombatComponent::EndPlay(const EEndPlayReason::Type Reason)
@@ -107,7 +114,7 @@ void UMelodiaWaveHarpCombatComponent::TickComponent(float Delta, ELevelTick Type
   }
  }
  if (!CanAct() && !IsInSequence()) { bDrawing = false; StopAim(); }
- if (ComboStep > 0 && GetWorld()->GetTimeSeconds() - LastRelease > 1.25) ComboStep = 0;
+ if (ComboStep > 0 && GetWorld()->GetTimeSeconds() - LastRelease > FMath::Clamp(ChordChainWindow, .6f, 2.f)) ComboStep = 0;
  UpdateAimCamera(Delta);
  UpdateWeaponVisibility();
  if (auto* UI = UMelodiaUIBridgeSubsystem::Get(this)) UI->EnsureWorldCombatUI(Controller, IsInSequence());
@@ -163,7 +170,7 @@ bool UMelodiaWaveHarpCombatComponent::IsInSequence() const
 }
 float UMelodiaWaveHarpCombatComponent::GetDrawTension() const
 {
- return bDrawing && GetWorld() ? FMath::Clamp(float(GetWorld()->GetTimeSeconds()-DrawStarted) / .8f, 0.f, 1.f) : 0;
+ return bDrawing && GetWorld() ? FMath::Clamp(float(GetWorld()->GetTimeSeconds()-DrawStarted) / FMath::Clamp(DrawReadySeconds, .2f, 1.5f), 0.f, 1.f) : 0;
 }
 float UMelodiaWaveHarpCombatComponent::GetHitFeedback() const
 {
@@ -238,10 +245,10 @@ void UMelodiaWaveHarpCombatComponent::StopAim()
 void UMelodiaWaveHarpCombatComponent::UpdateAimCamera(float Delta)
 {
  if (!CameraBoom.IsValid()) return;
- const float Arm = bAiming ? 320.f : SavedArmLength;
- const FVector Offset = bAiming ? SavedSocketOffset + FVector(0,70,30) : SavedSocketOffset;
+ const float Arm = bAiming ? FMath::Clamp(AimArmLength, 220.f, 450.f) : SavedArmLength;
+ const FVector Offset = bAiming ? SavedSocketOffset + AimSocketOffset : SavedSocketOffset;
  // Frame-rate independent handoff; aiming direction still comes from the view ray.
- const float Alpha = 1.f - FMath::Exp(-FMath::Max(Delta, 0.f) / .12f);
+ const float Alpha = 1.f - FMath::Exp(-FMath::Max(Delta, 0.f) / FMath::Clamp(AimBlendSeconds, .05f, .3f));
  CameraBoom->TargetArmLength = FMath::Lerp(CameraBoom->TargetArmLength, Arm, Alpha);
  CameraBoom->SocketOffset = FMath::Lerp(CameraBoom->SocketOffset, Offset, Alpha);
  if (!bAiming && FMath::IsNearlyEqual(CameraBoom->TargetArmLength, Arm, .1f)
@@ -259,7 +266,7 @@ void UMelodiaWaveHarpCombatComponent::RestoreAimCamera()
 void UMelodiaWaveHarpCombatComponent::ToggleAim() { if (bAiming) StopAim(); else StartAim(); }
 void UMelodiaWaveHarpCombatComponent::StartDraw()
 {
- if (!CanAct() || bDrawing || GetWorld()->GetTimeSeconds()-LastRelease < .25) return;
+ if (!CanAct() || bDrawing || GetWorld()->GetTimeSeconds()-LastRelease < FMath::Clamp(MinimumShotInterval, .15f, .5f)) return;
  bDrawing = true; DrawStarted = GetWorld()->GetTimeSeconds();
  if (auto* Anim = Character->GetMesh()->GetAnimInstance())
  {
@@ -275,7 +282,7 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
  bDrawing = false;
  if (!CanAct()) return;
  const double Now = GetWorld()->GetTimeSeconds();
- if (Now - LastRelease > 1.25) ComboStep = 0;
+ if (Now - LastRelease > FMath::Clamp(ChordChainWindow, .6f, 2.f)) ComboStep = 0;
  FVector Eye; FRotator View; Player->GetPlayerViewPoint(Eye, View);
  FCollisionQueryParams Params(SCENE_QUERY_STAT(WaveHarpAim), false, Character.Get());
  FHitResult Hit;
@@ -291,10 +298,27 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
  {
   Arrow->Launch(this, Direction);
   LastRelease = Now; ++ShotsFired; ++ComboStep;
-  static const float Pitches[] = {1.f,1.259921f,1.498307f,1.887749f,2.f};
-  if (ShotNote) UGameplayStatics::PlaySoundAtLocation(this, ShotNote, Origin, .35f, Pitches[ComboStep-1]);
-  if (ComboStep == 5) { ++ChordsCompleted; ComboStep = 0; LastChord = Now; StatusText = TEXT("CHORD COMPLETE  /  C major 7"); }
+  const float Semitones[] = {float(ChordIntervals.X),float(ChordIntervals.Y),float(ChordIntervals.Z),float(ChordIntervals.W),12.f};
+  const float Note = FMath::Clamp(Semitones[ComboStep-1], 0.f, 24.f);
+  const float Pitch = FMath::Pow(2.f, Note / 12.f);
+  if (ShotNote) UGameplayStatics::PlaySoundAtLocation(this, ShotNote, Origin, .35f, Pitch);
+  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_NOTE shot=%d step=%d semitones=%.1f pitch=%.6f chord=%s"), ShotsFired, ComboStep, Note, Pitch, *ChordName);
+  const bool bCompletedChord = ComboStep == 5;
+  if (bCompletedChord)
+  {
+   const int32 Family = ChordIntervals == FVector4(0,4,7,11) ? 0 : ChordIntervals == FVector4(0,4,7,9) ? 1 : ChordIntervals == FVector4(0,3,7,10) ? 2 : INDEX_NONE;
+   if (ChordFlourishes.IsValidIndex(Family) && ChordFlourishes[Family])
+    UGameplayStatics::PlaySoundAtLocation(this, ChordFlourishes[Family], Origin, .45f);
+   ++ChordsCompleted; ComboStep = 0; LastChord = Now;
+   StatusText = FString::Printf(TEXT("CHORD COMPLETE  /  %s"), *ChordName);
+   UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_CHORD chord=%s flourish=%d completed=%d"), *ChordName, Family, ChordsCompleted);
+  }
   else StatusText = TEXT("RELEASE  /  Keep clicking to complete the chord.");
+  // The existing presentation owner publishes Mid/MidIntensity; the sole
+  // Cymatics writer consumes those lanes. This never writes either MPC here.
+  if (auto* GI = GetWorld()->GetGameInstance())
+   if (auto* Audio = GI->GetSubsystem<UMelodiaAudioReactivePresentationSubsystem>())
+    Audio->PulseImpact(bCompletedChord ? .8f : .25f);
   if (auto* Anim = Character->GetMesh()->GetAnimInstance())
   {
    if (DrawMontage) Anim->Montage_Stop(.05f, DrawMontage);

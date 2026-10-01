@@ -51,8 +51,9 @@ void AMelodiaWaveArrow::Launch(UMelodiaWaveHarpCombatComponent* Source, const FV
   TEXT("/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_MotionTrails.NS_ChoralSheep_MotionTrails")))
  {
   Trail->SetAsset(System);
-  Trail->SetVariableFloat(TEXT("User.Intensity"), .6f);
-  Trail->SetVariableFloat(TEXT("User.GlobalReactivity"), .6f);
+  const float Intensity = Source ? FMath::Clamp(Source->ArrowTrailIntensity, .1f, .8f) : .6f;
+  Trail->SetVariableFloat(TEXT("User.Intensity"), Intensity);
+  Trail->SetVariableFloat(TEXT("User.GlobalReactivity"), Intensity);
   Trail->SetVariableFloat(TEXT("User.DreamVisibility"), 1.f);
   Trail->Activate(true);
  }

@@ -38,6 +38,18 @@ public:
  UPROPERTY(BlueprintReadOnly, Category="Melodia|WaveHarp") int32 ChordsCompleted = 0;
  UPROPERTY(BlueprintReadOnly, Category="Melodia|WaveHarp") float LastHitDamage = 0;
 
+ // Authored feel variants on this same player component. None affect stock damage.
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="220", ClampMax="450")) float AimArmLength = 320.f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel") FVector AimSocketOffset = FVector(0,70,30);
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.05", ClampMax="0.3")) float AimBlendSeconds = .12f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.2", ClampMax="1.5")) float DrawReadySeconds = .8f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.15", ClampMax="0.5")) float MinimumShotInterval = .25f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.6", ClampMax="2")) float ChordChainWindow = 1.25f;
+ /** First four semitone offsets from C4; the fifth shot closes at C5. Audio only. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Music") FVector4 ChordIntervals = FVector4(0,4,7,11);
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Music") FString ChordName = TEXT("C major 7");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.1", ClampMax="0.8")) float ArrowTrailIntensity = .6f;
+
  // Also callable by accessibility bindings. Normal play uses the real pawn InputComponent.
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void StartAim();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void StopAim();
@@ -71,6 +83,7 @@ private:
  UPROPERTY(Transient) TObjectPtr<UAnimMontage> AttackMontage;
  UPROPERTY(Transient) TObjectPtr<UAnimMontage> DrawMontage;
  UPROPERTY(Transient) TObjectPtr<USoundBase> ShotNote;
+ UPROPERTY(Transient) TArray<TObjectPtr<USoundBase>> ChordFlourishes;
  bool bAiming = false;
  bool bDrawing = false;
  bool bSuppressingMovement = false;
