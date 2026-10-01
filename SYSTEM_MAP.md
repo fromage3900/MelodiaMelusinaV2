@@ -1,6 +1,6 @@
 # System Architecture Map — Melodia Melusina
 
-**Last Updated:** 2026-09-24
+**Last Updated:** 2026-10-01
 **Target:** Unreal Engine 5.8 | Blender 5.2 LTS | C++20  
 **World-building contract:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md)
 
@@ -62,6 +62,36 @@ Persistence (SaveGame, narrative record, world state)
 C++ defines the rules; Blueprints present and connect them. TouchDesigner and Chladni/cymatics visualize owner state. They do not become a second combat, save, or quest authority.
 
 The core should become more stable as content grows. A new Voyage is normally a **content integration problem**, not an excuse to reopen combat/save/UI ownership.
+
+### Owner-directed gameplay evolution target — FLOW / SEQUENCE (2026-10-01)
+
+The owner is deliberately testing a stronger runtime presentation language without authorizing a second combat simulation. Treat this as the **migration target that must be earned by playable proof**, not as a claim that the shipped authority map has already changed.
+
+```text
+FLOW — continuous world play
+traversal • dodge • aim/draw/release • WaveHarp • realtime encounter interaction
+        │
+        │ deliberate authored transition when the experience calls for musical time
+        ▼
+SEQUENCE — authored musical time
+existing Melodia rhythm session • phrase/timing/grade • typed effect request
+        │
+        ▼
+ONE authoritative resolver
+        │
+        ▼
+same encounter actor • same HP owner
+        │
+        ├──────────────► FLOW resumes
+        │
+        └──────────────► exactly-one terminal narrative result when the encounter ends
+```
+
+**Invariant:** FLOW and SEQUENCE are presentation/execution modes around one encounter, not two combat games. The target architecture keeps one encounter identity, one HP owner, one rhythm grader, one damage/effect authority, and one durable outcome path. A coordinating hybrid component may own input/session/presentation transition only; it must not own combat math, duplicate the enemy, invent a save record, or create a second narrative transaction.
+
+**Current production boundary remains in force until the promotion gate passes:** Phoenix / TurnBased JRPG still owns the authoritative combat result/damage path described below. The migration is allowed to **reuse or extract the smallest shared resolver boundary** so realtime FLOW and stock battle can call the same calculation; copying the formula into a new realtime manager is prohibited. PR #367 is reference/provenance for this shape and is not an integration source. ACFU remains an isolated R&D lane unless separately promoted by the owner after runtime proof.
+
+**Promotion gate:** canonical Melusina pawn → real FLOW input → real hit → authoritative resolved damage → same target/HP → readable response → continued control. Only then add FLOW → SEQUENCE → FLOW proof if the experience requires it. Update the stable-owner boxes only after that runtime evidence exists.
 
 ### Content-first boundary (verified 2026-09-14)
 
