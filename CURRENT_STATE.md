@@ -7,9 +7,15 @@ new file.
 
 **Workstation canon, 2026-09-29:** `G:\` is the owner's portable SSD and may host the **complete runnable Melodia project** for direct work at home or Humber. Treat a healthy project root on `G:\` as a valid primary working copy, not as archive-only or backup-only storage. Git/LFS/P4 provide synchronization and version history around that working copy; separately named mirror, checkpoint, or backup folders on `G:\` remain archival according to their own labels.
 
-**Updated:** 2026-09-30 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-10-01 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 
 **Capstone retrospective:** [Sep 2–30 milestone and reflection package](Docs/Semester/CAPSTONE_MILESTONE_REFLECTIONS_2026-09-02_TO_2026-09-30.md) is a historical submission-prep snapshot; this file remains current-status authority, and the official Humber brief/rubric are pending.
+
+**Owner runtime direction — 2026-10-01 (ACTIVE; proof before canonization):** today's gameplay-engineering goal is to recover the recent local runtime work, preserve every valuable delta, and turn the strongest slice into one verified **playable Melodia moment on the canonical `BP_MelusinaJRPGCharacter`**. The owner-directed experience target is **FLOW** = continuous traversal / dodge / aim / WaveHarp / realtime action interaction, and **SEQUENCE** = a deliberate authored musical-time state using the existing rhythm execution before returning to FLOW. This supersedes older lookdev-first ordering only for today's gameplay-engineering priority; it does not cancel the Choral Sheep capstone, Shorewake artwork, or bounded visual queue.
+
+**Authority guard for the migration:** current production authority remains Phoenix / TurnBased JRPG for combat damage/result ownership until runtime evidence justifies a smaller revised boundary. Promotion requires **one encounter identity, one HP owner, one authoritative damage calculation, one rhythm grader, and one exactly-once narrative result** across both presentation modes. Reuse or extract the current resolver rather than copy its formulas. PR #367 remains **reference/provenance only**: do not merge, rebase, revive, or wholesale cherry-pick it. Its unresolved production seam — resolving a real authoritative stock damage number back into the overworld target — is the key engineering question, not a reason to accept synthetic damage as proof.
+
+**Today's promotion order:** (1) runtime recovery / loss prevention; (2) prove one FLOW interaction end-to-end — ideally WaveHarp aim/draw/release → real hit → canonical damage → same world target/HP → readable feedback → continued movement; (3) only if that proof needs the authored musical transition, prove FLOW → SEQUENCE → FLOW on the same actor and resolver; (4) only then revise the stable combat-ownership contract. ACFU stays isolated R&D unless the playable proof demonstrates a production need and the owner explicitly promotes it. Choral Sheep stays non-combat and must not be coupled to this migration.
 
 **G: portable SSD inventoried, 2026-09-30 (read-only, nothing deleted/moved):**
 `Hatsune Miku Drive`, 1 TB NTFS, ~88 GB free (~9% — below 20% headroom). Durable contract:
