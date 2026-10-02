@@ -1,6 +1,27 @@
 # Melodia Melusina — Current State
 
+> **CORRECTION 2026-10-01 (owner, supersedes the runtime-claims entries below).** The gameplay
+> claims in the older entries in this file are **stale**. The owner confirms: **WASD works, the
+> bow works, damage works, the gameplay loop works.** The "still owed" lists further down —
+> real-input WASD proof, the stock-then-GOOD/PERFECT ladder, the Melusina-possessed PIE probe,
+> the Quill-interpreter movement-lock chase — are **closed**, not pending. Do not re-run them and
+> do not treat them as blockers. Those entries are retained below only as a record of what was
+> true when written.
+>
+> **Active work is animation and lookdev only.** The one genuinely open technical item is the
+> **closed-editor 5.8 build** (the party bootstrap is UNBUILT), and that is a build-hygiene task,
+> not a gameplay question. The live queues are the Sheep capstone build
+> (`.hermes/plans/2026-10-01_1700-choral-sheep-capstone-build.md`) and the lookdev ledger
+> (`Docs/P1_TASK_LEDGER.json#lookdev_work`, §ASAP LOOKDEV QUEUE below).
+>
+> Version-control state is settled and documented: see
+> `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
+> `Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`.
+
 ## Post-restart runtime verdict — 2026-10-01 PM (build mode)
+
+> ⚠️ **The claims in this entry are stale — see the correction at the top of this file.** The
+> "still owed" list in this section (a)–(e) no longer reflects reality.
 
 - **Live probes today (editor :9316, PID 9912):** draw+release segments → V2 (both montages); zero errored BPs; Morning PIE smoke `pie_smoke_1_170238` ok:true with 0/0 runtime errors (runtime identity = stock Sir possessor; **no Melusina-controlled pose sample was captured this session** — honest caveat); ingame 30s smoke session `pie_smoke_2_170853` was scrubbed by the modal teardown before completion, so it carries no evidence weight.
 - **Importer guard landed and py_compile'd:** `import_cascadeur_anim.py` (FBXIT_ANIMATION + fragment quarantine + `melusina_anim_unit_guard` cm-spine classifier). All six lane tools compile clean.
@@ -23,8 +44,8 @@
 
 ## Pre-restart staged-changes review for Sonnet 5.5 — 2026-10-01
 
-- **Tracked tree: fully committed, nothing staged, nothing half-edited.** HEAD (on `docs/honcho-discord-sync`) holds all animation work: Sol's `36e089c7c` (draw→V2, retarget refs, rokoko safeguards), my cascadeur safeguards (FBXIT_ANIMATION + fragment quarantine, committed via owner chore `4d32d5b61`), hand-made InPlace (`121862ae8`), ABP + montage states, Jev packet scripts are git-ignored under `Tools/*` but present on disk. CURRENT_STATE carries all four handoffs. 352 untracked paths remain, almost all other lanes' bulk (ACF batches now committing steadily, MelusinasHouse rocks, hair/eyebrow dirs).
-- **Single-copy risk (decide before Sonnet needs it, restart is NOT the threat — disk survives reboot):** `Animations/Cascadeur/A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace.uasset` exists nowhere but this disk (not in git, `p4 fstat` = no such file). Siblings are safe: GlideForward take is depot-backed (`//Melodia/main`, headAction add). Fix = `p4 add` the forged file (or `git add` + LFS) — owner call. Evidence/receipts (`Saved/Audit/...`, Jev JSONs, quarantine list, forged FBX+manifests) + `Tools/mocap/*` are local-only by design; fine for on-machine Sonnet, invisible to fresh clones.
+- **Tracked tree: fully committed, nothing staged, nothing half-edited.** HEAD (on `docs/honcho-discord-sync`) holds all animation work: Sol's `36e089c7c` (draw→V2, retarget refs, rokoko safeguards), my cascadeur safeguards (FBXIT_ANIMATION + fragment quarantine, committed via owner chore `4d32d5b61`), hand-made InPlace (`121862ae8`), ABP + montage states, Jev packet scripts are git-ignored under `Tools/*` but present on disk. CURRENT_STATE carries all four handoffs. **SUPERSEDED 2026-10-01 (version-control closeout): the "352 untracked paths" and "single-copy risk" items below were resolved — the forge clip and the whole animation archive are now in the depot.** See `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`. Untracked count is now 298 and every one of them is confirmed in Perforce — Perforce-only, not unversioned, and note the depot is on this same machine.
+- **RESOLVED 2026-10-01 (was: "Single-copy risk ... `A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace.uasset` exists nowhere but this disk (not in git, `p4 fstat` = no such file)").** Submitted to Perforce in change 273; reads back at `#1 - add change 273`. The 63-file animation archive (`LegacyRetargets_20261001`, `Retarget/_Archive`, `MelusinaFinal`) went in as change 276, verified 63/63 on disk == 63/63 in depot. **Important framing for future sessions: Perforce's server root is `D:\perforce\root` on this machine, so "submitted" means history-tracked, not off-machine. GitHub is the only offsite copy — and this clip is still not on it.**
 - **P4: 186 opens**, dominated by Morning externals + numbered holds; my 4 fixed manifests sit open in default CL, unsubmitted (owner call, unchanged). No submit, revert, or reconcile was run from this lane.
 - **Main landing still owed:** Sol's `36e089c7c`/`906bbf3b8` are ancestors of this checkout only; `main` sits at `21edf3950`. Proposal stands (cherry-pick repairs, hand-resolve CURRENT_STATE, rule on Mocap-asset tracking). Integrator call, not pre-restart work.
 - **Editor corpse:** PID 65280 modal-wedged, all kill paths return Access Denied, UAC prompt launched awaiting owner Yes (or reboot clears it). No editor contact since stand-down; autosaves 12:25–13:29 intact. After restart: single-editor relaunch → bridge check → ABP redo-vs-repair read → resume the queued PIE ladder (lock probe, WASD, stock-then-GOOD/PERFECT).

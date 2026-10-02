@@ -3,8 +3,8 @@
 **Goal:** finish the version-control sweep. Correct the ACF architecture error, land the
 remaining work in the system that owns it, and leave both depots verified.
 
-**Status:** PR #391 (Morning OFPA fix) is **merged to main** and CI-green. Everything below
-is what remains.
+**Status: COMPLETE for the two approved submissions.** Both changelists submitted and verified
+in the depot. See "Outcome" at the bottom for the receipts and what remains open.
 
 ---
 
@@ -114,3 +114,53 @@ df -h /d                                                  # depot disk headroom
 - No new landscape for `L_MelusinaMorning` (contract: no landscape floor; `ground_probe`
   runs against `SM_PM3D_Sphere3D*` islands).
 - No submit of any HOLD/REVIEW/SHELVE-ONLY changelist.
+
+---
+
+## Outcome — 2026-10-01 (owner approved both submissions)
+
+### Submitted and verified in the depot
+
+| Change | Was | Contents | Verified |
+|---|---|---|---|
+| **271** | CL 271 | 16 `L_MelusinaMorning` external actors that had **no second copy** | `p4 files` answers all 16 at `#1 - add change 271`; the `no such file` condition is gone |
+| **272** | CL 270 | AscentCombatFramework plugin, **2,712 files** (Source 1154 / Content 1446 / Config 11 / Resources 98, plus `ACF Discord Tutorial.txt` whose space-in-name made `p4 files` word-split and report a phantom 2,711) | `p4 files //Melodia/main/Plugins/AscentCombatFramework/...` = 2711 + the spaced-name file = **2712**; **0** `Binaries/`/`Intermediate/`/`.pdb`/`.dll` in the depot |
+| **273** | submitted | 123 `Content/` files that had no p4 copy — Choral Sheep audio bank (73), Chladni textures, Kawaii VFX MIs, EdgeDesat post-process, the forged `A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace`, Sea Above prototype actors | all 123 read back at `#1 - add change 273`; 18.2 MB; pure adds |
+| **275** | submitted | `Melusina.airi-card.zip` — the last true single-copy file. The git pre-commit hook rejects zips, Perforce does not | resolves at `#1 - add change 275` |
+| **276** | submitted | Melusina animation archive — 63 files / 13.9 MB: `LegacyRetargets_20261001`, `Retarget/_Archive`, `MelusinaFinal` manifest | **63/63 on disk == 63/63 in depot, 0 missing** |
+
+**The Perforce server root is `D:\perforce\root` on this machine.** A submit is history-tracked,
+not off-machine; GitHub is the only offsite copy. See
+[`STORAGE_ARCHITECTURE_2026-10-01.md`](../../Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
+
+Perforce renumbered CL 270 → **change 272** on submit. That is normal `p4 submit` behaviour,
+not a second submission — `p4 changes -s submitted -m 3` shows 272 and 271 only.
+
+Both were pure `add` operations (no `edit`, so nothing could clobber a depot revision), and
+both files are read-only (`-r--r--r--`) again post-submit, per the `binary+l` typemap.
+`p4 opened` is back to 166 in `default` — CLs 270 and 271 are empty.
+
+### Git side
+
+| | |
+|---|---|
+| main tip | `12ad9b2a2` (PR #392 merged, CI green) |
+| Morning actors on main | **258 / 258** |
+| ACF **binary** on main | **0** (correctly refused; now lives in p4 change 272) |
+| ACF **source** on main | 1,153 — landed earlier via PR #387, left alone (no history rewrite) |
+
+The 18 ACF-binary commits remain on `docs/honcho-discord-sync`, unpushed to main and
+recoverable by SHA. They are now redundant with p4 change 272 and can be dropped whenever the
+owner retires that branch.
+
+### Still open
+
+1. **166 files in `default` + CLs 224/227/235/264/265/267** — untouched, all still
+   HOLD / REVIEW / SHELVE-ONLY. Not submitted.
+2. **283 untracked `Content/` files** — Melodia/EnvSandbox/UltraDynamicSky bulk art. Belong
+   in p4; not yet reconciled. Classify before opening.
+3. **`Reference/`** (247 files, 106 MB) and the remaining ACF texture dirs — untracked, no VCS
+   home yet.
+4. **`.p4ignore` restored but untracked in git.** It should be committed so the next machine
+   and any other agent inherit the ignore rules; `P4IGNORE` already points at that exact path.
+5. **ACF source on main** — owner's call whether it stays in git or moves wholesale to p4.
