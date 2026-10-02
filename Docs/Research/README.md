@@ -60,3 +60,20 @@ Current bounded research order:
 5. stochastic erosion / InfiniteDiffusion / neural-material ideas only as parked offline R&D.
 
 The current production ledger still parks broad procedural-system expansion. These are canaries, not new authorities.
+
+
+---
+
+## Latest procedural-worldbuilding / materials delta — 2026-10-02
+
+Read [EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_06_2026-10-02.md](EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_06_2026-10-02.md) after Sweep 05 for the newest repo-aware environment R&D.
+
+The Oct. 2 delta:
+
+1. promotes a **GPU PCG + Custom HLSL Resonance benchmark** as a bounded scale test;
+2. refines **Copernicus HDA in Unreal** into a Python-structure -> COP-detail -> baked existing-MI workflow;
+3. retains **local-statistics anti-tiling** as the strongest current large-surface material experiment;
+4. retains **iso-contour terrain** as an artist-first source representation feeding the existing terrain handoff;
+5. adds **physics-inspired deformation-aware procedural texturing** for cloth terrain, membranes, sludge and other extreme-deformation surfaces.
+
+Current project policy is stricter than the Sept. 25 snapshot: procedural expansion is limited to owner-approved school gates. These research items remain isolated canaries until explicitly selected.
