@@ -1,0 +1,27 @@
+====================================================================
+SHOREWAKE ANIMATIC WORKING SCENE
+====================================================================
+OUT  P:\MelodiaMelusinaV2-Laptop\Humber_FinalYear_Prep\ANMN301_Animatic\SHOREWAKE_ANIMATIC_working_scene.blend
+engine BLENDER_EEVEE  1920x1080 @ 24fps
+appended 17, linked 17 into the scene
+rig: MelusinaRig  bones=464  scale=(0.01, 0.01, 0.01)  rot=(0.0, 0.0, 1.5708)
+character parts present: ['EXPORT_Body', 'EXPORT_Shirt', 'EXPORT_Skirt', 'EXPORT_Boots']
+LINK CHECK: OK
+character scaled to 2.031u  bbox x-0.20..0.46 y-0.97..0.97 z0.75..2.79
+cleared action MelusinaRigAction (keys control bones, drives nothing)
+DEFORM bones to pose (not c_* controls): head_x(2328), c_ear_02_l(944), c_ear_02_r(943), spine_02_x(600), root_x(548), foot_l(465), foot_r(464), spine_01_x(406)
+aimed CAM_Intimate     loc (1.87, -2.71, 2.14)
+aimed CAM_SkiffClose   loc (2.95, -1.57, 2.14)
+aimed CAM_Wide         loc (2.4, -2.29, 2.14)
+VSE built: 19 strips, 1560 frames, 65.00s
+SAVED P:\MelodiaMelusinaV2-Laptop\Humber_FinalYear_Prep\ANMN301_Animatic\SHOREWAKE_ANIMATIC_working_scene.blend
+--------------------------------------------------------------------
+KNOWN DEFECT (measured, not assumed):
+  Rotating an FK control bone moves the mesh 0.000137u -- visually
+  zero. Binding is provably intact: 55852/55852 weights non-zero,
+  164/164 group names match bones, modifier enabled and correctly
+  targeted, object not excluded or hidden. The rig does not drive
+  the mesh. Shots 11/12/13/15/16/17 therefore differ by camera only.
+  See the module docstring for the three things to try, in order.
+--------------------------------------------------------------------
+objects=229  armatures=1  characters=['EXPORT_Body', 'EXPORT_Shirt', 'EXPORT_Skirt', 'EXPORT_Boots']

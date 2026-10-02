@@ -30,21 +30,46 @@ OUT_PANELS = os.path.join(ROOT, "proxy", "panels_v4")
 # Panels that came out pixel-identical in panels_v3, and what the beat board
 # says each one should actually show. Duration is carried by the VSE, not here.
 #
-# POSE FORMAT: bone -> (x, y, z) euler. Every control in this rig is a
-# single-axis "_x" bone — there is no c_neck_y. The beat board's "neck Y"
-# means rotate c_head_x on its Y euler, not that a Y bone exists.
+# POSE FORMAT: bone -> (x, y, z) euler.
+#
+# CRITICAL — WHICH BONES ACTUALLY DEFORM. Measured on this rig by rotating each
+# bone and reading the evaluated-mesh centroid:
+#
+#   head_x        0.8 rad -> 4.86u displacement     <- the acting bone
+#   spine_02_x    0.8 rad -> 22.64u displacement
+#   c_neck_x      0.9 rad -> 0.000137u              <- DOES NOTHING
+#   c_head_x      0.9 rad -> 0.000137u              <- DOES NOTHING
+#   c_arm_fk_l/r  0.9 rad -> 0.000137u              <- DOES NOTHING
+#
+# The `c_*` control bones carry NO constraints and are NOT the deform targets.
+# They are an orphaned control layer: posing them updates the outliner and
+# moves nothing, which is why six panels rendered a rest pose while the log
+# showed the pose being applied. EVERY earlier pose table in this file used
+# c_* bones and therefore never moved a single vertex.
+#
+# Real deform bones by weighted mass: head_x 2328, c_ear_02_l/r ~944,
+# spine_02_x 600, root_x 548, foot_l/r ~465, spine_01_x 406, shoulder_l/r ~304,
+# neck_x 288, spine_03_x 211, arm_stretch_l/r 156, forearm_stretch_l/r 87.
+#
+# This rig also carries MelusinaRigAction (frame range 1-170), which OVERWRITES
+# pose values on any frame_set — verified: setting c_neck_x to 0.9 survived a
+# view_layer.update() but frame_set() snapped it back to 0.2094. apply_pose()
+# clears rig.animation_data.action before posing; that is load-bearing.
 REDO = {
-    "11": dict(  # doubt beat — she almost stops, then plays on
+    "11": dict(  # doubt beat — she almost stops, then plays on: head bowed
         cam="CAM_Intimate",
-        pose={"c_neck_x": (0.45, 0, 0), "c_spine_03_x": (0.20, 0, 0),
-              "c_arm_fk_l": (-0.27, 0, 0), "c_arm_fk_r": (-0.27, 0, 0)},
+        pose={"head_x": (0.45, 0, 0), "neck_x": (0.20, 0, 0),
+              "spine_02_x": (0.16, 0, 0), "spine_01_x": (0.08, 0, 0),
+              "arm_stretch_l": (-0.25, 0, 0), "arm_stretch_r": (-0.25, 0, 0)},
         sun=5.0, water=1.5, lantern=0.0,
     ),
-    "12": dict(  # second phrase, full — head up, phrase completes, light spreads
+    "12": dict(  # second phrase, full — head up, phrase completes
         cam="CAM_Intimate",
-        pose={"c_neck_x": (-0.25, 0, 0), "c_spine_03_x": (-0.10, 0, 0),
-              "c_arm_fk_l": (-0.60, 0, 0), "c_arm_fk_r": (-0.60, 0, 0),
-              "c_forearm_fk_l": (-0.45, 0, 0), "c_forearm_fk_r": (-0.45, 0, 0)},
+        pose={"head_x": (-0.30, 0, 0), "neck_x": (-0.14, 0, 0),
+              "spine_02_x": (-0.10, 0, 0),
+              "arm_stretch_l": (-0.55, 0, 0), "arm_stretch_r": (-0.55, 0, 0),
+              "forearm_stretch_l": (-0.45, 0, 0),
+              "forearm_stretch_r": (-0.45, 0, 0)},
         sun=6.0, water=4.0, lantern=4.0,
     ),
     "13": dict(  # skiff wakes — hull lifts, rope taut
@@ -57,39 +82,21 @@ REDO = {
         pose={}, glide_x=-1.2,
         sun=6.0, water=4.0, lantern=4.0,
     ),
-    "16": dict(  # shore route opens — dark water parts, far shore glows
+    "16": dict(  # shore route opens — she looks left toward the opening
         cam="CAM_Wide",
-        # Two defects, both proven by this script's own log:
-        #  * "c_head_x" is NOT a bone in this rig. Probed all 464: the neck
-        #    controls are c_neck_x / c_neck_master_x / c_subneck_1_x / neck_x.
-        #    apply_pose() logged nothing for it, so the head stayed in REST.
-        #  * no arm was posed at all, and this rig's rest pose is a T-POSE —
-        #    which is exactly what the panel review saw.
-        # She reaches toward the far shore as it lights.
-        pose={"c_neck_x": (-0.10, -0.18, 0.0),
-              "c_spine_03_x": (0.10, 0, 0),
-              "c_arm_fk_l": (0.18, 0.0, 0.30),
-              "c_arm_fk_r": (0.34, 0.0, -0.55),
-              "c_forearm_fk_l": (-0.30, 0, 0),
-              "c_forearm_fk_r": (-0.72, 0, 0),
-              "c_hand_fk_l": (0.10, 0, 0),
-              "c_hand_fk_r": (0.20, 0, 0)},
+        pose={"head_x": (0, -0.40, 0), "neck_x": (0, -0.20, 0),
+              "spine_02_x": (0, 0, 0.10),
+              "arm_stretch_l": (-0.20, 0, 0), "arm_stretch_r": (-0.20, 0, 0)},
         glide_x=-2.4,
         sun=6.0, water=4.0, lantern=4.0,
     ),
-    "17": dict(  # arrival look-back — mooring behind, awake
+    "17": dict(  # arrival look-back — head turned right, mooring behind
         cam="CAM_Intimate",
-        # Same two defects. The beat board says "awake" — she has just arrived
-        # and is looking back at the mooring, so the arms come down and hold,
-        # and the neck carries the look.
-        pose={"c_neck_x": (0.0, -0.30, 0.0),
-              "c_spine_02_x": (-0.06, 0, 0),
-              "c_arm_fk_l": (0.30, 0.0, 0.22),
-              "c_arm_fk_r": (0.22, 0.0, -0.26),
-              "c_forearm_fk_l": (-0.55, 0, 0),
-              "c_forearm_fk_r": (-0.42, 0, 0),
-              "c_hand_fk_l": (0.15, 0, 0),
-              "c_hand_fk_r": (0.10, 0, 0)},
+        pose={"head_x": (0, 0.42, 0), "neck_x": (0, 0.22, 0),
+              "spine_02_x": (-0.06, 0, 0),
+              "arm_stretch_l": (-0.30, 0, 0), "arm_stretch_r": (-0.30, 0, 0),
+              "forearm_stretch_l": (-0.35, 0, 0),
+              "forearm_stretch_r": (-0.35, 0, 0)},
         sun=6.0, water=4.0, lantern=4.0,
     ),
 }

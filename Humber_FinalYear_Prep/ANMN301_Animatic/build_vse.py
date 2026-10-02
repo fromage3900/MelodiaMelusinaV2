@@ -84,6 +84,22 @@ def main():
     scn.frame_step = 1
     scn.render.use_sequencer = True
     scn.render.use_compositing = False
+
+    # COLOUR MANAGEMENT — pass the panels through untouched.
+    #
+    # Each panel was already rendered to PNG through the 3D scene's view
+    # transform. Blender 5.x defaults that to AgX, so the panels are already
+    # tonemapped. The VSE then applies the transform AGAIN on the way to h264,
+    # double-tonemapping the cut: measured 16-19 levels darker than the source
+    # panels, with max channel delta 70. Standard = identity, so what was
+    # rendered is what ships.
+    scn.view_settings.view_transform = 'Standard'
+    scn.view_settings.look = 'None'
+    scn.view_settings.exposure = 0.0
+    scn.view_settings.gamma = 1.0
+    scn.display_settings.display_device = 'sRGB'
+    scn.sequencer_colorspace_settings.name = 'sRGB'
+    log("colour view_transform=Standard (panels pass through; AgX already baked)")
     # frame_end is set from measured coverage after the strips exist — the
     # dissolve extensions make it larger than the declared 1560, and leaving
     # it at 1560 would silently truncate the last dissolve.

@@ -19,8 +19,11 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = r"P:\MelodiaMelusinaV2-Laptop\Humber_FinalYear_Prep\ANMN301_Animatic"
-SRC = os.path.join(ROOT, "proxy", "panels_v4")
-FALLBACK = os.path.join(ROOT, "proxy", "panels_v3")
+# v5 = the canonical-rig pass: all 17 panels rendered against character_rig
+# with real textures. v4/v3 are the earlier grey / empty-deck passes and
+# are kept only as fallbacks for a shot v5 is missing.
+SRC = os.path.join(ROOT, "proxy", "panels_v5")
+FALLBACK = os.path.join(ROOT, "proxy", "panels_v4")
 OUT = os.path.join(ROOT, "panels_final")
 
 W, H = 1920, 1080
@@ -127,14 +130,14 @@ def main():
     print("CARDS source=%s" % src)
 
     n = 0
-    v4count = 0
+    primarycount = 0
     for i in range(1, 18):
         p, src = resolve(i)
         if p is None:
             print("CARDS MISSING panel_%02d" % i)
             continue
         if src == "v4":
-            v4count += 1
+            primarycount += 1
         im = Image.open(p).convert("RGB")
         if im.size != (W, H):
             im = im.resize((W, H), Image.LANCZOS)
@@ -145,8 +148,9 @@ def main():
     if n != 17:
         print("CARDS FATAL only %d/17 panels written" % n)
         raise SystemExit(1)
-    print("CARDS numbered %d panels (%d from v4, %d from v3)"
-          % (n, v4count, n - v4count))
+    print("CARDS numbered %d panels (%d from %s, %d from fallback %s)"
+          % (n, primarycount, os.path.basename(SRC),
+             n - primarycount, os.path.basename(FALLBACK)))
 
     make_title().save(os.path.join(OUT, "title.png"))
     make_end().save(os.path.join(OUT, "end.png"))
