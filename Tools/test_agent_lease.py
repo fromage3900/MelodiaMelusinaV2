@@ -86,6 +86,12 @@ class LeaseTests(unittest.TestCase):
         log.write_text("x\nMODAL_OPEN\nMODAL_CLOSED\n", encoding="utf-8")
         self.assertTrue(self.acquire()["ok"])
 
+    def test_invalid_lease_blocks_acquisition(self):
+        self.lease.write_text("{not-json", encoding="utf-8")
+        result = self.acquire()
+        self.assertFalse(result["ok"])
+        self.assertIn("invalid", result["reason"])
+
     def test_wrong_holder_cannot_release_active_lease(self):
         self.acquire()
         result = agent_lease.release_lease(
