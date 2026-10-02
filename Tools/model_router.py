@@ -9,6 +9,7 @@ Local daemons: set LOCAL_LLM_BASE_URL (default http://127.0.0.1:11434/v1 for Oll
 
 Usage:
   python model_router.py pick <class> [--detail]
+  python model_router.py route <task_packet.json> [--no-jev]
   python model_router.py chat <class> --prompt "..." [--json]
   python model_router.py test [--class <class>] [--include-blocked]
   python model_router.py ledger [--tail N]
@@ -25,6 +26,8 @@ import sys
 import time
 import urllib.request
 import urllib.error
+
+from agent_router.task_route import load_packet as _load_task_packet, route_packet as _route_task_packet
 
 _TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_MCP = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "..", ".mcp.json"))
@@ -380,6 +383,22 @@ def list_tasks():
 
 
 
+def route_packet(packet, allow_jev=True):
+    if not os.path.exists(TIERS_SPEC):
+        raise ValueError("tiers spec not found: %s" % TIERS_SPEC)
+    with open(TIERS_SPEC, "r", encoding="utf-8") as fh:
+        spec = json.load(fh)
+    return _route_task_packet(packet, policy=POLICY, tier_spec=spec, allow_jev=allow_jev)
+
+
+def route_packet_file(path, allow_jev=True):
+    packet = _load_task_packet(path)
+    result = route_packet(packet, allow_jev=allow_jev)
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return result
+
+
+
 def run_chat(task_class, prompt, system=None, json_out=False, attempt=0, max_tokens=2000,
              timeout=None):
     keys = load_keys()
@@ -484,6 +503,9 @@ def main():
         sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
+    p_route = sub.add_parser("route")
+    p_route.add_argument("packet")
+    p_route.add_argument("--no-jev", action="store_true")
     p_pick = sub.add_parser("pick")
     p_pick.add_argument("task_class")
     p_pick.add_argument("--detail", action="store_true")
@@ -509,7 +531,12 @@ def main():
 
     args = ap.parse_args()
 
-    if args.cmd == "pick":
+    if args.cmd == "route":
+        try:
+            route_packet_file(args.packet, allow_jev=not args.no_jev)
+        except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+            sys.exit("route failed: %s" % exc)
+    elif args.cmd == "pick":
         pick(args.task_class, detail=args.detail)
     elif args.cmd == "chat":
         prompt = args.prompt
