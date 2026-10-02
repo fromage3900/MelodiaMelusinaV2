@@ -71,6 +71,15 @@ Companions: [`GN_BUILDER_AUDIT_2026-10-01.md`](GN_BUILDER_AUDIT_2026-10-01.md),
    unlinked and looked healthy.
 10. **`GeometryNodeInputNormal` is empty on curve points** — its offset silently no-ops. Use
     `CurveToPoints`' own `Normal` output.
+11. **`NodesModifier` value storage (5.2).** A NODES modifier has no `inputs`, refuses idprops
+    (`idProperty not supported for this type`), and `mod.properties.items_tree` reads EMPTY — its
+    per-socket values are internal. A modifier created BEFORE its group gained sockets keeps
+    stale/zero values and silently overrides the group interface defaults: measured Count behaving
+    as 0 → clamped to 1 → 2 danglers instead of 24, and the material lost. **Fix: replace the
+    modifier** (a fresh one initialises from the interface): `m = ob.modifiers.new(n, "NODES");
+    m.node_group = group; ob.modifiers.remove(old)`. Note an existing modifier's values are its own —
+    editing the group's interface defaults does NOT retro-change it (that is normal Blender; the
+    panel edits are what drive it).
 
 ## 3. Architecture (what the row is fed)
 
@@ -145,7 +154,10 @@ Live file: `choral_sheep_A_blossoms_FIXED_20261001.blend` (**dirty — owner sav
 ## 7. Next actions
 
 Done this pass (all verified, live applied but unsaved): P1a, P1b, P2, P3, P4,
-P5, E1, E5, E6. Remaining queue, in order:
+P5, E1, E5, E6. **The dials are now on the `SheepHornDanglers` modifier panel**
+(Count, Host Offset, Hang Drop, Terminal Size, Terminus, Chain Links, Pearl
+Smooth, Variation, Seed, Pearl Material) — sweep them in the UI; if a dial ever
+reads dead, replace the modifier (trap 11). Remaining queue, in order:
 
 1. **P1c full split** — the pearl terminus exposes `Pearl Material` / `Trim
    Material` and does the per-part split; the row deliberately stays in SINGLE

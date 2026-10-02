@@ -8,8 +8,11 @@ TAG_UDS_SKY = "UDS_Sky"
 TAG_UDS_WEATHER = "UDS_Weather"
 
 PP_OUTLINE = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen.MI_StorybookOutline_Frozen"
-PP_VINES = "/Game/EnvSandbox/Materials/PostProcess/M_PP_StorybookVines.M_PP_StorybookVines"
-PP_VINES_INST = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen.MI_StorybookOutline_Frozen"
+PP_COLORGRADE = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MeluColorGrade_Frozen.MI_MeluColorGrade_Frozen"
+PP_MELODIA_INK = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MelodiaInk_Frozen.MI_MelodiaInk_Frozen"
+PP_EDGEDESAT_MORNING = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/MI_PP_EdgeDesat_Morning.MI_PP_EdgeDesat_Morning"
+PP_VINES = "/Game/_QuarantinePostProcess_20260801/M_PP_StorybookVines.M_PP_StorybookVines"
+PP_VINES_INST = "/Game/_QuarantinePostProcess_20260801/M_PP_StorybookVines_Inst.M_PP_StorybookVines_Inst"
 
 
 def _load_bp_class(asset_path: str):
@@ -109,8 +112,15 @@ def disable_manual_sun_if_uds(eas) -> bool:
     return changed
 
 
-def apply_post_process_stack(ppv) -> list[str]:
-    """Attach toon outline + storybook vines blendables in order."""
+def apply_post_process_stack(
+    ppv,
+    *,
+    include_color_grade: bool = True,
+    edge_desat_override: str | None = None,
+    outline_weight: float = 1.0,
+    color_grade_weight: float = 0.85,
+) -> list[str]:
+    """Attach toon outline, color grade, and edge desaturation blendables in order."""
     import unreal
     import material_lib as mlib
 
@@ -119,25 +129,39 @@ def apply_post_process_stack(ppv) -> list[str]:
     ppv.set_editor_property("unbound", True)
     s = ppv.get_editor_property("settings")
     blendables = []
-    vines_path = PP_VINES_INST if unreal.EditorAssetLibrary.does_asset_exist(PP_VINES_INST) else PP_VINES
-    for pp_path in (PP_OUTLINE, vines_path):
-        if unreal.EditorAssetLibrary.does_asset_exist(pp_path):
-            mat = unreal.load_asset(pp_path)
-            if mat:
-                blendables.append(mat)
+
+    # 1. Primary Storybook Outline
+    if unreal.EditorAssetLibrary.does_asset_exist(PP_OUTLINE):
+        mat = unreal.load_asset(PP_OUTLINE)
+        if mat:
+            blendables.append((mat, float(outline_weight)))
+
+    # 2. Melusina Signature Color Grade
+    if include_color_grade and unreal.EditorAssetLibrary.does_asset_exist(PP_COLORGRADE):
+        mat = unreal.load_asset(PP_COLORGRADE)
+        if mat:
+            blendables.append((mat, float(color_grade_weight)))
+
+    # 3. Regional Edge Desaturation
+    desat_path = edge_desat_override or PP_EDGEDESAT_MORNING
+    if desat_path and unreal.EditorAssetLibrary.does_asset_exist(desat_path):
+        mat = unreal.load_asset(desat_path)
+        if mat:
+            blendables.append((mat, 1.0))
+
     if blendables:
         mlib.try_set_editor_property(s, "b_override_blendables", True)
         try:
             weighted = unreal.WeightedBlendables()
             weighted.set_editor_property(
                 "array",
-                [unreal.WeightedBlendable(1.0, mat) for mat in blendables],
+                [unreal.WeightedBlendable(w, m) for m, w in blendables],
             )
             s.set_editor_property("weighted_blendables", weighted)
         except Exception as exc:
             unreal.log_warning(f"[ScenePP] blendables skipped: {exc}")
     ppv.set_editor_property("settings", s)
-    return [m.get_name() for m in blendables]
+    return [m.get_name() for m, _ in blendables]
 
 
 def find_or_spawn_ppv(eas, loc=(0, 0, 300)):
