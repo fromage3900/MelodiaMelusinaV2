@@ -173,3 +173,53 @@ def find_or_spawn_ppv(eas, loc=(0, 0, 300)):
     return eas.spawn_actor_from_class(
         unreal.PostProcessVolume, unreal.Vector(*loc), unreal.Rotator(0, 0, 0)
     )
+
+
+FLOWER_WIND_TARGETS = [
+    "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1_Mat",
+    "/Game/EnvSandbox/Library/FoliageCards/GenericFlowerTall_Mat",
+    "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1",
+    "/Game/EnvSandbox/Materials/Instances/Foliage/MI_Toon_GenericFlower1",
+    "/Game/EnvSandbox/Materials/Instances/Foliage/MI_Toon_GenericFlowerTall",
+]
+
+GENTLE_WIND_DEFAULTS = {
+    "SharedBend": 0.15,
+    "SharedOscillation": 0.14,
+    "SharedSpeed": 0.08,
+    "Branch1Bend": 0.20,
+    "Branch1Speed": 0.10,
+    "RipplePlanar": 0.06,
+    "MelodiaWindResponse": 0.30,
+}
+
+MEADOW_WIND_VECTOR = (12.0, 8.0, -2.0)
+
+
+def apply_gentle_flower_wind(targets: list[str] | None = None) -> int:
+    """Calibrate gentle SpeedTree flower wind parameters across meadow foliage instances."""
+    import unreal
+
+    eal = unreal.EditorAssetLibrary
+    mel = unreal.MaterialEditingLibrary
+
+    inst_paths = targets or FLOWER_WIND_TARGETS
+    count = 0
+    for p in inst_paths:
+        if not eal.does_asset_exist(p):
+            continue
+        inst = unreal.load_asset(p)
+        if not inst:
+            continue
+        avail = [str(n) for n in mel.get_scalar_parameter_names(inst)]
+        updated = False
+        for param, val in GENTLE_WIND_DEFAULTS.items():
+            if param in avail:
+                mel.set_material_instance_scalar_parameter_value(inst, param, float(val))
+                updated = True
+        if updated:
+            mel.update_material_instance(inst)
+            eal.save_loaded_asset(inst)
+            count += 1
+    return count
+

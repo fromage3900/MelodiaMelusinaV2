@@ -263,6 +263,26 @@ FLIPBOOK_MATERIALS = {
 }
 
 
+MEADOW_WIND_ALIGNMENT = {
+    "wind_vector": (12.0, 8.0, -2.0),
+    "wind_speed": 1.25,
+    "foliage_profile": {
+        "SharedBend": 0.15,
+        "SharedOscillation": 0.14,
+        "Branch1Bend": 0.20,
+        "RipplePlanar": 0.06,
+        "MelodiaWindResponse": 0.30
+    },
+    "synchronized_systems": [
+        "NS_SakuraPetals_v2",
+        "NS_ChoralSheep_BeatStar",
+        "NS_ChoralSheep_WoolMote",
+        "NS_Melusina_StarSparkle",
+        "NS_Morning_GlitterGlint"
+    ]
+}
+
+
 def build_integration_report() -> Dict[str, Any]:
     """Generates the full integration, audit, and clamping manifest."""
     report = {
@@ -272,7 +292,8 @@ def build_integration_report() -> Dict[str, Any]:
             "ppv_materials_cataloged": len(PPV_MATERIALS) + len(PPV_EDGE_DESAT_INSTANCES),
             "niagara_systems_bound": len(NIAGARA_SYSTEM_BINDINGS),
             "hardened_textures_count": len(HARDENED_TEXTURES),
-            "flipbook_materials_cataloged": len(FLIPBOOK_MATERIALS)
+            "flipbook_materials_cataloged": len(FLIPBOOK_MATERIALS),
+            "meadow_wind_systems_aligned": len(MEADOW_WIND_ALIGNMENT["synchronized_systems"])
         },
         "post_process_volumes": {
             "materials": PPV_MATERIALS,
@@ -283,7 +304,8 @@ def build_integration_report() -> Dict[str, Any]:
             "hardened_textures": HARDENED_TEXTURES,
             "opacity_rule": "Opacity = Texture.R * ParticleColor.A (DXT1 safe)"
         },
-        "flipbook_materials": FLIPBOOK_MATERIALS
+        "flipbook_materials": FLIPBOOK_MATERIALS,
+        "meadow_wind_atmosphere": MEADOW_WIND_ALIGNMENT
     }
 
     OUT_RECEIPT.write_text(json.dumps(report, indent=2), encoding="utf-8")
