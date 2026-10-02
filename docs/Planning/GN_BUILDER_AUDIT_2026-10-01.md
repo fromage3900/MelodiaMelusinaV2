@@ -103,10 +103,25 @@ Its new design: ONE curve family, base 62 mm · belly 58 mm · tip 8 mm · 1.35 
 radius 85 mm · 14 growth ridges 3.5 mm deep · cross-section flattens to a 0.35 oval at the tip,
 authored as an explicit radius-at-t curve rather than a linear taper.
 
-**The live `MEL_S5_Horns` tree is still the rejected one** — the prep file's 22-tree census
-lists `SheepHorns::S5_Horns` at 45 nodes / 60 links, which is the *old* count, not the bighorn
-rebuild. The rebuild was authored but not promoted into canon. That is the single biggest
-available win in this lane, and it is free — the file already exists.
+**The live `MEL_S5_Horns` tree is the BIGHORN rebuild after all — CORRECTION (2026-10-01,
+verified live).** This audit initially concluded the rebuild "was authored but not promoted
+into canon," because the prep census showed `SheepHorns::S5_Horns` at 45 nodes. **That was my
+misread: 45 nodes is the *rebuilt* tree's size, not the rejected one's.** Direct live proof via
+MCP 9876:
+
+- all **15 dial names match `s5_bighorn_horns.py` exactly**, `only_in_runner: []`,
+  `only_in_live: []` — including the bighorn-only `Belly Dia`, `Tip Flatness`, `Ridge Depth`
+  and `Align To Body`
+- `has_lissajous: false` — the two-competing-families defect is **gone**
+- exactly one curve family: `CurveSpiral` → `StoreNamedAttribute` → `CurveToMesh`
+- belly confirmed geometrically: interior stations exceed both ends on radius **and** thickness
+
+Also: `Curl Radius` reads **0.105** live against the docstring's 0.085, and `Turns` **1.25**
+against 1.35 — **owner tuning on top of the rebuild.** The docstring records authored intent;
+the live values are truth. Do not "correct" them to the docstring.
+
+Full measurements: [`BIGHORN_LIVE_VERIFICATION_2026-10-01.md`](BIGHORN_LIVE_VERIFICATION_2026-10-01.md).
+**No promotion is needed.** The horn work reduces to danglers on an already-correct horn.
 
 ---
 
