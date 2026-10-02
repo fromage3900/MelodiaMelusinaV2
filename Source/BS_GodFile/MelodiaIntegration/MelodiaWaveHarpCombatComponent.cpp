@@ -291,9 +291,12 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
  FCollisionQueryParams Params(SCENE_QUERY_STAT(WaveHarpAim), false, Character.Get());
  FHitResult Hit;
  const FVector Far = Eye + View.Vector()*10000;
- const FVector AimPoint = GetWorld()->LineTraceSingleByChannel(Hit, Eye, Far, ECC_Visibility, Params) ? Hit.ImpactPoint : Far;
  // Forward is derived from the camera ray, never the hand/socket or mesh yaw.
  const FVector Origin = Character->GetActorLocation() + FVector(0,0,35) + View.Vector()*110;
+ // The aim ray begins at the arrow origin's depth along the view: geometry between the camera
+ // and the muzzle (an overhang behind her) can never become the aim point.
+ const FVector RayStart = Eye + View.Vector()*FMath::Max(0.0, FVector::DotProduct(Origin - Eye, View.Vector()));
+ const FVector AimPoint = GetWorld()->LineTraceSingleByChannel(Hit, RayStart, Far, ECC_Visibility, Params) ? Hit.ImpactPoint : Far;
  const FVector Direction = (AimPoint-Origin).GetSafeNormal();
  Character->SetActorRotation(FRotator(0, Direction.Rotation().Yaw, 0));
  FActorSpawnParameters Spawn; Spawn.Owner = Character.Get(); Spawn.Instigator = Character.Get();
