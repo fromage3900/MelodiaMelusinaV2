@@ -141,6 +141,8 @@ def acquire_lease(
 
     now = now or _utcnow()
     current = read_lease(lease_path, now=now)
+    if current and current.get("status") == "invalid":
+        return {"ok": False, "reason": "lease file is invalid; owner inspection required"}
     if current and current.get("status") == "active":
         same_owner = (
             current.get("holder") == holder
