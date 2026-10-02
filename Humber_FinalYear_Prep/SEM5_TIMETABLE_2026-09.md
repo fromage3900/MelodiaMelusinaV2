@@ -30,7 +30,7 @@
 
 ## 2026-09-22 (restored after overnight loss)
 - The DegreeWorks section above was stamped 09-21; the file reverted overnight (lost the section). Restored verbatim from session record 20260921_235228_3acd5b — nothing re-asked of the owner.
-- Tue class at 11:30 = OWNER'S own statement (2026-09-21: "i have class tmrw at 1130 right"). Candidate: ANMN 301 (doc: "else at class Tuesday") or ANMN 304 (Weekly_Routine Tue morning). ROOM HAS NEVER BEEN CAPTURED by any session/file — only Banner View Timetable or the Teams calendar invite holds it.
+- Tue class at 11:30 = OWNER'S own statement (2026-09-21: "i have class tmrw at 1130 right"). Candidate: ANMN 301 (doc: "else at class Tuesday") or ANMN 304 (Weekly_Routine Tue morning). ROOM HAS NEVER BEEN CAPTURED by any session/file — only Banner View Timetable or the Teams calendar invite holds it. **→ 2026-10-01: ANMN 304 room = J117** (Blackboard announcement 9/24: "Classes will be in J117 instead of J127"); other courses' rooms still uncaptured.
 
 ## Enrolled courses (source: Blackboard Ultra learn.humber.ca, term 202670, live read tonight)
 
@@ -52,8 +52,8 @@ Exact meeting times: Banner classSchedule subsystem is 502-flapping tonight; tim
 WEEK-1 WORK SURVEY (Blackboard Learn API + course shells, pulled 2026-09-09):
 - ANMN 301 (Terry Posthumus) — FULLY LOADED. "Image and Sequence Editing Toolkit." First assignment live: **Animatic Creation with Blender VSE** (Assignment Brief doc + gradable item, 0 pts questionCount 0 — rubric-based). Learning Resources folder: Blender VSE tutorials, Boords animatic guides, Pexels/Pixabay. Course Outline + Critical Path PDFs on shell. Teams links 0NA + 0NB. → HEAD START: this is the reel-relevant animatic deliverable from the Capstone plan — do the Learning Resources pass this week.
 - ANMN 302 (Cory Avery) — shell open: Course Outline + Team Join Code **fwkqj0s** (MS Teams team) + empty Assignments/Documents. Outline PDF: pid-23486839 route available.
-- ANMN 304 (Jason Par) — "Content is on the way!" Nothing posted.
-- ANMN 305 (Rob Corbett) — live week-1: "Notes from week 1" + "Week 1 Ani History What and Why?" + Course Outline and Critical Path. 1 unread Discussions item.
+- ANMN 304 (Jason Par) — LIVE as of the 2026-10-01 sweep: 4 announcements (room change to **J117**, Sep 25 class cancelled, class Discord "Humber 3D Film", welcome), Assignments folder ("All Assignments and Deliverables"), Film Examples + Resources folders. Gradebook: Pitch Session 80/100 + In Class 1 4/5 graded (current **80%**); In Class 2 due **10/2**, Production Bible **10/9**, In Class 3–7 (10/16 → 12/11), Final Film **12/18**.
+- ANMN 305 (Rob Corbett) — now through week 4 (2026-10-01 sweep): notes wks 1–4 posted (Fleischers, Golden Silence, Disney), **Research Assignment** brief + worked example + reflective-journal notes, weekly Discussions Week 2/3/4 (**4 unread**), gradebook = Attendance only so far. Eval: 20% × 5 (Visual Journal, Oral/Video Presentation, Research Assignment, Discussions, Reflective Journal).
 - Course calendars: 0 scheduled items in ALL four (week 1, nothing to be behind on yet). Re-check daily; the 8:30 runner now watches Announcements+To-Do too.
 
 ⚠️ CONFIRMATION OF ENROLMENT (Banner, issued 30-Jul-2026, found in Downloads): enrolment = **Part Time**, Course Load blank, class standing "Semester 4". Four 3-hour courses may or may not clear the full-time bar — this directly changes the OSAP "3 credits" answer and scholarship eligibility wording. Raise it with Financial Aid (and it pairs with the 306/309 add request in draft #29: +2 courses likely flips to full-time).
