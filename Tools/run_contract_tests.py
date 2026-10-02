@@ -186,7 +186,7 @@ def main(argv: list[str] | None = None) -> int:
     else:
         for item in report["results"]:
             print(f"{'PASS' if item['status'] == 'pass' else 'FAIL'}  {item['path']}")
-            if item["status"] != "pass" and not args.ci:
+            if item["status"] != "pass":
                 print(item.get("output_tail", ""))
         print(
             f"contract suites: {report['passed']}/{report['suite_count']} passed; "
