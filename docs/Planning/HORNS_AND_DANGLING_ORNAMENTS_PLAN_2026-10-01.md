@@ -6,7 +6,26 @@
 
 ---
 
-## Read this first: step 0 is free and it is the biggest win in this lane
+## Read this first: step 0 is ALREADY DONE (corrected 2026-10-01, verified live)
+
+**`s5_bighorn_horns.py` is not a pending promotion — it is already live.** Verified through
+MCP 9876 in the working session: all 15 dial names match the runner exactly, `has_lissajous:
+false`, one curve family, and the belly measures present on both radius and thickness.
+
+Full evidence: [`BIGHORN_LIVE_VERIFICATION_2026-10-01.md`](BIGHORN_LIVE_VERIFICATION_2026-10-01.md).
+
+**An earlier version of this plan said the rebuild "was authored but not promoted." That was
+wrong** — 45 nodes is the *rebuilt* tree's size, not the rejected one's, and I read it backwards.
+Note also that the live `Curl Radius` (0.105) and `Turns` (1.25) differ from the runner's
+docstring (0.085 / 1.35): **that is owner tuning, not drift. Do not "correct" it.**
+
+So the horn spine is done. What remains is **§2 — danglers on the existing horn** — and it
+still needs `phyllotaxis.py` first.
+
+### The measured baseline, for reference
+
+Horn world bbox span **0.444 × 0.193 × 0.217 m** on a 1.18 m body, 8,664 evaluated verts,
+`scale [1,1,1]`, raw mesh 0 (pure GN — correct, not a defect).
 
 **`s5_bighorn_horns.py` (27,592 bytes) already exists and already fixes the horn.** Written
 2026-09-25, it is a rebuild of `MEL_S5_horns` authored specifically to replace the spiral tree
