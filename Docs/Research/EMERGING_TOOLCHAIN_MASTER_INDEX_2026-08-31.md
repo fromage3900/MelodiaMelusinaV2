@@ -292,3 +292,42 @@ Do **not** return these as new-tech recommendations without a materially differe
 
 `Docs/P1_TASK_LEDGER.json` currently parks broad procedural-system expansion. The table above is an R&D queue only. Any implementation should be a disposable or bounded canary that consumes existing World Compiler / PCG / Hython / material owners.
 
+
+
+---
+
+## 10. Procedural worldbuilding / material research delta — 2026-10-02
+
+**Latest detailed sweep:** [EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_06_2026-10-02.md](EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_06_2026-10-02.md)
+
+This is a delta over Sweep 05, verified against `main` @ `46ac21dd6`.
+
+### Current production boundary
+
+`Docs/P1_TASK_LEDGER.json` now records:
+
+- `procedural_system_policy = BOUNDED_OWNER_APPROVED_SCHOOL_GATES`;
+- owner-approved procedural scope is limited to the named P0 Sea Above FieldAtlas tile, Faraway Mother resonance-field integration, and Gate 6 Glitter Pile;
+- general PCG / World Compiler / Universe Foundry / FieldAtlas architecture expansion remains disallowed.
+
+The items below are therefore R&D canaries, not active production tasks.
+
+### Delta
+
+| Candidate | 2026-10-02 status | What changed |
+|---|---|---|
+| **GPU PCG + Custom HLSL** | **TEST NOW — benchmark only** | Promote from passive scale gate to one measured Resonance canary; Epic's UE5.8 GPU PCG path includes Compute Graphs, Custom HLSL Point Processor and GPU Static Mesh Spawner. Preserve CPU semantic authority. |
+| **Python -> COP HDA -> Unreal** | **TEST NOW — refined** | SideFX's 2026 SciFi Panel example proves a useful pattern: Python authors sparse 2D structure, Copernicus develops height/detail/color, Houdini Engine carries it to Unreal. Test with one Melodia semantic surface. |
+| **Local-statistics texture synthesis** | **TEST SOON** | Retained as the strongest anti-tiling paper for large patterned surfaces; prototype as an isolated material function before considering fuller implementation. |
+| **Iso-contour terrain authoring** | **TEST SOON** | Retained as an artist-first terrain input representation feeding the existing handoff, not a new terrain system. |
+| **Physics-inspired deformable-surface texturing** | **TEST SOON / NEW** | SIGGRAPH 2026 wave-based procedural texturing is relevant to cloth terrain, membranes, sludge and extreme magical deformation without stored simulation history. |
+
+### Recommended canary order
+
+1. `PCG_GPU_Resonance_Canary`
+2. `COPHDA_MelodiaSemanticSurface_Canary`
+3. `MF_LocalStatsBreakup_Prototype`
+4. `IsoContour_TerrainAuthoring_Canary`
+5. `MF_DeformationAwareSurface_Canary`
+
+Do not reopen stochastic erosion, InfiniteDiffusion, neural-material runtime work, or general procedural architecture without a named blocker.
