@@ -9,7 +9,7 @@ Local daemons: set LOCAL_LLM_BASE_URL (default http://127.0.0.1:11434/v1 for Oll
 
 Usage:
   python model_router.py pick <class> [--detail]
-  python model_router.py route <task_packet.json> [--no-jev]
+  python model_router.py route --packet <task_packet.json> [--no-jev]
   python model_router.py chat <class> --prompt "..." [--json]
   python model_router.py test [--class <class>] [--include-blocked]
   python model_router.py ledger [--tail N]
@@ -504,7 +504,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     p_route = sub.add_parser("route")
-    p_route.add_argument("packet")
+    p_route.add_argument("--packet", required=True)
     p_route.add_argument("--no-jev", action="store_true")
     p_pick = sub.add_parser("pick")
     p_pick.add_argument("task_class")
