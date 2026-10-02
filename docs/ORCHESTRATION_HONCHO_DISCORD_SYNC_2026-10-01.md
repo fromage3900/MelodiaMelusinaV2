@@ -344,3 +344,32 @@ reads directly), and the Discord token must be in `config.yaml` (set via
 - `deploy/sync_workstation.ps1` — Git/LFS sync script
 - `Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md` — production workflow router
 - https://hermes-agent.nousresearch.com/docs/user-guide/features/honcho — official Honcho docs
+
+---
+
+## 11. Late status 2026-10-01 (Discord fix — applied vs pending)
+
+**Diagnosis (live API, 2026-10-01):** bot authenticates as Melusina#6611 (app id
+1541878431086813254, owner fromage39) but is in **zero guilds**; `bot_require_code_grant`
+is **TRUE**; home channel 1552404297935888384 returns 403 "Missing Access"; the gateway
+reconnected fine and 403s on the home-channel startup notification.
+
+**Applied 2026-10-01 evening (verified):**
+- `DISCORD_ALLOWED_USERS=290260261099667456` added to `~/.hermes/.env` (owner's Discord ID).
+- `hermes gateway restart` → clean drain + respawn; log shows
+  `[Discord] Connected as Melusina#6611` and `discord connected`.
+- Bot identity re-verified: `curl -H "Authorization: Bot $DISCORD_BOT_TOKEN"
+  https://discord.com/api/v10/users/@me` → Melusina / 1541878431086813254; `/users/@me/guilds`
+  → `[]` (still 0 guilds until the re-invite).
+
+**Pending — owner-only actions (dev portal, 2 minutes):**
+1. https://discord.com/developers/applications/1541878431086813254/oauth2 → turn **OFF**
+   "Requires OAuth2 Code Grant" (invite cannot complete while ON).
+2. Re-invite the bot to the owner's server (OAuth2 URL generator, scopes `bot` +
+   `applications.commands`, send-messages permissions), or the plain invite link.
+3. Then verify: `/users/@me/guilds` lists the server, and the home-channel notification stops
+   403ing. `DISCORD_HOME_CHANNEL=1552404297935888384` lives in `~/.hermes/.env` (line 510);
+   if the owner wants a different channel, update that value and `hermes gateway restart`.
+
+**Do not:** paste the bot token anywhere; commit `.env`; set `DISCORD_ALLOWED_USERS` in
+config.yaml (it is an env key — see `gateway/pairing.py` and `hermes_cli/config_defaults.py`).

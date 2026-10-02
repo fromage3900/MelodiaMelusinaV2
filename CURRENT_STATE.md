@@ -1,6 +1,27 @@
 # Melodia Melusina — Current State
 
+> **CORRECTION 2026-10-01 (owner, supersedes the runtime-claims entries below).** The gameplay
+> claims in the older entries in this file are **stale**. The owner confirms: **WASD works, the
+> bow works, damage works, the gameplay loop works.** The "still owed" lists further down —
+> real-input WASD proof, the stock-then-GOOD/PERFECT ladder, the Melusina-possessed PIE probe,
+> the Quill-interpreter movement-lock chase — are **closed**, not pending. Do not re-run them and
+> do not treat them as blockers. Those entries are retained below only as a record of what was
+> true when written.
+>
+> **Active work is animation and lookdev only.** The one genuinely open technical item is the
+> **closed-editor 5.8 build** (the party bootstrap is UNBUILT), and that is a build-hygiene task,
+> not a gameplay question. The live queues are the Sheep capstone build
+> (`.hermes/plans/2026-10-01_1700-choral-sheep-capstone-build.md`) and the lookdev ledger
+> (`Docs/P1_TASK_LEDGER.json#lookdev_work`, §ASAP LOOKDEV QUEUE below).
+>
+> Version-control state is settled and documented: see
+> `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
+> `Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`.
+
 ## Post-restart runtime verdict — 2026-10-01 PM (build mode)
+
+> ⚠️ **The claims in this entry are stale — see the correction at the top of this file.** The
+> "still owed" list in this section (a)–(e) no longer reflects reality.
 
 - **Live probes today (editor :9316, PID 9912):** draw+release segments → V2 (both montages); zero errored BPs; Morning PIE smoke `pie_smoke_1_170238` ok:true with 0/0 runtime errors (runtime identity = stock Sir possessor; **no Melusina-controlled pose sample was captured this session** — honest caveat); ingame 30s smoke session `pie_smoke_2_170853` was scrubbed by the modal teardown before completion, so it carries no evidence weight.
 - **Importer guard landed and py_compile'd:** `import_cascadeur_anim.py` (FBXIT_ANIMATION + fragment quarantine + `melusina_anim_unit_guard` cm-spine classifier). All six lane tools compile clean.

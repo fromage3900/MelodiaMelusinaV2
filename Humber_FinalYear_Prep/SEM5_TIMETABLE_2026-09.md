@@ -1,10 +1,20 @@
 # SEM 5 Timetable & Key Dates — Fall 2026 (DegreeWorks refresh 2026-09-21; prior Banner read 2026-09-09)
 
+## ✅ 2026-10-01 — ANMN 306 Capstone 1 IS REGISTERED (owner-confirmed)
+
+**Owner confirmed 306 is registered on 2026-10-01.** It no longer belongs in the
+"still needed" list below. Every 306-related blocker in the prep docs is closed.
+
+- Status source: **owner statement** + **Blackboard live read 2026-10-01** (course present as ANMN-306-0NB, CRN 6372, instructors Cory Avery + Terry Posthumus). Not yet re-read in Banner — a pasted Active Registrations row would close the loop.
+- Consequence: Capstone 1 work (animatic, Choral Sheep, Shorewake) is attached to a real
+  course. The tracker's Pre-prod rows that were "gated on registration" are unblocked.
+- **Capstone 1 brief (received 2026-09-30):** grade = 6 mentor meetings (3 pre-midterm, 3 post; meet 3 of 4 mentors twice). Signed PDF feedback form per meeting; submit journal due 12/18/26. Mentor list + booking links: Blackboard > ANMN 306 > Mentor Meetings folder.
+
 ## DegreeWorks 2026-09-21 (user's signed-in Chrome, read by agent — freshest truth)
 - Data refreshed 09/21/2026 2:17 AM; audit date 09/11/2026 (audit lags refresh — a Banner add after Sep 11 needs Process New Audit to appear).
 - Program Animation - 3D · Class Semester 4 · 78% · 29 of 37 courses · 8 still needed.
-- IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9.
-- STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ANMN 306 Capstone 1 · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
+- IN-PROGRESS Fall 2026 (4): ANMN 301 Life Drawing 5 (IP) · ANMN 304 Animation Art 5 (IP) · ANMN 305 Animation History (IP) · ANMN 309 Career Connections (IP). → 309 LANDED since Sep 9. **→ 306 landed 2026-10-01 (owner-confirmed).**
+- STILL NEEDED (not in-progress): ANMN 302 3D Art 5 · ~~ANMN 306 Capstone 1~~ **REGISTERED 2026-10-01** · WRIT 200 · ANMN 254 · GNED attribute · ANMN 351 · ANMN 354 · ANMN 355.
 - ⚠️ Vs Sep 9 Banner (which showed 302 registered): DegreeWorks In-progress has NO 302. Either dropped or audit-stale — confirm in Banner Active Registrations before acting on 302.
 
 ## Banner Active Registrations — 2026-09-22 (owner-pasted, live read) — CURRENT AUTHORITY
@@ -20,7 +30,7 @@
 
 ## 2026-09-22 (restored after overnight loss)
 - The DegreeWorks section above was stamped 09-21; the file reverted overnight (lost the section). Restored verbatim from session record 20260921_235228_3acd5b — nothing re-asked of the owner.
-- Tue class at 11:30 = OWNER'S own statement (2026-09-21: "i have class tmrw at 1130 right"). Candidate: ANMN 301 (doc: "else at class Tuesday") or ANMN 304 (Weekly_Routine Tue morning). ROOM HAS NEVER BEEN CAPTURED by any session/file — only Banner View Timetable or the Teams calendar invite holds it.
+- Tue class at 11:30 = OWNER'S own statement (2026-09-21: "i have class tmrw at 1130 right"). Candidate: ANMN 301 (doc: "else at class Tuesday") or ANMN 304 (Weekly_Routine Tue morning). ROOM HAS NEVER BEEN CAPTURED by any session/file — only Banner View Timetable or the Teams calendar invite holds it. **→ 2026-10-01: ANMN 304 room = J117** (Blackboard announcement 9/24: "Classes will be in J117 instead of J127"); other courses' rooms still uncaptured.
 
 ## Enrolled courses (source: Blackboard Ultra learn.humber.ca, term 202670, live read tonight)
 
@@ -42,8 +52,8 @@ Exact meeting times: Banner classSchedule subsystem is 502-flapping tonight; tim
 WEEK-1 WORK SURVEY (Blackboard Learn API + course shells, pulled 2026-09-09):
 - ANMN 301 (Terry Posthumus) — FULLY LOADED. "Image and Sequence Editing Toolkit." First assignment live: **Animatic Creation with Blender VSE** (Assignment Brief doc + gradable item, 0 pts questionCount 0 — rubric-based). Learning Resources folder: Blender VSE tutorials, Boords animatic guides, Pexels/Pixabay. Course Outline + Critical Path PDFs on shell. Teams links 0NA + 0NB. → HEAD START: this is the reel-relevant animatic deliverable from the Capstone plan — do the Learning Resources pass this week.
 - ANMN 302 (Cory Avery) — shell open: Course Outline + Team Join Code **fwkqj0s** (MS Teams team) + empty Assignments/Documents. Outline PDF: pid-23486839 route available.
-- ANMN 304 (Jason Par) — "Content is on the way!" Nothing posted.
-- ANMN 305 (Rob Corbett) — live week-1: "Notes from week 1" + "Week 1 Ani History What and Why?" + Course Outline and Critical Path. 1 unread Discussions item.
+- ANMN 304 (Jason Par) — LIVE as of the 2026-10-01 sweep: 4 announcements (**Fridays 8:30 AM**; room change to **J117**, Sep 25 class cancelled, class Discord "Humber 3D Film" + invite QGJqSctp, welcome), Assignments folder ("All Assignments and Deliverables"), Film Examples + Resources folders. Gradebook: Pitch Session 80/100 + In Class 1 4/5 graded (current **80%**); In Class 2 due **10/2**, Production Bible **10/9**, In Class 3–7 (10/16 → 12/11), Final Film **12/18**.
+- ANMN 305 (Rob Corbett) — now through week 4 (2026-10-01 sweep): notes wks 1–4 posted (Fleischers, Golden Silence, Disney), **Research Assignment** brief + worked example + reflective-journal notes, weekly Discussions Week 1–4 (all captured 10/1; **20 posts required for full marks**), gradebook = Attendance only so far. Eval: 20% × 5 (Visual Journal, Oral/Video Presentation, Research Assignment, Discussions, Reflective Journal).
 - Course calendars: 0 scheduled items in ALL four (week 1, nothing to be behind on yet). Re-check daily; the 8:30 runner now watches Announcements+To-Do too.
 
 ⚠️ CONFIRMATION OF ENROLMENT (Banner, issued 30-Jul-2026, found in Downloads): enrolment = **Part Time**, Course Load blank, class standing "Semester 4". Four 3-hour courses may or may not clear the full-time bar — this directly changes the OSAP "3 credits" answer and scholarship eligibility wording. Raise it with Financial Aid (and it pairs with the 306/309 add request in draft #29: +2 courses likely flips to full-time).

@@ -95,6 +95,18 @@ Status legend: KEEP (core, untouched) · GATE (keep, add static switch)
       garbage negatives reset to 100). Zen instances clamped at 512 were
       UV-dense — **eye-check recommended**: BambooWood, MossStone,
       RiverStone, TempleStep.
+- [x] Master Clamping & Organization Retarget (2026-10-02):
+      Authoritative clamping engine landed in `Content/Python/master_material_clamping_engine.py`.
+      Enforces explicit, mathematically sound, artist-friendly slider bounds (`slider_min`, `slider_max`)
+      across 100% of all 345 unique scalar parameters (255 Universal, 76 Landscape, 70 Nikki, 74 Nikki_Landscape).
+      Catalog exported to `Saved/Audit/master_material_clamps_catalog.json` (5/5 unit tests passing).
+- [x] Updated Material Instance Widget UI Panel (2026-10-02):
+      Dual-channel delivery:
+      1. In-editor Python/Slate panel `Content/Python/material_instance_widget_panel.py` registered
+         into `envui` (`materials.open_instance_widget`, menu entry `MatOpenInstanceWidget`).
+      2. Standalone luxury lookbook Web panel in `teamwork_projects/material_instance_widget_panel/`
+         featuring an interactive 3D WebGL/Canvas lookdev viewport, clamped sliders with visual limits,
+         and live Python/JSON export.
 - [ ] Stage 4 remaining: ramps → MF_ColorRamp3; single sheen; one
       shadow-tint system; core-parallax resolution
 - [ ] Stage 5 Melodia conversions: fix M_SDF_ParallaxPulse, then

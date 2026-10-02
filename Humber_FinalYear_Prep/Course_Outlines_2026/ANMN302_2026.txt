@@ -1,0 +1,478 @@
+Skip to Content
+Program Toggle
+Programs
+Quick Link Toggle
+Quick Links
+Alerts Toggle
+Alerts
+Book a Tour
+Info for Toggle
+Info for
+Transfer Options
+Transfer In
+ 
+Transfer Out
+ 
+PLAR
+ 
+Course Outlines
+ 
+Events
+ 
+Resources
+ 
+Contact
+COURSE OUTLINE SEARCH
+
+Welcome to the new Course Outline Search Tool. We are currently in the process of completing this resource, if the outline you are looking for is not available, please see details below.
+
+Search by Course Name or Code
+Enter Course outline search term
+
+
+Search Outline Button
+
+Printer Friendly Version
+
+Course Outline
+
+Course Name: 3D Art 5 (ANMN 302)
+
+Academic Period: 2026 - 2027
+
+Faculty:
+
+
+Faculty Availability:
+
+Associate Dean/Dean:
+Ahmed Sagarwala
+ahmed.sagarwala@humber.ca
+
+Schedule Type Code:
+
+Land Acknowledgement
+
+Humber College is located within the traditional and treaty lands of the Mississaugas of the Credit. Known as Adoobiigok [A-doe-bee-goke], the “Place of the Alders” in Michi Saagiig [Mi-Chee Saw-Geeg] language, the region is uniquely situated along Humber River Watershed, which historically provided an integral connection for Anishinaabe [Ah-nish-nah-bay], Haudenosaunee [Hoeden-no-shownee], and Wendat [Wine-Dot] peoples between the Ontario Lakeshore and the Lake Simcoe/Georgian Bay regions. Now home to people of numerous nations, Adoobiigok continues to provide a vital source of interconnection for all.
+
+Equity, Diversity and Inclusion Statement
+
+Humber College and the University of Guelph-Humber (Humber) are leaders in providing a learning, working and living environment that recognizes and values equity, diversity and inclusion in all its programs and services. Humber commits to reflect the diversity of the communities the College serves. Students, faculty, support and administrative staff feel a sense of belonging and have opportunities to be their authentic selves.
+
+Faculty or Department	Faculty of Media, Creative Arts, and Design
+Program(s)	
+Animation - 3D (AN311)
+
+Course Name:	3D Art 5 (ANMN 302)
+Pre-Requisites	ANMN 253
+Co-Requisites	none
+Equates	none
+Restrictions	
+
+Students enrolled in the Animation - 3D program.
+
+
+Credit Value	3
+Total Course Hours	42
+	Developed By:	Prepared By:	Approved by:
+	Cory Avery	Ahmed Sagarwala
+Humber Learning Outcomes (HLOs) in this course.
+
+The HLOs are a cross-institutional learning outcomes strategy aimed at equipping Humber graduates with the employability skills, mindsets, and values they need to succeed in the future of work. To explore all the HLOs, please consult the Humber Learning Outcomes framework.
+
+Systems Thinking
+Critical Thinking
+Collaboration
+Communication
+Digital Fluency
+Strategic Problem-Solving
+Course Description
+
+This course will focus more the technical side of the character creation & animation process. With a sound technical understanding to complement existing art skills, students will be more self-sufficient and be better able to communicate with the technical team in a studio environment. Animator's will have the added benefit of gaining hands on experience using motion capture data.
+
+Course Rationale
+
+This course will give students a stronger understanding of the technical side of 3D Animation. Often overlooked by artists, comprehension of these skills will allow a 3D artist to be more self-sufficient and to better communicate with the technical team members in a studio environment.
+
+Program Outcomes Emphasized in this Course
+
+Animation - 3D (AN311)
+
+Design, create and animate objects and characters with naturalistic and expressive movements and poses.
+Select and use appropriate tools and technologies for the development of animation projects.
+Use performance theory and skills to create and enhance animation.
+Model* and rig* objects, characters and background elements.
+Course Learning Method(s)
+Action Learning
+Collaborative Learning
+Project Based Learning
+Lecture
+Course Learning Outcomes (CLO)
+Learning Outcome	Learning Objectives	Summative Assessments	Formative Assessments
+Develop a functional character rig using appropriate tools and techniques.	
+Discuss the rigging/animation needs of a given character design.
+Plan a production rig based on the needs of a given character.
+Construct a production rig that meets the needs of a given character.
+	
+- Custom Control Rig: Arms
+- Custom Control Rig: Legs
+- Custom Control Rig: Spine
+- Custom Control Rig: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Skeleton Creation
+
+Build an anatomically correct digital skeleton as required by a specific character design.	
+Adhere to believable anatomical rules when developing a skeleton system.
+Analyze human/creature anatomy to better plan a logical skeletal layout.
+Build a skeletal system based on the needs of a given character and anatomical research.
+	
+- Custom Control Rig: Arms
+- Custom Control Rig: Legs
+- Custom Control Rig: Spine
+- Custom Control Rig: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Skeleton Creation
+
+Assemble advanced hierarchical relationships that support the needs of a given character.	
+Combine various hierarchy creation methods and tools to meet the needs of a given character design.
+Analyze the animation needs of a given character and decide upon an appropriate hierarchy.
+Assemble hierarchy based on the needs of a given character design.
+	
+- Custom Control Rig: Arms
+- Custom Control Rig: Legs
+- Custom Control Rig: Spine
+- Custom Control Rig: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Skeleton Creation
+
+Adapt modular character controls to meet the animators needs.	
+Identify the animation needs for a given character.
+Collaborate with animator to define the control needs of a character.
+Create animator friendly controls that promote efficient character animation.
+	
+- Custom Control Rig: Final
+In-class process work -- feedback (peer and faculty)
+In-class process work -- feedback (peer and faculty)
+	
+- Motion Capture: HumanIK
+
+Employ an effective motion capture pipeline to record live performances.	
+Assist in a live motion capture session.
+Integrate motion capture pipeline into existing animation processes.
+Adapt existing animation knowledge to a standard motion capture workflow.
+	
+- Motion Capture: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Motion Capture: HumanIK
+
+Study human/animal motion to produce more accurate digital animation.	
+Study human and animal locomotion.
+Assess the animation needs for a given character.
+Create effective animation based on conclusions arrived upon from previous observations.
+	
+- Motion Capture: Retargeting
+In-class process work -- feedback (peer and faculty)
+	
+- Motion Capture: HumanIK
+
+Apply motion capture data to a custom character.	
+Adapt captured animation to suit a given character design.
+Animate using a combination of raw motion capture data layered with traditional keyframing techniques.
+	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Motion Capture: HumanIK
+
+Edit character animation using custom rigs.	
+Study a given character design to assess rig requirements.
+Construct control rig based on previous assessment.
+Adapt control rig knowledge to meet the needs of a given character design.
+	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Skeleton Creation
+
+Edit character animation using the HumanIK system.	
+Identify the differences between a custom rig and a HumanIK rig.
+Demonstrate an understanding of how the HumanIK system works.
+Adapt the HumanIK system to work with an existing character.
+	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Skeleton Creation
+
+Reconstruct / re-target motion capture animation from one character to another.	
+Combine Multiple animations together for re-targeting purposes.
+Animate a character using previously captured motion capture data.
+Fix re-targeting problems using layered animation and traditional keyframe techniques.
+	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+In-class process work -- feedback (peer and faculty)
+	
+- Motion Capture: HumanIK
+Assessment Weighting
+Assessment	Weight
+Simulation
+    - Motion Capture: HumanIK	Satisfactory/Unsatisfactory
+Applied Project
+    - Skeleton Creation	Satisfactory/Unsatisfactory
+    - Custom Control Rig: Arms	10%
+    - Custom Control Rig: Legs	10%
+    - Custom Control Rig: Spine	10%
+    - Custom Control Rig: Final	20%
+    In-class process work -- feedback (peer and faculty)	25%
+    - Motion Capture: Final	15%
+    - Motion Capture: Retargeting	10%
+Total	100%
+Modules of Study
+Module	Course Learning Outcomes	Resources	Assessments
+Introduction to rigging and, motion capture	
+Develop a functional character rig using appropriate tools and techniques.
+Employ an effective motion capture pipeline to record live performances.
+	Instructor provided literature and tutorials on Blackboard.	
+- Motion Capture: HumanIK
+- Skeleton Creation
+
+Rigging Concepts - Skeleton	
+Develop a functional character rig using appropriate tools and techniques.
+Build an anatomically correct digital skeleton as required by a specific character design.
+Assemble advanced hierarchical relationships that support the needs of a given character.
+	Instructor provided literature and tutorials on Blackboard.	
+- Custom Control Rig: Legs
+- Custom Control Rig: Spine
+- Skeleton Creation
+- Custom Control Rig: Final
+- Custom Control Rig: Arms
+
+Rigging Concepts - Legs	
+Develop a functional character rig using appropriate tools and techniques.
+Build an anatomically correct digital skeleton as required by a specific character design.
+Assemble advanced hierarchical relationships that support the needs of a given character.
+Adapt modular character controls to meet the animators needs.
+	Instructor provided literature and tutorials on Blackboard.	
+- Custom Control Rig: Legs
+- Skeleton Creation
+- Custom Control Rig: Final
+
+Rigging Concepts - Arms	
+Develop a functional character rig using appropriate tools and techniques.
+Build an anatomically correct digital skeleton as required by a specific character design.
+Assemble advanced hierarchical relationships that support the needs of a given character.
+Adapt modular character controls to meet the animators needs.
+	Instructor provided literature and tutorials on Blackboard.	
+- Custom Control Rig: Spine
+- Custom Control Rig: Final
+- Custom Control Rig: Arms
+
+Rigging Concepts - Spine	
+Develop a functional character rig using appropriate tools and techniques.
+Build an anatomically correct digital skeleton as required by a specific character design.
+Assemble advanced hierarchical relationships that support the needs of a given character.
+Adapt modular character controls to meet the animators needs.
+	Instructor provided literature and tutorials on Blackboard.	
+- Custom Control Rig: Spine
+- Skeleton Creation
+- Custom Control Rig: Final
+
+Rigging Concepts - Advanced	
+Develop a functional character rig using appropriate tools and techniques.
+Build an anatomically correct digital skeleton as required by a specific character design.
+Assemble advanced hierarchical relationships that support the needs of a given character.
+Adapt modular character controls to meet the animators needs.
+	Instructor provided literature and tutorials on Blackboard.	
+- Skeleton Creation
+- Custom Control Rig: Final
+
+Mocap - HumanIK	
+Edit character animation using the HumanIK system.
+Reconstruct / re-target motion capture animation from one character to another.
+	Instructor provided literature and tutorials on Blackboard.	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+- Motion Capture: HumanIK
+- Skeleton Creation
+
+Mocap - Studio	
+Employ an effective motion capture pipeline to record live performances.
+	Instructor provided literature and tutorials on Blackboard.	
+- Motion Capture: Final
+
+Mocap - Retargeting	
+Apply motion capture data to a custom character.
+Edit character animation using custom rigs.
+Edit character animation using the HumanIK system.
+Reconstruct / re-target motion capture animation from one character to another.
+	Instructor provided literature and tutorials on Blackboard.	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+- Motion Capture: HumanIK
+
+Mocap - Corrective Animation	
+Study human/animal motion to produce more accurate digital animation.
+Apply motion capture data to a custom character.
+Edit character animation using custom rigs.
+Edit character animation using the HumanIK system.
+Reconstruct / re-target motion capture animation from one character to another.
+	Instructor provided literature and tutorials on Blackboard.	
+- Motion Capture: Retargeting
+- Motion Capture: Final
+- Motion Capture: HumanIK
+Supplemental Resources
+Title	ISBN
+
+
+Video tutorials provided by instructor available on Blackboard
+
+	
+Resource(s):
+
+Course material costs can be found through the Humber Bookstore.
+
+Additional Tools and Equipment
+High-Speed Internet Connection
+3D Capable Computer System
+Autodesk Maya (Software)
+Essential Skills
+Section	Skills	Measurement	Details
+Personal Skills	
+Managing self
+Managing change and being flexible and adaptable
+Engaging in reflective practice
+	Teach and measure	
+Lecture, demonstration, projects
+Practical assignments, peer evaluation
+
+Information Management	
+Gathering and managing information
+Selecting and using appropriate tools and technology for a task or project
+Computer literacy
+Internet skills
+	Teach and measure	
+Lecture, demonstration, projects
+Practical assignments, class discussions, peer evaluation
+
+Critical Thinking and Problem-Solving	
+Analysing
+Evaluating
+Decision-Making
+Creative and Innovative Thinking
+	Teach and measure	
+Lecture, demonstration, projects
+Practical assignments, class discussion, peer evaluation
+
+Numeracy	
+Understanding and applying mathematical concepts and reasoning
+	Teach and measure	
+Lecture, demonstration, projects
+Practical assignments, class discussion, peer evaluation
+
+Communication	
+Speaking
+Listening
+Visual Literacy
+	Reinforce and measure	
+Lecture, demonstration, projects
+Practical Assignments, class discussions, peer evaluation
+Prior Learning Assessment & Recognition (PLAR)
+
+Prior Learning Assessment and Recognition (PLAR) is the formal evaluation and credit-granting process whereby candidates may obtain credits for prior learning. Prior learning includes the knowledge competencies and skills acquired, in both formal and informal ways, outside of post-secondary education. Candidates may have their prior learning evaluated against the course learning outcomes as defined in the course outline.
+
+To find out if this course is eligible for PLAR, and how this learning would be assessed, please contact the Program Coordinator for more details.
+
+Academic Regulations
+
+It is the student's responsibility to be aware of the College Academic Regulations. The Academic Regulations apply to all applicants to Humber and all current students enrolled in any program or course offered by Humber, in any location. Information about academic appeals is found in the Academic Regulations.  
+
+Anti-Discrimination Statement
+
+At Humber College, all forms of discrimination and harassment are prohibited. Students and employees have the right to study, live and work in an environment that is free from discrimination and harassment. If you need assistance on concerns related to discrimination and harassment, please contact the Centre for Human Rights, Equity and Inclusion or the Office of Student Conduct.
+
+Accessible Learning Services
+
+Humber strives to create a welcoming environment for all students where equity, diversity and inclusion are paramount. Accessible Learning Services facilitates equal access for students with disabilities by coordinating academic accommodations and services.  Staff in Accessible Learning Services are available by appointment to assess specific needs, provide referrals and arrange appropriate accommodations. If you require academic accommodations, contact:
+
+Accessible Learning Services
+
+North Campus: (416) 675-6622 X5090
+
+Lakeshore Campus: (416) 675-6622 X3331 
+
+Academic Integrity
+
+Academic integrity is essentially honesty in all academic endeavors. Academic integrity requires that students avoid all forms of academic misconduct or dishonesty, including plagiarism, cheating on tests or exams or any misrepresentation of academic accomplishment.
+
+Disclaimer
+
+While every effort is made by the professor/faculty to cover all material listed in the outline, the order, content, and/or evaluation may change in the event of special circumstances (e.g. time constraints due to inclement weather, sickness, college closure, technology/equipment problems or changes, etc.). In any such case, students will be given appropriate notification in writing, with approval from the Senior Dean (or designate) of the Faculty.
+
+Copyright
+
+Copyright is the exclusive legal right given to a creator to reproduce, publish, sell or distribute his/her work. All members of the Humber community are required to comply with Canadian copyright law which governs the reproduction, use and distribution of copyrighted materials. This means that the copying, use and distribution of copyright- protected materials, regardless of format, is subject to certain limits and restrictions. For example, photocopying or scanning an entire textbook is not allowed, nor is distributing a scanned book.
+
+See the Humber Libraries website for additional information regarding copyright and for details on allowable limits.
+
+Humber College Institute of Technology and Advanced Learning • 2026/2027.
+
+1-416-675-3111
+
+GENERAL ENQUIRIES:
+Humber Contact Form
+
+CONTINUOUS PROFESSIONAL LEARNING:
+cplhelp@humber.ca
+
+Quick Links
+How to Apply
+My Humber
+Blackboard
+CPL Help
+Academic Calendar
+Academic Regulations
+Directory
+Visit or Book a Tour
+Employee Quick Links
+Careers at Humber
+Info For
+Future Students
+Current Students
+International Students
+Indigenous Students
+Professional Learners (CPL)
+Employers & Partners
+Alumni & Donors
+Community
+Faculty & Staff
+Media
+Programs
+Full-Time Domestic
+Full-Time International
+Continuous Professional Learning (CPL)
+Real Estate Education
+About Humber
+Admissions & Financial Aid
+Student Life
+Advising & Career Services
+News & Events
+About Land Acknowledgments:
+
+Humber campuses are located on the treaty lands and traditional territory of the Mississaugas of the Credit and homeland of Anishinaabe, Haudenosaunee, and Wendat peoples.
+
+Learn More  
+
+© 2026 Humber Polytechnic
+Privacy Policy
+Terms of Use
+Consent Choices
+Code of Student Community Standards
+Web Accessibility/Request Alternate Format

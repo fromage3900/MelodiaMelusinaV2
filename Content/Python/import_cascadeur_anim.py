@@ -117,12 +117,39 @@ def import_inbox() -> dict:
         destination_name = PREFIX + _stem(fbx_path)
         try:
             imported = import_animation(fbx_path, destination_name)
+            assets = [_sequence_report(path) for path in imported]
             report["files"].append({
                 "source": str(fbx_path),
                 "destination_name": destination_name,
                 "imported": imported,
-                "assets": [_sequence_report(path) for path in imported],
+                "assets": assets,
             })
+            # Unit guard (parity with import_rokoko_mocap_batch, 2026-10-01):
+            # reject meter-scale imports on the cm skeleton at ingest.
+            for entry in assets:
+                ap = entry.get("asset", "")
+                seq = unreal.EditorAssetLibrary.load_asset(ap) if ap else None
+                if seq is None:
+                    continue
+                try:
+                    pose = unreal.AnimationLibrary.get_bone_pose_for_frame(seq, "c_spine_02_x", 0, False)
+                    y = float(pose.translation.y)
+                except Exception:
+                    y = None
+                try:
+                    import sys as _sys
+                    _tp = str(PROJECT_ROOT / "Tools")
+                    if _tp not in _sys.path:
+                        _sys.path.insert(0, _tp)
+                    from melusina_anim_unit_guard import classify_spine_translation
+                    cls = classify_spine_translation(y)
+                except Exception:
+                    cls = "unknown"
+                report["files"][-1]["spine_y"] = y
+                report["files"][-1]["unit_class"] = cls
+                if cls not in ("cm", "unknown"):
+                    report["files"][-1]["error"] = f"meter_scale_rejected:{cls}"
+                    report["warnings"].append({"source": str(fbx_path), "error": f"meter_scale_rejected:{cls}"})
         except Exception as exc:
             report["warnings"].append({"source": str(fbx_path), "error": str(exc)})
 

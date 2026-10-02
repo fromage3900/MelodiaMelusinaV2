@@ -6,7 +6,7 @@ This file converts academic requirements into Melodia-sized production work. Cou
 
 | Course | Assignment / Milestone | Weight | Due | Required learning outcome / technique | Melodia artifact | Reuse target | Status |
 |---|---|---:|---|---|---|---|---|
-| Capstone 01 | Choral Sheep — Harmonic Ecology Prototype | TBD | TBD | Official learning outcomes / rubric pending Humber brief | Creature → Motif → Harmony → World showcase; one-sheep proof → C/E/G harmony → world response | capstone + reel + technical-art case study | PLANNED — BRIEF PENDING |
+| Capstone 01 | Choral Sheep — Harmonic Ecology + 6 Mentor Meetings | 6 meetings (cumulative) | Midterm + Final | 3 of 4 mentors × 2 (pre/post midterm); PDF feedback form per meeting | Creature → Motif → Harmony → World showcase; one-sheep proof → C/E/G harmony → world response | capstone + reel + technical-art case study | BRIEF RECEIVED 2026-09-30 |
 | TBD | TBD | — | — | — | Shorewake / First Dream / standalone where appropriate | course + portfolio | WAITING FOR BRIEF |
 
 ## Mapping rule

@@ -1,0 +1,155 @@
+{
+ "source": "choralsheep_Takes_v4_20260910.blend",
+ "fps_assumed": 24.0,
+ "fps_check": {},
+ "clips": {
+  "Idle": {
+   "action": "SK_Sheep_Idle",
+   "frame_range": [
+    0,
+    150
+   ],
+   "duration_s": 6.25,
+   "ue_duration_s": 6.25,
+   "fps_check_ok": true,
+   "net_displacement_cm": 0.0,
+   "avg_ground_speed_cm_s": 0.0,
+   "max_speed_cm_s": 1.95,
+   "forward_axis": [
+    0.0,
+    -1.0
+   ],
+   "in_place": true,
+   "stride_cm": null,
+   "cycle_freq_hz": null,
+   "intended_speed_cm_s": null,
+   "foot_peaks": 1,
+   "apex_above_start_cm": 0.52,
+   "end_below_start_cm": -0.0
+  },
+  "Walk": {
+   "action": "SK_Sheep_Walk",
+   "frame_range": [
+    0,
+    64
+   ],
+   "duration_s": 2.667,
+   "ue_duration_s": 2.667,
+   "fps_check_ok": true,
+   "net_displacement_cm": 7.74,
+   "avg_ground_speed_cm_s": 2.9,
+   "max_speed_cm_s": 340.9,
+   "forward_axis": [
+    0.0,
+    -1.0
+   ],
+   "in_place": true,
+   "stride_cm": -0.76,
+   "cycle_freq_hz": 1.5,
+   "intended_speed_cm_s": -1.14,
+   "foot_peaks": 5,
+   "apex_above_start_cm": 11.59,
+   "end_below_start_cm": -6.05
+  },
+  "WalkSlow": {
+   "action": "SK_Sheep_WalkSlow",
+   "frame_range": [
+    0,
+    48
+   ],
+   "duration_s": 2.0,
+   "ue_duration_s": 2.0,
+   "fps_check_ok": true,
+   "net_displacement_cm": 2.9,
+   "avg_ground_speed_cm_s": 1.45,
+   "max_speed_cm_s": 125.93,
+   "forward_axis": [
+    0.0,
+    -1.0
+   ],
+   "in_place": true,
+   "stride_cm": -0.2,
+   "cycle_freq_hz": 1.0,
+   "intended_speed_cm_s": -0.2,
+   "foot_peaks": 3,
+   "apex_above_start_cm": 2.59,
+   "end_below_start_cm": -1.44
+  },
+  "Run": {
+   "action": "SK_Sheep_Run",
+   "frame_range": [
+    0,
+    20
+   ],
+   "duration_s": 0.833,
+   "ue_duration_s": 0.833,
+   "fps_check_ok": true,
+   "net_displacement_cm": 10.4,
+   "avg_ground_speed_cm_s": 12.48,
+   "max_speed_cm_s": 394.44,
+   "forward_axis": [
+    0.0,
+    -1.0
+   ],
+   "in_place": true,
+   "stride_cm": 0.44,
+   "cycle_freq_hz": 3.6,
+   "intended_speed_cm_s": 1.59,
+   "foot_peaks": 4,
+   "apex_above_start_cm": 0.0,
+   "end_below_start_cm": 10.29
+  },
+  "Jump": {
+   "action": "SK_Sheep_Jump",
+   "frame_range": [
+    0,
+    27
+   ],
+   "duration_s": 1.125,
+   "ue_duration_s": 1.125,
+   "fps_check_ok": true,
+   "net_displacement_cm": 4.42,
+   "avg_ground_speed_cm_s": 3.93,
+   "max_speed_cm_s": 257.1,
+   "forward_axis": [
+    0.0,
+    -1.0
+   ],
+   "in_place": true,
+   "stride_cm": -2.63,
+   "cycle_freq_hz": 0.889,
+   "intended_speed_cm_s": -2.34,
+   "foot_peaks": 2,
+   "apex_above_start_cm": 7.25,
+   "end_below_start_cm": 2.48
+  },
+  "Death": {
+   "action": "SK_Sheep_Death",
+   "frame_range": [
+    0,
+    26
+   ],
+   "duration_s": 1.083,
+   "ue_duration_s": 1.083,
+   "fps_check_ok": true,
+   "net_displacement_cm": 32.89,
+   "avg_ground_speed_cm_s": 30.36,
+   "max_speed_cm_s": 138.94,
+   "forward_axis": [
+    0.0,
+    -1.0
+   ],
+   "in_place": false,
+   "stride_cm": -2.14,
+   "cycle_freq_hz": 3.692,
+   "intended_speed_cm_s": -7.9,
+   "foot_peaks": 5,
+   "apex_above_start_cm": 17.66,
+   "end_below_start_cm": -13.72
+  }
+ },
+ "foot_verts": {
+  "left": 115,
+  "right": 72
+ }
+}

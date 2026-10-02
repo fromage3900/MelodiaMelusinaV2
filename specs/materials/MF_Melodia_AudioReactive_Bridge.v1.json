@@ -1,0 +1,53 @@
+{
+  "schema": "melodia.material_function_spec.v1",
+  "id": "MF_Melodia_AudioReactive_Bridge",
+  "target": "/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge",
+  "canonical_mirror": "/Game/Melodia/Materials/Functions/MF_Melodia_AudioReactive_Bridge",
+  "status": "verified-contract",
+  "purpose": "Universal audio-reactive bridge material function consuming MPC_Melodia_Palette parameters (BeatPulse, Bass, Mid, Treble, BeatPhase, BeatIntensity, GlobalReactivity, RhythmPulse) to drive surface materials with continuous, artifact-free, clamped musical synesthesia.",
+  "authoring_rules": [
+    "single-writer authority: UMelodiaAudioReactivePresentationSubsystem is the sole writer of MPC_Melodia_Palette; this function is strictly a read-only consumer",
+    "clamped bounds: all emissive multipliers, roughness offsets, and color lifts are clamped to physically safe ranges [0.0, 5.0] to prevent blowout or NaN errors",
+    "neutral defaults: when audio input is quiescent or disabled (GlobalReactivity = 0.0), output perfectly preserves baseline artist values (1.0x color, 0.0x additional emissive, 0.0x normal perturbation)",
+    "vertex & pixel safe: expressions are fully compatible with both Substrate FrontMaterial pipelines and legacy shading models"
+  ],
+  "mpc_source": {
+    "collection": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "read_scalars": [
+      "BeatPulse",
+      "BeatPhase",
+      "BeatIntensity",
+      "Bass",
+      "Mid",
+      "Treble",
+      "GlobalReactivity",
+      "RhythmPulse"
+    ]
+  },
+  "inputs": {
+    "BaseColorIn": { "type": "Vector3", "default": [1.0, 1.0, 1.0], "desc": "Baseline surface albedo / base color" },
+    "BaseEmissive": { "type": "Vector3", "default": [0.0, 0.0, 0.0], "desc": "Baseline artist authored emissive color" },
+    "RoughnessIn": { "type": "Scalar", "default": 0.5, "desc": "Baseline surface roughness" },
+    "NormalIn": { "type": "Vector3", "default": [0.0, 0.0, 1.0], "desc": "Baseline surface tangent-space normal" },
+    "EmissiveGain": { "type": "Scalar", "default": 1.0, "range": [0.0, 5.0], "desc": "Scalar multiplier for beat-driven emissive pulsing" },
+    "BassResponse": { "type": "Scalar", "default": 0.5, "range": [0.0, 2.0], "desc": "Low-frequency battle intensity response" },
+    "MidResponse": { "type": "Scalar", "default": 0.5, "range": [0.0, 2.0], "desc": "Mid-frequency percussion / impact response" },
+    "TrebleTwinkle": { "type": "Scalar", "default": 0.75, "range": [0.0, 3.0], "desc": "High-frequency sparkle / shimmer response" },
+    "PulseCurveExp": { "type": "Scalar", "default": 2.0, "range": [1.0, 4.0], "desc": "Exponent shaping beat pulse response curve" }
+  },
+  "outputs": {
+    "BaseColorOut": { "type": "Vector3", "desc": "Luminance-preserving audio breathing base color" },
+    "EmissiveOut": { "type": "Vector3", "desc": "Beat-pulsed and treble-twinkled emissive color (clamped <= 20.0)" },
+    "RoughnessOut": { "type": "Scalar", "desc": "Subtle specular flash on downbeats (clamped [0.02, 1.0])" },
+    "NormalPerturb": { "type": "Vector3", "desc": "Audio ripple micro-perturbation for surface normals" },
+    "AudioPulseScalar": { "type": "Scalar", "desc": "Normalized beat pulse scalar [0.0, 1.0]" },
+    "AudioBassScalar": { "type": "Scalar", "desc": "Normalized bass intensity scalar [0.0, 1.0]" },
+    "AudioTrebleScalar": { "type": "Scalar", "desc": "Normalized treble intensity scalar [0.0, 1.0]" }
+  },
+  "target_master_materials": [
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Gemstone",
+    "/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon",
+    "/Game/_PROJECT/04_Materials/PostProcess/M_PP_MeluColorGrade"
+  ]
+}

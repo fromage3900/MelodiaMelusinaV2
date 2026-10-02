@@ -1,0 +1,73 @@
+{
+ "base": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\choral_sheep\\anim_suite_20261001\\choral_sheep_ANIMSUITE_WORK_20261001.blend",
+ "out": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\choral_sheep\\anim_suite_20261001\\choral_sheep_ANIMSUITE_A2_20261001.blend",
+ "graze_scale": 1.0,
+ "fps": 24,
+ "takes": {
+  "Graze": {
+   "action": "CHORAL_A2_Graze_Rig",
+   "frames": 96,
+   "loop": true,
+   "key_step": 4,
+   "channels": [
+    "c_head.x[0]",
+    "c_jawbone.x[0]",
+    "c_neck.x[0]",
+    "c_spine_01.x[0]",
+    "c_spine_02.x[0]",
+    "c_spine_03.x[0]"
+   ]
+  },
+  "Bleat": {
+   "action": "CHORAL_A2_Bleat_Rig",
+   "frames": 48,
+   "loop": false,
+   "key_step": 2,
+   "channels": [
+    "c_head.x[0]",
+    "c_jawbone.x[0]",
+    "c_neck.x[0]",
+    "c_spine_03.x[0]"
+   ]
+  },
+  "EarFlick": {
+   "action": "CHORAL_A2_EarFlick_Rig",
+   "frames": 24,
+   "loop": false,
+   "key_step": 1,
+   "channels": [
+    "c_ear_01.l[0]",
+    "c_ear_02.l[0]",
+    "c_head.x[2]"
+   ]
+  },
+  "TailWag": {
+   "action": "CHORAL_A2_TailWag_Rig",
+   "frames": 60,
+   "loop": true,
+   "key_step": 2,
+   "channels": [
+    "c_tail_00.x[2]",
+    "c_tail_01.x[2]",
+    "c_tail_02.x[2]",
+    "c_tail_master.x[0]",
+    "c_tail_master.x[2]"
+   ]
+  },
+  "Harmonize": {
+   "action": "CHORAL_A2_Harmonize_Rig",
+   "frames": 120,
+   "loop": false,
+   "key_step": 4,
+   "channels": [
+    "c_head.x[0]",
+    "c_head.x[2]",
+    "c_jawbone.x[0]",
+    "c_neck.x[0]",
+    "c_spine_02.x[0]",
+    "c_spine_03.x[0]"
+   ]
+  }
+ },
+ "bytes": 108924764
+}

@@ -189,6 +189,20 @@ def register_envui_menus(owner: str = "BSGodFile_LiveLink") -> None:
     )
     add_entry(
         live,
+        "Materials",
+        "MatOpenInstanceWidget",
+        "Open Material Instance Widget UI Panel",
+        "from envui import commands; commands.run('materials.open_instance_widget');",
+    )
+    add_entry(
+        live,
+        "Materials",
+        "MatApplyClamps",
+        "Apply Master Material Clamps & Groups",
+        "from envui import commands; commands.run('materials.apply_clamps');",
+    )
+    add_entry(
+        live,
         "Modifiers",
         "OpenModifierPanel",
         "Open Modifier Panel (Procedural Toolkit)",
