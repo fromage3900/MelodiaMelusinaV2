@@ -28,21 +28,30 @@
 
 **Reel rules:** 45-60 sec total, best shot first, no filler, breakdown sheet, music low.
 
-## C) Course Deadlines (updated 2026-09-30 — Capstone 1 + 3D Art 5 now accessible)
+## C) Course Deadlines (deep sweep verified live 2026-10-01 20:00; outlines saved in `Course_Outlines_2026/`)
 
 | Course | Assignment | Due | Weight | Done |
 |---|---|---|---|---|
-| **ANMN 306 Capstone 1** | Choral Sheep — Harmonic Ecology | TBD (brief pending) | TBD | ☐ ACCESS GRANTED |
-| **ANMN 302 3D Art 5** | TBD (brief pending) | TBD | TBD | ☐ ACCESS GRANTED |
-| ANMN 301 Life Drawing 5 | Animatic Story Edit (25%) | Oct 9, 5 PM EDT | 25% | ☐ |
-| ANMN 301 Life Drawing 5 | Audio & Sync (15%) | W4-6 | 15% | ☐ |
-| ANMN 301 Life Drawing 5 | Titles/Credits/Export (15%) | W7-9 | 15% | ☐ |
-| ANMN 301 Life Drawing 5 | Curation Plan (15%) | W10-12 | 15% | ☐ |
-| ANMN 301 Life Drawing 5 | Final Reel (30%) | W12-14 | 30% | ☐ |
-| ANMN 304 Animation Art 5 | TBD | TBD | TBD | ☐ |
-| ANMN 305 Animation History | TBD | TBD | TBD | ☐ |
-| ANMN 309 Career Connections | Resume/ArtStation | Sem5 | S/U | ☐ |
+| **ANMN 306 Capstone 1** | Weekly Review — submit point (10 entry min) | 12/18/26 | 50% (Weeklies) | ☐ |
+| **ANMN 306 Capstone 1** | Mentor Feedback Forms — submit point (6 meetings, 10 forms min) | 12/18/26 | 25% (Mentor) + 25% (Milestones) | ☐ |
+| **ANMN 302 3D Art 5** | Custom Control Rig: Arms/Legs/Spine 10% ea + Final 20% | TBD | 50% | ☐ |
+| **ANMN 302 3D Art 5** | Motion Capture: Retargeting 10% + Final 15% | TBD | 25% | ☐ |
+| **ANMN 302 3D Art 5** | In-class process work (peer + faculty feedback) | ongoing | 25% | ☐ |
+| ANMN 301 Life Drawing 5 | Animatic Story Reel | Oct 9, 5 PM EDT | 25% | ☐ |
+| ANMN 301 Life Drawing 5 | Audio and Sync Exercise | W4-6 | 15% | ☐ |
+| ANMN 301 Life Drawing 5 | Titles, Credits and Export | W7-9 | 15% | ☐ |
+| ANMN 301 Life Drawing 5 | Demo Reel Curation Plan | W10-12 | 15% | ☐ |
+| ANMN 301 Life Drawing 5 | Final Demo Reel | W12-14 | 30% | ☐ |
+| ANMN 304 Animation Art 5 | Pitch Session 80/100 · In Class 1 4/5 | done (late) | — | ✅ |
+| ANMN 304 Animation Art 5 | In Class 2 | **10/2/26** | — | ☐ |
+| ANMN 304 Animation Art 5 | Production Bible (2 attempts possible) | 10/9/26 | — | ☐ |
+| ANMN 304 Animation Art 5 | In Class 3 · 4 · 5 · 6 · 7 | 10/16 · 11/6 · 11/20 · 12/4 · 12/11 | — | ☐ |
+| ANMN 304 Animation Art 5 | Final Film | 12/18/26 | — | ☐ (current 80%) |
+| ANMN 305 Animation History | Research Assignment + Visual Journal + Oral Presentation + Discussions + Reflective Journal | ongoing — 4 unread discussions | 20% ea | ☐ |
+| ANMN 309 Career Connections | Resume Journal — submit | 12/18/26 | S/U | ☐ |
 | ANMN 355 Portfolio | Final Reel + site | Sem6 | TBD | ☐ |
+
+**Sweep notes (2026-10-01):** 304 classes now in **J117** (not J127; 9/24 announcement) + class Discord "Humber 3D Film" server; Sep 25 class was cancelled. 306 Gradebook shows both submit points live (unlimited attempts). 305 gradebook = Attendance only so far; Week 2/3/4 discussions unread. 309: Terry's 9/24 sick-day note; Teams link + recording in course messages. All 306/309/304 announcements read (0 unread); Critical Path PDF downloaded (`ANMN_306_Capstone_1_Critical_Path.pdf`).
 
 ## D) Career Connections Checklist
 - [ ] Resume 1-page tailored to 3D (model/anim/lighting)
