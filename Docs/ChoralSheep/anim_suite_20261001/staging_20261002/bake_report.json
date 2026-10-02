@@ -1,0 +1,79 @@
+{
+  "target_fbx": "ChoralSheepARPExport.fbx",
+  "bones": 117,
+  "skins": [
+    "Retopo_Skin_Sheep_ZSpheres2"
+  ],
+  "takes": {
+    "CHORAL_A2_Graze_Rig": {
+      "out": "A_ChoralSheep_Graze.fbx",
+      "frames": [
+        0,
+        96
+      ],
+      "bytes": 1602444,
+      "self_check": {
+        "pos": 3e-06,
+        "deg": 0.0,
+        "bone": "thigh_stretch_dupli_001.l",
+        "frame": 48
+      }
+    },
+    "CHORAL_A2_Bleat_Rig": {
+      "out": "A_ChoralSheep_Bleat.fbx",
+      "frames": [
+        0,
+        48
+      ],
+      "bytes": 1276956,
+      "self_check": {
+        "pos": 1e-06,
+        "deg": 0.0,
+        "bone": "c_eyelid_corner_01.r",
+        "frame": 0
+      }
+    },
+    "CHORAL_A2_EarFlick_Rig": {
+      "out": "A_ChoralSheep_EarFlick.fbx",
+      "frames": [
+        0,
+        24
+      ],
+      "bytes": 1121852,
+      "self_check": {
+        "pos": 1e-06,
+        "deg": 0.0,
+        "bone": "c_eyelid_corner_01.r",
+        "frame": 0
+      }
+    },
+    "CHORAL_A2_TailWag_Rig": {
+      "out": "A_ChoralSheep_TailWag.fbx",
+      "frames": [
+        0,
+        60
+      ],
+      "bytes": 1259532,
+      "self_check": {
+        "pos": 1e-06,
+        "deg": 0.0,
+        "bone": "c_eyelid_corner_01.r",
+        "frame": 0
+      }
+    },
+    "CHORAL_A2_Harmonize_Rig": {
+      "out": "A_ChoralSheep_Harmonize.fbx",
+      "frames": [
+        0,
+        120
+      ],
+      "bytes": 1753820,
+      "self_check": {
+        "pos": 1e-06,
+        "deg": 0.0,
+        "bone": "thigh_twist_dupli_001.r",
+        "frame": 60
+      }
+    }
+  }
+}
