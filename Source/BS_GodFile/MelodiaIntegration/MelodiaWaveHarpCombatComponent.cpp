@@ -10,6 +10,9 @@
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
+#include "Animation/AnimSequence.h"
+#include "Engine/SkeletalMesh.h"
+#include "Misc/PackageName.h"
 #include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -35,38 +38,57 @@ void UMelodiaWaveHarpCombatComponent::BeginPlay()
  Character = Cast<ACharacter>(GetOwner());
  if (!Character.IsValid()) { SetComponentTickEnabled(false); return; }
  auto* Mesh = Character->GetMesh();
- if (Mesh && Mesh->DoesSocketExist(TEXT("hand_l")))
+ if (Mesh && !Mesh->DoesSocketExist(InstrumentSocket))
  {
-  Bow = NewObject<UStaticMeshComponent>(GetOwner(), TEXT("WaveHarpBowPresentation"));
-  Bow->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07.SM_ME_WaveHarp_Bow_R07")));
-  Bow->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-  Bow->SetupAttachment(Mesh, TEXT("hand_l"));
-  Bow->SetRelativeScale3D(FVector(.9));
-  Bow->RegisterComponent();
-  Harp = NewObject<UStaticMeshComponent>(GetOwner(), TEXT("WaveHarpHarpPresentation"));
-  Harp->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Harp_R07.SM_ME_WaveHarp_Harp_R07")));
-  Harp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-  Harp->SetupAttachment(Mesh, TEXT("hand_l"));
-  Harp->SetRelativeScale3D(FVector(.9));
-  Harp->RegisterComponent();
+  UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP instrument socket %s missing on %s; instruments are not attached."), *InstrumentSocket.ToString(), *GetNameSafe(Mesh));
  }
- AttackMontage = LoadObject<UAnimMontage>(nullptr, TEXT("/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Gameplay.AM_Melusina_BowAttack_Gameplay"));
- DrawMontage = LoadObject<UAnimMontage>(nullptr, TEXT("/Game/Melodia/Characters/Melusina/Animations/AM_RangeAttack.AM_RangeAttack"));
+ if (Mesh && Mesh->DoesSocketExist(InstrumentSocket))
+ {
+  USceneComponent* FloatRoot = Character->GetRootComponent();
+  const FString InstrumentPackage = InstrumentMesh.ToSoftObjectPath().GetLongPackageName();
+  if (FloatRoot && !InstrumentPackage.IsEmpty() && FPackageName::DoesPackageExist(InstrumentPackage))
+  {
+   // Real shape-key instrument: Bow_Deployment opens the harp into the bow, Flex_Draw/Draw load it.
+   Instrument = NewObject<USkeletalMeshComponent>(GetOwner(), TEXT("WaveHarpInstrumentPresentation"));
+   Instrument->SetSkeletalMesh(InstrumentMesh.LoadSynchronous());
+   Instrument->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+   Instrument->SetupAttachment(FloatRoot);
+   Instrument->RegisterComponent();
+  }
+  else
+  {
+   // No morph mesh yet: the authored static harp and bow, blended by FormAlpha.
+   Bow = NewObject<UStaticMeshComponent>(GetOwner(), TEXT("WaveHarpBowPresentation"));
+   Bow->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Bow_R07.SM_ME_WaveHarp_Bow_R07")));
+   Bow->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+   Bow->SetupAttachment(Mesh, InstrumentSocket);
+   Bow->SetRelativeTransform(BowGrip);
+   Bow->RegisterComponent();
+   Harp = NewObject<UStaticMeshComponent>(GetOwner(), TEXT("WaveHarpHarpPresentation"));
+   Harp->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Harp_R07.SM_ME_WaveHarp_Harp_R07")));
+   Harp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+   Harp->SetupAttachment(FloatRoot ? FloatRoot : Mesh);
+   Harp->SetRelativeTransform(HarpGrip);
+   Harp->RegisterComponent();
+  }
+ }
  ShotNote = LoadObject<USoundBase>(nullptr, TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4"));
  for (const TCHAR* Family : {TEXT("Cmaj7"), TEXT("Cmaj6"), TEXT("Cm7")})
  {
   const FString Path = FString::Printf(TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_%s_Complete.SW_WaveHarp_%s_Complete"), Family, Family);
   ChordFlourishes.Add(LoadObject<USoundBase>(nullptr, *Path));
  }
- UpdateWeaponVisibility();
+ UpdateInstruments(0.f);
 }
 void UMelodiaWaveHarpCombatComponent::EndPlay(const EEndPlayReason::Type Reason)
 {
  CancelPhrase();
  StopAim();
+ StopPose();
  UnbindInput();
  if (Bow) Bow->DestroyComponent();
  if (Harp) Harp->DestroyComponent();
+ if (Instrument) Instrument->DestroyComponent();
  if (auto* UI = UMelodiaUIBridgeSubsystem::Get(this)) UI->ReleaseWorldCombatUI();
  Super::EndPlay(Reason);
 }
@@ -96,27 +118,11 @@ void UMelodiaWaveHarpCombatComponent::TickComponent(float Delta, ELevelTick Type
  {
   Character->SetActorRotation(FRotator(0, Controller->GetControlRotation().Yaw, 0));
  }
- if ((bAiming || bDrawing) && DrawMontage)
- {
-  if (auto* Anim = Character->GetMesh()->GetAnimInstance())
-  {
-   // Use the existing bow montage through the canonical ABP slot. Keep the
-   // release readable before returning to the held aim/draw pose.
-   if (!AttackMontage || !Anim->Montage_IsPlaying(AttackMontage))
-   {
-    if (!Anim->Montage_IsActive(DrawMontage)) Anim->Montage_Play(DrawMontage);
-    if (Anim->Montage_GetPosition(DrawMontage) >= .45f)
-    {
-     Anim->Montage_SetPosition(DrawMontage, .45f);
-     Anim->Montage_Pause(DrawMontage);
-    }
-   }
-  }
- }
- if (!CanAct() && !IsInSequence()) { bDrawing = false; StopAim(); }
+ UpdatePose(GetWorld()->GetTimeSeconds());
+ if (!CanAct() && !IsInSequence()) { bDrawing = false; bCharging = false; StopAim(); }
  if (ComboStep > 0 && GetWorld()->GetTimeSeconds() - LastRelease > FMath::Clamp(ChordChainWindow, .6f, 2.f)) ComboStep = 0;
  UpdateAimCamera(Delta);
- UpdateWeaponVisibility();
+ UpdateInstruments(Delta);
  if (auto* UI = UMelodiaUIBridgeSubsystem::Get(this)) UI->EnsureWorldCombatUI(Controller, IsInSequence());
 }
 void UMelodiaWaveHarpCombatComponent::BindInput()
@@ -170,7 +176,8 @@ bool UMelodiaWaveHarpCombatComponent::IsInSequence() const
 }
 float UMelodiaWaveHarpCombatComponent::GetDrawTension() const
 {
- return bDrawing && GetWorld() ? FMath::Clamp(float(GetWorld()->GetTimeSeconds()-DrawStarted) / FMath::Clamp(DrawReadySeconds, .2f, 1.5f), 0.f, 1.f) : 0;
+ // Tension belongs to the charged archery shot only; a tap is a caster cast with none.
+ return bCharging && GetWorld() ? FMath::Clamp(float(GetWorld()->GetTimeSeconds()-ChargeBegan) / FMath::Clamp(DrawReadySeconds, .2f, 1.5f), 0.f, 1.f) : 0;
 }
 float UMelodiaWaveHarpCombatComponent::GetHitFeedback() const
 {
@@ -232,12 +239,12 @@ void UMelodiaWaveHarpCombatComponent::StartAim()
 void UMelodiaWaveHarpCombatComponent::StopAim()
 {
  if (!bAiming) return;
- bAiming = false; bDrawing = false;
+ bAiming = false; bDrawing = false; bCharging = false;
+ StopPose();
  if (Character.IsValid())
  {
   Character->bUseControllerRotationYaw = bSavedControllerYaw;
   Character->GetCharacterMovement()->bOrientRotationToMovement = bSavedOrientToMovement;
-  if (auto* Anim = Character->GetMesh()->GetAnimInstance()) if (DrawMontage) Anim->Montage_Stop(.15f, DrawMontage);
  }
  StatusText = TEXT("FLOW  /  Click to shoot; hold RMB to aim.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_AIM_END"));
@@ -267,19 +274,16 @@ void UMelodiaWaveHarpCombatComponent::ToggleAim() { if (bAiming) StopAim(); else
 void UMelodiaWaveHarpCombatComponent::StartDraw()
 {
  if (!CanAct() || bDrawing || GetWorld()->GetTimeSeconds()-LastRelease < FMath::Clamp(MinimumShotInterval, .15f, .5f)) return;
- bDrawing = true; DrawStarted = GetWorld()->GetTimeSeconds();
- if (auto* Anim = Character->GetMesh()->GetAnimInstance())
- {
-  if (DrawMontage) Anim->Montage_Play(DrawMontage);
- }
- StatusText = TEXT("DRAW  /  Release LMB to fire.");
+ bDrawing = true; bCharging = false; DrawStarted = GetWorld()->GetTimeSeconds();
+ StatusText = TEXT("CAST  /  Release to cast, or hold to charge an archery shot.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_DRAW_BEGIN"));
 }
 void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
 {
  if (!bDrawing) return;
  const float Tension = GetDrawTension();
- bDrawing = false;
+ const bool bWasCharged = bCharging;
+ bDrawing = false; bCharging = false;
  if (!CanAct()) return;
  const double Now = GetWorld()->GetTimeSeconds();
  if (Now - LastRelease > FMath::Clamp(ChordChainWindow, .6f, 2.f)) ComboStep = 0;
@@ -294,6 +298,7 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
  Character->SetActorRotation(FRotator(0, Direction.Rotation().Yaw, 0));
  FActorSpawnParameters Spawn; Spawn.Owner = Character.Get(); Spawn.Instigator = Character.Get();
  Spawn.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+ bShotIsCharged = bWasCharged;
  if (auto* Arrow = GetWorld()->SpawnActor<AMelodiaWaveArrow>(Origin, Direction.Rotation(), Spawn))
  {
   Arrow->Launch(this, Direction);
@@ -319,12 +324,10 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
   if (auto* GI = GetWorld()->GetGameInstance())
    if (auto* Audio = GI->GetSubsystem<UMelodiaAudioReactivePresentationSubsystem>())
     Audio->PulseImpact(bCompletedChord ? .8f : .25f);
-  if (auto* Anim = Character->GetMesh()->GetAnimInstance())
-  {
-   if (DrawMontage) Anim->Montage_Stop(.05f, DrawMontage);
-   if (AttackMontage) Anim->Montage_Play(AttackMontage, 1.6f);
-  }
-  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_RELEASE shots=%d step=%d tension=%.3f"), ShotsFired, ComboStep, Tension);
+  PlayPose(bWasCharged ? ChargeFireAnim : CastShootAnim, false);
+  Pose = bWasCharged ? EPose::Fire : EPose::CastShoot;
+  if (bWasCharged) LastChargedRelease = Now;
+  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_RELEASE shots=%d step=%d tension=%.3f charged=%d"), ShotsFired, ComboStep, Tension, bWasCharged ? 1 : 0);
  }
  // Tension is presentation only. It never scales the stock damage result.
 }
@@ -400,14 +403,97 @@ void UMelodiaWaveHarpCombatComponent::Lane0() { Lane(0); }
 void UMelodiaWaveHarpCombatComponent::Lane1() { Lane(1); }
 void UMelodiaWaveHarpCombatComponent::Lane2() { Lane(2); }
 void UMelodiaWaveHarpCombatComponent::Lane3() { Lane(3); }
-void UMelodiaWaveHarpCombatComponent::UpdateWeaponVisibility()
+void UMelodiaWaveHarpCombatComponent::PlayPose(const TSoftObjectPtr<UAnimSequence>& Clip, bool bLoop)
 {
- const bool ShowBow = bAiming || bDrawing || (GetWorld() && GetWorld()->GetTimeSeconds()-LastRelease < 1.5);
+ if (!Character.IsValid() || !Character->GetMesh()) return;
+ UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance();
+ UAnimSequence* Seq = Clip.LoadSynchronous();
+ if (!Anim || !Seq)
+ {
+  UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP pose clip unavailable: %s"), *Clip.ToString());
+  return;
+ }
+ PoseMontage = Anim->PlaySlotAnimationAsDynamicMontage(Seq, PoseSlot, .08f, .12f, 1.f, bLoop ? 9999 : 1);
+}
+void UMelodiaWaveHarpCombatComponent::StopPose()
+{
+ if (Character.IsValid() && Character->GetMesh())
+ {
+  if (UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance())
+  {
+   if (PoseMontage) Anim->Montage_Stop(.15f, PoseMontage);
+  }
+ }
+ PoseMontage = nullptr;
+ Pose = EPose::None;
+}
+void UMelodiaWaveHarpCombatComponent::BeginCharge(double Now)
+{
+ bCharging = true;
+ ChargeBegan = Now;
+ PlayPose(ChargeDrawAnim, false);
+ Pose = EPose::Draw;
+ StatusText = TEXT("CHARGE / Release LMB to fire.");
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_CHARGE_BEGIN"));
+}
+void UMelodiaWaveHarpCombatComponent::UpdatePose(double Now)
+{
+ if (!Character.IsValid() || !Character->GetMesh()) return;
+ UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance();
+ const bool bPlaying = Anim && PoseMontage && Anim->Montage_IsPlaying(PoseMontage);
+ if (bDrawing && !bCharging && Now - DrawStarted >= ChargeThresholdSeconds) BeginCharge(Now);
+ if (bCharging && Pose == EPose::Draw && !bPlaying)
+ {
+  PlayPose(ChargeHoldAnim, true);
+  Pose = EPose::Hold;
+ }
+ else if (!bCharging && bAiming && !bDrawing && !bPlaying && Now - LastRelease > .25)
+ {
+  PlayPose(CastStanceAnim, true);
+  Pose = EPose::Stance;
+ }
+ else if (!bPlaying && !bAiming && !bCharging)
+ {
+  Pose = EPose::None;
+ }
+}
+void UMelodiaWaveHarpCombatComponent::UpdateInstruments(float Delta)
+{
+ const UWorld* World = GetWorld();
+ if (!World || !Character.IsValid()) return;
+ const double Now = World->GetTimeSeconds();
+ const bool bBowForm = bCharging || (Now - LastChargedRelease < BowFormHoldSeconds);
+ FormAlpha = FMath::FInterpConstantTo(FormAlpha, bBowForm ? 1.f : 0.f, Delta, 1.f / FMath::Max(TransformSeconds, .05f));
+ const float Tension = GetDrawTension();
+ const FVector Float = AstrolabeOffset + FVector(0, 0, AstrolabeBobCm * FMath::Sin(Now * 2.0));
+ const float Spin = FMath::Fmod(Now * AstrolabeSpinDegPerSecond, 360.0);
+ if (Instrument)
+ {
+  const FTransform Actor = Character->GetActorTransform();
+  FTransform Astro(Actor.GetRotation() * FQuat(FRotator(0, Spin, 0)), Actor.TransformPosition(Float), HarpGrip.GetScale3D());
+  FTransform InHand = BowGrip;
+  if (USkeletalMeshComponent* Mesh = Character->GetMesh())
+  {
+   InHand = BowGrip * Mesh->GetSocketTransform(InstrumentSocket);
+  }
+  FTransform Out;
+  Out.Blend(Astro, InHand, FormAlpha);
+  Instrument->SetWorldTransform(Out);
+  Instrument->SetMorphTarget(MorphBowDeployment, FormAlpha);
+  Instrument->SetMorphTarget(MorphFlexDraw, FormAlpha * Tension);
+  Instrument->SetMorphTarget(MorphBowstringDraw, FormAlpha * Tension);
+  return;
+ }
+ if (Harp)
+ {
+  Harp->SetRelativeLocation(Float);
+  Harp->SetRelativeRotation(FRotator(0, Spin, 0));
+  Harp->SetRelativeScale3D(HarpGrip.GetScale3D() * (1.f - FormAlpha));
+  Harp->SetVisibility(FormAlpha < .98f);
+ }
  if (Bow)
  {
-  Bow->SetVisibility(ShowBow);
-  // Authored presentation correction only; projectile direction never uses this.
-  if (Character.IsValid()) Bow->SetWorldRotation(FRotator(0, Character->GetActorRotation().Yaw+90, 0));
+  Bow->SetRelativeScale3D(BowGrip.GetScale3D() * FormAlpha);
+  Bow->SetVisibility(FormAlpha > .02f);
  }
- if (Harp) Harp->SetVisibility(!ShowBow);
 }

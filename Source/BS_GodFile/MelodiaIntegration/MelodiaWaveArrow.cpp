@@ -47,11 +47,10 @@ void AMelodiaWaveArrow::Launch(UMelodiaWaveHarpCombatComponent* Source, const FV
   TEXT("/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Arrow_R07.SM_ME_WaveHarp_Arrow_R07")));
  Movement->Velocity = Direction.GetSafeNormal() * Movement->InitialSpeed;
  // Existing world-space ribbon + sparks. Per-arrow parameters leave the shared asset intact.
- if (auto* System = LoadObject<UNiagaraSystem>(nullptr,
-  TEXT("/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_MotionTrails.NS_ChoralSheep_MotionTrails")))
+ if (UNiagaraSystem* System = Source ? Source->ArrowTrailSystem.LoadSynchronous() : nullptr)
  {
   Trail->SetAsset(System);
-  const float Intensity = Source ? FMath::Clamp(Source->ArrowTrailIntensity, .1f, .8f) : .6f;
+  const float Intensity = FMath::Clamp(Source->bShotIsCharged ? Source->ChargedTrailIntensity : Source->ArrowTrailIntensity, .1f, .8f);
   Trail->SetVariableFloat(TEXT("User.Intensity"), Intensity);
   Trail->SetVariableFloat(TEXT("User.GlobalReactivity"), Intensity);
   Trail->SetVariableFloat(TEXT("User.DreamVisibility"), 1.f);

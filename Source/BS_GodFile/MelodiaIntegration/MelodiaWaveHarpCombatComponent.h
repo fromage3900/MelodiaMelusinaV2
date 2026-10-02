@@ -12,6 +12,10 @@ class UAnimMontage;
 class USoundBase;
 class USpringArmComponent;
 class UMelodiaHybridEncounterComponent;
+class UNiagaraSystem;
+class UAnimSequence;
+class USkeletalMesh;
+class USkeletalMeshComponent;
 
 /** Player input, weapon presentation and release timing. Stock combat resolves every hit. */
 UCLASS(ClassGroup=(Melodia), meta=(BlueprintSpawnableComponent))
@@ -49,6 +53,45 @@ public:
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Music") FVector4 ChordIntervals = FVector4(0,4,7,11);
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Music") FString ChordName = TEXT("C major 7");
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.1", ClampMax="0.8")) float ArrowTrailIntensity = .6f;
+ /** Magical arrow trail. Swap this asset to retune the arrow FX; the arrow only reads it at launch. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|FX") TSoftObjectPtr<UNiagaraSystem> ArrowTrailSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_MotionTrails.NS_ChoralSheep_MotionTrails")));
+
+ /** Both instruments are held in the authored hand-prop socket, so they follow the hand and arm instead of the world. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Presentation") FName InstrumentSocket = TEXT("S_Instrument_L");
+ /** Offset of the bow from InstrumentSocket (rotation, location, scale). */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Presentation") FTransform BowGrip = FTransform(FRotator::ZeroRotator, FVector::ZeroVector, FVector(.9f));
+ /** Offset of the harp (astrolabe form) scale; its position is AstrolabeOffset while it floats. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Presentation") FTransform HarpGrip = FTransform(FRotator::ZeroRotator, FVector::ZeroVector, FVector(.9f));
+
+ /** LMB tap = caster basic attack. LMB held past this = charged archery shot. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Charge", meta=(ClampMin="0.15", ClampMax="0.8")) float ChargeThresholdSeconds = .3f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Charge", meta=(ClampMin="0.1", ClampMax="0.8")) float ChargedTrailIntensity = .8f;
+ /** True for the arrow just launched when it came from a charged shot. Presentation only; never scales damage. */
+ UPROPERTY(BlueprintReadOnly, Category="Melodia|WaveHarp|Charge") bool bShotIsCharged = false;
+
+ /** Anim slot the cast/charge clips play in (the canonical ABP slot). */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") FName PoseSlot = TEXT("DefaultSlot");
+ /** Caster stance held while aiming, and the basic-attack shot (LMB tap). */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastStanceAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Idle_Loop.A_Q_Melusina_Spell_Simple_Idle_Loop")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastShootAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Shoot.A_Q_Melusina_Spell_Simple_Shoot")));
+ /** Charged archery shot (LMB held): draw, hold loop, fire. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeDrawAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback.A_Spar_Mel_RMB_Drawback")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeHoldAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeFireAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire.A_Spar_Mel_RMB_Fire")));
+
+ /** Harp-to-bow instrument. If this skeletal mesh exists it is driven by the shape keys below; otherwise the static harp/bow blend is used. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") TSoftObjectPtr<USkeletalMesh> InstrumentMesh = TSoftObjectPtr<USkeletalMesh>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp.SK_ME_WaveHarp")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphBowDeployment = TEXT("Bow_Deployment");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphFlexDraw = TEXT("Flex_Draw");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphBowstringDraw = TEXT("Draw");
+ /** Seconds for the harp to open into the bow (and back). */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument", meta=(ClampMin="0.05", ClampMax="1.0")) float TransformSeconds = .22f;
+ /** How long the bow form is held after a charged release before the instrument folds back. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument", meta=(ClampMin="0.1", ClampMax="2.0")) float BowFormHoldSeconds = .7f;
+ /** Floating astrolabe form: offset from the character (forward, right, up), spin and bob. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FVector AstrolabeOffset = FVector(55.f, -35.f, 125.f);
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") float AstrolabeSpinDegPerSecond = 24.f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") float AstrolabeBobCm = 3.f;
 
  // Also callable by accessibility bindings. Normal play uses the real pawn InputComponent.
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void StartAim();
@@ -68,7 +111,11 @@ private:
  void Lane0(); void Lane1(); void Lane2(); void Lane3();
  void Lane(int32 Index);
  void UpdateInputOwnership();
- void UpdateWeaponVisibility();
+ void UpdateInstruments(float Delta);
+ void UpdatePose(double Now);
+ void BeginCharge(double Now);
+ void PlayPose(const TSoftObjectPtr<UAnimSequence>& Clip, bool bLoop);
+ void StopPose();
  void UpdateAimCamera(float Delta);
  void RestoreAimCamera();
  TWeakObjectPtr<ACharacter> Character;
@@ -80,8 +127,14 @@ private:
  TWeakObjectPtr<USpringArmComponent> CameraBoom;
  UPROPERTY(Transient) TObjectPtr<UStaticMeshComponent> Bow;
  UPROPERTY(Transient) TObjectPtr<UStaticMeshComponent> Harp;
- UPROPERTY(Transient) TObjectPtr<UAnimMontage> AttackMontage;
- UPROPERTY(Transient) TObjectPtr<UAnimMontage> DrawMontage;
+ UPROPERTY(Transient) TObjectPtr<USkeletalMeshComponent> Instrument;
+ UPROPERTY(Transient) TObjectPtr<UAnimMontage> PoseMontage;
+ enum class EPose : uint8 { None, Stance, Draw, Hold, Fire, CastShoot };
+ EPose Pose = EPose::None;
+ bool bCharging = false;
+ double ChargeBegan = 0;
+ double LastChargedRelease = -100;
+ float FormAlpha = 0.f;
  UPROPERTY(Transient) TObjectPtr<USoundBase> ShotNote;
  UPROPERTY(Transient) TArray<TObjectPtr<USoundBase>> ChordFlourishes;
  bool bAiming = false;
