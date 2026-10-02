@@ -1,6 +1,9 @@
 # Phyllotaxis Spiral System — plan (2026-10-01)
 
-**Status:** plan only. Nothing built. Companion to
+**Status: BUILT AND PROVEN 2026-10-01.** `deploy/surreal_arch/melodia_gn/phyllotaxis.py`
+lands two builders — `MEL_phyllotaxis_spiral` and `MEL_phyllotaxis_pave` — with
+`Tools/wardrobe_pipeline/phyllotaxis_proof.py` at **16/16 gates**, including a new
+flatness gate that exists because of the bug below. Companion to
 [`GN_BUILDER_AUDIT_2026-10-01.md`](GN_BUILDER_AUDIT_2026-10-01.md).
 
 ## The premise to accept first
@@ -139,6 +142,23 @@ every existing genome; if a resolved trait changes, seven authored brooches sile
 - All 7 existing genomes resolve with **unchanged** traits (diff the manifests before/after).
 - `melodia_sheep_horn_v1.json` exists and its manifest reads cleanly.
 - A sheep-tree scratch spiral renders and is visually judged by the owner.
+
+## 4b. What the build actually cost (4 defects, all silent)
+
+Recorded because each passed a naive proof and each was found only by looking at
+a render or a measured number:
+
+1. **`MeshLine`'s default `Offset` is `(0,0,1)`.** The "flat" spiral was a corkscrew
+   spanning z 0…169. Count, angle, radius and orphan gates all passed; from above it
+   rendered as one 10 px dot. Fix: zero the Offset, and gate on z-span < 1e-6.
+2. **A GEOMETRY `Switch` fed a `Points` socket yields empty with no error.**
+   `RealizeInstances` does not convert a Points cloud. Fix: `PointsToVertices` per branch.
+3. **`Even` was a silent lie in the pave** — the socket existed, the branch was hardcoded.
+4. **A point cloud has no faces**, so a correct spiral renders nothing until it is
+   instanced or swept.
+
+Also: a group node captures interface defaults at creation, so writing
+`tree.interface` after the node exists does nothing — write the node's own input.
 
 ## 5. Traps carried in from the skill, restated because they have all cost real time
 
