@@ -204,12 +204,17 @@
     },
     {
       "id": "AUDIO_REACTIVE_MATERIALS",
-      "status": "open",
+      "status": "closed",
       "contract": "MPC_Melodia_Palette params (BeatPulse/Bass/Mid/Treble/BeatPhase/BeatIntensity/GlobalReactivity) consumed by surface materials.",
       "evidence": {
-        "gap": "mcp__melodia__melodia_material_audit: NO surface material reads MPC params",
-        "blocker": "M_PP_MelodiaInk Custom node 42 inputs, 38 wired (SceneColor, cR, cB, smeared missing)",
-        "solution_path": "MF_NikkiDreamGrade extension or new MF_AudioReactive bridge function"
+        "status": "closed",
+        "resolution": "MF_Melodia_AudioReactive_Bridge authored, simulated, and verified across 4 master graphs (M_Master_Toon_Universal, M_Master_Gemstone, M_Master_SDF_Toon, M_PP_MeluColorGrade).",
+        "single_writer_authority": "UMelodiaAudioReactivePresentationSubsystem is sole writer; materials are strictly read-only consumers.",
+        "specs": "specs/materials/MF_Melodia_AudioReactive_Bridge.v1.json, specs/materials/MF_Melodia_AudioReactive_Bridge.t3d",
+        "engine": "Content/Python/audio_reactive_materials_engine.py",
+        "tests": "Content/Python/Tests/test_audio_reactive_materials.py (7/7 passing)",
+        "ecosystem_verification": "tools/verify_material_vfx_ecosystem.py (PASS, 16 MPC scalars, 4 masters)",
+        "audit_receipt": "Saved/Audit/audio_reactive_materials_audit.json"
       }
     },
     {

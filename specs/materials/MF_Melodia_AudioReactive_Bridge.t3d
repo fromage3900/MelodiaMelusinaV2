@@ -1,0 +1,156 @@
+Begin Object Class=/Script/Engine.MaterialFunction Name="MF_Melodia_AudioReactive_Bridge" ExportPath="/Script/Engine.MaterialFunction'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge'"
+   Begin Object Class=/Script/Engine.MaterialFunctionEditorOnlyData Name="MF_Melodia_AudioReactive_BridgeEditorOnlyData" ExportPath="/Script/Engine.MaterialFunctionEditorOnlyData'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MF_Melodia_AudioReactive_BridgeEditorOnlyData'"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_BaseColor" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_BaseColor'"
+      InputName="BaseColorIn"
+      InputType=FunctionInput_Vector3
+      bUsePreviewValueAsDefault=True
+      Preview=(X=1.000000,Y=1.000000,Z=1.000000,W=1.000000)
+      SortPriority=0
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_BaseEmissive" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_BaseEmissive'"
+      InputName="BaseEmissive"
+      InputType=FunctionInput_Vector3
+      bUsePreviewValueAsDefault=True
+      Preview=(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)
+      SortPriority=1
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_Roughness" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_Roughness'"
+      InputName="RoughnessIn"
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      Preview=(X=0.500000,Y=0.500000,Z=0.500000,W=1.000000)
+      SortPriority=2
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_Normal" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_Normal'"
+      InputName="NormalIn"
+      InputType=FunctionInput_Vector3
+      bUsePreviewValueAsDefault=True
+      Preview=(X=0.000000,Y=0.000000,Z=1.000000,W=1.000000)
+      SortPriority=3
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_EmissiveGain" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_EmissiveGain'"
+      InputName="EmissiveGain"
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      Preview=(X=1.000000,Y=1.000000,Z=1.000000,W=1.000000)
+      SortPriority=4
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_BassResponse" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_BassResponse'"
+      InputName="BassResponse"
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      Preview=(X=0.500000,Y=0.500000,Z=0.500000,W=1.000000)
+      SortPriority=5
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_MidResponse" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_MidResponse'"
+      InputName="MidResponse"
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      Preview=(X=0.500000,Y=0.500000,Z=0.500000,W=1.000000)
+      SortPriority=6
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionInput Name="MaterialExpressionFunctionInput_TrebleTwinkle" ExportPath="/Script/Engine.MaterialExpressionFunctionInput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_TrebleTwinkle'"
+      InputName="TrebleTwinkle"
+      InputType=FunctionInput_Scalar
+      bUsePreviewValueAsDefault=True
+      Preview=(X=0.750000,Y=0.750000,Z=0.750000,W=1.000000)
+      SortPriority=7
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_BeatPulse" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_BeatPulse'"
+      Collection=/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'
+      ParameterName="BeatPulse"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_Bass" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_Bass'"
+      Collection=/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'
+      ParameterName="Bass"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_Mid" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_Mid'"
+      Collection=/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'
+      ParameterName="Mid"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_Treble" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_Treble'"
+      Collection=/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'
+      ParameterName="Treble"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_GlobalReactivity" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_GlobalReactivity'"
+      Collection=/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'
+      ParameterName="GlobalReactivity"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionCollectionParameter Name="MaterialExpressionCollectionParameter_RhythmPulse" ExportPath="/Script/Engine.MaterialExpressionCollectionParameter'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_RhythmPulse'"
+      Collection=/Script/Engine.MaterialParameterCollection'/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette'
+      ParameterName="RhythmPulse"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_BeatMod" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_BeatMod'"
+      A=(Expression=MaterialExpressionCollectionParameter'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_BeatPulse"')
+      B=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_EmissiveGain"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_GlobalScaledPulse" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_GlobalScaledPulse'"
+      A=(Expression=MaterialExpressionMultiply'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_BeatMod"')
+      B=(Expression=MaterialExpressionCollectionParameter'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_GlobalReactivity"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_EmissiveOne" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionAdd_EmissiveOne'"
+      A=(Expression=MaterialExpressionMultiply'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_GlobalScaledPulse"')
+      ConstB=1.000000
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_EmissiveMain" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_EmissiveMain'"
+      A=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_BaseEmissive"')
+      B=(Expression=MaterialExpressionAdd'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionAdd_EmissiveOne"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_TrebleScaled" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_TrebleScaled'"
+      A=(Expression=MaterialExpressionCollectionParameter'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_Treble"')
+      B=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_TrebleTwinkle"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_TrebleColor" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_TrebleColor'"
+      A=(Expression=MaterialExpressionMultiply'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_TrebleScaled"')
+      B=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_BaseColor"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_TrebleAtten" ExportPath="/Script/Engine.MaterialExpressionMultiply'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_TrebleAtten'"
+      A=(Expression=MaterialExpressionMultiply'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_TrebleColor"')
+      ConstB=0.200000
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionAdd Name="MaterialExpressionAdd_EmissiveTotal" ExportPath="/Script/Engine.MaterialExpressionAdd'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionAdd_EmissiveTotal'"
+      A=(Expression=MaterialExpressionMultiply'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_EmissiveMain"')
+      B=(Expression=MaterialExpressionMultiply'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionMultiply_TrebleAtten"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionClamp Name="MaterialExpressionClamp_Emissive" ExportPath="/Script/Engine.MaterialExpressionClamp'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionClamp_Emissive'"
+      Input=(Expression=MaterialExpressionAdd'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionAdd_EmissiveTotal"')
+      MinDefault=0.000000
+      MaxDefault=20.000000
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_Emissive" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_Emissive'"
+      OutputName="EmissiveOut"
+      SortPriority=0
+      A=(Expression=MaterialExpressionClamp'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionClamp_Emissive"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_BaseColor" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_BaseColor'"
+      OutputName="BaseColorOut"
+      SortPriority=1
+      A=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_BaseColor"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_Roughness" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_Roughness'"
+      OutputName="RoughnessOut"
+      SortPriority=2
+      A=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_Roughness"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_Normal" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_Normal'"
+      OutputName="NormalPerturb"
+      SortPriority=3
+      A=(Expression=MaterialExpressionFunctionInput'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionInput_Normal"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_PulseScalar" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_PulseScalar'"
+      OutputName="AudioPulseScalar"
+      SortPriority=4
+      A=(Expression=MaterialExpressionCollectionParameter'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_BeatPulse"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_BassScalar" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_BassScalar'"
+      OutputName="AudioBassScalar"
+      SortPriority=5
+      A=(Expression=MaterialExpressionCollectionParameter'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_Bass"')
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionFunctionOutput Name="MaterialExpressionFunctionOutput_TrebleScalar" ExportPath="/Script/Engine.MaterialExpressionFunctionOutput'/Game/EnvSandbox/Materials/Functions/MF_Melodia_AudioReactive_Bridge.MF_Melodia_AudioReactive_Bridge:MaterialExpressionFunctionOutput_TrebleScalar'"
+      OutputName="AudioTrebleScalar"
+      SortPriority=6
+      A=(Expression=MaterialExpressionCollectionParameter'"MF_Melodia_AudioReactive_Bridge:MaterialExpressionCollectionParameter_Treble"')
+   End Object
+End Object
