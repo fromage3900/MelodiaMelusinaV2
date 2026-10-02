@@ -13,7 +13,7 @@ void UMelodiaNeuralHeroMaterialSubsystem::Initialize(FSubsystemCollectionBase& C
 
 	// Read-only handle to the SINGLE audio writer's MPC. Never written by us.
 	AudioCollection = LoadObject<UMaterialParameterCollection>(
-		nullptr, TEXT("/Game/Melodia/MPC_Melodia_Palette.MPC_Melodia_Palette"));
+		nullptr, TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"));
 
 	TickerHandle = FTSTicker::GetCoreTicker().AddTicker(
 		FTickerDelegate::CreateUObject(this, &UMelodiaNeuralHeroMaterialSubsystem::TickInference),

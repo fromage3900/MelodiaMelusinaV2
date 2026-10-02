@@ -16,6 +16,14 @@ namespace
 	constexpr TCHAR IntentPrefix[] = TEXT("melodia:");
 	constexpr TCHAR PersistentVariablePrefix[] = TEXT("melodia_");
 
+	FName WorldEncounterOutcomeIntent(const FName EncounterId, const EMelodiaBattleResult Result)
+	{
+		const TCHAR* Outcome = Result == EMelodiaBattleResult::Victory ? TEXT("victory")
+			: Result == EMelodiaBattleResult::Defeat ? TEXT("defeat") : TEXT("fled");
+		return EncounterId.IsNone() ? NAME_None
+			: FName(*FString::Printf(TEXT("world-encounter:%s:outcome:%s"), *EncounterId.ToString(), Outcome));
+	}
+
 	bool IsPersistentQuillVariable(const FName Name)
 	{
 		return Name.ToString().StartsWith(PersistentVariablePrefix, ESearchCase::IgnoreCase);
@@ -633,6 +641,50 @@ bool UMelodiaNarrativeSubsystem::CompleteBattle(const EMelodiaBattleResult Resul
 	bBattleCompletionConsumed = true;
 	const FName CompletedEncounter = PendingEncounterId;
 	PendingEncounterId = NAME_None;
+	CommitEncounterOutcome(CompletedEncounter, Result);
+	ResumeQuillOnce();
+	return true;
+}
+
+bool UMelodiaNarrativeSubsystem::IsWorldEncounterCompleted(const FName EncounterId) const
+{
+	return GetWorldEncounterOutcome(EncounterId) != EMelodiaBattleResult::Unavailable;
+}
+
+EMelodiaBattleResult UMelodiaNarrativeSubsystem::GetWorldEncounterOutcome(const FName EncounterId) const
+{
+	if (!EncounterId.IsNone())
+	{
+		for (const EMelodiaBattleResult Result : { EMelodiaBattleResult::Victory, EMelodiaBattleResult::Defeat, EMelodiaBattleResult::Fled })
+		{
+			if (NarrativeRecord.ConsumedIntentIds.Contains(WorldEncounterOutcomeIntent(EncounterId, Result))) return Result;
+		}
+	}
+	return EMelodiaBattleResult::Unavailable;
+}
+
+bool UMelodiaNarrativeSubsystem::CompleteWorldEncounterOutcome(
+	const FName EncounterId, const EMelodiaBattleResult Result)
+{
+	const FString Intent = FString::Printf(TEXT("CompleteWorldEncounter(%s)"), *EncounterId.ToString());
+	if (!Config || !IsAllowed(Config->EncounterIds, EncounterId, Intent)) return false;
+	if (!PendingEncounterId.IsNone()) return Reject(Intent, EMelodiaIntentFailure::Busy);
+	if (Result != EMelodiaBattleResult::Victory && Result != EMelodiaBattleResult::Defeat
+		&& Result != EMelodiaBattleResult::Fled) return false;
+	if (IsWorldEncounterCompleted(EncounterId)) return Reject(Intent, EMelodiaIntentFailure::Duplicate);
+	const FName OutcomeIntent = WorldEncounterOutcomeIntent(EncounterId, Result);
+	if (!ConsumeOnce(NarrativeRecord.ConsumedIntentIds, OutcomeIntent, Intent)) return false;
+	// Commit the stable replay guard before any delegate can re-enter. The
+	// existing JRPG save serializer already persists ConsumedIntentIds; there
+	// is no new record version, save object, file, or parallel completion set.
+	NarrativeRecord.LastEncounterCommandId = OutcomeIntent;
+	CommitEncounterOutcome(EncounterId, Result);
+	return true;
+}
+
+void UMelodiaNarrativeSubsystem::CommitEncounterOutcome(
+	const FName CompletedEncounter, const EMelodiaBattleResult Result)
+{
 	NarrativeRecord.LastEncounterId = CompletedEncounter;
 	NarrativeRecord.LastEncounterOutcome = Result;
 	const bool bWon = Result == EMelodiaBattleResult::Victory;
@@ -669,8 +721,6 @@ bool UMelodiaNarrativeSubsystem::CompleteBattle(const EMelodiaBattleResult Resul
 
 	UE_LOG(LogTemp, Log, TEXT("MELUSINA_LOOP_BATTLE_COMPLETED encounter=%s result=%s"), *CompletedEncounter.ToString(), *ResultValue);
 	OnBattleCompleted.Broadcast(CompletedEncounter, Result);
-	ResumeQuillOnce();
-	return true;
 }
 
 bool UMelodiaNarrativeSubsystem::AbortPendingBattle(const FString& Reason)
