@@ -60,7 +60,7 @@ SUITES = (
     Suite("Tools/test_optical_lod_lookdev.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_melodia_package_launch_contract.py", re.compile(r"validated Melusina package-launch montage contract")),
     Suite("Tools/test_mcp_policy.py", re.compile(r"mcp-policy-tests:\s+\d+/\d+ passed")),
-    Suite("Tools/test_agent_lease.py", re.compile(r"Ran\\s+\\d+ tests.*\\bOK\\b", re.S)),
+    Suite("Tools/test_agent_lease.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_mcp_registration.py", re.compile(r"validated checked-in MCP registration policy")),
     Suite("Tools/test_evidence_envelope.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
     Suite("Tools/test_ollama_health.py", re.compile(r"Ran\s+\d+ tests.*\bOK\b", re.S)),
