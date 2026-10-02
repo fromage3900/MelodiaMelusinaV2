@@ -47,8 +47,10 @@ Censorship" · "Week 3 - The Fleischers" · "An example of what I'm looking for 
 portion of your research assignment" · **"Research assignment"** · Discussion "Week 2" ·
 "Week 2 - Golden Silence" · "Notes from week 1" (+3 older items not loaded).
 
-Discussions: **4 unread** (Week 2, Week 3 Censorship, Week 4, + 1) — participation is graded
-(Group Discussions and Activities 20%). Left unread on purpose so they stay in the owner's queue.
+Discussions (all 4 opened + captured at owner's request, 2026-10-01 — full threads in
+`Blackboard_305_Discussions_2026-10-01.md`): Week 1 Ani History What and Why? · Week 2 ·
+Week 3 Censorship · Week 4 Plan B...or C...or. **Week 1 states the participation bar: 20 posts
+over the term for full marks.** Participation = Group Discussions and Activities 20%.
 
 Gradebook: Attendance only so far ("Ongoing", not graded).
 Outline eval: Visual Journal 20% · Oral/Video Presentation 20% · Research Assignment 20% ·
@@ -101,7 +103,8 @@ Announcement: sick-day note. All read 10/1.
    Registrations + Schedule Details" paste from the owner's signed-in Chrome closes all.
    (304 now known: Fridays 8:30 AM, J117.)
 2. **305 Research Assignment due date** — inside its Blackboard doc (open it in the shell).
-3. **305 discussion prompts** — left unread deliberately (owner participation items).
+3. **305 discussion POSTING** — all 4 threads captured 2026-10-01; the owner still owes posts
+   (20 over the term for full marks).
 4. **302 gradebook + 301 shell + 309 gradebook** — not deep-read this sweep; re-open shells.
 5. **OSAP / full-time status** — MyHumber Payment Centre + Student Awards (needs the one
    Banner password pass; registration = Part Time as of 30-Jul-2026).

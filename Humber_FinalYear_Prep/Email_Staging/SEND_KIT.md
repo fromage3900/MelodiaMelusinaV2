@@ -4,6 +4,8 @@ Source drafts: ../Capstone_Mentor_Booking_Emails_2026-09-30.md
 
 Sending is the owner's action - nothing here is sent by the agent.
 
+Note (2026-10-01): auto-creating Gmail drafts from the agent was attempted in the owner's Chrome; the foreground approval timed out (no consent), so NO drafts were created. The compose links below are the staging path - click one, review, Send.
+
 Fastest route: click a compose link below (opens Gmail compose prefilled, in whatever Google account the browser is signed into), check the From address, hit Send.
 
 Alternative: drag the .eml files into Gmail, or open them in any mail client.
