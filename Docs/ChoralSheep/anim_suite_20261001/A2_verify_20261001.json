@@ -1,0 +1,133 @@
+{
+ "rest_bbox_diag_m": 2.622,
+ "region_vertex_counts": {
+  "head": 426,
+  "jaw": 43,
+  "ear": 52,
+  "tail": null,
+  "planted_foot_verts": 32
+ },
+ "takes": {
+  "Graze": {
+   "frames": 96,
+   "loop": true,
+   "key_range": [
+    0.0,
+    96.0
+   ],
+   "loop_close_mm": 0.0,
+   "alive_mm": 594.3,
+   "peak_target_mm": 183.6,
+   "peak_frame": 20,
+   "root_drift_mm": 2.7,
+   "bad_frames": [],
+   "channels": 18,
+   "gate": {
+    "span": "PASS",
+    "closed": "PASS",
+    "alive": "PASS",
+    "target": "PASS",
+    "planted": "PASS",
+    "finite": "PASS"
+   },
+   "all_pass": true
+  },
+  "Bleat": {
+   "frames": 48,
+   "loop": false,
+   "key_range": [
+    0.0,
+    48.0
+   ],
+   "loop_close_mm": 0.0,
+   "alive_mm": 112.0,
+   "peak_target_mm": 106.3,
+   "peak_frame": 12,
+   "root_drift_mm": 0.19,
+   "bad_frames": [],
+   "channels": 12,
+   "gate": {
+    "span": "PASS",
+    "closed": "PASS",
+    "alive": "PASS",
+    "target": "PASS",
+    "planted": "PASS",
+    "finite": "PASS"
+   },
+   "all_pass": true
+  },
+  "EarFlick": {
+   "frames": 24,
+   "loop": false,
+   "key_range": [
+    0.0,
+    24.0
+   ],
+   "loop_close_mm": 0.0,
+   "alive_mm": 60.0,
+   "peak_target_mm": 60.0,
+   "peak_frame": 6,
+   "root_drift_mm": 0.0,
+   "bad_frames": [],
+   "channels": 9,
+   "gate": {
+    "span": "PASS",
+    "closed": "PASS",
+    "alive": "PASS",
+    "target": "PASS",
+    "planted": "PASS",
+    "finite": "PASS"
+   },
+   "all_pass": true
+  },
+  "TailWag": {
+   "frames": 60,
+   "loop": true,
+   "key_range": [
+    0.0,
+    60.0
+   ],
+   "loop_close_mm": 0.0,
+   "alive_mm": 231.2,
+   "peak_target_mm": 231.2,
+   "peak_frame": 26,
+   "root_drift_mm": 0.0,
+   "bad_frames": [],
+   "channels": 12,
+   "gate": {
+    "span": "PASS",
+    "closed": "PASS",
+    "alive": "PASS",
+    "target": "PASS",
+    "planted": "PASS",
+    "finite": "PASS"
+   },
+   "all_pass": true
+  },
+  "Harmonize": {
+   "frames": 120,
+   "loop": false,
+   "key_range": [
+    0.0,
+    120.0
+   ],
+   "loop_close_mm": 0.0,
+   "alive_mm": 229.0,
+   "peak_target_mm": 107.2,
+   "peak_frame": 24,
+   "root_drift_mm": 1.93,
+   "bad_frames": [],
+   "channels": 15,
+   "gate": {
+    "span": "PASS",
+    "closed": "PASS",
+    "alive": "PASS",
+    "target": "PASS",
+    "planted": "PASS",
+    "finite": "PASS"
+   },
+   "all_pass": true
+  }
+ },
+ "all_takes_pass": true
+}
