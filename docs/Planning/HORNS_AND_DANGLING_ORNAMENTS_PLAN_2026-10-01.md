@@ -1,209 +1,210 @@
-# Horns + Dangling Ornaments — plan (rev 3, 2026-10-01 late session)
+# Horns + Dangling Ornaments — updated plan (2026-10-01)
 
-**Status: rev 4 — the whole polish queue is implemented, gated, and APPLIED LIVE.**
-v1 (0 renderable verts) → v2 (pearl-first row, 13/13) → v3 (spine + hang solve) →
-**v4 (row with terminus menu, materials, chain, jitter, music; snapper with
-even-spacing + tip drop)**. Supersedes rev 2/3 (rev 2 backup:
-scratch `dangler_v2/backup/HORNS_PLAN_rev2_backup.md`).
-
-Applied live this pass (in-memory; **the owner saves** — nothing was written to disk):
-
-| Live object | Result |
-|---|---|
-| `SheepHornSpine` | 14 stations/horn, evenly spaced by arc length; tip 34/35 stations dropped |
-| `SheepHornDanglers` | **35,184 verts** = 24 × (1,322 pearl + 2×72 chain rings); mats `[ME_Sheep_Gold]` |
-| `SheepHorns` | **8,664 verts, untouched**, now carrying `ME_Sheep_Horn` (ivory) in slot 0 |
-| `MEL_horn_dangler_row` | v4: 61 nodes / 81 links (proof **19/19**) |
-| `MEL_horn_dangle_terminus` | 21 nodes / 26 links, per-part material sockets present |
-
-Proof: `Tools/wardrobe_pipeline/horn_dangl_proof.py` → **19/19** gates
-(G9 terminus menu, G10 smooth, G11 chain, G12 variation/seed, G13 material,
-G14 music passthrough, G15 chain length from the baked `radius`).
-
-Evidence levels: **proven** = measured, number recorded · **source** = builds, not yet rendered
-in place · **scaffold** = named, not built · **LIVE** = currently in the open .blend.
-
-Companions: [`GN_BUILDER_AUDIT_2026-10-01.md`](GN_BUILDER_AUDIT_2026-10-01.md),
-[`PHYLLOTAXIS_SPIRAL_PLAN_2026-10-01.md`](PHYLLOTAXIS_SPIRAL_PLAN_2026-10-01.md),
-[`BIGHORN_LIVE_VERIFICATION_2026-10-01.md`](BIGHORN_LIVE_VERIFICATION_2026-10-01.md).
+**Status:** plan only. Nothing built. Companion to
+[`GN_BUILDER_AUDIT_2026-10-01.md`](GN_BUILDER_AUDIT_2026-10-01.md) and
+[`PHYLLOTAXIS_SPIRAL_PLAN_2026-10-01.md`](PHYLLOTAXIS_SPIRAL_PLAN_2026-10-01.md).
 
 ---
 
-## 1. Where it stands (all numbers measured)
+## Read this first: step 0 is ALREADY DONE (corrected 2026-10-01, verified live)
 
-| Item | State | Evidence |
+**`s5_bighorn_horns.py` is not a pending promotion — it is already live.** Verified through
+MCP 9876 in the working session: all 15 dial names match the runner exactly, `has_lissajous:
+false`, one curve family, and the belly measures present on both radius and thickness.
+
+Full evidence: [`BIGHORN_LIVE_VERIFICATION_2026-10-01.md`](BIGHORN_LIVE_VERIFICATION_2026-10-01.md).
+
+**An earlier version of this plan said the rebuild "was authored but not promoted." That was
+wrong** — 45 nodes is the *rebuilt* tree's size, not the rejected one's, and I read it backwards.
+Note also that the live `Curl Radius` (0.105) and `Turns` (1.25) differ from the runner's
+docstring (0.085 / 1.35): **that is owner tuning, not drift. Do not "correct" it.**
+
+So the horn spine is done. What remains is **§2 — danglers on the existing horn** — and it
+still needs `phyllotaxis.py` first.
+
+### The measured baseline, for reference
+
+Horn world bbox span **0.444 × 0.193 × 0.217 m** on a 1.18 m body, 8,664 evaluated verts,
+`scale [1,1,1]`, raw mesh 0 (pure GN — correct, not a defect).
+
+**`s5_bighorn_horns.py` (27,592 bytes) already exists and already fixes the horn.** Written
+2026-09-25, it is a rebuild of `MEL_S5_horns` authored specifically to replace the spiral tree
+**the owner rejected**. Its own docstring records the measured defects it exists to fix:
+
+| Rejected tree | Bighorn rebuild |
+|---|---|
+| 3 coils at 0.07 m curl radius — "a cinnamon roll, not a ram horn" | 1.35 turns, curl radius 85 mm |
+| Root 0.028 → tip 0.006, a 4.7:1 cone with **no belly** | base 62 mm · **belly 58 mm** · tip 8 mm |
+| Wobble 0.008 vs curl 0.07 = 11% noise, **visually inert** | 14 growth ridges, 3.5 mm deep |
+| **TWO competing curve families in one tree** (Spherical Spiral AND Lissajous A/B/Delta/Coils) driving one output — 13 dials, no decision | **ONE curve family**, radius authored as an explicit radius-at-t curve, cross-section flattening to a 0.35 oval at the tip |
+| `s5_horns_live.json` recorded **2.63 × 2.15 × 2.37 m on a 1.19 m sheep**, measured pre-Align-To-Surface in the wrong frame, never reconciled | targets the 1.19 m body explicitly |
+
+**The live `MEL_S5_Horns` is still the rejected one.** The prep file's 22-tree census shows
+`SheepHorns::S5_Horns` at 45 nodes / 60 links — the *old* count. The rebuild was authored and
+never promoted.
+
+**So: promote it before writing anything new.** That is a file swap, not a build.
+
+---
+
+## 1. Step 0 — promote the bighorn rebuild (do this first, ~30 min)
+
+```bash
+blender.exe -b Saved/Audit/choral_sheep/capstone_prep_20261001/choral_sheep_CAPSTONE_PREP_20261001.blend \
+  --factory-startup --python Saved/Audit/choral_sheep/gn_v2_20260919/s5_bighorn_horns.py
+```
+
+Then, before believing it:
+
+- **Re-measure the horn extent against the body.** The old tree's failure was a 2.63 m horn on
+  a 1.19 m sheep. The gate is: horn span is plausible against a 1.19 m body, measured on the
+  *evaluated world bbox*, not from the script's own JSON.
+- **Re-read the receipt's `src`/`opened` fields** — that is the provenance chain, written by the
+  run rather than inferred after.
+- **Re-open the saved file and re-measure.** Append+save is where unlinked grafts die; the
+  post-save read is the only evidence that matters.
+- Confirm the tree count for `SheepHorns::S5_Horns` has *changed* from 45 nodes. If it is still
+  45, nothing happened.
+
+⚠️ **The prep `.blend` exists on one disk only — copy it before any run that saves in place.**
+Verified 2026-10-01: `choral_sheep_CAPSTONE_PREP_20261001.blend` is in **neither** git nor
+Perforce (`p4 files` → *no such file*). It carries the wool parent-inverse fix, the
+`SW_SculptCage` shrinkwrap, and the hidden 1.2M-poly ghosts — all unrecoverable if lost.
+
+- `s5_bighorn_horns.py` **is** already in Perforce (change 222), so the script itself is safe.
+- Of 45 sheep `.blend` files on disk, 35 are in the depot. The prep file is one of the 10 that
+  are not.
+
+---
+
+## 2. The new builder: dangle-along-a-host-curve
+
+**This is the genuine gap.** The 13 danglers in `cute_decor.py` are all standalone shapes, and
+the sheep's `SheepPearlDanglers` (39 nodes) and `PearlDangl_0..2` (17 nodes each) were placed
+by hand. Nothing attaches a dangler to a host curve at a point along it.
+
+**Closest prior art:** `ornament_strip.py::build_gold_ornament_strip` — beads along a curve.
+Extend that idea; do not start from nothing.
+
+### `MEL_horn_dangler_row` (wrapper) + `_dangle_row` (sub-builder)
+
+Same composition contract as `filigree_kit.py`: sub-builder takes `(tree, props, …)`, returns a
+**geometry socket**; wrapper owns the interface. Return `tree`, never a triple.
+
+| Dial | Default | Note |
 |---|---|---|
-| `MEL_horn_dangler_row` (repo) | **proven** | `horn_dangl_proof.py` **13/13**; 17 nodes / 19 links; Count×terminus exact (9→11,898 = 9×1,322) |
-| `MEL_horn_dangle_terminus` (house pearl) | **proven** | 1,322 v, 33 mm; reused from `cute_decor.build_pearl_dangl` |
-| Spine snapper `horn_spine_snap.py` | **proven** | chord-midpoint snap; inside **1.0** pre/post both horns; 121 stations/horn; local tube radius 32→19.5 mm |
-| Hang solve (per-station drop) | **proven** | coil span: sphere clearance **9–17 mm**, loop gap **3–6 mm**; tip stations ~86–120 tight: **2–6 mm** (below the 8 mm bar, not intersecting) |
-| End-to-end copy build | **proven** | 20 pearls (10/horn), **26,440 v** = 20×1,322; renders in `Saved/Audit/choral_sheep/dangler_v2_20261001/` |
-| Look (vision on the built render) | **proven** | *"they HANG … a thin loop connects the cap to the horn, and the sphere hangs down … not embedded"*; symmetric on both horns |
-| `SheepHornDanglers` | **LIVE** | 15,864 v = 12×1,322; wrapper group `SheepHornDanglers`; dials 12 / 0 / 0.03 / 2.0 |
-| `SheepHorns` | **LIVE, untouched** | 8,664 v; `MEL_S5_horns`; **no material slot** |
-| Materials on the ornament set | **gap** | LIVE read: `SheepHorns`, `SheepHornDanglers`, `SheepMusicBeads`, `SheepPearlDanglers`, `PearlDangl_0/1/2` all read **`mats: []`** |
+| `Count` | 7 | int, wide range |
+| `Host Offset` | 0.0 | **along `CurveToPoints.Normal`, never `InputNormal`** |
+| `Drop Length` | 0.06 | scaled per §4 below |
+| `Terminal` | — | terminator selector |
+| `Terminal Size` | 0.015 | |
+| `Chain Links` | 3 | 0 = single drop |
+| `Link Radius` / `Link Thick` | 0.011 / 0.0028 | brooch-genome values |
+| `Phase Offset` | 0.0 | de-correlates the two horns |
+| `Jitter` | 0.0 | **0 default** — see neutrality gate |
+| `Even` | false | the phyllotaxis bool, shared with the spiral plan |
 
-## 2. Traps paid for in time — read before touching this lane
+### Terminators — reuse, do not rebuild
 
-1. **A legacy Curve datablock has no `attributes` API in 5.2** — `curve.attributes.new(...)` raises
-   `AttributeError: 'Curve' object has no attribute 'attributes'`. A direction vector **cannot** ride
-   along a curve. Per-point values must be **baked into the point positions** (or the point `radius`,
-   which does work).
-2. **A −Z drop from a coil's outer rim slides along the tube cross-section.** On a helix the
-   cross-section plane contains the coil axis, so "down" from the rim walks *around the tube* and the
-   pearl grazes it instead of hanging clear. The anchor must be a **solved** per-station point.
-3. **`Curve to Points`' `Normal` twists around a helix** — a large radial offset along it buried
-   pearls (vertex-inside fractions up to 0.92 measured). Never use it for the row's push on coil
-   hosts; the snapper supplies a baked locus instead.
-4. **Ray-parity is not a containment test on an open swept tube** — it reads a confident 1.0 on the
-   spine's deep-centre points and garbage near the surface; a normal-signed test failed the same way.
-   Use **distance sampling of the pearl sphere** (the hang solve) as the acceptance measure.
-5. **`Curve to Points` Count is PER SPLINE** — Count=12 on a 2-spline host gives 24 instances
-   (11,568 v measured). Budget `Count × splines`.
-6. **`Curve to Points` mode is a menu that defaults to Evaluated and ignores Length** until the mode
-   is explicitly set (polish P3 depends on this).
-7. **A bare Points cloud is invisible** — no faces, renders nothing, reads **0 through `to_mesh()`**.
-   "0 verts" was invisibility, not absence. Always measure after Realize Instances.
-8. **Cross-domain links evaluate EMPTY without error** — `Mesh Line.Mesh → Vector Math.Vector`,
-   `Vector Math.Vector → Mesh to Curve.Mesh`: accepted, no `link_failures()` entry, evaluates to
-   nothing. This is what zeroed v1.
-9. **An unlinked Geometry input is a silent no-op, not an error** — v1's live row node was fully
-   unlinked and looked healthy.
-10. **`GeometryNodeInputNormal` is empty on curve points** — its offset silently no-ops. Use
-    `CurveToPoints`' own `Normal` output.
-11. **`NodesModifier` value storage (5.2).** A NODES modifier has no `inputs`, refuses idprops
-    (`idProperty not supported for this type`), and `mod.properties.items_tree` reads EMPTY — its
-    per-socket values are internal. A modifier created BEFORE its group gained sockets keeps
-    stale/zero values and silently overrides the group interface defaults: measured Count behaving
-    as 0 → clamped to 1 → 2 danglers instead of 24, and the material lost. **Fix: replace the
-    modifier** (a fresh one initialises from the interface): `m = ob.modifiers.new(n, "NODES");
-    m.node_group = group; ob.modifiers.remove(old)`. Note an existing modifier's values are its own —
-    editing the group's interface defaults does NOT retro-change it (that is normal Blender; the
-    panel edits are what drive it).
+`MEL_pearl_dangl` (**already on this sheep**), `MEL_star_dangl`, `MEL_crystal_drop`,
+`MEL_lace_dangl`, `MEL_bead_tassel`, `MEL_star_finial`.
 
-## 3. Architecture (what the row is fed)
+⚠️ **Scale.** The dangl family is jewellery scale and already correct: `build_star_dangl`
+measured 54 × 57 × **1003 mm** long, `build_lace_dangl` 60 × 80 × **1005 mm**. A horn drop wants
+60–120 mm. **Rescale via `Scale Elements` or the `Terminal Size` dial — do not re-author the
+shape.**
 
-```
-SheepHorns (mesh, 8,664 v)
-  └─ horn_spine_snap.py        chord-midpoint centreline extraction (inside 1.0)
-       ├─ per-station local tube radius (BVH ray-pair, 32→19.5 mm)
-       ├─ outward direction per station (radial from the horn's own axis)
-       └─ hang solve: per-station drop that clears the pearl sphere (≥8 mm bar;
-          actual drop 0.040–0.045 on the coil, up to 0.135 near the tip)
-  └─ SheepHornSpine (2-spline poly curve = BAKED PEARL ANCHORS)
-       └─ MEL_horn_dangler_row      Count x terminus, per spline
-            └─ Instance pearl terminus (scale = Terminal Size)
-                 └─ Realize -> SheepHornDanglers
-```
+### Two non-negotiable construction rules
 
-The row stays generic (Count / Host Offset / Hang Drop / Terminal Size); **for the horns, Host Offset
-and Hang Drop stay 0** because the anchors are pre-solved. Re-run the snapper after any change to
-Terminal Size (the solve assumes pearl radius 24 mm = scale 2).
+1. **`GeometryNodeInputNormal` is EMPTY on curve points and its offset silently no-ops.**
+   Measured: offsetting 180 curve points by 0.10 along `InputNormal` left every coordinate
+   bit-identical. **Use `CurveToPoints.Normal`** — with a 0.21 radius arc, a 0.10 offset along
+   it put every point at r = 0.310, exactly radial. This is the single most important rule in
+   this builder; get it wrong and the danglers sit buried inside the horn.
+2. **`DeleteGeometry`'s unlinked `Selection` defaults TRUE** — no link deletes everything. A
+   96-point resampled curve went to 0 verts, the tree still built, still passed every size and
+   seat gate, with the ornament simply absent. **Link Selection explicitly and assert the
+   branch produces geometry.**
 
-## 4. Polish queue (in order)
+Also: `parts = [_transform(..., parts[0], ...)]` **rebuilds** the list and discards the rest.
+Assign `parts[0] = ...`. And a `_feed` helper that swallows exceptions makes a missing link
+indistinguishable from a correct one — record and print every failure.
 
-- **P1 — Materials. The largest visual gap.** LIVE read: horns *and* every dangler object have empty
-  slots, while the house gold `ME_Sheep_Gold` already exists (3 users; collar v4 uses
-  `ME_Sheep_Gold.002`).
-  - P1a: add a **Material socket** to the row (a `Set Material` node on the terminus branch),
-    default `ME_Sheep_Gold` → pearls come out gold with no wiring.
-  - P1b: give **`SheepHorns` a horn material** (ivory/bone). Today the horns render flat clay grey —
-    this is why the test renders read "unfinished". Object slot or `MEL_S5_horns` SetMaterial change;
-    owner's call on the datablock.
-  - P1c: a loop/cap metal distinct from the pearl (second socket, or one material + contrast).
-- **P2 — Tip-region clearance.** Stations ~86–120 (thin curled tip) sit at 2–6 mm — "resting", not
-  intersecting. (a) stop the baked spine ~15 stations short so the row never places a pearl there
-  (cheapest, keeps the look) — recommended; (b) allow a longer tip drop in the solve.
-- **P3 — Spacing rhythm.** Count mode spaces by parameter, so spacing varies with the coil's
-  curvature — the "bunching" the vision noticed. Bake the anchors as *evenly spaced* solved stations
-  (the snapper already owns the station list) — fixes P2 for free. Recommended.
-- **P4 — Pearl read.** The pearls read visibly faceted against the smooth horns. Deliberate style
-  (keep) or add a smooth/subdivision pass at the terminus. Owner's taste call.
-- **P5 — Chain second pass** (deferred from v1). Build as a sub-branch off the same host points:
-  c2m the segment between anchor and loop top. Only after P1–P3 settle.
+---
 
-## 5. Expansion queue (the "xpansion" ask)
+## 3. Seating — measure, never iterate
 
-| # | Expansion | Reuses | State |
-|---|---|---|---|
-| E1 | **Terminus variants** — star / lace / bead-tassel danglers | `cute_decor.build_star_dangl` / `build_lace_dangl` / `build_bead_tassel`; add a Terminus enum dial to the row | source |
-| E2 | **Blossom rows on the horn base** | `MEL_phyllotaxis_spiral` / `_pave` (proof 18/18) | proven builders |
-| E3 | **Neck / collar dangler row** — same row, new host curve | the row + `SheepWreathCollar_v4` (LIVE, has material) | source |
-| E4 | **Tail row** — danglers off the tail scroll | the row + `SheepTailScroll` (LIVE, gold) | source |
-| E5 | **Herd variation** — a Seed dial so each sheep's row differs | row + per-object seed | scaffold |
-| E6 | **Music-reactive ornament** — the house music sockets are already on the row interface (`Music Influence`, `Musical Amplitude`, `Musical Freq A/B`) | the row's existing interface | scaffold |
+The sheep crown is the precedent for getting this wrong. Per the skill:
 
-E1 and E5 are the best value-per-effort; E2 reuses builders already proven.
+> **DO NOT "clean up" a local transform that evaluates correctly.** The earlier version of this
+> skill said to reset `scale`/`rotation_euler` and re-solve `.location` when adopting a legacy
+> object. Doing that to the crown **DESTROYED a correctly-seated piece four times over.**
 
-## 6. LIVE ornament inventory (read this pass, read-only)
+The correct procedure:
 
-| Object | Verts | Modifier → group | Material |
-|---|---|---|---|
-| `SheepHorns` | 8,664 | `S5_Horns` → `MEL_S5_horns` | — |
-| `SheepHornDanglers` | 15,864 | `Danglers` → `SheepHornDanglers` (wrapper) | — |
-| `SheepMusicBeads` | 3,100 | `S5_MusicBeads` → `MEL_S5_music_beads` | — |
-| `SheepPearlDanglers` | 3,420 | `S5_Pearls` → `MEL_S5_pearl_string` | — |
-| `PearlDangl_0/1/2` | 1,322 ea | `MEL_sheep_pearl_dangl` | — |
-| `SheepWreathCollar_v4` | 4,088 | filigree wreath ring | `ME_Sheep_Gold.002` |
-| `SheepTailScroll` | 576 | filigree spiral | `ME_Sheep_Gold` |
-| `SheepEarBead_L/R` | 86 ea | S5 bead dial | `ME_Sheep_Gold` |
-| `MrSheepFinalTHISONELOOK` | 1,000 | S5 body stack | Coat / Skin / Hoof |
+1. **Measure the evaluated world bbox first. If it is right, do nothing.**
+2. Only if wrong, measure the tree's **local** vertex centre by hand (`evaluated.to_mesh()`),
+   and note the parent's real world transform.
+3. **Solve ONCE in closed form:** `world_centre = parent_t + loc + local_centre`.
+   **Never iterate** — the map is affine and a mis-signed parent term becomes positive
+   feedback, not convergence.
+4. Reset inherited `scale`/`rotation_euler` only when you have **measured** that they are the
+   defect. Opaque ≠ broken: one legacy lane left `scale 2.0065` and `rot 73.74°` on a wreath
+   object; a different object legitimately carries a large local rotation the parent chain
+   cancels.
 
-Live file: `choral_sheep_A_blossoms_FIXED_20261001.blend` (**dirty — owner saves**).
+---
 
-## 7. Next actions
+## 4. Per-object variation needs per-object tree copies
 
-Done this pass (all verified, live applied but unsaved): P1a, P1b, P2, P3, P4,
-P5, E1, E5, E6. **The dials are now on the `SheepHornDanglers` modifier panel**
-(Count, Host Offset, Hang Drop, Terminal Size, Terminus, Chain Links, Pearl
-Smooth, Variation, Seed, Pearl Material) — sweep them in the UI; if a dial ever
-reads dead, replace the modifier (trap 11). Remaining queue, in order:
+**NODES modifier idprops are DEAD in 5.2.1** — both `mod["Name"]` and `mod[identifier]` raise
+`id properties not supported`, headless *and* live. And modifiers **capture** interface
+defaults at creation, so changing a tree default afterwards does not recapture: a re-point at a
+different tree keeps the stale values and the evaluated geometry reads identical.
 
-1. **P1c full split** — the pearl terminus exposes `Pearl Material` / `Trim
-   Material` and does the per-part split; the row deliberately stays in SINGLE
-   material mode until the star/lace/bead builders carry the same two sockets
-   (`all(...)` in `horn_dangl.py` §5 flips it automatically).
-2. **E2** blossom ring at the horn base (phyllotaxis builders are proven 18/18).
-3. **E3** collar dangler row (host curve fitted to `SheepWreathCollar_v4`).
-4. **E4** tail dangler row (host curve fitted to `SheepTailScroll`).
-5. **Tuning with the owner's eye** — Count vs the 14 baked stations, Terminal
-   Size, Variation/Seed, and whether the chain reads at 2 links.
+So for two horns that must differ (left/right, or `Phase Offset`):
 
-Owner to note: the pearls span the coil from the base up to where the tip
-clearance fails (34 of 121 stations dropped per horn); a 3/4 view can read the
-lower run as bunched because the coil's outer curve is nearest the camera.
+- Set the tree interface default **before** `modifiers.new`, or
+- remove + re-add the modifier to recapture, or
+- use **per-object tree copies** — the established `Sheep_Bloom_A/B/C` pattern, where copies
+  share one mesh datablock. **Keep weight sums at 1.0 or the copies deform wrong.**
 
-## 8. Tool / file inventory
+---
 
-- `deploy/surreal_arch/melodia_gn/horn_dangl.py` — the row (synced byte-identical to the AppData copy)
-- `deploy/surreal_arch/melodia_gn/cute_decor.py` — `build_pearl_dangl` + the other terminus builders
-- `Tools/wardrobe_pipeline/horn_spine_snap.py` — centreline snap + hang solve → `SheepHornSpine`
-- `Tools/wardrobe_pipeline/horn_dangl_proof.py` — 13 gates → `horn_dangl_proof_result.json`
-- `Tools/wardrobe_pipeline/phyllotaxis_proof.py` — 18 gates (G6g = the row emits geometry)
-- scratch `dangler_v2/`: `copy_wire_render.py` (end-to-end copy build + renders),
-  `live_state_snapshot.py` (read-only live read), `mcp_exec.py` (live socket runner),
-  `study_scene.py`, `fit_study*.py`, `rewire_live_v2.py`
+## 5. Proof gate
 
-```
-blender --background --factory-startup --python Tools/wardrobe_pipeline/horn_dangl_proof.py
-blender --background --factory-startup fit_study_base.blend --python copy_wire_render.py
-python mcp_exec.py live_state_snapshot.py
-```
+`Tools/wardrobe_pipeline/horn_dangl_proof.py`:
 
-## 9. Standing rules carried forward (still binding)
+1. Both trees **construct** in `bpy.data.node_groups`.
+2. **Dangler vert count == predicted sum.** A count suspiciously close to one component means
+   a socket-domain mismatch — that exact signal exposed a piece whose every ornament branch was
+   empty while 18 gates passed.
+3. **No dangler is buried in the horn.** Signed containment against the measured horn
+   cross-section, allowing the dangler's own thickness. A *proximity* test cannot prove seating:
+   counting verts within 12 mm read 56.6% "buried" on a correctly-wrapped piece, because a band
+   resting on a surface always has its inner half in contact.
+4. **Every node created has a consumer** — the orphan check. No gate catches an orphan otherwise.
+5. **Neutrality:** `Jitter 0` and `Host Offset 0` evaluate to no displacement.
+6. Horn extent plausible against the 1.19 m body.
 
-- **Seating: measure, never iterate.** Evaluate the world bbox first; if it is right, touch nothing.
-  One closed-form solve max (`world = parent_t + loc + local_centre`). The crown precedent (four
-  destroyed re-seats) applies; opaque ≠ broken.
-- **Per-object variation = per-object tree copies.** NODES modifier idprops are dead in 5.2.1 and
-  interface edits do not propagate to existing consumers — write group-node inputs directly, or copy
-  the tree (`Sheep_Bloom_A/B/C` pattern; keep weight sums 1.0).
-- **Two nudge→verify passes max**, then ship a number + ONE render + one question.
-- **Builder/tool sync:** repo copy + byte-identical AppData copy (`cp` then `cmp`); builder code
-  carries the defaults, the .blend carries the tuning.
-- **Live is read-only unless the owner GOes it.** One live write per authorization; owner saves.
+---
 
-## 10. Out of scope
+## 6. Sequence
 
-Wool/fleece (separate lane — the capstone blocker), closed-editor build, UE import,
-Substance/UVB bake, rig/mocap work.
+| # | Work | Gate |
+|---|---|---|
+| 0 | **Promote `s5_bighorn_horns.py`** (exists) | horn extent re-measured; tree node count changed from 45 |
+| 1 | `phyllotaxis.py` per the spiral plan | 6-point proof green |
+| 2 | `MEL_horn_dangler_row` using terminal reuse | 6-point proof green |
+| 3 | Wire to the promoted horn; left/right tree copies | vert count + seating measured |
+| 4 | Stage file for owner visual judgement | **owner decides, not the agent** |
+
+**Two nudge→verify passes max, then stop and ask.** Never loop
+screenshot→adjust→screenshot on style. Ship a number plus ONE screenshot, then one question.
+
+---
+
+## 7. Out of scope
+
+Wool/fleece (the real capstone blocker, separate lane — `fluffy_pilot{,2,3,4,5}.py` remain the
+open decision), the closed-editor build, UE import, Substance/UVB bake.
