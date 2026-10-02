@@ -128,6 +128,8 @@ from . import musical_mesh_variants  # noqa: F401 - recovered 2026-09-11 (was li
 from . import nikki_advanced_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import nikki_musical_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
+from . import phyllotaxis  # noqa: F401 - golden-angle 137.5077 spiral + pave (shared w/ brooch genomes)
+from . import horn_dangl  # noqa: F401 - ornate dangle row along a host curve
 from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import eyewear  # noqa: F401 - Eyewear: CAD-level frame front from ISO 8624 boxing measurements
