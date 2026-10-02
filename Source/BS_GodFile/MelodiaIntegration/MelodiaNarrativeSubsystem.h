@@ -150,6 +150,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
 	bool CompleteBattle(EMelodiaBattleResult Result);
 
+	/** Same durable outcome authority for world-owned encounters. No stock
+	 * battle/interpreter is created. The existing consumed-intent record makes
+	 * a stable EncounterId replay-safe through save/reload. */
+	bool CompleteWorldEncounterOutcome(FName EncounterId, EMelodiaBattleResult Result);
+	bool IsWorldEncounterCompleted(FName EncounterId) const;
+	EMelodiaBattleResult GetWorldEncounterOutcome(FName EncounterId) const;
+
 	/**
 	 * Releases a pending encounter after an integration failure without fabricating a
 	 * battle result.
@@ -277,6 +284,7 @@ private:
 	bool IsAllowed(const TSet<FName>& Allowlist, FName Id, const FString& Intent);
 	bool ConsumeOnce(TArray<FName>& ConsumedIds, FName Id, const FString& Intent);
 	bool ResumeQuillOnce();
+	void CommitEncounterOutcome(FName EncounterId, EMelodiaBattleResult Result);
 	void CapturePersistentQuillVariables();
 	void RestorePersistentQuillVariables();
 

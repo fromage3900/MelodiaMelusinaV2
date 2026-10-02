@@ -3,6 +3,7 @@
 #include "Animation/AnimInstance.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/SkeletalMesh.h"
+#include "Engine/World.h"
 #include "GameFramework/Actor.h"
 #include "MelodiaCompanionWardrobeBridge.h"
 
@@ -224,10 +225,11 @@ FVector UMelodiaCompanionComponent::GetDesiredNavigationLocation() const
 	}
 
 	const FVector TargetLocation = FollowTarget->GetActorLocation();
-	const FVector FromTarget = GetOwner() ? GetOwner()->GetActorLocation() - TargetLocation : FVector::BackwardVector;
-	const FVector FollowOffset = FromTarget.IsNearlyZero()
-		? -FollowTarget->GetActorForwardVector()
-		: FromTarget.GetSafeNormal();
+	FVector FromTarget = GetOwner() ? GetOwner()->GetActorLocation() - TargetLocation : FVector::BackwardVector;
+	FromTarget.Z = 0.0;
+	FVector FollowOffset = -FollowTarget->GetActorForwardVector();
+	FollowOffset.Z = 0.0;
+	FollowOffset = FromTarget.IsNearlyZero() ? FollowOffset.GetSafeNormal() : FromTarget.GetSafeNormal();
 	return TargetLocation + FollowOffset * ActiveDefinition.FollowDistance;
 }
 
@@ -326,8 +328,32 @@ void UMelodiaCompanionComponent::DriveOwnerToward(const FVector& DesiredLocation
 
 	USceneComponent* Root = Owner->GetRootComponent();
 	const FVector CurrentLocation = Owner->GetActorLocation();
+
+	// The companion's feet belong on the ground under it, never on the target's capsule centre.
+	// The mesh pivot is at the feet, so the root Z is simply the walkable surface height.
+	float GroundZ = CurrentLocation.Z;
+	if (const UWorld* World = GetWorld())
+	{
+		FCollisionQueryParams Params(SCENE_QUERY_STAT(CompanionGround), false, Owner);
+		if (FollowTarget)
+		{
+			Params.AddIgnoredActor(FollowTarget);
+		}
+		FHitResult GroundHit;
+		// Reference height is the thing being followed, so a high or drifted companion can never
+		// start its trace above a ceiling and latch onto it.
+		const double RefZ = DesiredLocation.Z;
+		const FVector Start(CurrentLocation.X, CurrentLocation.Y, RefZ + 100.0);
+		const FVector End(CurrentLocation.X, CurrentLocation.Y, RefZ - 1500.0);
+		if (World->LineTraceSingleByChannel(GroundHit, Start, End, ECC_Visibility, Params))
+		{
+			GroundZ = GroundHit.ImpactPoint.Z;
+		}
+	}
+
 	if (FVector::DistSquared2D(CurrentLocation, DesiredLocation) <= FMath::Square(AcceptanceRadius))
 	{
+		Owner->SetActorLocation(FVector(CurrentLocation.X, CurrentLocation.Y, FMath::FInterpTo(CurrentLocation.Z, GroundZ, DeltaTime, 12.0f)));
 		if (Root)
 		{
 			Root->ComponentVelocity = FVector::ZeroVector;
@@ -335,7 +361,8 @@ void UMelodiaCompanionComponent::DriveOwnerToward(const FVector& DesiredLocation
 		return;
 	}
 
-	const FVector NewLocation = FMath::VInterpTo(CurrentLocation, DesiredLocation, DeltaTime, FMath::Max(0.0f, FollowInterpSpeed));
+	const FVector Planar = FMath::VInterpTo(FVector(CurrentLocation.X, CurrentLocation.Y, 0.0), FVector(DesiredLocation.X, DesiredLocation.Y, 0.0), DeltaTime, FMath::Max(0.0f, FollowInterpSpeed));
+	const FVector NewLocation(Planar.X, Planar.Y, FMath::FInterpTo(CurrentLocation.Z, GroundZ, DeltaTime, 12.0f));
 	FHitResult Hit;
 	Owner->SetActorLocation(NewLocation, true, &Hit);
 	// SetActorLocation does not update velocity; AActor::GetVelocity (read by the companion ABP) returns this.

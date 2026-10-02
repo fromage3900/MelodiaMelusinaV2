@@ -211,6 +211,22 @@ bool UMelodiaInputContextSubsystem::IsMovementAllowed() const
 	return Context == EMelodiaInputContext::None || Context == EMelodiaInputContext::Exploration;
 }
 
+void UMelodiaInputContextSubsystem::SetActionPointerCapture(UObject* Owner, const bool bCapture)
+{
+	if (!IsValid(Owner)) return;
+	if (bCapture)
+	{
+		if (ActionPointerOwner.Get() == Owner || ActionPointerOwner.IsValid()) return;
+		ActionPointerOwner = Owner;
+	}
+	else
+	{
+		if (ActionPointerOwner.Get() != Owner) return;
+		ActionPointerOwner.Reset();
+	}
+	ApplyActiveContext(GetActiveContext());
+}
+
 bool UMelodiaInputContextSubsystem::IsInteractionAllowed() const
 {
 	// Same permission set as movement today, but kept separate: interaction prompts
@@ -271,6 +287,11 @@ void UMelodiaInputContextSubsystem::ApplyActiveContext(const EMelodiaInputContex
 		case EMelodiaInputContext::Exploration:
 		default:
 			{
+				if (ActionPointerOwner.IsValid())
+				{
+					PC->SetInputMode(FInputModeGameOnly());
+					break;
+				}
 				FInputModeGameAndUI Mode;
 				Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 				Mode.SetHideCursorDuringCapture(false);
@@ -355,7 +376,7 @@ void UMelodiaInputContextSubsystem::SetCursorRole(const EMelodiaCursorRole Role)
 
 void UMelodiaInputContextSubsystem::UpdateCursorVisualState()
 {
-	const FMelodiaCursorVisualState NewState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole,
+	FMelodiaCursorVisualState NewState = ResolveCursorVisualState(GetActiveContext(), RequestedCursorRole,
 		bPointerPressed, ActiveCursorDevice,
 #if PLATFORM_ANDROID || PLATFORM_IOS
 		true
@@ -363,6 +384,7 @@ void UMelodiaInputContextSubsystem::UpdateCursorVisualState()
 		false
 #endif
 	);
+	if (ActionPointerOwner.IsValid() && IsMovementAllowed()) NewState.bVisible = false;
 	if (APlayerController* PC = GetPlayerController())
 	{
 		PC->bShowMouseCursor = NewState.bVisible;

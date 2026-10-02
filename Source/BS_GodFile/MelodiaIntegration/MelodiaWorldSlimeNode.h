@@ -1,24 +1,18 @@
-// Hybrid-combat spike: world-resolved slime node (sandbox only).
-//
-// WORLD_PROJECTED_TURNS shape (Jev-live): the trigger/HP/death/respawn loop is
-// real; the damage NUMBER is a documented stub (SpikeScalarStub) standing in
-// for the stock skill/grade scalar until the STOCK_BRIDGE lands. Do not ship
-// this scalar — the bridge replaces it with UseSkillWithRhythm output.
-// Stock keeps owning damage numbers; this actor only owns HP location.
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MelodiaWorldSlimeNode.generated.h"
 
-class UStaticMeshComponent;
+class APawn;
+class UMelodiaHybridEncounterComponent;
 class USphereComponent;
+class UStaticMeshComponent;
 
 /**
- * One-hit world slime node for the hybrid spike. Lives in sandbox maps only
- * (MelodiaIntegrationMap). Overlap with the player resolves a world hit in
- * place — no scene change, no battle map. Death hides the node and respawns
- * on a timer; kills are counted for proof reads.
+ * One sandbox target for Flow and Sequence. This actor owns one HP value and
+ * remains in the world across presentation changes. Damage arrives only as an
+ * already resolved final value; it contains no stock or rhythm damage math.
  */
 UCLASS(Blueprintable)
 class BS_GODFILE_API AMelodiaWorldSlimeNode : public AActor
@@ -28,55 +22,52 @@ class BS_GODFILE_API AMelodiaWorldSlimeNode : public AActor
 public:
 	AMelodiaWorldSlimeNode();
 
-	/** Slime body. Mesh is assigned in the BP child (sandbox presentation). */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Melodia|HybridSpike")
-	TObjectPtr<UStaticMeshComponent> SlimeMesh = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid")
+	TObjectPtr<UStaticMeshComponent> SlimeMesh;
 
-	/** Contact volume that resolves the world hit. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Melodia|HybridSpike")
-	TObjectPtr<USphereComponent> HitVolume = nullptr;
+	/** Proximity/targeting only. Overlap never applies damage. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid")
+	TObjectPtr<USphereComponent> HitVolume;
 
-	/** HP owned by the world actor (location), not by battle units. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|HybridSpike")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid")
+	TObjectPtr<UMelodiaHybridEncounterComponent> HybridEncounter;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid", meta=(ClampMin="1.0"))
 	float MaxHP = 25.0f;
 
-	UPROPERTY(BlueprintReadOnly, Category="Melodia|HybridSpike")
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Hybrid")
 	float CurrentHP = 25.0f;
 
-	/** DOCUMENTED STUB: stands in for the stock skill/grade scalar. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|HybridSpike")
-	float SpikeScalarStub = 1.0f;
-
-	/** Base world-hit damage before the scalar. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|HybridSpike")
-	float SpikeBaseDamage = 25.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|HybridSpike")
-	float RespawnSeconds = 10.0f;
-
-	UPROPERTY(BlueprintReadOnly, Category="Melodia|HybridSpike")
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Hybrid")
 	bool bIsDead = false;
 
-	UPROPERTY(BlueprintReadOnly, Category="Melodia|HybridSpike")
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Hybrid")
 	int32 KillCount = 0;
 
-	/** Bridge entry point: applies FinalDamage the way the stock bridge will. */
-	UFUNCTION(BlueprintCallable, Category="Melodia|HybridSpike")
+	/** Existing stock authored stat/skill definitions. Defaults are stat views;
+	 * no unit is spawned and their HP is never used as encounter state. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock")
+	TSubclassOf<AActor> StockAttackerDefinition;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock")
+	TSubclassOf<AActor> StockDefenderDefinition;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock")
+	TSubclassOf<AActor> StockSkillDefinition;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock", meta=(ClampMin="0"))
+	int32 StockPureDamage = 0;
+
+	UFUNCTION(BlueprintPure, Category="Melodia|Hybrid")
+	bool IsPlayerInTargetRange(const APawn* PlayerPawn) const;
+
+	/** Sink for a final number supplied by the stock resolver. */
+	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
 	void ApplyWorldDamage(float FinalDamage);
 
-	/** Contact resolve: one hit at the stubbed scalar (spike behavior). */
-	UFUNCTION(BlueprintCallable, Category="Melodia|HybridSpike")
-	void ResolveContactHit();
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+		class AController* EventInstigator, AActor* DamageCauser) override;
 
 protected:
 	virtual void BeginPlay() override;
 
-	UFUNCTION()
-	void OnHitOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
 private:
 	void Die();
-	void Respawn();
-
-	FTimerHandle RespawnTimer;
 };

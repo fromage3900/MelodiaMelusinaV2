@@ -1,14 +1,14 @@
-// Hybrid-combat spike: world-resolved slime node (sandbox only).
-// See header for the stub contract.
-
 #include "MelodiaWorldSlimeNode.h"
 
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "GameFramework/Character.h"
+#include "Engine/GameInstance.h"
+#include "Engine/World.h"
 #include "GameFramework/Pawn.h"
-#include "GameFramework/PlayerController.h"
-#include "TimerManager.h"
+#include "MelodiaExternalJRPGBridgeSubsystem.h"
+#include "MelodiaHybridEncounterComponent.h"
+#include "MelodiaNarrativeTypes.h"
+#include "MelodiaNarrativeSubsystem.h"
 
 AMelodiaWorldSlimeNode::AMelodiaWorldSlimeNode()
 {
@@ -20,52 +20,65 @@ AMelodiaWorldSlimeNode::AMelodiaWorldSlimeNode()
 	HitVolume = CreateDefaultSubobject<USphereComponent>(TEXT("HitVolume"));
 	HitVolume->SetupAttachment(SlimeMesh);
 	HitVolume->InitSphereRadius(120.0f);
-	// Trigger profile: overlap pawn capsules (which BLOCK WorldDynamic by
-	// default, so a QueryOnly + response-to-Pawn setup never fires).
 	HitVolume->SetCollisionProfileName(TEXT("Trigger"));
+
+	HybridEncounter = CreateDefaultSubobject<UMelodiaHybridEncounterComponent>(TEXT("HybridEncounter"));
 }
 
 void AMelodiaWorldSlimeNode::BeginPlay()
 {
 	Super::BeginPlay();
-	CurrentHP = MaxHP;
-	HitVolume->OnComponentBeginOverlap.AddUniqueDynamic(this, &AMelodiaWorldSlimeNode::OnHitOverlap);
+	CurrentHP = FMath::Max(1.0f, MaxHP);
+	if (const UMelodiaNarrativeSubsystem* Narrative = UMelodiaNarrativeSubsystem::GetMelodiaNarrativeSubsystem(this))
+	{
+		if (Narrative->IsWorldEncounterCompleted(HybridEncounter->GetEncounterId()))
+		{
+			SetCanBeDamaged(false);
+			SetActorEnableCollision(false);
+			if (Narrative->GetWorldEncounterOutcome(HybridEncounter->GetEncounterId()) == EMelodiaBattleResult::Victory)
+			{
+				CurrentHP = 0.0f;
+				bIsDead = true;
+				SetActorHiddenInGame(true);
+			}
+			return; // Restoring a durable outcome must never broadcast another death.
+		}
+	}
+	if (StockAttackerDefinition && StockDefenderDefinition)
+	{
+		if (UMelodiaExternalJRPGBridgeSubsystem* Bridge =
+			UMelodiaExternalJRPGBridgeSubsystem::GetGameInstanceSubsystem(GetGameInstance()))
+		{
+			Bridge->BindWorldDamageResolver(HybridEncounter,
+				StockAttackerDefinition->GetDefaultObject(), StockDefenderDefinition->GetDefaultObject(),
+				StockSkillDefinition ? StockSkillDefinition->GetDefaultObject() : nullptr, StockPureDamage);
+		}
+	}
 }
 
-void AMelodiaWorldSlimeNode::OnHitOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+bool AMelodiaWorldSlimeNode::IsPlayerInTargetRange(const APawn* PlayerPawn) const
 {
-	if (bIsDead || !IsValid(OtherActor) || !OtherActor->IsA<ACharacter>())
-	{
-		return;
-	}
-	// Player-controlled pawns only: ignore wild pawns and trigger volumes.
-	const APawn* OtherPawn = Cast<APawn>(OtherActor);
-	if (!IsValid(OtherPawn) || !OtherPawn->IsPlayerControlled())
-	{
-		return;
-	}
-	ResolveContactHit();
+	return !bIsDead && CanBeDamaged() && IsValid(PlayerPawn) && PlayerPawn->IsPlayerControlled()
+		&& HitVolume && HitVolume->IsOverlappingActor(PlayerPawn);
 }
 
-void AMelodiaWorldSlimeNode::ResolveContactHit()
+float AMelodiaWorldSlimeNode::TakeDamage(const float DamageAmount, const FDamageEvent& DamageEvent,
+	AController* EventInstigator, AActor* DamageCauser)
 {
-	if (bIsDead)
-	{
-		return;
-	}
-	// STUB: stock scalar goes here when STOCK_BRIDGE lands.
-	ApplyWorldDamage(SpikeBaseDamage * SpikeScalarStub);
+	const float Before = CurrentHP;
+	ApplyWorldDamage(DamageAmount);
+	return Before - CurrentHP;
 }
 
-void AMelodiaWorldSlimeNode::ApplyWorldDamage(float FinalDamage)
+void AMelodiaWorldSlimeNode::ApplyWorldDamage(const float FinalDamage)
 {
-	if (bIsDead)
+	if (bIsDead || !CanBeDamaged() || !FMath::IsFinite(FinalDamage) || FinalDamage <= 0.0f)
 	{
 		return;
 	}
-	CurrentHP = FMath::Max(0.0f, CurrentHP - FMath::Max(0.0f, FinalDamage));
-	UE_LOG(LogTemp, Log, TEXT("MelodiaHybridSpike: world hit %.1f on %s (HP %.1f/%.1f)."),
-		FinalDamage, *GetActorLabel(), CurrentHP, MaxHP);
+	CurrentHP = FMath::Max(0.0f, CurrentHP - FinalDamage);
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_HYBRID_HIT target=%s final=%.1f hp=%.1f/%.1f"),
+		*GetName(), FinalDamage, CurrentHP, MaxHP);
 	if (CurrentHP <= 0.0f)
 	{
 		Die();
@@ -76,24 +89,22 @@ void AMelodiaWorldSlimeNode::Die()
 {
 	bIsDead = true;
 	++KillCount;
+	SetCanBeDamaged(false);
 	SetActorHiddenInGame(true);
 	SetActorEnableCollision(false);
-	SetActorTickEnabled(false);
-	UE_LOG(LogTemp, Log, TEXT("MelodiaHybridSpike: %s defeated in-world (typed result Victory, kills=%d)."),
-		*GetActorLabel(), KillCount);
-	if (UWorld* World = GetWorld())
+	if (HybridEncounter
+		&& HybridEncounter->GetPresentationMode() == EMelodiaHybridPresentationMode::Sequence)
 	{
-		World->GetTimerManager().SetTimer(RespawnTimer, this,
-			&AMelodiaWorldSlimeNode::Respawn, RespawnSeconds, false);
+		HybridEncounter->CancelSequence();
 	}
-}
 
-void AMelodiaWorldSlimeNode::Respawn()
-{
-	CurrentHP = MaxHP;
-	bIsDead = false;
-	SetActorHiddenInGame(false);
-	SetActorEnableCollision(true);
-	SetActorTickEnabled(true);
-	UE_LOG(LogTemp, Log, TEXT("MelodiaHybridSpike: %s respawned (HP %.1f)."), *GetActorLabel(), CurrentHP);
+	UGameInstance* GameInstance = GetWorld() ? GetWorld()->GetGameInstance() : nullptr;
+	UMelodiaExternalJRPGBridgeSubsystem* Bridge = GameInstance
+		? GameInstance->GetSubsystem<UMelodiaExternalJRPGBridgeSubsystem>() : nullptr;
+	const bool bCompleted = Bridge && Bridge->CompleteWorldEncounter(HybridEncounter, EMelodiaBattleResult::Victory);
+	if (!bCompleted)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MELODIA_HYBRID_OUTCOME_NOT_RETAINED target=%s encounter=%s: completion failed and no retry is queued"),
+			*GetName(), HybridEncounter ? *HybridEncounter->GetEncounterId().ToString() : TEXT("None"));
+	}
 }
