@@ -224,7 +224,9 @@ bool FMelodiaWiringRhythmScalarSingleApplicationTest::RunTest(const FString& Par
 {
 	using namespace MelodiaWiringContract;
 
-	UBlueprint* Controller = LoadChecked<UBlueprint>(*this, BattleControllerPath);
+	// MelodiaStockContract.cpp has another anonymous-namespace constant with
+	// this name in the same unity translation unit. Keep the current owner fix.
+	UBlueprint* Controller = LoadChecked<UBlueprint>(*this, MelodiaWiringContract::BattleControllerPath);
 	if (!Controller)
 	{
 		return false;

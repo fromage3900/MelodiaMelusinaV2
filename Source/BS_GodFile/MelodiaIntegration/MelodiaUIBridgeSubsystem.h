@@ -11,6 +11,9 @@ class UMelodiaBattleKeyboardLegendWidget;
 class UMelodiaBattleResultsWidget;
 class UMelodiaBattleSession;
 class UUserWidget;
+class APlayerController;
+class UMelodiaWaveHarpHUDWidget;
+class UMelodiaRhythmHUDWidget;
 
 // Underlying-type enums used by the reflected handlers below; complete
 // definitions live in the MelodiaCore plugin (MelodiaBattleTypes.h).
@@ -34,6 +37,9 @@ class BS_GODFILE_API UMelodiaUIBridgeSubsystem final : public UGameInstanceSubsy
 
 public:
 	UMelodiaUIBridgeSubsystem();
+	/** Same UI owner for overworld controls and the authored phrase highway. */
+	void EnsureWorldCombatUI(APlayerController* Player, bool bSequence);
+	void ReleaseWorldCombatUI();
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
@@ -171,4 +177,6 @@ private:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UMelodiaBattleKeyboardLegendWidget> KeyboardLegend;
+	UPROPERTY(Transient) TObjectPtr<UMelodiaWaveHarpHUDWidget> WorldCombatHUD;
+	UPROPERTY(Transient) TObjectPtr<UMelodiaRhythmHUDWidget> WorldRhythmHUD;
 };

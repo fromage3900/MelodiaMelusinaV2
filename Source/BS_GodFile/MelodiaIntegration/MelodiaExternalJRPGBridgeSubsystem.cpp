@@ -3,12 +3,15 @@
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
+#include "MelodiaHybridEncounterComponent.h"
 #include "MelodiaJRPGPostBattleLibrary.h"
 #include "MelodiaSaveRecoverySubsystem.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaNarrativeTypes.h"
+#include "MelodiaRhythmCombatSubsystem.h"
 #include "UObject/StructOnScope.h"
 #include "UObject/UnrealType.h"
+#include "UObject/Script.h"
 
 namespace
 {
@@ -73,8 +76,226 @@ void UMelodiaExternalJRPGBridgeSubsystem::Initialize(FSubsystemCollectionBase& C
 
 void UMelodiaExternalJRPGBridgeSubsystem::Deinitialize()
 {
+	for (const auto& Pair : WorldDamageBindings)
+	{
+		if (UMelodiaHybridEncounterComponent* Encounter = Pair.Value.Encounter.Get())
+		{
+			Encounter->OnWorldEffectRequested.RemoveDynamic(this, &ThisClass::HandleWorldEffectRequested);
+		}
+	}
+	WorldDamageBindings.Reset();
 	UnbindActiveBattle();
 	Super::Deinitialize();
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::BindWorldDamageResolver(
+	UMelodiaHybridEncounterComponent* Encounter, UObject* StockAttacker,
+	UObject* StockDefenderStats, UObject* StockSkill, const int32 PureDamage)
+{
+	UClass* UnitClass = LoadClass<UObject>(nullptr,
+		TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Units/BP_UnitBase.BP_UnitBase_C"));
+	UClass* SkillClass = LoadClass<UObject>(nullptr,
+		TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_BattleSkillBase.BP_BattleSkillBase_C"));
+	if (!IsValid(Encounter) || !HasUniqueWorldEncounter(Encounter, Encounter->GetEncounterId())
+		|| !UnitClass || !IsValid(StockAttacker) || !StockAttacker->IsA(UnitClass)
+		|| !IsValid(StockDefenderStats) || !StockDefenderStats->IsA(UnitClass)
+		|| (StockSkill && (!IsValid(StockSkill) || !SkillClass || !StockSkill->IsA(SkillClass))) || PureDamage < 0)
+	{
+		return false;
+	}
+	// Binding while a phrase is active would replace its authoritative inputs.
+	if (Encounter->GetPresentationMode() != EMelodiaHybridPresentationMode::Flow)
+	{
+		return false;
+	}
+	FWorldDamageBinding Binding;
+	Binding.Encounter = Encounter;
+	Binding.Attacker = StockAttacker;
+	Binding.DefenderStats = StockDefenderStats;
+	Binding.Skill = StockSkill;
+	Binding.PureDamage = PureDamage;
+	WorldDamageBindings.Add(FObjectKey(Encounter), Binding);
+	Encounter->OnWorldEffectRequested.AddUniqueDynamic(this, &ThisClass::HandleWorldEffectRequested);
+	return true;
+}
+
+void UMelodiaExternalJRPGBridgeSubsystem::UnbindWorldDamageResolver(UMelodiaHybridEncounterComponent* Encounter)
+{
+	if (Encounter)
+	{
+		Encounter->OnWorldEffectRequested.RemoveDynamic(this, &ThisClass::HandleWorldEffectRequested);
+		WorldDamageBindings.Remove(FObjectKey(Encounter));
+	}
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::InvokeStockDamageResolver(
+	const FWorldDamageBinding& Binding, const double Multiplier, int32& OutDamage)
+{
+	OutDamage = 0;
+	if (!IsInGameThread() || bResolvingStockDamage || !Binding.Attacker.IsValid()
+		|| !Binding.DefenderStats.IsValid() || Binding.Skill.IsStale()
+		|| !FMath::IsFinite(Multiplier) || Multiplier < 0.0)
+	{
+		return false;
+	}
+	UClass* ControllerClass = LoadClass<UObject>(nullptr,
+		TEXT("/Game/TurnBasedJRPGTemplate/Blueprints/Battle/BP_BattleController.BP_BattleController_C"));
+	UObject* Calculator = ControllerClass ? ControllerClass->GetDefaultObject() : nullptr;
+	UFunction* CalculateDamage = Calculator ? Calculator->FindFunction(TEXT("CalculateDamage")) : nullptr;
+	FIntProperty* PureDamage = CalculateDamage ? FindFProperty<FIntProperty>(CalculateDamage, TEXT("pureDamage")) : nullptr;
+	FDoubleProperty* DamageMultiplier = CalculateDamage ? FindFProperty<FDoubleProperty>(CalculateDamage, TEXT("damageMultiplier")) : nullptr;
+	FIntProperty* Damage = CalculateDamage ? FindFProperty<FIntProperty>(CalculateDamage, TEXT("damage")) : nullptr;
+	FObjectPropertyBase* Attacker = ControllerClass ? FindFProperty<FObjectPropertyBase>(ControllerClass, TEXT("currentAttackingUnit")) : nullptr;
+	FObjectPropertyBase* Defender = ControllerClass ? FindFProperty<FObjectPropertyBase>(ControllerClass, TEXT("currentTargetUnit")) : nullptr;
+	FObjectPropertyBase* Skill = ControllerClass ? FindFProperty<FObjectPropertyBase>(ControllerClass, TEXT("currentSkill")) : nullptr;
+	if (!PureDamage || !DamageMultiplier || !Damage || !Damage->HasAnyPropertyFlags(CPF_OutParm)
+		|| !Attacker || !Defender || !Skill || CalculateDamage->NumParms != 3)
+	{
+		UE_LOG(LogTemp, Error, TEXT("MELODIA_HYBRID stock CalculateDamage contract changed; effect remains pending."));
+		return false;
+	}
+
+	// CalculateDamage/IsHit use function-local multiplier/hitChance and stock
+	// stat reads; neither calls DealDamage or writes a unit's HP. Use their
+	// existing class function context without spawning a controller/battle/unit.
+	// The three contextual references are borrowed synchronously on the game
+	// thread and restored before any encounter/delegate callback is dispatched.
+	TGuardValue<bool> ResolvingGuard(bResolvingStockDamage, true);
+#if WITH_EDITOR
+	FEditorScriptExecutionGuard ScriptExecutionGuard;
+#endif
+	UObject* PreviousAttacker = Attacker->GetObjectPropertyValue_InContainer(Calculator);
+	UObject* PreviousDefender = Defender->GetObjectPropertyValue_InContainer(Calculator);
+	UObject* PreviousSkill = Skill->GetObjectPropertyValue_InContainer(Calculator);
+	Attacker->SetObjectPropertyValue_InContainer(Calculator, Binding.Attacker.Get());
+	Defender->SetObjectPropertyValue_InContainer(Calculator, Binding.DefenderStats.Get());
+	Skill->SetObjectPropertyValue_InContainer(Calculator, Binding.Skill.Get());
+	FStructOnScope Params(CalculateDamage);
+	PureDamage->SetPropertyValue_InContainer(Params.GetStructMemory(), Binding.PureDamage);
+	DamageMultiplier->SetPropertyValue_InContainer(Params.GetStructMemory(), Multiplier);
+	Calculator->ProcessEvent(CalculateDamage, Params.GetStructMemory());
+	OutDamage = Damage->GetPropertyValue_InContainer(Params.GetStructMemory());
+	Attacker->SetObjectPropertyValue_InContainer(Calculator, PreviousAttacker);
+	Defender->SetObjectPropertyValue_InContainer(Calculator, PreviousDefender);
+	Skill->SetObjectPropertyValue_InContainer(Calculator, PreviousSkill);
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_HYBRID_STOCK_RESOLVED resolver=BP_BattleController.CalculateDamage multiplier=%.3f final=%d"),
+		Multiplier, OutDamage);
+	return OutDamage >= 0;
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(UMelodiaHybridEncounterComponent* Encounter)
+{
+	if (!IsValid(Encounter) || !IsValid(Encounter->GetEncounterTarget())
+		|| !Encounter->GetEncounterTarget()->CanBeDamaged()
+		|| Encounter->GetPresentationMode() != EMelodiaHybridPresentationMode::Flow)
+	{
+		return false;
+	}
+	const FWorldDamageBinding* Found = WorldDamageBindings.Find(FObjectKey(Encounter));
+	if (!Found)
+	{
+		return false;
+	}
+	const FWorldDamageBinding Binding = *Found;
+	int32 FinalDamage = 0;
+	return InvokeStockDamageResolver(Binding, 1.0, FinalDamage)
+		&& (FinalDamage == 0 || Encounter->ApplyResolvedFlowDamage(FinalDamage));
+}
+
+void UMelodiaExternalJRPGBridgeSubsystem::HandleWorldEffectRequested(
+	AActor* Target, const FMelodiaRhythmEffectRequest& Request)
+{
+	UMelodiaRhythmCombatSubsystem* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this);
+	UMelodiaHybridEncounterComponent* Encounter = IsValid(Target)
+		? Target->FindComponentByClass<UMelodiaHybridEncounterComponent>() : nullptr;
+	if (!Rhythm || !IsValid(Encounter) || !Request.bConsumed
+		|| Request.SessionId != Rhythm->GetActiveSessionId()
+		|| Request.SessionId != Encounter->GetSequenceSessionId() || !Encounter->HasPendingSequenceEffect())
+	{
+		return;
+	}
+	const FWorldDamageBinding* Found = WorldDamageBindings.Find(FObjectKey(Encounter));
+	if (!Found)
+	{
+		return;
+	}
+	const FWorldDamageBinding Binding = *Found;
+	int32 FinalDamage = 0;
+	// RhythmCombat already latched BaseMagnitude * grade once. Pass its FINAL
+	// multiplier to stock, exactly as the existing DealDamage sites do; never
+	// multiply Request.RhythmScalar (or stats) again in this bridge.
+	if (InvokeStockDamageResolver(Binding, Rhythm->GetPendingDamageMultiplier(), FinalDamage))
+	{
+		Rhythm->ClearPendingDamageMultiplier();
+		Encounter->ApplyResolvedSequenceDamage(FinalDamage, Request.SessionId);
+	}
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::HasUniqueWorldEncounter(
+	const UMelodiaHybridEncounterComponent* Encounter, const FName EncounterId) const
+{
+	UWorld* World = GetWorld();
+	AActor* Target = IsValid(Encounter) ? Encounter->GetEncounterTarget() : nullptr;
+	if (!World || EncounterId.IsNone() || !IsValid(Target) || Target->GetWorld() != World
+		|| Encounter->GetEncounterId() != EncounterId)
+	{
+		return false;
+	}
+
+	TArray<UMelodiaHybridEncounterComponent*> TargetComponents;
+	Target->GetComponents(TargetComponents);
+	if (TargetComponents.Num() != 1 || TargetComponents[0] != Encounter) return false;
+
+	int32 MatchingComponents = 0;
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		AActor* Actor = *It;
+		// A tagged stock battle actor with this identity would create a second
+		// combat state. The claimed world target may carry its own identity tag.
+		if (Actor != Target && Actor->ActorHasTag(EncounterId))
+		{
+			return false;
+		}
+
+		TArray<UMelodiaHybridEncounterComponent*> Components;
+		Actor->GetComponents(Components);
+		for (UMelodiaHybridEncounterComponent* Candidate : Components)
+		{
+			if (IsValid(Candidate) && Candidate->GetEncounterId() == EncounterId)
+			{
+				++MatchingComponents;
+				if (Candidate != Encounter || Candidate->GetEncounterTarget() != Actor)
+				{
+					return false;
+				}
+			}
+		}
+	}
+	return MatchingComponents == 1;
+}
+
+bool UMelodiaExternalJRPGBridgeSubsystem::CompleteWorldEncounter(
+	UMelodiaHybridEncounterComponent* Encounter, const EMelodiaBattleResult Result)
+{
+	if (!IsValid(Encounter))
+	{
+		return false;
+	}
+	const FName EncounterId = Encounter->GetEncounterId();
+	if (!IsValid(NarrativeSubsystem) || IsValid(ActiveBattleActor)
+		|| NarrativeSubsystem->IsWorldEncounterCompleted(EncounterId)
+		|| NarrativeSubsystem->IsBattlePending()
+		|| !HasUniqueWorldEncounter(Encounter, EncounterId))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Melodia world encounter completion rejected for %s: identity, outcome, or narrative state is invalid."),
+			*EncounterId.ToString());
+		return false;
+	}
+
+	// World completion does not request/start a stock battle or stop/resume
+	// Quill. Both routes share Narrative's terminal receipt/event implementation;
+	// only Narrative's existing durable consumed-intent record guards replay.
+	return NarrativeSubsystem->CompleteWorldEncounterOutcome(EncounterId, Result);
 }
 
 bool UMelodiaExternalJRPGBridgeSubsystem::StartTaggedJRPGBattle(const FName EncounterId)

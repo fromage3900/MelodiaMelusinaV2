@@ -26,6 +26,9 @@ namespace
 	// Niagara cannot sample an MPC. NPC_Melodia_Palette is the Niagara-side twin and is
 	// already read by six+ NS_ systems; nothing wrote it before this subsystem did.
 	constexpr TCHAR AudioNpcPath[] = TEXT("/Game/EnvSandbox/VFX/MPC/NPC_Melodia_Palette.NPC_Melodia_Palette");
+	// Dreamprint ink lane of the shipping PPV stack. Sampled by MI_MelodiaInk_Frozen
+	// and MI_MeluColorGrade_Frozen; unwritten until 2026-09-30.
+	constexpr TCHAR InkMpcPath[] = TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_MelodiaInk.MPC_MelodiaInk");
 
 	// --- Oceanology presentation drive ----------------------------------------
 	// Oceanology's water surface cannot sample MPC_Melodia_Palette: its master
@@ -186,6 +189,14 @@ void UMelodiaAudioReactivePresentationSubsystem::Initialize(FSubsystemCollection
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Melodia audio-reactive presentation disabled: missing %s"), AudioMpcPath);
 	}
+	// Missing ink MPC is not fatal: the palette and Niagara lanes still pulse, the
+	// Dreamprint ink layer simply stays at its authored values.
+	InkParameterCollection = LoadObject<UMaterialParameterCollection>(nullptr, InkMpcPath);
+	if (!InkParameterCollection)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("Melodia Dreamprint ink lane inactive: missing %s (palette unaffected)"), InkMpcPath);
+	}
 	// Missing NPC is not fatal: materials still pulse, FX simply stay unreactive. Warn
 	// loudly though -- a silent zero here is exactly how this went unnoticed until now.
 	NiagaraAudioParameterCollection = LoadObject<UNiagaraParameterCollection>(nullptr, AudioNpcPath);
@@ -217,6 +228,7 @@ void UMelodiaAudioReactivePresentationSubsystem::Deinitialize()
 	FTSTicker::GetCoreTicker().RemoveTicker(TickerHandle);
 	SetBattleActive(false, 0.0f);
 	AudioParameterCollection = nullptr;
+	InkParameterCollection = nullptr;
 	ExternalBridge = nullptr;
 	BattleSession = nullptr;
 	NarrativeSubsystem = nullptr;
@@ -334,6 +346,26 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	const float BassAlias = bBattleActive ? BattleIntensity : 0.0f;
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("BassIntensity"), BassAlias); // alias of "Bass"
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("MidIntensity"), ImpactPulse);  // alias of "Mid"
+
+	// --- Dreamprint ink lane (MPC_MelodiaInk) -----------------------------------
+	// The shipping ink layer sampled this collection for its entire life and read
+	// authored constants, because no writer existed. These four are value-identical
+	// copies of lanes published above -- no new curve, no new envelope, no new look
+	// decision: the Dreamprint ink now breathes on exactly the beat the rest of the
+	// presentation already breathes on. Same SEMANTICS WARNING applies -- "InkBass"
+	// carries combat intensity, not low-frequency audio.
+	//
+	// Deliberately NOT written: InkHueShift, InkAccentTint, InkSyncVision (art
+	// direction, owner call) and InkMasterWeight (blend weight is owned by the PPV
+	// actor, not by audio). Leaving them at their authored values is what keeps this
+	// a missing-writer fix rather than a look change.
+	if (InkParameterCollection)
+	{
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkReact"), BassAlias);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkBass"), BassAlias);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkMid"), ImpactPulse);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkTreble"), BeatPulseValue);
+	}
 	// "BeatTracker" was published here as a third name for BeatPulseValue. It is not declared
 	// on MPC_Melodia_Palette (verified against the asset's 51 scalars, 2026-09-05), so the
 	// write was a silent no-op and its only reader -- UMelodiaNeuralHeroMaterialSubsystem --

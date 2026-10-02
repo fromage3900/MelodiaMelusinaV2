@@ -8,11 +8,16 @@
 #include "TimerManager.h"
 #include "UObject/UnrealType.h"
 #include "Blueprint/UserWidget.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
+#include "Components/Widget.h"
+#include "Misc/PackageName.h"
+#include "MelodiaOverworldHUDWidget.h"
 #include "MelodiaBattleKeyboardLegendWidget.h"
 #include "MelodiaNarrativeSubsystem.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaRhythmCombatSubsystem.h"
 #include "MelodiaRhythmHUDWidget.h"
+#include "MelodiaWaveHarpHUDWidget.h"
 #include "MelodiaBattleResultsWidget.h"
 #include "MelodiaBattleSession.h"
 
@@ -41,6 +46,72 @@ namespace
 	constexpr int32 KeyboardLegendZOrder = 110;
 	constexpr int32 LiveResultsWidgetZOrder = 80;
 	TWeakObjectPtr<UMelodiaRhythmHUDWidget> GBridgeRhythmHUD;
+
+	// Bow HUD centre-screen ownership (Figma v3.6/v3.7: "No second HUD writer - SEQUENCE yields
+	// centre-screen"). The bridge is the only object that toggles the stock WBP_Melodia_OverworldHUD
+	// "Reticle" (T_HUD_Reticle) so two reticles never draw. Tracked here, not as UPROPERTYs, so the
+	// bridge header stays untouched.
+	constexpr TCHAR StockReticleWidgetName[] = TEXT("Reticle");
+	// Optional WBP subclass of UMelodiaWaveHarpHUDWidget for art overrides in Class Defaults.
+	// When the asset does not exist the native class is used (textures still resolve by manifest path).
+	constexpr TCHAR BowHUDWidgetClassPath[] = TEXT("/Game/Melodia/UI/BowHUD/WBP_Melodia_BowHUD.WBP_Melodia_BowHUD_C");
+	TWeakObjectPtr<UWidget> GStockReticle;
+	ESlateVisibility GStockReticleSavedVisibility = ESlateVisibility::HitTestInvisible;
+	bool GStockReticleSuppressed = false;
+	double GStockReticleNextLookup = 0.0;
+
+	TSubclassOf<UMelodiaWaveHarpHUDWidget> ResolveBowHUDClass()
+	{
+		const FSoftClassPath Path(BowHUDWidgetClassPath);
+		if (FPackageName::DoesPackageExist(Path.GetLongPackageName()))
+		{
+			if (UClass* Loaded = Path.TryLoadClass<UMelodiaWaveHarpHUDWidget>()) return Loaded;
+		}
+		return UMelodiaWaveHarpHUDWidget::StaticClass();
+	}
+
+	UWidget* ResolveStockReticle(APlayerController* Player)
+	{
+		if (GStockReticle.IsValid()) return GStockReticle.Get();
+		UWorld* World = Player ? Player->GetWorld() : nullptr;
+		if (!World || World->GetTimeSeconds() < GStockReticleNextLookup) return nullptr;
+		GStockReticleNextLookup = World->GetTimeSeconds() + 1.0; // throttle: once per second until found
+		TArray<UUserWidget*> Found;
+		UWidgetBlueprintLibrary::GetAllWidgetsOfClass(Player, Found, UMelodiaOverworldHUDWidget::StaticClass(), false);
+		for (UUserWidget* HUD : Found)
+		{
+			if (!HUD || HUD->GetOwningPlayer() != Player) continue;
+			if (UWidget* Reticle = HUD->GetWidgetFromName(FName(StockReticleWidgetName)))
+			{
+				GStockReticle = Reticle;
+				return Reticle;
+			}
+		}
+		return nullptr;
+	}
+
+	void SetStockReticleSuppressed(APlayerController* Player, bool bSuppress)
+	{
+		if (bSuppress == GStockReticleSuppressed && (!bSuppress || GStockReticle.IsValid())) return;
+		UWidget* Reticle = bSuppress ? ResolveStockReticle(Player) : GStockReticle.Get();
+		if (!Reticle)
+		{
+			if (!bSuppress) GStockReticleSuppressed = false;
+			return;
+		}
+		if (bSuppress)
+		{
+			const ESlateVisibility Current = Reticle->GetVisibility();
+			GStockReticleSavedVisibility = Current == ESlateVisibility::Collapsed ? GStockReticleSavedVisibility : Current;
+			Reticle->SetVisibility(ESlateVisibility::Collapsed);
+		}
+		else
+		{
+			Reticle->SetVisibility(GStockReticleSavedVisibility);
+		}
+		GStockReticleSuppressed = bSuppress;
+		UE_LOG(LogTemp, Log, TEXT("MELODIA_BOWHUD_RETICLE stock=%s"), bSuppress ? TEXT("suppressed") : TEXT("restored"));
+	}
 }
 
 // Lets the link be exercised from a live PIE session without authoring a single
@@ -136,6 +207,7 @@ void UMelodiaUIBridgeSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 void UMelodiaUIBridgeSubsystem::Deinitialize()
 {
+	ReleaseWorldCombatUI();
 	RemoveBattleUIInternal();
 
 	if (NarrativeSubsystem)
@@ -164,6 +236,52 @@ void UMelodiaUIBridgeSubsystem::Deinitialize()
 	BattleSession = nullptr;
 
 	Super::Deinitialize();
+}
+
+void UMelodiaUIBridgeSubsystem::EnsureWorldCombatUI(APlayerController* Player, bool bSequence)
+{
+	if (!Player || !Player->IsLocalController()) return;
+	if (IsMelodiaUIActive()) { SetStockReticleSuppressed(Player, false); return; }
+	if (!WorldCombatHUD || WorldCombatHUD->GetWorld() != Player->GetWorld())
+	{
+		ReleaseWorldCombatUI();
+		WorldCombatHUD = CreateWidget<UMelodiaWaveHarpHUDWidget>(Player, ResolveBowHUDClass());
+		if (WorldCombatHUD)
+		{
+			WorldCombatHUD->SetVisibility(ESlateVisibility::HitTestInvisible);
+			WorldCombatHUD->AddToViewport(90);
+		}
+	}
+	if (bSequence && !WorldRhythmHUD)
+	{
+		WorldRhythmHUD = CreateWidget<UMelodiaRhythmHUDWidget>(Player);
+		if (WorldRhythmHUD)
+		{
+			WorldRhythmHUD->SetVisibility(ESlateVisibility::HitTestInvisible);
+			WorldRhythmHUD->AddToViewport(85);
+			if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(WorldRhythmHUD);
+		}
+	}
+	else if (!bSequence && WorldRhythmHUD)
+	{
+		if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(nullptr);
+		WorldRhythmHUD->RemoveFromParent(); WorldRhythmHUD = nullptr;
+	}
+	// One reticle at a time: while the bow reticle owns centre (or SEQUENCE yields it to the
+	// highway) the stock OverworldHUD Reticle is collapsed; otherwise its prior visibility returns.
+	const bool bBowOwnsCentre = WorldCombatHUD && (bSequence || WorldCombatHUD->IsBowReticleVisible() || WorldCombatHUD->IsCenterYielded());
+	SetStockReticleSuppressed(Player, bBowOwnsCentre);
+}
+void UMelodiaUIBridgeSubsystem::ReleaseWorldCombatUI()
+{
+	SetStockReticleSuppressed(nullptr, false);
+	if (WorldCombatHUD) WorldCombatHUD->RemoveFromParent();
+	if (WorldRhythmHUD)
+	{
+		if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(nullptr);
+		WorldRhythmHUD->RemoveFromParent();
+	}
+	WorldCombatHUD = nullptr; WorldRhythmHUD = nullptr;
 }
 
 UUserWidget* UMelodiaUIBridgeSubsystem::CreateMelodiaBattleUI(TSubclassOf<UUserWidget> MelodiaWidgetClass)

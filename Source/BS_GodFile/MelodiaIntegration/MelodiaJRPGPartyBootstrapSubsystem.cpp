@@ -99,6 +99,116 @@ namespace
 		return EStockPartyMembership::Absent;
 	}
 
+	bool FindPartyMemberIndex(const APlayerController* Controller, const UClass* UnitClass, int32& OutIndex)
+	{
+		OutIndex = INDEX_NONE;
+		if (!Controller || !UnitClass)
+		{
+			return false;
+		}
+
+		const FArrayProperty* PartyMembersProperty = FindFProperty<FArrayProperty>(Controller->GetClass(), TEXT("partyMembers"));
+		const FClassProperty* ElementProperty = PartyMembersProperty
+			? CastField<FClassProperty>(PartyMembersProperty->Inner)
+			: nullptr;
+		if (!PartyMembersProperty || !ElementProperty)
+		{
+			return false;
+		}
+
+		void* ArrayMemory = const_cast<void*>(PartyMembersProperty->ContainerPtrToValuePtr<void>(Controller));
+		FScriptArrayHelper ArrayHelper(PartyMembersProperty, ArrayMemory);
+		for (int32 Index = 0; Index < ArrayHelper.Num(); ++Index)
+		{
+			if (Cast<UClass>(ElementProperty->GetObjectPropertyValue(ArrayHelper.GetRawPtr(Index))) == UnitClass)
+			{
+				OutIndex = Index;
+				break;
+			}
+		}
+		return true;
+	}
+
+	bool ReadPartyMemberAtIndex(const APlayerController* Controller, const int32 Index, UClass*& OutUnitClass)
+	{
+		OutUnitClass = nullptr;
+		if (!Controller || Index < 0)
+		{
+			return false;
+		}
+
+		const FArrayProperty* PartyMembersProperty = FindFProperty<FArrayProperty>(Controller->GetClass(), TEXT("partyMembers"));
+		const FClassProperty* ElementProperty = PartyMembersProperty
+			? CastField<FClassProperty>(PartyMembersProperty->Inner)
+			: nullptr;
+		if (!PartyMembersProperty || !ElementProperty)
+		{
+			return false;
+		}
+
+		void* ArrayMemory = const_cast<void*>(PartyMembersProperty->ContainerPtrToValuePtr<void>(Controller));
+		FScriptArrayHelper ArrayHelper(PartyMembersProperty, ArrayMemory);
+		if (Index >= ArrayHelper.Num())
+		{
+			return false;
+		}
+
+		OutUnitClass = Cast<UClass>(ElementProperty->GetObjectPropertyValue(ArrayHelper.GetRawPtr(Index)));
+		return true;
+	}
+
+	bool SwapPartyMembersThroughStockController(APlayerController* Controller, UClass* UnitClassA, UClass* UnitClassB)
+	{
+		if (!Controller || !UnitClassA || !UnitClassB || UnitClassA == UnitClassB)
+		{
+			return false;
+		}
+
+		UFunction* SwapPartyMembers = Controller->FindFunction(TEXT("SwapPartyMembers"));
+		if (!SwapPartyMembers)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Melodia party ordering found no stock 'SwapPartyMembers' function on '%s'."),
+				*Controller->GetClass()->GetName());
+			return false;
+		}
+
+		FClassProperty* UnitAParameter = nullptr;
+		FClassProperty* UnitBParameter = nullptr;
+		for (TFieldIterator<FProperty> It(SwapPartyMembers); It; ++It)
+		{
+			if (!It->HasAnyPropertyFlags(CPF_Parm) || It->HasAnyPropertyFlags(CPF_ReturnParm))
+			{
+				continue;
+			}
+
+			FClassProperty* ClassParameter = CastField<FClassProperty>(*It);
+			if (!ClassParameter)
+			{
+				continue;
+			}
+			if (It->GetFName() == FName(TEXT("playerUnit1")))
+			{
+				UnitAParameter = ClassParameter;
+			}
+			else if (It->GetFName() == FName(TEXT("playerUnit2")))
+			{
+				UnitBParameter = ClassParameter;
+			}
+		}
+
+		if (!UnitAParameter || !UnitBParameter)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Melodia party ordering found an incompatible stock 'SwapPartyMembers' signature."));
+			return false;
+		}
+
+		FStructOnScope Parameters(SwapPartyMembers);
+		UnitAParameter->SetPropertyValue_InContainer(Parameters.GetStructMemory(), UnitClassA);
+		UnitBParameter->SetPropertyValue_InContainer(Parameters.GetStructMemory(), UnitClassB);
+		Controller->ProcessEvent(SwapPartyMembers, Parameters.GetStructMemory());
+		return true;
+	}
+
 	/**
 	 * Is this one of the Melodia integration's stock JRPG controllers?
 	 *
@@ -232,6 +342,7 @@ void UMelodiaJRPGPartyBootstrapSubsystem::Initialize(FSubsystemCollectionBase& C
 {
 	Super::Initialize(Collection);
 	PostLoadMapHandle = FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &ThisClass::HandlePostLoadMap);
+	WorldInitializedActorsHandle = FWorldDelegates::OnWorldInitializedActors.AddUObject(this, &ThisClass::HandleWorldInitializedActors);
 	if (UGameInstance* GameInstance = GetGameInstance())
 	{
 		if (UMelodiaOpeningFlowSubsystem* OpeningFlow = GameInstance->GetSubsystem<UMelodiaOpeningFlowSubsystem>())
@@ -289,7 +400,16 @@ void UMelodiaJRPGPartyBootstrapSubsystem::HandleNarrativeFlagChanged(const FName
 
 void UMelodiaJRPGPartyBootstrapSubsystem::Deinitialize()
 {
-	FCoreUObjectDelegates::PostLoadMapWithWorld.Remove(PostLoadMapHandle);
+	if (PostLoadMapHandle.IsValid())
+	{
+		FCoreUObjectDelegates::PostLoadMapWithWorld.Remove(PostLoadMapHandle);
+		PostLoadMapHandle.Reset();
+	}
+	if (WorldInitializedActorsHandle.IsValid())
+	{
+		FWorldDelegates::OnWorldInitializedActors.Remove(WorldInitializedActorsHandle);
+		WorldInitializedActorsHandle.Reset();
+	}
 	if (UGameInstance* GameInstance = GetGameInstance())
 	{
 		if (UMelodiaOpeningFlowSubsystem* OpeningFlow = GameInstance->GetSubsystem<UMelodiaOpeningFlowSubsystem>())
@@ -307,20 +427,46 @@ void UMelodiaJRPGPartyBootstrapSubsystem::Deinitialize()
 
 void UMelodiaJRPGPartyBootstrapSubsystem::HandlePostLoadMap(UWorld* LoadedWorld)
 {
-	if (!LoadedWorld || !LoadedWorld->IsGameWorld())
+	QueueSeedForWorld(LoadedWorld);
+}
+
+void UMelodiaJRPGPartyBootstrapSubsystem::HandleWorldInitializedActors(const FActorsInitializedParams& Params)
+{
+	QueueSeedForWorld(Params.World);
+}
+
+void UMelodiaJRPGPartyBootstrapSubsystem::QueueSeedForWorld(UWorld* World)
+{
+	if (!World || !World->IsGameWorld() || World->GetGameInstance() != GetGameInstance())
 	{
 		return;
 	}
 
-	// A new game world gets one seed attempt. This prevents repeated delegates or
-	// late map callbacks from appending a second presentation unit to the party.
+	// PostLoadMap covers standalone travel; the global actors-initialized event
+	// catches PIE world duplication. Its next-tick timer runs after world BeginPlay.
+	// Keep one queued/successful seed per runtime world.
+	if (SeededWorld.Get() == World || SeedQueuedWorld.Get() == World)
+	{
+		return;
+	}
 	bSeededForCurrentWorld = false;
-	LoadedWorld->GetTimerManager().SetTimerForNextTick(this, &ThisClass::SeedOnNextTick);
+	SeedQueuedWorld = World;
+	World->GetTimerManager().SetTimerForNextTick(this, &ThisClass::SeedOnNextTick);
 }
 
 void UMelodiaJRPGPartyBootstrapSubsystem::SeedOnNextTick()
 {
-	TrySeedPresentationUnit();
+	UGameInstance* GameInstance = GetGameInstance();
+	UWorld* World = GameInstance ? GameInstance->GetWorld() : nullptr;
+	if (!World || SeedQueuedWorld.Get() != World)
+	{
+		return;
+	}
+	SeedQueuedWorld.Reset();
+	if (TrySeedPresentationUnit())
+	{
+		SeededWorld = World;
+	}
 	TryRecruitSirMelodious();
 }
 
@@ -430,6 +576,13 @@ bool UMelodiaJRPGPartyBootstrapSubsystem::TrySeedPresentationUnit()
 		return true;
 	}
 
+	int32 OriginalStarterIndex = INDEX_NONE;
+	if (!FindPartyMemberIndex(Controller, StockSwordsmanUnitClass, OriginalStarterIndex))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Melodia JRPG party bootstrap could not read the stock party order before replacing the starter."));
+		return false;
+	}
+
 	// The first slice replaces the template's starter Swordsman, rather than
 	// adding a second fighter at the same battle anchor. Use the controller's
 	// stock removal API so party bookkeeping remains its responsibility.
@@ -460,6 +613,40 @@ bool UMelodiaJRPGPartyBootstrapSubsystem::TrySeedPresentationUnit()
 	UnitClassParameter->SetPropertyValue_InContainer(Parameters.GetStructMemory(), PresentationUnitClass);
 	ExperienceParameter->SetPropertyValue_InContainer(Parameters.GetStructMemory(), 0);
 	Controller->ProcessEvent(AddPlayerUnit, Parameters.GetStructMemory());
+
+	if (ProbePartyMembership(Controller, PresentationUnitClass) != EStockPartyMembership::Present)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Melodia JRPG party bootstrap could not confirm Melusina in partyMembers after AddPlayerUnit; seed remains incomplete."));
+		return false;
+	}
+
+	if (OriginalStarterIndex != INDEX_NONE)
+	{
+		UClass* CurrentStarterSlotClass = nullptr;
+		if (!ReadPartyMemberAtIndex(Controller, OriginalStarterIndex, CurrentStarterSlotClass)
+			|| !IsValid(CurrentStarterSlotClass))
+		{
+			UE_LOG(LogTemp, Error, TEXT("Melodia JRPG party bootstrap could not resolve the original starter slot after adding Melusina; seed remains incomplete."));
+			return false;
+		}
+
+		if (CurrentStarterSlotClass != PresentationUnitClass)
+		{
+			if (!SwapPartyMembersThroughStockController(Controller, PresentationUnitClass, CurrentStarterSlotClass))
+			{
+				return false;
+			}
+
+			UClass* VerifiedStarterSlotClass = nullptr;
+			if (!ReadPartyMemberAtIndex(Controller, OriginalStarterIndex, VerifiedStarterSlotClass)
+				|| VerifiedStarterSlotClass != PresentationUnitClass)
+			{
+				UE_LOG(LogTemp, Error, TEXT("Melodia JRPG party bootstrap could not verify Melusina in the original starter slot after the stock swap; seed remains incomplete."));
+				return false;
+			}
+		}
+	}
+
 	bSeededForCurrentWorld = true;
 	UE_LOG(LogTemp, Log, TEXT("Melodia JRPG party bootstrap replaced the starter unit with Melusina through stock party contracts."));
 	return true;

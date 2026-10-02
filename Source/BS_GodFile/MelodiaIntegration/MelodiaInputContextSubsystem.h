@@ -167,6 +167,8 @@ public:
 	/** Release a push. Safe to call twice; the second call is a no-op returning false. */
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Input")
 	bool PopContext(FMelodiaInputContextHandle Handle);
+	/** Camera-driven FLOW captures the pointer; Menu/Rhythm still override its policy. */
+	void SetActionPointerCapture(UObject* Owner, bool bCapture);
 
 	/**
 	 * Drop every context and return to Exploration.
@@ -256,4 +258,5 @@ private:
 	TSharedPtr<FMelodiaCursorInputPreprocessor> CursorInputPreprocessor;
 
 	friend class FMelodiaCursorInputPreprocessor;
+	TWeakObjectPtr<UObject> ActionPointerOwner;
 };

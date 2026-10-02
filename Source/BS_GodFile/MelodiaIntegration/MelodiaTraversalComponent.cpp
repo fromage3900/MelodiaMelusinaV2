@@ -13,6 +13,7 @@
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
 #include "MelodiaInputContextSubsystem.h"
+#include "MelodiaWaveHarpCombatComponent.h"
 #include "MelodiaRhythmReactivitySubsystem.h"
 #include "MelodiaTraversalCapabilityProvider.h"
 #include "MelodiaWaterAudioBridgeComponent.h"
@@ -39,6 +40,14 @@ void UMelodiaTraversalComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	OwnerCharacter = Cast<ACharacter>(GetOwner());
+	// The canonical pawn keeps its existing locomotion/ABP. Add the missing input adapter.
+	if (OwnerCharacter.IsValid() && OwnerCharacter->GetClass()->GetName().Contains(TEXT("Melusina"))
+		&& !OwnerCharacter->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+	{
+		UMelodiaWaveHarpCombatComponent* Combat = NewObject<UMelodiaWaveHarpCombatComponent>(OwnerCharacter.Get());
+		OwnerCharacter->AddInstanceComponent(Combat);
+		Combat->RegisterComponent();
+	}
 	if (OwnerCharacter.IsValid())
 	{
 		Movement = OwnerCharacter->GetCharacterMovement();
