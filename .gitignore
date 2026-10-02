@@ -666,3 +666,14 @@ deploy/OLLAMA_*_STOP
 _agent_tmp/
 .agents/lanes/
 .agents/claims/
+
+# Scratch / IDE
+.vscode/
+.gemini/
+*.uproject.bak
+branch_triage_*.json
+skills-lock.json
+run_build_*.bat
+run_launch_*.bat
+hda/backup/
+

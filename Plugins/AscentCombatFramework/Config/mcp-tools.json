@@ -1,0 +1,4059 @@
+{
+  "version": 1,
+  "server": {
+    "name": "acf-ue",
+    "version": "0.1.0"
+  },
+  "generatedAt": "2026-05-30T08:16:43.295Z",
+  "tools": [
+    {
+      "name": "ue_sys_ping",
+      "title": "System Ping",
+      "description": "Ping the UE editor to check if the bridge is running.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_sys_project_info",
+      "title": "System Project Info",
+      "description": "Get project info: engine version, loaded modules, plugin versions, map name.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_sys_console",
+      "title": "System Console",
+      "description": "Execute an Unreal Engine console command.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The console command to execute"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_sys_fingerprint",
+      "title": "System Fingerprint",
+      "description": "Compute a machine fingerprint for licensing.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_asset_list",
+      "title": "Asset List",
+      "description": "Search for assets in the project by name, class, and/or path.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "query": {
+            "description": "Search query to filter by name",
+            "type": "string"
+          },
+          "asset_class": {
+            "description": "Filter by asset class (e.g. Blueprint, DataTable, StaticMesh)",
+            "type": "string"
+          },
+          "path": {
+            "description": "Restrict to a content path (e.g. /Game/Blueprints)",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_asset_open",
+      "title": "Asset Open",
+      "description": "Open an asset in the UE editor by path.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Full asset path (e.g. /Game/Blueprints/BP_MyActor)"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_sel_get",
+      "title": "Selection Get",
+      "description": "Get the currently selected actors and assets in the UE editor.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_sel_nodes",
+      "title": "Selection Nodes",
+      "description": "Get the currently selected Blueprint graph nodes.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_level_spawn",
+      "title": "Level Spawn",
+      "description": "Spawn an actor in the current level at a given location.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "class": {
+            "type": "string",
+            "description": "Actor class to spawn (e.g. StaticMeshActor, PointLight)"
+          },
+          "x": {
+            "default": 0,
+            "description": "X location",
+            "type": "number"
+          },
+          "y": {
+            "default": 0,
+            "description": "Y location",
+            "type": "number"
+          },
+          "z": {
+            "default": 0,
+            "description": "Z location",
+            "type": "number"
+          },
+          "pitch": {
+            "default": 0,
+            "type": "number"
+          },
+          "yaw": {
+            "default": 0,
+            "type": "number"
+          },
+          "roll": {
+            "default": 0,
+            "type": "number"
+          },
+          "label": {
+            "description": "Actor label in the outliner",
+            "type": "string"
+          }
+        },
+        "required": [
+          "class",
+          "x",
+          "y",
+          "z",
+          "pitch",
+          "yaw",
+          "roll"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_level_screenshot",
+      "title": "Level Screenshot",
+      "description": "Take a screenshot from the active viewport.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "output_path": {
+            "description": "Output file path (default: auto-generated in Saved/)",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "Resolution like 1920x1080",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_inspect",
+      "title": "Blueprint Inspect",
+      "description": "Get the full structure of a blueprint: graphs, variables, components, functions.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_summary",
+      "title": "Blueprint Summary",
+      "description": "Get a high-level overview of a blueprint: parent class, graphs, variable count.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_list_graphs",
+      "title": "Blueprint List Graphs",
+      "description": "List all graphs in a blueprint (event graph, functions, macros).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_get_components",
+      "title": "Blueprint Get Components",
+      "description": "Get the component hierarchy of a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_get_component_details",
+      "title": "Blueprint Get Component Details",
+      "description": "Get detailed properties of a specific blueprint component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string",
+            "description": "Component name to inspect"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_get_variables",
+      "title": "Blueprint Get Variables",
+      "description": "Get all variables defined in a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_get_interfaces",
+      "title": "Blueprint Get Interfaces",
+      "description": "List all interfaces implemented by a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_get_function_flow",
+      "title": "Blueprint Get Function Flow",
+      "description": "Get the execution flow of a function graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string",
+            "description": "Function name to trace"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_list_overridable_functions",
+      "title": "Blueprint List Overridable Functions",
+      "description": "List functions that can be overridden from the parent class.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_validate",
+      "title": "Blueprint Validate",
+      "description": "Validate a blueprint for compilation errors without compiling.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_compile",
+      "title": "Blueprint Compile",
+      "description": "Compile a blueprint and return the result.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_search",
+      "title": "Blueprint Search",
+      "description": "Search a blueprint for nodes, variables, or functions by keyword.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_diff",
+      "title": "Blueprint Diff",
+      "description": "Diff a blueprint against another blueprint asset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "other_path": {
+            "type": "string",
+            "description": "Other blueprint to compare against"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "other_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_export_graph",
+      "title": "Blueprint Export Graph",
+      "description": "Export a blueprint graph to a file.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "description": "Graph name (defaults to EventGraph)",
+            "type": "string"
+          },
+          "output_path": {
+            "description": "Output file path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_estimate_complexity",
+      "title": "Blueprint Estimate Complexity",
+      "description": "Estimate the complexity of a blueprint's graphs.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path (e.g. /Game/Blueprints/BP_Player)"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_create",
+      "title": "Blueprint Create",
+      "description": "Create a new Blueprint asset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Blueprint name"
+          },
+          "path": {
+            "description": "Content path (e.g. /Game/Blueprints)",
+            "type": "string"
+          },
+          "parent_class": {
+            "description": "Parent class (default: Actor)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_reparent",
+      "title": "Blueprint Reparent",
+      "description": "Change the parent class of a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "new_parent": {
+            "type": "string",
+            "description": "New parent class name"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "new_parent"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_implement_interface",
+      "title": "Blueprint Implement Interface",
+      "description": "Add a UInterface implementation to a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "interface": {
+            "type": "string",
+            "description": "Interface class name"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "interface"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_remove_interface",
+      "title": "Blueprint Remove Interface",
+      "description": "Remove a UInterface implementation from a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "interface": {
+            "type": "string",
+            "description": "Interface class name"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "interface"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_replace_references",
+      "title": "Blueprint Replace References",
+      "description": "Replace all references to an asset across the project.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "old_path": {
+            "type": "string",
+            "description": "Asset path to replace"
+          },
+          "new_path": {
+            "type": "string",
+            "description": "New asset path"
+          }
+        },
+        "required": [
+          "old_path",
+          "new_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_discover_nodes",
+      "title": "Blueprint Discover Nodes",
+      "description": "List available node classes that can be added to a blueprint graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "query": {
+            "description": "Filter by node name/keyword",
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_nodes",
+      "title": "Blueprint Add Nodes",
+      "description": "Add nodes to a blueprint graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "description": "Graph name (default: EventGraph)",
+            "type": "string"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "class": {
+                  "type": "string",
+                  "description": "Node class"
+                },
+                "name": {
+                  "description": "Node name",
+                  "type": "string"
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "properties": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "class"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Nodes to add"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "nodes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_configure_node",
+      "title": "Blueprint Configure Node",
+      "description": "Set properties on an existing blueprint graph node.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "node_name": {
+            "type": "string",
+            "description": "Node name"
+          },
+          "properties": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "description": "Properties to set"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "node_name",
+          "properties"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_link_nodes",
+      "title": "Blueprint Link Nodes",
+      "description": "Connect output pin of one node to input pin of another.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_node": {
+                  "type": "string"
+                },
+                "source_pin": {
+                  "type": "string"
+                },
+                "target_node": {
+                  "type": "string"
+                },
+                "target_pin": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "source_node",
+                "source_pin",
+                "target_node",
+                "target_pin"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Pin connections to make"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "links"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_unlink_pin",
+      "title": "Blueprint Unlink Pin",
+      "description": "Disconnect a pin from all its connections.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "node_name": {
+            "type": "string",
+            "description": "Node name"
+          },
+          "pin_name": {
+            "type": "string",
+            "description": "Pin name to disconnect"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "node_name",
+          "pin_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_remove_nodes",
+      "title": "Blueprint Remove Nodes",
+      "description": "Delete nodes from a blueprint graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "node_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Node names to remove"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "node_names"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_move_node",
+      "title": "Blueprint Move Node",
+      "description": "Reposition a node in the graph editor.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "node_name": {
+            "type": "string",
+            "description": "Node name"
+          },
+          "x": {
+            "type": "number",
+            "description": "New X position"
+          },
+          "y": {
+            "type": "number",
+            "description": "New Y position"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "node_name",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_arrange_graph",
+      "title": "Blueprint Arrange Graph",
+      "description": "Auto-layout all nodes in a blueprint graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "description": "Graph name (default: EventGraph)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_clear_graph",
+      "title": "Blueprint Clear Graph",
+      "description": "Remove all nodes from a blueprint graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "description": "Graph name (default: EventGraph)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_build_graph",
+      "title": "Blueprint Build Graph",
+      "description": "Rebuild an entire graph from a specification.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "description": "Graph name",
+            "type": "string"
+          },
+          "spec": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "description": "Graph specification"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "spec"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_dump_links",
+      "title": "Blueprint Dump Links",
+      "description": "Export the link structure of a blueprint graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "description": "Graph name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_switch_pin",
+      "title": "Blueprint Add Switch Pin",
+      "description": "Add a pin to a switch node.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "node_name": {
+            "type": "string",
+            "description": "Switch node name"
+          },
+          "pin_name": {
+            "type": "string",
+            "description": "New pin name"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "node_name",
+          "pin_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_variables",
+      "title": "Blueprint Add Variables",
+      "description": "Create member variables in a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Variable type (e.g. bool, float, FString, FVector)"
+                },
+                "default_value": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "category": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Variables to add"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variables"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_remove_variables",
+      "title": "Blueprint Remove Variables",
+      "description": "Delete variables from a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variable_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Variable names to remove"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variable_names"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_rename_variable",
+      "title": "Blueprint Rename Variable",
+      "description": "Rename a blueprint variable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "old_name": {
+            "type": "string"
+          },
+          "new_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "old_name",
+          "new_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_variable_default",
+      "title": "Blueprint Set Variable Default",
+      "description": "Set the default value of a blueprint variable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variable_name": {
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "description": "Default value"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variable_name",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_variable_flags",
+      "title": "Blueprint Set Variable Flags",
+      "description": "Set variable flags (const, transient, replicated, etc.).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variable_name": {
+            "type": "string"
+          },
+          "flags": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "description": "Flags to set"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variable_name",
+          "flags"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_variable_replication",
+      "title": "Blueprint Set Variable Replication",
+      "description": "Configure variable replication settings.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variable_name": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string",
+            "description": "Replication condition"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variable_name",
+          "condition"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_function",
+      "title": "Blueprint Add Function",
+      "description": "Create a custom function in a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "is_pure": {
+            "default": false,
+            "type": "boolean"
+          },
+          "access": {
+            "type": "string",
+            "enum": [
+              "public",
+              "private",
+              "protected"
+            ]
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name",
+          "is_pure"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_function_param",
+      "title": "Blueprint Add Function Param",
+      "description": "Add a parameter to a blueprint function.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "param_name": {
+            "type": "string"
+          },
+          "param_type": {
+            "type": "string",
+            "description": "Parameter type"
+          },
+          "is_output": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name",
+          "param_name",
+          "param_type",
+          "is_output"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_remove_function_param",
+      "title": "Blueprint Remove Function Param",
+      "description": "Remove a parameter from a blueprint function.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "param_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name",
+          "param_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_function_access",
+      "title": "Blueprint Set Function Access",
+      "description": "Set function access level (public/private/protected).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "access": {
+            "type": "string",
+            "enum": [
+              "public",
+              "private",
+              "protected"
+            ]
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name",
+          "access"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_function_pure",
+      "title": "Blueprint Set Function Pure",
+      "description": "Toggle whether a function is a pure function (no execution pin).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "is_pure": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name",
+          "is_pure"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_function_replication",
+      "title": "Blueprint Set Function Replication",
+      "description": "Configure function as an RPC (Server/Client/Multicast).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "replication": {
+            "type": "string",
+            "description": "Replication type: Server, Client, NetMulticast"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name",
+          "replication"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_event_dispatcher",
+      "title": "Blueprint Add Event Dispatcher",
+      "description": "Create an event dispatcher in a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "dispatcher_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "dispatcher_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_add_components",
+      "title": "Blueprint Add Components",
+      "description": "Add components to a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "class": {
+                  "type": "string",
+                  "description": "Component class (e.g. StaticMeshComponent)"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Parent component name for attachment",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "class"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Components to add"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "components"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_remove_components",
+      "title": "Blueprint Remove Components",
+      "description": "Remove components from a blueprint.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_names"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_rename_component",
+      "title": "Blueprint Rename Component",
+      "description": "Rename a blueprint component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "old_name": {
+            "type": "string"
+          },
+          "new_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "old_name",
+          "new_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_attach_component",
+      "title": "Blueprint Attach Component",
+      "description": "Set a component's parent/attachment in the hierarchy.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "parent_name": {
+            "type": "string",
+            "description": "Parent component name"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name",
+          "parent_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_component_property",
+      "title": "Blueprint Set Component Property",
+      "description": "Set a property on a blueprint component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "property": {
+            "type": "string",
+            "description": "Property name"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "description": "Property value"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name",
+          "property",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_component_transform",
+      "title": "Blueprint Set Component Transform",
+      "description": "Set location, rotation, and scale on a component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y",
+              "z"
+            ],
+            "additionalProperties": false
+          },
+          "rotation": {
+            "type": "object",
+            "properties": {
+              "pitch": {
+                "type": "number"
+              },
+              "yaw": {
+                "type": "number"
+              },
+              "roll": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "pitch",
+              "yaw",
+              "roll"
+            ],
+            "additionalProperties": false
+          },
+          "scale": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y",
+              "z"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_component_mobility",
+      "title": "Blueprint Set Component Mobility",
+      "description": "Set component mobility (Static/Stationary/Movable).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "mobility": {
+            "type": "string",
+            "enum": [
+              "Static",
+              "Stationary",
+              "Movable"
+            ]
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name",
+          "mobility"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_set_component_collision",
+      "title": "Blueprint Set Component Collision",
+      "description": "Configure collision settings on a component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "collision": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "description": "Collision settings"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name",
+          "collision"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "add_component_to_blueprint",
+      "title": "Add Component To Blueprint",
+      "description": "Add a single component to a blueprint (legacy command).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_class": {
+            "type": "string"
+          },
+          "component_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_class"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "set_physics_properties",
+      "title": "Set Physics Properties",
+      "description": "Set physics properties on a blueprint component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "simulate_physics": {
+            "type": "boolean"
+          },
+          "mass": {
+            "type": "number"
+          },
+          "gravity": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "set_static_mesh_properties",
+      "title": "Set Static Mesh Properties",
+      "description": "Set static mesh properties on a component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "mesh_path": {
+            "type": "string",
+            "description": "Static mesh asset path"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name",
+          "mesh_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "set_mesh_material_color",
+      "title": "Set Mesh Material Color",
+      "description": "Set a material color on a mesh component.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "component_name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string",
+            "description": "Color value"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "component_name",
+          "color"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "spawn_blueprint_actor",
+      "title": "Spawn Blueprint Actor",
+      "description": "Spawn an instance of a blueprint actor in the level.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "x": {
+            "default": 0,
+            "type": "number"
+          },
+          "y": {
+            "default": 0,
+            "type": "number"
+          },
+          "z": {
+            "default": 0,
+            "type": "number"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "x",
+          "y",
+          "z"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "spawn_static_mesh_actor",
+      "title": "Spawn Static Mesh Actor",
+      "description": "Spawn a static mesh actor in the level.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "mesh_path": {
+            "type": "string",
+            "description": "Static mesh asset path"
+          },
+          "x": {
+            "default": 0,
+            "type": "number"
+          },
+          "y": {
+            "default": 0,
+            "type": "number"
+          },
+          "z": {
+            "default": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "mesh_path",
+          "x",
+          "y",
+          "z"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "add_k2_call_function_node",
+      "title": "Add Graph Call Function Node",
+      "description": "Add a K2 function call node to a graph.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "type": "string"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "target_class": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "function_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "add_k2_variable_set_node",
+      "title": "Add Graph Variable Set Node",
+      "description": "Add a K2 variable set node.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variable_name": {
+            "type": "string"
+          },
+          "graph_name": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variable_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "add_k2_variable_get_node",
+      "title": "Add Graph Variable Get Node",
+      "description": "Add a K2 variable get node.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "variable_name": {
+            "type": "string"
+          },
+          "graph_name": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "variable_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "connect_k2_pins",
+      "title": "Connect Graph Pins",
+      "description": "Connect K2 node pins by pin path.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source pin path"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target pin path"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "source",
+          "target"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "set_k2_pin_default",
+      "title": "Set Graph Pin Default",
+      "description": "Set the default value of a K2 node pin.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "node_name": {
+            "type": "string"
+          },
+          "pin_name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "description": "Default value as string"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "node_name",
+          "pin_name",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "add_k2_branch_node",
+      "title": "Add Graph Branch Node",
+      "description": "Add a conditional branch node.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "blueprint_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_actions_search",
+      "title": "Blueprint Actions Search",
+      "description": "Search the Action system by intent or tag to find available actions for graph authoring.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (intent description or tag)"
+          },
+          "blueprint_path": {
+            "description": "Blueprint context for filtering",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "bp_author_graph",
+      "title": "Blueprint Author Graph",
+      "description": "Author a blueprint graph via LLM specification with rollback and verification.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "blueprint_path": {
+            "type": "string",
+            "description": "Blueprint asset path"
+          },
+          "graph_name": {
+            "type": "string"
+          },
+          "spec": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "description": "Graph authoring specification"
+          }
+        },
+        "required": [
+          "blueprint_path",
+          "spec"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_da_inspect",
+      "title": "Data Asset Inspect",
+      "description": "Inspect a DataAsset: reflect its properties and current values.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataAsset path (e.g. /Game/Data/DA_Config)"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_da_set_property",
+      "title": "Data Asset Set Property",
+      "description": "Set a property value on a DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataAsset path"
+          },
+          "property": {
+            "type": "string",
+            "description": "Property name"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "description": "Value to set"
+          }
+        },
+        "required": [
+          "asset_path",
+          "property",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_da_set_array_property",
+      "title": "Data Asset Set Array Property",
+      "description": "Bulk-set one field on existing elements of a struct-array property on a DataAsset. This tool does not add array elements; for ACF character StartingItems use ue_character_add_starting_item, or set the whole array with ue_da_set_property ImportText.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataAsset path"
+          },
+          "array_property": {
+            "type": "string",
+            "description": "Name of the array property to edit"
+          },
+          "field_name": {
+            "type": "string",
+            "description": "Field inside each existing struct element; dot notation allowed"
+          },
+          "new_value": {
+            "type": "string",
+            "description": "Value as string/import text, e.g. true, 3.5, or /Game/Path.Asset"
+          },
+          "indices": {
+            "default": "all",
+            "type": "string",
+            "description": "Comma-separated existing element indices or 'all'"
+          }
+        },
+        "required": [
+          "asset_path",
+          "array_property",
+          "field_name",
+          "new_value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_da_create",
+      "title": "Data Asset Create",
+      "description": "Create a new DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Asset name"
+          },
+          "class": {
+            "type": "string",
+            "description": "DataAsset class name"
+          },
+          "path": {
+            "description": "Content path",
+            "type": "string"
+          },
+          "properties": {
+            "description": "Initial property values",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "class"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_da_list_types",
+      "title": "Data Asset List Types",
+      "description": "List all available DataAsset types in the project.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_create",
+      "title": "Data Table Create",
+      "description": "Create a new DataTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "DataTable name"
+          },
+          "row_struct": {
+            "type": "string",
+            "description": "Row struct type"
+          },
+          "path": {
+            "description": "Content path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "row_struct"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_get_rows",
+      "title": "Data Table Get Rows",
+      "description": "Retrieve rows from a DataTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataTable asset path"
+          },
+          "row_names": {
+            "description": "Specific rows (default: all)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_add_rows",
+      "title": "Data Table Add Rows",
+      "description": "Add rows to a DataTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataTable asset path"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Row name"
+                },
+                "values": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  },
+                  "description": "Column values"
+                }
+              },
+              "required": [
+                "name",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Rows to add"
+          }
+        },
+        "required": [
+          "asset_path",
+          "rows"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_edit_rows",
+      "title": "Data Table Edit Rows",
+      "description": "Edit existing rows in a DataTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataTable asset path"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Row name"
+                },
+                "values": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  },
+                  "description": "Values to update"
+                }
+              },
+              "required": [
+                "name",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Rows to edit"
+          }
+        },
+        "required": [
+          "asset_path",
+          "rows"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_import_csv",
+      "title": "Data Table Import CSV",
+      "description": "Import CSV data into a DataTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataTable asset path"
+          },
+          "csv_path": {
+            "type": "string",
+            "description": "Path to CSV file"
+          }
+        },
+        "required": [
+          "asset_path",
+          "csv_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_export_csv",
+      "title": "Data Table Export CSV",
+      "description": "Export a DataTable as CSV.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataTable asset path"
+          },
+          "output_path": {
+            "description": "Output file path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_dt_add_tag",
+      "title": "Data Table Add Tag",
+      "description": "Add a GameplayTag to a DataTable row.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "DataTable asset path"
+          },
+          "row_name": {
+            "type": "string",
+            "description": "Row name"
+          },
+          "tag": {
+            "type": "string",
+            "description": "GameplayTag string"
+          }
+        },
+        "required": [
+          "asset_path",
+          "row_name",
+          "tag"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_gt_list",
+      "title": "Gameplay Tag List",
+      "description": "List all registered GameplayTags.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_gt_search",
+      "title": "Gameplay Tag Search",
+      "description": "Search GameplayTags by prefix or keyword.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Tag prefix or search keyword"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_gt_validate",
+      "title": "Gameplay Tag Validate",
+      "description": "Validate tag strings against registered GameplayTags.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tag strings to validate"
+          }
+        },
+        "required": [
+          "tags"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_stbl_create",
+      "title": "String Table Create",
+      "description": "Create a new StringTable asset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "StringTable name"
+          },
+          "path": {
+            "description": "Content path",
+            "type": "string"
+          },
+          "namespace": {
+            "description": "Localization namespace",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_stbl_get_entries",
+      "title": "String Table Get Entries",
+      "description": "Retrieve entries from a StringTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "StringTable asset path"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_stbl_add_entries",
+      "title": "String Table Add Entries",
+      "description": "Add entries to a StringTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "StringTable asset path"
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Entries to add"
+          }
+        },
+        "required": [
+          "asset_path",
+          "entries"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_stbl_edit_entries",
+      "title": "String Table Edit Entries",
+      "description": "Edit existing StringTable entries.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "StringTable asset path"
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Entries to update"
+          }
+        },
+        "required": [
+          "asset_path",
+          "entries"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_stbl_remove_entries",
+      "title": "String Table Remove Entries",
+      "description": "Remove entries from a StringTable.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "StringTable asset path"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Entry keys to remove"
+          }
+        },
+        "required": [
+          "asset_path",
+          "keys"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_create",
+      "title": "Struct Create",
+      "description": "Create a new UserDefinedStruct asset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Struct name"
+          },
+          "path": {
+            "description": "Content path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_inspect",
+      "title": "Struct Inspect",
+      "description": "Inspect a UserDefinedStruct: list all members and types.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Struct asset path"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_add_members",
+      "title": "Struct Add Members",
+      "description": "Add members to a UserDefinedStruct.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Struct asset path"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Member type (e.g. float, FString, FVector)"
+                },
+                "default_value": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Members to add"
+          }
+        },
+        "required": [
+          "asset_path",
+          "members"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_remove_members",
+      "title": "Struct Remove Members",
+      "description": "Remove members from a UserDefinedStruct.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Struct asset path"
+          },
+          "member_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "asset_path",
+          "member_names"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_rename_member",
+      "title": "Struct Rename Member",
+      "description": "Rename a member in a UserDefinedStruct.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Struct asset path"
+          },
+          "old_name": {
+            "type": "string"
+          },
+          "new_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset_path",
+          "old_name",
+          "new_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_set_member_default",
+      "title": "Struct Set Member Default",
+      "description": "Set the default value of a struct member.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Struct asset path"
+          },
+          "member_name": {
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "description": "Default value"
+          }
+        },
+        "required": [
+          "asset_path",
+          "member_name",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_uds_reorder_members",
+      "title": "Struct Reorder Members",
+      "description": "Reorder members in a UserDefinedStruct.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Struct asset path"
+          },
+          "order": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Member names in desired order"
+          }
+        },
+        "required": [
+          "asset_path",
+          "order"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_ude_create",
+      "title": "Enum Create",
+      "description": "Create a new UserDefinedEnum asset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Enum name"
+          },
+          "path": {
+            "description": "Content path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_ude_inspect",
+      "title": "Enum Inspect",
+      "description": "Inspect a UserDefinedEnum: list all entries.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Enum asset path"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_ude_add_entries",
+      "title": "Enum Add Entries",
+      "description": "Add entries to a UserDefinedEnum.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Enum asset path"
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Entries to add"
+          }
+        },
+        "required": [
+          "asset_path",
+          "entries"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_ude_remove_entries",
+      "title": "Enum Remove Entries",
+      "description": "Remove entries from a UserDefinedEnum.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Enum asset path"
+          },
+          "entry_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "asset_path",
+          "entry_names"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_ude_rename_entry",
+      "title": "Enum Rename Entry",
+      "description": "Rename an entry in a UserDefinedEnum.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Enum asset path"
+          },
+          "old_name": {
+            "type": "string"
+          },
+          "new_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "asset_path",
+          "old_name",
+          "new_name"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_py_run",
+      "title": "Python Run",
+      "description": "Execute Python code inside the UE editor. Use mode to control mutation scope.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Python code to execute"
+          },
+          "mode": {
+            "default": "read_only",
+            "description": "Execution mode: read_only (safe), mutate_asset (can modify assets), mutate_level (can modify level)",
+            "type": "string",
+            "enum": [
+              "read_only",
+              "mutate_asset",
+              "mutate_level"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "mode"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ue_action_list",
+      "title": "Action List",
+      "description": "List all ACF action DataAssets in the project. Returns action names, tags, and montage bindings.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_action_create_ability",
+      "title": "Action Create Ability",
+      "description": "Create a new ACF action ability DataAsset. Defines a combat move with montage, damage, cost, and conditions.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Name for the new action asset (e.g. 'DA_Attack_HeavySlash')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path (e.g. '/Game/Combat/Actions')"
+          },
+          "properties": {
+            "description": "Action properties: ActionTag, MontagePath, DamageType, StaminaCost, etc.",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "acf_damage_list",
+      "title": "ACF Damage List",
+      "description": "List all ACF damage type DataAssets. Returns damage names, base values, element types, and resistances.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_combo_list",
+      "title": "Combo List",
+      "description": "List all ACF combo graph DataAssets. Returns combo names, action sequences, and transition conditions.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_acf_asset_list_types",
+      "title": "ACF Asset List Types",
+      "description": "List all available ACF asset types that can be created (abilities, items, weapons, armor, characters, AI behaviors, crafting recipes, etc.).",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "config_path": {
+            "description": "Override path to ACFAssetCreatorConfig DataAsset",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_acf_asset_schema",
+      "title": "ACF Asset Schema",
+      "description": "Get the full creation schema for a specific ACF asset type. Call this before ue_acf_asset_create to understand required and optional properties.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "description": "Asset type display name from ue_acf_asset_list_types (e.g. 'Melee Weapon', 'Character', 'CombatBehaviour')"
+          },
+          "config_path": {
+            "description": "Override config path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "display_name"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_acf_asset_create",
+      "title": "ACF Asset Create",
+      "description": "Create an ACF asset of any type. Call ue_acf_asset_schema first to get the property schema.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Sword_Iron')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path (e.g. '/Game/Items/Weapons')"
+          },
+          "display_name": {
+            "description": "Asset type — if omitted, uses wrapper command's default",
+            "type": "string"
+          },
+          "properties": {
+            "description": "Properties matching the schema from ue_acf_asset_schema",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
+          "template_asset_path": {
+            "description": "Path to an existing asset to clone as template",
+            "type": "string"
+          },
+          "allow_plugin_path": {
+            "description": "Allow creating in plugin Content/ directories",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_ability_create_set",
+      "title": "Ability Create Set",
+      "description": "Create an ACF AbilitySet DataAsset — a bundle of gameplay abilities granted to a character.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_AbilitySet_Warrior')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path (e.g. '/Game/Abilities')"
+          },
+          "properties": {
+            "description": "AbilitySet properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_character_create_data",
+      "title": "Character Create Data",
+      "description": "Create an ACF CharacterDataAsset — character stats, abilities, equipment, and AI behavior.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Character_Knight')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path (e.g. '/Game/Characters')"
+          },
+          "properties": {
+            "description": "Character properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_character_add_starting_item",
+      "title": "Character Add Starting Item",
+      "description": "Add a starting inventory item to an ACF character DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "character_asset_path": {
+            "type": "string",
+            "description": "Path to the character DataAsset"
+          },
+          "item_asset_path": {
+            "type": "string",
+            "description": "Path to the item DataAsset to add"
+          },
+          "count": {
+            "description": "Stack count (default: 1)",
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "character_asset_path",
+          "item_asset_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_dialogue_validate_spec",
+      "title": "Dialogue Validate Spec",
+      "description": "Validate a complete Ascent Dialogue System graph spec before creating an asset. Returns errors, warnings, mode, and voice-coverage hints without mutating assets.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "spec": {
+            "description": "Dialogue graph spec. Fields may also be passed at the top level.",
+            "type": "object",
+            "properties": {
+              "asset_path": {
+                "type": "string",
+                "description": "Full package or object path, e.g. /Game/YarinGenerated/Dialogues/DA_GuardDialogue"
+              },
+              "package_path": {
+                "type": "string",
+                "description": "Content path used with asset_name, e.g. /Game/YarinGenerated/Dialogues"
+              },
+              "asset_name": {
+                "type": "string",
+                "description": "Asset name used with package_path"
+              },
+              "dialogue_class": {
+                "type": "string",
+                "enum": [
+                  "ADSDialogue",
+                  "ADSWorldDialogue"
+                ],
+                "description": "Dialogue asset class"
+              },
+              "dialogue_tag": {
+                "type": "string",
+                "description": "Configured GameplayTag for this dialogue"
+              },
+              "default_participant_tag": {
+                "type": "string",
+                "description": "Configured GameplayTag for the default speaker/player response"
+              },
+              "replace_existing": {
+                "type": "boolean",
+                "description": "Allow rebuilding an existing dialogue asset"
+              },
+              "participants": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "display_name": {
+                      "type": "string"
+                    },
+                    "gameplay_tag": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "voice_id": {
+                      "type": "string"
+                    },
+                    "voice_name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "gameplay_tag"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "line",
+                        "response"
+                      ]
+                    },
+                    "participant_id": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number"
+                        },
+                        "y": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "properties": {
+                      "type": "object",
+                      "description": "Optional editable ADS node properties. v1 supports bAutoProgressNode, DurationType, CustomDuration, ReadingSpeed, CameraSettings, and bAllowedForEveryPlayer.",
+                      "additionalProperties": {}
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "kind",
+                    "participant_id",
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "edges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string"
+                    },
+                    "to": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "audio": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "suggest",
+                      "generate_after_approval"
+                    ]
+                  },
+                  "output_path": {
+                    "type": "string"
+                  },
+                  "model_id": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": true
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_dialogue_create_graph",
+      "title": "Dialogue Create Graph",
+      "description": "Create or rebuild a complete Ascent Dialogue System graph asset from a structured spec. Builds runtime nodes, editor graph nodes, pin links, and saves the package.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "spec": {
+            "type": "object",
+            "description": "Same graph spec accepted by ue_dialogue_validate_spec"
+          }
+        },
+        "additionalProperties": true
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_dialogue_inspect",
+      "title": "Dialogue Inspect",
+      "description": "Inspect an ADS dialogue asset and summarize nodes, edges, roots, participant tags, text, audio assignment, and graph warnings.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Dialogue asset path, e.g. /Game/YarinGenerated/Dialogues/DA_GuardDialogue"
+          }
+        },
+        "required": [
+          "asset_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_dialogue_voice_suggest",
+      "title": "Dialogue Voice Suggest",
+      "description": "Fetch ElevenLabs voices using existing ADS settings and suggest voice profiles for dialogue participants. Does not generate paid audio.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "participants": {
+            "type": "array",
+            "description": "Participants to suggest voices for; omitted participants can be inferred from asset_path.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "gameplay_tag": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "asset_path": {
+            "type": "string",
+            "description": "Dialogue asset path to infer participant tags from"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "description": "Suggestions per participant"
+          },
+          "timeout_seconds": {
+            "type": "number",
+            "description": "HTTP timeout for the ElevenLabs voice list request"
+          }
+        },
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_dialogue_generate_audio",
+      "title": "Dialogue Generate Audio",
+      "description": "Generate ElevenLabs TTS for approved dialogue nodes, import USoundWave assets, and assign SoundToPlay. Requires approved=true and explicit node_ids or all_nodes=true.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_path": {
+            "type": "string",
+            "description": "Dialogue asset path"
+          },
+          "approved": {
+            "type": "boolean",
+            "description": "Must be true after user approves voice choices"
+          },
+          "node_ids": {
+            "type": "array",
+            "description": "Spec node ids or runtime node GUIDs approved for TTS",
+            "items": {
+              "type": "string"
+            }
+          },
+          "all_nodes": {
+            "type": "boolean",
+            "description": "Generate for all text nodes only when the user explicitly approves all nodes"
+          },
+          "voices_by_participant": {
+            "type": "object",
+            "description": "Map participant gameplay tags or last tag segments to voice_id/voice_name strings or objects.",
+            "additionalProperties": {}
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Optional /Game output path; defaults to ADS FinalTTSPath"
+          },
+          "model_id": {
+            "type": "string",
+            "description": "Optional ElevenLabs model override"
+          },
+          "assign_to_nodes": {
+            "type": "boolean",
+            "description": "Assign generated USoundWave assets to node SoundToPlay"
+          },
+          "timeout_seconds": {
+            "type": "number",
+            "description": "HTTP timeout per TTS request"
+          }
+        },
+        "required": [
+          "asset_path",
+          "approved"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_inventory_create_item",
+      "title": "Inventory Create Item",
+      "description": "Create an ACF consumable item DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Item_HealthPotion')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Item properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_inventory_create_weapon",
+      "title": "Inventory Create Weapon",
+      "description": "Create an ACF melee weapon DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Weapon_Longsword')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Weapon properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_inventory_create_armor",
+      "title": "Inventory Create Armor",
+      "description": "Create an ACF armor DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Armor_ChainMail')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Armor properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_ai_create_combat_behavior",
+      "title": "AI Create Combat Behavior",
+      "description": "Create an ACF AI combat behavior DataAsset — attack patterns, dodge, block, flee thresholds.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_AI_AggressiveFighter')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Combat behavior properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_ai_create_routine",
+      "title": "AI Create Routine",
+      "description": "Create an ACF NPC routine DataAsset — patrol, idle, and schedule behavior patterns.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Routine_GuardPatrol')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Routine properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_crafting_create_recipe",
+      "title": "Crafting Create Recipe",
+      "description": "Create an ACF crafting recipe DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Recipe_IronSword')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Recipe properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_building_create_recipe",
+      "title": "Building Create Recipe",
+      "description": "Create an ACF building recipe DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Building_WoodenWall')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Building recipe properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    },
+    {
+      "name": "ue_world_create_gatherable_config",
+      "title": "World Create Gatherable Config",
+      "description": "Create an ACF gatherable resource configuration DataAsset.",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "asset_name": {
+            "type": "string",
+            "description": "Asset name (e.g. 'DA_Gatherable_IronOre')"
+          },
+          "package_path": {
+            "type": "string",
+            "description": "Content path"
+          },
+          "properties": {
+            "description": "Gatherable properties",
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "asset_name",
+          "package_path"
+        ],
+        "additionalProperties": false
+      },
+      "realm": "acf"
+    }
+  ]
+}

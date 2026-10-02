@@ -1,0 +1,42 @@
+{
+  "$schema": "melodia.echo_reflex_mission.v1",
+  "id": "melusinas_study_canary",
+  "goal": "Prepare a bounded Melusina's Study worldbuilding mission using existing production owners, stopping before any editor mutation or visual promotion.",
+  "planner": {"kind": "astra", "model": "external", "plan_id": "canary-001"},
+  "policies": {
+    "max_retries": 1,
+    "human_review_mutations": ["repo_write", "ue_editor", "human"]
+  },
+  "nodes": [
+    {
+      "id": "read_state",
+      "label": "Read canonical project state",
+      "capability": "project.read_current_state",
+      "depends_on": [],
+      "acceptance": ["CURRENT_STATE.md is readable"]
+    },
+    {
+      "id": "inspect_echo",
+      "label": "Inspect currently eligible Echo gates",
+      "capability": "echo.topo_schedule",
+      "depends_on": [],
+      "acceptance": ["Echo schedule returns structured JSON"]
+    },
+    {
+      "id": "validate_recipe",
+      "label": "Validate an existing world recipe as the compiler canary",
+      "capability": "world.validate_recipe",
+      "args": {"recipe": "recipes/morning_rainbow_bloom.v1.json"},
+      "depends_on": ["read_state", "inspect_echo"],
+      "acceptance": ["World Compiler validates the recipe without mutation"],
+      "on_failure": ["REPLAN", "HOLD"]
+    },
+    {
+      "id": "owner_gate",
+      "label": "Owner decides whether to promote the pattern to the real Study mission",
+      "capability": "owner.visual_review",
+      "depends_on": ["validate_recipe"],
+      "acceptance": ["Owner explicitly approves the next mutating canary"]
+    }
+  ]
+}

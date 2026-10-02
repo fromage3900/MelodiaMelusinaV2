@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/echo_reflex_mission.v1.schema.json",
+  "title": "Melodia Echo Reflex mission v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "id", "goal", "planner", "nodes"],
+  "properties": {
+    "$schema": {"const": "melodia.echo_reflex_mission.v1"},
+    "id": {"type": "string", "minLength": 1},
+    "goal": {"type": "string", "minLength": 1},
+    "planner": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["kind"],
+      "properties": {
+        "kind": {"enum": ["astra", "human", "test"]},
+        "model": {"type": "string"},
+        "plan_id": {"type": "string"}
+      }
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_retries": {"type": "integer", "minimum": 0, "maximum": 3},
+        "human_review_mutations": {
+          "type": "array",
+          "items": {"enum": ["none", "saved_output", "repo_write", "ue_editor", "human"]},
+          "uniqueItems": true
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "capability"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "label": {"type": "string"},
+          "capability": {"type": "string", "minLength": 1},
+          "args": {"type": "object"},
+          "depends_on": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "acceptance": {"type": "array", "items": {"type": "string"}},
+          "on_failure": {"type": "array", "items": {"enum": ["RETRY", "REPLAN", "HOLD"]}, "uniqueItems": true}
+        }
+      }
+    }
+  }
+}

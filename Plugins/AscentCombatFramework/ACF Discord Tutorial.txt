@@ -1,0 +1,57 @@
+TUTORIALS: 
+
+COMPLETE TUTORIALS SERIES: 
+https://www.youtube.com/watch?v=FUhSFFm7tUM&list=PL8jTN9dmYyyo9PKqc9BN2k53RONbi5muJ
+
+<@278489491465830400> 
+(Pask) another option to use other characters: 
+https://docs.unrealengine.com/5.1/en-US/runtime-ik-retargeting-in-unreal-engine/ 
+
+Wiki:  
+https://slimwiki.com/dark-tower-int/acfu/welcome
+
+Yarin **Vs 0.6 BETA, our **ACF AI Assistant: 
+ https://chatgpt.com/g/g-PPHxDrlKk-yarin-acf-assistant
+
+ Animblueprint Overview and Quadruped Mounts 
+https://youtu.be/CXuOHbAQtEM
+(Thanks to <@454225924011851777> )
+
+Retargeting Sample from CC3 
+https://www.youtube.com/watch?v=qZWxcYtvFmg  
+(Thanks to <@554855236536369173> )
+
+WIKI PDF VERSION:
+https://drive.google.com/drive/folders/1dajORXm0xtzAt3EGdE5dmhFzjv-_o5Xs?usp=sharing
+
+OLD TUTORIALS:
+
+AI Framework
+ https://www.youtube.com/playlist?list=PLU-1a5me2jvlU3OxmcA6s8KiODhBHJA7N
+(Thanks to <@557225357242138644> )
+
+Stat & Attributes
+https://youtu.be/8FxGTqql8jk
+(Thanks <@266952888272551936> )
+
+ Interaction & Crafting
+https://youtu.be/NDsDwXVE53Y
+(Thanks <@454225924011851777> )
+
+Silverleaf Tutorials:
+https://www.youtube.com/playlist?list=PLp0ZHrI_VTDtXZYVYBtEFaRJnE-d2-iaZ
+
+WGU Tutorials: 
+https://www.youtube.com/playlist?list=PLJU_vDy3nU1iFH6Du-ye5PDSdfg7SA3I1
+
+Mighteemouse Tutorials:
+https://www.youtube.com/channel/UCA4RbAdNZkRdb0DsOP_z2qQ/playlists
+
+TC Mabe Quick Starts:
+https://www.youtube.com/playlist?list=PLotuPdROw-W647dKC5DX0DAmYZ8NfjY7F
+
+ACF 2.0 Tutorials by <@454225924011851777> : 
+https://youtube.com/playlist?list=PLotuPdROw-W5_PW0TE7gmXqeYUSwZvU8T
+
+Fred's AI Workflow tutorials:
+https://www.youtube.com/playlist?list=PLU-1a5me2jvlU3OxmcA6s8KiODhBHJA7N
