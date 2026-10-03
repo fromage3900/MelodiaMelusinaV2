@@ -1,0 +1,737 @@
+﻿{
+    "schema":  "melodia.glove_pose_weight_comparison.v1",
+    "body_fbx":  "Saved/Audit/MelusinaRuntimeConvergence_20261002/current_body_readonly.fbx",
+    "accessories_fbx":  "Saved/Audit/MelusinaRuntimeConvergence_20261002/current_accessories_readonly.fbx",
+    "pose_clip":  "A_Spar_Mel_RMB_Loop",
+    "pose_sample_phase":  0.0,
+    "body_hash":  "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+    "accessories_hash":  "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+    "material_slots":  [
+                           "MI_Melusina_Nikki_GLOVES_001",
+                           "MI_Melusina_Nikki_sleeve_003",
+                           "MI_Melusina_Nikki_bow_002",
+                           "MI_Melusina_Nikki_frontpanel_001",
+                           "MI_Melusina_Nikki_SHAWL_001",
+                           "MI_Melusina_Outline_005.001",
+                           "MI_Melusina_Nikki_bow_002_6",
+                           "MI_Melusina_Nikki_frontpanel_001_7",
+                           "MI_Melusina_Nikki_SHAWL_001_8",
+                           "MI_Melusina_Outline_005_9"
+                       ],
+    "body_bones":  464,
+    "accessories_bones":  464,
+    "reference_bind":  {
+                           "stage":  "reference_bind",
+                           "glove_vertices":  2821,
+                           "body_hand_donor_vertices":  4021,
+                           "distance_mm":  {
+                                               "p10":  39.23,
+                                               "p50":  63.15,
+                                               "p90":  75.71,
+                                               "max":  89.68
+                                           },
+                           "nearest_weight_l1_mean":  1.5066,
+                           "nearest_samples":  [
+                                                   {
+                                                       "acc_v":  0,
+                                                       "body_v":  138,
+                                                       "distance_mm":  50.55,
+                                                       "acc":  [
+                                                                   [
+                                                                       "c_index1_base_r",
+                                                                       0.5277485251426697
+                                                                   ],
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.270191490650177
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.12474250048398972
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.7438925504684448
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.2561074197292328
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  1,
+                                                       "body_v":  139,
+                                                       "distance_mm":  40.33,
+                                                       "acc":  [
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.4882124066352844
+                                                                   ],
+                                                                   [
+                                                                       "thumb3_r",
+                                                                       0.20857557654380798
+                                                                   ],
+                                                                   [
+                                                                       "c_index1_base_r",
+                                                                       0.17003127932548523
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.9094834923744202
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.09051651507616043
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  2,
+                                                       "body_v":  139,
+                                                       "distance_mm":  44.26,
+                                                       "acc":  [
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.5934233665466309
+                                                                   ],
+                                                                   [
+                                                                       "thumb3_r",
+                                                                       0.21333637833595276
+                                                                   ],
+                                                                   [
+                                                                       "c_index1_base_r",
+                                                                       0.11845578998327255
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.9094834923744202
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.09051651507616043
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  3,
+                                                       "body_v":  138,
+                                                       "distance_mm":  44.34,
+                                                       "acc":  [
+                                                                   [
+                                                                       "c_index1_base_r",
+                                                                       0.38663309812545776
+                                                                   ],
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.2854810357093811
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.21013198792934418
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.7438925504684448
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.2561074197292328
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  4,
+                                                       "body_v":  581,
+                                                       "distance_mm":  60.94,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.6776378750801086
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.2232394963502884
+                                                                   ],
+                                                                   [
+                                                                       "ring1_r",
+                                                                       0.07037460803985596
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.7589074373245239
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.13940642774105072
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.09251544624567032
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  5,
+                                                       "body_v":  580,
+                                                       "distance_mm":  67.26,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.8048371076583862
+                                                                   ],
+                                                                   [
+                                                                       "ring1_r",
+                                                                       0.14087128639221191
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.05429159849882126
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.4941634237766266
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.2657816410064697
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.12954910099506378
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  6,
+                                                       "body_v":  580,
+                                                       "distance_mm":  66.38,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.7974822521209717
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.11531242728233337
+                                                                   ],
+                                                                   [
+                                                                       "ring1_r",
+                                                                       0.08720531314611435
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.4941634237766266
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.2657816410064697
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.12954910099506378
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  7,
+                                                       "body_v":  580,
+                                                       "distance_mm":  63.21,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.9342641234397888
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.06573586910963058
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.4941634237766266
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.2657816410064697
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.12954910099506378
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  8,
+                                                       "body_v":  534,
+                                                       "distance_mm":  43.93,
+                                                       "acc":  [
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.49738308787345886
+                                                                   ],
+                                                                   [
+                                                                       "thumb1_r",
+                                                                       0.2715342938899994
+                                                                   ],
+                                                                   [
+                                                                       "thumb3_r",
+                                                                       0.22467383742332458
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.8734722137451172
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.11868467181921005
+                                                                    ],
+                                                                    [
+                                                                        "thumb1_r",
+                                                                        0.0061036087572574615
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  9,
+                                                       "body_v":  534,
+                                                       "distance_mm":  33.58,
+                                                       "acc":  [
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.40668344497680664
+                                                                   ],
+                                                                   [
+                                                                       "thumb3_r",
+                                                                       0.34444189071655273
+                                                                   ],
+                                                                   [
+                                                                       "thumb1_r",
+                                                                       0.22845807671546936
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.8734722137451172
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.11868467181921005
+                                                                    ],
+                                                                    [
+                                                                        "thumb1_r",
+                                                                        0.0061036087572574615
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  10,
+                                                       "body_v":  534,
+                                                       "distance_mm":  39.49,
+                                                       "acc":  [
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.39024949073791504
+                                                                   ],
+                                                                   [
+                                                                       "thumb3_r",
+                                                                       0.30777448415756226
+                                                                   ],
+                                                                   [
+                                                                       "thumb1_r",
+                                                                       0.26424047350883484
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.8734722137451172
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.11868467181921005
+                                                                    ],
+                                                                    [
+                                                                        "thumb1_r",
+                                                                        0.0061036087572574615
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  11,
+                                                       "body_v":  145,
+                                                       "distance_mm":  36.46,
+                                                       "acc":  [
+                                                                   [
+                                                                       "thumb2_r",
+                                                                       0.5528496503829956
+                                                                   ],
+                                                                   [
+                                                                       "thumb3_r",
+                                                                       0.3322651982307434
+                                                                   ],
+                                                                   [
+                                                                       "thumb1_r",
+                                                                       0.11488517373800278
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_index1_base_r",
+                                                                        0.9261158108711243
+                                                                    ],
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.07388418167829514
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  12,
+                                                       "body_v":  2135,
+                                                       "distance_mm":  63.27,
+                                                       "acc":  [
+                                                                   [
+                                                                       "ring3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring2_r",
+                                                                        0.8136415481567383
+                                                                    ],
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.18635843694210052
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  13,
+                                                       "body_v":  2137,
+                                                       "distance_mm":  64.07,
+                                                       "acc":  [
+                                                                   [
+                                                                       "ring3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring2_r",
+                                                                        0.9727626442909241
+                                                                    ],
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.021362630650401115
+                                                                    ],
+                                                                    [
+                                                                        "ring3_r",
+                                                                        0.00587472366169095
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  14,
+                                                       "body_v":  2137,
+                                                       "distance_mm":  61.98,
+                                                       "acc":  [
+                                                                   [
+                                                                       "ring3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring2_r",
+                                                                        0.9727626442909241
+                                                                    ],
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.021362630650401115
+                                                                    ],
+                                                                    [
+                                                                        "ring3_r",
+                                                                        0.00587472366169095
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  15,
+                                                       "body_v":  2135,
+                                                       "distance_mm":  63.82,
+                                                       "acc":  [
+                                                                   [
+                                                                       "ring3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring2_r",
+                                                                        0.8136415481567383
+                                                                    ],
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.18635843694210052
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  16,
+                                                       "body_v":  1490,
+                                                       "distance_mm":  66.48,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "middle2_r",
+                                                                        0.9361562728881836
+                                                                    ],
+                                                                    [
+                                                                        "middle3_r",
+                                                                        0.0638437494635582
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  17,
+                                                       "body_v":  1487,
+                                                       "distance_mm":  70.17,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "middle2_r",
+                                                                        0.6564583778381348
+                                                                    ],
+                                                                    [
+                                                                        "middle3_r",
+                                                                        0.34354162216186523
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  18,
+                                                       "body_v":  2136,
+                                                       "distance_mm":  69.63,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring2_r",
+                                                                        0.8391241431236267
+                                                                    ],
+                                                                    [
+                                                                        "ring3_r",
+                                                                        0.16087587177753448
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  19,
+                                                       "body_v":  1490,
+                                                       "distance_mm":  72.58,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle3_r",
+                                                                       1.0
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "middle2_r",
+                                                                        0.9361562728881836
+                                                                    ],
+                                                                    [
+                                                                        "middle3_r",
+                                                                        0.0638437494635582
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  20,
+                                                       "body_v":  580,
+                                                       "distance_mm":  63.21,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.9342641234397888
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.06573586910963058
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.4941634237766266
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.2657816410064697
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.12954910099506378
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  21,
+                                                       "body_v":  583,
+                                                       "distance_mm":  64.77,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.9729152321815491
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.02708476409316063
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.6157625913619995
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.15194934606552124
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.1418631225824356
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  22,
+                                                       "body_v":  583,
+                                                       "distance_mm":  63.55,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.9782711267471313
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.021728847175836563
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.6157625913619995
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.15194934606552124
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.1418631225824356
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  23,
+                                                       "body_v":  580,
+                                                       "distance_mm":  64.4,
+                                                       "acc":  [
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.920698881149292
+                                                                   ],
+                                                                   [
+                                                                       "index1_r",
+                                                                       0.0793011337518692
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_middle1_base_r",
+                                                                        0.4941634237766266
+                                                                    ],
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.2657816410064697
+                                                                    ],
+                                                                    [
+                                                                        "middle1_r",
+                                                                        0.12954910099506378
+                                                                    ]
+                                                                ]
+                                                   },
+                                                   {
+                                                       "acc_v":  24,
+                                                       "body_v":  574,
+                                                       "distance_mm":  70.24,
+                                                       "acc":  [
+                                                                   [
+                                                                       "ring1_r",
+                                                                       0.7152513861656189
+                                                                   ],
+                                                                   [
+                                                                       "middle1_r",
+                                                                       0.1913023591041565
+                                                                   ],
+                                                                   [
+                                                                       "pinky1_r",
+                                                                       0.07818722724914551
+                                                                   ]
+                                                               ],
+                                                       "body":  [
+                                                                    [
+                                                                        "c_ring1_base_r",
+                                                                        0.6756694912910461
+                                                                    ],
+                                                                    [
+                                                                        "ring1_r",
+                                                                        0.1887083202600479
+                                                                    ],
+                                                                    [
+                                                                        "c_pinky1_base_r",
+                                                                        0.07772945612668991
+                                                                    ]
+                                                                ]
+                                                   }
+                                               ]
+                       },
+    "hold":  null,
+    "pose_application_status":  "INVALID_FOR_DEFORMATION_COMPARISON: recorded sample local translations were applied through a mismatched FBX pose basis; prior hold metrics are excluded",
+    "scope":  "Read-only bind-space nearest-source and weight comparison only. No weights or geometry modified."
+}

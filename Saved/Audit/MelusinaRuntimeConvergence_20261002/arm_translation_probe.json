@@ -1,0 +1,24 @@
+[
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_ContactProbe_RMB_Loop",
+    "bones": {
+      "head_x": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.752066, y: 0.239691, z: -0.125463, w: -0.601003}, translation: {x: 0.486981, y: -2.961911, z: 139.119197}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "shoulder_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: -0.174380, y: -0.306306, z: 0.934925, w: -0.041039}, translation: {x: 8.731199, y: -2.176765, z: 125.797427}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "arm_stretch_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.110700, y: -0.045772, z: 0.989282, w: -0.083496}, translation: {x: 2.444617, y: 25.123216, z: 146.424765}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "forearm_stretch_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.112340, y: -0.081746, z: 0.973134, w: -0.183594}, translation: {x: 0.968318, y: 34.470885, z: 147.462959}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "hand_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.540317, y: -0.159573, z: 0.826145, w: 0.008858}, translation: {x: -8.730810, y: 60.774039, z: 153.195901}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "hand_r": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.555800, y: -0.072277, z: -0.823953, w: 0.083452}, translation: {x: -27.686587, y: -38.297992, z: 155.433362}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_GlobalTranslationProbe_RMB_Loop",
+    "bones": {
+      "head_x": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.752066, y: 0.239691, z: -0.125463, w: -0.601003}, translation: {x: 0.486981, y: -2.961911, z: 139.119197}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "shoulder_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: -0.174380, y: -0.306306, z: 0.934925, w: -0.041039}, translation: {x: 8.731199, y: -2.176765, z: 125.797427}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "arm_stretch_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.110700, y: -0.045772, z: 0.989282, w: -0.083496}, translation: {x: 17.442608, y: -2.880733, z: 126.075167}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "forearm_stretch_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.112340, y: -0.081746, z: 0.973134, w: -0.183594}, translation: {x: 15.741405, y: 7.891125, z: 127.271550}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "hand_l": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.540317, y: -0.159573, z: 0.826145, w: 0.008858}, translation: {x: 10.628825, y: 40.267765, z: 130.864819}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "hand_r": "<Struct 'Transform' (0x000002495E5CC0F0) {rotation: {x: 0.555800, y: -0.072277, z: -0.823953, w: 0.083452}, translation: {x: 3.289810, y: -10.951535, z: 131.673501}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+    }
+  }
+]

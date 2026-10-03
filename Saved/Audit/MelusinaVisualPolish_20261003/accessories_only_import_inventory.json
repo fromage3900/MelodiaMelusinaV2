@@ -1,0 +1,49 @@
+{
+  "schema": "melodia.accessories_only_fbx_inventory.v1",
+  "fresh_factory_startup": true,
+  "objects_before": [
+    {
+      "name": "Cube",
+      "type": "MESH"
+    },
+    {
+      "name": "Light",
+      "type": "LIGHT"
+    },
+    {
+      "name": "Camera",
+      "type": "CAMERA"
+    }
+  ],
+  "objects_created_by_accessories_fbx": [
+    {
+      "name": "Cube",
+      "type": "MESH"
+    },
+    {
+      "name": "Light",
+      "type": "LIGHT"
+    },
+    {
+      "name": "Camera",
+      "type": "CAMERA"
+    },
+    {
+      "name": "root",
+      "type": "ARMATURE"
+    },
+    {
+      "name": "SK_Melusina_V2_Accessories.001",
+      "type": "MESH"
+    },
+    {
+      "name": "SK_Melusina_V2_Accessories",
+      "type": "EMPTY"
+    }
+  ],
+  "sha256": "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+  "import_options": {
+    "global_scale": 1.0,
+    "use_image_search": true
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "schema": "melodia.jev.archery_goal_session.v1",
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "packet": {
+    "state": {
+      "verified_at": "2026-10-01 ~18:20 ET, live editor PID 9912, L_MelusinaMorning, this session",
+      "runtime_proof_today": {
+        "what": "Melusina possessed in PIE only; real component entry points StartAim -> StartDraw (tension 1.0) -> ReleaseDraw by DIRECT INVOCATION (not physical input).",
+        "result": "Arrow collided with the practice echo; ONE stock BP_BattleController.CalculateDamage call (multiplier 1.0, final 20); echo HP 250 -> 230; hits_resolved=1; status HIT; zero Blueprint Runtime Error / Accessed None; clean PIE teardown; zero dirty packages.",
+        "earlier_owner_log": "21:36 UTC log shows an earlier owner run: 9 shots, stock final=20 per hit, echo HP 56/250 - same path, same resolver."
+      },
+      "defects_found": {
+        "backward_arrow": "ReleaseDraw (MelodiaWaveHarpCombatComponent.cpp ~L286-293 on main) traces the aim ray from the CAMERA EYE (boom ~340-405 cm behind pawn) with ECC_Visibility, then spawns the arrow at Origin = pawn+35z+View*110 and flies it toward the hit point. If anything is hit between the eye and Origin (closer than ~450 cm along the ray) the arrow is fired BACKWARD toward that point. Reproduced: first shot forward=(-0.82,0.26,0.51) toward a rock-overhang underside (BrushifyIsland_09 underside, normal pointing down) 365 cm along the ray; MELODIA_ARROW_COLLISION hit the island, no stock resolve. From a clear spot east of the echo the same code resolved a hit correctly.",
+        "practice_stage": "Morning / WaveHarp Practice Echo (MelodiaWorldSlimeNode, MaxHP 250, stock pure 20, attacker/defender stat BPs under /Game/Melodia/CombatTrial/HybridStats) sits at ~(-2337,595,936) under a low rock overhang on its west side; this is unvalidated placement (CURRENT_STATE says validate ground/reachability before promotion).",
+        "pawn_identity": "In Morning PIE the player controller possesses BP_SirMelodiousJRPGCharacter; Melusina (BP_MelusinaJRPGCharacter, owns MelodiaTraversalComponent which adds the WaveHarp component) is an AI-controlled party follower with ABP_Melusina_Current. GameMode default pawn is Melusina. Party bootstrap source has UNBUILT uncommitted edits (JRPGPartyBootstrapSubsystem .h/.cpp, BP_SirMelodiousPlayerUnit.uasset).",
+        "movement_lock": "Source-traced (not live-proven): every UQuill::PlayScript spawns a new interpreter; InputDisable re-locks; bow cycle re-acquires the lock; per-cycle trigger is Blueprint-side and unidentified. WASD under real input still unproven. No tick-reset workaround allowed.",
+        "draw_notify_vs_freeze": "AM_RangeAttack carries a nested AnimNotify_PlayMontageNotify at 0.50s (payload unresolved) beside the native 0.45s freeze; release montage commits BP_UseSkillN at clip end (1.30s, ~0.81s at 1.6x)."
+      },
+      "animation_state": {
+        "bound_clips": "Draw montage AM_RangeAttack -> A_RangeAttack and release montage Polish_20260919/AM_Melusina_BowAttack_Gameplay -> A_Melusina_BowAttackV2_A_RangeAttack (both V2 sequences, 1.3s, root motion off, DefaultSlot).",
+        "live_pose_sample_draw_hold_0.45s": "hand_l 52cm forward of shoulder_l and 14cm below; hand_r (string hand) 39cm lateral to and 30cm BELOW shoulder_r. Reads as low-ready, not a raised anchor draw. Bow prop only appears while the component aims; not visible from the behind-the-shoulder aim camera, so hand/bow contact is UNVERIFIED.",
+        "audit_receipts": "Shoulder audit (5 clips, frames 0/13/20/30/38): no rotational fold; V2 shoulders +11.2..+14.8cm below head; zero folders so no clip edits. Raw BowDraw_v2 is scale-100/teleporting, quarantined. A_Melusina_BowDraw_v2_InPlace is root-clean (scale 1, planted) but HOLD-ONLY (no draw-up, no loose, no follow-through). BowKneelAim rejected as kneel. Forged hold + serene/spin stay staged. A loose/follow-through beat cannot be synthesized true: perform (OBSBOT OB01-OB06, owner) or Cascadeur-author only.",
+        "abp": "ABP_Melusina_Current has ZERO bow knowledge: 1 state machine MelusinaLocomotion (6 states), bow arrives only via component-played DefaultSlot montages. P4-open for edit, writable on disk. Upper-body blend over preserved locomotion/physics is the planned ABP change (topology baseline 892e53f93276f2694820a7ad7cc78793220355dc; export->fingerprint->mutate->compile->assert->save). Monolith connect_anim_graph_pins has move (not fan-out) semantics; the one fan-out link needs editor run_python try_create_connection.",
+        "tools_unusable": "capture_anim_frames and capture_scene_preview render a T-pose for these sequences (do not evaluate them); live PIE bone sampling (sample_pie_anim_instance) and pie_screenshot work.",
+        "retarget_map": "Previously Jev-ACCEPT_WITH_NOTES: R1 Rokoko batch + R2 Cascadeur + raw retargets; Lane A direct for 465/forged/procedural; RTG_Mocap_to_Melusina_Current raw-source only; 43 replace_existing=True sites are the genuine overwrite risk; importer guards (FBXIT_ANIMATION, fragment quarantine, cm unit guard) re-applied and py_compile clean; Sol's repairs 36e089c7c/906bbf3b8 live on docs/honcho-discord-sync only and main landing is owed (owner-gated branch op)."
+      },
+      "environment_constraints": {
+        "checkout": "Working tree is on docs/honcho-discord-sync (a5a9579af). The WaveHarp/Hybrid/Arrow/HUD C++ sources exist ONLY on main; they are absent from disk here. Any C++ fix needs main's source on disk, a closed-editor UBT build, and an editor relaunch. Repo law: no branch create/switch, commit, push, merge without explicit owner permission.",
+        "editor": "Backgrounded editor runs PIE at ~3 fps; owner confirmed only this session is in the editor. Last built DLL 10-01 00:59 includes all current hybrid/WaveHarp source; party bootstrap edits are unbuilt.",
+        "owed_gates": "Melusina-possessed real-input PIE proof; WASD proof; stock-then-GOOD/PERFECT ladder; closed-editor build; packaged/60fps/showcase.",
+        "showcase": "Tonight: refined archery gameplay AND graceful portfolio render pose shots (owner)."
+      }
+    },
+    "constraints": [
+      "Existing assets and existing owners only; no new damage, rhythm, save, UI or combat authority; no ACFU in production; canonical heroine pawn stays BP_MelusinaJRPGCharacter.",
+      "Stock BP_BattleController.CalculateDamage stays the only damage calculation; WaveHarp tension never scales damage.",
+      "One editor writer; save approved editor work immediately; no PIE-only hacks left in assets; nothing committed, pushed, branched or submitted without explicit owner permission.",
+      "Never bind raw BowDraw_v2, the empty Polished husk, or quarantined fragments; Lane A direct takes never re-retarget.",
+      "No compensating mechanism: a fix that adds a flag/branch whose only job is to cancel another bug is wrong - delete the cause.",
+      "Direct invocation is not player-input proof; claims need the evidence level they actually have.",
+      "Jev selects only; execution goes through Monolith/Claireon/C++ owners with independent readback."
+    ],
+    "questions": {
+      "session_order": [
+        "AIM_RAY_FIX_FIRST",
+        "MOVEMENT_LOCK_TRACE_FIRST",
+        "ABP_UPPER_BODY_HOLD_FIRST",
+        "PORTFOLIO_POSE_SHOTS_FIRST"
+      ],
+      "aim_ray_fix": [
+        "TRACE_FROM_ARROW_ORIGIN",
+        "REJECT_HITS_BEHIND_ORIGIN",
+        "CAMERA_COLLISION_AWARE_EYE",
+        "DEFER_AND_DOCUMENT"
+      ],
+      "pawn_identity": [
+        "MELUSINA_LEADER_FOR_BOW_STATES",
+        "SWITCH_LEADER_ON_AIM",
+        "KEEP_SIR_LEADER_BOW_ON_MELUSINA_FOLLOWER",
+        "HOLD_FOR_OWNER_PARTY_DESIGN"
+      ],
+      "bow_anim_strategy": [
+        "BIND_INPLACE_HOLD_EARLY_UPPER_BODY_BLEND",
+        "AUTHOR_FULL_BEAT_SET_BEFORE_BINDING",
+        "HYBRID_HOLD_NOW_FOR_RENDERS_BEATS_LATER_FOR_GAMEPLAY"
+      ],
+      "practice_range": [
+        "MOVE_ECHO_TO_CLEAR_GROUND",
+        "LEAVE_AFTER_AIM_FIX",
+        "ADD_SECOND_CLEAR_RANGE"
+      ],
+      "retarget_convergence_next": [
+        "ADD_OVERWRITE_GUARD_AND_CENSUS",
+        "LAND_TO_MAIN_OWNER_GATED",
+        "PROVE_LIVE_ROUNDTRIP",
+        "FREEZE_AS_IS"
+      ],
+      "proof_ladder": [
+        "OWNER_REAL_INPUT_PLAYTEST_FIRST",
+        "DIRECT_INVOCATION_LADDER_FIRST",
+        "PACKAGED_BUILD_FIRST"
+      ]
+    }
+  },
+  "answers": {
+    "session_order": {
+      "choice": "PORTFOLIO_POSE_SHOTS_FIRST",
+      "confidence": 0.4,
+      "probabilities": {
+        "MOVEMENT_LOCK_TRACE_FIRST": 0.23,
+        "ABP_UPPER_BODY_HOLD_FIRST": 0.09,
+        "AIM_RAY_FIX_FIRST": 0.13,
+        "PORTFOLIO_POSE_SHOTS_FIRST": 0.55
+      }
+    },
+    "aim_ray_fix": {
+      "choice": "TRACE_FROM_ARROW_ORIGIN",
+      "confidence": 0.48,
+      "probabilities": {
+        "TRACE_FROM_ARROW_ORIGIN": 0.6,
+        "DEFER_AND_DOCUMENT": 0.03,
+        "CAMERA_COLLISION_AWARE_EYE": 0.1,
+        "REJECT_HITS_BEHIND_ORIGIN": 0.27
+      }
+    },
+    "pawn_identity": {
+      "choice": "HOLD_FOR_OWNER_PARTY_DESIGN",
+      "confidence": 0.59,
+      "probabilities": {
+        "KEEP_SIR_LEADER_BOW_ON_MELUSINA_FOLLOWER": 0.24,
+        "HOLD_FOR_OWNER_PARTY_DESIGN": 0.69,
+        "MELUSINA_LEADER_FOR_BOW_STATES": 0.05,
+        "SWITCH_LEADER_ON_AIM": 0.02
+      }
+    },
+    "bow_anim_strategy": {
+      "choice": "AUTHOR_FULL_BEAT_SET_BEFORE_BINDING",
+      "confidence": 0.5,
+      "probabilities": {
+        "HYBRID_HOLD_NOW_FOR_RENDERS_BEATS_LATER_FOR_GAMEPLAY": 0.27,
+        "AUTHOR_FULL_BEAT_SET_BEFORE_BINDING": 0.66,
+        "BIND_INPLACE_HOLD_EARLY_UPPER_BODY_BLEND": 0.07
+      }
+    },
+    "practice_range": {
+      "choice": "MOVE_ECHO_TO_CLEAR_GROUND",
+      "confidence": 0.81,
+      "probabilities": {
+        "ADD_SECOND_CLEAR_RANGE": 0.03,
+        "MOVE_ECHO_TO_CLEAR_GROUND": 0.87,
+        "LEAVE_AFTER_AIM_FIX": 0.1
+      }
+    },
+    "retarget_convergence_next": {
+      "choice": "ADD_OVERWRITE_GUARD_AND_CENSUS",
+      "confidence": 0.22,
+      "probabilities": {
+        "LAND_TO_MAIN_OWNER_GATED": 0.33,
+        "PROVE_LIVE_ROUNDTRIP": 0.24,
+        "ADD_OVERWRITE_GUARD_AND_CENSUS": 0.41,
+        "FREEZE_AS_IS": 0.02
+      }
+    },
+    "proof_ladder": {
+      "choice": "DIRECT_INVOCATION_LADDER_FIRST",
+      "confidence": 0.47,
+      "probabilities": {
+        "OWNER_REAL_INPUT_PLAYTEST_FIRST": 0.35,
+        "PACKAGED_BUILD_FIRST": 0.0,
+        "DIRECT_INVOCATION_LADDER_FIRST": 0.65
+      }
+    }
+  }
+}

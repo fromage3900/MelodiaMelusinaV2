@@ -1,0 +1,181 @@
+{
+  "same_named_dominant_group_count": 42,
+  "total_matches": 4958,
+  "top_groups": [
+    {
+      "bone": "thumb1_l",
+      "n": 268,
+      "p50_mm": 63.1,
+      "p90_mm": 89.89,
+      "avg_glove_weight": 0.374
+    },
+    {
+      "bone": "forearm_twist_r",
+      "n": 266,
+      "p50_mm": 67.22,
+      "p90_mm": 84.03,
+      "avg_glove_weight": 0.55
+    },
+    {
+      "bone": "c_pinky1_base_r",
+      "n": 245,
+      "p50_mm": 70.5,
+      "p90_mm": 85.78,
+      "avg_glove_weight": 0.443
+    },
+    {
+      "bone": "forearm_twist_l",
+      "n": 245,
+      "p50_mm": 67.07,
+      "p90_mm": 81.87,
+      "avg_glove_weight": 0.553
+    },
+    {
+      "bone": "middle1_l",
+      "n": 243,
+      "p50_mm": 65.96,
+      "p90_mm": 79.79,
+      "avg_glove_weight": 0.466
+    },
+    {
+      "bone": "thumb1_r",
+      "n": 236,
+      "p50_mm": 61.78,
+      "p90_mm": 90.66,
+      "avg_glove_weight": 0.365
+    },
+    {
+      "bone": "c_pinky1_base_l",
+      "n": 202,
+      "p50_mm": 73.36,
+      "p90_mm": 85.47,
+      "avg_glove_weight": 0.441
+    },
+    {
+      "bone": "middle1_r",
+      "n": 196,
+      "p50_mm": 64.5,
+      "p90_mm": 78.1,
+      "avg_glove_weight": 0.483
+    },
+    {
+      "bone": "ring1_l",
+      "n": 189,
+      "p50_mm": 70.06,
+      "p90_mm": 80.74,
+      "avg_glove_weight": 0.404
+    },
+    {
+      "bone": "thumb3_r",
+      "n": 182,
+      "p50_mm": 67.06,
+      "p90_mm": 105.25,
+      "avg_glove_weight": 0.634
+    },
+    {
+      "bone": "index1_l",
+      "n": 170,
+      "p50_mm": 65.63,
+      "p90_mm": 78.33,
+      "avg_glove_weight": 0.542
+    },
+    {
+      "bone": "ring1_r",
+      "n": 167,
+      "p50_mm": 67.65,
+      "p90_mm": 79.66,
+      "avg_glove_weight": 0.397
+    },
+    {
+      "bone": "index1_r",
+      "n": 162,
+      "p50_mm": 63.2,
+      "p90_mm": 75.83,
+      "avg_glove_weight": 0.508
+    },
+    {
+      "bone": "thumb3_l",
+      "n": 161,
+      "p50_mm": 67.89,
+      "p90_mm": 99.01,
+      "avg_glove_weight": 0.651
+    },
+    {
+      "bone": "thumb2_l",
+      "n": 151,
+      "p50_mm": 62.62,
+      "p90_mm": 80.79,
+      "avg_glove_weight": 0.386
+    },
+    {
+      "bone": "thumb2_r",
+      "n": 150,
+      "p50_mm": 62.05,
+      "p90_mm": 81.59,
+      "avg_glove_weight": 0.427
+    },
+    {
+      "bone": "hand_r",
+      "n": 150,
+      "p50_mm": 69.97,
+      "p90_mm": 83.47,
+      "avg_glove_weight": 0.241
+    },
+    {
+      "bone": "hand_l",
+      "n": 126,
+      "p50_mm": 72.14,
+      "p90_mm": 84.15,
+      "avg_glove_weight": 0.242
+    },
+    {
+      "bone": "pinky1_r",
+      "n": 112,
+      "p50_mm": 71.23,
+      "p90_mm": 82.25,
+      "avg_glove_weight": 0.374
+    },
+    {
+      "bone": "pinky1_l",
+      "n": 106,
+      "p50_mm": 73.09,
+      "p90_mm": 84.27,
+      "avg_glove_weight": 0.399
+    },
+    {
+      "bone": "ring3_l",
+      "n": 99,
+      "p50_mm": 67.1,
+      "p90_mm": 74.13,
+      "avg_glove_weight": 0.905
+    },
+    {
+      "bone": "ring3_r",
+      "n": 97,
+      "p50_mm": 66.64,
+      "p90_mm": 75.05,
+      "avg_glove_weight": 0.886
+    },
+    {
+      "bone": "c_index1_base_r",
+      "n": 95,
+      "p50_mm": 56.92,
+      "p90_mm": 79.67,
+      "avg_glove_weight": 0.366
+    },
+    {
+      "bone": "middle2_r",
+      "n": 87,
+      "p50_mm": 64.92,
+      "p90_mm": 78.94,
+      "avg_glove_weight": 0.589
+    },
+    {
+      "bone": "middle3_r",
+      "n": 86,
+      "p50_mm": 67.4,
+      "p90_mm": 72.58,
+      "avg_glove_weight": 0.858
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "id": "A",
+  "name": "Quiet Pulse Relay",
+  "intent": "Player sees one faint ripple-pulse hop tree to tree and hears one bell phrase pass in even steps; learns the garden keeps its own time, and the return is the first full-strength pulse.",
+  "relay_timing": {
+    "unit": "seconds",
+    "answer_to_tree1": 2.0,
+    "tree1_to_2": 3.0,
+    "tree2_to_3": 3.0,
+    "tree3_to_4": 3.0,
+    "tree4_return_to_player": 4.0,
+    "note": "all gaps exceed the 0.27s pulse life and the 1s bridge rate window"
+  },
+  "per_tree_draw_candidates": [
+    {
+      "tree": 1,
+      "draw_backend": "classical-baseline",
+      "seed": 1001,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.7,
+          "spacing": 0.55
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.35,
+          "spacing": 0.3
+        }
+      ],
+      "scores": {
+        "ResonanceSoft": 0.97,
+        "ResonanceBeat": 0.66
+      },
+      "predicted_winner": "ResonanceSoft"
+    },
+    {
+      "tree": 2,
+      "draw_backend": "classical-baseline",
+      "seed": 1002,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.5,
+          "spacing": 0.5
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.62,
+          "spacing": 0.55
+        }
+      ],
+      "scores": {
+        "ResonanceBeat": 0.922,
+        "ResonanceSoft": 0.83
+      },
+      "predicted_winner": "ResonanceBeat"
+    },
+    {
+      "tree": 3,
+      "draw_backend": "classical-baseline",
+      "seed": 1003,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.3,
+          "spacing": 0.9
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.75,
+          "spacing": 0.55
+        }
+      ],
+      "scores": {
+        "ResonanceBeat": 1.0,
+        "ResonanceSoft": 0.59
+      },
+      "predicted_winner": "ResonanceBeat"
+    },
+    {
+      "tree": 4,
+      "draw_backend": "classical-baseline",
+      "seed": 1004,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.55,
+          "spacing": 0.55
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.6,
+          "spacing": 0.5
+        },
+        {
+          "id": "WorldAwakening",
+          "difficulty": 0.75,
+          "spacing": 0.55
+        }
+      ],
+      "scores": {
+        "WorldAwakening": 1.0,
+        "ResonanceBeat": 0.89,
+        "ResonanceSoft": 0.88
+      },
+      "predicted_winner": "WorldAwakening"
+    }
+  ],
+  "response_consumer_params": {
+    "ResonanceSoft": {
+      "Niagara_User_params_set_by_bridge": [
+        "User.ReactionColor",
+        "User.QuantumPulse",
+        "User.QuantumChoice",
+        "User.QuantumSeed",
+        "User.QuantumBackend",
+        "User.QuantumChoiceInv"
+      ],
+      "verified_at": "MelodiaWaterNiagaraBridgeComponent.cpp:372-377; names Bridge.h:156-168",
+      "MPC": "MPC_Melodia_Palette scalars QuantumChoice/Seed/Backend/Pulse + vector QuantumReactionColor (DrawSubsystem.cpp:409-413)",
+      "used_by_this_response": "QuantumPulse only (low authored Niagara scale)",
+      "new_cpp": "none for pulse; Bridge reacts only to water contact events from its owner actor (bOnlySpawnForOwner, Bridge.cpp:138), types SurfaceEntry/Exit/DiveStarted/Splash/WaterImpact (cpp:298-302), max 2/s (Profile.h:162). A tree-located reaction needs a new event emitter; how MelodiaWaterInteractionSubsystem publishes events was NOT read."
+    },
+    "ResonanceBeat": {
+      "Niagara_User_params_set_by_bridge": [
+        "User.ReactionColor",
+        "User.QuantumPulse",
+        "User.QuantumChoice",
+        "User.QuantumSeed",
+        "User.QuantumBackend",
+        "User.QuantumChoiceInv"
+      ],
+      "verified_at": "MelodiaWaterNiagaraBridgeComponent.cpp:372-377; names Bridge.h:156-168",
+      "MPC": "MPC_Melodia_Palette scalars QuantumChoice/Seed/Backend/Pulse + vector QuantumReactionColor (DrawSubsystem.cpp:409-413)",
+      "used_by_this_response": "QuantumPulse only (medium scale)",
+      "new_cpp": "same"
+    },
+    "WorldAwakening": {
+      "Niagara_User_params_set_by_bridge": [
+        "User.ReactionColor",
+        "User.QuantumPulse",
+        "User.QuantumChoice",
+        "User.QuantumSeed",
+        "User.QuantumBackend",
+        "User.QuantumChoiceInv"
+      ],
+      "verified_at": "MelodiaWaterNiagaraBridgeComponent.cpp:372-377; names Bridge.h:156-168",
+      "MPC": "MPC_Melodia_Palette scalars QuantumChoice/Seed/Backend/Pulse + vector QuantumReactionColor (DrawSubsystem.cpp:409-413)",
+      "used_by_this_response": "QuantumPulse only (full scale)",
+      "new_cpp": "same"
+    }
+  },
+  "audio_cue_intent": "One soft bell MetaSound voice per tree, same phrase passed on pitch-for-pitch; final tree adds a second voice a third above (echoing script line 37). 3D-attenuated per tree, last one wide. No asset path verified.",
+  "unverified_or_new_cpp": [
+    "QuantumPulse is set to 1.0 on a successful draw then decays 3.5/s (DrawSubsystem.cpp:388,423), so it stays above the bridge threshold 0.05 (Bridge.h:171) for ~0.27s. QuantumBackend=1 only for non-classical backends (cpp:372-375). QuantumSeed=frac(seed/100000) (cpp:368). QuantumChoice=chart_index/(N-1) only for ids 'chart_N', else 0.0 (cpp:357-366).",
+    "Semantic ids are not 'chart_N': ChartIndexFromId returns INDEX_NONE and QuantumChoice publishes 0.0 (cpp:28-36,364). Use wire ids chart_0/chart_1/chart_2 (list order) or NEW C++.",
+    "QuantumReactionColor = FindSkill(PendingSkillId)->LaneColor (cpp:380-386); PendingSkillId is NAME_None for direct RequestDraw calls (set only in StartNextSongDraw, cpp:317), so colour cannot be set per response. NEW C++ needed.",
+    "Bridge reacts only to water contact events from its owner actor (bOnlySpawnForOwner, Bridge.cpp:138), types SurfaceEntry/Exit/DiveStarted/Splash/WaterImpact (cpp:298-302), max 2/s (Profile.h:162). A tree-located reaction needs a new event emitter; how MelodiaWaterInteractionSubsystem publishes events was NOT read.",
+    "RequestDraw returns 'busy' while another draw is in flight (cpp:89-96); gaps must exceed HTTP round trip + QuantumDrawTimeoutMs (config values not read).",
+    "classical-baseline reports QuantumBackend=0."
+  ],
+  "provenance": {
+    "generator": "worker-bell-tree-v1",
+    "source_files": [
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveBellTreeListening.qsc",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaQuantumDrawSubsystem.cpp",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaQuantumDrawSubsystem.h",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterNiagaraBridgeComponent.cpp",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterNiagaraBridgeComponent.h",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterProfile.h",
+      "Content/Python/quantum/draw_providers.py",
+      "Content/Python/quantum/layout_ranker.py",
+      "Content/Python/quantum/service.py",
+      "Content/Python/build_pcg_hero_bell_tree_garden.py",
+      "Content/Python/audit_pcg_hero_bell_tree_garden.py"
+    ],
+    "parameters": {
+      "draw_backend": "classical-baseline",
+      "score_formula": "0.6*(1-|d-0.75|)+0.4*(1-|s-0.55|) (layout_ranker.py:77-85)",
+      "winner_prediction": "argmax (draw_providers.py:96-99)"
+    },
+    "seed": [
+      1001,
+      1002,
+      1003,
+      1004
+    ],
+    "intended_consumer": "UMelodiaQuantumDrawSubsystem::RequestDraw -> MPC_Melodia_Palette -> UMelodiaWaterNiagaraBridgeComponent",
+    "canonical": false,
+    "validation": "unverified"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "melodia.jev.bell_tree_pick.v1",
+  "model": "jev-1.13.0",
+  "raw_repr": "SystemOneResponse(model='jev-1.13.0', usage=Usage(input_tokens=589, output_tokens=84), answers={'candidate': ChoiceAnswer(type='choice', choice='A', confidence=0.9, probabilities={'C': 0.03, 'A': 0.94, 'B': 0.03}), 'event_blend_weight': ChoiceAnswer(type='choice', choice='0.9', confidence=0.09, probabilities={'0.6': 0.39, '0.9': 0.39, '0.4': 0.22})})",
+  "answers": {
+    "candidate": {
+      "choice": "A",
+      "reason": null
+    },
+    "event_blend_weight": {
+      "choice": "0.9",
+      "reason": null
+    }
+  }
+}

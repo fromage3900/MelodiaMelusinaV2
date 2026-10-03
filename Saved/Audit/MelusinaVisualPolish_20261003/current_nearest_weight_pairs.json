@@ -1,0 +1,208 @@
+{
+  "n": 2821,
+  "l1_mean": 1.5066,
+  "l1_p50": 1.7509,
+  "most_common_top_group_pairs": [
+    [
+      [
+        "forearm_twist_r",
+        "forearm_twist_r"
+      ],
+      182
+    ],
+    [
+      [
+        "forearm_twist_l",
+        "forearm_twist_l"
+      ],
+      166
+    ],
+    [
+      [
+        "index1_l",
+        "c_middle1_base_l"
+      ],
+      110
+    ],
+    [
+      [
+        "index1_r",
+        "c_middle1_base_r"
+      ],
+      98
+    ],
+    [
+      [
+        "thumb3_l",
+        "c_index1_base_l"
+      ],
+      92
+    ],
+    [
+      [
+        "c_pinky1_base_r",
+        "c_pinky1_base_r"
+      ],
+      87
+    ],
+    [
+      [
+        "thumb3_r",
+        "c_index1_base_r"
+      ],
+      81
+    ],
+    [
+      [
+        "c_pinky1_base_l",
+        "c_pinky1_base_l"
+      ],
+      79
+    ],
+    [
+      [
+        "thumb2_r",
+        "c_index1_base_r"
+      ],
+      73
+    ],
+    [
+      [
+        "thumb1_l",
+        "c_index1_base_l"
+      ],
+      65
+    ],
+    [
+      [
+        "ring3_r",
+        "ring2_r"
+      ],
+      62
+    ],
+    [
+      [
+        "ring3_l",
+        "ring2_l"
+      ],
+      62
+    ],
+    [
+      [
+        "middle3_r",
+        "middle2_r"
+      ],
+      60
+    ],
+    [
+      [
+        "middle1_l",
+        "c_middle1_base_l"
+      ],
+      55
+    ],
+    [
+      [
+        "middle3_l",
+        "middle2_l"
+      ],
+      54
+    ],
+    [
+      [
+        "thumb2_l",
+        "c_index1_base_l"
+      ],
+      49
+    ],
+    [
+      [
+        "pinky1_l",
+        "c_pinky1_base_l"
+      ],
+      47
+    ],
+    [
+      [
+        "thumb1_r",
+        "c_index1_base_r"
+      ],
+      45
+    ],
+    [
+      [
+        "ring1_l",
+        "c_ring1_base_l"
+      ],
+      41
+    ],
+    [
+      [
+        "middle1_r",
+        "ring1_r"
+      ],
+      40
+    ],
+    [
+      [
+        "index3_l",
+        "index2_l"
+      ],
+      40
+    ],
+    [
+      [
+        "pinky1_r",
+        "c_pinky1_base_r"
+      ],
+      39
+    ],
+    [
+      [
+        "ring2_r",
+        "ring1_r"
+      ],
+      38
+    ],
+    [
+      [
+        "thumb1_r",
+        "hand_r"
+      ],
+      37
+    ],
+    [
+      [
+        "thumb1_l",
+        "hand_l"
+      ],
+      37
+    ]
+  ],
+  "largest_distance_samples": [
+    {
+      "dmm": 14.83,
+      "l1": 1.688,
+      "acc_v": 320,
+      "body_v": 531,
+      "acc_dom": "thumb1_r",
+      "body_dom": "c_index1_base_r"
+    },
+    {
+      "dmm": 63.15,
+      "l1": 2.0,
+      "acc_v": 47,
+      "body_v": 1522,
+      "acc_dom": "index2_r",
+      "body_dom": "middle1_r"
+    },
+    {
+      "dmm": 89.68,
+      "l1": 0.209,
+      "acc_v": 515,
+      "body_v": 392,
+      "acc_dom": "forearm_twist_r",
+      "body_dom": "forearm_twist_r"
+    }
+  ]
+}

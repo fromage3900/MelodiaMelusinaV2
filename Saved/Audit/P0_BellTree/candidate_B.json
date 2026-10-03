@@ -1,0 +1,195 @@
+{
+  "id": "B",
+  "name": "Colour Relay",
+  "intent": "Player sees the water ripple change hue at each tree (cool, warm, gold) while the phrase is re-voiced; learns each tree is a different voice of one song.",
+  "relay_timing": {
+    "unit": "seconds",
+    "answer_to_tree1": 2.5,
+    "tree1_to_2": 3.5,
+    "tree2_to_3": 3.5,
+    "tree3_to_4": 3.5,
+    "tree4_return_to_player": 5.0,
+    "note": "hue must be read inside the 0.27s pulse window per event"
+  },
+  "per_tree_draw_candidates": [
+    {
+      "tree": 1,
+      "draw_backend": "chaos",
+      "seed": 5,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.72,
+          "spacing": 0.55
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.6,
+          "spacing": 0.5
+        }
+      ],
+      "scores": {
+        "ResonanceSoft": 0.982,
+        "ResonanceBeat": 0.89
+      },
+      "predicted_winner": "ResonanceSoft"
+    },
+    {
+      "tree": 2,
+      "draw_backend": "chaos",
+      "seed": 5,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.7,
+          "spacing": 0.55
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.65,
+          "spacing": 0.55
+        }
+      ],
+      "scores": {
+        "ResonanceSoft": 0.97,
+        "ResonanceBeat": 0.94
+      },
+      "predicted_winner": "ResonanceSoft"
+    },
+    {
+      "tree": 3,
+      "draw_backend": "chaos",
+      "seed": 1,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.6,
+          "spacing": 0.55
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.7,
+          "spacing": 0.55
+        }
+      ],
+      "scores": {
+        "ResonanceSoft": 0.91,
+        "ResonanceBeat": 0.97
+      },
+      "predicted_winner": "ResonanceBeat"
+    },
+    {
+      "tree": 4,
+      "draw_backend": "chaos",
+      "seed": 1,
+      "candidates": [
+        {
+          "id": "ResonanceSoft",
+          "difficulty": 0.65,
+          "spacing": 0.55
+        },
+        {
+          "id": "ResonanceBeat",
+          "difficulty": 0.72,
+          "spacing": 0.55
+        },
+        {
+          "id": "WorldAwakening",
+          "difficulty": 0.75,
+          "spacing": 0.55
+        }
+      ],
+      "scores": {
+        "ResonanceSoft": 0.94,
+        "ResonanceBeat": 0.982,
+        "WorldAwakening": 1.0
+      },
+      "predicted_winner": "WorldAwakening"
+    }
+  ],
+  "response_consumer_params": {
+    "ResonanceSoft": {
+      "Niagara_User_params_set_by_bridge": [
+        "User.ReactionColor",
+        "User.QuantumPulse",
+        "User.QuantumChoice",
+        "User.QuantumSeed",
+        "User.QuantumBackend",
+        "User.QuantumChoiceInv"
+      ],
+      "verified_at": "MelodiaWaterNiagaraBridgeComponent.cpp:372-377; names Bridge.h:156-168",
+      "MPC": "MPC_Melodia_Palette scalars QuantumChoice/Seed/Backend/Pulse + vector QuantumReactionColor (DrawSubsystem.cpp:409-413)",
+      "used_by_this_response": "QuantumReactionColor -> User.ReactionColor, cool",
+      "new_cpp": "NEW C++: QuantumReactionColor = FindSkill(PendingSkillId)->LaneColor (cpp:380-386); PendingSkillId is NAME_None for direct RequestDraw calls (set only in StartNextSongDraw, cpp:317), so colour cannot be set per response. NEW C++ needed."
+    },
+    "ResonanceBeat": {
+      "Niagara_User_params_set_by_bridge": [
+        "User.ReactionColor",
+        "User.QuantumPulse",
+        "User.QuantumChoice",
+        "User.QuantumSeed",
+        "User.QuantumBackend",
+        "User.QuantumChoiceInv"
+      ],
+      "verified_at": "MelodiaWaterNiagaraBridgeComponent.cpp:372-377; names Bridge.h:156-168",
+      "MPC": "MPC_Melodia_Palette scalars QuantumChoice/Seed/Backend/Pulse + vector QuantumReactionColor (DrawSubsystem.cpp:409-413)",
+      "used_by_this_response": "QuantumReactionColor, warm",
+      "new_cpp": "same"
+    },
+    "WorldAwakening": {
+      "Niagara_User_params_set_by_bridge": [
+        "User.ReactionColor",
+        "User.QuantumPulse",
+        "User.QuantumChoice",
+        "User.QuantumSeed",
+        "User.QuantumBackend",
+        "User.QuantumChoiceInv"
+      ],
+      "verified_at": "MelodiaWaterNiagaraBridgeComponent.cpp:372-377; names Bridge.h:156-168",
+      "MPC": "MPC_Melodia_Palette scalars QuantumChoice/Seed/Backend/Pulse + vector QuantumReactionColor (DrawSubsystem.cpp:409-413)",
+      "used_by_this_response": "QuantumReactionColor, gold",
+      "new_cpp": "same"
+    }
+  },
+  "audio_cue_intent": "Per-tree bell MetaSound with a filter that brightens each hop; the return layers the earlier voices. Descriptive only.",
+  "unverified_or_new_cpp": [
+    "QuantumPulse is set to 1.0 on a successful draw then decays 3.5/s (DrawSubsystem.cpp:388,423), so it stays above the bridge threshold 0.05 (Bridge.h:171) for ~0.27s. QuantumBackend=1 only for non-classical backends (cpp:372-375). QuantumSeed=frac(seed/100000) (cpp:368). QuantumChoice=chart_index/(N-1) only for ids 'chart_N', else 0.0 (cpp:357-366).",
+    "QuantumReactionColor = FindSkill(PendingSkillId)->LaneColor (cpp:380-386); PendingSkillId is NAME_None for direct RequestDraw calls (set only in StartNextSongDraw, cpp:317), so colour cannot be set per response. NEW C++ needed.",
+    "Semantic ids are not 'chart_N': ChartIndexFromId returns INDEX_NONE and QuantumChoice publishes 0.0 (cpp:28-36,364). Use wire ids chart_0/chart_1/chart_2 (list order) or NEW C++.",
+    "Bridge reacts only to water contact events from its owner actor (bOnlySpawnForOwner, Bridge.cpp:138), types SurfaceEntry/Exit/DiveStarted/Splash/WaterImpact (cpp:298-302), max 2/s (Profile.h:162). A tree-located reaction needs a new event emitter; how MelodiaWaterInteractionSubsystem publishes events was NOT read.",
+    "RequestDraw returns 'busy' while another draw is in flight (cpp:89-96); gaps must exceed HTTP round trip + QuantumDrawTimeoutMs (config values not read).",
+    "Chaos draws are score-WEIGHTED samples (scores are close), so the intensity ordering holds only for the listed seeds.",
+    "QuantumBackend=1 for chaos (cpp:372-375) although it is classical code.",
+    "Colour-led design is not deliverable without new C++."
+  ],
+  "provenance": {
+    "generator": "worker-bell-tree-v1",
+    "source_files": [
+      "Content/MelodiaIntegration/Narrative/MelodiaQuillSeaAboveBellTreeListening.qsc",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaQuantumDrawSubsystem.cpp",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaQuantumDrawSubsystem.h",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterNiagaraBridgeComponent.cpp",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterNiagaraBridgeComponent.h",
+      "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterProfile.h",
+      "Content/Python/quantum/draw_providers.py",
+      "Content/Python/quantum/layout_ranker.py",
+      "Content/Python/quantum/service.py",
+      "Content/Python/build_pcg_hero_bell_tree_garden.py",
+      "Content/Python/audit_pcg_hero_bell_tree_garden.py"
+    ],
+    "parameters": {
+      "draw_backend": "chaos",
+      "score_formula": "0.6*(1-|d-0.75|)+0.4*(1-|s-0.55|) (layout_ranker.py:77-85)",
+      "winner_prediction": "winner found by searching seeds 1-4999 with the real draw_providers code; weighted sample, reproducible only for this seed"
+    },
+    "seed": [
+      5,
+      5,
+      1,
+      1
+    ],
+    "intended_consumer": "UMelodiaQuantumDrawSubsystem::RequestDraw -> MPC_Melodia_Palette -> UMelodiaWaterNiagaraBridgeComponent",
+    "canonical": false,
+    "validation": "unverified"
+  }
+}

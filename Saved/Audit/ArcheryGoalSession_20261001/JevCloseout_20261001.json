@@ -1,0 +1,23 @@
+{
+  "schema": "melodia.jev.closeout.v1",
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "answers": {
+    "closeout_readiness": {
+      "choice": "NEEDS_REAL_INPUT_PROOF_FIRST",
+      "reason": null
+    },
+    "landing_route": {
+      "choice": "STAGE_NOTHING_HAND_TO_DESKTOP",
+      "reason": null
+    },
+    "scope_of_commit": {
+      "choice": "EVERYTHING_IN_TREE",
+      "reason": null
+    },
+    "polish_order": {
+      "choice": "SHIRT_GLOVES_SHOULDERS_FIRST",
+      "reason": null
+    }
+  }
+}

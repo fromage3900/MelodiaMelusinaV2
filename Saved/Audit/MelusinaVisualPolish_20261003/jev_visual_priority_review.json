@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.jev.visual_priority_review.v1",
+  "input_sha256": "4b21b96250fa12a69727bee930d7fe5dd1baa8ef785ca56b584e6d0a9e09428c",
+  "timestamp_utc": "2026-10-03T16:22:06.782614+00:00",
+  "text_only": true,
+  "paths_sent": false,
+  "images_sent": false,
+  "measurements_sent": false,
+  "requested_model": "jev-preview",
+  "status": "failed",
+  "error_type": "TypeSafeError"
+}

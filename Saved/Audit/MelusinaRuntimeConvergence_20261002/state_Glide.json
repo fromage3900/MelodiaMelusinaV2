@@ -1,0 +1,19 @@
+{
+  "state_name": "Glide",
+  "machine_name": "MelusinaLocomotion",
+  "position": [
+    192,
+    0
+  ],
+  "nodes": [
+    {
+      "class": "AnimGraphNode_StateResult",
+      "title": "Output Animation Pose"
+    },
+    {
+      "class": "AnimGraphNode_SequencePlayer",
+      "title": "A_Mocap_LittleDance_001\nSequence Player"
+    }
+  ],
+  "node_count": 2
+}

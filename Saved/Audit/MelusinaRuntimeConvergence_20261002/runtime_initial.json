@@ -1,0 +1,4047 @@
+{
+  "evidence": "PIE_LIVE_BINDINGS_AND_POSE_SNAPSHOT_ONLY",
+  "created_utc": "2026-10-03T03:29:43Z",
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "actors": [
+    {
+      "actor": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+      "class": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.BP_MelusinaJRPGCharacter_C",
+      "location": [
+        1305.2979694136184,
+        1861.265435278759,
+        -520.1269341744329
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [
+        {
+          "component": "CharacterMesh0",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+          "anim_instance": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0.ABP_Melusina_Current_C_0",
+          "anim_instance_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+          "leader_pose": null,
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CollisionCylinder",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            -73.0
+          ],
+          "relative_rotation": [
+            0.0,
+            -90.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1305.2979694136184,
+                1861.265435278759,
+                -593.1269341744329
+              ],
+              "rotation": [
+                -0.0,
+                -90.00000000000001,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1326.1823039778274,
+                1861.2654482533649,
+                -500.3078786171819
+              ],
+              "rotation": [
+                0.0137551321831645,
+                -89.98577867744953,
+                -90.00000795227321
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1316.811088236219,
+                1857.956171081265,
+                -463.85344946358225
+              ],
+              "rotation": [
+                0.1284232757578241,
+                -0.06702626259562013,
+                -7.361813265313157
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1316.8149437430689,
+                1861.4427618279392,
+                -463.7529734399299
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                179.93296301748026,
+                -4.0593424613533395
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1320.6370935188481,
+                1813.0031204567265,
+                -514.8156050754849
+              ],
+              "rotation": [
+                -8.771693781307386,
+                -1.1769028665194552,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1320.489482542731,
+                1907.905934392097,
+                -512.9467296162527
+              ],
+              "rotation": [
+                8.77333405778759,
+                -178.7969370761467,
+                -2.174995096658115
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1321.01534564716,
+                1859.266542650605,
+                -448.946517111838
+              ],
+              "rotation": [
+                -1.6512322941222355,
+                -90.06333070636288,
+                89.87149217902487
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WaterHairMesh",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WaterHairMesh",
+          "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair",
+          "skeleton": "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton.SK_Melusina_Hair_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+          "anim_instance": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WaterHairMesh.ABP_Melusina_WaterHair_C_0",
+          "anim_instance_class": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+          "leader_pose": null,
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_socket": "head_x",
+          "relative_location": [
+            7.977811904424925e-07,
+            144.2298154490256,
+            -15.8970993083649
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            -90.0
+          ],
+          "relative_scale": [
+            1.0000000223517422,
+            1.0000004163778844,
+            1.0000047543465034
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {}
+        },
+        {
+          "component": "HatMesh",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.HatMesh",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Hat.SK_Melusina_V2_Hat",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1305.2979694136184,
+                1861.265435278759,
+                -593.1269341744329
+              ],
+              "rotation": [
+                -0.0,
+                -90.00000000000001,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1320.6370935188481,
+                1813.0031204567265,
+                -514.8156050754849
+              ],
+              "rotation": [
+                -8.771693781307386,
+                -1.1769028665194552,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1320.489482542731,
+                1907.905934392097,
+                -512.9467296162527
+              ],
+              "rotation": [
+                8.77333405778759,
+                -178.7969370761467,
+                -2.174995096658115
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            }
+          }
+        },
+        {
+          "component": "WaveHarpInstrumentPresentation",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WaveHarpInstrumentPresentation",
+          "mesh": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp.SK_ME_WaveHarp",
+          "skeleton": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp_Skeleton.SK_ME_WaveHarp_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": null,
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CollisionCylinder",
+          "attach_socket": "None",
+          "relative_location": [
+            55.0,
+            -35.0,
+            126.3428655527456
+          ],
+          "relative_rotation": [
+            0.0,
+            80.96747589111327,
+            -0.0
+          ],
+          "relative_scale": [
+            0.8999999761581421,
+            0.8999999761581421,
+            0.8999999761581421
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1360.2979694136184,
+                1826.265435278759,
+                -393.7840686216873
+              ],
+              "rotation": [
+                3.1805546814635168e-15,
+                80.96747589111327,
+                90.0
+              ],
+              "scale": [
+                89.99999761581421,
+                89.99999761581421,
+                89.99999761581421
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Shirt",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WardrobeSlot_EMelodiaWardrobeSlot::Shirt",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt.SK_Melusina_V2_Shirt",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1305.2979694136184,
+                1861.265435278759,
+                -593.1269341744329
+              ],
+              "rotation": [
+                -0.0,
+                -90.00000000000001,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1326.1823039778274,
+                1861.2654482533649,
+                -500.3078786171819
+              ],
+              "rotation": [
+                0.0137551321831645,
+                -89.98577867744953,
+                -90.00000795227321
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1316.811088236219,
+                1857.956171081265,
+                -463.85344946358225
+              ],
+              "rotation": [
+                0.1284232757578241,
+                -0.06702626259562013,
+                -7.361813265313157
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1316.8149437430689,
+                1861.4427618279392,
+                -463.7529734399299
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                179.93296301748026,
+                -4.0593424613533395
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1320.6370935188481,
+                1813.0031204567265,
+                -514.8156050754849
+              ],
+              "rotation": [
+                -8.771693781307386,
+                -1.1769028665194552,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1320.489482542731,
+                1907.905934392097,
+                -512.9467296162527
+              ],
+              "rotation": [
+                8.77333405778759,
+                -178.7969370761467,
+                -2.174995096658115
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1321.01534564716,
+                1859.266542650605,
+                -448.946517111838
+              ],
+              "rotation": [
+                -1.6512322941222355,
+                -90.06333070636288,
+                89.87149217902487
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Skirt",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WardrobeSlot_EMelodiaWardrobeSlot::Skirt",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains.SK_Melusina_V2_Skirt_R2_SmoothChains",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1305.2979694136184,
+                1861.265435278759,
+                -593.1269341744329
+              ],
+              "rotation": [
+                -0.0,
+                -90.00000000000001,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1326.1823039778274,
+                1861.2654482533649,
+                -500.3078786171819
+              ],
+              "rotation": [
+                0.0137551321831645,
+                -89.98577867744953,
+                -90.00000795227321
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1316.811088236219,
+                1857.956171081265,
+                -463.85344946358225
+              ],
+              "rotation": [
+                0.1284232757578241,
+                -0.06702626259562013,
+                -7.361813265313157
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1316.8149437430689,
+                1861.4427618279392,
+                -463.7529734399299
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                179.93296301748026,
+                -4.0593424613533395
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1320.6370935188481,
+                1813.0031204567265,
+                -514.8156050754849
+              ],
+              "rotation": [
+                -8.771693781307386,
+                -1.1769028665194552,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1320.489482542731,
+                1907.905934392097,
+                -512.9467296162527
+              ],
+              "rotation": [
+                8.77333405778759,
+                -178.7969370761467,
+                -2.174995096658115
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1321.01534564716,
+                1859.266542650605,
+                -448.946517111838
+              ],
+              "rotation": [
+                -1.6512322941222355,
+                -90.06333070636288,
+                89.87149217902487
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots.SK_Melusina_V2_Boots",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1305.2979694136184,
+                1861.265435278759,
+                -593.1269341744329
+              ],
+              "rotation": [
+                -0.0,
+                -90.00000000000001,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1326.1823039778274,
+                1861.2654482533649,
+                -500.3078786171819
+              ],
+              "rotation": [
+                0.0137551321831645,
+                -89.98577867744953,
+                -90.00000795227321
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1316.811088236219,
+                1857.956171081265,
+                -463.85344946358225
+              ],
+              "rotation": [
+                0.1284232757578241,
+                -0.06702626259562013,
+                -7.361813265313157
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1316.8149437430689,
+                1861.4427618279392,
+                -463.7529734399299
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                179.93296301748026,
+                -4.0593424613533395
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1320.6370935188481,
+                1813.0031204567265,
+                -514.8156050754849
+              ],
+              "rotation": [
+                -8.771693781307386,
+                -1.1769028665194552,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1320.489482542731,
+                1907.905934392097,
+                -512.9467296162527
+              ],
+              "rotation": [
+                8.77333405778759,
+                -178.7969370761467,
+                -2.174995096658115
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1321.01534564716,
+                1859.266542650605,
+                -448.946517111838
+              ],
+              "rotation": [
+                -1.6512322941222355,
+                -90.06333070636288,
+                89.87149217902487
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Accessories",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WardrobeSlot_EMelodiaWardrobeSlot::Accessories",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories.SK_Melusina_V2_Accessories",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1305.2979694136184,
+                1861.265435278759,
+                -593.1269341744329
+              ],
+              "rotation": [
+                -0.0,
+                -90.00000000000001,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1326.1823039778274,
+                1861.2654482533649,
+                -500.3078786171819
+              ],
+              "rotation": [
+                0.0137551321831645,
+                -89.98577867744953,
+                -90.00000795227321
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1316.811088236219,
+                1857.956171081265,
+                -463.85344946358225
+              ],
+              "rotation": [
+                0.1284232757578241,
+                -0.06702626259562013,
+                -7.361813265313157
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1316.8149437430689,
+                1861.4427618279392,
+                -463.7529734399299
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                179.93296301748026,
+                -4.0593424613533395
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1320.6370935188481,
+                1813.0031204567265,
+                -514.8156050754849
+              ],
+              "rotation": [
+                -8.771693781307386,
+                -1.1769028665194552,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1320.489482542731,
+                1907.905934392097,
+                -512.9467296162527
+              ],
+              "rotation": [
+                8.77333405778759,
+                -178.7969370761467,
+                -2.174995096658115
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1321.01534564716,
+                1859.266542650605,
+                -448.946517111838
+              ],
+              "rotation": [
+                -1.6512322941222355,
+                -90.06333070636288,
+                89.87149217902487
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        }
+      ],
+      "pose_owner_components": [
+        {
+          "component": "WaterHairMesh",
+          "class": "/Script/BS_GodFile.MelodiaHairComponent",
+          "fields": {}
+        },
+        {
+          "component": "MelodiaTraversal",
+          "class": "/Script/BS_GodFile.MelodiaTraversalComponent",
+          "fields": {}
+        },
+        {
+          "component": "Wardrobe",
+          "class": "/Script/MelodiaWardrobe.MelodiaWardrobeComponent",
+          "fields": {}
+        },
+        {
+          "component": "MelodiaWaveHarpCombatComponent_0",
+          "class": "/Script/BS_GodFile.MelodiaWaveHarpCombatComponent",
+          "fields": {
+            "cast_stance_anim": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Idle_Loop.A_Q_Melusina_Spell_Simple_Idle_Loop",
+            "cast_shoot_anim": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Shoot.A_Q_Melusina_Spell_Simple_Shoot",
+            "charge_draw_anim": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback.A_Spar_Mel_RMB_Drawback",
+            "charge_hold_anim": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop",
+            "charge_fire_anim": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire.A_Spar_Mel_RMB_Fire",
+            "pose_slot": "DefaultSlot",
+            "instrument_socket": "S_Instrument_L",
+            "charge_threshold_seconds": "0.30000001192092896",
+            "draw_ready_seconds": "0.800000011920929"
+          }
+        }
+      ]
+    },
+    {
+      "actor": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0",
+      "class": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation.BP_MelusinaSwordsman_Presentation_C",
+      "location": [
+        1650.0,
+        2000.0,
+        -590.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [
+        {
+          "component": "SkeletalMesh",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.SkeletalMesh",
+          "mesh": null,
+          "skeleton": null,
+          "visible": false,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "/Game/TurnBasedJRPGTemplate/Animations/A_BattleAnimationBlueprint.A_BattleAnimationBlueprint_C",
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": null,
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.DefaultSceneRoot",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            -90.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {}
+        },
+        {
+          "component": "MelusinaPresentationMesh",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+          "anim_instance": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh.ABP_Melusina_Current_C_0",
+          "anim_instance_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+          "leader_pose": null,
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.DefaultSceneRoot",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1650.0,
+                2000.0,
+                -590.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1649.9999870253941,
+                2020.884334564209,
+                -497.180944442749
+              ],
+              "rotation": [
+                0.013755132183166638,
+                0.014221322550488332,
+                -90.0000079522732
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1653.309264197494,
+                2011.5131188226005,
+                -460.72651528914935
+              ],
+              "rotation": [
+                0.12842327575782442,
+                89.93297373740438,
+                -7.361813265313153
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1649.8226734508198,
+                2011.5169743294505,
+                -460.626039265497
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                -90.06703698251975,
+                -4.059342461353338
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1698.2623148220325,
+                2015.3391241052298,
+                -511.68867090105203
+              ],
+              "rotation": [
+                -8.771693781307384,
+                88.82309713348057,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1603.359500886662,
+                2015.1915131291125,
+                -509.8197954418198
+              ],
+              "rotation": [
+                8.773334057787585,
+                -88.79693707614672,
+                -2.174995096658113
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1651.998892628154,
+                2015.7173762335417,
+                -445.8195829374051
+              ],
+              "rotation": [
+                -1.6512322941222353,
+                -0.0633307063628491,
+                89.87149217902486
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WaterHairMesh",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.WaterHairMesh",
+          "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair",
+          "skeleton": "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton.SK_Melusina_Hair_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+          "anim_instance": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.WaterHairMesh.ABP_Melusina_WaterHair_C_0",
+          "anim_instance_class": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+          "leader_pose": null,
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_socket": "head_x",
+          "relative_location": [
+            7.977811362636089e-07,
+            144.22981544902564,
+            -15.897099308364929
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            -90.0
+          ],
+          "relative_scale": [
+            1.0000000223517422,
+            1.0000004163778844,
+            1.0000047543465034
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {}
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Shirt",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.WardrobeSlot_EMelodiaWardrobeSlot::Shirt",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt.SK_Melusina_V2_Shirt",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1650.0,
+                2000.0,
+                -590.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1649.9999870253941,
+                2020.884334564209,
+                -497.180944442749
+              ],
+              "rotation": [
+                0.013755132183166638,
+                0.014221322550488332,
+                -90.0000079522732
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1653.309264197494,
+                2011.5131188226005,
+                -460.72651528914935
+              ],
+              "rotation": [
+                0.12842327575782442,
+                89.93297373740438,
+                -7.361813265313153
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1649.8226734508198,
+                2011.5169743294505,
+                -460.626039265497
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                -90.06703698251975,
+                -4.059342461353338
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1698.2623148220325,
+                2015.3391241052298,
+                -511.68867090105203
+              ],
+              "rotation": [
+                -8.771693781307384,
+                88.82309713348057,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1603.359500886662,
+                2015.1915131291125,
+                -509.8197954418198
+              ],
+              "rotation": [
+                8.773334057787585,
+                -88.79693707614672,
+                -2.174995096658113
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1651.998892628154,
+                2015.7173762335417,
+                -445.8195829374051
+              ],
+              "rotation": [
+                -1.6512322941222353,
+                -0.0633307063628491,
+                89.87149217902486
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Skirt",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.WardrobeSlot_EMelodiaWardrobeSlot::Skirt",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains.SK_Melusina_V2_Skirt_R2_SmoothChains",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1650.0,
+                2000.0,
+                -590.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1649.9999870253941,
+                2020.884334564209,
+                -497.180944442749
+              ],
+              "rotation": [
+                0.013755132183166638,
+                0.014221322550488332,
+                -90.0000079522732
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1653.309264197494,
+                2011.5131188226005,
+                -460.72651528914935
+              ],
+              "rotation": [
+                0.12842327575782442,
+                89.93297373740438,
+                -7.361813265313153
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1649.8226734508198,
+                2011.5169743294505,
+                -460.626039265497
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                -90.06703698251975,
+                -4.059342461353338
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1698.2623148220325,
+                2015.3391241052298,
+                -511.68867090105203
+              ],
+              "rotation": [
+                -8.771693781307384,
+                88.82309713348057,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1603.359500886662,
+                2015.1915131291125,
+                -509.8197954418198
+              ],
+              "rotation": [
+                8.773334057787585,
+                -88.79693707614672,
+                -2.174995096658113
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1651.998892628154,
+                2015.7173762335417,
+                -445.8195829374051
+              ],
+              "rotation": [
+                -1.6512322941222353,
+                -0.0633307063628491,
+                89.87149217902486
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots.SK_Melusina_V2_Boots",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1650.0,
+                2000.0,
+                -590.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1649.9999870253941,
+                2020.884334564209,
+                -497.180944442749
+              ],
+              "rotation": [
+                0.013755132183166638,
+                0.014221322550488332,
+                -90.0000079522732
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1653.309264197494,
+                2011.5131188226005,
+                -460.72651528914935
+              ],
+              "rotation": [
+                0.12842327575782442,
+                89.93297373740438,
+                -7.361813265313153
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1649.8226734508198,
+                2011.5169743294505,
+                -460.626039265497
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                -90.06703698251975,
+                -4.059342461353338
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1698.2623148220325,
+                2015.3391241052298,
+                -511.68867090105203
+              ],
+              "rotation": [
+                -8.771693781307384,
+                88.82309713348057,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1603.359500886662,
+                2015.1915131291125,
+                -509.8197954418198
+              ],
+              "rotation": [
+                8.773334057787585,
+                -88.79693707614672,
+                -2.174995096658113
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1651.998892628154,
+                2015.7173762335417,
+                -445.8195829374051
+              ],
+              "rotation": [
+                -1.6512322941222353,
+                -0.0633307063628491,
+                89.87149217902486
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        },
+        {
+          "component": "WardrobeSlot_EMelodiaWardrobeSlot::Accessories",
+          "path": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.WardrobeSlot_EMelodiaWardrobeSlot::Accessories",
+          "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories.SK_Melusina_V2_Accessories",
+          "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": null,
+          "anim_instance": null,
+          "anim_instance_class": null,
+          "leader_pose": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaSwordsman_Presentation_C_0.MelusinaPresentationMesh",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "root": {
+              "location": [
+                1650.0,
+                2000.0,
+                -590.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "root_x": {
+              "location": [
+                1649.9999870253941,
+                2020.884334564209,
+                -497.180944442749
+              ],
+              "rotation": [
+                0.013755132183166638,
+                0.014221322550488332,
+                -90.0000079522732
+              ],
+              "scale": [
+                0.9999999999999998,
+                1.0,
+                1.0000000000000002
+              ]
+            },
+            "shoulder_l": {
+              "location": [
+                1653.309264197494,
+                2011.5131188226005,
+                -460.72651528914935
+              ],
+              "rotation": [
+                0.12842327575782442,
+                89.93297373740438,
+                -7.361813265313153
+              ],
+              "scale": [
+                1.0000000000000002,
+                0.9999997615814317,
+                0.999995172024058
+              ]
+            },
+            "shoulder_r": {
+              "location": [
+                1649.8226734508198,
+                2011.5169743294505,
+                -460.626039265497
+              ],
+              "rotation": [
+                -0.1284730889899343,
+                -90.06703698251975,
+                -4.059342461353338
+              ],
+              "scale": [
+                1.0000001192092898,
+                0.9999997615814311,
+                0.9999951720240579
+              ]
+            },
+            "hand_l": {
+              "location": [
+                1698.2623148220325,
+                2015.3391241052298,
+                -511.68867090105203
+              ],
+              "rotation": [
+                -8.771693781307384,
+                88.82309713348057,
+                -2.1484978946523663
+              ],
+              "scale": [
+                0.999999940395356,
+                0.9999997615814323,
+                0.9999950528153473
+              ]
+            },
+            "hand_r": {
+              "location": [
+                1603.359500886662,
+                2015.1915131291125,
+                -509.8197954418198
+              ],
+              "rotation": [
+                8.773334057787585,
+                -88.79693707614672,
+                -2.174995096658113
+              ],
+              "scale": [
+                1.000000119209289,
+                0.9999997019768004,
+                0.9999950528153471
+              ]
+            },
+            "head_x": {
+              "location": [
+                1651.998892628154,
+                2015.7173762335417,
+                -445.8195829374051
+              ],
+              "rotation": [
+                -1.6512322941222353,
+                -0.0633307063628491,
+                89.87149217902486
+              ],
+              "scale": [
+                1.0,
+                0.9999997019768009,
+                0.9999951720240587
+              ]
+            }
+          }
+        }
+      ],
+      "pose_owner_components": [
+        {
+          "component": "WaterHairMesh",
+          "class": "/Script/BS_GodFile.MelodiaHairComponent",
+          "fields": {}
+        },
+        {
+          "component": "PresentationRhythm",
+          "class": "/Script/BS_GodFile.MelodiaJRPGPresentationRhythmComponent",
+          "fields": {}
+        },
+        {
+          "component": "BattleWardrobe",
+          "class": "/Script/MelodiaWardrobe.MelodiaWardrobeComponent",
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "actor": "/Memory/UEDPIE_0_L_MelusinaMorning_2AWDXWLAENBPZSCZBOKY2M4OB.L_MelusinaMorning:PersistentLevel.BP_MelusinaRoomShell_C_UAID_7C5758FA1CAC620303_1913396775",
+      "class": "/Game/EnvSandbox/Blueprints/House/BP_MelusinaRoomShell.BP_MelusinaRoomShell_C",
+      "location": [
+        461.0,
+        575.0,
+        -222.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [],
+      "pose_owner_components": []
+    },
+    {
+      "actor": "/Memory/UEDPIE_0_L_MelusinaMorning_2AWDXWLAENBPZSCZBOKY2M4OB.L_MelusinaMorning:PersistentLevel.BP_MelusinaSparkleZone_C_UAID_7C5758FA1CAC9A0403_1482550160",
+      "class": "/Game/Melodia/VFX/Zones/BP_MelusinaSparkleZone.BP_MelusinaSparkleZone_C",
+      "location": [
+        400.0,
+        2700.0,
+        -460.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [],
+      "pose_owner_components": []
+    },
+    {
+      "actor": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaSparkleZone_C_UAID_7C5758FA1CAC9A0403_1482570161",
+      "class": "/Game/Melodia/VFX/Zones/BP_MelusinaSparkleZone.BP_MelusinaSparkleZone_C",
+      "location": [
+        -2560.0,
+        1450.0,
+        1353.7598490715027
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [],
+      "pose_owner_components": []
+    },
+    {
+      "actor": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaSparkleZone_C_UAID_7C5758FA1CAC9A0403_1482580162",
+      "class": "/Game/Melodia/VFX/Zones/BP_MelusinaSparkleZone.BP_MelusinaSparkleZone_C",
+      "location": [
+        -600.0,
+        2600.0,
+        -396.7492341995239
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [],
+      "pose_owner_components": []
+    },
+    {
+      "actor": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702",
+      "class": "/Game/Melodia/Characters/Melusina/DollKit/BP_MelusinaDollKit_Preview.BP_MelusinaDollKit_Preview_C",
+      "location": [
+        -2560.0,
+        1250.0,
+        1202.6621103286743
+      ],
+      "rotation": [
+        0.0,
+        6.938854694366456,
+        -0.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "skeletal_components": [
+        {
+          "component": "Seg_chest",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest.MEL_seg_chest",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": null,
+          "attach_socket": "None",
+          "relative_location": [
+            -2560.0,
+            1250.0,
+            1202.6621103286743
+          ],
+          "relative_rotation": [
+            0.0,
+            6.938854694366456,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_pelvis",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_pelvis",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_pelvis.MEL_seg_pelvis",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_pelvis.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_head",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_head",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_head.MEL_seg_head",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_head.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_upperarm_l",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_upperarm_l",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_upperarm_l.MEL_seg_upperarm_l",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_upperarm_l.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_upperarm_r",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_upperarm_r",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_upperarm_r.MEL_seg_upperarm_r",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_upperarm_r.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_forearm_l",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_forearm_l",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_forearm_l.MEL_seg_forearm_l",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_forearm_l.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_forearm_r",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_forearm_r",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_forearm_r.MEL_seg_forearm_r",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_forearm_r.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_hand_l",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_hand_l",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_hand_l.MEL_seg_hand_l",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_hand_l.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_hand_r",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_hand_r",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_hand_r.MEL_seg_hand_r",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_hand_r.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_thigh_l",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_thigh_l",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_thigh_l.MEL_seg_thigh_l",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_thigh_l.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_thigh_r",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_thigh_r",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_thigh_r.MEL_seg_thigh_r",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_thigh_r.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_shin_l",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_shin_l",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_shin_l.MEL_seg_shin_l",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_shin_l.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_shin_r",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_shin_r",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_shin_r.MEL_seg_shin_r",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_shin_r.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_foot_l",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_foot_l",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_foot_l.MEL_seg_foot_l",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_foot_l.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        },
+        {
+          "component": "Seg_foot_r",
+          "path": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_foot_r",
+          "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_foot_r.MEL_seg_foot_r",
+          "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+          "visible": true,
+          "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+          "anim_class": null,
+          "anim_instance": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_foot_r.AnimSingleNodeInstance_2",
+          "anim_instance_class": "/Script/Engine.AnimSingleNodeInstance",
+          "leader_pose": null,
+          "attach_parent": "/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.BP_MelusinaDollKit_Preview_C_UAID_7C5758FA1CAC8C0403_1496936702.Seg_chest",
+          "attach_socket": "None",
+          "relative_location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "postprocess_class": null,
+          "postprocess_instance": null,
+          "active_montage": null,
+          "montage_position": null,
+          "bones": {
+            "arm_l": {
+              "location": [
+                -2540.5427341197123,
+                1257.7522734416962,
+                1326.4518028536406
+              ],
+              "rotation": [
+                -8.31822776755495,
+                132.34032585708522,
+                -148.57726577713706
+              ],
+              "scale": [
+                1.000000099253007,
+                0.9999999717549037,
+                1.0000000768910902
+              ]
+            },
+            "arm_r": {
+              "location": [
+                -2575.96819366141,
+                1253.9055141992685,
+                1326.3737084716804
+              ],
+              "rotation": [
+                11.50802561835797,
+                -121.40728523746722,
+                -146.05387610809098
+              ],
+              "scale": [
+                0.999999864504018,
+                0.9999998711031559,
+                1.0000000527347612
+              ]
+            },
+            "forearm_l": {
+              "location": [
+                -2520.3842604164515,
+                1268.9346660188614,
+                1290.1213257737327
+              ],
+              "rotation": [
+                14.265133962876144,
+                115.42275972298289,
+                -135.46260076360085
+              ],
+              "scale": [
+                1.000000080625749,
+                0.9999997596790541,
+                0.999999981838748
+              ]
+            },
+            "forearm_r": {
+              "location": [
+                -2600.243647115973,
+                1260.3640731749608,
+                1291.3139045015657
+              ],
+              "rotation": [
+                25.16967742815736,
+                -63.149100589938655,
+                -109.94280073353146
+              ],
+              "scale": [
+                0.9999997709926107,
+                0.9999998535656042,
+                1.0000001989944445
+              ]
+            },
+            "hand_l": {
+              "location": [
+                -2505.5545419958803,
+                1281.1513859333782,
+                1271.7636829679886
+              ],
+              "rotation": [
+                -6.176535019520104,
+                35.62601123641721,
+                -66.16915523784563
+              ],
+              "scale": [
+                0.9999999222443211,
+                0.9999997463087216,
+                1.0000001784825365
+              ]
+            },
+            "hand_r": {
+              "location": [
+                -2621.4103216488456,
+                1245.1971779156672,
+                1282.8628011212184
+              ],
+              "rotation": [
+                -20.003906358872104,
+                -153.54822633000998,
+                -93.47274225047325
+              ],
+              "scale": [
+                0.9999996301138661,
+                0.9999998890174753,
+                1.0000001415475406
+              ]
+            }
+          }
+        }
+      ],
+      "pose_owner_components": []
+    }
+  ],
+  "players": [
+    {
+      "controller": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelodiaJRPGPlayerController_C_0",
+      "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+      "view_target": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1"
+    }
+  ],
+  "missing": []
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "sequence": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop",
+    "retarget_source_asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body' (0x0000024948A9DC00) Class 'SkeletalMesh'>",
+    "bones": {
+      "root_x": {
+        "mesh_ref_location": [
+          6.430974281101953e-06,
+          -20.884342193603512,
+          101.15884399414062
+        ],
+        "skeleton_ref_location": [
+          -5.6843418860808015e-12,
+          -20.884342193603516,
+          88.5816879272461
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: 0.000003, y: -0.707107, z: -0.707107, w: 0.000003}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: 0.000003, y: -0.707107, z: 0.707107, w: -0.000003}>"
+      },
+      "shoulder_l": {
+        "mesh_ref_location": [
+          1.7440221309661867,
+          -13.839701652526855,
+          -2.877640724182122
+        ],
+        "skeleton_ref_location": [
+          1.7440217733383183,
+          -13.839697837829604,
+          -2.8776264190673686
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CF1E0) {x: -0.420551, y: 0.361902, z: -0.607477, w: -0.568451}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: -0.420555, y: 0.361905, z: -0.607474, w: -0.568448}>"
+      },
+      "arm_stretch_l": {
+        "mesh_ref_location": [
+          -0.5398535132408142,
+          -34.758323669433594,
+          1.3672534227370932
+        ],
+        "skeleton_ref_location": [
+          -3.9577486177222454e-07,
+          -15.774476051330565,
+          -1.2009887541353237e-05
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: 0.035937, y: 0.000517, z: 0.014168, w: -0.999253}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CF1E0) {x: 0.031039, y: 0.135728, z: 0.009173, w: -0.990217}>"
+      },
+      "forearm_stretch_l": {
+        "mesh_ref_location": [
+          -3.0547380447387695e-07,
+          -9.520343780517578,
+          9.445830073673278e-06
+        ],
+        "skeleton_ref_location": [
+          6.556510925292969e-06,
+          -28.561042785644528,
+          -9.775161743164062e-06
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: -0.000000, y: -0.000002, z: -0.047886, w: -0.998853}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: -0.000000, y: -0.000002, z: -0.047882, w: -0.998853}>"
+      },
+      "hand_l": {
+        "mesh_ref_location": [
+          -6.258487692534231e-07,
+          -28.614608764648438,
+          2.362769555475097e-05
+        ],
+        "skeleton_ref_location": [
+          2.86102294921875e-06,
+          -28.61462783813478,
+          1.71661376953125e-05
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CF1E0) {x: -0.008335, y: -0.075847, z: 0.046453, w: -0.996002}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: -0.008427, y: -0.210140, z: 0.046659, w: -0.976521}>"
+      }
+    }
+  },
+  {
+    "sequence": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+    "retarget_source_asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body' (0x0000024948A9DC00) Class 'SkeletalMesh'>",
+    "bones": {
+      "root_x": {
+        "mesh_ref_location": [
+          6.430974281101953e-06,
+          -20.884342193603512,
+          101.15884399414062
+        ],
+        "skeleton_ref_location": [
+          -5.6843418860808015e-12,
+          -20.884342193603516,
+          88.5816879272461
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: 0.000003, y: -0.707107, z: -0.707107, w: 0.000003}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CF1E0) {x: 0.000003, y: -0.707107, z: 0.707107, w: -0.000003}>"
+      },
+      "shoulder_l": {
+        "mesh_ref_location": [
+          1.7440221309661867,
+          -13.839701652526855,
+          -2.877640724182122
+        ],
+        "skeleton_ref_location": [
+          1.7440217733383183,
+          -13.839697837829604,
+          -2.8776264190673686
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: -0.420551, y: 0.361902, z: -0.607477, w: -0.568451}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: -0.420555, y: 0.361905, z: -0.607474, w: -0.568448}>"
+      },
+      "arm_stretch_l": {
+        "mesh_ref_location": [
+          -0.5398535132408142,
+          -34.758323669433594,
+          1.3672534227370932
+        ],
+        "skeleton_ref_location": [
+          -3.9577486177222454e-07,
+          -15.774476051330565,
+          -1.2009887541353237e-05
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CF1E0) {x: 0.035937, y: 0.000517, z: 0.014168, w: -0.999253}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: 0.031039, y: 0.135728, z: 0.009173, w: -0.990217}>"
+      },
+      "forearm_stretch_l": {
+        "mesh_ref_location": [
+          -3.0547380447387695e-07,
+          -9.520343780517578,
+          9.445830073673278e-06
+        ],
+        "skeleton_ref_location": [
+          6.556510925292969e-06,
+          -28.561042785644528,
+          -9.775161743164062e-06
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: -0.000000, y: -0.000002, z: -0.047886, w: -0.998853}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CF1E0) {x: -0.000000, y: -0.000002, z: -0.047882, w: -0.998853}>"
+      },
+      "hand_l": {
+        "mesh_ref_location": [
+          -6.258487692534231e-07,
+          -28.614608764648438,
+          2.362769555475097e-05
+        ],
+        "skeleton_ref_location": [
+          2.86102294921875e-06,
+          -28.61462783813478,
+          1.71661376953125e-05
+        ],
+        "mesh_ref_rotation": "<Struct 'Quat' (0x000002495E5CFF60) {x: -0.008335, y: -0.075847, z: 0.046453, w: -0.996002}>",
+        "skeleton_ref_rotation": "<Struct 'Quat' (0x000002495E5CC0F0) {x: -0.008427, y: -0.210140, z: 0.046659, w: -0.976521}>"
+      }
+    }
+  }
+]

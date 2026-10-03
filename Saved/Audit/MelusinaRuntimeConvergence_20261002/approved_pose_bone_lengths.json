@@ -1,0 +1,65 @@
+[
+  {
+    "path": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+    "bones": {
+      "shoulder_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.420551, y: -0.361902, z: 0.607477, w: 0.568451}, translation: {x: 1.744015, y: -13.839750, z: -2.877752}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.014254, y: -0.017941, z: -0.707524, w: -0.706318}, translation: {x: -0.682580, y: 11.903553, z: 129.420624}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "arm_stretch_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.430761, y: 0.245675, z: 0.158779, w: 0.853743}, translation: {x: 1.131215, y: -26.788137, z: -15.489252}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.145451, y: -0.491352, z: -0.711966, w: -0.480127}, translation: {x: 25.370711, y: 12.995911, z: 112.722321}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "forearm_stretch_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.000000, y: 0.000002, z: 0.002679, w: 0.999996}, translation: {x: 0.000004, y: -9.520353, z: -0.000030}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.146765, y: -0.490962, z: -0.713250, w: -0.478217}, translation: {x: 30.518646, y: 13.530016, z: 104.731664}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "hand_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.417451, y: -0.186939, z: -0.205191, w: 0.865266}, translation: {x: 0.000015, y: -28.614641, z: -0.000076}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.040047, y: -0.067783, z: -0.696542, w: -0.713184}, translation: {x: 45.915080, y: 15.262063, z: 80.674499}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      }
+    }
+  },
+  {
+    "path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+    "bones": {
+      "shoulder_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.398993, y: -0.353040, z: 0.653509, w: 0.537674}, translation: {x: 1.744022, y: -13.839698, z: -2.877626}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.115048, y: -0.180686, z: -0.722256, w: -0.657619}, translation: {x: 0.912803, y: 8.494798, z: 133.220713}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "arm_stretch_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.566736, y: 0.115862, z: -0.024232, w: 0.815352}, translation: {x: -0.000000, y: -15.774476, z: -0.000012}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.190831, y: -0.630056, z: -0.457227, w: -0.597960}, translation: {x: 16.553412, y: 9.595528, z: 131.490445}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "forearm_stretch_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.000819, y: 0.107244, z: 0.155494, w: 0.981998}, translation: {x: 0.000007, y: -28.561043, z: -0.000010}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.236820, y: -0.653543, z: -0.561925, w: -0.448373}, translation: {x: 25.302744, y: -4.943575, z: 108.516617}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "hand_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.385400, y: 0.147497, z: -0.113588, w: 0.903775}, translation: {x: 0.000003, y: -28.614628, z: 0.000017}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.115888, y: -0.467124, z: -0.743730, w: -0.463931}, translation: {x: 30.864296, y: -12.277880, z: 81.422817}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      }
+    }
+  },
+  {
+    "path": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttackV2_A_RangeAttack",
+    "bones": {
+      "shoulder_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.307636, y: -0.442828, z: 0.630399, w: 0.558444}, translation: {x: 1.744012, y: -13.839662, z: -2.877630}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: -0.221112, y: -0.022737, z: 0.919004, w: 0.325613}, translation: {x: -5.715536, y: -15.253420, z: 125.451243}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "arm_stretch_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.687297, y: -0.452258, z: -0.039429, w: 0.567037}, translation: {x: -0.539842, y: -34.757904, z: 1.367209}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.514937, y: 0.462758, z: 0.623897, w: 0.362556}, translation: {x: 14.533548, y: 11.909459, z: 133.352202}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "forearm_stretch_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.083923, y: 0.183870, z: 0.402397, w: 0.892875}, translation: {x: -0.000051, y: -9.520224, z: -0.000055}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.561698, y: 0.324998, z: 0.758799, w: -0.055640}, translation: {x: 14.303236, y: 14.849400, z: 124.300221}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      },
+      "hand_l": {
+        "local": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.297223, y: -0.345663, z: -0.093797, w: 0.885086}, translation: {x: -0.000002, y: -28.614605, z: 0.000022}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+        "world": "<Struct 'Transform' (0x000002495E5CD800) {rotation: {x: 0.712418, y: 0.585102, z: 0.386067, w: -0.032682}, translation: {x: 1.439827, y: 37.242083, z: 111.975610}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>"
+      }
+    }
+  }
+]

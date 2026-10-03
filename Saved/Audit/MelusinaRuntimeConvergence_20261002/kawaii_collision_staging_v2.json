@@ -1,0 +1,175 @@
+{
+  "schema": "melodia.kawaii_collision_staging.v2",
+  "status": "OFFLINE_WEIGHTED_FIT_REQUIRES_ROOT_LIVE_TRANSFORM_REVIEW_NOT_APPLIED",
+  "created_utc": "2026-10-03T16:20:00Z",
+  "authority": {
+    "body_mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+    "body_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "body_anim_blueprint": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "skirt_runtime": "body AnimBlueprint Kawaii node rooted at c_kilt_master_x; wardrobe skirt is LeaderPose follower",
+    "hair_limits_asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits",
+    "skirt_limits_asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_SkirtCollisionLimits"
+  },
+  "source_evidence": {
+    "measurement_receipt": "Saved/Audit/MelusinaRuntimeConvergence_20261002/garment_collision_measurements.json",
+    "current_body_fbx_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+    "older_body_export_fbx_sha256": "153f53fe95c39960985d2d4a68e4bef022eb96db7855cd3b969ec6dd7c9ee008",
+    "combined_accessories_fbx_sha256": "741735ee698008496c7d731eacdb21b328db5cee58da47fff45c476a8ba68df5",
+    "active_r2_skirt_fbx_sha256": "68008b81e4a3806a8cd402b4217f79d0bbbb336a597acb3e5040fcafa6808005",
+    "body_and_r2_bones": 464,
+    "r2_surface": {
+      "vertices": 24356,
+      "faces": 24352,
+      "fbx_scene_z_m": [
+        0.1719,
+        0.8809
+      ],
+      "c_kilt_master_x_z_m": 0.9278
+    },
+    "accessories_bind_match_after_normalization": {
+      "position_scale": 0.01,
+      "matched_arm_hand_finger_bones": 74,
+      "max_translation_delta_cm": 0.66374,
+      "max_rotation_delta_degrees": 0.0,
+      "unscaled_max_translation_delta_cm": 15340.55996,
+      "interpretation": "strong source bind match after centimeters normalization; exact installed Unreal Accessories import source remains unverified"
+    },
+    "body_hide_shape_keys": {
+      "current_body_morph_key_count": 121,
+      "older_body_export_morph_key_count": 121,
+      "matching_arms_or_hips_or_mel_body_hide_targets": [],
+      "action": "do not author or bind an Arms/Hips body morph without finding those targets in the actual installed Unreal mesh"
+    }
+  },
+  "candidate_limits": {
+    "units": "UE centimeters; component-space offsets; KawaiiPhysics CapsuleLimit uses radius and cylinder length, capsule long axis local +Z",
+    "skirt_body_cage": [
+      {
+        "type": "sphere",
+        "driving_bone": "root_x",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          -12.82
+        ],
+        "center_component_z_cm": 80.0,
+        "radius_cm": 11.5,
+        "purpose": "pelvis/waist overlap control",
+        "source": "previous body-Kawaii solution; remeasure current DataAsset before editing"
+      },
+      {
+        "type": "capsule",
+        "driving_bone": "thigh_stretch_l",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          6.37
+        ],
+        "radius_cm": 7.5,
+        "length_cm": 24.0,
+        "axis_rotation_x_deg": 90.0,
+        "purpose": "left hip-to-knee",
+        "source": "current body/R2 rest frame plus earlier accepted Kawaii placement; verify component-space offset and axis against live preview"
+      },
+      {
+        "type": "capsule",
+        "driving_bone": "thigh_stretch_r",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          6.37
+        ],
+        "radius_cm": 7.5,
+        "length_cm": 24.0,
+        "axis_rotation_x_deg": 90.0,
+        "purpose": "right hip-to-knee",
+        "source": "current body/R2 rest frame plus earlier accepted Kawaii placement; verify component-space offset and axis against live preview"
+      },
+      {
+        "type": "capsule",
+        "driving_bone": "leg_stretch_l",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          -12.93
+        ],
+        "radius_cm": 5.0,
+        "length_cm": 16.0,
+        "axis_rotation_x_deg": 90.0,
+        "purpose": "left knee-to-ankle",
+        "source": "current body/R2 rest frame plus earlier accepted Kawaii placement; verify component-space offset and axis against live preview"
+      },
+      {
+        "type": "capsule",
+        "driving_bone": "leg_stretch_r",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          -12.93
+        ],
+        "radius_cm": 5.0,
+        "length_cm": 16.0,
+        "axis_rotation_x_deg": 90.0,
+        "purpose": "right knee-to-ankle",
+        "source": "current body/R2 rest frame plus earlier accepted Kawaii placement; verify component-space offset and axis against live preview"
+      }
+    ],
+    "head_hair_limits": [
+      {
+        "type": "sphere",
+        "driving_bone": "head_x",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          6.67
+        ],
+        "center_component_z_cm": 150.9,
+        "radius_cm": 12.0,
+        "purpose": "head collision for the existing hair Kawaii node",
+        "source": "current body reference head_x spans z 144.2–157.7cm; keep sphere out of face and inspect forehead/ear clearance"
+      },
+      {
+        "type": "sphere",
+        "driving_bone": "neck_x",
+        "offset_location_component_cm": [
+          0.0,
+          0.0,
+          3.69
+        ],
+        "center_component_z_cm": 140.5,
+        "radius_cm": 5.0,
+        "purpose": "neck collision below head sphere",
+        "source": "current body reference neck_x spans z 136.8–144.2cm; verify clearance and overlap from live readback"
+      }
+    ]
+  },
+  "review_preview": "Saved/Audit/MelusinaRuntimeConvergence_20261002/kawaii_collision_preview.png",
+  "staging_scene": "Saved/Audit/MelusinaRuntimeConvergence_20261002/kawaii_collision_preview.blend",
+  "runtime_apply_checklist": [
+    "After the editor owner resumes, read ABP_Melusina_Current Kawaii node LimitsDataAsset and PhysicsAssetForLimits; also read the current sphere/capsule arrays and skeleton references before changing anything.",
+    "Back up the existing DataAsset. Keep skirt colliders in DA_Melusina_SkirtCollisionLimits consumed by the body node; do not create an independent skirt solver or rely on the follower's own PhysicsAsset.",
+    "For each candidate, convert component-space center/endpoints to the actual Unreal component reference frame; verify reported local offset by UE bone component matrix against center (target error <0.01 cm) and verify Kawaii capsule local +Z axis convention before save.",
+    "Use DA_Melusina_HairCollisionLimits for head/neck, read its actual driving skeleton and Kawaii-node reference, and preserve eye, forehead, jaw, ear, and hairline clearance.",
+    "Compile and save only the two existing DataAssets and required ABP reference if missing; then owner-led PIE idle, walk, turn, stop, head turn, and restart capture with collision debug visible.",
+    "For the glove appearance, verify the installed Accessories mesh, item IDs, body morphs/material visibility in Unreal; the source FBX bind matches and absent source morph targets do not justify reweighting or a blind morph edit."
+  ],
+  "limits": [
+    "Candidate dimensions and preview are offline source-space staging; none are applied to Unreal assets.",
+    "Current Kawaii data-asset shape arrays and active node references are not available while the editor is closed.",
+    "Preview does not prove collision response, skin clearance in animation, or hand appearance in runtime.",
+    "Revision v2 adds current-body weighted-surface fitting and corrected bone-local transform math. Fit quality is not sufficient for blind application; root must compare live arrays and inspect animation clearance."
+  ],
+  "review_revision": {
+    "created_local": "2026-10-03T12:34:00-04:00",
+    "supersedes_candidate_fit_only": "kawaii_collision_fit_20261003.json",
+    "weighted_fit_report": "kawaii_collision_fit_20261003_v2.json",
+    "component_space_dimensions_are_measured": true,
+    "bone_local_offsets_are_quaternion_converted_from_component_center_cm": true,
+    "needs_root_live_component_bone_matrix_conversion": true,
+    "fit_quality": "thigh and shin capsules have high weighted-surface residual; do not promote without comparing existing live arrays and pose clearance",
+    "head_neck": "current head_x and neck_x only-weight fits are poor; head 88.7% and neck 53.2% outside candidate capsule. Not valid application shapes. Fit against head/face descendant weighted regions then inspect live coverage/clearance.",
+    "skirt_cage_count": 5,
+    "head_neck_candidate_count": 2,
+    "verified_runtime_collision": "NO_OFFLINE_ONLY"
+  }
+}

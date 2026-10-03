@@ -1,0 +1,27 @@
+{
+  "schema": "melodia.jev.p0_closeout.v1",
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "answers": {
+    "p0_done_definition": {
+      "choice": "PACKAGED_BUILD_PLUS_PLAYED_LOOP_EVIDENCE",
+      "reason": null
+    },
+    "first_blocker": {
+      "choice": "BUILD_VERIFY_MERGED_TREE_CLOSED_EDITOR",
+      "reason": null
+    },
+    "second_blocker": {
+      "choice": "DAMAGE_LADDER_NUMBERS",
+      "reason": null
+    },
+    "docs_drift": {
+      "choice": "EVERY_STATE_CLAIM_GETS_A_LIVE_READBACK_RECEIPT",
+      "reason": null
+    },
+    "eye_detach": {
+      "choice": "INSTRUMENT_WITH_A_RUNTIME_ATTACH_LOG_AND_REPRODUCE",
+      "reason": null
+    }
+  }
+}

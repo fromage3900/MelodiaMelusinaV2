@@ -1,0 +1,167 @@
+{
+  "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "state_machines": [
+    {
+      "name": "MelusinaLocomotion",
+      "graph": "AnimGraph",
+      "entry_state": "Idle",
+      "states": [
+        {
+          "name": "Idle",
+          "position": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "JumpStart",
+          "position": [
+            240,
+            -160
+          ]
+        },
+        {
+          "name": "Airborne",
+          "position": [
+            496,
+            -160
+          ]
+        },
+        {
+          "name": "Land",
+          "position": [
+            736,
+            -160
+          ]
+        },
+        {
+          "name": "Glide",
+          "position": [
+            192,
+            0
+          ]
+        },
+        {
+          "name": "Locomotion",
+          "position": [
+            272,
+            0
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Idle",
+          "to": "JumpStart",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "JumpStart",
+          "to": "Airborne",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Airborne",
+          "to": "Land",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Land",
+          "to": "Idle",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Airborne",
+          "to": "Glide",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Glide",
+          "to": "Land",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Glide",
+          "to": "Airborne",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Idle",
+          "to": "Locomotion",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Locomotion",
+          "to": "Idle",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Land",
+          "to": "Locomotion",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Idle",
+          "to": "Glide",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        },
+        {
+          "from": "Locomotion",
+          "to": "Glide",
+          "from_type": "state",
+          "to_type": "state",
+          "cross_fade_duration": 0.20000000298023224,
+          "blend_mode": "Other",
+          "bidirectional": false
+        }
+      ],
+      "state_count": 6,
+      "transition_count": 12
+    }
+  ],
+  "count": 1
+}

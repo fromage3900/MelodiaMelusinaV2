@@ -1,0 +1,27 @@
+{
+  "schema": "melodia.jev.converge.v1",
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "answers": {
+    "clip_contract": {
+      "choice": "DEFORM_ONLY_NO_CONTROL_OR_TWIST_REWRITE",
+      "reason": null
+    },
+    "sparrow_action": {
+      "choice": "KEEP_CURRENT_TWIST_AND_CONTROL_REWRITES",
+      "reason": null
+    },
+    "caster_action": {
+      "choice": "KEEP_ROOT_FIX_ONLY_STRIP_CONTROL_REWRITE",
+      "reason": null
+    },
+    "glove_next": {
+      "choice": "COMPARE_UE_MESH_SKIN_WEIGHTS_VIA_BLENDER_EXPORT_OF_UE_FBX",
+      "reason": null
+    },
+    "gate_lane": {
+      "choice": "COMMIT_UNIFORM_GATE_TOOL_AND_BASELINE_THRESHOLDS",
+      "reason": null
+    }
+  }
+}

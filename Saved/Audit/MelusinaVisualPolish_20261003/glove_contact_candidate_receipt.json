@@ -1,0 +1,291 @@
+{
+  "schema": "melodia.glove_contact_candidate.v1",
+  "status": "REJECTED_UNSAFE_GEOMETRY_TRANSLATION",
+  "disposition": "Diagnostic only; do not promote or reimport. The per-digit translation moves up to 69.08 mm and still leaves p90 contact at 35.87 mm. No source asset or weights changed.",
+  "body_fbx_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "accessories_fbx_sha256": "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+  "clip": "A_Spar_Mel_RMB_Loop",
+  "sample_frame": 5,
+  "pose_validation": "Native UE-exported action; frame 5 matches 14 live key-bone root-relative transforms with <0.001 cm mean position error and <0.01 deg mean rotation error; all 464 reference transforms match. Object location/rotation/scale curves were removed before driving already-normalized mesh rigs; only pose.bones channels are applied.",
+  "removed_action_object_curve_count": 9,
+  "target_mesh_world_scales": {
+    "body": [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ],
+    "accessories": [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ]
+  },
+  "target_material_slot_names": [
+    "MI_Melusina_Nikki_GLOVES_001"
+  ],
+  "glove_vertex_count": 2821,
+  "moved_glove_vertices": 2544,
+  "max_world_move_mm": 69.08,
+  "median_offset_body_minus_glove_world_m": {
+    "index_r": [
+      0.01933,
+      0.0125,
+      -0.0547
+    ],
+    "thumb_r": [
+      0.00571,
+      0.01384,
+      -0.03787
+    ],
+    "middle_r": [
+      0.02503,
+      0.00283,
+      -0.05723
+    ],
+    "ring_r": [
+      0.02565,
+      -0.00644,
+      -0.05809
+    ],
+    "pinky_r": [
+      0.00246,
+      -0.007,
+      -0.06825
+    ],
+    "index_l": [
+      -0.0217,
+      0.0124,
+      -0.05656
+    ],
+    "thumb_l": [
+      -0.0056,
+      0.01273,
+      -0.0397
+    ],
+    "middle_l": [
+      -0.02542,
+      0.00452,
+      -0.05865
+    ],
+    "ring_l": [
+      -0.02445,
+      -0.00412,
+      -0.05764
+    ],
+    "pinky_l": [
+      -0.00136,
+      -0.00674,
+      -0.06874
+    ]
+  },
+  "weight_changes": 0,
+  "geometry_changes_only_glove_material_vertices": true,
+  "all_non_glove_accessory_material_vertices_unchanged": true,
+  "contact_p10_p50_p90_p999_mm": {
+    "source": [
+      39.49,
+      60.64,
+      74.82,
+      92.94
+    ],
+    "candidate": [
+      4.56,
+      14.07,
+      35.87,
+      92.94
+    ]
+  },
+  "contact_by_dominant_digit_mm": {
+    "source": {
+      "index_l": {
+        "n": 256,
+        "p10_p50_p90_p999_mm": [
+          52.89,
+          64.51,
+          76.64,
+          88.85
+        ]
+      },
+      "index_r": {
+        "n": 245,
+        "p10_p50_p90_p999_mm": [
+          46.95,
+          60.26,
+          73.21,
+          88.66
+        ]
+      },
+      "middle_l": {
+        "n": 242,
+        "p10_p50_p90_p999_mm": [
+          54.82,
+          66.24,
+          76.43,
+          88.64
+        ]
+      },
+      "middle_r": {
+        "n": 239,
+        "p10_p50_p90_p999_mm": [
+          45.99,
+          62.27,
+          72.26,
+          87.86
+        ]
+      },
+      "pinky_l": {
+        "n": 314,
+        "p10_p50_p90_p999_mm": [
+          49.01,
+          65.52,
+          79.57,
+          89.84
+        ]
+      },
+      "pinky_r": {
+        "n": 353,
+        "p10_p50_p90_p999_mm": [
+          37.31,
+          61.09,
+          76.46,
+          88.76
+        ]
+      },
+      "ring_l": {
+        "n": 210,
+        "p10_p50_p90_p999_mm": [
+          44.71,
+          57.7,
+          71.69,
+          89.44
+        ]
+      },
+      "ring_r": {
+        "n": 201,
+        "p10_p50_p90_p999_mm": [
+          34.4,
+          52.67,
+          65.67,
+          89.15
+        ]
+      },
+      "thumb_l": {
+        "n": 372,
+        "p10_p50_p90_p999_mm": [
+          36.83,
+          57.4,
+          72.07,
+          88.84
+        ]
+      },
+      "thumb_r": {
+        "n": 375,
+        "p10_p50_p90_p999_mm": [
+          27.36,
+          53.21,
+          65.97,
+          76.97
+        ]
+      }
+    },
+    "candidate": {
+      "index_l": {
+        "n": 256,
+        "p10_p50_p90_p999_mm": [
+          4.25,
+          11.64,
+          21.74,
+          77.45
+        ]
+      },
+      "index_r": {
+        "n": 245,
+        "p10_p50_p90_p999_mm": [
+          3.72,
+          10.39,
+          22.69,
+          78.78
+        ]
+      },
+      "middle_l": {
+        "n": 242,
+        "p10_p50_p90_p999_mm": [
+          4.56,
+          12.58,
+          24.52,
+          31.57
+        ]
+      },
+      "middle_r": {
+        "n": 239,
+        "p10_p50_p90_p999_mm": [
+          3.65,
+          10.56,
+          21.04,
+          29.37
+        ]
+      },
+      "pinky_l": {
+        "n": 314,
+        "p10_p50_p90_p999_mm": [
+          4.12,
+          13.53,
+          67.27,
+          89.84
+        ]
+      },
+      "pinky_r": {
+        "n": 353,
+        "p10_p50_p90_p999_mm": [
+          3.95,
+          12.21,
+          49.23,
+          81.6
+        ]
+      },
+      "ring_l": {
+        "n": 210,
+        "p10_p50_p90_p999_mm": [
+          4.78,
+          11.79,
+          23.28,
+          42.53
+        ]
+      },
+      "ring_r": {
+        "n": 201,
+        "p10_p50_p90_p999_mm": [
+          4.58,
+          10.63,
+          21.9,
+          41.68
+        ]
+      },
+      "thumb_l": {
+        "n": 372,
+        "p10_p50_p90_p999_mm": [
+          9.54,
+          24.79,
+          52.87,
+          88.84
+        ]
+      },
+      "thumb_r": {
+        "n": 375,
+        "p10_p50_p90_p999_mm": [
+          9.81,
+          23.56,
+          37.25,
+          65.91
+        ]
+      }
+    }
+  },
+  "body_hand_preview_faces": 4926,
+  "renders": [
+    "glove_contact_source_live_pose_preview.png",
+    "glove_contact_candidate_live_pose_preview.png"
+  ],
+  "candidate_blend": "glove_contact_candidate_live_pose_review.blend",
+  "limitation": "Offline candidate preview and measurement only. Live PIE confirms the visual symptom; this geometry delta is rejected because it does not provide safe, complete contact and would alter source shell geometry."
+}

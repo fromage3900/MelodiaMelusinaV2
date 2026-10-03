@@ -1,0 +1,94 @@
+{
+  "schema": "melodia.advanced_cloth_capability.v2",
+  "timestamp_local": "2026-10-03T12:43:20-04:00",
+  "scope": "bounded local capability and smoke audit; no scene/project/asset/source modifications; no license bypass or activation attempt",
+  "marvelous_designer": {
+    "installed": true,
+    "product": "Marvelous Designer Enterprise OnlineAuth",
+    "version": "2024.2.139",
+    "binary": "C:\\Program Files\\Marvelous Designer Enterprise OnlineAuth\\MarvelousDesigner_Enterprise_Online.exe",
+    "packaged_python": "Embedded Python 3.7 runtime files are present (python37.dll and python37.zip); no standalone python/API executable or command-line batch runner found in install root",
+    "official_api_entry": "Official MD Python API documentation describes use via Python Script within CLO; menu path Main Menu > Script > Python and Run Script. Official simulation example invokes utility_api.Simulate(100) from that in-app API.",
+    "headless_api_status": "NOT_CONFIRMED; no supported headless CLI/API entry point found. No MD process launched; no project loaded; no garment simulated.",
+    "license_status": "NOT_PROBED; enterprise installation is not proof of an active license/session.",
+    "official_refs": [
+      "https://developer.marvelousdesigner.com/python.html",
+      "https://developer.marvelousdesigner.com/scenario.html"
+    ],
+    "version_caveat": "Official online API page currently documents through MD 2024.2.189 and newer; installed product is 2024.2.139. API version compatibility has not been tested.",
+    "install_root": "C:\\Program Files\\Marvelous Designer Enterprise OnlineAuth",
+    "executables": [
+      "MarvelousDesigner_Enterprise_Online.exe",
+      "QtWebEngineProcess.exe",
+      "Uninstall.exe"
+    ],
+    "pythonlib_directory_entries": [],
+    "python_source_files_in_install_root": 0,
+    "embedded_python37_files": [
+      "python37.dll",
+      "python37.zip"
+    ],
+    "headless_runner_presence": "No separate batch/headless runner present among installed executables. Official docs describe Script > Python within the application; no headless invocation described in the reviewed API docs.",
+    "headless_smoke": "NOT_RUN: no documented headless runner/API entry point; no MD process started and no auth/license prompts triggered."
+  },
+  "houdini": {
+    "registered_installed_versions": [
+      "22.0.368"
+    ],
+    "hython": "C:\\Program Files\\Side Effects Software\\Houdini 22.0.368\\bin\\hython.exe",
+    "hython_smoke": "ATTEMPTED import hou and print version with explicit Indie-only license-mode selection; failed before scene load/cook, process exit 3.",
+    "license_result": "INDIE_MODE_LICENSE_CHECKOUT_FAILED",
+    "sanitized_error": "No Indie-mode license could be checked out. Local hserver reports unknown license-server version and no licenses in use; read-only license inventory could not reach SideFX licensing service.",
+    "houdini_21": "NOT_INSTALLED_OR_REGISTERED; no Houdini 21 install directory or uninstall registration found in standard install locations.",
+    "vellum_status": "NOT_RUN because Hython license checkout failed. No Vellum sim, node creation, or asset export attempted.",
+    "existing_pipeline": "Tools/Houdini/build_melusina_weight_lab.py is a Bone Capture Biharmonic + Delta Mush authoring lab, not a Vellum cloth pipeline; its Melusina source references Content/Melodia/Characters/Melusina/SK_Melusina.fbx and SK_Melusina_HiPoly.fbx, not the current V2 raw source. Tools/Houdini/sea_above_reef/build_frozen_cloth.py explicitly states analytic drape poses, not Vellum. No existing current-body Vellum skirt pipeline found in scoped Tools/Houdini search.",
+    "official_refs": [
+      "https://www.sidefx.com/docs/houdini/licensing/system.html",
+      "https://www.sidefx.com/docs/houdini/ref/utils/sesictrl.html",
+      "https://www.sidefx.com/faq/indie-new/",
+      "https://www.sidefx.com/Support/licensing/indie/"
+    ],
+    "hserver_readonly_info": {
+      "connected_server": "localhost (port omitted)",
+      "server_version": "Unknown",
+      "used_licenses": "None"
+    },
+    "sesictrl_readonly_query": {
+      "command": "print-license --host localhost --brief-list",
+      "result": "FAILED_TO_REACH_SIDEFX_LICENSE_SERVICE",
+      "credential_handling": "No keys, serials, account identifiers, or full raw license records were captured."
+    },
+    "hython_indie_selection": {
+      "process_local_args": [
+        "--check-license-modes=indie",
+        "--skip-license-modes=commercial,education,apprentice"
+      ],
+      "official_hython_order_by_mode": {
+        "commercial": [
+          "Engine",
+          "Core",
+          "FX"
+        ],
+        "education": [
+          "Engine EDU",
+          "EDU"
+        ],
+        "indie": [
+          "Engine Indie",
+          "Indie"
+        ],
+        "apprentice": [
+          "Apprentice"
+        ]
+      },
+      "interpretation": "The constrained smoke allowed Indie-mode products only, which per SideFX Hython order tries Engine Indie then Indie. Checkout failed before importing hou."
+    }
+  },
+  "actual_use_vs_presence": {
+    "marvelous_designer": "installed; no headless runner/API confirmed; not launched or simulated",
+    "hython": "Hython 22 installed; process explicitly restricted to Indie license mode and failed checkout; no Vellum use",
+    "blender": "prior current-body source fitting ran separately; not a substitute for MD/Vellum simulation"
+  },
+  "decision": "Current local license service does not yield an Indie-mode Hython license, and the read-only account/license inventory could not reach SideFX. Stop Hython work here; do not broaden license modes, change settings, or bypass. MD Python API is application-embedded and no separate headless runner was found, so do not claim MD simulation.",
+  "revision_local": "2026-10-03T12:53:00-04:00"
+}

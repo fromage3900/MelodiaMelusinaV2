@@ -1,0 +1,9315 @@
+{
+ "unit_scale": 0.10000000149011612,
+ "objects": [
+  {
+   "name": "! DUPLICATE THIS TO START BUILDING",
+   "nverts": 36,
+   "vgroups": 0,
+   "mats": [
+    "RoofShader",
+    "ArchWallShader",
+    "FlyingButtressShader",
+    null
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_CrownMolding",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_FiligreeRing",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Gold",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_MelodyToken_01",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_StainedGlass"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_MelodyToken_02",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_StainedGlass"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_MelodyToken_03",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Gold"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_MusicalCorner",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Gold"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_MusicalDivider",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Gold"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_NoteBeam",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "_edit_SM_Orn_NoteHead",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "_edit_SM_Orn_OculusFrame",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_PearlJewel",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Iridescent"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_RoseWindow_8Petal",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_StainedGlass",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_RoseWindow_8Petal.001",
+   "nverts": 7872,
+   "vgroups": 0,
+   "mats": [
+    null
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_SheetMusicRail",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "_edit_SM_Orn_SpiralStaircase",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Stone",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_TorusKnot",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Iridescent",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_edit_SM_Orn_TrebleClef",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "_edit_SM_Orn_VaultRibs",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble",
+    "M_Orn_Base",
+    "M_Orn_Trim"
+   ]
+  },
+  {
+   "name": "_lib_ARCHWAY_ADV",
+   "nverts": 260,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BALCONY",
+   "nverts": 220,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BARBICAN",
+   "nverts": 62,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BAROQUE_BALUSTRADE",
+   "nverts": 88,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BAROQUE_FACADE",
+   "nverts": 184,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BAROQUE_NICHE",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BAROQUE_VAULT",
+   "nverts": 128,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BELL_TOWER",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BIFORA",
+   "nverts": 1030,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BLACKSMITH",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BOULDER_PILE",
+   "nverts": 249,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_BRIDGE",
+   "nverts": 1577,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CHAPEL",
+   "nverts": 77,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CN_MOON_GATE",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CN_PAILOU",
+   "nverts": 3374,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CN_TIERED_PAGODA",
+   "nverts": 152,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CN_TING_PAVILION",
+   "nverts": 930,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CURTAIN_WALL",
+   "nverts": 82,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CURVED_WALL",
+   "nverts": 268,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_CUSPED_ARCH",
+   "nverts": 640,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_DOME",
+   "nverts": 668,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_FILIGREE_PANEL",
+   "nverts": 239,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GATEHOUSE",
+   "nverts": 140,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_BRUTALIST_PANEL_WALL",
+   "nverts": 92,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_GOTHIC_PORTAL",
+   "nverts": 366,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ROMANESQUE_APSE",
+   "nverts": 101,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ROMANESQUE_ARCADE",
+   "nverts": 380,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_SCIFI_PRESSURE_DOOR",
+   "nverts": 81,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_VENETIAN_LOGGIA",
+   "nverts": 67,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_CHERRY_ALLEE",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_GOJU_PAGODA",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_HAIDEN",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_HONDEN",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_KAIRO",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_KARESANSUI",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_LANTERN",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_MACHIAI",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_SAKURA_TORII",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_SANDO",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_STONE_BRIDGE",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_TAHOTO",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GB_ZEN_TORII_GATE",
+   "nverts": 312,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GREYBOX_CATWALK",
+   "nverts": 571,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GREYBOX_CORRIDOR",
+   "nverts": 100,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GREYBOX_PILLAR_HALL",
+   "nverts": 112,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_GREYBOX_ROOM",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_HERALDIC_BANNER",
+   "nverts": 30,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_JP_KURA_STOREHOUSE",
+   "nverts": 1325,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_KEEP",
+   "nverts": 200,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_KR_HANOK",
+   "nverts": 1768,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_MARKET_STALL",
+   "nverts": 17,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_OBELISK",
+   "nverts": 41,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble"
+   ]
+  },
+  {
+   "name": "_lib_OGEE_ARCH",
+   "nverts": 519,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_PALAZZO",
+   "nverts": 5930,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_PILLAR",
+   "nverts": 480,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_PUBLIC_FOUNTAIN",
+   "nverts": 345,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_ROSE_WINDOW",
+   "nverts": 2028,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_STABLE",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_STREET_LAMP",
+   "nverts": 62,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_STYLIZED_TREE",
+   "nverts": 139,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_TAVERN",
+   "nverts": 36,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_TESSELLATION_TOWER",
+   "nverts": 1557,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_TOWN_HALL",
+   "nverts": 65,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_TOWN_HOUSE",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_VILLAGE_WELL",
+   "nverts": 11,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_WATCHTOWER",
+   "nverts": 92,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_WINDMILL",
+   "nverts": 97,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_ZEN_BRIDGE",
+   "nverts": 434,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_ZEN_LANTERN",
+   "nverts": 96,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_ZEN_STONE_GARDEN",
+   "nverts": 596,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_ZEN_TEAHOUSE",
+   "nverts": 1557,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "_lib_ZEN_TORII",
+   "nverts": 498,
+   "vgroups": 0,
+   "mats": [
+    "Wood"
+   ]
+  },
+  {
+   "name": "Arch",
+   "nverts": 11,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Arch.001",
+   "nverts": 128,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "ArchProfile",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "ArchWall.002",
+   "nverts": 112,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "ArchWallBaked",
+   "nverts": 348,
+   "vgroups": 0,
+   "mats": [
+    "ArchWallShader"
+   ]
+  },
+  {
+   "name": "ArchWallParametric",
+   "nverts": 348,
+   "vgroups": 0,
+   "mats": [
+    "ArchWallShader"
+   ]
+  },
+  {
+   "name": "beamProfile",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "brick1_high_basicbrick01",
+   "nverts": 2560562,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "brick1_SM_Brick_01",
+   "nverts": 152,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "brick2_high_basicbrick2",
+   "nverts": 2560562,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "B\u00e9zierCurve.001",
+   "nverts": 82944,
+   "vgroups": 2,
+   "mats": [
+    null
+   ]
+  },
+  {
+   "name": "B\u00e9zierCurve.001_profile",
+   "nverts": 21921,
+   "vgroups": 1,
+   "mats": [
+    "BezierDetails.001",
+    null,
+    "Outline.001"
+   ]
+  },
+  {
+   "name": "Circle",
+   "nverts": 44,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "column_capital_SM_Orn_ColumnCapital",
+   "nverts": 2432,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Constellation",
+   "nverts": 2338,
+   "vgroups": 0,
+   "mats": [
+    null,
+    "Constellation",
+    "Outline"
+   ]
+  },
+  {
+   "name": "Constellation.001",
+   "nverts": 2338,
+   "vgroups": 0,
+   "mats": [
+    null,
+    "Constellation",
+    "Outline"
+   ]
+  },
+  {
+   "name": "corbel_SM_Orn_CorbelBracket",
+   "nverts": 416,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "CrenellationParametric",
+   "nverts": 2,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "crenellations profile",
+   "nverts": 6,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cross_Instance Star.001",
+   "nverts": 976,
+   "vgroups": 0,
+   "mats": [
+    "MI_Review_VowCross_Wall"
+   ]
+  },
+  {
+   "name": "cs_arrow",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_arrow_cross",
+   "nverts": 44,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_arrow_cross.001",
+   "nverts": 44,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_arrow_cross.003",
+   "nverts": 44,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_arrow_twist.001",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_arrow_twist.003",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_base_finger.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_base_finger.003",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_base_finger_end.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_base_finger_end.003",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_box.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_box.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_c_eye",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_c_eye_offset",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_c_eyelid_micro",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_cheek_inflate",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_01",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_02",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_head.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_head.003",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_squashed",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_squashed.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_circle_squashed.003",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_curve.001",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_curve.003",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_eye_aim",
+   "nverts": 36,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_eye_aim_global",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_eyelid2",
+   "nverts": 20,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot.l.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot.l.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot.r.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot_roll",
+   "nverts": 52,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot_roll.001",
+   "nverts": 56,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_foot_roll.003",
+   "nverts": 56,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_half_circle.001",
+   "nverts": 17,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_half_circle.003",
+   "nverts": 17,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_hand.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_hand.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_jaw_square",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_line",
+   "nverts": 2,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_line.001",
+   "nverts": 2,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_line.003",
+   "nverts": 2,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_plane_3",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_pos",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_pos.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_pos.003",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_skirt_mas_tail_ctrl_scaled.x.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_skirt_mas_tail_ctrl_scaled.x.005",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_skirt_master.001",
+   "nverts": 259,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_skirt_master.003",
+   "nverts": 259,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_skirt_tail_ctrl_scaled.x.001",
+   "nverts": 9,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_skirt_tail_ctrl_scaled.x.005",
+   "nverts": 9,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_sphere",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_sphere.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_sphere.003",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_sphere_dir1",
+   "nverts": 96,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_spine.001",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_spine.003",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_square",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_square.001",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_square.002",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_02.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_02.003",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_03",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_03.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_03.003",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_04",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_04.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_04.002",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_04.003",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_torus_05",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_arm_fk.l.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_arm_fk.l.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_arm_fk.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_arm_fk.r.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_arm_ik.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_arm_ik.r.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_foot_01.l",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_foot_01.r",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_head.x",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk.l.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk.l.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk.r.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk_dupli_001.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_leg_fk_dupli_001.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_lips_smile.l",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_lips_smile.r",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_neck.x",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_root.x",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_root_master.x.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_shoulder.l.001",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_shoulder.l.003",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_shoulder.r.003",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_spine_01.x.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_spine_02.x.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_spine_03.x.001",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_spine_03.x.002",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_spine_03.x.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_b.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_b.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_b_dupli_001.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_b_dupli_001.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk.l.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk.l.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk.l.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk.r.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk_dupli_001.l.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_fk_dupli_001.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_ik.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_ik.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_ik_dupli_001.l",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_user_c_thigh_ik_dupli_001.r",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "cs_wire_eyebrow",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "cs_solid_red"
+   ]
+  },
+  {
+   "name": "Cube",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Cube.001",
+   "nverts": 262597,
+   "vgroups": 0,
+   "mats": [
+    "Mossy Rock"
+   ]
+  },
+  {
+   "name": "Cube.002",
+   "nverts": 640,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Cube.011",
+   "nverts": 262597,
+   "vgroups": 0,
+   "mats": [
+    "Mossy Rock"
+   ]
+  },
+  {
+   "name": "CuffRing_Ankle_L",
+   "nverts": 576,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "CuffRing_Ankle_R",
+   "nverts": 576,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Curve.002_profile",
+   "nverts": 59584,
+   "vgroups": 1,
+   "mats": [
+    "Strings.001",
+    "Outline.001"
+   ]
+  },
+  {
+   "name": "DollBall_Ankle_L",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Ankle_R",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Elbow_L",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Elbow_R",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Hip_L",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Hip_R",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Knee_L",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Knee_R",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Shoulder_L",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Shoulder_R",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Wrist_L",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "DollBall_Wrist_R",
+   "nverts": 482,
+   "vgroups": 1,
+   "mats": [
+    "DollJointPorcelain"
+   ]
+  },
+  {
+   "name": "door_archway_SM_Orn_DoorArchway",
+   "nverts": 2304,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Example1",
+   "nverts": 272,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Example2",
+   "nverts": 444,
+   "vgroups": 0,
+   "mats": [
+    "RoofShader"
+   ]
+  },
+  {
+   "name": "FF_MelusinaHair_Domain",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FF_MelusinaHair_Drip",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FF_MelusinaHair_Sheet",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FlatRoof",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FlatRoofInput",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "RoofShader"
+   ]
+  },
+  {
+   "name": "FlatRoofParametric",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "fluid_surface",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FluingButtressEdgeBaked",
+   "nverts": 473,
+   "vgroups": 0,
+   "mats": [
+    "FlyingButtressShader"
+   ]
+  },
+  {
+   "name": "FluingButtressEdgeBaked(Unoptimized)",
+   "nverts": 1585,
+   "vgroups": 0,
+   "mats": [
+    null
+   ]
+  },
+  {
+   "name": "FluingButtressEdgeParametric",
+   "nverts": 473,
+   "vgroups": 0,
+   "mats": [
+    "FlyingButtressShader"
+   ]
+  },
+  {
+   "name": "FX_AngelWings_Carrier",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FX_ClockworkRing_Inner",
+   "nverts": 1,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FX_ClockworkRing_Mid",
+   "nverts": 1,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FX_ClockworkRing_Outer",
+   "nverts": 1,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "FX_KawaiiSparkles",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "M_FX_SparklePink"
+   ]
+  },
+  {
+   "name": "FX_RibbonJiggle",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "M_FX_RibbonSilk"
+   ]
+  },
+  {
+   "name": "FX_SanctusJewelryHero",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "M_Sanctus_GemAmethyst"
+   ]
+  },
+  {
+   "name": "gazebo1_SM_gazebo1",
+   "nverts": 16426,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble"
+   ]
+  },
+  {
+   "name": "gazebo_SM_gazebo",
+   "nverts": 5564,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_col_L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_col_R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_crest",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_curtain",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_filigree",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_nave_frame",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_nave_rose",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_nave_rosette",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_nave_scallop",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_nave_vine",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_nave_window",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_pavilion",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_portal_arch",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_zen_lamp_L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "GN_BG_zen_lamp_R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "gothic_tracery_SM_Orn_GothicTracery",
+   "nverts": 6528,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Graph_GB_ZEN_CHERRY_ALLEE",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_StainedGlass"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_ENGAWA",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_KARESANSUI",
+   "nverts": 3,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Iridescent"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_LANTERN",
+   "nverts": 1,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_MACHIAI",
+   "nverts": 1,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Gold"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_ROJI_STEP",
+   "nverts": 6,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Iridescent"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_SAKURA_TORII.003",
+   "nverts": 1,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_STONE_BRIDGE",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Marble"
+   ]
+  },
+  {
+   "name": "Graph_GB_ZEN_WATER_EDGE",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Gold"
+   ]
+  },
+  {
+   "name": "Grass Normal.001",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "Grass 1.001"
+   ]
+  },
+  {
+   "name": "Grass Normal.002",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "Grass 1.001"
+   ]
+  },
+  {
+   "name": "Grass Normal.004",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "Grass 1.001"
+   ]
+  },
+  {
+   "name": "Grass Normal.005",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "Grass 1.001"
+   ]
+  },
+  {
+   "name": "Grass Normal.006",
+   "nverts": 18,
+   "vgroups": 0,
+   "mats": [
+    "Grass 1.001"
+   ]
+  },
+  {
+   "name": "Hair Strand.004",
+   "nverts": 3104,
+   "vgroups": 147,
+   "mats": [
+    "Water (Advance).002",
+    "Cosmos",
+    "Outline Shader *.003"
+   ]
+  },
+  {
+   "name": "Hair Strand.007",
+   "nverts": 26400,
+   "vgroups": 147,
+   "mats": [
+    null,
+    "Water (Advance).002",
+    "Outline Shader *.001"
+   ]
+  },
+  {
+   "name": "Hair Strand.010",
+   "nverts": 7560,
+   "vgroups": 147,
+   "mats": [
+    "Water (Advance).002"
+   ]
+  },
+  {
+   "name": "Hoof_FL",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "HoofPianoKeys"
+   ]
+  },
+  {
+   "name": "Hoof_FR",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "HoofPianoKeys"
+   ]
+  },
+  {
+   "name": "Hoof_HL",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "HoofPianoKeys"
+   ]
+  },
+  {
+   "name": "Hoof_HR",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "HoofPianoKeys"
+   ]
+  },
+  {
+   "name": "L_Eyebrow",
+   "nverts": 170,
+   "vgroups": 229,
+   "mats": [
+    "Halftone Circles & Circles (3 Inputs).001"
+   ]
+  },
+  {
+   "name": "leaf1lowpoly.001",
+   "nverts": 1257,
+   "vgroups": 0,
+   "mats": [
+    "SM_Leaf1.001"
+   ]
+  },
+  {
+   "name": "leaf1lowpoly.002",
+   "nverts": 1257,
+   "vgroups": 0,
+   "mats": [
+    "SM_Leaf1"
+   ]
+  },
+  {
+   "name": "leaf1lowpoly.003",
+   "nverts": 1257,
+   "vgroups": 0,
+   "mats": [
+    "SM_Leaf1.001"
+   ]
+  },
+  {
+   "name": "leaf1lowpoly.004",
+   "nverts": 1257,
+   "vgroups": 0,
+   "mats": [
+    "SM_Leaf1.001"
+   ]
+  },
+  {
+   "name": "LF_TipDrip_Hair_Strand.002",
+   "nverts": 42,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "LF_TipDrip_Hair_Strand.004",
+   "nverts": 42,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "LF_TipDrip_Hair_Strand.007",
+   "nverts": 42,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "lissajous_Lissajous Curve",
+   "nverts": 128,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "magical_wand_Retopo_wand",
+   "nverts": 1730,
+   "vgroups": 0,
+   "mats": [
+    "M_WandBase.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Arrow_CrystalTip",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Arrow_Ferrule",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Arrow_Shaft",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Arrow_Vane_0",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Arrow_Vane_1",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Arrow_Vane_2",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_BowNock_0.001",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_BowNock_1.001",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Bowstring",
+   "nverts": 200,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Brace_Lower_Return",
+   "nverts": 200,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Brace_Lower_Wave",
+   "nverts": 328,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Brace_Lower_Wave_Pearl",
+   "nverts": 328,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Bridge_Rosette_-0.001",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Bridge_Rosette_0.001",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_BridgeStud_00",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_BridgeStud_01",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_BridgeStud_02",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_BridgeStud_03",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Charm_Lower_Chain",
+   "nverts": 136,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Charm_Lower_Gem",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Charm_Right_Chain",
+   "nverts": 136,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Charm_Right_Gem",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Crown_Setting",
+   "nverts": 136,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Crown_Star",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Ferrule_Lower",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Ferrule_Upper",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Main",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_Chladni_Copernicus_REVIEW_NC.002"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Pommel",
+   "nverts": 20,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_PommelGem",
+   "nverts": 42,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Wrap_00",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Wrap_01",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Wrap_02",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Grip_Wrap_03",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Arrow_CrystalTip",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Arrow_Ferrule",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Arrow_Shaft",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Arrow_Vane_0",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Arrow_Vane_1",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Arrow_Vane_2",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_BowNock_0.07",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_BowNock_1.0",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Bowstring",
+   "nverts": 200,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Brace_Lower_Return",
+   "nverts": 200,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Brace_Lower_Wave",
+   "nverts": 328,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Brace_Lower_Wave_Pearl",
+   "nverts": 328,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Bridge_Rosette_-0.016",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Bridge_Rosette_0.000",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_BridgeStud_00",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_BridgeStud_01",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_BridgeStud_02",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_BridgeStud_03",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Charm_Lower_Chain",
+   "nverts": 136,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Charm_Lower_Gem",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Charm_Right_Chain",
+   "nverts": 136,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Charm_Right_Gem",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Crown_Setting",
+   "nverts": 136,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Crown_Star",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Ferrule_Lower",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Ferrule_Upper",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Main",
+   "nverts": 40,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_Chladni_Copernicus_REVIEW_NC.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Pommel",
+   "nverts": 20,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_PommelGem",
+   "nverts": 42,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Wrap_00",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Wrap_01",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Wrap_02",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Grip_Wrap_03",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_EnamelLilac_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Limb_Lower",
+   "nverts": 588,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Limb_Lower_Enamel",
+   "nverts": 588,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Limb_Lower_Pearl",
+   "nverts": 588,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Limb_Upper",
+   "nverts": 1164,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Limb_Upper_Enamel",
+   "nverts": 1164,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Limb_Upper_Pearl",
+   "nverts": 1164,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_LockPin",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_CrystalCore",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_CrystalCrown",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Node_00",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Node_01",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Node_02",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Node_03",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Ring_Inner",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_Chladni_Copernicus_REVIEW_NC.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Ring_Outer",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Spoke_00",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Spoke_01",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Spoke_02",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonance_Spoke_03",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_Resonator_Arm_Upper",
+   "nverts": 392,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_SplitSleeve_Lower",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_SplitSleeve_Upper",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_01",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_02",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_03",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_04",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_05",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_06",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_String_07",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_StringBridge_Lower",
+   "nverts": 392,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_01",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_02",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_03",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_04",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_05",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_06",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningPin_07",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_ME_WaveHarp_TuningRail_Upper",
+   "nverts": 392,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_UCX_WaveHarp_Core",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "ME_WaveHarp_Legacy_UCX_WaveHarp_Frame",
+   "nverts": 168,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "ME_WaveHarp_Limb_Lower",
+   "nverts": 588,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Limb_Lower_Enamel",
+   "nverts": 588,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Limb_Lower_Pearl",
+   "nverts": 588,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Limb_Upper",
+   "nverts": 1164,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Limb_Upper_Enamel",
+   "nverts": 1164,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Limb_Upper_Pearl",
+   "nverts": 1164,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_LockPin",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_CrystalCore",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_CrystalCrown",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Node_00",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Node_01",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Node_02",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalViolet_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Node_03",
+   "nverts": 12,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_CrystalBlue_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Ring_Inner",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_Chladni_Copernicus_REVIEW_NC.002"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Ring_Outer",
+   "nverts": 256,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Spoke_00",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Spoke_01",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Spoke_02",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonance_Spoke_03",
+   "nverts": 72,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_Resonator_Arm_Upper",
+   "nverts": 392,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_IvoryPearl_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_SplitSleeve_Lower",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_SplitSleeve_Upper",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_01",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_02",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_03",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_04",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_05",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_06",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_String_07",
+   "nverts": 150,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_StringSilver.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_StringBridge_Lower",
+   "nverts": 392,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_01",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_02",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_03",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_04",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_05",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_06",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningPin_07",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_RoseGold_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "ME_WaveHarp_TuningRail_Upper",
+   "nverts": 392,
+   "vgroups": 0,
+   "mats": [
+    "ME_MAT_PaleBrass_KomikazeHybrid.001"
+   ]
+  },
+  {
+   "name": "MEL_add_geometry",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_arch",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_attr_ramp_mix",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_attr_vector_rotate",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_attribute_math",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_baluster",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_baluster_collar",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_bell_chime",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_bevel_profile",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_bounding_box",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_brass_pipe",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_arrow_slit",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_assembler",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_barbican",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_buttress",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_corner_bastion",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_corner_turret",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_crenellation",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_curtain_wall",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_drawbridge",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_gatehouse",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_gothic_window",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_hoarding",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_keep",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_machicolations",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_portcullis",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_siege_tower",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_spiral_stairs",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_tower",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_castle_wall_segment",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_circular_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_closed_ribbon",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_column",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_curve_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_decorative_rosette",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_edge_band_weight",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_edge_ring_inset",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_effect_cast",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_effect_displace",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_effect_magic",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_effect_smooth",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_effect_wave",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_effect_wireframe",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_egg_dart_rail",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_endless_escher_bridge",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_buoy_line",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_campfire_ring",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_hedgerow",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_lantern_post",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_lily_pond",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_market_stall",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_reeds_patch",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_stepping_stones",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_village_well",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_env_waterfall_pool",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_escher_belvedere",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_escher_penrose_stairs",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_escher_waterfall",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_exponent_blend",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_filigree_corner_volute",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_filigree_finial_cross",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_filigree_spiral",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_filigree_wreath_ring",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_gazebo",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_gear",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_greybox_room_kit",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_grid_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_harmonic_orb",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_inset_faces",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_instance_on_spline",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_linear_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_lissajous",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_lissajous_ribbon",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_material_crosswalk",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_material_crosswalk_v2",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_math_gothic_cathedral",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_multi_bevel",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_bass_clef",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_beam_cluster",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_chord_stack",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_fermata",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_harmonic",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_note_head",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_phrase",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_repeat_bar",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_sheet_rail",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_staff",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_stand",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_arch",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_bandstand",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_bridge",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_curtain",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_fountain",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_gazebo",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_portico",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_recital",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_shell",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_stage",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_structure",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_them_wall",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_time_signature",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_treble_clef",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_music_triplet_note",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_nikki_quarter",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_op_bounded",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_op_iterate",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_op_power_clamp",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_frame",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_grid",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_keyhole_frame",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_panel",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_radial",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_rosette_sixpetal",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_scallop_band",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ornament_vine",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_pcg_music_tags",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_pcg_music_tags_v2",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_pcg_water_tags",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_pcg_water_tags_v2",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_pergola_walkway",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_poke_faces",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_polyhedra_dodecahedron",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_polyhedra_icosahedron",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_portico",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_post",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_power_scale",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_radial_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_radial_wave",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_rail",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_recursive_castle_spire",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_reed_body",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_remesh_dual",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_ribbon_curve",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_shell_thicken",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_sky_observatory",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_smooth_laplacian",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_spiral_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_star_finial",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_stepped_pyramid",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_store_named_attr",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_subdivision_surface",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_subtract_geometry",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_symmetry_weld",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_torus_cross",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_vertex_relax",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_violin_bow",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_vortex_twist",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_current_markers",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_foam",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_gerstner",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_ripples",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_arch",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_bridge",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_canal",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_curtain",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_deck",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_dock",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_fountain",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_gazebo",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_portico",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_structure",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_wall",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_water_them_waterfall",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_weighted_array",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MEL_weighted_bevel",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "melody_slime_Retopo_Cube.001",
+   "nverts": 236,
+   "vgroups": 0,
+   "mats": [
+    "Material.002"
+   ]
+  },
+  {
+   "name": "MelodyTokenBase",
+   "nverts": 640,
+   "vgroups": 0,
+   "mats": [
+    "Material.004"
+   ]
+  },
+  {
+   "name": "MelodyTokenStar",
+   "nverts": 2139227,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MelodyTokenSwirl",
+   "nverts": 918056,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "MelodyTokenWater",
+   "nverts": 2507522,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Melusina.001",
+   "nverts": 18791,
+   "vgroups": 339,
+   "mats": [
+    "SBW_MELUSINA.002",
+    "SBW_MELUSINA.002",
+    "SBW_MELUSINA",
+    "SBW_Outline"
+   ]
+  },
+  {
+   "name": "Melusina_Base",
+   "nverts": 18891,
+   "vgroups": 238,
+   "mats": [
+    "SBW_MELUSINA.006",
+    "SBW_MELUSINA.007",
+    "SBW_MELUSINA.008",
+    "SBW_Outline.003",
+    "Gradient (Radial).002"
+   ]
+  },
+  {
+   "name": "Melusina_Bow",
+   "nverts": 1144,
+   "vgroups": 491,
+   "mats": [
+    "bow.002"
+   ]
+  },
+  {
+   "name": "melusina_ElixirGlass",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "M_Sanctus_GlassRose"
+   ]
+  },
+  {
+   "name": "melusina_ElixirLiquid",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "M_Melodia_RoseElixir"
+   ]
+  },
+  {
+   "name": "Melusina_FrontPanel",
+   "nverts": 222,
+   "vgroups": 348,
+   "mats": [
+    "frontpanel.001"
+   ]
+  },
+  {
+   "name": "Melusina_Gloves",
+   "nverts": 1728,
+   "vgroups": 345,
+   "mats": [
+    "GLOVES.001",
+    "Material.016"
+   ]
+  },
+  {
+   "name": "Melusina_Shawl",
+   "nverts": 350,
+   "vgroups": 362,
+   "mats": [
+    "SHAWL.001",
+    "Outline.005"
+   ]
+  },
+  {
+   "name": "Melusina_Skirt",
+   "nverts": 23656,
+   "vgroups": 205,
+   "mats": [
+    "SKIRT.003",
+    "Halftone 3 Inputs - Lines & Circles.002"
+   ]
+  },
+  {
+   "name": "Melusina_SkirtPanel",
+   "nverts": 700,
+   "vgroups": 199,
+   "mats": [
+    "skirtpanel.002",
+    "Outline.006"
+   ]
+  },
+  {
+   "name": "Melusina_Sleeve",
+   "nverts": 2880,
+   "vgroups": 341,
+   "mats": [
+    "sleeve.003",
+    "SBW_MELUSINA.007",
+    "SBW_MELUSINA.008",
+    "SBW_Outline.003"
+   ]
+  },
+  {
+   "name": "MelusinaShirt",
+   "nverts": 782,
+   "vgroups": 380,
+   "mats": [
+    "Material.008"
+   ]
+  },
+  {
+   "name": "MrSheepFinal",
+   "nverts": 1000,
+   "vgroups": 106,
+   "mats": [
+    "ME_Sheep_Coat_PC_C",
+    "ME_Sheep_Skin",
+    "ME_Sheep_Hoof"
+   ]
+  },
+  {
+   "name": "MrSheepTail",
+   "nverts": 420,
+   "vgroups": 4,
+   "mats": [
+    "ME_Sheep_Coat_PC_C"
+   ]
+  },
+  {
+   "name": "NurbsCurve_profile.001",
+   "nverts": 1328,
+   "vgroups": 345,
+   "mats": [
+    "Metal 2 (Matcap).002",
+    "Outline.005"
+   ]
+  },
+  {
+   "name": "pendant_finial_SM_Orn_PendantFinial",
+   "nverts": 2432,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Plane",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Plane.001",
+   "nverts": 44,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Plane.003",
+   "nverts": 17,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "platelowpoly.001",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "SM_Plate.001"
+   ]
+  },
+  {
+   "name": "PM3D_Cube3D1.001",
+   "nverts": 896,
+   "vgroups": 248,
+   "mats": [
+    "Glitter"
+   ]
+  },
+  {
+   "name": "quatrefoil_SM_Orn_QuatrefoilArch",
+   "nverts": 4800,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "R_Eyebrow",
+   "nverts": 170,
+   "vgroups": 229,
+   "mats": [
+    "Halftone Circles & Circles (3 Inputs).001",
+    "Outline.004"
+   ]
+  },
+  {
+   "name": "R_Eyelash",
+   "nverts": 3000,
+   "vgroups": 231,
+   "mats": [
+    "Halftone Circles & Circles (3 Inputs).001",
+    "Material.015",
+    "Outline"
+   ]
+  },
+  {
+   "name": "R_Iris.001",
+   "nverts": 256,
+   "vgroups": 236,
+   "mats": [
+    "Material.015"
+   ]
+  },
+  {
+   "name": "R_Iris.002",
+   "nverts": 256,
+   "vgroups": 236,
+   "mats": [
+    "Material.023",
+    "Iris.002"
+   ]
+  },
+  {
+   "name": "ReligiousSculptureMeshing",
+   "nverts": 46,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Retopo_boot 2.001",
+   "nverts": 2046,
+   "vgroups": 345,
+   "mats": [
+    "Material.017",
+    "Outline"
+   ]
+  },
+  {
+   "name": "Retopo_boot 2.002",
+   "nverts": 2046,
+   "vgroups": 345,
+   "mats": [
+    "Material.017",
+    "Outline"
+   ]
+  },
+  {
+   "name": "Retopo_cinnabunwithnoise.001",
+   "nverts": 244,
+   "vgroups": 0,
+   "mats": [
+    "SM_CinnBun"
+   ]
+  },
+  {
+   "name": "Retopo_cinnabunwithnoise.002",
+   "nverts": 244,
+   "vgroups": 0,
+   "mats": [
+    "SM_CinnBun"
+   ]
+  },
+  {
+   "name": "Retopo_cinnabunwithnoise.003",
+   "nverts": 244,
+   "vgroups": 0,
+   "mats": [
+    "SM_CinnBun"
+   ]
+  },
+  {
+   "name": "Retopo_cinnabunwithnoise.004",
+   "nverts": 244,
+   "vgroups": 0,
+   "mats": [
+    "SM_CinnBun"
+   ]
+  },
+  {
+   "name": "Retopo_Cube.009",
+   "nverts": 212,
+   "vgroups": 1,
+   "mats": [
+    "Cel Shade 4 Tones (Hard)",
+    "Outline.001"
+   ]
+  },
+  {
+   "name": "Retopo_Cube.011",
+   "nverts": 144,
+   "vgroups": 1,
+   "mats": [
+    "Foot.001",
+    "Outline.001"
+   ]
+  },
+  {
+   "name": "Retopo_Melusina_002",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "Material.025"
+   ]
+  },
+  {
+   "name": "Retopo_starfrill",
+   "nverts": 21585,
+   "vgroups": 345,
+   "mats": [
+    "Material.006"
+   ]
+  },
+  {
+   "name": "Retopo_tablehighpoly.001",
+   "nverts": 11022,
+   "vgroups": 0,
+   "mats": [
+    "SM_table"
+   ]
+  },
+  {
+   "name": "Retopo_teacup",
+   "nverts": 254,
+   "vgroups": 0,
+   "mats": [
+    "Material.013"
+   ]
+  },
+  {
+   "name": "Retopo_tophat!.001",
+   "nverts": 4754,
+   "vgroups": 345,
+   "mats": [
+    "Material.007"
+   ]
+  },
+  {
+   "name": "rock.011",
+   "nverts": 93,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.012",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.013",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.014",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.015",
+   "nverts": 10,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.016",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.017",
+   "nverts": 10,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.018",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.019",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.020",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.021",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.022",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rock.023",
+   "nverts": 7,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "rosette_SM_Orn_RosetteMedallion",
+   "nverts": 6432,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sakura_petal_UMesh_PolySphere5",
+   "nverts": 406113,
+   "vgroups": 0,
+   "mats": [
+    "Material.001"
+   ]
+  },
+  {
+   "name": "Set_Petal_00",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_01",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_02",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_03",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_04",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_05",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_06",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_07",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_08",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_09",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_10",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_11",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_12",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_13",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_14",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_15",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_16",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_17",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_18",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_19",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_20",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_21",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_22",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_23",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_24",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_25",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_26",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_27",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_28",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_29",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_30",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_31",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_32",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_33",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_34",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_35",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_36",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_37",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_38",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_39",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_40",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_41",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_42",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_43",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_44",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_45",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_46",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_Petal_47",
+   "nverts": 5,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_SakuraAccent",
+   "nverts": 42,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_SakuraAccent_Trunk",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_StonePlinth",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "Set_StonePlinth_Weathered",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": [
+    "Tree Shader *"
+   ]
+  },
+  {
+   "name": "SheepEarBead_L",
+   "nverts": 86,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "SheepEarBead_R",
+   "nverts": 86,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "SheepEye_L",
+   "nverts": 128,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Eye"
+   ]
+  },
+  {
+   "name": "SheepEye_R",
+   "nverts": 128,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Eye"
+   ]
+  },
+  {
+   "name": "SheepHorns",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "SheepLissajous_Halo",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "SheepMusicBeads",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "SheepPearlDanglers",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "SheepTailScroll",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "SheepWreathCollar",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "SheepWreathCollar_EXPORT",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "SheepWreathCollar_v3",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "SheepWreathCollar_v3.001",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": [
+    "ME_Sheep_Gold"
+   ]
+  },
+  {
+   "name": "sirmelodious_B\u00e9zierCurve.002",
+   "nverts": 20736,
+   "vgroups": 65,
+   "mats": [
+    "Material.047"
+   ]
+  },
+  {
+   "name": "sirmelodious_cs_arrow_cross.001",
+   "nverts": 44,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_arrow_twist.001",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_box.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_circle_head.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_circle_squashed.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_foot.l.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_foot.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_foot_roll.001",
+   "nverts": 56,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_hand.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_pos.001",
+   "nverts": 32,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_skirt_master.004",
+   "nverts": 259,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_skirt_tail_ctrl_scaled.x.003",
+   "nverts": 9,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_sphere.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_torus_01.029",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_torus_02.024",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_torus_04.002",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_torus_tip_01.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_user_c_arm_feather_mid.r.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_user_c_arm_fk.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_user_c_forearm_feather_mid.r.001",
+   "nverts": 48,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_user_c_leg_fk.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_user_c_shoulder.r.001",
+   "nverts": 16,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_cs_user_c_thigh_fk.r.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Cube3D1.002",
+   "nverts": 344,
+   "vgroups": 66,
+   "mats": [
+    "SirMelodious_Uni.002"
+   ]
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Cube3D24.001",
+   "nverts": 40068,
+   "vgroups": 63,
+   "mats": [
+    "SirMelodious_Uni.001"
+   ]
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Cube3D25.001",
+   "nverts": 113420,
+   "vgroups": 46,
+   "mats": [
+    "SirMelodious_Uni.001"
+   ]
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Cube3D28.001",
+   "nverts": 1190,
+   "vgroups": 63,
+   "mats": [
+    "Material.038"
+   ]
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Cube3D29.001",
+   "nverts": 24824,
+   "vgroups": 46,
+   "mats": [
+    "SirMelodious_Uni.001"
+   ]
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Ring3D2.002",
+   "nverts": 1826,
+   "vgroups": 63,
+   "mats": [
+    "SirMelodious_Uni.003"
+   ]
+  },
+  {
+   "name": "sirmelodious_Retopo_PM3D_Sphere3D1.002",
+   "nverts": 68,
+   "vgroups": 46,
+   "mats": [
+    "Material.035"
+   ]
+  },
+  {
+   "name": "SirMelodiousBody",
+   "nverts": 3892,
+   "vgroups": 49,
+   "mats": [
+    "SirMelodious_Uni"
+   ]
+  },
+  {
+   "name": "SM_Melusina_Irises",
+   "nverts": 512,
+   "vgroups": 0,
+   "mats": [
+    "MI_Melusina_Iris_Back",
+    "MI_Melusina_Iris_Front"
+   ]
+  },
+  {
+   "name": "Sphere",
+   "nverts": 482,
+   "vgroups": 0,
+   "mats": [
+    "SurrealArch_Iridescent"
+   ]
+  },
+  {
+   "name": "SpikeMeshing",
+   "nverts": 13,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Star",
+   "nverts": 18,
+   "vgroups": 345,
+   "mats": [
+    "Iridescence.002"
+   ]
+  },
+  {
+   "name": "Star.001",
+   "nverts": 412,
+   "vgroups": 1,
+   "mats": [
+    "ViolinBase.001",
+    "ViolinBase.001",
+    "Cel Shade 3 Tones (Soft).001",
+    "Outline.001"
+   ]
+  },
+  {
+   "name": "Studio_Backdrop",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": [
+    "Gradient (Radial)"
+   ]
+  },
+  {
+   "name": "Studio_FloorCard",
+   "nverts": 64,
+   "vgroups": 0,
+   "mats": [
+    "Cel Shade 2 Tones (Soft)"
+   ]
+  },
+  {
+   "name": "temp_obj",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "temp_obj.001",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "temp_obj.002",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "Tree.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": [
+    "Wood.001"
+   ]
+  },
+  {
+   "name": "trefoil_Trefoil Knot",
+   "nverts": 0,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "UCX_WaveHarp_Core",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "UCX_WaveHarp_Frame",
+   "nverts": 168,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_B\u00e9zierCurve.001",
+   "nverts": 84,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_B\u00e9zierCurve.001_profile",
+   "nverts": 22800,
+   "vgroups": 0,
+   "mats": [
+    "BezierDetails"
+   ]
+  },
+  {
+   "name": "violin_B\u00e9zierCurve.001_profile.008",
+   "nverts": 1360,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Cube.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Curve",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Curve.001",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Curve.002",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Curve.002_profile",
+   "nverts": 59584,
+   "vgroups": 0,
+   "mats": [
+    "Strings"
+   ]
+  },
+  {
+   "name": "violin_Curve.003",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Pencil",
+   "nverts": 2,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Retopo_Cube",
+   "nverts": 98,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "violin_Retopo_Cube.009",
+   "nverts": 114,
+   "vgroups": 0,
+   "mats": [
+    "Cel Shade 4 Tones (Hard).001"
+   ]
+  },
+  {
+   "name": "violin_Retopo_Cube.011",
+   "nverts": 144,
+   "vgroups": 0,
+   "mats": [
+    "Foot"
+   ]
+  },
+  {
+   "name": "violin_Star",
+   "nverts": 412,
+   "vgroups": 0,
+   "mats": [
+    "ViolinBase",
+    "Cel Shade 3 Tones (Soft).006"
+   ]
+  },
+  {
+   "name": "WGT-rig_brow.B.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.012",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.013",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.L.014",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.012",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.013",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.B.R.014",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.L.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_brow.T.R.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.B.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.B.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.B.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.B.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.B.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.B.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.T.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.T.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.T.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.T.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.T.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_cheek.T.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_chin.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eye.L",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eye.L.001",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eye.L.002",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eye.R",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eye.R.001",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eye.R.002",
+   "nverts": 24,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eyes",
+   "nverts": 76,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eyes.001",
+   "nverts": 76,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_eyes.002",
+   "nverts": 76,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.L.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.L.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.R.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw.R.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw_master",
+   "nverts": 20,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw_master.001",
+   "nverts": 20,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_jaw_master.002",
+   "nverts": 20,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.L.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.B.R.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.L.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lid.T.R.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.B.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lip.T.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lips.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lips.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lips.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lips.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lips.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_lips.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_master_eye.L",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_master_eye.L.001",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_master_eye.L.002",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_master_eye.R",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_master_eye.R.001",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_master_eye.R.002",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.006",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.007",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.008",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.009",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.010",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.011",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.012",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.013",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.014",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.015",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.016",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.017",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.L",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.L.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.L.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.L.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.L.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.L.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.R",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.R.001",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.R.002",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.R.003",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.R.004",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose.R.005",
+   "nverts": 8,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose_master",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose_master.001",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "WGT-rig_nose_master.002",
+   "nverts": 4,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "woven_ring_SM_Orn_WovenRing",
+   "nverts": 6720,
+   "vgroups": 0,
+   "mats": []
+  },
+  {
+   "name": "zenlantern_Retopo_lanternfinal.004",
+   "nverts": 1402,
+   "vgroups": 0,
+   "mats": [
+    "MI_Review_ZenLantern_Voronoi3T"
+   ]
+  }
+ ],
+ "results": {
+  "glove:Melusina_Gloves": {
+   "object": "Melusina_Gloves",
+   "vert_count": 1728,
+   "bbox_min_blender_units": [
+    -0.9748893976211548,
+    -0.21608048677444458,
+    1.1741960048675537
+   ],
+   "bbox_max_blender_units": [
+    0.9708142876625061,
+    -0.03670912981033325,
+    1.2864058017730713
+   ],
+   "top15": [
+    [
+     "forearm_twist.r",
+     5.21
+    ],
+    [
+     "forearm_twist.l",
+     5.2
+    ],
+    [
+     "thumb1.l",
+     4.96
+    ],
+    [
+     "c_pinky1_base.r",
+     4.69
+    ],
+    [
+     "thumb1.r",
+     4.4
+    ],
+    [
+     "c_pinky1_base.l",
+     4.39
+    ],
+    [
+     "middle1.l",
+     4.27
+    ],
+    [
+     "c_thumb3.r",
+     4.08
+    ],
+    [
+     "c_thumb3.l",
+     3.86
+    ],
+    [
+     "middle1.r",
+     3.81
+    ],
+    [
+     "index1.l",
+     3.41
+    ],
+    [
+     "index1.r",
+     3.19
+    ],
+    [
+     "ring1.l",
+     2.96
+    ],
+    [
+     "c_thumb2.r",
+     2.79
+    ],
+    [
+     "c_thumb2.l",
+     2.73
+    ]
+   ],
+   "all_groups": {
+    "forearm_twist.r": 5.214,
+    "forearm_twist.l": 5.195,
+    "thumb1.l": 4.956,
+    "c_pinky1_base.r": 4.688,
+    "thumb1.r": 4.396,
+    "c_pinky1_base.l": 4.389,
+    "middle1.l": 4.274,
+    "c_thumb3.r": 4.081,
+    "c_thumb3.l": 3.858,
+    "middle1.r": 3.812,
+    "index1.l": 3.411,
+    "index1.r": 3.188,
+    "ring1.l": 2.956,
+    "c_thumb2.r": 2.79,
+    "c_thumb2.l": 2.73,
+    "ring1.r": 2.57,
+    "c_ring3.r": 2.527,
+    "c_ring3.l": 2.507,
+    "c_middle3.l": 2.357,
+    "c_middle3.r": 2.27,
+    "c_index3.r": 2.248,
+    "c_index3.l": 2.247,
+    "hand.r": 2.007,
+    "hand.l": 1.904,
+    "c_index1_base.r": 1.887,
+    "c_middle2.r": 1.772,
+    "pinky1.l": 1.542,
+    "pinky1.r": 1.508,
+    "c_index1_base.l": 1.473,
+    "c_middle2.l": 1.455,
+    "c_ring2.r": 1.337,
+    "c_index2.r": 1.148,
+    "c_pinky3.l": 1.102,
+    "c_pinky3.r": 1.101,
+    "c_ring2.l": 1.039,
+    "c_index2.l": 0.939,
+    "c_ring1_base.l": 0.853,
+    "c_ring1_base.r": 0.529,
+    "c_pinky2.r": 0.503,
+    "c_pinky2.l": 0.496,
+    "c_middle1_base.l": 0.393,
+    "c_middle1_base.r": 0.348
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "forearm_twist.r",
+     "pct": 5.21,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 5.2,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_pinky1_base.r",
+     "pct": 4.69,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 4.39,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb3.r",
+     "pct": 4.08,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb3.l",
+     "pct": 3.86,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.r",
+     "pct": 2.79,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 2.73,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.r",
+     "pct": 2.53,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 2.51,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 2.36,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.r",
+     "pct": 2.27,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index3.r",
+     "pct": 2.25,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index3.l",
+     "pct": 2.25,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.r",
+     "pct": 1.89,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.r",
+     "pct": 1.77,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 1.47,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 1.46,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.r",
+     "pct": 1.34,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index2.r",
+     "pct": 1.15,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 1.1,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.r",
+     "pct": 1.1,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 1.04,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index2.l",
+     "pct": 0.94,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 0.85,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.r",
+     "pct": 0.53,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.r",
+     "pct": 0.5,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 0.5,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 0.39,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.r",
+     "pct": 0.35,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "sleeve:Melusina_Sleeve": {
+   "object": "Melusina_Sleeve",
+   "vert_count": 2880,
+   "bbox_min_blender_units": [
+    -0.8539841771125793,
+    -0.23854918777942657,
+    1.1501073837280273
+   ],
+   "bbox_max_blender_units": [
+    0.9003250002861023,
+    0.05446596443653107,
+    1.34568190574646
+   ],
+   "top15": [
+    [
+     "arm_stretch.l",
+     9.36
+    ],
+    [
+     "arm_stretch.r",
+     9.35
+    ],
+    [
+     "forearm_twist_2.l",
+     9.31
+    ],
+    [
+     "forearm_twist_2.r",
+     9.3
+    ],
+    [
+     "arm_twist_2.r",
+     8.83
+    ],
+    [
+     "arm_twist_2.l",
+     8.83
+    ],
+    [
+     "forearm_stretch.l",
+     8.17
+    ],
+    [
+     "forearm_stretch.r",
+     8.16
+    ],
+    [
+     "forearm_twist.r",
+     5.26
+    ],
+    [
+     "forearm_twist.l",
+     5.26
+    ],
+    [
+     "c_pinky1_base.r",
+     3.59
+    ],
+    [
+     "c_pinky1_base.l",
+     3.59
+    ],
+    [
+     "thumb1.l",
+     1.93
+    ],
+    [
+     "thumb1.r",
+     1.93
+    ],
+    [
+     "c_thumb2.l",
+     0.91
+    ]
+   ],
+   "all_groups": {
+    "arm_stretch.l": 9.361,
+    "arm_stretch.r": 9.348,
+    "forearm_twist_2.l": 9.313,
+    "forearm_twist_2.r": 9.298,
+    "arm_twist_2.r": 8.834,
+    "arm_twist_2.l": 8.83,
+    "forearm_stretch.l": 8.171,
+    "forearm_stretch.r": 8.164,
+    "forearm_twist.r": 5.256,
+    "forearm_twist.l": 5.256,
+    "c_pinky1_base.r": 3.588,
+    "c_pinky1_base.l": 3.588,
+    "thumb1.l": 1.931,
+    "thumb1.r": 1.931,
+    "c_thumb2.l": 0.913,
+    "c_thumb2.r": 0.913,
+    "c_arm_twist_offset.r": 0.87,
+    "c_arm_twist_offset.l": 0.81,
+    "hand.l": 0.567,
+    "hand.r": 0.567,
+    "pinky1.r": 0.544,
+    "pinky1.l": 0.542,
+    "c_pinky3.l": 0.225,
+    "c_pinky3.r": 0.224,
+    "c_pinky2.r": 0.222,
+    "c_pinky2.l": 0.219,
+    "c_index1_base.r": 0.171,
+    "c_index1_base.l": 0.171,
+    "ring1.l": 0.026,
+    "c_ring1_base.r": 0.023,
+    "c_ring1_base.l": 0.023,
+    "shoulder.r": 0.018,
+    "ring1.r": 0.017,
+    "c_ring2.l": 0.015,
+    "middle1.l": 0.013,
+    "shoulder.l": 0.012,
+    "c_middle1_base.r": 0.008,
+    "c_middle1_base.l": 0.008,
+    "c_middle2.l": 0.005,
+    "c_ring2.r": 0.001,
+    "middle1.r": 0.001,
+    "c_ring3.l": 0.0,
+    "index1.l": 0.0,
+    "index1.r": 0.0,
+    "c_middle3.l": 0.0,
+    "c_ring3.r": 0.0
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "arm_stretch.l",
+     "pct": 9.36,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "arm_stretch.r",
+     "pct": 9.35,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist_2.l",
+     "pct": 9.31,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist_2.r",
+     "pct": 9.3,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "arm_twist_2.r",
+     "pct": 8.83,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "arm_twist_2.l",
+     "pct": 8.83,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 8.17,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_stretch.r",
+     "pct": 8.16,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist.r",
+     "pct": 5.26,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 5.26,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_pinky1_base.r",
+     "pct": 3.59,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 3.59,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 0.91,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.r",
+     "pct": 0.91,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_twist_offset.r",
+     "pct": 0.87,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_twist_offset.l",
+     "pct": 0.81,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 0.23,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.r",
+     "pct": 0.22,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.r",
+     "pct": 0.22,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 0.22,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.r",
+     "pct": 0.17,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 0.17,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.r",
+     "pct": 0.02,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 0.02,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 0.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.r",
+     "pct": 0.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 0.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 0.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.r",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.r",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "glove_LEFT_x>0:Melusina_Gloves": {
+   "object": "Melusina_Gloves",
+   "vert_count": 864,
+   "bbox_min_blender_units": [
+    0.6968026757240295,
+    -0.21608048677444458,
+    1.1758882999420166
+   ],
+   "bbox_max_blender_units": [
+    0.9708142876625061,
+    -0.03753301501274109,
+    1.2864058017730713
+   ],
+   "top15": [
+    [
+     "forearm_twist.l",
+     10.37
+    ],
+    [
+     "thumb1.l",
+     9.9
+    ],
+    [
+     "c_pinky1_base.l",
+     8.76
+    ],
+    [
+     "middle1.l",
+     8.53
+    ],
+    [
+     "c_thumb3.l",
+     7.7
+    ],
+    [
+     "index1.l",
+     6.81
+    ],
+    [
+     "ring1.l",
+     5.9
+    ],
+    [
+     "c_thumb2.l",
+     5.45
+    ],
+    [
+     "c_ring3.l",
+     5.01
+    ],
+    [
+     "c_middle3.l",
+     4.71
+    ],
+    [
+     "c_index3.l",
+     4.49
+    ],
+    [
+     "hand.l",
+     3.8
+    ],
+    [
+     "pinky1.l",
+     3.08
+    ],
+    [
+     "c_index1_base.l",
+     2.94
+    ],
+    [
+     "c_middle2.l",
+     2.91
+    ]
+   ],
+   "all_groups": {
+    "forearm_twist.l": 10.375,
+    "thumb1.l": 9.898,
+    "c_pinky1_base.l": 8.764,
+    "middle1.l": 8.534,
+    "c_thumb3.l": 7.704,
+    "index1.l": 6.811,
+    "ring1.l": 5.904,
+    "c_thumb2.l": 5.451,
+    "c_ring3.l": 5.006,
+    "c_middle3.l": 4.708,
+    "c_index3.l": 4.488,
+    "hand.l": 3.803,
+    "pinky1.l": 3.079,
+    "c_index1_base.l": 2.941,
+    "c_middle2.l": 2.906,
+    "c_pinky3.l": 2.2,
+    "c_ring2.l": 2.074,
+    "c_index2.l": 1.875,
+    "c_ring1_base.l": 1.704,
+    "c_pinky2.l": 0.991,
+    "c_middle1_base.l": 0.786
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "forearm_twist.l",
+     "pct": 10.37,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 8.76,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb3.l",
+     "pct": 7.7,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 5.45,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 5.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 4.71,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index3.l",
+     "pct": 4.49,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 2.94,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 2.91,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 2.2,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 2.07,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index2.l",
+     "pct": 1.87,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 1.7,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 0.99,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 0.79,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "sleeve_LEFT_x>0:Melusina_Sleeve": {
+   "object": "Melusina_Sleeve",
+   "vert_count": 1440,
+   "bbox_min_blender_units": [
+    0.30783912539482117,
+    -0.23854918777942657,
+    1.1511640548706055
+   ],
+   "bbox_max_blender_units": [
+    0.9003250002861023,
+    0.05446596443653107,
+    1.34568190574646
+   ],
+   "top15": [
+    [
+     "arm_stretch.l",
+     18.72
+    ],
+    [
+     "forearm_twist_2.l",
+     18.63
+    ],
+    [
+     "arm_twist_2.l",
+     17.66
+    ],
+    [
+     "forearm_stretch.l",
+     16.34
+    ],
+    [
+     "forearm_twist.l",
+     10.51
+    ],
+    [
+     "c_pinky1_base.l",
+     7.18
+    ],
+    [
+     "thumb1.l",
+     3.86
+    ],
+    [
+     "c_thumb2.l",
+     1.83
+    ],
+    [
+     "c_arm_twist_offset.l",
+     1.62
+    ],
+    [
+     "hand.l",
+     1.13
+    ],
+    [
+     "pinky1.l",
+     1.08
+    ],
+    [
+     "c_pinky3.l",
+     0.45
+    ],
+    [
+     "c_pinky2.l",
+     0.44
+    ],
+    [
+     "c_index1_base.l",
+     0.34
+    ],
+    [
+     "ring1.l",
+     0.05
+    ]
+   ],
+   "all_groups": {
+    "arm_stretch.l": 18.722,
+    "forearm_twist_2.l": 18.626,
+    "arm_twist_2.l": 17.66,
+    "forearm_stretch.l": 16.342,
+    "forearm_twist.l": 10.513,
+    "c_pinky1_base.l": 7.176,
+    "thumb1.l": 3.861,
+    "c_thumb2.l": 1.827,
+    "c_arm_twist_offset.l": 1.62,
+    "hand.l": 1.135,
+    "pinky1.l": 1.085,
+    "c_pinky3.l": 0.45,
+    "c_pinky2.l": 0.438,
+    "c_index1_base.l": 0.342,
+    "ring1.l": 0.052,
+    "c_ring1_base.l": 0.045,
+    "c_ring2.l": 0.03,
+    "middle1.l": 0.025,
+    "shoulder.l": 0.025,
+    "c_middle1_base.l": 0.016,
+    "c_middle2.l": 0.011,
+    "c_ring3.l": 0.0,
+    "index1.l": 0.0,
+    "c_middle3.l": 0.0
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "arm_stretch.l",
+     "pct": 18.72,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist_2.l",
+     "pct": 18.63,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "arm_twist_2.l",
+     "pct": 17.66,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 16.34,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 10.51,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 7.18,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 1.83,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_twist_offset.l",
+     "pct": 1.62,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 0.45,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 0.44,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 0.34,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 0.05,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 0.03,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 0.02,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 0.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:Melusina.001": {
+   "object": "Melusina.001",
+   "vert_count": 1189,
+   "bbox_min_blender_units": [
+    0.7400814890861511,
+    -0.21156905591487885,
+    1.180485725402832
+   ],
+   "bbox_max_blender_units": [
+    0.9663840532302856,
+    -0.041450679302215576,
+    1.2792775630950928
+   ],
+   "top15": [
+    [
+     "c_thumb3.l",
+     8.09
+    ],
+    [
+     "c_pinky1_base.l",
+     7.4
+    ],
+    [
+     "c_middle3.l",
+     7.17
+    ],
+    [
+     "middle1.l",
+     6.97
+    ],
+    [
+     "c_index3.l",
+     6.25
+    ],
+    [
+     "ring1.l",
+     5.94
+    ],
+    [
+     "c_index1_base.l",
+     5.85
+    ],
+    [
+     "c_ring3.l",
+     5.31
+    ],
+    [
+     "c_middle2.l",
+     5.28
+    ],
+    [
+     "index1.l",
+     5.24
+    ],
+    [
+     "thumb1.l",
+     5.01
+    ],
+    [
+     "c_thumb2.l",
+     4.94
+    ],
+    [
+     "c_pinky3.l",
+     4.16
+    ],
+    [
+     "hand.l",
+     3.81
+    ],
+    [
+     "c_ring2.l",
+     3.55
+    ]
+   ],
+   "all_groups": {
+    "c_thumb3.l": 8.088,
+    "c_pinky1_base.l": 7.404,
+    "c_middle3.l": 7.174,
+    "middle1.l": 6.969,
+    "c_index3.l": 6.254,
+    "ring1.l": 5.943,
+    "c_index1_base.l": 5.855,
+    "c_ring3.l": 5.309,
+    "c_middle2.l": 5.283,
+    "index1.l": 5.243,
+    "thumb1.l": 5.008,
+    "c_thumb2.l": 4.939,
+    "c_pinky3.l": 4.155,
+    "hand.l": 3.808,
+    "c_ring2.l": 3.553,
+    "c_index2.l": 3.401,
+    "pinky1.l": 2.885,
+    "c_ring1_base.l": 2.732,
+    "c_middle1_base.l": 2.728,
+    "c_pinky2.l": 2.051,
+    "forearm_twist.l": 1.218
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_thumb3.l",
+     "pct": 8.09,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 7.4,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 7.17,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index3.l",
+     "pct": 6.25,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 5.85,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 5.31,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 5.28,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 4.94,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 4.16,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 3.55,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index2.l",
+     "pct": 3.4,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 2.73,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 2.73,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 2.05,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 1.22,
+     "why": "twist/stretch"
+    }
+   ]
+  },
+  "bodyhandL:Melusina_Base": {
+   "object": "Melusina_Base",
+   "vert_count": 1188,
+   "bbox_min_blender_units": [
+    0.7400814890861511,
+    -0.21156905591487885,
+    1.180485725402832
+   ],
+   "bbox_max_blender_units": [
+    0.9663840532302856,
+    -0.041450679302215576,
+    1.2792775630950928
+   ],
+   "top15": [
+    [
+     "c_thumb3.l",
+     8.09
+    ],
+    [
+     "c_pinky1_base.l",
+     7.39
+    ],
+    [
+     "c_middle3.l",
+     7.17
+    ],
+    [
+     "middle1.l",
+     6.95
+    ],
+    [
+     "c_index3.l",
+     6.25
+    ],
+    [
+     "ring1.l",
+     6.02
+    ],
+    [
+     "c_index1_base.l",
+     5.81
+    ],
+    [
+     "c_ring3.l",
+     5.32
+    ],
+    [
+     "c_middle2.l",
+     5.32
+    ],
+    [
+     "index1.l",
+     5.32
+    ],
+    [
+     "thumb1.l",
+     5.02
+    ],
+    [
+     "c_thumb2.l",
+     4.95
+    ],
+    [
+     "c_pinky3.l",
+     4.18
+    ],
+    [
+     "hand.l",
+     3.86
+    ],
+    [
+     "c_ring2.l",
+     3.53
+    ]
+   ],
+   "all_groups": {
+    "c_thumb3.l": 8.094,
+    "c_pinky1_base.l": 7.392,
+    "c_middle3.l": 7.173,
+    "middle1.l": 6.953,
+    "c_index3.l": 6.252,
+    "ring1.l": 6.018,
+    "c_index1_base.l": 5.812,
+    "c_ring3.l": 5.323,
+    "c_middle2.l": 5.32,
+    "index1.l": 5.319,
+    "thumb1.l": 5.016,
+    "c_thumb2.l": 4.946,
+    "c_pinky3.l": 4.181,
+    "hand.l": 3.861,
+    "c_ring2.l": 3.531,
+    "c_index2.l": 3.412,
+    "pinky1.l": 2.92,
+    "c_ring1_base.l": 2.711,
+    "c_middle1_base.l": 2.708,
+    "c_pinky2.l": 2.034,
+    "forearm_twist.l": 1.02,
+    "forearm_twist_2.l": 0.004,
+    "forearm_stretch.l": 0.0
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_thumb3.l",
+     "pct": 8.09,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 7.39,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 7.17,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index3.l",
+     "pct": 6.25,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 5.81,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 5.32,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 5.32,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 4.95,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 4.18,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 3.53,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index2.l",
+     "pct": 3.41,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 2.71,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 2.71,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 2.03,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 1.02,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist_2.l",
+     "pct": 0.0,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 0.0,
+     "why": "twist/stretch"
+    }
+   ]
+  },
+  "bodyhandL:Melusina_Gloves": {
+   "object": "Melusina_Gloves",
+   "vert_count": 690,
+   "bbox_min_blender_units": [
+    0.7396717071533203,
+    -0.21608048677444458,
+    1.1758882999420166
+   ],
+   "bbox_max_blender_units": [
+    0.9708142876625061,
+    -0.03753301501274109,
+    1.285820484161377
+   ],
+   "top15": [
+    [
+     "middle1.l",
+     9.59
+    ],
+    [
+     "thumb1.l",
+     9.23
+    ],
+    [
+     "c_thumb3.l",
+     9.13
+    ],
+    [
+     "c_pinky1_base.l",
+     8.14
+    ],
+    [
+     "index1.l",
+     7.53
+    ],
+    [
+     "ring1.l",
+     6.41
+    ],
+    [
+     "c_ring3.l",
+     6.24
+    ],
+    [
+     "c_thumb2.l",
+     6.18
+    ],
+    [
+     "c_middle3.l",
+     5.87
+    ],
+    [
+     "c_index3.l",
+     5.6
+    ],
+    [
+     "c_middle2.l",
+     3.62
+    ],
+    [
+     "c_index1_base.l",
+     3.47
+    ],
+    [
+     "pinky1.l",
+     3.27
+    ],
+    [
+     "c_pinky3.l",
+     2.74
+    ],
+    [
+     "c_ring2.l",
+     2.59
+    ]
+   ],
+   "all_groups": {
+    "middle1.l": 9.591,
+    "thumb1.l": 9.234,
+    "c_thumb3.l": 9.133,
+    "c_pinky1_base.l": 8.142,
+    "index1.l": 7.529,
+    "ring1.l": 6.415,
+    "c_ring3.l": 6.242,
+    "c_thumb2.l": 6.182,
+    "c_middle3.l": 5.87,
+    "c_index3.l": 5.596,
+    "c_middle2.l": 3.623,
+    "c_index1_base.l": 3.466,
+    "pinky1.l": 3.273,
+    "c_pinky3.l": 2.743,
+    "c_ring2.l": 2.586,
+    "c_index2.l": 2.326,
+    "hand.l": 2.176,
+    "forearm_twist.l": 1.955,
+    "c_ring1_base.l": 1.707,
+    "c_pinky2.l": 1.236,
+    "c_middle1_base.l": 0.976
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_thumb3.l",
+     "pct": 9.13,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 8.14,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 6.24,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 6.18,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 5.87,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index3.l",
+     "pct": 5.6,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 3.62,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 3.47,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 2.74,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 2.59,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index2.l",
+     "pct": 2.33,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 1.96,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 1.71,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 1.24,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 0.98,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:Melusina_Sleeve": {
+   "object": "Melusina_Sleeve",
+   "vert_count": 183,
+   "bbox_min_blender_units": [
+    0.7496450543403625,
+    -0.23854918777942657,
+    1.1560680866241455
+   ],
+   "bbox_max_blender_units": [
+    0.8992082476615906,
+    0.047581419348716736,
+    1.34568190574646
+   ],
+   "top15": [
+    [
+     "c_pinky1_base.l",
+     38.65
+    ],
+    [
+     "forearm_twist.l",
+     18.72
+    ],
+    [
+     "thumb1.l",
+     15.13
+    ],
+    [
+     "pinky1.l",
+     7.29
+    ],
+    [
+     "forearm_twist_2.l",
+     6.06
+    ],
+    [
+     "hand.l",
+     3.39
+    ],
+    [
+     "c_thumb2.l",
+     2.68
+    ],
+    [
+     "c_pinky2.l",
+     2.62
+    ],
+    [
+     "c_pinky3.l",
+     2.21
+    ],
+    [
+     "c_index1_base.l",
+     1.06
+    ],
+    [
+     "arm_twist_2.l",
+     0.44
+    ],
+    [
+     "arm_stretch.l",
+     0.43
+    ],
+    [
+     "ring1.l",
+     0.34
+    ],
+    [
+     "c_ring2.l",
+     0.24
+    ],
+    [
+     "c_ring1_base.l",
+     0.24
+    ]
+   ],
+   "all_groups": {
+    "c_pinky1_base.l": 38.645,
+    "forearm_twist.l": 18.72,
+    "thumb1.l": 15.127,
+    "pinky1.l": 7.288,
+    "forearm_twist_2.l": 6.062,
+    "hand.l": 3.385,
+    "c_thumb2.l": 2.683,
+    "c_pinky2.l": 2.621,
+    "c_pinky3.l": 2.205,
+    "c_index1_base.l": 1.065,
+    "arm_twist_2.l": 0.438,
+    "arm_stretch.l": 0.428,
+    "ring1.l": 0.336,
+    "c_ring2.l": 0.24,
+    "c_ring1_base.l": 0.237,
+    "c_arm_twist_offset.l": 0.185,
+    "c_middle1_base.l": 0.103,
+    "middle1.l": 0.101,
+    "forearm_stretch.l": 0.085,
+    "c_middle2.l": 0.037,
+    "shoulder.l": 0.005,
+    "c_ring3.l": 0.004,
+    "index1.l": 0.001,
+    "c_middle3.l": 0.0
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_pinky1_base.l",
+     "pct": 38.65,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "forearm_twist.l",
+     "pct": 18.72,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_twist_2.l",
+     "pct": 6.06,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_thumb2.l",
+     "pct": 2.68,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky2.l",
+     "pct": 2.62,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_pinky3.l",
+     "pct": 2.21,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_index1_base.l",
+     "pct": 1.06,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "arm_twist_2.l",
+     "pct": 0.44,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "arm_stretch.l",
+     "pct": 0.43,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_ring2.l",
+     "pct": 0.24,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring1_base.l",
+     "pct": 0.24,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_twist_offset.l",
+     "pct": 0.19,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle1_base.l",
+     "pct": 0.1,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 0.08,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_middle2.l",
+     "pct": 0.04,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_ring3.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_middle3.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:sirmelodious_Retopo_PM3D_Cube3D24.001": {
+   "object": "sirmelodious_Retopo_PM3D_Cube3D24.001",
+   "vert_count": 20034,
+   "bbox_min_blender_units": [
+    -0.8844241499900818,
+    0.07556794583797455,
+    1.3063691854476929
+   ],
+   "bbox_max_blender_units": [
+    -0.6413070559501648,
+    0.22238709032535553,
+    1.4889518022537231
+   ],
+   "top15": [
+    [
+     "c_hand_feather_01_01_01.l",
+     10.86
+    ],
+    [
+     "c_forearm_feather_02_01_01.l",
+     10.49
+    ],
+    [
+     "c_forearm_feather_03_01_01.l",
+     10.25
+    ],
+    [
+     "c_forearm_feather_05_01_01.l",
+     10.22
+    ],
+    [
+     "c_forearm_feather_01_01_01.l",
+     10.21
+    ],
+    [
+     "c_forearm_feather_04_01_01.l",
+     10.01
+    ],
+    [
+     "c_arm_feather_04_01_01.l",
+     9.05
+    ],
+    [
+     "c_arm_feather_02_01_01.l",
+     8.3
+    ],
+    [
+     "c_arm_feather_03_01_01.l",
+     8.19
+    ],
+    [
+     "c_arm_feather_01_01_01.l",
+     6.71
+    ],
+    [
+     "c_hand_feather_02_01_01.l",
+     4.92
+    ],
+    [
+     "hand.l",
+     0.4
+    ],
+    [
+     "arm_stretch.l",
+     0.2
+    ],
+    [
+     "forearm_stretch.l",
+     0.07
+    ],
+    [
+     "shoulder.l",
+     0.06
+    ]
+   ],
+   "all_groups": {
+    "c_hand_feather_01_01_01.l": 10.859,
+    "c_forearm_feather_02_01_01.l": 10.494,
+    "c_forearm_feather_03_01_01.l": 10.248,
+    "c_forearm_feather_05_01_01.l": 10.224,
+    "c_forearm_feather_01_01_01.l": 10.208,
+    "c_forearm_feather_04_01_01.l": 10.008,
+    "c_arm_feather_04_01_01.l": 9.051,
+    "c_arm_feather_02_01_01.l": 8.296,
+    "c_arm_feather_03_01_01.l": 8.193,
+    "c_arm_feather_01_01_01.l": 6.713,
+    "c_hand_feather_02_01_01.l": 4.924,
+    "hand.l": 0.404,
+    "arm_stretch.l": 0.2,
+    "forearm_stretch.l": 0.065,
+    "shoulder.l": 0.057,
+    "c_kilt_03_01.l": 0.025,
+    "c_kilt_04_01.l": 0.016,
+    "c_kilt_02_01.l": 0.01,
+    "c_kilt_05_01.l": 0.003,
+    "c_hand_feather_01_01_01.r": 0.001
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_hand_feather_01_01_01.l",
+     "pct": 10.86,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_02_01_01.l",
+     "pct": 10.49,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_03_01_01.l",
+     "pct": 10.25,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_05_01_01.l",
+     "pct": 10.22,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_01_01_01.l",
+     "pct": 10.21,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_04_01_01.l",
+     "pct": 10.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_04_01_01.l",
+     "pct": 9.05,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_02_01_01.l",
+     "pct": 8.3,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_03_01_01.l",
+     "pct": 8.19,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_01_01_01.l",
+     "pct": 6.71,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_hand_feather_02_01_01.l",
+     "pct": 4.92,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "arm_stretch.l",
+     "pct": 0.2,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 0.07,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_kilt_03_01.l",
+     "pct": 0.02,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_kilt_04_01.l",
+     "pct": 0.02,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_kilt_02_01.l",
+     "pct": 0.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_kilt_05_01.l",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_hand_feather_01_01_01.r",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:sirmelodious_Retopo_PM3D_Cube3D25.001": {
+   "object": "sirmelodious_Retopo_PM3D_Cube3D25.001",
+   "vert_count": 56710,
+   "bbox_min_blender_units": [
+    -0.8898587226867676,
+    0.06918662786483765,
+    1.300614595413208
+   ],
+   "bbox_max_blender_units": [
+    -0.6291344165802002,
+    0.2630061209201813,
+    1.4890542030334473
+   ],
+   "top15": [
+    [
+     "c_hand_feather_01_01_01.l",
+     10.45
+    ],
+    [
+     "c_forearm_feather_02_01_01.l",
+     10.0
+    ],
+    [
+     "c_forearm_feather_05_01_01.l",
+     9.81
+    ],
+    [
+     "c_forearm_feather_03_01_01.l",
+     9.77
+    ],
+    [
+     "c_forearm_feather_01_01_01.l",
+     9.67
+    ],
+    [
+     "c_forearm_feather_04_01_01.l",
+     9.56
+    ],
+    [
+     "c_arm_feather_04_01_01.l",
+     8.48
+    ],
+    [
+     "c_arm_feather_02_01_01.l",
+     7.76
+    ],
+    [
+     "c_arm_feather_03_01_01.l",
+     7.68
+    ],
+    [
+     "c_arm_feather_01_01_01.l",
+     6.21
+    ],
+    [
+     "c_root_bend.x",
+     5.0
+    ],
+    [
+     "c_hand_feather_02_01_01.l",
+     4.85
+    ],
+    [
+     "hand.l",
+     0.35
+    ],
+    [
+     "arm_stretch.l",
+     0.3
+    ],
+    [
+     "forearm_stretch.l",
+     0.09
+    ]
+   ],
+   "all_groups": {
+    "c_hand_feather_01_01_01.l": 10.451,
+    "c_forearm_feather_02_01_01.l": 10.003,
+    "c_forearm_feather_05_01_01.l": 9.81,
+    "c_forearm_feather_03_01_01.l": 9.773,
+    "c_forearm_feather_01_01_01.l": 9.671,
+    "c_forearm_feather_04_01_01.l": 9.565,
+    "c_arm_feather_04_01_01.l": 8.484,
+    "c_arm_feather_02_01_01.l": 7.763,
+    "c_arm_feather_03_01_01.l": 7.677,
+    "c_arm_feather_01_01_01.l": 6.207,
+    "c_root_bend.x": 4.998,
+    "c_hand_feather_02_01_01.l": 4.852,
+    "hand.l": 0.354,
+    "arm_stretch.l": 0.3,
+    "forearm_stretch.l": 0.091,
+    "shoulder.l": 0.001,
+    "c_hand_feather_01_01_01.r": 0.0
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_hand_feather_01_01_01.l",
+     "pct": 10.45,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_02_01_01.l",
+     "pct": 10.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_05_01_01.l",
+     "pct": 9.81,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_03_01_01.l",
+     "pct": 9.77,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_01_01_01.l",
+     "pct": 9.67,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_04_01_01.l",
+     "pct": 9.56,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_04_01_01.l",
+     "pct": 8.48,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_02_01_01.l",
+     "pct": 7.76,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_03_01_01.l",
+     "pct": 7.68,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_arm_feather_01_01_01.l",
+     "pct": 6.21,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_root_bend.x",
+     "pct": 5.0,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_hand_feather_02_01_01.l",
+     "pct": 4.85,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "arm_stretch.l",
+     "pct": 0.3,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 0.09,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_hand_feather_01_01_01.r",
+     "pct": 0.0,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:sirmelodious_Retopo_PM3D_Cube3D28.001": {
+   "object": "sirmelodious_Retopo_PM3D_Cube3D28.001",
+   "vert_count": 580,
+   "bbox_min_blender_units": [
+    -0.7036577463150024,
+    0.11907299607992172,
+    1.3248307704925537
+   ],
+   "bbox_max_blender_units": [
+    -0.6475439667701721,
+    0.22785650193691254,
+    1.4464315176010132
+   ],
+   "top15": [
+    [
+     "c_hand_feather_02_01_01.l",
+     39.4
+    ],
+    [
+     "hand.l",
+     30.52
+    ],
+    [
+     "c_hand_feather_01_01_01.l",
+     28.27
+    ],
+    [
+     "c_forearm_feather_05_01_01.l",
+     1.82
+    ]
+   ],
+   "all_groups": {
+    "c_hand_feather_02_01_01.l": 39.396,
+    "hand.l": 30.522,
+    "c_hand_feather_01_01_01.l": 28.266,
+    "c_forearm_feather_05_01_01.l": 1.815
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_hand_feather_02_01_01.l",
+     "pct": 39.4,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_hand_feather_01_01_01.l",
+     "pct": 28.27,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_05_01_01.l",
+     "pct": 1.82,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:sirmelodious_Retopo_PM3D_Cube3D29.001": {
+   "object": "sirmelodious_Retopo_PM3D_Cube3D29.001",
+   "vert_count": 1278,
+   "bbox_min_blender_units": [
+    -0.7334815859794617,
+    0.09202006459236145,
+    1.4031347036361694
+   ],
+   "bbox_max_blender_units": [
+    -0.6624599099159241,
+    0.1469021588563919,
+    1.4778634309768677
+   ],
+   "top15": [
+    [
+     "hand.l",
+     59.03
+    ],
+    [
+     "forearm_stretch.l",
+     22.77
+    ],
+    [
+     "c_hand_feather_01_01_01.l",
+     9.31
+    ],
+    [
+     "c_hand_feather_02_01_01.l",
+     5.72
+    ],
+    [
+     "c_forearm_feather_05_01_01.l",
+     3.16
+    ]
+   ],
+   "all_groups": {
+    "hand.l": 59.031,
+    "forearm_stretch.l": 22.772,
+    "c_hand_feather_01_01_01.l": 9.311,
+    "c_hand_feather_02_01_01.l": 5.723,
+    "c_forearm_feather_05_01_01.l": 3.163
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "forearm_stretch.l",
+     "pct": 22.77,
+     "why": "twist/stretch"
+    },
+    {
+     "g": "c_hand_feather_01_01_01.l",
+     "pct": 9.31,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_hand_feather_02_01_01.l",
+     "pct": 5.72,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_05_01_01.l",
+     "pct": 3.16,
+     "why": "ctrl/mch/org"
+    }
+   ]
+  },
+  "bodyhandL:SirMelodiousBody": {
+   "object": "SirMelodiousBody",
+   "vert_count": 54,
+   "bbox_min_blender_units": [
+    -0.7244677543640137,
+    0.10181993991136551,
+    1.3677635192871094
+   ],
+   "bbox_max_blender_units": [
+    -0.6695475578308105,
+    0.17763790488243103,
+    1.4573516845703125
+   ],
+   "top15": [
+    [
+     "c_hand_feather_01_01_01.l",
+     56.4
+    ],
+    [
+     "c_hand_feather_02_01_01.l",
+     29.27
+    ],
+    [
+     "c_forearm_feather_05_01_01.l",
+     11.8
+    ],
+    [
+     "c_forearm_feather_04_01_01.l",
+     2.01
+    ],
+    [
+     "c_forearm_feather_03_01_01.l",
+     0.49
+    ],
+    [
+     "forearm_stretch.l",
+     0.04
+    ],
+    [
+     "Group",
+     0.0
+    ],
+    [
+     "Group.001",
+     0.0
+    ]
+   ],
+   "all_groups": {
+    "c_hand_feather_01_01_01.l": 56.395,
+    "c_hand_feather_02_01_01.l": 29.274,
+    "c_forearm_feather_05_01_01.l": 11.802,
+    "c_forearm_feather_04_01_01.l": 2.005,
+    "c_forearm_feather_03_01_01.l": 0.486,
+    "forearm_stretch.l": 0.037,
+    "Group": 0.0,
+    "Group.001": 0.0
+   },
+   "flag_nondeform_or_twist": [
+    {
+     "g": "c_hand_feather_01_01_01.l",
+     "pct": 56.4,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_hand_feather_02_01_01.l",
+     "pct": 29.27,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_05_01_01.l",
+     "pct": 11.8,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_04_01_01.l",
+     "pct": 2.01,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "c_forearm_feather_03_01_01.l",
+     "pct": 0.49,
+     "why": "ctrl/mch/org"
+    },
+    {
+     "g": "forearm_stretch.l",
+     "pct": 0.04,
+     "why": "twist/stretch"
+    }
+   ]
+  }
+ }
+}

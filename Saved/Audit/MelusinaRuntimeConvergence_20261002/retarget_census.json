@@ -1,0 +1,2272 @@
+{
+  "evidence": "EDITOR_ASSET_CONTROLLER_READBACK",
+  "created_utc": "2026-10-03T03:00:09Z",
+  "assets": [
+    {
+      "asset": "/Game/Characters/Melusina/IK_Melusina",
+      "class": "IKRigDefinition",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": null,
+      "skeleton": null,
+      "retarget_root": "None",
+      "chains": []
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/DollKit/IK_MEL_DollRig",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_to_DollRig"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest.MEL_seg_chest",
+      "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+      "retarget_root": "spine_01_x",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "spine_01_x",
+          "end": "spine_03_x",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "arm_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "arm_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "neck_x",
+          "end": "neck_x",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_l",
+          "end": "foot_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_r",
+          "end": "foot_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/IK_Melusina",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_to_Zundamon"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": null,
+      "skeleton": null,
+      "retarget_root": "None",
+      "chains": []
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/IK_Melusina_Body",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_UE4Mannequin_To_Melusina"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "retarget_root": "root_x",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "spine_01_x",
+          "end": "spine_03_x",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "neck_x",
+          "end": "neck_x",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "head_x",
+          "end": "head_x",
+          "goal": "None"
+        },
+        {
+          "name": "LeftClavicle",
+          "start": "shoulder_l",
+          "end": "shoulder_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "arm_stretch_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftIndex",
+          "start": "index1_l",
+          "end": "index3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftMiddle",
+          "start": "middle1_l",
+          "end": "middle3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftPinky",
+          "start": "pinky1_l",
+          "end": "pinky3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftRing",
+          "start": "ring1_l",
+          "end": "ring3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftThumb",
+          "start": "thumb1_l",
+          "end": "thumb3_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightClavicle",
+          "start": "shoulder_r",
+          "end": "shoulder_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "arm_stretch_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightIndex",
+          "start": "index1_r",
+          "end": "index3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightMiddle",
+          "start": "middle1_r",
+          "end": "middle3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightPinky",
+          "start": "pinky1_r",
+          "end": "pinky3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightRing",
+          "start": "ring1_r",
+          "end": "ring3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightThumb",
+          "start": "thumb1_r",
+          "end": "thumb3_r",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_stretch_l",
+          "end": "toes_01_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_stretch_r",
+          "end": "toes_01_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Retarget/IK_UE4Mannequin_Source",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_UE4Mannequin_To_Melusina",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_UE4Mannequin_To_SirMelodious"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/_ThirdParty/TurnBasedJRPGTemplate/Meshes/SK_Mannequin.SK_Mannequin",
+      "skeleton": "/Game/_ThirdParty/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton.UE4_Mannequin_Skeleton",
+      "retarget_root": "pelvis",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "spine_01",
+          "end": "spine_03",
+          "goal": "None"
+        },
+        {
+          "name": "LeftClavicle",
+          "start": "clavicle_l",
+          "end": "clavicle_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "upperarm_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftIndex",
+          "start": "index_01_l",
+          "end": "index_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftMiddle",
+          "start": "middle_01_l",
+          "end": "middle_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftPinky",
+          "start": "pinky_01_l",
+          "end": "pinky_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftRing",
+          "start": "ring_01_l",
+          "end": "ring_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftThumb",
+          "start": "thumb_01_l",
+          "end": "thumb_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightClavicle",
+          "start": "clavicle_r",
+          "end": "clavicle_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "upperarm_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightIndex",
+          "start": "index_01_r",
+          "end": "index_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightMiddle",
+          "start": "middle_01_r",
+          "end": "middle_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightPinky",
+          "start": "pinky_01_r",
+          "end": "pinky_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightRing",
+          "start": "ring_01_r",
+          "end": "ring_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightThumb",
+          "start": "thumb_01_r",
+          "end": "thumb_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "neck_01",
+          "end": "neck_01",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "head",
+          "end": "head",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_l",
+          "end": "ball_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_r",
+          "end": "ball_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_OldToV2",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Characters/Melusina/V2Test/IK_Melusina_Source_Old.IK_Melusina_Source_Old",
+        "mesh": null,
+        "skeleton": null,
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Characters/Melusina/V2Test/IK_Melusina_Target_V2.IK_Melusina_Target_V2",
+        "mesh": "/Game/Melodia/Characters/Melusina/V2Test/SK_MelusinaRigARP_V2Test.SK_MelusinaRigARP_V2Test",
+        "skeleton": "/Game/Melodia/Characters/Melusina/V2Test/SK_MelusinaRigARP_V2Test_Skeleton.SK_MelusinaRigARP_V2Test_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_to_DollRig",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current.IK_Melusina_Body_Current",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Characters/Melusina/DollKit/IK_MEL_DollRig.IK_MEL_DollRig",
+        "mesh": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest.MEL_seg_chest",
+        "skeleton": "/Game/Melodia/Characters/Melusina/DollKit/Melusina_DollKit_20260923/SkeletalMeshes/MEL_seg_chest_Skeleton.MEL_seg_chest_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_to_Zundamon",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Characters/Melusina/IK_Melusina.IK_Melusina",
+        "mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina_FIXED_Hair.SK_Melusina_FIXED_Hair",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Characters/Zundamon/IK_Zundamon.IK_Zundamon",
+        "mesh": "/Game/Melodia/Characters/Zundamon/SK_Zundamon.SK_Zundamon",
+        "skeleton": "/Game/Melodia/Characters/Zundamon/SK_Zundamon_Skeleton.SK_Zundamon_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_UE4Mannequin_To_Melusina",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Characters/Melusina/Retarget/IK_UE4Mannequin_Source.IK_UE4Mannequin_Source",
+        "mesh": "/Game/_ThirdParty/TurnBasedJRPGTemplate/Meshes/SK_Mannequin.SK_Mannequin",
+        "skeleton": "/Game/_ThirdParty/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton.UE4_Mannequin_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Characters/Melusina/IK_Melusina_Body.IK_Melusina_Body",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              -0.7992935780966519
+            ],
+            "bone_rotation_deltas": {
+              "foot_r": [
+                -0.22677052845602963,
+                2.1815596011729098e-09,
+                -0.03493264121629396,
+                0.9733211014268428
+              ],
+              "leg_stretch_r": [
+                0.018731717816198087,
+                2.6798892189521278e-09,
+                0.060200782720267416,
+                0.9980105159459507
+              ],
+              "thigh_stretch_r": [
+                -0.06998580590207935,
+                -3.1843796162388194e-09,
+                -0.0078006742995431,
+                0.997517485027139
+              ],
+              "foot_l": [
+                -0.22676947016901236,
+                7.1170456530856e-10,
+                0.034932464094772145,
+                0.9733213670727808
+              ],
+              "leg_stretch_l": [
+                0.018731744012345678,
+                -4.324621102723342e-09,
+                -0.060201464413118945,
+                0.998010473626876
+              ],
+              "thigh_stretch_l": [
+                -0.06998578724218804,
+                3.386738733167232e-09,
+                0.007800807485301049,
+                0.9975174858728533
+              ],
+              "thumb2_r": [
+                0.08776888751677203,
+                8.185335854825086e-07,
+                -0.06716418073665764,
+                0.9938740307783261
+              ],
+              "thumb1_r": [
+                -0.2222462450254307,
+                -1.9418087572678683e-06,
+                0.09293851668816305,
+                0.9705508884323641
+              ],
+              "ring2_r": [
+                0.01859179959918175,
+                -3.334644941736035e-08,
+                -0.02015735047580303,
+                0.9996239424319823
+              ],
+              "ring1_r": [
+                0.08056843930744723,
+                4.026150011364915e-08,
+                -0.1505153187715784,
+                0.9853191678325431
+              ],
+              "pinky2_r": [
+                0.11446955933983317,
+                3.163682605386901e-07,
+                -0.015143738992913866,
+                0.9933113200582149
+              ],
+              "pinky1_r": [
+                -0.01654352257661769,
+                -1.4435519026827572e-07,
+                -0.1773128690019939,
+                0.9840154716025978
+              ],
+              "middle2_r": [
+                0.11779038374269979,
+                -1.0011269329582423e-07,
+                -0.011745246557156223,
+                0.992969018675811
+              ],
+              "middle1_r": [
+                -0.022246376738281358,
+                1.796353922614455e-08,
+                -0.1259400136220776,
+                0.9917883898759932
+              ],
+              "index2_r": [
+                0.13217289018289088,
+                -4.852420240397342e-08,
+                0.02047372913770335,
+                0.9910152073359659
+              ],
+              "index1_r": [
+                -0.004339813714197555,
+                7.761444557458489e-08,
+                -0.09160839530042497,
+                0.9957856547719109
+              ],
+              "forearm_stretch_r": [
+                -0.04599031347293791,
+                -6.927654827928356e-08,
+                -0.142876889314572,
+                0.9886713768264077
+              ],
+              "arm_stretch_r": [
+                0.399220300368293,
+                2.838049554245654e-08,
+                0.06328728715399995,
+                0.914668133317648
+              ],
+              "thumb2_l": [
+                0.08775584069762436,
+                3.760600731403306e-07,
+                0.06717305114424207,
+                0.9938745854904567
+              ],
+              "thumb1_l": [
+                -0.22223389268218854,
+                -4.161527230226526e-09,
+                -0.09295248523672771,
+                0.9705523631702445
+              ],
+              "ring2_l": [
+                0.01857649823390544,
+                -3.661643867980295e-07,
+                0.020153814814372173,
+                0.9996242983104604
+              ],
+              "ring1_l": [
+                0.08058628323382791,
+                1.549685729239401e-06,
+                0.1505201735682363,
+                0.985316981825439
+              ],
+              "pinky2_l": [
+                0.11454173186422748,
+                1.870658728677995e-07,
+                0.01516482703300075,
+                0.9933026838966176
+              ],
+              "pinky1_l": [
+                -0.016552409656570132,
+                -4.7641496445073225e-07,
+                0.1773107047771193,
+                0.9840157165762493
+              ],
+              "middle2_l": [
+                0.11780663564100402,
+                -1.4075213611331464e-07,
+                0.011747884204838908,
+                0.9929670611030931
+              ],
+              "middle1_l": [
+                -0.022258717166979892,
+                -1.6190336822161675e-07,
+                0.12593851558060523,
+                0.9917883066408645
+              ],
+              "index2_l": [
+                0.13218722023190121,
+                -1.4755103913302338e-07,
+                -0.020482512552802114,
+                0.9910131198299809
+              ],
+              "index1_l": [
+                -0.004328013034181323,
+                -8.684458271532071e-07,
+                0.09161517383773138,
+                0.9957850816828578
+              ],
+              "forearm_stretch_l": [
+                -0.04601725926463827,
+                8.110947096286469e-08,
+                0.1428728592158572,
+                0.9886707041301062
+              ],
+              "arm_stretch_l": [
+                0.3992225142720254,
+                1.1330677343972266e-07,
+                -0.06328790028817963,
+                0.9146671461543121
+              ],
+              "spine_02_x": [
+                -0.20574319678333644,
+                -1.1854256882539836e-19,
+                1.905303302226378e-08,
+                0.9786060172395084
+              ],
+              "spine_01_x": [
+                0.11591345802838333,
+                3.804204724180299e-14,
+                3.414248046648115e-07,
+                0.993259316718341
+              ]
+            }
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/V2Test/IK_Melusina_Source_Old",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_OldToV2"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": null,
+      "skeleton": null,
+      "retarget_root": "None",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "root_x",
+          "end": "spine_03_x",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "neck_x",
+          "end": "head_x",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "shoulder_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftHand",
+          "start": "hand_l",
+          "end": "index3_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "shoulder_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightHand",
+          "start": "hand_r",
+          "end": "index3_r",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_stretch_l",
+          "end": "toes_01_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_stretch_r",
+          "end": "toes_01_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/V2Test/IK_Melusina_Target_V2",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_OldToV2"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Characters/Melusina/V2Test/SK_MelusinaRigARP_V2Test.SK_MelusinaRigARP_V2Test",
+      "skeleton": "/Game/Melodia/Characters/Melusina/V2Test/SK_MelusinaRigARP_V2Test_Skeleton.SK_MelusinaRigARP_V2Test_Skeleton",
+      "retarget_root": "None",
+      "chains": [
+        {
+          "name": "Head",
+          "start": "neck_02",
+          "end": "head",
+          "goal": "None"
+        },
+        {
+          "name": "Spine",
+          "start": "pelvis",
+          "end": "spine_03",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "clavicle_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftHand",
+          "start": "hand_l",
+          "end": "index_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "clavicle_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightHand",
+          "start": "hand_r",
+          "end": "index_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_l",
+          "end": "ball_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_r",
+          "end": "ball_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Zundamon/IK_Zundamon",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_to_Zundamon"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Characters/Zundamon/SK_Zundamon.SK_Zundamon",
+      "skeleton": "/Game/Melodia/Characters/Zundamon/SK_Zundamon_Skeleton.SK_Zundamon_Skeleton",
+      "retarget_root": "Hips",
+      "chains": []
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_to_DollRig",
+        "/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current",
+        "/Game/Melodia/Mocap/Retarget/RTG_Quaternius_to_Melusina",
+        "/Game/Melodia/Mocap/Retarget/RTG_Sparrow_to_Melusina"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "retarget_root": "root_x",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "spine_01_x",
+          "end": "spine_03_x",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "neck_x",
+          "end": "neck_x",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "head_x",
+          "end": "head_x",
+          "goal": "None"
+        },
+        {
+          "name": "LeftClavicle",
+          "start": "shoulder_l",
+          "end": "shoulder_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "arm_stretch_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftIndex",
+          "start": "index1_l",
+          "end": "index3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftMiddle",
+          "start": "middle1_l",
+          "end": "middle3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftPinky",
+          "start": "pinky1_l",
+          "end": "pinky3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftRing",
+          "start": "ring1_l",
+          "end": "ring3_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftThumb",
+          "start": "thumb1_l",
+          "end": "thumb3_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightClavicle",
+          "start": "shoulder_r",
+          "end": "shoulder_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "arm_stretch_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightIndex",
+          "start": "index1_r",
+          "end": "index3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightMiddle",
+          "start": "middle1_r",
+          "end": "middle3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightPinky",
+          "start": "pinky1_r",
+          "end": "pinky3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightRing",
+          "start": "ring1_r",
+          "end": "ring3_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightThumb",
+          "start": "thumb1_r",
+          "end": "thumb3_r",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_stretch_l",
+          "end": "toes_01_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_stretch_r",
+          "end": "toes_01_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Mocap/Source/IK_MocapSource.IK_MocapSource",
+        "mesh": "/Game/Melodia/Mocap/Source/SK_MocapSource.SK_MocapSource",
+        "skeleton": "/Game/Melodia/Mocap/Source/SK_MocapSource_Skeleton.SK_MocapSource_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current.IK_Melusina_Body_Current",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {}
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Retarget/RTG_Quaternius_to_Melusina",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Mocap/Source/Quaternius/IK_Quaternius.IK_Quaternius",
+        "mesh": "/Game/Melodia/Mocap/Source/Quaternius/SK_Quaternius.SK_Quaternius",
+        "skeleton": "/Game/Melodia/Mocap/Source/Quaternius/SK_Quaternius_Skeleton.SK_Quaternius_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {
+              "foot_r": [
+                -0.7818588132298869,
+                1.4556292320026051e-08,
+                0.044690539904222684,
+                0.6218517124724435
+              ],
+              "calf_r": [
+                0.03872320109844323,
+                1.0300903832854755e-10,
+                -0.00020448161304317797,
+                0.9992499547474798
+              ],
+              "thigh_r": [
+                0.0199957371535764,
+                -1.5206269259842308e-10,
+                -0.009096157266527523,
+                0.9997586861029988
+              ],
+              "foot_l": [
+                -0.7819514341896383,
+                -1.39146014880678e-08,
+                -0.04307123253246893,
+                0.6218495184059439
+              ],
+              "calf_l": [
+                0.03872329975275721,
+                -7.297364232504395e-10,
+                0.0001841942526315942,
+                0.9992499548699592
+              ],
+              "thigh_l": [
+                0.01999584740720223,
+                2.5608329706278665e-17,
+                0.009096130055808541,
+                0.9997586841454303
+              ],
+              "thumb_02_r": [
+                -0.0003000676430318824,
+                -4.974579966087106e-10,
+                -0.00010627511808915276,
+                0.9999999493325106
+              ],
+              "thumb_01_r": [
+                -0.5290295929915618,
+                -7.747693221917994e-07,
+                -0.39528259905102453,
+                0.750918969687531
+              ],
+              "ring_02_r": [
+                0.02990952900702382,
+                -1.083296960105621e-08,
+                -0.015605554417125318,
+                0.9994307814932466
+              ],
+              "ring_01_r": [
+                0.16371049883210056,
+                7.64283693661308e-08,
+                0.10266097358199218,
+                0.9811521787277114
+              ],
+              "pinky_02_r": [
+                -0.01588185553434114,
+                -4.7243690253694484e-08,
+                0.00914968791005383,
+                0.9998320108730528
+              ],
+              "pinky_01_r": [
+                0.28367422728479996,
+                -8.96152305312237e-07,
+                0.1539725776887514,
+                0.9464783998231728
+              ],
+              "middle_02_r": [
+                -0.008287902921486798,
+                1.6181679860718478e-08,
+                0.003538467615858168,
+                0.9999593941405069
+              ],
+              "middle_01_r": [
+                0.21620799025459222,
+                -1.588455863403272e-08,
+                0.006453378042822236,
+                0.9763259955132523
+              ],
+              "index_02_r": [
+                -0.013275734805938445,
+                8.382685794663335e-10,
+                0.008311714704004282,
+                0.999877327612684
+              ],
+              "index_01_r": [
+                0.18387476055609722,
+                -3.019937485261903e-08,
+                -0.0720242557129489,
+                0.9803073908769301
+              ],
+              "lowerarm_r": [
+                0.04653442595262725,
+                6.348687729034501e-10,
+                -0.037819973680885285,
+                0.998200479280798
+              ],
+              "upperarm_r": [
+                -0.38120499598116303,
+                6.196501443015652e-08,
+                -0.9242809101607581,
+                0.019686733466086476
+              ],
+              "thumb_02_l": [
+                -0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "thumb_01_l": [
+                -0.5289862883162894,
+                5.260213430947306e-07,
+                0.39536466387262154,
+                0.7509063180367594
+              ],
+              "ring_02_l": [
+                0.029917616429136356,
+                1.0832702713353568e-08,
+                0.015602688368546289,
+                0.9994305841794471
+              ],
+              "ring_01_l": [
+                0.16368800752821314,
+                -6.891603559542827e-08,
+                -0.10269789708301548,
+                0.9811520671498243
+              ],
+              "pinky_02_l": [
+                -0.01589240844983357,
+                1.2101670369166698e-08,
+                -0.009152733870271866,
+                0.9998318153104552
+              ],
+              "pinky_01_l": [
+                0.2836509712869925,
+                8.946408710713538e-07,
+                -0.15402822926358692,
+                0.9464763147152727
+              ],
+              "middle_02_l": [
+                -0.008285853617897373,
+                -1.6168761906369922e-08,
+                -0.0035357230206178782,
+                0.9999594208318094
+              ],
+              "middle_01_l": [
+                0.21621002702723618,
+                1.610923824869044e-08,
+                -0.006496412255575534,
+                0.976325259067154
+              ],
+              "index_02_l": [
+                -0.013282227618974813,
+                -8.372548425309021e-10,
+                -0.008311574781106543,
+                0.9998772425472935
+              ],
+              "index_01_l": [
+                0.18389093759985814,
+                3.018338393490908e-08,
+                0.07198861501137031,
+                0.9803069743530034
+              ],
+              "lowerarm_l": [
+                0.046545222213145665,
+                5.089094248900844e-09,
+                0.03780833893967962,
+                0.9982004166699867
+              ],
+              "upperarm_l": [
+                -0.38111678838102986,
+                -2.0648138880367035e-07,
+                0.9243173699070153,
+                0.019682749234173253
+              ],
+              "spine_02": [
+                -0.2126222982600171,
+                2.1511614545082285e-16,
+                1.6315406669470044e-08,
+                0.9771344627443186
+              ],
+              "spine_01": [
+                0.14200511564716217,
+                -5.829310925846774e-16,
+                -9.518538466207618e-09,
+                0.9898659238149559
+              ]
+            }
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current.IK_Melusina_Body_Current",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {
+              "foot_r": [
+                0.009168468087078264,
+                -5.382301530268074e-11,
+                -0.00018046581520554444,
+                0.9999579517169942
+              ],
+              "leg_stretch_r": [
+                5.12211386324748e-09,
+                -1.6294627612552283e-11,
+                -0.0003114854860734192,
+                0.9999999514884121
+              ],
+              "thigh_stretch_r": [
+                0.0,
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "foot_l": [
+                0.00916834573187268,
+                -1.0326119036454469e-10,
+                0.00018047573476684907,
+                0.9999579528571184
+              ],
+              "leg_stretch_l": [
+                6.237578047044891e-10,
+                1.9094700289060893e-11,
+                0.00031148713271501746,
+                0.9999999514878819
+              ],
+              "thigh_stretch_l": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "thumb2_r": [
+                -0.06522226876755516,
+                -8.040536742503953e-07,
+                -0.03150557369463556,
+                0.9973732767797547
+              ],
+              "thumb1_r": [
+                -0.053232382348578626,
+                -4.6720018755269185e-07,
+                0.019970368656902892,
+                0.9983824407950461
+              ],
+              "ring2_r": [
+                -0.063777645473837,
+                1.2977329622994432e-07,
+                -0.007308872686242974,
+                0.9979373694242843
+              ],
+              "ring1_r": [
+                0.020127374293345875,
+                -5.41628070692659e-09,
+                -0.017863608133985513,
+                0.9996378245204185
+              ],
+              "pinky2_r": [
+                0.0007606323914255946,
+                -1.913559199597998e-08,
+                0.0021797703434500437,
+                0.9999973350161179
+              ],
+              "pinky1_r": [
+                0.03386557100629716,
+                7.22501093714869e-08,
+                -0.028017471005063972,
+                0.9990336050195313
+              ],
+              "middle2_r": [
+                0.0014964272375301822,
+                1.375708003746016e-08,
+                0.001292480452047712,
+                0.999998045097792
+              ],
+              "middle1_r": [
+                0.010159943136284577,
+                7.118481231281116e-09,
+                -0.030931137318800653,
+                0.9994698796544864
+              ],
+              "index2_r": [
+                0.014957471756768509,
+                6.181457485614194e-09,
+                0.0012457919009015064,
+                0.9998873546224755
+              ],
+              "index1_r": [
+                -0.0001221019065794833,
+                2.4749432290659628e-08,
+                -0.030383413047319997,
+                0.9995383102377182
+              ],
+              "forearm_stretch_r": [
+                -0.007060020514028058,
+                3.6451565390746485e-09,
+                0.0015441754517179522,
+                0.9999738854846129
+              ],
+              "arm_stretch_r": [
+                0.002571520967489929,
+                -5.728107364198885e-09,
+                -0.0026248489334308196,
+                0.9999932486988072
+              ],
+              "thumb2_l": [
+                -0.06507674353072031,
+                -2.788733455870993e-07,
+                0.031220591049474507,
+                0.9973917446796761
+              ],
+              "thumb1_l": [
+                -0.05323244480956772,
+                5.4489720811625323e-11,
+                -0.019970457946000237,
+                0.9983824345420231
+              ],
+              "ring2_l": [
+                -0.06378687732383213,
+                -1.8955371265467697e-07,
+                0.0073095510747212085,
+                0.9979367746651546
+              ],
+              "ring1_l": [
+                0.020127824664472934,
+                1.7880459266495156e-07,
+                0.017862268863201095,
+                0.9996378397537982
+              ],
+              "pinky2_l": [
+                0.0007616541790383793,
+                -2.6906647322931672e-08,
+                -0.002181235130522299,
+                0.9999973310451825
+              ],
+              "pinky1_l": [
+                0.033865900388918346,
+                -2.0389664136522937e-07,
+                0.028017123085747723,
+                0.9990336037047733
+              ],
+              "middle2_l": [
+                0.0014961770126143614,
+                -5.3383356839974845e-09,
+                -0.0012918538271498366,
+                0.9999980462822441
+              ],
+              "middle1_l": [
+                0.010160212471728526,
+                -4.608041709647102e-08,
+                0.030930688797186693,
+                0.9994698909990474
+              ],
+              "index2_l": [
+                0.014961159351330364,
+                -1.8115260056186095e-08,
+                -0.0012468551376254556,
+                0.9998872981808313
+              ],
+              "index1_l": [
+                -0.00012179617733134546,
+                -2.887750249959664e-07,
+                0.030383489936734013,
+                0.9995383078276308
+              ],
+              "forearm_stretch_l": [
+                -0.007059641892854618,
+                -1.6321461287256934e-09,
+                -0.0015440560977261083,
+                0.9999738883269891
+              ],
+              "arm_stretch_l": [
+                0.0025713561031247664,
+                -3.079231244087292e-10,
+                0.0026243785702867706,
+                0.9999932503592989
+              ],
+              "spine_02_x": [
+                -0.0756937214215222,
+                -4.37259756824515e-20,
+                -1.8257415636221218e-14,
+                0.997131115018161
+              ],
+              "spine_01_x": [
+                0.0,
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Retarget/RTG_Sparrow_to_Melusina",
+      "class": "IKRetargeter",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "source": {
+        "rig": "/Game/Melodia/Mocap/Source/Sparrow/IK_Sparrow.IK_Sparrow",
+        "mesh": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Meshes/Sparrow.Sparrow",
+        "skeleton": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Meshes/Sparrow_Skeleton.Sparrow_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bone_rotation_deltas": {
+              "foot_r": [
+                0.05311238651514879,
+                0.029321253764289845,
+                -0.2307964381283641,
+                0.9711088157762904
+              ],
+              "calf_r": [
+                0.00016318887953564937,
+                0.016723982347355514,
+                0.07082120382072676,
+                0.9973488043345377
+              ],
+              "thigh_r": [
+                -0.0001574856047875131,
+                -0.05038209020659807,
+                -0.047503429561542194,
+                0.9975996402434445
+              ],
+              "foot_l": [
+                0.0531124367943534,
+                0.029321249930438508,
+                -0.23079779635480777,
+                0.9711084847893867
+              ],
+              "calf_l": [
+                0.00016318565808013362,
+                0.01672397738157629,
+                0.07082182846092464,
+                0.9973487599953647
+              ],
+              "thigh_l": [
+                -0.00015748535185014802,
+                -0.050382590871181146,
+                -0.0475035049988027,
+                0.9975996120811468
+              ],
+              "thumb_02_r": [
+                -0.0009621215248745534,
+                0.04208463265471473,
+                -0.12568646567507227,
+                0.99117650084799
+              ],
+              "thumb_01_r": [
+                0.012072277152021629,
+                0.08276227227974864,
+                0.09743355240233635,
+                0.9917214074262029
+              ],
+              "ring_02_r": [
+                -0.004531729866841015,
+                -0.044283065937198905,
+                -0.08475997861490484,
+                0.9954065582549753
+              ],
+              "ring_01_r": [
+                0.0012903966781660791,
+                0.07091455330792534,
+                -0.14821594702633173,
+                0.986408371665097
+              ],
+              "pinky_02_r": [
+                -0.00016468877296545336,
+                -0.009048747929865528,
+                -0.09893799993185098,
+                0.9950524407809105
+              ],
+              "pinky_01_r": [
+                0.00031720086962981414,
+                0.019355560115654254,
+                -0.09058613422463345,
+                0.9957004614342423
+              ],
+              "middle_02_r": [
+                0.004671598062549021,
+                0.0074942638197191425,
+                -0.08370936543493884,
+                0.9964510778934293
+              ],
+              "middle_01_r": [
+                0.0028649115672529195,
+                0.07948835087908265,
+                -0.13807313721597844,
+                0.9872229665190544
+              ],
+              "index_02_r": [
+                0.004876832780727052,
+                -0.009088637350856063,
+                -0.09974397798138264,
+                0.9949596705732086
+              ],
+              "index_01_r": [
+                -0.0055303559525454165,
+                0.1138852797790883,
+                -0.11418263560938727,
+                0.9868950601557271
+              ],
+              "lowerarm_r": [
+                -0.0005321011525360544,
+                -0.04435301924331362,
+                0.15182227766311973,
+                0.9874120230527039
+              ],
+              "upperarm_r": [
+                0.0030282369936276204,
+                -0.16382296517765724,
+                -0.12167417539603731,
+                0.9789526219745893
+              ],
+              "thumb_02_l": [
+                -0.0009621932808632306,
+                0.04208082738559159,
+                -0.1256957902076728,
+                0.9911754810591525
+              ],
+              "thumb_01_l": [
+                0.012073972581993808,
+                0.08277332451395852,
+                0.09741523651289927,
+                0.9917222727479751
+              ],
+              "ring_02_l": [
+                -0.0045336237276740335,
+                -0.044288376353422684,
+                -0.08476030433018969,
+                0.9954062836039516
+              ],
+              "ring_01_l": [
+                0.0012908091415395266,
+                0.07089928296127444,
+                -0.14822235972896758,
+                0.9864085070041642
+              ],
+              "pinky_02_l": [
+                -0.00017068660962981397,
+                -0.009067096876355542,
+                -0.0989254682322905,
+                0.9950535185233012
+              ],
+              "pinky_01_l": [
+                0.0003167471319381025,
+                0.01935035784939777,
+                -0.09057498108126742,
+                0.9957015777063382
+              ],
+              "middle_02_l": [
+                0.004671607648336174,
+                0.007487786075155638,
+                -0.08371051772836226,
+                0.9964510298334651
+              ],
+              "middle_01_l": [
+                0.0028628624858057805,
+                0.07948014054759163,
+                -0.1380780664905258,
+                0.9872229466729768
+              ],
+              "index_02_l": [
+                0.004875608107159277,
+                -0.009098973145419322,
+                -0.09974554881047258,
+                0.994959424272633
+              ],
+              "index_01_l": [
+                -0.0055287771554583115,
+                0.11386948255484745,
+                -0.11418540537262442,
+                0.9868965770232322
+              ],
+              "lowerarm_l": [
+                -0.000532050118806223,
+                -0.04436721680612738,
+                0.15181973893163098,
+                0.9874117839137366
+              ],
+              "upperarm_l": [
+                0.003028011183406706,
+                -0.16381700578203115,
+                -0.12162245914226023,
+                0.9789600573320679
+              ],
+              "spine_02": [
+                -8.417138405792477e-10,
+                4.646141934325452e-08,
+                0.04282013144489656,
+                0.9990827974298871
+              ],
+              "spine_01": [
+                -2.5040769630379116e-10,
+                -2.314257664924813e-08,
+                -0.02130913130788171,
+                0.9997729346389019
+              ],
+              "pelvis": [
+                3.3998746093074876e-08,
+                3.048643521150084e-07,
+                0.016538702925492876,
+                0.9998632262711984
+              ]
+            }
+          }
+        }
+      },
+      "target": {
+        "rig": "/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current.IK_Melusina_Body_Current",
+        "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "active_pose": "Default Pose",
+        "poses": {
+          "Default Pose": {
+            "root_translation": [
+              0.0,
+              0.0,
+              -0.7992935780966519
+            ],
+            "bone_rotation_deltas": {
+              "index2_l": [
+                0.13218722023190121,
+                -1.4755103913302338e-07,
+                -0.020482512552802114,
+                0.9910131198299809
+              ],
+              "index1_l": [
+                -0.004328013034181323,
+                -8.684458271532071e-07,
+                0.09161517383773138,
+                0.9957850816828578
+              ],
+              "middle2_l": [
+                0.11780663564100402,
+                -1.4075213611331464e-07,
+                0.011747884204838908,
+                0.9929670611030931
+              ],
+              "middle1_l": [
+                -0.022258717166979892,
+                -1.6190336822161675e-07,
+                0.12593851558060523,
+                0.9917883066408645
+              ],
+              "ring2_l": [
+                0.01857649823390544,
+                -3.661643867980295e-07,
+                0.020153814814372173,
+                0.9996242983104604
+              ],
+              "ring1_l": [
+                0.08058628323382791,
+                1.549685729239401e-06,
+                0.1505201735682363,
+                0.985316981825439
+              ],
+              "pinky2_l": [
+                0.11454173186422748,
+                1.870658728677995e-07,
+                0.01516482703300075,
+                0.9933026838966176
+              ],
+              "pinky1_l": [
+                -0.016552409656570132,
+                -4.7641496445073225e-07,
+                0.1773107047771193,
+                0.9840157165762493
+              ],
+              "thumb2_l": [
+                0.08775584069762436,
+                3.760600731403306e-07,
+                0.06717305114424207,
+                0.9938745854904567
+              ],
+              "thumb1_l": [
+                -0.22223389268218854,
+                -4.161527230226526e-09,
+                -0.09295248523672771,
+                0.9705523631702445
+              ],
+              "forearm_stretch_l": [
+                -0.04601725926463827,
+                8.110947096286469e-08,
+                0.1428728592158572,
+                0.9886707041301062
+              ],
+              "arm_stretch_l": [
+                0.3992225142720254,
+                1.1330677343972266e-07,
+                -0.06328790028817963,
+                0.9146671461543121
+              ],
+              "index2_r": [
+                0.13217289018289088,
+                -4.852420240397342e-08,
+                0.02047372913770335,
+                0.9910152073359659
+              ],
+              "index1_r": [
+                -0.004339813714197555,
+                7.761444557458489e-08,
+                -0.09160839530042497,
+                0.9957856547719109
+              ],
+              "middle2_r": [
+                0.11779038374269979,
+                -1.0011269329582423e-07,
+                -0.011745246557156223,
+                0.992969018675811
+              ],
+              "middle1_r": [
+                -0.022246376738281358,
+                1.796353922614455e-08,
+                -0.1259400136220776,
+                0.9917883898759932
+              ],
+              "ring2_r": [
+                0.01859179959918175,
+                -3.334644941736035e-08,
+                -0.02015735047580303,
+                0.9996239424319823
+              ],
+              "ring1_r": [
+                0.08056843930744723,
+                4.026150011364915e-08,
+                -0.1505153187715784,
+                0.9853191678325431
+              ],
+              "pinky2_r": [
+                0.11446955933983317,
+                3.163682605386901e-07,
+                -0.015143738992913866,
+                0.9933113200582149
+              ],
+              "pinky1_r": [
+                -0.01654352257661769,
+                -1.4435519026827572e-07,
+                -0.1773128690019939,
+                0.9840154716025978
+              ],
+              "thumb2_r": [
+                0.08776888751677203,
+                8.185335854825086e-07,
+                -0.06716418073665764,
+                0.9938740307783261
+              ],
+              "thumb1_r": [
+                -0.2222462450254307,
+                -1.9418087572678683e-06,
+                0.09293851668816305,
+                0.9705508884323641
+              ],
+              "forearm_stretch_r": [
+                -0.04599031347293791,
+                -6.927654827928356e-08,
+                -0.142876889314572,
+                0.9886713768264077
+              ],
+              "arm_stretch_r": [
+                0.399220300368293,
+                2.838049554245654e-08,
+                0.06328728715399995,
+                0.914668133317648
+              ],
+              "spine_02_x": [
+                -0.20574319678333644,
+                -1.1854256882539836e-19,
+                1.905303302226378e-08,
+                0.9786060172395084
+              ],
+              "spine_01_x": [
+                0.11591345802838333,
+                3.804204724180299e-14,
+                3.414248046648115e-07,
+                0.993259316718341
+              ],
+              "foot_r": [
+                -0.22677052845602963,
+                2.1815596011729098e-09,
+                -0.03493264121629396,
+                0.9733211014268428
+              ],
+              "leg_stretch_r": [
+                0.018731717816198087,
+                2.6798892189521278e-09,
+                0.060200782720267416,
+                0.9980105159459507
+              ],
+              "thigh_stretch_r": [
+                -0.06998580590207935,
+                -3.1843796162388194e-09,
+                -0.0078006742995431,
+                0.997517485027139
+              ],
+              "foot_l": [
+                -0.22676947016901236,
+                7.1170456530856e-10,
+                0.034932464094772145,
+                0.9733213670727808
+              ],
+              "leg_stretch_l": [
+                0.018731744012345678,
+                -4.324621102723342e-09,
+                -0.060201464413118945,
+                0.998010473626876
+              ],
+              "thigh_stretch_l": [
+                -0.06998578724218804,
+                3.386738733167232e-09,
+                0.007800807485301049,
+                0.9975174858728533
+              ]
+            }
+          }
+        }
+      },
+      "profiles": "UNKNOWN_PROTECTED_PROPERTY; no runtime retarget node observed on current body graph"
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Source/IK_MocapSource",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Mocap/Source/SK_MocapSource.SK_MocapSource",
+      "skeleton": "/Game/Melodia/Mocap/Source/SK_MocapSource_Skeleton.SK_MocapSource_Skeleton",
+      "retarget_root": "Brennan_Hips",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "Brennan_Spine",
+          "end": "Brennan_Spine1",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "Brennan_Neck",
+          "end": "Brennan_Neck",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "Brennan_Head",
+          "end": "Brennan_Head",
+          "goal": "None"
+        },
+        {
+          "name": "LeftClavicle",
+          "start": "Brennan_LeftShoulder",
+          "end": "Brennan_LeftShoulder",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "Brennan_LeftArm",
+          "end": "Brennan_LeftHand",
+          "goal": "None"
+        },
+        {
+          "name": "LeftThumb",
+          "start": "Brennan_LeftHandThumb1",
+          "end": "Brennan_LeftHandThumb3",
+          "goal": "None"
+        },
+        {
+          "name": "LeftIndex",
+          "start": "Brennan_LeftHandIndex1",
+          "end": "Brennan_LeftHandIndex3",
+          "goal": "None"
+        },
+        {
+          "name": "LeftMiddle",
+          "start": "Brennan_LeftHandMiddle1",
+          "end": "Brennan_LeftHandMiddle3",
+          "goal": "None"
+        },
+        {
+          "name": "LeftRing",
+          "start": "Brennan_LeftHandRing1",
+          "end": "Brennan_LeftHandRing3",
+          "goal": "None"
+        },
+        {
+          "name": "LeftPinky",
+          "start": "Brennan_LeftHandPinky1",
+          "end": "Brennan_LeftHandPinky3",
+          "goal": "None"
+        },
+        {
+          "name": "RightClavicle",
+          "start": "Brennan_RightShoulder",
+          "end": "Brennan_RightShoulder",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "Brennan_RightArm",
+          "end": "Brennan_RightHand",
+          "goal": "None"
+        },
+        {
+          "name": "RightThumb",
+          "start": "Brennan_RightHandThumb1",
+          "end": "Brennan_RightHandThumb3",
+          "goal": "None"
+        },
+        {
+          "name": "RightIndex",
+          "start": "Brennan_RightHandIndex1",
+          "end": "Brennan_RightHandIndex3",
+          "goal": "None"
+        },
+        {
+          "name": "RightMiddle",
+          "start": "Brennan_RightHandMiddle1",
+          "end": "Brennan_RightHandMiddle3",
+          "goal": "None"
+        },
+        {
+          "name": "RightRing",
+          "start": "Brennan_RightHandRing1",
+          "end": "Brennan_RightHandRing3",
+          "goal": "None"
+        },
+        {
+          "name": "RightPinky",
+          "start": "Brennan_RightHandPinky1",
+          "end": "Brennan_RightHandPinky3",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "Brennan_LeftUpLeg",
+          "end": "Brennan_LeftToeBase",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "Brennan_RightUpLeg",
+          "end": "Brennan_RightToeBase",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Source/IK_Source_Melusina",
+      "class": "IKRigDefinition",
+      "package_referencers": [],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Mocap/Source/SK_Source_Melusina.SK_Source_Melusina",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "retarget_root": "None",
+      "chains": []
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Source/Quaternius/IK_Quaternius",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Mocap/Retarget/RTG_Quaternius_to_Melusina"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/Melodia/Mocap/Source/Quaternius/SK_Quaternius.SK_Quaternius",
+      "skeleton": "/Game/Melodia/Mocap/Source/Quaternius/SK_Quaternius_Skeleton.SK_Quaternius_Skeleton",
+      "retarget_root": "None",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "spine_01",
+          "end": "spine_03",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "neck_01",
+          "end": "neck_01",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "Head",
+          "end": "Head",
+          "goal": "None"
+        },
+        {
+          "name": "LeftClavicle",
+          "start": "clavicle_l",
+          "end": "clavicle_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "upperarm_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftIndex",
+          "start": "index_01_l",
+          "end": "index_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftMiddle",
+          "start": "middle_01_l",
+          "end": "middle_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftPinky",
+          "start": "pinky_01_l",
+          "end": "pinky_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftRing",
+          "start": "ring_01_l",
+          "end": "ring_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftThumb",
+          "start": "thumb_01_l",
+          "end": "thumb_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightClavicle",
+          "start": "clavicle_r",
+          "end": "clavicle_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "upperarm_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightIndex",
+          "start": "index_01_r",
+          "end": "index_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightMiddle",
+          "start": "middle_01_r",
+          "end": "middle_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightPinky",
+          "start": "pinky_01_r",
+          "end": "pinky_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightRing",
+          "start": "ring_01_r",
+          "end": "ring_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightThumb",
+          "start": "thumb_01_r",
+          "end": "thumb_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_l",
+          "end": "ball_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_r",
+          "end": "ball_r",
+          "goal": "None"
+        }
+      ]
+    },
+    {
+      "asset": "/Game/Melodia/Mocap/Source/Sparrow/IK_Sparrow",
+      "class": "IKRigDefinition",
+      "package_referencers": [
+        "/Game/Melodia/Mocap/Retarget/RTG_Sparrow_to_Melusina"
+      ],
+      "pawn_package_reachable": false,
+      "executed_in_pie": "NOT_OBSERVED",
+      "errors": [],
+      "mesh": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Meshes/Sparrow.Sparrow",
+      "skeleton": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Meshes/Sparrow_Skeleton.Sparrow_Skeleton",
+      "retarget_root": "pelvis",
+      "chains": [
+        {
+          "name": "Spine",
+          "start": "spine_01",
+          "end": "spine_03",
+          "goal": "None"
+        },
+        {
+          "name": "Neck",
+          "start": "neck_01",
+          "end": "neck_01",
+          "goal": "None"
+        },
+        {
+          "name": "Head",
+          "start": "head",
+          "end": "head",
+          "goal": "None"
+        },
+        {
+          "name": "LeftClavicle",
+          "start": "clavicle_l",
+          "end": "clavicle_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftArm",
+          "start": "upperarm_l",
+          "end": "hand_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftIndex",
+          "start": "index_01_l",
+          "end": "index_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftMiddle",
+          "start": "middle_01_l",
+          "end": "middle_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftPinky",
+          "start": "pinky_01_l",
+          "end": "pinky_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftRing",
+          "start": "ring_01_l",
+          "end": "ring_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "LeftThumb",
+          "start": "thumb_01_l",
+          "end": "thumb_03_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightClavicle",
+          "start": "clavicle_r",
+          "end": "clavicle_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightArm",
+          "start": "upperarm_r",
+          "end": "hand_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightIndex",
+          "start": "index_01_r",
+          "end": "index_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightMiddle",
+          "start": "middle_01_r",
+          "end": "middle_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightPinky",
+          "start": "pinky_01_r",
+          "end": "pinky_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightRing",
+          "start": "ring_01_r",
+          "end": "ring_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "RightThumb",
+          "start": "thumb_01_r",
+          "end": "thumb_03_r",
+          "goal": "None"
+        },
+        {
+          "name": "LeftLeg",
+          "start": "thigh_l",
+          "end": "ball_l",
+          "goal": "None"
+        },
+        {
+          "name": "RightLeg",
+          "start": "thigh_r",
+          "end": "ball_r",
+          "goal": "None"
+        }
+      ]
+    }
+  ],
+  "scope_note": "Baked clip provenance and execution are independent of these authoring assets. No asset modifications."
+}

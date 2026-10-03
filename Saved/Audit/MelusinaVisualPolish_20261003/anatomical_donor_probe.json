@@ -1,0 +1,54 @@
+{
+  "glove_vertices": 2821,
+  "eligible_digit_vertices": 2807,
+  "family_side_coverage": {
+    "index_r": 245,
+    "thumb_r": 375,
+    "middle_r": 239,
+    "ring_r": 201,
+    "pinky_r": 353,
+    "index_l": 256,
+    "thumb_l": 372,
+    "middle_l": 242,
+    "ring_l": 210,
+    "pinky_l": 314
+  },
+  "same_digit_side_body_donor_distance_mm_p10_p50_p90_max": [
+    41.72,
+    64.34,
+    80.21,
+    109.44
+  ],
+  "examples": [
+    {
+      "distance_mm": 41.72,
+      "glove_v": 184,
+      "body_v": 116,
+      "family_side": [
+        "index",
+        "r"
+      ],
+      "glove_family_weight": 0.809
+    },
+    {
+      "distance_mm": 64.34,
+      "glove_v": 473,
+      "body_v": 359,
+      "family_side": [
+        "thumb",
+        "r"
+      ],
+      "glove_family_weight": 0.153
+    },
+    {
+      "distance_mm": 80.21,
+      "glove_v": 542,
+      "body_v": 2114,
+      "family_side": [
+        "ring",
+        "r"
+      ],
+      "glove_family_weight": 1.0
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "schema": "melodia.native_fbx_action_live_pose_validation.v1",
+  "animation_fbx": "Saved/Audit/MelusinaVisualPolish_20261003/canonical_RMB_Loop_native_animation.fbx",
+  "animation_action": "root|Unreal Take|Base Layer",
+  "frames": [
+    1.0,
+    22.0
+  ],
+  "common_bones": 464,
+  "rest_basis_differences_gt_0_1mm_or_0_01deg": [],
+  "rest_basis_difference_count": 0,
+  "live_snapshot_bones_compared": 14,
+  "best_frame_matches": [
+    {
+      "frame": 5,
+      "rotation_error_mean_deg": -0.0,
+      "rotation_error_max_deg": 0.0,
+      "position_error_mean_cm": 0.0009,
+      "position_error_max_cm": 0.0017,
+      "per_bone": {
+        "root_x": 0.0,
+        "head_x": 0.0,
+        "shoulder_l": 0.0,
+        "arm_stretch_l": 0.0,
+        "forearm_stretch_l": 0.0,
+        "hand_l": -0.0,
+        "shoulder_r": -0.0,
+        "arm_stretch_r": -0.0,
+        "forearm_stretch_r": -0.0,
+        "hand_r": -0.0,
+        "index1_l": -0.0,
+        "index2_l": -0.0,
+        "index3_l": -0.0,
+        "c_index1_base_l": -0.0
+      }
+    },
+    {
+      "frame": 4,
+      "rotation_error_mean_deg": 0.0169,
+      "rotation_error_max_deg": 0.0685,
+      "position_error_mean_cm": 0.0339,
+      "position_error_max_cm": 0.0449,
+      "per_bone": {
+        "root_x": 0.0,
+        "head_x": 0.0,
+        "shoulder_l": 0.0,
+        "arm_stretch_l": 0.069,
+        "forearm_stretch_l": 0.056,
+        "hand_l": -0.0,
+        "shoulder_r": -0.0,
+        "arm_stretch_r": 0.056,
+        "forearm_stretch_r": 0.056,
+        "hand_r": -0.0,
+        "index1_l": -0.0,
+        "index2_l": -0.0,
+        "index3_l": -0.0,
+        "c_index1_base_l": -0.0
+      }
+    },
+    {
+      "frame": 6,
+      "rotation_error_mean_deg": 0.02,
+      "rotation_error_max_deg": 0.1427,
+      "position_error_mean_cm": 0.0169,
+      "position_error_max_cm": 0.0896,
+      "per_bone": {
+        "root_x": 0.0,
+        "head_x": 0.0,
+        "shoulder_l": 0.0,
+        "arm_stretch_l": 0.0,
+        "forearm_stretch_l": 0.0,
+        "hand_l": -0.0,
+        "shoulder_r": -0.0,
+        "arm_stretch_r": 0.137,
+        "forearm_stretch_r": 0.143,
+        "hand_r": -0.0,
+        "index1_l": -0.0,
+        "index2_l": -0.0,
+        "index3_l": -0.0,
+        "c_index1_base_l": -0.0
+      }
+    },
+    {
+      "frame": 3,
+      "rotation_error_mean_deg": 0.062,
+      "rotation_error_max_deg": 0.1856,
+      "position_error_mean_cm": 0.087,
+      "position_error_max_cm": 0.1184,
+      "per_bone": {
+        "root_x": 0.0,
+        "head_x": 0.0,
+        "shoulder_l": 0.0,
+        "arm_stretch_l": 0.143,
+        "forearm_stretch_l": 0.148,
+        "hand_l": 0.04,
+        "shoulder_r": -0.0,
+        "arm_stretch_r": 0.186,
+        "forearm_stretch_r": 0.177,
+        "hand_r": -0.0,
+        "index1_l": 0.04,
+        "index2_l": 0.04,
+        "index3_l": 0.04,
+        "c_index1_base_l": 0.056
+      }
+    },
+    {
+      "frame": 7,
+      "rotation_error_mean_deg": 0.0689,
+      "rotation_error_max_deg": 0.4261,
+      "position_error_mean_cm": 0.0601,
+      "position_error_max_cm": 0.2228,
+      "per_bone": {
+        "root_x": 0.0,
+        "head_x": 0.0,
+        "shoulder_l": 0.0,
+        "arm_stretch_l": 0.056,
+        "forearm_stretch_l": 0.056,
+        "hand_l": -0.0,
+        "shoulder_r": -0.0,
+        "arm_stretch_r": 0.426,
+        "forearm_stretch_r": 0.426,
+        "hand_r": -0.0,
+        "index1_l": -0.0,
+        "index2_l": -0.0,
+        "index3_l": -0.0,
+        "c_index1_base_l": -0.0
+      }
+    }
+  ],
+  "note": "Root-relative live rotations and positions are compared against postbuild canonical hold capture; Blender native action frame selection validated against UE hold sample."
+}
