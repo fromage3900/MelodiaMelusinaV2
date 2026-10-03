@@ -41,6 +41,13 @@ bool UMelodiaCymaticsWriterSubsystem::TickWriter(float DeltaTime)
 	return true;
 }
 
+float UMelodiaCymaticsWriterSubsystem::ComputeDrivenPulse(const float BeatPulse, const float EventPulse)
+{
+	// Additive, not max: with max() an event landing on a beat peak is invisible. The overshoot
+	// (up to 1.6) reads as a flash above the beat; UVDistortion is clamped independently.
+	return FMath::Clamp(BeatPulse + FMath::Clamp(EventPulse, 0.f, 1.f) * 0.6f, 0.f, 1.6f);
+}
+
 void UMelodiaCymaticsWriterSubsystem::RefreshAndPublish()
 {
 	if (!SourcePalette || !DriverCollection)
@@ -101,14 +108,25 @@ void UMelodiaCymaticsWriterSubsystem::RefreshAndPublish()
 	const int32 ModeN = FMath::Clamp(2 + FMath::FloorToInt(BassIntensity * 6.0f), 1, 8);
 	const int32 ModeM = FMath::Clamp(3 + FMath::FloorToInt(BeatPulse * 5.0f), 1, 8);
 
+	// Decaying event pulses already published on the palette ring the field like a beat:
+	// GlobalSparkleIntensity (command / victory pulses from the reactivity subsystem) and
+	// QuantumPulse (draws). RhythmPulse is deliberately not used: it carries command energy,
+	// which is sticky until an encounter ends. Read-only here; the palette writers own these.
+	float SparklePulse = 0.f;
+	float QuantumPulse = 0.f;
+	SrcInst->GetScalarParameterValue(FName(TEXT("GlobalSparkleIntensity")), SparklePulse);
+	SrcInst->GetScalarParameterValue(FName(TEXT("QuantumPulse")), QuantumPulse);
+	const float EventPulse = FMath::Clamp(FMath::Max(SparklePulse, QuantumPulse), 0.f, 1.f);
+	const float DrivenPulse = ComputeDrivenPulse(BeatPulse, EventPulse);
+
 	// Material mappings (presentation-only)
-	// IridescenceTint hue shift driven by Bass (0..0.15), EmissiveScale rides BeatPulse, UV distortion is low-freq warble
-	const float EmissiveScale = 0.25f + BeatPulse * 1.2f + BassIntensity * 0.3f;
-	const float IridescenceShift = FMath::Clamp(BassIntensity * 0.14f + BeatPulse * 0.06f, 0.f, 0.2f);
-	const float UVDistortion = FMath::Clamp(BeatPulse * 0.08f + MidIntensity * 0.02f, 0.f, 0.12f);
+	// IridescenceTint hue shift driven by Bass (0..0.15), EmissiveScale rides the driven pulse, UV distortion is low-freq warble
+	const float EmissiveScale = 0.25f + DrivenPulse * 1.2f + BassIntensity * 0.3f;
+	const float IridescenceShift = FMath::Clamp(BassIntensity * 0.14f + DrivenPulse * 0.06f, 0.f, 0.2f);
+	const float UVDistortion = FMath::Clamp(DrivenPulse * 0.08f + MidIntensity * 0.02f, 0.f, 0.12f);
 
 	// Write to driver MPC (sole writer — no other system writes MPC_Cymatics_Driver)
-	DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_BeatPulse")), BeatPulse);
+	DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_BeatPulse")), DrivenPulse);
 	DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_BassIntensity")), BassIntensity);
 	DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_MidIntensity")), MidIntensity);
 	DstInst->SetScalarParameterValue(FName(TEXT("Cymatic_EmissiveScale")), EmissiveScale);

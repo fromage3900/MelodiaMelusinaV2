@@ -337,19 +337,23 @@ private:
 	float DashPersistSeconds = 0.22f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.05", ClampMax="1.0"))
-	float GlideGravityScale = 0.16f;
+	float GlideGravityScale = 0.11f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="1.0"))
 	float GlideAirControl = 1.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="100.0"))
-	float GlideTerminalFallSpeed = 240.0f;
+	float GlideTerminalFallSpeed = 170.0f;
+
+	/** How quickly a fall faster than GlideTerminalFallSpeed is eased down to it (1/s); lower = softer parachute catch. */
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.5", ClampMax="30.0"))
+	float GlideSinkEaseRate = 5.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="600.0"))
-	float GlideActivationLiftSpeed = 190.0f;
+	float GlideActivationLiftSpeed = 130.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="600.0"))
-	float GlideActivationForwardBoost = 165.0f;
+	float GlideActivationForwardBoost = 115.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Stamina", meta=(ClampMin="0.5", ClampMax="15.0"))
 	float MaxGlideStamina = 3.5f;

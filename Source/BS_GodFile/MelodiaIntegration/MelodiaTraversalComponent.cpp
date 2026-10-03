@@ -347,7 +347,10 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 		}
 
 		FVector Velocity = Movement->Velocity;
-		Velocity.Z = FMath::Max(Velocity.Z, -GlideTerminalFallSpeed);
+		if (Velocity.Z < -GlideTerminalFallSpeed)
+		{
+			Velocity.Z = FMath::FInterpTo(Velocity.Z, -GlideTerminalFallSpeed, DeltaTime, GlideSinkEaseRate);
+		}
 		Movement->Velocity = Velocity;
 		return;
 	}
