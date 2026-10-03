@@ -1,0 +1,2617 @@
+{
+ "instances": {
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StorybookOutline_Frozen",
+   "parent": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_StorybookOutline_Frozen.M_PP_StorybookOutline_Frozen",
+   "scalar": [
+    {
+     "name": "FoliageDepthInkStrength",
+     "value": -3.817202091217041,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageNormalInkStrength",
+     "value": 0.36800000071525574,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageDistanceFadeStart",
+     "value": 39.216732025146484,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageDistanceFadeEnd",
+     "value": 1905.841796875,
+     "is_overridden": true
+    },
+    {
+     "name": "OcclusionFill",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "StenciRangeMin",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "StenciRangeMax",
+     "value": 255,
+     "is_overridden": true
+    },
+    {
+     "name": "BeatPulseStrength",
+     "value": 2,
+     "is_overridden": true
+    },
+    {
+     "name": "bEnableBeatPulse",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "DayNightFactor",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "DistanceFadeEnd",
+     "value": 20000,
+     "is_overridden": true
+    },
+    {
+     "name": "DistanceFadeStart",
+     "value": 2971.039794921875,
+     "is_overridden": true
+    },
+    {
+     "name": "DistanceFadeStrength",
+     "value": 495.7182312011719,
+     "is_overridden": true
+    },
+    {
+     "name": "HalftoneAmount",
+     "value": 0.7440000176429749,
+     "is_overridden": true
+    },
+    {
+     "name": "HalftoneScale",
+     "value": 4.044212818145752,
+     "is_overridden": true
+    },
+    {
+     "name": "DepthWeight",
+     "value": 0.5630260109901428,
+     "is_overridden": true
+    },
+    {
+     "name": "EdgeStrength",
+     "value": 1.1003390550613403,
+     "is_overridden": true
+    },
+    {
+     "name": "FalloffEnd",
+     "value": 8000,
+     "is_overridden": true
+    },
+    {
+     "name": "FalloffStart",
+     "value": 3000,
+     "is_overridden": true
+    },
+    {
+     "name": "NormalWeight",
+     "value": 0.7760000228881836,
+     "is_overridden": true
+    },
+    {
+     "name": "OutlineWidth",
+     "value": -0.12416700273752213,
+     "is_overridden": true
+    },
+    {
+     "name": "DepthRelativeThreshold",
+     "value": 5.587602138519287,
+     "is_overridden": true
+    },
+    {
+     "name": "AAWidth",
+     "value": 1.5,
+     "is_overridden": true
+    },
+    {
+     "name": "RefDistance",
+     "value": 1500,
+     "is_overridden": true
+    },
+    {
+     "name": "RefractionDepthBias",
+     "value": 0,
+     "is_overridden": true
+    }
+   ],
+   "vector": [
+    {
+     "name": "BeatPulseColor",
+     "value": {
+      "R": 1,
+      "G": 0.44999998807907104,
+      "B": 0.18000000715255737,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "AtmosphericFadeColor",
+     "value": {
+      "R": 0.6000000238418579,
+      "G": 0.699999988079071,
+      "B": 0.8500000238418579,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "OutlineColor",
+     "value": {
+      "R": 0.019999999552965164,
+      "G": 0.019999999552965164,
+      "B": 0.05000000074505806,
+      "A": 1
+     },
+     "is_overridden": true
+    }
+   ],
+   "texture": [],
+   "static_switch": [
+    {
+     "name": "IncludeStencilInRange",
+     "value": true,
+     "is_overridden": true
+    }
+   ],
+   "total_overrides": 29
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StarryNight_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_StarryNight_Frozen",
+   "parent": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate.M_PP_StarryNightOverlay_Candidate",
+   "scalar": [
+    {
+     "name": "BristleAmount",
+     "value": 0.699999988079071,
+     "is_overridden": true
+    },
+    {
+     "name": "BrushTiling",
+     "value": 5,
+     "is_overridden": true
+    },
+    {
+     "name": "CloudRecede",
+     "value": 0.8500000238418579,
+     "is_overridden": true
+    },
+    {
+     "name": "FogRecede",
+     "value": 0.6000000238418579,
+     "is_overridden": true
+    },
+    {
+     "name": "HaloMip",
+     "value": 4,
+     "is_overridden": true
+    },
+    {
+     "name": "HaloPower",
+     "value": 2.200000047683716,
+     "is_overridden": true
+    },
+    {
+     "name": "HaloRings",
+     "value": 18,
+     "is_overridden": true
+    },
+    {
+     "name": "HaloStrength",
+     "value": 1.100000023841858,
+     "is_overridden": true
+    },
+    {
+     "name": "ImpastoRelief",
+     "value": 3.5999999046325684,
+     "is_overridden": true
+    },
+    {
+     "name": "ImpastoStrength",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "ManualNightAmount",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "NebulaIntensity",
+     "value": 0.6000000238418579,
+     "is_overridden": true
+    },
+    {
+     "name": "NebulaTiling",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "NightAmount",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "OcclusionRecede",
+     "value": 0.5,
+     "is_overridden": true
+    },
+    {
+     "name": "PaintGloss",
+     "value": 12,
+     "is_overridden": true
+    },
+    {
+     "name": "PaintSpecular",
+     "value": 0.7799999713897705,
+     "is_overridden": true
+    },
+    {
+     "name": "PaletteFollow",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "SkyDepthThreshold",
+     "value": 50000,
+     "is_overridden": true
+    },
+    {
+     "name": "SkyPaintAmount",
+     "value": 0.7799999713897705,
+     "is_overridden": true
+    },
+    {
+     "name": "StarIntensity",
+     "value": 2,
+     "is_overridden": true
+    },
+    {
+     "name": "StarMapTiling",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "StarSkyRejection",
+     "value": 1.100000023841858,
+     "is_overridden": true
+    },
+    {
+     "name": "StrokeDensity",
+     "value": 11,
+     "is_overridden": true
+    },
+    {
+     "name": "StrokeElongation",
+     "value": 3.200000047683716,
+     "is_overridden": true
+    },
+    {
+     "name": "StrokeGap",
+     "value": 0.550000011920929,
+     "is_overridden": true
+    },
+    {
+     "name": "StrokeHueVar",
+     "value": 0.7200000286102295,
+     "is_overridden": true
+    },
+    {
+     "name": "StrokeThickness",
+     "value": 0.46000000834465027,
+     "is_overridden": true
+    },
+    {
+     "name": "StrokeTravel",
+     "value": 0.25,
+     "is_overridden": true
+    },
+    {
+     "name": "SwirlSpeed",
+     "value": 0.11999999731779099,
+     "is_overridden": true
+    },
+    {
+     "name": "SwirlWarp",
+     "value": 0.25999999046325684,
+     "is_overridden": true
+    },
+    {
+     "name": "UseUDSLighting",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "UseUDSTimeOfDay",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "UseUDSWind",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "ValueHigh",
+     "value": 0.30000001192092896,
+     "is_overridden": true
+    },
+    {
+     "name": "ValueLow",
+     "value": 0.019999999552965164,
+     "is_overridden": true
+    },
+    {
+     "name": "ValueStructure",
+     "value": 0.949999988079071,
+     "is_overridden": true
+    }
+   ],
+   "vector": [],
+   "texture": [],
+   "static_switch": [],
+   "total_overrides": 37
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MeluColorGrade_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MeluColorGrade_Frozen",
+   "parent": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MeluColorGrade_Frozen.M_PP_MeluColorGrade_Frozen",
+   "scalar": [
+    {
+     "name": "NikkiHeroGradeStrength",
+     "value": 0.5264000296592712,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamSaturation",
+     "value": 1.0399999618530273,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamContrast",
+     "value": 1.059999942779541,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamShadowLift",
+     "value": 0.02500000037252903,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamHighlightSoft",
+     "value": 0.24240000545978546,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamSplitToneStrength",
+     "value": 0.2176000028848648,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamSpectralStrength",
+     "value": 0.02500000037252903,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamSpectralCycles",
+     "value": 1.0628000497817993,
+     "is_overridden": true
+    },
+    {
+     "name": "VignetteBaseIntensity",
+     "value": 0.5,
+     "is_overridden": true
+    },
+    {
+     "name": "VignetteFalloff",
+     "value": 2.0256009101867676,
+     "is_overridden": true
+    },
+    {
+     "name": "VignetteBlurStrength",
+     "value": 0.07336200028657913,
+     "is_overridden": true
+    },
+    {
+     "name": "VignetteBlurRadiusPx",
+     "value": 1.25,
+     "is_overridden": true
+    },
+    {
+     "name": "VignetteFeather",
+     "value": 0.6000000238418579,
+     "is_overridden": true
+    },
+    {
+     "name": "VignettePigmentBlend",
+     "value": 0.3499999940395355,
+     "is_overridden": true
+    },
+    {
+     "name": "BeatPaletteResponse",
+     "value": 0.02500000037252903,
+     "is_overridden": true
+    },
+    {
+     "name": "EmissiveResponse",
+     "value": 0.10000000149011612,
+     "is_overridden": true
+    },
+    {
+     "name": "Contrast",
+     "value": 0.7886940240859985,
+     "is_overridden": true
+    },
+    {
+     "name": "DynamicContrast",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "GradeStrength",
+     "value": 0.8093969821929932,
+     "is_overridden": true
+    },
+    {
+     "name": "HighlightSoft",
+     "value": 0.5136629939079285,
+     "is_overridden": true
+    },
+    {
+     "name": "KeepColorHue",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "Saturation",
+     "value": 0.22599999606609344,
+     "is_overridden": true
+    },
+    {
+     "name": "SelectiveStrength",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "ShadowLift",
+     "value": -0.0877629965543747,
+     "is_overridden": true
+    },
+    {
+     "name": "SpectralCycles",
+     "value": 3.124833106994629,
+     "is_overridden": true
+    },
+    {
+     "name": "SpectralStrength",
+     "value": 0.05000000074505806,
+     "is_overridden": true
+    },
+    {
+     "name": "SplitStrength",
+     "value": 0.5070689916610718,
+     "is_overridden": true
+    },
+    {
+     "name": "CelSteps",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "RefractionDepthBias",
+     "value": 0,
+     "is_overridden": true
+    }
+   ],
+   "vector": [
+    {
+     "name": "DreamTint",
+     "value": {
+      "R": 0.5905799865722656,
+      "G": 0.2866179943084717,
+      "B": 1,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "DreamShadowTint",
+     "value": {
+      "R": 1,
+      "G": 0.17072300612926483,
+      "B": 0.6363630294799805,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "DreamHighlightTint",
+     "value": {
+      "R": 0.9831839799880981,
+      "G": 1,
+      "B": 0.10932599753141403,
+      "A": 1
+     },
+     "is_overridden": true
+    }
+   ],
+   "texture": [],
+   "static_switch": [],
+   "total_overrides": 32
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MelodiaInk_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/MI_MelodiaInk_Frozen",
+   "parent": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MelodiaInk_Frozen.M_PP_MelodiaInk_Frozen",
+   "scalar": [
+    {
+     "name": "InkDotAngle",
+     "value": 45,
+     "is_overridden": true
+    },
+    {
+     "name": "InkDotLumaDrive",
+     "value": 0.06018399819731712,
+     "is_overridden": true
+    },
+    {
+     "name": "InkDotPitch",
+     "value": 0.03361700102686882,
+     "is_overridden": true
+    },
+    {
+     "name": "InkDotScale",
+     "value": 0.9450650215148926,
+     "is_overridden": true
+    },
+    {
+     "name": "InkGrain",
+     "value": 0.10000000149011612,
+     "is_overridden": true
+    },
+    {
+     "name": "InkGrainOn",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "InkGrainScale",
+     "value": 3.1028199195861816,
+     "is_overridden": true
+    },
+    {
+     "name": "InkHalftone",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "InkHatch",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "InkHatchAngle",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "InkHatchDensity",
+     "value": 6,
+     "is_overridden": true
+    },
+    {
+     "name": "InkHatchShadowBand",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "InkPaperLight",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "InkPaperShadow",
+     "value": 1.457738995552063,
+     "is_overridden": true
+    },
+    {
+     "name": "InkPrintOffset",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "InkPrintOffsetDepth",
+     "value": 0.699999988079071,
+     "is_overridden": true
+    },
+    {
+     "name": "InkPrintShift",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "InkSmear",
+     "value": 0.30000001192092896,
+     "is_overridden": true
+    },
+    {
+     "name": "InkSmearOn",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "InkStrength",
+     "value": 0.6474779844284058,
+     "is_overridden": true
+    },
+    {
+     "name": "RefractionDepthBias",
+     "value": 0,
+     "is_overridden": true
+    }
+   ],
+   "vector": [
+    {
+     "name": "InkColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.07000000029802322,
+      "B": 0.11999999731779099,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "InkHueTint",
+     "value": {
+      "R": -1.6032559871673584,
+      "G": 1.6566940546035767,
+      "B": 1,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "InkPaperColor",
+     "value": {
+      "R": 0.9800000190734863,
+      "G": 0.949999988079071,
+      "B": 0.8799999952316284,
+      "A": 1
+     },
+     "is_overridden": true
+    }
+   ],
+   "texture": [],
+   "static_switch": [],
+   "total_overrides": 24
+  },
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_Premium_Hero_Dream": {
+   "asset_path": "/Game/EnvSandbox/Materials/PostProcess/Candidates/Profiles/MI_StorybookOutline_Premium_Hero_Dream",
+   "parent": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StorybookOutline_Premium_Candidate.M_PP_StorybookOutline_Premium_Candidate",
+   "scalar": [
+    {
+     "name": "MultiplyDarken",
+     "value": -25.024215698242188,
+     "is_overridden": true
+    },
+    {
+     "name": "UseMultiplyTintAmount",
+     "value": -0.035999998450279236,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageDepthInkStrength",
+     "value": 2.639132022857666,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageNormalInkStrength",
+     "value": -19.63748550415039,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageDistanceFadeStart",
+     "value": 1264.2230224609375,
+     "is_overridden": true
+    },
+    {
+     "name": "FoliageDistanceFadeEnd",
+     "value": 1919.99853515625,
+     "is_overridden": true
+    },
+    {
+     "name": "OcclusionFill",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "BeatPulseStrength",
+     "value": 2.935983896255493,
+     "is_overridden": true
+    },
+    {
+     "name": "bEnableBeatPulse",
+     "value": 0.5247979760169983,
+     "is_overridden": true
+    },
+    {
+     "name": "DayNightFactor",
+     "value": 11.914855003356934,
+     "is_overridden": true
+    },
+    {
+     "name": "DistanceFadeEnd",
+     "value": 713.3300170898438,
+     "is_overridden": true
+    },
+    {
+     "name": "DistanceFadeStart",
+     "value": 157.11158752441406,
+     "is_overridden": true
+    },
+    {
+     "name": "DistanceFadeStrength",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamRimCycles",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamRimPower",
+     "value": 4.688877105712891,
+     "is_overridden": true
+    },
+    {
+     "name": "DreamRimStrength",
+     "value": -2.0345189571380615,
+     "is_overridden": true
+    },
+    {
+     "name": "HalftoneAmount",
+     "value": 277.36083984375,
+     "is_overridden": true
+    },
+    {
+     "name": "HalftoneAngle",
+     "value": 63.400447845458984,
+     "is_overridden": true
+    },
+    {
+     "name": "HalftoneScale",
+     "value": 8.706477165222168,
+     "is_overridden": true
+    },
+    {
+     "name": "InkBlurRadius",
+     "value": 1.149999976158142,
+     "is_overridden": true
+    },
+    {
+     "name": "InkBlurStrength",
+     "value": 0.3499999940395355,
+     "is_overridden": true
+    },
+    {
+     "name": "Iridescence",
+     "value": 9.866244316101074,
+     "is_overridden": true
+    },
+    {
+     "name": "IridescenceCycles",
+     "value": 2.5,
+     "is_overridden": true
+    },
+    {
+     "name": "IridescencePower",
+     "value": 723.7269287109375,
+     "is_overridden": true
+    },
+    {
+     "name": "DepthWeight",
+     "value": 5805.74169921875,
+     "is_overridden": true
+    },
+    {
+     "name": "EdgeStrength",
+     "value": 0.884181022644043,
+     "is_overridden": true
+    },
+    {
+     "name": "FalloffEnd",
+     "value": 217.7672576904297,
+     "is_overridden": true
+    },
+    {
+     "name": "FalloffStart",
+     "value": 433561.5,
+     "is_overridden": true
+    },
+    {
+     "name": "NormalWeight",
+     "value": 112.68061828613281,
+     "is_overridden": true
+    },
+    {
+     "name": "OutlineWidth",
+     "value": 14.097540855407715,
+     "is_overridden": true
+    },
+    {
+     "name": "DepthRelativeThreshold",
+     "value": 51.213478088378906,
+     "is_overridden": true
+    },
+    {
+     "name": "AAWidth",
+     "value": 102.38304901123047,
+     "is_overridden": true
+    },
+    {
+     "name": "CreaseThreshold",
+     "value": 19.259654998779297,
+     "is_overridden": true
+    },
+    {
+     "name": "JitterCompensation",
+     "value": 0.30608999729156494,
+     "is_overridden": true
+    },
+    {
+     "name": "MaxWidthPx",
+     "value": -0.7453029751777649,
+     "is_overridden": true
+    },
+    {
+     "name": "MinWidthPx",
+     "value": 0.04800000041723251,
+     "is_overridden": true
+    },
+    {
+     "name": "RefDistance",
+     "value": 1858.7586669921875,
+     "is_overridden": true
+    },
+    {
+     "name": "TaperStrength",
+     "value": 1670.71630859375,
+     "is_overridden": true
+    },
+    {
+     "name": "UDSTintStrength",
+     "value": 0.11999999731779099,
+     "is_overridden": true
+    },
+    {
+     "name": "VineBranchStrength",
+     "value": 0,
+     "is_overridden": true
+    },
+    {
+     "name": "RefractionDepthBias",
+     "value": 0,
+     "is_overridden": true
+    }
+   ],
+   "vector": [
+    {
+     "name": "BeatPulseColor",
+     "value": {
+      "R": 0.8411489725112915,
+      "G": 0.01918400079011917,
+      "B": 1,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "AtmosphericFadeColor",
+     "value": {
+      "R": 0.5799999833106995,
+      "G": 0.6800000071525574,
+      "B": 0.8600000143051147,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "DreamRimColor",
+     "value": {
+      "R": 0.06271400302648544,
+      "G": 0.012919999659061432,
+      "B": 0.5364580154418945,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "IridescenceTint",
+     "value": {
+      "R": 1,
+      "G": 0.9200000166893005,
+      "B": 1,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "OutlineColor",
+     "value": {
+      "R": 0.07500000298023224,
+      "G": 0.03500000014901161,
+      "B": 0.0949999988079071,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "CreaseColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.03999999910593033,
+      "B": 0.07999999821186066,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "Style1Color",
+     "value": {
+      "R": 0.15000000596046448,
+      "G": 0.05000000074505806,
+      "B": 0.019999999552965164,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "Style2Color",
+     "value": {
+      "R": 0.019999999552965164,
+      "G": 0.05000000074505806,
+      "B": 0.15000000596046448,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "Style3Color",
+     "value": {
+      "R": 0.20000000298023224,
+      "G": 0.15000000596046448,
+      "B": 0.019999999552965164,
+      "A": 1
+     },
+     "is_overridden": true
+    },
+    {
+     "name": "OutlineColorNight",
+     "value": {
+      "R": 0.009999999776482582,
+      "G": 0.009999999776482582,
+      "B": 0.029999999329447746,
+      "A": 1
+     },
+     "is_overridden": true
+    }
+   ],
+   "texture": [],
+   "static_switch": [
+    {
+     "name": "IncludeStencilInRange",
+     "value": true,
+     "is_overridden": false
+    }
+   ],
+   "total_overrides": 51
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Character_Heavy": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Character_Heavy",
+   "parent": "/Game/Genshin_Shader_v1_1/M_Hull_Outline.M_Hull_Outline",
+   "scalar": [
+    {
+     "name": "Thickness",
+     "value": 1,
+     "is_overridden": true
+    },
+    {
+     "name": "Line Width",
+     "value": 1.2000000476837158,
+     "is_overridden": true
+    }
+   ],
+   "vector": [],
+   "texture": [],
+   "static_switch": [
+    {
+     "name": "Use Dynamic Outline Width?",
+     "value": true,
+     "is_overridden": true
+    }
+   ],
+   "total_overrides": 3
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Character_Thin": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Character_Thin",
+   "parent": "/Game/Genshin_Shader_v1_1/M_Hull_Outline.M_Hull_Outline",
+   "scalar": [
+    {
+     "name": "Thickness",
+     "value": 0.4000000059604645,
+     "is_overridden": true
+    },
+    {
+     "name": "Line Width",
+     "value": 0.4000000059604645,
+     "is_overridden": true
+    }
+   ],
+   "vector": [],
+   "texture": [],
+   "static_switch": [
+    {
+     "name": "Use Dynamic Outline Width?",
+     "value": false,
+     "is_overridden": true
+    }
+   ],
+   "total_overrides": 3
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Environment": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Environment",
+   "parent": "/Game/Genshin_Shader_v1_1/M_Hull_Outline.M_Hull_Outline",
+   "scalar": [
+    {
+     "name": "Thickness",
+     "value": 0.6000000238418579,
+     "is_overridden": true
+    },
+    {
+     "name": "Line Width",
+     "value": 0.699999988079071,
+     "is_overridden": true
+    }
+   ],
+   "vector": [],
+   "texture": [],
+   "static_switch": [
+    {
+     "name": "Use Dynamic Outline Width?",
+     "value": false,
+     "is_overridden": true
+    }
+   ],
+   "total_overrides": 3
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Hairline": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Hairline",
+   "parent": "/Game/Genshin_Shader_v1_1/M_Hull_Outline.M_Hull_Outline",
+   "scalar": [
+    {
+     "name": "Thickness",
+     "value": 0.20000000298023224,
+     "is_overridden": true
+    },
+    {
+     "name": "Line Width",
+     "value": 0.15000000596046448,
+     "is_overridden": true
+    }
+   ],
+   "vector": [],
+   "texture": [],
+   "static_switch": [
+    {
+     "name": "Use Dynamic Outline Width?",
+     "value": false,
+     "is_overridden": true
+    }
+   ],
+   "total_overrides": 3
+  }
+ },
+ "bases": {
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_StorybookOutline_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_StorybookOutline_Frozen",
+   "scalar_parameters": [
+    {
+     "name": "PostProcessBlend",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "PostProcessMultiplyBlend",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "PostProcessOverlayBlend",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "EdgeStrength",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "OutlineWidth",
+     "value": 1.5,
+     "type": "scalar"
+    },
+    {
+     "name": "DepthWeight",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "NormalWeight",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "FalloffStart",
+     "value": 3000,
+     "type": "scalar"
+    },
+    {
+     "name": "FalloffEnd",
+     "value": 8000,
+     "type": "scalar"
+    },
+    {
+     "name": "MultiplyDarken",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "UseMultiplyTintAmount",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "UDSTintStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "VineBranchScale",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "VineBranchStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "VineGrowthSpeed",
+     "value": 0.20000000298023224,
+     "type": "scalar"
+    },
+    {
+     "name": "VineGrowthLength",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "OcclusionFill",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "Stencilndex",
+     "value": 255,
+     "type": "scalar"
+    },
+    {
+     "name": "StenciRangeMin",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "StenciRangeMax",
+     "value": 255,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageDepthInkStrength",
+     "value": 0.11999999731779099,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageNormalInkStrength",
+     "value": 0.03999999910593033,
+     "type": "scalar"
+    },
+    {
+     "name": "DepthRelativeThreshold",
+     "value": 0.014999999664723873,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageDistanceFadeStart",
+     "value": 700,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageDistanceFadeEnd",
+     "value": 4500,
+     "type": "scalar"
+    },
+    {
+     "name": "CreaseThreshold",
+     "value": 0.550000011920929,
+     "type": "scalar"
+    },
+    {
+     "name": "RefDistance",
+     "value": 1500,
+     "type": "scalar"
+    },
+    {
+     "name": "MinWidthPx",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "MaxWidthPx",
+     "value": 3,
+     "type": "scalar"
+    },
+    {
+     "name": "TaperStrength",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "JitterCompensation",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "AAWidth",
+     "value": 1.5,
+     "type": "scalar"
+    },
+    {
+     "name": "InkBlurStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "InkBlurRadius",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "HalftoneAmount",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "HalftoneScale",
+     "value": 6,
+     "type": "scalar"
+    },
+    {
+     "name": "HalftoneAngle",
+     "value": 45,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamRimStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamRimPower",
+     "value": 3,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamRimCycles",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "Iridescence",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "IridescencePower",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "IridescenceCycles",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "DistanceFadeStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "DistanceFadeStart",
+     "value": 4000,
+     "type": "scalar"
+    },
+    {
+     "name": "DistanceFadeEnd",
+     "value": 20000,
+     "type": "scalar"
+    },
+    {
+     "name": "bEnableBeatPulse",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "BeatPulseStrength",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "DayNightFactor",
+     "value": 1,
+     "type": "scalar"
+    }
+   ],
+   "vector_parameters": [
+    {
+     "name": "OutlineColor",
+     "value": {
+      "R": 0.019999999552965164,
+      "G": 0.019999999552965164,
+      "B": 0.05000000074505806,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "OutlineColorNight",
+     "value": {
+      "R": 0.009999999776482582,
+      "G": 0.009999999776482582,
+      "B": 0.029999999329447746,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "Style1Color",
+     "value": {
+      "R": 0.15000000596046448,
+      "G": 0.05000000074505806,
+      "B": 0.019999999552965164,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "Style2Color",
+     "value": {
+      "R": 0.019999999552965164,
+      "G": 0.05000000074505806,
+      "B": 0.15000000596046448,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "Style3Color",
+     "value": {
+      "R": 0.20000000298023224,
+      "G": 0.15000000596046448,
+      "B": 0.019999999552965164,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "VineInkColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.15000000596046448,
+      "B": 0.05000000074505806,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "CreaseColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.03999999910593033,
+      "B": 0.07999999821186066,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "DreamRimColor",
+     "value": {
+      "R": 0.6000000238418579,
+      "G": 0.75,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "IridescenceTint",
+     "value": {
+      "R": 1,
+      "G": 1,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "AtmosphericFadeColor",
+     "value": {
+      "R": 0.6000000238418579,
+      "G": 0.699999988079071,
+      "B": 0.8500000238418579,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "BeatPulseColor",
+     "value": {
+      "R": 1,
+      "G": 0.44999998807907104,
+      "B": 0.18000000715255737,
+      "A": 1
+     },
+     "type": "vector"
+    }
+   ],
+   "texture_parameters": [
+    {
+     "name": "VineBranchMask",
+     "value": "/Game/EnvSandbox/Textures/Melusina/FoliageCards/T_FoliageCards_sheetmusicvine.T_FoliageCards_sheetmusicvine",
+     "type": "texture"
+    }
+   ],
+   "static_switch_parameters": [
+    {
+     "name": "IncludeStencilInRange",
+     "value": true,
+     "type": "static_switch"
+    }
+   ],
+   "total_parameters": 62
+  },
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate": {
+   "asset_path": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate",
+   "scalar_parameters": [
+    {
+     "name": "StarIntensity",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "SkyDepthThreshold",
+     "value": 100000,
+     "type": "scalar"
+    },
+    {
+     "name": "ManualNightAmount",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "SwirlSpeed",
+     "value": 0.15000000596046448,
+     "type": "scalar"
+    },
+    {
+     "name": "ImpastoStrength",
+     "value": 0.5,
+     "type": "scalar"
+    },
+    {
+     "name": "SkyPaintAmount",
+     "value": 0.25,
+     "type": "scalar"
+    },
+    {
+     "name": "StarMapTiling",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "NebulaTiling",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "NebulaIntensity",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "BrushTiling",
+     "value": 8,
+     "type": "scalar"
+    },
+    {
+     "name": "SwirlWarp",
+     "value": 0.11999999731779099,
+     "type": "scalar"
+    },
+    {
+     "name": "ImpastoRelief",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "PaintGloss",
+     "value": 24,
+     "type": "scalar"
+    },
+    {
+     "name": "PaintSpecular",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "UseUDSTimeOfDay",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "UseUDSLighting",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "UseUDSWind",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "CloudRecede",
+     "value": 0.8500000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "FogRecede",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "OcclusionRecede",
+     "value": 0.5,
+     "type": "scalar"
+    },
+    {
+     "name": "StarSkyRejection",
+     "value": 1.600000023841858,
+     "type": "scalar"
+    },
+    {
+     "name": "StrokeElongation",
+     "value": 3.200000047683716,
+     "type": "scalar"
+    },
+    {
+     "name": "StrokeTravel",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "HaloStrength",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "HaloMip",
+     "value": 4,
+     "type": "scalar"
+    },
+    {
+     "name": "HaloRings",
+     "value": 18,
+     "type": "scalar"
+    },
+    {
+     "name": "HaloPower",
+     "value": 2.200000047683716,
+     "type": "scalar"
+    },
+    {
+     "name": "ValueStructure",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "ValueLow",
+     "value": 0.03999999910593033,
+     "type": "scalar"
+    },
+    {
+     "name": "ValueHigh",
+     "value": 0.41999998688697815,
+     "type": "scalar"
+    },
+    {
+     "name": "PaletteFollow",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "NightAmount",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "StrokeDensity",
+     "value": 26,
+     "type": "scalar"
+    },
+    {
+     "name": "StrokeGap",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "StrokeThickness",
+     "value": 0.3799999952316284,
+     "type": "scalar"
+    },
+    {
+     "name": "BristleAmount",
+     "value": 0.550000011920929,
+     "type": "scalar"
+    },
+    {
+     "name": "StrokeHueVar",
+     "value": 0.44999998807907104,
+     "type": "scalar"
+    }
+   ],
+   "vector_parameters": [
+    {
+     "name": "SkyPaintTint",
+     "value": {
+      "R": 0.550000011920929,
+      "G": 0.6000000238418579,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "StarTint",
+     "value": {
+      "R": 1,
+      "G": 0.9700000286102295,
+      "B": 0.9200000166893005,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "NebulaTint",
+     "value": {
+      "R": 0.44999998807907104,
+      "G": 0.3499999940395355,
+      "B": 0.75,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "PaintLightDir",
+     "value": {
+      "R": 0.44999998807907104,
+      "G": 0.6000000238418579,
+      "B": 0,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "StarMapOffset",
+     "value": {
+      "R": 0,
+      "G": 0,
+      "B": 0,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "VortexA",
+     "value": {
+      "R": 0.3400000035762787,
+      "G": 0.41999998688697815,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "VortexB",
+     "value": {
+      "R": 0.6600000262260437,
+      "G": 0.5199999809265137,
+      "B": -0.75,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "DeepColor",
+     "value": {
+      "R": 0.3199999928474426,
+      "G": 0.41999998688697815,
+      "B": 1.149999976158142,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "LightColor",
+     "value": {
+      "R": 1.350000023841858,
+      "G": 1.149999976158142,
+      "B": 0.550000011920929,
+      "A": 1
+     },
+     "type": "vector"
+    }
+   ],
+   "texture_parameters": [
+    {
+     "name": "StarMap",
+     "value": "/Game/EnvSandbox/Materials/Space/Textures/T_NASA_StarMap_4K.T_NASA_StarMap_4K",
+     "type": "texture"
+    },
+    {
+     "name": "NebulaMap",
+     "value": "/Game/EnvSandbox/Textures_Shared/sbs_-_seamless_space_backgrounds_-_large_1024x1024/Large_1024x1024/Purple_Nebula/Purple_Nebula_3_-_1024x1024.Purple_Nebula_3_-_1024x1024",
+     "type": "texture"
+    },
+    {
+     "name": "BrushMap",
+     "value": "/Game/EnvSandbox/Stylization/T_Flow_Brushed.T_Flow_Brushed",
+     "type": "texture"
+    },
+    {
+     "name": "SwirlMap",
+     "value": "/Game/EnvSandbox/Stylization/T_Flow_Swirl.T_Flow_Swirl",
+     "type": "texture"
+    }
+   ],
+   "static_switch_parameters": [],
+   "total_parameters": 50
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MeluColorGrade_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MeluColorGrade_Frozen",
+   "scalar_parameters": [
+    {
+     "name": "NikkiHeroGradeStrength",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamSaturation",
+     "value": 1.0399999618530273,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamContrast",
+     "value": 1.059999942779541,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamShadowLift",
+     "value": 0.02500000037252903,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamHighlightSoft",
+     "value": 0.11999999731779099,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamSplitToneStrength",
+     "value": 0.10000000149011612,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamSpectralStrength",
+     "value": 0.02500000037252903,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamSpectralCycles",
+     "value": 1.5,
+     "type": "scalar"
+    },
+    {
+     "name": "VignetteBaseIntensity",
+     "value": 0.07999999821186066,
+     "type": "scalar"
+    },
+    {
+     "name": "VignetteFalloff",
+     "value": 1.25,
+     "type": "scalar"
+    },
+    {
+     "name": "BeatPaletteResponse",
+     "value": 0.02500000037252903,
+     "type": "scalar"
+    },
+    {
+     "name": "EmissiveResponse",
+     "value": 0.10000000149011612,
+     "type": "scalar"
+    },
+    {
+     "name": "VignetteBlurStrength",
+     "value": 0.05999999865889549,
+     "type": "scalar"
+    },
+    {
+     "name": "VignetteBlurRadiusPx",
+     "value": 1.25,
+     "type": "scalar"
+    },
+    {
+     "name": "VignetteFeather",
+     "value": 0.18000000715255737,
+     "type": "scalar"
+    },
+    {
+     "name": "VignettePigmentBlend",
+     "value": 0.07999999821186066,
+     "type": "scalar"
+    },
+    {
+     "name": "CelSteps",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "DynamicContrast",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "SelectiveStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "KeepColorHue",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "GradeStrength",
+     "value": 0.6899999976158142,
+     "type": "scalar"
+    },
+    {
+     "name": "Saturation",
+     "value": 0.15000000596046448,
+     "type": "scalar"
+    },
+    {
+     "name": "Contrast",
+     "value": 0.07999999821186066,
+     "type": "scalar"
+    },
+    {
+     "name": "ShadowLift",
+     "value": 0.05000000074505806,
+     "type": "scalar"
+    },
+    {
+     "name": "HighlightSoft",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "SplitStrength",
+     "value": 0.20000000298023224,
+     "type": "scalar"
+    },
+    {
+     "name": "SpectralStrength",
+     "value": 0.05000000074505806,
+     "type": "scalar"
+    },
+    {
+     "name": "SpectralCycles",
+     "value": 3,
+     "type": "scalar"
+    }
+   ],
+   "vector_parameters": [
+    {
+     "name": "DreamTint",
+     "value": {
+      "R": 1,
+      "G": 0.8500000238418579,
+      "B": 0.9200000166893005,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "DreamShadowTint",
+     "value": {
+      "R": 0.8600000143051147,
+      "G": 0.8999999761581421,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "DreamHighlightTint",
+     "value": {
+      "R": 1,
+      "G": 0.9399999976158142,
+      "B": 0.8199999928474426,
+      "A": 1
+     },
+     "type": "vector"
+    }
+   ],
+   "texture_parameters": [],
+   "static_switch_parameters": [],
+   "total_parameters": 31
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MelodiaInk_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MelodiaInk_Frozen",
+   "scalar_parameters": [
+    {
+     "name": "InkDotPitch",
+     "value": 0.014999999664723873,
+     "type": "scalar"
+    },
+    {
+     "name": "InkDotAngle",
+     "value": 45,
+     "type": "scalar"
+    },
+    {
+     "name": "InkDotLumaDrive",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "InkDotScale",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "InkHatchDensity",
+     "value": 6,
+     "type": "scalar"
+    },
+    {
+     "name": "InkHatchAngle",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "InkHatchShadowBand",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "InkStrength",
+     "value": 0.6499999761581421,
+     "type": "scalar"
+    },
+    {
+     "name": "InkPrintOffset",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "InkPrintOffsetDepth",
+     "value": 0.5,
+     "type": "scalar"
+    },
+    {
+     "name": "InkGrain",
+     "value": 0.10000000149011612,
+     "type": "scalar"
+    },
+    {
+     "name": "InkGrainScale",
+     "value": 3,
+     "type": "scalar"
+    },
+    {
+     "name": "InkSmear",
+     "value": 0.30000001192092896,
+     "type": "scalar"
+    },
+    {
+     "name": "InkPaperLight",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "InkPaperShadow",
+     "value": 0.6499999761581421,
+     "type": "scalar"
+    },
+    {
+     "name": "InkHalftone",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "InkHatch",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "InkPrintShift",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "InkGrainOn",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "InkSmearOn",
+     "value": 0,
+     "type": "scalar"
+    }
+   ],
+   "vector_parameters": [
+    {
+     "name": "InkColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.07000000029802322,
+      "B": 0.11999999731779099,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "InkHueTint",
+     "value": {
+      "R": 1,
+      "G": 1,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "InkPaperColor",
+     "value": {
+      "R": 0.9800000190734863,
+      "G": 0.949999988079071,
+      "B": 0.8799999952316284,
+      "A": 1
+     },
+     "type": "vector"
+    }
+   ],
+   "texture_parameters": [],
+   "static_switch_parameters": [],
+   "total_parameters": 23
+  },
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StorybookOutline_Premium_Candidate": {
+   "asset_path": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StorybookOutline_Premium_Candidate",
+   "scalar_parameters": [
+    {
+     "name": "PostProcessBlend",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "PostProcessMultiplyBlend",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "PostProcessOverlayBlend",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "EdgeStrength",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "OutlineWidth",
+     "value": 1.5,
+     "type": "scalar"
+    },
+    {
+     "name": "DepthWeight",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "NormalWeight",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "FalloffStart",
+     "value": 3000,
+     "type": "scalar"
+    },
+    {
+     "name": "FalloffEnd",
+     "value": 8000,
+     "type": "scalar"
+    },
+    {
+     "name": "MultiplyDarken",
+     "value": 0.3499999940395355,
+     "type": "scalar"
+    },
+    {
+     "name": "UseMultiplyTintAmount",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "UDSTintStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "VineBranchScale",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "VineBranchStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "VineGrowthSpeed",
+     "value": 0.20000000298023224,
+     "type": "scalar"
+    },
+    {
+     "name": "VineGrowthLength",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "OcclusionFill",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "Stencilndex",
+     "value": 255,
+     "type": "scalar"
+    },
+    {
+     "name": "StenciRangeMin",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "StenciRangeMax",
+     "value": 255,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageDepthInkStrength",
+     "value": 0.11999999731779099,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageNormalInkStrength",
+     "value": 0.03999999910593033,
+     "type": "scalar"
+    },
+    {
+     "name": "DepthRelativeThreshold",
+     "value": 0.014999999664723873,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageDistanceFadeStart",
+     "value": 700,
+     "type": "scalar"
+    },
+    {
+     "name": "FoliageDistanceFadeEnd",
+     "value": 4500,
+     "type": "scalar"
+    },
+    {
+     "name": "CreaseThreshold",
+     "value": 0.550000011920929,
+     "type": "scalar"
+    },
+    {
+     "name": "RefDistance",
+     "value": 1500,
+     "type": "scalar"
+    },
+    {
+     "name": "MinWidthPx",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "MaxWidthPx",
+     "value": 3,
+     "type": "scalar"
+    },
+    {
+     "name": "TaperStrength",
+     "value": 0.6000000238418579,
+     "type": "scalar"
+    },
+    {
+     "name": "JitterCompensation",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "AAWidth",
+     "value": 1.5,
+     "type": "scalar"
+    },
+    {
+     "name": "InkBlurStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "InkBlurRadius",
+     "value": 1,
+     "type": "scalar"
+    },
+    {
+     "name": "HalftoneAmount",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "HalftoneScale",
+     "value": 6,
+     "type": "scalar"
+    },
+    {
+     "name": "HalftoneAngle",
+     "value": 45,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamRimStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamRimPower",
+     "value": 3,
+     "type": "scalar"
+    },
+    {
+     "name": "DreamRimCycles",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "Iridescence",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "IridescencePower",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "IridescenceCycles",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "DistanceFadeStrength",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "DistanceFadeStart",
+     "value": 4000,
+     "type": "scalar"
+    },
+    {
+     "name": "DistanceFadeEnd",
+     "value": 20000,
+     "type": "scalar"
+    },
+    {
+     "name": "bEnableBeatPulse",
+     "value": 0,
+     "type": "scalar"
+    },
+    {
+     "name": "BeatPulseStrength",
+     "value": 2,
+     "type": "scalar"
+    },
+    {
+     "name": "DayNightFactor",
+     "value": 1,
+     "type": "scalar"
+    }
+   ],
+   "vector_parameters": [
+    {
+     "name": "OutlineColor",
+     "value": {
+      "R": 0.019999999552965164,
+      "G": 0.019999999552965164,
+      "B": 0.05000000074505806,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "OutlineColorNight",
+     "value": {
+      "R": 0.009999999776482582,
+      "G": 0.009999999776482582,
+      "B": 0.029999999329447746,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "Style1Color",
+     "value": {
+      "R": 0.15000000596046448,
+      "G": 0.05000000074505806,
+      "B": 0.019999999552965164,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "Style2Color",
+     "value": {
+      "R": 0.019999999552965164,
+      "G": 0.05000000074505806,
+      "B": 0.15000000596046448,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "Style3Color",
+     "value": {
+      "R": 0.20000000298023224,
+      "G": 0.15000000596046448,
+      "B": 0.019999999552965164,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "VineInkColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.15000000596046448,
+      "B": 0.05000000074505806,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "CreaseColor",
+     "value": {
+      "R": 0.05000000074505806,
+      "G": 0.03999999910593033,
+      "B": 0.07999999821186066,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "DreamRimColor",
+     "value": {
+      "R": 0.6000000238418579,
+      "G": 0.75,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "IridescenceTint",
+     "value": {
+      "R": 1,
+      "G": 1,
+      "B": 1,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "AtmosphericFadeColor",
+     "value": {
+      "R": 0.6000000238418579,
+      "G": 0.699999988079071,
+      "B": 0.8500000238418579,
+      "A": 1
+     },
+     "type": "vector"
+    },
+    {
+     "name": "BeatPulseColor",
+     "value": {
+      "R": 1,
+      "G": 0.44999998807907104,
+      "B": 0.18000000715255737,
+      "A": 1
+     },
+     "type": "vector"
+    }
+   ],
+   "texture_parameters": [
+    {
+     "name": "VineBranchMask",
+     "value": "/Game/EnvSandbox/Textures/Melusina/FoliageCards/T_FoliageCards_sheetmusicvine.T_FoliageCards_sheetmusicvine",
+     "type": "texture"
+    }
+   ],
+   "static_switch_parameters": [
+    {
+     "name": "IncludeStencilInRange",
+     "value": true,
+     "type": "static_switch"
+    }
+   ],
+   "total_parameters": 62
+  },
+  "/Game/Genshin_Shader_v1_1/M_Hull_Outline": {
+   "asset_path": "/Game/Genshin_Shader_v1_1/M_Hull_Outline",
+   "scalar_parameters": [
+    {
+     "name": "Line Width",
+     "value": 0.25,
+     "type": "scalar"
+    }
+   ],
+   "vector_parameters": [],
+   "texture_parameters": [],
+   "static_switch_parameters": [
+    {
+     "name": "Use Dynamic Outline Width?",
+     "value": false,
+     "type": "static_switch"
+    }
+   ],
+   "total_parameters": 2
+  }
+ },
+ "stats": {
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_StorybookOutline_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_StorybookOutline_Frozen",
+   "is_compiled": true,
+   "num_samplers": 3,
+   "estimated_vs_texture_samples": 3,
+   "estimated_ps_texture_samples": 6,
+   "used_uv_scalars": 2,
+   "used_custom_interpolator_scalars": 0,
+   "num_vertex_shader_instructions": 153,
+   "num_pixel_shader_instructions": 329,
+   "blend_mode": "Opaque",
+   "two_sided": false,
+   "expression_count": 72
+  },
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate": {
+   "asset_path": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StarryNightOverlay_Candidate",
+   "is_compiled": true,
+   "num_samplers": 6,
+   "estimated_vs_texture_samples": 0,
+   "estimated_ps_texture_samples": 4,
+   "used_uv_scalars": 0,
+   "used_custom_interpolator_scalars": 0,
+   "num_vertex_shader_instructions": 148,
+   "num_pixel_shader_instructions": 347,
+   "blend_mode": "Opaque",
+   "two_sided": false,
+   "expression_count": 64
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MeluColorGrade_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MeluColorGrade_Frozen",
+   "is_compiled": true,
+   "num_samplers": 2,
+   "estimated_vs_texture_samples": 3,
+   "estimated_ps_texture_samples": 1,
+   "used_uv_scalars": 2,
+   "used_custom_interpolator_scalars": 0,
+   "num_vertex_shader_instructions": 153,
+   "num_pixel_shader_instructions": 222,
+   "blend_mode": "Opaque",
+   "two_sided": false,
+   "expression_count": 43
+  },
+  "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MelodiaInk_Frozen": {
+   "asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MelodiaInk_Frozen",
+   "is_compiled": true,
+   "num_samplers": 1,
+   "estimated_vs_texture_samples": 0,
+   "estimated_ps_texture_samples": 7,
+   "used_uv_scalars": 0,
+   "used_custom_interpolator_scalars": 0,
+   "num_vertex_shader_instructions": 148,
+   "num_pixel_shader_instructions": 226,
+   "blend_mode": "Opaque",
+   "two_sided": false,
+   "expression_count": 75
+  },
+  "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StorybookOutline_Premium_Candidate": {
+   "asset_path": "/Game/EnvSandbox/Materials/PostProcess/Candidates/M_PP_StorybookOutline_Premium_Candidate",
+   "is_compiled": true,
+   "num_samplers": 3,
+   "estimated_vs_texture_samples": 3,
+   "estimated_ps_texture_samples": 6,
+   "used_uv_scalars": 2,
+   "used_custom_interpolator_scalars": 0,
+   "num_vertex_shader_instructions": 153,
+   "num_pixel_shader_instructions": 324,
+   "blend_mode": "Opaque",
+   "two_sided": false,
+   "expression_count": 73
+  },
+  "/Game/Genshin_Shader_v1_1/M_Hull_Outline": {
+   "asset_path": "/Game/Genshin_Shader_v1_1/M_Hull_Outline",
+   "is_compiled": true,
+   "num_samplers": 0,
+   "estimated_vs_texture_samples": 0,
+   "estimated_ps_texture_samples": 3,
+   "used_uv_scalars": 0,
+   "used_custom_interpolator_scalars": 0,
+   "num_vertex_shader_instructions": 161,
+   "num_pixel_shader_instructions": 99,
+   "blend_mode": "Masked",
+   "two_sided": true,
+   "expression_count": 12
+  }
+ }
+}

@@ -97,6 +97,10 @@ class TestPreflight(unittest.TestCase):
         finally:
             os.remove(p)
 
+    def test_actual_rokoko_and_cascadeur_prefixes(self):
+        self.assertTrue(preflight.VERB_NAME.match("A_Rokoko_GlideForward.fbx"))
+        self.assertTrue(preflight.CAS_NAME.match("A_CAS_Melusina_Idle_Serene.fbx"))
+
     def test_cascadeur_naming(self):
         self.assertTrue(preflight.CAS_NAME.match("CAS_Melusina_Idle_Serene.fbx"))
         self.assertFalse(preflight.CAS_NAME.match("idle.fbx"))

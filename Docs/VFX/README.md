@@ -7,7 +7,7 @@ not task queues.
 ## Canonical playbooks
 
 - [`PLAYBOOK_FLIPBOOK_FIXA.md`](PLAYBOOK_FLIPBOOK_FIXA.md) — quick Fix A rule used by Package B.
-- [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md) — long-form single-clock / atlas policy.
+- [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](PLAYBOOK_FLIPBOOK_FIXA.md) — long-form single-clock / atlas policy.
 - [`Playbooks/PLAYBOOK_BEATPULSE_COMPANION_BUS.md`](Playbooks/PLAYBOOK_BEATPULSE_COMPANION_BUS.md) — Choral Sheep `User.BeatPulse` ownership and verification.
 - [`Playbooks/PLAYBOOK_SURREALFABRIC_FLIPBOOK_MASTER.md`](Playbooks/PLAYBOOK_SURREALFABRIC_FLIPBOOK_MASTER.md) — SurrealFabric master/scrub contract.
 - [`PLAYBOOK_BEATBURST_2026-09-17.md`](PLAYBOOK_BEATBURST_2026-09-17.md), [`PLAYBOOK_HYBRIDSPARKLES_2026-09-17.md`](PLAYBOOK_HYBRIDSPARKLES_2026-09-17.md), [`PLAYBOOK_PETALCASCADE_LEAFPILLE_2026-09-17.md`](PLAYBOOK_PETALCASCADE_LEAFPILLE_2026-09-17.md) — bounded Package B polish recipes.

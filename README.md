@@ -6,9 +6,9 @@
 
 ![Unreal Engine 5.8](https://img.shields.io/badge/Unreal_Engine-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
 ![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
-![Assets](https://img.shields.io/badge/uasset-5%2C399_tracked_%2F_21%2C501_local-5e3a8c)
-![Maps](https://img.shields.io/badge/umap-56_tracked_%2F_238_local-3a5a3a)
-![Plugins](https://img.shields.io/badge/Plugins-19_project-8c3a3a)
+![Assets](https://img.shields.io/badge/uasset-6%2C582_tracked-5e3a8c)
+![Maps](https://img.shields.io/badge/umap-61_tracked-3a5a3a)
+![Plugins](https://img.shields.io/badge/Plugins-25_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
 > **Status:** [CURRENT_STATE.md](CURRENT_STATE.md) is the only status document — what works and at what evidence level, what is open, the owner queue, repositories and workstations. This README describes the project; it does not track status.
@@ -134,11 +134,11 @@ The six-phase route below is the proven **First Dream integration song** used to
 |---|---|
 | `Content/Melodia/` | Gameplay assets: levels, characters, save game structures, audio, configuration |
 | `Content/EnvSandbox/` | Production environments, Substrate toon materials, PCG scatter ecosystems |
-| `Source/BS_GodFile/` | 180 C++/header source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
-| `Tools/` | 532 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
+| `Source/BS_GodFile/` | 203 C++/header source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
+| `Tools/` | 1567 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
 | `deploy/` | MCP server implementations (`melodia_mcp_server.py`, `agent_bridge_mcp.py`), daemons, build graphs |
-| `specs/` | 161 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
-| `Plugins/` | 19 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
+| `specs/` | 175 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
+| `Plugins/` | 25 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
 | `Docs/` | Architecture, pipelines, research, evidence, art references, and credits |
 | `Saved/` | Gate ledgers (`gate_ledger.json`), audit manifests, and test execution reports |
 

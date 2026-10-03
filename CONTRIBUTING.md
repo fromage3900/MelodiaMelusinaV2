@@ -10,16 +10,16 @@ Welcome! This guide outlines how to contribute to Melodia — whether you are an
 
 ## Code of Conduct
 
-All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it to understand our community standards and enforcement guidelines.
+All contributors are expected to uphold our Code of Conduct. Please read it to understand our community standards and enforcement guidelines.
 
 ---
 
 ## Quick Start
 
-1. Read [CURRENT_STATE.md](CURRENT_STATE.md), [DOC_INDEX.md](DOC_INDEX.md), and [Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md](Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md) before expanding scope.
+1. Read CURRENT_STATE.md, DOC_INDEX.md, and Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md before expanding scope.
 2. Run `python Tools/git_ok.py`, verify the latest `main` Echo run is green, and cut one scoped branch from current `main`. Do not start production from a stale PR/recovery branch.
-3. Review [README.md](README.md) to choose your onboarding path.
-4. **Environment & Level Designers:** Follow [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md) for lightweight sparse checkout.
+3. Review README.md to choose your onboarding path.
+4. **Environment & Level Designers:** Follow Docs/SETUP_COLLAB.md for lightweight sparse checkout.
 5. **Engineers & Researchers:** Clone the repository for engineering/configuration work. Perforce is now
   in **active pilot**: UE 5.8 is connected and source-control operations are working. `Exports/` is
   seeded in the depot. Do not assume full creative-root cutover yet; check
@@ -32,7 +32,7 @@ All contributors are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md
 
 `main` is canonical durable game/runtime/capstone truth. Feature branches are scoped work, not competing project state.
 
-Read [Docs/Production/BRANCH_WORKSTATION_POLICY.md](Docs/Production/BRANCH_WORKSTATION_POLICY.md) before merge, salvage, deletion, or machine-specific branch work.
+Read Docs/Production/BRANCH_WORKSTATION_POLICY.md before merge, salvage, deletion, or machine-specific branch work.
 
 ### Default contribution mode: content production
 
@@ -162,8 +162,8 @@ Cutover states are intentionally explicit:
   authorize a commit by itself.
 
 The canonical cutover state and evidence gates live in
-[`specs/source_control_ownership.v1.json`](specs/source_control_ownership.v1.json) and are enforced by
-[`Tools/validate_source_control_ownership.py`](Tools/validate_source_control_ownership.py).
+`specs/source_control_ownership.v1.json` and are enforced by
+`Tools/validate_source_control_ownership.py`.
 
 ---
 
@@ -209,13 +209,13 @@ Do NOT commit:
 
 ## Security Disclosures
 
-If you discover a security vulnerability, please refer to our [Security Policy](SECURITY.md) and report it to [melodia-security@brennanshepherd.com](mailto:melodia-security@brennanshepherd.com).
+If you discover a security vulnerability, please refer to our Security Policy and report it to melodia-security@brennanshepherd.com.
 
 ---
 
 ## Documentation & Help
 
-- Complete Documentation Index: [DOC_INDEX.md](DOC_INDEX.md)
-- Agent Test Harness Whitepaper: [Docs/MELUSINA_AGENT_TEST_HARNESS.md](Docs/MELUSINA_AGENT_TEST_HARNESS.md)
-- LLM Daemon Ecosystem Report: [Docs/OLLAMA_UE5_INTEGRATION_REPORT.md](Docs/OLLAMA_UE5_INTEGRATION_REPORT.md)
-- Live Collaboration Setup: [Docs/SETUP_COLLAB.md](Docs/SETUP_COLLAB.md)
+- Complete Documentation Index: DOC_INDEX.md
+- Agent Test Harness Whitepaper: Docs/MELUSINA_AGENT_TEST_HARNESS.md
+- LLM Daemon Ecosystem Report: Docs/OLLAMA_UE5_INTEGRATION_REPORT.md
+- Live Collaboration Setup: Docs/SETUP_COLLAB.md

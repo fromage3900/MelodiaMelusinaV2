@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UBT Rebuild (Closed Editor)" type="BatchConfigurationType" factoryName="Batch">
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="WORKING_DIRECTORY" value="C:/Program Files/Epic Games/UE_5.8/Engine/Build/BatchFiles" />
+    <option name="PARENT_ENVS" value="true" />
+    <module name="BS_GodFile" />
+    <option name="SCRIPT_NAME" value="C:/Program Files/Epic Games/UE_5.8/Engine/Build/BatchFiles/Build.bat" />
+    <option name="PARAMETERS" value="BS_GodFileEditor Win64 Development -Project=&quot;$PROJECT_DIR$/BS_GodFile.uproject&quot; -WaitMutex" />
+    <method v="2" />
+  </configuration>
+</component>

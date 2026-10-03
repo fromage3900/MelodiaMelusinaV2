@@ -365,11 +365,17 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
     # 8.1 silhouettes. Every shape stays INSCRIBED in the same w x h box, so the boxing
     # contract (outer width 2A + DBL + 2 Rim Thickness) is invariant across them and the
     # existing 134.000 measurement still pins the aperture. 0 Rect, 1 Round/Panto,
-    # 2 Cat-Eye.
-    add_int_param(tree, "Silhouette", 0, 0, 2)
+    # 2 Cat-Eye, 3 Aviator. Each branch owns its corner radius: rounding removes the box
+    # extreme point, so a new shape gets its own measured bound rather than 134.000.
+    add_int_param(tree, "Silhouette", 0, 0, 3)
     add_float_param(tree, "Panto Round", 0.45, 0.1, 0.5)
     add_float_param(tree, "Cat Eye Taper", 0.88, 0.6, 1.0)
     add_float_param(tree, "Cat Eye Sweep", 6.0, 0.0, 14.0)
+    # Aviator: full-width flat top, bottom pulled in to Aviator Taper x width and heavily
+    # rounded, so the teardrop reads without a bezier spline (CurvePrimitiveBezierSegment
+    # is a single OPEN span, so it cannot make a closed aperture loop on its own).
+    add_float_param(tree, "Aviator Taper", 0.45, 0.30, 1.0)
+    add_float_param(tree, "Aviator Round", 0.15, 0.05, 0.50)
     # 11.1 rim edge break. Every real frame is tumbled, not modelled with a rounded edge;
     # 0.5-1.0 mm acetate and 0.2-0.5 mm metal are inference from the tumbling process, not
     # a published radius. Constructed into the profile - GeometryNodeMeshBevel is measured
@@ -473,6 +479,34 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
             if sgn is not None:
                 link_sockets(tree, sgn.outputs[0], quad_ce.inputs["Offset"])
 
+        # --- Aviator (index 3) -------------------------------------------------
+        # TRAPEZOID with a FULL-WIDTH top (so the top stays flat and spans the box) and the
+        # bottom pulled in to Aviator Taper x width, then rounded hard by the radius branch
+        # below. Offset stays 0: the taper is symmetric, and the front's own mirror makes
+        # the assembled pair symmetric. Verified on 5.2 that Width is unused in TRAPEZOID
+        # mode - Top Width / Bottom Width / Height are the live inputs.
+        av_taper = _math(tree, "MULTIPLY", (x0 - 820, y0 + 960),
+                         a=w.outputs[0], b=sock(gin, "Aviator Taper", outputs=True))
+        quad_av = safe_node(tree, "GeometryNodeCurvePrimitiveQuadrilateral", (x0 - 420, y0 + 900))
+        if quad_av is not None:
+            try:
+                quad_av.mode = "TRAPEZOID"
+            except Exception:
+                pass
+            # Offset must be pinned to 0 on this node. Its factory default is 1.0 BU -
+            # 1000 mm - and an unlinked socket keeps it. Measured: the first aviator build
+            # came out 1028.155 mm wide with 989 mm of asymmetry, because the whole lens was
+            # translated a metre sideways. The cat-eye gets away with leaving it linked
+            # because it always drives Offset from the sweep maths.
+            try:
+                quad_av.inputs["Offset"].default_value = 0.0
+            except Exception as exc:
+                print("MEL_eyewear_front: could not pin aviator Offset: %s" % exc)
+            link_sockets(tree, w.outputs[0], quad_av.inputs["Top Width"])
+            if av_taper is not None:
+                link_sockets(tree, av_taper.outputs[0], quad_av.inputs["Bottom Width"])
+            link_sockets(tree, h.outputs[0], quad_av.inputs["Height"])
+
         sw_geo = safe_node(tree, "GeometryNodeIndexSwitch", (x0 - 300, y0 + 460))
         shape_out = quad.outputs["Curve"]
         if sw_geo is not None:
@@ -480,21 +514,26 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                 sw_geo.data_type = "GEOMETRY"
             except Exception:
                 pass
-            while len(sw_geo.index_switch_items) < 3:
+            while len(sw_geo.index_switch_items) < 4:
                 sw_geo.index_switch_items.new()
             link_sockets(tree, sock(gin, "Silhouette", outputs=True), sw_geo.inputs["Index"])
             link_sockets(tree, quad.outputs["Curve"], sw_geo.inputs["0"])
             link_sockets(tree, quad.outputs["Curve"], sw_geo.inputs["1"])
             if quad_ce is not None:
                 link_sockets(tree, quad_ce.outputs["Curve"], sw_geo.inputs["2"])
+            if quad_av is not None:
+                link_sockets(tree, quad_av.outputs["Curve"], sw_geo.inputs["3"])
             shape_out = sw_geo.outputs[0]
 
         # corner radius per shape: 0/2 use the Corner Radius param, 1 (panto) rounds the
-        # box as far as Limit Radius allows
+        # box as far as Limit Radius allows, 3 (aviator) rounds against the narrowed
+        # bottom so the taper reads as a teardrop rather than a wedge
         minwh = _math(tree, "MINIMUM", (x0 - 620, y0 + 900),
                       a=w.outputs[0], b=h.outputs[0])
         panto_r = _math(tree, "MULTIPLY", (x0 - 500, y0 + 900),
                         a=minwh.outputs[0], b=sock(gin, "Panto Round", outputs=True))
+        aviator_r = _math(tree, "MULTIPLY", (x0 - 500, y0 + 1120),
+                          a=minwh.outputs[0], b=sock(gin, "Aviator Round", outputs=True))
         corner = _mm(tree, gin, "Corner Radius", (x0 - 620, y0 + 1040))
         sw_rad = safe_node(tree, "GeometryNodeIndexSwitch", (x0 - 340, y0 + 980))
         radius_out = corner
@@ -503,12 +542,14 @@ def build_eyewear_front(group_name="MEL_eyewear_front"):
                 sw_rad.data_type = "FLOAT"
             except Exception:
                 pass
-            while len(sw_rad.index_switch_items) < 3:
+            while len(sw_rad.index_switch_items) < 4:
                 sw_rad.index_switch_items.new()
             link_sockets(tree, sock(gin, "Silhouette", outputs=True), sw_rad.inputs["Index"])
             link_sockets(tree, corner, sw_rad.inputs["0"])
             link_sockets(tree, panto_r.outputs[0], sw_rad.inputs["1"])
             link_sockets(tree, corner, sw_rad.inputs["2"])
+            if aviator_r is not None:
+                link_sockets(tree, aviator_r.outputs[0], sw_rad.inputs["3"])
             radius_out = sw_rad.outputs[0]
 
         # Fillet BEFORE resample. Measured: with Resample first, every silhouette edge is
@@ -1699,7 +1740,9 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     add_float_param(tree, "Rim Thickness", 4.0, 1.5, 10.0)
     add_float_param(tree, "Rim Depth", 6.0, 2.0, 14.0)
     add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
-    add_int_param(tree, "Silhouette", 0, 0, 2)
+    add_int_param(tree, "Silhouette", 0, 0, 3)
+    add_float_param(tree, "Aviator Taper", 0.45, 0.30, 1.0)
+    add_float_param(tree, "Aviator Round", 0.15, 0.05, 0.50)
     add_float_param(tree, "Length to Bend", 100.0, 40.0, 160.0)
     add_float_param(tree, "Tip Drop", 28.0, 0.0, 70.0)
     add_float_param(tree, "Temple Width", 4.5, 1.0, 14.0)
@@ -1746,6 +1789,7 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
     # the pair: the shared tortoise pass below, driven by Tortoise)
     for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
               "Rim Depth", "Corner Radius", "Silhouette",
+              "Aviator Taper", "Aviator Round",
               "Base Curve", "Form Angle"):
         _forward(tree, gin, p, front, p)
 
@@ -2206,261 +2250,4 @@ register_builder(
     "Both lenses as plano solids, centred on the boxing lens positions "
     "(+/- (A+DBL)/2) and on Z = 0 within the rim. Base Curve + Form Angle "
     "drive the same pure-Z field as the front (default flat).",
-    category="eyewear")
-
-# ============================================================
-# PORTED 2026-09-25 from the live AppData addon copy (which ran ahead
-# of repo). Restores MEL_eyewear_hero + the 4 helpers it needs.
-# Repo already had _math/_vec/_mm/_nest/_subtree/_g_sock/_forward.
-# ============================================================
-
-def _material_param(tree, name="Material"):
-    """Add a material input socket to the group."""
-    return make_group_input(tree, "NodeSocketMaterial", name)
-
-
-# --------------------------------------------------------------------- NEW helpers
-
-
-
-def _sine_wave(tree, loc, source_socket, freq, phase=0.0, amplitude=1.0):
-    """sine(source * freq + phase) * amplitude — generic 1D wave for inlays and flourishes."""
-    if source_socket is None:
-        return None
-    mul = _math(tree, "MULTIPLY", loc, a=source_socket, b=freq)
-    if mul is None:
-        return None
-    if phase:
-        add = _math(tree, "ADD", (loc[0] + 140, loc[1]), a=mul.outputs[0], b=phase)
-        sin_in = add.outputs[0] if add else mul.outputs[0]
-    else:
-        sin_in = mul.outputs[0]
-    sin = safe_node(tree, "ShaderNodeMath", (loc[0] + 280, loc[1]))
-    if sin is None:
-        return sin_in
-    sin.operation = "SINE"
-    link_sockets(tree, sin_in, sin.inputs[0])
-    if amplitude != 1.0:
-        amp = _math(tree, "MULTIPLY", (loc[0] + 420, loc[1]), a=sin.outputs[0], b=amplitude)
-        return amp.outputs[0] if amp else sin.outputs[0]
-    return sin.outputs[0]
-
-
-
-def _lissajous_offset(tree, loc, t_socket, freq_a=3.0, freq_b=2.0, amp_a=0.002, amp_b=0.002):
-    """2D Lissajous curve offset for flourishes — produces the asymmetric looping shapes."""
-    if t_socket is None:
-        return None
-    sx = _sine_wave(tree, loc, t_socket, freq_a, 0.0, amp_a)
-    sy = _sine_wave(tree, (loc[0], loc[1] - 220), t_socket, freq_b, 0.0, amp_b)
-    if sx is None or sy is None:
-        return None
-    return _vec(tree, (loc[0] + 200, loc[1] - 110), x=sx, y=sy)
-
-
-# --------------------------------------------------------------------- silhouette presets
-
-_SILHOUETTE_PRESETS = {
-    0: "rect",
-    1: "panto",
-    2: "cat_eye",
-    3: "aviator",
-    4: "browline",
-    5: "round",
-}
-
-
-# --------------------------------------------------------------------- FRONT
-
-
-
-def _uv_unwrap(tree, loc, geom):
-    """Live UV unwrap — Angle-Based, stored as 'UV' on CORNER so it exports as TEXCOORD_0.
-
-    In Blender 5.2 UVUnwrap has no geometry socket — it operates on the active
-    geometry context. We feed its UV output into a StoreNamedAttribute's Value.
-    """
-    if geom is None:
-        return geom
-    store = safe_node(tree, "GeometryNodeStoreNamedAttribute", loc)
-    if store is None:
-        return geom
-    try:
-        store.data_type = "FLOAT2"
-        store.domain = "CORNER"
-    except Exception:
-        pass
-    try:
-        store.inputs["Name"].default_value = "UV"
-    except Exception:
-        pass
-    link_sockets(tree, geom, store.inputs["Geometry"])
-    unwrap = safe_node(tree, "GeometryNodeUVUnwrap", (loc[0] - 200, loc[1]))
-    if unwrap is not None:
-        link_sockets(tree, unwrap.outputs[0], store.inputs["Value"])
-    return store.outputs["Geometry"]
-
-
-
-def build_eyewear_hero(group_name="MEL_eyewear_hero"):
-    """Ultimate hero builder — exposes the FULL eyewear surface in one node.
-
-    Combines everything: all silhouette presets, advanced math (sine/cosine/
-    Lissajous) for inlays and flourishes, live UV unwrapping, and per-part material
-    slots. Use this for the hero render; use the individual piece builders for
-    variant exploration.
-
-    Silhouettes: 0 Rect, 1 Panto, 2 Cat-Eye, 3 Aviator, 4 Browline, 5 Round.
-    """
-    tree, gin, gout = new_geometry_tree(group_name)
-
-    # Boxing system
-    add_float_param(tree, "Lens Width A", 54.0, 34.0, 66.0)
-    add_float_param(tree, "Lens Height B", 34.0, 24.0, 48.0)
-    add_float_param(tree, "Bridge DBL", 18.0, 12.0, 26.0)
-    add_float_param(tree, "Rim Thickness", 4.0, 1.5, 10.0)
-    add_float_param(tree, "Rim Depth", 6.0, 2.0, 14.0)
-    add_float_param(tree, "Corner Radius", 7.0, 0.5, 20.0)
-    add_float_param(tree, "Path Resolution", 3.0, 0.4, 12.0)
-    add_float_param(tree, "Bridge Drop", 5.0, -6.0, 20.0)
-
-    # Silhouette
-    add_int_param(tree, "Silhouette", 0, 0, 5)
-    add_float_param(tree, "Panto Round", 0.45, 0.1, 0.5)
-    add_float_param(tree, "Cat Eye Taper", 0.88, 0.6, 1.0)
-    add_float_param(tree, "Cat Eye Sweep", 6.0, 0.0, 14.0)
-
-    # 11.1 rim edge break
-    add_float_param(tree, "Rim Edge Break", 1.0, 0.2, 1.5)
-
-    # Advanced math — inlays
-    add_float_param(tree, "Inlay Sine Freq", 20.0, 1.0, 200.0)
-    add_float_param(tree, "Inlay Sine Depth", 0.0, 0.0, 1.5)
-    add_bool_param(tree, "Enable Inlay", False)
-
-    # Advanced math — Lissajous flourishes
-    add_float_param(tree, "Flourish Freq A", 3.0, 0.1, 20.0)
-    add_float_param(tree, "Flourish Freq B", 2.0, 0.1, 20.0)
-    add_float_param(tree, "Flourish Amp A", 2.0, 0.0, 10.0)
-    add_float_param(tree, "Flourish Amp B", 2.0, 0.0, 10.0)
-    add_bool_param(tree, "Enable Flourish", False)
-
-    # Lens
-    add_float_param(tree, "Lens Thickness", 2.0, 0.4, 9.0)
-
-    # Material slots
-    add_bool_param(tree, "Enable UV Unwrap", True)
-    mat_frame = _material_param(tree, "Frame Material")
-    mat_bridge = _material_param(tree, "Bridge Material")
-    mat_temple = _material_param(tree, "Temple Material")
-    mat_hinge = _material_param(tree, "Hinge Material")
-    mat_lens = _material_param(tree, "Lens Material")
-
-    # Sub-builders
-    front_sub = _subtree("MEL_eyewear_front")
-    hinge_sub = _subtree("MEL_eyewear_hinge")
-    temple_sub = _subtree("MEL_eyewear_temple")
-    lens_sub = _subtree("MEL_eyewear_lens")
-    if not all((front_sub, hinge_sub, temple_sub, lens_sub)):
-        return (tree, gin, gout)
-
-    bx, by = 0, 0
-
-    a_mm = _mm(tree, gin, "Lens Width A", (bx - 1500, by + 400))
-    dbl_half = _math(tree, "MULTIPLY", (bx - 1300, by + 260),
-                     a=_mm(tree, gin, "Bridge DBL", (bx - 1500, by + 120)), b=0.5)
-    rt_mm = _mm(tree, gin, "Rim Thickness", (bx - 1500, by - 40))
-    x_ab = _math(tree, "ADD", (bx - 1120, by + 300), a=a_mm, b=dbl_half.outputs[0])
-    pivot_x = _math(tree, "ADD", (bx - 940, by + 300), a=x_ab.outputs[0], b=rt_mm)
-
-    front = _nest(tree, front_sub, (bx - 400, by + 300))
-    hinge_l = _nest(tree, hinge_sub, (bx - 400, by - 300))
-    hinge_r = _nest(tree, hinge_sub, (bx - 400, by - 550))
-    templ_l = _nest(tree, temple_sub, (bx - 400, by - 800))
-    templ_r = _nest(tree, temple_sub, (bx - 400, by - 1050))
-    lenses = _nest(tree, lens_sub, (bx - 400, by - 1300))
-    if not all((front, hinge_l, hinge_r, templ_l, templ_r, lenses)):
-        return (tree, gin, gout)
-
-    # Forward params
-    for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Rim Thickness",
-              "Rim Depth", "Corner Radius", "Silhouette", "Rim Edge Break",
-              "Inlay Sine Depth", "Panto Round", "Cat Eye Taper", "Cat Eye Sweep",
-              "Enable UV Unwrap"):
-        _forward(tree, gin, p, front, p)
-    for t in (templ_l, templ_r):
-        for p in ("Length to Bend", "Tip Drop", "Temple Width", "Temple Thickness",
-                  "Fold Angle", "Rim Thickness", "Inlay Sine Depth", "Enable UV Unwrap"):
-            _forward(tree, gin, p, t, p)
-    for h in (hinge_l, hinge_r):
-        for p in ("Barrel Radius", "Barrel Length", "Enable UV Unwrap"):
-            _forward(tree, gin, p, h, p)
-    for p in ("Lens Width A", "Lens Height B", "Bridge DBL", "Lens Thickness",
-              "Enable UV Unwrap"):
-        _forward(tree, gin, p, lenses, p)
-
-    inset = _math(tree, "ADD", (bx - 780, by + 120),
-                  a=_mm(tree, gin, "Temple Width", (bx - 1000, by + 160)),
-                  b=_mm(tree, gin, "Endpiece Clearance", (bx - 1000, by - 20)))
-    nest_x = _math(tree, "SUBTRACT", (bx - 620, by + 200),
-                   a=pivot_x.outputs[0], b=inset.outputs[0])
-
-    pivot = _vec(tree, (bx - 780, by - 40), x=nest_x.outputs[0])
-    neg_one_v = _vec(tree, (bx - 780, by - 260), x=-1.0, y=1.0, z=1.0)
-
-    placed = {}
-    for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
-        src = _g_sock(node, "Geometry", outputs=True)
-        if src is None:
-            placed[key] = None
-            continue
-        geom = src
-        if key in ("tr", "hr"):
-            m = safe_node(tree, "GeometryNodeTransform", (bx - 400, by - 700))
-            fl = safe_node(tree, "GeometryNodeFlipFaces", (bx - 240, by - 700))
-            if m is not None and fl is not None and neg_one_v is not None:
-                link_sockets(tree, geom, m.inputs["Geometry"])
-                link_sockets(tree, neg_one_v.outputs["Vector"], m.inputs["Scale"])
-                link_sockets(tree, m.outputs["Geometry"], fl.inputs["Mesh"])
-                geom = fl.outputs["Mesh"]
-        xf = safe_node(tree, "GeometryNodeTransform", (bx - 80, by - len(placed) * 240))
-        if xf is None:
-            placed[key] = None
-            continue
-        link_sockets(tree, geom, xf.inputs["Geometry"])
-        link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
-        placed[key] = xf.outputs["Geometry"]
-
-    joins = []
-    front_geo = _g_sock(front, "Geometry", outputs=True)
-    if front_geo is not None:
-        joins.append(front_geo)
-    for key in ("hl", "hr", "tl", "tr"):
-        if placed.get(key) is not None:
-            joins.append(placed[key])
-    lens_geo = _g_sock(lenses, "Geometry", outputs=True)
-    if lens_geo is not None:
-        joins.append(lens_geo)
-
-    if joins:
-        acc = joins[0]
-        for i, nxt in enumerate(joins[1:]):
-            j = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 200 + i * 160, by))
-            if j is None:
-                break
-            link_sockets(tree, acc, j.inputs["Geometry"])
-            link_sockets(tree, nxt, j.inputs["Geometry"])
-            acc = j.outputs["Geometry"]
-        link_sockets(tree, acc, gout.inputs["Geometry"])
-
-    label_tree(tree, group_name)
-    return (tree, gin, gout)
-
-
-register_builder(
-    "MEL_eyewear_hero", build_eyewear_hero, "Eyewear Hero",
-    "Ultimate hero builder — full eyewear surface in one node. Combines front, "
-    "temples, hinges, and lenses with all silhouette presets (0 Rect, 1 Panto, "
-    "2 Cat-Eye, 3 Aviator, 4 Browline, 5 Round), sine inlays, Lissajous flourishes, "
-    "live UV, and per-part material slots. Use this for the hero render.",
     category="eyewear")

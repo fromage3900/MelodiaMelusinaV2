@@ -158,5 +158,17 @@ if [ -f "Tools/validate_model_tiers.py" ]; then
   }
 fi
 
+echo "==> [pre-commit] Running documentation stability gate..."
+if [ -f "Tools/doc_lint.py" ]; then
+  if [ "${SKIP_DOC_LINT:-0}" != "1" ]; then
+    python Tools/doc_lint.py || {
+      echo "ERROR: [pre-commit] Documentation stability check failed"
+      echo "  Fix broken links, duplicate docs, or README count drift"
+      echo "  Run: python Tools/doc_lint.py"
+      exit 1
+    }
+  fi
+fi
+
 echo "==> [pre-commit] Validation passed."
 exit 0

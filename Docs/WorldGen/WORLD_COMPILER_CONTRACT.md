@@ -1,10 +1,10 @@
 # World Compiler Contract
 
-> **Agent entry:** use [`Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md`](../Production/AGENT_PRODUCTION_PLAYBOOK.md) to route work into this contract. `CURRENT_STATE.md` remains status authority. This contract owns compiled-world interfaces; it is not a second status surface.
+> **Agent entry:** use `Docs/Production/AGENT_PRODUCTION_PLAYBOOK.md` to route work into this contract. `CURRENT_STATE.md` remains status authority. This contract owns compiled-world interfaces; it is not a second status surface.
 
 **Status:** CANONICAL DATA CONTRACT (undated; supersedes the dated scaffold)  
-**Extracted from:** [`Docs/Houdini/MELODIA_WORLD_COMPILER_TOMORROW_SCAFFOLD_2026-08-30.md`](../Houdini/MELODIA_WORLD_COMPILER_TOMORROW_SCAFFOLD_2026-08-30.md) ("extract the stable contracts into an undated canonical doc later"), [`specs/resonant_world_manifest.v1.json`](../../specs/resonant_world_manifest.v1.json), [`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`](TERRAIN_HANDOFF_CONTRACT.md), [`Docs/Production/PCG/README.md`](../Production/PCG/README.md), and the Muse flower-field brief (2026-09-16).  
-**Authority above this page:** [`Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`](../WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md). Status of any compiled world is recorded only in [`CURRENT_STATE.md`](../../CURRENT_STATE.md).
+**Extracted from:** `Docs/Houdini/MELODIA_WORLD_COMPILER_TOMORROW_SCAFFOLD_2026-08-30.md` ("extract the stable contracts into an undated canonical doc later"), `specs/resonant_world_manifest.v1.json`, `Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md`, `Docs/Production/PCG/README.md`, and the Muse flower-field brief (2026-09-16).  
+**Authority above this page:** `Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md`. Status of any compiled world is recorded only in `CURRENT_STATE.md`.
 
 > **Houdini authors impossible evidence. Unreal decides when the player experiences it.**  
 > C++ decides what is true. PCG places. Materials read. TouchDesigner performs. The compiler is content over that stack, never a new authority.
@@ -52,7 +52,7 @@ Determinism rule: the same recipe (byte-identical) compiled by the same compiler
 
 ## 2. Recipe (`world_recipe.v1`)
 
-Schema: [`specs/schemas/world_recipe.v1.schema.json`](../../specs/schemas/world_recipe.v1.schema.json). Recipes live under `recipes/`. A recipe is small, human-readable, and never contains workstation paths.
+Schema: `specs/schemas/world_recipe.v1.schema.json`. Recipes live under `recipes/`. A recipe is small, human-readable, and never contains workstation paths.
 
 ```json
 {
@@ -108,7 +108,7 @@ The recipe keepout includes `bedroom_keepout` (center ~`[900, 2300]`, radius 110
 
 ## 3. Bundle (`world_compiler_bundle.v1`)
 
-Schema: [`specs/schemas/world_compiler_bundle.v1.schema.json`](../../specs/schemas/world_compiler_bundle.v1.schema.json). Output root: `Saved/WorldCompiler/<recipe_id>_<world_seed>/`.
+Schema: `specs/schemas/world_compiler_bundle.v1.schema.json`. Output root: `Saved/WorldCompiler/<recipe_id>_<world_seed>/`.
 
 | File | Contents |
 |---|---|
@@ -166,7 +166,7 @@ Column order is fixed; the UE `Load Data Table` node maps columns to a `FWorldCo
 
 The UE spawner uses `PCGMeshSelectorByAttribute` on `mesh` with material override by attribute on `[StemMaterial, material]`, so the template graph is **fully data-driven** (one spawner, no per-species branches). It packs `hue_seed, Resonance, wind_response` (and optionally `sparkle_response`) as per-instance custom data via `PCGInstanceDataPackerByAttribute`; the shared material reads them as instance custom data, so **no unique MI per instance**.
 
-Row struct: `/Game/Melodia/WorldCompiler/S_WorldCompilerPoint` (User Defined Struct, created once via Monolith `blueprint.create_user_defined_struct` from [`specs/schemas/world_compiler_point_row.v1.json`](../../specs/schemas/world_compiler_point_row.v1.json)). DataTable CSV import treats the first column as the row name, so the UE lane prepends a `---` column (`p<point_id>`).
+Row struct: `/Game/Melodia/WorldCompiler/S_WorldCompilerPoint` (User Defined Struct, created once via Monolith `blueprint.create_user_defined_struct` from `specs/schemas/world_compiler_point_row.v1.json`). DataTable CSV import treats the first column as the row name, so the UE lane prepends a `---` column (`p<point_id>`).
 
 ---
 
@@ -208,8 +208,8 @@ CURRENT_STATE + this contract
 
 | Tool | Role |
 |---|---|
-| [`Content/Python/scene_context_snapshot.py`](../../Content/Python/scene_context_snapshot.py) | one compact live 3D packet |
-| [`Content/Python/scene_context_cycle.py`](../../Content/Python/scene_context_cycle.py) | `begin()` / `end()` before/after + `scene_context_diff.json` |
+| `Content/Python/scene_context_snapshot.py` | one compact live 3D packet |
+| `Content/Python/scene_context_cycle.py` | `begin()` / `end()` before/after + `scene_context_diff.json` |
 
 Packets land under `Saved/Audit/SceneContext/<LevelName>/` and are **ephemeral evidence**, not status. One editor, one writer: Monolith **`127.0.0.1:9316`** only. A second editor logs to `Saved/Logs/BS_GodFile_2.log`. Skip-scaffold / `--fx` / `--lookdev` close-out still counts as a spatial edit: run the cycle around the driver, do not invent a second spatial AI.
 
@@ -248,7 +248,7 @@ Driver: `python Tools/world_compiler_ue_driver.py Saved/WorldCompiler/morning_ra
 
 ## 7. Evidence ladder for a compiled world
 
-Mirrors [`Docs/Production/PCG/README.md`](../Production/PCG/README.md) Â§5. A compiled world is only as proven as the highest rung with evidence on `main`.
+Mirrors `Docs/Production/PCG/README.md` Â§5. A compiled world is only as proven as the highest rung with evidence on `main`.
 
 1. **Offline** â€” `Tools/test_world_compiler.py` passes: schema, determinism (two runs, identical SHA), band counts equal the manifest, clearance masks honoured.
 2. **Editor graph** â€” DataTable imports; template graph reads it without edits.
@@ -263,7 +263,7 @@ Record the rung reached in `CURRENT_STATE.md` Â§2 ("Resonant World generator +
 
 ## 8. Stop rules (inherited verbatim)
 
-From [`WORLD_BUILDING_SOURCE_OF_TRUTH.md`](../WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) Â§5 â€” before extending the compiler, ask:
+From `WORLD_BUILDING_SOURCE_OF_TRUTH.md` Â§5 â€” before extending the compiler, ask:
 
 1. Does current C++ / Blueprint architecture already own this truth?
 2. Is this a presentation consumer instead of a new authority?

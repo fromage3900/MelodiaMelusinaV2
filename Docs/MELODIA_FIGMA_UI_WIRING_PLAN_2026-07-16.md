@@ -4,7 +4,7 @@
 **Status:** Plan / mapping only — no UMG authored, read-only pass (live UE session owned by another worker; no git commit)
 **Grandmaster Figma:** https://www.figma.com/design/Yx8ud7n39NdWZvnNvo4Xlf/Untitled · key `Yx8ud7n39NdWZvnNvo4Xlf` · page **12 Game UI**
 **Essential UI board:** `Melodia/EssentialUI` (`69:767`)
-**Depends on:** [MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md](MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md) · [ZUNDAMON_NPC_SPEC.md](ZUNDAMON_NPC_SPEC.md) · [scaffold_melodia_wbp_atoms.py](../Content/Python/scaffold_melodia_wbp_atoms.py) · [melodia_essential_ui_figma_20260716.md](../Saved/Audit/melodia_essential_ui_figma_20260716.md)
+**Depends on:** MELODIA_LUXURY_UI_FILIGREE_NIKKI_MOTION_PLAN_2026-07-12.md · ZUNDAMON_NPC_SPEC.md · scaffold_melodia_wbp_atoms.py · melodia_essential_ui_figma_20260716.md
 **Backing code:** `Plugins/MelodiaCore/Source/MelodiaCore/`
 
 > Purpose: give an implementer a per-panel path from **Figma frame (node-id) → target WBP → composed atoms → concrete game data binding → sparkle/motion hookup → Desktop/Mobile handling**, plus the recommended first vertical slice and the decisions/blockers that must be resolved before any UMG is authored.
@@ -33,7 +33,7 @@ Live Monolith inspection supersedes parts of the older static inventory below:
 
 - **Figma is live on MCP.** Verified `get_metadata` on the board `69:767` and pulled `get_design_context` on `Game/MainMenu` (`70:767`). All node-ids below are from the live file, not repo guesses.
 - **No WBP assets exist on disk yet.** `Content/Melodia/UI/` has zero `.uasset` (glob for `WBP_*.uasset` returns nothing). This is greenfield UMG — the scaffold script has only ever written its plan JSON. So every panel below is "author new WBP", not "edit existing".
-- **The scaffold map already names the target WBPs** in [scaffold_melodia_wbp_atoms.py](../Content/Python/scaffold_melodia_wbp_atoms.py) (`WBP_ATOMS`), all under `/Game/Melodia/UI/`. This plan reuses those names as the target paths.
+- **The scaffold map already names the target WBPs** in scaffold_melodia_wbp_atoms.py (`WBP_ATOMS`), all under `/Game/Melodia/UI/`. This plan reuses those names as the target paths.
 - **Design language (from live MainMenu context):** SoftMG parchment + Baroque filigree + pearl/gold/iri-cyan on void. Each Essential-UI panel embeds **both a Desktop 1440 variant and a Mobile 390 variant inside the same frame** (see MainMenu `70:853` "Desktop 1440 variant" + `70:855` "Mobile 390 variant").
 
 ### Design tokens (sampled from `Game/MainMenu` 70:767)
@@ -180,7 +180,7 @@ Format: **Figma → WBP (path) → composed atoms → data bindings → sparkle/
 - **Sparkle:** `Motion/OrrerySparkleOrbit` (`72:2165`) on select.
 
 ### 3.5 `Game/QuestJournal` (`71:1110`) → `WBP_QuestJournal`
-- **Bindings:** Active list → `AMelodiaQuestManagerBase::GetActiveQuests()`; Completed → `GetCompletedQuestIds()`; subscribe `OnQuestAccepted/OnQuestCompleted`. Quest labels `Q_ZUN_001..005` from [ZUNDAMON_NPC_SPEC.md](ZUNDAMON_NPC_SPEC.md) / `DT_ZundamonQuests`.
+- **Bindings:** Active list → `AMelodiaQuestManagerBase::GetActiveQuests()`; Completed → `GetCompletedQuestIds()`; subscribe `OnQuestAccepted/OnQuestCompleted`. Quest labels `Q_ZUN_001..005` from ZUNDAMON_NPC_SPEC.md / `DT_ZundamonQuests`.
 - **Gaps:** (a) quest manager is an **Actor**, so UI needs a locator (`GetAllActorsOfClass` or promote to subsystem) — blocker C3a; (b) `FMelodiaQuestDef` has **no objectives array** and no "daily" category, but the design shows active/completed/daily + objective lists — blocker C3b; (c) no link from the manager to `DT_ZundamonQuests` — blocker C3c.
 
 ### 3.6 `Game/NPCInfo` (`71:1195`) → `WBP_NPCInfo`
@@ -296,7 +296,7 @@ Author it behind a **minimal `WBP_MainMenu` shell** so it is reachable (Load Gam
 
 ## 7. Row F — First-Slice Essentials (desktop) wiring (2026-07-17)
 
-Focused desktop pass for the documented [first 20-minute vertical slice](MELODIA_FIRST_20_MINUTES_VERTICAL_SLICE.md). Board `Melodia/EssentialUI` row `Row F` = `79:1783`. Node audit: [melodia_essential_ui_rowF_20260717.md](../Saved/Audit/melodia_essential_ui_rowF_20260717.md). The full JRPG suite (Shop/Bestiary/CharacterStatus/WorldMap/Crafting/Achievements/Party/Inventory) is **deferred** per the slice doc's deferral list.
+Focused desktop pass for the documented first 20-minute vertical slice. Board `Melodia/EssentialUI` row `Row F` = `79:1783`. Node audit: melodia_essential_ui_rowF_20260717.md. The full JRPG suite (Shop/Bestiary/CharacterStatus/WorldMap/Crafting/Achievements/Party/Inventory) is **deferred** per the slice doc's deferral list.
 
 | Figma panel (node) | Target WBP | Primary binding (system) | New C++ needed? |
 |---|---|---|---|

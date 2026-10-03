@@ -9,11 +9,13 @@ loudly if the default did not take.
 Beads are instanced along a straight guide on +X at y=0, so a bead's Y half-extent
 IS its radius. Cord radius is 0.0032, well below any expected bead size.
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001

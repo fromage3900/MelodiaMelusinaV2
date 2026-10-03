@@ -1,7 +1,7 @@
 # PLAYBOOK_FLIPBOOK_FIXA — material owns scrub
 
 **Status:** quick reference (Package B, 2026-09-17)  
-**Canonical long form (Fix A lane):** [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md)  
+**Canonical long form (Fix A lane):** [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](PLAYBOOK_FLIPBOOK_FIXA.md)  
 **LeafPile receipt:** [`VFX_FIXA_LEAFPILE_2026-09-17.md`](VFX_FIXA_LEAFPILE_2026-09-17.md)
 
 ## Rule (non-negotiable)

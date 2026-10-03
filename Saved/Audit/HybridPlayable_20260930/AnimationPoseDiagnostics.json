@@ -1,0 +1,46 @@
+{
+  "evidence_level": "EDITOR ANIMATION DATA PROVEN; LIVE POSE REPAIR NOT PROVEN",
+  "root_graph_mutation": false,
+  "corrected_clip_created": false,
+  "original_root_scale": [
+    100,
+    100,
+    100
+  ],
+  "canonical_skeleton_root_scale": [
+    1,
+    1,
+    1
+  ],
+  "candidate_hand_at_1_4": {
+    "location_cm": [
+      3350.846387,
+      -2942.01939,
+      11899.33211
+    ],
+    "scale": [
+      100.000006,
+      99.99997,
+      100.000018
+    ]
+  },
+  "bound_release_hand_at_point45": {
+    "location_cm": [
+      0.821753,
+      35.556121,
+      111.92995
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "fingerprint_before": "892e53f93276f2694820a7ad7cc78793220355dc",
+  "fingerprint_repeat": "892e53f93276f2694820a7ad7cc78793220355dc",
+  "fingerprint_after_noop_resave": "892e53f93276f2694820a7ad7cc78793220355dc",
+  "abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "candidate": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+  "diagnostic_limit": "Isolated frame captures show T-pose-looking frames for both candidate and known current clip; not sufficient to claim a runtime T-pose.",
+  "handoff": "Docs/Handoffs/MUSE_ARCHERY_RIDER_TAKEOVER_20260930.md"
+}

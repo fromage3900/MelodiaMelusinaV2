@@ -37,6 +37,7 @@ from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
+from . import companion_flock  # noqa: F401 - Choral Sheep flock + wool bloom builders
 from . import planetary_terrain  # noqa: F401 - v3 deterministic planetary musical terrain
 from . import infinity_nikki_kit  # noqa: F401 - Infinity Nikki expanded wardrobe kit (bloom pavilion/nook/runway)
 from . import mother  # noqa: F401 - Faraway Mother Monolith kit (8 builders)

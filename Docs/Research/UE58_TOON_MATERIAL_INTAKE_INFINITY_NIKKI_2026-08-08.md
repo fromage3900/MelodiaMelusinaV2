@@ -37,11 +37,11 @@ The current audit found:
 | Material textures under the root | 33 | 26 are currently reported as unreferenced |
 | Entire `Content` tree matching the naming convention | 1,839 | Includes third-party, legacy, compatibility, imported, and non-production roots; not all are in the production spine |
 
-The material-library audit is the source of truth for the current disk-level health snapshot: [material_library_audit.json](C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\material_library_audit.json).
+The material-library audit is the source of truth for the current disk-level health snapshot: material_library_audit.json.
 
 ### Deep graph baseline
 
-The committed UE 5.8 T3D snapshot covers the art-direction spine rather than every instance leaf: 55 assets, 5,303 graph nodes, 6,636,491 bytes of payload, comprising 10 master materials, 27 identity/material functions, 17 Toon Profiles, and one parameter collection. It intentionally excludes the 483 instance leaves in that snapshot, plus archive/scratch/date variants. See [the T3D baseline README](C:\EnvironmentPortfolio\BS_GodFile\Docs\T3D_Baseline\README.md) and [material_catalog.json](C:\EnvironmentPortfolio\BS_GodFile\Docs\T3D_Baseline\material_catalog.json).
+The committed UE 5.8 T3D snapshot covers the art-direction spine rather than every instance leaf: 55 assets, 5,303 graph nodes, 6,636,491 bytes of payload, comprising 10 master materials, 27 identity/material functions, 17 Toon Profiles, and one parameter collection. It intentionally excludes the 483 instance leaves in that snapshot, plus archive/scratch/date variants. See the T3D baseline README and material_catalog.json.
 
 This distinction matters: the intake is exhaustive at the library/file level, while graph-level judgment is deepest on the current 55-asset material spine. Instances were reviewed by folder/family, references, parent population, and existing audits rather than by pretending that every leaf is a new shader graph.
 
@@ -55,7 +55,7 @@ The current Universal graph references `MF_NikkiDreamGrade`, `MF_DF_ContactBlend
 
 ## UE 5.8 Toon and Substrate findings
 
-UE 5.8 introduces experimental Substrate Toon Shading. Epic describes it as a stylized solution built on the Substrate Blendable GBuffer and says it supports local lights, skylights, and Lumen GI. The new Toon BSDF and Toon Profile provide the controlled diffuse/specular response needed for stylized lighting. See the [UE 5.8 release notes](https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes?lang=en-US), [Substrate Toon BSDF API](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/UMaterialExpressionSubstrateToon-?lang=en-US), and [Toon Profile API](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/UToonProfile?lang=en-US).
+UE 5.8 introduces experimental Substrate Toon Shading. Epic describes it as a stylized solution built on the Substrate Blendable GBuffer and says it supports local lights, skylights, and Lumen GI. The new Toon BSDF and Toon Profile provide the controlled diffuse/specular response needed for stylized lighting. See the UE 5.8 release notes, Substrate Toon BSDF API, and Toon Profile API.
 
 The important production constraints are:
 
@@ -67,13 +67,13 @@ The important production constraints are:
 
 The practical conclusion: use Toon BSDF as the common lighting response, but keep the graph physically disciplined. PBR-ish base inputs, roughness, metalness/F0 intent, normal, and masks should remain coherent under changing lights, Lumen, weather, and time of day. Stylization belongs in the Toon Profile, controlled ramps, tint/mask layers, and deliberately authored accents—not in arbitrary per-material lighting hacks.
 
-See Epic’s [Substrate overview](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-substrate-materials-in-unreal-engine) and [real-time rendering optimization guidelines](https://dev.epicgames.com/documentation/en-us/unreal-engine/guidelines-for-optimizing-rendering-for-real-time-in-unreal-engine).
+See Epic’s Substrate overview and real-time rendering optimization guidelines.
 
 ## The Infinity Nikki lens
 
 This is not a claim that the project can reproduce Infold’s proprietary graphs. The lens is based on Infold’s official UE interview and translates its public production principles into decisions for this library.
 
-Infold describes Infinity Nikki as a balance of cartoon fantasy and realism while retaining PBR-based lighting, with weekly art benchmark meetings to keep the style unified. It also describes versatile fabric masters that merge textures efficiently and reduce material variants, standardized PBR inputs for changing light/weather, VT/VHM terrain optimization, platform-aware foliage and fur LOD, custom treatment of transparent character parts, restrained post processing to preserve room for photo filters, and special materials for high-value jewelry. See [Behind the Scenes of Infinity Nikki](https://www.unrealengine.com/developer-interviews/behind-the-scenes-of-infinity-nikki-tracing-a-glamorous-turn-to-an-unreal-open-world?lang=en-US).
+Infold describes Infinity Nikki as a balance of cartoon fantasy and realism while retaining PBR-based lighting, with weekly art benchmark meetings to keep the style unified. It also describes versatile fabric masters that merge textures efficiently and reduce material variants, standardized PBR inputs for changing light/weather, VT/VHM terrain optimization, platform-aware foliage and fur LOD, custom treatment of transparent character parts, restrained post processing to preserve room for photo filters, and special materials for high-value jewelry. See Behind the Scenes of Infinity Nikki.
 
 Translated into a material review rubric, every production material should answer:
 
@@ -136,7 +136,7 @@ Recommended action:
 - Use cheap opaque/masked or low-cost translucent fallbacks for distant water, mobile/handheld profiles, and dense water surfaces.
 - Do not fold water into Universal. Its lighting, depth, refraction, shoreline, and motion requirements are materially different.
 
-Supporting evidence: [grand_water_v7.json](C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\grand_water_v7.json).
+Supporting evidence: grand_water_v7.json.
 
 ### 4. Nikki masters and Nikki functions — promote only as a controlled style lane
 
@@ -379,15 +379,15 @@ Only after the above is stable, add new families such as jewelry, shell fur, adv
 
 ## Local evidence index
 
-- [Current material health audit](C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\material_library_audit.json)
-- [Landscape AAA audit](C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\landscape_aaa_audit.json)
-- [Water v7 audit](C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\grand_water_v7.json)
-- [Committed T3D spine baseline](C:\EnvironmentPortfolio\BS_GodFile\Docs\T3D_Baseline\README.md)
-- [Universal graph review and prior optimization stages](C:\EnvironmentPortfolio\BS_GodFile\Docs\Production\UNIVERSAL_MASTER_NODE_REVIEW.md)
-- [Historical material-system review](C:\EnvironmentPortfolio\BS_GodFile\Docs\Production\MATERIAL_SYSTEM_REVIEW.md)
-- [Layering/parallax/Nikki review](C:\EnvironmentPortfolio\BS_GodFile\Docs\Production\MATERIAL_LAYERING_PARALLAX_NIKKI_REVIEW.md)
-- [Current project rendering configuration](C:\EnvironmentPortfolio\BS_GodFile\Config\DefaultEngine.ini)
-- [Portfolio material manifest](C:\EnvironmentPortfolio\BS_GodFile\Saved\Portfolio\Materials\material_family_manifest.json)
+- Current material health audit
+- Landscape AAA audit
+- Water v7 audit
+- Committed T3D spine baseline
+- Universal graph review and prior optimization stages
+- Historical material-system review
+- Layering/parallax/Nikki review
+- Current project rendering configuration
+- Portfolio material manifest
 
 ## Bottom line
 

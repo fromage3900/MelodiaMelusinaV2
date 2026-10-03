@@ -5,7 +5,7 @@
 > checkout. Only downloads the scripts, addons, and tools you need -- ~120 MB
 > total. For MeshBlend, PCGEx, or any Unreal plugin work, use
 > `bash deploy/collaborator_onboarding.sh lightweight` from
-> [COLLABORATOR_SETUP.md](../COLLABORATOR_SETUP.md).
+> COLLABORATOR_SETUP.md.
 
 ---
 
@@ -48,7 +48,7 @@ bash deploy/collaborator_onboarding.sh docs50
 - (check) Full documentation
 - No .uasset files, .blend files, textures, or UE content (docs50 / Option A)
 
-See also [COLLABORATOR_SETUP.md](../COLLABORATOR_SETUP.md) and [LIVEOPS_GIT_SOP_2026-08-11.md](LIVEOPS_GIT_SOP_2026-08-11.md).
+See also COLLABORATOR_SETUP.md and LIVEOPS_GIT_SOP_2026-08-11.md.
 
 ---
 
@@ -79,10 +79,10 @@ deploy/surreal_greybox/-> Blender addons/surreal_greybox/
 
 | Tool | Version | Download |
 |------|---------|----------|
-| Blender | 5.2+ | [blender.org](https://www.blender.org/) |
+| Blender | 5.2+ | blender.org |
 | Unreal Engine | 5.8 | Epic Games Launcher |
-| VOICEVOX | 0.25+ | [voicevox.hiroshiba.jp](https://voicevox.hiroshiba.jp/) |
-| VRM Importer (Blender) | 4.4+ | [GitHub](https://github.com/saturday06/VRM-Addon-for-Blender/releases) |
+| VOICEVOX | 0.25+ | voicevox.hiroshiba.jp |
+| VRM Importer (Blender) | 4.4+ | GitHub |
 
 ---
 
@@ -150,8 +150,8 @@ You should see: `Γ£ô LiveLink  Γ£ô BL MCP  Γ£ô UE MCP`
 
 ---
 
-Full guide: [Docs/ONBOARDING_LIVE_COLLAB.md](Docs/ONBOARDING_LIVE_COLLAB.md)
-Character integration: [Docs/ZUNZUN_FAMILY_INTEGRATION.md](Docs/ZUNZUN_FAMILY_INTEGRATION.md)
-NPC Blueprint spec: [Docs/ZUNDAMON_NPC_SPEC.md](Docs/ZUNDAMON_NPC_SPEC.md)
+Full guide: Docs/ONBOARDING_LIVE_COLLAB.md
+Character integration: Docs/ZUNZUN_FAMILY_INTEGRATION.md
+NPC Blueprint spec: Docs/ZUNDAMON_NPC_SPEC.md
 
 

@@ -28,7 +28,7 @@ Reference audit for `MM_Master_SurrealAnimatedPBR_*` graph family. Sources: offi
 ## Buffer discipline
 
 - `buffer` before `warp`, multi-sample filters while editing
-- `normal_map`: enable buffer while editing; `param2: 0` (buffer off) for export quality ([normal map docs](https://rodzill4.github.io/material-maker/doc/node_filter_normal_map.html))
+- `normal_map`: enable buffer while editing; `param2: 0` (buffer off) for export quality (normal map docs)
 
 ## Material node constraint
 
@@ -48,8 +48,8 @@ Reference audit for `MM_Master_SurrealAnimatedPBR_*` graph family. Sources: offi
 
 ## Configuration presets (manual in MM UI)
 
-After opening generated graph, optional Remote config widgets for: `NeutralBatch`, `NikkiHero`, `MadokaNeon`, `IttoBold`, `CelestialDeep`, `SakuraDream`. Named scalar defaults are set in builder; presets are tuned interactively per [remote docs](https://rodzill4.github.io/material-maker/doc/remote_nodes.html).
+After opening generated graph, optional Remote config widgets for: `NeutralBatch`, `NikkiHero`, `MadokaNeon`, `IttoBold`, `CelestialDeep`, `SakuraDream`. Named scalar defaults are set in builder; presets are tuned interactively per remote docs.
 
 ## Subgraph hierarchy
 
-Builder uses **flat graph + comment lanes** (same readability as subgraphs, fewer deserialize edge cases). Lane IDs match [`master_graph_lanes.py`](../../Content/Python/master_graph_lanes.py).
+Builder uses **flat graph + comment lanes** (same readability as subgraphs, fewer deserialize edge cases). Lane IDs match `master_graph_lanes.py`.
