@@ -280,7 +280,7 @@ Never use Universe Foundry to introduce:
 - a second World Compiler;
 - a second save authority;
 - Jev or Hermes editor mutation;
-- runtime Houdini ownership;
+- Houdini ownership in shipping builds (live Houdini Engine cooking in the editor is canonical authoring; see `Docs/Architecture/AUDIO_REACTIVE_CANON.md` §7);
 - a second OSC semantic bridge;
 - a second MPC/audio writer;
 - self-certified agent completion.
