@@ -1,0 +1,128 @@
+{
+  "plan": "AAA_HEADLESS_PLAN_20261003",
+  "base_file": "Saved/Audit/choral_sheep/gn_v2_20260919/choral_sheep_GNv3_A1_idle_20260927.blend",
+  "output_file": "Saved/Audit/choral_sheep/choral_sheep_AAA_v1_20261003.blend",
+  "ornaments": {
+    "SheepHorns": "4840v",
+    "SheepWreathCollar": "416v",
+    "SheepMusicBeads": "3100v",
+    "SheepPearlDanglers": "3420v",
+    "SheepTailScroll": "576v",
+    "SheepEarBead_L": "86v",
+    "SheepEarBead_R": "86v",
+    "ForeheadStar": "148v",
+    "PearlDangl_0": "1322v",
+    "PearlDangl_1": "1322v",
+    "PearlDangl_2": "1322v"
+  },
+  "wool": {
+    "Wool_Shell": "4000v",
+    "Wool_Cards": "6306v",
+    "Wool_Groom": "9000 curves"
+  },
+  "shape_keys": [
+    "Basis",
+    "Breath_In",
+    "Breath_Out",
+    "Blink_L",
+    "Blink_R",
+    "Cheek_Puff",
+    "Jaw_Open",
+    "Lip_Curl",
+    "Ears_Perk",
+    "Muzzle_Sniff",
+    "Body_Squash",
+    "Body_Stretch",
+    "Tail_Curl",
+    "Wool_Puff",
+    "Wool_Ripple",
+    "Fleece_Settle"
+  ],
+  "actions": [
+    "CHORAL_A1_Idle_Rig",
+    "CHORAL_A1_Idle_ShapeKeys",
+    "CHORAL_A1_Walk_Rig"
+  ],
+  "ghosts_hidden": [
+    "sheephighpolydone",
+    "sheephighpolydone.001"
+  ],
+  "control_shapes_hidden": 54,
+  "walk_action": {
+    "name": "CHORAL_A1_Walk_Rig",
+    "frames": 24,
+    "bones_keyed": [
+      "c_leg_fk.l",
+      "c_leg_fk.r",
+      "c_thigh_fk.l",
+      "c_thigh_fk.r",
+      "c_spine_01.x",
+      "c_spine_02.x",
+      "c_head.x",
+      "c_neck.x",
+      "c_root.x"
+    ]
+  },
+  "renders": [
+    {
+      "angle": 0,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_000.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 45,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_045.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 90,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_090.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 135,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_135.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 180,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_180.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 225,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_225.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 270,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_270.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": 315,
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\turntable_315.png",
+      "exists": false,
+      "bytes": 0
+    },
+    {
+      "angle": "closeup",
+      "file": "Saved/Audit/choral_sheep/aaa_render_20261003\\beauty_closeup.png",
+      "exists": false,
+      "bytes": 0
+    }
+  ],
+  "still_owed": [
+    "Run, graze, bleat, ear flick, tail wag, harmonize animations",
+    "SSS wool material + proper eye shader",
+    "UE integration (retarget, ABP binding)",
+    "In-PIE follow proof"
+  ]
+}

@@ -1,0 +1,801 @@
+{
+  "format_version": 1,
+  "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "graph_name": "AnimGraph",
+  "graph_type": "function",
+  "include_hidden_pins": true,
+  "nodes": [
+    {
+      "id": "AnimGraphNode_Root_0",
+      "class": "AnimGraphNode_Root",
+      "title": "Output Pose\nAnimGraph",
+      "pos": [
+        272,
+        -64
+      ],
+      "pins": [
+        {
+          "id": "057D0FA647415F72330FB0827BAF57F4",
+          "name": "Result",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_ComponentToLocalSpace_0.Pose"
+          ],
+          "connected_to_ids": [
+            "2205578948737E473D1AC4B7B61ACEBC"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_BlendSpacePlayer_0",
+      "class": "AnimGraphNode_BlendSpacePlayer",
+      "title": "BS_Melusina_Locomotion_Hybrid\nBlendspace Player\nSync group Locomotion",
+      "pos": [
+        192,
+        0
+      ],
+      "pins": [
+        {
+          "id": "0F62E4DF40CE21F15E9F0FB93D6E8266",
+          "name": "X",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.000000",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "30BECA1B44F767AA25DF7D984FE7A459",
+          "name": "Y",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.000000",
+          "hidden": true,
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D5BB7F224BA43F20922F2B847BBFED97",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_LocalToComponentSpace_0",
+      "class": "AnimGraphNode_LocalToComponentSpace",
+      "title": "Local To Component",
+      "pos": [
+        144,
+        96
+      ],
+      "pins": [
+        {
+          "id": "B0515976449390AC142968BC88D7E8DF",
+          "name": "LocalPose",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_LayeredBoneBlend_0.Pose"
+          ],
+          "connected_to_ids": [
+            "FCDB051D45530E19D3AA2F95848FCFFE"
+          ]
+        },
+        {
+          "id": "B39F6740439023FC5FDCF49AD32DE708",
+          "name": "ComponentPose",
+          "direction": "output",
+          "type": "struct:ComponentSpacePoseLink",
+          "connected_to": [
+            "AnimGraphNode_KawaiiPhysics_0.ComponentPose"
+          ],
+          "connected_to_ids": [
+            "E526C96A4FBD3FB4D6F9908F106C6847"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_ComponentToLocalSpace_0",
+      "class": "AnimGraphNode_ComponentToLocalSpace",
+      "title": "Component To Local",
+      "pos": [
+        336,
+        96
+      ],
+      "pins": [
+        {
+          "id": "BF4DDE11409B9028FBEAAA88DFC2507B",
+          "name": "ComponentPose",
+          "direction": "input",
+          "type": "struct:ComponentSpacePoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_LocalToComponentSpace_1.ComponentPose"
+          ],
+          "connected_to_ids": [
+            "8C167F3F46C59701B7CA2F827D48332B"
+          ]
+        },
+        {
+          "id": "2205578948737E473D1AC4B7B61ACEBC",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_Root_0.Result"
+          ],
+          "connected_to_ids": [
+            "057D0FA647415F72330FB0827BAF57F4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_StateMachine_1",
+      "class": "AnimGraphNode_StateMachine",
+      "title": "MelusinaLocomotion\nState Machine",
+      "pos": [
+        192,
+        192
+      ],
+      "pins": [
+        {
+          "id": "9749EE3149177FBEDF0420B678870273",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_Slot_0.Source"
+          ],
+          "connected_to_ids": [
+            "14F689A0438D6A6C8FA1C1AE87CA449F"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_Slot_0",
+      "class": "AnimGraphNode_Slot",
+      "title": "Slot 'DefaultSlot'\nGroup 'DefaultGroup'",
+      "pos": [
+        288,
+        0
+      ],
+      "pins": [
+        {
+          "id": "14F689A0438D6A6C8FA1C1AE87CA449F",
+          "name": "Source",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_StateMachine_1.Pose"
+          ],
+          "connected_to_ids": [
+            "9749EE3149177FBEDF0420B678870273"
+          ]
+        },
+        {
+          "id": "06F5CF904619855D1C29BBA848DDEB5A",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_Slot_4.Source",
+            "AnimGraphNode_LayeredBoneBlend_0.BasePose"
+          ],
+          "connected_to_ids": [
+            "8334B22B4F3A66A6448B5DA29169193B",
+            "786B7EB742E5E1BD1B863AA7B059B548"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_KawaiiPhysics_0",
+      "class": "AnimGraphNode_KawaiiPhysics",
+      "title": "Kawaii Physics\nRoot: c_kilt_master_x",
+      "pos": [
+        240,
+        144
+      ],
+      "pins": [
+        {
+          "id": "E526C96A4FBD3FB4D6F9908F106C6847",
+          "name": "ComponentPose",
+          "direction": "input",
+          "type": "struct:ComponentSpacePoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_LocalToComponentSpace_0.ComponentPose"
+          ],
+          "connected_to_ids": [
+            "B39F6740439023FC5FDCF49AD32DE708"
+          ]
+        },
+        {
+          "id": "7BE1FDAF4F189B142BBBCDAD603309C5",
+          "name": "bAlphaBoolEnabled",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "True",
+          "hidden": true,
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "3AF356E14E9F9D04E734E6BCBC968FAA",
+          "name": "Alpha",
+          "direction": "input",
+          "type": "float",
+          "default_value": "1.000000",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "9F67439A46DBAE51B574A8A6F78C4B8C",
+          "name": "AlphaCurveName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "None",
+          "hidden": true,
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E19790B1470370465B5C53B93C19B261",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:ComponentSpacePoseLink",
+          "connected_to": [
+            "AnimGraphNode_CopyBone_0.ComponentPose"
+          ],
+          "connected_to_ids": [
+            "05F547C447C962F3E567A8A10FF19254"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_CopyBone_0",
+      "class": "AnimGraphNode_CopyBone",
+      "title": "Copy Bone\nSource Bone: head_x\nTarget Bone: eyes",
+      "pos": [
+        400,
+        -64
+      ],
+      "pins": [
+        {
+          "id": "05F547C447C962F3E567A8A10FF19254",
+          "name": "ComponentPose",
+          "direction": "input",
+          "type": "struct:ComponentSpacePoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_KawaiiPhysics_0.Pose"
+          ],
+          "connected_to_ids": [
+            "E19790B1470370465B5C53B93C19B261"
+          ]
+        },
+        {
+          "id": "F8FF78364D56985F2A7519AA08E41176",
+          "name": "bAlphaBoolEnabled",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "True",
+          "hidden": true,
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "31B13D7C474EDB367E3F26B07B9197D9",
+          "name": "Alpha",
+          "direction": "input",
+          "type": "float",
+          "default_value": "1.000000",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D79949CD4D3349FF6535A691CCC19780",
+          "name": "AlphaCurveName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "None",
+          "hidden": true,
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B39DAAAD4FE232047D1A47BE0AEEDDD5",
+          "name": "bCopyTranslation",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "False",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B5D7DFDA4DF5547936D6AEA8A859861B",
+          "name": "bCopyRotation",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "False",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "856D14974143B0E395540497085C0B4C",
+          "name": "bCopyScale",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "False",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "9E6EA3004F87D67761F963979FD8B9B2",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:ComponentSpacePoseLink",
+          "connected_to": [
+            "AnimGraphNode_ComponentToLocalSpace_1.ComponentPose"
+          ],
+          "connected_to_ids": [
+            "39BBB16D4E0E6F09F85451A06B595FC1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_Slot_1",
+      "class": "AnimGraphNode_Slot",
+      "title": "Slot 'DefaultSlot'\nGroup 'DefaultGroup'",
+      "pos": [
+        192,
+        0
+      ],
+      "pins": [
+        {
+          "id": "C4E136C54009E300D638BFB1B9EE23FF",
+          "name": "Source",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "C623B8F844B03B8C8642DBB49A8DB1B2",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_Slot_2",
+      "class": "AnimGraphNode_Slot",
+      "title": "Slot 'DefaultSlot'\nGroup 'DefaultGroup'",
+      "pos": [
+        192,
+        0
+      ],
+      "pins": [
+        {
+          "id": "F3A07CFF4C5E495B121CEA901C29481E",
+          "name": "Source",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0C720B254B292EA0D5AA418463A93BC9",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_Slot_3",
+      "class": "AnimGraphNode_Slot",
+      "title": "Slot 'DefaultSlot'\nGroup 'DefaultGroup'",
+      "pos": [
+        192,
+        0
+      ],
+      "pins": [
+        {
+          "id": "70A6A0A64E6AF0B85A2CA4998AEDC3C5",
+          "name": "Source",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1351790B40193C43FF2BDCAC015BFE60",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_ModifyCurve_1",
+      "class": "AnimGraphNode_ModifyCurve",
+      "title": "Modify Curve",
+      "pos": [
+        480,
+        -64
+      ],
+      "pins": [
+        {
+          "id": "6D6AC06649C33852C9A902B85458475E",
+          "name": "SourcePose",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_ComponentToLocalSpace_1.Pose"
+          ],
+          "connected_to_ids": [
+            "7AA0BB834131F9A3800560A754A029BA"
+          ]
+        },
+        {
+          "id": "A6ED7FA148F9DDBB96153FA784506F43",
+          "name": "Alpha",
+          "direction": "input",
+          "type": "float",
+          "default_value": "1.000000",
+          "connected_to": [
+            "K2Node_VariableGet_0.BlinkAlpha"
+          ],
+          "connected_to_ids": [
+            "FC0760AE49F9751C091D65AFA286953C"
+          ]
+        },
+        {
+          "id": "5F67C77240999A7A58540895FE2CFEA4",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_LocalToComponentSpace_1.LocalPose"
+          ],
+          "connected_to_ids": [
+            "5EB00E0E495C715774C2479CAEF7A814"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_LocalToComponentSpace_1",
+      "class": "AnimGraphNode_LocalToComponentSpace",
+      "title": "Local To Component",
+      "pos": [
+        400,
+        16
+      ],
+      "pins": [
+        {
+          "id": "5EB00E0E495C715774C2479CAEF7A814",
+          "name": "LocalPose",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_ModifyCurve_1.Pose"
+          ],
+          "connected_to_ids": [
+            "5F67C77240999A7A58540895FE2CFEA4"
+          ]
+        },
+        {
+          "id": "8C167F3F46C59701B7CA2F827D48332B",
+          "name": "ComponentPose",
+          "direction": "output",
+          "type": "struct:ComponentSpacePoseLink",
+          "connected_to": [
+            "AnimGraphNode_ComponentToLocalSpace_0.ComponentPose"
+          ],
+          "connected_to_ids": [
+            "BF4DDE11409B9028FBEAAA88DFC2507B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_ComponentToLocalSpace_1",
+      "class": "AnimGraphNode_ComponentToLocalSpace",
+      "title": "Component To Local",
+      "pos": [
+        432,
+        -64
+      ],
+      "pins": [
+        {
+          "id": "39BBB16D4E0E6F09F85451A06B595FC1",
+          "name": "ComponentPose",
+          "direction": "input",
+          "type": "struct:ComponentSpacePoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_CopyBone_0.Pose"
+          ],
+          "connected_to_ids": [
+            "9E6EA3004F87D67761F963979FD8B9B2"
+          ]
+        },
+        {
+          "id": "7AA0BB834131F9A3800560A754A029BA",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_ModifyCurve_1.SourcePose"
+          ],
+          "connected_to_ids": [
+            "6D6AC06649C33852C9A902B85458475E"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_0",
+      "class": "K2Node_VariableGet",
+      "title": "Get BlinkAlpha",
+      "pos": [
+        480,
+        -160
+      ],
+      "pins": [
+        {
+          "id": "FC0760AE49F9751C091D65AFA286953C",
+          "name": "BlinkAlpha",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "AnimGraphNode_ModifyCurve_1.Alpha"
+          ],
+          "connected_to_ids": [
+            "A6ED7FA148F9DDBB96153FA784506F43"
+          ]
+        },
+        {
+          "id": "DDB0F99F48BF0426E2944BB778406A75",
+          "name": "self",
+          "direction": "input",
+          "type": "object:ABP_Melusina_Current_C",
+          "hidden": true,
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ],
+      "variable_name": "BlinkAlpha",
+      "is_self_context": true
+    },
+    {
+      "id": "AnimGraphNode_LayeredBoneBlend_0",
+      "class": "AnimGraphNode_LayeredBoneBlend",
+      "title": "Layered blend per bone",
+      "pos": [
+        192,
+        -48
+      ],
+      "pins": [
+        {
+          "id": "786B7EB742E5E1BD1B863AA7B059B548",
+          "name": "BasePose",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_Slot_0.Pose"
+          ],
+          "connected_to_ids": [
+            "06F5CF904619855D1C29BBA848DDEB5A"
+          ]
+        },
+        {
+          "id": "44FA8D744601D8F914252F84518D880D",
+          "name": "BlendPoses_0",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_Slot_4.Pose"
+          ],
+          "connected_to_ids": [
+            "7DB069414A1063EBFFF58A8BA5266EBF"
+          ]
+        },
+        {
+          "id": "835C3665430AF77122EDC398617EA9A2",
+          "name": "BlendWeights_0",
+          "direction": "input",
+          "type": "float",
+          "default_value": "1.000000",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "FCDB051D45530E19D3AA2F95848FCFFE",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_LocalToComponentSpace_0.LocalPose"
+          ],
+          "connected_to_ids": [
+            "B0515976449390AC142968BC88D7E8DF"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AnimGraphNode_Slot_4",
+      "class": "AnimGraphNode_Slot",
+      "title": "Slot 'UpperBody'\nGroup 'DefaultGroup'",
+      "pos": [
+        240,
+        -128
+      ],
+      "pins": [
+        {
+          "id": "8334B22B4F3A66A6448B5DA29169193B",
+          "name": "Source",
+          "direction": "input",
+          "type": "struct:PoseLink",
+          "default_value": "(LinkID=-1,SourceLinkID=-1)",
+          "connected_to": [
+            "AnimGraphNode_Slot_0.Pose"
+          ],
+          "connected_to_ids": [
+            "06F5CF904619855D1C29BBA848DDEB5A"
+          ]
+        },
+        {
+          "id": "7DB069414A1063EBFFF58A8BA5266EBF",
+          "name": "Pose",
+          "direction": "output",
+          "type": "struct:PoseLink",
+          "connected_to": [
+            "AnimGraphNode_LayeredBoneBlend_0.BlendPoses_0"
+          ],
+          "connected_to_ids": [
+            "44FA8D744601D8F914252F84518D880D"
+          ]
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from_node": "AnimGraphNode_LocalToComponentSpace_0",
+      "from_pin": "ComponentPose",
+      "to_node": "AnimGraphNode_KawaiiPhysics_0",
+      "to_pin": "ComponentPose",
+      "from_pin_id": "B39F6740439023FC5FDCF49AD32DE708",
+      "to_pin_id": "E526C96A4FBD3FB4D6F9908F106C6847"
+    },
+    {
+      "from_node": "AnimGraphNode_ComponentToLocalSpace_0",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_Root_0",
+      "to_pin": "Result",
+      "from_pin_id": "2205578948737E473D1AC4B7B61ACEBC",
+      "to_pin_id": "057D0FA647415F72330FB0827BAF57F4"
+    },
+    {
+      "from_node": "AnimGraphNode_StateMachine_1",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_Slot_0",
+      "to_pin": "Source",
+      "from_pin_id": "9749EE3149177FBEDF0420B678870273",
+      "to_pin_id": "14F689A0438D6A6C8FA1C1AE87CA449F"
+    },
+    {
+      "from_node": "AnimGraphNode_Slot_0",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_Slot_4",
+      "to_pin": "Source",
+      "from_pin_id": "06F5CF904619855D1C29BBA848DDEB5A",
+      "to_pin_id": "8334B22B4F3A66A6448B5DA29169193B"
+    },
+    {
+      "from_node": "AnimGraphNode_Slot_0",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_LayeredBoneBlend_0",
+      "to_pin": "BasePose",
+      "from_pin_id": "06F5CF904619855D1C29BBA848DDEB5A",
+      "to_pin_id": "786B7EB742E5E1BD1B863AA7B059B548"
+    },
+    {
+      "from_node": "AnimGraphNode_KawaiiPhysics_0",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_CopyBone_0",
+      "to_pin": "ComponentPose",
+      "from_pin_id": "E19790B1470370465B5C53B93C19B261",
+      "to_pin_id": "05F547C447C962F3E567A8A10FF19254"
+    },
+    {
+      "from_node": "AnimGraphNode_CopyBone_0",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_ComponentToLocalSpace_1",
+      "to_pin": "ComponentPose",
+      "from_pin_id": "9E6EA3004F87D67761F963979FD8B9B2",
+      "to_pin_id": "39BBB16D4E0E6F09F85451A06B595FC1"
+    },
+    {
+      "from_node": "AnimGraphNode_ModifyCurve_1",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_LocalToComponentSpace_1",
+      "to_pin": "LocalPose",
+      "from_pin_id": "5F67C77240999A7A58540895FE2CFEA4",
+      "to_pin_id": "5EB00E0E495C715774C2479CAEF7A814"
+    },
+    {
+      "from_node": "AnimGraphNode_LocalToComponentSpace_1",
+      "from_pin": "ComponentPose",
+      "to_node": "AnimGraphNode_ComponentToLocalSpace_0",
+      "to_pin": "ComponentPose",
+      "from_pin_id": "8C167F3F46C59701B7CA2F827D48332B",
+      "to_pin_id": "BF4DDE11409B9028FBEAAA88DFC2507B"
+    },
+    {
+      "from_node": "AnimGraphNode_ComponentToLocalSpace_1",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_ModifyCurve_1",
+      "to_pin": "SourcePose",
+      "from_pin_id": "7AA0BB834131F9A3800560A754A029BA",
+      "to_pin_id": "6D6AC06649C33852C9A902B85458475E"
+    },
+    {
+      "from_node": "K2Node_VariableGet_0",
+      "from_pin": "BlinkAlpha",
+      "to_node": "AnimGraphNode_ModifyCurve_1",
+      "to_pin": "Alpha",
+      "from_pin_id": "FC0760AE49F9751C091D65AFA286953C",
+      "to_pin_id": "A6ED7FA148F9DDBB96153FA784506F43"
+    },
+    {
+      "from_node": "AnimGraphNode_LayeredBoneBlend_0",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_LocalToComponentSpace_0",
+      "to_pin": "LocalPose",
+      "from_pin_id": "FCDB051D45530E19D3AA2F95848FCFFE",
+      "to_pin_id": "B0515976449390AC142968BC88D7E8DF"
+    },
+    {
+      "from_node": "AnimGraphNode_Slot_4",
+      "from_pin": "Pose",
+      "to_node": "AnimGraphNode_LayeredBoneBlend_0",
+      "to_pin": "BlendPoses_0",
+      "from_pin_id": "7DB069414A1063EBFFF58A8BA5266EBF",
+      "to_pin_id": "44FA8D744601D8F914252F84518D880D"
+    }
+  ]
+}

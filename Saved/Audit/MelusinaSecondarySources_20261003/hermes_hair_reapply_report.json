@@ -1,0 +1,131 @@
+{
+  "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+  "node": "AnimGraphNode_KawaiiPhysics_1",
+  "task": "hermes re-apply + save hair shared-collision consumer",
+  "before": {
+    "ok": true,
+    "success": true,
+    "mode": "execute_file",
+    "result": "None",
+    "output": [
+      {
+        "type": "info",
+        "output": "BEFORE_JSON={\"shared_collision_source\": \"False\", \"use_shared_collision\": \"False\", \"shared_collision_group_tag\": \"(TagName=\\\"\\\")\", \"limits_data_asset\": \"<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x0000027D81988180) Class 'KawaiiPhysicsLimitsDataAsset'>\", \"physics_asset_for_limits\": \"None\"}\r\n"
+      }
+    ]
+  },
+  "fingerprint_before": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "graph_name": "AnimGraph",
+    "mode": "topology",
+    "node_count": 13,
+    "connection_count": 11,
+    "fingerprint": "e3155711e8ebc3c6a2d15c533dba21d23e2e5696",
+    "node_class_histogram": {
+      "AnimGraphNode_ComponentToLocalSpace": 1,
+      "AnimGraphNode_CopyPoseFromMesh": 1,
+      "AnimGraphNode_KawaiiPhysics": 1,
+      "AnimGraphNode_LocalToComponentSpace": 1,
+      "AnimGraphNode_ModifyBone": 6,
+      "AnimGraphNode_Root": 1,
+      "AnimGraphNode_SequencePlayer": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "apply": {
+    "ok": true,
+    "success": true,
+    "mode": "execute_file",
+    "result": "None",
+    "output": [
+      {
+        "type": "info",
+        "output": "{\"asset\": \"/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair\", \"node\": \"AnimGraphNode_KawaiiPhysics_1\", \"before\": {\"shared_collision_source\": \"False\", \"use_shared_collision\": \"False\", \"shared_collision_group_tag\": \"<Struct 'GameplayTag' (0x0000027D87CE30D4) {}>\", \"limits_data_asset\": \"<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x0000027D81988180) Class 'KawaiiPhysicsLimitsDataAsset'>\", \"physics_asset_for_limits\": \"None\"}, \"after\": {\"shared_collision_source\": \"False\", \"use_shared_collision\": \"True\", \"shared_collision_group_tag\": \"<Struct 'GameplayTag' (0x0000027D87CE30D4) {}>\", \"limits_data_asset\": \"<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x0000027D81988180) Class 'KawaiiPhysicsLimitsDataAsset'>\", \"physics_asset_for_limits\": \"None\"}, \"tag\": \"(TagName=\\\"Melodia.Physics.BodyCollision\\\")\", \"evidence\": \"EDITOR_PROPERTY_CHANGE_REQUIRES_COMPILE_AND_PIE\"}\r\n"
+      }
+    ]
+  },
+  "after": {
+    "ok": true,
+    "success": true,
+    "mode": "execute_file",
+    "result": "None",
+    "output": [
+      {
+        "type": "info",
+        "output": "AFTER_JSON={\"shared_collision_source\": \"False\", \"use_shared_collision\": \"True\", \"shared_collision_group_tag\": \"(TagName=\\\"Melodia.Physics.BodyCollision\\\")\", \"limits_data_asset\": \"<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x0000027D81988180) Class 'KawaiiPhysicsLimitsDataAsset'>\", \"physics_asset_for_limits\": \"None\"}\r\n"
+      }
+    ]
+  },
+  "compile": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "success": true,
+    "status": "UpToDate",
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "assertion": {
+    "matched": true,
+    "mode": "exact",
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "graph_name": "AnimGraph",
+    "missing_nodes": [],
+    "extra_nodes": [],
+    "missing_connections": [],
+    "pin_default_mismatches": [],
+    "forbidden_nodes_present": [],
+    "summary": "13/13 nodes, 11/11 connections, 0 default mismatches, 0 forbidden present"
+  },
+  "fingerprint_after": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "graph_name": "AnimGraph",
+    "mode": "topology",
+    "node_count": 13,
+    "connection_count": 11,
+    "fingerprint": "e3155711e8ebc3c6a2d15c533dba21d23e2e5696",
+    "node_class_histogram": {
+      "AnimGraphNode_ComponentToLocalSpace": 1,
+      "AnimGraphNode_CopyPoseFromMesh": 1,
+      "AnimGraphNode_KawaiiPhysics": 1,
+      "AnimGraphNode_LocalToComponentSpace": 1,
+      "AnimGraphNode_ModifyBone": 6,
+      "AnimGraphNode_Root": 1,
+      "AnimGraphNode_SequencePlayer": 1,
+      "K2Node_VariableGet": 1
+    }
+  },
+  "dirty_before_save": {
+    "ok": true,
+    "count": 1,
+    "dirty_packages": [
+      {
+        "package": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+        "is_map": false,
+        "transient": false,
+        "disk_path": "../../../../../../EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.uasset"
+      }
+    ]
+  },
+  "gates": {
+    "apply_ok": true,
+    "compile_ok": true,
+    "assertion_matched": true,
+    "fp_ok": true
+  },
+  "save": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "saved": true,
+    "was_dirty": true
+  },
+  "dirty_after_save": {
+    "ok": true,
+    "count": 0,
+    "dirty_packages": []
+  },
+  "disk": {
+    "mtime": 1791070320.7558274,
+    "size": 265815,
+    "tag_bytes": 1
+  }
+}

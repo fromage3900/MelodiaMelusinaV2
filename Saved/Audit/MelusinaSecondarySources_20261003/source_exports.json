@@ -1,0 +1,155 @@
+{
+  "evidence": "READONLY_ASSET_EXPORT_NO_RUNTIME_CHANGES",
+  "exports": [
+    {
+      "name": "shirt",
+      "asset": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt.SK_Melusina_V2_Shirt",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "fbx": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaSecondarySources_20261003\\shirt_readonly.fbx",
+      "sha256": "7e3ecfe23cabdef2f67aac850b38e14c32c4136ce543a890daa17b82539e59b4",
+      "bytes": 831280,
+      "materials": [
+        {
+          "slot": "Material_008",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_Material_008.MI_Melusina_Nikki_Material_008"
+        }
+      ]
+    },
+    {
+      "name": "skirt",
+      "asset": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains.SK_Melusina_V2_Skirt_R2_SmoothChains",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "fbx": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaSecondarySources_20261003\\skirt_readonly.fbx",
+      "sha256": "e22254e0022c784d4d754c92ba815cee6f7ad8837a153612a0a23aa585ac40a6",
+      "bytes": 2713264,
+      "materials": [
+        {
+          "slot": "SKIRT_003",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003.MI_Melusina_SKIRT_003"
+        },
+        {
+          "slot": "Halftone_3_Inputs_-_Lines___Circles_002",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002.MI_Melusina_Halftone_3_Inputs_-_Lines___Circles_002"
+        },
+        {
+          "slot": "skirtpanel_002",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002.MI_Melusina_skirtpanel_002"
+        },
+        {
+          "slot": "skirtpanel_002",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005"
+        }
+      ]
+    },
+    {
+      "name": "hair",
+      "asset": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair",
+      "skeleton": "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton.SK_Melusina_Hair_Skeleton",
+      "fbx": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaSecondarySources_20261003\\hair_readonly.fbx",
+      "sha256": "4cd345d2d1d5e5044d1ca17fe5343d36b2f01b01a2b6643b92a6135da1e185cb",
+      "bytes": 2729984,
+      "materials": [
+        {
+          "slot": "Water__Advance_",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_Hair.MI_Melusina_Nikki_Hair"
+        },
+        {
+          "slot": "Cosmos",
+          "material": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen.MI_Nikki_Show_PearlSheen"
+        },
+        {
+          "slot": "Outline_Shader_*_005",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005"
+        },
+        {
+          "slot": "Outline_Shader_*_004",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005"
+        }
+      ]
+    },
+    {
+      "name": "hat",
+      "asset": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Hat.SK_Melusina_V2_Hat",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "fbx": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaSecondarySources_20261003\\hat_readonly.fbx",
+      "sha256": "592bc2205996c8ad7467bb677affb84ae6a144d6f5e1dae5f05c4b1109d33330",
+      "bytes": 3793184,
+      "materials": [
+        {
+          "slot": "Material_019",
+          "material": "/Game/Melodia/Characters/Melusina/Meshes/M_Material_019.M_Material_019"
+        },
+        {
+          "slot": "Outline_Shader_*_028",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_028.MI_Melusina_Outline_Shader_star_028"
+        },
+        {
+          "slot": "Material_018",
+          "material": "/Game/Melodia/Characters/Melusina/Meshes/M_Material_018.M_Material_018"
+        },
+        {
+          "slot": "Outline_Shader_*_027",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_027.MI_Melusina_Outline_Shader_star_027"
+        },
+        {
+          "slot": "Iridescence_002",
+          "material": "/Game/Melodia/Characters/Melusina/Meshes/M_Iridescence_002.M_Iridescence_002"
+        },
+        {
+          "slot": "Outline_Shader_*_026",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_Shader_star_026.MI_Melusina_Outline_Shader_star_026"
+        }
+      ]
+    },
+    {
+      "name": "accessories_fit",
+      "asset": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories.SK_Melusina_V2_Accessories",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "fbx": "..\\..\\..\\..\\..\\..\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaSecondarySources_20261003\\accessories_fit_readonly.fbx",
+      "sha256": "494daca73e2325fb14001bb1fe4fd03c2351afd14f436a8048defe8bee65b019",
+      "bytes": 1286208,
+      "materials": [
+        {
+          "slot": "GLOVES_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_GLOVES_001.MI_Melusina_Nikki_GLOVES_001"
+        },
+        {
+          "slot": "sleeve_003",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_sleeve_003.MI_Melusina_Nikki_sleeve_003"
+        },
+        {
+          "slot": "bow_002",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_bow_002.MI_Melusina_Nikki_bow_002"
+        },
+        {
+          "slot": "frontpanel_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_frontpanel_001.MI_Melusina_Nikki_frontpanel_001"
+        },
+        {
+          "slot": "SHAWL_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_SHAWL_001.MI_Melusina_Nikki_SHAWL_001"
+        },
+        {
+          "slot": "SHAWL_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005"
+        },
+        {
+          "slot": "SHAWL_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_bow_002.MI_Melusina_Nikki_bow_002"
+        },
+        {
+          "slot": "SHAWL_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_frontpanel_001.MI_Melusina_Nikki_frontpanel_001"
+        },
+        {
+          "slot": "SHAWL_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/Nikki/MI_Melusina_Nikki_SHAWL_001.MI_Melusina_Nikki_SHAWL_001"
+        },
+        {
+          "slot": "SHAWL_001",
+          "material": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Outline_005.MI_Melusina_Outline_005"
+        }
+      ]
+    }
+  ]
+}

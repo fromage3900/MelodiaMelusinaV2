@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "success": true,
+  "mode": "execute_file",
+  "result": "None",
+  "output": [
+    {
+      "type": "info",
+      "output": "[{\"abp\": \"/Game/Melodia/Characters/Melusina/ABP_Melusina_Current\", \"node\": \"AnimGraphNode_KawaiiPhysics_0\", \"fields\": {\"shared_collision_source\": \"False\", \"use_shared_collision\": \"False\", \"shared_collision_group_tag\": \"<Struct 'GameplayTag' (0x000002428F6BA8D4) {}>\", \"limits_data_asset\": \"<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_SkirtCollisionLimits.DA_Melusina_SkirtCollisionLimits' (0x000002428CE74EC0) Class 'KawaiiPhysicsLimitsDataAsset'>\", \"physics_asset_for_limits\": \"None\"}}, {\"abp\": \"/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair\", \"node\": \"AnimGraphNode_KawaiiPhysics_1\", \"fields\": {\"shared_collision_source\": \"False\", \"use_shared_collision\": \"False\", \"shared_collision_group_tag\": \"<Struct 'GameplayTag' (0x0000024282CDBCD4) {}>\", \"limits_data_asset\": \"<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x000002428CE717A0) Class 'KawaiiPhysicsLimitsDataAsset'>\", \"physics_asset_for_limits\": \"None\"}}]\r\n"
+    }
+  ]
+}
