@@ -94,7 +94,6 @@ def register_agent_bridge_widget():
             entry.set_label("Show Agent Status")
             entry.set_string_command(
                 type=unreal.ToolMenuStringCommandType.PYTHON,
-                custom_type="",
                 string="import agent_bridge_widget; agent_bridge_widget.AgentBridgeWidget.show_status()"
             )
             bridge_menu.add_menu_entry("Tools", entry)
@@ -107,7 +106,6 @@ def register_agent_bridge_widget():
             entry2.set_label("Natural Language Prompt")
             entry2.set_string_command(
                 type=unreal.ToolMenuStringCommandType.PYTHON,
-                custom_type="",
                 string="import agent_bridge_widget; agent_bridge_widget.AgentBridgeWidget.spawn_prompt_dialog()"
             )
             bridge_menu.add_menu_entry("Tools", entry2)

@@ -323,6 +323,12 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	// Subsystem keeps its internal beat values for OSC/reactive materials but no
 	// longer writes the MPC beat params. RhythmPulse (CommandEnergy) is owned by
 	// that plugin subsystem; this module's impact energy lives on Mid only.
+	// The ink lane below follows the palette's Bass/Mid/Treble as they stand BEFORE this
+	// frame's writes: with the TD/OSC bridge live they hold its analysis values, otherwise
+	// this subsystem's own previous-frame values.
+	const float PaletteBass = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("Bass"));
+	const float PaletteMid = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("Mid"));
+	const float PaletteTreble = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("Treble"));
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("GlobalReactivity"), bBattleActive ? BattleIntensity : 0.0f);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Bass"), bBattleActive ? BattleIntensity : 0.0f);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Mid"), ImpactPulse);
@@ -353,11 +359,10 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 
 	// --- Dreamprint ink lane (MPC_MelodiaInk) -----------------------------------
 	// The shipping ink layer sampled this collection for its entire life and read
-	// authored constants, because no writer existed. These four are value-identical
-	// copies of lanes published above -- no new curve, no new envelope, no new look
-	// decision: the Dreamprint ink now breathes on exactly the beat the rest of the
-	// presentation already breathes on. Same SEMANTICS WARNING applies -- "InkBass"
-	// carries combat intensity, not low-frequency audio.
+	// authored constants, because no writer existed. These four mirror the palette's
+	// Bass/Mid/Treble lanes (PaletteBass/Mid/Treble, read before this frame's writes), so the
+	// ink follows OSC audio analysis when the bridge is live and the combat/impact/beat
+	// values otherwise.
 	//
 	// Deliberately NOT written: InkHueShift, InkAccentTint, InkSyncVision (art
 	// direction, owner call) and InkMasterWeight (blend weight is owned by the PPV
@@ -365,10 +370,10 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	// a missing-writer fix rather than a look change.
 	if (InkParameterCollection)
 	{
-		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkReact"), BassAlias);
-		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkBass"), BassAlias);
-		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkMid"), ImpactPulse);
-		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkTreble"), BeatPulseValue);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkReact"), PaletteBass);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkBass"), PaletteBass);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkMid"), PaletteMid);
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkTreble"), PaletteTreble);
 	}
 	// "BeatTracker" was published here as a third name for BeatPulseValue. It is not declared
 	// on MPC_Melodia_Palette (verified against the asset's 51 scalars, 2026-09-05), so the

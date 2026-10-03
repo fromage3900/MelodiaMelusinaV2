@@ -53,7 +53,7 @@ def register_livelink_menus():
         entry.set_label(label)
         entry.set_string_command(
             type=unreal.ToolMenuStringCommandType.PYTHON,
-            custom_type="",
+            custom_type_name="",
             string=_menu_command(py_body),
         )
         menu.add_menu_entry(section, entry)
@@ -296,7 +296,7 @@ def _register_world_compiler() -> None:
             entry.set_label(label)
             entry.set_string_command(
                 type=unreal.ToolMenuStringCommandType.PYTHON,
-                custom_type="",
+                custom_type_name="",
                 string=(
                     f"import sys; p=r'{py_dir}'; sys.path.insert(0,p) if p not in sys.path else None; "
                     f"import world_compiler_panel as wcp; {body}"

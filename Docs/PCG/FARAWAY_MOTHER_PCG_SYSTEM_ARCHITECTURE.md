@@ -148,4 +148,4 @@ This is a **convergence task**, not a new Faraway framework:
 
 **First decisive gate:** prove `TD OUT_SHOW_FIELD -> UE texture/render target -> debug plane` with correct Faraway world/UV alignment. Do not fan the field out to production consumers until that is visibly proven.
 
-**Do not add:** a second World Compiler, a second OSC semantic listener, another MPC/audio writer, a second Faraway PCG architecture, or runtime Houdini cooking.
+**Do not add:** a second World Compiler, a second OSC semantic listener, another MPC/audio writer, a second Faraway PCG architecture, or Houdini cooking in shipping builds. Live Houdini Engine cooking in the editor is canonical authoring (owner direction 2026-10-03, see `Docs/Architecture/AUDIO_REACTIVE_CANON.md` §7).

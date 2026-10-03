@@ -1,4 +1,5 @@
 #include "MelodiaCymaticsSubsystem.h"
+#include "MelodiaWorldFieldBus.h"
 
 #include "Engine/Engine.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -63,6 +64,11 @@ void UMelodiaCymaticsSubsystem::RefreshFromMPC()
 	// pulse modulates the cross mode. Modes stay in [1..8] for a stable pattern.
 	ModeN = FMath::Clamp(2 + FMath::FloorToInt(Bass * 6.0f), 1, 8);
 	ModeM = FMath::Clamp(3 + FMath::FloorToInt(BeatPulse * 5.0f), 1, 8);
+
+	// Publish to the World Field Bus: this is the cymatic publisher the bus header names.
+	// Until now nothing called PublishResonance, so every bus consumer (the Oceanology
+	// ripple drive) read the compiled-in defaults and never moved.
+	UWorldFieldBus::PublishResonance(ModeN, ModeM, FMath::Clamp(FMath::Max(Bass, Pulse), 0.0f, 1.0f), Pulse);
 }
 
 float UMelodiaCymaticsSubsystem::SampleCymaticAmplitude(const float U, const float V) const
