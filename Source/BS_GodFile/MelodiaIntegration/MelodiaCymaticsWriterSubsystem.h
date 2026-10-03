@@ -19,7 +19,9 @@
  *   for IridescenceTint / EmissiveScale / UV distortion. No second writer exists.
  *
  * Parameter contract on MPC_Cymatics_Driver (all scalars):
- *   Cymatic_BeatPulse          0..1  BeatPulse driven by music clock (cos^2)
+ *   Cymatic_BeatPulse          0..1  BeatPulse driven by music clock (cos^2), raised by the palette's
+ *                                   decaying event pulses (GlobalSparkleIntensity from command/victory
+ *                                   pulses, QuantumPulse from draws)
  *   Cymatic_BassIntensity      0..1  Bass band from MPC_Melodia_Palette
  *   Cymatic_MidIntensity       0..1  Mid band (derived / placeholder from palette)
  *   Cymatic_EmissiveScale      scalar for emissive pulse (BeatPulse -> emissive)
@@ -40,6 +42,13 @@ public:
 	/** Returns true if this is the single writer (always). */
 	UFUNCTION(BlueprintPure, Category = "Melodia|Cymatics")
 	bool IsSingleWriter() const { return true; }
+
+	/**
+	 * The one formula for the driven pulse: the music-clock beat plus an additive share of the
+	 * decaying event pulses (key/command sparkle, Quantum draw), clamped 0..1.6. Everything that
+	 * should ring with the field (flowers via MPC_Cymatics_Driver, the ocean's biolum) uses this.
+	 */
+	static float ComputeDrivenPulse(float BeatPulse, float EventPulse);
 
 private:
 	bool TickWriter(float DeltaTime);

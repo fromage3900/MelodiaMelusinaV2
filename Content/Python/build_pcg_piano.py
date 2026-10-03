@@ -102,12 +102,20 @@ def _configure_spawn_settings(unreal, settings, actor_class, tag: str, label: st
             raise RuntimeError(f"PCGSpawnActorSettings.{prop} could not be set")
 
 
-def _create_or_update_profile(unreal, dimensions: PianoDimensions, force: bool):
-    if unreal.EditorAssetLibrary.does_asset_exist(PROFILE_PATH):
-        profile = unreal.load_asset(PROFILE_PATH)
+def _create_or_update_profile(
+    unreal,
+    dimensions: PianoDimensions,
+    force: bool,
+    profile_path: str = PROFILE_PATH,
+    first_midi: int = 21,
+    last_midi: int = 108,
+):
+    profile_folder, profile_name = profile_path.rsplit("/", 1)
+    if unreal.EditorAssetLibrary.does_asset_exist(profile_path):
+        profile = unreal.load_asset(profile_path)
     else:
-        if not unreal.EditorAssetLibrary.does_directory_exist(DEST_FOLDER):
-            unreal.EditorAssetLibrary.make_directory(DEST_FOLDER)
+        if not unreal.EditorAssetLibrary.does_directory_exist(profile_folder):
+            unreal.EditorAssetLibrary.make_directory(profile_folder)
         tools = unreal.AssetToolsHelpers.get_asset_tools()
         profile_class = getattr(unreal, "PCGPianoKeyboardProfile", None)
         if profile_class is None:
@@ -115,14 +123,14 @@ def _create_or_update_profile(unreal, dimensions: PianoDimensions, force: bool):
         if profile_class is None:
             raise RuntimeError("PCGPianoKeyboardProfile is unavailable; compile the C++ module first")
         profile = tools.create_asset(
-            "DA_PianoKeyboardProfile",
-            DEST_FOLDER,
+            profile_name,
+            profile_folder,
             profile_class,
             unreal.DataAssetFactory(),
         )
 
     if not profile:
-        raise RuntimeError(f"Could not create or load {PROFILE_PATH}")
+        raise RuntimeError(f"Could not create or load {profile_path}")
 
     dimensions_struct_cls = getattr(unreal, "PCGPianoKeyboardDimensions", None)
     if dimensions_struct_cls is None:
@@ -131,8 +139,8 @@ def _create_or_update_profile(unreal, dimensions: PianoDimensions, force: bool):
         raise RuntimeError("PCGPianoKeyboardDimensions is unavailable; compile the C++ module first")
 
     values = {
-        "first_midi_note": 21,
-        "last_midi_note": 108,
+        "first_midi_note": first_midi,
+        "last_midi_note": last_midi,
         "dimensions": dimensions_struct_cls(),
     }
     dims = values["dimensions"]
@@ -169,21 +177,35 @@ def _create_or_update_profile(unreal, dimensions: PianoDimensions, force: bool):
         if unreal.EditorAssetLibrary.does_asset_exist(path):
             _set_if_present(profile, prop, unreal.load_asset(path))
 
-    unreal.EditorAssetLibrary.save_asset(PROFILE_PATH)
+    unreal.EditorAssetLibrary.save_asset(profile_path)
     return profile
 
 
-def build_piano_graph(force: bool = True, create_profile: bool = True) -> dict:
+def build_piano_graph(
+    force: bool = True,
+    create_profile: bool = True,
+    first_midi: int = 21,
+    last_midi: int = 108,
+    dimensions: PianoDimensions | None = None,
+    graph_path: str = GRAPH_PATH,
+    profile_path: str = PROFILE_PATH,
+) -> dict:
+    """Build the PCG piano graph + profile. Defaults build the full 88-key piano;
+    pass a range/dimensions/paths for a scaled run (e.g. a walkable two-octave key run)."""
     import unreal
     import pcg_graph_builder as graph_builder
 
-    dimensions = PianoDimensions()
-    specs = build_layout()
+    full_piano = (first_midi, last_midi) == (21, 108)
+    dimensions = dimensions or PianoDimensions()
+    specs = build_layout(first_midi, last_midi, dimensions)
     white_specs, black_specs = split_layout(specs)
-    if (len(specs), len(white_specs), len(black_specs)) != (88, 52, 36):
+    if full_piano and (len(specs), len(white_specs), len(black_specs)) != (88, 52, 36):
         raise AssertionError("full piano layout must contain 88 notes, 52 white keys, and 36 black keys")
+    if not specs:
+        raise AssertionError("piano layout produced no keys")
 
-    graph, created = graph_builder.load_or_create_graph(GRAPH_PATH, DEST_FOLDER, force=force)
+    graph_folder = graph_path.rsplit("/", 1)[0]
+    graph, created = graph_builder.load_or_create_graph(graph_path, graph_folder, force=force)
     graph_builder.clear_graph_nodes(graph)
     input_node = graph.get_input_node()
     output_node = graph.get_output_node()
@@ -195,10 +217,11 @@ def build_piano_graph(force: bool = True, create_profile: bool = True) -> dict:
     white_create_settings.set_editor_property("points_to_create", [_make_point(unreal, spec) for spec in white_specs])
     black_create_settings.set_editor_property("points_to_create", [_make_point(unreal, spec) for spec in black_specs])
 
-    local_space = getattr(getattr(unreal, "PCGCoordinateSpace", None), "LOCAL", None)
-    if local_space is not None:
-        _set_if_present(white_create_settings, "coordinate_space", local_space)
-        _set_if_present(black_create_settings, "coordinate_space", local_space)
+    # Key points are authored in keyboard-local space; the actor transform must place them.
+    local_space = _enum_value(unreal, "PCGCoordinateSpace", "LOCAL_COMPONENT", "LOCAL")
+    for create_settings in (white_create_settings, black_create_settings):
+        if not _set_if_present(create_settings, "coordinate_space", local_space):
+            raise RuntimeError("PCGCreatePointsSettings.coordinate_space could not be set to local")
 
     white_spawn, white_spawn_settings = graph_builder.add_node(graph, "PCGSpawnActorSettings", -120, -160)
     black_spawn, black_spawn_settings = graph_builder.add_node(graph, "PCGSpawnActorSettings", -120, 160)
@@ -222,12 +245,16 @@ def build_piano_graph(force: bool = True, create_profile: bool = True) -> dict:
     graph.add_edge(white_spawn, "Out", output_node, "Out")
     graph.add_edge(black_spawn, "Out", output_node, "Out")
     _set_if_present(graph, "is_standalone_graph", True)
-    unreal.EditorAssetLibrary.save_asset(GRAPH_PATH)
+    unreal.EditorAssetLibrary.save_asset(graph_path)
 
-    profile = _create_or_update_profile(unreal, dimensions, force) if create_profile else None
+    profile = (
+        _create_or_update_profile(unreal, dimensions, force, profile_path, first_midi, last_midi)
+        if create_profile
+        else None
+    )
     result = {
-        "graph": GRAPH_PATH,
-        "profile": PROFILE_PATH if profile else None,
+        "graph": graph_path,
+        "profile": profile_path if profile else None,
         "created": created,
         "total_points": len(specs),
         "white_points": len(white_specs),

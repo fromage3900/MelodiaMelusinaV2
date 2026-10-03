@@ -44,16 +44,16 @@ def register_livelink_menus():
 
     main.add_sub_menu(_OWNER, "LiveLink", "LiveLink", "LiveLink", "Live Link")
     live = menus.extend_menu("LevelEditor.MainMenu.LiveLink")
-    live.add_section("Connection", "Connection", 0)
-    live.add_section("Portfolio", "Portfolio", 1)
-    live.add_section("Help", "Help", 2)
+    live.add_section("Connection", "Connection")
+    live.add_section("Portfolio", "Portfolio")
+    live.add_section("Help", "Help")
 
     def add_entry(menu, section, name, label, py_body):
         entry = unreal.ToolMenuEntry(name=name, type=unreal.MultiBlockType.MENU_ENTRY)
         entry.set_label(label)
         entry.set_string_command(
             type=unreal.ToolMenuStringCommandType.PYTHON,
-            custom_type_name="",
+            custom_type="",
             string=_menu_command(py_body),
         )
         menu.add_menu_entry(section, entry)
@@ -283,7 +283,7 @@ def _register_world_compiler() -> None:
             menus.remove_menu("LevelEditor.MainMenu.WorldCompiler")
         main.add_sub_menu(owner, "WorldCompiler", "WorldCompiler", "World Compiler", "World Compiler")
         menu = menus.extend_menu("LevelEditor.MainMenu.WorldCompiler")
-        menu.add_section("Apply", "Apply", 0)
+        menu.add_section("Apply", "Apply")
         hint = (
             "unreal.log('[WorldCompiler] Compile is CLI: python Tools/world_compiler.py "
             "compile recipes/morning_rainbow_bloom.v1.json && python Tools/world_compiler_ue_driver.py "
@@ -296,7 +296,7 @@ def _register_world_compiler() -> None:
             entry.set_label(label)
             entry.set_string_command(
                 type=unreal.ToolMenuStringCommandType.PYTHON,
-                custom_type_name="",
+                custom_type="",
                 string=(
                     f"import sys; p=r'{py_dir}'; sys.path.insert(0,p) if p not in sys.path else None; "
                     f"import world_compiler_panel as wcp; {body}"

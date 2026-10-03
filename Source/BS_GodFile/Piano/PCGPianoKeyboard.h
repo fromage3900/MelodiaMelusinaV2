@@ -98,6 +98,7 @@ public:
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FPCGPianoKeyEvent, int32, KeyIndex, int32, MidiNote, AActor*, SteppingActor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPCGPianoKeyRunEvent);
 
 UCLASS(Blueprintable)
 class BS_GODFILE_API APCGPianoKey : public AActor
@@ -120,6 +121,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Piano")
 	int32 GetMidiNote() const { return MidiNote; }
+
+	/** Set by the keyboard once all keys are registered (see APCGPianoKeyboard::AssignKeyIdentities). */
+	void SetIdentity(const int32 InKeyIndex, const int32 InMidiNote) { KeyIndex = InKeyIndex; MidiNote = InMidiNote; }
 
 	UFUNCTION(BlueprintPure, Category = "Piano")
 	bool IsBlackKey() const { return bIsBlackKey; }
@@ -212,6 +216,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Piano|Components")
 	TObjectPtr<UPCGComponent> PCGComponent;
 
+	/** Gives the PCG component valid bounds; without it generation aborts with "invalid bounds".
+	 *  Resize it in the editor to cover the key layout (keys are generated in local space). */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Piano|Components")
+	TObjectPtr<UBoxComponent> GenerationBounds;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Configuration")
 	TObjectPtr<UPCGPianoKeyboardProfile> Profile;
 
@@ -242,6 +251,20 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Piano")
 	UPCGPianoKeyboardProfile* GetProfile() const { return Profile; }
 
+	/** Fires once when every white key has been played at least once (black keys optional). */
+	UPROPERTY(BlueprintAssignable, Category = "Piano|Events")
+	FPCGPianoKeyRunEvent OnKeyRunCompleted;
+
+	/** White keys that must be played to complete the run; 0 = every registered white key. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|KeyRun", meta = (ClampMin = "0"))
+	int32 RequiredWhiteKeyCount = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Piano|KeyRun")
+	bool bKeyRunCompleted = false;
+
+	UFUNCTION(BlueprintCallable, Category = "Piano|KeyRun")
+	void ResetKeyRun();
+
 	void RegisterKey(APCGPianoKey* Key);
 	void UnregisterKey(APCGPianoKey* Key);
 	void NotifyContactBegin(APCGPianoKey* Key, AActor* SteppingActor);
@@ -250,12 +273,21 @@ public:
 	void NotifyKeyReleased(APCGPianoKey* Key, AActor* SteppingActor);
 
 private:
+	/** PCG re-seeds points when it moves them between coordinate spaces, so the key index and MIDI note
+	 *  packed into the point seed do not survive. Derive them from layout order instead: white and black
+	 *  keys sorted by local X, MIDI ascending from the profile's first note. */
+	void AssignKeyIdentities();
+
 	void RecomputePressedKeysForActor(AActor* SteppingActor);
 	void RemoveActorContact(AActor* SteppingActor);
 	void UpdateActiveKeyCount();
+
+	UFUNCTION()
+	void HandleKeyRunDraw(FName WinnerId, FString Backend, bool bSuccess);
 
 	UPROPERTY()
 	TSet<TObjectPtr<APCGPianoKey>> RegisteredKeys;
 
 	TMap<TObjectPtr<AActor>, TSet<TObjectPtr<APCGPianoKey>>> ContactsByActor;
+	TSet<int32> PlayedWhiteKeys;
 };

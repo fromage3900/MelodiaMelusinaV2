@@ -133,7 +133,7 @@ def register_agent_panel():
         )
         entry.set_string_command(
             type=unreal.ToolMenuStringCommandType.PYTHON,
-            custom_type_name="",
+            custom_type="",
             string=py_cmd
         )
         

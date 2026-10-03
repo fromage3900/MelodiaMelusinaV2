@@ -7,6 +7,7 @@
 #include "NiagaraParameterCollection.h"
 #include "NiagaraFunctionLibrary.h"
 #include "MelodiaBattleSession.h"
+#include "MelodiaCymaticsWriterSubsystem.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaRhythmReactivitySubsystem.h"
@@ -55,11 +56,14 @@ namespace
 	constexpr float OceanDriveRescanInterval = 2.0f;
 	constexpr TCHAR OceanActorClassNameToken[] = TEXT("Oceanology");
 
-	void DriveOceanBeatValues(UWorld* World, float BeatPulse, float CombatEnergy, float ImpactPulse)
+	void DriveOceanBeatValues(UWorld* World, float BeatPulse, float CombatEnergy, float ImpactPulse, float EventPulse)
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE(Melodia_DriveOceanBeatValues);
 		const double Now = FPlatformTime::Seconds();
 		TArray<FOceanBeatDriveEntry>& Entries = GOceanBeatDrives.FindOrAdd(World);
+		// Same single driven pulse the cymatics writer publishes as Cymatic_BeatPulse (one shared
+		// formula), so beat + keys + Quantum draws all reach the biolum.
+		const float DrivenPulse = UMelodiaCymaticsWriterSubsystem::ComputeDrivenPulse(BeatPulse, EventPulse);
 		bool bRescan = (Now - GOceanRescanTime) > OceanDriveRescanInterval;
 		if (bRescan)
 		{
@@ -134,7 +138,7 @@ namespace
 				Mid->SetScalarParameterValue(TEXT("HighlightBoost"), 10.0f + BeatPulse * 10.0f);
 				Mid->SetScalarParameterValue(TEXT("ScatterBoost"), 10.0f + CombatEnergy * 5.0f);
 				// Project grafted parameters on M_Water_Oceanology_Melodia
-				Mid->SetScalarParameterValue(TEXT("Biolum_Intensity"), 1.0f + BeatPulse * 1.5f);
+				Mid->SetScalarParameterValue(TEXT("Biolum_Intensity"), 1.0f + DrivenPulse * 1.5f);
 				Mid->SetScalarParameterValue(TEXT("Toon_Weight"), 0.65f + BeatPulse * 0.15f);
 				// DeepScatteringColor base (0.205, 0.716, 0.631, A 0.65) -- must match the
 				// repaired M_Water_Oceanology_Melodia_Inst, which now carries the plugin's
@@ -153,7 +157,7 @@ namespace
 					FName ParameterName;
 					float Value;
 				};
-				FSetScalarParams BiolumParams = { FName(TEXT("Biolum_Intensity")), 1.0f + BeatPulse * 1.5f };
+				FSetScalarParams BiolumParams = { FName(TEXT("Biolum_Intensity")), 1.0f + DrivenPulse * 1.5f };
 				Actor->ProcessEvent(SetScalarFunc, &BiolumParams);
 			}
 		}
@@ -379,7 +383,10 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	// Game-worlds only: the drive must never mutate editor-viewport materials.
 	if (World->IsGameWorld())
 	{
-		DriveOceanBeatValues(World, BeatPulseValue, bBattleActive ? BattleIntensity : 0.0f, ImpactPulse);
+		// Event lanes are owned by the reactivity subsystem on the palette; read-only here.
+		const float SparklePulse = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("GlobalSparkleIntensity"));
+		const float QuantumPulse = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("QuantumPulse"));
+		DriveOceanBeatValues(World, BeatPulseValue, bBattleActive ? BattleIntensity : 0.0f, ImpactPulse, FMath::Max(SparklePulse, QuantumPulse));
 	}
 
 	// --- Niagara mirror -------------------------------------------------------------
