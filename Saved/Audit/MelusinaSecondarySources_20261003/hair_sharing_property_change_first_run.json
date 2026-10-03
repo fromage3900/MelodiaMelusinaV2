@@ -1,0 +1,20 @@
+{
+  "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+  "node": "AnimGraphNode_KawaiiPhysics_1",
+  "before": {
+    "shared_collision_source": "False",
+    "use_shared_collision": "False",
+    "shared_collision_group_tag": "<Struct 'GameplayTag' (0x0000024282CDBCD4) {}>",
+    "limits_data_asset": "<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x000002428CE717A0) Class 'KawaiiPhysicsLimitsDataAsset'>",
+    "physics_asset_for_limits": "None"
+  },
+  "after": {
+    "shared_collision_source": "False",
+    "use_shared_collision": "True",
+    "shared_collision_group_tag": "<Struct 'GameplayTag' (0x0000024282CDBCD4) {}>",
+    "limits_data_asset": "<Object '/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits' (0x000002428CE717A0) Class 'KawaiiPhysicsLimitsDataAsset'>",
+    "physics_asset_for_limits": "None"
+  },
+  "tag": "(TagName=\"Melodia.Physics.BodyCollision\")",
+  "evidence": "EDITOR_PROPERTY_CHANGE_REQUIRES_COMPILE_AND_PIE"
+}

@@ -1,0 +1,2051 @@
+{
+  "schema": "melodia.hand_sleeve_digit_cage_refinement.v1",
+  "sources": {
+    "body_fbx_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+    "neutral_accessories_fbx_sha256": "027b0be5a984e3fa995a728eddb7ed16a92cfdf993587cfca0353bd4d513bbc2",
+    "native_hold_fbx_sha256": "69127321a4205243fa0638d795c2ab964e8110013688ca7f5e7599046e533852"
+  },
+  "method": "Anatomical label from same-side hand/digit bone-axis geometry; body face BVHs restricted to same side and same digit (palm independent); per-phalanx robust median surface offset interpolated through a smooth digit-axis cage. No glove vertex-group names used for region labels; no cross-digit target BVH; glove topology/material/weights unchanged.",
+  "max_vertex_displacement_mm": 15.0,
+  "segment_median_vectors_mm": {
+    "l_thumb_1": [
+      0.15,
+      -1.162,
+      0.042
+    ],
+    "l_thumb_2": [
+      -1.876,
+      1.354,
+      -3.242
+    ],
+    "l_thumb_3": null,
+    "l_index_1": [
+      -0.862,
+      0.926,
+      -3.246
+    ],
+    "l_index_2": null,
+    "l_index_3": [
+      -5.156,
+      -0.808,
+      -9.106
+    ],
+    "l_middle_1": [
+      -3.086,
+      1.082,
+      -8.505
+    ],
+    "l_middle_2": null,
+    "l_middle_3": [
+      -6.755,
+      -4.596,
+      -12.58
+    ],
+    "l_ring_1": [
+      -2.132,
+      -0.072,
+      -10.081
+    ],
+    "l_ring_2": null,
+    "l_ring_3": [
+      -5.232,
+      -5.207,
+      -8.057
+    ],
+    "l_pinky_1": [
+      0.76,
+      -2.817,
+      -14.714
+    ],
+    "l_pinky_2": null,
+    "l_pinky_3": null,
+    "r_thumb_1": [
+      -0.156,
+      -1.025,
+      0.016
+    ],
+    "r_thumb_2": [
+      1.549,
+      0.772,
+      -2.356
+    ],
+    "r_thumb_3": null,
+    "r_index_1": [
+      0.933,
+      0.481,
+      -2.932
+    ],
+    "r_index_2": [
+      4.363,
+      -2.287,
+      -7.378
+    ],
+    "r_index_3": [
+      3.993,
+      -1.658,
+      -6.658
+    ],
+    "r_middle_1": [
+      2.738,
+      0.539,
+      -7.388
+    ],
+    "r_middle_2": [
+      4.417,
+      -1.677,
+      -6.745
+    ],
+    "r_middle_3": [
+      6.283,
+      -5.835,
+      -12.308
+    ],
+    "r_ring_1": [
+      2.058,
+      -0.198,
+      -9.623
+    ],
+    "r_ring_2": null,
+    "r_ring_3": [
+      6.869,
+      -5.781,
+      -9.266
+    ],
+    "r_pinky_1": [
+      -0.606,
+      -2.892,
+      -14.706
+    ],
+    "r_pinky_2": null,
+    "r_pinky_3": null
+  },
+  "vertex_region_counts": {
+    "r_index": {
+      "all": 183,
+      "ambiguous": 43,
+      "fit": 140
+    },
+    "r_middle": {
+      "all": 226,
+      "ambiguous": 54,
+      "fit": 172
+    },
+    "r_ring": {
+      "all": 230,
+      "ambiguous": 106,
+      "fit": 124
+    },
+    "r_thumb": {
+      "all": 225,
+      "ambiguous": 67,
+      "fit": 158
+    },
+    "r_pinky": {
+      "all": 206,
+      "ambiguous": 83,
+      "fit": 123
+    },
+    "l_index": {
+      "all": 201,
+      "ambiguous": 49,
+      "fit": 152
+    },
+    "l_thumb": {
+      "all": 222,
+      "ambiguous": 60,
+      "fit": 162
+    },
+    "l_middle": {
+      "all": 220,
+      "ambiguous": 47,
+      "fit": 173
+    },
+    "l_ring": {
+      "all": 234,
+      "ambiguous": 109,
+      "fit": 125
+    },
+    "l_pinky": {
+      "all": 188,
+      "ambiguous": 74,
+      "fit": 114
+    },
+    "r_palm": {
+      "all": 280,
+      "ambiguous": 0,
+      "fit": 280
+    },
+    "l_palm": {
+      "all": 268,
+      "ambiguous": 0,
+      "fit": 268
+    }
+  },
+  "source_reference_by_anatomical_region": {
+    "l_palm": {
+      "glove_vertex_count": 268,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 383,
+      "n": 268,
+      "p50_p90_max_mm": [
+        14.329,
+        27.805,
+        34.151
+      ],
+      "median_body_minus_glove_mm": [
+        0.276,
+        -0.871,
+        -12.067
+      ],
+      "median_delta_length_mm": 12.102,
+      "vector_scatter_p50_mm": 10.248
+    },
+    "l_thumb": {
+      "glove_vertex_count": 222,
+      "ambiguous_vertex_count": 60,
+      "body_patch_triangle_count": 453,
+      "n": 222,
+      "p50_p90_max_mm": [
+        6.642,
+        15.655,
+        25.894
+      ],
+      "median_body_minus_glove_mm": [
+        -0.458,
+        0.615,
+        -2.251
+      ],
+      "median_delta_length_mm": 2.378,
+      "vector_scatter_p50_mm": 6.398
+    },
+    "l_index": {
+      "glove_vertex_count": 201,
+      "ambiguous_vertex_count": 49,
+      "body_patch_triangle_count": 403,
+      "n": 201,
+      "p50_p90_max_mm": [
+        8.365,
+        19.554,
+        25.123
+      ],
+      "median_body_minus_glove_mm": [
+        -2.687,
+        0.061,
+        -7.14
+      ],
+      "median_delta_length_mm": 7.629,
+      "vector_scatter_p50_mm": 7.343
+    },
+    "l_middle": {
+      "glove_vertex_count": 220,
+      "ambiguous_vertex_count": 47,
+      "body_patch_triangle_count": 463,
+      "n": 220,
+      "p50_p90_max_mm": [
+        10.197,
+        20.823,
+        26.82
+      ],
+      "median_body_minus_glove_mm": [
+        -3.62,
+        0.196,
+        -8.515
+      ],
+      "median_delta_length_mm": 9.255,
+      "vector_scatter_p50_mm": 6.092
+    },
+    "l_ring": {
+      "glove_vertex_count": 234,
+      "ambiguous_vertex_count": 109,
+      "body_patch_triangle_count": 361,
+      "n": 234,
+      "p50_p90_max_mm": [
+        11.228,
+        21.699,
+        30.156
+      ],
+      "median_body_minus_glove_mm": [
+        -3.855,
+        -0.717,
+        -8.846
+      ],
+      "median_delta_length_mm": 9.676,
+      "vector_scatter_p50_mm": 7.277
+    },
+    "l_pinky": {
+      "glove_vertex_count": 188,
+      "ambiguous_vertex_count": 74,
+      "body_patch_triangle_count": 287,
+      "n": 188,
+      "p50_p90_max_mm": [
+        16.722,
+        27.486,
+        34.734
+      ],
+      "median_body_minus_glove_mm": [
+        -0.253,
+        -3.684,
+        -13.346
+      ],
+      "median_delta_length_mm": 13.847,
+      "vector_scatter_p50_mm": 10.597
+    },
+    "r_palm": {
+      "glove_vertex_count": 280,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 383,
+      "n": 280,
+      "p50_p90_max_mm": [
+        14.19,
+        28.779,
+        34.136
+      ],
+      "median_body_minus_glove_mm": [
+        -0.294,
+        -1.338,
+        -11.781
+      ],
+      "median_delta_length_mm": 11.861,
+      "vector_scatter_p50_mm": 10.27
+    },
+    "r_thumb": {
+      "glove_vertex_count": 225,
+      "ambiguous_vertex_count": 67,
+      "body_patch_triangle_count": 453,
+      "n": 225,
+      "p50_p90_max_mm": [
+        6.164,
+        15.354,
+        25.929
+      ],
+      "median_body_minus_glove_mm": [
+        0.516,
+        0.711,
+        -2.153
+      ],
+      "median_delta_length_mm": 2.325,
+      "vector_scatter_p50_mm": 6.052
+    },
+    "r_index": {
+      "glove_vertex_count": 183,
+      "ambiguous_vertex_count": 43,
+      "body_patch_triangle_count": 403,
+      "n": 183,
+      "p50_p90_max_mm": [
+        8.413,
+        18.455,
+        24.998
+      ],
+      "median_body_minus_glove_mm": [
+        2.841,
+        -0.543,
+        -5.967
+      ],
+      "median_delta_length_mm": 6.631,
+      "vector_scatter_p50_mm": 6.35
+    },
+    "r_middle": {
+      "glove_vertex_count": 226,
+      "ambiguous_vertex_count": 54,
+      "body_patch_triangle_count": 463,
+      "n": 226,
+      "p50_p90_max_mm": [
+        10.391,
+        21.395,
+        25.552
+      ],
+      "median_body_minus_glove_mm": [
+        4.014,
+        -0.316,
+        -8.734
+      ],
+      "median_delta_length_mm": 9.617,
+      "vector_scatter_p50_mm": 6.366
+    },
+    "r_ring": {
+      "glove_vertex_count": 230,
+      "ambiguous_vertex_count": 106,
+      "body_patch_triangle_count": 361,
+      "n": 230,
+      "p50_p90_max_mm": [
+        11.747,
+        22.078,
+        29.187
+      ],
+      "median_body_minus_glove_mm": [
+        4.228,
+        -1.234,
+        -9.589
+      ],
+      "median_delta_length_mm": 10.552,
+      "vector_scatter_p50_mm": 7.22
+    },
+    "r_pinky": {
+      "glove_vertex_count": 206,
+      "ambiguous_vertex_count": 83,
+      "body_patch_triangle_count": 287,
+      "n": 206,
+      "p50_p90_max_mm": [
+        16.819,
+        28.356,
+        33.843
+      ],
+      "median_body_minus_glove_mm": [
+        0.884,
+        -3.855,
+        -13.372
+      ],
+      "median_delta_length_mm": 13.945,
+      "vector_scatter_p50_mm": 10.334
+    },
+    "outside_hand_shell": {
+      "glove_vertex_count": 138,
+      "note": "excluded from digit/palm BVH fit"
+    }
+  },
+  "source_hold_by_anatomical_region": {
+    "l_palm": {
+      "glove_vertex_count": 268,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 384,
+      "n": 268,
+      "p50_p90_max_mm": [
+        10.065,
+        25.437,
+        33.622
+      ],
+      "median_body_minus_glove_mm": [
+        -2.758,
+        -0.357,
+        -1.571
+      ],
+      "median_delta_length_mm": 3.194,
+      "vector_scatter_p50_mm": 8.945
+    },
+    "l_thumb": {
+      "glove_vertex_count": 237,
+      "ambiguous_vertex_count": 105,
+      "body_patch_triangle_count": 452,
+      "n": 237,
+      "p50_p90_max_mm": [
+        9.237,
+        18.176,
+        24.442
+      ],
+      "median_body_minus_glove_mm": [
+        -1.372,
+        -2.306,
+        -7.273
+      ],
+      "median_delta_length_mm": 7.752,
+      "vector_scatter_p50_mm": 6.933
+    },
+    "l_index": {
+      "glove_vertex_count": 189,
+      "ambiguous_vertex_count": 62,
+      "body_patch_triangle_count": 402,
+      "n": 189,
+      "p50_p90_max_mm": [
+        11.998,
+        21.61,
+        28.16
+      ],
+      "median_body_minus_glove_mm": [
+        -1.388,
+        3.352,
+        -1.908
+      ],
+      "median_delta_length_mm": 4.099,
+      "vector_scatter_p50_mm": 10.45
+    },
+    "l_middle": {
+      "glove_vertex_count": 276,
+      "ambiguous_vertex_count": 114,
+      "body_patch_triangle_count": 445,
+      "n": 276,
+      "p50_p90_max_mm": [
+        13.255,
+        24.671,
+        28.462
+      ],
+      "median_body_minus_glove_mm": [
+        -3.205,
+        5.408,
+        -1.194
+      ],
+      "median_delta_length_mm": 6.399,
+      "vector_scatter_p50_mm": 11.316
+    },
+    "l_ring": {
+      "glove_vertex_count": 193,
+      "ambiguous_vertex_count": 107,
+      "body_patch_triangle_count": 338,
+      "n": 193,
+      "p50_p90_max_mm": [
+        13.479,
+        26.061,
+        30.723
+      ],
+      "median_body_minus_glove_mm": [
+        -2.245,
+        4.467,
+        0.2
+      ],
+      "median_delta_length_mm": 5.004,
+      "vector_scatter_p50_mm": 12.574
+    },
+    "l_pinky": {
+      "glove_vertex_count": 198,
+      "ambiguous_vertex_count": 75,
+      "body_patch_triangle_count": 289,
+      "n": 198,
+      "p50_p90_max_mm": [
+        19.449,
+        29.331,
+        34.734
+      ],
+      "median_body_minus_glove_mm": [
+        -10.581,
+        3.166,
+        0.91
+      ],
+      "median_delta_length_mm": 11.083,
+      "vector_scatter_p50_mm": 18.007
+    },
+    "r_palm": {
+      "glove_vertex_count": 305,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 375,
+      "n": 305,
+      "p50_p90_max_mm": [
+        9.367,
+        24.568,
+        33.486
+      ],
+      "median_body_minus_glove_mm": [
+        0.467,
+        -1.731,
+        -2.594
+      ],
+      "median_delta_length_mm": 3.153,
+      "vector_scatter_p50_mm": 8.76
+    },
+    "r_thumb": {
+      "glove_vertex_count": 257,
+      "ambiguous_vertex_count": 103,
+      "body_patch_triangle_count": 459,
+      "n": 257,
+      "p50_p90_max_mm": [
+        8.192,
+        17.235,
+        25.115
+      ],
+      "median_body_minus_glove_mm": [
+        3.429,
+        0.99,
+        -4.948
+      ],
+      "median_delta_length_mm": 6.101,
+      "vector_scatter_p50_mm": 5.923
+    },
+    "r_index": {
+      "glove_vertex_count": 170,
+      "ambiguous_vertex_count": 71,
+      "body_patch_triangle_count": 404,
+      "n": 170,
+      "p50_p90_max_mm": [
+        10.359,
+        20.836,
+        28.541
+      ],
+      "median_body_minus_glove_mm": [
+        0.862,
+        1.363,
+        1.23
+      ],
+      "median_delta_length_mm": 2.028,
+      "vector_scatter_p50_mm": 9.439
+    },
+    "r_middle": {
+      "glove_vertex_count": 267,
+      "ambiguous_vertex_count": 96,
+      "body_patch_triangle_count": 434,
+      "n": 267,
+      "p50_p90_max_mm": [
+        11.707,
+        23.142,
+        27.291
+      ],
+      "median_body_minus_glove_mm": [
+        4.373,
+        1.29,
+        0.425
+      ],
+      "median_delta_length_mm": 4.579,
+      "vector_scatter_p50_mm": 10.534
+    },
+    "r_ring": {
+      "glove_vertex_count": 197,
+      "ambiguous_vertex_count": 102,
+      "body_patch_triangle_count": 351,
+      "n": 197,
+      "p50_p90_max_mm": [
+        12.582,
+        23.748,
+        29.217
+      ],
+      "median_body_minus_glove_mm": [
+        -2.322,
+        1.592,
+        0.706
+      ],
+      "median_delta_length_mm": 2.903,
+      "vector_scatter_p50_mm": 12.584
+    },
+    "r_pinky": {
+      "glove_vertex_count": 196,
+      "ambiguous_vertex_count": 84,
+      "body_patch_triangle_count": 302,
+      "n": 196,
+      "p50_p90_max_mm": [
+        18.764,
+        27.67,
+        33.526
+      ],
+      "median_body_minus_glove_mm": [
+        8.731,
+        -1.64,
+        1.349
+      ],
+      "median_delta_length_mm": 8.986,
+      "vector_scatter_p50_mm": 16.776
+    },
+    "outside_hand_shell": {
+      "glove_vertex_count": 68,
+      "note": "excluded from digit/palm BVH fit"
+    }
+  },
+  "candidate_reference_by_anatomical_region": {
+    "l_palm": {
+      "glove_vertex_count": 268,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 383,
+      "n": 268,
+      "p50_p90_max_mm": [
+        14.329,
+        27.805,
+        34.151
+      ],
+      "median_body_minus_glove_mm": [
+        0.276,
+        -0.871,
+        -12.067
+      ],
+      "median_delta_length_mm": 12.102,
+      "vector_scatter_p50_mm": 10.248
+    },
+    "l_thumb": {
+      "glove_vertex_count": 222,
+      "ambiguous_vertex_count": 60,
+      "body_patch_triangle_count": 453,
+      "n": 222,
+      "p50_p90_max_mm": [
+        6.181,
+        15.102,
+        25.894
+      ],
+      "median_body_minus_glove_mm": [
+        -0.16,
+        0.372,
+        -0.738
+      ],
+      "median_delta_length_mm": 0.841,
+      "vector_scatter_p50_mm": 6.209
+    },
+    "l_index": {
+      "glove_vertex_count": 201,
+      "ambiguous_vertex_count": 49,
+      "body_patch_triangle_count": 403,
+      "n": 201,
+      "p50_p90_max_mm": [
+        7.162,
+        18.025,
+        25.116
+      ],
+      "median_body_minus_glove_mm": [
+        -1.516,
+        0.058,
+        -4.213
+      ],
+      "median_delta_length_mm": 4.478,
+      "vector_scatter_p50_mm": 5.626
+    },
+    "l_middle": {
+      "glove_vertex_count": 220,
+      "ambiguous_vertex_count": 50,
+      "body_patch_triangle_count": 463,
+      "n": 220,
+      "p50_p90_max_mm": [
+        6.94,
+        15.547,
+        26.82
+      ],
+      "median_body_minus_glove_mm": [
+        -2.105,
+        0.327,
+        -5.102
+      ],
+      "median_delta_length_mm": 5.528,
+      "vector_scatter_p50_mm": 4.904
+    },
+    "l_ring": {
+      "glove_vertex_count": 234,
+      "ambiguous_vertex_count": 109,
+      "body_patch_triangle_count": 361,
+      "n": 234,
+      "p50_p90_max_mm": [
+        9.524,
+        21.257,
+        30.156
+      ],
+      "median_body_minus_glove_mm": [
+        -2.132,
+        -0.94,
+        -7.409
+      ],
+      "median_delta_length_mm": 7.767,
+      "vector_scatter_p50_mm": 7.068
+    },
+    "l_pinky": {
+      "glove_vertex_count": 188,
+      "ambiguous_vertex_count": 76,
+      "body_patch_triangle_count": 287,
+      "n": 188,
+      "p50_p90_max_mm": [
+        16.112,
+        26.675,
+        34.734
+      ],
+      "median_body_minus_glove_mm": [
+        0.046,
+        -3.465,
+        -12.546
+      ],
+      "median_delta_length_mm": 13.016,
+      "vector_scatter_p50_mm": 11.09
+    },
+    "r_palm": {
+      "glove_vertex_count": 280,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 383,
+      "n": 280,
+      "p50_p90_max_mm": [
+        14.19,
+        28.779,
+        34.136
+      ],
+      "median_body_minus_glove_mm": [
+        -0.294,
+        -1.338,
+        -11.781
+      ],
+      "median_delta_length_mm": 11.861,
+      "vector_scatter_p50_mm": 10.27
+    },
+    "r_thumb": {
+      "glove_vertex_count": 225,
+      "ambiguous_vertex_count": 68,
+      "body_patch_triangle_count": 453,
+      "n": 225,
+      "p50_p90_max_mm": [
+        6.127,
+        15.452,
+        25.929
+      ],
+      "median_body_minus_glove_mm": [
+        0.409,
+        0.565,
+        -1.582
+      ],
+      "median_delta_length_mm": 1.729,
+      "vector_scatter_p50_mm": 5.656
+    },
+    "r_index": {
+      "glove_vertex_count": 183,
+      "ambiguous_vertex_count": 43,
+      "body_patch_triangle_count": 403,
+      "n": 183,
+      "p50_p90_max_mm": [
+        6.256,
+        14.994,
+        23.979
+      ],
+      "median_body_minus_glove_mm": [
+        0.993,
+        -0.215,
+        -2.932
+      ],
+      "median_delta_length_mm": 3.103,
+      "vector_scatter_p50_mm": 4.909
+    },
+    "r_middle": {
+      "glove_vertex_count": 226,
+      "ambiguous_vertex_count": 58,
+      "body_patch_triangle_count": 463,
+      "n": 226,
+      "p50_p90_max_mm": [
+        6.276,
+        17.409,
+        25.552
+      ],
+      "median_body_minus_glove_mm": [
+        2.078,
+        0.061,
+        -4.357
+      ],
+      "median_delta_length_mm": 4.827,
+      "vector_scatter_p50_mm": 4.801
+    },
+    "r_ring": {
+      "glove_vertex_count": 230,
+      "ambiguous_vertex_count": 112,
+      "body_patch_triangle_count": 361,
+      "n": 230,
+      "p50_p90_max_mm": [
+        9.384,
+        21.998,
+        29.187
+      ],
+      "median_body_minus_glove_mm": [
+        2.644,
+        -1.229,
+        -7.309
+      ],
+      "median_delta_length_mm": 7.869,
+      "vector_scatter_p50_mm": 6.755
+    },
+    "r_pinky": {
+      "glove_vertex_count": 206,
+      "ambiguous_vertex_count": 87,
+      "body_patch_triangle_count": 287,
+      "n": 206,
+      "p50_p90_max_mm": [
+        16.202,
+        27.068,
+        33.843
+      ],
+      "median_body_minus_glove_mm": [
+        0.636,
+        -3.855,
+        -13.229
+      ],
+      "median_delta_length_mm": 13.794,
+      "vector_scatter_p50_mm": 10.645
+    },
+    "outside_hand_shell": {
+      "glove_vertex_count": 138,
+      "note": "excluded from digit/palm BVH fit"
+    }
+  },
+  "candidate_hold_by_anatomical_region": {
+    "l_palm": {
+      "glove_vertex_count": 268,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 384,
+      "n": 268,
+      "p50_p90_max_mm": [
+        10.065,
+        25.437,
+        33.622
+      ],
+      "median_body_minus_glove_mm": [
+        -2.758,
+        -0.357,
+        -1.571
+      ],
+      "median_delta_length_mm": 3.194,
+      "vector_scatter_p50_mm": 8.945
+    },
+    "l_thumb": {
+      "glove_vertex_count": 237,
+      "ambiguous_vertex_count": 106,
+      "body_patch_triangle_count": 452,
+      "n": 237,
+      "p50_p90_max_mm": [
+        8.907,
+        17.997,
+        24.442
+      ],
+      "median_body_minus_glove_mm": [
+        -1.11,
+        -1.829,
+        -6.533
+      ],
+      "median_delta_length_mm": 6.875,
+      "vector_scatter_p50_mm": 6.906
+    },
+    "l_index": {
+      "glove_vertex_count": 189,
+      "ambiguous_vertex_count": 62,
+      "body_patch_triangle_count": 402,
+      "n": 189,
+      "p50_p90_max_mm": [
+        9.704,
+        20.829,
+        28.16
+      ],
+      "median_body_minus_glove_mm": [
+        -1.935,
+        1.814,
+        -1.908
+      ],
+      "median_delta_length_mm": 3.267,
+      "vector_scatter_p50_mm": 8.84
+    },
+    "l_middle": {
+      "glove_vertex_count": 269,
+      "ambiguous_vertex_count": 104,
+      "body_patch_triangle_count": 445,
+      "n": 269,
+      "p50_p90_max_mm": [
+        9.399,
+        22.745,
+        28.462
+      ],
+      "median_body_minus_glove_mm": [
+        -2.908,
+        3.389,
+        -1.021
+      ],
+      "median_delta_length_mm": 4.581,
+      "vector_scatter_p50_mm": 8.368
+    },
+    "l_ring": {
+      "glove_vertex_count": 201,
+      "ambiguous_vertex_count": 95,
+      "body_patch_triangle_count": 338,
+      "n": 201,
+      "p50_p90_max_mm": [
+        11.305,
+        26.061,
+        30.723
+      ],
+      "median_body_minus_glove_mm": [
+        -1.674,
+        3.77,
+        0.111
+      ],
+      "median_delta_length_mm": 4.126,
+      "vector_scatter_p50_mm": 10.287
+    },
+    "l_pinky": {
+      "glove_vertex_count": 197,
+      "ambiguous_vertex_count": 72,
+      "body_patch_triangle_count": 289,
+      "n": 197,
+      "p50_p90_max_mm": [
+        19.24,
+        29.331,
+        34.734
+      ],
+      "median_body_minus_glove_mm": [
+        -10.32,
+        1.193,
+        1.123
+      ],
+      "median_delta_length_mm": 10.449,
+      "vector_scatter_p50_mm": 16.682
+    },
+    "r_palm": {
+      "glove_vertex_count": 305,
+      "ambiguous_vertex_count": 0,
+      "body_patch_triangle_count": 375,
+      "n": 305,
+      "p50_p90_max_mm": [
+        9.367,
+        24.568,
+        33.486
+      ],
+      "median_body_minus_glove_mm": [
+        0.467,
+        -1.731,
+        -2.594
+      ],
+      "median_delta_length_mm": 3.153,
+      "vector_scatter_p50_mm": 8.76
+    },
+    "r_thumb": {
+      "glove_vertex_count": 257,
+      "ambiguous_vertex_count": 103,
+      "body_patch_triangle_count": 459,
+      "n": 257,
+      "p50_p90_max_mm": [
+        8.192,
+        17.289,
+        25.115
+      ],
+      "median_body_minus_glove_mm": [
+        3.151,
+        0.9,
+        -4.581
+      ],
+      "median_delta_length_mm": 5.632,
+      "vector_scatter_p50_mm": 5.685
+    },
+    "r_index": {
+      "glove_vertex_count": 168,
+      "ambiguous_vertex_count": 69,
+      "body_patch_triangle_count": 404,
+      "n": 168,
+      "p50_p90_max_mm": [
+        8.406,
+        19.379,
+        28.541
+      ],
+      "median_body_minus_glove_mm": [
+        1.1,
+        1.18,
+        0.356
+      ],
+      "median_delta_length_mm": 1.652,
+      "vector_scatter_p50_mm": 7.684
+    },
+    "r_middle": {
+      "glove_vertex_count": 262,
+      "ambiguous_vertex_count": 82,
+      "body_patch_triangle_count": 434,
+      "n": 262,
+      "p50_p90_max_mm": [
+        7.57,
+        21.402,
+        27.291
+      ],
+      "median_body_minus_glove_mm": [
+        3.605,
+        0.905,
+        0.63
+      ],
+      "median_delta_length_mm": 3.77,
+      "vector_scatter_p50_mm": 6.966
+    },
+    "r_ring": {
+      "glove_vertex_count": 212,
+      "ambiguous_vertex_count": 104,
+      "body_patch_triangle_count": 351,
+      "n": 212,
+      "p50_p90_max_mm": [
+        10.542,
+        21.78,
+        29.217
+      ],
+      "median_body_minus_glove_mm": [
+        0.097,
+        0.916,
+        0.733
+      ],
+      "median_delta_length_mm": 1.178,
+      "vector_scatter_p50_mm": 10.799
+    },
+    "r_pinky": {
+      "glove_vertex_count": 188,
+      "ambiguous_vertex_count": 76,
+      "body_patch_triangle_count": 302,
+      "n": 188,
+      "p50_p90_max_mm": [
+        19.333,
+        27.871,
+        33.526
+      ],
+      "median_body_minus_glove_mm": [
+        9.351,
+        -1.64,
+        1.384
+      ],
+      "median_delta_length_mm": 9.594,
+      "vector_scatter_p50_mm": 16.11
+    },
+    "outside_hand_shell": {
+      "glove_vertex_count": 68,
+      "note": "excluded from digit/palm BVH fit"
+    }
+  },
+  "reference_p50_change_by_region": {
+    "l_index": {
+      "before": {
+        "glove_vertex_count": 201,
+        "ambiguous_vertex_count": 49,
+        "body_patch_triangle_count": 403,
+        "n": 201,
+        "p50_p90_max_mm": [
+          8.365,
+          19.554,
+          25.123
+        ],
+        "median_body_minus_glove_mm": [
+          -2.687,
+          0.061,
+          -7.14
+        ],
+        "median_delta_length_mm": 7.629,
+        "vector_scatter_p50_mm": 7.343
+      },
+      "after": {
+        "glove_vertex_count": 201,
+        "ambiguous_vertex_count": 49,
+        "body_patch_triangle_count": 403,
+        "n": 201,
+        "p50_p90_max_mm": [
+          7.162,
+          18.025,
+          25.116
+        ],
+        "median_body_minus_glove_mm": [
+          -1.516,
+          0.058,
+          -4.213
+        ],
+        "median_delta_length_mm": 4.478,
+        "vector_scatter_p50_mm": 5.626
+      },
+      "p50_delta_mm": -1.203
+    },
+    "l_middle": {
+      "before": {
+        "glove_vertex_count": 220,
+        "ambiguous_vertex_count": 47,
+        "body_patch_triangle_count": 463,
+        "n": 220,
+        "p50_p90_max_mm": [
+          10.197,
+          20.823,
+          26.82
+        ],
+        "median_body_minus_glove_mm": [
+          -3.62,
+          0.196,
+          -8.515
+        ],
+        "median_delta_length_mm": 9.255,
+        "vector_scatter_p50_mm": 6.092
+      },
+      "after": {
+        "glove_vertex_count": 220,
+        "ambiguous_vertex_count": 50,
+        "body_patch_triangle_count": 463,
+        "n": 220,
+        "p50_p90_max_mm": [
+          6.94,
+          15.547,
+          26.82
+        ],
+        "median_body_minus_glove_mm": [
+          -2.105,
+          0.327,
+          -5.102
+        ],
+        "median_delta_length_mm": 5.528,
+        "vector_scatter_p50_mm": 4.904
+      },
+      "p50_delta_mm": -3.257
+    },
+    "l_palm": {
+      "before": {
+        "glove_vertex_count": 268,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 383,
+        "n": 268,
+        "p50_p90_max_mm": [
+          14.329,
+          27.805,
+          34.151
+        ],
+        "median_body_minus_glove_mm": [
+          0.276,
+          -0.871,
+          -12.067
+        ],
+        "median_delta_length_mm": 12.102,
+        "vector_scatter_p50_mm": 10.248
+      },
+      "after": {
+        "glove_vertex_count": 268,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 383,
+        "n": 268,
+        "p50_p90_max_mm": [
+          14.329,
+          27.805,
+          34.151
+        ],
+        "median_body_minus_glove_mm": [
+          0.276,
+          -0.871,
+          -12.067
+        ],
+        "median_delta_length_mm": 12.102,
+        "vector_scatter_p50_mm": 10.248
+      },
+      "p50_delta_mm": 0.0
+    },
+    "l_pinky": {
+      "before": {
+        "glove_vertex_count": 188,
+        "ambiguous_vertex_count": 74,
+        "body_patch_triangle_count": 287,
+        "n": 188,
+        "p50_p90_max_mm": [
+          16.722,
+          27.486,
+          34.734
+        ],
+        "median_body_minus_glove_mm": [
+          -0.253,
+          -3.684,
+          -13.346
+        ],
+        "median_delta_length_mm": 13.847,
+        "vector_scatter_p50_mm": 10.597
+      },
+      "after": {
+        "glove_vertex_count": 188,
+        "ambiguous_vertex_count": 76,
+        "body_patch_triangle_count": 287,
+        "n": 188,
+        "p50_p90_max_mm": [
+          16.112,
+          26.675,
+          34.734
+        ],
+        "median_body_minus_glove_mm": [
+          0.046,
+          -3.465,
+          -12.546
+        ],
+        "median_delta_length_mm": 13.016,
+        "vector_scatter_p50_mm": 11.09
+      },
+      "p50_delta_mm": -0.61
+    },
+    "l_ring": {
+      "before": {
+        "glove_vertex_count": 234,
+        "ambiguous_vertex_count": 109,
+        "body_patch_triangle_count": 361,
+        "n": 234,
+        "p50_p90_max_mm": [
+          11.228,
+          21.699,
+          30.156
+        ],
+        "median_body_minus_glove_mm": [
+          -3.855,
+          -0.717,
+          -8.846
+        ],
+        "median_delta_length_mm": 9.676,
+        "vector_scatter_p50_mm": 7.277
+      },
+      "after": {
+        "glove_vertex_count": 234,
+        "ambiguous_vertex_count": 109,
+        "body_patch_triangle_count": 361,
+        "n": 234,
+        "p50_p90_max_mm": [
+          9.524,
+          21.257,
+          30.156
+        ],
+        "median_body_minus_glove_mm": [
+          -2.132,
+          -0.94,
+          -7.409
+        ],
+        "median_delta_length_mm": 7.767,
+        "vector_scatter_p50_mm": 7.068
+      },
+      "p50_delta_mm": -1.704
+    },
+    "l_thumb": {
+      "before": {
+        "glove_vertex_count": 222,
+        "ambiguous_vertex_count": 60,
+        "body_patch_triangle_count": 453,
+        "n": 222,
+        "p50_p90_max_mm": [
+          6.642,
+          15.655,
+          25.894
+        ],
+        "median_body_minus_glove_mm": [
+          -0.458,
+          0.615,
+          -2.251
+        ],
+        "median_delta_length_mm": 2.378,
+        "vector_scatter_p50_mm": 6.398
+      },
+      "after": {
+        "glove_vertex_count": 222,
+        "ambiguous_vertex_count": 60,
+        "body_patch_triangle_count": 453,
+        "n": 222,
+        "p50_p90_max_mm": [
+          6.181,
+          15.102,
+          25.894
+        ],
+        "median_body_minus_glove_mm": [
+          -0.16,
+          0.372,
+          -0.738
+        ],
+        "median_delta_length_mm": 0.841,
+        "vector_scatter_p50_mm": 6.209
+      },
+      "p50_delta_mm": -0.461
+    },
+    "outside_hand_shell": {
+      "before": {
+        "glove_vertex_count": 138,
+        "note": "excluded from digit/palm BVH fit"
+      },
+      "after": {
+        "glove_vertex_count": 138,
+        "note": "excluded from digit/palm BVH fit"
+      },
+      "p50_delta_mm": 0
+    },
+    "r_index": {
+      "before": {
+        "glove_vertex_count": 183,
+        "ambiguous_vertex_count": 43,
+        "body_patch_triangle_count": 403,
+        "n": 183,
+        "p50_p90_max_mm": [
+          8.413,
+          18.455,
+          24.998
+        ],
+        "median_body_minus_glove_mm": [
+          2.841,
+          -0.543,
+          -5.967
+        ],
+        "median_delta_length_mm": 6.631,
+        "vector_scatter_p50_mm": 6.35
+      },
+      "after": {
+        "glove_vertex_count": 183,
+        "ambiguous_vertex_count": 43,
+        "body_patch_triangle_count": 403,
+        "n": 183,
+        "p50_p90_max_mm": [
+          6.256,
+          14.994,
+          23.979
+        ],
+        "median_body_minus_glove_mm": [
+          0.993,
+          -0.215,
+          -2.932
+        ],
+        "median_delta_length_mm": 3.103,
+        "vector_scatter_p50_mm": 4.909
+      },
+      "p50_delta_mm": -2.157
+    },
+    "r_middle": {
+      "before": {
+        "glove_vertex_count": 226,
+        "ambiguous_vertex_count": 54,
+        "body_patch_triangle_count": 463,
+        "n": 226,
+        "p50_p90_max_mm": [
+          10.391,
+          21.395,
+          25.552
+        ],
+        "median_body_minus_glove_mm": [
+          4.014,
+          -0.316,
+          -8.734
+        ],
+        "median_delta_length_mm": 9.617,
+        "vector_scatter_p50_mm": 6.366
+      },
+      "after": {
+        "glove_vertex_count": 226,
+        "ambiguous_vertex_count": 58,
+        "body_patch_triangle_count": 463,
+        "n": 226,
+        "p50_p90_max_mm": [
+          6.276,
+          17.409,
+          25.552
+        ],
+        "median_body_minus_glove_mm": [
+          2.078,
+          0.061,
+          -4.357
+        ],
+        "median_delta_length_mm": 4.827,
+        "vector_scatter_p50_mm": 4.801
+      },
+      "p50_delta_mm": -4.115
+    },
+    "r_palm": {
+      "before": {
+        "glove_vertex_count": 280,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 383,
+        "n": 280,
+        "p50_p90_max_mm": [
+          14.19,
+          28.779,
+          34.136
+        ],
+        "median_body_minus_glove_mm": [
+          -0.294,
+          -1.338,
+          -11.781
+        ],
+        "median_delta_length_mm": 11.861,
+        "vector_scatter_p50_mm": 10.27
+      },
+      "after": {
+        "glove_vertex_count": 280,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 383,
+        "n": 280,
+        "p50_p90_max_mm": [
+          14.19,
+          28.779,
+          34.136
+        ],
+        "median_body_minus_glove_mm": [
+          -0.294,
+          -1.338,
+          -11.781
+        ],
+        "median_delta_length_mm": 11.861,
+        "vector_scatter_p50_mm": 10.27
+      },
+      "p50_delta_mm": 0.0
+    },
+    "r_pinky": {
+      "before": {
+        "glove_vertex_count": 206,
+        "ambiguous_vertex_count": 83,
+        "body_patch_triangle_count": 287,
+        "n": 206,
+        "p50_p90_max_mm": [
+          16.819,
+          28.356,
+          33.843
+        ],
+        "median_body_minus_glove_mm": [
+          0.884,
+          -3.855,
+          -13.372
+        ],
+        "median_delta_length_mm": 13.945,
+        "vector_scatter_p50_mm": 10.334
+      },
+      "after": {
+        "glove_vertex_count": 206,
+        "ambiguous_vertex_count": 87,
+        "body_patch_triangle_count": 287,
+        "n": 206,
+        "p50_p90_max_mm": [
+          16.202,
+          27.068,
+          33.843
+        ],
+        "median_body_minus_glove_mm": [
+          0.636,
+          -3.855,
+          -13.229
+        ],
+        "median_delta_length_mm": 13.794,
+        "vector_scatter_p50_mm": 10.645
+      },
+      "p50_delta_mm": -0.617
+    },
+    "r_ring": {
+      "before": {
+        "glove_vertex_count": 230,
+        "ambiguous_vertex_count": 106,
+        "body_patch_triangle_count": 361,
+        "n": 230,
+        "p50_p90_max_mm": [
+          11.747,
+          22.078,
+          29.187
+        ],
+        "median_body_minus_glove_mm": [
+          4.228,
+          -1.234,
+          -9.589
+        ],
+        "median_delta_length_mm": 10.552,
+        "vector_scatter_p50_mm": 7.22
+      },
+      "after": {
+        "glove_vertex_count": 230,
+        "ambiguous_vertex_count": 112,
+        "body_patch_triangle_count": 361,
+        "n": 230,
+        "p50_p90_max_mm": [
+          9.384,
+          21.998,
+          29.187
+        ],
+        "median_body_minus_glove_mm": [
+          2.644,
+          -1.229,
+          -7.309
+        ],
+        "median_delta_length_mm": 7.869,
+        "vector_scatter_p50_mm": 6.755
+      },
+      "p50_delta_mm": -2.363
+    },
+    "r_thumb": {
+      "before": {
+        "glove_vertex_count": 225,
+        "ambiguous_vertex_count": 67,
+        "body_patch_triangle_count": 453,
+        "n": 225,
+        "p50_p90_max_mm": [
+          6.164,
+          15.354,
+          25.929
+        ],
+        "median_body_minus_glove_mm": [
+          0.516,
+          0.711,
+          -2.153
+        ],
+        "median_delta_length_mm": 2.325,
+        "vector_scatter_p50_mm": 6.052
+      },
+      "after": {
+        "glove_vertex_count": 225,
+        "ambiguous_vertex_count": 68,
+        "body_patch_triangle_count": 453,
+        "n": 225,
+        "p50_p90_max_mm": [
+          6.127,
+          15.452,
+          25.929
+        ],
+        "median_body_minus_glove_mm": [
+          0.409,
+          0.565,
+          -1.582
+        ],
+        "median_delta_length_mm": 1.729,
+        "vector_scatter_p50_mm": 5.656
+      },
+      "p50_delta_mm": -0.037
+    }
+  },
+  "hold_p50_change_by_region": {
+    "l_index": {
+      "before": {
+        "glove_vertex_count": 189,
+        "ambiguous_vertex_count": 62,
+        "body_patch_triangle_count": 402,
+        "n": 189,
+        "p50_p90_max_mm": [
+          11.998,
+          21.61,
+          28.16
+        ],
+        "median_body_minus_glove_mm": [
+          -1.388,
+          3.352,
+          -1.908
+        ],
+        "median_delta_length_mm": 4.099,
+        "vector_scatter_p50_mm": 10.45
+      },
+      "after": {
+        "glove_vertex_count": 189,
+        "ambiguous_vertex_count": 62,
+        "body_patch_triangle_count": 402,
+        "n": 189,
+        "p50_p90_max_mm": [
+          9.704,
+          20.829,
+          28.16
+        ],
+        "median_body_minus_glove_mm": [
+          -1.935,
+          1.814,
+          -1.908
+        ],
+        "median_delta_length_mm": 3.267,
+        "vector_scatter_p50_mm": 8.84
+      },
+      "p50_delta_mm": -2.294
+    },
+    "l_middle": {
+      "before": {
+        "glove_vertex_count": 276,
+        "ambiguous_vertex_count": 114,
+        "body_patch_triangle_count": 445,
+        "n": 276,
+        "p50_p90_max_mm": [
+          13.255,
+          24.671,
+          28.462
+        ],
+        "median_body_minus_glove_mm": [
+          -3.205,
+          5.408,
+          -1.194
+        ],
+        "median_delta_length_mm": 6.399,
+        "vector_scatter_p50_mm": 11.316
+      },
+      "after": {
+        "glove_vertex_count": 269,
+        "ambiguous_vertex_count": 104,
+        "body_patch_triangle_count": 445,
+        "n": 269,
+        "p50_p90_max_mm": [
+          9.399,
+          22.745,
+          28.462
+        ],
+        "median_body_minus_glove_mm": [
+          -2.908,
+          3.389,
+          -1.021
+        ],
+        "median_delta_length_mm": 4.581,
+        "vector_scatter_p50_mm": 8.368
+      },
+      "p50_delta_mm": -3.856
+    },
+    "l_palm": {
+      "before": {
+        "glove_vertex_count": 268,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 384,
+        "n": 268,
+        "p50_p90_max_mm": [
+          10.065,
+          25.437,
+          33.622
+        ],
+        "median_body_minus_glove_mm": [
+          -2.758,
+          -0.357,
+          -1.571
+        ],
+        "median_delta_length_mm": 3.194,
+        "vector_scatter_p50_mm": 8.945
+      },
+      "after": {
+        "glove_vertex_count": 268,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 384,
+        "n": 268,
+        "p50_p90_max_mm": [
+          10.065,
+          25.437,
+          33.622
+        ],
+        "median_body_minus_glove_mm": [
+          -2.758,
+          -0.357,
+          -1.571
+        ],
+        "median_delta_length_mm": 3.194,
+        "vector_scatter_p50_mm": 8.945
+      },
+      "p50_delta_mm": 0.0
+    },
+    "l_pinky": {
+      "before": {
+        "glove_vertex_count": 198,
+        "ambiguous_vertex_count": 75,
+        "body_patch_triangle_count": 289,
+        "n": 198,
+        "p50_p90_max_mm": [
+          19.449,
+          29.331,
+          34.734
+        ],
+        "median_body_minus_glove_mm": [
+          -10.581,
+          3.166,
+          0.91
+        ],
+        "median_delta_length_mm": 11.083,
+        "vector_scatter_p50_mm": 18.007
+      },
+      "after": {
+        "glove_vertex_count": 197,
+        "ambiguous_vertex_count": 72,
+        "body_patch_triangle_count": 289,
+        "n": 197,
+        "p50_p90_max_mm": [
+          19.24,
+          29.331,
+          34.734
+        ],
+        "median_body_minus_glove_mm": [
+          -10.32,
+          1.193,
+          1.123
+        ],
+        "median_delta_length_mm": 10.449,
+        "vector_scatter_p50_mm": 16.682
+      },
+      "p50_delta_mm": -0.209
+    },
+    "l_ring": {
+      "before": {
+        "glove_vertex_count": 193,
+        "ambiguous_vertex_count": 107,
+        "body_patch_triangle_count": 338,
+        "n": 193,
+        "p50_p90_max_mm": [
+          13.479,
+          26.061,
+          30.723
+        ],
+        "median_body_minus_glove_mm": [
+          -2.245,
+          4.467,
+          0.2
+        ],
+        "median_delta_length_mm": 5.004,
+        "vector_scatter_p50_mm": 12.574
+      },
+      "after": {
+        "glove_vertex_count": 201,
+        "ambiguous_vertex_count": 95,
+        "body_patch_triangle_count": 338,
+        "n": 201,
+        "p50_p90_max_mm": [
+          11.305,
+          26.061,
+          30.723
+        ],
+        "median_body_minus_glove_mm": [
+          -1.674,
+          3.77,
+          0.111
+        ],
+        "median_delta_length_mm": 4.126,
+        "vector_scatter_p50_mm": 10.287
+      },
+      "p50_delta_mm": -2.174
+    },
+    "l_thumb": {
+      "before": {
+        "glove_vertex_count": 237,
+        "ambiguous_vertex_count": 105,
+        "body_patch_triangle_count": 452,
+        "n": 237,
+        "p50_p90_max_mm": [
+          9.237,
+          18.176,
+          24.442
+        ],
+        "median_body_minus_glove_mm": [
+          -1.372,
+          -2.306,
+          -7.273
+        ],
+        "median_delta_length_mm": 7.752,
+        "vector_scatter_p50_mm": 6.933
+      },
+      "after": {
+        "glove_vertex_count": 237,
+        "ambiguous_vertex_count": 106,
+        "body_patch_triangle_count": 452,
+        "n": 237,
+        "p50_p90_max_mm": [
+          8.907,
+          17.997,
+          24.442
+        ],
+        "median_body_minus_glove_mm": [
+          -1.11,
+          -1.829,
+          -6.533
+        ],
+        "median_delta_length_mm": 6.875,
+        "vector_scatter_p50_mm": 6.906
+      },
+      "p50_delta_mm": -0.33
+    },
+    "outside_hand_shell": {
+      "before": {
+        "glove_vertex_count": 68,
+        "note": "excluded from digit/palm BVH fit"
+      },
+      "after": {
+        "glove_vertex_count": 68,
+        "note": "excluded from digit/palm BVH fit"
+      },
+      "p50_delta_mm": 0
+    },
+    "r_index": {
+      "before": {
+        "glove_vertex_count": 170,
+        "ambiguous_vertex_count": 71,
+        "body_patch_triangle_count": 404,
+        "n": 170,
+        "p50_p90_max_mm": [
+          10.359,
+          20.836,
+          28.541
+        ],
+        "median_body_minus_glove_mm": [
+          0.862,
+          1.363,
+          1.23
+        ],
+        "median_delta_length_mm": 2.028,
+        "vector_scatter_p50_mm": 9.439
+      },
+      "after": {
+        "glove_vertex_count": 168,
+        "ambiguous_vertex_count": 69,
+        "body_patch_triangle_count": 404,
+        "n": 168,
+        "p50_p90_max_mm": [
+          8.406,
+          19.379,
+          28.541
+        ],
+        "median_body_minus_glove_mm": [
+          1.1,
+          1.18,
+          0.356
+        ],
+        "median_delta_length_mm": 1.652,
+        "vector_scatter_p50_mm": 7.684
+      },
+      "p50_delta_mm": -1.953
+    },
+    "r_middle": {
+      "before": {
+        "glove_vertex_count": 267,
+        "ambiguous_vertex_count": 96,
+        "body_patch_triangle_count": 434,
+        "n": 267,
+        "p50_p90_max_mm": [
+          11.707,
+          23.142,
+          27.291
+        ],
+        "median_body_minus_glove_mm": [
+          4.373,
+          1.29,
+          0.425
+        ],
+        "median_delta_length_mm": 4.579,
+        "vector_scatter_p50_mm": 10.534
+      },
+      "after": {
+        "glove_vertex_count": 262,
+        "ambiguous_vertex_count": 82,
+        "body_patch_triangle_count": 434,
+        "n": 262,
+        "p50_p90_max_mm": [
+          7.57,
+          21.402,
+          27.291
+        ],
+        "median_body_minus_glove_mm": [
+          3.605,
+          0.905,
+          0.63
+        ],
+        "median_delta_length_mm": 3.77,
+        "vector_scatter_p50_mm": 6.966
+      },
+      "p50_delta_mm": -4.137
+    },
+    "r_palm": {
+      "before": {
+        "glove_vertex_count": 305,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 375,
+        "n": 305,
+        "p50_p90_max_mm": [
+          9.367,
+          24.568,
+          33.486
+        ],
+        "median_body_minus_glove_mm": [
+          0.467,
+          -1.731,
+          -2.594
+        ],
+        "median_delta_length_mm": 3.153,
+        "vector_scatter_p50_mm": 8.76
+      },
+      "after": {
+        "glove_vertex_count": 305,
+        "ambiguous_vertex_count": 0,
+        "body_patch_triangle_count": 375,
+        "n": 305,
+        "p50_p90_max_mm": [
+          9.367,
+          24.568,
+          33.486
+        ],
+        "median_body_minus_glove_mm": [
+          0.467,
+          -1.731,
+          -2.594
+        ],
+        "median_delta_length_mm": 3.153,
+        "vector_scatter_p50_mm": 8.76
+      },
+      "p50_delta_mm": 0.0
+    },
+    "r_pinky": {
+      "before": {
+        "glove_vertex_count": 196,
+        "ambiguous_vertex_count": 84,
+        "body_patch_triangle_count": 302,
+        "n": 196,
+        "p50_p90_max_mm": [
+          18.764,
+          27.67,
+          33.526
+        ],
+        "median_body_minus_glove_mm": [
+          8.731,
+          -1.64,
+          1.349
+        ],
+        "median_delta_length_mm": 8.986,
+        "vector_scatter_p50_mm": 16.776
+      },
+      "after": {
+        "glove_vertex_count": 188,
+        "ambiguous_vertex_count": 76,
+        "body_patch_triangle_count": 302,
+        "n": 188,
+        "p50_p90_max_mm": [
+          19.333,
+          27.871,
+          33.526
+        ],
+        "median_body_minus_glove_mm": [
+          9.351,
+          -1.64,
+          1.384
+        ],
+        "median_delta_length_mm": 9.594,
+        "vector_scatter_p50_mm": 16.11
+      },
+      "p50_delta_mm": 0.569
+    },
+    "r_ring": {
+      "before": {
+        "glove_vertex_count": 197,
+        "ambiguous_vertex_count": 102,
+        "body_patch_triangle_count": 351,
+        "n": 197,
+        "p50_p90_max_mm": [
+          12.582,
+          23.748,
+          29.217
+        ],
+        "median_body_minus_glove_mm": [
+          -2.322,
+          1.592,
+          0.706
+        ],
+        "median_delta_length_mm": 2.903,
+        "vector_scatter_p50_mm": 12.584
+      },
+      "after": {
+        "glove_vertex_count": 212,
+        "ambiguous_vertex_count": 104,
+        "body_patch_triangle_count": 351,
+        "n": 212,
+        "p50_p90_max_mm": [
+          10.542,
+          21.78,
+          29.217
+        ],
+        "median_body_minus_glove_mm": [
+          0.097,
+          0.916,
+          0.733
+        ],
+        "median_delta_length_mm": 1.178,
+        "vector_scatter_p50_mm": 10.799
+      },
+      "p50_delta_mm": -2.04
+    },
+    "r_thumb": {
+      "before": {
+        "glove_vertex_count": 257,
+        "ambiguous_vertex_count": 103,
+        "body_patch_triangle_count": 459,
+        "n": 257,
+        "p50_p90_max_mm": [
+          8.192,
+          17.235,
+          25.115
+        ],
+        "median_body_minus_glove_mm": [
+          3.429,
+          0.99,
+          -4.948
+        ],
+        "median_delta_length_mm": 6.101,
+        "vector_scatter_p50_mm": 5.923
+      },
+      "after": {
+        "glove_vertex_count": 257,
+        "ambiguous_vertex_count": 103,
+        "body_patch_triangle_count": 459,
+        "n": 257,
+        "p50_p90_max_mm": [
+          8.192,
+          17.289,
+          25.115
+        ],
+        "median_body_minus_glove_mm": [
+          3.151,
+          0.9,
+          -4.581
+        ],
+        "median_delta_length_mm": 5.632,
+        "vector_scatter_p50_mm": 5.685
+      },
+      "p50_delta_mm": 0.0
+    }
+  },
+  "topology_preserved": true,
+  "all_vertex_weights_preserved": true,
+  "materials_and_indices_preserved": true,
+  "body_and_accessories_bone_names_equal": true,
+  "disposition": "DISPOSABLE_CAPPED_CAGE_CANDIDATE_FOR_OWNER_VISUAL_REVIEW",
+  "candidate_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_digit_cage_candidate.blend",
+  "renders": [
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_reference_before_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_reference_before_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_reference_after_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_reference_after_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_hold_before_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_hold_before_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_hold_after_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_digit_cage_hold_after_r.png"
+  ],
+  "limits": "Offline source comparison only. No UE import, editor, deployed asset, skeleton, clip, or weight edits."
+}

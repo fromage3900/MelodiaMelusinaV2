@@ -1,0 +1,130 @@
+[
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "before": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "graph_name": "AnimGraph",
+      "mode": "topology",
+      "node_count": 17,
+      "connection_count": 13,
+      "fingerprint": "6b40ade129fd2bf35279e36f15e94185a60e89cb",
+      "node_class_histogram": {
+        "AnimGraphNode_BlendSpacePlayer": 1,
+        "AnimGraphNode_ComponentToLocalSpace": 2,
+        "AnimGraphNode_CopyBone": 1,
+        "AnimGraphNode_KawaiiPhysics": 1,
+        "AnimGraphNode_LayeredBoneBlend": 1,
+        "AnimGraphNode_LocalToComponentSpace": 2,
+        "AnimGraphNode_ModifyCurve": 1,
+        "AnimGraphNode_Root": 1,
+        "AnimGraphNode_Slot": 5,
+        "AnimGraphNode_StateMachine": 1,
+        "K2Node_VariableGet": 1
+      }
+    },
+    "after": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "graph_name": "AnimGraph",
+      "mode": "topology",
+      "node_count": 17,
+      "connection_count": 13,
+      "fingerprint": "6b40ade129fd2bf35279e36f15e94185a60e89cb",
+      "node_class_histogram": {
+        "AnimGraphNode_BlendSpacePlayer": 1,
+        "AnimGraphNode_ComponentToLocalSpace": 2,
+        "AnimGraphNode_CopyBone": 1,
+        "AnimGraphNode_KawaiiPhysics": 1,
+        "AnimGraphNode_LayeredBoneBlend": 1,
+        "AnimGraphNode_LocalToComponentSpace": 2,
+        "AnimGraphNode_ModifyCurve": 1,
+        "AnimGraphNode_Root": 1,
+        "AnimGraphNode_Slot": 5,
+        "AnimGraphNode_StateMachine": 1,
+        "K2Node_VariableGet": 1
+      }
+    },
+    "compile": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "success": true,
+      "status": "UpToDate",
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0
+    },
+    "assertion": {
+      "matched": true,
+      "mode": "exact",
+      "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "graph_name": "AnimGraph",
+      "missing_nodes": [],
+      "extra_nodes": [],
+      "missing_connections": [],
+      "pin_default_mismatches": [],
+      "forbidden_nodes_present": [],
+      "summary": "17/17 nodes, 13/13 connections, 0 default mismatches, 0 forbidden present"
+    },
+    "backup": "Saved\\Audit\\MelusinaSecondarySources_20261003\\Backups\\ABP_Melusina_Current_before_sharing.uasset"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+    "before": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+      "graph_name": "AnimGraph",
+      "mode": "topology",
+      "node_count": 13,
+      "connection_count": 11,
+      "fingerprint": "e3155711e8ebc3c6a2d15c533dba21d23e2e5696",
+      "node_class_histogram": {
+        "AnimGraphNode_ComponentToLocalSpace": 1,
+        "AnimGraphNode_CopyPoseFromMesh": 1,
+        "AnimGraphNode_KawaiiPhysics": 1,
+        "AnimGraphNode_LocalToComponentSpace": 1,
+        "AnimGraphNode_ModifyBone": 6,
+        "AnimGraphNode_Root": 1,
+        "AnimGraphNode_SequencePlayer": 1,
+        "K2Node_VariableGet": 1
+      }
+    },
+    "after": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+      "graph_name": "AnimGraph",
+      "mode": "topology",
+      "node_count": 13,
+      "connection_count": 11,
+      "fingerprint": "e3155711e8ebc3c6a2d15c533dba21d23e2e5696",
+      "node_class_histogram": {
+        "AnimGraphNode_ComponentToLocalSpace": 1,
+        "AnimGraphNode_CopyPoseFromMesh": 1,
+        "AnimGraphNode_KawaiiPhysics": 1,
+        "AnimGraphNode_LocalToComponentSpace": 1,
+        "AnimGraphNode_ModifyBone": 6,
+        "AnimGraphNode_Root": 1,
+        "AnimGraphNode_SequencePlayer": 1,
+        "K2Node_VariableGet": 1
+      }
+    },
+    "compile": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+      "success": true,
+      "status": "UpToDate",
+      "errors": [],
+      "warnings": [],
+      "error_count": 0,
+      "warning_count": 0
+    },
+    "assertion": {
+      "matched": true,
+      "mode": "exact",
+      "asset_path": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+      "graph_name": "AnimGraph",
+      "missing_nodes": [],
+      "extra_nodes": [],
+      "missing_connections": [],
+      "pin_default_mismatches": [],
+      "forbidden_nodes_present": [],
+      "summary": "13/13 nodes, 11/11 connections, 0 default mismatches, 0 forbidden present"
+    },
+    "backup": "Saved\\Audit\\MelusinaSecondarySources_20261003\\Backups\\ABP_Melusina_WaterHair_before_sharing.uasset"
+  }
+]

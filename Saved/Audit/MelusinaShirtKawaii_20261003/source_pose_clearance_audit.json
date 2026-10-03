@@ -1,0 +1,275 @@
+{
+  "schema": "melodia.shirt_kawaii.offline_pose_audit.v1",
+  "status": "STAGING_ONLY_NOT_APPLIED",
+  "animation": {
+    "source_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaVisualPolish_20261003/canonical_RMB_Loop_native_animation.fbx",
+    "action": "root.003|Unreal Take|Base Layer",
+    "slot": "OBroot.003|Unreal Take|Base Layer",
+    "source_object_channels_removed": [
+      [
+        "location",
+        0
+      ],
+      [
+        "location",
+        1
+      ],
+      [
+        "location",
+        2
+      ],
+      [
+        "rotation_euler",
+        0
+      ],
+      [
+        "rotation_euler",
+        1
+      ],
+      [
+        "rotation_euler",
+        2
+      ],
+      [
+        "scale",
+        0
+      ],
+      [
+        "scale",
+        1
+      ],
+      [
+        "scale",
+        2
+      ]
+    ],
+    "channel_fcurves_retained": 4640,
+    "frames": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "raised_frame": 9,
+    "hold_frame": 1,
+    "samples": [
+      {
+        "frame": 1,
+        "left_hand_z_m": 1.5451,
+        "right_hand_z_m": 1.5447,
+        "mean_hand_z_m": 1.5449
+      },
+      {
+        "frame": 2,
+        "left_hand_z_m": 1.5451,
+        "right_hand_z_m": 1.5447,
+        "mean_hand_z_m": 1.5449
+      },
+      {
+        "frame": 3,
+        "left_hand_z_m": 1.5449,
+        "right_hand_z_m": 1.5444,
+        "mean_hand_z_m": 1.5447
+      },
+      {
+        "frame": 4,
+        "left_hand_z_m": 1.5446,
+        "right_hand_z_m": 1.5441,
+        "mean_hand_z_m": 1.5444
+      },
+      {
+        "frame": 5,
+        "left_hand_z_m": 1.5442,
+        "right_hand_z_m": 1.5441,
+        "mean_hand_z_m": 1.5442
+      },
+      {
+        "frame": 6,
+        "left_hand_z_m": 1.5441,
+        "right_hand_z_m": 1.5448,
+        "mean_hand_z_m": 1.5444
+      },
+      {
+        "frame": 7,
+        "left_hand_z_m": 1.5442,
+        "right_hand_z_m": 1.546,
+        "mean_hand_z_m": 1.5451
+      },
+      {
+        "frame": 8,
+        "left_hand_z_m": 1.5447,
+        "right_hand_z_m": 1.5473,
+        "mean_hand_z_m": 1.546
+      },
+      {
+        "frame": 9,
+        "left_hand_z_m": 1.5452,
+        "right_hand_z_m": 1.548,
+        "mean_hand_z_m": 1.5466
+      },
+      {
+        "frame": 10,
+        "left_hand_z_m": 1.5457,
+        "right_hand_z_m": 1.5474,
+        "mean_hand_z_m": 1.5466
+      },
+      {
+        "frame": 11,
+        "left_hand_z_m": 1.5459,
+        "right_hand_z_m": 1.5456,
+        "mean_hand_z_m": 1.5458
+      },
+      {
+        "frame": 12,
+        "left_hand_z_m": 1.5457,
+        "right_hand_z_m": 1.544,
+        "mean_hand_z_m": 1.5449
+      },
+      {
+        "frame": 13,
+        "left_hand_z_m": 1.5451,
+        "right_hand_z_m": 1.5434,
+        "mean_hand_z_m": 1.5442
+      },
+      {
+        "frame": 14,
+        "left_hand_z_m": 1.5445,
+        "right_hand_z_m": 1.5434,
+        "mean_hand_z_m": 1.5439
+      },
+      {
+        "frame": 15,
+        "left_hand_z_m": 1.5439,
+        "right_hand_z_m": 1.5438,
+        "mean_hand_z_m": 1.5439
+      },
+      {
+        "frame": 16,
+        "left_hand_z_m": 1.5438,
+        "right_hand_z_m": 1.5443,
+        "mean_hand_z_m": 1.5441
+      },
+      {
+        "frame": 17,
+        "left_hand_z_m": 1.544,
+        "right_hand_z_m": 1.545,
+        "mean_hand_z_m": 1.5445
+      },
+      {
+        "frame": 18,
+        "left_hand_z_m": 1.5444,
+        "right_hand_z_m": 1.5452,
+        "mean_hand_z_m": 1.5448
+      },
+      {
+        "frame": 19,
+        "left_hand_z_m": 1.5448,
+        "right_hand_z_m": 1.545,
+        "mean_hand_z_m": 1.5449
+      },
+      {
+        "frame": 20,
+        "left_hand_z_m": 1.5451,
+        "right_hand_z_m": 1.5446,
+        "mean_hand_z_m": 1.5449
+      },
+      {
+        "frame": 21,
+        "left_hand_z_m": 1.5453,
+        "right_hand_z_m": 1.5443,
+        "mean_hand_z_m": 1.5448
+      },
+      {
+        "frame": 22,
+        "left_hand_z_m": 1.5453,
+        "right_hand_z_m": 1.5443,
+        "mean_hand_z_m": 1.5448
+      }
+    ]
+  },
+  "clearance": {
+    "reference": {
+      "shirt_skirt_nearest_surface": {
+        "samples": 861,
+        "min_cm": 0.013,
+        "q05_cm": 1.124,
+        "median_cm": 39.438,
+        "within_0.5cm": 22,
+        "within_2cm": 93
+      },
+      "shirt_body_nearest_surface": {
+        "samples": 861,
+        "min_cm": 0.013,
+        "q05_cm": 0.545,
+        "median_cm": 2.794,
+        "within_0.5cm": 40,
+        "within_2cm": 293
+      }
+    },
+    "raised": {
+      "shirt_skirt_nearest_surface": {
+        "samples": 861,
+        "min_cm": 0.007,
+        "q05_cm": 1.124,
+        "median_cm": 39.41,
+        "within_0.5cm": 22,
+        "within_2cm": 93
+      },
+      "shirt_body_nearest_surface": {
+        "samples": 861,
+        "min_cm": 0.011,
+        "q05_cm": 0.532,
+        "median_cm": 2.788,
+        "within_0.5cm": 42,
+        "within_2cm": 293
+      }
+    },
+    "hold": {
+      "shirt_skirt_nearest_surface": {
+        "samples": 861,
+        "min_cm": 0.013,
+        "q05_cm": 1.124,
+        "median_cm": 39.438,
+        "within_0.5cm": 22,
+        "within_2cm": 93
+      },
+      "shirt_body_nearest_surface": {
+        "samples": 861,
+        "min_cm": 0.013,
+        "q05_cm": 0.545,
+        "median_cm": 2.794,
+        "within_0.5cm": 40,
+        "within_2cm": 293
+      }
+    }
+  },
+  "source_hashes": {
+    "shirt": "7e3ecfe23cabdef2f67aac850b38e14c32c4136ce543a890daa17b82539e59b4",
+    "skirt": "e22254e0022c784d4d754c92ba815cee6f7ad8837a153612a0a23aa585ac40a6"
+  },
+  "shared_collision_plan": {
+    "source_component": "Melusina body KawaiiPhysics node",
+    "source_flag": "bSharedCollisionSource",
+    "target_flag": "bUseSharedCollision",
+    "shared_group_tag": "Melodia.Melusina.BodyCloth",
+    "hair_consumes_world_space_body_limits": true
+  }
+}
