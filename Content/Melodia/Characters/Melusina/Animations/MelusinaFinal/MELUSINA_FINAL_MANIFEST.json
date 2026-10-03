@@ -1,0 +1,22 @@
+{
+  "production_skeleton": "/Game/Melodia/Characters/Melusina/CharacterSkeleton/MelusinaRuntimeSkeleton_v2",
+  "policy": {
+    "primary_runtime_sets": "original polished mocap/authored clips only",
+    "secondary_quaternius": "blendspace variant/breakup only; do not replace working runtime sets",
+    "retarget_owner": "one active retargeter asset only; archives are not active",
+    "shoulder_fix": "apply centrally once, not per clip"
+  },
+  "archive_moved_2026-10-01": [
+    "FemaleBardRetargeted",
+    "FemaleBardRetargeted_InPlace",
+    "FemaleBardRetargeted_LocalAxes",
+    "FemaleBardRetargeted_V1Pose",
+    "MannequinRetargeted",
+    "SourceRetargeted",
+    "QuaterniusAligned",
+    "QuaterniusRetargeted",
+    "QuaterniusRetargeted_Test",
+    "QuaterniusRetargeted_V2Fixed"
+  ],
+  "target_output_dir": "/Game/Melodia/Characters/Melusina/Animations/MelusinaFinal"
+}
