@@ -1,0 +1,461 @@
+{
+  "schema": "melodia.hand_sleeve_rigid_fit_candidate.v1",
+  "body_fbx_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "accessories_fbx_sha256": "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+  "bone_pose": "neutral resets pose.bones matrix_basis to Identity; hold applies native frame 5 pose.bones curves only",
+  "mesh_scales": {
+    "body": [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ],
+    "accessories": [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ]
+  },
+  "source_reference": {
+    "gloves": {
+      "l": {
+        "n": 1401,
+        "p10_p50_p90_max_mm": [
+          39.88,
+          63.71,
+          77.94,
+          97.01
+        ],
+        "median_body_minus_piece_mm": [
+          -10.31,
+          6.44,
+          -56.62
+        ],
+        "vector_scatter_p50_p90_mm": [
+          23.4,
+          45.98
+        ],
+        "translation_world_m": [
+          -0.01031339168548584,
+          0.006435222923755646,
+          -0.056621432304382324
+        ]
+      },
+      "r": {
+        "n": 1420,
+        "p10_p50_p90_max_mm": [
+          39.06,
+          63.26,
+          78.64,
+          97.01
+        ],
+        "median_body_minus_piece_mm": [
+          10.07,
+          5.72,
+          -56.33
+        ],
+        "vector_scatter_p50_p90_mm": [
+          23.99,
+          46.13
+        ],
+        "translation_world_m": [
+          0.010068774223327637,
+          0.005724072456359863,
+          -0.05633378028869629
+        ]
+      }
+    },
+    "sleeves": {
+      "l": {
+        "n": 1596,
+        "p10_p50_p90_max_mm": [
+          14.07,
+          67.67,
+          117.06,
+          218.88
+        ],
+        "median_body_minus_piece_mm": [
+          -1.78,
+          3.3,
+          -55.58
+        ],
+        "vector_scatter_p50_p90_mm": [
+          43.69,
+          74.96
+        ],
+        "translation_world_m": [
+          -0.001782149076461792,
+          0.003304004669189453,
+          -0.05558180809020996
+        ]
+      },
+      "r": {
+        "n": 1596,
+        "p10_p50_p90_max_mm": [
+          11.85,
+          71.53,
+          119.95,
+          194.8
+        ],
+        "median_body_minus_piece_mm": [
+          0.16,
+          4.13,
+          -50.73
+        ],
+        "vector_scatter_p50_p90_mm": [
+          48.41,
+          87.33
+        ],
+        "translation_world_m": [
+          0.00015804171562194824,
+          0.00412924587726593,
+          -0.05073428153991699
+        ]
+      }
+    }
+  },
+  "source_hold": {
+    "gloves": {
+      "l": {
+        "n": 1401,
+        "p10_p50_p90_max_mm": [
+          47.19,
+          63.28,
+          76.96,
+          94.8
+        ],
+        "median_body_minus_piece_mm": [
+          -31.81,
+          7.95,
+          -21.62
+        ],
+        "vector_scatter_p50_p90_mm": [
+          43.82,
+          90.77
+        ],
+        "translation_world_m": [
+          -0.03180832415819168,
+          0.007946252822875977,
+          -0.021615028381347656
+        ]
+      },
+      "r": {
+        "n": 1420,
+        "p10_p50_p90_max_mm": [
+          35.87,
+          58.62,
+          72.49,
+          88.96
+        ],
+        "median_body_minus_piece_mm": [
+          32.23,
+          5.14,
+          -15.68
+        ],
+        "vector_scatter_p50_p90_mm": [
+          36.91,
+          96.97
+        ],
+        "translation_world_m": [
+          0.032233357429504395,
+          0.0051364898681640625,
+          -0.01568424701690674
+        ]
+      }
+    },
+    "sleeves": {
+      "l": {
+        "n": 1608,
+        "p10_p50_p90_max_mm": [
+          13.53,
+          65.24,
+          105.78,
+          653.57
+        ],
+        "median_body_minus_piece_mm": [
+          -8.96,
+          -6.93,
+          -45.03
+        ],
+        "vector_scatter_p50_p90_mm": [
+          40.73,
+          73.75
+        ],
+        "translation_world_m": [
+          -0.00896494835615158,
+          -0.00693202018737793,
+          -0.04503011703491211
+        ]
+      },
+      "r": {
+        "n": 1584,
+        "p10_p50_p90_max_mm": [
+          9.3,
+          61.62,
+          104.15,
+          186.29
+        ],
+        "median_body_minus_piece_mm": [
+          -17.83,
+          1.8,
+          -31.9
+        ],
+        "vector_scatter_p50_p90_mm": [
+          40.07,
+          88.32
+        ],
+        "translation_world_m": [
+          -0.017828017473220825,
+          0.0017973482608795166,
+          -0.03190338611602783
+        ]
+      }
+    }
+  },
+  "candidate_reference": {
+    "gloves": {
+      "l": {
+        "n": 1401,
+        "p10_p50_p90_max_mm": [
+          2.53,
+          12.09,
+          31.83,
+          60.91
+        ],
+        "median_body_minus_piece_mm": [
+          -1.08,
+          -0.37,
+          -8.68
+        ],
+        "vector_scatter_p50_p90_mm": [
+          9.52,
+          25.55
+        ],
+        "translation_world_m": [
+          -0.001079559326171875,
+          -0.00037360191345214844,
+          -0.008682608604431152
+        ]
+      },
+      "r": {
+        "n": 1420,
+        "p10_p50_p90_max_mm": [
+          2.52,
+          12.23,
+          33.11,
+          60.8
+        ],
+        "median_body_minus_piece_mm": [
+          1.09,
+          -0.66,
+          -8.82
+        ],
+        "vector_scatter_p50_p90_mm": [
+          9.69,
+          26.12
+        ],
+        "translation_world_m": [
+          0.0010935664176940918,
+          -0.0006610974669456482,
+          -0.008823871612548828
+        ]
+      }
+    },
+    "sleeves": {
+      "l": {
+        "n": 1596,
+        "p10_p50_p90_max_mm": [
+          6.45,
+          32.35,
+          71.49,
+          202.15
+        ],
+        "median_body_minus_piece_mm": [
+          -0.25,
+          2.44,
+          -13.36
+        ],
+        "vector_scatter_p50_p90_mm": [
+          29.28,
+          65.14
+        ],
+        "translation_world_m": [
+          -0.00025150179862976074,
+          0.0024442076683044434,
+          -0.0133589506149292
+        ]
+      },
+      "r": {
+        "n": 1596,
+        "p10_p50_p90_max_mm": [
+          8.79,
+          38.63,
+          86.02,
+          177.08
+        ],
+        "median_body_minus_piece_mm": [
+          -0.33,
+          2.92,
+          -14.19
+        ],
+        "vector_scatter_p50_p90_mm": [
+          35.13,
+          81.1
+        ],
+        "translation_world_m": [
+          -0.00033032894134521484,
+          0.0029174387454986572,
+          -0.014191269874572754
+        ]
+      }
+    }
+  },
+  "candidate_hold": {
+    "gloves": {
+      "l": {
+        "n": 1401,
+        "p10_p50_p90_max_mm": [
+          5.07,
+          14.44,
+          30.72,
+          59.73
+        ],
+        "median_body_minus_piece_mm": [
+          -4.67,
+          0.94,
+          -1.76
+        ],
+        "vector_scatter_p50_p90_mm": [
+          13.88,
+          28.83
+        ],
+        "translation_world_m": [
+          -0.00466538593173027,
+          0.0009427666664123535,
+          -0.0017589330673217773
+        ]
+      },
+      "r": {
+        "n": 1420,
+        "p10_p50_p90_max_mm": [
+          4.03,
+          12.55,
+          28.62,
+          58.5
+        ],
+        "median_body_minus_piece_mm": [
+          1.9,
+          0.07,
+          -0.53
+        ],
+        "vector_scatter_p50_p90_mm": [
+          11.93,
+          29.6
+        ],
+        "translation_world_m": [
+          0.001897573471069336,
+          6.729364395141602e-05,
+          -0.0005267858505249023
+        ]
+      }
+    },
+    "sleeves": {
+      "l": {
+        "n": 1604,
+        "p10_p50_p90_max_mm": [
+          6.36,
+          30.59,
+          61.36,
+          643.54
+        ],
+        "median_body_minus_piece_mm": [
+          -0.72,
+          -2.23,
+          -10.8
+        ],
+        "vector_scatter_p50_p90_mm": [
+          28.26,
+          55.13
+        ],
+        "translation_world_m": [
+          -0.000721244141459465,
+          -0.0022322237491607666,
+          -0.010796070098876953
+        ]
+      },
+      "r": {
+        "n": 1588,
+        "p10_p50_p90_max_mm": [
+          5.9,
+          29.18,
+          77.01,
+          176.6
+        ],
+        "median_body_minus_piece_mm": [
+          -4.93,
+          4.78,
+          -5.53
+        ],
+        "vector_scatter_p50_p90_mm": [
+          27.17,
+          73.84
+        ],
+        "translation_world_m": [
+          -0.004929065704345703,
+          0.004780769348144531,
+          -0.005532026290893555
+        ]
+      }
+    }
+  },
+  "local_mesh_deltas": [
+    {
+      "region": "glove_l",
+      "xyz": [
+        -1.031339168548584,
+        0.6435222625732422,
+        -5.662143230438232
+      ]
+    },
+    {
+      "region": "glove_r",
+      "xyz": [
+        1.0068774223327637,
+        0.5724072456359863,
+        -5.633378028869629
+      ]
+    },
+    {
+      "region": "sleeve_l",
+      "xyz": [
+        -0.1782149076461792,
+        0.3304004669189453,
+        -5.558180809020996
+      ]
+    },
+    {
+      "region": "sleeve_r",
+      "xyz": [
+        0.015804171562194824,
+        0.412924587726593,
+        -5.073428153991699
+      ]
+    }
+  ],
+  "topology_preserved": true,
+  "all_vertex_weights_and_material_indices_preserved": true,
+  "glove_vertices_shared_with_other_slots": 0,
+  "sleeve_vertices_shared_with_other_slots": 0,
+  "clip_changes": 0,
+  "candidate_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_rigid_candidate.blend",
+  "renders": [
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_reference_source_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_reference_source_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_reference_candidate_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_reference_candidate_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_hold_source_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_hold_source_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_hold_candidate_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_hold_candidate_r.png"
+  ],
+  "disposition": "DISPOSABLE_SOURCE_FIT_CANDIDATE_FOR_OWNER_VISUAL_REVIEW"
+}

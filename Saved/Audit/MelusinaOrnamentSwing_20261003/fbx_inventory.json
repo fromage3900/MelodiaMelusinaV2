@@ -1,0 +1,3939 @@
+{
+  "body": {
+    "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaRuntimeConvergence_20261002\\current_body_readonly.fbx",
+    "armatures": [
+      {
+        "name": "root",
+        "bones": 464,
+        "bone_names": [
+          "c_pos",
+          "c_traj",
+          "c_root_master_x",
+          "c_root_x",
+          "c_spine_01_x",
+          "c_spine_02_x",
+          "c_spine_03_x",
+          "Retopo_Cube_003_001",
+          "root_x",
+          "c_thigh_b_l",
+          "c_thigh_fk_l",
+          "c_leg_fk_l",
+          "c_thigh_ik_l",
+          "thigh_stretch_l",
+          "thigh_twist_l",
+          "thigh_twist_2_l",
+          "leg_stretch_l",
+          "foot_l",
+          "toes_01_l",
+          "leg_twist_l",
+          "leg_twist_2_l",
+          "c_thigh_b_r",
+          "c_thigh_fk_r",
+          "c_leg_fk_r",
+          "c_thigh_ik_r",
+          "thigh_stretch_r",
+          "thigh_twist_r",
+          "thigh_twist_2_r",
+          "leg_stretch_r",
+          "foot_r",
+          "toes_01_r",
+          "leg_twist_r",
+          "leg_twist_2_r",
+          "c_kilt_master_x",
+          "c_kilt_01_01_l",
+          "c_kilt_01_02_l",
+          "c_kilt_01_03_l",
+          "c_kilt_01_04_l",
+          "c_kilt_02_01_l",
+          "c_kilt_02_02_l",
+          "c_kilt_02_03_l",
+          "c_kilt_02_04_l",
+          "c_kilt_03_01_l",
+          "c_kilt_03_02_l",
+          "c_kilt_03_03_l",
+          "c_kilt_03_04_l",
+          "c_kilt_main_03_04_l",
+          "c_kilt_main_03_03_l",
+          "c_kilt_main_03_02_l",
+          "c_kilt_04_01_l",
+          "c_kilt_04_02_l",
+          "c_kilt_04_03_l",
+          "c_kilt_04_04_l",
+          "c_kilt_05_01_l",
+          "c_kilt_05_02_l",
+          "c_kilt_05_03_l",
+          "c_kilt_05_04_l",
+          "c_kilt_main_05_04_l",
+          "c_kilt_main_05_03_l",
+          "c_kilt_main_05_02_l",
+          "c_kilt_06_01_l",
+          "c_kilt_06_02_l",
+          "c_kilt_06_03_l",
+          "c_kilt_06_04_l",
+          "c_kilt_01_01_r",
+          "c_kilt_01_02_r",
+          "c_kilt_01_03_r",
+          "c_kilt_01_04_r",
+          "c_kilt_02_01_r",
+          "c_kilt_02_02_r",
+          "c_kilt_02_03_r",
+          "c_kilt_02_04_r",
+          "c_kilt_03_01_r",
+          "c_kilt_03_02_r",
+          "c_kilt_03_03_r",
+          "c_kilt_03_04_r",
+          "c_kilt_main_03_04_r",
+          "c_kilt_main_03_03_r",
+          "c_kilt_main_03_02_r",
+          "c_kilt_04_01_r",
+          "c_kilt_04_02_r",
+          "c_kilt_04_03_r",
+          "c_kilt_04_04_r",
+          "c_kilt_05_01_r",
+          "c_kilt_05_02_r",
+          "c_kilt_05_03_r",
+          "c_kilt_05_04_r",
+          "c_kilt_main_05_04_r",
+          "c_kilt_main_05_03_r",
+          "c_kilt_main_05_02_r",
+          "c_kilt_06_01_r",
+          "c_kilt_06_02_r",
+          "c_kilt_06_03_r",
+          "c_kilt_06_04_r",
+          "c_kilt_07_01_l",
+          "c_kilt_07_02_l",
+          "c_kilt_07_03_l",
+          "c_kilt_07_04_l",
+          "c_kilt_main_07_04_l",
+          "c_kilt_main_07_03_l",
+          "c_kilt_main_07_02_l",
+          "c_kilt_08_01_l",
+          "c_kilt_08_02_l",
+          "c_kilt_08_03_l",
+          "c_kilt_08_04_l",
+          "c_kilt_07_01_r",
+          "c_kilt_07_02_r",
+          "c_kilt_07_03_r",
+          "c_kilt_07_04_r",
+          "c_kilt_main_07_04_r",
+          "c_kilt_main_07_03_r",
+          "c_kilt_main_07_02_r",
+          "c_kilt_08_01_r",
+          "c_kilt_08_02_r",
+          "c_kilt_08_03_r",
+          "c_kilt_08_04_r",
+          "c_kilt_row_01_x",
+          "c_kilt_row_02_x",
+          "c_kilt_row_03_x",
+          "c_kilt_row_04_x",
+          "spine_01_x",
+          "spine_02_x",
+          "spine_03_x",
+          "c_neck_master_x",
+          "c_shoulder_r",
+          "c_arm_ik_r",
+          "shoulder_r",
+          "arm_stretch_r",
+          "arm_twist_r",
+          "c_arm_twist_offset_r",
+          "arm_twist_2_r",
+          "forearm_stretch_r",
+          "hand_r",
+          "c_pinky1_base_r",
+          "c_ring1_base_r",
+          "c_middle1_base_r",
+          "c_index1_base_r",
+          "c_thumb1_base_r",
+          "thumb1_r",
+          "thumb2_r",
+          "thumb3_r",
+          "pinky1_base_r",
+          "pinky1_r",
+          "pinky2_r",
+          "pinky3_r",
+          "ring1_base_r",
+          "ring1_r",
+          "ring2_r",
+          "ring3_r",
+          "middle1_base_r",
+          "middle1_r",
+          "middle2_r",
+          "middle3_r",
+          "index1_base_r",
+          "index1_r",
+          "index2_r",
+          "index3_r",
+          "forearm_twist_r",
+          "forearm_twist_2_r",
+          "c_shoulder_l",
+          "c_arm_ik_l",
+          "shoulder_l",
+          "arm_stretch_l",
+          "arm_twist_l",
+          "c_arm_twist_offset_l",
+          "arm_twist_2_l",
+          "forearm_stretch_l",
+          "hand_l",
+          "c_pinky1_base_l",
+          "c_ring1_base_l",
+          "c_middle1_base_l",
+          "c_index1_base_l",
+          "c_thumb1_base_l",
+          "thumb1_l",
+          "thumb2_l",
+          "thumb3_l",
+          "pinky1_base_l",
+          "pinky1_l",
+          "pinky2_l",
+          "pinky3_l",
+          "ring1_base_l",
+          "ring1_l",
+          "ring2_l",
+          "ring3_l",
+          "middle1_base_l",
+          "middle1_l",
+          "middle2_l",
+          "middle3_l",
+          "index1_base_l",
+          "index1_l",
+          "index2_l",
+          "index3_l",
+          "forearm_twist_l",
+          "forearm_twist_2_l",
+          "c_arm_fk_l",
+          "c_forearm_fk_l",
+          "c_arm_fk_r",
+          "c_forearm_fk_r",
+          "c_subneck_1_x",
+          "c_neck_x",
+          "neck_x",
+          "head_x",
+          "c_ear_01_l",
+          "c_ear_02_l",
+          "c_ear_01_r",
+          "c_ear_02_r",
+          "ORG-face",
+          "DEF-forehead_L",
+          "DEF-forehead_R",
+          "DEF-forehead_L_001",
+          "DEF-forehead_R_001",
+          "DEF-forehead_L_002",
+          "DEF-forehead_R_002",
+          "DEF-temple_L",
+          "DEF-temple_R",
+          "master_eye_L",
+          "brow_B_L",
+          "DEF-brow_B_L",
+          "brow_B_L_001",
+          "DEF-brow_B_L_001",
+          "brow_B_L_002",
+          "DEF-brow_B_L_002",
+          "brow_B_L_003",
+          "DEF-brow_B_L_003",
+          "brow_B_L_004",
+          "lid_B_L",
+          "lid_B_L_001",
+          "lid_B_L_002",
+          "lid_B_L_003",
+          "lid_T_L",
+          "lid_T_L_001",
+          "lid_T_L_002",
+          "lid_T_L_003",
+          "MCH-eye_L",
+          "DEF_eye_L",
+          "MCH-eye_L_001",
+          "MCH-lid_B_L",
+          "DEF-lid_B_L",
+          "MCH-lid_B_L_001",
+          "DEF-lid_B_L_001",
+          "MCH-lid_B_L_002",
+          "DEF-lid_B_L_002",
+          "MCH-lid_B_L_003",
+          "DEF-lid_B_L_003",
+          "MCH-lid_T_L",
+          "DEF-lid_T_L",
+          "MCH-lid_T_L_001",
+          "DEF-lid_T_L_001",
+          "MCH-lid_T_L_002",
+          "DEF-lid_T_L_002",
+          "MCH-lid_T_L_003",
+          "DEF-lid_T_L_003",
+          "master_eye_R",
+          "brow_B_R",
+          "DEF-brow_B_R",
+          "brow_B_R_001",
+          "DEF-brow_B_R_001",
+          "brow_B_R_002",
+          "DEF-brow_B_R_002",
+          "brow_B_R_003",
+          "DEF-brow_B_R_003",
+          "brow_B_R_004",
+          "lid_B_R",
+          "lid_B_R_001",
+          "lid_B_R_002",
+          "lid_B_R_003",
+          "lid_T_R",
+          "lid_T_R_001",
+          "lid_T_R_002",
+          "lid_T_R_003",
+          "MCH-eye_R",
+          "DEF_eye_R",
+          "MCH-eye_R_001",
+          "MCH-lid_B_R",
+          "DEF-lid_B_R",
+          "MCH-lid_B_R_001",
+          "DEF-lid_B_R_001",
+          "MCH-lid_B_R_002",
+          "DEF-lid_B_R_002",
+          "MCH-lid_B_R_003",
+          "DEF-lid_B_R_003",
+          "MCH-lid_T_R",
+          "DEF-lid_T_R",
+          "MCH-lid_T_R_001",
+          "DEF-lid_T_R_001",
+          "MCH-lid_T_R_002",
+          "DEF-lid_T_R_002",
+          "MCH-lid_T_R_003",
+          "DEF-lid_T_R_003",
+          "jaw_master",
+          "chin",
+          "DEF-chin",
+          "chin_001",
+          "DEF-chin_001",
+          "chin_L",
+          "DEF-chin_L",
+          "chin_R",
+          "DEF-chin_R",
+          "jaw",
+          "DEF-jaw",
+          "jaw_L_001",
+          "DEF-jaw_L_001",
+          "jaw_R_001",
+          "DEF-jaw_R_001",
+          "brow_T_L",
+          "DEF-cheek_T_L",
+          "DEF-brow_T_L",
+          "brow_T_L_001",
+          "DEF-brow_T_L_001",
+          "brow_T_L_002",
+          "DEF-brow_T_L_002",
+          "brow_T_L_003",
+          "DEF-brow_T_L_003",
+          "brow_T_R",
+          "DEF-cheek_T_R",
+          "DEF-brow_T_R",
+          "brow_T_R_001",
+          "DEF-brow_T_R_001",
+          "brow_T_R_002",
+          "DEF-brow_T_R_002",
+          "brow_T_R_003",
+          "DEF-brow_T_R_003",
+          "jaw_L",
+          "DEF-jaw_L",
+          "jaw_R",
+          "DEF-jaw_R",
+          "nose",
+          "DEF-nose",
+          "nose_L",
+          "DEF-nose_L",
+          "nose_R",
+          "DEF-nose_R",
+          "MCH-mouth_lock",
+          "MCH-jaw_master",
+          "lip_B",
+          "DEF-lip_B_L",
+          "DEF-lip_B_R",
+          "chin_002",
+          "MCH-jaw_master_001",
+          "lip_B_L_001",
+          "DEF-lip_B_L_001",
+          "lip_B_R_001",
+          "DEF-lip_B_R_001",
+          "MCH-jaw_master_002",
+          "cheek_B_L_001",
+          "DEF-cheek_B_L_001",
+          "cheek_B_R_001",
+          "DEF-cheek_B_R_001",
+          "lips_L",
+          "DEF-cheek_B_L",
+          "lips_R",
+          "DEF-cheek_B_R",
+          "MCH-jaw_master_003",
+          "lip_T_L_001",
+          "DEF-lip_T_L_001",
+          "lip_T_R_001",
+          "DEF-lip_T_R_001",
+          "lip_T",
+          "DEF-lip_T_L",
+          "DEF-lip_T_R",
+          "nose_005",
+          "MCH-jaw_master_004",
+          "nose_master",
+          "nose_002",
+          "DEF-nose_002",
+          "nose_003",
+          "DEF-nose_003",
+          "nose_001",
+          "DEF-nose_001",
+          "nose_004",
+          "DEF-nose_004",
+          "nose_L_001",
+          "DEF-nose_L_001",
+          "nose_R_001",
+          "DEF-nose_R_001",
+          "cheek_T_L_001",
+          "DEF-cheek_T_L_001",
+          "cheek_T_R_001",
+          "DEF-cheek_T_R_001",
+          "DEF_forhead_01_L",
+          "DEF_forhead_02_L",
+          "DEF_forhead_03_L",
+          "DEF_forhead_04_L",
+          "DEF_forhead_01_R",
+          "DEF_forhead_02_R",
+          "DEF_forhead_03_R",
+          "DEF_forhead_04_R",
+          "c_stretch_leg_pin_l",
+          "c_stretch_leg_pin_r",
+          "c_stretch_arm_pin_r",
+          "c_stretch_arm_pin_l",
+          "c_foot_fk_l",
+          "c_toes_fk_l",
+          "c_stretch_leg_l",
+          "c_foot_fk_r",
+          "c_toes_fk_r",
+          "c_stretch_leg_r",
+          "c_kilt_main_03_01_l",
+          "c_kilt_main_05_01_l",
+          "c_kilt_main_03_01_r",
+          "c_kilt_main_05_01_r",
+          "c_kilt_main_07_01_l",
+          "c_kilt_main_07_01_r",
+          "c_kilt_main_01_01_x",
+          "c_kilt_main_01_02_x",
+          "c_kilt_main_01_03_x",
+          "c_kilt_main_08_01_x",
+          "c_kilt_main_08_02_x",
+          "c_kilt_main_08_03_x",
+          "c_kilt_main_01_04_x",
+          "c_kilt_main_08_04_x",
+          "c_stretch_arm_r",
+          "c_pinky1_r",
+          "c_pinky2_r",
+          "c_pinky3_r",
+          "c_ring1_r",
+          "c_ring2_r",
+          "c_ring3_r",
+          "c_middle1_r",
+          "c_middle2_r",
+          "c_middle3_r",
+          "c_index1_r",
+          "c_index2_r",
+          "c_index3_r",
+          "c_thumb1_r",
+          "c_thumb2_r",
+          "c_thumb3_r",
+          "c_stretch_arm_l",
+          "c_pinky1_l",
+          "c_pinky2_l",
+          "c_pinky3_l",
+          "c_ring1_l",
+          "c_ring2_l",
+          "c_ring3_l",
+          "c_middle1_l",
+          "c_middle2_l",
+          "c_middle3_l",
+          "c_index1_l",
+          "c_index2_l",
+          "c_index3_l",
+          "c_thumb1_l",
+          "c_thumb2_l",
+          "c_thumb3_l",
+          "c_hand_fk_l",
+          "c_hand_fk_r",
+          "c_head_x",
+          "c_arms_pole_l",
+          "c_arms_pole_r",
+          "c_foot_ik_r",
+          "c_toes_ik_r",
+          "c_foot_01_r",
+          "c_foot_roll_cursor_r",
+          "c_leg_pole_r",
+          "c_foot_ik_l",
+          "c_toes_ik_l",
+          "c_foot_01_l",
+          "c_foot_roll_cursor_l",
+          "c_leg_pole_l",
+          "c_hand_ik_r",
+          "c_hand_ik_l",
+          "MCH-eyes_parent",
+          "eyes",
+          "eye_L",
+          "eye_R"
+        ]
+      }
+    ],
+    "meshes": [
+      {
+        "name": "SK_Melusina_V2_Body.001",
+        "vertices": 20786,
+        "polygons": 37696,
+        "materials": [
+          "MI_Melusina_SBW_MELUSINA_006",
+          "MI_Melusina_SBW_MELUSINA_007",
+          "MI_Melusina_SBW_MELUSINA_007_2",
+          "MI_Melusina_Outline_005",
+          "MI_Melusina_IRISFRONT_001"
+        ],
+        "vertex_groups": [
+          {
+            "name": "root_x",
+            "vertex_count": 1753,
+            "weight_sum": 582.3287,
+            "weight_max": 0.9442
+          },
+          {
+            "name": "thigh_stretch_l",
+            "vertex_count": 688,
+            "weight_sum": 239.5863,
+            "weight_max": 0.8166
+          },
+          {
+            "name": "thigh_twist_l",
+            "vertex_count": 741,
+            "weight_sum": 166.1432,
+            "weight_max": 0.729
+          },
+          {
+            "name": "thigh_twist_2_l",
+            "vertex_count": 1061,
+            "weight_sum": 439.3682,
+            "weight_max": 0.9994
+          },
+          {
+            "name": "leg_stretch_l",
+            "vertex_count": 373,
+            "weight_sum": 113.2961,
+            "weight_max": 0.7138
+          },
+          {
+            "name": "foot_l",
+            "vertex_count": 737,
+            "weight_sum": 515.3076,
+            "weight_max": 0.9779
+          },
+          {
+            "name": "toes_01_l",
+            "vertex_count": 373,
+            "weight_sum": 59.7729,
+            "weight_max": 0.3696
+          },
+          {
+            "name": "leg_twist_l",
+            "vertex_count": 895,
+            "weight_sum": 316.0044,
+            "weight_max": 0.8308
+          },
+          {
+            "name": "leg_twist_2_l",
+            "vertex_count": 835,
+            "weight_sum": 385.9224,
+            "weight_max": 0.9981
+          },
+          {
+            "name": "thigh_stretch_r",
+            "vertex_count": 687,
+            "weight_sum": 238.8952,
+            "weight_max": 0.8166
+          },
+          {
+            "name": "thigh_twist_r",
+            "vertex_count": 742,
+            "weight_sum": 167.7364,
+            "weight_max": 0.73
+          },
+          {
+            "name": "thigh_twist_2_r",
+            "vertex_count": 1065,
+            "weight_sum": 439.6339,
+            "weight_max": 0.9994
+          },
+          {
+            "name": "leg_stretch_r",
+            "vertex_count": 373,
+            "weight_sum": 113.9397,
+            "weight_max": 0.7135
+          },
+          {
+            "name": "foot_r",
+            "vertex_count": 738,
+            "weight_sum": 514.4486,
+            "weight_max": 0.9776
+          },
+          {
+            "name": "toes_01_r",
+            "vertex_count": 374,
+            "weight_sum": 60.0144,
+            "weight_max": 0.3656
+          },
+          {
+            "name": "leg_twist_r",
+            "vertex_count": 896,
+            "weight_sum": 316.6231,
+            "weight_max": 0.8299
+          },
+          {
+            "name": "leg_twist_2_r",
+            "vertex_count": 835,
+            "weight_sum": 385.9833,
+            "weight_max": 0.9981
+          },
+          {
+            "name": "spine_01_x",
+            "vertex_count": 1552,
+            "weight_sum": 437.0714,
+            "weight_max": 0.8175
+          },
+          {
+            "name": "spine_02_x",
+            "vertex_count": 1856,
+            "weight_sum": 646.4898,
+            "weight_max": 0.8805
+          },
+          {
+            "name": "spine_03_x",
+            "vertex_count": 1306,
+            "weight_sum": 233.0923,
+            "weight_max": 0.8636
+          },
+          {
+            "name": "shoulder_r",
+            "vertex_count": 1258,
+            "weight_sum": 341.0813,
+            "weight_max": 0.9981
+          },
+          {
+            "name": "arm_stretch_r",
+            "vertex_count": 437,
+            "weight_sum": 162.4173,
+            "weight_max": 0.8521
+          },
+          {
+            "name": "c_arm_twist_offset_r",
+            "vertex_count": 372,
+            "weight_sum": 93.1538,
+            "weight_max": 0.6198
+          },
+          {
+            "name": "arm_twist_2_r",
+            "vertex_count": 523,
+            "weight_sum": 246.5605,
+            "weight_max": 0.9995
+          },
+          {
+            "name": "forearm_stretch_r",
+            "vertex_count": 277,
+            "weight_sum": 90.397,
+            "weight_max": 0.832
+          },
+          {
+            "name": "hand_r",
+            "vertex_count": 285,
+            "weight_sum": 68.1059,
+            "weight_max": 0.9325
+          },
+          {
+            "name": "c_pinky1_base_r",
+            "vertex_count": 259,
+            "weight_sum": 110.4465,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ring1_base_r",
+            "vertex_count": 171,
+            "weight_sum": 34.7082,
+            "weight_max": 0.7769
+          },
+          {
+            "name": "c_middle1_base_r",
+            "vertex_count": 209,
+            "weight_sum": 37.9318,
+            "weight_max": 0.8026
+          },
+          {
+            "name": "c_index1_base_r",
+            "vertex_count": 276,
+            "weight_sum": 75.395,
+            "weight_max": 0.9819
+          },
+          {
+            "name": "thumb1_r",
+            "vertex_count": 210,
+            "weight_sum": 63.252,
+            "weight_max": 1.0
+          },
+          {
+            "name": "thumb2_r",
+            "vertex_count": 189,
+            "weight_sum": 87.3057,
+            "weight_max": 0.974
+          },
+          {
+            "name": "thumb3_r",
+            "vertex_count": 169,
+            "weight_sum": 103.0387,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky1_r",
+            "vertex_count": 109,
+            "weight_sum": 56.4517,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky2_r",
+            "vertex_count": 72,
+            "weight_sum": 28.1872,
+            "weight_max": 0.9168
+          },
+          {
+            "name": "pinky3_r",
+            "vertex_count": 83,
+            "weight_sum": 68.9833,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring1_r",
+            "vertex_count": 187,
+            "weight_sum": 98.2992,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring2_r",
+            "vertex_count": 105,
+            "weight_sum": 47.6747,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring3_r",
+            "vertex_count": 106,
+            "weight_sum": 78.2427,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle1_r",
+            "vertex_count": 234,
+            "weight_sum": 116.885,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle2_r",
+            "vertex_count": 140,
+            "weight_sum": 68.6435,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle3_r",
+            "vertex_count": 142,
+            "weight_sum": 108.9396,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index1_r",
+            "vertex_count": 190,
+            "weight_sum": 88.9354,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index2_r",
+            "vertex_count": 91,
+            "weight_sum": 45.6623,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index3_r",
+            "vertex_count": 109,
+            "weight_sum": 86.414,
+            "weight_max": 1.0
+          },
+          {
+            "name": "forearm_twist_r",
+            "vertex_count": 487,
+            "weight_sum": 211.8372,
+            "weight_max": 0.8418
+          },
+          {
+            "name": "forearm_twist_2_r",
+            "vertex_count": 564,
+            "weight_sum": 259.1325,
+            "weight_max": 0.9772
+          },
+          {
+            "name": "shoulder_l",
+            "vertex_count": 1245,
+            "weight_sum": 343.1743,
+            "weight_max": 0.9985
+          },
+          {
+            "name": "arm_stretch_l",
+            "vertex_count": 438,
+            "weight_sum": 162.4038,
+            "weight_max": 0.8524
+          },
+          {
+            "name": "c_arm_twist_offset_l",
+            "vertex_count": 370,
+            "weight_sum": 91.134,
+            "weight_max": 0.6
+          },
+          {
+            "name": "arm_twist_2_l",
+            "vertex_count": 523,
+            "weight_sum": 246.3042,
+            "weight_max": 0.9995
+          },
+          {
+            "name": "forearm_stretch_l",
+            "vertex_count": 277,
+            "weight_sum": 90.4091,
+            "weight_max": 0.8331
+          },
+          {
+            "name": "hand_l",
+            "vertex_count": 229,
+            "weight_sum": 56.1467,
+            "weight_max": 0.9294
+          },
+          {
+            "name": "c_pinky1_base_l",
+            "vertex_count": 218,
+            "weight_sum": 92.0154,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ring1_base_l",
+            "vertex_count": 180,
+            "weight_sum": 34.9386,
+            "weight_max": 0.7745
+          },
+          {
+            "name": "c_middle1_base_l",
+            "vertex_count": 223,
+            "weight_sum": 37.2189,
+            "weight_max": 0.8047
+          },
+          {
+            "name": "c_index1_base_l",
+            "vertex_count": 269,
+            "weight_sum": 75.8895,
+            "weight_max": 0.9876
+          },
+          {
+            "name": "thumb1_l",
+            "vertex_count": 194,
+            "weight_sum": 62.7689,
+            "weight_max": 1.0
+          },
+          {
+            "name": "thumb2_l",
+            "vertex_count": 179,
+            "weight_sum": 78.7132,
+            "weight_max": 0.9738
+          },
+          {
+            "name": "thumb3_l",
+            "vertex_count": 160,
+            "weight_sum": 103.5079,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky1_l",
+            "vertex_count": 109,
+            "weight_sum": 56.8915,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky2_l",
+            "vertex_count": 72,
+            "weight_sum": 28.0901,
+            "weight_max": 0.9133
+          },
+          {
+            "name": "pinky3_l",
+            "vertex_count": 83,
+            "weight_sum": 68.9795,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring1_l",
+            "vertex_count": 186,
+            "weight_sum": 98.9849,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring2_l",
+            "vertex_count": 105,
+            "weight_sum": 47.5548,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring3_l",
+            "vertex_count": 106,
+            "weight_sum": 78.3341,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle1_l",
+            "vertex_count": 248,
+            "weight_sum": 123.765,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle2_l",
+            "vertex_count": 140,
+            "weight_sum": 68.5101,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle3_l",
+            "vertex_count": 142,
+            "weight_sum": 109.0026,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index1_l",
+            "vertex_count": 205,
+            "weight_sum": 95.0394,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index2_l",
+            "vertex_count": 91,
+            "weight_sum": 45.688,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index3_l",
+            "vertex_count": 109,
+            "weight_sum": 86.4421,
+            "weight_max": 1.0
+          },
+          {
+            "name": "forearm_twist_l",
+            "vertex_count": 437,
+            "weight_sum": 186.2904,
+            "weight_max": 0.8414
+          },
+          {
+            "name": "forearm_twist_2_l",
+            "vertex_count": 535,
+            "weight_sum": 256.7027,
+            "weight_max": 0.9772
+          },
+          {
+            "name": "neck_x",
+            "vertex_count": 1515,
+            "weight_sum": 379.6503,
+            "weight_max": 0.8018
+          },
+          {
+            "name": "head_x",
+            "vertex_count": 4461,
+            "weight_sum": 2498.8876,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ear_01_l",
+            "vertex_count": 1733,
+            "weight_sum": 346.2946,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ear_02_l",
+            "vertex_count": 2121,
+            "weight_sum": 970.4255,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ear_01_r",
+            "vertex_count": 1735,
+            "weight_sum": 347.8166,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ear_02_r",
+            "vertex_count": 2115,
+            "weight_sum": 968.886,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-forehead_L",
+            "vertex_count": 37,
+            "weight_sum": 12.421,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-forehead_R",
+            "vertex_count": 38,
+            "weight_sum": 12.6077,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-forehead_L_001",
+            "vertex_count": 103,
+            "weight_sum": 17.0418,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-forehead_R_001",
+            "vertex_count": 103,
+            "weight_sum": 17.0417,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-forehead_L_002",
+            "vertex_count": 17,
+            "weight_sum": 3.6756,
+            "weight_max": 0.9825
+          },
+          {
+            "name": "DEF-forehead_R_002",
+            "vertex_count": 18,
+            "weight_sum": 3.809,
+            "weight_max": 0.9825
+          },
+          {
+            "name": "DEF-temple_L",
+            "vertex_count": 1894,
+            "weight_sum": 260.0199,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-temple_R",
+            "vertex_count": 1885,
+            "weight_sum": 259.4797,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_B_L",
+            "vertex_count": 25,
+            "weight_sum": 9.9908,
+            "weight_max": 0.965
+          },
+          {
+            "name": "DEF-brow_B_L_001",
+            "vertex_count": 6,
+            "weight_sum": 1.1212,
+            "weight_max": 0.4667
+          },
+          {
+            "name": "DEF-brow_B_L_002",
+            "vertex_count": 31,
+            "weight_sum": 6.5699,
+            "weight_max": 0.7429
+          },
+          {
+            "name": "DEF-brow_B_L_003",
+            "vertex_count": 50,
+            "weight_sum": 13.4225,
+            "weight_max": 0.7993
+          },
+          {
+            "name": "DEF_eye_L",
+            "vertex_count": 50,
+            "weight_sum": 34.0001,
+            "weight_max": 0.8398
+          },
+          {
+            "name": "DEF-lid_B_L",
+            "vertex_count": 25,
+            "weight_sum": 6.389,
+            "weight_max": 0.812
+          },
+          {
+            "name": "DEF-lid_B_L_001",
+            "vertex_count": 20,
+            "weight_sum": 7.4157,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_B_L_002",
+            "vertex_count": 19,
+            "weight_sum": 5.6833,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_B_L_003",
+            "vertex_count": 30,
+            "weight_sum": 9.3009,
+            "weight_max": 0.9894
+          },
+          {
+            "name": "DEF-lid_T_L",
+            "vertex_count": 17,
+            "weight_sum": 6.0663,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_T_L_001",
+            "vertex_count": 9,
+            "weight_sum": 3.0078,
+            "weight_max": 0.9583
+          },
+          {
+            "name": "DEF-lid_T_L_002",
+            "vertex_count": 14,
+            "weight_sum": 2.4568,
+            "weight_max": 0.5512
+          },
+          {
+            "name": "DEF-lid_T_L_003",
+            "vertex_count": 53,
+            "weight_sum": 13.2292,
+            "weight_max": 0.9636
+          },
+          {
+            "name": "DEF-brow_B_R",
+            "vertex_count": 23,
+            "weight_sum": 9.4707,
+            "weight_max": 0.9542
+          },
+          {
+            "name": "DEF-brow_B_R_001",
+            "vertex_count": 6,
+            "weight_sum": 1.1483,
+            "weight_max": 0.4693
+          },
+          {
+            "name": "DEF-brow_B_R_002",
+            "vertex_count": 33,
+            "weight_sum": 6.8904,
+            "weight_max": 0.7429
+          },
+          {
+            "name": "DEF-brow_B_R_003",
+            "vertex_count": 53,
+            "weight_sum": 13.5983,
+            "weight_max": 0.7801
+          },
+          {
+            "name": "DEF_eye_R",
+            "vertex_count": 50,
+            "weight_sum": 33.2308,
+            "weight_max": 0.8174
+          },
+          {
+            "name": "DEF-lid_B_R",
+            "vertex_count": 32,
+            "weight_sum": 7.6549,
+            "weight_max": 0.928
+          },
+          {
+            "name": "DEF-lid_B_R_001",
+            "vertex_count": 18,
+            "weight_sum": 7.1528,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_B_R_002",
+            "vertex_count": 20,
+            "weight_sum": 5.7964,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_B_R_003",
+            "vertex_count": 30,
+            "weight_sum": 9.9828,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_T_R",
+            "vertex_count": 15,
+            "weight_sum": 5.843,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lid_T_R_001",
+            "vertex_count": 10,
+            "weight_sum": 2.9463,
+            "weight_max": 0.9603
+          },
+          {
+            "name": "DEF-lid_T_R_002",
+            "vertex_count": 12,
+            "weight_sum": 1.7857,
+            "weight_max": 0.4482
+          },
+          {
+            "name": "DEF-lid_T_R_003",
+            "vertex_count": 50,
+            "weight_sum": 12.9221,
+            "weight_max": 0.9594
+          },
+          {
+            "name": "DEF-chin",
+            "vertex_count": 46,
+            "weight_sum": 6.4711,
+            "weight_max": 0.4293
+          },
+          {
+            "name": "DEF-chin_001",
+            "vertex_count": 68,
+            "weight_sum": 19.9406,
+            "weight_max": 0.8549
+          },
+          {
+            "name": "DEF-chin_L",
+            "vertex_count": 180,
+            "weight_sum": 61.4464,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-chin_R",
+            "vertex_count": 190,
+            "weight_sum": 62.816,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-jaw",
+            "vertex_count": 270,
+            "weight_sum": 85.1107,
+            "weight_max": 0.9917
+          },
+          {
+            "name": "DEF-jaw_L_001",
+            "vertex_count": 195,
+            "weight_sum": 60.5378,
+            "weight_max": 0.9998
+          },
+          {
+            "name": "DEF-jaw_R_001",
+            "vertex_count": 196,
+            "weight_sum": 60.5861,
+            "weight_max": 0.9998
+          },
+          {
+            "name": "DEF-cheek_T_L",
+            "vertex_count": 73,
+            "weight_sum": 18.5659,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_L",
+            "vertex_count": 75,
+            "weight_sum": 22.5748,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_L_001",
+            "vertex_count": 36,
+            "weight_sum": 10.1037,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_L_002",
+            "vertex_count": 62,
+            "weight_sum": 26.7309,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_L_003",
+            "vertex_count": 79,
+            "weight_sum": 16.7585,
+            "weight_max": 0.8758
+          },
+          {
+            "name": "DEF-cheek_T_R",
+            "vertex_count": 76,
+            "weight_sum": 19.4701,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_R",
+            "vertex_count": 76,
+            "weight_sum": 22.4544,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_R_001",
+            "vertex_count": 35,
+            "weight_sum": 9.9451,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_R_002",
+            "vertex_count": 63,
+            "weight_sum": 26.7892,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-brow_T_R_003",
+            "vertex_count": 77,
+            "weight_sum": 18.4056,
+            "weight_max": 0.9151
+          },
+          {
+            "name": "DEF-jaw_L",
+            "vertex_count": 307,
+            "weight_sum": 64.5306,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-jaw_R",
+            "vertex_count": 307,
+            "weight_sum": 65.2984,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-nose",
+            "vertex_count": 119,
+            "weight_sum": 46.6405,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-nose_L",
+            "vertex_count": 63,
+            "weight_sum": 18.8075,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-nose_R",
+            "vertex_count": 60,
+            "weight_sum": 18.4609,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lip_B_L",
+            "vertex_count": 35,
+            "weight_sum": 5.8828,
+            "weight_max": 0.4845
+          },
+          {
+            "name": "DEF-lip_B_R",
+            "vertex_count": 19,
+            "weight_sum": 2.5992,
+            "weight_max": 0.3905
+          },
+          {
+            "name": "DEF-lip_B_L_001",
+            "vertex_count": 60,
+            "weight_sum": 10.273,
+            "weight_max": 0.939
+          },
+          {
+            "name": "DEF-lip_B_R_001",
+            "vertex_count": 60,
+            "weight_sum": 10.6088,
+            "weight_max": 0.9379
+          },
+          {
+            "name": "DEF-cheek_B_L_001",
+            "vertex_count": 194,
+            "weight_sum": 70.985,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-cheek_B_R_001",
+            "vertex_count": 186,
+            "weight_sum": 68.7765,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-cheek_B_L",
+            "vertex_count": 49,
+            "weight_sum": 12.9129,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-cheek_B_R",
+            "vertex_count": 49,
+            "weight_sum": 12.9147,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lip_T_L_001",
+            "vertex_count": 69,
+            "weight_sum": 16.3805,
+            "weight_max": 0.8543
+          },
+          {
+            "name": "DEF-lip_T_R_001",
+            "vertex_count": 69,
+            "weight_sum": 16.2893,
+            "weight_max": 0.8536
+          },
+          {
+            "name": "DEF-lip_T_L",
+            "vertex_count": 142,
+            "weight_sum": 43.3264,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-lip_T_R",
+            "vertex_count": 144,
+            "weight_sum": 43.3115,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-nose_002",
+            "vertex_count": 32,
+            "weight_sum": 4.1725,
+            "weight_max": 0.5534
+          },
+          {
+            "name": "DEF-nose_003",
+            "vertex_count": 43,
+            "weight_sum": 4.7673,
+            "weight_max": 0.3154
+          },
+          {
+            "name": "DEF-nose_001",
+            "vertex_count": 39,
+            "weight_sum": 12.0566,
+            "weight_max": 0.9659
+          },
+          {
+            "name": "DEF-nose_004",
+            "vertex_count": 177,
+            "weight_sum": 77.0804,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-nose_L_001",
+            "vertex_count": 96,
+            "weight_sum": 34.2198,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-nose_R_001",
+            "vertex_count": 97,
+            "weight_sum": 34.3798,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-cheek_T_L_001",
+            "vertex_count": 82,
+            "weight_sum": 30.7532,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF-cheek_T_R_001",
+            "vertex_count": 82,
+            "weight_sum": 30.3632,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_01_L",
+            "vertex_count": 2075,
+            "weight_sum": 352.7373,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_02_L",
+            "vertex_count": 442,
+            "weight_sum": 87.1646,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_03_L",
+            "vertex_count": 416,
+            "weight_sum": 81.4799,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_04_L",
+            "vertex_count": 72,
+            "weight_sum": 14.225,
+            "weight_max": 0.9926
+          },
+          {
+            "name": "DEF_forhead_01_R",
+            "vertex_count": 2078,
+            "weight_sum": 353.3866,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_02_R",
+            "vertex_count": 449,
+            "weight_sum": 87.3908,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_03_R",
+            "vertex_count": 416,
+            "weight_sum": 81.4796,
+            "weight_max": 1.0
+          },
+          {
+            "name": "DEF_forhead_04_R",
+            "vertex_count": 69,
+            "weight_sum": 13.8658,
+            "weight_max": 0.9926
+          }
+        ],
+        "bounds_local": [
+          [
+            -96.6384,
+            96.6384
+          ],
+          [
+            -37.1025,
+            9.2835
+          ],
+          [
+            -15.2541,
+            183.5568
+          ]
+        ]
+      }
+    ]
+  },
+  "accessories": {
+    "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaRuntimeConvergence_20261002\\current_accessories_readonly.fbx",
+    "armatures": [
+      {
+        "name": "root",
+        "bones": 464,
+        "bone_names": [
+          "c_pos",
+          "c_traj",
+          "c_root_master_x",
+          "c_root_x",
+          "c_spine_01_x",
+          "c_spine_02_x",
+          "c_spine_03_x",
+          "Retopo_Cube_003_001",
+          "root_x",
+          "c_thigh_b_l",
+          "c_thigh_fk_l",
+          "c_leg_fk_l",
+          "c_thigh_ik_l",
+          "thigh_stretch_l",
+          "thigh_twist_l",
+          "thigh_twist_2_l",
+          "leg_stretch_l",
+          "foot_l",
+          "toes_01_l",
+          "leg_twist_l",
+          "leg_twist_2_l",
+          "c_thigh_b_r",
+          "c_thigh_fk_r",
+          "c_leg_fk_r",
+          "c_thigh_ik_r",
+          "thigh_stretch_r",
+          "thigh_twist_r",
+          "thigh_twist_2_r",
+          "leg_stretch_r",
+          "foot_r",
+          "toes_01_r",
+          "leg_twist_r",
+          "leg_twist_2_r",
+          "c_kilt_master_x",
+          "c_kilt_01_01_l",
+          "c_kilt_01_02_l",
+          "c_kilt_01_03_l",
+          "c_kilt_01_04_l",
+          "c_kilt_02_01_l",
+          "c_kilt_02_02_l",
+          "c_kilt_02_03_l",
+          "c_kilt_02_04_l",
+          "c_kilt_03_01_l",
+          "c_kilt_03_02_l",
+          "c_kilt_03_03_l",
+          "c_kilt_03_04_l",
+          "c_kilt_main_03_04_l",
+          "c_kilt_main_03_03_l",
+          "c_kilt_main_03_02_l",
+          "c_kilt_04_01_l",
+          "c_kilt_04_02_l",
+          "c_kilt_04_03_l",
+          "c_kilt_04_04_l",
+          "c_kilt_05_01_l",
+          "c_kilt_05_02_l",
+          "c_kilt_05_03_l",
+          "c_kilt_05_04_l",
+          "c_kilt_main_05_04_l",
+          "c_kilt_main_05_03_l",
+          "c_kilt_main_05_02_l",
+          "c_kilt_06_01_l",
+          "c_kilt_06_02_l",
+          "c_kilt_06_03_l",
+          "c_kilt_06_04_l",
+          "c_kilt_01_01_r",
+          "c_kilt_01_02_r",
+          "c_kilt_01_03_r",
+          "c_kilt_01_04_r",
+          "c_kilt_02_01_r",
+          "c_kilt_02_02_r",
+          "c_kilt_02_03_r",
+          "c_kilt_02_04_r",
+          "c_kilt_03_01_r",
+          "c_kilt_03_02_r",
+          "c_kilt_03_03_r",
+          "c_kilt_03_04_r",
+          "c_kilt_main_03_04_r",
+          "c_kilt_main_03_03_r",
+          "c_kilt_main_03_02_r",
+          "c_kilt_04_01_r",
+          "c_kilt_04_02_r",
+          "c_kilt_04_03_r",
+          "c_kilt_04_04_r",
+          "c_kilt_05_01_r",
+          "c_kilt_05_02_r",
+          "c_kilt_05_03_r",
+          "c_kilt_05_04_r",
+          "c_kilt_main_05_04_r",
+          "c_kilt_main_05_03_r",
+          "c_kilt_main_05_02_r",
+          "c_kilt_06_01_r",
+          "c_kilt_06_02_r",
+          "c_kilt_06_03_r",
+          "c_kilt_06_04_r",
+          "c_kilt_07_01_l",
+          "c_kilt_07_02_l",
+          "c_kilt_07_03_l",
+          "c_kilt_07_04_l",
+          "c_kilt_main_07_04_l",
+          "c_kilt_main_07_03_l",
+          "c_kilt_main_07_02_l",
+          "c_kilt_08_01_l",
+          "c_kilt_08_02_l",
+          "c_kilt_08_03_l",
+          "c_kilt_08_04_l",
+          "c_kilt_07_01_r",
+          "c_kilt_07_02_r",
+          "c_kilt_07_03_r",
+          "c_kilt_07_04_r",
+          "c_kilt_main_07_04_r",
+          "c_kilt_main_07_03_r",
+          "c_kilt_main_07_02_r",
+          "c_kilt_08_01_r",
+          "c_kilt_08_02_r",
+          "c_kilt_08_03_r",
+          "c_kilt_08_04_r",
+          "c_kilt_row_01_x",
+          "c_kilt_row_02_x",
+          "c_kilt_row_03_x",
+          "c_kilt_row_04_x",
+          "spine_01_x",
+          "spine_02_x",
+          "spine_03_x",
+          "c_neck_master_x",
+          "c_shoulder_r",
+          "c_arm_ik_r",
+          "shoulder_r",
+          "arm_stretch_r",
+          "arm_twist_r",
+          "c_arm_twist_offset_r",
+          "arm_twist_2_r",
+          "forearm_stretch_r",
+          "hand_r",
+          "c_pinky1_base_r",
+          "c_ring1_base_r",
+          "c_middle1_base_r",
+          "c_index1_base_r",
+          "c_thumb1_base_r",
+          "thumb1_r",
+          "thumb2_r",
+          "thumb3_r",
+          "pinky1_base_r",
+          "pinky1_r",
+          "pinky2_r",
+          "pinky3_r",
+          "ring1_base_r",
+          "ring1_r",
+          "ring2_r",
+          "ring3_r",
+          "middle1_base_r",
+          "middle1_r",
+          "middle2_r",
+          "middle3_r",
+          "index1_base_r",
+          "index1_r",
+          "index2_r",
+          "index3_r",
+          "forearm_twist_r",
+          "forearm_twist_2_r",
+          "c_shoulder_l",
+          "c_arm_ik_l",
+          "shoulder_l",
+          "arm_stretch_l",
+          "arm_twist_l",
+          "c_arm_twist_offset_l",
+          "arm_twist_2_l",
+          "forearm_stretch_l",
+          "hand_l",
+          "c_pinky1_base_l",
+          "c_ring1_base_l",
+          "c_middle1_base_l",
+          "c_index1_base_l",
+          "c_thumb1_base_l",
+          "thumb1_l",
+          "thumb2_l",
+          "thumb3_l",
+          "pinky1_base_l",
+          "pinky1_l",
+          "pinky2_l",
+          "pinky3_l",
+          "ring1_base_l",
+          "ring1_l",
+          "ring2_l",
+          "ring3_l",
+          "middle1_base_l",
+          "middle1_l",
+          "middle2_l",
+          "middle3_l",
+          "index1_base_l",
+          "index1_l",
+          "index2_l",
+          "index3_l",
+          "forearm_twist_l",
+          "forearm_twist_2_l",
+          "c_arm_fk_l",
+          "c_forearm_fk_l",
+          "c_arm_fk_r",
+          "c_forearm_fk_r",
+          "c_subneck_1_x",
+          "c_neck_x",
+          "neck_x",
+          "head_x",
+          "c_ear_01_l",
+          "c_ear_02_l",
+          "c_ear_01_r",
+          "c_ear_02_r",
+          "ORG-face",
+          "DEF-forehead_L",
+          "DEF-forehead_R",
+          "DEF-forehead_L_001",
+          "DEF-forehead_R_001",
+          "DEF-forehead_L_002",
+          "DEF-forehead_R_002",
+          "DEF-temple_L",
+          "DEF-temple_R",
+          "master_eye_L",
+          "brow_B_L",
+          "DEF-brow_B_L",
+          "brow_B_L_001",
+          "DEF-brow_B_L_001",
+          "brow_B_L_002",
+          "DEF-brow_B_L_002",
+          "brow_B_L_003",
+          "DEF-brow_B_L_003",
+          "brow_B_L_004",
+          "lid_B_L",
+          "lid_B_L_001",
+          "lid_B_L_002",
+          "lid_B_L_003",
+          "lid_T_L",
+          "lid_T_L_001",
+          "lid_T_L_002",
+          "lid_T_L_003",
+          "MCH-eye_L",
+          "DEF_eye_L",
+          "MCH-eye_L_001",
+          "MCH-lid_B_L",
+          "DEF-lid_B_L",
+          "MCH-lid_B_L_001",
+          "DEF-lid_B_L_001",
+          "MCH-lid_B_L_002",
+          "DEF-lid_B_L_002",
+          "MCH-lid_B_L_003",
+          "DEF-lid_B_L_003",
+          "MCH-lid_T_L",
+          "DEF-lid_T_L",
+          "MCH-lid_T_L_001",
+          "DEF-lid_T_L_001",
+          "MCH-lid_T_L_002",
+          "DEF-lid_T_L_002",
+          "MCH-lid_T_L_003",
+          "DEF-lid_T_L_003",
+          "master_eye_R",
+          "brow_B_R",
+          "DEF-brow_B_R",
+          "brow_B_R_001",
+          "DEF-brow_B_R_001",
+          "brow_B_R_002",
+          "DEF-brow_B_R_002",
+          "brow_B_R_003",
+          "DEF-brow_B_R_003",
+          "brow_B_R_004",
+          "lid_B_R",
+          "lid_B_R_001",
+          "lid_B_R_002",
+          "lid_B_R_003",
+          "lid_T_R",
+          "lid_T_R_001",
+          "lid_T_R_002",
+          "lid_T_R_003",
+          "MCH-eye_R",
+          "DEF_eye_R",
+          "MCH-eye_R_001",
+          "MCH-lid_B_R",
+          "DEF-lid_B_R",
+          "MCH-lid_B_R_001",
+          "DEF-lid_B_R_001",
+          "MCH-lid_B_R_002",
+          "DEF-lid_B_R_002",
+          "MCH-lid_B_R_003",
+          "DEF-lid_B_R_003",
+          "MCH-lid_T_R",
+          "DEF-lid_T_R",
+          "MCH-lid_T_R_001",
+          "DEF-lid_T_R_001",
+          "MCH-lid_T_R_002",
+          "DEF-lid_T_R_002",
+          "MCH-lid_T_R_003",
+          "DEF-lid_T_R_003",
+          "jaw_master",
+          "chin",
+          "DEF-chin",
+          "chin_001",
+          "DEF-chin_001",
+          "chin_L",
+          "DEF-chin_L",
+          "chin_R",
+          "DEF-chin_R",
+          "jaw",
+          "DEF-jaw",
+          "jaw_L_001",
+          "DEF-jaw_L_001",
+          "jaw_R_001",
+          "DEF-jaw_R_001",
+          "brow_T_L",
+          "DEF-cheek_T_L",
+          "DEF-brow_T_L",
+          "brow_T_L_001",
+          "DEF-brow_T_L_001",
+          "brow_T_L_002",
+          "DEF-brow_T_L_002",
+          "brow_T_L_003",
+          "DEF-brow_T_L_003",
+          "brow_T_R",
+          "DEF-cheek_T_R",
+          "DEF-brow_T_R",
+          "brow_T_R_001",
+          "DEF-brow_T_R_001",
+          "brow_T_R_002",
+          "DEF-brow_T_R_002",
+          "brow_T_R_003",
+          "DEF-brow_T_R_003",
+          "jaw_L",
+          "DEF-jaw_L",
+          "jaw_R",
+          "DEF-jaw_R",
+          "nose",
+          "DEF-nose",
+          "nose_L",
+          "DEF-nose_L",
+          "nose_R",
+          "DEF-nose_R",
+          "MCH-mouth_lock",
+          "MCH-jaw_master",
+          "lip_B",
+          "DEF-lip_B_L",
+          "DEF-lip_B_R",
+          "chin_002",
+          "MCH-jaw_master_001",
+          "lip_B_L_001",
+          "DEF-lip_B_L_001",
+          "lip_B_R_001",
+          "DEF-lip_B_R_001",
+          "MCH-jaw_master_002",
+          "cheek_B_L_001",
+          "DEF-cheek_B_L_001",
+          "cheek_B_R_001",
+          "DEF-cheek_B_R_001",
+          "lips_L",
+          "DEF-cheek_B_L",
+          "lips_R",
+          "DEF-cheek_B_R",
+          "MCH-jaw_master_003",
+          "lip_T_L_001",
+          "DEF-lip_T_L_001",
+          "lip_T_R_001",
+          "DEF-lip_T_R_001",
+          "lip_T",
+          "DEF-lip_T_L",
+          "DEF-lip_T_R",
+          "nose_005",
+          "MCH-jaw_master_004",
+          "nose_master",
+          "nose_002",
+          "DEF-nose_002",
+          "nose_003",
+          "DEF-nose_003",
+          "nose_001",
+          "DEF-nose_001",
+          "nose_004",
+          "DEF-nose_004",
+          "nose_L_001",
+          "DEF-nose_L_001",
+          "nose_R_001",
+          "DEF-nose_R_001",
+          "cheek_T_L_001",
+          "DEF-cheek_T_L_001",
+          "cheek_T_R_001",
+          "DEF-cheek_T_R_001",
+          "DEF_forhead_01_L",
+          "DEF_forhead_02_L",
+          "DEF_forhead_03_L",
+          "DEF_forhead_04_L",
+          "DEF_forhead_01_R",
+          "DEF_forhead_02_R",
+          "DEF_forhead_03_R",
+          "DEF_forhead_04_R",
+          "c_stretch_leg_pin_l",
+          "c_stretch_leg_pin_r",
+          "c_stretch_arm_pin_r",
+          "c_stretch_arm_pin_l",
+          "c_foot_fk_l",
+          "c_toes_fk_l",
+          "c_stretch_leg_l",
+          "c_foot_fk_r",
+          "c_toes_fk_r",
+          "c_stretch_leg_r",
+          "c_kilt_main_03_01_l",
+          "c_kilt_main_05_01_l",
+          "c_kilt_main_03_01_r",
+          "c_kilt_main_05_01_r",
+          "c_kilt_main_07_01_l",
+          "c_kilt_main_07_01_r",
+          "c_kilt_main_01_01_x",
+          "c_kilt_main_01_02_x",
+          "c_kilt_main_01_03_x",
+          "c_kilt_main_08_01_x",
+          "c_kilt_main_08_02_x",
+          "c_kilt_main_08_03_x",
+          "c_kilt_main_01_04_x",
+          "c_kilt_main_08_04_x",
+          "c_stretch_arm_r",
+          "c_pinky1_r",
+          "c_pinky2_r",
+          "c_pinky3_r",
+          "c_ring1_r",
+          "c_ring2_r",
+          "c_ring3_r",
+          "c_middle1_r",
+          "c_middle2_r",
+          "c_middle3_r",
+          "c_index1_r",
+          "c_index2_r",
+          "c_index3_r",
+          "c_thumb1_r",
+          "c_thumb2_r",
+          "c_thumb3_r",
+          "c_stretch_arm_l",
+          "c_pinky1_l",
+          "c_pinky2_l",
+          "c_pinky3_l",
+          "c_ring1_l",
+          "c_ring2_l",
+          "c_ring3_l",
+          "c_middle1_l",
+          "c_middle2_l",
+          "c_middle3_l",
+          "c_index1_l",
+          "c_index2_l",
+          "c_index3_l",
+          "c_thumb1_l",
+          "c_thumb2_l",
+          "c_thumb3_l",
+          "c_hand_fk_l",
+          "c_hand_fk_r",
+          "c_head_x",
+          "c_arms_pole_l",
+          "c_arms_pole_r",
+          "c_foot_ik_r",
+          "c_toes_ik_r",
+          "c_foot_01_r",
+          "c_foot_roll_cursor_r",
+          "c_leg_pole_r",
+          "c_foot_ik_l",
+          "c_toes_ik_l",
+          "c_foot_01_l",
+          "c_foot_roll_cursor_l",
+          "c_leg_pole_l",
+          "c_hand_ik_r",
+          "c_hand_ik_l",
+          "MCH-eyes_parent",
+          "eyes",
+          "eye_L",
+          "eye_R"
+        ]
+      }
+    ],
+    "meshes": [
+      {
+        "name": "SK_Melusina_V2_Accessories.001",
+        "vertices": 8084,
+        "polygons": 12628,
+        "materials": [
+          "MI_Melusina_Nikki_GLOVES_001",
+          "MI_Melusina_Nikki_sleeve_003",
+          "MI_Melusina_Nikki_bow_002",
+          "MI_Melusina_Nikki_frontpanel_001",
+          "MI_Melusina_Nikki_SHAWL_001",
+          "MI_Melusina_Outline_005",
+          "MI_Melusina_Nikki_bow_002_6",
+          "MI_Melusina_Nikki_frontpanel_001_7",
+          "MI_Melusina_Nikki_SHAWL_001_8",
+          "MI_Melusina_Outline_005_9"
+        ],
+        "vertex_groups": [
+          {
+            "name": "root_x",
+            "vertex_count": 42,
+            "weight_sum": 5.7183,
+            "weight_max": 0.247
+          },
+          {
+            "name": "thigh_twist_2_l",
+            "vertex_count": 1,
+            "weight_sum": 0.1037,
+            "weight_max": 0.1037
+          },
+          {
+            "name": "thigh_twist_2_r",
+            "vertex_count": 4,
+            "weight_sum": 0.5601,
+            "weight_max": 0.148
+          },
+          {
+            "name": "c_kilt_01_01_l",
+            "vertex_count": 198,
+            "weight_sum": 61.6698,
+            "weight_max": 0.6449
+          },
+          {
+            "name": "c_kilt_01_02_l",
+            "vertex_count": 156,
+            "weight_sum": 46.9329,
+            "weight_max": 0.8273
+          },
+          {
+            "name": "c_kilt_01_03_l",
+            "vertex_count": 118,
+            "weight_sum": 33.8141,
+            "weight_max": 0.9566
+          },
+          {
+            "name": "c_kilt_01_04_l",
+            "vertex_count": 59,
+            "weight_sum": 19.3897,
+            "weight_max": 0.8591
+          },
+          {
+            "name": "c_kilt_02_02_l",
+            "vertex_count": 9,
+            "weight_sum": 6.2237,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_03_l",
+            "vertex_count": 52,
+            "weight_sum": 11.2271,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_04_l",
+            "vertex_count": 37,
+            "weight_sum": 14.3041,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_02_l",
+            "vertex_count": 4,
+            "weight_sum": 3.5233,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_03_l",
+            "vertex_count": 7,
+            "weight_sum": 3.0282,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_04_l",
+            "vertex_count": 33,
+            "weight_sum": 17.9873,
+            "weight_max": 0.9535
+          },
+          {
+            "name": "c_kilt_04_02_l",
+            "vertex_count": 4,
+            "weight_sum": 2.4407,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_04_03_l",
+            "vertex_count": 10,
+            "weight_sum": 5.1529,
+            "weight_max": 0.9349
+          },
+          {
+            "name": "c_kilt_04_04_l",
+            "vertex_count": 21,
+            "weight_sum": 11.1623,
+            "weight_max": 0.9303
+          },
+          {
+            "name": "c_kilt_05_02_l",
+            "vertex_count": 9,
+            "weight_sum": 4.2177,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_05_03_l",
+            "vertex_count": 24,
+            "weight_sum": 14.5995,
+            "weight_max": 0.9783
+          },
+          {
+            "name": "c_kilt_05_04_l",
+            "vertex_count": 29,
+            "weight_sum": 11.9586,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_01_l",
+            "vertex_count": 56,
+            "weight_sum": 56.0,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_02_l",
+            "vertex_count": 4,
+            "weight_sum": 3.8829,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_03_l",
+            "vertex_count": 8,
+            "weight_sum": 5.1182,
+            "weight_max": 0.8453
+          },
+          {
+            "name": "c_kilt_06_04_l",
+            "vertex_count": 16,
+            "weight_sum": 9.9148,
+            "weight_max": 0.7838
+          },
+          {
+            "name": "c_kilt_01_01_r",
+            "vertex_count": 205,
+            "weight_sum": 85.5304,
+            "weight_max": 0.7149
+          },
+          {
+            "name": "c_kilt_01_02_r",
+            "vertex_count": 230,
+            "weight_sum": 63.0842,
+            "weight_max": 0.8708
+          },
+          {
+            "name": "c_kilt_01_03_r",
+            "vertex_count": 119,
+            "weight_sum": 35.2826,
+            "weight_max": 0.9652
+          },
+          {
+            "name": "c_kilt_01_04_r",
+            "vertex_count": 64,
+            "weight_sum": 22.4048,
+            "weight_max": 0.9112
+          },
+          {
+            "name": "c_kilt_02_02_r",
+            "vertex_count": 14,
+            "weight_sum": 6.6573,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_03_r",
+            "vertex_count": 60,
+            "weight_sum": 12.3389,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_04_r",
+            "vertex_count": 41,
+            "weight_sum": 13.2137,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_02_r",
+            "vertex_count": 5,
+            "weight_sum": 3.8799,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_03_r",
+            "vertex_count": 7,
+            "weight_sum": 3.5281,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_04_r",
+            "vertex_count": 33,
+            "weight_sum": 18.5248,
+            "weight_max": 0.9637
+          },
+          {
+            "name": "c_kilt_04_02_r",
+            "vertex_count": 3,
+            "weight_sum": 2.7414,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_04_03_r",
+            "vertex_count": 10,
+            "weight_sum": 5.4091,
+            "weight_max": 0.9091
+          },
+          {
+            "name": "c_kilt_04_04_r",
+            "vertex_count": 21,
+            "weight_sum": 11.5012,
+            "weight_max": 0.9309
+          },
+          {
+            "name": "c_kilt_05_02_r",
+            "vertex_count": 16,
+            "weight_sum": 8.892,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_05_03_r",
+            "vertex_count": 23,
+            "weight_sum": 12.193,
+            "weight_max": 0.9528
+          },
+          {
+            "name": "c_kilt_05_04_r",
+            "vertex_count": 30,
+            "weight_sum": 13.9089,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_02_r",
+            "vertex_count": 8,
+            "weight_sum": 7.2448,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_03_r",
+            "vertex_count": 6,
+            "weight_sum": 4.2471,
+            "weight_max": 0.8439
+          },
+          {
+            "name": "c_kilt_06_04_r",
+            "vertex_count": 16,
+            "weight_sum": 9.5572,
+            "weight_max": 0.7736
+          },
+          {
+            "name": "c_kilt_07_01_l",
+            "vertex_count": 5,
+            "weight_sum": 2.6957,
+            "weight_max": 0.811
+          },
+          {
+            "name": "c_kilt_07_02_l",
+            "vertex_count": 12,
+            "weight_sum": 6.1288,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_07_03_l",
+            "vertex_count": 13,
+            "weight_sum": 5.5237,
+            "weight_max": 0.9079
+          },
+          {
+            "name": "c_kilt_07_04_l",
+            "vertex_count": 24,
+            "weight_sum": 12.8818,
+            "weight_max": 0.8425
+          },
+          {
+            "name": "c_kilt_08_01_l",
+            "vertex_count": 7,
+            "weight_sum": 4.6764,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_08_02_l",
+            "vertex_count": 13,
+            "weight_sum": 7.8821,
+            "weight_max": 0.9689
+          },
+          {
+            "name": "c_kilt_08_03_l",
+            "vertex_count": 10,
+            "weight_sum": 5.2115,
+            "weight_max": 0.8858
+          },
+          {
+            "name": "c_kilt_08_04_l",
+            "vertex_count": 32,
+            "weight_sum": 17.1877,
+            "weight_max": 0.8598
+          },
+          {
+            "name": "c_kilt_07_01_r",
+            "vertex_count": 16,
+            "weight_sum": 5.8498,
+            "weight_max": 0.8015
+          },
+          {
+            "name": "c_kilt_07_02_r",
+            "vertex_count": 19,
+            "weight_sum": 10.675,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_07_03_r",
+            "vertex_count": 13,
+            "weight_sum": 5.5487,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_07_04_r",
+            "vertex_count": 25,
+            "weight_sum": 14.7247,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_08_01_r",
+            "vertex_count": 6,
+            "weight_sum": 3.266,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_08_02_r",
+            "vertex_count": 16,
+            "weight_sum": 9.3973,
+            "weight_max": 0.9716
+          },
+          {
+            "name": "c_kilt_08_03_r",
+            "vertex_count": 9,
+            "weight_sum": 3.5854,
+            "weight_max": 0.8037
+          },
+          {
+            "name": "c_kilt_08_04_r",
+            "vertex_count": 27,
+            "weight_sum": 11.6957,
+            "weight_max": 0.7591
+          },
+          {
+            "name": "spine_02_x",
+            "vertex_count": 806,
+            "weight_sum": 119.809,
+            "weight_max": 0.202
+          },
+          {
+            "name": "spine_03_x",
+            "vertex_count": 1249,
+            "weight_sum": 180.5458,
+            "weight_max": 0.21
+          },
+          {
+            "name": "shoulder_r",
+            "vertex_count": 232,
+            "weight_sum": 19.5012,
+            "weight_max": 0.126
+          },
+          {
+            "name": "arm_stretch_r",
+            "vertex_count": 964,
+            "weight_sum": 286.7575,
+            "weight_max": 0.9161
+          },
+          {
+            "name": "c_arm_twist_offset_r",
+            "vertex_count": 558,
+            "weight_sum": 18.0696,
+            "weight_max": 0.1317
+          },
+          {
+            "name": "arm_twist_2_r",
+            "vertex_count": 834,
+            "weight_sum": 294.813,
+            "weight_max": 0.8806
+          },
+          {
+            "name": "forearm_stretch_r",
+            "vertex_count": 919,
+            "weight_sum": 246.0997,
+            "weight_max": 0.9803
+          },
+          {
+            "name": "hand_r",
+            "vertex_count": 347,
+            "weight_sum": 56.6571,
+            "weight_max": 0.8399
+          },
+          {
+            "name": "c_pinky1_base_r",
+            "vertex_count": 833,
+            "weight_sum": 251.3346,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ring1_base_r",
+            "vertex_count": 62,
+            "weight_sum": 8.6978,
+            "weight_max": 0.678
+          },
+          {
+            "name": "c_middle1_base_r",
+            "vertex_count": 27,
+            "weight_sum": 5.837,
+            "weight_max": 0.78
+          },
+          {
+            "name": "c_index1_base_r",
+            "vertex_count": 190,
+            "weight_sum": 42.4086,
+            "weight_max": 0.9022
+          },
+          {
+            "name": "thumb1_r",
+            "vertex_count": 678,
+            "weight_sum": 171.1732,
+            "weight_max": 1.0
+          },
+          {
+            "name": "thumb2_r",
+            "vertex_count": 426,
+            "weight_sum": 97.7293,
+            "weight_max": 0.891
+          },
+          {
+            "name": "thumb3_r",
+            "vertex_count": 217,
+            "weight_sum": 118.5621,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky1_r",
+            "vertex_count": 305,
+            "weight_sum": 71.0953,
+            "weight_max": 0.827
+          },
+          {
+            "name": "pinky2_r",
+            "vertex_count": 110,
+            "weight_sum": 24.3162,
+            "weight_max": 0.8588
+          },
+          {
+            "name": "pinky3_r",
+            "vertex_count": 101,
+            "weight_sum": 56.7003,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring1_r",
+            "vertex_count": 288,
+            "weight_sum": 75.0688,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring2_r",
+            "vertex_count": 119,
+            "weight_sum": 43.0329,
+            "weight_max": 0.9477
+          },
+          {
+            "name": "ring3_r",
+            "vertex_count": 122,
+            "weight_sum": 87.549,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle1_r",
+            "vertex_count": 348,
+            "weight_sum": 106.758,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle2_r",
+            "vertex_count": 150,
+            "weight_sum": 55.4959,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle3_r",
+            "vertex_count": 111,
+            "weight_sum": 75.3781,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index1_r",
+            "vertex_count": 254,
+            "weight_sum": 89.0835,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index2_r",
+            "vertex_count": 132,
+            "weight_sum": 35.726,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index3_r",
+            "vertex_count": 96,
+            "weight_sum": 72.9217,
+            "weight_max": 1.0
+          },
+          {
+            "name": "forearm_twist_r",
+            "vertex_count": 958,
+            "weight_sum": 325.7424,
+            "weight_max": 0.9305
+          },
+          {
+            "name": "forearm_twist_2_r",
+            "vertex_count": 845,
+            "weight_sum": 298.9698,
+            "weight_max": 0.9804
+          },
+          {
+            "name": "shoulder_l",
+            "vertex_count": 39,
+            "weight_sum": 0.0165,
+            "weight_max": 0.0011
+          },
+          {
+            "name": "arm_stretch_l",
+            "vertex_count": 962,
+            "weight_sum": 287.3949,
+            "weight_max": 0.9151
+          },
+          {
+            "name": "c_arm_twist_offset_l",
+            "vertex_count": 537,
+            "weight_sum": 16.8607,
+            "weight_max": 0.1313
+          },
+          {
+            "name": "arm_twist_2_l",
+            "vertex_count": 795,
+            "weight_sum": 294.1836,
+            "weight_max": 0.8806
+          },
+          {
+            "name": "forearm_stretch_l",
+            "vertex_count": 937,
+            "weight_sum": 247.2317,
+            "weight_max": 0.9804
+          },
+          {
+            "name": "hand_l",
+            "vertex_count": 331,
+            "weight_sum": 51.5824,
+            "weight_max": 0.8429
+          },
+          {
+            "name": "c_pinky1_base_l",
+            "vertex_count": 792,
+            "weight_sum": 233.2304,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ring1_base_l",
+            "vertex_count": 76,
+            "weight_sum": 11.6125,
+            "weight_max": 0.7031
+          },
+          {
+            "name": "c_middle1_base_l",
+            "vertex_count": 40,
+            "weight_sum": 6.7193,
+            "weight_max": 0.7096
+          },
+          {
+            "name": "c_index1_base_l",
+            "vertex_count": 158,
+            "weight_sum": 35.8252,
+            "weight_max": 0.8932
+          },
+          {
+            "name": "thumb1_l",
+            "vertex_count": 700,
+            "weight_sum": 183.3526,
+            "weight_max": 0.9941
+          },
+          {
+            "name": "thumb2_l",
+            "vertex_count": 452,
+            "weight_sum": 93.6352,
+            "weight_max": 0.8858
+          },
+          {
+            "name": "thumb3_l",
+            "vertex_count": 200,
+            "weight_sum": 108.4859,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky1_l",
+            "vertex_count": 288,
+            "weight_sum": 70.5887,
+            "weight_max": 0.8334
+          },
+          {
+            "name": "pinky2_l",
+            "vertex_count": 106,
+            "weight_sum": 23.9195,
+            "weight_max": 0.8593
+          },
+          {
+            "name": "pinky3_l",
+            "vertex_count": 93,
+            "weight_sum": 48.7617,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring1_l",
+            "vertex_count": 294,
+            "weight_sum": 83.6816,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring2_l",
+            "vertex_count": 114,
+            "weight_sum": 33.4402,
+            "weight_max": 0.9519
+          },
+          {
+            "name": "ring3_l",
+            "vertex_count": 124,
+            "weight_sum": 91.3897,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle1_l",
+            "vertex_count": 383,
+            "weight_sum": 124.5352,
+            "weight_max": 0.9891
+          },
+          {
+            "name": "middle2_l",
+            "vertex_count": 145,
+            "weight_sum": 45.533,
+            "weight_max": 0.9371
+          },
+          {
+            "name": "middle3_l",
+            "vertex_count": 108,
+            "weight_sum": 75.4821,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index1_l",
+            "vertex_count": 289,
+            "weight_sum": 100.505,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index2_l",
+            "vertex_count": 112,
+            "weight_sum": 32.1391,
+            "weight_max": 0.9485
+          },
+          {
+            "name": "index3_l",
+            "vertex_count": 118,
+            "weight_sum": 82.428,
+            "weight_max": 1.0
+          },
+          {
+            "name": "forearm_twist_l",
+            "vertex_count": 936,
+            "weight_sum": 314.617,
+            "weight_max": 0.9339
+          },
+          {
+            "name": "forearm_twist_2_l",
+            "vertex_count": 837,
+            "weight_sum": 299.8483,
+            "weight_max": 0.9805
+          },
+          {
+            "name": "ORG-face",
+            "vertex_count": 1255,
+            "weight_sum": 745.1835,
+            "weight_max": 0.8723
+          },
+          {
+            "name": "DEF-chin",
+            "vertex_count": 1065,
+            "weight_sum": 140.1846,
+            "weight_max": 0.2318
+          },
+          {
+            "name": "DEF-chin_R",
+            "vertex_count": 323,
+            "weight_sum": 42.8806,
+            "weight_max": 0.1713
+          },
+          {
+            "name": "DEF-jaw",
+            "vertex_count": 111,
+            "weight_sum": 6.7388,
+            "weight_max": 0.0722
+          },
+          {
+            "name": "DEF-jaw_R_001",
+            "vertex_count": 2,
+            "weight_sum": 0.179,
+            "weight_max": 0.0901
+          }
+        ],
+        "bounds_local": [
+          [
+            -97.4889,
+            97.0815
+          ],
+          [
+            -56.7689,
+            28.7749
+          ],
+          [
+            18.2305,
+            142.8245
+          ]
+        ]
+      }
+    ]
+  },
+  "neutral_accessories": {
+    "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_neutral_candidate.fbx",
+    "armatures": [
+      {
+        "name": "root",
+        "bones": 464,
+        "bone_names": [
+          "c_pos",
+          "c_traj",
+          "c_root_master_x",
+          "c_root_x",
+          "c_spine_01_x",
+          "c_spine_02_x",
+          "c_spine_03_x",
+          "Retopo_Cube_003_001",
+          "root_x",
+          "c_thigh_b_l",
+          "c_thigh_fk_l",
+          "c_leg_fk_l",
+          "c_thigh_ik_l",
+          "thigh_stretch_l",
+          "thigh_twist_l",
+          "thigh_twist_2_l",
+          "leg_stretch_l",
+          "foot_l",
+          "toes_01_l",
+          "leg_twist_l",
+          "leg_twist_2_l",
+          "c_thigh_b_r",
+          "c_thigh_fk_r",
+          "c_leg_fk_r",
+          "c_thigh_ik_r",
+          "thigh_stretch_r",
+          "thigh_twist_r",
+          "thigh_twist_2_r",
+          "leg_stretch_r",
+          "foot_r",
+          "toes_01_r",
+          "leg_twist_r",
+          "leg_twist_2_r",
+          "c_kilt_master_x",
+          "c_kilt_01_01_l",
+          "c_kilt_01_02_l",
+          "c_kilt_01_03_l",
+          "c_kilt_01_04_l",
+          "c_kilt_02_01_l",
+          "c_kilt_02_02_l",
+          "c_kilt_02_03_l",
+          "c_kilt_02_04_l",
+          "c_kilt_03_01_l",
+          "c_kilt_03_02_l",
+          "c_kilt_03_03_l",
+          "c_kilt_03_04_l",
+          "c_kilt_main_03_04_l",
+          "c_kilt_main_03_03_l",
+          "c_kilt_main_03_02_l",
+          "c_kilt_04_01_l",
+          "c_kilt_04_02_l",
+          "c_kilt_04_03_l",
+          "c_kilt_04_04_l",
+          "c_kilt_05_01_l",
+          "c_kilt_05_02_l",
+          "c_kilt_05_03_l",
+          "c_kilt_05_04_l",
+          "c_kilt_main_05_04_l",
+          "c_kilt_main_05_03_l",
+          "c_kilt_main_05_02_l",
+          "c_kilt_06_01_l",
+          "c_kilt_06_02_l",
+          "c_kilt_06_03_l",
+          "c_kilt_06_04_l",
+          "c_kilt_01_01_r",
+          "c_kilt_01_02_r",
+          "c_kilt_01_03_r",
+          "c_kilt_01_04_r",
+          "c_kilt_02_01_r",
+          "c_kilt_02_02_r",
+          "c_kilt_02_03_r",
+          "c_kilt_02_04_r",
+          "c_kilt_03_01_r",
+          "c_kilt_03_02_r",
+          "c_kilt_03_03_r",
+          "c_kilt_03_04_r",
+          "c_kilt_main_03_04_r",
+          "c_kilt_main_03_03_r",
+          "c_kilt_main_03_02_r",
+          "c_kilt_04_01_r",
+          "c_kilt_04_02_r",
+          "c_kilt_04_03_r",
+          "c_kilt_04_04_r",
+          "c_kilt_05_01_r",
+          "c_kilt_05_02_r",
+          "c_kilt_05_03_r",
+          "c_kilt_05_04_r",
+          "c_kilt_main_05_04_r",
+          "c_kilt_main_05_03_r",
+          "c_kilt_main_05_02_r",
+          "c_kilt_06_01_r",
+          "c_kilt_06_02_r",
+          "c_kilt_06_03_r",
+          "c_kilt_06_04_r",
+          "c_kilt_07_01_l",
+          "c_kilt_07_02_l",
+          "c_kilt_07_03_l",
+          "c_kilt_07_04_l",
+          "c_kilt_main_07_04_l",
+          "c_kilt_main_07_03_l",
+          "c_kilt_main_07_02_l",
+          "c_kilt_08_01_l",
+          "c_kilt_08_02_l",
+          "c_kilt_08_03_l",
+          "c_kilt_08_04_l",
+          "c_kilt_07_01_r",
+          "c_kilt_07_02_r",
+          "c_kilt_07_03_r",
+          "c_kilt_07_04_r",
+          "c_kilt_main_07_04_r",
+          "c_kilt_main_07_03_r",
+          "c_kilt_main_07_02_r",
+          "c_kilt_08_01_r",
+          "c_kilt_08_02_r",
+          "c_kilt_08_03_r",
+          "c_kilt_08_04_r",
+          "c_kilt_row_01_x",
+          "c_kilt_row_02_x",
+          "c_kilt_row_03_x",
+          "c_kilt_row_04_x",
+          "spine_01_x",
+          "spine_02_x",
+          "spine_03_x",
+          "c_neck_master_x",
+          "c_shoulder_r",
+          "c_arm_ik_r",
+          "shoulder_r",
+          "arm_stretch_r",
+          "arm_twist_r",
+          "c_arm_twist_offset_r",
+          "arm_twist_2_r",
+          "forearm_stretch_r",
+          "hand_r",
+          "c_pinky1_base_r",
+          "c_ring1_base_r",
+          "c_middle1_base_r",
+          "c_index1_base_r",
+          "c_thumb1_base_r",
+          "thumb1_r",
+          "thumb2_r",
+          "thumb3_r",
+          "pinky1_base_r",
+          "pinky1_r",
+          "pinky2_r",
+          "pinky3_r",
+          "ring1_base_r",
+          "ring1_r",
+          "ring2_r",
+          "ring3_r",
+          "middle1_base_r",
+          "middle1_r",
+          "middle2_r",
+          "middle3_r",
+          "index1_base_r",
+          "index1_r",
+          "index2_r",
+          "index3_r",
+          "forearm_twist_r",
+          "forearm_twist_2_r",
+          "c_shoulder_l",
+          "c_arm_ik_l",
+          "shoulder_l",
+          "arm_stretch_l",
+          "arm_twist_l",
+          "c_arm_twist_offset_l",
+          "arm_twist_2_l",
+          "forearm_stretch_l",
+          "hand_l",
+          "c_pinky1_base_l",
+          "c_ring1_base_l",
+          "c_middle1_base_l",
+          "c_index1_base_l",
+          "c_thumb1_base_l",
+          "thumb1_l",
+          "thumb2_l",
+          "thumb3_l",
+          "pinky1_base_l",
+          "pinky1_l",
+          "pinky2_l",
+          "pinky3_l",
+          "ring1_base_l",
+          "ring1_l",
+          "ring2_l",
+          "ring3_l",
+          "middle1_base_l",
+          "middle1_l",
+          "middle2_l",
+          "middle3_l",
+          "index1_base_l",
+          "index1_l",
+          "index2_l",
+          "index3_l",
+          "forearm_twist_l",
+          "forearm_twist_2_l",
+          "c_arm_fk_l",
+          "c_forearm_fk_l",
+          "c_arm_fk_r",
+          "c_forearm_fk_r",
+          "c_subneck_1_x",
+          "c_neck_x",
+          "neck_x",
+          "head_x",
+          "c_ear_01_l",
+          "c_ear_02_l",
+          "c_ear_01_r",
+          "c_ear_02_r",
+          "ORG-face",
+          "DEF-forehead_L",
+          "DEF-forehead_R",
+          "DEF-forehead_L_001",
+          "DEF-forehead_R_001",
+          "DEF-forehead_L_002",
+          "DEF-forehead_R_002",
+          "DEF-temple_L",
+          "DEF-temple_R",
+          "master_eye_L",
+          "brow_B_L",
+          "DEF-brow_B_L",
+          "brow_B_L_001",
+          "DEF-brow_B_L_001",
+          "brow_B_L_002",
+          "DEF-brow_B_L_002",
+          "brow_B_L_003",
+          "DEF-brow_B_L_003",
+          "brow_B_L_004",
+          "lid_B_L",
+          "lid_B_L_001",
+          "lid_B_L_002",
+          "lid_B_L_003",
+          "lid_T_L",
+          "lid_T_L_001",
+          "lid_T_L_002",
+          "lid_T_L_003",
+          "MCH-eye_L",
+          "DEF_eye_L",
+          "MCH-eye_L_001",
+          "MCH-lid_B_L",
+          "DEF-lid_B_L",
+          "MCH-lid_B_L_001",
+          "DEF-lid_B_L_001",
+          "MCH-lid_B_L_002",
+          "DEF-lid_B_L_002",
+          "MCH-lid_B_L_003",
+          "DEF-lid_B_L_003",
+          "MCH-lid_T_L",
+          "DEF-lid_T_L",
+          "MCH-lid_T_L_001",
+          "DEF-lid_T_L_001",
+          "MCH-lid_T_L_002",
+          "DEF-lid_T_L_002",
+          "MCH-lid_T_L_003",
+          "DEF-lid_T_L_003",
+          "master_eye_R",
+          "brow_B_R",
+          "DEF-brow_B_R",
+          "brow_B_R_001",
+          "DEF-brow_B_R_001",
+          "brow_B_R_002",
+          "DEF-brow_B_R_002",
+          "brow_B_R_003",
+          "DEF-brow_B_R_003",
+          "brow_B_R_004",
+          "lid_B_R",
+          "lid_B_R_001",
+          "lid_B_R_002",
+          "lid_B_R_003",
+          "lid_T_R",
+          "lid_T_R_001",
+          "lid_T_R_002",
+          "lid_T_R_003",
+          "MCH-eye_R",
+          "DEF_eye_R",
+          "MCH-eye_R_001",
+          "MCH-lid_B_R",
+          "DEF-lid_B_R",
+          "MCH-lid_B_R_001",
+          "DEF-lid_B_R_001",
+          "MCH-lid_B_R_002",
+          "DEF-lid_B_R_002",
+          "MCH-lid_B_R_003",
+          "DEF-lid_B_R_003",
+          "MCH-lid_T_R",
+          "DEF-lid_T_R",
+          "MCH-lid_T_R_001",
+          "DEF-lid_T_R_001",
+          "MCH-lid_T_R_002",
+          "DEF-lid_T_R_002",
+          "MCH-lid_T_R_003",
+          "DEF-lid_T_R_003",
+          "jaw_master",
+          "chin",
+          "DEF-chin",
+          "chin_001",
+          "DEF-chin_001",
+          "chin_L",
+          "DEF-chin_L",
+          "chin_R",
+          "DEF-chin_R",
+          "jaw",
+          "DEF-jaw",
+          "jaw_L_001",
+          "DEF-jaw_L_001",
+          "jaw_R_001",
+          "DEF-jaw_R_001",
+          "brow_T_L",
+          "DEF-cheek_T_L",
+          "DEF-brow_T_L",
+          "brow_T_L_001",
+          "DEF-brow_T_L_001",
+          "brow_T_L_002",
+          "DEF-brow_T_L_002",
+          "brow_T_L_003",
+          "DEF-brow_T_L_003",
+          "brow_T_R",
+          "DEF-cheek_T_R",
+          "DEF-brow_T_R",
+          "brow_T_R_001",
+          "DEF-brow_T_R_001",
+          "brow_T_R_002",
+          "DEF-brow_T_R_002",
+          "brow_T_R_003",
+          "DEF-brow_T_R_003",
+          "jaw_L",
+          "DEF-jaw_L",
+          "jaw_R",
+          "DEF-jaw_R",
+          "nose",
+          "DEF-nose",
+          "nose_L",
+          "DEF-nose_L",
+          "nose_R",
+          "DEF-nose_R",
+          "MCH-mouth_lock",
+          "MCH-jaw_master",
+          "lip_B",
+          "DEF-lip_B_L",
+          "DEF-lip_B_R",
+          "chin_002",
+          "MCH-jaw_master_001",
+          "lip_B_L_001",
+          "DEF-lip_B_L_001",
+          "lip_B_R_001",
+          "DEF-lip_B_R_001",
+          "MCH-jaw_master_002",
+          "cheek_B_L_001",
+          "DEF-cheek_B_L_001",
+          "cheek_B_R_001",
+          "DEF-cheek_B_R_001",
+          "lips_L",
+          "DEF-cheek_B_L",
+          "lips_R",
+          "DEF-cheek_B_R",
+          "MCH-jaw_master_003",
+          "lip_T_L_001",
+          "DEF-lip_T_L_001",
+          "lip_T_R_001",
+          "DEF-lip_T_R_001",
+          "lip_T",
+          "DEF-lip_T_L",
+          "DEF-lip_T_R",
+          "nose_005",
+          "MCH-jaw_master_004",
+          "nose_master",
+          "nose_002",
+          "DEF-nose_002",
+          "nose_003",
+          "DEF-nose_003",
+          "nose_001",
+          "DEF-nose_001",
+          "nose_004",
+          "DEF-nose_004",
+          "nose_L_001",
+          "DEF-nose_L_001",
+          "nose_R_001",
+          "DEF-nose_R_001",
+          "cheek_T_L_001",
+          "DEF-cheek_T_L_001",
+          "cheek_T_R_001",
+          "DEF-cheek_T_R_001",
+          "DEF_forhead_01_L",
+          "DEF_forhead_02_L",
+          "DEF_forhead_03_L",
+          "DEF_forhead_04_L",
+          "DEF_forhead_01_R",
+          "DEF_forhead_02_R",
+          "DEF_forhead_03_R",
+          "DEF_forhead_04_R",
+          "c_stretch_leg_pin_l",
+          "c_stretch_leg_pin_r",
+          "c_stretch_arm_pin_r",
+          "c_stretch_arm_pin_l",
+          "c_foot_fk_l",
+          "c_toes_fk_l",
+          "c_stretch_leg_l",
+          "c_foot_fk_r",
+          "c_toes_fk_r",
+          "c_stretch_leg_r",
+          "c_kilt_main_03_01_l",
+          "c_kilt_main_05_01_l",
+          "c_kilt_main_03_01_r",
+          "c_kilt_main_05_01_r",
+          "c_kilt_main_07_01_l",
+          "c_kilt_main_07_01_r",
+          "c_kilt_main_01_01_x",
+          "c_kilt_main_01_02_x",
+          "c_kilt_main_01_03_x",
+          "c_kilt_main_08_01_x",
+          "c_kilt_main_08_02_x",
+          "c_kilt_main_08_03_x",
+          "c_kilt_main_01_04_x",
+          "c_kilt_main_08_04_x",
+          "c_stretch_arm_r",
+          "c_pinky1_r",
+          "c_pinky2_r",
+          "c_pinky3_r",
+          "c_ring1_r",
+          "c_ring2_r",
+          "c_ring3_r",
+          "c_middle1_r",
+          "c_middle2_r",
+          "c_middle3_r",
+          "c_index1_r",
+          "c_index2_r",
+          "c_index3_r",
+          "c_thumb1_r",
+          "c_thumb2_r",
+          "c_thumb3_r",
+          "c_stretch_arm_l",
+          "c_pinky1_l",
+          "c_pinky2_l",
+          "c_pinky3_l",
+          "c_ring1_l",
+          "c_ring2_l",
+          "c_ring3_l",
+          "c_middle1_l",
+          "c_middle2_l",
+          "c_middle3_l",
+          "c_index1_l",
+          "c_index2_l",
+          "c_index3_l",
+          "c_thumb1_l",
+          "c_thumb2_l",
+          "c_thumb3_l",
+          "c_hand_fk_l",
+          "c_hand_fk_r",
+          "c_head_x",
+          "c_arms_pole_l",
+          "c_arms_pole_r",
+          "c_foot_ik_r",
+          "c_toes_ik_r",
+          "c_foot_01_r",
+          "c_foot_roll_cursor_r",
+          "c_leg_pole_r",
+          "c_foot_ik_l",
+          "c_toes_ik_l",
+          "c_foot_01_l",
+          "c_foot_roll_cursor_l",
+          "c_leg_pole_l",
+          "c_hand_ik_r",
+          "c_hand_ik_l",
+          "MCH-eyes_parent",
+          "eyes",
+          "eye_L",
+          "eye_R"
+        ]
+      }
+    ],
+    "meshes": [
+      {
+        "name": "Accessories_HandSleeveFit_Review",
+        "vertices": 8084,
+        "polygons": 12628,
+        "materials": [
+          "MI_Melusina_Nikki_GLOVES_001",
+          "MI_Melusina_Nikki_sleeve_003",
+          "MI_Melusina_Nikki_bow_002",
+          "MI_Melusina_Nikki_frontpanel_001",
+          "MI_Melusina_Nikki_SHAWL_001",
+          "MI_Melusina_Outline_005.001",
+          "MI_Melusina_Nikki_bow_002_6",
+          "MI_Melusina_Nikki_frontpanel_001_7",
+          "MI_Melusina_Nikki_SHAWL_001_8",
+          "MI_Melusina_Outline_005_9"
+        ],
+        "vertex_groups": [
+          {
+            "name": "root_x",
+            "vertex_count": 42,
+            "weight_sum": 5.7183,
+            "weight_max": 0.247
+          },
+          {
+            "name": "thigh_twist_2_l",
+            "vertex_count": 1,
+            "weight_sum": 0.1037,
+            "weight_max": 0.1037
+          },
+          {
+            "name": "thigh_twist_2_r",
+            "vertex_count": 4,
+            "weight_sum": 0.5601,
+            "weight_max": 0.148
+          },
+          {
+            "name": "c_kilt_01_01_l",
+            "vertex_count": 198,
+            "weight_sum": 61.6698,
+            "weight_max": 0.6449
+          },
+          {
+            "name": "c_kilt_01_02_l",
+            "vertex_count": 156,
+            "weight_sum": 46.9329,
+            "weight_max": 0.8273
+          },
+          {
+            "name": "c_kilt_01_03_l",
+            "vertex_count": 118,
+            "weight_sum": 33.8141,
+            "weight_max": 0.9566
+          },
+          {
+            "name": "c_kilt_01_04_l",
+            "vertex_count": 59,
+            "weight_sum": 19.3897,
+            "weight_max": 0.8591
+          },
+          {
+            "name": "c_kilt_02_02_l",
+            "vertex_count": 9,
+            "weight_sum": 6.2237,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_03_l",
+            "vertex_count": 52,
+            "weight_sum": 11.2271,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_04_l",
+            "vertex_count": 37,
+            "weight_sum": 14.3041,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_02_l",
+            "vertex_count": 4,
+            "weight_sum": 3.5233,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_03_l",
+            "vertex_count": 7,
+            "weight_sum": 3.0282,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_04_l",
+            "vertex_count": 33,
+            "weight_sum": 17.9873,
+            "weight_max": 0.9535
+          },
+          {
+            "name": "c_kilt_04_02_l",
+            "vertex_count": 4,
+            "weight_sum": 2.4407,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_04_03_l",
+            "vertex_count": 10,
+            "weight_sum": 5.1529,
+            "weight_max": 0.9349
+          },
+          {
+            "name": "c_kilt_04_04_l",
+            "vertex_count": 21,
+            "weight_sum": 11.1623,
+            "weight_max": 0.9303
+          },
+          {
+            "name": "c_kilt_05_02_l",
+            "vertex_count": 9,
+            "weight_sum": 4.2177,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_05_03_l",
+            "vertex_count": 24,
+            "weight_sum": 14.5995,
+            "weight_max": 0.9783
+          },
+          {
+            "name": "c_kilt_05_04_l",
+            "vertex_count": 29,
+            "weight_sum": 11.9586,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_01_l",
+            "vertex_count": 56,
+            "weight_sum": 56.0,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_02_l",
+            "vertex_count": 4,
+            "weight_sum": 3.8829,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_03_l",
+            "vertex_count": 8,
+            "weight_sum": 5.1182,
+            "weight_max": 0.8453
+          },
+          {
+            "name": "c_kilt_06_04_l",
+            "vertex_count": 16,
+            "weight_sum": 9.9148,
+            "weight_max": 0.7838
+          },
+          {
+            "name": "c_kilt_01_01_r",
+            "vertex_count": 205,
+            "weight_sum": 85.5304,
+            "weight_max": 0.7149
+          },
+          {
+            "name": "c_kilt_01_02_r",
+            "vertex_count": 230,
+            "weight_sum": 63.0842,
+            "weight_max": 0.8708
+          },
+          {
+            "name": "c_kilt_01_03_r",
+            "vertex_count": 119,
+            "weight_sum": 35.2826,
+            "weight_max": 0.9652
+          },
+          {
+            "name": "c_kilt_01_04_r",
+            "vertex_count": 64,
+            "weight_sum": 22.4048,
+            "weight_max": 0.9112
+          },
+          {
+            "name": "c_kilt_02_02_r",
+            "vertex_count": 14,
+            "weight_sum": 6.6573,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_03_r",
+            "vertex_count": 60,
+            "weight_sum": 12.3389,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_02_04_r",
+            "vertex_count": 41,
+            "weight_sum": 13.2137,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_02_r",
+            "vertex_count": 5,
+            "weight_sum": 3.8799,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_03_r",
+            "vertex_count": 7,
+            "weight_sum": 3.5281,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_03_04_r",
+            "vertex_count": 33,
+            "weight_sum": 18.5248,
+            "weight_max": 0.9637
+          },
+          {
+            "name": "c_kilt_04_02_r",
+            "vertex_count": 3,
+            "weight_sum": 2.7414,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_04_03_r",
+            "vertex_count": 10,
+            "weight_sum": 5.4091,
+            "weight_max": 0.9091
+          },
+          {
+            "name": "c_kilt_04_04_r",
+            "vertex_count": 21,
+            "weight_sum": 11.5012,
+            "weight_max": 0.9309
+          },
+          {
+            "name": "c_kilt_05_02_r",
+            "vertex_count": 16,
+            "weight_sum": 8.892,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_05_03_r",
+            "vertex_count": 23,
+            "weight_sum": 12.193,
+            "weight_max": 0.9528
+          },
+          {
+            "name": "c_kilt_05_04_r",
+            "vertex_count": 30,
+            "weight_sum": 13.9089,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_02_r",
+            "vertex_count": 8,
+            "weight_sum": 7.2448,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_06_03_r",
+            "vertex_count": 6,
+            "weight_sum": 4.2471,
+            "weight_max": 0.8439
+          },
+          {
+            "name": "c_kilt_06_04_r",
+            "vertex_count": 16,
+            "weight_sum": 9.5572,
+            "weight_max": 0.7736
+          },
+          {
+            "name": "c_kilt_07_01_l",
+            "vertex_count": 5,
+            "weight_sum": 2.6957,
+            "weight_max": 0.811
+          },
+          {
+            "name": "c_kilt_07_02_l",
+            "vertex_count": 12,
+            "weight_sum": 6.1288,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_07_03_l",
+            "vertex_count": 13,
+            "weight_sum": 5.5237,
+            "weight_max": 0.9079
+          },
+          {
+            "name": "c_kilt_07_04_l",
+            "vertex_count": 24,
+            "weight_sum": 12.8818,
+            "weight_max": 0.8425
+          },
+          {
+            "name": "c_kilt_08_01_l",
+            "vertex_count": 7,
+            "weight_sum": 4.6764,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_08_02_l",
+            "vertex_count": 13,
+            "weight_sum": 7.8821,
+            "weight_max": 0.9689
+          },
+          {
+            "name": "c_kilt_08_03_l",
+            "vertex_count": 10,
+            "weight_sum": 5.2115,
+            "weight_max": 0.8858
+          },
+          {
+            "name": "c_kilt_08_04_l",
+            "vertex_count": 32,
+            "weight_sum": 17.1877,
+            "weight_max": 0.8598
+          },
+          {
+            "name": "c_kilt_07_01_r",
+            "vertex_count": 16,
+            "weight_sum": 5.8498,
+            "weight_max": 0.8015
+          },
+          {
+            "name": "c_kilt_07_02_r",
+            "vertex_count": 19,
+            "weight_sum": 10.675,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_07_03_r",
+            "vertex_count": 13,
+            "weight_sum": 5.5487,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_07_04_r",
+            "vertex_count": 25,
+            "weight_sum": 14.7247,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_08_01_r",
+            "vertex_count": 6,
+            "weight_sum": 3.266,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_kilt_08_02_r",
+            "vertex_count": 16,
+            "weight_sum": 9.3973,
+            "weight_max": 0.9716
+          },
+          {
+            "name": "c_kilt_08_03_r",
+            "vertex_count": 9,
+            "weight_sum": 3.5854,
+            "weight_max": 0.8037
+          },
+          {
+            "name": "c_kilt_08_04_r",
+            "vertex_count": 27,
+            "weight_sum": 11.6957,
+            "weight_max": 0.7591
+          },
+          {
+            "name": "spine_02_x",
+            "vertex_count": 806,
+            "weight_sum": 119.809,
+            "weight_max": 0.202
+          },
+          {
+            "name": "spine_03_x",
+            "vertex_count": 1249,
+            "weight_sum": 180.5458,
+            "weight_max": 0.21
+          },
+          {
+            "name": "shoulder_r",
+            "vertex_count": 232,
+            "weight_sum": 19.5012,
+            "weight_max": 0.126
+          },
+          {
+            "name": "arm_stretch_r",
+            "vertex_count": 964,
+            "weight_sum": 286.7575,
+            "weight_max": 0.9161
+          },
+          {
+            "name": "c_arm_twist_offset_r",
+            "vertex_count": 558,
+            "weight_sum": 18.0696,
+            "weight_max": 0.1317
+          },
+          {
+            "name": "arm_twist_2_r",
+            "vertex_count": 834,
+            "weight_sum": 294.813,
+            "weight_max": 0.8806
+          },
+          {
+            "name": "forearm_stretch_r",
+            "vertex_count": 919,
+            "weight_sum": 246.0997,
+            "weight_max": 0.9803
+          },
+          {
+            "name": "hand_r",
+            "vertex_count": 347,
+            "weight_sum": 56.6571,
+            "weight_max": 0.8399
+          },
+          {
+            "name": "c_pinky1_base_r",
+            "vertex_count": 833,
+            "weight_sum": 251.3346,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ring1_base_r",
+            "vertex_count": 62,
+            "weight_sum": 8.6978,
+            "weight_max": 0.678
+          },
+          {
+            "name": "c_middle1_base_r",
+            "vertex_count": 27,
+            "weight_sum": 5.837,
+            "weight_max": 0.78
+          },
+          {
+            "name": "c_index1_base_r",
+            "vertex_count": 190,
+            "weight_sum": 42.4086,
+            "weight_max": 0.9022
+          },
+          {
+            "name": "thumb1_r",
+            "vertex_count": 678,
+            "weight_sum": 171.1732,
+            "weight_max": 1.0
+          },
+          {
+            "name": "thumb2_r",
+            "vertex_count": 426,
+            "weight_sum": 97.7293,
+            "weight_max": 0.891
+          },
+          {
+            "name": "thumb3_r",
+            "vertex_count": 217,
+            "weight_sum": 118.5621,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky1_r",
+            "vertex_count": 305,
+            "weight_sum": 71.0953,
+            "weight_max": 0.827
+          },
+          {
+            "name": "pinky2_r",
+            "vertex_count": 110,
+            "weight_sum": 24.3162,
+            "weight_max": 0.8588
+          },
+          {
+            "name": "pinky3_r",
+            "vertex_count": 101,
+            "weight_sum": 56.7003,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring1_r",
+            "vertex_count": 288,
+            "weight_sum": 75.0688,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring2_r",
+            "vertex_count": 119,
+            "weight_sum": 43.0329,
+            "weight_max": 0.9477
+          },
+          {
+            "name": "ring3_r",
+            "vertex_count": 122,
+            "weight_sum": 87.549,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle1_r",
+            "vertex_count": 348,
+            "weight_sum": 106.758,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle2_r",
+            "vertex_count": 150,
+            "weight_sum": 55.4959,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle3_r",
+            "vertex_count": 111,
+            "weight_sum": 75.3781,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index1_r",
+            "vertex_count": 254,
+            "weight_sum": 89.0835,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index2_r",
+            "vertex_count": 132,
+            "weight_sum": 35.726,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index3_r",
+            "vertex_count": 96,
+            "weight_sum": 72.9217,
+            "weight_max": 1.0
+          },
+          {
+            "name": "forearm_twist_r",
+            "vertex_count": 958,
+            "weight_sum": 325.7424,
+            "weight_max": 0.9305
+          },
+          {
+            "name": "forearm_twist_2_r",
+            "vertex_count": 845,
+            "weight_sum": 298.9698,
+            "weight_max": 0.9804
+          },
+          {
+            "name": "shoulder_l",
+            "vertex_count": 39,
+            "weight_sum": 0.0165,
+            "weight_max": 0.0011
+          },
+          {
+            "name": "arm_stretch_l",
+            "vertex_count": 962,
+            "weight_sum": 287.3949,
+            "weight_max": 0.9151
+          },
+          {
+            "name": "c_arm_twist_offset_l",
+            "vertex_count": 537,
+            "weight_sum": 16.8607,
+            "weight_max": 0.1313
+          },
+          {
+            "name": "arm_twist_2_l",
+            "vertex_count": 795,
+            "weight_sum": 294.1836,
+            "weight_max": 0.8806
+          },
+          {
+            "name": "forearm_stretch_l",
+            "vertex_count": 937,
+            "weight_sum": 247.2317,
+            "weight_max": 0.9804
+          },
+          {
+            "name": "hand_l",
+            "vertex_count": 331,
+            "weight_sum": 51.5824,
+            "weight_max": 0.8429
+          },
+          {
+            "name": "c_pinky1_base_l",
+            "vertex_count": 792,
+            "weight_sum": 233.2304,
+            "weight_max": 1.0
+          },
+          {
+            "name": "c_ring1_base_l",
+            "vertex_count": 76,
+            "weight_sum": 11.6125,
+            "weight_max": 0.7031
+          },
+          {
+            "name": "c_middle1_base_l",
+            "vertex_count": 40,
+            "weight_sum": 6.7193,
+            "weight_max": 0.7096
+          },
+          {
+            "name": "c_index1_base_l",
+            "vertex_count": 158,
+            "weight_sum": 35.8252,
+            "weight_max": 0.8932
+          },
+          {
+            "name": "thumb1_l",
+            "vertex_count": 700,
+            "weight_sum": 183.3526,
+            "weight_max": 0.9941
+          },
+          {
+            "name": "thumb2_l",
+            "vertex_count": 452,
+            "weight_sum": 93.6352,
+            "weight_max": 0.8858
+          },
+          {
+            "name": "thumb3_l",
+            "vertex_count": 200,
+            "weight_sum": 108.4859,
+            "weight_max": 1.0
+          },
+          {
+            "name": "pinky1_l",
+            "vertex_count": 288,
+            "weight_sum": 70.5887,
+            "weight_max": 0.8334
+          },
+          {
+            "name": "pinky2_l",
+            "vertex_count": 106,
+            "weight_sum": 23.9195,
+            "weight_max": 0.8593
+          },
+          {
+            "name": "pinky3_l",
+            "vertex_count": 93,
+            "weight_sum": 48.7617,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring1_l",
+            "vertex_count": 294,
+            "weight_sum": 83.6816,
+            "weight_max": 1.0
+          },
+          {
+            "name": "ring2_l",
+            "vertex_count": 114,
+            "weight_sum": 33.4402,
+            "weight_max": 0.9519
+          },
+          {
+            "name": "ring3_l",
+            "vertex_count": 124,
+            "weight_sum": 91.3897,
+            "weight_max": 1.0
+          },
+          {
+            "name": "middle1_l",
+            "vertex_count": 383,
+            "weight_sum": 124.5352,
+            "weight_max": 0.9891
+          },
+          {
+            "name": "middle2_l",
+            "vertex_count": 145,
+            "weight_sum": 45.533,
+            "weight_max": 0.9371
+          },
+          {
+            "name": "middle3_l",
+            "vertex_count": 108,
+            "weight_sum": 75.4821,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index1_l",
+            "vertex_count": 289,
+            "weight_sum": 100.505,
+            "weight_max": 1.0
+          },
+          {
+            "name": "index2_l",
+            "vertex_count": 112,
+            "weight_sum": 32.1391,
+            "weight_max": 0.9485
+          },
+          {
+            "name": "index3_l",
+            "vertex_count": 118,
+            "weight_sum": 82.428,
+            "weight_max": 1.0
+          },
+          {
+            "name": "forearm_twist_l",
+            "vertex_count": 936,
+            "weight_sum": 314.617,
+            "weight_max": 0.9339
+          },
+          {
+            "name": "forearm_twist_2_l",
+            "vertex_count": 837,
+            "weight_sum": 299.8483,
+            "weight_max": 0.9805
+          },
+          {
+            "name": "ORG-face",
+            "vertex_count": 1255,
+            "weight_sum": 745.1835,
+            "weight_max": 0.8723
+          },
+          {
+            "name": "DEF-chin",
+            "vertex_count": 1065,
+            "weight_sum": 140.1846,
+            "weight_max": 0.2318
+          },
+          {
+            "name": "DEF-chin_R",
+            "vertex_count": 323,
+            "weight_sum": 42.8806,
+            "weight_max": 0.1713
+          },
+          {
+            "name": "DEF-jaw",
+            "vertex_count": 111,
+            "weight_sum": 6.7388,
+            "weight_max": 0.0722
+          },
+          {
+            "name": "DEF-jaw_R_001",
+            "vertex_count": 2,
+            "weight_sum": 0.179,
+            "weight_max": 0.0901
+          }
+        ],
+        "bounds_local": [
+          [
+            -96.4821,
+            96.0501
+          ],
+          [
+            -56.7689,
+            28.7749
+          ],
+          [
+            18.2305,
+            142.5494
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "island": 142,
+    "vertex_count": 377,
+    "centroid": [
+      18.191,
+      -32.461,
+      149.029
+    ],
+    "min_nearest_cm": 0.5078,
+    "p50_nearest_cm": 1.9761,
+    "p95_nearest_cm": 3.1748,
+    "nearest_strand_bones": [
+      [
+        "B_DEF_hair_bbone_002",
+        226.5347799062729
+      ],
+      [
+        "B_DEF_hair_bbone_007",
+        89.465217679739
+      ],
+      [
+        "C_DEF_hair_bbone_115",
+        30.005172297358513
+      ],
+      [
+        "C_DEF_hair_bbone_055",
+        13.831708282232285
+      ],
+      [
+        "C_DEF_hair_bbone_114",
+        13.809109587222338
+      ],
+      [
+        "C_DEF_hair_bbone_119",
+        1.8701914548873901
+      ],
+      [
+        "C_DEF_hair_bbone_118",
+        0.8184786885976791
+      ],
+      [
+        "C_DEF_hair_bbone_054",
+        0.26178377121686935
+      ],
+      [
+        "C_DEF_hair_bbone_059",
+        0.21788357943296432
+      ],
+      [
+        "C_DEF_hair_bbone_058",
+        0.18567178398370743
+      ]
+    ]
+  },
+  {
+    "island": 143,
+    "vertex_count": 377,
+    "centroid": [
+      -19.59,
+      -32.415,
+      149.017
+    ],
+    "min_nearest_cm": 0.7547,
+    "p50_nearest_cm": 2.0591,
+    "p95_nearest_cm": 3.1866,
+    "nearest_strand_bones": [
+      [
+        "B_DEF_hair_bbone_000",
+        234.3224088549614
+      ],
+      [
+        "B_DEF_hair_bbone_001",
+        85.6775934100151
+      ],
+      [
+        "C_DEF_hair_bbone_057",
+        29.541619658470154
+      ],
+      [
+        "C_DEF_hair_bbone_056",
+        10.28288696706295
+      ],
+      [
+        "C_DEF_hair_bbone_117",
+        7.86591899394989
+      ],
+      [
+        "C_DEF_hair_bbone_116",
+        5.309575088322163
+      ],
+      [
+        "C_DEF_hair_bbone_029",
+        1.2832837104797363
+      ],
+      [
+        "C_DEF_hair_bbone_061",
+        1.0514687299728394
+      ],
+      [
+        "C_DEF_hair_bbone_060",
+        0.48322269320487976
+      ],
+      [
+        "C_DEF_hair_bbone_001",
+        0.37543296813964844
+      ],
+      [
+        "C_DEF_hair_bbone_089",
+        0.32507818937301636
+      ],
+      [
+        "C_DEF_hair_bbone_093",
+        0.20917066931724548
+      ]
+    ]
+  }
+]
