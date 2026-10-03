@@ -829,6 +829,42 @@ relay/Blueprint-graph wiring needed). Zundapal/`BP_Enemy_StoneGolem` also has a 
 `Content/Melodia/Enemies/**` is entirely outside the `.gitignore` allowlist (owner decision: leave
 it out of git for now), so none of that is trackable either.
 
+### HERMES RECURSIVE LOOP — verify gate + cross-workstation handshake (2026-10-02)
+
+Lane `hermes-loop`. Plan of record: `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`
+(now carries the H1-complete status). This completes **H1 mechanism 4**, the last one.
+
+**`Tools/verify_gate.py` is the thing that makes a recursive loop safe to leave running.**
+Before it, packets + router + lease existed with nothing able to stop a worker closing its own
+card. `record` refuses a receipt with no artifact, an artifact that is not on disk, or a
+verifier equal to the producer; `close` refuses missing/failing/self-certified receipts;
+`sweep` is the unattended pre-turn guard and exits non-zero on a failed card. Evidence:
+`python Tools/test_verify_gate.py` → **24 tests, OK**.
+
+`uncertain` is a first-class outcome that does **not** close a card. That is deliberate: if
+"I could not confirm this" were unrepresentable, agents would write `pass` to move the loop.
+The first implementation wrongly passed it through as success — worth the test.
+
+**`Tools/workstation_status.py` adds the missing third sync layer.** Files travel by git,
+memory by Honcho, but nothing told a laptop agent what the desktop agent had left it. This
+consumes the JSON `deploy/sync_workstation.ps1` already writes (it does not reimplement sync)
+and adds p4 state, the editor lease holder, local-tier reachability and active lanes into one
+`Saved/Workstation/<MACHINE>-workstation.json`. `may_start_work` is the contract's acceptance
+rule as a boolean; `--compare <other>` exits 2 when two machines disagree on `git.head` or
+`sync_state`. Contract updated:
+`Docs/Production/TWO_WORKSTATION_SYNC_CONTRACT_2026-09-04.md`.
+
+Two interop traps found the hard way and now pinned by tests: both status files are
+PowerShell-written and carry a **UTF-8 BOM** (must be read `utf-8-sig`; plain `utf-8` reports
+the file `unreadable`), and `Saved/` is gitignored so a **lane worktree has no
+`Saved/Workstation/`** — resolution goes through `git rev-parse --git-common-dir`, or a healthy
+machine reads as `never-synced` and people learn to ignore the tool.
+
+**Not done, do not assume:** H3 widening; and Discord/phone-driven loops are still blocked on
+**two owner-only dev-portal steps** (turn OFF "Requires OAuth2 Code Grant", then re-invite the
+bot — it is in zero guilds). Honcho memory sharing does not depend on that. `G:` is not mounted,
+so the portable-workspace route is unavailable and handoff must go via git + p4.
+
 ### WHAT TO REACH FOR
 
 | User asks for... | Reach for... |

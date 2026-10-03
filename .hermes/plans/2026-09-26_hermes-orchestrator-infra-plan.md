@@ -28,6 +28,60 @@ new model survey.
   "Hermes in Claireon" = Hermes as a Claireon MCP client (no plugin change needed).
 - Jev: `typesafe_sdk.TypeSafeClient().system_one(state, questions{criteria})` in the Hermes venv.
 
+## Status 2026-10-02 — H1 COMPLETE, all four mechanisms exist
+
+H1 was "not started" when this section was first written. All four mechanisms are now
+built and each has an offline test that runs with no network, no editor and no API key:
+
+| # | Mechanism | Where | Evidence |
+|---|---|---|---|
+| 1 | Task Packet | `Tools/agent_router/task_packet.schema.json` | `Tools/test_agent_router.py` |
+| 2 | Router | `Tools/model_router.py route` / `route-batch` | 35 tests; `route-batch` byte-identical across runs |
+| 3 | Editor lease | `Tools/agent_lease.py` | second holder refused, STOP-file + MODAL_OPEN honoured, expiry reclaimed |
+| 4 | **Verify gate** | `Tools/verify_gate.py` | `Tools/test_verify_gate.py`, 24 tests |
+
+Mechanism 4 was the missing one and it was the dangerous gap: with packets, a router and
+a lease, a loop could already be dispatched with **nothing able to stop a worker closing
+its own card**. `verify_gate.py` closes that. `record` refuses a receipt with no artifact,
+an artifact that is not on disk, or a verifier equal to the producer; `close` refuses a
+missing/failing/self-certified receipt; `sweep` is the unattended pre-turn guard.
+
+**`uncertain` is a first-class outcome and does not count as done.** That is deliberate:
+if "I could not confirm this" were unrepresentable, agents would write `pass` to move the
+loop. Finding this was worth the test — the first implementation *did* pass an `uncertain`
+receipt through as success.
+
+Two real bugs surfaced during H1 and are fixed at source, not by loosening a check: the
+STOP-sentinel prefix test matched no filename, and an explicit `verify_kind` was being
+overridden by inference.
+
+### H2 is now unblocked; H3 widens from here
+
+H2 (packaged cook + launch + log triage canary) is the next gate and has no unmet
+dependency. The loop H2 exercises end to end is:
+
+```
+lane_dispatcher.py plan          # CURRENT_STATE.md section 4 -> lane assignments
+model_router.py route <packet>   # packet -> tier/model/needs_editor/verify_kind
+  -> worker lane executes
+  -> verify_gate.py record       # an INDEPENDENT verifier opens the artifact
+  -> verify_gate.py sweep        # pre-turn guard; a failed card stops the loop
+  -> verify_gate.py close        # only a real receipt closes it
+```
+
+### What is still NOT built, and must not be assumed
+
+- **H3 widening** (nightly read-only audits, bulk Blender `-b`, regression-harness repair).
+- **Honcho/Discord reachability.** Honcho shares MEMORY across machines and Discord is the
+  control channel; both are configured on the desktop per
+  `Docs/ORCHESTRATION_HONCHO_DISCORD_SYNC_2026-10-01.md`, but Discord is still blocked on
+  **two owner-only dev-portal steps** (turn OFF "Requires OAuth2 Code Grant", then re-invite
+  the bot). Until the bot is in a guild it cannot be mentioned, so a phone-driven recursive
+  loop is not yet reachable. Memory sharing does not depend on that.
+- **Cross-machine STATE.** Files travel by git, memory by Honcho, but nothing yet told a
+  laptop agent what the desktop agent had left it. That is now
+  `Tools/workstation_status.py` — see the two-workstation contract.
+
 ## Status 2026-09-26 (end of session) — H0 in progress, owner-side
 - **Bedrock key is dead:** runtime Converse → 403 "Please make sure your API Key is valid"; catalog list
   403; Mantle `/v1/models` 401. Owner: new API key (us-east-1) + Model access for the Qwen/Flash-class
