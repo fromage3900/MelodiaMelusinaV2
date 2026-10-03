@@ -22,4 +22,4 @@ was the double-scrub culprit (animating through atlas cells). Fix A here =
 
 **CLEAN_FIXA** (SubUV off; SubImage 2×2 intentional) after the 2026-09-17 live
 apply. Treat this as asset-specific evidence, not a timeless project-wide risk
-census. Durable rule: [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md).
+census. Durable rule: [`Playbooks/PLAYBOOK_FLIPBOOK_FIXA.md`](PLAYBOOK_FLIPBOOK_FIXA.md).

@@ -1,6 +1,6 @@
 # Live Ops Git SOP — MelodiaMelusinaV2
 **Date:** 2026-08-11  
-**Authority:** [`specs/echo_pipeline.json`](../specs/echo_pipeline.json) + [`Docs/GIT_BATCH_DISCIPLINE.md`](GIT_BATCH_DISCIPLINE.md)  
+**Authority:** `specs/echo_pipeline.json` + `Docs/GIT_BATCH_DISCIPLINE.md`  
 **Lens:** Infinity Nikki–style live-ops (trunk sacred, lockable content, batched patches)
 
 ## Echo first (most recent pipeline)
@@ -65,12 +65,12 @@ Text builders live under `Content/Python/setup_*universal*.py`. Binary authority
 
 Use `placement50` on a machine that can `git lfs pull` EnvSandbox. Cloud checkouts may have **zero** EnvSandbox files — treat missing required paths as HOLD, not as “system absent from the project.”
 
-Grok Universal research (2026-08-11, no branch): text builders under `Content/Python/setup_*universal*.py` are **not** binary proof; EnvSandbox PCG/Universal + `M_Master_Toon_Universal` must exist on disk after LFS pull. Digest: [`Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md`](Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md).
+Grok Universal research (2026-08-11, no branch): text builders under `Content/Python/setup_*universal*.py` are **not** binary proof; EnvSandbox PCG/Universal + `M_Master_Toon_Universal` must exist on disk after LFS pull. Digest: `Reports/GROK_RESEARCH_FOLDIN_2026-08-11.md`.
 
 ## Sculpt drops (parallel with play-proof)
 
 While sculpting: export to `Imports/Sculpt/Inbox/`, run `python Tools/sculpt_intake_check.py`, then one UE import + one LFS commit.  
-Full SOP: [`Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`](SCULPT_ASSET_INTAKE_2026-08-11.md). Phone scan → ZBrush → Rokoko: [`Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`](MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md). Never FBX-import onto an existing `.uasset` path.
+Full SOP: `Docs/SCULPT_ASSET_INTAKE_2026-08-11.md`. Phone scan → ZBrush → Rokoko: `Docs/MOBILE_SCAN_ZBRUSH_ROKOKO_PIPELINE_2026-08-11.md`. Never FBX-import onto an existing `.uasset` path.
 
 ## Forbidden
 

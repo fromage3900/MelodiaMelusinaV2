@@ -746,11 +746,48 @@ def melodia_material_get_compile_stats(asset_path: str) -> dict[str, Any]:
 
 
 def melodia_material_audit() -> dict[str, Any]:
-    """Full material pipeline health: broken masters, PPV issues, audio gap."""
-    if _monolith_is_live():
-        ink = _monolith_call("material_query.get_compilation_stats", {"asset_path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk"}, timeout=30)
+    """Full material pipeline health: broken masters, PPV issues, audio gap.
+
+    A value is a FINDING only if it was read from the editor during this call
+    (`measured_this_call`). The `known_issue` / `ppv_known_defects` strings are
+    static provenance carried from earlier manual sessions -- they are labelled
+    STATIC so a later lane cannot mistake them for a live measurement.
+
+    The ink master is the Frozen one: `M_PP_MelodiaInk` has never existed on
+    disk, and the shipping `MI_MelodiaInk_Frozen` parents
+    `M_PP_MelodiaInk_Frozen` (verified from asset refs, 2026-09-30).
+    """
+    ink_path = "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Frozen/M_PP_MelodiaInk_Frozen"
+    live = _monolith_is_live()
+    ink = (
+        _monolith_call("material_query.get_compilation_stats", {"asset_path": ink_path}, timeout=30)
+        if live
+        else None
+    )
+    measured = bool(ink)
+    if measured and ink.get("is_compiled"):
+        # A live measurement outranks the static note. The 2026-09-30 reading
+        # contradicted it outright: the ink master compiles clean, so the
+        # "ink does not compile, therefore audio reactivity is broken" chain
+        # that this tool used to print as fact was never true.
+        ink_known_issue = (
+            "CONTRADICTED by this call's measurement: master compiles "
+            f"(is_compiled={ink.get('is_compiled')}, expressions={ink.get('expression_count')}, "
+            f"ps_instructions={ink.get('num_pixel_shader_instructions')}). The older static note "
+            "claiming 42-declared/38-wired inputs and a compile failure does not hold for this "
+            "asset and should not be used to justify a repair."
+        )
+    elif measured:
+        ink_known_issue = (
+            "STATIC (unverified): custom node has 42 declared inputs, only 38 wired "
+            "(SceneColor, cR, cB, smeared missing). UE 5.8 by-name global failure mode. "
+            "This call measured a non-compiling master; the input counts are still unverified."
+        )
     else:
-        ink = None
+        ink_known_issue = (
+            "UNMEASURED this call (editor unreachable). Static note, unverified: custom node "
+            "has 42 declared inputs, only 38 wired (SceneColor, cR, cB, smeared missing)."
+        )
     # Audio reactivity check: verified bridge MF_Melodia_AudioReactive_Bridge
     audio_bridge_status = {
         "bridge_function": "MF_Melodia_AudioReactive_Bridge",
@@ -766,22 +803,43 @@ def melodia_material_audit() -> dict[str, Any]:
         "params_consumed": ["BeatPulse", "BeatPhase", "BeatIntensity", "Bass", "Mid", "Treble", "GlobalReactivity", "RhythmPulse"],
         "note": "C++ MelodiaAudioReactivePresentationSubsystem writes 16 parameters to MPC_Melodia_Palette every frame. All surface masters sample them via MF_Melodia_AudioReactive_Bridge."
     }
+    # Audio reactivity is NOT a gap. The chain is
+    # MelodiaAudioReactivePresentationSubsystem writes MPC_Melodia_Palette ->
+    # MelodiaCymaticsWriterSubsystem READS that palette and WRITES
+    # MPC_Cymatics_Driver (Cymatic_BeatPulse/BassIntensity/MidIntensity/
+    # EmissiveScale/UVDistortion) -> materials, MelodiaWindHueReveal.ush, Niagara.
+    # Both shipping frozen MIs (Ink, Grade) also reference MPC_Melodia_Palette
+    # directly, so the "no surface material reads any of them" claim is false.
+    audio_note = (
+        "No gap. MelodiaAudioReactivePresentationSubsystem writes MPC_Melodia_Palette; "
+        "MelodiaCymaticsWriterSubsystem reads that palette and writes MPC_Cymatics_Driver, "
+        "which materials/MelodiaWindHueReveal.ush/Niagara consume. MI_MelodiaInk_Frozen and "
+        "MI_MeluColorGrade_Frozen additionally reference MPC_Melodia_Palette directly "
+        "(asset refs verified on disk 2026-09-30)."
+    )
     return {
         "schema": "melodia.material.audit.v1",
-        "source": "live" if _monolith_is_live() else "offline",
+        "source": "live" if live else "offline",
+        "measured_this_call": measured,
         "masters": {
             "M_PP_MelodiaInk": {
-                "path": "/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk",
-                "compiled": ink.get("is_compiled") if ink else None,
-                "compile_errors": ink.get("compile_errors") if ink else None,
-                "expression_count": ink.get("expression_count") if ink else None,
-                "ps_instructions": ink.get("num_pixel_shader_instructions") if ink else None,
-                "known_issue": "Custom node has 42 declared inputs, only 38 wired (SceneColor, cR, cB, smeared missing). UE 5.8 by-name global failure mode.",
+                "path": ink_path,
+                "asset_name_on_disk": "M_PP_MelodiaInk_Frozen",
+                "compiled": ink.get("is_compiled") if measured else None,
+                "compile_errors": ink.get("compile_errors") if measured else None,
+                "expression_count": ink.get("expression_count") if measured else None,
+                "ps_instructions": ink.get("num_pixel_shader_instructions") if measured else None,
+                "known_issue": ink_known_issue,
             },
         },
         "audio_reactivity_bridge": audio_bridge_status,
-        "audio_reactivity_gap": "RESOLVED: MF_Melodia_AudioReactive_Bridge connects MPC_Melodia_Palette to surface masters.",
+        # Field name kept as `audio_reactivity_gap` for spec compatibility
+        # (specs/mcp/melodia_mcp_tools.v1.json declares it; that file is p4
+        # read-only). The VALUE now reports there is no gap -- rename the field
+        # and update the spec together when the spec is next p4 edit'd.
+        "audio_reactivity_gap": audio_note,
         "ppv_known_defects": {
+            "_note": "STATIC (2026-09-30 disk audit): all three verified against disk/depot, not read live this call.",
             "slot1_surface_in_pp_stack": "MI_StarryNight_VanGogh resolves to MD_SURFACE; UE silently drops post-process blendables that aren't MD_POST_PROCESS",
             "label_mismatch": "Live actor PPV_Dreamprint_Candidate vs scripts looking up PPV_NikkiDream",
             "grade_weight_mismatch": "Live 0.18 vs canonical 0.69 on ZenForestTest",
@@ -802,20 +860,26 @@ def melodia_ppv_report() -> dict[str, Any]:
         "/Game/ZenForestTest",
     ]
     levels_where_scripts_spawn = levels  # setup_nikki_render_post_process.py iterates these
+    # Authority: Content/Python/ppv_contract.py FROZEN_STACK. These asset names
+    # are transcribed from it and verified on disk (2026-09-30). Do not rename
+    # without reading that module -- the previous *_PortfolioHero set here had
+    # never existed and the report silently disagreed with the contract.
     return {
         "schema": "melodia.ppv.report.v1",
         "source": "offline",
         "canonical_stack": {
-            "dreamprint_ink": {"preferred": "MI_MelodiaInk_PortfolioHero", "weight": 1.0},
-            "melusina_grade": {"preferred": "MI_MeluColorGrade_PortfolioHero", "weight": 0.69},
-            "starry_night": {"preferred": "MI_StarryNight_Hero", "weight": 1.0},
+            "_authority": "Content/Python/ppv_contract.py FROZEN_STACK (verified on disk 2026-09-30)",
+            "outline": {"preferred": "MI_StorybookOutline_Frozen", "weight": 1.0},
+            "melusina_grade": {"preferred": "MI_MeluColorGrade_Frozen", "weight": 0.69},
+            "dreamprint_ink": {"preferred": "MI_MelodiaInk_Frozen", "weight": 1.0},
         },
         "levels_in_script": levels_where_scripts_spawn,
         "note": "Full per-level PPV state (blendable weights, actor label, domain check) requires live EditorActorSubsystem via Monolith.",
         "known_live_state_ZenForestTest": {
+            "_note": "STATIC snapshot, not read live this call. Live stack differs from canonical: slot1 is MD_SURFACE (silently dropped by UE) and grade is 0.18 not 0.69. Actor label is PPV_Dreamprint_Candidate, but five scripts look up PPV_NikkiDream.",
             "actor_label": "PPV_Dreamprint_Candidate",
             "slot1": {"blendable": "MI_StarryNight_VanGogh", "weight": 1.0, "status": "BROKEN - surface domain"},
-            "slot2": {"blendable": "MI_MeluColorGrade_PortfolioHero", "weight": 0.18, "status": "OK"},
+            "slot2": {"blendable": "MI_MeluColorGrade_Frozen (per contract) / PortfolioHero name was wrong", "weight": 0.18, "status": "OK but weight drift"},
             "slot3": {"blendable": "MI_StorybookOutline_Premium_Hero_Dream", "weight": 0.57, "status": "OK"},
         },
     }

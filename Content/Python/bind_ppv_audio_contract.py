@@ -46,10 +46,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 REPORT_PATH = PROJECT_ROOT / "Saved" / "Audit" / "ppv_audio_bind.json"
 
 # Per apply_dream_candidate_ppv.py:35-37 -- the 3 blendables on each live level
-EXPECTED_BLENDABLES = (
-    ("outline", GAMEPLAY_STACK[0][0], GAMEPLAY_STACK[0][1]),
-    ("grade",   "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MeluColorGrade_GameplayStandard", 0.69),
-    ("ink",     "/Game/Melodia/_PROJECT/04_Materials/PostProcess/Candidates/Profiles/MI_MelodiaInk_GameplayStandard", 1.0),
+# Roles map positionally onto GAMEPLAY_STACK (outline, grade, ink). Never
+# hardcode a profile path here: the frozen assets are the only authority. The
+# Candidates/Profiles/ paths this replaced have never existed on disk, so the
+# verifier could not pass on any level.
+EXPECTED_BLENDABLES = tuple(
+    (role, path, weight)
+    for role, (path, weight) in zip(("outline", "grade", "ink"), GAMEPLAY_STACK)
 )
 
 # Audio contract: scalars written by the C++ subsystem to MPC_Melodia_Palette

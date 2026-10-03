@@ -1,11 +1,12 @@
 """Per-source preflight checks. Each returns {check: pass|fail|unverified}.
 
 Contracts enforced here (do not loosen without changing the authority doc):
-- Rokoko FBX  : Docs/Plans/ROKOKO_UE_EVENING_PIPELINE_2026-09-09.md
+- Rokoko FBX  : Docs/ROKOKO_MELUSINA_MOCAP.md
                 (verb-named FBX in Imports/Mocap/Rokoko/Inbox; source/quarantine
                 only — never production Melusina paths)
 - Cascadeur FBX: Docs/CASCADEUR_MELUSINA_PIPELINE_2026-08-07.md §3
-                (CAS_Melusina_<Action>_<Variant>.fbx; offline scan gate §4 is
+                (CAS_Melusina_<Action>_<Variant>.fbx; an optional A_ intake prefix
+                is accepted; offline scan gate §4 is
                 delegated to Tools/scan_cascadeur_fbx.py when Blender exists)
 - OBSBOT MP4  : Docs/Handoffs/MELUSINA_MEET2_OBSBOT_STUDIO_2026-09-08.md
                 MOCAP preset: 1920x1080 @ 60fps, fixed cam. Deviations are
@@ -25,8 +26,10 @@ ROKOKO_INBOX = os.path.join(os.path.dirname(__file__), "..", "..",
 CAS_INBOX = os.path.join(os.path.dirname(__file__), "..", "..",
                          "Imports", "Animations", "Cascadeur", "Inbox")
 
-CAS_NAME = re.compile(r"^CAS_Melusina_[A-Za-z]+(_[A-Za-z0-9]+)?\.fbx$")
-VERB_NAME = re.compile(r"^[A-Z][A-Za-z0-9]*\.fbx$")
+CAS_NAME = re.compile(
+    r"^(?:A_)?CAS_Melusina_[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*\.fbx$")
+VERB_NAME = re.compile(
+    r"^(?:A_Rokoko_)?[A-Z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*\.fbx$")
 
 # Melusina production surfaces a capture file must NEVER sit in.
 PROTECTED_PATH_FRAGMENTS = (

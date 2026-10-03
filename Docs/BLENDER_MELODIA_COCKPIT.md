@@ -1,8 +1,8 @@
 # Melodia Melusina — Blender cockpit (cine + assets)
 
-**Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on [`_SESSION_HANDOFF.md`](../_SESSION_HANDOFF.md).
+**Start here for any Blender / Melodia Studio session.** Gameplay/UE work stays on `_SESSION_HANDOFF.md`.
 
-**Melusina House GN — current builder entrypoint:** [`MELUSINA_HOUSE_GN_START_HERE.md`](../MELUSINA_HOUSE_GN_START_HERE.md) — registered `MEL_mh_*` IDs, dedicated GN Stack category, foundation-first workflow and verifier.\n\n**Visual/design packet:** [`melusinashouseplan`](../melusinashouseplan.md) — pink/blue round-Baroque modeling intent and references. Treat `GN_MH_*` names there as scene-local concepts, not registry IDs. ♪
+**Melusina House GN — current builder entrypoint:** `MELUSINA_HOUSE_GN_START_HERE.md` — registered `MEL_mh_*` IDs, dedicated GN Stack category, foundation-first workflow and verifier.\n\n**Visual/design packet:** `melusinashouseplan` — pink/blue round-Baroque modeling intent and references. Treat `GN_MH_*` names there as scene-local concepts, not registry IDs. ♪
 
 ## Open in 30 seconds
 
@@ -51,7 +51,7 @@ hidden=27 (them_* + PCG v1 aliases)  visible_stack=146
 Review_Queue RQ_MEL_* = 165 (live v22 not resynced this pass)
 ```
 
-Headless evidence: [`Saved/Audit/gn_music_heroes_2026-08-17_1437.json`](../Saved/Audit/gn_music_heroes_2026-08-17_1437.json) (7/7). Prior greybox smoke: [`Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json`](../Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json). AppData sync skipped (hung lookdev `blender.exe`).
+Headless evidence: `Saved/Audit/gn_music_heroes_2026-08-17_1437.json` (7/7). Prior greybox smoke: `Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json`. AppData sync skipped (hung lookdev `blender.exe`).
 
 ## Studio Health (2026-08-17) — greybox pass on deploy
 
@@ -61,7 +61,7 @@ hidden=27 (them_* + PCG v1 aliases)  visible_stack=142
 Review_Queue RQ_MEL_* = 165 (live v22 not resynced this pass)
 ```
 
-Headless evidence: [`Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json`](../Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json). Next-work plan: [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md) (08-12 kept as history).
+Headless evidence: `Saved/Audit/gn_stub_rewrite_2026-08-17_1335.json`. Next-work plan: `deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md` (08-12 kept as history).
 
 ## Studio Health (2026-08-12 19:48 ET) — B0/B1 green
 
@@ -70,9 +70,9 @@ GN builders=165 menu=165 sections=12/12 section_trees=165
 Review_Queue RQ_MEL_* = 165
 ```
 
-Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Audit/melodia_studio_sections_2026-08-12_1948.md) · [`…parity_2026-08-12_1948.md`](../Saved/Audit/melodia_studio_parity_2026-08-12_1948.md).
+Evidence: `Saved/Audit/melodia_studio_sections_2026-08-12_1948.md` · `…parity_2026-08-12_1948.md`.
 
-**Expansion:** [`deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md`](../deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md) supersedes 08-12 for next work. Presets **42/173**, STUDIO_LABELS include music heroes + greybox Structures ids.
+**Expansion:** `deploy/surreal_arch/Docs/GN_EXPANSION_PLAN_2026-08-17.md` supersedes 08-12 for next work. Presets **42/173**, STUDIO_LABELS include music heroes + greybox Structures ids.
 
 **GN Stack smoke (expand the panel; ≥1 builder each):** Melusina House · Castle Kit · Musical Notation · Ornament · Magic Effects. Click **Circular Array** on a selected mesh — a Geometry Nodes modifier should appear.
 
@@ -80,20 +80,20 @@ Evidence: [`Saved/Audit/melodia_studio_sections_2026-08-12_1948.md`](../Saved/Au
 
 **Sections bug (fixed):** Health could show `builders=165` while GN Stack categories stayed empty (`TREE_CATEGORIES` import alias). Rebuild now mutates containers in place; `stack.py` reads `core.TREE_*`.
 
-**Workflow after live v22:** [`Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md`](Handoffs/WORKFLOW_UNIFY_2026-08-12.md) — five doors, GN visual review on `GN_Review_Grid`, freeze Set Dressing.
+**Workflow after live v22:** `Docs/Handoffs/WORKFLOW_UNIFY_2026-08-12.md` — five doors, GN visual review on `GN_Review_Grid`, freeze Set Dressing.
 
-Lanes: [BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md](Handoffs/BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md). Remaining: **B3 editable ornaments** on live v22. Cam_Beauty (B2-live) landed 2026-08-13 — live site https://fromage3900.github.io/my-site/.
+Lanes: BLENDER_MELODIA_STUDIO_HANDOFFS_2026-08-12.md. Remaining: **B3 editable ornaments** on live v22. Cam_Beauty (B2-live) landed 2026-08-13 — live site https://fromage3900.github.io/my-site/.
 
 ## Ports (do not mix these up)
 
 | Port | What | When |
 |------|------|------|
 | **9876** | **BlenderMCP** — Cursor/agent ↔ the *open* 5.2 GUI (`Tools/blender_mcp_client.py`, `uvx blender-mcp`) | Enable addon, then **Connect to MCP server** after every restart |
-| **9876** | **LiveLink** TCP — Blender → UE `/Game/LiveLink/` scratch only | Melodia Studio → Live Bridge → Start Server. Never ornament/wardrobe SSOT. See [`BLENDER_LIVELINK.md`](BLENDER_LIVELINK.md) |
+| **9876** | **LiveLink** TCP — Blender → UE `/Game/LiveLink/` scratch only | Melodia Studio → Live Bridge → Start Server. Never ornament/wardrobe SSOT. See `BLENDER_LIVELINK.md` |
 | Headless | `deploy/blender_5.2_mcp.py` — new `blender.exe --factory-startup` per call | No TCP. Not the live v22 session |
 | 9877 / 9317 | Legacy adapters | Do not use |
 
-**Kitbash buses (not the live stage):** gothic `KitbashExport/OrnamentalMeshes/SM_Orn_*.fbx` (15) · musical `KitbashExport/MusicalOrnamentalMeshes/SM_Orn_*.fbx` (7). Older plate scripts still point at `KitbashExport/Melodia_Portfolio_Stage_v4.blend`. Wardrobe: [`MELUSINA_BLENDER_WARDROBE_SSOT.md`](MELUSINA_BLENDER_WARDROBE_SSOT.md).
+**Kitbash buses (not the live stage):** gothic `KitbashExport/OrnamentalMeshes/SM_Orn_*.fbx` (15) · musical `KitbashExport/MusicalOrnamentalMeshes/SM_Orn_*.fbx` (7). Older plate scripts still point at `KitbashExport/Melodia_Portfolio_Stage_v4.blend`. Wardrobe: `MELUSINA_BLENDER_WARDROBE_SSOT.md`.
 
 **School install / verify (no AI chat required):**
 ```powershell
@@ -209,8 +209,8 @@ Stage review: `MusicalOrnaments_Review` collection on v4. Shot hint: `--subject 
 
 ## Related docs
 
-- Stage toggles: [`KitbashExport/STAGE_README_v4.md`](../KitbashExport/STAGE_README_v4.md)
-- Character / wardrobe: [`MELUSINA_BLENDER_WARDROBE_SSOT.md`](MELUSINA_BLENDER_WARDROBE_SSOT.md)
-- Live Link: [`Docs/BLENDER_LIVELINK.md`](BLENDER_LIVELINK.md)
-- Ornament sell plan: [`Docs/ORNAMENT_KITBASH_SELL_PLAN.md`](ORNAMENT_KITBASH_SELL_PLAN.md)
-- World JSON (layout, not SKU): [`Docs/BLENDER_UE_WORLD_PIPELINE.md`](BLENDER_UE_WORLD_PIPELINE.md)
+- Stage toggles: `KitbashExport/STAGE_README_v4.md`
+- Character / wardrobe: `MELUSINA_BLENDER_WARDROBE_SSOT.md`
+- Live Link: `Docs/BLENDER_LIVELINK.md`
+- Ornament sell plan: `Docs/ORNAMENT_KITBASH_SELL_PLAN.md`
+- World JSON (layout, not SKU): `Docs/BLENDER_UE_WORLD_PIPELINE.md`

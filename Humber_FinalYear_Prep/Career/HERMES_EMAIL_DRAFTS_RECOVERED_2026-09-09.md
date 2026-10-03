@@ -107,7 +107,7 @@ https://fromage3900.github.io/my-site/
 
 ## 5. Epic Games — MegaGrants (student-honest)
 
-Use after you fill the dollar figure and 3–5 stills in [`EPIC_MEGAGRANTS_APPLICATION_DRAFT.md`](EPIC_MEGAGRANTS_APPLICATION_DRAFT.md). Apply at https://www.unrealengine.com/en-US/megagrants — this is the form, not an inbox.
+Use after you fill the dollar figure and 3–5 stills in `EPIC_MEGAGRANTS_APPLICATION_DRAFT.md`. Apply at https://www.unrealengine.com/en-US/megagrants — this is the form, not an inbox.
 
 If you also want Academic Partner routed through Humber:
 
@@ -409,4 +409,4 @@ https://fromage3900.github.io/my-site/
 
 ## After you send
 
-Log date, recipient, and reply in [`STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md`](STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md). Do not send a second copy of the same ask to the same inbox.
+Log date, recipient, and reply in `STUDENT_BENEFITS_ENROLLMENT_LEDGER_2026-09-09.md`. Do not send a second copy of the same ask to the same inbox.

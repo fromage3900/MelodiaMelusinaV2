@@ -1,0 +1,58 @@
+{
+  "source": "jev-live",
+  "time": "2026-10-01T01:18:50.548825+00:00",
+  "model": "jev-1.13.0",
+  "state": {
+    "scope": "Current UE 5.8 Morning archery polish, preserving authored P0 look and combat authorities.",
+    "observations": {
+      "performance": "Last foreground screenshot: 26.11ms frame (~38fps), game26.31ms, GPU16.76ms. Not a fresh p95 certification.",
+      "physics_fix": "Wrong source tags accumulated collision limits. Bounded fix built; regression passed. Live Kawaii collision .449ms average, full evaluation2.117ms.",
+      "fps_harness": "Records CSV, trace and frames; last historical run 3fps background clamp. Capture readbacks can affect timings; no real input drive in default call.",
+      "input": "Owner five LMB clicks and W hold produced zero shots and no movement in last observed PIE. MMB toggled aim. Input context allowed movement; PC ignore move false.",
+      "pose": "Existing AM_RangeAttack is held at .45s in aim/draw, DefaultSlot. Both draw and release animation sequences inspected live have enable_root_motion=false; root-motion freeze is not established.",
+      "vfx": "Arrow uses existing ChoralSheep motion trails, world-space ribbon plus sparks, per-instance scale .18 and BRIGHT intensity .45. Ambient PondMist live diagnostics zero errors/warnings. Render quality remains unproven.",
+      "ui": "Operator screenshot shows large overlapping combat HUD, aim mark over hero, washed/noisy scene. No model vision attached; these are operator observations."
+    },
+    "constraints": [
+      "Same possessed pawn, world actor HP and stock resolver; no damage formulas or authority changes.",
+      "Existing ABP and authored animations first; no hero reimport or new archer asset without demonstrated need.",
+      "No shared PPV, map, MPC or Niagara asset rewrite; transient variants and existing component are the permitted surface.",
+      "Real player input proof cannot be replaced by direct invocation.",
+      "Select among the supplied actions only. Jev selects; current UE/native owners execute and verify."
+    ]
+  },
+  "answers": {
+    "next_action": {
+      "type": "choice",
+      "choice": "INPUT_FIRST",
+      "confidence": 0.99,
+      "probabilities": {
+        "TRAIL_FIRST": 0.0,
+        "POSE_FIRST": 0.0,
+        "PROFILE_FIRST": 0.0,
+        "INPUT_FIRST": 1.0,
+        "HUD_FIRST": 0.0
+      }
+    },
+    "pose_strategy": {
+      "type": "choice",
+      "choice": "EXISTING_ABP_BLEND",
+      "confidence": 0.92,
+      "probabilities": {
+        "NEW_ARCHER_ASSETS": 0.0,
+        "EXISTING_ABP_BLEND": 0.95,
+        "HOLD_POSE_WORK": 0.05
+      }
+    },
+    "vfx_strategy": {
+      "type": "choice",
+      "choice": "THIN_SHORT_RIBBON",
+      "confidence": 0.65,
+      "probabilities": {
+        "ADD_EMITTERS": 0.0,
+        "THIN_SHORT_RIBBON": 0.77,
+        "VALIDATE_EXISTING": 0.23
+      }
+    }
+  }
+}

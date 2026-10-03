@@ -13,7 +13,8 @@ import sys
 
 import bpy
 
-sys.path.insert(0, "P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn import eyewear as EW  # noqa: E402
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 

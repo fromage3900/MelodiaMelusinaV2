@@ -1,0 +1,122 @@
+{
+  "scope": "bounded takeover risk audit and next-session visual stack",
+  "timestamp": "2026-09-30",
+  "editor_snapshot": {
+    "unreal_editor_pid": 35140,
+    "pie_active": false,
+    "errored_blueprints": 0,
+    "dirty_ue_packages": 0,
+    "live_compile_running": false,
+    "live_compile_last_result": "none"
+  },
+  "risks_that_can_bite_later": [
+    {
+      "id": "ANIM-01",
+      "severity": "high",
+      "finding": "Both AM_RangeAttack and AM_Melusina_BowAttack_Gameplay use DefaultSlot, and the current ABP has no connected upper/lower-body blend.",
+      "impact": "Aim/draw can lock locomotion or snap the full body; moving aim will feel clumsy even after a corrected clip exists.",
+      "gate": "Muse must validate the corrected candidate on V2, then add a scoped upper-body layer and live Morning proof."
+    },
+    {
+      "id": "ANIM-02",
+      "severity": "high",
+      "finding": "BowDraw_v2 candidate root track has scale 100 while the canonical root is scale 1.",
+      "impact": "Binding it directly can produce enormous or invalid FK transforms and misleading pose previews.",
+      "gate": "Duplicate/correct candidate root and baked travel before any montage binding."
+    },
+    {
+      "id": "UI-01",
+      "severity": "medium",
+      "finding": "HUD was globally compacted to 65% in source but has not been rebuilt or viewed in PIE.",
+      "impact": "Panels may become readable, too small, or move inward together because the whole design scales around the screen center.",
+      "gate": "Build, capture Morning idle/aim/target/sequence states, and check duplicate reticle ownership."
+    },
+    {
+      "id": "PROJ-01",
+      "severity": "medium",
+      "finding": "Arrow spawn uses actor location plus camera ray offset, not the hand_l socket.",
+      "impact": "The projectile can look detached from the bow or appear to originate inside the character during camera changes.",
+      "gate": "Measure spawn-to-hand distance in PIE before changing origin; if visible, use a narrow presentation offset or socket-derived origin while preserving camera aim direction."
+    },
+    {
+      "id": "PERF-01",
+      "severity": "medium",
+      "finding": "60 FPS harness now has a performance-only mode, but it has no live foreground result for the current HUD/Niagara build.",
+      "impact": "A previous ~38 FPS observation may be mistaken for the current baseline, or a background 3 FPS run may be treated as valid.",
+      "gate": "Run foreground performance-only smoke first, then a separate showcase capture."
+    },
+    {
+      "id": "CONTENT-01",
+      "severity": "medium",
+      "finding": "The practice slime fixture is present but ground placement/reachability and the second party pawn mapping remain unproven.",
+      "impact": "A visually polished screenshot can still use the wrong target or duplicate Melusina pawn.",
+      "gate": "Verify target bounds/ground and stock Sir roster class before showcase capture."
+    },
+    {
+      "id": "AUTH-01",
+      "severity": "high",
+      "finding": "Fresh chord, GOOD/PERFECT, once-only HP, restart and packaged evidence are still absent.",
+      "impact": "Visual polish can hide a broken gameplay authority path.",
+      "gate": "One short evidence pass after visual smoke: five shots, one slime hit, FLOW→SEQUENCE→FLOW, HP/callback counts."
+    }
+  ],
+  "next_session_stack": [
+    {
+      "order": 1,
+      "name": "Compile and smoke",
+      "duration_minutes": 5,
+      "action": "Closed-editor Development Editor build; list errored Blueprints; enter Morning PIE once.",
+      "proof": "Build receipt plus zero Blueprint errors."
+    },
+    {
+      "order": 2,
+      "name": "HUD framing pass",
+      "duration_minutes": 8,
+      "action": "Capture idle, aim and target states with HUD65%; adjust only existing scale/anchor values if a panel overlaps the character or reticle duplicates.",
+      "proof": "Three screenshots and one reticle-owner readback."
+    },
+    {
+      "order": 3,
+      "name": "Camera and silhouette",
+      "duration_minutes": 8,
+      "action": "Use existing AimArmLength/AimSocketOffset variant; tune one bounded value set while checking hands, bow, target and horizon.",
+      "proof": "Before/after aim frame with no animation asset edits."
+    },
+    {
+      "order": 4,
+      "name": "Arrow readability",
+      "duration_minutes": 6,
+      "action": "Fire one arrow at the slime; measure hand-to-spawn distance, forward vector and current thin ribbon. Tune only ArrowTrailIntensity/lifetime/scale if mechanics already pass.",
+      "proof": "Spawn/travel screenshot and native arrow log."
+    },
+    {
+      "order": 5,
+      "name": "Target staging",
+      "duration_minutes": 6,
+      "action": "Ground-check the existing slime and ensure its silhouette reads at the selected camera distance. Do not save unrelated Morning packages.",
+      "proof": "Target location/ground receipt and one clean combat frame."
+    },
+    {
+      "order": 6,
+      "name": "Authority proof",
+      "duration_minutes": 10,
+      "action": "Five real LMB releases, then one slime hit and one FLOW→SEQUENCE→FLOW phrase. Record HP before/after and callback counts.",
+      "proof": "Logs show projectile→collision→resolver→single HP delta."
+    },
+    {
+      "order": 7,
+      "name": "Foreground performance",
+      "duration_minutes": 5,
+      "action": "Run fps60_harness.py with --performance-only in foreground; do not interpret background/minimized output.",
+      "proof": "Session-owned CSV, valid sample count, p95 and Niagara stats."
+    }
+  ],
+  "do_not_touch_in_this_stack": [
+    "Muse's active ABP/animation candidate edits",
+    "hero mesh, skeleton, hair or skirt",
+    "shared Niagara assets",
+    "damage formulas, rhythm grading or save authority",
+    "unrelated Morning external actors",
+    "ACFU production combat authority"
+  ]
+}

@@ -11,11 +11,13 @@ Influence pass. This varies THAT and nothing else.
 If those both hold, the fault is the pass's absolute amplitude (0.02 BU = 20 mm)
 against a 22 mm bead, not MEL_nikki_bead's radius.
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001

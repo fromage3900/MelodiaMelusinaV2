@@ -2,14 +2,16 @@
 except one line per check, so a repeating stream cannot garble the result.
 """
 import json
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
-R = "P:/MelodiaMelusinaV2-Laptop/Saved/Audit/eyewear"
+R = os.path.join(_WT, "Saved", "Audit", "eyewear")
 MM = 0.001
 OUT = {}
 fails = []

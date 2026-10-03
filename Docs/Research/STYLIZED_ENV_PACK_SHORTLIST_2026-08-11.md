@@ -1,6 +1,6 @@
 # Stylized env pack shortlist — cute / mystical / underwater (2026-08-11)
 
-**Source:** [Grok research share](https://grok.com/share/bGVnYWN5LWNvcHk_c7761e0a-252b-44bf-b4de-4940025d6de0)  
+**Source:** Grok research share  
 **Goal:** royalty-free (Fab Standard / commercial ship) packs for Melodia **loose ends** — Nikki-adjacent soft stylization, prioritize cute/mystical, then underwater.  
 **Hard ban:** Infinity Nikki rips or any shipped-game asset dumps. Illegal for Melodia.
 
@@ -10,8 +10,8 @@ Look test: soft saturation, readable silhouettes, gentle stylization (not grimda
 
 | Pack | Why | Caveats |
 |------|-----|---------|
-| [Underwater World – Modular / Stylized](https://www.unrealengine.com/marketplace/en-US/product/underwater-world-modular-underwater-stylized-underwater-ocean-sea) | Anime / JRPG / MMO inspired; modular coral; hue/sat/emissive foliage; ocean-floor landscape. Best “cute mystical sea” Fab match. | Confirm UE 5.8; retint to toon masters |
-| [Ocean Environment Pack](https://www.unrealengine.com/marketplace/en-US/product/ocean-environment-pack) | Full kit: kelp, caustics, god rays, fish particles | More semi-real AAA ocean — structure first, dream materials second |
+| Underwater World – Modular / Stylized | Anime / JRPG / MMO inspired; modular coral; hue/sat/emissive foliage; ocean-floor landscape. Best “cute mystical sea” Fab match. | Confirm UE 5.8; retint to toon masters |
+| Ocean Environment Pack | Full kit: kelp, caustics, god rays, fish particles | More semi-real AAA ocean — structure first, dream materials second |
 | Stylized Fantasy Underwater Materials (N-Hance) | Sea-floor mats without full mesh kit | Materials-only |
 | Coral / reef libraries on Fab | Fast reef density | Many photoreal — silhouette + re-shader |
 
@@ -61,4 +61,4 @@ After migrate: strip demo GameModes/maps; keep meshes/MIs; reparent toward `M_Ma
 |------|------|---------|-------|
 | — | — | — | — |
 
-Phone pointer: [`Docs/PhoneOps/ENV_PACK_RESEARCH_POINTER.md`](../PhoneOps/ENV_PACK_RESEARCH_POINTER.md).
+Phone pointer: `Docs/PhoneOps/ENV_PACK_RESEARCH_POINTER.md`.

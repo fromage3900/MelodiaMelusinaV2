@@ -1,0 +1,63 @@
+{
+  "source": "jev-live",
+  "time": "2026-10-01T01:35:56.351365+00:00",
+  "model": "jev-1.13.0",
+  "state": {
+    "request": "Owner tested Morning and reports broken Melusina archery retarget animations. Plan a bounded repair, preserving current gameplay authorities.",
+    "evidence": {
+      "pawn": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "current_draw": "/Game/Melodia/Characters/Melusina/Animations/AM_RangeAttack -> A_RangeAttack",
+      "current_release": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Gameplay -> A_Melusina_BowAttackV2_A_RangeAttack",
+      "current_import_metadata": "Both bound sequences report C:/Program Files/AnimationStarterPack/Fire_Shotgun_Hip.fbx. This may be inherited import metadata; it does not establish the full edit history.",
+      "current_sequences": "Both 1.3 seconds, 30fps, 40 keys, canonical Melusina skeleton, root motion disabled. Matching skeleton is not retarget-quality proof.",
+      "runtime_pose_control": "Native component plays original draw montage then pauses at .45 seconds for aim/draw. Release uses different montage at 1.6x. Connected DefaultSlot covers full body before existing Kawaii/CopyBone processing; no connected upper/lower body blend in inspected graph.",
+      "bow_candidate": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionMelusina_Mocap_Rig_Action exists: 2.8333 seconds,30fps,86 keys,canonical skeleton,root motion enabled. Its import source is Saved/Audit/MelusinaReexport_20260921/out_BowDraw_v2/A_Melusina_BowDraw_v2_Mocap_RootMotion.fbx. Candidate pose quality and release coverage unproven.",
+      "bow_provenance": "Fresh source review: import_rokoko_mocap_batch.py imports the BowDraw v1/v2 and BowKneelAim reexports directly onto Melusina target skeleton. These are 465-bone target-rig exports, not raw source clips requiring another IK retarget. BowDraw_v2 export report net root travel is [.018,-.037,0] meters, about4cm. Pose quality still unproven.",
+      "retargeter": "/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current has 19 mapped chains and belongs to the separate raw Rokoko source pipeline. Do not rerun this retargeter on already target-rig-authored BowDraw_v2.",
+      "input": "Latest owner playtest native logs show nine real bow shots, including pawn C_2, with scenery collisions. This is separate from animation quality and target damage proof.",
+      "visual_access": "No frame/video attached to this Jev call. Make a workflow choice; do not claim you have evaluated pose quality."
+    },
+    "constraints": [
+      "No hero mesh/skeleton reimport, hair/skirt edit, shared retargeter blanket rerun, or new combat authority.",
+      "Evaluate full-action bow clips, not accidentally imported finger/end-bone action fragments.",
+      "Determine actual source skeleton before choosing a retargeter. Existing target-skeleton clip may need pose repair rather than another retarget pass.",
+      "For moving aim, create/evaluate an in-place candidate: disabling root-motion extraction alone does not remove baked root translation.",
+      "Preserve existing locomotion and downstream physics. Graph edits require repository export/fingerprint/assert loop.",
+      "Stage candidate before binding; existing release clip may need narrow authoring if no valid bow release exists.",
+      "Jev chooses among bounded options; native/editor owners implement and real player PIE proves it."
+    ]
+  },
+  "answers": {
+    "repair_order": {
+      "type": "choice",
+      "choice": "BOW_SOURCE_THEN_ABP",
+      "confidence": 1.0,
+      "probabilities": {
+        "BOW_SOURCE_THEN_ABP": 1.0,
+        "ABP_ONLY": 0.0,
+        "NEW_POSES_FIRST": 0.0
+      }
+    },
+    "hold_strategy": {
+      "type": "choice",
+      "choice": "AUTHORED_BOW_HOLD",
+      "confidence": 0.9,
+      "probabilities": {
+        "PROCEDURAL_POSE_REPLACEMENT": 0.0,
+        "AUTHORED_BOW_HOLD": 0.94,
+        "KEEP_POINT45_FREEZE": 0.06
+      }
+    },
+    "new_pose_gate": {
+      "type": "choice",
+      "choice": "ONLY_MISSING_BEAT",
+      "confidence": 1.0,
+      "probabilities": {
+        "ONLY_MISSING_BEAT": 1.0,
+        "FULL_PACK_NOW": 0.0
+      }
+    }
+  }
+}

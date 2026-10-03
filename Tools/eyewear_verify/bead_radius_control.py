@@ -14,11 +14,13 @@ Reading:
 Every case builds a FRESH tree (new_geometry_tree removes and re-creates by name, so a
 reused one can silently null a tree a group node still points at).
 """
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 MM = 0.001

@@ -1,10 +1,12 @@
 """Dump the music params a builder actually exposes, for the ones the pulse moves most."""
 import json
+import os
 import sys
 
 import bpy
 
-sys.path.insert(0, r"P:/MelodiaMelusinaV2-Laptop/deploy")
+_WT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(_WT, "deploy"))
 from surreal_arch.melodia_gn.core import GROUP_BUILDERS  # noqa: E402
 
 IDS = ["MEL_eyewear_hinge", "MEL_castle_gothic_window", "MEL_castle_machicolations",

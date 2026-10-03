@@ -1,7 +1,7 @@
 # Melodia Studio — Gate 3 UI unlock
 
 **Status:** Unlocked (2026-07-12)  
-**Prerequisite:** [`Saved/Audit/melodia_studio_gate2_ready.json`](../Saved/Audit/melodia_studio_gate2_ready.json) `ok: true`
+**Prerequisite:** `Saved/Audit/melodia_studio_gate2_ready.json` `ok: true`
 
 Detailed UI integration (panel IA, Figma icons/tokens, demoting legacy monolith draws) is a **separate pass**. Do not mix it into branding/sync work.
 
@@ -50,4 +50,4 @@ Review / smoke queue:
 2. Demote leftover monolith PROPERTIES drawers
 3. Collapse Pattern / Live Link under Studio accordion
 
-See branding: [`deploy/surreal_arch/branding.py`](../deploy/surreal_arch/branding.py) · stage: [`stage_visibility.py`](../deploy/surreal_arch/stage_visibility.py).
+See branding: `deploy/surreal_arch/branding.py` · stage: `stage_visibility.py`.
