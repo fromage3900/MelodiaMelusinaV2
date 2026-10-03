@@ -227,6 +227,37 @@ void UMelodiaOceanologyWaterBridgeSubsystem::DriveCymaticRipples(float BeatPulse
         Push(TEXT("Cymatic_Tension"), TensionWeight);
         Push(TEXT("Cymatic_ResonanceN"), static_cast<float>(ResonanceN));
         Push(TEXT("Cymatic_ResonanceM"), static_cast<float>(ResonanceM));
+
+        // The stock Oceanology chain has no Cymatic_* / Biolum_* params, so the pushes above are
+        // silent no-ops there. Scale the stock shading params instead, relative to their authored
+        // values (read once from the MID), so the lake still brightens, scatters and warps on the
+        // beat. A param absent from the material reads -1 and is skipped.
+        if (UMaterialInstanceDynamic* MID = Cast<UMaterialInstanceDynamic>(Entry.WaterMID.Get()))
+        {
+            auto CacheBase = [MID](const TCHAR* Name, float& Base)
+            {
+                if (Base < -1.5f)
+                {
+                    float V = 0.f;
+                    Base = MID->GetScalarParameterValue(FName(Name), V) ? V : -1.f;
+                }
+            };
+            CacheBase(TEXT("HighlightBoost"), Entry.BaseHighlightBoost);
+            CacheBase(TEXT("SurfaceScatteringIntensity"), Entry.BaseScatterIntensity);
+            CacheBase(TEXT("WaveDistortion"), Entry.BaseWaveDistortion);
+            if (Entry.BaseHighlightBoost >= 0.f)
+            {
+                Push(TEXT("HighlightBoost"), Entry.BaseHighlightBoost * (1.f + RippleWeight * 0.8f));
+            }
+            if (Entry.BaseScatterIntensity >= 0.f)
+            {
+                Push(TEXT("SurfaceScatteringIntensity"), Entry.BaseScatterIntensity * (1.f + BasinRipple * 0.5f));
+            }
+            if (Entry.BaseWaveDistortion >= 0.f)
+            {
+                Push(TEXT("WaveDistortion"), Entry.BaseWaveDistortion * (1.f + TensionWeight * 0.5f));
+            }
+        }
     }
 }
 

@@ -94,6 +94,10 @@ private:
     {
         TWeakObjectPtr<AActor> OceanActor;
         TWeakObjectPtr<UObject> WaterMID; // UMaterialInstanceDynamic via UObject to avoid header
+        /** Authored values of the stock-chain shading params the cymatic drive scales; -1 = param absent. */
+        float BaseHighlightBoost = -2.f;
+        float BaseScatterIntensity = -2.f;
+        float BaseWaveDistortion = -2.f;
     };
     TArray<FOceanBridgeEntry> OceanEntries;
     double LastRescanTime = 0.0;
