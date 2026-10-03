@@ -168,8 +168,9 @@ class TestWorkstationMayStartWork(unittest.TestCase):
         return {
             "sync": {"sync_state": sync_state},
             "git": {"available": True, "dirty_file_count": dirty},
-            "editor_lease": {"held": lease_held, "holder": "other-lane",
-                             "stop_sentinels": []},
+            "editor_lease": {"available": True, "held": lease_held,
+                             "holder": "other-lane" if lease_held else None,
+                             "stop_sentinels": [], "modal_open": False},
             "p4": {"available": p4_up},
         }
 
@@ -197,6 +198,31 @@ class TestWorkstationMayStartWork(unittest.TestCase):
 
     def test_never_synced_blocks(self):
         self.assertFalse(workstation_status.may_start_work(self._status(None))["ok"])
+
+    def test_unknown_lease_state_blocks_rather_than_passing(self):
+        """Found 2026-10-02: an unimportable Tools/agent_lease.py produced
+        held=None, and `if lease.get("held")` read that as 'free'. The single-writer
+        check must fail CLOSED, not open."""
+        status = self._status("synced")
+        status["editor_lease"] = {"available": False}
+        gate = workstation_status.may_start_work(status)
+        self.assertFalse(gate["ok"])
+        self.assertTrue(any("lease state UNKNOWN" in b for b in gate["blockers"]), gate)
+
+    def test_lease_present_but_held_field_missing_blocks(self):
+        status = self._status("synced")
+        status["editor_lease"] = {"available": True}
+        gate = workstation_status.may_start_work(status)
+        self.assertFalse(gate["ok"])
+        self.assertTrue(any("lease state UNKNOWN" in b for b in gate["blockers"]), gate)
+
+    def test_modal_open_blocks(self):
+        status = self._status("synced")
+        status["editor_lease"] = {"available": True, "held": False, "stop_sentinels": [],
+                                   "modal_open": True}
+        gate = workstation_status.may_start_work(status)
+        self.assertFalse(gate["ok"])
+        self.assertTrue(any("MODAL_OPEN" in b for b in gate["blockers"]), gate)
 
 
 class TestWorkstationCollect(unittest.TestCase):
