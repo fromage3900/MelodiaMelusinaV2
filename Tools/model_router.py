@@ -86,7 +86,7 @@ PRICES = {
     "nvidia/nemotron-3-ultra-550b-a55b:free": (0.0, 0.0),
     "nvidia/nemotron-3-super-120b-a12b:free": (0.0, 0.0),
     "openai/gpt-oss-20b:free": (0.0, 0.0),
-    # Free rotation 2026-09-02: opencode-go/deepseek → nous → meituan (OpenRouter free tier rotation)
+    # Free rotation 2026-09-02: opencode-go/deepseek ??? nous ??? meituan (OpenRouter free tier rotation)
     "meituan/longcat-2.0:free": (0.0, 0.0),
     "meituan/longcat-flash-chat:free": (0.0, 0.0),
     "nousresearch/hermes-4-405b:free": (0.0, 0.0),
@@ -214,7 +214,7 @@ POLICY = {
     "triage": [
         NOUS_DEFAULT,
         ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
-        # Free rotation 2026-09-02: deepseek (opencode-go) → nous → meituan ; local fallback last
+        # Free rotation 2026-09-02: deepseek (opencode-go) ??? nous ??? meituan ; local fallback last
         ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan (switched)"),
         ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free rotation tertiary: nvidia (prev deepseek lane)"),
