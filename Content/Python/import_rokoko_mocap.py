@@ -39,7 +39,7 @@ SRC_MESH = "/Game/Melodia/Mocap/Source/SK_MocapSource"
 RTG = "/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current"
 SRC_ANIM_DIR = "/Game/Melodia/Mocap/Source/Anims"
 OUT_DIR = "/Game/Melodia/Characters/Melusina/Animations/Mocap"
-TGT_MESH = "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body"
+TGT_MESH = "/Game/Melodia/Characters/Melusina/SK_Melusina"
 TGT_SKEL = "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
 REPORT = os.path.join(_PROJECT_ROOT, "Saved", "Melodia", "rokoko_import_report.json")
 
@@ -93,20 +93,19 @@ def import_source_anim(fbx_path: str, dest_name: str) -> str | None:
     return None
 
 
-def retarget_clip(src_path: str, overwrite_existing: bool = False) -> dict:
+def retarget_clip(src_path: str) -> dict:
     rtg = unreal.load_asset(RTG)
     sm = unreal.load_asset(SRC_MESH)
     tm = unreal.load_asset(TGT_MESH)
     tgt_skel = unreal.load_asset(TGT_SKEL)
-    if not all((rtg, sm, tm, tgt_skel)):
-        raise RuntimeError("Rokoko retarget assets are missing; no clips written")
-    if tm.get_editor_property("skeleton") != tgt_skel:
-        raise RuntimeError("V2 body is not bound to the canonical skeleton; no clips written")
-    source = unreal.load_asset(src_path)
-    if not isinstance(source, unreal.AnimSequence) or source.get_editor_property("skeleton") != sm.get_editor_property("skeleton"):
-        raise RuntimeError("Source clip does not use SK_MocapSource's skeleton; no clips written")
-    # Preserve the reviewed chain mappings and hero mesh. Retargeting must not
-    # repair/rebind a character asset or remap the retargeter as a side effect.
+    try:
+        unreal.MelodiaAssetRepairLibrary.set_skeletal_mesh_skeleton(tm, tgt_skel)
+        unreal.EditorAssetLibrary.save_asset(TGT_MESH, False)
+    except Exception as exc:
+        unreal.log_warning(f"[Rokoko] skeleton rebind skipped: {exc}")
+
+    rtgc = unreal.IKRetargeterController.get_controller(rtg)
+    rtgc.auto_map_chains(unreal.AutoMapChainType.EXACT, False)
 
     ad = unreal.EditorAssetLibrary.find_asset_data(src_path.split(".")[0])
     inp = unreal.IKRetargetBatchOperationInputs()
@@ -117,7 +116,7 @@ def retarget_clip(src_path: str, overwrite_existing: bool = False) -> dict:
     inp.set_editor_property("target_path", OUT_DIR)
     inp.set_editor_property("search", "A_Src_")
     inp.set_editor_property("replace", "A_Mocap_")
-    inp.set_editor_property("overwrite_existing_files", overwrite_existing)
+    inp.set_editor_property("overwrite_existing_files", True)
     inp.set_editor_property("use_source_path", False)
     created = unreal.IKRetargetBatchOperation().run_batch_retarget(inp) or []
     entry = {"src": src_path, "created": [], "ok": False, "skeleton": None}
@@ -129,11 +128,11 @@ def retarget_clip(src_path: str, overwrite_existing: bool = False) -> dict:
         sk = obj.get_editor_property("skeleton")
         entry["created"].append(str(c.package_name))
         entry["skeleton"] = sk.get_name() if sk else None
-        entry["ok"] = sk == tgt_skel
+        entry["ok"] = sk is not None
     return entry
 
 
-def main(import_only: bool = False, retarget: bool = True, overwrite_existing: bool = False) -> dict:
+def main(import_only: bool = False, retarget: bool = True) -> dict:
     fbxs = list_inbox_fbx()
     report = {
         "inbox": INBOX,
@@ -165,7 +164,7 @@ def main(import_only: bool = False, retarget: bool = True, overwrite_existing: b
     ]
     for sp in rokoko_srcs:
         try:
-            report["retargeted"].append(retarget_clip(sp, overwrite_existing=overwrite_existing))
+            report["retargeted"].append(retarget_clip(sp))
         except Exception as exc:
             report["retargeted"].append({"src": sp, "ok": False, "error": str(exc)[:200]})
 

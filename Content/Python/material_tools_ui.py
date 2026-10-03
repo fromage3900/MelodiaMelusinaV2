@@ -28,11 +28,3 @@ def print_output_paths() -> None:
 def open_modifier_panel() -> None:
     commands.run("modifiers.open_panel")
 
-
-def open_instance_widget() -> None:
-    commands.run("materials.open_instance_widget")
-
-
-def apply_master_clamps() -> None:
-    commands.run("materials.apply_clamps")
-

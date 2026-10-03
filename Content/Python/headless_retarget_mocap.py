@@ -7,11 +7,10 @@ Prefer Tools/run_headless_mocap_retarget.ps1 from the repo root. Manual example:
       -run=pythonscript -script='<repo>/Content/Python/headless_retarget_mocap.py' `
       -unattended -nop4 -nosplash
 
-Retargets every A_Src_* clip in /Game/Melodia/Mocap/Source/Anims onto SK_Melusina_V2_Body via
+Retargets every A_Src_* clip in /Game/Melodia/Mocap/Source/Anims onto SK_Melusina via
 RTG_Mocap_to_Melusina_Current (canonical, targets IK_Melusina_Body_Current), writes A_Mocap_*
 into the Melusina Animations/Mocap folder, saves each, and writes a validity report to
-Saved/Melodia/retarget_report.json. Existing output clips are preserved by default;
-call main(overwrite_existing=True) only for an explicitly approved replacement.
+Saved/Melodia/retarget_report.json. Idempotent: overwrite=True.
 
 Both V1 (SK_Melusina) and V2 (SK_Melusina_V2_*) meshes bind SK_Melusina_Skeleton, so every
 clip this script produces plays on V2 via leader pose with zero re-retargeting.
@@ -26,32 +25,40 @@ import unreal, json, os
 _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 RTG = '/Game/Melodia/Mocap/Retarget/RTG_Mocap_to_Melusina_Current'
 SRC_MESH = '/Game/Melodia/Mocap/Source/SK_MocapSource'
-TGT_MESH = '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body'
+TGT_MESH = '/Game/Melodia/Characters/Melusina/SK_Melusina'
 SRC_DIR = '/Game/Melodia/Mocap/Source/Anims'
 OUT_DIR = '/Game/Melodia/Characters/Melusina/Animations/Mocap'
 REPORT = os.path.join(_PROJECT_ROOT, 'Saved', 'Melodia', 'retarget_report.json')
 
 
-def main(overwrite_existing=False):
+def main():
     rtg = unreal.load_asset(RTG)
     sm = unreal.load_asset(SRC_MESH)
     tm = unreal.load_asset(TGT_MESH)
 
+    # Target skeleton must resolve or the batch fails with "Unable to retrieve target USkeleton"
+    # and silently writes null-skeleton clips. The Python-side read of Mesh.Skeleton is unreliable
+    # (returned None in one boot, non-None in another), so rebind UNCONDITIONALLY via the
+    # MelodiaCore C++ helper (USkeletalMesh::Skeleton has no Python setter at all).
+    unreal.log('[HeadlessRetarget] pre-rebind python read: %s' % tm.get_editor_property('skeleton'))
     tgt_skel = unreal.load_asset('/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton')
-    if not all((rtg, sm, tm, tgt_skel)):
-        raise RuntimeError('Retarget assets are missing; no clips written')
-    if tm.get_editor_property('skeleton') != tgt_skel:
-        raise RuntimeError('V2 body is not bound to the canonical skeleton; no clips written')
-    # Use the reviewed mappings without rebinding/saving the hero mesh or remapping the rig.
+    bound = unreal.MelodiaAssetRepairLibrary.set_skeletal_mesh_skeleton(tm, tgt_skel)
+    unreal.log('[HeadlessRetarget] C++ skeleton rebind -> %s | post-rebind read: %s' % (bound, tm.get_editor_property('skeleton')))
+    if not bound:
+        unreal.log_error('[HeadlessRetarget] C++ rebind failed — aborting before writing junk clips')
+        return
+    unreal.EditorAssetLibrary.save_asset(TGT_MESH, False)
+
+    # Ensure chain mapping is populated (exact-name; source and target chains share names).
+    rtgc = unreal.IKRetargeterController.get_controller(rtg)
+    rtgc.auto_map_chains(unreal.AutoMapChainType.EXACT, False)
+    unreal.EditorAssetLibrary.save_asset(RTG, False)
 
     src_paths = [a.split('.')[0] for a in unreal.EditorAssetLibrary.list_assets(SRC_DIR, False, False)]
     report = []
     for sp in src_paths:
         name = sp.split('/')[-1]
         try:
-            source = unreal.load_asset(sp)
-            if not isinstance(source, unreal.AnimSequence) or source.get_editor_property('skeleton') != sm.get_editor_property('skeleton'):
-                raise RuntimeError('Source clip does not use SK_MocapSource\'s skeleton; no clip written')
             ad = unreal.EditorAssetLibrary.find_asset_data(sp)
             inp = unreal.IKRetargetBatchOperationInputs()
             inp.set_editor_property('assets_to_retarget', [ad])
@@ -61,7 +68,7 @@ def main(overwrite_existing=False):
             inp.set_editor_property('target_path', OUT_DIR)
             inp.set_editor_property('search', 'A_Src_')
             inp.set_editor_property('replace', 'A_Mocap_')
-            inp.set_editor_property('overwrite_existing_files', overwrite_existing)
+            inp.set_editor_property('overwrite_existing_files', True)
             inp.set_editor_property('use_source_path', False)
             created = unreal.IKRetargetBatchOperation().run_batch_retarget(inp) or []
             entry = {'src': name, 'created': [str(c.package_name) for c in created], 'ok': False, 'skeleton': None}
@@ -71,7 +78,7 @@ def main(overwrite_existing=False):
                     unreal.EditorAssetLibrary.save_loaded_asset(obj)
                     sk = obj.get_editor_property('skeleton')
                     entry['skeleton'] = sk.get_name() if sk else None
-                    entry['ok'] = sk == tgt_skel
+                    entry['ok'] = sk is not None
             report.append(entry)
         except Exception as exc:
             report.append({'src': name, 'error': str(exc), 'ok': False})

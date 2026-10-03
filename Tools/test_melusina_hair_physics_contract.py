@@ -42,6 +42,14 @@ def test_missing_warmup_fails():
 
 def test_wrong_root_or_extra_node_fails():
     probe = passing_probe()
-    probe["nodes"][0]["root_bone"] = "hair_root"
+    probe["nodes"][0]["root_bone"] = "HairExp_Rig"
     probe["node_count"] = 2
     assert len(validate_probe(probe, contract())["errors"]) >= 2
+
+
+def test_retired_export_root_cannot_return():
+    probe = passing_probe()
+    probe["nodes"][0]["root_bone"] = "HairExp_Rig"
+    report = validate_probe(probe, contract())
+    assert report["ok"] is False
+    assert report["errors"] == ["KawaiiPhysics root must remain hair_root"]

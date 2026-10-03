@@ -203,27 +203,6 @@ def _cmd_print_material_paths(_: Dict[str, Any]) -> CommandResult:
     )
 
 
-def _cmd_open_instance_widget(_: Dict[str, Any]) -> CommandResult:
-    import material_instance_widget_panel as mi_panel
-
-    res = mi_panel.MaterialInstanceWidgetPanel.launch_web_panel()
-    _log(f"Launched Material Instance Widget -> {res.get('url')}")
-    return CommandResult(ok=True, message="Opened Material Instance Widget UI panel.", outputs=res)
-
-
-def _cmd_apply_master_clamps(_: Dict[str, Any]) -> CommandResult:
-    import master_material_clamping_engine as clamps
-
-    catalog = clamps.export_full_catalog()
-    out_path = str(clamps.OUT_CATALOG)
-    _log(f"Master Clamps Catalog validated and exported -> {out_path}")
-    return CommandResult(
-        ok=True,
-        message="Exported master clamps catalog and validated bounds.",
-        outputs={"catalog": out_path, "masters": list(catalog.get("masters", {}).keys())},
-    )
-
-
 def _cmd_open_modifier_panel(_: Dict[str, Any]) -> CommandResult:
     # Existing dockable panel registered by the ProceduralModelingToolkit editor module.
     # C++: TabName("ProceduralModelingToolkit") + TryInvokeTab(TabName)
@@ -454,18 +433,6 @@ def get_registry() -> Dict[str, EnvUICommand]:
             label="Print Material Output Paths",
             section="Materials",
             fn=_cmd_print_material_paths,
-        ),
-        "materials.open_instance_widget": EnvUICommand(
-            id="materials.open_instance_widget",
-            label="Open Material Instance Widget UI Panel",
-            section="Materials",
-            fn=_cmd_open_instance_widget,
-        ),
-        "materials.apply_clamps": EnvUICommand(
-            id="materials.apply_clamps",
-            label="Apply Master Material Clamps & Groups",
-            section="Materials",
-            fn=_cmd_apply_master_clamps,
         ),
         "modifiers.open_panel": EnvUICommand(
             id="modifiers.open_panel",

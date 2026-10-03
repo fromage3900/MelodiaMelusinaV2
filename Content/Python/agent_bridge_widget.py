@@ -84,7 +84,7 @@ def register_agent_bridge_widget():
                 "Agent Bridge Tools"
             )
             bridge_menu = menus.extend_menu("LevelEditor.MainMenu.AgentBridge")
-            bridge_menu.add_section("Tools", "Tools", 0)
+            bridge_menu.add_section("Tools", "Tools")
             
             # Show Status
             entry = unreal.ToolMenuEntry(
