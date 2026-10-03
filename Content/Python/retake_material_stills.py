@@ -150,35 +150,28 @@ def _prepare_camera(eas, *, water: bool = False):
 
 
 def _recreate_swatch_actor(eas):
-    """Ensure persistent preview swatch proxy exists with valid mesh at canonical origin."""
+    """Create a fresh preview proxy so each MI gets a new scene render state."""
     import unreal
 
-    actor = None
-    for a in eas.get_all_level_actors() or []:
-        if studio.TAG_SWATCH in list(getattr(a, "tags", []) or []) or a.get_actor_label() == "MI_Preview_Swatch":
-            actor = a
+    old = None
+    for actor in eas.get_all_level_actors() or []:
+        if studio.TAG_SWATCH in list(getattr(actor, "tags", []) or []):
+            old = actor
             break
-    if not actor:
-        actor = eas.spawn_actor_from_class(
-            unreal.StaticMeshActor.static_class(),
-            unreal.Vector(0.0, 0.0, 40.0),
-            unreal.Rotator(0.0, 0.0, 0.0),
-        )
-        if not actor:
-            return None
-        actor.set_actor_label("MI_Preview_Swatch")
-        actor.tags = [studio.TAG_SWATCH]
-
-    actor.set_actor_location(unreal.Vector(0.0, 0.0, 40.0), False, False)
-    actor.set_actor_scale3d(unreal.Vector(*studio.SWATCH_SPHERE_SCALE))
-    mesh = unreal.load_asset(studio.SPHERE)
-    if mesh and actor.static_mesh_component:
-        actor.static_mesh_component.set_static_mesh(mesh)
-        actor.set_actor_hidden_in_game(False)
+    loc = old.get_actor_location() if old else unreal.Vector(0.0, 0.0, 0.0)
+    rot = old.get_actor_rotation() if old else unreal.Rotator()
+    scale = old.get_actor_scale3d() if old else unreal.Vector(*studio.SWATCH_SPHERE_SCALE)
+    if old:
         try:
-            actor.set_is_temporarily_hidden_in_editor(False)
+            eas.destroy_actor(old)
         except Exception:
             pass
+    actor = eas.spawn_actor_from_class(unreal.StaticMeshActor.static_class(), loc, rot)
+    if not actor:
+        return None
+    actor.set_actor_label("MI_Preview_Swatch")
+    actor.tags = [studio.TAG_SWATCH]
+    actor.set_actor_scale3d(scale)
     return actor
 
 
@@ -198,12 +191,6 @@ def _promote(src: Path, mi_id: str) -> list[str]:
                 if tmp.is_file():
                     tmp.unlink()
                 shutil.copy2(src, tmp)
-                if dest.is_file():
-                    try:
-                        import os, stat
-                        os.chmod(dest, stat.S_IWRITE)
-                    except Exception:
-                        pass
                 os_replace = getattr(__import__("os"), "replace")
                 os_replace(tmp, dest)
                 promoted.append(str(dest))
@@ -275,15 +262,26 @@ def capture_batch(ids: list[str], *, promote: bool = True) -> dict[str, Any]:
             continue
 
         out_path = OUT_DIR / f"{mi_id}_{stamp}_{WIDTH}x{HEIGHT}.png"
-        shot = {"ok": False, "error": "not_attempted"}
-        try:
-            shot = capture_mod.capture_still_from_camera(
-                world, camera, out_path, width=WIDTH, height=HEIGHT
+        shot = capture_mod.capture_still_from_camera(
+            world, camera, out_path, width=WIDTH, height=HEIGHT
+        )
+        # Prefer asset thumbnail in unattended — SceneCapture often sees void only (no swatch).
+        asset_path = (entry.get("asset_path") or "").strip()
+        if asset_path:
+            thumb_path = OUT_DIR / f"{mi_id}_{stamp}_{WIDTH}x{HEIGHT}_thumb.png"
+            thumb = capture_mod.capture_thumbnail_fallback(
+                asset_path, thumb_path, size=max(WIDTH, HEIGHT)
             )
-        except Exception as exc:
-            unreal.log_warning(f"[MIStillRetake] SceneCapture exception on {mi_id}: {exc}")
-            shot = {"ok": False, "error": f"capture_exc:{exc}"}
+            if thumb.get("ok"):
+                try:
+                    import shutil
 
+                    shutil.copy2(thumb_path, out_path)
+                except Exception:
+                    out_path = thumb_path
+                shot = {**thumb, "studio_capture": shot, "path": str(out_path)}
+            else:
+                shot = {**shot, "thumbnail_fallback": thumb}
         row = {"id": mi_id, **shot, "applied": applied, "backdrop": entry.get("backdrop")}
         quality = (
             capture_mod.plate_quality(out_path)
@@ -317,12 +315,9 @@ def capture_batch(ids: list[str], *, promote: bool = True) -> dict[str, Any]:
             sm = swatch.static_mesh_component
             sm.set_static_mesh(unreal.load_asset(studio.SPHERE))
             sm.set_material(0, None)
-        # In unattended mode, avoid triggering source control checkout dialogs
-        import sys
-        if "-unattended" not in sys.argv:
-            les = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
-            if les:
-                les.save_current_level()
+        les = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
+        if les:
+            les.save_current_level()
     except Exception as exc:
         unreal.log_warning(f"[MIStillRetake] studio restore skipped: {exc}")
 

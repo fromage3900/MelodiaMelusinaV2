@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.jev.breathtaking_visual_choices.v1",
+  "input_sha256": "e13a425c11d2d41b6a8e9e8644fb2a5aee91ef6a50ddf13dfbf45963f935e67a",
+  "timestamp_utc": "2026-10-03T17:32:27.319336+00:00",
+  "text_only": true,
+  "paths_sent": false,
+  "images_sent": false,
+  "measurements_sent": false,
+  "requested_model": "jev-preview",
+  "status": "failed",
+  "error_type": "TypeSafeError"
+}

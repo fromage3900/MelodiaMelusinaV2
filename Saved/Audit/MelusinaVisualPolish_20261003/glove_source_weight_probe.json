@@ -1,0 +1,1476 @@
+{
+  "schema": "melodia.glove_weight_cause_probe.v1",
+  "body_source": "Saved/Audit/MelusinaRuntimeConvergence_20261002/current_body_readonly.fbx",
+  "accessories_source": "Exports/MelusinaClothes/V2/SK_Melusina_V2_Accessories.fbx",
+  "pose_source": "Saved/Audit/MelusinaRuntimeConvergence_20261002/finger_hold_and_battle_routing.json clip A_Spar_Mel_RMB_Loop sample 0.0",
+  "pose_bones_applied": 50,
+  "body_armature_bones": 464,
+  "accessory_armature_bones": 464,
+  "body_vertices": 20786,
+  "accessory_vertices": 6324,
+  "accessory_materials": [
+    "GLOVES.001",
+    "Material.016",
+    "sleeve.003",
+    "SBW_MELUSINA.007",
+    "SBW_MELUSINA.008",
+    "SBW_Outline.003",
+    "bow.002",
+    "frontpanel.001",
+    "SHAWL.001",
+    "Outline.005"
+  ],
+  "glove_material_slots": [
+    0
+  ],
+  "glove_vertices": 1728,
+  "body_hand_candidate_vertices": 3102,
+  "glove_to_nearest_body_hand_distance_mm": {
+    "min": 10.088,
+    "p50": 62.267,
+    "p90": 77.216,
+    "max": 91.668
+  },
+  "nearest_weight_similarity_l1_mean": 1.3088,
+  "body_top_weight_frequencies": [
+    [
+      "hand_r",
+      329
+    ],
+    [
+      "c_ring1_base_r",
+      279
+    ],
+    [
+      "c_middle1_base_l",
+      278
+    ],
+    [
+      "hand_l",
+      267
+    ],
+    [
+      "c_index1_base_r",
+      257
+    ],
+    [
+      "c_ring1_base_l",
+      248
+    ],
+    [
+      "c_middle1_base_r",
+      245
+    ],
+    [
+      "middle1_l",
+      231
+    ],
+    [
+      "c_index1_base_l",
+      215
+    ],
+    [
+      "c_pinky1_base_r",
+      165
+    ],
+    [
+      "c_pinky1_base_l",
+      158
+    ],
+    [
+      "middle1_r",
+      154
+    ],
+    [
+      "thumb1_r",
+      143
+    ],
+    [
+      "middle2_l",
+      125
+    ],
+    [
+      "middle2_r",
+      122
+    ],
+    [
+      "ring1_l",
+      118
+    ]
+  ],
+  "accessory_top_weight_frequencies": [
+    [
+      "thumb1_l",
+      336
+    ],
+    [
+      "c_pinky1_base_r",
+      320
+    ],
+    [
+      "c_pinky1_base_l",
+      311
+    ],
+    [
+      "thumb1_r",
+      309
+    ],
+    [
+      "middle1_l",
+      243
+    ],
+    [
+      "middle1_r",
+      223
+    ],
+    [
+      "forearm_twist_l",
+      201
+    ],
+    [
+      "hand_l",
+      200
+    ],
+    [
+      "hand_r",
+      198
+    ],
+    [
+      "forearm_twist_r",
+      198
+    ],
+    [
+      "ring1_l",
+      184
+    ],
+    [
+      "index1_l",
+      180
+    ],
+    [
+      "ring1_r",
+      178
+    ],
+    [
+      "index1_r",
+      166
+    ],
+    [
+      "thumb2_l",
+      162
+    ],
+    [
+      "thumb2_r",
+      148
+    ]
+  ],
+  "sample_pairs": [
+    {
+      "glove_vertex": 0,
+      "body_vertex": 533,
+      "distance_mm": 54.494,
+      "body_top": [
+        [
+          "c_index1_base_r",
+          0.9053025245666504
+        ],
+        [
+          "thumb1_r",
+          0.05987640097737312
+        ],
+        [
+          "c_middle1_base_r",
+          0.03482108935713768
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb2_r",
+          0.46586528420448303
+        ],
+        [
+          "thumb1_r",
+          0.23762191832065582
+        ],
+        [
+          "c_index1_base_r",
+          0.22623483836650848
+        ],
+        [
+          "index1_r",
+          0.07027795165777206
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 43,
+      "body_vertex": 514,
+      "distance_mm": 35.412,
+      "body_top": [
+        [
+          "hand_r",
+          0.8463874459266663
+        ],
+        [
+          "c_pinky1_base_r",
+          0.062806136906147
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_pinky1_base_r",
+          0.40621092915534973
+        ],
+        [
+          "thumb1_r",
+          0.2871814966201782
+        ],
+        [
+          "forearm_twist_r",
+          0.21247829496860504
+        ],
+        [
+          "thumb2_r",
+          0.0941292867064476
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 86,
+      "body_vertex": 119,
+      "distance_mm": 76.774,
+      "body_top": [
+        [
+          "c_middle1_base_r",
+          0.767040491104126
+        ],
+        [
+          "middle1_r",
+          0.1442587971687317
+        ],
+        [
+          "c_index1_base_r",
+          0.07461661845445633
+        ],
+        [
+          "c_ring1_base_r",
+          0.014084077440202236
+        ]
+      ],
+      "accessory_top": [
+        [
+          "middle1_r",
+          0.9038506746292114
+        ],
+        [
+          "index1_r",
+          0.05353240296244621
+        ],
+        [
+          "middle2_r",
+          0.04261692240834236
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 129,
+      "body_vertex": 1491,
+      "distance_mm": 43.853,
+      "body_top": [
+        [
+          "middle2_r",
+          0.9228808879852295
+        ],
+        [
+          "middle3_r",
+          0.07711909711360931
+        ]
+      ],
+      "accessory_top": [
+        [
+          "index2_r",
+          0.7953847646713257
+        ],
+        [
+          "index3_r",
+          0.13215921819210052
+        ],
+        [
+          "index1_r",
+          0.07245603948831558
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 172,
+      "body_vertex": 116,
+      "distance_mm": 53.904,
+      "body_top": [
+        [
+          "c_middle1_base_r",
+          0.6030517816543579
+        ],
+        [
+          "c_index1_base_r",
+          0.24568551778793335
+        ],
+        [
+          "middle1_r",
+          0.1108720526099205
+        ],
+        [
+          "index1_r",
+          0.040390629321336746
+        ]
+      ],
+      "accessory_top": [
+        [
+          "index1_r",
+          0.7858460545539856
+        ],
+        [
+          "index2_r",
+          0.12418185919523239
+        ],
+        [
+          "middle1_r",
+          0.07613323628902435
+        ],
+        [
+          "c_index1_base_r",
+          0.013838830403983593
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 215,
+      "body_vertex": 699,
+      "distance_mm": 59.205,
+      "body_top": [
+        [
+          "pinky2_r",
+          0.8759288787841797
+        ],
+        [
+          "pinky3_r",
+          0.12407110631465912
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring3_r",
+          1.0
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 258,
+      "body_vertex": 10150,
+      "distance_mm": 57.831,
+      "body_top": [
+        [
+          "thumb2_r",
+          0.7697871327400208
+        ],
+        [
+          "thumb3_r",
+          0.23021286725997925
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb3_r",
+          0.9893057346343994
+        ],
+        [
+          "thumb2_r",
+          0.010694287717342377
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 301,
+      "body_vertex": 1555,
+      "distance_mm": 63.063,
+      "body_top": [
+        [
+          "middle1_r",
+          0.990585207939148
+        ],
+        [
+          "middle2_r",
+          0.00941481627523899
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring1_r",
+          0.9774831533432007
+        ],
+        [
+          "middle1_r",
+          0.02039741724729538
+        ],
+        [
+          "pinky1_r",
+          0.0021194317378103733
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 344,
+      "body_vertex": 372,
+      "distance_mm": 53.673,
+      "body_top": [
+        [
+          "hand_r",
+          0.1753261685371399
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb1_r",
+          0.5661380887031555
+        ],
+        [
+          "forearm_twist_r",
+          0.17815683782100677
+        ],
+        [
+          "hand_r",
+          0.15236784517765045
+        ],
+        [
+          "c_index1_base_r",
+          0.10333722829818726
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 387,
+      "body_vertex": 389,
+      "distance_mm": 47.672,
+      "body_top": [
+        [
+          "hand_r",
+          0.0056916153989732265
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_r",
+          0.6224517822265625
+        ],
+        [
+          "hand_r",
+          0.24203023314476013
+        ],
+        [
+          "thumb1_r",
+          0.07979380339384079
+        ],
+        [
+          "c_pinky1_base_r",
+          0.05572420358657837
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 430,
+      "body_vertex": 547,
+      "distance_mm": 71.475,
+      "body_top": [
+        [
+          "c_ring1_base_r",
+          0.7579156160354614
+        ],
+        [
+          "c_middle1_base_r",
+          0.13049516081809998
+        ],
+        [
+          "c_pinky1_base_r",
+          0.0635538250207901
+        ],
+        [
+          "ring1_r",
+          0.0480354018509388
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring1_r",
+          0.3132398724555969
+        ],
+        [
+          "c_pinky1_base_r",
+          0.30054688453674316
+        ],
+        [
+          "middle1_r",
+          0.23729553818702698
+        ],
+        [
+          "pinky1_r",
+          0.14891770482063293
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 473,
+      "body_vertex": 577,
+      "distance_mm": 53.616,
+      "body_top": [
+        [
+          "c_ring1_base_r",
+          0.60910964012146
+        ],
+        [
+          "c_middle1_base_r",
+          0.3496147096157074
+        ],
+        [
+          "ring1_r",
+          0.0319676510989666
+        ],
+        [
+          "middle1_r",
+          0.009308003820478916
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring1_r",
+          0.44917047023773193
+        ],
+        [
+          "middle1_r",
+          0.2041209489107132
+        ],
+        [
+          "c_pinky1_base_r",
+          0.1788921058177948
+        ],
+        [
+          "pinky1_r",
+          0.16781648993492126
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 516,
+      "body_vertex": 385,
+      "distance_mm": 80.547,
+      "body_top": [
+        [
+          "hand_r",
+          0.02232394926249981
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_r",
+          0.8164591193199158
+        ],
+        [
+          "hand_r",
+          0.12207651883363724
+        ],
+        [
+          "thumb1_r",
+          0.0614643432199955
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 559,
+      "body_vertex": 548,
+      "distance_mm": 86.005,
+      "body_top": [
+        [
+          "c_ring1_base_r",
+          0.7340962886810303
+        ],
+        [
+          "c_pinky1_base_r",
+          0.16223391890525818
+        ],
+        [
+          "c_middle1_base_r",
+          0.056397344917058945
+        ],
+        [
+          "ring1_r",
+          0.0472724512219429
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_ring1_base_r",
+          0.5572820901870728
+        ],
+        [
+          "c_pinky1_base_r",
+          0.30082425475120544
+        ],
+        [
+          "ring1_r",
+          0.088882215321064
+        ],
+        [
+          "c_middle1_base_r",
+          0.05301143229007721
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 602,
+      "body_vertex": 389,
+      "distance_mm": 75.561,
+      "body_top": [
+        [
+          "hand_r",
+          0.0056916153989732265
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_r",
+          0.734075129032135
+        ],
+        [
+          "hand_r",
+          0.17420099675655365
+        ],
+        [
+          "thumb1_r",
+          0.056800343096256256
+        ],
+        [
+          "c_pinky1_base_r",
+          0.03492354229092598
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 645,
+      "body_vertex": 389,
+      "distance_mm": 68.768,
+      "body_top": [
+        [
+          "hand_r",
+          0.0056916153989732265
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_r",
+          0.46429967880249023
+        ],
+        [
+          "hand_r",
+          0.2724438011646271
+        ],
+        [
+          "thumb1_r",
+          0.133764386177063
+        ],
+        [
+          "c_pinky1_base_r",
+          0.1294921487569809
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 688,
+      "body_vertex": 396,
+      "distance_mm": 65.518,
+      "body_top": [
+        [
+          "hand_r",
+          0.08989089727401733
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_r",
+          0.8260055184364319
+        ],
+        [
+          "c_pinky1_base_r",
+          0.1035514548420906
+        ],
+        [
+          "hand_r",
+          0.0704430416226387
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 731,
+      "body_vertex": 535,
+      "distance_mm": 67.549,
+      "body_top": [
+        [
+          "c_middle1_base_r",
+          0.48232242465019226
+        ],
+        [
+          "c_index1_base_r",
+          0.23569084703922272
+        ],
+        [
+          "hand_r",
+          0.20292973518371582
+        ],
+        [
+          "c_ring1_base_r",
+          0.0790569931268692
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_index1_base_r",
+          0.3574299216270447
+        ],
+        [
+          "thumb1_r",
+          0.2571548819541931
+        ],
+        [
+          "index1_r",
+          0.20183350145816803
+        ],
+        [
+          "middle1_r",
+          0.18358168005943298
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 774,
+      "body_vertex": 389,
+      "distance_mm": 60.723,
+      "body_top": [
+        [
+          "hand_r",
+          0.0056916153989732265
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_r",
+          0.8825811147689819
+        ],
+        [
+          "hand_r",
+          0.09377963095903397
+        ],
+        [
+          "c_pinky1_base_r",
+          0.023639269173145294
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 817,
+      "body_vertex": 10337,
+      "distance_mm": 72.612,
+      "body_top": [
+        [
+          "thumb1_r",
+          0.6705577373504639
+        ],
+        [
+          "thumb2_r",
+          0.287632554769516
+        ],
+        [
+          "c_index1_base_r",
+          0.04180971905589104
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb2_r",
+          0.887352705001831
+        ],
+        [
+          "thumb3_r",
+          0.11264728009700775
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 860,
+      "body_vertex": 1489,
+      "distance_mm": 40.853,
+      "body_top": [
+        [
+          "middle2_r",
+          0.7812314033508301
+        ],
+        [
+          "middle3_r",
+          0.21876859664916992
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring2_r",
+          0.914943516254425
+        ],
+        [
+          "ring1_r",
+          0.053199078887701035
+        ],
+        [
+          "ring3_r",
+          0.031857412308454514
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 903,
+      "body_vertex": 832,
+      "distance_mm": 67.786,
+      "body_top": [
+        [
+          "middle1_l",
+          0.5188677906990051
+        ],
+        [
+          "c_middle1_base_l",
+          0.46633097529411316
+        ],
+        [
+          "ring1_l",
+          0.014801251702010632
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring1_l",
+          0.540228009223938
+        ],
+        [
+          "middle1_l",
+          0.38488519191741943
+        ],
+        [
+          "pinky1_l",
+          0.06107673421502113
+        ],
+        [
+          "index1_l",
+          0.013810047879815102
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 946,
+      "body_vertex": 820,
+      "distance_mm": 69.146,
+      "body_top": [
+        [
+          "middle1_l",
+          0.9602197408676147
+        ],
+        [
+          "c_middle1_base_l",
+          0.03978027030825615
+        ]
+      ],
+      "accessory_top": [
+        [
+          "index1_l",
+          0.7755855321884155
+        ],
+        [
+          "middle1_l",
+          0.12013775110244751
+        ],
+        [
+          "index2_l",
+          0.09823066741228104
+        ],
+        [
+          "middle2_l",
+          0.006046019960194826
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 989,
+      "body_vertex": 1129,
+      "distance_mm": 15.901,
+      "body_top": [
+        [
+          "hand_l",
+          0.7821316719055176
+        ],
+        [
+          "c_index1_base_l",
+          0.1268482506275177
+        ],
+        [
+          "c_middle1_base_l",
+          0.0785992220044136
+        ],
+        [
+          "c_ring1_base_l",
+          0.012420844286680222
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb1_l",
+          0.6039455533027649
+        ],
+        [
+          "c_index1_base_l",
+          0.17641310393810272
+        ],
+        [
+          "hand_l",
+          0.15920309722423553
+        ],
+        [
+          "thumb2_l",
+          0.060438238084316254
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1032,
+      "body_vertex": 845,
+      "distance_mm": 65.515,
+      "body_top": [
+        [
+          "c_ring1_base_l",
+          0.5912565588951111
+        ],
+        [
+          "ring1_l",
+          0.19313344359397888
+        ],
+        [
+          "c_middle1_base_l",
+          0.1738918125629425
+        ],
+        [
+          "middle1_l",
+          0.04171816632151604
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring1_l",
+          0.5756149888038635
+        ],
+        [
+          "pinky1_l",
+          0.2090107947587967
+        ],
+        [
+          "middle1_l",
+          0.13635295629501343
+        ],
+        [
+          "c_pinky1_base_l",
+          0.07902128994464874
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1075,
+      "body_vertex": 1777,
+      "distance_mm": 53.08,
+      "body_top": [
+        [
+          "middle1_l",
+          0.8477149605751038
+        ],
+        [
+          "middle2_l",
+          0.15228503942489624
+        ]
+      ],
+      "accessory_top": [
+        [
+          "ring1_l",
+          0.6795023083686829
+        ],
+        [
+          "ring2_l",
+          0.30451488494873047
+        ],
+        [
+          "pinky1_l",
+          0.009407914243638515
+        ],
+        [
+          "ring3_l",
+          0.006574922241270542
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1118,
+      "body_vertex": 10281,
+      "distance_mm": 55.487,
+      "body_top": [
+        [
+          "thumb2_l",
+          0.9269855618476868
+        ],
+        [
+          "thumb3_l",
+          0.05413901060819626
+        ],
+        [
+          "thumb1_l",
+          0.01887541078031063
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb3_l",
+          0.8617293238639832
+        ],
+        [
+          "thumb2_l",
+          0.13827066123485565
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1161,
+      "body_vertex": 1129,
+      "distance_mm": 32.142,
+      "body_top": [
+        [
+          "hand_l",
+          0.7821316719055176
+        ],
+        [
+          "c_index1_base_l",
+          0.1268482506275177
+        ],
+        [
+          "c_middle1_base_l",
+          0.0785992220044136
+        ],
+        [
+          "c_ring1_base_l",
+          0.012420844286680222
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb1_l",
+          0.4613020420074463
+        ],
+        [
+          "c_pinky1_base_l",
+          0.22755317389965057
+        ],
+        [
+          "forearm_twist_l",
+          0.15610936284065247
+        ],
+        [
+          "thumb2_l",
+          0.15503543615341187
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1204,
+      "body_vertex": 1140,
+      "distance_mm": 79.403,
+      "body_top": [
+        [
+          "c_index1_base_l",
+          0.6208285689353943
+        ],
+        [
+          "hand_l",
+          0.18757915496826172
+        ],
+        [
+          "c_middle1_base_l",
+          0.14990463852882385
+        ],
+        [
+          "thumb1_l",
+          0.04168764874339104
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_index1_base_l",
+          0.6800237894058228
+        ],
+        [
+          "thumb1_l",
+          0.28871360421180725
+        ],
+        [
+          "hand_l",
+          0.0312625989317894
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1247,
+      "body_vertex": 1162,
+      "distance_mm": 50.34,
+      "body_top": [
+        [
+          "hand_l",
+          0.0061799040995538235
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_l",
+          0.6209165453910828
+        ],
+        [
+          "hand_l",
+          0.22923675179481506
+        ],
+        [
+          "thumb1_l",
+          0.09629514068365097
+        ],
+        [
+          "c_pinky1_base_l",
+          0.05355154350399971
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1290,
+      "body_vertex": 859,
+      "distance_mm": 78.543,
+      "body_top": [
+        [
+          "c_ring1_base_l",
+          0.7537193894386292
+        ],
+        [
+          "c_pinky1_base_l",
+          0.14947737753391266
+        ],
+        [
+          "ring1_l",
+          0.048447392880916595
+        ],
+        [
+          "c_middle1_base_l",
+          0.048355840146541595
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_pinky1_base_l",
+          0.32811763882637024
+        ],
+        [
+          "pinky1_l",
+          0.31202515959739685
+        ],
+        [
+          "ring1_l",
+          0.23438866436481476
+        ],
+        [
+          "middle1_l",
+          0.12546855211257935
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1333,
+      "body_vertex": 835,
+      "distance_mm": 60.072,
+      "body_top": [
+        [
+          "c_middle1_base_l",
+          0.7579613924026489
+        ],
+        [
+          "middle1_l",
+          0.13231097161769867
+        ],
+        [
+          "c_ring1_base_l",
+          0.08342107385396957
+        ],
+        [
+          "ring1_l",
+          0.026306554675102234
+        ]
+      ],
+      "accessory_top": [
+        [
+          "middle1_l",
+          0.4286039173603058
+        ],
+        [
+          "ring1_l",
+          0.3294401168823242
+        ],
+        [
+          "index1_l",
+          0.16874155402183533
+        ],
+        [
+          "c_pinky1_base_l",
+          0.07321440428495407
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1376,
+      "body_vertex": 1181,
+      "distance_mm": 71.692,
+      "body_top": [
+        [
+          "hand_l",
+          0.00428778538480401
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_l",
+          0.763442873954773
+        ],
+        [
+          "hand_l",
+          0.1407814770936966
+        ],
+        [
+          "thumb1_l",
+          0.09396663308143616
+        ],
+        [
+          "c_pinky1_base_l",
+          0.001809044391848147
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1419,
+      "body_vertex": 861,
+      "distance_mm": 86.477,
+      "body_top": [
+        [
+          "c_ring1_base_l",
+          0.5882505774497986
+        ],
+        [
+          "c_middle1_base_l",
+          0.3620355427265167
+        ],
+        [
+          "ring1_l",
+          0.038773175328969955
+        ],
+        [
+          "middle1_l",
+          0.010940718464553356
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_middle1_base_l",
+          0.7096222639083862
+        ],
+        [
+          "c_ring1_base_l",
+          0.1457764208316803
+        ],
+        [
+          "middle1_l",
+          0.09652955085039139
+        ],
+        [
+          "c_index1_base_l",
+          0.04807176813483238
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1462,
+      "body_vertex": 1162,
+      "distance_mm": 90.791,
+      "body_top": [
+        [
+          "hand_l",
+          0.0061799040995538235
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_l",
+          0.9272396564483643
+        ],
+        [
+          "hand_l",
+          0.07276035100221634
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1505,
+      "body_vertex": 1149,
+      "distance_mm": 72.647,
+      "body_top": [
+        [
+          "hand_l",
+          0.8440375328063965
+        ],
+        [
+          "c_pinky1_base_l",
+          0.06547646224498749
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_pinky1_base_l",
+          0.32503315806388855
+        ],
+        [
+          "thumb1_l",
+          0.30395761132240295
+        ],
+        [
+          "forearm_twist_l",
+          0.2900634706020355
+        ],
+        [
+          "hand_l",
+          0.08094576746225357
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1548,
+      "body_vertex": 1093,
+      "distance_mm": 75.361,
+      "body_top": [
+        [
+          "c_pinky1_base_l",
+          0.9462119340896606
+        ],
+        [
+          "c_ring1_base_l",
+          0.05378805100917816
+        ]
+      ],
+      "accessory_top": [
+        [
+          "c_pinky1_base_l",
+          1.0
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1591,
+      "body_vertex": 1076,
+      "distance_mm": 79.157,
+      "body_top": [
+        [
+          "c_middle1_base_l",
+          0.7898527383804321
+        ],
+        [
+          "c_index1_base_l",
+          0.12382696568965912
+        ],
+        [
+          "c_ring1_base_l",
+          0.08632028847932816
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb1_l",
+          0.3044619858264923
+        ],
+        [
+          "middle1_l",
+          0.28964295983314514
+        ],
+        [
+          "index1_l",
+          0.21939152479171753
+        ],
+        [
+          "c_pinky1_base_l",
+          0.18650351464748383
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1634,
+      "body_vertex": 1161,
+      "distance_mm": 64.365,
+      "body_top": [
+        [
+          "hand_l",
+          0.09073014557361603
+        ]
+      ],
+      "accessory_top": [
+        [
+          "forearm_twist_l",
+          0.47977474331855774
+        ],
+        [
+          "hand_l",
+          0.21352413296699524
+        ],
+        [
+          "c_pinky1_base_l",
+          0.17755359411239624
+        ],
+        [
+          "thumb1_l",
+          0.12914754450321198
+        ]
+      ]
+    },
+    {
+      "glove_vertex": 1677,
+      "body_vertex": 10282,
+      "distance_mm": 68.492,
+      "body_top": [
+        [
+          "thumb2_l",
+          0.7737544775009155
+        ],
+        [
+          "thumb3_l",
+          0.22624552249908447
+        ]
+      ],
+      "accessory_top": [
+        [
+          "thumb3_l",
+          0.9896535277366638
+        ],
+        [
+          "thumb2_l",
+          0.01034645363688469
+        ]
+      ]
+    }
+  ],
+  "body_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "accessories_sha256": "741735ee698008496c7d731eacdb21b328db5cee58da47fff45c476a8ba68df5",
+  "scope": "Read-only source comparison after applying recorded local hold transforms with the validated FBX coordinate reflection; no mesh or weights edited."
+}

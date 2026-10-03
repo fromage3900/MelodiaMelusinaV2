@@ -1,0 +1,22 @@
+{
+  "game_world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "hair_bindings": [
+    {
+      "owner": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+      "hair": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WaterHairMesh",
+      "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair",
+      "skeleton": "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton.SK_Melusina_Hair_Skeleton",
+      "attachment_parent": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+      "socket": "head_x",
+      "relative_transform": "<Struct 'Transform' (0x0000015A729D7D20) {rotation: {x: 0.707107, y: 0.000000, z: 0.000000, w: 0.707107}, translation: {x: 0.000001, y: 144.229815, z: -15.897099}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000005}}>",
+      "world_transform": "<Struct 'Transform' (0x0000015A729D7D20) {rotation: {x: -0.005011, y: -0.004006, z: -0.706910, w: 0.707274}, translation: {x: 1305.160413, y: 1860.017370, z: -593.088630}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "anim_instance": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.WaterHairMesh.ABP_Melusina_WaterHair_C_0",
+      "source_mesh": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1.CharacterMesh0",
+      "leader_pose": null,
+      "physics_asset": null,
+      "physics_override": null,
+      "hair_root": "<Struct 'Transform' (0x0000015A729D7D20) {rotation: {x: 0.818900, y: 0.112099, z: 0.157027, w: -0.540536}, translation: {x: 1321.264917, y: 1861.864253, z: -448.923163}, scale3d: {x: 100.000002, y: 100.000006, z: 99.999987}}>",
+      "parent_head": "<Struct 'Transform' (0x0000015A729D7D20) {rotation: {x: -0.503662, y: 0.497028, z: -0.502694, w: 0.496575}, translation: {x: 1321.261979, y: 1861.864632, z: -448.893382}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+    }
+  ]
+}

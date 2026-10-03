@@ -3,7 +3,7 @@
   "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
   "mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair",
   "node": "AnimGraphNode_KawaiiPhysics_1",
-  "root_bone": "HairExp_Rig",
+  "root_bone": "hair_root",
   "settings": {
     "damping": 0.18,
     "stiffness": 0.08,
@@ -22,7 +22,8 @@
   "evidence": {
     "capture": "Saved/Audit/melusina_portfolio_capture_20260921_v13.json",
     "valid_frames_after_warmup": 19,
-    "runtime_errors": 0
+    "runtime_errors": 0,
+    "root_binding_check": "Saved/Audit/MelusinaRuntimeConvergence_20261002/hair_head_bind_live_20261003.json"
   },
   "boundary": {
     "status": "final_parameter_tune",

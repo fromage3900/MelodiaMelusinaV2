@@ -1,0 +1,34 @@
+{
+  "schema": "melodia.visual_polish.neutral_form_read.v1",
+  "source_relative": "Saved/Audit/MelusinaRuntimeConvergence_20261002/current_body_readonly.fbx",
+  "source_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "source_mesh": "SK_Melusina_V2_Body.001",
+  "vertices": 20786,
+  "bones": 464,
+  "bounds_m": [
+    [
+      -0.966384,
+      -0.371026,
+      -0.152541
+    ],
+    [
+      0.966384,
+      0.092835,
+      1.835567
+    ]
+  ],
+  "camera_light_tool": "installed melodia_stage addon, _create_camera and _create_three_point_lighting",
+  "render": {
+    "width": 1200,
+    "height": 1500,
+    "samples": 20,
+    "view_transform": "AgX"
+  },
+  "limitations": [
+    "Base body only: source FBX contains no hair or wardrobe meshes.",
+    "External Unreal material/texture links are unavailable in this offline import; neutral clay is used only in this disposable inspection scene.",
+    "Not an animation repair, hero beauty render, or UE/PIE proof."
+  ],
+  "source_changes": false,
+  "canonical_changes": false
+}

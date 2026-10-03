@@ -11,25 +11,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "PCGComponent.h"
 #include "PCGGraph.h"
+#include "MelodiaRhythmReactivitySubsystem.h"
+#include "../MelodiaIntegration/MelodiaQuantumDrawSubsystem.h"
+#include "Engine/GameInstance.h"
 #include "Metadata/PCGMetadata.h"
 #include "Sound/SoundBase.h"
 #include "UObject/ConstructorHelpers.h"
-
-namespace PCGPianoPrivate
-{
-	constexpr int32 SeedIndexMask = 0xFF;
-	constexpr int32 SeedMidiShift = 8;
-
-	int32 DecodeIndex(const int32 Seed)
-	{
-		return Seed & SeedIndexMask;
-	}
-
-	int32 DecodeMidi(const int32 Seed)
-	{
-		return (Seed >> SeedMidiShift) & SeedIndexMask;
-	}
-}
 
 APCGPianoKey::APCGPianoKey()
 {
@@ -44,7 +31,9 @@ APCGPianoKey::APCGPianoKey()
 	KeyMesh->SetGenerateOverlapEvents(false);
 
 	KeyBlocker = CreateDefaultSubobject<UBoxComponent>(TEXT("KeyBlocker"));
-	KeyBlocker->SetupAttachment(KeyMesh);
+	// Attached to the root, not the mesh: KeyMesh is scaled to the profile dimensions and a
+	// scaled parent would scale the collision box with it. Tick moves it with the key.
+	KeyBlocker->SetupAttachment(SceneRoot);
 	KeyBlocker->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	KeyBlocker->SetCollisionProfileName(TEXT("BlockAllDynamic"));
 	KeyBlocker->SetGenerateOverlapEvents(false);
@@ -105,9 +94,18 @@ void APCGPianoKey::Tick(const float DeltaSeconds)
 	const float PressDepth = PianoProfile ? FMath::Max(0.0f, PianoProfile->Dimensions.PressDepth) : 8.0f;
 	const float TargetOffset = bIsPressed ? -PressDepth : 0.0f;
 
-	const float Acceleration = ((TargetOffset - CurrentPressOffset) * Stiffness) - (PressVelocity * Damping);
-	PressVelocity += Acceleration * DeltaSeconds;
-	CurrentPressOffset += PressVelocity * DeltaSeconds;
+	// Substep: explicit integration of a stiff spring diverges on a hitch frame (a long DeltaSeconds
+	// made the offset NaN, which sent the key's collision and the pawn standing on it to infinity).
+	constexpr float MaxSpringStep = 1.0f / 120.0f;
+	float RemainingTime = FMath::Min(DeltaSeconds, 0.25f);
+	while (RemainingTime > 0.0f)
+	{
+		const float Step = FMath::Min(RemainingTime, MaxSpringStep);
+		const float Acceleration = ((TargetOffset - CurrentPressOffset) * Stiffness) - (PressVelocity * Damping);
+		PressVelocity += Acceleration * Step;
+		CurrentPressOffset += PressVelocity * Step;
+		RemainingTime -= Step;
+	}
 
 	if (FMath::Abs(CurrentPressOffset - TargetOffset) < 0.01f && FMath::Abs(PressVelocity) < 0.01f)
 	{
@@ -119,12 +117,16 @@ void APCGPianoKey::Tick(const float DeltaSeconds)
 	{
 		KeyMesh->SetRelativeLocation(FVector(0.0f, 0.0f, CurrentPressOffset));
 	}
+	if (KeyBlocker)
+	{
+		KeyBlocker->SetRelativeLocation(FVector(0.0f, 0.0f, CurrentPressOffset));
+	}
 }
 
 void APCGPianoKey::InitializeFromPCGPoint(const FPCGPoint Point, const UPCGMetadata* Metadata)
 {
-	KeyIndex = PCGPianoPrivate::DecodeIndex(Point.Seed);
-	MidiNote = PCGPianoPrivate::DecodeMidi(Point.Seed);
+	// KeyIndex / MidiNote are assigned by the keyboard from layout order when the key registers
+	// (APCGPianoKeyboard::AssignKeyIdentities); the point seed is re-seeded by PCG and not trusted.
 	ResolveKeyboard();
 	ApplyProfileGeometry();
 }
@@ -180,6 +182,19 @@ void APCGPianoKey::ApplyProfileGeometry()
 		if (UMaterialInterface* Material = MaterialReference.LoadSynchronous())
 		{
 			KeyMesh->SetMaterial(0, Material);
+		}
+	}
+
+	// Fit the visible mesh to the profile dimensions, centred on the blocker. Without this the
+	// mesh keeps its native (real-piano) size while the blocker follows the profile.
+	if (const UStaticMesh* KeyStaticMesh = KeyMesh->GetStaticMesh())
+	{
+		const FBoxSphereBounds NativeBounds = KeyStaticMesh->GetBounds();
+		const FVector NativeSize = NativeBounds.BoxExtent * 2.0f;
+		if (NativeSize.X > KINDA_SMALL_NUMBER && NativeSize.Y > KINDA_SMALL_NUMBER && NativeSize.Z > KINDA_SMALL_NUMBER)
+		{
+			const FVector FitScale(Width / NativeSize.X, Depth / NativeSize.Y, Height / NativeSize.Z);
+			KeyMesh->SetRelativeScale3D(FitScale);
 		}
 	}
 
@@ -262,6 +277,17 @@ void APCGPianoKey::SetLogicalPressed(AActor* SteppingActor, const bool bPressedF
 void APCGPianoKey::BeginVisualPress(AActor* SteppingActor)
 {
 	OnKeyPressed.Broadcast(KeyIndex, MidiNote, SteppingActor);
+
+	// Same presentation path the hero music nodes use: the reactivity subsystem owns the shared
+	// material bus. Free-play keys read as a Great hit; this never enters combat or damage.
+	// Command energy stays 0: it is sticky until an encounter ends, and a free-play key is a
+	// decaying pulse (CommandPulse), not a held command.
+	if (UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+	{
+		Reactivity->NotifyPlayedNote(MidiNote, EMelodiaRhythmGrade::Great);
+		Reactivity->NotifyCommandResolved(EMelodiaRhythmGrade::Great, 0.0f, 0.0f, 0.0f, 0);
+	}
+
 	if (KeyboardOwner.IsValid())
 	{
 		KeyboardOwner->NotifyKeyPressed(this, SteppingActor);
@@ -292,6 +318,13 @@ APCGPianoKeyboard::APCGPianoKeyboard()
 	USceneComponent* SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(SceneRoot);
 
+	GenerationBounds = CreateDefaultSubobject<UBoxComponent>(TEXT("GenerationBounds"));
+	GenerationBounds->SetupAttachment(SceneRoot);
+	GenerationBounds->SetBoxExtent(FVector(1000.0f, 400.0f, 200.0f));
+	GenerationBounds->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GenerationBounds->SetGenerateOverlapEvents(false);
+	GenerationBounds->SetHiddenInGame(true);
+
 	PCGComponent = CreateDefaultSubobject<UPCGComponent>(TEXT("PianoPCG"));
 	PCGComponent->SetIsPartitioned(false);
 }
@@ -315,6 +348,54 @@ void APCGPianoKeyboard::RegisterKey(APCGPianoKey* Key)
 	RegisteredKeys.Add(Key);
 	Key->SetKeyboard(this);
 	RegisteredKeyCount = RegisteredKeys.Num();
+	AssignKeyIdentities();
+}
+
+void APCGPianoKeyboard::AssignKeyIdentities()
+{
+	TArray<APCGPianoKey*> Whites;
+	TArray<APCGPianoKey*> Blacks;
+	for (APCGPianoKey* Key : RegisteredKeys)
+	{
+		if (Key)
+		{
+			(Key->IsBlackKey() ? Blacks : Whites).Add(Key);
+		}
+	}
+
+	const FTransform KeyboardTransform = GetActorTransform();
+	auto LocalX = [&KeyboardTransform](const APCGPianoKey* Key)
+	{
+		return KeyboardTransform.InverseTransformPosition(Key->GetActorLocation()).X;
+	};
+	// TArray<T*>::Sort dereferences the elements, so the predicate takes references.
+	auto ByLocalX = [&LocalX](const APCGPianoKey& A, const APCGPianoKey& B) { return LocalX(&A) < LocalX(&B); };
+	Whites.Sort(ByLocalX);
+	Blacks.Sort(ByLocalX);
+
+	const int32 FirstMidi = Profile ? Profile->FirstMidiNote : 21;
+	const int32 LastMidi = Profile ? Profile->LastMidiNote : 108;
+	int32 NextWhite = 0;
+	int32 NextBlack = 0;
+	int32 LayoutIndex = 0;
+	for (int32 Midi = FirstMidi; Midi <= LastMidi; ++Midi, ++LayoutIndex)
+	{
+		switch (Midi % 12)
+		{
+		case 1: case 3: case 6: case 8: case 10:
+			if (Blacks.IsValidIndex(NextBlack))
+			{
+				Blacks[NextBlack++]->SetIdentity(LayoutIndex, Midi);
+			}
+			break;
+		default:
+			if (Whites.IsValidIndex(NextWhite))
+			{
+				Whites[NextWhite++]->SetIdentity(LayoutIndex, Midi);
+			}
+			break;
+		}
+	}
 }
 
 void APCGPianoKeyboard::UnregisterKey(APCGPianoKey* Key)
@@ -378,6 +459,53 @@ void APCGPianoKeyboard::NotifyKeyPressed(APCGPianoKey* Key, AActor* SteppingActo
 	{
 		OnKeyPressed.Broadcast(Key->GetKeyIndex(), Key->GetMidiNote(), SteppingActor);
 		OnKeyboardPressed.Broadcast(Key->GetKeyIndex(), Key->GetMidiNote(), SteppingActor);
+		if (!Key->IsBlackKey() && !bKeyRunCompleted)
+		{
+			PlayedWhiteKeys.Add(Key->GetKeyIndex());
+			int32 RequiredKeys = RequiredWhiteKeyCount;
+			if (RequiredKeys <= 0)
+			{
+				for (const TObjectPtr<APCGPianoKey>& Registered : RegisteredKeys)
+				{
+					if (Registered && !Registered->IsBlackKey())
+					{
+						++RequiredKeys;
+					}
+				}
+			}
+			if (RequiredKeys > 0 && PlayedWhiteKeys.Num() >= RequiredKeys)
+			{
+				bKeyRunCompleted = true;
+				UE_LOG(LogTemp, Log, TEXT("MELODIA_PIANO key run completed on %s (%d white keys)"), *KeyboardId.ToString(), PlayedWhiteKeys.Num());
+				OnKeyRunCompleted.Broadcast();
+				if (UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+				{
+					Reactivity->NotifyVictory();
+				}
+				if (UGameInstance* GI = GetGameInstance())
+				{
+					if (UMelodiaQuantumDrawSubsystem* Draw = GI->GetSubsystem<UMelodiaQuantumDrawSubsystem>())
+					{
+						// One async draw per completion (never per key). Empty provider = config default.
+						// Both candidates are WorldAwakening variants, so the payoff is guaranteed and the draw only
+						// chooses its character: chart_0 = gentle, chart_1 = full (QuantumChoice reads 0 / 1 on
+						// MPC_Melodia_Palette, which the Water bridge consumes).
+						TArray<FMelodiaDrawCandidate> Candidates;
+						FMelodiaDrawCandidate& Gentle = Candidates.AddDefaulted_GetRef();
+						Gentle.Id = TEXT("chart_0");
+						Gentle.Difficulty = 0.35f;
+						Gentle.Spacing = 0.4f;
+						FMelodiaDrawCandidate& Full = Candidates.AddDefaulted_GetRef();
+						Full.Id = TEXT("chart_1");
+						Full.Difficulty = 0.75f;
+						Full.Spacing = 0.55f;
+						FMelodiaDrawCompleted Done;
+						Done.BindDynamic(this, &APCGPianoKeyboard::HandleKeyRunDraw);
+						Draw->RequestDraw(static_cast<int32>(GetTypeHash(KeyboardId)) ^ FMath::Rand(), Candidates, FString(), Done);
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -388,6 +516,17 @@ void APCGPianoKeyboard::NotifyKeyReleased(APCGPianoKey* Key, AActor* SteppingAct
 		OnKeyReleased.Broadcast(Key->GetKeyIndex(), Key->GetMidiNote(), SteppingActor);
 		OnKeyboardReleased.Broadcast(Key->GetKeyIndex(), Key->GetMidiNote(), SteppingActor);
 	}
+}
+
+void APCGPianoKeyboard::ResetKeyRun()
+{
+	PlayedWhiteKeys.Reset();
+	bKeyRunCompleted = false;
+}
+
+void APCGPianoKeyboard::HandleKeyRunDraw(const FName WinnerId, const FString Backend, const bool bSuccess)
+{
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_PIANO key-run draw winner=%s backend=%s success=%d (chart_0 = gentle awakening, chart_1 = full awakening)"), *WinnerId.ToString(), *Backend, bSuccess ? 1 : 0);
 }
 
 void APCGPianoKeyboard::RecomputePressedKeysForActor(AActor* SteppingActor)

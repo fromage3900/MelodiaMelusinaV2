@@ -1,0 +1,19 @@
+{
+  "state_name": "Land",
+  "machine_name": "MelusinaLocomotion",
+  "position": [
+    736,
+    -160
+  ],
+  "nodes": [
+    {
+      "class": "AnimGraphNode_StateResult",
+      "title": "Output Animation Pose"
+    },
+    {
+      "class": "AnimGraphNode_SequencePlayer",
+      "title": "A_Melusina_Land_Mocap_RootX\nSequence Player"
+    }
+  ],
+  "node_count": 2
+}

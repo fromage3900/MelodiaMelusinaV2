@@ -1,0 +1,248 @@
+{
+  "schema": "melodia.current_body_accessory_bind_audit.v1",
+  "body_hash": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "accessories_hash": "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+  "body_mesh": "SK_Melusina_V2_Body.001",
+  "accessories_mesh": "SK_Melusina_V2_Accessories.001",
+  "armatures": [
+    "root",
+    "root.001"
+  ],
+  "bone_counts": [
+    464,
+    464
+  ],
+  "common_bones": 464,
+  "armature_world_scale": [
+    [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ],
+    [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ]
+  ],
+  "mesh_object_matrices": [
+    [
+      [
+        0.01,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.01,
+        0.0,
+        -0.0
+      ],
+      [
+        -0.0,
+        -0.0,
+        0.01,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        0.01,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.01,
+        0.0,
+        -0.0
+      ],
+      [
+        -0.0,
+        -0.0,
+        0.01,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  ],
+  "body_bounds_m": {
+    "min": [
+      -0.96638,
+      -0.37103,
+      -0.15254
+    ],
+    "max": [
+      0.96638,
+      0.09283,
+      1.83557
+    ],
+    "center": [
+      0.0,
+      -0.1391,
+      0.84151
+    ]
+  },
+  "accessory_bounds_m": {
+    "min": [
+      -0.97489,
+      -0.56769,
+      0.1823
+    ],
+    "max": [
+      0.97081,
+      0.28775,
+      1.42825
+    ],
+    "center": [
+      -0.00204,
+      -0.13997,
+      0.80528
+    ]
+  },
+  "glove_material_slots": [
+    [
+      0,
+      "MI_Melusina_Nikki_GLOVES_001"
+    ]
+  ],
+  "glove_vertices": 2821,
+  "body_finger_weighted_vertices": 3046,
+  "finger_group_tokens": [
+    "hand_l",
+    "hand_r",
+    "index",
+    "middle",
+    "ring",
+    "pinky",
+    "thumb"
+  ],
+  "body_all_surface": {
+    "p10_p50_p90_max_mm": [
+      39.23,
+      63.15,
+      75.71,
+      89.68
+    ],
+    "samples": [
+      {
+        "glove_v": 2794,
+        "body_v": 139,
+        "d_mm": 39.23,
+        "gp": [
+          -0.8457,
+          -0.1697,
+          1.3018
+        ],
+        "bp": [
+          -0.8407,
+          -0.1574,
+          1.2649
+        ]
+      },
+      {
+        "glove_v": 47,
+        "body_v": 1522,
+        "d_mm": 63.15,
+        "gp": [
+          -0.9179,
+          -0.1543,
+          1.3073
+        ],
+        "bp": [
+          -0.8933,
+          -0.1303,
+          1.2542
+        ]
+      },
+      {
+        "glove_v": 672,
+        "body_v": 389,
+        "d_mm": 75.71,
+        "gp": [
+          -0.7229,
+          -0.126,
+          1.3541
+        ],
+        "bp": [
+          -0.7163,
+          -0.1269,
+          1.2786
+        ]
+      }
+    ]
+  },
+  "body_finger_surface": {
+    "p10_p50_p90_max_mm": [
+      39.76,
+      63.3,
+      77.42,
+      95.58
+    ],
+    "samples": [
+      {
+        "glove_v": 460,
+        "body_v": 367,
+        "d_mm": 39.76,
+        "gp": [
+          -0.7899,
+          -0.1887,
+          1.2971
+        ],
+        "bp": [
+          -0.7913,
+          -0.1647,
+          1.2654
+        ]
+      },
+      {
+        "glove_v": 2064,
+        "body_v": 395,
+        "d_mm": 63.3,
+        "gp": [
+          -0.6995,
+          -0.1149,
+          1.3336
+        ],
+        "bp": [
+          -0.7298,
+          -0.1187,
+          1.2782
+        ]
+      },
+      {
+        "glove_v": 2562,
+        "body_v": 1158,
+        "d_mm": 77.42,
+        "gp": [
+          0.6981,
+          -0.1117,
+          1.3485
+        ],
+        "bp": [
+          0.7298,
+          -0.1187,
+          1.2782
+        ]
+      }
+    ]
+  },
+  "reference_bone_local_diffs": {
+    "count_threshold_0.01deg_or_0.1mm": 0,
+    "largest_translation_cm": []
+  },
+  "note": "Bind-space static source audit only. No posed metrics or weight edits."
+}

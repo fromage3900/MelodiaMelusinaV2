@@ -1,0 +1,70 @@
+{
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "player": "BP_MelusinaJRPGCharacter_C_1",
+  "player_location": "<Struct 'Vector' (0x00000159B165E0E0) {x: 1305.297969, y: 1861.265435, z: -520.126934}>",
+  "startup_interpreter_count": 0,
+  "triggers": [
+    {
+      "label": "Morning_QuillTrigger_Wardrobe",
+      "components": [
+        {
+          "name": "QuillTriggerVolume",
+          "class": "SphereComponent",
+          "overlapping_actors": [
+            "OceanologyLake_UAID_7C5758FA1CACF70103_1673142409",
+            "BP_MelodySlimeEncounter_Test_C_UAID_7C5758FA1CACA40203_1106836834"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Morning_QuillTrigger_ShorewakeDock_Test",
+      "components": [
+        {
+          "name": "QuillTriggerVolume",
+          "class": "SphereComponent",
+          "overlapping_actors": [
+            "OceanologyLake_UAID_7C5758FA1CACF70103_1673142409"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Morning_QuillTrigger_SlimeTutorial",
+      "components": [
+        {
+          "name": "QuillTriggerVolume",
+          "class": "SphereComponent",
+          "overlapping_actors": [
+            "OceanologyLake_UAID_7C5758FA1CACF70103_1673142409"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Morning_QuillTrigger_P0",
+      "components": [
+        {
+          "name": "QuillTriggerVolume",
+          "class": "SphereComponent",
+          "overlapping_actors": [
+            "OceanologyLake_UAID_7C5758FA1CACF70103_1673142409",
+            "BP_MelusinaSparkleZone_C_UAID_7C5758FA1CAC9A0403_1482580162"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Morning_QuillTrigger_ChoralSheep",
+      "components": [
+        {
+          "name": "QuillTriggerVolume",
+          "class": "SphereComponent",
+          "overlapping_actors": [
+            "OceanologyLake_UAID_7C5758FA1CACF70103_1673142409"
+          ]
+        }
+      ]
+    }
+  ]
+}

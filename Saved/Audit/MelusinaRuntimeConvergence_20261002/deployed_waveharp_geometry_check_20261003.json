@@ -1,0 +1,585 @@
+{
+  "schema": "melodia.deployed_waveharp_geometry_check.v2",
+  "source": "fresh Unreal read-only export of deployed SK_ME_WaveHarp",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaRuntimeConvergence_20261002\\current_waveharp_readonly.fbx",
+  "sha256": "0a87c3739640005b8ddd95dd92c81937160cfceb5d8c87da782bb2348349c6bd",
+  "blender": "4.5.4 LTS",
+  "import_axes": {
+    "forward": "-Z",
+    "up": "Y"
+  },
+  "armatures": [
+    {
+      "name": "SK_ME_WaveHarp_Armature",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "bones": [
+        {
+          "name": "root",
+          "parent": null,
+          "head": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "tail": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "length": 1.0,
+          "matrix_local": [
+            [
+              1.0,
+              0.0,
+              -0.0,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0,
+              -1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "SK_ME_WaveHarp.001",
+      "vertices": 25456,
+      "shape_keys": [
+        "Basis",
+        "Draw",
+        "Sway_Pos",
+        "Sway_Neg",
+        "Bow_Deployment",
+        "Flex_Draw",
+        "Resonance_Breathe",
+        "Reel_In",
+        "Pluck",
+        "Vibrate_Overtone"
+      ],
+      "raw_bounds": {
+        "min": [
+          -0.159985,
+          -0.05742,
+          -0.5062
+        ],
+        "max": [
+          0.157,
+          0.0221,
+          1.0
+        ],
+        "center": [
+          -0.001493,
+          -0.01766,
+          0.2469
+        ],
+        "size": [
+          0.316985,
+          0.07952,
+          1.5062
+        ]
+      },
+      "bow_deployment_eval_bounds": {
+        "min": [
+          -0.159985,
+          -0.05742,
+          -0.5062
+        ],
+        "max": [
+          0.158864,
+          0.0221,
+          1.022098
+        ],
+        "center": [
+          -0.000561,
+          -0.01766,
+          0.257949
+        ],
+        "size": [
+          0.318849,
+          0.07952,
+          1.528298
+        ]
+      },
+      "vertex_group_weights": {
+        "root": 25456
+      }
+    }
+  ],
+  "morph_delta_summary": {
+    "Bow_Deployment": {
+      "changed_vertices": 6882,
+      "delta_bounds": {
+        "min": [
+          -13.906548,
+          -1e-06,
+          -1.508633
+        ],
+        "max": [
+          18.575415,
+          2e-06,
+          29.967056
+        ],
+        "center": [
+          2.334434,
+          0.0,
+          14.229212
+        ],
+        "size": [
+          32.481962,
+          3e-06,
+          31.475689
+        ]
+      },
+      "per_material": [
+        {
+          "slot": 0,
+          "material": "MI_Strings",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 1,
+          "material": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree",
+          "changed_vertices": 2285,
+          "delta_bounds": {
+            "min": [
+              -13.906548,
+              -1e-06,
+              -1.508633
+            ],
+            "max": [
+              18.575415,
+              2e-06,
+              29.967056
+            ],
+            "center": [
+              2.334434,
+              0.0,
+              14.229212
+            ],
+            "size": [
+              32.481962,
+              3e-06,
+              31.475689
+            ]
+          },
+          "mean_delta": [
+            4.485059,
+            0.0,
+            7.487716
+          ],
+          "max_delta_cm": 3162.756
+        },
+        {
+          "slot": 2,
+          "material": "MI_T_Melusina_CathedralPearl_MarbleTile",
+          "changed_vertices": 2291,
+          "delta_bounds": {
+            "min": [
+              -13.66262,
+              -1e-06,
+              -0.603447
+            ],
+            "max": [
+              18.527166,
+              2e-06,
+              29.926826
+            ],
+            "center": [
+              2.432273,
+              0.0,
+              14.66169
+            ],
+            "size": [
+              32.189786,
+              3e-06,
+              30.530273
+            ]
+          },
+          "mean_delta": [
+            4.46383,
+            0.0,
+            7.44322
+          ],
+          "max_delta_cm": 3158.69
+        },
+        {
+          "slot": 3,
+          "material": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree_3",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 4,
+          "material": "MI_crystal1",
+          "changed_vertices": 2306,
+          "delta_bounds": {
+            "min": [
+              -13.558543,
+              -1e-06,
+              -0.217243
+            ],
+            "max": [
+              18.506578,
+              2e-06,
+              29.90966
+            ],
+            "center": [
+              2.474018,
+              0.0,
+              14.846209
+            ],
+            "size": [
+              32.065122,
+              3e-06,
+              30.126904
+            ]
+          },
+          "mean_delta": [
+            4.385957,
+            0.0,
+            7.419829
+          ],
+          "max_delta_cm": 3156.955
+        },
+        {
+          "slot": 5,
+          "material": "MI_T_Houdini_VoronoiCrystal_PinkSapphire",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 6,
+          "material": "MI_T_Houdini_ChladniAcoustic_UltravioletVelvet",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 7,
+          "material": "MI_T_Melusina_PorcelainMusicBox_KintsugiLapis",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        }
+      ]
+    },
+    "Draw": {
+      "changed_vertices": 230,
+      "delta_bounds": {
+        "min": [
+          0.0,
+          -30.000002,
+          0.0
+        ],
+        "max": [
+          3e-06,
+          -2.5,
+          0.0
+        ],
+        "center": [
+          1e-06,
+          -16.250001,
+          0.0
+        ],
+        "size": [
+          2e-06,
+          27.500002,
+          0.0
+        ]
+      },
+      "per_material": [
+        {
+          "slot": 0,
+          "material": "MI_Strings",
+          "changed_vertices": 230,
+          "delta_bounds": {
+            "min": [
+              0.0,
+              -30.000002,
+              0.0
+            ],
+            "max": [
+              3e-06,
+              -2.5,
+              0.0
+            ],
+            "center": [
+              1e-06,
+              -16.250001,
+              0.0
+            ],
+            "size": [
+              2e-06,
+              27.500002,
+              0.0
+            ]
+          },
+          "mean_delta": [
+            1e-06,
+            -15.652173,
+            0.0
+          ],
+          "max_delta_cm": 3000.0
+        },
+        {
+          "slot": 1,
+          "material": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 2,
+          "material": "MI_T_Melusina_CathedralPearl_MarbleTile",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 3,
+          "material": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree_3",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 4,
+          "material": "MI_crystal1",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 5,
+          "material": "MI_T_Houdini_VoronoiCrystal_PinkSapphire",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 6,
+          "material": "MI_T_Houdini_ChladniAcoustic_UltravioletVelvet",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 7,
+          "material": "MI_T_Melusina_PorcelainMusicBox_KintsugiLapis",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        }
+      ]
+    },
+    "Flex_Draw": {
+      "changed_vertices": 4255,
+      "delta_bounds": {
+        "min": [
+          0.015111,
+          0.0,
+          0.0
+        ],
+        "max": [
+          0.4,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.207556,
+          0.0,
+          0.0
+        ],
+        "size": [
+          0.384889,
+          0.0,
+          0.0
+        ]
+      },
+      "per_material": [
+        {
+          "slot": 0,
+          "material": "MI_Strings",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 1,
+          "material": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree",
+          "changed_vertices": 1415,
+          "delta_bounds": {
+            "min": [
+              0.015169,
+              0.0,
+              0.0
+            ],
+            "max": [
+              0.4,
+              0.0,
+              0.0
+            ],
+            "center": [
+              0.207585,
+              0.0,
+              0.0
+            ],
+            "size": [
+              0.384831,
+              0.0,
+              0.0
+            ]
+          },
+          "mean_delta": [
+            0.211572,
+            0.0,
+            0.0
+          ],
+          "max_delta_cm": 40.0
+        },
+        {
+          "slot": 2,
+          "material": "MI_T_Melusina_CathedralPearl_MarbleTile",
+          "changed_vertices": 1417,
+          "delta_bounds": {
+            "min": [
+              0.015157,
+              0.0,
+              0.0
+            ],
+            "max": [
+              0.399919,
+              0.0,
+              0.0
+            ],
+            "center": [
+              0.207538,
+              0.0,
+              0.0
+            ],
+            "size": [
+              0.384762,
+              0.0,
+              0.0
+            ]
+          },
+          "mean_delta": [
+            0.211046,
+            0.0,
+            0.0
+          ],
+          "max_delta_cm": 39.992
+        },
+        {
+          "slot": 3,
+          "material": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree_3",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 4,
+          "material": "MI_crystal1",
+          "changed_vertices": 1423,
+          "delta_bounds": {
+            "min": [
+              0.015111,
+              0.0,
+              0.0
+            ],
+            "max": [
+              0.399837,
+              0.0,
+              0.0
+            ],
+            "center": [
+              0.207474,
+              0.0,
+              0.0
+            ],
+            "size": [
+              0.384726,
+              0.0,
+              0.0
+            ]
+          },
+          "mean_delta": [
+            0.210178,
+            0.0,
+            0.0
+          ],
+          "max_delta_cm": 39.984
+        },
+        {
+          "slot": 5,
+          "material": "MI_T_Houdini_VoronoiCrystal_PinkSapphire",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 6,
+          "material": "MI_T_Houdini_ChladniAcoustic_UltravioletVelvet",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        },
+        {
+          "slot": 7,
+          "material": "MI_T_Melusina_PorcelainMusicBox_KintsugiLapis",
+          "changed_vertices": 0,
+          "delta_bounds": null,
+          "mean_delta": null,
+          "max_delta_cm": 0
+        }
+      ]
+    }
+  },
+  "interpretation": "Geometry in one immutable copy of the live-export FBX; no source asset or editor changes."
+}

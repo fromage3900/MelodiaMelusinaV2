@@ -1,0 +1,154 @@
+{
+  "evidence": "PIE_COMPONENT_ACCESSIBILITY_GAMEPLAY_OWNER",
+  "tag": "arm_onetoone_absolute_front_close",
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+  "body": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+  "anim_instance": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "aiming": true,
+  "drawing": true,
+  "tension": 1.0,
+  "montage": "/Engine/Transient.AnimMontage_24",
+  "clips": [
+    {
+      "slot": "DefaultSlot",
+      "sequence": "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_OneToOneAbsolute_RMB_Loop.A_OneToOneAbsolute_RMB_Loop"
+    }
+  ],
+  "velocity": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "location": [
+    1347.4970619788674,
+    1861.265435278759,
+    -520.1269341744329
+  ],
+  "bow_grip": "<Struct 'Transform' (0x00000249FC2547B0) {rotation: {x: -0.000000, y: 0.000000, z: -0.707107, w: 0.707107}, translation: {x: 0.000000, y: 0.000000, z: -48.150000}, scale3d: {x: 0.900000, y: 0.900000, z: 0.900000}}>",
+  "bones": {
+    "root_x": {
+      "location": [
+        1345.1791541193995,
+        1854.5556557715875,
+        -505.5073643959905
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: -0.676181, y: 0.302212, z: 0.253715, w: -0.622155}>"
+    },
+    "head_x": {
+      "location": [
+        1344.6180297386304,
+        1861.699633460123,
+        -453.9742268671728
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: 0.629540, y: -0.476161, z: 0.418649, w: -0.449093}>"
+    },
+    "shoulder_l": {
+      "location": [
+        1342.5977469958052,
+        1853.6679757238733,
+        -467.29576275316816
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: -0.350821, y: -0.034184, z: 0.572700, w: 0.740116}>"
+    },
+    "arm_stretch_l": {
+      "location": [
+        1337.3281977138058,
+        1842.6412088890138,
+        -442.12513660569545
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: 0.026983, y: -0.116554, z: 0.639549, w: 0.759384}>"
+    },
+    "forearm_stretch_l": {
+      "location": [
+        1365.636916974159,
+        1837.4145181910444,
+        -438.99473345078525
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: 0.032165, y: -0.122606, z: 0.639294, w: 0.758443}>"
+    },
+    "hand_l": {
+      "location": [
+        1388.7720327874974,
+        1833.1422120725283,
+        -436.43959035861735
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: 0.178626, y: -0.535351, z: 0.467648, w: 0.680292}>"
+    },
+    "shoulder_r": {
+      "location": [
+        1339.6312282192198,
+        1855.4947134939066,
+        -467.4667036749953
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: -0.206790, y: 0.101747, z: -0.839764, w: 0.491611}>"
+    },
+    "arm_stretch_r": {
+      "location": [
+        1329.6010078026075,
+        1843.7924128977766,
+        -444.11358210621177
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: 0.152286, y: 0.184190, z: -0.912012, w: 0.333341}>"
+    },
+    "forearm_stretch_r": {
+      "location": [
+        1310.3699973087091,
+        1864.3494806355768,
+        -437.324857623878
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: -0.091885, y: 0.163272, z: -0.664202, w: -0.723695}>"
+    },
+    "hand_r": {
+      "location": [
+        1333.8303580415031,
+        1861.9643488592112,
+        -435.33941470269065
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: 0.261498, y: -0.495740, z: -0.543336, w: -0.625017}>"
+    },
+    "index1_l": {
+      "location": [
+        1398.6942943263311,
+        1828.889824029959,
+        -430.7299228246261
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: -0.444890, y: 0.286510, z: -0.638771, w: -0.558531}>"
+    },
+    "index2_l": {
+      "location": [
+        1402.677604577651,
+        1829.761441182939,
+        -431.26850206776703
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: -0.666465, y: -0.172126, z: -0.720149, w: -0.087077}>"
+    },
+    "index3_l": {
+      "location": [
+        1402.3772106064503,
+        1832.4344677127212,
+        -432.31966006130654
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024210) {x: -0.650570, y: -0.384126, z: -0.625026, w: 0.196341}>"
+    },
+    "c_index1_base_l": {
+      "location": [
+        1392.683161328032,
+        1832.2175614871207,
+        -433.2377198012581
+      ],
+      "rotation": "<Struct 'Quat' (0x0000024899024330) {x: -0.152235, y: 0.543684, z: -0.499337, w: -0.657187}>"
+    }
+  },
+  "prop": {
+    "mesh": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp.SK_ME_WaveHarp",
+    "transform": "<Struct 'Transform' (0x0000024899024210) {rotation: {x: 0.504849, y: -0.252645, z: -0.150709, w: 0.811532}, translation: {x: 1415.875389, y: 1868.895863, z: -453.879841}, scale3d: {x: 0.900000, y: 0.900000, z: 0.899996}}>",
+    "socket": "S_Instrument_L",
+    "source_grip_anchor": [
+      1388.804159183819,
+      1833.1085201999847,
+      -436.4209128660332
+    ],
+    "anchor_error_cm": 0.050160705191727196
+  }
+}

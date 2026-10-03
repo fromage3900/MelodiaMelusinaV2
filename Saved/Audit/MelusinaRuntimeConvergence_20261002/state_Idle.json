@@ -1,0 +1,19 @@
+{
+  "state_name": "Idle",
+  "machine_name": "MelusinaLocomotion",
+  "position": [
+    0,
+    0
+  ],
+  "nodes": [
+    {
+      "class": "AnimGraphNode_StateResult",
+      "title": "Output Animation Pose"
+    },
+    {
+      "class": "AnimGraphNode_SequencePlayer",
+      "title": "A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10\nSequence Player"
+    }
+  ],
+  "node_count": 2
+}

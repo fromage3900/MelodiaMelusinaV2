@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"ok\":true,\"success\":true,\"mode\":\"execute_statement\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"ENGINE=5.8.0-55116800+++UE5+Release-5.8\\r\\n\"},{\"type\":\"warning\",\"output\":\"<string>:1: DeprecationWarning: EditorLevelLibrary: Function 'get_editor_world' on 'EditorLevelLibrary' is deprecated: The Editor Scripting Utilities Plugin is deprecated - Use the function in Unreal Editor Subsystem\\n\"},{\"type\":\"info\",\"output\":\"MAP=/Game/Melodia/Levels/Menu/L_MelodiaMainMenu.L_MelodiaMainMenu\\r\\n\"}]}",
+        "type": "text"
+      }
+    ],
+    "isError": false
+  }
+}

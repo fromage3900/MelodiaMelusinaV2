@@ -1,0 +1,231 @@
+{
+  "evidence": "EDITOR_CONNECTED_NODE_CONFIGURATION_NOT_VISUAL_PROOF",
+  "nodes": [
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "node": "AnimGraphNode_KawaiiPhysics_0",
+      "configuration": {
+        "root_bone": "c_kilt_master_x",
+        "limits_data_asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_SkirtCollisionLimits.DA_Melusina_SkirtCollisionLimits",
+        "physics_asset_for_limits": null,
+        "spherical_limits": "[]",
+        "capsule_limits": "[]",
+        "box_limits": "[]",
+        "planar_limits": "[]",
+        "exclude_bones": "[]",
+        "dummy_bone_length": 3.0,
+        "bone_subdivision_count": 1,
+        "constraint_subdivision_count": null,
+        "physics_settings": "<Struct 'KawaiiPhysicsSettings' (0x0000015A867FE0A8) {damping: 0.300000, stiffness: 0.180000, world_damping_location: 0.800000, world_damping_rotation: 0.850000, radius: 2.500000, limit_angle: 38.000000}>"
+      },
+      "limits": {
+        "asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_SkirtCollisionLimits.DA_Melusina_SkirtCollisionLimits",
+        "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+        "spherical_limits": [
+          {
+            "driving_bone": "c_kilt_master_x",
+            "offset_location": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "offset_rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "radius": 11.0,
+            "length": null,
+            "limit_type": "<SphericalLimitType.OUTER: 1>",
+            "enable": null
+          }
+        ],
+        "capsule_limits": [
+          {
+            "driving_bone": "root_x",
+            "offset_location": [
+              -3.5453403245264885e-06,
+              -12.819064897647081,
+              0.38433041390746325
+            ],
+            "offset_rotation": [
+              -90.0,
+              1.5258735067355471e-05,
+              0.0
+            ],
+            "radius": 11.5,
+            "length": 14.0,
+            "limit_type": null,
+            "enable": null
+          },
+          {
+            "driving_bone": "thigh_stretch_l",
+            "offset_location": [
+              -1.9055955320368412e-06,
+              6.477588387657377,
+              -2.517287796877099e-06
+            ],
+            "offset_rotation": [
+              11.72166033424617,
+              179.99999977316216,
+              89.99999680646393
+            ],
+            "radius": 7.5,
+            "length": 29.53780746459961,
+            "limit_type": null,
+            "enable": null
+          },
+          {
+            "driving_bone": "thigh_stretch_r",
+            "offset_location": [
+              -1.7468078716831315e-06,
+              6.47758642087372,
+              -4.343030184372765e-07
+            ],
+            "offset_rotation": [
+              -11.721621159654694,
+              179.99999795159619,
+              90.00000022495732
+            ],
+            "radius": 7.5,
+            "length": 29.537805557250977,
+            "limit_type": null,
+            "enable": null
+          },
+          {
+            "driving_bone": "leg_stretch_l",
+            "offset_location": [
+              2.0130400315565566e-06,
+              -17.52897862343753,
+              -1.8455214707557843e-06
+            ],
+            "offset_rotation": [
+              77.77199535007121,
+              -179.99996558535292,
+              90.00002848092164
+            ],
+            "radius": 5.0,
+            "length": 31.162628173828125,
+            "limit_type": null,
+            "enable": null
+          },
+          {
+            "driving_bone": "leg_stretch_r",
+            "offset_location": [
+              -1.60706636620489e-06,
+              -17.52897817487909,
+              -1.488261798243684e-06
+            ],
+            "offset_rotation": [
+              -77.7720105437783,
+              179.99997230060958,
+              90.0000229675575
+            ],
+            "radius": 5.0,
+            "length": 31.162628173828125,
+            "limit_type": null,
+            "enable": null
+          }
+        ],
+        "box_limits": [],
+        "planar_limits": []
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair",
+      "node": "AnimGraphNode_KawaiiPhysics_1",
+      "configuration": {
+        "root_bone": "hair_root",
+        "limits_data_asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits",
+        "physics_asset_for_limits": null,
+        "spherical_limits": "[]",
+        "capsule_limits": "[]",
+        "box_limits": "[]",
+        "planar_limits": "[]",
+        "exclude_bones": "[]",
+        "dummy_bone_length": 3.0,
+        "bone_subdivision_count": 1,
+        "constraint_subdivision_count": null,
+        "physics_settings": "<Struct 'KawaiiPhysicsSettings' (0x0000015A840F18A8) {damping: 0.180000, stiffness: 0.080000, world_damping_location: 0.500000, world_damping_rotation: 0.500000, radius: 2.000000, limit_angle: 60.000000}>"
+      },
+      "limits": {
+        "asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_HairCollisionLimits.DA_Melusina_HairCollisionLimits",
+        "skeleton": "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton.SK_Melusina_Hair_Skeleton",
+        "spherical_limits": [
+          {
+            "driving_bone": "hair_root",
+            "offset_location": [
+              0.1197823656215129,
+              -0.03074862463479211,
+              -0.013729940720596412
+            ],
+            "offset_rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "radius": 12.0,
+            "length": null,
+            "limit_type": "<SphericalLimitType.OUTER: 1>",
+            "enable": null
+          }
+        ],
+        "capsule_limits": [
+          {
+            "driving_bone": "hair_root",
+            "offset_location": [
+              -0.04078839607223306,
+              0.10637438739678062,
+              0.044054553133761054
+            ],
+            "offset_rotation": [
+              -7.873107356495886,
+              -159.03864332515673,
+              110.96135621987858
+            ],
+            "radius": 5.5,
+            "length": 8.0,
+            "limit_type": null,
+            "enable": null
+          },
+          {
+            "driving_bone": "hair_root",
+            "offset_location": [
+              -0.05705360233826906,
+              0.15514334318649214,
+              0.06422958761463504
+            ],
+            "offset_rotation": [
+              7.873107356495886,
+              20.96135667484331,
+              159.03864378012153
+            ],
+            "radius": 7.0,
+            "length": 22.0,
+            "limit_type": null,
+            "enable": null
+          },
+          {
+            "driving_bone": "hair_root",
+            "offset_location": [
+              -0.09659902527757247,
+              0.30499387178899484,
+              0.12612448725993897
+            ],
+            "offset_rotation": [
+              -7.873107356495886,
+              -159.03864332515673,
+              110.96135621987858
+            ],
+            "radius": 10.0,
+            "length": 18.0,
+            "limit_type": null,
+            "enable": null
+          }
+        ],
+        "box_limits": [],
+        "planar_limits": []
+      }
+    }
+  ]
+}

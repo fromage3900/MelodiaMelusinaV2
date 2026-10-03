@@ -1,0 +1,612 @@
+[
+ {
+  "clip": "A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+  "dir": "HERO01",
+  "len": 0.96,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 62.8,
+  "handroll": 328.7,
+  "twistcover": 2.2
+ },
+ {
+  "clip": "A_Melusina_JumpLoop_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 0.75,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 214.2,
+  "handroll": 376.1,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_JumpStart_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 0.75,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 194.1,
+  "handroll": 376.2,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Mocap_LittleDance_001",
+  "dir": "Mocap",
+  "len": 8.38,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 241.6,
+  "handroll": 376.7,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Idle_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 0.5,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 136.6,
+  "handroll": 373.4,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Run_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 1.17,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 201.1,
+  "handroll": 371.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Sprint_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 0.92,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 193.9,
+  "handroll": 360.4,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Walk_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 1.17,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 201.1,
+  "handroll": 371.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Land_Mocap_RootX",
+  "dir": "Locomotion",
+  "len": 1.25,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 210.0,
+  "handroll": 377.3,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Spell_Simple_Shoot",
+  "dir": "QuaterniusRetargeted",
+  "len": 0.5,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 192.9,
+  "handroll": 367.5,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Sword_Attack",
+  "dir": "QuaterniusRetargeted",
+  "len": 1.53,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 199.2,
+  "handroll": 391.6,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_BowAttackV2_A_RangeAttack",
+  "dir": "Polish_20260919",
+  "len": 1.3,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 243.3,
+  "handroll": 348.9,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Mocap_MercyStab",
+  "dir": "Mocap",
+  "len": 6.82,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 166.4,
+  "handroll": 383.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Death01",
+  "dir": "QuaterniusRetargeted",
+  "len": 2.4,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 203.6,
+  "handroll": 456.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Idle_Loop",
+  "dir": "QuaterniusRetargeted_V2Fixed",
+  "len": 2.5,
+  "root_z": 7678.2,
+  "eye": 0,
+  "ctrl": 7747.6,
+  "handroll": 375.8,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Hit_Chest",
+  "dir": "QuaterniusRetargeted",
+  "len": 0.33,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 181.3,
+  "handroll": 376.3,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Hit_Head",
+  "dir": "QuaterniusRetargeted",
+  "len": 0.43,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 181.7,
+  "handroll": 376.3,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Dance_Loop",
+  "dir": "QuaterniusRetargeted",
+  "len": 1.0,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 205.5,
+  "handroll": 375.6,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Interact",
+  "dir": "QuaterniusRetargeted",
+  "len": 2.0,
+  "root_z": 7678.2,
+  "eye": 0,
+  "ctrl": 7786.9,
+  "handroll": 376.3,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Roll",
+  "dir": "QuaterniusRetargeted",
+  "len": 1.47,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 187.5,
+  "handroll": 376.4,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Q_Melusina_Spell_Simple_Shoot",
+  "dir": "CastCandidates_20261001",
+  "len": 0.5,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 2.9,
+  "handroll": 388.4,
+  "twistcover": 1.9
+ },
+ {
+  "clip": "A_Q_Melusina_Spell_Simple_Idle_Loop",
+  "dir": "CastCandidates_20261001",
+  "len": 2.1,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 0.0,
+  "handroll": 386.1,
+  "twistcover": 1.9
+ },
+ {
+  "clip": "A_Melusina_BowDraw_v2_InPlace",
+  "dir": "Mocap",
+  "len": 2.83,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 171.4,
+  "handroll": 346.4,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Spar_Mel_RMB_Drawback",
+  "dir": "SparrowArchery_20261002",
+  "len": 2.47,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 0.6,
+  "handroll": 314.6,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Spar_Mel_RMB_Loop",
+  "dir": "SparrowArchery_20261002",
+  "len": 0.67,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 0.2,
+  "handroll": 302.0,
+  "twistcover": 2.2
+ },
+ {
+  "clip": "A_Spar_Mel_RMB_Fire",
+  "dir": "SparrowArchery_20261002",
+  "len": 1.87,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 3.5,
+  "handroll": 326.5,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Spar_Mel_Primary_Fire_Fast",
+  "dir": "SparrowArchery_20261002",
+  "len": 0.6,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 4.3,
+  "handroll": 315.5,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Spar_Mel_Primary_Fire_Med",
+  "dir": "SparrowArchery_20261002",
+  "len": 1.0,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 2.1,
+  "handroll": 330.1,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Spar_Mel_Primary_Fire_Slow",
+  "dir": "SparrowArchery_20261002",
+  "len": 1.0,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 2.0,
+  "handroll": 318.2,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace",
+  "dir": "Cascadeur",
+  "len": 2.73,
+  "root_z": 7476.8,
+  "eye": 0,
+  "ctrl": 19459.5,
+  "handroll": 300.2,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_BowAttackV2_PortfolioShoulders",
+  "dir": "HERO01",
+  "len": 1.3,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 243.7,
+  "handroll": 348.9,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Melusina_BowAttack_Polished",
+  "dir": "Polish_20260919",
+  "len": 0.0,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 0,
+  "handroll": 0,
+  "twistcover": null
+ },
+ {
+  "clip": "A_Melusina_BowAttack_A_RangeAttack",
+  "dir": "Polish_20260919",
+  "len": 1.3,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 243.3,
+  "handroll": 348.9,
+  "twistcover": 2.1
+ },
+ {
+  "clip": "A_Mocap_Jump_Loop",
+  "dir": "Mocap",
+  "len": 3.6,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 195.9,
+  "handroll": 376.3,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+  "dir": "Mocap",
+  "len": 2.97,
+  "root_z": 7691.1,
+  "eye": 0,
+  "ctrl": 18761.6,
+  "handroll": 373.4,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Walk",
+  "dir": "Locomotion",
+  "len": 1.0,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 174.1,
+  "handroll": 397.2,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Sprint",
+  "dir": "Locomotion",
+  "len": 0.6,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 196.1,
+  "handroll": 400.6,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_RunLoop_Trim",
+  "dir": "Locomotion",
+  "len": 8.93,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 211.0,
+  "handroll": 375.8,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Attack",
+  "dir": "A_Attack",
+  "len": 1.3,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Die",
+  "dir": "A_Die",
+  "len": 2.07,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_GetHit",
+  "dir": "A_GetHit",
+  "len": 0.97,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Run",
+  "dir": "Locomotion",
+  "len": 0.6,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 196.1,
+  "handroll": 400.6,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_MeteorStorm",
+  "dir": "A_MeteorStorm",
+  "len": 2.63,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_RangeAttack",
+  "dir": "A_RangeAttack",
+  "len": 1.3,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_ThirdPersonDash",
+  "dir": "A_ThirdPersonDash",
+  "len": 0.7,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_ThirdPersonIdle",
+  "dir": "A_ThirdPersonIdle",
+  "len": 2.63,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_ThirdPersonJump_End",
+  "dir": "A_ThirdPersonJump_End",
+  "len": 0.2,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_ThirdPersonRun",
+  "dir": "A_ThirdPersonRun",
+  "len": 0.6,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_ThirdPersonWalk",
+  "dir": "A_ThirdPersonWalk",
+  "len": 1.0,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 244.7,
+  "handroll": 355.0,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Idle_v22",
+  "dir": "Authored",
+  "len": 0.96,
+  "root_z": -0.1,
+  "eye": 0,
+  "ctrl": 163.6,
+  "handroll": 329.7,
+  "twistcover": 2.0
+ },
+ {
+  "clip": "A_MUAL_Melusina_Idle_Loop",
+  "dir": "Authored",
+  "len": 0.97,
+  "root_z": 8024.2,
+  "eye": 0.0,
+  "ctrl": 6320.1,
+  "handroll": 329.7,
+  "twistcover": 2.0
+ },
+ {
+  "clip": "A_BL_Melusina_Idle_Loop",
+  "dir": "Cascadeur",
+  "len": 0.96,
+  "root_z": 0,
+  "eye": 0.0,
+  "ctrl": 283.3,
+  "handroll": 328.9,
+  "twistcover": 2.0
+ },
+ {
+  "clip": "A_CAS_Melusina_Idle_Loop",
+  "dir": "Cascadeur",
+  "len": 2.5,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 0.0,
+  "handroll": 0,
+  "twistcover": null
+ },
+ {
+  "clip": "A_Q_Melusina_Pistol_Aim_Down",
+  "dir": "CastCandidates_20261001",
+  "len": 0.17,
+  "root_z": 8881.2,
+  "eye": 0,
+  "ctrl": 8952.1,
+  "handroll": 305.0,
+  "twistcover": 2.4
+ },
+ {
+  "clip": "A_Q_Melusina_Pistol_Aim_Neutral",
+  "dir": "CastCandidates_20261001",
+  "len": 0.17,
+  "root_z": 8881.2,
+  "eye": 0,
+  "ctrl": 8847.1,
+  "handroll": 292.9,
+  "twistcover": 2.5
+ },
+ {
+  "clip": "A_Q_Melusina_Pistol_Aim_Up",
+  "dir": "CastCandidates_20261001",
+  "len": 0.17,
+  "root_z": 8881.2,
+  "eye": 0,
+  "ctrl": 9093.5,
+  "handroll": 276.6,
+  "twistcover": 2.6
+ },
+ {
+  "clip": "A_Q_Melusina_Pistol_Shoot",
+  "dir": "CastCandidates_20261001",
+  "len": 0.63,
+  "root_z": 8881.2,
+  "eye": 0,
+  "ctrl": 8847.8,
+  "handroll": 292.9,
+  "twistcover": 2.5
+ },
+ {
+  "clip": "A_Q_Melusina_Spell_Simple_Enter",
+  "dir": "CastCandidates_20261001",
+  "len": 0.53,
+  "root_z": 8881.2,
+  "eye": 0,
+  "ctrl": 9047.4,
+  "handroll": 386.1,
+  "twistcover": 1.9
+ },
+ {
+  "clip": "A_Q_Melusina_Spell_Simple_Exit",
+  "dir": "CastCandidates_20261001",
+  "len": 0.43,
+  "root_z": 8882.0,
+  "eye": 0,
+  "ctrl": 9047.3,
+  "handroll": 386.1,
+  "twistcover": 1.9
+ },
+ {
+  "clip": "A_Melusina_GlidePose",
+  "dir": "Locomotion",
+  "len": 0.75,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 214.2,
+  "handroll": 376.1,
+  "twistcover": 0.0
+ },
+ {
+  "clip": "A_Melusina_Idle",
+  "dir": "Locomotion",
+  "len": 2.63,
+  "root_z": 0,
+  "eye": 0,
+  "ctrl": 159.2,
+  "handroll": 386.6,
+  "twistcover": 0.0
+ }
+]

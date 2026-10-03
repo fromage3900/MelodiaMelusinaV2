@@ -1,0 +1,23 @@
+{
+  "schema": "melodia.jev.companions_hair.v1",
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "answers": {
+    "sir_idle": {
+      "choice": "LEAVE_AS_IS",
+      "reason": null
+    },
+    "sheep_idle": {
+      "choice": "LAYER_TAILWAG_AND_EARFLICK_AS_TIMED_IDLE_VARIANTS_IN_ABP",
+      "reason": null
+    },
+    "sir_perch": {
+      "choice": "FOLLOW_TO_A_SHOULDER_SOCKET_ON_MELUSINA_WITHOUT_REPLACING_THE_PAWN",
+      "reason": null
+    },
+    "hair_next": {
+      "choice": "MEASURE_HAIR_VS_HEAD_BONE_IN_MOTION_FIRST",
+      "reason": null
+    }
+  }
+}

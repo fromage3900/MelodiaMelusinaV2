@@ -1,0 +1,372 @@
+{
+  "index_r": {
+    "n": 245,
+    "median_d_mm": 61.77,
+    "mean_body_minus_glove_m": [
+      0.02006,
+      0.01084,
+      -0.05539
+    ],
+    "median_body_minus_glove_m": [
+      0.01933,
+      0.0125,
+      -0.0547
+    ],
+    "sd_body_minus_glove_m": [
+      0.01079,
+      0.0098,
+      0.01082
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        0.00433,
+        0.03423
+      ],
+      [
+        -0.00235,
+        0.02233
+      ],
+      [
+        -0.06711,
+        -0.04447
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      15.69,
+      26.38
+    ]
+  },
+  "thumb_r": {
+    "n": 375,
+    "median_d_mm": 48.82,
+    "mean_body_minus_glove_m": [
+      -0.00205,
+      0.01221,
+      -0.04179
+    ],
+    "median_body_minus_glove_m": [
+      0.00571,
+      0.01384,
+      -0.03787
+    ],
+    "sd_body_minus_glove_m": [
+      0.02406,
+      0.01859,
+      0.02237
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.04339,
+        0.02245
+      ],
+      [
+        -0.01384,
+        0.03489
+      ],
+      [
+        -0.07635,
+        -0.01454
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      30.97,
+      65.14
+    ]
+  },
+  "middle_r": {
+    "n": 239,
+    "median_d_mm": 64.73,
+    "mean_body_minus_glove_m": [
+      0.02615,
+      0.00204,
+      -0.05773
+    ],
+    "median_body_minus_glove_m": [
+      0.02503,
+      0.00283,
+      -0.05723
+    ],
+    "sd_body_minus_glove_m": [
+      0.00992,
+      0.00896,
+      0.00841
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        0.01356,
+        0.04022
+      ],
+      [
+        -0.01211,
+        0.0141
+      ],
+      [
+        -0.06896,
+        -0.0463
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      13.22,
+      23.09
+    ]
+  },
+  "ring_r": {
+    "n": 201,
+    "median_d_mm": 64.56,
+    "mean_body_minus_glove_m": [
+      0.02299,
+      -0.00625,
+      -0.05904
+    ],
+    "median_body_minus_glove_m": [
+      0.02565,
+      -0.00644,
+      -0.05809
+    ],
+    "sd_body_minus_glove_m": [
+      0.00906,
+      0.00684,
+      0.00936
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        0.01089,
+        0.03321
+      ],
+      [
+        -0.01569,
+        0.00254
+      ],
+      [
+        -0.0698,
+        -0.0482
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      13.06,
+      21.16
+    ]
+  },
+  "pinky_r": {
+    "n": 353,
+    "median_d_mm": 72.59,
+    "mean_body_minus_glove_m": [
+      -0.00137,
+      -0.00651,
+      -0.06752
+    ],
+    "median_body_minus_glove_m": [
+      0.00246,
+      -0.007,
+      -0.06825
+    ],
+    "sd_body_minus_glove_m": [
+      0.02078,
+      0.00732,
+      0.01077
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.04377,
+        0.02277
+      ],
+      [
+        -0.01654,
+        0.00326
+      ],
+      [
+        -0.08293,
+        -0.05382
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      19.07,
+      47.46
+    ]
+  },
+  "index_l": {
+    "n": 256,
+    "median_d_mm": 63.48,
+    "mean_body_minus_glove_m": [
+      -0.02099,
+      0.01231,
+      -0.05654
+    ],
+    "median_body_minus_glove_m": [
+      -0.0217,
+      0.0124,
+      -0.05656
+    ],
+    "sd_body_minus_glove_m": [
+      0.01027,
+      0.0096,
+      0.00997
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.03364,
+        -0.00744
+      ],
+      [
+        -0.00216,
+        0.0245
+      ],
+      [
+        -0.06847,
+        -0.0458
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      14.85,
+      24.29
+    ]
+  },
+  "thumb_l": {
+    "n": 372,
+    "median_d_mm": 48.7,
+    "mean_body_minus_glove_m": [
+      0.00161,
+      0.01165,
+      -0.04269
+    ],
+    "median_body_minus_glove_m": [
+      -0.0056,
+      0.01273,
+      -0.0397
+    ],
+    "sd_body_minus_glove_m": [
+      0.02342,
+      0.01864,
+      0.02233
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.023,
+        0.0433
+      ],
+      [
+        -0.0139,
+        0.03282
+      ],
+      [
+        -0.07662,
+        -0.01583
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      30.37,
+      63.8
+    ]
+  },
+  "middle_l": {
+    "n": 242,
+    "median_d_mm": 65.91,
+    "mean_body_minus_glove_m": [
+      -0.02536,
+      0.00392,
+      -0.0588
+    ],
+    "median_body_minus_glove_m": [
+      -0.02542,
+      0.00452,
+      -0.05865
+    ],
+    "sd_body_minus_glove_m": [
+      0.00931,
+      0.0077,
+      0.00888
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.03799,
+        -0.01321
+      ],
+      [
+        -0.00754,
+        0.01415
+      ],
+      [
+        -0.07135,
+        -0.0473
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      13.25,
+      20.95
+    ]
+  },
+  "ring_l": {
+    "n": 210,
+    "median_d_mm": 64.27,
+    "mean_body_minus_glove_m": [
+      -0.02213,
+      -0.00456,
+      -0.05963
+    ],
+    "median_body_minus_glove_m": [
+      -0.02445,
+      -0.00412,
+      -0.05764
+    ],
+    "sd_body_minus_glove_m": [
+      0.00893,
+      0.00674,
+      0.00943
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.03255,
+        -0.00966
+      ],
+      [
+        -0.01413,
+        0.00434
+      ],
+      [
+        -0.07027,
+        -0.04899
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      12.44,
+      21.76
+    ]
+  },
+  "pinky_l": {
+    "n": 314,
+    "median_d_mm": 72.67,
+    "mean_body_minus_glove_m": [
+      0.00198,
+      -0.00703,
+      -0.06729
+    ],
+    "median_body_minus_glove_m": [
+      -0.00136,
+      -0.00674,
+      -0.06874
+    ],
+    "sd_body_minus_glove_m": [
+      0.02091,
+      0.00699,
+      0.01066
+    ],
+    "axis_p10_p90_delta_m": [
+      [
+        -0.02436,
+        0.04377
+      ],
+      [
+        -0.01628,
+        0.00135
+      ],
+      [
+        -0.08116,
+        -0.05333
+      ]
+    ],
+    "residual_after_median_translation_mm_p50_p90": [
+      19.02,
+      46.38
+    ]
+  }
+}

@@ -1,0 +1,369 @@
+{
+ "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning.L_MelusinaMorning",
+ "dirty_before": {
+  "content": [
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Glide_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff_v3"
+  ],
+  "maps": [
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/6/FR/XUALIBF3JKSA3RBCCJEMK1"
+  ]
+ },
+ "cams": [
+  {
+   "label": "CAM_Hero_01_Meadow",
+   "class": "CineCameraActor",
+   "loc": [
+    -2657.1074487337023,
+    2807.7308542170913,
+    1543.1112909317017
+   ],
+   "rot": [
+    -10.124671655397835,
+    -80.0,
+    -1.0893910435107084e-07
+   ],
+   "fov": 43.207131838195615,
+   "fov_src": "cine f=30.0mm sw=23.8",
+   "tags": []
+  },
+  {
+   "label": "CAM_Hero_02_SpiralAscent",
+   "class": "CineCameraActor",
+   "loc": [
+    -262.1872779954784,
+    2861.4362777849537,
+    455.3582824290506
+   ],
+   "rot": [
+    -5.503151102803543,
+    -139.81185050026605,
+    3.9527988850828386
+   ],
+   "fov": 125.37479358485483,
+   "fov_src": "cine f=6.1mm sw=23.8",
+   "tags": []
+  },
+  {
+   "label": "CAM_Hero_03_RimOverlook",
+   "class": "CineCameraActor",
+   "loc": [
+    -1456.0,
+    1315.8369828296877,
+    735.0
+   ],
+   "rot": [
+    -4.815124482482875,
+    62.24675166257197,
+    2.7380454542863926
+   ],
+   "fov": 52.67082044664154,
+   "fov_src": "cine f=24.0mm sw=23.8",
+   "tags": []
+  },
+  {
+   "label": "CAM_Hero_04_House",
+   "class": "CineCameraActor",
+   "loc": [
+    1278.7997031673226,
+    3579.1288260692563,
+    -301.2095115632154
+   ],
+   "rot": [
+    -5.07960786001456,
+    -79.99999999999997,
+    -5.486896298565461e-08
+   ],
+   "fov": 45.9816379617013,
+   "fov_src": "cine f=28.0mm sw=23.8",
+   "tags": []
+  },
+  {
+   "label": "CAM_Hero_Melusina_Portrait",
+   "class": "CineCameraActor",
+   "loc": [
+    -2500.0,
+    1980.0,
+    1370.0
+   ],
+   "rot": [
+    -2.000000000000001,
+    -90.00000000000003,
+    1.9890583565229333e-16
+   ],
+   "fov": 26.731284194264497,
+   "fov_src": "cine f=50.0mm sw=23.8",
+   "tags": []
+  },
+  {
+   "label": "CAM_MelusinaMorning_Portfolio",
+   "class": "CameraActor",
+   "loc": [
+    362.1999207111055,
+    -209.11622172302128,
+    135.89195847922988
+   ],
+   "rot": [
+    -17.999999999999652,
+    149.9999999999996,
+    4.18029137460382e-15
+   ],
+   "fov": 70.0,
+   "fov_src": "camera",
+   "tags": []
+  },
+  {
+   "label": "RENDERCAM_FLOATING_ISLANDS",
+   "class": "CineCameraActor",
+   "loc": [
+    610.0,
+    5068.0,
+    472.0
+   ],
+   "rot": [
+    1.243449787580175e-13,
+    -129.9999999999986,
+    1.1259040285689913e-13
+   ],
+   "fov": 37.49736089088954,
+   "fov_src": "cine f=35.0mm sw=23.8",
+   "tags": []
+  },
+  {
+   "label": "WC_HeroCorner_EastBank_Cam",
+   "class": "CameraActor",
+   "loc": [
+    2350.0,
+    1180.0,
+    1850.0
+   ],
+   "rot": [
+    -6.960259327828451,
+    167.59258147259928,
+    1.5732108662329182e-07
+   ],
+   "fov": 58.0,
+   "fov_src": "camera",
+   "tags": [
+    "Portfolio",
+    "PortfolioBeauty",
+    "HeroCorner",
+    "HeroCorner.EastBank"
+   ]
+  },
+  {
+   "label": "WC_HeroCorner_MeadowChorus_Cam",
+   "class": "CameraActor",
+   "loc": [
+    -3450.0,
+    880.0,
+    1330.0
+   ],
+   "rot": [
+    5.510156216339601,
+    30.963756532073543,
+    -2.3031532224128296e-08
+   ],
+   "fov": 52.0,
+   "fov_src": "camera",
+   "tags": [
+    "Portfolio",
+    "PortfolioBeauty",
+    "HeroCorner",
+    "HeroCorner.MeadowChorus"
+   ]
+  },
+  {
+   "label": "WC_HeroCorner_NorthDress_Cam",
+   "class": "CameraActor",
+   "loc": [
+    -1614.6155740733002,
+    791.7634765186015,
+    2150.0
+   ],
+   "rot": [
+    -55.90833278496992,
+    58.16401445728295,
+    -41.169406276023246
+   ],
+   "fov": 52.0,
+   "fov_src": "camera",
+   "tags": [
+    "Portfolio",
+    "PortfolioBeauty",
+    "HeroCorner",
+    "HeroCorner.NorthDress"
+   ]
+  },
+  {
+   "label": "WC_HeroCorner_WestRim_Cam",
+   "class": "CameraActor",
+   "loc": [
+    -4750.0,
+    350.0,
+    1780.0
+   ],
+   "rot": [
+    -8.588502228842058,
+    25.01689347810002,
+    2.894000682048451e-08
+   ],
+   "fov": 55.0,
+   "fov_src": "camera",
+   "tags": [
+    "Portfolio",
+    "PortfolioBeauty",
+    "HeroCorner",
+    "HeroCorner.WestRim"
+   ]
+  }
+ ],
+ "uds": {
+  "label": "Ultra_Dynamic_Sky2",
+  "class": "Ultra_Dynamic_Sky_C",
+  "tod_orig": 930.0,
+  "tod_final": 930.0
+ },
+ "shots": [
+  {
+   "kind": "cam",
+   "cam": "CAM_Hero_01_Meadow",
+   "file": "cam_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "CAM_Hero_02_SpiralAscent",
+   "file": "cam_CAM_Hero_02_SpiralAscent.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "CAM_Hero_03_RimOverlook",
+   "file": "cam_CAM_Hero_03_RimOverlook.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "CAM_Hero_04_House",
+   "file": "cam_CAM_Hero_04_House.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "CAM_Hero_Melusina_Portrait",
+   "file": "cam_CAM_Hero_Melusina_Portrait.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "CAM_MelusinaMorning_Portfolio",
+   "file": "cam_CAM_MelusinaMorning_Portfolio.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "RENDERCAM_FLOATING_ISLANDS",
+   "file": "cam_RENDERCAM_FLOATING_ISLANDS.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "WC_HeroCorner_EastBank_Cam",
+   "file": "cam_WC_HeroCorner_EastBank_Cam.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "WC_HeroCorner_MeadowChorus_Cam",
+   "file": "cam_WC_HeroCorner_MeadowChorus_Cam.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "WC_HeroCorner_NorthDress_Cam",
+   "file": "cam_WC_HeroCorner_NorthDress_Cam.png"
+  },
+  {
+   "kind": "cam",
+   "cam": "WC_HeroCorner_WestRim_Cam",
+   "file": "cam_WC_HeroCorner_WestRim_Cam.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 600,
+   "file": "tod_0600_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 800,
+   "file": "tod_0800_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 1100,
+   "file": "tod_1100_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 1400,
+   "file": "tod_1400_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 1700,
+   "file": "tod_1700_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 1930,
+   "file": "tod_1930_CAM_Hero_01_Meadow.png"
+  },
+  {
+   "kind": "tod",
+   "cam": "CAM_Hero_01_Meadow",
+   "tod": 2200,
+   "file": "tod_2200_CAM_Hero_01_Meadow.png"
+  }
+ ],
+ "errors": [],
+ "main_cam": "CAM_Hero_01_Meadow",
+ "dirty_after_capture_spawn": {
+  "content": [
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Glide_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff_v3"
+  ],
+  "maps": [
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/6/FR/XUALIBF3JKSA3RBCCJEMK1"
+  ]
+ },
+ "capture_destroyed": true,
+ "finish": "complete",
+ "dirty_after": {
+  "content": [
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Glide_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land_v3",
+   "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff_v3"
+  ],
+  "maps": [
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/4/56/P73XVM7CJZ2XD3O3KI681F",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/4/M9/600CWBOTNI8PGZ5TYAQPNB",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/6/IR/2IC58BLLFKVATV9UAXDJLI",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/7/B9/US306TW8P7QGQQP87SVQ8E",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/9/3F/E2O1FNZG3JJM3EI4KZDGSF",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/C/2U/I68GG21SE1G77W9J4QYAU6",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/5/ZR/G5ZQQ7UR410VKR2F16WEH9",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/6/O9/5T8BVJU8L2RD2UI1VQBW6W",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/0/U4/4KCX5BJRMYPRU8GZFOB81Z",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/E/85/JUJRPEITHUVX3N10202S2N",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/E/HL/Z8MJOMZYL99SO2K7HXDFS1",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/2/WZ/LV92MA15A98QONJF8CJ6WX",
+   "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/6/FR/XUALIBF3JKSA3RBCCJEMK1"
+  ]
+ }
+}

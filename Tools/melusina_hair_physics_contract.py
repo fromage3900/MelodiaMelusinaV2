@@ -30,7 +30,7 @@ def validate_probe(probe: dict[str, Any], contract: dict[str, Any], tolerance: f
     if node.get("name") != contract["node"]:
         errors.append("KawaiiPhysics node identity changed")
     if node.get("root_bone") != contract["root_bone"]:
-        errors.append("KawaiiPhysics root must remain HairExp_Rig")
+        errors.append(f"KawaiiPhysics root must remain {contract['root_bone']}")
     actual = dict(node.get("physics_settings") or {})
     for key in ("gravity", "enable_wind", "wind_scale", "dummy_bone_length", "bone_subdivision_count", "need_warm_up", "warm_up_frames"):
         actual[key] = node.get(key)

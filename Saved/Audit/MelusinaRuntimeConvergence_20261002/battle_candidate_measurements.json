@@ -1,0 +1,116 @@
+[
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/AM_Intro",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonIdle"
+    ],
+    "measurement": [
+      {
+        "clip": "A_ThirdPersonIdle",
+        "root_z_dev": 13.158838330570362,
+        "eye_deg": 0.0,
+        "hand_roll": 8.9704077875557,
+        "twist_moved": 7.712539513704542e-07,
+        "fail": [
+          "root_z 13 off"
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/AM_Idle",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonIdle"
+    ],
+    "measurement": [
+      {
+        "clip": "A_ThirdPersonIdle",
+        "root_z_dev": 13.158838330570362,
+        "eye_deg": 0.0,
+        "hand_roll": 8.9704077875557,
+        "twist_moved": 7.712539513704542e-07,
+        "fail": [
+          "root_z 13 off"
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/AM_Dash",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonDash"
+    ],
+    "measurement": [
+      {
+        "clip": "A_ThirdPersonDash",
+        "root_z_dev": 13.158838330570362,
+        "eye_deg": 0.0,
+        "hand_roll": 8.9704077875557,
+        "twist_moved": 7.712539513704542e-07,
+        "fail": [
+          "root_z 13 off"
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/AM_GetHit",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      "/Game/Melodia/Characters/Melusina/Animations/A_GetHit"
+    ],
+    "measurement": [
+      {
+        "clip": "A_GetHit",
+        "root_z_dev": 13.158838330570362,
+        "eye_deg": 0.0,
+        "hand_roll": 8.9704077875557,
+        "twist_moved": 7.712539513704542e-07,
+        "fail": [
+          "root_z 13 off"
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/AM_ItemUse",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonIdle"
+    ],
+    "measurement": [
+      {
+        "clip": "A_ThirdPersonIdle",
+        "root_z_dev": 13.158838330570362,
+        "eye_deg": 0.0,
+        "hand_roll": 8.9704077875557,
+        "twist_moved": 7.712539513704542e-07,
+        "fail": [
+          "root_z 13 off"
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/AM_Q_Melusina_Death",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01"
+    ],
+    "measurement": [
+      {
+        "clip": "A_Q_Melusina_Death01",
+        "root_z_dev": 81.7432401210514,
+        "eye_deg": 0.0,
+        "hand_roll": 96.85789062097666,
+        "twist_moved": 7.712539513704542e-07,
+        "fail": [
+          "root_z 82 off"
+        ]
+      }
+    ]
+  }
+]

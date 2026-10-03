@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"ok\":true,\"success\":true,\"mode\":\"execute_statement\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"MCP_RUN_PYTHON_FILE=C:/EnvironmentPortfolio/BS_GodFile/Tools/acf_map_settings_probe.py\\r\\n\"},{\"type\":\"info\",\"output\":\"ACF_MAP_SETTINGS:{\\\"readonly\\\": true, \\\"schema\\\": \\\"melodia.acfu.map_settings_probe.v1\\\", \\\"world\\\": \\\"/Game/Melodia/CombatTrial/L_ZenForestACFTrial.L_ZenForestACFTrial\\\", \\\"world_settings\\\": {\\\"error\\\": \\\"WorldSettings not reachable through routes 1-2\\\"}, \\\"worldsettings_routes\\\": {\\\"actor_subsystem\\\": {\\\"actor_count\\\": 108, \\\"worldsettings_found\\\": 0}, \\\"world_property\\\": {\\\"error\\\": \\\"Exception: World: Failed to find property 'world_settings' for attribute 'world_settings' on 'World'\\\"}}}\\r\\n\"},{\"type\":\"info\",\"output\":\"MCP_RUN_PYTHON_EXIT=0\\r\\n\"}]}",
+        "type": "text"
+      }
+    ],
+    "isError": false
+  }
+}

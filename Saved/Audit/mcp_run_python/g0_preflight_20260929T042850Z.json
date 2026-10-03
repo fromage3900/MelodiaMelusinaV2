@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"ok\":false,\"success\":false,\"mode\":\"execute_statement\",\"result\":\"SyntaxError: multiple statements found while compiling a single statement (<string>, line 1)\\n  import traceback\\n\\n                  ^\",\"output\":[],\"message\":\"SyntaxError: multiple statements found while compiling a single statement (<string>, line 1)\\n  import traceback\\n\\n                  ^\"}",
+        "type": "text"
+      }
+    ],
+    "isError": false
+  }
+}

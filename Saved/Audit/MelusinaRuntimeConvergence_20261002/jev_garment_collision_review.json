@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.jev.garment_collision_review.v1",
+  "input_sha256": "4129adab7d194cd3b4cb891b12511b046de59acf67957cfb32172ad509e1a994",
+  "timestamp_utc": "2026-10-03T16:19:50.060251+00:00",
+  "text_only": true,
+  "paths_sent": false,
+  "images_sent": false,
+  "measurements_sent": false,
+  "requested_model": "jev-preview",
+  "status": "failed",
+  "error_type": "TypeSafeError"
+}

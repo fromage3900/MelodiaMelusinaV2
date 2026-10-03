@@ -1,0 +1,37 @@
+{
+ "A_Sir_Fly_Loop_v3.fbx": {
+  "max_tip_step_cm": 6.41,
+  "at_frame": 5,
+  "median_step_cm": 3.57,
+  "head_z_cm": 2.6,
+  "head_fwd_cm": 2.59
+ },
+ "A_Sir_Glide_v3.fbx": {
+  "max_tip_step_cm": 0.26,
+  "at_frame": 25,
+  "median_step_cm": 0.2,
+  "head_z_cm": 1.82,
+  "head_fwd_cm": 2.15
+ },
+ "A_Sir_Hover_Idle_v3.fbx": {
+  "max_tip_step_cm": 9.65,
+  "at_frame": 4,
+  "median_step_cm": 6.48,
+  "head_z_cm": 2.84,
+  "head_fwd_cm": 2.14
+ },
+ "A_Sir_Land_v3.fbx": {
+  "max_tip_step_cm": 9.57,
+  "at_frame": 12,
+  "median_step_cm": 2.97,
+  "head_z_cm": 6.26,
+  "head_fwd_cm": 7.36
+ },
+ "A_Sir_Takeoff_v3.fbx": {
+  "max_tip_step_cm": 10.05,
+  "at_frame": 25,
+  "median_step_cm": 3.53,
+  "head_z_cm": 8.97,
+  "head_fwd_cm": 7.98
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"ok\":true,\"success\":true,\"mode\":\"execute_statement\",\"result\":\"None\",\"output\":[{\"type\":\"info\",\"output\":\"MCP_RUN_PYTHON_FILE=C:/EnvironmentPortfolio/BS_GodFile/Tools/acf_trial_level_probe.py\\r\\n\"},{\"type\":\"warning\",\"output\":\"C:/EnvironmentPortfolio/BS_GodFile/Tools/acf_trial_level_probe.py:57: DeprecationWarning: EditorLevelLibrary: Function 'get_all_level_actors' on 'EditorLevelLibrary' is deprecated: The Editor Scripting Utilities Plugin is deprecated - Use the function in Editor Actor Utilities Subsystem\\n  actors = _safe(lambda: list(unreal.EditorLevelLibrary.get_all_level_actors()), [])\\n\"},{\"type\":\"info\",\"output\":\"ACF_TRIAL_LEVEL:{\\\"actor_total\\\": 108, \\\"gamemode_defaults\\\": {}, \\\"placed_actors\\\": {\\\"counts\\\": {\\\"DirectionalLight\\\": 1, \\\"PlayerStart\\\": 1, \\\"StaticMeshActor\\\": 51}, \\\"sample_labels\\\": {\\\"DirectionalLight\\\": [\\\"DirectionalLight [DirectionalLight]\\\"], \\\"PlayerStart\\\": [\\\"PlayerStart [PlayerStart]\\\"], \\\"StaticMeshActor\\\": [\\\"GenericTreeSkinny2 [StaticMeshActor]\\\", \\\"SM_surrealtower3 [StaticMeshActor]\\\", \\\"SM_surrealtower4 [StaticMeshActor]\\\", \\\"SM_surrealtower5 [StaticMeshActor]\\\", \\\"SM_surrealtower6 [StaticMeshActor]\\\", \\\"SM_surrealtower7 [StaticMeshActor]\\\", \\\"SM_surrealtower8 [StaticMeshActor]\\\", \\\"SM_SM_Torii [StaticMeshActor]\\\", \\\"BigBush [StaticMeshActor]\\\", \\\"SM_SM_BuildingBlock03 [StaticMeshActor]\\\", \\\"SM_SM_BuildingBlock4 [StaticMeshActor]\\\", \\\"SM_SM_TeaBridge002 [StaticMeshActor]\\\", \\\"SM_SM_BuildingBlock6 [StaticMeshActor]\\\", \\\"SM_SM_Torii2 [StaticMeshActor]\\\", \\\"SM_Greybox_BuildingBlock_C [StaticMeshActor]\\\"]}}, \\\"readonly\\\": true, \\\"schema\\\": \\\"melodia.acfu.trial_level_probe.v1\\\", \\\"world\\\": \\\"/Game/Melodia/CombatTrial/L_ZenForestACFTrial.L_ZenForestACFTrial\\\", \\\"world_settings\\\": {\\\"error\\\": \\\"no WorldSettings actor found in the level\\\"}}\\r\\n\"},{\"type\":\"info\",\"output\":\"MCP_RUN_PYTHON_EXIT=0\\r\\n\"}]}",
+        "type": "text"
+      }
+    ],
+    "isError": false
+  }
+}

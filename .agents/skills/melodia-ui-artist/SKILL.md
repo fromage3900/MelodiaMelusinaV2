@@ -55,6 +55,28 @@ GetKeybindColor/GetSpacing/GetRadius/GetTypography/GetEffect`.
 widgets are OFF-palette. A value within ~Δ0.05 of a token is a near-miss toward that token; prefer
 the real token over a near-match. Fonts should use the token type scale, not the default face.
 
+### The font composite trap — read before touching any font
+
+`F_Melodia_UI` is a **UFont composite**, not a FontFace. Slate **cannot render a FontFace** handed to
+`FontObject` (recorded in `Saved/Audit/_rebind_f_melodia_ui.py`). The working shape:
+import `.ttf` → FontFace asset → add it to `F_Melodia_UI.CompositeFont.DefaultTypeface.Fonts` under a
+**named slot** → widgets request the typeface *by name*.
+
+**A typeface name absent from the composite silently falls back to engine Roboto.** That is why a
+widget can read a plausible font in the graph and still render as default text: `Bold` / `Default` /
+`Regular` resolve to whatever slot the composite carries, or to Roboto. When the audit shows a mass of
+`Bold`/`Default`/`Regular` uses, suspect a missing or misnamed slot before assuming 227 hand-authored
+choices.
+
+Font sources live in `Imports/UI/Fonts/` (gitignored) and import to
+`Content/Melodia/UI/Fonts/F_<Family>.uasset`. Existing families: Syne, InstrumentSerif, TwinkleStar,
+NotoMusic, Inter. The D2 ramp (owner 2026-09-26) is **Kaisei Decol + Klee One**; sources staged and
+importer at `Content/Python/import_d2_fonts.py` (2026-10-03, not yet run).
+
+When splicing `export_text()` to add composite slots, **check paren balance offline first** — the
+Fonts array nests two levels deep and an off-by-one paren produces a broken composite that still
+imports without error. Validate against the live `export_text()` before writing.
+
 ## 2. Inventory before you style
 
 `python Tools/ui_style_audit.py` walks every WBP and clusters the visual properties actually
@@ -108,6 +130,48 @@ Compile order trap: `compile_blueprint` WIPES CDO overrides set before it. Order
 
 **mtime is not proof.** Re-read live state (`get_cdo_properties`, `get_level_actors`) after save.
 `.uasset` often goes read-only after checkout — `attrib -R <path>` before saving.
+
+### Two traps that make a correct edit look like a failure
+
+**1. `save_asset` can fail while the edit is live and correct.** `blueprint_query save_asset`
+returned `ERROR:Failed to save asset: /Game/…` and `ui_query` reported no success, yet
+`list_dirty_packages` showed the asset dirty and a re-read showed every new value in place. The
+save was being blocked by the source-control checkout prompt, not by the edit. The working path
+is a direct package save:
+
+```python
+pkg = unreal.load_package("/Game/Melodia/UI/WBP_ComicOrrery")
+unreal.EditorLoadingAndSavingUtils.save_packages([pkg], only_dirty=True)   # -> True
+```
+
+Confirm by mtime change AND md5 change on disk, then re-read. Do not re-run the whole pass
+because the save reported failure — re-read first, you may have nothing to redo.
+
+**2. A Monolith-driving script must NOT be launched with `run_python`.** `run_python` exec()s the
+file *inside* the editor; a script that then calls `mcp_client.monolith(...)` is HTTP-ing back into
+the same server from the same thread. Every step fails with
+`WinError 10061 connection refused` — **while the wrapper still prints `MCP_RUN_PYTHON_STATUS=OK`**,
+so it looks like it ran. Run Monolith-driving scripts as a plain OS process:
+
+```
+python Content/Python/pass_orrery_tokens.py        # correct
+python Tools/mcp_run_python.py --file <same>       # self-call, silently fails
+```
+
+Reserve `run_python` for code that only touches `unreal.*` and never calls back into Monolith.
+
+### `set_font` resolves composites, not FontFaces
+
+`ui_query set_font` takes a **UFont composite** path plus a **named typeface slot**:
+
+```
+font_family = "/Game/Melodia/UI/Fonts/F_Melodia_UI"   # UFont composite
+typeface    = "KaiseiDecol"                            # slot name
+```
+
+Passing a FontFace path (`F_KaiseiDecol`) fails `Font asset not found` — FontFace ≠ UFont. A slot
+name that is absent from the composite silently falls back to Roboto, which is how a widget reads
+a plausible font in the graph yet renders default.
 
 ## 5. Evidence / proof
 

@@ -1,0 +1,19 @@
+{
+  "state_name": "Airborne",
+  "machine_name": "MelusinaLocomotion",
+  "position": [
+    496,
+    -160
+  ],
+  "nodes": [
+    {
+      "class": "AnimGraphNode_StateResult",
+      "title": "Output Animation Pose"
+    },
+    {
+      "class": "AnimGraphNode_SequencePlayer",
+      "title": "A_Melusina_JumpLoop_Mocap_RootX\nSequence Player"
+    }
+  ],
+  "node_count": 2
+}

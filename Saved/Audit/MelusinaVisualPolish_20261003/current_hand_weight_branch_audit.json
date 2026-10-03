@@ -1,0 +1,74 @@
+{
+  "schema": "melodia.current_hand_weight_branch_audit.v1",
+  "body_hash": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "accessories_hash": "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+  "clip": "A_Spar_Mel_RMB_Loop",
+  "sample_index": 0,
+  "material_slots": [
+    [
+      0,
+      "MI_Melusina_Nikki_GLOVES_001"
+    ]
+  ],
+  "glove": {
+    "vertices": 2821,
+    "top_influence_weight_fraction": {
+      "forearm_twist_r": 0.0527,
+      "forearm_twist_l": 0.049,
+      "middle1_l": 0.0441,
+      "c_pinky1_base_r": 0.0433,
+      "thumb3_r": 0.042,
+      "thumb1_l": 0.0409,
+      "thumb3_l": 0.0385,
+      "middle1_r": 0.0378,
+      "c_pinky1_base_l": 0.0368,
+      "thumb1_r": 0.0364,
+      "index1_l": 0.0356,
+      "ring3_l": 0.0324,
+      "index1_r": 0.0316,
+      "ring3_r": 0.031,
+      "ring1_l": 0.0296,
+      "index3_l": 0.0292,
+      "middle3_l": 0.0268,
+      "middle3_r": 0.0267
+    },
+    "branch_fraction": {
+      "conventional_phalanx": 0.7484,
+      "parallel_c_base": 0.1173,
+      "other": 0.1343
+    },
+    "mean_abs_tracked_local_angle_deg_weighted": 39.597,
+    "untracked_finger_weight_top": []
+  },
+  "body_finger": {
+    "vertices": 3046,
+    "top_influence_weight_fraction": {
+      "middle1_l": 0.0406,
+      "middle1_r": 0.0384,
+      "c_pinky1_base_r": 0.0363,
+      "middle3_l": 0.0358,
+      "middle3_r": 0.0358,
+      "thumb3_l": 0.034,
+      "thumb3_r": 0.0338,
+      "ring1_l": 0.0325,
+      "ring1_r": 0.0323,
+      "index1_l": 0.0312,
+      "c_pinky1_base_l": 0.0302,
+      "index1_r": 0.0292,
+      "thumb2_r": 0.0287,
+      "index3_l": 0.0284,
+      "index3_r": 0.0284,
+      "thumb2_l": 0.0258,
+      "ring3_l": 0.0257,
+      "ring3_r": 0.0257
+    },
+    "branch_fraction": {
+      "conventional_phalanx": 0.7548,
+      "parallel_c_base": 0.1637,
+      "other": 0.0815
+    },
+    "mean_abs_tracked_local_angle_deg_weighted": 40.31,
+    "untracked_finger_weight_top": []
+  },
+  "note": "Weights and source geometry were not modified; angle statistics use measured localAngleVsRef but do not independently validate posed deformation."
+}

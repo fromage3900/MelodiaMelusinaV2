@@ -1,0 +1,19 @@
+{
+  "state_name": "Locomotion",
+  "machine_name": "MelusinaLocomotion",
+  "position": [
+    272,
+    0
+  ],
+  "nodes": [
+    {
+      "class": "AnimGraphNode_StateResult",
+      "title": "Output Animation Pose"
+    },
+    {
+      "class": "AnimGraphNode_BlendSpacePlayer",
+      "title": "BS_Melusina_Locomotion\nBlendspace Player"
+    }
+  ],
+  "node_count": 2
+}

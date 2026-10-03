@@ -1,0 +1,16 @@
+{
+  "pawn": "BP_MelusinaJRPGCharacter_C_1",
+  "pawnPosition": "<Struct 'Vector' (0x0000024893DC2F40) {x: 1305.297969, y: 1861.265435, z: -520.126934}>",
+  "camera": "CineCameraActor_UAID_7C5758FA1CAC850403_1528766467",
+  "viewTarget": "CineCameraActor_UAID_7C5758FA1CAC850403_1528766467",
+  "cameraPosition": "<Struct 'Vector' (0x0000024893DC2F40) {x: 1555.297969, y: 1861.265435, z: -475.126934}>",
+  "cameraRotation": "<Struct 'Rotator' (0x0000024893DC2F40) {pitch: -3.433630, yaw: 180.000000, roll: 0.000000}>",
+  "renderCameraPosition": "<Struct 'Vector' (0x0000024893DC2F40) {x: 1865.297969, y: 1861.265435, z: -485.126934}>",
+  "renderCameraRotation": "<Struct 'Rotator' (0x0000024893DC2F40) {pitch: -2.556150, yaw: 180.000000, roll: 0.000000}>",
+  "ppv": [
+    {
+      "name": "PostProcessVolume_UAID_7C5758FA1CAC1B0103_2032851643",
+      "enabled": false
+    }
+  ]
+}

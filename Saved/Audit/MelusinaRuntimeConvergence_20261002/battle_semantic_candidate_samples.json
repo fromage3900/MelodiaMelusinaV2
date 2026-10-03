@@ -1,0 +1,192 @@
+[
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Idle_Talk.AM_Melusina_Idle_Talk",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": null
+      },
+      {
+        "asset": null
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Interact.AM_Melusina_Interact",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Interact.A_Q_Melusina_Interact",
+        "length": 2.0,
+        "samples": [
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: 0.734208, y: 0.085761, z: -0.078137, w: -0.668938}, translation: {x: -46.575930, y: 757.264544, z: 7678.215838}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.364625, y: 0.635610, z: 0.362005, w: -0.576195}, translation: {x: -19.823866, y: 775.088099, z: 7595.258995}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.288115, y: -0.694356, z: -0.425931, w: -0.503430}, translation: {x: -82.390471, y: 766.504346, z: 7596.997092}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: 0.726254, y: 0.084832, z: -0.079145, w: -0.677565}, translation: {x: -0.026125, y: 770.965599, z: 7622.251483}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.063329, y: 0.966539, z: -0.144367, w: -0.202359}, translation: {x: 35.614399, y: 737.029562, z: 7582.369799}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.286669, y: -0.685235, z: -0.429231, w: -0.513843}, translation: {x: -34.717792, y: 781.403755, z: 7540.453482}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: 0.731616, y: 0.085458, z: -0.078468, w: -0.671772}, translation: {x: 3.951891, y: 761.755812, z: 7678.977066}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.153101, y: 0.925357, z: 0.134326, w: -0.319735}, translation: {x: 37.455725, y: 738.555957, z: 7609.864077}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.270304, y: -0.702998, z: -0.407393, w: -0.516489}, translation: {x: -31.005667, y: 767.396561, z: 7596.758840}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: 0.731902, y: 0.085491, z: -0.078432, w: -0.671460}, translation: {x: -45.616541, y: 761.259966, z: 7678.890155}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.358429, y: 0.644340, z: 0.362016, w: -0.570350}, translation: {x: -19.036721, y: 778.442482, z: 7595.646222}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CDFE0) {rotation: {x: -0.289172, y: -0.693818, z: -0.427025, w: -0.502639}, translation: {x: -81.511700, y: 770.841130, z: 7597.730806}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll.AM_Melusina_Roll",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Roll.A_Q_Melusina_Roll",
+        "length": 1.4666666984558105,
+        "samples": [
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: 0.620469, y: 0.052983, z: -0.062105, w: -0.779971}, translation: {x: 1.468625, y: 18.319758, z: 50.953552}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.488090, y: 0.589738, z: 0.426691, w: -0.481573}, translation: {x: 32.140648, y: 65.639365, z: -14.403052}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.312603, y: -0.725128, z: -0.446289, w: -0.421063}, translation: {x: -44.026379, y: 48.243140, z: -10.681504}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: 0.524440, y: -0.074692, z: 0.005798, w: 0.848145}, translation: {x: 1.263183, y: -5.805863, z: 68.128265}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.067247, y: -0.991752, z: -0.076151, w: 0.078147}, translation: {x: 27.855372, y: -2.257335, z: 86.974166}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: 0.469157, y: 0.000685, z: 0.833865, w: 0.290792}, translation: {x: -27.387991, y: 22.215018, z: 104.587053}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: 0.725600, y: 0.084712, z: -0.075686, w: -0.678676}, translation: {x: -0.517799, y: 5.937863, z: 55.993349}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.388868, y: 0.726019, z: 0.149254, w: -0.547175}, translation: {x: 35.973537, y: 18.175247, z: -13.104284}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.320464, y: -0.694620, z: -0.520222, w: -0.379705}, translation: {x: -46.588343, y: 31.635591, z: -8.170963}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: 0.740532, y: 0.086208, z: -0.077065, w: -0.661998}, translation: {x: -0.268282, y: 8.525638, z: 87.397149}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.483864, y: 0.611084, z: 0.291104, w: -0.554716}, translation: {x: 31.155924, y: 24.482181, z: 1.991355}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CEA90) {rotation: {x: -0.226752, y: -0.758902, z: -0.422572, w: -0.440551}, translation: {x: -39.745311, y: 8.378777, z: 6.741702}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Hit_Chest.AM_Melusina_Hit_Chest",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": null
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Chest.A_Q_Melusina_Hit_Chest",
+        "length": 0.3333333432674408,
+        "samples": [
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.791718, y: 0.078340, z: -0.085576, w: -0.599769}, translation: {x: -0.507325, y: 5.930868, z: 85.649835}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.369440, y: 0.698187, z: 0.109497, w: -0.603373}, translation: {x: 39.782381, y: -8.053784, z: 4.658030}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.123629, y: -0.738142, z: -0.272874, w: -0.604485}, translation: {x: -26.435414, y: -19.917537, z: 2.767409}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.777587, y: 0.080066, z: -0.083490, w: -0.618044}, translation: {x: -0.513062, y: 6.630561, z: 86.159646}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.354172, y: 0.716419, z: 0.069853, w: -0.597014}, translation: {x: 40.393352, y: -4.469401, z: 7.953839}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.089305, y: -0.730442, z: -0.252806, w: -0.628147}, translation: {x: -25.978445, y: -15.983965, z: 6.779794}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.750409, y: 0.083574, z: -0.079963, w: -0.650774}, translation: {x: -0.524493, y: 7.917368, z: 87.136613}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.436602, y: 0.661134, z: 0.209145, w: -0.573183}, translation: {x: 33.422798, y: 17.261696, z: 4.375184}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.208996, y: -0.715132, z: -0.357533, w: -0.563096}, translation: {x: -32.929877, y: 6.374542, z: 6.498753}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.735058, y: 0.085644, z: -0.078228, w: -0.668008}, translation: {x: -0.531673, y: 8.613200, z: 87.687044}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.485136, y: 0.611599, z: 0.297370, w: -0.549691}, translation: {x: 30.176325, y: 28.349525, z: 3.863759}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.283501, y: -0.695785, z: -0.422057, w: -0.507325}, translation: {x: -36.139515, y: 17.244458, z: 6.465503}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Hit_Head.AM_Melusina_Hit_Head",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": null
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head",
+        "length": 0.4333333373069763,
+        "samples": [
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.734208, y: 0.085761, z: -0.078137, w: -0.668938}, translation: {x: -0.532093, y: 8.651131, z: 87.717515}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.458367, y: 0.647223, z: 0.241447, w: -0.559201}, translation: {x: 34.671144, y: 19.641097, z: 3.794955}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.236374, y: -0.704452, z: -0.385622, w: -0.546964}, translation: {x: -31.724564, y: 8.666875, z: 3.256297}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.734208, y: 0.085761, z: -0.078137, w: -0.668938}, translation: {x: -1.093046, y: 11.019647, z: 87.490587}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.454588, y: 0.651417, z: 0.233288, w: -0.560876}, translation: {x: 35.224376, y: 19.685677, z: 4.093425}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.229405, y: -0.705651, z: -0.380415, w: -0.552009}, translation: {x: -31.250353, y: 8.686211, z: 3.446642}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.734208, y: 0.085761, z: -0.078137, w: -0.668938}, translation: {x: -0.776655, y: 9.683748, z: 87.618578}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.486137, y: 0.610452, z: 0.297714, w: -0.549896}, translation: {x: 30.946550, y: 27.483665, z: 3.273107}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.283757, y: -0.695104, z: -0.423128, w: -0.507223}, translation: {x: -35.360815, y: 16.447674, z: 5.125429}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: 0.734208, y: 0.085761, z: -0.078137, w: -0.668938}, translation: {x: -0.542840, y: 8.696508, z: 87.713167}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.488033, y: 0.608062, z: 0.302856, w: -0.548054}, translation: {x: 30.006404, y: 28.963491, z: 3.834831}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF300) {rotation: {x: -0.288108, y: -0.694316, z: -0.425986, w: -0.503443}, translation: {x: -36.308622, y: 17.845263, z: 6.428328}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_PickUp.AM_Melusina_PickUp",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": null
+      }
+    ]
+  },
+  {
+    "montage": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Death.AM_Melusina_Death",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "clips": [
+      {
+        "asset": null
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01",
+        "length": 2.4000000953674316,
+        "samples": [
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: 0.735614, y: 0.085925, z: -0.077957, w: -0.667392}, translation: {x: -0.292172, y: 8.623193, z: 87.712945}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.476250, y: 0.602912, z: 0.324055, w: -0.551970}, translation: {x: 28.838890, y: 26.153461, z: 1.768373}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.207382, y: -0.711830, z: -0.465617, w: -0.483210}, translation: {x: -33.090011, y: 12.897530, z: 4.864635}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: 0.858828, y: 0.144855, z: -0.119089, w: -0.476707}, translation: {x: -1.948297, y: 40.119425, z: 50.183174}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.218008, y: 0.721293, z: 0.034983, w: -0.656495}, translation: {x: 31.776141, y: 21.726037, z: -14.119202}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: 0.271200, y: -0.882205, z: -0.075510, w: -0.377443}, translation: {x: -6.667302, y: -9.726472, z: -3.120991}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.992703, y: -0.018390, z: 0.116767, w: -0.023823}, translation: {x: -0.940930, y: 54.618566, z: 6.256760}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.004108, y: -0.060510, z: 0.997444, w: 0.037777}, translation: {x: 29.532657, y: 58.599721, z: -32.651717}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.194856, y: -0.045391, z: -0.942430, w: 0.267950}, translation: {x: -52.747889, y: 71.168992, z: 12.024082}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          },
+          {
+            "root_x": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.991860, y: -0.018292, z: 0.123730, w: -0.023874}, translation: {x: -0.996064, y: 54.616087, z: 6.266835}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+            "hand_l": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: 0.056265, y: 0.080213, z: 0.994607, w: -0.034003}, translation: {x: 28.203670, y: 57.990801, z: -33.516973}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>",
+            "hand_r": "<Struct 'Transform' (0x000002495E5CF1E0) {rotation: {x: -0.213833, y: -0.037492, z: -0.940829, w: 0.260211}, translation: {x: -51.698162, y: 71.620654, z: 13.571256}, scale3d: {x: 1.000000, y: 1.000000, z: 0.999995}}>"
+          }
+        ]
+      }
+    ]
+  }
+]

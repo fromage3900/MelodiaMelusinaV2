@@ -1,0 +1,71 @@
+{
+ "schema": "melodia.sir_anim_authoring.v3.3",
+ "status": "PASS_SIR_V3_AUTHORED",
+ "clips": {
+  "Fly_Loop_v3": {
+   "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\A_Sir_Fly_Loop_v3.fbx",
+   "bytes": 744572,
+   "frames": 72,
+   "loop": true
+  },
+  "Hover_Idle_v3": {
+   "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\A_Sir_Hover_Idle_v3.fbx",
+   "bytes": 743020,
+   "frames": 48,
+   "loop": true
+  },
+  "Glide_v3": {
+   "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\A_Sir_Glide_v3.fbx",
+   "bytes": 743228,
+   "frames": 48,
+   "loop": true
+  },
+  "Takeoff_v3": {
+   "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\A_Sir_Takeoff_v3.fbx",
+   "bytes": 742860,
+   "frames": 40,
+   "loop": false
+  },
+  "Land_v3": {
+   "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\A_Sir_Land_v3.fbx",
+   "bytes": 742444,
+   "frames": 40,
+   "loop": false
+  }
+ },
+ "axes": {
+  "arm.l": {
+   "axis": "X",
+   "tip_dz_mm_per_20deg": -37.5
+  },
+  "forearm.l": {
+   "axis": "X",
+   "tip_dz_mm_per_20deg": -17.6
+  },
+  "arm.r": {
+   "axis": "X",
+   "tip_dz_mm_per_20deg": -37.5
+  },
+  "forearm.r": {
+   "axis": "X",
+   "tip_dz_mm_per_20deg": -17.6
+  },
+  "leg_fk.l": {
+   "axis": "Z",
+   "tip_dz_mm_per_20deg": 11.1
+  },
+  "leg_fk.r": {
+   "axis": "Z",
+   "tip_dz_mm_per_20deg": -3.9
+  },
+  "c_pos_loc": {
+   "axis": "Z",
+   "dz_mm_per_20mm": 2.1
+  },
+  "c_pos_pitch": {
+   "axis": "X",
+   "head_fwd_mm_per_10deg": -43.4,
+   "arm_scale": 0.10675930976867676
+  }
+ }
+}

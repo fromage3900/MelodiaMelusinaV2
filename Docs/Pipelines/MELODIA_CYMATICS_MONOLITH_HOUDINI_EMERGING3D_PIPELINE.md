@@ -138,7 +138,7 @@ Monolith embeds a native C++ HTTP server listening on port `9316` that translate
 
 > **"Houdini authors the impossible evidence; Unreal decides when the player experiences it."**
 
-All Houdini graphs must compile into deterministic, versioned `.uasset` static meshes, skeletal meshes, texture sets, or Chaos geometry collections. Live HDA cooking in shipping builds is strictly prohibited.
+All Houdini graphs must compile into deterministic, versioned `.uasset` static meshes, skeletal meshes, texture sets, or Chaos geometry collections. Live HDA cooking in shipping builds is strictly prohibited; live Houdini Engine cooking in the editor is canonical authoring (owner direction 2026-10-03, `Docs/Architecture/AUDIO_REACTIVE_CANON.md` §7).
 
 ---
 

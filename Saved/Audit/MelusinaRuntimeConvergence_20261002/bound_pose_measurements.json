@@ -1,0 +1,643 @@
+{
+  "evidence": "EDITOR_SEQUENCE_POSE_EVALUATION_ONLY",
+  "gate": [
+    {
+      "clip": "A_Spar_Mel_RMB_Drawback",
+      "root_z_dev": 0.6700218065477372,
+      "eye_deg": 0.0,
+      "hand_roll": 99.17614588200996,
+      "twist_moved": 5.00193868901988e-06,
+      "fail": []
+    },
+    {
+      "clip": "A_Spar_Mel_RMB_Loop",
+      "root_z_dev": 0.43949939095377033,
+      "eye_deg": 0.0,
+      "hand_roll": 91.52209994818145,
+      "twist_moved": 5.00193868901988e-06,
+      "fail": []
+    },
+    {
+      "clip": "A_Spar_Mel_RMB_Fire",
+      "root_z_dev": 3.30792297420048,
+      "eye_deg": 0.0,
+      "hand_roll": 102.6680754505316,
+      "twist_moved": 5.00193868901988e-06,
+      "fail": []
+    }
+  ],
+  "samples": [
+    {
+      "sequence": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback",
+      "control_track_count": 202,
+      "bones": {
+        "c_shoulder_l": {
+          "world_location": [
+            7.209243147751207,
+            -1.8404303906261203,
+            125.82584268474761
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_shoulder_r": {
+          "world_location": [
+            6.479717284011114,
+            -5.2506500075780105,
+            125.75769032323869
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_arm_ik_l": {
+          "world_location": [
+            10.864326333577452,
+            13.456377451373843,
+            124.6084808310612
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_arm_ik_r": {
+          "world_location": [
+            3.5690767227225395,
+            -20.64579672600823,
+            123.92696309774936
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "shoulder_l": {
+          "world_location": [
+            7.209240133510492,
+            -1.8404309411039064,
+            125.82583538243111
+          ],
+          "local_angle_vs_ref_deg": 44.36254987201651,
+          "is_track": true
+        },
+        "shoulder_r": {
+          "world_location": [
+            6.479713628220596,
+            -5.250650179264132,
+            125.75768313652884
+          ],
+          "local_angle_vs_ref_deg": 30.827300532613894,
+          "is_track": true
+        },
+        "arm_stretch_l": {
+          "world_location": [
+            -0.05807253173875093,
+            26.35275048502864,
+            144.86861492041106
+          ],
+          "local_angle_vs_ref_deg": 47.85991964270526,
+          "is_track": true
+        },
+        "arm_stretch_r": {
+          "world_location": [
+            -3.322208315807467,
+            -35.09466401921404,
+            140.7094730747403
+          ],
+          "local_angle_vs_ref_deg": 55.38123247675035,
+          "is_track": true
+        },
+        "forearm_stretch_l": {
+          "world_location": [
+            -1.5436963811332773,
+            35.714946098531925,
+            145.75093280677768
+          ],
+          "local_angle_vs_ref_deg": 7.1308764952938,
+          "is_track": true
+        },
+        "forearm_stretch_r": {
+          "world_location": [
+            -10.376386088974453,
+            -40.84203070011881,
+            143.5099185482779
+          ],
+          "local_angle_vs_ref_deg": 64.71346819175855,
+          "is_track": true
+        },
+        "hand_l": {
+          "world_location": [
+            -11.243429266008727,
+            62.099638112540234,
+            151.0949752025002
+          ],
+          "local_angle_vs_ref_deg": 62.09240325049337,
+          "is_track": true
+        },
+        "hand_r": {
+          "world_location": [
+            -32.33273023589183,
+            -25.25977972102833,
+            153.2005374718442
+          ],
+          "local_angle_vs_ref_deg": 109.8021076431757,
+          "is_track": true
+        },
+        "index1_l": {
+          "world_location": [
+            -10.586951088915587,
+            72.87490459037888,
+            156.80433379523487
+          ],
+          "local_angle_vs_ref_deg": 27.912396684927003,
+          "is_track": true
+        },
+        "index2_l": {
+          "world_location": [
+            -12.688070933854348,
+            76.35929830568637,
+            156.20363109792
+          ],
+          "local_angle_vs_ref_deg": 85.27900471470244,
+          "is_track": true
+        },
+        "index3_l": {
+          "world_location": [
+            -15.091203385557192,
+            75.20626396845994,
+            155.0920465470832
+          ],
+          "local_angle_vs_ref_deg": 36.444479632457295,
+          "is_track": true
+        },
+        "thumb1_l": {
+          "world_location": [
+            -12.829089032088524,
+            65.64788477282839,
+            155.62772088347478
+          ],
+          "local_angle_vs_ref_deg": 13.729018882817815,
+          "is_track": true
+        },
+        "thumb2_l": {
+          "world_location": [
+            -14.741144124784382,
+            68.45002950140761,
+            158.04120428271844
+          ],
+          "local_angle_vs_ref_deg": 30.490924475715303,
+          "is_track": true
+        },
+        "thumb3_l": {
+          "world_location": [
+            -16.47742121255416,
+            70.97817340731586,
+            158.85293739602605
+          ],
+          "local_angle_vs_ref_deg": 60.599725038181276,
+          "is_track": true
+        },
+        "arm_twist_l": {
+          "world_location": [
+            2.9131777487520334,
+            7.628371911305042,
+            143.10399329540192
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "arm_twist_r": {
+          "world_location": [
+            10.78613154298306,
+            -23.599925651247677,
+            135.1085399176549
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "forearm_twist_l": {
+          "world_location": [
+            -8.01018187044003,
+            53.304741208499614,
+            149.31363803110165
+          ],
+          "local_angle_vs_ref_deg": 1.7075472925031877e-06,
+          "is_track": true
+        },
+        "forearm_twist_r": {
+          "world_location": [
+            -25.013948611929454,
+            -30.453864687263497,
+            149.97033944445536
+          ],
+          "local_angle_vs_ref_deg": 2.4148365394514667e-06,
+          "is_track": true
+        }
+      }
+    },
+    {
+      "sequence": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop",
+      "control_track_count": 202,
+      "bones": {
+        "c_shoulder_l": {
+          "world_location": [
+            8.667457412919061,
+            -2.113998477566831,
+            125.80971355766698
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_shoulder_r": {
+          "world_location": [
+            7.939404572723644,
+            -5.5209351546894645,
+            125.63891512076411
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_arm_ik_l": {
+          "world_location": [
+            12.272394027126827,
+            13.223905514566527,
+            125.04351105908323
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_arm_ik_r": {
+          "world_location": [
+            4.991874795484218,
+            -20.84543947409594,
+            123.33553310513189
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "shoulder_l": {
+          "world_location": [
+            8.667453156923592,
+            -2.1139997490957434,
+            125.80970837294731
+          ],
+          "local_angle_vs_ref_deg": 44.51043739226338,
+          "is_track": true
+        },
+        "shoulder_r": {
+          "world_location": [
+            7.9393998774442185,
+            -5.520935121604751,
+            125.63891013018116
+          ],
+          "local_angle_vs_ref_deg": 30.609166886894513,
+          "is_track": true
+        },
+        "arm_stretch_l": {
+          "world_location": [
+            2.3808747147027205,
+            25.18598319844931,
+            146.43704426108698
+          ],
+          "local_angle_vs_ref_deg": 47.91064002825935,
+          "is_track": true
+        },
+        "arm_stretch_r": {
+          "world_location": [
+            1.089122667162946,
+            -36.45748172406977,
+            140.00224295847968
+          ],
+          "local_angle_vs_ref_deg": 48.49118384287873,
+          "is_track": true
+        },
+        "forearm_stretch_l": {
+          "world_location": [
+            0.9083176666035635,
+            34.5379979039804,
+            147.4408520866406
+          ],
+          "local_angle_vs_ref_deg": 7.1308764952938,
+          "is_track": true
+        },
+        "forearm_stretch_r": {
+          "world_location": [
+            -3.1682870222794097,
+            -44.67033268865976,
+            142.2517584595902
+          ],
+          "local_angle_vs_ref_deg": 67.04680072118582,
+          "is_track": true
+        },
+        "hand_l": {
+          "world_location": [
+            -8.789861394936102,
+            60.86646689146333,
+            153.05802428489048
+          ],
+          "local_angle_vs_ref_deg": 64.02039592864345,
+          "is_track": true
+        },
+        "hand_r": {
+          "world_location": [
+            -27.70015913066846,
+            -38.29583330537529,
+            155.5313972581901
+          ],
+          "local_angle_vs_ref_deg": 118.09280918191227,
+          "is_track": true
+        },
+        "index1_l": {
+          "world_location": [
+            -8.147661060647255,
+            71.66073494002255,
+            158.73301110165139
+          ],
+          "local_angle_vs_ref_deg": 27.905804670549113,
+          "is_track": true
+        },
+        "index2_l": {
+          "world_location": [
+            -10.314803301436916,
+            75.11271941713325,
+            158.18181767378698
+          ],
+          "local_angle_vs_ref_deg": 85.27900471470244,
+          "is_track": true
+        },
+        "index3_l": {
+          "world_location": [
+            -12.728014176434339,
+            73.92253109922973,
+            157.13300041584554
+          ],
+          "local_angle_vs_ref_deg": 36.44448068121435,
+          "is_track": true
+        },
+        "thumb1_l": {
+          "world_location": [
+            -10.311954702922845,
+            64.39930491746865,
+            157.62447487613136
+          ],
+          "local_angle_vs_ref_deg": 13.738411611509456,
+          "is_track": true
+        },
+        "thumb2_l": {
+          "world_location": [
+            -12.203475702266092,
+            67.17657262076051,
+            160.08248953283507
+          ],
+          "local_angle_vs_ref_deg": 30.49091919771384,
+          "is_track": true
+        },
+        "thumb3_l": {
+          "world_location": [
+            -13.955894087835777,
+            69.67999746789638,
+            160.93511736395166
+          ],
+          "local_angle_vs_ref_deg": 60.599727273322024,
+          "is_track": true
+        },
+        "arm_twist_l": {
+          "world_location": [
+            5.325991542976588,
+            6.481964347150615,
+            144.42944277552365
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "arm_twist_r": {
+          "world_location": [
+            9.603921728296694,
+            -20.031773655710975,
+            135.50317170035754
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "forearm_twist_l": {
+          "world_location": [
+            -5.557132068288567,
+            52.09031083393003,
+            151.18564388916047
+          ],
+          "local_angle_vs_ref_deg": 1.7075472925031877e-06,
+          "is_track": true
+        },
+        "forearm_twist_r": {
+          "world_location": [
+            -19.52286743588722,
+            -40.42066841162952,
+            151.10485925411126
+          ],
+          "local_angle_vs_ref_deg": 2.4148365394514667e-06,
+          "is_track": true
+        }
+      }
+    },
+    {
+      "sequence": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire",
+      "control_track_count": 202,
+      "bones": {
+        "c_shoulder_l": {
+          "world_location": [
+            7.6294684305637634,
+            18.406349985531307,
+            125.31545717887437
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_shoulder_r": {
+          "world_location": [
+            4.989109232195541,
+            16.199661060505424,
+            125.8859638465382
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_arm_ik_l": {
+          "world_location": [
+            19.862542927562856,
+            27.573156398035806,
+            121.42245298163431
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "c_arm_ik_r": {
+          "world_location": [
+            -6.5410289042465815,
+            5.506280835592708,
+            127.12752216299684
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "shoulder_l": {
+          "world_location": [
+            7.629464583476526,
+            18.406349370569664,
+            125.31545157232968
+          ],
+          "local_angle_vs_ref_deg": 34.10030669806023,
+          "is_track": true
+        },
+        "shoulder_r": {
+          "world_location": [
+            4.989105820622962,
+            16.199661731706897,
+            125.88595794202104
+          ],
+          "local_angle_vs_ref_deg": 40.37858595559326,
+          "is_track": true
+        },
+        "arm_stretch_l": {
+          "world_location": [
+            18.54441574018515,
+            51.120776459880645,
+            120.74082319907309
+          ],
+          "local_angle_vs_ref_deg": 55.07094204911003,
+          "is_track": true
+        },
+        "arm_stretch_r": {
+          "world_location": [
+            -29.028761079691243,
+            15.062276955559625,
+            133.0826676696788
+          ],
+          "local_angle_vs_ref_deg": 134.2016672660846,
+          "is_track": true
+        },
+        "forearm_stretch_l": {
+          "world_location": [
+            16.637856312397346,
+            60.223858744018926,
+            118.70731452204703
+          ],
+          "local_angle_vs_ref_deg": 7.1308764952938,
+          "is_track": true
+        },
+        "forearm_stretch_r": {
+          "world_location": [
+            -29.048960231328522,
+            22.677913535182604,
+            127.36966060671777
+          ],
+          "local_angle_vs_ref_deg": 29.61186818158194,
+          "is_track": true
+        },
+        "hand_l": {
+          "world_location": [
+            6.127211718076225,
+            86.73422560439452,
+            116.35734027123112
+          ],
+          "local_angle_vs_ref_deg": 66.83462076025525,
+          "is_track": true
+        },
+        "hand_r": {
+          "world_location": [
+            -30.28040563382967,
+            51.25070084755106,
+            126.43415776121276
+          ],
+          "local_angle_vs_ref_deg": 36.16841488138764,
+          "is_track": true
+        },
+        "index1_l": {
+          "world_location": [
+            6.964856828670302,
+            98.91466839867493,
+            116.62055757286159
+          ],
+          "local_angle_vs_ref_deg": 28.10572994846577,
+          "is_track": true
+        },
+        "index2_l": {
+          "world_location": [
+            4.490976213934493,
+            101.7964640713225,
+            115.042050391347
+          ],
+          "local_angle_vs_ref_deg": 85.27900471470244,
+          "is_track": true
+        },
+        "index3_l": {
+          "world_location": [
+            2.0290831006158223,
+            100.28697430986136,
+            115.06804189907027
+          ],
+          "local_angle_vs_ref_deg": 36.44448068121435,
+          "is_track": true
+        },
+        "thumb1_l": {
+          "world_location": [
+            5.154204288488411,
+            91.91878659382289,
+            119.15444009914505
+          ],
+          "local_angle_vs_ref_deg": 13.554542492264414,
+          "is_track": true
+        },
+        "thumb2_l": {
+          "world_location": [
+            3.5046161596885295,
+            95.50562642688712,
+            120.47593268578377
+          ],
+          "local_angle_vs_ref_deg": 30.49091919771384,
+          "is_track": true
+        },
+        "thumb3_l": {
+          "world_location": [
+            1.7426584162818168,
+            98.14391405536712,
+            120.47106631207785
+          ],
+          "local_angle_vs_ref_deg": 60.599727273322024,
+          "is_track": true
+        },
+        "arm_twist_l": {
+          "world_location": [
+            22.35753844637899,
+            32.91462672393428,
+            124.80784976237032
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "arm_twist_r": {
+          "world_location": [
+            -28.988317732585948,
+            -0.16899876606549213,
+            144.50868775593815
+          ],
+          "local_angle_vs_ref_deg": 0.0,
+          "is_track": true
+        },
+        "forearm_twist_l": {
+          "world_location": [
+            9.630764153309896,
+            77.8974405105184,
+            117.14067412730839
+          ],
+          "local_angle_vs_ref_deg": 1.7075472925031877e-06,
+          "is_track": true
+        },
+        "forearm_twist_r": {
+          "world_location": [
+            -29.869931710226563,
+            41.726440533328486,
+            126.74598947356729
+          ],
+          "local_angle_vs_ref_deg": 2.4148365394514667e-06,
+          "is_track": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+﻿{
+  "schema": "melodia.visual_polish.decision_receipt.v1",
+  "date": "2026-10-03",
+  "visual_scope": "Offline review and staging only; root retains all Unreal/Monolith/editor integration and runtime proof.",
+  "inputs": [
+    {
+      "kind": "runtime_capture",
+      "id": "fresh_canonical_hold_close.png",
+      "finding": "Bow-side arm crosses the face beneath the hair mass; eye/face read collapses; glove fingers merge into a pale stacked shape."
+    },
+    {
+      "kind": "runtime_capture",
+      "id": "fresh_canonical_idle_full.png",
+      "finding": "Face remains swallowed by the front hair silhouette; floor and skin highlights clip; visible rig/debug rods compete with the character."
+    },
+    {
+      "kind": "offline_candidate",
+      "id": "melusina_neutral_form_read.png",
+      "finding": "The canonical body export can be staged as a readable 464-bone base-form T-pose, but contains no hair or wardrobe meshes and no resolvable Unreal material textures."
+    }
+  ],
+  "priority_order": [
+    {
+      "rank": 1,
+      "decision": "Restore the face window and clean outer silhouette in the existing bow hold.",
+      "visual_target": "Keep both eyes and mouth readable; prevent the raised forearm, hair fringe, and bow from collapsing into one contour while preserving the measured grip and shoulder line.",
+      "owner_lane": "Root animation/pose integration; no hair mesh rewrite or retarget promotion from this review."
+    },
+    {
+      "rank": 2,
+      "decision": "Make the bow-hand gesture legible at close range.",
+      "visual_target": "Separate finger silhouettes and show intentional string/bow contact without stacked glove masses or sleeve intersections.",
+      "owner_lane": "Root pose/contact diagnostics; keep accessory fit and weight edits with the existing garment collision owner."
+    },
+    {
+      "rank": 3,
+      "decision": "Re-establish costume edge hierarchy after pose/contact converges.",
+      "visual_target": "Preserve the designed sleeve-to-glove break and fabric volume; use authored material response and seam/trim contrast rather than generic saturation or added ornament.",
+      "owner_lane": "Future lookdev pass after existing runtime fit is accepted."
+    },
+    {
+      "rank": 4,
+      "decision": "Capture a clean inspection view, then retest normal gameplay presentation.",
+      "visual_target": "Hide inspection bones/rods for beauty capture, control clipped floor/skin highlights, and keep a separate ungraded inspection capture for pose judgment.",
+      "owner_lane": "Root only after the closed-editor build/live window; presentation changes cannot substitute for pose/contact repair."
+    }
+  ],
+  "tool_inventory": {
+    "blender": "5.2.1 headless available",
+    "houdini": "22.0 Hython executable present; licensed cook was not established in this bounded pass",
+    "used_addon": "Installed Melodia Stage camera and three-point-light helpers used in the neutral form-read scene",
+    "relevant_existing_addons": [
+      "Melodia Pose Audit",
+      "ctools_braids",
+      "SwingyBonePhysics"
+    ],
+    "excluded_addon": {
+      "name": "Jiggle_Maker",
+      "reason": "Inspected package is built around unrelated body proxy meshes; not suitable for this hero lane."
+    },
+    "physics_boundary": "Do not add or promote a second hair/cloth solver; any secondary-motion add-on trial must stay an isolated offline comparison against existing UE KawaiiPhysics authority."
+  },
+  "jev": {
+    "request": "Generic bounded visual-priority choices, text-only",
+    "payload_included_images_paths_or_measurements": false,
+    "result": "TypeSafeError",
+    "visual_review_claim": false
+  },
+  "candidate_status": "DIAGNOSTIC_ONLY",
+  "promotion_gate": "A complete hair/wardrobe source and a coherent existing bow pose are required; inspect in the actual canonical Unreal path and accept only after root-owned PIE review.",
+  "canonical_assets_modified": false,
+  "garment_collision_artifacts_modified": false
+}

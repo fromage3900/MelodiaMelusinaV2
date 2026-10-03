@@ -104,14 +104,8 @@ masters:
     path: /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal
     toon_profile: TP_Default
     mpc_references:
-      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, Melusina_Lavender, Melusina_RoseGold, Melusina_SoftWhite, BeatPulse, BeatPhase, Bass, Mid, Treble, GlobalReactivity, RhythmPulse]
+      - MPC_Melodia_Palette: [GlobalSparkleIntensity, GlobalEmissiveBoost, Melusina_Lavender, Melusina_RoseGold, Melusina_SoftWhite]
     groups:
-      - name: "12 Audio Synesthesia"
-        params:
-          - { name: AudioEmissiveGain, type: float, default: 1.0, range: [0, 5] }
-          - { name: AudioBassResponse, type: float, default: 0.5, range: [0, 2] }
-          - { name: AudioTrebleTwinkle, type: float, default: 0.75, range: [0, 3] }
-          - { name: AudioRoughnessDip, type: float, default: 0.08, range: [0, 0.25] }
       - name: "00 Palette"
         params:
           - { name: BaseTint, type: vector, default: [1,1,1,1] }
@@ -181,25 +175,8 @@ masters:
       - { name: DynamicContrast, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
       - { name: SelectiveStrength, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
       - { name: KeepColorHue, type: float, default: 0.0, range: [0, 1], group: "V3 Adaptive" }
-    mpc_references:
-      - MPC_Melodia_Palette: [BeatPulse, BeatPhase, Bass, Mid, Treble, GlobalReactivity, RhythmPulse]
-    groups:
-      - name: "PostProcess Audio Drive"
-        params:
-          - { name: AudioEmissiveGain, type: float, default: 0.8, range: [0, 5] }
-          - { name: AudioChromaticPunch, type: float, default: 0.02, range: [0, 0.1] }
-
-  M_Master_Gemstone:
-    path: /Game/EnvSandbox/Materials/Masters/M_Master_Gemstone
-    toon_profile: TP_Default
-    mpc_references:
-      - MPC_Melodia_Palette: [BeatPulse, BeatPhase, Bass, Mid, Treble, GlobalReactivity]
-    groups:
-      - name: "11 Audio Synesthesia"
-        params:
-          - { name: AudioEmissiveGain, type: float, default: 1.5, range: [0, 5] }
-          - { name: AudioBassResponse, type: float, default: 0.8, range: [0, 2] }
-          - { name: AudioTrebleTwinkle, type: float, default: 1.2, range: [0, 3] }
+    mpc_references: []
+    groups: []
 
   M_Universal_Enhanced_Water:
     path: /Game/_PROJECT/04_Materials/Masters/M_Universal_Enhanced_Water

@@ -1,0 +1,101 @@
+{
+  "segments": [
+    {
+      "index": 0,
+      "anchor_xy_cm": [
+        376.16,
+        -1065.74
+      ],
+      "yaw_deg": 0.0,
+      "first_midi": 60,
+      "last_midi": 67,
+      "white_keys": 5,
+      "black_keys": 3,
+      "length_cm": 566.0
+    },
+    {
+      "index": 1,
+      "anchor_xy_cm": [
+        701.47,
+        -583.59
+      ],
+      "yaw_deg": 84.984,
+      "first_midi": 69,
+      "last_midi": 81,
+      "white_keys": 8,
+      "black_keys": 5,
+      "length_cm": 908.0
+    },
+    {
+      "index": 2,
+      "anchor_xy_cm": [
+        -16.08,
+        2.61
+      ],
+      "yaw_deg": 169.969,
+      "first_midi": 83,
+      "last_midi": 103,
+      "white_keys": 13,
+      "black_keys": 8,
+      "length_cm": 1478.0
+    },
+    {
+      "index": 3,
+      "anchor_xy_cm": [
+        -701.47,
+        613.48
+      ],
+      "yaw_deg": 84.984,
+      "first_midi": 93,
+      "last_midi": 105,
+      "white_keys": 8,
+      "black_keys": 5,
+      "length_cm": 908.0
+    },
+    {
+      "index": 4,
+      "anchor_xy_cm": [
+        -348.78,
+        1065.74
+      ],
+      "yaw_deg": 0.0,
+      "first_midi": 95,
+      "last_midi": 101,
+      "white_keys": 5,
+      "black_keys": 2,
+      "length_cm": 566.0
+    }
+  ],
+  "total_keys": 62,
+  "total_length_cm": 4546.0,
+  "min_turn_radius_cm": 308.9,
+  "overlap_check": "pass",
+  "extent_cm": [
+    2000.3,
+    2651.5
+  ],
+  "fits_3000_box": true,
+  "all_constraints_met": true,
+  "overlapping_pairs": [],
+  "notes": "anchor = keyboard actor origin (keys centred on it); yaw from +X toward +Y; joint gap 30 cm; turn radius = fillet inscribed in half of the shorter adjacent segment.",
+  "provenance": {
+    "generator": "Saved/Audit/P0_GoldenPath/golden_piano_path.py",
+    "params": {
+      "seed": 0,
+      "phi_mode": "phi_cubed",
+      "n_segments": 5,
+      "scale": 1.0,
+      "turn_deg": 84.9845,
+      "white_counts": [
+        5,
+        8,
+        13,
+        8,
+        5
+      ]
+    },
+    "seed": 0,
+    "intended_consumer": "APCGPianoKeyboard chain in L_MelusinaMorning",
+    "canonical": false
+  }
+}

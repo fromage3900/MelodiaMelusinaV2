@@ -1,0 +1,136 @@
+{
+  "schema": "melodia.jev.deadline_plan_review.v1",
+  "input_sha256": "b5964d1c0dbaccbec788960b91ba5eca0ef28dc4fc1fc43a57cffeb084313249",
+  "input": {
+    "state": {
+      "task": "Audit a bounded character animation convergence plan by 13:00 Toronto today.",
+      "remaining_minutes_at_planning": 95,
+      "authority": "One integration owner and one mutating Unreal editor owner; three read-only specialists. Preserve existing skeleton, animation blueprint, retarget, wardrobe and hair authorities. No new animation framework or solver.",
+      "verified_status": [
+        "Actual exploration animation graph and baked hero-interaction sequence routes are established.",
+        "The visible battle mesh playback redirect is saved and compiles but fresh runtime playback remains unproved.",
+        "Nine battle bindings still reference another skeleton. Correct semantic replacement clips are not all validated. Do not clear required fields or substitute unrelated motions to pass the checker.",
+        "Hero draw/hold still shows arm/weapon intersection and weak finger contact. Temporary retarget and grip candidates improved one aspect but failed visual acceptance and were not promoted.",
+        "Mesh and skeleton/older clips disagree in arm bind translation proportions; actual final poses require comparison before choosing correction.",
+        "Weighted finger-knuckle branches run parallel to conventional curled finger chains. Their causal contribution is a hypothesis requiring an isolated test.",
+        "Existing explicit retired-reference gate is implemented. Source tests pass; current asset report still fails battle skeleton bindings.",
+        "The current editor is out of play mode, so a fresh canonical baseline is possible."
+      ],
+      "plan": [
+        "Fresh canonical runtime baseline and full-body plus hand close-up captures, postprocessing disabled for inspection and normal gameplay presentation for final checks.",
+        "Bounded retarget/profile and finger-contact diagnostics in existing authority. Correct only the responsible layer. Protect unweighted controls and twist tracks.",
+        "Validate source/export/socket grip chain after coherent body pose; no weapon placement workaround for broken retarget. Check stable hold, both hands, fingers, wrists, elbows, shoulders, head/sleeve clearance, root/pelvis/feet, release continuity.",
+        "Converge battle runtime consumers and validate semantics of replacement assets, including initialization, directional movement, idle, hit/stun and death timing versus visible pose.",
+        "Two fresh canonical play sessions: locomotion/turn/stop/strafe, equip/aim, draw, sustained hold, release/follow-through, movement; representative dodge, hit, interaction, rhythm and presentation states where routed. Re-run existing reference and deform gates; retain source/editor/runtime evidence separately."
+      ],
+      "exit": "No reproduced hero collapse/intersection or unstable contact; coherent transitions; actual pose sources comprehensible; retired runtime routes removed or explicitly justified; existing asset gate passes without hiding unresolved fields. If any gate fails at deadline, record exact open defects and keep convergence incomplete. Resume content expansion only after all gates pass.",
+      "limits": "This request audits plan text, not pixels or animation quality. Do not certify AAA quality from a plan. Asset creation may exceed deadline; no assumption that every required semantic clip exists."
+    },
+    "questions": {
+      "execution_order": {
+        "type": "choice",
+        "instructions": "Choose the safest useful ordering for the roughly 95-minute deadline. Preserve every acceptance gate and avoid spending the final validation window on new authoring.",
+        "criteria": {
+          "TIMEBOX_HERO_WITH_PARALLEL_BATTLE_DISCOVERY_AND_RESERVED_REPLAY": "Baseline first; retarget/contact on critical path; read-only battle replacement discovery in parallel; stop new mutations by 12:35, reserve 25 minutes for two fresh runtime passes and gate report. Unsolved battle fields remain failures.",
+          "STRICT_SERIAL_EXISTING_PLAN": "Finish every retarget/contact step before starting battle discovery, then try all runtime checks with whatever time remains.",
+          "BATTLE_FIRST_THEN_HERO": "Spend first repair block on battle bindings before diagnosing the visible hero contact defect."
+        }
+      },
+      "deadline_claim": {
+        "type": "choice",
+        "instructions": "Which completion claim is justified by current evidence and the hard deadline?",
+        "criteria": {
+          "GATED_READINESS_TARGET_WITH_HONEST_UNPASSED_GATES": "Target cinematic-quality hero contact and coherent runtime routes; certify only measured gates that actually pass and do not call complete if required gates fail.",
+          "GUARANTEE_FULL_AAA_READINESS_BY_DEADLINE": "Promise complete AAA readiness before any fresh runtime validation."
+        }
+      },
+      "finger_diagnostic": {
+        "type": "choice",
+        "instructions": "Choose the responsible next approach to the weighted parallel finger-knuckle hypothesis.",
+        "criteria": {
+          "ISOLATED_EXISTING_AUTHORITY_TEST_BEFORE_PROMOTION": "Measure and visually isolate branch behavior using a reversible staging test in the existing authoring/retarget authority; preserve unrelated controls and only promote after replay.",
+          "BLANKET_CONTROL_TRACK_REWRITE": "Rewrite all similarly prefixed control tracks in every clip before establishing causality.",
+          "IGNORE_FINGERS_GAMEPLAY_CAMERA_ONLY": "Accept contact at distant gameplay camera without the mandatory close-up."
+        }
+      },
+      "scope_creep_gate": {
+        "type": "choice",
+        "instructions": "Select the deadline-safe rule when correct semantic battle replacements or provenance cannot be established in time.",
+        "criteria": {
+          "KEEP_EXACT_FAILURES_OPEN_NO_MASKING": "Preserve required behavior and report specific unresolved consumers; no nulling, semantic substitution or false acceptance. Do not resume content expansion until convergence gates pass.",
+          "CLEAR_FIELDS_TO_PASS_GATE": "Remove required bindings to make the checker pass before the deadline.",
+          "CREATE_PARALLEL_ANIMATION_SYSTEM": "Introduce another blueprint or solver to work around missing validated assets."
+        }
+      }
+    }
+  },
+  "requested_model": "jev-preview",
+  "pixel_review": false,
+  "visual_acceptance": false,
+  "timestamp_utc": "2026-10-03T15:25:05.170355+00:00",
+  "status": "complete",
+  "source": "jev-live",
+  "available_models": {
+    "models": [
+      {
+        "name": "jev-latest",
+        "description": "The latest iteration of TypeSafe's System One Model: Jev",
+        "release_date": "2026-09-10T18:38:01.391457+00:00"
+      },
+      {
+        "name": "jev-preview",
+        "description": "A preview version of `jev-latest`: should be better in most ways",
+        "release_date": "2026-09-10T18:39:06.057655+00:00"
+      }
+    ]
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 1525,
+      "output_tokens": 310
+    },
+    "answers": {
+      "execution_order": {
+        "type": "choice",
+        "choice": "TIMEBOX_HERO_WITH_PARALLEL_BATTLE_DISCOVERY_AND_RESERVED_REPLAY",
+        "confidence": 1.0,
+        "probabilities": {
+          "BATTLE_FIRST_THEN_HERO": 0.0,
+          "STRICT_SERIAL_EXISTING_PLAN": 0.0,
+          "TIMEBOX_HERO_WITH_PARALLEL_BATTLE_DISCOVERY_AND_RESERVED_REPLAY": 1.0
+        }
+      },
+      "deadline_claim": {
+        "type": "choice",
+        "choice": "GATED_READINESS_TARGET_WITH_HONEST_UNPASSED_GATES",
+        "confidence": 1.0,
+        "probabilities": {
+          "GATED_READINESS_TARGET_WITH_HONEST_UNPASSED_GATES": 1.0,
+          "GUARANTEE_FULL_AAA_READINESS_BY_DEADLINE": 0.0
+        }
+      },
+      "finger_diagnostic": {
+        "type": "choice",
+        "choice": "ISOLATED_EXISTING_AUTHORITY_TEST_BEFORE_PROMOTION",
+        "confidence": 1.0,
+        "probabilities": {
+          "ISOLATED_EXISTING_AUTHORITY_TEST_BEFORE_PROMOTION": 1.0,
+          "IGNORE_FINGERS_GAMEPLAY_CAMERA_ONLY": 0.0,
+          "BLANKET_CONTROL_TRACK_REWRITE": 0.0
+        }
+      },
+      "scope_creep_gate": {
+        "type": "choice",
+        "choice": "KEEP_EXACT_FAILURES_OPEN_NO_MASKING",
+        "confidence": 1.0,
+        "probabilities": {
+          "KEEP_EXACT_FAILURES_OPEN_NO_MASKING": 1.0,
+          "CLEAR_FIELDS_TO_PASS_GATE": 0.0,
+          "CREATE_PARALLEL_ANIMATION_SYSTEM": 0.0
+        }
+      }
+    }
+  },
+  "request_id": "req_01a1025e71ce713ea1e1e035f1122fc2"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "melodia.jev.breathtaking_visual_choices.v1",
+  "input_sha256": "4dc1dbd54f4491ef5a23b52edc002ffd38315e3f5d2492e472d0bdad457147a8",
+  "timestamp_utc": "2026-10-03T17:43:04.485170+00:00",
+  "text_only": true,
+  "paths_sent": false,
+  "images_sent": false,
+  "measurements_sent": false,
+  "requested_model": "jev-latest",
+  "status": "failed",
+  "error_type": "TypeSafeError",
+  "diagnosis": {
+    "local_sdk_request_builder": "valid",
+    "request_shape": "POST /v1/systemone with state, questions, model; one named choice question; confirmed through the installed TypeSafe SDK request builder without sending a request",
+    "model_selection": "jev-latest was listed in the prior successful local catalog receipt and was used as the per-call override",
+    "known_good_call_pattern": "Mirrored existing successful deadline-plan caller: TypeSafeClient, RetryPolicy(max_retries=0), models.list before system_one, named dict question with type=choice and criteria mapping",
+    "runtime_result": "TypeSafeError; current wrapper records only exception class, so the exact failure stage/detail is unavailable",
+    "private_data_sent": false
+  }
+}

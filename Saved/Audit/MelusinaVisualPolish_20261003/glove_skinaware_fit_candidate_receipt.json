@@ -1,0 +1,339 @@
+{
+  "schema": "melodia.glove_skinaware_fit_candidate.v1",
+  "status": "REJECTED_VISUAL_SILHOUETTE_DAMAGE",
+  "body_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7",
+  "accessories_sha256": "56bf91723057209b6edfaa3206ba1466000fc0dc777ccc9a3e6bdedeb455ac6c",
+  "clip": "A_Spar_Mel_RMB_Loop",
+  "hold_frame": 5,
+  "removed_native_action_object_curves": [
+    "location",
+    "location",
+    "location",
+    "rotation_euler",
+    "rotation_euler",
+    "rotation_euler",
+    "scale",
+    "scale",
+    "scale"
+  ],
+  "action_channels_applied": "pose.bones only; native root object scale/location/rotation channels removed to preserve 0.01 imported mesh scale",
+  "body_mesh_world_scale": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582
+  ],
+  "accessories_mesh_world_scale": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582
+  ],
+  "material_slot_names": [
+    "MI_Melusina_Nikki_GLOVES_001"
+  ],
+  "source_glove_vertices": 2821,
+  "glove_vertices_shared_with_non_glove_material_faces_preserved": 0,
+  "interior_glove_vertices_eligible": 2821,
+  "vertices_fit_in_candidate": 2467,
+  "vertices_skipped_over_80mm_bind_shift": 340,
+  "topology_vertex_count_preserved": true,
+  "weight_groups_and_weights_unchanged": true,
+  "non_glove_vertices_unchanged": true,
+  "per_digit_BVH_constrained": true,
+  "fit_clearance_mm": 2.5,
+  "candidate_max_bind_vertex_shift_mm": 79.95,
+  "contact_distance_bins_mm": {
+    "rest_source": {
+      "all_interior_glove_vertices_m": [
+        45.66,
+        64.43,
+        78.62,
+        115.35
+      ],
+      "by_digit_m": {
+        "index_l": [
+          53.73,
+          66.42,
+          77.9,
+          90.76
+        ],
+        "index_r": [
+          49.32,
+          61.06,
+          73.46,
+          90.63
+        ],
+        "middle_l": [
+          56.29,
+          67.16,
+          76.43,
+          88.51
+        ],
+        "middle_r": [
+          45.84,
+          63.03,
+          72.77,
+          87.86
+        ],
+        "pinky_l": [
+          57.39,
+          73.36,
+          88.56,
+          111.49
+        ],
+        "pinky_r": [
+          47.3,
+          66.67,
+          86.58,
+          115.35
+        ],
+        "ring_l": [
+          54.8,
+          67.36,
+          77.39,
+          89.21
+        ],
+        "ring_r": [
+          46.12,
+          63.91,
+          72.5,
+          88.96
+        ],
+        "thumb_l": [
+          42.7,
+          63.54,
+          79.24,
+          104.95
+        ],
+        "thumb_r": [
+          34.67,
+          54.5,
+          67.47,
+          84.37
+        ]
+      },
+      "n": 2807
+    },
+    "rest_candidate": {
+      "all_interior_glove_vertices_m": [
+        2.31,
+        6.96,
+        69.7,
+        115.35
+      ],
+      "by_digit_m": {
+        "index_l": [
+          3.1,
+          6.36,
+          9.86,
+          90.76
+        ],
+        "index_r": [
+          1.61,
+          4.92,
+          9.79,
+          90.63
+        ],
+        "middle_l": [
+          3.99,
+          6.63,
+          9.35,
+          88.51
+        ],
+        "middle_r": [
+          1.56,
+          4.16,
+          9.57,
+          87.86
+        ],
+        "pinky_l": [
+          1.77,
+          6.17,
+          88.56,
+          111.49
+        ],
+        "pinky_r": [
+          2.46,
+          6.46,
+          86.58,
+          115.35
+        ],
+        "ring_l": [
+          3.44,
+          6.03,
+          9.53,
+          89.21
+        ],
+        "ring_r": [
+          2.5,
+          8.07,
+          15.22,
+          88.96
+        ],
+        "thumb_l": [
+          2.73,
+          13.16,
+          79.24,
+          104.95
+        ],
+        "thumb_r": [
+          2.87,
+          11.72,
+          41.64,
+          84.37
+        ]
+      },
+      "n": 2807
+    },
+    "hold_source": {
+      "all_interior_glove_vertices_m": [
+        45.66,
+        64.43,
+        78.62,
+        115.35
+      ],
+      "by_digit_m": {
+        "index_l": [
+          53.73,
+          66.42,
+          77.9,
+          90.76
+        ],
+        "index_r": [
+          49.32,
+          61.06,
+          73.46,
+          90.63
+        ],
+        "middle_l": [
+          56.29,
+          67.16,
+          76.43,
+          88.51
+        ],
+        "middle_r": [
+          45.84,
+          63.03,
+          72.77,
+          87.86
+        ],
+        "pinky_l": [
+          57.39,
+          73.36,
+          88.56,
+          111.49
+        ],
+        "pinky_r": [
+          47.3,
+          66.67,
+          86.58,
+          115.35
+        ],
+        "ring_l": [
+          54.8,
+          67.36,
+          77.39,
+          89.21
+        ],
+        "ring_r": [
+          46.12,
+          63.91,
+          72.5,
+          88.96
+        ],
+        "thumb_l": [
+          42.7,
+          63.54,
+          79.24,
+          104.95
+        ],
+        "thumb_r": [
+          34.67,
+          54.5,
+          67.47,
+          84.37
+        ]
+      },
+      "n": 2807
+    },
+    "hold_candidate": {
+      "all_interior_glove_vertices_m": [
+        2.31,
+        6.96,
+        69.7,
+        115.35
+      ],
+      "by_digit_m": {
+        "index_l": [
+          3.1,
+          6.36,
+          9.86,
+          90.76
+        ],
+        "index_r": [
+          1.61,
+          4.92,
+          9.79,
+          90.63
+        ],
+        "middle_l": [
+          3.99,
+          6.63,
+          9.35,
+          88.51
+        ],
+        "middle_r": [
+          1.56,
+          4.16,
+          9.57,
+          87.86
+        ],
+        "pinky_l": [
+          1.77,
+          6.17,
+          88.56,
+          111.49
+        ],
+        "pinky_r": [
+          2.46,
+          6.46,
+          86.58,
+          115.35
+        ],
+        "ring_l": [
+          3.44,
+          6.03,
+          9.53,
+          89.21
+        ],
+        "ring_r": [
+          2.5,
+          8.07,
+          15.22,
+          88.96
+        ],
+        "thumb_l": [
+          2.73,
+          13.16,
+          79.24,
+          104.95
+        ],
+        "thumb_r": [
+          2.87,
+          11.72,
+          41.64,
+          84.37
+        ]
+      },
+      "n": 2807
+    }
+  },
+  "renders": [
+    "glove_skinaware_source_rest.png",
+    "glove_skinaware_candidate_rest.png",
+    "glove_skinaware_source_hold.png",
+    "glove_skinaware_candidate_hold.png"
+  ],
+  "candidate_blend": "glove_skinaware_fit_candidate_review.blend",
+  "disposition": "The stage is complete for review, but visual inspection of source rest/hold versus candidate rest/hold shows the glove collapsing into separated finger slivers. Clearance improves at the median while the p90 remains 69.70 mm; 340 vertices exceed the 80 mm fit cap and remain unchanged. Do not reimport or promote. This proves nearest-body fit alone is not an adequate fix; no canonical asset was touched.",
+  "visual_review": "Source and candidate rendered in neutral rest and native hold using same camera/scale; the candidate breaks the glove silhouette and is rejected."
+}

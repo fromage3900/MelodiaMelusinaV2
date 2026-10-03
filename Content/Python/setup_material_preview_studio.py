@@ -61,43 +61,41 @@ def _spawn_or_get(eas, cls, label: str, loc=(0, 0, 0), rot=(0, 0, 0), tag: str |
 
 def _configure_ppv(ppv) -> list[str]:
     import unreal
+    import material_lib as mlib
+    import portfolio_scene_integration as scene
 
     ppv.set_editor_property("unbound", True)
     ppv.set_editor_property("priority", 10.0)
     s = ppv.get_editor_property("settings")
-
-    # Authoritative 3-blendable Frozen stack
-    applied = []
-    blendables = []
-    for path, weight in studio.STUDIO_PPV_STACK:
-        if unreal.EditorAssetLibrary.does_asset_exist(path):
-            mat = unreal.load_asset(path)
-            if mat:
-                blendables.append(unreal.WeightedBlendable(weight, mat))
-                applied.append(f"{mat.get_name()} ({weight})")
-        else:
-            unreal.log_warning(f"[MIStudio] Canonical PPV asset missing: {path}")
-
-    weighted = unreal.WeightedBlendables()
-    weighted.set_editor_property("array", blendables)
-    s.set_editor_property("weighted_blendables", weighted)
-
-    # Correct UE 5.8 PostProcessSettings override flags and values
-    for flag, prop, val in (
-        ("override_auto_exposure_method", "auto_exposure_method", unreal.AutoExposureMethod.AEM_MANUAL),
-        ("override_auto_exposure_bias", "auto_exposure_bias", studio.PPV_EXPOSURE_BIAS),
-        ("override_bloom_intensity", "bloom_intensity", studio.PPV_BLOOM),
-        ("override_vignette_intensity", "vignette_intensity", studio.PPV_VIGNETTE),
-        ("override_film_grain_intensity", "film_grain_intensity", studio.PPV_GRAIN),
-        ("override_scene_fringe_intensity", "scene_fringe_intensity", studio.PPV_CHROMATIC),
-    ):
-        try:
-            s.set_editor_property(flag, True)
-            s.set_editor_property(prop, val)
-        except Exception as exc:
-            unreal.log_warning(f"[MIStudio] PPV prop {prop} failed: {exc}")
-
+    mlib.try_set_editor_property(s, "b_override_auto_exposure_method", True)
+    mlib.try_set_editor_property(s, "auto_exposure_method", unreal.AutoExposureMethod.AEM_MANUAL)
+    mlib.try_set_editor_property(s, "b_override_auto_exposure_bias", True)
+    mlib.try_set_editor_property(s, "auto_exposure_bias", studio.PPV_EXPOSURE_BIAS)
+    mlib.try_set_editor_property(s, "b_override_bloom_intensity", True)
+    mlib.try_set_editor_property(s, "bloom_intensity", studio.PPV_BLOOM)
+    mlib.try_set_editor_property(s, "b_override_vignette_intensity", True)
+    mlib.try_set_editor_property(s, "vignette_intensity", studio.PPV_VIGNETTE)
+    mlib.try_set_editor_property(s, "b_override_grain_intensity", True)
+    mlib.try_set_editor_property(s, "grain_intensity", studio.PPV_GRAIN)
+    mlib.try_set_editor_property(s, "b_override_scene_fringe_intensity", True)
+    mlib.try_set_editor_property(s, "scene_fringe_intensity", studio.PPV_CHROMATIC)
     ppv.set_editor_property("settings", s)
+
+    applied = scene.apply_post_process_stack(ppv)
+    s = ppv.get_editor_property("settings")
+    if unreal.EditorAssetLibrary.does_asset_exist(studio.PP_MELU_GRADE):
+        mat = unreal.load_asset(studio.PP_MELU_GRADE)
+        if mat:
+            try:
+                weighted = unreal.WeightedBlendables()
+                existing = list(s.get_editor_property("weighted_blendables").get_editor_property("array") or [])
+                existing.append(unreal.WeightedBlendable(1.0, mat))
+                weighted.set_editor_property("array", existing)
+                s.set_editor_property("weighted_blendables", weighted)
+                ppv.set_editor_property("settings", s)
+                applied.append(mat.get_name())
+            except Exception as exc:
+                unreal.log_warning(f"[MIStudio] Melu grade skipped: {exc}")
     return applied
 
 
@@ -333,21 +331,13 @@ def _remove_atmosphere_actors(eas) -> int:
 
     removed = 0
     for actor in list(eas.get_all_level_actors() or []):
-        cls_name = actor.get_class().get_name() if actor.get_class() else ""
-        label = actor.get_actor_label() or ""
-        if (
-            isinstance(
-                actor,
-                (
-                    unreal.SkyAtmosphere,
-                    unreal.ExponentialHeightFog,
-                    unreal.VolumetricCloud,
-                ),
-            )
-            or "Ultra_Dynamic_Sky" in cls_name
-            or "Ultra_Dynamic_Weather" in cls_name
-            or "Ultra_Dynamic_Sky" in label
-            or "Ultra_Dynamic_Weather" in label
+        if isinstance(
+            actor,
+            (
+                unreal.SkyAtmosphere,
+                unreal.ExponentialHeightFog,
+                unreal.VolumetricCloud,
+            ),
         ):
             try:
                 eas.destroy_actor(actor)
