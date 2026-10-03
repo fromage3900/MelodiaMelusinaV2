@@ -98,6 +98,7 @@ Note on scans: counting `CollectionParameter` nodes misses reads made inside mat
 - 2026-10-03 — `UMelodiaCymaticsSubsystem::RefreshFromMPC` now calls `UWorldFieldBus::PublishResonance`. Before this,
   `PublishResonance` had no caller, so the water-ripple drive read compiled-in defaults forever. Tension is
   `saturate(max(Bass, BeatPulse))`.
+- 2026-10-03 — `UMelodiaCymaticFieldComponent` + `BP_CymaticFieldVolume`; piano key presses call `BroadcastHit`, rippling every field in the world (built; piano-to-ripple not yet PIE-proven). PIE-proven: ink lane follows OSC, bus publishes, instances lift, hit raises `GlobalSparkleIntensity`.
 - 2026-10-03 — Ink lane (`InkReact/InkBass/InkMid/InkTreble`) mirrors the palette's Bass/Mid/Treble as they stand before
   the frame's C++ writes, so OSC analysis reaches the post-process ink.
 - 2026-10-03 — `NotifyPlayedNote`/`NotifyCommandResolved` from piano key presses; `ComputeDrivenPulse` shared by the

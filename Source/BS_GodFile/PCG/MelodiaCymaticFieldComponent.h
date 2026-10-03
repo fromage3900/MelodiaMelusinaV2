@@ -33,9 +33,15 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	/** Start a ripple on every active field component in the world (no reactivity notify: the caller owns that). */
+	static void BroadcastHit(const UWorld* World, FVector WorldOrigin, float Strength = 1.0f);
+
 	/** Start a ripple at a world position. Strength 0..1. */
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Cymatics")
 	void TriggerHit(FVector WorldOrigin, float Strength = 1.0f);
+
+	/** Ripple only, no reactivity notify. */
+	void AddRipple(FVector WorldOrigin, float Strength);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Cymatics|Targets")
 	FName ReactiveTag = TEXT("MelodiaCymatic");
@@ -113,6 +119,8 @@ private:
 	void Rescan();
 	void RestoreAll();
 	void Apply(float DeltaSeconds);
+
+	static TArray<TWeakObjectPtr<UMelodiaCymaticFieldComponent>> Active;
 
 	TArray<FTracked> Tracked;
 	TArray<FRipple> Ripples;
