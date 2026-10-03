@@ -116,6 +116,59 @@ Hydrate only the lane being used:
 
 Do not run `Full` on the laptop by reflex.
 
+## Agent-readable state (added 2026-10-02)
+
+The sequence above is written for a person at a keyboard. An agent cannot read a console
+table and refuse to proceed, so the same rule is also available as a machine-comparable
+file:
+
+```powershell
+# On either machine, from anywhere (a lane worktree is fine):
+python Tools\workstation_status.py            # human table
+python Tools\workstation_status.py --json     # the same facts, machine-readable
+python Tools\workstation_status.py --write    # Saved\Workstation\<MACHINE>-workstation.json
+```
+
+`Saved\Workstation\<MACHINE>-workstation.json` is the handshake. It **consumes** the
+`sync-report.json` that `deploy\sync_workstation.ps1` already writes — it does not reimplement
+sync — and adds what the sync report does not carry: the Perforce client and opened-changelist
+state, the editor lease holder, local-tier (free model lane) reachability, and the active lanes.
+
+Three layers travel between machines, and this is only the third:
+
+| Layer | Carried by | Tool |
+|---|---|---|
+| Files | git + git-lfs | `deploy\sync_workstation.ps1` |
+| Memory | Honcho cloud | `hermes memory status` |
+| **State** | **the handshake file** | **`Tools\workstation_status.py`** |
+
+`may_start_work` is the contract's acceptance rule expressed once, so both machines agree:
+`sync_state == synced` and a clean worktree and no held editor lease. `diverged`, `ahead`,
+`dirty`, `lfs-error` and a held lease all **block** — `diverged` explicitly means stop, no
+rebase/reset/force.
+
+### Comparing the two machines
+
+```powershell
+# on the laptop, against a copy of the desktop's file
+python Tools\workstation_status.py --compare <path>\FROMAGE-workstation.json
+```
+
+Only facts that must NOT differ are flagged: `git.head` and `sync_state`. Everything else
+(client name, server root, lease state, local tier) is allowed to differ — that is what two
+machines are. Exit code **2** means the machines disagree on a must-match fact, which is the
+signal to stop and do a human handoff.
+
+### Traps found while building this
+
+- Read both JSON inputs as **`utf-8-sig`**. `sync_workstation.ps1` writes through PowerShell,
+  which prefixes a UTF-8 BOM; plain `utf-8` raises on byte 0 and the report reads
+  `unreadable` on the one machine whose job is to be believed.
+- `Saved/` is gitignored, so a **lane worktree has no `Saved\Workstation\` of its own**.
+  `workstation_status.py` resolves the primary checkout via `git rev-parse --git-common-dir`.
+  Without that it reports `never-synced` on a healthy machine and trains people to ignore it.
+- A sync report older than 24 h is annotated rather than trusted silently.
+
 ## Handoff: PC → laptop
 
 On the PC:
