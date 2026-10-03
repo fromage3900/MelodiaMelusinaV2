@@ -32,8 +32,6 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-throw "Disabled by owner main-only workflow: do not create a remote branch, pull request, or lane landing."
-
 # Native tools write progress to stderr; with ErrorActionPreference='Stop' PowerShell turns
 # that into a terminating error and aborts mid-run. Same helper as new_agent_lane.ps1.
 function Invoke-Native {

@@ -2,18 +2,20 @@
 
 **Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
 
-## GIT / WORKSPACE AUTHORITY — MAIN ONLY (owner directive 2026-09-29)
+## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
 
-Use the existing local `main` checkout as the only project work lane. Do not create or switch
-branches, lane refs, detached checkouts, linked worktrees, clones, GitHub branches, or pull requests
-for project work. Do not route around a dirty or occupied `main`; make scoped edits there and preserve
-all existing work. Do not fetch, push, merge, rebase, reset, stash, clean, stage, commit, delete refs,
-or spawn another checkout/agent unless the owner explicitly requests that exact operation. Read-only
-Git inspection is fine. To retire an owner-named worktree or branch, first make and verify a recovery
-snapshot of its tracked, staged, unstaged, untracked, and relevant ignored work; confirm no editor or
-build process owns it; then remove only that named item. This rule supersedes all older branch, PR,
-and multi-agent lane procedures in this file and linked docs. It remains binding until the owner
-changes it in writing.
+This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
+`origin/main`, maintained on the desktop PC. This laptop clone is ONLY a Blender /
+asset-prep / mobile hub — its local `main` must mirror `origin/main` exactly and never
+diverge. No agent may create branches, commit, merge, rebase, reset, or push without
+explicit owner permission for that specific operation plus a written plan stated first.
+Never consolidate or restructure git history from this machine. Destructive commands
+(`git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, any history
+rewrite) are forbidden without explicit per-command owner approval. Long-lived laptop
+asset work lives on `collab/laptop/longterm`. Verify read-only before and after any
+approved mutation. Poor git management has already caused real regressions and missed
+deadlines here — do not add to that history.
+
 ## ⛔ READ FIRST — [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md)
 
 **This is a working portfolio and a livelihood, not a technical sandbox.** When the owner asks for

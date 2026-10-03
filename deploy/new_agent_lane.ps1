@@ -31,8 +31,6 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-throw "Disabled by owner main-only workflow: do not create a branch, lane ref, or detached worktree."
-
 # Native tools (git, python) write progress to stderr. With $ErrorActionPreference='Stop',
 # PowerShell promotes that to a terminating error and aborts the script mid-way -- which is
 # exactly what happened on the first run here. All native calls therefore go through this
