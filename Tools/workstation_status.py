@@ -274,11 +274,24 @@ def may_start_work(status):
                         % git["dirty_file_count"])
 
     lease = status.get("editor_lease") or {}
-    if lease.get("held"):
+    if lease.get("available") is False:
+        # FAIL CLOSED. Found 2026-10-02: when Tools/agent_lease.py was not
+        # importable (it lives in another lane), `held` came back None, and
+        # `if lease.get("held")` read that as "no lease" - so the single-writer
+        # check silently stopped applying. An unknown lease state is not a free
+        # editor.
+        blockers.append("editor lease state UNKNOWN (Tools/agent_lease.py not importable): "
+                        "the single-writer check cannot be trusted here")
+    elif lease.get("held") is None:
+        blockers.append("editor lease state UNKNOWN (no 'held' field): "
+                        "treat the editor as possibly held")
+    elif lease.get("held"):
         blockers.append("editor lease HELD by %s - a second writer is refused"
                         % lease.get("holder"))
     if lease.get("stop_sentinels"):
         blockers.append("stop sentinel present: %s" % ", ".join(lease["stop_sentinels"]))
+    if lease.get("modal_open"):
+        blockers.append("MODAL_OPEN in the newest editor log - the editor will not take a command")
 
     p4 = status.get("p4") or {}
     if not p4.get("available"):
