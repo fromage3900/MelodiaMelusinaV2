@@ -26,6 +26,8 @@ namespace
 	}
 }
 
+TArray<TWeakObjectPtr<UMelodiaCymaticFieldComponent>> UMelodiaCymaticFieldComponent::Active;
+
 UMelodiaCymaticFieldComponent::UMelodiaCymaticFieldComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
@@ -39,6 +41,7 @@ void UMelodiaCymaticFieldComponent::BeginPlay()
 	{
 		Owner->OnActorBeginOverlap.AddDynamic(this, &UMelodiaCymaticFieldComponent::HandleOwnerOverlap);
 	}
+	Active.AddUnique(this);
 	Rescan();
 }
 
@@ -48,6 +51,7 @@ void UMelodiaCymaticFieldComponent::EndPlay(const EEndPlayReason::Type EndPlayRe
 	{
 		Owner->OnActorBeginOverlap.RemoveDynamic(this, &UMelodiaCymaticFieldComponent::HandleOwnerOverlap);
 	}
+	Active.Remove(this);
 	RestoreAll();
 	Super::EndPlay(EndPlayReason);
 }
@@ -60,7 +64,19 @@ void UMelodiaCymaticFieldComponent::HandleOwnerOverlap(AActor* /*OverlappedActor
 	}
 }
 
-void UMelodiaCymaticFieldComponent::TriggerHit(const FVector WorldOrigin, const float Strength)
+void UMelodiaCymaticFieldComponent::BroadcastHit(const UWorld* World, const FVector WorldOrigin, const float Strength)
+{
+	Active.RemoveAll([](const TWeakObjectPtr<UMelodiaCymaticFieldComponent>& C) { return !C.IsValid(); });
+	for (const TWeakObjectPtr<UMelodiaCymaticFieldComponent>& C : Active)
+	{
+		if (C.IsValid() && C->GetWorld() == World)
+		{
+			C->AddRipple(WorldOrigin, Strength);
+		}
+	}
+}
+
+void UMelodiaCymaticFieldComponent::AddRipple(const FVector WorldOrigin, const float Strength)
 {
 	if (Ripples.Num() >= MaxActiveRipples)
 	{
@@ -69,6 +85,11 @@ void UMelodiaCymaticFieldComponent::TriggerHit(const FVector WorldOrigin, const 
 	FRipple& R = Ripples.AddDefaulted_GetRef();
 	R.Origin = WorldOrigin;
 	R.Strength = FMath::Clamp(Strength, 0.0f, 1.0f);
+}
+
+void UMelodiaCymaticFieldComponent::TriggerHit(const FVector WorldOrigin, const float Strength)
+{
+	AddRipple(WorldOrigin, Strength);
 
 	if (bNotifyReactivity)
 	{

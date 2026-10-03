@@ -12,6 +12,7 @@
 #include "PCGComponent.h"
 #include "PCGGraph.h"
 #include "MelodiaRhythmReactivitySubsystem.h"
+#include "../PCG/MelodiaCymaticFieldComponent.h"
 #include "../MelodiaIntegration/MelodiaQuantumDrawSubsystem.h"
 #include "Engine/GameInstance.h"
 #include "Metadata/PCGMetadata.h"
@@ -287,6 +288,9 @@ void APCGPianoKey::BeginVisualPress(AActor* SteppingActor)
 		Reactivity->NotifyPlayedNote(MidiNote, EMelodiaRhythmGrade::Great);
 		Reactivity->NotifyCommandResolved(EMelodiaRhythmGrade::Great, 0.0f, 0.0f, 0.0f, 0);
 	}
+
+	// Playing the keys plays the landscape: every cymatic field in the world ripples from this key.
+	UMelodiaCymaticFieldComponent::BroadcastHit(GetWorld(), GetActorLocation(), 0.9f);
 
 	if (KeyboardOwner.IsValid())
 	{
