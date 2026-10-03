@@ -1,0 +1,12 @@
+{
+    "clip_name":  "A_Sir_Takeoff_v3",
+    "source_fbx":  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\A_Sir_Takeoff_v3.fbx",
+    "remapped_fbx":  "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue\\A_Sir_Takeoff_v3.fbx",
+    "loop":  false,
+    "frames":  40,
+    "fps":  24,
+    "expected_skeleton":  "SK_SirMelodious_Rigged_Skeleton",
+    "units":  "m-\u003ecm x100 (canon remap route); Stage D guard still runs",
+    "ue_import":  true,
+    "notes":  "Stage C v3.3 2026-10-03: Takeoff pop fixed, lean in Takeoff/Land, shallower hover downstroke."
+}

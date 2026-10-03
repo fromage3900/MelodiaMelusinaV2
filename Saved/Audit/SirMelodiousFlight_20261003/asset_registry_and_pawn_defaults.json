@@ -1,0 +1,2169 @@
+{
+  "schema": "melodia.sir_melodious_flight_registry.v1",
+  "evidence": "READ_ONLY_EDITOR_ASSET_REGISTRY_AND_CDO_DEFAULTS",
+  "created_utc": "2026-10-03T17:16:03Z",
+  "project_dir": "C:/EnvironmentPortfolio/BS_GodFile",
+  "registry_loading": false,
+  "asset_count": 114,
+  "assets": {
+    "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious": {
+      "package": "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious",
+      "object": "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious.ABP_SirMelodious",
+      "class": "AnimBlueprint",
+      "loaded_before_extraction": true,
+      "tags": {
+        "TargetSkeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "ParentClass": "/Script/CoreUObject.Class'/Script/Engine.AnimInstance'",
+        "GeneratedClass": "/Script/Engine.AnimBlueprintGeneratedClass'/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious.ABP_SirMelodious_C'"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Perch_Idle",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimGraph",
+        "/Script/MelodiaCore"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight",
+        "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop.A_Sir_Fly_Loop",
+      "class": "AnimSequence",
+      "loaded_before_extraction": true,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../../Saved/Audit/sir_melodious_anims_20260924/exports/ue/A_Sir_Fly_Loop.fbx\", \"Timestamp\" : \"1790616817\", \"FileMD5\" : \"a399c2cffaf8e5f7cdca719a30b88fda\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "3.000000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle.A_Sir_Hover_Idle",
+      "class": "AnimSequence",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../../Saved/Audit/sir_melodious_anims_20260924/exports/ue/A_Sir_Hover_Idle.fbx\", \"Timestamp\" : \"1790616816\", \"FileMD5\" : \"91b84595fe4c9fbf75ec49af7a1cb44d\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "2.000000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land.A_Sir_Land",
+      "class": "AnimSequence",
+      "loaded_before_extraction": true,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../../Saved/Audit/sir_melodious_anims_20260924/exports/ue/A_Sir_Land.fbx\", \"Timestamp\" : \"1790616817\", \"FileMD5\" : \"899f7e612183fb299d22fc13f06fcc0b\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "2.500000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Perch_Idle": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Perch_Idle",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Perch_Idle.A_Sir_Perch_Idle",
+      "class": "AnimSequence",
+      "loaded_before_extraction": true,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../../Saved/Audit/sir_melodious_anims_20260924/exports/ue/A_Sir_Perch_Idle.fbx\", \"Timestamp\" : \"1790616816\", \"FileMD5\" : \"b3e6e24602bae3d4479aeabda9d99c31\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "4.000000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Sing": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Sing",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Sing.A_Sir_Sing",
+      "class": "AnimSequence",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../../Saved/Audit/sir_melodious_anims_20260924/exports/ue/A_Sir_Sing.fbx\", \"Timestamp\" : \"1790616818\", \"FileMD5\" : \"00c56a5d8fb7513a9f1feef0e31f893a\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "3.000000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff.A_Sir_Takeoff",
+      "class": "AnimSequence",
+      "loaded_before_extraction": true,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../../Saved/Audit/sir_melodious_anims_20260924/exports/ue/A_Sir_Takeoff.fbx\", \"Timestamp\" : \"1790616817\", \"FileMD5\" : \"a2c2d04844db700c2b423f18c6ee748c\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "2.500000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Animations/FreeCameraTrackingframeupdate_Anim_RT": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Animations/FreeCameraTrackingframeupdate_Anim_RT",
+      "object": "/Game/Melodia/Characters/SirMelodious/Animations/FreeCameraTrackingframeupdate_Anim_RT.FreeCameraTrackingframeupdate_Anim_RT",
+      "class": "AnimSequence",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "31.900000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight": {
+      "package": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight",
+      "object": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight.BP_SirMelodious_Flight",
+      "class": "Blueprint",
+      "loaded_before_extraction": false,
+      "tags": {
+        "ParentClass": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiousFlightCharacter'",
+        "GeneratedClass": "/Script/Engine.BlueprintGeneratedClass'/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight.BP_SirMelodious_Flight_C'"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+        "/Script/MelodiaCore"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Characters/Melusina/BP_Melusina"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001": {
+      "package": "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001",
+      "object": "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001.B\u00e9zierCurve_001",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001_Skeleton.B\u00e9zierCurve_001_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001_Skeleton",
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001_Skeleton.B\u00e9zierCurve_001_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001.B\u00e9zierCurve_001"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_002": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_002",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_002.Material_002",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_003": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_003",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_003.Material_003",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_008": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_008",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_008.Material_008",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_010": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_010",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_010.Material_010",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_011": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_011",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_011.Material_011",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_018": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_018",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_018.Material_018",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Material_019": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Material_019",
+      "object": "/Game/Melodia/Characters/SirMelodious/Material_019.Material_019",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet",
+      "object": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet.MI_SirMelodious_Feet",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_BaseColor",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Displacement",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Metallic",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Normal",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Roughness"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles",
+      "object": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles.MI_SirMelodious_Ruffles",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": true,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+        "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Alpha",
+        "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_BaseColor",
+        "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Metallic",
+        "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Normal",
+        "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Roughness"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+      "object": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo.MI_SirMelodious_Sirmelo",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": true,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_BaseColor",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Displacement",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Metallic",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Normal",
+        "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Roughness"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/B\u00e9zierCurve_001",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie",
+      "object": "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie.MI_SirMelodious_Tie",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": true,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+        "/Game/Melodia/Characters/SirMelodious/Textures/tie_BaseColor",
+        "/Game/Melodia/Characters/SirMelodious/Textures/tie_Metallic",
+        "/Game/Melodia/Characters/SirMelodious/Textures/tie_Normal",
+        "/Game/Melodia/Characters/SirMelodious/Textures/tie_Roughness"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirFlightSource": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirFlightSource",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirFlightSource.IK_SirFlightSource",
+      "class": "IKRigDefinition",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate.FreeCameraTrackingframeupdate"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate",
+        "/Script/IKRig"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirMelodious": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirMelodious",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirMelodious.IK_SirMelodious",
+      "class": "IKRigDefinition",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+        "/Script/IKRig"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_UE4Mannequin_To_SirMelodious"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir.RTG_FlightSource_To_Sir",
+      "class": "IKRetargeter",
+      "loaded_before_extraction": false,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirFlightSource",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirMelodious",
+        "/Script/IKRig"
+      ],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate"
+      ],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_UE4Mannequin_To_SirMelodious": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_UE4Mannequin_To_SirMelodious",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_UE4Mannequin_To_SirMelodious.RTG_UE4Mannequin_To_SirMelodious",
+      "class": "IKRetargeter",
+      "loaded_before_extraction": false,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/Melusina/Retarget/IK_UE4Mannequin_Source",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirMelodious",
+        "/Script/IKRig"
+      ],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+        "/Game/_ThirdParty/TurnBasedJRPGTemplate/Meshes/SK_Mannequin"
+      ],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001.Retopo_Cube_001",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001_Skeleton.Retopo_Cube_001_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001_Skeleton.Retopo_Cube_001_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001.Retopo_Cube_001"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_Cube_001"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011.Retopo_PM3D_Cube3D1_011",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011_Skeleton.Retopo_PM3D_Cube3D1_011_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011_Skeleton.Retopo_PM3D_Cube3D1_011_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011.Retopo_PM3D_Cube3D1_011"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D1_011"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25.Retopo_PM3D_Cube3D25",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25_Skeleton.Retopo_PM3D_Cube3D25_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25_Skeleton.Retopo_PM3D_Cube3D25_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25.Retopo_PM3D_Cube3D25"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D25"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27.Retopo_PM3D_Cube3D27",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27_Skeleton.Retopo_PM3D_Cube3D27_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27_Skeleton.Retopo_PM3D_Cube3D27_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27.Retopo_PM3D_Cube3D27"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Cube3D27"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001.Retopo_PM3D_Ring3D2_001",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001_Skeleton.Retopo_PM3D_Ring3D2_001_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001_Skeleton.Retopo_PM3D_Ring3D2_001_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001.Retopo_PM3D_Ring3D2_001"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_001"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001.Retopo_PM3D_Ring3D2_1_001",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001_Skeleton.Retopo_PM3D_Ring3D2_1_001_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/cinnbunrender/sirmelodiousalmostdone07.fbx\", \"Timestamp\" : \"1774550618\", \"FileMD5\" : \"3e3135571c74daf503dd2511026222b6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001_Skeleton.Retopo_PM3D_Ring3D2_1_001_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001.Retopo_PM3D_Ring3D2_1_001"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retopo_PM3D_Ring3D2_1_001"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+      "object": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": true,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"../../../../EnvSandbox/SKM_SirMelodious_rig.fbx\", \"Timestamp\" : \"1783997387\", \"FileMD5\" : \"d52882f42fb575abc9ec905e395d7faa\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles",
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo",
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirMelodious",
+        "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter"
+      ],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/FreeCameraTrackingframeupdate_Anim_RT",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir",
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_UE4Mannequin_To_SirMelodious",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1",
+      "object": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1.SK_SirMelodious_Rigged_Physics1",
+      "class": "PhysicsAsset",
+      "loaded_before_extraction": true,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": true,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Perch_Idle",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Sing",
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff",
+        "/Game/Melodia/Characters/SirMelodious/Animations/FreeCameraTrackingframeupdate_Anim_RT",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Alpha.Material_020_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_Alpha.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"6c88e2c9fe3d290b568fe65e4ec44e11\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_BaseColor.Material_020_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_BaseColor.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"53d1329012b2c340c165db047282160d\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Displacement.Material_020_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_Displacement.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"56ae0e47df58d69a794f10f9c98576bd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Emission.Material_020_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_Emission.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Metallic.Material_020_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_Metallic.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Normal.Material_020_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_Normal.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"57b44775a87002e6bda38df211998ab8\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/Material_020_Roughness.Material_020_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/Material.020_Roughness.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"babbe76a5a23e263bbd6ead01f8ef50c\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_BaseColor.T_SirMelodious_feet_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_BaseColor.png\", \"Timestamp\" : \"1776741579\", \"FileMD5\" : \"a9594e4ae5074a82e0c59d49b790f062\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Displacement.T_SirMelodious_feet_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Displacement.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"56ae0e47df58d69a794f10f9c98576bd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Emission.T_SirMelodious_feet_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Emission.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Metallic.T_SirMelodious_feet_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Metallic.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Normal.T_SirMelodious_feet_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Normal.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"a1168e4345e4fcfd4a6fca63b985ad65\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_feet_Roughness.T_SirMelodious_feet_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Roughness.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"babbe76a5a23e263bbd6ead01f8ef50c\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Feet"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Alpha.T_SirMelodious_sirmelo_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Alpha.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"6c88e2c9fe3d290b568fe65e4ec44e11\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_BaseColor.T_SirMelodious_sirmelo_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_BaseColor.png\", \"Timestamp\" : \"1776741578\", \"FileMD5\" : \"38ad0d28e474119647014517b390eaf1\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Displacement.T_SirMelodious_sirmelo_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Displacement.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"56ae0e47df58d69a794f10f9c98576bd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Emission.T_SirMelodious_sirmelo_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Emission.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Metallic.T_SirMelodious_sirmelo_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Metallic.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Normal.T_SirMelodious_sirmelo_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Normal.png\", \"Timestamp\" : \"1776741577\", \"FileMD5\" : \"0a9c1432b684ebb4e146f8b4e611d5cc\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/T_SirMelodious_sirmelo_Roughness.T_SirMelodious_sirmelo_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Roughness.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"6c88e2c9fe3d290b568fe65e4ec44e11\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Sirmelo"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Alpha.coat_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_Alpha.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"80b99660736d4592768fc9f62af8a9dd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_BaseColor.coat_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_BaseColor.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"42eeeacdca7b40b788017324ad057160\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Displacement.coat_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_Displacement.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"3ed89c0db258fb7f2c3b2d5e1a276cc7\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Emission.coat_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_Emission.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Metallic.coat_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_Metallic.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"586dddf731ccc54cc4c2d688c8c8f349\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Normal.coat_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_Normal.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"f33722e8faf6904afe973501f08a280d\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/coat_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/coat_Roughness.coat_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/coat_Roughness.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"1aacc8a5f2df8b3daa55713b4ae29950\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Alpha.collar_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_Alpha.png\", \"Timestamp\" : \"1784234616\", \"FileMD5\" : \"0fae6ca451d7c0bee7554c7a39704e36\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_BaseColor.collar_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_BaseColor.png\", \"Timestamp\" : \"1784234617\", \"FileMD5\" : \"bec4d863b9d12169da1818f2ad1151bf\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Displacement.collar_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_Displacement.png\", \"Timestamp\" : \"1784234617\", \"FileMD5\" : \"0c4e4eaadc36d9598daa9ddb5dc53c10\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Emission.collar_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_Emission.png\", \"Timestamp\" : \"1784234617\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Metallic.collar_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_Metallic.png\", \"Timestamp\" : \"1784234617\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Normal.collar_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_Normal.png\", \"Timestamp\" : \"1784234617\", \"FileMD5\" : \"0011b77a8cc0efc2e18468163bd3b70a\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/collar_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/collar_Roughness.collar_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/collar_Roughness.png\", \"Timestamp\" : \"1784234618\", \"FileMD5\" : \"1bbacf99acc16116895e70ab7473faf9\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/feet_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/feet_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/feet_BaseColor.feet_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_BaseColor.png\", \"Timestamp\" : \"1776741579\", \"FileMD5\" : \"a9594e4ae5074a82e0c59d49b790f062\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/feet_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Displacement.feet_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Displacement.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"56ae0e47df58d69a794f10f9c98576bd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/feet_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Emission.feet_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Emission.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/feet_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Metallic.feet_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Metallic.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/feet_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Normal.feet_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Normal.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"a1168e4345e4fcfd4a6fca63b985ad65\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/feet_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/feet_Roughness.feet_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/feet_Roughness.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"babbe76a5a23e263bbd6ead01f8ef50c\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Alpha.ruffles_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_Alpha.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"78717985e524f3ba43a4c17e86444fca\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_BaseColor.ruffles_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_BaseColor.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"5f6d31a5a92eec9acd6cb906a7f03fe4\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Displacement.ruffles_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_Displacement.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"56ae0e47df58d69a794f10f9c98576bd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Emission.ruffles_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_Emission.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Metallic.ruffles_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_Metallic.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Normal.ruffles_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_Normal.png\", \"Timestamp\" : \"1784234619\", \"FileMD5\" : \"cae01049918fe7917c2b612fc5d6fcb7\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/ruffles_Roughness.ruffles_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/ruffles_Roughness.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"38cf26dbd300b17a16ae3944ba88e505\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Ruffles"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Alpha.sirmelo_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Alpha.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"6c88e2c9fe3d290b568fe65e4ec44e11\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_BaseColor.sirmelo_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_BaseColor.png\", \"Timestamp\" : \"1776741578\", \"FileMD5\" : \"38ad0d28e474119647014517b390eaf1\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Displacement.sirmelo_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Displacement.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"56ae0e47df58d69a794f10f9c98576bd\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Emission.sirmelo_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Emission.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Metallic.sirmelo_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Metallic.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Normal.sirmelo_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Normal.png\", \"Timestamp\" : \"1776741577\", \"FileMD5\" : \"0a9c1432b684ebb4e146f8b4e611d5cc\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/sirmelo_Roughness.sirmelo_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/sirmelo_Roughness.png\", \"Timestamp\" : \"1776741576\", \"FileMD5\" : \"6c88e2c9fe3d290b568fe65e4ec44e11\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_Alpha": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Alpha",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Alpha.tie_Alpha",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_Alpha.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"6c88e2c9fe3d290b568fe65e4ec44e11\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_BaseColor": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_BaseColor",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_BaseColor.tie_BaseColor",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_BaseColor.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"fd2bf953de0bfeebacfae226f20b1584\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_Displacement": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Displacement",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Displacement.tie_Displacement",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_Displacement.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"72a5cda85375a21606551df0bc9599ac\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_Emission": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Emission",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Emission.tie_Emission",
+      "class": "Texture2D",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_Emission.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"8a733ba40db95ac7566f4d87e32d73c6\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_Metallic": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Metallic",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Metallic.tie_Metallic",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_Metallic.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"5a49a1eeb9b83be32405127af5a4d4d5\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_Normal": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Normal",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Normal.tie_Normal",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_Normal.png\", \"Timestamp\" : \"1784234620\", \"FileMD5\" : \"eca89e8522bd7bc45c5060e4125e3fff\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/Textures/tie_Roughness": {
+      "package": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Roughness",
+      "object": "/Game/Melodia/Characters/SirMelodious/Textures/tie_Roughness.tie_Roughness",
+      "class": "Texture2D",
+      "loaded_before_extraction": true,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"G:/sirmelo/tie_Roughness.png\", \"Timestamp\" : \"1784234621\", \"FileMD5\" : \"15b5d52fb53b28203a04a3aac3d69aa9\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Materials/MI_SirMelodious_Tie"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate.FreeCameraTrackingframeupdate",
+      "class": "SkeletalMesh",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton.FreeCameraTrackingframeupdate_Skeleton'",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_003",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_006",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_010",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_012",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retarget/IK_SirFlightSource"
+      ],
+      "soft_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/Retarget/RTG_FlightSource_To_Sir",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton"
+      ]
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Anim": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Anim",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Anim.FreeCameraTrackingframeupdate_Anim",
+      "class": "AnimSequence",
+      "loaded_before_extraction": false,
+      "tags": {
+        "Skeleton": "/Script/Engine.Skeleton'/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton.FreeCameraTrackingframeupdate_Skeleton'",
+        "PreviewSkeletalMesh": "None",
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]",
+        "SequenceLength": "31.900000"
+      },
+      "hard_dependencies": [
+        "/ACLPlugin/ACLAnimBoneCompressionSettings",
+        "/ACLPlugin/ACLAnimCurveCompressionSettings",
+        "/Engine/Animation/DefaultVariableFrameStrippingSettings",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton",
+        "/Script/AnimationData",
+        "/Script/AnimationModifiers",
+        "/Script/ControlRig",
+        "/Script/InterchangeEngine",
+        "/Script/MovieScene"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Skeleton.FreeCameraTrackingframeupdate_Skeleton",
+      "class": "Skeleton",
+      "loaded_before_extraction": false,
+      "tags": {
+        "PreviewSkeletalMesh": "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate.FreeCameraTrackingframeupdate"
+      },
+      "hard_dependencies": [],
+      "soft_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate"
+      ],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate",
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate_Anim"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_003": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_003",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_003.Material_003",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_006": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_006",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_006.Material_006",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_010": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_010",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_010.Material_010",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_012": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_012",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_012.Material_012",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/Characters/SirMelodious/_FlightSource/FreeCameraTrackingframeupdate"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_020": {
+      "package": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_020",
+      "object": "/Game/Melodia/Characters/SirMelodious/_FlightSource/Material_020.Material_020",
+      "class": "MaterialInstanceConstant",
+      "loaded_before_extraction": false,
+      "tags": {
+        "AssetImportData": "[{ \"RelativeFilename\" : \"F:/_FromG_Archive/Humber Semester 5/cory postproductionart 2/FREECAMERATRACKING/FreeCameraTrackingframeupdate.fbx\", \"Timestamp\" : \"1786228910\", \"FileMD5\" : \"7c1a8bed16661a53953b93184c6879cb\", \"DisplayLabelName\" : \"\" }]"
+      },
+      "hard_dependencies": [
+        "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial",
+        "/Script/InterchangeEngine"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [],
+      "soft_referencers": []
+    },
+    "/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro": {
+      "package": "/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro",
+      "object": "/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro.BP_MelodiaSirMelodiousMorningIntro",
+      "class": "Blueprint",
+      "loaded_before_extraction": true,
+      "tags": {
+        "ParentClass": "/Script/CoreUObject.Class'/Script/MelodiaCore.MelodiaSirMelodiousIntroActor'",
+        "GeneratedClass": "/Script/Engine.BlueprintGeneratedClass'/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro.BP_MelodiaSirMelodiousMorningIntro_C'"
+      },
+      "hard_dependencies": [
+        "/Engine/EditorBlueprintResources/StandardMacros",
+        "/Game/MelodiaIntegration/Narrative/MelodiaMorningIntro",
+        "/Script/BS_GodFile",
+        "/Script/MelodiaCore",
+        "/Script/Quillscript"
+      ],
+      "soft_dependencies": [
+        "/Engine/EditorResources/LightIcons/S_LightError"
+      ],
+      "hard_referencers": [
+        "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/1/0E/XKQMWKG1020ABE3CPWA8UV"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter": {
+      "package": "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter",
+      "object": "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter.BP_SirMelodiousJRPGCharacter",
+      "class": "Blueprint",
+      "loaded_before_extraction": true,
+      "tags": {
+        "ParentClass": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacterBase.BP_JRPGCharacterBase_C'",
+        "GeneratedClass": "/Script/Engine.BlueprintGeneratedClass'/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter.BP_SirMelodiousJRPGCharacter_C'"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious",
+        "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacterBase"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit": {
+      "package": "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit",
+      "object": "/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit.BP_SirMelodiousPlayerUnit",
+      "class": "Blueprint",
+      "loaded_before_extraction": true,
+      "tags": {
+        "ParentClass": "/Script/Engine.BlueprintGeneratedClass'/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_PlayerUnitBase.BP_PlayerUnitBase_C'",
+        "GeneratedClass": "/Script/Engine.BlueprintGeneratedClass'/Game/MelodiaIntegration/Party/BP_SirMelodiousPlayerUnit.BP_SirMelodiousPlayerUnit_C'"
+      },
+      "hard_dependencies": [
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Hit_Chest",
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Hit_Head",
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Idle_Dance",
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Interact",
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll",
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Spell_Shoot",
+        "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Sword_Attack",
+        "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+        "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted_V2Fixed/A_Q_Melusina_Idle_Loop",
+        "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+        "/Game/MelodiaIntegration/Blueprints/Animations/ABP_Melusina_Battle",
+        "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter",
+        "/Game/MelodiaIntegration/Party/Skills/BP_SirSkyboundRefrain",
+        "/Game/TurnBasedJRPGTemplate/Animations/A_BattleAnimationBlueprint",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_DoubleHit",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_FocusAttack",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/Skills/BP_TrueStrike",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/Units/BP_UnitBase",
+        "/Game/TurnBasedJRPGTemplate/Blueprints/Units/PlayerUnits/BP_PlayerUnitBase",
+        "/Game/TurnBasedJRPGTemplate/Meshes/SK_Mannequin",
+        "/Game/TurnBasedJRPGTemplate/Textures/T_Swordsman",
+        "/Game/TurnBasedJRPGTemplate/Textures/T_SwordsmanBig"
+      ],
+      "soft_dependencies": [],
+      "hard_referencers": [
+        "/Game/Melodia/CombatTrial/BP_ZenForestWaveHarpPlayerController",
+        "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGPlayerController"
+      ],
+      "soft_referencers": []
+    },
+    "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/1/0E/XKQMWKG1020ABE3CPWA8UV": {
+      "package": "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/1/0E/XKQMWKG1020ABE3CPWA8UV",
+      "object": "/Game/__ExternalActors__/Melodia/Levels/Opening/L_MelusinaMorning/1/0E/XKQMWKG1020ABE3CPWA8UV.BP_MelodiaSirMelodiousMorningIntro_C_0",
+      "class": "BP_MelodiaSirMelodiousMorningIntro_C",
+      "loaded_before_extraction": true,
+      "tags": {},
+      "hard_dependencies": [
+        "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+        "/Game/Melodia/_PROJECT/04_Materials/Outline/MI_HullOutline_Character_Thin",
+        "/Game/MelodiaIntegration/Blueprints/Opening/BP_MelodiaSirMelodiousMorningIntro"
+      ],
+      "soft_dependencies": [
+        "/Engine/EditorResources/LightIcons/S_LightError"
+      ],
+      "hard_referencers": [],
+      "soft_referencers": [
+        "/Game/Melodia/Levels/Opening/L_MelusinaMorning"
+      ]
+    }
+  },
+  "pawn_cdos": {
+    "flight": {
+      "label": "flight",
+      "blueprint_asset": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight",
+      "generated_class": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight.BP_SirMelodious_Flight_C",
+      "parent_class": null,
+      "cdo_class": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight.BP_SirMelodious_Flight_C",
+      "actor_defaults": {
+        "use_controller_rotation_yaw": "False",
+        "use_controller_rotation_pitch": "False",
+        "use_controller_rotation_roll": "False"
+      },
+      "scs_query_error": "Blueprint: Failed to find property 'simple_construction_script' for attribute 'simple_construction_script' on 'Blueprint'",
+      "skeletal_mesh_components": [
+        {
+          "source": "cdo_get_components_by_class",
+          "name": "CharacterMesh0",
+          "class": "SkeletalMeshComponent",
+          "object_path": "/Game/Melodia/Characters/SirMelodious/BP_SirMelodious_Flight.Default__BP_SirMelodious_Flight_C:CharacterMesh0",
+          "attach_parent": "CollisionCylinder",
+          "skeletal_mesh": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged",
+          "mesh_skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton",
+          "mesh_physics_asset": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1.SK_SirMelodious_Rigged_Physics1",
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "<Object '/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious.ABP_SirMelodious_C' (0x0000015C2AD57E00) Class 'AnimBlueprintGeneratedClass'>",
+          "relative_location": [
+            0.0,
+            0.0,
+            -88.0
+          ],
+          "relative_rotation_pitch_yaw_roll": [
+            0.0,
+            -90.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "collision_enabled": null,
+          "collision_profile_name": null,
+          "generate_overlap_events": "False",
+          "simulate_physics": null,
+          "bounds_scale": "1.0",
+          "visible": "True",
+          "hidden_in_game": "False"
+        }
+      ]
+    },
+    "jrpg": {
+      "label": "jrpg",
+      "blueprint_asset": "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter",
+      "generated_class": "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter.BP_SirMelodiousJRPGCharacter_C",
+      "parent_class": null,
+      "cdo_class": "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter.BP_SirMelodiousJRPGCharacter_C",
+      "actor_defaults": {
+        "use_controller_rotation_yaw": "False",
+        "use_controller_rotation_pitch": "False",
+        "use_controller_rotation_roll": "False"
+      },
+      "scs_query_error": "Blueprint: Failed to find property 'simple_construction_script' for attribute 'simple_construction_script' on 'Blueprint'",
+      "skeletal_mesh_components": [
+        {
+          "source": "cdo_get_components_by_class",
+          "name": "CharacterMesh0",
+          "class": "SkeletalMeshComponent",
+          "object_path": "/Game/MelodiaIntegration/Party/BP_SirMelodiousJRPGCharacter.Default__BP_SirMelodiousJRPGCharacter_C:CharacterMesh0",
+          "attach_parent": "CollisionCylinder",
+          "skeletal_mesh": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged",
+          "mesh_skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton.SK_SirMelodious_Rigged_Skeleton",
+          "mesh_physics_asset": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Physics1.SK_SirMelodious_Rigged_Physics1",
+          "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+          "anim_class": "<Object '/Game/Melodia/Characters/SirMelodious/ABP_SirMelodious.ABP_SirMelodious_C' (0x0000015C2AD57E00) Class 'AnimBlueprintGeneratedClass'>",
+          "relative_location": [
+            0.0,
+            0.0,
+            62.0
+          ],
+          "relative_rotation_pitch_yaw_roll": [
+            0.0,
+            -90.0,
+            0.0
+          ],
+          "relative_scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "collision_enabled": null,
+          "collision_profile_name": null,
+          "generate_overlap_events": "False",
+          "simulate_physics": null,
+          "bounds_scale": "1.0",
+          "visible": "True",
+          "hidden_in_game": "False"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "AssetRegistry edges identify package references, not runtime execution.",
+    "CDO values are defaults; they do not prove a live instance or PIE pose.",
+    "No actors were spawned and no assets were compiled or saved."
+  ]
+}

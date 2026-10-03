@@ -1,0 +1,42 @@
+{
+ "A_Sir_Fly_Loop_v3.fbx": {
+  "head_z_cm": 2.6,
+  "chest_z_cm": 2.45,
+  "wingtip_z_cm": 16.42,
+  "root_c_pos_z_cm": 0.0,
+  "neck_len_var_mm": 0.0,
+  "seam_mm": 0.0
+ },
+ "A_Sir_Glide_v3.fbx": {
+  "head_z_cm": 1.82,
+  "chest_z_cm": 1.69,
+  "wingtip_z_cm": 3.52,
+  "root_c_pos_z_cm": 0.0,
+  "neck_len_var_mm": 0.0,
+  "seam_mm": 0.0
+ },
+ "A_Sir_Hover_Idle_v3.fbx": {
+  "head_z_cm": 2.84,
+  "chest_z_cm": 2.82,
+  "wingtip_z_cm": 18.55,
+  "root_c_pos_z_cm": 0.0,
+  "neck_len_var_mm": 0.0,
+  "seam_mm": 0.0
+ },
+ "A_Sir_Land_v3.fbx": {
+  "head_z_cm": 5.0,
+  "chest_z_cm": 5.0,
+  "wingtip_z_cm": 20.71,
+  "root_c_pos_z_cm": 0.0,
+  "neck_len_var_mm": 0.0,
+  "seam_mm": 193.13
+ },
+ "A_Sir_Takeoff_v3.fbx": {
+  "head_z_cm": 7.38,
+  "chest_z_cm": 7.38,
+  "wingtip_z_cm": 20.66,
+  "root_c_pos_z_cm": 0.0,
+  "neck_len_var_mm": 0.0,
+  "seam_mm": 172.65
+ }
+}

@@ -1,0 +1,87 @@
+{
+ "A_Sir_Fly_Loop_v3.fbx": {
+  "frames": [
+   2,
+   74
+  ],
+  "fps": 24,
+  "bones": 126,
+  "loop_seam_mm": 0.0,
+  "wingtip_z_travel_cm": {
+   "hand_feather_02_r": 17.81,
+   "hand_feather_02_l": 17.81
+  },
+  "downstrokes": {
+   "hand_feather_02_r": 6,
+   "hand_feather_02_l": 6
+  }
+ },
+ "A_Sir_Glide_v3.fbx": {
+  "frames": [
+   2,
+   50
+  ],
+  "fps": 24,
+  "bones": 126,
+  "loop_seam_mm": 0.0,
+  "wingtip_z_travel_cm": {
+   "hand_feather_02_r": 1.59,
+   "hand_feather_02_l": 1.59
+  },
+  "downstrokes": {
+   "hand_feather_02_r": 1,
+   "hand_feather_02_l": 1
+  }
+ },
+ "A_Sir_Hover_Idle_v3.fbx": {
+  "frames": [
+   2,
+   50
+  ],
+  "fps": 24,
+  "bones": 126,
+  "loop_seam_mm": 0.0,
+  "wingtip_z_travel_cm": {
+   "hand_feather_02_r": 20.92,
+   "hand_feather_02_l": 20.92
+  },
+  "downstrokes": {
+   "hand_feather_02_r": 6,
+   "hand_feather_02_l": 6
+  }
+ },
+ "A_Sir_Land_v3.fbx": {
+  "frames": [
+   2,
+   42
+  ],
+  "fps": 24,
+  "bones": 126,
+  "loop_seam_mm": 167.52,
+  "wingtip_z_travel_cm": {
+   "hand_feather_02_r": 20.65,
+   "hand_feather_02_l": 20.65
+  },
+  "downstrokes": {
+   "hand_feather_02_r": 3,
+   "hand_feather_02_l": 3
+  }
+ },
+ "A_Sir_Takeoff_v3.fbx": {
+  "frames": [
+   2,
+   42
+  ],
+  "fps": 24,
+  "bones": 126,
+  "loop_seam_mm": 142.72,
+  "wingtip_z_travel_cm": {
+   "hand_feather_02_r": 20.96,
+   "hand_feather_02_l": 20.96
+  },
+  "downstrokes": {
+   "hand_feather_02_r": 4,
+   "hand_feather_02_l": 4
+  }
+ }
+}

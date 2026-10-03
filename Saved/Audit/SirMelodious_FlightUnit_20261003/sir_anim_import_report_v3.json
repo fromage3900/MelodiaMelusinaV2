@@ -1,0 +1,92 @@
+﻿{
+  "schema": "melodia.sir_anim_import.v1",
+  "stage": "D_guarded_import",
+  "skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+  "dest": "/Game/Melodia/Characters/SirMelodious/Animations",
+  "ok": true,
+  "imported": 5,
+  "total": 5,
+  "clips": [
+    {
+      "clip": "A_Sir_Fly_Loop_v3",
+      "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue\\A_Sir_Fly_Loop_v3.fbx",
+      "ok": true,
+      "imported": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop_v3.A_Sir_Fly_Loop_v3"
+      ],
+      "sequence": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Fly_Loop_v3",
+      "skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+      "length": 3.0,
+      "frames": null,
+      "scale": {
+        "verdict": "ok",
+        "mag_cm": 1.101735139498996
+      }
+    },
+    {
+      "clip": "A_Sir_Glide_v3",
+      "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue\\A_Sir_Glide_v3.fbx",
+      "ok": true,
+      "imported": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Glide_v3.A_Sir_Glide_v3"
+      ],
+      "sequence": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Glide_v3",
+      "skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+      "length": 2.0,
+      "frames": null,
+      "scale": {
+        "verdict": "ok",
+        "mag_cm": 1.101735139498996
+      }
+    },
+    {
+      "clip": "A_Sir_Hover_Idle_v3",
+      "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue\\A_Sir_Hover_Idle_v3.fbx",
+      "ok": true,
+      "imported": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle_v3.A_Sir_Hover_Idle_v3"
+      ],
+      "sequence": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Hover_Idle_v3",
+      "skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+      "length": 2.0,
+      "frames": null,
+      "scale": {
+        "verdict": "ok",
+        "mag_cm": 1.101735139498996
+      }
+    },
+    {
+      "clip": "A_Sir_Land_v3",
+      "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue\\A_Sir_Land_v3.fbx",
+      "ok": true,
+      "imported": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land_v3.A_Sir_Land_v3"
+      ],
+      "sequence": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Land_v3",
+      "skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+      "length": 1.6666666269302368,
+      "frames": null,
+      "scale": {
+        "verdict": "ok",
+        "mag_cm": 1.101735139498996
+      }
+    },
+    {
+      "clip": "A_Sir_Takeoff_v3",
+      "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue\\A_Sir_Takeoff_v3.fbx",
+      "ok": true,
+      "imported": [
+        "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff_v3.A_Sir_Takeoff_v3"
+      ],
+      "sequence": "/Game/Melodia/Characters/SirMelodious/Animations/A_Sir_Takeoff_v3",
+      "skeleton": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged_Skeleton",
+      "length": 1.6666666269302368,
+      "frames": null,
+      "scale": {
+        "verdict": "ok",
+        "mag_cm": 1.101735139498996
+      }
+    }
+  ],
+  "not_proven": "ABP state binding and PIE. Import success is not runtime binding."
+}
