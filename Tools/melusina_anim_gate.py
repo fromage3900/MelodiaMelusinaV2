@@ -12,8 +12,15 @@ forearm twist bones static in every proven clip.
 Usage:  import melusina_anim_gate as g; g.run(["/Game/.../A_Clip", ...])  -> list of dict rows with 'fail' reasons.
 """
 import math
+import json
+import re
+from collections import deque
+from pathlib import Path
 
-import unreal
+try:
+    import unreal
+except ImportError:
+    unreal = None  # The reference gate can also run outside the editor.
 
 BODY = "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body"
 SKELETON_TAG = "SK_Melusina_Skeleton"
@@ -49,6 +56,8 @@ def _ang(q1, q2):
 
 
 def measure(path, samples=(0.0, 0.33, 0.66, 1.0)):
+    if unreal is None:
+        raise RuntimeError("Pose measurement requires the Unreal editor")
     mesh = unreal.load_asset(BODY)
     seq = unreal.load_asset(path)
     W, L = unreal.AnimPoseSpaces.WORLD, unreal.AnimPoseSpaces.LOCAL
@@ -87,3 +96,190 @@ def run(paths):
         r["fail"] = fail
         out.append(r)
     return out
+
+
+def package_path(value):
+    """Accept package paths, object paths and Unreal's quoted tag values."""
+    text = str(value)
+    if "'" in text:
+        text = text.split("'", 2)[1]
+    match = re.search(r"(/[A-Za-z0-9_]+/[A-Za-z0-9_/]+)", text)
+    if not match:
+        raise ValueError("Not an Unreal package/object path: %r" % value)
+    return match.group(1)
+
+
+def check_runtime_references(manifest, policy, extra_edges=()):
+    """Fail on exact retired paths reached through hard, soft or native edges.
+
+    Package reachability is deliberately conservative: a disconnected graph
+    node is still a reference. This gate does not certify pose/contact quality.
+    Native soft defaults must be supplied by a CDO/live binding extraction;
+    source-string matches alone are not automatically made runtime edges.
+    """
+    assets = {package_path(p): row for p, row in manifest.get("assets", {}).items()}
+    roots = [package_path(p) for p in policy.get("roots", [])]
+    allowed = {package_path(p): note for p, note in policy.get("canonical_allowlist", {}).items()}
+    retired = {package_path(p): reason for p, reason in policy.get("retired_denylist", {}).items()}
+    errors = []
+    if not roots:
+        errors.append("No canonical runtime roots supplied")
+    if manifest.get("registry_loading") is not False:
+        errors.append("Asset Registry completion is unverified")
+    collisions = sorted(set(allowed) & set(retired))
+    if collisions:
+        errors.append("Policy both allows and retires: " + ", ".join(collisions))
+    for root in roots:
+        if root not in assets:
+            errors.append("Canonical root missing from extraction: " + root)
+    dynamic = {}
+    native_counts = {}
+    native_fields = {}
+    edge_rows = list(extra_edges or [])
+    for index, edge in enumerate(edge_rows):
+        label = "native binding edge %d" % index
+        if not isinstance(edge, dict):
+            errors.append("Malformed " + label + ": expected object")
+            continue
+        required_keys = {"source", "target", "consumer", "field", "required", "expected_skeleton", "target_skeleton"}
+        missing = sorted(required_keys - set(edge))
+        if missing:
+            errors.append("Malformed %s: missing %s" % (label, ", ".join(missing)))
+            continue
+        if not isinstance(edge["consumer"], str) or not edge["consumer"].strip():
+            errors.append("Malformed %s: consumer must be a non-empty string" % label)
+            continue
+        if not isinstance(edge["field"], str) or not edge["field"].strip():
+            errors.append("Malformed %s: field must be a non-empty string" % label)
+            continue
+        if not isinstance(edge["required"], bool):
+            errors.append("Malformed %s: required must be boolean" % label)
+            continue
+        owner, field = edge["consumer"], edge["field"]
+        key = (owner, field)
+        native_fields.setdefault(key, []).append((index, edge))
+        native_counts[owner] = native_counts.get(owner, 0) + 1
+        try:
+            source = package_path(edge["source"])
+            target = package_path(edge["target"]) if edge["target"] is not None else None
+        except (TypeError, ValueError) as exc:
+            errors.append("Malformed %s: %s" % (label, exc))
+            continue
+        if target is None:
+            if edge["required"]:
+                errors.append("Required native field has no target: %s.%s" % key)
+            elif edge["target_skeleton"] is not None or edge["expected_skeleton"] is not None:
+                errors.append("Optional empty native field must explicitly use null skeletons: %s.%s" % key)
+            continue
+        dynamic.setdefault(source, []).append(target)
+        expected_value, actual_value = edge["expected_skeleton"], edge["target_skeleton"]
+        if edge["required"] and (expected_value is None or actual_value is None):
+            errors.append("Required native field has unknown skeleton: %s.%s" % key)
+            continue
+        if expected_value is not None or actual_value is not None:
+            if expected_value is None or actual_value is None:
+                if edge["required"]:
+                    errors.append("Required native field has unknown skeleton: %s.%s" % key)
+                continue
+            try:
+                expected_skeleton = package_path(expected_value)
+                target_skeleton = package_path(actual_value)
+            except (TypeError, ValueError) as exc:
+                errors.append("Malformed %s skeleton contract: %s" % (label, exc))
+                continue
+            if expected_skeleton != target_skeleton:
+                errors.append("Native field skeleton mismatch for %s.%s: expected %s, target %s" %
+                              (owner, field, expected_skeleton, target_skeleton))
+
+    for key, rows in native_fields.items():
+        if len(rows) > 1:
+            errors.append("Duplicate native binding field edge: %s.%s (%d rows)" % (key[0], key[1], len(rows)))
+    required_native_fields = policy.get("required_native_fields", [])
+    required_keys = set()
+    for requirement in required_native_fields:
+        if not isinstance(requirement, dict) or not isinstance(requirement.get("consumer"), str) or not isinstance(requirement.get("field"), str):
+            errors.append("Malformed required_native_fields policy entry")
+            continue
+        key = (requirement["consumer"], requirement["field"])
+        if key in required_keys:
+            errors.append("Duplicate required native field policy: %s.%s" % key)
+            continue
+        required_keys.add(key)
+        rows = native_fields.get(key, [])
+        if not rows:
+            errors.append("Required native field extraction missing: %s.%s" % key)
+        elif len(rows) == 1 and not rows[0][1]["required"]:
+            errors.append("Required native field marked optional: %s.%s" % key)
+        elif len(rows) == 1:
+            expected = requirement.get("expected_skeleton")
+            if expected is not None:
+                try:
+                    if package_path(rows[0][1]["expected_skeleton"]) != package_path(expected):
+                        errors.append("Native field expected skeleton disagrees with policy: %s.%s" % key)
+                except (TypeError, ValueError) as exc:
+                    errors.append("Malformed required native field skeleton policy for %s.%s: %s" % (*key, exc))
+    # Keep legacy count assertions readable for older policies, but do not use
+    # counts as a substitute for exact required-field coverage.
+    for owner, minimum in policy.get("required_native_consumers", {}).items():
+        if native_counts.get(owner, 0) < minimum:
+            errors.append("Native binding extraction missing/incomplete: " + owner)
+    parents = {root: None for root in roots}
+    queue = deque(roots)
+    while queue:
+        current = queue.popleft()
+        row = assets.get(current, {})
+        deps = row.get("hard_dependencies", []) + row.get("soft_dependencies", []) + dynamic.get(current, [])
+        for value in sorted(set(deps)):
+            target = package_path(value)
+            if target not in parents:
+                parents[target] = current
+                queue.append(target)
+    violations = []
+    for target in sorted(set(parents) & set(retired)):
+        chain = [target]
+        while parents[chain[-1]] is not None:
+            chain.append(parents[chain[-1]])
+        violations.append({"asset": target, "reason": retired[target], "reference_chain": list(reversed(chain))})
+    if violations:
+        errors.append("Canonical runtime graph references %d explicitly retired assets" % len(violations))
+    animation_classes = {"AnimBlueprint", "AnimSequence", "AnimMontage", "AnimComposite", "BlendSpace", "BlendSpace1D", "AimOffsetBlendSpace", "AimOffsetBlendSpace1D", "PoseAsset", "Skeleton", "IKRigDefinition", "IKRetargeter", "ControlRigBlueprint"}
+    unknown = sorted(p for p in parents if assets.get(p, {}).get("class") in animation_classes and p not in allowed and p not in retired)
+    return {
+        "schema": "melodia.melusina_anim_reference_gate.v1",
+        "evidence": "ASSET_REFERENCE_EXTRACTION_ONLY",
+        "ok": not errors,
+        "visual_completion": False,
+        "roots": roots,
+        "reachable_count": len(parents),
+        "violations": violations,
+        "errors": errors,
+        "allowlisted_reachable": sorted(set(parents) & set(allowed)),
+        "unclassified_animation_assets": unknown,
+        "retired_not_reachable": sorted(set(retired) - set(parents)),
+        "native_binding_edge_count": sum(len(v) for v in dynamic.values()),
+        "native_consumer_counts": native_counts,
+    }
+
+
+def reference_gate_main(argv=None):
+    import argparse
+    parser = argparse.ArgumentParser(description="Check the existing Melusina animation gate's retired reference policy")
+    parser.add_argument("--references", type=Path, required=True)
+    parser.add_argument("--policy", type=Path, default=Path(__file__).resolve().parents[1] / "specs/anim_presets/melusina_locomotion_blend.json")
+    parser.add_argument("--native-bindings", type=Path)
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args(argv)
+    manifest = json.loads(args.references.read_text(encoding="utf-8-sig"))
+    policy = json.loads(args.policy.read_text(encoding="utf-8-sig"))
+    policy = policy.get("runtime_reference_policy", policy)
+    edges = json.loads(args.native_bindings.read_text(encoding="utf-8-sig")) if args.native_bindings else []
+    report = check_runtime_references(manifest, policy, edges)
+    text = json.dumps(report, indent=2) + "\n"
+    if args.output:
+        args.output.write_text(text, encoding="utf-8")
+    print(text)
+    return 0 if report["ok"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(reference_gate_main())
