@@ -1,0 +1,5030 @@
+{
+  "format_version": 1,
+  "asset_path": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+  "graph_name": "EventGraph",
+  "graph_type": "event_graph",
+  "include_hidden_pins": false,
+  "nodes": [
+    {
+      "id": "K2Node_Event_5",
+      "class": "K2Node_Event",
+      "title": "Event BeginPlay",
+      "pos": [
+        -3600,
+        0
+      ],
+      "event_name": "ReceiveBeginPlay",
+      "pins": [
+        {
+          "id": "93A1B9FB4791A52F605B09BAEE6950DD",
+          "name": "OutputDelegate",
+          "direction": "output",
+          "type": "delegate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "493DA53C49972A727E0AA4A32B4D9DD5",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_VariableSet_0.execute"
+          ],
+          "connected_to_ids": [
+            "05DC6A434936197E9716C4B48C3152D4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_Event_6",
+      "class": "K2Node_Event",
+      "title": "Event Tick",
+      "pos": [
+        -3600,
+        900
+      ],
+      "event_name": "ReceiveTick",
+      "pins": [
+        {
+          "id": "60DCDE2C4A6E03199372A8865EEADAE3",
+          "name": "OutputDelegate",
+          "direction": "output",
+          "type": "delegate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "77CC448E4F55442E5D811796530C9958",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_32.execute"
+          ],
+          "connected_to_ids": [
+            "2B8845E6493785C8506B999FF8592AA3"
+          ]
+        },
+        {
+          "id": "D0F7C3AB4D6C87409ED5DD8A9377D9F1",
+          "name": "DeltaSeconds",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_10",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_EyeSparkle_L",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "1F291A014BFED78BDB7FF2BBF5AF8439",
+          "name": "VFX_EyeSparkle_L",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_20.self",
+            "K2Node_CallFunction_44.self"
+          ],
+          "connected_to_ids": [
+            "11EBAF9C45610FE005A005BCB95CB191",
+            "08699272495A66D93AABF0A4ACD0F9DD"
+          ]
+        }
+      ],
+      "variable_name": "VFX_EyeSparkle_L",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_11",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_EyeSparkle_R",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "4021A866435F54C74D6781BC9E24FBAA",
+          "name": "VFX_EyeSparkle_R",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_21.self",
+            "K2Node_CallFunction_45.self"
+          ],
+          "connected_to_ids": [
+            "B406E0DB4981A0D10CA8C4B3741251EB",
+            "E795DB9D48784C8440FD07AB78606EFA"
+          ]
+        }
+      ],
+      "variable_name": "VFX_EyeSparkle_R",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_12",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Trail",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "C486D19A47BBC7B2120BF0BDBFDF34D9",
+          "name": "VFX_Trail",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_22.self",
+            "K2Node_CallFunction_46.self"
+          ],
+          "connected_to_ids": [
+            "F1D0F10746C30D40CF0B77B626E020E1",
+            "BCC85E534ADAEAE4E507449549A05404"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Trail",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_13",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Globules_A",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "99D3A16B4CAF7C1836AB89A67CE35A88",
+          "name": "VFX_Globules_A",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_23.self",
+            "K2Node_CallFunction_53.self",
+            "K2Node_CallFunction_54.self"
+          ],
+          "connected_to_ids": [
+            "BF18AD43438D582D41B90CAE7910860D",
+            "7E9E5EA74940E209CDEEE6A9AAE456AA",
+            "021FBF804CA74750B475649DCE26C5DE"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Globules_A",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_14",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Globules_B",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "B5AD5D534BB7179D2DDB898E2565B21E",
+          "name": "VFX_Globules_B",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_24.self",
+            "K2Node_CallFunction_55.self",
+            "K2Node_CallFunction_56.self"
+          ],
+          "connected_to_ids": [
+            "703E75E448D426DF6D68999E43A8C1B1",
+            "15A0A6334F2680CEEB4118AF091A3961",
+            "6AF64304409C862403ABB3A86A75A3E0"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Globules_B",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_15",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Globules_C",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "A40860D347CACBE558BBC7B29FDC8FB9",
+          "name": "VFX_Globules_C",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_25.self",
+            "K2Node_CallFunction_57.self",
+            "K2Node_CallFunction_58.self"
+          ],
+          "connected_to_ids": [
+            "533F785746514CA03227ADA8158C8EE5",
+            "5A2544E44F051FDF521B78AA8E7F3A31",
+            "176161514FA6173C0BBBBFB381421760"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Globules_C",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_16",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Splash",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "E0E3934246F5F180D47A828B33617522",
+          "name": "VFX_Splash",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_26.self",
+            "K2Node_CallFunction_47.self"
+          ],
+          "connected_to_ids": [
+            "0E02871B48FAE7FD8C170489D48DB091",
+            "C55C89AC45323100329BFEB881889A35"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Splash",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_17",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Ripple",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "AACFE8C14DFC9AA4D61AC0A2F73ACA3A",
+          "name": "VFX_Ripple",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_27.self",
+            "K2Node_CallFunction_48.self"
+          ],
+          "connected_to_ids": [
+            "05B2937B4784D89A7CCDE5B72E27EBF2",
+            "0A38C2F042FE1CF640256BBAACDCF9D3"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Ripple",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_18",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Glint",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "848F8D97481C531AFD27FF8D7147451B",
+          "name": "VFX_Glint",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_28.self",
+            "K2Node_CallFunction_49.self"
+          ],
+          "connected_to_ids": [
+            "69AB79B045605B5266E60489BB9CA4E6",
+            "86FE9F9D443560B65AAA52AD0535CFAC"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Glint",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_19",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Dust",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "E31ECEBE436A0DECFB1B10B75F93A850",
+          "name": "VFX_Dust",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_29.self",
+            "K2Node_CallFunction_50.self"
+          ],
+          "connected_to_ids": [
+            "226F4FC44FE67120992D51B309AA3F37",
+            "4AC3647A4FA43B4239FBFBA3435E3E6E"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Dust",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_20",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Sigil",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "0292A86240E54531BCE837928870BE5D",
+          "name": "VFX_Sigil",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_30.self",
+            "K2Node_CallFunction_51.self"
+          ],
+          "connected_to_ids": [
+            "7B774D35453B5AEAD7AD278CB67551D4",
+            "6731815C4A1000A0B84E868CB39DBF91"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Sigil",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_21",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Arc",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "2F218C864E6C991B3F3CDDBB95679318",
+          "name": "VFX_Arc",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_31.self",
+            "K2Node_CallFunction_52.self"
+          ],
+          "connected_to_ids": [
+            "5B3DB5654192BA8FA450989A1B13B5FB",
+            "25DE5A7E4124ACA2C9A0BB9E2977AD05"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Arc",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_22",
+      "class": "K2Node_VariableGet",
+      "title": "Get MelusinaPresentationMesh",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "F76C577442899257A0E8758CD065C214",
+          "name": "MelusinaPresentationMesh",
+          "direction": "output",
+          "type": "object:SkeletalMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_20.Parent",
+            "K2Node_CallFunction_21.Parent",
+            "K2Node_CallFunction_22.Parent",
+            "K2Node_CallFunction_26.Parent",
+            "K2Node_CallFunction_27.Parent",
+            "K2Node_CallFunction_28.Parent",
+            "K2Node_CallFunction_29.Parent",
+            "K2Node_CallFunction_30.Parent",
+            "K2Node_CallFunction_31.Parent",
+            "K2Node_CallFunction_0.Parent",
+            "K2Node_CallFunction_1.Parent",
+            "K2Node_CallFunction_2.Parent",
+            "K2Node_CallFunction_3.Parent",
+            "K2Node_VariableSet_0.SkeletalMesh"
+          ],
+          "connected_to_ids": [
+            "E5A803984B9E13A66B4F38A522E99E0C",
+            "D100711546A0BC97D502BCBC55C24BF6",
+            "539D057E44914B148DF419A8EA2BF62A",
+            "299459D841C789436A141A8FCA23ACB3",
+            "BB5621614697BF3CD7550085A485D44D",
+            "21A0BD5A42474738FE03378B533E8109",
+            "22813A23401F38E2A48C798156A93AC1",
+            "B9046E0E44290AE91DDC46908EE596A5",
+            "F5D425894B56197B6C821A953BF34078",
+            "BAF0D71C4FEE964FE6BA67AEA9D1AF16",
+            "E982E9E046D9078F5FF9E2AD6EC25CFE",
+            "9F93CD1A4EF8FD281141709C111A530A",
+            "2FBA37554C040A9944C951A1B18FD1B5",
+            "8AA78C4B4BA25E0C3828BB916A1F8E78"
+          ]
+        }
+      ],
+      "variable_name": "MelusinaPresentationMesh",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_23",
+      "class": "K2Node_VariableGet",
+      "title": "Get WaterHairMesh",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "3B37B2684E99B339CFA6BD94527D922A",
+          "name": "WaterHairMesh",
+          "direction": "output",
+          "type": "object:MelodiaHairComponent",
+          "connected_to": [
+            "K2Node_CallFunction_23.Parent",
+            "K2Node_CallFunction_24.Parent",
+            "K2Node_CallFunction_25.Parent"
+          ],
+          "connected_to_ids": [
+            "1B30C1BC4CB949B192B325BDCF9BEF03",
+            "2CC5E6EF4D691DA6004EBEB039264334",
+            "C8D7EAA747FA6D625F82D5BD8911C4AF"
+          ]
+        }
+      ],
+      "variable_name": "WaterHairMesh",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_CallFunction_20",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "7C67EC734463B613EFD176ADADE62D8C",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_VariableSet_0.then"
+          ],
+          "connected_to_ids": [
+            "62299DD743E2441C3D131EABDAA718A2"
+          ]
+        },
+        {
+          "id": "B28413294225BFE6AD182AA044C5A289",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_21.execute"
+          ],
+          "connected_to_ids": [
+            "76D6821742C0761B6A2EE9ABB06C0D61"
+          ]
+        },
+        {
+          "id": "11EBAF9C45610FE005A005BCB95CB191",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_10.VFX_EyeSparkle_L"
+          ],
+          "connected_to_ids": [
+            "1F291A014BFED78BDB7FF2BBF5AF8439"
+          ]
+        },
+        {
+          "id": "E5A803984B9E13A66B4F38A522E99E0C",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "99F02E854864EF1CCE2A3BA6FECE6DD3",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "master_eye_L",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "DF16425D429FDBBBB26BCEB88A5E356F",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "AA1B06554ABC0BF2BE55DDA24EB11C51",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "7ADF397544DB6969027E698A68C3B966",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D6751BE64EECB8BE8114298BD3EBDADA",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B0C0B9BF46F3557EA0C9799AA5B99859",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_21",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "76D6821742C0761B6A2EE9ABB06C0D61",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_20.then"
+          ],
+          "connected_to_ids": [
+            "B28413294225BFE6AD182AA044C5A289"
+          ]
+        },
+        {
+          "id": "3CB8528A469191C9F46CB9937DB4F2D4",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_22.execute"
+          ],
+          "connected_to_ids": [
+            "26A76338454AD2535768D0A5D1869657"
+          ]
+        },
+        {
+          "id": "B406E0DB4981A0D10CA8C4B3741251EB",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_11.VFX_EyeSparkle_R"
+          ],
+          "connected_to_ids": [
+            "4021A866435F54C74D6781BC9E24FBAA"
+          ]
+        },
+        {
+          "id": "D100711546A0BC97D502BCBC55C24BF6",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "EE310F6947900A3C08F920BF27CCF680",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "master_eye_R",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "BC62491D4B60BDA5650B00BC72C6374E",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B58DDE1E4A338A56AC276AAA763CE728",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "2F998FC0483EB2DA705777AB3ED1709C",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "477BD20A404EE1A2AE9F53BBC8E8431E",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "7F07522C40CC473F8B099A89575AC8DE",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_22",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "26A76338454AD2535768D0A5D1869657",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_21.then"
+          ],
+          "connected_to_ids": [
+            "3CB8528A469191C9F46CB9937DB4F2D4"
+          ]
+        },
+        {
+          "id": "68C66D664D00DAD966FD2EB4CC285030",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_23.execute"
+          ],
+          "connected_to_ids": [
+            "93713FE74DEEE01281152394409B3128"
+          ]
+        },
+        {
+          "id": "F1D0F10746C30D40CF0B77B626E020E1",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_12.VFX_Trail"
+          ],
+          "connected_to_ids": [
+            "C486D19A47BBC7B2120BF0BDBFDF34D9"
+          ]
+        },
+        {
+          "id": "539D057E44914B148DF419A8EA2BF62A",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "B0C7BE2F4B84B1BE73DA53ABDCF5D260",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "hand_r",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "4A1B8D7241594F219A03B28013A008A7",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "DF109DEE424CA92D39633F965844D278",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "FE33F4E2421ADDDE6F3097B9D3512016",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B145F2584B54F8EBBC0286BE4CDA7670",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "18395F804112018DBD893E965E5AA56C",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_23",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "93713FE74DEEE01281152394409B3128",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_22.then"
+          ],
+          "connected_to_ids": [
+            "68C66D664D00DAD966FD2EB4CC285030"
+          ]
+        },
+        {
+          "id": "5ED297464D2DC001460602A4329AF703",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_24.execute"
+          ],
+          "connected_to_ids": [
+            "5F2FEFF74D5A48DB14601AA11202DE4F"
+          ]
+        },
+        {
+          "id": "BF18AD43438D582D41B90CAE7910860D",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_13.VFX_Globules_A"
+          ],
+          "connected_to_ids": [
+            "99D3A16B4CAF7C1836AB89A67CE35A88"
+          ]
+        },
+        {
+          "id": "1B30C1BC4CB949B192B325BDCF9BEF03",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_23.WaterHairMesh"
+          ],
+          "connected_to_ids": [
+            "3B37B2684E99B339CFA6BD94527D922A"
+          ]
+        },
+        {
+          "id": "53246D624DFE96303AA8339A063FFA2E",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "A_DEF_hair_bbone_017",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "6207FB7F4E60B32D9D4AE69F9C4D3453",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "323911C649A4E8956D553AAB0C29C90A",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "376530824115C6C490443B8CF9605EF3",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "99B46FFC4B95562AA93C64B6A7D87FFE",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "2C0083B345EF0A853F88DEA8BC3EA2DD",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_24",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "5F2FEFF74D5A48DB14601AA11202DE4F",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_23.then"
+          ],
+          "connected_to_ids": [
+            "5ED297464D2DC001460602A4329AF703"
+          ]
+        },
+        {
+          "id": "F157E89C4F999CE511994A840EC06C53",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_25.execute"
+          ],
+          "connected_to_ids": [
+            "D6D5A56D433BDAB7BB7A64A4A73F7E6A"
+          ]
+        },
+        {
+          "id": "703E75E448D426DF6D68999E43A8C1B1",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_14.VFX_Globules_B"
+          ],
+          "connected_to_ids": [
+            "B5AD5D534BB7179D2DDB898E2565B21E"
+          ]
+        },
+        {
+          "id": "2CC5E6EF4D691DA6004EBEB039264334",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_23.WaterHairMesh"
+          ],
+          "connected_to_ids": [
+            "3B37B2684E99B339CFA6BD94527D922A"
+          ]
+        },
+        {
+          "id": "7DFD1B0F46ADEFCA8D04D6ACFD1D3D31",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "B_DEF_hair_bbone_007",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "701E3FAB490426CD9BE0AEAAF0D07EB1",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1843288847DD2EEEF699BEA4128C86E4",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0701CB444BA089B218D4388F4B66DC03",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "88D7C69942A674A289103CB748198455",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "67583A52499993FED70A26852A74ACF9",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_25",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "D6D5A56D433BDAB7BB7A64A4A73F7E6A",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_24.then"
+          ],
+          "connected_to_ids": [
+            "F157E89C4F999CE511994A840EC06C53"
+          ]
+        },
+        {
+          "id": "031B62AB4598C38D5A20D18392367870",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_26.execute"
+          ],
+          "connected_to_ids": [
+            "8BC2AF5D4B87597242431C9B278D7CCE"
+          ]
+        },
+        {
+          "id": "533F785746514CA03227ADA8158C8EE5",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_15.VFX_Globules_C"
+          ],
+          "connected_to_ids": [
+            "A40860D347CACBE558BBC7B29FDC8FB9"
+          ]
+        },
+        {
+          "id": "C8D7EAA747FA6D625F82D5BD8911C4AF",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_23.WaterHairMesh"
+          ],
+          "connected_to_ids": [
+            "3B37B2684E99B339CFA6BD94527D922A"
+          ]
+        },
+        {
+          "id": "D88ABA164398736CC027A480E7FD17D5",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "C_DEF_hair_bbone_119",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "9EE6771848D330AE74284BA781170B37",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "5F3D72844E62070CC5BB5B8CDF82FBC8",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E9FCEE1D4AD4D57F5A803DB9CAFD9C6B",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "AB07F790478BFA00BAB566A6F7A8D804",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "02822F0B4D66AB66B12E8EA2105F159A",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_26",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "8BC2AF5D4B87597242431C9B278D7CCE",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_25.then"
+          ],
+          "connected_to_ids": [
+            "031B62AB4598C38D5A20D18392367870"
+          ]
+        },
+        {
+          "id": "46329E1E4F6E2A20F5258093467F201F",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_27.execute"
+          ],
+          "connected_to_ids": [
+            "A62DAAD54A677545352AD0BE61258C99"
+          ]
+        },
+        {
+          "id": "0E02871B48FAE7FD8C170489D48DB091",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_16.VFX_Splash"
+          ],
+          "connected_to_ids": [
+            "E0E3934246F5F180D47A828B33617522"
+          ]
+        },
+        {
+          "id": "299459D841C789436A141A8FCA23ACB3",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "586E25F14CE3654E21D19A82B37A67B6",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "hand_r",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "80E9B2264759676CA72FE693FDEBBB59",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D323819C43F54BCB77869893F1D06CCF",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D44B6A0F4AE7FB874A4B6690D384D750",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "9091229849F23DB4FBB3028710349A97",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0369096144EAC0A84865439BDDA1757B",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_27",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "A62DAAD54A677545352AD0BE61258C99",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_26.then"
+          ],
+          "connected_to_ids": [
+            "46329E1E4F6E2A20F5258093467F201F"
+          ]
+        },
+        {
+          "id": "29875B4F43AE1767DBE665B91078989E",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_28.execute"
+          ],
+          "connected_to_ids": [
+            "D05D28704F11C509471032A75629C389"
+          ]
+        },
+        {
+          "id": "05B2937B4784D89A7CCDE5B72E27EBF2",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_17.VFX_Ripple"
+          ],
+          "connected_to_ids": [
+            "AACFE8C14DFC9AA4D61AC0A2F73ACA3A"
+          ]
+        },
+        {
+          "id": "BB5621614697BF3CD7550085A485D44D",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "1079ABE44264816ED3D8D8A16F1D88A0",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "foot_l",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E0EB89744952C54E9D8F38A9356CD6EA",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "59EE20074115667CB96A43AED4542A01",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D6BF85D947BAD04F0605B0AB330CB6C9",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "215C1464470AF5D45CD46E82A7930218",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "FA531B0749CCA547C84723AF2FD7F675",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_28",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "D05D28704F11C509471032A75629C389",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_27.then"
+          ],
+          "connected_to_ids": [
+            "29875B4F43AE1767DBE665B91078989E"
+          ]
+        },
+        {
+          "id": "4DB13D5044A9E1A21BB5DE83565E722E",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_29.execute"
+          ],
+          "connected_to_ids": [
+            "4DD7571644B8616A8F5579BEEAA9FA2F"
+          ]
+        },
+        {
+          "id": "69AB79B045605B5266E60489BB9CA4E6",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_18.VFX_Glint"
+          ],
+          "connected_to_ids": [
+            "848F8D97481C531AFD27FF8D7147451B"
+          ]
+        },
+        {
+          "id": "21A0BD5A42474738FE03378B533E8109",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "26110BCA40D88E59170588AF0A63E5A7",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "hand_r",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "4E5A51D447116AA9BA76E48F961A56C0",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "F65A591544B21FD7C2197B8FA2B4A91D",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "8F98C80247616C4746BA9B93E0126FFA",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1D4C355949F2FC8EDD3EB1A99893BE3D",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D517BFA34C0E3BAEF64A7A917A7D4CAD",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_29",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "4DD7571644B8616A8F5579BEEAA9FA2F",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_28.then"
+          ],
+          "connected_to_ids": [
+            "4DB13D5044A9E1A21BB5DE83565E722E"
+          ]
+        },
+        {
+          "id": "7C7A97684AB20F4EBA547FB09E0F4C49",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_30.execute"
+          ],
+          "connected_to_ids": [
+            "94F5994744DA9B2218BDE4B927A0F84B"
+          ]
+        },
+        {
+          "id": "226F4FC44FE67120992D51B309AA3F37",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_19.VFX_Dust"
+          ],
+          "connected_to_ids": [
+            "E31ECEBE436A0DECFB1B10B75F93A850"
+          ]
+        },
+        {
+          "id": "22813A23401F38E2A48C798156A93AC1",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "5CBA49EA40D3C19BDDC3CD9334230F20",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "None",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B5F3F91845EE002A485943A7DE1CA36C",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "7ED07B9E41112DF10B2321BC0A50FF5F",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A9CF233B4A8C29CC231F0A842863DA53",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "3A8E10354D810118EECDDEA06D3B0A71",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "BA27510C420F2D2AF8305B8CEDEBCDFB",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_30",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "94F5994744DA9B2218BDE4B927A0F84B",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_29.then"
+          ],
+          "connected_to_ids": [
+            "7C7A97684AB20F4EBA547FB09E0F4C49"
+          ]
+        },
+        {
+          "id": "4EAC816F4F23ECE16B85ED9AC69094F9",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_31.execute"
+          ],
+          "connected_to_ids": [
+            "85D0FABF4A21B4A3EA3AD68D414D0ECB"
+          ]
+        },
+        {
+          "id": "7B774D35453B5AEAD7AD278CB67551D4",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_20.VFX_Sigil"
+          ],
+          "connected_to_ids": [
+            "0292A86240E54531BCE837928870BE5D"
+          ]
+        },
+        {
+          "id": "B9046E0E44290AE91DDC46908EE596A5",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "F6947B4A42840DF9676EEDB91DB3CFB9",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "foot_l",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "4AC047C84CD7E92F35880E8AF692D818",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A40E9C85403A409D06249EB5EC4E2D38",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "8C84B4404615E0A3F4DFE7BBFB00FF43",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "CABF29DB4D235A6EAFD0E2BDC9D9EA22",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "140596B44F39770EF607BF997145E7ED",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_31",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "85D0FABF4A21B4A3EA3AD68D414D0ECB",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_30.then"
+          ],
+          "connected_to_ids": [
+            "4EAC816F4F23ECE16B85ED9AC69094F9"
+          ]
+        },
+        {
+          "id": "FCD891AC44DCB38DCB41E2B4ECBFAA5F",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_0.execute"
+          ],
+          "connected_to_ids": [
+            "B56BBB12415D441911C9BEBB92B46CD3"
+          ]
+        },
+        {
+          "id": "5B3DB5654192BA8FA450989A1B13B5FB",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_21.VFX_Arc"
+          ],
+          "connected_to_ids": [
+            "2F218C864E6C991B3F3CDDBB95679318"
+          ]
+        },
+        {
+          "id": "F5D425894B56197B6C821A953BF34078",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "5A7B2EBF4B6A2B78FFAE83A0EC7F07F0",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "hand_r",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "5188FF9348747D7927FB5F8BBD3CF813",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "70E72E1448E289654AC0FA8EBA1B2A6D",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "F8FBF052409963CCF38DB082362F5D80",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "9A492D7C49909A2D2D5D48830CF3AEFE",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "402519A2475241AA31315EBA169A8150",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_32",
+      "class": "K2Node_CallFunction",
+      "title": "Get Scalar Parameter Value",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "GetScalarParameterValue",
+      "function_class": "KismetMaterialLibrary",
+      "pins": [
+        {
+          "id": "2B8845E6493785C8506B999FF8592AA3",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_Event_6.then"
+          ],
+          "connected_to_ids": [
+            "77CC448E4F55442E5D811796530C9958"
+          ]
+        },
+        {
+          "id": "2BFE890545CAE27AE2E11B96081E8F81",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_33.execute"
+          ],
+          "connected_to_ids": [
+            "FB21A6B645D50CA404EB8F8BF84E2C16"
+          ]
+        },
+        {
+          "id": "CD00B9B74CCAAD2630880DB8D8165706",
+          "name": "Collection",
+          "direction": "input",
+          "type": "object:MaterialParameterCollection",
+          "default_object": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "D44A451749AE4F9FD43357A84F7C4224",
+          "name": "ParameterName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "MelodiaVFXMotion",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "33D252BC4957BCC39CB82193FF3DC0A3",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_53.InValue",
+            "K2Node_CallFunction_55.InValue",
+            "K2Node_CallFunction_57.InValue"
+          ],
+          "connected_to_ids": [
+            "A146A86544725AD25FB349B27DE43476",
+            "2862950F4BDB808A23381FA94457033B",
+            "688DF30348C80F1FA84C0CBF63CA033B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_33",
+      "class": "K2Node_CallFunction",
+      "title": "Get Scalar Parameter Value",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "GetScalarParameterValue",
+      "function_class": "KismetMaterialLibrary",
+      "pins": [
+        {
+          "id": "FB21A6B645D50CA404EB8F8BF84E2C16",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_32.then"
+          ],
+          "connected_to_ids": [
+            "2BFE890545CAE27AE2E11B96081E8F81"
+          ]
+        },
+        {
+          "id": "1775DE234E070F62143AEC83B1247873",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_34.execute"
+          ],
+          "connected_to_ids": [
+            "D28EAF364BBD7569846AE78AE7FA6685"
+          ]
+        },
+        {
+          "id": "D814E5FF402A60DCEE39DCBE0392AA56",
+          "name": "Collection",
+          "direction": "input",
+          "type": "object:MaterialParameterCollection",
+          "default_object": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0042FFE0457679C30655BBBF521BAD8A",
+          "name": "ParameterName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "MelodiaVFXLand",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "96B6435245AC45945D793696F211033B",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_54.InValue",
+            "K2Node_CallFunction_56.InValue",
+            "K2Node_CallFunction_58.InValue"
+          ],
+          "connected_to_ids": [
+            "155F136946EDD8755A4AA1BAEE3ADCDF",
+            "E16C6C1947D8014AE4B31596A40FB505",
+            "A0590EBC419AD66590A3AA912BB6E122"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_34",
+      "class": "K2Node_CallFunction",
+      "title": "Get Scalar Parameter Value",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "GetScalarParameterValue",
+      "function_class": "KismetMaterialLibrary",
+      "pins": [
+        {
+          "id": "D28EAF364BBD7569846AE78AE7FA6685",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_33.then"
+          ],
+          "connected_to_ids": [
+            "1775DE234E070F62143AEC83B1247873"
+          ]
+        },
+        {
+          "id": "D9C3EECE401DD26A4A83BEBD2ED00995",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_35.execute"
+          ],
+          "connected_to_ids": [
+            "425587004CA4EB27639ECB9B39918C07"
+          ]
+        },
+        {
+          "id": "E466DA9C43635E9C7E055F911F6582DB",
+          "name": "Collection",
+          "direction": "input",
+          "type": "object:MaterialParameterCollection",
+          "default_object": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "771E6B7F4B95B39985054FA3E4B6A99D",
+          "name": "ParameterName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "MelodiaVFXSwing",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "451B025E41BE790750ECF984E1807A9D",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_46.InValue"
+          ],
+          "connected_to_ids": [
+            "8009C90A46BD23816B8A538F6B7B3287"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_35",
+      "class": "K2Node_CallFunction",
+      "title": "Get Scalar Parameter Value",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "GetScalarParameterValue",
+      "function_class": "KismetMaterialLibrary",
+      "pins": [
+        {
+          "id": "425587004CA4EB27639ECB9B39918C07",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_34.then"
+          ],
+          "connected_to_ids": [
+            "D9C3EECE401DD26A4A83BEBD2ED00995"
+          ]
+        },
+        {
+          "id": "75C87B8C45D436EE8A5CF48024B00DDD",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_36.execute"
+          ],
+          "connected_to_ids": [
+            "1A9DD9D44E36F9C3DABB24ACD893271F"
+          ]
+        },
+        {
+          "id": "0234FEDD416E7ABBBE40D2B857AF5974",
+          "name": "Collection",
+          "direction": "input",
+          "type": "object:MaterialParameterCollection",
+          "default_object": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "C65FA2A444E73630F3D565A397151FE8",
+          "name": "ParameterName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "MelodiaVFXSparkle",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "8CF9CB8A4176FC4CCDB40B995362F711",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_44.InValue",
+            "K2Node_CallFunction_45.InValue"
+          ],
+          "connected_to_ids": [
+            "7C3B833F4D23AD6B44CEC893AF998E3F",
+            "DECCD6D14FDDCD4E477C21AAE08A9AD5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_36",
+      "class": "K2Node_CallFunction",
+      "title": "Get Scalar Parameter Value",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "GetScalarParameterValue",
+      "function_class": "KismetMaterialLibrary",
+      "pins": [
+        {
+          "id": "1A9DD9D44E36F9C3DABB24ACD893271F",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_35.then"
+          ],
+          "connected_to_ids": [
+            "75C87B8C45D436EE8A5CF48024B00DDD"
+          ]
+        },
+        {
+          "id": "8F6E577947BB8CAD0192438AD9070BF8",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_37.execute"
+          ],
+          "connected_to_ids": [
+            "E06C12E144049DE32A04C68D9671CE69"
+          ]
+        },
+        {
+          "id": "D8BD4BB344D7AC51976D5C8B463AFE4E",
+          "name": "Collection",
+          "direction": "input",
+          "type": "object:MaterialParameterCollection",
+          "default_object": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B05B19CE4BA63A2AD92A119C6AE05D3C",
+          "name": "ParameterName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "RhythmPulse",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A6B6B7F84D6EBA47F8286288A7CB3088",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_37",
+      "class": "K2Node_CallFunction",
+      "title": "Get Scalar Parameter Value",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "GetScalarParameterValue",
+      "function_class": "KismetMaterialLibrary",
+      "pins": [
+        {
+          "id": "E06C12E144049DE32A04C68D9671CE69",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_36.then"
+          ],
+          "connected_to_ids": [
+            "8F6E577947BB8CAD0192438AD9070BF8"
+          ]
+        },
+        {
+          "id": "C0A54D044458A3DA05E35AB6E3D6C136",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "F1A4EFB04D1D7AA72F6A1DB1B0E47FD1",
+          "name": "Collection",
+          "direction": "input",
+          "type": "object:MaterialParameterCollection",
+          "default_object": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "18023E5B458DB170D8F6C3A54662BC9B",
+          "name": "ParameterName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "BeatPulse",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "5CABEEED45278D0E41A268982767315A",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_51.InValue"
+          ],
+          "connected_to_ids": [
+            "F6E5ABDE482977CB15D2569B0AE350A2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_38",
+      "class": "K2Node_CallFunction",
+      "title": "float * float",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "Multiply_DoubleDouble",
+      "function_class": "KismetMathLibrary",
+      "pins": [
+        {
+          "id": "D5A26F6248CBE22A1180648F79C07E51",
+          "name": "A",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "87B4951143C119064CBD23A2630D3E23",
+          "name": "B",
+          "direction": "input",
+          "type": "double",
+          "default_value": "18",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "370220CF4C070483076171AE612BADD8",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_47.InValue"
+          ],
+          "connected_to_ids": [
+            "A99E43514A5EE4A1D1021F8AF4166114"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_39",
+      "class": "K2Node_CallFunction",
+      "title": "float * float",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "Multiply_DoubleDouble",
+      "function_class": "KismetMathLibrary",
+      "pins": [
+        {
+          "id": "39E389E4425A4BDF5DD44FBC94F190DE",
+          "name": "A",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E4CEDA4D4FB95036FEF319916134C05F",
+          "name": "B",
+          "direction": "input",
+          "type": "double",
+          "default_value": "8",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "79F7E0CA440C4DCDA4DEDB92C907671C",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_52.InValue"
+          ],
+          "connected_to_ids": [
+            "7F8AEDFB4D1FF62AE981A6B2A73FD8A7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_40",
+      "class": "K2Node_CallFunction",
+      "title": "float * float",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "Multiply_DoubleDouble",
+      "function_class": "KismetMathLibrary",
+      "pins": [
+        {
+          "id": "A11D940D4A0C326A88389C92EE12BDC0",
+          "name": "A",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1C5736AD4EA2E4BD669B3FA389EE1935",
+          "name": "B",
+          "direction": "input",
+          "type": "double",
+          "default_value": "1.5",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "6D83FC1841606F0F021E9D94582E41C8",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_48.InValue"
+          ],
+          "connected_to_ids": [
+            "DEE292B2445C715B65DBAFB67F01532D"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_41",
+      "class": "K2Node_CallFunction",
+      "title": "float * float",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "Multiply_DoubleDouble",
+      "function_class": "KismetMathLibrary",
+      "pins": [
+        {
+          "id": "9BB157AD499A14D5533F4BB3B5B8C627",
+          "name": "A",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "214889794BDC9388C2F053B1B7E60847",
+          "name": "B",
+          "direction": "input",
+          "type": "double",
+          "default_value": "24",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A4846FF941A6526F7D6CE382E1B77E5B",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_49.InValue"
+          ],
+          "connected_to_ids": [
+            "0F9D088F43A222807694DD9ECC60962F"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_42",
+      "class": "K2Node_CallFunction",
+      "title": "float * float",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "Multiply_DoubleDouble",
+      "function_class": "KismetMathLibrary",
+      "pins": [
+        {
+          "id": "E8FF88E64FF8A5F262438A9815BD4157",
+          "name": "A",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "F7F23C8B47778A0B1FD2E8B486B3BA29",
+          "name": "B",
+          "direction": "input",
+          "type": "double",
+          "default_value": "2",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1CCD81B149E4171DA8E7C5BFE3A03AE9",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_43.A"
+          ],
+          "connected_to_ids": [
+            "487CF6CD4C055AF401D591B67EF43B9E"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_43",
+      "class": "K2Node_CallFunction",
+      "title": "float + float",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "Add_DoubleDouble",
+      "function_class": "KismetMathLibrary",
+      "pins": [
+        {
+          "id": "487CF6CD4C055AF401D591B67EF43B9E",
+          "name": "A",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_42.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "1CCD81B149E4171DA8E7C5BFE3A03AE9"
+          ]
+        },
+        {
+          "id": "412538354055A7320D231BAC1B36787B",
+          "name": "B",
+          "direction": "input",
+          "type": "double",
+          "default_value": "0.4",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "707ED7974319CC385E51EF8E82BCD3D6",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "double",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_50.InValue"
+          ],
+          "connected_to_ids": [
+            "550BD3904058019685DBF380BFCC1E28"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_44",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "668B805846DB8F08F460FE972ED127E0",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "EF0714A8479E8A81DF01ECBCC393B7A6",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_45.execute"
+          ],
+          "connected_to_ids": [
+            "6467ADD04D785C4AA6E0CB96B5926786"
+          ]
+        },
+        {
+          "id": "08699272495A66D93AABF0A4ACD0F9DD",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_10.VFX_EyeSparkle_L"
+          ],
+          "connected_to_ids": [
+            "1F291A014BFED78BDB7FF2BBF5AF8439"
+          ]
+        },
+        {
+          "id": "74CFDB90410C341F637C12970B90E189",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "MelusinaSparkleRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "7C3B833F4D23AD6B44CEC893AF998E3F",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_35.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "8CF9CB8A4176FC4CCDB40B995362F711"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_45",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "6467ADD04D785C4AA6E0CB96B5926786",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_44.then"
+          ],
+          "connected_to_ids": [
+            "EF0714A8479E8A81DF01ECBCC393B7A6"
+          ]
+        },
+        {
+          "id": "ACD2CCB842646368CEE5A3BB0259009F",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_46.execute"
+          ],
+          "connected_to_ids": [
+            "CEE122A24A91406EDA274AA0CC1FC6E2"
+          ]
+        },
+        {
+          "id": "E795DB9D48784C8440FD07AB78606EFA",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_11.VFX_EyeSparkle_R"
+          ],
+          "connected_to_ids": [
+            "4021A866435F54C74D6781BC9E24FBAA"
+          ]
+        },
+        {
+          "id": "B54AEF0D4811438DB9EBB69D8C1D364A",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "MelusinaSparkleRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "DECCD6D14FDDCD4E477C21AAE08A9AD5",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_35.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "8CF9CB8A4176FC4CCDB40B995362F711"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_46",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "CEE122A24A91406EDA274AA0CC1FC6E2",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_45.then"
+          ],
+          "connected_to_ids": [
+            "ACD2CCB842646368CEE5A3BB0259009F"
+          ]
+        },
+        {
+          "id": "3FCEBAF049C2485933B5BF91D9AF224C",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_53.execute"
+          ],
+          "connected_to_ids": [
+            "E93872994B6AAB6608FA81AFF993B81B"
+          ]
+        },
+        {
+          "id": "BCC85E534ADAEAE4E507449549A05404",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_12.VFX_Trail"
+          ],
+          "connected_to_ids": [
+            "C486D19A47BBC7B2120BF0BDBFDF34D9"
+          ]
+        },
+        {
+          "id": "43B2D3184D7BEE9AE8B0ACAF60CBB786",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "SwingEnergy",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "8009C90A46BD23816B8A538F6B7B3287",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_34.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "451B025E41BE790750ECF984E1807A9D"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_47",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "D3D9E0954429F35A6753EE94882E0CBC",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_58.then"
+          ],
+          "connected_to_ids": [
+            "5E14EA4C49CC5EA41B1230BC95BB5C98"
+          ]
+        },
+        {
+          "id": "24802FE54055C8A982E6CEB77B84FBDF",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_48.execute"
+          ],
+          "connected_to_ids": [
+            "D799957A45D70E536B8029AC6A18DB38"
+          ]
+        },
+        {
+          "id": "C55C89AC45323100329BFEB881889A35",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_16.VFX_Splash"
+          ],
+          "connected_to_ids": [
+            "E0E3934246F5F180D47A828B33617522"
+          ]
+        },
+        {
+          "id": "12EE2CAA4619B6B67F2003BF74617F1E",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "SplashRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A99E43514A5EE4A1D1021F8AF4166114",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_38.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "370220CF4C070483076171AE612BADD8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_48",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "D799957A45D70E536B8029AC6A18DB38",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_47.then"
+          ],
+          "connected_to_ids": [
+            "24802FE54055C8A982E6CEB77B84FBDF"
+          ]
+        },
+        {
+          "id": "AB7797814E9C8C9924F00A8D1C205D6E",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_49.execute"
+          ],
+          "connected_to_ids": [
+            "AC6154754E188A5A3274439C80B5C7E4"
+          ]
+        },
+        {
+          "id": "0A38C2F042FE1CF640256BBAACDCF9D3",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_17.VFX_Ripple"
+          ],
+          "connected_to_ids": [
+            "AACFE8C14DFC9AA4D61AC0A2F73ACA3A"
+          ]
+        },
+        {
+          "id": "566E58AA4742A66119B8F7B6D714EB83",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "RippleRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "DEE292B2445C715B65DBAFB67F01532D",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_40.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "6D83FC1841606F0F021E9D94582E41C8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_49",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "AC6154754E188A5A3274439C80B5C7E4",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_48.then"
+          ],
+          "connected_to_ids": [
+            "AB7797814E9C8C9924F00A8D1C205D6E"
+          ]
+        },
+        {
+          "id": "E89EB4714AFFF5D2CB58FC8858D31547",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_50.execute"
+          ],
+          "connected_to_ids": [
+            "FC2F64A849D3305CD7D218AC76FEEC20"
+          ]
+        },
+        {
+          "id": "86FE9F9D443560B65AAA52AD0535CFAC",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_18.VFX_Glint"
+          ],
+          "connected_to_ids": [
+            "848F8D97481C531AFD27FF8D7147451B"
+          ]
+        },
+        {
+          "id": "B59965FF445E5499B42C49A6ADE4F2AC",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "GlintRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0F9D088F43A222807694DD9ECC60962F",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_41.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "A4846FF941A6526F7D6CE382E1B77E5B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_50",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "FC2F64A849D3305CD7D218AC76FEEC20",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_49.then"
+          ],
+          "connected_to_ids": [
+            "E89EB4714AFFF5D2CB58FC8858D31547"
+          ]
+        },
+        {
+          "id": "DCE1D9ED4CCD965A260F7496F13FC22B",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_51.execute"
+          ],
+          "connected_to_ids": [
+            "F0EBEA4448B6A4E5BCE12E9F73477018"
+          ]
+        },
+        {
+          "id": "4AC3647A4FA43B4239FBFBA3435E3E6E",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_19.VFX_Dust"
+          ],
+          "connected_to_ids": [
+            "E31ECEBE436A0DECFB1B10B75F93A850"
+          ]
+        },
+        {
+          "id": "4330C0B04CACCE9E260DB8B76C3F6FCE",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "DustRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "550BD3904058019685DBF380BFCC1E28",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_43.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "707ED7974319CC385E51EF8E82BCD3D6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_51",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "F0EBEA4448B6A4E5BCE12E9F73477018",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_50.then"
+          ],
+          "connected_to_ids": [
+            "DCE1D9ED4CCD965A260F7496F13FC22B"
+          ]
+        },
+        {
+          "id": "B760D06B43B50EBC9E4C6D8479AF7BD0",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_52.execute"
+          ],
+          "connected_to_ids": [
+            "14E929C84D7A1A6B50A1EBB68A16898B"
+          ]
+        },
+        {
+          "id": "6731815C4A1000A0B84E868CB39DBF91",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_20.VFX_Sigil"
+          ],
+          "connected_to_ids": [
+            "0292A86240E54531BCE837928870BE5D"
+          ]
+        },
+        {
+          "id": "2E44B9C04978E86F89DD0F979A0525ED",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "SigilRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "F6E5ABDE482977CB15D2569B0AE350A2",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_37.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "5CABEEED45278D0E41A268982767315A"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_52",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "14E929C84D7A1A6B50A1EBB68A16898B",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_51.then"
+          ],
+          "connected_to_ids": [
+            "B760D06B43B50EBC9E4C6D8479AF7BD0"
+          ]
+        },
+        {
+          "id": "6DDFBB1046C0F35D51B88998CF6BA686",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "25DE5A7E4124ACA2C9A0BB9E2977AD05",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_21.VFX_Arc"
+          ],
+          "connected_to_ids": [
+            "2F218C864E6C991B3F3CDDBB95679318"
+          ]
+        },
+        {
+          "id": "C7F947D840CE3595A7697FB52BA5CF03",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "ArcRate",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "7F8AEDFB4D1FF62AE981A6B2A73FD8A7",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_39.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "79F7E0CA440C4DCDA4DEDB92C907671C"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_53",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "E93872994B6AAB6608FA81AFF993B81B",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_46.then"
+          ],
+          "connected_to_ids": [
+            "3FCEBAF049C2485933B5BF91D9AF224C"
+          ]
+        },
+        {
+          "id": "4600A2414DE504A801B58684CEAC715D",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_54.execute"
+          ],
+          "connected_to_ids": [
+            "E5183B794E37F49D7F4766B24A4AE3F6"
+          ]
+        },
+        {
+          "id": "7E9E5EA74940E209CDEEE6A9AAE456AA",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_13.VFX_Globules_A"
+          ],
+          "connected_to_ids": [
+            "99D3A16B4CAF7C1836AB89A67CE35A88"
+          ]
+        },
+        {
+          "id": "7A0ACA04495ACF455706019D6DA19A15",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "MotionEnergy",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A146A86544725AD25FB349B27DE43476",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_32.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "33D252BC4957BCC39CB82193FF3DC0A3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_54",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "E5183B794E37F49D7F4766B24A4AE3F6",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_53.then"
+          ],
+          "connected_to_ids": [
+            "4600A2414DE504A801B58684CEAC715D"
+          ]
+        },
+        {
+          "id": "B22AF479459F1C5AC0A689AD79BFF135",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_55.execute"
+          ],
+          "connected_to_ids": [
+            "063C792849BD4ED81565A99CD3F8A727"
+          ]
+        },
+        {
+          "id": "021FBF804CA74750B475649DCE26C5DE",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_13.VFX_Globules_A"
+          ],
+          "connected_to_ids": [
+            "99D3A16B4CAF7C1836AB89A67CE35A88"
+          ]
+        },
+        {
+          "id": "2665C6AD4A5B64E32442FBA24DB1ADEF",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "LandBurst",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "155F136946EDD8755A4AA1BAEE3ADCDF",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_33.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "96B6435245AC45945D793696F211033B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_55",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "063C792849BD4ED81565A99CD3F8A727",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_54.then"
+          ],
+          "connected_to_ids": [
+            "B22AF479459F1C5AC0A689AD79BFF135"
+          ]
+        },
+        {
+          "id": "7F362DB945F6A309DA2D8F80D362CA4E",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_56.execute"
+          ],
+          "connected_to_ids": [
+            "8326B39F40323D48440F63B096343F3C"
+          ]
+        },
+        {
+          "id": "15A0A6334F2680CEEB4118AF091A3961",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_14.VFX_Globules_B"
+          ],
+          "connected_to_ids": [
+            "B5AD5D534BB7179D2DDB898E2565B21E"
+          ]
+        },
+        {
+          "id": "A0B28C6648F780A0788E0FA676C6B41D",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "MotionEnergy",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "2862950F4BDB808A23381FA94457033B",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_32.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "33D252BC4957BCC39CB82193FF3DC0A3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_56",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "8326B39F40323D48440F63B096343F3C",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_55.then"
+          ],
+          "connected_to_ids": [
+            "7F362DB945F6A309DA2D8F80D362CA4E"
+          ]
+        },
+        {
+          "id": "5FBC458140559D9B292D8F9621A90825",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_57.execute"
+          ],
+          "connected_to_ids": [
+            "672A9E7A4A5362737447AC98ED4B9691"
+          ]
+        },
+        {
+          "id": "6AF64304409C862403ABB3A86A75A3E0",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_14.VFX_Globules_B"
+          ],
+          "connected_to_ids": [
+            "B5AD5D534BB7179D2DDB898E2565B21E"
+          ]
+        },
+        {
+          "id": "1B88B1374F8FC4B6D8C2B3812532B359",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "LandBurst",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E16C6C1947D8014AE4B31596A40FB505",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_33.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "96B6435245AC45945D793696F211033B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_57",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "672A9E7A4A5362737447AC98ED4B9691",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_56.then"
+          ],
+          "connected_to_ids": [
+            "5FBC458140559D9B292D8F9621A90825"
+          ]
+        },
+        {
+          "id": "57CD28E94CA9B4E75EE9C9BD49A6A5DA",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_58.execute"
+          ],
+          "connected_to_ids": [
+            "42917D554F6084BD0D2A46BFD05E591D"
+          ]
+        },
+        {
+          "id": "5A2544E44F051FDF521B78AA8E7F3A31",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_15.VFX_Globules_C"
+          ],
+          "connected_to_ids": [
+            "A40860D347CACBE558BBC7B29FDC8FB9"
+          ]
+        },
+        {
+          "id": "942425BD4CF04FDC710DB2989A389809",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "MotionEnergy",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "688DF30348C80F1FA84C0CBF63CA033B",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_32.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "33D252BC4957BCC39CB82193FF3DC0A3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_58",
+      "class": "K2Node_CallFunction",
+      "title": "Set Niagara Variable By String (Float)\nTarget is Niagara Particle System Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "SetNiagaraVariableFloat",
+      "function_class": "NiagaraComponent",
+      "pins": [
+        {
+          "id": "42917D554F6084BD0D2A46BFD05E591D",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_57.then"
+          ],
+          "connected_to_ids": [
+            "57CD28E94CA9B4E75EE9C9BD49A6A5DA"
+          ]
+        },
+        {
+          "id": "5E14EA4C49CC5EA41B1230BC95BB5C98",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_47.execute"
+          ],
+          "connected_to_ids": [
+            "D3D9E0954429F35A6753EE94882E0CBC"
+          ]
+        },
+        {
+          "id": "176161514FA6173C0BBBBFB381421760",
+          "name": "self",
+          "direction": "input",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_VariableGet_15.VFX_Globules_C"
+          ],
+          "connected_to_ids": [
+            "A40860D347CACBE558BBC7B29FDC8FB9"
+          ]
+        },
+        {
+          "id": "3C85EAEB4C2D0CF1782F7AAD59F92CC7",
+          "name": "InVariableName",
+          "direction": "input",
+          "type": "string",
+          "default_value": "LandBurst",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A0590EBC419AD66590A3AA912BB6E122",
+          "name": "InValue",
+          "direction": "input",
+          "type": "float",
+          "default_value": "0.0",
+          "connected_to": [
+            "K2Node_CallFunction_33.ReturnValue"
+          ],
+          "connected_to_ids": [
+            "96B6435245AC45945D793696F211033B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_0",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "B56BBB12415D441911C9BEBB92B46CD3",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_31.then"
+          ],
+          "connected_to_ids": [
+            "FCD891AC44DCB38DCB41E2B4ECBFAA5F"
+          ]
+        },
+        {
+          "id": "C00AD07346F657FD43A8D48C1E28D2D5",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_1.execute"
+          ],
+          "connected_to_ids": [
+            "B08B1A894E057A2F232A9B8E774144D5"
+          ]
+        },
+        {
+          "id": "C58133EE46B3CE71C81E539F4873C003",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_0.VFX_EntropyDust"
+          ],
+          "connected_to_ids": [
+            "7C21FB0E49CAA7BBBFF3BC8B6148A72F"
+          ]
+        },
+        {
+          "id": "BAF0D71C4FEE964FE6BA67AEA9D1AF16",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "AD8B88474092EC039B52339D70397032",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "None",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "864FCD72444AC2B9C7E2C4B9FC79002D",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "4CDAC0964E78D9E093958EA0FB7205FA",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "F9C4315B4B58978ECBBB579310DC66B8",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "CEDDD6DF4F2DFB37E7B964892F4D8E06",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "670A73BD4DF16BD1386737B5B647713C",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_1",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "B08B1A894E057A2F232A9B8E774144D5",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_0.then"
+          ],
+          "connected_to_ids": [
+            "C00AD07346F657FD43A8D48C1E28D2D5"
+          ]
+        },
+        {
+          "id": "591BB3D648271C3AE7D9E58B018014D6",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_2.execute"
+          ],
+          "connected_to_ids": [
+            "5FC59E6143A3C3E78698B0BAB0ED0410"
+          ]
+        },
+        {
+          "id": "E0412D84471BE38E38DF148A64DD6505",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_1.VFX_ChaosDrift"
+          ],
+          "connected_to_ids": [
+            "438D4CC345BFD5096FE6A8BCEDF9AF90"
+          ]
+        },
+        {
+          "id": "E982E9E046D9078F5FF9E2AD6EC25CFE",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "3C2CC2E549A0012E4ECF4DA248C60F04",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "None",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "8F70E6174FDC579DA02A95A310016C56",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1DF42486427252C80A63EC8FEAA74EE0",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "162E111D4AFF743B3986C787E5C4B1BD",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "77A1154045A1FB02BD278DB894EC64D9",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "953BB4BA4102FB8312892984F8C6698D",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_2",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "5FC59E6143A3C3E78698B0BAB0ED0410",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_1.then"
+          ],
+          "connected_to_ids": [
+            "591BB3D648271C3AE7D9E58B018014D6"
+          ]
+        },
+        {
+          "id": "9584B4194A6E6729248481B7E00995CE",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_3.execute"
+          ],
+          "connected_to_ids": [
+            "311F653A46B16CBAC99E2280446FB1DB"
+          ]
+        },
+        {
+          "id": "3B269F974EBB7FDB1BF671A85D3A8A79",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_2.VFX_Superposition"
+          ],
+          "connected_to_ids": [
+            "3FB343214807E128E24D289E4105B2F9"
+          ]
+        },
+        {
+          "id": "9F93CD1A4EF8FD281141709C111A530A",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "B1A8B94E43A9AD4167DD6B80CA945D8C",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "hand_r",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E2CF0B214F8F91C27C28C89CD5F03EDE",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "252D5E034D708D97B2AD1A8FBED4F7FA",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "3BA03DD940E7E6C59DBEE5A653D2199C",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "CC33728947DD5425D70A9094EED68992",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "B0628397437D376F8B04A68A7275AEB7",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallFunction_3",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        0,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "311F653A46B16CBAC99E2280446FB1DB",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_2.then"
+          ],
+          "connected_to_ids": [
+            "9584B4194A6E6729248481B7E00995CE"
+          ]
+        },
+        {
+          "id": "B1D2832C405009EDBA58A0902978D0F9",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "C135193F4330D278C38E9E9B313FB510",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_3.VFX_ProviderSigil"
+          ],
+          "connected_to_ids": [
+            "2388D77249ECA29051B5139AD0A7BDB4"
+          ]
+        },
+        {
+          "id": "2FBA37554C040A9944C951A1B18FD1B5",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "7852ABCD4098BDB8CE1EAE9CA53208A9",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "foot_l",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "FD8811CB49E1E44812D9D7A257157C5C",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "6D0846DB409ECE39BB46F2BF0B6770ED",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "2CB5307A47674DCF83600DA7D631FE9C",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "63F4D29E4657F6C7F47277A34510C72E",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E723CFE24DF97DE716671CB359A70054",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_0",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_EntropyDust",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "7C21FB0E49CAA7BBBFF3BC8B6148A72F",
+          "name": "VFX_EntropyDust",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_0.self"
+          ],
+          "connected_to_ids": [
+            "C58133EE46B3CE71C81E539F4873C003"
+          ]
+        }
+      ],
+      "variable_name": "VFX_EntropyDust",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_1",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_ChaosDrift",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "438D4CC345BFD5096FE6A8BCEDF9AF90",
+          "name": "VFX_ChaosDrift",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_1.self"
+          ],
+          "connected_to_ids": [
+            "E0412D84471BE38E38DF148A64DD6505"
+          ]
+        }
+      ],
+      "variable_name": "VFX_ChaosDrift",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_2",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_Superposition",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "3FB343214807E128E24D289E4105B2F9",
+          "name": "VFX_Superposition",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_2.self"
+          ],
+          "connected_to_ids": [
+            "3B269F974EBB7FDB1BF671A85D3A8A79"
+          ]
+        }
+      ],
+      "variable_name": "VFX_Superposition",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_3",
+      "class": "K2Node_VariableGet",
+      "title": "Get VFX_ProviderSigil",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "2388D77249ECA29051B5139AD0A7BDB4",
+          "name": "VFX_ProviderSigil",
+          "direction": "output",
+          "type": "object:NiagaraComponent",
+          "connected_to": [
+            "K2Node_CallFunction_3.self"
+          ],
+          "connected_to_ids": [
+            "C135193F4330D278C38E9E9B313FB510"
+          ]
+        }
+      ],
+      "variable_name": "VFX_ProviderSigil",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableSet_0",
+      "class": "K2Node_VariableSet",
+      "title": "Set SkeletalMesh",
+      "pos": [
+        -3200,
+        0
+      ],
+      "pins": [
+        {
+          "id": "05DC6A434936197E9716C4B48C3152D4",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_Event_5.then"
+          ],
+          "connected_to_ids": [
+            "493DA53C49972A727E0AA4A32B4D9DD5"
+          ]
+        },
+        {
+          "id": "62299DD743E2441C3D131EABDAA718A2",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_20.execute"
+          ],
+          "connected_to_ids": [
+            "7C67EC734463B613EFD176ADADE62D8C"
+          ]
+        },
+        {
+          "id": "8AA78C4B4BA25E0C3828BB916A1F8E78",
+          "name": "SkeletalMesh",
+          "direction": "input",
+          "type": "object:SkeletalMeshComponent",
+          "connected_to": [
+            "K2Node_VariableGet_22.MelusinaPresentationMesh"
+          ],
+          "connected_to_ids": [
+            "F76C577442899257A0E8758CD065C214"
+          ]
+        },
+        {
+          "id": "ED25C43F47205829355978B8B48BCC8F",
+          "name": "Output_Get",
+          "direction": "output",
+          "type": "object:SkeletalMeshComponent",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ],
+      "variable_name": "SkeletalMesh",
+      "is_self_context": true
+    }
+  ],
+  "connections": [
+    {
+      "from_node": "K2Node_Event_5",
+      "from_pin": "then",
+      "to_node": "K2Node_VariableSet_0",
+      "to_pin": "execute",
+      "from_pin_id": "493DA53C49972A727E0AA4A32B4D9DD5",
+      "to_pin_id": "05DC6A434936197E9716C4B48C3152D4"
+    },
+    {
+      "from_node": "K2Node_Event_6",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_32",
+      "to_pin": "execute",
+      "from_pin_id": "77CC448E4F55442E5D811796530C9958",
+      "to_pin_id": "2B8845E6493785C8506B999FF8592AA3"
+    },
+    {
+      "from_node": "K2Node_VariableGet_10",
+      "from_pin": "VFX_EyeSparkle_L",
+      "to_node": "K2Node_CallFunction_20",
+      "to_pin": "self",
+      "from_pin_id": "1F291A014BFED78BDB7FF2BBF5AF8439",
+      "to_pin_id": "11EBAF9C45610FE005A005BCB95CB191"
+    },
+    {
+      "from_node": "K2Node_VariableGet_10",
+      "from_pin": "VFX_EyeSparkle_L",
+      "to_node": "K2Node_CallFunction_44",
+      "to_pin": "self",
+      "from_pin_id": "1F291A014BFED78BDB7FF2BBF5AF8439",
+      "to_pin_id": "08699272495A66D93AABF0A4ACD0F9DD"
+    },
+    {
+      "from_node": "K2Node_VariableGet_11",
+      "from_pin": "VFX_EyeSparkle_R",
+      "to_node": "K2Node_CallFunction_21",
+      "to_pin": "self",
+      "from_pin_id": "4021A866435F54C74D6781BC9E24FBAA",
+      "to_pin_id": "B406E0DB4981A0D10CA8C4B3741251EB"
+    },
+    {
+      "from_node": "K2Node_VariableGet_11",
+      "from_pin": "VFX_EyeSparkle_R",
+      "to_node": "K2Node_CallFunction_45",
+      "to_pin": "self",
+      "from_pin_id": "4021A866435F54C74D6781BC9E24FBAA",
+      "to_pin_id": "E795DB9D48784C8440FD07AB78606EFA"
+    },
+    {
+      "from_node": "K2Node_VariableGet_12",
+      "from_pin": "VFX_Trail",
+      "to_node": "K2Node_CallFunction_22",
+      "to_pin": "self",
+      "from_pin_id": "C486D19A47BBC7B2120BF0BDBFDF34D9",
+      "to_pin_id": "F1D0F10746C30D40CF0B77B626E020E1"
+    },
+    {
+      "from_node": "K2Node_VariableGet_12",
+      "from_pin": "VFX_Trail",
+      "to_node": "K2Node_CallFunction_46",
+      "to_pin": "self",
+      "from_pin_id": "C486D19A47BBC7B2120BF0BDBFDF34D9",
+      "to_pin_id": "BCC85E534ADAEAE4E507449549A05404"
+    },
+    {
+      "from_node": "K2Node_VariableGet_13",
+      "from_pin": "VFX_Globules_A",
+      "to_node": "K2Node_CallFunction_23",
+      "to_pin": "self",
+      "from_pin_id": "99D3A16B4CAF7C1836AB89A67CE35A88",
+      "to_pin_id": "BF18AD43438D582D41B90CAE7910860D"
+    },
+    {
+      "from_node": "K2Node_VariableGet_13",
+      "from_pin": "VFX_Globules_A",
+      "to_node": "K2Node_CallFunction_53",
+      "to_pin": "self",
+      "from_pin_id": "99D3A16B4CAF7C1836AB89A67CE35A88",
+      "to_pin_id": "7E9E5EA74940E209CDEEE6A9AAE456AA"
+    },
+    {
+      "from_node": "K2Node_VariableGet_13",
+      "from_pin": "VFX_Globules_A",
+      "to_node": "K2Node_CallFunction_54",
+      "to_pin": "self",
+      "from_pin_id": "99D3A16B4CAF7C1836AB89A67CE35A88",
+      "to_pin_id": "021FBF804CA74750B475649DCE26C5DE"
+    },
+    {
+      "from_node": "K2Node_VariableGet_14",
+      "from_pin": "VFX_Globules_B",
+      "to_node": "K2Node_CallFunction_24",
+      "to_pin": "self",
+      "from_pin_id": "B5AD5D534BB7179D2DDB898E2565B21E",
+      "to_pin_id": "703E75E448D426DF6D68999E43A8C1B1"
+    },
+    {
+      "from_node": "K2Node_VariableGet_14",
+      "from_pin": "VFX_Globules_B",
+      "to_node": "K2Node_CallFunction_55",
+      "to_pin": "self",
+      "from_pin_id": "B5AD5D534BB7179D2DDB898E2565B21E",
+      "to_pin_id": "15A0A6334F2680CEEB4118AF091A3961"
+    },
+    {
+      "from_node": "K2Node_VariableGet_14",
+      "from_pin": "VFX_Globules_B",
+      "to_node": "K2Node_CallFunction_56",
+      "to_pin": "self",
+      "from_pin_id": "B5AD5D534BB7179D2DDB898E2565B21E",
+      "to_pin_id": "6AF64304409C862403ABB3A86A75A3E0"
+    },
+    {
+      "from_node": "K2Node_VariableGet_15",
+      "from_pin": "VFX_Globules_C",
+      "to_node": "K2Node_CallFunction_25",
+      "to_pin": "self",
+      "from_pin_id": "A40860D347CACBE558BBC7B29FDC8FB9",
+      "to_pin_id": "533F785746514CA03227ADA8158C8EE5"
+    },
+    {
+      "from_node": "K2Node_VariableGet_15",
+      "from_pin": "VFX_Globules_C",
+      "to_node": "K2Node_CallFunction_57",
+      "to_pin": "self",
+      "from_pin_id": "A40860D347CACBE558BBC7B29FDC8FB9",
+      "to_pin_id": "5A2544E44F051FDF521B78AA8E7F3A31"
+    },
+    {
+      "from_node": "K2Node_VariableGet_15",
+      "from_pin": "VFX_Globules_C",
+      "to_node": "K2Node_CallFunction_58",
+      "to_pin": "self",
+      "from_pin_id": "A40860D347CACBE558BBC7B29FDC8FB9",
+      "to_pin_id": "176161514FA6173C0BBBBFB381421760"
+    },
+    {
+      "from_node": "K2Node_VariableGet_16",
+      "from_pin": "VFX_Splash",
+      "to_node": "K2Node_CallFunction_26",
+      "to_pin": "self",
+      "from_pin_id": "E0E3934246F5F180D47A828B33617522",
+      "to_pin_id": "0E02871B48FAE7FD8C170489D48DB091"
+    },
+    {
+      "from_node": "K2Node_VariableGet_16",
+      "from_pin": "VFX_Splash",
+      "to_node": "K2Node_CallFunction_47",
+      "to_pin": "self",
+      "from_pin_id": "E0E3934246F5F180D47A828B33617522",
+      "to_pin_id": "C55C89AC45323100329BFEB881889A35"
+    },
+    {
+      "from_node": "K2Node_VariableGet_17",
+      "from_pin": "VFX_Ripple",
+      "to_node": "K2Node_CallFunction_27",
+      "to_pin": "self",
+      "from_pin_id": "AACFE8C14DFC9AA4D61AC0A2F73ACA3A",
+      "to_pin_id": "05B2937B4784D89A7CCDE5B72E27EBF2"
+    },
+    {
+      "from_node": "K2Node_VariableGet_17",
+      "from_pin": "VFX_Ripple",
+      "to_node": "K2Node_CallFunction_48",
+      "to_pin": "self",
+      "from_pin_id": "AACFE8C14DFC9AA4D61AC0A2F73ACA3A",
+      "to_pin_id": "0A38C2F042FE1CF640256BBAACDCF9D3"
+    },
+    {
+      "from_node": "K2Node_VariableGet_18",
+      "from_pin": "VFX_Glint",
+      "to_node": "K2Node_CallFunction_28",
+      "to_pin": "self",
+      "from_pin_id": "848F8D97481C531AFD27FF8D7147451B",
+      "to_pin_id": "69AB79B045605B5266E60489BB9CA4E6"
+    },
+    {
+      "from_node": "K2Node_VariableGet_18",
+      "from_pin": "VFX_Glint",
+      "to_node": "K2Node_CallFunction_49",
+      "to_pin": "self",
+      "from_pin_id": "848F8D97481C531AFD27FF8D7147451B",
+      "to_pin_id": "86FE9F9D443560B65AAA52AD0535CFAC"
+    },
+    {
+      "from_node": "K2Node_VariableGet_19",
+      "from_pin": "VFX_Dust",
+      "to_node": "K2Node_CallFunction_29",
+      "to_pin": "self",
+      "from_pin_id": "E31ECEBE436A0DECFB1B10B75F93A850",
+      "to_pin_id": "226F4FC44FE67120992D51B309AA3F37"
+    },
+    {
+      "from_node": "K2Node_VariableGet_19",
+      "from_pin": "VFX_Dust",
+      "to_node": "K2Node_CallFunction_50",
+      "to_pin": "self",
+      "from_pin_id": "E31ECEBE436A0DECFB1B10B75F93A850",
+      "to_pin_id": "4AC3647A4FA43B4239FBFBA3435E3E6E"
+    },
+    {
+      "from_node": "K2Node_VariableGet_20",
+      "from_pin": "VFX_Sigil",
+      "to_node": "K2Node_CallFunction_30",
+      "to_pin": "self",
+      "from_pin_id": "0292A86240E54531BCE837928870BE5D",
+      "to_pin_id": "7B774D35453B5AEAD7AD278CB67551D4"
+    },
+    {
+      "from_node": "K2Node_VariableGet_20",
+      "from_pin": "VFX_Sigil",
+      "to_node": "K2Node_CallFunction_51",
+      "to_pin": "self",
+      "from_pin_id": "0292A86240E54531BCE837928870BE5D",
+      "to_pin_id": "6731815C4A1000A0B84E868CB39DBF91"
+    },
+    {
+      "from_node": "K2Node_VariableGet_21",
+      "from_pin": "VFX_Arc",
+      "to_node": "K2Node_CallFunction_31",
+      "to_pin": "self",
+      "from_pin_id": "2F218C864E6C991B3F3CDDBB95679318",
+      "to_pin_id": "5B3DB5654192BA8FA450989A1B13B5FB"
+    },
+    {
+      "from_node": "K2Node_VariableGet_21",
+      "from_pin": "VFX_Arc",
+      "to_node": "K2Node_CallFunction_52",
+      "to_pin": "self",
+      "from_pin_id": "2F218C864E6C991B3F3CDDBB95679318",
+      "to_pin_id": "25DE5A7E4124ACA2C9A0BB9E2977AD05"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_20",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "E5A803984B9E13A66B4F38A522E99E0C"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_21",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "D100711546A0BC97D502BCBC55C24BF6"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_22",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "539D057E44914B148DF419A8EA2BF62A"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_26",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "299459D841C789436A141A8FCA23ACB3"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_27",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "BB5621614697BF3CD7550085A485D44D"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_28",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "21A0BD5A42474738FE03378B533E8109"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_29",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "22813A23401F38E2A48C798156A93AC1"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_30",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "B9046E0E44290AE91DDC46908EE596A5"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_31",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "F5D425894B56197B6C821A953BF34078"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_0",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "BAF0D71C4FEE964FE6BA67AEA9D1AF16"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_1",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "E982E9E046D9078F5FF9E2AD6EC25CFE"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_2",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "9F93CD1A4EF8FD281141709C111A530A"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_CallFunction_3",
+      "to_pin": "Parent",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "2FBA37554C040A9944C951A1B18FD1B5"
+    },
+    {
+      "from_node": "K2Node_VariableGet_22",
+      "from_pin": "MelusinaPresentationMesh",
+      "to_node": "K2Node_VariableSet_0",
+      "to_pin": "SkeletalMesh",
+      "from_pin_id": "F76C577442899257A0E8758CD065C214",
+      "to_pin_id": "8AA78C4B4BA25E0C3828BB916A1F8E78"
+    },
+    {
+      "from_node": "K2Node_VariableGet_23",
+      "from_pin": "WaterHairMesh",
+      "to_node": "K2Node_CallFunction_23",
+      "to_pin": "Parent",
+      "from_pin_id": "3B37B2684E99B339CFA6BD94527D922A",
+      "to_pin_id": "1B30C1BC4CB949B192B325BDCF9BEF03"
+    },
+    {
+      "from_node": "K2Node_VariableGet_23",
+      "from_pin": "WaterHairMesh",
+      "to_node": "K2Node_CallFunction_24",
+      "to_pin": "Parent",
+      "from_pin_id": "3B37B2684E99B339CFA6BD94527D922A",
+      "to_pin_id": "2CC5E6EF4D691DA6004EBEB039264334"
+    },
+    {
+      "from_node": "K2Node_VariableGet_23",
+      "from_pin": "WaterHairMesh",
+      "to_node": "K2Node_CallFunction_25",
+      "to_pin": "Parent",
+      "from_pin_id": "3B37B2684E99B339CFA6BD94527D922A",
+      "to_pin_id": "C8D7EAA747FA6D625F82D5BD8911C4AF"
+    },
+    {
+      "from_node": "K2Node_CallFunction_20",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_21",
+      "to_pin": "execute",
+      "from_pin_id": "B28413294225BFE6AD182AA044C5A289",
+      "to_pin_id": "76D6821742C0761B6A2EE9ABB06C0D61"
+    },
+    {
+      "from_node": "K2Node_CallFunction_21",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_22",
+      "to_pin": "execute",
+      "from_pin_id": "3CB8528A469191C9F46CB9937DB4F2D4",
+      "to_pin_id": "26A76338454AD2535768D0A5D1869657"
+    },
+    {
+      "from_node": "K2Node_CallFunction_22",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_23",
+      "to_pin": "execute",
+      "from_pin_id": "68C66D664D00DAD966FD2EB4CC285030",
+      "to_pin_id": "93713FE74DEEE01281152394409B3128"
+    },
+    {
+      "from_node": "K2Node_CallFunction_23",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_24",
+      "to_pin": "execute",
+      "from_pin_id": "5ED297464D2DC001460602A4329AF703",
+      "to_pin_id": "5F2FEFF74D5A48DB14601AA11202DE4F"
+    },
+    {
+      "from_node": "K2Node_CallFunction_24",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_25",
+      "to_pin": "execute",
+      "from_pin_id": "F157E89C4F999CE511994A840EC06C53",
+      "to_pin_id": "D6D5A56D433BDAB7BB7A64A4A73F7E6A"
+    },
+    {
+      "from_node": "K2Node_CallFunction_25",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_26",
+      "to_pin": "execute",
+      "from_pin_id": "031B62AB4598C38D5A20D18392367870",
+      "to_pin_id": "8BC2AF5D4B87597242431C9B278D7CCE"
+    },
+    {
+      "from_node": "K2Node_CallFunction_26",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_27",
+      "to_pin": "execute",
+      "from_pin_id": "46329E1E4F6E2A20F5258093467F201F",
+      "to_pin_id": "A62DAAD54A677545352AD0BE61258C99"
+    },
+    {
+      "from_node": "K2Node_CallFunction_27",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_28",
+      "to_pin": "execute",
+      "from_pin_id": "29875B4F43AE1767DBE665B91078989E",
+      "to_pin_id": "D05D28704F11C509471032A75629C389"
+    },
+    {
+      "from_node": "K2Node_CallFunction_28",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_29",
+      "to_pin": "execute",
+      "from_pin_id": "4DB13D5044A9E1A21BB5DE83565E722E",
+      "to_pin_id": "4DD7571644B8616A8F5579BEEAA9FA2F"
+    },
+    {
+      "from_node": "K2Node_CallFunction_29",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_30",
+      "to_pin": "execute",
+      "from_pin_id": "7C7A97684AB20F4EBA547FB09E0F4C49",
+      "to_pin_id": "94F5994744DA9B2218BDE4B927A0F84B"
+    },
+    {
+      "from_node": "K2Node_CallFunction_30",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_31",
+      "to_pin": "execute",
+      "from_pin_id": "4EAC816F4F23ECE16B85ED9AC69094F9",
+      "to_pin_id": "85D0FABF4A21B4A3EA3AD68D414D0ECB"
+    },
+    {
+      "from_node": "K2Node_CallFunction_31",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_0",
+      "to_pin": "execute",
+      "from_pin_id": "FCD891AC44DCB38DCB41E2B4ECBFAA5F",
+      "to_pin_id": "B56BBB12415D441911C9BEBB92B46CD3"
+    },
+    {
+      "from_node": "K2Node_CallFunction_32",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_33",
+      "to_pin": "execute",
+      "from_pin_id": "2BFE890545CAE27AE2E11B96081E8F81",
+      "to_pin_id": "FB21A6B645D50CA404EB8F8BF84E2C16"
+    },
+    {
+      "from_node": "K2Node_CallFunction_32",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_53",
+      "to_pin": "InValue",
+      "from_pin_id": "33D252BC4957BCC39CB82193FF3DC0A3",
+      "to_pin_id": "A146A86544725AD25FB349B27DE43476"
+    },
+    {
+      "from_node": "K2Node_CallFunction_32",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_55",
+      "to_pin": "InValue",
+      "from_pin_id": "33D252BC4957BCC39CB82193FF3DC0A3",
+      "to_pin_id": "2862950F4BDB808A23381FA94457033B"
+    },
+    {
+      "from_node": "K2Node_CallFunction_32",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_57",
+      "to_pin": "InValue",
+      "from_pin_id": "33D252BC4957BCC39CB82193FF3DC0A3",
+      "to_pin_id": "688DF30348C80F1FA84C0CBF63CA033B"
+    },
+    {
+      "from_node": "K2Node_CallFunction_33",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_34",
+      "to_pin": "execute",
+      "from_pin_id": "1775DE234E070F62143AEC83B1247873",
+      "to_pin_id": "D28EAF364BBD7569846AE78AE7FA6685"
+    },
+    {
+      "from_node": "K2Node_CallFunction_33",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_54",
+      "to_pin": "InValue",
+      "from_pin_id": "96B6435245AC45945D793696F211033B",
+      "to_pin_id": "155F136946EDD8755A4AA1BAEE3ADCDF"
+    },
+    {
+      "from_node": "K2Node_CallFunction_33",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_56",
+      "to_pin": "InValue",
+      "from_pin_id": "96B6435245AC45945D793696F211033B",
+      "to_pin_id": "E16C6C1947D8014AE4B31596A40FB505"
+    },
+    {
+      "from_node": "K2Node_CallFunction_33",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_58",
+      "to_pin": "InValue",
+      "from_pin_id": "96B6435245AC45945D793696F211033B",
+      "to_pin_id": "A0590EBC419AD66590A3AA912BB6E122"
+    },
+    {
+      "from_node": "K2Node_CallFunction_34",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_35",
+      "to_pin": "execute",
+      "from_pin_id": "D9C3EECE401DD26A4A83BEBD2ED00995",
+      "to_pin_id": "425587004CA4EB27639ECB9B39918C07"
+    },
+    {
+      "from_node": "K2Node_CallFunction_34",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_46",
+      "to_pin": "InValue",
+      "from_pin_id": "451B025E41BE790750ECF984E1807A9D",
+      "to_pin_id": "8009C90A46BD23816B8A538F6B7B3287"
+    },
+    {
+      "from_node": "K2Node_CallFunction_35",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_36",
+      "to_pin": "execute",
+      "from_pin_id": "75C87B8C45D436EE8A5CF48024B00DDD",
+      "to_pin_id": "1A9DD9D44E36F9C3DABB24ACD893271F"
+    },
+    {
+      "from_node": "K2Node_CallFunction_35",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_44",
+      "to_pin": "InValue",
+      "from_pin_id": "8CF9CB8A4176FC4CCDB40B995362F711",
+      "to_pin_id": "7C3B833F4D23AD6B44CEC893AF998E3F"
+    },
+    {
+      "from_node": "K2Node_CallFunction_35",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_45",
+      "to_pin": "InValue",
+      "from_pin_id": "8CF9CB8A4176FC4CCDB40B995362F711",
+      "to_pin_id": "DECCD6D14FDDCD4E477C21AAE08A9AD5"
+    },
+    {
+      "from_node": "K2Node_CallFunction_36",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_37",
+      "to_pin": "execute",
+      "from_pin_id": "8F6E577947BB8CAD0192438AD9070BF8",
+      "to_pin_id": "E06C12E144049DE32A04C68D9671CE69"
+    },
+    {
+      "from_node": "K2Node_CallFunction_37",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_51",
+      "to_pin": "InValue",
+      "from_pin_id": "5CABEEED45278D0E41A268982767315A",
+      "to_pin_id": "F6E5ABDE482977CB15D2569B0AE350A2"
+    },
+    {
+      "from_node": "K2Node_CallFunction_38",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_47",
+      "to_pin": "InValue",
+      "from_pin_id": "370220CF4C070483076171AE612BADD8",
+      "to_pin_id": "A99E43514A5EE4A1D1021F8AF4166114"
+    },
+    {
+      "from_node": "K2Node_CallFunction_39",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_52",
+      "to_pin": "InValue",
+      "from_pin_id": "79F7E0CA440C4DCDA4DEDB92C907671C",
+      "to_pin_id": "7F8AEDFB4D1FF62AE981A6B2A73FD8A7"
+    },
+    {
+      "from_node": "K2Node_CallFunction_40",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_48",
+      "to_pin": "InValue",
+      "from_pin_id": "6D83FC1841606F0F021E9D94582E41C8",
+      "to_pin_id": "DEE292B2445C715B65DBAFB67F01532D"
+    },
+    {
+      "from_node": "K2Node_CallFunction_41",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_49",
+      "to_pin": "InValue",
+      "from_pin_id": "A4846FF941A6526F7D6CE382E1B77E5B",
+      "to_pin_id": "0F9D088F43A222807694DD9ECC60962F"
+    },
+    {
+      "from_node": "K2Node_CallFunction_42",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_43",
+      "to_pin": "A",
+      "from_pin_id": "1CCD81B149E4171DA8E7C5BFE3A03AE9",
+      "to_pin_id": "487CF6CD4C055AF401D591B67EF43B9E"
+    },
+    {
+      "from_node": "K2Node_CallFunction_43",
+      "from_pin": "ReturnValue",
+      "to_node": "K2Node_CallFunction_50",
+      "to_pin": "InValue",
+      "from_pin_id": "707ED7974319CC385E51EF8E82BCD3D6",
+      "to_pin_id": "550BD3904058019685DBF380BFCC1E28"
+    },
+    {
+      "from_node": "K2Node_CallFunction_44",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_45",
+      "to_pin": "execute",
+      "from_pin_id": "EF0714A8479E8A81DF01ECBCC393B7A6",
+      "to_pin_id": "6467ADD04D785C4AA6E0CB96B5926786"
+    },
+    {
+      "from_node": "K2Node_CallFunction_45",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_46",
+      "to_pin": "execute",
+      "from_pin_id": "ACD2CCB842646368CEE5A3BB0259009F",
+      "to_pin_id": "CEE122A24A91406EDA274AA0CC1FC6E2"
+    },
+    {
+      "from_node": "K2Node_CallFunction_46",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_53",
+      "to_pin": "execute",
+      "from_pin_id": "3FCEBAF049C2485933B5BF91D9AF224C",
+      "to_pin_id": "E93872994B6AAB6608FA81AFF993B81B"
+    },
+    {
+      "from_node": "K2Node_CallFunction_47",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_48",
+      "to_pin": "execute",
+      "from_pin_id": "24802FE54055C8A982E6CEB77B84FBDF",
+      "to_pin_id": "D799957A45D70E536B8029AC6A18DB38"
+    },
+    {
+      "from_node": "K2Node_CallFunction_48",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_49",
+      "to_pin": "execute",
+      "from_pin_id": "AB7797814E9C8C9924F00A8D1C205D6E",
+      "to_pin_id": "AC6154754E188A5A3274439C80B5C7E4"
+    },
+    {
+      "from_node": "K2Node_CallFunction_49",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_50",
+      "to_pin": "execute",
+      "from_pin_id": "E89EB4714AFFF5D2CB58FC8858D31547",
+      "to_pin_id": "FC2F64A849D3305CD7D218AC76FEEC20"
+    },
+    {
+      "from_node": "K2Node_CallFunction_50",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_51",
+      "to_pin": "execute",
+      "from_pin_id": "DCE1D9ED4CCD965A260F7496F13FC22B",
+      "to_pin_id": "F0EBEA4448B6A4E5BCE12E9F73477018"
+    },
+    {
+      "from_node": "K2Node_CallFunction_51",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_52",
+      "to_pin": "execute",
+      "from_pin_id": "B760D06B43B50EBC9E4C6D8479AF7BD0",
+      "to_pin_id": "14E929C84D7A1A6B50A1EBB68A16898B"
+    },
+    {
+      "from_node": "K2Node_CallFunction_53",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_54",
+      "to_pin": "execute",
+      "from_pin_id": "4600A2414DE504A801B58684CEAC715D",
+      "to_pin_id": "E5183B794E37F49D7F4766B24A4AE3F6"
+    },
+    {
+      "from_node": "K2Node_CallFunction_54",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_55",
+      "to_pin": "execute",
+      "from_pin_id": "B22AF479459F1C5AC0A689AD79BFF135",
+      "to_pin_id": "063C792849BD4ED81565A99CD3F8A727"
+    },
+    {
+      "from_node": "K2Node_CallFunction_55",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_56",
+      "to_pin": "execute",
+      "from_pin_id": "7F362DB945F6A309DA2D8F80D362CA4E",
+      "to_pin_id": "8326B39F40323D48440F63B096343F3C"
+    },
+    {
+      "from_node": "K2Node_CallFunction_56",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_57",
+      "to_pin": "execute",
+      "from_pin_id": "5FBC458140559D9B292D8F9621A90825",
+      "to_pin_id": "672A9E7A4A5362737447AC98ED4B9691"
+    },
+    {
+      "from_node": "K2Node_CallFunction_57",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_58",
+      "to_pin": "execute",
+      "from_pin_id": "57CD28E94CA9B4E75EE9C9BD49A6A5DA",
+      "to_pin_id": "42917D554F6084BD0D2A46BFD05E591D"
+    },
+    {
+      "from_node": "K2Node_CallFunction_58",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_47",
+      "to_pin": "execute",
+      "from_pin_id": "5E14EA4C49CC5EA41B1230BC95BB5C98",
+      "to_pin_id": "D3D9E0954429F35A6753EE94882E0CBC"
+    },
+    {
+      "from_node": "K2Node_CallFunction_0",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_1",
+      "to_pin": "execute",
+      "from_pin_id": "C00AD07346F657FD43A8D48C1E28D2D5",
+      "to_pin_id": "B08B1A894E057A2F232A9B8E774144D5"
+    },
+    {
+      "from_node": "K2Node_CallFunction_1",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_2",
+      "to_pin": "execute",
+      "from_pin_id": "591BB3D648271C3AE7D9E58B018014D6",
+      "to_pin_id": "5FC59E6143A3C3E78698B0BAB0ED0410"
+    },
+    {
+      "from_node": "K2Node_CallFunction_2",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_3",
+      "to_pin": "execute",
+      "from_pin_id": "9584B4194A6E6729248481B7E00995CE",
+      "to_pin_id": "311F653A46B16CBAC99E2280446FB1DB"
+    },
+    {
+      "from_node": "K2Node_VariableGet_0",
+      "from_pin": "VFX_EntropyDust",
+      "to_node": "K2Node_CallFunction_0",
+      "to_pin": "self",
+      "from_pin_id": "7C21FB0E49CAA7BBBFF3BC8B6148A72F",
+      "to_pin_id": "C58133EE46B3CE71C81E539F4873C003"
+    },
+    {
+      "from_node": "K2Node_VariableGet_1",
+      "from_pin": "VFX_ChaosDrift",
+      "to_node": "K2Node_CallFunction_1",
+      "to_pin": "self",
+      "from_pin_id": "438D4CC345BFD5096FE6A8BCEDF9AF90",
+      "to_pin_id": "E0412D84471BE38E38DF148A64DD6505"
+    },
+    {
+      "from_node": "K2Node_VariableGet_2",
+      "from_pin": "VFX_Superposition",
+      "to_node": "K2Node_CallFunction_2",
+      "to_pin": "self",
+      "from_pin_id": "3FB343214807E128E24D289E4105B2F9",
+      "to_pin_id": "3B269F974EBB7FDB1BF671A85D3A8A79"
+    },
+    {
+      "from_node": "K2Node_VariableGet_3",
+      "from_pin": "VFX_ProviderSigil",
+      "to_node": "K2Node_CallFunction_3",
+      "to_pin": "self",
+      "from_pin_id": "2388D77249ECA29051B5139AD0A7BDB4",
+      "to_pin_id": "C135193F4330D278C38E9E9B313FB510"
+    },
+    {
+      "from_node": "K2Node_VariableSet_0",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_20",
+      "to_pin": "execute",
+      "from_pin_id": "62299DD743E2441C3D131EABDAA718A2",
+      "to_pin_id": "7C67EC734463B613EFD176ADADE62D8C"
+    }
+  ]
+}
