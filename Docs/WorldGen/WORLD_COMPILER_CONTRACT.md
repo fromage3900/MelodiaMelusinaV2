@@ -238,7 +238,7 @@ Nothing else. Species and band selection live in the table, not in the graph.
 
 `UWorldRecipe` (`Source/BS_GodFile/MelodiaIntegration/WorldRecipe.h`) is a **game-module** `UPrimaryDataAsset` bookmark: `RecipeId`, `WorldSeed`, repo-relative `RecipeRelPath`, level soft path, last bundle/proof paths. It does not compile. JSON under `recipes/` remains canonical. Do not put this type in MelodiaCore.
 
-`EUW_WorldCompiler` (`/Game/Melodia/WorldCompiler/EUW_WorldCompiler`) plus `Content/Python/world_compiler_panel.py` **Apply / Cleanup / Capture / status** only. Compile remains `Tools/world_compiler.py` and `Tools/world_compiler_ue_driver.py`.
+`EUW_WorldCompiler` (`/Game/Melodia/WorldCompiler/EUW_WorldCompiler`) plus `Content/Python/world_compiler_panel.py` **Apply / Cleanup / Capture / status** only. Compile remains `Tools/world_compiler.py` and `Tools/world_compiler_ue_driver.py`. `Content/Python/foundry_converged_panel.py` is the converged read-only front door (MI inspect + WC status + Foundry validate/plan/verify); it delegates to the existing panels/gates and adds no compile, cook, or MPC authority.
 
 Lookdev cameras live on `recipe.lookdev.cameras[]` only (not on the DataAsset). Lane steps `lookdev_cameras` / `lookdev_capture` spawn tagged `WC_Lookdev_*` actors (`WorldCompiler.lookdev`) and write `Saved/Audit/Screens/wc_<recipe>_<name>_<date>.png` with the frozen PPV stack unchanged. Houdini OBJ/HDA overlays (`Houdini_RainbowBloom_3900`, `HoudiniEngine_RainbowBloom_3900`) are hidden; the PCG ISM field is the only visible chorus.
 

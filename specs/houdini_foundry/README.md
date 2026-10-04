@@ -14,3 +14,7 @@
 | `houdini_foundry_bake_manifest.v1.schema.json` | what a cook actually wrote (hashes, Houdini version, UE bake/save/reload) |
 | `houdini_foundry_bake_request.v1.schema.json` | minimal TOP_Foundry_BakeFarm input, optionally bound to one Universe Foundry mission task |
 | `field_atlas_channels.v1.json` | channel vocabulary; `existing` rows reuse current names (`Resonance`, `hero_weight`, `sparkle_response`, `WorldField.*`) |
+
+## Musical-biome extension rule (2026-10-03)
+
+A further musical biome reuses the existing `field_atlas` / `deposition` / `volumetric_ecology` products with a new recipe only: one tile, one bounded region, one UE consumer (`texture`, `world_compiler_points`, or `pcg_graph`). New semantic channels stay `proposed` here until a real PCG/material consumer needs them; `existing` names (`Resonance`, `hero_weight`, `sparkle_response`, `WorldField.*`) are never renamed. Bake → `world_compiler_points` / PCG enrichment → native packer → existing material/Niagara consumer. No new solver, authority, or MPC writer.
