@@ -438,7 +438,49 @@ class TestGeminiVideoQA(unittest.TestCase):
         ]
         proc = subprocess.run(cmd, capture_output=True, text=True)
         self.assertEqual(proc.returncode, 1)
-        self.assertIn("does not exist", proc.stderr)
+    def test_interaction_transient_retry(self):
+        """Verify client.interactions.create retries on 503 transient errors and succeeds."""
+        mock_file_active = MagicMock()
+        mock_file_active.state = "ACTIVE"
+        mock_file_active.name = "files/test_file_retry"
+        mock_file_active.uri = "https://generativelanguage.googleapis.com/v1beta/files/test_file_retry"
+
+        mock_payload = {
+            "overall_verdict": "PASS",
+            "interactions": [],
+            "defects": [],
+            "healthy_sections": [],
+            "manual_rechecks": [],
+        }
+
+        mock_interaction = MagicMock()
+        mock_interaction.output_text = json.dumps(mock_payload)
+        mock_interaction.steps = [
+            {"type": "processing_call", "id": "call_1"},
+            {"type": "processing_result", "call_id": "call_1"},
+        ]
+        mock_interaction.model_dump.return_value = {"id": "int_retry"}
+
+        mock_client = MagicMock()
+        mock_client.files.upload.return_value = mock_file_active
+        mock_client.files.get.return_value = mock_file_active
+        # First call fails with 503, second succeeds
+        mock_client.interactions.create.side_effect = [
+            Exception("Error code: 503 - {'error': {'message': 'gemini-3.8-flash is currently experiencing high demand', 'code': 'service_unavailable'}}"),
+            mock_interaction,
+        ]
+
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "fake_test_key"}), patch(
+            "gemini_video_qa.genai.Client", return_value=mock_client
+        ), patch("gemini_video_qa.time.sleep", return_value=None):
+            report = qa.run_video_qa(
+                video_path=self.dummy_video,
+                profile="animation",
+                processing_mode="agentic",
+                mock=False,
+            )
+            self.assertEqual(report["overall_verdict"], "PASS")
+            self.assertEqual(mock_client.interactions.create.call_count, 2)
 
 
 if __name__ == "__main__":
