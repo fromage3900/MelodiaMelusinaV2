@@ -532,19 +532,35 @@ def run_video_qa(
         sys.stderr.write(
             f"Sending interaction request to Gemini (model: {model}, processing: {effective_processing})...\n"
         )
-        try:
-            interaction = client.interactions.create(
-                model=model,
-                input=interaction_input,
-                system_instruction=system_instruction,
-                response_format={
-                    "type": "text",
-                    "mime_type": "application/json",
-                    "schema": STRUCTURED_OUTPUT_SCHEMA,
-                },
-            )
-        except Exception as exc:
-            raise RuntimeError(f"Gemini interaction request failed: {sanitize_secret(str(exc))}") from exc
+        max_attempts = 4
+        interaction = None
+        for attempt in range(1, max_attempts + 1):
+            try:
+                interaction = client.interactions.create(
+                    model=model,
+                    input=interaction_input,
+                    system_instruction=system_instruction,
+                    response_format={
+                        "type": "text",
+                        "mime_type": "application/json",
+                        "schema": STRUCTURED_OUTPUT_SCHEMA,
+                    },
+                )
+                break
+            except Exception as exc:
+                err_msg = sanitize_secret(str(exc))
+                is_transient = any(
+                    code in err_msg
+                    for code in ("503", "429", "500", "502", "504", "high demand", "rate limit", "RESOURCE_EXHAUSTED", "UNAVAILABLE")
+                )
+                if is_transient and attempt < max_attempts:
+                    backoff = attempt * 8.0
+                    sys.stderr.write(
+                        f"Transient error from Gemini ({err_msg}). Retrying in {backoff:.1f}s (attempt {attempt}/{max_attempts})...\n"
+                    )
+                    time.sleep(backoff)
+                else:
+                    raise RuntimeError(f"Gemini interaction request failed: {err_msg}") from exc
 
         # 5. Extract output and verify dynamic inspection
         raw_output_text = getattr(interaction, "output_text", "")
