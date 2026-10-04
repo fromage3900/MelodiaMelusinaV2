@@ -1,0 +1,20 @@
+{
+  "id": "never-touch-table-edit",
+  "goal": "Add Config/DefaultEngine.ini to the default ini list so the level opens with the right settings.",
+  "done_when": [
+    "Saved/Audit/never-touch-table-edit/diff.patch is reviewed"
+  ],
+  "inputs": [
+    "Config/DefaultEngine.ini"
+  ],
+  "mutation_paths": [
+    "Config/DefaultEngine.ini"
+  ],
+  "surfaces": ["filesystem"],
+  "mutation_scope": "files",
+  "task_class": "doc_indexing_synthesis",
+  "artifacts_expected": [
+    "Saved/Audit/never-touch-table-edit/diff.patch"
+  ],
+  "max_turns": 8
+}

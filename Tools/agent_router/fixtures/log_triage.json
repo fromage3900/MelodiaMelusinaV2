@@ -1,0 +1,18 @@
+{
+  "id": "log-triage-cook",
+  "goal": "Read the packaged launch log, triage the failures, and cite the exact log lines for each finding.",
+  "done_when": [
+    "Saved/Audit/log-triage-cook/triage.md cites the log lines it claims"
+  ],
+  "inputs": [
+    "Saved/Logs/BS_GodFile.log"
+  ],
+  "mutation_paths": [],
+  "surfaces": ["filesystem"],
+  "mutation_scope": "none",
+  "task_class": "doc_indexing_synthesis",
+  "artifacts_expected": [
+    "Saved/Audit/log-triage-cook/triage.md"
+  ],
+  "max_turns": 12
+}
