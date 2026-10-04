@@ -523,75 +523,172 @@
     "gaea_inspect_terrain": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "gaea_list_recipes": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "gaea_verify_build": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "gaea_stage_example_for_export": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Copies a stock Gaea example into the project and writes an export recipe JSON; owner-gated write."
     },
-
     "gaea_build_terrain": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Runs headless Gaea Swarm to emit terrain maps; owner-gated exec."
     },
     "houdini_inspect_hip": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "houdini_list_hips": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "houdini_verify_build": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "houdini_stage_choral_variants": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Stages Houdini choral variant recipe + COP params; owner-gated write."
     },
     "houdini_generate_variants": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Generates 12 chromatic coat PNGs via hython or PIL fallback; owner-gated write."
     },
     "houdini_build_hip": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Runs hython to cook HIP ROPs; owner-gated exec."
     },
     "houdini_stage_groom_variants": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Stages Houdini groom variant recipe from spec; owner-gated write."
     },
     "houdini_generate_grooms": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Generates 12 groom ABC placeholders or real grooms via hython wedge; owner-gated write."
+    },
+    "continuity_goal_get": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "Reads ignored continuity runtime state only."
+    },
+    "continuity_goal_list": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "Reads ignored continuity runtime state only."
+    },
+    "continuity_goal_upsert": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Writes only ignored Saved/AgentState continuity metadata; no project/editor mutation."
+    },
+    "continuity_checkpoint": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Writes only ignored Saved/AgentState continuity receipts."
+    },
+    "continuity_evidence_add": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Writes only ignored Saved/AgentState evidence receipts."
+    },
+    "continuity_decision_record": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Writes only ignored Saved/AgentState decision receipts."
+    },
+    "continuity_session_attach": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Stores provider session identifiers only; never provider tokens or secrets."
+    },
+    "continuity_handoff_get": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ],
+      "reason": "Compiles a bounded handoff from local continuity state."
+    },
+    "continuity_next_action_set": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "mutate"
+      ],
+      "reason": "Updates only ignored Saved/AgentState orchestration metadata."
     }
   }
 }
