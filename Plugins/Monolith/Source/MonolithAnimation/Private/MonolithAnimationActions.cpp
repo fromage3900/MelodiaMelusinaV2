@@ -877,6 +877,7 @@ void FMonolithAnimationActions::RegisterActions(FMonolithToolRegistry& Registry)
 			.Required(TEXT("machine_name"), TEXT("string"), TEXT("State machine name"))
 			.Required(TEXT("from_state"), TEXT("string"), TEXT("Source state name"))
 			.Required(TEXT("to_state"), TEXT("string"), TEXT("Destination state name"))
+			.Optional(TEXT("cross_fade_duration"), TEXT("number"), TEXT("Crossfade duration in seconds"))
 			.Build());
 	Registry.RegisterAction(TEXT("animation"), TEXT("set_transition_rule"),
 		TEXT("Author a state machine transition's condition: a boolean variable, the sequence-player auto rule, a numeric comparison (var/Abs(var) vs constant), or a compound AND/OR expression of multiple comparison terms. Transaction-safe: rolls back on compile failure with no dirty package."),
@@ -6439,6 +6440,36 @@ FMonolithActionResult FMonolithAnimationActions::HandleAddTransition(const TShar
 		return FMonolithActionResult::Error(TEXT("State machine graph has unexpected or null schema"));
 	}
 	const bool bConnected = Schema->TryCreateConnection(OutputPin, InputPin);
+
+	// Optional crossfade duration: set on the newly created transition node.
+	float CrossfadeDuration = 0.0f;
+	if (Params->TryGetNumberField(TEXT("cross_fade_duration"), CrossfadeDuration) && CrossfadeDuration > 0.0f)
+	{
+		for (UEdGraphNode* Node : SMGraph->Nodes)
+		{
+			if (UAnimStateTransitionNode* TransNode = Cast<UAnimStateTransitionNode>(Node))
+			{
+				// Match by checking the transition's connected state nodes via pins.
+				UEdGraphPin* TransInPin = TransNode->GetInputPin();
+				UEdGraphPin* TransOutPin = TransNode->GetOutputPin();
+				if (TransInPin && TransOutPin && TransInPin->LinkedTo.Num() > 0 && TransOutPin->LinkedTo.Num() > 0)
+				{
+					UEdGraphPin* FromPin = TransInPin->LinkedTo[0];
+					UEdGraphPin* ToPin = TransOutPin->LinkedTo[0];
+					if (FromPin && ToPin)
+					{
+						UAnimStateNodeBase* FromStateNode = Cast<UAnimStateNodeBase>(FromPin->GetOwningNode());
+						UAnimStateNodeBase* ToStateNode = Cast<UAnimStateNodeBase>(ToPin->GetOwningNode());
+						if (FromStateNode && ToStateNode && FromStateNode->GetStateName() == FromState && ToStateNode->GetStateName() == ToState)
+						{
+							TransNode->CrossfadeDuration = CrossfadeDuration;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
 
 	GEditor->EndTransaction();
 

@@ -69,6 +69,16 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	TitleBlock->SetVisibility(ESlateVisibility::HitTestInvisible);
 	CaptionRemaining = AreaCaptionSeconds;
 	RefreshAccumulator = 0.0f;
+
+	// Bar fills: default fill was plain white; tint to the parchment/coral vs pearl-blue token pair.
+	if (VitalityBar)
+	{
+		VitalityBar->SetFillColorAndOpacity(FLinearColor(0.90f, 0.42f, 0.44f, 1.0f));
+	}
+	if (ResonanceBar)
+	{
+		ResonanceBar->SetFillColorAndOpacity(FLinearColor(0.49f, 0.62f, 0.92f, 1.0f));
+	}
 }
 
 void UMelodiaOverworldHUDWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -124,10 +134,15 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 			}
 			PlayerName->SetText(Pretty(UnitClass->GetName(), {TEXT("BP_"), TEXT("PlayerUnit"), TEXT("_C")}));
 		}
-		MaxHP = FMath::Max(MaxHP, HP);
-		MaxMP = FMath::Max(MaxMP, MP);
-		VitalityBar->SetPercent(MaxHP > 0 ? static_cast<float>(HP) / MaxHP : 0.0f);
-		ResonanceBar->SetPercent(MaxMP > 0 ? static_cast<float>(MP) / MaxMP : 0.0f);
+	MaxHP = FMath::Max(MaxHP, HP);
+	MaxMP = FMath::Max(MaxMP, MP);
+	// Eased bars: interpolate from the currently displayed fill so hits and
+	// heals glide instead of snapping. No extra state needed — the bar itself
+	// is the memory. RefreshSeconds doubles as the interp delta.
+	const float VitalityTarget = MaxHP > 0 ? static_cast<float>(HP) / MaxHP : 0.0f;
+	const float ResonanceTarget = MaxMP > 0 ? static_cast<float>(MP) / MaxMP : 0.0f;
+	VitalityBar->SetPercent(FMath::FInterpTo(VitalityBar->GetPercent(), VitalityTarget, RefreshSeconds, 4.0f));
+	ResonanceBar->SetPercent(FMath::FInterpTo(ResonanceBar->GetPercent(), ResonanceTarget, RefreshSeconds, 4.0f));
 		VitalsText->SetText(FText::FromString(FString::Printf(TEXT("VITALITY %d / %d   ·   RESONANCE %d / %d"), HP, MaxHP, MP, MaxMP)));
 		// The template's EXP curve isn't data-visible; only claim a level when it is unambiguous.
 		PlayerLevel->SetVisibility(Exp == 0 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);

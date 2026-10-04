@@ -127,12 +127,18 @@ int32 UMelodiaOverworldMinimapWidget::NativePaint(const FPaintArgs& Args, const 
 	}
 	const FVector2D Center = Size * 0.5f;
 
+	// Idle motion: the dial breathes on a slow ~4 s cycle so the HUD never
+	// sits fully static. Time-only, no new state, const-safe.
+	const float IdleT = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0f;
+	const float Breathe = 0.5f * (1.0f - FMath::Cos(IdleT * 1.5708f));
+	const float RimPulse = 0.75f + 0.25f * Breathe;
+
 	// Dial body: a soft disc approximated by a thick ring fill, then the orbit rings.
 	for (float R = Radius * 0.1f; R < Radius; R += 6.0f)
 	{
 		UWidgetBlueprintLibrary::DrawLines(Context, Circle(Center, R), MinimapNight, true, 7.0f);
 	}
-	UWidgetBlueprintLibrary::DrawLines(Context, Circle(Center, Radius), MinimapRose, true, 1.6f);
+	UWidgetBlueprintLibrary::DrawLines(Context, Circle(Center, Radius), MinimapRose, true, (1.2f + 0.8f * Breathe) * RimPulse);
 	UWidgetBlueprintLibrary::DrawLines(Context, Circle(Center, Radius * 0.62f), MinimapLavender, true, 1.0f);
 	UWidgetBlueprintLibrary::DrawLines(Context, Circle(Center, Radius * 0.3f), MinimapLavender, true, 0.8f);
 
@@ -154,7 +160,7 @@ int32 UMelodiaOverworldMinimapWidget::NativePaint(const FPaintArgs& Args, const 
 		}
 	}
 
-	// Markers.
+	// Markers (pulse gently out of phase so the dial feels alive).
 	for (const FTrackedMarker& Entry : Tracked)
 	{
 		if (!Entry.Actor.IsValid())
@@ -167,7 +173,8 @@ int32 UMelodiaOverworldMinimapWidget::NativePaint(const FPaintArgs& Args, const 
 		{
 			P = P.GetSafeNormal() * Radius * 0.9f;
 		}
-		const float S = bClamped ? 3.5f : 5.5f;
+		const float Pulse = 0.8f + 0.35f * (0.5f * (1.0f - FMath::Cos(IdleT * 2.4f + P.X * 0.05f)));
+		const float S = (bClamped ? 3.5f : 5.5f) * Pulse;
 		const FVector2D M = Center + P;
 		TArray<FVector2D> Diamond = {M + FVector2D(0, -S), M + FVector2D(S, 0), M + FVector2D(0, S), M + FVector2D(-S, 0), M + FVector2D(0, -S)};
 		UWidgetBlueprintLibrary::DrawLines(Context, Diamond, MarkerColor(Entry.Type), true, bClamped ? 1.2f : 2.4f);

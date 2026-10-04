@@ -162,3 +162,7 @@ For very dense ecologies (roughly 100k+ points or anything shown by profiling to
 - `Docs/Production/PCG/SAKURA_WATER_PCG_EXPANSION_REVIEW.md`
 
 These references may describe older experiments; this contract owns the durable Python→PCG semantic-enrichment rules above.
+
+## 8. Musical-biome derivative rule (2026-10-03)
+
+A further musical biome is a chapter-specific derivative of a shared `/Game/EnvSandbox/PCG/Musical/Hero` graph, never a rewrite of the hero source. Enrich with the existing `Resonance` / `EcologyClass` / `MaterialVariant` / `ScaleBias` contract (§2–§3); Houdini Foundry field data enters only as authored point attributes or PCG-sampled textures through `world_compiler_points` / `pcg_graph` consumers (`specs/houdini_foundry/README.md`). New biome eligibility ids must not collide with existing `EcologyClass` semantics. Prove per §5 on one bounded graph before calling the biome reusable.

@@ -75,6 +75,8 @@ Without TD, `Bass` carries *combat intensity*, not low-frequency energy. Bind by
 | Oceanology lake MID | `Biolum_Intensity = 1 + DrivenPulse*1.5` (C++ pushes MI params; the plugin master cannot sample an MPC) | PIE-verified |
 | Oceanology ripples | `UWorldFieldBus` Resonance/Tension | wired 2026-10-03 (see §6) |
 | `UMelodiaCymaticFieldComponent` (new) | `UWorldFieldBus` Tension/Beat/ModeN/M -> Chladni lift + scale of tagged PCG ISM instances, hit ripples | built 2026-10-03, PIE proof owed |
+| `UMelodiaSeasonalVariantComponent` (new) | UDS Month/Day -> season position -> per-biome tint (`UMelodiaSeasonalProfile`), optional mesh swaps; with `bAudioHueStrobe`: palette BeatPulse/Bass/Treble -> hue step per beat, reveal amount and glow on the flower wind-reveal params | PIE: season tints and strobe values proven (30 distinct tints, amount 0.3-1.0, glow 1.2-2.99 under OSC beats); visual impact on the flowers is faint |
+| `UMelodiaLightReactorComponent` (new) | palette Bass/Mid/Treble/BeatPulse/RhythmPulse/Sparkle/QuantumPulse/QuantumChoice/QuantumReactionColor + bus tension -> light intensity, colour, attenuation, source radius, volumetric, temperature (MegaLights opt-in) | built 2026-10-03, PIE proof owed |
 | Piano keys (`APCGPianoKey`) | write: `NotifyPlayedNote`, `NotifyCommandResolved` -> Sparkle/RhythmPulse | PIE-verified |
 
 Note on scans: counting `CollectionParameter` nodes misses reads made inside material functions; treat a
@@ -99,6 +101,9 @@ Note on scans: counting `CollectionParameter` nodes misses reads made inside mat
   `PublishResonance` had no caller, so the water-ripple drive read compiled-in defaults forever. Tension is
   `saturate(max(Bass, BeatPulse))`.
 - 2026-10-03 — `UMelodiaCymaticFieldComponent` + `BP_CymaticFieldVolume`; piano key presses call `BroadcastHit`, rippling every field in the world (built; piano-to-ripple not yet PIE-proven). PIE-proven: ink lane follows OSC, bus publishes, instances lift, hit raises `GlobalSparkleIntensity`.
+- 2026-10-04 — Flower master `M_MelodiaPlant_Wind` gained `MelodiaHueShift` (albedo hue rotation in turns, default 0 = unchanged; owner-approved master edit, backup `Saved/Backups/FlowerMaster_20261004`). The strobe drives it: PIE frames show the field cycling magenta/green/purple on OSC beats. Sheet-rail GN fixed (`MEL_music_sheet_rail`: notes no longer instanced on the 32x32 harmonic grid, line spans use Length end to end, staff spacing, posts lifted): 125k -> ~0.5-1.6k verts per segment; `Tools/bake_music_rail_kit.py` bakes the modular kit headless in Blender 5.2.
+- 2026-10-04 — `UMelodiaSeasonalVariantComponent` + 4 biome profiles (`/Game/Melodia/PCG/Seasons`) + `BP_SeasonalBiomeVolume`; flower hue strobe from the shared audio lanes through the existing flower-master params (no master edit). Note: properties set from Python in the same call that spawns the actor can be lost; set them on the BP defaults.
+- 2026-10-03 — `UMelodiaLightReactorComponent`: read-only routing of palette/Quantum/cymatic lanes into engine light parameters; restores authored values at EndPlay; no new OSC socket or MPC lane (OSC lights follow because OSC writes the palette). Dedicated `/light/*` OSC lanes would need new palette params (editor MPC edit, owner call).
 - 2026-10-03 — Ink lane (`InkReact/InkBass/InkMid/InkTreble`) mirrors the palette's Bass/Mid/Treble as they stand before
   the frame's C++ writes, so OSC analysis reaches the post-process ink.
 - 2026-10-03 — `NotifyPlayedNote`/`NotifyCommandResolved` from piano key presses; `ComputeDrivenPulse` shared by the
@@ -163,3 +168,34 @@ client or the 60 fps harness).
 **Bounded asks for the owner:** retire the palette fork; approve PP/Toon/WPO master edits per phase; choose the packaged
 OSC bridge; sign off the Houdini Engine doc rewording; confirm the Sea Above volume that triggers OSC (the existing
 trigger script was not found in the repo).
+
+## 10. Piano walkway expansion plan (2026-10-04)
+
+**Goal:** playable, audio-reactive "music roads": long walkable key paths on splines, golden-ratio layouts, per-biome variants, GN-built sheet-music railings, with Massive biome dressing and PCGEx doing the path work. Reuses everything in sections 1-9; adds no second audio writer, OSC bridge or compiler.
+
+**Verified starting point (read from the repo 2026-10-04):**
+- Keys: `APCGPianoKeyboard` / `APCGPianoKey` + profile DA, spawned by a PCG graph of two `PCGCreatePoints` (LOCAL_COMPONENT) -> `PCGSpawnActor` (`Content/Python/build_pcg_piano.py`). Live: 24 keys in Morning on Toon Universal MIs, pitch-class hue flash, pitched press sound.
+- **Blocker for curves:** `AssignKeyIdentities` sorts keys by local X, so MIDI order breaks on any bend or spiral. Needs an ordered attribute (path distance), a C++ change.
+- PCGEx has no planar spiral node (only a spherical Fibonacci lattice); it does have Path Resample / Subdivide / Smooth / Orient / Write Tangents, Sample Nearest Spline/Path, Spline to Path, Path Spline Mesh Simple. Golden-angle points are authored in Python (`Saved/Audit/P0_GoldenPath/golden_piano_path.py`, sketch in `PCG_PHYLLOTAXIS_FINDINGS.md`).
+- Massive: `PCG_Melodia_MassiveBiome` + MorningMeadow / CrystalGarden / RockScatter graphs and DAs (3 live volumes in Morning). The biome DA has no material field, so per-biome materials need PCGEx mesh collections.
+- Splines: `WC_Corridor_*` Actor+SplineComponent spines already exist in Morning (20-33 m).
+- GN (Melodia Studio, `deploy/surreal_arch/melodia_gn`): `MEL_music_sheet_rail` (posts, five swept staff lines, notes at pitch height), `MEL_music_staff`, `MEL_music_key_unit`, `MEL_railing`, `MEL_phyllotaxis_spiral/pave`, `MEL_chime_*`, notation glyph kits; `pcg_integration.py` holds the WP_/MN_ tag schema. Not yet verified: that `MEL_music_sheet_rail` bakes cleanly and its UE import path.
+
+**One authority per concern:** spline = the path; PCGEx = ordering, spacing, orientation, ground projection; the piano profile DA = key look/sound/colour; Massive biome volumes = flanking vegetation (path corridor excluded); GN-baked meshes = railings; `UMelodiaCymaticFieldComponent` / `UMelodiaLightReactorComponent` = audio reaction.
+
+| Phase | Work | Gate | Evidence |
+|---|---|---|---|
+| W0 decide | Choose rail route (bake GN meshes vs live Houdini Engine HDA), mode/scale mapping for >88 keys, which biomes first. Jev picks among closed sets; owner confirms | owner | Jev ruling with model string |
+| W1 identity (C++) | Keys read an ordered attribute (path distance) instead of local X; fallback keeps today's behaviour; scale/mode mapping so long paths loop octaves musically; unit tests | closed-editor build | Echo green; 24-key run unchanged |
+| W2 spline walkway | `BP_PianoWalkway` (spline + PCG component) -> PCGEx Resample at key pitch -> Orient -> ground project -> spawn keys; hierarchical/partitioned generation so 200+ keys stream | none (additive) | PIE walk of a 40 m bent path, MIDI order correct, ms and instance budget table |
+| W3 golden ratio | Promote the golden-path script to `Tools/PCG/`: log spiral and phyllotaxis courtyard layouts, phi-tapered key width, Fibonacci white-key counts per segment; writes a spline for W2 | none | Layout previews + a PIE walk |
+| W4 biome variants | `WalkwayProfile` DA (extends the keyboard profile): mesh set, Toon Universal MI set, hue palette, rail kit, Massive biome. First four: Morning meadow, Sea Above reef, Sakura, Faraway fabric. Materials = new MIs only | none | One render per biome; no master edits |
+| W5 sheet-music rails | Blender 5.2: bake modular segments (straight, inner/outer curve, end cap, post) from `MEL_music_sheet_rail`, note height encodes the adjacent key's pitch -> staging FBX -> UE meshes -> PCGEx Path Spline Mesh Simple along the spline. Hand-off follows the reimport rules (backup, never over a live mesh) | Blender bake; LFS size check | Bake gate JSON + PIE close-ups |
+| W6 reactivity | Rails and flanking flora tagged for the cymatic field component; light reactor on path lanterns; key press lights its rail note | none | Per-lane numbers + stills |
+| W7 proof + renders | PIE per segment, perf budgets, Echo test for walkway graphs, tonight's capture set | none | Screenshot kit + `Saved/Audit` report |
+
+**Tonight slice (smallest convincing render):** W1 (identity) -> W2 on one existing `WC_Corridor` spline -> W4 Morning meadow variant -> W5 with the existing GN rail baked once. W3 follows from W2 because it only supplies a different spline.
+
+**Orchestration:** Sol directs and verifies; Hermes runs the Blender bakes and sweeps; Sonnet workers do scoped read-only/GN parameter work; Jev decides closed choices (rail route, biome order, palette); one editor writer at a time; delegated output is checked by looking at the artifact.
+
+**Risks:** C++ identity change touches live keys (keep the fallback); PCG regeneration leaves orphan external actors (known trap); World Partition needs actors saved and mtimes verified; GN to UE import has the reimport T-pose blocker for skeletal assets only, static rails are lower risk; LFS budget 512 MB per PR (split bakes across PRs); MelodiaIntegrationMap stays untouched (additive fixtures only); no master-material edits in this plan.

@@ -156,10 +156,12 @@ bool FMelodiaWiringBattleUICreatedTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	// Look for any node in any graph that references BP_BattleUI as a class. A
+	// Look for any node in any graph that constructs the battle UI. A
 	// CreateWidget node stores it as a pin default, so a substring match over the
 	// node's pins is both sufficient and resilient to node-id drift (node ids in
 	// this Blueprint have changed repeatedly and must never be asserted on).
+	// Since 2026-10-03 the controller spawns BP_MelodiaBattleUI (Melodia child of
+	// stock BP_BattleUI), never the stock widget directly.
 	bool bFound = false;
 	TArray<UEdGraph*> Graphs;
 	Controller->GetAllGraphs(Graphs);
@@ -173,8 +175,8 @@ bool FMelodiaWiringBattleUICreatedTest::RunTest(const FString& Parameters)
 			{
 				if (!Pin) { continue; }
 				const bool bMentionsBattleUI =
-					Pin->DefaultValue.Contains(TEXT("BP_BattleUI")) ||
-					(Pin->DefaultObject && Pin->DefaultObject->GetPathName().Contains(TEXT("BP_BattleUI")));
+					Pin->DefaultValue.Contains(TEXT("BP_MelodiaBattleUI")) ||
+					(Pin->DefaultObject && Pin->DefaultObject->GetPathName().Contains(TEXT("BP_MelodiaBattleUI")));
 				if (bMentionsBattleUI)
 				{
 					bFound = true;
@@ -187,7 +189,7 @@ bool FMelodiaWiringBattleUICreatedTest::RunTest(const FString& Parameters)
 	}
 
 	TestTrue(
-		TEXT("BP_BattleController constructs BP_BattleUI. If this fails, the rhythm highway, "
+		TEXT("BP_BattleController constructs BP_MelodiaBattleUI. If this fails, the rhythm highway, "
 			 "Q/W/O/P lane input and keyboard focus are all unreachable regardless of how they are wired."),
 		bFound);
 

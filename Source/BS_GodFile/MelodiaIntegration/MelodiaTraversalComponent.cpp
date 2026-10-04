@@ -595,7 +595,10 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 		{
 			if (UAnimInstance* Anim = Mesh->GetAnimInstance())
 			{
-				Anim->Montage_Play(Roll, 1.0f);
+				// Graceful blend: 0.15s in from locomotion, 0.25s out back.
+				// Previously played at full weight instantly (pop on entry, snap on exit).
+				FAlphaBlendArgs BlendInArgs(0.15f);
+				Anim->Montage_PlayWithBlendIn(Roll, BlendInArgs, 1.0f);
 			}
 		}
 	}
