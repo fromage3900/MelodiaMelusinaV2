@@ -282,7 +282,8 @@ class MaterialInstanceWidgetPanel:
             # Build directory if needed
             WEB_PANEL_HTML.parent.mkdir(parents=True, exist_ok=True)
 
-        url = f"file:///{str(WEB_PANEL_HTML.resolve()).replace('\\', '/')}"
+        _resolved = str(WEB_PANEL_HTML.resolve()).replace("\\", "/")
+        url = f"file:///{_resolved}"
         webbrowser.open(url)
         return {"ok": True, "url": url}
 
