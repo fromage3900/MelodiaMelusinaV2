@@ -1,56 +1,105 @@
-# Melodia Canon UI — SVG source pack (2026-10-04)
+# Melodia Canon UI — source + runtime staging (2026-10-04)
 
 Source of truth: native Figma Design `gzMjQjGoHLKNZh0jtexGEE` (**Melodia UI — Canon Storybook + Bow HUD**).
 
-This folder starts the asset-by-asset UE handoff for the current Storybook runtime and Bow HUD canon. It intentionally stores **atomic vector source**, not flattened 1440×900 screens.
+This lane is intentionally **asset-level**, not flattened 1440×900 screenshots.
 
-## Rules
+## Runtime rule
 
-- Keep labels, key letters, quest copy, values, combo text and numerals as live UMG text.
-- Prefer one reusable asset plus transform/state logic over duplicate rotated copies. Example: `T_UI_BowHUD_ResonantFeather.svg` is rotated around the reticle in UMG.
-- SVG here is the editable/lossless source contract. Some project machines do not have an Unreal SVG importer enabled; on those machines rasterize to transparent PNG @2×, then use the established UI texture settings.
-- Do not add a second HUD owner. These files are presentation brushes for the existing Storybook/ExploreUI and Bow HUD authorities.
-- 1440×900 is the design-space baseline.
+Use the representation that matches the behavior:
 
-## First batch
+- **small irregular atom** → SVG source + deterministic transparent PNG @2× for UE
+- **simple paper/card/chrome geometry** → native UMG/Slate style; do not bake a bitmap
+- **rings / arcs / repeated radial geometry** → parameterized UI material
+- **text, key letters, numbers, quest copy, labels** → live UMG text
+- **Bow HUD** → already working at runtime; source SVGs here are reference canon only and must not replace or rewire the live Bow HUD
 
-### Storybook
+The 1440×900 Figma layout remains the visual design-space baseline.
+
+## Storybook runtime pack
+
+The runtime staging contract lives at:
+
+- `pipeline/figma/storybook_runtime_manifest.json`
+- `specs/ui/storybook_runtime_styles.v1.json`
+- `Content/Python/stage_storybook_runtime_tokens.py`
+- `Tools/validate_storybook_runtime_manifest.py`
+
+### Texture atoms now staged
+
 - four-point sparkle
-- compass waypoint
+- compass/objective waypoint
 - minimap player pin
-- three Cosmic Orrery ring layers
-- Orrery category node (numeral stays live UMG text)
+- speech-bubble tail
+- menu diamond ornament
+- Sir Melodious storybook crest marker
+- loading/progress note head
 
-### Bow HUD
-- resonant feather
-- reticle core
-- outer timing/filigree ring
-- score ring
-- vitals gem
-- Perfect Cadence sparkle
+Exact PNG bytes are stored as `.png.b64` text payloads under
+`pipeline/figma/storybook_runtime/png_b64/` because connector writes cannot
+supply Git-LFS backing objects. The staging script hydrates them losslessly under
+`Saved/Staging/StorybookRuntime/` and imports them to:
 
-See `manifest.json` for Figma node IDs, native sizes, usage and UE destination hints.
+`/Game/Melodia/UI/Storybook/Textures/Atoms`
 
-## Runtime import
+### Material / native-UMG assets
 
-If the SVG importer is enabled and proven on the target machine, import the source SVGs directly.
+These remain SVG/spec references rather than large textures:
 
-Otherwise rasterize each SVG to a transparent PNG at **2× native size**, then import/configure it exactly like the existing Melodia UI texture pipeline:
+- Cosmic Orrery outer, dashed-mid and inner rings
+- Orrery disc frame
+- Orrery category-node body
+- paper/menu/quest/archive/VN card bodies
+- compass sign, minimap cluster, loading panel, progress pill
+- portrait frame, speaker tab, choice cards and controls
+
+This is deliberate. The current Figma versions of those surfaces are flat
+rounded geometry, so rasterizing them would add memory and scaling artifacts
+without preserving any extra authored information.
+
+## Texture settings
+
+The Storybook staging importer configures the current small atoms as:
 
 - Compression: `TC_EDITOR_ICON`
 - LOD group: `TEXTUREGROUP_UI`
 - Mip generation: `TMGS_NO_MIPMAPS`
 - sRGB: on
-- Never Stream: on
+- Never Stream: per manifest (currently on for these tiny persistent atoms)
 - Preserve Border: on
 
-Do not bake text during rasterization.
+Large future illustrations/backgrounds should **not** inherit Never Stream by
+default.
 
-## Next batches
+## Bow HUD
 
-1. Storybook paper edges / tape / pinned labels / speech-tail atoms
-2. Orrery archive tabs and category glyphs
-3. Overworld minimap markers, instrument-key frames and interaction ornament
-4. Bow prompt/cartouche edge pieces and target plaque atoms
-5. VN panel corner cuts / choice markers
-6. Rhythm Highway lane, hit-line, note-head and hold-tail atoms
+The Bow HUD already has a functioning runtime implementation and its own older
+staging/import contract. This branch does **not** author new Bow `.uasset`
+content or change HUD ownership.
+
+The Bow SVG files in `BowHUD/` only preserve the visual source behind the
+current native-Figma canon.
+
+## Validation
+
+Run offline:
+
+```bash
+python Tools/validate_storybook_runtime_manifest.py
+```
+
+That gate checks:
+
+- every declared SVG source exists;
+- each texture payload is valid base64 PNG;
+- each decoded PNG matches the manifest's @2× dimensions.
+
+Then, in Unreal Editor:
+
+```python
+import stage_storybook_runtime_tokens as s
+s.main()
+```
+
+The import step is additive presentation work only. It does not change gameplay,
+save, navigation, Bow HUD, Quill, or battle authority.
