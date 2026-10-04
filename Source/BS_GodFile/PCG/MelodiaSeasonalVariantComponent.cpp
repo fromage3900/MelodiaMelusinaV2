@@ -181,6 +181,7 @@ UMelodiaSeasonalVariantComponent::FSharedMID* UMelodiaSeasonalVariantComponent::
 	{
 		Entry.BaseEmissive = V;
 	}
+	Entry.bHasHueShift = MID->GetScalarParameterValue(Profile->HueShiftParameter, V);
 	return &Entry;
 }
 
@@ -335,6 +336,7 @@ void UMelodiaSeasonalVariantComponent::TickAudioHue(const float DeltaSeconds, UM
 	const float Offset = (Step - FMath::FloorToFloat(Step) - 0.5f) * HueRange + TrebleSmoothed * 0.08f;
 	const float Hue = BaseHue + Offset;
 	StrobeHue = Hue - FMath::FloorToFloat(Hue);
+	HueOffsetTurns = Offset;
 }
 
 void UMelodiaSeasonalVariantComponent::Apply()
@@ -431,6 +433,10 @@ void UMelodiaSeasonalVariantComponent::ApplyMaterialParams()
 			{
 				MID->SetScalarParameterValue(Profile->HueEmissiveParameter, Entry.BaseEmissive * (1.0f + HueEmissiveGain * BeatEnergy));
 			}
+			if (Entry.bHasHueShift)
+			{
+				MID->SetScalarParameterValue(Profile->HueShiftParameter, HueOffsetTurns * HueShiftStrength);
+			}
 		}
 		else if (bStrobeWasOn)
 		{
@@ -442,6 +448,10 @@ void UMelodiaSeasonalVariantComponent::ApplyMaterialParams()
 			if (Entry.BaseEmissive >= 0.0f)
 			{
 				MID->SetScalarParameterValue(Profile->HueEmissiveParameter, Entry.BaseEmissive);
+			}
+			if (Entry.bHasHueShift)
+			{
+				MID->SetScalarParameterValue(Profile->HueShiftParameter, 0.0f);
 			}
 		}
 	}

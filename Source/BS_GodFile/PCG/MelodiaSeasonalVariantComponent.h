@@ -80,6 +80,10 @@ public:
 	/** Scalar that adds emissive glow on the beat (flower master: wind emissive boost). */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Audio Hue")
 	FName HueEmissiveParameter = TEXT("MelodiaWindEmissiveBoost");
+
+	/** Scalar (turns, 0 = authored colour) that rotates the whole albedo hue. Driven by the strobe when the material has it. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Audio Hue")
+	FName HueShiftParameter = TEXT("MelodiaHueShift");
 };
 
 /**
@@ -154,6 +158,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Audio Hue", meta = (ClampMin = "0.0", ClampMax = "1.0"))
 	float SeasonTintShare = 0.2f;
 
+	/** Scales the albedo hue rotation the strobe applies through HueShiftParameter (1 = the full hue offset, 0 = off). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Audio Hue", meta = (ClampMin = "0.0", ClampMax = "2.0"))
+	float HueShiftStrength = 1.0f;
+
 	UFUNCTION(BlueprintPure, Category = "Melodia|Season")
 	float GetDisplayedSeasonPosition() const { return DisplayedPosition; }
 
@@ -176,6 +184,7 @@ private:
 		TArray<FLinearColor> BaseColors;
 		float BaseAmount = -1.0f;
 		float BaseEmissive = -1.0f;
+		bool bHasHueShift = false;
 		FLinearColor BaseHueTint = FLinearColor(0.0f, 0.0f, 0.0f, -1.0f);
 	};
 
@@ -199,6 +208,7 @@ private:
 	float HueIndex = 0.0f;
 	float LastBeatPulse = 0.0f;
 	float StrobeHue = 0.0f;
+	float HueOffsetTurns = 0.0f;
 	float BeatEnergy = 0.0f;
 	float BassSmoothed = 0.0f;
 	float TrebleSmoothed = 0.0f;
