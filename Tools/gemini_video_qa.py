@@ -498,7 +498,7 @@ def run_video_qa(
             )
 
         api_key = get_api_key(strict=True)
-        client = genai.Client(api_key=api_key)
+        client = genai.Client(api_key=api_key, http_options={"timeout": 180.0})
 
         # 1. Upload video and poll until active
         file_obj = upload_and_poll_video(client, v_path, poll_interval=poll_interval, timeout=timeout)
