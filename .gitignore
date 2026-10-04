@@ -323,6 +323,9 @@ Tools/live_source/**/*.pyc
 !Tools/test_guard_protected_assets.py
 !Tools/git_ok.py
 !Tools/test_git_ok.py
+!Tools/continuity/
+!Tools/continuity/**
+!Tools/test_continuity.py
 !Tools/run_contract_tests.py
 !Tools/artdrop_archive.py
 !Tools/art_gates.py
