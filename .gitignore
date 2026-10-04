@@ -219,6 +219,12 @@ Content/EnvSandbox/*
 Content/EnvSandbox/Materials/*
 !Content/EnvSandbox/Materials/Masters/
 !Content/EnvSandbox/Materials/Masters/**
+# Canonical Morning/Oceanology material instances are authored project source.
+# Keep this narrow so bulk EnvSandbox materials remain ignored.
+!Content/EnvSandbox/Materials/Instances/
+Content/EnvSandbox/Materials/Instances/*
+!Content/EnvSandbox/Materials/Instances/Oceanology/
+!Content/EnvSandbox/Materials/Instances/Oceanology/**
 
 # World Partition one-file-per-actor mirror for the Monoliths levels above.
 # OFPA actors live under Content/__ExternalActors__/<original package path>/,
