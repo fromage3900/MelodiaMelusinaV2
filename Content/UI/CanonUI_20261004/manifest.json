@@ -1,5 +1,5 @@
 {
-  "schema": "melodia.ui.vector-source.v1",
+  "schema": "melodia.ui.vector-source.v2",
   "generated_date": "2026-10-04",
   "design_space": [
     1440,
@@ -12,22 +12,26 @@
     "bow_make_key": "UAJ25M6h4qV70NzWQQlYsq"
   },
   "contract": {
-    "source_format": "svg",
     "baked_text": false,
     "pivots": "center unless entry overrides",
-    "ue_note": "SVGs are source canon. If SVG Importer is unavailable, rasterize to transparent PNG @2x before Unreal import.",
+    "source_svg": "lossless visual canon",
+    "storybook_runtime_manifest": "pipeline/figma/storybook_runtime_manifest.json",
+    "storybook_style_spec": "specs/ui/storybook_runtime_styles.v1.json",
     "texture_settings_if_rasterized": {
       "compression": "TC_EDITOR_ICON",
       "lod_group": "TEXTUREGROUP_UI",
       "mip_gen": "TMGS_NO_MIPMAPS",
       "srgb": true,
-      "never_stream": true,
+      "never_stream": "per-entry; true for current small atoms",
       "preserve_border": true
-    }
+    },
+    "runtime_rule": "Use textures only for small irregular atoms. Keep paper/card geometry native UMG/Slate and rings/arcs parameterized.",
+    "bow_rule": "Bow HUD is already working at runtime. Bow files in this pack are source/reference canon only; do not replace or rewire the working HUD from this branch."
   },
   "destinations": {
-    "storybook": "/Game/Melodia/UI/Storybook",
-    "bow_hud": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4"
+    "storybook_textures": "/Game/Melodia/UI/Storybook/Textures/Atoms",
+    "storybook_widgets": "/Game/Melodia/UI/Storybook",
+    "bow_hud_existing": "existing runtime ownership; unchanged by this export lane"
   },
   "entries": [
     {
@@ -38,6 +42,8 @@
         10,
         10
       ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.sparkle",
       "usage": "ambient/foreground sparkle"
     },
     {
@@ -48,6 +54,8 @@
         14,
         14
       ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.waypoint",
       "usage": "compass/objective waypoint"
     },
     {
@@ -58,7 +66,57 @@
         14,
         14
       ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.player_pin",
       "usage": "minimap player pin"
+    },
+    {
+      "id": "storybook.speech_tail",
+      "file": "Storybook/T_UI_Storybook_SpeechTail.svg",
+      "figma_node": "5:37",
+      "size": [
+        34,
+        28
+      ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.speech_tail",
+      "usage": "speech bubble tail"
+    },
+    {
+      "id": "storybook.menu_diamond",
+      "file": "Storybook/T_UI_Storybook_MenuDiamond.svg",
+      "figma_node": "6:55",
+      "size": [
+        18,
+        18
+      ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.menu_diamond",
+      "usage": "menu focus/status ornament"
+    },
+    {
+      "id": "storybook.bird_crest",
+      "file": "Storybook/T_UI_Storybook_BirdCrest.svg",
+      "figma_node": "6:81",
+      "size": [
+        30,
+        52
+      ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.bird_crest",
+      "usage": "storybook Sir Melodious marker crest"
+    },
+    {
+      "id": "storybook.note_head",
+      "file": "Storybook/T_UI_Storybook_NoteHead.svg",
+      "figma_node": "6:37",
+      "size": [
+        8,
+        8
+      ],
+      "runtime_type": "texture",
+      "runtime_manifest_id": "storybook.note_head",
+      "usage": "loading/progress staff note"
     },
     {
       "id": "storybook.orrery.outer",
@@ -68,6 +126,8 @@
         520,
         520
       ],
+      "runtime_type": "material_spec",
+      "runtime_manifest_id": "storybook.orrery.outer",
       "usage": "Cosmic Orrery outer rail"
     },
     {
@@ -78,6 +138,8 @@
         390,
         390
       ],
+      "runtime_type": "material_spec",
+      "runtime_manifest_id": "storybook.orrery.mid",
       "usage": "Cosmic Orrery dashed rail"
     },
     {
@@ -88,7 +150,21 @@
         260,
         260
       ],
+      "runtime_type": "material_spec",
+      "runtime_manifest_id": "storybook.orrery.inner",
       "usage": "Cosmic Orrery inner rail"
+    },
+    {
+      "id": "storybook.orrery.disc_frame",
+      "file": "Storybook/T_UI_Storybook_OrreryDiscFrame.svg",
+      "figma_node": "5:68+5:69",
+      "size": [
+        112,
+        112
+      ],
+      "runtime_type": "material_spec",
+      "runtime_manifest_id": "storybook.orrery.disc_frame",
+      "usage": "Orrery disc frame; numeral live"
     },
     {
       "id": "storybook.orrery.node",
@@ -98,6 +174,8 @@
         56,
         56
       ],
+      "runtime_type": "umg_style",
+      "runtime_manifest_id": "storybook.orrery.node",
       "usage": "Orrery category node; numeral remains UMG text"
     },
     {
@@ -108,7 +186,8 @@
         34,
         84
       ],
-      "usage": "reticle cardinal feather; rotate in UMG"
+      "runtime_type": "existing_runtime_reference",
+      "usage": "working Bow HUD source reference only"
     },
     {
       "id": "bow.core",
@@ -118,7 +197,8 @@
         92,
         92
       ],
-      "usage": "reticle core/star"
+      "runtime_type": "existing_runtime_reference",
+      "usage": "working Bow HUD source reference only"
     },
     {
       "id": "bow.outer_ring",
@@ -128,7 +208,8 @@
         380,
         380
       ],
-      "usage": "reticle outer filigree/dashed ring"
+      "runtime_type": "existing_runtime_reference",
+      "usage": "working Bow HUD source reference only"
     },
     {
       "id": "bow.score_ring",
@@ -138,7 +219,8 @@
         270,
         270
       ],
-      "usage": "reticle score/timing ring"
+      "runtime_type": "existing_runtime_reference",
+      "usage": "working Bow HUD source reference only"
     },
     {
       "id": "bow.vitals_gem",
@@ -148,7 +230,8 @@
         22,
         42
       ],
-      "usage": "Melusina vitals crest gem"
+      "runtime_type": "existing_runtime_reference",
+      "usage": "working Bow HUD source reference only"
     },
     {
       "id": "bow.perfect_sparkle",
@@ -158,7 +241,8 @@
         7,
         7
       ],
-      "usage": "Perfect Cadence burst particle"
+      "runtime_type": "existing_runtime_reference",
+      "usage": "working Bow HUD source reference only"
     }
   ]
 }
