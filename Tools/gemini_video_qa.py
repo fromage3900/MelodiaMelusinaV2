@@ -549,7 +549,11 @@ def run_video_qa(
                 break
             except Exception as exc:
                 err_msg = sanitize_secret(str(exc))
-                is_transient = any(
+                is_hard_quota = any(
+                    term in err_msg.lower()
+                    for term in ("per day", "daily", "upgrade your tier", "retry in ")
+                )
+                is_transient = (not is_hard_quota) and any(
                     code in err_msg
                     for code in ("503", "429", "500", "502", "504", "high demand", "rate limit", "RESOURCE_EXHAUSTED", "UNAVAILABLE")
                 )
@@ -558,6 +562,7 @@ def run_video_qa(
                     sys.stderr.write(
                         f"Transient error from Gemini ({err_msg}). Retrying in {backoff:.1f}s (attempt {attempt}/{max_attempts})...\n"
                     )
+                    sys.stderr.flush()
                     time.sleep(backoff)
                 else:
                     raise RuntimeError(f"Gemini interaction request failed: {err_msg}") from exc
