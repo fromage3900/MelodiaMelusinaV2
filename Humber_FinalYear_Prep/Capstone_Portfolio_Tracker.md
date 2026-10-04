@@ -74,13 +74,17 @@
 
 **Submission:** PDF attachment via Blackboard journal "Mentor Feedback Forms - Submit Here" — due **12/18/26, 11:59 PM EST** (feedback form: `anmnFeedbackForm_june2023.pdf`; copy in Downloads). Booking links live in the Blackboard Mentor List doc (verified live 2026-10-01).
 
-**Meeting tracker:**
-- [ ] Meeting 1 (pre-midterm) — Mentor: __________ Date: __________
-- [ ] Meeting 2 (pre-midterm) — Mentor: __________ Date: __________
+**Meeting tracker:** (2 of 6 booked 2026-10-03)
+- [x] Meeting 1 (pre-midterm) — Mentor: **Cory Avery** — Booked 2026-10-03, date/time TBC
+- [x] Meeting 2 (pre-midterm) — Mentor: **Paul Neale** — Booked 2026-10-03, date/time TBC
 - [ ] Meeting 3 (pre-midterm) — Mentor: __________ Date: __________
 - [ ] Meeting 4 (post-midterm) — Mentor: __________ Date: __________
 - [ ] Meeting 5 (post-midterm) — Mentor: __________ Date: __________
 - [ ] Meeting 6 (post-midterm) — Mentor: __________ Date: __________
+
+*Booked 2026-10-03: **Cory Avery** + **Paul Neale** (2 pre-midterm, dates not yet set). One more
+pre-midterm meeting needed to reach 3 before midterm (Nov 5–6), then 3 after. Must meet 3 of the 4
+mentors twice.*
 
 ## F) Capstone Mission Status (from 4-week reflection, Sep 30)
 

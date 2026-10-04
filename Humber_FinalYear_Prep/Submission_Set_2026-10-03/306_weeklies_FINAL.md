@@ -106,6 +106,7 @@ ones you should read and adjust before submitting — everything else is grounde
 - Submitted the first block of coursework: **ANMN 305** discussion posts (Week 1–4 main posts + replies) and these **ANMN 306** weekly entries.
 - Exported the **ANMN 301** animatic story reel — *Shorewake Calling*, a 65-second silent 1080p24 cut assembled in Blender VSE from 17 numbered panels with 3 dissolves and title/end cards. This doubles as the capstone beat board.
 - Started the **ANMN 304** Production Bible (due 10/9) — logline, storyboards, art direction, pipeline, schedule, and team roles.
+- **Booked my first two capstone mentor meetings** — Cory Avery and Paul Neale, both pre-midterm. That is 2 of the 6 required; one more before midterm (Nov 5–6), three after.
 - Continued the Choral Sheep capture sequence toward the capstone milestone.
 
 **What I learned:**
