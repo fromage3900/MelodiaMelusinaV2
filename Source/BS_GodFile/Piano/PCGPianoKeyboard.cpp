@@ -4,6 +4,7 @@
 
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "Engine/StaticMesh.h"
 #include "EngineUtils.h"
 #include "Engine/World.h"
@@ -114,6 +115,18 @@ void APCGPianoKey::Tick(const float DeltaSeconds)
 		PressVelocity = 0.0f;
 	}
 
+	if (KeyMID && (ColorFlash > 0.0f || bFlashDirty))
+	{
+		const float FadeSec = PianoProfile ? FMath::Max(0.05f, PianoProfile->PressColorFadeSec) : 1.2f;
+		ColorFlash = FMath::Max(0.0f, ColorFlash - DeltaSeconds / FadeSec);
+		const float Sat = PianoProfile ? PianoProfile->PressHueSaturation : 0.7f;
+		const FLinearColor Hue = FLinearColor::MakeFromHSV8(static_cast<uint8>(FlashHue * 255.0f), static_cast<uint8>(Sat * 255.0f), 255);
+		KeyMID->SetVectorParameterValue(FName(TEXT("DreamRimColor")), FMath::Lerp(BaseRimColor, Hue, ColorFlash));
+		KeyMID->SetVectorParameterValue(FName(TEXT("BaseTint")), FMath::Lerp(BaseTint, Hue * 0.9f + BaseTint * 0.1f, ColorFlash * 0.55f));
+		KeyMID->SetScalarParameterValue(FName(TEXT("DreamRimStrength")), BaseRimStrength * (1.0f + ColorFlash * 1.5f));
+		bFlashDirty = ColorFlash > 0.0f;
+	}
+
 	if (KeyMesh)
 	{
 		KeyMesh->SetRelativeLocation(FVector(0.0f, 0.0f, CurrentPressOffset));
@@ -183,6 +196,13 @@ void APCGPianoKey::ApplyProfileGeometry()
 		if (UMaterialInterface* Material = MaterialReference.LoadSynchronous())
 		{
 			KeyMesh->SetMaterial(0, Material);
+			KeyMID = KeyMesh->CreateDynamicMaterialInstance(0, Material);
+			if (KeyMID)
+			{
+				KeyMID->GetVectorParameterValue(FName(TEXT("BaseTint")), BaseTint);
+				KeyMID->GetVectorParameterValue(FName(TEXT("DreamRimColor")), BaseRimColor);
+				KeyMID->GetScalarParameterValue(FName(TEXT("DreamRimStrength")), BaseRimStrength);
+			}
 		}
 	}
 
@@ -296,11 +316,18 @@ void APCGPianoKey::BeginVisualPress(AActor* SteppingActor)
 	{
 		KeyboardOwner->NotifyKeyPressed(this, SteppingActor);
 		const UPCGPianoKeyboardProfile* PianoProfile = KeyboardOwner->GetProfile();
+		if (PianoProfile && PianoProfile->bColorShiftOnPress)
+		{
+			FlashHue = static_cast<float>(((MidiNote % 12) + 12) % 12) / 12.0f;
+			ColorFlash = 1.0f;
+			bFlashDirty = true;
+		}
 		if (PianoProfile && PianoProfile->bPlayPressSound)
 		{
 			if (USoundBase* Sound = PianoProfile->PressSound.LoadSynchronous())
 			{
-				UGameplayStatics::PlaySoundAtLocation(this, Sound, GetActorLocation());
+				const float Pitch = FMath::Clamp(FMath::Pow(2.0f, static_cast<float>(MidiNote - PianoProfile->PressSoundRootMidi) / 12.0f), 0.25f, 4.0f);
+				UGameplayStatics::PlaySoundAtLocation(this, Sound, GetActorLocation(), PianoProfile->PressSoundVolume, Pitch);
 			}
 		}
 	}
