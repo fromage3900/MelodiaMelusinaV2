@@ -569,10 +569,13 @@ def run_video_qa(
         usage_obj = getattr(interaction, "usage", None)
         usage_info = {}
         if usage_obj:
+            p_tok = getattr(usage_obj, "prompt_tokens", None) or getattr(usage_obj, "total_input_tokens", None)
+            c_tok = getattr(usage_obj, "candidates_tokens", None) or getattr(usage_obj, "total_output_tokens", None)
+            tot_tok = getattr(usage_obj, "total_tokens", None)
             usage_info = {
-                "prompt_tokens": getattr(usage_obj, "prompt_tokens", None),
-                "candidates_tokens": getattr(usage_obj, "candidates_tokens", None),
-                "total_tokens": getattr(usage_obj, "total_tokens", None),
+                "prompt_tokens": p_tok,
+                "candidates_tokens": c_tok,
+                "total_tokens": tot_tok,
             }
 
     # If requested mode was agentic, verified flag reflects actual dynamic inspection steps
