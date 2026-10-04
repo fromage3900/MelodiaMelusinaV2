@@ -101,6 +101,10 @@ class ContinuityStore:
             "created_at": _utc_now(),
         }
 
+        # Fail closed before touching the append-only log.
+        with self._connect() as conn:
+            self._require_goal(conn, goal_id)
+
         # JSONL is the append-only authority. SQLite remains a rebuildable view.
         with self.events_path.open("a", encoding="utf-8") as handle:
             handle.write(_json(event) + "\n")
@@ -229,6 +233,9 @@ class ContinuityStore:
         limit: int = 50,
         kinds: Iterable[str] | None = None,
     ) -> list[dict[str, Any]]:
+        if int(limit) <= 0:
+            return []
+
         kind_list = list(kinds or [])
         params: list[Any] = [goal_id]
         sql = "SELECT * FROM events WHERE goal_id = ?"
