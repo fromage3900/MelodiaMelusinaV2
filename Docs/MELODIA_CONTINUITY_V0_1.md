@@ -81,16 +81,29 @@ That preserves the project's existing rule: one writer per surface.
 The continuity layer records what happened and what should happen next. Existing
 authorized surfaces perform the work and return evidence.
 
+## MCP adapter
+
+The branch includes deploy/melodia_continuity_mcp.py with a dependency-free
+stdio MCP loop matching the existing agent bridge style. Every exposed tool is
+declared in specs/mcp_tool_policy.v1.json before registration.
+
+The server is intentionally not added to .mcp.json in git because .mcp.json is
+machine-local and contains provider configuration. Register it locally only
+after the branch is checked out and the contract tests pass.
+
+Current tools cover goal reads/lists, goal upsert, checkpoints, evidence,
+decisions, session attachment, bounded handoff compilation, and next-action
+updates.
+
 ## Next branch steps
 
-1. Add a thin MCP stdio adapter over this core.
-2. Add entries to the checked-in MCP policy before registering the server.
-3. Add work-claim/lease records that mirror the one-writer rule.
-4. Add a Codex App Server adapter that stores thread IDs and can request resume.
-5. Add OpenCode/Hermes client configuration.
-6. Add automatic checkpoint hooks around commit, test, compaction, quota exit,
+1. Add work-claim/lease records that mirror the one-writer rule.
+2. Add a Codex App Server adapter that stores thread IDs and can request resume.
+3. Add OpenCode/Hermes client configuration examples without secrets.
+4. Add automatic checkpoint hooks around commit, test, compaction, quota exit,
    and model switch.
-7. Add a rebuild command that recreates SQLite from events.jsonl.
-8. Add a human-readable CURRENT_AGENT_STATE.md materializer.
+5. Add a rebuild command that recreates SQLite from events.jsonl.
+6. Add a human-readable CURRENT_AGENT_STATE.md materializer.
+7. Dogfood one real Melusina polish handoff from Codex to OpenCode before merge.
 
 Do not add provider tokens or secrets to the continuity database or event log.
