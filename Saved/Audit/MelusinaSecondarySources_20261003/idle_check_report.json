@@ -1,0 +1,23 @@
+{
+  "task": "idle T-pose / speed check",
+  "start": {
+    "started": true,
+    "mode": "in_viewport"
+  },
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "read": {
+    "ok": true,
+    "success": true,
+    "mode": "execute_file",
+    "result": "None",
+    "output": [
+      {
+        "type": "info",
+        "output": "IDLE_CHECK_JSON={\"pawn\": \"/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1\", \"max_walk_speed\": 200.0, \"max_acceleration\": 2048.0, \"velocity\": [0.0, 0.0, 0.0], \"anim_class\": \"/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C\", \"Speed\": \"0.0\", \"GroundSpeed\": \"ERR:MelodiaLocomotionAnimInstance: Failed to find property 'Grou\", \"bRuntimeIsInAir\": \"False\"}\r\n"
+      }
+    ]
+  },
+  "stop": {
+    "stopped": true
+  }
+}
