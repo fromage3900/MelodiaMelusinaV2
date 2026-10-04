@@ -482,6 +482,34 @@ class TestGeminiVideoQA(unittest.TestCase):
             self.assertEqual(report["overall_verdict"], "PASS")
             self.assertEqual(mock_client.interactions.create.call_count, 2)
 
+    def test_interaction_hard_quota_no_retry(self):
+        """Verify hard daily quota (e.g. limit per day exceeded) fails immediately without retry."""
+        mock_file_active = MagicMock()
+        mock_file_active.state = "ACTIVE"
+        mock_file_active.name = "files/test_file_hard_quota"
+        mock_file_active.uri = "https://generativelanguage.googleapis.com/v1beta/files/test_file_hard_quota"
+
+        mock_client = MagicMock()
+        mock_client.files.upload.return_value = mock_file_active
+        mock_client.files.get.return_value = mock_file_active
+        mock_client.interactions.create.side_effect = Exception(
+            "Error code: 429 - {'error': {'message': 'Rate limit exceeded for model gemini-3.8-flash (limit: 20 requests per day on Free Tier). Please retry in 5h42m', 'code': 'too_many_requests'}}"
+        )
+
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "fake_test_key"}), patch(
+            "gemini_video_qa.genai.Client", return_value=mock_client
+        ):
+            with self.assertRaises(RuntimeError) as ctx:
+                qa.run_video_qa(
+                    video_path=self.dummy_video,
+                    profile="animation",
+                    processing_mode="agentic",
+                    mock=False,
+                )
+            self.assertIn("Rate limit exceeded", str(ctx.exception))
+            # Exactly 1 call made, no retries wasted
+            self.assertEqual(mock_client.interactions.create.call_count, 1)
+
 
 if __name__ == "__main__":
     unittest.main()
