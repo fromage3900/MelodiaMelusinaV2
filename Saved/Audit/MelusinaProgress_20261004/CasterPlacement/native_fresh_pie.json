@@ -1,0 +1,41 @@
+{
+  "compiled_default_verified": true,
+  "input_proof": false,
+  "production_assets_saved": false,
+  "source_default_saved": true,
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "records": [
+    {
+      "tag": "native_placed_cast",
+      "time": 120.06857370585203,
+      "offset": [
+        55.0,
+        -35.0,
+        25.0
+      ],
+      "alpha": 0.0,
+      "actor": "<Struct 'Transform' (0x0000029ACA2D8600) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 1305.297969, y: 1861.265435, z: -520.126934}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "camera": "<Struct 'Transform' (0x0000029ACA2D8600) {rotation: {x: 0.000000, y: -0.000000, z: 0.968028, w: 0.250841}, translation: {x: 1485.297969, y: 1761.265435, z: -510.126934}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "clip": "None",
+      "shots": 1,
+      "aiming": false,
+      "drawing": false
+    },
+    {
+      "tag": "native_placed_recovery",
+      "time": 121.40190740674734,
+      "offset": [
+        55.0,
+        -35.0,
+        25.0
+      ],
+      "alpha": 0.0,
+      "actor": "<Struct 'Transform' (0x0000029ACA2D8600) {rotation: {x: 0.000000, y: 0.000000, z: 0.000000, w: 1.000000}, translation: {x: 1305.297969, y: 1861.265435, z: -520.126934}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "camera": "<Struct 'Transform' (0x0000029ACA2D8600) {rotation: {x: 0.000000, y: -0.000000, z: 0.968028, w: 0.250841}, translation: {x: 1485.297969, y: 1761.265435, z: -510.126934}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+      "clip": "None",
+      "shots": 1,
+      "aiming": false,
+      "drawing": false
+    }
+  ]
+}

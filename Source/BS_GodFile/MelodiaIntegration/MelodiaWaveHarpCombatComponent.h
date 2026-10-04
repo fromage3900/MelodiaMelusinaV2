@@ -63,7 +63,7 @@ public:
  /** Offset of the harp (astrolabe form) scale; its position is AstrolabeOffset while it floats. */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Presentation") FTransform HarpGrip = FTransform(FRotator::ZeroRotator, FVector::ZeroVector, FVector(.9f));
 
- /** LMB tap = caster basic attack. LMB held past this = charged archery shot. */
+ /** LMB is a caster basic attack; RMB owns the separate charged archery shot. */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Charge", meta=(ClampMin="0.15", ClampMax="0.8")) float ChargeThresholdSeconds = .3f;
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Charge", meta=(ClampMin="0.1", ClampMax="0.8")) float ChargedTrailIntensity = .8f;
  /** True for the arrow just launched when it came from a charged shot. Presentation only; never scales damage. */
@@ -74,7 +74,7 @@ public:
  /** Caster stance held while aiming, and the basic-attack shot (LMB tap). */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastStanceAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Idle_Loop.A_Q_Melusina_Spell_Simple_Idle_Loop")));
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastShootAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Shoot.A_Q_Melusina_Spell_Simple_Shoot")));
- /** Charged archery shot (LMB held): draw, hold loop, fire. */
+ /** Charged archery shot (RMB held): draw, hold loop, fire. */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeDrawAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback.A_Spar_Mel_RMB_Drawback")));
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeHoldAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop")));
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeFireAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire.A_Spar_Mel_RMB_Fire")));
@@ -89,7 +89,7 @@ public:
  /** How long the bow form is held after a charged release before the instrument folds back. */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument", meta=(ClampMin="0.1", ClampMax="2.0")) float BowFormHoldSeconds = .7f;
  /** Floating astrolabe form: offset from the character (forward, right, up), spin and bob. */
- UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FVector AstrolabeOffset = FVector(55.f, -35.f, 125.f);
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FVector AstrolabeOffset = FVector(55.f, -35.f, 25.f);
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") float AstrolabeSpinDegPerSecond = 24.f;
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") float AstrolabeBobCm = 3.f;
 
