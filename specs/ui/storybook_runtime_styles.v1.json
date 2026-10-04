@@ -1,0 +1,261 @@
+{
+  "$schema_version": "storybook_runtime_styles.v1",
+  "source": {
+    "figma_file_key": "gzMjQjGoHLKNZh0jtexGEE",
+    "page": "03 · STORYBOOK RUNTIME"
+  },
+  "rules": [
+    "Use native UMG/Slate geometry for flat rounded paper cards; do not rasterize them.",
+    "Keep all labels, values, key letters, quest text and numerals live.",
+    "Use the shared paper shadow treatment instead of baking shadow pixels into every card."
+  ],
+  "shared_shadow": {
+    "offset_px": [
+      7,
+      8
+    ],
+    "color": "#241B2E",
+    "opacity": 0.25,
+    "blur_px": 0
+  },
+  "styles": {
+    "PaperCard": {
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14,
+      "suggested_widget": "Border"
+    },
+    "PaperCard.Sakura": {
+      "fill": "#E7C9CE",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14,
+      "suggested_widget": "Border"
+    },
+    "PaperCard.Lavender": {
+      "fill": "#F0DCF0",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14,
+      "suggested_widget": "Border"
+    },
+    "PaperCard.Plum": {
+      "fill": "#2A1646",
+      "stroke": "#F2D08B",
+      "stroke_px": 2,
+      "radius_px": 10,
+      "suggested_widget": "Border"
+    },
+    "MenuCard.Default": {
+      "figma_nodes": [
+        "6:52",
+        "6:57",
+        "6:62",
+        "6:72"
+      ],
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10,
+      "padding_px": [
+        52,
+        12,
+        44,
+        12
+      ]
+    },
+    "MenuCard.Selected": {
+      "figma_node": "6:67",
+      "fill": "#2A1646",
+      "stroke": "#F2D08B",
+      "stroke_px": 2,
+      "radius_px": 10,
+      "padding_px": [
+        52,
+        12,
+        44,
+        12
+      ]
+    },
+    "SpeechBubble": {
+      "figma_nodes": [
+        "5:34",
+        "6:77",
+        "6:206"
+      ],
+      "fill": "#F0DCF0",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 18,
+      "tail_asset": "storybook.speech_tail"
+    },
+    "QuestCard": {
+      "figma_node": "6:199",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 12
+    },
+    "CompassSign": {
+      "figma_node": "6:186",
+      "fill": "#F3E6C8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10
+    },
+    "MinimapCluster": {
+      "figma_node": "6:211",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 16
+    },
+    "InteractionSign": {
+      "figma_node": "6:217",
+      "fill": "#E7C9CE",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 7
+    },
+    "LoadingStaffPaper": {
+      "figma_node": "6:109",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 12
+    },
+    "TipBubble": {
+      "figma_node": "6:142",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 15
+    },
+    "ProgressPill": {
+      "figma_node": "6:146",
+      "fill": "#2A1646",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 29
+    },
+    "PortraitArchive": {
+      "figma_node": "6:254",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14
+    },
+    "ArchiveTab.Default": {
+      "figma_nodes": [
+        "6:282",
+        "6:285",
+        "6:291",
+        "6:294",
+        "6:297",
+        "6:300"
+      ],
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 6
+    },
+    "ArchiveTab.Selected": {
+      "figma_node": "6:288",
+      "fill": "#2A1646",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 6
+    },
+    "DetailPaper": {
+      "figma_node": "6:303",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10
+    },
+    "TornRibbonBase": {
+      "figma_node": "6:308",
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 4,
+      "note": "Current native Figma geometry is still a rounded strip; future torn silhouette should replace only the mask."
+    },
+    "VNPanel": {
+      "figma_nodes": [
+        "6:337",
+        "6:338"
+      ],
+      "fill": "#FCFBF8",
+      "stroke": "#241B2E",
+      "stroke_px": 1,
+      "radius_px": 16
+    },
+    "PortraitFrame": {
+      "figma_node": "6:340",
+      "fill": "#E7C9CE",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10
+    },
+    "SpeakerTab": {
+      "figma_node": "6:344",
+      "fill": "#65467E",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 9
+    },
+    "VNControl.Default": {
+      "figma_nodes": [
+        "6:351",
+        "6:354"
+      ],
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 17
+    },
+    "VNControl.Selected": {
+      "figma_node": "6:348",
+      "fill": "#241B2E",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 17
+    },
+    "ChoiceCard": {
+      "figma_nodes": [
+        "6:357",
+        "6:360"
+      ],
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10
+    },
+    "OrreryNode": {
+      "figma_nodes": [
+        "6:267",
+        "6:269",
+        "6:271",
+        "6:273",
+        "6:275",
+        "6:277",
+        "6:279"
+      ],
+      "shape": "circle",
+      "diameter_px": 56,
+      "stroke": "#241B2E",
+      "stroke_px": 1,
+      "fills": [
+        "#E7C9CE",
+        "#86E4FF",
+        "#F0DCF0",
+        "#F3E6C8",
+        "#E7C9CE",
+        "#F0DCF0",
+        "#F2D08B"
+      ]
+    }
+  }
+}
