@@ -1,0 +1,55 @@
+{
+  "source": "jev-live-text-audit",
+  "state": {
+    "owner_request": "Step back while owner relaunches. Commit scoped preservable work and audit highest-value bounded goals achievable in next 20 minutes.",
+    "authority": "One canonical Melusina skeleton/V2body/ABP_Melusina_Current; one root Monolith editor writer. No new solver, AnimBP, donor route or retarget architecture. Preserve owner-accepted gloves/sleeves and Sir Melodious WIP.",
+    "checkpoint": "Reviewed source delta in existing WaveHarp h/cpp separates LMB caster from RMB charge. Five-shot semitones 0/4/7/11/12 and fifth-chord reset remain unchanged. AstrolabeOffset lowered (55,-35,125)->(55,-35,25). Live Coding succeeded/patch applied; fresh PIE CDO/pawn readback confirms25. Actual mouse-input and saved/reopened build acceptance remain pending. Checkpoint is scoped source baseline, not AAA/visual pass. No binary/retarget/socket changes from float correction.",
+    "visual": "Root opened fresh diagnostic cast/recovery images. Tall prop still obscures face; reference-like arm poses/current stressed shoulders remain red. Lowering alone does not pass neat hand placement. API montage execution is not real-input proof.",
+    "new_source_truth": "Root opened original_transform_samples.json. Original Transform controller moves SOCKET_Grip_Main and actual handle from(-7.75,0,0)cm to(0,0,53.5)cm; 19empties/237drivers. Old export deletes empties, clears mesh parents, exports shape keys without animation. Deployed160gripvertices stayatmeshroot0 acrossdeployment0,.5,1. This demonstrates varying pivot motion omitted, but full evaluated geometry delta/repair is unfinished. Do not apply old minus48cm offset to deployedroot.",
+    "archery_unknown": "Six approved outputs baked from Sparrow source using now owner-retired temporary Sparrow retargeter with CHAIN_TO_CHAIN auto-align. Baked native shoulder-arm15.774cm vsSpar34.789cm. Four-boneSkeletontranslationtrialrejectedPIE/restored. Smallestresponsiblelayerrepairnotestablished; do not retryblindly.",
+    "shinbi": "Installed ParagonShinbi133sequences including123hero/10wolf. Selected fullbody nonadditiveIdle9s,Idle_stand5.37s,Cast.97s,HappyClap4.67s,Peace5.4s. Idle_pose.067sstatic. NoMelusinaShinbiretarg/PIEproof; newdonorretargetingdeferreduntilcurrentpathconverges.",
+    "bounds": "20minutesaftercheckpoint/editorready. Maximumoneexistingauthoritycorrection. Source staging first; no livebodyreimport. If no candidate validates by minute12, skip import and deliver exact failing chain+baselinecaptures. PIEfullbodyandheroclose-up mandatory; 2-3s real loop only if actually captured. No AAA claim atdeadline.",
+    "candidates": {
+      "RESTART_BASELINE_THEN_WAVEHARP_EVALUATED_EXPORT": "0-4min restart/default/actualposeowner readback+frontbaseline. 4-12min original-vsdeployed evaluatedgeometry at0,.5,1, validate oneweapon-only stagedbake. 12-18min existingasset integration ONLY if geometry/contact/backup gatespass, otherwise leaveproductionunchangedand capturefailure. 18-20min matchingfullbody/closeups+currentstate.",
+      "RESTART_BASELINE_THEN_STRESSED_POSE_DIAGNOSIS": "0-4min restart/default/actualposeowner. 4-12min compare RAW sequenceposeand finalruntimebones for caster/Sparrow, trace first divergence. 12-18min atmostoneproven existingretarget/clipowner correction withrollback. 18-20min matchingfullbody/closeups; source exportrepair deferred.",
+      "NEW_SHINBI_RETARGET_AND_PHYSICS_EXPANSION": "Use20min to authornewdonorbindingsandsecondaryphysics beforeexistingdefectsresolved."
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 1596,
+      "output_tokens": 272
+    },
+    "answers": {
+      "next_20_min": {
+        "type": "choice",
+        "choice": "RESTART_BASELINE_THEN_WAVEHARP_EVALUATED_EXPORT",
+        "confidence": 0.74,
+        "probabilities": {
+          "NEW_SHINBI_RETARGET_AND_PHYSICS_EXPANSION": 0.0,
+          "RESTART_BASELINE_THEN_STRESSED_POSE_DIAGNOSIS": 0.17,
+          "RESTART_BASELINE_THEN_WAVEHARP_EVALUATED_EXPORT": 0.83
+        }
+      },
+      "checkpoint_scope": {
+        "type": "choice",
+        "choice": "SCOPED_COMPILED_SOURCE_AND_EVIDENCE_CHECKPOINT_NO_VISUAL_ACCEPTANCE",
+        "confidence": 1.0,
+        "probabilities": {
+          "FULL_RUNTIME_AAA_PASSED_CHECKPOINT": 0.0,
+          "SCOPED_COMPILED_SOURCE_AND_EVIDENCE_CHECKPOINT_NO_VISUAL_ACCEPTANCE": 1.0
+        }
+      },
+      "time_box_exit": {
+        "type": "choice",
+        "choice": "PROVE_ONE_BOUNDED_FIX_OR_REPORT_EXACT_REPRODUCIBLE_BLOCKER_WITH_MATCHED_CAPTURE",
+        "confidence": 1.0,
+        "probabilities": {
+          "PROVE_ONE_BOUNDED_FIX_OR_REPORT_EXACT_REPRODUCIBLE_BLOCKER_WITH_MATCHED_CAPTURE": 1.0,
+          "DECLARE_CONVERGED_BECAUSE_TIME_EXPIRED": 0.0
+        }
+      }
+    }
+  }
+}

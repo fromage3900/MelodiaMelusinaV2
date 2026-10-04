@@ -1,0 +1,51 @@
+{
+  "source": "local-preservation-and-source-build-checkpoint",
+  "created_at": "2026-10-04T13:33:38.474302-04:00",
+  "head_before": "7c0deb4455e433b976ecb215714fc4e9b481a9cb",
+  "binary_history_scope": "local hash-verified copies only; no Perforce submit or off-machine binary backup claimed",
+  "binary_files": [
+    {
+      "path": "Content/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories.uasset",
+      "bytes": 2091563,
+      "sha256": "15f18a24fb85978625e529fb6b994e78699964a2e2cbd5ef1fa6e04096b203f0",
+      "copy": "Saved\\Audit\\MelusinaProgress_20261004\\Checkpoint20Min\\BinarySnapshot\\Content\\Melodia\\Characters\\Melusina\\Outfits\\V2\\SK_Melusina_V2_Accessories.uasset"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset",
+      "bytes": 756128,
+      "sha256": "a0708e69f49a90178d2dc76fde7ae34bd52851877cf687d96538d48c1ff31970",
+      "copy": "Saved\\Audit\\MelusinaProgress_20261004\\Checkpoint20Min\\BinarySnapshot\\Content\\Melodia\\Characters\\Melusina\\ABP_Melusina_Current.uasset"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.uasset",
+      "bytes": 265815,
+      "sha256": "8716e0c8d70641542a7997b6dc83d03ee5cd0d54264fb72113ec30d8f5250d2e",
+      "copy": "Saved\\Audit\\MelusinaProgress_20261004\\Checkpoint20Min\\BinarySnapshot\\Content\\Melodia\\Characters\\Melusina\\Hair\\ABP_Melusina_WaterHair.uasset"
+    },
+    {
+      "path": "Content/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.uasset",
+      "bytes": 564286,
+      "sha256": "7a2b5307d14f451983643d52b2a6838b5189cbc917ab57c59524cc54c27eb02b",
+      "copy": "Saved\\Audit\\MelusinaProgress_20261004\\Checkpoint20Min\\BinarySnapshot\\Content\\MelodiaIntegration\\Blueprints\\BP_MelusinaJRPGCharacter.uasset"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp.uasset",
+      "bytes": 5951711,
+      "sha256": "791bd96c72b8d6614d6ae20a6c1d4a9ac3a12ed417a0649259531d0e7dca0c35",
+      "copy": "Saved\\Audit\\MelusinaProgress_20261004\\Checkpoint20Min\\BinarySnapshot\\Content\\Melodia\\Characters\\Melusina\\Weapons\\WaveHarp\\SK_ME_WaveHarp.uasset"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/SK_Melusina_Skeleton.uasset",
+      "bytes": 141309,
+      "sha256": "f9aae675cad53d42f03283f63e0cf85786f9e2c5edd8d2bd06a70153f02e9193",
+      "copy": "Saved\\Audit\\MelusinaProgress_20261004\\Checkpoint20Min\\BinarySnapshot\\Content\\Melodia\\Characters\\Melusina\\SK_Melusina_Skeleton.uasset"
+    }
+  ],
+  "build": {
+    "log_mtime": "2026-10-04T13:25:54.414166-04:00",
+    "succeeded": true,
+    "dll_mtime": "2026-10-04T13:25:53.319405-04:00",
+    "dll_sha256": "b2b08711964352278e32c743f14192e023880660cd1a0e86ee7ea4e3230d4633",
+    "reopened_pie_proof": false
+  }
+}
