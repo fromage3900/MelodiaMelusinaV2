@@ -1,0 +1,164 @@
+{
+  "schema": "melodia.ui.vector-source.v1",
+  "generated_date": "2026-10-04",
+  "design_space": [
+    1440,
+    900
+  ],
+  "source": {
+    "native_figma_file_key": "gzMjQjGoHLKNZh0jtexGEE",
+    "native_figma_name": "Melodia UI — Canon Storybook + Bow HUD",
+    "storybook_make_key": "e4StNy6tF4p8HUHgxESMSj",
+    "bow_make_key": "UAJ25M6h4qV70NzWQQlYsq"
+  },
+  "contract": {
+    "source_format": "svg",
+    "baked_text": false,
+    "pivots": "center unless entry overrides",
+    "ue_note": "SVGs are source canon. If SVG Importer is unavailable, rasterize to transparent PNG @2x before Unreal import.",
+    "texture_settings_if_rasterized": {
+      "compression": "TC_EDITOR_ICON",
+      "lod_group": "TEXTUREGROUP_UI",
+      "mip_gen": "TMGS_NO_MIPMAPS",
+      "srgb": true,
+      "never_stream": true,
+      "preserve_border": true
+    }
+  },
+  "destinations": {
+    "storybook": "/Game/Melodia/UI/Storybook",
+    "bow_hud": "/Game/EnvSandbox/Textures/Melodia/GameUI/BowHUD_v4"
+  },
+  "entries": [
+    {
+      "id": "storybook.sparkle",
+      "file": "Storybook/T_UI_Storybook_Sparkle.svg",
+      "figma_node": "6:168",
+      "size": [
+        10,
+        10
+      ],
+      "usage": "ambient/foreground sparkle"
+    },
+    {
+      "id": "storybook.waypoint",
+      "file": "Storybook/T_UI_Storybook_Waypoint.svg",
+      "figma_node": "6:197",
+      "size": [
+        14,
+        14
+      ],
+      "usage": "compass/objective waypoint"
+    },
+    {
+      "id": "storybook.player_pin",
+      "file": "Storybook/T_UI_Storybook_PlayerPin.svg",
+      "figma_node": "6:215",
+      "size": [
+        14,
+        14
+      ],
+      "usage": "minimap player pin"
+    },
+    {
+      "id": "storybook.orrery.outer",
+      "file": "Storybook/T_UI_Storybook_OrreryRing_Outer.svg",
+      "figma_node": "6:261",
+      "size": [
+        520,
+        520
+      ],
+      "usage": "Cosmic Orrery outer rail"
+    },
+    {
+      "id": "storybook.orrery.mid",
+      "file": "Storybook/T_UI_Storybook_OrreryRing_Mid.svg",
+      "figma_node": "6:262",
+      "size": [
+        390,
+        390
+      ],
+      "usage": "Cosmic Orrery dashed rail"
+    },
+    {
+      "id": "storybook.orrery.inner",
+      "file": "Storybook/T_UI_Storybook_OrreryRing_Inner.svg",
+      "figma_node": "6:263",
+      "size": [
+        260,
+        260
+      ],
+      "usage": "Cosmic Orrery inner rail"
+    },
+    {
+      "id": "storybook.orrery.node",
+      "file": "Storybook/T_UI_Storybook_OrreryNode.svg",
+      "figma_node": "6:267",
+      "size": [
+        56,
+        56
+      ],
+      "usage": "Orrery category node; numeral remains UMG text"
+    },
+    {
+      "id": "bow.feather",
+      "file": "BowHUD/T_UI_BowHUD_ResonantFeather.svg",
+      "figma_node": "7:343",
+      "size": [
+        34,
+        84
+      ],
+      "usage": "reticle cardinal feather; rotate in UMG"
+    },
+    {
+      "id": "bow.core",
+      "file": "BowHUD/T_UI_BowHUD_ReticleCore.svg",
+      "figma_node": "7:347",
+      "size": [
+        92,
+        92
+      ],
+      "usage": "reticle core/star"
+    },
+    {
+      "id": "bow.outer_ring",
+      "file": "BowHUD/T_UI_BowHUD_OuterRing.svg",
+      "figma_node": "7:338",
+      "size": [
+        380,
+        380
+      ],
+      "usage": "reticle outer filigree/dashed ring"
+    },
+    {
+      "id": "bow.score_ring",
+      "file": "BowHUD/T_UI_BowHUD_ScoreRing.svg",
+      "figma_node": "7:340",
+      "size": [
+        270,
+        270
+      ],
+      "usage": "reticle score/timing ring"
+    },
+    {
+      "id": "bow.vitals_gem",
+      "file": "BowHUD/T_UI_BowHUD_VitalsGem.svg",
+      "figma_node": "7:302",
+      "size": [
+        22,
+        42
+      ],
+      "usage": "Melusina vitals crest gem"
+    },
+    {
+      "id": "bow.perfect_sparkle",
+      "file": "BowHUD/T_UI_BowHUD_PerfectSparkle.svg",
+      "figma_node": "7:353",
+      "size": [
+        7,
+        7
+      ],
+      "usage": "Perfect Cadence burst particle"
+    }
+  ]
+}
