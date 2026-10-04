@@ -83,6 +83,7 @@ void UMelodiaWaveHarpCombatComponent::BeginPlay()
 void UMelodiaWaveHarpCombatComponent::EndPlay(const EEndPlayReason::Type Reason)
 {
  CancelPhrase();
+ bDrawing = false; bCharging = false;
  StopAim();
  StopPose();
  UnbindInput();
@@ -141,7 +142,13 @@ void UMelodiaWaveHarpCombatComponent::BindInput()
  Input->BindKey(EKeys::RightMouseButton, IE_Released, this, &ThisClass::StopAim);
  Input->BindKey(EKeys::MiddleMouseButton, IE_Pressed, this, &ThisClass::ToggleAim);
  Input->BindKey(EKeys::LeftMouseButton, IE_Pressed, this, &ThisClass::StartDraw);
- Input->BindKey(EKeys::LeftMouseButton, IE_Released, this, &ThisClass::ReleaseDraw);
+ // A basic click never releases the separate RMB charge.
+ FInputKeyBinding BasicRelease(FInputChord(EKeys::LeftMouseButton), IE_Released);
+ BasicRelease.KeyDelegate.GetDelegateForManualSet().BindLambda([this]
+ {
+  if (!bAiming) ReleaseDraw();
+ });
+ Input->KeyBindings.Add(MoveTemp(BasicRelease));
  Input->BindKey(EKeys::Tab, IE_Pressed, this, &ThisClass::ToggleSequence);
  Input->BindKey(EKeys::X, IE_Pressed, this, &ThisClass::CancelPhrase);
  Input->BindKey(EKeys::Q, IE_Pressed, this, &ThisClass::Lane0).bConsumeInput = false;
@@ -233,20 +240,23 @@ void UMelodiaWaveHarpCombatComponent::StartAim()
    SavedSocketOffset = CameraBoom->SocketOffset;
   }
  }
- StatusText = TEXT("AIM  /  Hold LMB to draw, release to fire.");
+ StartDraw();
+ if (bDrawing) BeginCharge(GetWorld()->GetTimeSeconds());
+ StatusText = TEXT("CHARGE  /  Hold RMB to draw, release RMB to fire.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_AIM_BEGIN"));
 }
 void UMelodiaWaveHarpCombatComponent::StopAim()
 {
  if (!bAiming) return;
+ if (bDrawing) ReleaseDraw();
  bAiming = false; bDrawing = false; bCharging = false;
- StopPose();
+ if (Pose != EPose::Fire) StopPose();
  if (Character.IsValid())
  {
   Character->bUseControllerRotationYaw = bSavedControllerYaw;
   Character->GetCharacterMovement()->bOrientRotationToMovement = bSavedOrientToMovement;
  }
- StatusText = TEXT("FLOW  /  Click to shoot; hold RMB to aim.");
+ StatusText = TEXT("FLOW  /  LMB casts; hold and release RMB for a charged shot.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_AIM_END"));
 }
 void UMelodiaWaveHarpCombatComponent::UpdateAimCamera(float Delta)
@@ -275,7 +285,7 @@ void UMelodiaWaveHarpCombatComponent::StartDraw()
 {
  if (!CanAct() || bDrawing || GetWorld()->GetTimeSeconds()-LastRelease < FMath::Clamp(MinimumShotInterval, .15f, .5f)) return;
  bDrawing = true; bCharging = false; DrawStarted = GetWorld()->GetTimeSeconds();
- StatusText = TEXT("CAST  /  Release to cast, or hold to charge an archery shot.");
+ StatusText = TEXT("CAST  /  Release LMB for a basic attack.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_DRAW_BEGIN"));
 }
 void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
@@ -436,7 +446,7 @@ void UMelodiaWaveHarpCombatComponent::BeginCharge(double Now)
  ChargeBegan = Now;
  PlayPose(ChargeDrawAnim, false);
  Pose = EPose::Draw;
- StatusText = TEXT("CHARGE / Release LMB to fire.");
+ StatusText = TEXT("CHARGE / Release RMB to fire.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_CHARGE_BEGIN"));
 }
 void UMelodiaWaveHarpCombatComponent::UpdatePose(double Now)
@@ -444,7 +454,7 @@ void UMelodiaWaveHarpCombatComponent::UpdatePose(double Now)
  if (!Character.IsValid() || !Character->GetMesh()) return;
  UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance();
  const bool bPlaying = Anim && PoseMontage && Anim->Montage_IsPlaying(PoseMontage);
- if (bDrawing && !bCharging && Now - DrawStarted >= ChargeThresholdSeconds) BeginCharge(Now);
+ if (bAiming && bDrawing && !bCharging && Now - DrawStarted >= ChargeThresholdSeconds) BeginCharge(Now);
  if (bCharging && Pose == EPose::Draw && !bPlaying)
  {
   PlayPose(ChargeHoldAnim, true);

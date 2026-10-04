@@ -1,0 +1,38 @@
+{
+  "ME_WaveHarp_Grip_Main": {
+    "x_-y_z_100": {
+      "count": 160,
+      "unique_native_vertices": 160,
+      "mean_nearest_cm": 1.6257833987775608e-07,
+      "max_nearest_cm": 2.8285234082830276e-07,
+      "p95_nearest_cm": 2.634178031930877e-07,
+      "within_0_001cm": 160
+    },
+    "x_y_z_100": {
+      "count": 160,
+      "unique_native_vertices": 160,
+      "mean_nearest_cm": 3.6460093199705737e-07,
+      "max_nearest_cm": 5.196345998647952e-07,
+      "p95_nearest_cm": 4.5773193230343397e-07,
+      "within_0_001cm": 160
+    }
+  },
+  "ME_WaveHarp_Bowstring": {
+    "x_-y_z_100": {
+      "count": 200,
+      "unique_native_vertices": 200,
+      "mean_nearest_cm": 9.302715131332172e-07,
+      "max_nearest_cm": 2.8616438014671897e-06,
+      "p95_nearest_cm": 2.384930732696361e-06,
+      "within_0_001cm": 200
+    },
+    "x_y_z_100": {
+      "count": 200,
+      "unique_native_vertices": 28,
+      "mean_nearest_cm": 1.659192579884599,
+      "max_nearest_cm": 1.9999999403974018,
+      "p95_nearest_cm": 1.9999999403954833,
+      "within_0_001cm": 0
+    }
+  }
+}

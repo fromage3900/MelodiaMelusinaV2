@@ -1,5 +1,22 @@
 # Melodia Melusina — Current State
 
+## Owner-requested animation checkpoint and next 20 minutes - 2026-10-04
+
+Preserve the intentional hybrid in the existing WaveHarp combat owner: LMB caster basics, RMB charged Sparrow draw/hold/fire. The five-shot 0/4/7/11/12 chord progression remains in place. The floating AstrolabeOffset default is now (55,-35,25) cm. Live Coding and a fresh pawn readback passed; the subsequent closed-editor build succeeded at 13:25 with a newer native DLL. Reopened PIE, actual mouse input and visual acceptance are still owed. This checkpoint is compiled source and measured evidence, not animation closeout.
+
+Root independently opened original WaveHarp Transform samples: the driven main grip moves from (-7.75,0,0) to (0,0,53.5) cm. The old export deletes control empties and clears parents; deployed grip geometry remains at origin across forms. The varying pivot motion was omitted. A correct evaluated geometry export is unfinished. Do not apply the older -48.15 cm offset to the current deployed mesh. Shoulder stress/reference-like pose interruptions and hero contact remain open; preserve the mostly fixed gloves/sleeves. Shinbi is installed and has suitable source candidates, but no new donor binding is promoted.
+
+Live Jev jev-1.13.0 selected the following bounded pass with confidence 0.74. Structured text audit only; no image review claimed. Sol remains the sole Monolith editor writer.
+
+| Minutes after editor is ready | Goal | Exit gate |
+|---|---|---|
+| 0-4 | Verify restarted pawn, loaded default, active AnimBP/clip and LMB/RMB ownership; capture unobstructed front baseline. | Record actual pose source and default. A stale build blocks mutation. |
+| 4-12 | Finish original-versus-export measurements at Transform 0/0.5/1; stage one evaluated WaveHarp bake through the existing one-bone/morph asset path. | Correct form geometry, grip axes, vertex/morph integrity and source match. No source overwrite. |
+| 12-18 | Integrate only that weapon candidate if source gates and asset backup pass, then replay caster to charged draw/hold/release to caster. Otherwise leave production unchanged and capture the failure. | At most one correction; no body reimport, retarget recreation or new animation authority. |
+| 18-20 | Capture matching full-body and mandatory hero close-up views, contact sheet and a real 2-3 second loop if recording succeeds. | One proven improvement or an exact reproducible blocker. No AAA claim from the deadline. |
+
+Six current Melusina packages have local hash-verified preservation copies. These are local snapshots, not a Perforce submit or off-machine binary backup. Code/status/evidence alone are in this scoped Git checkpoint; all other lane changes remain outside it. Evidence: Saved/Audit/MelusinaProgress_20261004/Checkpoint20Min/{jev_20min_ruling,preservation_manifest}.json, HybridAlignment/{original_transform_samples,native_ue_axis_match_summary}.json, CasterPlacement/native_fresh_pie.json. The remaining animation gate and representative family acceptance are unchanged.
+
 ## Runtime animation convergence — 2026-10-03, ACTIVE
 
 Owner's animation priority override pauses P0 expansion until runtime pose/contact acceptance passes. This entry supersedes older animation-completion claims only for the evidence below; the owner-confirmed functioning gameplay loop remains established.

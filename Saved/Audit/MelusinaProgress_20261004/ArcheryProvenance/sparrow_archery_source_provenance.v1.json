@@ -1,0 +1,346 @@
+{
+  "schema": "melusina_archery_provenance_audit.v1",
+  "audit_date": "2026-10-04",
+  "audit_mode": "read_only_filesystem_and_saved_evidence; no_editor_calls; no_content_source_or_retarget_edits",
+  "scope": "Six approved SparrowArchery_20261002 sequences and saved authoring evidence for their bake.",
+  "clip_count": 6,
+  "clips": [
+    {
+      "clip": "RMB_Drawback",
+      "source": {
+        "unreal_asset": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Animations/RMB_Drawback",
+        "asset_file": "Content/ParagonSparrow/Characters/Heroes/Sparrow/Animations/RMB_Drawback.uasset",
+        "asset_sha256": "29315174cc0b8da497861bfe8dda6a4bd92a3e97c50f6d308127f2f9fc9b6104",
+        "source_data": {
+          "relative_fbx": "../../../../ArtSource/Orion/Characters/Heroes/Sparrow/Animations/FBX/RMB_Drawback.fbx",
+          "timestamp_unix": "1504892586",
+          "fbx_md5_recorded_by_asset": "ef4d771608a3ebb9d9b85ccb01428052",
+          "physical_fbx_found_in_bounded_local_search": false
+        }
+      },
+      "retargeted_output": {
+        "unreal_asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback",
+        "asset_file": "Content/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback.uasset",
+        "asset_sha256": "ffc9078637f443ceeab36b9e0c69342d6079ab12742d6b48367daa9a9d72c0f5",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "duration_seconds": 2.467,
+        "reported_track_count": 465,
+        "hair_tracks": 0,
+        "initial_retarget_record": {
+          "clip": "RMB_Drawback",
+          "src_len": 2.467,
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback"
+          ],
+          "ok": true,
+          "skeleton": "SK_Melusina_Skeleton",
+          "out_len": 2.467,
+          "tracks": 465,
+          "hair_tracks": 0
+        },
+        "aligned_rebake_record": {
+          "clip": "RMB_Drawback",
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback"
+          ],
+          "ok": true
+        }
+      }
+    },
+    {
+      "clip": "RMB_Loop",
+      "source": {
+        "unreal_asset": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Animations/RMB_Loop",
+        "asset_file": "Content/ParagonSparrow/Characters/Heroes/Sparrow/Animations/RMB_Loop.uasset",
+        "asset_sha256": "8b5481545ce4ea4d9df323aae4b79356e21e725bbb29b4dc45c804fc8501b0d1",
+        "source_data": {
+          "relative_fbx": "../../../../ArtSource/Orion/Characters/Heroes/Sparrow/Animations/FBX/RMB_Loop.fbx",
+          "timestamp_unix": "1504892655",
+          "fbx_md5_recorded_by_asset": "b374a244cb71421f047415ce42d20604",
+          "physical_fbx_found_in_bounded_local_search": false
+        }
+      },
+      "retargeted_output": {
+        "unreal_asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop",
+        "asset_file": "Content/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop.uasset",
+        "asset_sha256": "00cd56a0f1f198f681da4b5a4e8ab8096ec5a58ab804637ab9e6cb21cd084fa0",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "duration_seconds": 0.667,
+        "reported_track_count": 465,
+        "hair_tracks": 0,
+        "initial_retarget_record": {
+          "clip": "RMB_Loop",
+          "src_len": 0.667,
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop"
+          ],
+          "ok": true,
+          "skeleton": "SK_Melusina_Skeleton",
+          "out_len": 0.667,
+          "tracks": 465,
+          "hair_tracks": 0
+        },
+        "aligned_rebake_record": {
+          "clip": "RMB_Loop",
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop"
+          ],
+          "ok": true
+        }
+      }
+    },
+    {
+      "clip": "RMB_Fire",
+      "source": {
+        "unreal_asset": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Animations/RMB_Fire",
+        "asset_file": "Content/ParagonSparrow/Characters/Heroes/Sparrow/Animations/RMB_Fire.uasset",
+        "asset_sha256": "984f14a81d2953933ed9aed6dca41d834b57bc026a90307c43f85cfd81eb43ac",
+        "source_data": {
+          "relative_fbx": "../../../../ArtSource/Orion/Characters/Heroes/Sparrow/Animations/FBX/RMB_Fire.fbx",
+          "timestamp_unix": "1504892597",
+          "fbx_md5_recorded_by_asset": "25ebb7e69f72f7e3b42931c11ff3bcc0",
+          "physical_fbx_found_in_bounded_local_search": false
+        }
+      },
+      "retargeted_output": {
+        "unreal_asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire",
+        "asset_file": "Content/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire.uasset",
+        "asset_sha256": "c00be48bbfbf329719933d5a34f5582a245c0fa1fcdb3b32c7eeb8ba25f22289",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "duration_seconds": 1.867,
+        "reported_track_count": 465,
+        "hair_tracks": 0,
+        "initial_retarget_record": {
+          "clip": "RMB_Fire",
+          "src_len": 1.867,
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire"
+          ],
+          "ok": true,
+          "skeleton": "SK_Melusina_Skeleton",
+          "out_len": 1.867,
+          "tracks": 465,
+          "hair_tracks": 0
+        },
+        "aligned_rebake_record": {
+          "clip": "RMB_Fire",
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire"
+          ],
+          "ok": true
+        }
+      }
+    },
+    {
+      "clip": "Primary_Fire_Fast",
+      "source": {
+        "unreal_asset": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Animations/Primary_Fire_Fast",
+        "asset_file": "Content/ParagonSparrow/Characters/Heroes/Sparrow/Animations/Primary_Fire_Fast.uasset",
+        "asset_sha256": "fb45b7f0334762afa8c582c765512e82c1d547abb667e9bf516b82f6ff1a42c5",
+        "source_data": {
+          "relative_fbx": "../../../../ArtSource/Orion/Characters/Heroes/Sparrow/Animations/FBX/Primary_Fire_Fast_V1.fbx",
+          "timestamp_unix": "1504884083",
+          "fbx_md5_recorded_by_asset": "e98843882d10d74cb65172d3af66ad34",
+          "physical_fbx_found_in_bounded_local_search": false
+        }
+      },
+      "retargeted_output": {
+        "unreal_asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Fast",
+        "asset_file": "Content/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Fast.uasset",
+        "asset_sha256": "bbe88fced02b25dad4dbdc96e93bb096ed179f34b98e6cf4eab793f7e2741d16",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "duration_seconds": 0.6,
+        "reported_track_count": 465,
+        "hair_tracks": 0,
+        "initial_retarget_record": {
+          "clip": "Primary_Fire_Fast",
+          "src_len": 0.6,
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Fast"
+          ],
+          "ok": true,
+          "skeleton": "SK_Melusina_Skeleton",
+          "out_len": 0.6,
+          "tracks": 465,
+          "hair_tracks": 0
+        },
+        "aligned_rebake_record": {
+          "clip": "Primary_Fire_Fast",
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Fast"
+          ],
+          "ok": true
+        }
+      }
+    },
+    {
+      "clip": "Primary_Fire_Med",
+      "source": {
+        "unreal_asset": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Animations/Primary_Fire_Med",
+        "asset_file": "Content/ParagonSparrow/Characters/Heroes/Sparrow/Animations/Primary_Fire_Med.uasset",
+        "asset_sha256": "a4181e8a3eac51647ced6e70c94db51cd15f64e69d86c19c7a08ebb37929586e",
+        "source_data": {
+          "relative_fbx": "../../../../Build/ArtSource/Orion/Characters/Heroes/Sparrow/Animations/Launch_Anims/FBX/Primary_Fire_Med.fbx",
+          "timestamp_unix": "1451948211",
+          "fbx_md5_recorded_by_asset": "0050000000000000a000c30000000000",
+          "physical_fbx_found_in_bounded_local_search": false
+        }
+      },
+      "retargeted_output": {
+        "unreal_asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Med",
+        "asset_file": "Content/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Med.uasset",
+        "asset_sha256": "e658318bdba67edd3c13be9f10c41f578f2c325295e8f6922c6b3679beba57ee",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "duration_seconds": 1.0,
+        "reported_track_count": 465,
+        "hair_tracks": 0,
+        "initial_retarget_record": {
+          "clip": "Primary_Fire_Med",
+          "src_len": 1.0,
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Med"
+          ],
+          "ok": true,
+          "skeleton": "SK_Melusina_Skeleton",
+          "out_len": 1.0,
+          "tracks": 465,
+          "hair_tracks": 0
+        },
+        "aligned_rebake_record": {
+          "clip": "Primary_Fire_Med",
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Med"
+          ],
+          "ok": true
+        }
+      }
+    },
+    {
+      "clip": "Primary_Fire_Slow",
+      "source": {
+        "unreal_asset": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Animations/Primary_Fire_Slow",
+        "asset_file": "Content/ParagonSparrow/Characters/Heroes/Sparrow/Animations/Primary_Fire_Slow.uasset",
+        "asset_sha256": "9f8aab6880193f59ee3e06e0372c0f6792beec920c6b7cdd251693ca21020fa5",
+        "source_data": {
+          "relative_fbx": "../../../../ArtSource/Orion/Characters/Heroes/Sparrow/Animations/FBX/Primary_Fire_Slow_V1.fbx",
+          "timestamp_unix": "1504884049",
+          "fbx_md5_recorded_by_asset": "f83b0224a89c4c7413da57091309e50d",
+          "physical_fbx_found_in_bounded_local_search": false
+        }
+      },
+      "retargeted_output": {
+        "unreal_asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Slow",
+        "asset_file": "Content/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Slow.uasset",
+        "asset_sha256": "25e802987502b4019fd885a85e1e1fa64d5bfaa734be6a4351111a910b1af5bf",
+        "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "duration_seconds": 1.0,
+        "reported_track_count": 465,
+        "hair_tracks": 0,
+        "initial_retarget_record": {
+          "clip": "Primary_Fire_Slow",
+          "src_len": 1.0,
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Slow"
+          ],
+          "ok": true,
+          "skeleton": "SK_Melusina_Skeleton",
+          "out_len": 1.0,
+          "tracks": 465,
+          "hair_tracks": 0
+        },
+        "aligned_rebake_record": {
+          "clip": "Primary_Fire_Slow",
+          "created": [
+            "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Slow"
+          ],
+          "ok": true
+        }
+      }
+    }
+  ],
+  "authoring_chain": [
+    {
+      "step": "source_clip",
+      "evidence": "Six ParagonSparrow AnimSequence packages corroborated by their .uasset names and retarget_report.json."
+    },
+    {
+      "step": "source_skeleton_and_ik_rig",
+      "source_skeleton": "/Game/ParagonSparrow/Characters/Heroes/Sparrow/Meshes/Sparrow_Skeleton",
+      "temporary_ik_rig": "/Game/Melodia/Mocap/Source/Sparrow/IK_Sparrow",
+      "evidence": "retarget_run.log records IK_Sparrow creation; retarget_report.json records 19 mapped chains."
+    },
+    {
+      "step": "target_rig",
+      "target_ik_rig": "/Game/Melodia/Mocap/Retarget/IK_Melusina_Body_Current",
+      "target_mesh": "/Game/Melodia/Characters/Melusina/SK_Melusina_V2_Body",
+      "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+    },
+    {
+      "step": "retarget_and_bake",
+      "temporary_retargeter": "/Game/Melodia/Mocap/Retarget/RTG_Sparrow_to_Melusina",
+      "evidence": "retarget_report.json: six outputs, matching source/output duration, 465 tracks each. align_report.json: Default Pose source and target, auto-map complete, Chain-to-Chain auto-align, then six outputs."
+    },
+    {
+      "step": "blender_stage",
+      "finding": "No Blender source/bake stage evidenced. Saved evidence establishes UE IK Retargeter baking from imported ParagonSparrow AnimSequences."
+    }
+  ],
+  "evidence_paths": [
+    "Saved/Audit/SparrowRetarget_20261002/retarget_report.json",
+    "Saved/Audit/SparrowRetarget_20261002/align_report.json",
+    "Saved/Audit/SparrowRetarget_20261002/source_gate.json",
+    "Saved/Audit/SparrowRetarget_20261002/shoulder_gate.json",
+    "Saved/Audit/SparrowRetarget_20261002/shoulder_gate_BEFORE_align.json",
+    "Saved/Audit/SparrowRetarget_20261002/retarget_run.log",
+    "Saved/Audit/SparrowRetarget_20261002/align_run.log",
+    "Saved/Audit/SparrowRetarget_20261002/inspect.json",
+    "Saved/Audit/MelusinaSecondarySources_20261003/melusina_archery_montage_audit_20261003.md",
+    "Saved/Audit/MelusinaSecondarySources_20261003/jev_shoulder_stress_audit.json",
+    "Saved/Audit/MelusinaSecondarySources_20261003/shoulder_translation_mode_pie.py"
+  ],
+  "availability_and_limits": {
+    "raw_fbx_files": "Not found by exact clip-stem search under C:/EnvironmentPortfolio; source .uassets retain relative FBX paths, timestamps and recorded FileMD5 values.",
+    "production_bake_script": "Not found by six clip identifiers in Tools or Content/Python nor in SparrowRetarget_20261002; reports/logs remain.",
+    "retarget_asset": "RTG_Sparrow_to_Melusina is retired per owner direction; not inspected or recreated.",
+    "missing_settings": "Per-chain FK translation modes and raw FBX import transforms are not recorded in saved reports inspected.",
+    "scope_limit": "No broad drive scan, editor/MCP calls, Content edits, or runtime proof."
+  },
+  "cause_assessment": {
+    "status": "UNPROVEN; translation handling is the leading bounded hypothesis.",
+    "translation_handling": {
+      "assessment": "plausible, unconfirmed",
+      "evidence": "jev_shoulder_stress_audit.json records a probe changing only arm FK translation to GloballyScaled: measured spacing 8.73-8.78 cm left and 11.38-11.42 cm right. No visual acceptance; original retargeter per-chain modes unavailable."
+    },
+    "reference_pose": {
+      "assessment": "not demonstrated",
+      "evidence": "align_report records Default Pose on both rigs before Chain-to-Chain auto-alignment, but not resulting pose transforms."
+    },
+    "source_width": {
+      "assessment": "not demonstrated",
+      "evidence": "Saved audit reports 34.789 cm for Sparrow and V2 target reference. Original FBXs are unavailable for bind-width comparison."
+    },
+    "source_baked_wrong": {
+      "assessment": "not demonstrated",
+      "evidence": "Output track counts/durations prove animated data exists, not transform correctness. No reproducible bake script or per-chain translation record."
+    },
+    "reported_measurements_cm": {
+      "mocap_locomotion_shoulder_arm": 15.774,
+      "approved_sparrow_draw_hold_fire_shoulder_arm": 34.789,
+      "evidence": "Saved/Audit/MelusinaSecondarySources_20261003/jev_shoulder_stress_audit.json",
+      "qualification": "reported 31-pose samples; not independently resampled here"
+    }
+  },
+  "existing_authority_repair_proposal": {
+    "status": "No production repair proven from provenance evidence alone.",
+    "smallest_next_evaluation": "In one owner-held fresh PIE session, compare existing wired A_Spar_Mel_RMB_Loop against existing A_GlobalTranslationProbe_RMB_Loop; capture identical shoulder/arm pivot samples and accepted hero-camera views with exact rollback.",
+    "if_confirmed": "Only then assess re-bake from original source through an owner-authorized existing path with recorded per-chain FK translation settings. Keep canonical skeleton, ABP, sleeves and locomotion intact.",
+    "do_not": [
+      "recreate retired RTG_Sparrow_to_Melusina",
+      "change skeleton/reference bones",
+      "add runtime compensation IK",
+      "edit or rebake production clips",
+      "promote the unaccepted probe"
+    ]
+  },
+  "evidence_tier": "SOURCE_PROVENANCE_AND_SAVED_TOOL_REPORTS; not live PIE or visual acceptance"
+}
