@@ -225,6 +225,8 @@ Content/EnvSandbox/Materials/*
 Content/EnvSandbox/Materials/Instances/*
 !Content/EnvSandbox/Materials/Instances/Oceanology/
 !Content/EnvSandbox/Materials/Instances/Oceanology/**
+!Content/EnvSandbox/Materials/Instances/PianoPath/
+!Content/EnvSandbox/Materials/Instances/PianoPath/**
 
 # World Partition one-file-per-actor mirror for the Monoliths levels above.
 # OFPA actors live under Content/__ExternalActors__/<original package path>/,

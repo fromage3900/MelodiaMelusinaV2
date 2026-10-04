@@ -95,6 +95,23 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Audio")
 	bool bPlayPressSound = false;
+
+	/** MIDI note the PressSound sample is recorded at; each key pitch-shifts it by 2^((note - root)/12). */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Audio")
+	int32 PressSoundRootMidi = 60;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Audio", meta = (ClampMin = "0.0"))
+	float PressSoundVolume = 1.0f;
+
+	/** Keys flash a hue chosen by pitch class (C..B around the colour wheel) on press and fade back. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Visuals")
+	bool bColorShiftOnPress = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Visuals", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float PressHueSaturation = 0.7f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Visuals", meta = (ClampMin = "0.05"))
+	float PressColorFadeSec = 1.2f;
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FPCGPianoKeyEvent, int32, KeyIndex, int32, MidiNote, AActor*, SteppingActor);
@@ -183,6 +200,18 @@ protected:
 	float CurrentPressOffset = 0.0f;
 	float PressVelocity = 0.0f;
 	bool bIsPressed = false;
+
+	/** Per-key MID so a press can shift colour without touching the shared MI. Null if the material has no MID. */
+	UPROPERTY(Transient)
+	TObjectPtr<class UMaterialInstanceDynamic> KeyMID;
+
+	FLinearColor BaseTint = FLinearColor::White;
+	FLinearColor BaseRimColor = FLinearColor::White;
+	float BaseRimStrength = 1.0f;
+	/** 1 on press, decays to 0 over PressColorFadeSec. */
+	float ColorFlash = 0.0f;
+	float FlashHue = 0.0f;
+	bool bFlashDirty = false;
 };
 
 UCLASS(Blueprintable)
