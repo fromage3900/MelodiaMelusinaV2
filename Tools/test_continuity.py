@@ -6,6 +6,8 @@ import unittest
 from pathlib import Path
 
 from Tools.continuity import ContinuityStore, compile_handoff
+from Tools.mcp_policy import authorize_tool
+from deploy.melodia_continuity_mcp import POLICY_OPS, TOOLS
 
 
 class ContinuityStoreTests(unittest.TestCase):
@@ -76,6 +78,22 @@ class ContinuityStoreTests(unittest.TestCase):
         self.assertEqual(event["kind"], "session_attached")
         events = self.store.list_events("g", kinds=["session_attached"])
         self.assertEqual(events[-1]["payload"]["session_id"], "thread-xyz")
+
+
+class ContinuityMcpContractTests(unittest.TestCase):
+    def test_all_exposed_tools_have_policy_entries(self) -> None:
+        exposed = {tool["name"] for tool in TOOLS}
+        self.assertEqual(exposed, set(POLICY_OPS))
+        for tool_name, operation in POLICY_OPS.items():
+            decision = authorize_tool(tool_name, operation, "none")
+            self.assertTrue(decision["allowed"], decision)
+
+    def test_adapter_is_continuity_only(self) -> None:
+        exposed = {tool["name"] for tool in TOOLS}
+        forbidden_terms = {"ue_", "blueprint", "git_", "perforce", "blender", "houdini"}
+        for name in exposed:
+            self.assertTrue(name.startswith("continuity_"))
+            self.assertFalse(any(term in name for term in forbidden_terms), name)
 
 
 if __name__ == "__main__":
