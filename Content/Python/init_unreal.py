@@ -352,6 +352,9 @@ def _register_melodia_menu() -> None:
         menu = menus.extend_menu("LevelEditor.MainMenu.Melodia")
         menu.add_section("Platforms", "Platforms")
         menu.add_section("PIETools", "PIE Tools")
+        menu.add_section("SirPerches", "Sir Perches")
+        menu.add_section("Placement", "Placement")
+        menu.add_section("Wardrobe", "Wardrobe")
         py_dir = _SCRIPT_DIR.replace("\\", "/")
 
         def add(section, name, label, module, body):
@@ -386,6 +389,24 @@ def _register_melodia_menu() -> None:
             "melodia_pie_panel as ptp", "unreal.log(str(ptp.pie_play()))")
         add("PIETools", "PIEStop", "Stop PIE",
             "melodia_pie_panel as ptp", "unreal.log(str(ptp.pie_stop()))")
+        # Sir Perches: native ASirPerchPoint spots from setup_sir_melodious_perches
+        # data, wisely snapped. Save is explicit (ask-first levels stay safe).
+        add("SirPerches", "PerchList", "List authored vs placed perches",
+            "sir_perch_panel as spp", "unreal.log(spp.menu_list_summary())")
+        add("SirPerches", "PerchSpawn", "Spawn missing perches (wise Z)",
+            "sir_perch_panel as spp", "unreal.log(str(spp.spawn_missing()))")
+        add("SirPerches", "PerchSnap", "Snap selected perches to ground",
+            "sir_perch_panel as spp", "unreal.log(str(spp.snap_selected()))")
+        add("SirPerches", "PerchSave", "Save current level",
+            "sir_perch_panel as spp", "unreal.log(str(spp.save_level()))")
+        # Placement: trace-grounded snapping for selected meshes.
+        add("Placement", "SnapSelected", "Snap selected meshes to ground",
+            "snap_place_panel as snp", "unreal.log(snp.menu_snap_summary())")
+        add("Placement", "SnapSave", "Save current level",
+            "snap_place_panel as snp", "unreal.log(str(snp.save_level()))")
+        # Wardrobe: in-game edits on the live PIE pawn (HOLDs outside PIE).
+        add("Wardrobe", "WardEquipped", "Show live equipped slots",
+            "wardrobe_live_panel as wlp", "unreal.log(wlp.menu_equipped_summary())")
         menus.refresh_all_widgets()
         unreal.log("[Melodia] menu registered (Platforms + PIE Tools)")
     except Exception as exc:
