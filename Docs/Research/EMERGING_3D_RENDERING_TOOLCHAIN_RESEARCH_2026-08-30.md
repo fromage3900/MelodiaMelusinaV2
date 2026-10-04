@@ -541,3 +541,24 @@ Key correction to older research assumptions:
 - broad procedural architecture is currently parked; new research should improve art direction, fidelity, deterministic evidence, or iteration speed through bounded canaries.
 
 Highest-value current experiments are PCG Manual Editing/Data Overrides, COP HDA texture iteration in Unreal, local-statistics anti-tiling, and iso-contour terrain source authoring.
+
+
+---
+
+## 2026-10-02 procedural-worldbuilding / material delta
+
+Detailed update:
+
+[EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_06_2026-10-02.md](EMERGING_3D_TOOLCHAIN_TRENCH_SWEEP_06_2026-10-02.md)
+
+The canonical stack has not changed. The new research focus is on improving **scale, authoring control, or representation fidelity** inside existing owners.
+
+Current high-value canaries:
+
+- **GPU PCG + Custom HLSL**: benchmark one existing Resonance field at 10k / 100k / 500k points, avoiding CPU/GPU ping-pong and keeping CPU semantic logic authoritative.
+- **Python -> Copernicus -> COP HDA -> Unreal**: use deterministic Python-authored 2D semantic structure, develop material maps in COPs, bake through Houdini Engine, and consume via an existing Melodia MI.
+- **Local-statistics texture synthesis**: reduce recognizable tiling on one large patterned hero surface.
+- **Iso-contour terrain authoring**: use 6–10 authored contour splines as an input representation to the existing terrain handoff.
+- **Physics-inspired procedural texturing of extremely deformable surfaces**: specialized real-time material R&D for cloth terrain, membranes, sludge and other heavily stretched surfaces.
+
+No item above authorizes another PCG framework, world compiler, field authority, material master, or terrain system.
