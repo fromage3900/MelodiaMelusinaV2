@@ -1,0 +1,650 @@
+{
+  "task": "normal walk speed 380 -> 200 (human brisk walk)",
+  "bp": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+  "target": 200.0,
+  "component_name": "MelodiaTraversal",
+  "before": {
+    "component_name": "MelodiaTraversal",
+    "class": "MelodiaTraversalComponent",
+    "is_scene_component": false,
+    "is_inherited_native": false,
+    "properties": [
+      {
+        "name": "bRequireCapabilityProviderForGlide",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Capabilities"
+      },
+      {
+        "name": "TraversalCapabilityContextId",
+        "type": "FName",
+        "value": "active_traversal_context",
+        "category": "Melodia|Traversal|Capabilities"
+      },
+      {
+        "name": "WaterMotionEventInterval",
+        "type": "float",
+        "value": "0.280000",
+        "category": "Melodia|Traversal|Water|Presentation"
+      },
+      {
+        "name": "bAutoCreateWaterNiagaraBridge",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Water|Niagara"
+      },
+      {
+        "name": "bAutoCreateWaterAudioBridge",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Water|Audio"
+      },
+      {
+        "name": "bAutoCreateWaterUnderwaterPostProcess",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Water|Underwater"
+      },
+      {
+        "name": "WaterProximityEnterThreshold",
+        "type": "float",
+        "value": "0.350000",
+        "category": "Melodia|Traversal|Water"
+      },
+      {
+        "name": "WaterProximityExitThreshold",
+        "type": "float",
+        "value": "0.200000",
+        "category": "Melodia|Traversal|Water"
+      },
+      {
+        "name": "NormalWalkSpeed",
+        "type": "float",
+        "value": "380.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "SprintSpeed",
+        "type": "float",
+        "value": "630.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "ExplorationRotationRateYaw",
+        "type": "float",
+        "value": "600.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "bApplyExplorationRotationTuning",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "DashImpulse",
+        "type": "float",
+        "value": "900.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "DashCooldownSeconds",
+        "type": "float",
+        "value": "0.700000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "DashPersistSeconds",
+        "type": "float",
+        "value": "0.220000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "GlideGravityScale",
+        "type": "float",
+        "value": "0.110000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideAirControl",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideTerminalFallSpeed",
+        "type": "float",
+        "value": "170.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideSinkEaseRate",
+        "type": "float",
+        "value": "5.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideActivationLiftSpeed",
+        "type": "float",
+        "value": "130.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideActivationForwardBoost",
+        "type": "float",
+        "value": "115.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "MaxGlideStamina",
+        "type": "float",
+        "value": "3.500000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "GlideStaminaDrainPerSecond",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "GlideStaminaRegenPerSecond",
+        "type": "float",
+        "value": "1.500000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "GlideStaminaRegenDelay",
+        "type": "float",
+        "value": "0.450000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "MinimumGlideStartStamina",
+        "type": "float",
+        "value": "0.250000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "MaxSwimStamina",
+        "type": "float",
+        "value": "5.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimStaminaDrainPerSecond",
+        "type": "float",
+        "value": "0.500000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimStaminaRegenPerSecond",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimStaminaRegenDelay",
+        "type": "float",
+        "value": "0.500000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "MaxBreath",
+        "type": "float",
+        "value": "10.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "BreathDrainPerSecond",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "BreathRegenPerSecond",
+        "type": "float",
+        "value": "2.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimSpeed",
+        "type": "float",
+        "value": "400.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "DiveImpulse",
+        "type": "float",
+        "value": "800.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SurfaceJumpImpulse",
+        "type": "float",
+        "value": "600.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "WingComponentTag",
+        "type": "FName",
+        "value": "MelodiaWings",
+        "category": "Melodia|Traversal|Presentation"
+      },
+      {
+        "name": "WingOpacityParameter",
+        "type": "FName",
+        "value": "Opacity",
+        "category": "Melodia|Traversal|Presentation"
+      },
+      {
+        "name": "bHideWingMeshWhenNotGliding",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Presentation"
+      },
+      {
+        "name": "PrimaryComponentTick",
+        "type": "FActorComponentTickFunction",
+        "value": "(TickGroup=TG_DuringPhysics,bCanEverTick=True,bStartWithTickEnabled=True,bAllowTickOnDedicatedServer=True)",
+        "category": "ComponentTick"
+      },
+      {
+        "name": "ComponentTags",
+        "type": "TArray",
+        "value": "",
+        "category": "Tags"
+      },
+      {
+        "name": "AssetUserData",
+        "type": "TArray",
+        "value": "",
+        "category": "AssetUserData"
+      },
+      {
+        "name": "AssetUserDataEditorOnly",
+        "type": "TArray",
+        "value": "",
+        "category": "AssetUserData"
+      },
+      {
+        "name": "bReplicateUsingRegisteredSubObjectList",
+        "type": "uint8",
+        "value": "False",
+        "category": "Replication"
+      },
+      {
+        "name": "bReplicates",
+        "type": "uint8",
+        "value": "False",
+        "category": "ComponentReplication"
+      },
+      {
+        "name": "bAutoActivate",
+        "type": "uint8",
+        "value": "False",
+        "category": "Activation"
+      },
+      {
+        "name": "bEditableWhenInherited",
+        "type": "uint8",
+        "value": "True",
+        "category": "Variable"
+      },
+      {
+        "name": "bCanEverAffectNavigation",
+        "type": "uint8",
+        "value": "False",
+        "category": "Navigation"
+      },
+      {
+        "name": "bIsEditorOnly",
+        "type": "uint8",
+        "value": "False",
+        "category": "Cooking"
+      }
+    ],
+    "property_count": 49
+  },
+  "set": {
+    "component": "MelodiaTraversal",
+    "property": "NormalWalkSpeed",
+    "old_value": "380.000000",
+    "new_value": "200.000000",
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter"
+  },
+  "after": {
+    "component_name": "MelodiaTraversal",
+    "class": "MelodiaTraversalComponent",
+    "is_scene_component": false,
+    "is_inherited_native": false,
+    "properties": [
+      {
+        "name": "bRequireCapabilityProviderForGlide",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Capabilities"
+      },
+      {
+        "name": "TraversalCapabilityContextId",
+        "type": "FName",
+        "value": "active_traversal_context",
+        "category": "Melodia|Traversal|Capabilities"
+      },
+      {
+        "name": "WaterMotionEventInterval",
+        "type": "float",
+        "value": "0.280000",
+        "category": "Melodia|Traversal|Water|Presentation"
+      },
+      {
+        "name": "bAutoCreateWaterNiagaraBridge",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Water|Niagara"
+      },
+      {
+        "name": "bAutoCreateWaterAudioBridge",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Water|Audio"
+      },
+      {
+        "name": "bAutoCreateWaterUnderwaterPostProcess",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Water|Underwater"
+      },
+      {
+        "name": "WaterProximityEnterThreshold",
+        "type": "float",
+        "value": "0.350000",
+        "category": "Melodia|Traversal|Water"
+      },
+      {
+        "name": "WaterProximityExitThreshold",
+        "type": "float",
+        "value": "0.200000",
+        "category": "Melodia|Traversal|Water"
+      },
+      {
+        "name": "NormalWalkSpeed",
+        "type": "float",
+        "value": "200.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "SprintSpeed",
+        "type": "float",
+        "value": "630.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "ExplorationRotationRateYaw",
+        "type": "float",
+        "value": "600.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "bApplyExplorationRotationTuning",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "DashImpulse",
+        "type": "float",
+        "value": "900.000000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "DashCooldownSeconds",
+        "type": "float",
+        "value": "0.700000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "DashPersistSeconds",
+        "type": "float",
+        "value": "0.220000",
+        "category": "Melodia|Traversal|Movement"
+      },
+      {
+        "name": "GlideGravityScale",
+        "type": "float",
+        "value": "0.110000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideAirControl",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideTerminalFallSpeed",
+        "type": "float",
+        "value": "170.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideSinkEaseRate",
+        "type": "float",
+        "value": "5.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideActivationLiftSpeed",
+        "type": "float",
+        "value": "130.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "GlideActivationForwardBoost",
+        "type": "float",
+        "value": "115.000000",
+        "category": "Melodia|Traversal|Feel"
+      },
+      {
+        "name": "MaxGlideStamina",
+        "type": "float",
+        "value": "3.500000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "GlideStaminaDrainPerSecond",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "GlideStaminaRegenPerSecond",
+        "type": "float",
+        "value": "1.500000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "GlideStaminaRegenDelay",
+        "type": "float",
+        "value": "0.450000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "MinimumGlideStartStamina",
+        "type": "float",
+        "value": "0.250000",
+        "category": "Melodia|Traversal|Stamina"
+      },
+      {
+        "name": "MaxSwimStamina",
+        "type": "float",
+        "value": "5.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimStaminaDrainPerSecond",
+        "type": "float",
+        "value": "0.500000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimStaminaRegenPerSecond",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimStaminaRegenDelay",
+        "type": "float",
+        "value": "0.500000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "MaxBreath",
+        "type": "float",
+        "value": "10.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "BreathDrainPerSecond",
+        "type": "float",
+        "value": "1.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "BreathRegenPerSecond",
+        "type": "float",
+        "value": "2.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SwimSpeed",
+        "type": "float",
+        "value": "400.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "DiveImpulse",
+        "type": "float",
+        "value": "800.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "SurfaceJumpImpulse",
+        "type": "float",
+        "value": "600.000000",
+        "category": "Melodia|Traversal|Swimming"
+      },
+      {
+        "name": "WingComponentTag",
+        "type": "FName",
+        "value": "MelodiaWings",
+        "category": "Melodia|Traversal|Presentation"
+      },
+      {
+        "name": "WingOpacityParameter",
+        "type": "FName",
+        "value": "Opacity",
+        "category": "Melodia|Traversal|Presentation"
+      },
+      {
+        "name": "bHideWingMeshWhenNotGliding",
+        "type": "bool",
+        "value": "True",
+        "category": "Melodia|Traversal|Presentation"
+      },
+      {
+        "name": "PrimaryComponentTick",
+        "type": "FActorComponentTickFunction",
+        "value": "(TickGroup=TG_DuringPhysics,bCanEverTick=True,bStartWithTickEnabled=True,bAllowTickOnDedicatedServer=True)",
+        "category": "ComponentTick"
+      },
+      {
+        "name": "ComponentTags",
+        "type": "TArray",
+        "value": "",
+        "category": "Tags"
+      },
+      {
+        "name": "AssetUserData",
+        "type": "TArray",
+        "value": "",
+        "category": "AssetUserData"
+      },
+      {
+        "name": "AssetUserDataEditorOnly",
+        "type": "TArray",
+        "value": "",
+        "category": "AssetUserData"
+      },
+      {
+        "name": "bReplicateUsingRegisteredSubObjectList",
+        "type": "uint8",
+        "value": "False",
+        "category": "Replication"
+      },
+      {
+        "name": "bReplicates",
+        "type": "uint8",
+        "value": "False",
+        "category": "ComponentReplication"
+      },
+      {
+        "name": "bAutoActivate",
+        "type": "uint8",
+        "value": "False",
+        "category": "Activation"
+      },
+      {
+        "name": "bEditableWhenInherited",
+        "type": "uint8",
+        "value": "True",
+        "category": "Variable"
+      },
+      {
+        "name": "bCanEverAffectNavigation",
+        "type": "uint8",
+        "value": "False",
+        "category": "Navigation"
+      },
+      {
+        "name": "bIsEditorOnly",
+        "type": "uint8",
+        "value": "False",
+        "category": "Cooking"
+      }
+    ],
+    "property_count": 49
+  },
+  "compile": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "success": true,
+    "status": "UpToDate",
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "dirty_before_save": {
+    "ok": true,
+    "count": 1,
+    "dirty_packages": [
+      {
+        "package": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+        "is_map": false,
+        "transient": false,
+        "disk_path": "../../../../../../EnvironmentPortfolio/BS_GodFile/Content/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.uasset"
+      }
+    ]
+  },
+  "save": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "saved": true,
+    "was_dirty": true
+  },
+  "dirty_after_save": {
+    "ok": true,
+    "count": 0,
+    "dirty_packages": []
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "task": "swap rejected arms-out idle for natural looping idle",
+  "abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+  "new_clip": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle",
+  "before": {
+    "state_name": "Idle",
+    "machine_name": "MelusinaLocomotion",
+    "position": [
+      0,
+      0
+    ],
+    "nodes": [
+      {
+        "class": "AnimGraphNode_StateResult",
+        "title": "Output Animation Pose"
+      },
+      {
+        "class": "AnimGraphNode_SequencePlayer",
+        "title": "A_CAS_Melusina_Idle_Loop\nSequence Player"
+      }
+    ],
+    "node_count": 2
+  },
+  "applied_shape": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "state_name": "Idle",
+    "anim_asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle"
+  },
+  "apply_result": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "state_name": "Idle",
+    "anim_asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle",
+    "node_name": "AnimGraphNode_SequencePlayer_1",
+    "node_class": "AnimGraphNode_SequencePlayer",
+    "loop": false,
+    "cleared_existing": true,
+    "pins": [
+      {
+        "name": "Pose",
+        "direction": "Output",
+        "is_pose": true,
+        "is_connected": true,
+        "type": "struct"
+      }
+    ]
+  },
+  "after": {
+    "state_name": "Idle",
+    "machine_name": "MelusinaLocomotion",
+    "position": [
+      0,
+      0
+    ],
+    "nodes": [
+      {
+        "class": "AnimGraphNode_StateResult",
+        "title": "Output Animation Pose"
+      },
+      {
+        "class": "AnimGraphNode_SequencePlayer",
+        "title": "A_Melusina_Idle\nSequence Player"
+      }
+    ],
+    "node_count": 2
+  },
+  "verified": true,
+  "compile": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "success": true,
+    "status": "UpToDate",
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "dirty_before_save": {
+    "ok": true,
+    "count": 1,
+    "dirty_packages": [
+      {
+        "package": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+        "is_map": false,
+        "transient": false,
+        "disk_path": "../../../../../../EnvironmentPortfolio/BS_GodFile/Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset"
+      }
+    ]
+  },
+  "save": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "saved": true,
+    "was_dirty": true
+  },
+  "dirty_after_save": {
+    "ok": true,
+    "count": 0,
+    "dirty_packages": []
+  },
+  "cadence": {
+    "A_Melusina_Walk_Mocap_RootX": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 1.1666666269302368,
+      "num_frames": 35,
+      "num_keys": 36,
+      "sample_rate": 30,
+      "frame_rate": "30/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1.149999976158142,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    },
+    "A_Melusina_Run_Mocap_RootX": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 1.1666666269302368,
+      "num_frames": 35,
+      "num_keys": 36,
+      "sample_rate": 30,
+      "frame_rate": "30/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    },
+    "A_Melusina_Sprint_Mocap_RootX": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint_Mocap_RootX",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 0.9166666865348816,
+      "num_frames": 110,
+      "num_keys": 111,
+      "sample_rate": 120,
+      "frame_rate": "120/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1.350000023841858,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    }
+  }
+}
