@@ -131,7 +131,7 @@ df -h /d                                                  # depot disk headroom
 
 **The Perforce server root is `D:\perforce\root` on this machine.** A submit is history-tracked,
 not off-machine; GitHub is the only offsite copy. See
-[`STORAGE_ARCHITECTURE_2026-10-01.md`](../../Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
+[`STORAGE_ARCHITECTURE_2026-10-01.md`](../../docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
 
 Perforce renumbered CL 270 → **change 272** on submit. That is normal `p4 submit` behaviour,
 not a second submission — `p4 changes -s submitted -m 3` shows 272 and 271 only.
