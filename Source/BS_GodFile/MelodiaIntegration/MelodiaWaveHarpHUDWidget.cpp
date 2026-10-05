@@ -331,11 +331,13 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
  if (ReticleFade > .002f)
  {
   const FVector2D RC = At(DesignCenter);
-  const bool bIdle = State == EMelodiaBowHUDState::Idle;
-  // Idle breathe: scale 1 -> 1.025, opacity .86 -> 1 on the two-beat cycle.
-  const float Breath = bIdle ? .5f * (1.f - FMath::Cos(2.f * PI * BreathePhase)) : 0.f;
-  const float Fade = ReticleFade * (bIdle ? FMath::Lerp(.86f, 1.f, Breath) : 1.f);
-  const float Group = (1.f + .025f * Breath) * FMath::Lerp(.6f, 1.f, ReticleFade); // SEQUENCE collapses to .6
+   const bool bIdle = State == EMelodiaBowHUDState::Idle;
+   // Idle: small + translucent until the player aims or draws; breathes on a two-beat cycle.
+   const float IdleScale = bIdle ? .5f : 1.f;
+   const float IdleAlpha = bIdle ? .32f : 1.f;
+   const float Breath = bIdle ? .5f * (1.f - FMath::Cos(2.f * PI * BreathePhase)) : 0.f;
+   const float Fade = ReticleFade * (bIdle ? FMath::Lerp(.86f, 1.f, Breath) : 1.f) * IdleAlpha;
+   const float Group = (1.f + .025f * Breath) * FMath::Lerp(.6f, 1.f, ReticleFade) * IdleScale; // SEQUENCE collapses to .6
 
   // Aperture react 117 ms, damped settle 469..703 ms.
   const float FromD = Diameter(PrevState), ToD = Diameter(State);
@@ -451,12 +453,16 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
   TextCentered(CC, bSequence ? TEXT("SEQUENCE") : TEXT("FLOW"), Font(7.5f, true), Tint(Pearl, 1.f), LText);
  }
 
- // Bottom-centre prompt cartouche + corner sprig.
- {
-  const FVector2D PC = At({352.f, 371.f + Slide});
-  const float A = bPerfect ? .98f : bSequence ? .48f : bTargetish ? .90f : State == EMelodiaBowHUDState::Aim ? .82f : .68f;
-  if (!Draw(SPrompt, bPerfect, false, PC, {270.f,51.f}, 1.f, 0.f, A * SlideA, LBack)) Plate(PC, {236.f,24.f}, Coral, A * SlideA, LBack);
-  Draw(SSprig, bPerfect, false, At({235.f, 350.f + Slide}), {54.f,54.f}, 1.f, 0.f, (bPerfect ? .78f : .46f) * SlideA, LBack);
+  // Bottom-centre prompt cartouche + corner sprig.
+  // Lifted clear of the overworld interact line (WBP_MelodiaInteractionPrompt sits at ~371).
+  // Idle drift: a gentle ±2 design-px float on the two-beat breathe so the
+  // prompt never sits laser-static while the reticle breathes beneath it.
+  {
+   const float Drift = State == EMelodiaBowHUDState::Idle ? 2.f * FMath::Sin(2.f * PI * BreathePhase) : 0.f;
+   const FVector2D PC = At({352.f, 341.f + Drift + Slide});
+   const float A = bPerfect ? .98f : bSequence ? .48f : bTargetish ? .90f : State == EMelodiaBowHUDState::Aim ? .82f : .68f;
+   if (!Draw(SPrompt, bPerfect, false, PC, {270.f,51.f}, 1.f, 0.f, A * SlideA, LBack)) Plate(PC, {236.f,24.f}, Coral, A * SlideA, LBack);
+   Draw(SSprig, bPerfect, false, At({235.f, 320.f + Drift + Slide}), {54.f,54.f}, 1.f, 0.f, (bPerfect ? .78f : .46f) * SlideA, LBack);
   FString Prompt;
   switch (State)
   {
@@ -466,7 +472,7 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
   case EMelodiaBowHUDState::Perfect: Prompt = TEXT("RESONANCE READY"); break;
   case EMelodiaBowHUDState::Sequence: Prompt = TEXT("TAB  RETURN TO FLOW"); break;
   }
-  TextCentered(At({352.f, 368.f + Slide}), Prompt, Font(7.5f, false), Tint(Pearl, SlideA), LText);
+   TextCentered(At({352.f, 338.f + Drift + Slide}), Prompt, Font(7.5f, false), Tint(Pearl, SlideA), LText);
  }
 
  // Target cartouche + score stem + target sprig (Target / Perfect only). 117 -> 234 ms punch-in.

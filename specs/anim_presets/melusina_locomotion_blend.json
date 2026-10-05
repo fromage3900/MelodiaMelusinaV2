@@ -67,16 +67,23 @@
       "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton": "Live body and wardrobe skeleton",
       "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton": "Required separate live hair skeleton",
       "/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion": "Connected Locomotion state; current four-sample contract",
+      "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX": "Owner-approved speed-zero clip in this locomotion contract; preserve as canonical runtime idle",
       "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_UE4Mannequin_To_Melusina": "Retained protected authoring shoulder pose; archive placement is not retirement"
     },
     "retired_denylist": {
       "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle": "Explicitly rejected by this contract's speed-zero sample; preserve authoring asset, prohibit canonical runtime reference",
+      "/Game/Melodia/Characters/Melusina/Animations/Authored/A_MUAL_Melusina_Idle_Loop": "Rejected runtime idle: measured root height is about 7936 cm off and twist rewrite is about 59 degrees; preserve authoring asset",
       "/Game/Melodia/Characters/Melusina/Animations/_Archive/LegacyRetargets_20261001/SourceRetargeted/A_BL_Source_Idle_Loop__MUAL_TARGET": "Existing animation_import_pipeline/registry.py rejects the static bind-pose MUAL derivative",
       "/Game/Experiments/MelodiaJRPG/ABP_Melusina_JRPGPresentation": "Unreferenced alternative body AnimBP retaining the rejected idle; quarantine from canonical runtime, preserve on disk",
       "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_Melusina_OldToV2": "Targets the isolated SK_MelusinaRigARP_V2Test skeleton rather than the live canonical body",
       "/Game/Melodia/Characters/Melusina/V2Test/IK_Melusina_Source_Old": "Isolated OldToV2 authoring route, not admitted to canonical runtime",
       "/Game/Melodia/Characters/Melusina/V2Test/IK_Melusina_Target_V2": "Targets isolated V2Test mesh/skeleton, not the live V2 body",
-      "/Game/Melodia/Characters/Melusina/V2Test/SK_MelusinaRigARP_V2Test_Skeleton": "Separate test skeleton is prohibited in canonical runtime pose routes"
+      "/Game/Melodia/Characters/Melusina/V2Test/SK_MelusinaRigARP_V2Test_Skeleton": "Separate test skeleton is prohibited in canonical runtime pose routes",
+      "/Game/Melodia/Mocap/Retarget/RTG_Sparrow_to_Melusina": "Owner-rejected Sparrow retarget route; deleted after shoulder/contact failure",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_idle_relaxed": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_idle": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only"
     }
   }
 }
