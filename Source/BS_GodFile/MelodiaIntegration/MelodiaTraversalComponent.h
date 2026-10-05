@@ -88,10 +88,6 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	bool IsDashing() const { return bIsDashing; }
 
-	/** Rotation belongs to the active roll, then aim, then exploration. */
-	bool IsRollPlaying() const;
-	void ApplyRotationPolicy();
-
 	/** True while swimming on water surface. */
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	bool IsSwimming() const { return bIsSwimming; }

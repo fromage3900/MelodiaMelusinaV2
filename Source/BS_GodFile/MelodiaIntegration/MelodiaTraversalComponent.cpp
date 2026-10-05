@@ -24,17 +24,6 @@
 
 namespace
 {
-	UAnimMontage* GetMelusinaRollMontage()
-	{
-		static TWeakObjectPtr<UAnimMontage> Roll;
-		if (!Roll.IsValid())
-		{
-			Roll = Cast<UAnimMontage>(StaticLoadObject(UAnimMontage::StaticClass(), nullptr,
-				TEXT("/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll.AM_Melusina_Roll")));
-		}
-		return Roll.Get();
-	}
-
 	bool IsTraversalMovementAllowed(const UObject* WorldContextObject)
 	{
 		const UMelodiaInputContextSubsystem* Input = UMelodiaInputContextSubsystem::Get(WorldContextObject);
@@ -594,26 +583,22 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 	// keeps this a body-only change (no class layout change); the asset path is
 	// fixed and matches the verified on-disk montage on SK_Melusina_Skeleton.
 	// IsDashing() stays the future invulnerability query for the dodge slice.
-	if (UAnimMontage* Roll = GetMelusinaRollMontage())
+	static TWeakObjectPtr<UAnimMontage> DashRollMontage;
+	if (!DashRollMontage.IsValid())
+	{
+		DashRollMontage = Cast<UAnimMontage>(StaticLoadObject(UAnimMontage::StaticClass(), nullptr,
+			TEXT("/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll.AM_Melusina_Roll")));
+	}
+	if (UAnimMontage* Roll = DashRollMontage.Get())
 	{
 		if (USkeletalMeshComponent* Mesh = OwnerCharacter->GetMesh())
 		{
 			if (UAnimInstance* Anim = Mesh->GetAnimInstance())
 			{
-				// This clip rolls backward in actor space. Face away from the requested
-				// travel so the roll and the unchanged movement impulse agree.
+				// Graceful blend: 0.15s in from locomotion, 0.25s out back.
+				// Previously played at full weight instantly (pop on entry, snap on exit).
 				FAlphaBlendArgs BlendInArgs(0.15f);
-				if (Anim->Montage_PlayWithBlendIn(Roll, BlendInArgs, 1.0f) > 0.0f)
-				{
-					ApplyRotationPolicy();
-					OwnerCharacter->SetActorRotation(FRotator(0.0f, (-Direction).Rotation().Yaw, 0.0f));
-
-					// Query current aim on completion/interruption instead of restoring
-					// a snapshot which can predate an RMB press or release.
-					FOnMontageEnded OnRollEnded;
-					OnRollEnded.BindWeakLambda(this, [this](UAnimMontage*, bool) { ApplyRotationPolicy(); });
-					Anim->Montage_SetEndDelegate(OnRollEnded, Roll);
-				}
+				Anim->Montage_PlayWithBlendIn(Roll, BlendInArgs, 1.0f);
 			}
 		}
 	}
@@ -623,26 +608,6 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 		World->GetTimerManager().SetTimer(DashPersistTimer, this,
 			&UMelodiaTraversalComponent::FinishDash, DashPersistSeconds, false);
 	}
-}
-
-bool UMelodiaTraversalComponent::IsRollPlaying() const
-{
-	const USkeletalMeshComponent* Mesh = OwnerCharacter.IsValid() ? OwnerCharacter->GetMesh() : nullptr;
-	const UAnimInstance* Anim = Mesh ? Mesh->GetAnimInstance() : nullptr;
-	const UAnimMontage* Roll = GetMelusinaRollMontage();
-	return Anim && Roll && Anim->Montage_IsPlaying(Roll);
-}
-
-void UMelodiaTraversalComponent::ApplyRotationPolicy()
-{
-	if (!bMovementDefaultsCaptured || !Movement.IsValid() || !OwnerCharacter.IsValid()) return;
-	const UMelodiaWaveHarpCombatComponent* Combat = OwnerCharacter->FindComponentByClass<UMelodiaWaveHarpCombatComponent>();
-	const bool bRolling = IsRollPlaying();
-	const bool bAiming = Combat && Combat->IsAiming();
-	Movement->bOrientRotationToMovement = !bRolling && !bAiming
-		&& (bApplyExplorationRotationTuning || bSavedOrientRotationToMovement);
-	OwnerCharacter->bUseControllerRotationYaw = !bRolling
-		&& (bAiming || (!bApplyExplorationRotationTuning && bSavedUseControllerRotationYaw));
 }
 
 void UMelodiaTraversalComponent::HandleDivePressed()

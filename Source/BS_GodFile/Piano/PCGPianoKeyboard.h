@@ -112,6 +112,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Visuals", meta = (ClampMin = "0.05"))
 	float PressColorFadeSec = 1.2f;
+
+	/** Biome palette: the flash hue of pitch class p is frac(PressHueOffset + p/12 * PressHueSpan) (turns). Span 1 = whole wheel. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Visuals")
+	float PressHueOffset = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Visuals", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float PressHueSpan = 1.0f;
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FPCGPianoKeyEvent, int32, KeyIndex, int32, MidiNote, AActor*, SteppingActor);
@@ -258,6 +265,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Piano|Configuration")
 	FName KeyboardId = TEXT("PianoKeyboard");
+
+	/** Walkway: an actor carrying a USplineComponent. When set, key identities (MIDI order) follow distance along
+	 *  that spline instead of local X, so the keyboard can be bent along any path. Unset = straight keyboard. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Piano|Walkway")
+	TSoftObjectPtr<AActor> OrderPathActor;
 
 	UPROPERTY(BlueprintAssignable, Category = "Piano|Events")
 	FPCGPianoKeyEvent OnKeyPressed;

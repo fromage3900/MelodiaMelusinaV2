@@ -3,6 +3,7 @@
 // Live Coding reload marker: keep the actor implementation rebuildable after editor restart.
 
 #include "Components/BoxComponent.h"
+#include "Components/SplineComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Engine/StaticMesh.h"
@@ -318,7 +319,9 @@ void APCGPianoKey::BeginVisualPress(AActor* SteppingActor)
 		const UPCGPianoKeyboardProfile* PianoProfile = KeyboardOwner->GetProfile();
 		if (PianoProfile && PianoProfile->bColorShiftOnPress)
 		{
-			FlashHue = static_cast<float>(((MidiNote % 12) + 12) % 12) / 12.0f;
+			const float PitchClass = static_cast<float>(((MidiNote % 12) + 12) % 12) / 12.0f;
+			const float Hue = PianoProfile->PressHueOffset + PitchClass * PianoProfile->PressHueSpan;
+			FlashHue = Hue - FMath::FloorToFloat(Hue);
 			ColorFlash = 1.0f;
 			bFlashDirty = true;
 		}
@@ -395,14 +398,22 @@ void APCGPianoKeyboard::AssignKeyIdentities()
 	}
 
 	const FTransform KeyboardTransform = GetActorTransform();
-	auto LocalX = [&KeyboardTransform](const APCGPianoKey* Key)
+	// Straight keyboards order by local X; a walkway orders by distance along its spline so bends keep MIDI order.
+	const AActor* PathActor = OrderPathActor.Get();
+	const USplineComponent* PathSpline = PathActor ? PathActor->FindComponentByClass<USplineComponent>() : nullptr;
+	auto OrderKey = [&KeyboardTransform, PathSpline](const APCGPianoKey* Key)
 	{
-		return KeyboardTransform.InverseTransformPosition(Key->GetActorLocation()).X;
+		if (PathSpline)
+		{
+			const float InputKey = PathSpline->FindInputKeyClosestToWorldLocation(Key->GetActorLocation());
+			return PathSpline->GetDistanceAlongSplineAtSplineInputKey(InputKey);
+		}
+		return static_cast<float>(KeyboardTransform.InverseTransformPosition(Key->GetActorLocation()).X);
 	};
 	// TArray<T*>::Sort dereferences the elements, so the predicate takes references.
-	auto ByLocalX = [&LocalX](const APCGPianoKey& A, const APCGPianoKey& B) { return LocalX(&A) < LocalX(&B); };
-	Whites.Sort(ByLocalX);
-	Blacks.Sort(ByLocalX);
+	auto ByOrder = [&OrderKey](const APCGPianoKey& A, const APCGPianoKey& B) { return OrderKey(&A) < OrderKey(&B); };
+	Whites.Sort(ByOrder);
+	Blacks.Sort(ByOrder);
 
 	const int32 FirstMidi = Profile ? Profile->FirstMidiNote : 21;
 	const int32 LastMidi = Profile ? Profile->LastMidiNote : 108;

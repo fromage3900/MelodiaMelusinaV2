@@ -44,6 +44,6 @@ void UMelodiaLocomotionAnimInstance::NativeUpdateAnimation(const float DeltaSeco
 	// Gliding still uses MOVE_Falling for physics, but it must not keep the
 	// locomotion graph's generic jump/fall state eligible at the same time.
 	bRuntimeIsInAir = bMovementIsFalling && !bRuntimeIsGliding;
-	bRuntimeIsGrounded = Movement && Movement->IsMovingOnGround();
+	bRuntimeIsGrounded = !bMovementIsFalling;
 	RuntimeVerticalSpeed = PawnVelocity.Z;
 }
