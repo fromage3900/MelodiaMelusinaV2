@@ -43,6 +43,7 @@ Owner FBX/USDZ (outside repo, hashed)
 | `melodia_dress_cop.hip.template.md` | Human-readable COP network walkthrough (node-by-node, matching `M_Master_Toon_Universal` Nikki lanes) |
 | `copernicus_terrain_height_to_nanite.py` | Heightmap → Nanite mesh HDA generator (Gaea/World Machine → mesh, replaces Landscape) |
 | `copernicus_fabric_sheen.py` | Velvet/silk sheen mask COP (Sheen for `T_FarawayMother_Gown/Mantle`) |
+| `copernicus_film_tilables.py` | 2K tileable film preset surfaces + ORM (BaseColor/Normal/ORM/Height) for film-304-toon-spine. Pure numpy+PIL like the cymatic lane: COP rop writes are Apprentice-capped at 1920x1080 on this machine, so >=2048 uses the numpy path; seed 20260828, self-verifying (magic/size/seam) + manifest |
 
 ## Quick start (deterministic)
 
