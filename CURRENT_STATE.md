@@ -1,5 +1,33 @@
 # Melodia Melusina ? Current State
 
+## ⚑ CANON — Melusina runtime rig + retarget — 2026-10-05
+
+**Canonical reference: [`Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md`](Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md).** It supersedes all older rig/retarget statements below.
+
+**The reference-pose interruption is SOLVED for the retarget pipeline and her live idle.** Raw retarget output into `SK_Melusina_Skeleton` is known-defective; the canon recipe applies an arm correction and verifies `15.774 | 28.561 | 28.615` (world cm). Reject `34.789 | 9.520 | 28.615`.
+
+Verified live in PIE 2026-10-05:
+- **Idle**: `CuteIdle V10` corrected — was `29.729 | 9.520 | 28.615`, now `15.774 | 28.561 | 28.615`. Visually confirmed: "arms hanging naturally at her sides… reads as a relaxed standing idle." Original backed up in `Saved/Audit/MelusinaWaveHarpContact_20261004/ClipBackups/`.
+- **Caster path (LMB)**: clean at `15.774 | 28.561 | 28.615`.
+- **Archer path (RMB)**: **still defective** at `34.789 | 9.520 | 28.615` — the six owner-approved SparrowArchery clips are frozen. Arms therefore change convention between LMB and RMB. **Owner decision required.**
+- **Foot IK**: `FAnimNode_FootPlacement` added (`PlantSpeedMode=Graph`, `IKFootRootBone=root`, `PelvisBone=spine_01_x`, legs `foot_l/toes_01_l` + `foot_r/toes_01_r`). Feet level and planted; arms unaffected. Slope/stairs test still owed. Node is marked Experimental in the engine.
+- **Retarget infra**: `IK_Shinbi` + `RTG_Shinbi_To_Melusina` created; Shinbi idles (`A_Shin_Idle`, `A_Shin_Idle_pose`, `A_Shin_Idle_stand`) and `A_Shin_Cast` staged arm-corrected.
+- **ABP chain**: `LBB_0 → L2C_0 → FootPlacement_1 → KawaiiPhysics_0 → CopyBone_0 → C2L_1 → ModifyCurve_1 → L2C_1 → C2L_0 → Root`.
+
+### DEPRECATED / STALE — superseded, provenance only
+
+`RTG_UE4Mannequin_To_Melusina` (`Retarget/_Archive/`, source of the defect class) · `RTG_Sparrow_to_Melusina` (deleted, owner-rejected) · `RTG_Melusina_OldToV2`, `RTG_Melusina_to_DollRig`, `RTG_Melusina_to_Zundamon` · `IK_Melusina_Source_Old`, `IK_Melusina_Target_V2` · `IK_Melusina`, `IK_Melusina_Body` · `Animations/_Archive/LegacyRetargets_20261001/`.
+
+**Still live — do NOT deprecate:** `IK_Melusina_Body_Current` (shared with the working mocap lane) and `IK_UE4Mannequin_Source`.
+
+**Superseded claims below:** `A_Melusina_Idle_Mocap_RootX` is no longer the Idle state's clip (the `CuteIdle V10` is, now arm-corrected). "Reference-pose interruption open" applies to the Sparrow clips only.
+
+### Operational traps added 2026-10-05
+
+`batch_retarget_animations` + `overwrite=true` crashes the editor · Monolith wrong param keys are accepted silently and do nothing · `set_retargeter_rigs` takes `asset_path` not `retargeter_path` · a newly created retargeter has 0 ops until rigs are assigned, and must then be saved · `set_state_animation` recreates the player node, so re-set `bLoopAnimation` · `save_dirty_assets` misses retarget outputs · single-frame vision reads are unreliable — prefer numbers.
+
+---
+
 ## Canonical caster/archer convergence tonight - 2026-10-04
 
 The owner-requested bounded goal is active: Shinbi is the feminine caster reference; Sparrow is the charged archery/contact reference. Preserve the existing owners, body/roll retarget, gloves and sleeves. The canonical Blender WaveHarp already has the correct two forms. No topology or authored shape-key changes are authorized for this export repair.
