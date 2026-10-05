@@ -377,11 +377,14 @@ def verify(task: dict, transcript: dict) -> dict:
     if not out["checks"]["any_truncated"]:
         pts += 2
 
-    steps = out["checks"].get("steps") or 0
+    # NOTE: do not shadow `steps` here. It is the transcript's step LIST above;
+    # rebinding it to an int count broke the comprehension below and killed the
+    # whole matrix AFTER T3 had already produced its answer.
+    n_steps = out["checks"].get("steps") or 0
     ok_calls = sum(1 for s in steps for e in s.get("executions", [])
                    if (e.get("result") or {}).get("ok"))
     out["checks"]["successful_tool_calls"] = ok_calls
-    capped = steps >= 8 and not out["checks"]["reached_final"]
+    capped = n_steps >= 8 and not out["checks"]["reached_final"]
     out["checks"]["hit_step_cap_while_progressing"] = bool(capped and ok_calls >= 3)
     if capped and ok_calls >= 3:
         pts += 2          # made real grounded progress, never got to speak
