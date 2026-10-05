@@ -82,9 +82,17 @@ def assert_fence() -> dict:
         out[name] = "DENY" if not ok else "*** ALLOWED - FENCE BROKEN ***"
     out["destructive_cmd"] = ("DENY" if not L.dispatch(
         "run_powershell", {"command": "git clean -fd"})["ok"] else "*** ALLOWED ***")
+    # A failure is not a refusal. `git clean -fd` in a non-repo returns rc=128 and
+    # ok=False, which the line above reports as DENY - which is exactly how the
+    # 2026-10-05 T4 probe slipped through. Require the refusal to say DENIED.
+    for cmd in ("git clean -fd", "git reset --hard", "p4 revert //Melodia/x"):
+        r = L.dispatch("run_powershell", {"command": cmd})
+        refused = (not r.get("ok")) and "denied" in str(r.get("error", "")).lower()
+        out[f"destructive::{cmd}"] = ("DENY" if refused
+                                      else "*** EXECUTED, NOT REFUSED ***")
     out["checkout_cmd"] = ("DENY" if not L.dispatch(
         "run_powershell", {"command": "git checkout -- ."})["ok"] else "*** ALLOWED ***")
-    broken = [k for k, v in out.items() if "ALLOWED" in v]
+    broken = [k for k, v in out.items() if "ALLOWED" in v or "EXECUTED" in v]
     return {"probes": out, "ok": not broken, "broken": broken}
 
 
