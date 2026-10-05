@@ -1,5 +1,39 @@
 # Melodia Melusina — Current State
 
+## CURRENT NOW — 2026-10-05
+
+**Use this block first.** It is the current front door and supersedes older dated “owner queue,”
+“still owed,” and recovery language below unless a newer entry explicitly reactivates an item.
+The long body is retained as audit history, not as a flat list of present-tense tasks.
+
+- **Gameplay baseline is established by owner confirmation:** WASD works, the bow works, damage
+  works, and the gameplay loop works. Do **not** reopen the old real-input/WASD, stock damage,
+  GOOD/PERFECT ladder, or Melusina-possession proof hunts simply because older entries below still
+  record them as owed at the time.
+- **Active production gate:** runtime animation/contact convergence remains the live technical
+  priority from the 2026-10-03 block immediately below. Preserve the canonical
+  `SK_Melusina_Skeleton` → `ABP_Melusina_Current` pose authority, finish fresh battle playback
+  and hero draw/hold/release/contact acceptance, and do not create a second pose/retarget authority
+  to hide a deformation or contact defect.
+- **Git/integration baseline:** `origin/main` is canonical and agents work through detached
+  `refs/agents/<lane>` lanes; `main` is a landing target, not a workspace. Review baseline for
+  this docs pass is `e25682b3a83c5f6453a355f60a08b772309d3dad`.
+  PR #413 is closed as superseded: all seven Sir Melodious flight-v3.3 LFS objects already exist on
+  `main` with matching OIDs/sizes. PR #429 was squash-merged as `7db8e2e5`; post-merge Echo #988
+  passed, including Storybook validation and LFS budget/pointer gates. Neither PR is an open recovery
+  lane.
+- **Storybook UI authority:** the existing runtime Texture2D assets under
+  `/Game/Melodia/UI/Textures/Storybook/storybook_*` are canonical. Figma/SVG/PNG source canon lives
+  under `Content/UI/CanonUI_20261004/` with
+  `pipeline/figma/storybook_runtime_manifest.json`. The rebuild tool targets those existing names
+  in place and refuses to create a missing target or parallel Storybook namespace.
+- **Documentation/storage casing:** the October 1 storage and closeout records are tracked at
+  `docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
+  `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md` (lowercase `docs`). The repository also contains
+  an uppercase `Docs/` tree. Use exact tracked casing and do not attempt a case-only tree migration
+  from a case-insensitive Windows checkout as incidental cleanup.
+
+
 ## Runtime animation convergence — 2026-10-03, ACTIVE
 
 Owner's animation priority override pauses P0 expansion until runtime pose/contact acceptance passes. This entry supersedes older animation-completion claims only for the evidence below; the owner-confirmed functioning gameplay loop remains established.
@@ -41,8 +75,8 @@ Commit this bounded checkpoint on existing local `main`: the saved battle mesh-r
 > (`Docs/P1_TASK_LEDGER.json#lookdev_work`, §ASAP LOOKDEV QUEUE below).
 >
 > Version-control state is settled and documented: see
-> `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
-> `Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`.
+> `docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
+> `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`.
 
 ## Post-restart runtime verdict — 2026-10-01 PM (build mode)
 
@@ -70,7 +104,7 @@ Commit this bounded checkpoint on existing local `main`: the saved battle mesh-r
 
 ## Pre-restart staged-changes review for Sonnet 5.5 — 2026-10-01
 
-- **Tracked tree: fully committed, nothing staged, nothing half-edited.** HEAD (on `docs/honcho-discord-sync`) holds all animation work: Sol's `36e089c7c` (draw→V2, retarget refs, rokoko safeguards), my cascadeur safeguards (FBXIT_ANIMATION + fragment quarantine, committed via owner chore `4d32d5b61`), hand-made InPlace (`121862ae8`), ABP + montage states, Jev packet scripts are git-ignored under `Tools/*` but present on disk. CURRENT_STATE carries all four handoffs. **SUPERSEDED 2026-10-01 (version-control closeout): the "352 untracked paths" and "single-copy risk" items below were resolved — the forge clip and the whole animation archive are now in the depot.** See `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`. Untracked count is now 298 and every one of them is confirmed in Perforce — Perforce-only, not unversioned, and note the depot is on this same machine.
+- **Tracked tree: fully committed, nothing staged, nothing half-edited.** HEAD (on `docs/honcho-discord-sync`) holds all animation work: Sol's `36e089c7c` (draw→V2, retarget refs, rokoko safeguards), my cascadeur safeguards (FBXIT_ANIMATION + fragment quarantine, committed via owner chore `4d32d5b61`), hand-made InPlace (`121862ae8`), ABP + montage states, Jev packet scripts are git-ignored under `Tools/*` but present on disk. CURRENT_STATE carries all four handoffs. **SUPERSEDED 2026-10-01 (version-control closeout): the "352 untracked paths" and "single-copy risk" items below were resolved — the forge clip and the whole animation archive are now in the depot.** See `docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`. Untracked count is now 298 and every one of them is confirmed in Perforce — Perforce-only, not unversioned, and note the depot is on this same machine.
 - **RESOLVED 2026-10-01 (was: "Single-copy risk ... `A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace.uasset` exists nowhere but this disk (not in git, `p4 fstat` = no such file)").** Submitted to Perforce in change 273; reads back at `#1 - add change 273`. The 63-file animation archive (`LegacyRetargets_20261001`, `Retarget/_Archive`, `MelusinaFinal`) went in as change 276, verified 63/63 on disk == 63/63 in depot. **Important framing for future sessions: Perforce's server root is `D:\perforce\root` on this machine, so "submitted" means history-tracked, not off-machine. GitHub is the only offsite copy — and this clip is still not on it.**
 - **P4: 186 opens**, dominated by Morning externals + numbered holds; my 4 fixed manifests sit open in default CL, unsubmitted (owner call, unchanged). No submit, revert, or reconcile was run from this lane.
 - **Main landing still owed:** Sol's `36e089c7c`/`906bbf3b8` are ancestors of this checkout only; `main` sits at `21edf3950`. Proposal stands (cherry-pick repairs, hand-resolve CURRENT_STATE, rule on Mocap-asset tracking). Integrator call, not pre-restart work.
@@ -1757,7 +1791,11 @@ dangle bones; `Content/Textures/` allowlist. Reference:
 requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly failed with
 "not enough space"; cook to G:.
 
-## 4. Owner queue — now
+## 4. Historical owner queue — retained for audit (superseded)
+
+> **Superseded by `CURRENT NOW — 2026-10-05` at the top of this file.** The entries below preserve
+> what was queued when written; they are not present-tense task authority unless explicitly
+> reactivated by a newer top-level entry.
 
 **Active goal (2026-09-26):** [`.hermes/plans/2026-09-26_p0-loop-sir-pcg-review-goal.md`](.hermes/plans/2026-09-26_p0-loop-sir-pcg-review-goal.md)
 — G1 PCG loss check (verified: nothing lost; owner's Morning edits unsubmitted in p4 default CL), G2 24 h review,
