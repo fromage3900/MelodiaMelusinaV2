@@ -6,6 +6,17 @@
 
 [`CURRENT_STATE.md`](CURRENT_STATE.md) is the only status document: what works (with evidence level), what is open, the owner queue, repositories, workstations, and recurring traps. If any other file in this repo states project status, it is stale — fix `CURRENT_STATE.md`, not that file. Do not create handoff, plan, receipt, or session-note files. Pre-collapse docs: `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
 
+## ⚑ MELUSINA RUNTIME RIG + RETARGET CANON — 2026-10-05
+
+**Read [`Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md`](Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md) before any retarget, animation or rig work.** It supersedes older rig/retarget docs.
+
+- **Raw retarget output into `SK_Melusina_Skeleton` is known-defective — never ship it.** Every retarget needs the canon arm correction, then verification: `15.774 | 28.561 | 28.615` (world cm, `shoulder→arm_stretch→forearm_stretch→hand`). Reject `34.789 | 9.520 | 28.615` — that is the reference-pose interruption.
+- Her rig is **not mannequin**: `shoulder_l → arm_stretch_l → forearm_stretch_l → hand_l`; legs `thigh_stretch_l → leg_stretch_l → foot_l → toes_01_l`; **no `pelvis`**, **no `ik_foot_l/r`**.
+- The `UpperBody` slot feeds a **layered blend** — its branch mask must carry the 11 spine+arm filters or draw/cast montages are silently blended away.
+- **Caster/archer hybrid is intentional**: LMB = caster + floating astrolabe; RMB = Sparrow charged draw/hold/fire. Preserve it.
+- `batch_retarget_animations` + `overwrite=true` **crashes the editor**. Never pass it.
+- **Open:** the six owner-approved SparrowArchery clips still carry the arm defect (frozen — owner decision).
+
 ## BINDING RULES — every agent (Hermes, Codex, Claude, subagents)
 
 Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here. **Read
