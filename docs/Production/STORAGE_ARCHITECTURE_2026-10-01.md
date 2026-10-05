@@ -1,8 +1,8 @@
 # Storage Architecture — what "versioned" actually means here
 
 **Date:** 2026-10-01 · **Status:** current · **Supersedes:** nothing; complements
-[`2026-10-01_git_p4_closure.md`](../.hermes/plans/2026-10-01_git_p4_closure.md) (the ownership
-rule) and [`SESSION_CLOSEOUT_2026-10-01.md`](../Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md)
+[`2026-10-01_git_p4_closure.md`](../../.hermes/plans/2026-10-01_git_p4_closure.md) (the ownership
+rule) and [`SESSION_CLOSEOUT_2026-10-01.md`](../Handoffs/SESSION_CLOSEOUT_2026-10-01.md)
 (the 2026-10-01 sweep receipt).
 
 ## Read this before calling anything "backed up"

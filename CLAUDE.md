@@ -1,20 +1,32 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
-**Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
+**Front-door review:** 2026-10-05 against `main` at `e25682b3a83c5f6453a355f60a08b772309d3dad`.
 
-## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
+## 🛑 GIT PIPELINE LAW — BINDING
 
-This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
-`origin/main`, maintained on the desktop PC. This laptop clone is ONLY a Blender /
-asset-prep / mobile hub — its local `main` must mirror `origin/main` exactly and never
-diverge. No agent may create branches, commit, merge, rebase, reset, or push without
-explicit owner permission for that specific operation plus a written plan stated first.
-Never consolidate or restructure git history from this machine. Destructive commands
-(`git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, any history
-rewrite) are forbidden without explicit per-command owner approval. Long-lived laptop
-asset work lives on `collab/laptop/longterm`. Verify read-only before and after any
-approved mutation. Poor git management has already caused real regressions and missed
-deadlines here — do not add to that history.
+This section mirrors the current repo-wide contract in `AGENTS.md`,
+`Docs/Production/MULTI_AGENT_LANES.md`, and `Docs/Production/GIT_HEALTH_CONTRACT.md`.
+`_AGENT_WORKING_AGREEMENT.md` outranks every agent doc. If this section ever drifts from
+those newer repo-wide Git contracts, the current repo-wide contracts win until this file is
+updated.
+
+Canonical authority is `origin/main`. **`main` is a landing target, never an agent
+workspace.** Normal worker execution uses a detached lane worktree created from current
+`origin/main` and pinned by `refs/agents/<lane>`; workers do not create feature branches,
+push, or open PRs. Commits inside the worker's own lane need no per-commit approval, and the
+integrator may perform the normal bounded landing flow without asking again. The integrator
+owns any temporary PR branch and retires it after landing.
+
+Explicit owner approval is still required for destructive or history-rewriting operations:
+`git reset --hard`, `git checkout -- .`, `git clean`, force-push, history rewrite,
+deleting a branch/ref, and any Perforce submit. The preserved
+`collab/laptop/longterm` branch remains a special Blender/Geometry-Nodes workstation source
+lane; it is not the default agent workflow and must never be wholesale-merged over current
+`main`.
+
+The portable `G:` workspace may be a complete runnable project. Do not treat a laptop or
+portable checkout as archive-only merely because it is not the desktop PC. Keep paths
+repo-relative and obey the same lane/integration rules on every workstation.
 
 ## ⛔ READ FIRST — [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md)
 
