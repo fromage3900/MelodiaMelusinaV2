@@ -64,7 +64,7 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	if (ChapterLine)
 	{
 		ChapterLine->SetVisibility(ESlateVisibility::HitTestInvisible);
-		ChapterLine->SetText(FText::FromString(TEXT("✦ CHAPTER III · OVERWORLD ✦")));
+		ChapterLine->SetText(FText::FromString(TEXT("\u25C6 CHAPTER III \u00B7 OVERWORLD \u25C6")));
 	}
 	if (QuestProgress)
 	{
@@ -389,9 +389,9 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 	{
 		// Exploration default matching Canon Storybook Overworld specification
 		QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
-		QuestHeader->SetText(FText::FromString(TEXT("◆ QUEST")));
+		QuestHeader->SetText(FText::FromString(TEXT("\u25C6 QUEST")));
 		QuestTitle->SetText(FText::FromString(TEXT("A Song Left Unfinished")));
-		QuestBody->SetText(FText::FromString(TEXT("✓ Find the Melodic Tuning Fork\n◇ Awaken the Silent Bell (0/3)\n◇ Speak with Sir Melodious")));
+		QuestBody->SetText(FText::FromString(TEXT("\u2713 Find the Melodic Tuning Fork\n\u25C7 Awaken the Silent Bell (0/3)\n\u25C7 Speak with Sir Melodious")));
 		if (QuestProgress)
 		{
 			QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -400,7 +400,7 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 		return;
 	}
 	QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
-	QuestHeader->SetText(FText::FromString(bActive ? TEXT("◆ ACTIVE QUEST") : TEXT("◆ NEW QUEST")));
+	QuestHeader->SetText(FText::FromString(bActive ? TEXT("\u25C6 ACTIVE QUEST") : TEXT("\u25C6 NEW QUEST")));
 	QuestTitle->SetText(Shown->DisplayName);
 	QuestBody->SetText(Shown->Objective);
 	if (QuestProgress)
