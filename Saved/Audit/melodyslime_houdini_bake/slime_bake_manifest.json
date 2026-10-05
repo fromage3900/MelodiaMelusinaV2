@@ -1,0 +1,16 @@
+{
+  "source": "Houdini SOP bake",
+  "high_poly_verts": 280459,
+  "resolution": 1024,
+  "maps": {
+    "Normal": "T_SlimeBake_Normal.png",
+    "Height": "T_SlimeBake_Height.png",
+    "AO": "T_SlimeBake_AO.png",
+    "Curvature": "T_SlimeBake_Curvature.png",
+    "Emissive": "T_SlimeBake_Emissive.png",
+    "Iridescence": "T_SlimeBake_Iridescence.png",
+    "BaseColor": "T_SlimeBake_BaseColor.png",
+    "Roughness": "T_SlimeBake_Roughness.png",
+    "Metallic": "T_SlimeBake_Metallic.png"
+  }
+}

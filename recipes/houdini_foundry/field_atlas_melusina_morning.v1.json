@@ -1,0 +1,58 @@
+{
+  "schema": "melodia.houdini_foundry_recipe.v1",
+  "recipe_id": "field_atlas_melusina_morning",
+  "product": "field_atlas",
+  "seed": 3900,
+  "status": "staged",
+  "description": "Field atlas for L_MelusinaMorning — height/slope/curvature/exposure channels for horizon dressing and atmospheric density. Supplemental world intelligence only.",
+  "source": {
+    "kind": "hda",
+    "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+    "extends": "Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py"
+  },
+  "params": {
+    "resolution_px": 512,
+    "channels": [
+      "height",
+      "slope",
+      "curvature",
+      "concavity",
+      "convexity",
+      "exposure",
+      "hero_weight",
+      "resonance"
+    ]
+  },
+  "region": {
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+    "bounds_cm": [-5000, -5000, 5000, 5000],
+    "tile_size_cm": 10000.0,
+    "gutter_cm": 1000.0
+  },
+  "outputs": [
+    {
+      "name": "field_atlas_morning_<tile>_<channel>.exr",
+      "format": "exr (32f linear, one channel per file)"
+    },
+    {
+      "name": "field_atlas_morning_<tile>_preview.png",
+      "format": "png",
+      "track_in_git": true
+    },
+    {
+      "name": "bake_manifest.json",
+      "format": "json",
+      "track_in_git": true
+    }
+  ],
+  "ue_target": {
+    "consumer": "texture",
+    "asset_path_prefix": "/Game/Melodia/HoudiniFoundry/FieldAtlas/Morning/",
+    "integration_gate": "PCG samples field atlas textures for horizon dressing",
+    "note": "Read-only debug material/decal or PCG attribute sample on existing Morning graphs."
+  },
+  "authority": {
+    "runtime_owner": "existing Morning PCG graphs + World Compiler",
+    "writes_mpc": false
+  }
+}
