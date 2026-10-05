@@ -1,0 +1,276 @@
+{
+  "schema": "melodia.storybook.runtime.v1",
+  "generated_date": "2026-10-04",
+  "status": "source-rebuild-ready",
+  "source": {
+    "native_figma_file_key": "gzMjQjGoHLKNZh0jtexGEE",
+    "native_figma_name": "Melodia UI — Canon Storybook + Bow HUD",
+    "page": "03 · STORYBOOK RUNTIME",
+    "design_space": [
+      1440,
+      900
+    ]
+  },
+  "policy": {
+    "text": "live UMG text only; never baked into art",
+    "svg": "lossless visual source canon",
+    "texture": "small irregular atoms only, rasterized deterministically at 2x",
+    "box_style": "simple paper/card geometry stays native UMG/Slate",
+    "material": "rings, arcs and repeated radial geometry stay parameterized",
+    "bow_hud": "already working at runtime; this manifest does not replace or rewire it",
+    "runtime_texture_authority": "existing runtime assets on main are canonical; rebuild them in place and never create a parallel Storybook texture namespace"
+  },
+  "ue": {
+    "texture_dest": "/Game/Melodia/UI/Textures/Storybook",
+    "hydrated_png_dir": "Saved/Staging/StorybookRuntime",
+    "payload_encoding": "base64-png"
+  },
+  "entries": [
+    {
+      "id": "storybook.sparkle",
+      "runtime_type": "texture",
+      "figma_node": "6:168",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_Sparkle.svg",
+      "native_size": [
+        10,
+        10
+      ],
+      "export_scale": 2,
+      "export_size": [
+        20,
+        20
+      ],
+      "filename": "T_UI_Storybook_Sparkle.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_Sparkle.png.b64",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "tintable": true,
+      "never_stream": true,
+      "usage": "ambient sparkle / foreground glint",
+      "asset_name": "storybook_sparkle"
+    },
+    {
+      "id": "storybook.waypoint",
+      "runtime_type": "texture",
+      "figma_node": "6:197",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_Waypoint.svg",
+      "native_size": [
+        14,
+        14
+      ],
+      "export_scale": 2,
+      "export_size": [
+        28,
+        28
+      ],
+      "filename": "T_UI_Storybook_Waypoint.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_Waypoint.png.b64",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "tintable": false,
+      "never_stream": true,
+      "usage": "compass/objective waypoint",
+      "asset_name": "storybook_waypoint"
+    },
+    {
+      "id": "storybook.player_pin",
+      "runtime_type": "texture",
+      "figma_node": "6:215",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_PlayerPin.svg",
+      "native_size": [
+        14,
+        14
+      ],
+      "export_scale": 2,
+      "export_size": [
+        28,
+        28
+      ],
+      "filename": "T_UI_Storybook_PlayerPin.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_PlayerPin.png.b64",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "tintable": true,
+      "never_stream": true,
+      "usage": "minimap player marker",
+      "asset_name": "storybook_player_pin"
+    },
+    {
+      "id": "storybook.speech_tail",
+      "runtime_type": "texture",
+      "figma_node": "5:37",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_SpeechTail.svg",
+      "native_size": [
+        34,
+        28
+      ],
+      "export_scale": 2,
+      "export_size": [
+        68,
+        56
+      ],
+      "filename": "T_UI_Storybook_SpeechTail.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_SpeechTail.png.b64",
+      "pivot": [
+        0.5,
+        0
+      ],
+      "tintable": true,
+      "never_stream": true,
+      "usage": "speech bubble tail; bubble body remains UMG box style",
+      "asset_name": "storybook_speech_tail"
+    },
+    {
+      "id": "storybook.menu_diamond",
+      "runtime_type": "texture",
+      "figma_node": "6:55",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_MenuDiamond.svg",
+      "native_size": [
+        18,
+        18
+      ],
+      "export_scale": 2,
+      "export_size": [
+        36,
+        36
+      ],
+      "filename": "T_UI_Storybook_MenuDiamond.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_MenuDiamond.png.b64",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "tintable": true,
+      "never_stream": true,
+      "usage": "menu focus/status ornament; rotate/reuse rather than duplicate",
+      "asset_name": "storybook_menu_diamond"
+    },
+    {
+      "id": "storybook.bird_crest",
+      "runtime_type": "texture",
+      "figma_node": "6:81",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_BirdCrest.svg",
+      "native_size": [
+        30,
+        52
+      ],
+      "export_scale": 2,
+      "export_size": [
+        60,
+        104
+      ],
+      "filename": "T_UI_Storybook_BirdCrest.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_BirdCrest.png.b64",
+      "pivot": [
+        0.5,
+        1
+      ],
+      "tintable": false,
+      "never_stream": true,
+      "usage": "storybook Sir Melodious marker crest; presentation only",
+      "asset_name": "storybook_bird_crest"
+    },
+    {
+      "id": "storybook.note_head",
+      "runtime_type": "texture",
+      "figma_node": "6:37",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_NoteHead.svg",
+      "native_size": [
+        8,
+        8
+      ],
+      "export_scale": 2,
+      "export_size": [
+        16,
+        16
+      ],
+      "filename": "T_UI_Storybook_NoteHead.png",
+      "png_b64": "pipeline/figma/storybook_runtime/png_b64/T_UI_Storybook_NoteHead.png.b64",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "tintable": true,
+      "never_stream": true,
+      "usage": "loading staff/progress note; notation text remains live where semantic",
+      "asset_name": "storybook_note_head"
+    },
+    {
+      "id": "storybook.orrery.outer",
+      "runtime_type": "material",
+      "figma_node": "6:261",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_OrreryRing_Outer.svg",
+      "material_template": "M_UI_Storybook_RadialRing",
+      "params": {
+        "radius_px": 256,
+        "stroke_px": 8,
+        "dash": [],
+        "color": "#F3E6C8"
+      },
+      "usage": "Orrery outer rail"
+    },
+    {
+      "id": "storybook.orrery.mid",
+      "runtime_type": "material",
+      "figma_node": "6:262",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_OrreryRing_Mid.svg",
+      "material_template": "M_UI_Storybook_RadialRing",
+      "params": {
+        "radius_px": 192.5,
+        "stroke_px": 5,
+        "dash": [
+          9,
+          7
+        ],
+        "color": "#DDC79B"
+      },
+      "usage": "Orrery dashed rail"
+    },
+    {
+      "id": "storybook.orrery.inner",
+      "runtime_type": "material",
+      "figma_node": "6:263",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_OrreryRing_Inner.svg",
+      "material_template": "M_UI_Storybook_RadialRing",
+      "params": {
+        "radius_px": 126,
+        "stroke_px": 8,
+        "dash": [],
+        "color": "#F3E6C8"
+      },
+      "usage": "Orrery inner rail"
+    },
+    {
+      "id": "storybook.orrery.disc_frame",
+      "runtime_type": "material",
+      "figma_node": "5:68+5:69",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_OrreryDiscFrame.svg",
+      "material_template": "M_UI_Storybook_OrreryDisc",
+      "params": {
+        "outer_radius_px": 52,
+        "outer_stroke_px": 8,
+        "inner_radius_px": 38,
+        "inner_stroke_px": 2,
+        "inner_dash": [
+          5,
+          5
+        ]
+      },
+      "usage": "Orrery disc frame; numeral remains UMG text"
+    },
+    {
+      "id": "storybook.orrery.node",
+      "runtime_type": "umg_style",
+      "figma_node": "6:267",
+      "source_svg": "Content/UI/CanonUI_20261004/Storybook/T_UI_Storybook_OrreryNode.svg",
+      "style_ref": "OrreryNode",
+      "usage": "category node; number/category glyph is live content"
+    }
+  ]
+}

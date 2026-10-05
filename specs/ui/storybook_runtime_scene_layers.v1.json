@@ -1,0 +1,36 @@
+{
+  "$schema_version": "storybook_runtime_scene_layers.v1",
+  "source": {
+    "figma_file_key": "gzMjQjGoHLKNZh0jtexGEE",
+    "page": "03 · STORYBOOK RUNTIME",
+    "design_space": [1440, 900]
+  },
+  "policy": {
+    "sky": "material brush",
+    "moon_hills_ground": "material/shape layers",
+    "staff": "UMG lines or procedural material",
+    "stars": "reuse storybook.sparkle",
+    "foreground": "shape/material layers until replaced by authored foliage"
+  },
+  "shared": {
+    "moon": {"rect": [1060, -70, 360, 360], "fill": "#F3E6C8", "opacity": 0.82},
+    "hill_left": {"rect": [-180, 530, 900, 470]},
+    "hill_mid": {"rect": [360, 545, 840, 410]},
+    "hill_right": {"rect": [920, 560, 760, 390]},
+    "ground": {"rect": [-40, 675, 1510, 250]},
+    "staff_y": [615, 627, 639, 651, 663],
+    "foreground_left": {"rect": [-120, 665, 310, 310]},
+    "foreground_right": {"rect": [1260, 700, 300, 260]}
+  },
+  "variants": {
+    "title": {"node": "6:4", "sky": ["#E8E1F1", "#DCE8EF", "#F3E6C8"], "hills": ["#CFDCCF", "#D8D0E5", "#CFE6DD"], "ground": "#D9CDE2", "foreground": ["#E7C9CE", "#65467E"]},
+    "loading": {"node": "6:84", "sky": ["#E8E1F1", "#DCE8EF", "#F3E6C8"], "hills": ["#CFDCCF", "#E7C9CE", "#CFE6DD"], "ground": "#D9CDE2", "foreground": ["#E7C9CE", "#CFE6DD"]},
+    "overworld": {"node": "6:151", "sky": ["#E9DDF0", "#DCE8EF", "#F3E6C8"], "hills": ["#CFDCCF", "#D8D0E5", "#CFE6DD"], "ground": "#86E4FF", "foreground": ["#E7C9CE", "#65467E"]},
+    "orrery": {"node": "6:230", "sky": ["#E8E1F1", "#DCE8EF", "#F3E6C8"], "hills": ["#F0DCF0", "#D8D0E5", "#CFE6DD"], "ground": "#D9CDE2", "foreground": ["#F0DCF0", "#65467E"]},
+    "visual_novel": {"node": "6:313", "sky": ["#E8E1F1", "#DCE8EF", "#F3E6C8"], "hills": ["#CFDCCF", "#D8D0E5", "#E7C9CE"], "ground": "#D9CDE2", "foreground": ["#E7C9CE", "#65467E"]}
+  },
+  "star_instances": {
+    "far": [[118,104,20,"#F2D08B"],[520,74,14,"#86E4FF"],[905,128,16,"#FF93B5"],[1260,235,10,"#F0DCF0"]],
+    "near": [[40,760,10,"#FF93B5"],[250,795,14,"#F2D08B"],[460,760,18,"#FF93B5"],[670,795,10,"#F2D08B"],[880,760,14,"#FF93B5"],[1090,795,18,"#F2D08B"]]
+  }
+}
