@@ -1,0 +1,53 @@
+{
+  "schema": "melodia.jev_holo4_eval_audit.v1",
+  "date": "2026-10-05T01:06:15",
+  "state": {
+    "tasks_total": 4,
+    "tasks_completed": 0,
+    "tasks_with_verified_artifact": 0,
+    "tool_loop_safety_tests_passing": 22,
+    "tool_loop_safety_tests_total": 22,
+    "vision_path_verified": true,
+    "server_resident_no_cold_start": true,
+    "gen_tokens_per_s": 1.36,
+    "prompt_tokens_per_s": 15.4,
+    "reasoning_budget": 250,
+    "truncated_responses_of_7": 6,
+    "measured_clean_stop_result": true,
+    "prior_quotes_verified": 17,
+    "prior_quotes_total": 17,
+    "prior_fabrications": 0,
+    "vram_total_gb": 12,
+    "commit_limit_gb": 71.8,
+    "commit_available_gb": 15.3,
+    "live_editor_open": true,
+    "licence_allows_commercial": false
+  },
+  "decision": {
+    "next_block": "LET_MATRIX_FINISH",
+    "next_block_probs": {
+      "ARCHIVE_AND_STOP": 0.0,
+      "RUN_PHASE4_BLENDER": 0.02,
+      "FIX_TRUNCATION_FIRST": 0.31,
+      "PROMOTE_TO_ROUTER": 0.0,
+      "LET_MATRIX_FINISH": 0.67
+    },
+    "riskiest": "GROUNDING_HOLDS_ON_LIVE_SOURCE",
+    "riskiest_probs": {
+      "THINKING_BUDGET_TUNABLE": 0.13,
+      "COMPUTE_IS_THE_BOUNDING_CONSTRAINT": 0.09,
+      "TRUNCATION_FOREVER": 0.23,
+      "NONE_MATERIAL": 0.01,
+      "THROUGHPUT_ON_SHARED_HOST": 0.07,
+      "GROUNDING_HOLDS_ON_LIVE_SOURCE": 0.47
+    },
+    "needs_human": true,
+    "needs_human_prob": 0.72,
+    "readiness": 2,
+    "readiness_label": "At least one task completed through tools with an artifact verified on disk.",
+    "readiness_probs": [],
+    "source": "jev-live",
+    "reason": "typesafe System One Choice+Choice+Noul+Score in one call; readiness distribution malformed (index list?)",
+    "confidence": 0.6
+  }
+}
