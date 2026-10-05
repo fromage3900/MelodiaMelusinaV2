@@ -71,6 +71,7 @@ The overworld HUD is LIVE AND VISIBLE - do not "fix" it. Four capture tools repo
 - Validated via `Tools/validate_storybook_runtime_manifest.py` (PASS, 7 texture payloads, 12 runtime entries).
 - Native UMG card/vitals brushes bound to `M_UI_Nikki_StorybookCard` (`MI_UI_Nikki_Card_Ivory`), `MI_UI_Nikki_VitalityBar`, and `MI_UI_Nikki_ResonanceBar`. Rose `#FF93B5` vs Pearl Aqua `#86E4FF` token pairing live in C++ HUD defaults.
 - Minimap relocated to top-left corner adjacent to Vitals card (`1195ea96f`).
+- Full architectural and input-isolation specification: `Docs/UI/OVERWORLD_STORYBOOK_INTEGRATION_2026-10-05.md`.
 
 No motion-bearing capture exists yet. All three candidates are rejected in the receipt; `overworld_ui_pass.mp4` is frozen 21/21s because `gdigrab` recorded a non-repainting window (always verify with `ffmpeg -vf freezedetect` before trusting a capture).
 
