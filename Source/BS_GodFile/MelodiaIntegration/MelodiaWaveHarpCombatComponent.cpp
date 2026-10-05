@@ -7,6 +7,7 @@
 #include "MelodiaUIBridgeSubsystem.h"
 #include "MelodiaAudioReactivePresentationSubsystem.h"
 #include "MelodiaWorldSlimeNode.h"
+#include "MelodiaTraversalComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
@@ -114,7 +115,8 @@ void UMelodiaWaveHarpCombatComponent::TickComponent(float Delta, ELevelTick Type
   FindAimTarget();
  }
  UpdateInputOwnership();
- if (bAiming)
+ const auto* Traversal = Character->FindComponentByClass<UMelodiaTraversalComponent>();
+ if (bAiming && (!Traversal || !Traversal->IsRollPlaying()))
  {
   Character->SetActorRotation(FRotator(0, Controller->GetControlRotation().Yaw, 0));
  }
@@ -211,10 +213,14 @@ void UMelodiaWaveHarpCombatComponent::StartAim()
 {
  if (!CanAct() || bAiming) return;
  bAiming = true;
- bSavedControllerYaw = Character->bUseControllerRotationYaw;
- bSavedOrientToMovement = Character->GetCharacterMovement()->bOrientRotationToMovement;
- Character->bUseControllerRotationYaw = true;
- Character->GetCharacterMovement()->bOrientRotationToMovement = false;
+ if (auto* Traversal = Character->FindComponentByClass<UMelodiaTraversalComponent>()) Traversal->ApplyRotationPolicy();
+ else
+ {
+  bSavedControllerYaw = Character->bUseControllerRotationYaw;
+  bSavedOrientToMovement = Character->GetCharacterMovement()->bOrientRotationToMovement;
+  Character->bUseControllerRotationYaw = true;
+  Character->GetCharacterMovement()->bOrientRotationToMovement = false;
+ }
  if (!CameraBoom.IsValid())
  {
   // Follow the active player camera, not the stock party members' camera booms.
@@ -243,8 +249,12 @@ void UMelodiaWaveHarpCombatComponent::StopAim()
  StopPose();
  if (Character.IsValid())
  {
-  Character->bUseControllerRotationYaw = bSavedControllerYaw;
-  Character->GetCharacterMovement()->bOrientRotationToMovement = bSavedOrientToMovement;
+  if (auto* Traversal = Character->FindComponentByClass<UMelodiaTraversalComponent>()) Traversal->ApplyRotationPolicy();
+  else
+  {
+   Character->bUseControllerRotationYaw = bSavedControllerYaw;
+   Character->GetCharacterMovement()->bOrientRotationToMovement = bSavedOrientToMovement;
+  }
  }
  StatusText = TEXT("FLOW  /  Click to shoot; hold RMB to aim.");
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_AIM_END"));
@@ -483,8 +493,16 @@ void UMelodiaWaveHarpCombatComponent::UpdateInstruments(float Delta)
   Out.Blend(Astro, InHand, FormAlpha);
   Instrument->SetWorldTransform(Out);
   Instrument->SetMorphTarget(MorphBowDeployment, FormAlpha);
+  // Bake the authored parent/driver motion between deployment endpoints.
+  // Adjacent samples retain the Blender transformation without a second rig.
+  for (int32 Sample = 1; Sample < 16; ++Sample)
+  {
+   const FName Morph(*FString::Printf(TEXT("Transform_Residual_%02d"), Sample));
+   const float Weight = FMath::Max(0.f, 1.f - FMath::Abs(FormAlpha * 16.f - Sample));
+   Instrument->SetMorphTarget(Morph, Weight);
+  }
   Instrument->SetMorphTarget(MorphFlexDraw, FormAlpha * Tension);
-  Instrument->SetMorphTarget(MorphBowstringDraw, FormAlpha * Tension);
+  Instrument->SetMorphTarget(MorphBowstringDraw, Tension);
   return;
  }
  if (Harp)
