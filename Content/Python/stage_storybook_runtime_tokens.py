@@ -51,7 +51,8 @@ def _hydrate(entry: dict) -> Path:
 
     STAGE_DIR.mkdir(parents=True, exist_ok=True)
     out = STAGE_DIR / entry["filename"]
-    out.write_bytes(base64.b64decode(payload.read_text(encoding="ascii")))
+    encoded = payload.read_text(encoding="ascii").replace("\\n", "").replace("\\r", "")
+    out.write_bytes(base64.b64decode(encoded, validate=True))
     return out
 
 
