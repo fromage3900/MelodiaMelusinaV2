@@ -100,6 +100,34 @@ for. If you spot something real while fixing, note it in **one sentence** at the
 
 Agents must not burn frontier tokens on routine, mechanical, or documentation tasks. Model tiers are governed by `specs/orchestration/model_tiers.v1.json` and `python Tools/model_router.py tier <task>`. Only tasks with an authorized escalation trigger (ADR/public schema change, multi-subsystem contract) may be dispatched to Tier 0 (Frontier); bulk code, tests, docs, and git automation belong to Tiers 2–4.
 
+### 7. Protect the owner's attention: work silently until a real gate.
+
+The default is autonomous execution, not continuous narration or repeated permission-seeking. Once the owner has supplied a bounded task, continue working until a meaningful acceptance gate or a genuine stop condition is reached.
+
+Interrupt the owner only when one of these is true:
+
+- a destructive or history-changing operation requires explicit permission;
+- two legal fixes imply materially different architecture or artistic intent;
+- local/Git/Perforce/editor state conflicts and proceeding could overwrite or lose work;
+- credentials, licenses, hardware, or owner-only visual/gameplay judgment are required;
+- the requested acceptance gate passes and owner review is the next real step;
+- two genuinely different attempts at the same blocker have failed, with evidence, and further retries would be churn.
+
+Do **not** interrupt for ordinary file choices, expected compile errors, test reruns, log inspection, harmless implementation details, progress narration, or curiosity. After two failed attempts, change diagnostic strategy or stop; never loop the same operation.
+
+At a checkpoint, report only:
+
+```text
+GATE        PASS / FAIL / BLOCKED
+ROOT CAUSE  one sentence
+CHANGED     exact files/assets
+EVIDENCE    exact test/build/runtime artifact
+OWNER NEED  yes/no; if yes, one decision only
+NEXT        one action
+```
+
+If `OWNER NEED = no`, keep working instead of asking what to do next.
+
 ---
 
 ## Stop conditions — you are scope-creeping if any of these are true
