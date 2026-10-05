@@ -43,7 +43,7 @@ def main() -> int:
             continue
 
         try:
-            encoded = payload.read_text(encoding="ascii").replace("\\n", "").replace("\\r", "")
+            encoded = payload.read_text(encoding="ascii").strip()
             raw = base64.b64decode(encoded, validate=True)
             size = png_size(raw)
         except Exception as exc:
