@@ -1,6 +1,6 @@
 # BS_GodFile agent context
 
-**Front-door review:** 2026-09-22 against `main` at `9445bcbd6caf87de233118d48af63b6e0299959c` (post #283).
+**Front-door review:** 2026-10-05 against `main` at `e25682b3a83c5f6453a355f60a08b772309d3dad`.
 
 ## STATUS — one document
 
@@ -9,17 +9,23 @@
 ## BINDING RULES — every agent (Hermes, Codex, Claude, subagents)
 
 Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here. **Read
-[`CLAUDE.md`](CLAUDE.md) in full before acting**; where the two differ, `CLAUDE.md` wins.
+[`CLAUDE.md`](CLAUDE.md) in full before acting.** `_AGENT_WORKING_AGREEMENT.md` outranks every
+agent doc. For Git, storage, branch/lane, and integration policy, this file plus the linked current
+production contracts are canonical; `CLAUDE.md` may add Claude-specific execution notes but must
+not override a newer repo-wide contract.
 
-- **Git pipeline law.** `origin/main` is canonical. No branch, commit, merge, rebase, reset or push
-  without explicit owner permission for that operation plus a written plan stated first. Never
-  `reset --hard`, `checkout -- .`, `clean`, force-push or rewrite history. Workers produce patches in
-  a worktree; the owner approves every git/p4 operation.
+- **Git pipeline law.** `origin/main` is canonical and is a landing target, never an agent workspace.
+  Workers use detached lane worktrees pinned by `refs/agents/<lane>` and do not push/open PRs themselves.
+  Commits inside a worker's own lane and normal integrator landing are covered by the standing authorization
+  below. Explicit owner approval is still required for destructive history/worktree operations, deleting
+  refs/branches, force-push/history rewrite, and any Perforce submit.
   **Storage architecture (2026-10-01).** Git carries code/docs/plans; Perforce carries bulk binary
   (`Content/`, dropped plugins, `Reference/`). **The Perforce server root is `D:\perforce\root` on
   this machine, so a p4 submit is history-tracked, NOT off-machine — GitHub is the only offsite
   copy.** Never call a p4 submit a backup. Full picture:
-  [`STORAGE_ARCHITECTURE_2026-10-01.md`](Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
+  [`STORAGE_ARCHITECTURE_2026-10-01.md`](docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
+  Exact casing matters: the October 1 storage/closeout records live under lowercase `docs/`; the repo also
+  contains an uppercase `Docs/` tree. Do not case-normalize or case-move either tree casually on Windows.
   **This file was over the 32 KB agent-context budget and being served truncated. Trimmed
   2026-10-01 to 30,659 bytes by relocating three sections to linked docs — no rule was deleted.
   If you add to it, keep the total under 32,768.**
