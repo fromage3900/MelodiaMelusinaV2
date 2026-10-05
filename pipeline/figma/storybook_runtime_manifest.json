@@ -1,7 +1,7 @@
 {
   "schema": "melodia.storybook.runtime.v1",
   "generated_date": "2026-10-04",
-  "status": "source-and-staging-ready",
+  "status": "source-rebuild-ready",
   "source": {
     "native_figma_file_key": "gzMjQjGoHLKNZh0jtexGEE",
     "native_figma_name": "Melodia UI — Canon Storybook + Bow HUD",
@@ -17,10 +17,11 @@
     "texture": "small irregular atoms only, rasterized deterministically at 2x",
     "box_style": "simple paper/card geometry stays native UMG/Slate",
     "material": "rings, arcs and repeated radial geometry stay parameterized",
-    "bow_hud": "already working at runtime; this manifest does not replace or rewire it"
+    "bow_hud": "already working at runtime; this manifest does not replace or rewire it",
+    "runtime_texture_authority": "existing runtime assets on main are canonical; rebuild them in place and never create a parallel Storybook texture namespace"
   },
   "ue": {
-    "texture_dest": "/Game/Melodia/UI/Storybook/Textures/Atoms",
+    "texture_dest": "/Game/Melodia/UI/Textures/Storybook",
     "hydrated_png_dir": "Saved/Staging/StorybookRuntime",
     "payload_encoding": "base64-png"
   },
@@ -47,7 +48,8 @@
       ],
       "tintable": true,
       "never_stream": true,
-      "usage": "ambient sparkle / foreground glint"
+      "usage": "ambient sparkle / foreground glint",
+      "asset_name": "storybook_sparkle"
     },
     {
       "id": "storybook.waypoint",
@@ -71,7 +73,8 @@
       ],
       "tintable": false,
       "never_stream": true,
-      "usage": "compass/objective waypoint"
+      "usage": "compass/objective waypoint",
+      "asset_name": "storybook_waypoint"
     },
     {
       "id": "storybook.player_pin",
@@ -95,7 +98,8 @@
       ],
       "tintable": true,
       "never_stream": true,
-      "usage": "minimap player marker"
+      "usage": "minimap player marker",
+      "asset_name": "storybook_player_pin"
     },
     {
       "id": "storybook.speech_tail",
@@ -119,7 +123,8 @@
       ],
       "tintable": true,
       "never_stream": true,
-      "usage": "speech bubble tail; bubble body remains UMG box style"
+      "usage": "speech bubble tail; bubble body remains UMG box style",
+      "asset_name": "storybook_speech_tail"
     },
     {
       "id": "storybook.menu_diamond",
@@ -143,7 +148,8 @@
       ],
       "tintable": true,
       "never_stream": true,
-      "usage": "menu focus/status ornament; rotate/reuse rather than duplicate"
+      "usage": "menu focus/status ornament; rotate/reuse rather than duplicate",
+      "asset_name": "storybook_menu_diamond"
     },
     {
       "id": "storybook.bird_crest",
@@ -167,7 +173,8 @@
       ],
       "tintable": false,
       "never_stream": true,
-      "usage": "storybook Sir Melodious marker crest; presentation only"
+      "usage": "storybook Sir Melodious marker crest; presentation only",
+      "asset_name": "storybook_bird_crest"
     },
     {
       "id": "storybook.note_head",
@@ -191,7 +198,8 @@
       ],
       "tintable": true,
       "never_stream": true,
-      "usage": "loading staff/progress note; notation text remains live where semantic"
+      "usage": "loading staff/progress note; notation text remains live where semantic",
+      "asset_name": "storybook_note_head"
     },
     {
       "id": "storybook.orrery.outer",
