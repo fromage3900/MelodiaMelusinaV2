@@ -32,6 +32,15 @@ UMelodiaWaveHarpCombatComponent::UMelodiaWaveHarpCombatComponent()
 {
  PrimaryComponentTick.bCanEverTick = true;
  StatusText = TEXT("Aim at an encounter, or take a practice shot.");
+ // Route pose montages through the UpperBody layer so the draw/hold/fire never
+ // replaces the locomotion pose underneath it. ABP_Melusina_Current layers
+ // Slot 'UpperBody' over the state machine (mask: spine_01_x and below).
+ PoseSlot = TEXT("UpperBody");
+ BowGrip = FTransform(
+  FRotator(-84.38001f, 116.13221f, -123.78024f),
+  FVector(0.67016f, -9.64373f, -4.35022f),
+  FVector(0.9f)
+ );
 }
 void UMelodiaWaveHarpCombatComponent::BeginPlay()
 {

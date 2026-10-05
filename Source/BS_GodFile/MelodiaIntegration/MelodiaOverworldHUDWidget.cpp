@@ -1,9 +1,12 @@
 #include "MelodiaOverworldHUDWidget.h"
 
+#include "Components/Button.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
+#include "MelodiaCompendiumWidget.h"
+#include "MelodiaInputContextSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
 #include "UObject/UnrealType.h"
 
@@ -107,6 +110,150 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 
 	RefreshVitals();
 	RefreshQuest();
+
+	// Bind Storybook navigation system buttons
+	if (Sys_Settings)
+	{
+		Sys_Settings->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsClicked);
+	}
+	if (Sys_Journal)
+	{
+		Sys_Journal->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalClicked);
+	}
+	if (Sys_1)
+	{
+		Sys_1->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Clicked);
+	}
+	if (Sys_2)
+	{
+		Sys_2->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Clicked);
+	}
+}
+
+void UMelodiaOverworldHUDWidget::NativeDestruct()
+{
+	if (Sys_Settings)
+	{
+		Sys_Settings->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsClicked);
+	}
+	if (Sys_Journal)
+	{
+		Sys_Journal->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalClicked);
+	}
+	if (Sys_1)
+	{
+		Sys_1->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Clicked);
+	}
+	if (Sys_2)
+	{
+		Sys_2->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Clicked);
+	}
+
+	if (ActiveOrreryWidget)
+	{
+		if (ActiveOrreryWidget->IsInViewport())
+		{
+			ActiveOrreryWidget->RemoveFromParent();
+		}
+		if (OrreryContextHandle.IsValid())
+		{
+			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+			{
+				InputSubsystem->PopContext(OrreryContextHandle);
+			}
+			OrreryContextHandle = FMelodiaInputContextHandle();
+		}
+		ActiveOrreryWidget = nullptr;
+	}
+
+	Super::NativeDestruct();
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysSettingsClicked()
+{
+	// Toggle Cosmic Orrery menu with explicit input context ownership
+	if (ActiveOrreryWidget && ActiveOrreryWidget->IsInViewport())
+	{
+		ActiveOrreryWidget->RemoveFromParent();
+		if (OrreryContextHandle.IsValid())
+		{
+			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+			{
+				InputSubsystem->PopContext(OrreryContextHandle);
+			}
+			OrreryContextHandle = FMelodiaInputContextHandle();
+		}
+		ActiveOrreryWidget = nullptr;
+		return;
+	}
+
+	APlayerController* PC = GetOwningPlayer();
+	if (!PC)
+	{
+		return;
+	}
+
+	UClass* WidgetClass = OrreryMenuClass.Get();
+	if (!WidgetClass && !OrreryMenuClass.IsNull())
+	{
+		WidgetClass = OrreryMenuClass.LoadSynchronous();
+	}
+	if (!WidgetClass)
+	{
+		WidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Melodia/UI/Menu/WBP_Melodia_CosmicOrrery.WBP_Melodia_CosmicOrrery_C"));
+	}
+
+	if (WidgetClass)
+	{
+		ActiveOrreryWidget = CreateWidget<UUserWidget>(PC, WidgetClass);
+		if (ActiveOrreryWidget)
+		{
+			ActiveOrreryWidget->AddToViewport(70);
+			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+			{
+				OrreryContextHandle = InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
+			}
+		}
+	}
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysJournalClicked()
+{
+	// Open the Enchanted Compendium / Lore Journal
+	UClass* CompendiumClass = CompendiumMenuClass.Get();
+	if (!CompendiumClass && !CompendiumMenuClass.IsNull())
+	{
+		CompendiumClass = CompendiumMenuClass.LoadSynchronous();
+	}
+	if (CompendiumClass)
+	{
+		if (APlayerController* PC = GetOwningPlayer())
+		{
+			UUserWidget* Widget = CreateWidget<UUserWidget>(PC, CompendiumClass);
+			if (Widget)
+			{
+				Widget->AddToViewport(60);
+				if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+				{
+					InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
+				}
+				return;
+			}
+		}
+	}
+
+	// Fallback to static archive opener
+	UMelodiaCompendiumWidget::Open(this);
+}
+
+void UMelodiaOverworldHUDWidget::HandleSys1Clicked()
+{
+	UE_LOG(LogTemp, Log, TEXT("UMelodiaOverworldHUDWidget: Sys_1 triggered (Quick Item / Tonic slot)"));
+}
+
+void UMelodiaOverworldHUDWidget::HandleSys2Clicked()
+{
+	UE_LOG(LogTemp, Log, TEXT("UMelodiaOverworldHUDWidget: Sys_2 triggered (Quick Resonance / Charm slot)"));
 }
 
 void UMelodiaOverworldHUDWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)

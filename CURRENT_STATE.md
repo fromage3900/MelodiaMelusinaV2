@@ -1,5 +1,19 @@
 # Melodia Melusina ? Current State
 
+## Canonical caster/archer convergence tonight - 2026-10-04
+
+The owner-requested bounded goal is active: Shinbi is the feminine caster reference; Sparrow is the charged archery/contact reference. Preserve the existing owners, body/roll retarget, gloves and sleeves. The canonical Blender WaveHarp already has the correct two forms. No topology or authored shape-key changes are authorized for this export repair.
+
+**PIE:** fresh Morning captures show the saved CuteIdle V10 at 0.6 without the T-pose across nine seconds, with the current body AnimBP unchanged. A contact sheet and a 2.673-second sampled runtime loop are under `Saved/Audit/MelusinaProgress_20261004/IdleCloseout/`. Both locomotion blendspaces now have that zero-speed sample at 0.6 and have explicit successful disk saves; the earlier dirty-only save did not persist the change. Walk/stop and restart replay remain due.
+
+**Native/editor:** the roll-facing and roll/aim rotation ownership edits compiled and patched successfully. A real Alt-input observer recorded the exact roll montage, movement opposite actor forward for the existing backward roll, locked rotation during the montage, and restored exploration policy afterward. This is mechanical evidence; a clear motion capture and aim-overlap proof remain due. Jev `jev-1.13.0` supports retaining that bounded change pending visual proof; its decisions are text audits, not image reviews.
+
+**Weapon source/editor:** the original Blender source is unchanged (SHA256 9257e5ef...8ac9d). The evaluated v2 export preserves 63 source mesh topologies/material slots and the existing single-root hierarchy; a clean Blender roundtrip over 33 deployment states and both tension endpoints has maximum error 0.544 mm. All seven harp strings retract below 0.141 mm at full bow form; bowstring remains extended. Only `SK_ME_WaveHarp` was reimported and explicitly saved, with its existing skeleton disk hash and all eight material interfaces preserved. Unreal has all 15 deployment residuals plus the existing deployment/draw channels. The first unsaved import assertion exposed `import_morph_targets=false` retained by the existing reimport handler; that weapon import setting is corrected. Existing runtime owner now evaluates the exported residuals and the authored Draw=tension channel; Live Coding/runtime proof is still pending. Weapon and skeleton hash-verified local copies are in `WeaponImport/Backups/`. No body reimport or retarget recreation.
+
+**Reference gate:** fresh extraction after both locomotion disk saves reports zero retired-asset runtime chains. The full existing gate still fails nine incompatible mannequin animation fields on the separate battle presentation pawn; those findings are not suppressed. No approved replacements for those roles have been established. This is reference evidence only.
+
+**Open gates:** swimming lacks an approved current clip/state and strafe presentation remains a one-dimensional speed route; the existing glide binding is retained. Hero shoulder/contact acceptance, actual five-chord LMB/RMB hold transitions, offscreen review-camera captures and saved replay remain open.
+
 ## Owner-requested animation checkpoint and next 20 minutes - 2026-10-04
 
 Preserve the intentional hybrid in the existing WaveHarp combat owner: LMB caster basics, RMB charged Sparrow draw/hold/fire. The five-shot 0/4/7/11/12 chord progression remains in place. The floating AstrolabeOffset default is now (55,-35,25) cm. Live Coding and a fresh pawn readback passed; the subsequent closed-editor build succeeded at 13:25 with a newer native DLL. Reopened PIE, actual mouse input and visual acceptance are still owed. This checkpoint is compiled source and measured evidence, not animation closeout.
@@ -40,7 +54,25 @@ Idle returns to T-pose with active AnimBP, Idle state weight 1 and no montage; t
 VFX integration 2026-10-04: lane-hit bursts were silent (default NS_Melodia_LaneHit swept from Candidates/). Authored /Game/Melodia/VFX/NS_Melodia_LaneHit (ClickSparkle donor: one-shot, loop Once) + LaneIndex/LaneColor/LinearColor + GradeIntensity params; InitializeParticle.Color bound to User.LaneColor; controller MelodiaPresentationRhythm.LaneHitEffect reslotted to it, compiled 0e/0w + saved. Lookdev maps ready headless: Saved/Dashboards/font_sweep_map_20261003.json (74 widgets/424 rows) + color_sweep_map_20261004.json (94 widgets/870 rows; stock-template rows will die with Slice B, sweep Melodia-owned first). Motion finding: WBP_GradePop is an empty husk (like the interact prompt) — live grade motion is native-painted + NS; no UMG animation authored. Still owed: battle proof of lane bursts with per-grade colors; C++ hit-stop/grade-pop tuning needs a closed-editor build.
 
 ### Owner-requested UI/HUD pass — scoped live pass 2026-10-03/04
-D2 fonts imported (F_KaiseiDecol family + F_KleeOne family); composite carries the named slots. 37 BowHUD textures imported (/Game/Melodia/UI/BowHUD/Textures/); WBP_Melodia_BowHUD created under MelodiaWaveHarpHUDWidget. Stock-template kill is replace-then-retire with pin-level proof: controller BattleUI to BP_MelodiaBattleUI, Victory to BP_MelodiaVictoryDialogue, both FadeTransitions to BP_MelodiaFadeTransitionUI (all compiled 0e/0w + saved); full spawn map enumerated (28 CreateWidget pins + 3 WidgetComponent sites). BP_MelodiaBattleUI off-screen husks (SongPickLabel, DrawBurst, zero refs) collapsed. WBP_MelodiaInteractionPrompt is an empty unreferenced husk — retire, do not revive. OverworldHUD internal layout audited clean (no sibling overlaps). Source edits awaiting Live Coding: idle bow reticle 50pct/0.32 alpha, prompt cartouche 371 to 341, coral/blue bar fills. Still owed: 12 Melodia duplicates (Info/LevelUp/UnitButtonList/Mobile/NoCursor/Pause/YesNo/ShopBuy/ShopSell/Save/Craft/ItemObtain) + 3 component repoints; live battle-spawn proof (tutorial slime needs the real F-interact); contract-test source edit needs a closed-editor build to run.
+D2 fonts imported (F_KaiseiDecol family + F_KleeOne family); composite carries the named slots. 37 BowHUD textures imported (/Game/Melodia/UI/BowHUD/Textures/); WBP_Melodia_BowHUD created under MelodiaWaveHarpHUDWidget. Stock-template kill is replace-then-retire with pin-level proof: controller BattleUI to BP_MelodiaBattleUI, Victory to BP_MelodiaVictoryDialogue, both FadeTransitions to BP_MelodiaFadeTransitionUI (all compiled 0e/0w + saved); full spawn map enumerated (28 CreateWidget pins + 3 WidgetComponent sites). BP_MelodiaBattleUI off-screen husks (SongPickLabel, DrawBurst, zero refs) collapsed. WBP_MelodiaInteractionPrompt is an empty unreferenced husk — retire, do not revive. OverworldHUD static sibling-overlap check passed, but that check did not and cannot test button liveness: its four top-level buttons (Sys_1/Sys_2/Sys_Journal/Sys_Settings) are UNBOUND - see the overworld UI truth entry below. Source edits awaiting Live Coding: idle bow reticle 50pct/0.32 alpha, prompt cartouche 371 to 341, coral/blue bar fills. Still owed: 12 Melodia duplicates (Info/LevelUp/UnitButtonList/Mobile/NoCursor/Pause/YesNo/ShopBuy/ShopSell/Save/Craft/ItemObtain) + 3 component repoints — the shared base now exists: `WBP_MelodiaScreenBase` (/Game/Melodia/UI/Foundation/, parent UserWidget) with idempotent `OpenScreen`/`CloseScreen` routing input ownership through `UMelodiaInputContextSubsystem::PushContext/PopContext` (instance-editable `ScreenContext` defaults to Menu; compiled 0e/0w + saved 2026-10-04, receipt `Saved/Audit/ScreenBase_20261004/wbp_melodia_screen_base.json`); duplicate children should parent to it rather than hand-roll SetInputMode; live battle-spawn proof (tutorial slime needs the real F-interact); contract-test source edit needs a closed-editor build to run.
+
+### Overworld UI truth 2026-10-04 / 2026-10-05 (button liveness & Storybook integration)
+
+The overworld HUD is LIVE AND VISIBLE - do not "fix" it. Four capture tools report otherwise and are wrong: Monolith `capture_pie_movement_clip` (ReadPixels on the scene render target) and in-PIE `HighResShot` both omit the UMG overlay, so they yield HUD-less frames. A false "HUD invisible" defect was chased and reverted on that basis. Verified rendering: minimap + area caption, quest card, FLOW mode crest, beaded reticle, RMB AIM cartouche, interact prompt, vitals with coral/blue bars, hint stack, four skill slots. Also note `UMelodiaUIBridgeSubsystem` owns only the bow/rhythm pair (created from `MelodiaWaveHarpCombatComponent` tick); the quiet HUD is created by the stock `BP_BattleController` -> `BP_MelodiaExploreUI_C` -> `WBP_Melodia_OverworldHUD_C` -> `MelodiaOverworldMinimapWidget`.
+
+**Top-level button liveness resolved (2026-10-05):** Sys_1 (tonic), Sys_2 (charm), Sys_Journal (open book, `3`), and Sys_Settings (gear, `Esc`) are now declared as `BindWidgetOptional` `UButton` properties in `UMelodiaOverworldHUDWidget.h` and wired to dynamic delegates in `NativeConstruct`:
+- `Sys_Settings` triggers `HandleSysSettingsClicked()`, toggling `WBP_Melodia_CosmicOrrery` (the 7-node planetary menu hub) and pushing/popping `EMelodiaInputContext::Menu` via `UMelodiaInputContextSubsystem`.
+- `Sys_Journal` triggers `HandleSysJournalClicked()`, routing directly to `UMelodiaCompendiumWidget` / CompendiumMenuClass.
+- `Sys_1` and `Sys_2` trigger dedicated quick-slot handlers.
+- Contract test `Melodia.Wiring.OverworldHUDTemplateContract` updated to assert `Sys_Settings`, `Sys_Journal`, `Sys_1`, `Sys_2` properties and `HandleSysSettingsClicked`/`HandleSysJournalClicked` function reflection.
+
+**Storybook canon specifications promoted to main (2026-10-05):**
+- Promoted `specs/ui/storybook_runtime_styles.v1.json` and `specs/ui/storybook_runtime_scene_layers.v1.json` from `feature/canon-ui-svg-source-20261004`.
+- Validated via `Tools/validate_storybook_runtime_manifest.py` (PASS, 7 texture payloads, 12 runtime entries).
+- Native UMG card/vitals brushes bound to `M_UI_Nikki_StorybookCard` (`MI_UI_Nikki_Card_Ivory`), `MI_UI_Nikki_VitalityBar`, and `MI_UI_Nikki_ResonanceBar`. Rose `#FF93B5` vs Pearl Aqua `#86E4FF` token pairing live in C++ HUD defaults.
+- Minimap relocated to top-left corner adjacent to Vitals card (`1195ea96f`).
+
+No motion-bearing capture exists yet. All three candidates are rejected in the receipt; `overworld_ui_pass.mp4` is frozen 21/21s because `gdigrab` recorded a non-repainting window (always verify with `ffmpeg -vf freezedetect` before trusting a capture).
 
 ### Owner-requested Quill correction ? scoped live pass
 `BP_KaleidoNaveArrivalTrigger` BeginPlay playback link is disconnected; ActorBeginOverlap is filtered to the player pawn. Fresh startup has zero interpreters. A local outside-volume approach followed by actual player overlap activates the Wardrobe interpreter after the existing delay. This proves player-entry activation, not an uninterrupted walk from spawn or full narrative completion. Receipt: `quill_walk_entry.json`.
@@ -101,7 +133,7 @@ Still owed: remaining glove/finger/sleeve contact; body/weapon/head clearance; v
 
 ## CORRECTION 2026-10-01 (owner, supersedes stale runtime claims)
 
-The owner confirms: **WASD works, the bow works, damage works, the gameplay loop works.** The older "still owed" lists — real-input WASD proof, the stock-then-GOOD/PERFECT ladder, the Melusina-possessed PIE probe, the Quill-interpreter movement-lock chase — are **closed**, not pending. Active work is animation and lookdev only. The one genuinely open technical item is the **closed-editor 5.8 build** (party bootstrap UNBUILT), a build-hygiene task.
+The owner confirms: **WASD works, the bow works, damage works, the gameplay loop works.** The older "still owed" lists — real-input WASD proof, the stock-then-GOOD/PERFECT ladder, the Melusina-possessed PIE probe, the Quill-interpreter movement-lock chase — are **closed**, not pending. Active work is animation and lookdev only. The **closed-editor 5.8 build PASSED cleanly on 2026-10-05** (`Result: Succeeded`, `UnrealEditor-BS_GodFile.dll` linked, all native Overworld HUD navigation bindings and Foley component headers fully resolved).
 
 ## Choral Sheep — Capstone Build
 
@@ -111,11 +143,8 @@ The owner confirms: **WASD works, the bow works, damage works, the gameplay loop
 **Renders:** `Saved/Audit/choral_sheep/aaa_render_20261003/` (9 Cycles CPU frames)
 
 ### Still owed
-- Run, graze, bleat, ear flick, tail wag, harmonize animations
-- SSS wool material + proper eye shader
-- UE integration (retarget, ABP binding)
-- In-PIE follow proof
-- Visual sign-off on wool, horns, and crown (all gates numeric, no owner eye yet)
+- **Run retarget BLOCKED** (`batch_retarget_animations` crashes the editor; `A_Sheep_Run` not cleared). A2 takes graze/bleat/ear-flick/tail-wag/harmonize are AUTHORED+VERIFIED — this row was stale. Also: locomotion FBX exports; UE import→IK-retarget→ABP (WalkSlow/Jump/Death/Bleat on disk, bound to no state); In-PIE follow proof; SSS wool + eye shader; `WOOL_LOOK_CHOICE` (owner-only); wool/horn/crown visual sign-off.
+- 2026-10-05 — working file `stage_a_20261001/choral_sheep_A_blossoms_FIXED_202s61002.blend`, mesh `FinalMrSheepKILOLOOKTHISONE`: 12 shape keys authored, crown blossom branch repaired. Evidence + resolved doc conflicts: `stage_a_20261001/*.json`. UE drop-in is `Retopo_Skin_Sheep_ZSpheres2` (550 v, FBX-only) — never import `MrSheepFinalTHISONELOOK`. Export script of record is `bake_a2.py`, **not** `export_choral_sheep.py`.
 
 ## Proven Creative Capability Surface
 
@@ -151,6 +180,25 @@ The owner confirms: **WASD works, the bow works, damage works, the gameplay loop
 ## Version Control
 
 See `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `Docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`. Git carries code/docs/plans; Perforce carries bulk binary. Perforce server root is `D:\perforce\root` on this machine. GitHub is the only offsite copy.
+
+## Horizon System Plan — Execution Progress 2026-10-05
+
+**Plan:** `Docs/Production/PCG/HORIZON_SYSTEM_PLAN_2026-10-04.md` (815 lines, 7 phases)
+**Jev audit:** `Prototypes/JevHorizonPlanAudit/audit_log.json` — H1_GOLDEN_HOUR_PPV (0.91), A_WC_V2_ADDITIVE (0.62), readiness=1
+
+| Phase | Status | Evidence |
+|---|---|---|
+| 1. Golden Hour PPV | ✅ DONE | `Content/Python/setup_golden_hour_ppv.py` — PPV_GoldenHour live in L_MelusinaMorning at UDS 1750, bloom=0.35, vignette=0.15 |
+| 2. PCG_HorizonEater_FilterFlow | ✅ DONE | `Content/Python/build_horizon_eater_filter_flow.py` — graph wired: Input→CreatePoints→FilterByAttribute→TransformPoints→StaticMeshSpawner→Output |
+| 3. World Compiler v2 | ✅ DONE | `specs/schemas/world_compiler_point_row.v2.json` + `Tools/world_compiler.py` — 4 new horizon fields (horizon_distance, sky_exposure, silhouette_weight, atmospheric_depth), 1135 points compiled |
+| 4. Houdini Foundry field_atlas | 📝 Recipe staged | `recipes/houdini_foundry/field_atlas_melusina_morning.v1.json` — 8 channels, not yet cooked |
+| 5. Distant Terrain Impostor Baking | 📝 Script staged | `Tools/Houdini/copernicus/copernicus_impostor_bake.py` — LOD3 spec (128px, Toksvig 1.0, rim 1.8), Hython template |
+| 6. Horizon Eater Live Proof | ✅ Captured | `Saved/Audit/horizon_eater_live_proof.json` — PIE screenshot at UDS 1750, PPV priority 5.0 verified |
+| 7. Cloud Card Pipeline | ✅ DONE | `Content/Python/build_horizon_cloud_cards.py` — graph wired: Input→CreatePoints→TransformPoints→StaticMeshSpawner→Output |
+
+**MPC params:** HorizonEatAmount, DestructionAmount, HorizonTension, WorldHorizonEat on MPC_Melodia_Palette (58 scalars total)
+
+**Remaining:** Phase 4 cook, Phase 5 Hython cook, Phase 6 full 4-HDR capture series (HorizonEat 0.0/0.6/1.0), Phase 7 level test
 
 ## Pre-collapse docs
 Every deleted handoff/plan/report is recoverable with `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).

@@ -1,0 +1,78 @@
+{
+  "$schema": "./figma_token_bridge.schema.json",
+  "fileKey": "Yx8ud7n39NdWZvnNvo4Xlf",
+  "updated": "2026-07-15",
+  "note": "Portfolio lookbook chrome ↔ live site selectors. Game UI / UMG stubs stay separate; page 12 Batch O not remapped here.",
+  "typeSsot": "Syne / Instrument Serif / Bricolage Grotesque / Azeret Mono",
+  "mappings": [
+    {
+      "figma": {
+        "page": "03 Atoms and Ornaments",
+        "component": "Passport/Banner",
+        "nodeId": "56:563"
+      },
+      "web": {
+        "selectors": [".pp-banner", ".hero-passport-banner .pp-banner", ".passport-card", ".passport-inline", ".stage-passport-fallback"],
+        "css": "wix/melodia-editorial-polish.css"
+      },
+      "umg": {
+        "hint": "Stage/CharacterPassport plate — not SheetMusicHUD"
+      }
+    },
+    {
+      "figma": {
+        "page": "03 Atoms and Ornaments",
+        "component": "Band/IvoryLookbook",
+        "nodeId": "56:579"
+      },
+      "web": {
+        "selectors": [".melodia-shell .band.ivory", ".melodia-shell .band.paper[data-surface=\"ivory\"]", ".melodia-shell .band.cloud[data-surface=\"ivory\"]"],
+        "tokens": ["--ivory-50", "--ivory-100", "--ivory-200", "--ivory-gold", "--ivory-gold-bright", "--ivory-mg-rose", "--ivory-mg-iris"],
+        "css": "wix/melodia-editorial-polish.css"
+      }
+    },
+    {
+      "figma": {
+        "page": "03 Atoms and Ornaments",
+        "component": "Divider/Glyph",
+        "nodeId": "56:562",
+        "variants": ["astral", "diamond", "pipes", "pipes-dot", "pipes-spark"]
+      },
+      "web": {
+        "selectors": [
+          ".editorial-rhythm-divider[data-divider]",
+          ".viz-rule[data-divider]",
+          ".nikki-spark-rule[data-divider]",
+          ".editorial-rule[data-divider]",
+          ".melodia-divider[data-divider]"
+        ],
+        "tokens": ["--divider-astral", "--divider-diamond", "--divider-pipes", "--divider-pipes-dot", "--divider-pipes-spark"],
+        "css": "wix/melodia-editorial-polish.css"
+      }
+    },
+    {
+      "figma": {
+        "collection": "primitives",
+        "variables": ["color/ivory/50", "color/ivory/100", "color/ivory/200", "color/gold/300", "color/gold/500"]
+      },
+      "web": {
+        "tokens": {
+          "color/ivory/50": "#fff8ee",
+          "color/ivory/100": "#f8ecd6",
+          "color/ivory/200": "#f3e6c8",
+          "color/gold/300": "#ddc79b",
+          "color/gold/500": "#c9a86a"
+        },
+        "css": "wix/melodia-editorial-polish.css"
+      }
+    }
+  ],
+  "umg": [
+    {
+      "figmaPath": "Game/BattleMobile/iOSPlay",
+      "selector": ".game-ui-ios-play",
+      "widget": "WBP_Battle_Mobile",
+      "status": "stub"
+    }
+  ]
+}

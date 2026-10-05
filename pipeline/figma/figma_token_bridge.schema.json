@@ -1,0 +1,157 @@
+{
+  "$schema_version": "1.0",
+  "$doc": "Handoff contract: portfolio_package.json → Figma Design System variables. Applied by package_to_figma_tokens.py.",
+  "source_file": "Saved/Portfolio/portfolio_package.json",
+  "target": "melodia-figma-plugin",
+
+  "scalar_mappings": [
+    {
+      "from": "scene.scene_name",
+      "to": "token/scene_title",
+      "type": "STRING",
+      "fallback": "Environment Title"
+    },
+    {
+      "from": "scene.style_theme",
+      "to": "token/style_family",
+      "type": "STRING",
+      "fallback": "Zen Shrine Axis"
+    },
+    {
+      "from": "scene.engine_version",
+      "to": "token/engine_version",
+      "type": "STRING",
+      "fallback": "UE 5.8"
+    },
+    {
+      "from": "scene.level_path",
+      "to": "token/level_path",
+      "type": "STRING",
+      "fallback": ""
+    },
+    {
+      "from": "stats.triangle_count",
+      "to": "spec/tris",
+      "type": "STRING",
+      "transform": "format_number",
+      "fallback": "—"
+    },
+    {
+      "from": "stats.draw_calls",
+      "to": "spec/draw_calls",
+      "type": "STRING",
+      "transform": "format_number",
+      "fallback": "—"
+    },
+    {
+      "from": "stats.hism_instance_count",
+      "to": "spec/hism_instances",
+      "type": "STRING",
+      "transform": "format_number",
+      "fallback": "—"
+    },
+    {
+      "from": "stats.shader_complexity",
+      "to": "spec/shader_complexity",
+      "type": "STRING",
+      "fallback": "—"
+    },
+    {
+      "from": "pcg.graphs",
+      "to": "spec/pcg_graphs",
+      "type": "STRING",
+      "transform": "count_keys",
+      "fallback": "—"
+    }
+  ],
+
+  "image_slot_mappings": [
+    {
+      "from": "renders.hero[0].path",
+      "to": "slot/hero_image",
+      "type": "IMAGE",
+      "resolve": "project_relative",
+      "fallback": null
+    },
+    {
+      "from": "renders.breakdown[0].path",
+      "to": "slot/breakdown_lit",
+      "type": "IMAGE",
+      "resolve": "project_relative",
+      "fallback": null
+    },
+    {
+      "from": "renders.breakdown[1].path",
+      "to": "slot/breakdown_wire",
+      "type": "IMAGE",
+      "resolve": "project_relative",
+      "fallback": null
+    },
+    {
+      "from": "renders.niagara[0].path",
+      "to": "slot/niagara_preview",
+      "type": "IMAGE",
+      "resolve": "project_relative",
+      "fallback": null
+    },
+    {
+      "from": "renders.pcg_heatmap",
+      "to": "slot/pcg_heatmap_image",
+      "type": "IMAGE",
+      "resolve": "project_relative",
+      "fallback": null
+    }
+  ],
+
+  "array_mappings": [
+    {
+      "from": "assets[*].label",
+      "to": "list/asset_names",
+      "type": "STRING_ARRAY",
+      "fallback": []
+    },
+    {
+      "from": "materials[*].thumbnail",
+      "to": "list/swatch_images",
+      "type": "IMAGE_ARRAY",
+      "resolve": "project_relative",
+      "fallback": []
+    },
+    {
+      "from": "materials[*].label",
+      "to": "list/swatch_labels",
+      "type": "STRING_ARRAY",
+      "fallback": []
+    },
+    {
+      "from": "genome.axis_steps[*]",
+      "to": "list/genome_axis_steps",
+      "type": "OBJECT_ARRAY",
+      "fallback": []
+    },
+    {
+      "from": "trim.zones[*]",
+      "to": "list/trim_zones",
+      "type": "OBJECT_ARRAY",
+      "fallback": []
+    },
+    {
+      "from": "landscape.splat_weights[*]",
+      "to": "list/splat_weights",
+      "type": "OBJECT_ARRAY",
+      "fallback": []
+    }
+  ],
+
+  "transforms": {
+    "format_number": "Format integer with thousands separator (e.g. 123456 → '123,456')",
+    "count_keys":    "Return len() of dict as string (e.g. {'a':1,'b':2} → '2')"
+  },
+
+  "output": {
+    "figma_variables_file": "pipeline/figma/figma_variables_update.json",
+    "figma_rest_endpoint": "https://api.figma.com/v1/files/{FILE_KEY}/variables",
+    "env_token_var": "FIGMA_API_TOKEN",
+    "env_file_key_var": "FIGMA_FILE_KEY"
+  }
+}

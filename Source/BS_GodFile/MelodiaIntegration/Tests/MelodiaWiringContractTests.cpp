@@ -614,6 +614,15 @@ bool FMelodiaOverworldHUDTemplateContractTest::RunTest(const FString& Parameters
 	if (!TestNotNull(TEXT("firstLevelStats exists"), Stats)) { return false; }
 	TestTrue(TEXT("stats have maxHP"), HasIntPrefix(Stats->Struct, W::MaxHPPrefix));
 	TestTrue(TEXT("stats have maxMP"), HasIntPrefix(Stats->Struct, W::MaxMPPrefix));
+
+	// Assert Storybook HUD navigation button properties and navigation handlers exist
+	const UClass* HUDWidgetClass = UMelodiaOverworldHUDWidget::StaticClass();
+	TestNotNull(TEXT("Sys_Settings property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_Settings")));
+	TestNotNull(TEXT("Sys_Journal property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_Journal")));
+	TestNotNull(TEXT("Sys_1 property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_1")));
+	TestNotNull(TEXT("Sys_2 property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_2")));
+	TestNotNull(TEXT("HandleSysSettingsClicked function exists"), HUDWidgetClass->FindFunctionByName(TEXT("HandleSysSettingsClicked")));
+	TestNotNull(TEXT("HandleSysJournalClicked function exists"), HUDWidgetClass->FindFunctionByName(TEXT("HandleSysJournalClicked")));
 	return true;
 }
 

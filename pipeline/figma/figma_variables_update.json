@@ -1,0 +1,116 @@
+{
+  "variables": {
+    "token.scene_title": {
+      "type": "STRING",
+      "value": "ZenForestTest"
+    },
+    "token.style_family": {
+      "type": "STRING",
+      "value": "Zen Shrine Axis"
+    },
+    "token.engine_version": {
+      "type": "STRING",
+      "value": "UE 5.8"
+    },
+    "token.level_path": {
+      "type": "STRING",
+      "value": "/Game/ZenForestTest"
+    },
+    "spec.tris": {
+      "type": "STRING",
+      "value": "72,924"
+    },
+    "spec.draw_calls": {
+      "type": "STRING",
+      "value": "35"
+    },
+    "spec.hism_instances": {
+      "type": "STRING",
+      "value": "—"
+    },
+    "spec.shader_complexity": {
+      "type": "STRING",
+      "value": "—"
+    },
+    "spec.pcg_graphs": {
+      "type": "STRING",
+      "value": "7"
+    },
+    "slot.hero_image": {
+      "type": "IMAGE",
+      "value": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Portfolio/Renders/Hero/hero_level_20260625_055343_1920x1080.png"
+    },
+    "slot.breakdown_lit": {
+      "type": "IMAGE",
+      "value": null
+    },
+    "slot.breakdown_wire": {
+      "type": "IMAGE",
+      "value": null
+    },
+    "slot.niagara_preview": {
+      "type": "IMAGE",
+      "value": null
+    },
+    "slot.pcg_heatmap_image": {
+      "type": "IMAGE",
+      "value": null
+    },
+    "list.asset_names": {
+      "type": "STRING_ARRAY",
+      "value": []
+    },
+    "list.swatch_images": {
+      "type": "IMAGE_ARRAY",
+      "value": []
+    },
+    "list.swatch_labels": {
+      "type": "STRING_ARRAY",
+      "value": [
+        "MI_Baroque_CathedralSurreal",
+        "MI_Baroque_EscherOrnament",
+        "MI_Baroque_FiligreeDream",
+        "MI_Baroque_GildedFiligree",
+        "MI_Show_CelestialNebula",
+        "MI_Show_CherryBlossom",
+        "MI_Show_ContactRimHero",
+        "MI_Show_Default",
+        "MI_Show_ElementHydro",
+        "MI_Show_FairyHearts",
+        "MI_Show_ForestFoliage",
+        "MI_Show_InkWash",
+        "MI_Show_NikkiHero",
+        "MI_Show_SkinSoft",
+        "MI_Show_StoneCliff",
+        "MI_Zen_BambooMist",
+        "MI_Zen_InkWash",
+        "MI_Zen_Karesansui",
+        "MI_Zen_LanternWarm",
+        "MI_Zen_MoonlitGarden",
+        "MI_Zen_MossGarden",
+        "MI_Zen_PondStill",
+        "MI_Zen_RojiPath",
+        "MI_Zen_SakuraDrift",
+        "MI_Zen_ShojiPaper",
+        "MI_Zen_TeaHouseCedar",
+        "MI_Zen_TempleStep",
+        "MI_Zen_ToriiGreybox",
+        "MI_Zen_ToriiVermillion",
+        "MI_Zen_TsukubaiBasin"
+      ]
+    },
+    "list.genome_axis_steps": {
+      "type": "OBJECT_ARRAY",
+      "value": []
+    },
+    "list.trim_zones": {
+      "type": "OBJECT_ARRAY",
+      "value": []
+    },
+    "list.splat_weights": {
+      "type": "OBJECT_ARRAY",
+      "value": []
+    }
+  },
+  "source": "portfolio_package.json"
+}

@@ -2,8 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "MelodiaInputContextSubsystem.h"
 #include "MelodiaOverworldHUDWidget.generated.h"
 
+class UButton;
 class UProgressBar;
 class UTextBlock;
 class UWidget;
@@ -31,6 +33,7 @@ public:
 
 protected:
 	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
 	UPROPERTY(meta = (BindWidget)) TObjectPtr<UProgressBar> VitalityBar;
@@ -51,6 +54,32 @@ protected:
 	UPROPERTY(meta = (BindWidget)) TObjectPtr<UTextBlock> QuestMotifs;
 	UPROPERTY(meta = (BindWidget)) TObjectPtr<UProgressBar> QuestProgress;
 
+	/** Top-level navigation buttons bound to WBP_Melodia_OverworldHUD */
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UButton> Sys_1;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UButton> Sys_2;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UButton> Sys_Journal;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UButton> Sys_Settings;
+
+	/** Configurable destination class for the Cosmic Orrery menu */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Navigation")
+	TSoftClassPtr<UUserWidget> OrreryMenuClass;
+
+	/** Configurable destination class for the Compendium / Journal archive */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Navigation")
+	TSoftClassPtr<UUserWidget> CompendiumMenuClass;
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSysSettingsClicked();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSysJournalClicked();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSys1Clicked();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSys2Clicked();
+
 	/** Seconds the area caption stays up after the HUD appears. */
 	UPROPERTY(EditAnywhere, Category = "Melodia|HUD", meta = (ClampMin = "0.0"))
 	float AreaCaptionSeconds = 4.0f;
@@ -61,6 +90,11 @@ protected:
 private:
 	void RefreshVitals();
 	void RefreshQuest();
+
+	UPROPERTY(Transient)
+	TObjectPtr<UUserWidget> ActiveOrreryWidget;
+
+	FMelodiaInputContextHandle OrreryContextHandle;
 
 	float RefreshAccumulator = 0.0f;
 	float CaptionRemaining = 0.0f;

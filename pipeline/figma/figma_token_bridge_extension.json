@@ -1,0 +1,55 @@
+{
+  "$doc": "Extension patch for melodia-design-system/tokens.json. Merge this into tokens.json to register the variable namespaces consumed by the new portfolio components.",
+  "$apply_instructions": "Deep-merge this object into the existing tokens.json. Do not overwrite existing keys unless explicitly noted.",
+
+  "slot": {
+    "$description": "Image fill slots — bound to portfolio_package.json render paths",
+    "hero_image":        { "type": "image", "default": null, "description": "Hero environment render (1920×1080)" },
+    "breakdown_lit":     { "type": "image", "default": null, "description": "Lit pass for BreakdownGrid left cell" },
+    "breakdown_wire":    { "type": "image", "default": null, "description": "Wireframe pass for BreakdownGrid right cell" },
+    "niagara_preview":   { "type": "image", "default": null, "description": "Niagara particle still or GIF" },
+    "pcg_heatmap_image": { "type": "image", "default": null, "description": "Top-down PCG density greyscale heatmap" }
+  },
+
+  "token": {
+    "$description": "String tokens — bound to scene / pipeline metadata",
+    "scene_title":      { "type": "string", "default": "Environment Title",  "description": "Level display name" },
+    "style_family":     { "type": "string", "default": "Zen Shrine Axis",    "description": "Active style genome label" },
+    "engine_version":   { "type": "string", "default": "UE 5.8",             "description": "Engine version string" },
+    "level_path":       { "type": "string", "default": "",                   "description": "Full /Game/ asset path" }
+  },
+
+  "spec": {
+    "$description": "Performance stat strings for SpecCardTable rows",
+    "tris":              { "type": "string", "default": "—", "description": "Triangle count (formatted)" },
+    "draw_calls":        { "type": "string", "default": "—", "description": "Draw call count" },
+    "hism_instances":    { "type": "string", "default": "—", "description": "HISM instance total" },
+    "shader_complexity": { "type": "string", "default": "—", "description": "Shader complexity label" },
+    "pcg_graphs":        { "type": "string", "default": "—", "description": "Number of active PCG graphs" }
+  },
+
+  "list": {
+    "$description": "Array token groups for list-driven components",
+    "asset_names":        { "type": "string[]",  "default": [], "description": "Actor label list from scene scan" },
+    "swatch_images":      { "type": "image[]",   "default": [], "description": "Material thumbnail PNG paths" },
+    "swatch_labels":      { "type": "string[]",  "default": [], "description": "Material display names" },
+    "genome_axis_steps":  {
+      "type": "object[]",
+      "default": [],
+      "item_shape": { "id": "string", "label": "string", "snap_count": "number" },
+      "description": "Ordered architectural atoms for StyleGenomeAxisDiagram"
+    },
+    "trim_zones": {
+      "type": "object[]",
+      "default": [],
+      "item_shape": { "trim_id": "number", "width_m": "number", "label": "string" },
+      "description": "Trim sheet zone definitions for TrimLayoutCard"
+    },
+    "splat_weights": {
+      "type": "object[]",
+      "default": [],
+      "item_shape": { "layer": "string", "weight_pct": "number", "texture_path": "string" },
+      "description": "Landscape paint layer weights for LandscapeSplatCard"
+    }
+  }
+}
