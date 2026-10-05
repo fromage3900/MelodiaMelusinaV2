@@ -8,7 +8,9 @@ GitHub connector writes cannot upload Git-LFS backing objects. Simple paper/card
 geometry is NOT imported as texture: specs/ui/storybook_runtime_styles.v1.json
 keeps those as native UMG/Slate styles. Radial rings remain material specs.
 
-This script therefore imports only entries with runtime_type == "texture".
+This script therefore rebuilds only entries with runtime_type == "texture".
+The existing Storybook Texture2D assets on main are runtime authority: this
+tool refuses to create a missing destination or a differently named duplicate.
 """
 from __future__ import annotations
 
@@ -56,16 +58,28 @@ def _hydrate(entry: dict) -> Path:
     return out
 
 
-def _import(src: Path, dest: str, never_stream: bool) -> str | None:
-    stem = src.stem
-    game_path = f"{dest}/{stem}.{stem}"
+def _rebuild_existing(
+    src: Path, dest: str, asset_name: str, never_stream: bool
+) -> str | None:
+    game_path = f"{dest}/{asset_name}.{asset_name}"
+
     if not unreal.EditorAssetLibrary.does_directory_exist(dest):
-        unreal.EditorAssetLibrary.make_directory(dest)
+        unreal.log_error(
+            f"[StorybookUI] canonical directory missing; refusing to create it: {dest}"
+        )
+        return None
+
+    if not unreal.EditorAssetLibrary.does_asset_exist(game_path):
+        unreal.log_error(
+            "[StorybookUI] canonical runtime asset missing; refusing to create "
+            f"a parallel target: {game_path}"
+        )
+        return None
 
     task = unreal.AssetImportTask()
     task.set_editor_property("filename", str(src))
     task.set_editor_property("destination_path", dest)
-    task.set_editor_property("destination_name", stem)
+    task.set_editor_property("destination_name", asset_name)
     task.set_editor_property("automated", True)
     task.set_editor_property("save", True)
     task.set_editor_property("replace_existing", True)
@@ -73,10 +87,10 @@ def _import(src: Path, dest: str, never_stream: bool) -> str | None:
 
     if unreal.EditorAssetLibrary.does_asset_exist(game_path):
         if _configure_ui_texture(game_path, never_stream):
-            unreal.log(f"[StorybookUI] imported {game_path}")
+            unreal.log(f"[StorybookUI] rebuilt canonical asset {game_path}")
             return game_path
 
-    unreal.log_error(f"[StorybookUI] failed {src} -> {dest}")
+    unreal.log_error(f"[StorybookUI] rebuild failed {src} -> {game_path}")
     return None
 
 
@@ -102,15 +116,18 @@ def main() -> list[str]:
             )
             continue
 
-        path = _import(
+        path = _rebuild_existing(
             src,
             entry.get("ue_dest", default_dest),
+            entry["asset_name"],
             bool(entry.get("never_stream", True)),
         )
         if path:
             imported.append(path)
 
-    unreal.log(f"[StorybookUI] imported {len(imported)}/{len(entries)} texture atoms")
+    unreal.log(
+        f"[StorybookUI] rebuilt {len(imported)}/{len(entries)} canonical texture atoms"
+    )
     unreal.log(
         "[StorybookUI] material/umg_style entries remain declarative by design; "
         "see manifest + specs/ui/storybook_runtime_styles.v1.json"
