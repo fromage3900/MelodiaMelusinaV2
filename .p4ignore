@@ -26,3 +26,15 @@ Content/Melodia/UI/Textures/
 *.lnk
 Thumbs.db
 desktop.ini
+
+# --- Repo-consolidation staging dir (NEVER ingest — 2026-10-05) --------------
+# Misnamed by a buggy PowerShell pipeline (a .NET type name used as a path).
+# Holds ~41k files of other repos; must never be reconciled into the depot.
+Microsoft.PowerShell.Commands.GenericMeasureInfo/
+
+# --- Dual-home boundary: authored masters are git-authoritative --------------
+# (2026-10-05) git owns these protected authors; P4 mirrors BULK content only.
+# Prevents P4 from adding new copies of masters that git already protects.
+# See .gitignore:221 (!Content/EnvSandbox/Materials/Masters/**).
+Content/EnvSandbox/Materials/Masters/
+Content/_PROJECT/

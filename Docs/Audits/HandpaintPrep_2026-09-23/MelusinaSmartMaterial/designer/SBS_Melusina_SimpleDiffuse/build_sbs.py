@@ -491,8 +491,12 @@ def levels_mid(src_n, src_o, x, y, mid=0.5, mid_param: str | None = None,
       </compNode>"""
 
 
-def blur(src_n, src_o, intensity: float, x, y):
+def blur(src_n, src_o, intensity: float, x, y, intensity_param: str | None = None):
     n, o = uid(), uid()
+    if intensity_param:
+        intensity_xml = dyn_get_float1(intensity_param)
+    else:
+        intensity_xml = f'<constantValueFloat1 v="{intensity}"/>'
     return n, o, f"""\
       <compNode>
         <uid v="{n}"/>
@@ -512,7 +516,9 @@ def blur(src_n, src_o, intensity: float, x, y):
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="{intensity}"/></paramValue>
+                <paramValue>
+{intensity_xml}
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
@@ -520,8 +526,12 @@ def blur(src_n, src_o, intensity: float, x, y):
       </compNode>"""
 
 
-def sharpen(src_n, src_o, intensity: float, x, y):
+def sharpen(src_n, src_o, intensity: float, x, y, intensity_param: str | None = None):
     n, o = uid(), uid()
+    if intensity_param:
+        intensity_xml = dyn_get_float1(intensity_param)
+    else:
+        intensity_xml = f'<constantValueFloat1 v="{intensity}"/>'
     return n, o, f"""\
       <compNode>
         <uid v="{n}"/>
@@ -541,7 +551,9 @@ def sharpen(src_n, src_o, intensity: float, x, y):
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="{intensity}"/></paramValue>
+                <paramValue>
+{intensity_xml}
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
@@ -549,10 +561,13 @@ def sharpen(src_n, src_o, intensity: float, x, y):
       </compNode>"""
 
 
-def distance_filter(mask_n, mask_o, dist_val: float, x, y):
+def distance_filter(mask_n, mask_o, dist_val: float, x, y, distance_param: str | None = None):
     """Atomic distance from mask — soft moonglow rings (cooker-safe dyn distance)."""
     n, o = uid(), uid()
-    root = uid()
+    if distance_param:
+        dist_xml = dyn_get_float1(distance_param)
+    else:
+        dist_xml = f'<constantValueFloat1 v="{dist_val}"/>'
     return n, o, f"""\
       <compNode>
         <uid v="{n}"/>
@@ -578,22 +593,7 @@ def distance_filter(mask_n, mask_o, dist_val: float, x, y):
                 <name v="distance"/>
                 <relativeTo v="0"/>
                 <paramValue>
-                  <dynamicValue>
-                    <rootnode v="{root}"/>
-                    <paramNodes>
-                      <paramNode>
-                        <uid v="{root}"/>
-                        <function v="const_float1"/>
-                        <type v="256"/>
-                        <funcDatas>
-                          <funcData>
-                            <name v="const_float1"/>
-                            <constantValue><constantValueFloat1 v="{dist_val}"/></constantValue>
-                          </funcData>
-                        </funcDatas>
-                      </paramNode>
-                    </paramNodes>
-                  </dynamicValue>
+{dist_xml}
                 </paramValue>
               </parameter>
               <parameter>
@@ -607,8 +607,12 @@ def distance_filter(mask_n, mask_o, dist_val: float, x, y):
       </compNode>"""
 
 
-def warp(src_n, src_o, grad_n, grad_o, intensity: float, x, y):
+def warp(src_n, src_o, grad_n, grad_o, intensity: float, x, y, intensity_param: str | None = None):
     n, o = uid(), uid()
+    if intensity_param:
+        intensity_xml = dyn_get_float1(intensity_param)
+    else:
+        intensity_xml = f'<constantValueFloat1 v="{intensity}"/>'
     return n, o, f"""\
       <compNode>
         <uid v="{n}"/>
@@ -633,7 +637,9 @@ def warp(src_n, src_o, grad_n, grad_o, intensity: float, x, y):
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="{intensity}"/></paramValue>
+                <paramValue>
+{intensity_xml}
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
@@ -641,8 +647,17 @@ def warp(src_n, src_o, grad_n, grad_o, intensity: float, x, y):
       </compNode>"""
 
 
-def directional_warp(src_n, src_o, inten_n, inten_o, intensity: float, angle: float, x, y):
+def directional_warp(src_n, src_o, inten_n, inten_o, intensity: float, angle: float, x, y,
+                     intensity_param: str | None = None, angle_param: str | None = None):
     n, o = uid(), uid()
+    if intensity_param:
+        intensity_xml = dyn_get_float1(intensity_param)
+    else:
+        intensity_xml = f'<constantValueFloat1 v="{intensity}"/>'
+    if angle_param:
+        angle_xml = dyn_get_float1(angle_param)
+    else:
+        angle_xml = f'<constantValueFloat1 v="{angle}"/>'
     return n, o, f"""\
       <compNode>
         <uid v="{n}"/>
@@ -667,12 +682,16 @@ def directional_warp(src_n, src_o, inten_n, inten_o, intensity: float, angle: fl
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="{intensity}"/></paramValue>
+                <paramValue>
+{intensity_xml}
+                </paramValue>
               </parameter>
               <parameter>
                 <name v="warpangle"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="{angle}"/></paramValue>
+                <paramValue>
+{angle_xml}
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
@@ -797,6 +816,56 @@ def build() -> str:
     _, xml = slider("CurvatureOpacity", "Curvature Color Opacity", 0.40,
                     desc="Secondary / decoration edge wash strength")
     chunks_pi.append(xml)
+    # ---- Gouache lookdev deepen (v3)
+    _, xml = slider("GouacheStrokeBreakup", "Gouache Stroke Breakup", 0.40,
+                    desc="Brush-stroke frequency into gouache height (impasto relief)")
+    chunks_pi.append(xml)
+    _, xml = slider("GouacheBlur", "Gouache Blur Softness", 0.55,
+                    desc="Porcelain / soft brushed finish before Normal From Height")
+    chunks_pi.append(xml)
+    _, xml = slider("GouacheSharpen", "Gouache Edge Sharpen", 0.20,
+                    desc="Edge catch for gouache relief normals")
+    chunks_pi.append(xml)
+    # ---- Cymatic ring character (v3)
+    _, xml = slider("RingDistance", "Cymatic Ring Distance", 48.0, lo=4.0, hi=160.0, step=1.0,
+                    desc="Concentric falloff reach from embroidery seeds")
+    chunks_pi.append(xml)
+    _, xml = slider("RingWarp", "Cymatic Warp", 12.0, lo=0.0, hi=32.0, step=0.5,
+                    desc="Fracture warp of ring bands")
+    chunks_pi.append(xml)
+    _, xml = slider("RingSwirl", "Cymatic Swirl", 8.0, lo=0.0, hi=32.0, step=0.5,
+                    desc="Directional stitch swirl of ring bands")
+    chunks_pi.append(xml)
+    _, xml = slider("RingAngle", "Cymatic Swirl Angle", 35.0, lo=0.0, hi=360.0, step=1.0,
+                    desc="Angle of directional swirl")
+    chunks_pi.append(xml)
+    _, xml = slider("RingBandTightness", "Cymatic Ring Band Tightness", 0.40,
+                    desc="Levels mid of ring bands — tighter vs softer moonglow")
+    chunks_pi.append(xml)
+    _, xml = slider("HistogramPosition", "Cymatic Edge Embroidery Scan", 0.55,
+                    desc="Histogram scan position for curvature edge embroidery")
+    chunks_pi.append(xml)
+    # ---- Curvature-based tools (v3)
+    _, xml = slider("CurvatureEdgeLight", "Curvature Edge Light", 0.25,
+                    desc="Accent kiss on sharpened curvature edges (wear highlight lane)")
+    chunks_pi.append(xml)
+    _, xml = slider("CurvatureEmissive", "Curvature Edge Emissive", 0.15,
+                    desc="Sparkle / rim emissive carried by curvature edges")
+    chunks_pi.append(xml)
+    # ---- Slope-aware blur / roughness (v4 Nikki stylization)
+    _, xml = slider("SlopeThreshold", "Slope Threshold", 0.50,
+                    desc="WorldNormal-Z levels mid for the slope mask")
+    chunks_pi.append(xml)
+    _, xml = slider("SlopeBlur", "Slope Blur Softness", 0.45,
+                    desc="Gouache relief softening on sloped / receding surfaces")
+    chunks_pi.append(xml)
+    _, xml = slider("SlopeRoughnessLift", "Slope Roughness Lift", 0.20,
+                    desc="Fabric / paper reads rougher on slopes (cloth hierarchy)")
+    chunks_pi.append(xml)
+    # ---- Emissive Nikki glow moments
+    _, xml = slider("EmissiveGlow", "Emissive Halo Glow", 0.25,
+                    desc="Soft bloom halo around beat / resonance emissive")
+    chunks_pi.append(xml)
 
     i_ao, xml = img_input("MeshAO", "Mesh AO", True, "ambientOcclusion", "Mesh Maps")
     chunks_pi.append(xml)
@@ -905,7 +974,9 @@ def build() -> str:
     hist_n, hist_o, xml = instance_node(
         "pkg:///histogram_scan?dependency=1149349207", "Output", -760, 1280,
         connections=[("Input_1", cv_n, cv_o)],
-        params_xml="""              <parameter><name v="Position"/><relativeTo v="0"/><paramValue><constantValueFloat1 v="0.55"/></paramValue></parameter>
+        params_xml=f"""              <parameter><name v="Position"/><relativeTo v="0"/><paramValue>
+{dyn_get_float1("HistogramPosition")}
+</paramValue></parameter>
               <parameter><name v="Contrast"/><relativeTo v="0"/><paramValue><constantValueFloat1 v="0.35"/></paramValue></parameter>""")
     nodes.append(xml)
     cym_seed3_n, cym_seed3_o, xml = blend(cym_seed2_n, cym_seed2_o, cym_spots_n, cym_spots_o, mode=1,
@@ -915,18 +986,22 @@ def build() -> str:
                                            x=160, y=1100, opacity=0.4, gray=True)
     nodes.append(xml)
     # Distance creates soft concentric falloff from edge seeds
-    cym_dist_n, cym_dist_o, xml = distance_filter(cym_seed4_n, cym_seed4_o, 48.0, 400, 1100)
+    cym_dist_n, cym_dist_o, xml = distance_filter(cym_seed4_n, cym_seed4_o, 48.0, 400, 1100,
+                                                 distance_param="RingDistance")
     nodes.append(xml)
     # Ring bands via levels (invert-ish mid push)
-    cym_ring_n, cym_ring_o, xml = levels_mid(cym_dist_n, cym_dist_o, -280, 1100, mid=0.4,
-                                              in_low=0.1, in_high=0.75)
+    cym_ring_n, cym_ring_o, xml = levels_mid(cym_dist_n, cym_dist_o, -280, 1100,
+                                             mid_param="RingBandTightness",
+                                             in_low=0.1, in_high=0.75)
     nodes.append(xml)
     # Fracture warp using curvature as gradient
-    cym_warp_n, cym_warp_o, xml = warp(cym_ring_n, cym_ring_o, cv_n, cv_o, 12.0, -40, 1100)
+    cym_warp_n, cym_warp_o, xml = warp(cym_ring_n, cym_ring_o, cv_n, cv_o, 12.0, -40, 1100,
+                                       intensity_param="RingWarp")
     nodes.append(xml)
     # Directional swirl for sacred-geometry stitch feel
     cym_dir_n, cym_dir_o, xml = directional_warp(cym_warp_n, cym_warp_o, cym_ring_n, cym_ring_o,
-                                                  8.0, 35.0, 200, 1100)
+                                                 8.0, 35.0, 200, 1100,
+                                                 intensity_param="RingSwirl", angle_param="RingAngle")
     nodes.append(xml)
     cym_blur_n, cym_blur_o, xml = blur(cym_dir_n, cym_dir_o, 0.35, 440, 1100)
     nodes.append(xml)
@@ -966,11 +1041,16 @@ def build() -> str:
                             opacity=1.0, mask_n=deco_sh_n, mask_o=deco_sh_o,
                             opacity_param="CurvatureOpacity", gray=False)
     nodes.append(xml)
+    # 3b) Curvature edge-light — accent kiss on sharpened curvature edges (wear highlight)
+    edge_n, edge_o, xml = blend(b3_n, b3_o, u_acc_n, u_acc_o, mode=0, x=140, y=80,
+                                opacity=1.0, mask_n=deco_sh_n, mask_o=deco_sh_o,
+                                opacity_param="CurvatureEdgeLight", gray=False)
+    nodes.append(xml)
     # 4) Accent rim — Copy glow on sharpened decoration edges + light cymatic kiss
     rim_mask_n, rim_mask_o, xml = blend(deco_sh_n, deco_sh_o, cym_n, cym_o, mode=1, x=100, y=160,
                                          opacity=0.35, gray=True)
     nodes.append(xml)
-    b4_n, b4_o, xml = blend(b3_n, b3_o, u_acc_n, u_acc_o, mode=0, x=350, y=0,
+    b4_n, b4_o, xml = blend(edge_n, edge_o, u_acc_n, u_acc_o, mode=0, x=350, y=0,
                             opacity=0.5, mask_n=rim_mask_n, mask_o=rim_mask_o, gray=False)
     nodes.append(xml)
     # 5) Stroke overlay — Multiply secondary through BrushStrokeMap × BrushStrokeIntensity
@@ -994,7 +1074,7 @@ def build() -> str:
     nodes.append(xml)
     # Optional stroke as fine height breakup
     gou_stroke_n, gou_stroke_o, xml = blend(gou_lvl_n, gou_lvl_o, br_n, br_o, mode=1, x=-150, y=800,
-                                             opacity=1.0, opacity_param="BrushStrokeIntensity",
+                                             opacity=1.0, opacity_param="GouacheStrokeBreakup",
                                              gray=True)
     nodes.append(xml)
     # Add moonglow cymatic into height (embroidery relief)
@@ -1002,7 +1082,8 @@ def build() -> str:
                                    opacity=0.55, gray=True)
     nodes.append(xml)
     # Soft blur — brushed gouache / soft impasto, never photo pores
-    gou_blur_n, gou_blur_o, xml = blur(gou_h_n, gou_h_o, 0.55, 350, 800)
+    gou_blur_n, gou_blur_o, xml = blur(gou_h_n, gou_h_o, 0.55, 350, 800,
+                                       intensity_param="GouacheBlur")
     nodes.append(xml)
     gou_blur2_n, gou_blur2_o, xml = blur(gou_blur_n, gou_blur_o, 0.25, 550, 800)
     nodes.append(xml)
@@ -1013,7 +1094,8 @@ def build() -> str:
         params_xml="""              <parameter><name v="Intensity"/><relativeTo v="0"/><paramValue><constantValueFloat1 v="0.45"/></paramValue></parameter>""")
     nodes.append(xml)
     # Light sharpen pass so edges still catch light
-    gou_fin_n, gou_fin_o, xml = sharpen(gou_hq_n, gou_hq_o, 0.2, 900, 800)
+    gou_fin_n, gou_fin_o, xml = sharpen(gou_hq_n, gou_hq_o, 0.2, 900, 800,
+                                        intensity_param="GouacheSharpen")
     nodes.append(xml)
     # Normal From Height
     nrm_n, nrm_o, xml = normal_from_height(gou_fin_n, gou_fin_o, "NormalStrength", 1000, 800)
@@ -1023,24 +1105,46 @@ def build() -> str:
                                  opacity=0.2, gray=False)
     nodes.append(xml)
 
-    # Height output = gouache height (curv + stroke + cymatic)
-    height_n, height_o = gou_fin_n, gou_fin_o
-
+    # ========== SLOPE-AWARE SOFTENING (Nikki stylized blur) ==========
+    # Slope mask from WorldNormal Z (facing-open = crisp, receding = soft)
+    slope_z_n, slope_z_o, xml = grayconv(wn_n, wn_o, (0, 0, 1, 0), 1000, 2200)
+    nodes.append(xml)
+    slope_n, slope_o, xml = levels_mid(slope_z_n, slope_z_o, 1240, 2200,
+                                       mid_param="SlopeThreshold",
+                                       in_low=0.1, in_high=0.95)
+    nodes.append(xml)
+    # Soft branch of gouache relief (blurred by SlopeBlur)
+    soft_n, soft_o, xml = blur(gou_fin_n, gou_fin_o, 0.45, 1480, 2200,
+                               intensity_param="SlopeBlur")
+    nodes.append(xml)
+    # Height output = crisp on open faces, soft relief on slopes
+    height_blend_n, height_blend_o, xml = blend(gou_fin_n, gou_fin_o, soft_n, soft_o,
+                                                mode=0, x=1700, y=2200, opacity=1.0,
+                                                mask_n=slope_n, mask_o=slope_o, gray=True)
+    nodes.append(xml)
     # ========== ROUGHNESS (band + wear lift, no grit soup) ==========
     u_rmin_n, u_rmin_o, xml = uniform_const((0.35, 0.35, 0.35, 1), True, -400, 1400)
     nodes.append(xml)
-    # Drive min/max via levels isn't direct for uniforms; blend rmin→rmax by wear
     u_rmax_n, u_rmax_o, xml = uniform_const((0.72, 0.72, 0.72, 1), True, -400, 1480)
     nodes.append(xml)
-    # Shape wear for roughness lift
     rgh_mask_n, rgh_mask_o, xml = levels_mid(wear_n, wear_o, -150, 1400, mid=0.5)
     nodes.append(xml)
     rgh0_n, rgh0_o, xml = blend(u_rmin_n, u_rmin_o, u_rmax_n, u_rmax_o, mode=0, x=100, y=1400,
-                                 opacity=0.75, mask_n=rgh_mask_n, mask_o=rgh_mask_o, gray=True)
+                                opacity=0.75, mask_n=rgh_mask_n, mask_o=rgh_mask_o, gray=True)
     nodes.append(xml)
-    # Slight soften so roughness isn't noisy
     rgh_n, rgh_o, xml = blur(rgh0_n, rgh0_o, 0.4, 350, 1400)
     nodes.append(xml)
+    # Slope also lifts roughness so fabric reads matte on slopes (Nikki cloth hierarchy)
+    u_rgh_hi_n, u_rgh_hi_o, xml = uniform_const((0.72, 0.72, 0.72, 1), True, 1480, 2400)
+    nodes.append(xml)
+    rgh_slope_n, rgh_slope_o, xml = blend(rgh_n, rgh_o, u_rgh_hi_n, u_rgh_hi_o,
+                                          mode=0, x=1700, y=2400, opacity=1.0,
+                                          mask_n=slope_n, mask_o=slope_o,
+                                          opacity_param="SlopeRoughnessLift", gray=True)
+    nodes.append(xml)
+    rgh_n, rgh_o = rgh_slope_n, rgh_slope_o
+    # Height output = slope-blended gouache height
+    height_n, height_o = height_blend_n, height_blend_o
 
     # ========== METALLIC (jewelry kisses × cymatic) ==========
     u_met_n, u_met_o, xml = uniform_const((0.12, 0.12, 0.12, 1), True, -400, 1600)
@@ -1063,10 +1167,22 @@ def build() -> str:
                                          x=-150, y=1800, opacity=1.0, opacity_param="BeatBoost",
                                          gray=True)
     nodes.append(xml)
+    # Curvature edges carry a whisper of stage emissive (facet sparkle)
+    em_edge_n, em_edge_o, xml = blend(em_zone2_n, em_zone2_o, deco_sh_n, deco_sh_o,
+                                      mode=1, x=-150, y=1960, opacity=1.0,
+                                      opacity_param="CurvatureEmissive", gray=True)
+    nodes.append(xml)
+    # Nikki soft halo: blurred emissive mask added back around resonance core
+    em_halo_n, em_halo_o, xml = blur(em_edge_n, em_edge_o, 0.35, -150, 2100)
+    nodes.append(xml)
+    em_glow_n, em_glow_o, xml = blend(em_edge_n, em_edge_o, em_halo_n, em_halo_o,
+                                      mode=1, x=-150, y=2100, opacity=1.0,
+                                      opacity_param="EmissiveGlow", gray=True)
+    nodes.append(xml)
     u_em0_n, u_em0_o, xml = uniform_const((0, 0, 0, 1), False, -400, 1900)
     nodes.append(xml)
     em_n, em_o, xml = blend(u_em0_n, u_em0_o, u_acc_n, u_acc_o, mode=0, x=100, y=1800,
-                            opacity=0.85, mask_n=em_zone2_n, mask_o=em_zone2_o, gray=False)
+                            opacity=0.85, mask_n=em_glow_n, mask_o=em_glow_o, gray=False)
     nodes.append(xml)
     # SoftLight self so glow doesn't crush albedo when composited
     em2_n, em2_o, xml = blend(em_n, em_o, u_acc_n, u_acc_o, mode=11, x=350, y=1800,

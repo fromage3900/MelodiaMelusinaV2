@@ -154,6 +154,50 @@ In Designer: create Bitmap nodes pointing at these (or keep connectable inputs a
 
 ---
 
+## 11. Gouache + Cymatic deepen (v3, 2026-10-05)
+
+Cooked `.sbs` 149,484 B; `.sbsar` **4,410 B** (was 3,740 B), sbscooker exit 0, shelf refreshed.
+
+### New exposed lookdev knobs (all dynamically wired)
+
+| Group | Param | Default | Wiring |
+|---|---|---|---|
+| Gouache | `GouacheStrokeBreakup` | 0.40 | Stroke → gouache height blend opacity (separate from albedo `BrushStrokeIntensity`) |
+| Gouache | `GouacheBlur` | 0.55 | Blur intensity before NFH |
+| Gouache | `GouacheSharpen` | 0.20 | Sharpen intensity after HQ blur |
+| Cymatic | `RingDistance` | 48 | Distance-filter reach |
+| Cymatic | `RingWarp` | 12 | Warp intensity on ring bands |
+| Cymatic | `RingSwirl` | 8 | Directional-warp intensity |
+| Cymatic | `RingAngle` | 35 | Directional-warp angle |
+| Cymatic | `RingBandTightness` | 0.40 | Ring-band levels mid |
+| Cymatic | `HistogramPosition` | 0.55 | Histogram-scan edge position |
+| Curvature | `CurvatureEdgeLight` | 0.25 | Accent edge-light overlay on sharpened curvature |
+| Curvature | `CurvatureEmissive` | 0.15 | Curvature-edge emissive whisper |
+
+Curvature lane is now first-class on both albedo (edge light) and emissive (edge sparkle), in addition to the existing decoration/wear/gouache-height lanes.
+
+See `BUILD_RECEIPT_DESIGNER.md` for the v3 receipt.
+
+## 12. Slope blur + emissive halo (v4, 2026-10-05)
+
+Cooked `.sbsar` **4,691 B**, sbscooker exit 0, shelf refreshed. New knobs:
+
+| Group | Param | Default | Wiring |
+|---|---|---|---|
+| Slope | `SlopeThreshold` | 0.50 | WorldNormal-Z levels mid for the slope mask |
+| Slope | `SlopeBlur` | 0.45 | Blur intensity of the soft gouache-height branch |
+| Slope | `SlopeRoughnessLift` | 0.20 | Roughness lift on sloped/receding surfaces (cloth hierarchy) |
+| Emissive | `EmissiveGlow` | 0.25 | Blurred emissive mask added back as a soft halo around beat/resonance |
+
+**Slope blur setup:** `WorldNormal` → extract Z → `SlopeThreshold` levels → mask. Height =
+crisp gouache relief on open faces, slope-blurred relief on receding/vertical surfaces. The
+same slope mask lifts roughness so fabric reads matte on slopes (Infinity Nikki cloth hierarchy:
+crisp reads up front, soft reads in the paint). If your mesh has no `WorldNormal` bake, the Z
+channel defaults to mid-gray and the soft/crisp blend sits at ~50% — bake it (or raise
+`SlopeThreshold`) for a firm split.
+
+## v3 knobs (retained)
+
 *Source of truth for Painter layer names: `MELUSINA_SMART_MATERIAL_SPEC.md`. This GRAPH_SPEC owns the Designer generator.*
 
 ---

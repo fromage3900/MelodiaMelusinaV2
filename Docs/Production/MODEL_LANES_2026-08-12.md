@@ -56,21 +56,25 @@ Router classes in `Tools/model_router.py`. Use the **narrowest** class that fits
 
 | Class | Job | Cloud / API default | Local daemon default |
 |---|---|---|---|
-| `triage` | Classify, summarize, route | Nemotron Ultra free / gpt-oss-20b | `qwen3:8b` or `gpt-oss:20b` |
-| `audit` | Read-only sweeps, static gates | Nemotron Ultra → DeepSeek V4 Flash | `qwen3-coder:14b` / Laguna XS |
-| `code` | General Python/tools/docs code | DeepSeek V4 Flash → Codestral | `qwen3-coder:14b` |
-| `cpp` | UE C++ / MelodiaIntegration | Frontier Opus / Sol when available; else DeepSeek V4 Pro | `qwen3-coder:32b` or `devstral-small` |
-| `mcp` | Monolith/MCP multi-step tool plans | Grok 4.5 / Mistral Medium; Opus when paid | `qwen3-coder-next` (80A3) / GLM-5.x if VRAM |
-| `playtest` | Real-input runtime gate only | Grok 4.5 verifier + harness (not probe) | Local only for report grading — **keys via harness** |
+| `triage` | Classify, summarize, route | DeepSeek 4.1 Flash (Nous) → Nemotron Ultra free / gpt-oss-20b | `qwen3:8b` or `gpt-oss:20b` |
+| `audit` | Read-only sweeps, static gates | DeepSeek 4.1 Flash (Nous) → Nemotron Ultra | `qwen3-coder:14b` / Laguna XS |
+| `code` | General Python/tools/docs code | DeepSeek 4.1 Flash (Nous) → Codestral | `qwen3-coder:14b` |
+| `cpp` | UE C++ / MelodiaIntegration | DeepSeek 4.1 Flash (Nous) → DeepSeek V4 Pro | `qwen3-coder:32b` or `devstral-small` |
+| `mcp` | Monolith/MCP multi-step tool plans | DeepSeek 4.1 Flash (Nous) → Grok 4.5 | `qwen3-coder-next` (80A3) / GLM-5.x if VRAM |
+| `playtest` | Real-input runtime gate only | DeepSeek 4.1 Flash (Nous) → Grok 4.5; harness owns pass/fail | Local only for report grading — **keys via harness** |
 | `author` | Quill / narrative / dialogue | Mistral Medium 3.5 | `mistral` / `qwen3:14b` |
-| `deep` | Slow hard reasoning | Kimi K3 free | `kimi` local if cluster; else skip |
-| `review` | Fresh-eyes / intake | Grok 4.5 | `nemotron` VL / text |
-| `orchestrator` | Multi-agent plan | Grok 4.20 multi-agent | **Do not loop locally** — human/coordinator |
+| `deep` | Slow hard reasoning | DeepSeek 4.1 Flash (Nous) → Kimi K3 free | `kimi` local if cluster; else skip |
+| `review` | Fresh-eyes / intake | DeepSeek 4.1 Flash (Nous) → Grok 4.5 | `nemotron` VL / text |
+| `orchestrator` | Multi-agent plan | DeepSeek 4.1 Flash (Nous) → Grok 4.20 multi-agent | **Do not loop locally** — human/coordinator |
 | `vision` | Frames / contact sheets | Mistral Medium / Muse Spark | Nemotron VL local if available |
 | `daemon` | Unattended overnight loops | — | **Local only** (see §4) |
-| `docs` | Handoffs / fold-ins | DeepSeek V4 Flash | `qwen3:8b` |
+| `docs` | Handoffs / fold-ins | DeepSeek 4.1 Flash (Nous) | `qwen3:8b` |
 
 Lane dispatcher keywords map into these classes; gameplay items win over platform wording.
+
+**Owner default (2026-10-05):** `deepseek/deepseek-v4.1-flash` on the Nous Portal leads every
+general class above; `daemon`, the production lanes, `author` and `vision` keep their local/multimodal-first
+chains. Router: `Tools/model_router.py` `NOUS_DEFAULT`; Claireon link: `Scripts/nous_proxy/ensure_proxy.ps1`.
 
 ---
 

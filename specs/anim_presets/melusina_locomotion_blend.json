@@ -4,9 +4,10 @@
   "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
   "samples": [
     {
-      "index": 0,
-      "_comment": "A_Melusina_Idle (unsuffixed, 2026-08-08) is NOT the approved idle. Saved/Audit/melusina_idle_restore_mocap_2026-08-13.md records the owner-approved speed-0 clip as A_Melusina_Idle_Mocap_RootX, restored because the prior sample rendered a collapsed/wrong pose. The unsuffixed 08-08 asset was wired in afterwards and is the prime suspect for the current T-pose. Mocap is the only chain that reaches SK_Melusina_Skeleton through RTG_Mocap_to_Melusina; direct Lane A imports miss the contract on four axes (units, bone names, bone count, fps) -- see melusina_idle_retarget_rca_2026-08-13.md.",
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+      "index": 3,
+      "_comment": "Fresh saved-state Morning PIE 2026-10-04 shows the existing CuteIdle V10 upright with relaxed arms and planted feet. The Idle state already uses it looping at 0.6; speed-zero now shares that pose and timing. RootX currently renders a static T-pose and is retired from runtime, despite its historical approval.",
+      "animation": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+      "rate_scale": 0.6,
       "speed": 0.0,
       "label": "Idle"
     },
@@ -23,7 +24,7 @@
       "label": "Run_Mocap"
     },
     {
-      "index": 3,
+      "index": 0,
       "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint_Mocap_RootX",
       "speed": 630.0,
       "label": "Sprint_Mocap"
@@ -67,10 +68,11 @@
       "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton": "Live body and wardrobe skeleton",
       "/Game/Melodia/Characters/Melusina/Hair/SK_Melusina_Hair_Skeleton": "Required separate live hair skeleton",
       "/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion": "Connected Locomotion state; current four-sample contract",
-      "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX": "Owner-approved speed-zero clip in this locomotion contract; preserve as canonical runtime idle",
+      "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10": "Saved Idle state at 0.6 looping, independently reviewed in fresh Morning PIE 2026-10-04; speed-zero uses the same clip and rate",
       "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_UE4Mannequin_To_Melusina": "Retained protected authoring shoulder pose; archive placement is not retirement"
     },
     "retired_denylist": {
+      "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX": "Current clip renders a static T-pose in verified Morning PIE; preserve authoring asset, prohibit runtime reuse",
       "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle": "Explicitly rejected by this contract's speed-zero sample; preserve authoring asset, prohibit canonical runtime reference",
       "/Game/Melodia/Characters/Melusina/Animations/Authored/A_MUAL_Melusina_Idle_Loop": "Rejected runtime idle: measured root height is about 7936 cm off and twist rewrite is about 59 degrees; preserve authoring asset",
       "/Game/Melodia/Characters/Melusina/Animations/_Archive/LegacyRetargets_20261001/SourceRetargeted/A_BL_Source_Idle_Loop__MUAL_TARGET": "Existing animation_import_pipeline/registry.py rejects the static bind-pose MUAL derivative",

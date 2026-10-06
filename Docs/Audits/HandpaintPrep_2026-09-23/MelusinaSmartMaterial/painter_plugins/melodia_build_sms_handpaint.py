@@ -25,15 +25,18 @@ try:
 except Exception:
     spcm = None
 
-SMS_ROOT = r"C:\EnvironmentPortfolio\BS_GodFile\Saved\KimiWork\HandpaintPrep_2026-09-23\MelusinaSmartMaterial"
+SMS_ROOT = r"C:\EnvironmentPortfolio\BS_GodFile\Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial"
 CYMATIC_DIR = os.path.join(SMS_ROOT, "resources", "cymatic")
-SHOWCASE_FBX = (
-    r"C:\EnvironmentPortfolio\BS_GodFile\Saved\KimiWork\HandpaintPrep_2026-09-23"
-    r"\02_ZenLantern\substance\meshes\ZenLantern_V2_Showcase.fbx"
-)
+# Pilot mesh + Mr. Sheep staging target (headless auto-build points here).
+SHOWCASE_FBX = r"C:\EnvironmentPortfolio\BS_GodFile\Content\Melodia\Companions\ChoralSheep\choralsheep.fbx"
 EXPORT_SPSM = os.path.join(SMS_ROOT, "exports", "SMS_Melusina_Handpaint.spsm")
 
 FOLDER_NAME = "SMS_Melusina_Handpaint"
+
+# Mr. Sheep / ChoralSheep notes: vcol_melodia is a ZenLantern attribute, NOT on the sheep.
+# When the asset has no vcol channel, the AO x vcol.R / Curv x vcol.G / vcol.A multiplies
+# cannot be baked headless - they stay TODO-black on that model. Bake a vcol channel first
+# (or author one in Blender/UE) to activate those lanes.
 
 # ZenLantern palette (sRGB 0-1)
 PRIMARY = (0xF5 / 255.0, 0xEC / 255.0, 0xD7 / 255.0)   # paper
@@ -257,6 +260,42 @@ def _add_mask_todo(layer, todo_msg):
     return fill
 
 
+def _find_generator(query):
+    """Best-effort locate a Painter generator resource by query text."""
+    try:
+        hits = spresource.search(query)
+    except Exception as e:
+        log("resource search '%s' failed: %s" % (query, e))
+        return None
+    for r in hits:
+        try:
+            if spresource.Usage.GENERATOR in r.usages():
+                return r
+        except Exception:
+            continue
+    return None
+
+
+def _wire_mask_generator(layer, query, todo_msg):
+    """Insert a Generator effect into the layer's mask and set its source."""
+    try:
+        res = _find_generator(query)
+        if res is None:
+            log("GENERATOR '%s' not found - manual mask wiring required." % query)
+            return False
+        node = splayers.insert_generator_effect(_inside_mask(layer), res.identifier())
+        try:
+            node.set_generator_source(res)
+        except Exception:
+            pass
+        log("MASK GENERATOR WIRED: %s -> %s" % (query, res.name()))
+        return True
+    except Exception as e:
+        log("mask generator insert failed (%s): %s" % (query, e))
+        log("TODO MASK (manual click): %s" % todo_msg)
+        return False
+
+
 def _try_mask_bitmap(mask_fill, res_id, label):
     """Best-effort assign a project bitmap into a mask fill. Fail soft."""
     if mask_fill is None or res_id is None:
@@ -370,6 +409,9 @@ def build_sms(create_project_if_needed=False):
         n03,
         "03_Cavity_Multiply: add Generator Ambient Occlusion (Levels) "
         "MULTIPLY Color-to-mask on vcol_melodia.R (wear/cavity)")
+    _wire_mask_generator(
+        n03, "ambient occlusion",
+        "03_Cavity_Multiply: AO generator wired; still multiply mask by vcol_melodia.R")
     log("03_Cavity_Multiply scaffolded")
 
     # --- 04 DecorationWear
@@ -384,6 +426,9 @@ def build_sms(create_project_if_needed=False):
         n04,
         "04_DecorationWear: Generator Curvature (convex) x Levels x "
         "vcol_melodia.G (decoration density)")
+    _wire_mask_generator(
+        n04, "curvature",
+        "04_DecorationWear: curvature generator wired; still x vcol_melodia.G")
     log("04_DecorationWear scaffolded")
 
     # --- 05 RoughnessClamp (roughness only)
@@ -676,6 +721,9 @@ def build_sms(create_project_if_needed=False):
             n15d,
             "15d_InnerEmber: mask = inverted mesh Ambient Occlusion "
             "(lantern cavities glow warm). Add AO generator + Invert.")
+        _wire_mask_generator(
+            n15d, "ambient occlusion",
+            "15d_InnerEmber: AO generator wired; INVERT it in the UI")
         log("15d_InnerEmber OK (opacity=%.2f, tint=%.2f,%.2f,%.2f)" % (
             INNER_EMBER_OPACITY, INNER_EMBER[0], INNER_EMBER[1], INNER_EMBER[2]))
 

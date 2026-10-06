@@ -113,11 +113,12 @@ void UMelodiaRhythmReactivitySubsystem::Tick(const float DeltaTime)
 	// without a one-shot overlap trigger.
 	Signal.DissonanceAmount = FMath::Clamp(Signal.TensionSustain * 2.0f, 0.0f, 2.0f);
 
-	// Tension ambience duck: the ambience bed pulls back as dread lingers.
-	// Runs every tick (cheap pointer checks + IsNearlyEqual) and BEFORE the
-	// at-rest skip so the fade back to full ambience completes even after
-	// TensionSustain decays below the at-rest epsilon.
-	UpdateTensionAmbienceDuck();
+	// RETIRED 2026-10-05 (audio bus convergence): UMelodiaAudioBusSubsystem is now the
+	// single writer of the SCL_Ambience class override and folds this exact tension duck
+	// (1.0 - TensionSustain*0.5, same fade) into its ambience lane. Two writers on one
+	// surface is the defect class the one-writer canon exists to prevent, so this call is
+	// disabled. REVERT = re-enable the call below (the function and its assets remain).
+	// UpdateTensionAmbienceDuck();
 
 	// Cozy: slow-decaying ambient values. WarmthGlow fades gently, others drift toward zero.
 	Signal.WarmthGlow = FMath::FInterpTo(Signal.WarmthGlow, 0.0f, DeltaTime, 0.8f);

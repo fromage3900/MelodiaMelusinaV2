@@ -3,7 +3,7 @@
   <identifier v="SBS_Melusina_SimpleDiffuse"/>
   <formatVersion v="1.1.0.202202"/>
   <updaterVersion v="1.1.0.202202"/>
-  <fileUID v="{ac7305fd-160b-4aa9-859c-043dadc754a7}"/>
+  <fileUID v="{292a4028-ce11-4d8f-bb6e-ec6aa13a8398}"/>
   <versionUID v="0"/>
   <dependencies>
     <dependency>
@@ -331,8 +331,308 @@
         </defaultWidget>
         <group v="Melusina Lookdev"/>
       </paraminput>      <paraminput>
-        <identifier v="MeshAO"/>
+        <identifier v="GouacheStrokeBreakup"/>
         <uid v="2100000016"/>
+        <attributes>
+          <label v="Gouache Stroke Breakup"/>
+          <description v="Brush-stroke frequency into gouache height (impasto relief)"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.4"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.4"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="GouacheBlur"/>
+        <uid v="2100000017"/>
+        <attributes>
+          <label v="Gouache Blur Softness"/>
+          <description v="Porcelain / soft brushed finish before Normal From Height"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.55"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.55"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="GouacheSharpen"/>
+        <uid v="2100000018"/>
+        <attributes>
+          <label v="Gouache Edge Sharpen"/>
+          <description v="Edge catch for gouache relief normals"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.2"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.2"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="RingDistance"/>
+        <uid v="2100000019"/>
+        <attributes>
+          <label v="Cymatic Ring Distance"/>
+          <description v="Concentric falloff reach from embroidery seeds"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="48.0"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="48.0"/></option>
+            <option><name v="max"/><value v="160.0"/></option>
+            <option><name v="min"/><value v="4.0"/></option>
+            <option><name v="step"/><value v="1.0"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="RingWarp"/>
+        <uid v="2100000020"/>
+        <attributes>
+          <label v="Cymatic Warp"/>
+          <description v="Fracture warp of ring bands"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="12.0"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="12.0"/></option>
+            <option><name v="max"/><value v="32.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.5"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="RingSwirl"/>
+        <uid v="2100000021"/>
+        <attributes>
+          <label v="Cymatic Swirl"/>
+          <description v="Directional stitch swirl of ring bands"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="8.0"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="8.0"/></option>
+            <option><name v="max"/><value v="32.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.5"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="RingAngle"/>
+        <uid v="2100000022"/>
+        <attributes>
+          <label v="Cymatic Swirl Angle"/>
+          <description v="Angle of directional swirl"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="35.0"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="35.0"/></option>
+            <option><name v="max"/><value v="360.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="1.0"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="RingBandTightness"/>
+        <uid v="2100000023"/>
+        <attributes>
+          <label v="Cymatic Ring Band Tightness"/>
+          <description v="Levels mid of ring bands — tighter vs softer moonglow"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.4"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.4"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="HistogramPosition"/>
+        <uid v="2100000024"/>
+        <attributes>
+          <label v="Cymatic Edge Embroidery Scan"/>
+          <description v="Histogram scan position for curvature edge embroidery"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.55"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.55"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="CurvatureEdgeLight"/>
+        <uid v="2100000025"/>
+        <attributes>
+          <label v="Curvature Edge Light"/>
+          <description v="Accent kiss on sharpened curvature edges (wear highlight lane)"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.25"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.25"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="CurvatureEmissive"/>
+        <uid v="2100000026"/>
+        <attributes>
+          <label v="Curvature Edge Emissive"/>
+          <description v="Sparkle / rim emissive carried by curvature edges"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.15"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.15"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="SlopeThreshold"/>
+        <uid v="2100000027"/>
+        <attributes>
+          <label v="Slope Threshold"/>
+          <description v="WorldNormal-Z levels mid for the slope mask"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.5"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.5"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="SlopeBlur"/>
+        <uid v="2100000028"/>
+        <attributes>
+          <label v="Slope Blur Softness"/>
+          <description v="Gouache relief softening on sloped / receding surfaces"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.45"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.45"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="SlopeRoughnessLift"/>
+        <uid v="2100000029"/>
+        <attributes>
+          <label v="Slope Roughness Lift"/>
+          <description v="Fabric / paper reads rougher on slopes (cloth hierarchy)"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.2"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.2"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="EmissiveGlow"/>
+        <uid v="2100000030"/>
+        <attributes>
+          <label v="Emissive Halo Glow"/>
+          <description v="Soft bloom halo around beat / resonance emissive"/>
+        </attributes>
+        <type v="256"/>
+        <defaultValue><constantValueFloat1 v="0.25"/></defaultValue>
+        <defaultWidget>
+          <name v="slider"/>
+          <options>
+            <option><name v="clamp"/><value v="1"/></option>
+            <option><name v="default"/><value v="0.25"/></option>
+            <option><name v="max"/><value v="1.0"/></option>
+            <option><name v="min"/><value v="0.0"/></option>
+            <option><name v="step"/><value v="0.01"/></option>
+          </options>
+        </defaultWidget>
+        <group v="Melusina Lookdev"/>
+      </paraminput>      <paraminput>
+        <identifier v="MeshAO"/>
+        <uid v="2100000031"/>
         <attributes>
           <label v="Mesh AO"/>
         </attributes>
@@ -349,7 +649,7 @@
         <group v="Mesh Maps"/>
       </paraminput>      <paraminput>
         <identifier v="Curvature"/>
-        <uid v="2100000017"/>
+        <uid v="2100000032"/>
         <attributes>
           <label v="Curvature"/>
         </attributes>
@@ -366,7 +666,7 @@
         <group v="Mesh Maps"/>
       </paraminput>      <paraminput>
         <identifier v="WorldNormal"/>
-        <uid v="2100000018"/>
+        <uid v="2100000033"/>
         <attributes>
           <label v="World Normal (optional)"/>
         </attributes>
@@ -383,7 +683,7 @@
         <group v="Mesh Maps"/>
       </paraminput>      <paraminput>
         <identifier v="vcol_melodia"/>
-        <uid v="2100000019"/>
+        <uid v="2100000034"/>
         <attributes>
           <label v="vcol_melodia (RGBA)"/>
         </attributes>
@@ -395,7 +695,7 @@
         <group v="Melodia Vertex Color"/>
       </paraminput>      <paraminput>
         <identifier v="CymaticHeight"/>
-        <uid v="2100000020"/>
+        <uid v="2100000035"/>
         <attributes>
           <label v="Cymatic / FrozenFracture Height"/>
         </attributes>
@@ -412,7 +712,7 @@
         <group v="Cymatic"/>
       </paraminput>      <paraminput>
         <identifier v="CymaticOpacity"/>
-        <uid v="2100000021"/>
+        <uid v="2100000036"/>
         <attributes>
           <label v="Cymatic Opacity / Seed Mask"/>
         </attributes>
@@ -424,7 +724,7 @@
         <group v="Cymatic"/>
       </paraminput>      <paraminput>
         <identifier v="BrushStrokeMap"/>
-        <uid v="2100000022"/>
+        <uid v="2100000037"/>
         <attributes>
           <label v="Brush / Stroke Map (optional)"/>
         </attributes>
@@ -439,7 +739,7 @@
       <graphOutputs>
       <graphoutput>
         <identifier v="BaseColor"/>
-        <uid v="2100000023"/>
+        <uid v="2100000038"/>
         <attributes><label v="Melodia BaseColor"/></attributes>
                 <usages>
           <usage>
@@ -449,7 +749,7 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Normal"/>
-        <uid v="2100000024"/>
+        <uid v="2100000039"/>
         <attributes><label v="Melodia Normal (Gouache)"/></attributes>
                 <usages>
           <usage>
@@ -459,7 +759,7 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Roughness"/>
-        <uid v="2100000025"/>
+        <uid v="2100000040"/>
         <attributes><label v="Melodia Roughness"/></attributes>
                 <usages>
           <usage>
@@ -469,7 +769,7 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Metallic"/>
-        <uid v="2100000026"/>
+        <uid v="2100000041"/>
         <attributes><label v="Melodia Metallic"/></attributes>
                 <usages>
           <usage>
@@ -479,7 +779,7 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Height"/>
-        <uid v="2100000027"/>
+        <uid v="2100000042"/>
         <attributes><label v="Melodia Height"/></attributes>
                 <usages>
           <usage>
@@ -489,7 +789,7 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Emissive"/>
-        <uid v="2100000028"/>
+        <uid v="2100000043"/>
         <attributes><label v="Melodia Emissive"/></attributes>
                 <usages>
           <usage>
@@ -499,7 +799,7 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Opacity"/>
-        <uid v="2100000029"/>
+        <uid v="2100000044"/>
         <attributes><label v="Melodia Opacity"/></attributes>
                 <usages>
           <usage>
@@ -509,39 +809,39 @@
         </usages>
       </graphoutput>      <graphoutput>
         <identifier v="Mask_Wear"/>
-        <uid v="2100000030"/>
+        <uid v="2100000045"/>
         <attributes><label v="Mask Wear (vcol.R)"/></attributes>
         
       </graphoutput>      <graphoutput>
         <identifier v="Mask_Decoration"/>
-        <uid v="2100000031"/>
+        <uid v="2100000046"/>
         <attributes><label v="Mask Decoration (vcol.G)"/></attributes>
         
       </graphoutput>      <graphoutput>
         <identifier v="Mask_Beat"/>
-        <uid v="2100000032"/>
+        <uid v="2100000047"/>
         <attributes><label v="Mask Beat (vcol.B)"/></attributes>
         
       </graphoutput>      <graphoutput>
         <identifier v="Mask_Cymatic"/>
-        <uid v="2100000033"/>
+        <uid v="2100000048"/>
         <attributes><label v="Mask Cymatic"/></attributes>
         
       </graphoutput>      <graphoutput>
         <identifier v="ORM"/>
-        <uid v="2100000034"/>
+        <uid v="2100000049"/>
         <attributes><label v="Optional ORM pack (AO Rough Metal)"/></attributes>
         
       </graphoutput>
       </graphOutputs>
       <compNodes>
       <compNode>
-        <uid v="2100000035"/>
+        <uid v="2100000050"/>
         <GUILayout><gpos v="-1600 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000036"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000051"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000016"/>
+            <entry v="2100000031"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -553,12 +853,12 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000037"/>
+        <uid v="2100000052"/>
         <GUILayout><gpos v="-1600 160 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000038"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000053"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000017"/>
+            <entry v="2100000032"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -570,12 +870,12 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000039"/>
+        <uid v="2100000054"/>
         <GUILayout><gpos v="-1600 320 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000040"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000055"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000018"/>
+            <entry v="2100000033"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -587,12 +887,12 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000041"/>
+        <uid v="2100000056"/>
         <GUILayout><gpos v="-1600 480 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000042"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000057"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000019"/>
+            <entry v="2100000034"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -604,12 +904,12 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000043"/>
+        <uid v="2100000058"/>
         <GUILayout><gpos v="-1600 640 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000044"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000059"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000020"/>
+            <entry v="2100000035"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -621,12 +921,12 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000045"/>
+        <uid v="2100000060"/>
         <GUILayout><gpos v="-1600 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000046"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000061"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000021"/>
+            <entry v="2100000036"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -638,12 +938,12 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000047"/>
+        <uid v="2100000062"/>
         <GUILayout><gpos v="-1600 960 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000048"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000063"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compInputBridge>
-            <entry v="2100000022"/>
+            <entry v="2100000037"/>
             <parameters>
               <parameter><name v="outputsize"/><relativeTo v="1"/><paramValue><constantValueInt2 v="0 0"/></paramValue></parameter>
               <parameter><name v="format"/><relativeTo v="1"/><paramValue><constantValueInt32 v="0"/></paramValue></parameter>
@@ -655,14 +955,14 @@
           </compInputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000049"/>
+        <uid v="2100000064"/>
         <GUILayout><gpos v="-1300 480 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000050"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000065"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000041"/>
-            <connRefOutput v="2100000042"/>
+            <connRef v="2100000056"/>
+            <connRefOutput v="2100000057"/>
           </connection>
         </connections>
         <compImplementation>
@@ -678,14 +978,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000051"/>
+        <uid v="2100000066"/>
         <GUILayout><gpos v="-1300 560 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000052"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000067"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000041"/>
-            <connRefOutput v="2100000042"/>
+            <connRef v="2100000056"/>
+            <connRefOutput v="2100000057"/>
           </connection>
         </connections>
         <compImplementation>
@@ -701,14 +1001,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000053"/>
+        <uid v="2100000068"/>
         <GUILayout><gpos v="-1300 640 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000054"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000069"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000041"/>
-            <connRefOutput v="2100000042"/>
+            <connRef v="2100000056"/>
+            <connRefOutput v="2100000057"/>
           </connection>
         </connections>
         <compImplementation>
@@ -724,14 +1024,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000055"/>
+        <uid v="2100000070"/>
         <GUILayout><gpos v="-1300 720 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000056"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000071"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000041"/>
-            <connRefOutput v="2100000042"/>
+            <connRef v="2100000056"/>
+            <connRefOutput v="2100000057"/>
           </connection>
         </connections>
         <compImplementation>
@@ -747,9 +1047,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000057"/>
+        <uid v="2100000072"/>
         <GUILayout><gpos v="-1000 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000058"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000073"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -758,10 +1058,10 @@
                 <name v="outputcolor"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000059"/>
+                    <rootnode v="2100000074"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000059"/>
+                        <uid v="2100000074"/>
                         <function v="get_float4"/>
                         <type v="2048"/>
                         <funcDatas>
@@ -779,9 +1079,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000060"/>
+        <uid v="2100000075"/>
         <GUILayout><gpos v="-1000 120 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000061"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000076"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -790,10 +1090,10 @@
                 <name v="outputcolor"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000062"/>
+                    <rootnode v="2100000077"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000062"/>
+                        <uid v="2100000077"/>
                         <function v="get_float4"/>
                         <type v="2048"/>
                         <funcDatas>
@@ -811,9 +1111,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000063"/>
+        <uid v="2100000078"/>
         <GUILayout><gpos v="-1000 240 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000064"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000079"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -822,10 +1122,10 @@
                 <name v="outputcolor"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000065"/>
+                    <rootnode v="2100000080"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000065"/>
+                        <uid v="2100000080"/>
                         <function v="get_float4"/>
                         <type v="2048"/>
                         <funcDatas>
@@ -843,9 +1143,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000066"/>
+        <uid v="2100000081"/>
         <GUILayout><gpos v="-1000 360 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000067"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000082"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -854,10 +1154,10 @@
                 <name v="outputcolor"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000068"/>
+                    <rootnode v="2100000083"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000068"/>
+                        <uid v="2100000083"/>
                         <function v="get_float4"/>
                         <type v="2048"/>
                         <funcDatas>
@@ -875,19 +1175,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000069"/>
+        <uid v="2100000084"/>
         <GUILayout><gpos v="-1000 480 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000070"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000085"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000035"/>
-            <connRefOutput v="2100000036"/>
+            <connRef v="2100000050"/>
+            <connRefOutput v="2100000051"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000049"/>
-            <connRefOutput v="2100000050"/>
+            <connRef v="2100000064"/>
+            <connRefOutput v="2100000065"/>
           </connection>
         </connections>
         <compImplementation>
@@ -908,14 +1208,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000071"/>
+        <uid v="2100000086"/>
         <GUILayout><gpos v="-760 480 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000072"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000087"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000069"/>
-            <connRefOutput v="2100000070"/>
+            <connRef v="2100000084"/>
+            <connRefOutput v="2100000085"/>
           </connection>
         </connections>
         <compImplementation>
@@ -937,10 +1237,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000075"/>
+                    <rootnode v="2100000090"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000073"/>
+                        <uid v="2100000088"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -951,21 +1251,21 @@
                         </funcDatas>
                       </paramNode>
                       <paramNode>
-                        <uid v="2100000074"/>
+                        <uid v="2100000089"/>
                         <function v="vector2"/>
                         <type v="512"/>
                         <connections>
-                          <connection><identifier v="componentsin"/><connRef v="2100000073"/></connection>
-                          <connection><identifier v="componentslast"/><connRef v="2100000073"/></connection>
+                          <connection><identifier v="componentsin"/><connRef v="2100000088"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000088"/></connection>
                         </connections>
                       </paramNode>
                       <paramNode>
-                        <uid v="2100000075"/>
+                        <uid v="2100000090"/>
                         <function v="vector4"/>
                         <type v="2048"/>
                         <connections>
-                          <connection><identifier v="componentsin"/><connRef v="2100000074"/></connection>
-                          <connection><identifier v="componentslast"/><connRef v="2100000074"/></connection>
+                          <connection><identifier v="componentsin"/><connRef v="2100000089"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000089"/></connection>
                         </connections>
                       </paramNode>
                     </paramNodes>
@@ -986,19 +1286,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000076"/>
+        <uid v="2100000091"/>
         <GUILayout><gpos v="-1000 640 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000077"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000092"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000037"/>
-            <connRefOutput v="2100000038"/>
+            <connRef v="2100000052"/>
+            <connRefOutput v="2100000053"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000051"/>
-            <connRefOutput v="2100000052"/>
+            <connRef v="2100000066"/>
+            <connRefOutput v="2100000067"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1019,14 +1319,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000078"/>
+        <uid v="2100000093"/>
         <GUILayout><gpos v="-760 640 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000079"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000094"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000076"/>
-            <connRefOutput v="2100000077"/>
+            <connRef v="2100000091"/>
+            <connRefOutput v="2100000092"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1062,14 +1362,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000080"/>
+        <uid v="2100000095"/>
         <GUILayout><gpos v="-520 640 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000081"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000096"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000078"/>
-            <connRefOutput v="2100000079"/>
+            <connRef v="2100000093"/>
+            <connRefOutput v="2100000094"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1079,20 +1379,22 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.35"/></paramValue>
+                <paramValue>
+<constantValueFloat1 v="0.35"/>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000082"/>
+        <uid v="2100000097"/>
         <GUILayout><gpos v="-1000 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000083"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000098"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000053"/>
-            <connRefOutput v="2100000054"/>
+            <connRef v="2100000068"/>
+            <connRefOutput v="2100000069"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1128,14 +1430,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000084"/>
+        <uid v="2100000099"/>
         <GUILayout><gpos v="-1000 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000085"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000100"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000037"/>
-            <connRefOutput v="2100000038"/>
+            <connRef v="2100000052"/>
+            <connRefOutput v="2100000053"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1171,14 +1473,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000086"/>
+        <uid v="2100000101"/>
         <GUILayout><gpos v="-760 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000087"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000102"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000084"/>
-            <connRefOutput v="2100000085"/>
+            <connRef v="2100000099"/>
+            <connRefOutput v="2100000100"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1188,15 +1490,17 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.4"/></paramValue>
+                <paramValue>
+<constantValueFloat1 v="0.4"/>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000088"/>
+        <uid v="2100000103"/>
         <GUILayout><gpos v="-760 980 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000089"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000104"/><comptype v="2"/></compOutput></compOutputs>
         
         <compImplementation>
           <compInstance>
@@ -1206,16 +1510,16 @@
             </parameters>
             <outputBridgings>
               <outputBridging>
-                <uid v="2100000089"/>
+                <uid v="2100000104"/>
                 <identifier v="Few_Gauss"/>
               </outputBridging>
             </outputBridgings>
           </compInstance>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000090"/>
+        <uid v="2100000105"/>
         <GUILayout><gpos v="-520 980 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000091"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000106"/><comptype v="2"/></compOutput></compOutputs>
         
         <compImplementation>
           <compInstance>
@@ -1226,26 +1530,26 @@
             </parameters>
             <outputBridgings>
               <outputBridging>
-                <uid v="2100000091"/>
+                <uid v="2100000106"/>
                 <identifier v="Simple_Shape"/>
               </outputBridging>
             </outputBridgings>
           </compInstance>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000092"/>
+        <uid v="2100000107"/>
         <GUILayout><gpos v="-280 980 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000093"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000108"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000088"/>
-            <connRefOutput v="2100000089"/>
+            <connRef v="2100000103"/>
+            <connRefOutput v="2100000104"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000090"/>
-            <connRefOutput v="2100000091"/>
+            <connRef v="2100000105"/>
+            <connRefOutput v="2100000106"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1266,44 +1570,61 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000094"/>
+        <uid v="2100000110"/>
         <GUILayout><gpos v="-760 1280 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000095"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000111"/><comptype v="2"/></compOutput></compOutputs>
         <connections>          <connection>
             <identifier v="Input_1"/>
-            <connRef v="2100000037"/>
-            <connRefOutput v="2100000038"/>
+            <connRef v="2100000052"/>
+            <connRefOutput v="2100000053"/>
           </connection>
         </connections>
         <compImplementation>
           <compInstance>
             <path v="pkg:///histogram_scan?dependency=1149349207"/>
             <parameters>
-              <parameter><name v="Position"/><relativeTo v="0"/><paramValue><constantValueFloat1 v="0.55"/></paramValue></parameter>
+              <parameter><name v="Position"/><relativeTo v="0"/><paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000109"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000109"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="HistogramPosition"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+</paramValue></parameter>
               <parameter><name v="Contrast"/><relativeTo v="0"/><paramValue><constantValueFloat1 v="0.35"/></paramValue></parameter>
             </parameters>
             <outputBridgings>
               <outputBridging>
-                <uid v="2100000095"/>
+                <uid v="2100000111"/>
                 <identifier v="Output"/>
               </outputBridging>
             </outputBridgings>
           </compInstance>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000096"/>
+        <uid v="2100000112"/>
         <GUILayout><gpos v="-40 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000097"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000113"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000086"/>
-            <connRefOutput v="2100000087"/>
+            <connRef v="2100000101"/>
+            <connRefOutput v="2100000102"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000092"/>
-            <connRefOutput v="2100000093"/>
+            <connRef v="2100000107"/>
+            <connRefOutput v="2100000108"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1324,19 +1645,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000098"/>
+        <uid v="2100000114"/>
         <GUILayout><gpos v="160 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000099"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000115"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000096"/>
-            <connRefOutput v="2100000097"/>
+            <connRef v="2100000112"/>
+            <connRefOutput v="2100000113"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000094"/>
-            <connRefOutput v="2100000095"/>
+            <connRef v="2100000110"/>
+            <connRefOutput v="2100000111"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1357,19 +1678,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000100"/>
+        <uid v="2100000116"/>
         <GUILayout><gpos v="400 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000101"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000117"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="mask"/>
-            <connRef v="2100000098"/>
-            <connRefOutput v="2100000099"/>
+            <connRef v="2100000114"/>
+            <connRefOutput v="2100000115"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000098"/>
-            <connRefOutput v="2100000099"/>
+            <connRef v="2100000114"/>
+            <connRefOutput v="2100000115"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1381,16 +1702,16 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000102"/>
+                    <rootnode v="2100000118"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000102"/>
-                        <function v="const_float1"/>
+                        <uid v="2100000118"/>
+                        <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
                           <funcData>
-                            <name v="const_float1"/>
-                            <constantValue><constantValueFloat1 v="48.0"/></constantValue>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="RingDistance"/></constantValue>
                           </funcData>
                         </funcDatas>
                       </paramNode>
@@ -1407,14 +1728,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000103"/>
+        <uid v="2100000119"/>
         <GUILayout><gpos v="-280 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000104"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000120"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000100"/>
-            <connRefOutput v="2100000101"/>
+            <connRef v="2100000116"/>
+            <connRefOutput v="2100000117"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1434,7 +1755,42 @@
               <parameter>
                 <name v="levelinmid"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat4 v="0.4 0.4 0.4 0.5"/></paramValue>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000123"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000121"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="RingBandTightness"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                      <paramNode>
+                        <uid v="2100000122"/>
+                        <function v="vector2"/>
+                        <type v="512"/>
+                        <connections>
+                          <connection><identifier v="componentsin"/><connRef v="2100000121"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000121"/></connection>
+                        </connections>
+                      </paramNode>
+                      <paramNode>
+                        <uid v="2100000123"/>
+                        <function v="vector4"/>
+                        <type v="2048"/>
+                        <connections>
+                          <connection><identifier v="componentsin"/><connRef v="2100000122"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000122"/></connection>
+                        </connections>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
               </parameter>
               <parameter>
                 <name v="leveloutlow"/>
@@ -1450,19 +1806,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000105"/>
+        <uid v="2100000124"/>
         <GUILayout><gpos v="-40 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000106"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000125"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000103"/>
-            <connRefOutput v="2100000104"/>
+            <connRef v="2100000119"/>
+            <connRefOutput v="2100000120"/>
           </connection>
           <connection>
             <identifier v="inputgradient"/>
-            <connRef v="2100000037"/>
-            <connRefOutput v="2100000038"/>
+            <connRef v="2100000052"/>
+            <connRefOutput v="2100000053"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1472,25 +1828,42 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="12.0"/></paramValue>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000126"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000126"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="RingWarp"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000107"/>
+        <uid v="2100000127"/>
         <GUILayout><gpos v="200 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000108"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000128"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000105"/>
-            <connRefOutput v="2100000106"/>
+            <connRef v="2100000124"/>
+            <connRefOutput v="2100000125"/>
           </connection>
           <connection>
             <identifier v="inputintensity"/>
-            <connRef v="2100000103"/>
-            <connRefOutput v="2100000104"/>
+            <connRef v="2100000119"/>
+            <connRefOutput v="2100000120"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1500,25 +1873,59 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="8.0"/></paramValue>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000129"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000129"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="RingSwirl"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
               </parameter>
               <parameter>
                 <name v="warpangle"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="35.0"/></paramValue>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000130"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000130"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="RingAngle"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000109"/>
+        <uid v="2100000131"/>
         <GUILayout><gpos v="440 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000110"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000132"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000107"/>
-            <connRefOutput v="2100000108"/>
+            <connRef v="2100000127"/>
+            <connRefOutput v="2100000128"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1528,30 +1935,32 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.35"/></paramValue>
+                <paramValue>
+<constantValueFloat1 v="0.35"/>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000111"/>
+        <uid v="2100000133"/>
         <GUILayout><gpos v="680 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000112"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000134"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000109"/>
-            <connRefOutput v="2100000110"/>
+            <connRef v="2100000131"/>
+            <connRefOutput v="2100000132"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000043"/>
-            <connRefOutput v="2100000044"/>
+            <connRef v="2100000058"/>
+            <connRefOutput v="2100000059"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000045"/>
-            <connRefOutput v="2100000046"/>
+            <connRef v="2100000060"/>
+            <connRefOutput v="2100000061"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1572,9 +1981,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000113"/>
+        <uid v="2100000135"/>
         <GUILayout><gpos v="680 1220 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000114"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000136"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -1591,19 +2000,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000115"/>
+        <uid v="2100000137"/>
         <GUILayout><gpos v="920 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000116"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000138"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000113"/>
-            <connRefOutput v="2100000114"/>
+            <connRef v="2100000135"/>
+            <connRefOutput v="2100000136"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000111"/>
-            <connRefOutput v="2100000112"/>
+            <connRef v="2100000133"/>
+            <connRefOutput v="2100000134"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1620,10 +2029,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000117"/>
+                    <rootnode v="2100000139"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000117"/>
+                        <uid v="2100000139"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -1641,19 +2050,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000118"/>
+        <uid v="2100000140"/>
         <GUILayout><gpos v="1160 1100 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000119"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000141"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000115"/>
-            <connRefOutput v="2100000116"/>
+            <connRef v="2100000137"/>
+            <connRefOutput v="2100000138"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000053"/>
-            <connRefOutput v="2100000054"/>
+            <connRef v="2100000068"/>
+            <connRefOutput v="2100000069"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1670,10 +2079,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000120"/>
+                    <rootnode v="2100000142"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000120"/>
+                        <uid v="2100000142"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -1691,19 +2100,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000121"/>
+        <uid v="2100000143"/>
         <GUILayout><gpos v="1160 1220 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000122"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000144"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000115"/>
-            <connRefOutput v="2100000116"/>
+            <connRef v="2100000137"/>
+            <connRefOutput v="2100000138"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000045"/>
-            <connRefOutput v="2100000046"/>
+            <connRef v="2100000060"/>
+            <connRefOutput v="2100000061"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1724,19 +2133,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000123"/>
+        <uid v="2100000145"/>
         <GUILayout><gpos v="1400 1220 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000124"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000146"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000121"/>
-            <connRefOutput v="2100000122"/>
+            <connRef v="2100000143"/>
+            <connRefOutput v="2100000144"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000082"/>
-            <connRefOutput v="2100000083"/>
+            <connRef v="2100000097"/>
+            <connRefOutput v="2100000098"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1757,24 +2166,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000125"/>
+        <uid v="2100000147"/>
         <GUILayout><gpos v="-400 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000126"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000148"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000057"/>
-            <connRefOutput v="2100000058"/>
+            <connRef v="2100000072"/>
+            <connRefOutput v="2100000073"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000066"/>
-            <connRefOutput v="2100000067"/>
+            <connRef v="2100000081"/>
+            <connRefOutput v="2100000082"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000071"/>
-            <connRefOutput v="2100000072"/>
+            <connRef v="2100000086"/>
+            <connRefOutput v="2100000087"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1795,19 +2204,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000127"/>
+        <uid v="2100000149"/>
         <GUILayout><gpos v="-150 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000128"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000150"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000125"/>
-            <connRefOutput v="2100000126"/>
+            <connRef v="2100000147"/>
+            <connRefOutput v="2100000148"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000060"/>
-            <connRefOutput v="2100000061"/>
+            <connRef v="2100000075"/>
+            <connRefOutput v="2100000076"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1828,24 +2237,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000129"/>
+        <uid v="2100000151"/>
         <GUILayout><gpos v="100 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000130"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000152"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000127"/>
-            <connRefOutput v="2100000128"/>
+            <connRef v="2100000149"/>
+            <connRefOutput v="2100000150"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000060"/>
-            <connRefOutput v="2100000061"/>
+            <connRef v="2100000075"/>
+            <connRefOutput v="2100000076"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000080"/>
-            <connRefOutput v="2100000081"/>
+            <connRef v="2100000095"/>
+            <connRefOutput v="2100000096"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1862,10 +2271,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000131"/>
+                    <rootnode v="2100000153"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000131"/>
+                        <uid v="2100000153"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -1883,19 +2292,74 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000132"/>
-        <GUILayout><gpos v="100 160 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000133"/><comptype v="2"/></compOutput></compOutputs>
+        <uid v="2100000154"/>
+        <GUILayout><gpos v="140 80 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000155"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000080"/>
-            <connRefOutput v="2100000081"/>
+            <connRef v="2100000151"/>
+            <connRefOutput v="2100000152"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000115"/>
-            <connRefOutput v="2100000116"/>
+            <connRef v="2100000078"/>
+            <connRefOutput v="2100000079"/>
+          </connection>
+          <connection>
+            <identifier v="opacity"/>
+            <connRef v="2100000095"/>
+            <connRefOutput v="2100000096"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blend"/>
+            <parameters>
+              <parameter>
+                <name v="blendingmode"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueInt32 v="0"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="opacitymult"/>
+                <relativeTo v="0"/>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000156"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000156"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="CurvatureEdgeLight"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000157"/>
+        <GUILayout><gpos v="100 160 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000158"/><comptype v="2"/></compOutput></compOutputs>
+                <connections>
+          <connection>
+            <identifier v="destination"/>
+            <connRef v="2100000095"/>
+            <connRefOutput v="2100000096"/>
+          </connection>
+          <connection>
+            <identifier v="source"/>
+            <connRef v="2100000137"/>
+            <connRefOutput v="2100000138"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1916,24 +2380,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000134"/>
+        <uid v="2100000159"/>
         <GUILayout><gpos v="350 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000135"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000160"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000129"/>
-            <connRefOutput v="2100000130"/>
+            <connRef v="2100000154"/>
+            <connRefOutput v="2100000155"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000063"/>
-            <connRefOutput v="2100000064"/>
+            <connRef v="2100000078"/>
+            <connRefOutput v="2100000079"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000132"/>
-            <connRefOutput v="2100000133"/>
+            <connRef v="2100000157"/>
+            <connRefOutput v="2100000158"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1954,24 +2418,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000136"/>
+        <uid v="2100000161"/>
         <GUILayout><gpos v="600 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000137"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000162"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000134"/>
-            <connRefOutput v="2100000135"/>
+            <connRef v="2100000159"/>
+            <connRefOutput v="2100000160"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000060"/>
-            <connRefOutput v="2100000061"/>
+            <connRef v="2100000075"/>
+            <connRefOutput v="2100000076"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000047"/>
-            <connRefOutput v="2100000048"/>
+            <connRef v="2100000062"/>
+            <connRefOutput v="2100000063"/>
           </connection>
         </connections>
         <compImplementation>
@@ -1988,10 +2452,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000138"/>
+                    <rootnode v="2100000163"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000138"/>
+                        <uid v="2100000163"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -2009,19 +2473,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000139"/>
+        <uid v="2100000164"/>
         <GUILayout><gpos v="850 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000140"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000165"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000136"/>
-            <connRefOutput v="2100000137"/>
+            <connRef v="2100000161"/>
+            <connRefOutput v="2100000162"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000057"/>
-            <connRefOutput v="2100000058"/>
+            <connRef v="2100000072"/>
+            <connRefOutput v="2100000073"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2042,19 +2506,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000141"/>
+        <uid v="2100000166"/>
         <GUILayout><gpos v="1100 0 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000142"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000167"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000139"/>
-            <connRefOutput v="2100000140"/>
+            <connRef v="2100000164"/>
+            <connRefOutput v="2100000165"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000063"/>
-            <connRefOutput v="2100000064"/>
+            <connRef v="2100000078"/>
+            <connRefOutput v="2100000079"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2075,14 +2539,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000143"/>
+        <uid v="2100000168"/>
         <GUILayout><gpos v="-400 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000144"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000169"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000037"/>
-            <connRefOutput v="2100000038"/>
+            <connRef v="2100000052"/>
+            <connRefOutput v="2100000053"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2104,10 +2568,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000147"/>
+                    <rootnode v="2100000172"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000145"/>
+                        <uid v="2100000170"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -2118,21 +2582,21 @@
                         </funcDatas>
                       </paramNode>
                       <paramNode>
-                        <uid v="2100000146"/>
+                        <uid v="2100000171"/>
                         <function v="vector2"/>
                         <type v="512"/>
                         <connections>
-                          <connection><identifier v="componentsin"/><connRef v="2100000145"/></connection>
-                          <connection><identifier v="componentslast"/><connRef v="2100000145"/></connection>
+                          <connection><identifier v="componentsin"/><connRef v="2100000170"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000170"/></connection>
                         </connections>
                       </paramNode>
                       <paramNode>
-                        <uid v="2100000147"/>
+                        <uid v="2100000172"/>
                         <function v="vector4"/>
                         <type v="2048"/>
                         <connections>
-                          <connection><identifier v="componentsin"/><connRef v="2100000146"/></connection>
-                          <connection><identifier v="componentslast"/><connRef v="2100000146"/></connection>
+                          <connection><identifier v="componentsin"/><connRef v="2100000171"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000171"/></connection>
                         </connections>
                       </paramNode>
                     </paramNodes>
@@ -2153,19 +2617,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000148"/>
+        <uid v="2100000173"/>
         <GUILayout><gpos v="-150 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000149"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000174"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000143"/>
-            <connRefOutput v="2100000144"/>
+            <connRef v="2100000168"/>
+            <connRefOutput v="2100000169"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000047"/>
-            <connRefOutput v="2100000048"/>
+            <connRef v="2100000062"/>
+            <connRefOutput v="2100000063"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2182,16 +2646,16 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000150"/>
+                    <rootnode v="2100000175"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000150"/>
+                        <uid v="2100000175"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
                           <funcData>
                             <name v="get_float1"/>
-                            <constantValue><constantValueString v="BrushStrokeIntensity"/></constantValue>
+                            <constantValue><constantValueString v="GouacheStrokeBreakup"/></constantValue>
                           </funcData>
                         </funcDatas>
                       </paramNode>
@@ -2203,19 +2667,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000151"/>
+        <uid v="2100000176"/>
         <GUILayout><gpos v="100 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000152"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000177"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000148"/>
-            <connRefOutput v="2100000149"/>
+            <connRef v="2100000173"/>
+            <connRefOutput v="2100000174"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000115"/>
-            <connRefOutput v="2100000116"/>
+            <connRef v="2100000137"/>
+            <connRefOutput v="2100000138"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2236,14 +2700,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000153"/>
+        <uid v="2100000178"/>
         <GUILayout><gpos v="350 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000154"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000179"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000151"/>
-            <connRefOutput v="2100000152"/>
+            <connRef v="2100000176"/>
+            <connRefOutput v="2100000177"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2253,20 +2717,37 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.55"/></paramValue>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000180"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000180"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="GouacheBlur"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000155"/>
+        <uid v="2100000181"/>
         <GUILayout><gpos v="550 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000156"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000182"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000153"/>
-            <connRefOutput v="2100000154"/>
+            <connRef v="2100000178"/>
+            <connRefOutput v="2100000179"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2276,19 +2757,21 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.25"/></paramValue>
+                <paramValue>
+<constantValueFloat1 v="0.25"/>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000157"/>
+        <uid v="2100000183"/>
         <GUILayout><gpos v="700 720 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000158"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000184"/><comptype v="2"/></compOutput></compOutputs>
         <connections>          <connection>
             <identifier v="Source"/>
-            <connRef v="2100000155"/>
-            <connRefOutput v="2100000156"/>
+            <connRef v="2100000181"/>
+            <connRefOutput v="2100000182"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2299,21 +2782,21 @@
             </parameters>
             <outputBridgings>
               <outputBridging>
-                <uid v="2100000158"/>
+                <uid v="2100000184"/>
                 <identifier v="Blur_HQ"/>
               </outputBridging>
             </outputBridgings>
           </compInstance>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000159"/>
+        <uid v="2100000185"/>
         <GUILayout><gpos v="900 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000160"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000186"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000157"/>
-            <connRefOutput v="2100000158"/>
+            <connRef v="2100000183"/>
+            <connRefOutput v="2100000184"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2323,20 +2806,37 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.2"/></paramValue>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000187"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000187"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="GouacheSharpen"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000161"/>
+        <uid v="2100000188"/>
         <GUILayout><gpos v="1000 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000162"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000189"/><comptype v="1"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000159"/>
-            <connRefOutput v="2100000160"/>
+            <connRef v="2100000185"/>
+            <connRefOutput v="2100000186"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2348,10 +2848,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000163"/>
+                    <rootnode v="2100000190"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000163"/>
+                        <uid v="2100000190"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -2369,19 +2869,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000164"/>
+        <uid v="2100000191"/>
         <GUILayout><gpos v="1250 800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000165"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000192"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000161"/>
-            <connRefOutput v="2100000162"/>
+            <connRef v="2100000188"/>
+            <connRefOutput v="2100000189"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000039"/>
-            <connRefOutput v="2100000040"/>
+            <connRef v="2100000054"/>
+            <connRefOutput v="2100000055"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2402,9 +2902,188 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000166"/>
+        <uid v="2100000193"/>
+        <GUILayout><gpos v="1000 2200 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000194"/><comptype v="2"/></compOutput></compOutputs>
+        <connections>
+          <connection>
+            <identifier v="input1"/>
+            <connRef v="2100000054"/>
+            <connRefOutput v="2100000055"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="grayscaleconversion"/>
+            <parameters>
+              <parameter>
+                <name v="channelsweights"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueFloat4 v="0 0 1 0"/></paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000195"/>
+        <GUILayout><gpos v="1240 2200 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000196"/><comptype v="2"/></compOutput></compOutputs>
+        <connections>
+          <connection>
+            <identifier v="input1"/>
+            <connRef v="2100000193"/>
+            <connRefOutput v="2100000194"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="levels"/>
+            <parameters>
+              <parameter>
+                <name v="levelinlow"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueFloat4 v="0.1 0.1 0.1 0"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="levelinhigh"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueFloat4 v="0.95 0.95 0.95 1"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="levelinmid"/>
+                <relativeTo v="0"/>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000199"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000197"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="SlopeThreshold"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                      <paramNode>
+                        <uid v="2100000198"/>
+                        <function v="vector2"/>
+                        <type v="512"/>
+                        <connections>
+                          <connection><identifier v="componentsin"/><connRef v="2100000197"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000197"/></connection>
+                        </connections>
+                      </paramNode>
+                      <paramNode>
+                        <uid v="2100000199"/>
+                        <function v="vector4"/>
+                        <type v="2048"/>
+                        <connections>
+                          <connection><identifier v="componentsin"/><connRef v="2100000198"/></connection>
+                          <connection><identifier v="componentslast"/><connRef v="2100000198"/></connection>
+                        </connections>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
+              </parameter>
+              <parameter>
+                <name v="leveloutlow"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueFloat4 v="0.0 0.0 0.0 0"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="levelouthigh"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueFloat4 v="1.0 1.0 1.0 1"/></paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000200"/>
+        <GUILayout><gpos v="1480 2200 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000201"/><comptype v="2"/></compOutput></compOutputs>
+        <connections>
+          <connection>
+            <identifier v="input1"/>
+            <connRef v="2100000185"/>
+            <connRefOutput v="2100000186"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blur"/>
+            <parameters>
+              <parameter>
+                <name v="intensity"/>
+                <relativeTo v="0"/>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000202"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000202"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="SlopeBlur"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000203"/>
+        <GUILayout><gpos v="1700 2200 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000204"/><comptype v="2"/></compOutput></compOutputs>
+                <connections>
+          <connection>
+            <identifier v="destination"/>
+            <connRef v="2100000185"/>
+            <connRefOutput v="2100000186"/>
+          </connection>
+          <connection>
+            <identifier v="source"/>
+            <connRef v="2100000200"/>
+            <connRefOutput v="2100000201"/>
+          </connection>
+          <connection>
+            <identifier v="opacity"/>
+            <connRef v="2100000195"/>
+            <connRefOutput v="2100000196"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blend"/>
+            <parameters>
+              <parameter>
+                <name v="blendingmode"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueInt32 v="0"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="opacitymult"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueFloat1 v="1.0"/></paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000205"/>
         <GUILayout><gpos v="-400 1400 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000167"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000206"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2421,9 +3100,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000168"/>
+        <uid v="2100000207"/>
         <GUILayout><gpos v="-400 1480 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000169"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000208"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2440,14 +3119,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000170"/>
+        <uid v="2100000209"/>
         <GUILayout><gpos v="-150 1400 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000171"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000210"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000071"/>
-            <connRefOutput v="2100000072"/>
+            <connRef v="2100000086"/>
+            <connRefOutput v="2100000087"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2483,24 +3162,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000172"/>
+        <uid v="2100000211"/>
         <GUILayout><gpos v="100 1400 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000173"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000212"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000166"/>
-            <connRefOutput v="2100000167"/>
+            <connRef v="2100000205"/>
+            <connRefOutput v="2100000206"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000168"/>
-            <connRefOutput v="2100000169"/>
+            <connRef v="2100000207"/>
+            <connRefOutput v="2100000208"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000170"/>
-            <connRefOutput v="2100000171"/>
+            <connRef v="2100000209"/>
+            <connRefOutput v="2100000210"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2521,14 +3200,14 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000174"/>
+        <uid v="2100000213"/>
         <GUILayout><gpos v="350 1400 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000175"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000214"/><comptype v="2"/></compOutput></compOutputs>
         <connections>
           <connection>
             <identifier v="input1"/>
-            <connRef v="2100000172"/>
-            <connRefOutput v="2100000173"/>
+            <connRef v="2100000211"/>
+            <connRefOutput v="2100000212"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2538,15 +3217,91 @@
               <parameter>
                 <name v="intensity"/>
                 <relativeTo v="0"/>
-                <paramValue><constantValueFloat1 v="0.4"/></paramValue>
+                <paramValue>
+<constantValueFloat1 v="0.4"/>
+                </paramValue>
               </parameter>
             </parameters>
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000176"/>
+        <uid v="2100000215"/>
+        <GUILayout><gpos v="1480 2400 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000216"/><comptype v="2"/></compOutput></compOutputs>
+        <compImplementation>
+          <compFilter>
+            <filter v="uniform"/>
+            <parameters>
+                            <parameter>
+                <name v="colorswitch"/>
+                <paramValue><constantValueBool v="0"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="outputcolor"/>
+                <paramValue><constantValueFloat4 v="0.72 0.72 0.72 1"/></paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000217"/>
+        <GUILayout><gpos v="1700 2400 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000218"/><comptype v="2"/></compOutput></compOutputs>
+                <connections>
+          <connection>
+            <identifier v="destination"/>
+            <connRef v="2100000213"/>
+            <connRefOutput v="2100000214"/>
+          </connection>
+          <connection>
+            <identifier v="source"/>
+            <connRef v="2100000215"/>
+            <connRefOutput v="2100000216"/>
+          </connection>
+          <connection>
+            <identifier v="opacity"/>
+            <connRef v="2100000195"/>
+            <connRefOutput v="2100000196"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blend"/>
+            <parameters>
+              <parameter>
+                <name v="blendingmode"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueInt32 v="0"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="opacitymult"/>
+                <relativeTo v="0"/>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000219"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000219"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="SlopeRoughnessLift"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000220"/>
         <GUILayout><gpos v="-400 1600 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000177"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000221"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2563,9 +3318,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000178"/>
+        <uid v="2100000222"/>
         <GUILayout><gpos v="-400 1680 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000179"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000223"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2582,19 +3337,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000180"/>
+        <uid v="2100000224"/>
         <GUILayout><gpos v="-150 1600 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000181"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000225"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000123"/>
-            <connRefOutput v="2100000124"/>
+            <connRef v="2100000145"/>
+            <connRefOutput v="2100000146"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000080"/>
-            <connRefOutput v="2100000081"/>
+            <connRef v="2100000095"/>
+            <connRefOutput v="2100000096"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2615,24 +3370,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000182"/>
+        <uid v="2100000226"/>
         <GUILayout><gpos v="100 1600 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000183"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000227"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000178"/>
-            <connRefOutput v="2100000179"/>
+            <connRef v="2100000222"/>
+            <connRefOutput v="2100000223"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000176"/>
-            <connRefOutput v="2100000177"/>
+            <connRef v="2100000220"/>
+            <connRefOutput v="2100000221"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000180"/>
-            <connRefOutput v="2100000181"/>
+            <connRef v="2100000224"/>
+            <connRefOutput v="2100000225"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2649,10 +3404,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000184"/>
+                    <rootnode v="2100000228"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000184"/>
+                        <uid v="2100000228"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -2670,19 +3425,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000185"/>
+        <uid v="2100000229"/>
         <GUILayout><gpos v="-400 1800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000186"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000230"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000055"/>
-            <connRefOutput v="2100000056"/>
+            <connRef v="2100000070"/>
+            <connRefOutput v="2100000071"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000118"/>
-            <connRefOutput v="2100000119"/>
+            <connRef v="2100000140"/>
+            <connRefOutput v="2100000141"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2703,19 +3458,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000187"/>
+        <uid v="2100000231"/>
         <GUILayout><gpos v="-150 1800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000188"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000232"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000185"/>
-            <connRefOutput v="2100000186"/>
+            <connRef v="2100000229"/>
+            <connRefOutput v="2100000230"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000082"/>
-            <connRefOutput v="2100000083"/>
+            <connRef v="2100000097"/>
+            <connRefOutput v="2100000098"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2732,10 +3487,10 @@
                 <relativeTo v="0"/>
                 <paramValue>
                   <dynamicValue>
-                    <rootnode v="2100000189"/>
+                    <rootnode v="2100000233"/>
                     <paramNodes>
                       <paramNode>
-                        <uid v="2100000189"/>
+                        <uid v="2100000233"/>
                         <function v="get_float1"/>
                         <type v="256"/>
                         <funcDatas>
@@ -2753,9 +3508,134 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000190"/>
+        <uid v="2100000234"/>
+        <GUILayout><gpos v="-150 1960 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000235"/><comptype v="2"/></compOutput></compOutputs>
+                <connections>
+          <connection>
+            <identifier v="destination"/>
+            <connRef v="2100000231"/>
+            <connRefOutput v="2100000232"/>
+          </connection>
+          <connection>
+            <identifier v="source"/>
+            <connRef v="2100000095"/>
+            <connRefOutput v="2100000096"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blend"/>
+            <parameters>
+              <parameter>
+                <name v="blendingmode"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueInt32 v="1"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="opacitymult"/>
+                <relativeTo v="0"/>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000236"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000236"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="CurvatureEmissive"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000237"/>
+        <GUILayout><gpos v="-150 2100 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000238"/><comptype v="2"/></compOutput></compOutputs>
+        <connections>
+          <connection>
+            <identifier v="input1"/>
+            <connRef v="2100000234"/>
+            <connRefOutput v="2100000235"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blur"/>
+            <parameters>
+              <parameter>
+                <name v="intensity"/>
+                <relativeTo v="0"/>
+                <paramValue>
+<constantValueFloat1 v="0.35"/>
+                </paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000239"/>
+        <GUILayout><gpos v="-150 2100 0"/></GUILayout>
+        <compOutputs><compOutput><uid v="2100000240"/><comptype v="2"/></compOutput></compOutputs>
+                <connections>
+          <connection>
+            <identifier v="destination"/>
+            <connRef v="2100000234"/>
+            <connRefOutput v="2100000235"/>
+          </connection>
+          <connection>
+            <identifier v="source"/>
+            <connRef v="2100000237"/>
+            <connRefOutput v="2100000238"/>
+          </connection>
+        </connections>
+        <compImplementation>
+          <compFilter>
+            <filter v="blend"/>
+            <parameters>
+              <parameter>
+                <name v="blendingmode"/>
+                <relativeTo v="0"/>
+                <paramValue><constantValueInt32 v="1"/></paramValue>
+              </parameter>
+              <parameter>
+                <name v="opacitymult"/>
+                <relativeTo v="0"/>
+                <paramValue>
+                  <dynamicValue>
+                    <rootnode v="2100000241"/>
+                    <paramNodes>
+                      <paramNode>
+                        <uid v="2100000241"/>
+                        <function v="get_float1"/>
+                        <type v="256"/>
+                        <funcDatas>
+                          <funcData>
+                            <name v="get_float1"/>
+                            <constantValue><constantValueString v="EmissiveGlow"/></constantValue>
+                          </funcData>
+                        </funcDatas>
+                      </paramNode>
+                    </paramNodes>
+                  </dynamicValue>
+                </paramValue>
+              </parameter>
+            </parameters>
+          </compFilter>
+        </compImplementation>
+      </compNode>      <compNode>
+        <uid v="2100000242"/>
         <GUILayout><gpos v="-400 1900 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000191"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000243"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2769,24 +3649,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000192"/>
+        <uid v="2100000244"/>
         <GUILayout><gpos v="100 1800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000193"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000245"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000190"/>
-            <connRefOutput v="2100000191"/>
+            <connRef v="2100000242"/>
+            <connRefOutput v="2100000243"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000063"/>
-            <connRefOutput v="2100000064"/>
+            <connRef v="2100000078"/>
+            <connRefOutput v="2100000079"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000187"/>
-            <connRefOutput v="2100000188"/>
+            <connRef v="2100000239"/>
+            <connRefOutput v="2100000240"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2807,19 +3687,19 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000194"/>
+        <uid v="2100000246"/>
         <GUILayout><gpos v="350 1800 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000195"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000247"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000192"/>
-            <connRefOutput v="2100000193"/>
+            <connRef v="2100000244"/>
+            <connRefOutput v="2100000245"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000063"/>
-            <connRefOutput v="2100000064"/>
+            <connRef v="2100000078"/>
+            <connRefOutput v="2100000079"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2840,9 +3720,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000196"/>
+        <uid v="2100000248"/>
         <GUILayout><gpos v="-400 2000 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000197"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000249"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2859,9 +3739,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000198"/>
+        <uid v="2100000250"/>
         <GUILayout><gpos v="-400 2080 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000199"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000251"/><comptype v="2"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2878,24 +3758,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000200"/>
+        <uid v="2100000252"/>
         <GUILayout><gpos v="100 2000 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000201"/><comptype v="2"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000253"/><comptype v="2"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000196"/>
-            <connRefOutput v="2100000197"/>
+            <connRef v="2100000248"/>
+            <connRefOutput v="2100000249"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000198"/>
-            <connRefOutput v="2100000199"/>
+            <connRef v="2100000250"/>
+            <connRefOutput v="2100000251"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000115"/>
-            <connRefOutput v="2100000116"/>
+            <connRef v="2100000137"/>
+            <connRefOutput v="2100000138"/>
           </connection>
         </connections>
         <compImplementation>
@@ -2916,9 +3796,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000202"/>
+        <uid v="2100000254"/>
         <GUILayout><gpos v="600 1400 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000203"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000255"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2932,9 +3812,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000204"/>
+        <uid v="2100000256"/>
         <GUILayout><gpos v="600 1480 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000205"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000257"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2948,9 +3828,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000206"/>
+        <uid v="2100000258"/>
         <GUILayout><gpos v="600 1560 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000207"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000259"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2964,9 +3844,9 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000208"/>
+        <uid v="2100000260"/>
         <GUILayout><gpos v="600 1320 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000209"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000261"/><comptype v="1"/></compOutput></compOutputs>
         <compImplementation>
           <compFilter>
             <filter v="uniform"/>
@@ -2980,24 +3860,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000210"/>
+        <uid v="2100000262"/>
         <GUILayout><gpos v="850 1320 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000211"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000263"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000208"/>
-            <connRefOutput v="2100000209"/>
+            <connRef v="2100000260"/>
+            <connRefOutput v="2100000261"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000202"/>
-            <connRefOutput v="2100000203"/>
+            <connRef v="2100000254"/>
+            <connRefOutput v="2100000255"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000035"/>
-            <connRefOutput v="2100000036"/>
+            <connRef v="2100000050"/>
+            <connRefOutput v="2100000051"/>
           </connection>
         </connections>
         <compImplementation>
@@ -3018,24 +3898,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000212"/>
+        <uid v="2100000264"/>
         <GUILayout><gpos v="1100 1320 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000213"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000265"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000210"/>
-            <connRefOutput v="2100000211"/>
+            <connRef v="2100000262"/>
+            <connRefOutput v="2100000263"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000204"/>
-            <connRefOutput v="2100000205"/>
+            <connRef v="2100000256"/>
+            <connRefOutput v="2100000257"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000174"/>
-            <connRefOutput v="2100000175"/>
+            <connRef v="2100000217"/>
+            <connRefOutput v="2100000218"/>
           </connection>
         </connections>
         <compImplementation>
@@ -3056,24 +3936,24 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000214"/>
+        <uid v="2100000266"/>
         <GUILayout><gpos v="1350 1320 0"/></GUILayout>
-        <compOutputs><compOutput><uid v="2100000215"/><comptype v="1"/></compOutput></compOutputs>
+        <compOutputs><compOutput><uid v="2100000267"/><comptype v="1"/></compOutput></compOutputs>
                 <connections>
           <connection>
             <identifier v="destination"/>
-            <connRef v="2100000212"/>
-            <connRefOutput v="2100000213"/>
+            <connRef v="2100000264"/>
+            <connRefOutput v="2100000265"/>
           </connection>
           <connection>
             <identifier v="source"/>
-            <connRef v="2100000206"/>
-            <connRefOutput v="2100000207"/>
+            <connRef v="2100000258"/>
+            <connRefOutput v="2100000259"/>
           </connection>
           <connection>
             <identifier v="opacity"/>
-            <connRef v="2100000182"/>
-            <connRefOutput v="2100000183"/>
+            <connRef v="2100000226"/>
+            <connRefOutput v="2100000227"/>
           </connection>
         </connections>
         <compImplementation>
@@ -3094,160 +3974,160 @@
           </compFilter>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000216"/>
+        <uid v="2100000268"/>
         <GUILayout><gpos v="1700 0 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000141"/>
-            <connRefOutput v="2100000142"/>
+            <connRef v="2100000166"/>
+            <connRefOutput v="2100000167"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000023"/></compOutputBridge>
+          <compOutputBridge><output v="2100000038"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000217"/>
+        <uid v="2100000269"/>
         <GUILayout><gpos v="1700 160 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000164"/>
-            <connRefOutput v="2100000165"/>
+            <connRef v="2100000191"/>
+            <connRefOutput v="2100000192"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000024"/></compOutputBridge>
+          <compOutputBridge><output v="2100000039"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000218"/>
+        <uid v="2100000270"/>
         <GUILayout><gpos v="1700 320 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000174"/>
-            <connRefOutput v="2100000175"/>
+            <connRef v="2100000217"/>
+            <connRefOutput v="2100000218"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000025"/></compOutputBridge>
+          <compOutputBridge><output v="2100000040"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000219"/>
+        <uid v="2100000271"/>
         <GUILayout><gpos v="1700 480 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000182"/>
-            <connRefOutput v="2100000183"/>
+            <connRef v="2100000226"/>
+            <connRefOutput v="2100000227"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000026"/></compOutputBridge>
+          <compOutputBridge><output v="2100000041"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000220"/>
+        <uid v="2100000272"/>
         <GUILayout><gpos v="1700 640 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000159"/>
-            <connRefOutput v="2100000160"/>
+            <connRef v="2100000203"/>
+            <connRefOutput v="2100000204"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000027"/></compOutputBridge>
+          <compOutputBridge><output v="2100000042"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000221"/>
+        <uid v="2100000273"/>
         <GUILayout><gpos v="1700 800 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000194"/>
-            <connRefOutput v="2100000195"/>
+            <connRef v="2100000246"/>
+            <connRefOutput v="2100000247"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000028"/></compOutputBridge>
+          <compOutputBridge><output v="2100000043"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000222"/>
+        <uid v="2100000274"/>
         <GUILayout><gpos v="1700 960 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000200"/>
-            <connRefOutput v="2100000201"/>
+            <connRef v="2100000252"/>
+            <connRefOutput v="2100000253"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000029"/></compOutputBridge>
+          <compOutputBridge><output v="2100000044"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000223"/>
+        <uid v="2100000275"/>
         <GUILayout><gpos v="1700 1120 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000071"/>
-            <connRefOutput v="2100000072"/>
+            <connRef v="2100000086"/>
+            <connRefOutput v="2100000087"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000030"/></compOutputBridge>
+          <compOutputBridge><output v="2100000045"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000224"/>
+        <uid v="2100000276"/>
         <GUILayout><gpos v="1700 1280 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000080"/>
-            <connRefOutput v="2100000081"/>
+            <connRef v="2100000095"/>
+            <connRefOutput v="2100000096"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000031"/></compOutputBridge>
+          <compOutputBridge><output v="2100000046"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000225"/>
+        <uid v="2100000277"/>
         <GUILayout><gpos v="1700 1440 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000082"/>
-            <connRefOutput v="2100000083"/>
+            <connRef v="2100000097"/>
+            <connRefOutput v="2100000098"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000032"/></compOutputBridge>
+          <compOutputBridge><output v="2100000047"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000226"/>
+        <uid v="2100000278"/>
         <GUILayout><gpos v="1700 1600 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000123"/>
-            <connRefOutput v="2100000124"/>
+            <connRef v="2100000145"/>
+            <connRefOutput v="2100000146"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000033"/></compOutputBridge>
+          <compOutputBridge><output v="2100000048"/></compOutputBridge>
         </compImplementation>
       </compNode>      <compNode>
-        <uid v="2100000227"/>
+        <uid v="2100000279"/>
         <GUILayout><gpos v="1700 1760 0"/></GUILayout>
         <connections>
           <connection>
             <identifier v="inputNodeOutput"/>
-            <connRef v="2100000214"/>
-            <connRefOutput v="2100000215"/>
+            <connRef v="2100000266"/>
+            <connRefOutput v="2100000267"/>
           </connection>
         </connections>
         <compImplementation>
-          <compOutputBridge><output v="2100000034"/></compOutputBridge>
+          <compOutputBridge><output v="2100000049"/></compOutputBridge>
         </compImplementation>
       </compNode>
       </compNodes>
@@ -3257,18 +4137,18 @@
       </options>
       <root>
         <rootOutputs>
-        <rootOutput><output v="2100000023"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000024"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000025"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000026"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000027"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000028"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000029"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000030"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000031"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000032"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000033"/><format v="0"/><usertag v=""/></rootOutput>
-        <rootOutput><output v="2100000034"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000038"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000039"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000040"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000041"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000042"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000043"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000044"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000045"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000046"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000047"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000048"/><format v="0"/><usertag v=""/></rootOutput>
+        <rootOutput><output v="2100000049"/><format v="0"/><usertag v=""/></rootOutput>
         </rootOutputs>
       </root>
     </graph>
