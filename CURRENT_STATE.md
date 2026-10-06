@@ -39,6 +39,9 @@ The existing `MelusinaLocomotion` graph had disconnected Idle→Locomotion, Loco
 
 **On a blocker:** retain the last proven configuration, record the actual runtime reference chain and failed gate here, and distinguish source/editor/PIE/restart/package evidence. Do not rebake retargets blindly, add a parallel solver, bulk-save, or absorb other lane changes.
 
+### Copernicus wool family baked — 2026-10-06 eve
+`copernicus_wool_variants.py` headless: 5 variants (knit/cable/tweed/felt/bouclé) × 4 maps (BaseColor/Normal/ORM/Height) at 2K, seed-locked, all 20 verify ok=True → `Saved/GeneratedTextures/Copernicus/` + manifest. Eyes on: cable reads as clean honey-amber twist columns; bouclé as even ecru nubs (its seam metric runs higher — prefer felt/cable on large surfaces). Skipped honestly: fabric-sheen (12 suite sources absent on disk), full dress AO (Labs/OIDN too slow for the window).
+
 ### Shorewake dresses attached to the doctor — 2026-10-06 eve
 Reef dress is body-scale cm-native (183k pts); magical + chaos proxy share a 100× frame (÷100 on UE import, sources untouched). `shorewake_dress` universal_rig profile (bodice/skirt/hem regions) ran clean; headline finding: **dress is fashion-asymmetric (mean 11.6mm, max 108mm) — UE must NOT mirror weights on bind**, recorded as law in the rig manifest. Doctor `wardrobe` family gained `dress_rig` (PASS) + `dress_intake` (HOLD: AntiqueDoll/ButterflyWing manifests valid but staged meshes absent, source path stale `C:`). Verdict **23/25 PASS, 0 FAIL** (`doctor_report_20261006_dress.json`).
 Turntable verified 8/8 clean: `turntable/dress_contact.png` (pearl laced bodice, aqua skirt, gold hem from all sides; profiles show the flare silhouette). Laws: reef dress winding uniformly inverted (flip on UE import); magical/chaos ÷100 scale; no mirror weights. Minor: one possible loose hem fragment at 315° — verify on UE import.
