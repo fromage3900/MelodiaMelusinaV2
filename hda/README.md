@@ -21,7 +21,7 @@ receipts `Saved/Audit/hda_verify/v3_closeout_20261006/`.
 | `Content/HDA/ArpeggioStair_1.0.hda` | mirror, byte-identical → feeds `Content/HDA/ArpeggioStair_1_0.uasset` (uasset stale until reimported) | — |
 | `hda/HDA_Melodia_CrystalCathedral_1.0.hda` | ACTIVE (32,034 B, sha `b9c09beb…`, 14 parms on type) | `OUT_Cathedral` 9278/8641 · `OUT_Rose` 1032/288 · `OUT_Collision` 1682/1608 |
 | `hda/CrystalCathedralV3.hda` | ACTIVE (38,254 B, sha `35bc95ee…`, 18 parms on type) — V1 cathedral + V2 corridor, built via `Saved/HDA_build/` + copy so rebuilds never touch `hda/backup/` | cathedral pins identical to V1 · `OUT_Corridor` 1/1 fog volume · LOD tiers [14, 8, 5] |
-| `hda/backup/*.hda` (9 files) | **STUBS** — no `Contents.gz`, 866–1,002 B | cannot be cooked; they are shells, **do not restore from them** |
+| `hda/backup/*.hda` | **empty since 2026-10-06** — the nine original stubs (866–1,002 B, no `Contents.gz`, unrestorable) were deleted by owner decision; rebuilds write to `Saved/HDA_build/`, never here | Gate 0 still globs this directory: any file that appears in it is checked as a stub |
 | `hda/SpaceTraversal_OrbitalRings_1.0.hda`, `hda/CorridorNetwork_1_0.hda`, `hda/CrystalCathedralV2.hda`, `hda/HDA_Foundry_FieldAtlas_1.0.hda` | OWED — builders/recipes exist, files never written (V2 superseded by V3, kept as provenance) | reported as WARN by the gate |
 | `Plugins/HoudiniEngine/Content/**` (15) | VENDOR examples/tools | counted only |
 
