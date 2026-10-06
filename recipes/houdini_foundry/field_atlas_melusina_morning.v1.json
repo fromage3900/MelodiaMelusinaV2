@@ -8,6 +8,7 @@
   "source": {
     "kind": "hda",
     "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+    "exists_on_main": false,
     "extends": "Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py"
   },
   "params": {

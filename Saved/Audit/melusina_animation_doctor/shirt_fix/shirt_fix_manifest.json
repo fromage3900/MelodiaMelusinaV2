@@ -1,0 +1,36 @@
+{
+  "schema": "melodia.shirt_weight_fix.v1",
+  "status": "STAGING_ONLY_NOT_APPLIED",
+  "weight_fix": {
+    "leg_bound_verts_before": 234,
+    "verts_remapped": 234,
+    "leg_bound_verts_after": 0,
+    "max_influences_after": 4,
+    "renorm_violations": 0
+  },
+  "clearance_cm": {
+    "samples": 861,
+    "min": 0.5205,
+    "q05": 1.1642,
+    "median": 3.5098,
+    "within_0.5cm": 0,
+    "within_2cm": 167
+  },
+  "oct3_reference": {
+    "min": 0.002,
+    "q05": 0.402,
+    "median": 2.891,
+    "within_0.5cm": 57,
+    "within_2cm": 292
+  },
+  "outputs": {
+    "fixed_bgeo": "Saved/Audit/melusina_animation_doctor/shirt_fix/shirt_skinfix_v1.bgeo",
+    "delta_json": "Saved/Audit/melusina_animation_doctor/shirt_fix/shirt_weight_fix_v1.json"
+  },
+  "winding": {
+    "inward_prims": 1163,
+    "outward": 32,
+    "skipped_sleeves": 291,
+    "note": "mixed winding staged as g_inward; UE import must recalc-outside or use double-sided"
+  }
+}

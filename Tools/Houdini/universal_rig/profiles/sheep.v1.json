@@ -1,0 +1,1 @@
+{"character": "sheep", "garments": [], "kawaii_chains": [{"chain": "wool", "purpose": "companion settle pass", "root": "wool_master"}], "meshes": {"body": "Content/Melodia/Companions/ChoralSheep/choralsheep.fbx"}, "regions": [{"name": "full", "purpose": "fast-loop QA for every pipeline change", "y_frac": [0.0, 1.0]}]}

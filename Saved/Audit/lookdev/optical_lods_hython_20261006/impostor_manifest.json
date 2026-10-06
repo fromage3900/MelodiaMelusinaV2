@@ -1,0 +1,23 @@
+{
+  "mesh": "SM_FarawayMother_FabricRidge",
+  "output_dir": "Saved/Audit/lookdev/optical_lods_hython_20261006",
+  "lod_spec": {
+    "distance": "200-5000m",
+    "pom": 0,
+    "toksvig": 1.0,
+    "rim": 1.8,
+    "wpo": 0.0,
+    "res": 128
+  },
+  "channels": [
+    "BaseColor",
+    "Normal",
+    "ORM",
+    "Height"
+  ],
+  "resolution": 128,
+  "toksvig": 1.0,
+  "rim_boost": 1.8,
+  "status": "staged",
+  "note": "Houdini-side template. Cook via Hython to generate actual textures."
+}
