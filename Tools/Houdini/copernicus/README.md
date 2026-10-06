@@ -44,6 +44,7 @@ Owner FBX/USDZ (outside repo, hashed)
 | `copernicus_terrain_height_to_nanite.py` | Heightmap → Nanite mesh HDA generator (Gaea/World Machine → mesh, replaces Landscape) |
 | `copernicus_fabric_sheen.py` | Velvet/silk sheen mask COP (Sheen for `T_FarawayMother_Gown/Mantle`) |
 | `copernicus_film_tilables.py` | 2K tileable film preset surfaces + ORM (BaseColor/Normal/ORM/Height) for film-304-toon-spine. Pure numpy+PIL like the cymatic lane: COP rop writes are Apprentice-capped at 1920x1080 on this machine, so >=2048 uses the numpy path; seed 20260828, self-verifying (magic/size/seam) + manifest |
+| `copernicus_wool_variants.py` | 5 tileable wool fabric variants (Knit/Cable/Tweed/Felt/Boucle), 2K, same numpy+PIL path + seed 20260828 + self-verify; imports helpers from `copernicus_film_tilables`, outputs to `Saved/GeneratedTextures/Copernicus/` + manifest |
 
 ## Quick start (deterministic)
 
