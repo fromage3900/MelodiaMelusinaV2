@@ -1,0 +1,105 @@
+{
+  "schema": "melodia.hda_verify_report.v1",
+  "gate": 2,
+  "generated": "2026-10-06T14:23:42",
+  "houdini_version": "22.0.368",
+  "license": "licenseCategoryType.Education",
+  "project_root": "D:\\EnvironmentPortfolio\\BS_GodFile",
+  "registry": "D:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\hda_verify\\hda_registry.v1.json",
+  "counts": {
+    "PASS": 0,
+    "WARN": 4,
+    "FAIL": 2
+  },
+  "entries": [
+    {
+      "id": "arpeggio_stair",
+      "status": "active",
+      "path": "hda/ArpeggioStair_1.0.hda",
+      "result": "FAIL",
+      "checks": [
+        {
+          "name": "verify_entry",
+          "ok": false,
+          "detail": "AttributeError: 'HDADefinition' object has no attribute 'isDisabled'"
+        }
+      ],
+      "wall_seconds": 0.021
+    },
+    {
+      "id": "melodia_crystal_cathedral",
+      "status": "active",
+      "path": "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "result": "FAIL",
+      "checks": [
+        {
+          "name": "verify_entry",
+          "ok": false,
+          "detail": "AttributeError: 'HDADefinition' object has no attribute 'isDisabled'"
+        }
+      ],
+      "wall_seconds": 0.003
+    },
+    {
+      "id": "space_orbital_rings",
+      "status": "missing",
+      "path": "hda/SpaceTraversal_OrbitalRings_1.0.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/SpaceTraversal_OrbitalRings_1.0.hda (builder: Content/Python/create_hda_space_orbital_rings.py)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    },
+    {
+      "id": "corridor_network",
+      "status": "missing",
+      "path": "hda/CorridorNetwork_1_0.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CorridorNetwork_1_0.hda (builder: Tools/Houdini/corridors/build_corridor_network_hda.py)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    },
+    {
+      "id": "crystal_cathedral_v2",
+      "status": "missing",
+      "path": "hda/CrystalCathedralV2.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CrystalCathedralV2.hda (builder: Tools/Houdini/cathedral/build_crystal_cathedral_v2_hda.py)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    },
+    {
+      "id": "foundry_field_atlas",
+      "status": "missing",
+      "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/HDA_Foundry_FieldAtlas_1.0.hda (builder: none)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    }
+  ],
+  "overall": "FAIL"
+}

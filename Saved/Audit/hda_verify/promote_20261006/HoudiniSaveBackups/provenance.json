@@ -1,0 +1,42 @@
+﻿{
+    "moved_at":  "2026-10-06T15:34:48",
+    "moved":  [
+                  {
+                      "name":  "ArpeggioStair_1.0_bak2.hda",
+                      "bytes":  866,
+                      "sha256":  "fe9450c41edced5fa3097cc30c01390ccae2cd918d41849be5bc5396670cfdb7",
+                      "written":  "2026-10-06T14:51:10"
+                  },
+                  {
+                      "name":  "ArpeggioStair_1.0_bak3.hda",
+                      "bytes":  17653,
+                      "sha256":  "63d68e837aa25f8556da07ea67dcb041a9424284b4a7acc3a4ffffd6e3273253",
+                      "written":  "2026-10-06T14:51:10"
+                  },
+                  {
+                      "name":  "ArpeggioStair_1.0_bak4.hda",
+                      "bytes":  24644,
+                      "sha256":  "2c42c43a912caeebae227e7cd0036d6f1b7da9833a0484b99dd152fb075ed49f",
+                      "written":  "2026-10-06T14:51:10"
+                  },
+                  {
+                      "name":  "HDA_Melodia_CrystalCathedral_1.0_bak10.hda",
+                      "bytes":  24269,
+                      "sha256":  "447a50fe3391fe3d9b662dff61899b0f86cd1999dd5af30030a2710db41f8611",
+                      "written":  "2026-10-06T14:51:45"
+                  },
+                  {
+                      "name":  "HDA_Melodia_CrystalCathedral_1.0_bak11.hda",
+                      "bytes":  32034,
+                      "sha256":  "b9c09beb9561aa2f80133fd70132d29e85987b57fe1faf170ed8f2b2118c0e11",
+                      "written":  "2026-10-06T14:51:45"
+                  },
+                  {
+                      "name":  "HDA_Melodia_CrystalCathedral_1.0_bak9.hda",
+                      "bytes":  1002,
+                      "sha256":  "adb8f0afd779a3418c3b27107b517b8d25e27b8dd02e3da77e07a6d1d768d36b",
+                      "written":  "2026-10-06T14:51:45"
+                  }
+              ],
+    "reason":  "Rebuild-session artifacts: Houdini\u0027s HDA-save wrote backup copies of hda/ArpeggioStair_1.0.hda and hda/HDA_Melodia_CrystalCathedral_1.0.hda into hda/backup/ during the 2026-10-06 controls-promotion rebuilds (14:51). Four held Contents.gz networks and failed Gate 0\u0027s empty-stub contract. Relocated (not deleted) so hda/backup/ again holds only the original empty stubs. Future v3 rebuilds build via Saved/HDA_build/ and cannot recreate these."
+}

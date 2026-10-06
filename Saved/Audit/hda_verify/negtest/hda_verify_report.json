@@ -1,0 +1,120 @@
+{
+  "schema": "melodia.hda_verify_report.v1",
+  "gate": 2,
+  "generated": "2026-10-06T14:29:47",
+  "houdini_version": "22.0.368",
+  "license": "licenseCategoryType.Education",
+  "project_root": "D:\\EnvironmentPortfolio\\BS_GodFile",
+  "registry": "C:\\Users\\N01358~1\\AppData\\Local\\Temp\\reg_broken_hda.json",
+  "counts": {
+    "PASS": 0,
+    "WARN": 0,
+    "FAIL": 1
+  },
+  "entries": [
+    {
+      "id": "arpeggio_stair",
+      "status": "active",
+      "path": "hda/ArpeggioStair_1.0.hda",
+      "node_type": "ArpeggioStair",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "8096 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "ArpeggioStair (ArpeggioStair musical stair (BS_GodFile))"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "ArpeggioStair"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=spareParms; missing=[]; required=[]"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": false,
+          "detail": "0 parameter(s) on the HDA type - controls live on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:output0",
+          "ok": false,
+          "detail": "points 512 != 999999"
+        },
+        {
+          "name": "node_errors",
+          "ok": true,
+          "detail": "0 error(s): []"
+        }
+      ],
+      "result": "FAIL",
+      "definition": {
+        "node_type": "ArpeggioStair",
+        "description": "ArpeggioStair musical stair (BS_GodFile)",
+        "disabled": false
+      },
+      "parms": {
+        "source": "spareParms",
+        "names": [],
+        "count": 0
+      },
+      "network": [
+        {
+          "path": "grid_steps_lanes",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "controls",
+          "type": "Sop/null"
+        },
+        {
+          "path": "assign_musical",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "assign_musical/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "pad_box",
+          "type": "Sop/box"
+        },
+        {
+          "path": "copy_pads",
+          "type": "Sop/copytopoints::2.0"
+        },
+        {
+          "path": "output0",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 0.099,
+        "outputs": {
+          "output0": {
+            "node": "output0",
+            "points": 512,
+            "prims": 384,
+            "bbox": [
+              11.0,
+              1.0,
+              10.16
+            ]
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "wall_seconds": 0.137
+    }
+  ],
+  "overall": "FAIL"
+}

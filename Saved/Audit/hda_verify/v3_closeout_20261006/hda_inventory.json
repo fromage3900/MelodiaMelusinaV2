@@ -1,0 +1,626 @@
+{
+  "schema": "melodia.hda_audit_report.v1",
+  "gate": 0,
+  "generated": "2026-10-06T15:49:15",
+  "project_root": "D:\\EnvironmentPortfolio\\BS_GodFile",
+  "registry": "Tools/Houdini/hda_verify/hda_registry.v1.json",
+  "counts": {
+    "PASS": 12,
+    "WARN": 4,
+    "FAIL": 0
+  },
+  "entries": [
+    {
+      "id": "arpeggio_stair",
+      "status": "active",
+      "path": "hda/ArpeggioStair_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "24644 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "100281 bytes of network, 1 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='ArpeggioStair musical stair (BS_GodFile)' file='ArpeggioStair musical stair (BS_GodFile)'"
+        },
+        {
+          "name": "mirror_identical",
+          "ok": true,
+          "detail": "Content/HDA/ArpeggioStair_1.0.hda"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 24644,
+        "sha256": "2c42c43a912caeebae227e7cd0036d6f1b7da9833a0484b99dd152fb075ed49f",
+        "label": "ArpeggioStair musical stair (BS_GodFile)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 100281,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "melodia_crystal_cathedral",
+      "status": "active",
+      "path": "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "32034 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "136938 bytes of network, 1 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='Melodia 6-bay Harmony crystal cathedral (Gate 2)' file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 32034,
+        "sha256": "b9c09beb9561aa2f80133fd70132d29e85987b57fe1faf170ed8f2b2118c0e11",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 136938,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "space_orbital_rings",
+      "status": "missing",
+      "path": "hda/SpaceTraversal_OrbitalRings_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/SpaceTraversal_OrbitalRings_1.0.hda does not exist (builder: Content/Python/create_hda_space_orbital_rings.py)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "corridor_network",
+      "status": "missing",
+      "path": "hda/CorridorNetwork_1_0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CorridorNetwork_1_0.hda does not exist (builder: Tools/Houdini/corridors/build_corridor_network_hda.py)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "crystal_cathedral_v2",
+      "status": "missing",
+      "path": "hda/CrystalCathedralV2.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CrystalCathedralV2.hda does not exist (builder: Tools/Houdini/cathedral/build_crystal_cathedral_v2_hda.py)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "crystal_cathedral_v3",
+      "status": "active",
+      "path": "hda/CrystalCathedralV3.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "38254 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "189083 bytes of network, 9 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog' file='Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog'"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 38254,
+        "sha256": "35bc95ee8df05c961dcaf97382a81ff9ff8f9fd0d990081dda26709da5c7a00e",
+        "label": "Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 189083,
+        "fallback_ops": [
+          "addconst",
+          "attribwrangle",
+          "floattovec",
+          "inttofloat",
+          "inttovec",
+          "length",
+          "mulconst",
+          "volumevopglobal",
+          "volumevopoutput"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "foundry_field_atlas",
+      "status": "missing",
+      "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/HDA_Foundry_FieldAtlas_1.0.hda does not exist (builder: none)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "stub:hda/backup/ArpeggioStair_1.0_bak1.hda",
+      "status": "stub",
+      "path": "hda/backup/ArpeggioStair_1.0_bak1.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "866 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='ArpeggioStair musical stair (BS_GodFile)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 866,
+        "sha256": "bb569e6ea8b03c5405d3ae6b7fda0ec6675d84415dcb2f419b3504c105efcf47",
+        "label": "ArpeggioStair musical stair (BS_GodFile)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak1.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak1.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "7bfc342db7e4035c0aed8996e8da01a8b802d4ea990815a41d0debd12e46e50b",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak2.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak2.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "29f4217e211b8c3018e3d014ff5231038c2ac5035388aaf81d90a4a3e92cf6cc",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak3.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak3.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "72506e8419a1413815e16a27ae33b4c96309282ebf0555f4e9d2172f30bd3fbc",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak4.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak4.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "fc1fbb55193ae6a840c57080b5bebdebbd3709260b92b56125efd1b2dbe47972",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak5.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak5.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "ba2d70a4e80a3ec5917d5ceb11ccc178575e8fc59b5dc093d3b0f63f38882b63",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak6.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak6.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "a1d33bbdac8e95082302743eaf7a410ee7a8086f2e1b93d70f17f61d0f8cb036",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak7.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak7.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "f32f6a3339441cf002b9fbb4d6cb22331dc830c51f59af716622bb7934e36fb2",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak8.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak8.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "1002 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 1002,
+        "sha256": "ae41f6028c75a63002f6ea85757bb4e69e2d86cfca71462b6fdfbb3ff3e009fa",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    }
+  ],
+  "scan": {
+    "project_hda_files": [
+      "hda/ArpeggioStair_1.0.hda",
+      "hda/backup/ArpeggioStair_1.0_bak1.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak1.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak2.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak3.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak4.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak5.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak6.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak7.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak8.hda",
+      "hda/CrystalCathedralV3.hda",
+      "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "Content/HDA/ArpeggioStair_1.0.hda"
+    ],
+    "unregistered": [],
+    "vendor_hda_files": 15,
+    "stub_files": [
+      "hda/backup/ArpeggioStair_1.0_bak1.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak1.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak2.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak3.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak4.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak5.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak6.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak7.hda",
+      "hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak8.hda"
+    ]
+  },
+  "overall": "WARN"
+}

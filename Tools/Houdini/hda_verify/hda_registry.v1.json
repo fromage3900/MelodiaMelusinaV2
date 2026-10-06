@@ -1,0 +1,120 @@
+{
+  "schema": "melodia.hda_registry.v1",
+  "updated": "2026-10-06",
+  "authority": "Single source of truth for every project HDA. Adding a HDA = adding one entry here; both gates read only this file.",
+  "hython": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe",
+  "scan_roots": ["hda", "Content/HDA"],
+  "globs": {
+    "stub": ["hda/backup/*.hda"],
+    "vendor": ["Plugins/HoudiniEngine/Content"]
+  },
+  "entries": [
+    {
+      "id": "arpeggio_stair",
+      "status": "active",
+      "path": "hda/ArpeggioStair_1.0.hda",
+      "node_type": "ArpeggioStair",
+      "context": "Object",
+      "label": "ArpeggioStair musical stair (BS_GodFile)",
+      "builder": "Content/Python/create_hda_arpeggio_stair.py",
+      "mirror": ["Content/HDA/ArpeggioStair_1.0.hda"],
+      "ue_asset": "Content/HDA/ArpeggioStair_1_0.uasset",
+      "notes": "Musical stair for the Houdini Engine PCG smoke lane (Docs/WorldGen/HOUDINI_ENGINE_SMOKE_SPEC_2026-08-27.md). Controls were on an INNER null until 2026-10-06; the builder now runs hda_promote_controls stage1/stage2 and the HDA type exposes all 8 (scale -> scale_ctrl, Object nodes own a built-in scale). The .uasset was imported from the pre-promotion .hda and is stale until reimported in the UE editor.",
+      "expect": {
+        "parms": ["seed", "stepCount", "laneCount", "stepSpacing", "laneSpacing",
+                  "baseMidiNote", "scale_ctrl", "heightPerDegree"],
+        "parm_drive": [
+          { "parm": "stepCount", "value": 8,
+            "outputs": { "output0": { "points": 256, "prims": 192, "differ": true } } }
+        ],
+        "outputs": { "output0": { "min_points": 1, "min_prims": 1, "points": 512, "prims": 384 } },
+        "node_errors": "none"
+      }
+    },
+    {
+      "id": "melodia_crystal_cathedral",
+      "status": "active",
+      "path": "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "node_type": "HDA_Melodia_CrystalCathedral",
+      "context": "Object",
+      "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+      "builder": "Tools/Houdini/cathedral/build_crystal_cathedral_hda.py",
+      "notes": "VEX SOP network: arch profile -> nave sweep -> crystal growth -> weld/thicken/bevel/floor, plus rose window (out 1) and collision proxy (out 2). Scale metres; UE cm = *100. Controls were on an INNER null until 2026-10-06; the builder now runs hda_promote_controls stage1/stage2 and the HDA type exposes all 14.",
+      "expect": {
+        "parms": ["depth", "span", "height", "tracery", "bays", "crystal", "facets",
+                  "seed", "wall_thickness", "bevel_width", "bevel_segments",
+                  "floor_divisions", "undulation_amp", "undulation_period"],
+        "parm_drive": [
+          { "parm": "bays", "value": 3,
+            "outputs": { "OUT_Cathedral": { "differ": true, "min_points": 1000 } } }
+        ],
+        "outputs": {
+          "OUT_Cathedral": { "min_points": 1000, "min_prims": 1000, "points": 9278, "prims": 8641 },
+          "OUT_Rose": { "min_points": 500, "min_prims": 100, "points": 1032, "prims": 288 },
+          "OUT_Collision": { "min_points": 100, "min_prims": 100, "points": 1682, "prims": 1608 }
+        },
+        "node_errors": "none",
+        "golden_source": "measured green cook 2026-10-06 (Saved/Audit/hda_verify/run4) and re-proven by the 2026-10-06 post-promotion rebuild (identical counts). OUT_Rose 1032/288 matches build_crystal_cathedral_hda.py's assert; its docstring said 1032/290 and was corrected to 288."
+      }
+    },
+    {
+      "id": "space_orbital_rings",
+      "status": "missing",
+      "path": "hda/SpaceTraversal_OrbitalRings_1.0.hda",
+      "builder": "Content/Python/create_hda_space_orbital_rings.py",
+      "notes": "Builder exists; HDA never written. Content/Python/build_pcg_hero_orbital_rings.py is the pure-PCG alternative that shipped instead."
+    },
+    {
+      "id": "corridor_network",
+      "status": "missing",
+      "path": "hda/CorridorNetwork_1_0.hda",
+      "builder": "Tools/Houdini/corridors/build_corridor_network_hda.py",
+      "notes": "Builder exists and self-verifies; HDA never written to hda/."
+    },
+    {
+      "id": "crystal_cathedral_v2",
+      "status": "missing",
+      "path": "hda/CrystalCathedralV2.hda",
+      "builder": "Tools/Houdini/cathedral/build_crystal_cathedral_v2_hda.py",
+      "notes": "V2 adds corridor chain + LOD tiers + atmosphere and 4 outputs. Its builder never ran green (corridor stage crashed on a missing parm; chained LOD percentages collapse to an empty mesh). Superseded by crystal_cathedral_v3, which imports V2's authored corridor VEX/controls and carries the fixed corridor stage; V2 stays in tree as provenance."
+    },
+    {
+      "id": "crystal_cathedral_v3",
+      "status": "active",
+      "path": "hda/CrystalCathedralV3.hda",
+      "node_type": "CrystalCathedralV3",
+      "context": "Object",
+      "label": "Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog",
+      "builder": "Tools/Houdini/cathedral/build_crystal_cathedral_v3_hda.py",
+      "notes": "V3 converges V1's Gate 2 verified cathedral with V2's authored corridor by IMPORTING both builders: v2.build_cathedral is call-for-call identical to V1 (golden-asserted), corridor VEX + controls table come verbatim from V2, cathedral controls/helpers from V1. 4 outputs: OUT_Cathedral (0), OUT_Rose (1), OUT_Collision (2), OUT_Corridor (3, fog volume rastering the lowest LOD tier). Corridor fixes: sibling LOD tiers at 40/25/15% keep (a 5% bottom tier rounds to ZERO prims on the 36-prim default mesh), volume.type left at Float, empty group on thicken/bevel, OUT_Corridor outputidx 3, all parm sets via _set. chain_type + lod_count are inner BUILD-time config (baked by the builder), so 18 of 20 controls are promoted. Built via Saved/HDA_build/ + byte copy so rebuilds cannot drop network-bearing files into hda/backup/ (Gate 0 zone). Corridor bay placement along +Z is an art pass, not builder work.",
+      "expect": {
+        "parms": ["depth", "span", "height", "tracery", "bays", "crystal", "facets",
+                  "seed", "wall_thickness", "bevel_width", "bevel_segments",
+                  "floor_divisions", "undulation_amp", "undulation_period",
+                  "corridor_bays", "corridor_span", "corridor_height", "bay_length"],
+        "parm_drive": [
+          { "parm": "bays", "value": 3,
+            "outputs": { "OUT_Cathedral": { "differ": true, "min_points": 1000 } } },
+          { "parm": "corridor_bays", "value": 4,
+            "outputs": { "OUT_Corridor": { "differ_bbox": true } } }
+        ],
+        "outputs": {
+          "OUT_Cathedral": { "min_points": 1000, "min_prims": 1000, "points": 9278, "prims": 8641 },
+          "OUT_Rose": { "min_points": 500, "min_prims": 100, "points": 1032, "prims": 288 },
+          "OUT_Collision": { "min_points": 100, "min_prims": 100, "points": 1682, "prims": 1608 },
+          "OUT_Corridor": { "min_points": 1, "min_prims": 1, "points": 1, "prims": 1 }
+        },
+        "node_errors": "none",
+        "golden_source": "Cathedral pins = melodia_crystal_cathedral's measured green cook (shared code path: v3 imports V2's build_cathedral, which is call-for-call identical to V1, and asserts all three counts in --verify). OUT_Corridor 1/1 and LOD tiers [14, 8, 5] measured on the 2026-10-06 v3 build; verify PASS."
+      }
+    },
+    {
+      "id": "foundry_field_atlas",
+      "status": "missing",
+      "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+      "builder": null,
+      "referenced_by": ["recipes/houdini_foundry/field_atlas_melusina_morning.v1.json"],
+      "notes": "Known CURRENT_STATE failure: the recipe validates only with exists_on_main:false. Cook fallback is Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py (RGBA + hash pattern)."
+    }
+  ]
+}

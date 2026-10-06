@@ -17,6 +17,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUT = ROOT / "hda" / "ArpeggioStair_1.0.hda"
 
+# Two-stage controls promotion (see Tools/Houdini/hda_promote_controls.py):
+# the controls null's parameters must reach the HDA *type*, or the asset cooks
+# at its defaults only. Import fails loudly on purpose — never ship unpromoted.
+sys.path.insert(0, str(ROOT / "Tools" / "Houdini"))
+import hda_promote_controls as promote
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create ArpeggioStair HDA via hython")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT, help="Output .hda path")
@@ -70,6 +76,9 @@ def main() -> int:
         # Create spare parameters on controls (HDA-style). Use simple parm template group.
         import hou as _hou
         group = controls.parmTemplateGroup()
+        # copyinput/cacheinput etc. are package spares, not ours: everything appended
+        # below this line is the authored control surface and must be promoted.
+        preexisting = {t.name() for t in group.parmTemplates()}
         group.append(_hou.IntParmTemplate("seed", "Seed", 1, default_value=(1337,), min=1, max=9999999))
         group.append(_hou.IntParmTemplate("stepCount", "Step Count", 1, default_value=(16,), min=4, max=32))
         group.append(_hou.IntParmTemplate("laneCount", "Lane Count", 1, default_value=(4,), min=1, max=8))
@@ -79,6 +88,14 @@ def main() -> int:
         group.append(_hou.MenuParmTemplate("scale", "Scale", ("major","minor","pentatonic","chromatic"), default_value=0))
         group.append(_hou.FloatParmTemplate("heightPerDegree", "Height Per Degree (cm)", 1, default_value=(15,), min=0, max=100))
         controls.setParmTemplateGroup(group)
+        authored = [t.name() for t in controls.parmTemplateGroup().parmTemplates()
+                    if t.name() not in preexisting]
+
+        # Promote the controls surface onto the geo node NOW. After
+        # createDigitalAsset the network content is locked and these expressions
+        # can no longer be added (hou PermissionError), so this must precede it.
+        pairs = promote.stage1_promote(controls, geo, authored)
+        promote.stage1_wire(controls, pairs)
 
         # Point wrangle: assign seed/midi/lane/stepIndex, offset by spacing, height by scale degree
         wrangle = geo.createNode("attribwrangle", "assign_musical")
@@ -148,12 +165,20 @@ def main() -> int:
         print(f"[HDA] Creating digital asset {hda_name} -> {out}")
         # createDigitalAsset(section) API: use hou.hda
         try:
-            geo.createDigitalAsset(name="ArpeggioStair", hda_file_name=str(out), description="ArpeggioStair musical stair (BS_GodFile)")
-            print(f"[HDA] Created {out} ({out.stat().st_size} bytes)")
+            asset = geo.createDigitalAsset(name="ArpeggioStair", hda_file_name=str(out), description="ArpeggioStair musical stair (BS_GodFile)")
         except TypeError:
             # older signature
-            geo.createDigitalAsset("ArpeggioStair", str(out), "ArpeggioStair musical stair")
-            print(f"[HDA] Created (fallback) {out}")
+            asset = geo.createDigitalAsset("ArpeggioStair", str(out), "ArpeggioStair musical stair")
+        if asset is None:
+            raise RuntimeError("createDigitalAsset returned no node")
+
+        # Move the promoted parameters from this node's spare set onto the HDA
+        # *type* and save, so every future instance (and UE's Houdini Engine
+        # panel) exposes them instead of cooking at defaults only.
+        promote.stage2_promote_definition(asset, pairs, out)
+        print(f"[HDA] Created {out} ({out.stat().st_size} bytes) with "
+              f"{len(pairs)} promoted parameter(s): "
+              f"{', '.join(p for _, p in pairs)}")
 
         return 0
 

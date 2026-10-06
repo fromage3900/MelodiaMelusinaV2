@@ -1,0 +1,6 @@
+{
+  "schema": "melodia.hda_verify_report.v1",
+  "gate": 2,
+  "generated": "2026-10-06T14:23:22",
+  "houdini_version": "22.0.368",
+  "license": 
