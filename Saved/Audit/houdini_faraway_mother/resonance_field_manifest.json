@@ -1,0 +1,51 @@
+{
+  "authority_crosscheck": {
+    "max_chladni_abs_error": 0.0,
+    "max_tension_abs_error": 0.0,
+    "passes": true,
+    "sample_count": 4
+  },
+  "channels": {
+    "A": "ResonantSeamWayMask",
+    "B": "WorldField.Moisture",
+    "G": "WorldField.ResonanceBase",
+    "R": "WorldField.Tension"
+  },
+  "field_basis": {
+    "mode_m": 5,
+    "mode_n": 3,
+    "resonant_seam_threshold_abs": 0.12,
+    "type": "chladni"
+  },
+  "generator": "Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py",
+  "note": "Source/presentation data only. Unreal remains gameplay/save/world-state authority.",
+  "outputs": {
+    "field": {
+      "path": "Saved/Audit/houdini_faraway_mother/T_FarawayMother_StaticField_RGBA.png",
+      "sha256": "c84fc22eba156579f634bdfe93fda88a384e2b6722108c5d0178df7245d6dea7"
+    },
+    "preview": {
+      "layout": "R | G | B | A",
+      "path": "Saved/Audit/houdini_faraway_mother/T_FarawayMother_StaticField_preview.png",
+      "sha256": "e01173f21ee1def0a34a24382b057e82cec06948874709541a14896b8ea4146c"
+    }
+  },
+  "resolution": [
+    1024,
+    1024
+  ],
+  "runtime": "hython/hou 22.0.368",
+  "schema": "melodia.faraway_static_field/v1",
+  "seed": 3900,
+  "source_authority": "Tools/PCG/build_faraway_mother_pcg_ecosystem.py",
+  "uv_mapping": {
+    "u": "(WorldX + 400000) / 800000",
+    "v": "(WorldY + 400000) / 800000"
+  },
+  "world_bounds_uu": [
+    -400000.0,
+    -400000.0,
+    400000.0,
+    400000.0
+  ]
+}

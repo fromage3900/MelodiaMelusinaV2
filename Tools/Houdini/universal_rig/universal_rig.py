@@ -169,9 +169,10 @@ def main() -> int:
         geos[role] = (f, g)
         meshes[role] = mesh_stats(g, role)
 
-    body_geo = geos["body"][1]
+    primary_role = next(iter(profile["meshes"]))
+    body_geo = geos[primary_role][1]
     sym = symmetry_qa(body_geo, gate_mm=float(profile.get("symmetry_gate_mm", 5.0)))
-    regions = region_split(georoot, geos["body"][0], profile["regions"])
+    regions = region_split(georoot, geos[primary_role][0], profile["regions"])
 
     layers = {}
     for rel in profile.get("garments", []):

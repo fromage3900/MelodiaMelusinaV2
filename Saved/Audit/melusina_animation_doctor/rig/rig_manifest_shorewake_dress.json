@@ -1,0 +1,100 @@
+{
+  "schema": "melodia.universal_rig_manifest.v1",
+  "timestamp": "2026-10-06T19:27:14+00:00",
+  "character": "shorewake_dress",
+  "profile": "shorewake_dress",
+  "contract": "specs/universal_rig/rig_contract.v1.json",
+  "meshes": {
+    "dress": {
+      "role": "dress",
+      "points": 183741,
+      "prims": 206780,
+      "bounds_min": [
+        -80.21307373046875,
+        -16.338022232055664,
+        -32.64546585083008
+      ],
+      "bounds_max": [
+        82.79133605957031,
+        150.0941162109375,
+        56.198646545410156
+      ]
+    }
+  },
+  "symmetry_N5": {
+    "samples": 1971,
+    "unmatched": 49,
+    "unmatched_frac": 0.0243,
+    "midplane_x_cm": 1.289,
+    "resolution_mm": 4.22,
+    "gate_mm": 20.0,
+    "mean_mm": 11.649,
+    "max_mm": 108.358,
+    "pass": false
+  },
+  "regions": {
+    "bodice": {
+      "y_cm": [
+        75.2,
+        150.09
+      ],
+      "purpose": "N3 torso contact",
+      "points": 145951
+    },
+    "skirt": {
+      "y_cm": [
+        8.63,
+        75.2
+      ],
+      "purpose": "N2/N3 layered drape",
+      "points": 35412
+    },
+    "hem": {
+      "y_cm": [
+        -16.34,
+        8.63
+      ],
+      "purpose": "N9 settle chain zone",
+      "points": 2378
+    }
+  },
+  "garment_layers_N2N3": {},
+  "joint_gap": "source FBXs carry polygon meshes only \u2014 no joints; capture staged, weights await skeleton_fbx_export",
+  "ue_work_orders": [
+    {
+      "id": "skeleton_fbx_export",
+      "status": "BLOCKED",
+      "detail": "Export jointed skeleton FBX from SK_Melusina_Skeleton (UE) \u2014 unblocks capture weights; lab cooks clean without it (i@capture_missing)."
+    },
+    {
+      "id": "kawaii_chain_assignment",
+      "status": "READY",
+      "detail": "Bind chains [{'chain': 'skirt', 'purpose': 'N2/N9 dress settle', 'root': 'c_kilt_master_x'}] to regions ['bodice', 'skirt', 'hem'] under existing sharing authority."
+    },
+    {
+      "id": "physics_bodies_per_region",
+      "status": "READY",
+      "detail": "Author per-region collision bodies from manifest bounds into PhysicsAssetForLimits; no new solver."
+    },
+    {
+      "id": "retarget_map_apply",
+      "status": "READY",
+      "detail": "Apply contract retarget_map for new donors; verify arm canon numbers before shipping any clip."
+    },
+    {
+      "id": "layer_mask_11",
+      "status": "READY",
+      "detail": "Any new layered blend on her ABP carries the 11-filter mask or draw/cast is blended away."
+    }
+  ],
+  "nikki_served": [
+    "N2",
+    "N3",
+    "N5",
+    "N9"
+  ],
+  "hip_staged": {
+    "test_lab": "Tools/Houdini/melusina_weight_lab.hipnc",
+    "melusina_lab": "Tools/Houdini/melusina_weight_lab_melusina.hipnc"
+  }
+}

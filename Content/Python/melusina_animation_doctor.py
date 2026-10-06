@@ -290,6 +290,43 @@ def shirt_rig():
                "melusina_animation_doctor/shirt_fix/")
 
 
+@register("wardrobe", ["N2", "N3", "N5"])
+def dress_rig():
+    base = ROOT / "Saved/Audit/melusina_animation_doctor/rig"
+    p = base / "rig_manifest_shorewake_dress.json"
+    d = load_json(p)
+    if "_error" in d:
+        return row("FAIL", d["_error"], "")
+    s = d.get("symmetry_N5", {})
+    regs = d.get("regions", {})
+    ok = (d.get("schema") == "melodia.universal_rig_manifest.v1"
+          and set(regs) == {"bodice", "skirt", "hem"})
+    return row("PASS" if ok else "FAIL",
+               f"reef dress bodice/skirt/hem regions on file; symmetry mean {s.get('mean_mm')}mm "
+               f"(max {s.get('max_mm')}mm) — fashion-asymmetric: DO NOT mirror weights on UE bind",
+               "melusina_animation_doctor/rig/")
+
+
+@register("wardrobe", ["N2"])
+def dress_intake():
+    base = ROOT / "Saved/Audit/wardrobe_pipeline/intake"
+    probs = []
+    for cos in ("Cos_Dress_Melusina_AntiqueDoll", "Cos_Accessory_Melusina_ButterflyWing"):
+        p = base / cos / "intake_manifest.json"
+        d = load_json(p)
+        if "_error" in d:
+            probs.append(f"{cos}: unreadable")
+            continue
+        outs = d.get("outputs", {})
+        missing = [k for k in ("obj", "fbx") if not Path(str(outs.get(k, ""))).exists()]
+        if missing:
+            probs.append(f"{cos}: staged outputs absent ({'/'.join(missing)})")
+    if not probs:
+        return row("PASS", "both intake manifests valid with outputs on disk", "")
+    return row("HOLD", "; ".join(probs) + " — metadata staged, meshes not yet dropped in",
+               "wardrobe_pipeline/intake/")
+
+
 # ---------------- rig_pipeline (universal, Houdini-authored) ----------------
 
 @register("rig_pipeline", ["N2", "N3", "N5"])
