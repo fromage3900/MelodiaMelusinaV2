@@ -3,11 +3,12 @@
 **Use this file first. Do not begin by reading the whole Foundry backlog.**
 
 Today's bounded goal is:
-1. recover/open yesterday's *working local* AnimationDoctor session from the synced project/SSD;
-2. prove one Melusina regression;
-3. extend the same diagnostic idea to Sir Melodious;
-4. use the already-staged Shorewake outfit for one Vellum/finishing proof;
-5. stop before architecture expansion.
+1. **install/activate the repo-backed Melodia Houdini Studio package and save the Blender-like working desktop first;**
+2. recover/open yesterday's *working local* AnimationDoctor session from the synced project/SSD;
+3. prove one Melusina regression;
+4. extend the same diagnostic idea to Sir Melodious;
+5. use the already-staged Shorewake outfit for one Vellum/finishing proof;
+6. stop before architecture expansion.
 
 Companion plan:
 `Docs/Houdini/MELODIA_ANIMATION_OUTFIT_FINISHING_CONVERGENCE_2026-10-07.md`
@@ -18,6 +19,14 @@ The larger studio/world convergence plan is background only today:
 ---
 
 ## 0. Truth discovered by the 2026-10-07 repo audit
+
+### Houdini studio setup
+
+Git currently has **no project-authored Houdini package, desktop, or shelf framework** for Melodia. The existing convergence plan describes one, but repo search found no `HOUDINI_PACKAGE_DIR`, project package JSON, `.desk`, or Melodia `.shelf` implementation.
+
+Therefore the first productive task at Humber is to create a **portable, repo-backed Melodia Houdini Studio plugin/setup** and make Houdini feel closer to the Blender workflow before asking Muse to do hours of KineFX/Vellum work.
+
+Use SideFX's package system rather than editing `houdini.env`. Keep the repo copy authoritative and make the school-machine install a thin local pointer to it.
 
 ### AnimationDoctor
 
@@ -76,7 +85,7 @@ Therefore:
 
 ---
 
-# 1. Ten-minute bootstrap
+# 1. Two-minute preflight — only enough to launch the studio setup
 
 ## 1A — find the repo, do not assume the lab's drive letter
 
@@ -134,9 +143,133 @@ If `hython` cannot acquire the Education licence but the GUI can:
 
 Full-license GUI success is enough for today's Vellum/KineFX work.
 
+Do not begin Doctor/Shorewake discovery yet. Launch the studio setup next.
+
 ---
 
-# 2. Recover yesterday's AnimationDoctor — 10 minute cap
+# 2. FIRST PRODUCTIVE TASK — Melodia Houdini Studio package + Blender-like desktop
+
+**Timebox: 20–30 minutes. This is not optional setup debt; it is the working environment for the rest of the day.**
+
+## 2A — canonical repo-backed plugin layout
+
+Muse should scaffold this exact shape unless a concrete SideFX constraint requires a tiny adjustment:
+
+```text
+deploy/houdini/
+  packages/
+    melodia_studio.json
+  melodia_studio/
+    desktop/
+      Melodia_Studio.desk
+      Melodia_KineFX.desk
+    toolbar/
+      Melodia.shelf
+    scripts/
+      python/
+        melodia_studio/
+          __init__.py
+          project.py
+          evidence.py
+    python_panels/        # optional today
+    viewer_states/        # optional today
+  install_melodia_studio.ps1
+```
+
+The install script must:
+1. resolve the current repo root dynamically;
+2. resolve the active Houdini user-pref directory;
+3. write/copy only a thin local package pointer into the user's Houdini `packages` folder;
+4. point `HOUDINI_PATH`/package `hpath` at the repo-backed `deploy/houdini/melodia_studio` content;
+5. expose convenience variables such as `MELODIA_ROOT`, `MELODIA_HDA_ROOT`, `MELODIA_AUDIT_ROOT`, and `MELODIA_CACHE_ROOT`;
+6. leave `houdini.env` untouched;
+7. be idempotent and safe to rerun on another Humber PC.
+
+Do not hardcode `C:`, `G:`, a username, or the Humber machine name into the committed package.
+
+## 2B — desktop 1: `Melodia_Studio` (Blender-like daily authoring)
+
+The layout should preserve Blender muscle memory while keeping Houdini's Network Editor one click away:
+
+```text
+┌───────────────────────────────────┬───────────────┐
+│                                   │ Scene/Tree    │
+│          SCENE VIEW               ├───────────────┤
+│          ~65-70% visual focus     │ PARAMETERS    │
+│                                   │               │
+├───────────────────────────────────┼───────────────┤
+│ NETWORK EDITOR                    │ tabs:         │
+│ wide, shallow, easy to maximize   │ Geo Sheet /   │
+│                                   │ Python Shell  │
+└───────────────────────────────────┴───────────────┘
+```
+
+Goals:
+- Scene View is the visual center, like Blender's 3D Viewport.
+- Scene/Tree behaves as the Outliner analogue.
+- Parameters stay in a stable right-hand column, like Blender Properties.
+- Network Editor lives in the lower work strip and can be maximized instantly.
+- Geometry Spreadsheet and Python Shell exist as tabs, not permanent visual clutter.
+- dark, uncluttered viewport; useful grid/axis; no diagnostic overlays by default.
+- save the desktop as `Melodia_Studio`, do not overwrite Houdini's factory Build desktop.
+
+## 2C — desktop 2: `Melodia_KineFX`
+
+For AnimationDoctor/character days:
+
+```text
+┌──────────────────────────┬────────────────────────┐
+│                          │ NETWORK EDITOR         │
+│       SCENE VIEW         │ KineFX graph           │
+│                          ├────────────────────────┤
+│                          │ PARAMETERS             │
+├──────────────────────────┴────────────────────────┤
+│ Animation Editor / MotionClip / diagnostic tabs  │
+└───────────────────────────────────────────────────┘
+```
+
+Keep source/target skeleton comparison visually large. Geometry Spreadsheet and Python Shell remain tabs.
+
+## 2D — first Melodia shelf
+
+Create a small shelf that calls repo-backed helpers rather than embedding giant one-off scripts:
+
+- **Project** — show `MELODIA_ROOT`, current HIP, current Git SHA when available.
+- **AnimationDoctor** — locate/open the recovered Doctor artifact/session.
+- **Shorewake** — locate current runtime FBX, canonical USD and Tidepool assets.
+- **Vellum Cache** — open/create today's local cache root.
+- **Copernicus** — dependency probe + open relevant current scene/tool.
+- **Foundry Validate** — call the existing Foundry validator, no duplicate validator.
+- **Evidence** — open today's `Saved/Audit/houdini_foundry/` target.
+- **UE Handoff** — reveal/export handoff location only; do not mutate UE automatically.
+
+The shelf is a launcher/navigation surface, **not a new authority**.
+
+## 2E — day-one hotkeys
+
+Do **not** spend the morning remapping all of Houdini to Blender.
+
+For today:
+- preserve Houdini's context-sensitive transform/network hotkeys;
+- adjust only navigation/frame-selected behavior if the user actually finds it disruptive;
+- save any hotkey override separately from the plugin and document it;
+- no global `G/R/S/Tab` rewrite on day one.
+
+## 2F — setup acceptance
+
+Before touching AnimationDoctor, prove:
+- Package Browser / Houdini path can see the Melodia plugin content.
+- `Melodia_Studio` desktop survives desktop switch/reload.
+- `Melodia_KineFX` desktop survives switch/reload.
+- Melodia shelf appears and at least **Project**, **Evidence**, and **AnimationDoctor** launch without path errors.
+- screenshot both desktops.
+- write a tiny setup manifest with Houdini version, package path, repo root, and desktop names.
+
+Only then continue.
+
+---
+
+# 3. Recover yesterday's AnimationDoctor — 10 minute cap
 
 Search the likely local project locations first:
 
@@ -200,7 +333,7 @@ if (Test-Path 'G:\EnvironmentPortfolio') {
 
 ---
 
-# 3. First proof before new work
+# 4. First proof before new work
 
 Before Sir or Shorewake, rerun **one known-good Melusina specimen** through the recovered Doctor.
 
@@ -223,7 +356,7 @@ If the regression does not work, today's task is **recovery**, not feature expan
 
 ---
 
-# 4. Sir Melodious source selection
+# 5. Sir Melodious source selection
 
 Read only:
 `Saved/Audit/SirMelodious_FlightUnit_20261003/PLAN.md`
@@ -250,7 +383,7 @@ No UE re-import is required to prove the Houdini pass.
 
 ---
 
-# 5. Shorewake source selection
+# 6. Shorewake source selection
 
 Run existence checks:
 
@@ -285,7 +418,7 @@ First Vellum canary:
 
 ---
 
-# 6. Copernicus dependency probe
+# 7. Copernicus dependency probe
 
 Before calling the old dress baker:
 
@@ -304,24 +437,24 @@ Today's transformation canary does **not** require regenerating every Shorewake 
 
 ---
 
-# 7. Today's minimal order
+# 8. Today's minimal order
 
 Do these in this order:
 
-1. **Bootstrap** — repo + license, max 10 minutes.
-2. **Recover yesterday's Doctor** — max 10 minutes.
-3. **Regression** — one Melusina clip.
-4. **Sir** — one v5 ARP clip through avian diagnostics/polish.
-5. **Shorewake** — one hero-skirt Vellum canary.
-6. **Copernicus** — use existing Tidepool fields first; regenerate only if dependency-clean.
-7. **UE** — only if the above are green and there is time.
-8. **Workspace/shelf beautification** — last, not first.
+1. **Preflight** — locate repo + prove GUI licence, ~2 minutes.
+2. **Melodia Houdini Studio** — install package, build/save Blender-like daily + KineFX desktops, verify shelf, 20–30 minutes.
+3. **Recover yesterday's Doctor** — max 10 minutes.
+4. **Regression** — one Melusina clip.
+5. **Sir** — one v5 ARP clip through avian diagnostics/polish.
+6. **Shorewake** — one hero-skirt Vellum canary.
+7. **Copernicus** — use existing Tidepool fields first; regenerate only if dependency-clean.
+8. **UE** — only if the above are green and there is time.
 
-Do **not** make a custom Houdini desktop the prerequisite for productive work today. A portable package/shelf is valuable, but today it is P3 polish after the working local pipeline has been recovered.
+The custom desktop/package is deliberately first because the rest of today's work is interactive Houdini-heavy. Build the comfortable workstation once, then stay inside it.
 
 ---
 
-# 8. What Muse should report after bootstrap
+# 9. What Muse should report after bootstrap
 
 One compact block only:
 
@@ -332,6 +465,10 @@ ORIGIN MAIN:
 HOUDINI VERSION:
 HEADLESS LICENSE:
 GUI LICENSE:
+MELODIA PACKAGE:
+MELODIA STUDIO DESKTOP:
+MELODIA KINEFX DESKTOP:
+MELODIA SHELF:
 ANIMATION DOCTOR ARTIFACT:
 ANIMATION DOCTOR TYPE: HDA | HIP | EMBEDDED | MISSING
 YESTERDAY REGRESSION: PASS | FAIL | NOT RUN
@@ -347,7 +484,7 @@ Do not write a research essay before returning this block.
 
 ---
 
-# 9. Git/artifact caution
+# 10. Git/artifact caution
 
 `Tools/*` and `Saved/` have ignore rules in this project. New source/evidence may not appear in normal `git status`.
 
@@ -367,10 +504,12 @@ Project-authored versioned HDAs belong under `hda/` and are LFS-routed, but **do
 # Done for the first hour
 
 The first hour succeeds if:
+- the repo-backed Melodia Houdini package is installed/visible;
+- both `Melodia_Studio` and `Melodia_KineFX` desktops are saved and reload correctly;
+- the Melodia shelf launches at least Project/Evidence/AnimationDoctor without path errors;
 - Muse finds or conclusively fails to find yesterday's actual Doctor;
 - one Melusina regression is run if found;
-- the exact Sir v5 source is selected;
-- the exact Shorewake source set is located;
-- no time is lost rebuilding old scripts, fixing OSC ports, or beautifying the Houdini UI.
+- the exact Sir v5 source and Shorewake source set are selected;
+- no time is lost rebuilding old scripts or fixing OSC ports.
 
 Only then execute the three-phase finishing plan.
