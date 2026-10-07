@@ -48,7 +48,7 @@ def build() -> dict:
     g.add_edge(input_node, "Out", n1, "In")
     g.add_edge(n1, "Out", n2, "In")
     g.add_edge(n2, "Out", n3, "In")
-    g.add_edge(n3, "Out", output_node, "In")
+    g.add_edge(n3, "Out", output_node, "Out")
 
     # Save
     unreal.EditorAssetLibrary.save_loaded_asset(g)

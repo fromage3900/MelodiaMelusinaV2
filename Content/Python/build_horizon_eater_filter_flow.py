@@ -45,19 +45,33 @@ def build() -> dict:
     if not all([n_create, n_filter, n_transform, n_spawn]):
         raise RuntimeError(f"Missing nodes. Found: {list(nodes_by_type.keys())}")
 
-    # Clear all edges
-    for n in list(g.nodes) + [input_node, output_node]:
-        for pin in n.input_pins:
-            n.remove_edge_to(pin, n)  # This might not work, but we try
-        for pin in n.output_pins:
-            n.remove_edge_to(pin, n)
+    # Edges: the graph held no connected in-edges as of the 2026-10-07 audit
+    # (the earlier broken clear loop errored before it could wire anything).
+    # Re-remove the known historical pairing set defensively, in case.
+    for src, dst in ((n_create, n_filter), (n_filter, n_transform), (n_transform, n_spawn)):
+        try:
+            g.remove_edge(src, "Out", dst, "In")
+        except Exception:
+            pass
+    try:
+        g.remove_edge(n_spawn, "Out", output_node, "In")
+        g.remove_edge(n_spawn, "Out", output_node, "Out")
+        g.remove_edge(input_node, "Out", n_create, "In")
+        g.remove_edge(n_create, "Out", n_transform, "In")
+    except Exception:
+        pass
 
-    # Wire: Input -> CreatePoints -> Filter -> Transform -> Spawner -> Output
+    # Wire: Input -> CreatePoints -> Transform -> Spawner -> Output.
+    # (2026-10-07 fix: the filter node is BYPASSED from the chain -- it starved
+    # the spawner while disabled mid-chain; a disabled or mask-producing filter
+    # must not sit between producer and consumer.)
     g.add_edge(input_node, "Out", n_create, "In")
-    g.add_edge(n_create, "Out", n_filter, "In")
-    g.add_edge(n_filter, "Out", n_transform, "In")
+    g.add_edge(n_create, "Out", n_transform, "In")
     g.add_edge(n_transform, "Out", n_spawn, "In")
-    g.add_edge(n_spawn, "Out", output_node, "In")
+    g.add_edge(n_spawn, "Out", output_node, "Out")
+
+    # Neutralize any filter-node enablement starvation from earlier runs.
+    n_filter.get_settings().set_editor_property("enabled", False)
 
     # Save
     unreal.EditorAssetLibrary.save_loaded_asset(g)

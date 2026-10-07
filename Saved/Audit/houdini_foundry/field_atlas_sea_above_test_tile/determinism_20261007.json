@@ -1,0 +1,20 @@
+{
+  "schema": "melodia.houdini_foundry_determinism/v1",
+  "recipe_id": "field_atlas_sea_above_test_tile",
+  "tile_id": "tx-001_ty+000",
+  "seed": 3900,
+  "cook": "Tools/Houdini/foundry/cook_field_atlas.py",
+  "resolution_px": 512,
+  "channels": 14,
+  "format": "png16 rasters + png preview (EXR blocked, see provider note)",
+  "run1": "Saved/HoudiniFoundry/field_atlas_sea_above_test_tile_3900/",
+  "run2": "Saved/Audit/houdini_foundry/field_atlas_sea_above_test_tile/determinism_run2/",
+  "byte_compare": {
+    "rasters_and_previews": "identical (sha256 match for all 15 files)",
+    "bake_manifest_json": "differs only by embedded repo-relative output paths (expected under a different out root)"
+  },
+  "verify_run1": "PASS",
+  "pixel_check": "height raster I;16, uint16, observed full 0..65535 span decoded",
+  "provider_note": "HDA_Foundry_FieldAtlas_1.0.hda is absent (recipe source.exists_on_main=false); deterministic numpy fallback cook stands in. EXR writing is blocked on this workstation (OIIO EXR/IlmThread segfault on 512px tiles, OpenEXR Shiboken module-init crash).",
+  "date": "2026-10-07"
+}

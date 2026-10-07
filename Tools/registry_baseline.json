@@ -31,6 +31,33 @@
     1.23
    ]
   },
+  "MEL_RV_wing_dangles": {
+   "ok": true,
+   "verts": 1032,
+   "bbox": [
+    1.453,
+    0.067,
+    0.06
+   ]
+  },
+  "MEL_RV_wing_membrane": {
+   "ok": true,
+   "verts": 384,
+   "bbox": [
+    1.645,
+    0.948,
+    0.7
+   ]
+  },
+  "MEL_RV_wing_spar_rail": {
+   "ok": true,
+   "verts": 48,
+   "bbox": [
+    3.201,
+    0.0,
+    1.096
+   ]
+  },
   "MEL_add_geometry": {
    "ok": false,
    "error": "empty geometry"
@@ -503,6 +530,46 @@
     0.2
    ]
   },
+  "MEL_angel_many_eyes": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_angel_ophanim_wheel": {
+   "ok": true,
+   "verts": 1034,
+   "bbox": [
+    5.535,
+    1.17,
+    0.07
+   ]
+  },
+  "MEL_angel_throne_ring": {
+   "ok": true,
+   "verts": 1376,
+   "bbox": [
+    1.8,
+    1.8,
+    0.28
+   ]
+  },
+  "MEL_angel_wing_feather_row": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.915,
+    0.0,
+    0.62
+   ]
+  },
+  "MEL_angel_wing_pair": {
+   "ok": true,
+   "verts": 640,
+   "bbox": [
+    1.762,
+    0.036,
+    0.62
+   ]
+  },
   "MEL_arch": {
    "ok": true,
    "verts": 424,
@@ -728,6 +795,15 @@
   "MEL_biolum_vein": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_bionic_joint": {
+   "ok": true,
+   "verts": 2122,
+   "bbox": [
+    0.05,
+    0.05,
+    0.07
+   ]
   },
   "MEL_blacksmith": {
    "ok": true,
@@ -1786,6 +1862,10 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_garm_ribbon_trail": {
+   "ok": false,
+   "error": "empty geometry"
+  },
   "MEL_garment_material_id": {
    "ok": false,
    "error": "empty geometry"
@@ -2333,6 +2413,10 @@
     0.301,
     3.0
    ]
+  },
+  "MEL_horn_dangler_row": {
+   "ok": false,
+   "error": "empty geometry"
   },
   "MEL_hybrid": {
    "ok": true,
@@ -3691,6 +3775,24 @@
     2.64
    ]
   },
+  "MEL_phyllotaxis_pave": {
+   "ok": true,
+   "verts": 960,
+   "bbox": [
+    0.685,
+    0.684,
+    0.004
+   ]
+  },
+  "MEL_phyllotaxis_spiral": {
+   "ok": true,
+   "verts": 144,
+   "bbox": [
+    0.534,
+    0.551,
+    0.0
+   ]
+  },
   "MEL_pillar": {
    "ok": true,
    "verts": 456,
@@ -3926,6 +4028,14 @@
     2.325,
     2.927
    ]
+  },
+  "MEL_sheep_choral_flock": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_sheep_wool_bloom": {
+   "ok": false,
+   "error": "empty geometry"
   },
   "MEL_shell_cephalon": {
    "ok": true,
@@ -6561,8 +6671,8 @@
   }
  },
  "meta": {
-  "blender": "5.2.1 LTS",
-  "package_count": 599,
+  "blender": "5.2.0 LTS",
+  "package_count": 614,
   "monolith_count": 209
  }
 }
