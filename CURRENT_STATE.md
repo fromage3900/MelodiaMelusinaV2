@@ -1,5 +1,20 @@
 # Melodia Melusina ? Current State
 
+## Runtime presentation audit checkpoint - 2026-10-07 afternoon, Sol
+
+The owner authorized repairing and binding separate Sparrow copies while all six originals remain untouched, then reported arms or feet still wrong. Six `Animations/SparrowDoctor_20261007` candidates are saved: canonical translations retained, original full-key rotations restored on four arm deform bones. Original and prior-canon hashes are unchanged; all six sampled deform gates pass. Binding these candidates was transient in Morning PIE only; native defaults still use prior canon copies. Numerical PASS is not visual acceptance or canonical promotion.
+
+Fresh evidence: live re-read confirms both generated and editor upper-body layers retain all 11 depth-zero filters. Physical LMB replay observed the new Shinbi Cast; charged loop on new Sparrow was observed by direct combat call only. Held physical RMB remains unproven. Earlier shared-global observer callbacks contaminated cadence/counts; their sequence observations do not establish normal-cadence acceptance. A private-instance observer is prepared; clean editor restart is required before reuse.
+
+Owner floor report is CONFIRMED: actual CPU-skinned Boots LOD0 vertices, copied from the live component through installed GeometryScript RenderData conversion, reach 30.080 cm below the flat collision floor, with 4600/5540 vertices below it. The same saved idle played with the animation graph bypassed still penetrates 12.918 cm. Graph pose lowers root/ankles about 17.2 cm relative to the saved pose. This supersedes ankle/toe-height inference: both source pose/boot frame and graph grounding need diagnosis. No sole acceptance or source/bind-frame correction has been saved from this probe; the live ABP was restored.
+
+Eight current runtime angles are in `RuntimeAngles/` with camera metadata. Wide diagnostic views include the full character; ChoralSheep occluders were temporarily hidden and restored, and hero defects remain exposed. Hat bounds center is about 141 cm above head_x; HatMesh is capsule-parented, has no pose leader, and its 434-bone mesh lacks head_x. Hair uses its existing head-socket/CopyPose/Kawaii owner. Rings obscure upper-body readability and the bright wardrobe lacks value separation. Jev jev-1.13.0 verified the latest packet and selected GROUNDING_AND_MOTION_FIRST at confidence1.0, based on Sol observations and measurements, not Jev image vision.
+
+Next bounded order remains G1 idle -> G2 locomotion -> G3 LMB plus 11-mask re-read -> G4 held RMB -> G5 dress stage-aside. First calibrate actual boot-sole/plant reference and inspect existing FootPlacement output/leg solve, then correct relaxed arm motion and full draw/hold/fire with contacts; resolve hat bind/attachment and instrument readability before material polish. Keep the canonical skeleton and runtime owners, original assets and WaveHarp topology intact. G's 17 dress scripts remain a named promotion backlog; rigid/LeaderPose staging only, no skin/Kawaii bind. No stale G CURRENT_STATE or recovery branch is promoted.
+
+OPEN: final four-clip Houdini round-trip, normal-cadence motion/contact/slip/slope/stairs, sustained RMB input, both-hand grip/string clearance, battle mismatches, two fresh PIE/restart sessions, package replay and owner visual acceptance. The comprehensive goal remains active. Receipts: `live_skinned_boot_contact.json`, `graph_vs_saved_pose.json`, `live_11_filter_mask.json`, `sparrow_dynamic_copy_repair.json`, `sparrow_dynamic_deform_gate.json`, `jev_presentation_audit.json` under the existing goal audit.
+
+
 ## Latest animation checkpoint - 2026-10-07, Sol
 
 Owner requested saving, committing and copying this checkpoint to the portable G: project before departure. This section supersedes older binding and frozen-arm claims for the four new Shinbi outputs only; c3b5b326e1221f9e16101b6792ede625cdb2b187 remains the diagnostic authority baseline. The comprehensive AnimationDoctor/WaveHarp goal remains OPEN.

@@ -1,0 +1,66 @@
+{
+  "proof_tier": "LIVE_PIE_RUNTIME_CAMERA_CAPTURE",
+  "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+  "abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "runtime_binding": "Sparrow candidate copies transient; saved Shinbi idle/caster",
+  "owner_visual_acceptance": false,
+  "camera_note": "90 degree diagnostic views to avoid room walls; ChoralSheep temporarily hidden for visibility and restored; no beauty/scale/gameplay acceptance",
+  "views": [
+    {
+      "name": "front",
+      "angle_from_actor_front": 0,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/front.png",
+      "camera_location": "<Struct 'Vector' (0x000002625160FC10) {x: -131.831645, y: 1450.399709, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x000002625160FC10) {pitch: -7.765166, yaw: 111.413110, roll: 0.000000}>"
+    },
+    {
+      "name": "front_right",
+      "angle_from_actor_front": 45,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/front_right.png",
+      "camera_location": "<Struct 'Vector' (0x000002625160FC10) {x: -10.531454, y: 1567.182959, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x000002625160FC10) {pitch: -7.765166, yaw: 156.413110, roll: 0.000000}>"
+    },
+    {
+      "name": "right",
+      "angle_from_actor_front": 90,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/right.png",
+      "camera_location": "<Struct 'Vector' (0x000002625160FC10) {x: -7.337495, y: 1735.533374, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x000002625160FC10) {pitch: -7.765166, yaw: -158.586890, roll: -0.000000}>"
+    },
+    {
+      "name": "back_right",
+      "angle_from_actor_front": 135,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/back_right.png",
+      "camera_location": "<Struct 'Vector' (0x000002625160FC10) {x: -124.120745, y: 1856.833564, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x000002625160FC10) {pitch: -7.765166, yaw: -113.586890, roll: -0.000000}>"
+    },
+    {
+      "name": "back",
+      "angle_from_actor_front": 180,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/back.png",
+      "camera_location": "<Struct 'Vector' (0x00000260C2602CC0) {x: -292.471160, y: 1860.027524, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x00000260C2602CC0) {pitch: -7.765166, yaw: -68.586890, roll: -0.000000}>"
+    },
+    {
+      "name": "back_left",
+      "angle_from_actor_front": 225,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/back_left.png",
+      "camera_location": "<Struct 'Vector' (0x00000260C2602CC0) {x: -413.771350, y: 1743.244274, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x00000260C2602CC0) {pitch: -7.765166, yaw: -23.586890, roll: -0.000000}>"
+    },
+    {
+      "name": "left",
+      "angle_from_actor_front": 270,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/left.png",
+      "camera_location": "<Struct 'Vector' (0x00000260C2602900) {x: -416.965309, y: 1574.893859, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x00000260C2602900) {pitch: -7.765166, yaw: 21.413110, roll: 0.000000}>"
+    },
+    {
+      "name": "front_left",
+      "angle_from_actor_front": 315,
+      "path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/front_left.png",
+      "camera_location": "<Struct 'Vector' (0x00000260C2602CC0) {x: -300.182059, y: 1453.593669, z: -418.525334}>",
+      "camera_rotation": "<Struct 'Rotator' (0x00000260C2602CC0) {pitch: -7.765166, yaw: 66.413110, roll: 0.000000}>"
+    }
+  ]
+}

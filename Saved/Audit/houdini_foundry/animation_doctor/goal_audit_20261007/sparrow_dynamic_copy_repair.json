@@ -1,0 +1,85 @@
+{
+  "owner_authorized_separate_copies": true,
+  "recipe": "Preserve corrected-copy translations and all other tracks; restore original full-frame rotations on four arm deform bones.",
+  "runtime_acceptance": false,
+  "clips": [
+    {
+      "output": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Fast",
+      "keys": 19,
+      "source_files": [
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_20261002\\A_Spar_Mel_Primary_Fire_Fast.uasset",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_Canon_20261005\\A_Spar_Mel_Primary_Fire_Fast.uasset"
+      ],
+      "source_sha256": [
+        "bbe88fced02b25dad4dbdc96e93bb096ed179f34b98e6cf4eab793f7e2741d16",
+        "811e4e361433ea156a9c0f93803a43f9048779ff343345ed8b75c449583b5e32"
+      ],
+      "output_sha256": "a562eb7c8496e557cccac0ffe3971d3112cf897d9c89349878188ba15167f5e4"
+    },
+    {
+      "output": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Med",
+      "keys": 31,
+      "source_files": [
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_20261002\\A_Spar_Mel_Primary_Fire_Med.uasset",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_Canon_20261005\\A_Spar_Mel_Primary_Fire_Med.uasset"
+      ],
+      "source_sha256": [
+        "e658318bdba67edd3c13be9f10c41f578f2c325295e8f6922c6b3679beba57ee",
+        "f00889e44ab4ec47c14a9a73a45e47119757b97e8b0dbb7c9bf74273eaf1d42e"
+      ],
+      "output_sha256": "bed264c4a0eba0d842ba735ef2281a98fb3509f7443947bd58c5d62592164a66"
+    },
+    {
+      "output": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Slow",
+      "keys": 31,
+      "source_files": [
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_20261002\\A_Spar_Mel_Primary_Fire_Slow.uasset",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_Canon_20261005\\A_Spar_Mel_Primary_Fire_Slow.uasset"
+      ],
+      "source_sha256": [
+        "25e802987502b4019fd885a85e1e1fa64d5bfaa734be6a4351111a910b1af5bf",
+        "51b7d8a973c0524291a3713cf0c10ad9b41a9be017f09bb4fae596ac69bd95ec"
+      ],
+      "output_sha256": "6c316bcd9c67dcbb78ce580612b23a9613b0a75561d4c4981276c32e7f2f4c60"
+    },
+    {
+      "output": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Drawback",
+      "keys": 75,
+      "source_files": [
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_20261002\\A_Spar_Mel_RMB_Drawback.uasset",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_Canon_20261005\\A_Spar_Mel_RMB_Drawback.uasset"
+      ],
+      "source_sha256": [
+        "ffc9078637f443ceeab36b9e0c69342d6079ab12742d6b48367daa9a9d72c0f5",
+        "20d6ecba8e61adbcec4e603016987b88dce28bf5045ec2de01c24c77ba075121"
+      ],
+      "output_sha256": "137aab1f0ec9dec1b61f6bc7e4d9c8fcc79ad05a46ec015f44c26824b675419f"
+    },
+    {
+      "output": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Fire",
+      "keys": 57,
+      "source_files": [
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_20261002\\A_Spar_Mel_RMB_Fire.uasset",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_Canon_20261005\\A_Spar_Mel_RMB_Fire.uasset"
+      ],
+      "source_sha256": [
+        "c00be48bbfbf329719933d5a34f5582a245c0fa1fcdb3b32c7eeb8ba25f22289",
+        "5cde96726e0bd7a2c289d8c0ed740460ef8547e990e81a1afb2e33d5471fc282"
+      ],
+      "output_sha256": "3471537accc7769ff14fb3425d00904ce26550ae9f33bc1ed9c68d9d7afb5434"
+    },
+    {
+      "output": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Loop",
+      "keys": 21,
+      "source_files": [
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_20261002\\A_Spar_Mel_RMB_Loop.uasset",
+        "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Melodia\\Characters\\Melusina\\Animations\\SparrowArchery_Canon_20261005\\A_Spar_Mel_RMB_Loop.uasset"
+      ],
+      "source_sha256": [
+        "00cd56a0f1f198f681da4b5a4e8ab8096ec5a58ab804637ab9e6cb21cd084fa0",
+        "9bf51097e96662c674ee2ca86d3c91ee70c7f40447e546b33015b90670f14f41"
+      ],
+      "output_sha256": "805e42b3c3e8e3fe12806e6cac3de0119a9cac88190950c7c8b42b2e87b20223"
+    }
+  ]
+}

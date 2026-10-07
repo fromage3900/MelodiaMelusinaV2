@@ -1,0 +1,14 @@
+{
+  "proof_tier": "LIVE_PIE_CPU_SKINNED_BOOT_VERTICES",
+  "method": "GeometryScript SceneUtils copy_mesh_from_component, RenderData LOD0 world space; installed engine SkinnedMeshToDynamicMesh.cpp line59 GetCPUSkinnedVertices",
+  "outcome": "SUCCESS",
+  "vertex_count": 5540,
+  "floor_trace_export": "(FaceIndex=-1,Time=0.560600,Distance=140.150009,Location=(X=-202.275736,Y=1687.004813,Z=-610.276951),ImpactPoint=(X=-202.275727,Y=1687.004822,Z=-610.276939),Normal=(X=0.000000,Y=0.000000,Z=1.000000),ImpactNormal=(X=0.000000,Y=0.000000,Z=1.000000),TraceStart=(X=-202.275736,Y=1687.004813,Z=-470.126940),TraceEnd=(X=-202.275736,Y=1687.004813,Z=-720.126940),PenetrationDepth=0.000000,MyItem=-1,Item=-1,ElementIndex=0,bBlockingHit=True,bStartPenetrating=False,PhysMaterial=\"/Script/PhysicsCore.PhysicalMaterial'/Engine/EngineMaterials/DefaultPhysicalMaterial.DefaultPhysicalMaterial'\",HitObjectHandle=(ReferenceObject=\"/Script/Engine.StaticMeshComponent'/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CACA80303_1143005572.StaticMeshComponent0'\"),Component=\"/Script/Engine.StaticMeshComponent'/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CACA80303_1143005572.StaticMeshComponent0'\",BoneName=\"\",MyBoneName=\"\")",
+  "floor_z_cm": -610.276939,
+  "min_boot_vertex_z_cm": -640.3572599856882,
+  "max_penetration_cm": 30.080320985688218,
+  "vertices_below_flat_floor": 4600,
+  "boundary": "One flat-floor idle sample, not walk/slip/slope/stair acceptance. Source bounds and toe height are not substituted for skinned geometry.",
+  "single_node_min_boot_vertex_z_cm": -623.1951963870554,
+  "single_node_penetration_cm": 12.918257387055405
+}
