@@ -32,22 +32,43 @@ The long body is retained as audit history, not as a flat list of present-tense 
   `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md` (lowercase `docs`). The repository also contains
   an uppercase `Docs/` tree. Use exact tracked casing and do not attempt a case-only tree migration
   from a case-insensitive Windows checkout as incidental cleanup.
-- **Houdini Studio Gate 0A — scaffolded and headless-proven 2026-10-07; GUI acceptance owed.**
+- **Houdini Studio Gate 0A — scaffolded, headless-proven and hardened 2026-10-07; GUI acceptance owed.**
   The repo-backed package `deploy/houdini/packages/melodia_studio.json` is path-independent
   (`$HOUDINI_PACKAGE_PATH`), and `deploy/houdini/install_melodia_studio.ps1` writes only a thin
   `package_path` pointer into the user's Houdini `packages/` folder — it never edits `houdini.env`.
   It registers `deploy/houdini/melodia_studio/` as an `hpath` root, which supplies the Blender-like
   `Melodia_Studio` desktop, the `Melodia_KineFX` desktop, the eight-tool `Melodia` shelf (Project,
   AnimationDoctor, Shorewake, Vellum Cache, Copernicus, Foundry Validate, Evidence, UE Handoff) and
-  the `melodia_studio` Python module. `hython deploy/houdini/verify_melodia_studio.py` passes
-  24/24 required checks with exit 0; receipt
-  `Saved/Audit/houdini_studio/setup_20261007_133528.json`.
+  the `melodia_studio` Python module.
+  **Reusable/safe:** the operating contract is `deploy/houdini/README.md` (install, `-CheckOnly`,
+  `-Remove`, `-Verify`, invariants, and the GUI local-desktop-shadowing hazard). `-Remove` deletes
+  only a pointer it can prove it wrote, and is idempotent. Verification scans the whole
+  `deploy/houdini` tree for machine-local paths and now warns if a GUI "Save Current Desktop" file
+  shadows a repo `.desk`; evidence receipts can no longer overwrite each other within one second.
+  Re-running the installer re-points a stale pointer after a clone, drive change or Houdini upgrade.
+  `hython deploy/houdini/verify_melodia_studio.py` passes **23/23 required checks** with exit 0;
+  receipt `Saved/Audit/houdini_studio/setup_20261007_135717.json`.
   **Evidence: headless Houdini 22.0.368 package/shelf/module discovery and launch only — desktop
   visibility, desk switching, reload survival and screenshots remain owner-held GUI acceptance, so
   this is scaffolded + headless-proven, not live-proven.**
 
 
 ## Runtime animation convergence — 2026-10-03, ACTIVE
+
+## Owner decision — Sparrow×6 FULL FIX authorized — 2026-10-07
+
+Owner directs repair (not continued freeze) of the six canonical archery clips
+(`Animations/SparrowArchery_Canon_20261005/`: Primary_Fire_Fast/Med/Slow,
+RMB_Drawback/Fire/Loop). Canon recipe on **copies in a new folder only**
+(`SparrowArchery_Fixed_20261007/`); the six Canon_20261005 originals stay frozen
+as rollback baseline (SHA256 preservation read 2026-10-07). Per-clip: arm
+correction from `A_Melusina_Idle_Mocap_RootX` @0.0 across all frames, verify
+`15.774 | 28.561 | 28.615` (±1cm), reject `34.789 | 9.520 | 28.615`, `save_asset`
+each (never `overwrite=true`, never `save_dirty_assets` for these). Then RMB
+draw→hold→fire→return replay + G5 transition stability before P0 resume.
+Execution needs the Monolith editor lane (mutation surface); this session has no
+MCP writer. BowGrip zeroed-translation look (C++ default + rebuild) stays a
+separate owner-gated work order.
 
 ## Latest animation checkpoint - 2026-10-07, Sol
 
@@ -60,6 +81,18 @@ Proof: successful closed-editor native build, fresh native-default readback, sco
 HOLD: the final authored clips have not yet had Houdini round-trip reproof, real new-caster input replay, charged RMB draw/hold/fire, both-hand grip/string contact, measured skinned sole contact through walk/stop/slope/stairs, battle skeleton mismatch closure, restart replay, packaged replay or owner visual acceptance. The latest real-input observer captured a roll, not a new caster montage. Older static-arm/Houdini receipts are prior-version evidence, not proof of these final clips. No packaged executable was rebuilt. Next bounded work is those checks through the current owners, with no skeleton replacement or second animation pipeline.
 
 Evidence folder: `Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/`; start with `canonical_update_receipt.json` and `canonical_outputs_saved.json`. The portable copy includes only explicitly enumerated changed files and matching editor module build files; no mirror/purge or G: Git-history rewrite. A commit patch is included for provenance.
+
+
+## Sir Melodious KineFX doctor — intake proven, 2026-10-07 (Houdini lane)
+
+Owner ask: review the existing AnimationDoctor/Houdini lane, then do the same for Sir Melodious' animation suite with KineFX + Hython, plus constraint solving for his cloak, collar and tie. This entry records the **intake gate only**; the doctor checks and the constraint stage are the open next work, not yet built.
+
+- **Tracked harness** `Tools/Houdini/sir_kinefx/sir_intake_probe.py` (hython, Houdini 22.0.368 licensed headless on this machine) **PASS, both stages**. Evidence: `Saved/Audit/sirmelodious_kinefx_doctor/intake_probe.json` (schema `melodia.sir_kinefx_intake.v1`); dev-run provenance in `node_tree_probe.json`.
+- **Mesh intake** (`exports/ue_arp/SKM_SirMelodious_ARP_CrestTie_v5.fbx`): 10 skinned pieces, **every piece carries a complete capture → captureoverride → bonedeform chain** (KineFX skin import cooks headless); 132 joint objects (66 joints as null+bone pairs), 22 feather joints, crest `cc_crest_01–04`, tie `cc_tie_01–03` all present. **Tie piece identified:** `sirmelodious_Retopo_PM3D_Cube3D1_002` (344 pts, material `SirMelodious_Uni.002`); kilt = `Ring3D2_002` (1,826 pts). Materials arrive as prim `shop_materialpath` — there is no `material` attrib on H22 FBX import.
+- **Clip intake** (`A_Sir_Fly_Loop_v5_ARP.fbx`): verdict `scene_keyframes` — **330 keyed nodes, real world motion** (root_x Δ1.449, `c_kilt_master_x` Δ2.952, kilt L/R Δ4.217 between frames 1→10). The development probe's earlier "clip imports with no animation" reading was an **H22 API bug, not a source defect**: `Matrix4.extractTrans` does not exist (use `extractTranslates`) and the old probe swallowed the AttributeError — banked as a trap.
+- **Proven:** headless license, SKM + clip FBX import, skin chains, live clip motion. **Not proven:** any doctor check, any Vellum/constraint solve, any UE re-import (none attempted; no source blend/FBX touched).
+- **Open next gates:** (1) identify the **cloak and collar** pieces (v5 blend vertex groups / UE `coat_*`,`collar_*` texture→material mapping; tie is known, collar/cloak are not); (2) clip health suite — joint trails, loop seam, feather travel against the v5 numbers in `Saved/Audit/SirMelodious_FlightUnit_20261003/PLAN.md`; (3) the **constraint stage** for cloak/collar/tie (Vellum cloth pinned to the animated joints, deterministic cache, stretch + pin-error report) — Houdini-side staging only, no UE import, no new runtime solver.
+- **Portable bundle:** `D:\melodia_bundles\sirmelodious_kinefx_20261007\` with `MANIFEST.txt` (SHA256 per file).
 
 
 ## ⚑ CANON — Melusina runtime rig + retarget — 2026-10-05
@@ -366,6 +399,8 @@ See `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `Docs/Handoffs/SESS
 Findings that stand on disk/source evidence: (1) both Horizon scripts wired the Output node with pin `"In"` where every proven builder (`build_pcg_escher.py`, `build_pcg_carve_test.py`, `pcg_graph_builder.py`) uses `"Out"` — the likely cause of zero output; (2) a disabled filter also starves the spawner (`Docs/Production/PCG/README.md` §3); (3) the probe scripts "waited" with `time.sleep()` inside editor Python, which blocks the game thread that runs async generation — so "Python cannot trigger a cook" was never shown; (4) `stage_horizon_pcg.py` de-duplicated on `get_name()` instead of the label, so reruns spawned extra `PCGVolume`s (check `L_MelusinaMorning` near x=200000 for duplicates before relying on it). **Owed in the editor (one writer, inspect→mutate→assert→save):** re-run both builders, `save` + `reload_packages`, `generate()` then read instance counts back on a *later* tick (no sleep), check scale/rotation ranges, and decide the CreatePoints translation (200000,0,2520) vs volume position — PCG output is graph-local, so the offset may be applied twice. Until that readback exists these phases stay "wired, unproven".
 
 **2026-10-07 addendum — hython lane bugs root-caused during the foundry cook:** (a) OIIO `ImageOutput` EXR writes segfault ≥512px tiles (IlmThread) and `OpenEXR.OutputFile` crashes via `shiboken6` module-init on this Houdini 22.0.368 build — the foundry recipe's 32f-linear EXR output spec cannot be baked on this box; fallback PNG16 used. (b) A `DeprecationWarning` raised via `Image.fromarray(mode=...)` segfaults the same process through `PyErr_WarnExplicitFormat → shiboken6` — same mechanism as every earlier stability crash observed this week. Both recorded; `Tools/Houdini/foundry/cook_field_atlas.py` silences warnings interpreter-wide and emits PNG16 with a recorded float→16-bit range per channel.
+
+**2026-10-07 closeout (headless, pushed):** `hda/ArpeggioStair_1.0.hda` rebuilt headless (`create_hda_arpeggio_stair.py`, 24,644 B, 8 promoted parms) → Gate 2 `hda_verify.py` **3 PASS / 0 FAIL / 4 owed-WARN** (receipt `Saved/Audit/hda_verify/20261007_135246/`). Geometry inspected: 64 axis-aligned boxes (4 lanes × 16 treads), 512 pts / 384 quads, 6 face normals, no bevels — correct for the smoke lane; chamfer the tread nosings in the builder if it graduates to hero art (render + JSON: `arpeggio_geometry_report.png/.json`). **`reef_common.py` salvaged:** was silently gitignored by the `Tools/*` rule while 20+ sea_above_reef scripts import it — now `git add -f`'d and tracked (import smoke-tested under hython). **Known gap:** 83 of 129 `sea_above_reef/*.py` remain untracked (whole lane rides the `Tools/*` ignore) — owner decision, not mass-added. Deliverables staged to `D:\Melodia_Houdini_Foundry\staged_20261007\` (rebuilt HDA + Gate 2 receipt, sha256 `EFB50DE2…`). Gates re-run at closeout: foundry 11/11, 7/7 recipes, hda_verify exit 0.
 
 **PCG test gate:** one `python -m pytest` over the 10 PCG test files — 51 offline tests pass (the resonance file is one test wrapping its 10 contract checks; also still runs as a script, exit 0). `pcg/test_resonance_ecology.py` no longer aborts pytest collection (it ran `sys.exit()` at import). The 18 single-use probe scripts that produced the "cannot cook" conclusion were moved (not deleted) to `Saved/Audit/pcg_probe_archive_20261006/`. No C++ automation tests exist for any PCG class. Open C1–C6 convergence steps and the Sept 24 Morning findings (WestRim greybox rocks, coral/kelp in the meadow field, five components reporting generated output with 0 instances) have no completion evidence.
 

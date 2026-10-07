@@ -1,0 +1,2398 @@
+{
+ "status": "PASS",
+ "geo_nodes": [
+  "SirMelodiousBody",
+  "sirmelodious_B__zierCurve_002",
+  "sirmelodious_Crest",
+  "sirmelodious_Retopo_PM3D_Cube3D1_002",
+  "sirmelodious_Retopo_PM3D_Cube3D24_001",
+  "sirmelodious_Retopo_PM3D_Cube3D25_001",
+  "sirmelodious_Retopo_PM3D_Cube3D28_001",
+  "sirmelodious_Retopo_PM3D_Cube3D29_001",
+  "sirmelodious_Retopo_PM3D_Ring3D2_002",
+  "sirmelodious_Retopo_PM3D_Sphere3D1_002"
+ ],
+ "geo0": "SirMelodiousBody",
+ "geo0_internal": [
+  {
+   "name": "SirMelodiousBody",
+   "type": "file"
+  },
+  {
+   "name": "SirMelodiousBody_capture",
+   "type": "capture"
+  },
+  {
+   "name": "SirMelodiousBody_override",
+   "type": "captureoverride"
+  },
+  {
+   "name": "SirMelodiousBody_deform",
+   "type": "bonedeform"
+  }
+ ],
+ "geo0_attrs": {
+  "detail": [
+   "varmap"
+  ],
+  "point": [
+   "P"
+  ],
+  "prim": [
+   "shop_materialpath"
+  ]
+ },
+ "capture_nodes": [
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/SirMelodiousBody/SirMelodiousBody_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/SirMelodiousBody/SirMelodiousBody_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/SirMelodiousBody/SirMelodiousBody_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_B__zierCurve_002/sirmelodious_B__zierCurve_002_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_B__zierCurve_002/sirmelodious_B__zierCurve_002_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_B__zierCurve_002/sirmelodious_B__zierCurve_002_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Crest/sirmelodious_Crest_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Crest/sirmelodious_Crest_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Crest/sirmelodious_Crest_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D1_002/sirmelodious_Retopo_PM3D_Cube3D1_002_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D1_002/sirmelodious_Retopo_PM3D_Cube3D1_002_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D1_002/sirmelodious_Retopo_PM3D_Cube3D1_002_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D24_001/sirmelodious_Retopo_PM3D_Cube3D24_001_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D24_001/sirmelodious_Retopo_PM3D_Cube3D24_001_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D24_001/sirmelodious_Retopo_PM3D_Cube3D24_001_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D25_001/sirmelodious_Retopo_PM3D_Cube3D25_001_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D25_001/sirmelodious_Retopo_PM3D_Cube3D25_001_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D25_001/sirmelodious_Retopo_PM3D_Cube3D25_001_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D28_001/sirmelodious_Retopo_PM3D_Cube3D28_001_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D28_001/sirmelodious_Retopo_PM3D_Cube3D28_001_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D28_001/sirmelodious_Retopo_PM3D_Cube3D28_001_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D29_001/sirmelodious_Retopo_PM3D_Cube3D29_001_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D29_001/sirmelodious_Retopo_PM3D_Cube3D29_001_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D29_001/sirmelodious_Retopo_PM3D_Cube3D29_001_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Ring3D2_002/sirmelodious_Retopo_PM3D_Ring3D2_002_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Ring3D2_002/sirmelodious_Retopo_PM3D_Ring3D2_002_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Ring3D2_002/sirmelodious_Retopo_PM3D_Ring3D2_002_deform = bonedeform",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Sphere3D1_002/sirmelodious_Retopo_PM3D_Sphere3D1_002_capture = capture",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Sphere3D1_002/sirmelodious_Retopo_PM3D_Sphere3D1_002_override = captureoverride",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Sphere3D1_002/sirmelodious_Retopo_PM3D_Sphere3D1_002_deform = bonedeform"
+ ],
+ "material_nodes": [
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D25_001/sirmelodious_Retopo_PM3D_Cube3D25_001_material",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Cube3D29_001/sirmelodious_Retopo_PM3D_Cube3D29_001_material",
+  "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/sirmelodious_Retopo_PM3D_Sphere3D1_002/sirmelodious_Retopo_PM3D_Sphere3D1_002_material"
+ ],
+ "tree": {
+  "D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx": {
+   "type": "Object/subnet",
+   "parms": "'Parm' object has no attribute 'isString'",
+   "children": {
+    "SirMelodiousBody": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "SirMelodiousBody": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "SirMelodiousBody_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "SirMelodiousBody_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "SirMelodiousBody_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "materials": {
+     "type": "Object/matnet",
+     "parms": {},
+     "children": {
+      "SirMelodious_Uni": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "Material_047": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "MAT_Crest": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "SirMelodious_Uni_002": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "SirMelodious_Uni_001": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "Outline_Shader___030": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "Material_038": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "Outline_Shader___023": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "SirMelodious_Uni_003": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "Material_035": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      },
+      "Outline_Shader___002": {
+       "type": "Vop/principledshader::2.0",
+       "parms": {}
+      }
+     }
+    },
+    "root": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      }
+     }
+    },
+    "root_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "root_x_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_02_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_02_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_03_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone4": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_03_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone5": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_04_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone6": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_04_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone7": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_05_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone8": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_05_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone9": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_06_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone10": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_kilt_06_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "c_kilt_master_x_bone11": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "spine_01_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "root_x_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "spine_02_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "spine_01_x_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_tie_01": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "spine_02_x_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_tie_02": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "cc_tie_01_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_tie_03": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "cc_tie_02_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "neck_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "spine_02_x_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "head_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "neck_x_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_skull_01_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "head_x_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_skull_02_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "head_x_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_skull_03_x": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "head_x_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_crest_01": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "head_x_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_crest_02": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "cc_crest_01_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_crest_03": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "cc_crest_02_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "cc_crest_04": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "cc_crest_03_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "shoulder_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "spine_02_x_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "arm_stretch_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "shoulder_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_01_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_02_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_l_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_03_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_l_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_04_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_l_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "forearm_stretch_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_l_bone4": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_01_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_02_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_l_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_03_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_l_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_04_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_l_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_05_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_l_bone4": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "hand_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_l_bone5": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_hand_feather_01_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "hand_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_hand_feather_02_01_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "hand_l_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "shoulder_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "spine_02_x_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "arm_stretch_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "shoulder_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_01_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_02_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_r_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_03_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_r_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_arm_feather_04_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_r_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "forearm_stretch_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "arm_stretch_r_bone4": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_01_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_02_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_r_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_03_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_r_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_04_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_r_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_forearm_feather_05_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_r_bone4": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "hand_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "forearm_stretch_r_bone5": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_hand_feather_01_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "hand_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "c_hand_feather_02_01_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "hand_r_bone1": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "thigh_stretch_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "root_x_bone2": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "leg_stretch_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "thigh_stretch_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "foot_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "leg_stretch_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "toes_01_l": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "foot_l_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "thigh_stretch_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "root_x_bone3": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "leg_stretch_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "thigh_stretch_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "foot_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "leg_stretch_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "toes_01_r": {
+     "type": "Object/null",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "control1": {
+       "type": "Sop/control",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "point1": {
+       "type": "Sop/add",
+       "parms": {}
+      },
+      "cregion": {
+       "type": "Sop/cregion",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    },
+    "foot_r_bone": {
+     "type": "Object/bone",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "bonelink": {
+       "type": "Sop/bonelink",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_B__zierCurve_002": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_B__zierCurve_002": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "sirmelodious_B__zierCurve_002_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_B__zierCurve_002_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_B__zierCurve_002_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Crest": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Crest": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "vertex_cache": {
+       "type": "Sop/channel",
+       "parms": {}
+      },
+      "sirmelodious_Crest_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Crest_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Crest_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Cube3D1_002": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Cube3D1_002": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D1_002_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D1_002_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D1_002_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Cube3D24_001": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Cube3D24_001": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D24_001_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D24_001_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D24_001_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Cube3D25_001": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Cube3D25_001": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "group_materials": {
+       "type": "Sop/partition",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D25_001_material": {
+       "type": "Sop/material",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D25_001_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D25_001_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D25_001_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Cube3D28_001": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Cube3D28_001": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D28_001_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D28_001_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D28_001_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Cube3D29_001": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Cube3D29_001": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "group_materials": {
+       "type": "Sop/partition",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D29_001_material": {
+       "type": "Sop/material",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D29_001_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D29_001_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Cube3D29_001_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Ring3D2_002": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Ring3D2_002": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "sirmelodious_Retopo_PM3D_Ring3D2_002_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Ring3D2_002_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Ring3D2_002_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "sirmelodious_Retopo_PM3D_Sphere3D1_002": {
+     "type": "Object/geo",
+     "parms": "'Parm' object has no attribute 'isString'",
+     "children": {
+      "sirmelodious_Retopo_PM3D_Sphere3D1_002": {
+       "type": "Sop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      },
+      "group_materials": {
+       "type": "Sop/partition",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Sphere3D1_002_material": {
+       "type": "Sop/material",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Sphere3D1_002_capture": {
+       "type": "Sop/capture",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Sphere3D1_002_override": {
+       "type": "Sop/captureoverride",
+       "parms": {}
+      },
+      "sirmelodious_Retopo_PM3D_Sphere3D1_002_deform": {
+       "type": "Sop/bonedeform",
+       "parms": {}
+      }
+     }
+    },
+    "fbx_chops": {
+     "type": "Object/chopnet",
+     "parms": {},
+     "children": {
+      "sirmelodious_Crest_chopfile": {
+       "type": "Chop/file",
+       "parms": "'Parm' object has no attribute 'isString'"
+      }
+     }
+    }
+   }
+  }
+ },
+ "clip_animated_sample": {},
+ "clip_obj_names": [
+  "SirMelodiousBody",
+  "arm_stretch_l",
+  "arm_stretch_l_bone",
+  "arm_stretch_l_bone1",
+  "arm_stretch_l_bone2",
+  "arm_stretch_l_bone3",
+  "arm_stretch_l_bone4",
+  "arm_stretch_r",
+  "arm_stretch_r_bone",
+  "arm_stretch_r_bone1",
+  "arm_stretch_r_bone2",
+  "arm_stretch_r_bone3",
+  "arm_stretch_r_bone4",
+  "c_arm_feather_01_01_01_l",
+  "c_arm_feather_01_01_01_r",
+  "c_arm_feather_02_01_01_l",
+  "c_arm_feather_02_01_01_r",
+  "c_arm_feather_03_01_01_l",
+  "c_arm_feather_03_01_01_r",
+  "c_arm_feather_04_01_01_l",
+  "c_arm_feather_04_01_01_r",
+  "c_forearm_feather_01_01_01_l",
+  "c_forearm_feather_01_01_01_r",
+  "c_forearm_feather_02_01_01_l",
+  "c_forearm_feather_02_01_01_r",
+  "c_forearm_feather_03_01_01_l",
+  "c_forearm_feather_03_01_01_r",
+  "c_forearm_feather_04_01_01_l",
+  "c_forearm_feather_04_01_01_r",
+  "c_forearm_feather_05_01_01_l",
+  "c_forearm_feather_05_01_01_r",
+  "c_hand_feather_01_01_01_l",
+  "c_hand_feather_01_01_01_r",
+  "c_hand_feather_02_01_01_l",
+  "c_hand_feather_02_01_01_r",
+  "c_kilt_01_01_l",
+  "c_kilt_01_01_r",
+  "c_kilt_02_01_l",
+  "c_kilt_02_01_r",
+  "c_kilt_03_01_l",
+  "c_kilt_03_01_r",
+  "c_kilt_04_01_l",
+  "c_kilt_04_01_r",
+  "c_kilt_05_01_l",
+  "c_kilt_05_01_r",
+  "c_kilt_06_01_l",
+  "c_kilt_06_01_r",
+  "c_kilt_master_x",
+  "c_kilt_master_x_bone",
+  "c_kilt_master_x_bone1",
+  "c_kilt_master_x_bone10",
+  "c_kilt_master_x_bone11",
+  "c_kilt_master_x_bone2",
+  "c_kilt_master_x_bone3",
+  "c_kilt_master_x_bone4",
+  "c_kilt_master_x_bone5",
+  "c_kilt_master_x_bone6",
+  "c_kilt_master_x_bone7",
+  "c_kilt_master_x_bone8",
+  "c_kilt_master_x_bone9",
+  "c_skull_01_x",
+  "c_skull_02_x",
+  "c_skull_03_x",
+  "cc_crest_01",
+  "cc_crest_01_bone",
+  "cc_crest_02",
+  "cc_crest_02_bone",
+  "cc_crest_03",
+  "cc_crest_03_bone",
+  "cc_crest_04",
+  "cc_tie_01",
+  "cc_tie_01_bone",
+  "cc_tie_02",
+  "cc_tie_02_bone",
+  "cc_tie_03",
+  "foot_l",
+  "foot_l_bone",
+  "foot_r",
+  "foot_r_bone",
+  "forearm_stretch_l",
+  "forearm_stretch_l_bone",
+  "forearm_stretch_l_bone1",
+  "forearm_stretch_l_bone2",
+  "forearm_stretch_l_bone3",
+  "forearm_stretch_l_bone4",
+  "forearm_stretch_l_bone5",
+  "forearm_stretch_r",
+  "forearm_stretch_r_bone",
+  "forearm_stretch_r_bone1",
+  "forearm_stretch_r_bone2",
+  "forearm_stretch_r_bone3",
+  "forearm_stretch_r_bone4",
+  "forearm_stretch_r_bone5",
+  "hand_l",
+  "hand_l_bone",
+  "hand_l_bone1",
+  "hand_r",
+  "hand_r_bone",
+  "hand_r_bone1",
+  "head_x",
+  "head_x_bone",
+  "head_x_bone1",
+  "head_x_bone2",
+  "head_x_bone3",
+  "leg_stretch_l",
+  "leg_stretch_l_bone",
+  "leg_stretch_r",
+  "leg_stretch_r_bone",
+  "neck_x",
+  "neck_x_bone",
+  "root",
+  "root_x",
+  "root_x_bone",
+  "root_x_bone1",
+  "root_x_bone2",
+  "root_x_bone3",
+  "shoulder_l",
+  "shoulder_l_bone",
+  "shoulder_r",
+  "shoulder_r_bone",
+  "sirmelodious_B__zierCurve_002",
+  "sirmelodious_Crest",
+  "sirmelodious_Retopo_PM3D_Cube3D1_002",
+  "sirmelodious_Retopo_PM3D_Cube3D24_001",
+  "sirmelodious_Retopo_PM3D_Cube3D25_001",
+  "sirmelodious_Retopo_PM3D_Cube3D28_001",
+  "sirmelodious_Retopo_PM3D_Cube3D29_001",
+  "sirmelodious_Retopo_PM3D_Ring3D2_002",
+  "sirmelodious_Retopo_PM3D_Sphere3D1_002",
+  "spine_01_x",
+  "spine_01_x_bone",
+  "spine_02_x",
+  "spine_02_x_bone",
+  "spine_02_x_bone1",
+  "spine_02_x_bone2",
+  "spine_02_x_bone3",
+  "thigh_stretch_l",
+  "thigh_stretch_l_bone",
+  "thigh_stretch_r",
+  "thigh_stretch_r_bone",
+  "toes_01_l",
+  "toes_01_r"
+ ],
+ "clip_tree_keys": [
+  "D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx"
+ ]
+}
