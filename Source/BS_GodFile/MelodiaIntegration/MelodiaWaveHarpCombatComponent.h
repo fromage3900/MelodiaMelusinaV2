@@ -72,8 +72,10 @@ public:
  /** Anim slot the cast/charge clips play in (the canonical ABP slot). */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") FName PoseSlot = TEXT("DefaultSlot");
  /** Caster stance held while aiming, and the basic-attack shot (LMB tap). */
- UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastStanceAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/ShinbiIdles_20261005/A_Shin_Idle.A_Shin_Idle")));
- UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastShootAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/ShinbiCast_20261005/A_Shin_Cast.A_Shin_Cast")));
+ // Doctor chain repair retains measured arm lengths and per-frame retarget rotation.
+ // Cast root-height/contact acceptance remains a separate gate; see the measured evidence receipt.
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastStanceAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle.A_Shin_Idle")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> CastShootAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast.A_Shin_Cast")));
  /** Charged archery shot (RMB held): draw, hold loop, fire. Canon set = arm-corrected copies (see MELUSINA_RUNTIME_CANON_2026-10-05). */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeDrawAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_Canon_20261005/A_Spar_Mel_RMB_Drawback.A_Spar_Mel_RMB_Drawback")));
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeHoldAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_Canon_20261005/A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop")));

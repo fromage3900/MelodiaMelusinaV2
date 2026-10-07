@@ -3131,6 +3131,8 @@ FMonolithActionResult FMonolithEditorActions::HandleCaptureAnimFrames(
 	UDebugSkelMeshComponent* SkelComp = NewObject<UDebugSkelMeshComponent>(
 		GetTransientPackage(), NAME_None, RF_Transient);
 	SkelComp->SetSkeletalMesh(PreviewMesh);
+	PreviewScene->AddComponent(SkelComp, SkelComp->GetRelativeTransform());
+	UWorld* World = PreviewScene->GetWorld();
 
 	// Configure the animation source per asset kind.
 	if (AnimBP)
@@ -3146,9 +3148,9 @@ FMonolithActionResult FMonolithEditorActions::HandleCaptureAnimFrames(
 	}
 	else
 	{
-		// Sequence + BlendSpace: single-node mode posed via SetPosition each sample.
-		SkelComp->SetAnimationMode(EAnimationMode::AnimationSingleNode);
-		SkelComp->SetAnimation(AnimAsset);
+		// Registration initializes the debug preview instance. Assign the asset
+		// afterward through its preview owner so it survives that initialization.
+		SkelComp->EnablePreview(true, AnimAsset);
 		if (BlendSpc)
 		{
 			if (UAnimSingleNodeInstance* SingleNode = SkelComp->GetSingleNodeInstance())
@@ -3157,9 +3159,6 @@ FMonolithActionResult FMonolithEditorActions::HandleCaptureAnimFrames(
 			}
 		}
 	}
-
-	PreviewScene->AddComponent(SkelComp, SkelComp->GetRelativeTransform());
-	UWorld* World = PreviewScene->GetWorld();
 
 	const double StartTime = FPlatformTime::Seconds();
 	TArray<TSharedPtr<FJsonValue>> FrameResults;
@@ -3178,7 +3177,8 @@ FMonolithActionResult FMonolithEditorActions::HandleCaptureAnimFrames(
 		}
 		else
 		{
-			// Single-node: SetPosition forces evaluation at the absolute target time.
+			// Seeking sets playback time but does not evaluate bones. These samples
+			// share one editor frame, so bypass TickComponent's per-frame tick guards.
 			if (BlendSpc)
 			{
 				if (UAnimSingleNodeInstance* SingleNode = SkelComp->GetSingleNodeInstance())
@@ -3187,8 +3187,9 @@ FMonolithActionResult FMonolithEditorActions::HandleCaptureAnimFrames(
 				}
 			}
 			SkelComp->SetPosition(T, /*bFireNotifies=*/false);
-			if (World) { World->Tick(ELevelTick::LEVELTICK_PauseTick, 0.0f); }
-			SkelComp->TickComponent(0.0f, ELevelTick::LEVELTICK_All, nullptr);
+			SkelComp->TickAnimation(0.0f, /*bNeedsValidRootMotion=*/false);
+			SkelComp->RefreshBoneTransforms();
+			SkelComp->MarkRenderDynamicDataDirty();
 		}
 
 		if (World) { World->SendAllEndOfFrameUpdates(); }

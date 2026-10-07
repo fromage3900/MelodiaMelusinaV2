@@ -1,0 +1,216 @@
+{
+  "schema": "melodia.animation_doctor.owner_departure_checkpoint.v2",
+  "canonical_baseline": "c3b5b326e1221f9e16101b6792ede625cdb2b187",
+  "owner": "Sol",
+  "owner_authorized_dynamic_arm_policy": true,
+  "constant_four_bone_arm_policy_preserved": false,
+  "arm_repair": "canonical translations only; full raw per-frame arm quaternion preserved",
+  "lower_body": "existing native CuteIdle V10 root/leg pose baked into bounded four outputs",
+  "idle_binding": "ShinbiDoctor_20261007/A_Shin_Idle_stand",
+  "caster_bindings": [
+    "ShinbiDoctor_20261007/A_Shin_Idle",
+    "ShinbiDoctor_20261007/A_Shin_Cast"
+  ],
+  "foot_placement_pelvis": "root_x",
+  "final_saved_native_key_measurements": {
+    "evidence": "FINAL_SAVED_OUTPUTS_NATIVE_ALL_NOMINAL_KEYS",
+    "clips": [
+      {
+        "clip": "Cast",
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast.A_Shin_Cast",
+        "key_count": 30,
+        "arm_segment_min_cm": [
+          15.774475698748127,
+          28.5610421472579,
+          28.61460621772297
+        ],
+        "arm_segment_max_cm": [
+          15.774475698748155,
+          28.56104214725794,
+          28.614606217723008
+        ],
+        "root_x_z_min_cm": 92.81905688507273,
+        "root_x_z_max_cm": 92.81905688507273,
+        "arm_rotation_excursion_deg": {
+          "arm_stretch_l": 75.96567087883889,
+          "forearm_stretch_l": 25.352191262947375,
+          "arm_stretch_r": 115.12220788627886,
+          "forearm_stretch_r": 32.39665983156588
+        },
+        "contact_acceptance": false
+      },
+      {
+        "clip": "Idle",
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle.A_Shin_Idle",
+        "key_count": 271,
+        "arm_segment_min_cm": [
+          15.774475698748123,
+          28.561042147257904,
+          28.614604310374244
+        ],
+        "arm_segment_max_cm": [
+          15.774475698748166,
+          28.561042147257957,
+          28.61460431037435
+        ],
+        "root_x_z_min_cm": 92.81905688507273,
+        "root_x_z_max_cm": 92.81905688507273,
+        "arm_rotation_excursion_deg": {
+          "arm_stretch_l": 35.91433857029311,
+          "forearm_stretch_l": 12.348525894396285,
+          "arm_stretch_r": 23.447391848182622,
+          "forearm_stretch_r": 8.31944549566534
+        },
+        "contact_acceptance": false
+      },
+      {
+        "clip": "Idle_pose",
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_pose.A_Shin_Idle_pose",
+        "key_count": 3,
+        "arm_segment_min_cm": [
+          15.774475698748146,
+          28.561042147257936,
+          28.614604310374308
+        ],
+        "arm_segment_max_cm": [
+          15.774475698748146,
+          28.561042147257936,
+          28.614604310374308
+        ],
+        "root_x_z_min_cm": 92.81905688507273,
+        "root_x_z_max_cm": 92.81905688507273,
+        "arm_rotation_excursion_deg": {
+          "arm_stretch_l": 0.0,
+          "forearm_stretch_l": 0.0,
+          "arm_stretch_r": 2.4148365394514667e-06,
+          "forearm_stretch_r": 1.7075472925031877e-06
+        },
+        "contact_acceptance": false
+      },
+      {
+        "clip": "Idle_stand",
+        "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand.A_Shin_Idle_stand",
+        "key_count": 162,
+        "arm_segment_min_cm": [
+          15.774475698748123,
+          28.561042147257897,
+          28.614604310374197
+        ],
+        "arm_segment_max_cm": [
+          15.77447569874817,
+          28.56104214725798,
+          28.614604310374347
+        ],
+        "root_x_z_min_cm": 92.81905688507273,
+        "root_x_z_max_cm": 92.81905688507273,
+        "arm_rotation_excursion_deg": {
+          "arm_stretch_l": 7.812647207727468,
+          "forearm_stretch_l": 2.0425470116337983,
+          "arm_stretch_r": 6.750687565727261,
+          "forearm_stretch_r": 1.8365744862478712
+        },
+        "contact_acceptance": false
+      }
+    ],
+    "runtime_gate_complete": false
+  },
+  "live_idle_observation": {
+    "head_world_z_cm": 143.637202,
+    "foot_l_world_z_cm": 2.487313,
+    "foot_r_world_z_cm": 2.483472,
+    "floor_world_z_cm": 0,
+    "left_arm": "bent/open palm",
+    "right_arm": "lowered",
+    "sole_geometry_acceptance": false
+  },
+  "proof_limits": [
+    "final Houdini round-trip",
+    "actual new-caster input",
+    "charged RMB draw/hold/fire",
+    "both-hand contact",
+    "skinned boot-sole contact and slopes",
+    "battle bindings",
+    "reopen/replay",
+    "packaged replay",
+    "owner visual acceptance"
+  ],
+  "latest_input_observer": "roll captured; does not prove new caster input",
+  "transient_probes_not_saved": [
+    "camera exposure",
+    "hat leader-pose attachment"
+  ],
+  "comprehensive_goal_complete": false,
+  "packaged_executable_rebuilt": false,
+  "editor_save_state": "zero dirty content packages before orderly close",
+  "supersedes": "earlier canonical_*, moving_canonical_* and static-arm readback receipts for final output claims",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "sha256": "b1cb3f7c16096718ce086630878d909dd8ded65abcaf392bf1753d2dc6a83e7f"
+    },
+    {
+      "path": "Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md",
+      "sha256": "e1136f543a143a90c27e3b31c97d932d2ef59ba096627cd10c34736f0837053c"
+    },
+    {
+      "path": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.h",
+      "sha256": "c2b3c0e6fe1b74d4a110e66310c86ae5b5d18abe001f57468e1f5cc39c582000"
+    },
+    {
+      "path": "Plugins/Monolith/Source/MonolithEditor/Private/MonolithEditorActions.cpp",
+      "sha256": "e984ee5d757edfd10e4000a843dfcdaa45a7012c7538db0f2f0ca38c5e8fc775"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset",
+      "sha256": "4adf365670314619ae787b4984a269956f9c084f74280e744d22a3d67f5cfd36"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Materials/MI_Melusina_Regalia_SDFGilded.uasset",
+      "sha256": "516f5b4d8c24f7ca9c08dff1a28d92b7cb37ee0f40cc9da4540cc2da081c05c5"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast.uasset",
+      "sha256": "0a2585852ae9be44ef6429c39ba692c3b208b5a386050e21e80eba14ed859cb5"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle.uasset",
+      "sha256": "0d5b4b484045da7fb66bc5697f5a9f84080c61f4215c08641717adb4c983dc29"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_pose.uasset",
+      "sha256": "f7ce73cde916aca043f63788ff30372cac96b4963c4fd6b7505a2c3453ca15b6"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand.uasset",
+      "sha256": "cc2ef14c6ed7e4d1f61a1eeea19798277b1bb97274d2efd7002d8391f2b2a239"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Retarget/AnimationDoctor_20261007/IK_Shinbi_ChainRepair_Candidate.uasset",
+      "sha256": "531c89187c779f191b5af858772ba7d3fd8430b68b0d8b5e37a0f6fa968c096e"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Retarget/AnimationDoctor_20261007/RTG_Shinbi_ChainRepair_Candidate.uasset",
+      "sha256": "f651a389cb24cefc704ce25825e346f4993cb204d40f4a9b8f795f110442df7e"
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Retarget/AnimationDoctor_20261007/RTG_Shinbi_CurrentOps_Candidate.uasset",
+      "sha256": "7154d237b575f29a6cdf9d0168783364991f26c55d67a80fd128e7b1b697abbb"
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/canonical_outputs_saved.json",
+      "sha256": "a2701884013eba9bdfea0c2916b2002bf1a5aa13fdbfcd5e3e3c246246adb9bb"
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/jev_goal_audit.json",
+      "sha256": "dbdc165baa49c64306086eb2a9a5865687b83f474a351e6f4a6f05edced565ae"
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/native_reopen_bindings.json",
+      "sha256": "f0afc0432bcc5ab1de4121bfe198a36c338c4c697393bb841dfe6daa63898b3c"
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/visual_polish_receipt.json",
+      "sha256": "e2dddccc36efb4dcf17d763accc6d576add59990009ba2a3cf7c7a7cdca81dcf"
+    }
+  ]
+}

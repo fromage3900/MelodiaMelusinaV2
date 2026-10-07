@@ -1,5 +1,18 @@
 # Melodia Melusina ? Current State
 
+## Latest animation checkpoint - 2026-10-07, Sol
+
+Owner requested saving, committing and copying this checkpoint to the portable G: project before departure. This section supersedes older binding and frozen-arm claims for the four new Shinbi outputs only; c3b5b326e1221f9e16101b6792ede625cdb2b187 remains the diagnostic authority baseline. The comprehensive AnimationDoctor/WaveHarp goal remains OPEN.
+
+Saved runtime route: existing `ABP_Melusina_Current.MelusinaLocomotion.Idle` loops `Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand`; native caster stance/release defaults use this folder's `A_Shin_Idle` / `A_Shin_Cast`. All four clips retain per-frame raw retarget arm rotations and canonical arm translations (15.774 / 28.561 / 28.615 cm), with the existing CuteIdle V10 native root/leg pose baked below the Shinbi upper body. Copying the full four-bone pose or calibrating to its outstretched frame 0 caused the owner's rejected T-pose and has been removed. This is authored output in the existing pipeline, not a new runtime solver. Original Shinbi assets, six Sparrow originals, canonical mesh/skeleton and WaveHarp morphs remain untouched. The existing FootPlacement node's pelvis is now `root_x`, the common ancestor of torso and legs, instead of its former spine-only setting.
+
+Proof: successful closed-editor native build, fresh native-default readback, scoped asset saves, zero dirty packages at orderly editor close, isolated skinned idle/cast previews, and a fresh possessed-pawn PIE view of a bent left arm and lowered right arm. All 466 nominal keys across four saved clips preserve measured arm lengths and root_x native Z 92.819 cm; Cast arm excursions are 75.966 / 115.122 degrees (left/right). Latest live head Z was 143.637 cm; both ankle bones were about 2.49 cm above the fixture collision floor. Toe bones are below the floor in the reference itself: the earlier toe-height measurement does NOT establish boot-sole penetration. Camera exposure and hat-following probes were transient, not saved fixes. Regalia GlowAmount is saved at 0.25 (formerly 1.4); final glow readability/owner acceptance remains open.
+
+HOLD: the final authored clips have not yet had Houdini round-trip reproof, real new-caster input replay, charged RMB draw/hold/fire, both-hand grip/string contact, measured skinned sole contact through walk/stop/slope/stairs, battle skeleton mismatch closure, restart replay, packaged replay or owner visual acceptance. The latest real-input observer captured a roll, not a new caster montage. Older static-arm/Houdini receipts are prior-version evidence, not proof of these final clips. No packaged executable was rebuilt. Next bounded work is those checks through the current owners, with no skeleton replacement or second animation pipeline.
+
+Evidence folder: `Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/`; start with `canonical_update_receipt.json` and `canonical_outputs_saved.json`. The portable copy includes only explicitly enumerated changed files and matching editor module build files; no mirror/purge or G: Git-history rewrite. A commit patch is included for provenance.
+
+
 ## ⚑ CANON — Melusina runtime rig + retarget — 2026-10-05
 
 **Canonical reference: [`Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md`](Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md).** It supersedes all older rig/retarget statements below.

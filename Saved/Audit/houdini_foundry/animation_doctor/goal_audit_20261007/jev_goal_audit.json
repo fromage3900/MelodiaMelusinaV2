@@ -1,0 +1,69 @@
+{
+  "schema": "melodia.jev.animation_doctor_goal_audit.v1",
+  "recorded_utc": "2026-10-07T04:22:44.515373+00:00",
+  "source": "jev-live",
+  "requested_model": "jev-1.13.0",
+  "model_verified": true,
+  "input_packet_sha256": "a35723711b06cf27460f83f14548fa10e466b1790b62a65b3a80cfd188816eaf",
+  "input_packet": "input_packet.json",
+  "response": {
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 2955,
+      "output_tokens": 324
+    },
+    "answers": {
+      "plan": {
+        "type": "choice",
+        "choice": "G_INPUT_VALIDATION_THEN_CANARY_THEN_UE",
+        "confidence": 0.95,
+        "probabilities": {
+          "DIAGNOSE_OFFLINE_HOLD_RUNTIME": 0.0,
+          "UE_BASELINE_THEN_G_INPUT_VALIDATION": 0.03,
+          "G_INPUT_VALIDATION_THEN_CANARY_THEN_UE": 0.97
+        }
+      },
+      "first_input_action": {
+        "type": "choice",
+        "choice": "VALIDATE_EXISTING_CANONICAL_G_FBX",
+        "confidence": 0.92,
+        "probabilities": {
+          "VALIDATE_EXISTING_CANONICAL_G_FBX": 0.96,
+          "EXPORT_FRESH_UE_JOINTED_INPUTS": 0.04
+        }
+      },
+      "canary": {
+        "type": "choice",
+        "choice": "A_Shin_Cast",
+        "confidence": 0.95,
+        "probabilities": {
+          "A_Shin_Idle": 0.03,
+          "A_Shin_Cast": 0.97
+        }
+      },
+      "motion_tradeoff": {
+        "type": "choice",
+        "choice": "REPORT_AND_VERIFY_INTENT_NO_SILENT_CHANGE",
+        "confidence": 1.0,
+        "probabilities": {
+          "HOLD_NEW_BINDINGS_FOR_OWNER_REVIEW": 0.0,
+          "REPORT_AND_VERIFY_INTENT_NO_SILENT_CHANGE": 1.0
+        }
+      },
+      "proof_scope": {
+        "type": "choice",
+        "choice": "REQUIRE_PACKAGE_FOR_FINAL_GOAL",
+        "confidence": 0.24,
+        "probabilities": {
+          "REQUIRE_PACKAGE_FOR_FINAL_GOAL": 0.62,
+          "SCOPED_PIE_RESTART_THEN_SEPARATE_PACKAGE": 0.38
+        }
+      },
+      "audit_findings": {
+        "type": "noul",
+        "noul": 0.72
+      }
+    }
+  },
+  "evidence_boundary": "Structured text/measurement judgment only; no vision, cook, runtime acceptance or asset mutation."
+}
