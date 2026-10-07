@@ -1,5 +1,11 @@
 # Melodia Melusina ? Current State
 
+## Take-over finalize — 2026-10-07 eve (Sol on break; repo-side only, no editor contact)
+
+Sol's afternoon session is checkpointed and the editor is closed. Take-over completed repo-side finalization only: the Horizon PCG pin-fix scripts (spawner→Output via the proven `"Out"` pin, sleep-free probe discipline, label-based dedupe) are committed with the stale Oct-5 session note retired in favor of the static audit, plus the eve status corrections and the post-convergence doctor receipts (**23 PASS / 2 HOLD / 0 FAIL**, `doctor_report_20261007_takeover.json`). Deliberately NOT committed: ~99 `Content/` resave-bump `.uasset`s, Sol's untracked animation staging dirs, `deploy/houdini/` + `Saved/` staging scripts (hook law: stay out of git), other lanes' untracked dirs, `.codex/config.toml`. No push (38 ahead / 36 behind after this landing; LFS backlog still unpushed).
+
+Resume for Sol (editor, one writer): clean restart, then G1 idle → G2 locomotion → G3 LMB + 11-mask re-read → G4 held RMB on the authorized `SparrowDoctor_20261007` copies → G5 dress stage-aside — with the CONFIRMED boot-sole penetration (30.08 cm live / 12.92 cm graph-bypassed, graph lowering root/ankles ~17.2 cm) as the first diagnosis, per the afternoon checkpoint. Integrator still owes: C↔G line merge (Gate-0A + RMB repoint live only on G), `origin/main` reconvergence, LFS push.
+
 ## Runtime presentation audit checkpoint - 2026-10-07 afternoon, Sol
 
 The owner authorized repairing and binding separate Sparrow copies while all six originals remain untouched, then reported arms or feet still wrong. Six `Animations/SparrowDoctor_20261007` candidates are saved: canonical translations retained, original full-key rotations restored on four arm deform bones. Original and prior-canon hashes are unchanged; all six sampled deform gates pass. Binding these candidates was transient in Morning PIE only; native defaults still use prior canon copies. Numerical PASS is not visual acceptance or canonical promotion.
@@ -27,6 +33,10 @@ HOLD: the final authored clips have not yet had Houdini round-trip reproof, real
 
 Evidence folder: `Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/`; start with `canonical_update_receipt.json` and `canonical_outputs_saved.json`. The portable copy includes only explicitly enumerated changed files and matching editor module build files; no mirror/purge or G: Git-history rewrite. A commit patch is included for provenance.
 
+## Cathedral restore + C convergence — 2026-10-07 eve (repo-side, no editor contact)
+
+Both modified cathedral HDAs restored to HEAD (`hda/` clean; worktree copies backed up with hashes in the convergence receipt). G-only working layer converged onto C as untracked staging only: `Saved/Audit/universal_garment/` (14), `Saved/Audit/wardrobe_pipeline/` (14), `deploy/houdini/` studio package (13 files), 17 dress-pipeline scripts at mirrored paths. Doctor post-convergence: **23 PASS / 2 HOLD / 0 FAIL** (`doctor_report_20261007_postconvergence.json`; remaining HOLDs need live PIE + mesh drops). G-only commits (Gate-0A hardening, RMB repoint) deliberately NOT cherry-picked under the live session — integrator follow-up. Receipt: `Saved/Audit/melusina_animation_doctor/pre_ue_convergence_20261007.json`.
+
 
 ## ⚑ CANON — Melusina runtime rig + retarget — 2026-10-05
 
@@ -47,6 +57,9 @@ Verified live in PIE 2026-10-05:
 The existing `MelusinaLocomotion` graph had disconnected Idle→Locomotion, Locomotion→Idle and landing rules, plus a duplicate Idle→Locomotion route. Restored `RuntimeGroundSpeed > 3` for entering locomotion and `<= 3` for returning to idle; removed one duplicate; restored Land→Idle sequence completion and Land→Locomotion speed condition. The actual locomotion player's X input was already correctly bound to speed. Saved only `ABP_Melusina_Current`; compile is up to date without warnings. Owner's retarget fixes, clips, gait rates and FootPlacement settings are preserved.
 
 **Fresh PIE state proof:** the canonical pawn enters Locomotion at 180 cm/s and returns to Idle at 0 cm/s, with the same AnimBP and no montage. Evidence: `Saved/Audit/MelusinaLocomotion_20261005/walk_idle_runtime_proof.json`. This proves transitions through movement input APIs, not physical keyboard input or visual foot-contact acceptance. Full-body captures under `WalkReview/` and `WalkReviewForeground/` have substantial capture overhead and show clothing/hair separation; they are not a visual pass. Foot sliding, garment stability, slope/stair contact and gait-speed calibration remain open. No rate or IK workaround was promoted from the inconclusive raw stride estimate. The ABP preservation copy is in this audit's `Backups/` directory.
+
+### Live check — 2026-10-07 (C: warm cache, Morning PIE)
+Editor live on `C:\UE_DDC` (G→C 37.9 GB copy; startup 83–89 s warm; Zen + DDC verified in log). OOM 2026-10-06 22:37 during Morning parallel Nanite builds (7.6 GB est, 8 GB pagefile) — smokes below avoid that path; no asset changed. Deform gate live (`melusina_anim_gate`, 14 clips): **13/14 PASS**, fail only `A_Shin_Cast` root_z 15.67 (tol 12). Canon arm frame-0 world: live idle, `A_Shin_Idle_stand`, `A_Spar_Mel_RMB_Fire` all exactly `15.774 | 28.561 | 28.615`. Sparrow stays frozen per owner; frame-0 pass is not visual/PIE acceptance. PIE smokes (`on_compile_errors=suppress`; 1 archived `ABP_Melusina` error, not canonical): MainMenu 15 s ok True 47 samples; Morning 10 s ok True 34 samples, zero must_absent errors. `var_summary` empty (wrong var names sampled) — load/run proof only. Morning idle re-proof with Oct-6 ABP/Blendspaces (`pie_smoke_3_034256`, 20 s): **63 samples, `Speed` 0/0/0, `bIsMoving` false, ok True**, zero errors, zero dirty packages. Idle hold only. Canary check 2026-10-07 on `AnimationDoctor_20261007/ChainRepairCanary/A_Doctor_Cast` (read-only, nothing promoted): deform gate root_z 15.67 fail (same as source), arm canon exactly `15.774 | 28.561 | 28.615`, hand roll 20.88 (source ~0 — recovered motion). Capture-fix live verify (Live-Coded `MonolithEditorActions.cpp`): 3/3 frames render, t0.50 differs, but t0.00 == t0.97 byte-identical — multi-sample last-frame timing still unverified; isolated single-sample previews stay the proven mode. Originals (`IK_Shinbi`, `RTG_Shinbi_To_Melusina`) untouched, zero dirty packages. Open: walk + LMB/RMB with an input driver, captures. No commit; runners in Temp only.
 
 ### DeepSeek tonight — October 5 session handoff
 
