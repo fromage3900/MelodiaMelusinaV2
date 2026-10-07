@@ -67,7 +67,14 @@ correction from `A_Melusina_Idle_Mocap_RootX` @0.0 across all frames, verify
 each (never `overwrite=true`, never `save_dirty_assets` for these). Then RMB
 draw→hold→fire→return replay + G5 transition stability before P0 resume.
 Execution needs the Monolith editor lane (mutation surface); this session has no
-MCP writer. BowGrip zeroed-translation look (C++ default + rebuild) stays a
+MCP writer. CORRECTION 2026-10-07 (measured before mutating): the six
+Canon_20261005 clips are ALREADY arm-corrected on disk (seg1 15.774 + seg2 28.561
+at all sampled frames; old 20261002 files genuinely read 34.789) — NO bone
+surgery authorized (a static copy_bone_pose would flatten draw motion). The live
+defect's source is the C++ defaults binding ChargeDraw/Hold/Fire to the old
+20261002 defectives (soft refs, invisible to find_references). Fix = 3-line
+repoint to Canon_20261005 (staged, uncommitted) + closed-editor build + fresh PIE
+draw-hold-fire readback. BowGrip zeroed-translation look (C++ default + rebuild) stays a
 separate owner-gated work order.
 
 ## Latest animation checkpoint - 2026-10-07, Sol
