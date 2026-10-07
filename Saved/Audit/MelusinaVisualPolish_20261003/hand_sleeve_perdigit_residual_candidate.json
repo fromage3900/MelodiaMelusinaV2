@@ -1,0 +1,349 @@
+{
+  "schema": "melodia.hand_sleeve_perdigit_residual_candidate.v1",
+  "source_coarse_candidate": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_rigid_candidate.blend",
+  "fit_method": "median per-digit same-side body surface residuals in true neutral reference; influence-weighted spatial blend; cuff fade from forearm twist groups; max applied vertex delta 15 mm",
+  "per_digit_reference_residuals": {
+    "index_r": {
+      "vertices": 245,
+      "measured_median_world_delta_mm": [
+        2.84,
+        -2.01,
+        -8.13
+      ],
+      "median_delta_len_mm": 8.85,
+      "applied_capped_delta_mm": [
+        2.84,
+        -2.01,
+        -8.13
+      ],
+      "residual_spread_p50_p90_mm": [
+        8.65,
+        17.83
+      ]
+    },
+    "thumb_r": {
+      "vertices": 375,
+      "measured_median_world_delta_mm": [
+        -0.17,
+        -7.04,
+        -7.63
+      ],
+      "median_delta_len_mm": 10.38,
+      "applied_capped_delta_mm": [
+        -0.17,
+        -7.04,
+        -7.63
+      ],
+      "residual_spread_p50_p90_mm": [
+        16.0,
+        83.91
+      ]
+    },
+    "middle_r": {
+      "vertices": 239,
+      "measured_median_world_delta_mm": [
+        4.01,
+        -3.58,
+        -9.67
+      ],
+      "median_delta_len_mm": 11.07,
+      "applied_capped_delta_mm": [
+        4.01,
+        -3.58,
+        -9.67
+      ],
+      "residual_spread_p50_p90_mm": [
+        8.94,
+        15.66
+      ]
+    },
+    "ring_r": {
+      "vertices": 201,
+      "measured_median_world_delta_mm": [
+        3.08,
+        -4.53,
+        -9.62
+      ],
+      "median_delta_len_mm": 11.07,
+      "applied_capped_delta_mm": [
+        3.08,
+        -4.53,
+        -9.62
+      ],
+      "residual_spread_p50_p90_mm": [
+        8.76,
+        17.02
+      ]
+    },
+    "pinky_r": {
+      "vertices": 353,
+      "measured_median_world_delta_mm": [
+        -1.22,
+        -2.18,
+        -16.11
+      ],
+      "median_delta_len_mm": 16.31,
+      "applied_capped_delta_mm": [
+        -1.13,
+        -2.0,
+        -14.82
+      ],
+      "residual_spread_p50_p90_mm": [
+        14.6,
+        75.74
+      ]
+    },
+    "index_l": {
+      "vertices": 256,
+      "measured_median_world_delta_mm": [
+        -3.02,
+        -0.62,
+        -8.51
+      ],
+      "median_delta_len_mm": 9.05,
+      "applied_capped_delta_mm": [
+        -3.02,
+        -0.62,
+        -8.51
+      ],
+      "residual_spread_p50_p90_mm": [
+        9.84,
+        17.23
+      ]
+    },
+    "thumb_l": {
+      "vertices": 372,
+      "measured_median_world_delta_mm": [
+        0.02,
+        -9.1,
+        -8.46
+      ],
+      "median_delta_len_mm": 12.42,
+      "applied_capped_delta_mm": [
+        0.02,
+        -9.1,
+        -8.46
+      ],
+      "residual_spread_p50_p90_mm": [
+        17.04,
+        83.82
+      ]
+    },
+    "middle_l": {
+      "vertices": 242,
+      "measured_median_world_delta_mm": [
+        -3.91,
+        -1.92,
+        -9.49
+      ],
+      "median_delta_len_mm": 10.44,
+      "applied_capped_delta_mm": [
+        -3.91,
+        -1.92,
+        -9.49
+      ],
+      "residual_spread_p50_p90_mm": [
+        9.5,
+        16.52
+      ]
+    },
+    "ring_l": {
+      "vertices": 210,
+      "measured_median_world_delta_mm": [
+        -3.37,
+        -3.52,
+        -8.82
+      ],
+      "median_delta_len_mm": 10.08,
+      "applied_capped_delta_mm": [
+        -3.37,
+        -3.52,
+        -8.82
+      ],
+      "residual_spread_p50_p90_mm": [
+        9.12,
+        17.46
+      ]
+    },
+    "pinky_l": {
+      "vertices": 314,
+      "measured_median_world_delta_mm": [
+        1.8,
+        -2.38,
+        -16.34
+      ],
+      "median_delta_len_mm": 16.61,
+      "applied_capped_delta_mm": [
+        1.63,
+        -2.15,
+        -14.76
+      ],
+      "residual_spread_p50_p90_mm": [
+        14.86,
+        75.32
+      ]
+    }
+  },
+  "moved_vertex_count": 2497,
+  "max_applied_vertex_delta_mm": 15.0,
+  "cuff_fade_p10_p50": 1.0,
+  "weight_or_topology_changes": false,
+  "metrics_per_state_p50_p90_mm": {
+    "reference": {
+      "index_r": {
+        "n": 245,
+        "p50_p90_mm": [
+          6.86,
+          16.29
+        ]
+      },
+      "thumb_r": {
+        "n": 375,
+        "p50_p90_mm": [
+          14.07,
+          87.89
+        ]
+      },
+      "middle_r": {
+        "n": 239,
+        "p50_p90_mm": [
+          6.24,
+          14.88
+        ]
+      },
+      "ring_r": {
+        "n": 201,
+        "p50_p90_mm": [
+          5.75,
+          16.86
+        ]
+      },
+      "pinky_r": {
+        "n": 353,
+        "p50_p90_mm": [
+          13.75,
+          77.68
+        ]
+      },
+      "index_l": {
+        "n": 256,
+        "p50_p90_mm": [
+          7.88,
+          15.68
+        ]
+      },
+      "thumb_l": {
+        "n": 372,
+        "p50_p90_mm": [
+          13.83,
+          88.32
+        ]
+      },
+      "middle_l": {
+        "n": 242,
+        "p50_p90_mm": [
+          6.77,
+          15.42
+        ]
+      },
+      "ring_l": {
+        "n": 210,
+        "p50_p90_mm": [
+          5.48,
+          17.29
+        ]
+      },
+      "pinky_l": {
+        "n": 314,
+        "p50_p90_mm": [
+          13.28,
+          77.73
+        ]
+      }
+    },
+    "hold": {
+      "index_r": {
+        "n": 245,
+        "p50_p90_mm": [
+          6.83,
+          17.01
+        ]
+      },
+      "thumb_r": {
+        "n": 375,
+        "p50_p90_mm": [
+          12.63,
+          58.4
+        ]
+      },
+      "middle_r": {
+        "n": 239,
+        "p50_p90_mm": [
+          6.79,
+          15.98
+        ]
+      },
+      "ring_r": {
+        "n": 201,
+        "p50_p90_mm": [
+          7.02,
+          16.71
+        ]
+      },
+      "pinky_r": {
+        "n": 353,
+        "p50_p90_mm": [
+          14.51,
+          73.74
+        ]
+      },
+      "index_l": {
+        "n": 256,
+        "p50_p90_mm": [
+          8.64,
+          18.54
+        ]
+      },
+      "thumb_l": {
+        "n": 372,
+        "p50_p90_mm": [
+          13.6,
+          85.93
+        ]
+      },
+      "middle_l": {
+        "n": 242,
+        "p50_p90_mm": [
+          7.54,
+          17.51
+        ]
+      },
+      "ring_l": {
+        "n": 210,
+        "p50_p90_mm": [
+          7.22,
+          18.51
+        ]
+      },
+      "pinky_l": {
+        "n": 314,
+        "p50_p90_mm": [
+          15.28,
+          73.78
+        ]
+      }
+    }
+  },
+  "renders": [
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_reference_coarse_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_reference_coarse_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_reference_residual_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_reference_residual_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_hold_coarse_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_hold_coarse_r.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_hold_residual_l.png",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\perdigit_hold_residual_r.png"
+  ],
+  "candidate_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_perdigit_residual_candidate.blend",
+  "disposition": "DIAGNOSTIC_CAPPED_RESIDUAL_CANDIDATE_REQUIRES_VISUAL_REVIEW"
+}

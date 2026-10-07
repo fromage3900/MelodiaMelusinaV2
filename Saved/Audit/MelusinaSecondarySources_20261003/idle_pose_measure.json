@@ -1,0 +1,434 @@
+[
+  {
+    "clip": "A_CAS_Melusina_Idle_Loop",
+    "info": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_CAS_Melusina_Idle_Loop",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 2.5,
+      "num_frames": 75,
+      "num_keys": 76,
+      "sample_rate": 30,
+      "frame_rate": "30/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    },
+    "hand_l_t0.0": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_CAS_Melusina_Idle_Loop",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 75,
+      "play_length": 2.5,
+      "queried_by_frame": false,
+      "time": 0,
+      "transform": {
+        "location": {
+          "x": 74.51730403700752,
+          "y": 12.779765909943656,
+          "z": 126.2206528643619
+        },
+        "rotation": {
+          "pitch": -8.771245862336357,
+          "yaw": 88.81140949549348,
+          "roll": -2.163516515099839
+        },
+        "scale": {
+          "x": 1.0000004768372301,
+          "y": 1.0000001788132953,
+          "z": 0.9999999403953305
+        }
+      }
+    },
+    "hand_l_t0.3": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_CAS_Melusina_Idle_Loop",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 75,
+      "play_length": 2.5,
+      "queried_by_frame": false,
+      "time": 0.30000001192092896,
+      "transform": {
+        "location": {
+          "x": 74.51730403700752,
+          "y": 12.779765909943656,
+          "z": 126.2206528643619
+        },
+        "rotation": {
+          "pitch": -8.771245862336357,
+          "yaw": 88.81140949549348,
+          "roll": -2.163516515099839
+        },
+        "scale": {
+          "x": 1.0000004768372301,
+          "y": 1.0000001788132953,
+          "z": 0.9999999403953305
+        }
+      }
+    }
+  },
+  {
+    "clip": "A_BL_Melusina_Idle_Loop",
+    "info": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_BL_Melusina_Idle_Loop",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 0.9583333134651184,
+      "num_frames": 23,
+      "num_keys": 24,
+      "sample_rate": 24,
+      "frame_rate": "24/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    },
+    "hand_l_t0.0": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_BL_Melusina_Idle_Loop",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 23,
+      "play_length": 0.9583333134651184,
+      "queried_by_frame": false,
+      "time": 0,
+      "transform": {
+        "location": {
+          "x": -15.14145520722613,
+          "y": 90.26116014403698,
+          "z": 166.54592518974286
+        },
+        "rotation": {
+          "pitch": -6.226668694054338,
+          "yaw": 83.69731180022298,
+          "roll": 35.607986692495615
+        },
+        "scale": {
+          "x": 0.9999999403953552,
+          "y": 1.0000001788139095,
+          "z": 0.9999996423721527
+        }
+      }
+    },
+    "hand_l_t0.3": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_BL_Melusina_Idle_Loop",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 23,
+      "play_length": 0.9583333134651184,
+      "queried_by_frame": false,
+      "time": 0.30000001192092896,
+      "transform": {
+        "location": {
+          "x": -13.395800529852096,
+          "y": 89.78703225133691,
+          "z": 173.21700303069014
+        },
+        "rotation": {
+          "pitch": -6.340522639715735,
+          "yaw": 83.81186702203296,
+          "roll": 34.56187760533257
+        },
+        "scale": {
+          "x": 0.9999999403953552,
+          "y": 1.0000001788139095,
+          "z": 0.9999996423721527
+        }
+      }
+    }
+  },
+  {
+    "clip": "A_Melusina_Idle_Mocap_RootX",
+    "info": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 0.5,
+      "num_frames": 60,
+      "num_keys": 61,
+      "sample_rate": 120,
+      "frame_rate": "120/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 0.9399999976158142,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    },
+    "hand_l_t0.0": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 60,
+      "play_length": 0.5,
+      "queried_by_frame": false,
+      "time": 0,
+      "transform": {
+        "location": {
+          "x": 82.63778903394235,
+          "y": -1.8273363078233906,
+          "z": 136.0523968596549
+        },
+        "rotation": {
+          "pitch": -22.20181858666083,
+          "yaw": 63.15931204941738,
+          "roll": 9.688987512521681
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      }
+    },
+    "hand_l_t0.3": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 60,
+      "play_length": 0.5,
+      "queried_by_frame": false,
+      "time": 0.30000001192092896,
+      "transform": {
+        "location": {
+          "x": 82.6003989169472,
+          "y": -1.6273996831684077,
+          "z": 136.13135939447648
+        },
+        "rotation": {
+          "pitch": -22.33975545454491,
+          "yaw": 63.25415207008426,
+          "roll": 9.869459195506973
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      }
+    }
+  },
+  {
+    "clip": "A_Melusina_Idle",
+    "info": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 2.633333444595337,
+      "num_frames": 78,
+      "num_keys": 79,
+      "sample_rate": 29.620251,
+      "frame_rate": "29620251/1000000",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1,
+      "is_looping": true,
+      "compression_scheme": "Default"
+    },
+    "hand_l_t0.0": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 78,
+      "play_length": 2.633333444595337,
+      "queried_by_frame": false,
+      "time": 0,
+      "transform": {
+        "location": {
+          "x": 37.11120523802827,
+          "y": 21.246848439998143,
+          "z": 82.10494719360969
+        },
+        "rotation": {
+          "pitch": 1.29525930760259,
+          "yaw": 130.4352796303821,
+          "roll": -74.52873028651128
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      }
+    },
+    "hand_l_t0.3": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 78,
+      "play_length": 2.633333444595337,
+      "queried_by_frame": false,
+      "time": 0.30000001192092896,
+      "transform": {
+        "location": {
+          "x": 37.92222535819161,
+          "y": 21.38853639224853,
+          "z": 82.22333495440549
+        },
+        "rotation": {
+          "pitch": -0.20314090337576188,
+          "yaw": 131.16307149296478,
+          "roll": -75.27736144771075
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      }
+    }
+  },
+  {
+    "clip": "A_Melusina_Idle_v22",
+    "info": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Authored/A_Melusina_Idle_v22",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 0.9583333134651184,
+      "num_frames": 23,
+      "num_keys": 24,
+      "sample_rate": 24,
+      "frame_rate": "24/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1,
+      "is_looping": false,
+      "compression_scheme": "Default"
+    },
+    "hand_l_t0.0": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Authored/A_Melusina_Idle_v22",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 23,
+      "play_length": 0.9583333134651184,
+      "queried_by_frame": false,
+      "time": 0,
+      "transform": {
+        "location": {
+          "x": -0.17654867473816654,
+          "y": 0.34430798196111795,
+          "z": 0.8883972261387281
+        },
+        "rotation": {
+          "pitch": -6.384118581208625,
+          "yaw": 83.8570152925118,
+          "roll": 34.155023795663894
+        },
+        "scale": {
+          "x": 0.999999940395341,
+          "y": 0.9999982714652553,
+          "z": 0.9999998807906998
+        }
+      }
+    },
+    "hand_l_t0.3": {
+      "asset_path": "/Game/Melodia/Characters/Melusina/Animations/Authored/A_Melusina_Idle_v22",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 23,
+      "play_length": 0.9583333134651184,
+      "queried_by_frame": false,
+      "time": 0.30000001192092896,
+      "transform": {
+        "location": {
+          "x": -0.03886038676781545,
+          "y": 0.34617074345682564,
+          "z": 0.8823327694814369
+        },
+        "rotation": {
+          "pitch": -6.765814289690033,
+          "yaw": 84.28046951379443,
+          "roll": 30.458079547871446
+        },
+        "scale": {
+          "x": 0.999999940395341,
+          "y": 0.9999982714652553,
+          "z": 0.9999998807906998
+        }
+      }
+    }
+  },
+  {
+    "clip": "A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+    "info": {
+      "asset_path": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+      "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+      "duration": 0.9583333134651184,
+      "num_frames": 23,
+      "num_keys": 24,
+      "sample_rate": 24,
+      "frame_rate": "24/1",
+      "has_root_motion": false,
+      "force_root_lock": false,
+      "root_motion_lock": "RefPose",
+      "additive_type": "None",
+      "interpolation": "Linear",
+      "rate_scale": 1,
+      "is_looping": false,
+      "compression_scheme": "Default"
+    },
+    "hand_l_t0.0": {
+      "asset_path": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 23,
+      "play_length": 0.9583333134651184,
+      "queried_by_frame": false,
+      "time": 0,
+      "transform": {
+        "location": {
+          "x": 38.35695676356178,
+          "y": 15.929479132583376,
+          "z": 74.99655720886624
+        },
+        "rotation": {
+          "pitch": -8.7729326511687,
+          "yaw": 88.81146134617373,
+          "roll": -2.163361883758055
+        },
+        "scale": {
+          "x": 1.0000000000000002,
+          "y": 0.9999999403953554,
+          "z": 0.9999999403953553
+        }
+      }
+    },
+    "hand_l_t0.3": {
+      "asset_path": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
+      "bone_name": "hand_l",
+      "space": "component",
+      "num_frames": 23,
+      "play_length": 0.9583333134651184,
+      "queried_by_frame": false,
+      "time": 0.30000001192092896,
+      "transform": {
+        "location": {
+          "x": 43.154819892504705,
+          "y": 15.376044122975712,
+          "z": 80.68425721686114
+        },
+        "rotation": {
+          "pitch": -8.77248122306073,
+          "yaw": 88.81154969200186,
+          "roll": -2.163277786473161
+        },
+        "scale": {
+          "x": 1.0000000000000002,
+          "y": 0.9999999403953554,
+          "z": 0.9999999403953553
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "id": "doclink-repair",
+  "goal": "Repair dead markdown links in CURRENT_STATE.md and fix the Docs/docs casing split in the git index.",
+  "done_when": [
+    "Tools/test_agent_router.py passes",
+    "Saved/Audit/doclink-repair/report.json lists zero remaining lowercase-docs paths"
+  ],
+  "inputs": [
+    "AGENTS.md",
+    "CURRENT_STATE.md",
+    "CLAUDE.md"
+  ],
+  "mutation_paths": [
+    "CURRENT_STATE.md",
+    "AGENTS.md"
+  ],
+  "surfaces": ["filesystem"],
+  "mutation_scope": "files",
+  "task_class": "doc_indexing_synthesis",
+  "artifacts_expected": [
+    "Saved/Audit/doclink-repair/report.json"
+  ],
+  "max_turns": 40
+}

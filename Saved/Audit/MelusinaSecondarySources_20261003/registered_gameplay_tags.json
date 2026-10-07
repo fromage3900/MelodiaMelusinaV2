@@ -1,0 +1,511 @@
+{
+  "roots": [
+    {
+      "tag": "Niagara",
+      "children": [
+        {
+          "tag": "Niagara.ScalabilityProfile",
+          "children": [
+            {
+              "tag": "Niagara.ScalabilityProfile.Medium"
+            },
+            {
+              "tag": "Niagara.ScalabilityProfile.Low"
+            },
+            {
+              "tag": "Niagara.ScalabilityProfile.High"
+            },
+            {
+              "tag": "Niagara.ScalabilityProfile.Critical"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "EnhancedInput",
+      "children": [
+        {
+          "tag": "EnhancedInput.Modes",
+          "children": [
+            {
+              "tag": "EnhancedInput.Modes.Default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "InputUserSettings",
+      "children": [
+        {
+          "tag": "InputUserSettings.Profiles",
+          "children": [
+            {
+              "tag": "InputUserSettings.Profiles.Default"
+            }
+          ]
+        },
+        {
+          "tag": "InputUserSettings.FailureReasons",
+          "children": [
+            {
+              "tag": "InputUserSettings.FailureReasons.NoMatchingMappings"
+            },
+            {
+              "tag": "InputUserSettings.FailureReasons.NoMappingRowFound"
+            },
+            {
+              "tag": "InputUserSettings.FailureReasons.NoKeyProfile"
+            },
+            {
+              "tag": "InputUserSettings.FailureReasons.InvalidMappingName"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "GameplayCue",
+      "children": [
+        {
+          "tag": "GameplayCue.Test"
+        },
+        {
+          "tag": "GameplayCue.ACF",
+          "children": [
+            {
+              "tag": "GameplayCue.ACF.Shoot"
+            },
+            {
+              "tag": "GameplayCue.ACF.Reactive"
+            },
+            {
+              "tag": "GameplayCue.ACF.ReactionCue"
+            },
+            {
+              "tag": "GameplayCue.ACF.PickUp"
+            },
+            {
+              "tag": "GameplayCue.ACF.Meteor"
+            },
+            {
+              "tag": "GameplayCue.ACF.ItemUsed"
+            },
+            {
+              "tag": "GameplayCue.ACF.ImpactCue"
+            },
+            {
+              "tag": "GameplayCue.ACF.HitEffectCue"
+            },
+            {
+              "tag": "GameplayCue.ACF.Heal"
+            },
+            {
+              "tag": "GameplayCue.ACF.Grenade"
+            },
+            {
+              "tag": "GameplayCue.ACF.ActionCue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Tests",
+      "children": [
+        {
+          "tag": "Tests.GenericTag",
+          "children": [
+            {
+              "tag": "Tests.GenericTag.Two"
+            },
+            {
+              "tag": "Tests.GenericTag.One"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Camera",
+      "children": [
+        {
+          "tag": "Camera.Zone"
+        },
+        {
+          "tag": "Camera.SelectTarget"
+        },
+        {
+          "tag": "Camera.Item"
+        },
+        {
+          "tag": "Camera.CharacterPreview"
+        },
+        {
+          "tag": "Camera.Attack"
+        },
+        {
+          "tag": "Camera.Ability"
+        }
+      ]
+    },
+    {
+      "tag": "Platform",
+      "children": [
+        {
+          "tag": "Platform.Trait",
+          "children": [
+            {
+              "tag": "Platform.Trait.PlayInEditor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Input",
+      "children": [
+        {
+          "tag": "Input.Touch"
+        },
+        {
+          "tag": "Input.MouseAndKeyboard"
+        },
+        {
+          "tag": "Input.Gamepad"
+        }
+      ]
+    },
+    {
+      "tag": "InputMode",
+      "children": [
+        {
+          "tag": "InputMode.Menu"
+        },
+        {
+          "tag": "InputMode.Game"
+        }
+      ]
+    },
+    {
+      "tag": "Weapon",
+      "children": [
+        {
+          "tag": "Weapon.Shoot"
+        },
+        {
+          "tag": "Weapon.Reload"
+        },
+        {
+          "tag": "Weapon.Pull"
+        }
+      ]
+    },
+    {
+      "tag": "Actions",
+      "children": [
+        {
+          "tag": "Actions.AbilitySystem",
+          "children": [
+            {
+              "tag": "Actions.AbilitySystem.PlayFX"
+            },
+            {
+              "tag": "Actions.AbilitySystem.NotablePoint"
+            },
+            {
+              "tag": "Actions.AbilitySystem.ExitSubState"
+            },
+            {
+              "tag": "Actions.AbilitySystem.ExitAction"
+            },
+            {
+              "tag": "Actions.AbilitySystem.EnterSubState"
+            },
+            {
+              "tag": "Actions.AbilitySystem.Cooldown"
+            },
+            {
+              "tag": "Actions.AbilitySystem.ApplyDamage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "SmartObjects",
+      "children": [
+        {
+          "tag": "SmartObjects.Chair"
+        },
+        {
+          "tag": "SmartObjects.CampFire"
+        },
+        {
+          "tag": "SmartObjects.Bed"
+        }
+      ]
+    },
+    {
+      "tag": "UI",
+      "children": [
+        {
+          "tag": "UI.Widget",
+          "children": [
+            {
+              "tag": "UI.Widget.WorldDialogue"
+            },
+            {
+              "tag": "UI.Widget.Vendor"
+            },
+            {
+              "tag": "UI.Widget.Targeting"
+            },
+            {
+              "tag": "UI.Widget.SkillTree"
+            },
+            {
+              "tag": "UI.Widget.PauseMenu"
+            },
+            {
+              "tag": "UI.Widget.MainMenu"
+            },
+            {
+              "tag": "UI.Widget.Interactable"
+            },
+            {
+              "tag": "UI.Widget.InGameMenu"
+            },
+            {
+              "tag": "UI.Widget.HUD"
+            },
+            {
+              "tag": "UI.Widget.FastTravel"
+            },
+            {
+              "tag": "UI.Widget.DialogueWidget"
+            },
+            {
+              "tag": "UI.Widget.Deposit"
+            },
+            {
+              "tag": "UI.Widget.Crafting"
+            },
+            {
+              "tag": "UI.Widget.Companions"
+            },
+            {
+              "tag": "UI.Widget.Combat"
+            },
+            {
+              "tag": "UI.Widget.ChestWidget"
+            },
+            {
+              "tag": "UI.Widget.Checkpoint"
+            },
+            {
+              "tag": "UI.Widget.Building"
+            },
+            {
+              "tag": "UI.Widget.Buildable"
+            }
+          ]
+        },
+        {
+          "tag": "UI.Layer",
+          "children": [
+            {
+              "tag": "UI.Layer.Popup"
+            },
+            {
+              "tag": "UI.Layer.HUD"
+            },
+            {
+              "tag": "UI.Layer.Default"
+            }
+          ]
+        },
+        {
+          "tag": "UI.Action",
+          "children": [
+            {
+              "tag": "UI.Action.Reset"
+            },
+            {
+              "tag": "UI.Action.PreviousTab"
+            },
+            {
+              "tag": "UI.Action.PreviousCharacter"
+            },
+            {
+              "tag": "UI.Action.Previous"
+            },
+            {
+              "tag": "UI.Action.NextTab"
+            },
+            {
+              "tag": "UI.Action.NextCharacter"
+            },
+            {
+              "tag": "UI.Action.Next"
+            },
+            {
+              "tag": "UI.Action.DropItem"
+            },
+            {
+              "tag": "UI.Action.Continue"
+            },
+            {
+              "tag": "UI.Action.Confirm"
+            },
+            {
+              "tag": "UI.Action.CenterOnPlayer"
+            },
+            {
+              "tag": "UI.Action.Cancel"
+            },
+            {
+              "tag": "UI.Action.Apply"
+            },
+            {
+              "tag": "UI.Action.AddMarker"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Teams"
+    },
+    {
+      "tag": "RPG",
+      "children": [
+        {
+          "tag": "RPG.Statistics"
+        },
+        {
+          "tag": "RPG.PrimaryAttributes"
+        },
+        {
+          "tag": "RPG.Attributes"
+        }
+      ]
+    },
+    {
+      "tag": "ACF",
+      "children": [
+        {
+          "tag": "ACF.Difficulty",
+          "children": [
+            {
+              "tag": "ACF.Difficulty.VeryHard"
+            },
+            {
+              "tag": "ACF.Difficulty.VeryEasy"
+            },
+            {
+              "tag": "ACF.Difficulty.Normal"
+            },
+            {
+              "tag": "ACF.Difficulty.Hard"
+            },
+            {
+              "tag": "ACF.Difficulty.Easy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "AIState",
+      "children": [
+        {
+          "tag": "AIState.Wait"
+        },
+        {
+          "tag": "AIState.Routine"
+        },
+        {
+          "tag": "AIState.ReturnHome"
+        },
+        {
+          "tag": "AIState.Patrol"
+        },
+        {
+          "tag": "AIState.FollowLead"
+        },
+        {
+          "tag": "AIState.Combat"
+        }
+      ]
+    },
+    {
+      "tag": "Stances",
+      "children": [
+        {
+          "tag": "Stances.Blocking"
+        },
+        {
+          "tag": "Stances.Aiming"
+        }
+      ]
+    },
+    {
+      "tag": "Test",
+      "children": [
+        {
+          "tag": "Test.StateTree",
+          "children": [
+            {
+              "tag": "Test.StateTree.Tag6"
+            },
+            {
+              "tag": "Test.StateTree.Tag5"
+            },
+            {
+              "tag": "Test.StateTree.Tag4"
+            },
+            {
+              "tag": "Test.StateTree.Tag3"
+            },
+            {
+              "tag": "Test.StateTree.Tag2"
+            },
+            {
+              "tag": "Test.StateTree.Tag"
+            }
+          ]
+        },
+        {
+          "tag": "Test.SmartObject",
+          "children": [
+            {
+              "tag": "Test.SmartObject.Tag3"
+            },
+            {
+              "tag": "Test.SmartObject.Tag2"
+            },
+            {
+              "tag": "Test.SmartObject.Tag1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "SmartObject",
+      "children": [
+        {
+          "tag": "SmartObject.EnabledReason",
+          "children": [
+            {
+              "tag": "SmartObject.EnabledReason.Gameplay"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "total_tags": 146
+}

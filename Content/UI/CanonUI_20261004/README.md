@@ -38,9 +38,22 @@ The runtime staging contract lives at:
 Exact PNG bytes are stored as `.png.b64` text payloads under
 `pipeline/figma/storybook_runtime/png_b64/` because connector writes cannot
 supply Git-LFS backing objects. The staging script hydrates them losslessly under
-`Saved/Staging/StorybookRuntime/` and imports them to:
+`Saved/Staging/StorybookRuntime/`.
 
-`/Game/Melodia/UI/Storybook/Textures/Atoms`
+The **existing assets on main are runtime authority**. Rebuilds target these
+assets in place under `/Game/Melodia/UI/Textures/Storybook`:
+
+- `storybook_sparkle`
+- `storybook_waypoint`
+- `storybook_player_pin`
+- `storybook_speech_tail`
+- `storybook_menu_diamond`
+- `storybook_bird_crest`
+- `storybook_note_head`
+
+The script refuses to create a missing target or a second Storybook texture
+namespace. If one of these canonical assets is absent, fix that integration
+state explicitly rather than generating a replacement path.
 
 ### Material / native-UMG assets
 
@@ -94,12 +107,15 @@ That gate checks:
 - each texture payload is valid base64 PNG;
 - each decoded PNG matches the manifest's @2× dimensions.
 
-Then, in Unreal Editor:
+Then, in Unreal Editor, use the rebuild tool only when intentionally refreshing
+the seven canonical textures from the source payloads:
 
 ```python
 import stage_storybook_runtime_tokens as s
 s.main()
 ```
 
-The import step is additive presentation work only. It does not change gameplay,
-save, navigation, Bow HUD, Quill, or battle authority.
+The rebuild step replaces only those already-existing canonical Texture2D
+targets and reapplies their UI texture settings. It refuses to create new runtime
+asset names or directories. It does not change gameplay, save, navigation, Bow
+HUD, Quill, or battle authority.

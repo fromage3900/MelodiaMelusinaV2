@@ -1,0 +1,156 @@
+{
+  "schema": "melodia.hand_sleeve_neutral_fbx_roundtrip.v1",
+  "candidate_source_blend": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_rigid_candidate.blend",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_neutral_candidate.fbx",
+  "original_accessories_fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaRuntimeConvergence_20261002\\current_accessories_readonly.fbx",
+  "canonical_reference_pose": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaHandsSleeves_Jev_20261003\\canonical_get_bone_ref_pose.json",
+  "fbx_sha256": "027b0be5a984e3fa995a728eddb7ed16a92cfdf993587cfca0353bd4d513bbc2",
+  "export_settings": {
+    "global_scale": 1.0,
+    "apply_scale_options": "FBX_SCALE_NONE",
+    "add_leaf_bones": false,
+    "bake_anim": false,
+    "use_mesh_modifiers": false,
+    "pose_position": "REST",
+    "animation_action_cleared": true,
+    "all_pose_matrix_basis_identity": true
+  },
+  "source_counts": {
+    "mesh_vertices": 8084,
+    "polygons": 12628,
+    "vertex_groups": 119,
+    "blender_bones": 464,
+    "material_slots": 10,
+    "material_slot_names": [
+      "MI_Melusina_Nikki_GLOVES_001",
+      "MI_Melusina_Nikki_sleeve_003",
+      "MI_Melusina_Nikki_bow_002",
+      "MI_Melusina_Nikki_frontpanel_001",
+      "MI_Melusina_Nikki_SHAWL_001",
+      "MI_Melusina_Outline_005.001",
+      "MI_Melusina_Nikki_bow_002_6",
+      "MI_Melusina_Nikki_frontpanel_001_7",
+      "MI_Melusina_Nikki_SHAWL_001_8",
+      "MI_Melusina_Outline_005_9"
+    ],
+    "modified_glove_or_sleeve_vertex_count": 6013,
+    "untouched_vertex_count": 2071
+  },
+  "roundtrip_counts": {
+    "mesh_vertices": 8084,
+    "polygons": 12628,
+    "vertex_groups": 119,
+    "blender_bones": 464,
+    "material_slots": 10,
+    "material_slot_names": [
+      "MI_Melusina_Nikki_GLOVES_001.001",
+      "MI_Melusina_Nikki_sleeve_003.001",
+      "MI_Melusina_Nikki_bow_002.001",
+      "MI_Melusina_Nikki_frontpanel_001.001",
+      "MI_Melusina_Nikki_SHAWL_001.001",
+      "MI_Melusina_Outline_005.002",
+      "MI_Melusina_Nikki_bow_002_6.001",
+      "MI_Melusina_Nikki_frontpanel_001_7.001",
+      "MI_Melusina_Nikki_SHAWL_001_8.001",
+      "MI_Melusina_Outline_005_9.001"
+    ],
+    "armature_object_name": "root"
+  },
+  "canonical_ue_hierarchy_comparison": {
+    "canonical_bone_count": 465,
+    "candidate_serialized_name_count_with_root_wrapper": 465,
+    "missing_blender_bones": [],
+    "extra_blender_bones": [],
+    "root_wrapper_name_matches": true,
+    "parent_mismatches": []
+  },
+  "bone_rest_matrix_comparison": {
+    "source_bone_count": 464,
+    "roundtrip_bone_count": 464,
+    "original_fbx_bone_count": 464,
+    "missing_bones": [],
+    "max_abs_matrix_element_delta_roundtrip_vs_source": 0.00031745433807373047,
+    "max_abs_matrix_element_delta_roundtrip_vs_original": 0.00031745433807373047,
+    "max_abs_matrix_element_delta_source_vs_original": 0.0
+  },
+  "untouched_vertex_world_delta_vs_original_mm": {
+    "count": 2071,
+    "p50": 0.00019082797281243946,
+    "p90": 0.00019097336557472193,
+    "max": 0.00019097336557472193
+  },
+  "bounds_candidate_fbx_roundtrip_m": [
+    [
+      -0.9648206830024719,
+      0.9605010747909546
+    ],
+    [
+      -0.5676890015602112,
+      0.2877488434314728
+    ],
+    [
+      0.18230468034744263,
+      1.4254941940307617
+    ]
+  ],
+  "bounds_original_fbx_reimport_m": [
+    [
+      -0.9748894572257996,
+      0.9708144664764404
+    ],
+    [
+      -0.567689061164856,
+      0.2877488136291504
+    ],
+    [
+      0.1823047548532486,
+      1.4282453060150146
+    ]
+  ],
+  "bounds_before_export_original_m": [
+    [
+      -0.9748894572257996,
+      0.9708144664764404
+    ],
+    [
+      -0.567689061164856,
+      0.2877488136291504
+    ],
+    [
+      0.1823047548532486,
+      1.4282453060150146
+    ]
+  ],
+  "bounds_before_export_candidate_m": [
+    [
+      -0.9648206830024719,
+      0.9605010747909546
+    ],
+    [
+      -0.567689061164856,
+      0.2877488136291504
+    ],
+    [
+      0.1823047548532486,
+      1.4254943132400513
+    ]
+  ],
+  "scale_candidate_roundtrip": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582
+  ],
+  "armature_modifier_target": "root",
+  "checks": {
+    "bone_names_and_rest_matrices_match": true,
+    "all_untouched_vertices_world_match_original": true,
+    "weights_match_original": true,
+    "polygon_material_indices_match_original": true,
+    "material_slots_match_original": true,
+    "candidate_roundtrip_vertex_and_polygon_counts_match": true,
+    "scale_is_0_01": true,
+    "canonical_465_bone_names_and_parent_compatibility": true
+  },
+  "validated": true,
+  "note": "Source-only Blender FBX payload validation. No UE import, editor or PIE proof."
+}

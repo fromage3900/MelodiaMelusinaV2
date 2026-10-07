@@ -1,12 +1,9 @@
 #include "MelodiaOverworldHUDWidget.h"
 
-#include "Components/Button.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
-#include "MelodiaCompendiumWidget.h"
-#include "MelodiaInputContextSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
 #include "UObject/UnrealType.h"
 
@@ -56,204 +53,32 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	// Storybook Overworld runtime presentation: ChapterLine and QuestProgress are active narrative elements
+	// No authority yet for chapter line, title resonance or motif progress: hide, don't fake.
+	Hide(ChapterLine);
 	Hide(TitleResonance);
 	Hide(TitleResonanceText);
 	Hide(QuestMotifs);
-
-	if (ChapterLine)
-	{
-		ChapterLine->SetVisibility(ESlateVisibility::HitTestInvisible);
-		ChapterLine->SetText(FText::FromString(TEXT("\u25C6 CHAPTER III \u00B7 OVERWORLD \u25C6")));
-	}
-	if (QuestProgress)
-	{
-		QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
-		QuestProgress->SetPercent(0.65f);
-	}
+	Hide(QuestProgress);
 
 	if (const UWorld* World = GetWorld())
 	{
 		const FText Area = Pretty(UWorld::RemovePIEPrefix(World->GetMapName()), {TEXT("LV_"), TEXT("L_")});
-		AreaTitle->SetText(Area.IsEmpty() ? FText::FromString(TEXT("Whimsical Glade")) : Area);
-		AreaName->SetText(FText::FromString(Area.IsEmpty() ? TEXT("WHIMSICAL GLADE") : Area.ToString().ToUpper()));
+		AreaTitle->SetText(Area);
+		AreaName->SetText(FText::FromString(Area.ToString().ToUpper()));
 	}
 	TitleBlock->SetVisibility(ESlateVisibility::HitTestInvisible);
-	TitleBlock->SetRenderOpacity(0.95f);
 	CaptionRemaining = AreaCaptionSeconds;
 	RefreshAccumulator = 0.0f;
 
-	// Storybook canon tokens: Rose #FF93B5 vs Pearl Aqua #86E4FF
+	// Bar fills: default fill was plain white; tint to the parchment/coral vs pearl-blue token pair.
 	if (VitalityBar)
 	{
-		VitalityBar->SetPercent(1.0f);
-		VitalityBar->SetFillColorAndOpacity(FLinearColor(1.0f, 0.576f, 0.71f, 1.0f));
+		VitalityBar->SetFillColorAndOpacity(FLinearColor(0.90f, 0.42f, 0.44f, 1.0f));
 	}
 	if (ResonanceBar)
 	{
-		ResonanceBar->SetPercent(1.0f);
-		ResonanceBar->SetFillColorAndOpacity(FLinearColor(0.525f, 0.894f, 1.0f, 1.0f));
+		ResonanceBar->SetFillColorAndOpacity(FLinearColor(0.49f, 0.62f, 0.92f, 1.0f));
 	}
-	if (PlayerName)
-	{
-		PlayerName->SetText(FText::FromString(TEXT("Melusina")));
-	}
-	if (VitalsText)
-	{
-		VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   ·   RESONANCE 100 / 100")));
-	}
-	if (PlayerLevel)
-	{
-		PlayerLevel->SetVisibility(ESlateVisibility::HitTestInvisible);
-		PlayerLevel->SetText(FText::FromString(TEXT("Lv. 94")));
-	}
-
-	RefreshVitals();
-	RefreshQuest();
-
-	// Bind Storybook navigation system buttons
-	if (Sys_Settings)
-	{
-		Sys_Settings->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsClicked);
-	}
-	if (Sys_Journal)
-	{
-		Sys_Journal->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalClicked);
-	}
-	if (Sys_1)
-	{
-		Sys_1->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Clicked);
-	}
-	if (Sys_2)
-	{
-		Sys_2->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Clicked);
-	}
-}
-
-void UMelodiaOverworldHUDWidget::NativeDestruct()
-{
-	if (Sys_Settings)
-	{
-		Sys_Settings->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsClicked);
-	}
-	if (Sys_Journal)
-	{
-		Sys_Journal->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalClicked);
-	}
-	if (Sys_1)
-	{
-		Sys_1->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Clicked);
-	}
-	if (Sys_2)
-	{
-		Sys_2->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Clicked);
-	}
-
-	if (ActiveOrreryWidget)
-	{
-		if (ActiveOrreryWidget->IsInViewport())
-		{
-			ActiveOrreryWidget->RemoveFromParent();
-		}
-		if (OrreryContextHandle.IsValid())
-		{
-			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
-			{
-				InputSubsystem->PopContext(OrreryContextHandle);
-			}
-			OrreryContextHandle = FMelodiaInputContextHandle();
-		}
-		ActiveOrreryWidget = nullptr;
-	}
-
-	Super::NativeDestruct();
-}
-
-void UMelodiaOverworldHUDWidget::HandleSysSettingsClicked()
-{
-	// Toggle Cosmic Orrery menu with explicit input context ownership
-	if (ActiveOrreryWidget && ActiveOrreryWidget->IsInViewport())
-	{
-		ActiveOrreryWidget->RemoveFromParent();
-		if (OrreryContextHandle.IsValid())
-		{
-			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
-			{
-				InputSubsystem->PopContext(OrreryContextHandle);
-			}
-			OrreryContextHandle = FMelodiaInputContextHandle();
-		}
-		ActiveOrreryWidget = nullptr;
-		return;
-	}
-
-	APlayerController* PC = GetOwningPlayer();
-	if (!PC)
-	{
-		return;
-	}
-
-	UClass* WidgetClass = OrreryMenuClass.Get();
-	if (!WidgetClass && !OrreryMenuClass.IsNull())
-	{
-		WidgetClass = OrreryMenuClass.LoadSynchronous();
-	}
-	if (!WidgetClass)
-	{
-		WidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Melodia/UI/Menu/WBP_Melodia_CosmicOrrery.WBP_Melodia_CosmicOrrery_C"));
-	}
-
-	if (WidgetClass)
-	{
-		ActiveOrreryWidget = CreateWidget<UUserWidget>(PC, WidgetClass);
-		if (ActiveOrreryWidget)
-		{
-			ActiveOrreryWidget->AddToViewport(70);
-			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
-			{
-				OrreryContextHandle = InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
-			}
-		}
-	}
-}
-
-void UMelodiaOverworldHUDWidget::HandleSysJournalClicked()
-{
-	// Open the Enchanted Compendium / Lore Journal
-	UClass* CompendiumClass = CompendiumMenuClass.Get();
-	if (!CompendiumClass && !CompendiumMenuClass.IsNull())
-	{
-		CompendiumClass = CompendiumMenuClass.LoadSynchronous();
-	}
-	if (CompendiumClass)
-	{
-		if (APlayerController* PC = GetOwningPlayer())
-		{
-			UUserWidget* Widget = CreateWidget<UUserWidget>(PC, CompendiumClass);
-			if (Widget)
-			{
-				Widget->AddToViewport(60);
-				if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
-				{
-					InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
-				}
-				return;
-			}
-		}
-	}
-
-	// Fallback to static archive opener
-	UMelodiaCompendiumWidget::Open(this);
-}
-
-void UMelodiaOverworldHUDWidget::HandleSys1Clicked()
-{
-	UE_LOG(LogTemp, Log, TEXT("UMelodiaOverworldHUDWidget: Sys_1 triggered (Quick Item / Tonic slot)"));
-}
-
-void UMelodiaOverworldHUDWidget::HandleSys2Clicked()
-{
-	UE_LOG(LogTemp, Log, TEXT("UMelodiaOverworldHUDWidget: Sys_2 triggered (Quick Resonance / Charm slot)"));
 }
 
 void UMelodiaOverworldHUDWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -263,9 +88,11 @@ void UMelodiaOverworldHUDWidget::NativeTick(const FGeometry& MyGeometry, float I
 	if (CaptionRemaining > 0.0f)
 	{
 		CaptionRemaining -= InDeltaTime;
-		// Keep the storybook chapter ribbon subtly visible at 0.85f opacity after intro
-		const float RibbonOpacity = FMath::Clamp(CaptionRemaining / 1.0f, 0.85f, 0.95f);
-		TitleBlock->SetRenderOpacity(RibbonOpacity);
+		TitleBlock->SetRenderOpacity(FMath::Clamp(CaptionRemaining / 0.469f, 0.0f, 1.0f)); // fades over one beat
+		if (CaptionRemaining <= 0.0f)
+		{
+			Hide(TitleBlock);
+		}
 	}
 
 	RefreshAccumulator -= InDeltaTime;
@@ -283,81 +110,44 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 	const FMapProperty* Map = PC ? FindFProperty<FMapProperty>(PC->GetClass(), PlayerUnitsProperty) : nullptr;
 	const FClassProperty* KeyProp = Map ? CastField<FClassProperty>(Map->KeyProp) : nullptr;
 	const FStructProperty* ValueProp = Map ? CastField<FStructProperty>(Map->ValueProp) : nullptr;
-	bool bFoundUnit = false;
-	if (KeyProp && ValueProp)
+	if (!KeyProp || !ValueProp)
 	{
-		FScriptMapHelper Helper(Map, Map->ContainerPtrToValuePtr<void>(PC));
-		for (FScriptMapHelper::FIterator It(Helper); It; ++It)
-		{
-			UClass* UnitClass = Cast<UClass>(KeyProp->GetObjectPropertyValue(Helper.GetKeyPtr(It)));
-			const void* Unit = Helper.GetValuePtr(It);
-			int32 HP = 0, MP = 0, Exp = 0, MaxHP = 0, MaxMP = 0;
-			ReadIntByPrefix(ValueProp->Struct, Unit, CurrentHPPrefix, HP);
-			ReadIntByPrefix(ValueProp->Struct, Unit, CurrentMPPrefix, MP);
-			ReadIntByPrefix(ValueProp->Struct, Unit, ExpPrefix, Exp);
-			if (UnitClass)
-			{
-				const FStructProperty* Stats = FindFProperty<FStructProperty>(UnitClass, FirstLevelStatsProperty);
-				if (Stats)
-				{
-					const void* StatsData = Stats->ContainerPtrToValuePtr<void>(UnitClass->GetDefaultObject());
-					ReadIntByPrefix(Stats->Struct, StatsData, MaxHPPrefix, MaxHP);
-					ReadIntByPrefix(Stats->Struct, StatsData, MaxMPPrefix, MaxMP);
-				}
-				if (PlayerName)
-				{
-					PlayerName->SetText(Pretty(UnitClass->GetName(), {TEXT("BP_"), TEXT("PlayerUnit"), TEXT("_C")}));
-				}
-			}
-			MaxHP = FMath::Max(MaxHP, HP);
-			MaxMP = FMath::Max(MaxMP, MP);
-			const float VitalityTarget = MaxHP > 0 ? static_cast<float>(HP) / MaxHP : 0.0f;
-			const float ResonanceTarget = MaxMP > 0 ? static_cast<float>(MP) / MaxMP : 0.0f;
-			if (VitalityBar)
-			{
-				VitalityBar->SetPercent(FMath::FInterpTo(VitalityBar->GetPercent(), VitalityTarget, RefreshSeconds, 4.0f));
-			}
-			if (ResonanceBar)
-			{
-				ResonanceBar->SetPercent(FMath::FInterpTo(ResonanceBar->GetPercent(), ResonanceTarget, RefreshSeconds, 4.0f));
-			}
-			if (VitalsText)
-			{
-				VitalsText->SetText(FText::FromString(FString::Printf(TEXT("VITALITY %d / %d   ·   RESONANCE %d / %d"), HP, MaxHP, MP, MaxMP)));
-			}
-			if (PlayerLevel)
-			{
-				PlayerLevel->SetVisibility(ESlateVisibility::HitTestInvisible);
-				PlayerLevel->SetText(FText::FromString(TEXT("Lv. 94")));
-			}
-			bFoundUnit = true;
-			break; // party leader only
-		}
+		return;
 	}
-	if (!bFoundUnit)
+	FScriptMapHelper Helper(Map, Map->ContainerPtrToValuePtr<void>(PC));
+	for (FScriptMapHelper::FIterator It(Helper); It; ++It)
 	{
-		// Graceful overworld exploration default: display Melusina baseline stats
-		if (VitalityBar)
+		UClass* UnitClass = Cast<UClass>(KeyProp->GetObjectPropertyValue(Helper.GetKeyPtr(It)));
+		const void* Unit = Helper.GetValuePtr(It);
+		int32 HP = 0, MP = 0, Exp = 0, MaxHP = 0, MaxMP = 0;
+		ReadIntByPrefix(ValueProp->Struct, Unit, CurrentHPPrefix, HP);
+		ReadIntByPrefix(ValueProp->Struct, Unit, CurrentMPPrefix, MP);
+		ReadIntByPrefix(ValueProp->Struct, Unit, ExpPrefix, Exp);
+		if (UnitClass)
 		{
-			VitalityBar->SetPercent(1.0f);
+			const FStructProperty* Stats = FindFProperty<FStructProperty>(UnitClass, FirstLevelStatsProperty);
+			if (Stats)
+			{
+				const void* StatsData = Stats->ContainerPtrToValuePtr<void>(UnitClass->GetDefaultObject());
+				ReadIntByPrefix(Stats->Struct, StatsData, MaxHPPrefix, MaxHP);
+				ReadIntByPrefix(Stats->Struct, StatsData, MaxMPPrefix, MaxMP);
+			}
+			PlayerName->SetText(Pretty(UnitClass->GetName(), {TEXT("BP_"), TEXT("PlayerUnit"), TEXT("_C")}));
 		}
-		if (ResonanceBar)
-		{
-			ResonanceBar->SetPercent(1.0f);
-		}
-		if (PlayerName && PlayerName->GetText().IsEmpty())
-		{
-			PlayerName->SetText(FText::FromString(TEXT("Melusina")));
-		}
-		if (VitalsText && VitalsText->GetText().IsEmpty())
-		{
-			VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   ·   RESONANCE 100 / 100")));
-		}
-		if (PlayerLevel)
-		{
-			PlayerLevel->SetVisibility(ESlateVisibility::HitTestInvisible);
-			PlayerLevel->SetText(FText::FromString(TEXT("Lv. 94")));
-		}
+	MaxHP = FMath::Max(MaxHP, HP);
+	MaxMP = FMath::Max(MaxMP, MP);
+	// Eased bars: interpolate from the currently displayed fill so hits and
+	// heals glide instead of snapping. No extra state needed — the bar itself
+	// is the memory. RefreshSeconds doubles as the interp delta.
+	const float VitalityTarget = MaxHP > 0 ? static_cast<float>(HP) / MaxHP : 0.0f;
+	const float ResonanceTarget = MaxMP > 0 ? static_cast<float>(MP) / MaxMP : 0.0f;
+	VitalityBar->SetPercent(FMath::FInterpTo(VitalityBar->GetPercent(), VitalityTarget, RefreshSeconds, 4.0f));
+	ResonanceBar->SetPercent(FMath::FInterpTo(ResonanceBar->GetPercent(), ResonanceTarget, RefreshSeconds, 4.0f));
+		VitalsText->SetText(FText::FromString(FString::Printf(TEXT("VITALITY %d / %d   ·   RESONANCE %d / %d"), HP, MaxHP, MP, MaxMP)));
+		// The template's EXP curve isn't data-visible; only claim a level when it is unambiguous.
+		PlayerLevel->SetVisibility(Exp == 0 ? ESlateVisibility::HitTestInvisible : ESlateVisibility::Collapsed);
+		PlayerLevel->SetText(FText::FromString(TEXT("LEVEL 1")));
+		break; // party leader only
 	}
 }
 
@@ -387,25 +177,11 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 	}
 	if (!Shown)
 	{
-		// Exploration default matching Canon Storybook Overworld specification
-		QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
-		QuestHeader->SetText(FText::FromString(TEXT("\u25C6 QUEST")));
-		QuestTitle->SetText(FText::FromString(TEXT("A Song Left Unfinished")));
-		QuestBody->SetText(FText::FromString(TEXT("\u2713 Find the Melodic Tuning Fork\n\u25C7 Awaken the Silent Bell (0/3)\n\u25C7 Speak with Sir Melodious")));
-		if (QuestProgress)
-		{
-			QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
-			QuestProgress->SetPercent(0.65f);
-		}
+		Hide(QuestCard);
 		return;
 	}
 	QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
-	QuestHeader->SetText(FText::FromString(bActive ? TEXT("\u25C6 ACTIVE QUEST") : TEXT("\u25C6 NEW QUEST")));
+	QuestHeader->SetText(FText::FromString(bActive ? TEXT("ACTIVE SCORE") : TEXT("NEW SCORE")));
 	QuestTitle->SetText(Shown->DisplayName);
 	QuestBody->SetText(Shown->Objective);
-	if (QuestProgress)
-	{
-		QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
-		QuestProgress->SetPercent(0.75f);
-	}
 }

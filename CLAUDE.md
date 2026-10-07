@@ -1,32 +1,32 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
-**Front-door review:** 2026-09-14 against `origin/main` at `7edba5167bc0f17e73dfb9d55ef33fcb32c56d81`.
+**Front-door review:** 2026-10-05 against `main` at `e25682b3a83c5f6453a355f60a08b772309d3dad`.
 
-## ⚑ MELUSINA RUNTIME RIG + RETARGET CANON — 2026-10-05
+## 🛑 GIT PIPELINE LAW — BINDING
 
-**Read [`Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md`](Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md) before any retarget, animation or rig work.** It supersedes older rig/retarget docs.
+This section mirrors the current repo-wide contract in `AGENTS.md`,
+`Docs/Production/MULTI_AGENT_LANES.md`, and `Docs/Production/GIT_HEALTH_CONTRACT.md`.
+`_AGENT_WORKING_AGREEMENT.md` outranks every agent doc. If this section ever drifts from
+those newer repo-wide Git contracts, the current repo-wide contracts win until this file is
+updated.
 
-- **Raw retarget output into `SK_Melusina_Skeleton` is known-defective — never ship it.** Every retarget needs the canon arm correction, then verification: `15.774 | 28.561 | 28.615` (world cm). Reject `34.789 | 9.520 | 28.615` — the reference-pose interruption.
-- Her rig is **not mannequin**: `shoulder_l → arm_stretch_l → forearm_stretch_l → hand_l`; legs `thigh_stretch_l → leg_stretch_l → foot_l → toes_01_l`; **no `pelvis`**, **no `ik_foot_l/r`**.
-- The `UpperBody` slot feeds a **layered blend** — its branch mask must carry the 11 spine+arm filters or draw/cast montages are silently blended away.
-- **Caster/archer hybrid is intentional**: LMB = caster + floating astrolabe; RMB = Sparrow charged draw/hold/fire. Preserve it.
-- `batch_retarget_animations` + `overwrite=true` **crashes the editor**. Never pass it.
-- **Open:** the six owner-approved SparrowArchery clips still carry the arm defect (frozen — owner decision).
-- **Deprecated/stale rigs and retargeters are listed in the canon doc §5 and in `CURRENT_STATE.md`.** Do not resurrect them.
+Canonical authority is `origin/main`. **`main` is a landing target, never an agent
+workspace.** Normal worker execution uses a detached lane worktree created from current
+`origin/main` and pinned by `refs/agents/<lane>`; workers do not create feature branches,
+push, or open PRs. Commits inside the worker's own lane need no per-commit approval, and the
+integrator may perform the normal bounded landing flow without asking again. The integrator
+owns any temporary PR branch and retires it after landing.
 
-## 🛑 GIT PIPELINE LAW — BINDING (owner directive 2026-09-06; outranks everything in this file)
+Explicit owner approval is still required for destructive or history-rewriting operations:
+`git reset --hard`, `git checkout -- .`, `git clean`, force-push, history rewrite,
+deleting a branch/ref, and any Perforce submit. The preserved
+`collab/laptop/longterm` branch remains a special Blender/Geometry-Nodes workstation source
+lane; it is not the default agent workflow and must never be wholesale-merged over current
+`main`.
 
-This is a PROFESSIONAL GAME PIPELINE, not an AI playground. Canonical authority is
-`origin/main`, maintained on the desktop PC. This laptop clone is ONLY a Blender /
-asset-prep / mobile hub — its local `main` must mirror `origin/main` exactly and never
-diverge. No agent may create branches, commit, merge, rebase, reset, or push without
-explicit owner permission for that specific operation plus a written plan stated first.
-Never consolidate or restructure git history from this machine. Destructive commands
-(`git reset --hard`, `git checkout -- .`, `git clean`, `git push --force`, any history
-rewrite) are forbidden without explicit per-command owner approval. Long-lived laptop
-asset work lives on `collab/laptop/longterm`. Verify read-only before and after any
-approved mutation. Poor git management has already caused real regressions and missed
-deadlines here — do not add to that history.
+The portable `G:` workspace may be a complete runnable project. Do not treat a laptop or
+portable checkout as archive-only merely because it is not the desktop PC. Keep paths
+repo-relative and obey the same lane/integration rules on every workstation.
 
 ## ⛔ READ FIRST — [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md)
 

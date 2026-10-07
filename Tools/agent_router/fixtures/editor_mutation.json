@@ -1,0 +1,20 @@
+{
+  "id": "editor-mutation-hud",
+  "goal": "Fix the HUD widget material assignment in the editor and save the level.",
+  "done_when": [
+    "Saved/Audit/editor-mutation-hud/screenshot.png shows the corrected HUD"
+  ],
+  "inputs": [
+    "Content/Melodia/UI/WBP_BowHUD_v4.uasset"
+  ],
+  "mutation_paths": [
+    "Content/Melodia/UI/WBP_BowHUD_v4.uasset"
+  ],
+  "surfaces": ["editor_write"],
+  "mutation_scope": "editor",
+  "task_class": "ui_widget_implementation",
+  "artifacts_expected": [
+    "Saved/Audit/editor-mutation-hud/screenshot.png"
+  ],
+  "max_turns": 30
+}
