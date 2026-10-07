@@ -1,0 +1,458 @@
+{
+  "schema": "melodia.animation_doctor_report.v2",
+  "timestamp": "2026-10-07T22:02:46+00:00",
+  "branch": "main",
+  "mode": "triage_readonly",
+  "verdict": "HOLD",
+  "summary": "23/25 PASS, 2 HOLD, 0 FAIL",
+  "families": {
+    "rig_canon": {
+      "verdict": "PASS",
+      "checks": [
+        "canon_doc",
+        "uasset_presence",
+        "layer_mask_11",
+        "arm_convention",
+        "frozen_policy"
+      ]
+    },
+    "cloth_hair": {
+      "verdict": "PASS",
+      "checks": [
+        "ref_poses",
+        "readonly_exports",
+        "sharing_topology",
+        "weight_lab",
+        "shirt_rig"
+      ]
+    },
+    "ik_locomotion": {
+      "verdict": "PASS",
+      "checks": [
+        "locomotion_proof",
+        "blend_spec",
+        "foot_ik_state"
+      ]
+    },
+    "nikki_pose": {
+      "verdict": "HOLD",
+      "checks": [
+        "idle_closeout",
+        "hand_contact_metric",
+        "settle_lighting_queued"
+      ]
+    },
+    "hybrid_combat": {
+      "verdict": "PASS",
+      "checks": [
+        "montage_wiring",
+        "chord_code"
+      ]
+    },
+    "wardrobe": {
+      "verdict": "HOLD",
+      "checks": [
+        "wardrobe_pipeline",
+        "garment_system",
+        "dress_rig",
+        "dress_intake"
+      ]
+    },
+    "rig_pipeline": {
+      "verdict": "PASS",
+      "checks": [
+        "rig_manifests"
+      ]
+    },
+    "evidence_hygiene": {
+      "verdict": "PASS",
+      "checks": [
+        "capture_method",
+        "doctor_history"
+      ]
+    }
+  },
+  "lens_coverage": {
+    "N1": {
+      "criterion": "readable graceful poses",
+      "served_by": [
+        "canon_doc",
+        "uasset_presence",
+        "layer_mask_11",
+        "frozen_policy",
+        "idle_closeout",
+        "montage_wiring",
+        "chord_code",
+        "capture_method"
+      ]
+    },
+    "N2": {
+      "criterion": "clothing-aware movement",
+      "served_by": [
+        "ref_poses",
+        "readonly_exports",
+        "sharing_topology",
+        "weight_lab",
+        "blend_spec",
+        "wardrobe_pipeline",
+        "garment_system",
+        "shirt_rig",
+        "dress_rig",
+        "rig_manifests"
+      ]
+    },
+    "N3": {
+      "criterion": "stable layered contact",
+      "served_by": [
+        "ref_poses",
+        "readonly_exports",
+        "sharing_topology",
+        "wardrobe_pipeline",
+        "garment_system",
+        "shirt_rig",
+        "dress_rig",
+        "rig_manifests"
+      ]
+    },
+    "N4": {
+      "criterion": "restrained character lighting",
+      "served_by": [
+        "QUEUED \u2014 editor proof owed"
+      ]
+    },
+    "N5": {
+      "criterion": "continuous shoulder silhouette",
+      "served_by": [
+        "canon_doc",
+        "layer_mask_11",
+        "arm_convention",
+        "frozen_policy",
+        "idle_closeout",
+        "dress_rig",
+        "rig_manifests"
+      ]
+    },
+    "N6": {
+      "criterion": "feasible elbows/wrists",
+      "served_by": [
+        "arm_convention"
+      ]
+    },
+    "N7": {
+      "criterion": "intentional hand contact",
+      "served_by": [
+        "layer_mask_11",
+        "hand_contact_metric",
+        "montage_wiring"
+      ]
+    },
+    "N8": {
+      "criterion": "stable feet/root",
+      "served_by": [
+        "uasset_presence",
+        "locomotion_proof",
+        "blend_spec",
+        "foot_ik_state"
+      ]
+    },
+    "N9": {
+      "criterion": "settle with controlled lag, face clear",
+      "served_by": [
+        "ref_poses",
+        "sharing_topology",
+        "weight_lab",
+        "shirt_rig"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "check": "canon_doc",
+      "family": "rig_canon",
+      "lens": [
+        "N1",
+        "N5"
+      ],
+      "status": "PASS",
+      "detail": "runtime canon present",
+      "evidence": "MELUSINA_RUNTIME_CANON_2026-10-05.md"
+    },
+    {
+      "check": "uasset_presence",
+      "family": "rig_canon",
+      "lens": [
+        "N1",
+        "N8"
+      ],
+      "status": "PASS",
+      "detail": "ABP=824111B body=15377058B",
+      "evidence": "Content/Melodia/Characters/Melusina/"
+    },
+    {
+      "check": "layer_mask_11",
+      "family": "rig_canon",
+      "lens": [
+        "N1",
+        "N5",
+        "N7"
+      ],
+      "status": "PASS",
+      "detail": "11-filter mask SAVED to disk, visually verified.; draw pose verified in PIE capture",
+      "evidence": "Saved/Audit/MelusinaWaveHarpContact_20261004/draw_pose_layer_mask_fix.json"
+    },
+    {
+      "check": "arm_convention",
+      "family": "rig_canon",
+      "lens": [
+        "N5",
+        "N6"
+      ],
+      "status": "PASS",
+      "detail": "canon gate 15.774|28.561|28.615 vs reject 34.789|9.520|28.615 on file; live re-verify queued for editor (idle+caster; RMB frozen)",
+      "evidence": "Saved/Audit/MelusinaWaveHarpContact_20261004/shoulder_reference_pose_interruption.json"
+    },
+    {
+      "check": "frozen_policy",
+      "family": "rig_canon",
+      "lens": [
+        "N1",
+        "N5"
+      ],
+      "status": "PASS",
+      "detail": "Sparrowx6 frozen (arm defect open, owner decision); no body reimport; no new solver; ONE measured correction max with exact rollback",
+      "evidence": "MELUSINA_RUNTIME_CANON_2026-10-05.md \u00a74"
+    },
+    {
+      "check": "ref_poses",
+      "family": "cloth_hair",
+      "lens": [
+        "N2",
+        "N3",
+        "N9"
+      ],
+      "status": "PASS",
+      "detail": "shirt+hair+hat ref poses staged",
+      "evidence": "MelusinaSecondarySources_20261003/"
+    },
+    {
+      "check": "readonly_exports",
+      "family": "cloth_hair",
+      "lens": [
+        "N2",
+        "N3"
+      ],
+      "status": "PASS",
+      "detail": "5/5 canonical exports, 11353920 bytes",
+      "evidence": ""
+    },
+    {
+      "check": "sharing_topology",
+      "family": "cloth_hair",
+      "lens": [
+        "N2",
+        "N3",
+        "N9"
+      ],
+      "status": "PASS",
+      "detail": "body 17/17 + WaterHair 13/13 drift-free, Kawaii present, UpToDate",
+      "evidence": ""
+    },
+    {
+      "check": "weight_lab",
+      "family": "cloth_hair",
+      "lens": [
+        "N2",
+        "N9"
+      ],
+      "status": "PASS",
+      "detail": "weight lab materialized",
+      "evidence": "Tools/Houdini/melusina_weight_lab.hipnc"
+    },
+    {
+      "check": "locomotion_proof",
+      "family": "ik_locomotion",
+      "lens": [
+        "N8"
+      ],
+      "status": "PASS",
+      "detail": "Locomotion@180 <-> Idle@0, 0 errors",
+      "evidence": ""
+    },
+    {
+      "check": "blend_spec",
+      "family": "ik_locomotion",
+      "lens": [
+        "N2",
+        "N8"
+      ],
+      "status": "PASS",
+      "detail": "samples [0.0, 180.0, 420.0, 630.0], axis [0.0, 750.0]",
+      "evidence": ""
+    },
+    {
+      "check": "foot_ik_state",
+      "family": "ik_locomotion",
+      "lens": [
+        "N8"
+      ],
+      "status": "PASS",
+      "detail": "FootPlacement(Graph, root, spine_01_x, foot/toes) feet-level verified 2026-10-05; slope/stairs test owed \u2014 queued for PIE",
+      "evidence": ""
+    },
+    {
+      "check": "idle_closeout",
+      "family": "nikki_pose",
+      "lens": [
+        "N1",
+        "N5"
+      ],
+      "status": "PASS",
+      "detail": "contact sheet + 2.7s loop + receipt + raw pose on file",
+      "evidence": "MelusinaProgress_20261004/IdleCloseout/"
+    },
+    {
+      "check": "hand_contact_metric",
+      "family": "nikki_pose",
+      "lens": [
+        "N7"
+      ],
+      "status": "PASS",
+      "detail": "hand_sep idle=94.734 draw=111.218 \u2014 metric exists, hero acceptance queued",
+      "evidence": ""
+    },
+    {
+      "check": "settle_lighting_queued",
+      "family": "nikki_pose",
+      "lens": [
+        "N4",
+        "N9"
+      ],
+      "status": "HOLD",
+      "detail": "settle-lag + restrained-lighting need live PIE at normal cadence (no per-frame SceneCapture) \u2014 queued, not provable offline",
+      "evidence": ""
+    },
+    {
+      "check": "montage_wiring",
+      "family": "hybrid_combat",
+      "lens": [
+        "N1",
+        "N7"
+      ],
+      "status": "PASS",
+      "detail": "slots DefaultSlot+UpperBody; RMB A_Spar_Mel_RMB_Drawback/hold/fire wired; orphaned=3, missing-travel-idle known-do-not-invent",
+      "evidence": ""
+    },
+    {
+      "check": "chord_code",
+      "family": "hybrid_combat",
+      "lens": [
+        "N1"
+      ],
+      "status": "PASS",
+      "detail": "five-shot ChordIntervals+octave path present in source (0/4/7/11/12 per canon); runtime five-shot proof queued",
+      "evidence": ""
+    },
+    {
+      "check": "wardrobe_pipeline",
+      "family": "wardrobe",
+      "lens": [
+        "N2",
+        "N3"
+      ],
+      "status": "PASS",
+      "detail": "wardrobe pipeline manifests present",
+      "evidence": ""
+    },
+    {
+      "check": "garment_system",
+      "family": "wardrobe",
+      "lens": [
+        "N2",
+        "N3"
+      ],
+      "status": "PASS",
+      "detail": "ontology + staging plan + MD bridge on file",
+      "evidence": ""
+    },
+    {
+      "check": "shirt_rig",
+      "family": "cloth_hair",
+      "lens": [
+        "N2",
+        "N3",
+        "N9"
+      ],
+      "status": "PASS",
+      "detail": "leg 234->0, maxinfl 4, clearance min 0.5205cm / 0 within 0.5cm; 8-spoke hem rig staged",
+      "evidence": "melusina_animation_doctor/shirt_fix/"
+    },
+    {
+      "check": "dress_rig",
+      "family": "wardrobe",
+      "lens": [
+        "N2",
+        "N3",
+        "N5"
+      ],
+      "status": "PASS",
+      "detail": "reef dress bodice/skirt/hem regions on file; symmetry mean 11.649mm (max 108.358mm) \u2014 fashion-asymmetric: DO NOT mirror weights on UE bind",
+      "evidence": "melusina_animation_doctor/rig/"
+    },
+    {
+      "check": "dress_intake",
+      "family": "wardrobe",
+      "lens": [
+        "N2"
+      ],
+      "status": "HOLD",
+      "detail": "Cos_Dress_Melusina_AntiqueDoll: staged outputs absent (obj/fbx); Cos_Accessory_Melusina_ButterflyWing: staged outputs absent (obj/fbx) \u2014 metadata staged, meshes not yet dropped in",
+      "evidence": "wardrobe_pipeline/intake/"
+    },
+    {
+      "check": "rig_manifests",
+      "family": "rig_pipeline",
+      "lens": [
+        "N2",
+        "N3",
+        "N5"
+      ],
+      "status": "PASS",
+      "detail": "melusina sym=0.179mm sheep sym=26.249mm; layers + regions + UE orders on file",
+      "evidence": "melusina_animation_doctor/rig/"
+    },
+    {
+      "check": "capture_method",
+      "family": "evidence_hygiene",
+      "lens": [
+        "N1"
+      ],
+      "status": "PASS",
+      "detail": "capture_pie_movement_clip + StartAim/StartDraw probe + socket metric: the working eye",
+      "evidence": ""
+    },
+    {
+      "check": "doctor_history",
+      "family": "evidence_hygiene",
+      "lens": [],
+      "status": "PASS",
+      "detail": "7 doctor reports on file \u2014 run --trend for drift watch",
+      "evidence": "Saved/Audit/melusina_animation_doctor"
+    }
+  ],
+  "queued_gates": {
+    "hython/offline": [
+      "weight-lab cook: --test-sheep fast loop first, then --melusina 465-bone \u2192 capture_stats.json",
+      "shirt-hem / skirt-chain / ornament QA in disposable staging only"
+    ],
+    "editor (serial, owner go)": [
+      "read-only Kawaii audits (audit_kawaii_runtime_readonly, hair_physics_chain)",
+      "PIE slope/stairs FootPlacement + walk/stop + garment separation at NORMAL cadence",
+      "arm-canon re-verify 15.774|28.561|28.615 idle+caster; N4/N9 settle+lighting captures",
+      "five-shot LMB chord runtime proof; RMB archery stays frozen"
+    ],
+    "owner-decision": [
+      "Sparrowx6 arm-defect fix (canon recipe on copies vs leave frozen)",
+      "BowGrip zeroed-translation look (C++ default + rebuild)"
+    ]
+  }
+}

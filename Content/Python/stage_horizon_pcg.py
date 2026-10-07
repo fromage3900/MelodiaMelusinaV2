@@ -31,12 +31,20 @@ def stage() -> dict:
     level_name = world.get_name()
     _log(f"Staging in level: {level_name}")
 
-    # Check if actor already exists
-    actors = unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor)
-    existing = [a for a in actors if ACTOR_LABEL in a.get_name()]
+    # Idempotence: match on the editor LABEL. get_name() is the object name
+    # ("PCGVolume_N") and never contains the label set below, so a name check
+    # would spawn a duplicate volume on every rerun.
+    actors = unreal.GameplayStatics.get_all_actors_of_class(world, unreal.PCGVolume)
+    existing = [a for a in actors if a.get_actor_label() == ACTOR_LABEL]
     if existing:
-        _log(f"Actor already exists: {existing[0].get_name()}")
-        return {"status": "exists", "actor": existing[0].get_name()}
+        _log(f"Actor already exists: {existing[0].get_actor_label()} ({existing[0].get_name()})")
+        if len(existing) > 1:
+            _log(f"WARNING: {len(existing)} volumes carry label {ACTOR_LABEL}; remove duplicates by hand")
+        return {
+            "status": "exists",
+            "actor": existing[0].get_name(),
+            "duplicates": len(existing) - 1,
+        }
 
     # Load the PCG graph
     graph = unreal.EditorAssetLibrary.load_asset(GRAPH_PATH)
