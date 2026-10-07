@@ -3189,6 +3189,33 @@
     0.029
    ]
   },
+  "MEL_music_bar_double": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.105,
+    0.6,
+    0.03
+   ]
+  },
+  "MEL_music_bar_final": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.135,
+    0.6,
+    0.03
+   ]
+  },
+  "MEL_music_bar_line": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.03,
+    0.6,
+    0.03
+   ]
+  },
   "MEL_music_baroque_harpsichord": {
    "ok": true,
    "verts": 1880,
@@ -3313,6 +3340,15 @@
     0.118,
     0.118,
     0.26
+   ]
+  },
+  "MEL_music_caesura": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.133,
+    0.142,
+    0.021
    ]
   },
   "MEL_music_cajon": {
@@ -3999,6 +4035,15 @@
     0.034
    ]
   },
+  "MEL_music_note_thirty_second": {
+   "ok": true,
+   "verts": 272,
+   "bbox": [
+    0.397,
+    0.543,
+    0.034
+   ]
+  },
   "MEL_music_note_whole": {
    "ok": true,
    "verts": 192,
@@ -4402,6 +4447,15 @@
     0.574,
     0.579,
     0.094
+   ]
+  },
+  "MEL_music_tenuto": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.111,
+    0.018,
+    0.018
    ]
   },
   "MEL_music_them_arch": {
@@ -8031,7 +8085,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 755,
+  "package_count": 761,
   "monolith_count": 209
  }
 }

@@ -187,6 +187,7 @@ from . import music_wind_flute_family  # noqa: F401 - P4 wave 15: piccolo, alto/
 from . import music_notation_glyphs  # noqa: F401 - P5 wave 16: alto/tenor clef, sharp, flat, natural, quarter rest
 from . import music_note_durations  # noqa: F401 - P5 wave 17: whole/half/quarter/eighth notes + whole/half rests
 from . import music_notation_extras  # noqa: F401 - P5 wave 18: sixteenth note, rests, dynamics, hairpins, percussion clef
+from . import music_notation_marks  # noqa: F401 - P5 wave 20: thirty-second note, bar lines, tenuto, caesura
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 
