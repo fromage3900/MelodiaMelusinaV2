@@ -32,6 +32,19 @@ The long body is retained as audit history, not as a flat list of present-tense 
   `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md` (lowercase `docs`). The repository also contains
   an uppercase `Docs/` tree. Use exact tracked casing and do not attempt a case-only tree migration
   from a case-insensitive Windows checkout as incidental cleanup.
+- **Houdini Studio Gate 0A — scaffolded and headless-proven 2026-10-07; GUI acceptance owed.**
+  The repo-backed package `deploy/houdini/packages/melodia_studio.json` is path-independent
+  (`$HOUDINI_PACKAGE_PATH`), and `deploy/houdini/install_melodia_studio.ps1` writes only a thin
+  `package_path` pointer into the user's Houdini `packages/` folder — it never edits `houdini.env`.
+  It registers `deploy/houdini/melodia_studio/` as an `hpath` root, which supplies the Blender-like
+  `Melodia_Studio` desktop, the `Melodia_KineFX` desktop, the eight-tool `Melodia` shelf (Project,
+  AnimationDoctor, Shorewake, Vellum Cache, Copernicus, Foundry Validate, Evidence, UE Handoff) and
+  the `melodia_studio` Python module. `hython deploy/houdini/verify_melodia_studio.py` passes
+  24/24 required checks with exit 0; receipt
+  `Saved/Audit/houdini_studio/setup_20261007_133528.json`.
+  **Evidence: headless Houdini 22.0.368 package/shelf/module discovery and launch only — desktop
+  visibility, desk switching, reload survival and screenshots remain owner-held GUI acceptance, so
+  this is scaffolded + headless-proven, not live-proven.**
 
 
 ## Runtime animation convergence — 2026-10-03, ACTIVE

@@ -1,0 +1,17 @@
+{
+  "MELODIA_AUDIT_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/Saved/Audit",
+  "MELODIA_CACHE_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/Saved/HoudiniFoundry",
+  "MELODIA_HDA_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/hda",
+  "MELODIA_HOUDINI_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini",
+  "MELODIA_PACKAGE_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio",
+  "MELODIA_ROOT": "D:/EnvironmentPortfolio/BS_GodFile",
+  "git_head": "d4f4a3b1036e",
+  "houdini_version": "22.0.368",
+  "name": "shelf_evidence",
+  "on_houdini_path": true,
+  "package_root": "D:\\EnvironmentPortfolio\\BS_GodFile\\deploy\\houdini\\melodia_studio",
+  "repo_root": "D:\\EnvironmentPortfolio\\BS_GodFile",
+  "schema": "melodia.houdini_studio.manifest/1",
+  "source": "shelf",
+  "tool": "melodia_studio"
+}

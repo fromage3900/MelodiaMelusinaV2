@@ -1,0 +1,37 @@
+fullscreen   -1
+playbarshown 1
+playbar      -1
+shelf        -1
+menubar      -1
+statusbar    -1
+root {
+	split 0.68 V {
+		split 0.66 H {
+			tabs 0 1 {
+				pane panetab1 -a 0 -l 10 -H /obj/ -T OBJ -m sceneview
+			}
+			split 0.44 V {
+				tabs 0 1 {
+					pane panetab2 -a 0 -l 10 -H /obj/ -T OBJ -m parmeditor
+				}
+				tabs 0 1 {
+					pane panetab3 -a 0 -l 10 -H /obj/ -T OBJ -m neteditor
+				}
+			}
+		}
+		split 0.70 H {
+			tabs 0 1 {
+				pane panetab4 -a 0 -l 10 -H /obj/ -T OBJ -m chaneditor
+			}
+			tabs 0 1 {
+				pane panetab5 -a 0 -l 10 -H /obj/ -T OBJ -m details
+				pane panetab6 -a 0 -l 10 -H /obj/ -T OBJ -m python
+			}
+		}
+	}
+}
+shelfdock -o 1 -l icon_and_text -G "0.50 0.50" add melodia_shelf_set shelf_set_1
+viewerstow -x open -b open -l open -m hide -c hide -d open ${DESKNAME}.panetab1.world
+vieweroption -a 2 ${DESKNAME}.panetab1.world
+parmeditor -T 0.25 -w 0 panetab2
+geospreadsheet -c 0 -l horizontal -s 0.5 -m none -f 0 panetab5

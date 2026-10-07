@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <toolshelf name="melodia" label="Melodia">
+    <memberTool name="melodia_project"/>
+    <memberTool name="melodia_animation_doctor"/>
+    <memberTool name="melodia_shorewake"/>
+    <memberTool name="melodia_vellum_cache"/>
+    <memberTool name="melodia_copernicus"/>
+    <memberTool name="melodia_foundry_validate"/>
+    <memberTool name="melodia_evidence"/>
+    <memberTool name="melodia_ue_handoff"/>
+  </toolshelf>
+
+  <shelfSet name="melodia_shelf_set" label="Melodia">
+    <memberToolshelf name="melodia"/>
+  </shelfSet>
+
+  <tool name="melodia_project" label="Project" icon="MISC_generic">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('project')
+]]></script>
+  </tool>
+
+  <tool name="melodia_animation_doctor" label="AnimationDoctor" icon="SOP_object_merge">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('animation_doctor')
+]]></script>
+  </tool>
+
+  <tool name="melodia_shorewake" label="Shorewake" icon="SOP_group">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('shorewake')
+]]></script>
+  </tool>
+
+  <tool name="melodia_vellum_cache" label="Vellum Cache" icon="CHOP_network">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('vellum_cache')
+]]></script>
+  </tool>
+
+  <tool name="melodia_copernicus" label="Copernicus" icon="SHOP_material">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('copernicus')
+]]></script>
+  </tool>
+
+  <tool name="melodia_foundry_validate" label="Foundry Validate" icon="MISC_python">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('foundry_validate')
+]]></script>
+  </tool>
+
+  <tool name="melodia_evidence" label="Evidence" icon="CHOP_file">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('evidence')
+]]></script>
+  </tool>
+
+  <tool name="melodia_ue_handoff" label="UE Handoff" icon="MISC_present">
+    <toolSubmenu>Melodia</toolSubmenu>
+    <script scriptType="python"><![CDATA[import melodia_studio
+melodia_studio.launch('ue_handoff')
+]]></script>
+  </tool>
+</shelfDocument>
