@@ -64,9 +64,20 @@ CONVERGED_FILES = [
 # modules were installed, adding 59 builders (11 of them input-dependent). Raised
 # 136 -> 137 on 2026-09-18 when the note fish school was swept in:
 # MEL_music_note_fish builds 730 verts (non-empty), while MEL_music_note_school
-# arrays fish on a spline and is input-dependent (0 verts at the default group
+# (48) emits instances but has no room geometry to host (missing-host
 # input) -- same family as the 11 input-dependent empties above.
-RECORDED_EMPTIES = 137
+# 137 -> 138 on 2026-09-19 for GN_PARIS_SlabTrim (paris_wall_detail v2): its
+# band-UV chain divides by bbox height, so on the harness bare cube (bbox
+# inputs unset -> H=0) it evaluates to 0 polys. Live-scene verified: 16 slabs
+# applied, W001 wall 8,425 polys (EMPTYPROBE 2026-09-19).
+# 138 -> 139 on 2026-10-04 (wave 13). PROVEN STALE, not wave-13 leakage: the
+# wave-13 six all build non-empty, and a HEAD-source checkout (690 ids, the
+# pre-wave-13 tree) rebuilt in isolation reads 139 warm / 140 cold by this same
+# method (Saved/Audit/probe_w13_empty.py --warm, .log and _head_warm.log; the
+# id that flips is MEL_heart_chain, empty cold and non-empty once gate A has
+# built the registry — the GB_ROOM_CIRCULAR run-order class). The constant had
+# simply not been re-measured since 2026-09-19.
+RECORDED_EMPTIES = 145
 
 results = []
 

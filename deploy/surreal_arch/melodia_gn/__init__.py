@@ -35,16 +35,26 @@ from . import melodia_kit_v4  # noqa: F401 - Kit v4: timpani/tubular/dulcimer/ba
 from . import melodia_kit_baroque  # noqa: F401 - Baroque lens: harpsichord/violin/organ/lute (spatial)
 from . import chimes_gn  # noqa: F401 - GN chime family (ET-tuned, port of chime_row physics)
 from . import music_harps_real  # noqa: F401 - Realistic harps: concert/Ur lyre/kora/siku
+from . import musical_mesh_variants  # noqa: F401 - Musical mesh variant sweep (wave/harmonic/pulse/seeded)
+from . import phyllotaxis  # noqa: F401 - golden-angle 137.5077 spiral + pave (shared w/ brooch genomes)
+from . import horn_dangl  # noqa: F401 - ornate dangle row along a host curve
+from . import ue_proxy_kit  # noqa: F401 — UE proxy materials (halftone, fabric, crystal)
+from . import music_euro_remainder  # noqa: F401 - Cascading beams, rose window, lancet (P2 remainder)
 from . import music_terrain  # noqa: F401 - Walkable roll field/staff bridge terrain
 from . import audio_terrain  # noqa: F401 - Blender 5.2 native audio terrain/mesh systems
 from . import companion_flock  # noqa: F401 - Choral Sheep flock + wool bloom builders
 from . import planetary_terrain  # noqa: F401 - v3 deterministic planetary musical terrain
 from . import infinity_nikki_kit  # noqa: F401 - Infinity Nikki expanded wardrobe kit (bloom pavilion/nook/runway)
+from . import nikki_musical_decorations  # noqa: F401 - Nikki musical decorations (star/heart/bead generators)
+from . import nikki_advanced_decorations  # noqa: F401 - Nikki advanced (SDF, repeat zones, capture/store)
 from . import mother  # noqa: F401 - Faraway Mother Monolith kit (8 builders)
 from . import white_current  # noqa: F401 - White Current Monolith kit (6 builders)
 from . import god_molts  # noqa: F401 - God That Molts Monolith kit (8 builders)
 from .notation_extras import build_music_bass_clef, build_music_beam_cluster, build_music_triplet_note, build_music_chord_stack, build_music_fermata, build_music_repeat_bar, build_music_time_signature, build_music_stand
 from . import music_port  # noqa: F401 - note_head, staff, treble_clef, sheet_music_railing, cascading_beams + euro
+from . import music_higgsas_instruments  # noqa: F401 - Higgsas-led instruments (bandoneon/sax/harmonica/music box/theremin/hurdy-gurdy)
+from . import music_percussion_vessels  # noqa: F401 - steelpan/gong/ocarina (P4 gap fill)
+from . import music_wind_percussion  # noqa: F401 - flute/clarinet/recorder/marimba/vibraphone/melodica (P4 wave 2)
 from .ornament_extras import build_ornament_rosette_sixpetal, build_ornament_scallop_band, build_ornament_keyhole_frame, build_filigree_corner_volute, build_filigree_finial_cross, build_filigree_wreath_ring
 from .ribbon import (
     build_ribbon_curve, build_lissajous_ribbon, build_closed_ribbon, build_violin_bow,
@@ -63,6 +73,21 @@ from .env_extras import build_env_lily_pond, build_env_stepping_stones, build_en
 from .castle_extras import build_castle_corner_turret, build_castle_portcullis, build_castle_arrow_slit, build_castle_hoarding, build_castle_siege_tower, build_castle_barbican, build_pergola_walkway
 from .melusina_house import build_melusina_house_round_interior  # noqa: F401 - Melusina house round-plan interior
 from . import melodia_house  # noqa: F401 - unified house module: genome room shell (mh6) + AAA kit
+from . import melusina_house_foundation  # noqa: F401 - Melusina House foundation/pod builders
+from . import garment_material_id  # noqa: F401 - per-face material ID assignment for garments
+from . import garment_smart_bevel  # noqa: F401 - material-aware edge bevel (fabric round, trim sharp)
+from . import garment_trim_uv  # noqa: F401 - trim UV layout for garment texturing
+from . import garment_vertex_ao  # noqa: F401 - vertex-baked AO for garment detail
+from . import dreamy_gothic_arch  # noqa: F401 - slim lancet arch with gold tracery inlay
+from . import rose_window  # noqa: F401 - rose window GN builders
+from . import curved_wall  # noqa: F401 - adjustable arc wall for dreamy interiors
+from . import ornament_strip  # noqa: F401 - gold bead distribution along curves
+from . import gold_light_strip  # noqa: F401 - emissive gold LED strip lighting
+from . import barrel_vault_kit  # noqa: F401 - barrel vault ceiling GN builder
+from . import angel_wings  # noqa: F401 - Angel wing pair + feather row builders (was live-only, untracked)
+from . import garment_ribbon  # noqa: F401 - Garment ribbon trail builders (was live-only, untracked)
+from . import reaver_wings  # noqa: F401 - Reaver wing builders (was live-only, untracked)
+from . import bionic_joint  # noqa: F401 - Bionic joint / ball-seat builder (was live-only, untracked)
 from . import aesthetic_fx  # noqa: F401
 from . import scifi_fx  # noqa: F401
 from . import zen_kit  # noqa: F401 - zen/castle/asian absorbed from monolith (P2)
@@ -75,7 +100,19 @@ from . import core_forms_kit  # noqa: F401
 from . import core_forms_port  # noqa: F401 - tower, organic, hybrid, curved_wall, building
 from . import walls_kit  # noqa: F401
 from . import paris_wall_detail  # noqa: F401 - Paris lane v2 (Melusina study)
-from . import paris_track_a  # noqa: F401 - Track A: FountainLoop + DayNightFacade (owner queue 2026-09-21)
+from . import paris_escher_ladder  # noqa: F401 - Track A: Belvedere ladder device
+from . import paris_fountain_loop  # noqa: F401 - Track A: self-feeding courtyard fountain
+from . import paris_daynight_facade  # noqa: F401 - Track A: day/night duality facade
+from . import paris_mansard  # noqa: F401 - Track A: Haussmann roof band
+from . import paris_penrose_arch  # noqa: F401 - Track A: tribar doorway
+from . import paris_metamorphosis_frieze  # noqa: F401 - Track A: morph band
+from . import brutalist_office  # noqa: F401 - BRUTALIST: office block
+from . import brutalist_cubicles  # noqa: F401 - BRUTALIST: cubicle farm
+from . import brutalist_city  # noqa: F401 - BRUTALIST: 2D city block massing
+from . import brutalist_roofs  # noqa: F401 - BRUTALIST: roof system (6 styles)
+from . import office_props  # noqa: F401 - OFFICE: film interior prop kit
+from . import higgsas_pipeline  # noqa: F401 - single Higgsas loader (replaces 4 copies)
+
 from . import buildings_kit  # noqa: F401 - buildings absorbed (P2)
 from . import misc_props_kit  # noqa: F401
 from . import materials_kit  # noqa: F401 - materials absorbed (P2)
@@ -103,12 +140,14 @@ from .presets import (
     export_builder_preset, export_all_presets_json, audit_presets,
 )
 from . import nikki_decor  # noqa: F401 - Nikki decor: beads, stars, hearts, crystals, cords, guide-driven strings
+from . import nikki_aaa_tokens  # noqa: F401 - Nikki AAA: fabric, ribbon, gem, petal, star token, heart token
 
 # --- 2026-09-14 wave (wired 2026-09-16): audio-reactive study decor + Escher math ---
 from . import audio_architecture  # noqa: F401 - MEL_audio_facade, MEL_audio_landscape
+from . import audio_reactivity_v2  # noqa: F401 - Advanced audio-reactive builders (multiband, waveform, ripple, emission, beat)
 from . import cute_decor  # noqa: F401 - 14 cute decor builders (crystal drops, dangls, chains...)
-from . import skirt_decor  # noqa: F401 - garment hem decor: pearl-drop charms + guide-ring dangl row
 from . import escher_decor  # noqa: F401 - hyperbolic window, Penrose triangle, Mobius strip, escher tessellation
+from . import skirt_decor  # noqa: F401 - garment hem decor: pearl-drop charms + guide-ring dangl row
 from . import study_ground  # noqa: F401 - audio-reactive study ground
 from . import note_school  # noqa: F401 - note fish school (Melody Aquarium): MEL_music_note_fish
 
@@ -129,15 +168,25 @@ from . import musical_mesh_variants  # noqa: F401 - recovered 2026-09-11 (was li
 from . import nikki_advanced_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import nikki_musical_decorations  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ornament_strip  # noqa: F401 - recovered 2026-09-11 (was live-only)
-from . import phyllotaxis  # noqa: F401 - golden-angle 137.5077 spiral + pave (shared w/ brooch genomes)
-from . import horn_dangl  # noqa: F401 - ornate dangle row along a host curve
 from . import rose_window  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import ue_proxy_kit  # noqa: F401 - recovered 2026-09-11 (was live-only)
 from . import eyewear  # noqa: F401 - Eyewear: CAD-level frame front from ISO 8624 boxing measurements
-from . import angel_wings  # noqa: F401 - Angel wing pair + feather row builders (was live-only, untracked)
-from . import garment_ribbon  # noqa: F401 - Garment ribbon trail builders (was live-only, untracked)
-from . import reaver_wings  # noqa: F401 - Reaver wing builders (was live-only, untracked)
-from . import bionic_joint  # noqa: F401 - Bionic joint / ball-seat builder (was live-only, untracked)
+from . import music_percussion_kit  # noqa: F401 - P4 wave 3: snare/bass drum, cymbals, tambourine, carillon, kit rail
+from . import music_string_kit  # noqa: F401 - P4 wave 4: cello/viola/double bass/banjo/mandolin/ukulele
+from . import music_world_strings  # noqa: F401 - P4 wave 5: sitar/koto/balalaika/shamisen/erhu/guzheng
+from . import music_wind_reed_brass  # noqa: F401 - P4 wave 6: oboe/bassoon/trumpet/tuba/accordion/bagpipes
+from . import music_wind_folk  # noqa: F401 - P4 wave 7: dizi/xiao/bawu/hulusi/suona/sheng
+from . import music_keyboard_kit  # noqa: F401 - P4 wave 8: grand/upright piano, harmonium, clavinet, mellotron, tonewheel organ
+from . import music_electronics_kit  # noqa: F401 - P4 wave 9: synthesizer, drum machine, turntable, mixer, sequencer, sampler
+from . import music_world_percussion  # noqa: F401 - P4 wave 10: djembe, congas, bongos, cajon, frame drum, tabla
+from . import music_aux_percussion  # noqa: F401 - P4 wave 11: tom-tom, xylophone, washboard, claves, cabasa, guiro
+from . import music_wind_solo  # noqa: F401 - P4 wave 12: shakuhachi, xun, panpipes, quena, didgeridoo, tin whistle
+from . import music_aux_percussion2  # noqa: F401 - P4 wave 13: maracas, wood block, cowbell, castanets, shaker, vibraslap
+from . import music_signal_percussion  # noqa: F401 - P4 wave 14: temple block, ratchet, bodhran, slapstick, slit drum, handpan
+from . import music_wind_flute_family  # noqa: F401 - P4 wave 15: piccolo, alto/bass flute, bansuri, low whistle, fife
+from . import music_notation_glyphs  # noqa: F401 - P5 wave 16: alto/tenor clef, sharp, flat, natural, quarter rest
+from . import music_note_durations  # noqa: F401 - P5 wave 17: whole/half/quarter/eighth notes + whole/half rests
+from . import music_notation_extras  # noqa: F401 - P5 wave 18: sixteenth note, rests, dynamics, hairpins, percussion clef
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 
