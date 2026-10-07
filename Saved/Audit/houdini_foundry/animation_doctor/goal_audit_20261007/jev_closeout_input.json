@@ -1,0 +1,48 @@
+{
+  "schema": "melodia.jev.animation_doctor.closeout.input.v1",
+  "recorded_utc": "2026-10-07T22:01:33.710278+00:00",
+  "state": {
+    "scope": "Closeout handoff for the bounded Melusina AnimationDoctor and WaveHarp gate after the scoped main commit 02fd3af99. Recommend the next smallest existing-owner sequence from the recorded evidence.",
+    "authority": {
+      "canonical_baseline": "c3b5b326e1221f9e16101b6792ede625cdb2b187",
+      "runtime": "UE 5.8, canonical SK_Melusina_Skeleton, ABP_Melusina_Current, existing FootPlacement, native WaveHarp combat and current retarget owners",
+      "commit": "02fd3af99c53b2240e01de230260c01e245b8f50"
+    },
+    "handoff": {
+      "owner": "Sol",
+      "editor": "closed after orderly stop; dirty content packages 0",
+      "preserved": "existing staged PCG lane and pre-existing working-tree changes remain outside the commit",
+      "candidate_policy": "six SparrowDoctor copies are saved and measured; six Sparrow originals and canonical copies remain untouched; candidates are not runtime-promoted"
+    },
+    "evidence": {
+      "deform": "Six Sparrow copies and four Shinbi outputs pass sampled deform checks; this is not visual acceptance.",
+      "mask": "Fresh 11-filter re-read confirms both generated/editor upper-body layers contain the same 11 depth-zero filters.",
+      "grounding": "CPU-skinned Boots LOD0 live idle sample reaches 30.080 cm below the collision floor (4600/5540 vertices); the same saved clip with graph bypassed reaches 12.918 cm below. One flat-floor sample only.",
+      "angles": "Eight full-body live Morning views are recorded; they expose the floating capsule-parented hat, large orbit rings, bent/open idle, and wardrobe value loss. They are diagnostic views, not owner acceptance.",
+      "input": "Physical LMB cast observed; direct-call charged loop observed; held physical RMB draw/hold/release remains unproven. Old shared-global observer cadence is contaminated and must not be reused.",
+      "stage_aside": "G dress work is source/staging only; 17 G-only scripts remain promotion backlog; skeleton FBX skin/Kawaii bind remains blocked and out of this animation gate."
+    },
+    "constraints": [
+      "Do not revive branches, replace the skeleton, add a second solver/pipeline, overwrite originals, or clear failed binding fields.",
+      "Do not promote a numerical pass to visual or runtime acceptance.",
+      "Keep G1 idle -> G2 locomotion -> G3 LMB plus 11-mask -> G4 held RMB -> G5 dress stage-aside ordering.",
+      "Measure real skinned sole contact and hand/string contact separately; owner visual acceptance remains required."
+    ]
+  },
+  "questions": {
+    "next_gate": {
+      "type": "choice",
+      "instructions": "Choose the highest-value next gate, preserving existing owners and the ordered G1-G5 sequence.",
+      "criteria": {
+        "GROUNDING_FIRST": "Diagnose the 30 cm live skinned boot penetration against the 13 cm saved-pose baseline, then verify idle and locomotion sole contact before polishing or binding candidates.",
+        "RMB_CONTACT_FIRST": "Prove real charged RMB draw/hold/release and both-hand grip/string clearance before fixing grounding.",
+        "HAT_ATTACHMENT_FIRST": "Repair capsule-parented hat/head attachment before animation and foot work.",
+        "MATERIAL_POLISH_FIRST": "Tune exposure and wardrobe values before solving grounding and motion."
+      }
+    },
+    "handoff_order": {
+      "type": "noul",
+      "instructions": "Give a concise ordered handoff for Sol: exact first diagnostic, smallest repair boundary, evidence required to advance, and stop conditions. Keep the answer grounded in the provided measurements and do not claim image vision or runtime acceptance."
+    }
+  }
+}
