@@ -41,43 +41,66 @@ restore original inputs -> original deterministic authored state
 
 That turns Universe Foundry into the control/evidence plane for the convergence work without creating another generator.
 
-## Gate 0 — Sync and inventory before edits
+## Gate 0 — Minimal preflight, then Melodia Houdini Studio package/desktop FIRST
 
-1. Prove HEAD == origin/main.
-2. Read:
+1. Prove the repo root, current HEAD/origin/main, and a usable Houdini GUI licence. Do not perform the full architecture audit yet.
+2. **Immediately scaffold/install the repo-backed Melodia Houdini Studio package and save the two working desktops described below.**
+3. After the workspace survives reload, read:
    - START_HERE_HOUDINI_2026-10-06.md
    - Docs/Houdini/FoundryDay_2026-09-24/README.md
    - Docs/Houdini/FoundryDay_2026-09-24/03_CRYSTAL_CATHEDRAL_HDA.md
    - Docs/Architecture/AUDIO_REACTIVE_CANON.md
    - Docs/WorldGen/WORLD_COMPILER_CONTRACT.md
    - relevant Universe Foundry contract/docs
-3. Inspect existing Houdini shelf/startup/package files before inventing any.
-4. Inspect Blender melodia_gn registration/core and current Crystal Cathedral GN stub.
-5. Record what exists vs what is proposed. Never mark planned HDAs as built without evidence.
-6. Run the Universe Foundry baseline before mutation:
+4. Repo audit result: no project-authored Melodia Houdini package, shelf, or desktop implementation was found on main, so this setup is additive rather than duplicate. Use SideFX packages; do not edit `houdini.env`.
+5. Inspect Blender melodia_gn registration/core and current Crystal Cathedral GN stub.
+6. Record what exists vs what is proposed. Never mark planned HDAs as built without evidence.
+7. Run the Universe Foundry baseline before mutation:
    - validate the current authored World Genome + Delta;
    - compile the mission;
    - `show`/inspect ready tasks;
    - compile again and verify identical mission identity/DAG.
-7. Record whether the exact Houdini/World Compiler task needed for tomorrow can already be represented by an existing mission task or `mission_ref`. If not, **do not redesign Foundry at Gate 0**; record the seam and proceed with the existing owner.
+8. Record whether the exact Houdini/World Compiler task needed for tomorrow can already be represented by an existing mission task or `mission_ref`. If not, **do not redesign Foundry at Gate 0**; record the seam and proceed with the existing owner.
 
 STOP if the checkout is stale or current authority docs disagree materially.
 
-## Gate 1 — Melodia Houdini Studio workspace
+## Gate 0A — Melodia Houdini Studio workspace/package acceptance
 
 Goal: make Houdini feel closer to the user's Blender-centered daily workflow without fighting Houdini conventions.
 
-Create a **repo-tracked setup recipe/scripts**, not fragile machine-only preferences. Machine-specific UI preference files should remain local unless SideFX explicitly supports portable packaging.
+Create a **repo-backed Houdini plugin/package**, not fragile machine-only preferences. SideFX packages can expose desktops, HDAs, Python tools, shelves, panels and viewer states through `HOUDINI_PATH`; use that mechanism. Keep only the thin install pointer machine-local.
 
-Desired desktop:
-- Large Scene View / Solaris-or-SOP viewport as visual center.
-- Network Editor immediately accessible and large enough for procedural work.
-- Parameters adjacent to Network Editor.
-- Scene Graph / Tree compact, Blender-Outliner-like.
-- Geometry Spreadsheet available as a diagnostic tab, not dominant.
-- Python Shell / status/evidence pane easy to reveal.
-- Animation/KineFX desktop variant with Scene View + Network + Animation Editor/MotionClip tools.
-- Optional dual-monitor variant, but laptop/single-monitor layout is the baseline.
+Canonical planned structure:
+
+```text
+deploy/houdini/
+  packages/melodia_studio.json
+  melodia_studio/
+    desktop/Melodia_Studio.desk
+    desktop/Melodia_KineFX.desk
+    toolbar/Melodia.shelf
+    scripts/python/melodia_studio/
+    python_panels/        # optional
+    viewer_states/        # optional
+  install_melodia_studio.ps1
+```
+
+The installer resolves the repo path at runtime and points the user's Houdini package folder at the repo-backed content. No username/drive-letter path is committed.
+
+Desired `Melodia_Studio` desktop:
+- Large Scene View as the Blender-like visual center (~65–70% visual focus).
+- Compact Scene/Tree at upper-right as the Outliner analogue.
+- Stable Parameters column below it as the Properties analogue.
+- Wide shallow Network Editor along the bottom, easy to maximize.
+- Geometry Spreadsheet + Python Shell as tabs, not permanent clutter.
+- Optional dual-monitor variant later; single-monitor Humber/laptop layout is the baseline.
+
+Desired `Melodia_KineFX` desktop:
+- large Scene View for source/target overlay;
+- Network Editor visible beside it;
+- Parameters stable;
+- Animation Editor/MotionClip diagnostics along the bottom;
+- Geometry Spreadsheet/Python Shell tabbed and available.
 
 Interaction goals:
 - familiar orbit/pan framing where safely configurable;
@@ -282,9 +305,11 @@ Frontier reasoning is for architecture/review; deterministic Python/Hython/Blend
 
 ## Tomorrow's recommended order
 
-1. Sync + Universe Foundry deterministic mission baseline.
-2. Workspace comfort pass.
-3. Contract/schema v0.1 + provenance manifest wrapper.
+1. Minimal repo/licence preflight.
+2. **Install/verify Melodia Houdini Studio package + Blender-like `Melodia_Studio` / `Melodia_KineFX` desktops + shelf.**
+3. Recover/prove the current working character/Houdini session as applicable.
+4. Universe Foundry deterministic mission baseline.
+5. Contract/schema v0.1 + provenance manifest wrapper.
 4. Hython baseline reproduction.
 5. HDA adapter/parity.
 6. Blender contract adapter.
