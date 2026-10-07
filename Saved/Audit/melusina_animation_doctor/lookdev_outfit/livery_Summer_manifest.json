@@ -1,0 +1,10 @@
+{
+ "schema": "melodia.season_livery_bake.v1",
+ "timestamp": "2026-10-07T17:41:30.472398+00:00",
+ "season": "Summer",
+ "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\slots_20261007\\dress_10set_packed_tmp.bgeo",
+ "out": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\lookdev_outfit\\dress_livery_Summer_cd.bgeo",
+ "points_colored": 183741,
+ "points_total": 183741,
+ "note": "preview-only vertex bake; production uses per-set maps in UE"
+}

@@ -1,0 +1,16 @@
+{
+ "schema": "melodia.sbs_meshmaps.v1",
+ "timestamp": "2026-10-07T17:34:23.007375+00:00",
+ "baker": "C:\\Program Files\\Adobe\\Adobe Substance 3D Designer\\substance3d_baker.exe",
+ "size": 4096,
+ "low": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\slots_20261007\\SM_ShorewakeDress_10SET_packed.obj",
+ "high": "self (--use_lowdef_as_highdef: no denser high exists yet)",
+ "normal_convention": "directx/tangent (UE), MikkT recompute",
+ "maps": [
+  "dress_10set_ao_4096.png",
+  "dress_10set_normal_4096.png",
+  "dress_10set_curvature_4096.png",
+  "dress_10set_thickness_4096.png",
+  "dress_10set_position_4096.png"
+ ]
+}
