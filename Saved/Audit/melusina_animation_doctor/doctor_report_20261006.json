@@ -1,0 +1,131 @@
+{
+  "schema": "melodia.animation_doctor_report.v1",
+  "timestamp": "2026-10-06T17:35:40+00:00",
+  "branch": "main",
+  "mode": "triage_readonly",
+  "verdict": "HOLD",
+  "summary": "18/19 PASS, 1 HOLD, 0 FAIL",
+  "checks": [
+    {
+      "check": "canon_doc",
+      "status": "PASS",
+      "detail": "runtime canon present",
+      "evidence": "Docs\\Production\\MELUSINA_RUNTIME_CANON_2026-10-05.md"
+    },
+    {
+      "check": "ref_pose_shirt",
+      "status": "PASS",
+      "detail": "keys=4",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\shirt_canonical_ref_pose.json"
+    },
+    {
+      "check": "ref_pose_hair",
+      "status": "PASS",
+      "detail": "keys=4",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\hair_canonical_ref_pose.json"
+    },
+    {
+      "check": "ref_pose_hat",
+      "status": "PASS",
+      "detail": "keys=4",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\hat_canonical_ref_pose.json"
+    },
+    {
+      "check": "export_shirt_readonly.fbx",
+      "status": "PASS",
+      "detail": "831280 bytes",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\shirt_readonly.fbx"
+    },
+    {
+      "check": "export_skirt_readonly.fbx",
+      "status": "PASS",
+      "detail": "2713264 bytes",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\skirt_readonly.fbx"
+    },
+    {
+      "check": "export_hair_readonly.fbx",
+      "status": "PASS",
+      "detail": "2729984 bytes",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\hair_readonly.fbx"
+    },
+    {
+      "check": "export_hat_readonly.fbx",
+      "status": "PASS",
+      "detail": "3793184 bytes",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\hat_readonly.fbx"
+    },
+    {
+      "check": "export_accessories_fit_readonly.fbx",
+      "status": "PASS",
+      "detail": "1286208 bytes",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\accessories_fit_readonly.fbx"
+    },
+    {
+      "check": "sharing_ABP_Melusina_Current",
+      "status": "PASS",
+      "detail": "matched=True drift=False compile=UpToDate kawaii=present nodes=17/17",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\sharing_graph_verification.json"
+    },
+    {
+      "check": "sharing_ABP_Melusina_WaterHair",
+      "status": "PASS",
+      "detail": "matched=True drift=False compile=UpToDate kawaii=present nodes=13/13",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\sharing_graph_verification.json"
+    },
+    {
+      "check": "compile_body",
+      "status": "PASS",
+      "detail": "status=UpToDate errors=0",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\body_sharing_compile.json"
+    },
+    {
+      "check": "compile_hair",
+      "status": "PASS",
+      "detail": "status=UpToDate errors=0",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\hair_sharing_compile.json"
+    },
+    {
+      "check": "weight_lab",
+      "status": "HOLD",
+      "detail": "mode=test_sheep \u2014 hython cook owed (stub)",
+      "evidence": "hipnc=present"
+    },
+    {
+      "check": "locomotion_proof",
+      "status": "PASS",
+      "detail": "move=Locomotion@180 stop=Idle@0 smoke_ok=True errors=0",
+      "evidence": "Saved\\Audit\\MelusinaLocomotion_20261005\\walk_idle_runtime_proof.json"
+    },
+    {
+      "check": "preserve_idle_clip_backup",
+      "status": "PASS",
+      "detail": "rollback path present",
+      "evidence": "Saved\\Audit\\MelusinaWaveHarpContact_20261004\\ClipBackups"
+    },
+    {
+      "check": "preserve_abp_backup",
+      "status": "PASS",
+      "detail": "rollback path present",
+      "evidence": "Saved\\Audit\\MelusinaLocomotion_20261005\\Backups"
+    },
+    {
+      "check": "preserve_sharing_backup",
+      "status": "PASS",
+      "detail": "rollback path present",
+      "evidence": "Saved\\Audit\\MelusinaSecondarySources_20261003\\Backups"
+    },
+    {
+      "check": "frozen_policy",
+      "status": "PASS",
+      "detail": "Sparrow\u00d76 clips frozen (arm defect open, owner decision); no body reimport; no new solver; at most ONE measured correction with exact rollback",
+      "evidence": "Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md \u00a74"
+    }
+  ],
+  "queued_editor_gates": [
+    "hython weight-lab cook (test_sheep fast loop first, then melusina 465-bone) \u2192 capture_stats.json",
+    "editor read-only: audit_kawaii_runtime_readonly.py + audit_melusina_hair_physics_chain.py",
+    "PIE: slope/stairs FootPlacement + walk/stop + garment separation at NORMAL cadence (no per-frame SceneCapture)",
+    "arm-canon re-verify 15.774|28.561|28.615 on idle + caster; RMB archery stays frozen",
+    "at most ONE bounded correction, then re-run this doctor"
+  ]
+}

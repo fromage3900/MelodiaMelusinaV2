@@ -1,0 +1,136 @@
+{
+  "schema": "melodia.universal_rig_manifest.v1",
+  "timestamp": "2026-10-06T17:58:08+00:00",
+  "character": "melusina",
+  "profile": "melusina",
+  "contract": "specs/universal_rig/rig_contract.v1.json",
+  "meshes": {
+    "body": {
+      "role": "body",
+      "points": 18891,
+      "prims": 18842,
+      "bounds_min": [
+        -96.63839721679688,
+        -15.25406551361084,
+        -9.283456802368164
+      ],
+      "bounds_max": [
+        96.63839721679688,
+        183.55682373046875,
+        37.10254669189453
+      ]
+    },
+    "skirt": {
+      "role": "skirt",
+      "points": 28928,
+      "prims": 27952,
+      "bounds_min": [
+        -47.85722732543945,
+        -21.299421310424805,
+        -29.57794952392578
+      ],
+      "bounds_max": [
+        57.24005889892578,
+        88.087158203125,
+        63.07141876220703
+      ]
+    }
+  },
+  "symmetry_N5": {
+    "samples": 2099,
+    "unmatched": 0,
+    "unmatched_frac": 0.0,
+    "midplane_x_cm": 0.0,
+    "resolution_mm": 8.33,
+    "gate_mm": 24.99,
+    "mean_mm": 0.179,
+    "max_mm": 14.961,
+    "pass": true
+  },
+  "regions": {
+    "head_face": {
+      "y_cm": [
+        155.72,
+        183.56
+      ],
+      "purpose": "N9 face-clear volume",
+      "points": 4858
+    },
+    "torso_arms": {
+      "y_cm": [
+        74.21,
+        155.72
+      ],
+      "purpose": "N5 shoulder-silhouette + N7 hand-contact zone",
+      "points": 10268
+    },
+    "cloth_zone": {
+      "y_cm": [
+        -15.25,
+        74.21
+      ],
+      "purpose": "N2/N3 layered contact + settle",
+      "points": 3765
+    }
+  },
+  "garment_layers_N2N3": {
+    "shirt_readonly": {
+      "points": 861,
+      "inside_body_bounds_frac": 0.9907
+    },
+    "skirt_readonly": {
+      "points": 30509,
+      "inside_body_bounds_frac": 0.5486
+    },
+    "hair_readonly": {
+      "points": 42900,
+      "inside_body_bounds_frac": 0.797
+    },
+    "hat_readonly": {
+      "points": 76674,
+      "inside_body_bounds_frac": 0.0219
+    },
+    "accessories_fit_readonly": {
+      "points": 8084,
+      "inside_body_bounds_frac": 0.9572
+    }
+  },
+  "joint_gap": "source FBXs carry polygon meshes only \u2014 no joints; capture staged, weights await skeleton_fbx_export",
+  "ue_work_orders": [
+    {
+      "id": "skeleton_fbx_export",
+      "status": "BLOCKED",
+      "detail": "Export jointed skeleton FBX from SK_Melusina_Skeleton (UE) \u2014 unblocks capture weights; lab cooks clean without it (i@capture_missing)."
+    },
+    {
+      "id": "kawaii_chain_assignment",
+      "status": "READY",
+      "detail": "Bind chains [{'chain': 'skirt', 'purpose': 'N2/N9 lower settle', 'root': 'c_kilt_master_x'}, {'chain': 'hair', 'purpose': 'N9 head follow + ornament lag', 'root': 'hair_root'}] to regions ['head_face', 'torso_arms', 'cloth_zone'] under existing sharing authority."
+    },
+    {
+      "id": "physics_bodies_per_region",
+      "status": "READY",
+      "detail": "Author per-region collision bodies from manifest bounds into PhysicsAssetForLimits; no new solver."
+    },
+    {
+      "id": "retarget_map_apply",
+      "status": "READY",
+      "detail": "Apply contract retarget_map for new donors; verify arm canon numbers before shipping any clip."
+    },
+    {
+      "id": "layer_mask_11",
+      "status": "READY",
+      "detail": "Any new layered blend on her ABP carries the 11-filter mask or draw/cast is blended away."
+    }
+  ],
+  "nikki_served": [
+    "N2",
+    "N3",
+    "N5",
+    "N9"
+  ],
+  "hip_staged": {
+    "test_lab": "Tools/Houdini/melusina_weight_lab.hipnc",
+    "melusina_lab": "Tools/Houdini/melusina_weight_lab_melusina.hipnc"
+  }
+}

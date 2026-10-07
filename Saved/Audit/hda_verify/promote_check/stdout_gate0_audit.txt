@@ -1,0 +1,64 @@
+00:00:00   360MB         | log started Tue Oct  6 14:53:56 2026
+00:00:00   360MB         | Arnold 7.5.3.0 [c79639cc] windows x86_64 icx-2025.2.0 oiio-2.6.3 osl-1.14.2 vdb-11.0.0 adlsdk-10.0.1.66 clmhub-3.3.0.15 rlm-17.0.1 optix-8.0.0 2026/07/21 21:43:03
+00:00:00   360MB         | running on NJ-00127-014, pid=7320
+00:00:00   360MB         |  1 x 12th Gen Intel(R) Core(TM) i9-12900KF (24 cores, 24 logical) with 130864MB
+00:00:00   360MB         |  NVIDIA driver version 610.88
+00:00:00   360MB         |  GPU 0: NVIDIA GeForce RTX 3080 Ti @ 1665MHz (compute 8.6) with 12287MB (3253MB available) (NVLink:0)
+00:00:00   360MB         |  Windows 10 (version 10.0, build 26200)
+00:00:00   360MB         |  soft limit for open files changed from 8192 to 2048
+00:00:00   360MB         |  
+00:00:00   370MB         | loading plugins from C:\Arnold\htoa\htoa-6.5.3.0_houdini-22.0.368\htoa-6.5.3.0_houdini-22.0.368\scripts\bin\..\plugins ...
+00:00:00   370MB         |  alembic_proc.dll: alembic uses Arnold 7.5.3.0
+00:00:00   371MB         |  htoa_mandelbulb_proc.dll: mandelbulb uses Arnold 7.5.3.0
+00:00:00   385MB         |  usd_proc.dll: usd uses Arnold 7.5.3.0
+00:00:00   386MB         | loaded 3 plugins from 3 lib(s) in 0:00.27
+00:00:01   344MB         | [htoa_op] Begin registration ...
+00:00:01   344MB         | [obj_procedurals] Registering procedurals ...
+00:00:01   344MB         | [obj_procedurals] procedural registration done.
+00:00:01   387MB         | [rop_operators] Registering operators ...
+00:00:01   387MB         | [rop_operators] operator registration done.
+00:00:02   518MB         | [vop_shaders] Registering shaders ...
+00:00:02   518MB         | [vop_shaders] shader registration done.
+00:00:02   518MB         | [vop_imagers] Registering imagers ...
+00:00:02   518MB         | [vop_imagers] imager registration done.
+00:00:02   518MB         | [htoa_op] USD shader translation registration
+00:00:02   456MB         | [htoa_op] End registration.
+00:00:04   531MB         | [color_manager_ocio]  : using OCIO configuration file from the OCIO environment variable C:/PROGRA~1/SIDEEF~1/HOUDIN~1.368/packages/ocio/houdini-config-v3.0.0_aces-v2.0_ocio-v2.5.ocio
+PASS arpeggio_stair
+PASS melodia_crystal_cathedral
+WARN space_orbital_rings
+       - file_present: OWED: hda/SpaceTraversal_OrbitalRings_1.0.hda does not exist (builder: Content/Python/create_hda_space_orbital_rings.py)
+WARN corridor_network
+       - file_present: OWED: hda/CorridorNetwork_1_0.hda does not exist (builder: Tools/Houdini/corridors/build_corridor_network_hda.py)
+WARN crystal_cathedral_v2
+       - file_present: OWED: hda/CrystalCathedralV2.hda does not exist (builder: Tools/Houdini/cathedral/build_crystal_cathedral_v2_hda.py)
+WARN foundry_field_atlas
+       - file_present: OWED: hda/HDA_Foundry_FieldAtlas_1.0.hda does not exist (builder: none)
+PASS stub:hda/backup/ArpeggioStair_1.0_bak1.hda
+PASS stub:hda/backup/ArpeggioStair_1.0_bak2.hda
+FAIL stub:hda/backup/ArpeggioStair_1.0_bak3.hda
+       - has_network: expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it
+       - still_stub: backup grew a real network - audit it before trusting it
+FAIL stub:hda/backup/ArpeggioStair_1.0_bak4.hda
+       - has_network: expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it
+       - still_stub: backup grew a real network - audit it before trusting it
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak1.hda
+FAIL stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak10.hda
+       - has_network: expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it
+       - still_stub: backup grew a real network - audit it before trusting it
+FAIL stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak11.hda
+       - has_network: expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it
+       - still_stub: backup grew a real network - audit it before trusting it
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak2.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak3.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak4.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak5.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak6.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak7.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak8.hda
+PASS stub:hda/backup/HDA_Melodia_CrystalCathedral_1.0_bak9.hda
+[hda_audit] {'PASS': 13, 'WARN': 4, 'FAIL': 4}  |  project HDAs: 18, unregistered: 0, vendor: 15, stub backups: 15
+[hda_audit] receipt: D:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\hda_verify\promote_check\hda_inventory.json
+00:00:05   613MB         |  
+00:00:05   613MB         | releasing resources
+00:00:05   598MB         | Arnold shutdown

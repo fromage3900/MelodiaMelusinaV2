@@ -1,0 +1,74 @@
+{
+  "schema": "melodia.shirt_rig_manifest.v1",
+  "status": "STAGED_FOR_UE",
+  "candidate": {
+    "fbx": "Saved/Audit/MelusinaShirtKawaii_20261003/shirt_skinfit_candidate.fbx",
+    "verts": 861,
+    "bones": 481
+  },
+  "hem_rig": {
+    "root": "c_shirt_hem_master_x",
+    "spokes": 8,
+    "bones": 17,
+    "purpose": "independent soft hem motion beneath body-anchored chest/shoulders; offline candidate only; runtime wardrobe currently requires same USkeleton + LeaderPose"
+  },
+  "skeleton_contract": {
+    "common_body_bones": 464,
+    "common_body_bones_ue_including_wrapper": 465,
+    "custom_shirt_bones": 17,
+    "candidate_total_bones": 481,
+    "wrapper_root": "root",
+    "duplicate_root_001_removed": true,
+    "rest_pose": "body source bind/rest pose retained; no animation/action exported"
+  },
+  "kawaii": {
+    "current_root": "c_kilt_master_x",
+    "new_root": "c_shirt_hem_master_x",
+    "motion_profile": {
+      "damping": 0.62,
+      "stiffness": 0.72,
+      "drag": 0.24,
+      "gravity_factor": 0.16,
+      "wind_factor": 0.12,
+      "radius_cm": 3.0,
+      "note": "staging starting point only; Kawaii node not authored or simulated here"
+    }
+  },
+  "houdini_weight_fix_20261006": {
+    "leg_bound_verts_before": 234,
+    "verts_remapped": 234,
+    "leg_bound_verts_after": 0,
+    "max_influences_after": 4,
+    "renorm_violations": 0
+  },
+  "houdini_clearance_20261006": {
+    "samples": 861,
+    "min": 0.5205,
+    "q05": 1.1642,
+    "median": 3.5098,
+    "within_0.5cm": 0,
+    "within_2cm": 167
+  },
+  "ue_work_orders": [
+    {
+      "id": "apply_weight_fix",
+      "status": "READY",
+      "detail": "Apply shirt_weight_fix_v1.json deltas (leg->torso remap, top-4, renormalize) on the Blender/UE reimport path; fixed bgeo is the staged reference."
+    },
+    {
+      "id": "same_skeleton_integration",
+      "status": "OWNER",
+      "detail": "Integrate 17 hem bones under the same-USkeleton + LeaderPose contract (candidate skeleton is offline staging)."
+    },
+    {
+      "id": "kawaii_hem_root",
+      "status": "READY",
+      "detail": "Kawaii node on c_shirt_hem_master_x with staged motion profile; collision from shared body source tag Melodia.Melusina.BodyCloth."
+    }
+  ],
+  "nikki_served": [
+    "N2",
+    "N3",
+    "N9"
+  ]
+}

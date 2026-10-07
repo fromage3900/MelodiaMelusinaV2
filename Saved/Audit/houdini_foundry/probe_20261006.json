@@ -1,0 +1,9 @@
+{
+  "hserver_l": "Hostname:\tNJ-00127-014\t[Microsoft Windows 11 Enterprise x64]\nUptime:\t\t13:13:08\t[Started: Tue Oct  6 00:20:20 2026]\nLicense Server:\thttp://century:1715\nConnected To:\thttp://century:1715\nServer Version:\tUnknown\nVersion:\tHoudini22.0.368\nReadAccess (Ipv4):\t\nWriteAccess (Ipv4):\t\nReadAccess (Ipv6):\t\nWriteAccess (Ipv6):\t\nUsing Http: Yes\nEnabled IPv6: false\nUsed Licenses: \n    + Houdini Education 22.0\n\t\tUser(s): pid=21256(using: true) pid=21896(using: false) \n\n    103,910 of 130,864 MB available\n    CPU Usage:25% load\n\n",
+  "hython": "C:\\Program Files\\Side Effects Software\\Houdini 22.0.368\\bin\\hython.exe",
+  "license": "licenseCategoryType.Education",
+  "python": "3.13.10",
+  "schema": "melodia.houdini_foundry_probe.v1",
+  "status": "PASS",
+  "version": "22.0.368"
+}

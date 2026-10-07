@@ -1,0 +1,84 @@
+{
+  "schema": "melodia.universal_rig_manifest.v1",
+  "timestamp": "2026-10-06T17:57:56+00:00",
+  "character": "sheep",
+  "profile": "sheep",
+  "contract": "specs/universal_rig/rig_contract.v1.json",
+  "meshes": {
+    "body": {
+      "role": "body",
+      "points": 550,
+      "prims": 548,
+      "bounds_min": [
+        -54.905147552490234,
+        -0.3101203143596649,
+        -88.07205200195312
+      ],
+      "bounds_max": [
+        57.72644805908203,
+        128.6699676513672,
+        101.1764144897461
+      ]
+    }
+  },
+  "symmetry_N5": {
+    "samples": 550,
+    "unmatched": 0,
+    "unmatched_frac": 0.0,
+    "midplane_x_cm": 1.411,
+    "resolution_mm": 65.57,
+    "gate_mm": 160.0,
+    "mean_mm": 26.249,
+    "max_mm": 146.386,
+    "pass": true
+  },
+  "regions": {
+    "full": {
+      "y_cm": [
+        -0.31,
+        128.67
+      ],
+      "purpose": "fast-loop QA for every pipeline change",
+      "points": 550
+    }
+  },
+  "garment_layers_N2N3": {},
+  "joint_gap": "source FBXs carry polygon meshes only \u2014 no joints; capture staged, weights await skeleton_fbx_export",
+  "ue_work_orders": [
+    {
+      "id": "skeleton_fbx_export",
+      "status": "BLOCKED",
+      "detail": "Export jointed skeleton FBX from SK_Melusina_Skeleton (UE) \u2014 unblocks capture weights; lab cooks clean without it (i@capture_missing)."
+    },
+    {
+      "id": "kawaii_chain_assignment",
+      "status": "READY",
+      "detail": "Bind chains [{'chain': 'wool', 'purpose': 'companion settle pass', 'root': 'wool_master'}] to regions ['full'] under existing sharing authority."
+    },
+    {
+      "id": "physics_bodies_per_region",
+      "status": "READY",
+      "detail": "Author per-region collision bodies from manifest bounds into PhysicsAssetForLimits; no new solver."
+    },
+    {
+      "id": "retarget_map_apply",
+      "status": "READY",
+      "detail": "Apply contract retarget_map for new donors; verify arm canon numbers before shipping any clip."
+    },
+    {
+      "id": "layer_mask_11",
+      "status": "READY",
+      "detail": "Any new layered blend on her ABP carries the 11-filter mask or draw/cast is blended away."
+    }
+  ],
+  "nikki_served": [
+    "N2",
+    "N3",
+    "N5",
+    "N9"
+  ],
+  "hip_staged": {
+    "test_lab": "Tools/Houdini/melusina_weight_lab.hipnc",
+    "melusina_lab": "Tools/Houdini/melusina_weight_lab_melusina.hipnc"
+  }
+}
