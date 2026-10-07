@@ -12,7 +12,7 @@
 
 ## Mission
 
-Use the full Houdini school session to recover and regression-test the **owner-reported working local AnimationDoctor**, then turn that same implementation into a **character finishing lab** and use the already-staged Shorewake outfit as the hero convergence canary.
+Use the full Houdini school session to first establish a comfortable **repo-backed Melodia Houdini Studio desktop/package**, then recover and regression-test the **owner-reported working local AnimationDoctor**, turn that same implementation into a **character finishing lab**, and use the already-staged Shorewake outfit as the hero convergence canary.
 
 **Audit correction:** the successful AnimationDoctor from 2026-10-06 is not currently represented on Git main as a tracked HDA/HIP/PASS receipt. Git contains its mission/specification; the synced G: project/SSD is the expected recovery source for the actual working Houdini artifact. Muse must recover before extending, and must not reconstruct a new canonical Doctor from prose merely because Git search comes up empty.
 
@@ -39,7 +39,7 @@ Houdini authors and bakes. Unreal owns runtime state. Existing writers remain th
 2. **The older Sir Houdini probe is not a dependency.** `hython_kinefx_probe.py` is referenced by the Sir plan but is not present in Git. The newest described Sir family is the v5 ARP lane in `Saved/Audit/SirMelodious_FlightUnit_20261003/PLAN.md`; select local v5 artifacts first.
 3. **Shorewake has multiple generations.** Current runtime identity is `SK_ShorewakeDress_Melusina465`; the Aug-30/31 48MAT/magical-transform lane is historical and must not be selected just because its scripts are convenient.
 4. **The old Copernicus dress baker is not clean-clone-safe.** `copernicus_dress_bake.py` depends on local `reef_common.py`, which Foundry intake records as missing from Git. Probe the synced SSD before use. If absent, consume existing ShorewakeTidepool outputs instead of repairing the old baker during setup.
-5. **Workspace customization is not Gate 0 today.** Recover the working pipeline and get a Melusina regression first. Portable shelves/desktops are valuable but may only consume time after the productive path is proven.
+5. **Workspace/package setup is Gate 0 today.** Repo search found no existing project-authored Houdini package, Melodia shelf, or saved desktop. Because today's work is interactive KineFX/Vellum heavy, build the portable `Melodia_Studio` + `Melodia_KineFX` environment first, using `START_HERE_HOUDINI_2026-10-07.md`. Do not edit `houdini.env`; use a thin local package pointer to repo-backed plugin content.
 6. **`Tools/*` and `Saved/` ignore rules matter.** A new script or evidence receipt can exist locally and still be invisible to normal Git status. Check `git check-ignore -v` before assuming work is tracked.
 
 ## Authority boundaries — binding
@@ -468,13 +468,16 @@ Read-only UE audits can run in parallel.
 
 # Muse Spark execution order
 
-## P0 — audited bootstrap / source selection
+## P0 — Melodia Houdini Studio first, then audited source selection
 Follow `START_HERE_HOUDINI_2026-10-07.md` exactly.
 
 Timebox:
-- repo + licence bootstrap: **10 minutes**;
+- repo + GUI licence preflight: **~2 minutes**;
+- repo-backed package + `Melodia_Studio` / `Melodia_KineFX` desktops + shelf verification: **20–30 minutes**;
 - AnimationDoctor local recovery: **10 minutes**;
 - then return the compact bootstrap report from the front door.
+
+The package/desktop setup is the first productive deliverable and remains useful for every later Houdini session.
 
 Required selections before P1:
 - recovered AnimationDoctor artifact type/path or explicit MISSING verdict;
@@ -485,7 +488,7 @@ Required selections before P1:
 - ShorewakeTidepool presence/absence;
 - `reef_common.py` presence/absence.
 
-Do **not** begin by reading every Foundry document, designing a shelf, fixing OSC ports, or repairing historical Copernicus scripts.
+Do **not** begin by reading every Foundry document, fixing OSC ports, or repairing historical Copernicus scripts. The shelf/desktop design is now intentional P0 work; keep it bounded to the audited plugin structure in the front door rather than inventing a broader Houdini framework.
 
 ## P1 — Doctor / character polish
 - Melusina regression pass;
