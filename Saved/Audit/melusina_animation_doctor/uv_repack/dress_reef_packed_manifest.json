@@ -1,0 +1,27 @@
+{
+  "schema": "melodia.dress_uv_repack.v1",
+  "timestamp": "2026-10-07T16:51:58.319312+00:00",
+  "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\turntable\\dress_work.bgeo",
+  "out_bgeo": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\uv_repack\\dress_reef_packed.bgeo",
+  "out_bytes": 17085545,
+  "points": 183741,
+  "prims": 206780,
+  "tool": "labs::autouv (auto seams, asymmetric-safe: no mirror repair)",
+  "winding_note": "unchanged in this pass; per-region normalize is lookdev-staging work",
+  "qa": {
+    "sampled_prims": 10339,
+    "zero_uv_area_in_sample": 0,
+    "uv_min": [
+      0.001161979278549552,
+      0.0009765625
+    ],
+    "uv_max": [
+      0.9981458783149719,
+      0.9836350679397583
+    ],
+    "grid_res": 128,
+    "grid_cells_touched": 8538,
+    "grid_coverage_frac": 0.5211,
+    "grid_overlap_cells": 3878
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "melodia.dress_winding_normalize.v1",
+  "timestamp": "2026-10-07T16:57:18.721335+00:00",
+  "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\uv_repack\\dress_reef_packed.bgeo",
+  "out_bgeo": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\lookdev_outfit\\dress_reef_wound_normalized.bgeo",
+  "out_bytes": 16965084,
+  "points": 183741,
+  "prims": 206780,
+  "vote_full_count": {
+    "hem": {
+      "outward": 1027,
+      "inward": 1287
+    },
+    "skirt": {
+      "outward": 22382,
+      "inward": 13891
+    },
+    "bodice": {
+      "outward": 61048,
+      "inward": 107145
+    }
+  },
+  "flipped_regions": [
+    "hem",
+    "bodice"
+  ],
+  "post_sample_1_in_20": {
+    "hem": {
+      "outward": 64,
+      "inward": 49,
+      "inward_frac": 0.4336
+    },
+    "skirt": {
+      "outward": 1134,
+      "inward": 691,
+      "inward_frac": 0.3786
+    },
+    "bodice": {
+      "outward": 5327,
+      "inward": 3074,
+      "inward_frac": 0.3659
+    }
+  },
+  "uv_note": "reverse SOP reorders vertices only; uv values ride along"
+}

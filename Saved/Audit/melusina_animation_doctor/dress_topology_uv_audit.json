@@ -1,0 +1,58 @@
+{
+  "schema": "melodia.dress_topology_uv_audit.v1",
+  "timestamp": "2026-10-07T16:44:02.826494+00:00",
+  "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\turntable\\dress_work.bgeo",
+  "status": "ok",
+  "points": 183741,
+  "prims": 206780,
+  "prim_types": {
+    "Polygon": 206780
+  },
+  "bounds_min": [
+    -80.21307373046875,
+    -16.338022232055664,
+    -32.64546585083008
+  ],
+  "bounds_max": [
+    82.79133605957031,
+    150.0941162109375,
+    56.198646545410156
+  ],
+  "prim_groups": [],
+  "prim_group_count": 0,
+  "has_shop_materialpath": true,
+  "shop_materialpath_distinct": 1,
+  "shop_materialpath_top": [
+    [
+      "Material.001",
+      206780
+    ]
+  ],
+  "uv_layers": [
+    "uv"
+  ],
+  "sample_step": 20,
+  "sampled_prims": 10339,
+  "degenerate_3d_in_sample": 0,
+  "inward_winding_frac_in_sample": 0.5899990327884709,
+  "uv_zero_area_in_sample": {
+    "uv": 7758
+  },
+  "uv_bounds": {
+    "uv": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        0.9990000128746033,
+        0.9966999888420105
+      ]
+    }
+  },
+  "laws_to_check": [
+    "reef winding uniformly inverted -> expect inward_winding_frac ~= 1.0",
+    "fashion-asymmetric -> never mirror weights on UE bind",
+    "magical/chaos share 100x frame -> /100 on UE import, sources untouched"
+  ]
+}
