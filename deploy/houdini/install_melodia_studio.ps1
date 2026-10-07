@@ -20,15 +20,25 @@
 .PARAMETER CheckOnly
     Report what would be written without writing anything.
 
+.PARAMETER Remove
+    Delete the pointer this installer wrote, cleanly deactivating the package.
+    The pointer is only removed if its content still points at this repository's
+    package directory - a pointer written by something else is left untouched.
+    houdini.env, factory desktops and the repository are never modified.
+
 .PARAMETER Verify
     Run deploy/houdini/verify_melodia_studio.py through hython after installing.
 
 .EXAMPLE
     .\deploy\houdini\install_melodia_studio.ps1 -Verify
+
+.EXAMPLE
+    .\deploy\houdini\install_melodia_studio.ps1 -Remove
 #>
 [CmdletBinding()]
 param(
     [switch]$CheckOnly,
+    [switch]$Remove,
     [switch]$Verify
 )
 
@@ -130,7 +140,30 @@ if ($Existed) { $Current = [System.IO.File]::ReadAllText($PointerPath) }
 $UpToDate = $Existed -and ($Current.TrimEnd() -ieq $PointerJson.TrimEnd())
 
 Write-Step "pointer target  : $PointerPath"
-if ($UpToDate) {
+
+if ($Remove) {
+    # Safe undo: only ever delete a pointer this installer would have written.
+    if ($CheckOnly) { throw "-Remove cannot be combined with -CheckOnly." }
+    if (-not $Existed) {
+        Write-Ok "nothing to remove - no pointer present"
+    } else {
+        $Owned = $false
+        try {
+            $Parsed = $Current | ConvertFrom-Json
+            if ($Parsed -and ($Parsed.PSObject.Properties.Name -contains 'package_path')) {
+                $Target = ([string]$Parsed.package_path) -replace '/', [System.IO.Path]::DirectorySeparatorChar
+                $Owned  = ([System.IO.Path]::GetFullPath($Target) -ieq $PackagesPath)
+            }
+        } catch { $Owned = $false }
+        if ($Owned) {
+            Remove-Item -LiteralPath $PointerPath -Force
+            Write-Ok "pointer removed - Melodia package deactivated"
+        } else {
+            Write-Warn2 "pointer present but not written by this installer - left untouched"
+        }
+    }
+}
+elseif ($UpToDate) {
     Write-Ok "pointer already up to date - nothing written"
 } else {
     if ($CheckOnly) {
@@ -159,6 +192,7 @@ foreach ($f in $Foreign) {
 # --- 6. Optional verification ----------------------------------------------
 if ($Verify) {
     if ($CheckOnly) { throw "-Verify cannot be combined with -CheckOnly (nothing was installed)." }
+    if ($Remove)    { throw "-Verify cannot be combined with -Remove (the package was deactivated)." }
     $Verifier = Join-Path $RepoRoot 'deploy\houdini\verify_melodia_studio.py'
     if (-not (Test-Path $Verifier)) { throw "Verifier not found: $Verifier" }
     Write-Host "running verification..." -ForegroundColor Cyan

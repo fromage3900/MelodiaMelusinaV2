@@ -11,6 +11,7 @@ Proves, without a GUI:
   * the shelf parses and exposes the eight expected tools,
   * melodia_studio imports and every tool runs without a missing path,
   * both .desk files are structurally valid,
+  * no local desktop override silently shadows a repo desktop (warn only),
   * no committed package file contains a machine-local path.
 
 Writes ``Saved/Audit/houdini_studio/setup_<stamp>.json`` and exits non-zero
@@ -122,7 +123,11 @@ def check_desk(path, hou):
 
 
 def check_no_machine_paths(root):
-    """Committed package files must not carry a drive letter or a user name."""
+    """Committed package files must not carry a drive letter or a user name.
+
+    Scans source *and* docs (``.md``) so a README added next to the package
+    cannot quietly document a machine-local path.
+    """
     # Single letter + colon + separator. The lookbehind keeps English prose
     # such as "written:\n" from being read as a drive letter.
     banned = re.compile(
@@ -133,7 +138,7 @@ def check_no_machine_paths(root):
     for dirpath, dirnames, filenames in os.walk(root):
         dirnames[:] = [d for d in dirnames if not d.startswith(".")]
         for name in filenames:
-            if not name.endswith((".py", ".json", ".desk", ".shelf", ".ps1")):
+            if not name.endswith((".py", ".json", ".desk", ".shelf", ".ps1", ".md")):
                 continue
             path = os.path.join(dirpath, name)
             for number, line in enumerate(read_text(path).splitlines(), 1):
@@ -193,6 +198,32 @@ def main():
         if ok:
             desk_names.append(name)
         check("desk_discovered", ok, "%s -> %s" % (name, resolved or "(not found)"))
+
+    # 3b. Local desktop overrides -------------------------------------------
+    # Houdini writes "Save Current Desktop" output to <user pref>/desktop/.
+    # If a local copy of one of our desktops lands there it shadows the repo
+    # copy on the next launch, so later repo improvements stop being visible
+    # until that local file is promoted or deleted. A local override is legal,
+    # so this warns rather than fails - it exists so the shadowing is never
+    # silent.
+    for name in desk_names or ("Melodia_Studio", "Melodia_KineFX"):
+        shadow = os.path.join(houdini_root, "desktop", "%s.desk" % name)
+        if not os.path.isfile(shadow):
+            check("desk_local_override", True,
+                  "%s: no local override, repo copy is authoritative" % name,
+                  required=False)
+            continue
+        repo_desk = os.path.join(
+            repo_root, "deploy", "houdini", "melodia_studio", "desktop", "%s.desk" % name
+        )
+        identical = os.path.isfile(repo_desk) and read_text(shadow) == read_text(repo_desk)
+        if identical:
+            detail = "%s: local copy is byte-identical to the repo copy (%s)" % (name, shadow)
+        else:
+            detail = ("%s: local copy DIFFERS from the repo copy (%s) - repo changes are "
+                      "being shadowed; delete the local file or promote it into "
+                      "deploy/houdini/melodia_studio/desktop/" % (name, shadow))
+        check("desk_local_override", False, detail, required=False)
 
     # 4. Shelf discoverable ---------------------------------------------------
     shelf_file = houdini_find("toolbar/Melodia.shelf")
@@ -313,11 +344,11 @@ def main():
     else:
         check("tool_launch", False, "module unavailable")
 
-    # 10. No machine-local paths in committed package files -------------------
-    pkg_root = os.path.join(repo_root, "deploy", "houdini", "melodia_studio")
-    ok, detail = check_no_machine_paths(pkg_root)
-    check("no_machine_paths", ok, detail)
-    ok, detail = check_no_machine_paths(os.path.join(repo_root, "deploy", "houdini", "packages"))
+    # 10. No machine-local paths in any committed package file ---------------
+    # One walk over the whole deploy/houdini tree: plugin content, package
+    # definition, installer, verifier and docs. Source scans alone would miss
+    # the installer and any README sitting beside it.
+    ok, detail = check_no_machine_paths(os.path.join(repo_root, "deploy", "houdini"))
     check("no_machine_paths", ok, detail)
 
     # Manifest ---------------------------------------------------------------

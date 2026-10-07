@@ -26,8 +26,18 @@ def manifest_dir(create=True):
 
 
 def write(name, payload):
-    """Write ``<name>_<stamp>.json`` and return the absolute path."""
-    target = os.path.join(manifest_dir(), "%s_%s.json" % (name, stamp()))
+    """Write ``<name>_<stamp>.json`` and return the absolute path.
+
+    Stamps have one-second resolution, so two receipts written in the same
+    second would silently overwrite each other. Keep the first name clean and
+    suffix only on collision - a receipt must never replace another receipt.
+    """
+    folder = manifest_dir()
+    target = os.path.join(folder, "%s_%s.json" % (name, stamp()))
+    counter = 0
+    while os.path.exists(target):
+        counter += 1
+        target = os.path.join(folder, "%s_%s_%d.json" % (name, stamp(), counter))
     body = {"schema": "melodia.houdini_studio.manifest/1", "name": name}
     body.update(project.info())
     body.update(payload or {})
