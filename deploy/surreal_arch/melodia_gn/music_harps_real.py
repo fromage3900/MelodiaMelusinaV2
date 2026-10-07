@@ -21,12 +21,12 @@ import bpy
 from .core import (
     safe_node, link_sockets, link_float_to_vector, color_node, label_tree,
     new_geometry_tree, add_float_param, add_int_param, add_bool_param,
-    register_builder, sock,
+    register_builder, sock, iface_default,
 )
 
 # siku reuses the tuned tube proto from chimes_gn (no circular import:
 # chimes_gn never imports this module)
-from .chimes_gn import _ensure_tube_group
+from .chimes_gn import _ensure_tube_group, _pin_proto_length, _semitone_length_ratio
 
 
 def _math(tree, op, loc, a=None, b=None):
@@ -279,7 +279,12 @@ def build_harp_concert_real(group_name="MEL_harp_concert_real"):
     neck_xf = safe_node(tree, "GeometryNodeTransform", (bx - 220, by - 620))
     link_sockets(tree, sweep.outputs.get("Mesh"), neck_xf.inputs["Geometry"])
     try:
-        neck_xf.inputs["Location"].default_value = (0.0, 0.0, h.default_value if hasattr(h, 'default_value') else 1.55)
+        # 5.2: the socket is "Translation" — "Location" raises KeyError into the
+        # surrounding try/except, so this lift was a silent no-op (neck at z=0).
+        # And the value must come from the INTERFACE, not the Group Input node
+        # socket, whose default_value is always 0.0.
+        neck_xf.inputs["Translation"].default_value = (
+            0.0, 0.0, iface_default(tree, "Height M", 1.75))
     except Exception:
         pass
 
@@ -305,22 +310,50 @@ def build_harp_concert_real(group_name="MEL_harp_concert_real"):
 
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 640, by + 200))
     link_sockets(tree, pts.outputs["Points"], sock(inst, "Points"))
+    geom = inst.outputs["Instances"]
     if proto:
-        if proto.inputs.get("Length M") is not None:
-            li = safe_node(tree, "GeometryNodeInputIndex", (bx + 480, by - 80))
-            nf = _math(tree, "DIVIDE", (bx + 480, by - 160), li.outputs["Index"],
-                       gin.outputs["String Count"])
-            ln = _math(tree, "MULTIPLY", (bx + 620, by - 120), h, 0.78)
-            vary = _math(tree, "SUBTRACT", (bx + 620, by - 240), ln.outputs[0],
-                         _math(tree, "MULTIPLY", (bx + 780, by - 240),
-                               _math(tree, "MULTIPLY", (bx + 620, by - 320), h, 0.30).outputs[0],
-                               nf.outputs[0]).outputs[0])
-            link_sockets(tree, vary.outputs[0], proto.inputs["Length M"])
+        # Graduated string lengths are a PER-INSTANCE Z scale in the PARENT.
+        # Linking a per-index field into the proto's "Length M" pushes a field
+        # down to the cylinder primitive's Depth socket, which has no geometry
+        # domain to evaluate against: Depth reads 0, so all 41 strings realize
+        # as zero-length shells (measured: 328 degenerate faces, ext z = 0.0,
+        # and 0 degenerate once Length M is a constant). Same class as the siku.
+        li = safe_node(tree, "GeometryNodeInputIndex", (bx + 480, by - 80))
+        nf = _math(tree, "DIVIDE", (bx + 480, by - 160), li.outputs["Index"],
+                   gin.outputs["String Count"])
+        ln = _math(tree, "MULTIPLY", (bx + 620, by - 120), h, 0.78)
+        vary = _math(tree, "SUBTRACT", (bx + 620, by - 240), ln.outputs[0],
+                     _math(tree, "MULTIPLY", (bx + 780, by - 240),
+                           _math(tree, "MULTIPLY", (bx + 620, by - 320), h, 0.30).outputs[0],
+                           nf.outputs[0]).outputs[0])
+        sv = _combine(tree, (bx + 780, by - 120), 1.0, 1.0, vary.outputs[0])
+        si = safe_node(tree, "GeometryNodeScaleInstances", (bx + 900, by + 200))
+        if si is not None and sv is not None:
+            link_sockets(tree, geom, si.inputs["Instances"])
+            link_sockets(tree, sv.outputs["Vector"], sock(si, "Scale") or si.inputs[2])
+            geom = si.outputs["Instances"]
+            # The proto cylinder is centred on its origin, so a bare Z scale
+            # grows the string BOTH ways (measured: z -0.68..+0.68 while the
+            # soundboard sits at z>=0). Lift each string by half its own scaled
+            # length so it is anchored at the instance point and rises to the
+            # neck, as a real harp string does.
+            tr = safe_node(tree, "GeometryNodeTranslateInstances", (bx + 1080, by + 200))
+            half = _math(tree, "MULTIPLY", (bx + 900, by - 380), vary.outputs[0], 0.5)
+            tv = _combine(tree, (bx + 1080, by - 380), 0.0, 0.0, half.outputs[0])
+            if tr is not None and tv is not None:
+                link_sockets(tree, geom, tr.inputs["Instances"])
+                link_sockets(tree, tv.outputs["Vector"],
+                             sock(tr, "Translation") or tr.inputs[1])
+                try:
+                    tr.inputs["Local Space"].default_value = False
+                except Exception:
+                    pass
+                geom = tr.outputs["Instances"]
         link_sockets(tree, proto.outputs.get("Geometry"), sock(inst, "Instance"))
 
     join_all = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 900, by))
     link_sockets(tree, body_join.outputs["Geometry"], join_all.inputs["Geometry"])
-    link_sockets(tree, inst.outputs["Instances"], join_all.inputs["Geometry"])
+    link_sockets(tree, geom, join_all.inputs["Geometry"])
 
     # Color coding: C strings red / F strings blue as named attr (UE material reads)
     idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 900, by - 200))
@@ -622,6 +655,7 @@ def build_wind_siku(group_name="MEL_wind_siku"):
 
     proto = _ensure_tube_group(tree, (bx - 900, by - 260))
     if proto:
+        _pin_proto_length(proto)
         if proto.inputs.get("Longest M") is not None:
             link_sockets(tree, gin.outputs["Longest Tube M"], proto.inputs["Longest M"])
         if proto.inputs.get("Radius M") is not None:
@@ -633,16 +667,27 @@ def build_wind_siku(group_name="MEL_wind_siku"):
 
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 300, by + 120))
     link_sockets(tree, joined_pts.outputs["Geometry"], sock(inst, "Points"))
+    geom = inst.outputs["Instances"]
     if proto:
         link_sockets(tree, proto.outputs.get("Geometry"), sock(inst, "Instance"))
-        if proto.inputs.get("Semitone") is not None:
-            idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 300, by - 120))
-            dbl = _math(tree, "MULTIPLY", (bx + 300, by - 200), idx.outputs["Index"], 2.0)
-            link_sockets(tree, dbl.outputs[0], proto.inputs["Semitone"])
 
-    idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 520, by - 120))
-    stored = _store_named(tree, (bx + 520, by), inst.outputs["Instances"], "siku_row", 1.0)
-    _export_tail(tree, gin, gout, stored, (bx + 700, by))
+    # ira/arca dialogue: two semitones per index step, applied as a per-instance
+    # Z scale in the PARENT. Driving the proto's Semitone with the Index field put
+    # a field in the primitive's Depth socket, which has no geometry domain to
+    # evaluate against: 168/196 faces came out degenerate with ext z = 0.0.
+    idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 300, by - 120))
+    dbl = _math(tree, "MULTIPLY", (bx + 300, by - 200), idx.outputs["Index"], 2.0)
+    ratio = _semitone_length_ratio(tree, (bx + 300, by - 380), dbl.outputs[0])
+    if ratio is not None:
+        sv = _combine(tree, (bx + 580, by - 380), 1.0, 1.0, ratio)
+        si = safe_node(tree, "GeometryNodeScaleInstances", (bx + 700, by + 120))
+        if si is not None and sv is not None:
+            link_sockets(tree, geom, si.inputs["Instances"])
+            link_sockets(tree, sv.outputs["Vector"], sock(si, "Scale") or si.inputs[2])
+            geom = si.outputs["Instances"]
+
+    stored = _store_named(tree, (bx + 920, by), geom, "siku_row", 1.0)
+    _export_tail(tree, gin, gout, stored, (bx + 1100, by))
 
     _refresh_group_refs_multi(tree, ("MEL_harp_string_unit", "MEL_chime_tube"))
     return label_tree(tree, group_name, [

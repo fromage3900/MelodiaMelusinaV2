@@ -288,14 +288,7 @@ def _mesh_span_x(tree, node, length_sock, count_sock=None):
     except Exception:
         pass
     if sock(node, "Offset"):
-        step = length_sock
-        if count_sock is not None:
-            # OFFSET mode steps by `Offset` per point, so the span was (Count - 1) * Length. Divide so the line spans
-            # Length end to end (Blender 5.2 dropped End Location; fixed 2026-10-04).
-            gaps = _math(tree, "SUBTRACT", (-900, -900), count_sock, 1.0)
-            gaps = _math(tree, "MAXIMUM", (-760, -900), gaps.outputs[0], 1.0)
-            step = _math(tree, "DIVIDE", (-620, -900), length_sock, gaps.outputs[0]).outputs[0]
-        link_float_to_vector(tree, step, node, "Offset", component=0)
+        link_float_to_vector(tree, length_sock, node, "Offset", component=0)
 
 
 def _curve_line(tree, loc, length_sock):
@@ -647,8 +640,7 @@ def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
         staff_pts.mode = "END_POINTS"
     staff_pts.inputs["Count"].default_value = 5
     if offset_mode:
-        # Offset is per point: five lines 'Line Spacing' apart (the old *4 value is the TOTAL span, kept for END_POINTS).
-        link_float_to_vector(tree, gin.outputs["Line Spacing"], staff_pts, "Offset", component=2)
+        link_float_to_vector(tree, spacing_span.outputs[0], staff_pts, "Offset", component=2)
     else:
         link_float_to_vector(tree, spacing_span.outputs[0], staff_pts, "End Location", component=2)
     color_node(staff_pts, "curve")
@@ -682,7 +674,7 @@ def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
             link_sockets(tree, gin.outputs["Height"], post_grp.inputs["Height"])
         if post_grp.inputs.get("Width"):
             post_grp.inputs["Width"].default_value = 0.07
-        post_geo = _lift_z(tree, (bx - 300, by - 40), post_grp.outputs.get("Geometry"), gin.outputs["Height"])
+        post_geo = post_grp.outputs.get("Geometry")
         color_node(post_grp, "geometry")
     else:
         post_geo = _lift_z(
@@ -704,21 +696,27 @@ def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
     _mesh_span_x(tree, note_pts, gin.outputs["Length"], gin.outputs["Note Count"])
     color_node(note_pts, "curve")
 
-    # Pitch comes from the point index (golden-angle sine -> 0..4 line spacings in half steps), NOT from the
-    # MEL_music_harmonic plate. That group returns its 32x32 grid, and instancing a note head on every grid vertex
-    # produced ~125k verts and a fixed 6 m footprint regardless of Length / Note Count (fixed 2026-10-04).
+    harmonic = _ensure_group_node(tree, "MEL_music_harmonic", build_music_harmonic, (bx - 420, by - 220))
     pitched = note_pts.outputs["Mesh"]
-    idx = safe_node(tree, "GeometryNodeInputIndex", (bx - 420, by - 320))
-    idx_angle = _math(tree, "MULTIPLY", (bx - 260, by - 320), idx.outputs[0], 2.399963)
-    idx_sine = _math(tree, "SINE", (bx - 120, by - 320), idx_angle.outputs[0])
-    idx_scaled = _math(tree, "MULTIPLY", (bx + 20, by - 320), idx_sine.outputs[0], 4.0)
-    idx_shifted = _math(tree, "ADD", (bx + 160, by - 320), idx_scaled.outputs[0], 4.0)
-    idx_step = _math(tree, "FLOOR", (bx + 300, by - 320), idx_shifted.outputs[0])
-    attr = _math(tree, "MULTIPLY", (bx + 440, by - 320), idx_step.outputs[0], 0.5)
+    if harmonic and harmonic.node_tree:
+        if harmonic.inputs.get("Geometry"):
+            link_sockets(tree, note_pts.outputs["Mesh"], harmonic.inputs["Geometry"])
+        if harmonic.inputs.get("Note Count"):
+            link_sockets(tree, gin.outputs["Note Count"], harmonic.inputs["Note Count"])
+        pitched = harmonic.outputs.get("Geometry") or pitched
+        color_node(harmonic, "attribute")
+
+    attr = safe_node(tree, "GeometryNodeInputNamedAttribute", (bx - 200, by - 320))
+    attr.data_type = "FLOAT"
+    try:
+        attr.inputs["Name"].default_value = "pitch"
+    except Exception:
+        pass
+    color_node(attr, "attribute")
     pos = safe_node(tree, "GeometryNodeInputPosition", (bx - 200, by - 400))
     sep = safe_node(tree, "ShaderNodeSeparateXYZ", (bx - 40, by - 400))
     link_sockets(tree, pos.outputs["Position"], sep.inputs["Vector"])
-    pitch_z = _math(tree, "MULTIPLY", (bx - 40, by - 280), attr.outputs[0], 1.0)
+    pitch_z = _math(tree, "MULTIPLY", (bx - 40, by - 280), attr.outputs.get("Attribute") or attr.outputs[0], 1.0)
     link_sockets(tree, gin.outputs["Line Spacing"], pitch_z.inputs[1])
     note_z = _math(tree, "ADD", (bx + 140, by - 280), base_z.outputs[0], pitch_z.outputs[0])
     combine = _combine(tree, (bx + 140, by - 380), sep.outputs["X"], sep.outputs["Y"], note_z.outputs[0])
@@ -737,9 +735,6 @@ def build_music_sheet_rail(group_name="MEL_music_sheet_rail"):
         if note_geo:
             link_sockets(tree, note_geo, note_inst.inputs["Instance"])
     color_node(note_inst, "instance")
-    note_scale = _math(tree, "MULTIPLY", (bx + 360, by - 420), gin.outputs["Note Size"], 0.5)
-    note_scale_vec = _combine(tree, (bx + 520, by - 420), note_scale.outputs[0], note_scale.outputs[0], note_scale.outputs[0])
-    link_sockets(tree, note_scale_vec.outputs["Vector"], note_inst.inputs["Scale"])
 
     clef_grp = _ensure_group_node(tree, "MEL_music_treble_clef", build_music_treble_clef, (bx + 200, by + 80))
     if clef_grp and clef_grp.node_tree and clef_grp.inputs.get("Scale"):

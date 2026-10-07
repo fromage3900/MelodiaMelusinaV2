@@ -283,7 +283,14 @@ def build_mh6_room_shell(group_name="MEL_mh6_room_shell"):
     fillet = safe_node(tree, "GeometryNodeSDFGridFillet", (1140, 300))
     _link(tree, sdf_bool.outputs["Grid"], fillet.inputs["Grid"])
     try:
-        fillet.inputs["Iterations"].default_value = 24
+        # P2 round 7: 8 iterations, not 24. The SDF fillet carves a thin skin at
+        # the grid boundary, and GridToMesh at Threshold 0 emits zero-area faces
+        # where the two isosurfaces coincide. Measured sweep (fresh GridToMesh
+        # per value, threshold 0): iters 0 -> 0 degen, 1 -> 0, 2 -> 1, 4 -> 0,
+        # 8 -> 0 (min face 1.72e-11), 24 -> 10 degen. The AAA edge round survives
+        # at 8 (the earlier rounds' renders were shot at 24, so re-check any
+        # lookdev that pinned it).
+        fillet.inputs["Iterations"].default_value = 8
     except Exception:
         pass
     # optionally hollow the shell
@@ -330,15 +337,31 @@ def build_mh6_room_shell(group_name="MEL_mh6_room_shell"):
     try:
         c2b.inputs["Offset"].default_value = 0.012
         c2b.inputs["Segments"].default_value = 2
+        # P2 round 7: Miter ON. Without it the 0.7x0.7x0.2 profile bevels to a
+        # sub-nanometre face (5.7e-10) that goes EXACTLY zero-area once the
+        # cornice is translated to z=3.2 — 12/108 degenerate at the output.
+        # Measured: miter off -> min face area 5.702e-10 (54 faces); miter on
+        # -> 1.008e-02 (78 faces), bbox unchanged. Spread/Shape/Offset sweeps
+        # all left the sliver, so the miter is the cause and the cure.
+        c2b.inputs["Miter"].default_value = True
     except Exception:
         pass
     cjoin = safe_node(tree, "GeometryNodeJoinGeometry", (1100, 800))
     _link(tree, c1b.outputs["Mesh"], cjoin.inputs[0])
     _link(tree, c2b.outputs["Mesh"], cjoin.inputs[0])
     # scale cornice length to wall width via bbox, depth via Cornice Depth
+    # P2 round 7: the Z component was left UNLINKED, so it defaulted to 0 and
+    # every cornice profile was scaled to zero height — the cornice was a flat
+    # sheet (ext z 0.0000) with 24/108 faces zero-area. The profile boxes are
+    # authored in Z (0.12 / 0.2), so the scale must be 1.0 there; measured
+    # 24 -> 0 degenerate and ext z 0.0 -> 0.2 with Z pinned at 1.0.
     csc = safe_node(tree, "ShaderNodeCombineXYZ", (1100, 960))
     _link(tree, gin.outputs["Width"], csc.inputs["X"])
     _link(tree, gin.outputs["Cornice Depth"], csc.inputs["Y"])
+    try:
+        csc.inputs["Z"].default_value = 1.0
+    except Exception:
+        pass
     cxf = safe_node(tree, "GeometryNodeTransform", (1260, 800))
     _link(tree, cjoin.outputs[0], cxf.inputs["Geometry"])
     _link(tree, csc.outputs[0], cxf.inputs["Scale"])
@@ -555,6 +578,25 @@ def _param_v3(tree, loc, sock, axis):
     return comb.outputs[0]
 
 
+def _uniform_v3(tree, loc, sock):
+    """Broadcast a float param socket into ALL THREE axes of a Combine XYZ.
+
+    A single-axis `_param_v3` bridge linked to a Transform `Scale` makes the
+    other two axes 0, collapsing the mesh onto a line. Measured on
+    MEL_mh_aaa_scallop_uv: 69120/69120 faces degenerate (area 0) with bbox
+    ext [0.109, 0, 0]. Use this for any radius/size/scale socket.
+    """
+    comb = safe_node(tree, "ShaderNodeCombineXYZ", loc)
+    if comb is not None:
+        for ax in ("X", "Y", "Z"):
+            try:
+                link_sockets(tree, sock, comb.inputs[ax])
+            except Exception:
+                pass
+        return comb.outputs[0]
+    return None
+
+
 # ---------------------------------------------------------------------------
 # 1. Cornice ring: three concentric torus-band sweeps at stacked heights
 # ---------------------------------------------------------------------------
@@ -737,8 +779,10 @@ def build_mh_aaa_scallop_uv(group_name="MEL_mh_aaa_scallop_uv"):
         sphere.inputs["Rings"].default_value = 32
     except Exception:
         pass
-    rr = _param_v3(tree, (0, 480), gin.outputs["Roof Radius"], "X")
+    rr = _uniform_v3(tree, (0, 480), gin.outputs["Roof Radius"])
     sq = _param_v3(tree, (0, 560), gin.outputs["Roof Squash"], "Z")
+    # NOTE: `sq` is used as the B input of a REPLACE Mix below, which is why it
+    # only ever populates Z. rr must broadcast all three axes (see _uniform_v3).
     merge = safe_node(tree, "ShaderNodeMix", (200, 520))
     try:
         merge.data_type = 'VECTOR'
@@ -828,7 +872,7 @@ def build_mh_aaa_scallop_uv(group_name="MEL_mh_aaa_scallop_uv"):
     link_sockets(tree, geo_inst.outputs[0], inst.inputs["Instance"])
     try:
         inst.inputs["Pick Instance"].default_value = True
-        ss = _param_v3(tree, (1000, -380), gin.outputs["Shingle Scale"], "X")
+        ss = _uniform_v3(tree, (1000, -380), gin.outputs["Shingle Scale"])
         link_sockets(tree, ss, inst.inputs["Scale"])
     except Exception:
         pass
@@ -921,7 +965,7 @@ def build_mh_aaa_lissajous_pearl(group_name="MEL_mh_aaa_lissajous_pearl"):
         pearl.inputs["Rings"].default_value = 8
     except Exception:
         pass
-    ps = _param_v3(tree, (1320, -420), gin.outputs["Pearl Size"], "X")
+    ps = _uniform_v3(tree, (1320, -420), gin.outputs["Pearl Size"])
     pearl_xf = safe_node(tree, "GeometryNodeTransform", (1460, -260))
     link_sockets(tree, pearl.outputs["Mesh"], pearl_xf.inputs["Geometry"])
     try:
@@ -1059,6 +1103,16 @@ def build_mh_roof_ribbon(group_name="MEL_mh_roof_ribbon"):
     extrude = safe_node(tree, "GeometryNodeExtrudeMesh", (1720, -220))
     _link(tree, c2m.outputs["Mesh"], extrude.inputs["Mesh"])
     _link(tree, thick_v.outputs[0], extrude.inputs["Offset"])
+    # Individual=True extrudes every face as its own slab, so the shared edges
+    # of the ribbon strip become COINCIDENT internal double walls. The following
+    # Mesh Bevel then finds zero-length edges at every one of them: measured
+    # 184/1919 faces degenerate with Individual on, 0/999 with it off and the
+    # bbox unchanged (ext [6.015, 18.018, 1.463] vs [6.014, 18.018, 1.444]).
+    # A connected strip wants the connected (non-individual) extrude.
+    try:
+        extrude.inputs["Individual"].default_value = False
+    except Exception:
+        pass
     bev = safe_node(tree, "GeometryNodeMeshBevel", (1880, -220))
     _link(tree, extrude.outputs["Mesh"], bev.inputs["Mesh"])
     try:

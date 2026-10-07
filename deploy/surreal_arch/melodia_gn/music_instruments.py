@@ -14,10 +14,11 @@ from .core import (
 
 
 def build_brass_pipe(group_name="MEL_brass_pipe"):
-    """Brass instrument tube - trumpet (narrow bore) or trombone (wide bore).
+    """Brass instrument tube - trumpet, trombone, or French horn.
 
-    A flared cylinder body with parametric bore profile and bell radius.
-    Stores `pipe_length` and `bore_profile` attributes.
+    Multi-segment bore: mouthpiece receiver, lead pipe, cylindrical body,
+    exponential bell flare. Optional valves. Stores `pipe_length` and
+    `bore_profile` attributes.
     """
     tree, gin, gout = new_geometry_tree(group_name)
     bx, by = 0, 0
@@ -27,48 +28,188 @@ def build_brass_pipe(group_name="MEL_brass_pipe"):
     add_float_param(tree, "Bell Flare", 2.0, 1.0, 5.0)
     add_int_param(tree, "Sections", 32, 8, 256)
     add_float_param(tree, "Mouth Taper", 0.5, 0.1, 1.0)
-    add_bool_param(tree, "Open Ends", True)
     add_float_param(tree, "Bell Radius Start", 1.0, 0.5, 5.0)
     add_float_param(tree, "Bell Radius End", 3.0, 1.0, 10.0)
+    add_bool_param(tree, "Has Valves", True)
 
-    pipe = safe_node(tree, "GeometryNodeMeshCone", (bx - 400, by))
-    link_sockets(tree, gin.outputs["Pipe Length"], pipe.inputs["Depth"])
-    link_sockets(tree, gin.outputs["Sections"], pipe.inputs["Vertices"])
-    link_sockets(tree, gin.outputs["Bell Radius Start"], pipe.inputs["Radius Bottom"])
-    link_sockets(tree, gin.outputs["Bell Radius End"], pipe.inputs["Radius Top"])
-    pipe.fill_type = "NGON"
+    parts = []
 
-    taper = safe_node(tree, "ShaderNodeMath", (bx - 200, by - 200))
-    taper.operation = "MULTIPLY"
-    link_sockets(tree, gin.outputs["Mouth Taper"], taper.inputs[0])
-    taper.inputs[1].default_value = 0.2
-    set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx, by))
-    link_sockets(tree, pipe.outputs["Mesh"], set_pos.inputs["Geometry"])
-    link_float_to_vector(tree, taper.outputs[0], set_pos, "Offset", component=2, defaults=(0.0, 0.0, 0.0))
+    # -- Mouthpiece receiver (narrow cone) --
+    mouth = safe_node(tree, "GeometryNodeMeshCone", (bx - 600, by + 400))
+    if mouth:
+        mouth.inputs["Vertices"].default_value = 24
+        link_sockets(tree, gin.outputs["Mouth Taper"], mouth.inputs["Depth"])
+        mouth.inputs["Radius Bottom"].default_value = 0.3
+        mouth.inputs["Radius Top"].default_value = 0.5
+        mouth.fill_type = "NGON"
+        parts.append(mouth.outputs["Mesh"])
 
+    # -- Lead pipe (expanding cone) --
+    lead = safe_node(tree, "GeometryNodeMeshCone", (bx - 600, by + 200))
+    if lead:
+        lead.inputs["Vertices"].default_value = 24
+        link_sockets(tree, gin.outputs["Bore Profile"], lead.inputs["Depth"])
+        lead.inputs["Radius Bottom"].default_value = 0.5
+        lead.inputs["Radius Top"].default_value = 0.8
+        lead.fill_type = "NGON"
+        lead_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by + 200))
+        if lead_xf:
+            link_sockets(tree, lead.outputs["Mesh"], lead_xf.inputs["Geometry"])
+            link_float_to_vector(tree, gin.outputs["Mouth Taper"], lead_xf, "Translation",
+                                 component=2, defaults=(0.0, 0.0, 0.0))
+            parts.append(lead_xf.outputs["Geometry"])
+        else:
+            parts.append(lead.outputs["Mesh"])
+
+    # -- Main body (cylinder) --
+    body = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 600, by))
+    if body:
+        link_sockets(tree, gin.outputs["Sections"], body.inputs["Vertices"])
+        link_sockets(tree, gin.outputs["Pipe Length"], body.inputs["Depth"])
+        body.inputs["Radius"].default_value = 0.8
+        body.fill_type = "NGON"
+        body_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by))
+        if body_xf:
+            link_sockets(tree, body.outputs["Mesh"], body_xf.inputs["Geometry"])
+            lift = safe_node(tree, "ShaderNodeMath", (bx - 600, by - 100))
+            if lift:
+                lift.operation = "ADD"
+                link_sockets(tree, gin.outputs["Mouth Taper"], lift.inputs[0])
+                link_sockets(tree, gin.outputs["Bore Profile"], lift.inputs[1])
+                link_float_to_vector(tree, lift.outputs[0], body_xf, "Translation",
+                                     component=2, defaults=(0.0, 0.0, 0.0))
+            parts.append(body_xf.outputs["Geometry"])
+        else:
+            parts.append(body.outputs["Mesh"])
+
+    # -- Bell flare (exponential cone) --
+    bell = safe_node(tree, "GeometryNodeMeshCone", (bx - 600, by - 200))
+    if bell:
+        link_sockets(tree, gin.outputs["Sections"], bell.inputs["Vertices"])
+        link_sockets(tree, gin.outputs["Bell Flare"], bell.inputs["Depth"])
+        link_sockets(tree, gin.outputs["Bell Radius Start"], bell.inputs["Radius Bottom"])
+        link_sockets(tree, gin.outputs["Bell Radius End"], bell.inputs["Radius Top"])
+        bell.fill_type = "NGON"
+        bell_xf = safe_node(tree, "GeometryNodeTransform", (bx - 400, by - 200))
+        if bell_xf:
+            link_sockets(tree, bell.outputs["Mesh"], bell_xf.inputs["Geometry"])
+            lift1 = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 300))
+            lift2 = safe_node(tree, "ShaderNodeMath", (bx - 600, by - 300))
+            if lift1 and lift2:
+                lift1.operation = "ADD"
+                link_sockets(tree, gin.outputs["Mouth Taper"], lift1.inputs[0])
+                link_sockets(tree, gin.outputs["Bore Profile"], lift1.inputs[1])
+                lift2.operation = "ADD"
+                link_sockets(tree, lift1.outputs[0], lift2.inputs[0])
+                link_sockets(tree, gin.outputs["Pipe Length"], lift2.inputs[1])
+                link_float_to_vector(tree, lift2.outputs[0], bell_xf, "Translation",
+                                     component=2, defaults=(0.0, 0.0, 0.0))
+            parts.append(bell_xf.outputs["Geometry"])
+        else:
+            parts.append(bell.outputs["Mesh"])
+
+    # -- Valves (optional) --
+    valve_switch = safe_node(tree, "GeometryNodeSwitch", (bx, by + 400))
+    if valve_switch:
+        try:
+            valve_switch.input_type = "GEOMETRY"
+        except Exception:
+            pass
+        link_sockets(tree, gin.outputs["Has Valves"],
+                     valve_switch.inputs.get("Switch") or valve_switch.inputs[0])
+
+        valve_parts = []
+        for i in range(3):
+            valve = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 200 + i * 100, by + 500))
+            if valve:
+                valve.inputs["Vertices"].default_value = 16
+                valve.inputs["Radius"].default_value = 0.3
+                valve.inputs["Depth"].default_value = 4.0
+                valve.fill_type = "NGON"
+                valve_xf = safe_node(tree, "GeometryNodeTransform", (bx - 100 + i * 100, by + 500))
+                if valve_xf:
+                    link_sockets(tree, valve.outputs["Mesh"], valve_xf.inputs["Geometry"])
+                    v_pos = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 200 + i * 100, by + 450))
+                    if v_pos:
+                        v_x = safe_node(tree, "ShaderNodeMath", (bx - 300 + i * 100, by + 400))
+                        if v_x:
+                            v_x.operation = "MULTIPLY"
+                            link_sockets(tree, gin.outputs["Bore Profile"], v_x.inputs[0])
+                            v_x.inputs[1].default_value = (i + 1) * 0.3
+                            link_sockets(tree, v_x.outputs[0], v_pos.inputs["X"])
+                        v_pos.inputs["Y"].default_value = 1.0
+                        v_z = safe_node(tree, "ShaderNodeMath", (bx - 300 + i * 100, by + 350))
+                        if v_z:
+                            v_z.operation = "ADD"
+                            link_sockets(tree, gin.outputs["Mouth Taper"], v_z.inputs[0])
+                            link_sockets(tree, gin.outputs["Bore Profile"], v_z.inputs[1])
+                            link_sockets(tree, v_z.outputs[0], v_pos.inputs["Z"])
+                        link_sockets(tree, v_pos.outputs["Vector"], valve_xf.inputs["Translation"])
+                    valve_parts.append(valve_xf.outputs["Geometry"])
+                else:
+                    valve_parts.append(valve.outputs["Mesh"])
+
+        valve_join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 100, by + 500))
+        for vp in valve_parts:
+            link_sockets(tree, vp, valve_join.inputs["Geometry"])
+
+        true_in = valve_switch.inputs.get("True")
+        if true_in is None:
+            true_in = valve_switch.inputs[1] if len(valve_switch.inputs) > 1 else None
+        if true_in:
+            link_sockets(tree, valve_join.outputs["Geometry"], true_in)
+
+        out_sock = valve_switch.outputs.get("Output")
+        if out_sock is None:
+            out_sock = valve_switch.outputs[0] if valve_switch.outputs else None
+        if out_sock:
+            parts.append(out_sock)
+
+    # -- Join all parts --
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx, by))
+    for p in parts:
+        if p:
+            link_sockets(tree, p, join.inputs["Geometry"])
+
+    # -- Store attributes --
     store_len = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 200, by))
-    store_len.data_type = "FLOAT"
-    store_len.inputs["Name"].default_value = "pipe_length"
-    link_sockets(tree, gin.outputs["Pipe Length"], store_len.inputs["Value"])
-    link_sockets(tree, set_pos.outputs["Geometry"], store_len.inputs["Geometry"])
+    if store_len:
+        store_len.data_type = "FLOAT"
+        store_len.inputs["Name"].default_value = "pipe_length"
+        link_sockets(tree, gin.outputs["Pipe Length"], store_len.inputs["Value"])
+        link_sockets(tree, join.outputs["Geometry"], store_len.inputs["Geometry"])
 
     store_bore = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 200, by - 200))
-    store_bore.data_type = "FLOAT"
-    store_bore.inputs["Name"].default_value = "bore_profile"
-    link_sockets(tree, gin.outputs["Bore Profile"], store_bore.inputs["Value"])
-    link_sockets(tree, store_len.outputs["Geometry"], store_bore.inputs["Geometry"])
-    link_sockets(tree, store_bore.outputs["Geometry"], gout.inputs["Geometry"])
+    if store_bore:
+        store_bore.data_type = "FLOAT"
+        store_bore.inputs["Name"].default_value = "bore_profile"
+        link_sockets(tree, gin.outputs["Bore Profile"], store_bore.inputs["Value"])
+        if store_len:
+            link_sockets(tree, store_len.outputs["Geometry"], store_bore.inputs["Geometry"])
+        else:
+            link_sockets(tree, join.outputs["Geometry"], store_bore.inputs["Geometry"])
 
-    color_node(pipe, "geometry")
-    color_node(set_pos, "attribute")
+    # -- Output --
+    if store_bore:
+        link_sockets(tree, store_bore.outputs["Geometry"], gout.inputs["Geometry"])
+    else:
+        link_sockets(tree, join.outputs["Geometry"], gout.inputs["Geometry"])
+
+    color_node(mouth, "geometry")
+    color_node(lead, "geometry")
+    color_node(body, "geometry")
+    color_node(bell, "geometry")
+    color_node(join, "geometry")
     color_node(store_len, "attribute")
     color_node(store_bore, "attribute")
 
     return label_tree(tree, group_name, [
         {"title": "Inputs", "nodes": ("Group Input",), "role": "input"},
-        {"title": "Pipe Body", "nodes": ("cylinder", "set position"), "role": "geometry"},
-        {"title": "Attributes", "nodes": ("store",), "role": "attribute"},
-        {"title": "Output", "nodes": ("Group Output",), "role": "output"},
+        {"title": "Mouthpiece", "nodes": ("cone",), "role": "geometry"},
+        {"title": "Body", "nodes": ("cylinder", "cone"), "role": "geometry"},
+        {"title": "Bell", "nodes": ("cone",), "role": "geometry"},
+        {"title": "Valves", "nodes": ("cylinder", "join"), "role": "geometry"},
+        {"title": "Output", "nodes": ("store", "Group Output"), "role": "output"},
     ])
 
 
@@ -90,45 +231,109 @@ def build_reed_body(group_name="MEL_reed_body"):
 
     body = safe_node(tree, "GeometryNodeMeshCone", (bx - 400, by))
     link_sockets(tree, gin.outputs["Body Length"], body.inputs["Depth"])
-    body.inputs["Radius Bottom"].default_value = 0.8
     link_sockets(tree, gin.outputs["Wall Thickness"], body.inputs["Radius Top"])
     body.inputs["Vertices"].default_value = 24
     body.fill_type = "NGON"
 
-    holes = body.outputs["Mesh"]
-    for i in range(6):
-        hole = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 250, by - 200 - i * 40))
-        hole.inputs["Radius"].default_value = 0.1
-        hole.inputs["Depth"].default_value = 1.5
-        hole.inputs["Vertices"].default_value = 12
-        hole.fill_type = "NGON"
+    # Conical Bore: flare the bottom radius; cylindrical matches the top.
+    cone_bottom = safe_node(tree, "ShaderNodeMath", (bx - 620, by - 120))
+    cone_bottom.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Wall Thickness"], cone_bottom.inputs[0])
+    cone_bottom.inputs[1].default_value = 2.5
+    bore = safe_node(tree, "GeometryNodeSwitch", (bx - 520, by - 120))
+    try:
+        bore.input_type = "FLOAT"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Conical Bore"], bore.inputs["Switch"])
+    link_sockets(tree, gin.outputs["Wall Thickness"], bore.inputs["False"])
+    link_sockets(tree, cone_bottom.outputs[0], bore.inputs["True"])
+    link_sockets(tree, bore.outputs["Output"], body.inputs["Radius Bottom"])
 
-        set_hole = safe_node(tree, "GeometryNodeSetPosition", (bx - 100, by - 200 - i * 40))
-        link_sockets(tree, hole.outputs["Mesh"], set_hole.inputs["Geometry"])
-        hx = safe_node(tree, "ShaderNodeMath", (bx - 180, by - 260 - i * 40))
-        hx.operation = "MULTIPLY"
-        hx.inputs[0].default_value = math.sin(math.pi * 2.0 * i / 6.0) * 0.8
-        hx.inputs[1].default_value = 1.0
-        hy = safe_node(tree, "ShaderNodeMath", (bx - 180, by - 320 - i * 40))
-        hy.operation = "MULTIPLY"
-        hy.inputs[0].default_value = math.cos(math.pi * 2.0 * i / 6.0) * 0.8
-        hy.inputs[1].default_value = 1.0
-        hz = safe_node(tree, "ShaderNodeMath", (bx - 180, by - 380 - i * 40))
-        hz.operation = "MULTIPLY"
-        hz.inputs[0].default_value = -1.0
-        link_sockets(tree, gin.outputs["Body Length"], hz.inputs[1])
+    # Tone holes: Tone Hole Count drills in a row along one side (as on a real
+    # woodwind), each sized by Tone Hole Size and optionally undercut. The
+    # drills are instanced on a line spanning the body, then one boolean cuts
+    # them all. (The previous version placed six holes at z = -Body Length,
+    # outside the body, so the boolean never bit.)
+    hole_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 640, by - 320))
+    try:
+        hole_line.mode = "OFFSET"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Tone Hole Count"], hole_line.inputs["Count"])
+    # Row of holes spans 70% of the body, centred on it. Spacing is
+    # span/(count-1) so every hole lands inside the body -- previously the step
+    # was a fixed 0.7*Length, which put all but the first hole below the body.
+    span = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 320))
+    span.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Body Length"], span.inputs[0])
+    span.inputs[1].default_value = 0.7
+    gaps = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 400))
+    gaps.operation = "SUBTRACT"
+    link_sockets(tree, gin.outputs["Tone Hole Count"], gaps.inputs[0])
+    gaps.inputs[1].default_value = 1.0
+    step = safe_node(tree, "ShaderNodeMath", (bx - 800, by - 320))
+    step.operation = "DIVIDE"
+    link_sockets(tree, span.outputs[0], step.inputs[0])
+    link_sockets(tree, gaps.outputs[0], step.inputs[1])
+    neg_step = safe_node(tree, "ShaderNodeMath", (bx - 620, by - 320))
+    neg_step.operation = "MULTIPLY"
+    link_sockets(tree, step.outputs[0], neg_step.inputs[0])
+    neg_step.inputs[1].default_value = -1.0
+    link_float_to_vector(tree, neg_step.outputs[0], hole_line, "Offset",
+                         component=2, defaults=(0.0, 0.0, 1.0))
+    top = safe_node(tree, "ShaderNodeMath", (bx - 620, by - 420))
+    top.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Body Length"], top.inputs[0])
+    top.inputs[1].default_value = 0.15
+    link_float_to_vector(tree, top.outputs[0], hole_line, "Start Location",
+                         component=2, defaults=(0.0, 0.0, 0.0))
 
-        combine = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 60, by - 300 - i * 40))
-        link_sockets(tree, hx.outputs[0], combine.inputs["X"])
-        link_sockets(tree, hy.outputs[0], combine.inputs["Y"])
-        link_sockets(tree, hz.outputs[0], combine.inputs["Z"])
-        link_sockets(tree, combine.outputs["Vector"], set_hole.inputs["Position"])
+    hole_r = safe_node(tree, "ShaderNodeMath", (bx - 640, by - 480))
+    hole_r.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Tone Hole Size"], hole_r.inputs[0])
+    hole_r.inputs[1].default_value = 0.1
+    undercut_r = safe_node(tree, "ShaderNodeMath", (bx - 640, by - 560))
+    undercut_r.operation = "MULTIPLY"
+    link_sockets(tree, hole_r.outputs[0], undercut_r.inputs[0])
+    undercut_r.inputs[1].default_value = 1.6
 
-        drill = safe_node(tree, "GeometryNodeMeshBoolean", (bx + 80, by - 200 - i * 40))
-        drill.operation = "DIFFERENCE"
-        link_sockets(tree, holes, drill.inputs[0])
-        link_sockets(tree, set_hole.outputs["Geometry"], drill.inputs[1])
-        holes = drill.outputs["Mesh"]
+    drill = safe_node(tree, "GeometryNodeMeshCone", (bx - 640, by - 660))
+    drill.inputs["Depth"].default_value = 1.8
+    drill.inputs["Vertices"].default_value = 12
+    drill.fill_type = "NGON"
+    link_sockets(tree, hole_r.outputs[0], drill.inputs["Radius Top"])
+    ucut = safe_node(tree, "GeometryNodeSwitch", (bx - 500, by - 660))
+    try:
+        ucut.input_type = "FLOAT"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Undercut Holes"], ucut.inputs["Switch"])
+    link_sockets(tree, hole_r.outputs[0], ucut.inputs["False"])
+    link_sockets(tree, undercut_r.outputs[0], ucut.inputs["True"])
+    link_sockets(tree, ucut.outputs["Output"], drill.inputs["Radius Bottom"])
+
+    # Stand the drill across the body: its Z axis must point along X.
+    drill_xf = safe_node(tree, "GeometryNodeTransform", (bx - 500, by - 760))
+    link_sockets(tree, drill.outputs["Mesh"], drill_xf.inputs["Geometry"])
+    drill_xf.inputs["Rotation"].default_value = (0.0, math.radians(90), 0.0)
+
+    on_line = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx - 320, by - 320))
+    link_sockets(tree, hole_line.outputs["Mesh"], on_line.inputs["Points"])
+    link_sockets(tree, drill_xf.outputs["Geometry"], on_line.inputs["Instance"])
+
+    holes_real = safe_node(tree, "GeometryNodeRealizeInstances", (bx - 160, by - 320))
+    link_sockets(tree, on_line.outputs["Instances"], holes_real.inputs["Geometry"])
+
+    drill_bo = safe_node(tree, "GeometryNodeMeshBoolean", (bx + 60, by - 120))
+    drill_bo.operation = "DIFFERENCE"
+    try:
+        drill_bo.solver = "EXACT"
+    except Exception:
+        pass
+    link_sockets(tree, body.outputs["Mesh"], drill_bo.inputs[0])
+    link_sockets(tree, holes_real.outputs["Geometry"], drill_bo.inputs[1])
+    holes = drill_bo.outputs["Mesh"]
 
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 260, by))
     shade.inputs["Shade Smooth"].default_value = True
@@ -197,10 +402,68 @@ def build_bell_chime(group_name="MEL_bell_chime"):
     tube.inputs["Vertices"].default_value = 24
     tube.fill_type = "NGON"
 
-    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx, by))
-    link_sockets(tree, body.outputs["Mesh"], join.inputs["Geometry"])
-    link_sockets(tree, cup.outputs["Mesh"], join.inputs["Geometry"])
-    link_sockets(tree, tube.outputs["Mesh"], join.inputs["Geometry"])
+    # Clapper: a small sphere hung from the crown, sized by Clapper Mass and
+    # included only when Has Clapper is on. (Clapper Mass / Has Clapper were
+    # previously declared but never read.)
+    clapper_r = safe_node(tree, "ShaderNodeMath", (bx - 380, by - 780))
+    clapper_r.operation = "POWER"
+    link_sockets(tree, gin.outputs["Clapper Mass"], clapper_r.inputs[0])
+    clapper_r.inputs[1].default_value = 0.3333333
+    clapper_sph = safe_node(tree, "GeometryNodeMeshUVSphere", (bx - 200, by - 780))
+    link_sockets(tree, clapper_r.outputs[0], clapper_sph.inputs["Radius"])
+    clapper_sph.inputs["Segments"].default_value = 12
+    clapper_sph.inputs["Rings"].default_value = 8
+    hang = safe_node(tree, "ShaderNodeMath", (bx - 380, by - 880))
+    hang.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Depth"], hang.inputs[0])
+    hang.inputs[1].default_value = -0.6
+    clapper_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 60, by - 780))
+    link_sockets(tree, clapper_sph.outputs["Mesh"], clapper_pos.inputs["Geometry"])
+    # Set Position's Position input is absolute; the clapper must be offset from
+    # the sphere's own centre, so drive Offset (Position collapsed every vertex
+    # onto one point).
+    link_float_to_vector(tree, hang.outputs[0], clapper_pos, "Offset",
+                         component=2, defaults=(0.0, 0.0, 0.0))
+    clapper_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 80, by - 780))
+    try:
+        clapper_sw.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    link_sockets(tree, gin.outputs["Has Clapper"], clapper_sw.inputs["Switch"])
+    link_sockets(tree, clapper_pos.outputs["Geometry"], clapper_sw.inputs["True"])
+
+    # Bell Type selects the body primitive (0 sphere, 1 cup, 2 tube); the old
+    # switch was wired but its output was never used.
+    pick12 = safe_node(tree, "GeometryNodeSwitch", (bx - 60, by - 260))
+    try:
+        pick12.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    pick12.inputs["Switch"].default_value = False
+    link_sockets(tree, cup.outputs["Mesh"], pick12.inputs["False"])
+    link_sockets(tree, tube.outputs["Mesh"], pick12.inputs["True"])
+    type_is_2 = safe_node(tree, "ShaderNodeMath", (bx - 60, by - 380))
+    type_is_2.operation = "COMPARE"
+    type_is_2.inputs[1].default_value = 2.0
+    link_sockets(tree, gin.outputs["Bell Type"], type_is_2.inputs[0])
+    link_sockets(tree, type_is_2.outputs[0], pick12.inputs["Switch"])
+    type_is_1 = safe_node(tree, "ShaderNodeMath", (bx + 80, by - 120))
+    type_is_1.operation = "COMPARE"
+    type_is_1.inputs[1].default_value = 1.0
+    link_sockets(tree, gin.outputs["Bell Type"], type_is_1.inputs[0])
+    pick_all = safe_node(tree, "GeometryNodeSwitch", (bx + 80, by))
+    try:
+        pick_all.input_type = "GEOMETRY"
+    except Exception:
+        pass
+    pick_all.inputs["Switch"].default_value = False
+    link_sockets(tree, body.outputs["Mesh"], pick_all.inputs["False"])
+    link_sockets(tree, pick12.outputs["Output"], pick_all.inputs["True"])
+    link_sockets(tree, type_is_1.outputs[0], pick_all.inputs["Switch"])
+
+    join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 240, by))
+    link_sockets(tree, pick_all.outputs["Output"], join.inputs["Geometry"])
+    link_sockets(tree, clapper_sw.outputs["Output"], join.inputs["Geometry"])
 
     store_diam = safe_node(tree, "GeometryNodeStoreNamedAttribute", (bx + 200, by))
     store_diam.data_type = "FLOAT"
@@ -582,6 +845,12 @@ def build_church_bell(group_name="MEL_church_bell"):
     boolean = safe_node(tree, "GeometryNodeMeshBoolean", (bx - 300, by))
     if boolean and outer and inner:
         boolean.operation = "DIFFERENCE"
+        # The default FLOAT solver emits zero-area faces where the inner cone
+        # meets the mouth rim; EXACT produces a clean manifold shell.
+        try:
+            boolean.solver = "EXACT"
+        except Exception:
+            pass
         link_sockets(tree, outer.outputs["Mesh"], boolean.inputs[0])
         link_sockets(tree, inner.outputs["Mesh"], boolean.inputs[1])
         shell = boolean.outputs["Mesh"]
@@ -697,7 +966,7 @@ def build_church_bell(group_name="MEL_church_bell"):
 
 # -- Registry --
 register_builder("MEL_brass_pipe", build_brass_pipe, "Brass Pipe",
-    "Brass tube geometry - narrow trumpet bore or wide trombone bore with bell flare.",
+    "Multi-segment brass tube: mouthpiece, lead pipe, cylindrical body, bell flare, optional valves.",
     "music")
 register_builder("MEL_reed_body", build_reed_body, "Reed Body",
     "Reed instrument body - clarinet (cylindrical) or oboe (conical) with tone holes.",

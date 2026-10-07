@@ -252,7 +252,7 @@ def build_op_bounded(group_name="MEL_op_bounded"):
 
         set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 1000, by + 100))
         link_sockets(tree, transform.outputs["Geometry"], set_pos.inputs["Geometry"])
-        link_sockets(tree, center_target.outputs["Vector"], set_pos.inputs["Position"])
+        link_sockets(tree, center_target.outputs["Vector"], set_pos.inputs["Offset"])
 
         link_sockets(tree, set_pos.outputs["Geometry"], gout.inputs["Geometry"])
     else:

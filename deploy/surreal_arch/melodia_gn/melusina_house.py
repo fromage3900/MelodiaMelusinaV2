@@ -25,7 +25,7 @@ import math
 from .core import (
     safe_node, link_sockets, color_node, label_tree, new_geometry_tree,
     make_group_input, make_group_output, add_float_param, add_bool_param,
-    add_music_influence_params, register_builder,
+    add_music_influence_params, register_builder, link_float_to_vector,
 )
 from .polyhedra_gn import (
     build_greybox_room_kit, build_greybox_corridor, build_greybox_junction,
@@ -202,24 +202,79 @@ def build_melusina_house_round_interior(group_name="MEL_melusina_house_round_int
 
     # --- center circular entry/sitting drum (round-plan identity) ---
     # solid round drum: outer cylinder minus inner = round wall shell, open
+    #
+    # Depth and lift are driven by the Interior Height INPUT SOCKET, never by
+    # H.default_value. A Group Input *node* output socket always reads 0.0 (the
+    # 3.1 default lives on the tree interface, not on the node socket), so the
+    # old `H.default_value if hasattr(H, "default_value") else 3.1` took its
+    # first branch and built a ZERO-DEPTH outer cylinder -- a flat disc. The
+    # DIFFERENCE boolean then emitted 256 degenerate faces (40% of its 640-face
+    # result; every one of the other 19 join parts measured clean), the disc rim
+    # collapsing against the 3.5 m cutter.
+    #
+    # The lift was hardcoded 1.55 (= H/2 only at the 3.1 default), so raising the
+    # dial sank the drum through the floor -- measured z-min -0.70 at H=4.5.
+    # Both now derive from H: depth = H, lift = H * 0.5, cutter = H + 0.4 lifted
+    # to H * 0.5 + 0.2 so its caps clear the outer caps at every dial value.
+    def _math_from(sock, op, b_val, loc):
+        m = safe_node(tree, "ShaderNodeMath", loc)
+        if m is None:
+            return None
+        try:
+            m.operation = op
+            m.inputs[1].default_value = b_val
+        except Exception:
+            pass
+        link_sockets(tree, sock, m.inputs[0])
+        return m.outputs["Value"]
+
+    def _place_driven(tree, x, y, geo_src, fallback_z, drv_sock, label):
+        """_place() with the Z lift driven by a socket (falls back to constant)."""
+        t = safe_node(tree, "GeometryNodeTransform", (x, y))
+        t.label = label
+        link_sockets(tree, geo_src, t.inputs["Geometry"])
+        if drv_sock is not None:
+            link_float_to_vector(tree, drv_sock, t, "Translation", 2)
+        else:
+            try:
+                t.inputs["Translation"].default_value = (0.0, 0.0, fallback_z)
+            except Exception:
+                pass
+        return _geo_out(t)
+
+    h_depth = _math_from(H, "MULTIPLY", 1.0, (bx - 700, by + 120))     # H
+    h_half = _math_from(H, "MULTIPLY", 0.5, (bx - 700, by + 40))       # H / 2
+    h_cut = _math_from(H, "ADD", 0.4, (bx - 700, by - 80))             # H + 0.4
+    h_cut_lift = _math_from(H, "MULTIPLY", 0.5, (bx - 700, by - 160))  # H / 2
+    if h_cut_lift is not None:
+        h_cut_lift = _math_from(h_cut_lift, "ADD", 0.2, (bx - 700, by - 240))
+
     outer = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 700, by))
     if outer is not None:
         outer.inputs["Radius"].default_value = 2.2
-        outer.inputs["Depth"].default_value = H.default_value if hasattr(H, "default_value") else 3.1
+        if h_depth is not None:
+            link_sockets(tree, h_depth, outer.inputs["Depth"])
+        else:
+            outer.inputs["Depth"].default_value = 3.1
         outer.inputs["Vertices"].default_value = 48
         outer.inputs["Side Segments"].default_value = 1
         outer.inputs["Fill Segments"].default_value = 1
     inner = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 700, by - 180))
     if inner is not None:
         inner.inputs["Radius"].default_value = 2.2 - 0.24
-        inner.inputs["Depth"].default_value = 3.4
+        if h_cut is not None:
+            link_sockets(tree, h_cut, inner.inputs["Depth"])
+        else:
+            inner.inputs["Depth"].default_value = 3.5
         inner.inputs["Vertices"].default_value = 48
         inner.inputs["Side Segments"].default_value = 1
         inner.inputs["Fill Segments"].default_value = 1
     # lift to sit on ground
     if outer is not None and inner is not None:
-        o_lift = _place(tree, bx - 300, by, _geo_out(outer), (0, 0, 1.55), "outer drum lift")
-        i_lift = _place(tree, bx - 300, by - 180, _geo_out(inner), (0, 0, 1.7), "inner void lift")
+        o_lift = _place_driven(tree, bx - 300, by, _geo_out(outer), 1.55,
+                               h_half, "outer drum lift")
+        i_lift = _place_driven(tree, bx - 300, by - 180, _geo_out(inner), 1.73,
+                               h_cut_lift, "inner void lift")
         if o_lift is not None and i_lift is not None:
             bn = safe_node(tree, "GeometryNodeMeshBoolean", (bx - 60, by))
             if bn is not None:

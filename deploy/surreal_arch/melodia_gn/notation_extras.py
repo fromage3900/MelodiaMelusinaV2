@@ -345,7 +345,7 @@ def build_music_beam_cluster(group_name="MEL_music_beam_cluster"):
     span_half.inputs[1].default_value = 0.5
     beam_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 120, by - 520))
     link_sockets(tree, beam.outputs["Mesh"], beam_pos.inputs["Geometry"])
-    link_float_to_vector(tree, span_half.outputs[0], beam_pos, "Position", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, span_half.outputs[0], beam_pos, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
 
     slant_rad = safe_node(tree, "ShaderNodeMath", (bx - 40, by - 620))
     slant_rad.operation = "MULTIPLY"
@@ -461,7 +461,7 @@ def build_music_triplet_note(group_name="MEL_music_triplet_note"):
     link_sockets(tree, beam_vec.outputs["Vector"], beam.inputs["Size"])
     beam_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 120, by - 520))
     link_sockets(tree, beam.outputs["Mesh"], beam_pos.inputs["Geometry"])
-    link_float_to_vector(tree, gin.outputs["Spacing"], beam_pos, "Position", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, gin.outputs["Spacing"], beam_pos, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
 
     slant_rad = safe_node(tree, "ShaderNodeMath", (bx - 40, by - 620))
     slant_rad.operation = "MULTIPLY"
@@ -577,7 +577,7 @@ def build_music_chord_stack(group_name="MEL_music_chord_stack"):
     link_sockets(tree, stem_vec.outputs["Vector"], stem.inputs["Size"])
     stem_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 120, by - 300))
     link_sockets(tree, stem.outputs["Mesh"], stem_pos.inputs["Geometry"])
-    link_float_to_vector(tree, gin.outputs["Stem Offset"], stem_pos, "Position", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, gin.outputs["Stem Offset"], stem_pos, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
 
     realize = safe_node(tree, "GeometryNodeRealizeInstances", (bx + 120, by + 100))
     link_sockets(tree, heads.outputs["Instances"], realize.inputs["Geometry"])
@@ -698,7 +698,7 @@ def build_music_fermata(group_name="MEL_music_fermata"):
     dot_y.inputs[1].default_value = -0.55
     dot_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 60, by - 320))
     link_sockets(tree, dot.outputs["Mesh"], dot_pos.inputs["Geometry"])
-    link_float_to_vector(tree, dot_y.outputs[0], dot_pos, "Position", component=1, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, dot_y.outputs[0], dot_pos, "Offset", component=1, defaults=(0.0, 0.0, 0.0))
     dot_sw = safe_node(tree, "GeometryNodeSwitch", (bx + 100, by - 320))
     try:
         dot_sw.input_type = "GEOMETRY"
@@ -776,10 +776,10 @@ def build_music_repeat_bar(group_name="MEL_music_repeat_bar"):
     off_neg.inputs[1].default_value = -0.5
     pos1 = safe_node(tree, "GeometryNodeSetPosition", (bx - 140, by + 200))
     link_sockets(tree, bar1.outputs["Mesh"], pos1.inputs["Geometry"])
-    link_float_to_vector(tree, off_neg.outputs[0], pos1, "Position", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, off_neg.outputs[0], pos1, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
     pos2 = safe_node(tree, "GeometryNodeSetPosition", (bx - 140, by + 100))
     link_sockets(tree, bar2.outputs["Mesh"], pos2.inputs["Geometry"])
-    link_float_to_vector(tree, off.outputs[0], pos2, "Position", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, off.outputs[0], pos2, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
 
     # Two dots beside the bars
     dot_off = safe_node(tree, "ShaderNodeMath", (bx - 480, by - 200))
@@ -800,12 +800,12 @@ def build_music_repeat_bar(group_name="MEL_music_repeat_bar"):
     link_sockets(tree, gin.outputs["Dot Size"], dot_geo.inputs["Radius"])
     dot1 = safe_node(tree, "GeometryNodeSetPosition", (bx - 160, by - 250))
     link_sockets(tree, dot_geo.outputs["Mesh"], dot1.inputs["Geometry"])
-    link_float_to_vector(tree, dot_off.outputs[0], dot1, "Position", component=0, defaults=(0.0, 0.0, 0.0))
-    link_float_to_vector(tree, dot_y.outputs[0], dot1, "Position", component=1, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, dot_off.outputs[0], dot1, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, dot_y.outputs[0], dot1, "Offset", component=1, defaults=(0.0, 0.0, 0.0))
     dot2 = safe_node(tree, "GeometryNodeSetPosition", (bx - 160, by - 350))
     link_sockets(tree, dot_geo.outputs["Mesh"], dot2.inputs["Geometry"])
-    link_float_to_vector(tree, dot_off.outputs[0], dot2, "Position", component=0, defaults=(0.0, 0.0, 0.0))
-    link_float_to_vector(tree, dot_ny.outputs[0], dot2, "Position", component=1, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, dot_off.outputs[0], dot2, "Offset", component=0, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, dot_ny.outputs[0], dot2, "Offset", component=1, defaults=(0.0, 0.0, 0.0))
 
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 120, by + 100))
     link_sockets(tree, pos1.outputs["Geometry"], join.inputs["Geometry"])
@@ -1019,7 +1019,7 @@ def build_music_stand(group_name="MEL_music_stand"):
     pole_y.operation = "MULTIPLY"
     link_sockets(tree, gin.outputs["Stand Height"], pole_y.inputs[0])
     pole_y.inputs[1].default_value = 0.5
-    link_float_to_vector(tree, pole_y.outputs[0], pole_pos, "Position", component=1, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, pole_y.outputs[0], pole_pos, "Offset", component=1, defaults=(0.0, 0.0, 0.0))
 
     # Two splayed legs
     spread_rad = safe_node(tree, "ShaderNodeMath", (bx - 480, by - 240))
@@ -1041,7 +1041,7 @@ def build_music_stand(group_name="MEL_music_stand"):
     leg_y.operation = "MULTIPLY"
     link_sockets(tree, gin.outputs["Stand Height"], leg_y.inputs[0])
     leg_y.inputs[1].default_value = 0.22
-    link_float_to_vector(tree, leg_y.outputs[0], leg_pos, "Position", component=1, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, leg_y.outputs[0], leg_pos, "Offset", component=1, defaults=(0.0, 0.0, 0.0))
     leg_neg = safe_node(tree, "GeometryNodeTransform", (bx - 140, by - 360))
     link_sockets(tree, leg_pos.outputs["Geometry"], leg_neg.inputs["Geometry"])
     link_float_to_vector(tree, spread_rad.outputs[0], leg_neg, "Rotation", component=2, defaults=(0.0, 0.0, 0.0))
