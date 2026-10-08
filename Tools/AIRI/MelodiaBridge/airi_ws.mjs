@@ -13,8 +13,8 @@
 //
 // Wire format is plain JSON `{ type, data, metadata }`. The server also
 // accepts SuperJSON; plain JSON is sufficient per the SDK codec fallback.
-// Token auth is not implemented: the desktop stage runs without a token,
-// matching the SDK's no-token path (announce only).
+// Token authentication is supported when AIRI_TOKEN is provided;
+// otherwise the client attempts the anonymous module announcement.
 
 import { randomUUID } from 'node:crypto'
 
@@ -189,6 +189,7 @@ export function createAiriWsClient({
     wantClose = false
     generation += 1
     const gen = generation
+    lastError = null
     setStatus('connecting')
     await new Promise((resolve, reject) => {
       let settled = false
@@ -222,17 +223,7 @@ export function createAiriWsClient({
             ws.send(JSON.stringify(withMetadata({ type: 'module:authenticate', data: { token } })))
           }
           catch (error) {
-        if (!settled) {
-          if (errorText && !token) {
-            settled = true
-            clearTimeout(timer)
-            try {
-              ws.close()
-            }
-            catch {}
-            reject(new Error(`${errorText} (desktop requires a token: set AIRI_TOKEN from AIRI Settings > Connection)`))
-            return
-          }
+            if (!settled) {
               settled = true
               clearTimeout(timer)
               reject(error)
@@ -259,8 +250,21 @@ export function createAiriWsClient({
         if (!message)
           return
         const errorText = serverErrorText(message)
-        if (errorText)
-          lastError = new Error(errorText)
+        if (errorText) {
+          const hint = !token ? ' (if AIRI requires authentication, set AIRI_TOKEN)' : ''
+          lastError = new Error(errorText + hint)
+          onError(lastError)
+          if (!settled) {
+            settled = true
+            clearTimeout(timer)
+            try {
+              ws.close()
+            }
+            catch {}
+            reject(lastError)
+            return
+          }
+        }
         if (!settled) {
           if (token && message.type === 'module:authenticated' && message?.data?.authenticated === true) {
             setStatus('announcing')
