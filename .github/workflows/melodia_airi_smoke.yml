@@ -22,4 +22,4 @@ jobs:
           node-version: '22'
       - name: Dependency-free bridge and Pi observer tests
         working-directory: Tools/AIRI/MelodiaBridge
-        run: node --test --test-isolation=none
+        run: npm test
