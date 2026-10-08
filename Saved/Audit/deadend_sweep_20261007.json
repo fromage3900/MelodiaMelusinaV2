@@ -1,0 +1,52 @@
+{
+ "trees": [
+  {
+   "tree": "MEL_chime_carillon_tier",
+   "isolated": [
+    [
+     "Index",
+     "INDEX"
+    ]
+   ],
+   "deadends": []
+  },
+  {
+   "tree": "MEL_mother_draped_curtain",
+   "isolated": [],
+   "deadends": [
+    [
+     "Combine XYZ",
+     "COMBXYZ"
+    ],
+    [
+     "Combine XYZ.001",
+     "COMBXYZ"
+    ]
+   ]
+  },
+  {
+   "tree": "MEL_starskiff_hull_form",
+   "isolated": [],
+   "deadends": [
+    [
+     "Clamp",
+     "CLAMP"
+    ]
+   ]
+  },
+  {
+   "tree": "Water Basic",
+   "isolated": [],
+   "deadends": [
+    [
+     "Math.019",
+     "MATH"
+    ]
+   ]
+  }
+ ],
+ "totals": {
+  "isolated": 1,
+  "deadends": 4
+ }
+}

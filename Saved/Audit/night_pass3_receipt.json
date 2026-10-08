@@ -1,0 +1,15 @@
+{
+ "step": "compfix3",
+ "render_comp_before": true,
+ "render_seq_before": true,
+ "render_comp_after": true,
+ "probe_diff_px": 95413,
+ "probe_diff_pct": 73.621,
+ "comp_verified": true,
+ "renders": {
+  "lookdev2_wide": true,
+  "lookdev2_close": true
+ },
+ "resaved": true,
+ "numpy_err": "ValueError('operands could not be broadcast together with shapes (1080,1920) (1080,1920,3) () ')"
+}

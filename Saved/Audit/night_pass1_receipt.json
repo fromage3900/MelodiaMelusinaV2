@@ -1,0 +1,64 @@
+{
+ "step": "kplus",
+ "sw_mods": [
+  [
+   "LissajousPearl",
+   "MEL_mh_aaa_lissajous_pearl"
+  ],
+  [
+   "Realize",
+   "MEL_lissajous_realize"
+  ]
+ ],
+ "renders": {
+  "before_wide": true,
+  "before_close": true,
+  "kplus_wide": true,
+  "kplus_close": true
+ },
+ "pearlfix_saved": true,
+ "groups_loaded": [
+  "Cel Shade 3 Tones (Soft)",
+  "Watercolor",
+  "Iridescence"
+ ],
+ "gn_swaps": [
+  [
+   "MEL_filigree_wreath_ring",
+   "M_Regal_Brass_Filigree",
+   "M_Regal_Brass_Filigree_KomikazeHybrid_tunedplus"
+  ],
+  [
+   "MEL_lissajous_arch_shell",
+   "M_Regal_Brass_Filigree",
+   "M_Regal_Brass_Filigree_KomikazeHybrid_tunedplus"
+  ],
+  [
+   "MEL_mh_aaa_lissajous_pearl",
+   "MH_GoldBrass",
+   "MH_GoldBrass_KomikazeHybrid_tunedplus"
+  ],
+  [
+   "MEL_mother_hair_cascade",
+   "M_Aqua_Filigree",
+   "M_Aqua_Filigree_KomikazeHybrid_tunedplus"
+  ],
+  [
+   "MEL_mother_hair_cascade_b",
+   "M_Aqua_Filigree",
+   "M_Aqua_Filigree_KomikazeHybrid_tunedplus"
+  ]
+ ],
+ "hybrids_ok": 50,
+ "assignments_total": 172,
+ "failures": [],
+ "zero_slot_assign": [
+  "MH_GoldBrass_KomikazeHybrid_tunedplus"
+ ],
+ "lantern_flicker": [
+  4.0,
+  5.12,
+  3.28
+ ],
+ "kplus_saved": true
+}

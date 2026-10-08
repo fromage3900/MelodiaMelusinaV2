@@ -1,0 +1,81 @@
+{
+ "step": "master_build",
+ "water_before": {
+  "span": [
+   8.05,
+   8.18,
+   0.92
+  ],
+  "z": [
+   0.17,
+   1.09
+  ],
+  "verts": 2500
+ },
+ "water_after": {
+  "span": [
+   64.05,
+   64.18,
+   0.92
+  ],
+  "z": [
+   0.17,
+   1.09
+  ],
+  "verts": 2500
+ },
+ "raytracing": true,
+ "comp": {
+  "nodes": [
+   "GROUP_OUTPUT",
+   "R_LAYERS",
+   "GLARE"
+  ],
+  "type": "Fog Glow",
+  "thr": 1.2000000476837158
+ },
+ "world": true,
+ "groups_loaded": [
+  "Cel Shade 3 Tones (Soft)",
+  "Watercolor",
+  "Iridescence"
+ ],
+ "gn_swaps": 5,
+ "hybrids_ok": 50,
+ "assignments_total": 172,
+ "failures": [],
+ "verify": {
+  "pearl_aft_instances": 60,
+  "pearl_divide": [
+   20.3718
+  ],
+  "sw_mod_group": "MEL_mh_aaa_lissajous_pearl",
+  "water_span": {
+   "span": [
+    64.05,
+    64.18,
+    0.92
+   ],
+   "z": [
+    0.17,
+    1.09
+   ],
+   "verts": 2500
+  },
+  "rt": true,
+  "glare_type": "Fog Glow",
+  "flicker": [
+   4.0,
+   5.12,
+   3.28,
+   4.0
+  ],
+  "closure_mm": 0.0,
+  "gn_mods_dead": 0
+ },
+ "renders": {
+  "wide_f60": true,
+  "close_f30": true
+ },
+ "saved": "C:/EnvironmentPortfolio/BS_GodFile/Humber_FinalYear_Prep/ANMN301_Animatic/proxy/SHOREWAKE_LOOP_v5_master.blend"
+}
