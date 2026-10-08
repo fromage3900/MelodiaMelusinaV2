@@ -145,8 +145,12 @@ def _check_duplicate_names(widget: dict, path: str, violations: list[Violation])
 
 def _check_orphaned(widget: dict, path: str, violations: list[Violation]) -> None:
     """Check 3: Widgets with no slot (orphaned)."""
+    cls = widget.get("class", "").split(".")[-1].split("/")[-1]
+    name = widget.get("name", "")
+    if any(k in cls or k in name for k in ("WidgetBlueprint", "WidgetTree", "CanvasPanel", "Slot", "K2Node", "EdGraph", "MovieScene", "Ease", "Function", "NodeGroup")):
+        return
     body = widget.get("body", "")
-    if "Slot=" not in body and widget.get("class") != "CanvasPanel":
+    if "Slot=" not in body:
         violations.append(Violation(
             widget=f"{path}/{widget.get('name', '?')}",
             check="orphaned",
@@ -381,6 +385,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--all-melodia", action="store_true", help="Lint all Melodia widgets")
     p.add_argument("--report", action="store_true", help="Generate markdown report")
     p.add_argument("--offline", action="store_true", help="Use T3D export text instead of online tree")
+    p.add_argument("--t3d-dir", type=Path, default=Path(__file__).resolve().parent.parent / "specs" / "ui", help="Directory of T3D specs")
     return p.parse_args(argv)
 
 
@@ -390,36 +395,56 @@ def main() -> None:
 
     if args.widget:
         if args.offline:
-            try:
-                resp = monolith("project_query", {"action": "export_asset_text", "asset_path": args.widget})
-                t3d = json.loads(resp) if isinstance(resp, str) and resp.startswith("{") else resp
-                if isinstance(t3d, dict):
-                    t3d_text = t3d.get("text", t3d.get("export_text", ""))
-                else:
-                    t3d_text = str(t3d)
-                results.append(lint_t3d(args.widget, t3d_text))
-            except Exception as e:
-                print(f"Failed to export {args.widget}: {e}", file=sys.stderr)
-                sys.exit(1)
+            t3d_text = ""
+            stem = Path(args.widget).stem
+            local_spec = args.t3d_dir / f"{stem}.t3d"
+            if local_spec.is_file():
+                t3d_text = local_spec.read_text(encoding="utf-8")
+            else:
+                try:
+                    resp = monolith("project_query", {"action": "export_asset_text", "asset_path": args.widget})
+                    t3d = json.loads(resp) if isinstance(resp, str) and resp.startswith("{") else resp
+                    if isinstance(t3d, dict):
+                        t3d_text = t3d.get("text", t3d.get("export_text", ""))
+                    else:
+                        t3d_text = str(t3d)
+                except Exception as e:
+                    print(f"Failed to export {args.widget}: {e}", file=sys.stderr)
+                    sys.exit(1)
+            results.append(lint_t3d(args.widget, t3d_text))
         else:
             results.append(lint_online(args.widget))
 
     elif args.all_melodia:
         widgets = _discover_melodia_widgets()
-        if not widgets:
+        if not widgets and args.offline and args.t3d_dir.is_dir():
+            # Fallback to local T3D specs
+            spec_files = sorted(args.t3d_dir.glob("*.t3d"))
+            if spec_files:
+                for sf in spec_files:
+                    t3d_text = sf.read_text(encoding="utf-8")
+                    results.append(lint_t3d(sf.stem, t3d_text))
+        elif not widgets:
             print("No Melodia widgets discovered or Monolith unavailable.", file=sys.stderr)
             sys.exit(1)
-        for w in widgets:
-            if args.offline:
-                try:
-                    resp = monolith("project_query", {"action": "export_asset_text", "asset_path": w})
-                    t3d = json.loads(resp) if isinstance(resp, str) and resp.startswith("{") else resp
-                    t3d_text = t3d.get("text", t3d.get("export_text", "")) if isinstance(t3d, dict) else str(t3d)
-                    results.append(lint_t3d(w, t3d_text))
-                except Exception:
-                    pass
-            else:
-                results.append(lint_online(w))
+        else:
+            for w in widgets:
+                if args.offline:
+                    stem = Path(w).stem
+                    local_spec = args.t3d_dir / f"{stem}.t3d"
+                    if local_spec.is_file():
+                        t3d_text = local_spec.read_text(encoding="utf-8")
+                        results.append(lint_t3d(w, t3d_text))
+                    else:
+                        try:
+                            resp = monolith("project_query", {"action": "export_asset_text", "asset_path": w})
+                            t3d = json.loads(resp) if isinstance(resp, str) and resp.startswith("{") else resp
+                            t3d_text = t3d.get("text", t3d.get("export_text", "")) if isinstance(t3d, dict) else str(t3d)
+                            results.append(lint_t3d(w, t3d_text))
+                        except Exception:
+                            pass
+                else:
+                    results.append(lint_online(w))
     else:
         print("Specify --widget or --all-melodia")
         sys.exit(1)
