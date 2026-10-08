@@ -1,5 +1,17 @@
 # Melodia Melusina ? Current State
 
+## SHOREWAKE close-out — 2026-10-08 (Humber lane, owner-directed)
+
+Starskiff reel loop + ANMN301 animatic closed out repo-side. Commit `aea624abd` (36 files): pearl strand restored (dead since v18; gated 5246v/61), LaundryLine weld 184→164 + Pennant loose-vert removal, GN census (47 trees, 0 dead refs, 5 inert logged), wake-trail keys trimmed into 1–120, FLIP confirmed never-baked and parked, lookdev (sea 8→64 m, wave heights unchanged, RT, star world, fog-glow at 6.6% footprint), komikaze tuned+ (50 hybrids / 172 assignments + GN-material sweep), and **`SHOREWAKE_LOOP_v5_master.blend`** — the merged, verified canonical (pearl/tree gates, closure 0.0 mm, flicker 4/5.12/3.28/4, 0 dead modifiers). Hero stills + receipts under `Saved/Audit/` (key JSONs force-added).
+
+Live session `SHOREWAKE_LOOP_v5.blend` saved by owner direction (dirty=false, all staged items verified post-save). Physics review vs references: draft 0.354 m on 8.07 m LOA plausible, stays 10.5° off vertical, shrouds taut; the real find is the swell mismatch (sea breathes ±0.19 m around a hull that moved 8 mm, out of phase) — water-following `_bob` variant built (25 keys, closure 0.0 mm, draft constant); promote/pass is owner call.
+
+Animatic: rebuildable VSE source `SHOREWAKE_VSE_animatic_v04.blend` (text + 3 measured gamma-cross dissolves); submission candidate = v06 (65.00 s, 1080p24, silent, decode-clean), copied to the convention name `ShepherdBrennan_AnimaticCreation_2026-10-09.mp4` for the Oct-9 5 PM drop; packet `ANMN301_SUBMISSION_READY_2026-10-08.md`. Docs: bounded goal, shot plan v03, physics/compliance review, GN plan, composition pack, work log.
+
+Open owner calls: bob · v05/v06 ship · night value direction (A/B in `Saved/Audit/`) · D1 sail-kiss · D2 carillon · D3 deckwell · D4 deletions (FLIP domain/surface, WakeTrail, legacy meshes) · 5 inert litter nodes · 2 stray live objects (`audvis_global_settings`, `x undo`).
+
+Repo reality at close (post-fetch): 12 local commits unpushed incl. `aea624abd`, 52 behind `origin/main` — no push from this lane; closing ALLREFS bundle → `git_bundles_archive/ALLREFS_2026-10-08_closeout.bundle`. C: disk at 98% (20 GB free) — next sweep due.
+
 ## Gouache LookDev convergence — first writes — 2026-10-07 (editor live; Sol idle)
 
 Monolith read of the three PP families, then two bounded writes (both compiled, saved, re-read):
@@ -29,6 +41,8 @@ Built 2026-10-07 eve: `Tools/Houdini/sir_kinefx/sir_flight_doctor.py` (pure-Pyth
 STAGED FIX (owner asked; staging only, no Content/ write, no reimport): `Tools/Houdini/sir_kinefx/sir_reweight.py` → `Saved/Audit/sirmelodious_kinefx_doctor/reweight/` (`body_reweight_delta.json`, `SirMelodiousBody_reweighted_20261007.blend`, proof render). Explicit ARP-helper→exported map (`c_root_bend.x→root.x`, `c_spine_0N_bend.x→spine_0N.x`, unit groups dropped), top-4 clamp, renormalise: **657 unweighted → 0, root.x owns 656** (source intent preserved). This is a fallback that makes the tail FOLLOW the body instead of freezing — NOT true tail articulation. Real tail wag needs the spline chain exported as deform bones (owner mesh-export decision) or a KP_Tail on exported tail bones.
 
 Weight-fix evidence: `probes/dbg_*.py` (dupe/GN/deform/slot/diff/target/isolate); before/after renders `probes/dbg_bodyonly_f029.png` vs `reweight/proof_f029.png`.
+
+HYTHON PORT (owner: "via hython please") DONE same eve: `Tools/Houdini/sir_kinefx/sir_reweight_kinefx.py` re-detects the 657 independently, calibrates 60+ capture-index→bone pairs by exact count signatures, and PROVES the honest limit — the tail fix needs root.x = one of capture indices {60,62,64,65}, but all four hold absolute zero weight mesh-wide in BOTH apps with no fitting permutation, so weight data cannot promote one (one candidate is the Kawaii collar root — a guess could couple the tail to the collar). No index fabricated; delta records the candidate SET + root.x recommendation with the full proof log (`body_reweight_delta_kinefx.json` + manifest). Writer stays NAME-based (Blender delta, visually proven). Doctor gained a `tail_export` HOLD gate (now **11/15 PASS, 4 HOLD, 0 FAIL**). Dev probes archived to `probes/toolshed/`. Real tail wag still needs the spline/bbone deform export — owner mesh decision.
 
 ## Take-over finalize — 2026-10-07 eve (Sol on break; repo-side only, no editor contact)
 
