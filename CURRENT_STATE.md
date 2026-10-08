@@ -32,6 +32,8 @@ The long body is retained as audit history, not as a flat list of present-tense 
   `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md` (lowercase `docs`). The repository also contains
   an uppercase `Docs/` tree. Use exact tracked casing and do not attempt a case-only tree migration
   from a case-insensitive Windows checkout as incidental cleanup.
+- **Agent production playbook:** `AGENT_PRODUCTION_PLAYBOOK.md` is the durable capability/production contract for agent lanes; use it with this current-state front door rather than inventing parallel workflow authority.
+  **What to reach for:** TurnBased JRPG / Phoenix for the established turn-based combat lane; Houdini Engine for procedural DCC→UE integration; RiderLink for Rider↔Unreal editor workflows; and Qodana (`qodana.yaml`) for static-analysis policy.
 - **Houdini Studio Gate 0A — scaffolded, headless-proven and hardened 2026-10-07; GUI acceptance owed.**
   The repo-backed package `deploy/houdini/packages/melodia_studio.json` is path-independent
   (`$HOUDINI_PACKAGE_PATH`), and `deploy/houdini/install_melodia_studio.ps1` writes only a thin

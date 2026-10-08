@@ -20,15 +20,26 @@
 .PARAMETER CheckOnly
     Report what would be written without writing anything.
 
+.PARAMETER Remove
+    Remove only the thin local package pointer when it points at this repository.
+    Refuses to delete an unreadable or foreign pointer.
+
 .PARAMETER Verify
     Run deploy/houdini/verify_melodia_studio.py through hython after installing.
 
 .EXAMPLE
     .\deploy\houdini\install_melodia_studio.ps1 -Verify
+
+.EXAMPLE
+    .\deploy\houdini\install_melodia_studio.ps1 -Remove
+
+.EXAMPLE
+    .\deploy\houdini\install_melodia_studio.ps1 -Remove -CheckOnly
 #>
 [CmdletBinding()]
 param(
     [switch]$CheckOnly,
+    [switch]$Remove,
     [switch]$Verify
 )
 
@@ -123,6 +134,10 @@ if (-not (Test-Path (Join-Path $PackagesPath 'melodia_studio.json'))) {
 $PackagesPathJson = ($PackagesPath -replace '\\', '/')
 $PointerJson  = ([ordered]@{ package_path = $PackagesPathJson } | ConvertTo-Json) + "`n"
 
+if ($Remove -and $Verify) {
+    throw "-Remove cannot be combined with -Verify."
+}
+
 $Existed = Test-Path $PointerPath
 $Current  = $null
 if ($Existed) { $Current = [System.IO.File]::ReadAllText($PointerPath) }
@@ -130,6 +145,39 @@ if ($Existed) { $Current = [System.IO.File]::ReadAllText($PointerPath) }
 $UpToDate = $Existed -and ($Current.TrimEnd() -ieq $PointerJson.TrimEnd())
 
 Write-Step "pointer target  : $PointerPath"
+
+if ($Remove) {
+    if (-not $Existed) {
+        Write-Ok "pointer already absent - nothing removed"
+        return
+    }
+
+    $OwnedPointer = $false
+    try {
+        $Parsed = $Current | ConvertFrom-Json
+        $ActualPackagePath = [string]$Parsed.package_path
+        if ($ActualPackagePath) {
+            $ActualNormalized = ($ActualPackagePath -replace '\\', '/').TrimEnd('/')
+            $ExpectedNormalized = $PackagesPathJson.TrimEnd('/')
+            $OwnedPointer = $ActualNormalized -ieq $ExpectedNormalized
+        }
+    } catch {
+        $OwnedPointer = $false
+    }
+
+    if (-not $OwnedPointer) {
+        throw "Refusing to remove $PointerPath because it does not point at this repository's package path."
+    }
+
+    if ($CheckOnly) {
+        Write-Warn2 "CheckOnly - would remove owned pointer: $PointerPath"
+    } else {
+        Remove-Item -LiteralPath $PointerPath -Force
+        Write-Ok "owned package pointer removed"
+    }
+    return
+}
+
 if ($UpToDate) {
     Write-Ok "pointer already up to date - nothing written"
 } else {

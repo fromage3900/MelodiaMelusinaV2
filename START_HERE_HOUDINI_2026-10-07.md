@@ -16,6 +16,62 @@ Companion plan:
 The larger studio/world convergence plan is background only today:
 `Docs/Houdini/MELODIA_HOUDINI_STUDIO_CONVERGENCE_2026-10-07.md`
 
+
+---
+
+## CHECKPOINT UPDATE — 2026-10-07 afternoon
+
+**This section supersedes the earlier morning discovery notes below where they conflict. Do not redo completed intake/setup work.**
+
+Current Git checkpoint reviewed at `c5fbf028b0c7a80ebb1dff0a141147dee2047daa`:
+
+- **Melodia Houdini Studio P0 is built and tracked.**
+  - package: `deploy/houdini/packages/melodia_studio.json`
+  - desktops: `Melodia_Studio.desk`, `Melodia_KineFX.desk`
+  - shelf: `Melodia.shelf`
+  - installer/verifier: `deploy/houdini/install_melodia_studio.ps1`, `deploy/houdini/verify_melodia_studio.py`
+  - latest current-state receipt reports **23/23 required headless checks PASS** on Houdini 22.0.368.
+  - GUI desktop visibility/switch/restart screenshots are still owner-held acceptance.
+  - operating contract: `deploy/houdini/README.md`.
+
+- **AnimationDoctor is not Git-empty anymore.**
+  - tracked read-only v2 doctor: `Content/Python/melusina_animation_doctor.py`
+  - the Oct-6 checkpoint records AnimationDoctor v2 at **22/23 PASS** with the permanent rig-pipeline/shirt checks.
+  - There still may not be a canonical tracked `.hip`/`HDA_Melodia_AnimationDoctor*.hda`; do not confuse that packaging gap with absence of the Doctor logic/evidence.
+
+- **Sir Melodious Houdini intake has started and passed.**
+  - tracked harness: `Tools/Houdini/sir_kinefx/sir_intake_probe.py`
+  - evidence: `Saved/Audit/sirmelodious_kinefx_doctor/intake_probe.json`
+  - proven: v5 ARP mesh + clip import, capture/override/bonedeform skin chains, feather/crest/tie joints, real clip motion.
+  - **Still open:** actual Doctor health checks, cloak/collar/tie constraint solve, deterministic cache, UE re-import. Start there; do not redo FBX intake.
+
+- **Shorewake source/lookdev is substantially past morning discovery.**
+  - reef dress UV pack/winding/lookdev staging is documented;
+  - 48 material slots were converged to 10 garment sets for Substance staging;
+  - 5×4K mesh maps, seasonal variants, flipbooks and livery turntables are documented;
+  - large outputs remain outside Git by design.
+  - **Still open for this plan:** the bounded hero garment constraint/Vellum finishing proof and final runtime composition acceptance.
+
+- **`reef_common.py` is now tracked.**
+  - `Tools/Houdini/sea_above_reef/reef_common.py` was force-added intentionally after the ignore-rule trap was identified and was import-smoke-tested under hython.
+  - The morning warning that the dress baker is blocked solely because `reef_common.py` is missing is now stale.
+  - Do not mass-add the rest of ignored `Tools/Houdini/sea_above_reef/*.py`; current-state records many still-local scripts as an owner decision.
+
+- **Foundry/HDA checkpoint is green enough to build from, not rediscover.**
+  - Foundry unit suite: **11/11**
+  - recipes: **7/7**
+  - HDA verify latest closeout: **3 PASS / 0 FAIL / 4 owed WARN**
+  - ArpeggioStair was rebuilt headless and `reef_common.py` was salvaged at the current checkpoint.
+
+### Next work from home
+
+1. Let the SSD/G: reconciliation finish; do not rewrite or clean local-only artifacts during audit.
+2. Complete owner GUI acceptance for the Houdini Studio desktops if not already done.
+3. Continue **Sir Doctor checks + constraint stage** from the proven intake.
+4. Continue **Shorewake Vellum/constraint finishing** from the current 10-set/material/lookdev checkpoint.
+5. Keep UE editor writes serialized to one owner; background Houdini/Git lanes stay editor-read-only unless explicitly handed the lease.
+
+
 ---
 
 ## 0. Truth discovered by the 2026-10-07 repo audit
