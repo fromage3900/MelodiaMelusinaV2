@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - 'Tools/AIRI/MelodiaBridge/**'
-      - '.pi/extensions/melodia-airi.ts'
       - '.github/workflows/melodia_airi_smoke.yml'
   workflow_dispatch:
 
