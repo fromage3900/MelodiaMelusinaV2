@@ -9,6 +9,7 @@
 #include "Engine/World.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/PlayerController.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
@@ -62,6 +63,10 @@ void UMelodiaTraversalComponent::BeginPlay()
 	if (OwnerCharacter.IsValid())
 	{
 		Movement = OwnerCharacter->GetCharacterMovement();
+		if (OwnerCharacter->JumpMaxHoldTime <= UE_SMALL_NUMBER)
+		{
+			OwnerCharacter->JumpMaxHoldTime = JumpMaxHoldTimeSeconds;
+		}
 	}
 
 	if (Movement.IsValid() && OwnerCharacter.IsValid())
@@ -83,6 +88,12 @@ void UMelodiaTraversalComponent::BeginPlay()
 
 	GlideStamina = MaxGlideStamina;
 	TimeSinceGlideStopped = GlideStaminaRegenDelay;
+	if (Movement.IsValid() && Movement->IsMovingOnGround())
+	{
+		bHasGroundContactSinceBeginPlay = true;
+		bWasMovingOnGround = true;
+		LastGroundedTimeSeconds = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0;
+	}
 	SwimStamina = MaxSwimStamina;
 	Breath = MaxBreath;
 	TimeSinceSwimStopped = SwimStaminaRegenDelay;
@@ -326,11 +337,67 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 
 	UpdateWaterState(DeltaTime);
 
+	// TEMP DIAGNOSTIC (bubble sprint binding audit): log raw key transitions at
+	// the PlayerController so we can separate "key never arrives" from
+	// "key arrives but the legacy action binding does not fire".
+	if (const APlayerController* PC = Cast<APlayerController>(OwnerCharacter->GetController()))
+	{
+		static bool bPrevX = false;
+		static bool bPrevW = false;
+		const bool bXNow = PC->IsInputKeyDown(EKeys::X);
+		const bool bWNow = PC->IsInputKeyDown(EKeys::W);
+		if (bXNow != bPrevX)
+		{
+			bPrevX = bXNow;
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_XKEY state=%d"), bXNow ? 1 : 0);
+		}
+		if (bWNow != bPrevW)
+		{
+			bPrevW = bWNow;
+			UE_LOG(LogTemp, Warning, TEXT("MELODIA_WKEY state=%d"), bWNow ? 1 : 0);
+		}
+	}
+
+	const double CurrentTimeSeconds = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0;
+	if (Movement->IsMovingOnGround())
+	{
+		if (!bWasMovingOnGround)
+		{
+			bCoyoteJumpConsumed = false;
+			bGlideActivationImpulseSpent = false;
+		}
+		bHasGroundContactSinceBeginPlay = true;
+		bWasMovingOnGround = true;
+		LastGroundedTimeSeconds = CurrentTimeSeconds;
+
+		if (bIsGliding)
+		{
+			StopGlide();
+		}
+
+		if (bJumpBuffered && CurrentTimeSeconds <= JumpBufferExpiresAtSeconds)
+		{
+			bJumpBuffered = false;
+			bCoyoteJumpConsumed = true;
+			bGlideHoldArmed = bJumpInputHeld;
+			OwnerCharacter->Jump();
+		}
+	}
+	else if (bJumpBuffered && CurrentTimeSeconds > JumpBufferExpiresAtSeconds)
+	{
+		bJumpBuffered = false;
+	}
+	if (!Movement->IsMovingOnGround())
+	{
+		bWasMovingOnGround = false;
+	}
+
 	// Held jump: once she passes the apex with the button still down, glide.
-	if (bGlideHoldArmed && !bIsGliding && !Movement->IsMovingOnGround() && Movement->Velocity.Z <= 0.0f)
+	if (bGlideHoldArmed && bJumpInputHeld && !bIsGliding && Movement->IsFalling() && Movement->Velocity.Z <= 0.0f)
 	{
 		bGlideHoldArmed = false;
-		RequestTraversalMode(EMelodiaTraversalMode::Glide);
+		const FMelodiaTraversalRequestResult Request = RequestTraversalMode(EMelodiaTraversalMode::Glide);
+		bJumpInputOwnsGlide = Request.WasAccepted();
 	}
 
 	// Glide logic
@@ -340,13 +407,6 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 		if (!IsCapabilityAvailableForMode(EMelodiaTraversalMode::Glide, CapabilityBlockReason))
 		{
 			CancelTraversalState();
-			return;
-		}
-
-		if (Movement->IsMovingOnGround())
-		{
-			StopGlide();
-			bGlideHoldArmed = false;
 			return;
 		}
 
@@ -370,7 +430,7 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 	if (!bIsGliding)
 	{
 		TimeSinceGlideStopped += DeltaTime;
-		if (Movement->IsMovingOnGround() || TimeSinceGlideStopped >= GlideStaminaRegenDelay)
+		if (Movement->IsMovingOnGround())
 		{
 			GlideStamina = FMath::Min(MaxGlideStamina, GlideStamina + GlideStaminaRegenPerSecond * DeltaTime);
 		}
@@ -465,16 +525,22 @@ void UMelodiaTraversalComponent::BindTraversalInput()
 	OwnerCharacter->InputComponent->BindAction(TEXT("MelodiaTraversalSprint"), IE_Released, this, &UMelodiaTraversalComponent::HandleSprintReleased);
 	OwnerCharacter->InputComponent->BindAction(TEXT("MelodiaTraversalStrafe"), IE_Pressed, this, &UMelodiaTraversalComponent::HandleStrafePressed);
 	OwnerCharacter->InputComponent->BindAction(TEXT("MelodiaTraversalDive"), IE_Pressed, this, &UMelodiaTraversalComponent::HandleDivePressed);
+	OwnerCharacter->InputComponent->BindAction(TEXT("MelodiaTraversalBubble"), IE_Pressed, this, &UMelodiaTraversalComponent::HandleBubblePressed);
+	OwnerCharacter->InputComponent->BindAction(TEXT("MelodiaTraversalBubble"), IE_Released, this, &UMelodiaTraversalComponent::HandleBubbleReleased);
 	bInputBound = true;
+	UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAVERSAL_BIND ok class=%s (jump/sprint/strafe/dive/bubble)"),
+		*OwnerCharacter->InputComponent->GetClass()->GetName());
 }
 
 void UMelodiaTraversalComponent::HandleJumpPressed()
 {
+	UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAV_IN jump"));
 	if (!OwnerCharacter.IsValid() || !Movement.IsValid() || !IsTraversalMovementAllowed(this))
 	{
 		CancelTraversalState();
 		return;
 	}
+	bJumpInputHeld = true;
 
 	// If diving, jump = surface jump
 	if (bIsDiving)
@@ -510,31 +576,65 @@ void UMelodiaTraversalComponent::HandleJumpPressed()
 	if (bIsGliding)
 	{
 		StopGlide();
+		bJumpBuffered = false;
 		return;
 	}
 
+	const double CurrentTimeSeconds = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0;
 	if (Movement->IsMovingOnGround())
 	{
-		// Jump on press; holding extends height through the character's JumpMaxHoldTime.
+		// Jump immediately. The traversal component supplies a hold duration only
+		// when the pawn has no authored JumpMaxHoldTime of its own.
 		OwnerCharacter->Jump();
+		bCoyoteJumpConsumed = true;
+		bJumpBuffered = false;
 		bGlideHoldArmed = true;
 		return;
 	}
 
-	RequestTraversalMode(EMelodiaTraversalMode::Glide);
+	if (Movement->IsFalling()
+		&& bHasGroundContactSinceBeginPlay
+		&& !bCoyoteJumpConsumed
+		&& CurrentTimeSeconds - LastGroundedTimeSeconds <= CoyoteTimeSeconds)
+	{
+		OwnerCharacter->Jump();
+		bCoyoteJumpConsumed = true;
+		bJumpBuffered = false;
+		bGlideHoldArmed = true;
+		return;
+	}
+
+	if (!Movement->IsFalling())
+	{
+		return;
+	}
+
+	// A falling press starts glide now and also buffers the next grounded jump
+	// briefly, so a landing just before release cannot swallow the command.
+	bJumpBuffered = JumpBufferSeconds > 0.0f;
+	JumpBufferExpiresAtSeconds = CurrentTimeSeconds + JumpBufferSeconds;
+	const FMelodiaTraversalRequestResult Request = RequestTraversalMode(EMelodiaTraversalMode::Glide);
+	bJumpInputOwnsGlide = Request.WasAccepted();
 }
 
 void UMelodiaTraversalComponent::HandleJumpReleased()
 {
+	bJumpInputHeld = false;
 	bGlideHoldArmed = false;
 	if (OwnerCharacter.IsValid())
 	{
 		OwnerCharacter->StopJumping();
 	}
+	if (bJumpInputOwnsGlide && bIsGliding)
+	{
+		StopGlide();
+	}
+	bJumpInputOwnsGlide = false;
 }
 
 void UMelodiaTraversalComponent::HandleSprintPressed()
 {
+	UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAV_IN sprint"));
 	bSprintInputHeld = true;
 	if (IsTraversalMovementAllowed(this))
 	{
@@ -550,6 +650,7 @@ void UMelodiaTraversalComponent::HandleSprintReleased()
 
 void UMelodiaTraversalComponent::HandleStrafePressed()
 {
+	UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAV_IN strafe"));
 	if (!OwnerCharacter.IsValid() || !Movement.IsValid() || !IsTraversalMovementAllowed(this))
 	{
 		return;
@@ -608,10 +709,24 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 					ApplyRotationPolicy();
 					OwnerCharacter->SetActorRotation(FRotator(0.0f, (-Direction).Rotation().Yaw, 0.0f));
 
+					// The backward roll reads correctly mid-animation, but she must not
+					// land facing opposite travel. Remember the travel yaw and re-face
+					// on montage end instead of keeping the clip's backward facing.
+					RollExitFacingYaw = Direction.Rotation().Yaw;
+					bRollExitFacingValid = true;
+
 					// Query current aim on completion/interruption instead of restoring
 					// a snapshot which can predate an RMB press or release.
 					FOnMontageEnded OnRollEnded;
-					OnRollEnded.BindWeakLambda(this, [this](UAnimMontage*, bool) { ApplyRotationPolicy(); });
+					OnRollEnded.BindWeakLambda(this, [this](UAnimMontage*, bool)
+					{
+						if (bRollExitFacingValid && OwnerCharacter.IsValid())
+						{
+							OwnerCharacter->SetActorRotation(FRotator(0.0f, RollExitFacingYaw, 0.0f));
+							bRollExitFacingValid = false;
+						}
+						ApplyRotationPolicy();
+					});
 					Anim->Montage_SetEndDelegate(OnRollEnded, Roll);
 				}
 			}
@@ -647,6 +762,7 @@ void UMelodiaTraversalComponent::ApplyRotationPolicy()
 
 void UMelodiaTraversalComponent::HandleDivePressed()
 {
+	UE_LOG(LogTemp, Warning, TEXT("MELODIA_TRAV_IN dive"));
 	if (!OwnerCharacter.IsValid() || !Movement.IsValid() || !IsTraversalMovementAllowed(this))
 	{
 		return;
@@ -694,6 +810,53 @@ void UMelodiaTraversalComponent::FinishDash()
 	// only the instantaneous velocity impulse.
 }
 
+void UMelodiaTraversalComponent::HandleBubblePressed()
+{
+	if (!OwnerCharacter.IsValid() || !Movement.IsValid() || !IsTraversalMovementAllowed(this))
+	{
+		return;
+	}
+
+	bBubbleInputHeld = true;
+	SetBubbleSprint(true);
+}
+
+void UMelodiaTraversalComponent::HandleBubbleReleased()
+{
+	bBubbleInputHeld = false;
+	SetBubbleSprint(false);
+}
+
+void UMelodiaTraversalComponent::SetBubbleSprint(bool bShouldBubble)
+{
+	const bool bNewState = bShouldBubble && bBubbleInputHeld && IsTraversalMovementAllowed(this);
+	if (bIsBubbleSprinting == bNewState)
+	{
+		return;
+	}
+
+	bIsBubbleSprinting = bNewState;
+
+	if (bIsBubbleSprinting)
+	{
+		// The puddle owns the surface: surfacing out of an active swim or dive
+		// instead of leaving her mode-locked under water.
+		if (bIsDiving)
+		{
+			StopDive();
+		}
+		if (bIsSwimming)
+		{
+			StopSwim();
+		}
+		BubbleWakeAccumulator = 0.0f;
+		PublishWaterContact(EMelodiaWaterContactType::SurfaceEntry, 0.6f, Movement.IsValid() ? Movement->Velocity : FVector::ZeroVector);
+	}
+
+	ApplyCurrentMovementSpeed();
+	OnBubbleSprintStateChanged.Broadcast(bIsBubbleSprinting);
+}
+
 void UMelodiaTraversalComponent::SetSprinting(bool bShouldSprint)
 {
 	const bool bNewSprinting = bShouldSprint && IsTraversalMovementAllowed(this);
@@ -713,7 +876,7 @@ void UMelodiaTraversalComponent::ApplyCurrentMovementSpeed()
 	{
 		return;
 	}
-	Movement->MaxWalkSpeed = bIsSprinting ? SprintSpeed : NormalWalkSpeed;
+	Movement->MaxWalkSpeed = bIsBubbleSprinting ? BubbleSprintSpeed : (bIsSprinting ? SprintSpeed : NormalWalkSpeed);
 }
 
 void UMelodiaTraversalComponent::CancelTraversalState()
@@ -723,7 +886,13 @@ void UMelodiaTraversalComponent::CancelTraversalState()
 	StopDive();
 	bSprintInputHeld = false;
 	SetSprinting(false);
+	bBubbleInputHeld = false;
+	SetBubbleSprint(false);
+	bRollExitFacingValid = false;
 	bGlideHoldArmed = false;
+	bJumpInputHeld = false;
+	bJumpInputOwnsGlide = false;
+	bJumpBuffered = false;
 	bIsDashing = false;
 	DashPersistTimer.Invalidate();
 	if (OwnerCharacter.IsValid())
@@ -734,7 +903,7 @@ void UMelodiaTraversalComponent::CancelTraversalState()
 
 void UMelodiaTraversalComponent::StartGlide()
 {
-	if (bIsGliding || !Movement.IsValid() || !OwnerCharacter.IsValid() || GlideStamina < MinimumGlideStartStamina || Movement->IsMovingOnGround())
+	if (bIsGliding || !Movement.IsValid() || !OwnerCharacter.IsValid() || GlideStamina < MinimumGlideStartStamina || !Movement->IsFalling())
 	{
 		return;
 	}
@@ -744,11 +913,15 @@ void UMelodiaTraversalComponent::StartGlide()
 	Movement->GravityScale = GlideGravityScale;
 	Movement->AirControl = GlideAirControl;
 
-	FVector Velocity = Movement->Velocity;
-	Velocity.Z = FMath::Max(Velocity.Z, GlideActivationLiftSpeed);
-	const FVector FacingDirection = OwnerCharacter->GetActorForwardVector().GetSafeNormal2D();
-	Velocity += FacingDirection * GlideActivationForwardBoost;
-	Movement->Velocity = Velocity;
+	if (!bGlideActivationImpulseSpent)
+	{
+		FVector Velocity = Movement->Velocity;
+		Velocity.Z = FMath::Max(Velocity.Z, GlideActivationLiftSpeed);
+		const FVector FacingDirection = OwnerCharacter->GetActorForwardVector().GetSafeNormal2D();
+		Velocity += FacingDirection * GlideActivationForwardBoost;
+		Movement->Velocity = Velocity;
+		bGlideActivationImpulseSpent = true;
+	}
 
 	TimeSinceGlideStopped = 0.0f;
 	bIsGliding = true;
@@ -956,8 +1129,9 @@ void UMelodiaTraversalComponent::UpdateWaterState(float DeltaTime)
 	// startup or on legacy volumes that have not yet been migrated.
 	const bool bInWater = bHasWaterSample ? WaterSample.bUnderwater : Movement->IsSwimming();
 
-	// Auto-enter swimming when falling into water
-	if (!bIsSwimming && !bIsGliding && bInWater)
+	// Auto-enter swimming when falling into water. The bubble sprint is the
+	// exception: she skims the surface instead of being forced into swim mode.
+	if (!bIsSwimming && !bIsGliding && !bIsBubbleSprinting && bInWater)
 	{
 		// Check if we have enough stamina to start swimming
 		if (SwimStamina >= 1.0f)
@@ -973,6 +1147,43 @@ void UMelodiaTraversalComponent::UpdateWaterState(float DeltaTime)
 		StopSwim();
 		StopDive();
 		return;
+	}
+
+	// Bubble sprint owns the water surface: skim instead of sinking, and stream
+	// wake events through the existing water bus while held. No new framework;
+	// Niagara, fluid, material, and audio consumers stay unchanged.
+	if (bIsBubbleSprinting)
+	{
+		if (bHasAuthoritativeWaterSurface && OwnerCharacter.IsValid())
+		{
+			FVector SkimLocation = OwnerCharacter->GetActorLocation();
+			const float SkimTargetZ = WaterLevelZ + BubbleSkimOffsetZ;
+			if (SkimLocation.Z < SkimTargetZ)
+			{
+				SkimLocation.Z = SkimTargetZ;
+				OwnerCharacter->SetActorLocation(SkimLocation, false);
+				if (Movement.IsValid())
+				{
+					FVector SkimVelocity = Movement->Velocity;
+					SkimVelocity.Z = FMath::Max(SkimVelocity.Z, 0.0f);
+					Movement->Velocity = SkimVelocity;
+				}
+			}
+		}
+
+		BubbleWakeAccumulator += DeltaTime;
+		const float WakeInterval = FMath::Max(BubbleWakeEventInterval, 0.05f);
+		if (BubbleWakeAccumulator >= WakeInterval)
+		{
+			BubbleWakeAccumulator = 0.0f;
+			const FVector WakeVelocity = Movement.IsValid() ? Movement->Velocity : FVector::ZeroVector;
+			const float WakeIntensity = FMath::Clamp(WakeVelocity.Size2D() / FMath::Max(BubbleSprintSpeed, 1.0f), 0.25f, 1.0f);
+			PublishWaterContact(EMelodiaWaterContactType::Ripple, WakeIntensity, WakeVelocity);
+		}
+	}
+	else
+	{
+		BubbleWakeAccumulator = 0.0f;
 	}
 
 	// Update water proximity for event reactivity whether or not the legacy MPC
