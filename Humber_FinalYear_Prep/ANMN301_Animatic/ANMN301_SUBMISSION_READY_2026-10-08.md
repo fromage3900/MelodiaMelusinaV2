@@ -2,8 +2,8 @@
 
 **Upload this file:**
 `Humber_FinalYear_Prep/ANMN301_Animatic/ShepherdBrennan_AnimaticCreation_2026-10-09.mp4`
-(the v06 build: 65.00 s · 1920×1080 · 24 fps · silent · decode-clean · title card, end card,
-numbered panels, 3 dissolves)
+(the v07 build — final polish: panel numbers 01–17, title + end cards, 3 dissolves ·
+65.00 s · 1920×1080 · 24 fps · silent · decode-clean)
 
 **Where:** learn.humber.ca → ANMN301 → the assignment drop (resumable test).
 **Due:** Friday 2026-10-09, 5:00 PM.
@@ -17,8 +17,11 @@ numbered panels, 3 dissolves)
 
 ## If anything reads wrong at the last minute
 
-Fallback copy: `ShepherdBrennan_AnimaticCreation_2026-10-09_v05.mp4` (same film, hard cuts
-only, no dissolves) — swap the upload and re-submit; both are complete films.
+Fallback copy: `ShepherdBrennan_AnimaticCreation_2026-10-09_v06.mp4` (previous cut — has the
+dissolves but no panel numbers) — swap the upload and re-submit if ever needed.
+
+Full package (film + docs + sources + receipts): `SHOREWAKE_Submission_Package_2026-10-08/`
+plus the `.zip` beside it, and a school copy on `G:/BS_GodFile_School_20261008/`.
 
 ## Practical notes
 

@@ -13,8 +13,11 @@ SHOREWAKE starskiff (ANMN301 animatic lane + the reel loop).
   gates + rules card), `SHOREWAKE_COMPOSITION_PACK_2026-10-08.md` (framing tests +
   recipes), this log.
 - **Animatic**: `SHOREWAKE_VSE_animatic_v04.blend` (reproducible source: text strips +
-  3 dissolves) and `ShepherdBrennan_AnimaticCreation_2026-10-09_v06.mp4` (65.00 s,
-  1080p24, silent, decode-clean, title/end text, numbered panels, 3 measured dissolves).
+  3 dissolves) and — after the final polish — **`ShepherdBrennan_AnimaticCreation_2026-10-09_v07.mp4`**
+(65.00 s, 1080p24, silent, decode-clean, title/end cards, **panel numbers 01–17** (Arial Bold,
+bottom-left), 3 measured dissolves with the white-pair one tightened 16→8f; source now
+`SHOREWAKE_VSE_animatic_v05.blend`; submission copy carries the convention name; package +
+school copy on G:).
 - **Scene generations** (proxy/): `pearlfix` → `structurefix` → `animfix` → `bob`
   (variant) + `lookdevstack` + `komikaze_tunedplus` + **`SHOREWAKE_LOOP_v5_master.blend`**
   (the merged canonical), and the saved live `SHOREWAKE_LOOP_v5.blend`.
